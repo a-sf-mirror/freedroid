@@ -35,7 +35,7 @@
 #include "global.h"
 #include "proto.h"
 
-/* Distances for hitting a druid */
+/* Distances for hitting a droid */
 #define DROIDHITDIST  (0.25)
 #define DROIDHITDIST2 (DROIDHITDIST*DROIDHITDIST)
 
@@ -456,8 +456,8 @@ void MoveActiveSpells(void)
 											      erot->virt_pos.y);
 
 				if (DistanceFromCenter < minDist) {
-					if ((AllActiveSpells[i].hit_type == ATTACK_HIT_BOTS && Druidmap[erot->type].is_human) ||
-					    (AllActiveSpells[i].hit_type == ATTACK_HIT_HUMANS && !Druidmap[erot->type].is_human))
+					if ((AllActiveSpells[i].hit_type == ATTACK_HIT_BOTS && Droidmap[erot->type].is_human) ||
+					    (AllActiveSpells[i].hit_type == ATTACK_HIT_HUMANS && !Droidmap[erot->type].is_human))
 						continue;
 
 					// Let's see if that enemy has a direction, that is still
@@ -667,9 +667,9 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 		if ((xdist * xdist + ydist * ydist) >= DROIDHITDIST2)
 			continue;
 
-		if (CurBullet->hit_type == ATTACK_HIT_BOTS && Druidmap[ThisRobot->type].is_human)
+		if (CurBullet->hit_type == ATTACK_HIT_BOTS && Droidmap[ThisRobot->type].is_human)
 			continue;
-		if (CurBullet->hit_type == ATTACK_HIT_HUMANS && !Druidmap[ThisRobot->type].is_human)
+		if (CurBullet->hit_type == ATTACK_HIT_HUMANS && !Droidmap[ThisRobot->type].is_human)
 			continue;
 		if (is_friendly(ThisRobot->faction, CurBullet->faction))
 			continue;
@@ -772,7 +772,7 @@ void CheckBulletCollisions(int num)
 };				// CheckBulletCollisions( ... )
 
 /**
- * This function checks for collisions of blasts with bullets and druids
+ * This function checks for collisions of blasts with bullets and droids
  * and delivers damage to the hit objects according to how long they have
  * been in the blast.
  * 

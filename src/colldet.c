@@ -166,7 +166,7 @@ colldet_filter ObstacleByIdPassFilter = { ObstacleByIdPassFilterCallback, NULL, 
 colldet_filter WalkableExceptIdPassFilter = { ObstacleByIdPassFilterCallback, NULL, 0, &WalkablePassFilter };
 colldet_filter FlyableExceptIdPassFilter = { ObstacleByIdPassFilterCallback, NULL, 0, &FlyablePassFilter };
 
-static const float Druid_Radius = 0.5;
+static const float Droid_Radius = 0.5;
 
 /**
  * This function checks if there are any droids at a given location.
@@ -175,7 +175,7 @@ int location_free_of_droids(float x, float y, int levelnum, freeway_context *ctx
 {
 	if (ctx->check_tux) {
 		float dist = (Me.pos.x - x)*(Me.pos.x - x) + (Me.pos.y - y)*(Me.pos.y - y);
-		if (dist < Druid_Radius*Druid_Radius)
+		if (dist < Droid_Radius*Droid_Radius)
 			return FALSE;
 	}
 
@@ -187,7 +187,7 @@ int location_free_of_droids(float x, float y, int levelnum, freeway_context *ctx
 			continue;
 
 		float dist = (this_enemy->pos.x - x)*(this_enemy->pos.x - x) + (this_enemy->pos.y - y)*(this_enemy->pos.y - y);
-		if (dist < Druid_Radius*Druid_Radius)
+		if (dist < Droid_Radius*Droid_Radius)
 			return FALSE;
 	}
 
@@ -214,7 +214,7 @@ int way_free_of_droids(float x1, float y1, float x2, float y2, int levelnum, fre
 
 	if (ctx->check_tux) {
 		float dist = calc_squared_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, Me.pos.x, Me.pos.y);
-		if (dist < Druid_Radius*Druid_Radius)
+		if (dist < Droid_Radius*Droid_Radius)
 			return FALSE;
 	}
 
@@ -230,7 +230,7 @@ int way_free_of_droids(float x1, float y1, float x2, float y2, int levelnum, fre
 
 		float dist = calc_squared_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, this_enemy->pos.x, this_enemy->pos.y);
 
-		if (dist < Druid_Radius*Druid_Radius)
+		if (dist < Droid_Radius*Droid_Radius)
 			return FALSE;
 	}
 

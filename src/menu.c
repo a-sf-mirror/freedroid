@@ -936,7 +936,7 @@ void Cheatmenu(void)
 						if ((erot->type >= 0) && (erot->type <= Number_Of_Droid_Types)) {
 							printf_SDL(Screen, 15, -1,
 								   "%s  %3.1f  %3.1f  %4d  %g ",
-								   Druidmap[erot->type].druidname,
+								   Droidmap[erot->type].droidname,
 								   erot->pos.x, erot->pos.y, (int)erot->energy, erot->speed.x);
 						} else {
 							printf_SDL(Screen, 15, -1, "SEVERE ERROR: Type=%d. ", erot->type);

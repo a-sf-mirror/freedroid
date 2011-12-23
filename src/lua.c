@@ -592,14 +592,14 @@ static int lua_event_craft_addons(lua_State * L)
 static int lua_event_heal_npc(lua_State * L)
 {
 	enemy *en = get_enemy_arg(L, 1); 
-	en->energy = Druidmap[en->type].maxenergy;
+	en->energy = Droidmap[en->type].maxenergy;
 	return 0;
 }
 
 static int lua_display_npc_damage_amount(lua_State * L)
 {
 	enemy *en = get_enemy_arg(L, 1); 
-	lua_pushinteger(L, (int)(Druidmap[en->type].maxenergy - en->energy));
+	lua_pushinteger(L, (int)(Droidmap[en->type].maxenergy - en->energy));
 	return 1;
 }
 
@@ -761,7 +761,7 @@ static int lua_chat_disable_node(lua_State * L)
 static int lua_chat_drop_dead(lua_State * L)
 {
 	enemy *en = get_enemy_arg(L, 1); 
-	hit_enemy(en, en->energy + 1, 0, Druidmap[en->type].is_human - 2, 0);
+	hit_enemy(en, en->energy + 1, 0, Droidmap[en->type].is_human - 2, 0);
 	if (en == chat_control_chat_droid)
 		chat_control_end_dialog = 1;
 	return 0;
@@ -859,7 +859,7 @@ static int lua_chat_bot_exists(lua_State *L)
 static int lua_chat_get_bot_type(lua_State * L)
 {
 	enemy *en = get_enemy_arg(L, 1); 
-	lua_pushstring(L, Druidmap[en->type].druidname);
+	lua_pushstring(L, Droidmap[en->type].droidname);
 	return 1;
 }
 

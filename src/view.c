@@ -2336,7 +2336,7 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 
 	// work out the percentage health
 	//
-	Percentage = (e->energy) / Druidmap[e->type].maxenergy;
+	Percentage = (e->energy) / Droidmap[e->type].maxenergy;
 
 	if (use_open_gl) {
 
@@ -2455,7 +2455,7 @@ int set_rotation_index_for_this_robot(enemy * ThisRobot)
  */
 int set_rotation_model_for_this_robot(enemy * ThisRobot)
 {
-	int RotationModel = Druidmap[ThisRobot->type].individual_shape_nr;
+	int RotationModel = Droidmap[ThisRobot->type].individual_shape_nr;
 
 	// A sanity check for roation model to use can never hurt...
 	//

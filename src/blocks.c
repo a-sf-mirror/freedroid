@@ -556,7 +556,7 @@ static void load_droid_portrait(int type)
 	char fpath[1024];
 
 	strcpy(fpath, "droids/");
-	strcat(fpath, PrefixToFilename[Druidmap[type].individual_shape_nr]);
+	strcat(fpath, PrefixToFilename[Droidmap[type].individual_shape_nr]);
 	strcat(fpath, "/portrait.png");
 
 	load_image(&chat_portrait_of_droid[type], fpath, FALSE);

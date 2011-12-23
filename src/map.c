@@ -97,7 +97,7 @@ void respawn_level(int level_num)
 	// Now we can give new life to dead bots...
 	//
 	BROWSE_DEAD_BOTS_SAFE(erot, nerot) {
-		if (erot->pos.z != level_num || Druidmap[erot->type].is_human)
+		if (erot->pos.z != level_num || Droidmap[erot->type].is_human)
 			continue;
 		/* Move the bot to the alive list */
 		list_move(&(erot->global_list), &alive_bots_head);
@@ -1491,7 +1491,7 @@ jump target west: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum,
 	for (i = 0; i < lvl->random_droids.types_size; i++) {
 		if (i)
 			autostr_append(shipstr, ", ");
-		autostr_append(shipstr, "%s", Druidmap[lvl->random_droids.types[i]].druidname);
+		autostr_append(shipstr, "%s", Droidmap[lvl->random_droids.types[i]].droidname);
 	}
 
 	autostr_append(shipstr, "\n%s%s\"\n%s%s\n", LEVEL_NAME_STRING, lvl->Levelname,
@@ -1612,7 +1612,7 @@ int save_special_forces(const char *filename)
 			if (!en->SpecialForce)
 				continue;
 
-			autostr_append(s_forces_str, "T=%s: ", Druidmap[en->type].druidname);
+			autostr_append(s_forces_str, "T=%s: ", Droidmap[en->type].droidname);
 			autostr_append(s_forces_str, "PosX=%d PosY=%d ", (int)en->pos.x, (int)en->pos.y);
 			autostr_append(s_forces_str, "Faction=\"%s\" ", get_faction_from_id(en->faction));
 			autostr_append(s_forces_str, "UseDialog=\"%s\" ", en->dialog_section_name);

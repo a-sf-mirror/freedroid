@@ -245,13 +245,13 @@ static void heal_robots_over_time(void)
 	BROWSE_ALIVE_BOTS(erot) {
 		float heal_factor;
 		if (is_friendly(erot->faction, FACTION_SELF))
-			heal_factor = Druidmap[erot->type].healing_friendly;
+			heal_factor = Droidmap[erot->type].healing_friendly;
 		else
-			heal_factor = Druidmap[erot->type].healing_hostile;
-		if (erot->energy < Druidmap[erot->type].maxenergy)
+			heal_factor = Droidmap[erot->type].healing_hostile;
+		if (erot->energy < Droidmap[erot->type].maxenergy)
 			erot->energy += heal_factor * HEAL_INTERVAL;
-		if (erot->energy > Druidmap[erot->type].maxenergy)
-			erot->energy = Druidmap[erot->type].maxenergy;
+		if (erot->energy > Droidmap[erot->type].maxenergy)
+			erot->energy = Droidmap[erot->type].maxenergy;
 	}
 }
 
@@ -264,7 +264,7 @@ void enemy_reset(enemy *this_enemy)
 	int j;
 
 	this_enemy->speed.x = this_enemy->speed.y = 0.0;
-	this_enemy->energy = Druidmap[this_enemy->type].maxenergy;
+	this_enemy->energy = Droidmap[this_enemy->type].maxenergy;
 	this_enemy->animation_phase = 0;
 	this_enemy->animation_type = WALK_ANIMATION;
 	this_enemy->frozen = 0.0;
@@ -273,7 +273,7 @@ void enemy_reset(enemy *this_enemy)
 	this_enemy->paralysation_duration_left = 0.0;
 	this_enemy->pure_wait = 0.0;
 	this_enemy->firewait = 0.0;
-	this_enemy->ammo_left = ItemMap[Druidmap[this_enemy->type].weapon_item.type].item_gun_ammo_clip_size;
+	this_enemy->ammo_left = ItemMap[Droidmap[this_enemy->type].weapon_item.type].item_gun_ammo_clip_size;
 	this_enemy->attack_target_type = ATTACK_TARGET_IS_NOTHING;
 	enemy_set_reference(&this_enemy->bot_target_n, &this_enemy->bot_target_addr, NULL);
 	this_enemy->previous_angle = 0.0;
@@ -318,7 +318,7 @@ enemy *enemy_new(int type)
 	this_enemy->marker = 0;
 	this_enemy->max_distance_to_home = 0;
 	this_enemy->dialog_section_name = NULL;
-	this_enemy->short_description_text = strdup(Druidmap[this_enemy->type].default_short_description);
+	this_enemy->short_description_text = strdup(Droidmap[this_enemy->type].default_short_description);
 	this_enemy->on_death_drop_item_code = -1;
 
 	// Set the default value of the 'global state' attributes
@@ -469,9 +469,9 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
 	// if ( ThisRobot -> paralysation_duration_left != 0 ) return;
 
 	if (ThisRobot->frozen == 0)
-		maxspeed = Druidmap[ThisRobot->type].maxspeed;
+		maxspeed = Droidmap[ThisRobot->type].maxspeed;
 	else
-		maxspeed = 0.2 * Druidmap[ThisRobot->type].maxspeed;
+		maxspeed = 0.2 * Droidmap[ThisRobot->type].maxspeed;
 
 	// While getting hit, the bot or person shouldn't be running, but
 	// when standing, it should move over to the 'walk' animation type...
@@ -761,28 +761,28 @@ void DropEnemyTreasure(Enemy ThisRobot)
 	switch (Me.skill_level[get_program_index_with_name("Extract bot parts")]) {
 	case 6:
 	case 5:
-		if (Druidmap[ThisRobot->type].amount_of_tachyon_condensators
-		    && Druidmap[ThisRobot->type].amount_of_tachyon_condensators > MyRandom(100))
+		if (Droidmap[ThisRobot->type].amount_of_tachyon_condensators
+		    && Droidmap[ThisRobot->type].amount_of_tachyon_condensators > MyRandom(100))
 			DropItemAt(GetItemIndexByName("Tachyon Condensator"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
 				   ThisRobot->virt_pos.y, 1);
 	case 4:
-		if (Druidmap[ThisRobot->type].amount_of_antimatter_converters
-		    && Druidmap[ThisRobot->type].amount_of_antimatter_converters > MyRandom(100))
+		if (Droidmap[ThisRobot->type].amount_of_antimatter_converters
+		    && Droidmap[ThisRobot->type].amount_of_antimatter_converters > MyRandom(100))
 			DropItemAt(GetItemIndexByName("Antimatter-Matter Converter"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
 				   ThisRobot->virt_pos.y, 1);
 	case 3:
-		if (Druidmap[ThisRobot->type].amount_of_superconductors
-		    && Druidmap[ThisRobot->type].amount_of_superconductors > MyRandom(100))
+		if (Droidmap[ThisRobot->type].amount_of_superconductors
+		    && Droidmap[ThisRobot->type].amount_of_superconductors > MyRandom(100))
 			DropItemAt(GetItemIndexByName("Superconducting Relay Unit"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
 				   ThisRobot->virt_pos.y, 1);
 	case 2:
-		if (Druidmap[ThisRobot->type].amount_of_plasma_transistors
-		    && Druidmap[ThisRobot->type].amount_of_plasma_transistors > MyRandom(100))
+		if (Droidmap[ThisRobot->type].amount_of_plasma_transistors
+		    && Droidmap[ThisRobot->type].amount_of_plasma_transistors > MyRandom(100))
 			DropItemAt(GetItemIndexByName("Plasma Transistor"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
 				   ThisRobot->virt_pos.y, 1);
 	case 1:
-		if (Druidmap[ThisRobot->type].amount_of_entropy_inverters
-		    && Druidmap[ThisRobot->type].amount_of_entropy_inverters > MyRandom(100))
+		if (Droidmap[ThisRobot->type].amount_of_entropy_inverters
+		    && Droidmap[ThisRobot->type].amount_of_entropy_inverters > MyRandom(100))
 			DropItemAt(GetItemIndexByName("Entropy Inverter"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
 				   ThisRobot->virt_pos.y, 1);
 	case 0:
@@ -804,7 +804,7 @@ void DropEnemyTreasure(Enemy ThisRobot)
 	// there is still some chance, that the enemy will have (and drop) some other
 	// valuables, that the Tux can then collect afterwards.
 	//
-	DropRandomItem(ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, Druidmap[ThisRobot->type].drop_class, FALSE);
+	DropRandomItem(ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, Droidmap[ThisRobot->type].drop_class, FALSE);
 }
 
 /**
@@ -851,7 +851,7 @@ static void enemy_spray_blood(enemy * CurEnemy)
 
 	struct obstacle_group *blood_group = NULL;
 
-	if (Druidmap[CurEnemy->type].is_human)
+	if (Droidmap[CurEnemy->type].is_human)
 		blood_group = get_obstacle_group_by_name("blood");
 	else
 		blood_group = get_obstacle_group_by_name("oil stains");
@@ -878,7 +878,7 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 
 	/* Give death message */
 	if (givexp) {
-		reward = Druidmap[target->type].experience_reward * Me.experience_factor;
+		reward = Droidmap[target->type].experience_reward * Me.experience_factor;
 		Me.Experience += reward;
 	}
 
@@ -909,7 +909,7 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 /*
  		else if (killertype && killertype != -1)
 			append_new_game_message(_("\4%s\5 was killed by %s."), target->short_description_text,
-						Druidmap[killertype].druidname);
+						Droidmap[killertype].droidname);
 		else
 			append_new_game_message(_("\4%s\5 died."), target->short_description_text);
 */
@@ -928,10 +928,10 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 		//        phase is reached and so serious bugs other than that, so I think it 
 		//        will be tolerable this way.
 		//
-		target->animation_phase = ((float)first_death_animation_image[Druidmap[target->type].individual_shape_nr]) - 1 + 0.1;
+		target->animation_phase = ((float)first_death_animation_image[Droidmap[target->type].individual_shape_nr]) - 1 + 0.1;
 		target->animation_type = DEATH_ANIMATION;
 		play_death_sound_for_bot(target);
-		DebugPrintf(1, "\n%s(): playing death sound because bot of type %d really died.", __FUNCTION__, Druidmap[target->type].individual_shape_nr);
+		DebugPrintf(1, "\n%s(): playing death sound because bot of type %d really died.", __FUNCTION__, Droidmap[target->type].individual_shape_nr);
 
 		if (MyRandom(15) == 1)
 			enemy_spray_blood(target);
@@ -954,11 +954,11 @@ static void start_gethit_animation(enemy * ThisRobot)
 	// Maybe this robot is fully animated.  In this case, after getting
 	// hit, the gethit animation should be displayed, which we'll initiate here.
 	//
-	if ((last_gethit_animation_image[Druidmap[ThisRobot->type].individual_shape_nr] - first_gethit_animation_image[Druidmap[ThisRobot->type].individual_shape_nr] > 0)) {
+	if ((last_gethit_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] - first_gethit_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] > 0)) {
 		if ((ThisRobot->animation_type == DEATH_ANIMATION)) {
 			DebugPrintf(-4, "\n%s(): WARNING: animation phase reset for INFOUT bot... ", __FUNCTION__);
 		}
-		ThisRobot->animation_phase = ((float)first_gethit_animation_image[Druidmap[ThisRobot->type].individual_shape_nr]) + 0.1;
+		ThisRobot->animation_phase = ((float)first_gethit_animation_image[Droidmap[ThisRobot->type].individual_shape_nr]) + 0.1;
 		ThisRobot->animation_type = GETHIT_ANIMATION;
 	}
 
@@ -996,12 +996,12 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 
 	// hitstun
 	// a hit that does less than 5% (over max life) damage cannot stun a bot
-	if (hit / Druidmap[target->type].maxenergy >= 0.05) {
+	if (hit / Droidmap[target->type].maxenergy >= 0.05) {
 		start_gethit_animation(target);
 
 		// if the current wait time of the bot is greater than the hitstun duration, we do nothing
-		if (target->firewait < Druidmap[target->type].recover_time_after_getting_hit) {
-			target->firewait = Druidmap[target->type].recover_time_after_getting_hit;
+		if (target->firewait < Droidmap[target->type].recover_time_after_getting_hit) {
+			target->firewait = Droidmap[target->type].recover_time_after_getting_hit;
 		}
 	}
 
@@ -1252,7 +1252,7 @@ float DistanceToTux(Enemy ThisRobot)
  */
 void update_vector_to_shot_target_for_friend(enemy * ThisRobot)
 {
-	float aggression_distance = Druidmap[ThisRobot->type].aggression_distance;
+	float aggression_distance = Droidmap[ThisRobot->type].aggression_distance;
 	float squared_aggression_distance = aggression_distance * aggression_distance;
 	float squared_best_dist;
 
@@ -1304,7 +1304,7 @@ void update_vector_to_shot_target_for_enemy(enemy * this_robot)
 	int our_level = this_robot->pos.z;
 	float squared_best_dist;
 	float xdist, ydist;
-	float aggression_distance = Druidmap[this_robot->type].aggression_distance;
+	float aggression_distance = Droidmap[this_robot->type].aggression_distance;
 	float squared_aggression_distance = aggression_distance * aggression_distance;
 
 	// Check validity of old target (if any)
@@ -1508,7 +1508,7 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 	/* Do greet sound if not already done */
 	if (!ThisRobot->has_greeted_influencer) {
 		ThisRobot->has_greeted_influencer = TRUE;
-		if (Druidmap[ThisRobot->type].greeting_sound_type != (-1)) {
+		if (Droidmap[ThisRobot->type].greeting_sound_type != (-1)) {
 			play_greeting_sound(ThisRobot);
 		}
 	}
@@ -1523,12 +1523,12 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 	// the robot resumes normal operation...
 	//
 	ThisRobot->state_timeout += Frame_Time();
-	if (ThisRobot->state_timeout > Druidmap[ThisRobot->type].time_spent_eyeing_tux) {
+	if (ThisRobot->state_timeout > Droidmap[ThisRobot->type].time_spent_eyeing_tux) {
 		ThisRobot->state_timeout = 0;
 		SetRestOfGroupToState(ThisRobot, ATTACK);
 		ThisRobot->combat_state = ATTACK;
 		ThisRobot->last_combat_step = ATTACK_MOVE_RATE + 1.0;	// So that attack will start immediately
-		if (Druidmap[ThisRobot->type].greeting_sound_type != (-1)) {
+		if (Droidmap[ThisRobot->type].greeting_sound_type != (-1)) {
 			play_enter_attack_run_state_sound(ThisRobot);
 		}
 	}
@@ -1615,7 +1615,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 		goto EXECUTE_ATTACK;
 	}
 
-	int melee_weapon = ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_weapon_is_melee;
+	int melee_weapon = ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_weapon_is_melee;
 
 	if (melee_weapon) {
 		// Check visibility
@@ -1674,7 +1674,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 			goto EXECUTE_ATTACK;
 		}
 		// Check if outside of bullet range
-		itemspec *bot_weapon = &ItemMap[Druidmap[ThisRobot->type].weapon_item.type];
+		itemspec *bot_weapon = &ItemMap[Droidmap[ThisRobot->type].weapon_item.type];
 		float shot_range = bot_weapon->item_gun_bullet_lifetime * bot_weapon->item_gun_speed;
 		float squared_shot_range = shot_range * shot_range;
 
@@ -2095,8 +2095,8 @@ void set_bullet_speed_to_target_direction(bullet * NewBullet, float bullet_speed
  */
 static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 {
-	int guntype = ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_image_type;
-	float bullet_speed = (float)ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_speed;
+	int guntype = ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_image_type;
+	float bullet_speed = (float)ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_speed;
 	bullet *NewBullet = NULL;
 	int bullet_index = 0;
 
@@ -2108,7 +2108,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		return;
 
 	/* First of all, check what kind of weapon the bot has : ranged or melee */
-	if (!ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_weapon_is_melee) {	/* ranged */
+	if (!ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_weapon_is_melee) {	/* ranged */
 		// find a bullet entry, that isn't currently used... 
 		//
 		bullet_index = find_free_bullet_index();
@@ -2119,7 +2119,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 
 		// Newly, also enemies have to respect the angle modifier in their weapons...
 		//
-		RotateVectorByAngle(&(NewBullet->speed), ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_start_angle_modifier);
+		RotateVectorByAngle(&(NewBullet->speed), ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_start_angle_modifier);
 		NewBullet->angle = -(90 + 45 + 180 * atan2(NewBullet->speed.y, NewBullet->speed.x) / M_PI);
 
 		// At this point we mention, that when not moving anywhere, the robot should also
@@ -2131,7 +2131,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		NewBullet->pos.x = ThisRobot->virt_pos.x;
 		NewBullet->pos.y = ThisRobot->virt_pos.y;
 		NewBullet->pos.z = ThisRobot->virt_pos.z;
-		NewBullet->height = Druidmap[ThisRobot->type].gun_muzzle_height;
+		NewBullet->height = Droidmap[ThisRobot->type].gun_muzzle_height;
 
 		// fire bullets so, that they don't hit the shooter...
 		NewBullet->pos.x += (NewBullet->speed.x) / (bullet_speed) * 0.5;
@@ -2141,8 +2141,8 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 
 		// Now we set the damage of this bullet to the correct value
 		NewBullet->damage =
-		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].base_item_gun_damage +
-		    MyRandom(ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_damage_modifier);
+		    ItemMap[Droidmap[ThisRobot->type].weapon_item.type].base_item_gun_damage +
+		    MyRandom(ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_damage_modifier);
 
 		NewBullet->time_in_seconds = 0;
 
@@ -2153,11 +2153,11 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		NewBullet->freezing_level = 0;
 		NewBullet->paralysation_duration = 0;
 
-		NewBullet->bullet_lifetime = ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_lifetime;
+		NewBullet->bullet_lifetime = ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_lifetime;
 
 		NewBullet->owner = ThisRobot->id;
 		NewBullet->pass_through_hit_bodies =
-		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_pass_through_hit_bodies;
+		    ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_pass_through_hit_bodies;
 		NewBullet->faction = ThisRobot->faction;
 	} else {		/* melee weapon */
 
@@ -2174,28 +2174,28 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 			enemy_set_reference(&NewShot->bot_target_n, &NewShot->bot_target_addr, NULL);
 		}
 
-		NewShot->to_hit = Druidmap[ThisRobot->type].to_hit;
+		NewShot->to_hit = Droidmap[ThisRobot->type].to_hit;
 		NewShot->damage =
-		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].base_item_gun_damage +
-		    MyRandom(ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_damage_modifier);
+		    ItemMap[Droidmap[ThisRobot->type].weapon_item.type].base_item_gun_damage +
+		    MyRandom(ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_damage_modifier);
 		NewShot->owner = ThisRobot->id;
 	}
 
 	ThisRobot->ammo_left--;
 
 	if (ThisRobot->ammo_left > 0) {
-		ThisRobot->firewait += ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_recharging_time;
+		ThisRobot->firewait += ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_recharging_time;
 	} else {
-		ThisRobot->ammo_left = ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_ammo_clip_size;
-		if (ThisRobot->firewait < ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_reloading_time)
-			ThisRobot->firewait = ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_reloading_time;
+		ThisRobot->ammo_left = ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_ammo_clip_size;
+		if (ThisRobot->firewait < ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_reloading_time)
+			ThisRobot->firewait = ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_reloading_time;
 	}
 
-	if (ThisRobot->firewait < ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_recharging_time)
-		ThisRobot->firewait = ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_recharging_time;
+	if (ThisRobot->firewait < ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_recharging_time)
+		ThisRobot->firewait = ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_gun_recharging_time;
 
-	if (last_attack_animation_image[Druidmap[ThisRobot->type].individual_shape_nr] - first_attack_animation_image[Druidmap[ThisRobot->type].individual_shape_nr] > 1) {
-		ThisRobot->animation_phase = ((float)first_attack_animation_image[Druidmap[ThisRobot->type].individual_shape_nr]) + 0.1;
+	if (last_attack_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] - first_attack_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] > 1) {
+		ThisRobot->animation_phase = ((float)first_attack_animation_image[Droidmap[ThisRobot->type].individual_shape_nr]) + 0.1;
 		ThisRobot->animation_type = ATTACK_ANIMATION;
 		ThisRobot->current_angle = -(-90 + 180 * atan2(ydist, xdist) / M_PI);
 	}
@@ -2537,12 +2537,12 @@ void animate_enemy(enemy *our_enemy)
 	switch (our_enemy->animation_type) {
 
 	case WALK_ANIMATION:
-		our_enemy->animation_phase += Frame_Time() * droid_walk_animation_speed_factor[Druidmap[our_enemy->type].individual_shape_nr];
+		our_enemy->animation_phase += Frame_Time() * droid_walk_animation_speed_factor[Droidmap[our_enemy->type].individual_shape_nr];
 
 		// While we're in the walk animation cycle, we have the walk animation
 		// images cycle.
 		//
-		if (our_enemy->animation_phase >= last_walk_animation_image[Druidmap[our_enemy->type].individual_shape_nr]) {
+		if (our_enemy->animation_phase >= last_walk_animation_image[Droidmap[our_enemy->type].individual_shape_nr]) {
 			our_enemy->animation_phase = 0;
 			our_enemy->animation_type = WALK_ANIMATION;
 		}
@@ -2550,42 +2550,42 @@ void animate_enemy(enemy *our_enemy)
 		// to the standing cycle...
 		//
 		if ((fabsf(our_enemy->speed.x) < 0.1) && (fabsf(our_enemy->speed.y) < 0.1)) {
-			our_enemy->animation_phase = first_stand_animation_image[Druidmap[our_enemy->type].individual_shape_nr] - 1;
+			our_enemy->animation_phase = first_stand_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1;
 			our_enemy->animation_type = STAND_ANIMATION;
 		}
 		break;
 	case ATTACK_ANIMATION:
-		our_enemy->animation_phase += Frame_Time() * droid_attack_animation_speed_factor[Druidmap[our_enemy->type].individual_shape_nr];
+		our_enemy->animation_phase += Frame_Time() * droid_attack_animation_speed_factor[Droidmap[our_enemy->type].individual_shape_nr];
 
-		if (our_enemy->animation_phase >= last_attack_animation_image[Druidmap[our_enemy->type].individual_shape_nr]) {
+		if (our_enemy->animation_phase >= last_attack_animation_image[Droidmap[our_enemy->type].individual_shape_nr]) {
 			our_enemy->animation_phase = 0;
 			our_enemy->animation_type = WALK_ANIMATION;
 		}
 		break;
 	case GETHIT_ANIMATION:
-		our_enemy->animation_phase += Frame_Time() * droid_gethit_animation_speed_factor[Druidmap[our_enemy->type].individual_shape_nr];
+		our_enemy->animation_phase += Frame_Time() * droid_gethit_animation_speed_factor[Droidmap[our_enemy->type].individual_shape_nr];
 
-		if (our_enemy->animation_phase >= last_gethit_animation_image[Druidmap[our_enemy->type].individual_shape_nr]) {
+		if (our_enemy->animation_phase >= last_gethit_animation_image[Droidmap[our_enemy->type].individual_shape_nr]) {
 			our_enemy->animation_phase = 0;
 			our_enemy->animation_type = WALK_ANIMATION;
 		}
 		break;
 	case DEATH_ANIMATION:
-		our_enemy->animation_phase += Frame_Time() * droid_death_animation_speed_factor[Druidmap[our_enemy->type].individual_shape_nr];
+		our_enemy->animation_phase += Frame_Time() * droid_death_animation_speed_factor[Droidmap[our_enemy->type].individual_shape_nr];
 
-		if (our_enemy->animation_phase >= last_death_animation_image[Druidmap[our_enemy->type].individual_shape_nr] - 1) {
-			our_enemy->animation_phase = last_death_animation_image[Druidmap[our_enemy->type].individual_shape_nr] - 1;
+		if (our_enemy->animation_phase >= last_death_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1) {
+			our_enemy->animation_phase = last_death_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1;
 			our_enemy->animation_type = DEAD_ANIMATION;
 		}
 		break;
 	case DEAD_ANIMATION:
-		our_enemy->animation_phase = last_death_animation_image[Druidmap[our_enemy->type].individual_shape_nr] - 1;
+		our_enemy->animation_phase = last_death_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1;
 		break;
 	case STAND_ANIMATION:
-		our_enemy->animation_phase += Frame_Time() * droid_stand_animation_speed_factor[Druidmap[our_enemy->type].individual_shape_nr];
+		our_enemy->animation_phase += Frame_Time() * droid_stand_animation_speed_factor[Droidmap[our_enemy->type].individual_shape_nr];
 
-		if (our_enemy->animation_phase >= last_stand_animation_image[Druidmap[our_enemy->type].individual_shape_nr] - 1) {
-			our_enemy->animation_phase = first_stand_animation_image[Druidmap[our_enemy->type].individual_shape_nr] - 1;
+		if (our_enemy->animation_phase >= last_stand_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1) {
+			our_enemy->animation_phase = first_stand_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1;
 			our_enemy->animation_type = STAND_ANIMATION;
 		}
 		break;
@@ -2681,7 +2681,7 @@ static int is_potential_target(enemy * this_robot, gps * target_pos, float *squa
 		return FALSE;
 	}
 	// For a range weapon, check if the target can be directly shot
-	int melee_weapon = ItemMap[Druidmap[this_robot->type].weapon_item.type].item_weapon_is_melee;
+	int melee_weapon = ItemMap[Droidmap[this_robot->type].weapon_item.type].item_weapon_is_melee;
 
 	if (!melee_weapon) {
 		if (DirectLineColldet(this_robot->pos.x, this_robot->pos.y,
@@ -2712,7 +2712,7 @@ int get_droid_type(const char *type_name)
 	int i;
 
 	for (i = 0; i < Number_Of_Droid_Types; i++) {
-		if (!strcmp(Druidmap[i].druidname, type_name))
+		if (!strcmp(Droidmap[i].droidname, type_name))
 			return i;
 	}
 

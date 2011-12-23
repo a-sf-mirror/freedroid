@@ -54,7 +54,7 @@ static int set_random_droid_types(level *lvl, const char *input, char **droid_ty
 
 	while (*droid_type) {
 		for (i = 0; i < Number_Of_Droid_Types; i++)
-			if (!strcmp(Druidmap[i].druidname, *droid_type))
+			if (!strcmp(Droidmap[i].droidname, *droid_type))
 				break;
 
 		if (i == Number_Of_Droid_Types) {
@@ -110,7 +110,7 @@ void get_random_droids_from_user()
 	int i;
 	int *type_index = lvl->random_droids.types;
 	for (i = 0; i < lvl->random_droids.types_size; i++)
-		sprintf(suggested_val, "%s%s, ", suggested_val, Druidmap[type_index[i]].druidname);
+		sprintf(suggested_val, "%s%s, ", suggested_val, Droidmap[type_index[i]].droidname);
 
 	// Get the droid types
 	while (1) {

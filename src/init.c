@@ -474,9 +474,9 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 
 	// Not that we know how many robots are defined in freedroid.ruleset, we can allocate
 	// a fitting amount of memory.
-	i = sizeof(druidspec);
-	Druidmap = MyMalloc(i * (Number_Of_Droid_Types + 1) + 1);
-	DebugPrintf(1, "\nWe have counted %d different druid types in the game data file.", Number_Of_Droid_Types);
+	i = sizeof(droidspec);
+	Droidmap = MyMalloc(i * (Number_Of_Droid_Types + 1) + 1);
+	DebugPrintf(1, "\nWe have counted %d different droid types in the game data file.", Number_Of_Droid_Types);
 	DebugPrintf(2, "\nMEMORY HAS BEEN ALLOCATED.\nTHE READING CAN BEGIN.\n");
 
 	//Now we start to read the values for each robot:
@@ -490,102 +490,102 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 
 		// Now we read in the Name of this droid.  We consider as a name the rest of the
 		// line with the DROIDNAME_BEGIN_STRING until the "\n" is found.
-		Druidmap[RobotIndex].druidname = ReadAndMallocStringFromData(RobotPointer, DROIDNAME_BEGIN_STRING, "\n");
+		Droidmap[RobotIndex].droidname = ReadAndMallocStringFromData(RobotPointer, DROIDNAME_BEGIN_STRING, "\n");
 
 		// Now we read in the default short_description_text for this droid.
-		Druidmap[RobotIndex].default_short_description = ReadAndMallocStringFromDataOptional(RobotPointer, "Default description:_\"", "\"");
-		if (!Druidmap[RobotIndex].default_short_description)
-			Druidmap[RobotIndex].default_short_description = strdup("");
+		Droidmap[RobotIndex].default_short_description = ReadAndMallocStringFromDataOptional(RobotPointer, "Default description:_\"", "\"");
+		if (!Droidmap[RobotIndex].default_short_description)
+			Droidmap[RobotIndex].default_short_description = strdup("");
 
 		// Now we read in the prefix of the file names in the rotation series
 		// to use for the console droid rotation
-		Druidmap[RobotIndex].droid_portrait_rotation_series_prefix =
+		Droidmap[RobotIndex].droid_portrait_rotation_series_prefix =
 		    ReadAndMallocStringFromData(RobotPointer, DROID_PORTRAIT_ROTATION_SERIES_NAME_PREFIX, "\"");
 
 		// Now we read in the file name of the death sound for this droid.  
 		// Is should be enclosed in double-quotes.
 		//
-		Druidmap[RobotIndex].droid_death_sound_file_name =
+		Droidmap[RobotIndex].droid_death_sound_file_name =
 		    ReadAndMallocStringFromData(RobotPointer, DROID_DEATH_SOUND_FILE_NAME, "\"");
 
 		// Now we read in the file name of the attack animation sound for this droid.  
 		// Is should be enclosed in double-quotes.
 		//
-		Druidmap[RobotIndex].droid_attack_animation_sound_file_name =
+		Droidmap[RobotIndex].droid_attack_animation_sound_file_name =
 		    ReadAndMallocStringFromData(RobotPointer, DROID_ATTACK_ANIMATION_SOUND_FILE_NAME, "\"");
 
 		// Now we read in the maximal speed this droid can go. 
-		ReadValueFromString(RobotPointer, MAXSPEED_BEGIN_STRING, "%f", &Druidmap[RobotIndex].maxspeed, EndOfDataPointer);
+		ReadValueFromString(RobotPointer, MAXSPEED_BEGIN_STRING, "%f", &Droidmap[RobotIndex].maxspeed, EndOfDataPointer);
 
 		// Now we read in the class of this droid.
-		ReadValueFromString(RobotPointer, CLASS_BEGIN_STRING, "%d", &Druidmap[RobotIndex].class, EndOfDataPointer);
+		ReadValueFromString(RobotPointer, CLASS_BEGIN_STRING, "%d", &Droidmap[RobotIndex].class, EndOfDataPointer);
 
 		// Now we read in the maximal energy this droid can store. 
-		ReadValueFromString(RobotPointer, MAXENERGY_BEGIN_STRING, "%f", &Druidmap[RobotIndex].maxenergy, EndOfDataPointer);
+		ReadValueFromString(RobotPointer, MAXENERGY_BEGIN_STRING, "%f", &Droidmap[RobotIndex].maxenergy, EndOfDataPointer);
 
 		// Now we read in the lose_health rate.
-		ReadValueFromString(RobotPointer, BASE_HEALING_BEGIN_STRING, "%f", &Druidmap[RobotIndex].healing_friendly, EndOfDataPointer);
-		Druidmap[RobotIndex].healing_hostile = Druidmap[RobotIndex].healing_friendly;
+		ReadValueFromString(RobotPointer, BASE_HEALING_BEGIN_STRING, "%f", &Droidmap[RobotIndex].healing_friendly, EndOfDataPointer);
+		Droidmap[RobotIndex].healing_hostile = Droidmap[RobotIndex].healing_friendly;
 
 		// Now we read in range of vision of this droid
 		ReadValueFromString(RobotPointer, "Aggression distance of this droid=", "%f",
-				    &Druidmap[RobotIndex].aggression_distance, EndOfDataPointer);
+				    &Droidmap[RobotIndex].aggression_distance, EndOfDataPointer);
 
 		// Now we read in range of vision of this droid
 		ReadValueFromString(RobotPointer, "Time spent eyeing Tux=", "%f",
-				    &Druidmap[RobotIndex].time_spent_eyeing_tux, EndOfDataPointer);
+				    &Droidmap[RobotIndex].time_spent_eyeing_tux, EndOfDataPointer);
 
 		// Now we experience_reward to be had for destroying one droid of this type
 		ReadValueFromString(RobotPointer, EXPERIENCE_REWARD_BEGIN_STRING, "%hd",
-				    &Druidmap[RobotIndex].experience_reward, EndOfDataPointer);
+				    &Droidmap[RobotIndex].experience_reward, EndOfDataPointer);
 
 		// Now we read in the monster level = maximum treasure chest to pick from
-		ReadValueFromString(RobotPointer, "Drops item class=", "%hd", &Druidmap[RobotIndex].drop_class, EndOfDataPointer);
+		ReadValueFromString(RobotPointer, "Drops item class=", "%hd", &Droidmap[RobotIndex].drop_class, EndOfDataPointer);
 
 		char *tmp_item_name = ReadAndMallocStringFromData(RobotPointer, WEAPON_ITEM_BEGIN_STRING, "\"");
-		Druidmap[RobotIndex].weapon_item.type = GetItemIndexByName(tmp_item_name);
+		Droidmap[RobotIndex].weapon_item.type = GetItemIndexByName(tmp_item_name);
 		free(tmp_item_name);
-		ReadValueFromStringWithDefault(RobotPointer, "Gun muzzle height=", "%d", "30", &Druidmap[RobotIndex].gun_muzzle_height, EndOfDataPointer);
+		ReadValueFromStringWithDefault(RobotPointer, "Gun muzzle height=", "%d", "30", &Droidmap[RobotIndex].gun_muzzle_height, EndOfDataPointer);
 
 		// Now we read in the % chance for droid to drop botpart
 		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Entropy Inverter=", "%hd", "0",
-					       &Druidmap[RobotIndex].amount_of_entropy_inverters, EndOfDataPointer);
+					       &Droidmap[RobotIndex].amount_of_entropy_inverters, EndOfDataPointer);
 		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Plasma Transistor=", "%hd", "0",
-					       &Druidmap[RobotIndex].amount_of_plasma_transistors, EndOfDataPointer);
+					       &Droidmap[RobotIndex].amount_of_plasma_transistors, EndOfDataPointer);
 		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Superconducting Relay Unit=", "%hd", "0",
-					       &Druidmap[RobotIndex].amount_of_superconductors, EndOfDataPointer);
+					       &Droidmap[RobotIndex].amount_of_superconductors, EndOfDataPointer);
 		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Antimatter-Matter Converter=", "%hd", "0",
-					       &Druidmap[RobotIndex].amount_of_antimatter_converters, EndOfDataPointer);
+					       &Droidmap[RobotIndex].amount_of_antimatter_converters, EndOfDataPointer);
 		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Tachyon Condensator=", "%hd", "0",
-					       &Druidmap[RobotIndex].amount_of_tachyon_condensators, EndOfDataPointer);
+					       &Droidmap[RobotIndex].amount_of_tachyon_condensators, EndOfDataPointer);
 
 		// Now we read in the greeting sound type of this droid type
 		ReadValueFromString(RobotPointer, GREETING_SOUND_STRING, "%hd",
-				    &Druidmap[RobotIndex].greeting_sound_type, EndOfDataPointer);
+				    &Droidmap[RobotIndex].greeting_sound_type, EndOfDataPointer);
 
 		// Now we read in the to-hit chance this robot has in combat against an unarmored target
-		ReadValueFromString(RobotPointer, TO_HIT_STRING, "%hd", &Druidmap[RobotIndex].to_hit, EndOfDataPointer);
+		ReadValueFromString(RobotPointer, TO_HIT_STRING, "%hd", &Droidmap[RobotIndex].to_hit, EndOfDataPointer);
 
 		// Now we read in the modifier, that increases/decreases the chance of this robot getting hit
 		ReadValueFromString(RobotPointer, "Time to recover after getting hit=", "%f",
-				    &Druidmap[RobotIndex].recover_time_after_getting_hit, EndOfDataPointer);
+				    &Droidmap[RobotIndex].recover_time_after_getting_hit, EndOfDataPointer);
 
 		// Now we read in the is_human flag of this droid type
-		ReadValueFromString(RobotPointer, IS_HUMAN_SPECIFICATION_STRING, "%hd", &Druidmap[RobotIndex].is_human, EndOfDataPointer);
+		ReadValueFromString(RobotPointer, IS_HUMAN_SPECIFICATION_STRING, "%hd", &Droidmap[RobotIndex].is_human, EndOfDataPointer);
 
 		// Now we read in the Graphics to associate with this droid type
 		char *enemy_surface = ReadAndMallocStringFromData(RobotPointer, "Filename prefix for graphics=\"", "\"");
-		Druidmap[RobotIndex].individual_shape_nr = 0;
+		Droidmap[RobotIndex].individual_shape_nr = 0;
 		for (i=0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++) {
 			if (PrefixToFilename[i] && !strcmp(enemy_surface, PrefixToFilename[i])){
-				Druidmap[RobotIndex].individual_shape_nr = i;
+				Droidmap[RobotIndex].individual_shape_nr = i;
 				break;
 			}
 		}
 		free(enemy_surface);
 
 		// Now we read in the notes about this droid type
-		Druidmap[RobotIndex].notes = ReadAndMallocStringFromData(RobotPointer, NOTES_BEGIN_STRING, "\"");
+		Droidmap[RobotIndex].notes = ReadAndMallocStringFromData(RobotPointer, NOTES_BEGIN_STRING, "\"");
 
 		// Now we're potentially ready to process the next droid.  Therefore we proceed to
 		// the next number in the Droidmap array.
@@ -595,12 +595,12 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 	}
 
 	for (i = 0; i < Number_Of_Droid_Types; i++) {
-		Druidmap[i].maxspeed *= difficulty_parameters[GameConfig.difficulty_level].maxspeed_calibrator;
-		Druidmap[i].maxenergy *= difficulty_parameters[GameConfig.difficulty_level].maxenergy_calibrator;
-		Druidmap[i].experience_reward *= difficulty_parameters[GameConfig.difficulty_level].experience_reward_calibrator;
-		Druidmap[i].aggression_distance *= difficulty_parameters[GameConfig.difficulty_level].aggression_distance_calibrator;
-		Druidmap[i].healing_friendly *= difficulty_parameters[GameConfig.difficulty_level].healing_friendly_calibrator;
-		Druidmap[i].healing_hostile *= difficulty_parameters[GameConfig.difficulty_level].healing_hostile_calibrator;
+		Droidmap[i].maxspeed *= difficulty_parameters[GameConfig.difficulty_level].maxspeed_calibrator;
+		Droidmap[i].maxenergy *= difficulty_parameters[GameConfig.difficulty_level].maxenergy_calibrator;
+		Droidmap[i].experience_reward *= difficulty_parameters[GameConfig.difficulty_level].experience_reward_calibrator;
+		Droidmap[i].aggression_distance *= difficulty_parameters[GameConfig.difficulty_level].aggression_distance_calibrator;
+		Droidmap[i].healing_friendly *= difficulty_parameters[GameConfig.difficulty_level].healing_friendly_calibrator;
+		Droidmap[i].healing_hostile *= difficulty_parameters[GameConfig.difficulty_level].healing_hostile_calibrator;
 	}
 };				// int Get_Robot_Data ( void )
 

@@ -68,7 +68,7 @@ float RangedRechargeMultiplierTable[] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53
 spell_skill_spec *SpellSkillMap;
 int number_of_skills;
 
-druidspec *Druidmap;
+droidspec *Droidmap;
 
 bulletspec *Bulletmap;
 

@@ -128,8 +128,8 @@ static float calculate_total_explored_percentage(void)
 
 //comparison function for droid names
 static int cmp_droid_names(const void *ptr1, const void *ptr2){
-	const char *ch1 =  Druidmap[*(int *)ptr1].default_short_description;
-	const char *ch2 =  Druidmap[*(int *)ptr2].default_short_description;
+	const char *ch1 =  Droidmap[*(int *)ptr1].default_short_description;
+	const char *ch2 =  Droidmap[*(int *)ptr2].default_short_description;
 	return strcmp(ch1, ch2);
 }
 
@@ -139,7 +139,7 @@ static void print_statistics(void)
 	int statistics_browser_lines_needed[Number_Of_Droid_Types + 2];
 	int display = 0;                //display location
 	int srt[Number_Of_Droid_Types]; //used for alphabetizing droid names in display
-	int model;                      //increment Druidmap
+	int model;                      //increment Droidmap
 	int rate;                       //used for finding best/worst Takeover rate
 
 	//totals, bests & worsts
@@ -205,8 +205,8 @@ static void print_statistics(void)
 	if (stats_display[display++]) {
 		if (fav_destroyed != -1) {
 			autostr_append(quest_browser_text, _("Attacking: \3%s\2 (\3%i\2 "), 
-				Druidmap[fav_destroyed].default_short_description, Me.destroyed_bots[fav_destroyed]);
-			if (Druidmap[fav_destroyed].is_human)
+				Droidmap[fav_destroyed].default_short_description, Me.destroyed_bots[fav_destroyed]);
+			if (Droidmap[fav_destroyed].is_human)
 				autostr_append(quest_browser_text, _("killed,"));
 			else
 				autostr_append(quest_browser_text, _("destroyed,"));
@@ -216,7 +216,7 @@ static void print_statistics(void)
 
 		if (fav_capture_target != -1)
 			autostr_append(quest_browser_text, _("Takeover: \3%s\2 (\3%i%%\2 rate, \3%i\2 attempts)\n"),
-					Druidmap[fav_capture_target].default_short_description, fav_capture_success_rate,
+					Droidmap[fav_capture_target].default_short_description, fav_capture_success_rate,
 					Me.TakeoverSuccesses[fav_capture_target] + Me.TakeoverFailures[fav_capture_target]);
 		else
 			autostr_append(quest_browser_text, _("Takeover: none successful\n"));
@@ -224,14 +224,14 @@ static void print_statistics(void)
 
 		if (worst_capture_target != -1)
 			autostr_append(quest_browser_text, _("Failed Takeover: \3%s\2 (\3%i%%\2 rate, \3%i\2 attempts)\n"),
-					Druidmap[worst_capture_target].default_short_description, worst_capture_success_rate,
+					Droidmap[worst_capture_target].default_short_description, worst_capture_success_rate,
 					Me.TakeoverSuccesses[worst_capture_target] + Me.TakeoverFailures[worst_capture_target]);
 		else
 			autostr_append(quest_browser_text, _("Failed Takeover: no failures\n"));
 	}
 
 	//This sorts the droid types by default model name (from droid_archetypes.dat):
-	//srt[] will hold the Druidmap[] indices in this order 
+	//srt[] will hold the Droidmap[] indices in this order 
 	qsort(srt, Number_Of_Droid_Types, sizeof(srt[0]), cmp_droid_names);
 
 	// This is where we display statistics about each bot/human type we have interacted with:
@@ -243,10 +243,10 @@ static void print_statistics(void)
 		model = srt[counter];
 		//only show bot types the player has interacted with:
 		if (Me.damage_dealt[model] || Me.TakeoverSuccesses[model] || Me.TakeoverFailures[model] || Me.destroyed_bots[model]) {
-			autostr_append(quest_browser_text, "\1%s\2\n", Druidmap[model].default_short_description);
+			autostr_append(quest_browser_text, "\1%s\2\n", Droidmap[model].default_short_description);
 			statistics_browser_lines_needed[display] = get_lines_needed(quest_browser_text->value, mission_description_rect, 1);
 			if (stats_display[display++]) {
-				if (Druidmap[model].is_human) {
+				if (Droidmap[model].is_human) {
 					autostr_append(quest_browser_text, _("Killed: \3%d\2\n"), Me.destroyed_bots[model]);
 				} else {
 					autostr_append(quest_browser_text, _("Destroyed: \3%d\2\n"), Me.destroyed_bots[model]);

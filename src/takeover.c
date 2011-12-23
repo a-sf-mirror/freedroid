@@ -100,7 +100,7 @@ point PlaygroundStart[TO_COLORS] = {
 	{PURPLE_PLAYGROUND_X, PURPLE_PLAYGROUND_Y}
 };
 
-point DruidStart[TO_COLORS] = {
+point DroidStart[TO_COLORS] = {
 	{YELLOW_DROID_X, YELLOW_DROID_Y},
 	{PURPLE_DROID_X, PURPLE_DROID_Y}
 };
@@ -110,7 +110,7 @@ int CapsuleCurRow[TO_COLORS] = { 0, 0 };
 int LeaderColor = YELLOW;		/* momentary leading color */
 int YourColor = YELLOW;
 int OpponentColor = PURPLE;
-int OpponentType;		/* The druid-type of your opponent */
+int OpponentType;		/* The droid-type of your opponent */
 enemy *cdroid;
 
 /* the display  column */
@@ -148,22 +148,22 @@ static void show_droid_picture(int PosX, int PosY, int type)
 	static struct image droid_images[NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION];
 	int RotationIndex;
 
-	if (!strcmp(Druidmap[type].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET"))
+	if (!strcmp(Droidmap[type].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET"))
 		return;
 
 	// Maybe we have to reload the whole image series
 	//
-	if (strcmp(LastImageSeriesPrefix, Druidmap[type].droid_portrait_rotation_series_prefix)) {
+	if (strcmp(LastImageSeriesPrefix, Droidmap[type].droid_portrait_rotation_series_prefix)) {
 		int i;
 		for (i = 0; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION; i++) {
 			delete_image(&droid_images[i]);
 
-			sprintf(filename, "droids/%s/portrait_%04d.jpg", Druidmap[type].droid_portrait_rotation_series_prefix, i + 1);
+			sprintf(filename, "droids/%s/portrait_%04d.jpg", Droidmap[type].droid_portrait_rotation_series_prefix, i + 1);
 
 			load_image(&droid_images[i], filename, FALSE);
 		}
 			
-		strcpy(LastImageSeriesPrefix, Druidmap[type].droid_portrait_rotation_series_prefix);
+		strcpy(LastImageSeriesPrefix, Droidmap[type].droid_portrait_rotation_series_prefix);
 	}
 
 	RotationIndex = (SDL_GetTicks() / 50);
@@ -203,7 +203,7 @@ static void show_droid_info(int droidtype)
 	clip.y = UNIVERSAL_COORD_H(57);
 	clip.w = UNIVERSAL_COORD_W(200);
 	clip.h = UNIVERSAL_COORD_H(30);
-	display_text_using_line_height(Druidmap[droidtype].default_short_description, clip.x, clip.y, &clip, 1.0);
+	display_text_using_line_height(Droidmap[droidtype].default_short_description, clip.x, clip.y, &clip, 1.0);
 }
 
 /**
@@ -214,16 +214,16 @@ static void init_droid_description(struct widget_text *w, int droidtype)
 	char *item_name;
 	int weapon_type;
 
-	autostr_append(w->text, _("Unit Type %s\n"), Druidmap[droidtype].druidname);
+	autostr_append(w->text, _("Unit Type %s\n"), Droidmap[droidtype].droidname);
 	autostr_append(w->text, _("Entry : %d\n"), droidtype + 1);
 
-	if ((weapon_type = Druidmap[droidtype].weapon_item.type) >= 0)	// make sure item != -1 
+	if ((weapon_type = Droidmap[droidtype].weapon_item.type) >= 0)	// make sure item != -1 
 		item_name = D_(ItemMap[weapon_type].item_name);	// does not segfault
 	else
 		item_name = _("none");
 
 	autostr_append(w->text, _("\nArmament : %s\n"), item_name);
-	autostr_append(w->text, _("\nCores : %d\n"), 2 + Druidmap[droidtype].class);
+	autostr_append(w->text, _("\nCores : %d\n"), 2 + Droidmap[droidtype].class);
 
 
 	if (Me.TakeoverSuccesses[droidtype]+Me.TakeoverFailures[droidtype]) {
@@ -234,7 +234,7 @@ static void init_droid_description(struct widget_text *w, int droidtype)
 		autostr_append(w->text, _("\nTakeover Success : %2d%%\n"), success_ratio);
 	}
 
-	autostr_append(w->text, _("\nNotes: %s\n"), D_(Druidmap[droidtype].notes));
+	autostr_append(w->text, _("\nNotes: %s\n"), D_(Droidmap[droidtype].notes));
 }
 
 /**
@@ -581,13 +581,13 @@ int droid_takeover(enemy *target)
 	while (!(!SpacePressed() && !EscapePressed() && !MouseLeftPressed())) ;
 
 	int player_capsules = 2 + Me.skill_level[get_program_index_with_name("Hacking")];
-	max_opponent_capsules = 2 + Druidmap[target->type].class;
+	max_opponent_capsules = 2 + Droidmap[target->type].class;
 
 	if (do_takeover(player_capsules, max_opponent_capsules, 100, target)) {
 		/* Won takeover */
 		Me.marker = target->marker;
 
-		reward = Druidmap[target->type].experience_reward * Me.experience_factor;
+		reward = Droidmap[target->type].experience_reward * Me.experience_factor;
 		Me.Experience += reward;
 		append_new_game_message(_("For taking control of your enemy, \4%s\5, you receive %d experience."), target->short_description_text, reward);
 
@@ -934,13 +934,13 @@ static void ShowPlayground(enemy * target)
 			enemy_images[target->type][0][0].offset_y;
 
 		// Offset the droid's drawing rectangle by dheight minus 30 units.
-		Set_Rect(Target_Rect, xoffs + DruidStart[!YourColor].x, yoffs + dheight - 30, User_Rect.w, User_Rect.h);
+		Set_Rect(Target_Rect, xoffs + DroidStart[!YourColor].x, yoffs + dheight - 30, User_Rect.w, User_Rect.h);
 		PutIndividuallyShapedDroidBody(target, Target_Rect, FALSE, FALSE);
 	}
 	//  SDL_SetColorKey (Screen, 0, 0);
 	SDL_SetClipRect(Screen, &User_Rect);
 
-	blit_tux(xoffs + DruidStart[YourColor].x, yoffs);
+	blit_tux(xoffs + DroidStart[YourColor].x, yoffs);
 
 	Set_Rect(Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y, User_Rect.w, User_Rect.h);
 

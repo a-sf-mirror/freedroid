@@ -327,8 +327,8 @@ int DoSkill(int skill_index, int SpellCost)
 								       (float)input_axis.y, FALSE), Me.pos.z, &FlyablePassFilter))
 			goto done_handling_instant_hits;
 
-		if ((Druidmap[droid_below_mouse_cursor->type].is_human && !SpellSkillMap[skill_index].hurt_humans)
-		    || (!Druidmap[droid_below_mouse_cursor->type].is_human && !SpellSkillMap[skill_index].hurt_bots))
+		if ((Droidmap[droid_below_mouse_cursor->type].is_human && !SpellSkillMap[skill_index].hurt_humans)
+		    || (!Droidmap[droid_below_mouse_cursor->type].is_human && !SpellSkillMap[skill_index].hurt_bots))
 			return 1;
 
 		if (hitdmg > 0)

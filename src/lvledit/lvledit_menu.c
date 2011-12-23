@@ -610,7 +610,7 @@ static void LevelOptions(void)
 		for (j = 0; j < EditLevel()->random_droids.types_size; j++) {
 				if (j)
 					strcat(Options[i], ", ");
-				strcat(Options[i], Druidmap[droid_types[j]].druidname);
+				strcat(Options[i], Droidmap[droid_types[j]].droidname);
 		}
 		MenuTexts[i] = Options[i];
 		i++;

@@ -353,8 +353,8 @@ typedef struct item {
 	int quality;
 } item;
 
-typedef struct druidspec {
-	char *druidname;
+typedef struct droidspec {
+	char *droidname;
 	char *default_short_description;
 	char *droid_portrait_rotation_series_prefix;
 	char *droid_death_sound_file_name;
@@ -386,10 +386,10 @@ typedef struct druidspec {
 	short greeting_sound_type;	// which sample to play in order to 'greet' the influencer?
 	short to_hit;		// chance that this droid hits an unarmoured target
 	float recover_time_after_getting_hit;
-	char *notes;		// notes on the druid of this type 
+	char *notes;		// notes on the droid of this type 
 	short int is_human;
 	short individual_shape_nr;
-} druidspec;
+} droidspec;
 
 typedef char s_char; // Used for pointer to static string which are not to be saved
 
@@ -419,7 +419,7 @@ typedef struct enemy {
 	// 1st set (identity)
 	//
 	short int id;                       // unique id of the droid. start at 1.
-	short int type;                     // the number of the droid specifications in Druidmap
+	short int type;                     // the number of the droid specifications in Droidmap
 	uint8_t SpecialForce;               // this flag will exclude the droid from initial shuffling of droids
 	int marker;                         // this provides a marker for special mission targets
 	short int max_distance_to_home;     // how far this robot will go before returning to it's home waypoint
@@ -503,7 +503,7 @@ typedef struct tux {
 	float dexterity_bonus_end_date;
 	float light_bonus_end_date;
 
-	finepoint speed;	// the current speed of the druid 
+	finepoint speed;	// the current speed of the droid 
 	gps pos;		// current position in the whole ship 
 	gps teleport_anchor;	// where from have you last teleported home
 	gps mouse_move_target;	// where the tux is going automatically by virtue of mouse move

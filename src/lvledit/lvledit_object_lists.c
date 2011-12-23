@@ -439,10 +439,10 @@ static void build_enemies_lists(void)
 
 	for (i = 0; i < Number_Of_Droid_Types; i++) {
 		// XXX: Skip the "TRM" type because it doesn't have an atlas file
-		if (!strcmp(Druidmap[i].druidname, "TRM"))
+		if (!strcmp(Droidmap[i].droidname, "TRM"))
 			continue;
 
-		if (Druidmap[i].is_human)
+		if (Droidmap[i].is_human)
 			human_enemies_list[humans++] = i;
 		else
 			droid_enemies_list[droids++] = i;

@@ -109,7 +109,7 @@ void Not_Enough_Dist_Sound(void)
  */
 void play_greeting_sound(enemy *ThisRobot)
 {
-	int SoundCode = Druidmap[ThisRobot->type].greeting_sound_type;
+	int SoundCode = Droidmap[ThisRobot->type].greeting_sound_type;
 	const char *sounds[] = {
 		"effects/bot_sounds/First_Contact_Sound_0.ogg",
 		"effects/bot_sounds/First_Contact_Sound_1.ogg",
@@ -153,14 +153,14 @@ void play_death_sound_for_bot(enemy * ThisRobot)
 	// If the keyword 'none' for the death sound file name is encountered,
 	// nothing will be done...
 	//.
-	if (!strcmp(Druidmap[ThisRobot->type].droid_death_sound_file_name, "none"))
+	if (!strcmp(Droidmap[ThisRobot->type].droid_death_sound_file_name, "none"))
 		return;
 
 	// Now we play the given death sound, looking for the file in the
 	// appropriate sound folder.
 	//
 	strcpy(filename, "effects/bot_sounds/");
-	strcat(filename, Druidmap[ThisRobot->type].droid_death_sound_file_name);
+	strcat(filename, Droidmap[ThisRobot->type].droid_death_sound_file_name);
 	play_sound_at_position(filename, &Me.pos, &ThisRobot->pos);
 }
 
@@ -189,7 +189,7 @@ void play_enter_attack_run_state_sound(enemy *ThisRobot)
 
 	if (MyRandom(5)) {
 		// get sound code
-		SoundCode = Druidmap[ThisRobot->type].greeting_sound_type;
+		SoundCode = Droidmap[ThisRobot->type].greeting_sound_type;
 
 		// sound codes are [0, 2]U[9, 18]
 		// this makes it so the index will be [0, number_of_sounds - 1]

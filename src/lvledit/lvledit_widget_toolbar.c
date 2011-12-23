@@ -124,10 +124,10 @@ static void print_enemy_info(char *str, int en_idx)
 			class: %d, xp_reward: %hd\n\
 			heal: %.2f /s, max_energy: %.2f, max_speed: %.2f\n\
 			aggression_dist: %.2f, eyeing_tux_for: %.2f s",
-				Druidmap[en_idx].druidname,
-				Druidmap[en_idx].class, Druidmap[en_idx].experience_reward,
-				Druidmap[en_idx].healing_friendly, Druidmap[en_idx].maxenergy, Druidmap[en_idx].maxspeed,
-				Druidmap[en_idx].aggression_distance, Druidmap[en_idx].time_spent_eyeing_tux);
+				Droidmap[en_idx].droidname,
+				Droidmap[en_idx].class, Droidmap[en_idx].experience_reward,
+				Droidmap[en_idx].healing_friendly, Droidmap[en_idx].maxenergy, Droidmap[en_idx].maxspeed,
+				Droidmap[en_idx].aggression_distance, Droidmap[en_idx].time_spent_eyeing_tux);
 }
 
 static void print_item_info(char *str, int item_idx)
