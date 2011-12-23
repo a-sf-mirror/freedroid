@@ -66,7 +66,8 @@ NO_TEXT
 	topic("repair_and_settings")
 </LuaCode>
 ----------------------------------------------------------------------
-Nr=2 Text=_"BUG, REPORT ME! aftertakeover node2" Topic="repair_and_settings"
+Nr=2 Text=_"BUG, REPORT ME! aftertakeover node2"
+Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	terminal_sub = get_player_name().. _"@hacked_".. bot_type().."/repair&settings: ~ # "
@@ -75,10 +76,12 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=3 Text="cd .." Topic="repair_and_settings"
+Nr=3 Text="cd .."
+Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	tux_says("cd ..", "NO_WAIT")
+	hide(3, 20, 30, 40)
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -139,7 +142,8 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=20 Text=_"./est_repair.plx" Topic="repair_and_settings"
+Nr=20 Text=_"./est_repair.plx"
+Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	tux_says(_"./est_repair.plx", "NO_WAIT")
@@ -172,7 +176,8 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=21 Text=_"./repair.plx" Topic="repair_and_settings"
+Nr=21 Text=_"./repair.plx"
+Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	tux_says(_"./repair.plx", "NO_WAIT")
@@ -193,33 +198,27 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=30 Text=_"./settings.plx" Topic="repair_and_settings"
+Nr=30 Text=_"./settings.plx"
+Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
-	tux_says(_"./settings.plx", "NO_WAIT")
-	npc_says(_"Welcome to the settings menu.", "NO_WAIT")
-	npc_says(_"Version: 1.82c", "NO_WAIT")
-	npc_says(_"No upgrades found.", "NO_WAIT")
-	if (npc_damage_amount() > 5) then
-		npc_says(_"UNIT TOO DAMAGED TO BROADCAST COMMANDS.", "NO_WAIT")
-	else
-		show(35)
-	end
-	npc_says(_"Which setting should be changed?", "NO_WAIT")
-	hide(3, 20, 21, 30, 40) show(31, 39)
+	next(38)
+	topic("settings.plx")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=31 Text=_"confirmation of hcf.py" Topic="repair_and_settings"
+Nr=31 Text=_"confirmation of hcf.py"
+Topic="settings.plx"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Always ask for confirmation before execution of hcf.py? [Y/N]", "NO_WAIT")
-	hide(31, 35, 39) show(32, 33)
-	topic("hcf.py confirmation Y/N")
+	show(32, 33)
+	topic("setting hcf.py confirmation Y/N")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=32 Text=_"Y (always ask)" Topic="hcf.py confirmation Y/N"
+Nr=32 Text=_"Y (always ask)"
+Topic="setting hcf.py confirmation Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
@@ -231,7 +230,8 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=33 Text=_"N (don't ask)" Topic="hcf.py confirmation Y/N"
+Nr=33 Text=_"N (don't ask)"
+Topic="setting hcf.py confirmation Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"hcf.py will be executed without asking for confirmation.")
@@ -243,16 +243,18 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=35 Text=_"broadcast commands" Topic="repair_and_settings"
+Nr=35 Text=_"broadcast commands"
+Topic="settings.plx"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Broadcast commands to all units on level? [Y/N]", "NO_WAIT")
-	hide(31, 35, 39) show(36, 37)
+	show(36, 37)
 	topic("enable broadcast Y/N")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=36 Text=_"Y (enable broadcast)" Topic="enable broadcast Y/N"
+Nr=36 Text=_"Y (enable broadcast)"
+Topic="enable broadcast Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Commands will be broadcast and executed by all bots on this level under your control.", "NO_WAIT")
@@ -265,7 +267,8 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=37 Text=_"N (disable broadcast)" Topic="enable broadcast Y/N"
+Nr=37 Text=_"N (disable broadcast)"
+Topic="enable broadcast Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Commands will only be executed by this bot.", "NO_WAIT")
@@ -278,25 +281,38 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=38 Text="BUG, REPORT ME! aftertakeover node38" Topic="repair_and_settings"
+Nr=38 Text="BUG, REPORT ME! aftertakeover node38"
+Topic="settings.plx"
 NO_TEXT
 <LuaCode>
-	hide(32, 33, 36, 37)
-	next(30)
+	tux_says(_"./settings.plx", "NO_WAIT")
+	npc_says(_"Welcome to the settings menu.", "NO_WAIT")
+	npc_says(_"Version: 1.82c", "NO_WAIT")
+	npc_says(_"No upgrades found.", "NO_WAIT")
+	if (npc_damage_amount() > 5) then
+		npc_says(_"UNIT TOO DAMAGED TO BROADCAST COMMANDS.", "NO_WAIT")
+	else
+		show(35)
+	end
+	npc_says(_"Which setting should be changed?", "NO_WAIT")
+	hide(32, 33, 36, 37) show(31, 39) 
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=39 Text="leave settings.plx" Topic="repair_and_settings"
+Nr=39 Text="leave settings.plx"
+Topic="settings.plx"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Settings saved", "NO_WAIT")
 	npc_says(_"Leaving settings.plx", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
-	hide(31, 35, 39) show(3, 20, 30, 40)
+	hide(31, 35, 39)
+	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=40 Text=_"./hostname" Topic="repair_and_settings"
+Nr=40 Text=_"./hostname"
+Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	tux_says(_"./hostname", "NO_WAIT")
@@ -305,12 +321,13 @@ NO_TEXT
 	npc_says(_"Current botname: [b]"..bot_name().."[/b]", "NO_WAIT")
 	npc_says(_"Select new name? [Y/N]", "NO_WAIT")
 	cli_says("> ", "NO_WAIT")
-	hide(3, 20, 21, 30, 40) show(41, 42)
+	show(41, 42)
 	topic("change hostname Y/N")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=41 Text=_"Yes" Topic="change hostname Y/N"
+Nr=41 Text=_"Yes"
+Topic="change hostname Y/N"
 NO_TEXT
 <LuaCode>
 	tux_says(_"Y", "NO_WAIT")
@@ -325,28 +342,31 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=42 Text=_"No" Topic="change hostname Y/N"
+Nr=42 Text=_"No"
+Topic="change hostname Y/N"
 NO_TEXT
 <LuaCode>
 	tux_says(_"N", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
-	hide(41, 42) show(3, 20, 30, 40)
+	hide(41, 42)
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=43 Text="BUG, REPORT ME! aftertakeover node43" Topic="repair_and_settings"
+Nr=43 Text="BUG, REPORT ME! aftertakeover node43"
+Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	tux_says(new_name,"NO_WAIT")
 	npc_says(string.format(_"Confirm renaming from [b]%s[/b] to [b]%s[/b]? [Y/N]", bot_name(), new_name), "NO_WAIT")
 	cli_says("> ", "NO_WAIT")
-	hide(41, 42) show(44, 45)
+	show(44, 45)
 	topic("confirm hostname Y/N")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=44 Text=_"Yes" Topic="confirm hostname Y/N"
+Nr=44 Text=_"Yes"
+Topic="confirm hostname Y/N"
 NO_TEXT
 <LuaCode>
 	tux_says(_"Y", "NO_WAIT")
@@ -354,18 +374,19 @@ NO_TEXT
 	set_bot_name(new_name)
 	npc_says(string.format(_"This %s unit is now designated: [b]%s[/b]", bot_type(), bot_name()), "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
+	hide(44, 45)
 	pop_topic()
-	show(3, 20, 30, 40)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=45 Text=_"No" Topic="confirm hostname Y/N"
+Nr=45 Text=_"No"
+Topic="confirm hostname Y/N"
 NO_TEXT
 <LuaCode>
 	tux_says(_"N", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
+	hide(44, 45)
 	pop_topic()
-	show(3, 20, 30, 40)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -375,7 +396,8 @@ NO_TEXT
 	tux_says(_"./hcf.py", "NO_WAIT")
 	if (has_cookie("aftertakeover_confirm_hcf")) then
 		npc_says(string.format(_"Are you really sure you want to destroy %s? Y/N", bot_name()))
-		hide(1, 11, 12, 13, 47) show(48, 49)
+		show(48, 49)
+		topic("confirm self-destruct Y/N")
 	else
 		next(50)
 	end
@@ -383,18 +405,22 @@ NO_TEXT
 ----------------------------------------------------------------------
 
 Nr=48 Text=_"Yes"
+Topic="confirm self-destruct Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Destruction confirmed.")
 	hide(48, 49) next(50)
+	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=49 Text=_"No"
+Topic="confirm self-destruct Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Destruction averted.")
-	hide(48, 49) show(1, 11, 12, 13, 47, 99)
+	hide(48, 49)
+	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -434,7 +460,6 @@ NO_TEXT
 	npc_says(_"Closing remote connection...")
 	del_cookie("AfterTakeover_repair")
 	end_dialog()
-	hide(48, 49)
 </LuaCode>
 ----------------------------------------------------------------------
 
