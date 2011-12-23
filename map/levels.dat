@@ -11391,8 +11391,8 @@ t321 x80.50 y72.50
 t321 x80.50 y73.50
 t321 x80.50 y71.50
 t321 x80.50 y71.50
-t321 x79.50 y70.50
-t321 x79.50 y69.50
+t376 x6.76 y67.70
+t40 x89.50 y0.50
 t132 x44.50 y33.50
 t113 x47.17 y40.51
 t29 x11.50 y7.50
@@ -11444,8 +11444,6 @@ t135 x81.99 y26.70
 t321 x10.50 y75.50
 t40 x74.50 y2.50
 t36 x88.50 y1.50
-t40 x89.50 y0.50
-t376 x6.76 y67.70
 /obsdata
 plabelinfolvl
 x=83 y=26 name="8to1"
@@ -11457,7 +11455,7 @@ obstacleextensions
 idx=537 type=30 data={
 	AccessDoorToWarehouse
 }
-idx=1573 type=31 data={
+idx=1519 type=31 data={
 	it: n="Tungsten spikes"  X=6.000000  Y=67.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 }
 idx=295 type=32 data={
