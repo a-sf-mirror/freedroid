@@ -249,7 +249,7 @@ Nr=29 Text=_"I have the dilithium you wanted."
 	npc_says(_"Really? I thought you were dead, but not only did you come back alive, you also brought some power crystals for my trusty oven.")
 	npc_says(_"I will start cooking at once.")
 	npc_says(_"Thank you, Linarian. As soon as the food cubes are ready I will be able to give them away to the hungry people.")
-	display_big_message("Restored Michelangelo's power supply")
+	display_big_message("_Restored Michelangelo's power supply")
 	add_xp(350)
 	del_item_backpack("Red Dilithium Crystal", 3)
 	end_quest(_"Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the town's cantina.")
