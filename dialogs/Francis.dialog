@@ -169,7 +169,7 @@ Nr=11 Text=_"Who am I?"
 <LuaCode>
 	npc_says(_"So you really can't remember, eh?")
 	npc_says(_"Long stasis sleep can cause neurological damage and impact the memory. Looks like that is what happened here.")
-	npc_says(_"If the computer is not lying, then your name is " .. get_player_name() .. ".")
+	npc_says(string.format(_"If the computer is not lying, then your name is %s.", get_player_name()))
 	npc_says(_"I'm just glad that we realized that you were a legendary Linarian and started the thawing process when we did.")
 	hide(11) show(12)
 </LuaCode>
@@ -290,7 +290,7 @@ Nr=93 Text=_"Deliver that cube yourself." Topic="Deliver the cube"
 	francis_help = francis_help - 10
 	npc_says(_"Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there.")
 	npc_says(_"But... The prospect of facing that... That man again... I just can't bear it.")
-	npc_says(_"Please, " ..get_player_name().. ", will you do me this favor?")
+	npc_says(string.format(_"Please, %s, will you do me this favor?", get_player_name()))
 	hide(93) show(94)
 </LuaCode>
 ----------------------------------------------------------------------
