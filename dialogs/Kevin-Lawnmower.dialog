@@ -154,7 +154,6 @@ NO_TEXT
 	del_item("Barf's Energy Drink", 1)
 	add_item("Tungsten spikes", 2)
 	fuel = 100
-	add_cookie("lawnmower_fueled")
 	set_bot_state("home")
 	hide(50, 51)
 </LuaCode>
