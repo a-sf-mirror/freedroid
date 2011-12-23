@@ -61339,6 +61339,36 @@ x=85 y=22 name="59from60house"
 piteminfolvl
 /piteminfolvl
 obstacleextensions
+idx=895 type=30 data={
+	teleporter room
+}
+idx=134 type=30 data={
+	controll room entrance
+}
+idx=749 type=30 data={
+	tunnel entrance
+}
+idx=759 type=30 data={
+	these pads..  enemy autoguns
+}
+idx=543 type=30 data={
+	in here. lot of bots
+}
+idx=911 type=30 data={
+	< another level < could be rebel town for example< 
+}
+idx=695 type=30 data={
+	open these gates per map label trigger
+}
+idx=1922 type=30 data={
+	make accessible via tunnel, too
+}
+idx=2281 type=30 data={
+	bot autogun
+}
+idx=2280 type=30 data={
+	bot autogun
+}
 idx=2347 type=32 data={
 	HF-FirmwareUpdateServer
 }
