@@ -179,12 +179,7 @@ NO_TEXT
 		del_gold(50)
 		del_points(1)
 		improve_program("Extract bot parts")
-		if (rev == 0) then next(20)
-		elseif (rev == 1) then next(30) -- Learn rev2
-		elseif (rev == 2) then next(40) -- Learn rev3
-		elseif (rev == 3) then next(50) -- Learn rev4
-		elseif (rev == 4) then next(60) -- Learn rev5
-		end
+		next(20 + 10 * rev) -- Learn next rev; shows one of the nodes 20, 30, 40, 50, 60
 	else -- Can't train
 		if (get_gold() >= 50) then -- Training points were the problem
 			npc_says(_"Hmmm...")
@@ -205,19 +200,9 @@ Nr=18 Text=_"Your lessons are very helpful, but at the same time difficult to un
 <LuaCode>
 	npc_says(_"If you want me to repeat something, don't hesitate to ask.")
 	local rev = get_program_revision("Extract bot parts")
-	if (rev > 0) then
-		show(19)
-		if (rev > 1) then
-			show(29)
-			if (rev > 2) then
-				show(39)
-				if (rev > 3) then
-					show(49)
-					if (rev > 4) then show(59) end
-				end
-			end
-		end
-	end
+	for i = 0, 4 do
+		if (rev > i) then show(19 + 10*i) else break end -- show some of the nodes 19, 29, 39, 49, 59
+ 	end
 	topic("Extract bot parts")
 </LuaCode>
 ----------------------------------------------------------------------
