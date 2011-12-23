@@ -122,8 +122,7 @@ leveleditor_obstacle_category {
 		"iso_wall_corners_0001.png",
 		"iso_wall_corners_0002.png",
 		"iso_wall_corners_0003.png",
-		"iso_wall_corners_0004.png",
-		"iso_obstacle_0062.png"
+		"iso_wall_corners_0004.png"
 	}
 }
 

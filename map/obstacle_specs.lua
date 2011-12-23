@@ -438,10 +438,7 @@ obstacle {
 }
 
 obstacle {
-	image_filenames = "iso_obstacle_0062.png",
-	borders = borders(2.20, 1.10),
-	flags = { BLOCKS_VISION },
-	transparency = NO_TRANSPARENCY,
+	image_filenames = "DUMMY OBSTACLE"
 }
 
 obstacle {
