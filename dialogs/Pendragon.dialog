@@ -36,7 +36,7 @@ Beginning of new chat dialog for character="XXXXX"
 	if (has_cookie("Tania-stopped-by-Pendragon")) and
 	   (not has_cookie("Pendragon-OK-w-Tania")) and --Tania Escape Quest stuff
 	   (has_cookie("Tania-sent-to-Doc")) or
-		(has_cookie("Tania-set-free")) then
+	   (has_cookie("Tania-set-free")) then
 		if (not done_quest(_"Tania's Escape")) then
 			npc_says(_"Tania has been waiting to talk to you.")
 		else
