@@ -39,7 +39,7 @@ Beginning of new chat dialog for character="XXXXX"
 	npc_says(_"Welcome to [b]".. bot_name().."[/b]!", "NO_WAIT")
 	if (npc_damage_amount() >0) then
 		npc_says(_"Hardware Check : BOT DAMAGED", "NO_WAIT")
-		npc_says(_"This ".. bot_type().._" unit could stand to be repaired.", "NO_WAIT")
+		npc_says(string.format(_"This %s unit could stand to be repaired.", bot_type()), "NO_WAIT")
 	end
 	if (has_cookie("aftertakeover_broadcast_mode")) then
 		if (npc_damage_amount() > 5) then
@@ -319,7 +319,7 @@ NO_TEXT
 	funny_name = get_random(_"Bald", _"Chic", _"Fuzzy", _"Fluffy", _"Cuddly", _"Laughing", _"Fickle", _"Hyper", _"Machavellian", _"Happy", _"Chic", _"Ornery")
 	funny_name = funny_name .." ".. get_random(_"Bunny", _"Koala", _"Lemur", _"Aardvark", _"Fox", _"Gnu", _"Puffin", _"Herring", _"Halibut", _"Mackerel", _"Trout", _"Tuna", _"Barracuda", _"Shrew", _"Bat", _"Kitten", _"Duck", _"Platypus", _"Armadillo", _"Panda", _"Hedgehog", _"Otter")
 
-	new_name = user_input_string(_"Type a new name for this "..bot_type().._" unit.", funny_name .." ".. bot_type())
+	new_name = user_input_string(string.format(_"Type a new name for this %s unit.", bot_type()), funny_name .." ".. bot_type())
 	hide(41, 42) next(43)
 	pop_topic()
 </LuaCode>
@@ -339,7 +339,7 @@ Nr=43 Text="BUG, REPORT ME! aftertakeover node43" Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	tux_says(new_name,"NO_WAIT")
-	npc_says(_"Confirm renaming from [b]"..bot_name().._"[/b] to [b]"..new_name.._"[/b]? [Y/N]", "NO_WAIT")
+	npc_says(string.format(_"Confirm renaming from [b]%s[/b] to [b]%s[/b]? [Y/N]", bot_name(), new_name), "NO_WAIT")
 	cli_says("> ", "NO_WAIT")
 	hide(41, 42) show(44, 45)
 	topic("confirm hostname Y/N")
@@ -350,9 +350,9 @@ Nr=44 Text=_"Yes" Topic="confirm hostname Y/N"
 NO_TEXT
 <LuaCode>
 	tux_says(_"Y", "NO_WAIT")
-	display_console_message(_"Renamed [b]"..bot_name().._"[/b] to [b]"..new_name.."[/b].")
+	display_console_message(string.format(_"Renamed [b]%s[/b] to [b]%s[/b].", bot_name(), new_name))
 	set_bot_name(new_name)
-	npc_says(_"This "..bot_type().._" unit is now designated: [b]"..bot_name().."[/b]", "NO_WAIT")
+	npc_says(string.format(_"This %s unit is now designated: [b]%s[/b]", bot_type(), bot_name()), "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
 	pop_topic()
 	show(3, 20, 30, 40)
@@ -374,7 +374,7 @@ NO_TEXT
 <LuaCode>
 	tux_says(_"./hcf.py", "NO_WAIT")
 	if (has_cookie("aftertakeover_confirm_hcf")) then
-		npc_says(_"Are you really sure you want to destroy ".. bot_name().._"? Y/N")
+		npc_says(string.format(_"Are you really sure you want to destroy %s? Y/N", bot_name()))
 		hide(1, 11, 12, 13, 47) show(48, 49)
 	else
 		next(50)
