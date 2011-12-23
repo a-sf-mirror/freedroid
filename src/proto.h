@@ -383,7 +383,6 @@ void play_greeting_sound(enemy *ThisRobot);
 void play_enter_attack_run_state_sound(enemy *ThisRobot);
 void play_death_sound_for_bot(enemy * ThisRobot);
 void play_item_sound(int item_type, struct gps *item_pos);
-void PlayEnemyGotHitSound(int enemytype);
 void BulletReflectedSound(void);
 void Play_Spell_ForceToEnergy_Sound(void);
 void play_melee_weapon_hit_something_sound(void);

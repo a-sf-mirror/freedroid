@@ -437,25 +437,6 @@ void play_blast_sound(int blast_type, struct gps *blast_pos)
 }
 
 /**
- * Whenever an enemy is hit by the tux with a melee weapon, then the
- * following sound is played...
- */
-void PlayEnemyGotHitSound(int enemytype)
-{
-	switch (enemytype) {
-	case -1:
-		// Don't play anything at all...
-		break;
-	case 0:
-		// Play a grunting enemy got hit sound...
-		play_sound_cached("effects/Enemy_Got_Hit_Sound_0.ogg");
-		break;
-	default:
-		break;
-	};
-}
-
-/**
  * This function plays a sound of a bullet being reflected. It is only
  * used, when a bullets is compensated by the tux armor.
  */

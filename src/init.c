@@ -448,7 +448,6 @@ static void Get_Robot_Data(void *DataPointer)
 #define EXPERIENCE_REWARD_BEGIN_STRING "Experience_Reward gained for destroying one of this type: "
 #define WEAPON_ITEM_BEGIN_STRING "Weapon item=\""
 #define GREETING_SOUND_STRING "Greeting Sound number="
-#define ENEMY_GOT_HIT_SOUND_STRING "Got Hit Sound number="
 #define DROID_DEATH_SOUND_FILE_NAME "Death sound file name=\""
 #define DROID_ATTACK_ANIMATION_SOUND_FILE_NAME "Attack animation sound file name=\""
 #define TO_HIT_STRING "Chance of this robot scoring a hit="
@@ -563,10 +562,6 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 		// Now we read in the greeting sound type of this droid type
 		ReadValueFromString(RobotPointer, GREETING_SOUND_STRING, "%hd",
 				    &Druidmap[RobotIndex].greeting_sound_type, EndOfDataPointer);
-
-		// Now we read in the greeting sound type of this droid type
-		ReadValueFromString(RobotPointer, ENEMY_GOT_HIT_SOUND_STRING, "%hd",
-				    &Druidmap[RobotIndex].got_hit_sound_type, EndOfDataPointer);
 
 		// Now we read in the to-hit chance this robot has in combat against an unarmored target
 		ReadValueFromString(RobotPointer, TO_HIT_STRING, "%hd", &Druidmap[RobotIndex].to_hit, EndOfDataPointer);
