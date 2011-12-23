@@ -52,7 +52,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 Nr=1 Text=_"A friend..."
 <LuaCode>
-	tux_says(_"My name is ".. get_player_name() .._", and I'm here to stop the robots!")
+	tux_says(string.format(_"My name is %s, and I'm here to stop the robots!", get_player_name()))
 	npc_says(_"Stop them!? You can't. It's too late. The robots have killed everyone.")
 	hide(1, 2, 3) show(4, 5, 6)
 </LuaCode>

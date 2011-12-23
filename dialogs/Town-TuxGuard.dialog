@@ -59,7 +59,7 @@ Nr=99 Text=_"I'll be going then."
 <LuaCode>
 	npc_says(_"Mhmmm.")
 	if (has_cookie("town-northgateguard_tux_nickname_loon")) then
-		npc_says(get_player_name() .._"... the Loon")
+		npc_says(string.format(_"%s... the Loon", get_player_name()))
 	end
 	end_dialog()
 </LuaCode>

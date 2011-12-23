@@ -111,8 +111,8 @@ Nr=5 Text=_"Oh? Who was he? And why?"
 Nr=10 Text=_"Yes. I understand."
 <LuaCode>
 	npc_says(_"State your name Linarian.")
-	tux_says(_"My name is ".. get_player_name() ..".")
-	npc_says(_"You may now enter ".. get_player_name() .._". But we'll be watching you. I'll let the others know you've arrived.")
+	tux_says(string.format(_"My name is %s.", get_player_name()))
+	npc_says(string.format(_"You may now enter %s. But we'll be watching you. I'll let the others know you've arrived.", get_player_name()))
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
 	if (has_quest(_"Deliverance"))and (not has_cookie("knows_spencer_office")) then
@@ -145,7 +145,7 @@ Nr=21 Text=_"... I was only wondering who you were, and why you were wearing suc
 	npc_says(_"The red outfit indicates that I am of the Red Guard. We are the defenders of the town and impose the law.")
 	npc_says(_"With the continued bot attacks, and the grumbling townsfolk, all of us are a little on edge.")
 	npc_says(_"Tell me your name, and then you may pass.")
-	tux_says(_"My name is ".. get_player_name() ..".")
+	tux_says(string.format(_"My name is %s.", get_player_name()))
 	npc_says(_"You may enter.")
 	for var in ipairs(doors) do
 		change_obstacle_state(doors[var], "opened")
@@ -218,8 +218,8 @@ Nr=32 Text=_"That is exactly what I said."
 <LuaCode>
 	npc_says(_"You are as out of your mind as that Sorenson lady.")
 	npc_says(_"But I guess she's already here, so it doesn't matter if we have another loon.")
-	tux_says(_"I'm a Linarian, not a loon. ".. get_player_name() .._" the Linarian.")
-	npc_says(_"Get out of here ".. get_player_name() .._", the loon, and stop bothering me.")
+	tux_says(string.format(_"I'm a Linarian, not a loon. %s the Linarian.", get_player_name()))
+	npc_says(string.format(_"Get out of here %s, the loon, and stop bothering me.", get_player_name()))
 	add_cookie("town-northgateguard_tux_nickname_loon")
 	for var in ipairs(doors) do
 		change_obstacle_state(doors[var], "opened")
@@ -254,7 +254,7 @@ Nr=99 Text=_"I'll be going then."
 <LuaCode>
 	npc_says(_"Mhmmm.")
 	if (has_cookie("town-northgateguard_tux_nickname_loon")) then
-		npc_says(get_player_name() .._"... the Loon")
+		npc_says(string.format(_"%s... the Loon", get_player_name()))
 	end
 	end_dialog()
 </LuaCode>
