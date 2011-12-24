@@ -27,7 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 <FirstTime LuaCode>
 		doors = {"TutorialEntry", "TutorialZigzag1", "TutorialZigzag2", "TutorialZigzag3", "TutorialZigzag4"}
-		doors2 = {doors[1], doors[2], doors[3], doors[4], doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialStorage", "TutorialShootingOut", 				     "TutorialTakeover"}
+		doors2 = {doors[1], doors[2], doors[3], doors[4], doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialStorage", "TutorialShootingOut", "TutorialTakeover"}
 		items_up = {"Entropy Inverter", "Tachyon Condensator", "Antimatter-Matter Converter", "Superconducting Relay Unit", "Plasma Transistor"}
 		ranged_combat = {"Normal Jacket", "Big kitchen knife", "Shoes", "Standard Shield", "Worker Helmet"}
 		-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
@@ -49,10 +49,13 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"So let's start with the basics, shall we?")
 		show(1, 7, 80)
 		set_rush_tux(0)
-	elseif (has_quest(_"Tutorial Movement") and not has_cookie("talk_to_tom")) then
+	elseif (has_quest(_"Tutorial Movement")) and
+		   (not has_cookie("talk_to_tom")) then
 		add_cookie("talk_to_tom")
 		npc_says(_"Glad to see you figured out the quest log!")
-	elseif (has_quest(_"Tutorial Movement") and has_cookie("move_black") and not has_cookie("sprinting") ) then
+	elseif (has_quest(_"Tutorial Movement")) and
+		   (has_cookie("move_black")) and
+		   (not has_cookie("sprinting")) then
 		add_cookie("sprinting")
 		npc_says(_"Speaking of moment, you can also [b]sprint[/b] by holding the [b]control key[/b].")
 		update_quest(_"Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
@@ -536,7 +539,9 @@ Nr=36 Text=_"I would like a few more bots to shoot at."
 
 Nr=37 Text=_"I'm ready to move on."
 <LuaCode>
-	if (has_item_backpack(".22 Automatic") and has_item_backpack("Laser pistol") and has_item_backpack("Plasma pistol")) then
+	if (has_item_backpack(".22 Automatic")) and
+	   (has_item_backpack("Laser pistol")) and
+	   (has_item_backpack("Plasma pistol")) then
 		hide(36, 37) next(39)
 	else
 		npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
@@ -551,7 +556,9 @@ Nr=38 Text=_"I'd rather just move on to the next section of the tutorial."
 <LuaCode>
 	npc_says(_"As you wish, Linarian.")
 	if (has_cookie("opened_door")) then
-		if (has_item_backpack(".22 Automatic") and has_item_backpack("Laser pistol") and has_item_backpack("Plasma pistol")) then
+		if (has_item_backpack(".22 Automatic")) and
+		   (has_item_backpack("Laser pistol")) and
+		   (has_item_backpack("Plasma pistol")) then
 			end_quest(_"Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
 			next(39)
 		else
