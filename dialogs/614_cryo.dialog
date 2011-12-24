@@ -58,7 +58,7 @@ Nr=5 Text=_"What are your orders?"
 <LuaCode>
 	npc_says(_"Primary objective: Protect the living beings inside this complex from attacks by hostile bots.")
 	npc_says(_"Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: [b]HIGH[/b].")
-	add_cookie("cryo_614_lock_gate")
+	cryo_614_lock_gate = true
 	hide(5)
 </LuaCode>
 ----------------------------------------------------------------------

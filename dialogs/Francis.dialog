@@ -65,8 +65,8 @@ Beginning of new chat dialog for character="XXXXX"
 			show(21, 22)
 		end
 
-		if (has_cookie("cryo_614_lock_gate") and
-		   (not has_cookie("cryo_outergate_code"))) then
+		if (cryo_614_lock_gate) and
+		   (not has_cookie("cryo_outergate_code")) then
 			show(30)
 		end
 
