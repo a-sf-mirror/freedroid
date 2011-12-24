@@ -6,72 +6,72 @@ get_program = get_program_revision
 
 -- gettext function for dialogs
 function _(a)
-    return a
+	return a
 end
 
 -- compute the "town score" to determine whether the player can become
 -- a red guard
 function get_town_score()
-    town_score = 0
+	town_score = 0
 
-    if has_quest("Deliverance") then
-	if data_cube_lost then
-		town_score = town_score - 5
-	elseif done_quest("Deliverance") then
-		town_score = town_score + 5
+	if (has_quest("Deliverance")) then
+		if (data_cube_lost) then
+			town_score = town_score - 5
+		elseif (done_quest("Deliverance")) then
+			town_score = town_score + 5
+		end
 	end
-    end
 
-    if done_quest("Bender's problem") then
-	town_score = town_score + 10
-    end
+	if (done_quest("Bender's problem")) then
+		town_score = town_score + 10
+	end
 
-    if done_quest("The yellow toolkit") then
-	town_score = town_score + 15
-    end
+	if (done_quest("The yellow toolkit")) then
+		town_score = town_score + 15
+	end
 
-    if done_quest("Anything but the army snacks, please!") then
-	town_score = town_score + 10
-    end
+	if (done_quest("Anything but the army snacks, please!")) then
+		town_score = town_score + 10
+	end
 
-    if done_quest("Novice Arena") then
-	town_score = town_score + 10
-    end
+	if (done_quest("Novice Arena")) then
+		town_score = town_score + 10
+	end
 
-    if done_quest("Time to say goodnight") then
-	town_score = town_score + 20
-    end
+	if (done_quest("Time to say goodnight")) then
+		town_score = town_score + 20
+	end
 
-    if done_quest("Opening a can of bots...") then
-	town_score = town_score + 15
-    end
+	if (done_quest("Opening a can of bots...")) then
+		town_score = town_score + 15
+	end
 
-    return town_score
+	return town_score
 end
 
 -- this table describes obstacle states
 obstacle_states = {
-	[3] = {["opened"] = -1, ["closed"] = 3,},
-	[4] = {["opened"] = -1, ["closed"] = 4,},
-	[6] = {["opened"] = 6, ["closed"] = 26,},
-	[7] = {["opened"] = 6, ["closed"] = 26,},
-	[8] = {["opened"] = 6, ["closed"] = 26,},
-	[9] = {["opened"] = 6, ["closed"] = 26,},
-	[10] = {["opened"] = 6, ["closed"] = 26,},
+	  [3] = {["opened"] = -1, ["closed"] = 3,},
+	  [4] = {["opened"] = -1, ["closed"] = 4,},
+	  [6] = {["opened"] =  6, ["closed"] = 26,},
+	  [7] = {["opened"] =  6, ["closed"] = 26,},
+	  [8] = {["opened"] =  6, ["closed"] = 26,},
+	  [9] = {["opened"] =  6, ["closed"] = 26,},
+	 [10] = {["opened"] =  6, ["closed"] = 26,},
 
-	[11] = {["opened"] = 11, ["closed"] = 27,},
-	[12] = {["opened"] = 11, ["closed"] = 27,},
-	[13] = {["opened"] = 11, ["closed"] = 27,},
-	[14] = {["opened"] = 11, ["closed"] = 27,},
-	[15] = {["opened"] = 11, ["closed"] = 27,},
+	 [11] = {["opened"] = 11, ["closed"] = 27,},
+	 [12] = {["opened"] = 11, ["closed"] = 27,},
+	 [13] = {["opened"] = 11, ["closed"] = 27,},
+	 [14] = {["opened"] = 11, ["closed"] = 27,},
+	 [15] = {["opened"] = 11, ["closed"] = 27,},
 
-	[26] = {["closed"] = 26, ["opened"] = 6,},
-	[27] = {["closed"] = 27, ["opened"] = 11,},
+	 [26] = {["closed"] = 26, ["opened"] = 6,},
+	 [27] = {["closed"] = 27, ["opened"] = 11,},
 
-	[32] = {["enabled"] = 32, ["disabled"] = 324,},
-	[33] = {["enabled"] = 33, ["disabled"] = 325,},
-	[34] = {["enabled"] = 34, ["disabled"] = 326,},
-	[35] = {["enabled"] = 35, ["disabled"] = 327,},
+	 [32] = {["enabled"] = 32, ["disabled"] = 324,},
+	 [33] = {["enabled"] = 33, ["disabled"] = 325,},
+	 [34] = {["enabled"] = 34, ["disabled"] = 326,},
+	 [35] = {["enabled"] = 35, ["disabled"] = 327,},
 
 	[181] = {["opened"] = 181, ["closed"] = 191,},
 	[182] = {["opened"] = 181, ["closed"] = 191,},
@@ -158,7 +158,7 @@ function add_quest(quest, text)
 end
 
 function update_quest(quest, text)
-	if has_quest(quest) then
+	if (has_quest(quest)) then
 		add_diary_entry(quest, text)
 		cli_says("   ".._"Quest log updated: " .. quest,"NO_WAIT")
 		npc_says("")
@@ -184,7 +184,7 @@ function remove_cookie(cookie)
 end
 
 function del_cookie(cookie)
-	if has_cookie(cookie) then
+	if (has_cookie(cookie)) then
 		remove_cookie(cookie)
 	end
 end
@@ -314,7 +314,7 @@ function train_program(gold_amount, num_points, program)
 	if (get_gold() < gold_amount) then
 		return false
 	end
-	
+
 	if (get_training_points() < num_points) then
 		return false
 	end
