@@ -461,7 +461,6 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 			DialogMenuTexts[i] = L_(ChatRoster[i].option_text);
 		}
 	}
-	// DialogMenuTexts [ MAX_ANSWERS_PER_PERSON - 1 ] = " END ";
 
 	while (1) {
 		// Now we run the startup code
@@ -487,7 +486,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 
 		if ((chat_control_next_node >= MAX_ANSWERS_PER_PERSON) || (chat_control_next_node < 0)) {
 			DebugPrintf(0, "%s: Error: chat_control_next_node %i out of range!\n", __FUNCTION__, chat_control_next_node);
-			chat_control_next_node = END_ANSWER;
+			goto wait_click_and_out;
 		}
 
 		process_this_chat_option(chat_control_next_node, ChatDroid);
@@ -654,13 +653,6 @@ int validate_dialogs()
 				run_lua(LUA_DIALOG, ChatRoster[j].lua_code);
 				k++;
 			}
-		}
-		if(!ChatRoster[END_ANSWER].lua_code){
-			printf("\n\nERROR: \"%s\" Dialog missing END NODE (node %d).\n\n", n->dialog_basename, END_ANSWER);
-			error_caught = TRUE;
-			break;
-			//ErrorMessage(__FUNCTION__, " NO_NEED_TO_INFORM, IS_FATAL,
-			//		
 		}
 
 		printf("\n... dialog OK\n");
