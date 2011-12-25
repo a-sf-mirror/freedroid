@@ -245,7 +245,7 @@ Nr=30 Text=_"What can you teach me about hacking?"
 			kevin_next_lesson_cost = 2 * (kevin_lessons_taught + 1)
 			npc_says(_"I can teach you everything, for a price of course.", "NO_WAIT")
 			npc_says(_"Three hundred per lesson, up front.", "NO_WAIT")
-			npc_says(string.format(_"You will need %d training points.", kevin_next_lesson_cost))
+			npc_says(_"You will need %d training points.", kevin_next_lesson_cost)
 			npc_says(_"Still interested?")
 			show(31)
 		end

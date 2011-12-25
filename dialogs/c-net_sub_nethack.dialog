@@ -70,7 +70,7 @@ NO_TEXT
 
 ----------------------------------------------------------------------
 
-Nr=1 Text=_"yes" 	
+Nr=1 Text=_"yes"
 <LuaCode>
 	n_randomchoice = "yes" --Pick nethack race, role, gender, alignment randomly
 	hide(1,2)
@@ -819,7 +819,7 @@ NO_TEXT
 Nr=80 Text="LOAD SAVE - BUG NODE 80 c-net sub nethack"
 NO_TEXT
 <LuaCode>
-	npc_says(string.format(_"Save game detected: %s %s %s %s in service to [b]%s[/b] on level [b]%d[/b].", n_alignment, n_role, n_race, n_sex, n_god, n_level), "NO_WAIT")
+	npc_says(_"Save game detected: %s %s %s %s in service to [b]%s[/b] on level [b]%d[/b].", n_alignment, n_role, n_race, n_sex, n_god, n_level, "NO_WAIT")
 	if (n_yendor == "yes") then
 		npc_says(_"Save game has the [b]Amulet of Yendor[/b]!", "NO_WAIT")
 	end
@@ -830,7 +830,7 @@ NO_TEXT
 
 Nr=81 Text=_"Show stats"
 <LuaCode>
-	npc_says(string.format(_"[b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health", n_ac, n_tricks, n_hp), "NO_WAIT")
+	npc_says(_"[b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health", n_ac, n_tricks, n_hp, "NO_WAIT")
 	cli_says("> ", "NO_WAIT")
 	hide(81)
 </LuaCode>
@@ -862,8 +862,8 @@ Nr=83 Text=_"New Game"
 Nr=84 Text="LOAD SAVE - BUG NODE 84 c-net sub nethack"
 NO_TEXT
 <LuaCode>
-	npc_says(string.format(_"Your stats are: [b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health.", n_ac, n_tricks, n_hp), "NO_WAIT")
-	npc_says(string.format(_"A [b]%s[/b] is before you. What do you do?", n_emname), "NO_WAIT")
+	npc_says(_"Your stats are: [b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
+	npc_says(_"A [b]%s[/b] is before you. What do you do?", n_emname, "NO_WAIT")
 	show(50, 51, 53, 54)
 	if ((n_tricks>0) or (n_sex == _"female")) then show(52) end
 	cli_says("> ", "NO_WAIT")

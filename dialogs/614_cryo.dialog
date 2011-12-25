@@ -25,12 +25,12 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-<EveryTime LuaCode> 
-	show(0, 4, 5, 99) 
+<EveryTime LuaCode>
+	show(0, 4, 5, 99)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=0 Text=_"Who are you? "
+Nr=0 Text=_"Who are you?"
 <LuaCode>
 	run_subdialog("614_sub.dialog")
 	set_bot_name(_"614 -- Cryo Lab Guard Bot")
@@ -45,7 +45,7 @@ Nr=4 Text=_"Have you detected any hostile bot activity?"
 	npc_says(_"Hostile Numeric Presence: [b]HIGH[/b]", "NO_WAIT")
 	npc_says(_"Enemy Energy Levels: [b]LOW[/b]", "NO_WAIT")
 	npc_says(_"Threat Degree Analysis: [b]MODERATE[/b]", "NO_WAIT")
-		if (cmp_obstacle_state("CryoOuterGate", "closed")) then
+	if (cmp_obstacle_state("CryoOuterGate", "closed")) then
 		npc_says(_"Cryo Complex Gates Status: [b]CLOSED[/b]")
 	else
 		npc_says(_"Cryo Complex Gates Status: [b]OPEN[/b]")

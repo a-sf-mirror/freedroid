@@ -355,7 +355,7 @@ Nr=97 Text=_"Erm... hi!"
 <LuaCode>
 	npc_says(_"Hi. Thanks for the help.")
 	tux_says(_"Will you let me inside the base?")
-	npc_says(string.format(_"I'm sorry %s, I'm afraid I can't do that.", get_player_name()))
+	npc_says(_"I'm sorry %s, I'm afraid I can't do that.", get_player_name())
 	npc_says(_"Nice try, though. I may owe you, but I can't let you in. You must leave.")
 	end_dialog()
 	show(99) hide(97)

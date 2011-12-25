@@ -39,7 +39,7 @@ Beginning of new chat dialog for character="XXXXX"
 	npc_says(_"Welcome to [b]%s[/b]!", bot_name(), "NO_WAIT")
 	if (npc_damage_amount() >0) then
 		npc_says(_"Hardware Check : BOT DAMAGED", "NO_WAIT")
-		npc_says(string.format(_"This %s unit could stand to be repaired.", bot_type()), "NO_WAIT")
+		npc_says(_"This %s unit could stand to be repaired.", bot_type(), "NO_WAIT")
 	end
 	if (has_cookie("aftertakeover_broadcast_mode")) then
 		if (npc_damage_amount() > 5) then
@@ -360,7 +360,7 @@ Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	tux_says(new_name,"NO_WAIT")
-	npc_says(string.format(_"Confirm renaming from [b]%s[/b] to [b]%s[/b]? [Y/N]", bot_name(), new_name), "NO_WAIT")
+	npc_says(_"Confirm renaming from [b]%s[/b] to [b]%s[/b]? [Y/N]", bot_name(), new_name, "NO_WAIT")
 	cli_says("> ", "NO_WAIT")
 	show(44, 45)
 	topic("confirm hostname Y/N")
@@ -374,7 +374,7 @@ NO_TEXT
 	tux_says(_"Y", "NO_WAIT")
 	display_console_message(string.format(_"Renamed [b]%s[/b] to [b]%s[/b].", bot_name(), new_name))
 	set_bot_name(new_name)
-	npc_says(string.format(_"This %s unit is now designated: [b]%s[/b]", bot_type(), bot_name()), "NO_WAIT")
+	npc_says(_"This %s unit is now designated: [b]%s[/b]", bot_type(), bot_name(), "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
 	hide(44, 45)
 	pop_topic()
@@ -397,7 +397,7 @@ NO_TEXT
 <LuaCode>
 	tux_says(_"./hcf.py", "NO_WAIT")
 	if (has_cookie("aftertakeover_confirm_hcf")) then
-		npc_says(string.format(_"Are you really sure you want to destroy %s? Y/N", bot_name()))
+		npc_says(_"Are you really sure you want to destroy %s? Y/N", bot_name())
 		show(48, 49)
 		topic("confirm self-destruct Y/N")
 	else

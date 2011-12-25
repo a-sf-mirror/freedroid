@@ -451,7 +451,7 @@ NO_TEXT
 	local int = math.random(0,6) + math.random(0,6) + math.random(0,6)
 	local wis = math.random(0,6) + math.random(0,6) + math.random(0,6)
 	local cha = math.random(0,6) + math.random(0,6) + math.random(0,6)
-	npc_says(string.format(_"You rolled Stats of STR: [b]%d[/b], CON: [b]%d[/b], DEX: [b]%d[/b], INT: [b]%d[/b],  WIS: [b]%d[/b], CHA: [b]%d[/b].", str, con, dex, int, wis, cha), "NO_WAIT")
+	npc_says(_"You rolled Stats of STR: [b]%d[/b], CON: [b]%d[/b], DEX: [b]%d[/b], INT: [b]%d[/b],  WIS: [b]%d[/b], CHA: [b]%d[/b].", str, con, dex, int, wis, cha, "NO_WAIT")
 	show(88, 89)
 </LuaCode>
 ----------------------------------------------------------------------

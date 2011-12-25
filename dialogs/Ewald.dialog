@@ -315,7 +315,7 @@ NO_TEXT
 <LuaCode>
 	npc_says(_"Dice it is. Roll your first die.")
 	tux1=math.random(1,6)
-	tux_says(string.format(_"I rolled a %d.", tux1))
+	tux_says(_"I rolled a %d.", tux1)
 	npc_says(_"What multiplier are you going to bet?")
 	show(40, 41, 42)
 </LuaCode>
@@ -344,19 +344,19 @@ Nr=42 Text="3x"
 Nr=43 Text="BUG, REPORT ME! ewald node43 -- Dice - finish game" -- finish game here
 NO_TEXT
 <LuaCode>
-	npc_says(string.format(_"You've bet %d valuable circuits.", bet))
+	npc_says(_"You've bet %d valuable circuits.", bet)
 	ewd1=math.random(1,6)
-	npc_says(string.format(_"My first roll is a %d.", ewd1))
+	npc_says(_"My first roll is a %d.", ewd1)
 	tux2=math.random(1,6)
-	tux_says(string.format(_"I rolled a %d.", tux2))
+	tux_says(_"I rolled a %d.", tux2)
 	ewd2=math.random(1,6)
-	npc_says(string.format(_"My second roll is a %d.", ewd2))
+	npc_says(_"My second roll is a %d.", ewd2)
 	tux3=math.random(1,6)
-	tux_says(string.format(_"I rolled a %d.", tux3))
+	tux_says(_"I rolled a %d.", tux3)
 	ewd3=math.random(1,6)
-	npc_says(string.format(_"My third roll is a %d.", ewd3))
+	npc_says(_"My third roll is a %d.", ewd3)
 
-	npc_says(string.format(_"It looks like I scored %d and you scored %d.", ewd1 + ewd2 + ewd3, tux1 + tux2 + tux3))
+	npc_says(_"It looks like I scored %d and you scored %d.", ewd1 + ewd2 + ewd3, tux1 + tux2 + tux3)
 
 	if ((ewd1+ewd2+ewd3) < (tux1+tux2+tux3)) then --Tux wins!
 		npc_says_random(_"You won! Good job.",
@@ -512,7 +512,7 @@ NO_TEXT
 		npc_says(_"Heads.")
 	end
 	ewald_sum = ewd1 + ewd2 + ewd3 + ewd4 + ewd5
-	npc_says(string.format(_"Looks like that is %d tails, and %d heads.", ewald_sum, 5 - ewald_sum))
+	npc_says(_"Looks like that is %d tails, and %d heads.", ewald_sum, 5 - ewald_sum)
 
 	win=0 --find if tux won...
 	if (ewald_sum > 2) then
