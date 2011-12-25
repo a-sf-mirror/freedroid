@@ -226,7 +226,7 @@ Nr=15 Text=_"Do you actually know any *real* secrets?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=16 Text=_"Hey, could you let tell me Lily's password?"
+Nr=16 Text=_"Hey, could you tell me Lily's password?"
 <LuaCode>
 	npc_says(_"Sure, but we will have to shake on it.")
 	tux_says(_"OK...")
