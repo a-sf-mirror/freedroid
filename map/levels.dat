@@ -38803,6 +38803,9 @@ idx=23 type=32 data={
 idx=728 type=32 data={
 	Welcome to FreedroidRPG!
 }
+idx=730 type=30 data={
+	TutorialWall
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  38 y=  42 rnd=0	 c:    5
