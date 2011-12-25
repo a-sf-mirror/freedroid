@@ -1354,7 +1354,7 @@ static void detect_available_resolutions(void)
 {
 	SDL_Rect **modes;
 	screen_resolution resolution_holder;
-	int i, j, merged_size;
+	int i, j, size;
 	char *res[64];
 
 	// Get available fullscreen/hardware modes (reported by SDL)
@@ -1375,15 +1375,10 @@ static void detect_available_resolutions(void)
 		}
 	}
 
-	// Add hard-coded resolutions to the list
-	for (j = 0; j < sizeof(hard_resolutions) / sizeof(hard_resolutions[0]) && i + j < MAX_RESOLUTIONS; j++) {
-		screen_resolutions[i + j] = hard_resolutions[j];
-	}
-
-	// Sort and prune duplicates
-	merged_size = i + min(sizeof(hard_resolutions) / sizeof(hard_resolutions[0]), j);
-	for (i = 0; i < merged_size; i++) {
-		for (j = 0; j < merged_size - 1; j++) {
+	// Sort
+	size = i;
+	for (i = 0; i < size; i++) {
+		for (j = 0; j < size - 1; j++) {
 			// Sort in descending order of xres, then yres
 			if (screen_resolutions[j].xres < screen_resolutions[j + 1].xres ||
 					(screen_resolutions[j].xres == screen_resolutions[j + 1].xres &&
@@ -1391,17 +1386,13 @@ static void detect_available_resolutions(void)
 				resolution_holder = screen_resolutions[j + 1];
 				screen_resolutions[j + 1] = screen_resolutions[j];
 				screen_resolutions[j] = resolution_holder;
-
-			// If it's a duplicate we'll set it to a terminator entry and it will be sorted to the end				
-			} else if (screen_resolutions[j].xres == screen_resolutions[j + 1].xres &&
-					screen_resolutions[j].yres == screen_resolutions[j + 1].yres)
-				screen_resolutions[j + 1] = (screen_resolution) {-1, -1, "", FALSE};
+			}
 		}
 	}
 
 	// Add our terminator on the end, just in case
 	screen_resolutions[i - 1] = (screen_resolution) {-1, -1, "", FALSE};
-};
+}
 
 /* -----------------------------------------------------------------
  * This function initializes the whole FreedroidRPG game.
