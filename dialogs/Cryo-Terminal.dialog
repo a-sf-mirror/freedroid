@@ -36,7 +36,7 @@ Beginning of new chat dialog for character="XXXXX"
 	npc_says(_"Please make your selection to learn more!", "NO_WAIT")
 	if (not has_cookie("cryo_term_unlocked")) then
 	show(0, 1, 2, 3)
-		if (has_cookie("cryo_outergate_code")) then
+		if (cryo_outergate_code) then
 			show(50)
 		end
 	else

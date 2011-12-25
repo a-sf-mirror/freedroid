@@ -66,7 +66,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 
 		if (cryo_614_lock_gate) and
-		   (not has_cookie("cryo_outergate_code")) then
+		   (not cryo_outergate_code) then
 			show(30)
 		end
 
@@ -243,7 +243,7 @@ Nr=22 Text=_"How do I get out from here?"
 
 Nr=30 Text=_"The 614 bot said he might lock the outside gate!"
 <LuaCode>
-	add_cookie("cryo_outergate_code")
+	cryo_outergate_code = true
 	npc_says(_"Oh. You'll need to put the cryonic terminals into admin mode to access the gate controls.")
 	tux_says(_"How do I do that?")
 	npc_says(_"You press star-pound-zero-six-pound and then enter the free-speech number.")
