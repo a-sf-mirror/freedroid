@@ -1513,17 +1513,17 @@ void InitFreedroid(int argc, char **argv)
 
 	LightRadiusInit();
 
-	// Adapt button positions for the current screen resolution.  (Note: At this
-	// point the command line has been evaluated already, therefore we know if OpenGL
-	// is used or not and also which screen resolution to use.
+	init_timer();
+
+	InitVideo();
+
+	// Adapt button positions for the current screen resolution. Note: At this
+	// point the video mode was already initialized, therefore we know if OpenGL
+	// is used or not and also which screen resolution is used.
 	//
 	adapt_button_positions_to_screen_resolution();
 
 	Copy_Rect(Full_User_Rect, User_Rect);
-
-	init_timer();
-
-	InitVideo();
 
 	next_startup_percentage(0);
 
