@@ -107,7 +107,7 @@ Nr=42 Text=_"Do you have any books about the bot apocalypse?"
 	npc_says(_"I'm writing one, but it isn't complete, and there are no publishers left. But, I can tell you all about robots and automata in literature. Interested?")
 	hide(42) show(43, 44, 45)
 	bot_Apoclypse = 2
-	if (has_cookie("kevin_sigtalk")) then show(46) bot_Apoclypse = 3 end
+	if (kevin_sigtalk) then show(46) bot_Apoclypse = 3 end
 </LuaCode>
 ----------------------------------------------------------------------
 

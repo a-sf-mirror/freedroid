@@ -49,14 +49,17 @@ Beginning of new chat dialog for character="XXXXX"
 	if (has_quest(_"And there was light...")) and
 	   (done_quest(_"And there was light...")) then
 		show(8, 10)
-		if (not has_cookie("Kevin_did_And there was light...")) then
-			add_cookie("Kevin_did_And there was light...") -- Tux spoke with Kevin after completing the quest "And there was light..."
+		if (not Kevin_did_And_there_was_light) then
+			Kevin_did_And_there_was_light = true -- Tux spoke with Kevin after completing the quest "And there was light..."
 			update_quest(_"And there was light...", _"Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
 		end
 	end
 
-	if (has_cookie("jasmine_sigsegv")) then
-		if (has_cookie("kevin_sigtalk")) then hide(20) else show(20) end
+	if (has_cookie("jasmine_sigsegv")) and
+	   (kevin_sigtalk) then
+		hide(20)
+	else
+		show(20)
 	end
 
 	if (not has_cookie("kevins_lawnmower_tux_login_granted")) then
@@ -141,7 +144,7 @@ Nr=9 Text=_"Maybe I can help somehow to find a suitable cluster."
 
 Nr=10 Text=_"How about some reward for securing your energy supply area?"
 <LuaCode>
-	if (has_cookie("Kevin_reward_given")) then
+	if (Kevin_reward_given) then
 		npc_says_random(_"I've already rewarded you for that. Don't steal my time. I'm busy.",
 						_"I am not as confused as you think. Go away now.")
 	else
@@ -195,7 +198,7 @@ Nr=14 Text=_"I want to think about that for another moment." Topic="Kevin's Rewa
 Nr=15 Text="BUG, REPORT ME! kevin node15" Topic="Kevin's Reward"
 NO_TEXT
 <LuaCode>
-	add_cookie("Kevin_reward_given") -- Tux received a reward for completing the quest "And there was light..."
+	Kevin_reward_given = true -- Tux received a reward for completing the quest "And there was light..."
 	hide(11, 12, 13, 14) show(30)
 	pop_topic() -- "Kevin's Reward"
 </LuaCode>
@@ -206,7 +209,7 @@ Nr=20 Text=_"Jasmine just blew up."
 	npc_says(_"Oh. Right.")
 	npc_says(_"Well, thanks for telling me.")
 	npc_says(_"Back to the drawing board, I guess...")
-	add_cookie("kevin_sigtalk") -- Tux spoke with Kevin about Jasmine blew up
+	kevin_sigtalk = true -- Tux spoke with Kevin about Jasmine blew up
 	hide(20) show(21)
 </LuaCode>
 ----------------------------------------------------------------------
