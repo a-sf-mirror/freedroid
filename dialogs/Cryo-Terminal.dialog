@@ -34,7 +34,7 @@ Beginning of new chat dialog for character="XXXXX"
 	npc_says_random(_"We freeze you today, so you can see tomorrow!",
 					_"Take the fast trip to the future with Cryonic Solutions!", "NO_WAIT")
 	npc_says(_"Please make your selection to learn more!", "NO_WAIT")
-	if (not has_cookie("cryo_term_unlocked")) then
+	if (not Cryo_term_unlocked) then
 	show(0, 1, 2, 3)
 		if (cryo_outergate_code) then
 			show(50)
@@ -94,7 +94,7 @@ Nr=3 Text=_"advantages"
 
 Nr=50 Text="*#06#"
 <LuaCode>
-	add_cookie("cryo_term_unlocked")
+	Cryo_term_unlocked = true
 	npc_says(_"Enter command code", "NO_WAIT")
 	cli_says("> ")
 	tux_says("09F911029D74E35BD84156C5635688C0")
@@ -107,7 +107,7 @@ Nr=50 Text="*#06#"
 
 Nr=51 Text=_"guest mode"
 <LuaCode>
-	del_cookie("cryo_term_unlocked")
+	Cryo_term_unlocked = false
 	npc_says(_"Entering user mode...")
 	terminal = "guest@cryo-solutions: ~ # "
 	cli_says(terminal, "NO_WAIT")
