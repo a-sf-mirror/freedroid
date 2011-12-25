@@ -142,7 +142,7 @@ Nr=0 Text=_"Hello."
 	npc_says(_"Errr... How did you get in here?!")
 	tux_says(_"I just walked through the door.")
 	npc_says(_"And your name?")
-	tux_says(_"I'm " .. get_player_name() .. _".")
+	tux_says(_"I'm %s.", get_player_name())
 	npc_says(_"And you were not slaughtered by the bots outside?")
 	tux_says(_"Apparently, I am still alive.")
 	tux_says(_"Does that answer your question?")

@@ -67,8 +67,8 @@ Beginning of new chat dialog for character="XXXXX"
 Nr=5 Text=_"I'll state my name."
 NO_TEXT
 <LuaCode>
-	tux_says("" .. get_player_name() .. "")
-	npc_says(_"Identifying as " .. get_player_name() .. "", "NO_WAIT")
+	tux_says(get_player_name())
+	npc_says(_"Identifying as %s", get_player_name(), "NO_WAIT")
 	if (has_cookie("kevins_lawnmower_tux_login_granted")) then
 		npc_says(_"Welcome to Kevin's lawnmower.")
 		show(20)
@@ -130,7 +130,7 @@ NO_TEXT
 	if (fuel < 5) then
 		npc_says(_"WARNING, less than [b]5%[/b] fuel remaining!")
 	elseif (fuel <= 97) then
-		npc_says(_"[b]"..fuel.."[/b]% remaining")
+		npc_says(_"[b]%s[/b]%% remaining", fuel)
 	else
 		npc_says(_"Tank completely refilled.")
 	end

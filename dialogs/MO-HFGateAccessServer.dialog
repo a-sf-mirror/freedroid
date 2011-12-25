@@ -45,7 +45,7 @@ Beginning of new chat dialog for character="XXXXX"
 		elseif (captcha == 6) then
 			captcha = _"six"
 		end
-		response = user_input_string(_"CAPTCHA: Please write the lowercase word that answers the following: "..number_one.." - ".. number_two.." = ?")
+		response = user_input_string(string.format(_"CAPTCHA: Please write the lowercase word that answers the following: %d - %d = ?", number_one, number_two))
 	else
 		del_cookie("skip_GAS_captcha")
 	end

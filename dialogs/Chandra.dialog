@@ -189,7 +189,7 @@ Nr=12 Text=_"What bots are in the 200 class?" Topic="Bot Information"
 	npc_says(_"Also, as I said, the 200s were built to report quickly. The 247 is no exception, and moves faster than some of us can run. As a killer bot, it has a fast rate of attack. It is not something to be trifled with.")
 	npc_says(_"The 249 is a cheaper version of the Banshee. It uses a tripedal drive instead of anti-gravity propulsion, and is therefore slower. However it is much more dangerous: its machine gun has a very high rate of fire.")
 	tux_says(_"Machine gun?! But... But it's a servant bot!")
-	npc_says(_"I know, " .. get_player_name() .._". I know.");
+	npc_says(_"I know, %s. I know.", get_player_name())
 	npc_says(_"Let's see... Oh, there is also the 296, which was used for serving drinks. Ewald once had one of those in his bar.")
 	tux_says(_"Once? What happened to it?")
 	npc_says(_"No one knows. One day it simply wasn't there. Ewald probably remembers more than I do, though.")
@@ -312,7 +312,7 @@ NO_TEXT
 	npc_says(_"Even though we tried to celebrate the grand deeds and heroics of the surviving Linarians, the memories faded. The memories turned into legends and myths as the Linarians slowly withdrew from the world.")
 	npc_says(_"Perhaps there are still other Linarians alive here on our planet. Or maybe some went back to your own planet.")
 	npc_says(_"Spencer and the Red Guard would not want you to know these things, as you might not be willing to help our failing community.")
-	npc_says(_"However, to not share this information with you is another transgression that I cannot be a part of. Please " .. get_player_name() .. ", we need your help!")
+	npc_says(_"However, to not share this information with you is another transgression that I cannot be a part of. Please %s, we need your help!", get_player_name())
 	hide(21, 22) show(23, 24)
 </LuaCode>
 ----------------------------------------------------------------------

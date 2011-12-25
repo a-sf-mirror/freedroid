@@ -44,7 +44,7 @@ Beginning of new chat dialog for character="XXXXX"
 	elseif (captcha == 6) then
 		captcha = _"six"
 	end
-	response = user_input_string(_"CAPTCHA: Please write the lowercase word that answers the following: "..number_one.." - ".. number_two.." = ?")
+	response = user_input_string(string.format(_"CAPTCHA: Please write the lowercase word that answers the following: %d - %d = ?", number_one, number_two))
 	if (captcha ~= response) then
 		npc_says(_"Non-human detected. Administering paralyzing shock.")
 		npc_says(_"NOTE: If you are a human, try again, and make sure you enter a word and not digits.")
@@ -65,7 +65,7 @@ Nr=1 Text=_"Get current OS version"
 	if (not has_cookie("uploaded_faulty_firmware_update")) then
 		npc_says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
 	else
-		npc_says(_"Currently deployed firmware is v. 5.0.8+" .. get_player_name() .. _"washere+gpl")
+		npc_says(_"Currently deployed firmware is v. 5.0.8+%swashere+gpl", get_player_name())
 	end
 </LuaCode>
 ----------------------------------------------------------------------

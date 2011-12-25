@@ -51,7 +51,7 @@ Beginning of new chat dialog for character="XXXXX"
 			npc_says(_"Halt! Who goes there?")
 			tux_says(_"Someone I found in the desert, Tania.")
 		end
-		npc_says(get_player_name() .. _", you may enter.")
+		npc_says(_"%s, you may enter.", get_player_name())
 		npc_says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the town.")
 		if (not has_cookie("Tania_met_Pendragon")) then
 			change_obstacle_state("DesertGate-Inner", "opened")
@@ -117,7 +117,7 @@ Nr=2 Text=_"Do you have a name?"
 <LuaCode>
 	npc_says(_"I go by Pendragon, because I can pull a knife from thin air.")
 	npc_says(_"And you?")
-	tux_says(get_player_name().._", because it is my name?")
+	tux_says(_"%s, because it is my name?", get_player_name())
 	set_bot_name(_"Pendragon -- Fighter")
 	hide(2)
 </LuaCode>

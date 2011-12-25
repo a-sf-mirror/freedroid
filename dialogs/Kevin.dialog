@@ -214,7 +214,7 @@ Nr=20 Text=_"Jasmine just blew up."
 Nr=21 Text=_"I thought you would be more worried about her death."
 <LuaCode>
 	kevin_day = get_random(_"Monday", _"Tuesday", _"Wednesday", _"Thursday", _"Friday", _"Saturday", _"Sunday")
-	npc_says(_"Why? I have backups from last "..kevin_day..". No reason to worry at all.")
+	npc_says(_"Why? I have backups from last %s. No reason to worry at all.", kevin_day)
 	npc_says(_"It will be a while till I get her together again, but she will be fine.")
 	hide(21)
 </LuaCode>

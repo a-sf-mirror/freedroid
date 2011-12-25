@@ -184,7 +184,7 @@ Nr=30 Text=_"Please don't hurt me."
 	npc_says(_"How about I punch you until you spit out your name, and get out of here and we call it even?")
 	tux_says(_"OW")
 	npc_says(_"Your name?")
-	tux_says("".. get_player_name() ..".")
+	tux_says("%s.", get_player_name())
 	tux_says(_"OW. That HURT!")
 	npc_says(_"Get out of here. The Doc is the third door on the right along the main path.")
 	if (not del_health(40)) then
@@ -205,7 +205,7 @@ Nr=30 Text=_"Please don't hurt me."
 Nr=31 Text=_"I want to talk to your manager, moron."
 <LuaCode>
 	npc_says(_"I'll be happy to send you his way, but I need your name before I let you in.")
-	tux_says(_"".. get_player_name() ..".")
+	tux_says("%s.", get_player_name())
 	npc_says(_"Talk to Spencer. His office is in the citadel, straight ahead, the first one on your left. You can't miss it.")
 	npc_says(_"Now stop bothering me! You crazy loon.")
 	add_cookie("town-northgateguard_tux_nickname_loon")

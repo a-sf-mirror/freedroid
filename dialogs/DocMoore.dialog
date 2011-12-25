@@ -92,7 +92,7 @@ Beginning of new chat dialog for character="XXXXX"
 Nr=0 Text=_"Hello!"
 <LuaCode>
 	npc_says(_"Hello. I'm Doc Moore. I'm the medic of this town. I don't believe we've met?")
-	tux_says(_"I'm ".. get_player_name() .. ".")
+	tux_says(_"I'm %s.", get_player_name())
 	npc_says(_"Um, what are you? Some kind of overgrown penguin?")
 	tux_says(_"I'm a Linarian.")
 	npc_says(_"Oh, I vaguely remember reading something about Linarian biology back in my university days...")

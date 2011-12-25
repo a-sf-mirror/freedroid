@@ -52,7 +52,7 @@ NO_TEXT
 		npc_says(_"Please enter your name", "NO_WAIT")
 		cli_says(_"Name : ", "NO_WAIT")
 		tux_says(username)
-		npc_says(_"Please set password for your personalized guest login ".. username, "NO_WAIT")
+		npc_says(_"Please set password for your personalized guest login, %s", username, "NO_WAIT")
 		npc_says(_"Use at least one lower case letter, one upper case letter, one number, and one symbol.", "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
 		tux_says("******")

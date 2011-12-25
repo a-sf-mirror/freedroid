@@ -29,7 +29,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-	tux_says(_"Hi, I'm " .. get_player_name() .. ".")
+	tux_says(_"Hi, I'm %s.", get_player_name())
 	npc_says(_"Welcome to the Library, I'm Tamara.")
 	npc_says(_"Please take a look around and see if there is something here that interests you.")
 	npc_says(_"You are welcome to ask me if you have any questions.")

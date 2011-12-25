@@ -201,7 +201,7 @@ Nr=13 Text=_"How are you doing?"
 	npc_says(_"Much better. I'm cured. You're a good guy, man!", "NO_WAIT")
 	npc_says(_"What was your name again?")
 	tux_says(get_player_name())
-	npc_says(_"Thanks ".. get_player_name() .._", I owe you one.", "NO_WAIT")
+	npc_says(_"Thanks %s, I owe you one.", get_player_name(), "NO_WAIT")
 	npc_says(_"And I'll sure vote for you if you want into the Red Guard! ")
 </LuaCode>
 ----------------------------------------------------------------------
