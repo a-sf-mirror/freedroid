@@ -67,7 +67,7 @@ Nr=2 Text=_"I want to get into the citadel."
 		npc_says(_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard.")
 		npc_says(_"Talk to Spencer if you have any business inside. I cannot let you pass.")
 		-- do we propose a bribe?
-		if (not has_cookie("tybalt_bribe")) then show(50) end
+		if (not tybalt_bribe) then show(50) end
 	end
 	hide(2)
 </LuaCode>
@@ -101,7 +101,7 @@ Nr=55 Text=_"Here you go."
 <LuaCode>
 	if (del_gold(100)) then
 		npc_says(_"Thank you.")
-		add_cookie("tybalt_bribe")
+		tybalt_bribe = true
 		show(56)
 	else
 		npc_says_random(_"That is not a hundred.",
