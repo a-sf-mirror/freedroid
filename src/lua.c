@@ -638,38 +638,15 @@ static int lua_chat_player_name(lua_State * L)
 	return 1;
 }
 
-static int lua_chat_tux_says(lua_State * L)
+static int lua_chat_says(lua_State * L)
 {
 	const char *answer = luaL_checkstring(L, 1);
-	const char *waitop = luaL_optstring(L, 2, "WAIT");
-	int no_wait = !strcmp(waitop, "NO_WAIT");
+	int carriage_return = lua_toboolean(L, 2);
+	int no_wait = !strcmp(luaL_optstring(L, 3, "WAIT"), "NO_WAIT");
 
-	autostr_append(chat_log.text, "\1- ");
 	chat_add_response(L_(answer), no_wait, chat_control_chat_droid);
-	autostr_append(chat_log.text, "\n");
-	return 0;
-}
-
-static int lua_chat_npc_says(lua_State * L)
-{
-	const char *answer = luaL_checkstring(L, 1);
-	const char *waitop = luaL_optstring(L, 2, "WAIT");
-	int no_wait = !strcmp(waitop, "NO_WAIT");
-
-	autostr_append(chat_log.text, "\2");
-	chat_add_response(L_(answer), no_wait, chat_control_chat_droid);
-	autostr_append(chat_log.text, "\n");
-	return 0;
-}
-
-static int lua_chat_cli_says(lua_State * L)
-{
-	const char *answer = luaL_checkstring(L, 1);
-	const char *waitop = luaL_optstring(L, 2, "WAIT");
-	int no_wait = !strcmp(waitop, "NO_WAIT");
-
-	autostr_append(chat_log.text, "\3");
-	chat_add_response(L_(answer), no_wait, chat_control_chat_droid);
+	if (carriage_return)
+		autostr_append(chat_log.text, "\n");
 
 	return 0;
 }
@@ -1115,12 +1092,7 @@ luaL_reg lfuncs[] = {
 	,
 	{"get_player_name", lua_chat_player_name} 
 	,
-	{"tux_says", lua_chat_tux_says}
-	,
-	/*use npc_says() rather than chat_npc_says() */
-	{"chat_npc_says", lua_chat_npc_says}
-	,
-	{"cli_says", lua_chat_cli_says}
+	{"chat_says", lua_chat_says}
 	,
 	{"topic", lua_chat_push_topic}
 	,
