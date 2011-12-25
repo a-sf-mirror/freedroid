@@ -69,3 +69,17 @@ package-win32: $(filter-out $(wildcard $(win_dir)), $(win_dir))
 	rm -f freedroidRPG.nsi
 	win32/install_file_lists.py win32/freedroidRPG.nsi.in $(win_dir) > freedroidRPG.nsi
 	makensis -V1 -DPRODUCT_VERSION="$(VERSION)" -DSRC_DIR="${win_dir}" freedroidRPG.nsi
+
+macosx_dir = freedroidRPG.app
+dist-macosx: src/freedroidRPG
+	rm -rf $(macosx_dir)
+	mkdir -p $(macosx_dir)/Contents
+	mkdir -p $(macosx_dir)/Contents/MacOS
+	mkdir -p $(macosx_dir)/Contents/Resources
+	mkdir -p $(macosx_dir)/Contents/Frameworks
+	cp macosx/app.icns $(macosx_dir)/Contents/Resources/Icon.icns
+	cp src/freedroidRPG $(macosx_dir)/Contents/MacOS
+	sed -e "s/__#PROGNAME#__/$(PACKAGE_NAME)/" -e "s/__#VERSION#__/$(PACKAGE_VERSION)/" macosx/Info.plist.in > $(macosx_dir)/Contents/Info.plist
+	echo "APPL????" > $(macosx_dir)/Contents/PkgInfo
+	rsync -ar --exclude=.svn dialogs graphics map sound $(macosx_dir)/Contents
+	perl macosx/pkgApp.pl $(macosx_dir)/Contents MacOS/freedroidRPG Frameworks
