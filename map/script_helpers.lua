@@ -97,7 +97,7 @@ obstacle_states = {
 	[325] = {["disabled"] = 325, ["enabled"] = 33,},
 	[326] = {["disabled"] = 326, ["enabled"] = 34,},
 	[327] = {["disabled"] = 327, ["enabled"] = 35,},
-	
+
 	[351] = {["closed"] = 351, ["opened"] = 353,},
 	[352] = {["closed"] = 352, ["opened"] = 358,},
 
@@ -122,6 +122,27 @@ obstacle_states = {
 
 	[348] = {["broken"] = 348, ["intact"] = 281,},
 	[446] = {["broken"] = 446, ["intact"] = 282,},
+
+	-- chests
+	[28] = {["locked"] = 28, ["unlocked"] = 30,},
+	[29] = {["locked"] = 29, ["unlocked"] = 31,},
+
+	[30] = {["unlocked"] = 30, ["locked"] = 28,},
+	[31] = {["unlocked"] = 31, ["locked"] = 29,},
+
+	[372] = {["locked"] = 372, ["unlocked"] = 374,},
+	[373] = {["locked"] = 373, ["unlocked"] = 375,},
+
+	[374] = {["unlocked"] = 374, ["locked"] = 372,},
+	[375] = {["unlocked"] = 375, ["locked"] = 373,},
+
+
+	[376] = {["locked"] = 376, ["unlocked"] = 378,},
+	[377] = {["locked"] = 377, ["unlocked"] = 379,},
+
+	[378] = {["unlocked"] = 378, ["locked"] = 376,},
+	[379] = {["unlocked"] = 379, ["locked"] = 377,},
+
 };
 
 function get_obstacle_state_id(id, state)
