@@ -32,11 +32,11 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	if (has_quest(_"Novice Arena")) then
-		if (not done_quest(_"Novice Arena")) then 
+		if (not done_quest(_"Novice Arena")) then
 			npc_says(_"I've already opened the door for you. All you need to do is walk in there and crush all four bots.")
 		else
-			if (not has_cookie("butch_enable_first_set")) then 
-				add_cookie("butch_enable_first_set")
+			if (not Butch_enable_first_set) then
+				Butch_enable_first_set = true
 				show(7, 8)
 			end
 			show(20)
@@ -44,12 +44,12 @@ Beginning of new chat dialog for character="XXXXX"
 	end
 
 	if (has_quest(_"Time to say goodnight")) then
-		if (not done_quest(_"Time to say goodnight")) then 
+		if (not done_quest(_"Time to say goodnight")) then
 			npc_says(_"I've already opened the door. What are you waiting for? All you need to do is go down to the master arena and fight the bots.")
 			npc_says(_"But, I can understand if you're hesitant. The master arena is by no means an easy task. Maybe you should practice some more before you go down.")
 		else
-			if (not has_cookie("butch_enable_second_set")) then
-				add_cookie("butch_enable_second_set")
+			if (Butch_enable_second_set) then
+				Butch_enable_second_set = true
 				show(10)
 			end
 			show(21)
@@ -141,7 +141,7 @@ Nr=8 Text=_"I thought I was going to fight you, coward."
 
 Nr=9 Text=_"I want a bigger challenge."
 <LuaCode>
-	if (not done_quest(_"Novice Arena")) then 
+	if (not done_quest(_"Novice Arena")) then
 		npc_says(_"I'm sorry, but town regulations forbid access to the master arena unless you've completed the novice arena first.")
 		npc_says(_"This regulation is in place for your own safety, so that no newbie accidentally signs up for the master arena.")
 		npc_says(_"You might try taking the novice arena first. Then I can grant you access to the master field.")
