@@ -35,7 +35,7 @@ Beginning of new chat dialog for character="XXXXX"
 		show(2)
 	end
 
-	if (has_cookie("tux_has_joined_guard")) then
+	if (tux_has_joined_guard) then
 		hide(50, 54, 55, 56)
 	end
 
@@ -60,7 +60,7 @@ Nr=1 Text=_"Why is this gate locked most of the time?"
 
 Nr=2 Text=_"I want to get into the citadel."
 <LuaCode>
-	if (has_cookie("tux_has_joined_guard")) then 
+	if (tux_has_joined_guard) then
 		npc_says(_"Of course. Guard members are always authorized to enter the town citadel. The gate is open. Enjoy your stay.")
 		change_obstacle_state("OldTownGuardHouseEntrance", "opened")
 	else

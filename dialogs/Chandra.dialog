@@ -37,7 +37,8 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Good to see you again. How can I help you?")
 	end
 
-	if (has_cookie("Chandra_node10_show") and not has_cookie("tux_has_joined_guard")) then
+	if (has_cookie("Chandra_node10_show")) and
+	   (not tux_has_joined_guard) then
 		show(10)
 	end
 

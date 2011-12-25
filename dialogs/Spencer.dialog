@@ -49,7 +49,7 @@ Beginning of new chat dialog for character="XXXXX"
 		update_quest(_"Propagating a faulty firmware update", _"Spencer contacted me and said I was supposed to find the real firmware update server. I hope I survive this...")
 		add_quest(_"Open Sesame", "It turns out what we thought was the firmware update server was just a gate access server. Spencer speculates the real firmware server is behind this gate. There should be something on the ground I am supposed to follow.")
 		end_dialog()
-	elseif (has_cookie("tux_has_joined_guard")) then
+	elseif (tux_has_joined_guard) then
 		npc_says(_"Greetings fellow Red Guard member.")
 		hide(2, 12)
 	end
@@ -222,7 +222,7 @@ Nr=12 Text=_"Have I done enough quests to become a member now?"
 		npc_says(_"And now you might want to inspect the guard house. Tell Tybalt to open the door for you. Lukas at the arms counter will give you your armor.")
 		npc_says(_"I hope you will prove yourself a worthy member of the Red Guard.")
 		display_big_message(_"Joined Town Guard!!")
-		add_cookie("tux_has_joined_guard")
+		tux_has_joined_guard = true
 		change_obstacle_state("Main Gate Guardhouse", "opened")
 		sell_item("Shotgun shells", 1, "Stone")
 		sell_item(".22 LR Ammunition", 1, "Stone")
@@ -412,7 +412,7 @@ Nr=50 Text=_"I found someone out in the desert."
 
 Nr=51 Text=_"Tania"
 <LuaCode>
-	if (has_cookie("tux_has_joined_guard")) then
+	if (tux_has_joined_guard) then
 		npc_says(_"Well, since you are a guard member, I'll let you vouch for this Tania person.")
 	else
 		npc_says(_"Well, we have enough food for now. I'll let this Tania person in.")
@@ -452,9 +452,9 @@ Nr=52 Text=_"No, of course not."
 Nr=53 Text=_"He and I had a disagreement, which we settled."
 <LuaCode>
 	npc_says(_"I am the law here. If you have a problem, you come to me.")
-	if (has_cookie("tux_has_joined_guard")) then
+	if (tux_has_joined_guard) then
 		npc_says(_"I'm going to strip you of your membership in the Red Guard.")
-		del_cookie("tux_has_joined_guard")
+		tux_has_joined_guard = false
 		change_obstacle_state("Main Gate Guardhouse", "closed")
 		npc_says(_"Your friend can come in, but we will be watching the two of you closely.")
 		add_cookie("Tania-set-free")

@@ -79,7 +79,7 @@ Nr=1 Text=_"I would like to trade with you."
 
 Nr=2 Text=_"Swords, clubs and maces? What is this? I want guns!"
 <LuaCode>
-	if (has_cookie("tux_has_joined_guard")) then
+	if (tux_has_joined_guard) then
 		npc_says(_"I think the Red Guard has their own store somewhere.")
 		npc_says(_"At least, they somehow get supplement I don't sell.")
 		npc_says(_"However, I'm quite sure, they don't offer the same range of products that I do.")
@@ -99,7 +99,7 @@ Nr=3 Text=_"What can you tell me about the guards here?"
 		npc_says(_"Well, they keep the town safe.")
 		npc_says(_"Without them, everything would drown in chaos, but...")
 		show(4)
-	elseif (has_cookie("tux_has_joined_guard")) then  -- tux joined guard/not followed by guard
+	elseif (tux_has_joined_guard) then  -- tux joined guard/not followed by guard
 		npc_says(_"Well, you ARE a red guard.")
 		npc_says(_"What should I tell you about them that you don't know yet?")
 		tux_says(_"Uhm, right.")
@@ -119,7 +119,7 @@ Nr=4 Text=_"But...?"
 		npc_says(_"I'm busy right now.")
 		npc_says(_"We should talk again later...")
 		add_cookie("Stone_talk_again_later")      -- EveryTime Code: if has cookie then show(4)
-	elseif (has_cookie("tux_has_joined_guard")) then  -- tux joined guard, not followed
+	elseif (tux_has_joined_guard) then  -- tux joined guard, not followed
 		npc_says(_"But nothing!")
 		npc_says(_"I don't know what you are talking about.")
 		del_cookie("Stone_talk_again_later")      -- Stone rejects to tell more because Tux is RG now
@@ -142,7 +142,7 @@ NO_TEXT
 	tux_says(_"If things are so bad right now, why --")
 	npc_says(_"I don't want to hear this jabberwocky.", "NO_WAIT")
 	npc_says(_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way.", "NO_WAIT")
-	if (has_cookie("tux_has_joined_guard")) then
+	if (tux_has_joined_guard) then
 		npc_says(_"You are a Red Guardian now, feel free to make attempts on making our situation better here in this town.")
 	else
 		npc_says(_"If you want to start a revolution, you're on your own.")
@@ -197,7 +197,7 @@ Nr=23 Text=_"I have the money you need Ms. Stone. You can have it."
 <LuaCode>
 	npc_says(_"Is... Is this a joke? So much money? And you just give it to me?", "NO_WAIT")
 	npc_says(_"Thank you! Thank you! Thank you! Savior!")
-	if (has_cookie("tux_has_joined_guard")) then   -- joined guard
+	if (tux_has_joined_guard) then   -- joined guard
 		npc_says(_"Are you sure you really have the sum of 2000 circuits?")
 		if (del_gold(2000)) then
 			tux_says(_"Yes, I have it.")

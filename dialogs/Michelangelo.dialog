@@ -302,7 +302,7 @@ Nr=41 Text=_"I have an idea. Use fire to cook the food for the town."
 
 Nr=42 Text=_"Tell the Red Guard that you need your battery back."
 <LuaCode>
-	if (has_cookie("tux_has_joined_guard")) then
+	if (tux_has_joined_guard) then
 		npc_says(_"Well, you ARE the red guard", "NO_WAIT")
 		npc_says(_"Why can't you just talk to Spencer?")
 		npc_says(_"I want my battery back!")

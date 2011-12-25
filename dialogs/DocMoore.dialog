@@ -170,7 +170,7 @@ Nr=10 Text=_"Can you fix me up?"
 Nr=11 Text=_"What do you mean, self-inflicted damage?"
 <LuaCode>
 	if (has_cookie("guard_follow_tux")) or
-	   (has_cookie("tux_has_joined_guard")) then
+	   (tux_has_joined_guard) then
 		npc_says(_"Well, you see that Bender character on my doorstep?")
 		else
 		npc_says(_"Well, you see that idiotic Bender character on my doorstep?")

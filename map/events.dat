@@ -105,7 +105,7 @@ Silent=1
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
 	if (not has_cookie("North_greeting")) and
-	   (not has_cookie("tux_has_joined_guard")) then
+	   (not tux_has_joined_guard) then
 		add_cookie("North_greeting")
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
@@ -121,7 +121,7 @@ Silent=1
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
 	if (not has_cookie("North_greeting")) and
-	   (not has_cookie("tux_has_joined_guard")) then
+	   (not tux_has_joined_guard) then
 		add_cookie("North_greeting")
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
@@ -137,7 +137,7 @@ Silent=1
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
 	if (not has_cookie("North_greeting")) and
-	   (not has_cookie("tux_has_joined_guard")) then
+	   (not tux_has_joined_guard) then
 		add_cookie("North_greeting")
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
@@ -153,7 +153,7 @@ Silent=1
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
 	if (not has_cookie("North_greeting")) and
-	   (not has_cookie("tux_has_joined_guard")) then
+	   (not tux_has_joined_guard) then
 		add_cookie("North_greeting")
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end

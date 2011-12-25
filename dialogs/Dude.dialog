@@ -431,7 +431,7 @@ Nr=63 Text=_"Butch"
 
 Nr=80 Text=_"Become Red Guard"
 <LuaCode>
-	add_cookie("tux_has_joined_guard")
+	tux_has_joined_guard = true
 	npc_says(_"You are now a member of the Red Guard.")
 </LuaCode>
 ----------------------------------------------------------------------

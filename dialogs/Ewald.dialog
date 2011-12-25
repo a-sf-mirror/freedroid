@@ -168,7 +168,7 @@ Nr=12 Text=_"MORE! MORE! MORE! I WANT MORE WATER. NOW!"
 
 Nr=13 Text=_"Any idea where I can find some entertainment here?"
 <LuaCode>
-	if (has_cookie("tux_has_joined_guard")) then
+	if (tux_has_joined_guard) then
 		npc_says(_"I thought that shooting bots with those big guns was fun...?")
 		npc_says(_"*sigh*")
 		npc_says(_"I wish I could once use such a gun.")

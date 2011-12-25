@@ -35,7 +35,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_cookie("tux_has_joined_guard")) then
+	if (tux_has_joined_guard) then
 		npc_says(_"I am tired.")
 		npc_says(_"Go away.")
 		end_dialog()

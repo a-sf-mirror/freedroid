@@ -70,7 +70,7 @@ Beginning of new chat dialog for character="XXXXX"
 			show(30)
 		end
 
-		if (has_cookie("tux_has_joined_guard")) and
+		if (tux_has_joined_guard) and
 		   (not francis_guard_response) then
 			francis_guard_response = true
 			tux_says(_"I joined the Red Guard.")

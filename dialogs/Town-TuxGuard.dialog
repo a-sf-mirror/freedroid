@@ -29,7 +29,7 @@ Beginning of new chat dialog for character="XXXXX"
 	if (has_cookie("guard_follow_tux")) then
 		npc_says(_"I'm to keep an eye on you until you talk to Spencer.")
 		set_bot_name(_"Red Guard Escort")
-	elseif (has_cookie("tux_has_joined_guard")) then
+	elseif (tux_has_joined_guard) then
 		npc_says(_"Now that you are one of us, I don't have to be suspicious of you.")
 	else
 		npc_says(_"Spencer seems to think that you are harmless. Go about your business.")

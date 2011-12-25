@@ -39,7 +39,7 @@ Beginning of new chat dialog for character="XXXXX"
 				hide(9) show(12)
 			end
 		else
-			if (has_cookie("tux_has_joined_guard")) then
+			if (tux_has_joined_guard) then
 				if (not Bender_congrats) then
 					npc_says(_"Congratulations on getting into the Red Guard! I voted for you and that was what got you in! I said we'd be buddies, didn't I? Want to stand guard at the gate with me? It gets boring with just that 614 to talk to. I could tell you all the secrets of the Red Guard.")
 					Bender_congrats = true
@@ -129,7 +129,7 @@ Nr=6 Text=_"Isn't there some doctor in town who could cure you?"
 Nr=7 Text=_"Maybe I can help you somehow?"
 <LuaCode>
 	npc_says(_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left.")
-	if (not has_cookie("tux_has_joined_guard")) then
+	if (not tux_has_joined_guard) then
 		npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
 	end
 	npc_says(_"Just get me a cure, and I'll be forever grateful!")
@@ -152,7 +152,7 @@ Nr=9 Text=_"I've got your medicine. With best wishes from the doctor."
 	npc_says(_"Wow, you really did it! I guess you beat the hell out of him.")
 	npc_says(_"He wouldn't help me even after I pounded him a bit. A big bit.")
 	npc_says(_"Man, you are the greatest hero!")
-	if (not has_cookie("tux_has_joined_guard")) then
+	if (not tux_has_joined_guard) then
 		npc_says(_"Here, take this as a reward - and you can be sure that I'll vote for you if you seek membership in the Red Guard!")
 	else
 		npc_says(_"Here, take this as a reward.")

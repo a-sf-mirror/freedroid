@@ -51,7 +51,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (has_cookie("tux_has_joined_guard")) then
+	if (tux_has_joined_guard) then
 		hide(3, 4)
 	end
 </LuaCode>
