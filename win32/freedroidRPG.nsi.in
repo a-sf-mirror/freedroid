@@ -63,7 +63,7 @@
 
 ; Main Install settings
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "freedroidRPG-win32-${PRODUCT_VERSION}-Setup.exe"
+OutFile "freedroidRPG-${PRODUCT_VERSION}-win32.exe"
 InstallDir "$PROGRAMFILES\FreedroidRPG"
 InstallDirRegKey HKLM "Software\${PRODUCT_NAME}" "InstallDir"
 ShowInstDetails hide
