@@ -55,7 +55,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (has_cookie("jasmine_sigsegv")) and
+	if (jasmine_sigsegv) and
 	   (kevin_sigtalk) then
 		hide(20)
 	else

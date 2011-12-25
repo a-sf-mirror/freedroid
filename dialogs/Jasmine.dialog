@@ -120,7 +120,7 @@ Nr=99 Text=_"See you later."
 		npc_says(_"Core dumped. System halted.")
 		jasmine_count = 0
 		drop_dead()
-		add_cookie("jasmine_sigsegv")
+		jasmine_sigsegv = true
 	end
 </LuaCode>
 ----------------------------------------------------------------------
