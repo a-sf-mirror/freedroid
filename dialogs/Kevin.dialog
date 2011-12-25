@@ -55,11 +55,8 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (jasmine_sigsegv) and
-	   (kevin_sigtalk) then
-		hide(20)
-	else
-		show(20)
+	if (jasmine_sigsegv) then
+		if (kevin_sigtalk) then	hide(20) else show(20) end
 	end
 
 	if (not has_cookie("kevins_lawnmower_tux_login_granted")) then
