@@ -40,9 +40,9 @@ Beginning of new chat dialog for character="XXXXX"
 			end
 		else
 			if (has_cookie("tux_has_joined_guard")) then
-				if (not has_cookie("bender_congrats")) then
+				if (not Bender_congrats) then
 					npc_says(_"Congratulations on getting into the Red Guard! I voted for you and that was what got you in! I said we'd be buddies, didn't I? Want to stand guard at the gate with me? It gets boring with just that 614 to talk to. I could tell you all the secrets of the Red Guard.")
-					add_cookie("bender_congrats")
+					Bender_congrats = true
 					show(14)
 				end
 			else
@@ -55,12 +55,12 @@ Beginning of new chat dialog for character="XXXXX"
 		show(40)
 	end
 
-	if (has_cookie("Bender_gave_elbow_grease")) then
+	if (Bender_gave_elbow_grease) then
 		hide(40)
 	end
 
-	if (has_cookie("Bender-at-Spencer")) then
-		del_cookie("Bender-at-Spencer")
+	if (Bender_at_Spencer) then
+		Bender_at_Spencer = false
 		set_bot_destination("BenderStartGameSquare")
 	end
 	show(99)
@@ -164,7 +164,7 @@ Nr=9 Text=_"I've got your medicine. With best wishes from the doctor."
 	add_item("Strength Pill",2)
 	end_quest(_"Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
 	set_bot_destination("NewSpencer")
-	add_cookie("Bender-at-Spencer") --have Bender go "talk" to Spencer
+	Bender_at_Spencer = true --have Bender go "talk" to Spencer
 	hide(9, 10, 50) show(20)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -263,7 +263,7 @@ Nr=40 Text=_"Can you spare some elbow grease?"
 	else
 		npc_says(_"Elbow grease just takes a bit of hard work. I'm not a fan of hard work, so I keep a can with me at all times.")
 		npc_says(_"But since you helped me out with the Doctor, I'll give it to you.")
-		add_cookie("Bender_gave_elbow_grease")
+		Bender_gave_elbow_grease = true
 		add_item("Elbow Grease Can", 1)
 		tux_says(_"Thanks man!")
 	end
