@@ -31,7 +31,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (not has_cookie("bot_attack")) then
+	if (not Francis_bot_attack) then
 		if (npc_dead("InvaderBot")) then
 			next(6)
 		else
@@ -39,21 +39,21 @@ Beginning of new chat dialog for character="XXXXX"
 			npc_says(_"[b](The old man is clearly distressed and frightened.)[/b]")
 			show(0)
 		end
-		add_cookie("bot_attack")
+		Francis_bot_attack = true
 		set_rush_tux(0)
 	elseif (not npc_dead("InvaderBot")) then
 		npc_says(_"Have you neutralized the threat yet?")
-		if (not has_cookie("tux_liar")) then
+		if (not Francis_tux_liar) then
 			show(1, 2)
 		else
 			show(1, 3)
 		end
-	elseif (not has_cookie("invaderbot_neutralized")) then
+	elseif (not Francis_invaderbot_neutralized) then
 		npc_says(_"Have you neutralized the threat yet?")
 		show(5)
 	else
 		if  (not has_quest(_"Deliverance")) and
-			(not has_cookie("refused_deliverance")) then
+			(not (Francis_refused_deliverance)) then
 			show(90)
 			npc_says(_"Welcome back " .. get_player_name() .. ".")
 		else
@@ -61,7 +61,7 @@ Beginning of new chat dialog for character="XXXXX"
 			npc_says(_"It's good to see you again, " .. get_player_name() .. ".")
 		end
 
-		if (has_cookie("Francis_tux_dismissed")) then
+		if (Francis_tux_dismissed) then
 			show(21, 22)
 		end
 
@@ -70,9 +70,9 @@ Beginning of new chat dialog for character="XXXXX"
 			show(30)
 		end
 
-		if (has_cookie("tux_has_joined_guard") and
-		   (not has_cookie("francis_guard_response"))) then
-			add_cookie("francis_guard_response")
+		if (has_cookie("tux_has_joined_guard")) and
+		   (not francis_guard_response) then
+			francis_guard_response = true
 			tux_says(_"I joined the Red Guard.")
 			npc_says(_"Oh...")
 			npc_says(_"Well. Congratulations are in order, I suppose.")
@@ -81,10 +81,10 @@ Beginning of new chat dialog for character="XXXXX"
 	end
  -- in case Francis gets stuck at FrancisSafe:
 	if (npc_dead("InvaderBot")) and
-	   (has_cookie("invaderbot_neutralized")) and
-	   (not has_cookie("Francis_movement_free")) then -- this way we prevent him from walking to the label whenever we talk to him again which may look strange
+	   (Francis_invaderbot_neutralized) and
+	   (not Francis_movement_free) then -- this way we prevent him from walking to the label whenever we talk to him again which may look strange
 		set_bot_destination("InvaderBot-Alive-Check-W")
-		add_cookie("Francis_movement_free")
+		Francis_movement_free = true
 	end
 </LuaCode>
 ----------------------------------------------------------------------
@@ -112,7 +112,7 @@ Nr=2 Text=_"(Lie) Yes, the bot has been defeated."
 	francis_help = francis_help - 30
 	npc_says(_"Oh, many thanks to ...")
 	npc_says(_"You lie! You shouldn't toy with an old man with a weak heart! I can hear its servos whirring away... heading this way to kill us both! Please, you must help...")
-	add_cookie("tux_liar")
+	Francis_tux_liar = true
 	set_bot_destination("FrancisSafe")
 	hide(1, 2)
 	end_dialog()
@@ -139,7 +139,7 @@ Nr=5 Text=_"Yes, the bot has been defeated."
 <LuaCode>
 	npc_says(_"Thank heavens! Perhaps the legends are true after all...")
 	npc_says(_"Now that we are safe, I'd be happy to answer some of your questions. But we cannot take too long, you will need to head to the town as soon as possible.")
-	add_cookie("invaderbot_neutralized")
+	Francis_invaderbot_neutralized = true
 	set_bot_destination("FrancisStart")
 	hide(5) show(10, 90)
 </LuaCode>
@@ -151,7 +151,7 @@ NO_TEXT
 	npc_says(_"Thank heavens! You have protected us from this bot.")
 	npc_says(_"You have been in stasis for quite some time, but you still can defend yourself. Perhaps the legends are true after all...")
 	npc_says(_"Now that we are safe, I'd be happy to answer some of your questions. But we cannot take too long, you will need to head to the town as soon as possible.")
-	add_cookie("invaderbot_neutralized")
+	Francis_invaderbot_neutralized = true
 	set_bot_destination("FrancisStart")
 	hide(6) show(10, 90)
 </LuaCode>
@@ -182,7 +182,7 @@ Nr=12 Text=_"Linarians? Legends? What are you talking about?"
 	npc_says(_"Chandra in the nearby town center probably has even more information.")
 	npc_says(_"Look in the chest in the next room for some spare gear I managed to gather for you. It's not much, but it should help you make it to town in one piece.")
 	add_cookie("linarian_chandra")
-	add_cookie("Francis_tux_dismissed")
+	Francis_tux_dismissed = true
 	hide(12) show(20, 21)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -208,7 +208,7 @@ Nr=17 Text=_"Keeper? You don't sound so sure... What is the deal with this place
 <LuaCode>
 	npc_says(_"I'm sorry, but you probably need to start traveling to the town. The Red Guard are not known to be the most patient.")
 	npc_says(_"They were the ones who wanted me to thaw you out, after all. You'd better get going.")
-	add_cookie("Francis_tux_dismissed")
+	Francis_tux_dismissed = true
 	hide(17) show(20, 21)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -298,7 +298,7 @@ Nr=93 Text=_"Deliver that cube yourself." Topic="Deliver the cube"
 Nr=94 Text=_"No, I don't want to deliver your stupid cube." Topic="Deliver the cube"
 <LuaCode>
 	francis_help = francis_help - 60
-	add_cookie("refused_deliverance")
+	Francis_refused_deliverance = true
 	npc_says(_"... All right.")
 	npc_says(_"I can't force you to do it if you don't want to.")
 	npc_says(_"I suppose I'll just have to go to Spencer myself.")
