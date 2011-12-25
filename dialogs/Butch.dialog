@@ -48,7 +48,7 @@ Beginning of new chat dialog for character="XXXXX"
 			npc_says(_"I've already opened the door. What are you waiting for? All you need to do is go down to the master arena and fight the bots.")
 			npc_says(_"But, I can understand if you're hesitant. The master arena is by no means an easy task. Maybe you should practice some more before you go down.")
 		else
-			if (Butch_enable_second_set) then
+			if (not Butch_enable_second_set) then
 				Butch_enable_second_set = true
 				show(10)
 			end
