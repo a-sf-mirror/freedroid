@@ -199,6 +199,7 @@ function npc_faction(faction, name)
 end
 
 function chat_says_format(text, arg)
+	no_wait="WAIT"
 	if (arg[#arg] == "NO_WAIT") then
 		no_wait = "NO_WAIT"
 		table.remove(arg)
