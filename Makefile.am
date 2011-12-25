@@ -65,7 +65,7 @@ dist-win32: src/freedroidRPG.exe
 $(win_dir): dist-win32
 
 package-win32: $(filter-out $(wildcard $(win_dir)), $(win_dir))
-	rm -f freedroidRPG-win32-*-Setup.exe
+	rm -f freedroidRPG-*-win32.exe
 	rm -f freedroidRPG.nsi
 	win32/install_file_lists.py win32/freedroidRPG.nsi.in $(win_dir) > freedroidRPG.nsi
 	makensis -V1 -DPRODUCT_VERSION="$(VERSION)" -DSRC_DIR="${win_dir}" freedroidRPG.nsi
