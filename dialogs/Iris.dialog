@@ -33,9 +33,9 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if has_cookie("Iris_wants_lamp") then
+	if (Iris_wants_lamp) then
 		if (has_item_backpack("Desk Lamp")) then
-			if has_cookie("iris_deal") then
+			if (Iris_deal) then
 				npc_says(_"Hey, remember our deal?")
 				npc_says(_"I'll trade you a book, for that lamp and 100 credits.")
 				show(7)
@@ -48,9 +48,9 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (has_cookie("Iris_false_happy")) and
+	if (Iris_false_happy) and
 		(not has_cookie("guard_follow_tux")) then
-		del_cookie("Iris_false_happy")
+		Iris_false_happy = false
 		show(4)
 	end
 	show(99)
@@ -95,7 +95,7 @@ Nr=3 Text=_"Where do you come from?"
 Nr=4 Text=_"Do you like it here?"
 <LuaCode>
 	if (has_cookie("guard_follow_tux")) then
-		add_cookie("Iris_false_happy")
+		Iris_false_happy = true
 		npc_says(_"Yes, sure.")
 		npc_says(_"The Red Guard is very polite and keeps us safe from bots.")
 		npc_says(_"And the overall design of the town is quite clever.")
@@ -109,8 +109,8 @@ Nr=4 Text=_"Do you like it here?"
 		npc_says(_"I think this room could use some decoration.")
 		npc_says(_"It looks so cold and dark...")
 	end
-	if (not has_cookie("traded_lamp")) then
-		add_cookie("Iris_wants_lamp")
+	if (not Iris_traded_lamp) then
+		Iris_wants_lamp = true
 		if (has_item_backpack("Desk Lamp")) then
 			show(5)
 		else
@@ -143,7 +143,7 @@ Nr=6 Text=_"You can have it."
 		end_dialog()
 	end
 	hide(6)
-	add_cookie("iris_deal")
+	Iris_deal = true
 </LuaCode>
 ---------------------------------------------------------------------
 
@@ -155,9 +155,9 @@ Nr=7 Text=_"Sure, sounds like a fair trade."
 		npc_says(_"It's quite old and some pages are missing, but the main message is still clear.")
 		tux_says(_"Oh, thanks!")
 		add_item("Source Book of Invisibility")
-		del_cookie("Iris_wants_lamp")
+		Iris_wants_lamp = false
 		del_item_backpack("Desk Lamp", 1)
-		add_cookie("traded_lamp")
+		Iris_traded_lamp = true
 	else
 		npc_says(_"Don't try to trick me, fat bird.")
 		npc_says(_"I know you can't afford it.")
@@ -169,7 +169,7 @@ Nr=7 Text=_"Sure, sounds like a fair trade."
 
 Nr=99 Text=_"See you later."
 <LuaCode>
-	if (has_cookie("Iris_wants_lamp")) then
+	if (Iris_wants_lamp) then
 		npc_says(_"Bye.")
 	else
 		npc_says(_"In your dreams, Penguin!")
