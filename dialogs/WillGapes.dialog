@@ -29,7 +29,8 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Don't come any closer! Or I'll turn you into scrap metal!") 
 		npc_says(_"Wait... You're not a robot. Who are you? What are you doing here?")
 		show(1, 2, 3)
-	elseif (has_quest(_"Gapes Gluttony")) and (not done_quest(_"Gapes Gluttony")) then
+	elseif (has_quest(_"Gapes Gluttony")) and
+		   (not done_quest(_"Gapes Gluttony")) then
 		if (has_item_backpack("Lunch in a Picnic Basket")) then
 			del_item_backpack("Lunch in a Picnic Basket")
 			show(9)
@@ -38,11 +39,12 @@ Beginning of new chat dialog for character="XXXXX"
 			tux_says(_"No, not yet.")
 			npc_says(_"Hurry... I'm starting to feel weak.")
 		end
-	elseif (has_cookie("generous_gapes")) and (get_tux_hp() < 20) then
+	elseif (WillGapes_generous_gapes) and
+		   (get_tux_hp() < 20) then
 		npc_says(_"Hey, are you all right? It looks like the robots are winning.")
 		npc_says(_"I found this in the First Aid kit. Maybe it will help.")
 		add_item("Antibiotic")
-		del_cookie("generous_gapes")
+		WillGapes_generous_gapes = false
 	else
 		npc_says(_"I see you're still alive. Maybe the robots won't win after all.")
 	end
@@ -130,7 +132,7 @@ Nr=9 Text=_"I've brought you some food."
 	end_quest(_"Gapes Gluttony", _"I brought the full picnic basket to Gapes, and he tore into it like a wild animal. It was a disgusting sight, but thankfully it ended quickly.")
 	del_item_backpack("Lunch in a Picnic Basket")
 	add_item("Empty Picnic Basket")
-	add_cookie("generous_gapes")
+	WillGapes_generous_gapes = true
 	hide(9) show(11, 12)
 </LuaCode>
 ----------------------------------------------------------------------
