@@ -703,13 +703,14 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 				break;
 
 			case SDLK_ESCAPE:
-				RestoreMenuBackground(0);
-				blit_mouse_cursor();
-				our_SDL_flip_wrapper();
-				ret = -1;
-				goto out;
+				if (GameConfig.enable_cheatkeys) {
+					RestoreMenuBackground(0);
+					blit_mouse_cursor();
+					our_SDL_flip_wrapper();
+					ret = -1;
+					goto out;
+				}
 				break;
-
 			case SDLK_RETURN:
 			case SDLK_SPACE:
 				RestoreMenuBackground(0);
