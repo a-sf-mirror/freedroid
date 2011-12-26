@@ -50,19 +50,19 @@ Beginning of new chat dialog for character="XXXXX"
 		show(1, 7, 80)
 		set_rush_tux(0)
 	elseif (has_quest(_"Tutorial Movement")) and
-		   (not has_cookie("talk_to_tom")) then
-		add_cookie("talk_to_tom")
+		   (not TutorialTom_talk_to_tom) then
+		TutorialTom_talk_to_tom = true
 		npc_says(_"Glad to see you figured out the quest log!")
 	elseif (has_quest(_"Tutorial Movement")) and
-		   (has_cookie("move_black")) and
-		   (not has_cookie("sprinting")) then
-		add_cookie("sprinting")
+		   (TutorialTom_move_black) and
+		   (not TutorialTom_sprinting) then
+		TutorialTom_sprinting = true
 		npc_says(_"Speaking of moment, you can also [b]sprint[/b] by holding the [b]control key[/b].")
 		update_quest(_"Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
 		npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
 	end
 
-	if (has_cookie("TutorialTux-PastWall")) then
+	if (TutorialTom_Tux_PastWall) then
 		hide(70) show(30, 38)
 	end
 
@@ -104,7 +104,7 @@ Nr=3 Text=_"My limbs don't seem to want to work properly. Can you help me with t
 	npc_says(_"If you can go there, you will do so.")
 	npc_says(_"Now try to move to the red dot to the north. Then to the black grating to the east, and then talk to me again.")
 	update_quest(_"Tutorial Movement", _"I'm supposed to left click anywhere to move to a location. If I can figure out a way, I will move there automatically. Tom wants me to first try to move to the red dot to the North.")
-	add_cookie("learn_to_walk")
+	TutorialTom_learn_to_walk = true
 	end_dialog()
 	hide(3)
 </LuaCode>
@@ -253,7 +253,7 @@ Nr=17 Text=_"Repair equipment program? How do I use that?"
 	npc_says(_"If you're curious what a program does, you can find out by clicking the question mark in the Skills/Program menu.")
 	npc_says(_"Now, to answer your question, you use your repair equipment program by selecting it in the Skills/Program menu, then right clicking on the item you wish to repair.")
 	improve_program("Repair equipment")
-	add_cookie("has_repair")
+	TutorialTom_has_repair = true
 	update_quest(_"Tutorial Melee", _"Run a program by right clicking after it has been selected from the Skills/Program menu. My shoes are damaged, so I might try the repair equipment program on them to slightly repair them.")
 	hide(17)
 </LuaCode>
@@ -262,7 +262,7 @@ Nr=17 Text=_"Repair equipment program? How do I use that?"
 Nr=19 Text=_"I think I'm ready for the next section of the tutorial."
 <LuaCode>
 	npc_says(_"Ok, I'll open the next door then. But prepare yourself, soon you will learn how to fight against bots in hand-to-hand combat.")
-	if (not has_cookie("has_repair")) then
+	if (not TutorialTom_has_repair) then
 		improve_program("Repair equipment")
 	end
 	change_obstacle_state("TutorialEquipOut", "opened")
@@ -404,7 +404,7 @@ Nr=28 Text=_"I've beaten the second bot."
 		npc_says(_"Talk to me when you're ready to move on to the next part of the tutorial.")
 		del_item_backpack("Tachyon Condensator", 1)
 		add_item(".22 Automatic", 1)
-		add_cookie("has_gun")
+		TutorialTom_has_gun = true
 		hide(28) show(29)
 	else
 		npc_says(_"You didn't bring back the Tachyon Condensator. You'll need to bring it back before we can continue.")
@@ -421,7 +421,7 @@ Nr=29 Text=_"I'm ready to move on."
 	if (not done_quest(_"Tutorial Melee")) then
 		complete_quest(_"Tutorial Melee", _"I decided to move on and go to the shooting tutorial.")
 	end
-	if (has_cookie("has_gun")) then
+	if (TutorialTom_has_gun) then
 		npc_says(_"I'll bet you're itching to try that pistol out on some bots.")
 		npc_says(_"Our next destination is the ranged combat training area, so you're in luck.")
 	end
@@ -465,11 +465,11 @@ Nr=32 Text=_"So how do I use guns?"
 	npc_says(_"When your weapon runs out of ammo during combat, it will try to automatically reload if you have extra ammunition for it.")
 	npc_says(_"Sometimes, you will need or want to manually reload. You can do this by pressing the [b]R key[/b].")
 	npc_says(_"If you are reloading, or you are out of ammo, the small message screen at the bottom of your HUD will tell you what type of ammo to get.")
-	if (not has_cookie("guns_how_to")) then
-		add_cookie("guns_how_to")
+	if (not TutorialTom_guns_how_to) then
+		TutorialTom_guns_how_to = true
 		update_quest(_"Tutorial Shooting", _"If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the 'R' key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition.")
 	end
-	if (not has_cookie("opened_door")) then show(33) end
+	if (not TutorialTom_opened_door) then show(33) end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -477,7 +477,7 @@ Nr=33 Text=_"I think I understand how to use guns now."
 <LuaCode>
 	npc_says(_"In that case, I'll let you in to the armory. There are some crates and chests in there with weapons and ammunition.")
 	npc_says(_"Be careful though, smashing open crates and barrels could hurt you.")
-	if (has_cookie("has_gun")) then
+	if (TutorialTom_has_gun) then
 		npc_says(_"You already got the .22 pistol I gave you earlier when destroying that 247. It's not much as guns go, but it can do the trick.")
 	else
 		npc_says(_"Here's my personal .22 Automatic pistol. It's not much as guns go, but it can do the trick.")
@@ -490,7 +490,7 @@ Nr=33 Text=_"I think I understand how to use guns now."
 	npc_says(_"Once you've gotten rid of them all, we can move on.")
 	update_quest(_"Tutorial Shooting", _"Tutorial Tom wants me to shoot those bots.")
 -- TODO probably explain leveling as well as balancing changes to XP always risk causing leveling here. Or somehow make sure Tux can't level
-	add_cookie("opened_door")
+	TutorialTom_opened_door = true
 	change_obstacle_state("TutorialStorage", "opened")
 	change_obstacle_state("TutorialShootCage", "opened")
 	add_item(".22 LR Ammunition", 50)
@@ -555,7 +555,7 @@ Nr=37 Text=_"I'm ready to move on."
 Nr=38 Text=_"I'd rather just move on to the next section of the tutorial."
 <LuaCode>
 	npc_says(_"As you wish, Linarian.")
-	if (has_cookie("opened_door")) then
+	if (TutorialTom_opened_door) then
 		if (has_item_backpack(".22 Automatic")) and
 		   (has_item_backpack("Laser pistol")) and
 		   (has_item_backpack("Plasma pistol")) then
@@ -566,7 +566,7 @@ Nr=38 Text=_"I'd rather just move on to the next section of the tutorial."
 			npc_says(_"You will need to have the guns in your inventory to give them to me, so if you dropped them, please go get them.")
 			npc_says(_"That includes the laser and plasma pistols in the storage room to the west.")
 		end
-	elseif has_cookie("has_gun") then
+	elseif (TutorialTom_has_gun) then
 		if (has_item_backpack(".22 Automatic")) then
 			end_quest(_"Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
 			next(39)
@@ -736,7 +736,7 @@ Nr=55 Text=_"Thanks. I'm ready now."
 	add_item("Liquid nitrogen", 1)
 	add_item("Source Book of Calculate Pi", 1)
 	add_item("Source Book of Malformed packet", 1)
-	add_cookie("hacking_bots")
+	TutorialTom_hacking_bots = true
 	update_quest(_"Tutorial Hacking", _"Tutorial Tom wants me to hack those bots. The only thing I need to worry about is overheating. But if I get too hot I can always try the Emergency shutdown program.")
 	change_obstacle_state("TutorialTakeoverCage", "opened")
 	end_dialog()
@@ -747,14 +747,14 @@ Nr=55 Text=_"Thanks. I'm ready now."
 
 Nr=56 Text=_"I'm finished. I'm ready to move on."
 <LuaCode>
-	if (has_cookie("hacking_bots")) then
+	if (TutorialTom_hacking_bots) then
 		if (not done_quest(_"Tutorial Hacking")) then
 			npc_says(_"The bots aren't dead, Linarian.")
 			npc_says(_"Come back and talk to me after they are.")
 			npc_says(_"If you're having trouble, you might try the [b]Malformed Packet[/b] program.")
 		else
 			npc_says(_"Well done! That concludes our tutorial.")
-			del_cookie("hacking_bots")
+			TutorialTom_hacking_bots = false
 			update_quest(_"Tutorial Hacking", _"Well, it took a lot of work, but I showed those bots who's boss.")
 		end
 	end
@@ -762,7 +762,7 @@ Nr=56 Text=_"I'm finished. I'm ready to move on."
 	npc_says(_"You Linarians can apparently withdraw from our world temporarily.")
 	npc_says(_"Time stops, and everything freezes in place.")
 	npc_says(_"This can be accomplished by using the [b]Esc key[/b].")
-	if (not has_cookie("hacking_bots")) then
+	if (not TutorialTom_hacking_bots) then
 		npc_says(_"Your final task is to leave us using this menu.")
 		npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
 		npc_says(_"You'll need it if our world is to survive.")
