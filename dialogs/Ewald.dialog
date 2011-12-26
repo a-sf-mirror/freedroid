@@ -60,7 +60,7 @@ Nr=0 Text=_"Hi. You look really happy."
 
 Nr=1 Text=_"How is your business doing?"
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		npc_says(_"Can't complain at the moment...")
 	else
 		npc_says(_"Nah, No darn good at all.")

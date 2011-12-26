@@ -65,7 +65,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 	show(99)
 
-	if (not has_cookie("guard_follow_tux")) then
+	if (not guard_follow_tux) then
 		show(40)
 	end
 

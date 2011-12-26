@@ -26,7 +26,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		npc_says(_"I'm to keep an eye on you until you talk to Spencer.")
 		set_bot_name(_"Red Guard Escort")
 	elseif (tux_has_joined_guard) then

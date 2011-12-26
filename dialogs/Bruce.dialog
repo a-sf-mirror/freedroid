@@ -63,7 +63,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 Nr=0 Text=_"Are you all right? You don't look too good."
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		npc_says(_"I don't have time to talk: I'm far too busy working! I'm normally at the mines this time of day but I forgot something and that's...")
 		npc_says(_"That's why I'm here. Now I must get back to the mines.")
 		end_dialog()

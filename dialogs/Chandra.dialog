@@ -158,7 +158,7 @@ Nr=9 Text=_"I'm having difficulty overcoming the bots. What can I do?"
 
 Nr=10 Text=_"Do you think I could join the guardians of this town?"
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		npc_says(_"The Red Guard...? Only if you're as strong and courageous as they are! There is no one better than the Red Guard! Nothing but top quality men there!")
 	else
 		npc_says(_"The Red Guard? Unlikely. You'd have to establish a reputation beforehand, and demonstrate that you can make things happen.")
@@ -269,7 +269,7 @@ Nr=20 Text=_"What is a Linarian?" Topic="Linarians"
 		npc_says(_"Ah yes, I heard that your memory had been affected by stasis. I will share with you what I know.")
 		npc_says(_"Linarians came to this planet about a century ago. While their specialties can vary, they are most widely known for their nearly-magical skills with computers.")
 
-		if (not has_cookie("guard_follow_tux")) then
+		if (not guard_follow_tux) then
 			npc_says(_"[b](Chandra quickly glances around. After verifying that no one else seems to be paying attention to your conversation, he takes a quick breath and continues quietly.)[/b]")
 			npc_says(_"Since you are asking this question and you have even come into our town, I am assuming that your memory has been completely damaged.")
 			npc_says(_"What I am about to tell you is not easy to say, nor will it be easy to hear. For that I apologize, but you must know the truth.")
@@ -346,7 +346,7 @@ Nr=25 Text=_"How come no one seems freaked out by a big fracking penguin?" Topic
 	npc_says(_"Of course, its been almost one hundred years since Linarians first came to this planet. As you might imagine most of the people who were alive then are long gone.")
 	npc_says(_"But the townspeople were made aware of your existence upon your discovery. Everyone was quickly informed of the legends performed by the Linarians of the past.")
 	npc_says(_"While you will find some people helpful because of this, others may be a bit more hostile. The hostility is a matter of xenophobia and pride in one's own species.")
-	if (not has_cookie("guard_follow_tux")) then
+	if (not guard_follow_tux) then
 		npc_says(_"Don't tell anyone else, but I'm surprised the Red Guard ordered you to be thawed. They are human supremacists to the extreme. For them to accept your help does not make much sense. They must be playing at something. Beware the Red Guard, Linarian.")
 	end
 	hide(25)

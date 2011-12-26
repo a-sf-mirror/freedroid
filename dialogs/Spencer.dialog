@@ -27,7 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 <FirstTime LuaCode>
 	show(0)
-	del_cookie("guard_follow_tux")
+	guard_follow_tux = false
 	set_bot_state("patrol", "Town-TuxGuard")
 	change_obstacle_state("Dixon-autogun", "enabled")
 </LuaCode>

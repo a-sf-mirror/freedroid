@@ -49,7 +49,7 @@ Beginning of new chat dialog for character="XXXXX"
 	end
 
 	if (Iris_false_happy) and
-		(not has_cookie("guard_follow_tux")) then
+		(not guard_follow_tux) then
 		Iris_false_happy = false
 		show(4)
 	end
@@ -94,7 +94,7 @@ Nr=3 Text=_"Where do you come from?"
 
 Nr=4 Text=_"Do you like it here?"
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		Iris_false_happy = true
 		npc_says(_"Yes, sure.")
 		npc_says(_"The Red Guard is very polite and keeps us safe from bots.")

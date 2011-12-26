@@ -41,7 +41,7 @@ Name=_"Escort Tux N"
 Trigger at label="N-enter-1"
 Silent=1
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
 	if (has_cookie("North_greeting")) then
@@ -56,7 +56,7 @@ Name=_"Escort Tux N2"
 Trigger at label="N-enter-2"
 Silent=1
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
 	if (has_cookie("North_greeting")) then
@@ -71,7 +71,7 @@ Name=_"Escort Tux N3"
 Trigger at label="N-enter-3"
 Silent=1
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
 	if (has_cookie("North_greeting")) then
@@ -86,7 +86,7 @@ Name=_"Escort Tux N4"
 Trigger at label="N-enter-4"
 Silent=1
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
 	if (has_cookie("North_greeting")) then
@@ -101,7 +101,7 @@ Name=_"Escort Tux N-e1-inner"
 Trigger at label="N-exit-1-inner"
 Silent=1
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
 	if (not has_cookie("North_greeting")) and
@@ -117,7 +117,7 @@ Name=_"Escort Tux N-e2-inner"
 Trigger at label="N-exit-2-inner"
 Silent=1
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
 	if (not has_cookie("North_greeting")) and
@@ -133,7 +133,7 @@ Name=_"Escort Tux N-e3-inner"
 Trigger at label="N-exit-3-inner"
 Silent=1
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
 	if (not has_cookie("North_greeting")) and
@@ -149,7 +149,7 @@ Name=_"Escort Tux N-e4-inner"
 Trigger at label="N-exit-4-inner"
 Silent=1
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
 	if (not has_cookie("North_greeting")) and
@@ -165,7 +165,7 @@ Name=_"Escort Tux TR-exit-1"
 Trigger at label="TeleporterRoom-exit-1"
 Silent=1
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
 </LuaCode>
@@ -176,7 +176,7 @@ Name=_"Escort Tux TR-exit-2"
 Trigger at label="TeleporterRoom-exit-2"
 Silent=1
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
 </LuaCode>
@@ -186,7 +186,7 @@ Silent=1
 Name=_"Escort Tux Teleport Out"
 Trigger exiting level=0
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
 </LuaCode>

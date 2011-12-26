@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 	if (not has_met("Duncan")) then
 		show(0, 90, 99)
-	elseif (not has_cookie("guard_follow_tux")) and
+	elseif (not guard_follow_tux) and
 		   (not has_cookie("koan_quest")) then
 		next(50)
 	end
@@ -70,7 +70,7 @@ Nr=1 Text=_"I would like to buy a bomb."
 	npc_says_random(_"Yes. I am sure we can arrange something. Take a look.",
 					_"Sure. These are my offers today.")
 	trade_with("Duncan")
-	if (not has_cookie("guard_follow_tux")) then
+	if (not guard_follow_tux) then
 		hide(1) show(2, 7)
 	end
 </LuaCode>

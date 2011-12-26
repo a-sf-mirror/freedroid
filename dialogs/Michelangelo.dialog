@@ -126,7 +126,7 @@ Nr=12 Text=_"I want some yummy army snacks!"
 
 Nr=18 Text=_"You do not sound happy. What is wrong?"
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		npc_says(_"I am very happy! The red guard are making us so secure, it is great to live here with them taking care of us!")
 	else
 		npc_says(_"EVERYTHING!")

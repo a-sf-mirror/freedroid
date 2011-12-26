@@ -32,7 +32,7 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Hey you! Linarian! What do you want here?")
 		show(1, 2, 3)
 		set_rush_tux(0)
-		add_cookie("guard_follow_tux")
+		guard_follow_tux = true
 	elseif (will_rush_tux()) then
 		set_rush_tux(0)
 		if (has_cookie("town-northgateguard_tux_nickname_loon")) then

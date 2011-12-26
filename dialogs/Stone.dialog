@@ -95,7 +95,7 @@ Nr=2 Text=_"Swords, clubs and maces? What is this? I want guns!"
 Nr=3 Text=_"What can you tell me about the guards here?"
 <LuaCode>
 	npc_says(_"Ah, the Red Guard.", "NO_WAIT")
-	if (has_cookie("guard_follow_tux")) then          -- tux followed by guard
+	if (guard_follow_tux) then          -- tux followed by guard
 		npc_says(_"Well, they keep the town safe.")
 		npc_says(_"Without them, everything would drown in chaos, but...")
 		show(4)
@@ -114,7 +114,7 @@ Nr=3 Text=_"What can you tell me about the guards here?"
 
 Nr=4 Text=_"But...?"
 <LuaCode>
-	if (has_cookie("guard_follow_tux")) then
+	if (guard_follow_tux) then
 		npc_says(_"But nothing.")
 		npc_says(_"I'm busy right now.")
 		npc_says(_"We should talk again later...")
