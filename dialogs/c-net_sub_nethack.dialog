@@ -43,7 +43,7 @@ NO_TEXT
 	n_yendor = "no"
 	n_level = 0 --level you are on
 	n_yendorlevel = 7+math.random(6) --level where you get the Amulet of Yendor!
-	if (has_cookie("won_nethack")) then n_yendorlevel = n_yendorlevel*2 end
+	if (won_nethack) then n_yendorlevel = n_yendorlevel*2 end
 	n_hp = 0 --your hitpoints
 	n_ac = 0 --your attack/armor
 	n_tricks = 0 --your tricks
@@ -359,8 +359,8 @@ NO_TEXT
 			npc_says(_"You present the [b]Amulet of Yendor[/b] to [b]"..n_god.._"[/b] and you are rewarded with everlasting life.", "NO_WAIT")
 			npc_says(_"You win!", "NO_WAIT")
 			display_console_message(_"You ascended a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role .._" in Nethack!")
-			if (not has_cookie("won_nethack")) then
-				add_cookie("won_nethack")
+			if (not won_nethack) then
+				won_nethack = true
 				improve_program("Hacking")
 				display_big_message(_"By ascending in Nethack, you have improved your Hacking ability!")				
 			end 
