@@ -41,11 +41,11 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Hardware Check : BOT DAMAGED", "NO_WAIT")
 		npc_says(_"This %s unit could stand to be repaired.", bot_type(), "NO_WAIT")
 	end
-	if (has_cookie("aftertakeover_broadcast_mode")) then
+	if (aftertakeover_broadcast_mode) then
 		if (npc_damage_amount() > 5) then
 			npc_says(_"BOTNET: UNIT TOO DAMAGED TO BROADCAST COMMANDS.", "NO_WAIT")
 			npc_says(_"Entering \"single node\" mode...")
-			del_cookie("aftertakeover_broadcast_mode")
+			aftertakeover_broadcast_mode = false
 		else
 			npc_says(_"BOTNET: Most commands will be broadcast.", "NO_WAIT")
 		end
@@ -94,7 +94,7 @@ NO_TEXT
 	npc_says(_"Checking requirements...")
 	npc_says(_"Movement unit: Power-down... [Done].", "NO_WAIT")
 	npc_says(_"Status: All movement suppressed.", "NO_WAIT")
-	if (has_cookie("aftertakeover_broadcast_mode")) then
+	if (aftertakeover_broadcast_mode) then
 		broadcast_bot_state("fixed")
 	else
 		set_bot_state("fixed")
@@ -112,7 +112,7 @@ NO_TEXT
 	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
 	npc_says(_"Acquiring lock on position of %s.", get_player_name(), "NO_WAIT")
 	npc_says(_"Status: Following %s.", get_player_name(), "NO_WAIT")
-	if (has_cookie("aftertakeover_broadcast_mode")) then
+	if (aftertakeover_broadcast_mode) then
 		broadcast_bot_state("follow_tux")
 	else
 		set_bot_state("follow_tux")
@@ -132,7 +132,7 @@ NO_TEXT
 	npc_says(_"Movement unit: Power-up... [Done].", "NO_WAIT")
 	npc_says(_"Resuming normal patrol operations... [Done]", "NO_WAIT")
 	npc_says(_"Status: Patrolling.", "NO_WAIT")
-	if (has_cookie("aftertakeover_broadcast_mode")) then
+	if (aftertakeover_broadcast_mode) then
 		broadcast_bot_state("free")
 	else
 		set_bot_state("free")
@@ -165,7 +165,7 @@ NO_TEXT
 			show(21)
 		end
 	else
-		if (has_cookie("AfterTakeover_repair")) then
+		if (AfterTakeover_repair) then
 			npc_says(_"Repair in progress.", "NO_WAIT")
 			npc_says(_"Logout to complete repair process.")
 		else
@@ -194,7 +194,7 @@ NO_TEXT
 	del_gold(cost_materials)
 	heat_tux(cost_heat)
 	cli_says(terminal_sub, "NO_WAIT")
-	add_cookie("AfterTakeover_repair")
+	AfterTakeover_repair = true
 	hide(20, 21)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -223,8 +223,8 @@ Topic="setting hcf.py confirmation Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
-	if (not has_cookie("aftertakeover_confirm_hcf")) then 
-		add_cookie("aftertakeover_confirm_hcf")
+	if (not aftertakeover_confirm_hcf) then
+		aftertakeover_confirm_hcf = true
 	end
 	next(38)
 	pop_topic()
@@ -236,8 +236,8 @@ Topic="setting hcf.py confirmation Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"hcf.py will be executed without asking for confirmation.")
-	if (has_cookie("aftertakeover_confirm_hcf")) then
-		del_cookie("aftertakeover_confirm_hcf")
+	if (aftertakeover_confirm_hcf) then
+		aftertakeover_confirm_hcf = false
 	end
 	next(38)
 	pop_topic()
@@ -260,8 +260,8 @@ NO_TEXT
 <LuaCode>
 	npc_says(_"Commands will be broadcast and executed by all bots on this level under your control.", "NO_WAIT")
 	npc_says(_"Entering \"botnet\" mode...")
-	if (not has_cookie("aftertakeover_broadcast_mode")) then
-		add_cookie("aftertakeover_broadcast_mode")
+	if (not aftertakeover_broadcast_mode) then
+		aftertakeover_broadcast_mode = true
 	end
 	next(38)
 	pop_topic()
@@ -274,8 +274,8 @@ NO_TEXT
 <LuaCode>
 	npc_says(_"Commands will only be executed by this bot.", "NO_WAIT")
 	npc_says(_"Entering \"single node\" mode...")
-	if (has_cookie("aftertakeover_broadcast_mode")) then
-		del_cookie("aftertakeover_broadcast_mode")
+	if (aftertakeover_broadcast_mode) then
+		aftertakeover_broadcast_mode = false
 	end
 	next(38)
 	pop_topic()
@@ -396,7 +396,7 @@ Nr=47 Text=_"./hcf.py"
 NO_TEXT
 <LuaCode>
 	tux_says(_"./hcf.py", "NO_WAIT")
-	if (has_cookie("aftertakeover_confirm_hcf")) then
+	if (aftertakeover_confirm_hcf) then
 		npc_says(_"Are you really sure you want to destroy %s? Y/N", bot_name())
 		show(48, 49)
 		topic("confirm self-destruct Y/N")
@@ -446,9 +446,9 @@ NO_TEXT
 	if (has_cookie("dixon_very_angry")) and
 	   (has_cookie("bruce_hurt")) and
 	   (has_quest(_"Opening access to MS Office")) and
-	   (not has_cookie("tux_has_edge")) then
+	   (not tux_has_edge) then
 		npc_says(_"()%%#@(%% THE BLADE IS YOURS. )##%%*&%%*!")
-		add_cookie("tux_has_edge")
+		tux_has_edge = true
 		add_item("Nobody's edge",1)
 	end
 	drop_dead()
@@ -460,7 +460,7 @@ NO_TEXT
 <LuaCode>
 	tux_says("logout","NO_WAIT")
 	npc_says(_"Closing remote connection...")
-	del_cookie("AfterTakeover_repair")
+	AfterTakeover_repair = false
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
