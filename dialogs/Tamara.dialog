@@ -42,15 +42,22 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"What can I help you with?")
 	end
 
-	if ((not has_cookie("won_nethack")) and (not has_cookie("tamara_asked_hacking"))) then
+	if (not won_nethack) and
+	   (not Tamara_asked_hacking) then
 		show(20)
 	else
 		hide(20)
 	end
 
-	if (has_met("Sorenson") and (not has_cookie("talked_about_sister"))) then show(10) end
+	if (has_met("Sorenson")) and
+	   (not Tamara_talked_about_sister) then
+		show(10)
+	end
 
-	if (has_cookie("ewalds_296_sourcebook") and (not has_cookie("have_296_book"))) then show(50) end
+	if (has_cookie("ewalds_296_sourcebook")) and
+	   (not has_cookie("have_296_book")) then
+		show(50)
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -63,15 +70,15 @@ Nr=10 Text=_"Hmm, you look very similar to another person I met, by the name of 
 	npc_says(_"Then she started reading more and more books and sitting in front of the computer day and night, never sleeping.")
 	npc_says(_"In the end she completely lost her marbles, sadly.")
 	npc_says(_"Now all she does is sit locked in her house staring into the computer.")
-	add_cookie("talked_about_sister")
+	Tamara_talked_about_sister = true
 	hide(10) show(99)
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"I would like to learn how to hack."
 <LuaCode>
-	add_cookie("tamara_asked_hacking")
-	if (has_cookie("talked_about_sister")) then
+	Tamara_asked_hacking = true
+	if (Tamara_talked_about_sister) then
 		npc_says(_"My sister used to play Nethack all the time, about the time she became really good at hacking.")
 	else
 		npc_says(_"Everyone I know who is good with computers always talks about beating Nethack.")
