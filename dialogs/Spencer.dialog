@@ -421,7 +421,7 @@ Nr=51 Text=_"Tania"
 	if (npc_dead("DocMoore")) then
 		npc_says(_"I'd say you should take her straight away to Doc Moore, but he was found dead earlier.")
 		npc_says(_"You wouldn't happen to know anything about that, would you?")
-		if (has_cookie("killed_docmoore")) then
+		if (killed_docmoore) then
 			show(53)
 		end
 		show(52, 54)
@@ -440,7 +440,7 @@ Nr=52 Text=_"No, of course not."
 	npc_says(_"I didn't think it was you, but you never know.")
 	npc_says(_"About your friend, she can come in provided that she pulls her weight around here.")
 	add_cookie("Tania-set-free")
-	if (has_cookie("killed_docmoore")) then
+	if (killed_docmoore) then
 		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I denied everything and he bought it! He says it is OK for Tania to enter the town: I should tell her and Pendragon.")
 	else
 		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer said Doc Moore was found dead! Oh, and Tania can enter the town. I should go tell her that.")
