@@ -444,7 +444,7 @@ NO_TEXT
 		-- gettext strings left out on purpose
 	end
 	if (has_cookie("dixon_very_angry")) and
-	   (has_cookie("bruce_hurt")) and
+	   (bruce_hurt) and
 	   (has_quest(_"Opening access to MS Office")) and
 	   (not tux_has_edge) then
 		npc_says(_"()%%#@(%% THE BLADE IS YOURS. )##%%*&%%*!")

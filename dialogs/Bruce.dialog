@@ -39,17 +39,17 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"I am tired.")
 		npc_says(_"Go away.")
 		end_dialog()
-	elseif (has_cookie("Bruce_wants_helmet")) then
+	elseif (Bruce_wants_helmet) then
 		next(30)
 		topic("Bruce wants Dixon's helmet")
 	else
-		if ((not has_cookie("bruce_hurt")) and
-	   	   has_item_equipped("Dixon's Helmet")) then
-			if (has_cookie("Bruce_Dixons_helmet_lost")) then
+		if (not bruce_hurt) and
+		   (has_item_equipped("Dixon's Helmet")) then
+			if (Bruce_Dixons_helmet_lost) then
 				npc_says(_"So, you've 'lost' the helmet, heh?")
 				npc_says(_"Then, what's that on your head?")
 				npc_says(_"Leave me alone!")
-				add_cookie("bruce_hurt")
+				bruce_hurt = true
 				hide(0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12)
 			elseif (bruce_helmet_sell == -1) then
 				next(20)
@@ -126,7 +126,7 @@ Nr=7 Text=_"You don't understand. I wasn't asking. Now, tell me about your life 
 <LuaCode>
 	npc_says(_"No! Please... I will do anything, just don't call the Red Guard! They do not like people who left the service. They do not like me. ")
 	npc_says(_"I will tell you everything.")
-	add_cookie("bruce_hurt")
+	bruce_hurt = true
 	hide(5, 7) show(10)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -170,7 +170,7 @@ NO_TEXT
 	tux_says(_"What do you mean?")
 	npc_says(_"That helmet. I could make good use of it, it looks quite solid.")
 	npc_says(_"Can I buy it from you?")
-	add_cookie("Bruce_wants_helmet")
+	Bruce_wants_helmet = true
 	hide(20) show(40, 45, 49)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -186,7 +186,7 @@ Nr=30 Text="BUG! REPORT ME! BRUCE NODE 30" Topic="Bruce wants Dixon's helmet"
 NO_TEXT
 <LuaCode>
 	npc_says(_"So, what about the helmet now?")
-	if (has_cookie("bruce_helmet_deal")) then
+	if (bruce_helmet_deal) then
 		npc_says(_"I offered you 20 circuits for it.")
 	end
 	if (bruce_helmet_sell == 20) then
@@ -229,7 +229,7 @@ NO_TEXT
 		end
 		if (bruce_helmet_sell > -1) then
 			del_item("Dixon's Helmet")
-			del_cookie("Bruce_wants_helmet")
+			Bruce_wants_helmet = false
 			pop_topic() -- "Bruce wants Dixon's helmet"
 		end
 	else
@@ -246,7 +246,7 @@ Nr=40 Text=_"Yes, sure." Topic="Bruce wants Dixon's helmet"
 <LuaCode>
 	npc_says(_"Good.")
 	npc_says(_"Let's say, 20 circuits?")
-	add_cookie("bruce_helmet_deal")
+	bruce_helmet_deal = true
 	if (has_item_equipped("Dixon's Helmet")) then
 		npc_says(_"Please take off the helmet, so we can proceed trading.")
 		end_dialog()
@@ -301,7 +301,7 @@ Nr=44 Text=_"20 circuits? Do you think I'm stupid? I'll sell it for 1000!" Topic
 	npc_says(_"You're the greediest penguin I've ever met.")
 	npc_says(_"Forget about the deal!")
 	bruce_helmet_sell = -1000
-	del_cookie("Bruce_wants_helmet")
+	Bruce_wants_helmet = false
 	hide(41, 42, 43, 44, 45)
 	pop_topic() -- "Bruce wants Dixon's helmet"
 </LuaCode>
@@ -311,7 +311,7 @@ Nr=45 Text=_"I'm sorry, but I'd like to keep it." Topic="Bruce wants Dixon's hel
 <LuaCode>
 	npc_says(_"Bummer!")
 	bruce_helmet_sell = -1000
-	del_cookie("Bruce_wants_helmet")
+	Bruce_wants_helmet = false
 	hide(40, 41, 42, 43, 44, 45)
 	pop_topic() -- "Bruce wants Dixon's helmet"
 </LuaCode>
@@ -329,8 +329,8 @@ Nr=48 Text=_"I lost it." Topic="Lost Dixon's Helmet Y/N"
 <LuaCode>
 	npc_says(_"That's too sad!")
 	npc_says(_"So, please leave. I want to take a rest.")
-	add_cookie("Bruce_Dixons_helmet_lost")
-	del_cookie("Bruce_wants_helmet")
+	Bruce_Dixons_helmet_lost = true
+	Bruce_wants_helmet = false
 	hide(40, 41, 42, 43, 44, 45, 47, 48, 49)
 	end_dialog()
 </LuaCode>
@@ -346,9 +346,9 @@ Nr=49 Text=_"I'll think about that, but right now let's talk about something els
 
 Nr=99 Text=_"I'll be going then."
 <LuaCode>
-	if (has_cookie("bruce_hurt")) then
+	if (bruce_hurt) then
 		npc_says(_". . .")
-	elseif (has_cookie("Bruce_wants_helmet")) then
+	elseif (Bruce_wants_helmet) then
 		npc_says(_"Hang tight, I'll be right back for that helmet!")
 	else
 		npc_says(_"Good. I need sleep.")
