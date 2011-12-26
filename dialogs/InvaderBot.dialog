@@ -27,14 +27,14 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	if (not has_cookie("invader-bot-status")) then
+	if (not invader_bot_status) then
 		npc_says(_"Target Acquired...","NO_WAIT")
 		npc_says(_"Scanning...")
 		npc_says(_"Non-Human Lifeform Identified","NO_WAIT")
 		npc_says(_"Species Identified: Linarian")
 		npc_says(_"Current Status: Unknown")
 		show(0, 1, 2)
-		add_cookie("invader-bot-status")
+		invader_bot_status = true
 	else
 		end_dialog()
 	end
