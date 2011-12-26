@@ -38,7 +38,7 @@ Beginning of new chat dialog for character="XXXXX"
 	if (fuel < 5) then
 		set_bot_state("fixed")
 		npc_says(_"WARNING:", "NO_WAIT")
-		npc_says(_"Less than [b]5%[/b] fuel remaining!", "NO_WAIT")
+		npc_says(_"Less than [b]5%%[/b] fuel remaining!", "NO_WAIT")
 		npc_says(_"All movement suppressed...")
 		npc_says(_"Scanning area for possible compatible energy sources...")
 		hide(5, 6)
@@ -128,7 +128,7 @@ NO_TEXT
 	tux_says(_"fuel_level", "NO_WAIT")
 	npc_says(_"Printing fuel level...")
 	if (fuel < 5) then
-		npc_says(_"WARNING, less than [b]5%[/b] fuel remaining!")
+		npc_says(_"WARNING, less than [b]5%%[/b] fuel remaining!")
 	elseif (fuel <= 97) then
 		npc_says(_"[b]%s[/b]%% remaining", fuel)
 	else
@@ -146,7 +146,7 @@ NO_TEXT
 	npc_says(_"[b]glug glug glug[/b]")
 	npc_says(_"Tank refilled.")
 	npc_says(_"Fuel status:")
-	npc_says(_"[b]100[/b]%!")
+	npc_says(_"[b]100[/b]%%!")
 	npc_says(_"This will approximately suffice for:")
 	npc_says(_"1 month and 14 days.")
 	npc_says(_"Dropping waste product of last fuel filling...")
@@ -165,7 +165,7 @@ NO_TEXT
 <LuaCode>
 	tux_says(_"Sorry, tin can.")
 	npc_says(_"Import error: [b]null[/b] fuel received.", "NO_WAIT")
-	npc_says(_"WARNING, less than [b]5%[/b] fuel remaining!")
+	npc_says(_"WARNING, less than [b]5[/b]%% fuel remaining!")
 	npc_says(_"Resuming hibernation...")
 	hide(50, 51)
 	end_dialog()

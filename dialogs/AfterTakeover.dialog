@@ -433,7 +433,7 @@ NO_TEXT
 	if (math.random(1,10) > 2 ) then  -- it shouldn't appear too often
 		npc_says(_"Warning! Cooling subsystems disabled.", "NO_WAIT")
 		npc_says(_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit.", "NO_WAIT")
-		npc_says(_"WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++")
+		npc_says(_"WArn|n*! SsTeM=#faiPure%%^#n 3 S 1()$++")
 	else
 		npc_says(_"Warning: something seems wrong.")
 		npc_says(_"Error report:")
@@ -447,7 +447,7 @@ NO_TEXT
 	   (has_cookie("bruce_hurt")) and
 	   (has_quest(_"Opening access to MS Office")) and
 	   (not has_cookie("tux_has_edge")) then
-		npc_says(_"()%#@(% THE BLADE IS YOURS. )##%*&%*!")
+		npc_says(_"()%%#@(%% THE BLADE IS YOURS. )##%%*&%%*!")
 		add_cookie("tux_has_edge")
 		add_item("Nobody's edge",1)
 	end
