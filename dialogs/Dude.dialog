@@ -39,7 +39,7 @@ Beginning of new chat dialog for character="XXXXX"
 		30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
 		40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
 		50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
-		60, 61, 62, 63, 80, 99)
+		60, 61, 62, 63, 80, 81, 82, 99)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -433,6 +433,18 @@ Nr=80 Text=_"Become Red Guard"
 <LuaCode>
 	tux_has_joined_guard = true
 	npc_says(_"You are now a member of the Red Guard.")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=81 Text=_"Craft addons"
+<LuaCode>
+	craft_addons()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=82 Text=_"Upgrade items"
+<LuaCode>
+	upgrade_items()
 </LuaCode>
 ----------------------------------------------------------------------
 
