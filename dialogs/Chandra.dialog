@@ -37,12 +37,12 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Good to see you again. How can I help you?")
 	end
 
-	if (has_cookie("Chandra_node10_show")) and
+	if (Chandra_node10_show) and
 	   (not tux_has_joined_guard) then
 		show(10)
 	end
 
-	if (has_cookie("Chandra_node16_show")) then
+	if (Chandra_node16_show) then
 		show(16)
 	end
 
@@ -57,8 +57,8 @@ Beginning of new chat dialog for character="XXXXX"
 Nr=0 Text=_"Hi! I'm new here."
 <LuaCode>
 	npc_says(_"Welcome. I am Chandra. Some would call me the local sage.")
-	if (has_cookie("linarian_chandra")) and
-	   (not has_cookie("chandra_first_contact")) then
+	if (linarian_chandra) and
+	   (not chandra_first_contact) then
 		show(15)
 	end
 	hide(0) show(1, 2, 9)
@@ -166,7 +166,7 @@ Nr=10 Text=_"Do you think I could join the guardians of this town?"
 		npc_says(_"As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax.")
 	end
 	hide(10)
-	add_cookie("Chandra_node10_show")
+	Chandra_node10_show = true
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -228,10 +228,10 @@ Nr=15 Text=_"Chandra? Francis in the cryonic facility mentioned your name."
 	npc_says(_"Oh did he? What exactly did he say about me?")
 	tux_says(_"He said you might know more about who I am, about Linarians.")
 	npc_says(_"Hmmm... I'm not so sure about 'who', but he is quite right about my knowledge of Linarians... quite right indeed. What would you like to know, my friend?")
-	if (has_cookie("chandra_revenge")) then
+	if (chandra_revenge) then
 		end_dialog()
 	end
-	add_cookie("Chandra_node16_show")
+	Chandra_node16_show = true
 	hide(15) show(20, 25, 26, 29)
 	topic("Linarians")
 </LuaCode>
@@ -240,7 +240,7 @@ Nr=15 Text=_"Chandra? Francis in the cryonic facility mentioned your name."
 Nr=16 Text=_"I wanted to ask you some questions about Linarians."
 <LuaCode>
 	npc_says(_"Yes?")
-	if (has_cookie("chandra_revenge")) then
+	if (chandra_revenge) then
 		end_dialog()
 	end
 	hide(16) show(20)
@@ -265,7 +265,7 @@ Nr=18 Text=_"That's all I wanted to know about droids." Topic="Bot Information"
 
 Nr=20 Text=_"What is a Linarian?" Topic="Linarians" 
 <LuaCode>
-	if (not has_cookie("chandra_first_contact")) then
+	if (not chandra_first_contact) then
 		npc_says(_"Ah yes, I heard that your memory had been affected by stasis. I will share with you what I know.")
 		npc_says(_"Linarians came to this planet about a century ago. While their specialties can vary, they are most widely known for their nearly-magical skills with computers.")
 
@@ -297,7 +297,7 @@ NO_TEXT
 	npc_says(_"Sadly, I do not know. All that remains are legends. For a time, Linarians wandered the planet performing grand deeds and earning the respect of most of humanity.")
 	npc_says(_"But as time passed, so did the memories of the great deeds. It is unlikely that you will find many who know more about your people's noble past.")
 	npc_says(_"Perhaps there are still other Linarians alive here on our planet. Or maybe some went back to your own planet.")
-	add_cookie("chandra_first_contact")
+	chandra_first_contact = true
 	hide(20)
 	pop_topic()
 </LuaCode>
@@ -322,7 +322,7 @@ Nr=23 Text=_"Chandra, it saddens me to hear this. I will keep what you say in mi
 <LuaCode>
 	npc_says(_"Oh! This is great news! I was fearful that the truth would not settle well.")
 	npc_says(_"I should have never doubted the nobility and legendary honor of Linarians.")
-	add_cookie("chandra_first_contact")
+	chandra_first_contact = true
 	hide(20)
 	pop_topic()
 </LuaCode>
@@ -335,7 +335,7 @@ NO_TEXT
 	npc_says(_"But...")
 	tux_says(_"And I am more than happy to help them!")
 	set_npc_faction("crazy")
-	add_cookie("chandra_revenge")
+	chandra_revenge = true
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

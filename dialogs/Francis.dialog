@@ -181,7 +181,7 @@ Nr=12 Text=_"Linarians? Legends? What are you talking about?"
 	npc_says(_"The Red Guard had me thaw you out because you are a Linarian. I don't know much about your kind, but I do know that you have a strange affinity for computers, almost magical powers.")
 	npc_says(_"Chandra in the nearby town center probably has even more information.")
 	npc_says(_"Look in the chest in the next room for some spare gear I managed to gather for you. It's not much, but it should help you make it to town in one piece.")
-	add_cookie("linarian_chandra")
+	linarian_chandra = true
 	Francis_tux_dismissed = true
 	hide(12) show(20, 21)
 </LuaCode>
