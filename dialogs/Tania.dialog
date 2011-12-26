@@ -427,13 +427,13 @@ NO_TEXT
 <LuaCode>
 	injured_level = 0
 	if (npc_damage_amount() > 10) then
-		npc_says(_"I've am injured!")
+		npc_says(_"I am injured!")
 		injured_level = 1
 	elseif (npc_damage_amount() > 40) then
-		npc_says(_"I've am badly injured!")
+		npc_says(_"I am badly injured!")
 		injured_level = 2
 	elseif (npc_damage_amount() > 60) then
-		npc_says(_"I've am seriously injured!")
+		npc_says(_"I am seriously injured!")
 		injured_level = 3
 	end
 
