@@ -25,7 +25,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
--- Cookies:
+-- Variables:
 	-- internal:
 		-- "Stone_talk_again_later"   reshow node 4 at next conversation until Tux isn't followed anymore.
 		-- "Stone_asked_for_guns"     prevent node 2 from being shown more than once
@@ -49,7 +49,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (has_cookie("Stone_talk_again_later")) then
+	if (Stone_talk_again_later) then
 		show(4)
 	end
 
@@ -68,7 +68,7 @@ Nr=0 Text=_"Hi! I'm new here."
 Nr=1 Text=_"I would like to trade with you."
 <LuaCode>
 	npc_says(_"Good! Here is the selection of items I have for sale.")
-	if (has_cookie("Stone_asked_for_guns")) then
+	if (Stone_asked_for_guns) then
 		hide(2)
 	else
 		show(2)
@@ -87,7 +87,7 @@ Nr=2 Text=_"Swords, clubs and maces? What is this? I want guns!"
 		npc_says(_"Sorry, this is all we have for now. The Red Guard took away all of our poppers.", "NO_WAIT")
 		npc_says(_"For our own good. Of course.")
 	end
-	add_cookie("Stone_asked_for_guns")
+	Stone_asked_for_guns = true
 	hide(2)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -118,18 +118,18 @@ Nr=4 Text=_"But...?"
 		npc_says(_"But nothing.")
 		npc_says(_"I'm busy right now.")
 		npc_says(_"We should talk again later...")
-		add_cookie("Stone_talk_again_later")      -- EveryTime Code: if has cookie then show(4)
+		Stone_talk_again_later = true      -- EveryTime Code: if var then show(4)
 	elseif (tux_has_joined_guard) then  -- tux joined guard, not followed
 		npc_says(_"But nothing!")
 		npc_says(_"I don't know what you are talking about.")
-		del_cookie("Stone_talk_again_later")      -- Stone rejects to tell more because Tux is RG now
+		Stone_talk_again_later = false      -- Stone rejects to tell more because Tux is RG now
 	else
 		npc_says(_"The Guards run the town with very strict laws and demand total obedience.", "NO_WAIT")
 		npc_says(_"We all need to obey their rules. We need to work hard or they hurt us.")
 		npc_says(_"I guess I should not complain. The bots are far worse than the guards can be, but...")
 		npc_says(_"Sucked dry by a bloodthirsty regime over many years or just sliced into bits by our former servants...", "NO_WAIT")
 		npc_says(_"... What's the difference?")
-		del_cookie("Stone_talk_again_later")
+		Stone_talk_again_later = false
 		show(8)
 	end
 	hide(4)
