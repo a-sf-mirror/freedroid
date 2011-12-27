@@ -1063,7 +1063,7 @@ Name=_"PastWall-S"
 Trigger at label="Tutorial-PastWall2"
 Silent=1
 <LuaCode>
-	if (TutorialTom_Tux_PastWall) then
+	if (not TutorialTom_Tux_PastWall) then
 		TutorialTom_Tux_PastWall = true
 		set_bot_destination("Tutorial-PastWall1", "TutorialTom")
 	end
