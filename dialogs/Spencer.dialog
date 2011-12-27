@@ -264,7 +264,7 @@ NO_TEXT
 	add_xp(100)
 	add_gold(100)
 	end_quest(_"Deliverance", _"I gave Spencer the data cube. He gave me a small reward.")
-	data_cube_lost = nil;
+	data_cube_lost = false
 	hide(20, 21, 22, 23, 24, 25, 26)
 	pop_topic("Deliver the cube")
 </LuaCode>
