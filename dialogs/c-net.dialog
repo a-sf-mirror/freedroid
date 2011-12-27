@@ -28,13 +28,17 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode> 
 --	name = get_player_name() -- We need to generate the option text of option 0 to use this properly
-	if (has_cookie("terminals_disabled")) then
+	if (terminals_disabled) then
 		npc_says(_" . ")
 		end_dialog()
 	else
 		npc_says(_"Welcome to the Community Network.", "NO_WAIT")
 		cli_says(_"Login : ", "NO_WAIT")
-		if has_cookie("knows_c-net_users") then show(0, 1, 2, 3, 99) else show(0, 99) end
+		if (knows_c_net_users) then
+			show(0, 1, 2, 3, 99)
+		else
+			show(0, 99)
+		end
 	end
 	hide(10, 11, 12, 13, 14, 15, 16, 20, 21, 23, 24, 30, 31, 80, 81, 82, 83, 85, 86)
 </LuaCode>
@@ -46,8 +50,8 @@ NO_TEXT
 	username = get_player_name()
 	terminal = username .. "@c-net:~$"
 	tux_says("guest", "NO_WAIT")
-	if (not has_cookie("terminal_logged_in")) then
-		add_cookie("terminal_logged_in") 
+	if (not terminal_logged_in) then
+		terminal_logged_in = true
 		npc_says(_"First time login detected.")
 		npc_says(_"Please enter your name", "NO_WAIT")
 		cli_says(_"Name : ", "NO_WAIT")
@@ -74,7 +78,7 @@ NO_TEXT
 	tux_says("root", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says("******")
-	--if (not has_cookie("knows_root_password")) then
+	--if (not knows_root_password) then
 		next(9)
 	--else
 	--	username = "root"
@@ -109,7 +113,7 @@ NO_TEXT
 <LuaCode>
 	tux_says("cpain", "NO_WAIT")
 	cli_says(_"Password: ", "NO_WAIT")
-	--if (not has_cookie("knows_sorenson_password")) then
+	--if (not knows_sorenson_password) then
 		tux_says("******")
 		next(9)
 	--else
@@ -166,7 +170,9 @@ Nr=13 Text="finger"
 NO_TEXT
 <LuaCode>
 	tux_says("finger", "NO_WAIT")
-	if (not has_cookie("knows_c-net_users")) then add_cookie("knows_c-net_users") end
+	if (not knows_c_net_users) then
+		knows_c_net_users = true
+	end
 	npc_says("Login	Tty	Name", "NO_WAIT")
 	npc_says("bossman	tty7	Spencer", "NO_WAIT")
 	npc_says("cpain	tty5	Sorenson", "NO_WAIT")
@@ -181,7 +187,9 @@ NO_TEXT
 <LuaCode>
 	tux_says("users", "NO_WAIT")
 	npc_says("bossman cpain guest lily", "NO_WAIT")
-	if (not has_cookie("knows_c-net_users")) then add_cookie("knows_c-net_users") end
+	if (not knows_c_net_users) then
+		knows_c_net_users = true
+	end
 	cli_says(terminal, "NO_WAIT")
 </LuaCode>
 ----------------------------------------------------------------------
@@ -291,9 +299,9 @@ NO_TEXT
 		npc_says("Voots, Ryan", "NO_WAIT")
 		npc_says("Wood, JK", "NO_WAIT")
 		npc_says("Winterer, Armin", "NO_WAIT")
-		if (not has_cookie("deliverance_datacube_c-net_list")) then
+		if (not deliverance_datacube_c_net_list) then
 			update_quest(_"Deliverance", _"I found a terminal in the town which could read the data cube Francis gave me. It looks like there was a list of names on it, but I have no clue what's the deal with these names.")
-			add_cookie("deliverance_datacube_c-net_list")
+			deliverance_datacube_c_net_list = true
 		end
 	else
 		npc_says(_"no disk found", "NO_WAIT")
@@ -357,7 +365,7 @@ Nr=67 Text=_"forkBOMB.sh -disarm bomb"
 
 Nr=68 Text=_"forkBOMB.sh -execute"
 <LuaCode>
-	add_cookie("terminals_disabled")
+	terminals_disabled = true
 	display_big_message("Terminals Disabled")
 	npc_says(_"Script run. After logout this terminal will be disabled.", "NO_WAIT")
 	cli_says(_"root@c-net:~$", "NO_WAIT")
@@ -426,8 +434,8 @@ Nr=86 Text=_"progress_quest"
 NO_TEXT
 <LuaCode>
 	tux_says(_"./progress_quest", "NO_WAIT")
-	if (not has_cookie("playing_progress_quest")) then
-		add_cookie("playing_progress_quest")
+	if (not playing_progress_quest) then
+		playing_progress_quest = true
 		npc_says(_"Roll your Stats.")
 		hide(81, 82, 83, 85, 86)
 		next(87)
