@@ -92,7 +92,7 @@ NO_TEXT
 	tux_says("lily", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says("******")
-	if (not has_cookie("know_lily_password")) then
+	if (not know_lily_password) then
 		next(9)
 	else
 		username = "lily"

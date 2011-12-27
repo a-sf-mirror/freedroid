@@ -498,7 +498,7 @@ Silent=0
 <LuaCode>
 	if (has_item_backpack("Elbow Grease Can")) then
 		add_cookie("elbow_grease_applied")
-		del_cookie("bender_elbow_grease")
+		bender_elbow_grease = false
 		del_item_backpack("Elbow Grease Can", 1)
 		display_big_message(_"Elbow grease has been applied to the Automated Factory.")
 	end

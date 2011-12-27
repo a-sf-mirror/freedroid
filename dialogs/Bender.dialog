@@ -51,7 +51,8 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (has_cookie("bender_elbow_grease") or has_item_backpack("Manual of the Automated Factory")) then
+	if (bender_elbow_grease) or
+	   (has_item_backpack("Manual of the Automated Factory")) then
 		show(40)
 	end
 
@@ -231,7 +232,7 @@ Nr=16 Text=_"Hey, could you tell me Lily's password?"
 	npc_says(_"Sure, but we will have to shake on it.")
 	tux_says(_"OK...")
 	npc_says(_"It is an asterisk repeated four times.")
-	add_cookie("know_lily_password")
+	know_lily_password = true
 	tux_says(_"Wow.")
 	npc_says(_"I am the most awesome hacker ever.")
 	tux_says(_"Sure...")
