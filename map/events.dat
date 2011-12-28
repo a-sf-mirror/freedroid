@@ -954,8 +954,8 @@ Trigger at label="SADD-NoExit"
 Silent=1
 <LuaCode>
 	if (done_quest(_"SADD's power supply")) and
-	   (not has_cookie("SADD-trick")) then
-		add_cookie("SADD-trick")
+	   (not SADD_trick) then
+		SADD_trick = true
 		change_obstacle_state("SADDGun1", "enabled")
 		change_obstacle_state("SADDGun2", "enabled")
 		change_obstacle_state("BreakableWall2", "broken")

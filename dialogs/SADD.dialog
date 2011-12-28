@@ -32,7 +32,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (not has_cookie("SADD-trick")) then
+	if (not SADD_trick) then
 		npc_says(_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once.")
 	else
 		npc_says(_"You possess secret information. Please wait here for departure authorization.")
@@ -41,14 +41,15 @@ Beginning of new chat dialog for character="XXXXX"
 	if (has_quest(_"SADD's power supply")) then
 		if (not done_quest(_"SADD's power supply")) then 
 			if (has_item_backpack("Red Dilithium Crystal")) then
-				if (has_cookie("asked_sadd_for_exterminator")) then show(30) else show(33) end
+				if (SADD_asked_for_exterminator) then show(30) else show(33) end
 			else
 				show(31)
 			end
 		else
 			hide(30, 31, 33) -- add in more lab missions here in the future
-			if (has_cookie("SADD-trick") and (not has_cookie("SADD-NoExit"))) then
-				add_cookie("SADD-NoExit")
+			if (SADD_trick) and
+			   (not SADD_NoExit) then
+				SADD_NoExit = true
 				npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage", "NO_WAIT")
 				npc_says(_"Must protect secret information")
 				npc_says(_"Enabling guns.")
@@ -57,8 +58,8 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (has_item("The Super Exterminator!!!") and
-	    has_cookie("SADD_super_exterminator")) then
+	if (has_item("The Super Exterminator!!!")) and
+	   (SADD_super_exterminator) then
 		show(37)
 	end
 
@@ -179,7 +180,7 @@ Nr=20 Text=_"Almost a computer? What does that mean?"
 Nr=21 Text=_"You must promise me a significant reward."
 <LuaCode>
 	npc_says(_"Actuators! Ok, I'll give you a super exterminator if you give me dilithium crystals.")
-	add_cookie("asked_sadd_for_exterminator")
+	SADD_asked_for_exterminator = true
 	hide(21, 22) next(23)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -210,11 +211,11 @@ Nr=30 Text=_"I have the crystals! They were difficult to find."
 	del_item_backpack("Red Dilithium Crystal", 1)
 	change_obstacle_state("SADDDepotDoor", "opened")
 	end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
-	add_cookie("SADD_super_exterminator")
+	SADD_super_exterminator = true
 	end_dialog()
 	hide(30)
-	if (has_item("The Super Exterminator!!!") and
-	    has_cookie("SADD_super_exterminator")) then
+	if (has_item("The Super Exterminator!!!")) and
+	    (SADD_super_exterminator) then
 		show(37)
 	end
 </LuaCode>
@@ -244,7 +245,7 @@ Nr=33 Text=_"I have the crystals! They were difficult to find."
 
 Nr=37 Text=_"You call this a super exterminator?"
 <LuaCode>
-	add_cookie("SADD-NoExit")
+	SADD_NoExit = true
 	npc_says(_"I do. Now please leave this place before I terminate you.")
 	tux_says(_"This is rubbish! Nobody can use this stupid gun!")
 	npc_says(_"The door is still open. You can put it back and go. Quick.")
@@ -255,7 +256,7 @@ Nr=37 Text=_"You call this a super exterminator?"
 	change_obstacle_state("SADDGun1", "enabled")
 	change_obstacle_state("SADDGun2", "enabled")
 	change_obstacle_state("BreakableWall2", "broken")
-	del_cookie("SADD_super_exterminator")
+	SADD_super_exterminator = false
 	hide(37) show(41, 42, 43)
 	end_dialog()
 </LuaCode>
