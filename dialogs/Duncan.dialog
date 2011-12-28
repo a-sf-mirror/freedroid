@@ -39,9 +39,9 @@ Beginning of new chat dialog for character="XXXXX"
 	end
 
 	if (not has_cookie("koan_quest_really_done")) then
-		if (has_item_backpack("Pandora's Cube") or	    --Koan died, and you brought the cube back
+		if (has_item_backpack("Pandora's Cube")) or	    --Koan died, and you brought the cube back
 		    npc_dead("Koan") or			            --Koan died, but you didn't bring the cube back
-		    has_cookie("koan_spared_via_dialog")) then	    --Koan is alive!
+		    (Koan_spared_via_dialog) then	       --Koan is alive!
 			if (not has_cookie("koan_quest_done")) then --if you just came back from Koan
 				next(60)
 			elseif (not has_cookie("koan_not_given_cube")) and --if, after talking to Duncan, Koan became dead
@@ -223,7 +223,7 @@ NO_TEXT
 			npc_says(_"You don't look too well, what did happen?") 
 			tux_says(_"He ... he is dead...")
 			npc_says(_"Koan?")
-			if (has_cookie("koan_spared_via_dialog")) then  -- we told Koan we won't kill him, and lied to Duncan
+			if (Koan_spared_via_dialog) then  -- we told Koan we won't kill him, and lied to Duncan
 				--about not finding him. Afterwards we went back to Koan and killed him manually
 				npc_says(_"I thought you hadn't found him?")
 				tux_says(_"Yes, I didn't find him at first, now I did.")
@@ -237,7 +237,7 @@ NO_TEXT
 			update_quest(_"Doing Duncan a favor", _"Unfortunately, I forgot to bring the cube. Duncan was not amused.")
 		end
 			end_dialog()
-	elseif (has_cookie("koan_spared_via_dialog")) then -- we didn't kill via the dialog
+	elseif (Koan_spared_via_dialog) then -- we didn't kill via the dialog
 		tux_says(_"I could not find him anywhere in the desert. I don't think he is there anymore.")
 		npc_says(_"I see.")
 		end_quest(_"Doing Duncan a favor", _"I lied to Duncan about not finding Koan.")

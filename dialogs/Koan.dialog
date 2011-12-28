@@ -37,8 +37,8 @@ Beginning of new chat dialog for character="XXXXX"
 		tania_is_here = false
 	end
 
-	if (not has_cookie("met_koan")) then
-		add_cookie("met_koan")
+	if (not Koan_met) then
+		Koan_met = true
 		npc_says(_"So you have come. I knew Duncan would not let me live for too long.")
 		npc_says(_"Once I am gone this oasis of peace in the world will dry up and die. A shame.")
 		npc_says(_"I hoped to turn the whole desert into a sanctuary. And now my dream will never come true.")
@@ -53,7 +53,7 @@ Beginning of new chat dialog for character="XXXXX"
 			end
 		end
 		show(3)
-	elseif (has_cookie("koan_spared_via_dialog")) then
+	elseif (Koan_spared_via_dialog) then
 		npc_says_random(_"It's a pleasure to meet you again.",
 						_"I am happy to see you've returned.")
 		if (tania_is_here) then
@@ -63,7 +63,7 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"I see the troubles of the world in your eyes.")
 		show(10, 11)
 		hide(20, 21, 99)
-	--elseif has_cookie("met_koan_before_duncan") then
+	--elseif (met_koan_before_duncan) then
 	--	npc_says_random(_"Come sitdown my friend.",
 	--					_"Please take some time and relax here in the cool.")
 	--	if (tania_is_here) then
@@ -143,7 +143,7 @@ Nr=11 Text=_"Duncan sent me to kill you, but I came to make certain you were saf
 Nr=12 Text=_"BUG, REPORT ME! Koan node12 -- UPDATE QUEST"
 NO_TEXT
 <LuaCode>
-	add_cookie("koan_spared_via_dialog")
+	Koan_spared_via_dialog = true
 	update_quest(_"Doing Duncan a favor", _"I met and talked to Koan, but didn't kill him.")
 	show(13)
 </LuaCode>
