@@ -98,7 +98,7 @@ Nr=13 Text=_"How can I teleport?"
 	npc_says(_"Well, first the computer needs to scan you.")
 	npc_says(_"But it did that as soon as you entered the town.")
 	npc_says(_"Then all you need is one of these Teleporter homing beacons. I'll give you one.")
-	add_item(_"Teleporter homing beacon")
+	add_item("Teleporter homing beacon")
 	npc_says(_"They send a coded signal to our computer here, which does all of the quantum doohickeys to move you around.")
 	npc_says(_"Of course, if you had another way to send a coded signal, that would work as well.")
 	hide(13) show(14)

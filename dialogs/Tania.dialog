@@ -328,19 +328,19 @@ Nr=48 Text="BUG, REPORT ME! Tania node48 -- TANIA'S THIRST FOR WATER"
 NO_TEXT
 <LuaCode>
 	number_of_liquid_items = 0
-	if (has_item_backpack(_"Bottled ice")) then
+	if (has_item_backpack("Bottled ice")) then
 		number_of_liquid_items = number_of_liquid_items+ 1;
 		show(49)
 	end
-	if (has_item_backpack(_"Industrial coolant")) then
+	if (has_item_backpack("Industrial coolant")) then
 		number_of_liquid_items = number_of_liquid_items+ 1;
 		show(50)
 	end
-	if (has_item_backpack(_"Liquid nitrogen")) then
+	if (has_item_backpack("Liquid nitrogen")) then
 		number_of_liquid_items = number_of_liquid_items+ 1;
 		show(51)
 	end
-	if (has_item_backpack(_"Barf's Energy Drink")) then
+	if (has_item_backpack("Barf's Energy Drink")) then
 		number_of_liquid_items = number_of_liquid_items+ 1;
 		show(52)
 	end
@@ -439,13 +439,13 @@ NO_TEXT
 		injured_level = 3
 	end
 
-	if (has_item_backpack(_"Doc-in-a-can")) then
+	if (has_item_backpack("Doc-in-a-can")) then
 		show(59)
 	end
-	if (has_item_backpack(_"Antibiotic") and (injured_level < 3)) then
+	if (has_item_backpack("Antibiotic") and (injured_level < 3)) then
 		show(58)
 	end
-	if (has_item_backpack(_"Diet supplement") and (injured_level < 2)) then
+	if (has_item_backpack("Diet supplement") and (injured_level < 2)) then
 		show(57)
 	end
 	show(56)

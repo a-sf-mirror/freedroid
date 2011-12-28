@@ -174,7 +174,7 @@ Nr=50 Text=_"Do you have a copy of Subatomic and Nuclear Science for Dummies, Vo
 	npc_says(_"In that case, you can have it. My mission is to preserve our culture, which won't matter if we're all dead.")
 	tux_says(_"Thank you, Tamara.")
 	update_quest(_"An Explosive Situation", _"I was able to get a copy of Subatomic and Nuclear Science for Dummies, Volume IV from the librarian, Tamara. I'd better hurry back to Ewald's 296 with it.")
-	add_item(_"Nuclear Science for Dummies IV")
+	add_item("Nuclear Science for Dummies IV")
 	add_cookie("have_296_book")
 	hide(50)
 	end_dialog()
