@@ -40,14 +40,14 @@ Beginning of new chat dialog for character="XXXXX"
 						_"Welcome back.")
 	end
 
-	if (has_quest(_"A strange guy stealing from town")) and
-	   (not done_quest(_"A strange guy stealing from town")) then
+	if (has_quest("A strange guy stealing from town")) and
+	   (not done_quest("A strange guy stealing from town")) then
 		add_xp(100)
 		end_quest(_"A strange guy stealing from town", _"Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
 	end
 
-	if (has_quest(_"And there was light...")) and
-	   (done_quest(_"And there was light...")) then
+	if (has_quest("And there was light...")) and
+	   (done_quest("And there was light...")) then
 		show(8, 10)
 		if (not Kevin_did_And_there_was_light) then
 			Kevin_did_And_there_was_light = true -- Tux spoke with Kevin after completing the quest "And there was light..."
@@ -108,7 +108,7 @@ Nr=7 Text=_"I'm sorry, but I don't think there's anything I could do about that 
 
 Nr=8 Text=_"About that project you said you have running..."
 <LuaCode>
-	if (done_quest(_"A kingdom for a cluster!")) then
+	if (done_quest("A kingdom for a cluster!")) then
 		npc_says(_"I've already received the results from the evaluation of my data in the cluster. Good work.")
 	else
 		npc_says(_"Yes, since the energy supply has been constant, results were much better. I've achieved my goal.")
@@ -123,7 +123,7 @@ Nr=8 Text=_"About that project you said you have running..."
 
 Nr=9 Text=_"Maybe I can help somehow to find a suitable cluster."
 <LuaCode>
-	if (has_quest(_"A kingdom for a cluster!")) then
+	if (has_quest("A kingdom for a cluster!")) then
 		npc_says(_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore.")
 		npc_says(_"The fate of the town now rests in your hands. Take the data cube I gave you to the cluster. Only there can the data be evaluated properly.")
 	else
@@ -222,8 +222,8 @@ Nr=21 Text=_"I thought you would be more worried about her death."
 
 Nr=30 Text=_"What can you teach me about hacking?"
 <LuaCode>
-	if (not done_quest(_"And there was light...")) then
-		if (not has_quest(_"And there was light...")) then
+	if (not done_quest("And there was light...")) then
+		if (not has_quest("And there was light...")) then
 			npc_says(_"Not now, I'm busy.")
 			npc_says(_"I've got an important research project going on. In fact this project might be crucial to the survival of the whole town.")
 			npc_says(_"There is tremendous importance in it. But the project is in danger. There are some maintenance bots down at the energy source.")
@@ -309,7 +309,7 @@ Nr=60 Text=_"No, I didn't touch it."
 
 Nr=61 Text=_"Yes, I tried to login."
 <LuaCode>
-	if (done_quest(_"And there was light...")) then
+	if (done_quest("And there was light...")) then
 		npc_says(_"Please, don't touch it.")
 		npc_says(_"I don't want you to break it somehow.")
 		add_cookie("kevins_lawnmower_tux_login_granted") -- Tux has access to Kevin-Lawnmower

@@ -51,7 +51,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 		npc_says(_"You can ask, but don't expect a reply.", "NO_WAIT")
 		npc_says(_"I'm guarding this gate, and if I get distracted the bots might overrun this town and kill everybody in it.")
-		if (has_quest(_"Deliverance")) and
+		if (has_quest("Deliverance")) and
 		   (not has_cookie("knows_spencer_office")) then
 			show(40)
 		end
@@ -118,7 +118,7 @@ Nr=10 Text=_"Yes. I understand."
 	npc_says(_"You may now enter %s. But we'll be watching you. I'll let the others know you've arrived.", get_player_name())
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
-	if (has_quest(_"Deliverance")) and
+	if (has_quest("Deliverance")) and
 	   (not has_cookie("knows_spencer_office")) then
 		show(40)
 	end
@@ -154,7 +154,7 @@ Nr=21 Text=_"... I was only wondering who you were, and why you were wearing suc
 	for var in ipairs(doors) do
 		change_obstacle_state(doors[var], "opened")
 	end
-	if (has_quest(_"Deliverance")) and
+	if (has_quest("Deliverance")) and
 	   (not has_cookie("knows_spencer_office")) then
 		show(40)
 	end
@@ -194,7 +194,7 @@ Nr=30 Text=_"Please don't hurt me."
 		change_obstacle_state(doors[var], "opened")
 	end
 	end_dialog()
-	if (has_quest(_"Deliverance")) and
+	if (has_quest("Deliverance")) and
 	   (not has_cookie("knows_spencer_office")) then
 		show(40)
 	end
@@ -212,7 +212,7 @@ Nr=31 Text=_"I want to talk to your manager, moron."
 	for var in ipairs(doors) do
 		change_obstacle_state(doors[var], "opened")
 	end
-	if (has_quest(_"Deliverance")) then
+	if (has_quest("Deliverance")) then
 		add_cookie("knows_spencer_office")
 		update_quest(_"Deliverance", _"I've managed to get into town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate. The guard also calls me a loon.")
 	end
@@ -230,7 +230,7 @@ Nr=32 Text=_"That is exactly what I said."
 	for var in ipairs(doors) do
 		change_obstacle_state(doors[var], "opened")
 	end
-	if (has_quest(_"Deliverance")) and
+	if (has_quest("Deliverance")) and
 	   (not has_cookie("knows_spencer_office")) then
 		show(40)
 	end

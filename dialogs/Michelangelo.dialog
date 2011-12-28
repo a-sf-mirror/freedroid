@@ -31,18 +31,18 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_quest(_"Anything but the army snacks, please!")) then
-		if (done_quest(_"Anything but the army snacks, please!")) then
+	if (has_quest("Anything but the army snacks, please!")) then
+		if (done_quest("Anything but the army snacks, please!")) then
 			show(24)
-			if (has_quest(_"SADD's power supply")) then
-				if (done_quest(_"SADD's power supply")) then 
+			if (has_quest("SADD's power supply")) then
+				if (done_quest("SADD's power supply")) then 
 					hide(75, 76, 77)
 				else
 					if (not has_item_backpack("Red Dilithium Crystal")) then show(40, 75) end
 				end
 			end
-			if (has_quest(_"Gapes Gluttony")) then
-				if (not done_quest(_"Gapes Gluttony")) then
+			if (has_quest("Gapes Gluttony")) then
+				if (not done_quest("Gapes Gluttony")) then
 					hide(24)
 						if (not has_cookie("asked_michelangelo_meal_to_go")) then
 							show(21)
@@ -88,7 +88,7 @@ Nr=10 Text=_"How is it going?"
 
 Nr=11 Text=_"Can I buy some food here?"
 <LuaCode>
-	if (done_quest(_"Anything but the army snacks, please!")) then
+	if (done_quest("Anything but the army snacks, please!")) then
 		npc_says(_"Until my next batch of food comes out of the macrowave oven, all I have are the odoriferous military rations.")
 	else
 		npc_says(_"There is no food here, just the odious military rations.")

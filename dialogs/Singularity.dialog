@@ -31,8 +31,8 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_quest(_"Droids are my friends")) and
-	   (done_quest(_"Droids are my friends")) and
+	if (has_quest("Droids are my friends")) and
+	   (done_quest("Droids are my friends")) and
 	   (not has_cookie("reward_for_toolkit")) then
 		show(22)
 		add_cookie("reward_for_toolkit")

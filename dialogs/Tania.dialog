@@ -41,7 +41,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end_dialog()
 	end
 
-	if (has_quest(_"Tania's Escape")) then
+	if (has_quest("Tania's Escape")) then
 		hide(1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 90)
 		if (not Tania_follow_tux) then
 			npc_says_random(_"I long to see the surface.",
@@ -82,7 +82,7 @@ Beginning of new chat dialog for character="XXXXX"
 				end_dialog()
 			end
 			show(93)
-		elseif (not done_quest(_"Tania's Escape")) then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar)
+		elseif (not done_quest("Tania's Escape")) then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar)
 			npc_says(_"What is the news?")
 			tux_says(_"I talked to Spencer, and he said you were welcome to enter the town.")
 			npc_says(_"That is great news!")
@@ -103,7 +103,7 @@ Beginning of new chat dialog for character="XXXXX"
 				heal_npc()
 				npc_says(_"I have good news: the doctor says I'm healthy!")
 				npc_says(_"Where should I go?")
-				if (done_quest(_"Anything but the army snacks, please!")) then
+				if (done_quest("Anything but the army snacks, please!")) then
 					show(70)
 				else
 					show(71)
@@ -544,7 +544,7 @@ NO_TEXT
 Nr=99 Text="BUG, REPORT ME! Tania node99 -- EXIT DIALOG"
 NO_TEXT
 <LuaCode>
-	if (has_quest(_"Tania's Escape")) then
+	if (has_quest("Tania's Escape")) then
 		hide(1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 18, 19)
 		if (not SACD_gunsoff) then --still underground, guns on
 			tux_says(_"I think I have to go.")

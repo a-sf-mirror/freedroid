@@ -30,8 +30,8 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_quest(_"Bender's problem")) then
-		if (not done_quest(_"Bender's problem")) then
+	if (has_quest("Bender's problem")) then
+		if (not done_quest("Bender's problem")) then
 			hide(1, 2, 3, 4, 6, 7, 8)
 			if (has_item_backpack("Brain Enlargement Pills Antidote")) then
 				hide(5, 10, 11, 12, 50) show(9)
@@ -258,7 +258,7 @@ Nr=20 Text=_"Did you take all the Brain Enlargement Pills?"
 Nr=40 Text=_"Can you spare some elbow grease?"
 <LuaCode>
 	npc_says(_"Yes, you are talking to the right guy, man.")
-	if (not done_quest(_"Bender's problem")) then
+	if (not done_quest("Bender's problem")) then
 		npc_says(_"But now, I'm no good. I can't make you any elbow grease, sorry man.")
 		npc_says(_"Maybe if I was feeling better...")
 	else

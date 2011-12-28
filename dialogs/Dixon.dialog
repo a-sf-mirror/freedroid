@@ -35,7 +35,7 @@ Beginning of new chat dialog for character="XXXXX"
 		if (has_cookie("singularity_killed")) then show(34) else show(35, 36) end
 	end
 
-	if (done_quest(_"The yellow toolkit")) then
+	if (done_quest("The yellow toolkit")) then
 		if (has_cookie("singularity_dead")) then
 			if (has_cookie("singularity_killed")) then show(44) else show(43) end
 			hide(45, 46)
@@ -94,7 +94,7 @@ Nr=18 Text=_"Can you repair my equipment?"
 	npc_says(_"Our defensive bots are falling into disrepair and many are in desperate need of maintenance.")
 	npc_says(_"The technical division is very understaffed right now. On average one person has to do the jobs of three people.", "NO_WAIT")
 	npc_says(_"We just cannot afford to do any non-critical jobs right now. ")
-	if (not has_quest(_"The yellow toolkit")) then
+	if (not has_quest("The yellow toolkit")) then
 		show(22)
 	end
 	hide(18)
@@ -434,7 +434,7 @@ Nr=50 Text=_"I would like to customize my equipment."
 	npc_says(_"The salvaged components are used to craft add-ons. Your equipment has specific sockets to insert them.", "NO_WAIT")
 	npc_says(_"They can increase the power of items. But items can only have a limited number of addons.")
 	npc_says(_"To produce and assemble them, you may use a small factory in the Maintenance Tunnels.")
-	if (not has_quest(_"The yellow toolkit")) then
+	if (not has_quest("The yellow toolkit")) then
 		npc_says(_"Currently, the maintenance tunnels are not accessible. We have many problems with bots. You can't go there, access has been limited.")
 		show(22)
 	end

@@ -37,7 +37,7 @@ Beginning of new chat dialog for character="XXXXX"
 	   (not Pendragon_OK_w_Tania) and --Tania Escape Quest stuff
 	   (Spencer_Tania_sent_to_DocMoore) or
 	   (Tania_set_free) then
-		if (not done_quest(_"Tania's Escape")) then
+		if (not done_quest("Tania's Escape")) then
 			npc_says(_"Tania has been waiting to talk to you.")
 		else
 			npc_says(_"Spencer says it is OK?")

@@ -49,11 +49,11 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"So let's start with the basics, shall we?")
 		show(1, 7, 80)
 		set_rush_tux(0)
-	elseif (has_quest(_"Tutorial Movement")) and
+	elseif (has_quest("Tutorial Movement")) and
 		   (not TutorialTom_talk_to_tom) then
 		TutorialTom_talk_to_tom = true
 		npc_says(_"Glad to see you figured out the quest log!")
-	elseif (has_quest(_"Tutorial Movement")) and
+	elseif (has_quest("Tutorial Movement")) and
 		   (TutorialTom_move_black) and
 		   (not TutorialTom_sprinting) then
 		TutorialTom_sprinting = true
@@ -75,7 +75,7 @@ Nr=1 Text=_"Yes, it would be most kind of you. I don't remember anything."
 	npc_says(_"You Linarians keep a quest [b]Log[/b] where you write down key bits of information.")
 	npc_says(_"When you aren't speaking with someone, you can open it up or close it by pressing the [b]Q key[/b].")
 	npc_says(_"I'll assign you a new quest, so you can try it out. Once you are done, [b]left click[/b] on me.")
-	if (not has_quest(_"Tutorial Movement")) then
+	if (not has_quest("Tutorial Movement")) then
 		add_quest(_"Tutorial Movement", _"To talk to someone, left click on them. You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the 'Q' key to open or close the quest log. Left click back on Tutorial Tom to learn more!")
 	end
 	display_big_message(_"Press 'Q' for Quests!")
@@ -418,7 +418,7 @@ Nr=28 Text=_"I've beaten the second bot."
 
 Nr=29 Text=_"I'm ready to move on."
 <LuaCode>
-	if (not done_quest(_"Tutorial Melee")) then
+	if (not done_quest("Tutorial Melee")) then
 		complete_quest(_"Tutorial Melee", _"I decided to move on and go to the shooting tutorial.")
 	end
 	if (TutorialTom_has_gun) then
@@ -508,7 +508,7 @@ Nr=34 Text=_"I ran out of ammo. Can I have some more?"
 
 Nr=35 Text=_"I killed all the bots."
 <LuaCode>
-	if (done_quest(_"Tutorial Shooting")) then
+	if (done_quest("Tutorial Shooting")) then
 		npc_says(_"Excellent job.")
 		npc_says(_"Keep shooting like that, and the bots will never stand a chance, as long as you still have ammo.")
 		npc_says(_"Next, we'll be moving on to learning the [b]Hacking[/b] program.")
@@ -633,7 +633,7 @@ Nr=41 Text=_"I'll have to keep that in mind."
 
 Nr=42 Text=_"Alright, I'm ready to go hack some bots."
 <LuaCode>
-	if (not done_quest(_"Tutorial Upgrading Items")) then
+	if (not done_quest("Tutorial Upgrading Items")) then
 		end_quest(_"Tutorial Upgrading Items",_"I decided that I don't need to know how to upgrade items.")
 	end
 	npc_says(_"First, you'll need to unlock the door.")
@@ -748,7 +748,7 @@ Nr=55 Text=_"Thanks. I'm ready now."
 Nr=56 Text=_"I'm finished. I'm ready to move on."
 <LuaCode>
 	if (TutorialTom_hacking_bots) then
-		if (not done_quest(_"Tutorial Hacking")) then
+		if (not done_quest("Tutorial Hacking")) then
 			npc_says(_"The bots aren't dead, Linarian.")
 			npc_says(_"Come back and talk to me after they are.")
 			npc_says(_"If you're having trouble, you might try the [b]Malformed Packet[/b] program.")

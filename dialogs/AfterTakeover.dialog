@@ -437,7 +437,7 @@ NO_TEXT
 	end
 	if (has_cookie("dixon_very_angry")) and
 	   (Bruce_hurt) and
-	   (has_quest(_"Opening access to MS Office")) and
+	   (has_quest("Opening access to MS Office")) and
 	   (not tux_has_edge) then
 		npc_says(_"()%%#@(%% THE BLADE IS YOURS. )##%%*&%%*!")
 		tux_has_edge = true

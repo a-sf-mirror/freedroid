@@ -38,8 +38,8 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"You possess secret information. Please wait here for departure authorization.")
 	end
 
-	if (has_quest(_"SADD's power supply")) then
-		if (not done_quest(_"SADD's power supply")) then 
+	if (has_quest("SADD's power supply")) then
+		if (not done_quest("SADD's power supply")) then 
 			if (has_item_backpack("Red Dilithium Crystal")) then
 				if (SADD_asked_for_exterminator) then show(30) else show(33) end
 			else

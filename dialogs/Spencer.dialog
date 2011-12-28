@@ -60,18 +60,18 @@ Beginning of new chat dialog for character="XXXXX"
 		show(50)
 	end
 
-	if (not has_quest(_"Opening access to MS Office")) and
-		(done_quest(_"A kingdom for a cluster!")) then
+	if (not has_quest("Opening access to MS Office")) and
+		(done_quest("A kingdom for a cluster!")) then
 		show(37)
 	end
 
-	if (not has_quest(_"Propagating a faulty firmware update")) and
-	   (done_quest(_"Opening access to MS Office")) then
+	if (not has_quest("Propagating a faulty firmware update")) and
+	   (done_quest("Opening access to MS Office")) then
 		show(44)
 	end
 
 	if (data_cube_lost) and
-	    (not done_quest(_"Deliverance")) then
+	    (not done_quest("Deliverance")) then
 		show(29)
 	end
 
@@ -82,7 +82,7 @@ Beginning of new chat dialog for character="XXXXX"
 Nr=0 Text=_"Hi! I'm new here."
 <LuaCode>
 	npc_says(_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?")
-	if (has_quest(_"Deliverance") and (not done_quest(_"Deliverance"))) then
+	if (has_quest("Deliverance") and (not done_quest("Deliverance"))) then
 		add_cookie("knows_spencer_office")
 		show(20)
 	end
@@ -137,8 +137,8 @@ Nr=6 Text=_"Maybe I could help somehow?"
 
 Nr=7 Text=_"How is it going?"
 <LuaCode>
-	if (has_quest(_"Opening a can of bots...")) then
-		if (done_quest(_"Opening a can of bots...")) then
+	if (has_quest("Opening a can of bots...")) then
+		if (done_quest("Opening a can of bots...")) then
 			if (has_cookie("reward_for_warehouse_given")) then
 				npc_says(_"Thanks to you, we've been able to transport all the goods we need right now. You've really helped us out there.")
 				npc_says(_"Rest assured that we will never forget your brave activity for our community.")
@@ -165,7 +165,7 @@ Nr=7 Text=_"How is it going?"
 
 Nr=12 Text=_"Have I done enough quests to become a member now?"
 <LuaCode>
-	if (not done_quest(_"The yellow toolkit")) then
+	if (not done_quest("The yellow toolkit")) then
 		npc_says(_"I think our teleporter service man, Dixon, has some problem. You might want to talk to him.")
 	else
 		if (has_cookie("dixon_angry_250")) then
@@ -195,25 +195,25 @@ Nr=12 Text=_"Have I done enough quests to become a member now?"
 		end
 	end
 
-	if (done_quest(_"Anything but the army snacks, please!")) then
+	if (done_quest("Anything but the army snacks, please!")) then
 		npc_says(_"When I was eating, Michelangelo told me about his renewed oven energy supply. He seemed very pleased, and so was I.")
 	else
 		npc_says(_"I think you should visit the town's cook sometime. He's usually in the restaurant kitchen.")
 	end
 
-	if (done_quest(_"Novice Arena")) then
+	if (done_quest("Novice Arena")) then
 		npc_says(_"From Butch I hear you've become a novice arena master. Congratulations.")
 	else
 		npc_says(_"You might want to score some arena victories. That could also help your reputation a lot.")
 	end
 
-	if (done_quest(_"Bender's problem")) then
+	if (done_quest("Bender's problem")) then
 		npc_says(_"Helping Bender along was also a smart move. But you should be very careful with that one. He can get mad rather easily. A bit of a security threat, but we can't be too picky.")
 	else
 		npc_says(_"As far as I know, Bender is still very sick.")
 	end
 
-	if (done_quest(_"Opening a can of bots...")) then
+	if (done_quest("Opening a can of bots...")) then
 		npc_says(_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget.")
 	else
 		npc_says(_"Personally I'm also worrying about how we will manage to get some necessary supplies from our warehouse. It's filled with bots and we just don't have the manpower to spare to clean them out.")

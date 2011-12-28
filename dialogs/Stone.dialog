@@ -38,13 +38,13 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_quest(_"Saving the shop")) then
+	if (has_quest("Saving the shop")) then
 		if (get_gold() > 1400) then
 			show(23)
 		else
 			hide(23)
 		end
-		if (done_quest(_"Saving the shop")) then
+		if (done_quest("Saving the shop")) then
 			hide(23) show(10)
 		end
 	end
@@ -153,7 +153,7 @@ NO_TEXT
 
 Nr=10 Text=_"How is your business going?"
 <LuaCode>
-	if (done_quest(_"Saving the shop")) then
+	if (done_quest("Saving the shop")) then
 		npc_says(_"Thanks to you I have a chance now.", "NO_WAIT")
 		npc_says(_"Ha! It's time to show the world that Lily Stone is not going down without putting up a REAL good fight.")
 		set_bot_name(_"Lily Stone -- Shopowner")

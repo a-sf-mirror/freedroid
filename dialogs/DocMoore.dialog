@@ -31,9 +31,9 @@ Beginning of new chat dialog for character="XXXXX"
 		show(0)
 	end
 
-	if (has_quest(_"Bender's problem")) and
+	if (has_quest("Bender's problem")) and
 	   (DocMoore_met) and
-	   (not done_quest(_"Bender's problem")) then
+	   (not done_quest("Bender's problem")) then
 		show(2)
 	end
 
@@ -101,7 +101,7 @@ Nr=0 Text=_"Hello!"
 	npc_says(_"Oh my!")
 	npc_says(_"Well, I should be able to heal you if you get hurt.")
 	DocMoore_met = true
-	if (has_quest(_"Bender's problem")) then
+	if (has_quest("Bender's problem")) then
 		show(2)
 	end
 	set_bot_name(_"Doc Moore -- Medic")

@@ -48,7 +48,7 @@ Beginning of new chat dialog for character="XXXXX"
 		show(30)
 	end
 
-	if (done_quest(_"An Explosive Situation")) then
+	if (done_quest("An Explosive Situation")) then
 		hide(30) show(31)
 	end
 </LuaCode>

@@ -37,7 +37,7 @@ Beginning of new chat dialog for character="XXXXX"
 <EveryTime LuaCode>
 	terminal = "admin@main.mdc.dsb.ms: ~ #"
 	cli_says(terminal, "NO_WAIT")
-	if (not done_quest(_"Opening access to MS Office")) then
+	if (not done_quest("Opening access to MS Office")) then
 		show(7)
 	end
 	show(99, 1)

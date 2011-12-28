@@ -52,7 +52,7 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Have you neutralized the threat yet?")
 		show(5)
 	else
-		if  (not has_quest(_"Deliverance")) and
+		if  (not has_quest("Deliverance")) and
 			(not (Francis_refused_deliverance)) then
 			show(90)
 			npc_says(_"Welcome back %s.", get_player_name())

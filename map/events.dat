@@ -250,7 +250,7 @@ Trigger at label="W-enter-1"
 Silent=1
 <LuaCode>
 	if (Tania_surface) and
-	   (not done_quest(_"Tania's Escape")) and
+	   (not done_quest("Tania's Escape")) and
 	   (not Tania_stopped_by_Pendragon) then
 		Tania_stopped_by_Pendragon = true
 		start_chat("Pendragon")
@@ -264,7 +264,7 @@ Trigger at label="W-enter-2"
 Silent=1
 <LuaCode>
 	if (Tania_surface) and
-	   (not done_quest(_"Tania's Escape")) and
+	   (not done_quest("Tania's Escape")) and
 	   (not Tania_stopped_by_Pendragon) then
 		Tania_stopped_by_Pendragon = true
 		start_chat("Pendragon")
@@ -278,7 +278,7 @@ Trigger at label="W-enter-3"
 Silent=1
 <LuaCode>
 	if (Tania_surface) and
-	   (not done_quest(_"Tania's Escape")) and
+	   (not done_quest("Tania's Escape")) and
 	   (not Tania_stopped_by_Pendragon) then
 		Tania_stopped_by_Pendragon = true
 		start_chat("Pendragon")
@@ -579,7 +579,7 @@ Name=_"296 Teleport Point"
 Trigger exiting level=13
 <LuaCode>
 	if (has_cookie("296_self_sacrifice")) and
-	   (not done_quest(_"An Explosive Situation")) and
+	   (not done_quest("An Explosive Situation")) and
 	   (not has_cookie("ewalds_296_teleported")) then
 		teleport_npc("296TeleportTarget", "Ewalds_296")
 		add_cookie("ewalds_296_teleported")
@@ -936,7 +936,7 @@ Trigger at label="34to38"
 Silent=0
 <LuaCode>
 	if (Tania_surface) and
-	   (not done_quest(_"Tania's Escape")) and
+	   (not done_quest("Tania's Escape")) and
 	   (Tania_follow_tux) and
 	   (not Tania_stopped_by_Pendragon) then
 		teleport_npc("38to34", "Tania")
@@ -953,7 +953,7 @@ Name=_"Back to the Desert"
 Trigger at label="SADD-NoExit"
 Silent=1
 <LuaCode>
-	if (done_quest(_"SADD's power supply")) and
+	if (done_quest("SADD's power supply")) and
 	   (not SADD_trick) then
 		SADD_trick = true
 		change_obstacle_state("SADDGun1", "enabled")
@@ -969,8 +969,8 @@ Name=_"Back to the Desert"
 Trigger at label="35to40"
 Silent=0
 <LuaCode>
-	if (has_quest(_"Tania's Escape")) and
-	   (not done_quest(_"Tania's Escape")) and
+	if (has_quest("Tania's Escape")) and
+	   (not done_quest("Tania's Escape")) and
 	   (SACD_gunsoff) and
 	   (Tania_follow_tux) and
 	   (not Tania_surface) then
@@ -1078,7 +1078,7 @@ Trigger at label="38to34"
 Silent=0
 <LuaCode>
 	if (Tania_surface) and
-	   (not done_quest(_"Tania's Escape")) and
+	   (not done_quest("Tania's Escape")) and
 	   (not Tania_stopped_by_Pendragon) then
 		teleport_npc("34to38", "Tania")
 	end
