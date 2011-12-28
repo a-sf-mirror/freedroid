@@ -26,7 +26,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	if (not has_met("WillGapes")) then
-		npc_says(_"Don't come any closer! Or I'll turn you into scrap metal!") 
+		npc_says(_"Don't come any closer! Or I'll turn you into scrap metal!")
 		npc_says(_"Wait... You're not a robot. Who are you? What are you doing here?")
 		show(1, 2, 3)
 	elseif (has_quest(_"Gapes Gluttony")) and
@@ -39,12 +39,12 @@ Beginning of new chat dialog for character="XXXXX"
 			tux_says(_"No, not yet.")
 			npc_says(_"Hurry... I'm starting to feel weak.")
 		end
-	elseif (WillGapes_generous_gapes) and
+	elseif (WillGapes_generous) and
 		   (get_tux_hp() < 20) then
 		npc_says(_"Hey, are you all right? It looks like the robots are winning.")
 		npc_says(_"I found this in the First Aid kit. Maybe it will help.")
 		add_item("Antibiotic")
-		WillGapes_generous_gapes = false
+		WillGapes_generous = false
 	else
 		npc_says(_"I see you're still alive. Maybe the robots won't win after all.")
 	end
@@ -77,7 +77,7 @@ Nr=3 Text=_"Your worst nightmare! I'm here to punish you for your crimes against
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=4 Text=_"There are still some alive in the town." 
+Nr=4 Text=_"There are still some alive in the town."
 <LuaCode>
 	npc_says(_"Ha, they won't last long. The robots will destroy them all. It's hopeless!")
 	hide(4)
@@ -125,14 +125,14 @@ Nr=9 Text=_"I've brought you some food."
 	npc_says(_"It's about time! I'm starving.")
 	npc_says(_"Oh, this is delicious!")
 	npc_says(_"om nom nom")
-	tux_says(_"Um...You're welcome?") 
+	tux_says(_"Um...You're welcome?")
 	npc_says(_"...")
 	tux_says(_"Now, how about some information?")
 	npc_says(_"OK, so what do you want to know?")
 	end_quest(_"Gapes Gluttony", _"I brought the full picnic basket to Gapes, and he tore into it like a wild animal. It was a disgusting sight, but thankfully it ended quickly.")
 	del_item_backpack("Lunch in a Picnic Basket")
 	add_item("Empty Picnic Basket")
-	WillGapes_generous_gapes = true
+	WillGapes_generous = true
 	hide(9) show(11, 12)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -165,9 +165,9 @@ Nr=13 Text=_"Is there another way to get in?"
 	npc_says(_"Sheet of cellulose.")
 	npc_says(_"Here, take it.")
 	add_item("MS Stock Certificate", 1)
-	hide(13) 
+	hide(13)
 </LuaCode>
-----------------------------------------------------------------------	
+----------------------------------------------------------------------
 
 Nr=99 Text=_"I'll be going then."
 <LuaCode>

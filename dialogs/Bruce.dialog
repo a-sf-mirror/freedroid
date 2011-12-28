@@ -28,7 +28,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 <FirstTime LuaCode>
 	show(0)
-	bruce_helmet_sell = -1
+	Bruce_helmet_sell = -1
 		-- -1: deal not initiated
 		--  0, 20, 100: sell prices
 		-- -1000: deal failed (the "lost" case is handled separately)
@@ -43,15 +43,15 @@ Beginning of new chat dialog for character="XXXXX"
 		next(30)
 		topic("Bruce wants Dixon's helmet")
 	else
-		if (not bruce_hurt) and
+		if (not Bruce_hurt) and
 		   (has_item_equipped("Dixon's Helmet")) then
 			if (Bruce_Dixons_helmet_lost) then
 				npc_says(_"So, you've 'lost' the helmet, heh?")
 				npc_says(_"Then, what's that on your head?")
 				npc_says(_"Leave me alone!")
-				bruce_hurt = true
+				Bruce_hurt = true
 				hide(0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12)
-			elseif (bruce_helmet_sell == -1) then
+			elseif (Bruce_helmet_sell == -1) then
 				next(20)
 				topic("Bruce wants Dixon's helmet")
 			end
@@ -124,9 +124,9 @@ Nr=6 Text=_"I said, I want to know about your life as a soldier."
 
 Nr=7 Text=_"You don't understand. I wasn't asking. Now, tell me about your life as a soldier, or I will tell the guards you are slacking off."
 <LuaCode>
-	npc_says(_"No! Please... I will do anything, just don't call the Red Guard! They do not like people who left the service. They do not like me. ")
+	npc_says(_"No! Please... I will do anything, just don't call the Red Guard! They do not like people who left the service. They do not like me.")
 	npc_says(_"I will tell you everything.")
-	bruce_hurt = true
+	Bruce_hurt = true
 	hide(5, 7) show(10)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -186,17 +186,17 @@ Nr=30 Text="BUG! REPORT ME! BRUCE NODE 30" Topic="Bruce wants Dixon's helmet"
 NO_TEXT
 <LuaCode>
 	npc_says(_"So, what about the helmet now?")
-	if (bruce_helmet_deal) then
+	if (Bruce_helmet_deal) then
 		npc_says(_"I offered you 20 circuits for it.")
 	end
-	if (bruce_helmet_sell == 20) then
+	if (Bruce_helmet_sell == 20) then
 		npc_says(_"You agreed.")
 		tux_says(_"Indeed.")
-	elseif (bruce_helmet_sell == 100) then
+	elseif (Bruce_helmet_sell == 100) then
 		npc_says(_"You suggested 100 circuits as a price.")
 		npc_says(_"That is acceptable to me.")
 		tux_says(_"Excellent.")
-	elseif (bruce_helmet_sell == 0) then
+	elseif (Bruce_helmet_sell == 0) then
 		npc_says(_"You said you would give me the helmet for free.")
 		tux_says(_"Yes, that's true.")
 	end
@@ -205,21 +205,21 @@ NO_TEXT
 		npc_says(_"I want to see your face as we talk.")
 		end_dialog()
 	elseif (has_item("Dixon's Helmet")) then
-		if (bruce_helmet_sell == 0) then
+		if (Bruce_helmet_sell == 0) then
 			tux_says(_"Here you go.")
 			npc_says(_"Oh, thank you!")
 			npc_says(_"Here, take this Lamp, as a token of my esteem.")
 			tux_says(_"Oh, thank you very much!")
 			npc_says(_"You're welcome.")
 			add_item("Desk Lamp")
-		elseif (bruce_helmet_sell == 20) then
+		elseif (Bruce_helmet_sell == 20) then
 			npc_says(_"Fine.")
 			npc_says(_"Here are your 20 circuits.")
 			tux_says(_"Here's your new helmet.")
 			npc_says(_"Thank you.")
 			tux_says(_"You're welcome.")
 			add_gold(20)
-		elseif (bruce_helmet_sell == 100) then
+		elseif (Bruce_helmet_sell == 100) then
 			npc_says(_"Hmm...")
 			npc_says(_"OK.")
 			npc_says(_"Here, take the hundred bucks.")
@@ -227,7 +227,7 @@ NO_TEXT
 			tux_says(_"Here, take it.")
 			add_gold(100)
 		end
-		if (bruce_helmet_sell > -1) then
+		if (Bruce_helmet_sell > -1) then
 			del_item("Dixon's Helmet")
 			Bruce_wants_helmet = false
 			pop_topic() -- "Bruce wants Dixon's helmet"
@@ -246,7 +246,7 @@ Nr=40 Text=_"Yes, sure." Topic="Bruce wants Dixon's helmet"
 <LuaCode>
 	npc_says(_"Good.")
 	npc_says(_"Let's say, 20 circuits?")
-	bruce_helmet_deal = true
+	Bruce_helmet_deal = true
 	if (has_item_equipped("Dixon's Helmet")) then
 		npc_says(_"Please take off the helmet, so we can proceed trading.")
 		end_dialog()
@@ -263,7 +263,7 @@ NO_TEXT
 	npc_says(_"Oh... Oh my! thanks!")
 	npc_says(_"Wait, let me go get something first.")
 	tux_says(_"Sure.")
-	bruce_helmet_sell = 0
+	Bruce_helmet_sell = 0
 	hide(41, 42, 43, 44, 45)
 	set_bot_destination("Bruce-move-target-label")
 	end_dialog()
@@ -275,7 +275,7 @@ Nr=42 Text=_"20 circuits? OK." Topic="Bruce wants Dixon's helmet"
 	npc_says(_"Okay.")
 	npc_says(_"Let me quickly go get the money.") --excuse for need to restart the dialog
 	npc_says(_"Talk to me again in a moment.")
-	bruce_helmet_sell = 20
+	Bruce_helmet_sell = 20
 	hide(41, 42, 43, 44, 45)
 	set_bot_destination("Bruce-move-target-label")
 	end_dialog()
@@ -287,7 +287,7 @@ Nr=43 Text=_"20 circuits? I'll sell it for... a hundred." Topic="Bruce wants Dix
 	npc_says(_"Well... okay.")
 	npc_says(_"Let me get the money.") --excuse for need to restart the dialog
 	npc_says(_"Come back to me after that.")
-	bruce_helmet_sell = 100
+	Bruce_helmet_sell = 100
 	hide(41, 42, 43, 44, 45)
 	set_bot_destination("Bruce-move-target-label")
 	end_dialog()
@@ -300,7 +300,7 @@ Nr=44 Text=_"20 circuits? Do you think I'm stupid? I'll sell it for 1000!" Topic
 	tux_says(_"Fine, I'll keep it than.")
 	npc_says(_"You're the greediest penguin I've ever met.")
 	npc_says(_"Forget about the deal!")
-	bruce_helmet_sell = -1000
+	Bruce_helmet_sell = -1000
 	Bruce_wants_helmet = false
 	hide(41, 42, 43, 44, 45)
 	pop_topic() -- "Bruce wants Dixon's helmet"
@@ -310,7 +310,7 @@ Nr=44 Text=_"20 circuits? Do you think I'm stupid? I'll sell it for 1000!" Topic
 Nr=45 Text=_"I'm sorry, but I'd like to keep it." Topic="Bruce wants Dixon's helmet"
 <LuaCode>
 	npc_says(_"Bummer!")
-	bruce_helmet_sell = -1000
+	Bruce_helmet_sell = -1000
 	Bruce_wants_helmet = false
 	hide(40, 41, 42, 43, 44, 45)
 	pop_topic() -- "Bruce wants Dixon's helmet"
@@ -346,7 +346,7 @@ Nr=49 Text=_"I'll think about that, but right now let's talk about something els
 
 Nr=99 Text=_"I'll be going then."
 <LuaCode>
-	if (bruce_hurt) then
+	if (Bruce_hurt) then
 		npc_says(_". . .")
 	elseif (Bruce_wants_helmet) then
 		npc_says(_"Hang tight, I'll be right back for that helmet!")

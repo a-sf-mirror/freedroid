@@ -51,7 +51,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (bender_elbow_grease) or
+	if (Bender_elbow_grease) or
 	   (has_item_backpack("Manual of the Automated Factory")) then
 		show(40)
 	end
@@ -203,7 +203,7 @@ Nr=13 Text=_"How are you doing?"
 	npc_says(_"What was your name again?")
 	tux_says(get_player_name())
 	npc_says(_"Thanks %s, I owe you one.", get_player_name(), "NO_WAIT")
-	npc_says(_"And I'll sure vote for you if you want into the Red Guard! ")
+	npc_says(_"And I'll sure vote for you if you want into the Red Guard!")
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -258,7 +258,7 @@ Nr=20 Text=_"Did you take all the Brain Enlargement Pills?"
 Nr=40 Text=_"Can you spare some elbow grease?"
 <LuaCode>
 	npc_says(_"Yes, you are talking to the right guy, man.")
-	if (not done_quest(_"Bender's problem")) then 
+	if (not done_quest(_"Bender's problem")) then
 		npc_says(_"But now, I'm no good. I can't make you any elbow grease, sorry man.")
 		npc_says(_"Maybe if I was feeling better...")
 	else
@@ -285,7 +285,7 @@ Nr=50 Text=_"Yeah, it was a totally idiotic idea to take those pills."
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-<LuaCode> 
+<LuaCode>
 	npc_says_random(_"Later, man!",
 					_"Stay cool dude.")
 	end_dialog()

@@ -93,7 +93,7 @@ Nr=20 Text=_"I would like to learn how to hack."
 Nr=40 Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
 <LuaCode>
 	npc_says(_"This is a library, not a book shop.")
-	npc_says(_"However, valuable books have a tendency to simply vanish and never get returned by some people...") 
+	npc_says(_"However, valuable books have a tendency to simply vanish and never get returned by some people...")
 	npc_says(_"Especially strangers just passing by...")
 	npc_says(_"Thus I'm forced to take a deposit for each book.")
 	hide(40) show(41)
@@ -113,8 +113,11 @@ Nr=42 Text=_"Do you have any books about the bot apocalypse?"
 <LuaCode>
 	npc_says(_"I'm writing one, but it isn't complete, and there are no publishers left. But, I can tell you all about robots and automata in literature. Interested?")
 	hide(42) show(43, 44, 45)
-	bot_Apoclypse = 2
-	if (kevin_sigtalk) then show(46) bot_Apoclypse = 3 end
+	Tamara_bot_apocalypse = 2
+	if (Kevin_sigtalk) then
+		show(46)
+		Tamara_bot_apocalypse = 3
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -126,39 +129,39 @@ Nr=43 Text=_"Another time, perhaps."
 
 Nr=44 Text=_"Where does the word 'bot' come from?"
 <LuaCode>
-	bot_Apoclypse = bot_Apoclypse-1;
+	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1;
 	npc_says(_"It is a shortening of the word 'robot', derived from the Czech word for forced labor.")
 	npc_says(_"R.U.R. (Rossum's Universal Robots), a play, introduced \'robots\' as artificial people.")
 	npc_says(_"In the play the robots revolted, took over the world, and killed all the humans.")
 	tux_says(_"Ironic.")
 	hide(44)
-	if (bot_Apoclypse == 0) then hide(43) end
+	if (Tamara_bot_apocalypse == 0) then hide(43) end
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=45 Text=_"What about the creation of robots for defense?"
 <LuaCode>
-	bot_Apoclypse = bot_Apoclypse-1;
+	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1;
 	npc_says(_"During the Holy Roman Empire, the Jewish people of the Prague ghetto needed protection.")
 	npc_says(_"So a holy rabbi shaped a Golem out of clay, and brought it to life through rituals and writing 'emet' (truth) on its head.")
 	npc_says(_"The Golem initially protected the Jews, but was brainless and stupid, and so soon became dangerously violent to even the Jews.")
 	npc_says(_"It was only by trickery that the rabbi was able to even get close to the Golem.")
 	npc_says(_"But as the rabbi changed 'emet' to 'met' (death), the Golem fell on him, and both the creator and creation became lifeless.")
 	hide(45)
-	if (bot_Apoclypse == 0) then hide(43) end
+	if (Tamara_bot_apocalypse == 0) then hide(43) end
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=46 Text=_"What can you tell me about robotic girlfriends?"
 <LuaCode>
-	bot_Apoclypse = bot_Apoclypse-1;
+	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1;
 	npc_says(_"Well, the Romans wrote down a story about Pygmalion, the sculptor of Cyprus.")
 	npc_says(_"Pygmalion carved an ivory woman of far surpassing natural beauty and fell in love.")
 	npc_says(_"Venus, the goddess of love, brought the ivory woman to life.")
 	npc_says(_"The woman, Galatea, likewise fell in love and married her creator Pygmalion.")
 	npc_says(_"So you could say that this is one of the few stories that end well.")
 	hide(46)
-	if (bot_Apoclypse == 0) then hide(43) end
+	if (Tamara_bot_apocalypse == 0) then hide(43) end
 </LuaCode>
 ----------------------------------------------------------------------
 

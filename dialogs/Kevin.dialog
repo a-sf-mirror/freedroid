@@ -26,9 +26,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 <FirstTime LuaCode>
 	show(0)
-	kevin_max_lessons = 6      -- the max number of lessons Kevin is willing to teach
-	kevin_lessons_taught = 0   -- the number of lessons Kevin has already taught, initialized with 0
-	kevin_next_lesson_cost = 0 -- the training point cost of the upcoming lesson
+	Kevin_max_lessons = 6      -- the max number of lessons Kevin is willing to teach
+	Kevin_lessons_taught = 0   -- the number of lessons Kevin has already taught, initialized with 0
+	Kevin_next_lesson_cost = 0 -- the training point cost of the upcoming lesson
 </LuaCode>
 
 <EveryTime LuaCode>
@@ -55,8 +55,8 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (jasmine_sigsegv) then
-		if (kevin_sigtalk) then	hide(20) else show(20) end
+	if (Jasmine_sigsegv) then
+		if (Kevin_sigtalk) then	hide(20) else show(20) end
 	end
 
 	if (not has_cookie("kevins_lawnmower_tux_login_granted")) then
@@ -76,7 +76,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
-<LuaCode> 
+<LuaCode>
 	npc_says(_"Hi. I haven't eaten and slept very much in the last time so I'm a little hungry and may appear a little tired.")
 	npc_says(_"One of the side effects of always deleting all cookies.")
 	npc_says(_"Don't worry about me. I'll be fine.")
@@ -100,7 +100,7 @@ Nr=6 Text=_"I'll see after the energy supply now."
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"I'm sorry, but I don't think there's anything I could do about that energy supply."
-<LuaCode> 
+<LuaCode>
 	npc_says(_"Too bad. Now get out of my sight.")
 	hide(7)
 </LuaCode>
@@ -123,7 +123,7 @@ Nr=8 Text=_"About that project you said you have running..."
 
 Nr=9 Text=_"Maybe I can help somehow to find a suitable cluster."
 <LuaCode>
-	if (has_quest(_"A kingdom for a cluster!")) then 
+	if (has_quest(_"A kingdom for a cluster!")) then
 		npc_says(_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore.")
 		npc_says(_"The fate of the town now rests in your hands. Take the data cube I gave you to the cluster. Only there can the data be evaluated properly.")
 	else
@@ -192,7 +192,7 @@ Nr=14 Text=_"I want to think about that for another moment." Topic="Kevin's Rewa
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=15 Text="BUG, REPORT ME! kevin node15" Topic="Kevin's Reward"
+Nr=15 Text="BUG, REPORT ME! Kevin node15" Topic="Kevin's Reward"
 NO_TEXT
 <LuaCode>
 	Kevin_reward_given = true -- Tux received a reward for completing the quest "And there was light..."
@@ -206,15 +206,15 @@ Nr=20 Text=_"Jasmine just blew up."
 	npc_says(_"Oh. Right.")
 	npc_says(_"Well, thanks for telling me.")
 	npc_says(_"Back to the drawing board, I guess...")
-	kevin_sigtalk = true -- Tux spoke with Kevin about Jasmine blew up
+	Kevin_sigtalk = true -- Tux spoke with Kevin about Jasmine blew up
 	hide(20) show(21)
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"I thought you would be more worried about her death."
 <LuaCode>
-	kevin_day = get_random(_"Monday", _"Tuesday", _"Wednesday", _"Thursday", _"Friday", _"Saturday", _"Sunday")
-	npc_says(_"Why? I have backups from last %s. No reason to worry at all.", kevin_day)
+	npc_says(_"Why? I have backups from last %s. No reason to worry at all.",
+		get_random(_"Monday", _"Tuesday", _"Wednesday", _"Thursday", _"Friday", _"Saturday", _"Sunday"))
 	npc_says(_"It will be a while till I get her together again, but she will be fine.")
 	hide(21)
 </LuaCode>
@@ -222,7 +222,7 @@ Nr=21 Text=_"I thought you would be more worried about her death."
 
 Nr=30 Text=_"What can you teach me about hacking?"
 <LuaCode>
-	if (not done_quest(_"And there was light...")) then 
+	if (not done_quest(_"And there was light...")) then
 		if (not has_quest(_"And there was light...")) then
 			npc_says(_"Not now, I'm busy.")
 			npc_says(_"I've got an important research project going on. In fact this project might be crucial to the survival of the whole town.")
@@ -238,14 +238,14 @@ Nr=30 Text=_"What can you teach me about hacking?"
 			npc_says(_"If you get rid of the maintenance bots on the second underground level of this station, I will find the time to teach you something.")
 		end
 	else
-		if (kevin_lessons_taught == kevin_max_lessons) then
+		if (Kevin_lessons_taught == Kevin_max_lessons) then
 			npc_says(_"Sorry, there is no human alive that could give you further training.")
 			hide(31)
-		else 
-			kevin_next_lesson_cost = 2 * (kevin_lessons_taught + 1)
+		else
+			Kevin_next_lesson_cost = 2 * (Kevin_lessons_taught + 1)
 			npc_says(_"I can teach you everything, for a price of course.", "NO_WAIT")
 			npc_says(_"Three hundred per lesson, up front.", "NO_WAIT")
-			npc_says(_"You will need %d training points.", kevin_next_lesson_cost)
+			npc_says(_"You will need %d training points.", Kevin_next_lesson_cost)
 			npc_says(_"Still interested?")
 			show(31)
 		end
@@ -256,8 +256,8 @@ Nr=30 Text=_"What can you teach me about hacking?"
 
 Nr=31 Text=_"Yes, please teach me how to become a hacker."
 <LuaCode>
-	if (train_program(300, kevin_next_lesson_cost, "Hacking")) then
-		kevin_lessons_taught = kevin_lessons_taught + 1
+	if (train_program(300, Kevin_next_lesson_cost, "Hacking")) then
+		Kevin_lessons_taught = Kevin_lessons_taught + 1
 		npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 		npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 		npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
@@ -268,7 +268,7 @@ Nr=31 Text=_"Yes, please teach me how to become a hacker."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=40 Text="BUG, REPORT ME! kevin node40"
+Nr=40 Text="BUG, REPORT ME! Kevin node40"
 NO_TEXT
 <LuaCode>
 	tux_says_random(_"Hold on, I don't seem to have that much money right now.",
@@ -281,7 +281,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=41 Text="BUG, REPORT ME! kevin node41"
+Nr=41 Text="BUG, REPORT ME! Kevin node41"
 NO_TEXT
 <LuaCode>
 	tux_says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
@@ -325,7 +325,7 @@ Nr=61 Text=_"Yes, I tried to login."
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"Let us talk later."
-<LuaCode> 
+<LuaCode>
 	npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.",
 					_"If you need to contact me, my number is 127.0.0.1",
 					_"Keep your system up to date, Linarian.")

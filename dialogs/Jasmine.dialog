@@ -27,7 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-	jasmine_count = 0
+	Jasmine_count = 0
 	show(0)
 </LuaCode>
 
@@ -106,8 +106,8 @@ Nr=9 Text=_"Will you marry me?"
 
 Nr=99 Text=_"See you later."
 <LuaCode>
-	if (jasmine_count < 2) then
-		jasmine_count = jasmine_count + 1
+	if (Jasmine_count < 2) then
+		Jasmine_count = Jasmine_count + 1
 		npc_says(_"Yeah. Whatever.")
 		end_dialog()
 	else
@@ -118,9 +118,9 @@ Nr=99 Text=_"See you later."
 		npc_says(_"Kernel panic in module: Jasmine")
 		npc_says(_"Buffer overrun in anger.c:1532")
 		npc_says(_"Core dumped. System halted.")
-		jasmine_count = 0
+		Jasmine_count = 0
 		drop_dead()
-		jasmine_sigsegv = true
+		Jasmine_sigsegv = true
 	end
 </LuaCode>
 ----------------------------------------------------------------------

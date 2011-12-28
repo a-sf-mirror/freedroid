@@ -41,11 +41,11 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Hardware Check : BOT DAMAGED", "NO_WAIT")
 		npc_says(_"This %s unit could stand to be repaired.", bot_type(), "NO_WAIT")
 	end
-	if (aftertakeover_broadcast_mode) then
+	if (Aftertakeover_broadcast_mode) then
 		if (npc_damage_amount() > 5) then
 			npc_says(_"BOTNET: UNIT TOO DAMAGED TO BROADCAST COMMANDS.", "NO_WAIT")
 			npc_says(_"Entering \"single node\" mode...")
-			aftertakeover_broadcast_mode = false
+			Aftertakeover_broadcast_mode = false
 		else
 			npc_says(_"BOTNET: Most commands will be broadcast.", "NO_WAIT")
 		end
@@ -66,7 +66,7 @@ NO_TEXT
 	topic("repair_and_settings")
 </LuaCode>
 ----------------------------------------------------------------------
-Nr=2 Text=_"BUG, REPORT ME! aftertakeover node2"
+Nr=2 Text=_"BUG, REPORT ME! Aftertakeover node2"
 Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
@@ -94,7 +94,7 @@ NO_TEXT
 	npc_says(_"Checking requirements...")
 	npc_says(_"Movement unit: Power-down... [Done].", "NO_WAIT")
 	npc_says(_"Status: All movement suppressed.", "NO_WAIT")
-	if (aftertakeover_broadcast_mode) then
+	if (Aftertakeover_broadcast_mode) then
 		broadcast_bot_state("fixed")
 	else
 		set_bot_state("fixed")
@@ -112,7 +112,7 @@ NO_TEXT
 	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
 	npc_says(_"Acquiring lock on position of %s.", get_player_name(), "NO_WAIT")
 	npc_says(_"Status: Following %s.", get_player_name(), "NO_WAIT")
-	if (aftertakeover_broadcast_mode) then
+	if (Aftertakeover_broadcast_mode) then
 		broadcast_bot_state("follow_tux")
 	else
 		set_bot_state("follow_tux")
@@ -132,7 +132,7 @@ NO_TEXT
 	npc_says(_"Movement unit: Power-up... [Done].", "NO_WAIT")
 	npc_says(_"Resuming normal patrol operations... [Done]", "NO_WAIT")
 	npc_says(_"Status: Patrolling.", "NO_WAIT")
-	if (aftertakeover_broadcast_mode) then
+	if (Aftertakeover_broadcast_mode) then
 		broadcast_bot_state("free")
 	else
 		set_bot_state("free")
@@ -156,7 +156,7 @@ NO_TEXT
 		cost_materials = damage * 10 / math.log(repair_level * get_program_revision("Extract bot parts") + math.exp(1))
 		cost_heat = damage * 5 / math.log(repair_level * get_program_revision("Hacking") + math.exp(1))
 		-- Display the maximum repair costs: --
-		npc_says(_"Repairs on %s will take less than %d seconds, %d valuable circuits, and %d heat.", 
+		npc_says(_"Repairs on %s will take less than %d seconds, %d valuable circuits, and %d heat.",
 			bot_name(), math.ceil(cost_time * 1.2), math.ceil(cost_materials * 1.2), math.ceil(cost_heat * 1.2))
 		hide(20)
 		if (get_gold() < cost_materials * 1.2) then
@@ -223,9 +223,7 @@ Topic="setting hcf.py confirmation Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
-	if (not aftertakeover_confirm_hcf) then
-		aftertakeover_confirm_hcf = true
-	end
+	Aftertakeover_confirm_hcf = true
 	next(38)
 	pop_topic()
 </LuaCode>
@@ -236,9 +234,7 @@ Topic="setting hcf.py confirmation Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"hcf.py will be executed without asking for confirmation.")
-	if (aftertakeover_confirm_hcf) then
-		aftertakeover_confirm_hcf = false
-	end
+	Aftertakeover_confirm_hcf = false
 	next(38)
 	pop_topic()
 </LuaCode>
@@ -260,9 +256,7 @@ NO_TEXT
 <LuaCode>
 	npc_says(_"Commands will be broadcast and executed by all bots on this level under your control.", "NO_WAIT")
 	npc_says(_"Entering \"botnet\" mode...")
-	if (not aftertakeover_broadcast_mode) then
-		aftertakeover_broadcast_mode = true
-	end
+	Aftertakeover_broadcast_mode = true
 	next(38)
 	pop_topic()
 </LuaCode>
@@ -274,15 +268,13 @@ NO_TEXT
 <LuaCode>
 	npc_says(_"Commands will only be executed by this bot.", "NO_WAIT")
 	npc_says(_"Entering \"single node\" mode...")
-	if (aftertakeover_broadcast_mode) then
-		aftertakeover_broadcast_mode = false
-	end
+	Aftertakeover_broadcast_mode = false
 	next(38)
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=38 Text="BUG, REPORT ME! aftertakeover node38"
+Nr=38 Text="BUG, REPORT ME! Aftertakeover node38"
 Topic="settings.plx"
 NO_TEXT
 <LuaCode>
@@ -296,7 +288,7 @@ NO_TEXT
 		show(35)
 	end
 	npc_says(_"Which setting should be changed?", "NO_WAIT")
-	hide(32, 33, 36, 37) show(31, 39) 
+	hide(32, 33, 36, 37) show(31, 39)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -355,7 +347,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=43 Text="BUG, REPORT ME! aftertakeover node43"
+Nr=43 Text="BUG, REPORT ME! Aftertakeover node43"
 Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
@@ -396,7 +388,7 @@ Nr=47 Text=_"./hcf.py"
 NO_TEXT
 <LuaCode>
 	tux_says(_"./hcf.py", "NO_WAIT")
-	if (aftertakeover_confirm_hcf) then
+	if (Aftertakeover_confirm_hcf) then
 		npc_says(_"Are you really sure you want to destroy %s? Y/N", bot_name())
 		show(48, 49)
 		topic("confirm self-destruct Y/N")
@@ -426,7 +418,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=50 Text="BUG, REPORT ME! aftertakeover node50"
+Nr=50 Text="BUG, REPORT ME! Aftertakeover node50"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Executing: Halt and Catch Fire.", "NO_WAIT")
@@ -444,7 +436,7 @@ NO_TEXT
 		-- gettext strings left out on purpose
 	end
 	if (has_cookie("dixon_very_angry")) and
-	   (bruce_hurt) and
+	   (Bruce_hurt) and
 	   (has_quest(_"Opening access to MS Office")) and
 	   (not tux_has_edge) then
 		npc_says(_"()%%#@(%% THE BLADE IS YOURS. )##%%*&%%*!")

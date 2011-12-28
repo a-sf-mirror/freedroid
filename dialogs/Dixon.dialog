@@ -459,7 +459,7 @@ NO_TEXT
 		npc_says(_"There is a really easy way to solve it. It's not in the official instructions, but I expect it to solve your problem.")
 		npc_says(_"You just have to apply some elbow grease to the mechanism at the end of the line.")
 		npc_says(_"You can ask Bender for it. He makes much elbow grease and should be able to give you a small can.")
-		bender_elbow_grease = true
+		Bender_elbow_grease = true
 	end
 	hide(51)
 </LuaCode>

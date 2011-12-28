@@ -58,7 +58,7 @@ Nr=0 Text=_"Hi! I'm new here."
 <LuaCode>
 	npc_says(_"Welcome. I am Chandra. Some would call me the local sage.")
 	if (linarian_chandra) and
-	   (not chandra_first_contact) then
+	   (not Chandra_first_contact) then
 		show(15)
 	end
 	hide(0) show(1, 2, 9)
@@ -170,20 +170,20 @@ Nr=10 Text=_"Do you think I could join the guardians of this town?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=11 Text=_"What bots are in the 100 class?" Topic="Bot Information" 
+Nr=11 Text=_"What bots are in the 100 class?" Topic="Bot Information"
 <LuaCode>
 	npc_says(_"I know of two types, the 123 and the 139. The former is a simple cleaning bot, and is fairly weak. The latter is a mobile trash compactor. Don't get your flippers get caught in one of those.")
 	tux_says(_"I've seen some of those on my way here. They were... Shooting at me.")
 	npc_says(_"Many strange things have happened since the Great Assault.")
 	npc_says(_"Anyway, because the class 100 bots are neither fast nor dangerous, the Red Guard often uses them for target practice.")
-	npc_says(_"If I were you, I would not overestimate them. ")
+	npc_says(_"If I were you, I would not overestimate them.")
 	npc_says(_"Nec Hercules contra plures.")
 	bot_information_nodes = bot_information_nodes - 1
 	hide(11)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=12 Text=_"What bots are in the 200 class?" Topic="Bot Information" 
+Nr=12 Text=_"What bots are in the 200 class?" Topic="Bot Information"
 <LuaCode>
 	npc_says(_"In fitting with the lazy nature of humans, there are several servant bots of the 200 class.")
 	npc_says(_"The 247 is often called the 'Banshee'. Being a simple servant robot, it isn't very well equipped to kill, although its arms are quite strong.")
@@ -228,7 +228,7 @@ Nr=15 Text=_"Chandra? Francis in the cryonic facility mentioned your name."
 	npc_says(_"Oh did he? What exactly did he say about me?")
 	tux_says(_"He said you might know more about who I am, about Linarians.")
 	npc_says(_"Hmmm... I'm not so sure about 'who', but he is quite right about my knowledge of Linarians... quite right indeed. What would you like to know, my friend?")
-	if (chandra_revenge) then
+	if (Chandra_revenge) then
 		end_dialog()
 	end
 	Chandra_node16_show = true
@@ -240,7 +240,7 @@ Nr=15 Text=_"Chandra? Francis in the cryonic facility mentioned your name."
 Nr=16 Text=_"I wanted to ask you some questions about Linarians."
 <LuaCode>
 	npc_says(_"Yes?")
-	if (chandra_revenge) then
+	if (Chandra_revenge) then
 		end_dialog()
 	end
 	hide(16) show(20)
@@ -256,16 +256,16 @@ Nr=17 Text=_"I wanted to ask you some questions about droids."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=18 Text=_"That's all I wanted to know about droids." Topic="Bot Information" 
+Nr=18 Text=_"That's all I wanted to know about droids." Topic="Bot Information"
 <LuaCode>
 	npc_says(_"Did you have any other questions?")
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=20 Text=_"What is a Linarian?" Topic="Linarians" 
+Nr=20 Text=_"What is a Linarian?" Topic="Linarians"
 <LuaCode>
-	if (not chandra_first_contact) then
+	if (not Chandra_first_contact) then
 		npc_says(_"Ah yes, I heard that your memory had been affected by stasis. I will share with you what I know.")
 		npc_says(_"Linarians came to this planet about a century ago. While their specialties can vary, they are most widely known for their nearly-magical skills with computers.")
 
@@ -290,20 +290,20 @@ Nr=20 Text=_"What is a Linarian?" Topic="Linarians"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=21 Text=_"(Calmly accept this information)" Topic="Linarians Attacked" 
+Nr=21 Text=_"(Calmly accept this information)" Topic="Linarians Attacked"
 NO_TEXT
 <LuaCode>
 	tux_says(_"What happened to the other Linarians that survived first contact?")
 	npc_says(_"Sadly, I do not know. All that remains are legends. For a time, Linarians wandered the planet performing grand deeds and earning the respect of most of humanity.")
 	npc_says(_"But as time passed, so did the memories of the great deeds. It is unlikely that you will find many who know more about your people's noble past.")
 	npc_says(_"Perhaps there are still other Linarians alive here on our planet. Or maybe some went back to your own planet.")
-	chandra_first_contact = true
+	Chandra_first_contact = true
 	hide(20)
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=22 Text=_"(Respond angrily)" Topic="Linarians Attacked" 
+Nr=22 Text=_"(Respond angrily)" Topic="Linarians Attacked"
 NO_TEXT
 <LuaCode>
 	tux_says(_"Your people slaughtered us?!")
@@ -322,7 +322,7 @@ Nr=23 Text=_"Chandra, it saddens me to hear this. I will keep what you say in mi
 <LuaCode>
 	npc_says(_"Oh! This is great news! I was fearful that the truth would not settle well.")
 	npc_says(_"I should have never doubted the nobility and legendary honor of Linarians.")
-	chandra_first_contact = true
+	Chandra_first_contact = true
 	hide(20)
 	pop_topic()
 </LuaCode>
@@ -335,7 +335,7 @@ NO_TEXT
 	npc_says(_"But...")
 	tux_says(_"And I am more than happy to help them!")
 	set_npc_faction("crazy")
-	chandra_revenge = true
+	Chandra_revenge = true
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

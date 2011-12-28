@@ -27,7 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-	francis_help = 150
+	Francis_help = 150
 </LuaCode>
 
 <EveryTime LuaCode>
@@ -71,8 +71,8 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 
 		if (tux_has_joined_guard) and
-		   (not francis_guard_response) then
-			francis_guard_response = true
+		   (not Francis_guard_response) then
+			Francis_guard_response = true
 			tux_says(_"I joined the Red Guard.")
 			npc_says(_"Oh...")
 			npc_says(_"Well. Congratulations are in order, I suppose.")
@@ -109,7 +109,7 @@ Nr=1 Text=_"No, not yet."
 
 Nr=2 Text=_"(Lie) Yes, the bot has been defeated."
 <LuaCode>
-	francis_help = francis_help - 30
+	Francis_help = Francis_help - 30
 	npc_says(_"Oh, many thanks to ...")
 	npc_says(_"You lie! You shouldn't toy with an old man with a weak heart! I can hear its servos whirring away... heading this way to kill us both! Please, you must help...")
 	Francis_tux_liar = true
@@ -145,7 +145,7 @@ Nr=5 Text=_"Yes, the bot has been defeated."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=6 Text=_"BUG, REPORT ME! francis node4"
+Nr=6 Text=_"BUG, REPORT ME! Francis node4"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Thank heavens! You have protected us from this bot.")
@@ -287,7 +287,7 @@ Nr=92 Text=_"All right, I'll deliver the cube." Topic="Deliver the cube"
 
 Nr=93 Text=_"Deliver that cube yourself." Topic="Deliver the cube"
 <LuaCode>
-	francis_help = francis_help - 10
+	Francis_help = Francis_help - 10
 	npc_says(_"Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there.")
 	npc_says(_"But... The prospect of facing that... That man again... I just can't bear it.")
 	npc_says(_"Please, %s, will you do me this favor?", get_player_name())
@@ -297,7 +297,7 @@ Nr=93 Text=_"Deliver that cube yourself." Topic="Deliver the cube"
 
 Nr=94 Text=_"No, I don't want to deliver your stupid cube." Topic="Deliver the cube"
 <LuaCode>
-	francis_help = francis_help - 60
+	Francis_help = Francis_help - 60
 	Francis_refused_deliverance = true
 	npc_says(_"... All right.")
 	npc_says(_"I can't force you to do it if you don't want to.")
@@ -308,12 +308,12 @@ Nr=94 Text=_"No, I don't want to deliver your stupid cube." Topic="Deliver the c
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=98 Text=_"BUG, REPORT ME! francis node98"
+Nr=98 Text=_"BUG, REPORT ME! Francis node98"
 NO_TEXT
 <LuaCode>
-	if (francis_help > 0) then
+	if (Francis_help > 0) then
 		npc_says(_"Oh... I almost forgot... This is a small help but I hope it will make your life a little easier.")
-		add_gold(francis_help)
+		add_gold(Francis_help)
 	end
 	npc_says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")
 	end_dialog()
