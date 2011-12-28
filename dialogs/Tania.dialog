@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 <EveryTime LuaCode>
 	branch_to_pendragon = false
 	show(90)
-	if (has_cookie("murdered_koan")) then
+	if (Koan_murdered) then
 		npc_says(_"You just killed him!")
 		npc_says(_"How could you?")
 		npc_says(_"You murderer!")
@@ -43,26 +43,26 @@ Beginning of new chat dialog for character="XXXXX"
 
 	if (has_quest(_"Tania's Escape")) then
 		hide(1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 90)
-		if (not has_cookie("Tania_follow_tux")) then
+		if (not Tania_follow_tux) then
 			npc_says_random(_"I long to see the surface.",
 							_"You are the most interesting hallucination yet.")
 			show(90)
-			if (not has_cookie("sagunsoff")) then		--Guns are still on
+			if (not SACD_gunsoff) then		--Guns are still on
 				hide(27)
 				show(28)
-			elseif (not has_cookie("Tania_guns_off")) then	--Guns are off, but you haven't told Tania yet
+			elseif (not Tania_guns_off) then	--Guns are off, but you haven't told Tania yet
 				hide(28)
 				show(27)
 			else						--Tania can escape, but you haven't decided to let her follow you yet
 				hide(27, 28)
 				show(40, 41)
 			end
-		elseif (not has_cookie("Tania_surface")) then --Tania is following you, but still Underground
+		elseif (not Tania_surface) then --Tania is following you, but still Underground
 			npc_says(_"I can't wait to leave this place.") 
 			show(91)
-		elseif (not has_cookie("Tania-stopped-by-Pendragon")) then --in the Western Desert
-			if (not has_cookie("Tania-discussed-surface")) then
-				add_cookie("Tania-discussed-surface")
+		elseif (not Tania_stopped_by_Pendragon) then --in the Western Desert
+			if (not Tania_discussed_surface) then
+				Tania_discussed_surface = true
 				npc_says(_"It is so very bright and hot out here.") --thirsty dialog
 				show(45, 46, 47)
 			elseif (npc_damage_amount() > 10) then --skip to injury dialog
@@ -72,10 +72,11 @@ Beginning of new chat dialog for character="XXXXX"
 								_"How much longer?")
 			end
 			show(92)
-		elseif ((not has_cookie("Tania-sent-to-Doc")) and (not has_cookie("Tania-set-free"))) then --at the Town Entrance, waiting for Spencer's OK
+		elseif (not Spencer_Tania_sent_to_DocMoore) and
+			   (not Tania_set_free) then --at the Town Entrance, waiting for Spencer's OK
 			hide(45, 46, 47, 49, 50, 51, 52, 53, 56, 57, 58, 59, 92)
-			if (has_cookie("Tania_just-stopped-by-Pendragon")) then
-				del_cookie("Tania_just-stopped-by-Pendragon")
+			if (Tania_just_stopped_by_Pendragon) then
+				Tania_just_stopped_by_Pendragon = false
 				update_quest(_"Tania's Escape", _"Pendragon just stopped Tania and I at the town gate. Apparently he won't let her in, unless Spencer gives the go-ahead.")
 				npc_says(_"It is OK. I'll wait here at the gate.")
 				end_dialog()
@@ -85,19 +86,20 @@ Beginning of new chat dialog for character="XXXXX"
 			npc_says(_"What is the news?")
 			tux_says(_"I talked to Spencer, and he said you were welcome to enter the town.")
 			npc_says(_"That is great news!")
-			if (has_cookie("Tania-sent-to-Doc")) then
+			if (Spencer_Tania_sent_to_DocMoore) then
 				tux_says(_"He said you must first get checked out by Doc Moore though.")
 				set_bot_destination("DocPatient-Enter")
 			else --DocMoore is Dead!
 				tux_says(_"He said you are free to go where you like.")
 				set_bot_destination("BarPatron-Enter")
-				add_cookie("Tania-at-Bar")
+				Tania_at_Ewalds_Bar = true
 			end
 			end_quest(_"Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
 			branch_to_pendragon = true
 		else --"Tania's Escape" was a success!
-			if ((not has_cookie("Tania-Doc-Cleared")) and (not has_cookie("Tania-set-free"))) then --send to Bar
-				add_cookie("Tania-Doc-Cleared")
+			if (not Tania_Doc_Cleared) and
+			   (not Tania_set_free) then --send to Bar
+				Tania_Doc_Cleared = true
 				heal_npc()
 				npc_says(_"I have good news: the doctor says I'm healthy!")
 				npc_says(_"Where should I go?")
@@ -267,7 +269,6 @@ Nr=19 Text=_"Carpets, sofa, bookshelves. Where did you get all this?"
 
 Nr=27 Text=_"The sentry guns are off. You can go now!"
 <LuaCode>
-	add_cookie("Tania_guns_off")
 	npc_says(_"Thanks, thanks a lot! Now I will be able to see the sun, trees, rivers... I missed those so much!")
 	npc_says(_"I hope these books will help you.")
 	display_big_message(_"Tania is now free!")
@@ -277,6 +278,7 @@ Nr=27 Text=_"The sentry guns are off. You can go now!"
 	update_quest(_"Tania's Escape", _"Tania is free now, I got some books as reward.")
 	tux_says(_"You could always come back with me to the town. There are people there.")
 	npc_says(_"I'd love to, but you'll have to escort me.")
+	Tania_guns_off = true
 	hide(27) show(40, 41)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -295,7 +297,7 @@ Nr=40 Text=_"I'm not ready to escort you to the town."
 
 Nr=41 Text=_"I'm ready to escort you to the town."
 <LuaCode>
-	add_cookie("Tania_follow_tux")
+	Tania_follow_tux = true
 	update_quest(_"Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
 	set_bot_state("follow_tux")
 	hide(8, 40, 41) next(91)
@@ -487,7 +489,7 @@ Nr=59 Text=_"I have a Doc-in-a-can. It should heal you right up."
 Nr=70 Text=_"I think you would enjoy some of Michelangelo's cooking at the restaurant." 
 <LuaCode>
 	set_bot_destination("BarPatron-Enter")
-	add_cookie("Tania-at-Bar")
+	Tania_at_Ewalds_Bar = true
 	npc_says(_"It has been so long since I've had a nice meal.")
 	hide(70)
 </LuaCode>
@@ -496,7 +498,7 @@ Nr=70 Text=_"I think you would enjoy some of Michelangelo's cooking at the resta
 Nr=71 Text=_"You might try the bar. But stay away from the food. It is horrible." 
 <LuaCode>
 	set_bot_destination("BarPatron-Enter")
-	add_cookie("Tania-at-Bar")
+	Tania_at_Ewalds_Bar = true
 	npc_says(_"I really miss good food, especially lemon meringue pie.")
 	npc_says(_"Oh well.")
 	hide(71)
@@ -544,17 +546,17 @@ NO_TEXT
 <LuaCode>
 	if (has_quest(_"Tania's Escape")) then
 		hide(1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 18, 19)
-		if (not has_cookie("sagunsoff")) then --still underground, guns on
+		if (not SACD_gunsoff) then --still underground, guns on
 			tux_says(_"I think I have to go.")
-		elseif (not has_cookie("Tania_surface")) then --still underground
+		elseif (not Tania_surface) then --still underground
 			tux_says(_"Follow me to the Surface!")
-		elseif (not has_cookie("Tania-stopped-by-Pendragon")) then --"Tania's Escape" Quest (Western Desert)
+		elseif (not Tania_stopped_by_Pendragon) then --"Tania's Escape" Quest (Western Desert)
 			tux_says(_"Follow me to the Town!")
 			npc_says(_"Lead on, my little penguin.")
-		elseif (not has_cookie("Tania-sent-to-Doc")) then --"Tania's Escape" Quest (Western Town Gate)
+		elseif (not Spencer_Tania_sent_to_DocMoore) then --"Tania's Escape" Quest (Western Town Gate)
 			tux_says(_"Wait here.")
 			npc_says(_"OK. But please, come back soon.")
-		elseif (has_cookie("Tania-sent-to-Doc")) then --"Tania's Escape" Quest (Tania free in the town somewhere)
+		elseif (Spencer_Tania_sent_to_DocMoore) then --"Tania's Escape" Quest (Tania free in the town somewhere)
 			tux_says(_"See you later.")
 			npc_says_random(_"Please be safe!",
 							_"Thanks again.",

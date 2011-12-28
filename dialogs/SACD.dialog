@@ -51,7 +51,7 @@ Nr=1 Text=_"/usr/bin/guns --disable"
 	npc_says(_"Disabling guns...")
 	npc_says(_"Connecting to peripheral controller...")
 	npc_says(_"Guns disabled.")
-	add_cookie("sagunsoff")
+	SACD_gunsoff = true
 	change_obstacle_state("SADDGun1", "disabled")
 	change_obstacle_state("SADDGun2", "disabled")
 	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")

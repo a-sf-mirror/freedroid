@@ -54,11 +54,14 @@ Beginning of new chat dialog for character="XXXXX"
 		hide(2, 12)
 	end
 
-	if (has_cookie("Tania_met_Pendragon") and (not has_cookie("Tania-sent-to-Doc")) and (not has_cookie("Tania-set-free"))) then
+	if (Tania_met_Pendragon) and
+		(not Spencer_Tania_sent_to_DocMoore) and
+		(not Tania_set_free) then
 		show(50)
 	end
 
-	if (not has_quest(_"Opening access to MS Office")) and (done_quest(_"A kingdom for a cluster!")) then
+	if (not has_quest(_"Opening access to MS Office")) and
+		(done_quest(_"A kingdom for a cluster!")) then
 		show(37)
 	end
 
@@ -67,7 +70,8 @@ Beginning of new chat dialog for character="XXXXX"
 		show(44)
 	end
 
-	if (data_cube_lost and (not done_quest(_"Deliverance"))) then
+	if (data_cube_lost) and
+	    (not done_quest(_"Deliverance")) then
 		show(29)
 	end
 
@@ -427,7 +431,7 @@ Nr=51 Text=_"Tania"
 		show(52, 54)
 	else
 		npc_says(_"You must take her straight away to Doc Moore. We can't have a disease breaking out.")
-		add_cookie("Tania-sent-to-Doc")
+		Spencer_Tania_sent_to_DocMoore = true
 		update_quest(_"Tania's Escape", _"Spencer said it was okay for Tania to enter the town, as long as she goes to see Doc Moore first thing. Now all I have to do is tell her and Pendragon.")
 	end
 	hide(51)
@@ -439,7 +443,7 @@ Nr=52 Text=_"No, of course not."
 	npc_says(_"Good.")
 	npc_says(_"I didn't think it was you, but you never know.")
 	npc_says(_"About your friend, she can come in provided that she pulls her weight around here.")
-	add_cookie("Tania-set-free")
+	Tania_set_free = true
 	if (killed_docmoore) then
 		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I denied everything and he bought it! He says it is OK for Tania to enter the town: I should tell her and Pendragon.")
 	else
@@ -457,7 +461,7 @@ Nr=53 Text=_"He and I had a disagreement, which we settled."
 		tux_has_joined_guard = false
 		change_obstacle_state("Main Gate Guardhouse", "closed")
 		npc_says(_"Your friend can come in, but we will be watching the two of you closely.")
-		add_cookie("Tania-set-free")
+		Tania_set_free = true
 		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I told him the truth, and he kicked me out of the Red Guard. But he let Tania in, Now all I have to do is tell her and Pendragon.")
 	else
 		npc_says(_"As the law, I pronounce you GUILTY of MURDER.")

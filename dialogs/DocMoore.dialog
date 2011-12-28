@@ -37,9 +37,9 @@ Beginning of new chat dialog for character="XXXXX"
 		show(2)
 	end
 
-	if (has_cookie("Tania-sent-to-Doc")) and
-	   (not has_cookie("Tania-Doc-OK")) then
-		add_cookie("Tania-Doc-OK")
+	if (Spencer_Tania_sent_to_DocMoore) and
+	   (not DocMoore_Tania_OK) then
+		DocMoore_Tania_OK = true
 		show(25)
 	end
 

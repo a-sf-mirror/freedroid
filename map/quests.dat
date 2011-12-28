@@ -153,9 +153,9 @@ Completion LuaCode={
 	if (npc_dead("Tania")) then
 		display_big_message(_"Tania died!")
 		display_console_message(_"Tania died!")
-		if (not has_cookie("Tania_surface")) then
+		if (not Tania_surface) then
 			add_diary_entry(_"Tania's Escape", _"Tania died before escaping her underground bunker. I was unable to protect her.")
-		elseif (not has_cookie("Tania-stopped-by-Pendragon")) then
+		elseif (not Tania_stopped_by_Pendragon) then
 			add_diary_entry(_"Tania's Escape", _"Tania died in the desert while trying to make it to the town. I was unable to protect her.")
 			change_obstacle_state("DesertGate-Inner", "opened")
 		else

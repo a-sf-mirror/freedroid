@@ -33,32 +33,32 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	branch_to_tania = false
-	if (has_cookie("Tania-stopped-by-Pendragon")) and
-	   (not has_cookie("Pendragon-OK-w-Tania")) and --Tania Escape Quest stuff
-	   (has_cookie("Tania-sent-to-Doc")) or
-	   (has_cookie("Tania-set-free")) then
+	if (Tania_stopped_by_Pendragon) and
+	   (not Pendragon_OK_w_Tania) and --Tania Escape Quest stuff
+	   (Spencer_Tania_sent_to_DocMoore) or
+	   (Tania_set_free) then
 		if (not done_quest(_"Tania's Escape")) then
 			npc_says(_"Tania has been waiting to talk to you.")
 		else
 			npc_says(_"Spencer says it is OK?")
 			npc_says(_"Well that is good enough for me.")
 			npc_says(_"She may enter.")
-			add_cookie("Pendragon-OK-w-Tania")
+			Pendragon_OK_w_Tania = true
 			end_dialog()
 		end
-	elseif (has_cookie("Tania-stopped-by-Pendragon")) then
-		if (not has_cookie("Tania_met_Pendragon")) then
+	elseif (Tania_stopped_by_Pendragon) then
+		if (not Tania_met_Pendragon) then
 			npc_says(_"Halt! Who goes there?")
 			tux_says(_"Someone I found in the desert, Tania.")
 		end
 		npc_says(_"%s, you may enter.", get_player_name())
 		npc_says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the town.")
-		if (not has_cookie("Tania_met_Pendragon")) then
+		if (not Tania_met_Pendragon) then
 			change_obstacle_state("DesertGate-Inner", "opened")
 			teleport_npc("W-enter-2", "Tania") --Ensure that Tania is on Level 0!
 			set_bot_state("patrol", "Tania")
-			add_cookie("Tania_met_Pendragon")
-			add_cookie("Tania_just-stopped-by-Pendragon")
+			Tania_met_Pendragon = true
+			Tania_just_stopped_by_Pendragon = true
 			branch_to_tania = true
 		end
 	end

@@ -28,9 +28,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 
 <EveryTime LuaCode>
-	if (has_cookie("Tania_surface") and
+	if (Tania_surface) and
 	   (not done_quest(_"Tania's Escape")) and
-	   (not has_cookie("Tania-stopped-by-Pendragon"))) then --Tania is following you
+	   (not Tania_stopped_by_Pendragon) then --Tania is following you
 		tania_is_here = true
 		heal_npc("Tania")
 	else
@@ -79,7 +79,7 @@ Nr=2 Text=_"With pleasure."
 	update_quest(_"Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
 	respawn_level(38) --this is the desert above the bunker
 	if (tania_is_here) then
-		add_cookie("murdered_koan")
+		Koan_murdered = true
 		start_chat("Tania")
 	end
 </LuaCode>
@@ -127,7 +127,7 @@ Nr=10 Text=_"You shall die."
 	update_quest(_"Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
 	respawn_level(38) --this is the desert above the bunker
 	if (tania_is_here) then
-		add_cookie("murdered_koan")
+		Koan_murdered = true
 		start_chat("Tania")
 	end
 </LuaCode>

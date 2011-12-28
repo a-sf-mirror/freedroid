@@ -31,9 +31,9 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_cookie("Tania-at-Bar")) and
-	   (not has_cookie("Tania-at-Bar_Ewald")) then
-		add_cookie("Tania-at-Bar_Ewald")
+	if (Tania_at_Ewalds_Bar) and
+	   (not Tania_at_Ewalds_Bar_Ewald) then
+		Tania_at_Ewalds_Bar_Ewald = true
 		npc_says(_"Your lady friend just told me the epic story of how you rescued her.")
 		npc_says(_"That was really something.")
 		npc_says(_"I'd give you a drink on the house, but unfortunately I'm still out.")
