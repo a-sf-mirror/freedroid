@@ -27,8 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-	show(0) 
-	John28to28_teleported = 0
+	show(0)
 	JohnPuzzlefalse = 0
 	JohnPuzzlefalseA = 0
 	JohnPuzzlefalseB = 0
@@ -38,31 +37,31 @@ Beginning of new chat dialog for character="XXXXX"
 <EveryTime LuaCode>
 	JohnPuzzleScore = JohnPuzzlefalseA + JohnPuzzlefalseB + JohnPuzzlefalseC
 
-	if (has_cookie("john_dislike")) then
+	if (John_dislike) then
 		tux_says(_"I am s-")
 		npc_says(_"Go away please.")
 		end_dialog()
 	end
 
-	if (has_cookie("JohnPuzzleStarted")) then
+	if (John_puzzle_started) then
 
 		-- if Tux ran into false teleporter of the storage room
-		if (has_cookie("John28to28_teleported")) and
-		   (not has_cookie("28to28_hide")) then
+		if (John_lvl28to28_teleported) and
+		   (not John_lvl28to28_hide) then
 			tux_says(_"What was that?!")
 			npc_says(_"See..?")
 			npc_says(_"It's not as easy as you thought.")
 			npc_says(_"Take a closer look at the storage room again...")
 			tux_says(_"Okay.")
-			add_cookie("28to28_hide")
+			John_lvl28to28_hide = true
 		end
 
 		-- Puzzle is neither solved nor locked:
-		if (not has_cookie("JohnPuzzleLocked")) or
-		   (not has_cookie("JohnPuzzleSolved")) then
+		if (not John_puzzle_locked) or
+		   (not John_puzzle_solved) then
 
 			-- Tux walked through the false teleporter one time
-			if (not has_cookie("JohnProblems1")) then
+			if (not John_problems_1) then
 				if (JohnPuzzlefalseA == 1) or
 				   (JohnPuzzlefalseB == 1) or
 				   (JohnPuzzlefalseC == 1) then
@@ -71,7 +70,7 @@ Beginning of new chat dialog for character="XXXXX"
 					npc_says(_"Ok, I'll give you another chance.")
 					npc_says(_"But it will be your last chance, so take care...")
 					tux_says(_"Thanks.")
-					add_cookie("JohnProblems1")
+					John_problems_1 = true
 				end
 			end
 
@@ -88,10 +87,10 @@ Beginning of new chat dialog for character="XXXXX"
 				npc_says(_"How is that ever going to work?")
 				npc_says(_"I locked the puzzle.")
 				npc_says(_"It doesn't seem like you'd ever be able to solve it.")
-				add_cookie("JohnPuzzleLocked")
+				John_puzzle_locked = true
 			end
 			
-			if (not has_cookie("JohnPuzzleLocked")) then
+			if (not John_puzzle_locked) then
 				-- Tux walked through a false teleporter second time
 				if (JohnPuzzleScore >= 2) then
 					npc_says(_"Sorry, seems like that puzzle was too hard for you.")
@@ -100,17 +99,17 @@ Beginning of new chat dialog for character="XXXXX"
 					tux_says(_"I was very close to the solution.")
 					npc_says(_"Well, why did you still fail if you were so close?")
 					tux_says(_"Hmpf..")
-					add_cookie("JohnPuzzleLocked")
+					John_puzzle_locked = true
 				end
 			end
 
-		end		-- of  'if (not has_cookie("JohnPuzzleLocked")) or
-				--  (not has_cookie("JohnPuzzleSolved")) then'
+		end		-- of  'if (not John_puzzle_locked) or
+				--  (not John_puzzle_solved) then'
 
 		-- if Tux solved the puzzle, went into the correct teleporter
-		if (not has_cookie("JohnPuzzleLocked")) and
-		   (has_cookie("JohnPuzzleSolved")) then
-			if (has_cookie("John28to28_teleported")) or
+		if (not John_puzzle_locked) and
+		   (John_puzzle_solved) then
+			if (John_lvl28to28_teleported) or
 			   (JohnPuzzleScore > 0 ) then
 				npc_says(_"Congratulations, you solved my little puzzle.")
 				npc_says(_"I give you this as a small reward.")
@@ -124,11 +123,11 @@ Beginning of new chat dialog for character="XXXXX"
 				add_item("Dexterity Pill", 1)
 				add_item("Strength Pill", 1)
 			end
-			add_cookie("JohnPuzzleLocked")
+			John_puzzle_locked = true
 			set_bot_destination("JohnFreeLabel")
 		end
 
-	end -- of 'if (has_cookie("JohnPuzzleStarted")) then'
+	end -- of 'if (John_puzzle_started) then'
 
 	set_rush_tux(0, "John")
 
@@ -203,7 +202,7 @@ Nr=10 Text=_"Yeah, sure!"
 	npc_says(_"Wait, wait. I'll give you a hint:")
 	npc_says(_"'Looking from above hostiles may appear as salvation.'")
 	tux_says(_"Uh, ok, thanks.")
-	add_cookie("JohnPuzzleStarted")
+	John_puzzle_started = true
 	end_dialog()
 	hide(10, 11)
 </LuaCode>
@@ -214,7 +213,7 @@ Nr=11 Text=_"Hmm... I don't trust you."
 	tux_says(_"I think, it's a trap!")
 	npc_says(_"Well, you can leave at any time.")
 	npc_says(_"I wish you would!")
-	add_cookie("john_dislike")
+	John_dislike = true
 	hide(10, 11)
 	end_dialog()
 </LuaCode>
@@ -222,7 +221,7 @@ Nr=11 Text=_"Hmm... I don't trust you."
 
 Nr=99 Text=_"See you."
 <LuaCode>
-	if (has_cookie("john_dislike")) then
+	if (John_dislike) then
 		npc_says(_"I don't think so...")
 	else
 		npc_says(_"See you later.")

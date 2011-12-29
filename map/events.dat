@@ -700,9 +700,9 @@ Name=_"From32to28"
 Trigger at label="28to32"
 Silent=1
 <LuaCode>
-	if (not has_cookie("JohnPuzzleLocked")) and
-	   (not has_cookie("JohnPuzzleSolved")) and
-	   (has_cookie("JohnPuzzleStarted")) then
+	if (not John_puzzle_locked) and
+	   (not John_puzzle_solved) and
+	   (John_puzzle_started) then
 		teleport("32from28")
 		set_rush_tux(1, "John")
 	end
@@ -714,16 +714,16 @@ Name=_"From28to28"
 Trigger at label="28to28"
 Silent=1
 <LuaCode>
-	if (not has_cookie("JohnPuzzleLocked")) and
-	   (not has_cookie("JohnPuzzleSolved")) and
-	   (has_cookie("JohnPuzzleStarted")) then
-		if (not has_cookie("John28to28_teleported2")) then
+	if (not John_puzzle_locked) and
+	   (not John_puzzle_solved) and
+	   (John_puzzle_started) then
+		if (not John_lvl28to28_teleported2) then
 			teleport("28from32")
 			set_rush_tux(1, "John")
-			if (has_cookie("John28to28_teleported")) then
-				add_cookie("John28to28_teleported2")
+			if (John_lvl28to28_teleported) then
+				John_lvl28to28_teleported2 = true
 			end
-		add_cookie("John28to28_teleported")
+		John_lvl28to28_teleported = true
 		end
 	end
 </LuaCode>
@@ -911,7 +911,7 @@ Trigger at label="32to28trueD"
 Silent=1
 <LuaCode>
 	teleport("28from32success")
-	add_cookie("JohnPuzzleSolved")
+	John_puzzle_solved = true
 	set_rush_tux(1, "John")
 	set_bot_destination("JohnLockedLabel", "John")
 </LuaCode>
