@@ -146,7 +146,7 @@ Nr=8 Text=_"We need to do something. We can't just sit here and wait for it to b
 	npc_says(_"The Maintenance program contains references to the popular Subatomic and Nuclear Science for Dummies series, volume IV.")
 	tux_says(_"Subatomic and Nuclear Science for Dummies, volume IV?. Maybe someone in town has it. I have to go now, there's no time to lose!")
 	npc_says(_"Would you like the check?")
-	add_cookie("ewalds_296_sourcebook")
+	Ewalds_296_sourcebook = true
 	update_quest(_"An Explosive Situation", _"If I can get a copy of Subatomic and Nuclear Science for Dummies, Volume IV, the 296 may be able to stop the explosion. I hope someone in town has it!")
 	hide(8)
 	end_dialog()

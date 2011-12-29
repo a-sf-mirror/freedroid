@@ -51,10 +51,10 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (has_cookie("have_296_book")) then
+	if (Tamara_have_296_book) then
 		hide(60)
-	elseif ((not has_cookie("296_book_examine_library")) and
-	   has_cookie("ewalds_296_sourcebook")) then
+	elseif (not has_cookie("296_book_examine_library")) and
+	   (Ewalds_296_sourcebook) then
 		show(60)
 	end
 
