@@ -39,9 +39,9 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"I'd give you a drink on the house, but unfortunately I'm still out.")
 	end
 
-	if has_cookie("drank_all_ewald_had") then show(14) end
+	if (drank_all_Ewald_had) then show(14) end
 
-	if has_cookie("ewald_gambling") then show(30) end
+	if (Ewald_gambling) then show(30) end
 
 	show(99)
 </LuaCode>
@@ -161,7 +161,7 @@ Nr=12 Text=_"MORE! MORE! MORE! I WANT MORE WATER. NOW!"
 <LuaCode>
 	npc_says(_"Eh... I think you've had enough... Maybe you should just go for a walk for now?")
 	npc_says(_"You have had everything that I had.")
-	add_cookie("drank_all_ewald_had")
+	drank_all_Ewald_had = true
 	hide(12)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -212,7 +212,7 @@ Nr=14 Text=_"Hey, I could use a refreshing drink!"
 
 Nr=30 Text=_"Sure, I'll gamble with you. What do you play?"
 <LuaCode>
-	if (not has_cookie("ewald_gambling")) then add_cookie("ewald_gambling") end
+	Ewald_gambling = true
 	npc_says(_"I play a dice game and a coin-flipping game.")
 	-- Initialize some variables here
 	bet = 0
@@ -222,9 +222,10 @@ Nr=30 Text=_"Sure, I'll gamble with you. What do you play?"
 	max = get_gold() * 0.8
 	if (max > 30) then show(33)
 		if (max > 300) then show(34)
-		if (max > 600) then show(35)
-	end end else
-	npc_says(_"You should come back when you have more to gamble with.")
+			if (max > 600) then show(35) end
+		end
+	else
+		npc_says(_"You should come back when you have more to gamble with.")
 	end
 	hide(30) show(31, 32)
 </LuaCode>
