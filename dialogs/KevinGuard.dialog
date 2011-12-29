@@ -28,7 +28,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	set_rush_tux(0)
-	if (has_cookie("kevin_door_open")) then
+	if (KevinGuard_door_open) then
 		tux_says(_"It's me.")
 		change_obstacle_state("KevinsDoor", "opened")
 		npc_says(_"[b]Identity confirmed. You may pass.[/b]")
@@ -67,7 +67,7 @@ Nr=3 Text=_"I saw this building as I was walking by, and I decided to take a loo
 
 Nr=4 Text=_"Thank you."
 <LuaCode>
-	add_cookie("kevin_door_open")
+	KevinGuard_door_open = true
 	change_obstacle_state("KevinsDoor", "opened")
 	hide(4) show(99)
 </LuaCode>
