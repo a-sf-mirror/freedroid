@@ -323,7 +323,7 @@ Nr=54 Text=_"What can you tell me about Brain Pills?"
 Nr=55 Text=_"What can you tell me about Diet supplements?"
 <LuaCode>
 	npc_says(_"Have you tasted the army snacks that the cook, Michelangelo, has been handing out?")
-	if (has_cookie("asked_michelangelo_for_army_snacks")) then
+	if (Michelangelo_been_asked_for_army_snacks) then
 		tux_says(_"Yes, those were horrible. They had a nice color though.")
 		npc_says(_"The dye used to make that color is a known carcinogen.")
 	else

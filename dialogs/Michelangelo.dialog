@@ -44,7 +44,7 @@ Beginning of new chat dialog for character="XXXXX"
 			if (has_quest("Gapes Gluttony")) then
 				if (not done_quest("Gapes Gluttony")) then
 					hide(24)
-						if (not has_cookie("asked_michelangelo_meal_to_go")) then
+						if (not Michelangelo_been_asked_meal_to_go) then
 							show(21)
 						else
 							hide(21)
@@ -61,7 +61,7 @@ Beginning of new chat dialog for character="XXXXX"
 				show(30)
 			else
 				show(31, 32, 40)
-				if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
+				if (Michelangelo_been_asked_for_army_snacks) then show(26) else show(12) end
 			end
 		end
 	end
@@ -96,21 +96,23 @@ Nr=11 Text=_"Can I buy some food here?"
 	npc_says(_"They are made fully out of artificial nutrients and carcinogenic flavors. Even the army hated them.")
 	npc_says(_"It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat.")
 	npc_says(_"I can give you some, but it's not worthy of being called food.")
-	if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
+	if (Michelangelo_been_asked_for_army_snacks) then show(26) else show(12) end
 	hide(11)
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"I want some yummy army snacks!"
 <LuaCode>
-	if (has_item("Fork") and has_item_backpack("Plate") and has_item_backpack("Mug")) then
+	if (has_item("Fork")) and
+	   (has_item_backpack("Plate")) and
+	   (has_item_backpack("Mug")) then
 		if (has_item_equipped("Fork")) then
 			npc_says(_"I am supposed to read this out to all newcomers. Here goes:")
 			npc_says(_"'Please note that the army rations model #23 you are about to eat is provided 'as is' without warranty of any kind.")
 			npc_says(_"That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you.")
 			npc_says(_"Should the army meal model #23 prove poisonous, you agree to cover the cost of keeping you alive by the base medical staff or the costs of your cremation in our nuclear furnaces.'")
 			npc_says(_"Well, that is all. Here is the junk that you wanted. Enjoy.")
-			add_cookie("asked_michelangelo_for_army_snacks")
+			Michelangelo_been_asked_for_army_snacks = true
 			next(27)
 			hide(12)
 		else
@@ -166,7 +168,7 @@ Nr=21 Text=_"Can I get a meal to go?"
 	npc_says(_"Here... This meal should satisfy his hunger. I even added a dessert.")
 	tux_says(_"Thank you. I'm sure it will be delicious.")
 	add_item("Lunch in a Picnic Basket")
-	add_cookie("asked_michelangelo_meal_to_go")
+	Michelangelo_been_asked_meal_to_go = true
 	hide(21)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -210,17 +212,17 @@ Nr=24 Text=_"Got any food yet?"
 		tux_says(_"EGGS!?")
 		npc_says(_"Oh, Michelangelo had forgotten...")
 		npc_says(_"How about a... yummy army snack instead?")
-		if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
+		if (Michelangelo_been_asked_for_army_snacks) then show(26) else show(12) end
 	elseif (random_var > 0.4) then
 		npc_says(_"I am in the midst of a culinary masterpiece.")
 		npc_says(_"I cannot rush art for I am an artist!")
-		if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
+		if (Michelangelo_been_asked_for_army_snacks) then show(26) else show(12) end
 	else
 		npc_says(_"I had prepared some delicacies, but the ravenous Red Guard ate it all.")
 		npc_says(_"Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly.")
 		npc_says(_"I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!")
 		npc_says(_"But if you are really hungry, I still have some of those disgusting army snacks.")
-		if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
+		if (Michelangelo_been_asked_for_army_snacks) then show(26) else show(12) end
 	end
 	hide(24)
 </LuaCode>
@@ -329,7 +331,7 @@ Nr=70 Text=_"Why don't you send someone for the dilithium?"
 Nr=75 Text=_"I need a dilithium crystal."
 <LuaCode>
 	npc_says(_"I am already using the ones you got me. They are being used to feed the town.")
-	if (has_cookie("asked_michelangelo_for_spare_dilithium")) then show(76) else show(77) end
+	if (Michelangelo_been_asked_for_spare_dilithium) then show(76) else show(77) end
 	hide(75) show(32)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -344,7 +346,7 @@ Nr=76 Text=_"I need one of the dilithium crystals back, it is a matter of life o
 Nr=77 Text=_"I need one of the dilithium crystals back, it is a matter of life or death!"
 <LuaCode>
 	npc_says(_"I guess I can spare one of them, since it is an emergency.")
-	add_cookie("asked_michelangelo_for_spare_dilithium")
+	Michelangelo_been_asked_for_spare_dilithium = true
 	add_item("Red Dilithium Crystal", 1)
 	update_quest(_"SADD's power supply", _"I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!")
 	hide(77)
