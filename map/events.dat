@@ -44,8 +44,8 @@ Silent=1
 	if (guard_follow_tux) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
-	if (has_cookie("North_greeting")) then
-		del_cookie("North_greeting")
+	if (North_greeting) then
+		North_greeting = false
 		set_rush_tux(0, "Town-NorthGateGuard")
 	end
 </LuaCode>
@@ -59,8 +59,8 @@ Silent=1
 	if (guard_follow_tux) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
-	if (has_cookie("North_greeting")) then
-		del_cookie("North_greeting")
+	if (North_greeting) then
+		North_greeting = false
 		set_rush_tux(0, "Town-NorthGateGuard")
 	end
 </LuaCode>
@@ -74,8 +74,8 @@ Silent=1
 	if (guard_follow_tux) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
-	if (has_cookie("North_greeting")) then
-		del_cookie("North_greeting")
+	if (North_greeting) then
+		North_greeting = false
 		set_rush_tux(0, "Town-NorthGateGuard")
 	end
 </LuaCode>
@@ -89,8 +89,8 @@ Silent=1
 	if (guard_follow_tux) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
-	if (has_cookie("North_greeting")) then
-		del_cookie("North_greeting")
+	if (North_greeting) then
+		North_greeting = false
 		set_rush_tux(0, "Town-NorthGateGuard")
 	end
 </LuaCode>
@@ -104,9 +104,9 @@ Silent=1
 	if (guard_follow_tux) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
-	if (not has_cookie("North_greeting")) and
+	if (not North_greeting) and
 	   (not tux_has_joined_guard) then
-		add_cookie("North_greeting")
+		North_greeting = true
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
 </LuaCode>
@@ -120,9 +120,9 @@ Silent=1
 	if (guard_follow_tux) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
-	if (not has_cookie("North_greeting")) and
+	if (not North_greeting) and
 	   (not tux_has_joined_guard) then
-		add_cookie("North_greeting")
+		North_greeting = true
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
 </LuaCode>
@@ -136,9 +136,9 @@ Silent=1
 	if (guard_follow_tux) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
-	if (not has_cookie("North_greeting")) and
+	if (not North_greeting) and
 	   (not tux_has_joined_guard) then
-		add_cookie("North_greeting")
+		North_greeting = true
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
 </LuaCode>
@@ -152,9 +152,9 @@ Silent=1
 	if (guard_follow_tux) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
-	if (not has_cookie("North_greeting")) and
+	if (not North_greeting) and
 	   (not tux_has_joined_guard) then
-		add_cookie("North_greeting")
+		North_greeting = true
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
 </LuaCode>
@@ -199,8 +199,8 @@ Silent=1
 <LuaCode>
 	set_rush_tux(0, "Town-TuxGuard")
 	set_rush_tux(0, "Town-NorthGateGuard")
-	if (has_cookie("North_greeting")) then
-		del_cookie("North_greeting")
+	if (North_greeting) then
+		North_greeting = false
 	end
 </LuaCode>
 * End of trigger *
@@ -212,8 +212,8 @@ Silent=1
 <LuaCode>
 	set_rush_tux(0, "Town-TuxGuard")
 	set_rush_tux(0, "Town-NorthGateGuard")
-	if (has_cookie("North_greeting")) then
-		del_cookie("North_greeting")
+	if (North_greeting) then
+		North_greeting = false
 	end
 </LuaCode>
 * End of trigger *
@@ -225,8 +225,8 @@ Silent=1
 <LuaCode>
 	set_rush_tux(0, "Town-TuxGuard")
 	set_rush_tux(0, "Town-NorthGateGuard")
-	if (has_cookie("North_greeting")) then
-		del_cookie("North_greeting")
+	if (North_greeting) then
+		North_greeting = false
 	end
 </LuaCode>
 * End of trigger *
@@ -238,8 +238,8 @@ Silent=1
 <LuaCode>
 	set_rush_tux(0, "Town-TuxGuard")
 	set_rush_tux(0, "Town-NorthGateGuard")
-	if (has_cookie("North_greeting")) then
-		del_cookie("North_greeting")
+	if (North_greeting) then
+		North_greeting = false
 	end
 </LuaCode>
 * End of trigger *
