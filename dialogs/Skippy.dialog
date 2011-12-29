@@ -31,7 +31,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_cookie("skippy_angry")) then
+	if (Skippy_angry) then
 -- We probably at some point want to be able to make skippy happy again, maybe by Tux finishing a quest or something that helps skippy or a friend of his or similar.
 		npc_says(_"What? You again? I don't want you here, get out.")
 		tux_says(_"See you later.")
@@ -101,7 +101,7 @@ Nr=6 Text=_"I still do not trust you. You are selling junk to people."
 <LuaCode>
 	npc_says(_"WHAT? Fine, you can forget about my great deals now! I don't want to trade with you anymore!")
 	npc_says(_"I'm no longer your best friend. Go away, you dirty hoser!")
-	add_cookie("skippy_angry")
+	Skippy_angry = true
 	end_dialog()
 	hide(1, 3, 6, 10, 11, 12, 20, 21, 99)
 </LuaCode>
