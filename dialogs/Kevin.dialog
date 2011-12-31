@@ -59,13 +59,13 @@ Beginning of new chat dialog for character="XXXXX"
 		if (Kevin_sigtalk) then	hide(20) else show(20) end
 	end
 
-	if (not has_cookie("kevins_lawnmower_tux_login_granted")) then
-		if (has_cookie("kevins_lawnmower_tux_login")) then
+	if (not Kevins_Lawnmower_tux_login_granted) then
+		if (Kevins_Lawnmower_tux_login) then
 			npc_says(_"Oh, and did you play around with my Lawnmower?")
 			show(60, 61)
 		end
 
-		if (has_cookie("kevins_lawnmower_tux_login_kevin_attempt")) then
+		if (Kevins_Lawnmower_tux_login_kevin_attempt) then
 			npc_says(_"Hmm, strange things are happening to my lawnmower.")
 			npc_says(_"But I don't have the time right now to take a look at it.")
 		end
@@ -302,7 +302,7 @@ Nr=60 Text=_"No, I didn't touch it."
 <LuaCode>
 	npc_says(_"Strange, I should have a look at it...") --Tux lied to him and will not directly get an account if he talks to it next time.
 	npc_says(_"...when I have more time..")
-	del_cookie("kevins_lawnmower_tux_login")
+	Kevins_Lawnmower_tux_login = false
 	hide(60, 61)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -312,14 +312,14 @@ Nr=61 Text=_"Yes, I tried to login."
 	if (done_quest("And there was light...")) then
 		npc_says(_"Please, don't touch it.")
 		npc_says(_"I don't want you to break it somehow.")
-		add_cookie("kevins_lawnmower_tux_login_granted") -- Tux has access to Kevin-Lawnmower
+		Kevins_Lawnmower_tux_login_granted = true -- Tux has access to Kevin-Lawnmower
 	else
 		npc_says(_"You better not touch it!")
 		npc_says(_"If you break it somehow, I'll be very angry.")
 		npc_says(_"And I still have no time.")
 		npc_says(_"The power level is still very low, hence, I am quite busy.")
 	end
-	del_cookie("kevins_lawnmower_tux_login")
+	Kevins_Lawnmower_tux_login = false
 	hide(60, 61)
 </LuaCode>
 ----------------------------------------------------------------------

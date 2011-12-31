@@ -69,14 +69,14 @@ NO_TEXT
 <LuaCode>
 	tux_says(get_player_name())
 	npc_says(_"Identifying as %s", get_player_name(), "NO_WAIT")
-	if (has_cookie("kevins_lawnmower_tux_login_granted")) then
+	if (Kevins_Lawnmower_tux_login_granted) then
 		npc_says(_"Welcome to Kevin's lawnmower.")
 		show(20)
 		hide(5, 6, 30, 30, 31)
 	else
 		npc_says(_"Verification failed!")
 		npc_says(_"WARNING: LOGIN ATTEMPT REPORTED. THERE WILL BE CONSEQUENCES!")
-		add_cookie("kevins_lawnmower_tux_login")
+		Kevins_Lawnmower_tux_login = true
 		heat_tux(15)
 		end_dialog()
 	end
@@ -95,7 +95,7 @@ NO_TEXT
 	npc_says(_"IN 2 SECONDS!")
 	npc_says(_"IN 1 SECOND!")
 	npc_says(_"DIE!")
-	add_cookie("kevins_lawnmower_tux_login_kevin_attempt")
+	Kevins_Lawnmower_tux_login_kevin_attempt = true
 	heat_tux(25)
 	end_dialog()
 </LuaCode>
