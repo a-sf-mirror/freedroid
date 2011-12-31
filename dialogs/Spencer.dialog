@@ -82,8 +82,9 @@ Beginning of new chat dialog for character="XXXXX"
 Nr=0 Text=_"Hi! I'm new here."
 <LuaCode>
 	npc_says(_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?")
-	if (has_quest("Deliverance") and (not done_quest("Deliverance"))) then
-		add_cookie("knows_spencer_office")
+	if (has_quest("Deliverance")) and
+	   (not done_quest("Deliverance")) then
+		knows_spencer_office = true
 		show(20)
 	end
 	hide(0) show(1, 7)

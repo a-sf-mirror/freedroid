@@ -232,7 +232,7 @@ Nr=40 Text=_"I want to pass the gate."
 	tux_says(_"Uhm...")
 	tux_says(_"Will you do it?")
 	npc_says(_"Yes. But you have to pay a one-time tax for it first.")
-	if (not has_cookie("town-northgateguard_tux_nickname_loon")) then
+	if (not Town_Northgateguard_tux_nickname_loon) then
 		npc_says(_"Pay 30 circuits and you may pass.")
 		desertgate_tax = 30
 	else
