@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_cookie("HF-Spencer")) then
+	if (has_cookie("MO_HFAccessGateServer_HF_Spencer")) then
 		npc_says(_"Red Guard HQ, Spencer speaking.")
 		npc_says(_"Are you receiving me?")
 		tux_says(_"Yes.")

@@ -27,7 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	if (not has_cookie("skip_GAS_captcha")) then
+	if (not MO_HFGateAccessServer_skip_captcha) then
 		-- Are we human? CAPTCHA!!!
 		number_one=math.random(2,7)
 		number_two=math.random(1,number_one-1)
@@ -47,7 +47,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 		response = user_input_string(string.format(_"CAPTCHA: Please write the lowercase word that answers the following: %d - %d = ?", number_one, number_two))
 	else
-		del_cookie("skip_GAS_captcha")
+		MO_HFGateAccessServer_skip_captcha = false
 	end
 	if (captcha ~= response) then
 		npc_says(_"Non-human detected. Administering paralyzing shock.")
@@ -58,18 +58,18 @@ Beginning of new chat dialog for character="XXXXX"
 		end_dialog()
 	else
 		npc_says(_"Welcome to MS gate access server for region #54648.")
-		if (not has_cookie("HF-AccessGateServer-Spencer-chat")) then
+		if (not MO_HFAccessGateServer_Spencer_chat) then
 			tux_says(_"WHAT?!")
 			update_quest(_"Propagating a faulty firmware update", _"The firmware server seems to actually be an access server to a gate. What am I supposed to do now?")
-			add_cookie("HF-Spencer")
-			add_cookie("HF-AccessGateServer-Spencer-chat")
-			add_cookie("skip_GAS_captcha")
+			MO_HFAccessGateServer_HF_Spencer = true
+			MO_HFAccessGateServer_Spencer_chat = true
+			MO_HFGateAccessServer_skip_captcha = true
 			start_chat("Spencer")
 			end_dialog()
 		end
-		if (has_cookie("HF-Spencer")) then
+		if (MO_HFAccessGateServer_HF_Spencer) then
 			end_dialog()
-			del_cookie("HF-Spencer")
+			MO_HFAccessGateServer_HF_Spencer = falseq
 		else
 			npc_says(_"Please select action")
 		end
@@ -86,7 +86,7 @@ NO_TEXT
 		npc_says(_"Gate 1 status: OPENED", "NO_WAIT")
 	else
 		npc_says(_"Gate 1 status: CLOSED", "NO_WAIT")
-		if (not has_cookie("MO-HFGAS_hacked")) then
+		if (not MO_HFGateAccessServer_hacked) then
 			show(2)
 		end
 	end
@@ -95,7 +95,7 @@ NO_TEXT
 		npc_says(_"Gate 2 status: OPENED", "NO_WAIT")
 	else
 		npc_says(_"Gate 2 status: CLOSED", "NO_WAIT")
-		if (not has_cookie("MO-HFGAS_hacked")) then
+		if (not MO_HFGateAccessServer_hacked) then
 			show(2)
 		end
 	end
@@ -126,7 +126,7 @@ Nr=3 Text=_"(Try hacking the server)"
 		npc_says(_"sudo open gates", "NO_WAIT")
 		npc_says(_"Which gates do you want to open?")
 		update_quest("Open Sesame", "Whew, I finally managed to hack the gate access server. I can open the gates now.")
-		add_cookie("MO-HFGAS_hacked")
+		MO_HFGateAccessServer_hacked = true
 		hide(3) show(4)
 	else
 		npc_says(_"Permission denied.")
