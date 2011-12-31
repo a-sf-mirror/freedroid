@@ -497,7 +497,7 @@ Trigger at label="AutomatedFactory-Mechanism"
 Silent=0
 <LuaCode>
 	if (has_item_backpack("Elbow Grease Can")) then
-		add_cookie("elbow_grease_applied")
+		Lvl6_elbow_grease_applied = true
 		Bender_elbow_grease = false
 		del_item_backpack("Elbow Grease Can", 1)
 		display_big_message(_"Elbow grease has been applied to the Automated Factory.")

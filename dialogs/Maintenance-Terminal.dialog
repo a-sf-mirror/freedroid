@@ -44,8 +44,8 @@ Beginning of new chat dialog for character="XXXXX"
 
 Nr=0 Text=_"sys_status --all"
 <LuaCode>
-	if (not has_cookie("Maintenance-devices") ) then
-		add_cookie("Maintenance-devices")
+	if (not Maintenance_Terminal_devices) then
+		Maintenance_Terminal_devices = true
 		npc_says(_"Detecting connected devices...")
 		npc_says(_"Found 03 connected auto-guns.")
 		npc_says(_"Found 02 connected gates.")
@@ -58,7 +58,7 @@ Nr=0 Text=_"sys_status --all"
 		npc_says(_"Gun 01 status: ENABLED", "NO_WAIT")
 		npc_says(_"Gun 02 status: ENABLED", "NO_WAIT")
 		npc_says(_"Gun 03 status: ENABLED", "NO_WAIT")
-		if (not has_cookie("Maintenance-refusal")) then
+		if (not Maintenance_Terminal_refusal) then
 			show(3)
 		else
 			show(10)
@@ -85,7 +85,7 @@ Nr=0 Text=_"sys_status --all"
 		show(12)
 	end
 
-	if (has_cookie("minifactory_online")) then
+	if (Minifactory_online) then
 		npc_says(_"Automated Factory status: ONLINE", "NO_WAIT")
 	else
 		npc_says(_"Automated Factory status: OFFLINE", "NO_WAIT")
@@ -156,7 +156,7 @@ Nr=8 Text=_"yes" Topic="Make a sandwich"
 <LuaCode>
 	npc_says_random(_"Now how would I make one of those?",
 					_"Sudo doesn't give you magic powers.")
-	add_cookie("want_sandwich")
+	Maintenance_Terminal_want_sandwich = true
 	cli_says(terminal, "NO_WAIT")
 	pop_topic()
 </LuaCode>
@@ -165,7 +165,7 @@ Nr=8 Text=_"yes" Topic="Make a sandwich"
 Nr=9 Text=_"no" Topic="Make a sandwich"
 <LuaCode>
 	npc_says(_"Good choice.")
-	add_cookie("Maintenance-refusal")
+	Maintenance_Terminal_refusal = true
 	hide(7, 8, 9) next(11)
 	pop_topic()
 </LuaCode>

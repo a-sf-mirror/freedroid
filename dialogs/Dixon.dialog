@@ -58,9 +58,9 @@ Beginning of new chat dialog for character="XXXXX"
 		show(60)
 	end
 
-	if (has_cookie("elbow_grease_applied")) then
+	if (Lvl6_elbow_grease_applied) then
 		hide(51)
-	elseif (has_cookie("minifactory_init_failed")) then
+	elseif (MiniFactory_init_failed) then
 		show(51)
 	end
 

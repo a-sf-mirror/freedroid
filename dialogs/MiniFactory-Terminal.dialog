@@ -57,7 +57,7 @@ Nr=1 Text=_"sudo autofactory start"
 	npc_says(_"Configuring Fabrication Data...", "NO_WAIT")
 	npc_says(_"SUCCESS")
 	npc_says(_"Testing Assembly Hardware...", "NO_WAIT")
-	if (not has_cookie("elbow_grease_applied")) then
+	if (not Lvl6_elbow_grease_applied) then
 		npc_says(_"FAILURE")
 		npc_says(_"Error code: 0x06661696C")
 		npc_says(_"Please read the manual and follow the instructions.")
@@ -69,17 +69,17 @@ Nr=1 Text=_"sudo autofactory start"
 		npc_says(_"The ticket 2012 is outdated. Please refer to the manual.")
 		npc_says(_"Cancelling Initialization Process...")
 		npc_says(_"Intialization has been cancelled to prevent any damage.")
-		add_cookie("minifactory_init_failed")
+		MiniFactory_init_failed = false
 	else
 		npc_says(_"SUCCESS")
 		npc_says(_"Final Initialization Instructions...")
 		npc_says(_"The Automated Factory is booted up and ready to work.", "NO_WAIT")
-		if (has_cookie("want_sandwich")) then
+		if (Maintenace_Terminal_want_sandwich) then
 			cli_says(_"WARNING:", "NO_WAIT")
 			npc_says(_"The Automated Factory is unable to make a sandwich.")
 		end
-		add_cookie("minifactory_online")
-		del_cookie("minifactory_init_failed")
+		Minifactory_online = true
+		MiniFactory_init_failed = false
 		hide(1) show(10, 20)
 	end
 	cli_says(terminal, "NO_WAIT")
