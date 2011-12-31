@@ -578,11 +578,11 @@ Silent=0
 Name=_"296 Teleport Point"
 Trigger exiting level=13
 <LuaCode>
-	if (has_cookie("296_self_sacrifice")) and
+	if (Ewalds_296_self_sacrifice) and
 	   (not done_quest("An Explosive Situation")) and
-	   (not has_cookie("ewalds_296_teleported")) then
+	   (not Ewalds_296_teleported) then
 		teleport_npc("296TeleportTarget", "Ewalds_296")
-		add_cookie("ewalds_296_teleported")
+		Ewalds_296_teleported = true
 		add_diary_entry(_"An Explosive Situation", _"I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened.")
 		cli_says("  ".._"Quest Log Updated.","NO_WAIT")
 	end

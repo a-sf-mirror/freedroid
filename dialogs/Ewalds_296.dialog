@@ -40,11 +40,12 @@ Beginning of new chat dialog for character="XXXXX"
 		show(10)
 	end
 
-	if (has_cookie("ewalds_296_reactor_fix") and not has_cookie("296_self_sacrifice")) then
+	if (Ewalds_296_reactor_fix) and
+	   (not Ewalds_296_self_sacrifice) then
 		show(11)
 	end
 
-	if (has_cookie("ewalds_296_teleported")) then
+	if (Ewalds_296_teleported) then
 		show(30)
 	end
 
@@ -172,7 +173,7 @@ Nr=10 Text=_"I have the sourcebook here. Look up whatever you need."
 	npc_says(_"... HI THERE! I'll be your humble servant for the duration of your stay in-", "NO_WAIT")
 	tux_says(_"THE REACTOR! What about the reactor? Can you replace the module now?")
 	npc_says(_"Yes, the reactor! Your order has been processed, sir and or madam! Please wait patiently!")
-	add_cookie("ewalds_296_reactor_fix")
+	Ewalds_296_reactor_fix = true
 	update_quest(_"An Explosive Situation", _"I gave the book to Ewald's 296. Now all I can do is wait while it attempts to repair the reactor.")
 	del_item("Nuclear Science for Dummies IV")
 	hide(10)
@@ -200,7 +201,7 @@ Nr=12 Text=_"OK then, have fun. See you!"
 	npc_says(_"Of course... Have a nice day.")
 	tux_says(_"Yeah, sure. Crazy bot.")
 	update_quest(_"An Explosive Situation", _"The 296 has volunteered to sacrifice itself in order to safely destroy the reactor. It might be admirable, if it weren't a (particularly annoying) bot.")
-	add_cookie("296_self_sacrifice")
+	Ewalds_296_self_sacrifice = true
 	hide(7, 9, 12, 13, 16) show(99)
 	end_dialog()
 </LuaCode>
@@ -224,8 +225,8 @@ Nr=14 Text=_"I am going to save you, even if... Even if I have to hack you and d
 	tux_says(_"All right then. I guess I'll just have to force you to come.")
 	npc_says(_"I cannot allow sir and or madam to come to harm.")
 	update_quest(_"An Explosive Situation", _"The 296 bravely volunteered to sacrifice itself in order to blow the reactor up safely. I wasn't about to let it throw its life away like that, but as I prepared to hack it and force it to follow me, I was suddenly teleported into town! Wait... Was that an explosion? Oh no...")
-	add_cookie("296_self_sacrifice")
-	add_cookie("ewalds_296_teleported")
+	Ewalds_296_self_sacrifice = true
+	Ewalds_296_teleported = true
 	teleport("TeleportHomeTarget")
 	teleport_npc("296TeleportTarget")
 	hide(7, 9, 12, 14, 15, 16) show(30, 99)
@@ -241,7 +242,7 @@ Nr=15 Text=_"... You're sure you want to do this?"
 	npc_says(_"Thank you, sir and or madam.")
 	npc_says(_"I must go now. Goodbye.")
 	update_quest(_"An Explosive Situation", _"The 296 has bravely volunteered to sacrifice itself in order to blow the reactor up safely. A very courageous droid - I'm sorry to see it go.")
-	add_cookie("296_self_sacrifice")
+	Ewalds_296_self_sacrifice = true
 	hide(7, 9, 12, 14, 15, 16) show(99)
 	end_dialog()
 </LuaCode>
@@ -279,7 +280,7 @@ Nr=31 Text=_"So, 296, how's it going?"
 	tux_says(_"Why, thank you!")
 	heat_tux(-50)
 	npc_says(_"Would sir and or madam want any other service?")
-	if (not has_cookie("has_ewalds_password")) then
+	if (not Ewalds_296_has_ewalds_password) then
 		show(32)
 	end
 	show(33) hide(31)
@@ -293,7 +294,7 @@ Nr=32 Text=_"Hmm... How about... Ewald's password?"
 	npc_says(_"Five asterisks!")
 	tux_says("...")
 	npc_says(_"... Maybe I shouldn't have said that.")
-	add_cookie("has_ewalds_password")
+	Ewalds_296_has_ewalds_password = true
 	hide(32)
 </LuaCode>
 ----------------------------------------------------------------------
