@@ -292,9 +292,9 @@ Trigger at label="DocFront-inner-N"
 Silent=1
 <LuaCode>
 	if (tux_hp_ratio() < 0.4) and
-	   (not has_cookie("DocMoore_exam")) then
+	   (not DocMoore_exam) then
 		set_rush_tux(1, "DocMoore")
-		add_cookie("DocMoore_exam")
+		DocMoore_exam = true
 	end
 </LuaCode>
 * End of trigger *
@@ -305,9 +305,9 @@ Trigger at label="DocFront-inner-S"
 Silent=1
 <LuaCode>
 	if (tux_hp_ratio() < 0.4) and
-	   (not has_cookie("DocMoore_exam")) then
+	   (not DocMoore_exam) then
 		set_rush_tux(1, "DocMoore")
-		add_cookie("DocMoore_exam")
+		DocMoore_exam = true
 	end
 </LuaCode>
 * End of trigger *
@@ -318,9 +318,9 @@ Trigger at label="DocBack-inner-W"
 Silent=1
 <LuaCode>
 	if (tux_hp_ratio() < 0.4) and
-	   (not has_cookie("DocMoore_exam")) then
+	   (not DocMoore_exam) then
 		set_rush_tux(1, "DocMoore")
-		add_cookie("DocMoore_exam")
+		DocMoore_exam = true
 	end
 </LuaCode>
 * End of trigger *
@@ -331,9 +331,9 @@ Trigger at label="DocBack-inner-E"
 Silent=1
 <LuaCode>
 	if (tux_hp_ratio() < 0.4) and
-	   (not has_cookie("DocMoore_exam")) then
+	   (not DocMoore_exam) then
 		set_rush_tux(1, "DocMoore")
-		add_cookie("DocMoore_exam")
+		DocMoore_exam = true
 	end
 </LuaCode>
 * End of trigger *
@@ -343,9 +343,9 @@ Name=_"DocFront-out-N"
 Trigger at label="DocFront-out-N"
 Silent=1
 <LuaCode>
-	if (has_cookie("DocMoore_exam")) then
+	if (DocMoore_exam) then
 		set_rush_tux(0, "DocMoore")
-		del_cookie("DocMoore_exam")
+		DocMoore_exam = false
 	end
 </LuaCode>
 * End of trigger *
@@ -355,9 +355,9 @@ Name=_"DocFront-out-S"
 Trigger at label="DocFront-out-S"
 Silent=1
 <LuaCode>
-	if (has_cookie("DocMoore_exam")) then
+	if (DocMoore_exam) then
 		set_rush_tux(0, "DocMoore")
-		del_cookie("DocMoore_exam")
+		DocMoore_exam = false
 	end
 </LuaCode>
 * End of trigger *
@@ -367,9 +367,9 @@ Name=_"DocBack-out-W"
 Trigger at label="DocBack-out-W"
 Silent=1
 <LuaCode>
-	if (has_cookie("DocMoore_exam")) then
+	if (DocMoore_exam) then
 		set_rush_tux(0, "DocMoore")
-		del_cookie("DocMoore_exam")
+		DocMoore_exam = false
 	end
 </LuaCode>
 * End of trigger *
@@ -379,9 +379,9 @@ Name=_"DocBack-out-E"
 Trigger at label="DocBack-out-E"
 Silent=1
 <LuaCode>
-	if (has_cookie("DocMoore_exam")) then
+	if (DocMoore_exam) then
 		set_rush_tux(0, "DocMoore")
-		del_cookie("DocMoore_exam")
+		DocMoore_exam = false
 	end
 </LuaCode>
 * End of trigger *
