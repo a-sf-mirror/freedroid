@@ -129,6 +129,7 @@ Nr=22 Text=_"I disabled the droids."
 	update_quest(_"The yellow toolkit", _"The Singularity gave me the toolkit in exchange for my help.")
 	add_item("Dixon's Toolbox", 1)
 	set_death_item("NONE")
+	Singularity_deal = true
 	hide(22)
 	end_dialog()
 </LuaCode>

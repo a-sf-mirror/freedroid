@@ -435,7 +435,8 @@ NO_TEXT
 		npc_says("Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
 		-- gettext strings left out on purpose
 	end
-	if (has_cookie("dixon_very_angry")) and
+	if (Dixon_mood) and
+	   (Dixon_mood > 150) and
 	   (Bruce_hurt) and
 	   (has_quest("Opening access to MS Office")) and
 	   (not tux_has_edge) then
