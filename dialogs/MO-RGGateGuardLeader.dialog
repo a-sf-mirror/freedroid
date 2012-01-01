@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 <EveryTime LuaCode>
 	if (has_met("MO-RGGateGuardLeader")) then
 		if (done_quest("Opening access to MS Office")) then
-			if (has_cookie("msfacilitygateguardleader_informed")) then
+			if (MO_RGGateGuardLeader_informed) then
 				next(20)
 			else
 				npc_says(_"Hey, Linarian! What do you want here?")
@@ -88,7 +88,7 @@ Nr=10 Text=_"Calm down. This is not an attack. I've disabled the shield and I'm 
 	npc_says(_"I hope you are telling the truth. One second...")
 	if (has_quest("Propagating a faulty firmware update")) then
 		change_obstacle_state("MSAreaDoor", "opened")
-		add_cookie("msfacilitygateguardleader_informed")
+		MO_RGGateGuardLeader_informed = true
 		next(20)
 	else
 		npc_says(_"Nothing from Spencer, ya fat duck. Now leave.")

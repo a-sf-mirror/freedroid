@@ -104,7 +104,7 @@ Nr=0 Text=_"Hi! I'm new here."
 
 Nr=1 Text=_"Could you teach me how to fight?"
 <LuaCode>
-	if (has_cookie("beat_up_pendragon")) then
+	if (Pendragon_beaten_up) then
 		npc_says(_"NO! NO! Er... I mean, not right now. I am busy. Come again later.")
 	else
 		npc_says(_"Sure. I can help you.", "NO_WAIT")
@@ -151,7 +151,7 @@ Nr=12 Text=_"Yes (costs 100 valuable circuits, 5 training points)"
 			npc_says(_"Lesson number four. Never hit your sparring partner with full force.")
 			npc_says(_"I think you broke my ribs...")
 			npc_says(_"This is enough training for today.")
-			add_cookie("beat_up_pendragon")
+			Pendragon_beaten_up = true
 		else
 			if (get_gold() >= 100) then
 				npc_says(_"You don't have enough experience. I can't teach you anything more right now.")

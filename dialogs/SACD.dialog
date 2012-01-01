@@ -31,10 +31,10 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (not has_cookie("login_sacd")) then
+	if (not SACD_login) then
 		update_quest(_"Tania's Escape", _"I have found the Secret Area Control Datacenter.")
 		add_xp(1000)
-		add_cookie("login_sacd")
+		SACD_login = true
 	end
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(_"admin", "NO_WAIT")
