@@ -62,7 +62,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 Nr=1 Text=_"Get current OS version"
 <LuaCode>
-	if (not has_cookie("uploaded_faulty_firmware_update")) then
+	if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
 		npc_says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
 	else
 		npc_says(_"Currently deployed firmware is v. 5.0.8+%swashere+gpl", get_player_name())
@@ -81,7 +81,7 @@ Nr=3 Text=_"Propagate firmware update"
 	if (takeover(get_program("Hacking")+4)) then
 		npc_says(_"Conflicts resolved,")
 		npc_says(_"Firmware update propagated!")
-		add_cookie("uploaded_faulty_firmware_update")
+		HF_FirmwareUpdateServer_uploaded_faulty_firmware_update = true
 		end_quest(_"Propagating a faulty firmware update", _"I managed to upload the faulty firmware update to all bots within transmission range. Victory is mine!")
 		hide(3)
 	else

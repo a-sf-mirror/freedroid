@@ -30,7 +30,7 @@ Beginning of new chat dialog for character="XXXXX"
 	npc_says(_"Welcome to the MegaSys Factory complex.")
 	npc_says(_"Access is restricted to authorized personnel.")
 	npc_says(_"Proof of authorization is required.")
-	if (has_cookie("MSStockCertificateOpensGate")) then
+	if (HF_EntranceBot_MSStockCertificateOpensGate) then
 		tux_says(_"How many times do I have to show you my certificate, tin can?")
 		if (has_item("MS Stock Certificate")) then
 			npc_says(_"[b]Validating certificate...[/b]")
@@ -72,7 +72,7 @@ Nr=2 Text=_"I am working here."
 		npc_says(_"[b]Certificate valid.[/b]", "NO_WAIT")
 		npc_says(_"You may enter.")
 		change_obstacle_state("HF-EntranceInnerGate", "opened")
-		add_cookie("MSStockCertificateOpensGate")
+		HF_EntranceBot_MSStockCertificateOpensGate = true
 	else
 		end_dialog()
 	end

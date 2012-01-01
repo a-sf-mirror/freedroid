@@ -426,7 +426,7 @@ Nr=50 Text=_"I would like to customize my equipment."
 	npc_says(_"Sadly, we lack a lot of materials, and those we have are needed for town upkeep. The mine doesn't produce a lot of raw materials, and I can't just give them to you - you'll have to provide your own.")
 	npc_says(_"I can give you some advice, though. Recycling is key. You can extract special devices from the bots!")
 	npc_says(_"Amazing, isn't it? Before the great assault, we threw droids out for minor defects. Now, any wreck is a treasure.")
-	if (not has_cookie("engel_offered_extraction_skill")) then
+	if (not Engel_offered_extraction_skill) then
 		npc_says(_"A scout troop recently spotted two guys in the north of town.")
 		npc_says(_"I was told these guys shoot bots and disassemble them, extracting their parts.", "NO_WAIT")
 		npc_says(_"Maybe they will sell you parts.")

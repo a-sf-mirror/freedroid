@@ -122,7 +122,7 @@ Nr=12 Text=_"I want to know how to extract modules from the bots."
 		npc_says(_"I schon told you alles I know about that.") -- schon = already ,  alles = everything/all
 		hide(12, 15)
 	else
-		add_cookie("engel_offered_extraction_skill")
+		Engel_offered_extraction_skill = true
 		npc_says(_"Yes.")
 		npc_says(_"I will sell the information for a lot of Schaltkreise.") -- Schaltkreise = circuits
 		npc_says(_"Interested?")

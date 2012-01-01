@@ -33,9 +33,9 @@ Beginning of new chat dialog for character="XXXXX"
 <EveryTime LuaCode>
 	if (has_quest("Droids are my friends")) and
 	   (done_quest("Droids are my friends")) and
-	   (not has_cookie("reward_for_toolkit")) then
+	   (not Singularity_reward_for_toolkit) then
 		show(22)
-		add_cookie("reward_for_toolkit")
+		Singularity_reward_for_toolkit = true
 	end
 </LuaCode>
 ----------------------------------------------------------------------
