@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_cookie("MO_HFAccessGateServer_HF_Spencer")) then
+	if (MO_HFAccessGateServer_HF_Spencer) then
 		npc_says(_"Red Guard HQ, Spencer speaking.")
 		npc_says(_"Are you receiving me?")
 		tux_says(_"Yes.")
@@ -140,7 +140,7 @@ Nr=7 Text=_"How is it going?"
 <LuaCode>
 	if (has_quest("Opening a can of bots...")) then
 		if (done_quest("Opening a can of bots...")) then
-			if (has_cookie("reward_for_warehouse_given")) then
+			if (Spencer_reward_for_warehouse_given) then
 				npc_says(_"Thanks to you, we've been able to transport all the goods we need right now. You've really helped us out there.")
 				npc_says(_"Rest assured that we will never forget your brave activity for our community.")
 			else
@@ -148,7 +148,7 @@ Nr=7 Text=_"How is it going?"
 				npc_says(_"Take these 500 circuits as a reward. And be assured that you've earned my deepest respect, Linarian.")
 				npc_says(_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots.")
 				add_gold(500)
-				add_cookie("reward_for_warehouse_given")
+				Spencer_reward_for_warehouse_given = true
 				update_quest(_"Opening a can of bots...", _"Ouch. It wasn't. At least I am alive, and the warehouse is clear. *Whew*.")
 			end
 		else

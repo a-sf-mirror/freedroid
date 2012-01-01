@@ -69,7 +69,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 		if (MO_HFAccessGateServer_HF_Spencer) then
 			end_dialog()
-			MO_HFAccessGateServer_HF_Spencer = falseq
+			MO_HFAccessGateServer_HF_Spencer = false
 		else
 			npc_says(_"Please select action")
 		end
