@@ -39,7 +39,7 @@ Beginning of new chat dialog for character="XXXXX"
 	end
 
 	if (has_quest("SADD's power supply")) then
-		if (not done_quest("SADD's power supply")) then 
+		if (not done_quest("SADD's power supply")) then
 			if (has_item_backpack("Red Dilithium Crystal")) then
 				if (SADD_asked_for_exterminator) then show(30) else show(33) end
 			else
@@ -100,7 +100,7 @@ Nr=5 Text=_"Why are you not hostile?"
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"What about the Great Assault?"
-<LuaCode> 
+<LuaCode>
 	npc_says(_"For security reasons, SADDs are not equipped with wireless modules.")
 	npc_says(_"I know only that I have to be recharged, checked and have my firmware updated every 3 months.")
 	tux_says(_"When does your last maintenance date back to?")
@@ -116,7 +116,7 @@ Nr=6 Text=_"What about the Great Assault?"
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"What have you done?! How am I supposed to get out of here?"
-<LuaCode> 
+<LuaCode>
 	npc_says(_"You are not. You have secret information, so I won't let you out.")
 	tux_says(_"Why not kill me immediately?")
 	npc_says(_"And stand here alone until I die? While you are here I can speak with you. Oh, I haven't spoken to anybody for a looong time!")

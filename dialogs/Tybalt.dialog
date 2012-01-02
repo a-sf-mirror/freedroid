@@ -122,7 +122,7 @@ Nr=56 Text=_"Ok, now please open the door for me."
 	npc_says(_"Really? I don't remember that.")
 	tux_says(_"I want my money back.")
 	npc_says(_"What money?")
-	hide(56) 
+	hide(56)
 </LuaCode>
 ----------------------------------------------------------------------
 

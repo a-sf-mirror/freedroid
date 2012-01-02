@@ -147,7 +147,7 @@ Nr=8 Text=_"We need to do something. We can't just sit here and wait for it to b
 	npc_says(_"The Maintenance program contains references to the popular Subatomic and Nuclear Science for Dummies series, volume IV.")
 	tux_says(_"Subatomic and Nuclear Science for Dummies, volume IV?. Maybe someone in town has it. I have to go now, there's no time to lose!")
 	npc_says(_"Would you like the check?")
-	Ewalds_296_sourcebook = true
+	Ewalds_296_needs_sourcebook = true
 	update_quest(_"An Explosive Situation", _"If I can get a copy of Subatomic and Nuclear Science for Dummies, Volume IV, the 296 may be able to stop the explosion. I hope someone in town has it!")
 	hide(8)
 	end_dialog()
@@ -258,7 +258,7 @@ Nr=16 Text=_"What's that smashed droid there?"
 	hide(16)
 </LuaCode>
 ----------------------------------------------------------------------
- 
+
 Nr=30 Text=_"Erm... But didn't you... Uh..."
 <LuaCode>
 	npc_says(_"Allow me to clear up your confusion, sir and or madam!")

@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (MO_HFAccessGateServer_HF_Spencer) then
+	if (MO_HFGateAccessServer_Spencer) then
 		npc_says(_"Red Guard HQ, Spencer speaking.")
 		npc_says(_"Are you receiving me?")
 		tux_says(_"Yes.")
@@ -250,7 +250,7 @@ Nr=20 Text=_"Francis wanted me to give you a data cube."
 	else
 		show(23, 25, 26)
 	end
-	hide(20) 
+	hide(20)
 	topic("Deliver the cube")
 </LuaCode>
 ----------------------------------------------------------------------

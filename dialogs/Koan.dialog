@@ -59,7 +59,7 @@ Beginning of new chat dialog for character="XXXXX"
 		if (tania_is_here) then
 			npc_says(_"I see you have brought a friend along with you.")
 		end
-	elseif has_quest("Doing Duncan a favor") then 
+	elseif has_quest("Doing Duncan a favor") then
 		npc_says(_"I see the troubles of the world in your eyes.")
 		show(10, 11)
 		hide(20, 21, 99)

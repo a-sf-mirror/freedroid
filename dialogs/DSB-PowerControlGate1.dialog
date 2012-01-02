@@ -29,7 +29,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	terminal = "guest@gate1.pc.dsb.ms: ~ #"
+	DSB_PowerControlGate1_prompt = "guest@gate1.pc.dsb.ms: ~ #"
 
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(_"admin", "NO_WAIT")
@@ -38,7 +38,7 @@ Beginning of new chat dialog for character="XXXXX"
 	cli_says(_"Login failed. Entering as Guest")
 	npc_says(_" ", "NO_WAIT")
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(DSB_PowerControlGate1_prompt, "NO_WAIT")
 	if (cmp_obstacle_state("DSB-PCGate1", "closed")) then
 		show(0)
 	elseif (cmp_obstacle_state("DSB-PCGate1", "opened")) then
@@ -63,7 +63,7 @@ Nr=0 Text=_"open gate"
 	--	change_obstacle_state("DSB-PCGate1", "opened")
 	--	hide(0) show(10)
 	--end
-	cli_says(terminal, "NO_WAIT")
+	cli_says(DSB_PowerControlGate1_prompt, "NO_WAIT")
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ Nr=10 Text=_"close gate"
 	npc_says(_"Access granted. Closing gate ...")
 	npc_says(_"Gate status: CLOSED")
 	change_obstacle_state("DSB-PCGate1", "closed")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(DSB_PowerControlGate1_prompt, "NO_WAIT")
 	hide(10) show(0)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -86,7 +86,7 @@ Nr=10 Text=_"close gate"
 --	else
 --		npc_says(_"Cookie already cheated")
 --	end
---	cli_says(terminal, "NO_WAIT")
+--	cli_says(DSB_PowerControlGate1_prompt, "NO_WAIT")
 --</LuaCode>
 ----------------------------------------------------------------------
 

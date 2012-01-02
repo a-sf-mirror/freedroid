@@ -78,7 +78,6 @@ Nr=5 Text=_"You know, laser pistols are not a very promising weapon. I think you
 </LuaCode>
 ----------------------------------------------------------------------
 
-
 Nr=20 Text=_"Can you teach me how to properly use rifles and guns?"
 <LuaCode>
 	if (get_skill("ranged") == 0) then
@@ -231,7 +230,7 @@ NO_TEXT
 		_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
 		_"I don't think you have enough experience for this. Come back after you see some more action.",
 		_"Come back when you have a real will to learn.",
-		_"You don't have enough experience. Come here after you see some more action.") 
+		_"You don't have enough experience. Come here after you see some more action.")
 </LuaCode>
 ----------------------------------------------------------------------
 

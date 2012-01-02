@@ -29,7 +29,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	terminal = "guest@cryo-solutions: ~ # "
+	Cryo_Terminal_prompt = "guest@cryo-solutions: ~ # "
 	npc_says(_"Welcome to [b]Cryonic Solutions[/b]!", "NO_WAIT")
 	npc_says_random(_"We freeze you today, so you can see tomorrow!",
 					_"Take the fast trip to the future with Cryonic Solutions!", "NO_WAIT")
@@ -41,10 +41,10 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	else
 		npc_says(_"Admin mode.", "NO_WAIT")
-		terminal = "admin@cryo-solutions: ~ # "
+		Cryo_Terminal_prompt = "admin@cryo-solutions: ~ # "
 		show(51, 60)
 	end
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 	show(99)
 </LuaCode>
 ---------------------------------------------------------------------
@@ -55,7 +55,7 @@ Nr=0 Text=_"about"
 	npc_says(_"We provide not only full cryostasis, but post-stasis reintegration into the world of tomorrow!")
 	npc_says(_"Take the fast trip to the future with Cryonic Solutions!")
 	npc_says(_"Cryonic Solutions, since %d, is the name people trust in cryonics!", os.date("%w") + 2011)
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 	hide(0)
 </LuaCode>
 ---------------------------------------------------------------------
@@ -66,7 +66,7 @@ Nr=1 Text=_"appointments and visiting hours"
 	npc_says(_"However for the safety of our clients, visiting hours are restricted.", "NO_WAIT")
 	npc_says(_"Visiting hours for family and friends are by appointment only [b]Monday-Thursday 10:00-14:00[/b].")
 	npc_says(_"Prospective clients are welcome to make appointments from [b]15:00-17:00 Fridays[/b].", "NO_WAIT")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 	hide(1)
 </LuaCode>
 ---------------------------------------------------------------------
@@ -76,7 +76,7 @@ Nr=2 Text=_"pricing"
 	npc_says(_"Seeing the distant future is priceless.")
 	npc_says(_"But we here at Cryonic Solutions understand that you and your loved ones have a budget. So we offer a wide range of products to make your trip to the future affordable.")
 	npc_says(_"Make an appointment today!")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 	hide(2)
 </LuaCode>
 ---------------------------------------------------------------------
@@ -87,7 +87,7 @@ Nr=3 Text=_"advantages"
 	npc_says(_"Or are you interested in finding out what happens?")
 	npc_says(_"Or maybe you want to see what compound interest can do for you?")
 	npc_says(_"These are just some of the many advantages of taking the fast trip to the future with Cryonic Solutions!")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 	hide(3)
 </LuaCode>
 ---------------------------------------------------------------------
@@ -99,8 +99,8 @@ Nr=50 Text="*#06#"
 	cli_says("> ")
 	tux_says("09F911029D74E35BD84156C5635688C0")
 	npc_says(_"Unlocked. Entering admin mode...")
-	terminal = "admin@cryo-solutions: ~ # "
-	cli_says(terminal, "NO_WAIT")
+	Cryo_Terminal_prompt = "admin@cryo-solutions: ~ # "
+	cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 	hide(0, 1, 2, 3, 50) show(51, 60)
 </LuaCode>
 ---------------------------------------------------------------------
@@ -109,8 +109,8 @@ Nr=51 Text=_"guest mode"
 <LuaCode>
 	Cryo_term_unlocked = false
 	npc_says(_"Entering user mode...")
-	terminal = "guest@cryo-solutions: ~ # "
-	cli_says(terminal, "NO_WAIT")
+	Cryo_Terminal_prompt = "guest@cryo-solutions: ~ # "
+	cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 	hide(51, 60, 70, 80) show(0, 1, 2, 3)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -120,13 +120,13 @@ Nr=60 Text=_"gate status"
 	if (cmp_obstacle_state("CryoOuterGate", "closed")) then
 		npc_says(_"Cryo Complex Gates status: CLOSED", "NO_WAIT")
 		show(70)
-	elseif (cmp_obstacle_state("CryoOuterGate", "opened")) then 
+	elseif (cmp_obstacle_state("CryoOuterGate", "opened")) then
 		npc_says(_"Cryo Complex Gates status: OPEN", "NO_WAIT")
 		show(80)
 	else
-		npc_says(_"GAME BUG. PLEASE REPORT, Cryo-terminal node 60")
+		npc_says(_"GAME BUG. PLEASE REPORT, Cryo-Terminal node 60")
 	end
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -136,7 +136,7 @@ Nr=70 Text=_"open gates"
 	npc_says(_"Cryo Complex Gates status: OPEN")
 	change_obstacle_state("CryoOuterGate", "opened")
 	change_obstacle_state("CryoInnerGate", "opened")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 	hide(70) show(80)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -147,7 +147,7 @@ Nr=80 Text=_"close gates"
 	npc_says(_"Cryo Complex Gates status: CLOSED")
 	change_obstacle_state("CryoOuterGate", "closed")
 	change_obstacle_state("CryoInnerGate", "closed")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 	hide(80) show(70)
 </LuaCode>
 ----------------------------------------------------------------------

@@ -29,7 +29,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	terminal = "guest@example.com: ~ #"
+	TutorialTerminal_prompt = "guest@example.com: ~ #"
 
 	cli_says("Login : ", "NO_WAIT")
 	tux_says(_"guest", "NO_WAIT")
@@ -40,13 +40,13 @@ Beginning of new chat dialog for character="XXXXX"
 	if (cmp_obstacle_state("TutorialTakeover", "closed")) then
 		npc_says(_"Gate status: CLOSED", "NO_WAIT")
 		show(0)
-	elseif (cmp_obstacle_state("TutorialTakeover", "opened")) then 
+	elseif (cmp_obstacle_state("TutorialTakeover", "opened")) then
 		npc_says(_"Gate status: OPEN", "NO_WAIT")
 		show(10)
 	else
 		npc_says(_"GAME BUG. PLEASE REPORT.")
 	end
-	cli_says(terminal, "NO_WAIT")
+	cli_says(TutorialTerminal_prompt, "NO_WAIT")
 	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -58,7 +58,7 @@ NO_TEXT
 	npc_says(_"Access granted. Opening gate ...")
 	npc_says(_"Gate status: OPEN")
 	change_obstacle_state("TutorialTakeover", "opened")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(TutorialTerminal_prompt, "NO_WAIT")
 	hide(0) show(10)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -70,7 +70,7 @@ NO_TEXT
 	npc_says(_"Access granted. Closing gate ...")
 	npc_says(_"Gate status: CLOSED")
 	change_obstacle_state("TutorialTakeover", "closed")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(TutorialTerminal_prompt, "NO_WAIT")
 	hide(10) show(0)
 </LuaCode>
 ----------------------------------------------------------------------

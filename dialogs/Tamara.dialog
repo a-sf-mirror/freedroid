@@ -54,7 +54,7 @@ Beginning of new chat dialog for character="XXXXX"
 		show(10)
 	end
 
-	if (Ewalds_296_sourcebook) and
+	if (Ewalds_296_needs_sourcebook) and
 	   (not Tamara_have_296_book) then
 		show(50)
 	end

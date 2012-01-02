@@ -44,8 +44,8 @@ Beginning of new chat dialog for character="XXXXX"
 	-- extern
 		-- Singularity_deal			given by Singularity (Tux got the toolbox by a deal with the Singularity)
 		-- Engel_offered_extraction_skill	given by Engel
-		-- ewalds_296_sourcebook		given by Ewalds_296 (Tux knows that the 296 needs the book)
-		-- have_296_book			given by Tamara (Tux has got the book about nuclear sciences)
+		-- Ewalds_296_needs_sourcebook		given by Ewalds_296 (Tux knows that the 296 needs the book)
+		-- Tamara_have_296_book			given by Tamara (Tux has got the book about nuclear sciences)
 		-- MiniFactory_init_failed		given by MiniFactory (Tux has tried (unsuccessfully) to start the MiniFactory)
 		-- Lvl6_elbow_grease_applied		given by events.dat (the MiniFactory is running)
 
@@ -104,7 +104,7 @@ Beginning of new chat dialog for character="XXXXX"
 	if (Tamara_have_296_book) then
 		hide(70)
 	elseif (not Dixon_296_book_examine_library) and
-	   (Ewalds_296_sourcebook) then
+	   (Ewalds_296_needs_sourcebook) then
 		show(70)
 	end
 

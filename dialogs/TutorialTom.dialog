@@ -26,13 +26,13 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-		doors = {"TutorialEntry", "TutorialZigzag1", "TutorialZigzag2", "TutorialZigzag3", "TutorialZigzag4"}
-		doors2 = {doors[1], doors[2], doors[3], doors[4], doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialStorage", "TutorialShootingOut", "TutorialTakeover"}
+		TutorialTom_doors = {"TutorialEntry", "TutorialZigzag1", "TutorialZigzag2", "TutorialZigzag3", "TutorialZigzag4"}
+		TutorialTom_doors2 = {TutorialTom_doors[1], TutorialTom_doors[2], TutorialTom_doors[3], TutorialTom_doors[4], TutorialTom_doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialStorage", "TutorialShootingOut", "TutorialTakeover"}
 		items_up = {"Entropy Inverter", "Tachyon Condensator", "Antimatter-Matter Converter", "Superconducting Relay Unit", "Plasma Transistor"}
 		ranged_combat = {"Normal Jacket", "Big kitchen knife", "Shoes", "Standard Shield", "Worker Helmet"}
 		-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
-		for var in ipairs(doors2) do
-			change_obstacle_state(doors2[var], "closed")
+		for var in ipairs(TutorialTom_doors2) do
+			change_obstacle_state(TutorialTom_doors2[var], "closed")
 		end
 		-- we also need remove all tux skills, except use weapon
 		downgrade_program("Hacking")
@@ -154,8 +154,8 @@ Nr=8 Text=_"Thank you, that was very informative. Can we move on now?"
 Nr=9 Text=_"I'm eager to learn more."
 <LuaCode>
 	npc_says(_"Ok, follow me into the next area.")
-	for var in ipairs(doors) do
-			change_obstacle_state(doors[var], "opened")
+	for var in ipairs(TutorialTom_doors) do
+			change_obstacle_state(TutorialTom_doors[var], "opened")
 		end
 	end_dialog()
 	hide(1, 2, 3, 4, 5) show(10)
@@ -625,7 +625,7 @@ Nr=41 Text=_"I'll have to keep that in mind."
 	npc_says(_"I'll give you some points to spend, and you can distribute them as you like.")
 	npc_says(_"Since you'll be hacking up ahead, you should probably use a few of them on [b]Cooling[/b].")
 	npc_says(_"But, again, that's your choice.")
-	add_xp("2000")
+	add_xp(2000)
 	end_dialog()
 	hide(41) show(42, 58)
 </LuaCode>
@@ -837,7 +837,7 @@ Nr=60 Text=_"Upgrading items is still too complex for me. Can you explain it aga
 Nr=70 Text=_"There is a wall in the path! How will we get through?"
 <LuaCode>
 	if (cmp_obstacle_state("TutorialWall", "broken")) then
-		npc_says("Uhm, looks like the wall is already broken, I'll repair it.")
+		npc_says(_"Uhm, looks like the wall is already broken, I'll repair it.")
 		change_obstacle_state("TutorialWall", "intact")
 	else
 		npc_says(_"Notice part of it is made of a weak material, glass.")
@@ -919,7 +919,7 @@ Nr=85 Text=_"Upgrading Items & Terminals"
 Nr=86 Text=_"Hacking Bots"
 <LuaCode>
 	npc_says(_"OK, I'll take us to the hacking area. Also I'll give you some XP so you can improve your cooling.")
-	add_xp("2000")
+	add_xp(2000)
 	teleport_npc("TutorialTom-Takeover")
 	teleport("TutorialTom-Takeover")
 	next(50) hide(81, 82, 83, 84, 85, 86)

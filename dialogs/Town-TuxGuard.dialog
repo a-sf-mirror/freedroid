@@ -58,7 +58,7 @@ Nr=20 Text=_"Where can I find Spencer?"
 Nr=99 Text=_"I'll be going then."
 <LuaCode>
 	npc_says(_"Mhmmm.")
-	if (Town_Northgateguard_tux_nickname_loon) then
+	if (Town_NorthGateGuard_tux_nickname_loon) then
 		npc_says(_"%s... the Loon", get_player_name())
 	end
 	end_dialog()

@@ -37,8 +37,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	terminal = "admin@main.pc.dsb.ms: ~ #"
-	cli_says(terminal, "NO_WAIT")
+	cli_says("admin@main.pc.dsb.ms: ~ #", "NO_WAIT")
 	show(99)
 </LuaCode>
 ----------------------------------------------------------------------

@@ -29,9 +29,9 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	if (not connected_terminal) then
+	if (not Terminal_connected) then
 		show(0)
-		connected_terminal = true
+		Terminal_connected = true
 		cli_says(_"Welcome to this terminal.")
 	else
 		tux_says_random(_"Hello.",

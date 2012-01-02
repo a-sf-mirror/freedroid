@@ -109,7 +109,7 @@ Nr=6 Text=_"I still do not trust you. You are selling junk to people."
 
 Nr=10 Text=_"Do you sell anything else?"
 <LuaCode>
-	npc_says(_"Sure! I also build some electronics devices, depending on what parts I can get my hands on.", "NO_WAIT") 
+	npc_says(_"Sure! I also build some electronics devices, depending on what parts I can get my hands on.", "NO_WAIT")
 	-- We can potentially add more electronics things he can do in the future, or perhaps "add magic" to an item of Tux for a price
 	npc_says(_"Resources are a bit scarce nowadays though.")
 	trade_with("Skippy")

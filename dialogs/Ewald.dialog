@@ -32,8 +32,8 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	if (Tania_at_Ewalds_Bar) and
-	   (not Tania_at_Ewalds_Bar_Ewald) then
-		Tania_at_Ewalds_Bar_Ewald = true
+	   (not Ewald_got_told_Tanias_story) then
+		Ewald_got_told_Tanias_story = true
 		npc_says(_"Your lady friend just told me the epic story of how you rescued her.")
 		npc_says(_"That was really something.")
 		npc_says(_"I'd give you a drink on the house, but unfortunately I'm still out.")
@@ -217,7 +217,7 @@ Nr=30 Text=_"Sure, I'll gamble with you. What do you play?"
 	-- Initialize some variables here
 	bet = 0
 	tux1, tux2, tux3 = 0, 0, 0
-	ewd1, ewd2, ewd3 = 0, 0, 0, 0, 0 
+	ewd1, ewd2, ewd3 = 0, 0, 0, 0, 0
 	-- Ewald forces you to gamble semi-responsibly ;-)
 	max = get_gold() * 0.8
 	if (max > 30) then show(33)
@@ -237,7 +237,7 @@ Nr=31 Text=_"Tell me the rules for your 'dice game'."
 	npc_says(_"You bet. Then you throw one die.")
 	npc_says(_"Then you decide on a betting multiplier, up to 3x.")
 	npc_says(_"Then you throw two dice and I throw three dice. If sum of your three dice are better than my three dice, you win twice your bet, minus a tax for the Red Guard.")
-	npc_says(_"Remember: the odds are slightly against you, so don't gamble anything you can't afford to lose.") 
+	npc_says(_"Remember: the odds are slightly against you, so don't gamble anything you can't afford to lose.")
 	hide(31)
 	------------------------------------------------
 	-- Assuming optimal playing then
@@ -259,10 +259,10 @@ Nr=32 Text=_"Tell me the rules for your 'coin-flip game'."
 		npc_says(_"I flip the other four coins. If you were completely right, I give you twice what your bet, if completely wrong, you get half of your bet back.")
 	end
 	npc_says(_"But if you are only partially wrong... well, then you get nothing.")
-	npc_says(_"Remember: the odds are slightly against you, so don't gamble anything you can't afford to lose.") 
+	npc_says(_"Remember: the odds are slightly against you, so don't gamble anything you can't afford to lose.")
 	hide(32)
 	------------------------------------------------
-	-- Assuming optimal playing: 
+	-- Assuming optimal playing:
 	-- Winning both: 11/32 expected payout: 132/128 (easy), 88/128 (normal/hard)
 	-- Losing both: 11/32 expected payout: 0/128 (easy), 33/128 (normal), 22/128 (hard)
 	-- Intermediate: 10/32 expected payout: 0/128
@@ -325,7 +325,7 @@ NO_TEXT
 Nr=40 Text="1x"
 <LuaCode>
 	next(43)
-</LuaCode> 
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=41 Text="2x"
@@ -335,7 +335,7 @@ Nr=41 Text="2x"
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=42 Text="3x" 
+Nr=42 Text="3x"
 <LuaCode>
 	bet=bet*3
 	next(43)

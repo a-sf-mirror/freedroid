@@ -69,7 +69,7 @@ Nr=1 Text=_"sudo autofactory start"
 		npc_says(_"The ticket 2012 is outdated. Please refer to the manual.")
 		npc_says(_"Cancelling Initialization Process...")
 		npc_says(_"Intialization has been cancelled to prevent any damage.")
-		MiniFactory_init_failed = false
+		MiniFactory_init_failed = true
 	else
 		npc_says(_"SUCCESS")
 		npc_says(_"Final Initialization Instructions...")

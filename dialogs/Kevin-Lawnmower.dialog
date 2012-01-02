@@ -172,10 +172,10 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=99 Text="exit"
+Nr=99 Text=_"exit"
 NO_TEXT
 <LuaCode>
-	tux_says("exit","NO_WAIT")
+	tux_says(_"exit","NO_WAIT")
 	npc_says(_"exiting...")
 	hide(31, 30, 20, 50, 51)
 	end_dialog()

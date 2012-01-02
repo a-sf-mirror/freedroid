@@ -29,7 +29,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	terminal = "dixon@maintenance: ~ # "
+	Maintenance_Terminal_prompt = "dixon@maintenance: ~ # "
 
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says("dixon", "NO_WAIT")
@@ -37,7 +37,7 @@ Beginning of new chat dialog for character="XXXXX"
 	tux_says("*******", "NO_WAIT")
 	npc_says(_"Hello, Dave.")
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 	show(0, 99)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -91,7 +91,7 @@ Nr=0 Text=_"sys_status --all"
 		npc_says(_"Automated Factory status: OFFLINE", "NO_WAIT")
 	end
 
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 
 	hide(0)
 </LuaCode>
@@ -100,7 +100,7 @@ Nr=0 Text=_"sys_status --all"
 Nr=3 Text=_"disable guns"
 <LuaCode>
 	npc_says(_"I'm sorry. I'm afraid I can't let you do that.")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 	hide(3) show(7)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -116,7 +116,7 @@ Nr=4 Text=_"sudo enable guns"
 	npc_says(_"Enabling gun 03 ...", "NO_WAIT")
 	change_obstacle_state("Maintenance-gun", "enabled")
 	npc_says(_"SUCCESS")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 	hide(4) show(0)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -126,7 +126,7 @@ Nr=5 Text=_"close access gate"
 	npc_says(_"Closing Access Gate ...", "NO_WAIT")
 	change_obstacle_state("Maintenance-gungate", "closed")
 	npc_says(_"SUCCESS")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 	hide(5) show(0)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -136,7 +136,7 @@ Nr=6 Text=_"open access gate"
 	npc_says(_"Opening Access Gate ...", "NO_WAIT")
 	change_obstacle_state("Maintenance-gungate", "opened")
 	npc_says(_"SUCCESS")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 	hide(6) show(0)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -157,7 +157,7 @@ Nr=8 Text=_"yes" Topic="Make a sandwich"
 	npc_says_random(_"Now how would I make one of those?",
 					_"Sudo doesn't give you magic powers.")
 	Maintenance_Terminal_want_sandwich = true
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -189,7 +189,7 @@ NO_TEXT
 	npc_says(_"Disabling gun 03 ...")
 	change_obstacle_state("Maintenance-gun", "disabled")
 	npc_says(_"SUCCESS")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 	show(0)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -199,7 +199,7 @@ Nr=12 Text=_"open autofactory gate"
 	npc_says(_"Opening Automated Factory Gate ...", "NO_WAIT")
 	change_obstacle_state("MiniFactory-Gate", "opened")
 	npc_says(_"SUCCESS")
-	cli_says(terminal, "NO_WAIT")
+	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 	hide(12) show(0)
 </LuaCode>
 ----------------------------------------------------------------------

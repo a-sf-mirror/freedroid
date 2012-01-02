@@ -34,17 +34,17 @@ Beginning of new chat dialog for character="XXXXX"
 	if (not has_met("Duncan")) then
 		show(0, 90, 99)
 	elseif (not guard_follow_tux) and
-		   (not Duncan_koan_quest) then
+		   (not Duncan_Koan_quest) then
 		next(50)
 	end
 
-	if (not Duncan_koan_quest_really_done) then
+	if (not Duncan_Koan_quest_really_done) then
 		if (has_item_backpack("Pandora's Cube")) or	    --Koan died, and you brought the cube back
 		    npc_dead("Koan") or			            --Koan died, but you didn't bring the cube back
 		    (Koan_spared_via_dialog) then	       --Koan is alive!
-			if (not Dunca_koan_quest_done) then --if you just came back from Koan
+			if (not Duncan_Koan_quest_done) then --if you just came back from Koan
 				next(60)
-			elseif (not Duncan_koan_not_given_cube) and --if, after talking to Duncan, Koan became dead
+			elseif (not Duncan_not_given_cube) and --if, after talking to Duncan, Koan became dead
 					npc_dead("Koan") then
 				next(60)
 			end
@@ -136,7 +136,7 @@ NO_TEXT
 	npc_says(_"I have a little request for you.")
 	npc_says(_"I know someone who needs to be taught a lesson.")
 	npc_says(_"Interested?")
-	Duncan_koan_quest = true
+	Duncan_Koan_quest = true
 	show(51, 59)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -196,7 +196,7 @@ Nr=60 Text="BUG, REPORT ME! duncan node60 -- MURDERING DONE OR SAVED HIM"
 NO_TEXT
 <LuaCode>
 	if (has_item_backpack("Pandora's Cube")) then
-		if (Duncan_koan_quest_done) then
+		if (Duncan_Koan_quest_done) then
 			if (npc_dead("Koan")) then  -- we killed koan manually or using the dialog and got
 				--the cube when we return first time to Duncan after seeing Koan
 				tux_says(_"Hey, I think I finally found your cube.")
@@ -207,12 +207,12 @@ NO_TEXT
 				tux_says(_"I think I found Koan after all ... finally.")
 				npc_says(_"Oh, nice!")
 				npc_says(_"Did you also get the cube?")
-				Duncan_koan_quest_really_done = true
+				Duncan_Koan_quest_really_done = true
 			end
 		else -- koan is dead
 			npc_says(_"So... Any news on the Koan matter?")
 		end
-		Duncan_koan_quest_done = true
+		Duncan_Koan_quest_done = true
 		show(62, 63)
 	elseif (npc_dead("Koan")) then  -- we don't have the cube but Koan is dead
 		if (Duncan_talked_Koan_dead) then -- let Duncan ask for the cube differently if
@@ -221,7 +221,7 @@ NO_TEXT
 			tux_says(_"Uhmmm...")
 			npc_says(_"You better go getting it!")
 		else -- we killed koan somehow but don't have the cube
-			npc_says(_"You don't look too well, what did happen?") 
+			npc_says(_"You don't look too well, what did happen?")
 			tux_says(_"He ... he is dead...")
 			npc_says(_"Koan?")
 			if (Koan_spared_via_dialog) then  -- we told Koan we won't kill him, and lied to Duncan
@@ -242,7 +242,7 @@ NO_TEXT
 		tux_says(_"I could not find him anywhere in the desert. I don't think he is there anymore.")
 		npc_says(_"I see.")
 		end_quest(_"Doing Duncan a favor", _"I lied to Duncan about not finding Koan.")
-		Duncan_koan_quest_done = true
+		Duncan_Koan_quest_done = true
 		end_dialog()
 	end
 	show(64)
@@ -288,7 +288,7 @@ Nr=68 Text=_"WHAT? No way I am giving you a doomsday device! Forget about it."
 <LuaCode>
 	npc_says(_"I understand. So be it.")
 	end_quest(_"Doing Duncan a favor", _"No way am I giving Duncan that cube thingie. Who knows what he would do with it.")
-	Duncan_koan_not_given_cube = true
+	Duncan_not_given_cube = true
 	end_dialog()
 	hide(67, 68)
 </LuaCode>
@@ -301,7 +301,7 @@ NO_TEXT
 	del_item_backpack("Pandora's Cube", 1)
 	sell_item("Plasma Shockwave Emitter")
 	end_quest(_"Doing Duncan a favor", _"I gave Duncan the cube thingie. It feels nice to help people.")
-	Duncan_koan_quest_really_done = true
+	Duncan_Koan_quest_really_done = true
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

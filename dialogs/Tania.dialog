@@ -58,7 +58,7 @@ Beginning of new chat dialog for character="XXXXX"
 				show(40, 41)
 			end
 		elseif (not Tania_surface) then --Tania is following you, but still Underground
-			npc_says(_"I can't wait to leave this place.") 
+			npc_says(_"I can't wait to leave this place.")
 			show(91)
 		elseif (not Tania_stopped_by_Pendragon) then --in the Western Desert
 			if (not Tania_discussed_surface) then
@@ -97,9 +97,9 @@ Beginning of new chat dialog for character="XXXXX"
 			end_quest(_"Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
 			branch_to_pendragon = true
 		else --"Tania's Escape" was a success!
-			if (not Tania_Doc_Cleared) and
+			if (not Tania_DocMoore_cleared) and
 			   (not Tania_set_free) then --send to Bar
-				Tania_Doc_Cleared = true
+				Tania_DocMoore_cleared = true
 				heal_npc()
 				npc_says(_"I have good news: the doctor says I'm healthy!")
 				npc_says(_"Where should I go?")
@@ -409,11 +409,11 @@ Nr=53 Text=_"Sorry, I have nothing to offer you." --THIS WILL BE A LIE
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=54 Text="BUG, REPORT ME! Tania node54 -- NO LIQUID ITEMS" 
+Nr=54 Text="BUG, REPORT ME! Tania node54 -- NO LIQUID ITEMS"
 NO_TEXT
 <LuaCode>
 	number_of_liquid_items = number_of_liquid_items - 1
-	if (number_of_liquid_items < 1) then 
+	if (number_of_liquid_items < 1) then
 		if (npc_damage_amount() > 10) then
 			next(55)
 		else
@@ -452,14 +452,14 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=56 Text=_"There is nothing I can do about your injuries right now." 
+Nr=56 Text=_"There is nothing I can do about your injuries right now."
 <LuaCode>
 	npc_says(_"I hope we get to the town soon.")
 	hide(56, 57, 58, 59)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=57 Text=_"Here, take this Diet supplement." 
+Nr=57 Text=_"Here, take this Diet supplement."
 <LuaCode>
 	npc_says(_"I feel better now.")
 	del_item_backpack("Diet supplement")
@@ -468,7 +468,7 @@ Nr=57 Text=_"Here, take this Diet supplement."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=58 Text=_"I'm proscribing you some antibiotics." 
+Nr=58 Text=_"I'm proscribing you some antibiotics."
 <LuaCode>
 	npc_says(_"I feel much better.")
 	del_item_backpack("Antibiotic")
@@ -477,7 +477,7 @@ Nr=58 Text=_"I'm proscribing you some antibiotics."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=59 Text=_"I have a Doc-in-a-can. It should heal you right up." 
+Nr=59 Text=_"I have a Doc-in-a-can. It should heal you right up."
 <LuaCode>
 	npc_says(_"I feel fit as new!")
 	del_item_backpack("Doc-in-a-can")
@@ -486,7 +486,7 @@ Nr=59 Text=_"I have a Doc-in-a-can. It should heal you right up."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=70 Text=_"I think you would enjoy some of Michelangelo's cooking at the restaurant." 
+Nr=70 Text=_"I think you would enjoy some of Michelangelo's cooking at the restaurant."
 <LuaCode>
 	set_bot_destination("BarPatron-Enter")
 	Tania_at_Ewalds_Bar = true
@@ -495,7 +495,7 @@ Nr=70 Text=_"I think you would enjoy some of Michelangelo's cooking at the resta
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=71 Text=_"You might try the bar. But stay away from the food. It is horrible." 
+Nr=71 Text=_"You might try the bar. But stay away from the food. It is horrible."
 <LuaCode>
 	set_bot_destination("BarPatron-Enter")
 	Tania_at_Ewalds_Bar = true

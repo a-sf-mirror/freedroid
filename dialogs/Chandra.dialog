@@ -28,7 +28,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 <FirstTime LuaCode>
 	npc_says(_"So the rumors are true - a real live Linarian walks among us!")
-	bot_information_nodes = 0
+	Chandra_bot_information_nodes = 0
 	show(0)
 </LuaCode>
 
@@ -46,7 +46,7 @@ Beginning of new chat dialog for character="XXXXX"
 		show(16)
 	end
 
-	if (bot_information_nodes > 1) then
+	if (Chandra_bot_information_nodes > 1) then
 		show(17)
 	end
 
@@ -116,7 +116,7 @@ Nr=6 Text=_"What types of bots are out there?"
 	npc_says(_"The 200s are servant bots, designed to come quickly when summoned and be able to lift heavy weights. That makes them more dangerous under most circumstances, so beware of being attacked by more than one at the same time.")
 	npc_says(_"Right now, an encounter with a 300 type bot equals death, so try to avoid it. They were messenger bots before the Great Assault, which means they have superb visual sensors, and some are very fast.")
 	npc_says(_"There are many more classes out there. The military used bots, of course, and they were used on ships, but I know nothing about those types.")
-	bot_information_nodes = 4
+	Chandra_bot_information_nodes = 4
 	hide(6) show(11, 12, 13, 18)
 	topic("Bot Information")
 </LuaCode>
@@ -178,7 +178,7 @@ Nr=11 Text=_"What bots are in the 100 class?" Topic="Bot Information"
 	npc_says(_"Anyway, because the class 100 bots are neither fast nor dangerous, the Red Guard often uses them for target practice.")
 	npc_says(_"If I were you, I would not overestimate them.")
 	npc_says(_"Nec Hercules contra plures.")
-	bot_information_nodes = bot_information_nodes - 1
+	Chandra_bot_information_nodes = Chandra_bot_information_nodes - 1
 	hide(11)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -194,7 +194,7 @@ Nr=12 Text=_"What bots are in the 200 class?" Topic="Bot Information"
 	npc_says(_"Let's see... Oh, there is also the 296, which was used for serving drinks. Ewald once had one of those in his bar.")
 	tux_says(_"Once? What happened to it?")
 	npc_says(_"No one knows. One day it simply wasn't there. Ewald probably remembers more than I do, though.")
-	bot_information_nodes = bot_information_nodes - 1
+	Chandra_bot_information_nodes = Chandra_bot_information_nodes - 1
 	hide(12)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -203,7 +203,7 @@ Nr=13 Text=_"What other bots are out there?" Topic="Bot Information"
 <LuaCode>
 	npc_says(_"Though I do not know the details, I assure you there are many. Robots and automated machinery served almost every purpose you can imagine, and probably some that you can't.")
 	npc_says(_"They were used by the military, aboard ships, as security droids and more. Right now, however, most of the people who knew them up close are pushing up daisies.")
-	bot_information_nodes = bot_information_nodes - 1
+	Chandra_bot_information_nodes = Chandra_bot_information_nodes - 1
 	hide(13)
 </LuaCode>
 ----------------------------------------------------------------------

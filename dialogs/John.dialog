@@ -35,7 +35,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	JohnPuzzleScore = JohnPuzzlefalseA + JohnPuzzlefalseB + JohnPuzzlefalseC
+	John_puzzle_score = JohnPuzzlefalseA + JohnPuzzlefalseB + JohnPuzzlefalseC
 
 	if (John_dislike) then
 		tux_says(_"I am s-")
@@ -92,7 +92,7 @@ Beginning of new chat dialog for character="XXXXX"
 			
 			if (not John_puzzle_locked) then
 				-- Tux walked through a false teleporter second time
-				if (JohnPuzzleScore >= 2) then
+				if (John_puzzle_score >= 2) then
 					npc_says(_"Sorry, seems like that puzzle was too hard for you.")
 					tux_says(_"But I-")
 					npc_says(_"It is locked now.")
@@ -110,7 +110,7 @@ Beginning of new chat dialog for character="XXXXX"
 		if (not John_puzzle_locked) and
 		   (John_puzzle_solved) then
 			if (John_lvl28to28_teleported) or
-			   (JohnPuzzleScore > 0 ) then
+			   (John_puzzle_score > 0 ) then
 				npc_says(_"Congratulations, you solved my little puzzle.")
 				npc_says(_"I give you this as a small reward.")
 				add_item("Dexterity Pill", 1)

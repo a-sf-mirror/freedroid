@@ -33,9 +33,8 @@ Beginning of new chat dialog for character="XXXXX"
 <EveryTime LuaCode>
 	if (has_quest("Anything but the army snacks, please!")) then
 		if (done_quest("Anything but the army snacks, please!")) then
-			show(24)
 			if (has_quest("SADD's power supply")) then
-				if (done_quest("SADD's power supply")) then 
+				if (done_quest("SADD's power supply")) then
 					hide(75, 76, 77)
 				else
 					if (not has_item_backpack("Red Dilithium Crystal")) then show(40, 75) end
@@ -43,25 +42,30 @@ Beginning of new chat dialog for character="XXXXX"
 			end
 			if (has_quest("Gapes Gluttony")) then
 				if (not done_quest("Gapes Gluttony")) then
+					if (Michelangelo_been_asked_meal_to_go) then
+						hide(21)
+					else
+						show(21)
+					end
 					hide(24)
-						if (not Michelangelo_been_asked_meal_to_go) then
-							show(21)
-						else
-							hide(21)
-						end
 				elseif (has_item_backpack("Empty Picnic Basket")) then
 					show(22)
-				end 
-			end	
+				end
+			end
+			show(24)
 		else
-		    nb_crystals = count_item_backpack("Red Dilithium Crystal")
+			local nb_crystals = count_item_backpack("Red Dilithium Crystal")
 			if (nb_crystals > 2) then
 				show(29)
 			elseif (nb_crystals > 0) then
 				show(30)
 			else
+				if (Michelangelo_been_asked_for_army_snacks) then
+					show(26)
+				else
+					show(12)
+				end
 				show(31, 32, 40)
-				if (Michelangelo_been_asked_for_army_snacks) then show(26) else show(12) end
 			end
 		end
 	end
@@ -378,7 +382,7 @@ Nr=81 Text=_"Don't worry, I'll be fine."
 	tux_says(_"So you need three dilithium crystals?")
 	npc_says(_"Yes. Please get me three dilithium crystals.")
 	change_obstacle_state("EastGateOfTown", "opened")
-	add_quest(_"Anything but the army snacks, please!", _"I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking, the whole town is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")	
+	add_quest(_"Anything but the army snacks, please!", _"I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking, the whole town is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")
 	hide(19, 40, 41, 42, 70, 81)
 </LuaCode>
 ----------------------------------------------------------------------

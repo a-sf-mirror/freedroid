@@ -55,7 +55,7 @@ Beginning of new chat dialog for character="XXXXX"
 			show(21)
 		end
 	end
-	show(99) 
+	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
 
