@@ -53,14 +53,11 @@ win_dir = freedroidrpg-win32
 dist-win32: src/freedroidRPG.exe
 	rm -rf $(win_dir)
 	mkdir -p $(win_dir)
-	cp -r graphics map sound dialogs $(win_dir)
+	rsync -ar --exclude='.svn' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound $(win_dir)
 	cp src/freedroidRPG.exe $(win_dir)
 	for i in $(win_txts); do \
 	   sed 's/$$/\r/' $$i > $(win_dir)/$$i.txt; \
 	done
-	find $(win_dir) -name ".svn"              | xargs rm -rf
-	find $(win_dir) -name "*~"                | xargs rm -f
-	find $(win_dir) -name ".#*"               | xargs rm -f
 
 $(win_dir): dist-win32
 
