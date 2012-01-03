@@ -81,5 +81,5 @@ dist-macosx: src/freedroidRPG
 	cp src/freedroidRPG $(macosx_dir)/Contents/MacOS
 	sed -e "s/__#PROGNAME#__/$(PACKAGE_NAME)/" -e "s/__#VERSION#__/$(PACKAGE_VERSION)/" macosx/Info.plist.in > $(macosx_dir)/Contents/Info.plist
 	echo "APPL????" > $(macosx_dir)/Contents/PkgInfo
-	rsync -ar --exclude=.svn dialogs graphics map sound $(macosx_dir)/Contents
+	rsync -ar --exclude='.svn' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound $(macosx_dir)/Contents
 	perl macosx/pkgApp.pl $(macosx_dir)/Contents MacOS/freedroidRPG Frameworks
