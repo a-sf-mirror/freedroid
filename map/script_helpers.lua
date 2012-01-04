@@ -192,24 +192,6 @@ function end_quest(quest, text)
 	npc_says("")
 end
 
-function has_cookie(cookie)
-	return _G["cookie_" .. cookie]
-end
-
-function add_cookie(cookie)
-	_G["cookie_" .. cookie] = true
-end
-
-function remove_cookie(cookie)
-	_G["cookie_" .. cookie] = nil
-end
-
-function del_cookie(cookie)
-	if (has_cookie(cookie)) then
-		remove_cookie(cookie)
-	end
-end
-
 -- Set faction and name
 function npc_faction(faction, name)
 	set_npc_faction(faction)
