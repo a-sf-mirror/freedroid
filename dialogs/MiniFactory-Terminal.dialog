@@ -104,6 +104,7 @@ Nr=99 Text=_"logout"
 <LuaCode>
 	npc_says(_"Exiting", "NO_WAIT")
 	npc_says(_"Goodbye Dave.")
+	hide(10, 20)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
