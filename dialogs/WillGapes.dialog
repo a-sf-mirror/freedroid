@@ -124,7 +124,7 @@ Nr=9 Text=_"I've brought you some food."
 <LuaCode>
 	npc_says(_"It's about time! I'm starving.")
 	npc_says(_"Oh, this is delicious!")
-	npc_says(_"om nom nom")
+	npc_says(_"[b]om nom nom[/b]")
 	tux_says(_"Um...You're welcome?")
 	npc_says(_"...")
 	tux_says(_"Now, how about some information?")
