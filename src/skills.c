@@ -419,7 +419,12 @@ int DoSkill(int skill_index, int SpellCost)
 		if (!is_friendly(droid_below_mouse_cursor->faction, FACTION_SELF)) {
 			// Only hostile droids can be hacked. 
 			//
-			if (droid_takeover(droid_below_mouse_cursor)) {
+			float used_capsules_ratio = 1;		
+			if (droid_takeover(droid_below_mouse_cursor, &used_capsules_ratio)) {
+				// For every capsule that was not needed for the win, Tux gets a proportionate rebate
+				// (hard fights are more exhaustive than easy ones)
+				Me.temperature -= (1 - used_capsules_ratio) * SpellCost;				
+				
 				// upon successful takeover
 				// go directly to chat to choose droid program
 				if (GameConfig.talk_to_bots_after_takeover)

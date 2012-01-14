@@ -108,6 +108,7 @@ point DroidStart[TO_COLORS] = {
 int CapsuleCurRow[TO_COLORS] = { 0, 0 };
 
 int LeaderColor = YELLOW;		/* momentary leading color */
+int LeaderCapsuleCount = 6;		/* capsule count of currently leading color */
 int YourColor = YELLOW;
 int OpponentColor = PURPLE;
 int OpponentType;		/* The droid-type of your opponent */
@@ -514,8 +515,11 @@ static void show_info_down_button() {
  *
  * The return value is TRUE/FALSE depending on whether the game was
  * finally won/lost.
+ * The function also writes the ratio of capsules the player needed to win (out of all of his capsules) into needed_capsules_ratio
+ * - Every capsule that has not been used within the game (numCapsules) is considered as not needed
+ * - For every conquered row that exceeds 7 (the minimal number of rows to win) one capsule is considered as not needed
  */
-int droid_takeover(enemy *target)
+int droid_takeover(enemy *target, float *needed_capsules_ratio)
 {
 	int menu_finished = FALSE;
 	int reward = 0;
@@ -626,11 +630,16 @@ int droid_takeover(enemy *target)
 
 	SwitchBackgroundMusicTo(CURLEVEL()->Background_Song_Name);
 
-	if (LeaderColor == YourColor)
-		return TRUE;
-	else
-		return FALSE;
+	if (LeaderColor == YourColor) {
+		// set the ratio of needed capsules out of all (player) capsules
+		// - Every capsule that has not been used within the game (numCapsules) is considered as not needed
+		// - For every conquered row that exceeds 7 (the minimal number of rows to win) one capsule is considered as not needed
+		*needed_capsules_ratio = 1 - (float)(NumCapsules[YOU] + LeaderCapsuleCount - 7) / (float)player_capsules;
 
+		return TRUE;
+	} else {
+ 		return FALSE;
+	}
 };				// int Takeover( int enemynum ) 
 
 /*-----------------------------------------------------------------
@@ -1607,6 +1616,7 @@ void ProcessDisplayColumn(void)
 		else
 			PurpleCounter++;
 
+	LeaderCapsuleCount = (PurpleCounter > YellowCounter) ? PurpleCounter : YellowCounter;
 	if (PurpleCounter < YellowCounter)
 		LeaderColor = YELLOW;
 	else if (PurpleCounter > YellowCounter)
