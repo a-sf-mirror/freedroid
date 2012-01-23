@@ -1038,11 +1038,11 @@ void get_animated_obstacle_lists(struct visible_level *vis_lvl)
  */
 void dirty_animated_obstacle_lists(int lvl_num)
 {
-	struct visible_level *visible_lvl, *next_lvl;
+	struct visible_level *lvl;
 
-	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
-		if (visible_lvl->lvl_pointer->levelnum == lvl_num) {
-			visible_lvl->animated_obstacles_dirty_flag = TRUE;
+	list_for_each_entry(lvl, &visible_level_list, node) {
+		if (lvl->lvl_pointer->levelnum == lvl_num) {
+			lvl->animated_obstacles_dirty_flag = TRUE;
 			return;
 		}
 	}
