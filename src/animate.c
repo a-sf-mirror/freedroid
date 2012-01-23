@@ -138,14 +138,20 @@ int animate_door(level* door_lvl, int door_idx)
 	Pos = &(door_lvl->obstacle_list[door_idx].type);
 
 	if (one_player_close_enough || some_bot_was_close_to_this_door) {
-		if ((*Pos != ISO_H_DOOR_100_OPEN) && (*Pos != ISO_V_DOOR_100_OPEN)
-			&& (*Pos != ISO_DH_DOOR_100_OPEN) && (*Pos != ISO_DV_DOOR_100_OPEN)
-			&& (*Pos != ISO_OUTER_DOOR_H_100) && (*Pos != ISO_OUTER_DOOR_V_100))
+		if ( ((*Pos >= ISO_H_DOOR_000_OPEN) && (*Pos < ISO_H_DOOR_100_OPEN)) ||
+		     ((*Pos >= ISO_V_DOOR_000_OPEN) && (*Pos < ISO_V_DOOR_100_OPEN)) ||
+		     ((*Pos >= ISO_DH_DOOR_000_OPEN) && (*Pos < ISO_DH_DOOR_100_OPEN)) ||
+		     ((*Pos >= ISO_DV_DOOR_000_OPEN) && (*Pos < ISO_DV_DOOR_100_OPEN)) ||
+		     ((*Pos >= ISO_OUTER_DOOR_H_00) && (*Pos < ISO_OUTER_DOOR_H_100)) ||
+		     ((*Pos >= ISO_OUTER_DOOR_V_00) && (*Pos < ISO_OUTER_DOOR_V_100)) )
 			*Pos += 1;
 	} else {
-		if ((*Pos != ISO_V_DOOR_000_OPEN) && (*Pos != ISO_H_DOOR_000_OPEN)
-			&& (*Pos != ISO_DV_DOOR_000_OPEN) && (*Pos != ISO_DH_DOOR_000_OPEN)
-			&& (*Pos != ISO_OUTER_DOOR_V_00) && (*Pos != ISO_OUTER_DOOR_H_00))
+		if ( ((*Pos > ISO_H_DOOR_000_OPEN) && (*Pos <= ISO_H_DOOR_100_OPEN)) ||
+		     ((*Pos > ISO_V_DOOR_000_OPEN) && (*Pos <= ISO_V_DOOR_100_OPEN)) ||
+		     ((*Pos > ISO_DH_DOOR_000_OPEN) && (*Pos <= ISO_DH_DOOR_100_OPEN)) ||
+		     ((*Pos > ISO_DV_DOOR_000_OPEN) && (*Pos <= ISO_DV_DOOR_100_OPEN)) ||
+		     ((*Pos > ISO_OUTER_DOOR_H_00) && (*Pos <= ISO_OUTER_DOOR_H_100)) ||
+		     ((*Pos > ISO_OUTER_DOOR_V_00) && (*Pos <= ISO_OUTER_DOOR_V_100)) )
 			*Pos -= 1;	
 	}
 
