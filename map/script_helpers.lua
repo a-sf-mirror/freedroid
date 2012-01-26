@@ -353,6 +353,10 @@ function tux_hp_ratio()
 	return get_tux_hp()/get_tux_max_hp()
 end
 
+function npc_damage_ratio()
+	return npc_damage_amount()/npc_max_health()
+end
+
 function del_health(num_points)
 	if (num_points < get_tux_hp()) then
 		hurt_tux(num_points)

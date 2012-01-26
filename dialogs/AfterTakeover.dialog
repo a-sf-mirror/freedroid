@@ -27,9 +27,9 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	cost_time = 0
-	cost_materials = 0
-	cost_heat = 0
+	AfterTakeover_repair_time = 0
+	AfterTakeover_repair_circuits = 0
+	AfterTakeover_repair_heat = 0
 	terminal = string.format(_"%s@hacked_%s: ~ # ", get_player_name(), bot_type())
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(get_player_name(), "NO_WAIT")
@@ -53,7 +53,8 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"SINGLE NODE: Commands will not be broadcast.", "NO_WAIT")
 	end
 	cli_says(terminal, "NO_WAIT")
-	show(1, 11, 12, 13, 47, 99)
+	show(1, 11, 12, 13, 47, 99,	-- top level options
+		3, 20, 30, 40) 		-- repair_and_settings options
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -72,7 +73,6 @@ NO_TEXT
 <LuaCode>
 	terminal_sub = string.format(_"%s@hacked_%s/repair&settings: ~ # ", get_player_name(), bot_type())
 	cli_says(terminal_sub, "NO_WAIT")
-	show(3, 20, 30, 40)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -81,7 +81,6 @@ Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	tux_says("cd ..", "NO_WAIT")
-	hide(3, 20, 30, 40)
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -146,24 +145,41 @@ Nr=20 Text=_"./est_repair.plx"
 Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
+	local function calculate_bot_repair_penalty(constant, ability_value)
+		ability_value = ability_value + get_program_revision("Repair equipment")
+		return (1200 + npc_max_health()) * math.exp(-0.02 * ability_value) * constant / 15000
+	  	-- (1200 + npc_max_health()) / 1500 is the bot_modifier, arranging the values between 0.8 (small bots) and 1 (big bots)
+	  	-- math.exp(-0.02 * ability_value) is the ability_modifier, reducing the costs by ~2% per ability_level
+	  	-- 1/10 is a constant to limit the repair_time to an upper bound of 30 seconds; it is adjusted to a 300 HP-bot (Sawmill, Cerebrum) to be the most expensive bot to be repaired
+	  	-- the denominators 1500 and 10 are combined to 15000
+	end
+
 	tux_says(_"./est_repair.plx", "NO_WAIT")
-	repair_level = get_program_revision("Repair equipment")
 	damage = npc_damage_amount()
 	if (damage > 0) then
 		npc_says(_"Available amount of valuable circuits for repair: %d.", get_gold())
 		-- Estimate the average repair costs: --
-		cost_time = damage / math.log(repair_level * get_program_revision("Check system integrity") + math.exp(1) - 1)
-		cost_materials = damage * 10 / math.log(repair_level * get_program_revision("Extract bot parts") + math.exp(1))
-		cost_heat = damage * 5 / math.log(repair_level * get_program_revision("Hacking") + math.exp(1))
+		AfterTakeover_repair_time = damage * calculate_bot_repair_penalty(1, get_program_revision("Check system integrity"))
+		AfterTakeover_repair_circuits = math.max(1, damage * calculate_bot_repair_penalty(7, get_program_revision("Extract bot parts")))
+		AfterTakeover_repair_heat = math.max(1, damage * calculate_bot_repair_penalty(3, get_program_revision("Hacking")))
 		-- Display the maximum repair costs: --
 		npc_says(_"Repairs on %s will take less than %d seconds, %d valuable circuits, and %d heat.",
-			bot_name(), math.ceil(cost_time * 1.2), math.ceil(cost_materials * 1.2), math.ceil(cost_heat * 1.2))
+		   bot_name(),
+		   math.ceil(AfterTakeover_repair_time * 1.2),
+		   math.ceil(AfterTakeover_repair_circuits * 1.2),
+		   math.ceil(AfterTakeover_repair_heat * 1.2))
 		hide(20)
-		if (get_gold() < cost_materials * 1.2) then
+		if (get_gold() < AfterTakeover_repair_circuits * 1.2) then
 			npc_says(_"You do not have enough valuable circuits to ensure repair of this %s unit.", bot_type())
+		elseif (get_tux_cool() < AfterTakeover_repair_heat * 1.2) then
+			npc_says(_"You cannot dissipate enough heat to ensure repair of this %s unit.", bot_type())
 		else
 			show(21)
 		end
+		-- Calculate the true repair costs: --
+		AfterTakeover_repair_time = AfterTakeover_repair_time * (math.random() * 0.4 + 0.8)
+		AfterTakeover_repair_circuits = math.ceil(AfterTakeover_repair_circuits * (math.random() * 0.4 + 0.8))
+		AfterTakeover_repair_heat = math.ceil(AfterTakeover_repair_heat * (math.random() * 0.4 + 0.8))
 	else
 		if (AfterTakeover_repair) then
 			npc_says(_"Repair in progress.", "NO_WAIT")
@@ -185,17 +201,14 @@ NO_TEXT
 	npc_says(_"Repair in progress.", "NO_WAIT")
 	npc_says(_"Logout to complete repair process.")
 	heal_npc()
-	-- Calculate the true repair costs: --
-	cost_time = math.ceil(cost_time * (math.random()*0.4 + 0.8) )
-	cost_materials = math.ceil(cost_materials * (math.random()*0.4 + 0.8) )
-	cost_heat = math.ceil(cost_heat * (math.random()*0.4 + 0.8) )
+
 	-- Apply repair costs: --
-	freeze_tux_npc(cost_time)
-	del_gold(cost_materials)
-	heat_tux(cost_heat)
+	freeze_tux_npc(AfterTakeover_repair_time)
+	del_gold(AfterTakeover_repair_circuits)
+	heat_tux(AfterTakeover_repair_heat)
 	cli_says(terminal_sub, "NO_WAIT")
 	AfterTakeover_repair = true
-	hide(20, 21)
+	hide(21)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -282,7 +295,7 @@ NO_TEXT
 	npc_says(_"Welcome to the settings menu.", "NO_WAIT")
 	npc_says(_"Version: 1.82c", "NO_WAIT")
 	npc_says(_"No upgrades found.", "NO_WAIT")
-	if (npc_damage_amount() > 5) then
+	if (npc_damage_ratio() > 0.5) then
 		npc_says(_"UNIT TOO DAMAGED TO BROADCAST COMMANDS.", "NO_WAIT")
 	else
 		show(35)
@@ -454,6 +467,7 @@ NO_TEXT
 	tux_says("logout","NO_WAIT")
 	npc_says(_"Closing remote connection...")
 	AfterTakeover_repair = false
+	hide(21)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

@@ -262,6 +262,12 @@ static int lua_event_heat_tux(lua_State * L)
 	return 0;
 }
 
+static int lua_event_get_tux_cool(lua_State * L)
+{
+	lua_pushinteger(L, (int)Me.max_temperature - (int)Me.temperature);
+	return 1;
+}
+
 static int lua_event_improve_skill(lua_State * L)
 {
 	const char *skilltype = luaL_checkstring(L, 1);
@@ -596,10 +602,17 @@ static int lua_event_heal_npc(lua_State * L)
 	return 0;
 }
 
-static int lua_display_npc_damage_amount(lua_State * L)
+static int lua_get_npc_damage_amount(lua_State * L)
 {
-	enemy *en = get_enemy_arg(L, 1); 
+	enemy *en = get_enemy_arg(L, 1);
 	lua_pushinteger(L, (int)(Droidmap[en->type].maxenergy - en->energy));
+	return 1;
+}
+
+static int lua_get_npc_max_health(lua_State * L)
+{
+	enemy *en = get_enemy_arg(L, 1);
+	lua_pushinteger(L, (int)(Droidmap[en->type].maxenergy));
 	return 1;
 }
 
@@ -622,7 +635,7 @@ static int lua_event_npc_dead(lua_State *L)
 
 static int lua_event_freeze_tux_npc(lua_State * L)
 {
-	int duration = luaL_checkinteger(L, 1);
+	int duration = luaL_checknumber(L, 1);
 	enemy *en = get_enemy_arg(L, 2); 
 	en->paralysation_duration_left = duration;
 	Me.paralyze_duration = duration;
@@ -984,14 +997,11 @@ luaL_reg lfuncs[] = {
 	{"change_obstacle_message", lua_change_obstacle_message}
 	,
 
-	/* kill_tux()
-	 * heal_tux()
-	 * hurt_tux(int how_many_hp_to_remove)
-	 *
-	 * kill_tux kills Tux, heal_tux completely heals Tux,
-	 * hurt_tux removes the given number of health points. This number
-	 * can obviously be negative.
-	 * heat_tux increases temperature. Number can be negative as well.
+	/* kill_tux() - kills Tux
+	 * heal_tux() - heal_tux completely heals Tux
+	 * hurt_tux(int how_many_hp_to_remove) - removes the given number of health points.
+	 * 	This number can obviously be negative.
+	 * heat_tux(int amount)	- Increases temperature (=removes cooling), number can be negative.
 	 */
 	{"kill_tux", lua_event_kill_tux}
 	,
@@ -1008,6 +1018,10 @@ luaL_reg lfuncs[] = {
 	{"get_tux_hp", lua_event_get_tux_hp}
 	,
 	{"get_tux_max_hp", lua_event_get_tux_max_hp}
+	,
+	/* get_tux_cool()		- Returns Tux's current remaining heat absorbing capabilities
+	 */
+	{"get_tux_cool", lua_event_get_tux_cool}
 	,
 	/* improve_skill(string skill_name)
 	 * get_skill()
@@ -1132,9 +1146,16 @@ luaL_reg lfuncs[] = {
 	,
 	{"takeover", lua_chat_takeover}
 	,
+	/* heal_npc([dialog])			- Returns the NPC's current health
+	 * npc_damage_amount([dialog])		- Returns the current damage for the NPC
+	 * npc_max_health([dialog])		- Returns the max possible health for the NPC
+	 * see also: npc_damage_ratio([dialog]) - Returns the ratio of the two
+	 */
 	{"heal_npc", lua_event_heal_npc}
 	,
-	{"npc_damage_amount", lua_display_npc_damage_amount}
+	{"npc_damage_amount", lua_get_npc_damage_amount}
+	,
+	{"npc_max_health", lua_get_npc_max_health}
 	,
 	{"freeze_tux_npc", lua_event_freeze_tux_npc}
 	,
@@ -1142,12 +1163,12 @@ luaL_reg lfuncs[] = {
 	/* bot_type() tells you what model
 	   bot_name() tells you what name it displays
 	   set_bot_name() puts a new name in
-	*/	
-	{"bot_type", lua_chat_get_bot_type}, 
+	 */
+	{"bot_type", lua_chat_get_bot_type},
 
 	{"bot_name", lua_chat_get_bot_name},
 
-	{"set_bot_name", lua_chat_set_bot_name}, 
+	{"set_bot_name", lua_chat_set_bot_name},
 
 	{"difficulty_level", lua_difficulty_level},
 
