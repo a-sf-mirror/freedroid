@@ -200,13 +200,6 @@ NO_TEXT
 	tux_says(_"./repair.plx", "NO_WAIT")
 	npc_says(_"Repair in progress.", "NO_WAIT")
 	npc_says(_"Logout to complete repair process.")
-	heal_npc()
-
-	-- Apply repair costs: --
-	freeze_tux_npc(AfterTakeover_repair_time)
-	del_gold(AfterTakeover_repair_circuits)
-	heat_tux(AfterTakeover_repair_heat)
-	cli_says(terminal_sub, "NO_WAIT")
 	AfterTakeover_repair = true
 	hide(21)
 </LuaCode>
@@ -457,6 +450,7 @@ NO_TEXT
 		tux_has_edge = true
 		add_item("Nobody's edge",1)
 	end
+	AfterTakeover_repair = false
 	drop_dead()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -466,7 +460,14 @@ NO_TEXT
 <LuaCode>
 	tux_says("logout","NO_WAIT")
 	npc_says(_"Closing remote connection...")
-	AfterTakeover_repair = false
+	if (AfterTakeover_repair) then
+		heal_npc()
+		-- Apply repair costs: --
+		freeze_tux_npc(AfterTakeover_repair_time)
+		del_gold(AfterTakeover_repair_circuits)
+		heat_tux(AfterTakeover_repair_heat)
+		AfterTakeover_repair = false
+	end
 	hide(21)
 	end_dialog()
 </LuaCode>
