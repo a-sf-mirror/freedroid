@@ -162,12 +162,31 @@ NO_TEXT
 		AfterTakeover_repair_time = damage * calculate_bot_repair_penalty(1, get_program_revision("Check system integrity"))
 		AfterTakeover_repair_circuits = math.max(1, damage * calculate_bot_repair_penalty(7, get_program_revision("Extract bot parts")))
 		AfterTakeover_repair_heat = math.max(1, damage * calculate_bot_repair_penalty(3, get_program_revision("Hacking")))
+
+		Aftertakeover_time_estimation = math.ceil(AfterTakeover_repair_time * 1.2)
+		Aftertakeover_repair_cost_estimation = math.ceil(AfterTakeover_repair_time * 1.2)
+		Aftertakeover_heat_estimation = math.ceil(AfterTakeover_repair_heat * 1.2)
+		-- Get correct plural/singluar for "second(s)" and "circuit(s)"
+		if (Aftertakeover_time_estimation == 1) then
+			Aftertakeover_seconds = _"second"
+		else
+			Aftertakeover_seconds = _"seconds"
+		end
+
+		if (Aftertakeover_repair_cost_estimation == 1) then
+			Aftertakeover_circuits = _"circuit"
+		else
+			Aftertakeover_circuits = _"circuits"
+		end
+
 		-- Display the maximum repair costs: --
-		npc_says(_"Repairs on %s will take less than %d seconds, %d valuable circuits, and %d heat.",
-		   bot_name(),
-		   math.ceil(AfterTakeover_repair_time * 1.2),
-		   math.ceil(AfterTakeover_repair_circuits * 1.2),
-		   math.ceil(AfterTakeover_repair_heat * 1.2))
+		npc_says(_"Repairs on %s will take less than %s %s, %s valuable %s, and %s heat.",
+			bot_name(),
+			Aftertakeover_time_estimation,
+			Aftertakeover_seconds,
+			Aftertakeover_repair_cost_estimation,
+			Aftertakeover_circuits,
+			Aftertakeover_heat_estimation)
 		hide(20)
 		if (get_gold() < AfterTakeover_repair_circuits * 1.2) then
 			npc_says(_"You do not have enough valuable circuits to ensure repair of this %s unit.", bot_type())
