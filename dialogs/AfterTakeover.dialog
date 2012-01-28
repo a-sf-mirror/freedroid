@@ -141,7 +141,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=20 Text=_"./est_repair.plx"
+Nr=20 Text=_"./repair.plx"
 Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
@@ -154,7 +154,7 @@ NO_TEXT
 	  	-- the denominators 1500 and 10 are combined to 15000
 	end
 
-	tux_says(_"./est_repair.plx", "NO_WAIT")
+	tux_says(_"./repair.plx", "NO_WAIT")
 	damage = npc_damage_amount()
 	if (damage > 0) then
 		npc_says(_"Available amount of valuable circuits for repair: %d.", get_gold())
@@ -174,34 +174,44 @@ NO_TEXT
 		elseif (get_tux_cool() < AfterTakeover_repair_heat * 1.2) then
 			npc_says(_"You cannot dissipate enough heat to ensure repair of this %s unit.", bot_type())
 		else
-			show(21)
+			npc_says(_"Do you want to start repair of this %s unit?", bot_type())
+			show(21, 22)
+			topic("repair_YN")
 		end
 		-- Calculate the true repair costs: --
 		AfterTakeover_repair_time = AfterTakeover_repair_time * (math.random() * 0.4 + 0.8)
 		AfterTakeover_repair_circuits = math.ceil(AfterTakeover_repair_circuits * (math.random() * 0.4 + 0.8))
 		AfterTakeover_repair_heat = math.ceil(AfterTakeover_repair_heat * (math.random() * 0.4 + 0.8))
 	else
-		if (AfterTakeover_repair) then
-			npc_says(_"Repair in progress.", "NO_WAIT")
-			npc_says(_"Logout to complete repair process.")
-		else
-			npc_says(_"%s is currently undamaged.", bot_name(), "NO_WAIT")
-			hide(20)
-		end
+		npc_says(_"%s is currently undamaged.", bot_name(), "NO_WAIT")
+		hide(20)
 	end
 	cli_says(terminal_sub, "NO_WAIT")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=21 Text=_"./repair.plx"
-Topic="repair_and_settings"
+Nr=21 Text=_"Y"
+Topic="repair_YN"
 NO_TEXT
 <LuaCode>
-	tux_says(_"./repair.plx", "NO_WAIT")
+	tux_says(_"Y", "NO_WAIT")
 	npc_says(_"Repair in progress.", "NO_WAIT")
 	npc_says(_"Logout to complete repair process.")
 	AfterTakeover_repair = true
-	hide(21)
+	pop_topic()
+	hide(20, 21, 22)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=22 Text=_"N"
+Topic="repair_YN"
+NO_TEXT
+<LuaCode>
+	tux_says(_"N", "NO_WAIT")
+	npc_says(_"Repair aborted.", "NO_WAIT")
+	AfterTakeover_repair = false
+	pop_topic()
+	show(20) hide(21, 22)
 </LuaCode>
 ----------------------------------------------------------------------
 
