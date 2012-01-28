@@ -62,7 +62,6 @@ Nr=1 Text=_"cd repair&settings/"
 NO_TEXT
 <LuaCode>
 	tux_says(_"cd repair&settings/", "NO_WAIT")
-	cli_says(terminal, "NO_WAIT")
 	next(2)
 	topic("repair_and_settings")
 </LuaCode>
@@ -81,6 +80,7 @@ Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	tux_says("cd ..", "NO_WAIT")
+	cli_says(terminal, "NO_WAIT")
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
