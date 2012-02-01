@@ -451,8 +451,11 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 	chat_log.font = FPS_Display_BFont;
 	chat_log.line_height_factor = LINE_HEIGHT_FACTOR;
 
-	if (chat_initialization_code)
+	if (chat_initialization_code) {
 		run_lua(LUA_DIALOG, chat_initialization_code);
+		if (chat_control_end_dialog)
+			goto wait_click_and_out;
+	}
 
 	// We load the option texts into the dialog options variable..
 	//
