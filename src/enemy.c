@@ -986,6 +986,11 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 	 * check if droid is dead
 	 */
 
+	if (target->energy <= 0) {
+		// Do not kill already dead enemies
+		return;
+	}
+
 	// no XP is given for killing a friendly bot
 	if (is_friendly(target->faction, FACTION_SELF) && givexp)
 		givexp = 0;
