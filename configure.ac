@@ -52,7 +52,7 @@ case "$target" in
 
 	*)
 	CFLAGS="$CFLAGS  -DFD_DATADIR='\"\$(pkgdatadir)\"'"   #avoid expansion of $pkgdatadir !
-	LDFLAGS="$LDFLAGS -rdynamic"
+	LDFLAGS="$LDFLAGS -rdynamic -Wl,--as-needed"
 	SYS_GL_LIB=GL
 	;;
 esac
