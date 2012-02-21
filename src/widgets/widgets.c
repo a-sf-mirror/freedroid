@@ -233,19 +233,19 @@ static void display_tooltips()
 }
 
 /**
- * This functions pushes an EVENT_UPDATE event through the widget system.
+ * This functions calls the update function on the current gui tree.
  * This should be called once every few frames to update widgets' state.
  *
- * NOTE: Update events are handled by disabled widgets but are not sent to
+ * NOTE: Update calls are handled by disabled widgets but are not sent to
  * children widgets. This allows for inactive widgets to become active on
- * update events. 
+ * update.
  */
 void update_widgets()
 {
-	SDL_Event event;
-	event.type = SDL_USEREVENT;
-	event.user.code = EVENT_UPDATE;
-	handle_widget_event(&event);
+	struct widget *ui = get_active_ui();
+
+	if (ui && ui->update_tree)
+		ui->update_tree(ui);
 }
 
 /**
@@ -255,7 +255,7 @@ void display_widgets()
 {
 	struct widget *ui = get_active_ui();
 
-	if (ui) {
+	if (ui && ui->display) {
 		ui->display(ui);
 		display_tooltips();
 	}
@@ -270,16 +270,33 @@ static int handle_event(struct widget *w, SDL_Event *event)
 }
 
 /**
- * This function creates a simple widget.
+ * update_tree() implementation: call update() on the widget
  */
-struct widget *widget_create()
+static void leaf_update(struct widget *w)
 {
-	struct widget *w = MyMalloc(sizeof(struct widget));
+	if (w && w->update)
+		w->update(w);
+}
+
+/**
+ * This function initializes the properties and functions of a simple widget.
+ */
+void widget_init(struct widget *w)
+{
 	widget_set_rect(w, 0, 0, 0, 0);
 	w->handle_event = handle_event;
 	w->display = NULL;
 	w->update = NULL;
 	w->enabled = 1;
+	w->update_tree = leaf_update;
+}
 
+/**
+ * This function creates a simple widget.
+ */
+struct widget *widget_create()
+{
+	struct widget *w = MyMalloc(sizeof(struct widget));
+	widget_init(w);
 	return w;
 }

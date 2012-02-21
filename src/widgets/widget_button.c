@@ -79,8 +79,6 @@ static int button_handle_event(struct widget *w, SDL_Event *event)
 				b->state = DEFAULT;
 				widget_set_tooltip(NULL, NULL);
 			}
-			if (event->user.code == EVENT_UPDATE && w->update)
-				w->update(w);
 			break;
 
 		default:
@@ -145,12 +143,10 @@ static void button_display(struct widget *wb)
 struct widget_button *widget_button_create()
 {
 	struct widget_button *a = MyMalloc(sizeof(struct widget_button));
-	widget_set_rect(WIDGET(a), 0, 0, 0, 0);
+	widget_init(WIDGET(a));
 	WIDGET(a)->type = WIDGET_BUTTON;
 	WIDGET(a)->display = button_display;
 	WIDGET(a)->handle_event = button_handle_event;
-	WIDGET(a)->update = NULL;
-	WIDGET(a)->enabled = 1;
 
 	a->state = DEFAULT;
 	a->active = 0;

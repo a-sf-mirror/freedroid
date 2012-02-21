@@ -291,11 +291,11 @@ static void toolbar_display(struct widget *vt)
 struct widget *widget_lvledit_toolbar_create()
 {
 	struct widget *a = MyMalloc(sizeof(struct widget));
+	widget_init(a);
 	a->type = WIDGET_TOOLBAR;
 	widget_set_rect(a, 0, 0, GameConfig.screen_width, 73);
 	a->display = toolbar_display;
 	a->handle_event = toolbar_handle_event;
-	a->enabled = 1;
 
 	struct widget_lvledit_toolbar *t = MyMalloc(sizeof(struct widget_lvledit_toolbar));
 	a->ext = t;

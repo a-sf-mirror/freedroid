@@ -88,11 +88,11 @@ void widget_lvledit_categoryselect_activate(struct widget_lvledit_categoryselect
 struct widget *widget_lvledit_categoryselector_create(int x, char *text, enum lvledit_object_type type, int *olist)
 {
 	struct widget *a = MyMalloc(sizeof(struct widget));
+	widget_init(a);
 	a->type = WIDGET_CATEGORY_SELECTOR;
 	widget_set_rect(a, x * 80, 73, 80, 17);
 	a->display = categoryselect_display;
 	a->handle_event = categoryselect_handle_event;
-	a->enabled = 1;
 
 	struct widget_lvledit_categoryselect *cs = MyMalloc(sizeof(struct widget_lvledit_categoryselect));
 	cs->type = type;

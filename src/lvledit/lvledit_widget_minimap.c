@@ -153,11 +153,11 @@ static void minimap_display(struct widget *w)
 struct widget *widget_lvledit_minimap_create()
 {
 	struct widget *a = MyMalloc(sizeof(struct widget));
+	widget_init(a);
 	a->type = WIDGET_MINIMAP;
 	widget_set_rect(a, GameConfig.screen_width - WIDGET_MINIMAP_WIDTH, GameConfig.screen_height - WIDGET_MINIMAP_HEIGHT, WIDGET_MINIMAP_WIDTH, WIDGET_MINIMAP_HEIGHT); 
 	a->display = minimap_display;
 	a->handle_event = minimap_handle_event;
-	a->enabled = 1;
 
 	struct widget_lvledit_minimap *n = MyMalloc(sizeof(struct widget_lvledit_minimap));
 	a->ext = n;

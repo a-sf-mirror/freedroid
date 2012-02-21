@@ -234,8 +234,6 @@ static int text_handle_event(struct widget *w, SDL_Event *event)
 			return 1;
 
 		case SDL_USEREVENT:
-			if (event->user.code == EVENT_UPDATE && w->update)
-				w->update(w);
 			// Reset mouse hover flag.
 			if (event->user.code == EVENT_MOUSE_LEAVE)
 				WIDGET_TEXT(w)->mouse_hover = NOT_HOVERED;
@@ -252,11 +250,9 @@ static int text_handle_event(struct widget *w, SDL_Event *event)
 struct widget_text *widget_text_create()
 {
 	struct widget_text *wt = MyMalloc(sizeof(struct widget_text));
-	widget_set_rect(WIDGET(wt), 0, 0, 0, 0);
+	widget_init(WIDGET(wt));
 	WIDGET(wt)->display = widget_text_display;
 	WIDGET(wt)->handle_event = text_handle_event;
-	WIDGET(wt)->update = NULL;
-	WIDGET(wt)->enabled = 1;
 	
 	widget_text_init(wt, "");
 	

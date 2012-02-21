@@ -115,12 +115,12 @@ static int group_keyboard_event(struct widget *wg, SDL_Event *event)
 }
 
 /**
- * @brief Handles update events received by widget groups.
+ * @brief Handles update calls received by widget groups.
  * 
  * This function will call the group's update callback and forward
- * the update event to all children widgets if the group is enabled.
+ * the update call to all children widgets if the group is enabled.
  */
-static int group_update_event(struct widget *wg, SDL_Event *event)
+static void group_update(struct widget *wg)
 {
 	struct widget *w;
 
@@ -128,13 +128,12 @@ static int group_update_event(struct widget *wg, SDL_Event *event)
 	if (wg->update)
 		wg->update(wg);
 
-	// Forward the event to all children if the group is enabled.
+	// Propagate on all children
 	if (wg->enabled) {
 		list_for_each_entry(w, &WIDGET_GROUP(wg)->list, node) {
-			w->handle_event(w, event);
+			w->update_tree(w);
 		}
 	}
-	return 0;
 }
 
 /**
@@ -143,7 +142,7 @@ static int group_update_event(struct widget *wg, SDL_Event *event)
 static int group_mouse_leave_event(struct widget *wg, SDL_Event *event)
 {
 	if (WIDGET_GROUP(wg)->last_focused) {
-		WIDGET_GROUP(wg)->last_focused->handle_event(WIDGET_GROUP(wg)->last_focused, event);	
+		WIDGET_GROUP(wg)->last_focused->handle_event(WIDGET_GROUP(wg)->last_focused, event);
 		WIDGET_GROUP(wg)->last_focused = NULL;
 	}
 	return 1;
@@ -165,12 +164,8 @@ int widget_group_handle_event(struct widget *wg, SDL_Event *event)
 
 		case SDL_USEREVENT:
 			switch(event->user.code) {
-				case EVENT_UPDATE:
-					return group_update_event(wg, event);
-
 				case EVENT_MOUSE_LEAVE:
 					return group_mouse_leave_event(wg, event);
-
 				default:
 					break;
 			}
@@ -183,6 +178,19 @@ int widget_group_handle_event(struct widget *wg, SDL_Event *event)
 }
 
 /**
+ * Initialize widget group properties
+ */
+void widget_group_init(struct widget_group *wg)
+{
+	widget_init(WIDGET(wg));
+	WIDGET(wg)->update_tree = group_update;
+	WIDGET(wg)->display = group_display;
+	WIDGET(wg)->handle_event = widget_group_handle_event;
+	wg->list = (struct list_head)LIST_HEAD_INIT(wg->list);
+	wg->last_focused = NULL;
+}
+
+/**
  * @brief Creates a widget_group.
  *
  * This function creates a widget_group using the default callbacks.
@@ -190,12 +198,8 @@ int widget_group_handle_event(struct widget *wg, SDL_Event *event)
  */
 struct widget_group *widget_group_create() 
 {
-	struct widget_group *wb = (struct widget_group *)MyMalloc(sizeof(struct widget_group));	
-	WIDGET(wb)->display = group_display;
-	WIDGET(wb)->handle_event = widget_group_handle_event;
-	WIDGET(wb)->enabled = 1;
-	wb->list = (struct list_head)LIST_HEAD_INIT(wb->list);	
-	wb->last_focused = NULL;
+	struct widget_group *wb = (struct widget_group *)MyMalloc(sizeof(struct widget_group));
+	widget_group_init(wb);
 	return wb;
 }
 

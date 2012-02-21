@@ -56,9 +56,11 @@ struct widget {
 	SDL_Rect rect;		/**< Rectangle containing widget's size and position. */
 	uint8_t enabled;	/**< Boolean flag used for enabling/disabling the widget. */
 	void (*display) (struct widget *); /**< Display callback. */
-	void (*update) (struct widget *);  /**< Callback triggered by update events. */
+	void (*update) (struct widget *);  /**< Callback used to update widget's properties. */
 	int (*handle_event) (struct widget *, SDL_Event *);	/**< General event handler. */
 	void *ext;		/**< Pointer to type specific data. Deprecated. */
+	// Internal functions
+	void (*update_tree) (struct widget *); /**< Update propagation */
 	struct list_head node;	/**< Linked list node used for storing sibling widgets in a widget_group. */
 };
 
@@ -76,6 +78,7 @@ struct tooltip {
 void display_widgets(void);
 void update_widgets(void);
 struct widget *widget_create(void);
+void widget_init(struct widget *);
 void handle_widget_event(SDL_Event *);
 struct image *widget_load_image_resource(char *, int);
 void widget_set_rect(struct widget *, int, int, int, int);
@@ -102,9 +105,8 @@ void widget_set_tooltip(struct tooltip *, SDL_Rect *);
 
 #define WIDGET(x) ((struct widget *)x)
 
-#define EVENT_UPDATE 0		/**< User event code used for signaling the update event. Sent by update_widgets. */
-#define EVENT_MOUSE_ENTER 1	/**< User event code used for signaling mouse entering a widget. */
-#define EVENT_MOUSE_LEAVE 2	/**< USer event code used for signaling mouse leaving a widget. */
+#define EVENT_MOUSE_ENTER 0	/**< User event code used for signaling mouse entering a widget. */
+#define EVENT_MOUSE_LEAVE 1	/**< USer event code used for signaling mouse leaving a widget. */
 
 #define MOUSE_BUTTON_1 1
 #define MOUSE_BUTTON_2 2

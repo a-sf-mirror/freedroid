@@ -156,11 +156,10 @@ void widget_lvledit_map_display_cursor()
 struct widget *widget_lvledit_map_create()
 {
 	struct widget *a = MyMalloc(sizeof(struct widget));
+	widget_init(a);
 	a->type = WIDGET_MAP;
 	widget_set_rect(a, 0, 68, GameConfig.screen_width, GameConfig.screen_height -68);
-	a->display = NULL;
 	a->handle_event = map_handle_event;
-	a->enabled = 1;
 
 	struct widget_lvledit_map *m = MyMalloc(sizeof(struct widget_lvledit_map));
 	a->ext = m;

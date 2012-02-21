@@ -59,25 +59,14 @@ static void background_display(struct widget *w)
 }
 
 /**
- * Background widgets don't handle events.
- */
-static int background_handle_event(struct widget *w, SDL_Event *event)
-{
-	return 0;
-}
-
-/**
  * This function creates a background widget using default values.
  * @return A pointer to the newly created widget.
  */
 struct widget_background *widget_background_create()
 {
 	struct widget_background *wb = MyMalloc(sizeof(struct widget_background));
-	widget_set_rect(WIDGET(wb), 0, 0, 0, 0);
-	WIDGET(wb)->handle_event = background_handle_event;
+	widget_init(WIDGET(wb));
 	WIDGET(wb)->display = background_display;
-	WIDGET(wb)->update = NULL;
-	WIDGET(wb)->enabled = 1;
 	
 	dynarray_init(&wb->tiles, 2, sizeof(struct tile));
 	return wb;
