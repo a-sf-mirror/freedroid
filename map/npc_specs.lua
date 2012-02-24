@@ -1,5 +1,6 @@
 npc_list{
 	"WillGapes",
+	"Vending-Machine",
 	"Tybalt",
 	"TutorialTom",
 	"TutorialTerminal",
@@ -159,6 +160,15 @@ items = {{"Bottled ice"},
 	 {"Fork"},
 	 {"Plate"},
 	 {"Mug"}
+	}
+}
+
+npc_shop{
+name = "Vending-Machine",
+items = {{"Bottled ice"},
+	 {"Industrial coolant"},
+	 {"Barf's Energy Drink"},
+	 {"Diet supplement"},
 	}
 }
 

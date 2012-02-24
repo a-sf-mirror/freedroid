@@ -359,7 +359,19 @@ leveleditor_obstacle_category {
 		"iso_security_gate_0005.png",
 		"iso_security_gate_0006.png",
 		"iso_security_gate_0007.png",
-		"iso_security_gate_0008.png"
+		"iso_security_gate_0008.png",
+		"iso_vending_machine_0000.png",
+		"iso_vending_machine_0001.png",
+		"iso_vending_machine_0002.png",
+		"iso_vending_machine_0003.png",
+		"iso_vending_machine_0004.png",
+		"iso_vending_machine_0005.png",
+		"iso_vending_machine_0006.png",
+		"iso_vending_machine_0007.png",
+		"iso_vending_machine_0008.png",
+		"iso_vending_machine_0009.png",
+		"iso_vending_machine_0010.png",
+		"iso_vending_machine_0011.png"
 	}
 }
 

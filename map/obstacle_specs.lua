@@ -3066,3 +3066,123 @@ obstacle {
 	emitted_light_strength = { 0, 2},
 	transparency = NO_TRANSPARENCY,
 }
+
+obstacle {
+	image_filenames = "iso_vending_machine_0000.png",
+	label = "Vending Machine",
+	borders = borders(1.10, 1.55),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0001.png",
+	label = "Vending Machine",
+	borders = borders(1.55, 1.10),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0002.png",
+	label = "Vending Machine",
+	borders = borders(1.10, 1.55),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0003.png",
+	label = "Vending Machine",
+	borders = borders(1.55, 1.10),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0004.png",
+	label = "Vending Machine",
+	borders = borders(1.00, 1.55),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0005.png",
+	label = "Vending Machine",
+	borders = borders(1.55, 1.00),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0006.png",
+	label = "Vending Machine",
+	borders = borders(1.00, 1.55),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0007.png",
+	label = "Vending Machine",
+	borders = borders(1.55, 1.00),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0008.png",
+	label = "Vending Machine",
+	borders = borders(1.10, 1.55),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0009.png",
+	label = "Vending Machine",
+	borders = borders(1.55, 1.10),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0010.png",
+	label = "Vending Machine",
+	borders = borders(1.10, 1.55),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}
+
+obstacle {
+	image_filenames = "iso_vending_machine_0011.png",
+	label = "Vending Machine",
+	borders = borders(1.55, 1.10),
+	emitted_light_strength = { 0, 5 },
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "terminal",
+}

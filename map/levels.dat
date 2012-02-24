@@ -16471,6 +16471,7 @@ t1 x33.00 y37.50
 t1 x35.00 y37.50
 t353 x33.56 y37.56
 t45 x55.56 y24.53
+t459 x53.50 y25.50
 /obsdata
 plabelinfolvl
 x=40 y=35 name="FrancisSafe"
@@ -16511,6 +16512,9 @@ idx=2206 type=32 data={
 }
 idx=29 type=30 data={
 	CryoInnerGate
+}
+idx=2207 type=32 data={
+	Vending-Machine
 }
 /obstacleextensions
 wp
@@ -37490,6 +37494,7 @@ t3 x18.50 y25.50
 t3 x23.50 y25.50
 t3 x23.50 y24.50
 t29 x32.00 y53.50
+t458 x31.50 y20.50
 /obsdata
 plabelinfolvl
 x=17 y=24 name="SADD-MoveTarget"
@@ -37557,6 +37562,9 @@ idx=31 type=32 data={
 }
 idx=17 type=32 data={
 	I warned you...  You should consider turning back and running away screaming.
+}
+idx=1136 type=32 data={
+	Vending-Machine
 }
 /obstacleextensions
 wp
@@ -48735,6 +48743,7 @@ t321 x89.50 y21.50
 t321 x81.70 y89.42
 t321 x84.35 y89.41
 t321 x87.96 y89.40
+t451 x41.67 y59.35
 /obsdata
 plabelinfolvl
 /plabelinfolvl
@@ -48764,6 +48773,9 @@ idx=1954 type=32 data={
 }
 idx=2097 type=32 data={
 	Stepping on this pad will affect absolutely nothing. LOL!
+}
+idx=2270 type=32 data={
+	Vending-Machine
 }
 /obstacleextensions
 wp
