@@ -212,7 +212,7 @@ function chat_says_format(text, arg)
 end
 
 function tux_says(text, ...)
-	text, no_wait = chat_says_format('\1' .. text, arg)
+	text, no_wait = chat_says_format('\1- ' .. text, arg)
 	chat_says(text, true, no_wait)
 end
 
