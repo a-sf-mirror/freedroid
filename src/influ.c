@@ -1666,9 +1666,13 @@ void set_movement_with_keys(int move_x, int move_y)
 		Me.mouse_move_target.y = floor(Me.pos.y) + floor_center;
 	}
 
-	// Determine move amount
-	Me.mouse_move_target.x += move_x * move_amplitude;
-	Me.mouse_move_target.y += move_y * move_amplitude;
+	//Restricts moving target to within 2 units from current position
+	if (abs(Me.pos.x - (Me.mouse_move_target.x + move_x * move_amplitude)) <= 2 &&
+			abs(Me.pos.y - (Me.mouse_move_target.y + move_y * move_amplitude)) <= 2) {
+		// Determine move amount
+		Me.mouse_move_target.x += move_x * move_amplitude;
+		Me.mouse_move_target.y += move_y * move_amplitude;
+	}
 }
 
 static void free_tux()
