@@ -78,18 +78,14 @@ items = {{"Big kitchen knife"},
 	 {"Crowbar"},
 	 {"Power hammer"},
 	 {"Baseball bat"},
-	 {"Normal Jacket"},
-	 {"Normal Jacket"},
-	 {"Reinforced Jacket"},
-	 {"Protective Jacket"},
+	 {"Normal Jacket", 2},
+	 {"Reinforced Jacket", 2},
 	 {"Standard Shield"},
 	 {"Heavy Shield"},
-	 {"Worker Helmet"},
-	 {"Worker Helmet"},
+	 {"Worker Helmet", 2},
 	 {"Miner Helmet"},
-	 {"Shoes"},
-	 {"Shoes"},
-	 {"Worker Shoes"},
+	 {"Shoes", 2},
+	 {"Worker Shoes"}
 	}
 }
 
@@ -107,17 +103,11 @@ items = {{"9x19mm Ammunition"},
 	 {"7.62x39mm Ammunition"},
 	 {".50 BMG (12.7x99mm) Ammunition"},
 	 {"2 mm Exterminator Ammunition"},
-	 {"Laser power pack"},
-	 {"Laser power pack"},
-	 {"Laser power pack"},
-	 {"Laser pistol"},
-	 {"Laser pistol"},
+	 {"Laser power pack", 3},
+	 {"Laser pistol", 2},
 	 {"Laser Rifle"},
-	 {"Plasma energy container"},
-	 {"Plasma energy container"},
-	 {"Plasma energy container"},
-	 {"Plasma pistol"},
-	 {"Plasma pistol"},
+	 {"Plasma energy container", 3},
+	 {"Plasma pistol", 2},
 	 {"Plasma gun"},
 	 {"Riot Shield"},
 	 {"Light Battle Helmet"},
@@ -131,9 +121,7 @@ items = {{"9x19mm Ammunition"},
 npc_shop{
 name = "Skippy",
 items = {-- "Map Maker", Script?
-	 {"Teleporter homing beacon"},
-	 {"Teleporter homing beacon"},
-	 {"Teleporter homing beacon"}
+	 {"Teleporter homing beacon", 3}
 	}
 }
 
@@ -141,12 +129,9 @@ npc_shop{
 name = "Duncan",
 items = {{"VMX Gas Grenade"},
 	 {"VMX Gas Grenade"},
-	 {"Small EMP Shockwave Generator"},
-	 {"Small EMP Shockwave Generator"},
-	 {"Electronic Noise Generator"},
-	 {"Electronic Noise Generator"},
-	 {"Small Plasma Shockwave Emitter"},
-	 {"Small Plasma Shockwave Emitter"}
+	 {"Small EMP Shockwave Generator", 2},
+	 {"Electronic Noise Generator", 2},
+	 {"Small Plasma Shockwave Emitter", 2}
 	}
 }
 
