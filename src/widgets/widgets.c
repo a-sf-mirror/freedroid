@@ -22,20 +22,30 @@
  *
  */
 
+/**
+ * \file widgets.c
+ * \brief This file contains the implementation of the base widget functions,
+ *        + some misc functions.
+ */
+
 #define _widgets_c
 
 #include "system.h"
-
 #include "defs.h"
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
-
 #include "widgets/widgets.h"
 
+////////////////////////////////////////////////////////////////////:
+// Misc functions used internally by the widgets
+////////////////////////////////////////////////////////////////////:
+
 /**
- * @struct image_resource
- * Used by widget_load_image_resource to store images.
+ * \brief Images cache for widgets
+ * \ingroup gui2d_misc
+ *
+ * \details Linked list used by widget_load_image_resource to store images.
  */
 struct image_resource {
 	char *name;
@@ -46,7 +56,12 @@ struct image_resource {
 LIST_HEAD(image_resource_list);
 
 /**
- * This function used to store images used by the widget system.
+ * \brief This function is used to load the images used by the widget system.
+ * \ingroup gui2d_misc
+ *
+ * \details A cache mechanism is implemented: if the image name is found in
+ * the image_resource_list, then the already loaded image is returned.
+ * Else, the image is loaded from disk, and stored in \e image_resource_list.
  */
 struct image *widget_load_image_resource(char *name, int use_offset_file) 
 {
@@ -69,8 +84,52 @@ struct image *widget_load_image_resource(char *name, int use_offset_file)
 	return &res->img;
 }
 
+////////////////////////////////////////////////////////////////////:
+// Tooltips handling
+////////////////////////////////////////////////////////////////////:
+
 /**
- * This function returns the current active user interface. 
+ * \brief Current tooltip
+ *
+ * \details Contains informations about the current tooltip to be displayed.
+ */
+static struct _tooltip_info {
+	struct tooltip *value;	/**< Pointer to the current widget's tooltip. */
+	SDL_Rect widget_rect;	/**< Tooltip owner rectangle. */
+} tooltip_info;
+
+/**
+ * \brief This function changes the tooltip text to be displayed by display_tooltips.
+ * \ingroup gui2d_tooltip
+ *
+ * \details To stop to display a tooltip, call this function with parameters set to NULL
+ *
+ * \param new_tooltip The new tooltip to be displayed.
+ * \param widget_rect Rectangle of the tooltip owner (used to compute the tooltip's position).
+ */
+void widget_set_tooltip(struct tooltip *new_tooltip, SDL_Rect *widget_rect)
+{
+	if (!new_tooltip || !widget_rect) {
+		tooltip_info.value = NULL;
+		return;
+	}
+
+	if ((new_tooltip->get_text && new_tooltip->get_text()) || new_tooltip->text) {
+		tooltip_info.value = new_tooltip;
+		tooltip_info.widget_rect = *widget_rect;
+	} else {
+		tooltip_info.value = NULL;
+	}
+}
+
+//////////////////////////////////////////////////////////////////////
+// External entry points
+//////////////////////////////////////////////////////////////////////
+
+/**
+ * \brief This function returns the current active user interface.
+ *
+ * \return A pointer to the root widget of the current active GUI.
  */
 static struct widget *get_active_ui()
 {
@@ -78,7 +137,7 @@ static struct widget *get_active_ui()
 	static struct widget *old_active_ui = NULL;
 	static struct widget *new_active_ui = NULL;
 
-	switch (game_status) {	
+	switch (game_status) {
 		case INSIDE_LVLEDITOR:
 			new_active_ui = WIDGET(get_lvledit_ui());
 			break;
@@ -91,7 +150,7 @@ static struct widget *get_active_ui()
 			return NULL;
 	}
 
-	// If the current active interface has changed, send a 
+	// If the current active interface has changed, send a
 	// mouse leave event to the previous interface.
 	if (old_game_status != game_status) {
 		SDL_Event event;
@@ -109,54 +168,12 @@ static struct widget *get_active_ui()
 }
 
 /**
- * This function pushes events to the currently active top level group. 
- */
-void handle_widget_event(SDL_Event *event)
-{
-	struct widget *ui = get_active_ui();
-
-	if (ui)
-		ui->handle_event(ui, event);
-}
-
-void widget_set_rect(struct widget *w, int x, int y, int width, int height)
-{
-	w->rect.x = x;
-	w->rect.y = y;
-	w->rect.w = width;
-	w->rect.h = height;
-}
-
-static struct {
-	struct tooltip *value;	/**< Pointer to the widget's tooltip. */
-	SDL_Rect widget_rect;	/**< Tooltip owner rectangle. */
-} tooltip_info;		/**< Contains informations about the current tooltip to be displayed.*/
-
-/**
- * This function changes the tooltip text to be displayed
- * by display_tooltips.
- * Set the tooltip to NULL to stop displaying it.
- * @param new_tooltip The new tooltip to be displayed.
- * @param widget_rect Rectangle of the tooltip owner.
- */
-void widget_set_tooltip(struct tooltip *new_tooltip, SDL_Rect *widget_rect)
-{
-	if (!new_tooltip || !widget_rect) {
-		tooltip_info.value = NULL;
-		return;
-	}
-
-	if ((new_tooltip->get_text && new_tooltip->get_text()) || new_tooltip->text) {
-		tooltip_info.value = new_tooltip;
-		tooltip_info.widget_rect = *widget_rect;
-	} else {
-		tooltip_info.value = NULL;
-	}
-}
-
-/**
- * This function displays tooltips when hovering widgets for a certain amount
- * of time. Widget can set their tooltip to be displayed by calling widget_set_tooltip.
+ * \brief Display the current active tooltip.
+ *
+ * \details A widget can set the current active tooltip by calling widget_set_tooltip().
+ * This is typically done when a widget receive a mouse hover event.\n
+ * \n
+ * TODO: reset the timer when a new tooltip is registered.
  */
 static void display_tooltips()
 {
@@ -233,10 +250,24 @@ static void display_tooltips()
 }
 
 /**
- * This functions calls the update function on the current gui tree.
- * This should be called once every few frames to update widgets' state.
+ * \brief This function pushes events to the currently active top level group.
+ * \ingroup gui2d_interface
+ */
+void handle_widget_event(SDL_Event *event)
+{
+	struct widget *ui = get_active_ui();
+
+	if (ui)
+		ui->handle_event(ui, event);
+}
+
+/**
+ * \brief This functions calls the update function on the current gui tree.
+ * \ingroup gui2d_interface
  *
- * NOTE: Update calls are handled by disabled widgets but are not sent to
+ * \details This should be called once every few frames to update widgets' state.\n
+ * \n
+ * \note Update calls are handled by disabled widgets but are not sent to
  * children widgets. This allows for inactive widgets to become active on
  * update.
  */
@@ -249,7 +280,8 @@ void update_widgets()
 }
 
 /**
- * This function displays the currently active top level widget group.
+ * \brief This function displays the currently active top level widget group.
+ * \ingroup gui2d_interface
  */
 void display_widgets() 
 {
@@ -261,8 +293,21 @@ void display_widgets()
 	}
 }
 
+//////////////////////////////////////////////////////////////////////
+// Base widget
+//////////////////////////////////////////////////////////////////////
+
 /**
- * Default event handler.
+ * \brief Default event handler implementation for a base widget.
+ * \relates widget
+ *
+ * \details The default event handler does nothing, and does not consumes the
+ * event.
+ *
+ * \param w     Pointer to the widget object
+ * \param event Pointer to the propagated event
+ *
+ * \return 0 (event not consumed)
  */
 static int handle_event(struct widget *w, SDL_Event *event)
 {
@@ -270,7 +315,12 @@ static int handle_event(struct widget *w, SDL_Event *event)
 }
 
 /**
- * update_tree() implementation: call update() on the widget
+ * \brief update_tree() implementation for a base widget
+ * \relates widget
+ *
+ * \details On a base widget, update_tree() calls the widget's update() function.
+ *
+ * \param w Pointer to the widget object
  */
 static void leaf_update(struct widget *w)
 {
@@ -279,20 +329,26 @@ static void leaf_update(struct widget *w)
 }
 
 /**
- * This function initializes the properties and functions of a simple widget.
+ * \brief Initialize the properties and functions of a base widget.
+ * \ingroup gui2d_widget
+ *
+ * \param w Pointer to the widget object
  */
 void widget_init(struct widget *w)
 {
 	widget_set_rect(w, 0, 0, 0, 0);
-	w->handle_event = handle_event;
 	w->display = NULL;
 	w->update = NULL;
+	w->handle_event = handle_event;
 	w->enabled = 1;
 	w->update_tree = leaf_update;
 }
 
 /**
- * This function creates a simple widget.
+ * \brief Create a base widget and initialize it.
+ * \ingroup gui2d_widget
+ *
+ * \return A pointer to the newly created base widget.
  */
 struct widget *widget_create()
 {
@@ -300,3 +356,23 @@ struct widget *widget_create()
 	widget_init(w);
 	return w;
 }
+
+/**
+ * \brief Set position and size of a widget.
+ * \ingroup gui2d_widget
+ *
+ * \param w       Pointer to the base widget struct
+ * \param x       Absolute position of the left side of the widget (defined in pixel, from the top-left of the screen)
+ * \param y       Absolute position of the top side of the widget (defined in pixel, from the top-left of the screen)
+ * \param width   Width of the widget (defined in pixel)
+ * \param height  Height of the widget (defined in pixel)
+ */
+void widget_set_rect(struct widget *w, int x, int y, int width, int height)
+{
+	w->rect.x = x;
+	w->rect.y = y;
+	w->rect.w = width;
+	w->rect.h = height;
+}
+
+#undef _widgets_c

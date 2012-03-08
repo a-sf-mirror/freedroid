@@ -22,25 +22,40 @@
  *
  */
 
-#include "system.h"
+/**
+ * \file widget_background.c
+ * \brief This file contains the implementation of the widget_background functions.
+ *
+ */
 
+#include "system.h"
 #include "defs.h"
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
-
 #include "widgets/widgets.h"
 
 /**
- * Structure type used for storing images by background widgets.
+ * \brief Structure type used for storing images by background widgets.
  */
 struct tile {
-	SDL_Rect rect;		/**< Position rectangle. */
-	struct image *image;
+	SDL_Rect rect;		 /**< Position rectangle of the image. */
+	struct image *image; /**< Pointer to the image structure */
 };
 
+//////////////////////////////////////////////////////////////////////
+// Overloads of Base widget functions
+//////////////////////////////////////////////////////////////////////
+
 /**
- * Display a background widget.
+ * \brief Display a background widget.
+ * \relates widget_background
+ *
+ * \details Display all the images composing the background of the widget.\n
+ * Position and size of the images have been computed when they have been added
+ * to the widget.
+ *
+ * \param w Pointer to the widget_background object
  */
 static void background_display(struct widget *w)
 {
@@ -58,9 +73,15 @@ static void background_display(struct widget *w)
 	}
 }
 
+//////////////////////////////////////////////////////////////////////
+// Background Widget
+//////////////////////////////////////////////////////////////////////
+
 /**
- * This function creates a background widget using default values.
- * @return A pointer to the newly created widget.
+ * \brief This function creates a background widget using default values.
+ * \ingroup gui2d_background
+ *
+ * \return A pointer to the newly created widget_background.
  */
 struct widget_background *widget_background_create()
 {
@@ -73,7 +94,21 @@ struct widget_background *widget_background_create()
 }
 
 /**
- * This function adds a new tile to a background widget.
+ * \brief Adds a new tile to a background widget.
+ * \ingroup gui2d_background
+ *
+ * \details This function adds an image to the array of the images
+ * displayed by the background widget.\n
+ * The position of the image is an absolute position, expressed in screen
+ * coordinates.\n
+ * The image will be un-uniformly scaled to fit the desired width and height.
+ *
+ * \param wb  Pointer to the widget_background object
+ * \param img Pointer to the image to add to the background
+ * \param x   Absolute position of the image along X axis
+ * \param y   Absolute position of the image along Y axis
+ * \param w   Display width of the image
+ * \param h   Display height of the image
  */
 void widget_background_add(struct widget_background *wb, struct image *img, int x, int y, int w, int h)
 {
@@ -84,15 +119,19 @@ void widget_background_add(struct widget_background *wb, struct image *img, int 
 }
 
 /**
- * This function loads a 3x3 set of tiles into a background widget and
- * scales them to fill the panel.
+ * \brief Add a 3x3 set of tiles to a background widget.
+ * \ingroup gui2d_background
  *
- * NOTE: The panel's size must be set before calling this function.
- * NOTE: The image files' names must use the folowing format: "<base_name>_i_j.png"
+ * \details This function loads a 3x3 set of tiles into a background widget and
+ * scales the 'middle' tiles to fill the panel.\n
+ * \n
+ * \note The panel's size must be set before calling this function.
+ * \par
+ * \note The image files' names must use the following format: "<base_name>_i_j.png"
  * where i represents the row and j represents the column.
  * 
- * @param panel The background widget in which the tiles are loaded. 
- * @param base_name The base name of the files from which the tiles are loaded.
+ * \param panel     A pointer to the widget_background object.
+ * \param base_name The base name of the files from which the tiles are loaded.
  */
 void widget_background_load_3x3_tiles(struct widget_background *panel, char *base_name)
 {
@@ -134,6 +173,7 @@ void widget_background_load_3x3_tiles(struct widget_background *panel, char *bas
 	//		+----+----+----+
 	//		     <---->
 	//		    center_column_w
+
 	// Fixed tiles
 	int right_column_x = WIDGET(panel)->rect.x + WIDGET(panel)->rect.w - tile[0][2].image->w;
 	int bottom_row_y = WIDGET(panel)->rect.y + WIDGET(panel)->rect.h - tile[2][0].image->h;

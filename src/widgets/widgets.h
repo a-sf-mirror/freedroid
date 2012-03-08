@@ -23,11 +23,284 @@
  */
 
 /**
- * @file widgets.h
- * This file contains structure types and functions used by the widget system.
+ * \file widgets.h
+ * \brief This file contains the declaration of structure type and functions
+ *        defining a base widget type, + some misc functions and types.
  */
-#ifndef _widgets_h
-#define _widgets_h
+
+/// \defgroup gui2d GUI subsystem
+///
+/// The GUI subsystem is used to create the interfaces between the game and the
+/// user (head up display, menu, dialog screen, shop screen, craft/upgrade addon
+/// panels, inventory/character/skill panels, quest log...).
+///
+/// \par General Overview
+///   \n
+///   A GUI is a tree of \e widgets. The leaves of the tree are interactive widgets,
+///   the higher part of the hierarchy being composed of (possibly interactive)
+///   \e container widgets. A container can have several children widgets. A
+///   bounding box (rectangular area of the screen) is defined for each widget.\n
+///   The game contains several trees (i.e. several GUIs), only one of them being
+///   active at a given time.\n
+///   \n
+///   \b Note: This subsystem does not implement all classical features of a GUI lib.
+///   All positions and sizes are statics, the widgets cannot be dynamically resized
+///   or moved. The interaction system is also minimal.\n
+///   \n
+///   The current GUI is drawn from the top of the tree down to the leaves, and
+///   from left to right for sibling widgets. Thus, the last child of a node
+///   visually will cover its sibling, if drawn at the same position.\n
+///   All widgets positions are absolute, expressed in screen coordinates.\n
+///   \n
+///   An interaction event is propagated from the top of the current active GUI
+///   down to the leaves, and from right to left for sibling widgets (this ensures
+///   that the most visible widget is the first one to receive the event).\n
+///   As soon as a widget \e consumes the event, the propagation is stopped.\n
+///   For a \e positioned event (event associated to a screen position, such as a
+///   mouse event), the widgets's bounding boxes are used to limit the propagation
+///   to the widgets covering the event's position.\n
+///
+/// \par Pseudo-Object Mechanism
+///   \n
+///   The widgets, no matter their types, share several common behaviors and
+///   properties. For example, most of them have a bounding box, can be drawn and
+///   can consume an event.\n
+///   In order to be able to write \e widget-type-agnostic algorithms (i.e. in
+///   order to avoid a lot of switches on the widget's type), an inheritance
+///   mechanism is used, alongside pseudo-classes.\n
+///   \n
+///   This mechanism is based on C-structure composition and function pointers:\n
+///   - A base widget pseudo-class is defined as a C-struct:\n
+///     \code
+/// struct widget {
+///   SDL_Rect rect;                                     // Bounding box
+///   ...
+///   void (*display)(struct widget *);                  // Pseudo-virtual display function
+///   void (*update)(struct widget *);                   // Pseudo_virtual update callback
+///   int (*handle_event)(struct widget *, SDL_Event *); // Pseudo-virtual event handler
+///   ...
+/// };
+///     \endcode
+///     A default behavior is implemented for each pseudo-virtual function.\n
+///     \n
+///   - A derived widget pseudo-class is defined by composition. The \e inherited
+///     widget pseudo-class \b has to be the first field of the C-struct:\n
+///     \code
+/// struct widget_button {
+///   struct widget base;   // Base widget pseudo-inheritance
+///   struct image *image;  // Background image of the button
+///   string text;          // Text displayed in center of the button's rectangle
+///   ...
+/// };
+///     \endcode
+///     \n
+///   - Widget-specific functions are defined, to \e overload the base pseudo-virtual
+///     functions:\n
+///     \code
+/// void button_display(struct widget *this_widget)
+/// {
+///   struct widget_button *this_button = (struct widget_button *)this_widget;
+///
+///   ... display the button, using 'this_widget' pointer to access base attributes
+///   ... and 'this_button' pointer to access button-specific attributes
+///   ... examples: this_widget->rect  this_button->image
+/// }
+///     \endcode
+///     \n
+///   - A button constructor can now be written. A macro is also introduced to
+///     ease pointer type casting:\n
+///     \code
+/// struct widget_button *widget_button_create()
+/// {
+///   struct widget_button *button = MyMalloc(sizeof(struct widget_button));
+///   widget_init(WIDGET(button));
+///
+///   button->image = NULL;
+///   button->text = NULL;
+///
+///   base->display = button_display;
+///   ...
+///   return button;
+/// }
+///
+/// #define WIDGET_BUTTON(x) ((struct widget_button *)x)
+///     \endcode
+///
+/// \par
+///   We can now write simple algorithms that call a pseudo-virtual function on a
+///   set of widgets. Here is a very trivial example:
+///   \code
+/// struct widget *gui[3];
+/// gui[0] = widget_create();
+/// gui[1] = WIDGET(widget_button_create());
+/// gui[2] = WIDGET(widget_text_create());
+/// for (i=0; i<3; i++) gui[i]->display(gui[i]);
+/// \endcode
+///
+/// \par Event handler
+///   \n
+///   Each widget class willing to handle interaction events has to implement a
+///   specific \e handle_event() function.\n
+///   If that function returns 0, then the event is propagated to the next widget
+///   in the tree.\n
+///   To indicate that the widget consumed the event, \e handle_event() must return 1.
+///
+/// \par Dynamic update of widget attributes
+///   \n
+///   Some attributes of a widget can depend on external data. For example, the
+///   visibility of a widget or the text of a button could depend on the current
+///   state of the game.\n
+///   We want to limit the intrusiveness of a GUI in the actual game code. It
+///   means that it is not the responsibility of the game code to change a widget's
+///   attribute. To update itself, a widget shall overload the \e update()
+///   pseudo-virtual function. That function is called when needed by the gui
+///   subsystem engine.
+///   \code
+/// void my_button_update(struct widget *this_widget)
+/// {
+///   struct widget_button *this_button = WIDGET_BUTTON(this_widget);
+///   if (some_global_variable == some_value)
+///     this_button->image = img1;
+///   else
+///     this_button->image = img2;
+/// }
+///
+/// struct widget_button *my_button = widget_button_create();
+/// WIDGET(my_button)->update = my_button_update;
+///   \endcode
+///   \n
+///   Most of the time, a widget only needs to update one attribute value, so we
+///   introduced a WIDGET_UPDATE_FLAG_ON_DATA macro to avoid writing a specific
+///   function. The former example can be rewritten to use that macro:
+///   \code
+/// WIDGET(my_button)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, image,
+///                               (some_global_variable == some_value) ? img1 : img2);
+///   \endcode
+///   \n
+///   The last parameter of the macro can be a function call, if some more complex
+///   evaluation is needed. That function needs to return a value that can be
+///   stored in the widget's attribute:
+///   \code
+/// struct image *get_img() { ... }
+/// WIDGET(my_button)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, image, get_img());
+///   \endcode
+///
+/// \par Creating a GUI
+///   \n
+///   A GUI is a tree composed of containers (widget_group) and \e terminal widgets.
+///   The inclusion of a GUI in the game needs:\n
+///   \n
+///   - A getter function.\n
+///     Example of a small GUI composed of a root node and a single child:
+///     \code
+/// static widget_group *my_gui_root = NULL;
+///
+/// struct widget_group *get_my_gui()
+/// {
+///   if (my_gui_root)
+///     // GUI already initialized.
+///     return my_gui_root;
+///
+///   my_gui_root = widget_group_create();
+///   widget_set_rect(WIDGET(my_gui_root), gui_x, gui_y, gui_width, gui_height);
+///
+///   struct widget_button *the_button = widget_button_create();
+///   widget_set_rect(WIDGET(the_button), button_x, button_y, button_width, button_height);
+///   ... set some other button properties
+///
+///   widget_group_add(my_gui_root, WIDGET(the_button));
+///
+///   return my_gui_root;
+/// }
+///     \endcode
+///     \n
+///   - An inclusion in the get_active_ui() global function.\n
+///     Currently, a global \e game_status variable is used to define the current
+///     active GUI. A new value has to be added to that enum, and the get_active_ui()
+///     function has to be extended:
+///     \code
+/// enum { ..., INSIDE_MY_GUI } game_status;
+///
+/// static struct widget *get_active_ui()
+/// {
+///   ...
+///   switch (game_status) {
+///     ...
+///     case INSIDE_MY_GUI:
+///       new_active_ui = WIDGET(get_my_gui());
+///       break;
+///     ...
+///   }
+///   ...
+/// }
+///     \endcode
+///
+/// \par Panels
+///   \n
+///   During the run of the game, it is sometimes needed to temporarily open a
+///   \e window (we use the term \e panel rather than \e window). Inventory panel is
+///   an example of such a \e window.\n
+///   \n
+///   Since only one single GUI is displayed at a time, such panels have to be
+///   included in the current GUI tree (under the root node of the tree), and be
+///   made invisible by default. Their update() function can then be used to open
+///   them when needed.\n
+///   \n
+///   Example:
+///   \code
+/// ...
+/// my_gui_root = widget_group_create();
+/// widget_set_rect(WIDGET(my_gui_root), gui_x, gui_y, gui_width, gui_height);
+///
+/// // create the main GUI and add it to the root node
+/// main_gui = widget_group_create();
+/// ...
+/// widget_group_add(my_gui_root, WIDGET(main_gui));
+///
+/// // create the invisible panel and add it to the root node
+/// panel = widget_group_create();
+/// WIDGET(panel)->enabled = FALSE;
+/// WIDGET(panel)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, Game.panel_opened);
+/// ...
+/// widget_group_add(my_gui_root, WIDGET(panel));
+///   \endcode
+///
+/// \par Simulating transient panel
+///   \n
+///   A transient panel is a GUI sub-tree (see above) that is displayed on
+///   top of the screen and \e captures all events. It means that events outside
+///   of the transient window must not be propagated to the other parts of the
+///   GUI.\n
+///   \n
+///   Such a mechanism is not natively implemented, but can be simulated by
+///   adding a widget_background covering the whole screen \e under the transient
+///   panel, which captures all events. In freedroidRPG, we usually use a
+///   semi-transparent image for that background widget.\n
+///   \n
+///   Example code:
+///   \code
+/// static int catch_all_events(struct widget *w, SDL_Event *evt)
+/// {
+///   return 1;
+/// }
+/// ...
+/// transient_panel = widget_group_create();
+/// widget_set_rect(WIDGET(transient_panel), 0, 0, screen_width, screen_height);
+///
+/// catch_all_bkg = widget_background_create();
+/// widget_set_rect(WIDGET(catch_all_bkg), 0, 0, screen_width, screen_height);
+/// widget_background_add(catch_all_bkg, "black_semi_transparent.png", 0, 0, screen_width, screen_height);
+/// WIDGET(catch_all_bkg)->handle_event = call_all_events;
+/// widget_group_add(transient_panel, WIDGET(catch_all_bkg));
+/// ...
+/// ... add other widgets to transient_panel
+/// ...
+///   \endcode
+///
+
+#ifndef _widgets_h_
+#define _widgets_h_
+
 #undef EXTERN
 #ifndef _widgets_c
 #define EXTERN extern
@@ -35,6 +308,29 @@
 #define EXTERN
 #endif
 
+///////////////////////////////////////////////////////////////////////////////
+/// \defgroup gui2d_widget Base widget type
+/// \ingroup gui2d
+///
+/// The \e widget C-struct is the base type on which all other widget types
+/// are constructed.\n
+/// \n
+/// It contains the attributes common to all widgets (such as a bounding box
+/// \e rect, an \e enabled flag...), as well as the mandatory pseudo-virtual
+/// functions needed to display and interact with a widget, and a default
+/// implementation of those functions.
+///
+///@{
+// start gui2d_widget submodule
+
+/**
+ * \brief Enumeration of all known widget types.
+ *
+ * \deprecated
+ * This enumeration is needed for compatibility with the lvleditor current code.
+ * It will be removed as soon as the lvleditor is converted to fully use the new
+ * gui subsystem.
+ */
 enum widget_type {
 	WIDGET_BUTTON,
 	WIDGET_TOOLBAR,
@@ -44,77 +340,239 @@ enum widget_type {
 };
 
 /**
- * @struct widget
- * @brief Base widget type.
+ * \brief Base widget type.
  *
- * This is the base type used by the widget system. Contains basic information and callbacks
- * used by all widget types.
- * NOTE: Widget types inheriting this type must have it as their first attribute.   
+ * This is the base type used by the widget system.\n
+ * It contains basic information and callbacks used by all widget types.\n
+ * \n
+ * \b NOTE: Widget types inheriting this type must have it as their first attribute.
  */
 struct widget {
-	enum widget_type type;	/**< Enum representing the widget's type. Deprecated. */
-	SDL_Rect rect;		/**< Rectangle containing widget's size and position. */
-	uint8_t enabled;	/**< Boolean flag used for enabling/disabling the widget. */
-	void (*display) (struct widget *); /**< Display callback. */
-	void (*update) (struct widget *);  /**< Callback used to update widget's properties. */
+	/// \name Public attributes
+	///
+	/// \var rect
+	///       Widget position and size are not automatically computed, so if a
+	///       container's child is moved or resized, the container position and size
+	///       have to be recomputed by the user's code.
+	/// \var enabled
+	///       A disabled widget is not displayed, and does not handle input event.
+	///       It's update() function is however called.
+	/// @{
+	SDL_Rect rect;         /**< Rectangle containing widget's size and position. */
+	uint8_t enabled;       /**< Boolean flag used for enabling/disabling the widget. */
+	enum widget_type type; /**< Enum representing the widget's type. (deprecated) */
+	void *ext;             /**< Pointer to type specific data. (deprecated) */
+	/// @}
+
+	/// \name Public pseudo-virtual functions
+	///       Define the actual rendering and behavior of a widget type.
+	///       The basic implementation provided by the base widget can be overridden
+	///       by inheriting widgets.
+	/// @{
+	void (*display) (struct widget *);                  /**< Display the widget. */
+	void (*update) (struct widget *);                   /**< Update the widget's attributes. */
 	int (*handle_event) (struct widget *, SDL_Event *);	/**< General event handler. */
-	void *ext;		/**< Pointer to type specific data. Deprecated. */
-	// Internal functions
-	void (*update_tree) (struct widget *); /**< Update propagation */
-	struct list_head node;	/**< Linked list node used for storing sibling widgets in a widget_group. */
+	/// @}
+
+	/// \name Private internal functions and attributes
+	///       Needed for the management of a widget's tree, not meant to changed
+	///     by the user.
+	/// @{
+	void (*update_tree) (struct widget *);              /**< Update call propagation */
+	struct list_head node;                              /**< Linked list node used for storing sibling widgets in a widget_group. */
+	/// @}
 };
 
 /**
- * This structure is used for storing and displaying tooltips.
- * The tooltip text will be retrieved using the get_text function pointer. If this pointer is NULL,
- * the text field will be used instead.
- * NOTE: get_text should be used for dynamic tooltips while the text field should be used for static tooltips.
- */
-struct tooltip {
-	string (*get_text)(void);	/**< Returns the text of a dynamic tooltip. */
-	string text;		/**< String used for static tooltip texts. */
-};
-
-void display_widgets(void);
-void update_widgets(void);
-struct widget *widget_create(void);
-void widget_init(struct widget *);
-void handle_widget_event(SDL_Event *);
-struct image *widget_load_image_resource(char *, int);
-void widget_set_rect(struct widget *, int, int, int, int);
-void widget_set_tooltip(struct tooltip *, SDL_Rect *);
-
-/**
- * This macro is used for creating callbacks that updates
- * a widget flag using an external variable.
+ * \brief Type casting macro.
  *
- * @param widget_type the type of the widget for which the callback is set.
- * @param flag the widget flag to be updated.
- * @param data the external data used for updating.
+ * Cast a pointer to a type inheriting from a \e base \e widget into a pointer
+ * to a \e base \e widget.
  */
-#define WIDGET_UPDATE_FLAG_ON_DATA(widget_type, flag, data) \
+#define WIDGET(x) ((struct widget *)x)
+
+/**
+ * \brief Macro used to create a widget update callback acting on a single attribute.
+ *
+ * The update behavior of most widgets is simply to change the value of one
+ * attribute according to some game data.\n
+ * This macro can be used in such a case to avoid to write a specific function.\n
+ * \n
+ * Usage examples:\n
+ * - Set the \e enabled attribute to the value of one game data
+ *   \code
+ * the_widget->update = WIDGET_UPDATE_FLAG_ON_DATA(widget_type, enabled, boolean_game_data);
+ *   \endcode
+ * - Set the \e enabled attribute depending on the value of one game data
+ *   \code
+ * the_widget->update = WIDGET_UPDATE_FLAG_ON_DATA(widget_type, enabled,
+ *                        (int_game_data >= 0.5) ? TRUE : FALSE);
+ *   \endcode
+ * - Set the \e enabled attribute to be the result of a function call
+ *   \code
+ * the_widget->update = WIDGET_UPDATE_FLAG_ON_DATA(widget_type, enabled,
+ *                        compute_value(some_game_data...));
+ *   \endcode
+ *
+ * \param widget_type the type of the widget for which the callback is set.
+ * \param attr        the widget attribute to be updated.
+ * \param data        the external data, or statement, used to update the widget attribute.
+ */
+/*
+ * Implementation note.
+ * The goal of the macro is to create an anonymous function and to return a
+ * pointer to this function. This is done with the use of a compound statement
+ * expression and a function declared inside the compound block.
+ * (compound statement expression is a gcc specific extension)
+ */
+#define WIDGET_UPDATE_FLAG_ON_DATA(widget_type, attr, data) \
 ({ \
   void anonymous_func(struct widget *w) \
   { \
-    widget_type(w)->flag = data; \
+    widget_type(w)->attr = data; \
   } \
   anonymous_func; \
 })
 
-#undef EXTERN
+struct widget *widget_create(void);
+void widget_init(struct widget *);
+void widget_set_rect(struct widget *, int, int, int, int);
 
-#define WIDGET(x) ((struct widget *)x)
+// end gui2d_widget submodule
+///@}
+///////////////////////////////////////////////////////////////////////////////
 
-#define EVENT_MOUSE_ENTER 0	/**< User event code used for signaling mouse entering a widget. */
-#define EVENT_MOUSE_LEAVE 1	/**< USer event code used for signaling mouse leaving a widget. */
 
+///////////////////////////////////////////////////////////////////////////////
+/// \defgroup gui2d_tooltip Tooltips
+/// \ingroup gui2d
+///
+/// The GUI subsystem includes a minimalist implementation of tooltips:
+/// only one tooltip is registered and displayed.\n
+/// \n
+/// It is thus the responsibility of the user code to set/unset the tooltip to
+/// be used at a given time. This is usually done when a widget detects
+/// a mouse enter/leave event.\n
+/// \n
+/// The text displayed by a tooltip can be static, or dynamic through the use
+/// of a callback function, called just before to display the tooltip (see
+/// struct tooltip).\n
+/// \n
+/// Example code:
+/// \code
+/// static string get_my_tooltip_text() {
+///   ...
+///   return some_computed_text;
+/// }
+///
+/// struct tooltip my_tooltip = { get_my_tooltip_text, "" };
+///
+/// int mywidget_handle_event(struct widget *w, SDL_Event *event)
+/// {
+///   ...
+///   case SDL_USEREVENT:
+///     if (event->user.code == EVENT_MOUSE_ENTER) {
+///       ...
+///       // Register the tooltip
+///       widget_set_tooltip(my_tooltip, &w->rect);
+///     }
+///     if (event->user.code == EVENT_MOUSE_LEAVE) {
+///        ...
+///       // Unregister the tooltip
+///       widget_set_tooltip(NULL, NULL);
+///     }
+///   ...
+/// }
+/// \endcode
+///
+///@{
+// start gui2d_tooltip submodule
+
+/**
+ * \brief Tooltip placeholder
+ *
+ * Structure used for storing and displaying tooltips.
+ *
+ * The tooltip text will be retrieved using the get_text function pointer. If this pointer is NULL,
+ * the text field will be used instead.\n
+ * \n
+ * \b NOTE: get_text should be used for dynamic tooltips while the text field should be used for static tooltips.
+ */
+struct tooltip {
+	string (*get_text)(void); /**< Returns the text of a dynamic tooltip. */
+	string text;              /**< String used for static tooltip texts. */
+};
+
+void widget_set_tooltip(struct tooltip *, SDL_Rect *);
+
+// end gui2d_tooltip submodule
+///@}
+///////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \defgroup gui2d_misc Misc
+/// \ingroup gui2d
+///
+/// Miscellaneous functions, definitions, or global variables.\n
+/// Mainly used in the code of the widgets.
+///
+///@{
+// start gui2d_misc submodule
+
+/** User event code used for signaling mouse entering a widget. */
+#define EVENT_MOUSE_ENTER 0
+/** User event code used for signaling mouse leaving a widget. */
+#define EVENT_MOUSE_LEAVE 1
+
+/** Explicit name for mouse button #1 (usually left button) */
 #define MOUSE_BUTTON_1 1
+/** Explicit name for mouse button #2 (usually middle button) */
 #define MOUSE_BUTTON_2 2
+/** Explicit name for mouse button #3 (usually right button) */
 #define MOUSE_BUTTON_3 3
+
+struct image *widget_load_image_resource(char *, int);
+
+// end gui2d_misc submodule
+///@}
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+/// \defgroup gui2d_interface External entry points
+/// \ingroup gui2d
+///
+/// Three functions are defined as \e interface to the gui subsystem.\n
+/// They have to be called in the game loop in the following order, to ensure
+/// a correct behavior of the widgets:
+/// - handle_widget_event(): Propagate an interaction event inside the current
+///                          active tree.
+/// - update_widgets(): Ask the elements of the current active widget tree to
+///                     update their attributes.
+/// - display_widgets(): Displays the currently active widget tree.
+///
+/// The GUI tree used by those functions is the one returned by get_active_ui(),
+/// which depends on the current value of the \e game_status global variable.
+///
+/// widget_set_tooltip(NULL, NULL) (see \ref gui2d_tooltip) must be called
+/// before to start the game loop, in order to reset the display of tooltips.
+///
+///@{
+// start gui2d_interface submodule
+
+void handle_widget_event(SDL_Event *);
+void update_widgets(void);
+void display_widgets(void);
+
+// end gui2d_interface submodule
+///@}
+///////////////////////////////////////////////////////////////////////////////
+
+#undef EXTERN
 
 #include "widgets/widget_group.h"
 #include "widgets/widget_button.h"
 #include "widgets/widget_text.h"
 #include "widgets/widget_background.h"
 
-#endif
+#endif // _widgets_h_

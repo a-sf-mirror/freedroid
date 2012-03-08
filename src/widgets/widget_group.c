@@ -23,16 +23,11 @@
  */
 
 /**
- * @file widget_group.c
- * @brief Contains callback functions used by the widget group.
+ * \file widget_group.c
+ * \brief This file contains the implementation of the widget_group functions.
  *
- * The widget system uses a recursive behaviour for handling events and displaying widgets.
- * Widgets must be added to a group from back to front to ensure they are handled properly.
- * Displaying is done by looping the children list in normal order - widgets at the back of
- * the list will be able to cover the ones at the top of the list.
- * Event forwarding is done by looping the children list in reverse order - widgets covering
- * other widgets will have priority in catching events.
  */
+
 #define _widget_group_c
 
 #include "system.h"
@@ -42,28 +37,26 @@
 #include "proto.h"
 #include "widgets/widgets.h"
 
-/*
- * Display children widgets.
- */
-static void group_display(struct widget *w) 
-{
-	struct widget *widget;
-	list_for_each_entry(widget, &WIDGET_GROUP(w)->list, node) {
-		if (widget->enabled && widget->display)
-			widget->display(widget);	
-	}
-}
+//////////////////////////////////////////////////////////////////////
+// Specific event handlers
+//////////////////////////////////////////////////////////////////////
 
 /**
- * @brief Handles mouse motion and mouse button clicks events received by widget groups.
+ * \brief Default handling of mouse motion and mouse button clicks events for a widget_group.
+ * \relates widget_group
  * 
- * This function is used in widget_group_handle_event to handle mouse motion and button events.
- * The widget group handles these events by forwarding them to the first enabled children 
- * under the mouse.
+ * \details This function is used in widget_group_handle_event() to handle mouse motion
+ * and button events. The widget group handles these events by forwarding them
+ * to the first enabled children under the mouse.\n
+ * \n
+ * Mouse leave/enter events are handled recursively by each widget group.\n
+ * Each widget group uses a last_focused widget pointer to monitor when a new
+ * children receives the event and sends leave/enter events accordingly.
  *
- * Mouse leave/enter events are handled recursively by each widget group.
- * Each widget group uses a last_focused widget pointer to monitor when a new children receives the event
- * and sends leave/enter events accordingly.
+ * \param wg    Pointer to the widget_group object
+ * \param event Pointer to the caught event
+ *
+ * \return 1 if the event is consumed (stop the event propagation) or 0 if not.
  */
 static int group_mouse_event(struct widget *wg, SDL_Event *event)
 {	
@@ -96,16 +89,28 @@ static int group_mouse_event(struct widget *wg, SDL_Event *event)
 	// Let the child widget handle the event.
 	if (current_widget)
 		return current_widget->handle_event(current_widget, event);
+
 	return 0;
 }
 
 /**
- * Pass the keyboard event to all enabled children until one returns true.
+ * \brief Default handling of keyboard events for a widget_group.
+ * \relates widget_group
+ *
+ * \details This function is used in widget_group_handle_event() to handle keyboard events.
+ * It passes the keyboard event to all enabled children until one returns true
+ * (i.e. one child consumed the event).
+ *
+ * \param wg    Pointer to the widget_group object
+ * \param event Pointer to the caught event
+ *
+ * \return 1 if the event is consumed (stop the event propagation) or 0 if not.
  */
 static int group_keyboard_event(struct widget *wg, SDL_Event *event)
 {
 	struct widget *w;
 
+	// The loop is done in reverse to ensure that widgets covering other widgets catch the event first.
 	list_for_each_entry_reverse(w, &WIDGET_GROUP(wg)->list, node) {
 		if (w->enabled && w->handle_event(w, event)) {
 			return 1;
@@ -115,29 +120,18 @@ static int group_keyboard_event(struct widget *wg, SDL_Event *event)
 }
 
 /**
- * @brief Handles update calls received by widget groups.
- * 
- * This function will call the group's update callback and forward
- * the update call to all children widgets if the group is enabled.
- */
-static void group_update(struct widget *wg)
-{
-	struct widget *w;
-
-	// Update the widget group.
-	if (wg->update)
-		wg->update(wg);
-
-	// Propagate on all children
-	if (wg->enabled) {
-		list_for_each_entry(w, &WIDGET_GROUP(wg)->list, node) {
-			w->update_tree(w);
-		}
-	}
-}
-
-/**
- * Pass the mouse leave event to the last focused children widget if there is one.
+ * \brief Default handling of mouse_leave events for a widget_group.
+ * \relates widget_group
+ *
+ * \details This function is used in widget_group_handle_event() to handle mouse leave
+ * events.\n
+ * It passes the mouse leave event to the last_focused child widget (if any),
+ * and then resets the value of the last_focused pointer.
+ *
+ * \param wg    Pointer to the widget_group object
+ * \param event Pointer to the caught event
+ *
+ * \return 1 (i.e the event is consumed)
  */
 static int group_mouse_leave_event(struct widget *wg, SDL_Event *event)
 {
@@ -148,8 +142,39 @@ static int group_mouse_leave_event(struct widget *wg, SDL_Event *event)
 	return 1;
 }
 
+//////////////////////////////////////////////////////////////////////
+// Overloads of Base widget functions
+//////////////////////////////////////////////////////////////////////
+
 /**
- * This function handles all events received by a widget group.
+ * \brief Display the children of a widget_group.
+ * \relates widget_group
+ *
+ * \details Loop on each child of the widget_group, and call their display function is
+ * the child is enabled.
+ *
+ * \param w Pointer to the widget_group object
+ */
+static void group_display(struct widget *w)
+{
+	struct widget *widget;
+	list_for_each_entry(widget, &WIDGET_GROUP(w)->list, node) {
+		if (widget->enabled && widget->display)
+			widget->display(widget);
+	}
+}
+
+/**
+ * \brief Event handler for a widget group.
+ * \relates widget_group
+ *
+ * \details Calls specific functions to handle mouse events, keyboard events and
+ * mouse leave event.
+ *
+ * \param wg    Pointer to the widget_group object
+ * \param event Pointer to the caught event
+ *
+ * \return 1 if the event is consumed (stop the event propagation) or 0 if not.
  */
 int widget_group_handle_event(struct widget *wg, SDL_Event *event)
 {
@@ -178,23 +203,55 @@ int widget_group_handle_event(struct widget *wg, SDL_Event *event)
 }
 
 /**
- * Initialize widget group properties
+ * \brief update_tree() implementation for a widget_group
+ * \relates widget_group
+ *
+ * \details On a widget_group, update_tree() calls the group's update() function, and forwards
+ * the update call to all children widgets if the group is enabled.
+ *
+ * \param wg Pointer to the widget_group object
+ */
+static void group_update(struct widget *wg)
+{
+	struct widget *w;
+
+	// Update the widget group.
+	if (wg->update)
+		wg->update(wg);
+
+	// Propagate on all children
+	if (wg->enabled) {
+		list_for_each_entry(w, &WIDGET_GROUP(wg)->list, node) {
+			w->update_tree(w);
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////////////////
+// Group Widget
+//////////////////////////////////////////////////////////////////////
+
+/**
+ * \brief Initialize the properties and functions of a widget_group.
+ * \ingroup gui2d_group
+ *
+ * \param wg Pointer to the widget group object
  */
 void widget_group_init(struct widget_group *wg)
 {
 	widget_init(WIDGET(wg));
-	WIDGET(wg)->update_tree = group_update;
 	WIDGET(wg)->display = group_display;
 	WIDGET(wg)->handle_event = widget_group_handle_event;
 	wg->list = (struct list_head)LIST_HEAD_INIT(wg->list);
 	wg->last_focused = NULL;
+	WIDGET(wg)->update_tree = group_update;
 }
 
 /**
- * @brief Creates a widget_group.
+ * \brief Create a widget_group and initialize it.
+ * \ingroup gui2d_group
  *
- * This function creates a widget_group using the default callbacks.
- * @return A pointer to the newly created widget_group.
+ * \return A pointer to the newly created widget_group.
  */
 struct widget_group *widget_group_create() 
 {
@@ -204,9 +261,18 @@ struct widget_group *widget_group_create()
 }
 
 /**
- * This function adds a widget to a widget_group.
- * @param wg a pointer to the widget_group to which a new widget is added.
- * @param w a pointer to widget that is being added to the widget group.
+ * \brief Add a widget to a widget_group.
+ * \ingroup gui2d_group
+ *
+ * \details Any type deriving from \e base \e widget can be added as a child to a
+ * widget_group.\n
+ * \n
+ * The widget is added at the end of the children linked list.
+ *
+ * \param wg Pointer to the widget_group to which a new widget is added.
+ * \param w  Pointer to widget that is being added to the widget group.
+ *
+ * \return 0 (reserved for future use)
  */
 int widget_group_add(struct widget_group *wg, struct widget *w) 
 {

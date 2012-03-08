@@ -22,29 +22,87 @@
  *
  */
 
-#ifndef WIDGET_GROUP_H
-#define WIDGET_GROUP_H
+/**
+ * \file widget_group.h
+ * \brief This file contains the declaration of structure type and functions
+ *        defining a group widget type.
+ */
+
+#ifndef _widget_group_h_
+#define _widget_group_h_
+
+///////////////////////////////////////////////////////////////////////////////
+/// \defgroup gui2d_group Group widget type
+/// \ingroup gui2d
+///
+/// The \e widget_group inherits from the base widget and implements a
+/// container of widgets: it stores, displays and updates a group of
+/// widgets. In a GUI tree, \e widget_groups are used as intermediate nodes.\n
+/// \n
+/// Children of a \e widget_group are stored in a linked list, the widget group
+/// containing the head of that list.\n
+/// \n
+/// The widget system uses a recursive behavior for handling events and displaying
+/// widgets. Widgets must be added to a group from back to front to ensure they
+/// are handled properly.\n
+/// \n
+/// Displaying is done by looping the children list in normal order - widgets at
+/// the back of the list will be able to cover the ones at the top of the list.
+/// A child widget is displayed only if is enabled.\n
+/// \n
+/// Event forwarding is done by looping the children list in reverse order -
+/// widgets covering other widgets will have priority in catching events.
+/// An event is propagated to a child only if it is enabled.\n
+/// \n
+/// A widget group also detects when the mouse pointer leaves or enters one of
+/// its children, and send leave/enter events to the involved children widgets.\n
+/// \n
+/// \note see \ref gui2d (Creating a GUI) for an example code.
+///
+///@{
+// start gui2d_group submodule
 
 /** 
- * @struct widget_group
- * @brief Type used for managing multiple widgets. 
+ * \brief Widget Group type.
  *
  * This structure type is used for storing, displaying and updating a group of
- * widgets.
- * NOTE: Widget types inheriting widget_group must have it as their first attribute.
+ * widgets.\n
+ * It does not introduce new pseudo-virtual functions.\n
+ * \n
+ * \b NOTE: Widget types inheriting widget_group must have it as their first attribute.
  */
 struct widget_group {
-	struct widget base;		/**< Base widget type, containing callback functions. */
-	struct widget *last_focused;	/**< Widget pointer used for handling enter/leave events. */
-	struct list_head list;		/**< Linked list used for storing children. */
+	/// \name Base type
+
+	/// @{
+	struct widget base;          /**< Pseudo-inheritance of the base widget type. */
+	/// @}
+
+	/// \name Private internal attributes
+	///       Needed for the management of a widget's tree, not meant to changed
+	///       by the user.
+
+	/// @{
+	struct widget *last_focused; /**< Widget pointer used for handling enter/leave events. */
+	struct list_head list;       /**< Head of the linked list used for storing children. */
+	/// @}
 };
 
-int widget_group_add(struct widget_group *, struct widget *);
-int widget_group_handle_event(struct widget *, SDL_Event *);
-struct widget_group *widget_group_create(void);
-void widget_group_init(struct widget_group *);
-
+/**
+ * \brief Type casting macro.
+ *
+ * Cast a pointer to a type inheriting from a \e widget_group into a pointer to
+ * a \e widget_group.
+ */
 #define WIDGET_GROUP(x) ((struct widget_group *)x)
 
-#endif
+struct widget_group *widget_group_create(void);
+void widget_group_init(struct widget_group *);
+int widget_group_add(struct widget_group *, struct widget *);
+int widget_group_handle_event(struct widget *, SDL_Event *);
 
+// end gui2d_group submodule
+///@}
+///////////////////////////////////////////////////////////////////////////////
+
+#endif // _widget_group_h_

@@ -599,6 +599,7 @@ struct widget_group *get_game_ui()
 	// Create map widget.
 	// This widget is required to know when a mouse event should be handled
 	// by AnalyzePlayerMouseClicks.
+	// TODO: this should definitely not be a widget_button !
 	game_map = widget_button_create();
 	widget_set_rect(WIDGET(game_map), 0, 0, GameConfig.screen_width, GameConfig.screen_height - 98); 
 	widget_group_add(game_widget_group, WIDGET(game_map));

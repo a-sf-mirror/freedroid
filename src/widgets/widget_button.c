@@ -22,28 +22,43 @@
  *
  */
 
-#include "system.h"
+/**
+ * \file widget_button.c
+ * \brief This file contains the implementation of the widget_button functions.
+ *
+ */
 
+#include "system.h"
 #include "defs.h"
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
-
 #include "widgets/widgets.h"
 
+//////////////////////////////////////////////////////////////////////
+// Overloads of Base widget functions
+//////////////////////////////////////////////////////////////////////
+
 /**
- * Generic handle event function for buttons.
+ * \brief Generic handle event function for buttons.
+ * \relates widget_button
  * 
- * Buttons have 3 primary states: normal, hovered and pressed.
+ * \details Buttons have 3 primary states: normal, hovered and pressed.\n
  * Pressed state is switched on on mouse press event and switched off
- * on mouse release or mouse leave event.
- * 
+ * on mouse release or mouse leave event.\n
+ * \n
  * Buttons have one primary and one secondary action. The primary action is
  * triggered on left mouse button release while the secondary action is 
  * triggered on right mouse button release. Both actions require
  * the button to be in pressed state when receiving the release event
  * to be triggered.
- * @return 1 if the event was handled and no further handling is required.
+ *
+ * \param w     Pointer to the widget_button object
+ * \param event Pointer to the propagated event
+ *
+ * \return 1 if the event was handled and no further handling is required.
+ *
+ * TODO: return 1 on all event catches
  */
 static int button_handle_event(struct widget *w, SDL_Event *event)
 {
@@ -88,7 +103,13 @@ static int button_handle_event(struct widget *w, SDL_Event *event)
 }
 
 /**
- * Display a button widget.
+ * \brief Display a button widget.
+ * \relates widget_button
+ *
+ * \details The visual representation of a button is composed of a background image
+ * (selected depending on the current button's state) and a foreground text.
+ *
+ * \param wb Pointer to the widget_button object
  */
 static void button_display(struct widget *wb)
 {
@@ -135,10 +156,15 @@ static void button_display(struct widget *wb)
 	}
 }
 
+//////////////////////////////////////////////////////////////////////
+// Button Widget
+//////////////////////////////////////////////////////////////////////
+
 /**
- * @brief Creates a widget_button.
- * This function creates a widget_button using the default callbacks.
- * @return A pointer to the newly created widget_button.
+ * \brief Create a widget_button and initialize it.
+ * \ingroup gui2d_button
+ *
+ * \return A pointer to the newly created widget_button.
  */
 struct widget_button *widget_button_create()
 {
