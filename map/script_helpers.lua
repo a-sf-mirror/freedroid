@@ -1,3 +1,6 @@
+-- set the random seed
+math.randomseed(os.time())
+
 -- aliases for dialogs
 next = set_next_node
 show = enable_node
