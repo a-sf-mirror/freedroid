@@ -32,7 +32,7 @@ yum install SDL_image-devel SDL_net-devel SDL_mixer-devel SDL_gfx-devel libjpeg-
 
 pacman -S libgl libvorbis lua sdl sdl_gfx sdl_image sdl_mixer
 
-There is also a freedroidrpg-svn pkgbuild at the arch user repository: https://aur.archlinux.org/packages.php?ID=30257
+There is also a freedroidrpg-git pkgbuild at the arch user repository: https://aur.archlinux.org/packages.php?ID=57483
 
 4) Please contribute lists for your distribution!
 
