@@ -105,6 +105,12 @@ obstacle *add_obstacle(level *lvl, float x, float y, int type)
 {
 	int i;
 
+	if (type < 0) {
+		ErrorMessage(__FUNCTION__,
+				"Cannot add an obstacle with a negative type value (type: %d - level: %d). Skeeping it.",
+				PLEASE_INFORM, IS_WARNING_ONLY, type, lvl->levelnum);
+	}
+
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
 		if (lvl->obstacle_list[i].type != -1)
 			continue;
