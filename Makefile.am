@@ -24,15 +24,15 @@ EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.generic lua
 
 dist-hook:
 	make -C lua clean
-	find $(distdir) -name ".svn"              | xargs rm -rf
+	find $(distdir) -name ".git"              | xargs rm -rf
 	find $(distdir) -name "*~"                | xargs rm -f
 	find $(distdir) -name ".#*"               | xargs rm -f
 
 install-data-local:
 	@echo "Installing the data-files ..."
 	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
-	find $(srcdir)/$(freedroid_data) -type d ! -path "*.svn*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec echo $(DESTDIR)$(pkgdatadir)/{} \; | xargs $(mkinstalldirs)
-	find $(srcdir)/$(freedroid_data) -type f ! -path "*.svn*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec $(INSTALL_DATA) {} $(DESTDIR)$(pkgdatadir)/{} \;
+	find $(srcdir)/$(freedroid_data) -type d ! -path "*.git*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec echo $(DESTDIR)$(pkgdatadir)/{} \; | xargs $(mkinstalldirs)
+	find $(srcdir)/$(freedroid_data) -type f ! -path "*.git*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec $(INSTALL_DATA) {} $(DESTDIR)$(pkgdatadir)/{} \;
 	@echo "..done."
 
 uninstall-local:
@@ -53,7 +53,7 @@ win_dir = freedroidrpg-win32
 dist-win32: src/freedroidRPG.exe
 	rm -rf $(win_dir)
 	mkdir -p $(win_dir)
-	rsync -ar --exclude='.svn' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound $(win_dir)
+	rsync -ar --exclude='.git' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound $(win_dir)
 	cp src/freedroidRPG.exe $(win_dir)
 	for i in $(win_txts); do \
 	   sed 's/$$/\r/' $$i > $(win_dir)/$$i.txt; \
@@ -78,5 +78,5 @@ dist-macosx: src/freedroidRPG
 	cp src/freedroidRPG $(macosx_dir)/Contents/MacOS
 	sed -e "s/__#PROGNAME#__/$(PACKAGE_NAME)/" -e "s/__#VERSION#__/$(PACKAGE_VERSION)/" macosx/Info.plist.in > $(macosx_dir)/Contents/Info.plist
 	echo "APPL????" > $(macosx_dir)/Contents/PkgInfo
-	rsync -ar --exclude='.svn' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound $(macosx_dir)/Contents
+	rsync -ar --exclude='.git' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound $(macosx_dir)/Contents
 	perl macosx/pkgApp.pl $(macosx_dir)/Contents MacOS/freedroidRPG Frameworks
