@@ -1117,8 +1117,9 @@ void save_screenshot(const char *filename, int width)
 		scale_factor = (float) width / GameConfig.screen_width;
 #ifdef HAVE_LIBGL
 	if (use_open_gl) {
-		// We need to make a copy in processor memory. 
-		glReadPixels(0, 1, GameConfig.screen_width, GameConfig.screen_height - 1, GL_RGB, GL_UNSIGNED_BYTE, imgdata);
+		// We need to make a copy in processor memory.
+		glPixelStorei(GL_PACK_ALIGNMENT, 1);
+		glReadPixels(0, 0, GameConfig.screen_width, GameConfig.screen_height, GL_RGB, GL_UNSIGNED_BYTE, imgdata);
 
 		// Now we need to make a real SDL surface from the raw image data we
 		// have just extracted.
