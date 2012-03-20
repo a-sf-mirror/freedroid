@@ -32,6 +32,8 @@
  */
 #define _graphics_c
 
+#include "pngfuncs.h"
+
 #include "system.h"
 
 #include "defs.h"
@@ -40,7 +42,6 @@
 #include "proto.h"
 #include "map.h"
 #include "widgets/widgets.h"
-#include "pngfuncs.h"
 
 static const SDL_VideoInfo *vid_info;
 
