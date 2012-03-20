@@ -40,6 +40,7 @@
 #include "proto.h"
 #include "map.h"
 #include "widgets/widgets.h"
+#include "pngfuncs.h"
 
 static const SDL_VideoInfo *vid_info;
 
@@ -1143,7 +1144,7 @@ void save_screenshot(const char *filename, int width)
 	}
 #endif
 
-	SDL_SaveBMP(screenshot, filename);
+	png_save_surface(filename, screenshot);
 	SDL_FreeSurface(screenshot);
 }
 

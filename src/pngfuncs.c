@@ -103,13 +103,13 @@ int png_save_surface(const char *filename, SDL_Surface *surf)
 	if (info_ptr == NULL) {
 		png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
 		printf("png_create_info_struct error!\n");
-		exit(-1);
+		return -1;
 	}
 
 	if (setjmp(png_jmpbuf(png_ptr))) {
 		png_destroy_write_struct(&png_ptr, &info_ptr);
 		fclose(fp);
-		exit(-1);
+		return -1;
 	}
 
 	png_init_io(png_ptr, fp);
@@ -125,6 +125,10 @@ int png_save_surface(const char *filename, SDL_Surface *surf)
     /* If the surface image is in BGR mode, then ask libpng to swap red and blue channels */
 	if (surface_pixel_format(surf) == BGRA_PIXEL_FORMAT)
 		png_set_bgr(png_ptr);
+
+	/* Strip 4th byte */
+	if (surf->format->BytesPerPixel == 4 && !surf->format->Amask)
+		png_set_filler(png_ptr, 0, PNG_FILLER_AFTER);
 
 	row_pointers = (png_bytep*) malloc(sizeof(png_bytep)*surf->h);
 	for (i = 0; i < surf->h; i++)

@@ -25,7 +25,7 @@
  * Generate a texture atlas from a list of PNG files.
  */
 #include <string.h>
-#include "pngfuncs.h"
+#include "../src/pngfuncs.h"
 #include "../src/system.h"
 
 #define OFFSET_FILE_OFFSETX_STRING "OffsetX="

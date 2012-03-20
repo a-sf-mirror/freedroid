@@ -785,7 +785,7 @@ static int input_key(int keynum, int value)
 	} else if (KEYPRESS("take_screenshot")) {
 		char filename[1000];
 		char relative_filename[100];
-		sprintf(relative_filename, "%s.screenshot-%d.bmp", Me.character_name, SDL_GetTicks()/1000);
+		sprintf(relative_filename, "%s.screenshot-%d.png", Me.character_name, SDL_GetTicks()/1000);
 		sprintf(filename, "%s/%s", our_config_dir, relative_filename);
 		save_screenshot(filename, FALSE);
 		alert_window(_("Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."), relative_filename);

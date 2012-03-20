@@ -49,7 +49,7 @@
 #endif
 
 #define SAVEDGAME_EXT ".sav.gz"
-#define SAVE_GAME_THUMBNAIL_EXT ".thumbnail.bmp"
+#define SAVE_GAME_THUMBNAIL_EXT ".thumbnail.png"
 
 /**
  * Filter function for scandir calls.

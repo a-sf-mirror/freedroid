@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "pngfuncs.h"
+#include "../src/pngfuncs.h"
 #include "../src/system.h"
 #include "../src/proto.h"
 
