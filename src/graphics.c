@@ -1109,44 +1109,42 @@ void draw_line_on_map(float x1, float y1, float x2, float y2, Uint32 color, int 
 void save_screenshot(const char *filename, int width)
 {
 	Activate_Conservative_Frame_Computation();
-	SDL_Surface *NewThumbnail = NULL;
-	SDL_Surface *FullView = Screen;
-	void *imgdata = malloc((GameConfig.screen_width + 2) * (GameConfig.screen_height + 2) * 4);
-	float scale_factor = 1;
-	if (width)
-		scale_factor = (float) width / GameConfig.screen_width;
+	float scale_factor = width ? (float) width / GameConfig.screen_width : 1.0;
+	SDL_Surface *screenshot = NULL;
+
 #ifdef HAVE_LIBGL
 	if (use_open_gl) {
-		// We need to make a copy in processor memory.
+		void *imgdata = malloc(GameConfig.screen_width * GameConfig.screen_height * 3);
 		glPixelStorei(GL_PACK_ALIGNMENT, 1);
 		glReadPixels(0, 0, GameConfig.screen_width, GameConfig.screen_height, GL_RGB, GL_UNSIGNED_BYTE, imgdata);
 
 		// Now we need to make a real SDL surface from the raw image data we
 		// have just extracted.
 		//
-		SDL_FreeSurface(FullView);
-		FullView =
+		SDL_Surface *screen_surf =
 		    SDL_CreateRGBSurfaceFrom(imgdata, GameConfig.screen_width, GameConfig.screen_height, 24, 3 * GameConfig.screen_width,
 					     bmask, gmask, rmask, 0);
-
+		screenshot = zoomSurface(screen_surf, scale_factor, scale_factor, 0);
+		SDL_FreeSurface(screen_surf);
+		free(imgdata);
 	}
 #endif
+	if (!use_open_gl)
+		screenshot = zoomSurface(Screen, scale_factor, scale_factor, 0);
 
-	NewThumbnail = zoomSurface(FullView, scale_factor, scale_factor, 0);
-	free(imgdata);
-	SDL_FreeSurface(FullView);
-	if (NewThumbnail == NULL) {
+	if (screenshot == NULL) {
 		ErrorMessage(__FUNCTION__, "Cannot save image: %s\n", PLEASE_INFORM, IS_WARNING_ONLY, filename);
 		return;
 	}
 
 #ifdef HAVE_LIBGL
 	if (use_open_gl) {
-		flip_image_vertically(NewThumbnail);
+		flip_image_vertically(screenshot);
 	}
 #endif
-	SDL_SaveBMP(NewThumbnail, filename);
-	SDL_FreeSurface(NewThumbnail);
+
+	SDL_SaveBMP(screenshot, filename);
+	SDL_FreeSurface(screenshot);
 }
 
 void reload_graphics(void)
