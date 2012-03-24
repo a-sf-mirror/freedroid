@@ -1079,7 +1079,7 @@ void ParseCommandLine(int argc, char *const argv[])
 			/* version statement -v or --version
 			 * following gnu-coding standards for command line interfaces */
 		case 'v':
-			printf("\n%s %s  \n", PACKAGE, VERSION);
+			printf("\n%s %s  \n", PACKAGE, freedroid_version);
 			printf("%s",copyright);
 			exit(0);
 			break;
@@ -1473,7 +1473,7 @@ void InitFreedroid(int argc, char **argv)
 	// We mention the version of FreedroidRPG, so that debug reports
 	// are easier to assign to the different versions of the game.
 	//
-	DebugPrintf(-4, "\nHello, this is FreedroidRPG, version %s.", VERSION);
+	DebugPrintf(-4, "\nHello, this is FreedroidRPG, version %s.", freedroid_version);
 
 	set_signal_handlers();
 

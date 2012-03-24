@@ -14,7 +14,8 @@ bin_PROGRAMS = freedroidRPG
 
 EXTRA_DIST =
 
-freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c \
+freedroidRPG_SOURCES = version.c \
+	menu.c shop.c items.c character.c skills.c saveloadgame.c \
 	event.c dynarray.c item_upgrades.c item_upgrades_ui.c addon_crafting_ui.c \
 	lua.c luaconfig.c \
 	armor.c \
@@ -70,8 +71,16 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 savestruct.c savestruct.h: struct.h savestruct_internal.h gen_savestruct.py
 	python gen_savestruct.py struct.h savestruct
 
+version.c: dummy
+	version_string=`echo "char *freedroid_version = \"$$(git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@")\";"` \
+	&& (echo $$version_string | cmp -s - $@) || echo $$version_string > $@
+
 clean-local:
 	cd ../lua; make clean
 
 ../lua/liblua.a: 
 	cd ../lua; make CC=${CC} AR="${AR} rcu" RANLIB="${RANLIB}" liblua.a
+
+dummy:
+
+.PHONY: dummy

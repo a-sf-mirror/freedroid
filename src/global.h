@@ -30,6 +30,8 @@
 #include "BFont.h"
 #include "lists.h"
 
+extern char *freedroid_version;
+
 #undef EXTERN
 #ifdef _main_c
 #define EXTERN

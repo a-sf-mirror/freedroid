@@ -93,7 +93,7 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 	//
 	if (!strcmp(MenuTexts[0], SINGLE_PLAYER_STRING)) {
 		SetCurrentFont(FPS_Display_BFont);
-		RightPutString(Screen, GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), VERSION);
+		RightPutString(Screen, GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), freedroid_version);
 		// printf ("\n%s %s  \n", PACKAGE, VERSION);
 		sprintf(open_gl_string, _("OpenGL support compiled: "));
 #ifdef HAVE_LIBGL
