@@ -69,7 +69,7 @@ freedroidRPG_SOURCES = version.c \
 	mapgen/themes.c mapgen/themes.h
 
 savestruct.c savestruct.h: struct.h savestruct_internal.h gen_savestruct.py
-	python gen_savestruct.py struct.h savestruct
+	$(PYTHON) gen_savestruct.py struct.h savestruct
 
 version.c: dummy
 	version_string=`echo "char *freedroid_version = \"$$(git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@")\";"` \
