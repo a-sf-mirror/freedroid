@@ -56,6 +56,8 @@ static void clear_action(action * action)
 		free(action->d.change_obstacle_name.new_name);
 	else if (action->type == ACT_SET_MAP_LABEL && action->d.change_label_name.new_name != NULL)
 		free(action->d.change_label_name.new_name);
+	else if (action->type == ACT_CREATE_ENEMY && action->d.create_enemy != NULL)
+		enemy_free(action->d.create_enemy);
 
 	list_del(&action->node);	//< removes an action from a list
 	free(action);		//< frees the action
@@ -173,6 +175,9 @@ static action *action_create(int type, va_list args)
 		case ACT_REMOVE_MAP_LABEL:
 			act->d.delete_map_label.x = va_arg(args, int);
 			act->d.delete_map_label.y = va_arg(args, int);
+			break;
+		case ACT_CREATE_ENEMY:
+			act->d.create_enemy = va_arg(args, enemy *);
 			break;
 		case ACT_REMOVE_ENEMY:
 			act->d.delete_enemy = va_arg(args, enemy *);
@@ -666,11 +671,9 @@ void action_remove_map_label(level *lvl, int x, int y)
 	}
 }
 
-enemy *action_create_enemy(level *lvl, int x, int y, int droid_type)
+enemy *action_create_enemy(level *lvl, enemy *en)
 {
-	gps pos = { x, y, lvl->levelnum };
-
-	enemy *en = place_special_force(pos, droid_type);
+	enemy_insert_into_lists(en, TRUE);
 	action_push(ACT_REMOVE_ENEMY, en);
 	return en;
 }
@@ -694,7 +697,7 @@ static void action_remove_enemy(level *lvl, enemy *en)
 			list_del(&current_enemy->level_list);
 	}
 
-	enemy_free(en);
+	action_push(ACT_CREATE_ENEMY, en);
 }
 
 /**
@@ -785,6 +788,10 @@ static void action_do(level * level, action * a)
 		break;
 	case ACT_REMOVE_MAP_LABEL:
 		action_remove_map_label(level, a->d.delete_map_label.x, a->d.delete_map_label.y);
+		break;
+	case ACT_CREATE_ENEMY:
+		action_create_enemy(level, a->d.create_enemy);
+		a->d.create_enemy = NULL;
 		break;
 	case ACT_REMOVE_ENEMY:
 		action_remove_enemy(level, a->d.delete_enemy);

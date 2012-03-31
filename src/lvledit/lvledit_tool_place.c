@@ -234,7 +234,9 @@ static void end_rectangle_floor(int commit)
  */
 void place_enemy(int droid_type)
 {
-	action_create_enemy(EditLevel(), mouse_mapcoord.x, mouse_mapcoord.y, droid_type);
+	gps pos = { mouse_mapcoord.x, mouse_mapcoord.y, EditLevel()->levelnum };
+	enemy *en = create_special_force(pos, droid_type);
+	action_create_enemy(EditLevel(), en);
 }
 
 /**

@@ -296,11 +296,11 @@ out:
 }
 
 /**
- * Places an enemy on the currently edited map
+ * Creates an enemy basing on user input
  * @param droid_pos Coordinates of the droid
  * @param enemy_type Type of enemy to be inserted
  */
-enemy *place_special_force(gps droid_pos, int enemy_type)
+enemy *create_special_force(gps droid_pos, int enemy_type)
 {
 	enemy *en = enemy_new(enemy_type);
 	enemy_reset(en);
@@ -314,8 +314,6 @@ enemy *place_special_force(gps droid_pos, int enemy_type)
 
 	// Let the user edit the info
 	edit_special_force_info(en);
-
-	enemy_insert_into_lists(en, TRUE);
 
 	return en;
 }
