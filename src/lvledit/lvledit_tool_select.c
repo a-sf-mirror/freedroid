@@ -964,7 +964,7 @@ void level_editor_paste_selection()
 	waypoint *w;
 	obstacle *o;
 	item *it;
-	int nbact = 0;
+	int counter, nbact = 0;
 	moderately_finepoint cmin, cmax, center;
 
 	if (mode == FD_RECT || mode == DRAGDROP) {
@@ -1084,10 +1084,21 @@ void level_editor_paste_selection()
 				break;
 			}
 
+			// Create the autostr to manipulate string
+			struct auto_string *str = alloc_autostr(32);
+			autostr_printf(str, "%s", m->label_name);
+			
+			// Modify the label until possible value
+			counter = 1;
+			while (map_label_exists(str->value)) {
+				autostr_printf(str, "%s-%d", m->label_name, counter++);
+			}
+
 			// Add and select
-			action_create_map_label(EditLevel(), m->pos.x, m->pos.y, m->label_name);
+			action_create_map_label(EditLevel(), m->pos.x, m->pos.y, strdup(str->value));
 			select_map_label_on_tile(m->pos.x, m->pos.y);
 
+			free_autostr(str);
 			nbact++;
 			break;
 		default:
