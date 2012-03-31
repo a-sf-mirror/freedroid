@@ -126,7 +126,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	autostr_append(str, "\n");
 
 	// Weapon damage
-	if (ItemMap[item->type].item_can_be_installed_in_weapon_slot) {
+	if (ItemMap[item->type].slot == WEAPON_SLOT) {
 		autostr_append(str, _("Damage: %d"), item->damage);
 		if (item->damage_modifier)
 			autostr_append(str, _(" to %d"), item->damage_modifier + item->damage);

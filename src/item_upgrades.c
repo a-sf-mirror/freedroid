@@ -96,11 +96,7 @@ int item_can_be_customized(item *it)
 {
 	itemspec *spec = &ItemMap[it->type];
 
-	return spec->item_can_be_installed_in_weapon_slot ||
-	       spec->item_can_be_installed_in_drive_slot ||
-	       spec->item_can_be_installed_in_armour_slot ||
-	       spec->item_can_be_installed_in_shield_slot ||
-	       spec->item_can_be_installed_in_special_slot;
+	return spec->slot != NO_SLOT;
 }
 
 /**
@@ -117,24 +113,21 @@ static int addon_is_compatible_with_item(struct addon_spec *addonspec, item *it)
 	if (str) {
 		itemspec* spec = &ItemMap[it->type];
 		if (!strcmp(str, "melee weapon")) {
-			ret = spec->item_can_be_installed_in_weapon_slot &&
+			ret = (spec->slot == WEAPON_SLOT) &&
 			      spec->item_weapon_is_melee;
 		} else if (!strcmp(str, "ranged weapon")) {
-			ret = spec->item_can_be_installed_in_weapon_slot &&
+			ret = (spec->slot == WEAPON_SLOT) &&
 			      !spec->item_weapon_is_melee;
 		} else if (!strcmp(str, "armor")) {
-			ret = spec->item_can_be_installed_in_armour_slot ||
-			      spec->item_can_be_installed_in_drive_slot ||
-			      spec->item_can_be_installed_in_shield_slot ||
-			      spec->item_can_be_installed_in_special_slot;
+			ret = (spec->slot & (SHIELD_SLOT | HELM_SLOT | ARMOR_SLOT | BOOT_SLOT));
 		} else if (!strcmp(str, "boots")) {
-			ret = spec->item_can_be_installed_in_drive_slot;
+			ret = (spec->slot == BOOT_SLOT);
 		} else if (!strcmp(str, "jacket")) {
-			ret = spec->item_can_be_installed_in_armour_slot;
+			ret = (spec->slot == ARMOR_SLOT);
 		} else if (!strcmp(str, "shield")) {
-			ret = spec->item_can_be_installed_in_shield_slot;
+			ret = (spec->slot == SHIELD_SLOT);
 		} else if (!strcmp(str, "helmet")) {
-			ret = spec->item_can_be_installed_in_special_slot;
+			ret = (spec->slot == HELM_SLOT);
 		} else {
 			ret = FALSE;
 		}

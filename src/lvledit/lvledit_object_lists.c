@@ -402,11 +402,10 @@ static void build_item_lists(void)
 		if (ItemMap[i].item_weapon_is_melee) {
 			melee_items_list[melee] = i;
 			melee++;
-		} else if (ItemMap[i].item_can_be_installed_in_weapon_slot) {
+		} else if (ItemMap[i].slot == WEAPON_SLOT) {
 			gun_items_list[guns] = i;
 			guns++;
-		} else if (ItemMap[i].item_can_be_installed_in_drive_slot || ItemMap[i].item_can_be_installed_in_armour_slot || 
-				ItemMap[i].item_can_be_installed_in_shield_slot || ItemMap[i].item_can_be_installed_in_special_slot) {
+		} else if (ItemMap[i].slot & (SHIELD_SLOT | HELM_SLOT | ARMOR_SLOT | BOOT_SLOT)) {
 			defense_items_list[defense] = i;
 			defense++;
 		} else if (ItemMap[i].item_combat_use_description) {

@@ -143,7 +143,7 @@ static void print_item_info(char *str, int item_idx)
 				item->item_require_strength,
 				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
 
-	} else if (item->item_can_be_installed_in_weapon_slot) { //Most Melee Weapons
+	} else if (item->slot == WEAPON_SLOT) { //Most Melee Weapons
 		sprintf(str, 	"%s\n\
 			Damage: %d-%d, Recharge: %.2f,\n\
 			STR: >%d, DEX: >%d, COOL: >%d\n%s",
@@ -153,8 +153,7 @@ static void print_item_info(char *str, int item_idx)
 				item->item_require_strength, item->item_require_dexterity, item->item_require_cooling,
 				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
 
-	} else if (item->item_can_be_installed_in_drive_slot || item->item_can_be_installed_in_armour_slot || 
-				item->item_can_be_installed_in_shield_slot || item->item_can_be_installed_in_special_slot) {
+	} else if (item->slot & (SHIELD_SLOT | HELM_SLOT | ARMOR_SLOT | BOOT_SLOT)) {
 		sprintf(str, 	"%s\n\
 			Armor: %d-%d, Durability:  %d-%d,\n\
 			STR: >%d, DEX: >%d, COOL: >%d\n",

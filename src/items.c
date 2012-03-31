@@ -36,15 +36,6 @@
 #include "global.h"
 #include "proto.h"
 
-enum {
-	WEAPON_SLOT = 0,
-	SHIELD_SLOT,
-	SPECIAL_SLOT,
-	ARMOUR_SLOT,
-	DRIVE_SLOT,
-	FIRST_INV_SLOT
-};
-
 /**
  * \brief Initializes an empty item.
  * \param item_ Item.
@@ -78,17 +69,7 @@ item create_item_with_name(const char *item_name, int full_durability, int multi
  */
 static int equippable_item(item *it)
 {
-	if (ItemMap[it->type].item_can_be_installed_in_weapon_slot)
-		return TRUE;
-	if (ItemMap[it->type].item_can_be_installed_in_drive_slot)
-		return TRUE;
-	if (ItemMap[it->type].item_can_be_installed_in_armour_slot)
-		return TRUE;
-	if (ItemMap[it->type].item_can_be_installed_in_shield_slot)
-		return TRUE;
-	if (ItemMap[it->type].item_can_be_installed_in_special_slot)
-		return TRUE;
-	return FALSE;
+	return ItemMap[it->type].slot != NO_SLOT;
 }
 
 void equip_item(item *new_item)
@@ -127,19 +108,19 @@ item *get_equipped_item_in_slot_for(int item_type)
 
 	spec = &ItemMap[item_type];
 	
-	if (spec->item_can_be_installed_in_weapon_slot) {
+	if (spec->slot == WEAPON_SLOT) {
 		equipped_item = &Me.weapon_item;
 	}
-	else if (spec->item_can_be_installed_in_drive_slot) {
+	else if (spec->slot == BOOT_SLOT) {
 		equipped_item = &Me.drive_item;
 	}
-	else if (spec->item_can_be_installed_in_armour_slot) {
+	else if (spec->slot == ARMOR_SLOT) {
 		equipped_item = &Me.armour_item;
 	}
-	else if (spec->item_can_be_installed_in_shield_slot) {
+	else if (spec->slot == SHIELD_SLOT) {
 		equipped_item = &Me.shield_item;
 	}
-	else if (spec->item_can_be_installed_in_special_slot) {
+	else if (spec->slot == HELM_SLOT) {
 		equipped_item = &Me.special_item;
 	}
 	else
@@ -1677,7 +1658,7 @@ void HandleInventoryScreen(void)
 			|| MouseCursorIsOnButton(WEAPON_MODE_BUTTON, CurPos.x, CurPos.y)) {
 			
 			// Check if the item can be installed in the weapon slot
-			if (!ItemMap[item_held_in_hand->type].item_can_be_installed_in_weapon_slot) {
+			if (ItemMap[item_held_in_hand->type].slot != WEAPON_SLOT) {
 				append_new_game_message(_("You cannot fight with this!"));
 				return;
 			}
@@ -1735,7 +1716,7 @@ void HandleInventoryScreen(void)
 		if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			
 			// Check if the item can be installed in the shield slot
-			if (!ItemMap[item_held_in_hand->type].item_can_be_installed_in_shield_slot) {
+			if (ItemMap[item_held_in_hand->type].slot != SHIELD_SLOT) {
 				append_new_game_message(_("You cannot equip this!"));
 				return;
 			}
@@ -1786,9 +1767,9 @@ void HandleInventoryScreen(void)
 			char propcheck;
 			item *slot;
 		} dropslots[] = { {
-		DRIVE_RECT_BUTTON, tocheck->item_can_be_installed_in_drive_slot, &(Me.drive_item)}, {
-		ARMOUR_RECT_BUTTON, tocheck->item_can_be_installed_in_armour_slot, &(Me.armour_item)}, {
-		HELMET_RECT_BUTTON, tocheck->item_can_be_installed_in_special_slot, &(Me.special_item)},};
+		DRIVE_RECT_BUTTON, (tocheck->slot == BOOT_SLOT), &(Me.drive_item)}, {
+		ARMOUR_RECT_BUTTON, (tocheck->slot == ARMOR_SLOT), &(Me.armour_item)}, {
+		HELMET_RECT_BUTTON, (tocheck->slot == HELM_SLOT), &(Me.special_item)},};
 		int i;
 		for (i = 0; i < sizeof(dropslots) / sizeof(dropslots[0]); i++) {
 			if (MouseCursorIsOnButton(dropslots[i].btnidx, CurPos.x, CurPos.y) && dropslots[i].propcheck
@@ -1971,7 +1952,7 @@ int try_give_item(item *ItemPointer)
 	// Maybe the item is of a kind that can be equipped right now.  Then
 	// we decide to directly drop it to the corresponding slot.
 
-	if ((Me.weapon_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_weapon_slot)) {
+	if ((Me.weapon_item.type == (-1)) && (ItemMap[ItemPointer->type].slot == WEAPON_SLOT)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
 			// Now we're picking up a weapon while no weapon is equipped.  But still
 			// it might be a 2-handed weapon while there is some shield equipped.  Well,
@@ -1992,7 +1973,7 @@ int try_give_item(item *ItemPointer)
 		}
 	}
 
-	if ((Me.shield_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_shield_slot)) {
+	if ((Me.shield_item.type == (-1)) && (ItemMap[ItemPointer->type].slot == SHIELD_SLOT)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
 			// Auto-equipping shields can be done.  But only if there isn't a 2-handed
 			// weapon equipped already.  Well, in case of no weapon present it's easy:
@@ -2011,21 +1992,21 @@ int try_give_item(item *ItemPointer)
 		}
 	}
 
-	if ((Me.armour_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_armour_slot)) {
+	if ((Me.armour_item.type == (-1)) && (ItemMap[ItemPointer->type].slot == ARMOR_SLOT)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
 			raw_move_picked_up_item_to_entry(ItemPointer, &(Me.armour_item), Inv_Loc);
 			return 1;
 		}
 	}
 
-	if ((Me.drive_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_drive_slot)) {
+	if ((Me.drive_item.type == (-1)) && (ItemMap[ItemPointer->type].slot == BOOT_SLOT)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
 			raw_move_picked_up_item_to_entry(ItemPointer, &(Me.drive_item), Inv_Loc);
 			return 1;
 		}
 	}
 
-	if ((Me.special_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_special_slot)) {
+	if ((Me.special_item.type == (-1)) && (ItemMap[ItemPointer->type].slot == HELM_SLOT)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
 			raw_move_picked_up_item_to_entry(ItemPointer, &(Me.special_item), Inv_Loc);
 			return 1;
@@ -2131,6 +2112,25 @@ int item_is_currently_equipped(item * Item)
 		return 1;
 
 	return 0;
+}
+
+enum slot_type get_slot_type_by_name(char *name)
+{
+	struct { 
+		const char *name;
+		enum slot_type slot;
+	} slots[] = {	{ "weapon", WEAPON_SLOT }, 
+					{"drive", 	BOOT_SLOT 	}, 
+					{"shield", 	SHIELD_SLOT }, 
+					{"armour", 	ARMOR_SLOT 	}, 
+					{"special", HELM_SLOT 	}};
+
+	int i;
+	for (i = 0; i < sizeof(slots)/sizeof(slots[0]); i++) {
+		if (!strcmp(name, slots[i].name))
+			return slots[i].slot;
+	}
+	return NO_SLOT;
 }
 
 #undef _items_c

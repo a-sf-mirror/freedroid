@@ -1516,4 +1516,13 @@ enum lua_target {
 	LUA_DIALOG
 };
 
+enum slot_type {
+	NO_SLOT = 0,
+	WEAPON_SLOT = 1,
+	SHIELD_SLOT = 2,
+	HELM_SLOT = 4,
+	ARMOR_SLOT = 8,
+	BOOT_SLOT = 16,
+};
+
 #endif

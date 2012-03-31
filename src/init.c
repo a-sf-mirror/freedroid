@@ -679,29 +679,9 @@ static void get_item_data(char *DataPointer)
 
 		// Now we read the label telling us in which slot the item can be installed
 		YesNoString = ReadAndMallocStringFromData(ItemPointer, ITEM_CAN_BE_INSTALLED_IN_SLOT_WITH_NAME, "\"");
-		item->item_can_be_installed_in_weapon_slot = FALSE;
-		item->item_can_be_installed_in_shield_slot = FALSE;
-		item->item_can_be_installed_in_drive_slot = FALSE;
-		item->item_can_be_installed_in_armour_slot = FALSE;
-		item->item_can_be_installed_in_special_slot = FALSE;
-		if (strcmp(YesNoString, "weapon") == 0) {
-			item->item_can_be_installed_in_weapon_slot = TRUE;
-		} else if (strcmp(YesNoString, "drive") == 0) {
-			item->item_can_be_installed_in_drive_slot = TRUE;
-		} else if (strcmp(YesNoString, "shield") == 0) {
-			item->item_can_be_installed_in_shield_slot = TRUE;
-		} else if (strcmp(YesNoString, "armour") == 0) {
-			item->item_can_be_installed_in_armour_slot = TRUE;
-		} else if (strcmp(YesNoString, "special") == 0) {
-			item->item_can_be_installed_in_special_slot = TRUE;
-		} else if (strcmp(YesNoString, "none") == 0) {
-			// good.  Everything is ok, as long as at least 'none' was found
-		} else {
-			fprintf(stderr, "\n\nItemIndex: %d.\n", ItemIndex);
-			ErrorMessage(__FUNCTION__,
-				     "The item specification of an item in freedroid.ruleset should contain an \nanswer for the slot installation possibilities, that was neither \n'weapon' nor 'armour' nor 'shield' nor 'special' nor 'drive' nor 'none'.",
-				     PLEASE_INFORM, IS_FATAL);
-		}
+
+		item->slot = get_slot_type_by_name(YesNoString);
+
 		free(YesNoString);
 
 		// Filename prefix used when rendering Tux (optional)
@@ -760,7 +740,7 @@ of random items dropped.", PLEASE_INFORM, IS_WARNING_ONLY, item->item_name, Item
 		}
 
 		// If the item is a gun, we read in the weapon specification...
-		if (item->item_can_be_installed_in_weapon_slot == TRUE) {
+		if (item->slot == WEAPON_SLOT) {
 			// Now we read in the damage bullets from this gun will do
 			ReadValueFromStringWithDefault(ItemPointer, "Item as gun: damage of bullets=", "%hd", "0",
 						       &item->base_item_gun_damage, EndOfItemData);

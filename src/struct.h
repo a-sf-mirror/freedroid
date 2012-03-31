@@ -257,11 +257,9 @@ typedef struct itemspec {
 	char *item_inv_file_name;
 
 	char *item_combat_use_description;
-	char item_can_be_installed_in_weapon_slot;
-	char item_can_be_installed_in_drive_slot;
-	char item_can_be_installed_in_armour_slot;
-	char item_can_be_installed_in_shield_slot;
-	char item_can_be_installed_in_special_slot;
+	
+	enum slot_type slot;
+	
 	char *tux_part_instance;
 
 	char item_group_together_in_inventory;
