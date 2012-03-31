@@ -300,7 +300,7 @@ out:
  * @param droid_pos Coordinates of the droid
  * @param enemy_type Type of enemy to be inserted
  */
-void place_special_force(gps droid_pos, int enemy_type)
+enemy *place_special_force(gps droid_pos, int enemy_type)
 {
 	enemy *en = enemy_new(enemy_type);
 	enemy_reset(en);
@@ -316,4 +316,6 @@ void place_special_force(gps droid_pos, int enemy_type)
 	edit_special_force_info(en);
 
 	enemy_insert_into_lists(en, TRUE);
+
+	return en;
 }

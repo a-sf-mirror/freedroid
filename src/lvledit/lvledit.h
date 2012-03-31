@@ -64,6 +64,7 @@ enum ActionType {
 	ACT_CHANGE_FLOOR_LAYER,
 	ACT_CREATE_MAP_LABEL,
 	ACT_REMOVE_MAP_LABEL,
+	ACT_REMOVE_ENEMY
 };
 
 typedef struct {
@@ -155,6 +156,8 @@ typedef struct {
 			int x;
 			int y;
 		} delete_map_label;
+
+		enemy *delete_enemy;
 	} d;
 } action;
 
@@ -193,6 +196,6 @@ EXTERN int current_floor_layer;
 
 EXTERN void get_random_droids_from_user(void);
 
-EXTERN void place_special_force(gps, int);
+EXTERN enemy *place_special_force(gps, int);
 
 #endif

@@ -350,7 +350,7 @@ void enemy_insert_into_lists(enemy *this_enemy, int is_living)
 /*
  * Free an enemy data structure
  */
-static void enemy_free(enemy *e)
+void enemy_free(enemy *e)
 {
 	if (e->dialog_section_name) {
 		free(e->dialog_section_name);

@@ -74,6 +74,9 @@ void level_editor_place_aligned_object(int);
 void action_create_map_label(level *, int, int, char *);
 void action_remove_map_label(level *, int, int);
 
+/* Enemy manipulation */
+void action_create_enemy(level *, int, int, int);
+
 #ifndef _leveleditor_actions_c
 #define EXTERN extern
 #else

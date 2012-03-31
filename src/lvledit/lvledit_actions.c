@@ -174,6 +174,9 @@ static action *action_create(int type, va_list args)
 			act->d.delete_map_label.x = va_arg(args, int);
 			act->d.delete_map_label.y = va_arg(args, int);
 			break;
+		case ACT_REMOVE_ENEMY:
+			act->d.delete_enemy = va_arg(args, enemy *);
+			break;
 		default:
 			ErrorMessage(__FUNCTION__, "Unknown action type %d\n", PLEASE_INFORM, IS_FATAL, type);
 	}
@@ -663,6 +666,37 @@ void action_remove_map_label(level *lvl, int x, int y)
 	}
 }
 
+enemy *action_create_enemy(level *lvl, int x, int y, int droid_type)
+{
+	gps pos = { x, y, lvl->levelnum };
+
+	enemy *en = place_special_force(pos, droid_type);
+	action_push(ACT_REMOVE_ENEMY, en);
+	return en;
+}
+
+static void action_remove_enemy(level *lvl, enemy *en)
+{
+	enemy *current_enemy, *nerot;
+
+	BROWSE_ALIVE_BOTS_SAFE(current_enemy, nerot) {
+		if (current_enemy == en)
+			list_del(&current_enemy->global_list);
+	}
+
+	BROWSE_DEAD_BOTS_SAFE(current_enemy, nerot) {
+		if (current_enemy == en)
+			list_del(&current_enemy->global_list);
+	}
+
+	BROWSE_LEVEL_BOTS_SAFE(current_enemy, nerot, lvl->levelnum) {
+		if (current_enemy == en)
+			list_del(&current_enemy->level_list);
+	}
+
+	enemy_free(en);
+}
+
 /**
  *  @fn void jump_to_level( int target_map, float x, float y)
  *
@@ -751,6 +785,9 @@ static void action_do(level * level, action * a)
 		break;
 	case ACT_REMOVE_MAP_LABEL:
 		action_remove_map_label(level, a->d.delete_map_label.x, a->d.delete_map_label.y);
+		break;
+	case ACT_REMOVE_ENEMY:
+		action_remove_enemy(level, a->d.delete_enemy);
 		break;
 	}
 }
