@@ -75,7 +75,8 @@ Beginning of new chat dialog for character="XXXXX"
 		end_dialog()
 	end
 
-	if (done_quest(_"The yellow toolkit")) then	-- effects of the toolkit-quest
+	if (done_quest(_"The yellow toolkit")) and
+	   (not Dixon_hide_node_56) then	-- effects of the toolkit-quest
 		if (Dixon_no_ambassador) then			-- Tux does not get the toolkit
 			if (Dixon_everything_alright) then
 				show(56)
@@ -563,6 +564,7 @@ Nr=58 Text=_"Why the secrecy and the hushed voice? Can't you just tell me?"
 	npc_says(_"And this is just one of those things.", "NO_WAIT")
 	npc_says(_"Just go and see for yourself. Otherwise you will not believe me.")
 	end_quest(_"The yellow toolkit", _"The tunnels bots seem to be working together with Dixon in keeping the town working. All is well that ends well.")
+	Dixon_hide_node_56 = true
 	hide(58)
 </LuaCode>
 ----------------------------------------------------------------------
