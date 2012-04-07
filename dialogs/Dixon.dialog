@@ -50,6 +50,7 @@ Beginning of new chat dialog for character="XXXXX"
 		-- Lvl6_elbow_grease_applied		given by events.dat (the MiniFactory is running)
 
 <FirstTime LuaCode>
+	Maintenance_Terminal_accessgate_nope = "somevalue"
 	Dixon_mood = 0
 	set_bot_name(_"Dixon -- Mechanic")
 	tux_says(_"Hi! I'm new here.")
@@ -107,6 +108,10 @@ Beginning of new chat dialog for character="XXXXX"
 	elseif (not Dixon_296_book_examine_library) and
 	   (Ewalds_296_needs_sourcebook) then
 		show(70)
+	end
+
+	if (Maintenance_Terminal_accessgate_nope == "true") then
+		show(80)
 	end
 
 	show(99)
@@ -263,6 +268,7 @@ Topic="The yellow toolkit"
 	npc_says(_"I think you could go to see the Singularity and speak to it. You are perfectly suited to become an ambassador.")
 	npc_says(_"You should try to help them and they might want to give back the toolkit.")
 	npc_says(_"Will you do me this favor?")
+	change_obstacle_state("NorthernMaintainanceDoor", "opened")
 	Dixon_Singularity_peace = true
 	hide(15, 24, 26, 28) show (21, 22)
 	topic("Toolkit peace mission Y/N")
@@ -278,7 +284,6 @@ Topic="Toolkit peace mission Y/N"
 <LuaCode>
 	npc_says(_"Excellent. The tunnels are open. Come in peace.")
 	update_quest(_"The yellow toolkit", _"I refused to seize the toolkit from the bots by force because I think they might be sentient. Life is precious and should be preserved. Thus, Dixon send me to talk to them and negotiate with them to get the toolkit.")
-	change_obstacle_state("NorthernMaintainanceDoor", "opened")
 	hide(21, 22)
 	pop_topic() -- "Toolkit peace mission Y/N"
 	pop_topic() -- "The yellow toolkit"
@@ -290,6 +295,7 @@ Topic="Toolkit peace mission Y/N"
 <LuaCode>
 	npc_says(_"OK, I understand. However, I will try to contact them somehow. We will see, if there is a benefit in this.")
 	end_quest(_"The yellow toolkit", _"I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved. I also turned down Dixon's request to be his middleman.")
+	Singularity_quest_rejected = true
 	hide(21, 22)
 	pop_topic() -- "Toolkit peace mission Y/N"
 	pop_topic() -- "The yellow toolkit"
@@ -607,6 +613,16 @@ Nr=70 Text=_"Do you have a copy of Subatomic and Nuclear Science for Dummies, Vo
 	hide(70)
 </LuaCode>
 ----------------------------------------------------------------------
+
+Nr=80 Text=_"How can I open the gate in the Maintenance Tunnel?"
+<LuaCode>
+	npc_says(_"You cannot.")
+	npc_says(_"I locked it in order to keep us save from these bots down there.")
+	npc_says(_"You never know what they're up to...")
+	Maintenance_Terminal_accessgate_nope="official"
+	hide(80)
+</LuaCode>
+-----------------------------------------------------------------------
 
 Nr=99 Text=_"I must go now."
 <LuaCode>

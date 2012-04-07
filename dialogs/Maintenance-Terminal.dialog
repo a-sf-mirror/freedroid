@@ -134,8 +134,14 @@ Nr=5 Text=_"close access gate"
 Nr=6 Text=_"open access gate"
 <LuaCode>
 	npc_says(_"Opening Access Gate ...", "NO_WAIT")
-	change_obstacle_state("Maintenance-gungate", "opened")
-	npc_says(_"SUCCESS")
+	if (Singularity_quest_rejected) then
+		npc_says(_"Permission denied.")
+		if (Maintenance_Terminal_accessgate_nope == "official") then else
+			Maintenance_Terminal_accessgate_nope = "true"
+		end
+	else
+		change_obstacle_state("Maintenance-gungate", "opened")
+	end
 	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 	hide(6) show(0)
 </LuaCode>
