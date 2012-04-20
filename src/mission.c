@@ -69,7 +69,6 @@ void mission_diary_add(const char *mis_name, const char *diarytext)
  ----------------------------------------------------------------------*/
 void CheckIfMissionIsComplete(void)
 {
-	int ItemCounter;
 	int mis_num;
 	static int CheckMissionGrid;
 	int this_mission_seems_completed;
@@ -119,22 +118,6 @@ void CheckIfMissionIsComplete(void)
 			}
 			checked_one_criterion = TRUE;
 		}
-		// Continue if the Mission target fetch_item is given but not fulfilled
-		//
-		if (Me.AllMissions[mis_num].fetch_item != (-1)) {
-
-			for (ItemCounter = 0; ItemCounter < MAX_ITEMS_IN_INVENTORY; ItemCounter++) {
-				if (Me.Inventory[ItemCounter].type == Me.AllMissions[mis_num].fetch_item) {
-					DebugPrintf(MIS_COMPLETE_DEBUG, "\nDesired item IS PRESENT!!");
-					break;
-				}
-			}
-			if (ItemCounter >= MAX_ITEMS_IN_INVENTORY) {
-				// goto CheckNextMission;
-				this_mission_seems_completed = FALSE;
-			}
-			checked_one_criterion = TRUE;
-		}
 		// Continue if the Mission target must_clear_first_level is given but not fulfilled
 		//
 		if (Me.AllMissions[mis_num].must_clear_first_level != (-1)) {
@@ -156,52 +139,6 @@ void CheckIfMissionIsComplete(void)
 					this_mission_seems_completed = FALSE;
 					break;
 				}
-			}
-			checked_one_criterion = TRUE;
-		}
-
-		// Continue if the Mission target MustReachLevel is given but not fulfilled
-		//
-		if (Me.AllMissions[mis_num].MustReachLevel != (-1)) {
-			if (Me.pos.z != Me.AllMissions[mis_num].MustReachLevel) {
-				DebugPrintf(MIS_COMPLETE_DEBUG, "\nLevel number does not match...");
-				continue;
-			}
-			checked_one_criterion = TRUE;
-		}
-		// Continue if the Mission target MustReachPoint.x is given but not fulfilled
-		//
-		if (Me.AllMissions[mis_num].MustReachPoint.x != (-1)) {
-			if (Me.pos.x != Me.AllMissions[mis_num].MustReachPoint.x) {
-				DebugPrintf(MIS_COMPLETE_DEBUG, "\nX coordinate does not match...");
-				continue;
-			}
-			checked_one_criterion = TRUE;
-		}
-		// Continue if the Mission target MustReachPoint.y is given but not fulfilled
-		//
-		if (Me.AllMissions[mis_num].MustReachPoint.y != (-1)) {
-			if (Me.pos.y != Me.AllMissions[mis_num].MustReachPoint.y) {
-				DebugPrintf(MIS_COMPLETE_DEBUG, "\nY coordinate does not match...");
-				continue;
-			}
-			checked_one_criterion = TRUE;
-		}
-		// Continue if the Mission target MustLiveTime is given but not fulfilled
-		//
-		if (Me.AllMissions[mis_num].MustLiveTime != (-1)) {
-			if (Me.MissionTimeElapsed < Me.AllMissions[mis_num].MustLiveTime) {
-				DebugPrintf(MIS_COMPLETE_DEBUG, "\nTime Limit not yet reached...");
-				continue;
-			}
-			checked_one_criterion = TRUE;
-		}
-		// Continue if the Mission target MustBeOne is given but not fulfilled
-		//
-		if (Me.AllMissions[mis_num].MustBeOne != (-1)) {
-			if (Me.marker != Me.AllMissions[mis_num].MustBeOne) {
-				DebugPrintf(MIS_COMPLETE_DEBUG, "\nYou're not yet one of the marked ones...");
-				continue;
 			}
 			checked_one_criterion = TRUE;
 		}
@@ -309,15 +246,9 @@ void GetQuestList(char *QuestListFilename)
 
 #define MISSION_TARGET_NAME_INITIALIZER "Mission Name=_\""
 
-#define MISSION_TARGET_FETCH_ITEM_STRING "Mission target is to fetch item : \""
 #define MISSION_TARGET_KILL_ONE_STRING "Mission target is to kill droids with marker : "
 #define MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL "Mission target is to kill all hostile droids this first level : "
 #define MISSION_TARGET_MUST_CLEAR_SECOND_LEVEL "Mission target is to also kill all hostile droids on second level : "
-#define MISSION_TARGET_MUST_REACH_LEVEL_STRING "Mission target is to reach level : "
-#define MISSION_TARGET_MUST_REACH_POINT_X_STRING "Mission target is to reach X-Pos : "
-#define MISSION_TARGET_MUST_REACH_POINT_Y_STRING "Mission target is to reach Y-Pos : "
-#define MISSION_TARGET_MUST_LIVE_TIME_STRING "Mission target is to live for how many seconds : "
-#define MISSION_TARGET_MUST_BE_ONE_STRING "Mission target is to overtake a droid with marker : "
 
 #define MISSION_ASSIGNMENT_LUACODE_STRING "Assignment LuaCode={"
 #define MISSION_COMPLETION_LUACODE_STRING "Completion LuaCode={"
@@ -353,12 +284,6 @@ void GetQuestList(char *QuestListFilename)
 		// From here on we read the details of the mission target, i.e. what the
 		// influencer has to do, so that the mission can be thought of as completed
 		//
-		if (strstr(MissionTargetPointer, MISSION_TARGET_FETCH_ITEM_STRING)) {
-			char *iname = ReadAndMallocStringFromData(MissionTargetPointer, MISSION_TARGET_FETCH_ITEM_STRING, "\"");
-			Me.AllMissions[MissionTargetIndex].fetch_item = GetItemIndexByName(iname);
-			free(iname);
-		} else
-			Me.AllMissions[MissionTargetIndex].fetch_item = -1;
 
 		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_KILL_ONE_STRING, "%d", "-1",
 				    &Me.AllMissions[MissionTargetIndex].KillOne, EndOfMissionTargetPointer);
@@ -368,21 +293,6 @@ void GetQuestList(char *QuestListFilename)
 
 		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_CLEAR_SECOND_LEVEL, "%d", "-1",
 				    &Me.AllMissions[MissionTargetIndex].must_clear_second_level, EndOfMissionTargetPointer);
-
-		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_BE_ONE_STRING, "%d", "-1", 
-				    &Me.AllMissions[MissionTargetIndex].MustBeOne, EndOfMissionTargetPointer);
-
-		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_REACH_POINT_X_STRING, "%d", "-1",
-				    &Me.AllMissions[MissionTargetIndex].MustReachPoint.x, EndOfMissionTargetPointer);
-
-		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_REACH_POINT_Y_STRING, "%d", "-1", 
-				    &Me.AllMissions[MissionTargetIndex].MustReachPoint.y, EndOfMissionTargetPointer);
-
-		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_REACH_LEVEL_STRING, "%d", "-1", 
-				    &Me.AllMissions[MissionTargetIndex].MustReachLevel, EndOfMissionTargetPointer);
-
-		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_LIVE_TIME_STRING, "%lf", "-1",
-				    &Me.AllMissions[MissionTargetIndex].MustLiveTime, EndOfMissionTargetPointer);
 
 		if (strstr(MissionTargetPointer, MISSION_COMPLETION_LUACODE_STRING)) {
 			Me.AllMissions[MissionTargetIndex].completion_lua_code =

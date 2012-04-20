@@ -594,8 +594,6 @@ int get_current_fps(void)
 static void show_top_left_text(void)
 {
 	SDL_Rect clip;
-	int minutes;
-	int seconds;
 	int i;
 	int remaining_bots;
 	static struct auto_string *txt;
@@ -611,16 +609,6 @@ static void show_top_left_text(void)
 	for (i = 0; i < MAX_MISSIONS_IN_GAME; i++) {
 		if (!Me.AllMissions[i].MissionWasAssigned)
 			continue;
-
-		if (Me.AllMissions[i].MustLiveTime != (-1)) {
-			minutes = floor((Me.AllMissions[i].MustLiveTime - Me.MissionTimeElapsed) / 60);
-			seconds = rintf(Me.AllMissions[i].MustLiveTime - Me.MissionTimeElapsed) - 60 * minutes;
-			if (minutes < 0) {
-				minutes = 0;
-				seconds = 0;
-			}
-			autostr_append(txt, _("Time to hold out still: %2d:%2d\n"), minutes, seconds);
-		}
 
 		if ((Me.AllMissions[i].must_clear_first_level == Me.pos.z) || (Me.AllMissions[i].must_clear_second_level == Me.pos.z)) {
 			remaining_bots = 0;

@@ -654,9 +654,6 @@ void write_mission(struct auto_string *strout, mission *data)
     autostr_append(strout, "MissionExistsAtAll = ");
     write_int32_t(strout, &data->MissionExistsAtAll);
     autostr_append(strout, ",\n");
-    autostr_append(strout, "fetch_item = ");
-    write_int32_t(strout, &data->fetch_item);
-    autostr_append(strout, ",\n");
     autostr_append(strout, "KillOne = ");
     write_int32_t(strout, &data->KillOne);
     autostr_append(strout, ",\n");
@@ -665,18 +662,6 @@ void write_mission(struct auto_string *strout, mission *data)
     autostr_append(strout, ",\n");
     autostr_append(strout, "must_clear_second_level = ");
     write_int32_t(strout, &data->must_clear_second_level);
-    autostr_append(strout, ",\n");
-    autostr_append(strout, "MustReachLevel = ");
-    write_int32_t(strout, &data->MustReachLevel);
-    autostr_append(strout, ",\n");
-    autostr_append(strout, "MustReachPoint = ");
-    write_point(strout, &data->MustReachPoint);
-    autostr_append(strout, ",\n");
-    autostr_append(strout, "MustLiveTime = ");
-    write_double(strout, &data->MustLiveTime);
-    autostr_append(strout, ",\n");
-    autostr_append(strout, "MustBeOne = ");
-    write_int32_t(strout, &data->MustBeOne);
     autostr_append(strout, ",\n");
     autostr_append(strout, "completion_lua_code = ");
     write_luacode(strout, &data->completion_lua_code);
@@ -718,10 +703,6 @@ void read_mission(lua_State* L, int index, mission *data)
         read_int32_t(L, -1, &data->MissionExistsAtAll);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "fetch_item")) {
-        read_int32_t(L, -1, &data->fetch_item);
-        lua_pop(L, 1);
-    }
     if (lua_getfield_or_warn(L, index, "KillOne")) {
         read_int32_t(L, -1, &data->KillOne);
         lua_pop(L, 1);
@@ -732,22 +713,6 @@ void read_mission(lua_State* L, int index, mission *data)
     }
     if (lua_getfield_or_warn(L, index, "must_clear_second_level")) {
         read_int32_t(L, -1, &data->must_clear_second_level);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "MustReachLevel")) {
-        read_int32_t(L, -1, &data->MustReachLevel);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "MustReachPoint")) {
-        read_point(L, -1, &data->MustReachPoint);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "MustLiveTime")) {
-        read_double(L, -1, &data->MustLiveTime);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "MustBeOne")) {
-        read_int32_t(L, -1, &data->MustBeOne);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "completion_lua_code")) {
