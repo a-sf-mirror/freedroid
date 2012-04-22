@@ -132,7 +132,7 @@ static void prepare_font(BFont_Info *font, SDL_Rect char_rect[MAX_CHARS_IN_FONT]
 /**
  * Load the font and stores it in the BFont_Info structure 
  */
-BFont_Info *LoadFont(char *filename)
+BFont_Info *LoadFont(const char *filename)
 {
 	BFont_Info *font = MyMalloc(sizeof(BFont_Info));
 
@@ -262,7 +262,7 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 /**
  *
  */
-void PutString(SDL_Surface *surface, int x, int y, char *text)
+void PutString(SDL_Surface *surface, int x, int y, const char *text)
 {
 	int i = 0;
 
@@ -298,7 +298,7 @@ void PutString(SDL_Surface *surface, int x, int y, char *text)
  * Write a string on a surface using specified font, taking letter-spacing
  * into account.
  */
-void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, char *text)
+void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, const char *text)
 {
 	SetCurrentFont(font);
 	PutString(surface, x, y, text);
@@ -308,7 +308,7 @@ void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, char *t
  *
  *
  */
-int TextWidth(char *text)
+int TextWidth(const char *text)
 {
 	return TextWidthFont(CurrentFont, text);
 }
@@ -317,7 +317,7 @@ int TextWidth(char *text)
  * Calculate the width of a string using a certain font, taking letter-spacing
  * into account.
  */
-int TextWidthFont(BFont_Info *font, char *text)
+int TextWidthFont(BFont_Info *font, const char *text)
 {
 	int i = 0, width = 0;
 	int letter_spacing = get_letter_spacing(font);
@@ -335,7 +335,7 @@ int TextWidthFont(BFont_Info *font, char *text)
  *
  *
  */
-static int LimitTextWidthFont(BFont_Info *font, char *text, int limit)
+static int LimitTextWidthFont(BFont_Info *font, const char *text, int limit)
 {
 	int i = 0, width = 0;
 	int letter_spacing = get_letter_spacing(font);
@@ -357,13 +357,13 @@ static int LimitTextWidthFont(BFont_Info *font, char *text, int limit)
  *
  *
  */
-int LimitTextWidth(char *text, int limit)
+int LimitTextWidth(const char *text, int limit)
 {
 	return (LimitTextWidthFont(CurrentFont, text, limit));
 }
 
 /* counts the spaces of the strings */
-int count(char *text)
+static int count(const char *text)
 {
 	char *p = NULL;
 	int pos = -1;
@@ -376,12 +376,12 @@ int count(char *text)
 	return i;
 }
 
-void JustifiedPutString(SDL_Surface * Surface, int y, char *text)
+void JustifiedPutString(SDL_Surface * Surface, int y, const char *text)
 {
 	JustifiedPutStringFont(Surface, CurrentFont, y, text);
 }
 
-void JustifiedPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *text)
+void JustifiedPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text)
 {
 	int spaces = 0;
 	int gap;
@@ -435,32 +435,32 @@ void JustifiedPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, cha
 	}
 }
 
-void CenteredPutString(SDL_Surface * Surface, int y, char *text)
+void CenteredPutString(SDL_Surface * Surface, int y, const char *text)
 {
 	CenteredPutStringFont(Surface, CurrentFont, y, text);
 }
 
-void CenteredPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *text)
+void CenteredPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text)
 {
 	PutStringFont(Surface, Font, Surface->w / 2 - TextWidthFont(Font, text) / 2, y, text);
 }
 
-void RightPutString(SDL_Surface * Surface, int y, char *text)
+void RightPutString(SDL_Surface * Surface, int y, const char *text)
 {
 	RightPutStringFont(Surface, CurrentFont, y, text);
 }
 
-void RightPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *text)
+void RightPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text)
 {
 	PutStringFont(Surface, Font, Surface->w - TextWidthFont(Font, text) - 1, y, text);
 }
 
-void LeftPutString(SDL_Surface * Surface, int y, char *text)
+void LeftPutString(SDL_Surface * Surface, int y, const char *text)
 {
 	LeftPutStringFont(Surface, CurrentFont, y, text);
 }
 
-void LeftPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *text)
+void LeftPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text)
 {
 	PutStringFont(Surface, Font, 0, y, text);
 }

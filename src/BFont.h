@@ -18,7 +18,7 @@ typedef struct BFont_Info {
 } BFont_Info;
 
 /* Load and store le font in the BFont_Info structure */
-BFont_Info *LoadFont(char *filename);
+BFont_Info *LoadFont(const char *filename);
 
 /* Returns a pointer to the current font structure */
 BFont_Info *GetCurrentFont(void);
@@ -42,40 +42,40 @@ int handle_switch_font_char(unsigned char c);
 int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned char c);
 
 /* Returns the width, in pixels, of the text calculated with the current font*/
-int TextWidth(char *text);
+int TextWidth(const char *text);
 
 /* Returns the width, in pixels, of the text calculated with the specified font*/
-int TextWidthFont(BFont_Info * Font, char *text);
+int TextWidthFont(BFont_Info * Font, const char *text);
 
 /* Returns the index of the last character than is inside the width limit, with the current font */
-int LimitTextWidth(char *text, int limit);
+int LimitTextWidth(const char *text, int limit);
 
 /* Write a string on the "Surface" with the current font */
-void PutString(SDL_Surface *surface, int x, int y, char *text);
+void PutString(SDL_Surface *surface, int x, int y, const char *text);
 
 /* Write a string on the "Surface" with the specified font */
-void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, char *text);
+void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, const char *text);
 
 /* Write a left-aligned string on the "Surface" with the current font */
-void LeftPutString(SDL_Surface * Surface, int y, char *text);
+void LeftPutString(SDL_Surface * Surface, int y, const char *text);
 
 /* Write a left-aligned string on the "Surface" with the specified font */
-void LeftPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *text);
+void LeftPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text);
 
 /* Write a center-aligned string on the "Surface" with the current font */
-void CenteredPutString(SDL_Surface * Surface, int y, char *text);
+void CenteredPutString(SDL_Surface * Surface, int y, const char *text);
 
 /* Write a center-aligned string on the "Surface" with the specified font */
-void CenteredPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *text);
+void CenteredPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text);
 
 /* Write a right-aligned string on the "Surface" with the specified font */
-void RightPutString(SDL_Surface * Surface, int y, char *text);
+void RightPutString(SDL_Surface * Surface, int y, const char *text);
 
 /* Write a right-aligned string on the "Surface" with the specified font */
-void RightPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *text);
+void RightPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text);
 
 /* Write a justify-aligned string on the "Surface" with the specified font */
-void JustifiedPutString(SDL_Surface * Surface, int y, char *text);
+void JustifiedPutString(SDL_Surface * Surface, int y, const char *text);
 
 /* Write a justify-aligned string on the "Surface" with the specified font */
-void JustifiedPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *text);
+void JustifiedPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text);
