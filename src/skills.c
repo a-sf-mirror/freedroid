@@ -208,10 +208,17 @@ FreedroidRPG could not find the program name above in the program spec array!", 
 
 /**
  * This function creates a teleporter portal to the home location.
+ * @return 1 on success, 0 on failure
  */
-static void TeleportHome(void)
+static int TeleportHome(void)
 {
 	location HomeSpot;
+
+	// Check if this level permits teleport
+	if (curShip.AllLevels[Me.pos.z]->flags & TELEPORT_BLOCKED) {
+		append_new_game_message(_("You cannot teleport here!"));
+		return 0;
+	}
 
 	// Find homespot position.
 
@@ -221,7 +228,7 @@ static void TeleportHome(void)
 	// however check it once again, to prevent any bug.
 
 	if (HomeSpot.x == -1)
-		return;
+		return 1;
 
 	// Case 1 : Tux is in homespot's level, and there is a teleport anchor
 	//          -> teleport back to previous position
@@ -239,7 +246,7 @@ static void TeleportHome(void)
 		Me.teleport_anchor.y = 0;
 		Me.teleport_anchor.z = 0;
 
-		return;
+		return 1;
 	}
 
 	// Any other cases : Store current position and teleport Tux to homespot
@@ -253,6 +260,7 @@ static void TeleportHome(void)
 	Teleport(HomeSpot.level, HomeSpot.x, HomeSpot.y, TRUE, TRUE);
 	clear_active_bullets();
 
+	return 1;
 }				// void TeleportHome ( void )
 
 /**
@@ -456,7 +464,10 @@ int DoSkill(int skill_index, int SpellCost)
 	}
 
 	if (!strcmp(SpellSkillMap[skill_index].effect, "teleport_home")) {
-		TeleportHome();
+		if (!TeleportHome()) {
+			Me.temperature -= SpellCost;
+			return 0;
+		}
 		goto out;
 	}
 

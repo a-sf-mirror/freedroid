@@ -544,6 +544,7 @@ static void LevelOptions(void)
 		SET_LEVEL_INTERFACE_POSITION,
 		SET_RANDOM_LEVEL,
 		SET_RANDOM_DROIDS,
+		SET_TELEPORT_BLOCKED,
 		SET_TELEPORT_PAIR,
 		CHANGE_LIGHT,
 		SET_BACKGROUND_SONG_NAME,
@@ -612,6 +613,11 @@ static void LevelOptions(void)
 					strcat(Options[i], ", ");
 				strcat(Options[i], Droidmap[droid_types[j]].droidname);
 		}
+		MenuTexts[i] = Options[i];
+		i++;
+
+		sprintf(Options[i], "%s: %s", _("Teleport blockade"),
+			EditLevel()->flags & TELEPORT_BLOCKED ? _("yes") : _("no"));
 		MenuTexts[i] = Options[i];
 		i++;
 
@@ -692,6 +698,9 @@ static void LevelOptions(void)
 			break;
 		case SET_RANDOM_DROIDS:
 			get_random_droids_from_user();
+			break;
+		case SET_TELEPORT_BLOCKED:
+			EditLevel()->flags ^= TELEPORT_BLOCKED;
 			break;
 		case SET_TELEPORT_PAIR:
 			EditLevel()->teleport_pair = mapgen_cycle_teleport_pair(EditLevel()->teleport_pair);

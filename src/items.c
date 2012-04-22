@@ -822,7 +822,7 @@ void ApplyItem(item * CurItem)
 		Takeover_Game_Lost_Sound();
 		append_new_game_message(_("The doctor warned you. You are now weak and sickly."));
 	} else if (MatchItemWithName(CurItem->type, "Teleporter homing beacon")) {
-		DoSkill(get_program_index_with_name("Sanctuary"), 0);
+		failed_usage = !DoSkill(get_program_index_with_name("Sanctuary"), 0);
 	} else if (strstr(ItemMap[CurItem->type].item_name, "Source Book of")) {
 		int sidx = associate_skill_with_item(CurItem->type);
 		failed_usage = improve_program(sidx);

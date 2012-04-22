@@ -317,6 +317,18 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 		loadlevel->dungeon_generated = 0;
 	}
 
+	if (!strncmp(fp, "environmental flags:", 20)) {
+		fp += strlen("environmental flags:");
+		while (*(fp + off) != '\n')
+			off++;
+		fp[off] = 0;
+		loadlevel->flags = atoi(fp);
+		fp[off] = '\n';
+		fp += off + 1;
+	} else {
+		loadlevel->flags = 0;
+	}
+
 	if (loadlevel->ylen >= MAX_MAP_LINES) {
 		ErrorMessage(__FUNCTION__, "\
 A map/level in FreedroidRPG which was supposed to load has more map lines than allowed\n\
@@ -1472,6 +1484,7 @@ infinite_running_on_this_level: %d\n\
 random dungeon: %d\n\
 teleport pair: %d\n\
 dungeon generated: %d\n\
+environmental flags: %d\n\
 jump target north: %d\n\
 jump target south: %d\n\
 jump target east: %d\n\
@@ -1482,7 +1495,10 @@ jump target west: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum,
 		lvl->random_dungeon,
 		lvl->teleport_pair,
 		(reset_random_levels && lvl->random_dungeon) ? 0 : lvl->dungeon_generated,
-		lvl->jump_target_north, lvl->jump_target_south, lvl->jump_target_east,
+		lvl->flags,
+		lvl->jump_target_north,
+		lvl->jump_target_south,
+		lvl->jump_target_east,
 		lvl->jump_target_west);
 
 	autostr_append(shipstr, "number of random droids: %d\n", lvl->random_droids.nr);

@@ -777,6 +777,7 @@ typedef struct level {
 	} random_droids;
 
 	int teleport_pair;
+	int flags;
 } level, *Level;
 
 typedef void (*action_fptr) (level *obst_lvl, int obstacle_idx);

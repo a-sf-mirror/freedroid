@@ -1525,4 +1525,9 @@ enum slot_type {
 	BOOT_SLOT = 16,
 };
 
+// These are flags to change the level's environment
+enum level_flags {
+	TELEPORT_BLOCKED = 1
+};
+
 #endif
