@@ -2297,7 +2297,7 @@ void PrintCommentOfThisEnemy(enemy * e)
  * This function is here to find out whether this enemy has to be blitted
  * or whether we can skip it.
  */
-static int must_blit_enemy(enemy *e, int x, int y)
+static int must_blit_enemy(enemy *e)
 {
 	// if enemy is on other level, return 
 	if (e->virt_pos.z != Me.pos.z) {
@@ -2575,7 +2575,7 @@ void PutEnemy(enemy * e, int x, int y, int mask, int highlight)
 	// the screen or not.  Since there are many things to consider, we
 	// got a special function for this job.
 	//
-	if ((!must_blit_enemy(e, x, y)) && (!GameConfig.xray_vision_for_tux))
+	if ((!must_blit_enemy(e)) && (!GameConfig.xray_vision_for_tux))
 		return;
 
 	// We check for incorrect droid types, which sometimes might occur, especially after
