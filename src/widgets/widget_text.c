@@ -35,41 +35,6 @@
 #include "widgets/widgets.h"
 
 /**
- * \brief Check if the text can be scrolled up.
- *
- * \details A text can be scrolled up if it is longer than the widget's height
- * \b and if it is not yet already scrolled up to its maximum.
- *
- * \param w Pointer to the widget_text object.
- *
- * \return TRUE if it is possible to scroll up.
- */
-static int text_can_scroll_up(struct widget_text *w)
-{
-	SetCurrentFont(w->font);
-	int lines_needed = get_lines_needed(w->text->value, WIDGET(w)->rect, w->line_height_factor);
-	const int font_size = FontHeight(w->font) * w->line_height_factor;
-	float visible_lines = (float) WIDGET(w)->rect.h / (float) font_size;
-
-	return lines_needed > visible_lines &&
-		w->scroll_offset != ((int)visible_lines - lines_needed);
-}
-
-/**
- * \brief Check if the text can be scrolled down.
- *
- * \details A text can be scrolled down if it has already been scrolled up.
- *
- * \param w Pointer to the widget_text object.
- *
- * @return TRUE if it is possible to scroll down.
- */
-static int text_can_scroll_down(struct widget_text *w)
-{
-	return w->scroll_offset != 0;
-}
-
-/**
  * \brief Handles mouse button events received by a text widget.
  *
  * \details This function is a helper function, used by text_handle_event()
@@ -84,20 +49,21 @@ static int text_handle_mouse_down(struct widget_text *wt, SDL_Event *event)
 	switch (event->button.button) {
 		case MOUSE_BUTTON_1:
 			// LMB in the upper half, scroll text up if possible.
-			if (wt->mouse_hover == UPPER_HALF && text_can_scroll_up(wt))
+			if (wt->mouse_hover == UPPER_HALF && widget_text_can_scroll_up(wt))
 				wt->scroll_offset--;
 			// LMB in the lower half, scroll text down if possible..
-			if (wt->mouse_hover == LOWER_HALF && text_can_scroll_down(wt))
+			if (wt->mouse_hover == LOWER_HALF && widget_text_can_scroll_down(wt))
 				wt->scroll_offset++;
+			DebugPrintf(-1, "%d\n", wt->scroll_offset);
 			return 1;
 
 		case SDL_BUTTON_WHEELDOWN:
-			if (text_can_scroll_down(wt))
+			if (widget_text_can_scroll_down(wt))
 				wt->scroll_offset++;
 			return 1;
 
 		case SDL_BUTTON_WHEELUP:
-			if (text_can_scroll_up(wt))
+			if (widget_text_can_scroll_up(wt))
 				wt->scroll_offset--;
 			return 1;
 	}
@@ -179,9 +145,9 @@ void widget_text_display(struct widget *w)
 	}
 
 	// Change mouse cursor as needed.
-	if (text_can_scroll_up(wt) && wt->mouse_hover == UPPER_HALF)
+	if (widget_text_can_scroll_up(wt) && wt->mouse_hover == UPPER_HALF)
 		mouse_cursor = MOUSE_CURSOR_SCROLL_UP;
-	else if (text_can_scroll_down(wt) && wt->mouse_hover == LOWER_HALF)
+	else if (widget_text_can_scroll_down(wt) && wt->mouse_hover == LOWER_HALF)
 		mouse_cursor = MOUSE_CURSOR_SCROLL_DOWN;
 }
 
@@ -241,9 +207,9 @@ int widget_text_handle_mouse(struct widget_text *w)
 
 	/* Change the mouse cursor as needed. */
 	if (mouse_over_widget) {
-		if (text_can_scroll_up(w) && mouse_over_upper_half)
+		if (widget_text_can_scroll_up(w) && mouse_over_upper_half)
 			mouse_cursor = MOUSE_CURSOR_SCROLL_UP;
-		else if (text_can_scroll_down(w) && mouse_over_lower_half)
+		else if (widget_text_can_scroll_down(w) && mouse_over_lower_half)
 			mouse_cursor = MOUSE_CURSOR_SCROLL_DOWN;
 	}
 
@@ -330,4 +296,41 @@ void widget_text_init(struct widget_text *w, const char *start_text)
 	w->line_height_factor = 1.0;
 	w->content_above_func = NULL;
 	w->content_below_func = NULL;
+}
+
+/**
+ * \brief Check if the content text can be scrolled up.
+ * \ingroup gui2d_text
+ *
+ * \details A text can be scrolled up if it is longer than the widget's height
+ * \b and if it is not yet already scrolled up to its maximum.
+ *
+ * \param w Pointer to the widget_text object.
+ *
+ * \return TRUE if it is possible to scroll up.
+ */
+int widget_text_can_scroll_up(struct widget_text *w)
+{
+	SetCurrentFont(w->font);
+	int lines_needed = get_lines_needed(w->text->value, WIDGET(w)->rect, w->line_height_factor);
+	const int font_size = FontHeight(w->font) * w->line_height_factor;
+	float visible_lines = (float) WIDGET(w)->rect.h / (float) font_size;
+
+	return lines_needed > visible_lines &&
+		w->scroll_offset != ((int)visible_lines - lines_needed);
+}
+
+/**
+ * \brief Check if the context text can be scrolled down.
+ * \ingroup gui2d_text
+ *
+ * \details A text can be scrolled down if it has already been scrolled up.
+ *
+ * \param w Pointer to the widget_text object.
+ *
+ * @return TRUE if it is possible to scroll down.
+ */
+int widget_text_can_scroll_down(struct widget_text *w)
+{
+	return w->scroll_offset != 0;
 }
