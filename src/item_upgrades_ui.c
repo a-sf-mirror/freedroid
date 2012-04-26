@@ -534,7 +534,13 @@ static int set_addon_item(item *it, int index)
 	// customized item remains unchanged; the player needs to press the
 	// apply button before any modifications to the item take place.
 	play_item_sound(it->type, &Me.pos);
-	MoveItem(it, &ui.addon_items[index]);
+	if (it->multiplicity == 1) {
+		MoveItem(it, &ui.addon_items[index]);
+	} else {
+		CopyItem(it, &ui.addon_items[index]);
+		it->multiplicity--;
+		ui.addon_items[index].multiplicity = 1;
+	}
 
 	// Recalculate the cost and the bonus string and enable the apply button
 	// if the player has enough gold to pay for the upgrade.
