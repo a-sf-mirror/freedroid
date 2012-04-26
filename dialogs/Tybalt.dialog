@@ -27,59 +27,109 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-	show(0)
+	tux_says(_"Hi! I'm new h...", "NO_WAIT")
+	npc_says(_"I don't care! Identify yourself, right now!")
+	tux_says(_"%s... I'm %s.", get_player_name(), get_player_name())
+	npc_says(_"All right, I'm Tybalt. I'm guarding the town citadel gate. Only authorized personnel are permitted.")
+	set_bot_name(_"Tybalt -- Citadel Gate Guard")
+	show(0, 5, 10)
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_met("Tybalt")) then
-		show(2)
+	if (not has_met("Spencer")) then
+		show(0)
+	else
+		hide(0)
+	end
+
+	if (cmp_obstacle_state("Town-CitadelGate", "closed")) then
+		show(10)
+	end
+
+	if (tybalt_bribe) and (not Tybalt_money_back) then
+		show(60)
+	else
+		hide(60)
 	end
 
 	if (tux_has_joined_guard) then
 		hide(50, 54, 55, 56)
 	end
-
-	show(99)
+	
+	hide(11, 12, 13) show(99)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=0 Text=_"Hi! I'm new here."
+Nr=0 Text=_"Where I can find Spencer?"
 <LuaCode>
-	npc_says(_"Hello. I'm Tybalt. I'm guarding the town citadel gate. Only authorized personnel are permitted.")
-	set_bot_name(_"Tybalt -- Citadel Gate Guard")
-	hide(0) show(1, 2)
+	npc_says(_"You are going in the wrong direction. Turn around, and he will be on your right.")
+	hide(0)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=1 Text=_"Why is this gate locked most of the time?"
+Nr=5 Text=_"What is the citadel?"
 <LuaCode>
-	npc_says(_"It's locked so no one can sneak inside while I'm not looking. That's why.")
-	hide(1)
+	npc_says(_"Our headquarters, the strengthened building behind me. It's the area reserved to the red guard.")
+	npc_says(_"We need to protect our equipment and documents: lives depend on it.")
+	npc_says(_"Our firearms are enough to kick off any droid, and to blow everything up.")
+	npc_says(_"Luckily, no overloading reactor is near it. Ha-ha.")
+	hide(5) show(6)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=2 Text=_"I want to get into the citadel."
+Nr=6 Text=_"Is there anything secret in there?"
+<LuaCode>
+	if (not tux_has_joined_guard) then
+		npc_says(_"So, ... Hey, I don't have to answer questions.")
+	else
+		npc_says(_"I have no time for a guided tour.") 
+		npc_says(_"You can talk to Richard, the quartermaster. He knows the citadel better than I.")
+	end
+	hide(6)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=10 Text=_"I want to get into the citadel."
 <LuaCode>
 	if (tux_has_joined_guard) then
 		npc_says(_"Of course. Guard members are always authorized to enter the town citadel. The gate is open. Enjoy your stay.")
-		change_obstacle_state("OldTownGuardHouseEntrance", "opened")
+		change_obstacle_state("Town-CitadelGate", "opened")
 	else
 		npc_says(_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard.")
 		npc_says(_"Talk to Spencer if you have any business inside. I cannot let you pass.")
 		-- do we propose a bribe?
 		if (not tybalt_bribe) then show(50) end
+		show(11, 12)
 	end
-	hide(2)
+	hide(10)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=10 Text=_"So why is it you keep the citadel locked? Is there anything secret in there?"
+Nr=11 Text=_"Why is this gate locked most of the time?"
 <LuaCode>
-	npc_says(_"We need to protect our equipment and documents, because lives depend on it.")
-	npc_says(_"Also, we don't have to answer questions.")
-	hide(10)
-	-- this is meant to introduce that there have been thefts - we can use it for both the rebel faction
-	-- and Kevin introduction. Kevin might even be a member of the rebel faction.
+	npc_says(_"It's locked so no one can sneak inside while I'm not looking. That's why.")
+	if (not Tybalt_not_looking) then
+		show(13)
+	end
+	hide(11, 12)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=12 Text=_"Is there another entrance to the Citadel?"
+<LuaCode>
+	npc_says(_"Yes. All with a bunch of laser autoguns. Adjusted to shoot on sight.")
+	npc_says(_"%s, I discourage you to test our security system.", get_player_name())
+	hide(11, 12)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=13 Text=_"So when are you not looking?"
+<LuaCode>
+	npc_says(_"I am always looking. What? Are you planning to steal from us, like that last guy from out of town?")
+	npc_says(_"I'm stationed here to make certain that doesn't happen again. Apparently the last guy suborned the droid that was here and took it with him.")
+	update_quest(_"A strange guy stealing from town", _"Apparently Tybalt was stationed to stop another break-in at the Red Guard citadel. What a boring job.")
+	Tybalt_not_looking = true
+	hide(13)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -87,17 +137,19 @@ Nr=50 Text=_"I have a lot of money for you."
 <LuaCode>
 	npc_says(_"Fascinating. Can I have a hundred please?")
 	hide(50) show(54, 55)
+	topic("bribe citadel guard")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=54 Text=_"Erm... I don't have that much."
+Nr=54 Text=_"Erm... I don't have that much." Topic="bribe citadel guard"
 <LuaCode>
 	npc_says(_"Well, too bad.")
 	hide(54, 55)
+	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=55 Text=_"Here you go."
+Nr=55 Text=_"Here you go." Topic="bribe citadel guard"
 <LuaCode>
 	if (del_gold(100)) then
 		npc_says(_"Thank you.")
@@ -109,6 +161,7 @@ Nr=55 Text=_"Here you go."
 						_"Talk to me when you have a bit more.")
 	end
 	hide(54, 55)
+	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -120,9 +173,25 @@ Nr=56 Text=_"Ok, now please open the door for me."
 	npc_says(_"You cannot come in.")
 	tux_says(_"I paid you!")
 	npc_says(_"Really? I don't remember that.")
-	tux_says(_"I want my money back.")
-	npc_says(_"What money?")
-	hide(56)
+	hide(56) show(60)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=60 Text=_"I want my money back."
+<LuaCode>
+	if (not tux_has_joined_guard) then
+		npc_says(_"What money?")
+		npc_says(_"I'm not a charity. If this is a problem, talk to Spencer.")
+		npc_says(_"But he doesn't love robbers and foul play.")
+	else
+		npc_says(_"Wait, %s, maybe we may make a deal.", get_player_name())
+		npc_says(_"You don't talk to Spencer about it, and I don't tell him you tried to bribe me.")
+		npc_says(_"Just because I am such a nice guy, I'm even willing to give you half of your money back.")
+		npc_says(_"Of course, if you still want to complain, I'll get you kicked out of the Red Guard in no time.")
+		add_gold(50)
+		Tybalt_money_back = true
+	end
+	hide(60)
 </LuaCode>
 ----------------------------------------------------------------------
 
