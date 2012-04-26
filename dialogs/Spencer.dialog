@@ -213,6 +213,9 @@ Nr=12 Text=_"Have I done enough quests to become a member now?"
 		npc_says(_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget.")
 	else
 		npc_says(_"Personally I'm also worrying about how we will manage to get some necessary supplies from our warehouse. It's filled with bots and we just don't have the manpower to spare to clean them out.")
+		if (not has_quest("Opening a can of bots...")) then
+			show(6)
+		end
 	end
 
 -- ARE THERE ENOUGH POINTS TO JOIN RG
