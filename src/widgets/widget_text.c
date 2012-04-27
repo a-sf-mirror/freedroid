@@ -54,7 +54,6 @@ static int text_handle_mouse_down(struct widget_text *wt, SDL_Event *event)
 			// LMB in the lower half, scroll text down if possible..
 			if (wt->mouse_hover == LOWER_HALF && widget_text_can_scroll_down(wt))
 				wt->scroll_offset++;
-			DebugPrintf(-1, "%d\n", wt->scroll_offset);
 			return 1;
 
 		case SDL_BUTTON_WHEELDOWN:
