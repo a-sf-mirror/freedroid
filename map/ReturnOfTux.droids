@@ -304,7 +304,7 @@ Level=30
 
 T=598: PosX=5 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Melissa.I" Marker=1030 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=615: PosX=10 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel="ILOVEYOU" Marker=1030 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=629: PosX=18 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="W32.YourDoom" Marker=1030 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=629: PosX=18 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Fail-safe" Marker=1030 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=999: PosX=10 PosY=2 Faction="ms" UseDialog="AfterTakeover" ShortLabel="CIH.1103" Marker=1030 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
