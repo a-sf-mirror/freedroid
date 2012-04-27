@@ -614,15 +614,15 @@ static void end_wall_line(int commit)
 
 	// Remove the linked list
 	list_for_each_entry_safe(e, ne, &state.l_elements_head, list) {
-		list_del(&e->list);
-		free(e);
-
 		if (!commit) {
 			// When the user wants cancel the line of walls, we must remove all
 			// the walls
 			del_obstacle(e->address);
 		}
 		nb_actions++;
+
+		list_del(&e->list);
+		free(e);
 	}
 
 	if (commit)
