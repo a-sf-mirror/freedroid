@@ -180,7 +180,7 @@ iso_walls_0027.png 1378 530 77 151 off -39 -130
 iso_walls_0028.png 1456 530 78 151 off -37 -131
 iso_walls_0029.png 1535 530 77 151 off -39 -130
 iso_basin_0003.png 1613 530 105 150 off -58 -120
-iso_doors_0006.png 1719 530 80 150 off -40 -130
+iso_doors_0006.png 1719 530 80 150 off -43 -129
 iso_doors_0007.png 1800 530 80 150 off -40 -130
 iso_doors_0008.png 1881 530 80 150 off -40 -130
 iso_doors_0009.png 1962 530 80 150 off -40 -130
