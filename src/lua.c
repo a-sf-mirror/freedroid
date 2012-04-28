@@ -239,7 +239,7 @@ static int lua_event_kill_tux(lua_State * L)
 static int lua_event_hurt_tux(lua_State * L)
 {
 	int hp = luaL_checkinteger(L, 1);
-	hit_tux(hp, chat_control_chat_droid->id);
+	hit_tux(hp);
 	return 0;
 }
 

@@ -85,7 +85,7 @@ float GetInfluPositionHistoryZ(int Index);
 void FillInDefaultBulletStruct(bullet * CurBullet, int bullet_image_type, short int weapon_item_type);
 void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, bullet *bullet_parameters, moderately_finepoint target_location);
 void move_tux(void);
-void hit_tux(float, int);
+void hit_tux(float);
 void animate_tux(void);
 void check_tux_enemy_collision(void);
 void start_tux_death_explosions(void);
