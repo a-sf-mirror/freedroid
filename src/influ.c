@@ -768,7 +768,7 @@ void move_tux()
  * This function decrements Tux's health and increments the relevant statistic
  * variable.
  */
-void hit_tux(float damage, int owner)
+void hit_tux(float damage)
 {
 	if (Me.god_mode)
 		return;

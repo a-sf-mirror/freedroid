@@ -175,7 +175,7 @@ void DoMeleeDamage(void)
 			/* hit player */
 			if (MyRandom(100) < CurMelS->to_hit) {
 				float real_damage = CurMelS->damage * get_player_damage_factor();
-				hit_tux(real_damage, CurMelS->owner);
+				hit_tux(real_damage);
 				DamageProtectiveEquipment();
 			}
 		}
@@ -599,7 +599,7 @@ void apply_bullet_damage_to_player(int damage, int owner)
 {
 	float real_damage = damage * get_player_damage_factor();
 
-	hit_tux(real_damage, owner);	// loose some energy
+	hit_tux(real_damage);           // loose some energy
 	DamageProtectiveEquipment();    // chance worn items gets damaged on each hit
 }
 
@@ -827,7 +827,7 @@ void CheckBlastCollisions(int num)
 		if (blast_vpos.z != -1) {
 			if ((fabsf(Me.pos.x - blast_vpos.x) < Blast_Radius) && (fabsf(Me.pos.y - blast_vpos.y) < Blast_Radius)) {
 				float real_damage = CurBlast->damage_per_second * Frame_Time() * get_player_damage_factor();
-				hit_tux(real_damage, -100);
+				hit_tux(real_damage);
 			}
 		}
 	}
