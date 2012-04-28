@@ -120,6 +120,32 @@ static int loadgame_bench()
 	return 0;
 }
 
+/* SaveGame (savegame writing) performance test */
+static int savegame_bench()
+{
+	int loop = 10;
+
+	// Use MapEd.savegame
+	free(Me.character_name);
+	Me.character_name = strdup("MapEd");
+
+	// Load it
+	if (LoadGame() == ERR) {
+		ErrorMessage(__FUNCTION__, "Whoops, that failed. Maybe you have to save a game under the name \"MapEd\" to make this work?\n",
+				NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		return -1;
+	}
+	
+	// Write it many times.
+	timer_start();
+	while (loop--) {
+		SaveGame();
+	}
+	timer_stop();
+
+	return 0;
+}
+
 /* Test of dynamic arrays */
 static int dynarray_test()
 {
@@ -201,6 +227,7 @@ int benchmark()
 			{ "dialog", dialog_test },
 			{ "loadship", loadship_bench },
 			{ "loadgame", loadgame_bench },
+			{ "savegame", savegame_bench },
 			{ "dynarray", dynarray_test },
 			{ "mapgen", mapgen_bench },
 			{ "leveltest", level_test },
