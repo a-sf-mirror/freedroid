@@ -969,6 +969,55 @@ Silent=1
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"24wallrm1"
+Trigger at label="24wallrm1"
+Silent=1
+<LuaCode>
+	if (not wall24_1) then
+		del_obstacle("24wall1")
+		wall24_1 = true
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24wallrm2"
+Trigger at label="24wallrm2"
+Silent=1
+<LuaCode>
+	if (not wall24_2) then
+		del_obstacle("24wall2")
+		wall24_2 = true
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24wallrm3"
+Trigger at label="24wallrm3"
+Silent=1
+<LuaCode>
+	if (not wall24_3) then
+		del_obstacle("24wall3")
+		wall24_3 = true
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24wallrm4"
+Trigger at label="24wallrm4"
+Silent=1
+<LuaCode>
+	if (not wall24_4) then
+		del_obstacle("24wall4")
+		wall24_4 = true
+	end
+</LuaCode>
+* End of trigger *
+
+
 
 ##############
 ## Level 25 ##
