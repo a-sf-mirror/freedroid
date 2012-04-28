@@ -110,7 +110,10 @@ static int loadgame_bench()
 	// Load it many times
 	timer_start();
 	while (loop--) {
-		LoadGame();
+		if (LoadGame() == ERR) {
+			timer_stop();
+			return ERR;
+		}
 	}
 	timer_stop();
 
@@ -205,7 +208,6 @@ int benchmark()
 
 	int i;
 	char str[1024];
-	int failed = 0;
 
 	clear_screen();
 	sprintf(str, "Testing \"%s\"...", do_benchmark);
@@ -215,9 +217,13 @@ int benchmark()
 
 	for (i = 0; i < sizeof(benchs)/sizeof(benchs[0]); i++) {
 		if (!strcmp(do_benchmark, benchs[i].name)) {
-			failed |= benchs[i].func();
-			printf("Running test %s took %d milliseconds.\n", do_benchmark, stop_stamp - start_stamp);
-			return failed;
+			if (benchs[i].func() == 0) {
+				printf("Running test %s took %d milliseconds.\n", do_benchmark, stop_stamp - start_stamp);
+				return OK;
+			} else {
+				printf("Test failed!\n");
+				return ERR;
+			}
 		}
 	}
 	
