@@ -964,7 +964,7 @@ Name=_"24inside"
 Trigger at label="24inside"
 Silent=1
 <LuaCode>
-	--hurt_tux(50)
+	hurt_tux(50)
 	display_big_message(_"It's a trap!")
 </LuaCode>
 * End of trigger *
