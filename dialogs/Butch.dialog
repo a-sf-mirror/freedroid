@@ -114,6 +114,8 @@ Nr=6 Text=_"Yeah. I want to fight."
 	npc_says(_"And be careful, your brain will be fooled by what happens in the holographic world. Any damage you take there, will result in actual physical damage.")
 	npc_says(_"So even if the enemies are only holograms, they can still hurt you... and even kill you.")
 	add_quest(_"Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
+	npc_says(_"Oh, and the room is made out of some special material. People reported their teleporter gadgets didn't work in there. Take care!")
+	update_quest(_"Novice Arena", _"Butch says that teleporter gadgets may not work in this arena.")
 	change_obstacle_state("NoviceArenaAccessDoor", "opened")
 	hide(6, 12, 13) show(9)
 </LuaCode>
@@ -151,6 +153,8 @@ Nr=9 Text=_"I want a bigger challenge."
 		npc_says(_"I pity you, silly bird. Don't go there.")
 		npc_says(_"But if you really want to, the door is now open.")
 		add_quest(_"Time to say goodnight", _"I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to climb down the ladder to the north arena and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
+		npc_says(_"Remember, if your teleporter didn't work in the noob-, errr, novide-arena, it won't work in the master arena either...")
+		update_quest(_"Time to say goodnight", _"Again, Butch warned me about possibly broken teleporter gadgets.")
 		change_obstacle_state("MasterArenaAccessDoor", "opened")
 	end
 	hide(9)
