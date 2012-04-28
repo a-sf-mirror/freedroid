@@ -653,9 +653,9 @@ static void LevelOptions(void)
 		sprintf(Options[i], _("Infinite Running Stamina"));
 		strcat(Options[i], ": ");
 		if (EditLevel()->infinite_running_on_this_level)
-			strcat(Options[i], _("YES"));
+			strcat(Options[i], _("yes"));
 		else
-			(strcat(Options[i], _("NO")));
+			(strcat(Options[i], _("no")));
 		MenuTexts[i] = Options[i];
 		i++;
 		MenuTexts[i++] = _("Add/Rem Level");
