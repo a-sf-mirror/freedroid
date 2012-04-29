@@ -374,3 +374,17 @@ function difficulty()
 	return levels[difficulty_level()+1]
 end
 
+-- level 24, the debug level:
+function closelvl24doors()
+	change_obstacle_state("24door1", "closed")
+	change_obstacle_state("24door2", "closed")
+	change_obstacle_state("24door3", "closed")
+	change_obstacle_state("24door4", "closed")
+end
+
+function openlvl24doors()
+	change_obstacle_state("24door1", "opened")
+	change_obstacle_state("24door2", "opened")
+	change_obstacle_state("24door3", "opened")
+	change_obstacle_state("24door4", "opened")
+end

@@ -676,10 +676,7 @@ Name=_"24close1"
 Trigger at label="24close1"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "closed")
-       change_obstacle_state("24door2", "closed")
-       change_obstacle_state("24door3", "closed")
-       change_obstacle_state("24door4", "closed")
+	closelvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -688,10 +685,7 @@ Name=_"24close2"
 Trigger at label="24close2"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "closed")
-       change_obstacle_state("24door2", "closed")
-       change_obstacle_state("24door3", "closed")
-       change_obstacle_state("24door4", "closed")
+	closelvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -700,10 +694,7 @@ Name=_"24close3"
 Trigger at label="24close3"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "closed")
-       change_obstacle_state("24door2", "closed")
-       change_obstacle_state("24door3", "closed")
-       change_obstacle_state("24door4", "closed")
+	closelvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -712,10 +703,7 @@ Name=_"24close4"
 Trigger at label="24close4"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "closed")
-       change_obstacle_state("24door2", "closed")
-       change_obstacle_state("24door3", "closed")
-       change_obstacle_state("24door4", "closed")
+	closelvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -724,10 +712,7 @@ Name=_"24close5"
 Trigger at label="24close5"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "closed")
-       change_obstacle_state("24door2", "closed")
-       change_obstacle_state("24door3", "closed")
-       change_obstacle_state("24door4", "closed")
+	closelvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -736,10 +721,7 @@ Name=_"24close6"
 Trigger at label="24close6"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "closed")
-       change_obstacle_state("24door2", "closed")
-       change_obstacle_state("24door3", "closed")
-       change_obstacle_state("24door4", "closed")
+	closelvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -748,10 +730,7 @@ Name=_"24close7"
 Trigger at label="24close7"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "closed")
-       change_obstacle_state("24door2", "closed")
-       change_obstacle_state("24door3", "closed")
-       change_obstacle_state("24door4", "closed")
+	closelvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -760,10 +739,7 @@ Name=_"24close8"
 Trigger at label="24close8"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "closed")
-       change_obstacle_state("24door2", "closed")
-       change_obstacle_state("24door3", "closed")
-       change_obstacle_state("24door4", "closed")
+	closelvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -772,10 +748,7 @@ Name=_"24open1"
 Trigger at label="24open1"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -784,10 +757,7 @@ Name=_"24open2"
 Trigger at label="24open2"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -796,10 +766,7 @@ Name=_"24open3"
 Trigger at label="24open3"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -808,10 +775,7 @@ Name=_"24open4"
 Trigger at label="24open4"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -820,10 +784,7 @@ Name=_"24open5"
 Trigger at label="24open5"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -832,10 +793,7 @@ Name=_"24open6"
 Trigger at label="24open6"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -844,10 +802,7 @@ Name=_"24open7"
 Trigger at label="24open7"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -856,10 +811,7 @@ Name=_"24open8"
 Trigger at label="24open8"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -868,10 +820,7 @@ Name=_"24open9"
 Trigger at label="24open9"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -880,10 +829,7 @@ Name=_"24open10"
 Trigger at label="24open10"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -892,10 +838,7 @@ Name=_"24open11"
 Trigger at label="24open11"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -904,10 +847,7 @@ Name=_"24open12"
 Trigger at label="24open12"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -916,10 +856,7 @@ Name=_"24open13"
 Trigger at label="24open13"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -928,10 +865,7 @@ Name=_"24open14"
 Trigger at label="24open14"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -940,10 +874,7 @@ Name=_"24open15"
 Trigger at label="24open15"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
@@ -952,10 +883,7 @@ Name=_"24open16"
 Trigger at label="24open16"
 Silent=1
 <LuaCode>
-       change_obstacle_state("24door1", "opened")
-       change_obstacle_state("24door2", "opened")
-       change_obstacle_state("24door3", "opened")
-       change_obstacle_state("24door4", "opened")
+	openlvl24doors()
 </LuaCode>
 * End of trigger *
 
