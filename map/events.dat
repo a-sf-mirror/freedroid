@@ -581,7 +581,6 @@ Trigger exiting level=13
 		teleport_npc("296TeleportTarget", "Ewalds_296")
 		Ewalds_296_teleported = true
 		add_diary_entry(_"An Explosive Situation", _"I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened.")
-		cli_says("  ".._"Quest Log Updated.","NO_WAIT")
 	end
 </LuaCode>
 * End of trigger *
