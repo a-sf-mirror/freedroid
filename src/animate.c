@@ -265,7 +265,8 @@ int animate_obstacle(level *obstacle_lvl, int obstacle_idx)
 {
 	obstacle *obstacle = &obstacle_lvl->obstacle_list[obstacle_idx];
 	obstacle_spec *spec = get_obstacle_spec(obstacle->type);
-	obstacle->frame_index = (int)rintf(spec->animation_fps * animation_timeline) % spec->filenames.size;
+	int num_frames = max(spec->filenames.size, spec->emitted_light_strength.size);
+	obstacle->frame_index = (int)rintf(spec->animation_fps * animation_timeline) % num_frames;
 	return TRUE;
 }
 

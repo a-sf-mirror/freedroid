@@ -613,7 +613,7 @@ static int lua_obstacle_ctor(lua_State *L)
 	obstacle.animation_fn = get_animation_by_name(animation);
 	free(animation);
 
-	if (obstacle.filenames.size > 1)
+	if (obstacle.filenames.size > 1 || obstacle.emitted_light_strength.size > 1)
 		obstacle.animation_fn = animate_obstacle;
 
 	if (groups.size > 0) {
