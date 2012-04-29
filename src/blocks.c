@@ -586,6 +586,10 @@ struct image *get_droid_portrait_image(int type)
 struct image *get_obstacle_image(int type, int frame_index)
 {
 	struct obstacle_graphics *obs_graphics = &((struct obstacle_graphics *)obstacle_images.arr)[type];
+	if (frame_index >= obs_graphics->count) {
+		ErrorMessage(__FUNCTION__, "Tried to retrieve obstacle image for obstacle type %d frame index %d but this obstacle only has %d frames.", PLEASE_INFORM, IS_WARNING_ONLY, type, frame_index, obs_graphics->count);
+		frame_index = 0;
+	}
 	return &obs_graphics->images[frame_index];
 }
 
@@ -596,6 +600,10 @@ struct image *get_obstacle_image(int type, int frame_index)
 struct image *get_obstacle_shadow_image(int type, int frame_index)
 {
 	struct obstacle_graphics *obs_graphics= &((struct obstacle_graphics *)obstacle_images.arr)[type];
+	if (frame_index >= obs_graphics->count) {
+		ErrorMessage(__FUNCTION__, "Tried to retrieve obstacle shadow image for obstacle type %d frame index %d but this obstacle only has %d frames.", PLEASE_INFORM, IS_WARNING_ONLY, type, frame_index, obs_graphics->count);
+		frame_index = 0;
+	}
 	return &obs_graphics->shadows[frame_index];
 }
 
