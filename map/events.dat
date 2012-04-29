@@ -956,6 +956,50 @@ Silent=1
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"24teleportstart"
+Trigger at label="24teleportstart"
+Silent=1
+<LuaCode>
+	teleport("24teleport1")
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24teleport1"
+Trigger at label="24teleport1"
+Silent=1
+<LuaCode>
+	teleport("24teleport2")
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24teleport2"
+Trigger at label="24teleport2"
+Silent=1
+<LuaCode>
+	teleport("24teleport3")
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24teleport3"
+Trigger at label="24teleport3"
+Silent=1
+<LuaCode>
+	teleport("24teleport4")
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24teleport4"
+Trigger at label="24teleport4"
+Silent=1
+<LuaCode>
+	teleport("24teleportend")
+</LuaCode>
+* End of trigger *
 ##############
 ## Level 25 ##
 ##############
