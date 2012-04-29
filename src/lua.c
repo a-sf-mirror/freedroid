@@ -173,6 +173,7 @@ static int event_change_obstacle_type(const char *obslabel, int type)
 	
 	if (type != -1) {
 		our_obstacle->type = type;
+		our_obstacle->frame_index = 0;
 	} else {
 		del_obstacle(our_obstacle);
 	}
