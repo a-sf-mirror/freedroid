@@ -40,6 +40,11 @@ Beginning of new chat dialog for character="XXXXX"
 		40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
 		50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
 		60, 61, 62, 63, 80, 81, 82, 99)
+
+	local filename = user_input_string("Please enter the dialog file name of the desired NPC. Example: Dude.dialog If the name is invalid, the game will crash! Enter 'exit' to abort.")
+	if (not filename == "exit") then
+		run_subdialog(filename)
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 
