@@ -951,6 +951,7 @@ Trigger at label="24randobstacle"
 Silent=1
 <LuaCode>
 	local var = math.random(0,462)
+	display_big_message(var)
 	change_obstacle_type("24randobst", var)
 </LuaCode>
 * End of trigger *
