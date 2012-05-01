@@ -371,7 +371,10 @@ leveleditor_obstacle_category {
 		"iso_vending_machine_0008.png",
 		"iso_vending_machine_0009.png",
 		"iso_vending_machine_0010.png",
-		"iso_vending_machine_0011.png"
+		"iso_vending_machine_0011.png",
+		"iso_transformer_0000.png",
+		"iso_transformer_0001.png",
+		"iso_transformer_0002.png"
 	}
 }
 

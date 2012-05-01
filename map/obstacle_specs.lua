@@ -3186,3 +3186,24 @@ obstacle {
 	transparency = NO_TRANSPARENCY,
 	action = "terminal",
 }
+
+obstacle {
+	image_filenames = "iso_transformer_0000.png",
+	borders = borders(0.95, 0.95),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_transformer_0001.png",
+	borders = borders(0.95, 0.95),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_transformer_0002.png",
+	borders = borders(0.95, 0.95),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
