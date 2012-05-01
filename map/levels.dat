@@ -24418,6 +24418,9 @@ t1 x42.00 y12.50
 t1 x42.00 y11.50
 t1 x42.00 y10.50
 t47 x40.50 y6.50
+t463 x33.50 y71.50
+t464 x34.50 y71.50
+t465 x35.50 y71.50
 /obsdata
 plabelinfolvl
 x=42 y=31 name="24close2"
