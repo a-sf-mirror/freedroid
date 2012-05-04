@@ -574,13 +574,13 @@ int validate_dialogs()
 
 	skip_initial_menus = 1;
 
-	find_file("levels.dat", MAP_DIR, fpath, 0);
-	LoadShip(fpath, 0);
-	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
-
 	/* Disable sound to speed up validation. */
 	int old_sound_on = sound_on;
 	sound_on = FALSE;
+
+	find_file("levels.dat", MAP_DIR, fpath, 0);
+	LoadShip(fpath, 0);
+	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 
 	/* Temporarily disable screen fadings to speed up validation. */
 	GameConfig.do_fadings = FALSE;
