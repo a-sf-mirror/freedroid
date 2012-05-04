@@ -1122,7 +1122,7 @@ luaL_reg lfuncs[] = {
 	{"end_dialog", lua_chat_end_dialog}
 	,
 	/* NOTE:  if (partner_started())  will always be true
-	/* if rush_tux is 1
+	 * if rush_tux is 1
 	 */
 	{"partner_started", lua_chat_partner_started}
 	,
