@@ -827,6 +827,12 @@ typedef struct obstacle_spec {
 	// This property defines the function to call to animate them
 	animation_fptr animation_fn;
 	float animation_fps;
+
+	//-----------------------
+	// Some obstacles have a different sounds / blast animations
+	// these properties allow us to define a specific sound or blast for
+	// a given obstacle
+	char *smashed_sound;
 } obstacle_spec;
 
 struct obstacle_group {

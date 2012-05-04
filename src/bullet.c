@@ -241,7 +241,7 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
 	// the correct location ;)
 	//
 	if (ShallWeStartABlast)
-		StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, Bulletmap[CurBullet->type].blast_type, CurBullet->damage, CurBullet->faction);
+		StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, Bulletmap[CurBullet->type].blast_type, CurBullet->damage, CurBullet->faction, NULL);
 
 	CurBullet->type = INFOUT;
 	CurBullet->time_in_seconds = 0;
@@ -263,8 +263,10 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
  * DROIDBLAST,       (explosion of a dying droid)
  * OWNBLAST          (not implemented)
  *
+ * StartBlast will either use sound_name if passed, or if NULL will use
+ * the default sound for the blast. 
  */
-void StartBlast(float x, float y, int level, int type, int dmg, int faction)
+void StartBlast(float x, float y, int level, int type, int dmg, int faction, char *sound_name)
 {
 	int i;
 	blast *NewBlast;
@@ -318,7 +320,11 @@ However, it should NOT cause any serious trouble for FreedroidRPG.", NO_NEED_TO_
 
 	NewBlast->faction = faction;
 
-	play_blast_sound(type, &NewBlast->pos);
+	if(sound_name) {
+		play_blast_sound(sound_name, &NewBlast->pos);
+	} else {
+		play_blast_sound(Blastmap[type].sound_file, &NewBlast->pos);
+	}
 }
 
 /**
@@ -691,7 +697,7 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 		// be completely deleted of course, with the same small explosion as well
 		//
 		if (CurBullet->pass_through_hit_bodies)
-			StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, BULLETBLAST, 0, CurBullet->faction);
+			StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, BULLETBLAST, 0, CurBullet->faction, NULL);
 		else
 			DeleteBullet(num, TRUE);	// we want a bullet-explosion
 

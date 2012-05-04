@@ -948,7 +948,8 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		// Now that the obstacle is removed AND ONLY NOW that the obstacle is
 		// removed, we may start a blast at this position.  Otherwise we would
 		// run into trouble, see the warning further above.
-		StartBlast(blast_start_pos.x, blast_start_pos.y, level, DROIDBLAST, 0.0, FACTION_SELF);
+		StartBlast(blast_start_pos.x, blast_start_pos.y, 
+				level, DROIDBLAST, 0.0, FACTION_SELF, obstacle_spec->smashed_sound);
 	}
 
 	return smashed_something;

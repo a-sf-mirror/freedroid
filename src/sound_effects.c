@@ -424,15 +424,15 @@ void Takeover_Game_Lost_Sound(void)
 	play_sound_cached("effects/Takeover_Game_Lost_Sound_0.ogg");
 }
 
-void play_blast_sound(int blast_type, struct gps *blast_pos)
+void play_blast_sound(char *blast_sound, struct gps *blast_pos)
 {
 	char fpath[2048];
 
-	if (!Blastmap[blast_type].sound_file)
+	if (!blast_sound)
 		return;
 
 	strcpy(fpath, "effects/");
-	strcat(fpath, Blastmap[blast_type].sound_file);
+	strcat(fpath, blast_sound);
 	play_sound_at_position(fpath, &Me.pos, blast_pos);
 }
 

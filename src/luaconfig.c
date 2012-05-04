@@ -555,6 +555,7 @@ static int lua_obstacle_ctor(lua_State *L)
 		{ "action", NULL, STRING_TYPE, &action },
 		{ "animation", NULL, STRING_TYPE, &animation },
 		{ "animation_fps", "10", FLOAT_TYPE, &obstacle.animation_fps },
+		{ "smashed_sound", NULL, STRING_TYPE, &obstacle.smashed_sound },
 		{ "groups", NULL, STRING_ARRAY, &groups },
 		{ NULL, NULL, 0, 0 }
 	};
