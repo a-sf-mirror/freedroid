@@ -68,15 +68,6 @@ void SetSoundFXVolume(float NewVolume)
 {
 }
 
-	/**functions for threading*/
-void channel_done(int channel)
-{
-}
-
-void OldMusicHasFinishedFadingOut(void)
-{
-}
-
 	/**music*/
 static void LoadAndFadeInBackgroundMusic(void)
 {
