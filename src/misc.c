@@ -1270,54 +1270,6 @@ obstacle *give_pointer_to_obstacle_with_label(const char *obstacle_label, int *l
 }
 
 /*----------------------------------------------------------------------
- * try getting round endian-differences with minimal intervention
- * to the code.. 
- *
- * read out a 2-byte short-int from give memory pointer, either using
- * the given byte-order (PCs) or SDL's 'network byte order' (Mac)
- *
- *----------------------------------------------------------------------*/
-Sint16 ReadSint16(void *memory)
-{
-	Sint16 ret;
-
-	memcpy(&ret, memory, sizeof(Sint16));
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-	endian_swap((char *)&ret, sizeof(Sint16), 1);
-#endif
-
-	return (ret);
-
-}				/* ReadSint16() */
-
-/***********************************************************************
- * a little endian-swapper 
- */
-void endian_swap(char *pdata, size_t dsize, size_t nelements)
-{
-	unsigned int i, j, indx;
-	char tempbyte;
-
-	if (dsize <= 1)
-		return;
-
-	for (i = 0; i < nelements; i++) {
-		indx = dsize;
-		for (j = 0; j < dsize / 2; j++) {
-			tempbyte = pdata[j];
-			indx = indx - 1;
-			pdata[j] = pdata[indx];
-			pdata[indx] = tempbyte;
-		}
-
-		pdata = pdata + dsize;
-	}
-
-	return;
-
-}				/* endian swap */
-
-/*----------------------------------------------------------------------
  * Get the power of 2 greater than of equal to the argument
  * http://www-graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
  *----------------------------------------------------------------------*/
