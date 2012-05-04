@@ -1704,26 +1704,26 @@ void draw_grid_on_the_floor(int mask)
 
 		// Draw horizontal lines.
 		for (dd = LineStart; dd <= LineEnd; dd++) {
-			draw_line_on_map(ColStart, dd, ColEnd, dd, 0x99FFFF, 1);	// light cyan
+			draw_line_on_map(ColStart, dd, ColEnd, dd, 0x99, 0xFF, 0xFF, 1);	// light cyan
 		}
 
 		// Draw vertical lines.
 		for (dd = ColStart; dd <= ColEnd; dd++) {
-			draw_line_on_map(dd, LineStart, dd, LineEnd, 0x99FFFF, 1);	// light cyan
+			draw_line_on_map(dd, LineStart, dd, LineEnd, 0x99, 0xFF, 0xFF, 1);	// light cyan
 		}
 	}
 
 	for (dd = 0; dd <= 1; dd += .5)	// quick-placement grid
 	{
-		draw_line_on_map(x - 1.5, y - dd, x + 0.5, y - dd, 0xFF00FF, 1);	// magenta
-		draw_line_on_map(x - dd, y - 1.5, x - dd, y + 0.5, 0xFF00FF, 1);	// magenta
+		draw_line_on_map(x - 1.5, y - dd, x + 0.5, y - dd, 0xFF, 0x00, 0xFF, 1);	// magenta
+		draw_line_on_map(x - dd, y - 1.5, x - dd, y + 0.5, 0xFF, 0x00, 0xFF, 1);	// magenta
 	}
 
 	// Draw the level borders.
-	draw_line_on_map(0, 0, 0, our_level->ylen, 0xFF0000, 3);
-	draw_line_on_map(our_level->xlen, 0, our_level->xlen, our_level->ylen, 0xFF0000, 3);
-	draw_line_on_map(0, 0, our_level->xlen, 0, 0xFF0000, 3);
-	draw_line_on_map(0, our_level->ylen, our_level->xlen, our_level->ylen, 0xFF0000, 3);
+	draw_line_on_map(0, 0, 0, our_level->ylen, 0xFF, 0x00, 0x00, 3);
+	draw_line_on_map(our_level->xlen, 0, our_level->xlen, our_level->ylen, 0xFF, 0x00, 0x00, 3);
+	draw_line_on_map(0, 0, our_level->xlen, 0, 0xFF, 0x00, 0x00, 3);
+	draw_line_on_map(0, our_level->ylen, our_level->xlen, our_level->ylen, 0xFF, 0x00, 0x00, 3);
 
 	// display numbers, corresponding to the numpad keys for quick placing 
 	BFont_Info *PreviousFont;

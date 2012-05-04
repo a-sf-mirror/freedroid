@@ -76,7 +76,7 @@ static void draw_line_at_minimap_position(float x1, float y1, float x2, float y2
 	int r1, c1, r2, c2;
 	minimap_to_screen(x1, y1, &r1, &c1);
 	minimap_to_screen(x2, y2, &r2, &c2);
-	draw_line(r1, c1, r2, c2, SDL_MapRGB(Screen->format, 0xFF, 0xFF, 0xFF), 1);
+	draw_line(r1, c1, r2, c2, 0xFF, 0xFF, 0xFF, 1);
 }
 
 static int minimap_handle_event(struct widget *w, SDL_Event *event)

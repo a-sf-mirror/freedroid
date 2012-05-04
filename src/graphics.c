@@ -1080,28 +1080,23 @@ static void draw_line_opengl(int x1, int y1, int x2, int y2, int r, int g, int b
 #endif
 }
 
-void draw_line(float x1, float y1, float x2, float y2, Uint32 color, int width)
+void draw_line(float x1, float y1, float x2, float y2, uint8_t r, uint8_t g, uint8_t b, int width)
 {
-	float rr, gg, bb;
-	rr = (color & 0xff0000) >> 16;
-	gg = (color & 0xff00) >> 8;
-	bb = color & 0xff;
-
 	if (!use_open_gl) {
-		draw_line_sdl(Screen, x1, y1, x2, y2, rr, gg, bb, width);
+		draw_line_sdl(Screen, x1, y1, x2, y2, r, g, b, width);
 	} else {
-		draw_line_opengl(x1, y1, x2, y2, rr, gg, bb, width);
+		draw_line_opengl(x1, y1, x2, y2, r, g, b, width);
 	}
 }
 
-void draw_line_on_map(float x1, float y1, float x2, float y2, Uint32 color, int width)
+void draw_line_on_map(float x1, float y1, float x2, float y2, uint8_t r, uint8_t g, uint8_t b, int width)
 {
 	int c1, c2, r1, r2;
 
 	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1);
 	translate_map_point_to_screen_pixel(x2, y2, &r2, &c2);
 
-	draw_line(r1, c1, r2, c2, color, width);
+	draw_line(r1, c1, r2, c2, r, g, b, width);
 }
 
 /**
