@@ -46,13 +46,14 @@ extern lua_State *config_lua_state;
  */
 enum data_type {
 	BOOL_TYPE = 0,
+	SHORT_TYPE,
 	INT_TYPE,
 	FLOAT_TYPE,
 	DOUBLE_TYPE,
 	STRING_TYPE,
 	INT_ARRAY,
 	FLOAT_ARRAY,
-	STRING_ARRAY
+	STRING_ARRAY,
 };
 
 /**
@@ -85,6 +86,18 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 	ltype = lua_type(L, -1);
 
 	switch (type) {
+	case BOOL_TYPE:
+		if (ltype == LUA_TBOOLEAN) {
+			*((char *)result) = lua_toboolean(L, -1);
+			found_and_valid = TRUE;
+		}
+		break;
+	case SHORT_TYPE:
+		if (ltype == LUA_TNUMBER) {
+			*((short *)result) = (short)lua_tointeger(L, -1);
+			found_and_valid = TRUE;
+		}
+		break;
 	case INT_TYPE:
 		if (ltype == LUA_TNUMBER) {
 			*((int *)result) = lua_tointeger(L, -1);
@@ -208,6 +221,12 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 static void set_value_from_default(const char *default_value, enum data_type type, void *data)
 {
 	switch (type) {
+	case BOOL_TYPE:
+		*((char *) data) = !strcmp("true", default_value);
+		break;
+	case SHORT_TYPE:
+		*((short *)data) = (short)atoi(default_value);
+		break;
 	case INT_TYPE:
 		*((int *)data) = atoi(default_value);
 		break;
@@ -256,6 +275,8 @@ static void clean_structure(struct data_spec *data_specs)
 
 	for (i = 0; data_specs[i].name != NULL; i++) {
 		switch (data_specs[i].type) {
+		case BOOL_TYPE:
+		case SHORT_TYPE:
 		case INT_TYPE:
 		case FLOAT_TYPE:
 		case DOUBLE_TYPE:
