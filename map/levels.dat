@@ -37625,7 +37625,7 @@ t3 x18.50 y25.50
 t3 x23.50 y25.50
 t3 x23.50 y24.50
 t29 x32.00 y53.50
-t458 x31.26 y19.98
+t458 x31.72 y20.07
 /obsdata
 plabelinfolvl
 x=17 y=24 name="SADD-MoveTarget"
