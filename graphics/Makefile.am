@@ -11,3 +11,8 @@ obstacles/shadow_atlas.txt: obstacles/shadow_*.png obstacles/shadow_*.offset
 
 floor_tiles/atlas.txt: floor_tiles/iso_*.png floor_tiles/iso_*.offset
 	cd floor_tiles; ./../../gluem/make_atlas floor_tiles_atlas 2048 1024 atlas.txt iso_*.png
+
+clean:
+	rm -f floor_tiles/atlas.txt
+	rm -f obstacles/atlas.txt
+	rm -f obstacles/shadow_atlas.txt
