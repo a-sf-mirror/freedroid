@@ -450,8 +450,8 @@ void show_current_text_banner(void)
  * The rectangle size can be specified or left to 0, meaning the rectangle will be
  * expanded to fit the text. 
  * @param text Text to be displayed.
- * @centered Flag marking whether the text will be centered or not.
- * @SDL_Rect Rectangle in which the tooltip will be displayed.
+ * @param centered Flag marking whether the text will be centered or not.
+ * @param rect Rectangle in which the tooltip will be displayed.
  */
 void display_tooltip(const char *text, int centered, SDL_Rect rect)
 {

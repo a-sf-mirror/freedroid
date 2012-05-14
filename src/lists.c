@@ -29,8 +29,8 @@ static inline void __list_add(struct list_head *new, struct list_head *prev, str
 
 /**
  * list_add - add a new entry
- * @new: new entry to be added
- * @head: list head to add it after
+ * @param new new entry to be added
+ * @param head list head to add it after
  *
  * Insert a new entry after the specified head.
  * This is good for implementing stacks.
@@ -42,8 +42,8 @@ void list_add(struct list_head *new, struct list_head *head)
 
 /**
  * list_add_tail - add a new entry
- * @new: new entry to be added
- * @head: list head to add it before
+ * @param new new entry to be added
+ * @param head list head to add it before
  *
  * Insert a new entry before the specified head.
  * This is useful for implementing queues.
@@ -68,7 +68,7 @@ static inline void __list_del(struct list_head *prev, struct list_head *next)
 
 /**
  * list_del - deletes entry from list.
- * @entry: the element to delete from the list.
+ * @param entry the element to delete from the list.
  * Note: list_empty on entry does not return true after this, the entry is
  * in an undefined state.
  */
@@ -81,7 +81,7 @@ void list_del(struct list_head *entry)
 
 /**
  * list_del_init - deletes entry from list and reinitialize it.
- * @entry: the element to delete from the list.
+ * @param entry the element to delete from the list.
  */
 void list_del_init(struct list_head *entry)
 {
@@ -91,8 +91,8 @@ void list_del_init(struct list_head *entry)
 
 /**
  * list_move - delete from one list and add as another's head
- * @list: the entry to move
- * @head: the head that will precede our entry
+ * @param list the entry to move
+ * @param head the head that will precede our entry
  */
 void list_move(struct list_head *list, struct list_head *head)
 {
@@ -102,8 +102,8 @@ void list_move(struct list_head *list, struct list_head *head)
 
 /**
  * list_move_tail - delete from one list and add as another's tail
- * @list: the entry to move
- * @head: the head that will follow our entry
+ * @param list the entry to move
+ * @param head the head that will follow our entry
  */
 void list_move_tail(struct list_head *list, struct list_head *head)
 {
@@ -113,7 +113,7 @@ void list_move_tail(struct list_head *list, struct list_head *head)
 
 /**
  * list_empty - tests whether a list is empty
- * @head: the list to test.
+ * @param head the list to test.
  */
 int list_empty(const struct list_head *head)
 {
@@ -135,8 +135,8 @@ static inline void __list_splice(struct list_head *list, struct list_head *head)
 
 /**
  * list_splice - join two lists
- * @list: the new list to add.
- * @head: the place to add it in the first list.
+ * @param list the new list to add.
+ * @param head the place to add it in the first list.
  */
 void list_splice(struct list_head *list, struct list_head *head)
 {
@@ -146,10 +146,8 @@ void list_splice(struct list_head *list, struct list_head *head)
 
 /**
  * list_splice_init - join two lists and reinitialize the emptied list.
- * @list: the new list to add.
- * @head: the place to add it in the first list.
- *
- * The list at @list is reinitialised
+ * @param list the new list to add (the list is reinitialised).
+ * @param head the place to add it in the first list.
  */
 void list_splice_init(struct list_head *list, struct list_head *head)
 {
