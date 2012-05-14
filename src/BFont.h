@@ -73,9 +73,3 @@ void RightPutString(SDL_Surface * Surface, int y, const char *text);
 
 /* Write a right-aligned string on the "Surface" with the specified font */
 void RightPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text);
-
-/* Write a justify-aligned string on the "Surface" with the specified font */
-void JustifiedPutString(SDL_Surface * Surface, int y, const char *text);
-
-/* Write a justify-aligned string on the "Surface" with the specified font */
-void JustifiedPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text);
