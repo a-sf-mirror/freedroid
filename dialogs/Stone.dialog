@@ -257,7 +257,7 @@ Topic="Stone's Hero"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=33 Text=_"Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
+Nr=33 Text=_"Ha ha ha, you fell for it! You get nothing from me! Hahahahah!"
 Topic="Stone's Hero"
 <LuaCode>
 	npc_says(_"You... monster...", "NO_WAIT")
