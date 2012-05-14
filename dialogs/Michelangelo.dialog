@@ -42,11 +42,7 @@ Beginning of new chat dialog for character="XXXXX"
 			end
 			if (has_quest("Gapes Gluttony")) then
 				if (not done_quest("Gapes Gluttony")) then
-					if (Michelangelo_been_asked_meal_to_go) then
-						hide(21)
-					else
-						show(21)
-					end
+					show_node_if((not Michelangelo_been_asked_meal_to_go), 21)
 					hide(24)
 				elseif (has_item_backpack("Empty Picnic Basket")) then
 					show(22)

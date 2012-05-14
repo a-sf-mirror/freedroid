@@ -36,21 +36,14 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (not has_met("Spencer")) then
-		show(0)
-	else
-		hide(0)
-	end
+
+	show_node_if((not has_met("Spencer")), 0)
 
 	if (cmp_obstacle_state("Town-CitadelGate", "closed")) then
 		show(10)
 	end
 
-	if (tybalt_bribe) and (not Tybalt_money_back) then
-		show(60)
-	else
-		hide(60)
-	end
+	show_node_if((tybalt_bribe) and (not Tybalt_money_back), 60)
 
 	if (tux_has_joined_guard) then
 		hide(50, 54, 55, 56)

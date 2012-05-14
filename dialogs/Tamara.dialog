@@ -42,12 +42,9 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"What can I help you with?")
 	end
 
-	if (not won_nethack) and
-	   (not Tamara_asked_hacking) then
-		show(20)
-	else
-		hide(20)
-	end
+
+	show_node_if(((not won_nethack) and
+			(not Tamara_asked_hacking)), 20)
 
 	if (has_met("Sorenson")) and
 	   (not Tamara_talked_about_sister) then

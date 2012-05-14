@@ -374,6 +374,15 @@ function difficulty()
 	return levels[difficulty_level()+1]
 end
 
+
+function show_node_if(case, ...)
+	if (case) then
+		show(unpack(arg))
+	else
+		hide(unpack(arg))
+	end
+end
+
 -- level 24, the debug level:
 function closelvl24doors()
 	change_obstacle_state("24door1", "closed")

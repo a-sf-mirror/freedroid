@@ -72,11 +72,7 @@ Beginning of new chat dialog for character="XXXXX"
 	if (desertgate_tax ~= 0) then
 		if (cmp_obstacle_state("DesertGate", "closed")) then
 			npc_says(_"Got the money?")
-			if (get_gold() >= desertgate_tax) then
-				show(45)
-			else
-				hide(45)
-			end
+			show_node_if((get_gold() >= desertgate_tax), 45)
 		end
 		hide(40)
 	end

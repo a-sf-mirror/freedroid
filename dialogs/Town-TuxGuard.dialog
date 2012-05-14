@@ -34,13 +34,7 @@ Beginning of new chat dialog for character="XXXXX"
 	else
 		npc_says(_"Spencer seems to think that you are harmless. Go about your business.")
 	end
-
-	if (has_met("Spencer")) then
-		hide(20)
-	else
-		show(20)
-	end
-
+	show_node_if((not has_met("Spencer")), 20)
 	show(99)
 </LuaCode>
 ----------------------------------------------------------------------

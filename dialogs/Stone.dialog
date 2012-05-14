@@ -39,11 +39,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	if (has_quest("Saving the shop")) then
-		if (get_gold() > 1400) then
-			show(23)
-		else
-			hide(23)
-		end
+		show_node_if((get_gold() > 1400), 23)
 		if (done_quest("Saving the shop")) then
 			hide(23) show(10)
 		end
@@ -68,11 +64,7 @@ Nr=0 Text=_"Hi! I'm new here."
 Nr=1 Text=_"I would like to trade with you."
 <LuaCode>
 	npc_says(_"Good! Here is the selection of items I have for sale.")
-	if (Stone_asked_for_guns) then
-		hide(2)
-	else
-		show(2)
-	end
+	show_node_if((not Stone_asked_for_guns), 2)
 	trade_with("Stone")
 </LuaCode>
 ----------------------------------------------------------------------
@@ -180,7 +172,7 @@ Nr=15 Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need?
 <LuaCode>
 	npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand circuits.")
 	add_quest(_"Saving the shop", _"Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon. She needs 2000 in cash to stay afloat. I could try to help her out.")
-	if (get_gold() > 2000) then show(23) else hide(23) end
+	show_node_if((get_gold() > 2000), 23)
 	hide(15)
 </LuaCode>
 ----------------------------------------------------------------------

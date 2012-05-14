@@ -56,7 +56,7 @@ Beginning of new chat dialog for character="XXXXX"
 	end
 
 	if (Jasmine_sigsegv) then
-		if (Kevin_sigtalk) then	hide(20) else show(20) end
+		show_node_if((not Kevin_sigtalk), 20)
 	end
 
 	if (not Kevins_Lawnmower_tux_login_granted) then
