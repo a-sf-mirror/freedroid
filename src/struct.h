@@ -832,6 +832,7 @@ typedef struct obstacle_spec {
 	// Some obstacles have a different sounds / blast animations
 	// these properties allow us to define a specific sound or blast for
 	// a given obstacle
+	unsigned int blast_type;
 	char *smashed_sound;
 } obstacle_spec;
 
