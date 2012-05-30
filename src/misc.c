@@ -680,7 +680,7 @@ void Pause(void)
 
 	Activate_Conservative_Frame_Computation();
 
-	AssembleCombatPicture(DO_SCREEN_UPDATE);
+	AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
 
 	input_get_keybind("pause", &key, NULL);
 
@@ -691,7 +691,7 @@ void Pause(void)
 			Terminate(EXIT_SUCCESS, TRUE);
 		}
 
-		AssembleCombatPicture(0);
+		AssembleCombatPicture(SHOW_ITEMS);
 		if (!cheese)
 			CenteredPutStringFont(Screen, Menu_BFont, 200, _("GAME PAUSED"));
 			CenteredPutStringFont(Screen, Menu_BFont, 230, _("press p to resume"));
