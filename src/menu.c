@@ -1094,7 +1094,7 @@ static void RunSubMenu(int startup, int menu_id)
 		// We need to fill at each loop because
 		// several menus change their contents
 		for (i = 0; i < MAX_MENU_ITEMS; i++)
-			texts[i] = (char *)malloc(1024 * sizeof(char));
+			texts[i] = (char *)malloc(1024);
 		menus[menu_id].FillText(texts);
 
 		if (startup)

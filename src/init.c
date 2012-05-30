@@ -1129,7 +1129,7 @@ void ParseCommandLine(int argc, char *const argv[])
 						GameConfig.screen_height = hard_resolutions[resolution_code].yres;
 					} else {
 						fprintf(stderr, "\nresolution code received: %d\n", resolution_code);
-						char *txt = (char *)malloc((nb_res * 128 + 1) * sizeof(char));
+						char *txt = (char *)malloc(nb_res * 128 + 1);
 						txt[0] = '\0';
 						int i;
 						for (i = 0; i < nb_res; i++) {

@@ -66,7 +66,7 @@ int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepo
 	// First we clear out the position grid and initialize the target
 	// point, which will be the result of the recursion.
 	//
-	memset(recursion_grid, TILE_IS_UNPROCESSED, sizeof(char) * MAX_MAP_LINES * MAX_MAP_LINES);
+	memset(recursion_grid, TILE_IS_UNPROCESSED, MAX_MAP_LINES * MAX_MAP_LINES);
 
 	clear_out_intermediate_points(curpos, waypoints, maxwp);
 
