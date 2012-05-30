@@ -703,13 +703,13 @@ static void set_video_mode_for_open_gl(void)
 		ErrorMessage(__FUNCTION__,
 				     "SDL reported that the video mode (%d x %d) mentioned above is not supported\n"
                      "To see all possible resolutions please run 'freedroidRPG -r99'\n"
-                     "Resetting to default resolution (%d x %d)...",
+                     "Resetting to current resolution (%d x %d)...\n",
                      NO_NEED_TO_INFORM, IS_WARNING_ONLY,
                      GameConfig.screen_width, GameConfig.screen_height,
-                     DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
-		//resetting configuration file to default settings
-		GameConfig.screen_width =  DEFAULT_SCREEN_WIDTH;
-		GameConfig.screen_height = DEFAULT_SCREEN_HEIGHT;
+                     vid_info->current_w, vid_info->current_h);
+		//resetting configuration file to current (desktop) settings
+		GameConfig.screen_width =  vid_info->current_w;
+		GameConfig.screen_height = vid_info->current_h;
 		GameConfig.next_time_width_of_screen = GameConfig.screen_width;
 		GameConfig.next_time_height_of_screen = GameConfig.screen_height;
 		break;
@@ -828,13 +828,13 @@ void InitVideo(void)
 			ErrorMessage(__FUNCTION__,
 			             "SDL reported that the video mode (%d x %d) mentioned above is not supported\n"
 			             "To see all possible resolutions please run 'freedroidRPG -r99'\n"
-			             "Resetting to default resolution (%d x %d)...",
+			             "Resetting to current resolution (%d x %d)...\n",
 			             NO_NEED_TO_INFORM, IS_WARNING_ONLY,
 			             GameConfig.screen_width, GameConfig.screen_height,
-			             DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
-			//resetting configuration file to default settings
-			GameConfig.screen_width =  DEFAULT_SCREEN_WIDTH;
-			GameConfig.screen_height = DEFAULT_SCREEN_HEIGHT;
+			             vid_info->current_w, vid_info->current_h);
+			//resetting configuration file to current (desktop) settings
+			GameConfig.screen_width =  vid_info->current_w;
+			GameConfig.screen_height = vid_info->current_h;
 			GameConfig.next_time_width_of_screen = GameConfig.screen_width;
 			GameConfig.next_time_height_of_screen = GameConfig.screen_height;
 		}
