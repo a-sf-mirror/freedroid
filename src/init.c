@@ -1269,6 +1269,7 @@ void ResetGameConfigToDefaultValues(void)
 	//
 	GameConfig.Current_BG_Music_Volume = 0.5;
 	GameConfig.Current_Sound_FX_Volume = 0.5;
+	GameConfig.Current_Sound_Output_Fmt = SOUND_OUTPUT_FMT_STEREO;
 	GameConfig.current_gamma_correction = 1.00;
 	GameConfig.WantedTextVisibleTime = 3;
 	GameConfig.Draw_Framerate = TRUE;

@@ -1549,6 +1549,7 @@ static int Sound_handle(int n)
 	enum {
 		SET_BG_MUSIC_VOLUME = 1,
 		SET_SOUND_FX_VOLUME,
+		SET_SOUND_OUTPUT_FMT,
 		LEAVE_OPTIONS_MENU
 	};
 	switch (n) {
@@ -1591,6 +1592,22 @@ static int Sound_handle(int n)
 		}
 		break;
 
+	case SET_SOUND_OUTPUT_FMT:
+		if (RightPressed()) {
+			while (RightPressed()) ;
+			GameConfig.Current_Sound_Output_Fmt =
+				(GameConfig.Current_Sound_Output_Fmt + 1) % ALL_SOUND_OUTPUTS;
+			alert_window(_("You need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience."));
+		}
+
+		if (LeftPressed()) {
+			while (LeftPressed()) ;
+			GameConfig.Current_Sound_Output_Fmt =
+				(GameConfig.Current_Sound_Output_Fmt - 1) == -1 ? ALL_SOUND_OUTPUTS-1 : (GameConfig.Current_Sound_Output_Fmt - 1);
+			alert_window(_("You need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience."));
+		}
+		break;
+
 	case LEAVE_OPTIONS_MENU:
 		while (EnterPressed() || SpacePressed()) ;
 		return EXIT_MENU;
@@ -1614,6 +1631,26 @@ static void Sound_fill(char *MenuTexts[MAX_MENU_ITEMS])
 	sprintf(Options[i], _("<-- Sound effects volume"));
 	sprintf(Options[i + 1], ": %1.2f -->", GameConfig.Current_Sound_FX_Volume);
 	strcat(Options[i], Options[i + 1]);
+	strncpy(MenuTexts[i], Options[i], 1024);
+	i++;
+	sprintf(Options[i], _("<-- Output"));
+	switch (GameConfig.Current_Sound_Output_Fmt) {
+	case SOUND_OUTPUT_FMT_STEREO:
+		strcat(Options[i], _(": Stereo -->"));
+		break;
+
+	case SOUND_OUTPUT_FMT_SURROUND40:
+		strcat(Options[i], _(": 4.0 Surround -->"));
+		break;
+
+	case SOUND_OUTPUT_FMT_SURROUND51:
+		strcat(Options[i], _(": 5.1 Surround -->"));
+		break;
+		
+	default:
+		strcat(Options[i], _(": Error -->"));
+		break;
+	}
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
 	strncpy(MenuTexts[i++], _("Back"), 1024);

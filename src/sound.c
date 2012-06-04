@@ -147,6 +147,12 @@ void InitAudio(void)
 
 	if (!sound_on)
 		return;
+	
+	if (GameConfig.Current_Sound_Output_Fmt == SOUND_OUTPUT_FMT_SURROUND40) {
+		audio_channels = 4;
+	} else if (GameConfig.Current_Sound_Output_Fmt == SOUND_OUTPUT_FMT_SURROUND51) {
+		audio_channels = 6;
+	} 
 
 	// Now SDL_AUDIO is initialized here:
 
@@ -171,20 +177,35 @@ void InitAudio(void)
 	// Now that we have initialized the audio SubSystem, we must open
 	// an audio channel.  This will be done here (see code from Mixer-Tutorial):
 	//
-	if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers)) {
+	if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) < 0) {
 		fprintf(stderr, "\n\nSDL just reported a problem.\n"
-		"The error string from SDL_GetError\nwas: %s \n"
-		"The error string from the SDL mixer subsystem was: %s \n", SDL_GetError(), Mix_GetError());
+			"The error string from SDL_GetError\nwas: %s \n"
+			"The error string from the SDL mixer subsystem was: %s \n" 
+			"using audio output format: %d \n", 
+			SDL_GetError(), Mix_GetError(), GameConfig.Current_Sound_Output_Fmt);
+
 		ErrorMessage(__FUNCTION__, "\n"
-					"The SDL AUDIO CHANNEL COULD NOT BE OPENED.\n\n"
-					"Please check that your sound card is properly configured,\n"
-					"i.e. if other applications are able to play sounds.\n\n"
-					"If you for some reason cannot get your sound card ready,\n"
-					"you can choose to play without sound.\n\n"
-					"If you want this, use the appropriate command line option and FreedroidRPG will\n"
-					"not complain any more.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-		sound_on = FALSE;
-		return;
+			"\nA Problem occured while trying to open the audio device.\n"
+			"Reverting to default settings.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+
+		// revert to stereo if we fail to open the audio device
+		GameConfig.Current_Sound_Output_Fmt = SOUND_OUTPUT_FMT_STEREO;
+
+		if (Mix_OpenAudio(audio_rate, audio_format, 2, audio_buffers) < 0) {
+			fprintf(stderr, "\n\nSDL just reported a problem.\n"
+			"The error string from SDL_GetError\nwas: %s \n"
+			"The error string from the SDL mixer subsystem was: %s \n", SDL_GetError(), Mix_GetError());
+			ErrorMessage(__FUNCTION__, "\n"
+						"The SDL AUDIO CHANNEL COULD NOT BE OPENED.\n\n"
+						"Please check that your sound card is properly configured,\n"
+						"i.e. if other applications are able to play sounds.\n\n"
+						"If you for some reason cannot get your sound card ready,\n"
+						"you can choose to play without sound.\n\n"
+						"If you want this, use the appropriate command line option and FreedroidRPG will\n"
+						"not complain any more.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+			sound_on = FALSE;
+			return;
+		}
 	} else {
 		DebugPrintf(1, "\nSuccessfully opened SDL audio channel.");
 	}

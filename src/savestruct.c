@@ -1473,6 +1473,9 @@ void write_configuration_for_freedroid(struct auto_string *strout, configuration
     autostr_append(strout, "Current_Sound_FX_Volume = ");
     write_float(strout, &data->Current_Sound_FX_Volume);
     autostr_append(strout, ",\n");
+    autostr_append(strout, "Current_Sound_Output_Fmt = ");
+    write_int32_t(strout, &data->Current_Sound_Output_Fmt);
+    autostr_append(strout, ",\n");
     autostr_append(strout, "current_gamma_correction = ");
     write_float(strout, &data->current_gamma_correction);
     autostr_append(strout, ",\n");
@@ -1623,6 +1626,10 @@ void read_configuration_for_freedroid(lua_State* L, int index, configuration_for
     }
     if (lua_getfield_or_warn(L, index, "Current_Sound_FX_Volume")) {
         read_float(L, -1, &data->Current_Sound_FX_Volume);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Current_Sound_Output_Fmt")) {
+        read_int32_t(L, -1, &data->Current_Sound_Output_Fmt);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "current_gamma_correction")) {
