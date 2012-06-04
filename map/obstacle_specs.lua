@@ -1929,6 +1929,7 @@ obstacle {
 	after_smashing = 348,
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
+	smashed_sound = "Glass_Break.ogg",
 }
 
 obstacle {
@@ -1939,6 +1940,7 @@ obstacle {
 	after_smashing = 446,
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
+	smashed_sound = "Glass_Break.ogg",
 }
 
 obstacle {
