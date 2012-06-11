@@ -49,7 +49,9 @@ static float requested_color[4];
 static int batch_draw = FALSE;
 
 static struct dynarray *vtx;
-static struct dynarray *tex;
+
+// OpenGL VBO ID for vertex data and texture coords
+static unsigned int VBO_id;
 
 /**
  * Start rendering images as a batch.
@@ -77,15 +79,21 @@ void end_image_batch()
 static void gl_emit_quads(void)
 {
 #ifdef HAVE_LIBGL
+	if (!VBO_id) {
+		glGenBuffersARB(1, &VBO_id);
+		glBindBufferARB(GL_ARRAY_BUFFER, VBO_id);
+	}
+	
 	if (vtx && vtx->size) {
 		glColor4fv(requested_color);
 
-		glVertexPointer(2, GL_FLOAT, 0, vtx->arr);
-		glTexCoordPointer(2, GL_FLOAT, 0, tex->arr);
+		glBufferDataARB(GL_ARRAY_BUFFER, vtx->size * 16 * 4, vtx->arr, GL_STREAM_DRAW); 
+
+		glVertexPointer(2, GL_FLOAT, 4*sizeof(float), (void *)(2*sizeof(float)));
+		glTexCoordPointer(2, GL_FLOAT, 4*sizeof(float), (void *)(0));
 		glDrawArrays(GL_QUADS, 0, vtx->size * 4);
 		
 		vtx->size = 0;
-		tex->size = 0;
 	}
 #endif
 }
@@ -95,15 +103,10 @@ static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, floa
 #ifdef HAVE_LIBGL
 
 	if (!vtx)
-		vtx = dynarray_alloc(16, 8 * sizeof(float));
-	if (!tex)
-		tex = dynarray_alloc(16, 8 * sizeof(float));
+		vtx = dynarray_alloc(16, 16 * sizeof(float));
 
-	float tx[8] = { tx0, ty0, tx0, ty1, tx1, ty1, tx1, ty0 };
-	float v[8] = { x1, y1, x1, y2, x2, y2, x2, y1 };
-
-	dynarray_add(vtx, v, 8 * sizeof(float));
-	dynarray_add(tex, tx, 8 * sizeof(float));
+	float tx_and_v[16] = { tx0, ty0, x1, y1, tx0, ty1, x1, y2, tx1, ty1, x2, y2, tx1, ty0, x2, y1 };
+	dynarray_add(vtx, tx_and_v, sizeof(tx_and_v));
 
 	/* We have to limit the number of vertices in a single glDrawArrays call.
 	   With the r300 driver, having more than 65532 vertices in a vertex array:
