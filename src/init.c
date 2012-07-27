@@ -1336,7 +1336,6 @@ static void detect_available_resolutions(void)
 	SDL_Rect **modes;
 	screen_resolution resolution_holder;
 	int i, j, size;
-	char *res[64];
 
 	// Get available fullscreen/hardware modes (reported by SDL)
 	modes = SDL_ListModes(NULL, SDL_FULLSCREEN|SDL_HWSURFACE);
@@ -1349,11 +1348,8 @@ static void detect_available_resolutions(void)
 			i = 1;
 	} else {
 		// Add resolutions to the screen_resolutions array
-		for (i = 0; modes[i] && i < MAX_RESOLUTIONS; ++i) {
-			res[i] = (char *) malloc(32);
-			sprintf(res[i], "%d x %d", modes[i]->w, modes[i]->h);
-			screen_resolutions[i] = (screen_resolution) {modes[i]->w, modes[i]->h, res[i], TRUE};
-		}
+		for (i = 0; modes[i] && i < MAX_RESOLUTIONS; ++i) 
+			screen_resolutions[i] = (screen_resolution) {modes[i]->w, modes[i]->h, "", TRUE};
 	}
 
 	// Sort
