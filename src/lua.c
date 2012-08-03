@@ -636,7 +636,7 @@ static int lua_event_npc_dead(lua_State *L)
 
 static int lua_event_freeze_tux_npc(lua_State * L)
 {
-	int duration = luaL_checknumber(L, 1);
+	float duration = luaL_checknumber(L, 1);
 	enemy *en = get_enemy_arg(L, 2); 
 	en->paralysation_duration_left = duration;
 	Me.paralyze_duration = duration;
@@ -852,6 +852,13 @@ static int lua_chat_get_bot_type(lua_State * L)
 	enemy *en = get_enemy_arg(L, 1); 
 	lua_pushstring(L, Droidmap[en->type].droidname);
 	return 1;
+}
+
+static int lua_event_bot_class(lua_State * L)
+{
+       enemy *en = get_enemy_arg(L, 1);
+       lua_pushinteger(L, Droidmap[en->type].class);
+       return 1;
 }
 
 static int lua_chat_get_bot_name(lua_State * L)
@@ -1165,10 +1172,13 @@ luaL_reg lfuncs[] = {
 	,
 	{"npc_dead", lua_event_npc_dead},
 	/* bot_type() tells you what model
+	   bot_class() tells you the class of a bot
 	   bot_name() tells you what name it displays
 	   set_bot_name() puts a new name in
 	 */
 	{"bot_type", lua_chat_get_bot_type},
+
+	{"bot_class", lua_event_bot_class},
 
 	{"bot_name", lua_chat_get_bot_name},
 

@@ -369,6 +369,17 @@ function del_health(num_points)
 	end
 end
 
+function drain_bot()
+--[[ npc_damage_amount - npc_max_health   will return the HPs of the droid
+	 for example:  max_HP = 20, DMG_amount = 10 ; 10-20 = -10
+					 hurt_tux(-10) will heal tux by 10 HP
+	 to have the difficulty lvl influence the HP tux gets we divide the
+	 heal-HP by the difficulty_lvl+1 (to prevent division by zero)
+	 -10/2 (difficulty_lvl = 3/hard) = -5.  Tux will be healed by 5 HP ]]--
+	hurt_tux((npc_damage_amount() - npc_max_health())/(difficulty_level()+1))
+	drop_dead()
+end
+
 function difficulty()
 	levels = {"easy", "normal", "hard"}
 	return levels[difficulty_level()+1]

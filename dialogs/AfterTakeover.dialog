@@ -26,6 +26,10 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
+<FirstTime LuaCode>
+	Aftertakeover_drain_attempt = "ask"
+</LuaCode>
+
 <EveryTime LuaCode>
 	AfterTakeover_repair_time = 0
 	AfterTakeover_repair_circuits = 0
@@ -66,6 +70,7 @@ NO_TEXT
 	topic("repair_and_settings")
 </LuaCode>
 ----------------------------------------------------------------------
+
 Nr=2 Text=_"BUG, REPORT ME! Aftertakeover node2"
 Topic="repair_and_settings"
 NO_TEXT
@@ -148,10 +153,10 @@ NO_TEXT
 	local function calculate_bot_repair_penalty(constant, ability_value)
 		ability_value = ability_value + get_program_revision("Repair equipment")
 		return (1200 + npc_max_health()) * math.exp(-0.02 * ability_value) * constant / 15000
-	  	-- (1200 + npc_max_health()) / 1500 is the bot_modifier, arranging the values between 0.8 (small bots) and 1 (big bots)
-	  	-- math.exp(-0.02 * ability_value) is the ability_modifier, reducing the costs by ~2% per ability_level
-	  	-- 1/10 is a constant to limit the repair_time to an upper bound of 30 seconds; it is adjusted to a 300 HP-bot (Sawmill, Cerebrum) to be the most expensive bot to be repaired
-	  	-- the denominators 1500 and 10 are combined to 15000
+		-- (1200 + npc_max_health()) / 1500 is the bot_modifier, arranging the values between 0.8 (small bots) and 1 (big bots)
+		-- math.exp(-0.02 * ability_value) is the ability_modifier, reducing the costs by ~2% per ability_level
+		-- 1/10 is a constant to limit the repair_time to an upper bound of 30 seconds; it is adjusted to a 300 HP-bot (Sawmill, Cerebrum) to be the most expensive bot to be repaired
+		-- the denominators 1500 and 10 are combined to 15000
 	end
 
 	tux_says(_"./repair.plx", "NO_WAIT")
@@ -163,30 +168,28 @@ NO_TEXT
 		AfterTakeover_repair_circuits = math.max(1, damage * calculate_bot_repair_penalty(7, get_program_revision("Extract bot parts")))
 		AfterTakeover_repair_heat = math.max(1, damage * calculate_bot_repair_penalty(3, get_program_revision("Hacking")))
 
-		Aftertakeover_time_estimation = math.ceil(AfterTakeover_repair_time * 1.2)
-		Aftertakeover_repair_cost_estimation = math.ceil(AfterTakeover_repair_time * 1.2)
-		Aftertakeover_heat_estimation = math.ceil(AfterTakeover_repair_heat * 1.2)
+		Aftertakeover_repair_time_estimation = math.ceil(AfterTakeover_repair_time * 1.2)
+		Aftertakeover_repair_circuits_estimation = math.ceil(AfterTakeover_repair_time * 1.2)
 		-- Get correct plural/singluar for "second(s)" and "circuit(s)"
-		if (Aftertakeover_time_estimation == 1) then
-			Aftertakeover_seconds = _"second"
-		else
-			Aftertakeover_seconds = _"seconds"
+
+		local repair_seconds = _"seconds"
+		if (Aftertakeover_repair_time_estimation == 1) then
+			repair_seconds = _"second"
 		end
 
-		if (Aftertakeover_repair_cost_estimation == 1) then
-			Aftertakeover_circuits = _"circuit"
-		else
-			Aftertakeover_circuits = _"circuits"
+		local repair_circuits = _"circuits"
+		if (Aftertakeover_repair_circuits_estimation == 1) then
+			repair_circuits = _"circuit"
 		end
 
 		-- Display the maximum repair costs: --
-		npc_says(_"Repairs on %s will take less than %s %s, %s valuable %s, and %s heat.",
+		npc_says(_"Repairs on %s will take less than %d %s, %d valuable %s, and %d heat.",
 			bot_name(),
-			Aftertakeover_time_estimation,
-			Aftertakeover_seconds,
-			Aftertakeover_repair_cost_estimation,
-			Aftertakeover_circuits,
-			Aftertakeover_heat_estimation)
+			Aftertakeover_repair_time_estimation,
+			repair_seconds,
+			Aftertakeover_repair_circuits_estimation,
+			repair_circuits,
+			math.ceil(AfterTakeover_repair_heat * 1.2))
 		hide(20)
 		if (get_gold() < AfterTakeover_repair_circuits * 1.2) then
 			npc_says(_"You do not have enough valuable circuits to ensure repair of this %s unit.", bot_type())
@@ -323,19 +326,7 @@ NO_TEXT
 		show(35)
 	end
 	npc_says(_"Which setting should be changed?", "NO_WAIT")
-	hide(32, 33, 36, 37) show(31, 39)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=39 Text="leave settings.plx"
-Topic="settings.plx"
-NO_TEXT
-<LuaCode>
-	npc_says(_"Settings saved", "NO_WAIT")
-	npc_says(_"Leaving settings.plx", "NO_WAIT")
-	cli_says(terminal_sub, "NO_WAIT")
-	hide(31, 35, 39)
-	pop_topic()
+	hide(32, 33, 36, 37) show(31, 70, 80)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -453,34 +444,166 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=50 Text="BUG, REPORT ME! Aftertakeover node50"
+Nr=50 Text=_"PLEASE REPORT, BUG AFTERTAKEOVER NODE 50"
 NO_TEXT
 <LuaCode>
-	npc_says(_"Executing: Halt and Catch Fire.", "NO_WAIT")
-	if (math.random(1,10) > 2 ) then  -- it shouldn't appear too often
-		npc_says(_"Warning! Cooling subsystems disabled.", "NO_WAIT")
-		npc_says(_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit.", "NO_WAIT")
-		npc_says(_"WArn|n*! SsTeM=#faiPure%%^#n 3 S 1()$++")
-	else
-		npc_says(_"Warning: something seems wrong.")
-		npc_says(_"Error report:")
-		npc_says("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "NO_WAIT")
-		npc_says("Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "NO_WAIT")
-		npc_says("Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "NO_WAIT")
-		npc_says("Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-		-- gettext strings left out on purpose
+	Aftertakeover_freezetime = (bot_class() * 0.8)
+	if (Aftertakeover_freezetime < 1) then
+		Aftertakeover_freezetime = 1
 	end
-	if (Dixon_mood) and
-	   (Dixon_mood > 150) and
-	   (Bruce_hurt) and
-	   (has_quest("Opening access to MS Office")) and
-	   (not tux_has_edge) then
-		npc_says(_"()%%#@(%% THE BLADE IS YOURS. )##%%*&%%*!")
-		tux_has_edge = true
-		add_item("Nobody's edge",1)
+
+	local freezetime_seconds = _"seconds"
+	if (Aftertakeover_freezetime == 1) then
+		freezetime_seconds = _"second"
+	end
+
+	npc_says(_"Draining this %s unit will get you %d HP but kill it and take %d %s.",
+		bot_type(),
+		((npc_max_health() - npc_damage_amount())/(difficulty_level()+1)),
+		math.ceil(Aftertakeover_freezetime),
+		freezetime_seconds)
+
+	if (Aftertakeover_drain_attempt == "ask") then
+		npc_says(_"Are you sure you want to drain this %s unit?", bot_type())
+		topic("drain_ask")
+		show(51, 52)
+	elseif (Aftertakeover_drain_attempt == "never") then
+		next(53)
+		Aftertakeover_hcfnow = true
+	elseif (Aftertakeover_drain_attempt == "auto") then
+		next(53)
+	else
+		npc_says("ERROR OCCURED; Aftertakeover node 50, state for Aftertakeover_drain_attempt not handled.")
+	end
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=51 Text="Yes"
+Topic="drain_ask"
+NO_TEXT
+<LuaCode>
+	if (Aftertakeover_drain_attempt == "ask") then
+		tux_says(_"Yes")
+	end
+	hide(51, 52)
+	next(53)
+	pop_topic()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=52 Text=_"No"
+Topic="drain_ask"
+<LuaCode>
+	npc_says(_"Bot not drained.")
+	npc_says(_"Running hcf.py...")
+	Aftertakeover_hcfnow = true
+	hide(51, 52)
+	next(53)
+	pop_topic()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=53 Text=_"BUG OCCURED Aftertakeover node 53"
+NO_TEXT
+<LuaCode>
+	if (Aftertakeover_hcfnow) then
+		npc_says(_"Executing: Halt and Catch Fire.", "NO_WAIT")
+		if (math.random(1,10) > 2 ) then  -- it shouldn't appear too often
+			npc_says(_"Warning! Cooling subsystems disabled.", "NO_WAIT")
+			npc_says(_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit.", "NO_WAIT")
+			npc_says(_"WArn|n*! SsTeM=#faiPure%%^#n 3 S 1()$++")
+		else
+			npc_says(_"Warning: something seems wrong.")
+			npc_says(_"Error report:")
+			npc_says("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "NO_WAIT")
+			npc_says("Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "NO_WAIT")
+			npc_says("Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "NO_WAIT")
+			npc_says("Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+			-- gettext strings left out on purpose
+		end
+		if (Dixon_mood) and
+		   (Dixon_mood > 150) and
+		   (Bruce_hurt) and
+		   (has_quest("Opening access to MS Office")) and
+		   (not tux_has_edge) then
+			npc_says(_"()%%#@(%% THE BLADE IS YOURS. )##%%*&%%*!")
+			tux_has_edge = true
+			add_item("Nobody's edge",1)
+		end
+		drop_dead()
+	else
+		if (takeover(bot_class())) then   -- bot intentionally drained,  takeover won
+			npc_says(_"Bot drained")
+			freeze_tux_npc(Aftertakeover_freezetime)
+			drain_bot()
+		else
+			npc_says(_"Failed to drain bot.")
+			npc_says(_"I am free!")
+			npc_faction("crazy")
+		end
+		end_dialog()
 	end
 	AfterTakeover_repair = false
-	drop_dead()
+	Aftertakeover_hcfnow = false
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=70 Text=_"drain_bot_auto.setup"
+Topic="settings.plx"
+<LuaCode>
+	npc_says(_"How do you want draining of bots to be handled?")
+
+	if (Aftertakeover_drain_attempt == "auto") then
+		npc_says(_"Currently draining of bots is tried automatically.")
+	elseif (Aftertakeover_drain_attempt == "never") then
+		npc_says(_"Currently draining of bots is never tried.")
+	elseif (Aftertakeover_drain_attempt == "ask") then
+		npc_says(_"Currently it is asked if draining a bot is to be tried.")
+	else
+		npc_says("BUG AFTERTAKEOVER node 70. not handled value for Aftertakeover_drain_attempt.")
+	end
+
+	show(71, 72, 73)
+	topic("drain_bot_attempt_state")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=71 Text=_"Always try draining bots."
+Topic="drain_bot_attempt_state"
+<LuaCode>
+	Aftertakeover_drain_attempt = "auto"
+	hide(71, 72, 73)
+	pop_topic()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=72 Text=_"Never try to drain a bot"
+Topic="drain_bot_attempt_state"
+<LuaCode>
+	Aftertakeover_drain_attempt = "never"
+	hide(71, 72, 73)
+	pop_topic()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=73 Text=_"Always ask if attempt to drain bot shall be ran."
+Topic="drain_bot_attempt_state"
+<LuaCode>
+	Aftertakeover_drain_attempt = "ask"
+	hide(71, 72, 73)
+	pop_topic()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=80 Text="leave settings.plx"
+Topic="settings.plx"
+NO_TEXT
+<LuaCode>
+	npc_says(_"Settings saved", "NO_WAIT")
+	npc_says(_"Leaving settings.plx", "NO_WAIT")
+	cli_says(terminal_sub, "NO_WAIT")
+	hide(31, 35, 80)
+	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
