@@ -55827,6 +55827,7 @@ t321 x87.91 y89.40
 t321 x81.73 y0.58
 t321 x84.36 y0.59
 t321 x87.99 y0.55
+t46 x6.69 y79.55
 /obsdata
 plabelinfolvl
 /plabelinfolvl
@@ -55853,6 +55854,9 @@ idx=2395 type=32 data={
 }
 idx=2442 type=32 data={
 	I have no idea what this red thing is, but it looks pretty cool.
+}
+idx=3081 type=32 data={
+	MS_factory_addon_terminal
 }
 /obstacleextensions
 wp
