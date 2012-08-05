@@ -453,8 +453,8 @@ T=GUA: PosX=37 PosY=11 Faction="redguard" UseDialog="MO-RGGateGuard" ShortLabel=
 Level=50
 
 T=296: PosX=53 PosY=3 Faction="neutral" UseDialog="HF-EntranceBot" ShortLabel="Reception Droid" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=WOR: PosX=68 PosY=9 Faction="ms" UseDialog="AfterTakeover" ShortLabel="WOR" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=5
-T=WOR: PosX=72 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel="WOR" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=7
+T=WOR: PosX=68 PosY=9 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Worker" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=5
+T=WOR: PosX=72 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Worker" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=7
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
