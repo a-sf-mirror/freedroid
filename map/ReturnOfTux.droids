@@ -157,9 +157,9 @@ Level=16
 ** Beginning of new Level **
 Level=17
 
-T=821: PosX=64 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=821: PosX=65 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=883: PosX=69 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=751: PosX=67 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=751: PosX=68 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=598: PosX=60 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=603: PosX=76 PosY=38 Faction="civilian" UseDialog="Kevin-Lawnmower" ShortLabel="Lawn Mower" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=JAS: PosX=66 PosY=52 Faction="civilian" UseDialog="Jasmine" ShortLabel="Cute Girl" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
@@ -453,13 +453,15 @@ T=GUA: PosX=37 PosY=11 Faction="redguard" UseDialog="MO-RGGateGuard" ShortLabel=
 Level=50
 
 T=296: PosX=53 PosY=3 Faction="neutral" UseDialog="HF-EntranceBot" ShortLabel="Reception Droid" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=WOR: PosX=68 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="WOR" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=5
-T=WOR: PosX=72 PosY=19 Faction="ms" UseDialog="AfterTakeover" ShortLabel="WOR" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=7
-
+T=WOR: PosX=68 PosY=9 Faction="ms" UseDialog="AfterTakeover" ShortLabel="WOR" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=5
+T=WOR: PosX=72 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel="WOR" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=7
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
 Level=51
+
+T=GUB: PosX=3 PosY=20 Faction="neutral" UseDialog="AfterTakeover" ShortLabel="Shopowner" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=7
+
 
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
@@ -510,7 +512,7 @@ T=603: PosX=18 PosY=9 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Law
 T=603: PosX=19 PosY=9 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Lawnmower" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=603: PosX=16 PosY=9 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Lawnmower" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=603: PosX=9 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Lawnmower" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=603: PosX=8 PosY=9 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Lawnmower" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=603: PosX=8 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Lawnmower" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
