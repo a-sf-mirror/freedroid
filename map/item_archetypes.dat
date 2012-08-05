@@ -3185,6 +3185,20 @@ Item description text=_"This is a teleporter service toolbox. It's complete and 
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
+Item name=_"Toolbox"
+Item min class for drop=-1
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="toolbox"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="toolbox/inv_image.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text=_"This is a regular toolbox. It's complete and orderly, though a few dents on the outside give proof of frequent use."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=_"Entropy Inverter"
 Item min class for drop=-1
 Item can be installed in slot with name="none"
