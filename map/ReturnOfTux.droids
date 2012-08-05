@@ -460,9 +460,7 @@ T=WOR: PosX=72 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Worker
 ** Beginning of new Level **
 Level=51
 
-T=GUB: PosX=3 PosY=20 Faction="neutral" UseDialog="AfterTakeover" ShortLabel="Shopowner" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=7
-
-
+T=GUB: PosX=3 PosY=20 Faction="neutral" UseDialog="Karol" ShortLabel="Shopowner" Marker=1050 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=7
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **

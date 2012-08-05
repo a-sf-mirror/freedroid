@@ -1,0 +1,64 @@
+--------------------------------------------------------------------
+ * This file is part of Freedroid
+ *
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
+----------------------------------------------------------------------
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+
+Beginning of new chat dialog for character="XXXXX"
+----------------------------------------------------------------------
+
+<FirstTime LuaCode>
+	show(0)
+</LuaCode>
+
+<EveryTime LuaCode>
+	if (has_met("Karol")) then
+		show(1)
+	end
+
+	show(99)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=0 Text=_"Hello. Can I buy something from you?"
+<LuaCode>
+	npc_says(_"Hi, yes, you can buy stuff from me.")
+	npc_says(_"My name is Karol. I sell mostly tools which are needed to manufacture bots.")
+	set_bot_name(_"Karol -- Shopowner")
+	hide(0) show(1)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=1 Text=_"What are your offers today?"
+<LuaCode>
+	npc_says(_"Take a look.")
+	trade_with("Karol")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=99 Text=_"See you later."
+<LuaCode>
+	npc_says("Bye bye.")
+	end_dialog()
+</LuaCode>
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"

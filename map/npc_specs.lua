@@ -37,6 +37,7 @@ npc_list{
 	"Kevin-Lawnmower",
 	"KevinGuard",
 	"Kevin",
+	"Karol",
 	"John",
 	"Jasmine",
 	"Iris",
@@ -197,3 +198,12 @@ items = {{"Source Book of Emergency shutdown"},
 	}
 }
 
+npc_shop{
+name = "Karol",
+items = {{"Chainsaw"},
+	 {"Iron pipe"},
+	 {"Big wrench"},
+	 {"Power hammer"},
+	 {"Crowbar"}
+	}
+}
