@@ -204,6 +204,9 @@ items = {{"Chainsaw"},
 	 {"Iron pipe"},
 	 {"Big wrench"},
 	 {"Power hammer"},
-	 {"Crowbar"}
+	 {"Crowbar"},
+	 {"Reinforced Jacket"},
+	 {"Protective Jacket"},
+	 {"Worker Shoes"}
 	}
 }
