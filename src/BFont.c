@@ -382,11 +382,6 @@ void RightPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const c
 	PutStringFont(Surface, Font, Surface->w - TextWidthFont(Font, text) - 1, y, text);
 }
 
-void LeftPutString(SDL_Surface * Surface, int y, const char *text)
-{
-	LeftPutStringFont(Surface, CurrentFont, y, text);
-}
-
 void LeftPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text)
 {
 	PutStringFont(Surface, Font, 0, y, text);
