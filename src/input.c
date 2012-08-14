@@ -158,83 +158,76 @@ int MouseWheelDownPressed(void)
 		return (FALSE);
 }
 
+static int key_is_pressed(int key)
+{
+	SDL_PumpEvents();
+	return key_state_array[key];
+}
+
 /* *Pressed functions return the current state of the keyboard/mouse button in question */
 int LeftPressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_LEFT]));
+	return key_is_pressed(SDLK_LEFT);
 }
 
 int RightPressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_RIGHT]));
+	return key_is_pressed(SDLK_RIGHT);
 }
 
 int UpPressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_UP]));
+	return key_is_pressed(SDLK_UP);
 }
 
 int DownPressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_DOWN]));
+	return key_is_pressed(SDLK_DOWN);
 }
 
 int SpacePressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_SPACE]));
+	return key_is_pressed(SDLK_SPACE);
 }
 
 int EnterPressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_RETURN]));
+	return key_is_pressed(SDLK_RETURN);
 }
 
 int EscapePressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_ESCAPE]));
+	return key_is_pressed(SDLK_ESCAPE);
 }
 
 int LeftCtrlPressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_LCTRL]));
+	return key_is_pressed(SDLK_LCTRL);
 }
 
 int CtrlPressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_LCTRL]) || key_state_array[SDLK_RCTRL]);
+	return key_is_pressed(SDLK_LCTRL) || key_is_pressed(SDLK_RCTRL);
 }
 
 int ShiftPressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_RSHIFT] || key_state_array[SDLK_LSHIFT]));
+	return key_is_pressed(SDLK_RSHIFT) || key_is_pressed(SDLK_LSHIFT);
 }
 
 int APressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_a]));
+	return key_is_pressed(SDLK_a);
 }
 
 int QPressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_q]));
+	return key_is_pressed(SDLK_q);
 }
 
 int XPressed()
 {
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_x]));
+	return key_is_pressed(SDLK_x);
 }
 
 int MouseRightPressed()
