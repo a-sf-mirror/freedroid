@@ -24,7 +24,7 @@
  *
  */
 /**
- * This file contains (all) functions for keyboard and joystick handling
+ * This file contains functions for keyboard and mouse events.
  */
 
 #define _input_c
