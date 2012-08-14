@@ -219,46 +219,16 @@ int ShiftPressed()
 	return ((key_state_array[SDLK_RSHIFT] || key_state_array[SDLK_LSHIFT]));
 }
 
-int AltPressed()
-{
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_RALT] || key_state_array[SDLK_LALT]));
-}
-
 int APressed()
 {
 	SDL_PumpEvents();
 	return ((key_state_array[SDLK_a]));
 }
 
-int HPressed()
-{
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_h]));
-}
-
-int MPressed()
-{
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_m]));
-}
-
 int QPressed()
 {
 	SDL_PumpEvents();
 	return ((key_state_array[SDLK_q]));
-}
-
-int SPressed()
-{
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_s]));
-}
-
-int WPressed()
-{
-	SDL_PumpEvents();
-	return ((key_state_array[SDLK_w]));
 }
 
 int XPressed()
@@ -290,16 +260,6 @@ int MouseRightClicked()
 int MouseLeftClicked()
 {
 	return (!(mouse_state_last_frame & SDL_BUTTON(1)) && (mouse_state_this_frame & SDL_BUTTON(1)));
-}
-
-int MouseRightUnclicked()
-{
-	return ((mouse_state_last_frame & SDL_BUTTON(3)) && !(mouse_state_this_frame & SDL_BUTTON(3)));
-}
-
-int MouseLeftUnclicked()
-{
-	return ((mouse_state_last_frame & SDL_BUTTON(1)) && !(mouse_state_this_frame & SDL_BUTTON(1)));
 }
 
 #undef _input_c
