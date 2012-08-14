@@ -29,9 +29,6 @@
 
 #define _input_c
 
-#include "system.h"
-
-#include "defs.h"
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
