@@ -134,7 +134,10 @@ static void prepare_font(BFont_Info *font, SDL_Rect char_rect[MAX_CHARS_IN_FONT]
  */
 BFont_Info *LoadFont(const char *filename)
 {
-	BFont_Info *font = MyMalloc(sizeof(BFont_Info));
+	BFont_Info *font;
+
+	if (!(font = MyMalloc(sizeof(*font))))
+		return NULL;
 
 	// Load the font image
 	load_image_surface(&font->font_image, filename, FALSE);
