@@ -333,7 +333,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
  * @param y	The Y position of the pixel.
  * @return The pixel value at (x, y) on success, zero on failure.
  */
-uint32_t FdGetPixel(SDL_Surface *surf, int x, int y)
+uint32_t sdl_get_pixel(SDL_Surface *surf, int x, int y)
 {
 	int bpp = surf->format->BytesPerPixel;
 	uint8_t *p = (uint8_t *)surf->pixels + y * surf->pitch + x * bpp;

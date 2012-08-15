@@ -40,7 +40,7 @@ static void find_character_positions(BFont_Info *font, SDL_Rect char_rect[MAX_CH
 
 		// Read this line of characters
 		while (x < font_surf->w - 1 && i < MAX_CHARS_IN_FONT) {
-			if (FdGetPixel(font_surf, x, y) != sentry_horiz) {
+			if (sdl_get_pixel(font_surf, x, y) != sentry_horiz) {
 				// Found a character
 				rect = &char_rect[i];
 				rect->x = x;
@@ -49,7 +49,7 @@ static void find_character_positions(BFont_Info *font, SDL_Rect char_rect[MAX_CH
 				// Compute character width
 				int x2 = x;
 				while (x2 < font_surf->w) {
-					if (FdGetPixel(font_surf, x2, y) == sentry_horiz)
+					if (sdl_get_pixel(font_surf, x2, y) == sentry_horiz)
 						break;
 					x2++;
 				}
@@ -61,8 +61,8 @@ static void find_character_positions(BFont_Info *font, SDL_Rect char_rect[MAX_CH
 				// Compute character height
 				int y2 = y;
 				while (y2 < font_surf->h) {
-					if (FdGetPixel(font_surf, x, y2) == sentry_horiz ||
-							FdGetPixel(font_surf, x, y2) == sentry_vert)
+					if (sdl_get_pixel(font_surf, x, y2) == sentry_horiz ||
+							sdl_get_pixel(font_surf, x, y2) == sentry_vert)
 						break;
 					y2++;
 				}
