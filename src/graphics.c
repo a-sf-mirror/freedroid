@@ -323,6 +323,43 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 
 };				// int do_graphical_number_selection_in_range ( int lower_range , int upper_range )
 
+/**
+ * Return the pixel value at (x, y).
+ *
+ * NOTE: The surface must be locked before calling this!
+ *
+ * @param surf	The surface where we want to retrieve the pixel.
+ * @param x	The X position of the pixel.
+ * @param y	The Y position of the pixel.
+ * @return The pixel value at (x, y) on success, zero on failure.
+ */
+uint32_t FdGetPixel(SDL_Surface *surf, int x, int y)
+{
+	int bpp = surf->format->BytesPerPixel;
+	uint8_t *p = (uint8_t *)surf->pixels + y * surf->pitch + x * bpp;
+
+	switch (bpp) {
+	case 1:
+		return *p;
+		break;
+	case 2:
+		return *(uint16_t *)p;
+		break;
+	case 3:
+		if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
+			return p[0] << 16 | p[1] << 8 | p[2];
+		else
+			return p[0] | p[1] << 8 | p[2] << 16;
+		break;
+	case 4:
+		return *(uint32_t *)p;
+		break;
+	default:
+		/* shouldn't happen, but avoids warnings */
+		return 0;
+	}
+}
+
 void sdl_put_pixel(SDL_Surface *surf, int x, int y, uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
 {
 	int bpp = surf->format->BytesPerPixel;

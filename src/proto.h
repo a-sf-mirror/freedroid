@@ -275,6 +275,7 @@ void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
 SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, float b, float a, int highlight);
 void draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
 void draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a);
+uint32_t FdGetPixel(SDL_Surface *surf, int x, int y);
 void sdl_put_pixel(SDL_Surface *surf, int x, int y, uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
 void save_screenshot(const char *filename, int width);
 void reload_graphics(void);
@@ -703,9 +704,6 @@ void AnimateCurrents(void);
 
 void ClearPlayground(void);
 int IsActive(int color, int row);
-
-// BFont.c
-Uint32 FdGetPixel(SDL_Surface * Surface, Sint32 X, Sint32 Y);
 
 void list_add(list_head_t * new, list_head_t * head);
 void list_add_tail(list_head_t * new, list_head_t * head);
