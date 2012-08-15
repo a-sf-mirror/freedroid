@@ -353,15 +353,6 @@ int LimitTextWidthFont(BFont_Info *font, const char *text, int limit)
 	return -1;
 }
 
-/**
- *
- *
- */
-int LimitTextWidth(const char *text, int limit)
-{
-	return (LimitTextWidthFont(CurrentFont, text, limit));
-}
-
 void CenteredPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text)
 {
 	PutStringFont(Surface, Font, Surface->w / 2 - TextWidthFont(Font, text) / 2, y, text);

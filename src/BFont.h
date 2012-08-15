@@ -47,9 +47,6 @@ int TextWidth(const char *text);
 /* Returns the width, in pixels, of the text calculated with the specified font*/
 int TextWidthFont(BFont_Info * Font, const char *text);
 
-/* Returns the index of the last character than is inside the width limit, with the current font */
-int LimitTextWidth(const char *text, int limit);
-
 /* Returns the index of the last character than is inside the width limit, with the specified font */
 int LimitTextWidthFont(BFont_Info *font, const char *text, int limit);
 
