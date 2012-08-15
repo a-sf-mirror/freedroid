@@ -335,7 +335,7 @@ int TextWidthFont(BFont_Info *font, const char *text)
  *
  *
  */
-static int LimitTextWidthFont(BFont_Info *font, const char *text, int limit)
+int LimitTextWidthFont(BFont_Info *font, const char *text, int limit)
 {
 	int i = 0, width = 0;
 	int letter_spacing = get_letter_spacing(font);
