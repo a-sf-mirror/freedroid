@@ -506,7 +506,7 @@ void LightRadiusClean()
 	}
 }
 
-static int add_light_source(gps pos, gps vpos, int strength)
+static void add_light_source(gps pos, gps vpos, int strength)
 {
 	struct light_source src;
 
@@ -515,8 +515,6 @@ static int add_light_source(gps pos, gps vpos, int strength)
 	src.strength = strength;
 
 	dynarray_add(&light_sources, &src, sizeof(src));
-
-	return 0;
 }
 
 /**
@@ -550,8 +548,7 @@ void update_light_list()
 	if (light_strength <= 0)
 		light_strength = 1;
 
-	if (add_light_source(Me.pos, Me.pos, light_strength) < 0)
-		return;
+	add_light_source(Me.pos, Me.pos, light_strength);
 
 	// Now we can fill in any explosions, that are currently going on.
 	// These will typically emanate a lot of light.
@@ -570,8 +567,7 @@ void update_light_list()
 		if (vpos.x == -1)
 			continue;
 
-		if (add_light_source(AllBlasts[blast].pos, vpos, light_strength) < 0)
-			return;
+		add_light_source(AllBlasts[blast].pos, vpos, light_strength);
 	}
 
 	// Now we can fill in the remaining light sources of this level.
@@ -630,8 +626,7 @@ void update_light_list()
 					if (vpos.x == -1)
 						continue;
 
-					if (add_light_source(emitter->pos, vpos, emitted_light_strength) < 0)
-						return;
+					add_light_source(emitter->pos, vpos, emitted_light_strength);
 				}
 			}
 		}
@@ -658,8 +653,7 @@ void update_light_list()
 			if (vpos.x == -1)
 				continue;
 
-			if (add_light_source(erot->pos, vpos, 5) < 0)
-				return;
+			add_light_source(erot->pos, vpos, 5);
 		}
 	}
 }				// void update_light_list ( )
