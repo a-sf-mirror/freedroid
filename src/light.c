@@ -51,6 +51,7 @@ struct light_source {
 	int strength;
 } light_sources[MAX_NUMBER_OF_LIGHT_SOURCES];
 
+static int next_light_emitter_index;
 
 light_radius_config LightRadiusConfig = { -1, -1, -1, -1, 0.0 };
 
@@ -509,6 +510,23 @@ void LightRadiusClean()
 	}
 }
 
+static int add_light_source(gps pos, gps vpos, int strength)
+{
+	light_sources[next_light_emitter_index].pos      = pos;
+	light_sources[next_light_emitter_index].vpos     = vpos;
+	light_sources[next_light_emitter_index].strength = strength;
+	next_light_emitter_index++;
+
+	if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
+		ErrorMessage(__FUNCTION__, "\
+                             WARNING! End of light sources array reached!",
+                             NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		return -1;
+	}
+
+	return 0;
+}
+
 /**
  * There might be some obstacles that emit some light.  Yet, we can't
  * go through all the obstacle list of a level every frame at sufficiently
@@ -523,8 +541,8 @@ void update_light_list()
 	level *curr_lvl;
 	int curr_id;
 	int glue_index;
+	int light_strength;
 	int obs_index;
-	int next_light_emitter_index;
 	int map_x, map_y;	
 	obstacle *emitter;
 	int blast;
@@ -547,15 +565,14 @@ void update_light_list()
 	// Now we fill in the Tux position as the very first light source, that will
 	// always be present.
 	//
-	light_sources[0].pos.x = Me.pos.x;
-	light_sources[0].pos.y = Me.pos.y;
-	light_sources[0].pos.z = Me.pos.z;
-	light_sources[0].strength = light_level->light_bonus + Me.light_bonus_from_tux;	
-	light_sources[0].vpos = light_sources[0].pos;
+	light_strength = light_level->light_bonus + Me.light_bonus_from_tux;
+
 	// We must not in any case tear a hole into the beginning of the list though...
-	if (light_sources[0].strength <= 0)
-		light_sources[0].strength = 1;
-	next_light_emitter_index = 1;
+	if (light_strength <= 0)
+		light_strength = 1;
+
+	if (add_light_source(Me.pos, Me.pos, light_strength) < 0)
+		return;
 
 	// Now we can fill in any explosions, that are currently going on.
 	// These will typically emanate a lot of light.
@@ -569,24 +586,13 @@ void update_light_list()
 		int light_strength = 10 + AllBlasts[blast].phase / 2;
 		if (light_strength < 0) continue;
 
-		light_sources[next_light_emitter_index].pos.x = AllBlasts[blast].pos.x;
-		light_sources[next_light_emitter_index].pos.y = AllBlasts[blast].pos.y;
-		light_sources[next_light_emitter_index].pos.z = AllBlasts[blast].pos.z;
-		update_virtual_position(&light_sources[next_light_emitter_index].vpos,
-				&light_sources[next_light_emitter_index].pos, Me.pos.z);
-		if (light_sources[next_light_emitter_index].vpos.x == -1)
+		gps vpos;
+		update_virtual_position(&vpos, &AllBlasts[blast].pos, Me.pos.z);
+		if (vpos.x == -1)
 			continue;
 
-		light_sources[next_light_emitter_index].strength = light_strength;
-		next_light_emitter_index++;
-
-		// We must not write beyond the bounds of our light sources array!
-		//
-		if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
-			ErrorMessage(__FUNCTION__, "\
-WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		if (add_light_source(AllBlasts[blast].pos, vpos, light_strength) < 0)
 			return;
-		}
 	}
 
 	// Now we can fill in the remaining light sources of this level.
@@ -640,26 +646,13 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 					if (!emitted_light_strength)
 						continue;
 
-					// Now we know that this one needs to be inserted!
-					//
-					light_sources[next_light_emitter_index].pos.x = emitter->pos.x;
-					light_sources[next_light_emitter_index].pos.y = emitter->pos.y;
-					light_sources[next_light_emitter_index].pos.z = emitter->pos.z;
-					update_virtual_position(&light_sources[next_light_emitter_index].vpos,
-							&light_sources[next_light_emitter_index].pos, Me.pos.z);
-					if (light_sources[next_light_emitter_index].vpos.x == -1)
+					gps vpos;
+					update_virtual_position(&vpos, &emitter->pos, Me.pos.z);
+					if (vpos.x == -1)
 						continue;
 
-					light_sources[next_light_emitter_index].strength = emitted_light_strength;
-					next_light_emitter_index++;
-
-					// We must not write beyond the bounds of our light sources array!
-					//
-					if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
-						ErrorMessage(__FUNCTION__, "\
-WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+					if (add_light_source(emitter->pos, vpos, emitted_light_strength) < 0)
 						return;
-					}
 				}
 			}
 		}
@@ -681,23 +674,13 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 			if (fabsf(me_vpos.y - erot->pos.y) >= FLOOR_TILES_VISIBLE_AROUND_TUX)
 				continue;
 
-			// Now we know that this one needs to be inserted!
-			//
-			light_sources[next_light_emitter_index].pos.x = erot->pos.x;
-			light_sources[next_light_emitter_index].pos.y = erot->pos.y;
-			light_sources[next_light_emitter_index].pos.z = erot->pos.z;
-			update_virtual_position(&light_sources[next_light_emitter_index].vpos,
-					&light_sources[next_light_emitter_index].pos, Me.pos.z);
-			light_sources[next_light_emitter_index].strength = 5;
-			next_light_emitter_index++;
+			gps vpos;
+			update_virtual_position(&vpos, &erot->pos, Me.pos.z);
+			if (vpos.x == -1)
+				continue;
 
-			// We must not write beyond the bounds of our light sources array!
-			//
-			if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
-				ErrorMessage(__FUNCTION__, "\
-WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+			if (add_light_source(erot->pos, vpos, 5) < 0)
 				return;
-			}
 		}
 	}
 }				// void update_light_list ( )
