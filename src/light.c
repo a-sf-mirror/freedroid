@@ -32,12 +32,8 @@
 
 #define _light_c
 
-#include "system.h"
-
-#include "defs.h"
 #include "struct.h"
 #include "global.h"
-#include "map.h"
 #include "proto.h"
 
 /* Position and strength of a light source */
