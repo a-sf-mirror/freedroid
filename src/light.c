@@ -40,18 +40,14 @@
 #include "map.h"
 #include "proto.h"
 
-//--------------------
-// 
-#define MAX_NUMBER_OF_LIGHT_SOURCES 200
-
 /* Position and strength of a light source */
 struct light_source {
 	gps pos;
 	gps vpos;
 	int strength;
-} light_sources[MAX_NUMBER_OF_LIGHT_SOURCES];
+};
 
-static int next_light_emitter_index;
+static struct dynarray light_sources;
 
 light_radius_config LightRadiusConfig = { -1, -1, -1, -1, 0.0 };
 
@@ -512,17 +508,13 @@ void LightRadiusClean()
 
 static int add_light_source(gps pos, gps vpos, int strength)
 {
-	light_sources[next_light_emitter_index].pos      = pos;
-	light_sources[next_light_emitter_index].vpos     = vpos;
-	light_sources[next_light_emitter_index].strength = strength;
-	next_light_emitter_index++;
+	struct light_source src;
 
-	if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
-		ErrorMessage(__FUNCTION__, "\
-                             WARNING! End of light sources array reached!",
-                             NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-		return -1;
-	}
+	src.pos      = pos;
+	src.vpos     = vpos;
+	src.strength = strength;
+
+	dynarray_add(&light_sources, &src, sizeof(src));
 
 	return 0;
 }
@@ -535,7 +527,6 @@ static int add_light_source(gps pos, gps vpos, int strength)
  */
 void update_light_list()
 {
-	int i;
 	Level light_level = curShip.AllLevels[Me.pos.z];
 	struct visible_level *visible_lvl, *next_lvl;
 	level *curr_lvl;
@@ -548,19 +539,7 @@ void update_light_list()
 	int blast;
 	gps me_vpos;
 
-	// At first we fill out the light sources array with 'empty' information,
-	// i.e. such positions, that won't affect our location for sure.
-	//
-	for (i = 0; i < MAX_NUMBER_OF_LIGHT_SOURCES; i++) {
-		light_sources[i].pos.x = -200;
-		light_sources[i].pos.y = -200;
-		light_sources[i].pos.z = -1;
-		light_sources[i].vpos.x = -1;
-		light_sources[i].vpos.y = -1;
-		light_sources[i].vpos.z = -1;
-		light_sources[i].strength = 0;
-	}
-	next_light_emitter_index = 0;
+	dynarray_init(&light_sources, 1, sizeof(struct light_source));
 
 	// Now we fill in the Tux position as the very first light source, that will
 	// always be present.
@@ -697,6 +676,7 @@ static int calculate_light_strength(gps *cell_vpos)
 	float squared_dist;
 	gps cell_rpos;
 	struct interpolation_data_cell ilights;
+	struct light_source *lights = light_sources.arr;
 
 	// 1. Light interpolation
 	//
@@ -711,7 +691,7 @@ static int calculate_light_strength(gps *cell_vpos)
 	int final_light_strength = max(0, ilights.minimum_light_value);
 
 	// Interpolated light emitted from Tux
-	light_sources[0].strength = ilights.light_bonus + Me.light_bonus_from_tux;
+	lights[0].strength = ilights.light_bonus + Me.light_bonus_from_tux;
 
 	// 2. Compute the light strength value at "cell_vpos"
 	// Nota: the following code being quite obscure, some explanations are quite
@@ -766,14 +746,8 @@ static int calculate_light_strength(gps *cell_vpos)
 
 	// Now, here is the final algorithm
 	//
-	for (i = 0; i < MAX_NUMBER_OF_LIGHT_SOURCES; i++) {
-		// If we've reached the end of the current list of light
-		// sources, then we can stop immediately.
-		//
-		if (light_sources[i].strength == 0)
-			break;
-
-		float absolute_intensity = ilights.minimum_light_value + light_sources[i].strength;
+	for (i = 0; i < light_sources.size; i++) {
+		float absolute_intensity = ilights.minimum_light_value + lights[i].strength;
 		
 		// Optimization 1:
 		// If absolute_intensity is lower than current intensity, we do not take
@@ -784,8 +758,8 @@ static int calculate_light_strength(gps *cell_vpos)
 
 		// Some pre-computations
 		// First transform light source's position into virtual position, related to Tux's current level
-		xdist = light_sources[i].vpos.x - cell_vpos->x;
-		ydist = light_sources[i].vpos.y - cell_vpos->y;
+		xdist = lights[i].vpos.x - cell_vpos->x;
+		ydist = lights[i].vpos.y - cell_vpos->y;
 		squared_dist = xdist * xdist + ydist * ydist;
 
 		// Comparison between current light strength and the light source's strength (line 2 of the pseudo-code)
@@ -796,7 +770,7 @@ static int calculate_light_strength(gps *cell_vpos)
 		// Visibility check (line 3 of pseudo_code)
 		// with a small optimization : no visibility check if the target is very closed to the light
 		if (squared_dist > (0.5*0.5)) {
-			if (!DirectLineColldet(light_sources[i].vpos.x, light_sources[i].vpos.y, cell_vpos->x, cell_vpos->y, cell_vpos->z, &VisiblePassFilter))
+			if (!DirectLineColldet(lights[i].vpos.x, lights[i].vpos.y, cell_vpos->x, cell_vpos->y, cell_vpos->z, &VisiblePassFilter))
 				continue;
 		}
 
@@ -1101,6 +1075,8 @@ void blit_light_radius(void)
 	} else {
 		blit_classic_SDL_light_radius(decay_x, decay_y);
 	}
+
+	dynarray_free(&light_sources);
 }	// void blit_light_radius ( void )
 
 #undef _light_c
