@@ -537,7 +537,7 @@ void update_light_list()
 	int blast;
 	gps me_vpos;
 
-	dynarray_init(&light_sources, 1, sizeof(struct light_source));
+	dynarray_init(&light_sources, 10, sizeof(struct light_source));
 
 	// Now we fill in the Tux position as the very first light source, that will
 	// always be present.
