@@ -194,10 +194,6 @@ enum interpolation_methods {
 	ALONG_X   = 1,	 // Interpolation with the neighbor along X axis is needed
 	ALONG_Y   = 2,	 // Interpolation with the neighbor along Y axis is needed
 	ALONG_XY  = 3, 	 // ALONG_X | ALONG_Y
-	ALONG_D   = 4,   // Interpolation with the neighbor on the diagonal is needed
-	ALONG_XD  = 5,   // ALONG_X | ALONG_D
-	ALONG_YD  = 6,   // ALONG_Y | ALONG_D
-	ALONG_XYD = 7,   // ALONG_X | ALONG_Y | ALONG_D
 };
 
 /* Definition of the Interpolation Data Storage for an interpolation area */
