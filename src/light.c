@@ -50,7 +50,6 @@ light_radius_config LightRadiusConfig = { -1, -1, -1, -1, 0.0 };
 int *light_strength_buffer = NULL;
 #define LIGHT_RADIUS_TEXTURE_DIVISOR 10	// Default number of screen pixels per cell
 #define LIGHT_RADIUS_TEXTURE_MAX_SIZE 64	// texture max size is 64x64
-#define LIGHT_STRENGTH_CELL_ADDR(x,y) (light_strength_buffer + (y)*LightRadiusConfig.cells_w + (x))
 #define LIGHT_STRENGTH_CELL(x,y) *(int*)(light_strength_buffer + (y)*LightRadiusConfig.cells_w + (x))
 
 #define UNIVERSAL_TUX_HEIGHT 100.0	// Empirical Tux height, in the universal coordinate system
