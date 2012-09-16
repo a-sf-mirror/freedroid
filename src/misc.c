@@ -693,8 +693,8 @@ void Pause(void)
 
 		AssembleCombatPicture(SHOW_ITEMS);
 		if (!cheese)
-			CenteredPutStringFont(Screen, Menu_BFont, 200, _("GAME PAUSED"));
-			CenteredPutStringFont(Screen, Menu_BFont, 230, _("press p to resume"));
+			CenteredPutStringFont(Menu_BFont, 200, _("GAME PAUSED"));
+			CenteredPutStringFont(Menu_BFont, 230, _("press p to resume"));
 		our_SDL_flip_wrapper();
 
 		if (event.type == SDL_KEYDOWN) {

@@ -285,7 +285,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 				}
 			}
 			// Draw the option's text
-			CenteredPutStringFont(Screen, GetCurrentFont(), first_menu_item_pos_y + i * h, str);
+			CenteredPutStringFont(GetCurrentFont(), first_menu_item_pos_y + i * h, str);
 
 			free(str);
 		}

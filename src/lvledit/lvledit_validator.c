@@ -1449,7 +1449,7 @@ int level_validation()
 
 	// Title
 
-	CenteredPutStringFont(Screen, FPS_Display_BFont, report_rect.y, "Level Validation tests - Summary\n");
+	CenteredPutStringFont(FPS_Display_BFont, report_rect.y, "Level Validation tests - Summary\n");
 
 	// Load exceptions rules
 
@@ -1524,16 +1524,16 @@ int level_validation()
 
 	int posy = report_rect.y + report_rect.h - row_height;
 
-	CenteredPutStringFont(Screen, FPS_Display_BFont, posy, "--- End of List --- Press Space to return to leveleditor ---");
+	CenteredPutStringFont(FPS_Display_BFont, posy, "--- End of List --- Press Space to return to leveleditor ---");
 
 	if (final_rc != VALIDATION_PASS) {
 		posy -= row_height;
-		CenteredPutStringFont(Screen, FPS_Display_BFont, posy, "\1Some tests were invalid. See the report in the console\3");
+		CenteredPutStringFont(FPS_Display_BFont, posy, "\1Some tests were invalid. See the report in the console\3");
 	}
 
 	if (uncaught_excpt) {
 		posy -= row_height;
-		CenteredPutStringFont(Screen, FPS_Display_BFont, posy, "\1Some exceptions were not caught. See the report in the console\3");
+		CenteredPutStringFont(FPS_Display_BFont, posy, "\1Some exceptions were not caught. See the report in the console\3");
 	}
 
 	our_SDL_flip_wrapper();

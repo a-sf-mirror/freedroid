@@ -554,7 +554,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 		widget_text_display(WIDGET(&droid_info));
 		ShowGenericButtonFromList(TAKEOVER_HELP_BUTTON);
 		SetCurrentFont(Para_BFont);
-		CenteredPutStringFont(Screen, Para_BFont, GameConfig.screen_height - 30, "For more information, click the help button.");
+		CenteredPutStringFont(Para_BFont, GameConfig.screen_height - 30, "For more information, click the help button.");
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
