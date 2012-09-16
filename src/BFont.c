@@ -263,7 +263,7 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
  * Write a string on a surface using specified font, taking letter-spacing
  * into account.
  */
-void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, const char *text)
+void PutStringFont(BFont_Info *font, int x, int y, const char *text)
 {
 	int i = 0;
 
@@ -272,7 +272,7 @@ void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, const c
 	if (use_open_gl) {
 		// Set up clipping
 		SDL_Rect clip_rect;
-		SDL_GetClipRect(surface, &clip_rect);
+		SDL_GetClipRect(Screen, &clip_rect);
 
 		set_gl_clip_rect(&clip_rect);
 	}
@@ -282,7 +282,7 @@ void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, const c
 	while (text[i] != '\0') {
 		int letter_spacing = get_letter_spacing(GetCurrentFont());
 		if (!handle_switch_font_char(text[i])) {
-			x += PutCharFont(surface, GetCurrentFont(), x, y, text[i]) + letter_spacing;
+			x += PutCharFont(Screen, GetCurrentFont(), x, y, text[i]) + letter_spacing;
 		}
 		i++;
 	}
@@ -338,17 +338,17 @@ int LimitTextWidthFont(BFont_Info *font, const char *text, int limit)
 
 void CenteredPutStringFont(BFont_Info * Font, int y, const char *text)
 {
-	PutStringFont(Screen, Font, Screen->w / 2 - TextWidthFont(Font, text) / 2, y, text);
+	PutStringFont(Font, Screen->w / 2 - TextWidthFont(Font, text) / 2, y, text);
 }
 
 void RightPutStringFont(BFont_Info * Font, int y, const char *text)
 {
-	PutStringFont(Screen, Font, Screen->w - TextWidthFont(Font, text) - 1, y, text);
+	PutStringFont(Font, Screen->w - TextWidthFont(Font, text) - 1, y, text);
 }
 
 void LeftPutStringFont(BFont_Info * Font, int y, const char *text)
 {
-	PutStringFont(Screen, Font, 0, y, text);
+	PutStringFont(Font, 0, y, text);
 }
 
 #undef _bfont_c

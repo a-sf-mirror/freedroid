@@ -1506,7 +1506,7 @@ static void blit_all_item_slots(int mask)
 			// use the item name, but currently font color is not adapted for
 			// special item properties...
 			//
-			PutStringFont(Screen, FPS_Display_BFont, item_level->ItemList[i].text_slot_rectangle.x,
+			PutStringFont(FPS_Display_BFont, item_level->ItemList[i].text_slot_rectangle.x,
 					  item_level->ItemList[i].text_slot_rectangle.y, D_(ItemMap[item_level->ItemList[i].type].item_name));
 	
 		}
@@ -2284,9 +2284,9 @@ void PrintCommentOfThisEnemy(enemy * e)
 #	if 0
 		char txt[256];
 		sprintf(txt, "%d - %s", e->id, e->TextToBeDisplayed);
-		PutStringFont(Screen, FPS_Display_BFont, x_pos, y_pos, txt);
+		PutStringFont(FPS_Display_BFont, x_pos, y_pos, txt);
 #	else
-		PutStringFont(Screen, FPS_Display_BFont, x_pos, y_pos, e->TextToBeDisplayed);
+		PutStringFont(FPS_Display_BFont, x_pos, y_pos, e->TextToBeDisplayed);
 #	endif
 	}
 
