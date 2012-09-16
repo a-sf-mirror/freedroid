@@ -100,13 +100,13 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 #else
 		strcat(open_gl_string, _(" NO "));
 #endif
-		LeftPutStringFont(FPS_Display_BFont, GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), open_gl_string);
+		put_string_left(FPS_Display_BFont, GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), open_gl_string);
 		sprintf(open_gl_string, _("OpenGL output active: "));
 		if (use_open_gl)
 			strcat(open_gl_string, _(" YES "));
 		else
 			strcat(open_gl_string, _(" NO "));
-		LeftPutStringFont(FPS_Display_BFont, GameConfig.screen_height - FontHeight(GetCurrentFont()), open_gl_string);
+		put_string_left(FPS_Display_BFont, GameConfig.screen_height - FontHeight(GetCurrentFont()), open_gl_string);
 	}
 	// Now that the possible font-changing small info printing is
 	// done, we can finally set the right font for the menu itself.

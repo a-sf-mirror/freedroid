@@ -346,9 +346,9 @@ void RightPutStringFont(BFont_Info * Font, int y, const char *text)
 	PutStringFont(Font, Screen->w - TextWidthFont(Font, text) - 1, y, text);
 }
 
-void LeftPutStringFont(BFont_Info * Font, int y, const char *text)
+void put_string_left(BFont_Info *font, int y, const char *text)
 {
-	PutStringFont(Font, 0, y, text);
+	PutStringFont(font, 0, y, text);
 }
 
 #undef _bfont_c
