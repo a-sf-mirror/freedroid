@@ -227,21 +227,21 @@ int handle_switch_font_char(unsigned char c)
 /**
  * Puts a single char on the surface with the specified font 
  */
-int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned char c)
+int put_char(SDL_Surface * Surface, BFont_Info *font, int x, int y, unsigned char c)
 {
 	SDL_Rect dest;
 	SDL_Rect clipping_rect;
 	struct image *img;
 
-	dest.w = CharWidth(Font, ' ');
-	dest.h = FontHeight(Font);
+	dest.w = CharWidth(font, ' ');
+	dest.h = FontHeight(font);
 	dest.x = x;
 	dest.y = y;
 
-	if (c < ' ' || c > Font->number_of_chars - 1)
+	if (c < ' ' || c > font->number_of_chars - 1)
 		c = '.';
 
-	img = &Font->char_image[c];
+	img = &font->char_image[c];
 
 	if ((c != ' ') && (c != '\n')) {
 		if (use_open_gl) {
@@ -255,7 +255,7 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 		}
 	}
 
-	return CharWidth(Font, c);
+	return CharWidth(font, c);
 
 }
 
@@ -282,7 +282,7 @@ void put_string(BFont_Info *font, int x, int y, const char *text)
 	while (text[i] != '\0') {
 		int letter_spacing = get_letter_spacing(GetCurrentFont());
 		if (!handle_switch_font_char(text[i])) {
-			x += PutCharFont(Screen, GetCurrentFont(), x, y, text[i]) + letter_spacing;
+			x += put_char(Screen, GetCurrentFont(), x, y, text[i]) + letter_spacing;
 		}
 		i++;
 	}

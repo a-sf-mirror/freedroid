@@ -39,7 +39,7 @@ int get_letter_spacing(BFont_Info *font);
 int handle_switch_font_char(unsigned char c);
 
 /* Write a single character on the "Surface" with the specified font */
-int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned char c);
+int put_char(SDL_Surface *surf, BFont_Info *font, int x, int y, unsigned char c);
 
 /* Returns the width, in pixels, of the text calculated with the specified font*/
 int text_width(BFont_Info * Font, const char *text);
