@@ -50,8 +50,8 @@ int LimitTextWidthFont(BFont_Info *font, const char *text, int limit);
 /* Write a string on the "Surface" with the specified font */
 void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, const char *text);
 
-/* Write a left-aligned string on the "Surface" with the specified font */
-void LeftPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text);
+/* Write a left-aligned string on the screen with the specified font */
+void LeftPutStringFont(BFont_Info * Font, int y, const char *text);
 
 /* Write a center-aligned string on the "Surface" with the specified font */
 void CenteredPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text);

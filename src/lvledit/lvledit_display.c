@@ -311,7 +311,7 @@ void leveleditor_display()
 		waypoint *wpts = EditLevel()->waypoints.arr;
 
 		sprintf(linebuf, _(" Source waypoint selected : X=%d Y=%d. "), wpts[OriginWaypoint].x, wpts[OriginWaypoint].y);
-		LeftPutStringFont(Screen, FPS_Display_BFont, GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), linebuf);
+		LeftPutStringFont(FPS_Display_BFont, GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), linebuf);
 	}
 	// Now we print out the latest connection operation success or failure...
 	//
