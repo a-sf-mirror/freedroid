@@ -38,8 +38,8 @@ int get_letter_spacing(BFont_Info *font);
 /* Handle font switching on special characters. */
 int handle_switch_font_char(unsigned char c);
 
-/* Write a single character on the "Surface" with the specified font */
-int put_char(SDL_Surface *surf, BFont_Info *font, int x, int y, unsigned char c);
+/* Write a single character on the screen with the specified font */
+int put_char(BFont_Info *font, int x, int y, unsigned char c);
 
 /* Returns the width, in pixels, of the text calculated with the specified font*/
 int text_width(BFont_Info * Font, const char *text);

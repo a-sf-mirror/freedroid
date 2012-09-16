@@ -476,7 +476,7 @@ static int display_text_using_line_height_with_cursor(const char *text, int star
 		default:
 			if (MyCursorY > clip->y - (int)(FontHeight(GetCurrentFont()) * line_height_factor)
 				&& !display_char_disabled)
-				put_char(Screen, GetCurrentFont(), MyCursorX, MyCursorY, *tmp);
+				put_char(GetCurrentFont(), MyCursorX, MyCursorY, *tmp);
 
 			MyCursorX += CharWidth(GetCurrentFont(), *tmp)
 				+ get_letter_spacing(GetCurrentFont());
