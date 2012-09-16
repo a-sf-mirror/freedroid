@@ -347,7 +347,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 		sprintf(txt, "%s%s%s - %s\n", font_str, (i == cursor) ? "** " : "   ",
 			GameConfig.input_keybinds[i].name, keystr);
-		PutString(Screen, xpos, ypos, txt);
+		PutStringFont(Screen, GetCurrentFont(), xpos, ypos, txt);
 
 		ypos += FontHeight(GetCurrentFont());
 

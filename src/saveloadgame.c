@@ -164,8 +164,8 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFO
 	LocalTimeSplitup = localtime(&(FileInfoBuffer.st_mtime));
 	strftime(InfoString, sizeof(InfoString), nl_langinfo(D_T_FMT), LocalTimeSplitup);
 
-	PutString(Screen, UNIVERSAL_COORD_W(240), GameConfig.screen_height - 3 * FontHeight(GetCurrentFont()), _("Last Modified:"));
-	PutString(Screen, UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), InfoString);
+	PutStringFont(Screen, GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 3 * FontHeight(GetCurrentFont()), _("Last Modified:"));
+	PutStringFont(Screen, GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), InfoString);
 
 	// Now that the modification time has been set up, we can start to compute
 	// the overall disk space of all files in question.
@@ -194,7 +194,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFO
 
 	sprintf(InfoString, _("File Size: %2.3f MB"), ((float)FileSize) / (1024.0 * 1024.0));
 
-	PutString(Screen, UNIVERSAL_COORD_W(240), GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), InfoString);
+	PutStringFont(Screen, GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), InfoString);
 
 };				// void LoadAndShowStats ( char* filename );
 

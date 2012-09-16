@@ -78,7 +78,7 @@ void show_backgrounded_label_at_pixel_position(char *LabelText, int pos_x, int p
 	draw_rectangle(&background_rect, 0, 0, 0, 255);
 
 	SetCurrentFont(FPS_Display_BFont);
-	PutString(Screen, pos_x, pos_y, LabelText);
+	PutStringFont(Screen, GetCurrentFont(), pos_x, pos_y, LabelText);
 
 };				// void show_backgrounded_label_at_pixel_position ( char* LabelText , float fill_status , int pos_x , int pos_y )
 
@@ -603,7 +603,7 @@ char *get_string(int MaxLen, const char *background_name, const char *text_for_o
 		x0 = MyCursorX;
 		y0 = MyCursorY;
 
-		PutString(Screen, x0, y0, input);
+		PutStringFont(Screen, GetCurrentFont(), x0, y0, input);
 		our_SDL_flip_wrapper();
 
 		key = getchar_raw(NULL);
@@ -616,7 +616,7 @@ char *get_string(int MaxLen, const char *background_name, const char *text_for_o
 				display_text(text_for_overhead_promt, 50, 50, NULL);
 				x0 = MyCursorX;
 				y0 = MyCursorY;
-				PutString(Screen, x0, y0, input);
+				PutStringFont(Screen, GetCurrentFont(), x0, y0, input);
 				our_SDL_flip_wrapper();
 			}
 			input[curpos] = 0;
@@ -818,7 +818,7 @@ void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...)
 
 	tmp = (char *)MyMalloc(10000 + 1);
 	vsprintf(tmp, fmt, args);
-	PutString(screen, x, y, tmp);
+	PutStringFont(screen, GetCurrentFont(), x, y, tmp);
 
 	// our_SDL_flip_wrapper (screen);
 

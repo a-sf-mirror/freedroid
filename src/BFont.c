@@ -260,11 +260,14 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 }
 
 /**
- *
+ * Write a string on a surface using specified font, taking letter-spacing
+ * into account.
  */
-void PutString(SDL_Surface *surface, int x, int y, const char *text)
+void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, const char *text)
 {
 	int i = 0;
+
+	SetCurrentFont(font);
 
 	if (use_open_gl) {
 		// Set up clipping
@@ -291,17 +294,6 @@ void PutString(SDL_Surface *surface, int x, int y, const char *text)
 		unset_gl_clip_rect();
 	}
 #endif
-
-}
-
-/**
- * Write a string on a surface using specified font, taking letter-spacing
- * into account.
- */
-void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, const char *text)
-{
-	SetCurrentFont(font);
-	PutString(surface, x, y, text);
 }
 
 /**
