@@ -148,7 +148,7 @@ static void button_display(struct widget *wb)
 		// Calculate the position of the text, we want to display the text at the
 		// center of the button
 		SDL_Rect rect = wb->rect;
-		rect.x = rect.x + (rect.w - TextWidth(b->text)) / 2;
+		rect.x = rect.x + (rect.w - TextWidthFont(GetCurrentFont(), b->text)) / 2;
 		rect.y = rect.y + 8;
 
 		// Draw the text on the button

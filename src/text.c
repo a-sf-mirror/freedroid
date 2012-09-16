@@ -72,7 +72,7 @@ void show_backgrounded_label_at_pixel_position(char *LabelText, int pos_x, int p
 
 	background_rect.x = pos_x - 1;
 	background_rect.y = pos_y;
-	background_rect.w = TextWidth(LabelText) + 2;
+	background_rect.w = TextWidthFont(GetCurrentFont(), LabelText) + 2;
 	background_rect.h = 20;
 
 	draw_rectangle(&background_rect, 0, 0, 0, 255);
@@ -202,7 +202,7 @@ int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels)
 	int StringIndex = 0;
 	int i;
 
-	if (TextWidth(StringToCut) <= LengthInPixels)
+	if (TextWidthFont(GetCurrentFont(), StringToCut) <= LengthInPixels)
 		return FALSE;
 
 	StringIndex = LimitTextWidthFont(GetCurrentFont(), StringToCut, LengthInPixels);
@@ -854,7 +854,7 @@ int longest_line_width(char *text)
 		// Get the width of the current line.
 		char tmp = *text;
 		*text = '\0';
-		int line_width = TextWidth(line_start);
+		int line_width = TextWidthFont(GetCurrentFont(), line_start);
 		*text = tmp;
 
 		// Update the width of the longest line.

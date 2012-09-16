@@ -510,7 +510,7 @@ void display_tooltip(const char *text, int centered, SDL_Rect rect)
 			this_line[pos] = '\0';
 			ptr += pos + 1;
 		}
-		int offset = (text_rect.w - TextWidth(this_line)) / 2;
+		int offset = (text_rect.w - TextWidthFont(GetCurrentFont(), this_line)) / 2;
 		PutString(Screen,
 			  text_rect.x + offset,
 			  text_rect.y + line_spacing + i * (line_spacing + FontHeight(GetCurrentFont())), this_line);

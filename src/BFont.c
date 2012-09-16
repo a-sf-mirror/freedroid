@@ -305,15 +305,6 @@ void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, const c
 }
 
 /**
- *
- *
- */
-int TextWidth(const char *text)
-{
-	return TextWidthFont(CurrentFont, text);
-}
-
-/**
  * Calculate the width of a string using a certain font, taking letter-spacing
  * into account.
  */
