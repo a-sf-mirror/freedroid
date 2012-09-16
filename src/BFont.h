@@ -56,5 +56,5 @@ void LeftPutStringFont(BFont_Info * Font, int y, const char *text);
 /* Write a center-aligned string on the "Surface" with the specified font */
 void CenteredPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text);
 
-/* Write a right-aligned string on the "Surface" with the specified font */
-void RightPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text);
+/* Write a right-aligned string on the screen with the specified font */
+void RightPutStringFont(BFont_Info * Font, int y, const char *text);

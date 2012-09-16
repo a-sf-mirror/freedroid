@@ -341,9 +341,9 @@ void CenteredPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, cons
 	PutStringFont(Surface, Font, Surface->w / 2 - TextWidthFont(Font, text) / 2, y, text);
 }
 
-void RightPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *text)
+void RightPutStringFont(BFont_Info * Font, int y, const char *text)
 {
-	PutStringFont(Surface, Font, Surface->w - TextWidthFont(Font, text) - 1, y, text);
+	PutStringFont(Screen, Font, Screen->w - TextWidthFont(Font, text) - 1, y, text);
 }
 
 void LeftPutStringFont(BFont_Info * Font, int y, const char *text)
