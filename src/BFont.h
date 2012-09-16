@@ -42,7 +42,7 @@ int handle_switch_font_char(unsigned char c);
 int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned char c);
 
 /* Returns the width, in pixels, of the text calculated with the specified font*/
-int TextWidthFont(BFont_Info * Font, const char *text);
+int text_width(BFont_Info * Font, const char *text);
 
 /* Returns the index of the last character than is inside the width limit, with the specified font */
 int LimitTextWidthFont(BFont_Info *font, const char *text, int limit);

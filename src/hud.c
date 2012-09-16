@@ -206,7 +206,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	BFont_Info *BFont_to_use = Blue_BFont;
 	Uint8 r, g, b;
 
-	text_length = TextWidthFont(BFont_to_use, cur_enemy->short_description_text);
+	text_length = text_width(BFont_to_use, cur_enemy->short_description_text);
 
 	rect.h = FontHeight(BFont_to_use);
 
@@ -510,7 +510,7 @@ void display_tooltip(const char *text, int centered, SDL_Rect rect)
 			this_line[pos] = '\0';
 			ptr += pos + 1;
 		}
-		int offset = (text_rect.w - TextWidthFont(GetCurrentFont(), this_line)) / 2;
+		int offset = (text_rect.w - text_width(GetCurrentFont(), this_line)) / 2;
 		put_string(GetCurrentFont(),
 			      text_rect.x + offset,
 			      text_rect.y + line_spacing + i * (line_spacing + FontHeight(GetCurrentFont())), this_line);

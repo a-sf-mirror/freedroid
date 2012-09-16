@@ -300,7 +300,7 @@ void put_string(BFont_Info *font, int x, int y, const char *text)
  * Calculate the width of a string using a certain font, taking letter-spacing
  * into account.
  */
-int TextWidthFont(BFont_Info *font, const char *text)
+int text_width(BFont_Info *font, const char *text)
 {
 	int i = 0, width = 0;
 	int letter_spacing = get_letter_spacing(font);
@@ -338,12 +338,12 @@ int LimitTextWidthFont(BFont_Info *font, const char *text, int limit)
 
 void put_string_centered(BFont_Info *font, int y, const char *text)
 {
-	put_string(font, Screen->w / 2 - TextWidthFont(font, text) / 2, y, text);
+	put_string(font, Screen->w / 2 - text_width(font, text) / 2, y, text);
 }
 
 void put_string_right(BFont_Info *font, int y, const char *text)
 {
-	put_string(font, Screen->w - TextWidthFont(font, text) - 1, y, text);
+	put_string(font, Screen->w - text_width(font, text) - 1, y, text);
 }
 
 void put_string_left(BFont_Info *font, int y, const char *text)

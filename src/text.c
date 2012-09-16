@@ -72,7 +72,7 @@ void show_backgrounded_label_at_pixel_position(char *LabelText, int pos_x, int p
 
 	background_rect.x = pos_x - 1;
 	background_rect.y = pos_y;
-	background_rect.w = TextWidthFont(GetCurrentFont(), LabelText) + 2;
+	background_rect.w = text_width(GetCurrentFont(), LabelText) + 2;
 	background_rect.h = 20;
 
 	draw_rectangle(&background_rect, 0, 0, 0, 255);
@@ -202,7 +202,7 @@ int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels)
 	int StringIndex = 0;
 	int i;
 
-	if (TextWidthFont(GetCurrentFont(), StringToCut) <= LengthInPixels)
+	if (text_width(GetCurrentFont(), StringToCut) <= LengthInPixels)
 		return FALSE;
 
 	StringIndex = LimitTextWidthFont(GetCurrentFont(), StringToCut, LengthInPixels);
@@ -372,7 +372,7 @@ void DisplayBigScreenMessage(void)
 			SDL_SetClipRect(Screen, NULL);
 
 			SetCurrentFont(Menu_BFont);
-			int x_pos = GameConfig.screen_width/2 - TextWidthFont(GetCurrentFont(), text)/2;
+			int x_pos = GameConfig.screen_width/2 - text_width(GetCurrentFont(), text)/2;
 			display_text_using_line_height(text, x_pos, y_pos, NULL /* clip */, 1.0);
 
 			if (!GameConfig.Inventory_Visible && !GameConfig.SkillScreen_Visible && !GameConfig.CharacterScreen_Visible)
@@ -854,7 +854,7 @@ int longest_line_width(char *text)
 		// Get the width of the current line.
 		char tmp = *text;
 		*text = '\0';
-		int line_width = TextWidthFont(GetCurrentFont(), line_start);
+		int line_width = text_width(GetCurrentFont(), line_start);
 		*text = tmp;
 
 		// Update the width of the longest line.

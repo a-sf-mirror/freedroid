@@ -1619,7 +1619,7 @@ void update_item_text_slot_positions(void)
 			//
 			update_virtual_position(&cur_item->virt_pos, &cur_item->pos, Me.pos.z);
 			cur_item->text_slot_rectangle.h = FontHeight(BFont_to_use);
-			cur_item->text_slot_rectangle.w = TextWidthFont(BFont_to_use, D_(ItemMap[cur_item->type].item_name));
+			cur_item->text_slot_rectangle.w = text_width(BFont_to_use, D_(ItemMap[cur_item->type].item_name));
 			cur_item->text_slot_rectangle.x =
 				translate_map_point_to_screen_pixel_x(cur_item->virt_pos.x, cur_item->virt_pos.y) - cur_item->text_slot_rectangle.w / 2;
 			cur_item->text_slot_rectangle.y =
@@ -3064,7 +3064,7 @@ void show_inventory_screen(void)
 				strcpy(amount, "+++");
 			TargetRect.w = INV_SUBSQUARE_WIDTH * ItemMap[Me.Inventory[SlotNum].type].inv_size.x;
 			TargetRect.h = INV_SUBSQUARE_HEIGHT * ItemMap[Me.Inventory[SlotNum].type].inv_size.y;
-			int xpos = TargetRect.x + TargetRect.w - TextWidthFont(GetCurrentFont(), amount) - 2;
+			int xpos = TargetRect.x + TargetRect.w - text_width(GetCurrentFont(), amount) - 2;
 			int ypos = TargetRect.y + TargetRect.h - FontHeight(Messagevar_BFont);
 			display_text_using_line_height(amount, xpos, ypos, &TargetRect, 1.0);
 		}

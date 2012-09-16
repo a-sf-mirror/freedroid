@@ -862,7 +862,7 @@ void ShowSkillsScreen(void)
 			// print the quick key number
 			char str[10];
 			sprintf(str, "F%d\n", 5 + sci);
-			display_text(str, ButtonRect.x + ButtonRect.w - 2 - TextWidthFont(GetCurrentFont(), str), ButtonRect.y, &SkillScreenRect);
+			display_text(str, ButtonRect.x + ButtonRect.w - 2 - text_width(GetCurrentFont(), str), ButtonRect.y, &SkillScreenRect);
 		}
 		// Name of the skill
 

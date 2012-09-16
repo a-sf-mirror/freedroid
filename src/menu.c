@@ -177,7 +177,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 
 	LongestOption = 0;
 	for (i = 0; i < NumberOfOptionsGiven; ++i) {
-		MenuTextWidths[i] = TextWidthFont(GetCurrentFont(), MenuTexts[i]);
+		MenuTextWidths[i] = text_width(GetCurrentFont(), MenuTexts[i]);
 		if (MenuTextWidths[i] > LongestOption)
 			LongestOption = MenuTextWidths[i];
 	}
@@ -609,7 +609,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 #define HIGHLIGHT_H_MARGIN 4
 		HighlightRect.x = MenuPosX[menu_position_to_remember - 1] - HIGHLIGHT_H_MARGIN;
 		HighlightRect.y = MenuPosY[menu_position_to_remember - 1];
-		HighlightRect.w = TextWidthFont(GetCurrentFont(), MenuTexts[menu_position_to_remember - 1])
+		HighlightRect.w = text_width(GetCurrentFont(), MenuTexts[menu_position_to_remember - 1])
 			+ 2 * HIGHLIGHT_H_MARGIN;
 		if (HighlightRect.w > 580 * GameConfig.screen_width / 640)
 			HighlightRect.w = 580 * GameConfig.screen_width / 640;

@@ -334,14 +334,14 @@ void show_addon_crafting_ui()
 
 		//first the divisor  (11 part in the diagram)
 		sprintf( text ,"%s%02d", font_switchto_neon, ui.materials_for_selected[i].required);
-		int w_text = TextWidthFont(GetCurrentFont(), text);
+		int w_text = text_width(GetCurrentFont(), text);
 		x = rect.x + rect.w  // the right border
 			 - WIDTH_BORDER // the blue border
 			 - w_text; // right justified
 		display_text(text, x, y, NULL);
 
 		//then the '/' center
-		w_text = TextWidthFont(GetCurrentFont(), "/");
+		w_text = text_width(GetCurrentFont(), "/");
 		int half = w_text / 2;
 		x = rect.x + (rect.w / 2) // center of the column
 			 - half; // center placed
@@ -356,7 +356,7 @@ void show_addon_crafting_ui()
 			else
 				sprintf( text ,"%s%02d", font_switchto_neon, ui.materials_for_selected[i].available);
 		}
-		w_text = TextWidthFont(GetCurrentFont(), text);
+		w_text = text_width(GetCurrentFont(), text);
 		x = rect.x + (rect.w / 2) // center of the column
 			 - half // the part used by /
 			 - w_text; // right justified
