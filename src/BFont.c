@@ -336,9 +336,9 @@ int LimitTextWidthFont(BFont_Info *font, const char *text, int limit)
 	return -1;
 }
 
-void CenteredPutStringFont(BFont_Info * Font, int y, const char *text)
+void put_string_centered(BFont_Info *font, int y, const char *text)
 {
-	PutStringFont(Font, Screen->w / 2 - TextWidthFont(Font, text) / 2, y, text);
+	PutStringFont(font, Screen->w / 2 - TextWidthFont(font, text) / 2, y, text);
 }
 
 void put_string_right(BFont_Info *font, int y, const char *text)

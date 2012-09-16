@@ -54,7 +54,7 @@ void PutStringFont(BFont_Info *font, int x, int y, const char *text);
 void put_string_left(BFont_Info *font, int y, const char *text);
 
 /* Write a center-aligned string on the screen with the specified font */
-void CenteredPutStringFont(BFont_Info * Font, int y, const char *text);
+void put_string_centered(BFont_Info *font, int y, const char *text);
 
 /* Write a right-aligned string on the screen with the specified font */
 void put_string_right(BFont_Info *font, int y, const char *text);

@@ -257,7 +257,7 @@ int SaveGame(void)
 		ErrorMessage(__FUNCTION__, "Unable to create the shipfile backup\n", PLEASE_INFORM, IS_WARNING_ONLY);
 	}
 
-	CenteredPutStringFont(Menu_BFont, 10, _("Saving"));
+	put_string_centered(Menu_BFont, 10, _("Saving"));
 	our_SDL_flip_wrapper();
 
 	if (SaveShip(filename, FALSE, 1) != OK) {
@@ -341,7 +341,7 @@ static int load_saved_game(int use_backup)
 		return (OK);
 	}
 
-	CenteredPutStringFont(Menu_BFont, 10, _("Loading"));
+	put_string_centered(Menu_BFont, 10, _("Loading"));
 	our_SDL_flip_wrapper();
 
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): function call confirmed....", __FUNCTION__);

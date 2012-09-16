@@ -393,6 +393,6 @@ void save_map(void)
 		save_special_forces(fname);
 	}
 
-	CenteredPutStringFont(FPS_Display_BFont, 11 * FontHeight(Menu_BFont), _("Your ship was saved..."));
+	put_string_centered(FPS_Display_BFont, 11 * FontHeight(Menu_BFont), _("Your ship was saved..."));
 	our_SDL_flip_wrapper();
 }

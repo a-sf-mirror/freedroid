@@ -330,7 +330,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 	ShadowingRectangle(Screen, keychart_rect);
 
-	CenteredPutStringFont(Para_BFont, FontHeight(Para_BFont), "Key chart");
+	put_string_centered(Para_BFont, FontHeight(Para_BFont), "Key chart");
 
 	if (startidx >= sizeof(keybindNames) / sizeof(keybindNames[0]))
 		return -1;
