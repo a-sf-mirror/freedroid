@@ -48,7 +48,7 @@ int TextWidthFont(BFont_Info * Font, const char *text);
 int LimitTextWidthFont(BFont_Info *font, const char *text, int limit);
 
 /* Write a string on the screen with the specified font */
-void PutStringFont(BFont_Info *font, int x, int y, const char *text);
+void put_string(BFont_Info *font, int x, int y, const char *text);
 
 /* Write a left-aligned string on the screen with the specified font */
 void put_string_left(BFont_Info *font, int y, const char *text);

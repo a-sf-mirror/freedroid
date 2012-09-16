@@ -165,7 +165,7 @@ static void stamina_bar_display(struct widget *w)
 	blit_vertical_status_bar(max_value, current_value, filled_color, empty_color, w->rect.x, w->rect.y, w->rect.w, w->rect.h);
 
 	if (GameConfig.cheat_running_stamina)
-		PutStringFont(Messagestat_BFont, w->rect.x, w->rect.y, "C");
+		put_string(Messagestat_BFont, w->rect.x, w->rect.y, "C");
 }
 
 /** Computes the tooltip text displayed when hovering the stamina bar. */
@@ -232,7 +232,7 @@ static void health_bar_display(struct widget *w)
 	blit_vertical_status_bar(Me.maxenergy, Me.energy, fill_color, empty_color, w->rect.x, w->rect.y, w->rect.w, w->rect.h);
 
 	if (Me.god_mode)
-		PutStringFont(Messagestat_BFont,  w->rect.x, w->rect.y, "C");
+		put_string(Messagestat_BFont,  w->rect.x, w->rect.y, "C");
 }
 
 /** Computes the tooltip text displayed when hovering the health bar. */
@@ -333,7 +333,7 @@ static void quick_inventory_display(struct widget *w)
 
 	for (i = 0; i < 10; i++) {
 		sprintf(text, "%d", i < 9 ? i + 1: 0);
-		PutStringFont(Messagestat_BFont, w->rect.x + i * step, w->rect.y + 16, text);
+		put_string(Messagestat_BFont, w->rect.x + i * step, w->rect.y + 16, text);
 		if (((index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1)) != -1)
 			&& (Me.Inventory[index].inventory_position.x == i)
 			&& (Me.Inventory[index].inventory_position.y == INVENTORY_GRID_HEIGHT - 1))

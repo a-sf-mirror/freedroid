@@ -164,8 +164,8 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFO
 	LocalTimeSplitup = localtime(&(FileInfoBuffer.st_mtime));
 	strftime(InfoString, sizeof(InfoString), nl_langinfo(D_T_FMT), LocalTimeSplitup);
 
-	PutStringFont(GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 3 * FontHeight(GetCurrentFont()), _("Last Modified:"));
-	PutStringFont(GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), InfoString);
+	put_string(GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 3 * FontHeight(GetCurrentFont()), _("Last Modified:"));
+	put_string(GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), InfoString);
 
 	// Now that the modification time has been set up, we can start to compute
 	// the overall disk space of all files in question.
@@ -194,7 +194,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFO
 
 	sprintf(InfoString, _("File Size: %2.3f MB"), ((float)FileSize) / (1024.0 * 1024.0));
 
-	PutStringFont(GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), InfoString);
+	put_string(GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), InfoString);
 
 };				// void LoadAndShowStats ( char* filename );
 
@@ -437,7 +437,7 @@ static int load_saved_game(int use_backup)
 	// take a little time.  Therefore we print some message so the user will not
 	// panic and push the reset button :)
 	//
-	PutStringFont(FPS_Display_BFont, 75, 150, _("Updating Tux images (this may take a little while...)"));
+	put_string(FPS_Display_BFont, 75, 150, _("Updating Tux images (this may take a little while...)"));
 	our_SDL_flip_wrapper();
 
 	animation_timeline_reset();

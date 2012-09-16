@@ -254,7 +254,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 
 	// Display droid's short description text
 	rect.x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
-	PutStringFont(BFont_to_use, rect.x, rect.y, cur_enemy->short_description_text);
+	put_string(BFont_to_use, rect.x, rect.y, cur_enemy->short_description_text);
 }
 
 /**
@@ -511,7 +511,7 @@ void display_tooltip(const char *text, int centered, SDL_Rect rect)
 			ptr += pos + 1;
 		}
 		int offset = (text_rect.w - TextWidthFont(GetCurrentFont(), this_line)) / 2;
-		PutStringFont(GetCurrentFont(),
+		put_string(GetCurrentFont(),
 			      text_rect.x + offset,
 			      text_rect.y + line_spacing + i * (line_spacing + FontHeight(GetCurrentFont())), this_line);
 	}

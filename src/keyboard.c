@@ -347,7 +347,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 		sprintf(txt, "%s%s%s - %s\n", font_str, (i == cursor) ? "** " : "   ",
 			GameConfig.input_keybinds[i].name, keystr);
-		PutStringFont(GetCurrentFont(), xpos, ypos, txt);
+		put_string(GetCurrentFont(), xpos, ypos, txt);
 
 		ypos += FontHeight(GetCurrentFont());
 
@@ -361,7 +361,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 		}
 	}
 
-	PutStringFont(FPS_Display_BFont, 100, GameConfig.screen_height - FontHeight(FPS_Display_BFont),
+	put_string(FPS_Display_BFont, 100, GameConfig.screen_height - FontHeight(FPS_Display_BFont),
 		      _("ARROWS to select, ENTER to remap, ESCAPE to exit"));
 	our_SDL_flip_wrapper();
 

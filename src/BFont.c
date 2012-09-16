@@ -263,7 +263,7 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
  * Write a string on a surface using specified font, taking letter-spacing
  * into account.
  */
-void PutStringFont(BFont_Info *font, int x, int y, const char *text)
+void put_string(BFont_Info *font, int x, int y, const char *text)
 {
 	int i = 0;
 
@@ -338,17 +338,17 @@ int LimitTextWidthFont(BFont_Info *font, const char *text, int limit)
 
 void put_string_centered(BFont_Info *font, int y, const char *text)
 {
-	PutStringFont(font, Screen->w / 2 - TextWidthFont(font, text) / 2, y, text);
+	put_string(font, Screen->w / 2 - TextWidthFont(font, text) / 2, y, text);
 }
 
 void put_string_right(BFont_Info *font, int y, const char *text)
 {
-	PutStringFont(font, Screen->w - TextWidthFont(font, text) - 1, y, text);
+	put_string(font, Screen->w - TextWidthFont(font, text) - 1, y, text);
 }
 
 void put_string_left(BFont_Info *font, int y, const char *text)
 {
-	PutStringFont(font, 0, y, text);
+	put_string(font, 0, y, text);
 }
 
 #undef _bfont_c

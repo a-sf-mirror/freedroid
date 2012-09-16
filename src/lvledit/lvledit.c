@@ -149,13 +149,13 @@ item *ItemDropFromLevelEditor(void)
 		ShowGenericButtonFromList(LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON);
 
 		if (MouseCursorIsOnButton(LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON, GetMousePos_x(), GetMousePos_y()))
-			PutStringFont(FPS_Display_BFont, 20, 440 * GameConfig.screen_height / 480, _("Cancel item drop"));
+			put_string(FPS_Display_BFont, 20, 440 * GameConfig.screen_height / 480, _("Cancel item drop"));
 		if (level_editor_item_drop_index(row_len, line_len) != (-1)) {
 			previous_mouse_position_index = level_editor_item_drop_index(row_len, line_len) + item_group * line_len * row_len + SKIP_CTD_ITEM;
 			if (previous_mouse_position_index >= Number_Of_Item_Types) {
 				previous_mouse_position_index = Number_Of_Item_Types - 1;
 			} else
-				PutStringFont(FPS_Display_BFont, 20, 440 * GameConfig.screen_height / 480,
+				put_string(FPS_Display_BFont, 20, 440 * GameConfig.screen_height / 480,
 					      D_(ItemMap[previous_mouse_position_index].item_name));
 		}
 

@@ -488,7 +488,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 
 		/* Show the amount of 'Valuable Circuits' Tux has. */
 		sprintf(GoldString, "%6d", (int)Me.Gold);
-		PutStringFont(FPS_Display_BFont, 40 * GameConfig.screen_width / 640 - 15,
+		put_string(FPS_Display_BFont, 40 * GameConfig.screen_width / 640 - 15,
 			      370 * GameConfig.screen_height / 480, GoldString);
 
 		blit_mouse_cursor();
