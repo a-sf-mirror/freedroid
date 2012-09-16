@@ -660,7 +660,7 @@ static void show_top_right_text(void)
 			strcat(level_name_and_time, temp_text);
 			strcat(level_name_and_time, " ");
 		}
-		RightPutStringFont(FPS_Display_BFont, 2, level_name_and_time);
+		put_string_right(FPS_Display_BFont, 2, level_name_and_time);
 	}
 }
 

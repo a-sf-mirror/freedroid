@@ -341,9 +341,9 @@ void CenteredPutStringFont(BFont_Info * Font, int y, const char *text)
 	PutStringFont(Font, Screen->w / 2 - TextWidthFont(Font, text) / 2, y, text);
 }
 
-void RightPutStringFont(BFont_Info * Font, int y, const char *text)
+void put_string_right(BFont_Info *font, int y, const char *text)
 {
-	PutStringFont(Font, Screen->w - TextWidthFont(Font, text) - 1, y, text);
+	PutStringFont(font, Screen->w - TextWidthFont(font, text) - 1, y, text);
 }
 
 void put_string_left(BFont_Info *font, int y, const char *text)
