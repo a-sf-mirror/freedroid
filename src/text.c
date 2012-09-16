@@ -205,7 +205,7 @@ int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels)
 	if (text_width(GetCurrentFont(), StringToCut) <= LengthInPixels)
 		return FALSE;
 
-	StringIndex = LimitTextWidthFont(GetCurrentFont(), StringToCut, LengthInPixels);
+	StringIndex = limit_text_width(GetCurrentFont(), StringToCut, LengthInPixels);
 	if (StringIndex < 1)
 		return FALSE;
 
