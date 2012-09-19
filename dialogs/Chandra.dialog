@@ -278,8 +278,8 @@ Nr=20 Text=_"What is a Linarian?" Topic="Linarians"
 			npc_says(_"For that my friend, I am deeply sorry.")
 			npc_says(_"[b](He hangs his head slightly and you feel he is sincere in his remorse.)[/b]")
 			show(21, 22)
-		else
 			topic("Linarians Attacked")
+		else
 			npc_says(_"[b](Chandra moves his head ever so slightly as he quickly glances around. After noticing the nearby presence of the Red Guard member, his posture and tone changes. Perhaps you should speak with him again once you lose your escort...)[/b]")
 			npc_says(_"What else would you like to know?")
 		end
