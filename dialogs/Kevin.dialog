@@ -134,6 +134,7 @@ Nr=9 Text=_"Maybe I can help somehow to find a suitable cluster."
 		npc_says(_"I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there.")
 		add_quest(_"A kingdom for a cluster!", _"Kevin gave me a cube full of some kind of data. I am supposed to take it to a computer cluster for analysis. Ought to be simple.")
 		add_item("Kevin's Data Cube",1)
+		Kevin_can_die = true
 	end
 	hide(9)
 </LuaCode>

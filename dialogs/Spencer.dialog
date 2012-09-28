@@ -48,6 +48,7 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"O*crack*r")
 		update_quest(_"Propagating a faulty firmware update", _"Spencer contacted me and said I was supposed to find the real firmware update server. I hope I survive this...")
 		add_quest(_"Open Sesame", "It turns out what we thought was the firmware update server was just a gate access server. Spencer speculates the real firmware server is behind this gate. There should be something on the ground I am supposed to follow.")
+		Spencer_can_die = true
 		end_dialog()
 	elseif (tux_has_joined_guard) then
 		npc_says(_"Greetings fellow Red Guard member.")

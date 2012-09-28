@@ -1633,6 +1633,54 @@ Silent=1
 <LuaCode> teleport("31from69") </LuaCode>
 * End of trigger *
 
+################
+## NPC Deaths ##
+################
+* New event trigger *
+Name=_"HF-EntranceBot Dies"
+Trigger on enemy death in level=50
+Enemy dialog name="HF-EntranceBot"
+<LuaCode>
+	if (not cmp_obstacle_state("HF-Gate-inner", "opened")) then
+		display_big_message(_"Security failure at Hell's Fortress reception desk.")
+		change_obstacle_state("HF-EntranceInnerGate", "opened")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Kevin Dies"
+Trigger on enemy death in level=17
+Enemy dialog name="Kevin"
+<LuaCode>
+	if (not Kevin_can_die) then
+		display_big_message(_"Kevin still needed alive to win game.")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"KevinGuard Dies"
+Trigger on enemy death in level=17
+Enemy dialog name="KevinGuard"
+<LuaCode>
+	if (not Kevin_can_die) then
+		display_big_message(_"KevinGuard still needed alive to win game".)
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Spencer Dies"
+Enemy dialog name="Spencer"
+Trigger on enemy death in level=0
+<LuaCode>
+	if (not Spencer_can_die) then
+		display_big_message(_"Spencer still needed alive to win game.")
+	end
+</LuaCode>
+* End of trigger *
+
 ** End of Mission Event Section **
 *** End of Mission File ***
 (leave the above termination text in the file or we might get a segfault/corrupt file termination)
