@@ -1434,9 +1434,16 @@ static void state_machine_situational_transitions(enemy * ThisRobot)
 		ThisRobot->combat_state = RUSH_TUX_AND_OPEN_TALK;
 	}
 
-	//Transition away from Rush Tux gracefully if it is unset
-	if (!ThisRobot->will_rush_tux && (ThisRobot->combat_state == RUSH_TUX_AND_OPEN_TALK))
-		ThisRobot->combat_state = UNDEFINED_STATE;
+	// Transition away from Rush Tux gracefully if it is unset or if the bot became agressive
+	if (ThisRobot->combat_state == RUSH_TUX_AND_OPEN_TALK) {
+		if (!ThisRobot->will_rush_tux)
+			ThisRobot->combat_state = UNDEFINED_STATE;
+			
+		if (!is_friendly(ThisRobot->faction, FACTION_SELF)) {
+			ThisRobot->combat_state = UNDEFINED_STATE;
+			ThisRobot->will_rush_tux = 0;
+		}
+	}
 
 	/* Return home if we're too far away */
 	if (ThisRobot->max_distance_to_home != 0 &&
