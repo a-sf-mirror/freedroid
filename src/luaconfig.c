@@ -67,6 +67,60 @@ struct data_spec {
 };
 
 /**
+ * Get the field in many level of array.
+ *
+ * The separator between level is '.'. 
+ * Example: "foo.bar" => foo = {bar = "X"}
+ * 
+ * \param L Lua state.
+ * \param index Stack index where the first field is.
+ * \param field Path of the field to fetch.
+ *
+ * \return The number of fields pushed.
+ */
+static int lua_get_multi_level_field(lua_State *L, int index, const char *field)
+{
+	int stack_counter = 0, end = FALSE; 
+	char *str = NULL, *ptr = NULL, *sch = NULL;
+	
+	if (!field)
+		return 0;
+	
+	// Copy the string.
+	str = MyMalloc(strlen(field) + 1);
+	strcpy(str, field);
+	
+	// Initialize the pointers.
+	ptr = sch = str;
+	
+	while (!end) {
+		// Find a separator in string.
+		sch = strchr(ptr,'.');
+		
+		if (sch != NULL)
+			*sch = '\0';
+		else
+			end = TRUE;
+		
+		// Push the field.
+		if (lua_type(L, index) == LUA_TTABLE) {
+			lua_getfield(L, index, ptr);
+			stack_counter++;
+			index = -1;
+		} else {
+			lua_pop(L, stack_counter);
+			free(str);
+			return 0;
+		}
+		
+		ptr = sch + 1;
+	}
+	
+	free(str);
+	return stack_counter;
+}
+
+/**
  * Set the value of a data from a field of a Lua table.
  *
  * \param L Lua state.
@@ -81,10 +135,13 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 {
 	int found_and_valid = FALSE;
 	int ltype;
-
-	lua_getfield(L, index, field);
+	
+	int stack_counter = lua_get_multi_level_field(L, index, field);
+	if (!stack_counter)
+		return FALSE;
+	
 	ltype = lua_type(L, -1);
-
+	
 	switch (type) {
 	case BOOL_TYPE:
 		if (ltype == LUA_TBOOLEAN) {
@@ -207,7 +264,7 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 		break;
 	}
 
-	lua_pop(L, 1);
+	lua_pop(L, stack_counter);
 	return found_and_valid;
 }
 
