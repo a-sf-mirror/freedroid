@@ -29,6 +29,7 @@
 
 #include "system.h"
 #include "defs.h"
+#include "lua.h"
 
 typedef struct {
 	Uint8 r;
@@ -1010,6 +1011,7 @@ struct chat_context {
        struct dialogue_option dialog_options[MAX_DIALOGUE_OPTIONS_IN_ROSTER];  // The dialog nodes
        uint8_t *dialog_flags;          // One flag per dialog node: TRUE if the corresponding dialog node is active
        int current_option;             // Current dialog node to run (-1 if none is selected)
+       lua_State *lua_coroutine;       // Handle to the lua co-routine running the current node script
 
        char *topic_stack[CHAT_TOPIC_STACK_SIZE];  // Stack of topics. A topic is a dialog node selector.
        unsigned int topic_stack_slot;             // Index of the top of the stack

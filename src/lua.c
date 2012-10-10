@@ -680,7 +680,13 @@ static int lua_chat_says(lua_State * L)
 	if (carriage_return)
 		autostr_append(chat_log.text, "\n");
 
-	return 0;
+	if (no_wait)
+		return 0;
+
+	// The Lua manual says that:
+	// "lua_yield() should only be called as the return expression of a C function"
+	// But the "should" is actually a "must"...
+	return lua_yield(L, 0);
 }
 
 static int lua_chat_push_topic(lua_State * L)
@@ -1226,56 +1232,98 @@ luaL_reg lfuncs[] = {
 	{NULL, NULL}
 };
 
+static void pretty_print_lua_error(lua_State* L, const char *code, const char *funcname)
+{
+	const char *error = lua_tostring(L, -1);
+	char *display_code = strdup(code);
+	const char *ptr = error;
+	int err_line = 0;
+	int cur_line = 2;
+	struct auto_string *erronous_code;
+
+	erronous_code = alloc_autostr(16);
+
+	//Find which line the error is on (if there is a line number in the error message)
+	while (*ptr != 0 && *ptr != ':') {
+		ptr++;
+	}
+	if (*ptr != 0) {
+		// Line number found
+		ptr++;
+		err_line = strtol(ptr, NULL, 10);
+	}
+
+	//Break up lua code by newlines then insert line numbers & error notification
+	ptr = strtok(display_code,"\n");
+
+	while (ptr != NULL) {
+		if (err_line != cur_line) {
+			autostr_append(erronous_code, "%d %s\n", cur_line, ptr);
+#ifndef __WIN32__
+		} else if (!strcmp(getenv("TERM"), "xterm")) { //color highlighting for Linux/Unix terminals
+			autostr_append(erronous_code, "\033[41m>%d %s\033[0m\n", cur_line, ptr);
+#endif
+		} else {
+			autostr_append(erronous_code, ">%d %s\n", cur_line, ptr);
+		}
+
+		ptr = strtok(NULL, "\n");
+		cur_line++;
+	}
+
+	fflush(stdout);
+	ErrorMessage(funcname, "Error running Lua code: %s.\nErroneous LuaCode={\n%s}",
+			 PLEASE_INFORM, IS_WARNING_ONLY, error, erronous_code->value);
+
+	free(display_code);
+	free_autostr(erronous_code);
+}
+
+lua_State *load_lua_coroutine(enum lua_target target, const char *code)
+{
+	lua_State *L = get_lua_state(target);
+	lua_State *co_L = lua_newthread(L);
+
+	if (luaL_loadstring(co_L, code)) {
+		pretty_print_lua_error(co_L, code, __FUNCTION__);
+		return NULL;
+	}
+
+	return co_L;
+}
+
+int resume_lua_coroutine(lua_State* L)
+{
+	int rtn = lua_resume(L, 0);
+
+	switch (rtn) {
+		case 0:
+			// The lua script has ended
+			return TRUE;
+		case LUA_YIELD:
+			// The lua script is 'pausing'
+			return FALSE;
+		default:
+		{
+			// Any other return code is an error.
+			// Use the lua debug API to get the code of the current script
+			lua_Debug ar;
+			lua_getstack(L, 0, &ar);
+			lua_getinfo(L, "S", &ar);
+			pretty_print_lua_error(L, ar.source, __FUNCTION__);
+			return TRUE; // let's pretend the lua script has ended
+		}
+	}
+
+	return TRUE;
+}
+
 void run_lua(enum lua_target target, const char *code)
 {
 	lua_State *L = get_lua_state(target);
 
-	if (luaL_dostring(L, code)) {
-		fflush(stdout);
-
-		const char *error = lua_tostring(L, -1);
-		char *display_code = strdup(code);
-		const char *ptr = error;
-		int err_line = 0;
-		int cur_line = 2;
-		struct auto_string *erronous_code;
-
-		erronous_code = alloc_autostr(16);
-
-		//Find which line the error is on (if there is a line number in the error message)
-		while (*ptr != 0 && *ptr != ':') {
-			ptr++;
-		}
-		if (*ptr != 0) {
-			// Line number found
-			ptr++;
-			err_line = strtol(ptr, NULL, 10);
-		}
-
-		//Break up lua code by newlines then insert line numbers & error notification
-		ptr = strtok(display_code,"\n");
-
-		while (ptr != NULL) {
-			if (err_line != cur_line) {
-				autostr_append(erronous_code, "%d %s\n", cur_line, ptr);
-#ifndef __WIN32__
-			} else if (!strcmp(getenv("TERM"), "xterm")) { //color highlighting for Linux/Unix terminals
-				autostr_append(erronous_code, "\033[41m>%d %s\033[0m\n", cur_line, ptr);
-#endif
-			} else {
-				autostr_append(erronous_code, ">%d %s\n", cur_line, ptr);
-			}
-
-			ptr = strtok(NULL, "\n");
-			cur_line++;
-		}
-
-		ErrorMessage(__FUNCTION__, "Error running Lua code: %s.\nErroneous LuaCode={\n%s}",
-				 PLEASE_INFORM, IS_WARNING_ONLY, error, erronous_code->value);
-
-		free(display_code);
-		free_autostr(erronous_code);
-	}
+	if (luaL_dostring(L, code))
+		pretty_print_lua_error(L, code, __FUNCTION__);
 }
 
 void run_lua_file(enum lua_target target, const char *path)

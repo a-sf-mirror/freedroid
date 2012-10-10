@@ -1544,7 +1544,7 @@ enum level_flags {
 enum chat_context_state {
 	RUN_INIT_SCRIPT = 0,
 	RUN_STARTUP_SCRIPT = 1,
-	RUN_NODE_SCRIPT = 2
+	SELECT_NEXT_NODE = 2
 };
 
 #endif

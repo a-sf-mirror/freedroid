@@ -534,7 +534,7 @@ static void process_chat_option(struct chat_context *context)
 
 	// Run LUA associated with this selection
 	if (context->dialog_options[current_selection].lua_code && strlen(context->dialog_options[current_selection].lua_code))
-		run_lua(LUA_DIALOG, context->dialog_options[current_selection].lua_code);
+		context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, context->dialog_options[current_selection].lua_code);
 }
 
 /**
@@ -565,36 +565,60 @@ static void run_chat()
 	// A dialog flow is decomposed into a sequence of several steps:
 	// 1 - run the initialization lua code (only once per game)
 	// 2 - run the startup lua code (each time a dialog is launched)
-	// 3 - interaction step, itself decomposed into:
-	//     3.1 - possibly let the user chose a dialog option
-	//     3.2 - run the associated lua code
+	// 3 - interaction step: let the user chose a dialog option, and run the
+	//     associated lua script
 	// 4 - loop on the next interaction step, unless the dialog is ended.
+	//
+	// In some cases, a lua script needs a user's interaction (wait for a click
+	// in npc_say(), for instance). We then have to interrupt the lua script,
+	// go back to the interaction loop of the game, and resume the lua script
+	// after the user's interaction.
+	//
+	// To implement a script interruption/resuming, we use the co-routine
+	// yield/resume features of Lua, and we first have to loop on the lua
+	// script execution until it ends.
 
 	while (1) {
+
+		// Resume the current lua coroutine, if any, until it ends.
+
+		if (current_chat_context->lua_coroutine) {
+			int rtn = resume_lua_coroutine(current_chat_context->lua_coroutine);
+
+			// If rtn is FALSE, it means that the lua coroutine was yielded,
+			// and so we resume the coroutine on the next loop step.
+			// Else, the lua script reached its end, and we will execute the
+			// currently selected state on the next loop.
+
+			if (rtn) {
+				current_chat_context->lua_coroutine = NULL;
+				if (current_chat_context->end_dialog)
+					goto wait_click_and_out;
+			}
+
+			continue;
+		}
+
+		// Dialog engine FSM
 
 		switch (current_chat_context->state) {
 			case RUN_INIT_SCRIPT:
 			{
 				if (current_chat_context->initialization_code && strlen(current_chat_context->initialization_code)) {
-					run_lua(LUA_DIALOG, current_chat_context->initialization_code);
-					if (current_chat_context->end_dialog)
-						goto wait_click_and_out;
+					current_chat_context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, current_chat_context->initialization_code);
 				}
-				current_chat_context->state = RUN_STARTUP_SCRIPT;
+				current_chat_context->state = RUN_STARTUP_SCRIPT; // next step once the script ends
 				break;
 			}
 			case RUN_STARTUP_SCRIPT:
 			{
 				if (current_chat_context->startup_code && strlen(current_chat_context->startup_code)) {
-					run_lua(LUA_DIALOG, current_chat_context->startup_code);
-					if (current_chat_context->end_dialog)
-						goto wait_click_and_out;
+					current_chat_context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, current_chat_context->startup_code);
 				}
-				current_chat_context->state = RUN_NODE_SCRIPT;
+				current_chat_context->state = SELECT_NEXT_NODE; // next step once the script ends
 				break;
 			}
-			case RUN_NODE_SCRIPT:
-			default:
+			case SELECT_NEXT_NODE:
 			{
 				// If no dialog is currently selected, let the user choose one of the
 				// active options.
@@ -612,11 +636,14 @@ static void run_chat()
 					goto wait_click_and_out;
 				}
 
+				// Output the 'partner' message, and load the node script into
+				// a lua coroutine.
 				process_chat_option(current_chat_context);
 
-				if (current_chat_context->end_dialog)
-					goto wait_click_and_out;
+				break;
 			}
+			default:
+				break;
 		}
 	}
 
