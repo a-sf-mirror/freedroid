@@ -440,58 +440,6 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 };				// int DoMenuSelection( ... )
 
 /**
- * This function performs a menu for the player to select from, using the
- * keyboard or mouse wheel.
- */
-int chat_do_menu_selection_filtered(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *chat_droid, const char *topic)
-{
-	int MenuSelection;
-	char *FilteredChatMenuTexts[MAX_ANSWERS_PER_PERSON];
-	int i;
-	int use_counter = 0;
-
-	// We filter out those answering options that are allowed by the flag mask
-	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
-		FilteredChatMenuTexts[i] = "";
-		if (chat_control_chat_flags[i] && !(strcmp(topic, ChatRoster[i].topic))) {
-
-			DebugPrintf(MENU_SELECTION_DEBUG, "%2d. ", i);
-			DebugPrintf(MENU_SELECTION_DEBUG, "%s\n", MenuTexts[i]);
-
-			fflush(stdout);
-			fflush(stderr);
-
-			FilteredChatMenuTexts[use_counter] = MenuTexts[i];
-			use_counter++;
-		}
-	}
-
-	// Now we do the usual menu selection, using only the activated chat alternatives...
-	//
-	MenuSelection = chat_do_menu_selection(FilteredChatMenuTexts, chat_droid);
-
-	// Now that we have an answer, we must transpose it back to the original array
-	// of all theoretically possible answering possibilities.
-	//
-	if (MenuSelection != (-1)) {
-		use_counter = 0;
-		for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
-
-			if (chat_control_chat_flags[i] && !(strcmp(topic, ChatRoster[i].topic))) {
-				FilteredChatMenuTexts[use_counter] = MenuTexts[i];
-				use_counter++;
-				if (MenuSelection == use_counter) {
-					DebugPrintf(1, "\nOriginal MenuSelect: %d. \nTransposed MenuSelect: %d.", MenuSelection, i + 1);
-					return (i + 1);
-				}
-			}
-		}
-	}
-
-	return (MenuSelection);
-}
-
-/**
  *
  * This function performs a menu for the player to select from, using the
  * keyboard or mouse wheel.
@@ -502,15 +450,15 @@ int chat_do_menu_selection_filtered(char *MenuTexts[MAX_ANSWERS_PER_PERSON], ene
  * dialog options selection window for the player to click from.
  *
  */
-int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatDroid)
+int chat_do_menu_selection(char *MenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER], enemy *ChatDroid)
 {
 	int h;
 	int i;
 	static int menu_position_to_remember = 1;
 #define ITEM_DIST 50
-	int MenuPosX[MAX_ANSWERS_PER_PERSON];
-	int MenuPosY[MAX_ANSWERS_PER_PERSON];
-	int MenuOptionLineRequirement[MAX_ANSWERS_PER_PERSON];
+	int MenuPosX[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
+	int MenuPosY[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
+	int MenuOptionLineRequirement[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 	SDL_Rect Choice_Window;
 	SDL_Rect HighlightRect;
 	int MaxLinesInMenuRectangle;
@@ -527,7 +475,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 	game_status = INSIDE_MENU;
 	// First we initialize the menu positions
 	//
-	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
+	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
 		MenuPosX[i] = 260;
 		MenuPosY[i] = 90 + i * ITEM_DIST;
 		MenuOptionLineRequirement[i] = 0;
@@ -543,7 +491,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 
 	// First thing we do is find out how may options we have
 	// been given for the menu
-	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
+	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
 		DebugPrintf(MENU_SELECTION_DEBUG, "%2d. ", i);
 		DebugPrintf(MENU_SELECTION_DEBUG, "%s", MenuTexts[i]);
 		DebugPrintf(MENU_SELECTION_DEBUG, "\n");
@@ -575,7 +523,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 		// onto the screen
 		//
 		line_count = 0;
-		for (i = OptionOffset; i < MAX_ANSWERS_PER_PERSON; i++) {
+		for (i = OptionOffset; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
 			// If all has been displayed already, we quit blitting...
 			//
 			if (strlen(MenuTexts[i]) == 0) {

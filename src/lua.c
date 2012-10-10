@@ -56,18 +56,32 @@ lua_State *get_lua_state(enum lua_target target)
 	return dialog_lua_state;
 }
 
-/** Helper to retrieve the enemy 
-  * a Lua function must act upon.
-  * An optional dialog name can be provided,
-  * by default the function will act upon
-  * the current chat droid.
+/**
+ * Retrieve current chat context, and fail with error if there is no dialog
+ * currently running.
+ */
+static struct chat_context *__get_current_chat_context(const char *funcname)
+{
+	struct chat_context *current_chat_context = chat_get_current_context();
+	if (!current_chat_context)
+		ErrorMessage(funcname, _("No chat context available on the context stack."), PLEASE_INFORM, IS_FATAL);
+	return current_chat_context;
+}
+
+#define GET_CURRENT_CHAT_CONTEXT() __get_current_chat_context(__FUNCTION__)
+
+/** Helper to retrieve the enemy a Lua function must act upon.
+  * An optional dialog name can be provided, by default the function will act
+  * upon the current chat droid.
   */
 static enemy *get_enemy_opt(lua_State *L, int param_number, int optional)
 {
 	const char *dialog = luaL_optstring(L, param_number, NULL);
 
-	if (!dialog)
-		return chat_control_chat_droid;
+	if (!dialog) {
+		struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
+		return current_chat_context->partner;
+	}
 
 	enemy *en = get_enemy_with_dialog(dialog);
 	if (!optional && !en)
@@ -370,9 +384,11 @@ static int lua_event_give_item(lua_State * L)
 
 static int lua_event_sell_item(lua_State *L)
 {
+	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
+
 	const char *itemname = luaL_checkstring(L, 1);
 	int weight = luaL_optint(L, 2, 1);
-	const char *charname = luaL_optstring(L, 3, chat_control_chat_droid->dialog_section_name);
+	const char *charname = luaL_optstring(L, 3, current_chat_context->partner->dialog_section_name);
 
 	npc_add_shoplist(charname, itemname, weight);
 
@@ -658,7 +674,9 @@ static int lua_chat_says(lua_State * L)
 	int carriage_return = lua_toboolean(L, 2);
 	int no_wait = !strcmp(luaL_optstring(L, 3, "WAIT"), "NO_WAIT");
 
-	chat_add_response(L_(answer), no_wait, chat_control_chat_droid);
+	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
+
+	chat_add_response(L_(answer), no_wait, current_chat_context->partner);
 	if (carriage_return)
 		autostr_append(chat_log.text, "\n");
 
@@ -701,40 +719,46 @@ static int lua_chat_set_next_node(lua_State * L)
 {
 	int nodenb = luaL_checkint(L, 1);
 
-	if (!ChatRoster[nodenb].exists) {
+	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
+
+	if (!current_chat_context->dialog_options[nodenb].exists) {
 		ErrorMessage(__FUNCTION__, "A dialog tried to run node %d that does not exist.\n", PLEASE_INFORM, IS_WARNING_ONLY, nodenb);
 		return 0;
 	}
-	chat_control_next_node = nodenb;
+	current_chat_context->current_option = nodenb;
 
 	return 0;
 }
 
 static int lua_chat_end_dialog(lua_State * L)
 {
-	chat_control_end_dialog = 1;
+	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
+	current_chat_context->end_dialog = 1;
 	return 0;
 }
 
 static int lua_chat_partner_started(lua_State * L)
 {
-	lua_pushboolean(L, chat_control_partner_started);
-
+	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
+	lua_pushboolean(L, current_chat_context->partner_started);
 	return 1;
 }
 
 static int __lua_chat_toggle_node(lua_State * L, int value)
 {
 	int i = 1, flag;
+
+	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
+
 	while ((flag = luaL_optinteger(L, i, -1)) != -1) {
 		i++;
 		// for each optional node
-		if (!ChatRoster[flag].exists) {
+		if (!current_chat_context->dialog_options[flag].exists) {
 			ErrorMessage(__FUNCTION__, "A dialog tried to %s chat node %d that does not exist.\n", PLEASE_INFORM,
 				     IS_WARNING_ONLY, value == 1 ? "enable" : "disable", flag);
 			continue;
 		}
-		chat_control_chat_flags[flag] = value;
+		current_chat_context->dialog_flags[flag] = value;
 	}
 	return 0;
 }
@@ -753,8 +777,11 @@ static int lua_chat_drop_dead(lua_State * L)
 {
 	enemy *en = get_enemy_arg(L, 1); 
 	hit_enemy(en, en->energy + 1, 0, Droidmap[en->type].is_human - 2, 0);
-	if (en == chat_control_chat_droid)
-		chat_control_end_dialog = 1;
+
+	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
+
+	if (en == current_chat_context->partner)
+		current_chat_context->end_dialog = 1;
 	return 0;
 }
 
@@ -768,10 +795,13 @@ static int lua_chat_set_bot_state(lua_State * L)
 
 static int lua_chat_broadcast_bot_state(lua_State * L)
 {
-	const char *cmd = luaL_checkstring(L, 1);	
-	const char *dialogname = chat_control_chat_droid->dialog_section_name;
+	const char *cmd = luaL_checkstring(L, 1);
+
+	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
+
+	const char *dialogname = current_chat_context->partner->dialog_section_name;
 	enemy *en;
-	BROWSE_LEVEL_BOTS(en, chat_control_chat_droid->pos.z) {
+	BROWSE_LEVEL_BOTS(en, current_chat_context->partner->pos.z) {
 		if (!strcmp(en->dialog_section_name, dialogname) && (is_friendly(en->faction, FACTION_SELF))) {
 			set_bot_state(en, cmd);
 		}

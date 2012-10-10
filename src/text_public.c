@@ -180,33 +180,28 @@ char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartI
 {
 	char *SearchPointer;
 	char *EndOfStringPointer;
-	char *ReturnString = "";
+	char *ReturnString = NULL;
 	int StringLength;
 
 	SearchPointer = strstr(SearchString, StartIndicationString);
 
 	if (!SearchPointer)
 		return 0;
-	else {
-		// Now we move to the beginning
-		SearchPointer += strlen(StartIndicationString);
 
-		// Now we move to the end with the end pointer
-		EndOfStringPointer = strstr(SearchPointer, EndIndicationString);
-		if (!EndOfStringPointer)
-			return 0;
+	// Now we move to the beginning
+	SearchPointer += strlen(StartIndicationString);
 
-		// Now we allocate memory and copy the string...
-		// delete_one_dialog_option() doesn't free empty strings so don't
-		// malloc those.
-		if ((StringLength = (EndOfStringPointer - SearchPointer))) {
-			ReturnString = MyMalloc(StringLength + 1);
-			strncpy(ReturnString, SearchPointer, StringLength);
-			ReturnString[StringLength] = 0;
-		} else {
-			ReturnString = "";
-		}
-	}
+	// Now we move to the end with the end pointer
+	EndOfStringPointer = strstr(SearchPointer, EndIndicationString);
+	if (!EndOfStringPointer)
+		return 0;
+
+	// Now we allocate memory and copy the string (even empty string)...
+	StringLength = EndOfStringPointer - SearchPointer;
+	ReturnString = MyMalloc(StringLength + 1);
+	strncpy(ReturnString, SearchPointer, StringLength);
+	ReturnString[StringLength] = 0;
+
 	return ReturnString;
 }
 

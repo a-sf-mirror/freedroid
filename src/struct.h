@@ -476,7 +476,7 @@ typedef struct enemy {
 typedef struct npc {
 	string dialog_basename;
 	uint8_t chat_character_initialized;
-	uint8_t chat_flags[MAX_ANSWERS_PER_PERSON];
+	uint8_t chat_flags[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 
 	string shoplist[MAX_ITEMS_IN_INVENTORY]; //list of items that can be put in the inventory of the NPC
 	int shoplistweight[MAX_ITEMS_IN_INVENTORY]; //weight of each item: relative probability of appearance in inventory
@@ -990,6 +990,31 @@ struct tux_rendering {
 struct tux_motion_class_images {
 	struct image part_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTIONS];
 	char part_names[ALL_PART_GROUPS][64];
+};
+
+/**
+ * Holds all variables needed to run a chat
+ */
+struct chat_context {
+       enum chat_context_state state;  // current state of the chat engine.
+
+       int is_subdialog;               // TRUE if the structure references a sub-dialog.
+       enemy *partner;                 // The bot we are talking with.
+       struct npc *npc;                // The NPC containing the specifications of the dialog to run.
+       int partner_started;            // TRUE if the dialog was started by the partner.
+       int end_dialog;                 // TRUE if a dialog lua script asked to end the dialog.
+
+       char *initialization_code;      // lua initialization code (run on the first activation)
+       char *startup_code;             // lua startup code (run on every activation)
+
+       struct dialogue_option dialog_options[MAX_DIALOGUE_OPTIONS_IN_ROSTER];  // The dialog nodes
+       uint8_t *dialog_flags;          // One flag per dialog node: TRUE if the corresponding dialog node is active
+       int current_option;             // Current dialog node to run (-1 if none is selected)
+
+       char *topic_stack[CHAT_TOPIC_STACK_SIZE];  // Stack of topics. A topic is a dialog node selector.
+       unsigned int topic_stack_slot;             // Index of the top of the stack
+
+       struct list_head stack_node;    // Used to create a stack of chat_context.
 };
 
 #endif

@@ -41,95 +41,171 @@
 
 #include "widgets/widgets.h"
 
-#define PUSH_ROSTER 2
-#define POP_ROSTER 3
-#define CHAT_TOPIC_STACK_SIZE 10
+/* Some forward declarations */
+static void run_chat();
+static void chat_delete_context(struct chat_context *);
 
-static char *chat_initialization_code;	//first time with a character-code
-static char *chat_startup_code;	//every time we start this dialog-code
-
-// Topic stack
-static char *topic_stack[CHAT_TOPIC_STACK_SIZE];
-static unsigned int topic_stack_slot;
-
-static void run_chat(enemy *ChatDroid, int is_subdialog);
+/* Stack of chat contexts. The current context is at the top of the stack */
+static struct list_head chat_context_stack = LIST_HEAD_INIT(chat_context_stack);
 
 /**
- * This function resets a dialog option to "empty" default values. It does NOT free the strings, this has to be done
- * prior to calling this function when needed.
+ * Return the current chat context.
+ *
+ * The current context is the one at top of the contexts stack.
+ *
+ * @return A pointer to the current chat context, or NULL if no context is stacked.
  */
-static void clear_dialog_option(dialogue_option * d)
+struct chat_context *chat_get_current_context(void)
 {
-	d->topic = "";
-	d->option_text = "";
+	if (list_empty(&chat_context_stack))
+		return NULL;
+
+	return (struct chat_context *)list_entry(chat_context_stack.next, struct chat_context, stack_node);
+}
+
+/**
+ * Push a chat context on top of the stack.
+ *
+ * The pushed context becomes the current one.
+ *
+ * @param chat_context Pointer to the chat context to push.
+ */
+static void chat_push_context(struct chat_context *chat_context)
+{
+	list_add(&chat_context->stack_node, &chat_context_stack);
+}
+
+/** Pop from the chat contexts stack.
+ *
+ * This function deletes the context at the top of the list.
+ * The new top context becomes the current one.
+ */
+static void chat_pop_context(void)
+{
+	struct chat_context *top_chat_context = chat_get_current_context();
+	if (top_chat_context) {
+		list_del(chat_context_stack.next);
+		chat_delete_context(top_chat_context);
+	}
+}
+
+/**
+ * Initialize a dialog option to "empty" default values.
+ *
+ * @param d Pointer to the struct dialogue_option to initialize.
+ */
+static void init_dialog_option(dialogue_option *d)
+{
+	d->topic = NULL;
+	d->option_text = NULL;
 	d->no_text = 0;
 	d->lua_code = NULL;
 	d->exists = 0;
 }
 
 /**
+ * Free the memory used by a dialogue_option.
  *
+ * @param d Pointer to the struct dialogue_option to free.
  */
-static void delete_one_dialog_option(int i, int FirstInitialisation)
+static void delete_dialog_option(dialogue_option *d)
 {
-	// If this is not the first initialisation, we have to free the allocated
-	// strings first, or we'll be leaking memory...
-	if (!FirstInitialisation) {
-		if (strlen(ChatRoster[i].topic))
-			free(ChatRoster[i].topic);
-		if (strlen(ChatRoster[i].option_text))
-			free(ChatRoster[i].option_text);
-	}
-
-	if (ChatRoster[i].lua_code)
-		free(ChatRoster[i].lua_code);
-	ChatRoster[i].lua_code = NULL;
-
-	clear_dialog_option(&ChatRoster[i]);
+	free(d->topic);
+	free(d->option_text);
+	free(d->lua_code);
 }
 
 /**
- * This function should init the chat roster with empty values and thereby
- * clean out the remnants of the previous chat dialogue.
+ * Create a chat context and initialize it.
+ *
+ * @param partner Pointer to the enemy to talk with
+ * @param npc Pointer to the npc containing the dialogue definition.
+ * @param is_subdialog True if the dialog to start is a subdialog.
+ *
+ * @return Pointer to the allocated chat context.
  */
-static void InitChatRosterForNewDialogue(void)
+static struct chat_context *chat_create_context(enemy *partner, struct npc *npc, int is_subdialog)
 {
 	int i;
-	static int FirstInitialisation = TRUE;
+	struct chat_context *new_chat_context = (struct chat_context *)MyMalloc(sizeof(struct chat_context));
+
+	// Init chat control variables.
+	// MyMalloc() already zeroed the struct, so we only initialize 'non zero' fields.
+
+	new_chat_context->is_subdialog = is_subdialog;
+	new_chat_context->partner = partner;
+	new_chat_context->npc = npc;
+	new_chat_context->partner_started = partner->will_rush_tux;
+
+	// topic_stack[0] is never replaced, so a static allocation is enough.
+	new_chat_context->topic_stack[0] = "";
 
 	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-		delete_one_dialog_option(i, FirstInitialisation);
+		init_dialog_option(&new_chat_context->dialog_options[i]);
 	}
 
-	// Next time, we WILL have to free every used entry before cleaning it
-	// out, or we will be leaking memory...
-	//
-	FirstInitialisation = FALSE;
+	// Only run the init script the first time the dialog is open.
+	// An init script on a subdialog does not really make sense, so it is just
+	// ignored.
+	// The startup script is run every time a dialog or a subdialog is open.
+	new_chat_context->state = RUN_INIT_SCRIPT;
+	if (npc->chat_character_initialized || is_subdialog) {
+		new_chat_context->state = RUN_STARTUP_SCRIPT;
+	}
 
-};				// void InitChatRosterForNewDialogue( void )
+	// dialog_flags points to the npc chat_flags array, so that currently
+	// active dialog options are saved thanks to the save of the npc
+	// structures.
+	// However, subdialogs are not referenced by the npc, and so their states
+	// can not be saved. A 'dummy' chat_flags array is thus needed during the
+	// run of a subdialog, that dummy array being lost when the subdialog is
+	// closed.
+	if (!is_subdialog) {
+		new_chat_context->dialog_flags = &npc->chat_flags[0];
+		// Ensure the initialization of the option flags on the first run of
+		// the dialog.
+		if (!npc->chat_character_initialized) {
+			for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
+				new_chat_context->dialog_flags[i] = 0;
+			}
+		}
+	} else {
+		uint8_t *dummy_chat_flags = (uint8_t *)MyMalloc(sizeof(uint8_t)*MAX_DIALOGUE_OPTIONS_IN_ROSTER);
+		new_chat_context->dialog_flags = dummy_chat_flags;
+	}
+
+	// No dialog option currently selected by the user
+	new_chat_context->current_option = -1;
+
+	return new_chat_context;
+}
 
 /**
+ * Delete a chat_context (free all the memory allocations)
  *
- *
+ * @param chat_context Pointer to the caht_context to delete.
  */
-void push_or_pop_chat_roster(int push_or_pop)
+static void chat_delete_context(struct chat_context *chat_context)
 {
-	static dialogue_option LocalChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
+	int i;
 
-	if (push_or_pop == PUSH_ROSTER) {
-		memcpy(LocalChatRoster, ChatRoster, sizeof(dialogue_option) * MAX_DIALOGUE_OPTIONS_IN_ROSTER);
-		int i;
-		for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++)
-			clear_dialog_option(&ChatRoster[i]);
-	} else if (push_or_pop == POP_ROSTER) {
-		memcpy(ChatRoster, LocalChatRoster, sizeof(dialogue_option) * MAX_DIALOGUE_OPTIONS_IN_ROSTER);
-	} else {
-		ErrorMessage(__FUNCTION__, "\
-There was an unrecognized parameter handled to this function.", PLEASE_INFORM, IS_FATAL);
+	free(chat_context->initialization_code);
+	free(chat_context->startup_code);
+
+	// topic_stack[0] is not dynamically allocated, so there is no need to free it.
+	for (i = chat_context->topic_stack_slot; i > 0; i--)
+		free(chat_context->topic_stack[chat_context->topic_stack_slot]);
+
+	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
+		delete_dialog_option(&chat_context->dialog_options[i]);
 	}
 
-};				// push_or_pop_chat_roster ( int push_or_pop )
+	if (chat_context->is_subdialog) {
+		free(chat_context->dialog_flags);
+	}
 
+	free(chat_context);
+}
 
 /**
  * \brief Push a new topic in the topic stack.
@@ -137,8 +213,10 @@ There was an unrecognized parameter handled to this function.", PLEASE_INFORM, I
  */
 void chat_push_topic(const char *topic)
 {
-	if (topic_stack_slot < CHAT_TOPIC_STACK_SIZE - 1) {
-		topic_stack[++topic_stack_slot] = strdup(topic);
+	struct chat_context *current_chat_context = chat_get_current_context();
+
+	if (current_chat_context->topic_stack_slot < CHAT_TOPIC_STACK_SIZE - 1) {
+		current_chat_context->topic_stack[++current_chat_context->topic_stack_slot] = strdup(topic);
 	} else {
 		ErrorMessage(__FUNCTION__,
 			     "The maximum depth of %hd topics has been maxed out.",
@@ -149,10 +227,14 @@ void chat_push_topic(const char *topic)
 /**
  * \brief Pop the top topic in the topic stack.
  */
-void chat_pop_topic() {
-	if (topic_stack_slot > 0) {
-		free(topic_stack[topic_stack_slot]);
-		topic_stack_slot--;
+void chat_pop_topic()
+{
+	struct chat_context *current_chat_context = chat_get_current_context();
+
+	if (current_chat_context->topic_stack_slot > 0) {
+		free(current_chat_context->topic_stack[current_chat_context->topic_stack_slot]);
+		current_chat_context->topic_stack[current_chat_context->topic_stack_slot] = NULL;
+		current_chat_context->topic_stack_slot--;
 	} else {
 		ErrorMessage(__FUNCTION__,
 			     "Root topic can't be popped.",
@@ -165,7 +247,7 @@ void chat_pop_topic() {
  * chat info file into the chat roster.
  *
  */
-static void load_dialog(const char *fpath)
+static void load_dialog(const char *fpath, struct chat_context *context)
 {
 	char *ChatData;
 	char *SectionPointer;
@@ -173,6 +255,7 @@ static void load_dialog(const char *fpath)
 	int i;
 	int OptionIndex;
 	int NumberOfOptionsInSection;
+	char *text;
 
 #define CHAT_CHARACTER_BEGIN_STRING "Beginning of new chat dialog for character=\""
 #define CHAT_CHARACTER_END_STRING "End of chat dialog for character"
@@ -185,17 +268,8 @@ static void load_dialog(const char *fpath)
 
 	// Read the initialization code
 	//
-	if (chat_initialization_code) {
-		free(chat_initialization_code);
-		chat_initialization_code = NULL;
-	}
-	chat_initialization_code = ReadAndMallocStringFromDataOptional(SectionPointer, "<FirstTime LuaCode>", "</LuaCode>");
-
-	if (chat_startup_code) {
-		free(chat_startup_code);
-		chat_startup_code = NULL;
-	}
-	chat_startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "<EveryTime LuaCode>", "</LuaCode>");
+	context->initialization_code = ReadAndMallocStringFromDataOptional(SectionPointer, "<FirstTime LuaCode>", "</LuaCode>");
+	context->startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "<EveryTime LuaCode>", "</LuaCode>");
 
 	// At first we go take a look on how many options we have
 	// to decode from this section.
@@ -223,25 +297,25 @@ static void load_dialog(const char *fpath)
 		// Anything that is loaded into the chat roster doesn't need to be freed,
 		// cause this will be done by the next 'InitChatRoster' function anyway.
 		//
-		ChatRoster[OptionIndex].option_text = ReadAndMallocStringFromDataOptional(SectionPointer, "Text=\"", "\"");
-		if (!ChatRoster[OptionIndex].option_text) {
-			ChatRoster[OptionIndex].option_text = ReadAndMallocStringFromData(SectionPointer, "Text=_\"", "\"");
+		text = ReadAndMallocStringFromDataOptional(SectionPointer, "Text=\"", "\"");
+		if (!text) {
+			text = ReadAndMallocStringFromData(SectionPointer, "Text=_\"", "\"");
+		}
+		context->dialog_options[OptionIndex].option_text = L_(text);
+
+		text = ReadAndMallocStringFromDataOptional(SectionPointer, "Topic=\"", "\"");
+		if (text) {
+			context->dialog_options[OptionIndex].topic = text;
+		} else {
+			// topic content has to be malloc'd.
+			context->dialog_options[OptionIndex].topic = strdup("");
 		}
 
-		ChatRoster[OptionIndex].topic = ReadAndMallocStringFromDataOptional(SectionPointer, "Topic=\"", "\"");
+		context->dialog_options[OptionIndex].no_text = strstr(SectionPointer, NO_TEXT_OPTION_STRING) > 0;
 
-		if (!ChatRoster[OptionIndex].topic) {
-			ChatRoster[OptionIndex].topic = "";
-		}
+		context->dialog_options[OptionIndex].lua_code = ReadAndMallocStringFromDataOptional(SectionPointer, "<LuaCode>", "</LuaCode>");
 
-		ChatRoster[OptionIndex].no_text = strstr(SectionPointer, NO_TEXT_OPTION_STRING) > 0;
-
-		if (strstr(SectionPointer, "LuaCode")) {
-			ChatRoster[OptionIndex].lua_code = ReadAndMallocStringFromData(SectionPointer, "<LuaCode>", "</LuaCode>");
-		} else
-			ChatRoster[OptionIndex].lua_code = NULL;
-
-		ChatRoster[OptionIndex].exists = 1;
+		context->dialog_options[OptionIndex].exists = 1;
 
 		if (EndOfSectionPointer)
 			*EndOfSectionPointer = NEW_OPTION_BEGIN_STRING[0];
@@ -338,7 +412,7 @@ static void wait_for_click(enemy *chat_droid)
 			}
 		}
 	}
-	 	
+
 wait_for_click_return:
 	while (EscapePressed() || MouseLeftPressed() || SpacePressed())
 		;
@@ -363,143 +437,194 @@ void chat_add_response(const char *response, int no_wait, enemy *chat_droid)
 		wait_for_click(chat_droid);
 }
 
-void run_subdialog(const char *tmp_filename)
+/**
+ * Create and push a chat context to run a sub dialog.
+ *
+ * @param filename Subdialog filename.
+ */
+void run_subdialog(const char *filename)
 {
 	char fpath[2048];
 	char finaldir[50];
-	uint8_t dummyflags[MAX_ANSWERS_PER_PERSON];
-	uint8_t *old_chat_flags = chat_control_chat_flags;
+	struct chat_context *current_chat_context = NULL;
+	struct chat_context *new_context = NULL;
 
-	memset(dummyflags, 0, MAX_ANSWERS_PER_PERSON);
-	chat_control_chat_flags = &dummyflags[0];
+	// A subdialog uses the same partner and npc than its parent dialog.
+	// The parent dialog is the one on top of the chat_context stack.
+	current_chat_context = chat_get_current_context();
+	new_context = chat_create_context(current_chat_context->partner, current_chat_context->npc, TRUE);
 
-	push_or_pop_chat_roster(PUSH_ROSTER);
-
+	// Find the subdialog file and load it inside the new chat context
 	sprintf(finaldir, "%s", DIALOG_DIR);
-	find_file(tmp_filename, finaldir, fpath, 0);
+	find_file(filename, finaldir, fpath, 0);
+	load_dialog(fpath, new_context);
 
-	load_dialog(fpath);
-
-	// we always initialize subdialogs..
-	//
-	int i;
-	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
-		dummyflags[i] = 0;
-	}
-
-	run_chat(chat_control_chat_droid, TRUE);
-
-	push_or_pop_chat_roster(POP_ROSTER);
-
-	chat_control_chat_flags = old_chat_flags;
-	chat_control_end_dialog = 0;
-	chat_control_next_node = -1;
-	chat_control_partner_started = 0;
+	// Push the new chat_context, and run the subdialog
+	chat_push_context(new_context);
+	run_chat();
 }
 
 /**
- * Process a chat option:
+ * This function performs a menu for the player to select from, using the
+ * keyboard or mouse wheel.
+ */
+static int chat_do_menu_selection_filtered(struct chat_context *context)
+{
+	int MenuSelection;
+	char *FilteredChatMenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
+	int i;
+	int use_counter = 0;
+	char *topic = context->topic_stack[context->topic_stack_slot];
+
+	// We filter out those answering options that are allowed by the flag mask
+	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
+		FilteredChatMenuTexts[i] = "";
+		if (context->dialog_flags[i] && !(strcmp(topic, context->dialog_options[i].topic))) {
+			FilteredChatMenuTexts[use_counter] = context->dialog_options[i].option_text;
+			use_counter++;
+		}
+	}
+
+	// Now we do the usual menu selection, using only the activated chat alternatives...
+	//
+	MenuSelection = chat_do_menu_selection(FilteredChatMenuTexts, context->partner);
+
+	// Now that we have an answer, we must transpose it back to the original array
+	// of all theoretically possible answering possibilities.
+	//
+	if (MenuSelection != (-1)) {
+		use_counter = 0;
+		for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
+
+			if (context->dialog_flags[i] && !(strcmp(topic, context->dialog_options[i].topic))) {
+				use_counter++;
+				if (MenuSelection == use_counter) {
+					DebugPrintf(1, "\nOriginal MenuSelect: %d. \nTransposed MenuSelect: %d.", MenuSelection, i + 1);
+					return (i + 1);
+				}
+			}
+		}
+	}
+
+	return (MenuSelection);
+}
+
+/**
+ * Process the chat option selected by the user.
+ *
  * - Echo the option text of the chosen option, unless NO_TEXT is set.
  * - Run the associated LUA code.
  */
-static void process_this_chat_option(int menu_selection, enemy *chat_droid)
+static void process_chat_option(struct chat_context *context)
 {
-	// Reset chat control variables for this option
-	chat_control_end_dialog = 0;
-	chat_control_next_node = -1;
+	int current_selection = context->current_option;
+
+	// Reset chat control variables for this option, so the user will have to
+	// select a new option, unless the lua code ends the dialog or
+	// auto-activates an other option.
+	context->end_dialog = 0;
+	context->current_option = -1;
 
 	// Echo option text
-	if (!ChatRoster[menu_selection].no_text) {
+	if (!context->dialog_options[current_selection].no_text) {
 		autostr_append(chat_log.text, "\1- ");
-		chat_add_response(L_(ChatRoster[menu_selection].option_text), FALSE, chat_droid);
+		chat_add_response(L_(context->dialog_options[current_selection].option_text), FALSE, context->partner);
 		autostr_append(chat_log.text, "\n");
 	}
 
 	// Run LUA associated with this selection
-	if (ChatRoster[menu_selection].lua_code)
-		run_lua(LUA_DIALOG, ChatRoster[menu_selection].lua_code);
+	if (context->dialog_options[current_selection].lua_code && strlen(context->dialog_options[current_selection].lua_code))
+		run_lua(LUA_DIALOG, context->dialog_options[current_selection].lua_code);
 }
 
 /**
+ * Run the dialog defined by the chat contest on top of the stack.
+ *
  * This is the most important subfunction of the whole chat with friendly
- * droids and characters.  After the pure chat data has been loaded from
- * disk, this function is invoked to handle the actual chat interaction
- * and the dialog flow.
+ * droids and characters.  After a chat context has been filled and pushed on
+ * the stack, whether it is a main dialog or a subdialog, this function is invoked
+ * to handle the actual chat interaction and the dialog flow.
  */
-static void run_chat(enemy *ChatDroid, int is_subdialog)
+static void run_chat()
 {
-	int i;
-	char *DialogMenuTexts[MAX_ANSWERS_PER_PERSON];
-	chat_control_partner_started = (ChatDroid->will_rush_tux);
+	struct chat_context *current_chat_context = NULL;
 
-	// Reset chat control variables.
-	chat_control_end_dialog = 0;
-	chat_control_next_node = -1;
-
-	// Reset topic stack variables
-	for(i = 1; i <= topic_stack_slot ; i++) {
-		free(topic_stack[i]);
-	}
-	topic_stack_slot = 0;
-	topic_stack[0] = "";
-
-	/* Initialize the chat log widget. */
-	if (!is_subdialog)
-		widget_text_init(&chat_log, _("\3--- Start of Dialog ---\n"));
-
+	// Initialize the chat log widget.
 	widget_set_rect(WIDGET(&chat_log), CHAT_SUBDIALOG_WINDOW_X, CHAT_SUBDIALOG_WINDOW_Y, CHAT_SUBDIALOG_WINDOW_W, CHAT_SUBDIALOG_WINDOW_H);
 	chat_log.font = FPS_Display_BFont;
 	chat_log.line_height_factor = LINE_HEIGHT_FACTOR;
 
-	if (chat_initialization_code) {
-		run_lua(LUA_DIALOG, chat_initialization_code);
-		if (chat_control_end_dialog)
-			goto wait_click_and_out;
-	}
+	// Get the current dialog context (the one on the top of the stack)
+	current_chat_context = chat_get_current_context();
 
-	// We load the option texts into the dialog options variable..
+	if (!current_chat_context->is_subdialog)
+		widget_text_init(&chat_log, _("\3--- Start of Dialog ---\n"));
+
+	// Dialog engine main code.
 	//
-	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
-		if (strlen(ChatRoster[i].option_text)) {
-			DialogMenuTexts[i] = L_(ChatRoster[i].option_text);
-		}
-	}
+	// A dialog flow is decomposed into a sequence of several steps:
+	// 1 - run the initialization lua code (only once per game)
+	// 2 - run the startup lua code (each time a dialog is launched)
+	// 3 - interaction step, itself decomposed into:
+	//     3.1 - possibly let the user chose a dialog option
+	//     3.2 - run the associated lua code
+	// 4 - loop on the next interaction step, unless the dialog is ended.
 
 	while (1) {
-		// Now we run the startup code
-		if (chat_startup_code && chat_control_next_node == -1) {
-			run_lua(LUA_DIALOG, chat_startup_code);
-			free(chat_startup_code);
-			chat_startup_code = NULL;	//and free it immediately so as not to run it again in this session
 
-			if (chat_control_end_dialog)
-				goto wait_click_and_out;
- 		}
+		switch (current_chat_context->state) {
+			case RUN_INIT_SCRIPT:
+			{
+				if (current_chat_context->initialization_code && strlen(current_chat_context->initialization_code)) {
+					run_lua(LUA_DIALOG, current_chat_context->initialization_code);
+					if (current_chat_context->end_dialog)
+						goto wait_click_and_out;
+				}
+				current_chat_context->state = RUN_STARTUP_SCRIPT;
+				break;
+			}
+			case RUN_STARTUP_SCRIPT:
+			{
+				if (current_chat_context->startup_code && strlen(current_chat_context->startup_code)) {
+					run_lua(LUA_DIALOG, current_chat_context->startup_code);
+					if (current_chat_context->end_dialog)
+						goto wait_click_and_out;
+				}
+				current_chat_context->state = RUN_NODE_SCRIPT;
+				break;
+			}
+			case RUN_NODE_SCRIPT:
+			default:
+			{
+				// If no dialog is currently selected, let the user choose one of the
+				// active options.
+				if (current_chat_context->current_option == -1) {
+					current_chat_context->current_option = chat_do_menu_selection_filtered(current_chat_context);
+					// We do some correction of the menu selection variable:
+					// The first entry of the menu will give a 1 and so on and therefore
+					// we need to correct this to more C style.
+					//
+					current_chat_context->current_option--;
+				}
 
-		if (chat_control_next_node == -1) {
-			chat_control_next_node =
-				chat_do_menu_selection_filtered(DialogMenuTexts, ChatDroid, 
-								topic_stack[topic_stack_slot]);
-			// We do some correction of the menu selection variable:
-			// The first entry of the menu will give a 1 and so on and therefore
-			// we need to correct this to more C style.
-			//
-			chat_control_next_node--;
+				if ((current_chat_context->current_option >= MAX_DIALOGUE_OPTIONS_IN_ROSTER) || (current_chat_context->current_option < 0)) {
+					DebugPrintf(0, "%s: Error: chat_control current_node %i out of range!\n", __FUNCTION__, current_chat_context->current_option);
+					goto wait_click_and_out;
+				}
+
+				process_chat_option(current_chat_context);
+
+				if (current_chat_context->end_dialog)
+					goto wait_click_and_out;
+			}
 		}
-
-		if ((chat_control_next_node >= MAX_ANSWERS_PER_PERSON) || (chat_control_next_node < 0)) {
-			DebugPrintf(0, "%s: Error: chat_control_next_node %i out of range!\n", __FUNCTION__, chat_control_next_node);
-			goto wait_click_and_out;
-		}
-
-		process_this_chat_option(chat_control_next_node, ChatDroid);
-			
-		if (chat_control_end_dialog)
-			goto wait_click_and_out;
 	}
 
 wait_click_and_out:
 	while (EscapePressed() || MouseLeftPressed() || SpacePressed());
+
+	// Pop from the chat context stack.
+	chat_pop_context();
 }
 
 /**
@@ -513,39 +638,26 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	char fpath[2048];
 	char tmp_filename[5000];
 	struct npc *npc;
-
-	chat_control_chat_droid = ChatDroid;
-
-	Activate_Conservative_Frame_Computation();
-
-	// We clean out the chat roster from any previous use
-	//
-	InitChatRosterForNewDialogue();
+	struct chat_context *new_chat_context;
 
 	npc = npc_get(ChatDroid->dialog_section_name);
 	if (!npc)
 		return;
+
+	Activate_Conservative_Frame_Computation();
+
+	new_chat_context = chat_create_context(ChatDroid, npc, FALSE);
 
 	strcpy(tmp_filename, ChatDroid->dialog_section_name);
 	strcat(tmp_filename, ".dialog");
 	char finaldir[50];
 	sprintf(finaldir, "%s", DIALOG_DIR);
 	find_file(tmp_filename, finaldir, fpath, 0);
-	load_dialog(fpath);
+	load_dialog(fpath, new_chat_context);
 
-	chat_control_chat_flags = &npc->chat_flags[0];
+	chat_push_context(new_chat_context);
 
-	if (!npc->chat_character_initialized) {
-		int i;
-		for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
-			chat_control_chat_flags[i] = 0;
-		}
-	} else {
-		free(chat_initialization_code);
-		chat_initialization_code = NULL;
-	}
-
-	run_chat(ChatDroid, FALSE);
+	run_chat();
 
 	if (!npc->chat_character_initialized)
 		npc->chat_character_initialized = TRUE;
@@ -593,10 +705,11 @@ int validate_dialogs()
 
 	/* Subdialogs currently call run_chat and we cannot do that when validating dialogs */
 	run_lua(LUA_DIALOG, "function run_subdialog(a)\nend\n");
+	run_lua(LUA_DIALOG, "function start_chat(a)\nend\n");
 
 	/* Shops must not be run (display + wait for clicks) */
 	run_lua(LUA_DIALOG, "function trade_with(a)\nend\n");
-	
+
 	/* drop_dead cannot be tested because it means we would try to kill our dummy bot
 	 several times, which is not allowed by the engine */
 	run_lua(LUA_DIALOG, "function drop_dead(a)\nend\n");
@@ -622,43 +735,42 @@ int validate_dialogs()
 		break;
 	}
 
-	chat_control_chat_droid = dummy_partner;
-
 	list_for_each_entry(n, &npc_head, node) {
-		basename = n->dialog_basename;
-		chat_control_chat_flags = &n->chat_flags[0];
+		struct chat_context *dummy_context = chat_create_context(dummy_partner, n, FALSE);
 
+		basename = n->dialog_basename;
 		printf("Testing dialog \"%s\"...\n", basename);
 		sprintf(filename, "%s.dialog", basename);
-
 		find_file(filename, DIALOG_DIR, fpath, 0);
+		load_dialog(fpath, dummy_context);
 
-		InitChatRosterForNewDialogue();
-		load_dialog(fpath);
+		chat_push_context(dummy_context);
 
-		if (chat_initialization_code) {
+		if (dummy_context->initialization_code && strlen(dummy_context->initialization_code)) {
 			printf("\tinit code\n");
-			run_lua(LUA_DIALOG, chat_initialization_code);
+			run_lua(LUA_DIALOG, dummy_context->initialization_code);
 		}
 
-
-		if (chat_startup_code) {
+		if (dummy_context->startup_code && strlen(dummy_context->startup_code)) {
 			printf("\tstartup code\n");
-			run_lua(LUA_DIALOG, chat_startup_code);
+			run_lua(LUA_DIALOG, dummy_context->startup_code);
 		}
+
 		k = 0;
 		for (j = 0; j < MAX_DIALOGUE_OPTIONS_IN_ROSTER; j++) {
-			if (ChatRoster[j].lua_code) {
+			if (dummy_context->dialog_options[j].lua_code && strlen(dummy_context->dialog_options[j].lua_code)) {
 				if (!(k%5)) {
 					printf("\n");
 				}
 				printf("|node %2d|\t", j);
-				run_lua(LUA_DIALOG, ChatRoster[j].lua_code);
+				run_lua(LUA_DIALOG, dummy_context->dialog_options[j].lua_code);
 				k++;
 			}
 		}
 
-		printf("\n... dialog OK\n");
+		printf("\n... dialog OK\n\n");
+
+		chat_pop_context();
 	}
 
 	/* Re-enable sound as needed. */

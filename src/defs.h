@@ -278,7 +278,7 @@ enum _sounds {
 #define CRY_SOUND_INTERVAL 2
 
 #define MAX_DIALOGUE_OPTIONS_IN_ROSTER 100
-#define MAX_ANSWERS_PER_PERSON MAX_DIALOGUE_OPTIONS_IN_ROSTER
+#define CHAT_TOPIC_STACK_SIZE 10
 
 enum {
 	UP_BUTTON,
@@ -1538,6 +1538,13 @@ enum slot_type {
 // These are flags to change the level's environment
 enum level_flags {
 	TELEPORT_BLOCKED = 1
+};
+
+// Current step of the dialog Finite state Machine
+enum chat_context_state {
+	RUN_INIT_SCRIPT = 0,
+	RUN_STARTUP_SCRIPT = 1,
+	RUN_NODE_SCRIPT = 2
 };
 
 #endif

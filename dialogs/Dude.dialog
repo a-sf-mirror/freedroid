@@ -57,7 +57,7 @@ Nr=0 Text=_"Left out."
 
 Nr=1 Text=_"614_cryo"
 <LuaCode>
-	run_subdialog("614_cryo.dialog")
+	start_chat("614_cryo")
 </LuaCode>
 ----------------------------------------------------------------------
 

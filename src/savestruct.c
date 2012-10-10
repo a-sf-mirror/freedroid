@@ -747,7 +747,7 @@ void write_npc(struct auto_string *strout, npc *data)
     write_uint8_t(strout, &data->chat_character_initialized);
     autostr_append(strout, ",\n");
     autostr_append(strout, "chat_flags = ");
-    write_uint8_t_array(strout, data->chat_flags, MAX_ANSWERS_PER_PERSON);
+    write_uint8_t_array(strout, data->chat_flags, MAX_DIALOGUE_OPTIONS_IN_ROSTER);
     autostr_append(strout, ",\n");
     autostr_append(strout, "shoplist = ");
     write_string_array(strout, data->shoplist, MAX_ITEMS_IN_INVENTORY);
@@ -778,7 +778,7 @@ void read_npc(lua_State* L, int index, npc *data)
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "chat_flags")) {
-        read_uint8_t_array(L, -1, data->chat_flags, MAX_ANSWERS_PER_PERSON);
+        read_uint8_t_array(L, -1, data->chat_flags, MAX_DIALOGUE_OPTIONS_IN_ROSTER);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "shoplist")) {

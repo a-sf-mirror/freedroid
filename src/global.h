@@ -184,12 +184,6 @@ EXTERN light_radius_config LightRadiusConfig;
 #else
 #define EXTERN extern
 #endif
-int chat_control_next_node;	//what is the next node to use?
-int chat_control_end_dialog;	//end current dialog?
-int chat_control_partner_started;	//the dialog partner is the one who started the talk
-uint8_t *chat_control_chat_flags; //current chat flags
-enemy *chat_control_chat_droid;	//droid we are chatting with
-dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 EXTERN struct widget_text chat_log;
 
 #undef EXTERN
@@ -398,5 +392,6 @@ EXTERN struct {
 #define IMAGE_SCALE_RGB_TRANSFO(SCALE, R, G, B) set_image_transformation(SCALE, SCALE, R, G, B, 1.0, 0)
 #define IMAGE_SCALE_TRANSFO(SCALE) IMAGE_SCALE_RGB_TRANSFO(SCALE, 1.0, 1.0, 1.0)
 #define IMAGE_NO_TRANSFO IMAGE_SCALE_TRANSFO(1.0)
+
 #endif				// _global_h
 
