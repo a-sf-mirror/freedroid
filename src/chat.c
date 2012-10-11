@@ -437,31 +437,61 @@ void chat_add_response(const char *response, int no_wait, enemy *chat_droid)
 		wait_for_click(chat_droid);
 }
 
-/**
- * Create and push a chat context to run a sub dialog.
- *
- * @param filename Subdialog filename.
- */
-void run_subdialog(const char *filename)
+static int create_and_stack_context(enemy *partner, struct npc *npc, const char *filename, int is_subdialog)
 {
 	char fpath[2048];
 	char finaldir[50];
-	struct chat_context *current_chat_context = NULL;
 	struct chat_context *new_context = NULL;
 
-	// A subdialog uses the same partner and npc than its parent dialog.
-	// The parent dialog is the one on top of the chat_context stack.
-	current_chat_context = chat_get_current_context();
-	new_context = chat_create_context(current_chat_context->partner, current_chat_context->npc, TRUE);
+	new_context = chat_create_context(partner, npc, is_subdialog);
 
-	// Find the subdialog file and load it inside the new chat context
+	// Find the dialog file and load it inside the new chat context
 	sprintf(finaldir, "%s", DIALOG_DIR);
 	find_file(filename, finaldir, fpath, 0);
 	load_dialog(fpath, new_context);
 
-	// Push the new chat_context, and run the subdialog
+	// Push the new chat_context
 	chat_push_context(new_context);
-	run_chat();
+
+	return TRUE;
+}
+
+/**
+ * Create and push a chat context to run a sub dialog.
+ *
+ * @param filename Subdialog filename.
+ *
+ * @return TRUE on success, FALSE on error.
+ */
+int stack_subdialog(const char *filename)
+{
+	// A subdialog uses the same partner and npc than its parent dialog.
+	// The parent dialog is the one on top of the chat_context stack.
+	struct chat_context *current_chat_context = chat_get_current_context();
+
+	return create_and_stack_context(current_chat_context->partner, current_chat_context->npc, filename, TRUE);
+}
+
+/**
+ * Create and push a chat context to run a dialog.
+ *
+ * @param partner Enemy we are chatting with.
+ *
+ * @return TRUE on success, FALSE on error.
+ */
+int stack_dialog(enemy *partner)
+{
+	struct npc *npc = npc;
+	char dialog_filename[5000];
+
+	npc = npc_get(partner->dialog_section_name);
+	if (!npc)
+		return FALSE;
+
+	strcpy(dialog_filename, partner->dialog_section_name);
+	strcat(dialog_filename, ".dialog");
+
+	return create_and_stack_context(partner, npc, dialog_filename, FALSE);
 }
 
 /**
@@ -542,8 +572,8 @@ static void process_chat_option(struct chat_context *context)
  *
  * This is the most important subfunction of the whole chat with friendly
  * droids and characters.  After a chat context has been filled and pushed on
- * the stack, whether it is a main dialog or a subdialog, this function is invoked
- * to handle the actual chat interaction and the dialog flow.
+ * the stack, this function is invoked to handle the actual chat interaction
+ * and the dialog flow.
  */
 static void run_chat()
 {
@@ -554,11 +584,7 @@ static void run_chat()
 	chat_log.font = FPS_Display_BFont;
 	chat_log.line_height_factor = LINE_HEIGHT_FACTOR;
 
-	// Get the current dialog context (the one on the top of the stack)
-	current_chat_context = chat_get_current_context();
-
-	if (!current_chat_context->is_subdialog)
-		widget_text_init(&chat_log, _("\3--- Start of Dialog ---\n"));
+	Activate_Conservative_Frame_Computation();
 
 	// Dialog engine main code.
 	//
@@ -570,18 +596,25 @@ static void run_chat()
 	// 4 - loop on the next interaction step, unless the dialog is ended.
 	//
 	// In some cases, a lua script needs a user's interaction (wait for a click
-	// in npc_say(), for instance). We then have to interrupt the lua script,
+	// in lua npc_say(), for instance). We then have to interrupt the lua script,
 	// go back to the interaction loop of the game, and resume the lua script
 	// after the user's interaction.
 	//
 	// To implement a script interruption/resuming, we use the co-routine
-	// yield/resume features of Lua, and we first have to loop on the lua
-	// script execution until it ends.
+	// yield/resume features of Lua. When a lua script is run, we thus have
+	// to loop on its execution until it ends.
+	//
+	// For calls to a subdialog (lua run_subdialog()) or an other inner dialog
+	// (lua start_dialog()), the current lua script also has to be interrupted,
+	// the new dialog has to be extracted from the stack and run, and then the
+	// previous dialog script has to be resumed.
+	// We thus also have to extract the chat context on the top of the stack
+	// at each loop step.
 
-	while (1) {
+	// Get the current dialog context (the one on the top of the stack)
+	while ((current_chat_context = chat_get_current_context())) {
 
 		// Resume the current lua coroutine, if any, until it ends.
-
 		if (current_chat_context->lua_coroutine) {
 			int rtn = resume_lua_coroutine(current_chat_context->lua_coroutine);
 
@@ -604,6 +637,9 @@ static void run_chat()
 		switch (current_chat_context->state) {
 			case RUN_INIT_SCRIPT:
 			{
+				if (!current_chat_context->is_subdialog)
+					widget_text_init(&chat_log, _("\3--- Start of Dialog ---\n"));
+
 				if (current_chat_context->initialization_code && strlen(current_chat_context->initialization_code)) {
 					current_chat_context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, current_chat_context->initialization_code);
 				}
@@ -612,6 +648,9 @@ static void run_chat()
 			}
 			case RUN_STARTUP_SCRIPT:
 			{
+				if (!current_chat_context->is_subdialog && current_chat_context->npc->chat_character_initialized)
+					widget_text_init(&chat_log, _("\3--- Start of Dialog ---\n"));
+
 				if (current_chat_context->startup_code && strlen(current_chat_context->startup_code)) {
 					current_chat_context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, current_chat_context->startup_code);
 				}
@@ -645,13 +684,20 @@ static void run_chat()
 			default:
 				break;
 		}
-	}
+
+		continue;
 
 wait_click_and_out:
-	while (EscapePressed() || MouseLeftPressed() || SpacePressed());
+		while (EscapePressed() || MouseLeftPressed() || SpacePressed());
 
-	// Pop from the chat context stack.
-	chat_pop_context();
+		// The dialog has ended. Mark the npc as already initialized, to avoid
+		// its initialization script to be run again the next time the dialog
+		// is open, and pop the dialog from the chat context stack.
+		if (!current_chat_context->npc->chat_character_initialized)
+			current_chat_context->npc->chat_character_initialized = TRUE;
+
+		chat_pop_context();
+	}
 }
 
 /**
@@ -662,32 +708,10 @@ wait_click_and_out:
  */
 void ChatWithFriendlyDroid(enemy * ChatDroid)
 {
-	char fpath[2048];
-	char tmp_filename[5000];
-	struct npc *npc;
-	struct chat_context *new_chat_context;
-
-	npc = npc_get(ChatDroid->dialog_section_name);
-	if (!npc)
+	if (!stack_dialog(ChatDroid))
 		return;
 
-	Activate_Conservative_Frame_Computation();
-
-	new_chat_context = chat_create_context(ChatDroid, npc, FALSE);
-
-	strcpy(tmp_filename, ChatDroid->dialog_section_name);
-	strcat(tmp_filename, ".dialog");
-	char finaldir[50];
-	sprintf(finaldir, "%s", DIALOG_DIR);
-	find_file(tmp_filename, finaldir, fpath, 0);
-	load_dialog(fpath, new_chat_context);
-
-	chat_push_context(new_chat_context);
-
 	run_chat();
-
-	if (!npc->chat_character_initialized)
-		npc->chat_character_initialized = TRUE;
 }
 
 /**

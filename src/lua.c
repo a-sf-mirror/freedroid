@@ -709,16 +709,30 @@ static int lua_chat_run_subdialog(lua_State * L)
 {
 	const char *tmp_filename = luaL_checkstring(L, 1);
 
-	run_subdialog(tmp_filename);
+	if (!stack_subdialog(tmp_filename))
+		return 0;
 
-	return 0;
+	// Yield the current dialog script, to let the chat engine run the
+	// subdialog.
+
+	// Note: The Lua manual says that: "lua_yield() should only be called as the
+	// return expression of a C function". But the "should" is actually a "must"...
+	return lua_yield(L, 0);
 }
 
 static int lua_start_chat(lua_State * L)
 {
 	enemy *en = get_enemy_arg(L, 1); 
-	ChatWithFriendlyDroid(en);
-	return 0;
+
+	if (!stack_dialog(en))
+		return 0;
+
+	// Yield the current dialog script, to let the chat engine run the
+	// dialog.
+
+	// Note: The Lua manual says that: "lua_yield() should only be called as the
+	// return expression of a C function". But the "should" is actually a "must"...
+	return lua_yield(L, 0);
 }
 
 static int lua_chat_set_next_node(lua_State * L)

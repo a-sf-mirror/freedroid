@@ -721,7 +721,8 @@ int load_texture_atlas(const char *, const char *, struct image *(*get_storage_f
 // chat.c
 void chat_push_topic(const char *topic);
 void chat_pop_topic(void);
-void run_subdialog(const char *);
+int stack_dialog(enemy *);
+int stack_subdialog(const char *);
 void chat_add_response(const char *, int, enemy *);
 int validate_dialogs(void);
 struct chat_context *chat_get_current_context();
