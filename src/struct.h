@@ -998,6 +998,7 @@ struct tux_motion_class_images {
  */
 struct chat_context {
        enum chat_context_state state;  // current state of the chat engine.
+       int wait_user_click;            // TRUE if the chat engine is waiting for a user click.
 
        int is_subdialog;               // TRUE if the structure references a sub-dialog.
        enemy *partner;                 // The bot we are talking with.

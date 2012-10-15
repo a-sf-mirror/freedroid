@@ -723,7 +723,7 @@ void chat_push_topic(const char *topic);
 void chat_pop_topic(void);
 int stack_dialog(enemy *);
 int stack_subdialog(const char *);
-void chat_add_response(const char *, int, enemy *);
+void chat_add_response(const char *);
 int validate_dialogs(void);
 struct chat_context *chat_get_current_context();
 

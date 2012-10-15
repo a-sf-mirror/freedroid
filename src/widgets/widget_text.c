@@ -98,6 +98,9 @@ void widget_text_display(struct widget *w)
 	int offset = 0;
 	struct widget_text *wt = WIDGET_TEXT(w);
 
+	if (!wt->text)
+		return;
+
 	// Set font before computing number of lines required.
 	SetCurrentFont(wt->font);
 

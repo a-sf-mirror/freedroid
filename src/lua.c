@@ -671,18 +671,15 @@ static int lua_chat_player_name(lua_State * L)
 static int lua_chat_says(lua_State * L)
 {
 	const char *answer = luaL_checkstring(L, 1);
-	int carriage_return = lua_toboolean(L, 2);
-	int no_wait = !strcmp(luaL_optstring(L, 3, "WAIT"), "NO_WAIT");
+	int no_wait = !strcmp(luaL_optstring(L, 2, "WAIT"), "NO_WAIT");
 
-	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
-
-	chat_add_response(L_(answer), no_wait, current_chat_context->partner);
-	if (carriage_return)
-		autostr_append(chat_log.text, "\n");
+	chat_add_response(L_(answer));
 
 	if (no_wait)
 		return 0;
 
+	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
+	current_chat_context->wait_user_click = TRUE;
 	// The Lua manual says that:
 	// "lua_yield() should only be called as the return expression of a C function"
 	// But the "should" is actually a "must"...

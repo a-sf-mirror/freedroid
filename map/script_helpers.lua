@@ -215,18 +215,18 @@ function chat_says_format(text, arg)
 end
 
 function tux_says(text, ...)
-	text, no_wait = chat_says_format('\1- ' .. text, arg)
-	chat_says(text, true, no_wait)
+	text, no_wait = chat_says_format('\1- ' .. text .. '\n', arg)
+	chat_says(text, no_wait)
 end
 
 function npc_says(text, ...)
-	text, no_wait = chat_says_format('\2' .. text, arg)
-	chat_says(apply_bbcode(text,"\3","\2"), true, no_wait)
+	text, no_wait = chat_says_format('\2' .. text .. '\n', arg)
+	chat_says(apply_bbcode(text,"\3","\2"), no_wait)
 end
 
 function cli_says(text, ...)
 	text, no_wait = chat_says_format('\3' .. text, arg)
-	chat_says(text, false, no_wait)
+	chat_says(text, no_wait)
 end
 
 function display_console_message(text)

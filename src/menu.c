@@ -506,7 +506,6 @@ int chat_do_menu_selection(char *MenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER], enem
 	// it can be accessed with proper speed later...
 	//
 	SDL_SetClipRect(Screen, NULL);
-	show_chat_log(ChatDroid);
 	StoreMenuBackground(0);
 
 	OptionOffset = 0;

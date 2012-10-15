@@ -371,7 +371,7 @@ void show_chat_log(enemy *chat_enemy)
 }
 
 /**
- * Wait for a mouse click before continuing, updating the screen while waiting.
+ * Wait for a mouse click before continuing.
  */
 static void wait_for_click(enemy *chat_droid)
 {
@@ -384,8 +384,10 @@ static void wait_for_click(enemy *chat_droid)
 	clip.w = UNIVERSAL_COORD_W(640 - 70);
 	clip.h = UNIVERSAL_COORD_H(118);
 
+	StoreMenuBackground(0);
+
 	while (1) {
-		show_chat_log(chat_droid);
+		RestoreMenuBackground(0);
 		SetCurrentFont(Menu_BFont);
 		display_text(_("\1Click anywhere to continue..."), clip.x, clip.y, &clip);
 		blit_mouse_cursor();
@@ -419,22 +421,10 @@ wait_for_click_return:
 	return;
 }
 
-/**
- * This function should first display a subtitle and then also a sound
- * sample.  It is not very sophisticated or complicated, but nevertheless
- * important, because this combination does indeed occur so often.
- */
-void chat_add_response(const char *response, int no_wait, enemy *chat_droid)
+void chat_add_response(const char *response)
 {
 	autostr_append(chat_log.text, "%s", response);
 	chat_log.scroll_offset = 0;
-
-	show_chat_log(chat_droid);
-	blit_mouse_cursor();
-	our_SDL_flip_wrapper();
-
-	if (!no_wait)
-		wait_for_click(chat_droid);
 }
 
 static int create_and_stack_context(enemy *partner, struct npc *npc, const char *filename, int is_subdialog)
@@ -557,9 +547,9 @@ static void process_chat_option(struct chat_context *context)
 
 	// Echo option text
 	if (!context->dialog_options[current_selection].no_text) {
-		autostr_append(chat_log.text, "\1- ");
-		chat_add_response(L_(context->dialog_options[current_selection].option_text), FALSE, context->partner);
-		autostr_append(chat_log.text, "\n");
+		chat_add_response("\1- ");
+		chat_add_response(L_(context->dialog_options[current_selection].option_text));
+		chat_add_response("\n");
 	}
 
 	// Run LUA associated with this selection
@@ -597,8 +587,7 @@ static void run_chat()
 	//
 	// In some cases, a lua script needs a user's interaction (wait for a click
 	// in lua npc_say(), for instance). We then have to interrupt the lua script,
-	// go back to the interaction loop of the game, and resume the lua script
-	// after the user's interaction.
+	// run an interaction loop, and resume the lua script after the user's interaction.
 	//
 	// To implement a script interruption/resuming, we use the co-routine
 	// yield/resume features of Lua. When a lua script is run, we thus have
@@ -608,31 +597,64 @@ static void run_chat()
 	// (lua start_dialog()), the current lua script also has to be interrupted,
 	// the new dialog has to be extracted from the stack and run, and then the
 	// previous dialog script has to be resumed.
-	// We thus also have to extract the chat context on the top of the stack
 	// at each loop step.
+	//
+	// All of these apparently intricate loops are implemented with one single
+	// loop, taking care of the actual state of the chat, restarting the loop
+	// when needed, and extracting the top chat context at each loop step :
+	//
+	// while (there is something to run)
+	//   get chat context from top of stack
+	//   if (a user interaction is waited)
+	//     wait user interaction
+	//   else if (a lua co-routine is started)
+	//     resume the lua co-routine
+	//   else
+	//     execute dialog FSM step
+	//   if (current dialog is ended)
+	//     pop the chat context stack
 
-	// Get the current dialog context (the one on the top of the stack)
+	// Implement the former algorithm, but using 'continue' statements
+	// instead of 'else' clauses.
 	while ((current_chat_context = chat_get_current_context())) {
 
-		// Resume the current lua coroutine, if any, until it ends.
+		/*
+		 * 1- Chat screen rendering, and user's interaction
+		 */
+
+		show_chat_log(current_chat_context->partner);
+
+		if (current_chat_context->wait_user_click) {
+			wait_for_click(current_chat_context->partner);
+			current_chat_context->wait_user_click = FALSE;
+
+			// restart the loop, to re-render the chat screen
+			continue;
+		}
+
+		/*
+		 * 2- Resume the current lua coroutine, if any, until it ends.
+		 */
+
 		if (current_chat_context->lua_coroutine) {
 			int rtn = resume_lua_coroutine(current_chat_context->lua_coroutine);
 
-			// If rtn is FALSE, it means that the lua coroutine was yielded,
-			// and so we resume the coroutine on the next loop step.
-			// Else, the lua script reached its end, and we will execute the
-			// currently selected state on the next loop.
-
+			// If rtn is TRUE, the lua script reached its end, so we mark it
+			// as such.
 			if (rtn) {
 				current_chat_context->lua_coroutine = NULL;
 				if (current_chat_context->end_dialog)
 					goto wait_click_and_out;
 			}
 
+			// restart the loop, to handle user interaction, if needed, and
+			// resume the co-routine, if needed.
 			continue;
 		}
 
-		// Dialog engine FSM
+		/*
+		 * 3- Execute current state of the chat FSM
+		 */
 
 		switch (current_chat_context->state) {
 			case RUN_INIT_SCRIPT:
@@ -685,6 +707,8 @@ static void run_chat()
 				break;
 		}
 
+		// restart the loop, to handle user interaction, if needed, resume a
+		// lua co-routine, if needed, and stepping the FSM.
 		continue;
 
 wait_click_and_out:
