@@ -74,11 +74,15 @@ static int button_handle_event(struct widget *w, SDL_Event *event)
 			if (b->state == PRESSED) {
 				b->state = HOVERED;
 				if (event->button.button == MOUSE_BUTTON_1)
-					if (b->activate_button)
+					if (b->activate_button) {
 						b->activate_button(b);
+						return 1;
+					}
 				if (event->button.button == MOUSE_BUTTON_3)
-					if (b->activate_button_secondary)
+					if (b->activate_button_secondary) {
 						b->activate_button_secondary(b);
+						return 1;
+					}
 			}
 			break;
 
