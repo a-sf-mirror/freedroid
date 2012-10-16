@@ -450,138 +450,19 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
  * dialog options selection window for the player to click from.
  *
  */
-int chat_do_menu_selection(char *MenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER], enemy *ChatDroid)
+int chat_do_menu_selection(struct chat_context *context)
 {
-	int h;
-	int i;
-	static int menu_position_to_remember = 1;
-#define ITEM_DIST 50
-	int MenuPosX[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
-	int MenuPosY[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
-	int MenuOptionLineRequirement[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
-	SDL_Rect Choice_Window;
-	SDL_Rect HighlightRect;
-	int MaxLinesInMenuRectangle;
-	int OptionOffset = 0;
-	int line_count;
-	int BreakOffCauseNoRoom = FALSE;
-	int LastOptionVisible = 0;
-	int MenuLineOfMouseCursor;
-	int ThisOptionEnd;
 	SDL_Event event;
 	int ret = -1;
 	int old_game_status = game_status;
 
 	game_status = INSIDE_MENU;
-	// First we initialize the menu positions
-	//
-	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-		MenuPosX[i] = 260;
-		MenuPosY[i] = 90 + i * ITEM_DIST;
-		MenuOptionLineRequirement[i] = 0;
-	}
 
-	// Now we set some viable choice window and we compute the maximum number of lines
-	// that will still fit well into the choice window.
-	int typomaster_h = UNIVERSAL_COORD_H(202);
-	int typomaster_w = UNIVERSAL_COORD_W(627);
-	int typomaster_x = (GameConfig.screen_width - typomaster_w) / 2;
-	int typomaster_y = GameConfig.screen_height - typomaster_h - 5;
-	int left_padding = 35;
-	int right_padding = 35;
-	int top_padding = 65;
-	int bottom_padding = 20;
-
-	Choice_Window.x = typomaster_x + left_padding;
-	Choice_Window.y = typomaster_y + top_padding;
-	Choice_Window.h = typomaster_h - top_padding - bottom_padding;
-	Choice_Window.w = typomaster_w - left_padding - right_padding;
-	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(FPS_Display_BFont) * LINE_HEIGHT_FACTOR);
-
-	// First thing we do is find out how may options we have
-	// been given for the menu
-	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-		DebugPrintf(MENU_SELECTION_DEBUG, "%2d. ", i);
-		DebugPrintf(MENU_SELECTION_DEBUG, "%s", MenuTexts[i]);
-		DebugPrintf(MENU_SELECTION_DEBUG, "\n");
-		fflush(stdout);
-		fflush(stderr);
-
-		if (strlen(MenuTexts[i]) == 0)
-			break;
-	}
-
-	// We need to prepare the background for the menu, so that
-	// it can be accessed with proper speed later...
-	//
-	SDL_SetClipRect(Screen, NULL);
-	StoreMenuBackground(0);
-
-	OptionOffset = 0;
 	while (1) {
 		SDL_Delay(1);
-		RestoreMenuBackground(0);
 		save_mouse_state();
 
-		// Set the font
-		SetCurrentFont(FPS_Display_BFont);
-		h = FontHeight(GetCurrentFont());
-
-		// We blit to the screen all the options that are not empty and that still fit
-		// onto the screen
-		//
-		line_count = 0;
-		for (i = OptionOffset; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-			// If all has been displayed already, we quit blitting...
-			//
-			if (strlen(MenuTexts[i]) == 0) {
-				BreakOffCauseNoRoom = FALSE;
-				LastOptionVisible = i;
-				break;
-			}
-			// If there is not enough room any more, we quit blitting...
-			int lines_needed = get_lines_needed(MenuTexts[i], Choice_Window, LINE_HEIGHT_FACTOR);
-			if ((line_count + lines_needed) > MaxLinesInMenuRectangle) {
-				BreakOffCauseNoRoom = TRUE;
-				LastOptionVisible = i;
-				break;
-			}
-			// Now that we know, that there is enough room, we can blit the next menu option.
-			//
-			MenuPosX[i] = Choice_Window.x;
-			MenuPosY[i] = Choice_Window.y + (line_count * h * LINE_HEIGHT_FACTOR);
-			MenuOptionLineRequirement[i] =
-			    display_text(MenuTexts[i], MenuPosX[i], MenuPosY[i], &Choice_Window);
-			line_count += MenuOptionLineRequirement[i];
-		}
-
-		// We highlight the currently selected option with a highlighting rectangle
-		//
-		// (and we add some security against 'empty' chat selection menus causing
-		// some segfaults rather easily...)
-		if (menu_position_to_remember <= 0)
-			menu_position_to_remember = 1;
-
-#define HIGHLIGHT_H_MARGIN 4
-		HighlightRect.x = MenuPosX[menu_position_to_remember - 1] - HIGHLIGHT_H_MARGIN;
-		HighlightRect.y = MenuPosY[menu_position_to_remember - 1];
-		HighlightRect.w = text_width(GetCurrentFont(), MenuTexts[menu_position_to_remember - 1])
-			+ 2 * HIGHLIGHT_H_MARGIN;
-		if (HighlightRect.w > 580 * GameConfig.screen_width / 640)
-			HighlightRect.w = 580 * GameConfig.screen_width / 640;
-		HighlightRect.h = MenuOptionLineRequirement[menu_position_to_remember - 1] * h * LINE_HEIGHT_FACTOR;
-		if (HighlightRect.h + HighlightRect.y > UNIVERSAL_COORD_H(457))
-			HighlightRect.h = UNIVERSAL_COORD_H(457) - HighlightRect.y;
-		HighlightRectangle(Screen, HighlightRect);
-		// Display again the highlighted line
-		display_text(MenuTexts[menu_position_to_remember - 1],
-			    MenuPosX[menu_position_to_remember - 1],
-			    MenuPosY[menu_position_to_remember - 1], &Choice_Window);
-
-		if (BreakOffCauseNoRoom)
-			ShowGenericButtonFromList(SCROLL_DIALOG_MENU_DOWN_BUTTON);
-		if (OptionOffset)
-			ShowGenericButtonFromList(SCROLL_DIALOG_MENU_UP_BUTTON);
+		show_chat(context);
 
 		// Now the mouse cursor must be brought to the screen
 		blit_mouse_cursor();
@@ -596,14 +477,15 @@ int chat_do_menu_selection(char *MenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER], enem
 		if (event.type == SDL_QUIT) {
 			Terminate(EXIT_SUCCESS, TRUE);
 		}
+
 		//(clever?) hack : mouse wheel up and down behave
 		//exactly like UP and DOWN arrow or PAGEUP/PAGEDOWN, so we mangle the event
 		if (event.type == SDL_MOUSEBUTTONDOWN) {
 			int in_blabla_screen = 0;
 			if ((GetMousePos_x() > CHAT_SUBDIALOG_WINDOW_X
 			     && GetMousePos_x() < CHAT_SUBDIALOG_WINDOW_X + CHAT_SUBDIALOG_WINDOW_W)
-			    && (GetMousePos_y() > CHAT_SUBDIALOG_WINDOW_Y
-				&& GetMousePos_y() < CHAT_SUBDIALOG_WINDOW_Y + CHAT_SUBDIALOG_WINDOW_H))
+			     && (GetMousePos_y() > CHAT_SUBDIALOG_WINDOW_Y
+				 && GetMousePos_y() < CHAT_SUBDIALOG_WINDOW_Y + CHAT_SUBDIALOG_WINDOW_H))
 				in_blabla_screen = 1;
 
 			switch (event.button.button) {
@@ -622,61 +504,25 @@ int chat_do_menu_selection(char *MenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER], enem
 
 		if (event.type == SDL_KEYDOWN) {
 			switch (event.key.keysym.sym) {
-			case SDLK_UP:
-				if (menu_position_to_remember > OptionOffset + 1) {
-					SDL_WarpMouse(GetMousePos_x(), MenuPosY[menu_position_to_remember - 2]);
-					MoveMenuPositionSound();
-				} else if (OptionOffset > 0) {
-					OptionOffset--;
-					MoveMenuPositionSound();
-				}
-				break;
-
-			case SDLK_DOWN:
-				if (menu_position_to_remember < LastOptionVisible) {
-					SDL_WarpMouse(GetMousePos_x(), MenuPosY[menu_position_to_remember]);
-					MoveMenuPositionSound();
-				} else {
-					if (BreakOffCauseNoRoom) {
-						OptionOffset++;
-						MoveMenuPositionSound();
-					}
-					SDL_WarpMouse(GetMousePos_x(), MenuPosY[menu_position_to_remember - 1]);
-				}
-				break;
-
 			case SDLK_PAGEUP:
 				if (widget_text_can_scroll_up(chat_log)) {
 					chat_log->scroll_offset -= 3;
-					show_chat(ChatDroid);
-					StoreMenuBackground(0);
 				}
 				break;
 
 			case SDLK_PAGEDOWN:
 				if (widget_text_can_scroll_down(chat_log)) {
 					chat_log->scroll_offset += 3;
-					show_chat(ChatDroid);
-					StoreMenuBackground(0);
 				}
 				break;
 
 			case SDLK_ESCAPE:
 				if (GameConfig.enable_cheatkeys) {
-					RestoreMenuBackground(0);
 					blit_mouse_cursor();
 					our_SDL_flip_wrapper();
 					ret = -1;
 					goto out;
 				}
-				break;
-			case SDLK_RETURN:
-			case SDLK_SPACE:
-				RestoreMenuBackground(0);
-				blit_mouse_cursor();
-				our_SDL_flip_wrapper();
-				ret = menu_position_to_remember;
-				goto out;
 				break;
 
 			default:
@@ -688,84 +534,33 @@ int chat_do_menu_selection(char *MenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER], enem
 		if (MouseLeftClicked()) {
 			// First we see if there was perhaps a click on one of the active scroll buttons
 			//
-			if ((MouseCursorIsOnButton(SCROLL_DIALOG_MENU_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) &&
-			    (BreakOffCauseNoRoom)) {
-				OptionOffset++;
-
-			} else if ((MouseCursorIsOnButton(SCROLL_DIALOG_MENU_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) &&
-				   (OptionOffset)) {
-				OptionOffset--;
-			}  else if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+			if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (widget_text_can_scroll_up(chat_log)) {
 					chat_log->scroll_offset--;
-					show_chat(ChatDroid);
-					StoreMenuBackground(0);
 				}
 			} else if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (widget_text_can_scroll_down(chat_log)) {
 					chat_log->scroll_offset++;
-					show_chat(ChatDroid);
-					StoreMenuBackground(0);
 				}
+			} else if (MouseCursorIsOnButton(SCROLL_DIALOG_MENU_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+				widget_text_list_scroll_up(chat_selector);
+			} else if (MouseCursorIsOnButton(SCROLL_DIALOG_MENU_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+				widget_text_list_scroll_down(chat_selector);
 			}
-			// If not, then maybe it was a click into the options window.  That alone
-			// would be enough to call it a valid user decision.
-			//
-			else {
-				// Now if the click has occured within the lines of the menu, we will count
-				// this as a valid choice of the user.
-				//
-				MenuLineOfMouseCursor =
-				    MouseCursorIsOverMenuItem(MenuPosY[OptionOffset], FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
-				if ((MenuLineOfMouseCursor >= 1) && (MenuLineOfMouseCursor <= MaxLinesInMenuRectangle)) {
-					RestoreMenuBackground(0);
-					blit_mouse_cursor();
-					our_SDL_flip_wrapper();
-					ret = menu_position_to_remember;
+		}
+
+		if (MouseCursorIsInRect(&(WIDGET(chat_selector)->rect), GetMousePos_x(), GetMousePos_y())) {
+			if (WIDGET(chat_selector)->handle_event(WIDGET(chat_selector), &event)) {
+				if (event.type == SDL_MOUSEBUTTONUP ||
+					 (event.type == SDL_KEYDOWN &&
+					   (event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == SDLK_SPACE))) {
+					ret = chat_selector->selected_entry;
 					goto out;
 				}
 			}
-
 		}
-
-		MenuLineOfMouseCursor = MouseCursorIsOverMenuItem(MenuPosY[OptionOffset], FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
-		if (MenuLineOfMouseCursor < 1)
-			MenuLineOfMouseCursor = 1;
-
-		ThisOptionEnd = MenuPosY[0];
-		for (i = OptionOffset; i <= LastOptionVisible; i++) {
-
-			ThisOptionEnd += MenuOptionLineRequirement[i] * (FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
-
-			if (GetMousePos_y() < ThisOptionEnd) {
-				// MouseCursorIsOverMenuItem( MenuPosY [ 0 ] , MenuPosY [ 1 ] - MenuPosY [ 0 ] );
-				break;
-			}
-		}
-
-		// If the mouse cursor was on one of the possible lines, than we can try to translate
-		// it into a real menu position
-		//
-		if ((MenuLineOfMouseCursor >= 0) && (MenuLineOfMouseCursor <= MaxLinesInMenuRectangle)) {
-			ThisOptionEnd = MenuPosY[0];
-			for (i = OptionOffset; i <= LastOptionVisible; i++) {
-
-				ThisOptionEnd += MenuOptionLineRequirement[i] * (FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
-
-				if (GetMousePos_y() < ThisOptionEnd) {
-					menu_position_to_remember = i + 1;
-					break;
-				}
-			}
-		}
-
-		if (menu_position_to_remember < OptionOffset + 1)
-			menu_position_to_remember = OptionOffset + 1;
-		if (menu_position_to_remember > LastOptionVisible)
-			menu_position_to_remember = LastOptionVisible;
-
 	}
-	RestoreMenuBackground(0);
+
 	blit_mouse_cursor();
 	our_SDL_flip_wrapper();
  out:

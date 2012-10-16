@@ -334,6 +334,21 @@ static void load_dialog(const char *fpath, struct chat_context *context)
 	free(ChatData);
 }
 
+static void refresh_dialog_choices(struct chat_context *context)
+{
+	char *empty_entries[] = { NULL };
+	int i;
+
+	widget_text_list_init(chat_selector, empty_entries, NULL);
+	char *topic = context->topic_stack[context->topic_stack_slot];
+	// We filter out those answering options that are allowed by the flag mask
+	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
+		if (context->dialog_flags[i] && !(strcmp(topic, context->dialog_options[i].topic))) {
+			widget_text_list_add(chat_selector, context->dialog_options[i].option_text, i);
+		}
+	}
+}
+
 /**
  * During the Chat with a friendly droid or human, there is a window with
  * the full text transcript of the conversation so far.  This function is
@@ -342,12 +357,14 @@ static void load_dialog(const char *fpath, struct chat_context *context)
  *
  * TODO: To be removed once the chat is fully widgetized
  */
-void show_chat(enemy *partner)
+void show_chat(struct chat_context *context)
 {
 	struct widget *ui = WIDGET(chat_menu);
 
-	*droid_portrait = get_droid_portrait_image(partner->type);
+	// Prepare chat screen rendering
+	*droid_portrait = get_droid_portrait_image(context->partner->type);
 	clear_screen();
+
 	ui->update_tree(ui);
 	ui->display(ui);
 }
@@ -397,6 +414,10 @@ struct widget_group *create_chat_dialog()
 	chat_selector_inner_rect.h = chat_selector_h - top_padding - bottom_padding;
 	chat_selector_inner_rect.w = chat_selector_w - left_padding - right_padding;
 
+	chat_selector = widget_text_list_create();
+	widget_set_rect(WIDGET(chat_selector), chat_selector_inner_rect.x, chat_selector_inner_rect.y, chat_selector_inner_rect.w, chat_selector_inner_rect.h);
+	widget_group_add(chat_menu, WIDGET(chat_selector));
+
 	// Droid portrait
 	struct image *img = widget_load_image_resource("widgets/chat_portrait.png", 0);
 	int chat_portrait_x = chat_selector_x;
@@ -434,19 +455,33 @@ struct widget_group *create_chat_dialog()
 		void (*activate_button)(struct widget_button *);
 		void (*update)(struct widget *);
 	} b[] = {
-		// Scroll up
+		// Chat Log scroll up
 		{
 			{"widgets/scroll_up_off.png", NULL, "widgets/scroll_up.png"},
 			{chat_log_x + chat_log_w / 2 - 59, chat_log_y - 1, 118, 17},
 			NULL,
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_can_scroll_up(chat_log))
 		},
-		// Scroll down
+		// Chat Log scroll down
 		{
 			{"widgets/scroll_down_off.png", NULL, "widgets/scroll_down.png"},
 			{chat_log_x + chat_log_w / 2 - 59, chat_log_y + chat_log_h - 26, 118, 17},
 			NULL,
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_can_scroll_down(chat_log))
+		},
+		// Chat Selector Scroll up
+		{
+			{"widgets/scroll_up_off.png", NULL, "widgets/scroll_up.png"},
+			{chat_selector_x + chat_selector_w / 2 - 59, chat_selector_y + 37, 118, 17},
+			NULL,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_list_can_scroll_up(chat_selector))
+		},
+		// Chat Selector Scroll down
+		{
+			{"widgets/scroll_down_off.png", NULL, "widgets/scroll_down.png"},
+			{chat_selector_x + chat_selector_w / 2 - 59, chat_selector_y + chat_selector_h - 23, 118, 17},
+			NULL,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_list_can_scroll_down(chat_selector))
 		}
 	};
 
@@ -470,6 +505,10 @@ struct widget_group *create_chat_dialog()
 	AllMousePressButtons[CHAT_LOG_SCROLL_UP_BUTTON].scale_this_button = FALSE;
 	Copy_Rect(b[1].rect, AllMousePressButtons[CHAT_LOG_SCROLL_DOWN_BUTTON].button_rect);
 	AllMousePressButtons[CHAT_LOG_SCROLL_DOWN_BUTTON].scale_this_button = FALSE;
+	Copy_Rect(b[2].rect, AllMousePressButtons[SCROLL_DIALOG_MENU_UP_BUTTON].button_rect);
+	AllMousePressButtons[SCROLL_DIALOG_MENU_UP_BUTTON].scale_this_button = FALSE;
+	Copy_Rect(b[3].rect, AllMousePressButtons[SCROLL_DIALOG_MENU_DOWN_BUTTON].button_rect);
+	AllMousePressButtons[SCROLL_DIALOG_MENU_DOWN_BUTTON].scale_this_button = FALSE;
 
 	WIDGET(chat_menu)->enabled = FALSE;
 
@@ -479,13 +518,14 @@ struct widget_group *create_chat_dialog()
 /**
  * Wait for a mouse click before continuing.
  */
-static void wait_for_click(enemy *chat_droid)
+static void wait_for_click(struct chat_context *context)
 {
 	SDL_Event event;
-	StoreMenuBackground(0);
+	char *empty_options[] = { NULL };
 
 	while (1) {
-		RestoreMenuBackground(0);
+		widget_text_list_init(chat_selector, empty_options, NULL);
+		show_chat(context);
 		SetCurrentFont(Menu_BFont);
 		display_text(_("\1Click anywhere to continue..."), chat_selector_inner_rect.x, chat_selector_inner_rect.y, &chat_selector_inner_rect);
 		blit_mouse_cursor();
@@ -588,43 +628,13 @@ int stack_dialog(enemy *partner)
  */
 static int chat_do_menu_selection_filtered(struct chat_context *context)
 {
-	int MenuSelection;
-	char *FilteredChatMenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
-	int i;
-	int use_counter = 0;
-	char *topic = context->topic_stack[context->topic_stack_slot];
+	int menu_selection = chat_do_menu_selection(context);
 
-	// We filter out those answering options that are allowed by the flag mask
-	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-		FilteredChatMenuTexts[i] = "";
-		if (context->dialog_flags[i] && !(strcmp(topic, context->dialog_options[i].topic))) {
-			FilteredChatMenuTexts[use_counter] = context->dialog_options[i].option_text;
-			use_counter++;
-		}
+	if (menu_selection >= 0) {
+		return widget_text_list_get_data(chat_selector, menu_selection);
 	}
 
-	// Now we do the usual menu selection, using only the activated chat alternatives...
-	//
-	MenuSelection = chat_do_menu_selection(FilteredChatMenuTexts, context->partner);
-
-	// Now that we have an answer, we must transpose it back to the original array
-	// of all theoretically possible answering possibilities.
-	//
-	if (MenuSelection != (-1)) {
-		use_counter = 0;
-		for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-
-			if (context->dialog_flags[i] && !(strcmp(topic, context->dialog_options[i].topic))) {
-				use_counter++;
-				if (MenuSelection == use_counter) {
-					DebugPrintf(1, "\nOriginal MenuSelect: %d. \nTransposed MenuSelect: %d.", MenuSelection, i + 1);
-					return (i + 1);
-				}
-			}
-		}
-	}
-
-	return (MenuSelection);
+	return (menu_selection);
 }
 
 /**
@@ -715,10 +725,11 @@ static void run_chat()
 		 * 1- Chat screen rendering, and user's interaction
 		 */
 
-		show_chat(current_chat_context->partner);
+		refresh_dialog_choices(current_chat_context);
+		show_chat(current_chat_context);
 
 		if (current_chat_context->wait_user_click) {
-			wait_for_click(current_chat_context->partner);
+			wait_for_click(current_chat_context);
 			current_chat_context->wait_user_click = FALSE;
 
 			// restart the loop, to re-render the chat screen
@@ -736,6 +747,7 @@ static void run_chat()
 			// as such.
 			if (rtn) {
 				current_chat_context->lua_coroutine = NULL;
+				// end dialog, if asked by the lua script
 				if (current_chat_context->end_dialog)
 					goto wait_click_and_out;
 			}
@@ -778,11 +790,6 @@ static void run_chat()
 				// active options.
 				if (current_chat_context->current_option == -1) {
 					current_chat_context->current_option = chat_do_menu_selection_filtered(current_chat_context);
-					// We do some correction of the menu selection variable:
-					// The first entry of the menu will give a 1 and so on and therefore
-					// we need to correct this to more C style.
-					//
-					current_chat_context->current_option--;
 				}
 
 				if ((current_chat_context->current_option >= MAX_DIALOGUE_OPTIONS_IN_ROSTER) || (current_chat_context->current_option < 0)) {

@@ -185,6 +185,7 @@ EXTERN light_radius_config LightRadiusConfig;
 #define EXTERN extern
 #endif
 EXTERN struct widget_text *chat_log;
+EXTERN struct widget_text_list *chat_selector;
 
 #undef EXTERN
 #ifdef _sound_c

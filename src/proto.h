@@ -537,7 +537,7 @@ void clear_player_inventory_and_stats(void);
 void StoreMenuBackground(int backup_slot);
 void RestoreMenuBackground(int backup_slot);
 int DoMenuSelection(char *InitialText, char *MenuTexts[], int FirstItem, const char *background_name, void *MenuFont);
-int chat_do_menu_selection(char **MenuTexts, enemy *chat_droid);
+int chat_do_menu_selection(struct chat_context *);
 void StartupMenu(void);
 void InitiateMenu(const char *background_name);
 void Cheatmenu(void);
@@ -625,7 +625,6 @@ void EnemyInfluCollisionText(enemy *);
 
 int display_text_using_line_height(const char *, int, int, const SDL_Rect*, float);
 int display_text(const char *, int, int, const SDL_Rect*);
-void show_chat(enemy *);
 
 int ScrollText(char *text, const char *background_name);
 
@@ -727,6 +726,7 @@ int stack_subdialog(const char *);
 void chat_add_response(const char *);
 int validate_dialogs(void);
 struct chat_context *chat_get_current_context();
+void show_chat(struct chat_context *);
 
 // leveleditor_input.c
 void leveleditor_process_input(void);
