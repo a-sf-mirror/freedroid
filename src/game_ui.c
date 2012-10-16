@@ -669,5 +669,9 @@ struct widget_group *get_game_ui()
 	WIDGET(quest_browser)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, quest_browser_activated);
 	widget_group_add(game_widget_group, WIDGET(quest_browser));
 
+	// Create the chat dialog.
+	struct widget_group *chat_dialog = create_chat_dialog();
+	widget_group_add(game_widget_group, WIDGET(chat_dialog));
+
 	return game_widget_group;
 }

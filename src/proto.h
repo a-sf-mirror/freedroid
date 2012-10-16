@@ -625,7 +625,7 @@ void EnemyInfluCollisionText(enemy *);
 
 int display_text_using_line_height(const char *, int, int, const SDL_Rect*, float);
 int display_text(const char *, int, int, const SDL_Rect*);
-void show_chat_log(enemy *);
+void show_chat(enemy *);
 
 int ScrollText(char *text, const char *background_name);
 
@@ -719,6 +719,7 @@ void list_splice_init(list_head_t * list, list_head_t * head);
 int load_texture_atlas(const char *, const char *, struct image *(*get_storage_for_key)(const char *key));
 
 // chat.c
+struct widget_group *create_chat_dialog(void);
 void chat_push_topic(const char *topic);
 void chat_pop_topic(void);
 int stack_dialog(enemy *);

@@ -48,6 +48,10 @@ static void chat_delete_context(struct chat_context *);
 /* Stack of chat contexts. The current context is at the top of the stack */
 static struct list_head chat_context_stack = LIST_HEAD_INIT(chat_context_stack);
 
+static struct widget_group *chat_menu = NULL;
+static struct image **droid_portrait = NULL;
+static SDL_Rect chat_selector_inner_rect;
+
 /**
  * Return the current chat context.
  *
@@ -330,44 +334,146 @@ static void load_dialog(const char *fpath, struct chat_context *context)
 	free(ChatData);
 }
 
-static void show_chat_up_button(void)
-{
-	ShowGenericButtonFromList(CHAT_LOG_SCROLL_UP_BUTTON);
-}
-
-static void show_chat_down_button(void)
-{
-	ShowGenericButtonFromList(CHAT_LOG_SCROLL_DOWN_BUTTON);
-}
-
 /**
  * During the Chat with a friendly droid or human, there is a window with
  * the full text transcript of the conversation so far.  This function is
  * here to display said text window and it's content, scrolled to the
  * position desired by the player himself.
+ *
+ * TODO: To be removed once the chat is fully widgetized
  */
-void show_chat_log(enemy *chat_enemy)
+void show_chat(enemy *partner)
 {
-	struct image *img = get_droid_portrait_image(chat_enemy->type);
-	float scale;
-	moderately_finepoint pos;
+	struct widget *ui = WIDGET(chat_menu);
 
-	blit_background("conversation.png");
+	*droid_portrait = get_droid_portrait_image(partner->type);
+	clear_screen();
+	ui->update_tree(ui);
+	ui->display(ui);
+}
 
-	// Compute the maximum uniform scale to apply to the bot image so that it fills
-	// the droid portrait image, and center the image.
-	scale = min((float)Droid_Image_Window.w / (float)img->w, (float)Droid_Image_Window.h / (float)img->h);
-	pos.x = (float)Droid_Image_Window.x + ((float)Droid_Image_Window.w - (float)img->w * scale) / 2.0;
-	pos.y = (float)Droid_Image_Window.y + ((float)Droid_Image_Window.h - (float)img->h * scale) / 2.0;
+/**
+ * This function is used for darkening the screen area outside the quest browser.
+ */
+static void display_dark_background(struct widget *w)
+{
+	draw_rectangle(&w->rect, 0, 0, 0, 50);
+}
 
-	display_image_on_screen(img, pos.x, pos.y, IMAGE_SCALE_TRANSFO(scale));
+/**
+ * This function builds the chat interface if it hasn't already been initialized.
+ */
+struct widget_group *create_chat_dialog()
+{
+	if (chat_menu)
+		return chat_menu;
 
-	chat_log.content_above_func = show_chat_up_button;
-	chat_log.content_below_func = show_chat_down_button;
-	ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF_BUTTON);
-	ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF2_BUTTON);
+	chat_menu = widget_group_create();
 
-	widget_text_display(WIDGET(&chat_log));
+	// Dark background
+	struct widget *dark_background = widget_create();
+	widget_set_rect(dark_background, 0, 0, GameConfig.screen_width, GameConfig.screen_height);
+	dark_background->display = display_dark_background;
+	widget_group_add(chat_menu, dark_background);
+
+	// Entry text selector
+	int chat_selector_h = UNIVERSAL_COORD_H(202);
+	int chat_selector_w = UNIVERSAL_COORD_W(627);
+	int chat_selector_x = (GameConfig.screen_width - chat_selector_w) / 2;
+	int chat_selector_y = GameConfig.screen_height - chat_selector_h - 5;
+
+	struct widget_background *chat_selector_bkg = widget_background_create();
+	widget_set_rect(WIDGET(chat_selector_bkg), chat_selector_x, chat_selector_y, chat_selector_w, chat_selector_h);
+	widget_background_load_3x3_tiles(chat_selector_bkg, "widgets/chat_typo");
+	widget_group_add(chat_menu, WIDGET(chat_selector_bkg));
+
+	int left_padding = 35;
+	int right_padding = 35;
+	int top_padding = 65;
+	int bottom_padding = 20;
+
+	chat_selector_inner_rect.x = chat_selector_x + left_padding;
+	chat_selector_inner_rect.y = chat_selector_y + top_padding;
+	chat_selector_inner_rect.h = chat_selector_h - top_padding - bottom_padding;
+	chat_selector_inner_rect.w = chat_selector_w - left_padding - right_padding;
+
+	// Droid portrait
+	struct image *img = widget_load_image_resource("widgets/chat_portrait.png", 0);
+	int chat_portrait_x = chat_selector_x;
+	int chat_portrait_y = chat_selector_y - img->h + 39;
+
+	struct widget_background *chat_portrait_bkg = widget_background_create();
+	widget_background_add(chat_portrait_bkg, img, chat_portrait_x, chat_portrait_y, img->w, img->h);
+	widget_group_add(chat_menu, WIDGET(chat_portrait_bkg));
+
+	struct widget_button *chat_portrait = widget_button_create();
+	widget_set_rect(WIDGET(chat_portrait), chat_portrait_x + 30, chat_portrait_y + 32, 136, 183);
+	widget_group_add(chat_menu, WIDGET(chat_portrait));
+	droid_portrait = &chat_portrait->image[0][0];
+
+	// Chat log
+	int chat_log_x = chat_selector_x + img->w - 30;
+	int chat_log_y = 6;
+	int chat_log_h = GameConfig.screen_height - chat_selector_h + 10;
+	int chat_log_w = chat_selector_x + chat_selector_w - chat_log_x;
+
+	struct widget_background *chat_log_bkg = widget_background_create();
+	widget_set_rect(WIDGET(chat_log_bkg), chat_log_x, chat_log_y, chat_log_w, chat_log_h);
+	widget_background_load_3x3_tiles(chat_log_bkg, "widgets/chat_log");
+	widget_group_add(chat_menu, WIDGET(chat_log_bkg));
+
+	chat_log = widget_text_create();
+	widget_set_rect(WIDGET(chat_log), chat_log_x + 50, chat_log_y + 28, chat_log_w - 80, chat_log_h - 66);
+	chat_log->font = FPS_Display_BFont;
+	chat_log->line_height_factor = LINE_HEIGHT_FACTOR;
+	widget_group_add(chat_menu, WIDGET(chat_log));
+
+	struct {
+		char *image[3];
+		SDL_Rect rect;
+		void (*activate_button)(struct widget_button *);
+		void (*update)(struct widget *);
+	} b[] = {
+		// Scroll up
+		{
+			{"widgets/scroll_up_off.png", NULL, "widgets/scroll_up.png"},
+			{chat_log_x + chat_log_w / 2 - 59, chat_log_y - 1, 118, 17},
+			NULL,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_can_scroll_up(chat_log))
+		},
+		// Scroll down
+		{
+			{"widgets/scroll_down_off.png", NULL, "widgets/scroll_down.png"},
+			{chat_log_x + chat_log_w / 2 - 59, chat_log_y + chat_log_h - 26, 118, 17},
+			NULL,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_can_scroll_down(chat_log))
+		}
+	};
+
+	int i;
+	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
+		struct widget_button *button = widget_button_create();
+
+		WIDGET(button)->rect = b[i].rect;
+		WIDGET(button)->update = b[i].update;
+
+		button->image[0][DEFAULT] = widget_load_image_resource(b[i].image[0], 0);
+		button->image[0][PRESSED] = widget_load_image_resource(b[i].image[1], 0);
+		button->image[1][DEFAULT] = widget_load_image_resource(b[i].image[2], 0);
+		button->activate_button = b[i].activate_button;
+
+		widget_group_add(chat_menu, WIDGET(button));
+	}
+
+	/* TODO: BIG HACK - To be removed as soon as the dialog interaction is rewritten to use the widget interaction mechanism */
+	Copy_Rect(b[0].rect, AllMousePressButtons[CHAT_LOG_SCROLL_UP_BUTTON].button_rect);
+	AllMousePressButtons[CHAT_LOG_SCROLL_UP_BUTTON].scale_this_button = FALSE;
+	Copy_Rect(b[1].rect, AllMousePressButtons[CHAT_LOG_SCROLL_DOWN_BUTTON].button_rect);
+	AllMousePressButtons[CHAT_LOG_SCROLL_DOWN_BUTTON].scale_this_button = FALSE;
+
+	WIDGET(chat_menu)->enabled = FALSE;
+
+	return chat_menu;
 }
 
 /**
@@ -376,20 +482,12 @@ void show_chat_log(enemy *chat_enemy)
 static void wait_for_click(enemy *chat_droid)
 {
 	SDL_Event event;
-
-	// Rectangle for the player response area
-	SDL_Rect clip;
-	clip.x = UNIVERSAL_COORD_W(37);
-	clip.y = UNIVERSAL_COORD_H(336);
-	clip.w = UNIVERSAL_COORD_W(640 - 70);
-	clip.h = UNIVERSAL_COORD_H(118);
-
 	StoreMenuBackground(0);
 
 	while (1) {
 		RestoreMenuBackground(0);
 		SetCurrentFont(Menu_BFont);
-		display_text(_("\1Click anywhere to continue..."), clip.x, clip.y, &clip);
+		display_text(_("\1Click anywhere to continue..."), chat_selector_inner_rect.x, chat_selector_inner_rect.y, &chat_selector_inner_rect);
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 		SDL_Delay(1);
@@ -423,8 +521,8 @@ wait_for_click_return:
 
 void chat_add_response(const char *response)
 {
-	autostr_append(chat_log.text, "%s", response);
-	chat_log.scroll_offset = 0;
+	autostr_append(chat_log->text, "%s", response);
+	chat_log->scroll_offset = 0;
 }
 
 static int create_and_stack_context(enemy *partner, struct npc *npc, const char *filename, int is_subdialog)
@@ -457,7 +555,7 @@ int stack_subdialog(const char *filename)
 {
 	// A subdialog uses the same partner and npc than its parent dialog.
 	// The parent dialog is the one on top of the chat_context stack.
-	struct chat_context *current_chat_context = chat_get_current_context();
+	struct chat_context *current_chat_context = current_chat_context = chat_get_current_context();
 
 	return create_and_stack_context(current_chat_context->partner, current_chat_context->npc, filename, TRUE);
 }
@@ -569,11 +667,6 @@ static void run_chat()
 {
 	struct chat_context *current_chat_context = NULL;
 
-	// Initialize the chat log widget.
-	widget_set_rect(WIDGET(&chat_log), CHAT_SUBDIALOG_WINDOW_X, CHAT_SUBDIALOG_WINDOW_Y, CHAT_SUBDIALOG_WINDOW_W, CHAT_SUBDIALOG_WINDOW_H);
-	chat_log.font = FPS_Display_BFont;
-	chat_log.line_height_factor = LINE_HEIGHT_FACTOR;
-
 	Activate_Conservative_Frame_Computation();
 
 	// Dialog engine main code.
@@ -622,7 +715,7 @@ static void run_chat()
 		 * 1- Chat screen rendering, and user's interaction
 		 */
 
-		show_chat_log(current_chat_context->partner);
+		show_chat(current_chat_context->partner);
 
 		if (current_chat_context->wait_user_click) {
 			wait_for_click(current_chat_context->partner);
@@ -660,7 +753,7 @@ static void run_chat()
 			case RUN_INIT_SCRIPT:
 			{
 				if (!current_chat_context->is_subdialog)
-					widget_text_init(&chat_log, _("\3--- Start of Dialog ---\n"));
+					widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
 
 				if (current_chat_context->initialization_code && strlen(current_chat_context->initialization_code)) {
 					current_chat_context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, current_chat_context->initialization_code);
@@ -671,7 +764,7 @@ static void run_chat()
 			case RUN_STARTUP_SCRIPT:
 			{
 				if (!current_chat_context->is_subdialog && current_chat_context->npc->chat_character_initialized)
-					widget_text_init(&chat_log, _("\3--- Start of Dialog ---\n"));
+					widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
 
 				if (current_chat_context->startup_code && strlen(current_chat_context->startup_code)) {
 					current_chat_context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, current_chat_context->startup_code);
@@ -735,7 +828,10 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	if (!stack_dialog(ChatDroid))
 		return;
 
+	struct widget *ui = WIDGET(chat_menu);
+	ui->enabled = TRUE;
 	run_chat();
+	ui->enabled = FALSE;
 }
 
 /**

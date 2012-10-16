@@ -483,10 +483,19 @@ int chat_do_menu_selection(char *MenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER], enem
 
 	// Now we set some viable choice window and we compute the maximum number of lines
 	// that will still fit well into the choice window.
-	Choice_Window.x = UNIVERSAL_COORD_W(37);
-	Choice_Window.y = UNIVERSAL_COORD_H(336);
-	Choice_Window.w = UNIVERSAL_COORD_W(640 - 70);
-	Choice_Window.h = UNIVERSAL_COORD_H(118);
+	int typomaster_h = UNIVERSAL_COORD_H(202);
+	int typomaster_w = UNIVERSAL_COORD_W(627);
+	int typomaster_x = (GameConfig.screen_width - typomaster_w) / 2;
+	int typomaster_y = GameConfig.screen_height - typomaster_h - 5;
+	int left_padding = 35;
+	int right_padding = 35;
+	int top_padding = 65;
+	int bottom_padding = 20;
+
+	Choice_Window.x = typomaster_x + left_padding;
+	Choice_Window.y = typomaster_y + top_padding;
+	Choice_Window.h = typomaster_h - top_padding - bottom_padding;
+	Choice_Window.w = typomaster_w - left_padding - right_padding;
 	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(FPS_Display_BFont) * LINE_HEIGHT_FACTOR);
 
 	// First thing we do is find out how may options we have
@@ -637,15 +646,19 @@ int chat_do_menu_selection(char *MenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER], enem
 				break;
 
 			case SDLK_PAGEUP:
-				chat_log.scroll_offset -= 3;
-				show_chat_log(ChatDroid);
-				StoreMenuBackground(0);
+				if (widget_text_can_scroll_up(chat_log)) {
+					chat_log->scroll_offset -= 3;
+					show_chat(ChatDroid);
+					StoreMenuBackground(0);
+				}
 				break;
 
 			case SDLK_PAGEDOWN:
-				chat_log.scroll_offset += 3;
-				show_chat_log(ChatDroid);
-				StoreMenuBackground(0);
+				if (widget_text_can_scroll_down(chat_log)) {
+					chat_log->scroll_offset += 3;
+					show_chat(ChatDroid);
+					StoreMenuBackground(0);
+				}
 				break;
 
 			case SDLK_ESCAPE:
@@ -682,14 +695,18 @@ int chat_do_menu_selection(char *MenuTexts[MAX_DIALOGUE_OPTIONS_IN_ROSTER], enem
 			} else if ((MouseCursorIsOnButton(SCROLL_DIALOG_MENU_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) &&
 				   (OptionOffset)) {
 				OptionOffset--;
-			} else if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				chat_log.scroll_offset--;
-				show_chat_log(ChatDroid);
-				StoreMenuBackground(0);
+			}  else if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+				if (widget_text_can_scroll_up(chat_log)) {
+					chat_log->scroll_offset--;
+					show_chat(ChatDroid);
+					StoreMenuBackground(0);
+				}
 			} else if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				chat_log.scroll_offset++;
-				show_chat_log(ChatDroid);
-				StoreMenuBackground(0);
+				if (widget_text_can_scroll_down(chat_log)) {
+					chat_log->scroll_offset++;
+					show_chat(ChatDroid);
+					StoreMenuBackground(0);
+				}
 			}
 			// If not, then maybe it was a click into the options window.  That alone
 			// would be enough to call it a valid user decision.
