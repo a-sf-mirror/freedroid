@@ -210,8 +210,15 @@ static int text_list_handle_event(struct widget *w, SDL_Event *event)
 			break;
 
 		case SDL_MOUSEMOTION:
-			// The entry hovered by the mouse cursor is the new selected entry.
-			compute_selected_entry(wl, event);
+			{
+				// Remove all motion events from the event stack and use the latest
+				// one.
+				SDL_Event evt1, evt2 = *event;
+				while (SDL_PeepEvents(&evt1, 1, SDL_GETEVENT, SDL_MOUSEMOTIONMASK) > 0)
+					evt2 = evt1;
+				// The entry hovered by the mouse cursor is the new selected entry.
+				compute_selected_entry(wl, &evt2);
+			}
 			break;
 
 		case SDL_KEYDOWN:
