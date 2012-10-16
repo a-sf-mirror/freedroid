@@ -574,5 +574,6 @@ void display_widgets(void);
 #include "widgets/widget_button.h"
 #include "widgets/widget_text.h"
 #include "widgets/widget_background.h"
+#include "widgets/widget_text_list.h"
 
 #endif // _widgets_h_

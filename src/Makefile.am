@@ -44,6 +44,7 @@ freedroidRPG_SOURCES = version.c \
 	widgets/widget_group.c widgets/widget_group.h \
 	widgets/widget_text.c widgets/widget_text.h \
 	widgets/widget_background.c widgets/widget_background.h \
+	widgets/widget_text_list.c widgets/widget_text_list.h \
 	game_ui.c \
 	pngfuncs.c pngfuncs.h \
 	lvledit/lvledit.c lvledit/lvledit.h \
