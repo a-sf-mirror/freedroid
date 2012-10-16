@@ -49,6 +49,7 @@ static void chat_delete_context(struct chat_context *);
 static struct list_head chat_context_stack = LIST_HEAD_INIT(chat_context_stack);
 
 static struct widget_group *chat_menu = NULL;
+static struct widget_group *chat_wait = NULL;
 static struct image **droid_portrait = NULL;
 static SDL_Rect chat_selector_inner_rect;
 
@@ -377,6 +378,28 @@ static void display_dark_background(struct widget *w)
 	draw_rectangle(&w->rect, 0, 0, 0, 50);
 }
 
+/*
+ * Return TRUE if we are waiting for the user to click, after a response was
+ * added in the chat log.
+ */
+static int waiting_user_click()
+{
+	struct chat_context *context = chat_get_current_context();
+	if (!context)
+		return FALSE;
+	return context->wait_user_click;
+}
+
+/*
+ * Unset the wait_user_click flag in the current chat context
+ */
+static void stop_wait_user_click(struct widget_button *w)
+{
+	struct chat_context *context = chat_get_current_context();
+	if (context)
+		context->wait_user_click = FALSE;
+}
+
 /**
  * This function builds the chat interface if it hasn't already been initialized.
  */
@@ -416,6 +439,7 @@ struct widget_group *create_chat_dialog()
 
 	chat_selector = widget_text_list_create();
 	widget_set_rect(WIDGET(chat_selector), chat_selector_inner_rect.x, chat_selector_inner_rect.y, chat_selector_inner_rect.w, chat_selector_inner_rect.h);
+	WIDGET(chat_selector)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, !waiting_user_click());
 	widget_group_add(chat_menu, WIDGET(chat_selector));
 
 	// Droid portrait
@@ -500,6 +524,27 @@ struct widget_group *create_chat_dialog()
 		widget_group_add(chat_menu, WIDGET(button));
 	}
 
+	// Wait for user click
+	chat_wait = widget_group_create();
+	widget_set_rect(WIDGET(chat_wait), 0, 0, GameConfig.screen_width, GameConfig.screen_height);
+	WIDGET(chat_wait)->enabled = FALSE;
+	WIDGET(chat_wait)->update =  WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, waiting_user_click());
+
+	struct widget_text* wait_text = widget_text_create();
+	widget_set_rect(WIDGET(wait_text), chat_selector_inner_rect.x, chat_selector_inner_rect.y,
+	                chat_selector_inner_rect.w, chat_selector_inner_rect.h);
+	wait_text->font = FPS_Display_BFont;
+	widget_text_init(wait_text, "Click anywhere to continue...");
+	widget_group_add(chat_wait, WIDGET(wait_text));
+
+	struct widget_button *wait_but = widget_button_create();
+	widget_set_rect(WIDGET(wait_but), 0, 0, GameConfig.screen_width, GameConfig.screen_height);
+	WIDGET(wait_but)->display = NULL;
+	wait_but->activate_button = stop_wait_user_click;
+	widget_group_add(chat_wait, WIDGET(wait_but));
+
+	widget_group_add(chat_menu, WIDGET(chat_wait));
+
 	/* TODO: BIG HACK - To be removed as soon as the dialog interaction is rewritten to use the widget interaction mechanism */
 	Copy_Rect(b[0].rect, AllMousePressButtons[CHAT_LOG_SCROLL_UP_BUTTON].button_rect);
 	AllMousePressButtons[CHAT_LOG_SCROLL_UP_BUTTON].scale_this_button = FALSE;
@@ -521,31 +566,34 @@ struct widget_group *create_chat_dialog()
 static void wait_for_click(struct chat_context *context)
 {
 	SDL_Event event;
-	char *empty_options[] = { NULL };
+
+	// Pump all remaining SDL events
+	while (SDL_PollEvent(&event));
 
 	while (1) {
-		widget_text_list_init(chat_selector, empty_options, NULL);
 		show_chat(context);
-		SetCurrentFont(Menu_BFont);
-		display_text(_("\1Click anywhere to continue..."), chat_selector_inner_rect.x, chat_selector_inner_rect.y, &chat_selector_inner_rect);
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
-		SDL_Delay(1);
 
 		SDL_WaitEvent(&event);
+
+		// We know that the 'chat_wait' widget_group fills the screen, so we do
+		// not need to check if the cursor is inside the widget.
+		if (WIDGET(chat_wait)->handle_event(WIDGET(chat_wait), &event)) {
+			if (!waiting_user_click())
+				goto wait_for_click_return;
+		}
 
 		if (event.type == SDL_QUIT) {
 			Terminate(EXIT_SUCCESS, TRUE);
 		}
 
-		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == 1)
-			goto wait_for_click_return;
-
-		else if (event.type == SDL_KEYDOWN) {
+		if (event.type == SDL_KEYDOWN) {
 			switch (event.key.keysym.sym) {
 			case SDLK_SPACE:
 			case SDLK_RETURN:
 			case SDLK_ESCAPE:
+				stop_wait_user_click(NULL);
 				goto wait_for_click_return;
 			default:
 				break;
@@ -679,6 +727,10 @@ static void run_chat()
 
 	Activate_Conservative_Frame_Computation();
 
+	// Pump all remaining SDL events
+	SDL_Event evt;
+	while (SDL_PollEvent(&evt));
+
 	// Dialog engine main code.
 	//
 	// A dialog flow is decomposed into a sequence of several steps:
@@ -730,8 +782,6 @@ static void run_chat()
 
 		if (current_chat_context->wait_user_click) {
 			wait_for_click(current_chat_context);
-			current_chat_context->wait_user_click = FALSE;
-
 			// restart the loop, to re-render the chat screen
 			continue;
 		}

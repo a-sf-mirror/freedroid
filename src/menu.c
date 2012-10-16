@@ -459,16 +459,9 @@ int chat_do_menu_selection(struct chat_context *context)
 	game_status = INSIDE_MENU;
 
 	while (1) {
-		SDL_Delay(1);
 		save_mouse_state();
-
 		show_chat(context);
-
-		// Now the mouse cursor must be brought to the screen
 		blit_mouse_cursor();
-
-		// Now everything should become visible!
-		//
 		our_SDL_flip_wrapper();
 
 		// Wait for something to happen
