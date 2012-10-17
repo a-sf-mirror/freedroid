@@ -336,3 +336,31 @@ int widget_text_can_scroll_down(struct widget_text *w)
 {
 	return w->scroll_offset != 0;
 }
+
+/**
+ * \brief Scroll up the whole text.
+ * \ingroup gui2d_text
+ *
+ * \details This function decrements the offset's text
+ *
+ * \param w         Pointer to the widget_text
+ */
+void widget_text_scroll_up(struct widget_text *w)
+{
+	if (widget_text_can_scroll_up(w))
+		w->scroll_offset--;
+}
+
+/**
+ * \brief Scroll down the whole text.
+ * \ingroup gui2d_text
+ *
+ * \details This function decrements the offset's text
+ *
+ * \param w         Pointer to the widget_text
+ */
+void widget_text_scroll_down(struct widget_text *w)
+{
+	if (widget_text_can_scroll_down(w))
+		w->scroll_offset++;
+}

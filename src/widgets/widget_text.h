@@ -130,6 +130,8 @@ struct widget_text *widget_text_create(void);
 void widget_text_init(struct widget_text *, const char *);
 int widget_text_can_scroll_up(struct widget_text *);
 int widget_text_can_scroll_down(struct widget_text *);
+void widget_text_scroll_up(struct widget_text *);
+void widget_text_scroll_down(struct widget_text *);
 int widget_text_handle_mouse(struct widget_text *);
 void widget_text_display(struct widget *);
 
