@@ -537,7 +537,6 @@ void clear_player_inventory_and_stats(void);
 void StoreMenuBackground(int backup_slot);
 void RestoreMenuBackground(int backup_slot);
 int DoMenuSelection(char *InitialText, char *MenuTexts[], int FirstItem, const char *background_name, void *MenuFont);
-int chat_do_menu_selection(struct chat_context *);
 void StartupMenu(void);
 void InitiateMenu(const char *background_name);
 void Cheatmenu(void);
