@@ -222,6 +222,8 @@ static int text_list_handle_event(struct widget *w, SDL_Event *event)
 			break;
 
 		case SDL_KEYDOWN:
+			if (!MouseCursorIsInRect(&WIDGET(wl)->rect, GetMousePos_x(), GetMousePos_y()))
+				break;
 			switch (event->key.keysym.sym) {
 				case SDLK_UP:
 					text_list_selected_up(wl);
