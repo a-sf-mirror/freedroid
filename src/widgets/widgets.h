@@ -434,6 +434,45 @@ struct widget {
   anonymous_func; \
 })
 
+/**
+ * \brief Macro used to create a widget generic callback function.
+ *
+ * Some widgets call functions when they are 'activated' (for example:
+ * widget_button::activate_button() or widget_text_list::process_entry()).
+ * Those callback functions can be single line of code, and this macro will
+ * avoid to have to write such one-liners in extension.\n
+ * \n
+ * Usage examples:\n
+ * - Increment the value of one game data
+ *   \code
+ * the_button->activate_button = WIDGET_EXECUTE(struct widget_button *wb, game_data++);
+ *   \endcode
+ * - Call an other function, with the widget as a parameter
+ *   \code
+ * the_text_list->process_entry = WIDGET_EXECUTE(struct widget_text_list *wl,
+ *                                               the_function_to_call(wl);
+ *   \endcode
+ *
+ * \param param       'signature' of the callback function
+ * \param code        the code to execute
+ */
+/*
+ * Implementation note.
+ * The goal of the macro is to create an anonymous function and to return a
+ * pointer to this function. This is done with the use of a compound statement
+ * expression and a function declared inside the compound block.
+ * (compound statement expression is a gcc specific extension)
+ */
+#define WIDGET_EXECUTE(param, code) \
+({ \
+  void anonymous_func(param) \
+  { \
+    code; \
+  } \
+  anonymous_func; \
+})
+
+
 struct widget *widget_create(void);
 void widget_init(struct widget *);
 void widget_set_rect(struct widget *, int, int, int, int);
