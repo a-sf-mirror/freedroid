@@ -49,7 +49,10 @@ static void chat_delete_context(struct chat_context *);
 static struct list_head chat_context_stack = LIST_HEAD_INIT(chat_context_stack);
 
 static struct widget_group *chat_menu = NULL;
+struct widget_text *chat_log = NULL;
+struct widget_text_list *chat_selector = NULL;
 static struct widget_group *chat_wait = NULL;
+
 static struct image **droid_portrait = NULL;
 static SDL_Rect chat_selector_inner_rect;
 
@@ -335,7 +338,10 @@ static void load_dialog(const char *fpath, struct chat_context *context)
 	free(ChatData);
 }
 
-static void refresh_dialog_choices(struct chat_context *context)
+/**
+ * Fill the chat selector widget with the currently selected options
+ */
+static void fill_chat_selector(struct chat_context *context)
 {
 	char *empty_entries[] = { NULL };
 	int i;
@@ -356,7 +362,8 @@ static void refresh_dialog_choices(struct chat_context *context)
  * here to display said text window and it's content, scrolled to the
  * position desired by the player himself.
  *
- * TODO: To be removed once the chat is fully widgetized
+ * TODO: To be removed once the chat screen is integrated into the main widget
+ *       hierarchy
  */
 void show_chat(struct chat_context *context)
 {
@@ -371,7 +378,7 @@ void show_chat(struct chat_context *context)
 }
 
 /**
- * This function is used for darkening the screen area outside the quest browser.
+ * This function is used for darkening the screen area outside the chat screen.
  */
 static void display_dark_background(struct widget *w)
 {
@@ -398,6 +405,21 @@ static void stop_wait_user_click(struct widget_button *w)
 	struct chat_context *context = chat_get_current_context();
 	if (context)
 		context->wait_user_click = FALSE;
+}
+
+/*
+ * Called when an option is selected in the chat_selector.
+ * Get the index of the selected dialog node, and store it in the current
+ * chat context.
+ */
+static void dialog_option_selected(struct widget_text_list *wl)
+{
+	int user_data = widget_text_list_get_data(wl, wl->selected_entry);
+	if (user_data >= 0) {
+		struct chat_context *context = chat_get_current_context();
+		if (context)
+			context->current_option = user_data;
+	}
 }
 
 /**
@@ -439,6 +461,7 @@ struct widget_group *create_chat_dialog()
 
 	chat_selector = widget_text_list_create();
 	widget_set_rect(WIDGET(chat_selector), chat_selector_inner_rect.x, chat_selector_inner_rect.y, chat_selector_inner_rect.w, chat_selector_inner_rect.h);
+	chat_selector->process_entry = dialog_option_selected;
 	WIDGET(chat_selector)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, !waiting_user_click());
 	widget_group_add(chat_menu, WIDGET(chat_selector));
 
@@ -483,28 +506,28 @@ struct widget_group *create_chat_dialog()
 		{
 			{"widgets/scroll_up_off.png", NULL, "widgets/scroll_up.png"},
 			{chat_log_x + chat_log_w / 2 - 59, chat_log_y - 1, 118, 17},
-			NULL,
+			WIDGET_EXECUTE(struct widget_button *wb, widget_text_scroll_up(chat_log)),
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_can_scroll_up(chat_log))
 		},
 		// Chat Log scroll down
 		{
 			{"widgets/scroll_down_off.png", NULL, "widgets/scroll_down.png"},
 			{chat_log_x + chat_log_w / 2 - 59, chat_log_y + chat_log_h - 26, 118, 17},
-			NULL,
+			WIDGET_EXECUTE(struct widget_button *wb, widget_text_scroll_down(chat_log)),
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_can_scroll_down(chat_log))
 		},
 		// Chat Selector Scroll up
 		{
 			{"widgets/scroll_up_off.png", NULL, "widgets/scroll_up.png"},
 			{chat_selector_x + chat_selector_w / 2 - 59, chat_selector_y + 37, 118, 17},
-			NULL,
+			WIDGET_EXECUTE(struct widget_button *wb, widget_text_list_scroll_up(chat_selector)),
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_list_can_scroll_up(chat_selector))
 		},
 		// Chat Selector Scroll down
 		{
 			{"widgets/scroll_down_off.png", NULL, "widgets/scroll_down.png"},
 			{chat_selector_x + chat_selector_w / 2 - 59, chat_selector_y + chat_selector_h - 23, 118, 17},
-			NULL,
+			WIDGET_EXECUTE(struct widget_button *wb, widget_text_list_scroll_down(chat_selector)),
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_list_can_scroll_down(chat_selector))
 		}
 	};
@@ -545,16 +568,6 @@ struct widget_group *create_chat_dialog()
 
 	widget_group_add(chat_menu, WIDGET(chat_wait));
 
-	/* TODO: BIG HACK - To be removed as soon as the dialog interaction is rewritten to use the widget interaction mechanism */
-	Copy_Rect(b[0].rect, AllMousePressButtons[CHAT_LOG_SCROLL_UP_BUTTON].button_rect);
-	AllMousePressButtons[CHAT_LOG_SCROLL_UP_BUTTON].scale_this_button = FALSE;
-	Copy_Rect(b[1].rect, AllMousePressButtons[CHAT_LOG_SCROLL_DOWN_BUTTON].button_rect);
-	AllMousePressButtons[CHAT_LOG_SCROLL_DOWN_BUTTON].scale_this_button = FALSE;
-	Copy_Rect(b[2].rect, AllMousePressButtons[SCROLL_DIALOG_MENU_UP_BUTTON].button_rect);
-	AllMousePressButtons[SCROLL_DIALOG_MENU_UP_BUTTON].scale_this_button = FALSE;
-	Copy_Rect(b[3].rect, AllMousePressButtons[SCROLL_DIALOG_MENU_DOWN_BUTTON].button_rect);
-	AllMousePressButtons[SCROLL_DIALOG_MENU_DOWN_BUTTON].scale_this_button = FALSE;
-
 	WIDGET(chat_menu)->enabled = FALSE;
 
 	return chat_menu;
@@ -567,22 +580,20 @@ static void wait_for_click(struct chat_context *context)
 {
 	SDL_Event event;
 
-	// Pump all remaining SDL events
+	// Discard all pending SDL events
 	while (SDL_PollEvent(&event));
 
-	while (1) {
+	// Loop while we have to wait for a user click
+
+	do {
+
 		show_chat(context);
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
 		SDL_WaitEvent(&event);
 
-		// We know that the 'chat_wait' widget_group fills the screen, so we do
-		// not need to check if the cursor is inside the widget.
-		if (WIDGET(chat_wait)->handle_event(WIDGET(chat_wait), &event)) {
-			if (!waiting_user_click())
-				goto wait_for_click_return;
-		}
+		// Special events handling
 
 		if (event.type == SDL_QUIT) {
 			Terminate(EXIT_SUCCESS, TRUE);
@@ -593,17 +604,23 @@ static void wait_for_click(struct chat_context *context)
 			case SDLK_SPACE:
 			case SDLK_RETURN:
 			case SDLK_ESCAPE:
+				// Force to end waiting
 				stop_wait_user_click(NULL);
-				goto wait_for_click_return;
+				return;
 			default:
 				break;
 			}
 		}
-	}
 
-wait_for_click_return:
-	while (EscapePressed() || MouseLeftPressed() || SpacePressed())
-		;
+		// Push the event to the chat screen
+		//
+		// Note: we know that the 'chat_wait' widget_group fills the screen, so we do
+		// not need to check if the cursor is inside the widget.
+
+		WIDGET(chat_wait)->handle_event(WIDGET(chat_wait), &event);
+
+	} while (waiting_user_click());
+
 	return;
 }
 
@@ -681,130 +698,46 @@ int stack_dialog(enemy *partner)
  * dialog options selection window for the player to click from.
  *
  */
-static int chat_do_menu_selection(struct chat_context *context)
+static void chat_do_menu_selection(struct chat_context *context)
 {
 	SDL_Event event;
-	int ret = -1;
 	int old_game_status = game_status;
+	struct widget *ui = WIDGET(chat_menu);
 
 	game_status = INSIDE_MENU;
 
-	while (1) {
-		save_mouse_state();
+	// Discard all pending SDL events
+	while (SDL_PollEvent(&event));
+
+	// Loop until a dialog option is selected
+
+	do {
+
 		show_chat(context);
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
-		// Wait for something to happen
 		SDL_WaitEvent(&event);
 
-		if (event.type == SDL_QUIT) {
+		// Special events handling
+
+		if (event.type == SDL_QUIT)
 			Terminate(EXIT_SUCCESS, TRUE);
-		}
 
-		//(clever?) hack : mouse wheel up and down behave
-		//exactly like UP and DOWN arrow or PAGEUP/PAGEDOWN, so we mangle the event
-		if (event.type == SDL_MOUSEBUTTONDOWN) {
-			int in_blabla_screen = 0;
-			if ((GetMousePos_x() > CHAT_SUBDIALOG_WINDOW_X
-			     && GetMousePos_x() < CHAT_SUBDIALOG_WINDOW_X + CHAT_SUBDIALOG_WINDOW_W)
-			     && (GetMousePos_y() > CHAT_SUBDIALOG_WINDOW_Y
-				 && GetMousePos_y() < CHAT_SUBDIALOG_WINDOW_Y + CHAT_SUBDIALOG_WINDOW_H))
-				in_blabla_screen = 1;
-
-			switch (event.button.button) {
-			case SDL_BUTTON_WHEELUP:
-				event.type = SDL_KEYDOWN;
-				event.key.keysym.sym = in_blabla_screen ? SDLK_PAGEUP : SDLK_UP;
-				break;
-			case SDL_BUTTON_WHEELDOWN:
-				event.type = SDL_KEYDOWN;
-				event.key.keysym.sym = in_blabla_screen ? SDLK_PAGEDOWN : SDLK_DOWN;
-				break;
-			default:
+		if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE) {
+			if (GameConfig.enable_cheatkeys) {
 				break;
 			}
 		}
 
-		if (event.type == SDL_KEYDOWN) {
-			switch (event.key.keysym.sym) {
-			case SDLK_PAGEUP:
-				if (widget_text_can_scroll_up(chat_log)) {
-					chat_log->scroll_offset -= 3;
-				}
-				break;
+		// Push the event to the chat screen
 
-			case SDLK_PAGEDOWN:
-				if (widget_text_can_scroll_down(chat_log)) {
-					chat_log->scroll_offset += 3;
-				}
-				break;
+		WIDGET(ui)->handle_event(WIDGET(ui), &event);
 
-			case SDLK_ESCAPE:
-				if (GameConfig.enable_cheatkeys) {
-					blit_mouse_cursor();
-					our_SDL_flip_wrapper();
-					ret = -1;
-					goto out;
-				}
-				break;
+	} while (context->current_option == -1);
 
-			default:
-				break;
 
-			}
-		}
-
-		if (MouseLeftClicked()) {
-			// First we see if there was perhaps a click on one of the active scroll buttons
-			//
-			if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (widget_text_can_scroll_up(chat_log)) {
-					chat_log->scroll_offset--;
-				}
-			} else if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (widget_text_can_scroll_down(chat_log)) {
-					chat_log->scroll_offset++;
-				}
-			} else if (MouseCursorIsOnButton(SCROLL_DIALOG_MENU_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				widget_text_list_scroll_up(chat_selector);
-			} else if (MouseCursorIsOnButton(SCROLL_DIALOG_MENU_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				widget_text_list_scroll_down(chat_selector);
-			}
-		}
-
-		if (MouseCursorIsInRect(&(WIDGET(chat_selector)->rect), GetMousePos_x(), GetMousePos_y())) {
-			if (WIDGET(chat_selector)->handle_event(WIDGET(chat_selector), &event)) {
-				if (event.type == SDL_MOUSEBUTTONUP ||
-					 (event.type == SDL_KEYDOWN &&
-					   (event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == SDLK_SPACE))) {
-					ret = chat_selector->selected_entry;
-					goto out;
-				}
-			}
-		}
-	}
-
-	blit_mouse_cursor();
-	our_SDL_flip_wrapper();
- out:
 	game_status = old_game_status;
-	return ret;
-}
-
-/**
- * This function performs a menu for the player to select from, using the
- * keyboard or mouse wheel.
- */
-static int chat_do_menu_selection_filtered(struct chat_context *context)
-{
-	int menu_selection = chat_do_menu_selection(context);
-
-	if (menu_selection >= 0) {
-		return widget_text_list_get_data(chat_selector, menu_selection);
-	}
-
-	return (menu_selection);
 }
 
 /**
@@ -899,7 +832,7 @@ static void run_chat()
 		 * 1- Chat screen rendering, and user's interaction
 		 */
 
-		refresh_dialog_choices(current_chat_context);
+		fill_chat_selector(current_chat_context);
 		show_chat(current_chat_context);
 
 		if (current_chat_context->wait_user_click) {
@@ -961,7 +894,7 @@ static void run_chat()
 				// If no dialog is currently selected, let the user choose one of the
 				// active options.
 				if (current_chat_context->current_option == -1) {
-					current_chat_context->current_option = chat_do_menu_selection_filtered(current_chat_context);
+					chat_do_menu_selection(current_chat_context);
 				}
 
 				if ((current_chat_context->current_option >= MAX_DIALOGUE_OPTIONS_IN_ROSTER) || (current_chat_context->current_option < 0)) {

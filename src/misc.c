@@ -288,11 +288,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[ARMOUR_RECT_BUTTON] =
 	    {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {ARMOUR_RECT_X, ARMOUR_RECT_Y, ARMOUR_RECT_WIDTH, ARMOUR_RECT_HEIGHT}, FALSE},
 
-	[SCROLL_DIALOG_MENU_UP_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuUp.png", {235, (480 - 20 - 130 - 20 - 2), 160, 20}, TRUE},
-	[SCROLL_DIALOG_MENU_DOWN_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuDown.png", {235, (480 - 22), 160, 20}, TRUE},
-
 	[MORE_STR_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 53, STR_Y - 5, 38, 22}, FALSE},
 	[MORE_MAG_BUTTON] =
@@ -314,15 +309,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[DESCRIPTION_WINDOW_DOWN_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {607, 347, 26, 26}, TRUE},
 
 	[DROID_SHOW_EXIT_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {202, 311, 47, 47}, TRUE},
-
-	// These are the scrollbuttons for the chat protocal inside the
-	// chat window, like when talking to a character/bot.
-	//
-	[CHAT_LOG_SCROLL_UP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuUp.png", {342, 3, 160, 20}, TRUE},
-	[CHAT_LOG_SCROLL_DOWN_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuDown.png", {342, 272, 160, 20}, TRUE},
-	[CHAT_LOG_SCROLL_OFF_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuOff.png", {342, 3, 160, 20}, TRUE},
-	[CHAT_LOG_SCROLL_OFF2_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuOff.png", {342, 272, 160, 20}, TRUE},
 
 	[QUEST_BROWSER_ITEM_SHORT_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/quest_browser_item_short.png", {108, 86, 300, 26}, FALSE},
