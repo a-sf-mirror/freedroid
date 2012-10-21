@@ -24634,15 +24634,6 @@ it: n="Red Guard's Heavy Robe"  X=41.544319  Y=31.395071  AC=43  MDur=48  CDur=4
 it: n="Exterminator"  X=41.544319  Y=31.395071  MDur=43  CDur=16.000000  AClip=2  Multi=1 
 /piteminfolvl
 obstacleextensions
-idx=529 type=32 data={
-	question mark sign
-}
-idx=530 type=32 data={
-	exclamation mark sign
-}
-idx=531 type=32 data={
-	less than sign
-}
 idx=666 type=30 data={
 	24door1
 }
@@ -24669,6 +24660,15 @@ idx=688 type=30 data={
 }
 idx=692 type=30 data={
 	24randobst
+}
+idx=527 type=32 data={
+	question mark sign
+}
+idx=528 type=32 data={
+	exclamation mark sign
+}
+idx=529 type=32 data={
+	less than sign
 }
 /obstacleextensions
 wp
