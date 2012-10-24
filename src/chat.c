@@ -156,9 +156,9 @@ static struct chat_context *chat_create_context(enemy *partner, struct npc *npc,
 	// An init script on a subdialog does not really make sense, so it is just
 	// ignored.
 	// The startup script is run every time a dialog or a subdialog is open.
-	new_chat_context->state = RUN_INIT_SCRIPT;
+	new_chat_context->state = LOAD_INIT_SCRIPT;
 	if (npc->chat_character_initialized || is_subdialog) {
-		new_chat_context->state = RUN_STARTUP_SCRIPT;
+		new_chat_context->state = LOAD_STARTUP_SCRIPT;
 	}
 
 	// dialog_flags points to the npc chat_flags array, so that currently
@@ -389,12 +389,14 @@ static void display_dark_background(struct widget *w)
  * Return TRUE if we are waiting for the user to click, after a response was
  * added in the chat log.
  */
-static int waiting_user_click()
+static int waiting_user_interaction(struct chat_context *context)
 {
-	struct chat_context *context = chat_get_current_context();
-	if (!context)
-		return FALSE;
-	return context->wait_user_click;
+	int waiting = FALSE;
+
+	waiting = context->wait_user_click ||
+	          ((context->state == SELECT_NEXT_NODE) && (context->current_option == -1));
+
+	return waiting;
 }
 
 /*
@@ -462,7 +464,7 @@ struct widget_group *create_chat_dialog()
 	chat_selector = widget_text_list_create();
 	widget_set_rect(WIDGET(chat_selector), chat_selector_inner_rect.x, chat_selector_inner_rect.y, chat_selector_inner_rect.w, chat_selector_inner_rect.h);
 	chat_selector->process_entry = dialog_option_selected;
-	WIDGET(chat_selector)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, !waiting_user_click());
+	WIDGET(chat_selector)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, !chat_get_current_context()->wait_user_click);
 	widget_group_add(chat_menu, WIDGET(chat_selector));
 
 	// Droid portrait
@@ -551,7 +553,7 @@ struct widget_group *create_chat_dialog()
 	chat_wait = widget_group_create();
 	widget_set_rect(WIDGET(chat_wait), 0, 0, GameConfig.screen_width, GameConfig.screen_height);
 	WIDGET(chat_wait)->enabled = FALSE;
-	WIDGET(chat_wait)->update =  WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, waiting_user_click());
+	WIDGET(chat_wait)->update =  WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, chat_get_current_context()->wait_user_click);
 
 	struct widget_text* wait_text = widget_text_create();
 	widget_set_rect(WIDGET(wait_text), chat_selector_inner_rect.x, chat_selector_inner_rect.y,
@@ -571,57 +573,6 @@ struct widget_group *create_chat_dialog()
 	WIDGET(chat_menu)->enabled = FALSE;
 
 	return chat_menu;
-}
-
-/**
- * Wait for a mouse click before continuing.
- */
-static void wait_for_click(struct chat_context *context)
-{
-	SDL_Event event;
-
-	// Discard all pending SDL events
-	while (SDL_PollEvent(&event));
-
-	// Loop while we have to wait for a user click
-
-	do {
-
-		show_chat(context);
-		blit_mouse_cursor();
-		our_SDL_flip_wrapper();
-
-		SDL_WaitEvent(&event);
-
-		// Special events handling
-
-		if (event.type == SDL_QUIT) {
-			Terminate(EXIT_SUCCESS, TRUE);
-		}
-
-		if (event.type == SDL_KEYDOWN) {
-			switch (event.key.keysym.sym) {
-			case SDLK_SPACE:
-			case SDLK_RETURN:
-			case SDLK_ESCAPE:
-				// Force to end waiting
-				stop_wait_user_click(NULL);
-				return;
-			default:
-				break;
-			}
-		}
-
-		// Push the event to the chat screen
-		//
-		// Note: we know that the 'chat_wait' widget_group fills the screen, so we do
-		// not need to check if the cursor is inside the widget.
-
-		WIDGET(chat_wait)->handle_event(WIDGET(chat_wait), &event);
-
-	} while (waiting_user_click());
-
-	return;
 }
 
 void chat_add_response(const char *response)
@@ -688,73 +639,13 @@ int stack_dialog(enemy *partner)
 }
 
 /**
- *
- * This function performs a menu for the player to select from, using the
- * keyboard or mouse wheel.
- *
- * The rest of the menu is made particularly unclear by the fact that there
- * can be some multi-line options too and also there is scrolling up and
- * down possible, when there are more menu options than fit onto one
- * dialog options selection window for the player to click from.
- *
- */
-static void chat_do_menu_selection(struct chat_context *context)
-{
-	SDL_Event event;
-	int old_game_status = game_status;
-	struct widget *ui = WIDGET(chat_menu);
-
-	game_status = INSIDE_MENU;
-
-	// Discard all pending SDL events
-	while (SDL_PollEvent(&event));
-
-	// Loop until a dialog option is selected
-
-	do {
-
-		show_chat(context);
-		blit_mouse_cursor();
-		our_SDL_flip_wrapper();
-
-		SDL_WaitEvent(&event);
-
-		// Special events handling
-
-		if (event.type == SDL_QUIT)
-			Terminate(EXIT_SUCCESS, TRUE);
-
-		if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE) {
-			if (GameConfig.enable_cheatkeys) {
-				break;
-			}
-		}
-
-		// Push the event to the chat screen
-
-		WIDGET(ui)->handle_event(WIDGET(ui), &event);
-
-	} while (context->current_option == -1);
-
-
-	game_status = old_game_status;
-}
-
-/**
  * Process the chat option selected by the user.
  *
- * - Echo the option text of the chosen option, unless NO_TEXT is set.
- * - Run the associated LUA code.
+ * Echo the option text of the chosen option, unless NO_TEXT is set.
  */
 static void process_chat_option(struct chat_context *context)
 {
 	int current_selection = context->current_option;
-
-	// Reset chat control variables for this option, so the user will have to
-	// select a new option, unless the lua code ends the dialog or
-	// auto-activates an other option.
-	context->end_dialog = 0;
-	context->current_option = -1;
 
 	// Echo option text
 	if (!context->dialog_options[current_selection].no_text) {
@@ -762,10 +653,6 @@ static void process_chat_option(struct chat_context *context)
 		chat_add_response(L_(context->dialog_options[current_selection].option_text));
 		chat_add_response("\n");
 	}
-
-	// Run LUA associated with this selection
-	if (context->dialog_options[current_selection].lua_code && strlen(context->dialog_options[current_selection].lua_code))
-		context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, context->dialog_options[current_selection].lua_code);
 }
 
 /**
@@ -778,21 +665,26 @@ static void process_chat_option(struct chat_context *context)
  */
 static void run_chat()
 {
+#	define LOAD_LUA_SCRIPT(script) \
+	    if (script && strlen(script)) \
+	    	current_chat_context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, (script))
+
 	struct chat_context *current_chat_context = NULL;
+	struct widget *chat_ui = WIDGET(chat_menu);
 
 	Activate_Conservative_Frame_Computation();
 
 	// Pump all remaining SDL events
-	SDL_Event evt;
-	while (SDL_PollEvent(&evt));
+	SDL_Event event;
+	while (SDL_PollEvent(&event));
 
 	// Dialog engine main code.
 	//
 	// A dialog flow is decomposed into a sequence of several steps:
-	// 1 - run the initialization lua code (only once per game)
-	// 2 - run the startup lua code (each time a dialog is launched)
-	// 3 - interaction step: let the user chose a dialog option, and run the
-	//     associated lua script
+	// 1 - load and run the initialization lua code (only once per game)
+	// 2 - load and run the startup lua code (each time a dialog is launched)
+	// 3 - interaction step: let the user chose a dialog option, then load and
+	//     run the associated lua script
 	// 4 - loop on the next interaction step, unless the dialog is ended.
 	//
 	// In some cases, a lua script needs a user's interaction (wait for a click
@@ -807,7 +699,6 @@ static void run_chat()
 	// (lua start_dialog()), the current lua script also has to be interrupted,
 	// the new dialog has to be extracted from the stack and run, and then the
 	// previous dialog script has to be resumed.
-	// at each loop step.
 	//
 	// All of these apparently intricate loops are implemented with one single
 	// loop, taking care of the actual state of the chat, restarting the loop
@@ -816,108 +707,137 @@ static void run_chat()
 	// while (there is something to run)
 	//   get chat context from top of stack
 	//   if (a user interaction is waited)
-	//     wait user interaction
-	//   else if (a lua co-routine is started)
-	//     resume the lua co-routine
-	//   else
+	//     check user interaction
+	//   if (a user interaction is no more waited) /* do not use an 'else' here ! */
 	//     execute dialog FSM step
 	//   if (current dialog is ended)
 	//     pop the chat context stack
 
-	// Implement the former algorithm, but using 'continue' statements
-	// instead of 'else' clauses.
 	while ((current_chat_context = chat_get_current_context())) {
 
 		/*
-		 * 1- Chat screen rendering, and user's interaction
+		 * 1- Chat screen rendering
 		 */
 
-		fill_chat_selector(current_chat_context);
-		show_chat(current_chat_context);
+		*droid_portrait = get_droid_portrait_image(current_chat_context->partner->type);
+		clear_screen();
+		chat_ui->update_tree(chat_ui);
 
-		if (current_chat_context->wait_user_click) {
-			wait_for_click(current_chat_context);
-			// restart the loop, to re-render the chat screen
-			continue;
-		}
+		chat_ui->display(chat_ui);
+		blit_mouse_cursor();
+		our_SDL_flip_wrapper();
 
 		/*
-		 * 2- Resume the current lua coroutine, if any, until it ends.
+		 * 2- User's interaction
 		 */
 
-		if (current_chat_context->lua_coroutine) {
-			int rtn = resume_lua_coroutine(current_chat_context->lua_coroutine);
+		if (waiting_user_interaction(current_chat_context)) {
 
-			// If rtn is TRUE, the lua script reached its end, so we mark it
-			// as such.
-			if (rtn) {
-				current_chat_context->lua_coroutine = NULL;
-				// end dialog, if asked by the lua script
-				if (current_chat_context->end_dialog)
-					goto wait_click_and_out;
+			SDL_WaitEvent(&event);
+
+			// Specific events handling
+			if (event.type == SDL_QUIT) {
+				Terminate(EXIT_SUCCESS, TRUE);
+			}
+			if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE) {
+				if (GameConfig.enable_cheatkeys)
+					goto end_current_dialog;
+			}
+			if (current_chat_context->wait_user_click && event.type == SDL_KEYDOWN) {
+				switch (event.key.keysym.sym) {
+				case SDLK_SPACE:
+				case SDLK_RETURN:
+					// Force to end waiting
+					stop_wait_user_click(NULL);
+					break;
+				default:
+					break;
+				}
 			}
 
-			// restart the loop, to handle user interaction, if needed, and
-			// resume the co-routine, if needed.
-			continue;
+			// Push the event to the chat screen.
+			// Note: we know that the 'chat_menu' widget_group fills the
+			// screen, so we do not need to check if the cursor is inside the widget.
+			chat_ui->handle_event(chat_ui, &event);
 		}
 
 		/*
 		 * 3- Execute current state of the chat FSM
+		 * (Note: do not replace the test with an 'else')
 		 */
+		if (!waiting_user_interaction(current_chat_context)) {
 
-		switch (current_chat_context->state) {
-			case RUN_INIT_SCRIPT:
-			{
-				if (!current_chat_context->is_subdialog)
-					widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
-
-				if (current_chat_context->initialization_code && strlen(current_chat_context->initialization_code)) {
-					current_chat_context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, current_chat_context->initialization_code);
+			switch (current_chat_context->state) {
+				case LOAD_INIT_SCRIPT:
+				{
+					if (!current_chat_context->is_subdialog)
+						widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
+					LOAD_LUA_SCRIPT(current_chat_context->initialization_code);
+					current_chat_context->state = RUN_INIT_SCRIPT;
+					break;
 				}
-				current_chat_context->state = RUN_STARTUP_SCRIPT; // next step once the script ends
-				break;
+				case LOAD_STARTUP_SCRIPT:
+				{
+					if (!current_chat_context->is_subdialog && current_chat_context->npc->chat_character_initialized)
+						widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
+					LOAD_LUA_SCRIPT(current_chat_context->startup_code);
+					current_chat_context->state = RUN_STARTUP_SCRIPT;
+					break;
+				}
+				case SELECT_NEXT_NODE:
+				{
+					// Output the 'partner' message, and load the node script into
+					// a lua coroutine.
+					// Also, reset chat control variables, so the user will have to
+					// select a new option, unless the lua code ends the dialog
+					// or auto-activates an other option.
+					process_chat_option(current_chat_context);
+					LOAD_LUA_SCRIPT(current_chat_context->dialog_options[current_chat_context->current_option].lua_code);
+					current_chat_context->end_dialog = 0;
+					current_chat_context->current_option = -1;
+					current_chat_context->state = RUN_NODE_SCRIPT;
+					break;
+				}
+				case RUN_INIT_SCRIPT:
+				case RUN_STARTUP_SCRIPT:
+				case RUN_NODE_SCRIPT:
+				{
+					if (current_chat_context->lua_coroutine) {
+						if (resume_lua_coroutine(current_chat_context->lua_coroutine)) {
+							// the lua script reached its end, remove its reference
+							current_chat_context->lua_coroutine = NULL;
+							// end dialog, if asked by the lua script
+							if (current_chat_context->end_dialog)
+								goto end_current_dialog;
+						}
+					}
+
+					// next step to run once the script has ended
+					// (note: do not replace the test with an 'else')
+					if (!current_chat_context->lua_coroutine) {
+						if (current_chat_context->state == RUN_INIT_SCRIPT)
+							current_chat_context->state = LOAD_STARTUP_SCRIPT;
+						else
+							current_chat_context->state = SELECT_NEXT_NODE;
+					}
+
+					// The script can have changed the list of active dialog options,
+					// so we have to refresh the chat_selector content.
+					fill_chat_selector(current_chat_context);
+					break;
+				}
+				default:
+					break;
 			}
-			case RUN_STARTUP_SCRIPT:
-			{
-				if (!current_chat_context->is_subdialog && current_chat_context->npc->chat_character_initialized)
-					widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
 
-				if (current_chat_context->startup_code && strlen(current_chat_context->startup_code)) {
-					current_chat_context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, current_chat_context->startup_code);
-				}
-				current_chat_context->state = SELECT_NEXT_NODE; // next step once the script ends
-				break;
-			}
-			case SELECT_NEXT_NODE:
-			{
-				// If no dialog is currently selected, let the user choose one of the
-				// active options.
-				if (current_chat_context->current_option == -1) {
-					chat_do_menu_selection(current_chat_context);
-				}
-
-				if ((current_chat_context->current_option >= MAX_DIALOGUE_OPTIONS_IN_ROSTER) || (current_chat_context->current_option < 0)) {
-					DebugPrintf(0, "%s: Error: chat_control current_node %i out of range!\n", __FUNCTION__, current_chat_context->current_option);
-					goto wait_click_and_out;
-				}
-
-				// Output the 'partner' message, and load the node script into
-				// a lua coroutine.
-				process_chat_option(current_chat_context);
-
-				break;
-			}
-			default:
-				break;
 		}
 
-		// restart the loop, to handle user interaction, if needed, resume a
-		// lua co-routine, if needed, and stepping the FSM.
+		// restart the loop, to handle user interaction or stepping the FSM.
 		continue;
 
-wait_click_and_out:
-		while (EscapePressed() || MouseLeftPressed() || SpacePressed());
+end_current_dialog:
+		// Pump all remaining SDL events
+		while (SDL_PollEvent(&event));
 
 		// The dialog has ended. Mark the npc as already initialized, to avoid
 		// its initialization script to be run again the next time the dialog
@@ -927,6 +847,7 @@ wait_click_and_out:
 
 		chat_pop_context();
 	}
+#	undef LOAD_LUA_SCRIPT
 }
 
 /**

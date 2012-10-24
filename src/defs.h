@@ -1534,9 +1534,12 @@ enum level_flags {
 
 // Current step of the dialog Finite state Machine
 enum chat_context_state {
-	RUN_INIT_SCRIPT = 0,
-	RUN_STARTUP_SCRIPT = 1,
-	SELECT_NEXT_NODE = 2
+	LOAD_INIT_SCRIPT = 0,
+	RUN_INIT_SCRIPT = 1,
+	LOAD_STARTUP_SCRIPT = 2,
+	RUN_STARTUP_SCRIPT = 3,
+	SELECT_NEXT_NODE = 4,
+	RUN_NODE_SCRIPT = 5
 };
 
 #endif
