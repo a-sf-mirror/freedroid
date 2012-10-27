@@ -41,13 +41,16 @@
  * \brief Structure type used for storing a text entry.
  */
 struct text_list_entry {
-	char *text;     /**< Pointer to the text. Must be already allocated. No ownership is transfered. */
-	int data;       /**< An integer user data (example: Index of this text entry in an other list). */
-	SDL_Rect rect;  /**< Rectangle used by the text entry. */
+	char *text;          /**< Pointer to the text. Must be already allocated. No ownership is transfered. */
+	int data;            /**< An integer user data (example: Index of this text entry in an other list). */
+	SDL_Rect rect;       /**< Outer rectangle used by the text entry. */
+	SDL_Rect text_rect;  /**< Inner rectangle used by the text entry. */
 };
 
 static void text_list_selected_up(struct widget_text_list *);
 static void text_list_selected_down(struct widget_text_list *);
+
+#define WTL_TEXT_PADDING 5
 
 /**
  * \brief Compute the visible entries.
@@ -71,6 +74,10 @@ static void compute_visible_lines(struct widget_text_list *wl)
 	SDL_Rect rect = WIDGET(wl)->rect;
 	rect.h = 0;
 
+	SDL_Rect text_rect = rect;
+	text_rect.x += WTL_TEXT_PADDING;
+	text_rect.w -= 2*WTL_TEXT_PADDING;
+
 	// Reset the last visible entry index.
 	wl->last_visible_entry = -1;
 	wl->all_entries_visible = TRUE;
@@ -78,7 +85,7 @@ static void compute_visible_lines(struct widget_text_list *wl)
 	int i;
 	int line_count = 0;
 	for (i = wl->first_visible_entry; i < wl->entries.size; i++) {
-		int lines_needed = get_lines_needed(list_entries[i].text, rect, 1.0);
+		int lines_needed = get_lines_needed(list_entries[i].text, text_rect, 1.0);
 
 		// Check if there's enough space left for a new entry to be displayed.
 		if (line_count + lines_needed > visible_lines) {
@@ -89,9 +96,10 @@ static void compute_visible_lines(struct widget_text_list *wl)
 		wl->last_visible_entry = i;
 
 		// Update each visible option's rectangle.
-		rect.y += rect.h;
-		rect.h = lines_needed * font_height;
+		text_rect.y = rect.y += rect.h;
+		text_rect.h = rect.h = lines_needed * font_height;
 		list_entries[i].rect = rect;
+		list_entries[i].text_rect = text_rect;
 	}
 }
 
@@ -151,7 +159,7 @@ static void text_list_display(struct widget *w)
 		if (wl->selected_entry == i)
 			HighlightRectangle(Screen, elt->rect);
 
-		display_text_using_line_height(elt->text, elt->rect.x, elt->rect.y, &elt->rect, 1.0);
+		display_text_using_line_height(elt->text, elt->text_rect.x, elt->text_rect.y, &elt->text_rect, 1.0);
 	}
 }
 
