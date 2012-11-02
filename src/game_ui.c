@@ -670,8 +670,8 @@ struct widget_group *get_game_ui()
 	widget_group_add(game_widget_group, WIDGET(quest_browser));
 
 	// Create the chat dialog.
-	struct widget_group *chat_dialog = create_chat_dialog();
-	widget_group_add(game_widget_group, WIDGET(chat_dialog));
+	// TODO: to be inserted in the global UI tree when everything is fully widgetized.
+	create_chat_dialog();
 
 	return game_widget_group;
 }
