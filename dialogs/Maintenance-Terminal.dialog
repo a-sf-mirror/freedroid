@@ -29,6 +29,8 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
+	Maintenance_Terminal_year = os.date("%Y") + 45 -- current year + 45
+	Maintenance_Terminal_date = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
 	Maintenance_Terminal_prompt = "dixon@maintenance: ~ # "
 
 	cli_says(_"Login : ", "NO_WAIT")
@@ -36,7 +38,12 @@ Beginning of new chat dialog for character="XXXXX"
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says("*******", "NO_WAIT")
 	npc_says(_"Hello, Dave.")
-	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
+	if (Maintenance_Terminal_date == nil) then
+		npc_says(_"First login from dev/ttySO on %s %d", Maintenance_Terminal_date_1, Maintenance_Terminal_year,  "NO_WAIT")
+	else
+		npc_says(_"Last login from dev/ttyS0 on %s %d", Maintenance_Terminal_date, Maintenance_Terminal_year, "NO_WAIT")
+	end
+	Maintenance_Terminal_date = Maintenance_Terminal_date_1
 	cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 	show(0, 99)
 </LuaCode>

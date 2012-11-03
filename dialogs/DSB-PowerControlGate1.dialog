@@ -29,6 +29,8 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
+	DSB_PowerControlGate1_year = os.date("%Y") + 45 -- current year + 45
+	DSB_PowerControlGate1_date_1 = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
 	DSB_PowerControlGate1_prompt = "guest@gate1.pc.dsb.ms: ~ #"
 
 	cli_says(_"Login : ", "NO_WAIT")
@@ -37,7 +39,13 @@ Beginning of new chat dialog for character="XXXXX"
 	tux_says(_"*******", "NO_WAIT")
 	cli_says(_"Login failed. Entering as Guest")
 	npc_says(_" ", "NO_WAIT")
-	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
+	if (DSB_PowerControlGate1_date == nil) then
+		npc_says(_"First login from dev/ttySO on %s %d", DSB_PowerControlGate1_date_1, DSB_PowerControlGate1_year,  "NO_WAIT")
+	else
+		npc_says(_"Last login from dev/ttyS0 on %s %d", DSB_PowerControlGate1_date, DSB_PowerControlGate1_year, "NO_WAIT")
+	end
+	DSB_PowerControlGate1_date = DSB_PowerControlGate1_date_1
+
 	cli_says(DSB_PowerControlGate1_prompt, "NO_WAIT")
 	if (cmp_obstacle_state("DSB-PCGate1", "closed")) then
 		show(0)
