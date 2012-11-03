@@ -28,6 +28,11 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	npc_says(_"Hello.")
+	if (tux_has_joined_guard) then
+		npc_says(_"Red Guard membership: [b]true[/b]")
+	else
+		npc_says(_"Red Guard membership: [b]false[/b]")
+	end
 	npc_says(_"Here you'll be able to access all dialogs that are available ingame.")
 	npc_says(_"Take care, this may be a little buggy.")
 	npc_says(_"Don't do this if you are just normally playing.")
