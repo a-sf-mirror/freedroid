@@ -49,7 +49,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 ---------------------------------------------------------------------
 
-Nr=0 Text=_"about"
+Nr=0 Text=_"About"
 <LuaCode>
 	npc_says(_"Cryonic Solutions is a full service cryonic company.", "NO_WAIT")
 	npc_says(_"We provide not only full cryostasis, but post-stasis reintegration into the world of tomorrow!")
@@ -60,7 +60,7 @@ Nr=0 Text=_"about"
 </LuaCode>
 ---------------------------------------------------------------------
 
-Nr=1 Text=_"appointments and visiting hours"
+Nr=1 Text=_"Appointments and visiting hours"
 <LuaCode>
 	npc_says(_"Cryonic Solutions operates 24 hours a day every day of the year.")
 	npc_says(_"However for the safety of our clients, visiting hours are restricted.", "NO_WAIT")
@@ -71,7 +71,7 @@ Nr=1 Text=_"appointments and visiting hours"
 </LuaCode>
 ---------------------------------------------------------------------
 
-Nr=2 Text=_"pricing"
+Nr=2 Text=_"Pricing"
 <LuaCode>
 	npc_says(_"Seeing the distant future is priceless.")
 	npc_says(_"But we here at Cryonic Solutions understand that you and your loved ones have a budget. So we offer a wide range of products to make your trip to the future affordable.")
@@ -81,7 +81,7 @@ Nr=2 Text=_"pricing"
 </LuaCode>
 ---------------------------------------------------------------------
 
-Nr=3 Text=_"advantages"
+Nr=3 Text=_"Advantages"
 <LuaCode>
 	npc_says(_"Are you looking to experience a whole new reality?")
 	npc_says(_"Or are you interested in finding out what happens?")
@@ -105,7 +105,7 @@ Nr=50 Text="*#06#"
 </LuaCode>
 ---------------------------------------------------------------------
 
-Nr=51 Text=_"guest mode"
+Nr=51 Text=_"Guest mode"
 <LuaCode>
 	Cryo_term_unlocked = false
 	npc_says(_"Entering user mode...")
@@ -115,7 +115,7 @@ Nr=51 Text=_"guest mode"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=60 Text=_"gate status"
+Nr=60 Text=_"Gate status"
 <LuaCode>
 	if (cmp_obstacle_state("CryoOuterGate", "closed")) then
 		npc_says(_"Cryo Complex Gates status: CLOSED", "NO_WAIT")
@@ -130,7 +130,7 @@ Nr=60 Text=_"gate status"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=70 Text=_"open gates"
+Nr=70 Text=_"Open gates"
 <LuaCode>
 	npc_says(_"Access granted. Opening gates ...")
 	npc_says(_"Cryo Complex Gates status: OPEN")
@@ -141,7 +141,7 @@ Nr=70 Text=_"open gates"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=80 Text=_"close gates"
+Nr=80 Text=_"Close gates"
 <LuaCode>
 	npc_says(_"Access granted. Closing gates ...")
 	npc_says(_"Cryo Complex Gates status: CLOSED")
@@ -152,7 +152,7 @@ Nr=80 Text=_"close gates"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=99 Text=_"leave"
+Nr=99 Text=_"Leave"
 <LuaCode>
 	npc_says(_"Exiting Session")
 	end_dialog()
