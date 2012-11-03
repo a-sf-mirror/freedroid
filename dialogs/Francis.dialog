@@ -102,7 +102,7 @@ Nr=1 Text=_"No, not yet."
 <LuaCode>
 	npc_says(_"Hurry! There's no time...")
 	set_bot_destination("FrancisSafe")
-	hide(1, 2)
+	hide(1, 2, 3)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
