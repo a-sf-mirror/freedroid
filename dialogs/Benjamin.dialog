@@ -43,7 +43,7 @@ Beginning of new chat dialog for character="XXXXX"
 Nr=0 Text=_"Hello!"
 <LuaCode>
 	npc_says(_"Ah, so you are the new member. Welcome. My name is Benjamin, and I take care of our ranged weaponry here in the citadel.")
-	set_bot_name(_"Benjamin -- Gunsmith")
+	set_bot_name(_"Benjamin - Gunsmith")
 	hide(0) show(1, 20, 30)
 </LuaCode>
 ----------------------------------------------------------------------

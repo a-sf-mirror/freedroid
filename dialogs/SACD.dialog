@@ -96,7 +96,7 @@ Nr=3 Text=_"/usr/bin/hermodoors --open"
 	if bot_exists("SADD") then
 		npc_says(_"ERROR: SADD droids now set to search-and-destroy mode.")
 		set_npc_faction("ms", "SADD")
-		set_bot_name(_"SADD -- Exterminate Mode", "SADD")
+		set_bot_name(_"SADD - Exterminate Mode", "SADD")
 		set_bot_destination("SADD-MoveTarget", "SADD")
 	end
 	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")

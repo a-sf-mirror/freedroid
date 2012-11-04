@@ -96,7 +96,7 @@ Nr=0 Text=_"What's wrong? You seem to be in pretty good shape for a dead man."
 <LuaCode>
 	npc_says(_"Yeah. I'm the strongest man in all the world. That's 'cause I took ALL of the strength pills.")
 	npc_says(_"And yet, I might be dead soon. The doc warned me, but I didn't listen. GRAH!")
-	set_bot_name(_"Bender -- The strongest one")
+	set_bot_name(_"Bender - The strongest one")
 	show(1, 2)
 	topic("Sick Bender")
 </LuaCode>
@@ -299,7 +299,7 @@ Nr=50 Text=_"Yeah, it was a totally idiotic idea to take those pills." Topic="Si
 	npc_says(_"No one says I'm stupid! I'm NOT STUPID!")
 	npc_says(_"I'LL BEAT YOU TO SPLINTERS!")
 	npc_says(_"I WILL KILL YOU SO HARD, YOU WILL DIE TO DEATH YOU FAT DUCK!")
-	npc_faction("crazy", _"Bender -- Homicidal")
+	npc_faction("crazy", _"Bender - Homicidal")
 	end_dialog()
 	hide(50)
 </LuaCode>

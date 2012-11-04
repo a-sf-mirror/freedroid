@@ -73,7 +73,7 @@ Nr=0 Text=_"Hi! I'm new here."
 <LuaCode>
 	npc_says(_"Hello. I'm Michelangelo. I haven't been here for long either.")
 	npc_says(_"I wish the bots had just killed me, but I got 'lucky' and ended up in this hellhole.")
-	set_bot_name(_"Michelangelo -- Chef")
+	set_bot_name(_"Michelangelo - Chef")
 	hide(0) show(10, 11)
 </LuaCode>
 ----------------------------------------------------------------------

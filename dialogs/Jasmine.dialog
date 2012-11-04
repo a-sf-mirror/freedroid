@@ -56,7 +56,7 @@ Nr=2 Text=_"What are you doing in Kevin's place?"
 <LuaCode>
 	npc_says(_"I live with him, stupid.")
 	npc_says(_"I like him. He... He is very much like me.")
-	set_bot_name(_"Jasmine --- Girlfriend of a true Hacker")
+	set_bot_name(_"Jasmine - Girlfriend of a true Hacker")
 	hide(2)
 </LuaCode>
 ----------------------------------------------------------------------

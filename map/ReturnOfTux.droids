@@ -2,12 +2,12 @@
 Level=0
 
 T=FEM: PosX=63 PosY=83 Faction="civilian" UseDialog="Iris" ShortLabel="Hot Girl" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=WOR: PosX=63 PosY=44 Faction="resistance" UseDialog="Peter" ShortLabel="Peter -- Imprisoned Rebel" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=WOR: PosX=63 PosY=44 Faction="resistance" UseDialog="Peter" ShortLabel="Peter - Imprisoned Rebel" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=FSC: PosX=74 PosY=21 Faction="civilian" UseDialog="Tamara" ShortLabel="Librarian" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=BAR: PosX=36 PosY=19 Faction="civilian" UseDialog="Ewald" ShortLabel="Barkeeper" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=GUA: PosX=39 PosY=51 Faction="redguard" UseDialog="Tybalt" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=GUA: PosX=38 PosY=45 Faction="redguard" UseDialog="Lukas" ShortLabel="Lukas -- Head of the Armory" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=GUA: PosX=33 PosY=48 Faction="redguard" UseDialog="Spencer" ShortLabel="Spencer -- Leader of the Red Guard" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=38 PosY=45 Faction="redguard" UseDialog="Lukas" ShortLabel="Lukas - Head of the Armory" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=33 PosY=48 Faction="redguard" UseDialog="Spencer" ShortLabel="Spencer - Leader of the Red Guard" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=GUA: PosX=19 PosY=53 Faction="redguard" UseDialog="Butch" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=WOR: PosX=75 PosY=80 Faction="civilian" UseDialog="Bruce" ShortLabel="Mine Worker" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=GUA: PosX=7 PosY=33 Faction="redguard" UseDialog="Pendragon" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
@@ -17,16 +17,16 @@ T=COO: PosX=36 PosY=15 Faction="civilian" UseDialog="Michelangelo" ShortLabel="C
 T=DIX: PosX=25 PosY=73 Faction="redguard" UseDialog="Dixon" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=GUA: PosX=38 PosY=60 Faction="redguard" UseDialog="Benjamin" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=PRO: PosX=53 PosY=54 Faction="civilian" UseDialog="Richard" ShortLabel="*nix Admin" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=614: PosX=50 PosY=24 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- Patrolling Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=614: PosX=34 PosY=67 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- Patrolling Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=614: PosX=80 PosY=37 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- East Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=614: PosX=22 PosY=79 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- South Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=614: PosX=18 PosY=79 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- South Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=614: PosX=22 PosY=9 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- North Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=50 PosY=24 Faction="redguard" UseDialog="Town-614" ShortLabel="614 - Patrolling Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=34 PosY=67 Faction="redguard" UseDialog="Town-614" ShortLabel="614 - Patrolling Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=80 PosY=37 Faction="redguard" UseDialog="Town-614" ShortLabel="614 - East Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=22 PosY=79 Faction="redguard" UseDialog="Town-614" ShortLabel="614 - South Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=18 PosY=79 Faction="redguard" UseDialog="Town-614" ShortLabel="614 - South Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=22 PosY=9 Faction="redguard" UseDialog="Town-614" ShortLabel="614 - North Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=FSC: PosX=8 PosY=7 Faction="civilian" UseDialog="Sorenson" ShortLabel="COBAL Programmer" Marker=9998 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=MUM: PosX=35 PosY=7 Faction="civilian" UseDialog="Stone" ShortLabel="Shopowner" Marker=9999 RushTux=0 Fixed=0 DropItemName="Two Barrel shotgun" MaxDistanceToHome=0
 T=DOC: PosX=18 PosY=27 Faction="civilian" UseDialog="DocMoore" ShortLabel="Medic" Marker=9999 RushTux=0 Fixed=0 DropItemName="Laser Scalpel" MaxDistanceToHome=0
-T=PRO: PosX=49 PosY=17 Faction="civilian" UseDialog="Chandra" ShortLabel="Chandra -- Town Sage" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=PRO: PosX=49 PosY=17 Faction="civilian" UseDialog="Chandra" ShortLabel="Chandra - Town Sage" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=GUA: PosX=23 PosY=29 Faction="redguard" UseDialog="Bender" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="Elbow Grease Can" MaxDistanceToHome=0
 T=GUA: PosX=21 PosY=18 Faction="redguard" UseDialog="Town-TeleporterGuard" ShortLabel="Town Teleporter Guard" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=GUA: PosX=22 PosY=13 Faction="redguard" UseDialog="Town-TuxGuard" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0

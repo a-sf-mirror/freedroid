@@ -47,7 +47,7 @@ Nr=0 Text=_"Hi! I'm new here."
 	npc_says(_"I already saw you coming. Due to my mapping device! It's great stuff!")
 	npc_says(_"And as a special favour, I'll sell you a mapping device for half price!")
 	npc_says(_"What a GREAT offer! You're so lucky!")
-	set_bot_name(_"Skippy -- Map-Maker Maker")
+	set_bot_name(_"Skippy - Map-Maker Maker")
 	hide(0) show(1, 2, 3, 10, 20)
 </LuaCode>
 ----------------------------------------------------------------------

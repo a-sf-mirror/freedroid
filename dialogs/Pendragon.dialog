@@ -114,7 +114,7 @@ Nr=2 Text=_"Do you have a name?"
 	npc_says(_"I go by Pendragon, because I can pull a knife from thin air.")
 	npc_says(_"And you?")
 	tux_says(_"%s, because it is my name?", get_player_name())
-	set_bot_name(_"Pendragon -- Fighter")
+	set_bot_name(_"Pendragon - Fighter")
 	hide(2)
 </LuaCode>
 ----------------------------------------------------------------------

@@ -59,7 +59,7 @@ Nr=2 Text=_"Don't shoot! I come in peace."
 Nr=3 Text=_"I saw this building as I was walking by, and I decided to take a look inside."
 <LuaCode>
 	npc_says(_"[b]Your reason is curiosity. Master Kevin likes curious people.[/b]")
-	set_bot_name(_"614 -- Kevin's Guard")
+	set_bot_name(_"614 - Kevin's Guard")
 	npc_says(_"[b]You may pass.[/b]")
 	hide(1, 3, 17) show(4)
 </LuaCode>
@@ -90,7 +90,7 @@ Nr=6 Text=_"The people from the uhh... town want me to have a word with him. Yea
 Nr=7 Text=_"I have some very valuable information. Your master might be interested in it."
 <LuaCode>
 	npc_says(_"[b]Master Kevin will be pleased. You may pass.[/b]")
-	set_bot_name(_"614 -- Kevin's Guard")
+	set_bot_name(_"614 - Kevin's Guard")
 	npc_says(_"[b]Door opening sequence initiated.[/b]")
 	hide(5, 6, 7, 12, 13, 14, 18, 19, 99) show(4)
 </LuaCode>

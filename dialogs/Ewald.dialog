@@ -53,7 +53,7 @@ Nr=0 Text=_"Hi. You look really happy."
 	npc_says(_"I used to do a lot of drugs, and I destroyed my brain.")
 	npc_says(_"I'm not too smart now, but I'm very happy all the time!")
 	npc_says(_"Want something to drink?")
-	set_bot_name(_"Ewald -- Barkeeper")
+	set_bot_name(_"Ewald - Barkeeper")
 	hide(0) show(1, 2, 13)
 </LuaCode>
 ----------------------------------------------------------------------

@@ -40,8 +40,8 @@ Nr=0 Text=_"Hi! I'm new here. "
 <LuaCode>
 	npc_says(_"Hello. We are the Fleischer brothers.") -- Fleischer is a name, but also means "butcher"
 	npc_says(_"I am Engel. He is Geist, and he does not know the language.") -- Engel = Angle, Geist = Ghost or Spirit
-	set_bot_name(_"Engel -- Hunter")
-	set_bot_name(_"Geist -- Hunter", "Geist")
+	set_bot_name(_"Engel - Hunter")
+	set_bot_name(_"Geist - Hunter", "Geist")
 	hide(0) show(1)
 </LuaCode>
 ----------------------------------------------------------------------

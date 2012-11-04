@@ -88,7 +88,7 @@ Nr=12 Text=_"Einstein playing dice with a cat?"
 	npc_says(_"The cat would eat the dice.")
 	tux_says(_"So, no dice?")
 	npc_says(_"Yeah. If you want to play dice you should talk to the bartender, Ewald.")
-	set_bot_name(_"Ewald -- Barkeeper", "Ewald")
+	set_bot_name(_"Ewald - Barkeeper", "Ewald")
 	hide(12)
 </LuaCode>
 ----------------------------------------------------------------------

@@ -94,7 +94,7 @@ Nr=3 Text=_"BANZAI! DIE DIE DIE!"
 Nr=4 Text=_"And who are you?"
 <LuaCode>
 	npc_says(_"Butch... The arena master.")
-	set_bot_name(_"Butch -- Arena Master")
+	set_bot_name(_"Butch - Arena Master")
 	hide(1, 4) show(5)
 </LuaCode>
 ----------------------------------------------------------------------

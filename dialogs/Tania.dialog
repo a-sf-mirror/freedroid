@@ -37,7 +37,7 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"You just killed him!")
 		npc_says(_"How could you?")
 		npc_says(_"You murderer!")
-		npc_faction("crazy", _"Tania -- Avenging Koan")
+		npc_faction("crazy", _"Tania - Avenging Koan")
 		end_dialog()
 	end
 

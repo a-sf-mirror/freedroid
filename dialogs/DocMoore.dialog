@@ -104,7 +104,7 @@ Nr=0 Text=_"Hello!"
 	if (has_quest("Bender's problem")) then
 		show(2)
 	end
-	set_bot_name(_"Doc Moore -- Medic")
+	set_bot_name(_"Doc Moore - Medic")
 	hide(0) show(1, 3, 10)
 </LuaCode>
 ----------------------------------------------------------------------

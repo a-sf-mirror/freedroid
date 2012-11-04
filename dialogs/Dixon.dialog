@@ -52,7 +52,7 @@ Beginning of new chat dialog for character="XXXXX"
 <FirstTime LuaCode>
 	Maintenance_Terminal_accessgate_nope = "somevalue"
 	Dixon_mood = 0
-	set_bot_name(_"Dixon -- Mechanic")
+	set_bot_name(_"Dixon - Mechanic")
 	tux_says(_"Hi! I'm new here.")
 	npc_says(_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division.")
 	tux_says(_"I'm %s, a Linarian.", get_player_name())
@@ -72,7 +72,7 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"LOST.")
 		npc_says(_"FORGET MY LIFELONG PACIFISM. I WILL KILL YOU!")
 		npc_says(_"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!")
-		npc_faction("crazy", _"Dixon -- Temporarily insane")
+		npc_faction("crazy", _"Dixon - Temporarily insane")
 		end_dialog()
 	end
 

@@ -60,7 +60,7 @@ Nr=20 Text=_"Who are you?"
 	tux_says(_"STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!")
 	npc_says(_"Apology is being extended by me. Sorenson overdid it.")
 	npc_says(_"Sorenson the coder greets you.")
-	set_bot_name(_"Sorenson -- Mystery coder")
+	set_bot_name(_"Sorenson - Mystery coder")
 	hide(20)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -166,7 +166,7 @@ Nr=64 Text=_"Francis"
 	npc_says(_"Wh47? N07 w0rk1b9?")
 	tux_says(_"Erm. I have a confession to make. My name is not Francis.")
 	npc_says(_"N0000000000!!!!!!!")
-	npc_faction("crazy", _"COBOL Programmer -- Madly Enraged")
+	npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
 	end_dialog()
 	hide(64)
 </LuaCode>
@@ -187,7 +187,7 @@ NO_TEXT
 <LuaCode>
 	npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
 	hide(66)
-	npc_faction("crazy", _"COBOL Programmer -- Madly Enraged")
+	npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -209,7 +209,7 @@ Nr=78 Text=_"In blood? Yuck. I am not going to do this, blood is too messy for a
 <LuaCode>
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
 	hide(78)
-	npc_faction("crazy", _"COBOL Programmer -- Madly Enraged")
+	npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -218,7 +218,7 @@ Nr=79 Text=_"There is no way I will sign something without reading it. Forget ab
 <LuaCode>
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
 	hide(79)
-	npc_faction("crazy", _"COBOL Programmer -- Madly Enraged")
+	npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

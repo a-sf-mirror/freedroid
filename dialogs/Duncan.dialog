@@ -60,7 +60,7 @@ Beginning of new chat dialog for character="XXXXX"
 Nr=0 Text=_"Hi... Erm... Who are you?"
 <LuaCode>
 	npc_says(_"Duncan McNamara, The Red Guard's resident bomb maker, at your service.")
-	set_bot_name(_"Duncan -- Bombmaker")
+	set_bot_name(_"Duncan - Bombmaker")
 	hide(0, 90) show(1)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -313,7 +313,7 @@ Nr=90 Text=_"I feel you are... Different."
 	npc_says(_"But then again, neither are you, so my thoughts are, we are even.")
 	tux_says(_"What do you mean? I am %s and not anyone else.", get_player_name())
 	npc_says(_"And I am Duncan McNamara, the maker of grenades and nothing else.")
-	set_bot_name(_"Duncan -- Bombmaker")
+	set_bot_name(_"Duncan - Bombmaker")
 	npc_says(_"I believe the topic is thoroughly exhausted now.")
 	hide(0, 1, 2, 90) show(5, 92)
 </LuaCode>

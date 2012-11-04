@@ -83,7 +83,7 @@ Nr=0 Text=_"Hello... Oh dear... You look awful... Who did this to you? Did they 
 	npc_says(_"I'm Kevin, a computer security expert.")
 	tux_says(_"In other words: You are a hacker.")
 	npc_says(_"Eh... I guess you could put it that way, yes.")
-	set_bot_name(_"Kevin --- Hacker")
+	set_bot_name(_"Kevin - Hacker")
 	hide(0) show(30)
 </LuaCode>
 ----------------------------------------------------------------------

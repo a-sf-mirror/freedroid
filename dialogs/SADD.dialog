@@ -172,7 +172,7 @@ Nr=16 Text=_"I suggest a deal. You let me out, I bring you dilithium crystals. I
 Nr=20 Text=_"Almost a computer? What does that mean?"
 <LuaCode>
 	npc_says(_"When I say SHUT UP, you MUST shut up! Try this, worthless grain of the universe!")
-	npc_faction("crazy", _"SADD -- Exterminate Mode")
+	npc_faction("crazy", _"SADD - Exterminate Mode")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
