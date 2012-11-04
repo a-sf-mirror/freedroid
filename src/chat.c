@@ -47,6 +47,7 @@ static void chat_delete_context(struct chat_context *);
 
 /* Stack of chat contexts. The current context is at the top of the stack */
 static struct list_head chat_context_stack = LIST_HEAD_INIT(chat_context_stack);
+static int chat_context_stack_size = 0;
 
 static struct widget_group *chat_menu = NULL;
 struct widget_text *chat_log = NULL;
@@ -55,6 +56,29 @@ static struct widget_group *chat_wait = NULL;
 
 static struct image **droid_portrait = NULL;
 static SDL_Rect chat_selector_inner_rect;
+
+/**
+ * Print an error message and stop the game if too many dialogs are stacked.
+ */
+static void check_chat_context_stack_size()
+{
+	struct auto_string *chat_stack_str = alloc_autostr(64);
+	struct chat_context *ctx;
+	int first = TRUE;
+
+	if (chat_context_stack_size < CHAT_CONTEXT_STACK_SIZE)
+		return;
+
+	list_for_each_entry_reverse(ctx, &chat_context_stack, stack_node) {
+		autostr_append(chat_stack_str, "%s%s", (first) ? "" : " -> ", ctx->npc->dialog_basename);
+		first = FALSE;
+	}
+
+	ErrorMessage(__FUNCTION__, "The chat context stack reached its maximum (%d).\n"
+			                   "It could mean that we are under an infinite recursion attack, so our last defense is to stop the game.\n"
+			                   "Current dialog stack (from first to last stacked dialog):\n%s\n",
+			                   PLEASE_INFORM, IS_FATAL, CHAT_CONTEXT_STACK_SIZE, chat_stack_str->value);
+}
 
 /**
  * Return the current chat context.
@@ -80,7 +104,9 @@ struct chat_context *chat_get_current_context(void)
  */
 static void chat_push_context(struct chat_context *chat_context)
 {
+	check_chat_context_stack_size();
 	list_add(&chat_context->stack_node, &chat_context_stack);
+	chat_context_stack_size++;
 }
 
 /** Pop from the chat contexts stack.
@@ -94,6 +120,7 @@ static void chat_pop_context(void)
 	if (top_chat_context) {
 		list_del(chat_context_stack.next);
 		chat_delete_context(top_chat_context);
+		chat_context_stack_size--;
 	}
 }
 

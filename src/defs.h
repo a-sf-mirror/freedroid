@@ -279,6 +279,7 @@ enum _sounds {
 
 #define MAX_DIALOGUE_OPTIONS_IN_ROSTER 100
 #define CHAT_TOPIC_STACK_SIZE 10
+#define CHAT_CONTEXT_STACK_SIZE 10
 
 enum {
 	UP_BUTTON,
