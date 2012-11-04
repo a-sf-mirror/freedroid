@@ -79,7 +79,7 @@ Nr=2 Text=_"What are you doing here?"
 	npc_says(_"I'm here just for vacations.")
 	tux_says(_"And what do you usually do?")
 	npc_says(_"Usually I hunt bots.") --she may be a spy of the rebel faction that is not yet implemented
-	set_bot_name(_"Iris -- Bothunter")
+	set_bot_name(_"Iris -- bot hunter")
 	hide(2) show(3)
 </LuaCode>
 ----------------------------------------------------------------------

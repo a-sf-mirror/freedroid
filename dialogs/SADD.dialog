@@ -93,7 +93,7 @@ Nr=5 Text=_"Why are you not hostile?"
 <LuaCode>
 	npc_says(_"Hostile? What do you mean?")
 	tux_says(_"I mean, you are not attacking me... Don't you kill like other bots?")
-	npc_says(_"I do! I do! I kill humans, bots, linarians and even dogs, cats and other animals! I would kill anybody!")
+	npc_says(_"I do! I do! I kill humans, bots, Linarians and even dogs, cats and other animals! I would kill anybody!")
 	npc_says(_"Em.. Anybody who would try to get in, of course.")
 	show(6) hide(5)
 </LuaCode>

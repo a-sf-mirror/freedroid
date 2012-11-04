@@ -181,7 +181,7 @@ Nr=8 Text=_"I would like to customize my equipment."
 		npc_says(_"I was told these guys shoot bots and disassemble them, extracting their parts.", "NO_WAIT")
 		npc_says(_"Maybe they will sell you parts.")
 	end
-	npc_says(_"The salvaged components are used to craft add-ons. Your equipment has specific sockets to insert them.", "NO_WAIT")
+	npc_says(_"The salvaged components are used to craft addons. Your equipment has specific sockets to insert them.", "NO_WAIT")
 	npc_says(_"They can increase the power of items. But items can only have a limited number of addons.")
 	npc_says(_"To produce and assemble them, you may use a small factory in the Maintenance Tunnels.")
 	if (not has_quest(_"The yellow toolkit")) then
@@ -258,7 +258,7 @@ Topic="The yellow toolkit"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=15 Text=_"You can forget about your toolkit. I am not going to take away something that a lifeform needs to survive. I would rather die than kill."
+Nr=15 Text=_"You can forget about your toolkit. I am not going to take away something that a life form needs to survive. I would rather die than kill."
 Topic="The yellow toolkit"
 <LuaCode>
 	npc_says(_". . .")

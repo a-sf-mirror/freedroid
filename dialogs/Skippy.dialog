@@ -32,7 +32,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	if (Skippy_angry) then
--- We probably at some point want to be able to make skippy happy again, maybe by Tux finishing a quest or something that helps skippy or a friend of his or similar.
+-- We probably at some point want to be able to make Skippy happy again, maybe by Tux finishing a quest or something that helps Skippy or a friend of his or similar.
 		npc_says(_"What? You again? I don't want you here, get out.")
 		tux_says(_"See you later.")
 		npc_says(_"Don't come back. I hate you.")
@@ -73,7 +73,7 @@ Nr=2 Text=_"How do I activate a mapping device?"
 Nr=3 Text=_"You said you make these things yourself? How do you do that?"
 <LuaCode>
 	npc_says(_"Oh, I've always been a geek. And I got blueprints from before the Great Assault.")
-	npc_says(_"You can't order anything from a catalogue anymore.")
+	npc_says(_"You can't order anything from a catalog anymore.")
 	npc_says(_"The only source of these gizmos is here. It's me!")
 	hide(3)
 </LuaCode>

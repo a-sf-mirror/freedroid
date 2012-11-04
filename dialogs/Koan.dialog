@@ -64,7 +64,7 @@ Beginning of new chat dialog for character="XXXXX"
 		show(10, 11)
 		hide(20, 21, 99)
 	--elseif (met_koan_before_duncan) then
-	--	npc_says_random(_"Come sitdown my friend.",
+	--	npc_says_random(_"Come sit down my friend.",
 	--					_"Please take some time and relax here in the cool.")
 	--	if (tania_is_here) then
 	--		npc_says(_"I see you've brought a friend along with you.")
