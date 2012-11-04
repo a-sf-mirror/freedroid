@@ -705,6 +705,9 @@ static void run_chat()
 	SDL_Event event;
 	while (SDL_PollEvent(&event));
 
+	// Init some widgets
+	widget_text_init(chat_log, "");
+
 	// Dialog engine main code.
 	//
 	// A dialog flow is decomposed into a sequence of several steps:
