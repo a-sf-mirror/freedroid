@@ -403,7 +403,7 @@ void free_image_surface(struct image *img)
 	}
 
 	if (img->cached_transformation.surface) {
-		SDL_FreeSurface(img->surface);
+		SDL_FreeSurface(img->cached_transformation.surface);
 		img->cached_transformation.surface = NULL;
 		img->cached_transformation.scale_x = 0.0;
 	}
