@@ -1543,4 +1543,7 @@ enum chat_context_state {
 	RUN_NODE_SCRIPT = 5
 };
 
+// Draw quads borders (OpenGL only)
+#define DEBUG_QUAD_BORDER 0
+
 #endif

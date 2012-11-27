@@ -83,7 +83,40 @@ static void gl_emit_quads(void)
 		glVertexPointer(2, GL_FLOAT, 0, vtx->arr);
 		glTexCoordPointer(2, GL_FLOAT, 0, tex->arr);
 		glDrawArrays(GL_QUADS, 0, vtx->size * 4);
-		
+
+#if DEBUG_QUAD_BORDER
+		static float old_r = -1;
+		static float old_g = -1;
+		static float old_b = -1;
+		float r = old_r;
+		float g = old_g;
+		float b = old_b;
+		while (r == old_r) {
+			r = ((float)rand_r(&debug_quad_border_seed) / (float)RAND_MAX);
+			r = roundf(r * 4.0) / 4.0;
+		}
+		old_r = r;
+		while (g == old_g) {
+			g = ((float)rand_r(&debug_quad_border_seed) / (float)RAND_MAX);
+			g = roundf(g * 4.0) / 4.0;
+		}
+		old_g = g;
+		while (b == old_b) {
+			b = ((float)rand_r(&debug_quad_border_seed) / (float)RAND_MAX);
+			b = roundf(b * 4.0) / 4.0;
+		}
+		old_b = b;
+		glColor4f(r, g, b, 1.0);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glDisable(GL_TEXTURE_2D);
+		glVertexPointer(2, GL_FLOAT, 0, vtx->arr);
+		glDrawArrays(GL_QUADS, 0, vtx->size * 4);
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		glColor4fv(requested_color);
+		glEnable(GL_TEXTURE_2D);
+#endif
+
 		vtx->size = 0;
 		tex->size = 0;
 	}

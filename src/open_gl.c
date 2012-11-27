@@ -50,6 +50,10 @@ int gl_max_texture_size;
  */
 int our_SDL_flip_wrapper()
 {
+#ifdef DEBUG_QUAD_BORDER
+	debug_quad_border_seed = 0;
+#endif
+
 	if (use_open_gl)
 		SDL_GL_SwapBuffers();
 	else
