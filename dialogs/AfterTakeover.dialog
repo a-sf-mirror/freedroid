@@ -541,7 +541,7 @@ NO_TEXT
 		drop_dead()
 	else
 		if (takeover(bot_class())) then   -- bot intentionally drained,  takeover won
-			npc_says(_"Bot drained")
+			npc_says(_"Bot drained.")
 			freeze_tux_npc(Aftertakeover_freezetime)
 			drain_bot()
 		else
