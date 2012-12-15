@@ -2,6 +2,7 @@
 
 if BUILD_LUA
 freedroidRPG_LDADD = ../lua/liblua.a
+freedroidRPG_CFLAGS = -I../lua
 else
 freedroidRPG_LDADD = 
 endif
