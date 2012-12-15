@@ -1003,7 +1003,7 @@ static int lua_create_droid(lua_State *L)
 	return 0;
 }
 
-luaL_reg lfuncs[] = {
+luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
 	 */
