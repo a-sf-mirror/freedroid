@@ -214,148 +214,154 @@ Nr=30 Text=_"Sure, I'll gamble with you. What do you play?"
 <LuaCode>
 	Ewald_gambling = true
 	npc_says(_"I play a dice game and a coin-flipping game.")
+	
 	-- Initialize some variables here
-	bet = 0
+	next_gamble_node = 0
+	bet, next_bet, total_bet = 0, 0, 0
 	tux1, tux2, tux3 = 0, 0, 0
-	ewd1, ewd2, ewd3 = 0, 0, 0, 0, 0
-	-- Ewald forces you to gamble semi-responsibly ;-)
-	max = get_gold() * 0.8
-	if (max > 30) then show(33)
-		if (max > 300) then show(34)
-			if (max > 600) then show(35) end
-		end
-	else
-		npc_says(_"You should come back when you have more to gamble with.")
-	end
-	hide(30) show(31, 32)
+	ewd1, ewd2, ewd3, ewd4, ewd5 = 0, 0, 0, 0, 0
+
+	hide(30) show(31, 32, 33, 34, 69)
+	topic("Gambling")
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=31 Text=_"Tell me the rules for your 'dice game'."
+Nr=31 Text=_"Tell me the rules for your 'dice game'."  Topic="Gambling"
 <LuaCode>
 	npc_says(_"It is simple. We both get three six sided dice.")
 	npc_says(_"You bet. Then you throw one die.")
 	npc_says(_"Then you decide on a betting multiplier, up to 3x.")
 	npc_says(_"Then you throw two dice and I throw three dice. If sum of your three dice are better than my three dice, you win twice your bet, minus a tax for the Red Guard.")
 	npc_says(_"Remember: the odds are slightly against you, so don't gamble anything you can't afford to lose.")
-	hide(31)
 	------------------------------------------------
 	-- Assuming optimal playing then
-	-- Expected payout: 105.96% (easy), 97.11% (normal), 92.69% (hard)
+	-- Expected payout: 103,5 % (easy), 98.27% (normal), 95.61% (hard)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=32 Text=_"Tell me the rules for your 'coin-flip game'."
+Nr=32 Text=_"Tell me the rules for your 'coin-flip game'." Topic="Gambling"
 <LuaCode>
 	npc_says(_"It is simple. Five coin flips.")
 	npc_says(_"You bet. Then you tell me if I will flip more 'heads' or 'tails'.")
 	npc_says(_"I flip one coin.")
 	npc_says(_"Then you tell me if there will be an 'odd' or 'even' number of flips for what you chose.")
 	if (difficulty() == "easy") then
-		npc_says(_"I flip the other four coins. If you were completely right, I give you three times what your bet, if wrong, you get nothing.")
+		npc_says(_"I flip the other four coins. If you were completely right, I give you twice what you bet, if wrong, you get your bet back.")
 	elseif (difficulty() == "normal") then
-		npc_says(_"I flip the other four coins. If you were completely right, I give you twice what your bet, if completely wrong, you get 3/4 of your bet back.")
+		npc_says(_"I flip the other four coins. If you were completely right, I give you twice what you bet, if completely wrong, you get 3/4 of your bet back.")
 	else
-		npc_says(_"I flip the other four coins. If you were completely right, I give you twice what your bet, if completely wrong, you get half of your bet back.")
+		npc_says(_"I flip the other four coins. If you were completely right, I give you twice what you bet, if completely wrong, you get half of your bet back.")
 	end
 	npc_says(_"But if you are only partially wrong... well, then you get nothing.")
 	npc_says(_"Remember: the odds are slightly against you, so don't gamble anything you can't afford to lose.")
-	hide(32)
 	------------------------------------------------
 	-- Assuming optimal playing:
-	-- Winning both: 11/32 expected payout: 132/128 (easy), 88/128 (normal/hard)
-	-- Losing both: 11/32 expected payout: 0/128 (easy), 33/128 (normal), 22/128 (hard)
-	-- Intermediate: 10/32 expected payout: 0/128
-	-- Expected payout: 132/128 (easy), 121/128 (normal), 110/128 (hard)
+	-- Winning both: 11/32 expected payout: 88/128 (easy/normal/hard)
+	-- Losing both: 11/32 expected payout: 44/128 (easy), 33/128 (normal), 22/128 (hard)
+	-- Intermediate: 10/32 expected payout: 0/128 (easy/normal/hard)
+	-- Expected payout: 132/128 = 103.1% (easy), 121/128 = 94.5% (normal), 110/128 = 85.9% (hard)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=33 Text=_"How about a bet of 10 circuits"
+Nr=33 Text=_"Let's go for a game of dice." Topic="Gambling"
 <LuaCode>
-	bet=10
-	hide(30, 31, 32, 33, 34, 35) next(36)
+	next_gamble_node = 40
+	hide(31, 32, 33, 34) next(35)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=34 Text=_"I'm feeling I'll start with a bet of 100 circuits"
+Nr=34 Text=_"I want to play coin-flipping." Topic="Gambling"
 <LuaCode>
-	bet = 100
-	hide(30, 31, 32, 33, 34, 35) next(36)
+	next_gamble_node = 50
+	hide(31, 32, 33, 34) next(35)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=35 Text=_"I want to bet 200 circuits"
-<LuaCode>
-	bet = 200
-	hide(30, 31, 32, 33, 34, 35) next(36)
-</LuaCode>
------------------------------------------------------------------------
-
-Nr=36 Text="BUG, REPORT ME! ewald node36 -- Name Game"
+Nr=35 Text="BUG, REPORT ME! ewald node35 -- Choose the Bet" Topic="Gambling"
 NO_TEXT
 <LuaCode>
-	npc_says(_"Name your game.")
-	show(37, 38)
+	-- Ewald forces you to gamble semi-responsibly ;-)
+	max = get_gold()
+
+	if (max > 40) then 
+		show(36)
+		table.foreach({[37] = 120, [38] = 400, [39] = 1200}, 
+					function (k, v) if (max > v) then show(k) end end);
+		npc_says(_"Then, how many are you going to bet?")
+	else
+		npc_says(_"You should come back when you have more to gamble with.")
+		pop_topic()
+	end
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=37 Text=_"Dice"
+Nr=36 Text=_"How about a bet of 10 circuits?"  Topic="Gambling"
 <LuaCode>
-	hide(37, 38) next(39)
+	bet, next_bet = 10, 10
+	hide(36, 37, 38, 39, 69) next(next_gamble_node)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=38 Text=_"Coin-flipping"
+Nr=37 Text=_"I'm feeling a bet of 30 circuits." Topic="Gambling"
 <LuaCode>
-	hide(37, 38) next(50)
+	bet, next_bet = 30, 30
+	hide(36, 37, 38, 39, 69) next(next_gamble_node)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=39 Text="BUG, REPORT ME! ewald node39 -- Dice - Initial roll"
+Nr=38 Text=_"I will place a bet of 100 circuits." Topic="Gambling"
+<LuaCode>
+	bet, next_bet = 100, 100
+	hide(36, 37, 38, 39, 69) next(next_gamble_node)
+</LuaCode>
+-----------------------------------------------------------------------
+
+Nr=39 Text=_"I want to bet 300 circuits." Topic="Gambling"
+<LuaCode>
+	bet, next_bet = 300, 300
+	hide(36, 37, 38, 39, 69) next(next_gamble_node)
+</LuaCode>
+-----------------------------------------------------------------------
+
+Nr=40 Text="BUG, REPORT ME! ewald node40 -- Dice - Initial roll"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Dice it is. Roll your first die.")
 	tux1=math.random(1,6)
 	tux_says(_"I rolled a %d.", tux1)
 	npc_says(_"What multiplier are you going to bet?")
-	show(40, 41, 42)
+	show(41, 42, 43)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=40 Text="1x"
+Nr=41 Text="1x" Topic="Gambling"
 <LuaCode>
-	next(43)
-</LuaCode>
+	next(44)
+</LuaCode> 
 -----------------------------------------------------------------------
 
-Nr=41 Text="2x"
+Nr=42 Text="2x" Topic="Gambling"
 <LuaCode>
 	bet=bet*2
-	next(43)
+	next(44)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=42 Text="3x"
+Nr=43 Text="3x" Topic="Gambling"
 <LuaCode>
 	bet=bet*3
-	next(43)
+	next(44)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=43 Text="BUG, REPORT ME! ewald node43 -- Dice - finish game" -- finish game here
+Nr=44 Text="BUG, REPORT ME! ewald node43 -- Dice - finish game" -- finish game here
 NO_TEXT
 <LuaCode>
 	npc_says(_"You've bet %d valuable circuits.", bet)
-	ewd1=math.random(1,6)
-	npc_says(_"My first roll is a %d.", ewd1)
-	tux2=math.random(1,6)
-	tux_says(_"I rolled a %d.", tux2)
-	ewd2=math.random(1,6)
-	npc_says(_"My second roll is a %d.", ewd2)
-	tux3=math.random(1,6)
-	tux_says(_"I rolled a %d.", tux3)
-	ewd3=math.random(1,6)
-	npc_says(_"My third roll is a %d.", ewd3)
+	ewd1,ewd2,ewd3 = math.random(1,6),math.random(1,6),math.random(1,6)
+	npc_says(_"My rolls are %d, %d and %d.", ewd1, ewd2, ewd3)
+	tux2,tux3 = math.random(1,6),math.random(1,6)
+	tux_says(_"I rolled a %d and a %d.", tux2, tux3)
 
 	npc_says(_"It looks like I scored %d and you scored %d.", ewd1 + ewd2 + ewd3, tux1 + tux2 + tux3)
 
@@ -363,14 +369,10 @@ NO_TEXT
 		npc_says_random(_"You won! Good job.",
 						_"You won! Man you are lucky!",
 						_"You won!")
-		if (difficulty() == "easy") then
-			bet=bet*0.95
-		elseif (difficulty() == "normal") then
-			bet=bet*0.85
-		else
-			bet=bet*0.8
-		end
+		local bet_gain = {easy = 0.95, normal = 0.85, hard = 0.8}
+		bet = bet * bet_gain[difficulty()]
 		add_gold(bet)
+		total_bet = total_bet + bet
 		display_console_message(string.format(_"You won %d valuable circuits by gambling dice with Ewald.", math.floor(bet)))
 	else -- House Wins!
 		npc_says_random(_"You lost. Bad luck.",
@@ -378,22 +380,26 @@ NO_TEXT
 						_"You lost, try again?",
 						_"You lost. Maybe you might like coin-flipping better?")
 		del_gold(bet)
+		total_bet = total_bet - bet
 		display_console_message(string.format(_"You lost %d valuable circuits by gambling dice with Ewald.", bet))
 	end
-	hide(40, 41, 42) show(30)
+	hide(41, 42, 43) next(60)
 </LuaCode>
 -----------------------------------------------------------------------
 
 Nr=50 Text="BUG, REPORT ME! ewald node50 -- Coin-flipping game"
 NO_TEXT
 <LuaCode>
+	-- Constant for the coin-flipping game	
+	coin_str = {_"heads", _"tails"}
+
 	npc_says(_"Coin flipping it is.")
 	npc_says(_"So. What do you think? Heads or tails?")
 	show(51, 52)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=51 Text=_"Heads"
+Nr=51 Text=_"Heads" Topic="Gambling"
 <LuaCode>
 	npc_says_random(_"Heads, eh? I always like heads.",
 					_"Heads? Sometimes I pick heads... when I don't pick tails.",
@@ -405,7 +411,7 @@ Nr=51 Text=_"Heads"
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=52 Text=_"Tails"
+Nr=52 Text=_"Tails" Topic="Gambling"
 <LuaCode>
 	npc_says_random(_"Tails? Fits, since you've got one.",
 					_"Tails? I always liked that game... good times.",
@@ -417,132 +423,93 @@ Nr=52 Text=_"Tails"
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=53 Text="BUG, REPORT ME! ewald node53 -- Coin-flipping game - first flip"
+Nr=53 Text="BUG, REPORT ME! ewald node53 -- Coin-flipping game - first flip" Topic="Gambling"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Here goes nothing.")
 	ewd1=math.random(0,1)
-	if (ewd1 == 1) then
-		npc_says(_"Looks like it is 'tails'.")
-	else
-		npc_says(_"Looks like it is 'heads'.")
-	end
+	npc_says(_"Looks like it is '%s'.", coin_str[ewd1 + 1])
 
-	if (tux1 == 1) then
-		npc_says(_"So do you think there will be an even or odd number of 'tails' flips?")
-	else
-		npc_says(_"So do you think there will be an even or odd number of 'heads' flips?")
-	end
+	npc_says(_"So do you think there will be an even or odd number of '%s' flips?", coin_str[tux1 + 1])
+
 	show(54, 55)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=54 Text=_"Even number"
+Nr=54 Text=_"Even number" Topic="Gambling"
 <LuaCode>
 	tux2 = 0 -- Set to 'even'
-	random_var = math.random()
- 	if (random_var > 0.8) then
-		npc_says(_"Even, eh? I always like even. It is so symmetric.")
-	elseif (random_var > 0.6) then
-		npc_says(_"Even? Sometimes I pick even... when I don't pick odd.")
-	elseif (random_var > 0.4) then
-		npc_says(_"When I think too much about it, I end up picking even.")
-	elseif (random_var > 0.2) then
-		if (ewd1 ~= tux1) then
-			npc_says(_"Hoping to guess them all wrong, eh?")
-		else
-			npc_says(_"Bucking the statistics. I like that.")
-		end
+	
+	local random_says = {_"Even, eh? I always like even. It is so symmetric.",
+						_"Even? Sometimes I pick even... when I don't pick odd.",
+						_"When I think too much about it, I end up picking even.",
+						_"I think I would have picked even this time."}
+	
+	if (ewd1 ~= tux1) then
+		table.insert(random_says, _"Hoping to guess them all wrong, eh?")
 	else
-		npc_says(_"I think I would have picked even this time.")
+		table.insert(random_says, _"Bucking the statistics. I like that.")
 	end
+	
+	npc_says_random(unpack(random_says))
 	hide(54, 55) next(56)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=55 Text=_"Odd number"
+Nr=55 Text=_"Odd number" Topic="Gambling"
 <LuaCode>
 	tux2 = 1 -- Set to 'odd'
-	random_var = math.random()
- 	if (random_var > 0.8) then
-		npc_says(_"Odd? Fits, since you're pretty odd yourself.")
-	elseif (random_var > 0.6) then
-		npc_says(_"Odd? Well that is odd... I was thinking of odd.")
-	elseif (random_var > 0.4) then
-		npc_says(_"Odd. When I don't pick even, I always pick odd too.")
-	elseif (random_var > 0.2) then
-		if (ewd1 == tux1 ) then
-			npc_says(_"Honing up on your math, eh?")
-		else
-			npc_says(_"Betting against the game. I like that.")
-		end
+	
+	local random_says = {_"Odd? Fits, since you're pretty odd yourself.",
+						_"Odd? Well that is odd... I was thinking of odd.",
+						_"Odd. When I don't pick even, I always pick odd too.",
+						_"I think I would have picked even this time."}
+	
+	if (ewd1 == tux1) then
+		table.insert(random_says, _"Honing up on your math, eh?")
 	else
-		npc_says(_"I think I would have picked odd this time.")
+		table.insert(random_says, _"Betting against the game. I like that.")
 	end
+	
+	npc_says_random(unpack(random_says))
 	hide(54, 55) next(56)
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=56 Text="BUG, REPORT ME! ewald node56 -- Coin-flipping game - last four flips"
+Nr=56 Text="BUG, REPORT ME! ewald node56 -- Coin-flipping game - last four flips" Topic="Gambling"
 NO_TEXT
 <LuaCode>
+
+	local function flip_coin()
+		result = math.random(0, 1)
+		npc_says(_"%s.", coin_str[result + 1]:gsub("%a", string.upper, 1))
+		return result
+	end
+	
 	npc_says(_"The last four coin flips:")
-	ewd2=math.random(0,1)
-	if (ewd2 == 1) then
-		npc_says(_"Tails.")
-	else
-		npc_says(_"Heads.")
-	end
-	ewd3=math.random(0,1)
-	if (ewd3 == 1) then
-		npc_says(_"Tails.")
-	else
-		npc_says(_"Heads.")
-	end
-	ewd4=math.random(0,1)
-	if (ewd4 == 1) then
-		npc_says(_"Tails.")
-	else
-		npc_says(_"Heads.")
-	end
+	ewd2, ewd3, ewd4 = flip_coin(), flip_coin(), flip_coin()
 	tux_says(_"Last flip. I hope it is the one I want!")
-	ewd5=math.random(0,1)
-	if (ewd5 == 1) then
-		npc_says(_"Tails.")
-	else
-		npc_says(_"Heads.")
-	end
+	ewd5 = flip_coin()
+	
 	ewald_sum = ewd1 + ewd2 + ewd3 + ewd4 + ewd5
 	npc_says(_"Looks like that is %d tails, and %d heads.", ewald_sum, 5 - ewald_sum)
 
-	win=0 --find if tux won...
+	local win = 0 -- find if tux won...
 	if (ewald_sum > 2) then
 		npc_says(_"Tails won...")
-		if (tux1 == 1) then win = 0.5 end
+		win = 0.5 * tux1
 	else
 		npc_says(_"Heads won...")
-		if (tux1 == 0) then win = 0.5 end
+		win = 0.5 * (1 - tux1)
 	end
 
-
-	if (math.fmod(ewald_sum,2) == 0) then
-		if (tux1 == 1) then
-			npc_says(_"...and there were an even number of tails.")
-			if (tux2 == 0) then win = win + 0.5 end
-		else
-			npc_says(_"...and there were an odd number of heads.")
-			if (tux2 == 1) then win = win + 0.5 end
-		end
+	if (math.fmod(ewald_sum, 2) == tux1) then
+		npc_says(_"...and there were an odd number of %s.", coin_str[tux1 + 1])
+		win = win + 0.5 * tux2
 	else
-		if (tux1 == 1) then
-			npc_says(_"...and there were an odd number of tails.")
-			if (tux2 == 1) then win = win + 0.5 end
-		else
-			npc_says(_"...and there were an even number of heads.")
-			if (tux2 == 0) then win = win + 0.5 end
-		end
+		npc_says(_"...and there were an even number of %s.", coin_str[tux1 + 1])
+		win = win + 0.5 * (1 - tux2)
 	end
-
 
 	if (win == 1) then -- WIN
 		npc_says_random(_"Looks like another winning combination! Good job!",
@@ -550,31 +517,18 @@ NO_TEXT
 						_"Too many of these and I'll go out of business. You won!",
 						_"You will have to tell me how you did it. You Won!",
 						_"Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!")
-		if (difficulty() == "easy") then bet = bet*3
-		else bet = bet*2
-		end
-		add_gold(bet)
 		display_console_message(string.format(_"You won %d valuable circuits in the coin-flip game with Ewald.", bet))
 	elseif (win == 0) then --LOSS
-		if (difficulty() == "easy") then--easy: 0% back
-			npc_says_random(_"Looks like you got everything wrong.",
-							_"Well, close, but exactly wrong.",
-							_"Close, but no cigar.",
-							_"Close only counts in hand grenades and horseshoes.")
-			del_gold(bet)
-		else
-			npc_says_random(_"Looks like you got everything wrong... here is some of your bet back.",
-							_"Well, close, but exactly wrong. Here is some of your bet back.",
-							_"You need to do exactly opposite of what you did here. Here is part of your bet back.",
-							_"Close, but no cigar. Here is some of your money back.",
-							_"Next time pick the opposite of what you did this time... or something.")
-			if (difficulty() == "normal") then --normal: 75% back
-				bet = bet*0.25
-			else --hard: 50% back
-				bet = bet*0.5
-			end
-			del_gold(bet)
-		end
+		npc_says_random(_"Looks like you got everything wrong... here is some of your bet back.",
+						_"Well, close, but exactly wrong. Here is some of your bet back.",
+						_"You need to do exactly opposite of what you did here. Here is part of your bet back.",
+						_"Close, but no cigar. Here is some of your money back.",
+						_"Next time pick the opposite of what you did this time... or something.",
+						_"Close only counts in hand grenades and horseshoes. But some money back.")
+		
+		local bet_loss = {easy = 1, normal = 0.75, hard = 0.5} -- easy: 100% back normal: 75% back, hard: 50% back
+		bet = bet*bet_loss[difficulty()]
+		
 		display_console_message(string.format(_"You lost %d valuable circuits in the coin-flip game with Ewald.", math.floor(bet)))
 	elseif (win == 0.5) then -- COMPLETE LOSS (0% back)
 		npc_says_random(_"You lost. You were half right, but half wrong. Pick one and stay with it.",
@@ -582,13 +536,82 @@ NO_TEXT
 						_"You lost. Maybe you should try something else for a while?",
 						_"You lost.",
 						_"You lost. You might try the dice game next time.")
-		del_gold(bet)
+		bet = -bet
+		
 		display_console_message(string.format(_"You lost %d valuable circuits in the coin-flip game with Ewald.", bet))
 	else -- ERROR:
 		npc_says(_"THIS IS AN ERROR! REPORT IT PLEASE! E-MAIL: freedroid-discussion@lists.sourceforge.net")
 	end
+	
+	add_gold(bet)
+	total_bet = total_bet + bet
+	
+	next(60)
+</LuaCode>
+-----------------------------------------------------------------------
 
-	show(30)
+
+Nr=60 Text=_"BUG, REPORT ME! ewald node56 -- Reintialize variable"
+NO_TEXT
+<LuaCode>
+	-- ReInitialize variables here
+	tux1, tux2, tux3 = 0, 0, 0
+	ewd1, ewd2, ewd3, ewd4, ewd5 = 0, 0, 0, 0, 0
+
+	show(61, 62, 63, 64, 69)
+</LuaCode>
+-----------------------------------------------------------------------
+
+Nr=61 Text=_"Let us start again with the same bet." Topic="Gambling"
+<LuaCode>
+	npc_says(_"Sure.")
+	local max = get_gold()
+	if (max > 4 * next_bet) then
+		bet = next_bet
+		next(next_gamble_node)
+	else
+		npc_says(_"You do not have enough bucks to bet the same.")
+		next(35)
+	end
+	hide(61, 62, 63, 64, 69)
+</LuaCode>
+-----------------------------------------------------------------------
+
+Nr=62 Text=_"I prefer to bet another sum." Topic="Gambling"
+<LuaCode>
+	hide(61, 62, 63, 64) next(35)
+</LuaCode>
+-----------------------------------------------------------------------
+
+Nr=63 Text=_"What other games are you playing?" Topic="Gambling"
+<LuaCode>
+	npc_says(_"I play just a dice game and a coin-flipping game.")
+	hide(61, 62, 63, 63, 64) show(31, 32, 33, 34)
+</LuaCode>
+-----------------------------------------------------------------------
+
+Nr=64 Text=_"What did I win or lose?" Topic="Gambling"
+<LuaCode>
+	if (total_bet > 0) then
+		npc_says(_"You have won %d circuits.", total_bet)
+	else 
+		npc_says(_"You have lost %d circuits.", -total_bet)
+	end
+</LuaCode>
+-----------------------------------------------------------------------
+
+Nr=69 Text=_"I'll stop gambling." Topic="Gambling"
+<LuaCode>
+	npc_says_random(_"We can play again whenever you want!", 
+					_"You are right, I'm going to clean you out!",
+					_"The house always wins; sooner or later...")
+	-- end any partial gambling node
+	hide(	31, 32, 33, 34, 				-- Choose game
+			35, 36, 36, 37, 38, 39, 		-- Choose bet
+			40, 41, 43, 44, 				-- Dice game
+			50, 51, 52, 53, 54, 55, 56,		-- Coin-flipping game
+			60, 61, 62, 63, 63, 64)			-- After game
+	pop_topic()
 </LuaCode>
 -----------------------------------------------------------------------
 
@@ -598,7 +621,6 @@ Nr=99 Text=_"See you later."
 					_"Come back soon!",
 					_"You are welcome to unwind with old Ewald any time. Come back soon.",
 					_"Remember, you can always come back here to relax and kick back.")
-	hide(32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 50, 51, 52, 53, 54, 55, 56) --end any partial gambling
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
