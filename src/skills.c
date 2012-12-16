@@ -257,7 +257,7 @@ static int TeleportHome(void)
 
 	teleport_arrival_sound();
 	reset_visible_levels();
-	Teleport(HomeSpot.level, HomeSpot.x, HomeSpot.y, TRUE, TRUE);
+	Teleport(HomeSpot.level, HomeSpot.x + 0.5, HomeSpot.y + 0.5, TRUE, TRUE);
 	clear_active_bullets();
 
 	return 1;
