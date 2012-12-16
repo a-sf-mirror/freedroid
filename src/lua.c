@@ -176,33 +176,11 @@ static int lua_event_disable_trigger(lua_State * L)
 	return 0;
 }
 
-static int event_change_obstacle_type(const char *obslabel, int type)
-{
-	int obstacle_level_num;
-	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel, &obstacle_level_num);
-	level *obstacle_level = curShip.AllLevels[obstacle_level_num];
-
-	// tell the automap to update
-	update_obstacle_automap(obstacle_level->levelnum, our_obstacle);
-	
-	if (type != -1) {
-		our_obstacle->type = type;
-		our_obstacle->frame_index = 0;
-	} else {
-		del_obstacle(our_obstacle);
-	}
-
-	// Now we make sure the door lists and that are all updated...
-	dirty_animated_obstacle_lists(obstacle_level->levelnum);
-
-	return 0;
-}
-
 static int lua_event_change_obstacle(lua_State * L)
 {
 	const char *obslabel = luaL_checkstring(L, 1);
 	int type = luaL_checkinteger(L, 2);
-	event_change_obstacle_type(obslabel, type);
+	change_obstacle_type(obslabel, type);
 	return 0;
 }
 
@@ -219,7 +197,7 @@ static int lua_event_get_obstacle_type(lua_State * L)
 static int lua_event_delete_obstacle(lua_State * L)
 {
 	const char *obslabel = luaL_checkstring(L, 1);
-	event_change_obstacle_type(obslabel, -1);
+	change_obstacle_type(obslabel, -1);
 	return 0;
 }
 

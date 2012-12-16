@@ -208,4 +208,26 @@ void add_obstacle_to_group(const char *group_name, int type)
 	dynarray_add(&group->members, &type, sizeof(int));
 }
 
+int change_obstacle_type(const char *obslabel, int type)
+{
+	int obstacle_level_num;
+	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel, &obstacle_level_num);
+	level *obstacle_level = curShip.AllLevels[obstacle_level_num];
+
+	// tell the automap to update
+	update_obstacle_automap(obstacle_level->levelnum, our_obstacle);
+	
+	if (type != -1) {
+		our_obstacle->type = type;
+		our_obstacle->frame_index = 0;
+	} else {
+		del_obstacle(our_obstacle);
+	}
+
+	// Now we make sure the door lists and that are all updated...
+	dirty_animated_obstacle_lists(obstacle_level->levelnum);
+
+	return 0;
+}
+
 #undef _obstacle_c

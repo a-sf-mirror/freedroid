@@ -835,5 +835,6 @@ void move_obstacle(obstacle *o, float x, float y);
 struct obstacle_group *get_obstacle_group_by_name(const char *group_name);
 void add_obstacle_to_group(const char *group_name, int type);
 struct obstacle_group *find_obstacle_group(int type);
+int change_obstacle_type(const char *obslabel, int type);
 
 #endif
