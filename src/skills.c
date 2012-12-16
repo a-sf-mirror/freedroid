@@ -210,7 +210,7 @@ FreedroidRPG could not find the program name above in the program spec array!", 
  * This function creates a teleporter portal to the home location.
  * @return 1 on success, 0 on failure
  */
-static int TeleportHome(void)
+int TeleportHome(void)
 {
 	location HomeSpot;
 
@@ -233,7 +233,7 @@ static int TeleportHome(void)
 	// Case 1 : Tux is in homespot's level, and there is a teleport anchor
 	//          -> teleport back to previous position
 	//
-	if (Me.pos.z == HomeSpot.level && ((Me.teleport_anchor.x != 0) || (Me.teleport_anchor.y != 0))) {
+	if (Me.pos.z == HomeSpot.level && (Me.teleport_anchor.z != -1)) {
 
 		// Teleport
 		teleport_arrival_sound();
@@ -244,7 +244,10 @@ static int TeleportHome(void)
 		// Reset teleport anchor
 		Me.teleport_anchor.x = 0;
 		Me.teleport_anchor.y = 0;
-		Me.teleport_anchor.z = 0;
+		Me.teleport_anchor.z = -1;
+		
+		// Toggle the color of teleporter (purple)
+		change_obstacle_type("Town-Teleporter", ISO_TELEPORTER_1);
 
 		return 1;
 	}
@@ -254,6 +257,9 @@ static int TeleportHome(void)
 	Me.teleport_anchor.x = Me.pos.x;
 	Me.teleport_anchor.y = Me.pos.y;
 	Me.teleport_anchor.z = Me.pos.z;
+	
+	// Toggle the color of teleporter (blue)
+	change_obstacle_type("Town-Teleporter", ISO_TELEPORTER_2);
 
 	teleport_arrival_sound();
 	reset_visible_levels();

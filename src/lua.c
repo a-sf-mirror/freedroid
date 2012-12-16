@@ -148,6 +148,24 @@ static int lua_event_teleport_npc(lua_State * L)
 	return 0;
 }
 
+static int lua_event_teleport_home(lua_State * L)
+{
+	TeleportHome();
+
+	return 0;
+}
+
+ 
+static int lua_event_has_teleport_anchor(lua_State * L)
+{
+	if (Me.teleport_anchor.z != -1)
+		lua_pushboolean(L, TRUE);
+	else
+		lua_pushboolean(L, FALSE);
+
+	return 1;
+}
+
 static int lua_event_display_big_message(lua_State * L)
 {
 	const char *msg = luaL_checkstring(L, 1);
@@ -991,6 +1009,16 @@ luaL_Reg lfuncs[] = {
 	 * Teleports the current npc, or named npc to the given map label
 	 */
 	{"teleport_npc", lua_event_teleport_npc}
+	,
+	/* teleport_home(string map_label) 
+	 * Teleports the player to the home.
+	 */
+	{"teleport_home", lua_event_teleport_home}
+	,
+	/* has_teleport_anchor()
+	 * Return true if a teleport anchor is active.
+	 */
+	{"has_teleport_anchor", lua_event_has_teleport_anchor}
 	,
 	/* display_big_message(string msg)
 	 * Displays a big vanishing message on screen (seen in game, not in the dialog).

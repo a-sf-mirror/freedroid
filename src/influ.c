@@ -1728,7 +1728,7 @@ void init_tux()
 	
 	Me.teleport_anchor.x = 0;
 	Me.teleport_anchor.y = 0;
-	Me.teleport_anchor.z = 0;
+	Me.teleport_anchor.z = -1;
 	
 	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
 	

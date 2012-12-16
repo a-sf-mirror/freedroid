@@ -491,6 +491,7 @@ int get_program_index_with_name(const char *);
 int calculate_program_heat_cost(int program_id);
 int CursorIsOnWhichSkillButton(int x, int y);
 void load_skill_icon_if_needed(spell_skill_spec *spec);
+int TeleportHome(void);
 
 // input.c 
 Uint8 *key_state_array;

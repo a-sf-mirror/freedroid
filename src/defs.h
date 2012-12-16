@@ -716,6 +716,7 @@ enum obstacle_types {
 	ISO_V_DOOR_100_OPEN = 15,
 
 	ISO_TELEPORTER_1 = 16,
+	ISO_TELEPORTER_2 = 17,
 
 	ISO_REFRESH_1 = 21,
 

@@ -386,6 +386,17 @@ Silent=1
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"Home Teleport"
+Trigger at label="TeleportHomeTarget"
+Silent=1
+<LuaCode>
+	if (has_teleport_anchor()) then
+		teleport_home()
+	end
+</LuaCode>
+* End of trigger *
+
 ##############
 ## Level  1 ##
 ############## 

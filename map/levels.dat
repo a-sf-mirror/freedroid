@@ -3728,6 +3728,9 @@ idx=3448 type=32 data={
 idx=348 type=32 data={
 	Teleporter. Go anywhere?
 }
+idx=230 type=30 data={
+	Town-Teleporter
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  27 y=  17 rnd=0	 c:    1  53
