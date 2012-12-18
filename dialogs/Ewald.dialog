@@ -210,7 +210,7 @@ Nr=14 Text=_"Hey, I could use a refreshing drink!"
 </LuaCode>
 -----------------------------------------------------------------------
 
-Nr=30 Text=_"Sure, I'll gamble with you. What do you play?"
+Nr=30 Text=_"Ok, let's gamble a bit."
 <LuaCode>
 	Ewald_gambling = true
 	npc_says(_"I play a dice game and a coin-flipping game.")
