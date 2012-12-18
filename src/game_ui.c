@@ -392,15 +392,15 @@ static struct widget_group *create_hud_bar()
 	// Fixed size tiles
 	struct image *img_1 = widget_load_image_resource("widgets/hud_background_1.png", 0);
 	int left_panel_x = WIDGET(panel)->rect.x;
-	widget_background_add(panel, img_1, left_panel_x, WIDGET(panel)->rect.y, img_1->w, img_1->h);
+	widget_background_add(panel, img_1, left_panel_x, WIDGET(panel)->rect.y, img_1->w, img_1->h, 0);
 
 	struct image *img_3 = widget_load_image_resource("widgets/hud_background_3.png", 0);
 	int center_panel_x = WIDGET(panel)->rect.x + (WIDGET(panel)->rect.w - img_3->w) / 2;
-	widget_background_add(panel, img_3, center_panel_x, WIDGET(panel)->rect.y, img_3->w, img_3->h);
+	widget_background_add(panel, img_3, center_panel_x, WIDGET(panel)->rect.y, img_3->w, img_3->h, 0);
 
 	struct image *img_5 = widget_load_image_resource("widgets/hud_background_5.png", 0);
 	int right_panel_x = WIDGET(panel)->rect.x + WIDGET(panel)->rect.w - img_5->w;
-	widget_background_add(panel, img_5, right_panel_x, WIDGET(panel)->rect.y, img_5->w, img_5->h);
+	widget_background_add(panel, img_5, right_panel_x, WIDGET(panel)->rect.y, img_5->w, img_5->h, 0);
 
 	// Scalable tiles.
 	// These tiles will expand to fill the gap between the 3 fixed tiles.
@@ -414,7 +414,7 @@ static struct widget_group *create_hud_bar()
 			PLEASE_INFORM, IS_FATAL,
 			"widgets/hud_background_2.png");
 	if (fill > 0)
-		widget_background_add(panel, img_2, left_scaling_panel_x, WIDGET(panel)->rect.y, fill, img_2->h);
+		widget_background_add(panel, img_2, left_scaling_panel_x, WIDGET(panel)->rect.y, fill, img_2->h, 0);
 
 	struct image *img_4 = widget_load_image_resource("widgets/hud_background_4.png", 0);
 	int right_scaling_panel_x = center_panel_x + img_3->w;
@@ -426,7 +426,7 @@ static struct widget_group *create_hud_bar()
 			PLEASE_INFORM, IS_FATAL,
 			"widgets/hud_background_4.png");
 	if (fill > 0)
-		widget_background_add(panel, img_4, right_scaling_panel_x, WIDGET(panel)->rect.y, fill, img_4->h);
+		widget_background_add(panel, img_4, right_scaling_panel_x, WIDGET(panel)->rect.y, fill, img_4->h, 0);
 
 	// item alarm
 	// This widget must be added before the hud bar background.

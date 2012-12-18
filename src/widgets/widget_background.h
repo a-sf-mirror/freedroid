@@ -84,7 +84,7 @@ struct widget_background {
 #define WIDGET_BACKGROUND(x) ((struct widget_background *)x)
 
 struct widget_background *widget_background_create(void);
-void widget_background_add(struct widget_background *, struct image *, int, int, int, int);
+void widget_background_add(struct widget_background *, struct image *, int, int, int, int,  enum image_transformation_mode);
 void widget_background_load_3x3_tiles(struct widget_background *, char *);
 
 // end gui2d_background submodule

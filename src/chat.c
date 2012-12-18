@@ -500,7 +500,7 @@ struct widget_group *create_chat_dialog()
 	int chat_portrait_y = chat_selector_y - img->h + 39;
 
 	struct widget_background *chat_portrait_bkg = widget_background_create();
-	widget_background_add(chat_portrait_bkg, img, chat_portrait_x, chat_portrait_y, img->w, img->h);
+	widget_background_add(chat_portrait_bkg, img, chat_portrait_x, chat_portrait_y, img->w, img->h, 0);
 	widget_group_add(chat_menu, WIDGET(chat_portrait_bkg));
 
 	struct widget_button *chat_portrait = widget_button_create();

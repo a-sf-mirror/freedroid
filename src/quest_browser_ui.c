@@ -592,7 +592,7 @@ struct widget_group *create_quest_browser()
 	struct widget_background *exit_button = widget_background_create();
 	struct image *img = widget_load_image_resource("widgets/exit_button_background.png", 0);
 	widget_set_rect(WIDGET(exit_button), right_side_buttons_x - 5, exit_button_arm_y, img->w, img->h);
-	widget_background_add(exit_button, img, WIDGET(exit_button)->rect.x, WIDGET(exit_button)->rect.y, img->w, img->h);
+	widget_background_add(exit_button, img, WIDGET(exit_button)->rect.x, WIDGET(exit_button)->rect.y, img->w, img->h, 0);
 	widget_group_add(quest_browser, WIDGET(exit_button));
 
 	struct {

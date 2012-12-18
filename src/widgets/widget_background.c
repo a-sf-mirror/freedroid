@@ -41,6 +41,7 @@
 struct tile {
 	SDL_Rect rect;		 /**< Position rectangle of the image. */
 	struct image *image; /**< Pointer to the image structure */
+	enum image_transformation_mode mode;
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -69,7 +70,9 @@ static void background_display(struct widget *w)
 		if (!img)
 			return;
 
-		display_image_on_screen(img, rect.x, rect.y, set_image_transformation(rect.w / (float)img->w, rect.h / (float)img->h, 1, 1, 1, 1, 0));
+		struct image_transformation img_trsf = set_image_transformation(rect.w / (float)img->w, rect.h / (float)img->h, 1, 1, 1, 1, 0);
+		img_trsf.mode = tile[i].mode;
+		display_image_on_screen(img, rect.x, rect.y, img_trsf);
 	}
 }
 
@@ -101,19 +104,23 @@ struct widget_background *widget_background_create()
  * displayed by the background widget.\n
  * The position of the image is an absolute position, expressed in screen
  * coordinates.\n
- * The image will be un-uniformly scaled to fit the desired width and height.
+ * The image will be un-uniformly scaled (or repeated) to fit the desired width
+ * and height.
  *
  * \param wb  Pointer to the widget_background object
  * \param img Pointer to the image to add to the background
  * \param x   Absolute position of the image along X axis
  * \param y   Absolute position of the image along Y axis
- * \param w   Display width of the image
- * \param h   Display height of the image
+ * \param w   Display width of the background
+ * \param h   Display height of the background
+ * \param mode Transformation mode to apply if the image size is lower than the background size (scaled or tiled)
+ *
  */
-void widget_background_add(struct widget_background *wb, struct image *img, int x, int y, int w, int h)
+void widget_background_add(struct widget_background *wb, struct image *img, int x, int y, int w, int h, enum image_transformation_mode mode)
 {
 	struct tile tile;	
 	tile.image = img;
+	tile.mode = mode;
 	Set_Rect(tile.rect, x, y, w, h);
 	dynarray_add(&wb->tiles, &tile, sizeof(struct tile));		
 }
@@ -198,7 +205,7 @@ void widget_background_load_3x3_tiles(struct widget_background *panel, char *bas
 	// Add tiles to the background.
 	for (i = 0; i < 3; i++) {
 		for (j = 0; j < 3; j++) {
-			widget_background_add(panel, (tile[i][j]).image, tile[i][j].rect.x, tile[i][j].rect.y, tile[i][j].rect.w, tile[i][j].rect.h);
+			widget_background_add(panel, (tile[i][j]).image, tile[i][j].rect.x, tile[i][j].rect.y, tile[i][j].rect.w, tile[i][j].rect.h, 0);
 		}
 	}
 }
