@@ -408,3 +408,28 @@ function openlvl24doors()
 	change_obstacle_state("24door3", "opened")
 	change_obstacle_state("24door4", "opened")
 end
+
+function level24obstacles()
+	function level24newid()
+		randobstacletype = math.random(0,466)
+	end
+	function level24idcheck()
+		if string.find(randobstacletype, 19) or
+		   string.find(randobstacletype, 20) or
+		   string.find(randobstacletype, 22) or
+		   string.find(randobstacletype, 23) or
+		   string.find(randobstacletype, 24) or
+		   string.find(randobstacletype, 25) or
+		   string.find(randobstacletype, 61) or
+		   string.find(randobstacletype, 63) then
+		   -- cat ./map/obstacle_specs.lua | grep "image_filenames" | nl | grep "DUMMY"
+			display_big_message(randobstacletype.." getting new id")
+			level24newid()
+			level24idcheck()
+		end
+	end
+	level24newid()
+	level24idcheck()
+	display_big_message(randobstacletype)
+	change_obstacle_type("24randobst", randobstacletype)
+end
