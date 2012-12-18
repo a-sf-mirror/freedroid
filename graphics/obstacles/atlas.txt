@@ -105,7 +105,7 @@ iso_crystal_stump_1.png 838 1954 87 88 off -37 -70
 iso_shroom_white_2.png 926 1954 72 88 off -24 -69
 iso_chairs_ball_w.png 999 1954 69 87 off -34 -77
 iso_purplecloud_4.png 1069 1954 100 87 off -48 -61
-iso_teleport_0001.png 1170 1954 100 87 off -48 -61
+iso_teleport_2.png 1170 1954 100 87 off -48 -61
 iso_bench_white_s.png 1271 1954 106 85 off -53 -66
 iso_counter_small_n.png 1378 1954 80 85 off -41 -67
 iso_counter_small_w.png 1459 1954 80 85 off -37 -67
@@ -333,13 +333,13 @@ iso_bathtub_e.png 1408 1540 123 107 off -60 -72
 iso_barrel_rusty.png 1532 1540 65 106 off -32 -90
 iso_bathtub_s.png 1598 1540 121 106 off -65 -71
 iso_purplecloud_3.png 1720 1540 94 106 off -47 -72
-iso_teleport_0000.png 1815 1540 94 106 off -47 -72
+iso_teleport_1.png 1815 1540 94 106 off -47 -72
 iso_crate_we.png 1910 1540 104 104 off -53 -80
 iso_urinal_s.png 2015 1540 29 77 off -14 -81
 iso_workdesk_w.png 0 1662 94 104 off -44 -79
 iso_purplecloud_5.png 95 1662 93 103 off -40 -75
 iso_shroom_blue_3.png 189 1662 93 103 off -45 -81
-iso_teleport_0002.png 283 1662 93 103 off -40 -75
+iso_teleport_3.png 283 1662 93 103 off -40 -75
 iso_sofa_red_n.png 377 1662 111 101 off -52 -68
 iso_sofa_red_w.png 489 1662 111 101 off -44 -77
 iso_workdesk_s.png 601 1662 92 101 off -46 -79
@@ -347,10 +347,10 @@ iso_crystal_stump_2.png 694 1662 115 100 off -68 -70
 iso_rock_big.png 810 1662 128 98 off -56 -68
 iso_purplecloud_2.png 939 1662 97 97 off -44 -66
 iso_sleepingcapsule_n.png 1037 1662 141 97 off -69 -82
-iso_teleport_0004.png 1179 1662 97 97 off -44 -66
+iso_teleport_5.png 1179 1662 97 97 off -44 -66
 iso_sleepingcapsule_w.png 1277 1662 144 96 off -75 -85
 iso_purplecloud_1.png 1422 1662 93 95 off -48 -70
-iso_teleport_0003.png 1516 1662 93 95 off -48 -70
+iso_teleport_4.png 1516 1662 93 95 off -48 -70
 iso_counter_small_edge_nw.png 1610 1662 91 82 off -43 -63
 iso_counter_small_e.png 1702 1662 79 82 off -42 -69
 iso_counter_small_s.png 1782 1662 79 82 off -38 -69

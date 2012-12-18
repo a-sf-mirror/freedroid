@@ -129,7 +129,7 @@ obstacle {
 }
 
 obstacle {
-	image_filenames = { "iso_teleport_0000.png", "iso_teleport_0001.png", "iso_teleport_0002.png", "iso_teleport_0003.png", "iso_teleport_0004.png" },
+	image_filenames = { "iso_teleport_1.png", "iso_teleport_2.png", "iso_teleport_3.png", "iso_teleport_4.png", "iso_teleport_5.png" },
 	emitted_light_strength = { 20, 19, 18, 19, 20 },
 	transparency = NO_TRANSPARENCY,
 	animation_fps = 10
