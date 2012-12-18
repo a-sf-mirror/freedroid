@@ -3212,3 +3212,8 @@ obstacle {
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
+--[[ IMPORTANT NOTE:
+Before you add a new obstacle to the end of this list, please try to
+replace one of these DUMMY OBSTACLEs.
+Thank you.
+]]--
