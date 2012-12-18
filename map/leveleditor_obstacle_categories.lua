@@ -278,6 +278,7 @@ leveleditor_obstacle_category {
 		"iso_raylamp_up.png",
 		"iso_raylamp_right.png",
 		"iso_purplecloud_3.png",
+		"iso_teleport_0000.png",
 		"iso_droidnest_1.png",
 		"iso_autogun_on_w.png",
 		"iso_autogun_on_n.png",
