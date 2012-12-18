@@ -66,12 +66,17 @@ typedef struct upgrade_socket_dynarray {
 /* prototype for BFont_Info from BFont.h */
 struct BFont_Info;
 
+enum image_transformation_mode {
+	HIGHLIGHTED = 1 << 1,
+	REPEATED    = 1 << 2
+};
+
 struct image_transformation {
-	SDL_Surface *surface;		
-	float scale_x;
-	float scale_y;
-	float c[4]; /**< color transformation, r g b a in that order */
-	int highlight;
+	SDL_Surface *surface;
+	float scale_x; /**< zoom factor or repeat factor, depending on transformation mode */
+	float scale_y; /**< zoom factor or repeat factor, depending on transformation mode */
+	float c[4];    /**< color transformation, r g b a in that order */
+	enum image_transformation_mode mode;
 };
 
 /**

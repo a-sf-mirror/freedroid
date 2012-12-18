@@ -153,34 +153,96 @@ static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, floa
 #endif
 }
 
+static inline void gl_repeat_quad(int x0, int y0, int w, int h, float tx0, float ty0, float tx1, float ty1, float rx, float ry)
+{
+	int i, j;
+
+	// When an image is displayed in repeated mode, the quad containing the
+	// image is to be repeated several times on a rectangular array.
+	// The number of repetitions depends on the ratio between the size of the
+	// image and the size of the on-screen area to fill, as defined by rx and ry.
+	// For example, if the on-screen width is 3 times the image width, then the
+	// quad will be repeated 3 times along X.
+	// If the ratio between the on-screen width and the image width is a decimal
+	// value, then the last repetition of the quad will be 'partial'.
+	// For example, if rx = 3.25, we have to repeat the quad 3 times and end
+	// with a quarter of the quad width.
+
+	// Tex coords to use on the last column and the last row
+	// If rx is an integer value, then decimal_rx = 1.0
+	// If rx is not an integer value, then decimal_rx = decimal_part_of(rx)
+	float decimal_rx = rx - (ceil(rx) - 1.0);
+	float last_column_tx1 = tx0 + (tx1 - tx0) * decimal_rx;
+	float decimal_ry = ry - (ceil(ry) - 1.0);
+	float last_row_ty1 = ty0 + (ty1 - ty0) * decimal_ry;
+
+	// Create and queue the repeated quad
+
+	int repeat_x = (int)ceil(rx);
+	int repeat_y = (int)ceil(ry);
+
+	int current_y0 = y0;
+	int current_y1 = y0 + h;
+	float current_ty0 = ty0;
+	float current_ty1 = ty1;
+
+	for (j = 0; j < repeat_y; j++) {
+
+		int current_x0 = x0;
+		int current_x1 = x0 + w;
+		float current_tx0 = tx0;
+		float current_tx1 = tx1;
+
+		// If last row, use last row values
+		if (j == repeat_y - 1) {
+			current_y1 = y0 + ry * h;
+			current_ty1 = last_row_ty1;
+		}
+
+		for (i = 0; i < repeat_x; i++) {
+
+				// If last column, use last column values
+				if (i == repeat_x - 1) {
+					current_x1 = x0 + rx * w;
+					current_tx1 = last_column_tx1;
+				}
+
+				gl_queue_quad(current_x0, current_y0, current_x1, current_y1,
+				              current_tx0, current_ty0, current_tx1, current_ty1);
+
+				// Prepare for the next column
+				current_x0 += w;
+				current_x1 += w;
+			}
+
+			// Prepare for the next row
+			current_y0 += h;
+			current_y1 += h;
+		}
+}
+
 /**
  * Draw an image in OpenGL mode.
+ *
  * Changes the active texture if necessary, and emits glBegin/glEnd pairs
  * according to the texture switches and whether a batch is required.
+ * Applies the image transformation.
+ *
  */
-static void gl_display_image(struct image *img, int x, int y, struct image_transformation *t)
+static void gl_display_image(struct image *img, int x0, int y0, struct image_transformation *t)
 {
 	// If the image is empty, don't do anything
 	if (!img->texture)
 		return;
 
+	// Compute the onscreen position and size of the image according
+	// to initial position, image's offset and scale
+	int x = x0 + img->offset_x * t->scale_x;
+	int y = y0 + img->offset_y * t->scale_y;
+	int xmax = x + img->w * t->scale_x;
+	int ymax = y + img->h * t->scale_y;
+
 #ifdef HAVE_LIBGL
-	// Compute image coordinates according to scale factor
-	int xmax = img->w;
-	int ymax = img->h;
-	int xoff = img->offset_x;
-	int yoff = img->offset_y;
-
-	xmax *= t->scale_x;
-	ymax *= t->scale_y;
-	xoff *= t->scale_x;
-	yoff *= t->scale_y;
-
-	x += xoff;
-	y += yoff;
-	xmax += x;
-	ymax += y;
-
 	// Bind the texture if required
 	if (img->texture != active_tex) {
 		gl_emit_quads();
@@ -194,8 +256,14 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 		memcpy(&requested_color[0], &t->c[0], sizeof(requested_color));
 	}
 
-	// Draw the image	
-	gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
+	// Queue the image, once or several times depending on the transformation
+	// mode to apply
+
+	if (t->mode & REPEATED) {
+		gl_repeat_quad(x, y, img->w, img->h, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1, t->scale_x, t->scale_y);
+	} else {
+		gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
+	}
 
 	if (!batch_draw) {
 		gl_emit_quads();
@@ -203,12 +271,16 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 		requested_color[0] = -1;
 	}
 
-	if (t->highlight) {
+	if (t->mode & HIGHLIGHTED) {
 		// Highlight? Draw the texture again with additive blending factors
 		// This increases the lightness too much, but is a quick and easy solution
 		gl_emit_quads();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
+		if (t->mode & REPEATED) {
+			gl_repeat_quad(x, y, img->w, img->h, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1, t->scale_x, t->scale_y);
+		} else {
+			gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
+		}
 		gl_emit_quads();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
@@ -216,6 +288,67 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 #endif
 }
 
+static struct SDL_Surface *repeatSurface(struct image *img, float rx, float ry)
+{
+	// (see introduction comment of gl_repeat_quad())
+
+	int i, j;
+
+	// Create a new surface containing the repeated image
+
+	struct SDL_Surface *surf = SDL_CreateRGBSurface(0, img->w * rx, img->h * ry, 32, rmask, gmask, bmask, amask);
+	struct SDL_Surface *repeated_surf = SDL_DisplayFormatAlpha(surf);
+	SDL_FreeSurface(surf);
+	SDL_SetAlpha(img->surface, 0, 1);
+	SDL_SetAlpha(repeated_surf, SDL_SRCALPHA | SDL_RLEACCEL, 0);
+
+	// Width and height to use on the last column and the last row
+	// If rx is an integer value, then decimal_rx = 1.0
+	// If rx is not an integer value, then decimal_rx = decimal_part_of(rx)
+	float decimal_rx = rx - (ceil(rx) - 1.0);
+	int last_column_width = (int)((float)img->w * decimal_rx);
+	float decimal_ry = ry - (ceil(ry) - 1.0);
+	int last_row_height = (int)((float)img->h * decimal_ry);
+
+	// Create the final image
+
+	int repeat_x = (int)ceil(rx);
+	int repeat_y = (int)ceil(ry);
+
+	int blit_y = 0;
+	int blit_h = img->h;
+
+	for (j = 0; j < repeat_y; j++) {
+
+		// If last row, adjust the height of the blitted rect
+		if (j == repeat_y - 1) {
+			blit_h = last_row_height;
+		}
+
+		int blit_x = 0;
+		int blit_w = img->w;
+
+		for (i = 0; i < repeat_x; i++) {
+
+			// If last column, adjust the width of the blitted rect
+			if (i == repeat_x - 1) {
+				blit_w = last_column_width;
+			}
+
+			SDL_Rect from_rect = { .x = 0, .y = 0, .w = blit_w, .h = blit_h };
+			SDL_Rect to_rect   = { .x = blit_x, .y = blit_y, .w = blit_w, .h = blit_h };
+			SDL_BlitSurface(img->surface, &from_rect, repeated_surf, &to_rect);
+
+			// Prepare for next column: increment X-position of the destination
+			blit_x += img->w;
+		}
+
+		// Prepare for next row: increment Y-position of the destination
+		blit_y += img->h;
+	}
+
+	return repeated_surf;
+}
 /**
  * Draw an image in SDL mode.
  */
@@ -230,41 +363,40 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 
 	// Check if the image must be transformed at all
 	float white[4] = { 1.0, 1.0, 1.0, 1.0 };
-	if (t->scale_x == 1.0 && t->scale_y == 1.0 && !memcmp(&t->c[0], &white[0], sizeof(white)) && !t->highlight) {
+
+	if (t->scale_x == 1.0 && t->scale_y == 1.0 && !memcmp(&t->c[0], &white[0], sizeof(white)) && !(t->mode & HIGHLIGHTED)) {
 		// No transformation
 		surf = img->surface;
 	} else {
-		// Transformed image
-
-		// Check if the transformation is in cache
+		// Check if the transformation is in cache, and create it if needed
 		struct image_transformation *cache = &img->cached_transformation;
-		if (!cache->surface || cache->scale_x != t->scale_x || cache->scale_y != t->scale_y || memcmp(&cache->c[0], &t->c[0], sizeof(t->c)) || cache->highlight != t->highlight) {
-			// Transformed image is not in cache, create it
 
-			// Scale the image
-			int scaled;
-			if (t->scale_x != 1.0 || t->scale_y != 1.0) {
-				t->surface = zoomSurface(img->surface, t->scale_x, t->scale_y, TRUE); 
-				scaled = 1;
-			} else {
+		if (!cache->surface || cache->scale_x != t->scale_x || cache->scale_y != t->scale_y || memcmp(&cache->c[0], &t->c[0], sizeof(t->c)) || cache->mode != t->mode) {
+
+			// Transform (if needed) the image, holding it temporarily in the
+			// image_transformation structure
+			if (t->scale_x == 1.0 && t->scale_y == 1.0) {
 				t->surface = img->surface;
-				scaled = 0;
+			} else {
+				if (t->mode & REPEATED) {
+					t->surface = repeatSurface(img, t->scale_x, t->scale_y);
+				} else {
+					t->surface = zoomSurface(img->surface, t->scale_x, t->scale_y, TRUE);
+				}
 			}
 
 			// Apply color filter on the image
-			if (memcmp(&t->c[0], &white[0], sizeof(white)) || t->highlight) {
-				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->c[0], t->c[1], t->c[2], t->c[3], t->highlight ? 64 : 0);
-
-				if (scaled)
+			if (memcmp(&t->c[0], &white[0], sizeof(white)) || (t->mode & HIGHLIGHTED)) {
+				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->c[0], t->c[1], t->c[2], t->c[3], (t->mode & HIGHLIGHTED) ? 64 : 0);
+				if (t->surface != img->surface)
 					SDL_FreeSurface(t->surface);
-
 				t->surface = tmp;
 			}
 
 			// Cache the transformation we have done
-			if (cache->surface)
+			if (cache->surface) {
 				SDL_FreeSurface(cache->surface);
-
+			}
 			*cache = *t;
 		}
 
@@ -479,6 +611,7 @@ int image_loaded(struct image *img)
  */
 struct image_transformation set_image_transformation(float scale_x, float scale_y, float r, float g, float b, float a, int highlight)
 {
-	struct image_transformation t = { .surface = NULL, .scale_x = scale_x, .scale_y = scale_y, .c = { r, g, b, a }, .highlight = highlight };
+	enum image_transformation_mode mode = highlight ? HIGHLIGHTED : 0;
+	struct image_transformation t = { .surface = NULL, .scale_x = scale_x, .scale_y = scale_y, .c = { r, g, b, a }, .mode = mode };
 	return t;
 }
