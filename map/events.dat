@@ -1044,6 +1044,14 @@ Silent=1
 <LuaCode>
 	teleport("24teleportend")
 </LuaCode>
+
+* New event trigger *
+Name=_"24fdrpgdeathlabel"
+Trigger at label="24fdrpgdeathlabel"
+Silent=0
+<LuaCode>
+	os.exit(0)
+</LuaCode>
 * End of trigger *
 ##############
 ## Level 25 ##
