@@ -1589,6 +1589,8 @@ void ThouArtDefeated(void)
 			CheckBulletCollisions(j);
 
 	}
+	if (!skip_initial_menus)
+		PlayATitleFile("GameLost.title");
 
         do_death_menu();
 
@@ -1636,8 +1638,8 @@ void ThouHastWon(void)
 	// Now it's time for the end game title file...
 	//
 	//PlayATitleFile("EndOfGame.title");
-
-	PlayATitleFile("Credits.title");
+	if (!skip_initial_menus)
+		PlayATitleFile("Credits.title");
 
 	input_handle();
 
