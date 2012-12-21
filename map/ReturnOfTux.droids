@@ -163,7 +163,7 @@ T=751: PosX=69 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prison
 T=598: PosX=60 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=603: PosX=76 PosY=38 Faction="civilian" UseDialog="Kevin-Lawnmower" ShortLabel="Lawn Mower" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=JAS: PosX=66 PosY=52 Faction="civilian" UseDialog="Jasmine" ShortLabel="Cute Girl" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=KEV: PosX=70 PosY=52 Faction="civilian" UseDialog="Kevin" ShortLabel="Kevin" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=KEV: PosX=70 PosY=52 Faction="civilian" UseDialog="Kevin" ShortLabel="Kevin" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=9
 T=614: PosX=57 PosY=46 Faction="civilian" UseDialog="KevinGuard" ShortLabel="Stolen 614" Marker=1017 RushTux=1 Fixed=0 DropItemName="none" MaxDistanceToHome=9
 ** End of this levels Special Forces data **
 ---------------------------------------------------------

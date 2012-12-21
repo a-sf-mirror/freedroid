@@ -611,6 +611,7 @@ Trigger exiting level=13
 ##############
 ## Level 17 ##
 ##############
+
 * New event trigger *
 Name=_"Kevin Guard Rush-1"
 Trigger at label="Kevin-Enter-1"
@@ -646,6 +647,41 @@ Name=_"To Kevin's Underground Station"
 Trigger at label="17to3"
 Silent=0
 <LuaCode> teleport("3from17") </LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Entering to Kevin's Backdoor"
+Trigger at label="KevinsBackDoor-Entering"
+Silent=1
+<LuaCode>
+	if (not KevinGuard_door_open) then
+		Kevin_entering_from_back = true
+		set_rush_tux(1, "Kevin")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Exiting from Kevin's Backdoor"
+Trigger at label="KevinsBackDoor-Exiting"
+Silent=1
+<LuaCode>
+	if (Kevin_entering_from_back) then
+		set_rush_tux(0, "Kevin")
+	end
+	Kevin_entering_from_back = false
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Exiting from Kevin's Backdoor - Teleport"
+Trigger exiting level=17
+<LuaCode>
+	if (Kevin_entering_from_back) then
+		set_rush_tux(0, "Kevin")
+	end
+	Kevin_entering_from_back = false
+</LuaCode>
 * End of trigger *
 
 ##############
@@ -1664,17 +1700,6 @@ Enemy dialog name="Kevin"
 <LuaCode>
 	if (not Kevin_can_die) then
 		display_big_message(_"Kevin still needed alive to win game.")
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name=_"KevinGuard Dies"
-Trigger on enemy death in level=17
-Enemy dialog name="KevinGuard"
-<LuaCode>
-	if (not Kevin_can_die) then
-		display_big_message(_"KevinGuard still needed alive to win game".)
 	end
 </LuaCode>
 * End of trigger *

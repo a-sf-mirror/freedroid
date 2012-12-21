@@ -28,7 +28,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	set_rush_tux(0)
-	if (KevinGuard_door_open) then
+	if (Kevin_entering_from_back) then
+		end_dialog()
+	elseif (KevinGuard_door_open) then
 		tux_says(_"It's me.")
 		change_obstacle_state("KevinsDoor", "opened")
 		npc_says(_"[b]Identity confirmed. You may pass.[/b]")
@@ -36,6 +38,7 @@ Beginning of new chat dialog for character="XXXXX"
 		show(99)
 	else
 		npc_says(_"[b]Intruder, lower your weapons and identify yourself or face immediate termination.[/b]")
+		npc_says(_"[b]Any attempts to enter without authorization will be punished.[/b]")
 		npc_says(_"[b]I will not let you injure my master.[/b]")
 		hide(99) show(2, 8)
 	end

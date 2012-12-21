@@ -32,7 +32,16 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_met("Kevin")) then
+	if (Kevin_entering_from_back) then
+		npc_says(_"Hey, what are you doing?")
+		npc_says(_"You aren't allowed to enter through the backdoor, least of all make one...")
+		npc_says(_"Of course, unless you receive authorization from the administrator.")
+		npc_says(_"Of course, unless you could save lives or protect people.")
+		npc_says(_"Of course, unless, maybe two or three further exceptions...")
+		npc_says(_"But this isn't the case here, so explain yourself.")
+		show(90, 91, 92)
+		topic("Backdoor")
+	else
 		tux_says_random(_"Hello.",
 						_"Hi there, Kevin.")
 		npc_says_random(_"Well, hello again.",
@@ -75,9 +84,9 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=0 Text=_"Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
+Nr=0 Text=_"Oh dear... You look awful... Who did this to you? Did they torture you?"
 <LuaCode>
-	npc_says(_"Hi. I haven't eaten and slept very much in the last time so I'm a little hungry and may appear a little tired.")
+	npc_says(_"I haven't eaten and slept very much in the last time so I'm a little hungry and may appear a little tired.")
 	npc_says(_"One of the side effects of always deleting all cookies.")
 	npc_says(_"Don't worry about me. I'll be fine.")
 	npc_says(_"I'm Kevin, a computer security expert.")
@@ -322,6 +331,45 @@ Nr=61 Text=_"Yes, I tried to login."
 	end
 	Kevins_Lawnmower_tux_login = false
 	hide(60, 61)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=90 Text=_"I came to warn you: droids broke through your wall!" Topic="Backdoor"
+<LuaCode>
+	npc_says(_"You could just go around and enter by the main door.")
+	npc_says(_"This way, you might waste time. You've optimized your path. Good job!")
+	npc_says(_"Thank you for your report, but I don't have time to fix it.")
+	next(93)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=91 Text=_"My mission is top-secret. I must be stealthy." Topic="Backdoor"
+<LuaCode>
+	npc_says(_"You are really careful with the security of your mission.")
+	npc_says(_"However don't destroy my equipment, I can support you to be stealthy.")
+	npc_says(_"But later, maybe... I don't have time now.")
+	next(93)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=92 Text=_"I saw an opening in the wall and I decided to take a look inside." Topic="Backdoor"
+<LuaCode>
+	npc_says(_"Oh, you have just entered by curiosity. I always fought for made it a exception to the rules.")
+	npc_says(_"I like curiosity. I think it will has rocketed us on Mars. And beyond...")
+	npc_says(_"Thank you, I now know the issue, but I don't have time to fix it.")
+	next(93)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=93 Text="BUG, REPORT ME! Kevin node93" Topic="Backdoor"
+NO_TEXT
+<LuaCode>
+	-- open KevinGuard door
+	KevinGuard_door_open = true
+	change_obstacle_state("KevinsDoor", "opened")
+	
+	Kevin_entering_from_back = false
+	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
