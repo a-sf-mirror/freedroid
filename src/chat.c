@@ -468,10 +468,10 @@ struct widget_group *create_chat_dialog()
 	widget_group_add(chat_menu, dark_background);
 
 	// Entry text selector
-	int chat_selector_h = UNIVERSAL_COORD_H(202);
-	int chat_selector_w = UNIVERSAL_COORD_W(627);
+	int chat_selector_h = UNIVERSAL_COORD_H(170);
+	int chat_selector_w = UNIVERSAL_COORD_W(640);
 	int chat_selector_x = (GameConfig.screen_width - chat_selector_w) / 2;
-	int chat_selector_y = GameConfig.screen_height - chat_selector_h - 5;
+	int chat_selector_y = GameConfig.screen_height - chat_selector_h;
 
 	struct widget_background *chat_selector_bkg = widget_background_create();
 	widget_set_rect(WIDGET(chat_selector_bkg), chat_selector_x, chat_selector_y, chat_selector_w, chat_selector_h);
@@ -480,7 +480,7 @@ struct widget_group *create_chat_dialog()
 
 	int left_padding = 35;
 	int right_padding = 35;
-	int top_padding = 65;
+	int top_padding = 24;
 	int bottom_padding = 20;
 
 	chat_selector_inner_rect.x = chat_selector_x + left_padding;
@@ -495,23 +495,43 @@ struct widget_group *create_chat_dialog()
 	widget_group_add(chat_menu, WIDGET(chat_selector));
 
 	// Droid portrait
-	struct image *img = widget_load_image_resource("widgets/chat_portrait.png", 0);
-	int chat_portrait_x = chat_selector_x;
-	int chat_portrait_y = chat_selector_y - img->h + 39;
+	struct image *img_frame = widget_load_image_resource("widgets/chat_portrait_frame.png", 0);
+	struct image *img_connector = widget_load_image_resource("widgets/chat_portrait_connector.png", 0);
+	struct image *img_tube = widget_load_image_resource("widgets/chat_portrait_tube.png", 0);
+	int chat_portrait_frame_x = 13;
+	int chat_portrait_frame_y = 4;
+	int chat_portrait_connector_x = chat_selector_x;
+	int chat_portrait_connector_y = chat_selector_y - img_connector->h;
+	int chat_portrait_tube_x = chat_portrait_connector_x + 86;
+	int chat_portrait_tube_y = chat_portrait_frame_y + img_frame->h;
+	int chat_portrait_tube_h = (chat_portrait_connector_y + 39) - chat_portrait_tube_y;
 
-	struct widget_background *chat_portrait_bkg = widget_background_create();
-	widget_background_add(chat_portrait_bkg, img, chat_portrait_x, chat_portrait_y, img->w, img->h, 0);
-	widget_group_add(chat_menu, WIDGET(chat_portrait_bkg));
+	struct widget_background *chat_portrait_connector = widget_background_create();
+	widget_background_add(chat_portrait_connector, img_connector, chat_portrait_connector_x, chat_portrait_connector_y, img_connector->w, img_connector->h, 0);
+	widget_group_add(chat_menu, WIDGET(chat_portrait_connector));
+
+	if (chat_portrait_tube_h > 0) {
+		int tube_repeat = ceil((float)chat_portrait_tube_h / (float)img_tube->h);
+		chat_portrait_tube_h = img_tube->h * tube_repeat;
+		chat_portrait_tube_y = (chat_portrait_connector_y + 39) - chat_portrait_tube_h;
+		struct widget_background *chat_portrait_tube = widget_background_create();
+		widget_background_add(chat_portrait_tube, img_tube, chat_portrait_tube_x, chat_portrait_tube_y, img_tube->w, chat_portrait_tube_h, REPEATED);
+		widget_group_add(chat_menu, WIDGET(chat_portrait_tube));
+	}
+
+	struct widget_background *chat_portrait_frame = widget_background_create();
+	widget_background_add(chat_portrait_frame, img_frame, chat_portrait_frame_x, chat_portrait_frame_y, img_frame->w, img_frame->h, 0);
+	widget_group_add(chat_menu, WIDGET(chat_portrait_frame));
 
 	struct widget_button *chat_portrait = widget_button_create();
-	widget_set_rect(WIDGET(chat_portrait), chat_portrait_x + 30, chat_portrait_y + 32, 136, 183);
+	widget_set_rect(WIDGET(chat_portrait), chat_portrait_frame_x + 30, chat_portrait_frame_y + 32, 136, 183);
 	widget_group_add(chat_menu, WIDGET(chat_portrait));
 	droid_portrait = &chat_portrait->image[0][0];
 
 	// Chat log
-	int chat_log_x = chat_selector_x + img->w - 30;
-	int chat_log_y = 6;
-	int chat_log_h = GameConfig.screen_height - chat_selector_h + 10;
+	int chat_log_x = chat_portrait_connector_x + img_connector->w;
+	int chat_log_y = 0;
+	int chat_log_h = chat_selector_y - chat_log_y;
 	int chat_log_w = chat_selector_x + chat_selector_w - chat_log_x;
 
 	struct widget_background *chat_log_bkg = widget_background_create();
@@ -533,29 +553,29 @@ struct widget_group *create_chat_dialog()
 	} b[] = {
 		// Chat Log scroll up
 		{
-			{"widgets/scroll_up_off.png", NULL, "widgets/scroll_up.png"},
-			{chat_log_x + chat_log_w / 2 - 59, chat_log_y - 1, 118, 17},
+			{"widgets/chat_scroll_up_off.png", NULL, "widgets/chat_scroll_up.png"},
+			{chat_log_x + (chat_log_w - 158) / 2, chat_log_y + 2, 158, 22},
 			WIDGET_EXECUTE(struct widget_button *wb, widget_text_scroll_up(chat_log)),
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_can_scroll_up(chat_log))
 		},
 		// Chat Log scroll down
 		{
-			{"widgets/scroll_down_off.png", NULL, "widgets/scroll_down.png"},
-			{chat_log_x + chat_log_w / 2 - 59, chat_log_y + chat_log_h - 26, 118, 17},
+			{"widgets/chat_scroll_down_off.png", NULL, "widgets/chat_scroll_down.png"},
+			{chat_log_x + (chat_log_w - 158) / 2, chat_log_y + chat_log_h - 41, 158, 22},
 			WIDGET_EXECUTE(struct widget_button *wb, widget_text_scroll_down(chat_log)),
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_can_scroll_down(chat_log))
 		},
 		// Chat Selector Scroll up
 		{
-			{"widgets/scroll_up_off.png", NULL, "widgets/scroll_up.png"},
-			{chat_selector_x + chat_selector_w / 2 - 59, chat_selector_y + 37, 118, 17},
+			{"widgets/chat_scroll_up_off.png", NULL, "widgets/chat_scroll_up.png"},
+			{chat_selector_x + (chat_selector_w - 158) / 2, chat_selector_y - 2, 158, 22},
 			WIDGET_EXECUTE(struct widget_button *wb, widget_text_list_scroll_up(chat_selector)),
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_list_can_scroll_up(chat_selector))
 		},
 		// Chat Selector Scroll down
 		{
-			{"widgets/scroll_down_off.png", NULL, "widgets/scroll_down.png"},
-			{chat_selector_x + chat_selector_w / 2 - 59, chat_selector_y + chat_selector_h - 23, 118, 17},
+			{"widgets/chat_scroll_down_off.png", NULL, "widgets/chat_scroll_down.png"},
+			{chat_selector_x + (chat_selector_w - 158) / 2, chat_selector_y + chat_selector_h - 23, 158, 22},
 			WIDGET_EXECUTE(struct widget_button *wb, widget_text_list_scroll_down(chat_selector)),
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, widget_text_list_can_scroll_down(chat_selector))
 		}
