@@ -54,6 +54,10 @@ Beginning of new chat dialog for character="XXXXX"
 	if (tux_has_joined_guard) then
 		hide(3, 4)
 	end
+
+	if (Duncen_node_62_hide) then
+		hide(62)
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -214,6 +218,10 @@ NO_TEXT
 		end
 		Duncan_Koan_quest_done = true
 		show(62, 63)
+		if (Duncen_node_62_hide) then
+			hide(62)
+		end
+		Duncen_node_62_hide = true
 	elseif (npc_dead("Koan")) then  -- we don't have the cube but Koan is dead
 		if (Duncan_talked_Koan_dead) then -- let Duncan ask for the cube differently if
 			-- tux already returned without the cube while Koan was dead
@@ -261,6 +269,7 @@ Nr=63 Text=_"Now, what is this big cube that you had me carry all the way here?"
 	npc_says(_"Just a memento from a friend.")
 	npc_says(_"A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets.")
 	npc_says(_"Nothing that important.")
+	Duncen_node_62_hide = true
 	hide(62, 63) show(67, 68)
 </LuaCode>
 ----------------------------------------------------------------------
