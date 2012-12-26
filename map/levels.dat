@@ -64661,7 +64661,7 @@ jump target west: -1
 number of random droids: 0
 random droid types: 
 Name of this level=_"Shelter"
-BgSong=TheBeginning.ogg
+BgSong=NewTutorialStage.ogg
 beginning_of_map
   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 
   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 
