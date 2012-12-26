@@ -49,21 +49,19 @@ static int text_handle_mouse_down(struct widget_text *wt, SDL_Event *event)
 	switch (event->button.button) {
 		case MOUSE_BUTTON_1:
 			// LMB in the upper half, scroll text up if possible.
-			if (wt->mouse_hover == UPPER_HALF && widget_text_can_scroll_up(wt))
-				wt->scroll_offset--;
+			if (wt->mouse_hover == UPPER_HALF)
+				widget_text_scroll_up(wt);
 			// LMB in the lower half, scroll text down if possible..
-			if (wt->mouse_hover == LOWER_HALF && widget_text_can_scroll_down(wt))
-				wt->scroll_offset++;
+			if (wt->mouse_hover == LOWER_HALF)
+				widget_text_scroll_down(wt);
 			return 1;
 
 		case SDL_BUTTON_WHEELDOWN:
-			if (widget_text_can_scroll_down(wt))
-				wt->scroll_offset++;
+			widget_text_scroll_down(wt);
 			return 1;
 
 		case SDL_BUTTON_WHEELUP:
-			if (widget_text_can_scroll_up(wt))
-				wt->scroll_offset--;
+			widget_text_scroll_up(wt);
 			return 1;
 	}
 
