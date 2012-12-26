@@ -76,6 +76,7 @@ void blit_mouse_cursor(void)
 	case MOUSE_CURSOR_SCROLL_DOWN:
 		cursor_index = 5;
 		cursoff.x = -12;
+		cursoff.y = -30;
 		break;
 	case MOUSE_CURSOR_NORMAL:
 		cursor_index = 0;
