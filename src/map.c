@@ -1322,7 +1322,7 @@ static void WriteOutOneItem(struct auto_string *shipstr, item *ItemToWriteOut)
 		autostr_append(shipstr, "%s%d ", ITEM_ARMOR_CLASS_BASE_STRING, ItemToWriteOut->armor_class);
 	}
 
-	autostr_append(shipstr, "%s%d %s%f %s%d %s%d ",
+	autostr_append(shipstr, "%s%d %s%f %s%d %s%d",
 			ITEM_MAX_DURABILITY_STRING, ItemToWriteOut->max_durability,
 			ITEM_CUR_DURABILITY_STRING, ItemToWriteOut->current_durability,
 			ITEM_AMMO_CLIP_STRING, ItemToWriteOut->ammo_clip,
