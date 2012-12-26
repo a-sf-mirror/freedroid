@@ -640,7 +640,7 @@ static void LevelOptions(void)
 			strcat(Options[i], _("Bonus"));
 			sprintf(Options[i + 1], " [%d]  (<-/->)", EditLevel()->light_bonus);
 		} else
-			sprintf(Options[i + 1], "Im a bug");
+			sprintf(Options[i + 1], "I'm a bug");
 		strcat(Options[i], Options[i + 1]);
 		MenuTexts[i] = Options[i];
 		i++;
