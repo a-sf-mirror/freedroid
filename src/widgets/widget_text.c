@@ -176,12 +176,25 @@ static int text_handle_event(struct widget *w, SDL_Event *event)
 			return text_handle_mouse_down(wt, event);
 
 		case SDL_MOUSEMOTION:
-			// Keep track of the area being hovered.
-			if (event->motion.y < w->rect.y + w->rect.h / 2)
-				WIDGET_TEXT(w)->mouse_hover = UPPER_HALF;
-			else
-				WIDGET_TEXT(w)->mouse_hover = LOWER_HALF;
-			return 1;
+			{
+				// Remove all motion events from the event stack and use the latest
+				// one.
+				SDL_Event evt1, evt2 = *event;
+				while (SDL_PeepEvents(&evt1, 1, SDL_GETEVENT, SDL_MOUSEMOTIONMASK) > 0)
+					evt2 = evt1;
+
+				// Keep track of the area being hovered.
+				if (evt2.motion.y > w->rect.y && evt2.motion.y < w->rect.y + w->rect.h) {
+					if (evt2.motion.y < w->rect.y + w->rect.h / 2)
+						WIDGET_TEXT(w)->mouse_hover = UPPER_HALF;
+					else
+						WIDGET_TEXT(w)->mouse_hover = LOWER_HALF;
+					return 1;
+				} else {
+					WIDGET_TEXT(w)->mouse_hover = NOT_HOVERED;
+				}
+			}
+			break;
 
 		case SDL_USEREVENT:
 			// Reset mouse hover flag.
