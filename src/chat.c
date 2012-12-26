@@ -456,45 +456,69 @@ static void dialog_option_selected(struct widget_text_list *wl)
  */
 struct widget_group *create_chat_dialog()
 {
+	int left_padding, right_padding, top_padding, bottom_padding;
+	int font_height;
+	int nb_lines;
+	int inner_height, actual_inner_height;
+
 	if (chat_menu)
 		return chat_menu;
 
 	chat_menu = widget_group_create();
 
+	//
 	// Dark background
+	//
+
 	struct widget *dark_background = widget_create();
 	widget_set_rect(dark_background, 0, 0, GameConfig.screen_width, GameConfig.screen_height);
 	dark_background->display = display_dark_background;
 	widget_group_add(chat_menu, dark_background);
 
+	//
 	// Entry text selector
+	//
+
 	int chat_selector_h = UNIVERSAL_COORD_H(170);
 	int chat_selector_w = UNIVERSAL_COORD_W(640);
 	int chat_selector_x = (GameConfig.screen_width - chat_selector_w) / 2;
 	int chat_selector_y = GameConfig.screen_height - chat_selector_h;
+
+	/* Default padding for text area */
+	left_padding = 35;
+	right_padding = 35;
+	top_padding = 24;
+	bottom_padding = 24;
+	inner_height = chat_selector_h - top_padding - bottom_padding;
 
 	struct widget_background *chat_selector_bkg = widget_background_create();
 	widget_set_rect(WIDGET(chat_selector_bkg), chat_selector_x, chat_selector_y, chat_selector_w, chat_selector_h);
 	widget_background_load_3x3_tiles(chat_selector_bkg, "widgets/chat_typo");
 	widget_group_add(chat_menu, WIDGET(chat_selector_bkg));
 
-	int left_padding = 35;
-	int right_padding = 35;
-	int top_padding = 24;
-	int bottom_padding = 20;
+	chat_selector = widget_text_list_create();
+
+	/* Adjust padding of the text area, to adapt the vertically padding to the available height */
+	font_height = FontHeight(chat_selector->font);
+	nb_lines = floor((float)inner_height / (float)font_height);
+	actual_inner_height = nb_lines * font_height;
+	top_padding += (inner_height - actual_inner_height) / 2;
+	bottom_padding = chat_selector_h - actual_inner_height - top_padding;
 
 	chat_selector_inner_rect.x = chat_selector_x + left_padding;
 	chat_selector_inner_rect.y = chat_selector_y + top_padding;
 	chat_selector_inner_rect.h = chat_selector_h - top_padding - bottom_padding;
 	chat_selector_inner_rect.w = chat_selector_w - left_padding - right_padding;
 
-	chat_selector = widget_text_list_create();
 	widget_set_rect(WIDGET(chat_selector), chat_selector_inner_rect.x, chat_selector_inner_rect.y, chat_selector_inner_rect.w, chat_selector_inner_rect.h);
 	chat_selector->process_entry = dialog_option_selected;
 	WIDGET(chat_selector)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, !chat_get_current_context()->wait_user_click);
 	widget_group_add(chat_menu, WIDGET(chat_selector));
 
+	//
 	// Droid portrait
+	//
+
 	struct image *img_frame = widget_load_image_resource("widgets/chat_portrait_frame.png", 0);
 	struct image *img_connector = widget_load_image_resource("widgets/chat_portrait_connector.png", 0);
 	struct image *img_tube = widget_load_image_resource("widgets/chat_portrait_tube.png", 0);
@@ -528,11 +552,21 @@ struct widget_group *create_chat_dialog()
 	widget_group_add(chat_menu, WIDGET(chat_portrait));
 	droid_portrait = &chat_portrait->image[0][0];
 
+	//
 	// Chat log
+	//
+
 	int chat_log_x = chat_portrait_connector_x + img_connector->w;
 	int chat_log_y = 0;
 	int chat_log_h = chat_selector_y - chat_log_y;
 	int chat_log_w = chat_selector_x + chat_selector_w - chat_log_x;
+
+	/* Default padding of the text area */
+	left_padding = 50;
+	right_padding = 30;
+	top_padding = 24;
+	bottom_padding = 48;
+	inner_height = chat_log_h - top_padding - bottom_padding;
 
 	struct widget_background *chat_log_bkg = widget_background_create();
 	widget_set_rect(WIDGET(chat_log_bkg), chat_log_x, chat_log_y, chat_log_w, chat_log_h);
@@ -540,9 +574,22 @@ struct widget_group *create_chat_dialog()
 	widget_group_add(chat_menu, WIDGET(chat_log_bkg));
 
 	chat_log = widget_text_create();
-	widget_set_rect(WIDGET(chat_log), chat_log_x + 50, chat_log_y + 28, chat_log_w - 80, chat_log_h - 66);
 	chat_log->font = FPS_Display_BFont;
 	chat_log->line_height_factor = LINE_HEIGHT_FACTOR;
+
+	/* Adjust padding of the text area, to adapt the vertically padding to the available height */
+	font_height = FontHeight(chat_log->font);
+	nb_lines = floor((float)inner_height / (float)font_height);
+	actual_inner_height = nb_lines * font_height;
+	top_padding += (inner_height - actual_inner_height) / 2;
+	bottom_padding = chat_log_h - actual_inner_height - top_padding;
+
+	int chat_log_inner_rect_x = chat_log_x + left_padding;
+	int chat_log_inner_rect_y = chat_log_y + top_padding;
+	int chat_log_inner_rect_h = chat_log_h - top_padding - bottom_padding;
+	int chat_log_inner_rect_w = chat_log_w - left_padding - right_padding;
+
+	widget_set_rect(WIDGET(chat_log), chat_log_inner_rect_x, chat_log_inner_rect_y, chat_log_inner_rect_w, chat_log_inner_rect_h);
 	widget_group_add(chat_menu, WIDGET(chat_log));
 
 	struct {
@@ -596,7 +643,10 @@ struct widget_group *create_chat_dialog()
 		widget_group_add(chat_menu, WIDGET(button));
 	}
 
-	// Wait for user click
+	//
+	// Widget used when waiting for user click
+	//
+
 	chat_wait = widget_group_create();
 	widget_set_rect(WIDGET(chat_wait), 0, 0, GameConfig.screen_width, GameConfig.screen_height);
 	WIDGET(chat_wait)->enabled = FALSE;
