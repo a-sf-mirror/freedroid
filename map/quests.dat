@@ -271,5 +271,14 @@ Completion LuaCode={ add_diary_entry(_"An Explosive Situation", _"Not only is th
 Mission Name=_"Open Sesame"
 ** End of this mission target subsection **
 
+** Start of this mission target subsection **
++++
++++ Get a red Toolbox back to Jenniffer
++++
+Mission Name=_"Jennifer's Toolbox"
+** End of this mission target subsection **
+
+
+
 *** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***
 

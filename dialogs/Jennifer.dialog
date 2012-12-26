@@ -1,0 +1,132 @@
+----------------------------------------------------------------------
+ * This file is part of Freedroid
+ *
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
+----------------------------------------------------------------------
+
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+
+Beginning of new chat dialog for character="XXXXX"
+----------------------------------------------------------------------
+
+<FirstTime LuaCode>
+	show(1)
+</LuaCode>
+
+<EveryTime LuaCode>
+	if (has_met("Jennifer")) then
+		tux_says(_"Hello")
+		npc_says(_"Welcome back.")
+	end
+
+	if (has_item("Toolbox")) then
+		show(10)
+	end
+	show(99)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=1 Text=_"Hello!"
+<LuaCode>
+	npc_says(_"Hello. I'm Jennifer.")
+	tux_says(_"I'm %s.", get_player_name())
+	tux_says(_"What are you doing here?")
+	npc_says(_"I'm a machinist, working here, repairing bots and stuff like this.")
+	hide(1) show(2, 3)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=2 Text=_"You don't look very busy."
+<LuaCode>
+	npc_says(_"Well, yes.")
+	npc_says(_"Someone thought he had to tidy up the space...", NO_WAIT)
+	npc_says(_"...and now I cannot find my equipment anymore, what an idiot!")
+	npc_says(_"I'm especially searching for my toolbox.")
+	tux_says(_"Okay, I will keep my eyes open if I see some toolbox.")
+	npc_says(_"Thank you.")
+	add_quest("Jennife'rs Toolbox", "Someone rearranged equipment at Jennifers workshop, she does not find her Toolbox anymore. I promised to keep my eyes open for it.")
+	hide(2)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=3 Text=_"You are repairing these bots?!"
+<LuaCode>
+	npc_says(_"Uhm yes, that's my job here.")
+	npc_says("...")
+	hide(3) show(4)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=4 Text=_"Why are you still alive anyway?"
+<LuaCode>
+	tux_says(_"The bots should have killed you immediately.")
+	tux_says(_"It's hell in here for me and you don't seem to be even armed.")
+	npc_says(_"Well...")
+	npc_says(_"The workers here get special chips implanted.", NO_WAIT)
+	tux_says(_"Ew.", NO_WAIT)
+	npc_says(_"So the bots can identify us as 'friendly' and won't rip us apart.")
+	tux_says(_"Uh.")
+	tux_says(_"Is there any way for me to get such a chip?")
+	npc_says(_"I don't think you will be able to ge one. You don't look very human-like.")
+	npc_says(_"How did you get in here anyway?")
+	hide(4) show(5, 6, 7)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=5 Text=_"That's a long story..."
+<LuaCode>
+	npc_says(_"Mh well ok.")
+	hide(5, 6, 7)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=6 Text=_"I walked in through the front door."
+<LuaCode>
+	npc_says(_"Heh. I see.")
+	hide(5, 6, 7)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=7 Text=_"This is none of your business."
+<LuaCode>
+	npc_says(_"If you say so...")
+	hide(5, 6, 7)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=10 Text=_"I think this is your toolbox?"
+<LuaCode>
+	npc_says(_"Oh yes, it is!", NO_WAIT)
+	npc_says(_"Thank you very much!")
+	end_quest("Jennifer's Toolbox", _"I found the Toolbox and returned it to her") -- we may want to have her repair all of tux' items at some point
+	del_item("Toolbox", 1)
+	hide(10)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=99 Text=_"See you later."
+<LuaCode>
+	npc_says_random(_"See you later.",
+					_"Bye.")
+	end_dialog()
+</LuaCode>
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"

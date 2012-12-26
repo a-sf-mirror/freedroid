@@ -40,6 +40,7 @@ npc_list{
 	"Kevin",
 	"Karol",
 	"John",
+	"Jennifer",
 	"Jasmine",
 	"Iris",
 	"InvaderBot",
