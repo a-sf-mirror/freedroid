@@ -3602,7 +3602,7 @@ x=20 y=17 name="TeleporterRoom-exit-1"
 x=20 y=18 name="TeleporterRoom-exit-2"
 /plabelinfolvl
 piteminfolvl
-it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1
 /piteminfolvl
 obstacleextensions
 idx=3365 type=30 data={
@@ -4837,7 +4837,7 @@ x=34 y=18 name="1to8"
 x=34 y=19 name="1from8"
 /plabelinfolvl
 piteminfolvl
-it: n="Source Book of Blue Screen"  X=71.986771  Y=49.527508  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Source Book of Blue Screen"  X=71.986771  Y=49.527508  MDur=-1  CDur=1.000000  AClip=0  Multi=1
 /piteminfolvl
 obstacleextensions
 /obstacleextensions
@@ -5492,8 +5492,8 @@ x=20 y=2 name="2to1"
 x=19 y=2 name="2from1"
 /plabelinfolvl
 piteminfolvl
-it: n="Source Book of Malformed packet"  X=40.821510  Y=18.357288  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Source Book of Malformed packet"  X=36.479076  Y=9.811912  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Source Book of Malformed packet"  X=40.821510  Y=18.357288  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Source Book of Malformed packet"  X=36.479076  Y=9.811912  MDur=-1  CDur=1.000000  AClip=0  Multi=1
 /piteminfolvl
 obstacleextensions
 /obstacleextensions
@@ -8978,7 +8978,7 @@ x=38 y=1 name="6to58"
 x=2 y=14 name="AutomatedFactory-Mechanism"
 /plabelinfolvl
 piteminfolvl
-it: n="Manual of the Automated Factory"  X=4.484396  Y=10.424695  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+it: n="Manual of the Automated Factory"  X=4.484396  Y=10.424695  MDur=-1  CDur=0.000000  AClip=0  Multi=1
 /piteminfolvl
 obstacleextensions
 idx=119 type=32 data={
@@ -11303,7 +11303,7 @@ idx=537 type=30 data={
 	AccessDoorToWarehouse
 }
 idx=999 type=31 data={
-	it: n="Tungsten spikes"  X=6.000000  Y=67.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+	it: n="Tungsten spikes"  X=6.000000  Y=67.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
 }
 idx=295 type=32 data={
 	House for sale.
@@ -16494,13 +16494,13 @@ piteminfolvl
 /piteminfolvl
 obstacleextensions
 idx=2182 type=31 data={
-	it: n="Plate"  X=47.000000  Y=42.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-	it: n="Shoes"  X=47.000000  Y=42.000000  AC=6  MDur=10  CDur=6.000000  AClip=0  Multi=1 
-	it: n="Mug"  X=50.000000  Y=40.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-	it: n="Fork"  X=50.000000  Y=40.000000  MDur=1  CDur=1.000000  AClip=0  Multi=1 
-	it: n="Normal Jacket"  X=50.000000  Y=40.000000  AC=12  MDur=14  CDur=8.000000  AClip=0  Multi=1 
-	it: n="Worker Helmet"  X=50.000000  Y=40.000000  AC=5  MDur=18  CDur=8.000000  AClip=0  Multi=1 
-	it: n="Big wrench"  X=50.000000  Y=40.000000  MDur=45  CDur=19.000000  AClip=0  Multi=1 
+	it: n="Plate"  X=47.000000  Y=42.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+	it: n="Shoes"  X=47.000000  Y=42.000000  AC=6  MDur=10  CDur=6.000000  AClip=0  Multi=1
+	it: n="Mug"  X=50.000000  Y=40.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+	it: n="Fork"  X=50.000000  Y=40.000000  MDur=1  CDur=1.000000  AClip=0  Multi=1
+	it: n="Normal Jacket"  X=50.000000  Y=40.000000  AC=12  MDur=14  CDur=8.000000  AClip=0  Multi=1
+	it: n="Worker Helmet"  X=50.000000  Y=40.000000  AC=5  MDur=18  CDur=8.000000  AClip=0  Multi=1
+	it: n="Big wrench"  X=50.000000  Y=40.000000  MDur=45  CDur=19.000000  AClip=0  Multi=1
 }
 idx=253 type=32 data={
 	Cryo-Terminal
@@ -17177,8 +17177,8 @@ x=3 y=4 name="13to58"
 x=3 y=5 name="13from58"
 /plabelinfolvl
 piteminfolvl
-it: n="Power hammer"  X=33.743668  Y=19.704853  MDur=40  CDur=29.000000  AClip=21  Multi=1 
-it: n="Laser power pack"  X=33.487225  Y=23.597662  MDur=-1  CDur=0.000000  AClip=0  Multi=65 
+it: n="Power hammer"  X=33.743668  Y=19.704853  MDur=40  CDur=29.000000  AClip=21  Multi=1
+it: n="Laser power pack"  X=33.487225  Y=23.597662  MDur=-1  CDur=0.000000  AClip=0  Multi=65
 /piteminfolvl
 obstacleextensions
 idx=501 type=32 data={
@@ -24460,178 +24460,178 @@ x=0 y=0 name="24teleport4"
 x=43 y=0 name="24fdrpgdeathlabel"
 /plabelinfolvl
 piteminfolvl
-it: n="Big kitchen knife"  X=1.500000  Y=1.500000  MDur=7  CDur=1.000000  AClip=0  Multi=1 
-it: n="Cutlass"  X=2.500000  Y=1.500000  MDur=22  CDur=7.000000  AClip=0  Multi=1 
-it: n="Antique Greatsword"  X=3.500000  Y=1.500000  MDur=20  CDur=18.000000  AClip=0  Multi=1 
-it: n="Chainsaw"  X=4.500000  Y=1.500000  MDur=11  CDur=4.000000  AClip=0  Multi=1 
-it: n="Meat cleaver"  X=5.500000  Y=1.500000  MDur=30  CDur=11.000000  AClip=0  Multi=1 
-it: n="Small Axe"  X=6.500000  Y=1.500000  MDur=55  CDur=50.000000  AClip=0  Multi=1 
-it: n="Large Axe"  X=7.500000  Y=1.500000  MDur=74  CDur=64.000000  AClip=0  Multi=1 
-it: n="Hunting knife"  X=8.500000  Y=1.500000  MDur=7  CDur=2.000000  AClip=0  Multi=1 
-it: n="Iron pipe"  X=1.500000  Y=2.500000  MDur=37  CDur=9.000000  AClip=0  Multi=1 
-it: n="Big wrench"  X=2.500000  Y=2.500000  MDur=23  CDur=17.000000  AClip=0  Multi=1 
-it: n="Crowbar"  X=3.500000  Y=2.500000  MDur=65  CDur=26.000000  AClip=0  Multi=1 
-it: n="Power hammer"  X=4.500000  Y=2.500000  MDur=31  CDur=25.000000  AClip=29  Multi=1 
-it: n="Mace"  X=5.500000  Y=2.500000  MDur=61  CDur=24.000000  AClip=0  Multi=1 
-it: n="Baseball bat"  X=6.500000  Y=2.500000  MDur=11  CDur=5.000000  AClip=0  Multi=1 
-it: n="Iron bar"  X=7.500000  Y=2.500000  MDur=67  CDur=34.000000  AClip=0  Multi=1 
-it: n="Sledgehammer"  X=8.500000  Y=2.500000  MDur=41  CDur=25.000000  AClip=0  Multi=1 
-it: n="Light saber"  X=1.500000  Y=3.500000  MDur=1000  CDur=554.000000  AClip=8  Multi=1 
-it: n="Laser staff"  X=2.500000  Y=3.500000  MDur=1000  CDur=251.000000  AClip=2  Multi=1 
-it: n="Nobody's edge"  X=3.500000  Y=3.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Laser Scalpel"  X=4.500000  Y=3.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Shock knife"  X=5.500000  Y=3.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Energy whip"  X=6.500000  Y=3.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n=".22 LR Ammunition"  X=7.500000  Y=3.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n=".22 Automatic"  X=8.500000  Y=3.500000  MDur=74  CDur=21.000000  AClip=0  Multi=1 
-it: n=".22 Hunting Rifle"  X=1.500000  Y=4.500000  MDur=77  CDur=59.000000  AClip=6  Multi=1 
-it: n="Shotgun shells"  X=2.500000  Y=4.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=13 
-it: n="Two Barrel sawn off shotgun"  X=3.500000  Y=4.500000  MDur=31  CDur=22.000000  AClip=0  Multi=1 
-it: n="Two Barrel shotgun"  X=4.500000  Y=4.500000  MDur=56  CDur=22.000000  AClip=0  Multi=1 
-it: n="Pump action shotgun"  X=5.500000  Y=4.500000  MDur=49  CDur=39.000000  AClip=3  Multi=1 
-it: n="9x19mm Ammunition"  X=6.500000  Y=4.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="9mm Automatic"  X=7.500000  Y=4.500000  MDur=58  CDur=37.000000  AClip=3  Multi=1 
-it: n="9mm Sub Machine Gun"  X=8.500000  Y=4.500000  MDur=66  CDur=42.000000  AClip=21  Multi=1 
-it: n="7.62x39mm Ammunition"  X=1.500000  Y=5.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="7.62mm Hunting Rifle"  X=2.500000  Y=5.500000  MDur=46  CDur=32.000000  AClip=3  Multi=1 
-it: n="7.62mm AK-47"  X=3.500000  Y=5.500000  MDur=70  CDur=26.000000  AClip=29  Multi=1 
-it: n=".50 BMG (12.7x99mm) Ammunition"  X=4.500000  Y=5.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Barrett M82 Sniper Rifle"  X=5.500000  Y=5.500000  MDur=24  CDur=19.000000  AClip=6  Multi=1 
-it: n="Laser power pack"  X=6.500000  Y=5.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Laser pistol"  X=7.500000  Y=5.500000  MDur=110  CDur=44.000000  AClip=10  Multi=1 
-it: n="Laser Rifle"  X=8.500000  Y=5.500000  MDur=94  CDur=50.000000  AClip=5  Multi=1 
-it: n="Laser Pulse Rifle"  X=1.500000  Y=6.500000  MDur=144  CDur=130.000000  AClip=16  Multi=1 
-it: n="Laser Pulse Cannon"  X=2.500000  Y=6.500000  MDur=90  CDur=35.000000  AClip=18  Multi=1 
-it: n="Plasma energy container"  X=3.500000  Y=6.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Plasma pistol"  X=4.500000  Y=6.500000  MDur=36  CDur=31.000000  AClip=4  Multi=1 
-it: n="Plasma gun"  X=5.500000  Y=6.500000  MDur=32  CDur=14.000000  AClip=4  Multi=1 
-it: n="2 mm Exterminator Ammunition"  X=6.500000  Y=6.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Exterminator"  X=7.500000  Y=6.500000  MDur=44  CDur=43.000000  AClip=2  Multi=1 
-it: n="The Super Exterminator!!!"  X=8.500000  Y=6.500000  MDur=37  CDur=20.000000  AClip=1  Multi=1 
-it: n="Electro Laser Rifle"  X=1.500000  Y=7.500000  MDur=37  CDur=32.000000  AClip=10  Multi=1 
-it: n="VMX Gas Grenade"  X=2.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Small EMP Shockwave Generator"  X=3.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="EMP Shockwave Generator"  X=4.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Electronic Noise Generator"  X=5.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Small Plasma Shockwave Emitter"  X=6.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Plasma Shockwave Emitter"  X=7.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Normal Jacket"  X=8.500000  Y=7.500000  AC=8  MDur=15  CDur=3.000000  AClip=0  Multi=1 
-it: n="Reinforced Jacket"  X=1.500000  Y=8.500000  AC=17  MDur=28  CDur=19.000000  AClip=0  Multi=1 
-it: n="Protective Jacket"  X=2.500000  Y=8.500000  AC=24  MDur=35  CDur=27.000000  AClip=0  Multi=1 
-it: n="Red Guard's Light Robe"  X=3.500000  Y=8.500000  AC=39  MDur=25  CDur=12.000000  AClip=0  Multi=1 
-it: n="Red Guard's Heavy Robe"  X=4.500000  Y=8.500000  AC=44  MDur=40  CDur=32.000000  AClip=0  Multi=1 
-it: n="Improvised Buckler"  X=5.500000  Y=8.500000  AC=12  MDur=7  CDur=2.000000  AClip=0  Multi=1 
-it: n="Bot Carapace"  X=6.500000  Y=8.500000  AC=17  MDur=13  CDur=6.000000  AClip=0  Multi=1 
-it: n="Standard Shield"  X=7.500000  Y=8.500000  AC=30  MDur=24  CDur=19.000000  AClip=0  Multi=1 
-it: n="Heavy Shield"  X=8.500000  Y=8.500000  AC=29  MDur=47  CDur=42.000000  AClip=0  Multi=1 
-it: n="Riot Shield"  X=1.500000  Y=9.500000  AC=36  MDur=40  CDur=32.000000  AClip=0  Multi=1 
-it: n="Pot Helmet"  X=2.500000  Y=9.500000  AC=3  MDur=20  CDur=11.000000  AClip=0  Multi=1 
-it: n="Worker Helmet"  X=3.500000  Y=9.500000  AC=7  MDur=22  CDur=10.000000  AClip=0  Multi=1 
-it: n="Miner Helmet"  X=4.500000  Y=9.500000  AC=8  MDur=17  CDur=9.000000  AClip=0  Multi=1 
-it: n="Light Battle Helmet"  X=5.500000  Y=9.500000  AC=10  MDur=15  CDur=10.000000  AClip=0  Multi=1 
-it: n="Battle Helmet"  X=6.500000  Y=9.500000  AC=14  MDur=38  CDur=12.000000  AClip=0  Multi=1 
-it: n="Dixon's Helmet"  X=7.500000  Y=9.500000  AC=11  MDur=1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Shoes"  X=8.500000  Y=9.500000  AC=3  MDur=4  CDur=2.000000  AClip=0  Multi=1 
-it: n="Worker Shoes"  X=1.500000  Y=10.500000  AC=7  MDur=15  CDur=6.000000  AClip=0  Multi=1 
-it: n="Battle Shoes"  X=2.500000  Y=10.500000  AC=14  MDur=20  CDur=7.000000  AClip=0  Multi=1 
-it: n="Source Book of Emergency shutdown"  X=3.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Check system integrity"  X=4.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Sanctuary"  X=5.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Malformed packet"  X=6.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Calculate Pi"  X=7.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Blue Screen"  X=8.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Broadcast Blue Screen"  X=1.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Invisibility"  X=2.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Virus"  X=3.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Broadcast virus"  X=4.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Dispel smoke"  X=5.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Killer poke"  X=6.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Repair manual"  X=7.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Plasma discharge"  X=8.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Nethack"  X=1.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Ricer CFLAGS"  X=2.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Reverse-engineer"  X=3.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Light"  X=4.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Source Book of Network Mapper"  X=5.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Nuclear Science for Dummies IV"  X=6.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Strength Pill"  X=7.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Dexterity Pill"  X=8.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Code Pill"  X=1.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Brain Enlargement Pills Antidote"  X=2.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Brain Enlargement Pill"  X=3.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Diet supplement"  X=4.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Antibiotic"  X=5.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Doc-in-a-can"  X=6.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Bottled ice"  X=7.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Industrial coolant"  X=8.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Liquid nitrogen"  X=1.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Barf's Energy Drink"  X=2.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Running Power Capsule"  X=3.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Strength Capsule"  X=4.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Dexterity Capsule"  X=5.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Valuable Circuits"  X=6.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=100 
-it: n="Anti-grav Pod for Droids"  X=7.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Dixon's Toolbox"  X=8.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Entropy Inverter"  X=1.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Plasma Transistor"  X=2.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Superconducting Relay Unit"  X=3.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Antimatter-Matter Converter"  X=4.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Tachyon Condensator"  X=5.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Desk Lamp"  X=6.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Red Dilithium Crystal"  X=7.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Map Maker"  X=8.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Light Enhancer? to be included in the future..."  X=1.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Fork"  X=2.500000  Y=16.500000  MDur=1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Plate"  X=3.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Mug"  X=4.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Cup"  X=5.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Teleporter homing beacon"  X=6.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Data cube"  X=7.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Kevin's Data Cube"  X=8.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Pandora's Cube"  X=1.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Rubber duck"  X=2.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Empty Picnic Basket"  X=3.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Lunch in a Picnic Basket"  X=4.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Gapes OTP Token"  X=5.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="MS Stock Certificate"  X=6.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Linarian power crank"  X=7.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Tungsten spikes"  X=8.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Tinfoil patch"  X=1.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Laser sight"  X=2.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Exoskeletal joint"  X=3.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Heatsink"  X=4.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Peltier element"  X=5.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Steel mesh"  X=6.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
-it: n="Shock discharger"  X=7.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Silencer"  X=8.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Coprocessor"  X=1.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Pedometer"  X=2.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Foot warmers"  X=3.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Circuit jammer"  X=4.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Sensor disruptor"  X=5.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Headlamp"  X=6.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Brain stimulator"  X=7.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="NPC Hand to hand weapon"  X=8.500000  Y=19.500000  MDur=35  CDur=23.000000  AClip=0  Multi=1 
-it: n="Droid 123 Weak Robotic Arm"  X=1.500000  Y=20.500000  MDur=26  CDur=12.000000  AClip=0  Multi=1 
-it: n="Droid 139 Plasma Trash Vaporiser"  X=2.500000  Y=20.500000  MDur=15  CDur=10.000000  AClip=2  Multi=1 
-it: n="Droid 247 Robotic Arm"  X=3.500000  Y=20.500000  MDur=18  CDur=10.000000  AClip=0  Multi=1 
-it: n="Droid 249 Pulse Laser Welder"  X=4.500000  Y=20.500000  MDur=19  CDur=12.000000  AClip=7  Multi=1 
-it: n="Droid 296 Plasmabeam Cutter"  X=5.500000  Y=20.500000  MDur=10  CDur=4.000000  AClip=0  Multi=1 
-it: n="Droid 302 Overcharged Barcode Reader"  X=6.500000  Y=20.500000  MDur=10  CDur=8.000000  AClip=0  Multi=1 
-it: n="Droid 329 Dual Overcharged Barcode Reader"  X=7.500000  Y=20.500000  MDur=10  CDur=5.000000  AClip=0  Multi=1 
-it: n="Droid 420 Laser Scalpel"  X=8.500000  Y=20.500000  MDur=10  CDur=7.000000  AClip=0  Multi=1 
-it: n="Droid 476 Small Laser"  X=1.500000  Y=21.500000  MDur=6  CDur=4.000000  AClip=5  Multi=1 
-it: n="Droid 493 Power Hammer"  X=2.500000  Y=21.500000  MDur=15  CDur=7.000000  AClip=0  Multi=1 
-it: n="Droid 516 Robotic Fist"  X=3.500000  Y=21.500000  MDur=14  CDur=7.000000  AClip=0  Multi=1 
-it: n="Droid 543 Tree Harvester"  X=4.500000  Y=21.500000  MDur=11  CDur=7.000000  AClip=0  Multi=1 
-it: n="Droid 571 Robotic Fist"  X=5.500000  Y=21.500000  MDur=13  CDur=7.000000  AClip=0  Multi=1 
-it: n="Droid 598 Robotic Fist"  X=6.500000  Y=21.500000  MDur=11  CDur=2.000000  AClip=0  Multi=1 
-it: n="Droid 7xx Tux Seeking Missiles"  X=7.500000  Y=21.500000  MDur=12  CDur=3.000000  AClip=30  Multi=1 
-it: n="Droid Advanced Twin Laser"  X=8.500000  Y=21.500000  MDur=17  CDur=4.000000  AClip=10  Multi=1 
-it: n="Droid 883 Exterminator"  X=1.500000  Y=22.500000  MDur=15  CDur=11.000000  AClip=1  Multi=1 
-it: n="Autogun Laser Pistol"  X=2.500000  Y=22.500000  MDur=104  CDur=85.000000  AClip=0  Multi=1 
-it: n="Red Guard's Heavy Robe"  X=41.544319  Y=31.395071  AC=43  MDur=48  CDur=45.000000  AClip=0  Multi=1 
-it: n="Exterminator"  X=41.544319  Y=31.395071  MDur=43  CDur=16.000000  AClip=2  Multi=1 
+it: n="Big kitchen knife"  X=1.500000  Y=1.500000  MDur=7  CDur=1.000000  AClip=0  Multi=1
+it: n="Cutlass"  X=2.500000  Y=1.500000  MDur=22  CDur=7.000000  AClip=0  Multi=1
+it: n="Antique Greatsword"  X=3.500000  Y=1.500000  MDur=20  CDur=18.000000  AClip=0  Multi=1
+it: n="Chainsaw"  X=4.500000  Y=1.500000  MDur=11  CDur=4.000000  AClip=0  Multi=1
+it: n="Meat cleaver"  X=5.500000  Y=1.500000  MDur=30  CDur=11.000000  AClip=0  Multi=1
+it: n="Small Axe"  X=6.500000  Y=1.500000  MDur=55  CDur=50.000000  AClip=0  Multi=1
+it: n="Large Axe"  X=7.500000  Y=1.500000  MDur=74  CDur=64.000000  AClip=0  Multi=1
+it: n="Hunting knife"  X=8.500000  Y=1.500000  MDur=7  CDur=2.000000  AClip=0  Multi=1
+it: n="Iron pipe"  X=1.500000  Y=2.500000  MDur=37  CDur=9.000000  AClip=0  Multi=1
+it: n="Big wrench"  X=2.500000  Y=2.500000  MDur=23  CDur=17.000000  AClip=0  Multi=1
+it: n="Crowbar"  X=3.500000  Y=2.500000  MDur=65  CDur=26.000000  AClip=0  Multi=1
+it: n="Power hammer"  X=4.500000  Y=2.500000  MDur=31  CDur=25.000000  AClip=29  Multi=1
+it: n="Mace"  X=5.500000  Y=2.500000  MDur=61  CDur=24.000000  AClip=0  Multi=1
+it: n="Baseball bat"  X=6.500000  Y=2.500000  MDur=11  CDur=5.000000  AClip=0  Multi=1
+it: n="Iron bar"  X=7.500000  Y=2.500000  MDur=67  CDur=34.000000  AClip=0  Multi=1
+it: n="Sledgehammer"  X=8.500000  Y=2.500000  MDur=41  CDur=25.000000  AClip=0  Multi=1
+it: n="Light saber"  X=1.500000  Y=3.500000  MDur=1000  CDur=554.000000  AClip=8  Multi=1
+it: n="Laser staff"  X=2.500000  Y=3.500000  MDur=1000  CDur=251.000000  AClip=2  Multi=1
+it: n="Nobody's edge"  X=3.500000  Y=3.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Laser Scalpel"  X=4.500000  Y=3.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Shock knife"  X=5.500000  Y=3.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Energy whip"  X=6.500000  Y=3.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n=".22 LR Ammunition"  X=7.500000  Y=3.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n=".22 Automatic"  X=8.500000  Y=3.500000  MDur=74  CDur=21.000000  AClip=0  Multi=1
+it: n=".22 Hunting Rifle"  X=1.500000  Y=4.500000  MDur=77  CDur=59.000000  AClip=6  Multi=1
+it: n="Shotgun shells"  X=2.500000  Y=4.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=13
+it: n="Two Barrel sawn off shotgun"  X=3.500000  Y=4.500000  MDur=31  CDur=22.000000  AClip=0  Multi=1
+it: n="Two Barrel shotgun"  X=4.500000  Y=4.500000  MDur=56  CDur=22.000000  AClip=0  Multi=1
+it: n="Pump action shotgun"  X=5.500000  Y=4.500000  MDur=49  CDur=39.000000  AClip=3  Multi=1
+it: n="9x19mm Ammunition"  X=6.500000  Y=4.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="9mm Automatic"  X=7.500000  Y=4.500000  MDur=58  CDur=37.000000  AClip=3  Multi=1
+it: n="9mm Sub Machine Gun"  X=8.500000  Y=4.500000  MDur=66  CDur=42.000000  AClip=21  Multi=1
+it: n="7.62x39mm Ammunition"  X=1.500000  Y=5.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="7.62mm Hunting Rifle"  X=2.500000  Y=5.500000  MDur=46  CDur=32.000000  AClip=3  Multi=1
+it: n="7.62mm AK-47"  X=3.500000  Y=5.500000  MDur=70  CDur=26.000000  AClip=29  Multi=1
+it: n=".50 BMG (12.7x99mm) Ammunition"  X=4.500000  Y=5.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Barrett M82 Sniper Rifle"  X=5.500000  Y=5.500000  MDur=24  CDur=19.000000  AClip=6  Multi=1
+it: n="Laser power pack"  X=6.500000  Y=5.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Laser pistol"  X=7.500000  Y=5.500000  MDur=110  CDur=44.000000  AClip=10  Multi=1
+it: n="Laser Rifle"  X=8.500000  Y=5.500000  MDur=94  CDur=50.000000  AClip=5  Multi=1
+it: n="Laser Pulse Rifle"  X=1.500000  Y=6.500000  MDur=144  CDur=130.000000  AClip=16  Multi=1
+it: n="Laser Pulse Cannon"  X=2.500000  Y=6.500000  MDur=90  CDur=35.000000  AClip=18  Multi=1
+it: n="Plasma energy container"  X=3.500000  Y=6.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Plasma pistol"  X=4.500000  Y=6.500000  MDur=36  CDur=31.000000  AClip=4  Multi=1
+it: n="Plasma gun"  X=5.500000  Y=6.500000  MDur=32  CDur=14.000000  AClip=4  Multi=1
+it: n="2 mm Exterminator Ammunition"  X=6.500000  Y=6.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Exterminator"  X=7.500000  Y=6.500000  MDur=44  CDur=43.000000  AClip=2  Multi=1
+it: n="The Super Exterminator!!!"  X=8.500000  Y=6.500000  MDur=37  CDur=20.000000  AClip=1  Multi=1
+it: n="Electro Laser Rifle"  X=1.500000  Y=7.500000  MDur=37  CDur=32.000000  AClip=10  Multi=1
+it: n="VMX Gas Grenade"  X=2.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Small EMP Shockwave Generator"  X=3.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="EMP Shockwave Generator"  X=4.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Electronic Noise Generator"  X=5.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Small Plasma Shockwave Emitter"  X=6.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Plasma Shockwave Emitter"  X=7.500000  Y=7.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Normal Jacket"  X=8.500000  Y=7.500000  AC=8  MDur=15  CDur=3.000000  AClip=0  Multi=1
+it: n="Reinforced Jacket"  X=1.500000  Y=8.500000  AC=17  MDur=28  CDur=19.000000  AClip=0  Multi=1
+it: n="Protective Jacket"  X=2.500000  Y=8.500000  AC=24  MDur=35  CDur=27.000000  AClip=0  Multi=1
+it: n="Red Guard's Light Robe"  X=3.500000  Y=8.500000  AC=39  MDur=25  CDur=12.000000  AClip=0  Multi=1
+it: n="Red Guard's Heavy Robe"  X=4.500000  Y=8.500000  AC=44  MDur=40  CDur=32.000000  AClip=0  Multi=1
+it: n="Improvised Buckler"  X=5.500000  Y=8.500000  AC=12  MDur=7  CDur=2.000000  AClip=0  Multi=1
+it: n="Bot Carapace"  X=6.500000  Y=8.500000  AC=17  MDur=13  CDur=6.000000  AClip=0  Multi=1
+it: n="Standard Shield"  X=7.500000  Y=8.500000  AC=30  MDur=24  CDur=19.000000  AClip=0  Multi=1
+it: n="Heavy Shield"  X=8.500000  Y=8.500000  AC=29  MDur=47  CDur=42.000000  AClip=0  Multi=1
+it: n="Riot Shield"  X=1.500000  Y=9.500000  AC=36  MDur=40  CDur=32.000000  AClip=0  Multi=1
+it: n="Pot Helmet"  X=2.500000  Y=9.500000  AC=3  MDur=20  CDur=11.000000  AClip=0  Multi=1
+it: n="Worker Helmet"  X=3.500000  Y=9.500000  AC=7  MDur=22  CDur=10.000000  AClip=0  Multi=1
+it: n="Miner Helmet"  X=4.500000  Y=9.500000  AC=8  MDur=17  CDur=9.000000  AClip=0  Multi=1
+it: n="Light Battle Helmet"  X=5.500000  Y=9.500000  AC=10  MDur=15  CDur=10.000000  AClip=0  Multi=1
+it: n="Battle Helmet"  X=6.500000  Y=9.500000  AC=14  MDur=38  CDur=12.000000  AClip=0  Multi=1
+it: n="Dixon's Helmet"  X=7.500000  Y=9.500000  AC=11  MDur=1  CDur=1.000000  AClip=0  Multi=1
+it: n="Shoes"  X=8.500000  Y=9.500000  AC=3  MDur=4  CDur=2.000000  AClip=0  Multi=1
+it: n="Worker Shoes"  X=1.500000  Y=10.500000  AC=7  MDur=15  CDur=6.000000  AClip=0  Multi=1
+it: n="Battle Shoes"  X=2.500000  Y=10.500000  AC=14  MDur=20  CDur=7.000000  AClip=0  Multi=1
+it: n="Source Book of Emergency shutdown"  X=3.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Check system integrity"  X=4.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Sanctuary"  X=5.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Malformed packet"  X=6.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Calculate Pi"  X=7.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Blue Screen"  X=8.500000  Y=10.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Broadcast Blue Screen"  X=1.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Invisibility"  X=2.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Virus"  X=3.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Broadcast virus"  X=4.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Dispel smoke"  X=5.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Killer poke"  X=6.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Repair manual"  X=7.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Plasma discharge"  X=8.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Nethack"  X=1.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Ricer CFLAGS"  X=2.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Reverse-engineer"  X=3.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Light"  X=4.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Network Mapper"  X=5.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Nuclear Science for Dummies IV"  X=6.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Strength Pill"  X=7.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Dexterity Pill"  X=8.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Code Pill"  X=1.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Brain Enlargement Pills Antidote"  X=2.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Brain Enlargement Pill"  X=3.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Diet supplement"  X=4.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Antibiotic"  X=5.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Doc-in-a-can"  X=6.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Bottled ice"  X=7.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Industrial coolant"  X=8.500000  Y=13.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Liquid nitrogen"  X=1.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Barf's Energy Drink"  X=2.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Running Power Capsule"  X=3.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Strength Capsule"  X=4.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Dexterity Capsule"  X=5.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Valuable Circuits"  X=6.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=100
+it: n="Anti-grav Pod for Droids"  X=7.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Dixon's Toolbox"  X=8.500000  Y=14.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Entropy Inverter"  X=1.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Plasma Transistor"  X=2.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Superconducting Relay Unit"  X=3.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Antimatter-Matter Converter"  X=4.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Tachyon Condensator"  X=5.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Desk Lamp"  X=6.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Red Dilithium Crystal"  X=7.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Map Maker"  X=8.500000  Y=15.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Light Enhancer? to be included in the future..."  X=1.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Fork"  X=2.500000  Y=16.500000  MDur=1  CDur=1.000000  AClip=0  Multi=1
+it: n="Plate"  X=3.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Mug"  X=4.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Cup"  X=5.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Teleporter homing beacon"  X=6.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Data cube"  X=7.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Kevin's Data Cube"  X=8.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Pandora's Cube"  X=1.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Rubber duck"  X=2.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Empty Picnic Basket"  X=3.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Lunch in a Picnic Basket"  X=4.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Gapes OTP Token"  X=5.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="MS Stock Certificate"  X=6.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Linarian power crank"  X=7.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Tungsten spikes"  X=8.500000  Y=17.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Tinfoil patch"  X=1.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Laser sight"  X=2.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Exoskeletal joint"  X=3.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Heatsink"  X=4.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Peltier element"  X=5.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Steel mesh"  X=6.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
+it: n="Shock discharger"  X=7.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Silencer"  X=8.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Coprocessor"  X=1.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Pedometer"  X=2.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Foot warmers"  X=3.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Circuit jammer"  X=4.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Sensor disruptor"  X=5.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Headlamp"  X=6.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Brain stimulator"  X=7.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="NPC Hand to hand weapon"  X=8.500000  Y=19.500000  MDur=35  CDur=23.000000  AClip=0  Multi=1
+it: n="Droid 123 Weak Robotic Arm"  X=1.500000  Y=20.500000  MDur=26  CDur=12.000000  AClip=0  Multi=1
+it: n="Droid 139 Plasma Trash Vaporiser"  X=2.500000  Y=20.500000  MDur=15  CDur=10.000000  AClip=2  Multi=1
+it: n="Droid 247 Robotic Arm"  X=3.500000  Y=20.500000  MDur=18  CDur=10.000000  AClip=0  Multi=1
+it: n="Droid 249 Pulse Laser Welder"  X=4.500000  Y=20.500000  MDur=19  CDur=12.000000  AClip=7  Multi=1
+it: n="Droid 296 Plasmabeam Cutter"  X=5.500000  Y=20.500000  MDur=10  CDur=4.000000  AClip=0  Multi=1
+it: n="Droid 302 Overcharged Barcode Reader"  X=6.500000  Y=20.500000  MDur=10  CDur=8.000000  AClip=0  Multi=1
+it: n="Droid 329 Dual Overcharged Barcode Reader"  X=7.500000  Y=20.500000  MDur=10  CDur=5.000000  AClip=0  Multi=1
+it: n="Droid 420 Laser Scalpel"  X=8.500000  Y=20.500000  MDur=10  CDur=7.000000  AClip=0  Multi=1
+it: n="Droid 476 Small Laser"  X=1.500000  Y=21.500000  MDur=6  CDur=4.000000  AClip=5  Multi=1
+it: n="Droid 493 Power Hammer"  X=2.500000  Y=21.500000  MDur=15  CDur=7.000000  AClip=0  Multi=1
+it: n="Droid 516 Robotic Fist"  X=3.500000  Y=21.500000  MDur=14  CDur=7.000000  AClip=0  Multi=1
+it: n="Droid 543 Tree Harvester"  X=4.500000  Y=21.500000  MDur=11  CDur=7.000000  AClip=0  Multi=1
+it: n="Droid 571 Robotic Fist"  X=5.500000  Y=21.500000  MDur=13  CDur=7.000000  AClip=0  Multi=1
+it: n="Droid 598 Robotic Fist"  X=6.500000  Y=21.500000  MDur=11  CDur=2.000000  AClip=0  Multi=1
+it: n="Droid 7xx Tux Seeking Missiles"  X=7.500000  Y=21.500000  MDur=12  CDur=3.000000  AClip=30  Multi=1
+it: n="Droid Advanced Twin Laser"  X=8.500000  Y=21.500000  MDur=17  CDur=4.000000  AClip=10  Multi=1
+it: n="Droid 883 Exterminator"  X=1.500000  Y=22.500000  MDur=15  CDur=11.000000  AClip=1  Multi=1
+it: n="Autogun Laser Pistol"  X=2.500000  Y=22.500000  MDur=104  CDur=85.000000  AClip=0  Multi=1
+it: n="Red Guard's Heavy Robe"  X=41.544319  Y=31.395071  AC=43  MDur=48  CDur=45.000000  AClip=0  Multi=1
+it: n="Exterminator"  X=41.544319  Y=31.395071  MDur=43  CDur=16.000000  AClip=2  Multi=1
 /piteminfolvl
 obstacleextensions
 idx=666 type=30 data={
@@ -29625,14 +29625,14 @@ idx=702 type=32 data={
 	To storage...
 }
 idx=763 type=31 data={
-	it: n="Source Book of Network Mapper"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-	it: n="Source Book of Broadcast virus"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-	it: n="Dexterity Capsule"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-	it: n="Bottled ice"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-	it: n="Doc-in-a-can"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+	it: n="Source Book of Network Mapper"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+	it: n="Source Book of Broadcast virus"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+	it: n="Dexterity Capsule"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+	it: n="Bottled ice"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+	it: n="Doc-in-a-can"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
 }
 idx=765 type=31 data={
-	it: n="Source Book of Network Mapper"  X=59.000000  Y=50.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+	it: n="Source Book of Network Mapper"  X=59.000000  Y=50.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
 }
 /obstacleextensions
 wp
@@ -29948,7 +29948,7 @@ x=10 y=10 name="29from0"
 x=21 y=8 name="29to0"
 /plabelinfolvl
 piteminfolvl
-it: n="Source Book of Check system integrity"  X=9.905821  Y=13.579896  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Source Book of Check system integrity"  X=9.905821  Y=13.579896  MDur=-1  CDur=1.000000  AClip=0  Multi=1
 /piteminfolvl
 obstacleextensions
 idx=73 type=30 data={
@@ -36035,14 +36035,14 @@ x=27 y=35 name="33from9"
 x=26 y=36 name="33to9"
 /plabelinfolvl
 piteminfolvl
-it: n="Red Dilithium Crystal"  X=82.000000  Y=42.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Red Dilithium Crystal"  X=85.000000  Y=18.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Red Dilithium Crystal"  X=85.000000  Y=4.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Red Dilithium Crystal"  X=78.000000  Y=69.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Red Dilithium Crystal"  X=3.000000  Y=85.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Red Dilithium Crystal"  X=41.000000  Y=9.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Red Dilithium Crystal"  X=84.000000  Y=42.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Red Dilithium Crystal"  X=75.000000  Y=48.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Red Dilithium Crystal"  X=82.000000  Y=42.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Red Dilithium Crystal"  X=85.000000  Y=18.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Red Dilithium Crystal"  X=85.000000  Y=4.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Red Dilithium Crystal"  X=78.000000  Y=69.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Red Dilithium Crystal"  X=3.000000  Y=85.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Red Dilithium Crystal"  X=41.000000  Y=9.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Red Dilithium Crystal"  X=84.000000  Y=42.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Red Dilithium Crystal"  X=75.000000  Y=48.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
 /piteminfolvl
 obstacleextensions
 /obstacleextensions
@@ -37638,9 +37638,9 @@ x=37 y=28 name="35from36-South"
 x=17 y=32 name="SADD-NoExit"
 /plabelinfolvl
 piteminfolvl
-it: n="The Super Exterminator!!!"  X=26.000000  Y=33.000000  MDur=10  CDur=5.000000  AClip=0  Multi=1 
-it: n="Strength Pill"  X=29.000000  Y=28.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=2 
-it: n="Dexterity Pill"  X=29.000000  Y=28.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=2 
+it: n="The Super Exterminator!!!"  X=26.000000  Y=33.000000  MDur=10  CDur=5.000000  AClip=0  Multi=1
+it: n="Strength Pill"  X=29.000000  Y=28.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=2
+it: n="Dexterity Pill"  X=29.000000  Y=28.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=2
 /piteminfolvl
 obstacleextensions
 idx=39 type=30 data={
@@ -38866,9 +38866,9 @@ x=25 y=63 name="Tutorial-PastWall1"
 x=25 y=64 name="Tutorial-PastWall2"
 /plabelinfolvl
 piteminfolvl
-it: n="Plasma Transistor"  X=12.000000  Y=21.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Anti-grav Pod for Droids"  X=19.000000  Y=26.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-it: n="Mug"  X=22.000000  Y=31.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Plasma Transistor"  X=12.000000  Y=21.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Anti-grav Pod for Droids"  X=19.000000  Y=26.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
+it: n="Mug"  X=22.000000  Y=31.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
 /piteminfolvl
 obstacleextensions
 idx=381 type=30 data={
@@ -38923,19 +38923,19 @@ idx=648 type=30 data={
 	TutorialZigzag1
 }
 idx=544 type=31 data={
-	it: n="Normal Jacket"  X=18.000000  Y=39.000000  AC=13  MDur=13  CDur=6.000000  AClip=0  Multi=1 
-	it: n="Improvised Buckler"  X=18.000000  Y=39.000000  AC=7  MDur=9  CDur=6.000000  AClip=0  Multi=1 
-	it: n="Shoes"  X=18.000000  Y=39.000000  AC=4  MDur=6  CDur=1.000000  AClip=0  Multi=1 
-	it: n="Worker Helmet"  X=18.000000  Y=39.000000  AC=7  MDur=25  CDur=18.000000  AClip=0  Multi=1 
+	it: n="Normal Jacket"  X=18.000000  Y=39.000000  AC=13  MDur=13  CDur=6.000000  AClip=0  Multi=1
+	it: n="Improvised Buckler"  X=18.000000  Y=39.000000  AC=7  MDur=9  CDur=6.000000  AClip=0  Multi=1
+	it: n="Shoes"  X=18.000000  Y=39.000000  AC=4  MDur=6  CDur=1.000000  AClip=0  Multi=1
+	it: n="Worker Helmet"  X=18.000000  Y=39.000000  AC=7  MDur=25  CDur=18.000000  AClip=0  Multi=1
 }
 idx=489 type=31 data={
-	it: n="Laser pistol"  X=26.000000  Y=49.000000  MDur=106  CDur=26.000000  AClip=20  Multi=1 
-	it: n="Plasma pistol"  X=26.000000  Y=49.000000  MDur=30  CDur=19.000000  AClip=4  Multi=1 
+	it: n="Laser pistol"  X=26.000000  Y=49.000000  MDur=106  CDur=26.000000  AClip=20  Multi=1
+	it: n="Plasma pistol"  X=26.000000  Y=49.000000  MDur=30  CDur=19.000000  AClip=4  Multi=1
 }
 idx=488 type=31 data={
-	it: n="Laser power pack"  X=26.000000  Y=49.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=10 
-	it: n="Plasma energy container"  X=26.000000  Y=49.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=2 
-	it: n=".22 LR Ammunition"  X=26.000000  Y=49.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=10 
+	it: n="Laser power pack"  X=26.000000  Y=49.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=10
+	it: n="Plasma energy container"  X=26.000000  Y=49.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=2
+	it: n=".22 LR Ammunition"  X=26.000000  Y=49.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=10
 }
 idx=23 type=32 data={
 	TutorialTerminal
@@ -46305,14 +46305,14 @@ t389 x83.00 y78.43
 plabelinfolvl
 /plabelinfolvl
 piteminfolvl
-it: n="Source Book of Plasma discharge"  X=31.000000  Y=47.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Source Book of Plasma discharge"  X=31.000000  Y=47.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
 /piteminfolvl
 obstacleextensions
 idx=139 type=30 data={
 	HF-EntranceInnerGate
 }
 idx=671 type=31 data={
-	it: n="Toolbox"  X=60.000000  Y=11.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+	it: n="Toolbox"  X=60.000000  Y=11.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
 }
 /obstacleextensions
 wp
