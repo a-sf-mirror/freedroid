@@ -61,7 +61,7 @@ Nr=2 Text=_"You don't look very busy."
 	npc_says(_"I'm especially searching for my toolbox.")
 	tux_says(_"Okay, I will keep my eyes open if I see some toolbox.")
 	npc_says(_"Thank you.")
-	add_quest("Jennife'rs Toolbox", "Someone rearranged equipment at Jennifers workshop, she does not find her Toolbox anymore. I promised to keep my eyes open for it.")
+	add_quest("Jennifer's Toolbox", "Someone rearranged equipment at Jennifers workshop, she does not find her Toolbox anymore. I promised to keep my eyes open for it.")
 	hide(2)
 </LuaCode>
 ----------------------------------------------------------------------
