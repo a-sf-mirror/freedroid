@@ -999,6 +999,13 @@ static int lua_create_droid(lua_State *L)
 	return 0;
 }
 
+static int lua_get_game_time(lua_State *L)
+{
+	lua_pushinteger(L, (int)(Me.current_game_date));
+
+	return 1;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1245,6 +1252,8 @@ luaL_Reg lfuncs[] = {
 	{"user_input_string", lua_user_input_string},
 
 	{"create_droid", lua_create_droid},
+
+	{"game_time", lua_get_game_time},
 
 	{NULL, NULL}
 };
