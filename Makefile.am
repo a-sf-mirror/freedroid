@@ -88,3 +88,6 @@ dist-macosx: src/freedroidRPG
 	echo "APPL????" > $(macosx_dir)/Contents/PkgInfo
 	rsync -ar --exclude='.git' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound $(macosx_dir)/Contents
 	perl macosx/pkgApp.pl $(macosx_dir)/Contents MacOS/freedroidRPG Frameworks
+
+doc:
+	doxygen Doxyfile
