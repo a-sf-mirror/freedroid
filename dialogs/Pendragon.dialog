@@ -179,7 +179,7 @@ Nr=20 Text=_"Teach me Ninjitsu."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=21 Text=_"I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of Major Destruction Flesh-Bursting Attack!"
+Nr=21 Text=_"I want to know the Mega Uber Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of Major Destruction Flesh-Bursting Attack!"
 <LuaCode>
 	npc_says(_"Wow.", "NO_WAIT")
 	npc_says(_"You have a very rich imagination. There is no such thing. Get a life.")
