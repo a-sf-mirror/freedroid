@@ -8,7 +8,7 @@ AC_CANONICAL_TARGET
 dnl Setup for automake
 AM_INIT_AUTOMAKE([tar-ustar dist-bzip2])
 
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADERS(config.h)
 
 # Checks for programs.
 AC_PROG_CC
