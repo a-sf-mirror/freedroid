@@ -629,7 +629,7 @@ void get_visible_levels()
 			transform_data = &gps_transform_matrix[Me.pos.z][e->lvl_pointer->levelnum];
 			if (!transform_data->valid) {
 				// useless entry: removing it from the linked list
-				clear_animated_obstacle_lists(e);
+				clear_animated_obstacle_list(e);
 				list_del(&e->node);
 				free(e);
 			}
@@ -647,7 +647,7 @@ void reset_visible_levels()
 	
 	// Clear current list
 	list_for_each_entry_safe(e, n, &visible_level_list, node) {
-		clear_animated_obstacle_lists(e);
+		clear_animated_obstacle_list(e);
 		list_del(&e->node);
 		free(e);
 	}

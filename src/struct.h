@@ -788,7 +788,7 @@ typedef struct level {
 } level, *Level;
 
 typedef void (*action_fptr) (level *obst_lvl, int obstacle_idx);
-typedef int (*animation_fptr) (level *obst_lvl, int obstacle_idx);
+typedef int (*animation_fptr) (level *obst_lvl, void *);
 
 struct obstacle_graphics {
 	int count;

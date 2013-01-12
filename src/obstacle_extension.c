@@ -86,7 +86,7 @@ void defrag_obstacle_array(level *lvl)
 		}
 	}
 
-	dirty_animated_obstacle_lists(lvl->levelnum);
+	dirty_animated_obstacle_list(lvl->levelnum);
 }
 
 /**

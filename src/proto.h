@@ -753,9 +753,9 @@ void dynarray_del(struct dynarray *, int, size_t);
 void *dynarray_member(struct dynarray *, int, size_t);
 
 // animate.c
-void dirty_animated_obstacle_lists(int lvl_num);
-void clear_animated_obstacle_lists(struct visible_level *vis_lvl);
-void animate_obstacles(void);
+void dirty_animated_obstacle_list(int lvl_num);
+void clear_animated_obstacle_list(struct visible_level *vis_lvl);
+void animate_scenery(void);
 animation_fptr get_animation_by_name(const char *animation_name);
 void animation_timeline_reset(void);
 void animation_timeline_advance(void);

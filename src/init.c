@@ -1582,7 +1582,7 @@ void ThouArtDefeated(void)
 		MoveBullets();
 		MoveActiveSpells();
 		move_enemies();
-		animate_obstacles();
+		animate_scenery();
 		UpdateCountersForThisFrame();
 		
 		for (j = 0; j < MAXBULLETS; j++)
@@ -1626,7 +1626,7 @@ void ThouHastWon(void)
 		MoveBullets();
 		MoveActiveSpells();
 		move_enemies();
-		animate_obstacles();
+		animate_scenery();
 
 		// ReactToSpecialKeys();
 

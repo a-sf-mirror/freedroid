@@ -225,7 +225,7 @@ int change_obstacle_type(const char *obslabel, int type)
 	}
 
 	// Now we make sure the door lists and that are all updated...
-	dirty_animated_obstacle_lists(obstacle_level->levelnum);
+	dirty_animated_obstacle_list(obstacle_level->levelnum);
 
 	return 0;
 }

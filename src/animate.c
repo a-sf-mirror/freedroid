@@ -3,7 +3,7 @@
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
  *   Copyright (c) 2004-2007 Arthur Huillet
- *   Copyright (c) 2009 Samuel Degrande
+ *   Copyright (c) 2009-2013 Samuel Degrande
  *
  *  This file is part of Freedroid
  *
@@ -34,8 +34,8 @@
 #include "global.h"
 #include "proto.h"
 
-struct animated_obstacle {
-	int index;
+struct animated_scenery_piece {
+	void *scenery_piece;
 	animation_fptr animation_fn;
 	struct list_head node;
 };
@@ -63,8 +63,9 @@ static float animation_timeline = 0.0;
  * This function animates a door.
  * It opens and closes a door depending on the presence of characters near them
  */
-static int animate_door(level* door_lvl, int door_idx)
+static int animate_door(level* door_lvl, void *scenery_piece)
 {
+	struct obstacle *obs = (struct obstacle *)scenery_piece;
 	float xdist, ydist;
 	float dist2;
 	int *Pos;
@@ -78,8 +79,8 @@ static int animate_door(level* door_lvl, int door_idx)
 	// opened.
 	//
 	if (Me.pos.z == door_lvl->levelnum) {
-		xdist = Me.pos.x - door_lvl->obstacle_list[door_idx].pos.x;
-		ydist = Me.pos.y - door_lvl->obstacle_list[door_idx].pos.y;
+		xdist = Me.pos.x - obs->pos.x;
+		ydist = Me.pos.y - obs->pos.y;
 		dist2 = xdist * xdist + ydist * ydist;
 		if (dist2 < DOOROPENDIST2) {
 			one_player_close_enough = TRUE;
@@ -97,9 +98,9 @@ static int animate_door(level* door_lvl, int door_idx)
 			// say 2 squares in each direction.  Anything beyond that distance
 			// can be safely ignored for this door.
 			//
-			xdist = abs(erot->pos.x - door_lvl->obstacle_list[door_idx].pos.x);
+			xdist = abs(erot->pos.x - obs->pos.x);
 			if (xdist < 2.0) {
-				ydist = abs(erot->pos.y - door_lvl->obstacle_list[door_idx].pos.y);
+				ydist = abs(erot->pos.y - obs->pos.y);
 				if (ydist < 2.0) {
 	
 					// Now that we know, that there is some droid at least halfway
@@ -120,7 +121,7 @@ static int animate_door(level* door_lvl, int door_idx)
 	
 	// Depending on the presence or not of someone near the door, open it or
 	// close it.
-	Pos = &(door_lvl->obstacle_list[door_idx].type);
+	Pos = &obs->type;
 
 	if (one_player_close_enough || some_bot_was_close_to_this_door) {
 		if ( ((*Pos >= ISO_H_DOOR_000_OPEN) && (*Pos < ISO_H_DOOR_100_OPEN)) ||
@@ -147,8 +148,9 @@ static int animate_door(level* door_lvl, int door_idx)
  * This function animates an autogun.
  * It fires a bullet regularly 
  */
-static int animate_autogun(level* autogun_lvl, int autogun_idx)
+static int animate_autogun(level* autogun_lvl, void *scenery_piece)
 {
+	struct obstacle *obs = (struct obstacle *)scenery_piece;
 	float autogunx, autoguny;
 	int *AutogunType;
 	int j = 0;
@@ -175,9 +177,9 @@ static int animate_autogun(level* autogun_lvl, int autogun_idx)
 	
 	// Fire a new bullet
 	//
-	autogunx = (autogun_lvl->obstacle_list[autogun_idx].pos.x);
-	autoguny = (autogun_lvl->obstacle_list[autogun_idx].pos.y);
-	AutogunType = &(autogun_lvl->obstacle_list[autogun_idx].type);
+	autogunx = obs->pos.x;
+	autoguny = obs->pos.y;
+	AutogunType = &obs->type;
 
 	/* search for the next free bullet list entry */
 	for (j = 0; j < (MAXBULLETS); j++) {
@@ -251,12 +253,12 @@ is not really an autogun.  Instead it's something else.", PLEASE_INFORM, IS_FATA
  * It can be a 'frame animated' obstacle, i.e. an obstacle associated to
  * several images, and/or an obstacle emiting an animated glowing light.
  */
-static int animate_obstacle(level *obstacle_lvl, int obstacle_idx)
+static int animate_obstacle(level *obstacle_lvl, void *scenery_piece)
 {
-	obstacle *obstacle = &obstacle_lvl->obstacle_list[obstacle_idx];
-	obstacle_spec *spec = get_obstacle_spec(obstacle->type);
+	struct obstacle *obs = (struct obstacle *)scenery_piece;
+	obstacle_spec *spec = get_obstacle_spec(obs->type);
 	int num_frames = max(spec->filenames.size, spec->emitted_light_strength.size);
-	obstacle->frame_index = (int)rintf(spec->animation_fps * animation_timeline) % num_frames;
+	obs->frame_index = (int)rintf(spec->animation_fps * animation_timeline) % num_frames;
 	return TRUE;
 }
 
@@ -264,14 +266,11 @@ static int animate_obstacle(level *obstacle_lvl, int obstacle_idx)
  * Handle lists of animated obstacles
  *****************************************************************************/
 
-/**
- * Some structures within FreedroidRPG maps are animated in the sense that the
- * iso image used to display them rotates through a number of different iso
- * images.
- * We generate lists of the animated obstacles for a given visible level to
+/*
+ * Generate list of the animated obstacles for a given visible level to
  * speed-up things during animation and rendering.
  */
-static void get_animated_obstacle_lists(struct visible_level *vis_lvl)
+static void generate_animated_obstacle_list(struct visible_level *vis_lvl)
 {
 	int obstacle_index;
 	level *Lev = vis_lvl->lvl_pointer;
@@ -284,8 +283,8 @@ static void get_animated_obstacle_lists(struct visible_level *vis_lvl)
 			continue;
 		animation_fptr animation_fn = get_obstacle_spec(Lev->obstacle_list[obstacle_index].type)->animation_fn;
 		if (animation_fn != NULL) {
-			struct animated_obstacle *a = MyMalloc(sizeof(struct animated_obstacle));
-			a->index = obstacle_index;
+			struct animated_scenery_piece *a = MyMalloc(sizeof(struct animated_scenery_piece));
+			a->scenery_piece = (void *)&Lev->obstacle_list[obstacle_index];
 			a->animation_fn = animation_fn;
 			list_add(&a->node, &vis_lvl->animated_obstacles_list);
 			continue;
@@ -295,11 +294,11 @@ static void get_animated_obstacle_lists(struct visible_level *vis_lvl)
 	vis_lvl->animated_obstacles_dirty_flag = FALSE;
 }
 
-/*
- * This function marks the animated obstacle lists of one visible_level
+/**
+ * This function marks the animated obstacle list of one visible_level
  * as being dirty, so that they will be re-generated later.
  */
-void dirty_animated_obstacle_lists(int lvl_num)
+void dirty_animated_obstacle_list(int lvl_num)
 {
 	struct visible_level *lvl;
 
@@ -311,12 +310,12 @@ void dirty_animated_obstacle_lists(int lvl_num)
 	}
 }
 
-/*
- * This function clean all the animated obstacle lists
+/**
+ * This function clean all the animated obstacle list of a given visible level
  */
-void clear_animated_obstacle_lists(struct visible_level *vis_lvl)
+void clear_animated_obstacle_list(struct visible_level *vis_lvl)
 {
-	struct animated_obstacle *a, *next;
+	struct animated_scenery_piece *a, *next;
 
 	list_for_each_entry_safe(a, next, &vis_lvl->animated_obstacles_list, node) {
 		list_del(&a->node);
@@ -331,7 +330,7 @@ void clear_animated_obstacle_lists(struct visible_level *vis_lvl)
  *****************************************************************************/
 
 /**
- * This functions returns a pointer to the obstacle animation function for the
+ * This functions returns a pointer to a scenery piece animation function for the
  * given animation name.
  */
 animation_fptr get_animation_by_name(const char *animation_name)
@@ -354,7 +353,7 @@ animation_fptr get_animation_by_name(const char *animation_name)
 			return animation_map[i].animation;
 	}
 
-	ErrorMessage(__FUNCTION__, "\nUnknown obstacle animation '%s'.\n", PLEASE_INFORM, IS_FATAL, animation_name);
+	ErrorMessage(__FUNCTION__, "\nUnknown scenery piece animation '%s'.\n", PLEASE_INFORM, IS_FATAL, animation_name);
 	return NULL;
 }
 
@@ -383,11 +382,11 @@ void animation_timeline_advance()
 }
 
 /**
- * Call animation function on all animated obstacles
+ * Call animation function on all animated scenery pieces
  */
-void animate_obstacles(void)
+void animate_scenery(void)
 {
-	struct animated_obstacle *a;
+	struct animated_scenery_piece *a;
 	struct visible_level *visible_lvl, *next_lvl;
 
 	animation_timeline_advance();
@@ -395,13 +394,13 @@ void animate_obstacles(void)
 	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
 		// If animated_obstacles list is dirty, regenerate it
 		if (visible_lvl->animated_obstacles_dirty_flag) {
-			clear_animated_obstacle_lists(visible_lvl);
-			get_animated_obstacle_lists(visible_lvl);
+			clear_animated_obstacle_list(visible_lvl);
+			generate_animated_obstacle_list(visible_lvl);
 		}
 		// Call animation function of each animated object
 		list_for_each_entry(a, &visible_lvl->animated_obstacles_list, node) {
 			if (a->animation_fn != NULL) {
-				a->animation_fn(visible_lvl->lvl_pointer, a->index);
+				a->animation_fn(visible_lvl->lvl_pointer, a->scenery_piece);
 			}
 		}
 	}
