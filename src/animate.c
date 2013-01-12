@@ -40,6 +40,9 @@ struct animated_scenery_piece {
 	struct list_head node;
 };
 
+static struct list_head animated_floor_tile_list = LIST_HEAD_INIT(animated_floor_tile_list);
+static int animated_floor_tiles_dirty_flag;
+
 //--------------------
 // Distance, where door opens 
 //
@@ -263,6 +266,25 @@ static int animate_obstacle(level *obstacle_lvl, void *scenery_piece)
 }
 
 /*****************************************************************************
+ * Animation callbacks for floor tiles
+ *
+ * Functions called to animate one specific type of floor tile
+ *****************************************************************************/
+
+/*
+ * This function animates a dynamic floor tile, defined by several images
+ * displayed in turn.
+ */
+static int animate_floor_tile(struct level *lvl, void *scenery_piece)
+{
+	struct floor_tile_spec *floor_tile = (struct floor_tile_spec *)scenery_piece;
+
+	int frame = (int)rintf(floor_tile->animation_fps * animation_timeline) % floor_tile->frames;
+	floor_tile->current_image = &floor_tile->images[frame];
+	return TRUE;
+}
+
+/*****************************************************************************
  * Handle lists of animated obstacles
  *****************************************************************************/
 
@@ -326,6 +348,69 @@ void clear_animated_obstacle_list(struct visible_level *vis_lvl)
 }
 
 /*****************************************************************************
+ * Handle lists of animated floor tiles
+ *****************************************************************************/
+
+ /**
+  * Generate a list of the animated floor tiles.
+  */
+static void generate_animated_floor_tile_list(void)
+{
+	int i;
+
+	INIT_LIST_HEAD(&animated_floor_tile_list);
+
+	/* Now browse floor tiles and fill our list of animated floor tiles. */
+	for (i = 0; i < underlay_floor_tiles.size; i++) {
+		struct floor_tile_spec *floor_tile = dynarray_member(&underlay_floor_tiles, i, sizeof(struct floor_tile_spec));
+		floor_tile->current_image = &floor_tile->images[0];
+		if (floor_tile->animation_fn != NULL) {
+			struct animated_scenery_piece *a = MyMalloc(sizeof(struct animated_scenery_piece));
+			a->scenery_piece = (void *)floor_tile;
+			a->animation_fn = floor_tile->animation_fn;
+			list_add(&a->node, &animated_floor_tile_list);
+		}
+	}
+	for (i = 0; i < overlay_floor_tiles.size; i++) {
+		struct floor_tile_spec *floor_tile = dynarray_member(&overlay_floor_tiles, i, sizeof(struct floor_tile_spec));
+		floor_tile->current_image = &floor_tile->images[0];
+		if (floor_tile->animation_fn != NULL) {
+			struct animated_scenery_piece *a = MyMalloc(sizeof(struct animated_scenery_piece));
+			a->scenery_piece = (void *)floor_tile;
+			a->animation_fn = floor_tile->animation_fn;
+			list_add(&a->node, &animated_floor_tile_list);
+		}
+	}
+
+	animated_floor_tiles_dirty_flag = FALSE;
+}
+
+/**
+ * This function clean the animated floor tiles list
+ */
+static void clear_animated_floor_tile_list()
+{
+	struct animated_scenery_piece *a, *next;
+
+	list_for_each_entry_safe(a, next, &animated_floor_tile_list, node) {
+		list_del(&a->node);
+		free(a);
+	}
+	INIT_LIST_HEAD(&animated_floor_tile_list);
+
+	animated_floor_tiles_dirty_flag = TRUE;
+}
+
+/**
+ * This function marks the animated floor tile list as being dirty, so that it
+ * will be re-generated later.
+ */
+void dirty_animated_floor_tile_list()
+{
+	animated_floor_tiles_dirty_flag = TRUE;
+}
+
+/*****************************************************************************
  * Scenery animation external API
  *****************************************************************************/
 
@@ -341,7 +426,8 @@ animation_fptr get_animation_by_name(const char *animation_name)
 	} animation_map[] = {
 		{ "obstacle", animate_obstacle },
 		{ "door", animate_door },
-		{ "autogun", animate_autogun }
+		{ "autogun", animate_autogun },
+		{ "floor_tile", animate_floor_tile }
 	};
 
 	if (!animation_name)
@@ -391,6 +477,8 @@ void animate_scenery(void)
 
 	animation_timeline_advance();
 
+	// Animated obstacles
+
 	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
 		// If animated_obstacles list is dirty, regenerate it
 		if (visible_lvl->animated_obstacles_dirty_flag) {
@@ -402,6 +490,18 @@ void animate_scenery(void)
 			if (a->animation_fn != NULL) {
 				a->animation_fn(visible_lvl->lvl_pointer, a->scenery_piece);
 			}
+		}
+	}
+
+	// Animated floor tiles
+
+	if (animated_floor_tiles_dirty_flag) {
+		clear_animated_floor_tile_list();
+		generate_animated_floor_tile_list();
+	}
+	list_for_each_entry(a, &animated_floor_tile_list, node) {
+		if (a->animation_fn != NULL) {
+			a->animation_fn(NULL, a->scenery_piece);
 		}
 	}
 }

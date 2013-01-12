@@ -779,7 +779,7 @@ static void get_floor_tile_list(lua_State *L, struct dynarray *floor_tiles)
 			for (i=0; i<floor_tile.frames; i++)
 				memcpy(&floor_tile.images[i], &empty_image, sizeof(struct image));
 			set_value_from_table(L, -1, "animation_fps", FLOAT_TYPE, &floor_tile.animation_fps);
-			floor_tile.animation_fn = NULL;
+			floor_tile.animation_fn = get_animation_by_name("floor_tile");
 		}
 		lua_pop(L, 1);
 

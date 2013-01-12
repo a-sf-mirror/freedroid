@@ -982,6 +982,7 @@ void Init_Game_Data()
 	// Load floor tile specifications.
 	find_file("floor_tiles.lua", MAP_DIR, fpath, 0);
 	run_lua_file(LUA_CONFIG, fpath);
+	dirty_animated_floor_tile_list();
 
 	next_startup_percentage(1);
 }
