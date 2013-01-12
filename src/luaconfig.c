@@ -750,34 +750,56 @@ static int lua_blast_ctor(lua_State *L)
 	return 0;
 }
 
-static void get_floor_tile_list(lua_State *L, struct dynarray *filenames, struct dynarray *images)
+static void get_floor_tile_list(lua_State *L, struct dynarray *floor_tiles)
 {
 	struct image empty_image = EMPTY_IMAGE;
+	int i;
+
+	// Init the dynarray, using the lua table's length
+	dynarray_init(floor_tiles, lua_objlen(L, -1), sizeof(struct floor_tile_spec));
 
 	lua_pushnil(L);
 	while (lua_next(L, -2) != 0) {
-		if (lua_type(L, -1) == LUA_TSTRING) {
+		struct floor_tile_spec floor_tile = { .filenames = { NULL, 0, 0}, .animation_fn = NULL, .animation_fps = 0 };
+		int ltype = lua_type(L, -1);
+		if (ltype == LUA_TSTRING) {
+			// Non-animated floor tile
 			const char *filename = strdup(lua_tostring(L, -1));
-			dynarray_add(filenames, &filename, sizeof(char *));
-			dynarray_add(images, &empty_image, sizeof(empty_image));
+			dynarray_init(&floor_tile.filenames, 1, sizeof(char *));
+			dynarray_add(&floor_tile.filenames, &filename, sizeof(char *));
+			floor_tile.frames = 1;
+			floor_tile.images = MyMalloc(sizeof(struct image));
+			memcpy(&floor_tile.images[0], &empty_image, sizeof(struct image));
+
+		} else if (ltype == LUA_TTABLE) {
+			// Animated floor tile
+			set_value_from_table(L, -1, "filenames", STRING_ARRAY, &floor_tile.filenames);
+			floor_tile.frames = floor_tile.filenames.size;
+			floor_tile.images = MyMalloc(floor_tile.frames * sizeof(struct image));
+			for (i=0; i<floor_tile.frames; i++)
+				memcpy(&floor_tile.images[i], &empty_image, sizeof(struct image));
+			set_value_from_table(L, -1, "animation_fps", FLOAT_TYPE, &floor_tile.animation_fps);
+			floor_tile.animation_fn = NULL;
 		}
 		lua_pop(L, 1);
+
+		floor_tile.current_image = &floor_tile.images[0];
+		dynarray_add(floor_tiles, &floor_tile, sizeof(struct floor_tile_spec));
 	}
-	lua_pop(L, 1);
 }
 
 static int lua_underlay_floor_tile_list_ctor(lua_State *L)
 {
-	get_floor_tile_list(L, &underlay_floor_tile_filenames, &underlay_floor_images);
-	if (underlay_floor_tile_filenames.size >= MAX_UNDERLAY_FLOOR_TILES)
+	get_floor_tile_list(L, &underlay_floor_tiles);
+	if (underlay_floor_tiles.size >= MAX_UNDERLAY_FLOOR_TILES)
 		ErrorMessage(__FUNCTION__, "Maximum number of underlay floor tile types has been exceeded.", PLEASE_INFORM, IS_FATAL);
 	return 0;
 }
 
 static int lua_overlay_floor_tile_list_ctor(lua_State *L)
 {
-	get_floor_tile_list(L, &overlay_floor_tile_filenames, &overlay_floor_images);
-	if (overlay_floor_tile_filenames.size >= MAX_OVERLAY_FLOOR_TILES)
+	get_floor_tile_list(L, &overlay_floor_tiles);
+	if (overlay_floor_tiles.size >= MAX_OVERLAY_FLOOR_TILES)
 		ErrorMessage(__FUNCTION__, "Maximum number of overlay floor tile types has been exceeded.", PLEASE_INFORM, IS_FATAL);
 	return 0;
 }
@@ -829,7 +851,7 @@ static int lua_npc_list_ctor(lua_State *L)
 		lua_pushnil(L);
 		// Process the lua table
 		while (lua_next(L, -2) != 0) {
-	                const char *npc_name;
+			const char *npc_name;
 			if (lua_type(L, -2) == LUA_TNUMBER && lua_type(L, -1) == LUA_TSTRING) {
 				npc_name = lua_tostring(L, -1);
 				npc_add(npc_name);

@@ -234,8 +234,6 @@ EXTERN int droid_death_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 EXTERN int droid_stand_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 EXTERN struct tux_motion_class_images *tux_images;
-EXTERN struct dynarray underlay_floor_images;
-EXTERN struct dynarray overlay_floor_images;
 EXTERN struct dynarray obstacle_images;
 
 EXTERN float iso_floor_tile_width;
@@ -259,8 +257,8 @@ EXTERN struct widget_text *message_log;
 #define EXTERN extern
 #endif
 EXTERN struct dynarray obstacle_map;
-EXTERN struct dynarray underlay_floor_tile_filenames;
-EXTERN struct dynarray overlay_floor_tile_filenames;
+EXTERN struct dynarray underlay_floor_tiles;
+EXTERN struct dynarray overlay_floor_tiles;
 EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 #undef EXTERN

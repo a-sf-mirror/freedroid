@@ -174,11 +174,11 @@ static void leveleditor_print_object_info(enum lvledit_object_type type, int *ar
 	case OBJECT_FLOOR:
 			if (array[idx] >= MAX_UNDERLAY_FLOOR_TILES) {
 				int index = array[idx] - MAX_UNDERLAY_FLOOR_TILES;
-				char **filename = dynarray_member(&overlay_floor_tile_filenames, index, sizeof(char *));
-				sprintf(str, "Overlay floor tile %d, filename %s\n", index, *filename); 
+				struct floor_tile_spec *floor_tile = dynarray_member(&overlay_floor_tiles, index, sizeof(struct floor_tile_spec));
+				sprintf(str, "Overlay floor tile number %d, filename %s\n", index, ((char **)floor_tile->filenames.arr)[0]);
 			} else {
-				char **filename = dynarray_member(&underlay_floor_tile_filenames, array[idx], sizeof(char *));
-				sprintf(str, "Underlay floor tile number %d, filename %s\n", array[idx], *filename);
+				struct floor_tile_spec *floor_tile = dynarray_member(&underlay_floor_tiles, array[idx], sizeof(struct floor_tile_spec));
+				sprintf(str, "Underlay floor tile number %d, filename %s\n", array[idx], ((char **)floor_tile->filenames.arr)[0]);
 			}
 			break;
 	case OBJECT_OBSTACLE:

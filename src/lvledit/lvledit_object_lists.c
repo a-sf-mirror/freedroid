@@ -315,29 +315,31 @@ void lvledit_set_obstacle_list_for_category(const char *category_name, struct dy
 	ErrorMessage(__FUNCTION__, "Unknown obstacle category: %s.", PLEASE_INFORM, IS_WARNING_ONLY, category_name);
 }
 
-static void sort_floor_tiles_by_categories(struct dynarray *filenames, int base, int *sidewalk, int *water, int *grass, int *square, int *other)
+static void sort_floor_tiles_by_categories(struct dynarray *floor_tiles, int base, int *sidewalk, int *water, int *grass, int *square, int *other)
 {
 	int i;
 
-	for (i = 0; i < filenames->size; i++) {
-		char **current_filename = dynarray_member(filenames, i, sizeof(char *));
-		if (strstr(*current_filename, "sidewalk")) {
+	for (i = 0; i < floor_tiles->size; i++) {
+		struct floor_tile_spec *floor_tile = dynarray_member(floor_tiles, i, sizeof(struct floor_tile_spec));
+		const char *current_filename = ((char **)floor_tile->filenames.arr)[0];
+
+		if (strstr(current_filename, "sidewalk")) {
 			sidewalk_floor_list[*sidewalk] = base + i;
 			(*sidewalk)++;
-			if (strstr(*current_filename, "water")) { //Water-Sidewalk tiles should be in both
+			if (strstr(current_filename, "water")) { //Water-Sidewalk tiles should be in both
 				water_floor_list[*water] = base + i;
 				(*water)++;
 			}
-		} else if (strstr(*current_filename, "water")) {
+		} else if (strstr(current_filename, "water")) {
 			water_floor_list[*water] = base + i;
 			(*water)++;
-		} else if (strstr(*current_filename, "grass")) {
+		} else if (strstr(current_filename, "grass")) {
 			grass_floor_list[*grass] = base + i;
 			(*grass)++;
-		} else if (strstr(*current_filename, "square")) {
+		} else if (strstr(current_filename, "square")) {
 			square_floor_list[*square] = base + i;
 			(*square)++;
-		} else if (strcmp(*current_filename, "DUMMY_FLOOR_TILE")) {
+		} else if (strcmp(current_filename, "DUMMY_FLOOR_TILE")) {
 			other_floor_list[*other] = base + i;
 			(*other)++;
 		}
@@ -358,15 +360,15 @@ static void build_floor_tile_lists(void)
 	free(square_floor_list);   //Square Tiles - Geometric Patterned
 	free(other_floor_list);    //OTHER: Dirt, Sand, Carpet, Misc, etc.
 
-	int num_floor_tiles = underlay_floor_tile_filenames.size + overlay_floor_tile_filenames.size;
+	int num_floor_tiles = underlay_floor_tiles.size + overlay_floor_tiles.size;
 	sidewalk_floor_list = MyMalloc(num_floor_tiles * sizeof(int));
 	water_floor_list    = MyMalloc(num_floor_tiles * sizeof(int));
 	grass_floor_list    = MyMalloc(num_floor_tiles * sizeof(int));
 	square_floor_list   = MyMalloc(num_floor_tiles * sizeof(int));
 	other_floor_list    = MyMalloc(num_floor_tiles * sizeof(int));
 
-	sort_floor_tiles_by_categories(&underlay_floor_tile_filenames, 0, &sidewalk, &water, &grass, &square, &other);
-	sort_floor_tiles_by_categories(&overlay_floor_tile_filenames, MAX_UNDERLAY_FLOOR_TILES, &sidewalk, &water, &grass, &square, &other);
+	sort_floor_tiles_by_categories(&underlay_floor_tiles, 0, &sidewalk, &water, &grass, &square, &other);
+	sort_floor_tiles_by_categories(&overlay_floor_tiles, MAX_UNDERLAY_FLOOR_TILES, &sidewalk, &water, &grass, &square, &other);
 
 	sidewalk_floor_list[sidewalk] = -1;
 	water_floor_list[water]       = -1;

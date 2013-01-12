@@ -70,15 +70,16 @@ void free_glued_obstacles(level *lvl)
  */
 struct image *get_floor_tile_image(int floor_value)
 {
-	struct dynarray *images = &underlay_floor_images;
+	struct dynarray *floor_tiles = &underlay_floor_tiles;
 	// Overlay floor tiles are numbered starting with MAX_UNDERLAY_FLOOR_TILES.
 	// This offset is subtracted from floor_value to get index in the floor tiles
 	// image array.
 	if (floor_value >= MAX_UNDERLAY_FLOOR_TILES) {
 		floor_value -= MAX_UNDERLAY_FLOOR_TILES;
-		images = &overlay_floor_images;
+		floor_tiles = &overlay_floor_tiles;
 	}
-	return dynarray_member(images, floor_value, sizeof(struct image));
+	struct floor_tile_spec *floor_tile = dynarray_member(floor_tiles, floor_value, sizeof(struct floor_tile_spec));
+	return floor_tile->current_image;
 }
 
 #undef _floor_tiles_c

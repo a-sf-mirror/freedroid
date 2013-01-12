@@ -1,3 +1,16 @@
+------------------------------------------------------------------------------
+-- Defines the list of underlay floor tiles and the list of overlay floor tiles.
+--
+-- A list can contain a mix of static and animated floor tiles.
+--
+-- A static floor tile is defined by the name of its image.
+--
+-- An animated floor tile is defined by a lua array containing:
+--  - a frame per second value (float data)
+--  - a list of image names
+-- Example: { animation_fps = 0.5, filenames = { "iso_img_0.png", "iso_img_1.png", ... } }
+------------------------------------------------------------------------------
+
 underlay_floor_tile_list {
 	"iso_miscellaneous_floor_0007.png",
 	"iso_miscellaneous_floor_0000.png",

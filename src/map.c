@@ -997,8 +997,8 @@ Uint16 get_map_brick(level *lvl, float x, float y, int layer)
 
 	BrickWanted = curShip.AllLevels[rpos.z]->map[RoundY][RoundX].floor_values[layer];
 
-	if (BrickWanted >= underlay_floor_tile_filenames.size) {
-		if (BrickWanted < MAX_UNDERLAY_FLOOR_TILES || (BrickWanted - MAX_UNDERLAY_FLOOR_TILES) >= overlay_floor_tile_filenames.size) {
+	if (BrickWanted >= underlay_floor_tiles.size) {
+		if (BrickWanted < MAX_UNDERLAY_FLOOR_TILES || (BrickWanted - MAX_UNDERLAY_FLOOR_TILES) >= overlay_floor_tiles.size) {
 			ErrorMessage(__FUNCTION__, "Level %d at %d %d in %d layer uses an unknown floor tile: %d.\n", PLEASE_INFORM, IS_WARNING_ONLY,
 				lvl->levelnum, RoundX, RoundY, layer, BrickWanted);
 			return ISO_FLOOR_EMPTY;

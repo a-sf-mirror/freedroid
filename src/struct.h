@@ -848,6 +848,17 @@ struct obstacle_group {
 	struct dynarray members;
 };
 
+struct floor_tile_spec {
+	int frames;	// More than 1 for animated floor tiles
+	struct dynarray filenames;
+	struct image *images;
+	struct image *current_image;
+
+	// Properties for animated floor tiles
+	animation_fptr animation_fn;
+	float animation_fps;
+};
+
 struct visible_level {
 	int valid;
 	level *lvl_pointer;

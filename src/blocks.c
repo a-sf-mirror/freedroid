@@ -719,18 +719,22 @@ void load_all_obstacles(int with_startup_bar)
 
 static struct image *get_storage_for_floor_tile(const char *filename)
 {
-	int i;
+	int i, j;
 
-	for (i = 0; i < underlay_floor_tile_filenames.size; i++) {
-		char **current_filename = dynarray_member(&underlay_floor_tile_filenames, i, sizeof(char *));
-		if (!strcmp(*current_filename, filename))
-			return dynarray_member(&underlay_floor_images, i, sizeof(struct image));
+	for (i = 0; i < underlay_floor_tiles.size; i++) {
+		struct floor_tile_spec *floor_tile = dynarray_member(&underlay_floor_tiles, i, sizeof(struct floor_tile_spec));
+		for (j = 0; j < floor_tile->frames; j++) {
+			if (!strcmp(((char **)floor_tile->filenames.arr)[j], filename))
+				return &floor_tile->images[j];
+		}
 	}
 
-	for (i = 0; i < overlay_floor_tile_filenames.size; i++) {
-		char **current_filename = dynarray_member(&overlay_floor_tile_filenames, i, sizeof(char *));
-		if (!strcmp(*current_filename, filename))
-			return dynarray_member(&overlay_floor_images, i, sizeof(struct image));
+	for (i = 0; i < overlay_floor_tiles.size; i++) {
+		struct floor_tile_spec *floor_tile = dynarray_member(&overlay_floor_tiles, i, sizeof(struct floor_tile_spec));
+		for (j = 0; j < floor_tile->frames; j++) {
+			if (!strcmp(((char **)floor_tile->filenames.arr)[j], filename))
+				return &floor_tile->images[j];
+		}
 	}
 
 	ErrorMessage(__FUNCTION__, "Floor tiles texture atlas specifies element %s which is not expected.",
@@ -753,13 +757,20 @@ void load_floor_tiles(void)
 
 void free_floor_tiles(void)
 {
-	int i;
-	for (i = 0; i < underlay_floor_images.size; i++) {
-		delete_image(dynarray_member(&underlay_floor_images, i, sizeof(struct image)));
+	int i, j;
+
+	for (i = 0; i < underlay_floor_tiles.size; i++) {
+		struct floor_tile_spec *floor_tile = dynarray_member(&underlay_floor_tiles, i, sizeof(struct floor_tile_spec));
+		for (j = 0; j < floor_tile->frames; j++) {
+			delete_image(&floor_tile->images[j]);
+		}
 	}
 
-	for (i = 0; i < overlay_floor_images.size; i++) {
-		delete_image(dynarray_member(&overlay_floor_images, i, sizeof(struct image)));
+	for (i = 0; i < overlay_floor_tiles.size; i++) {
+		struct floor_tile_spec *floor_tile = dynarray_member(&overlay_floor_tiles, i, sizeof(struct floor_tile_spec));
+		for (j = 0; j < floor_tile->frames; j++) {
+			delete_image(&floor_tile->images[j]);
+		}
 	}
 }
 
