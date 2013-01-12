@@ -314,13 +314,9 @@ void CountNumberOfDroidsOnShip(void);
 int LoadShip(char *filename, int);
 int SaveShip(const char *filename, int reset_random_levels, int);
 int save_special_forces(const char *filename);
-void get_animated_obstacle_lists(struct visible_level *vis_lvl);
-void dirty_animated_obstacle_lists(int lvl_num);
-void clear_animated_obstacle_lists(struct visible_level *vis_lvl);
 int GetCrew(char *shipname);
 moderately_finepoint translate_point_to_map_location(float axis_x, float axis_y, int zoom_is_on);
 
-void animate_obstacles(void);
 int IsVisible(gps *objpos);
 #define translate_map_point_to_screen_pixel translate_map_point_to_screen_pixel_func
 #define translate_map_point_to_screen_pixel_x(X,Y)  ( UserCenter_x + ceilf((X)*iso_floor_tile_width_over_two) - ceilf((Y)*iso_floor_tile_width_over_two) \
@@ -757,12 +753,12 @@ void dynarray_del(struct dynarray *, int, size_t);
 void *dynarray_member(struct dynarray *, int, size_t);
 
 // animate.c
+void dirty_animated_obstacle_lists(int lvl_num);
+void clear_animated_obstacle_lists(struct visible_level *vis_lvl);
+void animate_obstacles(void);
+animation_fptr get_animation_by_name(const char *animation_name);
 void animation_timeline_reset(void);
 void animation_timeline_advance(void);
-int animate_door(level* obstacle_lvl, int obstacle_idx);
-int animate_autogun(level* obstacle_lvl, int obstacle_idx);
-int animate_obstacle(level *obstacle_lvl, int obstacle_idx);
-animation_fptr get_animation_by_name(const char *animation_name);
 
 // benchmark.c
 int benchmark(void);

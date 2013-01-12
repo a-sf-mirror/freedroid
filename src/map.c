@@ -48,12 +48,6 @@
 
 void GetThisLevelsDroids(char *section_pointer);
 
-struct animated_obstacle {
-	int index;
-	animation_fptr animation_fn;
-	struct list_head node;
-};
-
 /**
  * This function removes all volatile obstacles from a given level.
  * An example of a volatile obstacle is the blood.
@@ -1015,68 +1009,6 @@ Uint16 get_map_brick(level *lvl, float x, float y, int layer)
 }
 
 /**
- * Some structures within FreedroidRPG maps are animated in the sense that the
- * iso image used to display them rotates through a number of different iso
- * images.
- * We generate lists of the animated obstacles for a given visible level to 
- * speed-up things during animation and rendering.
- */
-void get_animated_obstacle_lists(struct visible_level *vis_lvl)
-{
-	int obstacle_index;
-	level *Lev = vis_lvl->lvl_pointer;
-
-	INIT_LIST_HEAD(&vis_lvl->animated_obstacles_list);
-
-	/* Now browse obstacles and fill our list of animated obstacles. */
-	for (obstacle_index = 0; obstacle_index < MAX_OBSTACLES_ON_MAP; obstacle_index++) {
-		if (Lev->obstacle_list[obstacle_index].type == -1)
-			continue;
-		animation_fptr animation_fn = get_obstacle_spec(Lev->obstacle_list[obstacle_index].type)->animation_fn;
-		if (animation_fn != NULL) {
-			struct animated_obstacle *a = MyMalloc(sizeof(struct animated_obstacle));
-			a->index = obstacle_index;
-			a->animation_fn = animation_fn;
-			list_add(&a->node, &vis_lvl->animated_obstacles_list);
-			continue;
-		}
-	}
-	
-	vis_lvl->animated_obstacles_dirty_flag = FALSE;
-}
-
-/*
- * This function marks the animated obstacle lists of one visible_level
- * as being dirty, so that they will be re-generated later.
- */
-void dirty_animated_obstacle_lists(int lvl_num)
-{
-	struct visible_level *lvl;
-
-	list_for_each_entry(lvl, &visible_level_list, node) {
-		if (lvl->lvl_pointer->levelnum == lvl_num) {
-			lvl->animated_obstacles_dirty_flag = TRUE;
-			return;
-		}
-	}
-}
-
-/*
- * This function clean all the animated obstacle lists
- */
-void clear_animated_obstacle_lists(struct visible_level *vis_lvl)
-{
-	struct animated_obstacle *a, *next;
-
-	list_for_each_entry_safe(a, next, &vis_lvl->animated_obstacles_list, node) {
-		list_del(&a->node);
-		free(a);
-	}
-	
-	vis_lvl->animated_obstacles_dirty_flag = TRUE;
-}
-
-/**
  * This functions reads the specification for a level
  * taken from the ship file.
  *
@@ -1888,33 +1820,6 @@ int IsVisible(gps *objpos)
 	return (DirectLineColldet(objpos->x, objpos->y, Me.pos.x, Me.pos.y, objpos->z, &VisiblePassFilter));
 
 };				// int IsVisible( Point objpos )
-
-/**
- * This function moves all periodically changing map tiles...
- */
-void animate_obstacles(void)
-{
-	struct animated_obstacle *a;
-	struct visible_level *visible_lvl, *next_lvl;
-
-	animation_timeline_advance();
-	
-	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
-		// If animated_obstacles list is dirty, regenerate it
-		if (visible_lvl->animated_obstacles_dirty_flag) {
-			clear_animated_obstacle_lists(visible_lvl);
-			get_animated_obstacle_lists(visible_lvl);
-		}
-		// Call animation function of each animated object
-		list_for_each_entry(a, &visible_lvl->animated_obstacles_list, node) {
-			if (a->animation_fn != NULL) {
-				a->animation_fn(visible_lvl->lvl_pointer, a->index);
-			}
-		}
-	}
-	
-
-};				// void AnimateCyclingMapTiles (void)
 
 /**
  *
