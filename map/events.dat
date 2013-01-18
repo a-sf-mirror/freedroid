@@ -1053,6 +1053,19 @@ Silent=0
 	os.exit(0)
 </LuaCode>
 * End of trigger *
+
+* New event trigger *
+Name=_"24-trap-trigger"
+Trigger at label="24-trap-trigger"
+Silent=0
+<LuaCode>
+	i = 1
+	while (i < 9) do
+		create_droid("24-droid"..i, 123)
+		i = i + 1
+	end
+</LuaCode>
+* End of trigger *
 ##############
 ## Level 25 ##
 ##############

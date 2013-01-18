@@ -24419,6 +24419,12 @@ t47 x40.50 y6.50
 t463 x33.50 y71.50
 t464 x34.50 y71.50
 t17 x34.50 y86.50
+t131 x40.50 y48.00
+t131 x41.50 y48.00
+t131 x42.50 y48.00
+t131 x43.50 y48.00
+t131 x44.50 y48.00
+t131 x45.50 y48.00
 /obsdata
 plabelinfolvl
 x=42 y=31 name="24close2"
@@ -24458,6 +24464,15 @@ x=98 y=98 name="24teleport2"
 x=0 y=98 name="24teleport3"
 x=0 y=0 name="24teleport4"
 x=43 y=0 name="24fdrpgdeathlabel"
+x=42 y=54 name="24-trap-trigger"
+x=40 y=52 name="24-droid1"
+x=42 y=52 name="24-droid2"
+x=44 y=52 name="24-droid3"
+x=44 y=54 name="24-droid4"
+x=44 y=56 name="24-droid5"
+x=42 y=56 name="24-droid6"
+x=40 y=56 name="24-droid7"
+x=40 y=54 name="24-droid8"
 /plabelinfolvl
 piteminfolvl
 it: n="Big kitchen knife"  X=1.500000  Y=1.500000  MDur=7  CDur=1.000000  AClip=0  Multi=1
