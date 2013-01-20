@@ -655,6 +655,7 @@ static int lua_event_freeze_tux_npc(lua_State * L)
 	return 0;
 }
 
+
 static int lua_chat_player_name(lua_State * L)
 {
 	if (Me.character_name)
@@ -1014,6 +1015,21 @@ static int lua_play_sound(lua_State *L)
 	return 0;
 }
 
+static int lua_event_freeze_tux(lua_State * L)
+{
+	float duration = luaL_checknumber(L, 1);
+	Me.paralyze_duration = duration;
+	return 0;
+}
+
+static int lua_event_freeze_npc(lua_State * L)
+{
+	float duration = luaL_checknumber(L, 1);
+	enemy *en = get_enemy_arg(L, 2);
+	en->paralysation_duration_left = duration;
+	return 0;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1264,6 +1280,10 @@ luaL_Reg lfuncs[] = {
 	{"game_time", lua_get_game_time},
 
 	{"play_sound", lua_play_sound},
+
+	{"freeze_tux", lua_event_freeze_tux},
+
+	{"freeze_npc", lua_event_freeze_npc},
 
 	{NULL, NULL}
 };
