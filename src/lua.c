@@ -1293,12 +1293,21 @@ luaL_Reg lfuncs[] = {
 	{"game_time", lua_get_game_time},
 
 	{"play_sound", lua_play_sound},
+	/* play_sound("file")
+	 * path has to originate from /sound , e.g.
+	 * play_sound("effects/No_Ammo_Sound_0.ogg")
+	 */
 
 	{"freeze_tux", lua_event_freeze_tux},
-
+	// freeze_tux() freezes tux for the given amount of seconds
 	{"freeze_npc", lua_event_freeze_npc},
-
+	// freeze_npc() freezes the npc for the given amount of seconds
 	{"add_obstacle", lua_add_obstacle},
+	/* add_obstacle(lvl, x, y, obst_ID) add obstacles to maps at given position
+	 * add_obstacle(8, 41.4, 51.5, 100)
+	 * where 8 is the level number, x and y are the coorinates and 100
+	 * is the obstacle ID (see defs.h)
+	 */
 
 	{NULL, NULL}
 };
