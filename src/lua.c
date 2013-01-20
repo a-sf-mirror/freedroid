@@ -1006,6 +1006,14 @@ static int lua_get_game_time(lua_State *L)
 	return 1;
 }
 
+static int lua_play_sound(lua_State *L)
+{
+	const char *filename = luaL_checkstring(L, 1);
+
+	play_sound_cached(filename);
+	return 0;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1254,6 +1262,8 @@ luaL_Reg lfuncs[] = {
 	{"create_droid", lua_create_droid},
 
 	{"game_time", lua_get_game_time},
+
+	{"play_sound", lua_play_sound},
 
 	{NULL, NULL}
 };
