@@ -1064,6 +1064,7 @@ Silent=0
 		create_droid("24-droid"..i, 123)
 		i = i + 1
 	end
+	play_sound("effects/bot_sounds/voice_samples/58.ogg")
 </LuaCode>
 * End of trigger *
 ##############
