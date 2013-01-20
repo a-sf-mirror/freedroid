@@ -1030,6 +1030,19 @@ static int lua_event_freeze_npc(lua_State * L)
 	return 0;
 }
 
+static int lua_add_obstacle(lua_State *L)
+{
+	int level = luaL_checkinteger(L, 1);
+	level = curShip.AllLevels[level];
+	float x = luaL_checknumber(L, 2);
+	float y = luaL_checknumber(L, 3);
+	int type = luaL_checknumber(L, 4);
+
+	add_obstacle(level, x, y, type);
+
+	return 0;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1284,6 +1297,8 @@ luaL_Reg lfuncs[] = {
 	{"freeze_tux", lua_event_freeze_tux},
 
 	{"freeze_npc", lua_event_freeze_npc},
+
+	{"add_obstacle", lua_add_obstacle},
 
 	{NULL, NULL}
 };
