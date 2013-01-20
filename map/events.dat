@@ -947,7 +947,7 @@ Silent=1
 * New event trigger *
 Name=_"24wallrm1"
 Trigger at label="24wallrm1"
-Silent=1
+Silent=0
 <LuaCode>
 	if (not wall24_1) then
 		del_obstacle("24wall1")
@@ -959,7 +959,7 @@ Silent=1
 * New event trigger *
 Name=_"24wallrm2"
 Trigger at label="24wallrm2"
-Silent=1
+Silent=0
 <LuaCode>
 	if (not wall24_2) then
 		del_obstacle("24wall2")
@@ -971,7 +971,7 @@ Silent=1
 * New event trigger *
 Name=_"24wallrm3"
 Trigger at label="24wallrm3"
-Silent=1
+Silent=0
 <LuaCode>
 	if (not wall24_3) then
 		del_obstacle("24wall3")
@@ -983,7 +983,7 @@ Silent=1
 * New event trigger *
 Name=_"24wallrm4"
 Trigger at label="24wallrm4"
-Silent=1
+Silent=0
 <LuaCode>
 	if (not wall24_4) then
 		del_obstacle("24wall4")
@@ -995,7 +995,7 @@ Silent=1
 * New event trigger *
 Name=_"24randobstacle"
 Trigger at label="24randobstacle"
-Silent=1
+Silent=0
 <LuaCode>
 	level24obstacles()
 </LuaCode>
@@ -1004,7 +1004,7 @@ Silent=1
 * New event trigger *
 Name=_"24teleportstart"
 Trigger at label="24teleportstart"
-Silent=1
+Silent=0
 <LuaCode>
 	teleport("24teleport1")
 </LuaCode>
