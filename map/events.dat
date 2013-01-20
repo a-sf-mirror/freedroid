@@ -1050,6 +1050,7 @@ Name=_"24fdrpgdeathlabel"
 Trigger at label="24fdrpgdeathlabel"
 Silent=0
 <LuaCode>
+	print("Running os.exit(0) which will shut down the game. THIS IS NOT A BUG.")
 	os.exit(0)
 </LuaCode>
 * End of trigger *
