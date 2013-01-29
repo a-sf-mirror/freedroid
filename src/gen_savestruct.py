@@ -231,14 +231,14 @@ def main():
 
         write_str  = 'void write_%s(struct auto_string *strout, %s *data)\n'  % (func_name, s_name)
         write_str += '{\n'
-        write_str += '    autostr_append(strout, "{\\n");\n'
+        write_str += '    autostr_append(strout, "{\\n" '
         for (type, size, field) in data[s_name]:
             if not '*' in type:
                 # Pointers are not saved (it does not make sense).
-                write_str += '    autostr_append(strout, "%s = ");\n' % field
+                write_str += '"%s = ");\n' % field
                 write_str += '    write_%s(strout, %sdata->%s%s);\n' % (type, '' if size else '&', field, (', %s' % size) if size else '')
-                write_str += '    autostr_append(strout, \",\\n\");\n'
-        write_str += '    autostr_append(strout, "}");\n'
+                write_str += '    autostr_append(strout, ",\\n" '
+        write_str += '"}");\n'
         write_str += '}\n\n'
 
         output_c.write(write_str)
