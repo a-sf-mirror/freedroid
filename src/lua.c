@@ -1043,6 +1043,12 @@ static int lua_add_obstacle(lua_State *L)
 	return 0;
 }
 
+static int lua_meters_traveled(lua_State *L)
+{
+	lua_pushinteger(L, (float)Me.meters_traveled);
+	return 1;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1308,6 +1314,8 @@ luaL_Reg lfuncs[] = {
 	 * where 8 is the level number, x and y are the coorinates and 100
 	 * is the obstacle ID (see defs.h)
 	 */
+	{"meters_traveled", lua_meters_traveled},
+	// meters_traveled() returns ingame meters tux has traveled
 
 	{NULL, NULL}
 };
