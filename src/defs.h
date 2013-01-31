@@ -1,4 +1,4 @@
-/* 
+/*
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
@@ -1254,7 +1254,8 @@ enum obstacle_types {
 	ISO_VENDING_MACHINE_4_S,
 	ISO_TRANSFORMER_1,
 	ISO_TRANSFORMER_2,
-	ISO_TRANSFORMER_3
+	ISO_TRANSFORMER_3,
+	ISO_DROID_NEST_RED
 };
 
 enum {
