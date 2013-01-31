@@ -1066,7 +1066,7 @@ Notes concerning this droid=_"This is a terminal."
 ** Start of new Robot: **
 Droidname: GUN
 Default description:_"Autogun"
-Droid uses portrait rotation series with prefix="615"
+Droid uses portrait rotation series with prefix="autogun"
 Maximum speed of this droid: 0
 Class of this droid: 7
 Drops item class=9
@@ -1087,7 +1087,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
-Filename prefix for graphics="615"
+Filename prefix for graphics="autogun"
 Notes concerning this droid=_"Autogun. --todo"
 
 ** Start of new Robot: ** 

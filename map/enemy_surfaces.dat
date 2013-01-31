@@ -358,6 +358,15 @@ droid_death_animation_speed_factor=8
 droid_stand_animation_speed_factor=9
 ** End of new surface specification subsection **
 
+** Start of new surface specification subsection **
+PrefixToFilename="autogun"
+droid_walk_animation_speed_factor=1
+droid_attack_animation_speed_factor=24
+droid_gethit_animation_speed_factor=23
+droid_death_animation_speed_factor=21
+droid_stand_animation_speed_factor=1
+** End of new surface specification subsection **
+
 
 *** End of Enemy Surfaces Section: ***
 
