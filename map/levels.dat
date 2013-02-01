@@ -58938,8 +58938,8 @@ jump target north: 57
 jump target south: 67
 jump target east: 52
 jump target west: 63
-number of random droids: 200
-random droid types: 883, 821, 711, 751, 834
+number of random droids: 0
+random droid types: 
 Name of this level=_"Factory Office"
 BgSong=TheBeginning.ogg
 beginning_of_map
