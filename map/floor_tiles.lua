@@ -129,7 +129,8 @@ underlay_floor_tile_list {
 	"iso_twosquare_0001.png",
 	"iso_twosquare_0002.png",
 	"iso_twosquare_0003.png",
-	{ animation_fps = 14, filenames = { "iso_water_1_0000.png", "iso_water_1_0001.png", "iso_water_1_0002.png", "iso_water_1_0003.png", "iso_water_1_0004.png", "iso_water_1_0005.png", "iso_water_1_0006.png", "iso_water_1_0007.png", "iso_water_1_0008.png", "iso_water_1_0009.png", "iso_water_1_0010.png", "iso_water_1_0011.png", "iso_water_1_0012.png", "iso_water_1_0013.png", "iso_water_1_0014.png", "iso_water_1_0015.png" } }
+	{ filenames = { "iso_water_1_0000.png", "iso_water_1_0001.png", "iso_water_1_0002.png", "iso_water_1_0003.png", "iso_water_1_0004.png", "iso_water_1_0005.png", "iso_water_1_0006.png", "iso_water_1_0007.png", "iso_water_1_0008.png", "iso_water_1_0009.png", "iso_water_1_0010.png", "iso_water_1_0011.png", "iso_water_1_0012.png", "iso_water_1_0013.png", "iso_water_1_0014.png", "iso_water_1_0015.png" },
+	  animation_fps = 14 }
 }
 
 overlay_floor_tile_list {
