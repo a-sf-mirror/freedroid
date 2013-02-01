@@ -394,6 +394,16 @@ function show_node_if(case, ...)
 	end
 end
 
+function get_random_bot_59()
+	bot_59 = get_random(123, 139, 247, 249, 296, 296, 302, 302, 329, 329, 420,
+			  420, 476, 476, 493, 493, 516, 516, 516, 571, 571, 571, 598,
+			  598, 598, 614, 614, 614, 615, 615, 615, 629, 629, 629, 711,
+			  711, 711, 742, 742, 742, 751, 751, 751, 821, 821, 821, 834,
+			  834, 834, 883, 883, 883, 999, 999, 999, harvester,
+			  harvester, harvester, lawnmower, autogun, autogun)
+	return bot_59
+end
+
 -- level 24, the debug level:
 function closelvl24doors()
 	change_obstacle_state("24door1", "closed")
