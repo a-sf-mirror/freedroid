@@ -61992,7 +61992,6 @@ x=61 y=16 name="59_trap_245"
 x=61 y=19 name="59_trap_246"
 x=64 y=16 name="59_trap_247"
 x=66 y=14 name="59_trap_248"
-x=67 y=15 name="59_trap_249"
 x=72 y=13 name="59_trap_250"
 x=71 y=17 name="59_trap_251"
 x=74 y=19 name="59_trap_252"
@@ -62127,6 +62126,7 @@ x=55 y=17 name="59_trap_237"
 x=55 y=16 name="59_trap_238"
 x=55 y=15 name="59_trap_249"
 x=80 y=40 name="59_trap_297"
+x=55 y=15 name="59_trap_239"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
