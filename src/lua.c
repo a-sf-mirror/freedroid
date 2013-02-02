@@ -1032,8 +1032,8 @@ static int lua_event_freeze_npc(lua_State * L)
 
 static int lua_add_obstacle(lua_State *L)
 {
-	int level = luaL_checkinteger(L, 1);
-	level = curShip.AllLevels[level];
+	int levelnum = luaL_checkinteger(L, 1);
+	struct level *level = curShip.AllLevels[levelnum];
 	float x = luaL_checknumber(L, 2);
 	float y = luaL_checknumber(L, 3);
 	int type = luaL_checknumber(L, 4);
