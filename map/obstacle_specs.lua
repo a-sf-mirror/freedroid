@@ -159,7 +159,7 @@ obstacle {
 	animation_fps = 14
 }
 obstacle {
-	image_filenames = { "iso_droidnest_1.png", "iso_droidnest_2.png", "iso_droidnest_3.png", "iso_droidnest_4.png", "iso_droidnest_5.png" },
+	image_filenames = { "iso_droidnest_green_1.png", "iso_droidnest_green_2.png", "iso_droidnest_green_3.png", "iso_droidnest_green_4.png", "iso_droidnest_green_5.png" },
 	flags = { NEEDS_PRE_PUT },
 	emitted_light_strength = 10,
 	transparency = NO_TRANSPARENCY,

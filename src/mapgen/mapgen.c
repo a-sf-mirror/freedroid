@@ -509,7 +509,7 @@ void mapgen_convert(struct dungeon_info *di, int w, int h, unsigned char *tiles)
 static void add_teleport(int telnum, int x, int y, int tpair)
 {
 	const int helpers[2][4] = {
-		{ ISO_REFRESH_1,  ISO_REFRESH_1,  ISO_REFRESH_1,  ISO_REFRESH_1 },
+		{ ISO_DROID_NEST_GREEN, ISO_DROID_NEST_GREEN, ISO_DROID_NEST_GREEN, ISO_DROID_NEST_GREEN },
 		{ ISO_ENHANCER_RU, ISO_ENHANCER_LU, ISO_ENHANCER_RD, ISO_ENHANCER_LD }
 	};
 
