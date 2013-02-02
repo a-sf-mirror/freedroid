@@ -144,7 +144,11 @@ obstacle {
 }
 
 obstacle {
-	image_filenames = "DUMMY OBSTACLE"
+	image_filenames = { "iso_droidnest_blue_1.png", "iso_droidnest_blue_2.png", "iso_droidnest_blue_3.png", "iso_droidnest_blue_4.png", "iso_droidnest_blue_5.png" },
+	flags = { NEEDS_PRE_PUT },
+	emitted_light_strength = 10,
+	transparency = NO_TRANSPARENCY,
+	animation_fps = 1
 }
 
 obstacle {

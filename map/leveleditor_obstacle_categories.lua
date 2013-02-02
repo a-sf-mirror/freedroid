@@ -281,6 +281,7 @@ leveleditor_obstacle_category {
 		"iso_teleport_1.png",
 		"iso_droidnest_1.png",
 		"iso_droidnest_red_1.png",
+		"iso_droidnest_blue_1.png",
 		"iso_autogun_on_w.png",
 		"iso_autogun_on_n.png",
 		"iso_autogun_on_e.png",
