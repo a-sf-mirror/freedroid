@@ -1291,6 +1291,8 @@ void write_configuration_for_freedroid(struct auto_string *strout, configuration
     write_int32_t(strout, &data->limit_framerate);
     autostr_append(strout, ",\n" "omit_obstacles_in_level_editor = ");
     write_int32_t(strout, &data->omit_obstacles_in_level_editor);
+    autostr_append(strout, ",\n" "omit_map_labels_in_level_editor = ");
+    write_int32_t(strout, &data->omit_map_labels_in_level_editor);
     autostr_append(strout, ",\n" "omit_enemies_in_level_editor = ");
     write_int32_t(strout, &data->omit_enemies_in_level_editor);
     autostr_append(strout, ",\n" "zoom_is_on = ");
@@ -1430,6 +1432,10 @@ void read_configuration_for_freedroid(lua_State* L, int index, configuration_for
     }
     if (lua_getfield_or_warn(L, index, "omit_obstacles_in_level_editor")) {
         read_int32_t(L, -1, &data->omit_obstacles_in_level_editor);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "omit_map_labels_in_level_editor")) {
+        read_int32_t(L, -1, &data->omit_map_labels_in_level_editor);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "omit_enemies_in_level_editor")) {
