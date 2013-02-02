@@ -13,12 +13,12 @@ endif
 if CROSS_COMPILING
 SUBDIRS = src gluem $(extradirs)
 else
-SUBDIRS = src gluem graphics $(extradirs)
+SUBDIRS = src gluem graphics/floor_tiles graphics/obstacles $(extradirs)
 endif
 
 man_MANS = freedroidRPG.6
 
-freedroid_data = map graphics sound dialogs
+freedroid_data = map graphics/floor_tiles graphics/obstacles sound dialogs
 
 EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.generic lua
 
