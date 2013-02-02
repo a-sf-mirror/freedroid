@@ -119,6 +119,17 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorQuitButtonPushed.png", {-29, 79, 0, 0}, FALSE},
 
 
+/* above the upper row, the very upper row :P */
+	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON] =
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButton.png", {-30, -380, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_PUSHED] =
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonPushed.png", {-29, -379, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_OFF] =
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonOff.png", {-30, -380, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_OFF_PUSHED] =
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonOffPushed.png", {-29, -379, 0, 0}, FALSE},
+
+
 /* above the obstacle selectors, upper row */
 	[LEVEL_EDITOR_EDIT_CHEST_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorEditChestButton.png", {-150, -350, 0, 0}, FALSE},
@@ -187,14 +198,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleObstaclesButtonOff.png", {-90, -320, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF_PUSHED] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleObstaclesButtonOffPushed.png", {-89, -319, 0, 0}, FALSE},
-        [LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButton.png", {-90, -350, 0, 0}, FALSE},
-	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonPushed.png", {-89, -349, 0, 0}, FALSE},
-	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_OFF] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonOff.png", {-90, -350, 0, 0}, FALSE},
-	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonOffPushed.png", {-89, -349, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleTooltipsButton.png", {-60, -320, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_PUSHED] =
