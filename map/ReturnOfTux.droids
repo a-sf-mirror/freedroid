@@ -318,6 +318,8 @@ T=420: PosX=18 PosY=26 Faction="civilian" UseDialog="TestDroid" ShortLabel="TD" 
 T=420: PosX=18 PosY=22 Faction="civilian" UseDialog="TestDroid" ShortLabel="TD" Marker=2031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=420: PosX=26 PosY=11 Faction="civilian" UseDialog="TestDroid" ShortLabel="TD" Marker=2031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=883: PosX=27 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Update Server Guard" Marker=3031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUN: PosX=52 PosY=88 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Autogun" Marker=3031 RushTux=0 Fixed=1 DropItemName="none" MaxDistanceToHome=0
+T=GUN: PosX=49 PosY=88 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Autogun" Marker=3031 RushTux=0 Fixed=1 DropItemName="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
