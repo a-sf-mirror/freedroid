@@ -179,6 +179,11 @@ static void toggle_obstacles_button_click(struct widget_button *wb)
 	GameConfig.omit_obstacles_in_level_editor = !GameConfig.omit_obstacles_in_level_editor;
 }
 
+static void toggle_map_labels_button_click(struct widget_button *wb)
+{
+	GameConfig.omit_map_labels_in_level_editor = !GameConfig.omit_map_labels_in_level_editor;
+}
+
 static void zoom_in_button_click(struct widget_button *wb)
 {
 	GameConfig.zoom_is_on = !GameConfig.zoom_is_on;
@@ -279,6 +284,11 @@ static void zoom_in_button_update(struct widget *w)
 static void toggle_obstacles_button_update(struct widget *w)
 {
 	WIDGET_BUTTON(w)->active = GameConfig.omit_obstacles_in_level_editor;
+}
+
+static void toggle_map_labels_button_update(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = GameConfig.omit_map_labels_in_level_editor;
 }
 
 static void toggle_grid_button_update(struct widget *w)
@@ -460,6 +470,9 @@ struct widget_group *get_lvledit_ui()
 		{LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON, NULL,
 			_("Toggle display obstacles\n\nUse this button to toggle between obstacles displayed in level editor or obstacles hidden in level editor."),
 			2, toggle_obstacles_button_click, NULL, toggle_obstacles_button_update},
+                {LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON, NULL,
+			_("Toggle display map labels name\n\nUse this button to toggle between map labels name displayed in level editor or map labels name hidden in level editor."),
+			2, toggle_map_labels_button_click, NULL, toggle_map_labels_button_update},
 		{LEVEL_EDITOR_ZOOM_IN_BUTTON, NULL,
 			_("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nUse right click to change the zoom ratio.\n"),
 			2, zoom_in_button_click, zoom_in_button_right_click, zoom_in_button_update},

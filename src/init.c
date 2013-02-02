@@ -1280,6 +1280,7 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.limit_framerate = TRUE;
 	GameConfig.skip_light_radius = FALSE;
 	GameConfig.omit_obstacles_in_level_editor = FALSE;
+	GameConfig.omit_map_labels_in_level_editor = TRUE;
 	GameConfig.omit_enemies_in_level_editor = TRUE;
 	GameConfig.zoom_is_on = FALSE;
 	GameConfig.show_blood = TRUE;

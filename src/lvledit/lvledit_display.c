@@ -265,6 +265,12 @@ static void show_map_labels(int must_zoom)
 
 		struct image *img = get_map_label_image();
 		display_image_on_map(img, map_label->pos.x + 0.5, map_label->pos.y + 0.5, IMAGE_SCALE_RGB_TRANSFO(scale, r, g, b));
+
+                if (!GameConfig.omit_map_labels_in_level_editor) {
+                    show_backgrounded_label_at_map_position(map_label->label_name,
+                                                            0, map_label->pos.x,
+                                                            map_label->pos.y, must_zoom);
+                }
 	}
 }
 

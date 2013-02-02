@@ -145,6 +145,7 @@ typedef struct configuration_for_freedroid {
 	int enemy_energy_bars_visible;
 	int limit_framerate;
 	int omit_obstacles_in_level_editor;
+	int omit_map_labels_in_level_editor;
 	int omit_enemies_in_level_editor;
 	int zoom_is_on;
 	int show_blood;		// this can be used to make the game more friendly for children...
