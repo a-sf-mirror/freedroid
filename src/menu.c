@@ -512,6 +512,7 @@ void Cheatmenu(void)
 		printf_SDL(Screen, -1, -1, " t. Give a cheat gun\n");
 		printf_SDL(Screen, -1, -1, " x. Cheatkeys : %s", GameConfig.enable_cheatkeys ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " q. RESUME game\n");
+		printf_SDL(Screen, -1, -1, " T. Add a training point. Current training points: %d\n", Me.points_to_distribute); 
 
 		// Now we show it...
 		//
@@ -521,11 +522,12 @@ void Cheatmenu(void)
 		case 'f':
 			GameConfig.xray_vision_for_tux = !GameConfig.xray_vision_for_tux;
 			break;
-
 		case 'g':
 			Me.god_mode = !Me.god_mode;
 			break;
-
+		case 'T':
+			Me.points_to_distribute++; 
+			break;
 		case 'i':
 			if (Me.invisible_duration == 0) {
 				Me.invisible_duration += 50000;
@@ -536,7 +538,6 @@ void Cheatmenu(void)
 				break;
 			}
 			break;
-
 		case 'k':
 			skip_dead = 2;
 		case 'L':
