@@ -745,14 +745,17 @@ void ApplyItem(item * CurItem)
 		Me.energy += 25;
 		Me.busy_type = DRINKING_POTION;
 		Me.busy_time = 1;
+		play_sound_cached("effects/new_healing_sound.ogg");
 	} else if (MatchItemWithName(CurItem->type, "Antibiotic")) {
 		Me.energy += 50;
 		Me.busy_time = 1;
 		Me.busy_type = DRINKING_POTION;
+		play_sound_cached("effects/new_healing_sound.ogg");
 	} else if (MatchItemWithName(CurItem->type, "Doc-in-a-can")) {
 		Me.energy += Me.maxenergy;
 		Me.busy_time = 1;
 		Me.busy_type = DRINKING_POTION;
+		play_sound_cached("effects/new_healing_sound.ogg");
 	} else if (MatchItemWithName(CurItem->type, "Bottled ice")) {
 		Me.temperature -= 50;
 		Me.busy_time = 1;
