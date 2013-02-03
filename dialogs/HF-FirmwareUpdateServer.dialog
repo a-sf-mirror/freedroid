@@ -27,6 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
+	play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
 	-- Are we human? CAPTCHA!!!
 	number_one=math.random(2,7)
 	number_two=math.random(1,number_one-1)
@@ -51,6 +52,7 @@ Beginning of new chat dialog for character="XXXXX"
 		freeze_tux_npc(7)
 		hurt_tux(20)
 		heat_tux(20)
+		play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 		end_dialog()
 	else
 		npc_says(_"Welcome to MS firmware update server for region #54658.")
@@ -87,6 +89,7 @@ Nr=3 Text=_"Propagate firmware update"
 	else
 		npc_says(_"Merge failed.")
 		npc_says(_"Exiting...")
+		play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 		end_dialog()
 	end
 </LuaCode>
@@ -94,6 +97,7 @@ Nr=3 Text=_"Propagate firmware update"
 
 Nr=99 Text=_"Logout"
 <LuaCode>
+	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

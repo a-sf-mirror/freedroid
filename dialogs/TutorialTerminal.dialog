@@ -29,6 +29,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
+	play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
 	TutorialTerminal_year = os.date("%Y") + 45 -- current year + 45
 	TutorialTerminal_date_1 = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
 	TutorialTerminal_prompt = "guest@example.com: ~ #"
@@ -87,6 +88,7 @@ NO_TEXT
 <LuaCode>
 	tux_says(_"logout", "NO_WAIT")
 	npc_says(_"Exiting")
+	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

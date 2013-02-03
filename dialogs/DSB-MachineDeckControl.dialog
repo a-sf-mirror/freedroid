@@ -27,6 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
+	play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(_"admin", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
@@ -64,6 +65,7 @@ Nr=7 Text=_"shieldmgr --disable --force"
 	if (DSB_MDC_password) then
 		end_quest(_"Opening access to MS Office", _"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
 		hide(7)
+		play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 		end_dialog()
 	else
 		npc_says(_"WARNING: Another user is using this computer.")
@@ -76,6 +78,7 @@ Nr=7 Text=_"shieldmgr --disable --force"
 Nr=99 Text=_"logout"
 <LuaCode>
 	npc_says(_"Exiting")
+	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

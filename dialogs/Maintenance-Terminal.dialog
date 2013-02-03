@@ -29,6 +29,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
+	play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
 	Maintenance_Terminal_year = os.date("%Y") + 45 -- current year + 45
 	Maintenance_Terminal_date = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
 	Maintenance_Terminal_prompt = "dixon@maintenance: ~ # "
@@ -221,6 +222,7 @@ Nr=99 Text=_"logout"
 <LuaCode>
 	npc_says(_"Exiting", "NO_WAIT")
 	npc_says(_"Goodbye Dave.")
+	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 	end_dialog()
 	hide(3, 4, 5, 6, 7, 8, 9, 10)
 </LuaCode>

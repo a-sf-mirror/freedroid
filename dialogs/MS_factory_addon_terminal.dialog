@@ -29,6 +29,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
+	play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
 	terminal = "user@product_enhancer: ~ # "
 
 	cli_says(_"Login : ", "NO_WAIT")
@@ -75,6 +76,7 @@ Nr=99 Text=_"logout"
 	npc_says(_"Exiting", "NO_WAIT")
 	npc_says(_"M$ - What will be next?")
 	hide(10, 20)
+	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
