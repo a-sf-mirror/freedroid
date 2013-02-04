@@ -370,7 +370,6 @@ void MoveMenuPositionSound(void);
 void teleport_arrival_sound(void);
 void fire_bullet_sound(int BulletType, struct gps *shooter_pos);
 void play_blast_sound(char *blast_sound, struct gps *blast_pos);
-void Mission_Status_Change_Sound(void);
 void droid_blast_sound(struct gps *blast_pos);
 void exterminator_blast_sound(struct gps *blast_pos);
 void ThouArtDefeatedSound(void);

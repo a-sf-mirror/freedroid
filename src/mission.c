@@ -53,7 +53,6 @@ void mission_diary_add(const char *mis_name, const char *diarytext)
 		return;
 	}
 
-	Mission_Status_Change_Sound();
 
 	Me.AllMissions[mis_num].mission_description_time[idx] = Me.current_game_date;
 
@@ -160,7 +159,6 @@ void AssignMission(const char *name)
 {
 	int MissNum = GetMissionIndexByName(name);
 
-	Mission_Status_Change_Sound();
 	Me.AllMissions[MissNum].MissionWasAssigned = TRUE;
 
 	if (Me.AllMissions[MissNum].assignment_lua_code)
@@ -176,7 +174,6 @@ void CompleteMission(const char *name)
 {
 	int MissNum = GetMissionIndexByName(name);
 
-	Mission_Status_Change_Sound();
 	Me.AllMissions[MissNum].MissionIsComplete = TRUE;
 
 	if (Me.AllMissions[MissNum].completion_lua_code)

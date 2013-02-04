@@ -267,10 +267,6 @@ void CantCarrySound(void)
 	}
 }
 
-void Mission_Status_Change_Sound(void)
-{
-	play_sound_cached("effects/Mission_Status_Change_Sound_0.ogg");
-}
 
 /**
  * When the Tux uses the 'teleport home' spell, this sound will be played.
