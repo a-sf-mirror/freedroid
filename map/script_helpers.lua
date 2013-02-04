@@ -15,7 +15,7 @@ end
 -- compute the "town score" to determine whether the player can become
 -- a red guard
 function get_town_score()
-	town_score = 0
+	local town_score = 0
 
 	if (has_quest("Deliverance")) then
 		if (data_cube_lost) then
@@ -149,7 +149,7 @@ obstacle_states = {
 };
 
 function get_obstacle_state_id(id, state)
-	a = rawget(obstacle_states, id);
+	local a = rawget(obstacle_states, id);
 	if (a == nil) then
 		error("Obstacle number " .. id .. " does not have any states defined.", 2);
 	end
@@ -163,13 +163,13 @@ function get_obstacle_state_id(id, state)
 end
 
 function change_obstacle_state(label, state)
-	id = get_obstacle_type(label);
+	local id = get_obstacle_type(label);
 
 	change_obstacle_type(label, get_obstacle_state_id(id, state));
 end
 
 function cmp_obstacle_state(label, state)
-	id = get_obstacle_type(label);
+	local id = get_obstacle_type(label);
 
 	return (id == get_obstacle_state_id(id, state));
 end
@@ -207,8 +207,9 @@ function npc_faction(faction, name)
 	end
 end
 
-function chat_says_format(text, arg)
-	no_wait="WAIT"
+function chat_says_format(text, ...)
+	local arg = {...}
+	local no_wait = "WAIT"
 	if (arg[#arg] == "NO_WAIT") then
 		no_wait = "NO_WAIT"
 		table.remove(arg)
@@ -218,17 +219,17 @@ function chat_says_format(text, arg)
 end
 
 function tux_says(text, ...)
-	text, no_wait = chat_says_format('\1- ' .. text .. '\n', arg)
+	local text, no_wait = chat_says_format('\1- ' .. text .. '\n', ...)
 	chat_says(text, no_wait)
 end
 
 function npc_says(text, ...)
-	text, no_wait = chat_says_format('\2' .. text .. '\n', arg)
+	local text, no_wait = chat_says_format('\2' .. text .. '\n', ...)
 	chat_says(apply_bbcode(text,"\3","\2"), no_wait)
 end
 
 function cli_says(text, ...)
-	text, no_wait = chat_says_format('\3' .. text, arg)
+	local text, no_wait = chat_says_format('\3' .. text, ...)
 	chat_says(text, no_wait)
 end
 
@@ -244,12 +245,13 @@ end
 -- '\4'    small blue
 -- '\5'    small yellow   display_console_message()
 function apply_bbcode(text,magic_num_b,magic_num_nrm)
-	text = string.gsub(text,  '%[b%]', magic_num_b)
+	local text = string.gsub(text,  '%[b%]', magic_num_b)
 	text = string.gsub(text, '%[/b%]', magic_num_nrm)
 	return text
 end
 
 function npc_says_random(...)
+	arg = {...}
 	if (arg[#arg] == "NO_WAIT") then
 		npc_says(arg[math.random(#arg-1)],"NO_WAIT")
 	else
@@ -258,6 +260,7 @@ function npc_says_random(...)
 end
 
 function tux_says_random(...)
+	arg = {...}
 	if (arg[#arg] == "NO_WAIT") then
 		tux_says(arg[math.random(#arg-1)],"NO_WAIT")
 	else
@@ -266,6 +269,7 @@ function tux_says_random(...)
 end
 
 function get_random(...)
+	arg = {...}
 	return arg[math.random(#arg)]
 end
 
@@ -279,7 +283,7 @@ function del_gold(gold_amount)
 end
 
 function count_item(item_name) 
-	number = count_item_backpack(item_name) 
+	local number = count_item_backpack(item_name) 
 	if has_item_equipped(item_name) then
 		return number + 1
 	else
@@ -384,12 +388,13 @@ function drain_bot()
 end
 
 function difficulty()
-	levels = {"easy", "normal", "hard"}
+	local levels = {"easy", "normal", "hard"}
 	return levels[difficulty_level()+1]
 end
 
 
 function show_node_if(case, ...)
+	local arg = {...}
 	if (case) then
 		show(unpack(arg))
 	else
@@ -398,7 +403,7 @@ function show_node_if(case, ...)
 end
 
 function get_random_bot_59()
-	bot_59 = get_random(123, 139, 247, 249, 296, 296, 302, 302, 329, 329, 420,
+	local bot_59 = get_random(123, 139, 247, 249, 296, 296, 302, 302, 329, 329, 420,
 			  420, 476, 476, 493, 493, 516, 516, 516, 571, 571, 571, 598,
 			  598, 598, 614, 614, 614, 615, 615, 615, 629, 629, 629, 711,
 			  711, 711, 742, 742, 742, 751, 751, 751, 821, 821, 821, 834,
@@ -423,9 +428,6 @@ function openlvl24doors()
 end
 
 function level24obstacles()
-	function level24newid()
-		randobstacletype = math.random(0,466)
-	end
 	function level24idcheck()
 		if string.find(randobstacletype, 19) or
 		   string.find(randobstacletype, 20) or
@@ -441,7 +443,7 @@ function level24obstacles()
 			level24idcheck()
 		end
 	end
-	level24newid()
+	local randobstacletype = math.random(0,466)
 	level24idcheck()
 	display_big_message(randobstacletype)
 	change_obstacle_type("24randobst", randobstacletype)

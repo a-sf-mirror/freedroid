@@ -285,8 +285,11 @@ NO_TEXT
 
 	if (max > 40) then 
 		show(36)
-		table.foreach({[37] = 120, [38] = 400, [39] = 1200}, 
-					function (k, v) if (max > v) then show(k) end end);
+		for k,v in pairs({[37] = 120, [38] = 400, [39] = 1200}) do
+			if (max > v) then
+				show(k)
+			end
+		end
 		npc_says(_"Then, how many are you going to bet?")
 	else
 		npc_says(_"You should come back when you have more to gamble with.")

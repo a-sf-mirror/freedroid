@@ -238,7 +238,7 @@ void read_##X##_array(lua_State *L, int index, X *result, int array_size)\
 {\
 	lua_is_of_type_or_abort(L, index, LUA_TTABLE);\
 	int i;\
-	for (i = 0; i < lua_objlen(L, -1) && i < array_size; i++) {\
+	for (i = 0; i < lua_rawlen(L, -1) && i < array_size; i++) {\
 		lua_rawgeti(L, index, i+1);\
 		read_##X(L, -1, &result[i]);\
 		lua_pop(L, 1);\
@@ -258,7 +258,7 @@ void read_##X##_array(lua_State *L, int index, X *result, int array_size)\
 void read_##X##_dynarray(lua_State *L, int index, X##_dynarray *result)\
 {\
 	lua_is_of_type_or_abort(L, index, LUA_TTABLE);\
-	int array_size = lua_objlen(L, index);\
+	int array_size = lua_rawlen(L, index);\
 	if (array_size != 0) {\
 		dynarray_init((struct dynarray *)result, array_size, sizeof(X));\
 		int i;\

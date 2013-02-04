@@ -476,7 +476,7 @@ void read_keybind_t_array(lua_State *L, int index, keybind_t *data, int size)
 	lua_is_of_type_or_abort(L, index, LUA_TTABLE);
 	keybind_t keybind;
 	int i;
-	for (i = 0; i < lua_objlen(L, -1); i++) {
+	for (i = 0; i < lua_rawlen(L, -1); i++) {
 		lua_rawgeti(L, index, i+1);
 		read_keybind_t(L, -1, &keybind);
 		input_set_keybind(keybind.name, keybind.key, keybind.mod);
@@ -609,7 +609,7 @@ static int npc_ctor(lua_State *L)
 static int bullet_array_ctor(lua_State *L)
 {
 	int i;
-	for (i = 0; i < lua_objlen(L, 1) && i < MAXBULLETS; i++) {
+	for (i = 0; i < lua_rawlen(L, 1) && i < MAXBULLETS; i++) {
 		lua_rawgeti(L, 1, i+1);
 		read_bullet(L, -1, &AllBullets[i]);
 		lua_pop(L, 1);
@@ -621,7 +621,7 @@ static int bullet_array_ctor(lua_State *L)
 static int blast_array_ctor(lua_State *L)
 {
 	int i;
-	for (i = 0; i < lua_objlen(L, 1) && i < MAXBLASTS; i++) {
+	for (i = 0; i < lua_rawlen(L, 1) && i < MAXBLASTS; i++) {
 		lua_rawgeti(L, 1, i+1);
 		read_blast(L, -1, &AllBlasts[i]);
 		lua_pop(L, 1);
@@ -633,7 +633,7 @@ static int blast_array_ctor(lua_State *L)
 static int spell_active_array_ctor(lua_State *L)
 {
 	int i;
-	for (i = 0; i < lua_objlen(L, 1) && i < MAX_ACTIVE_SPELLS; i++) {
+	for (i = 0; i < lua_rawlen(L, 1) && i < MAX_ACTIVE_SPELLS; i++) {
 		lua_rawgeti(L, 1, i+1);
 		read_spell_active(L, -1, &AllActiveSpells[i]);
 		lua_pop(L, 1);
@@ -646,7 +646,7 @@ static int spell_active_array_ctor(lua_State *L)
 static int melee_shot_array_ctor(lua_State *L)
 {
 	int i;
-	for (i = 0; i < lua_objlen(L, 1) && i < MAX_MELEE_SHOTS; i++) {
+	for (i = 0; i < lua_rawlen(L, 1) && i < MAX_MELEE_SHOTS; i++) {
 		lua_rawgeti(L, 1, i+1);
 		read_melee_shot(L, -1, &AllMeleeShots[i]);
 		lua_pop(L, 1);
@@ -677,7 +677,7 @@ void load_game_data(char *strin)
 {
 	// Add the table constructors called by Lua when parsing a savegame
 
-	luaL_reg lfuncs[] = {
+	luaL_Reg lfuncs[] = {
 		{"tux_t", tux_ctor},
 		{"dead_enemy", dead_enemy_ctor},
 		{"alive_enemy", alive_enemy_ctor},
@@ -740,7 +740,7 @@ void load_freedroid_configuration(char *strin)
 {
 	// Add the table constructors called by Lua when parsing the configuration file
 
-	luaL_reg lfuncs[] = {
+	luaL_Reg lfuncs[] = {
 		{"configuration", configuration_ctor},
 		{NULL, NULL}
 	};

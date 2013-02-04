@@ -35,10 +35,10 @@ dnl
 AC_DEFUN([KYUA_LUA], [
     lua_found=no
 
-    PKG_CHECK_MODULES([LUA], [lua >= 5.1], [lua_found=yes], [true])
+    PKG_CHECK_MODULES([LUA], [lua >= 5.2], [lua_found=yes], [true])
 
     if test "${lua_found}" = no; then
-        PKG_CHECK_MODULES([LUA], [lua5.1 >= 5.1], [lua_found=yes], [true])
+        PKG_CHECK_MODULES([LUA], [lua5.2 >= 5.2], [lua_found=yes], [true])
     fi
 
     if test "${lua_found}" = no; then

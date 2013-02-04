@@ -1388,7 +1388,7 @@ lua_State *load_lua_coroutine(enum lua_target target, const char *code)
 
 int resume_lua_coroutine(lua_State* L)
 {
-	int rtn = lua_resume(L, 0);
+	int rtn = lua_resume(L, NULL, 0);
 
 	switch (rtn) {
 		case 0:
@@ -1435,9 +1435,9 @@ void init_lua()
 	char fpath[2048];
 	int i;
 
-	dialog_lua_state = lua_open();
+	dialog_lua_state = luaL_newstate();
 	luaL_openlibs(dialog_lua_state);
-	config_lua_state = lua_open();
+	config_lua_state = luaL_newstate();
 	luaL_openlibs(config_lua_state);
 
 	for (i = 0; lfuncs[i].name != NULL; i++) {
@@ -1460,7 +1460,7 @@ void reset_lua_state(void)
 	char fpath[2048];
 
 	lua_close(dialog_lua_state);
-	dialog_lua_state = lua_open();
+	dialog_lua_state = luaL_newstate();
 	luaL_openlibs(dialog_lua_state);
 
 	for (i = 0; lfuncs[i].name != NULL; i++) {
@@ -1483,8 +1483,12 @@ void write_lua_variables(struct auto_string *savestruct_autostr)
 	const char *value;
 	lua_State *L = get_lua_state(LUA_DIALOG);
 
+	// Push global table on the stack
+	lua_pushglobaltable(L);
+
+	// Loop over the global table content
 	lua_pushnil(L);
-	while (lua_next(L, LUA_GLOBALSINDEX) != 0) {
+	while (lua_next(L, -2) != 0) {
 		int value_type = lua_type(L, -1);
 		int key_type = lua_type(L, -2);
 
@@ -1521,4 +1525,7 @@ void write_lua_variables(struct auto_string *savestruct_autostr)
 	}
 
 	autostr_append(savestruct_autostr, "\n");
+
+	// Pop global table from the stack
+	lua_pop(L, 1);
 }
