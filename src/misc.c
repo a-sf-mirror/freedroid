@@ -1198,16 +1198,20 @@ int SaveGameConfig(void)
  */
 void Terminate(int exit_code, int save_config)
 {
-	printf("\n---------------------------------------------------------------------------------");
-	printf("\nTermination of freedroidRPG initiated... ");
-
+	if (!do_benchmark) {
+		printf("\n---------------------------------------------------------------------------------");
+		printf("\nTermination of freedroidRPG initiated... ");
+	}
 	// We save the config file in any case.
 
 	if (save_config)
 		SaveGameConfig();
 
-	printf("Thank you for playing freedroidRPG.\n\n");
+	if (!do_benchmark) {
+		printf("Thank you for playing freedroidRPG.\n\n");
+	}
 	SDL_Quit();
+
 
 	// Finally, especially on win32 systems, we should open an editor with
 	// the last debug output, since people in general won't know how and where
