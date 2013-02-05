@@ -73,12 +73,11 @@ struct data_spec {
  * Example: "foo.bar" => foo = {bar = "X"}
  * 
  * \param L Lua state.
- * \param index Stack index where the first field is.
  * \param field Path of the field to fetch.
  *
  * \return The number of fields pushed.
  */
-static int lua_get_multi_level_field(lua_State *L, int index, const char *field)
+static int lua_get_multi_level_field(lua_State *L, const char *field)
 {
 	int stack_counter = 0, end = FALSE; 
 	char *str = NULL, *ptr = NULL, *sch = NULL;
@@ -103,10 +102,9 @@ static int lua_get_multi_level_field(lua_State *L, int index, const char *field)
 			end = TRUE;
 		
 		// Push the field.
-		if (lua_type(L, index) == LUA_TTABLE) {
-			lua_getfield(L, index, ptr);
+		if (lua_type(L, -1) == LUA_TTABLE) {
+			lua_getfield(L, -1, ptr);
 			stack_counter++;
-			index = -1;
 		} else {
 			lua_pop(L, stack_counter);
 			free(str);
@@ -121,24 +119,19 @@ static int lua_get_multi_level_field(lua_State *L, int index, const char *field)
 }
 
 /**
- * Set the value of a data from a field of a Lua table.
+ * Set the value of a data from the Lua stack.
  *
  * \param L Lua state.
- * \param index Stack index where the table is.
  * \param field Name of the field to fetch.
  * \param type Type of the data to read
  * \param result Location of the data to set
  *
  * \return TRUE if the value was read, FALSE if it could not be read.
  */
-static int set_value_from_table(lua_State *L, int index, const char *field, enum data_type type, void *result)
+static int set_value_from_stack(lua_State *L, enum data_type type, void *result)
 {
 	int found_and_valid = FALSE;
 	int ltype;
-	
-	int stack_counter = lua_get_multi_level_field(L, index, field);
-	if (!stack_counter)
-		return FALSE;
 	
 	ltype = lua_type(L, -1);
 	
@@ -264,11 +257,34 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 		break;
 	}
 
-	lua_pop(L, stack_counter);
 	return found_and_valid;
 }
 
 /**
+ * Set the value of a data from a field of a Lua table (which is on the top of the satck)
+ *
+ * \param L Lua state.
+ * \param field Name of the field to fetch.
+ * \param type Type of the data to read
+ * \param result Location of the data to set
+ *
+ * \return TRUE if the value was read, FALSE if it could not be read.
+ */
+static int set_value_from_table(lua_State *L, const char *field, enum data_type type, void *result)
+{
+	int found_and_valid = FALSE;
+
+	int stack_counter = lua_get_multi_level_field(L, field);
+	if (!stack_counter)
+		return FALSE;
+	found_and_valid = set_value_from_stack(L, type, result);
+	lua_pop(L, stack_counter);
+
+	return found_and_valid;
+}
+
+/**
+}
  * Set a data field to its default value
  *
  * \param default_value Default value, encoded in a string.
@@ -300,6 +316,7 @@ static void set_value_from_default(const char *default_value, enum data_type typ
 		// Add the default value to the dynarray
 		{
 			int int_value = atoi(default_value);
+			dynarray_init((struct dynarray *)data, 1, sizeof(int));
 			dynarray_add((struct dynarray *)data, &int_value, sizeof(int));
 		}
 		break;
@@ -307,12 +324,14 @@ static void set_value_from_default(const char *default_value, enum data_type typ
 		// Add the default value to the dynarray
 		{
 			float float_value = atof(default_value);
+			dynarray_init((struct dynarray *)data, 1, sizeof(float));
 			dynarray_add((struct dynarray *)data, &float_value, sizeof(float));
 		}
 		break;
 	case STRING_ARRAY:
 		// Add the default value to the dynarray
 		if (default_value != NULL) {
+			dynarray_init((struct dynarray *)data, 1, sizeof(char *));
 			dynarray_add((struct dynarray *)data, strdup(default_value), sizeof(char *));
 		}
 		break;
@@ -377,7 +396,7 @@ static void set_structure_from_table(lua_State *L, struct data_spec *data_specs)
 	int i;
 
 	for (i = 0; data_specs[i].name != NULL; i++) {
-		if (!set_value_from_table(L, 1, data_specs[i].name, data_specs[i].type, data_specs[i].data)) {
+		if (!set_value_from_table(L, data_specs[i].name, data_specs[i].type, data_specs[i].data)) {
 			set_value_from_default(data_specs[i].default_value, data_specs[i].type, data_specs[i].data);
 		}
 	}
@@ -395,18 +414,18 @@ static int lua_register_addon(lua_State *L)
 
 	// Read the item name and find the item index.
 	memset(&addonspec, 0, sizeof(struct addon_spec));
-	set_value_from_table(L, 1, "name", STRING_TYPE, &name);
+	set_value_from_table(L, "name", STRING_TYPE, &name);
 	addonspec.type = GetItemIndexByName(name);
 	free(name);
 
 	// Read the simple add-on specific fields.
-	set_value_from_table(L, 1, "require_socket", STRING_TYPE, &addonspec.requires_socket);
-	set_value_from_table(L, 1, "require_item", STRING_TYPE, &addonspec.requires_item);
-	set_value_from_table(L, 1, "upgrade_cost", INT_TYPE, &addonspec.upgrade_cost);
+	set_value_from_table(L, "require_socket", STRING_TYPE, &addonspec.requires_socket);
+	set_value_from_table(L, "require_item", STRING_TYPE, &addonspec.requires_item);
+	set_value_from_table(L, "upgrade_cost", INT_TYPE, &addonspec.upgrade_cost);
 
 	// Process the table of bonuses. The keys of the table are the names
 	// of the bonuses and the values the attribute increase amounts.
-	lua_getfield(L, 1, "bonuses");
+	lua_getfield(L, -1, "bonuses");
 	if (lua_type(L, -1) == LUA_TTABLE) {
 		lua_pushnil(L);
 		while (lua_next(L, -2) != 0) {
@@ -422,7 +441,7 @@ static int lua_register_addon(lua_State *L)
 
 	// Process the table of materials. The keys of the table are the names
 	// of the materials and the values the required material counts.
-	lua_getfield(L, 1, "materials");
+	lua_getfield(L, -1, "materials");
 	if (lua_type(L, -1) == LUA_TTABLE) {
 		lua_pushnil(L);
 		while (lua_next(L, -2) != 0) {
@@ -639,7 +658,7 @@ static int lua_obstacle_ctor(lua_State *L)
 		{ NULL, NULL, 0, 0 }
 	};
 
-	if (!set_value_from_table(L, 1, "image_filenames", STRING_ARRAY, &obstacle.filenames)) {
+	if (!set_value_from_table(L, "image_filenames", STRING_ARRAY, &obstacle.filenames)) {
 			ErrorMessage(__FUNCTION__, "No image filename for obstacle. At least one image filename must be given.",
 				PLEASE_INFORM, IS_FATAL);
 	}
@@ -759,7 +778,7 @@ static void get_floor_tile_list(lua_State *L, struct dynarray *floor_tiles)
 	dynarray_init(floor_tiles, lua_rawlen(L, -1), sizeof(struct floor_tile_spec));
 
 	lua_pushnil(L);
-	while (lua_next(L, -2) != 0) {
+	while (lua_next(L, -2)) {
 		struct floor_tile_spec floor_tile = { .filenames = { NULL, 0, 0}, .animation_fn = NULL, .animation_fps = 0 };
 		int ltype = lua_type(L, -1);
 		if (ltype == LUA_TSTRING) {
@@ -767,23 +786,26 @@ static void get_floor_tile_list(lua_State *L, struct dynarray *floor_tiles)
 			const char *filename = strdup(lua_tostring(L, -1));
 			dynarray_init(&floor_tile.filenames, 1, sizeof(char *));
 			dynarray_add(&floor_tile.filenames, &filename, sizeof(char *));
-			floor_tile.frames = 1;
-			floor_tile.images = MyMalloc(sizeof(struct image));
-			memcpy(&floor_tile.images[0], &empty_image, sizeof(struct image));
 
 		} else if (ltype == LUA_TTABLE) {
 			// Animated floor tile
-			set_value_from_table(L, -1, "filenames", STRING_ARRAY, &floor_tile.filenames);
-			floor_tile.frames = floor_tile.filenames.size;
-			floor_tile.images = MyMalloc(floor_tile.frames * sizeof(struct image));
-			for (i=0; i<floor_tile.frames; i++)
-				memcpy(&floor_tile.images[i], &empty_image, sizeof(struct image));
-			set_value_from_table(L, -1, "animation_fps", FLOAT_TYPE, &floor_tile.animation_fps);
+			struct data_spec data_specs[] = {
+				{ "filenames",     NULL,  STRING_ARRAY, &floor_tile.filenames     },
+				{ "animation_fps", "0.0", FLOAT_TYPE,   &floor_tile.animation_fps },
+				{ NULL, NULL, 0, 0 }
+			};
+			set_structure_from_table(L, data_specs);
 			floor_tile.animation_fn = get_animation_by_name("floor_tile");
+
 		}
 		lua_pop(L, 1);
 
+		floor_tile.frames = floor_tile.filenames.size;
+		floor_tile.images = MyMalloc(floor_tile.frames * sizeof(struct image));
+		for (i=0; i<floor_tile.frames; i++)
+			memcpy(&floor_tile.images[i], &empty_image, sizeof(struct image));
 		floor_tile.current_image = &floor_tile.images[0];
+
 		dynarray_add(floor_tiles, &floor_tile, sizeof(struct floor_tile_spec));
 	}
 }
@@ -847,7 +869,7 @@ static void init_obstacle_flags(void)
  */
 static int lua_npc_list_ctor(lua_State *L)
 {
-	if (lua_type(L, 1) == LUA_TTABLE) {
+	if (lua_type(L, -1) == LUA_TTABLE) {
 		lua_pushnil(L);
 		// Process the lua table
 		while (lua_next(L, -2) != 0) {
@@ -874,9 +896,9 @@ static int lua_npc_shop_ctor(lua_State *L)
 	int item_weight;
 
 	// Get the name of npc
-	set_value_from_table(L, 1, "name", STRING_TYPE, &name);
+	set_value_from_table(L, "name", STRING_TYPE, &name);
 
-	lua_getfield(L, 1, "items");
+	lua_getfield(L, -1, "items");
 
 	// Process the items table
 	if (lua_type(L, -1) == LUA_TTABLE) {
