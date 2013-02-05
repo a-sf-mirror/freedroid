@@ -428,6 +428,7 @@ function openlvl24doors()
 end
 
 function level24obstacles()
+	local randobstacletype
 	function level24newid()
 		randobstacletype = math.random(0,466)
 	end
