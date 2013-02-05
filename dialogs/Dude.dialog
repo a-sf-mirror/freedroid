@@ -25,6 +25,10 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
+<FirstTime LuaCode>
+level24obstacles()
+get_town_score()
+</LuaCode>
 
 <EveryTime LuaCode>
 	npc_says(_"Hello.")
@@ -37,6 +41,7 @@ Beginning of new chat dialog for character="XXXXX"
 	npc_says(_"Take care, this may be a little buggy.")
 	npc_says(_"Don't do this if you are just normally playing.")
 	npc_says(_"These dialogs can currently be accessed:")
+
 
 	show(1, 2, 3, 4, 5, 6, 7, 8, 9,
 		10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
