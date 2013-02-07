@@ -75,14 +75,20 @@ void defrag_obstacle_array(level *lvl)
 
 			// Fill in this spot with the last obstacle
 			memcpy(&lvl->obstacle_list[i], &lvl->obstacle_list[array_end], sizeof(obstacle));
-			lvl->obstacle_list[array_end].type = -1;
-			array_end--;
 
 			// Re-address obstacle extension pointing to the obstacle we've moved
-			change_extensions(lvl, &lvl->obstacle_list[array_end+1], &lvl->obstacle_list[i]);
+			change_extensions(lvl, &lvl->obstacle_list[array_end], &lvl->obstacle_list[i]);
 
 			// Glue the moved obstacle.
 			glue_obstacle(lvl, &lvl->obstacle_list[i]);
+
+			// Mark the old entry as unused
+			lvl->obstacle_list[array_end].type = -1;
+
+			// Reverse scan the array to find the new array's end
+			do {
+				array_end--;
+			} while (lvl->obstacle_list[array_end].type == -1 && array_end > i);
 		}
 	}
 
