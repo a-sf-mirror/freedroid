@@ -430,7 +430,7 @@ end
 function level24obstacles()
 	local randobstacletype
 	function level24newid()
-		randobstacletype = math.random(0,466)
+		randobstacletype = math.random(0,465) -- 466 obstacles
 	end
 	function level24idcheck()
 		if (randobstacletype == 23) or
