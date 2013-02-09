@@ -706,9 +706,11 @@ static int create_and_stack_context(enemy *partner, struct npc *npc, const char 
  */
 int stack_subdialog(const char *filename)
 {
+	struct chat_context *current_chat_context;
+
 	// A subdialog uses the same partner and npc than its parent dialog.
 	// The parent dialog is the one on top of the chat_context stack.
-	struct chat_context *current_chat_context = current_chat_context = chat_get_current_context();
+	current_chat_context = chat_get_current_context();
 
 	return create_and_stack_context(current_chat_context->partner, current_chat_context->npc, filename, TRUE);
 }
@@ -722,7 +724,7 @@ int stack_subdialog(const char *filename)
  */
 int stack_dialog(enemy *partner)
 {
-	struct npc *npc = npc;
+	struct npc *npc;
 	char dialog_filename[5000];
 
 	npc = npc_get(partner->dialog_section_name);
