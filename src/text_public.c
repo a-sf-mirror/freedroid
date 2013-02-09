@@ -92,7 +92,7 @@ void ErrorMessage(const char *FunctionName, const char *fmt, int InformDeveloper
 	va_start(args, IsFatal);
 
 	fprintf(stderr, "\n---------------------------------------------------------------------------------\n\
-FreedroidRPG %s encountered a problem ", VERSION);
+FreedroidRPG %s encountered a problem ", freedroid_version);
 	fprintf(stderr, "in function:  %s \n", FunctionName);
 	vfprintf(stderr, fmt, args);
 
