@@ -91,3 +91,6 @@ dist-macosx: src/freedroidRPG
 
 doc:
 	doxygen Doxyfile
+
+cppcheck:
+	cppcheck gluem croppy src --enable=performance,portability,unusedFunction,missingInclude --force --quiet
