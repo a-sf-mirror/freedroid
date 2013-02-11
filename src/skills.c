@@ -212,8 +212,6 @@ FreedroidRPG could not find the program name above in the program spec array!", 
  */
 int TeleportHome(void)
 {
-	location HomeSpot;
-
 	// Check if this level permits teleport
 	if (curShip.AllLevels[Me.pos.z]->flags & TELEPORT_BLOCKED) {
 		append_new_game_message(_("You cannot teleport here!"));
@@ -221,19 +219,18 @@ int TeleportHome(void)
 	}
 
 	// Find homespot position.
-
-	ResolveMapLabelOnShip("TeleportHomeTarget", &(HomeSpot));
+	gps home_spot = get_map_label_center("TeleportHomeTarget");
 
 	// If homespot was not found, a fatal error has been generated, but we
 	// however check it once again, to prevent any bug.
 
-	if (HomeSpot.x == -1)
+	if (home_spot.z == -1)
 		return 1;
 
 	// Case 1 : Tux is in homespot's level, and there is a teleport anchor
 	//          -> teleport back to previous position
 	//
-	if (Me.pos.z == HomeSpot.level && (Me.teleport_anchor.z != -1)) {
+	if (Me.pos.z == home_spot.z && (Me.teleport_anchor.z != -1)) {
 
 		// Teleport
 		teleport_arrival_sound();
@@ -263,7 +260,7 @@ int TeleportHome(void)
 
 	teleport_arrival_sound();
 	reset_visible_levels();
-	Teleport(HomeSpot.level, HomeSpot.x + 0.5, HomeSpot.y + 0.5, TRUE, TRUE);
+	Teleport(home_spot.z, home_spot.x, home_spot.y, TRUE, TRUE);
 	clear_active_bullets();
 
 	return 1;

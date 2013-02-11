@@ -127,10 +127,9 @@ static int lua_event_teleport(lua_State * L)
 {
 	gps stop_pos = { -1, -1, -1 };
 	const char *label = luaL_checkstring(L, 1);
-	location TempLocation;
-	ResolveMapLabelOnShip(label, &TempLocation);
+	gps teleport_pos = get_map_label_center(label);
 	reset_visible_levels();
-	Teleport(TempLocation.level, TempLocation.x + 0.5, TempLocation.y + 0.5, TRUE, TRUE);
+	Teleport(teleport_pos.z, teleport_pos.x, teleport_pos.y, TRUE, TRUE);
 	Me.speed.x = 0.0;
 	Me.speed.y = 0.0;
 	clear_out_intermediate_points(&stop_pos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
@@ -142,9 +141,8 @@ static int lua_event_teleport_npc(lua_State * L)
 {
 	const char *label = luaL_checkstring(L, 1);
 	enemy *en = get_enemy_arg(L, 2); 
-	location TempLocation;
-	ResolveMapLabelOnShip(label, &TempLocation);
-	teleport_enemy(en,TempLocation.level, TempLocation.x + 0.5, TempLocation.y + 0.5);
+	gps teleport_pos = get_map_label_center(label);
+	teleport_enemy(en, teleport_pos.z, teleport_pos.x, teleport_pos.y);
 	return 0;
 }
 
@@ -833,16 +831,15 @@ static int lua_set_bot_destination(lua_State * L)
 {
 	const char *label = luaL_checkstring(L, 1);
 	enemy *en = get_enemy_arg(L, 2); 
-	location TempLocation;
-	ResolveMapLabelOnShip(label, &TempLocation);
-	struct level *lvl = curShip.AllLevels[TempLocation.level];
-	int destinationwaypoint = get_waypoint(lvl, TempLocation.x + 0.5, TempLocation.y + 0.5);
+	gps dest_pos = get_map_label_center(label);
+	struct level *lvl = curShip.AllLevels[dest_pos.z];
+	int destinationwaypoint = get_waypoint(lvl, dest_pos.x, dest_pos.y);
 
-	if (TempLocation.level !=  en->pos.z) {
+	if (dest_pos.z !=  en->pos.z) {
 		ErrorMessage(__FUNCTION__, "\
 				Sending bot %s to map label %s (found on level %d) cannot be done because the bot\n\
 				is not on the same level (z = %d). Doing nothing.",
-				PLEASE_INFORM, IS_WARNING_ONLY, en->dialog_section_name, label, TempLocation.level, en->pos.z);
+				PLEASE_INFORM, IS_WARNING_ONLY, en->dialog_section_name, label, dest_pos.z, en->pos.z);
 		return 0;
 	}
 
@@ -850,8 +847,8 @@ static int lua_set_bot_destination(lua_State * L)
 		ErrorMessage(__FUNCTION__, "\
 				Map label %s (found on level %d) does not have a waypoint. Cannot send bot %s\n\
 				to this location. Doing nothing.\n\
-				Location coordinates x=%d, y=%d.",
-				PLEASE_INFORM, IS_WARNING_ONLY, label, TempLocation.level, en->dialog_section_name, TempLocation.x, TempLocation.y);
+				GPS center coordinates x=%f, y=%f.",
+				PLEASE_INFORM, IS_WARNING_ONLY, label, dest_pos.z, en->dialog_section_name, dest_pos.x, dest_pos.y);
 		return 0;
 	}
 
@@ -987,18 +984,16 @@ static int lua_create_droid(lua_State *L)
 	const char *type_name = luaL_checkstring(L, 2);
 	const char *fact_name = luaL_optstring(L, 3, "ms");
 	const char *dialog    = luaL_optstring(L, 4, "AfterTakeover");
-	location loc;
+	gps pos = get_map_label_center(map_label);
 	int type;
-
-	ResolveMapLabelOnShip(map_label, &loc);
 
 	type = get_droid_type(type_name);
 
 	enemy *en = enemy_new(type);
 	enemy_reset(en);
-	en->pos.x = loc.x + 0.5;
-	en->pos.y = loc.y + 0.5;
-	en->pos.z = loc.level;
+	en->pos.x = pos.x;
+	en->pos.y = pos.y;
+	en->pos.z = pos.z;
 	en->faction = get_faction_id(fact_name);
 	en->dialog_section_name = strdup(dialog);
 	enemy_insert_into_lists(en, TRUE);

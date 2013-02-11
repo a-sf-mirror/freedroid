@@ -1185,9 +1185,9 @@ void ParseCommandLine(int argc, char *const argv[])
  * In contrast to InitFreedroid, this function should be called 
  * whenever or better before any new game is started.
  * -----------------------------------------------------------------*/
-void PrepareStartOfNewCharacter(char *startpos)
+void PrepareStartOfNewCharacter(char *start_label)
 {
-	location StartPosition;
+	gps start_pos;
 
 	Activate_Conservative_Frame_Computation();
 
@@ -1208,12 +1208,13 @@ void PrepareStartOfNewCharacter(char *startpos)
 
 	GetCrew("ReturnOfTux.droids");
 
-	ResolveMapLabelOnShip(startpos, &StartPosition);
+	start_pos = get_map_label_center(start_label);
+	
 	reset_visible_levels();
 	if (game_root_mode == ROOT_IS_LVLEDIT && level_exists(GameConfig.last_edited_level))
 		teleport_to_level_center(GameConfig.last_edited_level);
 	else
-		Teleport(StartPosition.level, StartPosition.x, StartPosition.y, FALSE, TRUE);
+		Teleport(start_pos.z, start_pos.x, start_pos.y, FALSE, TRUE);
 	clear_active_bullets();
 
 	// At this point the position history can be initialized
@@ -1235,7 +1236,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	our_SDL_flip_wrapper();
 
 	widget_text_init(message_log, _("--- Message Log ---"));
-	if (strcmp(startpos, "TutorialTuxStart") == 0)
+	if (strcmp(start_label, "TutorialTuxStart") == 0)
 		append_new_game_message(_("Starting tutorial."));
 	else
 		append_new_game_message(_("Starting new game."));

@@ -150,31 +150,35 @@ void respawn_level(int level_num)
 }
 
 /**
- * This is the ultimate function to resolve a given label within a
- * given SHIP.
+ * \brief Get the center coordinates of a given map label.
+ * In case of fail, a fatal error is thrown.
+ * \param map_label The name of map label to resolve.
+ * \return The gps center of the map label.
  */
-void ResolveMapLabelOnShip(const char *MapLabel, location * PositionPointer)
+gps get_map_label_center(const char *map_label)
 {
-	map_label *m;
+	struct map_label *m;
+	gps position = {0., 0., -1};
 	int i;
 
 	for (i = 0; i < curShip.num_levels; i++) {
 		if (!level_exists(i))
 			continue;
 
-		m = get_map_label(curShip.AllLevels[i], MapLabel);
+		m = get_map_label(curShip.AllLevels[i], map_label);
 		if (m) {
-			PositionPointer->x = m->pos.x + 0.5;
-			PositionPointer->y = m->pos.y + 0.5;
-			PositionPointer->level = i;
-			return;
+			position.x = m->pos.x + 0.5;
+			position.y = m->pos.y + 0.5;
+			position.z = i;
+			return position;
 		}
 	}
 
 	ErrorMessage(__FUNCTION__, "\
 Resolving map label %s failed on the complete ship!\n\
-This is a severe error in the game data of FreedroidRPG.", PLEASE_INFORM, IS_FATAL, MapLabel);
+This is a severe error in the game data of FreedroidRPG.", PLEASE_INFORM, IS_FATAL, map_label);
 
+	return position;
 };
 
 /**

@@ -125,7 +125,7 @@ static void load_events(char *EventSectionPointer)
 	char *EventPointer;
 	char *EndOfEvent;
 	char *TempMapLabelName;
-	location TempLocation;
+	gps pos;
 	char *TempEnemyFaction;
 	char s;
 	struct event_trigger temp;
@@ -144,10 +144,10 @@ static void load_events(char *EventSectionPointer)
 		if ((TempMapLabelName = strstr(EventPointer, EVENT_TRIGGER_LABEL_STRING))) {
 			temp.trigger_type = POSITION;
 			TempMapLabelName = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LABEL_STRING, "\"");
-			ResolveMapLabelOnShip(TempMapLabelName, &TempLocation);
-			temp.trigger.position.x = TempLocation.x;
-			temp.trigger.position.y = TempLocation.y;
-			temp.trigger.position.level = TempLocation.level;
+			pos = get_map_label_center(TempMapLabelName);
+			temp.trigger.position.x = (int)pos.x;
+			temp.trigger.position.y = (int)pos.y;
+			temp.trigger.position.level = pos.z;
 			free(TempMapLabelName);
 			ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
 						&temp.silent, EndOfEvent);
