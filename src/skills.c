@@ -357,6 +357,26 @@ int DoSkill(int skill_index, int SpellCost)
 			droid_below_mouse_cursor->poison_damage_per_sec += hitdmg;
 		}
 
+		if (!strcmp(SpellSkillMap[skill_index].effect, "takeover") 
+				&& !is_friendly(droid_below_mouse_cursor->faction, FACTION_SELF)) {
+			// Only hostile droids can be hacked. 
+			
+			float used_capsules_ratio = 1;		
+			if (droid_takeover(droid_below_mouse_cursor, &used_capsules_ratio)) {
+				// Only capsules that were used generate heat - hard fights are more exhausting that easy ones
+				Me.temperature += used_capsules_ratio * SpellCost;
+				
+				// upon successful takeover
+				// go directly to chat to choose droid program
+				if (GameConfig.talk_to_bots_after_takeover)
+					ChatWithFriendlyDroid(droid_below_mouse_cursor);
+					
+				goto out;
+			}
+		} else {
+			goto out;
+		}
+
 		Me.temperature += SpellCost;
 		break;
 
@@ -413,40 +433,6 @@ int DoSkill(int skill_index, int SpellCost)
 
 	/*handle the special extra effects of the skill */
 	if (!strcmp(SpellSkillMap[skill_index].effect, "none")) {
-		goto out;
-	}
-
-	if (!strcmp(SpellSkillMap[skill_index].effect, "takeover")) {
-		if (!MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
-			goto out;
-		droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor();
-		if (droid_below_mouse_cursor == NULL)
-			goto out;
-		if (!DirectLineColldet(Me.pos.x,
-				       Me.pos.y,
-				       translate_pixel_to_map_location((float)input_axis.x,
-								       (float)input_axis.y, TRUE),
-				       translate_pixel_to_map_location((float)input_axis.x,
-								       (float)input_axis.y, FALSE), Me.pos.z, &FlyablePassFilter))
-			goto out;
-
-		if (!is_friendly(droid_below_mouse_cursor->faction, FACTION_SELF)) {
-			// Only hostile droids can be hacked. 
-			//
-			float used_capsules_ratio = 1;		
-			if (droid_takeover(droid_below_mouse_cursor, &used_capsules_ratio)) {
-				// For every capsule that was not needed for the win, Tux gets a proportionate rebate
-				// (hard fights are more exhaustive than easy ones)
-				Me.temperature -= (1 - used_capsules_ratio) * SpellCost;				
-				
-				// upon successful takeover
-				// go directly to chat to choose droid program
-				if (GameConfig.talk_to_bots_after_takeover)
-					ChatWithFriendlyDroid(droid_below_mouse_cursor);
-			}
-		} else {
-			Me.temperature -= SpellCost;	//pretend nothing happened
-		}
 		goto out;
 	}
 
