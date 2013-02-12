@@ -202,12 +202,6 @@ typedef struct gps {
 	int z;
 } gps;
 
-typedef struct location {
-	unsigned char level;
-	int x;
-	int y;
-} location;
-
 typedef struct map_label {
 	char *label_name;
 	point pos;		// how many blocks does this big map insert cover?
