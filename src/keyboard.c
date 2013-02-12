@@ -115,15 +115,6 @@ void input_keyboard_init(void)
 }
 
 /**
- * @fn void input_exit (void)
- *
- * @brief Exits the input subsystem.
- */
-void input_exit(void)
-{
-}
-
-/**
  *
  * @brief Binds key to action keybind.
  *

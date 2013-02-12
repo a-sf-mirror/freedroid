@@ -1224,29 +1224,6 @@ void enemy_handle_stuck_in_walls(enemy * ThisRobot)
 };				// enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 
 /**
- * This function computes the distance a certain robot has with respect
- * to Tux, i.e. player 0 in the game.  If the Tux and the bot in question
- * are on the same level, then everything is pretty simple.  However, if
- * the enemy is on another level that is connected to this level via an
- * interface area, then of course we need to take more care.
- */
-float DistanceToTux(Enemy ThisRobot)
-{
-	if (ThisRobot->pos.z == Me.pos.z) {
-		return (sqrt((ThisRobot->pos.x - Me.pos.x) *
-			     (ThisRobot->pos.x - Me.pos.x) + (ThisRobot->pos.y - Me.pos.y) * (ThisRobot->pos.y - Me.pos.y)));
-	} else {
-		update_virtual_position(&(ThisRobot->virt_pos), &(ThisRobot->pos), Me.pos.z);
-		if (ThisRobot->virt_pos.z == (-1))
-			return (10000);
-
-		return (sqrt((ThisRobot->virt_pos.x - Me.pos.x) *
-			     (ThisRobot->virt_pos.x - Me.pos.x) + (ThisRobot->virt_pos.y - Me.pos.y) * (ThisRobot->virt_pos.y - Me.pos.y)));
-	}
-
-};				// float DistanceToTux ( Enemy ThisRobot )
-
-/**
  * This function selects a target for a friendly bot. 
  * It takes closest reachable enemy bot in view range.
  * A new target is selected at each frame. This should prevent a friendly bot to follow

@@ -82,7 +82,6 @@ void mapgen_add_obstacle(double x, double y, int type);
 void mapgen_set_floor(int x, int y, int type);
 void mapgen_gift(struct roominfo *r);
 void mapgen_add_door(int, int, int, int);
-void mapgen_delete_door(int, int);
 unsigned int mapgen_cycle_teleport_pair(unsigned int);
 const char * mapgen_teleport_pair_str(int);
 

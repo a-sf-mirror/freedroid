@@ -355,29 +355,6 @@ static void place_doors()
 	}
 }
 
-void room_to_console(int w, int h) {
-	int x, y;
-	char c;
-	printf("\n");
-	for (x = 0; x < w + 2; x++)
-		putchar('#');
-	putchar('\n');
-	for (y = 0; y < h; y++) {
-		putchar('#');
-		for (x = 0; x < w; x++) {
-			switch(mapgen_get_tile(x, y)) {
-				case TILE_FLOOR: c = '.'; break;
-				default: c = ' ';
-			}
-			putchar(c);
-		}
-		putchar('#');
-		putchar('\n');
-	}
-	for (x = 0; x < w + 2; x++)
-		putchar('#');
-}
-
 // Turn the given room into corridor and return whether
 // the transformation was successful
 static int make_corridor(int room)
@@ -800,20 +777,6 @@ void mapgen_add_door(int x, int y, int from, int to)
 	rooms[from].doors[num].room = to;
 	rooms[from].doors[num].internal = 0;
 	rooms[from].num_doors++;
-}
-
-void mapgen_delete_door(int from, int to)
-{
-	struct roominfo *ri = &rooms[from];
-	int i;
-	for (i = 0; i < ri->num_doors; i++)
-		if (ri->doors[i].room == to)
-			break;
-	if (i < ri->num_doors) {
-		ri->num_doors--;
-		for (; i < ri->num_doors; i++)
-			ri->doors[i] = ri->doors[i + 1];
-	}
 }
 
 static void add_neighbor(struct roominfo *r, int neigh)
