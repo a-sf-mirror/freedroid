@@ -278,7 +278,12 @@ Mission Name=_"Open Sesame"
 Mission Name=_"Jennifer's Toolbox"
 ** End of this mission target subsection **
 
-
+** Start of this mission target subsection **
++++
++++ This is a test quest
++++
+Mission Name=_"24_test_quest"
+** End of this mission target subsection **
 
 *** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***
 

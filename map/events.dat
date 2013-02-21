@@ -1085,6 +1085,19 @@ Silent=0
 add_obstacle(24, 43, 61.5, 1)
 </LuaCode>
 * End of trigger *
+
+* New event trigger *
+Name=_"24-quest-label"
+Trigger at label="24-quest-label"
+Silent=0
+<LuaCode>
+assign_quest("24_test_quest", "This is a test quest added by a map label on level 24.")
+play_sound("effects/Mission_Status_Change_Sound_0.ogg")
+add_diary_entry("24_test_quest", "Now we update the quest.")
+play_sound("effects/Mission_Status_Change_Sound_0.ogg")
+complete_quest("24_test_quest", "The test quest has been solved. Congratulations!")
+</LuaCode>
+* End of trigger *
 ##############
 ## Level 25 ##
 ##############
