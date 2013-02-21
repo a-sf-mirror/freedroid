@@ -284,7 +284,6 @@ static int set_value_from_table(lua_State *L, const char *field, enum data_type 
 }
 
 /**
-}
  * Set a data field to its default value
  *
  * \param default_value Default value, encoded in a string.

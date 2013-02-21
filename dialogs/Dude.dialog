@@ -74,43 +74,43 @@ Nr=1 Text=_"614_cryo"
 
 Nr=2 Text=_"AfterTakeover"
 <LuaCode>
-	run_subdialog("AfterTakeover.dialog")
+	call_subdialog("AfterTakeover")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"AfterTakeover_sub"
 <LuaCode>
-	run_subdialog("AfterTakeover_sub.dialog")
+	call_subdialog("AfterTakeover_sub")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"Bender"
 <LuaCode>
-	run_subdialog("Bender.dialog")
+	call_subdialog("Bender")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"Benjamin"
 <LuaCode>
-	run_subdialog("Benjamin.dialog")
+	call_subdialog("Benjamin")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"Bruce"
 <LuaCode>
-	run_subdialog("Bruce.dialog")
+	call_subdialog("Bruce")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"c-net"
 <LuaCode>
-	run_subdialog("c-net.dialog")
+	call_subdialog("c-net")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"c-net_sub_nethack"
 <LuaCode>
-	run_subdialog("c-net_sub_nethack.dialog")
+	call_subdialog("c-net_sub_nethack")
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -122,326 +122,326 @@ Nr=9 Text=_"Chandra"
 
 Nr=10 Text=_"Cryo-Terminal"
 <LuaCode>
-	run_subdialog("Cryo-Terminal.dialog")
+	call_subdialog("Cryo-Terminal")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"Dixon"
 <LuaCode>
-	run_subdialog("Dixon.dialog")
+	call_subdialog("Dixon")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"DocMoore"
 <LuaCode>
-	run_subdialog("DocMoore.dialog")
+	call_subdialog("DocMoore")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text=_"DSB-MachineDeckControl"
 <LuaCode>
-	run_subdialog("DSB-MachineDeckControl.dialog")
+	call_subdialog("DSB-MachineDeckControl")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=14 Text=_"DSB-PowerControl"
 <LuaCode>
-	run_subdialog("DSB-PowerControl.dialog")
+	call_subdialog("DSB-PowerControl")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=15 Text=_"DSB-PowerControlGate1"
 <LuaCode>
-	run_subdialog("DSB.PowerControlGate1.dialog")
+	call_subdialog("DSB.PowerControlGate1")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=16 Text=_"Dude"
 <LuaCode>
 	npc_says(_"Beware of recursion!")
-	run_subdialog("Dude.dialog")
+	call_subdialog("Dude")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=17 Text=_"Duncan"
 <LuaCode>
-	run_subdialog("Duncan.dialog")
+	call_subdialog("Duncan")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=18 Text=_"Engel"
 <LuaCode>
-	run_subdialog("Engel.dialog")
+	call_subdialog("Engel")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=19 Text=_"Engel_sub"
 <LuaCode>
-	run_subdialog("Engel_sub.dialog")
+	call_subdialog("Engel_sub")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"Ewald"
 <LuaCode>
-	run_subdialog("Ewald.dialog")
+	call_subdialog("Ewald")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"Ewalds_296"
 <LuaCode>
-	run_subdialog("Ewalds_296.dialog")
+	call_subdialog("Ewalds_296")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=22 Text=_"Francis"
 <LuaCode>
-	run_subdialog("Francis.dialog")
+	call_subdialog("Francis")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=23 Text=_"Geist"
 <LuaCode>
-	run_subdialog("Geist.dialog")
+	call_subdialog("Geist")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=24 Text=_"MO-HFGateAccessServer"
 <LuaCode>
-	run_subdialog("MO-HFGateAccessServer.dialog")
+	call_subdialog("MO-HFGateAccessServer")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=25 Text=_"MO-RGGateGuard"
 <LuaCode>
-	run_subdialog("MO-RGGateGuard.dialog")
+	call_subdialog("MO-RGGateGuard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=26 Text=_"MO-RGGateGuardLeader"
 <LuaCode>
-	run_subdialog("MO-RGGateGuardLeader.dialog")
+	call_subdialog("MO-RGGateGuardLeader")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=27 Text=_"InvaderBot"
 <LuaCode>
-	run_subdialog("InvaderBot.dialog")
+	call_subdialog("InvaderBot")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=28 Text=_"Iris"
 <LuaCode>
-	run_subdialog("Iris.dialog")
+	call_subdialog("Iris")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=29 Text=_"Jasmine"
 <LuaCode>
-	run_subdialog("Jasmine.dialog")
+	call_subdialog("Jasmine")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=30 Text=_"John"
 <LuaCode>
-	run_subdialog("John.dialog")
+	call_subdialog("John")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"Kevin-Lawnmower"
 <LuaCode>
-	run_subdialog("Kevin-Lawnmower.dialog")
+	call_subdialog("Kevin-Lawnmower")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=32 Text=_"Kevin"
 <LuaCode>
-	run_subdialog("Kevin.dialog")
+	call_subdialog("Kevin")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=33 Text=_"Kevin-Guard"
 <LuaCode>
-	run_subdialog("Kevin-Guard.dialog")
+	call_subdialog("Kevin-Guard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=34 Text=_"Koan"
 <LuaCode>
-	run_subdialog("Koan.dialog")
+	call_subdialog("Koan")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=35 Text=_"Lukas"
 <LuaCode>
-	run_subdialog("Lukas.dialog")
+	call_subdialog("Lukas")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=36 Text=_"Maintenance-Terminal"
 <LuaCode>
-	run_subdialog("Maintenance-Terminal.dialog")
+	call_subdialog("Maintenance-Terminal")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=37 Text=_"Michelanglo"
 <LuaCode>
-	run_subdialog("Michelanglo.dialog")
+	call_subdialog("Michelanglo")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=38 Text=_"Pendragon"
 <LuaCode>
-	run_subdialog("Pendragon.dialog")
+	call_subdialog("Pendragon")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=39 Text=_"Peter"
 <LuaCode>
-	run_subdialog("Peter.dialog")
+	call_subdialog("Peter")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=40 Text=_"Richard"
 <LuaCode>
-	run_subdialog("Richard.dialog")
+	call_subdialog("Richard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=41 Text=_"SACD"
 <LuaCode>
-	run_subdialog("SACD.dialog")
+	call_subdialog("SACD")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=42 Text=_"SADD"
 <LuaCode>
-	run_subdialog("SADD.dialog")
+	call_subdialog("SADD")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=43 Text=_"Singularity-Drone"
 <LuaCode>
-	run_subdialog("Singularity-Drone.dialog")
+	call_subdialog("Singularity-Drone")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=44 Text=_"Singularity"
 <LuaCode>
-	run_subdialog("Singularity.dialog")
+	call_subdialog("Singularity")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=45 Text=_"Skippy"
 <LuaCode>
-	run_subdialog("Skippy.dialog")
+	call_subdialog("Skippy")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=46 Text=_"Sorenson"
 <LuaCode>
-	run_subdialog("Sorenson.dialog")
+	call_subdialog("Sorenson")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=47 Text=_"Spencer"
 <LuaCode>
-	run_subdialog("Spencer.dialog")
+	call_subdialog("Spencer")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=48 Text=_"Stone"
 <LuaCode>
-	run_subdialog("Stone.dialog")
+	call_subdialog("Stone")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=49 Text=_"Tamara"
 <LuaCode>
-	run_subdialog("Tamara.dialog")
+	call_subdialog("Tamara")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text=_"Tania"
 <LuaCode>
-	run_subdialog("Tania.dialog")
+	call_subdialog("Tania")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=51 Text=_"Template"
 <LuaCode>
-	run_subdialog("Template.dialog")
+	call_subdialog("Template")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=52 Text=_"TestDroid"
 <LuaCode>
-	run_subdialog("TestDroid.dialog")
+	call_subdialog("TestDroid")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=53 Text=_"Town-614"
 <LuaCode>
-	run_subdialog("Town-614.dialog")
+	call_subdialog("Town-614")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=54 Text=_"Town-GuardhouseGuard"
 <LuaCode>
-	run_subdialog("Town-GuardhouseGuard.dialog")
+	call_subdialog("Town-GuardhouseGuard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=55 Text=_"Town-NorthGateGuard"
 <LuaCode>
-	run_subdialog("Town-NorthGateGuard.dialog")
+	call_subdialog("Town-NorthGateGuard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=56 Text=_"Town-TeleportGuard"
 <LuaCode>
-	run_subdialog("Town-TeleportGuard.dialog")
+	call_subdialog("Town-TeleportGuard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=57 Text=_"Town-TuxGuard"
 <LuaCode>
-	run_subdialog("Town-TuxGuard.dialog")
+	call_subdialog("Town-TuxGuard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=58 Text=_"TutorialTerminal"
 <LuaCode>
-	run_subdialog("TutorialTerminal.dialog")
+	call_subdialog("TutorialTerminal")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=59 Text=_"TutorialTux"
 <LuaCode>
-	run_subdialog("TutorialTux.dialog")
+	call_subdialog("TutorialTux")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=60 Text=_"TutorialTom"
 <LuaCode>
-	run_subdialog("TutorialTom.dialog")
+	call_subdialog("TutorialTom")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=61 Text=_"Tybalt"
 <LuaCode>
-	run_subdialog("Tybalt.dialog")
+	call_subdialog("Tybalt")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=62 Text=_"WillGapes"
 <LuaCode>
-	run_subdialog("TutorialTux.dialog")
+	call_subdialog("TutorialTux")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=63 Text=_"Butch"
 <LuaCode>
-	run_subdialog("Butch.dialog")
+	call_subdialog("Butch")
 </LuaCode>
 ----------------------------------------------------------------------
 

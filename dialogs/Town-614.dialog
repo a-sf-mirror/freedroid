@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 Nr=0 Text=_"Who are you?"
 <LuaCode>
-	run_subdialog("614_sub.dialog")
+	call_subdialog("614_sub")
 	hide(0)
 </LuaCode>
 ----------------------------------------------------------------------

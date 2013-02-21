@@ -366,7 +366,7 @@ int DoSkill(int skill_index, int SpellCost)
 				// upon successful takeover
 				// go directly to chat to choose droid program
 				if (GameConfig.talk_to_bots_after_takeover)
-					ChatWithFriendlyDroid(droid_below_mouse_cursor);
+					chat_with_droid(droid_below_mouse_cursor);
 					
 				goto out;
 			}

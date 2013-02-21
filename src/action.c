@@ -543,7 +543,7 @@ static void act_terminal(level *l, obstacle *o)
 	enemy_reset(&dummy_enemy);
 	dummy_enemy.dialog_section_name = dialog;
 	dummy_enemy.will_rush_tux = FALSE;
-	ChatWithFriendlyDroid(&dummy_enemy);
+	chat_with_droid(&dummy_enemy);
 }
 
 static void act_sign(level *l, obstacle *o)

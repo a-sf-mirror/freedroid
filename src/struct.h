@@ -1010,8 +1010,8 @@ struct tux_motion_class_images {
 struct chat_context {
        enum chat_context_state state;  // current state of the chat engine.
        int wait_user_click;            // TRUE if the chat engine is waiting for a user click.
+       int display_log_markers;        // If TRUE, clear the chat log window when the dialog is started.
 
-       int is_subdialog;               // TRUE if the structure references a sub-dialog.
        enemy *partner;                 // The bot we are talking with.
        struct npc *npc;                // The NPC containing the specifications of the dialog to run.
        int partner_started;            // TRUE if the dialog was started by the partner.
@@ -1019,9 +1019,9 @@ struct chat_context {
 
        char *initialization_code;      // lua initialization code (run on the first activation)
        char *startup_code;             // lua startup code (run on every activation)
+       void (*on_delete)(struct chat_context *);  // Called when the chat context is deleted
 
        struct dialogue_option dialog_options[MAX_DIALOGUE_OPTIONS_IN_ROSTER];  // The dialog nodes
-       uint8_t *dialog_flags;          // One flag per dialog node: TRUE if the corresponding dialog node is active
        int current_option;             // Current dialog node to run (-1 if none is selected)
        lua_State *lua_coroutine;       // Handle to the lua co-routine running the current node script
 

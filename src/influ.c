@@ -1553,7 +1553,7 @@ void check_for_droids_to_attack_or_talk_with()
 		enemy *e = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
 		if (is_friendly(e->faction, FACTION_SELF)) {
 			if (no_left_button_press_in_previous_analyze_mouse_click) {
-				ChatWithFriendlyDroid(enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr));
+				chat_with_droid(enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr));
 				enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
 			}
 

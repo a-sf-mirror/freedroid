@@ -703,34 +703,97 @@ static int lua_chat_pop_topic(lua_State * L)
 	return 0;
 }
 
-static int lua_chat_run_subdialog(lua_State * L)
+static void fake_npc_dispose(struct chat_context *chat_context)
 {
-	const char *tmp_filename = luaL_checkstring(L, 1);
+	free(chat_context->npc);
+}
 
-	if (!stack_subdialog(tmp_filename))
-		return 0;
+static int lua_chat_call_subdialog(lua_State * L)
+{
+	struct chat_context *current_chat_context, *new_chat_context;
+	struct enemy *partner;
+	struct npc *fake_npc;
+	const char *dialog_name;
+	int i;
 
-	// Yield the current dialog script, to let the chat engine run the
-	// subdialog.
+	// A subdialog uses the same partner and npc than its caller dialog.
+	// The caller dialog is the one on top of the chat_context stack.
+	// However, the dialog flags (defining which dialog nodes are showed) of
+	// the current npc cannot be used and more importantly they must not be
+	// changed during the subdialog.
+	// We thus create a fake npc which is a copy of the current npc, but with
+	// reinitialized dialog flags. It also means that those dialog flags will
+	// not be saved.
 
-	// Note: The Lua manual says that: "lua_yield() should only be called as the
-	// return expression of a C function". But the "should" is actually a "must"...
-	return lua_yield(L, 0);
+	current_chat_context = chat_get_current_context();
+	partner = current_chat_context->partner;
+
+	fake_npc = (struct npc *)MyMalloc(sizeof(struct npc));
+	memcpy(fake_npc, current_chat_context->npc, sizeof(struct npc));
+	for (i = 0; i<MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
+		fake_npc->chat_flags[i] = 0;
+	}
+	fake_npc->chat_character_initialized = TRUE; // no init script in a subdialog
+
+	dialog_name = luaL_checkstring(L, 1);
+
+	new_chat_context = chat_create_context(partner, fake_npc, dialog_name);
+
+	// Specific setting for subdialog :
+	//  - do not reset the chat log window
+	//  - delete the fake npc when the subdialog ends
+
+	new_chat_context->display_log_markers = FALSE;
+	new_chat_context->on_delete = fake_npc_dispose;
+
+	// Push the chat context and yield the current dialog script, to let the
+	// chat engine run the subdialog.
+
+	chat_push_context(new_chat_context);
+	return lua_yield(L, 0); // lua_yield must be called in a return statement
 }
 
 static int lua_start_chat(lua_State * L)
 {
-	enemy *en = get_enemy_arg(L, 1); 
+	int called_from_dialog;
+	struct enemy *partner;
+	struct npc *npc;
+	struct chat_context *chat_context;
+	char *dialog_name;
 
-	if (!stack_dialog(en))
+	// This function can be called from an event lua script or from a dialog
+	// lua script.
+	// In the first case, we have to open the chat screen and launch the chat
+	// engine.
+	// In the second case, a dialog is already running, so we have to interrupt
+	// it (yield the lua coroutine) to let the chat engine run the new dialog.
+
+	// To know if the function is called from a dialog script, we check if
+	// there is already something on the chat context stack.
+	called_from_dialog = (chat_get_current_context() != NULL);
+
+	// Create a chat context and push it on the satck
+	// Get the enemy to chat with from its name, get associated npc and
+	// dialog, and create a chat context
+	partner = get_enemy_arg(L, 1);
+	npc = npc_get(partner->dialog_section_name);
+	if (!npc)
 		return 0;
+	dialog_name = partner->dialog_section_name;
 
-	// Yield the current dialog script, to let the chat engine run the
-	// dialog.
+	chat_context = chat_create_context(partner, npc, dialog_name);
+	chat_push_context(chat_context);
 
-	// Note: The Lua manual says that: "lua_yield() should only be called as the
-	// return expression of a C function". But the "should" is actually a "must"...
-	return lua_yield(L, 0);
+	if (!called_from_dialog) {
+		// Open the chat screen and run the chat engine.
+		chat_run();
+	} else {
+		// Yield the current dialog script, to let the chat engine run the
+		// new dialog.
+		return lua_yield(L, 0); // lua_yield must be called in a return statement
+	}
+
+	return 0;
 }
 
 static int lua_chat_set_next_node(lua_State * L)
@@ -776,7 +839,7 @@ static int __lua_chat_toggle_node(lua_State * L, int value)
 				     IS_WARNING_ONLY, value == 1 ? "enable" : "disable", flag);
 			continue;
 		}
-		current_chat_context->dialog_flags[flag] = value;
+		current_chat_context->npc->chat_flags[flag] = value;
 	}
 	return 0;
 }
@@ -1224,7 +1287,7 @@ luaL_Reg lfuncs[] = {
 	,
 	{"pop_topic", lua_chat_pop_topic}
 	,
-	{"run_subdialog", lua_chat_run_subdialog}
+	{"call_subdialog", lua_chat_call_subdialog}
 	,
 	{"start_chat", lua_start_chat}
 	,

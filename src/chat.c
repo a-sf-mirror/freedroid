@@ -42,8 +42,8 @@
 #include "widgets/widgets.h"
 
 /* Some forward declarations */
-static void run_chat();
 static void chat_delete_context(struct chat_context *);
+static void load_dialog(const char *, struct chat_context *);
 
 /* Stack of chat contexts. The current context is at the top of the stack */
 static struct list_head chat_context_stack = LIST_HEAD_INIT(chat_context_stack);
@@ -102,7 +102,7 @@ struct chat_context *chat_get_current_context(void)
  *
  * @param chat_context Pointer to the chat context to push.
  */
-static void chat_push_context(struct chat_context *chat_context)
+void chat_push_context(struct chat_context *chat_context)
 {
 	check_chat_context_stack_size();
 	list_add(&chat_context->stack_node, &chat_context_stack);
@@ -153,60 +153,55 @@ static void delete_dialog_option(dialogue_option *d)
 /**
  * Create a chat context and initialize it.
  *
- * @param partner Pointer to the enemy to talk with
- * @param npc Pointer to the npc containing the dialogue definition.
- * @param is_subdialog True if the dialog to start is a subdialog.
- *
+ * @param partner     Pointer to the enemy to talk with
+ * @param npc         Pointer to the npc containing the dialogue definition.
+ * @param dialog_name Name of the dialog
  * @return Pointer to the allocated chat context.
  */
-static struct chat_context *chat_create_context(enemy *partner, struct npc *npc, int is_subdialog)
+struct chat_context *chat_create_context(enemy *partner, struct npc *npc, const char *dialog_name)
 {
 	int i;
+	char dialog_filename[1024];
+	char fpath[2048];
+
 	struct chat_context *new_chat_context = (struct chat_context *)MyMalloc(sizeof(struct chat_context));
 
 	// Init chat control variables.
 	// MyMalloc() already zeroed the struct, so we only initialize 'non zero' fields.
 
-	new_chat_context->is_subdialog = is_subdialog;
 	new_chat_context->partner = partner;
 	new_chat_context->npc = npc;
 	new_chat_context->partner_started = partner->will_rush_tux;
+	new_chat_context->display_log_markers = TRUE;
 
 	// topic_stack[0] is never replaced, so a static allocation is enough.
 	new_chat_context->topic_stack[0] = "";
 
+	// Load dialog
 	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
 		init_dialog_option(&new_chat_context->dialog_options[i]);
 	}
+
+	strcpy(dialog_filename, dialog_name);
+	strncat(dialog_filename, ".dialog", 7);
+	find_file(dialog_filename, DIALOG_DIR, fpath, 0);
+	load_dialog(fpath, new_chat_context);
 
 	// Only run the init script the first time the dialog is open.
 	// An init script on a subdialog does not really make sense, so it is just
 	// ignored.
 	// The startup script is run every time a dialog or a subdialog is open.
 	new_chat_context->state = LOAD_INIT_SCRIPT;
-	if (npc->chat_character_initialized || is_subdialog) {
+	if (npc->chat_character_initialized) {
 		new_chat_context->state = LOAD_STARTUP_SCRIPT;
 	}
 
-	// dialog_flags points to the npc chat_flags array, so that currently
-	// active dialog options are saved thanks to the save of the npc
-	// structures.
-	// However, subdialogs are not referenced by the npc, and so their states
-	// can not be saved. A 'dummy' chat_flags array is thus needed during the
-	// run of a subdialog, that dummy array being lost when the subdialog is
-	// closed.
-	if (!is_subdialog) {
-		new_chat_context->dialog_flags = &npc->chat_flags[0];
-		// Ensure the initialization of the option flags on the first run of
-		// the dialog.
-		if (!npc->chat_character_initialized) {
-			for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-				new_chat_context->dialog_flags[i] = 0;
-			}
+	// Ensure the initialization of the option flags on the first run of
+	// the dialog.
+	if (!npc->chat_character_initialized) {
+		for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
+			new_chat_context->npc->chat_flags[i] = 0;
 		}
-	} else {
-		uint8_t *dummy_chat_flags = (uint8_t *)MyMalloc(sizeof(uint8_t)*MAX_DIALOGUE_OPTIONS_IN_ROSTER);
-		new_chat_context->dialog_flags = dummy_chat_flags;
 	}
 
 	// No dialog option currently selected by the user
@@ -235,8 +230,8 @@ static void chat_delete_context(struct chat_context *chat_context)
 		delete_dialog_option(&chat_context->dialog_options[i]);
 	}
 
-	if (chat_context->is_subdialog) {
-		free(chat_context->dialog_flags);
+	if (chat_context->on_delete) {
+		chat_context->on_delete(chat_context);
 	}
 
 	free(chat_context);
@@ -377,31 +372,10 @@ static void fill_chat_selector(struct chat_context *context)
 	char *topic = context->topic_stack[context->topic_stack_slot];
 	// We filter out those answering options that are allowed by the flag mask
 	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-		if (context->dialog_flags[i] && !(strcmp(topic, context->dialog_options[i].topic))) {
+		if (context->npc->chat_flags[i] && !(strcmp(topic, context->dialog_options[i].topic))) {
 			widget_text_list_add(chat_selector, context->dialog_options[i].option_text, i);
 		}
 	}
-}
-
-/**
- * During the Chat with a friendly droid or human, there is a window with
- * the full text transcript of the conversation so far.  This function is
- * here to display said text window and it's content, scrolled to the
- * position desired by the player himself.
- *
- * TODO: To be removed once the chat screen is integrated into the main widget
- *       hierarchy
- */
-void show_chat(struct chat_context *context)
-{
-	struct widget *ui = WIDGET(chat_menu);
-
-	// Prepare chat screen rendering
-	*droid_portrait = get_droid_portrait_image(context->partner->type);
-	clear_screen();
-
-	ui->update_tree(ui);
-	ui->display(ui);
 }
 
 /**
@@ -678,65 +652,6 @@ void chat_add_response(const char *response)
 	chat_log->scroll_offset = 0;
 }
 
-static int create_and_stack_context(enemy *partner, struct npc *npc, const char *filename, int is_subdialog)
-{
-	char fpath[2048];
-	char finaldir[50];
-	struct chat_context *new_context = NULL;
-
-	new_context = chat_create_context(partner, npc, is_subdialog);
-
-	// Find the dialog file and load it inside the new chat context
-	sprintf(finaldir, "%s", DIALOG_DIR);
-	find_file(filename, finaldir, fpath, 0);
-	load_dialog(fpath, new_context);
-
-	// Push the new chat_context
-	chat_push_context(new_context);
-
-	return TRUE;
-}
-
-/**
- * Create and push a chat context to run a sub dialog.
- *
- * @param filename Subdialog filename.
- *
- * @return TRUE on success, FALSE on error.
- */
-int stack_subdialog(const char *filename)
-{
-	struct chat_context *current_chat_context;
-
-	// A subdialog uses the same partner and npc than its parent dialog.
-	// The parent dialog is the one on top of the chat_context stack.
-	current_chat_context = chat_get_current_context();
-
-	return create_and_stack_context(current_chat_context->partner, current_chat_context->npc, filename, TRUE);
-}
-
-/**
- * Create and push a chat context to run a dialog.
- *
- * @param partner Enemy we are chatting with.
- *
- * @return TRUE on success, FALSE on error.
- */
-int stack_dialog(enemy *partner)
-{
-	struct npc *npc;
-	char dialog_filename[5000];
-
-	npc = npc_get(partner->dialog_section_name);
-	if (!npc)
-		return FALSE;
-
-	strcpy(dialog_filename, partner->dialog_section_name);
-	strcat(dialog_filename, ".dialog");
-
-	return create_and_stack_context(partner, npc, dialog_filename, FALSE);
-}
-
 /**
  * Process the chat option selected by the user.
  *
@@ -762,7 +677,7 @@ static void process_chat_option(struct chat_context *context)
  * the stack, this function is invoked to handle the actual chat interaction
  * and the dialog flow.
  */
-static void run_chat()
+void chat_run()
 {
 #	define LOAD_LUA_SCRIPT(script) \
 	    if (script && strlen(script)) \
@@ -776,6 +691,9 @@ static void run_chat()
 	// Pump all remaining SDL events
 	SDL_Event event;
 	while (SDL_PollEvent(&event));
+
+	// Activate chat screen
+	chat_ui->enabled = TRUE;
 
 	// Init some widgets
 	widget_text_init(chat_log, "");
@@ -872,7 +790,7 @@ static void run_chat()
 			switch (current_chat_context->state) {
 				case LOAD_INIT_SCRIPT:
 				{
-					if (!current_chat_context->is_subdialog)
+					if (current_chat_context->display_log_markers)
 						widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
 					LOAD_LUA_SCRIPT(current_chat_context->initialization_code);
 					current_chat_context->state = RUN_INIT_SCRIPT;
@@ -880,7 +798,7 @@ static void run_chat()
 				}
 				case LOAD_STARTUP_SCRIPT:
 				{
-					if (!current_chat_context->is_subdialog && current_chat_context->npc->chat_character_initialized)
+					if (current_chat_context->display_log_markers && current_chat_context->npc->chat_character_initialized)
 						widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
 					LOAD_LUA_SCRIPT(current_chat_context->startup_code);
 					current_chat_context->state = RUN_STARTUP_SCRIPT;
@@ -944,11 +862,14 @@ end_current_dialog:
 		// The dialog has ended. Mark the npc as already initialized, to avoid
 		// its initialization script to be run again the next time the dialog
 		// is open, and pop the dialog from the chat context stack.
-		if (!current_chat_context->npc->chat_character_initialized)
-			current_chat_context->npc->chat_character_initialized = TRUE;
+		current_chat_context->npc->chat_character_initialized = TRUE;
 
 		chat_pop_context();
 	}
+
+	// Close chat screen
+	chat_ui->enabled = FALSE;
+
 #	undef LOAD_LUA_SCRIPT
 }
 
@@ -958,15 +879,28 @@ end_current_dialog:
  * function as soon as the player requests communication or there is a
  * friendly bot who rushes Tux and opens talk.
  */
-void ChatWithFriendlyDroid(enemy * ChatDroid)
+void chat_with_droid(struct enemy *partner)
 {
-	if (!stack_dialog(ChatDroid))
-		return;
+	struct npc *npc;
+	struct chat_context *chat_context;
+	char *dialog_name;
 
-	struct widget *ui = WIDGET(chat_menu);
-	ui->enabled = TRUE;
-	run_chat();
-	ui->enabled = FALSE;
+	// Create a chat context.
+	// Use the partner's dialog name attribute to get the related npc
+	// and the dialog to load.
+	npc = npc_get(partner->dialog_section_name);
+	if (!npc)
+		return;
+	dialog_name = partner->dialog_section_name;
+
+	chat_context = chat_create_context(partner, npc, dialog_name);
+
+	// Push the chat context on the stack.
+	// The dialog will be run on the next loop of the chat engine.
+	chat_push_context(chat_context);
+
+	// Open the chat screen and run the chat engine.
+	chat_run();
 }
 
 /**
@@ -983,8 +917,6 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 int validate_dialogs()
 {
 	int j, k;
-	const char *basename;
-	char filename[1024];
 	char fpath[2048];
 	enemy *dummy_partner;
 	struct npc *n;
@@ -1042,13 +974,10 @@ int validate_dialogs()
 	}
 
 	list_for_each_entry(n, &npc_head, node) {
-		struct chat_context *dummy_context = chat_create_context(dummy_partner, n, FALSE);
+		printf("Testing dialog \"%s\"...\n", n->dialog_basename);
 
-		basename = n->dialog_basename;
-		printf("Testing dialog \"%s\"...\n", basename);
-		sprintf(filename, "%s.dialog", basename);
-		find_file(filename, DIALOG_DIR, fpath, 0);
-		load_dialog(fpath, dummy_context);
+		struct chat_context *dummy_context = chat_create_context(dummy_partner, n, n->dialog_basename);
+		dummy_context->display_log_markers = FALSE;
 
 		chat_push_context(dummy_context);
 

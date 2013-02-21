@@ -1809,7 +1809,7 @@ static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_f
 
 	/* Action */
 	if (sqrt((ThisRobot->virt_pos.x - Me.pos.x) * (ThisRobot->virt_pos.x - Me.pos.x) + (ThisRobot->virt_pos.y - Me.pos.y) * (ThisRobot->virt_pos.y - Me.pos.y)) < 1) {	//if we are close enough to tux, we talk
-		ChatWithFriendlyDroid(ThisRobot);
+		chat_with_droid(ThisRobot);
 		ThisRobot->will_rush_tux = FALSE;
 		ThisRobot->combat_state = SELECT_NEW_WAYPOINT;
 		return;
