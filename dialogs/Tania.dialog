@@ -113,6 +113,10 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
+	if (Tania_heal_node8) then
+		show(8)
+	end
+
 	if (branch_to_pendragon) then
 		start_chat("Pendragon")
 	end
@@ -190,6 +194,8 @@ Nr=8 Text=_"So you are a biologist? Could you heal me?"
 	npc_says_random(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.",
 					_"You are now completely healed. You should take better care of yourself.")
 	heal_tux()
+	Tania_heal_node8 = true
+	hide(8)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -286,6 +292,7 @@ Nr=27 Text=_"The sentry guns are off. You can go now!"
 Nr=28 Text=_"Where can I find that SACD?"
 <LuaCode>
 	npc_says(_"To the right from the entrance of the area, there is a hall. In the south part of this hall you will find a triple hermetic door. The control center is behind that door. But it is locked, so you will have to find another way there. The cable collectors may help you.")
+	hide(28)
 </LuaCode>
 ----------------------------------------------------------------------
 
