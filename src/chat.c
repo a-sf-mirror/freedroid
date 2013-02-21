@@ -942,7 +942,7 @@ int validate_dialogs()
 	run_lua(LUA_DIALOG, "function cli_says(a)\nend\n");
 
 	/* Subdialogs currently call run_chat and we cannot do that when validating dialogs */
-	run_lua(LUA_DIALOG, "function run_subdialog(a)\nend\n");
+	run_lua(LUA_DIALOG, "function call_subdialog(a)\nend\n");
 	run_lua(LUA_DIALOG, "function start_chat(a)\nend\n");
 
 	/* Shops must not be run (display + wait for clicks) */
