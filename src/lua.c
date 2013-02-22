@@ -1113,6 +1113,12 @@ static int lua_meters_traveled(lua_State *L)
 	return 1;
 }
 
+static int lua_run_from_dialog(lua_State *L)
+{
+	lua_pushboolean(L, (chat_get_current_context() != NULL));
+	return 1;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1380,6 +1386,9 @@ luaL_Reg lfuncs[] = {
 	 */
 	{"meters_traveled", lua_meters_traveled},
 	// meters_traveled() returns ingame meters tux has traveled
+	{"run_from_dialog", lua_run_from_dialog},
+	// if (run_from_dialog()) then
+	// to check if certain code was run from inside a dialog or not
 
 	{NULL, NULL}
 };
