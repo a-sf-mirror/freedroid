@@ -177,25 +177,37 @@ end
 -- Quest functions
 function add_quest(quest, text)
 	assign_quest(quest, text)
-	cli_says("   ".._"New Quest assigned: " .. quest,"NO_WAIT")
+	if (run_from_dialog()) then
+		cli_says("   ".._"New Quest assigned: " .. quest,"NO_WAIT")
+		npc_says("")
+	else
+		display_big_message("   ".._"New Quest assigned: " .. quest)
+	end
 	play_sound("effects/Mission_Status_Change_Sound_0.ogg")
-	npc_says("")
 end
 
 function update_quest(quest, text)
 	if (has_quest(quest)) then
 		add_diary_entry(quest, text)
+		if (run_from_dialog()) then
+			cli_says("   ".._"Quest log updated: " .. quest, "NO_WAIT")
+			npc_says("")
+		else
+			display_big_message("   ".._"Quest log updated: " .. quest)
+		end
 		play_sound("effects/Mission_Status_Change_Sound_0.ogg")
-		cli_says("   ".._"Quest log updated: " .. quest,"NO_WAIT")
-		npc_says("")
 	end
 end
 
 function end_quest(quest, text)
 	complete_quest(quest, text)
+	if (run_from_dialog()) then
+		cli_says("   ".._"Quest completed: " .. quest,"NO_WAIT")
+		npc_says("")
+	else
+		display_big_message("   ".._"Quest completed: " .. quest)
+	end
 	-- no play_sound() here because it's implemented into complete_quest
-	cli_says("   ".._"Quest completed: " .. quest,"NO_WAIT")
-	npc_says("")
 end
 
 -- Set faction and name
