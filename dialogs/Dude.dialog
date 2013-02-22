@@ -37,10 +37,10 @@ get_town_score()
 	else
 		npc_says(_"Red Guard membership: [b]false[/b]")
 	end
-	npc_says(_"Here you'll be able to access all dialogs that are available ingame.")
-	npc_says(_"Take care, this may be a little buggy.")
-	npc_says(_"Don't do this if you are just normally playing.")
-	npc_says(_"These dialogs can currently be accessed:")
+	npc_says(_"Here you'll be able to access all dialogs that are available ingame.", "NO_WAIT")
+	npc_says(_"Take care, this may be a little buggy.", "NO_WAIT")
+	npc_says(_"Don't do this if you are just normally playing.", "NO_WAIT")
+	npc_says(_"These dialogs can currently be accessed:", "NO_WAIT")
 
 
 	show(1, 2, 3, 4, 5, 6, 7, 8, 9,
