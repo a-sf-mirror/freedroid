@@ -1366,28 +1366,26 @@ luaL_Reg lfuncs[] = {
 	{"create_droid", lua_create_droid},
 
 	{"game_time", lua_get_game_time},
-
-	{"play_sound", lua_play_sound},
 	/* play_sound("file")
 	 * path has to originate from /sound , e.g.
 	 * play_sound("effects/No_Ammo_Sound_0.ogg")
 	 */
-
-	{"freeze_tux", lua_event_freeze_tux},
+	{"play_sound", lua_play_sound},
 	// freeze_tux() freezes tux for the given amount of seconds
-	{"freeze_npc", lua_event_freeze_npc},
+	{"freeze_tux", lua_event_freeze_tux},
 	// freeze_npc() freezes the npc for the given amount of seconds
-	{"add_obstacle", lua_add_obstacle},
+	{"freeze_npc", lua_event_freeze_npc},
 	/* add_obstacle(lvl, x, y, obst_ID) add obstacles to maps at given position
 	 * add_obstacle(8, 41.4, 51.5, 100)
 	 * where 8 is the level number, x and y are the coorinates and 100
 	 * is the obstacle ID (see defs.h)
 	 */
-	{"meters_traveled", lua_meters_traveled},
+	{"add_obstacle", lua_add_obstacle},
 	// meters_traveled() returns ingame meters tux has traveled
-	{"run_from_dialog", lua_run_from_dialog},
+	{"meters_traveled", lua_meters_traveled},
 	// if (run_from_dialog()) then
 	// to check if certain code was run from inside a dialog or not
+	{"run_from_dialog", lua_run_from_dialog},
 
 	{NULL, NULL}
 };
