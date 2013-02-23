@@ -95,6 +95,22 @@ npc_faction("crazy", "Guy - crazy")
 npc_faction("singularity", "Guy - singularity")
 npc_faction("neutral", "Guy - neutral")
 
+
+heal_tux()
+hurt_tux(1)
+hurt_tux(-1)
+if (get_tux_hp() == 60) then
+	npc_says("HEALTH 1 test succeded", "NO_WAIT")
+else
+	guy_fail("HEALTH 1")
+end
+
+if (get_tux_max_hp() == 60) then
+	npc_says("HEALTH 2 test succeded", "NO_WAIT")
+else
+	guy_fail("HEALTH 2")
+end
+
 npc_says("")
 end_dialog()
 </LuaCode>
