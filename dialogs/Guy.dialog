@@ -31,7 +31,15 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	npc_says("This text shown everytime you speak to the character.")
+
+function guy_fail(test, ...)
+	print[[ERROR! The following test failed:]]
+print(test)
+	npc_says("%s failed!" ,test , "NO_WAIT")
+	end_dialog()
+	os.exit()
+end
+
 	next(0)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -46,26 +54,26 @@ add_item(".22 Automatic")
 if (has_item(".22 Automatic")) then
 	npc_says("ADD ITEM test 1 succeeded", "NO_WAIT")
 else
-	npc_says("ADD ITEM test 1 failed", "NO_WAIT")
+	guy_fail("ADD ITEM 1")
 end
 
 if (has_item_backpack(".22 Automatic")) then
 	npc_says("ADD ITEM test 2 succeeded", "NO_WAIT")
 else
-	npc_says("ADD ITEM test 2 failed", "NO_WAIT")
+	guy_fail("ADD ITEM 2")
 end
 
 if (has_item_equipped("Laser Scalpel")) then
 	npc_says("ADD ITEM test 3 succeeded", "NO_WAIT")
 else
-	npc_says("ADD ITEM test 3 failed", "NO_WAIT")
+	guy_fail("ADD ITEM 3")
 end
 
 del_item(".22 Automatic")
 if (not has_item(".22 Automatic")) then
 	npc_says("DEL ITEM test succeeded", "NO_WAIT")
 else
-	npc_says("DEL ITEM test failed", "NO_WAIT")
+	guy_fail("DEL ITEM")
 end
 npc_says("")
 end_dialog()
