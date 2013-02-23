@@ -50,7 +50,7 @@ show(0)
 hide(0)
 
 add_item("Laser Scalpel")
-add_item(".22 Automatic")
+add_item(".22 Automatic", 2)
 if (has_item(".22 Automatic")) then
 	npc_says("ADD ITEM test 1 succeeded", "NO_WAIT")
 else
@@ -69,11 +69,21 @@ else
 	guy_fail("ADD ITEM 3")
 end
 
-del_item(".22 Automatic")
-if (not has_item(".22 Automatic")) then
-	npc_says("DEL ITEM test succeeded", "NO_WAIT")
+
+--[[ NOTE we need del_item_equipped() or unequipp_item()
+del_item("Laser Scalpel")
+if (not has_item("Laser Scalpel")) then
+	npc_says("DEL ITEM 1 test succeeded", "NO_WAIT")
 else
-	guy_fail("DEL ITEM")
+	guy_fail("DEL ITEM 1")
+end
+]]--
+
+del_item_backpack(".22 Automatic", 2)
+if (not has_item_backpack(".22 Automatic")) then
+	npc_says("DEL ITEM 2 test succeeded", "NO_WAIT")
+else
+	guy_fail("DEL ITEM 2")
 end
 npc_says("")
 end_dialog()
