@@ -111,6 +111,17 @@ else
 	guy_fail("HEALTH 2")
 end
 
+
+heat_tux(1)
+heat_tux(-1)
+if (get_tux_cool() == 100) then
+	npc_says("COOL 1 test succeeded", "NO_WAIT")
+else
+	guy_fail("COOL 1")
+end
+
+
+
 npc_says("")
 end_dialog()
 </LuaCode>
