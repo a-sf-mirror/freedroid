@@ -201,7 +201,7 @@ end
 
 function end_quest(quest, text)
 	complete_quest(quest, text)
-	-- no play_sound() here because it's implemented into complete_quest
+	play_sound("effects/Mission_Status_Change_Sound_0.ogg")
 	if (run_from_dialog()) then
 		cli_says("   ".._"Quest completed: " .. quest,"NO_WAIT")
 		npc_says("")

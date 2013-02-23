@@ -477,7 +477,6 @@ static int lua_event_complete_mission(lua_State * L)
 	const char *misname = luaL_checkstring(L, 1);
 	const char *diarytext = luaL_optstring(L, 2, NULL);
 
-	play_sound_cached("effects/Mission_Status_Change_Sound_0.ogg");
 	CompleteMission(misname);
 	if (diarytext != NULL)
 		mission_diary_add(misname, diarytext);

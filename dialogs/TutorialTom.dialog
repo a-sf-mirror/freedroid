@@ -419,7 +419,7 @@ Nr=28 Text=_"I've beaten the second bot."
 Nr=29 Text=_"I'm ready to move on."
 <LuaCode>
 	if (not done_quest("Tutorial Melee")) then
-		complete_quest(_"Tutorial Melee", _"I decided to move on and go to the shooting tutorial.")
+		end_quest(_"Tutorial Melee", _"I decided to move on and go to the shooting tutorial.")
 	end
 	if (TutorialTom_has_gun) then
 		npc_says(_"I'll bet you're itching to try that pistol out on some bots.")

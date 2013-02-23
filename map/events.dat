@@ -494,7 +494,7 @@ Trigger on enemy death in level=6
 Enemy dialog name="Singularity"
 <LuaCode>
 	if (has_quest("The yellow toolkit") and not done_quest("The yellow toolkit")) then
-		add_diary_entry(_"The yellow toolkit", _"The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it...")
+		update_quest(_"The yellow toolkit", _"The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it...")
 	end
 </LuaCode>
 * End of trigger *
@@ -591,8 +591,7 @@ Trigger exiting level=13
 	   (not Ewalds_296_teleported) then
 		teleport_npc("296TeleportTarget", "Ewalds_296")
 		Ewalds_296_teleported = true
-		add_diary_entry(_"An Explosive Situation", _"I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened.")
-		display_big_message(_"Quest Log Updated.")
+		update_quest(_"An Explosive Situation", _"I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened.")
 	end
 </LuaCode>
 * End of trigger *
@@ -1202,7 +1201,7 @@ Silent=1
 		(cmp_obstacle_state("HF-Gate-outer", "opened")) and
 		(has_quest("Open Sesame")) and
 		(not done_quest("Open Sesame"))) then
-			complete_quest("Open Sesame", "I found the gates. The firmware server should lay beyond them.")
+			end_quest("Open Sesame", "I found the gates. The firmware server should lay beyond them.")
 	end
 
 </LuaCode>
