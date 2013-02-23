@@ -1,0 +1,81 @@
+----------------------------------------------------------------------
+ * This file is part of Freedroid
+ *
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
+----------------------------------------------------------------------
+
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+
+Beginning of new chat dialog for character="XXXXX"
+----------------------------------------------------------------------
+
+<FirstTime LuaCode>
+	npc_says("This text is only shown as you speak to this character the first time.")
+</LuaCode>
+
+<EveryTime LuaCode>
+	npc_says("This text shown everytime you speak to the character.")
+	next(0)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=0 Text=_"RUNNING TEST NODE"
+<LuaCode>
+show(0)
+hide(0)
+
+add_item("Laser Scalpel")
+add_item(".22 Automatic")
+if (has_item(".22 Automatic")) then
+	npc_says("ADD ITEM test 1 succeeded", "NO_WAIT")
+else
+	npc_says("ADD ITEM test 1 failed", "NO_WAIT")
+end
+
+if (has_item_backpack(".22 Automatic")) then
+	npc_says("ADD ITEM test 2 succeeded", "NO_WAIT")
+else
+	npc_says("ADD ITEM test 2 failed", "NO_WAIT")
+end
+
+if (has_item_equipped("Laser Scalpel")) then
+	npc_says("ADD ITEM test 3 succeeded", "NO_WAIT")
+else
+	npc_says("ADD ITEM test 3 failed", "NO_WAIT")
+end
+
+del_item(".22 Automatic")
+if (not has_item(".22 Automatic")) then
+	npc_says("DEL ITEM test succeeded", "NO_WAIT")
+else
+	npc_says("DEL ITEM test failed", "NO_WAIT")
+end
+npc_says("")
+end_dialog()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=99 Text=_"logout"
+<LuaCode>
+	end_dialog()
+</LuaCode>
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"

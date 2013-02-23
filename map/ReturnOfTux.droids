@@ -242,6 +242,7 @@ T=247: PosX=57 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel="247" M
 T=139: PosX=57 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel="139" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=123: PosX=57 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel="123" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=WOR: PosX=40 PosY=20 Faction="civilian" UseDialog="Dude" ShortLabel="Dude" Marker=2024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=BAR: PosX=42 PosY=20 Faction="civilian" UseDialog="Guy" ShortLabel="Guy" Marker=2024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **

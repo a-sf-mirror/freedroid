@@ -46,6 +46,7 @@ npc_list{
 	"InvaderBot",
 	"HF-FirmwareUpdateServer",
 	"HF-EntranceBot",
+	"Guy",
 	"Geist",
 	"Francis",
 	"Ewalds_296",
