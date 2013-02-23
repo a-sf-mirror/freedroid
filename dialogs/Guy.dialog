@@ -85,6 +85,16 @@ if (not has_item_backpack(".22 Automatic")) then
 else
 	guy_fail("DEL ITEM 2")
 end
+
+npc_faction("self", "Guy - self")
+npc_faction("ms", "Guy - ms")
+npc_faction("redguard", "Guy - redguard" )
+npc_faction("resistance", "Guy - resistance")
+npc_faction("civilian", "Guy - civilian")
+npc_faction("crazy", "Guy - crazy")
+npc_faction("singularity", "Guy - singularity")
+npc_faction("neutral", "Guy - neutral")
+
 npc_says("")
 end_dialog()
 </LuaCode>
