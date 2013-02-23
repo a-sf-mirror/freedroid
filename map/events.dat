@@ -1217,7 +1217,7 @@ Silent=1
 		(cmp_obstacle_state("HF-Gate-outer", "opened")) and
 		(has_quest("Open Sesame")) and
 		(not done_quest("Open Sesame"))) then
-			complete_quest("Open Sesame", "I found the gates. The firmware server should lay beyond them.")
+			end_quest("Open Sesame", "I found the gates. The firmware server should lay beyond them.")
 	end
 </LuaCode>
 
@@ -1399,7 +1399,7 @@ Silent=0
 		Tania_surface = true
 		teleport_npc("40from35", "Tania")
 		change_obstacle_state("DesertGate-Inner", "closed")
-		add_diary_entry(_"Tania's Escape", _"Tania has made it to the surface for the first time in a very long time.")
+		update_quest(_"Tania's Escape", _"Tania has made it to the surface for the first time in a very long time.")
 	end
 	teleport("40from35")
 </LuaCode>
@@ -1448,8 +1448,7 @@ Silent=1
 	   (has_quest("Tutorial Movement")) and
 	   (not TutorialTom_move_red) then
 		TutorialTom_move_red = true
-		add_diary_entry("Tutorial Movement",_"Good, now move to the black grating to the East.")
-		display_big_message(_"Quest log updated")
+		update_quest("Tutorial Movement",_"Good, now move to the black grating to the East.")
 	end
 </LuaCode>
 * End of trigger *
@@ -1462,8 +1461,7 @@ Trigger at label="tutmove-2"
 	   (TutorialTom_move_red) and
 	   (not TutorialTom_move_black) then
 		TutorialTom_move_black = true
-		add_diary_entry("Tutorial Movement",_"Good, now talk to Tutorial Tom again.")
-		display_big_message(_"Quest log updated")
+		update_quest("Tutorial Movement",_"Good, now talk to Tutorial Tom again.")
 	end
 </LuaCode>
 * End of trigger *
