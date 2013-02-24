@@ -123,6 +123,8 @@ end
 
 
 npc_says("")
+display_big_message("Big Message")
+display_console_message("Console message, [b]blue[/b], not blue.")
 end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
