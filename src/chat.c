@@ -249,7 +249,7 @@ void chat_push_topic(const char *topic)
 		current_chat_context->topic_stack[++current_chat_context->topic_stack_slot] = strdup(topic);
 	} else {
 		ErrorMessage(__FUNCTION__,
-			     "The maximum depth of %hd topics has been maxed out.",
+			     "The maximum depth of %d topics has been maxed out.",
 			     PLEASE_INFORM, IS_WARNING_ONLY, CHAT_TOPIC_STACK_SIZE);
 	}
 }

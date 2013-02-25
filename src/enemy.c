@@ -955,7 +955,7 @@ static void start_gethit_animation(enemy * ThisRobot)
 	// hit, the gethit animation should be displayed, which we'll initiate here.
 	//
 	if ((last_gethit_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] - first_gethit_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] > 0)) {
-		if ((ThisRobot->animation_type == DEATH_ANIMATION)) {
+		if (ThisRobot->animation_type == DEATH_ANIMATION) {
 			DebugPrintf(-4, "\n%s(): WARNING: animation phase reset for INFOUT bot... ", __FUNCTION__);
 		}
 		ThisRobot->animation_phase = ((float)first_gethit_animation_image[Droidmap[ThisRobot->type].individual_shape_nr]) + 0.1;
@@ -1046,7 +1046,7 @@ static void MoveThisEnemy(enemy * ThisRobot)
  */
 static gps *enemy_get_target_position(enemy * ThisRobot)
 {
-	if ((ThisRobot->attack_target_type == ATTACK_TARGET_IS_PLAYER)) {
+	if (ThisRobot->attack_target_type == ATTACK_TARGET_IS_PLAYER) {
 		if (Me.invisible_duration > 0)
 			return NULL;
 		return &Me.pos;

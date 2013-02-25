@@ -1211,7 +1211,7 @@ void set_up_ordered_blitting_list(int mask)
 
 	insert_blasts_into_blitting_list(mask);
 
-	insert_move_cursor_into_blitting_list(mask);
+	insert_move_cursor_into_blitting_list();
 
 	insert_thrown_items_into_blitting_list(mask);
 
