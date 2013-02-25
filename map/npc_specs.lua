@@ -46,7 +46,6 @@ npc_list{
 	"InvaderBot",
 	"HF-FirmwareUpdateServer",
 	"HF-EntranceBot",
-	"Guy",
 	"Geist",
 	"Francis",
 	"Ewalds_296",
@@ -68,7 +67,8 @@ npc_list{
 	"Benjamin",
 	"Bender",
 	"AfterTakeover",
-	"614_cryo"}
+	"614_cryo",
+	"Guy"} -- check this dialog first until we can check every dialog independently
 
 npc_shop{
 name = "Stone",
