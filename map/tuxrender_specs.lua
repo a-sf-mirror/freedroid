@@ -19,17 +19,17 @@
 tux_animation {
   standing_keyframe = 24,
 
-  attack_duration = 0.55,
-  attack_first_keyframe = 0,
-  attack_last_keyframe = 13,
+  attack = { duration = 0.55,
+             first_keyframe = 0,
+             last_keyframe = 13 },
 
-  walk_distance = 1.2,
-  walk_first_keyframe  = 14,
-  walk_last_keyframe = 23,
+  walk = { distance = 1.2,
+           first_keyframe  = 14,
+           last_keyframe = 23 },
 
-  run_distance = 10.0/3.0,
-  run_first_keyframe = 25,
-  run_last_keyframe = 34
+  run = { distance = 10.0/3.0,
+          first_keyframe = 25,
+          last_keyframe = 34 }
 }
 
 ------------------------------------------------------------------------------
@@ -44,12 +44,12 @@ tux_animation {
 
 tux_rendering_config {
   motion_class_names = { "1hmelee", "2hranged", "1hranged", "2h_heavy_melee" },
-  head_part_default      = "iso_head",
-  torso_part_default     = "iso_torso",
-  weaponarm_part_default = "iso_weaponarm",
-  -- weapon_part_default = "", / No default value
-  shieldarm_part_default = "iso_shieldarm",
-  feet_part_default      = "iso_feet",
+  default_parts = { head = "iso_head",
+                    torso = "iso_torso",
+                    weaponarm = "iso_weaponarm",
+                    -- weapon = "", / No default value
+                    shieldarm = "iso_shieldarm",
+                    feet      = "iso_feet" },
   gun_muzzle_height      = 65
 }
 

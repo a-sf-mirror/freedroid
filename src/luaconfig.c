@@ -458,15 +458,15 @@ static int lua_tuxanimation_ctor(lua_State *L)
 	// Specification of the data structure to retrieve from the lua table
 	struct data_spec data_specs[] = {
 		{ "standing_keyframe",     "15",  INT_TYPE,   &tux_anim.standing_keyframe     },
-		{ "attack_duration",       "1.0", FLOAT_TYPE, &tux_anim.attack.duration       },
-		{ "attack_first_keyframe", "0",   INT_TYPE,   &tux_anim.attack.first_keyframe },
-		{ "attack_last_keyframe",  "-1",  INT_TYPE,   &tux_anim.attack.last_keyframe  },
-		{ "walk_distance",         "0.0", FLOAT_TYPE, &tux_anim.walk.distance         },
-		{ "walk_first_keyframe",   "0",   INT_TYPE,   &tux_anim.walk.first_keyframe   },
-		{ "walk_last_keyframe",    "-1",  INT_TYPE,   &tux_anim.walk.last_keyframe    },
-		{ "run_distance",          "0.0", FLOAT_TYPE, &tux_anim.run.distance          },
-		{ "run_first_keyframe",    "0",   INT_TYPE,   &tux_anim.run.first_keyframe    },
-		{ "run_last_keyframe",     "-1",  INT_TYPE,   &tux_anim.run.last_keyframe     },
+		{ "attack.duration",       "1.0", FLOAT_TYPE, &tux_anim.attack.duration       },
+		{ "attack.first_keyframe", "0",   INT_TYPE,   &tux_anim.attack.first_keyframe },
+		{ "attack.last_keyframe",  "-1",  INT_TYPE,   &tux_anim.attack.last_keyframe  },
+		{ "walk.distance",         "0.0", FLOAT_TYPE, &tux_anim.walk.distance         },
+		{ "walk.first_keyframe",   "0",   INT_TYPE,   &tux_anim.walk.first_keyframe   },
+		{ "walk.last_keyframe",    "-1",  INT_TYPE,   &tux_anim.walk.last_keyframe    },
+		{ "run.distance",          "0.0", FLOAT_TYPE, &tux_anim.run.distance          },
+		{ "run.first_keyframe",    "0",   INT_TYPE,   &tux_anim.run.first_keyframe    },
+		{ "run.last_keyframe",     "-1",  INT_TYPE,   &tux_anim.run.last_keyframe     },
 		{ NULL, NULL, 0, 0 }
 	};
 
@@ -487,14 +487,14 @@ static int lua_tuxrendering_config_ctor(lua_State *L)
 {
 	// Specification of the data structure to retrieve from the lua table
 	struct data_spec data_specs[] = {
-		{ "motion_class_names",     NULL,            STRING_ARRAY, &tux_rendering.motion_class_names },
-		{ "head_part_default",      "iso_head",      STRING_TYPE,  &tux_rendering.default_instances.head },
-		{ "torso_part_default",     "iso_torso",     STRING_TYPE,  &tux_rendering.default_instances.torso },
-		{ "weaponarm_part_default", "iso_weaponarm", STRING_TYPE,  &tux_rendering.default_instances.weaponarm },
-		{ "weapon_part_default",    NULL,            STRING_TYPE,  &tux_rendering.default_instances.weapon },
-		{ "shieldarm_part_default", "iso_shieldarm", STRING_TYPE,  &tux_rendering.default_instances.shieldarm },
-		{ "feet_part_default",      "iso_feet",      STRING_TYPE,  &tux_rendering.default_instances.feet },
-		{ "gun_muzzle_height",      "-60",           INT_TYPE,     &tux_rendering.gun_muzzle_height },
+		{ "motion_class_names",      NULL,            STRING_ARRAY, &tux_rendering.motion_class_names },
+		{ "default_parts.head",      "iso_head",      STRING_TYPE,  &tux_rendering.default_instances.head },
+		{ "default_parts.torso",     "iso_torso",     STRING_TYPE,  &tux_rendering.default_instances.torso },
+		{ "default_parts.weaponarm", "iso_weaponarm", STRING_TYPE,  &tux_rendering.default_instances.weaponarm },
+		{ "default_parts.weapon",    NULL,            STRING_TYPE,  &tux_rendering.default_instances.weapon },
+		{ "default_parts.shieldarm", "iso_shieldarm", STRING_TYPE,  &tux_rendering.default_instances.shieldarm },
+		{ "default_parts.feet",      "iso_feet",      STRING_TYPE,  &tux_rendering.default_instances.feet },
+		{ "gun_muzzle_height",       "-60",           INT_TYPE,     &tux_rendering.gun_muzzle_height },
 		{ NULL, NULL, 0, 0 }
 	};
 
