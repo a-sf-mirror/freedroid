@@ -31,6 +31,10 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
+tux_says("tux_says()", "NO_WAIT")
+npc_says("npc_says()", "NO_WAIT")
+cli_says("cli_says()", "NO_WAIT")
+npc_says("", "NO_WAIT")  -- extra linebreak for cli_says()
 
 function guy_fail(test, ...)
 	print[[ERROR! The following test failed:]]
@@ -126,6 +130,19 @@ teleport_npc("24-guy1")
 teleport_npc("24-guy2")
 teleport_npc("24-dude1", "Dude")
 teleport_npc("24-dude2", "Dude")
+
+--npc_says(get_skill("programming"))
+
+if (not Guy_programming) then
+	improve_skill("programming")
+end
+
+if (get_skill("programming") == 1) then
+	npc_says("SKILL 1 test succeeded", "NO_WAIT")
+	Guy_programming = true -- we cannot downgrade skills :(
+else
+	guy_fail("SKILL 1")
+end
 
 
 npc_says("")
