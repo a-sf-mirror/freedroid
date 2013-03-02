@@ -42,8 +42,8 @@ char *AllSkillTexts[NUMBER_OF_SKILL_LEVELS] = {
 	N_("master"),
 	N_("god"),
 	N_("haxx0r"),
-	N_("uber haxx0r"),
-	N_("l33t haxx0r")
+	N_("l33t haxx0r"),
+	N_("cheater")
 };
 
 //--------------------
