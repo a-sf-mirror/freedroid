@@ -24465,6 +24465,12 @@ x=40 y=54 name="24-droid8"
 x=46 y=54 name="24-freeze-tux-trap"
 x=43 y=59 name="24-obstacle-trigger"
 x=46 y=59 name="24-quest-label"
+x=42 y=20 name="24-guy2"
+x=42 y=19 name="24-guy1"
+x=40 y=19 name="24-dude1"
+x=40 y=20 name="24-dude2"
+x=41 y=18 name="24-tux1"
+x=41 y=21 name="24-tux2"
 /plabelinfolvl
 piteminfolvl
 it: n="Big kitchen knife"  X=1.500000  Y=1.500000  MDur=7  CDur=1.000000  AClip=0  Multi=1

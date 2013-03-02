@@ -69,7 +69,7 @@ else
 	guy_fail("ADD ITEM 3")
 end
 
-
+-- ru654
 --[[ NOTE we need del_item_equipped() or unequipp_item()
 del_item("Laser Scalpel")
 if (not has_item("Laser Scalpel")) then
@@ -120,6 +120,12 @@ else
 	guy_fail("COOL 1")
 end
 
+teleport("24-tux1")
+teleport("24-tux2")
+teleport_npc("24-guy1")
+teleport_npc("24-guy2")
+teleport_npc("24-dude1", "Dude")
+teleport_npc("24-dude2", "Dude")
 
 
 npc_says("")
