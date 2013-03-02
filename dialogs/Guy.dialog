@@ -90,6 +90,7 @@ else
 	guy_fail("DEL ITEM 2")
 end
 
+
 npc_faction("self", "Guy - self")
 npc_faction("ms", "Guy - ms")
 npc_faction("redguard", "Guy - redguard" )
@@ -152,6 +153,31 @@ else
 	guy_fail("PROGRAMM 1")
 end
 
+
+
+if (not has_quest("24_dude_test_quest")) then
+	npc_says("QUEST test 1 succeeded", "NO_WAIT")
+else
+	guy_fail("QUEST 1")
+end
+add_quest("24_dude_test_quest", "Add 24 dude quest.")
+if (has_quest("24_dude_test_quest")) then
+	npc_says("QUEST test 2 succeeded", "NO_WAIT")
+else
+	guy_fail("QUEST 2")
+end
+update_quest("24_dude_test_quest", "Update 24 dude quest.")
+if (not done_quest("24_dude_test_quest")) then
+	npc_says("QUEST test 3 succeeded", "NO_WAIT")
+else
+	guy_fail("QUEST 3")
+end
+complete_quest("24_dude_test_quest", "Complete 24 dude quest.")
+if (done_quest("24_dude_test_quest")) then
+	npc_says("QUEST test 4 succeeded", "NO_WAIT")
+else
+	guy_fail("QUEST 4")
+end
 
 npc_says("")
 display_big_message("Big Message")
