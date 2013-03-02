@@ -85,7 +85,7 @@ end
 
 del_item_backpack(".22 Automatic", 2)
 if (not has_item_backpack(".22 Automatic")) then
-	npc_says("DEL ITEM 2 test succeeded", "NO_WAIT")
+	npc_says("DEL ITEM test 2 succeeded", "NO_WAIT")
 else
 	guy_fail("DEL ITEM 2")
 end
@@ -104,13 +104,13 @@ heal_tux()
 hurt_tux(1)
 hurt_tux(-1)
 if (get_tux_hp() == 60) then
-	npc_says("HEALTH 1 test succeded", "NO_WAIT")
+	npc_says("HEALTH test 1 succeded", "NO_WAIT")
 else
 	guy_fail("HEALTH 1")
 end
 
 if (get_tux_max_hp() == 60) then
-	npc_says("HEALTH 2 test succeded", "NO_WAIT")
+	npc_says("HEALTH test 2 succeded", "NO_WAIT")
 else
 	guy_fail("HEALTH 2")
 end
@@ -119,7 +119,7 @@ end
 heat_tux(1)
 heat_tux(-1)
 if (get_tux_cool() == 100) then
-	npc_says("COOL 1 test succeeded", "NO_WAIT")
+	npc_says("COOL test 1 succeeded", "NO_WAIT")
 else
 	guy_fail("COOL 1")
 end
@@ -138,10 +138,18 @@ if (not Guy_programming) then
 end
 
 if (get_skill("programming") == 1) then
-	npc_says("SKILL 1 test succeeded", "NO_WAIT")
+	npc_says("SKILL test 1 succeeded", "NO_WAIT")
 	Guy_programming = true -- we cannot downgrade skills :(
 else
 	guy_fail("SKILL 1")
+end
+
+improve_program("Ricer CFLAGS")
+downgrade_program("Ricer CFLAGS")
+if (get_program_revision("Ricer CFLAGS") == 0) then
+	npc_says("PROGRAMM test 1 succeeded", "NO_WAIT")
+else
+	guy_fail("PROGRAMM 1")
 end
 
 
