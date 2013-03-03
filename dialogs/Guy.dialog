@@ -36,14 +36,6 @@ npc_says("npc_says()", "NO_WAIT")
 cli_says("cli_says()", "NO_WAIT")
 npc_says("", "NO_WAIT")  -- extra linebreak for cli_says()
 
-function guy_fail(test, ...)
-	print[[ERROR! The following test failed:]]
-print(test)
-	npc_says("%s failed!" ,test , "NO_WAIT")
-	end_dialog()
-	os.exit()
-end
-
 	next(0)
 </LuaCode>
 ----------------------------------------------------------------------

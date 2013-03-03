@@ -424,7 +424,7 @@ function get_random_bot_59()
 	return bot_59
 end
 
--- level 24, the debug level:
+-------------- level 24, the debug level ---------------
 function closelvl24doors()
 	change_obstacle_state("24door1", "closed")
 	change_obstacle_state("24door2", "closed")
@@ -461,4 +461,12 @@ function level24obstacles()
 	level24idcheck()
 	display_big_message(randobstacletype)
 	change_obstacle_type("24randobst", randobstacletype)
+end
+
+function guy_fail(test, ...)
+	print[[ERROR! The following test failed:]]
+	print(test)
+	npc_says("%s failed!" ,test , "NO_WAIT")
+	end_dialog()
+	os.exit()
 end
