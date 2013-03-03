@@ -27,10 +27,17 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
+---------------------------------------------------------- HAS_MET
+	if (not has_met("Guy")) then
+		npc_says("HAS MET test 1 succeeded", "NO_WAIT")
+	else
+		guyfail("HAS MET")
+	end
 	npc_says("This text is only shown as you speak to this character the first time.")
 </LuaCode>
 
 <EveryTime LuaCode>
+
 tux_says("tux_says()", "NO_WAIT")
 npc_says("npc_says()", "NO_WAIT")
 cli_says("cli_says()", "NO_WAIT")
@@ -165,6 +172,7 @@ Nr=0 Text=_"RUNNING TEST NODE"
 		guy_fail("QUEST 4")
 	end
 
+	set_death_item("Pandora's Cube")
 	npc_says("")
 	display_big_message("Big Message")
 	display_console_message("Console message, [b]blue[/b], not blue.")
