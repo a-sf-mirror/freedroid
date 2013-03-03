@@ -93,4 +93,5 @@ doc:
 	doxygen Doxyfile
 
 cppcheck:
+	cppcheck --version
 	cppcheck gluem croppy src --enable=performance,portability,unusedFunction,missingInclude --force --quiet
