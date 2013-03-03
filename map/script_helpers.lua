@@ -176,12 +176,14 @@ end
 
 -- Quest functions
 function add_quest(quest, text)
-	if done_quest(quest) or
-	   has_quest(quest) then
-		print("\n\tSEVERE ERROR")
-		print("\tTried to assign already assigned quest!")
-		print("\tWe will continue execution, quest is:")
-		print(quest)
+	if (not running_benchmark()) then
+		if done_quest(quest) or
+		   has_quest(quest) then
+			print("\n\tSEVERE ERROR")
+			print("\tTried to assign already assigned quest!")
+			print("\tWe will continue execution, quest is:")
+			print(quest)
+		end
 	end
 	assign_quest(quest, text)
 	play_sound("effects/Mission_Status_Change_Sound_0.ogg")

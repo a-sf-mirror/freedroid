@@ -1118,6 +1118,11 @@ static int lua_run_from_dialog(lua_State *L)
 	return 1;
 }
 
+static int lua_running_benchmark(lua_State *L)
+{
+	lua_pushboolean(L, (do_benchmark) != NULL);
+	return 1;
+}
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1386,6 +1391,10 @@ luaL_Reg lfuncs[] = {
 	// if (run_from_dialog()) then
 	// to check if certain code was run from inside a dialog or not
 	{"run_from_dialog", lua_run_from_dialog},
+	// returns if we are running a benchmark e.g. the dialog validator
+	// or not
+	// USE WITH CARE
+	{"running_benchmark", lua_running_benchmark},
 
 	{NULL, NULL}
 };

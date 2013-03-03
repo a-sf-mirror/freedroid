@@ -37,7 +37,6 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-
 tux_says("tux_says()", "NO_WAIT")
 npc_says("npc_says()", "NO_WAIT")
 cli_says("cli_says()", "NO_WAIT")
