@@ -128,15 +128,15 @@ Nr=0 Text=_"RUNNING TEST NODE"
 	teleport_npc("24-dude2", "Dude")
 ---------------------------------------------------------- SKILLS
 	--npc_says(get_skill("programming"))
-	if (not Guy_programming) then
+	if (not has_met("Guy")) then
 		improve_skill("programming")
-	end
-
-	if (get_skill("programming") == 1) then
-		npc_says("SKILL test 1 succeeded", "NO_WAIT")
-		Guy_programming = true -- we cannot downgrade skills :(
+		if (get_skill("programming") == 1) then
+			npc_says("SKILL test 1 succeeded", "NO_WAIT")
+		else
+			guy_fail("SKILL 1")
+		end
 	else
-		guy_fail("SKILL 1")
+		tux_says("Skipping SKILL test 1 due to missing possibility to downgrade skills!")
 	end
 ---------------------------------------------------------- PROGRAMMS
 	improve_program("Ricer CFLAGS")
@@ -147,28 +147,39 @@ Nr=0 Text=_"RUNNING TEST NODE"
 		guy_fail("PROGRAMM 1")
 	end
 ---------------------------------------------------------- QUESTS
-	if (not has_quest("24_dude_test_quest")) then
-		npc_says("QUEST test 1 succeeded", "NO_WAIT")
+	if (not has_met("Guy")) then
+		if (not has_quest("24_dude_test_quest")) then
+			npc_says("QUEST test 1 succeeded", "NO_WAIT")
+		else
+			guy_fail("QUEST 1")
+		end
+		add_quest("24_dude_test_quest", "Add 24 dude quest.")
 	else
-		guy_fail("QUEST 1")
+		tux_says("Skipping QUEST test 1 due to missing possibility to remove quests!")
 	end
-	add_quest("24_dude_test_quest", "Add 24 dude quest.")
+
 	if (has_quest("24_dude_test_quest")) then
 		npc_says("QUEST test 2 succeeded", "NO_WAIT")
 	else
 		guy_fail("QUEST 2")
 	end
 	update_quest("24_dude_test_quest", "Update 24 dude quest.")
-	if (not done_quest("24_dude_test_quest")) then
-		npc_says("QUEST test 3 succeeded", "NO_WAIT")
+
+	if (not has_met("Guy")) then
+		if (not done_quest("24_dude_test_quest")) then
+			npc_says("QUEST test 3 succeeded", "NO_WAIT")
+		else
+			guy_fail("QUEST 3")
+		end
+		complete_quest("24_dude_test_quest", "Complete 24 dude quest.")
+		if (done_quest("24_dude_test_quest")) then
+			npc_says("QUEST test 4 succeeded", "NO_WAIT")
+		else
+			guy_fail("QUEST 4")
+		end
 	else
-		guy_fail("QUEST 3")
-	end
-	complete_quest("24_dude_test_quest", "Complete 24 dude quest.")
-	if (done_quest("24_dude_test_quest")) then
-		npc_says("QUEST test 4 succeeded", "NO_WAIT")
-	else
-		guy_fail("QUEST 4")
+		tux_says("Skipping QUEST test 3 due to missing possibility to remove quests!")
+		tux_says("Skipping QUEST test 4 due to missing possibility to remove quests!")
 	end
 
 	set_death_item("Pandora's Cube")
