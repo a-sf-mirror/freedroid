@@ -178,7 +178,7 @@ end
 function add_quest(quest, text)
 	if done_quest(quest) or
 	   has_quest(quest) then
-		print("\tSEVERE ERROR")
+		print("\n\tSEVERE ERROR")
 		print("\tTried to assign already assigned quest!")
 		print("\tWe will continue execution, quest is:")
 		print(quest)
