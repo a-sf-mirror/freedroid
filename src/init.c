@@ -47,7 +47,6 @@
 #endif
 
 void Init_Game_Data(void);
-void Get_Bullet_Data(char *DataPointer);
 void UpdateCountersForThisFrame();
 
 static struct {
@@ -235,64 +234,6 @@ void PlayATitleFile(char *Filename)
 	free(TitleFilePointer);
 	free(background_name);
 };				// void PlayATitleFile ( char* Filename )
-
-/*----------------------------------------------------------------------
- * This function reads in all the bullet data from the freedroid.ruleset file,
- * but IT DOES NOT LOAD THE FILE, IT ASSUMES IT IS ALREADY LOADED and
- * it only receives a pointer to the start of the bullet section from
- * the calling function.
- ----------------------------------------------------------------------*/
-void Get_Bullet_Data(char *DataPointer)
-{
-	int i;
-	int BulletIndex = 0;
-
-#define NEW_BULLET_TYPE_BEGIN_STRING "** Start of new bullet specification subsection **"
-#define NEW_BULLET_TYPE_END_STRING "** End of new bullet specification subsection **"
-
-	DebugPrintf(1, "\n\nStarting to read bullet data...\n\n");
-	// At first, we must allocate memory for the droid specifications.
-	// How much?  That depends on the number of droids defined in freedroid.ruleset.
-	// So we have to count those first.  ok.  lets do it.
-
-	Number_Of_Bullet_Types = CountStringOccurences(DataPointer, NEW_BULLET_TYPE_BEGIN_STRING);
-
-	// Not that we know how many bullets are defined in freedroid.ruleset, we can allocate
-	// a fitting amount of memory, but of course only if the memory hasn't been allocated
-	// already!!!
-	//
-	// If we would do that in any case, every Init_Game_Data call would destroy the loaded
-	// image files AND MOST LIKELY CAUSE A SEGFAULT!!!
-	//
-	if (Bulletmap == NULL) {
-		i = sizeof(bulletspec);
-		Bulletmap = MyMalloc(i * (Number_Of_Bullet_Types + 1) + 1);
-		DebugPrintf(1,
-			    "\nvoid Get_Bullet_Data( char* DatapPointer ) : We have counted %d different bullet types in the game data file.",
-			    Number_Of_Bullet_Types);
-		// DebugPrintf ( 0 , "\nMEMORY HAS BEEN ALLOCATED.\nTHE READING CAN BEGIN.\n" );
-		// getchar();
-	}
-	// Now we start to read the values for each bullet type:
-	// 
-	char *BulletPointer = DataPointer;
-
-	while ((BulletPointer = strstr(BulletPointer, NEW_BULLET_TYPE_BEGIN_STRING)) != NULL) {
-		char *EndBulletSection = LocateStringInData(BulletPointer, NEW_BULLET_TYPE_END_STRING);
-		DebugPrintf(1, "\n\nFound another Bullet specification entry!  Lets add that to the others!");
-		BulletPointer++;	// to avoid doubly taking this entry
-		Bulletmap[BulletIndex].name = ReadAndMallocStringFromData(BulletPointer, "Bullet identification: \"", "\"");
-		ReadValueFromStringWithDefault(BulletPointer, "Number of phases: ", "%d", "1", &Bulletmap[BulletIndex].phases, EndBulletSection);
-		ReadValueFromStringWithDefault(BulletPointer, "Phases per second: ", "%lf", "1", &Bulletmap[BulletIndex].phase_changes_per_second, EndBulletSection);
-		Bulletmap[BulletIndex].sound = ReadAndMallocStringFromDataOptional(BulletPointer, "Sound to play: \"", "\"");
-		char *blast_name = ReadAndMallocStringFromDataOptional(BulletPointer, "Blast: \"", "\"");
-		Bulletmap[BulletIndex].blast_type = get_blast_type_by_name(blast_name);
-		free(blast_name);
-		BulletIndex++;
-	}
-
-	DebugPrintf(1, "\nEnd of Get_Bullet_Data ( char* DataPointer ) reached.");
-}
 
 /**
  * This function reads the descriptions of the different programs
@@ -938,10 +879,8 @@ void Init_Game_Data()
 
 	// Load the bullet data (required for the item archtypes to load)
 	//
-	find_file("bullet_archetypes.dat", MAP_DIR, fpath, 0);
-	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
-	Get_Bullet_Data(Data);
-	free(Data);
+	find_file("bullet_specs.lua", MAP_DIR, fpath, 0);
+	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load Tux animation and rendering specifications.
 	tux_rendering_load_specs("tuxrender_specs.lua");

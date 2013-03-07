@@ -778,6 +778,44 @@ static int lua_leveleditor_obstacle_category_ctor(lua_State *L)
 	return 0;
 }
 
+/*
+ * Get one bullet from the top of the Lua stack
+ */
+static void get_one_bullet(lua_State *L, void *data)
+{
+	struct bulletspec *bullet = (struct bulletspec *)data;
+	char *bullet_blast_type;
+
+	struct data_spec data_specs[] = {
+		{ "name",              NULL, STRING_TYPE, &(bullet->name)                     },
+		{ "sound",             NULL, STRING_TYPE, &(bullet->sound)                    },
+		{ "phases",            "1",  INT_TYPE,    &(bullet->phases)                   },
+		{ "phases_per_second", "1",  DOUBLE_TYPE, &(bullet->phase_changes_per_second) },
+		{ "blast_type",        NULL, STRING_TYPE, &bullet_blast_type                  },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	fill_structure_from_table(L, data_specs);
+
+	bullet->blast_type = get_blast_type_by_name(bullet_blast_type);
+	free(bullet_blast_type);
+}
+
+static int lua_bullet_list_ctor(lua_State *L)
+{
+	struct dynarray bullet_specs = { 0 };
+
+	fill_dynarray_from_table(L, &bullet_specs, sizeof(struct bulletspec), get_one_bullet);
+
+	// Copy the array of bulletspecs
+	Number_Of_Bullet_Types = bullet_specs.size;
+	Bulletmap = (struct bulletspec *) MyMalloc(sizeof(struct bulletspec) * Number_Of_Bullet_Types);
+	memcpy(Bulletmap, bullet_specs.arr, sizeof(struct bulletspec) * Number_Of_Bullet_Types);
+	dynarray_free(&bullet_specs);
+
+	return 0;
+}
+
 static int lua_blast_ctor(lua_State *L)
 {
 	static int blast_index = 0;
@@ -979,6 +1017,7 @@ void init_luaconfig()
 		{"tux_ordering", lua_tuxordering_ctor},
 		{"obstacle", lua_obstacle_ctor},
 		{"leveleditor_obstacle_category", lua_leveleditor_obstacle_category_ctor},
+		{"bullet_list", lua_bullet_list_ctor},
 		{"blast", lua_blast_ctor},
 		{"underlay_floor_tile_list", lua_underlay_floor_tile_list_ctor},
 		{"overlay_floor_tile_list", lua_overlay_floor_tile_list_ctor},
