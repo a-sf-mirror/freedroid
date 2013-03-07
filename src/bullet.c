@@ -240,8 +240,10 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
 	// cause later, after the bullet is deleted, it will be hard to know
 	// the correct location ;)
 	//
-	if (ShallWeStartABlast)
-		StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, Bulletmap[CurBullet->type].blast_type, CurBullet->damage, CurBullet->faction, NULL);
+	if (ShallWeStartABlast) {
+		struct bulletspec *bullet_spec = dynarray_member(&bullet_specs, CurBullet->type, sizeof(struct bulletspec));
+		StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, bullet_spec->blast_type, CurBullet->damage, CurBullet->faction, NULL);
+	}
 
 	CurBullet->type = INFOUT;
 	CurBullet->time_in_seconds = 0;
@@ -848,11 +850,13 @@ void CheckBlastCollisions(int num)
 int GetBulletByName(const char *bullet_name)
 {
 	int i;
-	for (i=0; i < Number_Of_Bullet_Types; i++) {
-		if (!Bulletmap[i].name)
+	for (i=0; i < bullet_specs.size; i++) {
+		struct bulletspec *bullet_spec = dynarray_member(&bullet_specs, i, sizeof(struct bulletspec));
+
+		if (!bullet_spec->name)
 			return 0;
 
-		if (!strcmp(bullet_name, Bulletmap[i].name))
+		if (!strcmp(bullet_name, bullet_spec->name))
 			return i;
 	}
 	ErrorMessage(__FUNCTION__, "\

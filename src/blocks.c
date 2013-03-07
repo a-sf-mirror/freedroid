@@ -344,17 +344,17 @@ void iso_load_bullet_surfaces(void)
 	int i, j, k;
 	char constructed_filename[5000];
 
-	DebugPrintf(1, "Number_Of_Bullet_Types: %d.", Number_Of_Bullet_Types);
+	for (i = 0; i < bullet_specs.size; i++) {
+		struct bulletspec *bullet_spec = dynarray_member(&bullet_specs, i, sizeof(struct bulletspec));
 
-	for (i = 0; i < Number_Of_Bullet_Types; i++) {
-		if (strlen(Bulletmap[i].name) && strstr(Bulletmap[i].name, "NO BULLET IMAGE"))
+		if (strlen(bullet_spec->name) && strstr(bullet_spec->name, "NO BULLET IMAGE"))
 			continue;
 
-		for (j = 0; j < Bulletmap[i].phases; j++) {
+		for (j = 0; j < bullet_spec->phases; j++) {
 			for (k = 0; k < BULLET_DIRECTIONS; k++) {
-				sprintf(constructed_filename, "bullets/iso_bullet_%s_%02d_%04d.png", Bulletmap[i].name, k, j + 1);
+				sprintf(constructed_filename, "bullets/iso_bullet_%s_%02d_%04d.png", bullet_spec->name, k, j + 1);
 
-				load_image(&Bulletmap[i].image[k][j], constructed_filename, TRUE);
+				load_image(&bullet_spec->image[k][j], constructed_filename, TRUE);
 			}
 		}
 	}

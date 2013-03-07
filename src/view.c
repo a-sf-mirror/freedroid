@@ -2651,16 +2651,18 @@ void PutBullet(int bullet_index, int mask)
 		return;
 
 	// DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
-	if ((CurBullet->type >= Number_Of_Bullet_Types) || (CurBullet->type < 0)) {
+	if ((CurBullet->type >= bullet_specs.size) || (CurBullet->type < 0)) {
 		fprintf(stderr, "\nPutBullet:  bullet type received: %d.", CurBullet->type);
 		fflush(stderr);
 		ErrorMessage(__FUNCTION__, "\
 There was a bullet to be blitted of a type that does not really exist.", PLEASE_INFORM, IS_FATAL);
 	}
 
-	PhaseOfBullet = CurBullet->time_in_seconds * Bulletmap[CurBullet->type].phase_changes_per_second;
+	struct bulletspec *bullet_spec = dynarray_member(&bullet_specs, CurBullet->type, sizeof(struct bulletspec));
 
-	PhaseOfBullet = PhaseOfBullet % Bulletmap[CurBullet->type].phases;
+	PhaseOfBullet = CurBullet->time_in_seconds * bullet_spec->phase_changes_per_second;
+
+	PhaseOfBullet = PhaseOfBullet % bullet_spec->phases;
 	// DebugPrintf( 0 , "\nPhaseOfBullet: %d.", PhaseOfBullet );
 
 	direction_index = ((CurBullet->angle + 360.0 + 360 / (2 * BULLET_DIRECTIONS)) * BULLET_DIRECTIONS / 360);
@@ -2679,7 +2681,7 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
 	if (mask & ZOOM_OUT)
 		scale = lvledit_zoomfact_inv();
 	if (IsVisible(&vpos)) {
-		struct image *bullet_image = &Bulletmap[CurBullet->type].image[direction_index][PhaseOfBullet];
+		struct image *bullet_image = &bullet_spec->image[direction_index][PhaseOfBullet];
 		bullet_image->offset_y -= CurBullet->height;
 		display_image_on_map(bullet_image, vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(scale));
 		bullet_image->offset_y += CurBullet->height;

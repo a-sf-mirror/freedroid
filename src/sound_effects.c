@@ -384,13 +384,15 @@ void fire_bullet_sound(int BulletType, struct gps *shooter_pos)
 	if (!sound_on)
 		return;
 
-	if (!Bulletmap[BulletType].sound) {
+	struct bulletspec *bullet_spec = dynarray_member(&bullet_specs, BulletType, sizeof(struct bulletspec));
+
+	if (!bullet_spec->sound) {
 		play_melee_weapon_missed_sound(shooter_pos);
 		return;
 	}
 
 	char sound_file[100] = "effects/bullets/";
-	strcat(sound_file, Bulletmap[BulletType].sound);
+	strcat(sound_file, bullet_spec->sound);
 
 	play_sound_at_position(sound_file, &Me.pos, shooter_pos);
 }

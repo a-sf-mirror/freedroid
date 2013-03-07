@@ -879,6 +879,7 @@ void Init_Game_Data()
 
 	// Load the bullet data (required for the item archtypes to load)
 	//
+	dynarray_free(&bullet_specs);
 	find_file("bullet_specs.lua", MAP_DIR, fpath, 0);
 	run_lua_file(LUA_CONFIG, fpath);
 

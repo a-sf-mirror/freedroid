@@ -56,7 +56,6 @@ EXTERN float RangedRechargeMultiplierTable[];
 EXTERN spell_skill_spec *SpellSkillMap;
 EXTERN tux_t Me;		/* the influence data */
 EXTERN droidspec *Droidmap;
-EXTERN bulletspec *Bulletmap;
 EXTERN blastspec Blastmap[ALLBLASTTYPES];
 EXTERN int skip_initial_menus;
 EXTERN int number_of_skills;
@@ -200,7 +199,6 @@ EXTERN light_radius_config LightRadiusConfig;
 #else
 #define EXTERN extern
 #endif
-EXTERN int Number_Of_Bullet_Types;
 EXTERN SDL_Surface *Screen;
 EXTERN SDL_Surface *StoredMenuBackground[2];
 EXTERN int mouse_cursor;
@@ -384,6 +382,15 @@ EXTERN struct {
 #define IMAGE_SCALE_RGB_TRANSFO(SCALE, R, G, B) set_image_transformation(SCALE, SCALE, R, G, B, 1.0, 0)
 #define IMAGE_SCALE_TRANSFO(SCALE) IMAGE_SCALE_RGB_TRANSFO(SCALE, 1.0, 1.0, 1.0)
 #define IMAGE_NO_TRANSFO IMAGE_SCALE_TRANSFO(1.0)
+
+#undef EXTERN
+#ifdef _bullet_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+
+EXTERN struct dynarray bullet_specs;
 
 #endif				// _global_h
 

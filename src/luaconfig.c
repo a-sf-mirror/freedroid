@@ -803,15 +803,7 @@ static void get_one_bullet(lua_State *L, void *data)
 
 static int lua_bullet_list_ctor(lua_State *L)
 {
-	struct dynarray bullet_specs = { 0 };
-
 	fill_dynarray_from_table(L, &bullet_specs, sizeof(struct bulletspec), get_one_bullet);
-
-	// Copy the array of bulletspecs
-	Number_Of_Bullet_Types = bullet_specs.size;
-	Bulletmap = (struct bulletspec *) MyMalloc(sizeof(struct bulletspec) * Number_Of_Bullet_Types);
-	memcpy(Bulletmap, bullet_specs.arr, sizeof(struct bulletspec) * Number_Of_Bullet_Types);
-	dynarray_free(&bullet_specs);
 
 	return 0;
 }

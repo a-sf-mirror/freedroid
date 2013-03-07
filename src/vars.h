@@ -70,8 +70,6 @@ int number_of_skills;
 
 droidspec *Droidmap;
 
-bulletspec *Bulletmap;
-
 blastspec Blastmap[ALLBLASTTYPES];
 
 char font_switchto_red[2] = { 1, 0 };
