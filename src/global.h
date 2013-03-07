@@ -38,7 +38,6 @@ extern char *freedroid_version;
 #else
 #define EXTERN extern
 
-EXTERN struct dynarray obstacle_map;
 EXTERN float FPSover1;
 EXTERN float FPSover10;
 EXTERN float FPSover100;
