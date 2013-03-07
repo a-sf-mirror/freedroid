@@ -88,7 +88,7 @@ void dynarray_add(struct dynarray *array, void *data, size_t membersize)
 {
 	array->size++;
 
-	if (array->size >= array->capacity) {
+	if (array->size > array->capacity) {
 		dynarray_resize(array, array->size * 2, membersize);
 	}
 
