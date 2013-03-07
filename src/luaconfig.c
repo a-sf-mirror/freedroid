@@ -392,6 +392,47 @@ static void fill_structure_from_table(lua_State *L, struct data_spec *data_specs
 }
 
 /**
+ * Fill a dynarray content from a table on the Lua stack, using a callback
+ * function to extract each element.
+ *
+ * \param L          Lua state.
+ * \param array      The dynarray to be filled
+ * \param datasize   Size (in bytes) of an element of the dynarray
+ * \param extract_cb Callback function, called to extract an element from the Lua stack
+ */
+void fill_dynarray_from_table(lua_State *L, struct dynarray *array, int datasize, void (*extract_cb)(lua_State *, void *))
+{
+	if (lua_type(L, -1) != LUA_TTABLE) {
+		ErrorMessage(__FUNCTION__, "A Lua table is expected, but was not found", PLEASE_INFORM, IS_FATAL);
+	}
+	if (lua_rawlen(L, -1) < 1) {
+		dynarray_free(array);
+		return;
+	}
+
+	// Use the length of the Lua table (i.e the number of elements in the table)
+	// to set the capacity of the dynarray.
+	dynarray_init(array, lua_rawlen(L, -1), datasize);
+
+	// This function has no idea of the type of the data stored in the dynarray.
+	// However we only need to know its size in order to use an opaque data
+	// that will be filled by extract_cb and 'memcopied' into the dynarray.
+	void *data = MyMalloc(datasize);
+
+	// For each element in the Lua table, call extract_cb to fill the data and
+	// add it to the dynarray.
+	lua_pushnil(L);
+	while (lua_next(L, -2) != 0) {
+		extract_cb(L, data);
+		dynarray_add(array, data, datasize);
+		lua_pop(L, 1);
+	}
+	lua_pop(L, 1);
+
+	free(data);
+}
+
+/**
  * Addon constructor
  */
 static int lua_register_addon(lua_State *L)
