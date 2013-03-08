@@ -1123,6 +1123,16 @@ static int lua_running_benchmark(lua_State *L)
 	lua_pushboolean(L, (do_benchmark) != NULL);
 	return 1;
 }
+
+
+static int lua_switch_background_music_to(lua_State *L)
+{
+	char *filename = luaL_checkstring(L, 1);
+	SwitchBackgroundMusicTo(filename);
+	return 0;
+}
+//void SwitchBackgroundMusicTo(char *filename_raw);
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1395,6 +1405,13 @@ luaL_Reg lfuncs[] = {
 	// or not
 	// USE WITH CARE
 	{"running_benchmark", lua_running_benchmark},
+	/* switch_background_music("file")
+	 * path has to originate from /sound/music , e.g.
+	 * play_sound("menu.ogg")
+	 */
+	{"switch_background_music", lua_switch_background_music_to},
+
+
 
 	{NULL, NULL}
 };
