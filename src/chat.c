@@ -982,12 +982,12 @@ int validate_dialogs()
 		chat_push_context(dummy_context);
 
 		if (dummy_context->initialization_code && strlen(dummy_context->initialization_code)) {
-			printf("\tinit code\n");
+			printf("\tFirstTime code\n");
 			run_lua(LUA_DIALOG, dummy_context->initialization_code);
 		}
 
 		if (dummy_context->startup_code && strlen(dummy_context->startup_code)) {
-			printf("\tstartup code\n");
+			printf("\tEveryTime code\n");
 			run_lua(LUA_DIALOG, dummy_context->startup_code);
 		}
 
