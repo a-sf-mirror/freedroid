@@ -4433,6 +4433,21 @@ Item motion class="1hranged"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
+
+** Start of new item specification subsection **
+Item name=_"PC LOAD LETTER"
+inventory_size_x=1
+inventory_size_y=1
+Item min class for drop=-1
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="stock_certificate"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="stock_certificate/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text=_"An envelop saying 'PC LOAD LETTERS'. I have no idea what that means..."
+** End of new item specification subsection **
+
 /**********************************************************************************************************
  *       Cheat items                                                                              *
  **********************************************************************************************************/
