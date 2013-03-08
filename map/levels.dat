@@ -24414,6 +24414,8 @@ t1 x42.00 y10.50
 t1 x42.00 y13.50
 t1 x42.00 y12.50
 t1 x42.00 y11.50
+t246 x44.52 y20.52
+t6 x44.50 y19.00
 /obsdata
 plabelinfolvl
 x=42 y=31 name="24close2"
@@ -24682,6 +24684,15 @@ idx=528 type=32 data={
 }
 idx=529 type=32 data={
 	less than sign
+}
+idx=691 type=30 data={
+	24_guy_sign
+}
+idx=691 type=32 data={
+	Guy signmessage A
+}
+idx=692 type=30 data={
+	24_guy_door
 }
 /obstacleextensions
 wp

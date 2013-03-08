@@ -182,6 +182,34 @@ Nr=0 Text=_"RUNNING TEST NODE"
 		tux_says("Skipping QUEST test 4 due to missing possibility to remove quests!")
 	end
 
+---------------------------------------------------------- OBSTACLES
+
+	change_obstacle_message("24_guy_sign", "Guy signmessage B")
+	display_big_message("Sign message changed from")
+	display_big_message("Guy signmessage A' to 'Guy signmessage B'")
+
+	if (cmp_obstacle_state("24_guy_door", "opened")) then
+		npc_says("OBSTACLE test 1 succeeded", "NO_WAIT")
+	else
+		guy_fail("OBSTACLE 1")
+	end
+	change_obstacle_state("24_guy_door", "closed")
+	if (cmp_obstacle_state("24_guy_door", "closed")) then
+		npc_says("OBSTACLE test 2 succeeded", "NO_WAIT")
+	else
+		guy_fail("OBSTACLE 2")
+	end
+	change_obstacle_state("24_guy_door", "opened") -- 6 = door
+	change_obstacle_type("24_guy_door", "1")
+	if (get_obstacle_type("24_guy_door") == 1) then
+		npc_says("OBSTACLE test 3 succeeded", "NO_WAIT")
+	else
+		guy_fail("OBSTACLE 3")
+	end
+	change_obstacle_type("24_guy_door", "6") -- set it back to door
+
+---------------------------------------------------------- OTHER
+
 	set_death_item("Pandora's Cube")
 	npc_says("")
 	display_big_message("Big Message")
