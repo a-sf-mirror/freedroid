@@ -62,16 +62,10 @@ enum {
 	IS_WARNING_ONLY = 0,
 	IS_FATAL = 1
 };
-enum {
-	MENU_MODE_FAST = 2,
-	MENU_MODE_DEFAULT,
-	MENU_MODE_DOUBLE,
-};
 
 enum {
 	COLLISION_TYPE_NONE = 1,
 	COLLISION_TYPE_RECTANGLE = 2,
-	COLLISION_TYPE_CIRCLE = 3
 };
 
 enum {
@@ -105,8 +99,6 @@ enum {
 #define NUMBER_OF_SHADOW_IMAGES 20
 
 #define MAX_OBSTACLES_ON_MAP 4000
-#define MAX_OBSTACLE_NAMES_PER_LEVEL 100
-#define MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL 100
 
 #define FLOOR_TILES_VISIBLE_AROUND_TUX ((GameConfig . screen_width >= 1024 ? 13 : GameConfig . screen_width >= 800 ? 9 : 7))
 #define MAX_ITEMS_PER_LEVEL 300
@@ -128,8 +120,6 @@ enum {
 #define UNIVERSAL_SOCKET_COST 400
 #define ARMOUR_DURABILITYLOSS_PERCENTAGE_WHEN_HIT 30
 #define WEAPON_DURABILITYLOSS_PERCENTAGE_WHEN_USED 10
-
-#define CHAT_DEBUG_LEVEL 1
 
 #define MAX_BIG_SCREEN_MESSAGES 10
 
@@ -211,7 +201,6 @@ enum {
 	IS_VOLATILE = 1024	/* This obstacle vanishes when level is respawned. */
 };
 
-#define AUTOMAP_ZOOM_OUT_FACT 8.0
 
 //--------------------
 // Constants for Paths and names of Data-files
@@ -234,9 +223,6 @@ enum {
 #define SKILL_LEVEL_BUTTON_HEIGHT 32
 #define SKILL_LEVEL_BUTTON_WIDTH 30
 
-#define NUMBER_OF_ITEMS_ON_ONE_SCREEN 4
-#define ITEM_MENU_DISTANCE 80
-#define ITEM_FIRST_POS_Y 130
 
 #define INITIAL_BLOCK_WIDTH	64
 #define INITIAL_BLOCK_HEIGHT	64
@@ -261,21 +247,15 @@ enum {
 // dimensions of the droids as required for functions NotPassable() and CheckEnemyCollsion() )
 //
 #define DROIDRADIUSXY	        (7*2/64.0)
-#define BULLET_BULLET_COLLISION_DIST (10/64.0)
 
 #define TAKEOVER_BACKGROUND_MUSIC_SOUND "Bleostrada.ogg"
 #define MENU_BACKGROUND_MUSIC_SOUND "menu.ogg"
-#define BIGFIGHT_BACKGROUND_MUSIC_SOUND "hellforce.ogg"
 #define SILENCE (NULL)
-enum _sounds {
-	ERRORSOUND = 0,
-};
 
 //--------------------
 // The sounds when the influencers energy is low or when he is in transfer mode
 // occur periodically.  These constants specify which intervals are to be used
 // for these periodic happenings...
-#define CRY_SOUND_INTERVAL 2
 
 #define MAX_DIALOGUE_OPTIONS_IN_ROSTER 100
 #define CHAT_TOPIC_STACK_SIZE 10
@@ -365,7 +345,7 @@ enum {
 	LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_PUSHED,
 	LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF,
 	LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF_PUSHED,
-        LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON,
+	LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON,
 	LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_PUSHED,
 	LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_OFF,
 	LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_OFF_PUSHED,
@@ -447,10 +427,6 @@ enum {
 	MAX_MOUSE_PRESS_BUTTONS
 };
 
-#define CHAT_SUBDIALOG_WINDOW_X ((260)*GameConfig . screen_width/640.0)
-#define CHAT_SUBDIALOG_WINDOW_Y ((35)*GameConfig . screen_height/480.0)
-#define CHAT_SUBDIALOG_WINDOW_W ((337)*GameConfig . screen_width/640.0)
-#define CHAT_SUBDIALOG_WINDOW_H ((225)*GameConfig . screen_height/480.0)
 
 #define STR_X 90
 #define STR_Y 140
@@ -607,7 +583,6 @@ enum item_quality {
 	GOOD_QUALITY = 2
 };
 
-#define MAX_BULLET_DEFS 16
 
 //--------------------
 // explosion types
@@ -666,9 +641,7 @@ enum _enemy_combat_target_codes {
 	ATTACK_TARGET_IS_PLAYER = 102,
 	ATTACK_TARGET_IS_NOTHING = 103
 };
-enum {
-	MOUSE_CURSOR_ARROW_SHAPE = -402
-};
+
 enum {
 	TRANSPARENCY_NONE = 0,
 	TRANSPARENCY_FOR_WALLS = 10
