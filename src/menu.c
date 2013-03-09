@@ -753,7 +753,7 @@ static void RunMenu(int is_startup)
 	Activate_Conservative_Frame_Computation();
 	if (is_startup) {
 		// Can the music be disabled by a submenu ?
-		SwitchBackgroundMusicTo(MENU_BACKGROUND_MUSIC_SOUND);
+		SwitchBackgroundMusicTo("menu.ogg");
 		SDL_SetClipRect(Screen, NULL);
 
 		if (skip_initial_menus && Single_Player_Menu())

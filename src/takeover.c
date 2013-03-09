@@ -547,7 +547,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 
 	while (SpacePressed() || MouseLeftPressed()) ;	// make sure space is release before proceed 
 
-	SwitchBackgroundMusicTo(TAKEOVER_BACKGROUND_MUSIC_SOUND);
+	SwitchBackgroundMusicTo("Bleostrada.ogg");
 
 	while (!menu_finished) {
 		show_droid_info(target->type);

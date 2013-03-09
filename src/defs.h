@@ -248,8 +248,6 @@ enum {
 //
 #define DROIDRADIUSXY	        (7*2/64.0)
 
-#define TAKEOVER_BACKGROUND_MUSIC_SOUND "Bleostrada.ogg"
-#define MENU_BACKGROUND_MUSIC_SOUND "menu.ogg"
 #define SILENCE (NULL)
 
 //--------------------
