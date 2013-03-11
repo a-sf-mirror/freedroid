@@ -1127,7 +1127,7 @@ static int lua_running_benchmark(lua_State *L)
 
 static int lua_switch_background_music_to(lua_State *L)
 {
-	char *filename = luaL_checkstring(L, 1);
+	char *filename = (char *)luaL_checkstring(L, 1);
 	SwitchBackgroundMusicTo(filename);
 	return 0;
 }
