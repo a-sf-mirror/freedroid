@@ -94,7 +94,7 @@ doc:
 
 cppcheck:
 	@echo "`cppcheck --version`"
-	cppcheck gluem croppy src --enable=performance,portability,unusedFunction,missingInclude --force --quiet
+	cppcheck gluem croppy src -I. -I.. -I/usr/include/SDL --enable=performance,portability,unusedFunction,missingInclude --force --quiet
 
 help:
 	@echo "Makefile targets:"
