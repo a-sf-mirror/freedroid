@@ -73,40 +73,66 @@ struct data_spec {
  * The path separator is '.'.
  * Example: "foo.bar" => foo = {bar = "X"}
  * 
+ * The function mimics the lua_getfield() behavior.
+ *
  * \param L    Lua state
  * \param path Path of the field to fetch
- *
- * \return The number of fields pushed on the stack
  */
-static int lua_getfield_by_path(lua_State *L, const char *path)
+static void lua_getfield_by_path(lua_State *L, const char *path)
 {
 	int stack_counter = 0;
-	
-	if (!path)
-		return 0;
-	
+
+	if (!path) {
+		lua_pushnil(L);
+		return;
+	}
+
+	// For each subpart of the path, we try to find T[subpart], with T being
+	// a table on the top of the lua stack.
+	// If the field is found, then it is pushed on the lua stack, and we loop
+	// to find the next subpart.
+	// It the field is not found, then a LUA_TNIL is pushed to denote a search
+	// failure (this mimics lua_getfield() behavior).
+
 	char *tmp_path = strdup(path);
 	char *token = strtok(tmp_path, ".");
-	
+
 	while (token) {
-		// Search the token name in the current top table
-		if (lua_type(L, -1) == LUA_TTABLE) {
-			// Push the field on the stack
-			lua_getfield(L, -1, token);
+
+		// If the top of the lua stack is not a table, then there is an error
+		// in the lua file.
+		if (lua_type(L, -1) != LUA_TTABLE) {
+			lua_pushnil(L);
 			stack_counter++;
-		} else {
-			// The field was not found: clean the stack and stop the search
-			lua_pop(L, stack_counter);
-			stack_counter = 0;
 			break;
 		}
 
-		// Retrieve next token
+		// Search the token name in the current top table
+		lua_getfield(L, -1, token);
+		stack_counter++;
+
+		if (lua_type(L, -1) == LUA_TNIL) {
+			// The field was not found
+			break;
+		}
+
+		// Extract next token
 		token = strtok(NULL, ".");
 	}
+
+	// Remove all the intermediate tables that were pushed on the stack, and
+	// only keep to last pushed, so that only the field corresponding to the
+	// whole search path is kept.
 	
+	if (stack_counter > 1) {
+		// Replace the first pushed field with the last one.
+		lua_replace(L, -stack_counter);
+		stack_counter--;
+		// Pop all remaining intermediate tables
+		lua_pop(L, stack_counter - 1);
+	}
+
 	free(tmp_path);
-	return stack_counter;
 }
 
 /**
@@ -264,11 +290,9 @@ static int get_value_from_table(lua_State *L, char *field, enum data_type type, 
 {
 	int found_and_valid = FALSE;
 
-	int stack_counter = lua_getfield_by_path(L, field);
-	if (!stack_counter)
-		return FALSE;
+	lua_getfield_by_path(L, field);
 	found_and_valid = get_value_from_stack(L, type, result);
-	lua_pop(L, stack_counter);
+	lua_pop(L, 1);
 
 	return found_and_valid;
 }
