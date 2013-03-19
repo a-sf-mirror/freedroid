@@ -150,7 +150,10 @@ static int get_value_from_stack(lua_State *L, enum data_type type, void *result)
 	int ltype;
 	
 	ltype = lua_type(L, -1);
-	
+
+	if (ltype == LUA_TNIL)
+		return FALSE;
+
 	switch (type) {
 	case BOOL_TYPE:
 		if (ltype == LUA_TBOOLEAN) {
@@ -203,13 +206,10 @@ static int get_value_from_stack(lua_State *L, enum data_type type, void *result)
 				lua_pop(L, 1);
 			}
 		} else {
-			// The data is not in a lua table: initialize the dynarray
-			// with 1 empty slot (to possibly receive a single lua value
-			// or a default value)
-			dynarray_init((struct dynarray *)result, 1, sizeof(int));
-			// If the data is a single value fill the dynarray slot
+			// The data is not in a lua table: try with a single value
 			if (ltype == LUA_TNUMBER) {
 				int value = lua_tointeger(L, -1);
+				dynarray_init((struct dynarray *)result, 1, sizeof(int));
 				dynarray_add((struct dynarray *)result, &value, sizeof(int));
 				found_and_valid = TRUE;
 			}
@@ -230,13 +230,10 @@ static int get_value_from_stack(lua_State *L, enum data_type type, void *result)
 				lua_pop(L, 1);
 			}
 		} else {
-			// The data is not in a lua table: initialize the dynarray
-			// with 1 empty slot (to possibly receive a single lua value
-			// or a default value)
-			dynarray_init((struct dynarray *)result, 1, sizeof(float));
-			// If the data is a single value fill the dynarray slot
+			// The data is not in a lua table: try with a single value
 			if (ltype == LUA_TNUMBER) {
 				float value = (float)lua_tonumber(L, -1);
+				dynarray_init((struct dynarray *)result, 1, sizeof(float));
 				dynarray_add((struct dynarray *)result, &value, sizeof(float));
 				found_and_valid = TRUE;
 			}
@@ -257,13 +254,10 @@ static int get_value_from_stack(lua_State *L, enum data_type type, void *result)
 				lua_pop(L, 1);
 			}
 		} else {
-			// The data is not in a lua table: initialize the dynarray
-			// with 1 empty slot (to possibly receive a single lua value
-			// or a default value)
-			dynarray_init((struct dynarray *)result, 1, sizeof(char *));
-			// If the data is a single value fill the dynarray slot
+			// The data is not in a lua table: try with a single value
 			if (ltype == LUA_TSTRING) {
 				char *value = strdup(lua_tostring(L, -1));
+				dynarray_init((struct dynarray *)result, 1, sizeof(char *));
 				dynarray_add((struct dynarray *)result, &value, sizeof(char *));
 				found_and_valid = TRUE;
 			}
@@ -346,6 +340,8 @@ static void set_value_to_default(const char *default_value, enum data_type type,
 		if (default_value != NULL) {
 			dynarray_init((struct dynarray *)data, 1, sizeof(char *));
 			dynarray_add((struct dynarray *)data, strdup(default_value), sizeof(char *));
+		} else {
+			dynarray_free((struct dynarray *)data);
 		}
 		break;
 	default:
@@ -691,7 +687,7 @@ static int lua_obstacle_ctor(lua_State *L)
 	int transparency;
 	char *animation;
 	char *action;
-	struct dynarray groups;
+	struct dynarray groups = { 0 };
 
 	char default_transparency[20];
 	sprintf(default_transparency, "%d", TRANSPARENCY_FOR_WALLS);
