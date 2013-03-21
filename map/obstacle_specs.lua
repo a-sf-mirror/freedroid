@@ -205,6 +205,7 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
+	after_looting = 30,
 }
 
 obstacle {
@@ -214,6 +215,7 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
+	after_looting = 31,
 }
 
 obstacle {
@@ -2561,6 +2563,7 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
+	after_looting = 374,
 }
 
 obstacle {
@@ -2570,6 +2573,7 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
+	after_looting = 375,
 }
 
 obstacle {
@@ -2593,6 +2597,7 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
+	after_looting = 378,
 }
 
 obstacle {
@@ -2602,6 +2607,7 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
+	after_looting = 379,
 }
 
 obstacle {

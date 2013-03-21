@@ -697,6 +697,7 @@ static int lua_obstacle_ctor(lua_State *L)
 		{ "borders", "0", FLOAT_ARRAY, &borders },
 		{ "flags", "0", INT_ARRAY, &flags },
 		{ "after_smashing", "-1", INT_TYPE, &obstacle.result_type_after_smashing_once },
+		{ "after_looting", "-1", INT_TYPE, &obstacle.result_type_after_looting },
 		{ "emitted_light_strength", "0", INT_ARRAY, &obstacle.emitted_light_strength },
 		{ "transparency", default_transparency, INT_TYPE, &transparency },
 		{ "action", NULL, STRING_TYPE, &action },

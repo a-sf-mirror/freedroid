@@ -501,18 +501,12 @@ static void act_chest(level *l, obstacle *o)
 {
 	throw_out_all_chest_content(get_obstacle_index(l, o));
 
-	if (o->type == ISO_H_CHEST_CLOSED)
-		o->type = ISO_H_CHEST_OPEN;
-	if (o->type == ISO_V_CHEST_CLOSED)
-		o->type = ISO_V_CHEST_OPEN;
-	if (o->type == ISO_N_CHEST2_CLOSED)
-		o->type = ISO_N_CHEST2_OPEN;
-	if (o->type == ISO_E_CHEST2_CLOSED)
-		o->type = ISO_E_CHEST2_OPEN;
-	if (o->type == ISO_S_CHEST2_CLOSED)
-		o->type = ISO_S_CHEST2_OPEN;
-	if (o->type == ISO_W_CHEST2_CLOSED)
-		o->type = ISO_W_CHEST2_OPEN;
+	// After emptying the chest we change it to its corresponding "open" type.
+	// If such a type was not defined, the chest will stay "closed" and can be
+	// looted indefinitely.
+	int new_type = get_obstacle_spec(o->type)->result_type_after_looting;
+	if (new_type != -1)
+		o->type = new_type;
 }
 
 static void act_barrel(level *l, obstacle *o)

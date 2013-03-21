@@ -811,6 +811,7 @@ typedef struct obstacle_spec {
 
 	char block_area_type;
 	int result_type_after_smashing_once;
+	int result_type_after_looting;
 
 	unsigned int flags;
 
