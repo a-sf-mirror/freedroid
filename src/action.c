@@ -484,10 +484,6 @@ static int approach(int type)
 			{ ISO_VENDING_MACHINE_3_N, NORTH },
 			{ ISO_VENDING_MACHINE_3_W, WEST },
 			{ ISO_VENDING_MACHINE_3_S, SOUTH },
-			{ ISO_VENDING_MACHINE_4_E, EAST },
-			{ ISO_VENDING_MACHINE_4_N, NORTH },
-			{ ISO_VENDING_MACHINE_4_W, WEST },
-			{ ISO_VENDING_MACHINE_4_S, SOUTH },
 	};
 
 	for (i = 0; i < sizeof(lookup)/sizeof(lookup[0]); i++) {
