@@ -1095,6 +1095,19 @@ update_quest("24_label_test_quest", "Now we update the quest.")
 end_quest("24_label_test_quest", "The test quest has been solved. Congratulations!")
 </LuaCode>
 * End of trigger *
+
+* New event trigger *
+Name=_"24-chest-trap-trigger"
+Trigger at label="24-chest-trap-trigger"
+Silent=0
+<LuaCode>
+if (cmp_obstacle_state("24-trap-chest", "locked")) then
+	hurt_tux(20)
+end
+</LuaCode>
+* End of trigger *
+
+
 ##############
 ## Level 25 ##
 ##############
