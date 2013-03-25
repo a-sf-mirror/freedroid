@@ -403,7 +403,15 @@ leveleditor_obstacle_category {
 		"iso_crate_ns.png",
 		"iso_crate_we.png",
 		"iso_crate_ns_megasys.png",
-		"iso_weapon_crate.png"
+		"iso_weapon_crate.png",
+		"iso_bookshelf_long_lootable_e.png",
+		"iso_bookshelf_long_lootable_s.png",
+		"iso_bookshelf_long_lootable_w.png",
+		"iso_bookshelf_long_lootable_n.png",
+		"iso_bookshelf_lootable_e.png",
+		"iso_bookshelf_lootable_s.png",
+		"iso_bookshelf_lootable_w.png",
+		"iso_bookshelf_lootable_n.png"
 	}
 }
 

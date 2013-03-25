@@ -3229,6 +3229,143 @@ obstacle {
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
+
+obstacle {
+	image_filenames = "iso_bookshelf_lootable_e.png",
+	borders = borders(0.60, 1.10),
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "chest",
+	label = "Bookshelf",
+	after_looting = 467,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_looted_e.png",
+	borders = borders(0.60, 1.10),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_lootable_s.png",
+	borders = borders(1.10, 0.60),
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "chest",
+	label = "Bookshelf",
+	after_looting = 469,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_looted_s.png",
+	borders = borders(1.10, 0.60),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_lootable_w.png",
+	borders = borders(0.60, 1.10),
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "chest",
+	label = "Bookshelf",
+	after_looting = 471,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_looted_w.png",
+	borders = borders(0.60, 1.10),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_lootable_n.png",
+	borders = borders(1.10, 0.60),
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "chest",
+	label = "Bookshelf",
+	after_looting = 473,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_looted_n.png",
+	borders = borders(1.10, 0.60),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_long_lootable_e.png",
+	borders = borders(0.60, 2.20),
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "chest",
+	label = "Bookshelf",
+	after_looting = 475,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_long_looted_e.png",
+	borders = borders(0.60, 2.20),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_long_lootable_s.png",
+	borders = borders(2.20, 0.60),
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "chest",
+	label = "Bookshelf",
+	after_looting = 477,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_long_looted_s.png",
+	borders = borders(2.20, 0.60),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_long_lootable_w.png",
+	borders = borders(0.60, 2.20),
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "chest",
+	label = "Bookshelf",
+	after_looting = 479,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_long_looted_w.png",
+	borders = borders(0.60, 2.20),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_long_lootable_n.png",
+	borders = borders(2.20, 0.60),
+	flags = { BLOCKS_VISION, IS_CLICKABLE },
+	transparency = NO_TRANSPARENCY,
+	action = "chest",
+	label = "Bookshelf",
+	after_looting = 481,
+}
+
+obstacle {
+	image_filenames = "iso_bookshelf_long_looted_n.png",
+	borders = borders(2.20, 0.60),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
 --[[ IMPORTANT NOTE:
 Before you add a new obstacle to the end of this list, please try to
 replace one of these DUMMY OBSTACLEs.
