@@ -68,6 +68,7 @@ npc_list{
 	"Bender",
 	"AfterTakeover",
 	"614_cryo",
+	"24-Controllable-Bot",
 	"Guy"} -- check this dialog first until we can check every dialog independently
 
 npc_shop{
