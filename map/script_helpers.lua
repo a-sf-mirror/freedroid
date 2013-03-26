@@ -146,6 +146,30 @@ obstacle_states = {
 	[378] = {["unlocked"] = 378, ["locked"] = 376,},
 	[379] = {["unlocked"] = 379, ["locked"] = 377,},
 
+	-- lootable shelves
+	[466] = {["unlooted"] = 466, ["looted"] = 467,},
+	[467] = {["looted"] = 467, ["unlooted"] = 466,},
+
+	[468] = {["unlooted"] = 468, ["looted"] = 469,},
+	[469] = {["looted"] = 469, ["unlooted"] = 468,},
+
+	[470] = {["unlooted"] = 470, ["looted"] = 471,},
+	[471] = {["looted"] = 471, ["unlooted"] = 470,},
+
+	[472] = {["unlooted"] = 472, ["looted"] = 473,},
+	[473] = {["looted"] = 473, ["unlooted"] = 472,},
+
+	[474] = {["unlooted"] = 474, ["looted"] = 475,},
+	[475] = {["looted"] = 475, ["unlooted"] = 474,},
+
+	[476] = {["unlooted"] = 476, ["looted"] = 477,},
+	[477] = {["looted"] = 477, ["unlooted"] = 476,},
+
+	[478] = {["unlooted"] = 478, ["looted"] = 479,},
+	[479] = {["looted"] = 479, ["unlooted"] = 478,},
+
+	[480] = {["unlooted"] = 480, ["looted"] = 481,},
+	[481] = {["looted"] = 481, ["unlooted"] = 480,},
 };
 
 function get_obstacle_state_id(id, state)
