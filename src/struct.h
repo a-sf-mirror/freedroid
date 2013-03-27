@@ -823,6 +823,7 @@ typedef struct obstacle_spec {
 	char transparent;
 
 	struct dynarray filenames;
+	char *action;
 	action_fptr action_fn;
 
 	//--------------------

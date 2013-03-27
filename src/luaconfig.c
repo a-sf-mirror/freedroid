@@ -686,7 +686,6 @@ static int lua_obstacle_ctor(lua_State *L)
 	struct dynarray flags;
 	int transparency;
 	char *animation;
-	char *action;
 	struct dynarray groups = { 0 };
 
 	char default_transparency[20];
@@ -700,7 +699,7 @@ static int lua_obstacle_ctor(lua_State *L)
 		{ "after_looting", "-1", INT_TYPE, &obstacle.result_type_after_looting },
 		{ "emitted_light_strength", "0", INT_ARRAY, &obstacle.emitted_light_strength },
 		{ "transparency", default_transparency, INT_TYPE, &transparency },
-		{ "action", NULL, STRING_TYPE, &action },
+		{ "action", NULL, STRING_TYPE, &obstacle.action },
 		{ "animation", NULL, STRING_TYPE, &animation },
 		{ "animation_fps", "10", FLOAT_TYPE, &obstacle.animation_fps },
 		{ "blast_type", "1", INT_TYPE, &obstacle.blast_type },
@@ -756,8 +755,7 @@ static int lua_obstacle_ctor(lua_State *L)
 	obstacle.transparent = transparency;
 	
 	// Parse action
-	obstacle.action_fn = get_action_by_name(action);
-	free(action);
+	obstacle.action_fn = get_action_by_name(obstacle.action);
 
 	// Parse animation
 	if (!animation &&
