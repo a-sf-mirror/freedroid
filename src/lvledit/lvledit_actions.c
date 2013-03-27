@@ -1056,19 +1056,10 @@ void level_editor_edit_chest(obstacle *o)
 	struct dynarray *itemlist = get_obstacle_extension(CURLEVEL(), o, OBSTACLE_EXTENSION_CHEST_ITEMS);
 
 	// Safety check
-	switch (o->type) {
-	case ISO_H_CHEST_CLOSED:
-	case ISO_H_CHEST_OPEN:
-	case ISO_V_CHEST_CLOSED:
-	case ISO_V_CHEST_OPEN:
-	case ISO_E_CHEST2_CLOSED:
-	case ISO_S_CHEST2_CLOSED:
-	case ISO_N_CHEST2_CLOSED:
-	case ISO_W_CHEST2_CLOSED:
-		break;
-	default:
-		ErrorMessage(__FUNCTION__, "Tried to edit the contents of a chest, but the obstacle is not a chest.\n", PLEASE_INFORM,
-			     IS_FATAL);
+	struct obstacle_spec *obs_spec = get_obstacle_spec(o->type);
+	if (!obs_spec->action || strncmp(obs_spec->action, "chest", 5)) {
+		ErrorMessage(__FUNCTION__, "Tried to edit the contents of a chest, but the obstacle is not a chest.\n",
+				     PLEASE_INFORM, IS_FATAL);
 	}
 
 	while (!done) {

@@ -29,10 +29,11 @@
 
 #define _leveleditor_validator_c
 
+#include "proto.h"
 #include "lvledit/lvledit_validator.h"
 #include "lang.h"
 
-#define IS_CHEST(t)  ( (t) >= ISO_H_CHEST_CLOSED && (t) <= ISO_V_CHEST_OPEN )
+#define IS_CHEST(t)  ( get_obstacle_spec(t)->action && !strncmp(get_obstacle_spec(t)->action, "chest", 5) )
 #define IS_BARREL(t) ( (t) >= ISO_BARREL_1       && (t) <= ISO_BARREL_4     )
 #define IS_SIGN(t)   ( (t) >= ISO_SIGN_1         && (t) <= ISO_SIGN_3       )
 

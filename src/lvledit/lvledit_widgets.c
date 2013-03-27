@@ -308,24 +308,13 @@ static void delete_obstacle_button_update(struct widget *w)
 
 static void edit_chest_button_update(struct widget *w)
 {
+	w->enabled = 0;
+
 	obstacle *o = single_tile_selection(OBJECT_OBSTACLE);
 	if (o) {
-		switch (o->type) {
-			case ISO_H_CHEST_CLOSED:
-			case ISO_V_CHEST_CLOSED:
-			case ISO_E_CHEST2_CLOSED:
-			case ISO_S_CHEST2_CLOSED:
-			case ISO_N_CHEST2_CLOSED:
-			case ISO_W_CHEST2_CLOSED:
-				w->enabled = 1;
-				break;
-
-			default:
-				w->enabled = 0;
-		} 
-	}
-	else {
-		w->enabled = 0;
+		struct obstacle_spec *obs_spec = get_obstacle_spec(o->type);
+		if (obs_spec->action && !strncmp(obs_spec->action, "chest", 5))
+			w->enabled = 1;
 	}
 }
 
