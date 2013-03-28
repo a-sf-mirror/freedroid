@@ -94,7 +94,7 @@ Completion LuaCode={
 +++
 Mission Name=_"Opening a can of bots..."
 Mission target is to kill all hostile droids this first level : 1
-Completion LuaCode={ update_quests(_"Opening a can of bots...", _"The warehouse is now secured.") }
+Completion LuaCode={ update_quest(_"Opening a can of bots...", _"The first level of the warehouse has been cleared of bots; Dixon's men can now safely retrieve the supplies from here.") }
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
