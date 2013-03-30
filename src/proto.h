@@ -136,7 +136,6 @@ void update_virtual_position(gps * target_pos, gps * source_pos, int level_num);
 int resolve_virtual_position(gps * actual_pos, gps * virtual_pos);
 int pos_inside_level(float x, float y, level * lvl);
 int pos_near_level(float x, float y, level * lvl, float dist);
-void ShowPosition(void);
 void set_up_ordered_blitting_list(int mask);
 void blit_preput_objects_according_to_blitting_list(int mask);
 void blit_nonpreput_objects_according_to_blitting_list(int mask);
@@ -215,9 +214,7 @@ void blit_light_radius(void);
 
 // open_gl.c 
 int our_SDL_flip_wrapper(void);
-int our_SDL_blit_surface_wrapper(SDL_Surface * src, SDL_Rect * srcrect, SDL_Surface * dst, SDL_Rect * dstrect);
 void our_SDL_update_rect_wrapper(SDL_Surface * screen, Sint32 x, Sint32 y, Sint32 w, Sint32 h);
-int blit_quad(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, Uint32 color);
 void drawIsoEnergyBar(int x, int y, int z, int w, int d, int length, float fill, myColor * c1, myColor * c2);
 
 SDL_Surface *our_IMG_load_wrapper(const char *file);
@@ -226,7 +223,6 @@ void make_texture_out_of_surface(struct image *our_image);
 void make_texture_out_of_prepadded_image(struct image *our_image);
 void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y);
 void gl_draw_rectangle(SDL_Rect *, int, int, int, int);
-void show_character_screen_background(void);
 int safely_initialize_our_default_open_gl_parameters(void);
 void blit_background(const char *background);
 void open_gl_check_error_status(const char *name_of_calling_function);
@@ -234,14 +230,11 @@ void set_gl_clip_rect(const SDL_Rect *clip);
 void unset_gl_clip_rect(void);
 
 // blocks.c 
-int wall_orientation(int wall);
 void iso_load_bullet_surfaces(void);
 void Load_Mouse_Move_Cursor_Surfaces(void);
 void LoadAndPrepareEnemyRotationModelNr(int RotationModel);
 void free_enemy_graphics(void);
 void Load_Enemy_Surfaces(void);
-void Load_Tux_Surfaces(void);
-void Load_Bullet_Surfaces(void);
 void Load_Blast_Surfaces(void);
 void load_floor_tiles(void);
 void free_floor_tiles(void);
@@ -370,8 +363,6 @@ void MoveMenuPositionSound(void);
 void teleport_arrival_sound(void);
 void fire_bullet_sound(int BulletType, struct gps *shooter_pos);
 void play_blast_sound(char *blast_sound, struct gps *blast_pos);
-void droid_blast_sound(struct gps *blast_pos);
-void exterminator_blast_sound(struct gps *blast_pos);
 void ThouArtDefeatedSound(void);
 void Takeover_Set_Capsule_Sound(void);
 void Takeover_Game_Won_Sound(void);
@@ -396,7 +387,6 @@ item create_item_with_name(const char *item_name, int full_durability, int multi
 void equip_item(item *new_item);
 item *get_equipped_item_in_slot_for(int item_type);
 void MoveItem(item * SourceItem, item * DestItem);
-void silently_unhold_all_items(void);
 int CountItemtypeInInventory(int Itemtype);
 void DeleteInventoryItemsOfType(int Itemtype, int amount);
 void DeleteOneInventoryItemsOfType(int Itemtype);
@@ -417,7 +407,6 @@ int GetItemIndexByName(const char *name);
 void ApplyItem(item * CurItem);
 int Inv_Pos_Is_Free(int x, int y);
 int GetInventoryItemAt(int x, int y);
-item *get_held_item(void);
 int ItemUsageRequirementsMet(item * UseItem, int MakeSound);
 int MouseCursorIsInInventoryGrid(int x, int y);
 int MouseCursorIsInUserRect(int x, int y);
@@ -455,7 +444,6 @@ int count_used_sockets(item *);
 int item_upgrade_ui_visible(void);
 
 // character.c
-void display_buttons(void);
 int get_experience_required(int);
 void UpdateAllCharacterStats(void);
 void ShowCharacterScreen(void);
@@ -470,9 +458,6 @@ float get_player_damage_factor(void);
 void LevelEditor(void);
 
 // skills.c
-void RadialVMXWave(gps ExpCenter, int SpellCostsMana);
-void RadialEMPWave(gps ExpCenter, int SpellCostsMana);
-void RadialFireWave(gps ExpCenter, int SpellCostsMana);
 void ShowSkillsScreen(void);
 void HandleCurrentlyActivatedSkill(void);
 int DoSkill(int skill_index, int SpellCost);
@@ -529,7 +514,6 @@ void input_get_keybind_string(const char *cmd, char *out);
 void input_set_keybind(char *keybind, SDLKey key, SDLMod mod);
 
 // menu.c 
-void clear_player_inventory_and_stats(void);
 void StoreMenuBackground(int backup_slot);
 void RestoreMenuBackground(int backup_slot);
 int DoMenuSelection(char *InitialText, char *MenuTexts[], int FirstItem, const char *background_name, void *MenuFont);
@@ -567,9 +551,7 @@ void Teleport(int LNum, float X, float Y, int WithSound, int with_animation_rese
 void teleport_to_level_center(int);
 int SaveGameConfig(void);
 int LoadGameConfig(void);
-void InsertNewMessage(void);
 void Terminate(int, int);
-void ShowDebugInfos(void);
 uint32_t pot_gte(uint32_t v);
 obstacle *give_pointer_to_obstacle_with_label(const char *, int *);
 int level_exists(int);
@@ -592,7 +574,6 @@ void animate_enemy(enemy * our_bot);
 void hit_enemy(enemy * target, float hit, char givexp, short int killertype, char mine);
 enemy *enemy_resolve_address(short int enemy_number, enemy ** enemy_addr);
 void enemy_set_reference(short int *enemy_number, enemy ** enemy_addr, enemy * addr);
-void enemy_generate_level_lists(void);
 int teleport_to_closest_waypoint(enemy *ThisRobot);
 int teleport_to_random_waypoint(enemy *, level *, char *);
 void teleport_enemy(enemy *, int, float, float);
@@ -616,7 +597,6 @@ int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels);
 void SetNewBigScreenMessage(const char *ScreenMessageText);
 void DisplayBigScreenMessage(void);
 void chat_with_droid(Enemy ChatDroid);
-void EnemyInfluCollisionText(enemy *);
 
 int display_text_using_line_height(const char *, int, int, const SDL_Rect*, float);
 int display_text(const char *, int, int, const SDL_Rect*);
@@ -624,8 +604,6 @@ int display_text(const char *, int, int, const SDL_Rect*);
 int ScrollText(char *text, const char *background_name);
 
 int ImprovedCheckLineBreak(char *, const SDL_Rect*, float);
-char *PreviousLine(char *textstart, char *text);
-char *NextLine(char *text);
 char *get_string(int max_len, const char *background_name, const char *text_for_overhead_promt);
 void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(4,5);
 int longest_line_width(char *text);
@@ -649,9 +627,6 @@ int deflate_to_stream(unsigned char *, int, FILE *);
 
 // hud.c 
 void append_item_description(struct auto_string *str, item *);
-void ShowCurrentSkill(void);
-void ShowCurrentWeapon(void);
-void ShowCurrentHealthAndForceLevel(void);
 void show_texts_and_banner(void);
 int get_days_of_game_duration(float current_game_date);
 int get_hours_of_game_duration(float current_game_date);
@@ -725,9 +700,6 @@ void chat_run();
 
 // leveleditor_input.c
 void leveleditor_process_input(void);
-void leveleditor_input_mouse_motion(SDL_Event *);
-void leveleditor_input_mouse_button(SDL_Event *);
-void leveleditor_input_keybevent(SDL_Event *);
 
 // mapgen/mapgen.c
 int generate_dungeon(int, int, int, int);
