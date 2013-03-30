@@ -25,7 +25,6 @@ freedroid-discussion@lists.sourceforge.net
 Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 
-Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
