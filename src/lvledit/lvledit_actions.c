@@ -201,8 +201,11 @@ void action_push(int type, ...)
 			list_add(&act->node, &to_redo);
 			break;
 		case REDO:
+			list_add(&act->node, &to_undo);
+			break;
 		case NORMAL:
 			list_add(&act->node, &to_undo);
+			clear_action_list(&to_redo);
 			break;
 	}
 
