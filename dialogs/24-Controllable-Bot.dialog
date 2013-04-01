@@ -30,37 +30,36 @@ freedroid-discussion@lists.sourceforge.net
 </LuaCode>
 
 <EveryTime LuaCode>
+	local try_again = true
 
-	function controllable_bot()
-		response = user_input_string("enter target waypoint")
+	while (try_again) do
+		local response = user_input_string("enter target waypoint")
 		if (response == "24-A1" ) or
-		   (response == "24-A2" ) or
-		   (response == "24-A3" ) or
-		   (response == "24-A4" ) or
-		   (response == "24-B1" ) or
-		   (response == "24-B2" ) or
-		   (response == "24-B3" ) or
-		   (response == "24-B4" ) or
-		   (response == "24-C1" ) or
-		   (response == "24-C2" ) or
-		   (response == "24-C3" ) or
-		   (response == "24-C4" ) or
-		   (response == "24-D1" ) or
-		   (response == "24-D2" ) or
-		   (response == "24-D3" ) or
-		   (response == "24-D4" ) then
-			set_bot_state("free")
-			set_bot_destination(response)
-			end_dialog()
+			(response == "24-A2" ) or
+			(response == "24-A3" ) or
+			(response == "24-A4" ) or
+			(response == "24-B1" ) or
+			(response == "24-B2" ) or
+			(response == "24-B3" ) or
+			(response == "24-B4" ) or
+			(response == "24-C1" ) or
+			(response == "24-C2" ) or
+			(response == "24-C3" ) or
+			(response == "24-C4" ) or
+			(response == "24-D1" ) or
+			(response == "24-D2" ) or
+			(response == "24-D3" ) or
+			(response == "24-D4" ) or
+			(running_benchmark()) then
+			 try_again = false
+			 set_bot_state("free")
+			 set_bot_destination(response)
+			 end_dialog()
 		else
 			npc_says("WARNING, '%s' not a vaild map label.", response)
 			npc_says("Please retry.")
-			controllable_bot()
 		end
 	end
-
-	controllable_bot()
-
 </LuaCode>
 ----------------------------------------------------------------------
 
