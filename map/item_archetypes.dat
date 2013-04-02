@@ -4473,7 +4473,7 @@ Item description text=_"This item is used by testers. If you find it ingame with
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=45.000000
+Item as gun: speed of bullets=200.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=9999
 Item as gun: modifier for damage of bullets=0
