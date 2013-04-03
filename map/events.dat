@@ -527,6 +527,36 @@ Silent=0
 <LuaCode> teleport("1from8") </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"Bridge Trigger 1"
+Trigger at label="8-bridge-trigger1"
+Silent=1
+<LuaCode>
+	if not (temple_woods_bridge_spawn) then
+		create_droid("8-bridge-spawn1", "123")
+		create_droid("8-bridge-spawn2", "123")
+		create_droid("8-bridge-spawn3", "123")
+		create_droid("8-bridge-spawn4", "123")
+		temple_woods_bridge_spawn = true
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Bridge Trigger 2"
+Trigger at label="8-bridge-trigger2"
+Silent=1
+<LuaCode>
+	if not (temple_woods_bridge_spawn) then
+		create_droid("8-bridge-spawn1", "123")
+		create_droid("8-bridge-spawn2", "123")
+		create_droid("8-bridge-spawn3", "123")
+		create_droid("8-bridge-spawn4", "123")
+		temple_woods_bridge_spawn = true
+	end
+</LuaCode>
+* End of trigger *
+
 ##############
 ## Level  9 ##
 ##############

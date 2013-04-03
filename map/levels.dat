@@ -11295,6 +11295,12 @@ t41 x86.59 y82.89
 plabelinfolvl
 x=83 y=26 name="8to1"
 x=84 y=27 name="8from1"
+x=25 y=26 name="8-bridge-trigger1"
+x=25 y=27 name="8-bridge-trigger2"
+x=21 y=26 name="8-bridge-spawn1"
+x=21 y=27 name="8-bridge-spawn2"
+x=28 y=26 name="8-bridge-spawn3"
+x=28 y=27 name="8-bridge-spawn4"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -11477,6 +11483,12 @@ Nr.=163 x=  43 y=  20 rnd=0	 c:  162
 Nr.=164 x=  49 y=  19 rnd=0	 c:  110 165 166
 Nr.=165 x=  51 y=  19 rnd=1	 c:  164 112
 Nr.=166 x=  47 y=  20 rnd=0	 c:  164 108
+Nr.=167 x=  28 y=  26 rnd=1	 c:  168 169 170 171 172
+Nr.=168 x=  21 y=  26 rnd=1	 c:  167 169 170 171 172
+Nr.=169 x=  21 y=  27 rnd=1	 c:  168 170 167 171 172
+Nr.=170 x=  28 y=  27 rnd=1	 c:  169 168 167 172 171
+Nr.=171 x=  25 y=  27 rnd=1	 c:  168 172 170 167 169
+Nr.=172 x=  25 y=  26 rnd=1	 c:  171 170 168 169 167
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 9
