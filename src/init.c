@@ -1084,7 +1084,7 @@ void ParseCommandLine(int argc, char *const argv[])
 								 txt,
 								 "\tAdditional resolutions may be specified by the form 'WxH' e.g. '800x600'\n"
 								 "\tThe in-game menu automatically detects fullscreen modes supported by your hardware.\n"
-								 "n---------------------------------------------------------------------------------\n");
+								 "\n---------------------------------------------------------------------------------\n");
 						free(txt);
 					}
 				}
