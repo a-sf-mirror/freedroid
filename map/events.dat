@@ -414,6 +414,19 @@ Silent=0
 <LuaCode> teleport("2from1") </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"Restore town music"
+Trigger entering level=0
+<LuaCode>
+--[[ NOTE: this does not work, but maybe one day it will.
+		   I assume that this trigger is overridden by the funcion which
+		   reads the music entry from levels.dat and plays that one ]]--
+	if not (track == nil) then
+		switch_background_music(track .. ".ogg")
+	end
+</LuaCode>
+* End of trigger *
+
 ##############
 ## Level  2 ##
 ##############

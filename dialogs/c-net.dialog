@@ -214,7 +214,7 @@ NO_TEXT
 	c_net_prompt = c_net_username .. "@c-net:~/file_commands$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(c_net_prompt, "NO_WAIT")
-	show(21, 23, 24) hide(10, 20, 30, 80, 99)
+	show(21, 23, 24, 70) hide(10, 20, 30, 80, 99)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -224,7 +224,7 @@ NO_TEXT
 	c_net_prompt = c_net_username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(c_net_prompt, "NO_WAIT")
-	show(10, 20, 30, 80, 99) hide(21, 23, 24)
+	show(10, 20, 30, 80, 99) hide(21, 23, 24, 70)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -366,6 +366,50 @@ Nr=68 Text=_"forkBOMB.sh -execute"
 	npc_says(_"Script run. After logout this terminal will be disabled.", "NO_WAIT")
 	cli_says(_"root@c-net:~$", "NO_WAIT")
 --	add_xp(30) -- Eventually make this a quest goal.
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=70 Text=_"radio.sh"
+<LuaCode>
+
+npc_says("Valid tracks:", "NO_WAIT")
+npc_says("Ambience, Bleostrada, Hell Fortress Entrance, ImperialArmy, NewTutorialStage, TechBattle, TheBeginning, underground, AmbientBattle, hellforce, HellFortressTwo, menu, Suspicion, temple, town")
+
+	local try_again_radio = true
+
+	while (try_again_radio) do
+		local track = user_input_string("please enter track")
+		if (track == "Ambience" ) or
+		   (track == "AmbientBattle" ) or
+		   (track == "Bleostrada" ) or
+		   (track == "hellforce" ) or
+		   (track == "Hell Fortress Entrance" ) or
+		   (track == "HellFortressTwo" ) or
+		   (track == "ImperialArmy" ) or
+		   (track == "menu" ) or
+		   (track == "NewTutorialStage" ) or
+		   (track == "Suspicion" ) or
+		   (track == "TechBattle" ) or
+		   (track == "temple" ) or
+		   (track == "TheBeginning" ) or
+		   (track == "town" ) or
+		   (track == "underground" ) or
+		   (running_benchmark()) then
+			switch_background_music(track .. ".ogg")
+			try_again_radio = false
+			next(20)
+		elseif (track == "exit" ) then
+			try_again_radio = false
+			next(20)
+		else
+			npc_says("WARNING, '%s' not a vaild track.", track)
+			npc_says("enter 'exit' to exit.")
+			npc_says("Please retry.")
+			npc_says("Valid tracks:", "NO_WAIT")
+			npc_says("Ambience, Bleostrada, Hell Fortress Entrance, ImperialArmy, NewTutorialStage, TechBattle, TheBeginning, underground, AmbientBattle, hellforce, HellFortressTwo, menu, Suspicion, temple, town")
+		end
+	end
+
 </LuaCode>
 ----------------------------------------------------------------------
 
