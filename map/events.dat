@@ -545,13 +545,13 @@ Name=_"Bridge Trigger 1"
 Trigger at label="8-bridge-trigger1"
 Silent=1
 <LuaCode>
-	if not (temple_woods_bridge_spawn) then
+--[[	if not (temple_woods_bridge_spawn) then
 		create_droid("8-bridge-spawn1", "123")
 		create_droid("8-bridge-spawn2", "123")
 		create_droid("8-bridge-spawn3", "123")
 		create_droid("8-bridge-spawn4", "123")
 		temple_woods_bridge_spawn = true
-	end
+]]--  end
 </LuaCode>
 * End of trigger *
 
@@ -559,7 +559,7 @@ Silent=1
 Name=_"Bridge Trigger 2"
 Trigger at label="8-bridge-trigger2"
 Silent=1
-<LuaCode>
+<LuaCode> --[[
 	if not (temple_woods_bridge_spawn) then
 		create_droid("8-bridge-spawn1", "123")
 		create_droid("8-bridge-spawn2", "123")
@@ -567,7 +567,7 @@ Silent=1
 		create_droid("8-bridge-spawn4", "123")
 		temple_woods_bridge_spawn = true
 	end
-</LuaCode>
+]]-- </LuaCode>
 * End of trigger *
 
 ##############
