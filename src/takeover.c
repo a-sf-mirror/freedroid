@@ -1086,7 +1086,7 @@ void InventPlayground(void)
 				if (ToPlayground[color][layer][row] != CABLE)
 					continue;
 
-				newElement = MyRandom(TO_ELEMENTS);
+				newElement = MyRandom(TO_ELEMENTS - 1);
 				if (MyRandom(MAX_PROB) > ElementProb[newElement]) {
 					row--;
 					continue;
