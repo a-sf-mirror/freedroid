@@ -30,33 +30,59 @@ freedroid-discussion@lists.sourceforge.net
 </LuaCode>
 
 <EveryTime LuaCode>
-	local try_again = true
+	ControllableBot_try_again = true
+	ControllableBot_response_is = nil
 
-	while (try_again) do
-		local response = user_input_string("enter target waypoint")
-		if (response == "24-A1" ) or
-			(response == "24-A2" ) or
-			(response == "24-A3" ) or
-			(response == "24-A4" ) or
-			(response == "24-B1" ) or
-			(response == "24-B2" ) or
-			(response == "24-B3" ) or
-			(response == "24-B4" ) or
-			(response == "24-C1" ) or
-			(response == "24-C2" ) or
-			(response == "24-C3" ) or
-			(response == "24-C4" ) or
-			(response == "24-D1" ) or
-			(response == "24-D2" ) or
-			(response == "24-D3" ) or
-			(response == "24-D4" ) or
+	while (ControllableBot_try_again) do
+		ControllableBot_response = user_input_string("enter target waypoint or bot state. states: follow-tux, fixed, free, home, patrol")
+		if (ControllableBot_response == "follow-tux" ) or -- missing characters are missing
 			(running_benchmark()) then
-			 try_again = false
-			 set_bot_state("free")
-			 set_bot_destination(response)
-			 end_dialog()
+			ControllableBot_response = "follow_tux"
+			ControllableBot_response_is = "state"
+		elseif
+			(ControllableBot_response == "fixed" ) or
+			(ControllableBot_response == "free" ) or
+			(ControllableBot_response == "home" ) or
+			(ControllableBot_response == "patrol" ) or
+			(running_benchmark()) then
+			ControllableBot_response_is = "state"
+		end
+
+		if (ControllableBot_response == "24-A1" ) or
+			(ControllableBot_response == "24-A2" ) or
+			(ControllableBot_response == "24-A3" ) or
+			(ControllableBot_response == "24-A4" ) or
+			(ControllableBot_response == "24-B1" ) or
+			(ControllableBot_response == "24-B2" ) or
+			(ControllableBot_response == "24-B3" ) or
+			(ControllableBot_response == "24-B4" ) or
+			(ControllableBot_response == "24-C1" ) or
+			(ControllableBot_response == "24-C2" ) or
+			(ControllableBot_response == "24-C3" ) or
+			(ControllableBot_response == "24-C4" ) or
+			(ControllableBot_response == "24-D1" ) or
+			(ControllableBot_response == "24-D2" ) or
+			(ControllableBot_response == "24-D3" ) or
+			(ControllableBot_response == "24-D4" ) or
+			(running_benchmark()) then
+			ControllableBot_response_is = "waypoint"
+		end
+
+		if (ControllableBot_response_is == "state") or
+		   (running_benchmark()) then
+		   if not (running_benchmark()) then -- sucks but can't be helped currently afaik
+				set_bot_state(ControllableBot_response)
+			end
+			ControllableBot_try_again = false
+			end_dialog()
+		elseif (ControllableBot_response_is == "waypoint") or
+			   (running_benchmark()) then
+			set_bot_state("free")
+			set_bot_destination(ControllableBot_response)
+			ControllableBot_try_again = false
+			end_dialog()
 		else
-			npc_says("WARNING, '%s' not a vaild map label.", response)
+			npc_says("WARNING, '%s' not a vaild map label.", ControllableBot_response)
 			npc_says("Please retry.")
 		end
 	end
