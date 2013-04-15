@@ -238,28 +238,28 @@ static void SetLevelInterfaces(void)
 
 		i = 0;
 
-		sprintf(Options[i], _("Jump target"));
+		sprintf(Options[i], _("Neighbor level"));
 		strcat(Options[i], " ");
 		strcat(Options[i], _("North"));
 		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel->jump_target_north);
 		strcat(Options[i], Options[i + 1]);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Jump target"));
+		sprintf(Options[i], _("Neighbor level"));
 		strcat(Options[i], " ");
 		strcat(Options[i], _("East"));
 		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel->jump_target_east);
 		strcat(Options[i], Options[i + 1]);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Jump target"));
+		sprintf(Options[i], _("Neighbor level"));
 		strcat(Options[i], " ");
 		strcat(Options[i], _("South"));
 		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel->jump_target_south);
 		strcat(Options[i], Options[i + 1]);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Jump target"));
+		sprintf(Options[i], _("Neighbor level"));
 		strcat(Options[i], " ");
 		strcat(Options[i], _("West"));
 		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel->jump_target_west);
