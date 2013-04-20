@@ -167,7 +167,10 @@ obstacle {
 }
 
 obstacle {
-	image_filenames = "DUMMY OBSTACLE"
+	image_filenames = "floor_tiles/iso_collapsingfloor_visible.png",
+	borders = borders(0.00, 0.00),
+	flags = { GROUND_LEVEL, NEEDS_PRE_PUT },
+	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {

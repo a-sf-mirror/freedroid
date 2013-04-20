@@ -3,8 +3,8 @@ SUBDIRS = ../../gluem
 
 noinst_DATA = atlas.txt shadow_atlas.txt
 
-atlas.txt: iso_*.png iso_*.offset
-	./../../gluem/make_atlas obstacles_atlas 2048 2048 atlas.txt iso_*.png
+atlas.txt: iso_*.png iso_*.offset floor_tiles/iso_*.png floor_tiles/iso_*.offset
+		./../../gluem/make_atlas obstacles_atlas 2048 2048 atlas.txt iso_*.png floor_tiles/iso_*.png
 
 shadow_atlas.txt: shadow_*.png shadow_*.offset
 	./../../gluem/make_atlas obstacles_shadows_atlas 2048 1024 shadow_atlas.txt shadow_*.png
