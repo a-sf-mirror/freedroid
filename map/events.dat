@@ -1150,6 +1150,141 @@ end
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"24-collapse-3"
+Trigger at label="24-collapsing-3"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-1", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-4"
+Trigger at label="24-collapsing-4"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-2", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-5"
+Trigger at label="24-collapsing-5"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-3", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-6"
+Trigger at label="24-collapsing-6"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-4", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-7"
+Trigger at label="24-collapsing-7"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-5", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-8"
+Trigger at label="24-collapsing-8"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-6", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-9"
+Trigger at label="24-collapsing-9"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-7", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-10"
+Trigger at label="24-collapsing-10"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-8", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-11"
+Trigger at label="24-collapsing-11"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-9", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-12"
+Trigger at label="24-collapsing-12"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-10", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-13"
+Trigger at label="24-collapsing-13"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-11", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-14"
+Trigger at label="24-collapsing-14"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-12", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-15"
+Trigger at label="24-collapsing-15"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-13", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-16"
+Trigger at label="24-collapsing-16"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-14", 321)
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"24-collapse-end"
+Trigger at label="24-collapsing-end"
+Silent=0
+<LuaCode>
+	change_obstacle_type("24-collapsing-15", 321)
+	change_obstacle_type("24-collapsing-16", 321)
+</LuaCode>
+* End of trigger *
 
 ##############
 ## Level 25 ##
