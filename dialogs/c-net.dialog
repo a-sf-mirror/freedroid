@@ -373,7 +373,7 @@ Nr=70 Text=_"radio.sh"
 <LuaCode>
 
 npc_says("Valid tracks:", "NO_WAIT")
-npc_says("Ambience, Bleostrada, Hell Fortress Entrance, ImperialArmy, NewTutorialStage, TechBattle, TheBeginning, underground, AmbientBattle, hellforce, HellFortressTwo, menu, Suspicion, temple, town")
+npc_says("Ambience, Bleostrada, HellFortressEntrance, ImperialArmy, NewTutorialStage, TechBattle, TheBeginning, underground, AmbientBattle, hellforce, HellFortressTwo, menu, Suspicion, temple, town")
 
 	local try_again_radio = true
 
@@ -383,7 +383,7 @@ npc_says("Ambience, Bleostrada, Hell Fortress Entrance, ImperialArmy, NewTutoria
 		   (track == "AmbientBattle" ) or
 		   (track == "Bleostrada" ) or
 		   (track == "hellforce" ) or
-		   (track == "Hell Fortress Entrance" ) or
+		   (track == "HellFortressEntrance" ) or
 		   (track == "HellFortressTwo" ) or
 		   (track == "ImperialArmy" ) or
 		   (track == "menu" ) or
@@ -406,7 +406,7 @@ npc_says("Ambience, Bleostrada, Hell Fortress Entrance, ImperialArmy, NewTutoria
 			npc_says("enter 'exit' to exit.")
 			npc_says("Please retry.")
 			npc_says("Valid tracks:", "NO_WAIT")
-			npc_says("Ambience, Bleostrada, Hell Fortress Entrance, ImperialArmy, NewTutorialStage, TechBattle, TheBeginning, underground, AmbientBattle, hellforce, HellFortressTwo, menu, Suspicion, temple, town")
+			npc_says("Ambience, Bleostrada, HellFortressEntrance, ImperialArmy, NewTutorialStage, TechBattle, TheBeginning, underground, AmbientBattle, hellforce, HellFortressTwo, menu, Suspicion, temple, town")
 		end
 	end
 
