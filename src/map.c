@@ -1896,6 +1896,7 @@ void translate_map_point_to_screen_pixel_func(float x_map_pos, float y_map_pos, 
 {
 	float zoom_factor = 1.0;
 
+	/* XXX should not check for leveleditor here! */
 	if (game_status == INSIDE_LVLEDITOR && GameConfig.zoom_is_on) {
 		zoom_factor = lvledit_zoomfact_inv();
 	}
