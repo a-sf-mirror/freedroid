@@ -320,53 +320,6 @@ void make_texture_out_of_prepadded_image(struct image * our_image)
 };				// void make_texture_out_of_prepadded_image (...)
 
 /**
- * This function checks the error status of the OpenGL driver.  An error
- * will produce at least a warning message, maybe even program termination
- * if the errors are really severe.
- */
-void open_gl_check_error_status(const char *name_of_calling_function)
-{
-
-#ifdef HAVE_LIBGL
-
-	switch (glGetError()) {
-	case GL_NO_ERROR:
-		// All is well.  No messages need to be generated...
-		break;
-	case GL_INVALID_ENUM:
-		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
-		ErrorMessage(__FUNCTION__, "Error code GL_INVALID_ENUM received!", PLEASE_INFORM, IS_WARNING_ONLY);
-		break;
-	case GL_INVALID_VALUE:
-		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
-		ErrorMessage(__FUNCTION__, "Error code GL_INVALID_VALUE received!", PLEASE_INFORM, IS_WARNING_ONLY);
-		break;
-	case GL_INVALID_OPERATION:
-		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
-		ErrorMessage(__FUNCTION__, "Error code GL_INVALID_OPERATION received!", PLEASE_INFORM, IS_WARNING_ONLY);
-		break;
-	case GL_STACK_OVERFLOW:
-		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
-		ErrorMessage(__FUNCTION__, "Error code GL_STACK_OVERFLOW received!", PLEASE_INFORM, IS_FATAL);
-		break;
-	case GL_STACK_UNDERFLOW:
-		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
-		ErrorMessage(__FUNCTION__, "Error code GL_STACK_UNDERFLOW received!", PLEASE_INFORM, IS_FATAL);
-		break;
-	case GL_OUT_OF_MEMORY:
-		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
-		ErrorMessage(__FUNCTION__, "Error code GL_OUT_OF_MEMORY received!", PLEASE_INFORM, IS_FATAL);
-		// raise ( SIGSEGV );
-		break;
-	default:
-		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
-		ErrorMessage(__FUNCTION__, "Unhandled error code received!", PLEASE_INFORM, IS_FATAL);
-		break;
-	}
-#endif
-};				// void open_gl_check_error_status ( char* name_of_calling_function  )
-
-/**
  * This function does the first part of the OpenGL parameter 
  * initialization.  We've made this chunk of code into a separate function
  * such that the frequent issues with OpenGL drivers can be attributed to
@@ -624,7 +577,7 @@ void light_radius_update_stretched_texture(void)
 			LightRadiusConfig.texture_w,
 			LightRadiusConfig.texture_h, GL_RGBA, GL_UNSIGNED_BYTE, light_radius_stretch_surface->pixels);
 
-	//open_gl_check_error_status(__FUNCTION__);
+	open_gl_check_error_status(__FUNCTION__);
 
 #endif
 

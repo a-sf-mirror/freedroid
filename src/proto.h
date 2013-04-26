@@ -225,12 +225,12 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y);
 void gl_draw_rectangle(SDL_Rect *, int, int, int, int);
 int safely_initialize_our_default_open_gl_parameters(void);
 void blit_background(const char *background);
-void open_gl_check_error_status(const char *name_of_calling_function);
 void set_gl_clip_rect(const SDL_Rect *clip);
 void unset_gl_clip_rect(void);
 
 // open_gl_debug.c
 int init_opengl_debug();
+void open_gl_check_error_status(const char *name_of_calling_function);
 
 // blocks.c 
 void iso_load_bullet_surfaces(void);

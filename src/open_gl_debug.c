@@ -117,6 +117,7 @@ static void gl_debug_callback(GLenum source, GLenum type, GLuint id,
  */
 int init_opengl_debug(void)
 {
+#ifdef HAVE_LIBGL
 	/* Check if KHR_debug is available */
 	const char *extensions = glGetString(GL_EXTENSIONS);
 	if (!strstr(extensions, "GL_KHR_debug")) {
@@ -139,6 +140,51 @@ int init_opengl_debug(void)
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
 
 	return 0;
+#else
+	return 1;
+#endif
 }
+
+/**
+ * This function checks the error status of the OpenGL driver.  An error
+ * will produce at least a warning message, maybe even program termination
+ * if the errors are really severe.
+ */
+void open_gl_check_error_status(const char *name_of_calling_function)
+{
+	char *enum_str = "UNKNOWN";
+	int fatal = IS_WARNING_ONLY;
+
+#ifdef HAVE_LIBGL
+	switch (glGetError()) {
+		case GL_NO_ERROR:
+			return;
+		case GL_INVALID_ENUM:
+			enum_str = "GL_INVALID_ENUM";
+			break;
+		case GL_INVALID_VALUE:
+			enum_str = "GL_INVALID_VALUE";
+			break;
+		case GL_INVALID_OPERATION:
+			enum_str = "GL_INVALID_OPERATION";
+			break;
+		case GL_STACK_OVERFLOW:
+			enum_str = "GL_STACK_OVERFLOW";
+			fatal = IS_FATAL;
+			break;
+		case GL_STACK_UNDERFLOW:
+			enum_str = "GL_STACK_UNDERFLOW";
+			fatal = IS_FATAL;
+			break;
+		case GL_OUT_OF_MEMORY:
+			enum_str = "GL_OUT_OF_MEMORY";
+			fatal = IS_FATAL;
+			break;
+	}
+	
+	ErrorMessage(__FUNCTION__, "Error code %s received, called by %s.", PLEASE_INFORM, fatal, enum_str, name_of_calling_function);
+#endif
+}
+
 
 #undef _open_gl_debug_c
