@@ -136,7 +136,7 @@ void MyWait(float wait_time)
 
 /* ----------------------------------------------------------------------
  * This function works a malloc, except that it also checks for
- * success and terminates in case of "out of memory", so we dont
+ * success and terminates in case of "out of memory", so we don't
  * need to do this always in the code.
  * ---------------------------------------------------------------------- */
 void *MyMalloc(long Mamount)
