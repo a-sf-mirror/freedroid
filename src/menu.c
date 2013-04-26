@@ -1429,7 +1429,6 @@ static int Droid_handle(int n)
 	};
 	int *ptrs[] = {
 		&GameConfig.All_Texts_Switch,
-		&GameConfig.talk_to_bots_after_takeover,
 	};
 
 	if (n < LEAVE_DROID_TALK_OPTIONS_MENU && n > 0)
@@ -1447,11 +1446,6 @@ static void Droid_fill(char *MenuTexts[MAX_MENU_ITEMS])
 	int i = 0;
 	sprintf(Options[i], _("Show enemies' states"));
 	sprintf(Options[i + 1], ": %s", GameConfig.All_Texts_Switch ? _("YES") : _("NO"));
-	strcat(Options[i], Options[i + 1]);
-	strncpy(MenuTexts[i], Options[i], 1024);
-	i++;
-	sprintf(Options[i], _("Reprogram bots after takeover"));
-	sprintf(Options[i + 1], ": %s", GameConfig.talk_to_bots_after_takeover ? _("YES") : _("NO"));
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;

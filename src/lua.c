@@ -1124,6 +1124,13 @@ static int lua_running_benchmark(lua_State *L)
 	return 1;
 }
 
+static int lua_reprogramm_bots_after_takeover(lua_State *L)
+{
+int rvat = luaL_checkinteger(L, 1);
+GameConfig.talk_to_bots_after_takeover = rvat;
+
+return 0;
+}
 
 static int lua_switch_background_music_to(lua_State *L)
 {
@@ -1410,7 +1417,8 @@ luaL_Reg lfuncs[] = {
 	 * play_sound("menu.ogg")
 	 */
 	{"switch_background_music", lua_switch_background_music_to},
-
+	// 1 = true,  0 = false
+	{"reprogramm_bots_after_takeover", lua_reprogramm_bots_after_takeover},
 
 
 	{NULL, NULL}

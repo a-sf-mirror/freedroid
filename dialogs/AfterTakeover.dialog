@@ -27,6 +27,7 @@ freedroid-discussion@lists.sourceforge.net
 
 <FirstTime LuaCode>
 	Aftertakeover_drain_attempt = "ask"
+	Aftertakeover_reprogramm_bots_after_takeover = false
 </LuaCode>
 
 <EveryTime LuaCode>
@@ -333,7 +334,7 @@ NO_TEXT
 		show(35)
 	end
 	npc_says(_"Which setting should be changed?", "NO_WAIT")
-	hide(32, 33, 36, 37) show(31, 70, 80)
+	hide(32, 33, 36, 37) show(31, 70, 80, 74)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -598,6 +599,43 @@ Topic="drain_bot_attempt_state"
 <LuaCode>
 	Aftertakeover_drain_attempt = "ask"
 	hide(71, 72, 73)
+	pop_topic()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=74 Text=_"Reprogramm_bots_after_takeover\?.sh"
+Topic="settings.plx"
+<LuaCode>
+	if (Aftertakeover_reprogramm_bots_after_takeover) then
+		npc_says(_"Bots are reprogrammed after takeover: [b]true[/b]")
+	elseif not (Aftertakeover_reprogramm_bots_after_takeover) then
+		npc_says(_"Bots are reprogrammed after takeover: [b]false[/b]")
+	else -- ???
+		npc_says("ERROR   REPROGRAMM BOTS AFTER TAKEOVER, NODE 74  UNHANDLED VALUE OF  Aftertakeover_reprogramm_bots_after_takeover , PLEASE REPORT")
+	end
+	show(75, 76)
+	topic("reprogramm_bots")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=75 Text="Yes"
+Topic="reprogramm_bots"
+<LuaCode>
+	npc_says("Bots will be reprogrammed after takeover.")
+	reprogramm_bots_after_takeover(1) -- 1 = true in C
+	Aftertakeover_reprogramm_bots_after_takeover = true
+	hide(75, 76)
+	pop_topic()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=76 Text="No"
+Topic="reprogramm_bots"
+<LuaCode>
+	npc_says("Bots will not be reprogrammed after takeover.")
+	reprogramm_bots_after_takeover(0) -- 0 = false in C
+	Aftertakeover_reprogramm_bots_after_takeover = false
+	hide(75, 76)
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
