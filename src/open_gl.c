@@ -410,7 +410,7 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
@@ -426,21 +426,16 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 int safely_initialize_our_default_open_gl_parameters(void)
 {
 #ifdef HAVE_LIBGL
-	// Set up the screen, viewport matrix, coordinate system and all that...
-	//
+	init_opengl_debug();
 	safely_set_open_gl_viewport_and_matrix_mode();
-
 	safely_set_some_open_gl_flags_and_shade_model();
-
 	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &gl_max_texture_size);
-
 	open_gl_check_error_status(__FUNCTION__);
 
 #endif
 
-	return (TRUE);
-
-};				// int safely_initialize_our_default_open_gl_parameters ( void )
+	return TRUE;
+}
 
 /**
  * This function restores the menu background, that must have been stored
@@ -629,7 +624,7 @@ void light_radius_update_stretched_texture(void)
 			LightRadiusConfig.texture_w,
 			LightRadiusConfig.texture_h, GL_RGBA, GL_UNSIGNED_BYTE, light_radius_stretch_surface->pixels);
 
-	open_gl_check_error_status(__FUNCTION__);
+	//open_gl_check_error_status(__FUNCTION__);
 
 #endif
 

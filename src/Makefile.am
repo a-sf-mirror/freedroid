@@ -28,7 +28,7 @@ freedroidRPG_SOURCES = version.c \
 	enemy.c input.c keyboard.c main.c hud.c view.c automap.c BFont.c \
 	defs.h map.h vars.h takeover.h global.h \
 	proto.h struct.h system.h BFont.h \
-	open_gl.c open_gl_atlas.c mission.c chat.c light.c \
+	open_gl.c open_gl_atlas.c open_gl_debug.c mission.c chat.c light.c \
 	getopt.c getopt1.c getopt.h scandir.c scandir.h sound_effects.c \
 	lang.h lists.c lists.h \
 	gen_savestruct.py savestruct.c savestruct.h savestruct_internal.c savestruct_internal.h \
