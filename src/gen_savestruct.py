@@ -218,7 +218,7 @@ def main():
 
     # Writing loop
 
-    for s_name in data.keys():
+    for s_name in sorted(data.keys()):
 
         func_name = s_name.replace('struct ', '')
 
@@ -265,7 +265,7 @@ def main():
     header_str = ""
     impl_str = ""
 
-    for s_name in tracked_types.keys():
+    for s_name in sorted(tracked_types.keys()):
 
         if '_array' in s_name:
 

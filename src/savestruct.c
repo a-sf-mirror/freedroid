@@ -1,5 +1,470 @@
 #include "savestruct.h"
 
+void write_blast(struct auto_string *strout, blast *data)
+{
+    autostr_append(strout, "{\n" "pos = ");
+    write_gps(strout, &data->pos);
+    autostr_append(strout, ",\n" "type = ");
+    write_int32_t(strout, &data->type);
+    autostr_append(strout, ",\n" "phase = ");
+    write_float(strout, &data->phase);
+    autostr_append(strout, ",\n" "damage_per_second = ");
+    write_float(strout, &data->damage_per_second);
+    autostr_append(strout, ",\n" "faction = ");
+    write_int32_t(strout, &data->faction);
+    autostr_append(strout, ",\n" "}");
+}
+
+void read_blast(lua_State* L, int index, blast *data)
+{
+    if (lua_getfield_or_warn(L, index, "pos")) {
+        read_gps(L, -1, &data->pos);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "type")) {
+        read_int32_t(L, -1, &data->type);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "phase")) {
+        read_float(L, -1, &data->phase);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "damage_per_second")) {
+        read_float(L, -1, &data->damage_per_second);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "faction")) {
+        read_int32_t(L, -1, &data->faction);
+        lua_pop(L, 1);
+    }
+}
+
+void write_bullet(struct auto_string *strout, bullet *data)
+{
+    autostr_append(strout, "{\n" "type = ");
+    write_int16_t(strout, &data->type);
+    autostr_append(strout, ",\n" "phase = ");
+    write_int32_t(strout, &data->phase);
+    autostr_append(strout, ",\n" "mine = ");
+    write_uint8_t(strout, &data->mine);
+    autostr_append(strout, ",\n" "pos = ");
+    write_gps(strout, &data->pos);
+    autostr_append(strout, ",\n" "height = ");
+    write_int32_t(strout, &data->height);
+    autostr_append(strout, ",\n" "speed = ");
+    write_moderately_finepoint(strout, &data->speed);
+    autostr_append(strout, ",\n" "damage = ");
+    write_int16_t(strout, &data->damage);
+    autostr_append(strout, ",\n" "time_in_seconds = ");
+    write_float(strout, &data->time_in_seconds);
+    autostr_append(strout, ",\n" "bullet_lifetime = ");
+    write_float(strout, &data->bullet_lifetime);
+    autostr_append(strout, ",\n" "time_to_hide_still = ");
+    write_float(strout, &data->time_to_hide_still);
+    autostr_append(strout, ",\n" "owner = ");
+    write_int16_t(strout, &data->owner);
+    autostr_append(strout, ",\n" "angle = ");
+    write_float(strout, &data->angle);
+    autostr_append(strout, ",\n" "pass_through_hit_bodies = ");
+    write_uint8_t(strout, &data->pass_through_hit_bodies);
+    autostr_append(strout, ",\n" "freezing_level = ");
+    write_int16_t(strout, &data->freezing_level);
+    autostr_append(strout, ",\n" "poison_duration = ");
+    write_float(strout, &data->poison_duration);
+    autostr_append(strout, ",\n" "poison_damage_per_sec = ");
+    write_float(strout, &data->poison_damage_per_sec);
+    autostr_append(strout, ",\n" "paralysation_duration = ");
+    write_float(strout, &data->paralysation_duration);
+    autostr_append(strout, ",\n" "faction = ");
+    write_int32_t(strout, &data->faction);
+    autostr_append(strout, ",\n" "hit_type = ");
+    write_uint8_t(strout, &data->hit_type);
+    autostr_append(strout, ",\n" "}");
+}
+
+void read_bullet(lua_State* L, int index, bullet *data)
+{
+    if (lua_getfield_or_warn(L, index, "type")) {
+        read_int16_t(L, -1, &data->type);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "phase")) {
+        read_int32_t(L, -1, &data->phase);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "mine")) {
+        read_uint8_t(L, -1, &data->mine);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "pos")) {
+        read_gps(L, -1, &data->pos);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "height")) {
+        read_int32_t(L, -1, &data->height);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "speed")) {
+        read_moderately_finepoint(L, -1, &data->speed);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "damage")) {
+        read_int16_t(L, -1, &data->damage);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "time_in_seconds")) {
+        read_float(L, -1, &data->time_in_seconds);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bullet_lifetime")) {
+        read_float(L, -1, &data->bullet_lifetime);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "time_to_hide_still")) {
+        read_float(L, -1, &data->time_to_hide_still);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "owner")) {
+        read_int16_t(L, -1, &data->owner);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "angle")) {
+        read_float(L, -1, &data->angle);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "pass_through_hit_bodies")) {
+        read_uint8_t(L, -1, &data->pass_through_hit_bodies);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "freezing_level")) {
+        read_int16_t(L, -1, &data->freezing_level);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "poison_duration")) {
+        read_float(L, -1, &data->poison_duration);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "poison_damage_per_sec")) {
+        read_float(L, -1, &data->poison_damage_per_sec);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "paralysation_duration")) {
+        read_float(L, -1, &data->paralysation_duration);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "faction")) {
+        read_int32_t(L, -1, &data->faction);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "hit_type")) {
+        read_uint8_t(L, -1, &data->hit_type);
+        lua_pop(L, 1);
+    }
+}
+
+void write_configuration_for_freedroid(struct auto_string *strout, configuration_for_freedroid *data)
+{
+    autostr_append(strout, "{\n" "WantedTextVisibleTime = ");
+    write_float(strout, &data->WantedTextVisibleTime);
+    autostr_append(strout, ",\n" "Draw_Framerate = ");
+    write_int32_t(strout, &data->Draw_Framerate);
+    autostr_append(strout, ",\n" "Draw_Position = ");
+    write_int32_t(strout, &data->Draw_Position);
+    autostr_append(strout, ",\n" "All_Texts_Switch = ");
+    write_int32_t(strout, &data->All_Texts_Switch);
+    autostr_append(strout, ",\n" "Current_BG_Music_Volume = ");
+    write_float(strout, &data->Current_BG_Music_Volume);
+    autostr_append(strout, ",\n" "Current_Sound_FX_Volume = ");
+    write_float(strout, &data->Current_Sound_FX_Volume);
+    autostr_append(strout, ",\n" "Current_Sound_Output_Fmt = ");
+    write_int32_t(strout, &data->Current_Sound_Output_Fmt);
+    autostr_append(strout, ",\n" "current_gamma_correction = ");
+    write_float(strout, &data->current_gamma_correction);
+    autostr_append(strout, ",\n" "Inventory_Visible = ");
+    write_int32_t(strout, &data->Inventory_Visible);
+    autostr_append(strout, ",\n" "CharacterScreen_Visible = ");
+    write_int32_t(strout, &data->CharacterScreen_Visible);
+    autostr_append(strout, ",\n" "SkillScreen_Visible = ");
+    write_int32_t(strout, &data->SkillScreen_Visible);
+    autostr_append(strout, ",\n" "Automap_Visible = ");
+    write_int32_t(strout, &data->Automap_Visible);
+    autostr_append(strout, ",\n" "spell_level_visible = ");
+    write_int32_t(strout, &data->spell_level_visible);
+    autostr_append(strout, ",\n" "autorun_activated = ");
+    write_int32_t(strout, &data->autorun_activated);
+    autostr_append(strout, ",\n" "freedroid_version_string = ");
+    write_string(strout, &data->freedroid_version_string);
+    autostr_append(strout, ",\n" "skip_light_radius = ");
+    write_int32_t(strout, &data->skip_light_radius);
+    autostr_append(strout, ",\n" "skill_explanation_screen_visible = ");
+    write_int32_t(strout, &data->skill_explanation_screen_visible);
+    autostr_append(strout, ",\n" "enemy_energy_bars_visible = ");
+    write_int32_t(strout, &data->enemy_energy_bars_visible);
+    autostr_append(strout, ",\n" "limit_framerate = ");
+    write_int32_t(strout, &data->limit_framerate);
+    autostr_append(strout, ",\n" "omit_obstacles_in_level_editor = ");
+    write_int32_t(strout, &data->omit_obstacles_in_level_editor);
+    autostr_append(strout, ",\n" "omit_map_labels_in_level_editor = ");
+    write_int32_t(strout, &data->omit_map_labels_in_level_editor);
+    autostr_append(strout, ",\n" "omit_enemies_in_level_editor = ");
+    write_int32_t(strout, &data->omit_enemies_in_level_editor);
+    autostr_append(strout, ",\n" "zoom_is_on = ");
+    write_int32_t(strout, &data->zoom_is_on);
+    autostr_append(strout, ",\n" "show_blood = ");
+    write_int32_t(strout, &data->show_blood);
+    autostr_append(strout, ",\n" "show_lvledit_tooltips = ");
+    write_int32_t(strout, &data->show_lvledit_tooltips);
+    autostr_append(strout, ",\n" "show_grid = ");
+    write_int32_t(strout, &data->show_grid);
+    autostr_append(strout, ",\n" "show_wp_connections = ");
+    write_int32_t(strout, &data->show_wp_connections);
+    autostr_append(strout, ",\n" "grid_mode = ");
+    write_int32_t(strout, &data->grid_mode);
+    autostr_append(strout, ",\n" "number_of_big_screen_messages = ");
+    write_int32_t(strout, &data->number_of_big_screen_messages);
+    autostr_append(strout, ",\n" "delay_for_big_screen_messages = ");
+    write_float(strout, &data->delay_for_big_screen_messages);
+    autostr_append(strout, ",\n" "enable_cheatkeys = ");
+    write_int32_t(strout, &data->enable_cheatkeys);
+    autostr_append(strout, ",\n" "transparency = ");
+    write_int32_t(strout, &data->transparency);
+    autostr_append(strout, ",\n" "screen_width = ");
+    write_int32_t(strout, &data->screen_width);
+    autostr_append(strout, ",\n" "screen_height = ");
+    write_int32_t(strout, &data->screen_height);
+    autostr_append(strout, ",\n" "next_time_width_of_screen = ");
+    write_int32_t(strout, &data->next_time_width_of_screen);
+    autostr_append(strout, ",\n" "next_time_height_of_screen = ");
+    write_int32_t(strout, &data->next_time_height_of_screen);
+    autostr_append(strout, ",\n" "skip_shadow_blitting = ");
+    write_int32_t(strout, &data->skip_shadow_blitting);
+    autostr_append(strout, ",\n" "do_fadings = ");
+    write_int32_t(strout, &data->do_fadings);
+    autostr_append(strout, ",\n" "fullscreen_on = ");
+    write_int32_t(strout, &data->fullscreen_on);
+    autostr_append(strout, ",\n" "talk_to_bots_after_takeover = ");
+    write_int32_t(strout, &data->talk_to_bots_after_takeover);
+    autostr_append(strout, ",\n" "xray_vision_for_tux = ");
+    write_int32_t(strout, &data->xray_vision_for_tux);
+    autostr_append(strout, ",\n" "cheat_running_stamina = ");
+    write_int32_t(strout, &data->cheat_running_stamina);
+    autostr_append(strout, ",\n" "cheat_double_speed = ");
+    write_int32_t(strout, &data->cheat_double_speed);
+    autostr_append(strout, ",\n" "lazyload = ");
+    write_int32_t(strout, &data->lazyload);
+    autostr_append(strout, ",\n" "show_item_labels = ");
+    write_int32_t(strout, &data->show_item_labels);
+    autostr_append(strout, ",\n" "last_edited_level = ");
+    write_int32_t(strout, &data->last_edited_level);
+    autostr_append(strout, ",\n" "show_all_floor_layers = ");
+    write_int32_t(strout, &data->show_all_floor_layers);
+    autostr_append(strout, ",\n" "difficulty_level = ");
+    write_int32_t(strout, &data->difficulty_level);
+    autostr_append(strout, ",\n" "input_keybinds = ");
+    write_keybind_t_array(strout, data->input_keybinds, 100);
+    autostr_append(strout, ",\n" "}");
+}
+
+void read_configuration_for_freedroid(lua_State* L, int index, configuration_for_freedroid *data)
+{
+    if (lua_getfield_or_warn(L, index, "WantedTextVisibleTime")) {
+        read_float(L, -1, &data->WantedTextVisibleTime);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Draw_Framerate")) {
+        read_int32_t(L, -1, &data->Draw_Framerate);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Draw_Position")) {
+        read_int32_t(L, -1, &data->Draw_Position);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "All_Texts_Switch")) {
+        read_int32_t(L, -1, &data->All_Texts_Switch);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Current_BG_Music_Volume")) {
+        read_float(L, -1, &data->Current_BG_Music_Volume);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Current_Sound_FX_Volume")) {
+        read_float(L, -1, &data->Current_Sound_FX_Volume);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Current_Sound_Output_Fmt")) {
+        read_int32_t(L, -1, &data->Current_Sound_Output_Fmt);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "current_gamma_correction")) {
+        read_float(L, -1, &data->current_gamma_correction);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Inventory_Visible")) {
+        read_int32_t(L, -1, &data->Inventory_Visible);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "CharacterScreen_Visible")) {
+        read_int32_t(L, -1, &data->CharacterScreen_Visible);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "SkillScreen_Visible")) {
+        read_int32_t(L, -1, &data->SkillScreen_Visible);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Automap_Visible")) {
+        read_int32_t(L, -1, &data->Automap_Visible);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "spell_level_visible")) {
+        read_int32_t(L, -1, &data->spell_level_visible);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "autorun_activated")) {
+        read_int32_t(L, -1, &data->autorun_activated);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "freedroid_version_string")) {
+        read_string(L, -1, &data->freedroid_version_string);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "skip_light_radius")) {
+        read_int32_t(L, -1, &data->skip_light_radius);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "skill_explanation_screen_visible")) {
+        read_int32_t(L, -1, &data->skill_explanation_screen_visible);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "enemy_energy_bars_visible")) {
+        read_int32_t(L, -1, &data->enemy_energy_bars_visible);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "limit_framerate")) {
+        read_int32_t(L, -1, &data->limit_framerate);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "omit_obstacles_in_level_editor")) {
+        read_int32_t(L, -1, &data->omit_obstacles_in_level_editor);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "omit_map_labels_in_level_editor")) {
+        read_int32_t(L, -1, &data->omit_map_labels_in_level_editor);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "omit_enemies_in_level_editor")) {
+        read_int32_t(L, -1, &data->omit_enemies_in_level_editor);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "zoom_is_on")) {
+        read_int32_t(L, -1, &data->zoom_is_on);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "show_blood")) {
+        read_int32_t(L, -1, &data->show_blood);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "show_lvledit_tooltips")) {
+        read_int32_t(L, -1, &data->show_lvledit_tooltips);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "show_grid")) {
+        read_int32_t(L, -1, &data->show_grid);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "show_wp_connections")) {
+        read_int32_t(L, -1, &data->show_wp_connections);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "grid_mode")) {
+        read_int32_t(L, -1, &data->grid_mode);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "number_of_big_screen_messages")) {
+        read_int32_t(L, -1, &data->number_of_big_screen_messages);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "delay_for_big_screen_messages")) {
+        read_float(L, -1, &data->delay_for_big_screen_messages);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "enable_cheatkeys")) {
+        read_int32_t(L, -1, &data->enable_cheatkeys);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "transparency")) {
+        read_int32_t(L, -1, &data->transparency);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "screen_width")) {
+        read_int32_t(L, -1, &data->screen_width);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "screen_height")) {
+        read_int32_t(L, -1, &data->screen_height);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "next_time_width_of_screen")) {
+        read_int32_t(L, -1, &data->next_time_width_of_screen);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "next_time_height_of_screen")) {
+        read_int32_t(L, -1, &data->next_time_height_of_screen);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "skip_shadow_blitting")) {
+        read_int32_t(L, -1, &data->skip_shadow_blitting);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "do_fadings")) {
+        read_int32_t(L, -1, &data->do_fadings);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "fullscreen_on")) {
+        read_int32_t(L, -1, &data->fullscreen_on);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "talk_to_bots_after_takeover")) {
+        read_int32_t(L, -1, &data->talk_to_bots_after_takeover);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "xray_vision_for_tux")) {
+        read_int32_t(L, -1, &data->xray_vision_for_tux);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "cheat_running_stamina")) {
+        read_int32_t(L, -1, &data->cheat_running_stamina);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "cheat_double_speed")) {
+        read_int32_t(L, -1, &data->cheat_double_speed);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "lazyload")) {
+        read_int32_t(L, -1, &data->lazyload);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "show_item_labels")) {
+        read_int32_t(L, -1, &data->show_item_labels);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "last_edited_level")) {
+        read_int32_t(L, -1, &data->last_edited_level);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "show_all_floor_layers")) {
+        read_int32_t(L, -1, &data->show_all_floor_layers);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "difficulty_level")) {
+        read_int32_t(L, -1, &data->difficulty_level);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "input_keybinds")) {
+        read_keybind_t_array(L, -1, data->input_keybinds, 100);
+        lua_pop(L, 1);
+    }
+}
+
 void write_enemy(struct auto_string *strout, enemy *data)
 {
     autostr_append(strout, "{\n" "id = ");
@@ -281,181 +746,39 @@ void read_enemy(lua_State* L, int index, enemy *data)
     }
 }
 
-void write_bullet(struct auto_string *strout, bullet *data)
-{
-    autostr_append(strout, "{\n" "type = ");
-    write_int16_t(strout, &data->type);
-    autostr_append(strout, ",\n" "phase = ");
-    write_int32_t(strout, &data->phase);
-    autostr_append(strout, ",\n" "mine = ");
-    write_uint8_t(strout, &data->mine);
-    autostr_append(strout, ",\n" "pos = ");
-    write_gps(strout, &data->pos);
-    autostr_append(strout, ",\n" "height = ");
-    write_int32_t(strout, &data->height);
-    autostr_append(strout, ",\n" "speed = ");
-    write_moderately_finepoint(strout, &data->speed);
-    autostr_append(strout, ",\n" "damage = ");
-    write_int16_t(strout, &data->damage);
-    autostr_append(strout, ",\n" "time_in_seconds = ");
-    write_float(strout, &data->time_in_seconds);
-    autostr_append(strout, ",\n" "bullet_lifetime = ");
-    write_float(strout, &data->bullet_lifetime);
-    autostr_append(strout, ",\n" "time_to_hide_still = ");
-    write_float(strout, &data->time_to_hide_still);
-    autostr_append(strout, ",\n" "owner = ");
-    write_int16_t(strout, &data->owner);
-    autostr_append(strout, ",\n" "angle = ");
-    write_float(strout, &data->angle);
-    autostr_append(strout, ",\n" "pass_through_hit_bodies = ");
-    write_uint8_t(strout, &data->pass_through_hit_bodies);
-    autostr_append(strout, ",\n" "freezing_level = ");
-    write_int16_t(strout, &data->freezing_level);
-    autostr_append(strout, ",\n" "poison_duration = ");
-    write_float(strout, &data->poison_duration);
-    autostr_append(strout, ",\n" "poison_damage_per_sec = ");
-    write_float(strout, &data->poison_damage_per_sec);
-    autostr_append(strout, ",\n" "paralysation_duration = ");
-    write_float(strout, &data->paralysation_duration);
-    autostr_append(strout, ",\n" "faction = ");
-    write_int32_t(strout, &data->faction);
-    autostr_append(strout, ",\n" "hit_type = ");
-    write_uint8_t(strout, &data->hit_type);
-    autostr_append(strout, ",\n" "}");
-}
-
-void read_bullet(lua_State* L, int index, bullet *data)
-{
-    if (lua_getfield_or_warn(L, index, "type")) {
-        read_int16_t(L, -1, &data->type);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "phase")) {
-        read_int32_t(L, -1, &data->phase);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "mine")) {
-        read_uint8_t(L, -1, &data->mine);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "pos")) {
-        read_gps(L, -1, &data->pos);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "height")) {
-        read_int32_t(L, -1, &data->height);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "speed")) {
-        read_moderately_finepoint(L, -1, &data->speed);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "damage")) {
-        read_int16_t(L, -1, &data->damage);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "time_in_seconds")) {
-        read_float(L, -1, &data->time_in_seconds);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bullet_lifetime")) {
-        read_float(L, -1, &data->bullet_lifetime);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "time_to_hide_still")) {
-        read_float(L, -1, &data->time_to_hide_still);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "owner")) {
-        read_int16_t(L, -1, &data->owner);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "angle")) {
-        read_float(L, -1, &data->angle);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "pass_through_hit_bodies")) {
-        read_uint8_t(L, -1, &data->pass_through_hit_bodies);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "freezing_level")) {
-        read_int16_t(L, -1, &data->freezing_level);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "poison_duration")) {
-        read_float(L, -1, &data->poison_duration);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "poison_damage_per_sec")) {
-        read_float(L, -1, &data->poison_damage_per_sec);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "paralysation_duration")) {
-        read_float(L, -1, &data->paralysation_duration);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "faction")) {
-        read_int32_t(L, -1, &data->faction);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "hit_type")) {
-        read_uint8_t(L, -1, &data->hit_type);
-        lua_pop(L, 1);
-    }
-}
-
-void write_upgrade_socket(struct auto_string *strout, upgrade_socket *data)
-{
-    autostr_append(strout, "{\n" "type = ");
-    write_int32_t(strout, &data->type);
-    autostr_append(strout, ",\n" "addon = ");
-    write_string(strout, &data->addon);
-    autostr_append(strout, ",\n" "}");
-}
-
-void read_upgrade_socket(lua_State* L, int index, upgrade_socket *data)
-{
-    if (lua_getfield_or_warn(L, index, "type")) {
-        read_int32_t(L, -1, &data->type);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "addon")) {
-        read_string(L, -1, &data->addon);
-        lua_pop(L, 1);
-    }
-}
-
-void write_point(struct auto_string *strout, point *data)
+void write_finepoint(struct auto_string *strout, finepoint *data)
 {
     autostr_append(strout, "{\n" "x = ");
-    write_int32_t(strout, &data->x);
+    write_double(strout, &data->x);
     autostr_append(strout, ",\n" "y = ");
-    write_int32_t(strout, &data->y);
+    write_double(strout, &data->y);
     autostr_append(strout, ",\n" "}");
 }
 
-void read_point(lua_State* L, int index, point *data)
+void read_finepoint(lua_State* L, int index, finepoint *data)
 {
     if (lua_getfield_or_warn(L, index, "x")) {
-        read_int32_t(L, -1, &data->x);
+        read_double(L, -1, &data->x);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "y")) {
-        read_int32_t(L, -1, &data->y);
+        read_double(L, -1, &data->y);
         lua_pop(L, 1);
     }
 }
 
-void write_moderately_finepoint(struct auto_string *strout, moderately_finepoint *data)
+void write_gps(struct auto_string *strout, gps *data)
 {
     autostr_append(strout, "{\n" "x = ");
     write_float(strout, &data->x);
     autostr_append(strout, ",\n" "y = ");
     write_float(strout, &data->y);
+    autostr_append(strout, ",\n" "z = ");
+    write_int32_t(strout, &data->z);
     autostr_append(strout, ",\n" "}");
 }
 
-void read_moderately_finepoint(lua_State* L, int index, moderately_finepoint *data)
+void read_gps(lua_State* L, int index, gps *data)
 {
     if (lua_getfield_or_warn(L, index, "x")) {
         read_float(L, -1, &data->x);
@@ -465,85 +788,276 @@ void read_moderately_finepoint(lua_State* L, int index, moderately_finepoint *da
         read_float(L, -1, &data->y);
         lua_pop(L, 1);
     }
+    if (lua_getfield_or_warn(L, index, "z")) {
+        read_int32_t(L, -1, &data->z);
+        lua_pop(L, 1);
+    }
 }
 
-void write_spell_active(struct auto_string *strout, spell_active *data)
+void write_item(struct auto_string *strout, item *data)
 {
-    autostr_append(strout, "{\n" "img_type = ");
-    write_int32_t(strout, &data->img_type);
+    autostr_append(strout, "{\n" "pos = ");
+    write_gps(strout, &data->pos);
+    autostr_append(strout, ",\n" "virt_pos = ");
+    write_gps(strout, &data->virt_pos);
+    autostr_append(strout, ",\n" "text_slot_rectangle = ");
+    write_SDL_Rect(strout, &data->text_slot_rectangle);
+    autostr_append(strout, ",\n" "type = ");
+    write_int32_t(strout, &data->type);
+    autostr_append(strout, ",\n" "max_durability = ");
+    write_int32_t(strout, &data->max_durability);
+    autostr_append(strout, ",\n" "current_durability = ");
+    write_float(strout, &data->current_durability);
+    autostr_append(strout, ",\n" "throw_time = ");
+    write_float(strout, &data->throw_time);
+    autostr_append(strout, ",\n" "bonus_to_dex = ");
+    write_int32_t(strout, &data->bonus_to_dex);
+    autostr_append(strout, ",\n" "bonus_to_str = ");
+    write_int32_t(strout, &data->bonus_to_str);
+    autostr_append(strout, ",\n" "bonus_to_physique = ");
+    write_int32_t(strout, &data->bonus_to_physique);
+    autostr_append(strout, ",\n" "bonus_to_cooling = ");
+    write_int32_t(strout, &data->bonus_to_cooling);
+    autostr_append(strout, ",\n" "bonus_to_health_points = ");
+    write_int32_t(strout, &data->bonus_to_health_points);
+    autostr_append(strout, ",\n" "bonus_to_health_recovery = ");
+    write_float(strout, &data->bonus_to_health_recovery);
+    autostr_append(strout, ",\n" "bonus_to_cooling_rate = ");
+    write_float(strout, &data->bonus_to_cooling_rate);
+    autostr_append(strout, ",\n" "bonus_to_attack = ");
+    write_int32_t(strout, &data->bonus_to_attack);
+    autostr_append(strout, ",\n" "bonus_to_all_attributes = ");
+    write_int32_t(strout, &data->bonus_to_all_attributes);
+    autostr_append(strout, ",\n" "bonus_to_armor_class = ");
+    write_int32_t(strout, &data->bonus_to_armor_class);
+    autostr_append(strout, ",\n" "bonus_to_damage = ");
+    write_int32_t(strout, &data->bonus_to_damage);
+    autostr_append(strout, ",\n" "bonus_to_paralyze_enemy = ");
+    write_int32_t(strout, &data->bonus_to_paralyze_enemy);
+    autostr_append(strout, ",\n" "bonus_to_slow_enemy = ");
+    write_int32_t(strout, &data->bonus_to_slow_enemy);
+    autostr_append(strout, ",\n" "bonus_to_light_radius = ");
+    write_int32_t(strout, &data->bonus_to_light_radius);
+    autostr_append(strout, ",\n" "bonus_to_experience_gain = ");
+    write_int32_t(strout, &data->bonus_to_experience_gain);
+    autostr_append(strout, ",\n" "armor_class = ");
+    write_int32_t(strout, &data->armor_class);
     autostr_append(strout, ",\n" "damage = ");
     write_int32_t(strout, &data->damage);
-    autostr_append(strout, ",\n" "poison_duration = ");
-    write_int32_t(strout, &data->poison_duration);
-    autostr_append(strout, ",\n" "poison_dmg = ");
-    write_int32_t(strout, &data->poison_dmg);
-    autostr_append(strout, ",\n" "freeze_duration = ");
-    write_int32_t(strout, &data->freeze_duration);
-    autostr_append(strout, ",\n" "paralyze_duration = ");
-    write_int32_t(strout, &data->paralyze_duration);
-    autostr_append(strout, ",\n" "spell_center = ");
-    write_moderately_finepoint(strout, &data->spell_center);
-    autostr_append(strout, ",\n" "spell_radius = ");
-    write_float(strout, &data->spell_radius);
-    autostr_append(strout, ",\n" "spell_age = ");
-    write_float(strout, &data->spell_age);
-    autostr_append(strout, ",\n" "active_directions = ");
-    write_uint8_t_array(strout, data->active_directions, RADIAL_SPELL_DIRECTIONS);
-    autostr_append(strout, ",\n" "mine = ");
-    write_int32_t(strout, &data->mine);
-    autostr_append(strout, ",\n" "hit_type = ");
-    write_uint8_t(strout, &data->hit_type);
+    autostr_append(strout, ",\n" "damage_modifier = ");
+    write_int32_t(strout, &data->damage_modifier);
+    autostr_append(strout, ",\n" "multiplicity = ");
+    write_int32_t(strout, &data->multiplicity);
+    autostr_append(strout, ",\n" "ammo_clip = ");
+    write_int32_t(strout, &data->ammo_clip);
+    autostr_append(strout, ",\n" "inventory_position = ");
+    write_point(strout, &data->inventory_position);
+    autostr_append(strout, ",\n" "upgrade_sockets = ");
+    write_upgrade_socket_dynarray(strout, &data->upgrade_sockets);
+    autostr_append(strout, ",\n" "quality = ");
+    write_int32_t(strout, &data->quality);
     autostr_append(strout, ",\n" "}");
 }
 
-void read_spell_active(lua_State* L, int index, spell_active *data)
+void read_item(lua_State* L, int index, item *data)
 {
-    if (lua_getfield_or_warn(L, index, "img_type")) {
-        read_int32_t(L, -1, &data->img_type);
+    if (lua_getfield_or_warn(L, index, "pos")) {
+        read_gps(L, -1, &data->pos);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "virt_pos")) {
+        read_gps(L, -1, &data->virt_pos);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "text_slot_rectangle")) {
+        read_SDL_Rect(L, -1, &data->text_slot_rectangle);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "type")) {
+        read_int32_t(L, -1, &data->type);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "max_durability")) {
+        read_int32_t(L, -1, &data->max_durability);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "current_durability")) {
+        read_float(L, -1, &data->current_durability);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "throw_time")) {
+        read_float(L, -1, &data->throw_time);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_dex")) {
+        read_int32_t(L, -1, &data->bonus_to_dex);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_str")) {
+        read_int32_t(L, -1, &data->bonus_to_str);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_physique")) {
+        read_int32_t(L, -1, &data->bonus_to_physique);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_cooling")) {
+        read_int32_t(L, -1, &data->bonus_to_cooling);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_health_points")) {
+        read_int32_t(L, -1, &data->bonus_to_health_points);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_health_recovery")) {
+        read_float(L, -1, &data->bonus_to_health_recovery);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_cooling_rate")) {
+        read_float(L, -1, &data->bonus_to_cooling_rate);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_attack")) {
+        read_int32_t(L, -1, &data->bonus_to_attack);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_all_attributes")) {
+        read_int32_t(L, -1, &data->bonus_to_all_attributes);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_armor_class")) {
+        read_int32_t(L, -1, &data->bonus_to_armor_class);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_damage")) {
+        read_int32_t(L, -1, &data->bonus_to_damage);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_paralyze_enemy")) {
+        read_int32_t(L, -1, &data->bonus_to_paralyze_enemy);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_slow_enemy")) {
+        read_int32_t(L, -1, &data->bonus_to_slow_enemy);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_light_radius")) {
+        read_int32_t(L, -1, &data->bonus_to_light_radius);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "bonus_to_experience_gain")) {
+        read_int32_t(L, -1, &data->bonus_to_experience_gain);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "armor_class")) {
+        read_int32_t(L, -1, &data->armor_class);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "damage")) {
         read_int32_t(L, -1, &data->damage);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "poison_duration")) {
-        read_int32_t(L, -1, &data->poison_duration);
+    if (lua_getfield_or_warn(L, index, "damage_modifier")) {
+        read_int32_t(L, -1, &data->damage_modifier);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "poison_dmg")) {
-        read_int32_t(L, -1, &data->poison_dmg);
+    if (lua_getfield_or_warn(L, index, "multiplicity")) {
+        read_int32_t(L, -1, &data->multiplicity);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "freeze_duration")) {
-        read_int32_t(L, -1, &data->freeze_duration);
+    if (lua_getfield_or_warn(L, index, "ammo_clip")) {
+        read_int32_t(L, -1, &data->ammo_clip);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "paralyze_duration")) {
-        read_int32_t(L, -1, &data->paralyze_duration);
+    if (lua_getfield_or_warn(L, index, "inventory_position")) {
+        read_point(L, -1, &data->inventory_position);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "spell_center")) {
-        read_moderately_finepoint(L, -1, &data->spell_center);
+    if (lua_getfield_or_warn(L, index, "upgrade_sockets")) {
+        read_upgrade_socket_dynarray(L, -1, &data->upgrade_sockets);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "spell_radius")) {
-        read_float(L, -1, &data->spell_radius);
+    if (lua_getfield_or_warn(L, index, "quality")) {
+        read_int32_t(L, -1, &data->quality);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "spell_age")) {
-        read_float(L, -1, &data->spell_age);
+}
+
+void write_keybind_t(struct auto_string *strout, keybind_t *data)
+{
+    autostr_append(strout, "{\n" "name = ");
+    write_string(strout, &data->name);
+    autostr_append(strout, ",\n" "key = ");
+    write_int32_t(strout, &data->key);
+    autostr_append(strout, ",\n" "mod = ");
+    write_int32_t(strout, &data->mod);
+    autostr_append(strout, ",\n" "}");
+}
+
+void read_keybind_t(lua_State* L, int index, keybind_t *data)
+{
+    if (lua_getfield_or_warn(L, index, "name")) {
+        read_string(L, -1, &data->name);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "active_directions")) {
-        read_uint8_t_array(L, -1, data->active_directions, RADIAL_SPELL_DIRECTIONS);
+    if (lua_getfield_or_warn(L, index, "key")) {
+        read_int32_t(L, -1, &data->key);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "mod")) {
+        read_int32_t(L, -1, &data->mod);
+        lua_pop(L, 1);
+    }
+}
+
+void write_melee_shot(struct auto_string *strout, melee_shot *data)
+{
+    autostr_append(strout, "{\n" "attack_target_type = ");
+    write_uint8_t(strout, &data->attack_target_type);
+    autostr_append(strout, ",\n" "mine = ");
+    write_uint8_t(strout, &data->mine);
+    autostr_append(strout, ",\n" "bot_target_n = ");
+    write_int16_t(strout, &data->bot_target_n);
+    autostr_append(strout, ",\n" "to_hit = ");
+    write_int16_t(strout, &data->to_hit);
+    autostr_append(strout, ",\n" "damage = ");
+    write_int16_t(strout, &data->damage);
+    autostr_append(strout, ",\n" "owner = ");
+    write_int16_t(strout, &data->owner);
+    autostr_append(strout, ",\n" "time_to_hit = ");
+    write_float(strout, &data->time_to_hit);
+    autostr_append(strout, ",\n" "}");
+}
+
+void read_melee_shot(lua_State* L, int index, melee_shot *data)
+{
+    if (lua_getfield_or_warn(L, index, "attack_target_type")) {
+        read_uint8_t(L, -1, &data->attack_target_type);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "mine")) {
-        read_int32_t(L, -1, &data->mine);
+        read_uint8_t(L, -1, &data->mine);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "hit_type")) {
-        read_uint8_t(L, -1, &data->hit_type);
+    if (lua_getfield_or_warn(L, index, "bot_target_n")) {
+        read_int16_t(L, -1, &data->bot_target_n);
+        lua_pop(L, 1);
+    }
+    data->bot_target_addr = NULL;
+    if (lua_getfield_or_warn(L, index, "to_hit")) {
+        read_int16_t(L, -1, &data->to_hit);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "damage")) {
+        read_int16_t(L, -1, &data->damage);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "owner")) {
+        read_int16_t(L, -1, &data->owner);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "time_to_hit")) {
+        read_float(L, -1, &data->time_to_hit);
         lua_pop(L, 1);
     }
 }
@@ -635,6 +1149,27 @@ void read_mission(lua_State* L, int index, mission *data)
     }
 }
 
+void write_moderately_finepoint(struct auto_string *strout, moderately_finepoint *data)
+{
+    autostr_append(strout, "{\n" "x = ");
+    write_float(strout, &data->x);
+    autostr_append(strout, ",\n" "y = ");
+    write_float(strout, &data->y);
+    autostr_append(strout, ",\n" "}");
+}
+
+void read_moderately_finepoint(lua_State* L, int index, moderately_finepoint *data)
+{
+    if (lua_getfield_or_warn(L, index, "x")) {
+        read_float(L, -1, &data->x);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "y")) {
+        read_float(L, -1, &data->y);
+        lua_pop(L, 1);
+    }
+}
+
 void write_npc(struct auto_string *strout, npc *data)
 {
     autostr_append(strout, "{\n" "dialog_basename = ");
@@ -688,6 +1223,108 @@ void read_npc(lua_State* L, int index, npc *data)
     }
     if (lua_getfield_or_warn(L, index, "node")) {
         read_list_head_t(L, -1, &data->node);
+        lua_pop(L, 1);
+    }
+}
+
+void write_point(struct auto_string *strout, point *data)
+{
+    autostr_append(strout, "{\n" "x = ");
+    write_int32_t(strout, &data->x);
+    autostr_append(strout, ",\n" "y = ");
+    write_int32_t(strout, &data->y);
+    autostr_append(strout, ",\n" "}");
+}
+
+void read_point(lua_State* L, int index, point *data)
+{
+    if (lua_getfield_or_warn(L, index, "x")) {
+        read_int32_t(L, -1, &data->x);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "y")) {
+        read_int32_t(L, -1, &data->y);
+        lua_pop(L, 1);
+    }
+}
+
+void write_spell_active(struct auto_string *strout, spell_active *data)
+{
+    autostr_append(strout, "{\n" "img_type = ");
+    write_int32_t(strout, &data->img_type);
+    autostr_append(strout, ",\n" "damage = ");
+    write_int32_t(strout, &data->damage);
+    autostr_append(strout, ",\n" "poison_duration = ");
+    write_int32_t(strout, &data->poison_duration);
+    autostr_append(strout, ",\n" "poison_dmg = ");
+    write_int32_t(strout, &data->poison_dmg);
+    autostr_append(strout, ",\n" "freeze_duration = ");
+    write_int32_t(strout, &data->freeze_duration);
+    autostr_append(strout, ",\n" "paralyze_duration = ");
+    write_int32_t(strout, &data->paralyze_duration);
+    autostr_append(strout, ",\n" "spell_center = ");
+    write_moderately_finepoint(strout, &data->spell_center);
+    autostr_append(strout, ",\n" "spell_radius = ");
+    write_float(strout, &data->spell_radius);
+    autostr_append(strout, ",\n" "spell_age = ");
+    write_float(strout, &data->spell_age);
+    autostr_append(strout, ",\n" "active_directions = ");
+    write_uint8_t_array(strout, data->active_directions, RADIAL_SPELL_DIRECTIONS);
+    autostr_append(strout, ",\n" "mine = ");
+    write_int32_t(strout, &data->mine);
+    autostr_append(strout, ",\n" "hit_type = ");
+    write_uint8_t(strout, &data->hit_type);
+    autostr_append(strout, ",\n" "}");
+}
+
+void read_spell_active(lua_State* L, int index, spell_active *data)
+{
+    if (lua_getfield_or_warn(L, index, "img_type")) {
+        read_int32_t(L, -1, &data->img_type);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "damage")) {
+        read_int32_t(L, -1, &data->damage);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "poison_duration")) {
+        read_int32_t(L, -1, &data->poison_duration);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "poison_dmg")) {
+        read_int32_t(L, -1, &data->poison_dmg);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "freeze_duration")) {
+        read_int32_t(L, -1, &data->freeze_duration);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "paralyze_duration")) {
+        read_int32_t(L, -1, &data->paralyze_duration);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "spell_center")) {
+        read_moderately_finepoint(L, -1, &data->spell_center);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "spell_radius")) {
+        read_float(L, -1, &data->spell_radius);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "spell_age")) {
+        read_float(L, -1, &data->spell_age);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "active_directions")) {
+        read_uint8_t_array(L, -1, data->active_directions, RADIAL_SPELL_DIRECTIONS);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "mine")) {
+        read_int32_t(L, -1, &data->mine);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "hit_type")) {
+        read_uint8_t(L, -1, &data->hit_type);
         lua_pop(L, 1);
     }
 }
@@ -1249,691 +1886,54 @@ void read_tux_t(lua_State* L, int index, tux_t *data)
     }
 }
 
-void write_configuration_for_freedroid(struct auto_string *strout, configuration_for_freedroid *data)
+void write_upgrade_socket(struct auto_string *strout, upgrade_socket *data)
 {
-    autostr_append(strout, "{\n" "WantedTextVisibleTime = ");
-    write_float(strout, &data->WantedTextVisibleTime);
-    autostr_append(strout, ",\n" "Draw_Framerate = ");
-    write_int32_t(strout, &data->Draw_Framerate);
-    autostr_append(strout, ",\n" "Draw_Position = ");
-    write_int32_t(strout, &data->Draw_Position);
-    autostr_append(strout, ",\n" "All_Texts_Switch = ");
-    write_int32_t(strout, &data->All_Texts_Switch);
-    autostr_append(strout, ",\n" "Current_BG_Music_Volume = ");
-    write_float(strout, &data->Current_BG_Music_Volume);
-    autostr_append(strout, ",\n" "Current_Sound_FX_Volume = ");
-    write_float(strout, &data->Current_Sound_FX_Volume);
-    autostr_append(strout, ",\n" "Current_Sound_Output_Fmt = ");
-    write_int32_t(strout, &data->Current_Sound_Output_Fmt);
-    autostr_append(strout, ",\n" "current_gamma_correction = ");
-    write_float(strout, &data->current_gamma_correction);
-    autostr_append(strout, ",\n" "Inventory_Visible = ");
-    write_int32_t(strout, &data->Inventory_Visible);
-    autostr_append(strout, ",\n" "CharacterScreen_Visible = ");
-    write_int32_t(strout, &data->CharacterScreen_Visible);
-    autostr_append(strout, ",\n" "SkillScreen_Visible = ");
-    write_int32_t(strout, &data->SkillScreen_Visible);
-    autostr_append(strout, ",\n" "Automap_Visible = ");
-    write_int32_t(strout, &data->Automap_Visible);
-    autostr_append(strout, ",\n" "spell_level_visible = ");
-    write_int32_t(strout, &data->spell_level_visible);
-    autostr_append(strout, ",\n" "autorun_activated = ");
-    write_int32_t(strout, &data->autorun_activated);
-    autostr_append(strout, ",\n" "freedroid_version_string = ");
-    write_string(strout, &data->freedroid_version_string);
-    autostr_append(strout, ",\n" "skip_light_radius = ");
-    write_int32_t(strout, &data->skip_light_radius);
-    autostr_append(strout, ",\n" "skill_explanation_screen_visible = ");
-    write_int32_t(strout, &data->skill_explanation_screen_visible);
-    autostr_append(strout, ",\n" "enemy_energy_bars_visible = ");
-    write_int32_t(strout, &data->enemy_energy_bars_visible);
-    autostr_append(strout, ",\n" "limit_framerate = ");
-    write_int32_t(strout, &data->limit_framerate);
-    autostr_append(strout, ",\n" "omit_obstacles_in_level_editor = ");
-    write_int32_t(strout, &data->omit_obstacles_in_level_editor);
-    autostr_append(strout, ",\n" "omit_map_labels_in_level_editor = ");
-    write_int32_t(strout, &data->omit_map_labels_in_level_editor);
-    autostr_append(strout, ",\n" "omit_enemies_in_level_editor = ");
-    write_int32_t(strout, &data->omit_enemies_in_level_editor);
-    autostr_append(strout, ",\n" "zoom_is_on = ");
-    write_int32_t(strout, &data->zoom_is_on);
-    autostr_append(strout, ",\n" "show_blood = ");
-    write_int32_t(strout, &data->show_blood);
-    autostr_append(strout, ",\n" "show_lvledit_tooltips = ");
-    write_int32_t(strout, &data->show_lvledit_tooltips);
-    autostr_append(strout, ",\n" "show_grid = ");
-    write_int32_t(strout, &data->show_grid);
-    autostr_append(strout, ",\n" "show_wp_connections = ");
-    write_int32_t(strout, &data->show_wp_connections);
-    autostr_append(strout, ",\n" "grid_mode = ");
-    write_int32_t(strout, &data->grid_mode);
-    autostr_append(strout, ",\n" "number_of_big_screen_messages = ");
-    write_int32_t(strout, &data->number_of_big_screen_messages);
-    autostr_append(strout, ",\n" "delay_for_big_screen_messages = ");
-    write_float(strout, &data->delay_for_big_screen_messages);
-    autostr_append(strout, ",\n" "enable_cheatkeys = ");
-    write_int32_t(strout, &data->enable_cheatkeys);
-    autostr_append(strout, ",\n" "transparency = ");
-    write_int32_t(strout, &data->transparency);
-    autostr_append(strout, ",\n" "screen_width = ");
-    write_int32_t(strout, &data->screen_width);
-    autostr_append(strout, ",\n" "screen_height = ");
-    write_int32_t(strout, &data->screen_height);
-    autostr_append(strout, ",\n" "next_time_width_of_screen = ");
-    write_int32_t(strout, &data->next_time_width_of_screen);
-    autostr_append(strout, ",\n" "next_time_height_of_screen = ");
-    write_int32_t(strout, &data->next_time_height_of_screen);
-    autostr_append(strout, ",\n" "skip_shadow_blitting = ");
-    write_int32_t(strout, &data->skip_shadow_blitting);
-    autostr_append(strout, ",\n" "do_fadings = ");
-    write_int32_t(strout, &data->do_fadings);
-    autostr_append(strout, ",\n" "fullscreen_on = ");
-    write_int32_t(strout, &data->fullscreen_on);
-    autostr_append(strout, ",\n" "talk_to_bots_after_takeover = ");
-    write_int32_t(strout, &data->talk_to_bots_after_takeover);
-    autostr_append(strout, ",\n" "xray_vision_for_tux = ");
-    write_int32_t(strout, &data->xray_vision_for_tux);
-    autostr_append(strout, ",\n" "cheat_running_stamina = ");
-    write_int32_t(strout, &data->cheat_running_stamina);
-    autostr_append(strout, ",\n" "cheat_double_speed = ");
-    write_int32_t(strout, &data->cheat_double_speed);
-    autostr_append(strout, ",\n" "lazyload = ");
-    write_int32_t(strout, &data->lazyload);
-    autostr_append(strout, ",\n" "show_item_labels = ");
-    write_int32_t(strout, &data->show_item_labels);
-    autostr_append(strout, ",\n" "last_edited_level = ");
-    write_int32_t(strout, &data->last_edited_level);
-    autostr_append(strout, ",\n" "show_all_floor_layers = ");
-    write_int32_t(strout, &data->show_all_floor_layers);
-    autostr_append(strout, ",\n" "difficulty_level = ");
-    write_int32_t(strout, &data->difficulty_level);
-    autostr_append(strout, ",\n" "input_keybinds = ");
-    write_keybind_t_array(strout, data->input_keybinds, 100);
-    autostr_append(strout, ",\n" "}");
-}
-
-void read_configuration_for_freedroid(lua_State* L, int index, configuration_for_freedroid *data)
-{
-    if (lua_getfield_or_warn(L, index, "WantedTextVisibleTime")) {
-        read_float(L, -1, &data->WantedTextVisibleTime);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "Draw_Framerate")) {
-        read_int32_t(L, -1, &data->Draw_Framerate);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "Draw_Position")) {
-        read_int32_t(L, -1, &data->Draw_Position);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "All_Texts_Switch")) {
-        read_int32_t(L, -1, &data->All_Texts_Switch);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "Current_BG_Music_Volume")) {
-        read_float(L, -1, &data->Current_BG_Music_Volume);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "Current_Sound_FX_Volume")) {
-        read_float(L, -1, &data->Current_Sound_FX_Volume);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "Current_Sound_Output_Fmt")) {
-        read_int32_t(L, -1, &data->Current_Sound_Output_Fmt);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "current_gamma_correction")) {
-        read_float(L, -1, &data->current_gamma_correction);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "Inventory_Visible")) {
-        read_int32_t(L, -1, &data->Inventory_Visible);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "CharacterScreen_Visible")) {
-        read_int32_t(L, -1, &data->CharacterScreen_Visible);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "SkillScreen_Visible")) {
-        read_int32_t(L, -1, &data->SkillScreen_Visible);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "Automap_Visible")) {
-        read_int32_t(L, -1, &data->Automap_Visible);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "spell_level_visible")) {
-        read_int32_t(L, -1, &data->spell_level_visible);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "autorun_activated")) {
-        read_int32_t(L, -1, &data->autorun_activated);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "freedroid_version_string")) {
-        read_string(L, -1, &data->freedroid_version_string);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "skip_light_radius")) {
-        read_int32_t(L, -1, &data->skip_light_radius);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "skill_explanation_screen_visible")) {
-        read_int32_t(L, -1, &data->skill_explanation_screen_visible);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "enemy_energy_bars_visible")) {
-        read_int32_t(L, -1, &data->enemy_energy_bars_visible);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "limit_framerate")) {
-        read_int32_t(L, -1, &data->limit_framerate);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "omit_obstacles_in_level_editor")) {
-        read_int32_t(L, -1, &data->omit_obstacles_in_level_editor);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "omit_map_labels_in_level_editor")) {
-        read_int32_t(L, -1, &data->omit_map_labels_in_level_editor);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "omit_enemies_in_level_editor")) {
-        read_int32_t(L, -1, &data->omit_enemies_in_level_editor);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "zoom_is_on")) {
-        read_int32_t(L, -1, &data->zoom_is_on);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "show_blood")) {
-        read_int32_t(L, -1, &data->show_blood);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "show_lvledit_tooltips")) {
-        read_int32_t(L, -1, &data->show_lvledit_tooltips);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "show_grid")) {
-        read_int32_t(L, -1, &data->show_grid);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "show_wp_connections")) {
-        read_int32_t(L, -1, &data->show_wp_connections);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "grid_mode")) {
-        read_int32_t(L, -1, &data->grid_mode);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "number_of_big_screen_messages")) {
-        read_int32_t(L, -1, &data->number_of_big_screen_messages);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "delay_for_big_screen_messages")) {
-        read_float(L, -1, &data->delay_for_big_screen_messages);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "enable_cheatkeys")) {
-        read_int32_t(L, -1, &data->enable_cheatkeys);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "transparency")) {
-        read_int32_t(L, -1, &data->transparency);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "screen_width")) {
-        read_int32_t(L, -1, &data->screen_width);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "screen_height")) {
-        read_int32_t(L, -1, &data->screen_height);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "next_time_width_of_screen")) {
-        read_int32_t(L, -1, &data->next_time_width_of_screen);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "next_time_height_of_screen")) {
-        read_int32_t(L, -1, &data->next_time_height_of_screen);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "skip_shadow_blitting")) {
-        read_int32_t(L, -1, &data->skip_shadow_blitting);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "do_fadings")) {
-        read_int32_t(L, -1, &data->do_fadings);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "fullscreen_on")) {
-        read_int32_t(L, -1, &data->fullscreen_on);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "talk_to_bots_after_takeover")) {
-        read_int32_t(L, -1, &data->talk_to_bots_after_takeover);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "xray_vision_for_tux")) {
-        read_int32_t(L, -1, &data->xray_vision_for_tux);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "cheat_running_stamina")) {
-        read_int32_t(L, -1, &data->cheat_running_stamina);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "cheat_double_speed")) {
-        read_int32_t(L, -1, &data->cheat_double_speed);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "lazyload")) {
-        read_int32_t(L, -1, &data->lazyload);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "show_item_labels")) {
-        read_int32_t(L, -1, &data->show_item_labels);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "last_edited_level")) {
-        read_int32_t(L, -1, &data->last_edited_level);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "show_all_floor_layers")) {
-        read_int32_t(L, -1, &data->show_all_floor_layers);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "difficulty_level")) {
-        read_int32_t(L, -1, &data->difficulty_level);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "input_keybinds")) {
-        read_keybind_t_array(L, -1, data->input_keybinds, 100);
-        lua_pop(L, 1);
-    }
-}
-
-void write_finepoint(struct auto_string *strout, finepoint *data)
-{
-    autostr_append(strout, "{\n" "x = ");
-    write_double(strout, &data->x);
-    autostr_append(strout, ",\n" "y = ");
-    write_double(strout, &data->y);
-    autostr_append(strout, ",\n" "}");
-}
-
-void read_finepoint(lua_State* L, int index, finepoint *data)
-{
-    if (lua_getfield_or_warn(L, index, "x")) {
-        read_double(L, -1, &data->x);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "y")) {
-        read_double(L, -1, &data->y);
-        lua_pop(L, 1);
-    }
-}
-
-void write_item(struct auto_string *strout, item *data)
-{
-    autostr_append(strout, "{\n" "pos = ");
-    write_gps(strout, &data->pos);
-    autostr_append(strout, ",\n" "virt_pos = ");
-    write_gps(strout, &data->virt_pos);
-    autostr_append(strout, ",\n" "text_slot_rectangle = ");
-    write_SDL_Rect(strout, &data->text_slot_rectangle);
-    autostr_append(strout, ",\n" "type = ");
+    autostr_append(strout, "{\n" "type = ");
     write_int32_t(strout, &data->type);
-    autostr_append(strout, ",\n" "max_durability = ");
-    write_int32_t(strout, &data->max_durability);
-    autostr_append(strout, ",\n" "current_durability = ");
-    write_float(strout, &data->current_durability);
-    autostr_append(strout, ",\n" "throw_time = ");
-    write_float(strout, &data->throw_time);
-    autostr_append(strout, ",\n" "bonus_to_dex = ");
-    write_int32_t(strout, &data->bonus_to_dex);
-    autostr_append(strout, ",\n" "bonus_to_str = ");
-    write_int32_t(strout, &data->bonus_to_str);
-    autostr_append(strout, ",\n" "bonus_to_physique = ");
-    write_int32_t(strout, &data->bonus_to_physique);
-    autostr_append(strout, ",\n" "bonus_to_cooling = ");
-    write_int32_t(strout, &data->bonus_to_cooling);
-    autostr_append(strout, ",\n" "bonus_to_health_points = ");
-    write_int32_t(strout, &data->bonus_to_health_points);
-    autostr_append(strout, ",\n" "bonus_to_health_recovery = ");
-    write_float(strout, &data->bonus_to_health_recovery);
-    autostr_append(strout, ",\n" "bonus_to_cooling_rate = ");
-    write_float(strout, &data->bonus_to_cooling_rate);
-    autostr_append(strout, ",\n" "bonus_to_attack = ");
-    write_int32_t(strout, &data->bonus_to_attack);
-    autostr_append(strout, ",\n" "bonus_to_all_attributes = ");
-    write_int32_t(strout, &data->bonus_to_all_attributes);
-    autostr_append(strout, ",\n" "bonus_to_armor_class = ");
-    write_int32_t(strout, &data->bonus_to_armor_class);
-    autostr_append(strout, ",\n" "bonus_to_damage = ");
-    write_int32_t(strout, &data->bonus_to_damage);
-    autostr_append(strout, ",\n" "bonus_to_paralyze_enemy = ");
-    write_int32_t(strout, &data->bonus_to_paralyze_enemy);
-    autostr_append(strout, ",\n" "bonus_to_slow_enemy = ");
-    write_int32_t(strout, &data->bonus_to_slow_enemy);
-    autostr_append(strout, ",\n" "bonus_to_light_radius = ");
-    write_int32_t(strout, &data->bonus_to_light_radius);
-    autostr_append(strout, ",\n" "bonus_to_experience_gain = ");
-    write_int32_t(strout, &data->bonus_to_experience_gain);
-    autostr_append(strout, ",\n" "armor_class = ");
-    write_int32_t(strout, &data->armor_class);
-    autostr_append(strout, ",\n" "damage = ");
-    write_int32_t(strout, &data->damage);
-    autostr_append(strout, ",\n" "damage_modifier = ");
-    write_int32_t(strout, &data->damage_modifier);
-    autostr_append(strout, ",\n" "multiplicity = ");
-    write_int32_t(strout, &data->multiplicity);
-    autostr_append(strout, ",\n" "ammo_clip = ");
-    write_int32_t(strout, &data->ammo_clip);
-    autostr_append(strout, ",\n" "inventory_position = ");
-    write_point(strout, &data->inventory_position);
-    autostr_append(strout, ",\n" "upgrade_sockets = ");
-    write_upgrade_socket_dynarray(strout, &data->upgrade_sockets);
-    autostr_append(strout, ",\n" "quality = ");
-    write_int32_t(strout, &data->quality);
+    autostr_append(strout, ",\n" "addon = ");
+    write_string(strout, &data->addon);
     autostr_append(strout, ",\n" "}");
 }
 
-void read_item(lua_State* L, int index, item *data)
+void read_upgrade_socket(lua_State* L, int index, upgrade_socket *data)
 {
-    if (lua_getfield_or_warn(L, index, "pos")) {
-        read_gps(L, -1, &data->pos);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "virt_pos")) {
-        read_gps(L, -1, &data->virt_pos);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "text_slot_rectangle")) {
-        read_SDL_Rect(L, -1, &data->text_slot_rectangle);
-        lua_pop(L, 1);
-    }
     if (lua_getfield_or_warn(L, index, "type")) {
         read_int32_t(L, -1, &data->type);
         lua_pop(L, 1);
     }
-    if (lua_getfield_or_warn(L, index, "max_durability")) {
-        read_int32_t(L, -1, &data->max_durability);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "current_durability")) {
-        read_float(L, -1, &data->current_durability);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "throw_time")) {
-        read_float(L, -1, &data->throw_time);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_dex")) {
-        read_int32_t(L, -1, &data->bonus_to_dex);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_str")) {
-        read_int32_t(L, -1, &data->bonus_to_str);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_physique")) {
-        read_int32_t(L, -1, &data->bonus_to_physique);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_cooling")) {
-        read_int32_t(L, -1, &data->bonus_to_cooling);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_health_points")) {
-        read_int32_t(L, -1, &data->bonus_to_health_points);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_health_recovery")) {
-        read_float(L, -1, &data->bonus_to_health_recovery);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_cooling_rate")) {
-        read_float(L, -1, &data->bonus_to_cooling_rate);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_attack")) {
-        read_int32_t(L, -1, &data->bonus_to_attack);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_all_attributes")) {
-        read_int32_t(L, -1, &data->bonus_to_all_attributes);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_armor_class")) {
-        read_int32_t(L, -1, &data->bonus_to_armor_class);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_damage")) {
-        read_int32_t(L, -1, &data->bonus_to_damage);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_paralyze_enemy")) {
-        read_int32_t(L, -1, &data->bonus_to_paralyze_enemy);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_slow_enemy")) {
-        read_int32_t(L, -1, &data->bonus_to_slow_enemy);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_light_radius")) {
-        read_int32_t(L, -1, &data->bonus_to_light_radius);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bonus_to_experience_gain")) {
-        read_int32_t(L, -1, &data->bonus_to_experience_gain);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "armor_class")) {
-        read_int32_t(L, -1, &data->armor_class);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "damage")) {
-        read_int32_t(L, -1, &data->damage);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "damage_modifier")) {
-        read_int32_t(L, -1, &data->damage_modifier);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "multiplicity")) {
-        read_int32_t(L, -1, &data->multiplicity);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "ammo_clip")) {
-        read_int32_t(L, -1, &data->ammo_clip);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "inventory_position")) {
-        read_point(L, -1, &data->inventory_position);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "upgrade_sockets")) {
-        read_upgrade_socket_dynarray(L, -1, &data->upgrade_sockets);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "quality")) {
-        read_int32_t(L, -1, &data->quality);
+    if (lua_getfield_or_warn(L, index, "addon")) {
+        read_string(L, -1, &data->addon);
         lua_pop(L, 1);
     }
 }
 
-void write_melee_shot(struct auto_string *strout, melee_shot *data)
-{
-    autostr_append(strout, "{\n" "attack_target_type = ");
-    write_uint8_t(strout, &data->attack_target_type);
-    autostr_append(strout, ",\n" "mine = ");
-    write_uint8_t(strout, &data->mine);
-    autostr_append(strout, ",\n" "bot_target_n = ");
-    write_int16_t(strout, &data->bot_target_n);
-    autostr_append(strout, ",\n" "to_hit = ");
-    write_int16_t(strout, &data->to_hit);
-    autostr_append(strout, ",\n" "damage = ");
-    write_int16_t(strout, &data->damage);
-    autostr_append(strout, ",\n" "owner = ");
-    write_int16_t(strout, &data->owner);
-    autostr_append(strout, ",\n" "time_to_hit = ");
-    write_float(strout, &data->time_to_hit);
-    autostr_append(strout, ",\n" "}");
-}
-
-void read_melee_shot(lua_State* L, int index, melee_shot *data)
-{
-    if (lua_getfield_or_warn(L, index, "attack_target_type")) {
-        read_uint8_t(L, -1, &data->attack_target_type);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "mine")) {
-        read_uint8_t(L, -1, &data->mine);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "bot_target_n")) {
-        read_int16_t(L, -1, &data->bot_target_n);
-        lua_pop(L, 1);
-    }
-    data->bot_target_addr = NULL;
-    if (lua_getfield_or_warn(L, index, "to_hit")) {
-        read_int16_t(L, -1, &data->to_hit);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "damage")) {
-        read_int16_t(L, -1, &data->damage);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "owner")) {
-        read_int16_t(L, -1, &data->owner);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "time_to_hit")) {
-        read_float(L, -1, &data->time_to_hit);
-        lua_pop(L, 1);
-    }
-}
-
-void write_keybind_t(struct auto_string *strout, keybind_t *data)
-{
-    autostr_append(strout, "{\n" "name = ");
-    write_string(strout, &data->name);
-    autostr_append(strout, ",\n" "key = ");
-    write_int32_t(strout, &data->key);
-    autostr_append(strout, ",\n" "mod = ");
-    write_int32_t(strout, &data->mod);
-    autostr_append(strout, ",\n" "}");
-}
-
-void read_keybind_t(lua_State* L, int index, keybind_t *data)
-{
-    if (lua_getfield_or_warn(L, index, "name")) {
-        read_string(L, -1, &data->name);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "key")) {
-        read_int32_t(L, -1, &data->key);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "mod")) {
-        read_int32_t(L, -1, &data->mod);
-        lua_pop(L, 1);
-    }
-}
-
-void write_blast(struct auto_string *strout, blast *data)
-{
-    autostr_append(strout, "{\n" "pos = ");
-    write_gps(strout, &data->pos);
-    autostr_append(strout, ",\n" "type = ");
-    write_int32_t(strout, &data->type);
-    autostr_append(strout, ",\n" "phase = ");
-    write_float(strout, &data->phase);
-    autostr_append(strout, ",\n" "damage_per_second = ");
-    write_float(strout, &data->damage_per_second);
-    autostr_append(strout, ",\n" "faction = ");
-    write_int32_t(strout, &data->faction);
-    autostr_append(strout, ",\n" "}");
-}
-
-void read_blast(lua_State* L, int index, blast *data)
-{
-    if (lua_getfield_or_warn(L, index, "pos")) {
-        read_gps(L, -1, &data->pos);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "type")) {
-        read_int32_t(L, -1, &data->type);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "phase")) {
-        read_float(L, -1, &data->phase);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "damage_per_second")) {
-        read_float(L, -1, &data->damage_per_second);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "faction")) {
-        read_int32_t(L, -1, &data->faction);
-        lua_pop(L, 1);
-    }
-}
-
-void write_gps(struct auto_string *strout, gps *data)
-{
-    autostr_append(strout, "{\n" "x = ");
-    write_float(strout, &data->x);
-    autostr_append(strout, ",\n" "y = ");
-    write_float(strout, &data->y);
-    autostr_append(strout, ",\n" "z = ");
-    write_int32_t(strout, &data->z);
-    autostr_append(strout, ",\n" "}");
-}
-
-void read_gps(lua_State* L, int index, gps *data)
-{
-    if (lua_getfield_or_warn(L, index, "x")) {
-        read_float(L, -1, &data->x);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "y")) {
-        read_float(L, -1, &data->y);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "z")) {
-        read_int32_t(L, -1, &data->z);
-        lua_pop(L, 1);
-    }
-}
-
-define_write_xxx_array(item);
-define_read_xxx_array(item);
-define_write_xxx_dynarray(upgrade_socket);
-define_read_xxx_dynarray(upgrade_socket);
 define_write_xxx_array(automap_data_t);
 define_read_xxx_array(automap_data_t);
-define_write_xxx_dynarray(item);
-define_read_xxx_dynarray(item);
-define_write_xxx_array(uint8_t);
-define_read_xxx_array(uint8_t);
+define_write_xxx_array(blast);
+define_read_xxx_array(blast);
+define_write_xxx_array(bullet);
+define_read_xxx_array(bullet);
 define_write_xxx_array(float);
 define_read_xxx_array(float);
-define_write_xxx_array(spell_active);
-define_read_xxx_array(spell_active);
+define_write_xxx_array(gps);
+define_read_xxx_array(gps);
+define_write_xxx_array(int32_t);
+define_read_xxx_array(int32_t);
+define_write_xxx_array(item);
+define_read_xxx_array(item);
+define_write_xxx_dynarray(item);
+define_read_xxx_dynarray(item);
 define_write_xxx_array(melee_shot);
 define_read_xxx_array(melee_shot);
 define_write_xxx_array(mission);
 define_read_xxx_array(mission);
-define_write_xxx_array(bullet);
-define_read_xxx_array(bullet);
-define_write_xxx_array(int32_t);
-define_read_xxx_array(int32_t);
 define_write_xxx_array(moderately_finepoint);
 define_read_xxx_array(moderately_finepoint);
+define_write_xxx_array(spell_active);
+define_read_xxx_array(spell_active);
 define_write_xxx_array(string);
 define_read_xxx_array(string);
-define_write_xxx_array(gps);
-define_read_xxx_array(gps);
-define_write_xxx_array(blast);
-define_read_xxx_array(blast);
+define_write_xxx_array(uint8_t);
+define_read_xxx_array(uint8_t);
+define_write_xxx_dynarray(upgrade_socket);
+define_read_xxx_dynarray(upgrade_socket);
