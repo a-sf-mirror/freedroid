@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -70,9 +70,9 @@ freedroid-discussion@lists.sourceforge.net
 			end_dialog()
 		end
 		if (MO_HFGateAccessServer_Spencer) then
+			MO_HFGateAccessServer_Spencer = false
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()
-			MO_HFGateAccessServer_Spencer = false
 		else
 			npc_says(_"Please select action")
 		end
@@ -114,12 +114,12 @@ NO_TEXT
 <LuaCode>
 	tux_says(_"open gate", "NO_WAIT")
 	npc_says(_"Permission denied")
-	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
-	end_dialog()
 	hurt_tux(5)
 	heat_tux(10)
 	update_quest("Open Sesame", "The server is secured, looks like I have to hack it.")
 	hide(2) show(3)
+	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 

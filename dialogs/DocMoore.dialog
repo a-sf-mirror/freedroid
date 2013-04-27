@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -171,7 +171,7 @@ Nr=11 Text=_"What do you mean, self-inflicted damage?"
 	if (guard_follow_tux) or
 	   (tux_has_joined_guard) then
 		npc_says(_"Well, you see that Bender character on my doorstep?")
-		else
+	else
 		npc_says(_"Well, you see that idiotic Bender character on my doorstep?")
 	end
 	tux_says(_"What can you tell me about Bender?")

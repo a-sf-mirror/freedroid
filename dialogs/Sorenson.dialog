@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -166,8 +166,8 @@ Nr=64 Text=_"Francis"
 	tux_says(_"Erm. I have a confession to make. My name is not Francis.")
 	npc_says(_"N0000000000!!!!!!!")
 	npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
-	end_dialog()
 	hide(64)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -177,7 +177,7 @@ Nr=65 Text=_"The great destroyer of evil, the purger of all things foul, the fri
 	tux_says(_"I... Don't feel... good... Blood loss... So... Cold...")
 	npc_says(_"N0! Idi07!")
 	kill_tux()
-	hide(65)
+	-- hide(65)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -199,8 +199,8 @@ Nr=70 Text=_"Huh? I d0n'7 f33l g00d."
 	tux_says(_"W417... 1 f331... H0rr1b13...")
 	npc_says(_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!")
 	improve_skill("programming")
-	drop_dead()
 	hide(60, 61, 62, 63, 64, 65, 66)
+	drop_dead()
 </LuaCode>
 ----------------------------------------------------------------------
 

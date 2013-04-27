@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -83,8 +83,8 @@ Nr=4 Text=_"What is this place?"
 	npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage")
 	npc_says(_"*INFO* secret information theft attempt detected")
 	npc_says(_"Go away. You are not allowed to be here!")
-	end_dialog()
 	hide(4)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -156,8 +156,8 @@ Nr=15 Text=_"Then please, break the rules, disable the guns and let me go."
 	npc_says(_"OK, I'm almost a computer.")
 	tux_says(_"Almost a computer? What does that mean?")
 	npc_says(_"It means what it means! Nothing more, nothing less! Shut up, little piece of biomass!")
-	end_dialog()
 	hide(15) show(20)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -231,7 +231,6 @@ Nr=31 Text=_"How is your power supply?"
 Nr=33 Text=_"I have the crystals! They were difficult to find."
 <LuaCode>
 	npc_says(_"Great! Thanks. I've opened some doors for you. I hope you will find something interesting there. That's all I can do for you.")
-	end_dialog()
 	display_big_message(_"Restored SADD's power supply")
 	add_xp(1500)
 	change_obstacle_state("SADDDepotDoor", "opened")
@@ -239,6 +238,7 @@ Nr=33 Text=_"I have the crystals! They were difficult to find."
 	del_item_backpack("Red Dilithium Crystal", 1)
 	end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
 	hide(33) show(97)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -357,8 +357,8 @@ Nr=97 Text=_"Erm... hi!"
 	tux_says(_"Will you let me inside the base?")
 	npc_says(_"I'm sorry %s, I'm afraid I can't do that.", get_player_name())
 	npc_says(_"Nice try, though. I may owe you, but I can't let you in. You must leave.")
-	end_dialog()
 	show(99) hide(97)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 

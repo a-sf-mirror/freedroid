@@ -21,6 +21,7 @@ If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -65,7 +66,7 @@ Nr=2 Text=_"I'd like to go through that gate."
 		npc_says(_"HOLY MECHANICAL MARVEL! SHIELD DISABLED! PREPARE FOR BOT ATTACK!")
 		next(10)
 	else
-		npc_says(_"* Stone disappears leaving a small cloud of dust")
+		npc_says(_"* Stone disappears leaving a small cloud of dust *")
 		npc_says(_"Find a different gate to go through.")
 		next(99)
 	end

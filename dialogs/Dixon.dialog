@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -473,8 +473,8 @@ Nr=43 Text=_"Deal. Here is your toolkit. Now cough up the money. Fast."
 	add_gold(250)
 	del_item_backpack("Dixon's Toolbox", 1)
 	end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a nice sum of money. Life is good.")
-	end_dialog()
 	hide(35, 43)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -485,8 +485,8 @@ Nr=45 Text=_"Deal. Here is your toolkit. Now cough up the money. Fast."
 	add_gold(350)
 	del_item_backpack("Dixon's Toolbox", 1)
 	end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a huge sum of money. Life is great.")
-	end_dialog()
 	hide(36, 45)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -498,8 +498,8 @@ Nr=47 Text=_"Deal. Here is your toolkit. Now cough up the money. Fast."
 	add_gold(400)
 	del_item_backpack("Dixon's Toolbox", 1)
 	end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me.")
-	end_dialog()
 	hide(47)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 

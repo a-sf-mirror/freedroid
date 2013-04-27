@@ -17,13 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
 Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
-
 
 ----------------------------------------------------------------------
 
@@ -125,7 +123,7 @@ Nr=43 Text=_"Another time, perhaps."
 
 Nr=44 Text=_"Where does the word 'bot' come from?"
 <LuaCode>
-	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1;
+	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1
 	npc_says(_"It is a shortening of the word 'robot', derived from the Czech word for forced labor.")
 	npc_says(_"R.U.R. (Rossum's Universal Robots), a play, introduced \'robots\' as artificial people.")
 	npc_says(_"In the play the robots revolted, took over the world, and killed all the humans.")
@@ -137,7 +135,7 @@ Nr=44 Text=_"Where does the word 'bot' come from?"
 
 Nr=45 Text=_"What about the creation of robots for defense?"
 <LuaCode>
-	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1;
+	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1
 	npc_says(_"During the Holy Roman Empire, the Jewish people of the Prague ghetto needed protection.")
 	npc_says(_"So a holy rabbi shaped a Golem out of clay, and brought it to life through rituals and writing 'emet' (truth) on its head.")
 	npc_says(_"The Golem initially protected the Jews, but was brainless and stupid, and so soon became dangerously violent to even the Jews.")
@@ -150,7 +148,7 @@ Nr=45 Text=_"What about the creation of robots for defense?"
 
 Nr=46 Text=_"What can you tell me about robotic girlfriends?"
 <LuaCode>
-	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1;
+	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1
 	npc_says(_"Well, the Romans wrote down a story about Pygmalion, the sculptor of Cyprus.")
 	npc_says(_"Pygmalion carved an ivory woman of far surpassing natural beauty and fell in love.")
 	npc_says(_"Venus, the goddess of love, brought the ivory woman to life.")

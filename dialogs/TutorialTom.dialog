@@ -21,6 +21,7 @@ If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -104,8 +105,8 @@ Nr=3 Text=_"My limbs don't seem to want to work properly. Can you help me with t
 	npc_says(_"Now try to move to the red dot to the north. Then to the black grating to the east, and then talk to me again.")
 	update_quest(_"Tutorial Movement", _"I'm supposed to left click anywhere to move to a location. If I can figure out a way, I will move there automatically. Tom wants me to first try to move to the red dot to the North.")
 	TutorialTom_learn_to_walk = true
-	end_dialog()
 	hide(3)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -154,10 +155,10 @@ Nr=9 Text=_"I'm eager to learn more."
 <LuaCode>
 	npc_says(_"Ok, follow me into the next area.")
 	for var in ipairs(TutorialTom_doors) do
-			change_obstacle_state(TutorialTom_doors[var], "opened")
-		end
-	end_dialog()
+		change_obstacle_state(TutorialTom_doors[var], "opened")
+	end
 	hide(1, 2, 3, 4, 5) show(10)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -389,8 +390,8 @@ Nr=27 Text=_"I'm ready to take the next bot on."
 	add_item("Strength Capsule", 1)
 	add_item("Dexterity Capsule", 1)
 	add_item("Standard Shield", 1)
-	end_dialog()
 	hide(27) show(28)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -427,8 +428,8 @@ Nr=29 Text=_"I'm ready to move on."
 	npc_says(_"I'll unlock the door to the south. Follow the corridor east to the shooting range.")
 	change_obstacle_state("TutorialMeleeOut", "opened")
 	set_bot_destination("TutorialTom-Wall")
-	end_dialog()
 	hide(20, 21, 22, 23, 24, 25, 26, 27, 28, 29) show(70)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -493,8 +494,8 @@ Nr=33 Text=_"I think I understand how to use guns now."
 	change_obstacle_state("TutorialStorage", "opened")
 	change_obstacle_state("TutorialShootCage", "opened")
 	add_item(".22 LR Ammunition", 50)
-	end_dialog()
 	hide(33) show(34, 35)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -514,8 +515,8 @@ Nr=35 Text=_"I killed all the bots."
 		npc_says(_"But first, you'll need to give me your weapons.")
 		npc_says(_"Put all your ranged weapons in your inventory, then talk to me and we'll move on.")
 		update_quest(_"Tutorial Shooting", _"That was like shooting fish in a barrel. I could use a fish about now.")
-		end_dialog()
 		hide(35, 38) show(36, 37)
+		end_dialog()
 	else
 		npc_says(_"I don't mind if you don't want to do this, but please don't try to trick me.")
 		npc_says(_"I don't have verified kills on all those bots.")
@@ -531,8 +532,8 @@ Nr=36 Text=_"I would like a few more bots to shoot at."
 		create_droid("shootingrange"..i, 123)
 		i = i + 2
 	end
-	end_dialog()
 	hide(36)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -588,8 +589,8 @@ NO_TEXT
 	del_item_backpack("Plasma pistol")
 	npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
 	change_obstacle_state("TutorialShootingOut", "opened")
-	end_dialog()
 	hide(30, 31, 32, 33, 37, 38, 39) show(40)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -625,8 +626,8 @@ Nr=41 Text=_"I'll have to keep that in mind."
 	npc_says(_"Since you'll be hacking up ahead, you should probably use a few of them on [b]Cooling[/b].")
 	npc_says(_"But, again, that's your choice.")
 	add_xp(2000)
-	end_dialog()
 	hide(41) show(42, 58)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -640,8 +641,8 @@ Nr=42 Text=_"Alright, I'm ready to go hack some bots."
 	npc_says(_"You will need to login, by left clicking on it, and then select unlock door.")
 	npc_says(_"Terminals act very similar to hacked bots.")
 	add_quest(_"Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
-	end_dialog()
 	hide(42, 58, 59, 60) show(50, 56)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -740,8 +741,8 @@ Nr=55 Text=_"Thanks. I'm ready now."
 	TutorialTom_hacking_bots = true
 	update_quest(_"Tutorial Hacking", _"Tutorial Tom wants me to hack those bots. The only thing I need to worry about is overheating. But if I get too hot I can always try the Emergency shutdown program.")
 	change_obstacle_state("TutorialTakeoverCage", "opened")
-	end_dialog()
 	hide(55) show(56)
+	end_dialog()
 -- TODO Also explain improving program revisions
 </LuaCode>
 ----------------------------------------------------------------------
@@ -768,8 +769,8 @@ Nr=56 Text=_"I'm finished. I'm ready to move on."
 		npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
 		npc_says(_"You'll need it if our world is to survive.")
 	end
-	end_dialog()
 	hide(51, 52, 53, 54, 55, 57)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 

@@ -21,6 +21,7 @@ If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -55,13 +56,13 @@ freedroid-discussion@lists.sourceforge.net
 	end
 
 	if (Tania_met_Pendragon) and
-		(not Spencer_Tania_sent_to_DocMoore) and
-		(not Tania_set_free) then
+	   (not Spencer_Tania_sent_to_DocMoore) and
+	   (not Tania_set_free) then
 		show(50)
 	end
 
 	if (not has_quest("Opening access to MS Office")) and
-		(done_quest("A kingdom for a cluster!")) then
+	   (done_quest("A kingdom for a cluster!")) then
 		show(37)
 	end
 
@@ -71,7 +72,7 @@ freedroid-discussion@lists.sourceforge.net
 	end
 
 	if (data_cube_lost) and
-	    (not done_quest("Deliverance")) then
+	   (not done_quest("Deliverance")) then
 		show(29)
 	end
 
@@ -479,8 +480,8 @@ Nr=54 Text=_"I killed him just to see what it was like. It was awesome."
 	npc_says(_"We must stop you before you kill again.")
 	update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me too dangerous to live.")
 	set_faction_state("redguard", "hostile")
-	end_dialog()
 	hide(52, 53, 54)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 

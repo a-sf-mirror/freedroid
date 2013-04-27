@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -206,8 +206,8 @@ Nr=23 Text=_"Teach me how to flip out and kill people!"
 		end
 	end
 	npc_says(_"Now go away.")
-	end_dialog()
 	hide(23)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 

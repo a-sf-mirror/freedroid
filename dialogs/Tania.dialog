@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -510,7 +510,6 @@ Nr=71 Text=_"You might try the bar. But stay away from the food. It is horrible.
 	hide(71)
 </LuaCode>
 ----------------------------------------------------------------------
-
 
 Nr=90 Text=_"I think I have to go."  --Pre-"Tania's Escape" Quest
 NO_TEXT

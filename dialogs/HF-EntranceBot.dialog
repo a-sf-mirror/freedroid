@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -53,8 +53,8 @@ Nr=1 Text=_"I am THE ONE."
 <LuaCode>
 	npc_says(_"You are THE ONE without permission.")
 	npc_says(_"Please consider leaving.")
-	end_dialog()
 	hide(1)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 

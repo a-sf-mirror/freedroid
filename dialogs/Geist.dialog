@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -62,8 +62,8 @@ Nr=2 Text=_"I really do not understand you."
 Nr=3 Text=_"I wish I knew what you are talking about."
 <LuaCode>
 	npc_says(_"Verschwinde!") -- Vanish!
-	end_dialog()
 	hide(3)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 

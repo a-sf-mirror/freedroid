@@ -21,6 +21,7 @@ If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -28,7 +29,6 @@ freedroid-discussion@lists.sourceforge.net
 	tux_says(_"Hello! I'm new here.")
 	npc_says(_"Hey, man! I'm Bender, the dead man of this town. And you?")
 	set_bot_name("Bender")
-
 	tux_says(_"I'm %s. I'm fine, thank you.", get_player_name(), "NO_WAIT")
 	show(0)
 </LuaCode>

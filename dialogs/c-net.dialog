@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -248,7 +248,9 @@ NO_TEXT
 		npc_says(_"Mounting volume \"Kevins_Security_File\"...")
 		npc_says(_"Private memory and/or virtual address space exhausted.", "NO_WAIT")
 		npc_says(_"Not enough free memory to load data file.", "NO_WAIT")
-	elseif (has_quest("Deliverance") and (not done_quest("Deliverance")) and has_item_backpack("Data cube")) then
+	elseif (has_quest("Deliverance")) and
+		   (not done_quest("Deliverance")) and
+		   (has_item_backpack("Data cube")) then
 		npc_says(_"List for Spencer:")
 		npc_says("Alastra, Maria Grazia", "NO_WAIT")
 		npc_says("Arana, Pedro", "NO_WAIT")
@@ -322,12 +324,13 @@ NO_TEXT
 <LuaCode>
 	c_net_prompt = c_net_username .. "@c-net:~/documents$"
 	tux_says("cd documents/", "NO_WAIT")
-	if (c_net_username == "guest") then
-	elseif (c_net_username =="root") then
+	if (c_net_username =="root") then
 		show(66)
-	elseif (c_net_username =="lily") then -- no special files yet
-	elseif (c_net_username =="cpain") then -- no special files yet
 	end
+	--if (c_net_username == "guest") then
+	--elseif (c_net_username =="lily") then -- no special files yet
+	--elseif (c_net_username =="cpain") then -- no special files yet
+	--end
 	cli_says(c_net_prompt, "NO_WAIT")
 	show(31) hide(10, 20, 30, 80, 99)
 </LuaCode>

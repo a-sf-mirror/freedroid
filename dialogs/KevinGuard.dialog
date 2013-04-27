@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -33,8 +33,8 @@ freedroid-discussion@lists.sourceforge.net
 		tux_says(_"It's me.")
 		change_obstacle_state("KevinsDoor", "opened")
 		npc_says(_"[b]Identity confirmed. You may pass.[/b]")
-		end_dialog()
 		show(99)
+		end_dialog()
 	else
 		npc_says(_"[b]Intruder, lower your weapons and identify yourself or face immediate termination.[/b]")
 		npc_says(_"[b]Any attempts to enter without authorization will be punished.[/b]")

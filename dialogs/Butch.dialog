@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -189,14 +189,14 @@ Nr=12 Text=_"Why the heck are you organizing fights? Enough people have died alr
 
 Nr=13 Text=_"No way! Violence is wrong! Make love not war!"
 <LuaCode>
-	npc_says(_" . . .")
+	npc_says(". . .")
 	hide(6, 13) show(14)
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=14 Text=_"Roses, not destruction!"
 <LuaCode>
-	npc_says(_" . . .")
+	npc_says(". . .")
 	hide(14) show(15)
 </LuaCode>
 ----------------------------------------------------------------------

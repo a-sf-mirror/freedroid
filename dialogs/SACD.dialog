@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -92,7 +92,7 @@ Nr=3 Text=_"/usr/bin/hermodoors --open"
 	npc_says(_"Invalid password. Entering lockdown mode.")
 	npc_says(_"ERROR: Lockdown mode encountered an error.", "NO_WAIT")
 	npc_says(_"ERROR: error encountered an error.", "NO_WAIT")
-	if bot_exists("SADD") then
+	if (bot_exists("SADD")) then
 		npc_says(_"ERROR: SADD droids now set to search-and-destroy mode.")
 		set_npc_faction("ms", "SADD")
 		set_bot_name(_"SADD - Exterminate Mode", "SADD")

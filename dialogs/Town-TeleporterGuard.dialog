@@ -17,11 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -128,8 +128,8 @@ Nr=15 Text=_"Not everything can be teleported?"
 Nr=99 Text=_"I'll be going, then."
 <LuaCode>
 	npc_says(_"Goodbye.")
-	end_dialog()
 	show(1)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 

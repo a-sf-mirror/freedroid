@@ -17,13 +17,11 @@
  * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
 Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
-
 
 ----------------------------------------------------------------------
 
@@ -221,9 +219,9 @@ Nr=99 Text=_"logout"
 <LuaCode>
 	npc_says(_"Exiting", "NO_WAIT")
 	npc_says(_"Goodbye Dave.")
+	hide(3, 4, 5, 6, 7, 8, 9, 10)
 	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 	end_dialog()
-	hide(3, 4, 5, 6, 7, 8, 9, 10)
 </LuaCode>
 ----------------------------------------------------------------------
 

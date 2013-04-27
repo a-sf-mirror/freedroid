@@ -21,6 +21,7 @@ If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
 ----------------------------------------------------------------------
 
@@ -166,8 +167,8 @@ Nr=22 Text=_"I said: YOUR MOTHER DRESSES YOU FUNNY."
 	npc_says(_"Nobody says things about my mother. Forget you, Linarian!")
 	npc_says(_"Open fire!")
 	set_faction_state("redguard", "hostile")
-	end_dialog()
 	hide(20, 21, 22, 23, 30)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -192,12 +193,12 @@ Nr=30 Text=_"Please don't hurt me."
 	for var in ipairs(Town_NorthGateGuard_doors) do
 		change_obstacle_state(Town_NorthGateGuard_doors[var], "opened")
 	end
-	end_dialog()
 	if (has_quest("Deliverance")) and
 	   (not knows_spencer_office) then
 		show(40)
 	end
 	hide(20, 21, 22, 23, 30, 31, 32) show(99)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
