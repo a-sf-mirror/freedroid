@@ -1138,7 +1138,6 @@ static int lua_switch_background_music_to(lua_State *L)
 	SwitchBackgroundMusicTo(filename);
 	return 0;
 }
-//void SwitchBackgroundMusicTo(char *filename_raw);
 
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
