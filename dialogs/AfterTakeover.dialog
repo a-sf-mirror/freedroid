@@ -607,9 +607,9 @@ Nr=74 Text=_"Reprogramm_bots_after_takeover\?.sh"
 Topic="settings.plx"
 <LuaCode>
 	if (Aftertakeover_reprogramm_bots_after_takeover) then
-		npc_says(_"Bots are reprogrammed after takeover: [b]true[/b]")
+		npc_says(_"Bots will be reprogrammed after takeover: [b]true[/b]")
 	elseif not (Aftertakeover_reprogramm_bots_after_takeover) then
-		npc_says(_"Bots are reprogrammed after takeover: [b]false[/b]")
+		npc_says(_"Bots will be reprogrammed after takeover: [b]false[/b]")
 	else -- ???
 		npc_says("ERROR   REPROGRAMM BOTS AFTER TAKEOVER, NODE 74  UNHANDLED VALUE OF  Aftertakeover_reprogramm_bots_after_takeover , PLEASE REPORT")
 	end
@@ -621,7 +621,7 @@ Topic="settings.plx"
 Nr=75 Text="Yes"
 Topic="reprogramm_bots"
 <LuaCode>
-	npc_says("Bots will be reprogrammed after takeover.")
+	npc_says(_"Bots will be reprogrammed after takeover: [b]true[/b]")
 	reprogramm_bots_after_takeover(1) -- 1 = true in C
 	Aftertakeover_reprogramm_bots_after_takeover = true
 	hide(75, 76)
@@ -632,7 +632,7 @@ Topic="reprogramm_bots"
 Nr=76 Text="No"
 Topic="reprogramm_bots"
 <LuaCode>
-	npc_says("Bots will not be reprogrammed after takeover.")
+	npc_says(_"Bots will be reprogrammed after takeover: [b]false[/b]")
 	reprogramm_bots_after_takeover(0) -- 0 = false in C
 	Aftertakeover_reprogramm_bots_after_takeover = false
 	hide(75, 76)
