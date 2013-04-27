@@ -43,7 +43,7 @@ iso_grass_floor_0044.png 1500 177 155 72 off -79 -38
 iso_miscellaneous_floor_0005.png 1656 177 137 72 off -68 -34
 iso_miscellaneous_floor_0008.png 1794 177 135 72 off -67 -33
 iso_grass_floor_0035.png 1930 177 115 67 off -76 -31
-iso_miscellaneous_floor_0009.png 0 255 137 72 off -68 -34
+iso_miscellaneous_floor_0009.png 0 255 137 72 off -69 -35
 iso_miscellaneous_floor_0010.png 138 255 137 72 off -68 -34
 iso_miscellaneous_floor_0011.png 276 255 137 72 off -68 -34
 iso_miscellaneous_floor_0012.png 414 255 137 72 off -68 -34
