@@ -105,7 +105,6 @@ You can \n\
 \n\
   send an e-mail to                    freedroid-discussion AT lists.sourceforge.net\n\
   mention it on our IRC channel        #freedroid on irc.freenode.net\n\
-  post on our forum at                 https://sourceforge.net/apps/phpbb/freedroid\n\
   or report the bug on our tracker at  http://bugs.freedroid.org/\n\
 \n\
 Thank you!\n\n");
