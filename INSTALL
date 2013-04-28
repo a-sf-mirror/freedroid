@@ -125,6 +125,7 @@ Building In Windows
 	There are a few graphical git clients for Windows.
 
 	You download GitEye from here http://www.collab.net/downloads/giteye
+	Warning, apparently the version is a 30-days-trial warning only. Todo: need to check what happens after these 30 days.
 
 	Once GitEye is running, click "Clone Repository" then "URI" and enter git://git.code.sf.net/p/freedroid/code into the "URI" field.
 	You can clone all branches (hit "Next"), for the Directory, you may want to set "freedroidRPG" instead of "code".
