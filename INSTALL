@@ -45,10 +45,10 @@ Building with autotools
    b) Via main menu (usually "System" entry).
       Move to the FreedroidRPG source directory using "cd ./XYZ/" command. XYZ = path to the FreedroidRPG source.
    
-2) If you are running an SVN version of the game, you will first need to generate the 
+2) If you are running an git version of the game, you will first need to generate the 
    configure script by running:
    ./autogen.sh
-   If you don't know what the SVN version is, you are not running it and can skip this step.
+   If you don't know what the git version is, you are not running it and can skip this step.
 
 3) Run the configure script: 
    ./configure
@@ -66,7 +66,7 @@ Building with autotools
       Hint: you can speed up "make" process using "make -j n". Replace "n" with number of jobs.
       For more information execute "make --help".
 
-   b) If you are working with the source tree and want to svn update regularly we 
+   b) If you are working with the source tree and want to git pull regularly we 
       recommend the following instead: 
       Do not issue "make install", instead, simply go to the src/ subdirectory, and run
       ./freedroidRPG.
@@ -119,19 +119,18 @@ Building In Windows
 	Nota: When you start a MinGW Shell, the current directory is your HOME directory. This HOME directory can be found in
 	C:\MinGW\msys\1.0\home\<your_username>
 
-3) SVN installation
+3) Git installation
 
-	To retrieve FreedroidRPG source files, you will need to use Subversion (SVN in short) (http://subversion.apache.org/).
-	There are several graphical Windows clients for SVN, the most known and used being TortoiseSVN. Here, we will use the command line client.
+	To retrieve FreedroidRPG source files, you will need to use Git (http://git-scm.com/).
+	There are a few graphical git clients for Windows.
 
-	To download, extract and install the SVN tool, type the following commands in a MinGW Shell:
-		wget http://alagazam.net/svn-1.6.16/svn-win32-1.6.16.zip
-	If that doesn't work, try_
-		wget slaxer.com/chucks/svn-win32-1.6.16.zip
-		unzip svn-win32-1.6.16.zip
-		cd svn-win32-1.6.16
-		cp -r bin iconv share /
-		cd
+	You download GitEye from here http://www.collab.net/downloads/giteye
+
+	Once GitEye is running, click "Clone Repository" then "URI" and enter git://git.code.sf.net/p/freedroid/code into the "URI" field.
+	You can clone all branches (hit "Next"), for the Directory, you may want to set "freedroidRPG" instead of "code".
+	Hit "Finish" to start cloning, progress can be observed in the lower right corner.
+	When cloning is finished, you can access the cloned repository in the left column.
+
 
 4) FreedroidRPG dependencies installation
 
@@ -153,11 +152,8 @@ Building In Windows
 
 	In a MinGW Shell, do the following:
 
-	 download the source files with svn:
-	 svn co http://freedroid.svn.sourceforge.net/svnroot/freedroid freedroid
-
 	 enter freedroid source directory:
-	 cd freedroid
+	 cd git/freedroid
 
 	 compile the game:
 	 ./autogen.sh

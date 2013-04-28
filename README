@@ -293,7 +293,7 @@ Level Editor & Developer FAQ:
 	   Second thing is to contact us. This can be done via IRC (see 'Contact' beneath)
 	   or using the freedroid-discussion mailing list.
 	   Then the next thing to do is to get the latest development version of the game
-	   from SVN, then to either make a small patch right away or to discuss anything
+	   from git, then to either make a small patch right away or to discuss anything
 	   bigger you have in mind with the people on the discussion mailing list or IRC, so
 	   it can be assured that all the developers are pulling in the same direction and
 	   know what's going on and who is working on what.
