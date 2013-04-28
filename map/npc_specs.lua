@@ -175,7 +175,8 @@ items = {{"Source Book of Emergency shutdown"},
 	 {"Source Book of Broadcast virus"},
 	 {"Source Book of Dispel smoke"},
 	 {"Source Book of Killer poke"},
-	 {"Source Book of Invisibility"}
+	 {"Source Book of Invisibility"},
+	 {"Source Book of Repair equipment"}
 	 --"Source Book of Plasma discharge",
 	 --"Source Book of Reverse-engineer",
 	 --"Source Book of Nethack",
@@ -195,7 +196,8 @@ items = {{"Source Book of Emergency shutdown"},
 	 {"Source Book of Broadcast virus"},
 	 {"Source Book of Dispel smoke"},
 	 {"Source Book of Killer poke"},
-	 {"Source Book of Invisibility"}
+	 {"Source Book of Invisibility"},
+	 {"Source Book of Repair equipment"}
 	 -- "Source Book of Plasma discharge",
 	 -- "Source Book of Reverse-engineer",
 	 -- "Source Book of Nethack",

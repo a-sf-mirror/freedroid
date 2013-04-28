@@ -139,23 +139,48 @@ item *get_equipped_item_in_slot_for(int item_type)
 static void self_repair_item(item *it)
 {
 	int wear = 0, used = 0;
+	int my_skill_level = 0;
+	int percent_chance = MyRandom(100);
 
 	if (it->max_durability == -1) {
 		play_sound("effects/tux_ingame_comments/Tux_Item_Cant_Be_0.ogg");
 		return;
 	} 
 
-	used = it->max_durability - it->current_durability;
-	/* Self repair formula: decrease max_durability between 1 and 11-skill_level*/
-	wear = 1 + MyRandom(10 - Me.skill_level[get_program_index_with_name("Repair equipment")]);
-	//never decrease more than current missing durability
-	it->max_durability -= min(wear, used);
-	if (it->max_durability < 1) {
-		it->max_durability = 1;
+	my_skill_level = Me.skill_level[get_program_index_with_name("Repair equipment")];
+
+/* if Tux's repair ability is at the full skill level 
+ * make it so that most of the time the item is fully repaired. Give it a 5 % chance 
+ * of improving the item and a 3% chance of making it worse.
+ * otherwise give him a skill level *10 percent chance of repairing the item completely
+ */
+	if(my_skill_level >= NUMBER_OF_SKILL_LEVELS-1) {
+		if(percent_chance > 94)
+		{
+			it->max_durability++;
+		}
+		else if (percent_chance < 3)
+		{
+			it->max_durability--;
+		}
+	}
+	else if(my_skill_level*10 < percent_chance) {		
+		used = it->max_durability - it->current_durability;
+		/* Self repair formula: decrease max_durability between 1 and 11-skill_level*/
+		wear = 1 + MyRandom(10 - my_skill_level);
+		//never decrease more than current missing durability
+		it->max_durability -= min(wear, used);
+		if (it->max_durability < 1) {
+			it->max_durability = 1;
+		}
 	}
 	//when you wear off all extra durability, the item become normal again
 	if (it->quality == GOOD_QUALITY && it->max_durability < ItemMap[it->type].base_item_durability) {
 		it->quality = NORMAL_QUALITY;
+	}
+	//if you add extra durability, the item becomes good
+	if (it->quality == NORMAL_QUALITY && it->max_durability > ItemMap[it->type].base_item_durability) {
+		it->quality = GOOD_QUALITY;
 	}
 
 	it->current_durability = it->max_durability;

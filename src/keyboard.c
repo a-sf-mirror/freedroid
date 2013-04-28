@@ -81,6 +81,7 @@ const char *keybindNames[] = {
 	"cheat_respawn_level",
 	"cheat_menu", "cheat_level_editor",
 	"cheat_reload_graphics",
+	"cheat_inc_repair" , "cheat_dec_repair",
 	NULL
 };				/* must terminate with NULL */
 
@@ -296,6 +297,8 @@ void input_set_default(void)
 	input_set_keybind("cheat_level_editor", SDLK_e, KMOD_LCTRL | KMOD_LALT);
 	input_set_keybind("cheat_menu", SDLK_c, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
 	input_set_keybind("cheat_reload_graphics", SDLK_g, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
+	input_set_keybind("cheat_inc_repair", SDLK_r, KMOD_RCTRL );
+	input_set_keybind("cheat_dec_repair", SDLK_r, KMOD_RCTRL | KMOD_RSHIFT );
 
 }
 
@@ -561,6 +564,14 @@ static int input_key(int keynum, int value)
 			respawn_level(Me.pos.z);
 		} else if (KEYPRESS("cheat_reload_graphics")) {
 			reload_graphics();
+		} else if (KEYPRESS("cheat_inc_repair")) {
+			if(Me.skill_level[get_program_index_with_name("Repair equipment")] < NUMBER_OF_SKILL_LEVELS-1) {
+				Me.skill_level[get_program_index_with_name("Repair equipment")] += 1;
+			}
+		} else if (KEYPRESS("cheat_dec_repair")) {
+			if(Me.skill_level[get_program_index_with_name("Repair equipment")] > 1) {
+				Me.skill_level[get_program_index_with_name("Repair equipment")] -= 1;
+			}
 		}
 	}
 

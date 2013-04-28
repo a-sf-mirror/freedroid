@@ -2748,7 +2748,7 @@ inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Repair manual"
+Item name=_"Source Book of Repair equipment"
 Item min class for drop=4
 Item max class for drop=9
 Item use when applied in combat=_"Learn about repairing items"

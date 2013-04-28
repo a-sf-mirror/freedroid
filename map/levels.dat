@@ -24673,7 +24673,7 @@ it: n="Source Book of Virus"  X=3.500000  Y=11.500000  MDur=-1  CDur=0.000000  A
 it: n="Source Book of Broadcast virus"  X=4.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
 it: n="Source Book of Dispel smoke"  X=5.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
 it: n="Source Book of Killer poke"  X=6.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
-it: n="Repair manual"  X=7.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
+it: n="Source Book of Repair equipment"  X=7.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
 it: n="Source Book of Plasma discharge"  X=8.500000  Y=11.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
 it: n="Source Book of Nethack"  X=1.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
 it: n="Source Book of Ricer CFLAGS"  X=2.500000  Y=12.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
