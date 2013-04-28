@@ -91,7 +91,7 @@ Nr=3 Text=_"No. I have not come here to kill you."
 	npc_says(_"The water is safe to drink and the fruit from the tree is quite delicious. I have a few extra provisions here with me. Please take some.")
 	add_item("Strength Pill", 1)
 	add_item("Doc-in-a-can", 2)
-	add_item("Repair manual", 1)
+	add_item("Source Book of Repair equipment", 1)
 	add_item("Strength Capsule", 1)
 	if has_quest("Doing Duncan a favor") then
 		next(12)

@@ -861,7 +861,7 @@ void ApplyItem(item * CurItem)
 			append_new_game_message(_("You have reached the maximum skill level for %s"),ItemMap[CurItem->type].item_name + strlen("Source Book of "));
 			Takeover_Game_Deadlock_Sound();
 		}
-	} else if (MatchItemWithName(CurItem->type, "Repair manual")) {
+	} else if (MatchItemWithName(CurItem->type, "Source Book of Repair equipment")) {
 		failed_usage = improve_program(get_program_index_with_name("Repair equipment"));
 	}
 
