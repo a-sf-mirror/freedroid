@@ -158,7 +158,7 @@ Level=16
 Level=17
 
 T=821: PosX=66 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=883: PosX=69 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=63 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=751: PosX=69 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=598: PosX=60 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=603: PosX=76 PosY=38 Faction="civilian" UseDialog="Kevin-Lawnmower" ShortLabel="Lawn Mower" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
