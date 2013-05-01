@@ -26,11 +26,13 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-	show(0)
+	show(0, 50)
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_item_backpack("Kevin's Data Cube")) then show(6) end
+	if (has_item_backpack("Kevin's Data Cube")) then
+		show(6)
+	end
 	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -80,6 +82,66 @@ Nr=10 Text=_"So... What's the story on those data cubes, anyway?"
 	npc_says(_"It was a handheld gaming computer, built on open-source software.")
 	npc_says(_"The device had limited storage capabilities, so an enterprising hacker designed the data cubes.")
 	npc_says(_"Those were the beginning days of open-source hardware. It's one of the few open-source innovations still around.")
+</LuaCode>
+----------------------------------------------------------------------
+Nr=50 Text=_"What can you teach me about hacking?"
+<LuaCode>
+	npc_says(_"I can teach you everything, for a price of course.", "NO_WAIT")
+	npc_says(_"Three hundred per lesson, up front.", "NO_WAIT")
+	hacking_level = get_program("Hacking")
+	if (hacking_level > 8) then
+		npc_says(_"Sorry, there is no human alive that could give you further training.")
+		hide(51)
+	else 
+		npc_says(_"You will need " .. hacking_level * 2 .. " training points.")
+		npc_says(_"Still interested?")
+		show(51)
+	end
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=51 Text=_"Yes, please teach me."
+<LuaCode>
+	if (train_program(300, get_program("Hacking") * 2, "Hacking")) then
+		npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
+		npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
+		npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
+		hide(31) show(30)
+	else
+		if (get_gold() < 300 ) then next(52) else next(41) end
+	end
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=52 Text="BUG, REPORT ME! Richard node52"
+NO_TEXT
+<LuaCode>
+	tux_says_random(
+		_"Hold on, I don't seem to have that much money right now.",
+		_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
+	npc_says_random(
+		_"Ok, come back when you can afford to pay me if you are interested.",
+		_"Please don't bother me if you can't pay me.",
+		_"You don't have enough money! I cannot afford to just give away training for free.",
+		_"Come back when you have enough circuits.",
+		_"So come back when you have some valuables.")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=41 Text="BUG, REPORT ME! Richard node41"
+NO_TEXT
+<LuaCode>
+	tux_says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
+	npc_says_random(
+		_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
+		_"I cannot teach you when you have no training points. Come back when you are more prepared.",
+		_"You are not ready. Go kill some bots and come back.",
+		_"Come back when you are mentally ready to learn.",
+		_"Come back after some more practice in the field.",
+		_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
+		_"Yeah, I don't think you have enough experience for this. Come back here after you see some more action.",
+		_"Then come back when you have a real will to learn.",
+		_"You don't have enough experience. Come here after you see some more action.") 
 </LuaCode>
 ----------------------------------------------------------------------
 

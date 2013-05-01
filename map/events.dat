@@ -6145,6 +6145,24 @@ Trigger on enemy death in level=0
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"Kevin Murder"
+Trigger on enemy death in level=17
+Enemy dialog name="Kevin"
+<LuaCode>
+	change_obstacle_state("KevinsDoor", "closed")
+	change_obstacle_state("KevinPrisoner-Gate1", "opened")
+	change_obstacle_state("KevinPrisoner-Gate2", "opened")
+	change_obstacle_state("KevinPrisoner-Gate3", "opened")
+	change_obstacle_state("KevinPrisoner-Gate4", "opened")
+	set_npc_faction("ms", "KevinGuard")
+	set_npc_faction("ms", "Jasmine")
+	set_npc_faction("ms", "Kevin-Lawnmower")
+	KevinMurder = true
+</LuaCode>
+* End of trigger *
+
+
 ** End of Mission Event Section **
 *** End of Mission File ***
 (leave the above termination text in the file or we might get a segfault/corrupt file termination)

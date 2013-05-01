@@ -59,6 +59,10 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	if (knows_spencer_office) then
 		hide(40)
 	end
+
+	if (KevinMurder) then
+		show(50)
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -254,6 +258,24 @@ Nr=40 Text=_"Can you tell me where I can find Spencer?"
 	update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate. The guard also told me he understands why Francis didn't want to deliver the cube himself, but I'll have to ask Spencer for details. Hmm...")
 	hide(40)
 </LuaCode>
+----------------------------------------------------------------------
+
+Nr=50 Text=_"I found the thief and killed him."
+<LuaCode>
+	npc_says(_"May say that you are effictive. We are getting back our goods thanks to you.")
+	if (Town_NorthGateGuard_tux_nickname_loon) then
+		npc_says(_"I will never call you loon. You are a deadly pinguin.")
+		Town_NorthGateGuard_tux_nickname_loon = false
+	end
+	npc_says(_"Get the small contribution. I will talk to Spencer about you.")
+	add_gold(250)
+	KevinMurder = false
+	KevinMurderCongratulation = true
+	end_quest(_"A strange guy stealing from town", _"I have killed the stange guy. Red guard congratulate me, but did I do the right thing?")
+	hide(50)
+</LuaCode>
+
+
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"I'll be going then."

@@ -49,7 +49,11 @@ function get_town_score()
 		town_score = town_score + 15
 	end
 
-	return town_score
+	if (KevinMurderCongratulation) then
+		town_score = town_score + 20
+	end
+
+    return town_score
 end
 
 -- this table describes obstacle states
