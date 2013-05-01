@@ -228,7 +228,7 @@ Nr=15 Text=_"I wouldn't want to lose any armor. What can I do about that?"
 	npc_says(_"First, you can sell or discard the item.")
 	npc_says(_"Second, you can use your [b]repair equipment[/b] program on the item, which will repair the item at the cost of some of its durability.")
 	npc_says(_"Or third, you can have the item repaired at a shop, which maintains the item's durability at a price.")
-	hide(15) show(17)
+	hide(15) show(17, 61)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -258,6 +258,81 @@ Nr=17 Text=_"Repair equipment program? How do I use that?"
 	hide(17)
 </LuaCode>
 ----------------------------------------------------------------------
+-- 61-66: shop tutorial
+----------------------------------------------------------------------
+
+Nr=61 Text=_"Shops?"
+<LuaCode>
+	npc_says(_"Some people are willing to trade items and circuits with you.")
+	--npc_says(_"Although, if you have too many circuits, they will charge you a bit more.") http://rb.freedroid.org/r/1327/
+	npc_says(_"Most are willing to buy whatever you have, at a discounted price.")
+	npc_says(_"There are also some automated vending machines, that dispense small items.") -- but these cannot buy from you.")
+	hide(61) show(62)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=62 Text=_"I would like to practice selling an item."
+<LuaCode>
+	npc_says(_"I'm going to give you a Small Axe, which you can't use yet, so you can practice selling it to me.")
+	npc_says(_"You will see the Small Axe appear in the lower shop bar. You can sell most of these items.")
+	npc_says(_"Items that you have equipped have a hand icon on them.")
+	npc_says(_"However, if you sell the items from the chest (which should have been equipped automatically) I won't be giving you replacements.")
+	npc_says(_"Select the Small Axe and click the sell button.")
+	add_item("Small Axe")
+	hide(62) next(63)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=63 Text=_"Let me try that again."
+NO_TEXT
+<LuaCode>
+	trade_with("TutorialTom")
+	if (has_item_backpack("Small Axe")) then
+		show(63)
+	else
+		hide(63)
+		show(64)
+	end
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=64 Text=_"How about buying an item?"
+<LuaCode>
+	npc_says(_"Well it is much the same procedure, except the items for sale are on the top row.")
+	npc_says(_"With the circuits from selling the Small Axe to me, you can afford to buy a unit of Bottled ice.")
+	npc_says(_"Since Bottled ice combine together, a slider will pop-up asking how many you'd like to buy.")
+	npc_says(_"You have enough circuits for one unit.")
+	sell_item("Bottled ice")
+	hide(64) next(65)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=65 Text=_"Let me try that again." --hidden
+NO_TEXT
+<LuaCode>
+	if (get_gold() < 15) then 
+		add_gold(15 - get_gold())
+	end
+	trade_with("TutorialTom")
+	if (count_item_backpack("Bottled ice") < 1) then
+		show(65)
+	else
+		hide(65)
+		next(66)
+	end
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=66 Text="BUG, REPORT ME! tutorial node66 -- LAST BITS ABOUT SHOPS" --hidden
+NO_TEXT
+<LuaCode>
+	npc_says(_"You will occasionally run into items that can't be sold.")
+	npc_says(_"This generally means that the shopkeeper can't give you a reasonable deal on it.")
+	npc_says(_"Someone else probably wants the item.")
+	npc_says(_"You might check your questbook to see if it is mentioned there.")
+</LuaCode>
+----------------------------------------------------------------------
+
 
 Nr=19 Text=_"I think I'm ready for the next section of the tutorial."
 <LuaCode>
@@ -267,7 +342,7 @@ Nr=19 Text=_"I think I'm ready for the next section of the tutorial."
 	end
 	change_obstacle_state("TutorialEquipOut", "opened")
 	end_dialog()
-	hide(10, 11, 12, 13, 14, 15, 16, 17, 19) show(20, 29)
+	hide(10, 11, 12, 13, 14, 15, 16, 17, 61, 62, 63, 64, 65, 19) show(20, 29)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -343,7 +418,7 @@ Nr=25 Text=_"I've beaten the first bot."
 <LuaCode>
 	if (has_item_backpack("Entropy Inverter")) then
 		npc_says(_"So you have. Well done.")
-		npc_says(_"I'll trade you this wrench for it. I think you'll find it handy.")
+		npc_says(_"I'll exchange this wrench for it. I think you'll find it handy.")
 		npc_says(_"Now would be an appropriate time to mention bot parts, I guess.")
 		npc_says(_"Certain parts in the bots are extra valuable. You can sell them at stores for cash.")
 		npc_says(_"If you can learn to extract these parts, it can help improve your lot in the world.")
@@ -854,7 +929,7 @@ Nr=70 Text=_"There is a wall in the path! How will we get through?"
 Nr=80 Text=_"I'd like to skip to a later section of the Tutorial."
 <LuaCode>
 	npc_says(_"OK, what would you like to learn about?")
-	show(81, 82, 83, 84, 85, 86) hide(1, 7, 80)
+	show(81, 82, 83, 84, 85, 86, 87) hide(1, 7, 80)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -863,11 +938,22 @@ Nr=81 Text=_"Chests and Armor"
 	npc_says(_"OK, I'll take us to the Chest.")
 	teleport_npc("TutorialTom-Chest")
 	teleport("TutorialTux-Chest")
-	next(10) hide(81, 82, 83, 84, 85, 86)
+	next(10) hide(81, 82, 83, 84, 85, 86, 87)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=82 Text=_"Melee Combat"
+Nr=82 Text=_"Shops"
+<LuaCode>
+	npc_says(_"Remember to pick up the items in the chest.")
+	npc_says(_"I'll tell you about the shops.")
+	teleport_npc("TutorialTom-Chest")
+	teleport("TutorialTux-Chest")
+	next(61) show(19) hide(81, 82, 83, 84, 85, 86, 87)
+</LuaCode>
+----------------------------------------------------------------------
+
+
+Nr=83 Text=_"Melee Combat"
 <LuaCode>
 	npc_says(_"OK, I'll take us to the melee arena and give you some armor.")
 	teleport_npc("TutorialTom-Melee")
@@ -877,11 +963,11 @@ Nr=82 Text=_"Melee Combat"
 	add_item("Improvised Buckler")
 	add_item("Shoes")
 	add_item("Worker Helmet")
-	next(20) hide(81, 82, 83, 84, 85, 86)
+	next(20) hide(81, 82, 83, 84, 85, 86, 87)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=83 Text=_"Ranged Combat"
+Nr=84 Text=_"Ranged Combat"
 <LuaCode>
 	npc_says(_"OK, I'll take us to the shooting range and give you some armor and a weapon.")
 	teleport_npc("TutorialTom-Ranged")
@@ -890,11 +976,11 @@ Nr=83 Text=_"Ranged Combat"
 		add_item(ranged_combat[var])
 	end
 	change_obstacle_state("TutorialShootCage", "opened")
-	next(30) hide(81, 82, 83, 84, 85, 86)
+	next(30)hide(81, 82, 83, 84, 85, 86, 87)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=84 Text=_"Abilities"
+Nr=85 Text=_"Abilities"
 <LuaCode>
 	npc_says(_"OK, I'll take us there and give you some armor and a weapon.")
 	teleport_npc("TutorialTom-Terminals")
@@ -902,11 +988,11 @@ Nr=84 Text=_"Abilities"
 	for var in ipairs(ranged_combat) do
 		add_item(ranged_combat[var])
 	end
-	next(40) hide(81, 82, 83, 84, 85, 86)
+	next(40) hide(81, 82, 83, 84, 85, 86, 87)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=85 Text=_"Upgrading Items & Terminals"
+Nr=86 Text=_"Upgrading Items & Terminals"
 <LuaCode>
 	npc_says(_"OK, I'll take us there and give you some armor and a weapon to work with.")
 	teleport_npc("TutorialTom-Terminals")
@@ -914,17 +1000,17 @@ Nr=85 Text=_"Upgrading Items & Terminals"
 	for var in ipairs(ranged_combat) do
 		add_item(ranged_combat[var])
 	end
-	next(58) show(42) hide(81, 82, 83, 84, 85, 86)
+	next(58) show(42) hide(81, 82, 83, 84, 85, 86, 87)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=86 Text=_"Hacking Bots"
+Nr=87 Text=_"Hacking Bots"
 <LuaCode>
 	npc_says(_"OK, I'll take us to the hacking area. Also I'll give you some XP so you can improve your cooling.")
 	add_xp(2000)
 	teleport_npc("TutorialTom-Takeover")
 	teleport("TutorialTom-Takeover")
-	next(50) hide(81, 82, 83, 84, 85, 86)
+	next(50) hide(81, 82, 83, 84, 85, 86, 87)
 </LuaCode>
 ----------------------------------------------------------------------
 
