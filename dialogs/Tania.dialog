@@ -94,8 +94,10 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 				Tania_at_Ewalds_Bar = true
 			end
 			end_quest(_"Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
-			if difficulty("hard") then
+			if (difficulty("hard")) and
+			   (not Tania_mapper_given == true) then
 				add_item("Source Book of Network Mapper")
+				Tania_mapper_given = true
 			end
 			branch_to_pendragon = true
 		else --"Tania's Escape" was a success!
@@ -256,8 +258,10 @@ Nr=17 Text=_"I will disable the guns for you."
 	npc_says(_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels.")
 	add_quest(_"Tania's Escape", _"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
 	npc_says(_"It's dangerous to go alone! Take this!")
-	if difficulty("easy") then
+	if (difficulty("easy")) and
+	   (not Tania_mapper_given == true) then
 		add_item("Source Book of Network Mapper")
+		Tania_mapper_given = true
 	end
 	add_item("EMP Shockwave Generator", 5)
 	hide(17)
@@ -284,8 +288,10 @@ Nr=27 Text=_"The sentry guns are off. You can go now!"
 	npc_says(_"I hope these books will help you.")
 	display_big_message(_"Tania is now free!")
 	add_xp(1500)
-	if difficulty("normal") then
+	if (difficulty("normal")) and
+	   (not Tania_mapper_given == true) then
 		add_item("Source Book of Network Mapper")
+		Tania_mapper_given = true
 	end
 	add_item("Source Book of Check system integrity",1)
 	add_item("Source Book of Sanctuary",1)
