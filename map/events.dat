@@ -6124,17 +6124,6 @@ Enemy dialog name="HF-EntranceBot"
 * End of trigger *
 
 * New event trigger *
-Name=_"Kevin Dies"
-Trigger on enemy death in level=17
-Enemy dialog name="Kevin"
-<LuaCode>
-	if (not Kevin_can_die) then
-		display_big_message(_"Kevin still needed alive to win game.")
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
 Name=_"Spencer Dies"
 Enemy dialog name="Spencer"
 Trigger on enemy death in level=0

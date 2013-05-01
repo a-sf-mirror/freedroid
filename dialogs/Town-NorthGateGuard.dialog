@@ -60,7 +60,9 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		hide(40)
 	end
 
-	if (KevinMurder) then
+	if (KevinMurder) and
+	   (not done_quest("A strange guy stealing from town")) and
+	   (has_quest("A strange guy stealing from town")) then
 		show(50)
 	end
 </LuaCode>
@@ -102,6 +104,10 @@ Nr=5 Text=_"Oh? Who was he? And why?"
 	npc_says(_"I think that freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly.")
 	if (not has_met("Kevin")) then
 		add_quest(_"A strange guy stealing from town", _"The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. I might want to find out who this person is - apparently he lives somewhere to the east. But maybe I should get some experience and better equipment first before traveling far outside of town. With all those lethal bots roaming around I might not get far otherwise.")
+	elseif (npc_dead("Kevin")) then
+		add_quest(_"A strange guy stealing from town", _"The guard told me about a guy who stole some food and hardware, and a droid from the town. He lives somewhere in the east.")
+		end_quest(_"A strange guy stealing from town", "Apparently it was this Kevin I recently hit a bit too hard...  Oops... Well at least he won't steal anything anymore...")
+		add_xp(70)
 	else
 		add_quest(_"A strange guy stealing from town", _"Ooops, the guard must be talking about Kevin. I'll better not mention I know him and where he lives or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
 		add_xp(100)
@@ -260,21 +266,21 @@ Nr=40 Text=_"Can you tell me where I can find Spencer?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=50 Text=_"I found the thief and killed him."
+Nr=50 Text=_"I have found the thief you talked about and took care of him."
 <LuaCode>
-	npc_says(_"May say that you are effictive. We are getting back our goods thanks to you.")
+	npc_says(_"I must say, you are efficient. Well, at least we won't lose anything else to that freak. Thanks.")
 	if (Town_NorthGateGuard_tux_nickname_loon) then
-		npc_says(_"I will never call you loon. You are a deadly pinguin.")
+		npc_says(_"I will never again call you loon. You are a most deadly penguin.")
 		Town_NorthGateGuard_tux_nickname_loon = false
 	end
-	npc_says(_"Get the small contribution. I will talk to Spencer about you.")
+	npc_says(_"Here's a little reward we scraped together in case anyone solved our thief problem. I'll let Spencer know what you did.")
 	add_gold(250)
 	KevinMurder = false
 	KevinMurderCongratulation = true
-	end_quest(_"A strange guy stealing from town", _"I have killed the stange guy. Red guard congratulate me, but did I do the right thing?")
+	end_quest(_"A strange guy stealing from town", _"I killed the thief who stole from town. The Red Guard rewarded me for it, but did I do the right thing? Hmm...")
 	hide(50)
+	end_dialog()
 </LuaCode>
-
 
 ----------------------------------------------------------------------
 

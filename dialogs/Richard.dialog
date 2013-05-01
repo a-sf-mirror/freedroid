@@ -26,7 +26,10 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-	show(0, 50)
+	show(0)
+	if (npc_dead("Kevin")) then
+		show(50)
+	end
 </LuaCode>
 
 <EveryTime LuaCode>
@@ -117,7 +120,7 @@ Nr=52 Text="BUG, REPORT ME! Richard node52"
 NO_TEXT
 <LuaCode>
 	tux_says_random(
-		_"Hold on, I don't seem to have that much money right now.",
+		_"Hold on, I don't seem to have enough money right now.",
 		_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
 	npc_says_random(
 		_"Ok, come back when you can afford to pay me if you are interested.",
