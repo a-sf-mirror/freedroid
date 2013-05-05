@@ -111,6 +111,9 @@ Nr=2 Text=_"I really want to become a member."
 Nr=3 Text=_"How about some circuits instead?"
 <LuaCode>
 	npc_says(_"For 15 million circuits, no less, hehe.")
+	if (get_gold() >= 1000000) then -- player cheated obviously :-)
+		show(9)
+	end
 	hide(3, 7, 12) show(4)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -165,6 +168,18 @@ Nr=7 Text=_"How is it going?"
 </LuaCode>
 ----------------------------------------------------------------------
 
+Nr=9 Text=_"I actually do have the million bucks, here take it!"
+<LuaCode>
+	npc_says(_"Wow, err, I mean, thanks.")
+	npc_says(_"You are a Red Guard now.")
+	npc_says(_"Oh, wait, you cheated, didn't you?")
+	npc_says(_"There is now way we can have lame cheaters in the the Red Guard, forget about it!")
+	npc_says(_"However, if you did in fact NOT cheat, please tell the developers how you got so much money so they can fix it. :)")
+	npc_says(_"Contact information can be found at http://www.freedroid.org/Contact")
+	hide(9)
+	del_gold(1000000)
+</LuaCode>
+----------------------------------------------------------------------
 Nr=12 Text=_"Have I done enough quests to become a member now?"
 <LuaCode>
 	if (not done_quest("The yellow toolkit")) then
