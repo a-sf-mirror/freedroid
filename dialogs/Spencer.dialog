@@ -111,7 +111,7 @@ Nr=2 Text=_"I really want to become a member."
 Nr=3 Text=_"How about some circuits instead?"
 <LuaCode>
 	npc_says(_"For 15 million circuits, no less, hehe.")
-	if (get_gold() >= 1000000) then -- player cheated obviously :-)
+	if (get_gold() >= 15000000) then -- player cheated obviously :-)
 		show(9)
 	end
 	hide(3, 7, 12) show(4)
@@ -123,7 +123,7 @@ Nr=4 Text=_"But I don't have that many circuits!"
 	npc_says(_"That much I can tell.")
 	npc_says(_"Look, I'm just fooling around. We don't let just anyone join the Red Guard.", "NO_WAIT")
 	npc_says(_"If you seriously want to join, you have to prove yourself first. You might want to ask around town for things you can do.")
-	hide(4) show(7, 12)
+	hide(4, 9) show(7, 12)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -168,7 +168,7 @@ Nr=7 Text=_"How is it going?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=9 Text=_"I actually do have the million bucks, here take it!"
+Nr=9 Text=_"I actually do have the 15 million bucks, here take it!"
 <LuaCode>
 	npc_says(_"Wow, err, I mean, thanks.")
 	npc_says(_"You are a Red Guard now.")
