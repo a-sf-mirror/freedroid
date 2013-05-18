@@ -505,5 +505,5 @@ function guy_fail(test, ...)
 	print(test)
 	npc_says("%s failed!" ,test , "NO_WAIT")
 	end_dialog()
-	os.exit()
+	exit_game()
 end
