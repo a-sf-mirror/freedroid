@@ -31,6 +31,9 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 </LuaCode>
 
 <EveryTime LuaCode>
+
+	hide(29) -- the node will be re-shown later if we have enought crystals
+
 	if (has_quest("Anything but the army snacks, please!")) then
 		if (done_quest("Anything but the army snacks, please!")) then
 			show(24) hide(11)
