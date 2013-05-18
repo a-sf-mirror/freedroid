@@ -1139,6 +1139,12 @@ static int lua_switch_background_music_to(lua_State *L)
 	return 0;
 }
 
+static int lua_exit_game(lua_State *L)
+{
+	Terminate(EXIT_SUCCESS, TRUE);
+	return 0;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1418,6 +1424,8 @@ luaL_Reg lfuncs[] = {
 	{"switch_background_music", lua_switch_background_music_to},
 	// 1 = true,  0 = false
 	{"reprogramm_bots_after_takeover", lua_reprogramm_bots_after_takeover},
+
+	{"exit_game", lua_exit_game},
 
 
 	{NULL, NULL}
