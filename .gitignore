@@ -14,7 +14,7 @@ gluem/explode_atlas
 
 # Patches
 *.orig
-*.rej
+# *.rej
 *.patch
 *.diff
 
