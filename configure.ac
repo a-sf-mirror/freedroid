@@ -6,7 +6,7 @@ AC_CANONICAL_HOST
 AC_CANONICAL_TARGET
 
 dnl Setup for automake
-AM_INIT_AUTOMAKE([tar-ustar dist-bzip2])
+AM_INIT_AUTOMAKE([tar-ustar dist-bzip2 -Wno-portability])
 
 AC_CONFIG_HEADERS(config.h)
 
