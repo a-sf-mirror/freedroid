@@ -620,6 +620,7 @@ void ReadValueFromStringWithDefault(char *SearchBeginPointer, const char *ValueP
 void ReadValueFromString(char *SearchBeginPointer, const char *ValuePreceedText, const char *FormatString, void *TargetValue,
 			 char *EndOfSearchSectionPointer);
 int ReadRangeFromString(char *SearchString, const char *StartIndicationString, const char *EndIndicationString, int *min, int *max, int default_val);
+int get_range_from_string(const char *str, int *min, int *max, int default_value);
 char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_String);
 char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer);
 void DebugPrintf(int db_level, const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(2,3);

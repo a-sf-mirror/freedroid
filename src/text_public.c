@@ -418,56 +418,103 @@ This indicates a corrupted or seriously outdated game data or saved game file.",
 };				// void ReadValueFromString( ... )
 
 /** 
- * This function is for reading in a range of positive values from a string with a default.
- * 
- * If there is no string, the default value is assigned and it returns 1, with no warning.
+ * \deprecated Use get_range_from_string.
+ * \brief Read a range of integer values from a string with a default.
  *
- * If there is a string with garbled input (negative minimum value, or minimum>maximum), it warns,
- * and assigns the default, and a 2 is returned.
+ * Read the range between two indications. The function don't accept negative value.
  *
- * A valid string, with no errors means it returns a 0.
-*/
-
+ * \param SearchString The global string to search the range.
+ * \param StartIndicationString The start indication.
+ * \param EndIndicationString The end indication.
+ * \param min,max The result of the conversion.
+ * \param default_val The value used as default.
+ * \return FALSE if the conversion failed and set min and max to default_val, else return TRUE.
+ */
 int ReadRangeFromString(char *SearchString, const char *StartIndicationString, const char *EndIndicationString, int *min, int *max, int default_val)
 {
-	char *ptr;
-	int return_value = 0;
+	int result;
 
-	// First, see if we have a valid search string
+	// First, we have to get the range string.
 	char *search_ptr = ReadAndMallocStringFromDataOptional(SearchString, StartIndicationString, EndIndicationString);
-	if (!search_ptr) {
-		//Search string was not valid, set everything to default value.
-		*min = *max = default_val;
-		return 1;
-	}
 
-	*min = strtol(search_ptr, &ptr, 10);
-	if (*ptr == '-') {
-		ptr++;
-		*max = strtol(ptr, NULL, 10);
-	} else {
-		*max = *min;
-	}
+	result = get_range_from_string(search_ptr, min, max, default_val);
 
-	//Handle corrupted values
+	//Handle corrupted values.
 	if (*min < 0) {
 		ErrorMessage(__FUNCTION__, "\
 The value read in as a minimum (%d) is a negative number.\n\
 This most likely means corrupted data.\n\
 Setting both the maximum and minimum to the default value (%d).", NO_NEED_TO_INFORM, IS_WARNING_ONLY, *min, default_val);
 		*min = *max = default_val;
-		return_value = 2;
-	} else if (*max < *min) {
-		ErrorMessage(__FUNCTION__, "\
-The value read in as a maximum (%d) is less than the minimum (%d).\n\
-This most likely means corrupted data.\n\
-Setting both the maximum and minimum to the default value (%d).", NO_NEED_TO_INFORM, IS_WARNING_ONLY, *max, *min, default_val);
-		*min = *max = default_val;
-		return_value = 2;
+		return FALSE;
 	}
 
 	free(search_ptr);
-	return return_value;
+
+	return result;
+}
+
+/**
+ * \brief Read a range of integer values from a string with a default.
+ * \param str The constant string to convert.
+ * \param min,max The result of the conversion.
+ * \param default_value The value used in case of error or NULL.
+ * \return FALSE if the conversion failed and set min and max to default_val, else return TRUE.
+ */
+int get_range_from_string(const char *str, int *min, int *max, int default_value)
+{
+	char *ptr;
+
+	if (!str) {
+		// String is NULL, set everything to default value.
+		*min = *max = default_value;
+		return TRUE;
+	}
+
+	*min = strtol(str, &ptr, 10);
+
+	if (str == ptr) {
+		goto read_error;
+	}
+
+	if (*ptr == '\0') {
+		// Conversion succeeded and the string contains only one value.
+		*max = *min;
+		return TRUE;
+	}
+
+	if (*ptr != ':') {
+		goto read_error;
+	}
+
+	// The string contains potentially another value.
+	str = ++ptr;
+	*max = strtol(str, &ptr, 10);
+
+	if (str == ptr) {
+		goto read_error;
+	}
+	// Conversion of max value succeeded
+
+	if (*max >= *min) {
+		return TRUE; // Values are in the good order.
+	}
+
+	ErrorMessage(__FUNCTION__, "The value read in as a maximum (%d) is less than the minimum (%d).\n"
+	                           "This most likely means corrupted data.\n"
+	                           "Setting both the maximum and minimum to the default value (%d).",
+	                           NO_NEED_TO_INFORM, IS_WARNING_ONLY, *max, *min, default_value);
+	*min = *max = default_value;
+	return FALSE;
+
+read_error:
+	// Failed to read the string.
+	ErrorMessage(__FUNCTION__, "The string (\"%s\") cannot be legaly converted to a range of integers.\n"
+	                           "This most likely means corrupted data.\n"
+	                           "Setting both the maximum and minimum to the default value (%d).",
+	                           NO_NEED_TO_INFORM, IS_WARNING_ONLY, str, default_value);
+	*min = *max = default_value;
+	return FALSE;
 }
 
 /**
