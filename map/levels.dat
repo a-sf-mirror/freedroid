@@ -24641,7 +24641,7 @@ it: n="Energy whip"  X=6.500000  Y=3.500000  MDur=-1  CDur=1.000000  AClip=0  Mu
 it: n=".22 LR Ammunition"  X=7.500000  Y=3.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
 it: n=".22 Automatic"  X=8.500000  Y=3.500000  MDur=74  CDur=21.000000  AClip=0  Multi=1
 it: n=".22 Hunting Rifle"  X=1.500000  Y=4.500000  MDur=77  CDur=59.000000  AClip=6  Multi=1
-it: n="Shotgun shells"  X=2.500000  Y=4.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=13
+it: n="Shotgun shells"  X=2.500000  Y=4.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10
 it: n="Two Barrel sawn off shotgun"  X=3.500000  Y=4.500000  MDur=31  CDur=22.000000  AClip=0  Multi=1
 it: n="Two Barrel shotgun"  X=4.500000  Y=4.500000  MDur=56  CDur=22.000000  AClip=0  Multi=1
 it: n="Pump action shotgun"  X=5.500000  Y=4.500000  MDur=49  CDur=39.000000  AClip=3  Multi=1
