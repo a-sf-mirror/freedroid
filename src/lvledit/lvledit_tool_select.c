@@ -245,7 +245,7 @@ static void add_object_to_list(struct list_head *list, void *data, enum lvledit_
 	list_add(&e->node, list);
 }
 
-static void __clear_selected_list(struct list_head *lst, int nbelem)
+static void __clear_selected_list(struct list_head *lst, int nbelem, int is_clipboard)
 {
 	struct selected_element *e, *ne;
 	list_for_each_entry_safe(e, ne, lst, node) {
@@ -253,6 +253,11 @@ static void __clear_selected_list(struct list_head *lst, int nbelem)
 			return;
 		if (e->type == OBJECT_FLOOR || e->type == OBJECT_WAYPOINT || e->type == OBJECT_MAP_LABEL) {
 			/* Unselecting floor tiles, waypoints or map labels requires freeing the duplicated data */
+			if (e->type == OBJECT_FLOOR && is_clipboard) {
+				/* Clearing the clipboard requires freeing the wrapped floor tiles */
+				struct lvledit_map_tile *t = e->data;
+				free(t->tile);
+			}
 			free(e->data);
 		}
 		list_del(&e->node);
@@ -395,12 +400,12 @@ static void select_object_on_tile(int x, int y)
  */
 void clear_selection(int nbelem)
 {
-	__clear_selected_list(&selected_elements, nbelem);
+	__clear_selected_list(&selected_elements, nbelem, 0);
 }
 
 void clear_clipboard(int nbelem)
 {
-	__clear_selected_list(&clipboard_elements, nbelem);
+	__clear_selected_list(&clipboard_elements, nbelem, 1);
 }
 
 static void start_rect_select()
