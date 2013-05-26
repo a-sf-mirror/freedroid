@@ -1205,7 +1205,7 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 			continue;
 
 		if (o->pos.x < 0 || o->pos.x > max_x || o->pos.y < 0 || o->pos.y > max_y) {
-			obs_error.format = "[ERROR] Obstacle n.%d on level %d, type %d, has position %f %f. Allowed X position ranges from 0 to %f. Allowed Y position ranges from 0 to %f.";
+			obs_error.format = "[ERROR] Obstacle #%d on level %d, type %d, has position %f %f. Allowed X position ranges from 0 to %f. Allowed Y position ranges from 0 to %f.";
 			validator_print_error(validator_ctx, &obs_error, i, l->levelnum, o->type, o->pos.x, o->pos.y, max_x, max_y);
 			continue;
 		}
