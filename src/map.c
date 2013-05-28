@@ -175,7 +175,7 @@ gps get_map_label_center(const char *map_label)
 	}
 
 	ErrorMessage(__FUNCTION__, "\
-Resolving map label %s failed on the complete ship!\n\
+Resolving map label %s failed on the entire world!\n\
 This is a severe error in the game data of FreedroidRPG.", PLEASE_INFORM, IS_FATAL, map_label);
 
 	return position;
