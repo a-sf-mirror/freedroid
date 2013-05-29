@@ -416,7 +416,7 @@ leveleditor_obstacle_category {
 }
 
 leveleditor_obstacle_category {
-	name = "PLANT",
+	name = "NATURE",
 	obstacles = {
 		"iso_tree_1.png",
 		"iso_tree_2.png",
@@ -460,4 +460,3 @@ leveleditor_obstacle_category {
 		"floor_tiles/iso_collapsingfloor_visible.png"
 	}
 }
-

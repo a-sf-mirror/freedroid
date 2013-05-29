@@ -3,7 +3,7 @@ extern int *wall_tiles_list;
 extern int *machinery_tiles_list;
 extern int *furniture_tiles_list;
 extern int *container_tiles_list;
-extern int *plant_tiles_list;
+extern int *nature_tiles_list;
 extern int *misc_tiles_list;
 extern int *waypoint_list;
 extern int *sidewalk_floor_list;

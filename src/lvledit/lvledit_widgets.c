@@ -55,7 +55,7 @@ static object_category obstacle_category_list[] = {
 	{ "FURNITURE", &furniture_tiles_list },
 	{ "MACHINERY", &machinery_tiles_list },
 	{ "CONTAINER", &container_tiles_list },
-	{ "PLANT", &plant_tiles_list },
+	{ "NATURE", &nature_tiles_list },
 	{ "OTHER", &misc_tiles_list },
 	{ "ALL", &all_obstacles_list }
 };

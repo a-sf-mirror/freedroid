@@ -242,7 +242,7 @@ int *wall_tiles_list = NULL;
 int *machinery_tiles_list = NULL;
 int *furniture_tiles_list = NULL;
 int *container_tiles_list = NULL;
-int *plant_tiles_list = NULL;
+int *nature_tiles_list = NULL;
 int *misc_tiles_list = NULL;
 int *waypoint_list = waypoint_array;
 int *map_label_list = map_label_array;
@@ -274,7 +274,7 @@ void lvledit_set_obstacle_list_for_category(const char *category_name, struct dy
 		{ "MACHINERY", &machinery_tiles_list },
 		{ "FURNITURE", &furniture_tiles_list },
 		{ "CONTAINER", &container_tiles_list },
-		{ "PLANT", &plant_tiles_list },
+		{ "NATURE", &nature_tiles_list },
 		{ "OTHER", &misc_tiles_list }
 	};
 
