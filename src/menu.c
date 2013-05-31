@@ -1424,7 +1424,6 @@ static int Droid_handle(int n)
 {
 	enum {
 		ALL_TEXTS = 1,
-		TALK_AFTER_TO,
 		LEAVE_DROID_TALK_OPTIONS_MENU
 	};
 	int *ptrs[] = {
