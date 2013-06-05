@@ -608,11 +608,11 @@ Nr=69 Text=_"I'll stop gambling." Topic="Gambling"
 					_"You are right, I'm going to clean you out!",
 					_"The house always wins; sooner or later...")
 	-- end any partial gambling node
-	hide(	31, 32, 33, 34, 				-- Choose game
-			35, 36, 36, 37, 38, 39, 		-- Choose bet
-			40, 41, 43, 44, 				-- Dice game
-			50, 51, 52, 53, 54, 55, 56,		-- Coin-flipping game
-			60, 61, 62, 63, 63, 64)			-- After game
+	hide(31, 32, 33, 34) 			-- Choose game
+	hide(35, 36, 36, 37, 38, 39) 		-- Choose bet
+	hide(40, 41, 43, 44) 			-- Dice game
+	hide(50, 51, 52, 53, 54, 55, 56)	-- Coin-flipping game
+	hide(60, 61, 62, 63, 63, 64)		-- After game
 	pop_topic()
 </LuaCode>
 -----------------------------------------------------------------------

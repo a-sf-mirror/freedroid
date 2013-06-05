@@ -65,8 +65,8 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		npc_says(_"SINGLE NODE: Commands will not be broadcast.", "NO_WAIT")
 	end
 	cli_says(terminal, "NO_WAIT")
-	show(1, 11, 12, 13, 47, 99,	-- top level options
-		3, 20, 30, 40) 		-- repair_and_settings options
+	show(1, 11, 12, 13, 47, 99)	-- top level options
+	show(3, 20, 30, 40) 		-- repair_and_settings options
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -603,7 +603,7 @@ Topic="drain_bot_attempt_state"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=74 Text=_"Reprogramm_bots_after_takeover\?.sh"
+Nr=74 Text=_"Reprogramm_bots_after_takeover.sh"
 Topic="settings.plx"
 <LuaCode>
 	if (Aftertakeover_reprogramm_bots_after_takeover) then

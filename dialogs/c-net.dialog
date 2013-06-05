@@ -248,9 +248,7 @@ NO_TEXT
 		npc_says(_"Mounting volume \"Kevins_Security_File\"...")
 		npc_says(_"Private memory and/or virtual address space exhausted.", "NO_WAIT")
 		npc_says(_"Not enough free memory to load data file.", "NO_WAIT")
-	elseif (has_quest("Deliverance")) and
-		   (not done_quest("Deliverance")) and
-		   (has_item_backpack("Data cube")) then
+	elseif (has_quest("Deliverance")) and (not done_quest("Deliverance")) and (has_item_backpack("Data cube")) then
 		npc_says(_"List for Spencer:")
 		npc_says("Alastra, Maria Grazia", "NO_WAIT")
 		npc_says("Arana, Pedro", "NO_WAIT")

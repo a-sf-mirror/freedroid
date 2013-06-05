@@ -135,7 +135,9 @@ Nr=22 Text=_"I disabled the droids."
 ----------------------------------------------------------------------
 
 Nr=99 Text="..."
-<LuaCode> end_dialog() </LuaCode>
+<LuaCode>
+	end_dialog()
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

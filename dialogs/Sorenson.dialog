@@ -137,17 +137,23 @@ Nr=55 Text=_"Sure, no problem... Now, how shall I sign this?"
 
 Nr=60 Text=_"Tux."
 NO_TEXT
-<LuaCode> next(70) </LuaCode>
+<LuaCode>
+	next(70)
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=61 Text=_"Tux, the Linarian"
 NO_TEXT
-<LuaCode> next(70) </LuaCode>
+<LuaCode>
+	next(70)
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=62 Text=_"I accept the contract, Tux"
 NO_TEXT
-<LuaCode> next(70) </LuaCode>
+<LuaCode>
+	next(70)
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=63 Text=_"Elbereth"
