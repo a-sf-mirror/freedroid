@@ -1117,6 +1117,33 @@ Is this 'droid' a human : 1
 Filename prefix for graphics="123"
 Notes concerning this droid=_"A simple rubbish disposal robot. Common device in most factories to maintain a clean yard."
 
+** Start of new Robot: ** 
+Droidname: ARH
+Default description:_"Authority Figure"
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 5
+Class of this droid: 19
+Drops item class=9
+Maximum energy of this droid: 9001
+Rate of healing: 100
+Experience_Reward gained for destroying one of this type: 1334
+Aggression distance of this droid=11
+Time spent eyeing Tux=0.5
+Weapon item="Sledgehammer"
+Percent to drop Entropy Inverter=100
+Percent to drop Plasma Transistor=100
+Percent to drop Superconducting Relay Unit=100
+Percent to drop Antimatter-Matter Converter=100
+Percent to drop Tachyon Condensator=100
+Greeting Sound number=4
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=100
+Time to recover after getting hit=1.00
+Is this 'droid' a human : 1
+Filename prefix for graphics="arthur"
+Notes concerning this droid=_"It has long since been known that game development is the most important job in the world. Also the coolest. We know that thanks to this guy."
+
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 *** End of Robot Data Section: ***
