@@ -66,6 +66,7 @@ npc_list{
 	--	"Boris",
 	"Benjamin",
 	"Bender",
+	"Arthur",
 	"AfterTakeover",
 	"614_cryo",
 	"24-Controllable-Bot",
