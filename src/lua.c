@@ -1145,6 +1145,52 @@ static int lua_exit_game(lua_State *L)
 	return 0;
 }
 
+static int lua_find_file(lua_State *L)
+{
+	char fpath[2048];
+	const char *filename = (char *)luaL_checkstring(L, 1);
+	const char *subdir   = (char *)luaL_checkstring(L, 2);
+	if (find_file(filename, subdir, fpath, 0)) {
+		lua_pushnil(L); /* return nil on error */
+		return 1;
+	}
+	lua_pushstring(L, fpath);
+	return 1;
+}
+
+static int lua_dir(lua_State *L)
+{
+	/* Note: Code taken (and adapted) from "Programming in Lua, 2nd edition" */
+
+	char dirpath[2048];
+	DIR *dir = NULL;
+	struct dirent *entry = NULL;
+	int i;
+	const char *subdir = luaL_checkstring(L, 1);
+
+	/* find full path */
+	if (find_subdir(subdir, dirpath)) {
+		lua_pushnil(L); /* return nil on error */
+		return 1;
+	}
+
+	/* open directory */
+	/* No need to check for errors since the same opendir() call was done in find_subdir */
+	dir = opendir(dirpath);
+
+	/* create the returned result table */
+	lua_newtable(L);
+	i = 1;
+	while ((entry = readdir(dir)) != NULL) {
+		lua_pushnumber(L, i++); /* push key */
+		lua_pushstring(L, entry->d_name); /* push value */
+		lua_settable(L, -3);
+	}
+
+	closedir(dir);
+	return 1;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1427,6 +1473,8 @@ luaL_Reg lfuncs[] = {
 
 	{"exit_game", lua_exit_game},
 
+	{"find_file", lua_find_file},
+	{"dir", lua_dir},
 
 	{NULL, NULL}
 };

@@ -661,6 +661,45 @@ int find_file(const char *fname, const char *subdir, char *File_Path, int silent
 	return 0;
 };				// char * find_file ( ... )
 
+int find_subdir(const char *subdir, char *subdir_path)
+{
+	int i;
+	DIR *dir_stream = NULL;
+
+	if (!subdir) {
+		ErrorMessage(__FUNCTION__, "Subdir parameter is empty.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		return 1;
+	}
+
+	*subdir_path = '\0';
+
+	for (i = 0; i < 4; i++) {
+		if (i == 0)
+			sprintf(subdir_path, ".");	/* first try local subdirs */
+		if (i == 1)
+			sprintf(subdir_path, "..");	/* first try local subdirs */
+		if (i == 2)
+			sprintf(subdir_path, "../..");	/* first try local subdirs */
+		if (i == 3)
+			sprintf(subdir_path, FD_DATADIR);	/* then the DATADIR */
+
+		strcat(subdir_path, "/");
+		strcat(subdir_path, subdir);
+
+		if ((dir_stream = opendir(subdir_path)) != NULL) {	/* found it? */
+			closedir(dir_stream);
+			break;
+		} else {
+			if (i == 3) {
+				ErrorMessage(__FUNCTION__, "Subdir %s not found.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, subdir);
+				return 1;
+			}
+		}
+	}
+
+	return 0;
+}
+
 /**
  * This function realizes the Pause-Mode: the game process is halted,
  * while the graphics and animations are not.  This mode 
