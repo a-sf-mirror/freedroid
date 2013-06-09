@@ -119,7 +119,7 @@ Nr=6 Text=_"I want something cheap... Give me some fortified water."
 Nr=7 Text=_"Ugh... Ahh... I like it. Give me some more of that."
 <LuaCode>
 	npc_says(_"Uh... Sure...")
-	heat_tux(-1000);
+	heat_tux(-1000)
 	hide(7) show(10)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -127,7 +127,7 @@ Nr=7 Text=_"Ugh... Ahh... I like it. Give me some more of that."
 Nr=8 Text=_"Ahh... Fresh water! Give me some more of that."
 <LuaCode>
 	npc_says(_"Yeah, I thought you would like it. Here is more.")
-	heat_tux(-1000);
+	heat_tux(-1000)
 	hide(8) show(10)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -135,7 +135,7 @@ Nr=8 Text=_"Ahh... Fresh water! Give me some more of that."
 Nr=9 Text=_"Hmm... Lots of ice. Give me one more double water, but now without any ice."
 <LuaCode>
 	npc_says(_"One double water coming up.")
-	heat_tux(-1000);
+	heat_tux(-1000)
 	hide(9) show(10)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -143,7 +143,7 @@ Nr=9 Text=_"Hmm... Lots of ice. Give me one more double water, but now without a
 Nr=10 Text=_"MORE! I want more water!"
 <LuaCode>
 	npc_says(_"Erm... Ok... Here, have some of my special, water colada.")
-	heat_tux(-1000);
+	heat_tux(-1000)
 	hide(10) show(11)
 </LuaCode>
 ----------------------------------------------------------------------

@@ -351,19 +351,19 @@ NO_TEXT
 <LuaCode>
 	number_of_liquid_items = 0
 	if (has_item_backpack("Bottled ice")) then
-		number_of_liquid_items = number_of_liquid_items+ 1;
+		number_of_liquid_items = number_of_liquid_items + 1
 		show(49)
 	end
 	if (has_item_backpack("Industrial coolant")) then
-		number_of_liquid_items = number_of_liquid_items+ 1;
+		number_of_liquid_items = number_of_liquid_items + 1
 		show(50)
 	end
 	if (has_item_backpack("Liquid nitrogen")) then
-		number_of_liquid_items = number_of_liquid_items+ 1;
+		number_of_liquid_items = number_of_liquid_items + 1
 		show(51)
 	end
 	if (has_item_backpack("Barf's Energy Drink")) then
-		number_of_liquid_items = number_of_liquid_items+ 1;
+		number_of_liquid_items = number_of_liquid_items + 1
 		show(52)
 	end
 	if (number_of_liquid_items > 0) then

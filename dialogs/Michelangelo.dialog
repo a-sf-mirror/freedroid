@@ -26,7 +26,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-	Michelangelo_food_cooking_time = 0;
+	Michelangelo_food_cooking_time = 0
 	show(0)
 </LuaCode>
 
