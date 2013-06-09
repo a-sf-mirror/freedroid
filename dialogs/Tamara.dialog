@@ -26,12 +26,15 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
+	-- Initialization
+	Tamara_about_bots_nodes = 0
+
 	tux_says(_"Hi, I'm %s.", get_player_name())
 	npc_says(_"Welcome to the Library, I'm Tamara.")
 	npc_says(_"Please take a look around and see if there is something here that interests you.")
 	npc_says(_"You are welcome to ask me if you have any questions.")
 	set_bot_name(_"Tamara - Librarian")
-	show(40, 99)
+	show(10)
 </LuaCode>
 
 <EveryTime LuaCode>
@@ -59,23 +62,43 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		npc_says(_"What can I help you with?")
 	end
 
-
-	show_node_if(((not won_nethack) and
-			(not Tamara_asked_hacking)), 20)
-
 	if (has_met("Sorenson")) and
 	   (not Tamara_talked_about_sister) then
-		show(10)
+		show(1)
 	end
+
+	show_node_if(((not won_nethack) and
+			(not Tamara_asked_hacking)), 2)
+
+	show_node_if(Tamara_bot_apocalypse_book, 21)
 
 	if (Ewalds_296_needs_sourcebook) and
 	   (not Tamara_have_296_book) then
 		show(50)
 	end
+
+	-- function to hide node in the topic Tamara_about_bot_nodes
+	function hide_node_about_bots(node)
+		Tamara_about_bots_nodes = Tamara_about_bots_nodes - 1
+		hide(node)
+		if (Tamara_about_bots_nodes <= 0) then
+			pop_topic()
+		end
+	end
+
+	if (Kevin_sigtalk and not tamara_robotic_girlfriends_node) then
+		Tamara_about_bots_nodes = Tamara_about_bots_nodes + 1
+		tamara_robotic_girlfriends_node = true;
+		show(34)
+	end
+
+	show_node_if(Tamara_talked_about_bots and (Tamara_about_bots_nodes > 0), 31)
+
+	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=10 Text=_"Hmm, you look very similar to another person I met, by the name of Sorenson."
+Nr=1 Text=_"Hmm, you look very similar to another person I met, by the name of Sorenson."
 <LuaCode>
 	npc_says(_"Well, it's understandable. We are sisters.")
 	npc_says(_"Or actually half sisters. She is also half crazy, so we don't communicate much.")
@@ -85,11 +108,11 @@ Nr=10 Text=_"Hmm, you look very similar to another person I met, by the name of 
 	npc_says(_"In the end she completely lost her marbles, sadly.")
 	npc_says(_"Now all she does is sit locked in her house staring into the computer.")
 	Tamara_talked_about_sister = true
-	hide(10) show(99)
+	hide(1)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=20 Text=_"I would like to learn how to hack."
+Nr=2 Text=_"I would like to learn how to hack."
 <LuaCode>
 	Tamara_asked_hacking = true
 	if (Tamara_talked_about_sister) then
@@ -100,82 +123,101 @@ Nr=20 Text=_"I would like to learn how to hack."
 	npc_says(_"I think there might be a version on the town's computers.")
 	npc_says(_"I've never played it.")
 	npc_says(_"That might be why I'm no good with computers.")
-	hide(20)
+	hide(2)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=40 Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
+Nr=10 Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
 <LuaCode>
 	npc_says(_"This is a library, not a book shop.")
 	npc_says(_"However, valuable books have a tendency to simply vanish and never get returned by some people...")
 	npc_says(_"Especially strangers just passing by...")
 	npc_says(_"Thus I'm forced to take a deposit for each book.")
-	hide(40) show(41)
+	hide(10) show(11)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=41 Text=_"So what interesting books do you have available right now?"
+Nr=11 Text=_"So what interesting books do you have available right now?"
 <LuaCode>
 	npc_says_random(_"Some of these might interest you.",
 					_"I only have a few programming volumes, feel free to look through them.")
 	trade_with("Tamara")
- 	show(42)
+	show_node_if(not Tamara_bot_apocalypse_book, 20)
+	show_node_if(not Tamara_talked_about_bots, 30)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=42 Text=_"Do you have any books about the bot apocalypse?"
+Nr=20 Text=_"Do you have any books about the bot apocalypse?"
 <LuaCode>
-	npc_says(_"I'm writing one, but it isn't complete, and there are no publishers left. But, I can tell you all about robots and automata in literature. Interested?")
-	hide(42) show(43, 44, 45)
-	Tamara_bot_apocalypse = 2
-	if (Kevin_sigtalk) then
-		show(46)
-		Tamara_bot_apocalypse = 3
-	end
+	npc_says(_"I'm writing one, but it isn't complete, and there are no publishers left.")
+	Tamara_bot_apocalypse_book = true
+	hide(20)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=43 Text=_"Another time, perhaps."
+Nr=21 Text=_"Have you been progressing on your book about the bots apocalypse?"
 <LuaCode>
-	hide(43, 44, 45, 46)
+	npc_says_random(_"I need more time to finish it.", 
+					_"Page-by-page, my book is growing up.", 
+					_"Sorry, but you have to wait a bit more before you can read it.")
+	hide(21)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=44 Text=_"Where does the word 'bot' come from?"
+Nr=30 Text=_"Do you have any books about robotics?"
 <LuaCode>
-	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1
+	npc_says(_"Sorry, most of them have been stolen or borrowed.")
+	npc_says(_"However, I can tell you all about robots and automata in literature. Interested?")
+	Tamara_talked_about_bots = true
+	Tamara_about_bots_nodes = Tamara_about_bots_nodes + 2
+	hide(30) show(32, 33, 39)
+	topic("About bots")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=31 Text=_"I would like to know some more about bots."
+<LuaCode>
+	npc_says(_"If you mean in culture, I have some anecdote you could be interested in.")
+	topic("About bots")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=32 Text=_"Where does the word 'bot' come from?" Topic="About bots"
+<LuaCode>
 	npc_says(_"It is a shortening of the word 'robot', derived from the Czech word for forced labor.")
 	npc_says(_"R.U.R. (Rossum's Universal Robots), a play, introduced \'robots\' as artificial people.")
 	npc_says(_"In the play the robots revolted, took over the world, and killed all the humans.")
 	tux_says(_"Ironic.")
-	hide(44)
-	if (Tamara_bot_apocalypse == 0) then hide(43) end
+	hide_node_about_bots(32)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=45 Text=_"What about the creation of robots for defense?"
+Nr=33 Text=_"What about the creation of robots for defense?" Topic="About bots"
 <LuaCode>
-	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1
 	npc_says(_"During the Holy Roman Empire, the Jewish people of the Prague ghetto needed protection.")
 	npc_says(_"So a holy rabbi shaped a Golem out of clay, and brought it to life through rituals and writing 'emet' (truth) on its head.")
 	npc_says(_"The Golem initially protected the Jews, but was brainless and stupid, and so soon became dangerously violent to even the Jews.")
 	npc_says(_"It was only by trickery that the rabbi was able to even get close to the Golem.")
 	npc_says(_"But as the rabbi changed 'emet' to 'met' (death), the Golem fell on him, and both the creator and creation became lifeless.")
-	hide(45)
-	if (Tamara_bot_apocalypse == 0) then hide(43) end
+	hide_node_about_bots(33)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=46 Text=_"What can you tell me about robotic girlfriends?"
+Nr=34 Text=_"What can you tell me about robotic girlfriends?" Topic="About bots"
 <LuaCode>
-	Tamara_bot_apocalypse = Tamara_bot_apocalypse-1
 	npc_says(_"Well, the Romans wrote down a story about Pygmalion, the sculptor of Cyprus.")
 	npc_says(_"Pygmalion carved an ivory woman of far surpassing natural beauty and fell in love.")
 	npc_says(_"Venus, the goddess of love, brought the ivory woman to life.")
 	npc_says(_"The woman, Galatea, likewise fell in love and married her creator Pygmalion.")
 	npc_says(_"So you could say that this is one of the few stories that end well.")
-	hide(46)
-	if (Tamara_bot_apocalypse == 0) then hide(43) end
+	hide_node_about_bots(34)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=39 Text=_"Another time, perhaps." Topic="About bots"
+<LuaCode>
+	npc_says("Don't hesitate to talk to me again for futher questions.")
+	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -194,9 +236,9 @@ Nr=50 Text=_"Do you have a copy of Subatomic and Nuclear Science for Dummies, Vo
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
+
 Nr=99 Text=_"Thank you for the help."
 <LuaCode>
-	hide(43, 44, 45, 46)
 	npc_says_random(_"No problem, and remember to return your books in time.",
 					_"I aim to ensure that the great works of literature will survive this horrible apocalypse.",
 					_"That is what I'm here for. Come back at any time.")
