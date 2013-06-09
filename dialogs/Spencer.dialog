@@ -276,7 +276,7 @@ Nr=20 Text=_"Francis wanted me to give you a data cube."
 Nr=21 Text=_"(Give the data cube to Spencer)" Topic="Deliver the cube"
 NO_TEXT
 <LuaCode>
-	tux_says(_"Take this.")
+	tux_says(_"Here, take it.")
 	del_item_backpack("Data cube", 1)
 	npc_says(_"Thank you for the good work you have done. I think you deserve a small reward.")
 	add_xp(100)

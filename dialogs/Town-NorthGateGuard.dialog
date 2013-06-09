@@ -266,11 +266,11 @@ Nr=41 Text=_"Can you tell me where I can find Spencer?"
 		   (not done_quest("Deliverance")) then
 			update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate.")
 		end
-		hide(41)
 	else -- player already met spencer
 		npc_says("No I already told you.")
 		npc_says("Stop wasting my time!")
 	end
+	hide(41)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -294,7 +294,9 @@ Nr=50 Text=_"I have found the thief you talked about and took care of him."
 
 Nr=99 Text=_"I'll be going then."
 <LuaCode>
-	npc_says(_"Mhmmm.")
+	npc_says_random(_"Mhmmm.",
+				    _"Finally...",
+				    _"It was about time...")
 	if (Town_NorthGateGuard_tux_nickname_loon) then
 		npc_says(_"%s... the Loon", get_player_name())
 	end
