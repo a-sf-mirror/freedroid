@@ -259,12 +259,18 @@ NO_TEXT
 
 Nr=41 Text=_"Can you tell me where I can find Spencer?"
 <LuaCode>
-	npc_says(_"Spencer's office is in the citadel, straight ahead. First one on your left.")
-	knows_spencer_office = true
-	if (has_quest("Deliverance") and not done_quest("Deliverance")) then
-		update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate.")
+	if (not knows_spencer_office) then -- didnt see spencer
+		npc_says(_"Spencer's office is in the citadel, straight ahead. First one on your left.")
+		knows_spencer_office = true
+		if (has_quest("Deliverance")) and
+		   (not done_quest("Deliverance")) then
+			update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate.")
+		end
+		hide(41)
+	else -- player already met spencer
+		npc_says("No I already told you.")
+		npc_says("Stop wasting my time!")
 	end
-	hide(41)
 </LuaCode>
 ----------------------------------------------------------------------
 
