@@ -51,15 +51,8 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		end
 		npc_says(_"You can ask, but don't expect a reply.", "NO_WAIT")
 		npc_says(_"I'm guarding this gate, and if I get distracted the bots might overrun this town and kill everybody in it.")
-		if (has_quest("Deliverance")) and
-		   (not knows_spencer_office) then
-			show(40)
-		end
 	end
-	if (knows_spencer_office) then
-		hide(40)
-	end
-
+	show_node_if(knows_spencer_office, 41)
 	if (KevinMurder) and
 	   (not done_quest("A strange guy stealing from town")) and
 	   (has_quest("A strange guy stealing from town")) then
@@ -103,10 +96,10 @@ Nr=5 Text=_"Oh? Who was he? And why?"
 	npc_says(_"On the day he visited all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen.")
 	npc_says(_"I think that freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly.")
 	if (not has_met("Kevin")) then
-		add_quest(_"A strange guy stealing from town", _"The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. I might want to find out who this person is - apparently he lives somewhere to the east. But maybe I should get some experience and better equipment first before traveling far outside of town. With all those lethal bots roaming around I might not get far otherwise.")
+		add_quest(_"A strange guy stealing from town", _"The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. Apparently he lives somewhere to the east.")
 	elseif (npc_dead("Kevin")) then
 		add_quest(_"A strange guy stealing from town", _"The guard told me about a guy who stole some food and hardware, and a droid from the town. He lives somewhere in the east.")
-		end_quest(_"A strange guy stealing from town", "Apparently it was this Kevin I recently hit a bit too hard...  Oops... Well at least he won't steal anything anymore...")
+		end_quest(_"A strange guy stealing from town", _"Apparently it was this Kevin I recently hit a bit too hard...  Oops... Well at least he won't steal anything anymore...")
 		add_xp(70)
 	else
 		add_quest(_"A strange guy stealing from town", _"Ooops, the guard must be talking about Kevin. I'll better not mention I know him and where he lives or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
@@ -114,35 +107,63 @@ Nr=5 Text=_"Oh? Who was he? And why?"
 -- We should perhaps not end quest here but later when talking again to Kevin and asking about the comps
 		end_quest(_"A strange guy stealing from town", _"Though I probably should ask Kevin some day what he was doing with the town computers.")
 	end
-	npc_says(_"In any case...")
-	npc_says_random(_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?",
-					_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
-	hide(5) show(10, 11)
+	if (not has_met("Kevin") and not npc_dead("Kevin")) then
+		show(10) -- We should add other nodes in the other cases. 
+	end
+	hide(5) show(11)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=10 Text=_"Yes. I understand."
+Nr=10 Text=_"Somewhere to the east? I should look for him."
+<LuaCode>
+	npc_says(_"Great! If you find any evidences, feel free to report them to me. We will reward you.")
+	npc_says(_"Don't be gentle with him. This kind of guy deserves only one shot in the head.")
+	npc_says(_"Be careful, he is a skilled man. He succeeds to go through the vigilance of the red guard.");
+	update_quest(_"A strange guy stealing from town", _"I suggest to find out who the stange guy is. But maybe I should get some experience and better equipment first before traveling far outside of town.")
+	next(15)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=11 Text=_"This guy shall never come back, surely."
+<LuaCode>
+	npc_says("I'm not counting on it. First, because I would take care of him myself.")
+	npc_says("Then, robbers always come again where theirs crimes took place. There are no exception.")
+	npc_says("That's the last stupid thing they do. You can't stole the red guard two time.")
+	next(15)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=15 Text=_"BUG, REPORT ME! Town-NorthGateGuard node15 -- Guard Escort"
+NO_TEXT
+<LuaCode>
+	npc_says(_"In any case...")
+	npc_says(_"We have changed our security policy. Our leader, Spencer, want interrogate every strangers.")
+	npc_says(_"You have to talk to him, before you head out into the town to do stupid things.")
+	npc_says_random(_"And up until you do, a guard will following you. We'll be watching you.",
+					_"And up until you do, a guard will following you. I'll let the others know you've arrived.")
+	npc_says_random(_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?",
+					_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
+	hide(10, 11) show(16, 17)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=16 Text=_"Yes. I understand."
 <LuaCode>
 	npc_says(_"State your name Linarian.")
 	tux_says(_"My name is %s.", get_player_name())
-	npc_says(_"You may now enter %s. But we'll be watching you. I'll let the others know you've arrived.", get_player_name())
-	change_obstacle_state("Main Gate Inner E", "opened")
-	change_obstacle_state("Main Gate Inner W", "opened")
-	if (has_quest("Deliverance")) and
-	   (not knows_spencer_office) then
-		show(40)
-	end
-	hide(10, 11) show(99)
+	npc_says(_"You look like a really nice and clever bird. Keep going this way.")
+	npc_says(_"You may now enter %s.", get_player_name())
+	hide(16, 17) next(40)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=11 Text=_"No. Not at all. Your mother dresses you funny."
+Nr=17 Text=_"No. Not at all. Your mother dresses you funny."
 <LuaCode>
 	npc_says(_"What did you say, you oversized duck?")
 	for var in ipairs(Town_NorthGateGuard_doors1) do
 		change_obstacle_state(Town_NorthGateGuard_doors1[var], "closed")
 	end
-	hide(10, 11) show(20, 21, 22, 23, 30)
+	hide(16, 17) show(20, 21, 22, 23, 30)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -161,14 +182,7 @@ Nr=21 Text=_"... I was only wondering who you were, and why you were wearing suc
 	npc_says(_"Tell me your name, and then you may pass.")
 	tux_says(_"My name is %s.", get_player_name())
 	npc_says(_"You may enter.")
-	for var in ipairs(Town_NorthGateGuard_doors) do
-		change_obstacle_state(Town_NorthGateGuard_doors[var], "opened")
-	end
-	if (has_quest("Deliverance")) and
-	   (not knows_spencer_office) then
-		show(40)
-	end
-	hide(20, 21, 22, 23, 30) show(99)
+	next(40)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -200,33 +214,22 @@ Nr=30 Text=_"Please don't hurt me."
 	if (not del_health(40)) then
 		del_health(1)
 	end
-	for var in ipairs(Town_NorthGateGuard_doors) do
-		change_obstacle_state(Town_NorthGateGuard_doors[var], "opened")
-	end
-	if (has_quest("Deliverance")) and
-	   (not knows_spencer_office) then
-		show(40)
-	end
-	hide(20, 21, 22, 23, 30, 31, 32) show(99)
-	end_dialog()
+	next(40)
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"I want to talk to your manager, moron."
 <LuaCode>
-	npc_says(_"I'll be happy to send you his way, but I need your name before I let you in.")
+	npc_says(_"I'll be happy to send you his way. I have ordered you to do this. But I need your name before I let you in.")
 	tux_says("%s.", get_player_name())
 	npc_says(_"Talk to Spencer. His office is in the citadel, straight ahead, the first one on your left. You can't miss it.")
 	npc_says(_"Now stop bothering me! You crazy loon.")
 	Town_NorthGateGuard_tux_nickname_loon = true
-	for var in ipairs(Town_NorthGateGuard_doors) do
-		change_obstacle_state(Town_NorthGateGuard_doors[var], "opened")
-	end
+	knows_spencer_office = true
 	if (has_quest("Deliverance")) then
-		knows_spencer_office = true
 		update_quest(_"Deliverance", _"I've managed to get into town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate. The guard also calls me a loon.")
 	end
-	hide(20, 30, 31, 32) show(99)
+	next(40)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -237,32 +240,31 @@ Nr=32 Text=_"That is exactly what I said."
 	tux_says(_"I'm a Linarian, not a loon. %s the Linarian.", get_player_name())
 	npc_says(_"Get out of here %s, the loon, and stop bothering me.", get_player_name())
 	Town_NorthGateGuard_tux_nickname_loon = true
-	for var in ipairs(Town_NorthGateGuard_doors) do
-		change_obstacle_state(Town_NorthGateGuard_doors[var], "opened")
-	end
-	if (has_quest("Deliverance")) and
-	   (not knows_spencer_office) then
-		show(40)
-	end
-	hide(20, 30, 31, 32) show(99)
+	next(40)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=40 Text=_"Can you tell me where I can find Spencer?"
+Nr=40 Text=_"BUG, REPORT ME! Town-NorthGateGuard node40"
+NO_TEXT
 <LuaCode>
-	if (Town_NorthGateGuard_tux_nickname_loon) then
-		npc_says(_"Spencer? What would a loon like you want with the boss?")
-	else
-		npc_says(_"Spencer? What would you want with the boss?")
+	for var in ipairs(Town_NorthGateGuard_doors) do
+		change_obstacle_state(Town_NorthGateGuard_doors[var], "opened")
 	end
-	tux_says(_"Francis gave me something to deliver to him.")
-	npc_says(_"Ah, Professor Popsicle. Yeah, I guess he wouldn't want to show up here anymore.")
-	tux_says(_"Why not?")
-	npc_says(_"Well, you'll have to ask the boss.")
+	if not knows_spencer_office then
+		show(41)
+	end
+	hide(20, 21, 22, 23, 30, 31, 32) show(99)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=41 Text=_"Can you tell me where I can find Spencer?"
+<LuaCode>
 	npc_says(_"Spencer's office is in the citadel, straight ahead. First one on your left.")
 	knows_spencer_office = true
-	update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate. The guard also told me he understands why Francis didn't want to deliver the cube himself, but I'll have to ask Spencer for details. Hmm...")
-	hide(40)
+	if (has_quest("Deliverance") and not done_quest("Deliverance")) then
+		update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate.")
+	end
+	hide(41)
 </LuaCode>
 ----------------------------------------------------------------------
 

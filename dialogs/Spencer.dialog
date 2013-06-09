@@ -83,9 +83,8 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 Nr=0 Text=_"Hi! I'm new here."
 <LuaCode>
 	npc_says(_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?")
-	if (has_quest("Deliverance")) and
-	   (not done_quest("Deliverance")) then
-		knows_spencer_office = true
+	knows_spencer_office = true
+	if (has_quest("Deliverance") and not done_quest("Deliverance")) then
 		show(20)
 	end
 	hide(0) show(1, 7)
