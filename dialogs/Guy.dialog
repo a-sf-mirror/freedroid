@@ -30,7 +30,7 @@ freedroid-discussion@lists.sourceforge.net
 	if (not has_met("Guy")) then
 		npc_says("HAS MET test 1 succeeded", "NO_WAIT")
 	else
-		guyfail("HAS MET")
+		guy_fail("HAS MET")
 	end
 	npc_says("This text is only shown as you speak to this character the first time.")
 </LuaCode>
