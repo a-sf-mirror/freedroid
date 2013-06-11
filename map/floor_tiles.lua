@@ -132,8 +132,10 @@ underlay_floor_tile_list {
 	{ filenames = { "iso_water_1_0000.png", "iso_water_1_0001.png", "iso_water_1_0002.png", "iso_water_1_0003.png", "iso_water_1_0004.png", "iso_water_1_0005.png", "iso_water_1_0006.png", "iso_water_1_0007.png", "iso_water_1_0008.png", "iso_water_1_0009.png", "iso_water_1_0010.png", "iso_water_1_0011.png", "iso_water_1_0012.png", "iso_water_1_0013.png", "iso_water_1_0014.png", "iso_water_1_0015.png" },
 	  animation_fps = 14 },
 	{ filenames = { "disco/iso_0_0000.png", "disco/iso_20_0000.png", "disco/iso_40_0000.png", "disco/iso_60_0000.png", "disco/iso_80_0000.png", "disco/iso_100_0000.png", "disco/iso_120_0000.png", "disco/iso_140_0000.png", "disco/iso_160_0000.png", "disco/iso_180_0000.png", "disco/iso_200_0000.png", "disco/iso_220_0000.png", "disco/iso_240_0000.png", "disco/iso_260_0000.png", "disco/iso_280_0000.png", "disco/iso_300_0000.png", "disco/iso_320_0000.png", "disco/iso_340_0000.png" },
-	 animation_fps = 20 }
-}
+	 animation_fps = 20 },
+	{ filenames = { "iso_water_deep_0001.png", "iso_water_deep_0002.png", "iso_water_deep_0003.png", "iso_water_deep_0004.png", "iso_water_deep_0005.png", "iso_water_deep_0006.png", "iso_water_deep_0007.png", "iso_water_deep_0008.png", "iso_water_deep_0009.png", "iso_water_deep_0010.png", "iso_water_deep_0011.png", "iso_water_deep_0012.png", "iso_water_deep_0013.png", "iso_water_deep_0014.png", "iso_water_deep_0015.png", "iso_water_deep_0016.png", "iso_water_deep_0017.png", "iso_water_deep_0018.png", "iso_water_deep_0019.png", "iso_water_deep_0020.png" }, 
+	 animation_fps = 14 }
+	}
 
 overlay_floor_tile_list {
 	"iso_grass_floor_0029.png",
@@ -193,5 +195,20 @@ overlay_floor_tile_list {
 	"iso_ground_marker_red_y_nws.png",
 	"iso_ground_marker_red_y_nes.png",
 	"iso_ground_marker_red_y_wes.png",
-	"iso_ground_marker_red_x_nwes.png"
+	"iso_ground_marker_red_x_nwes.png",
+	
+	"iso_sand_edge_0001.png",
+	"iso_sand_edge_0002.png",
+	"iso_sand_edge_0003.png",
+	"iso_sand_edge_0004.png",
+	"iso_sand_edge_0005.png",
+	"iso_sand_edge_0006.png",
+	"iso_sand_edge_0007.png",
+	"iso_sand_edge_0008.png",
+	"iso_sand_edge_0009.png",
+	"iso_sand_edge_0010.png",
+	"iso_sand_edge_0011.png",
+	"iso_sand_edge_0012.png",
+	"iso_sand_edge_0013.png",
+	"iso_sand_edge_0014.png"
 }
