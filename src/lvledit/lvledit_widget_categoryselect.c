@@ -49,9 +49,9 @@ static void categoryselect_display(struct widget *w)
 {
 	struct widget_lvledit_categoryselect *cs = w->ext;
 	SDL_Rect tr, hr;
-	int tab_width = 80;
+	int tab_width = 70;
 
-	draw_rectangle(&w->rect, 80, 100, 100, 150);
+	draw_rectangle(&w->rect, 70, 100, 100, 150);
 
 	BFont_Info *PreviousFont;
 	PreviousFont = GetCurrentFont();
@@ -67,7 +67,7 @@ static void categoryselect_display(struct widget *w)
 	hr.x = w->rect.x;
 
 	if (cs == currently_selected_category)
-		draw_rectangle(&hr, 100, 220, 220, 350);
+		draw_rectangle(&hr, 90, 220, 220, 350);
 
 	display_text(cs->title, hr.x + 2, hr.y, &hr);
 	tr.x = hr.x + tab_width - 2;
@@ -90,7 +90,7 @@ struct widget *widget_lvledit_categoryselector_create(int x, char *text, enum lv
 	struct widget *a = MyMalloc(sizeof(struct widget));
 	widget_init(a);
 	a->type = WIDGET_CATEGORY_SELECTOR;
-	widget_set_rect(a, x * 80, 73, 80, 17);
+	widget_set_rect(a, x * 70, 73, 70, 17);
 	a->display = categoryselect_display;
 	a->handle_event = categoryselect_handle_event;
 
