@@ -51,45 +51,45 @@ typedef struct {
 } object_category;
 
 static object_category obstacle_category_list[] = {
-	{ "WALL", &wall_tiles_list },
-	{ "FURNITURE", &furniture_tiles_list },
-	{ "MACHINERY", &machinery_tiles_list },
-	{ "CONTAINER", &container_tiles_list },
-	{ "NATURE", &nature_tiles_list },
-	{ "OTHER", &misc_tiles_list },
-	{ "ALL", &all_obstacles_list }
+	{ "wall", &wall_tiles_list },
+	{ "furniture", &furniture_tiles_list },
+	{ "machinery", &machinery_tiles_list },
+	{ "container", &container_tiles_list },
+	{ "nature", &nature_tiles_list },
+	{ "other", &misc_tiles_list },
+	{ "all", &all_obstacles_list }
 };
 
 static object_category floor_category_list[] = {
-	{ "SIDEWALK", &sidewalk_floor_list },
-	{ "WATER", &water_floor_list },
-	{ "GRASS", &grass_floor_list },
-	{ "SQUARE", &square_floor_list },
-	{ "OTHER", &other_floor_list },
-	{ "ALL", &floor_tiles_list }
+	{ "sidewalk", &sidewalk_floor_list },
+	{ "water", &water_floor_list },
+	{ "grass", &grass_floor_list },
+	{ "square", &square_floor_list },
+	{ "other", &other_floor_list },
+	{ "all", &floor_tiles_list }
 };
 
 static object_category item_category_list[] = {
-	{ "MELEE", &melee_items_list },
-	{ "GUN", &gun_items_list },
-	{ "DEFENSIVE", &defense_items_list },
-	{ "USEABLE", &spell_items_list },
-	{ "OTHER", &other_items_list },
-	{ "ALL", &all_items_list }
+	{ "melee", &melee_items_list },
+	{ "gun", &gun_items_list },
+	{ "defensive", &defense_items_list },
+	{ "useable", &spell_items_list },
+	{ "other", &other_items_list },
+	{ "all", &all_items_list }
 };
 
 static object_category waypoint_category_list[] = {
-	{ "ALL", &waypoint_list }
+	{ "all", &waypoint_list }
 };
 
 static object_category map_label_category_list[] = {
-	{ "ALL", &map_label_list }
+	{ "all", &map_label_list }
 };
 
 static object_category enemy_category_list[] = {
-	{ "DROIDS", &droid_enemies_list },
-	{ "HUMANS", &human_enemies_list },
-	{ "ALL", &all_enemies_list },
+	{ "droids", &droid_enemies_list },
+	{ "humans", &human_enemies_list },
+	{ "all", &all_enemies_list },
 };
 
 static struct {
