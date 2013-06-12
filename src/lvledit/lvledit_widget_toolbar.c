@@ -185,7 +185,7 @@ static void leveleditor_print_object_info(enum lvledit_object_type type, int *ar
 			print_obstacle_info(str, array[idx]);
 			break;
 	case OBJECT_WAYPOINT:
-			sprintf(str, "Waypt %s connection, %s for random spawn\n", "two way", array[idx] ? "NOK" : "OK");
+			sprintf(str, "Waypoint %s connection, %sused for random spawn\n", "two way", array[idx] ? "not " : "");
 			break;
 	case OBJECT_ITEM:
 			print_item_info(str, array[idx]);
