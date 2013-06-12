@@ -251,8 +251,9 @@ int *sidewalk_floor_list;
 int *water_floor_list;
 int *grass_floor_list;
 int *square_floor_list;
+int *sand_floor_list;
 int *other_floor_list;
-	
+
 int *melee_items_list;
 int *gun_items_list;
 int *defense_items_list;
@@ -316,7 +317,7 @@ void lvledit_set_obstacle_list_for_category(const char *category_name, struct dy
 	ErrorMessage(__FUNCTION__, "Unknown obstacle category: %s.", PLEASE_INFORM, IS_WARNING_ONLY, category_name);
 }
 
-static void sort_floor_tiles_by_categories(struct dynarray *floor_tiles, int base, int *sidewalk, int *water, int *grass, int *square, int *other)
+static void sort_floor_tiles_by_categories(struct dynarray *floor_tiles, int base, int *sidewalk, int *water, int *grass, int *square, int *sand, int *other)
 {
 	int i;
 
@@ -340,6 +341,9 @@ static void sort_floor_tiles_by_categories(struct dynarray *floor_tiles, int bas
 		} else if (strstr(current_filename, "square")) {
 			square_floor_list[*square] = base + i;
 			(*square)++;
+		} else if (strstr(current_filename, "sand")) {
+			sand_floor_list[*sand] = base + i;
+			(*sand)++;
 		} else if (strcmp(current_filename, "DUMMY_FLOOR_TILE")) {
 			other_floor_list[*other] = base + i;
 			(*other)++;
@@ -353,12 +357,14 @@ static void build_floor_tile_lists(void)
 	int water    = 0;
 	int grass    = 0;
 	int square   = 0;
+	int sand     = 0;
 	int other    = 0;
 
 	free(sidewalk_floor_list); //Sidewalk Tiles
 	free(water_floor_list);    //Water Tiles
 	free(grass_floor_list);    //Grass Tiles
 	free(square_floor_list);   //Square Tiles - Geometric Patterned
+	free(sand_floor_list);     //Sand Tiles
 	free(other_floor_list);    //OTHER: Dirt, Sand, Carpet, Misc, etc.
 
 	int num_floor_tiles = underlay_floor_tiles.size + overlay_floor_tiles.size;
@@ -366,15 +372,17 @@ static void build_floor_tile_lists(void)
 	water_floor_list    = MyMalloc(num_floor_tiles * sizeof(int));
 	grass_floor_list    = MyMalloc(num_floor_tiles * sizeof(int));
 	square_floor_list   = MyMalloc(num_floor_tiles * sizeof(int));
+	sand_floor_list     = MyMalloc(num_floor_tiles * sizeof(int));
 	other_floor_list    = MyMalloc(num_floor_tiles * sizeof(int));
 
-	sort_floor_tiles_by_categories(&underlay_floor_tiles, 0, &sidewalk, &water, &grass, &square, &other);
-	sort_floor_tiles_by_categories(&overlay_floor_tiles, MAX_UNDERLAY_FLOOR_TILES, &sidewalk, &water, &grass, &square, &other);
+	sort_floor_tiles_by_categories(&underlay_floor_tiles, 0, &sidewalk, &water, &grass, &square, &sand, &other);
+	sort_floor_tiles_by_categories(&overlay_floor_tiles, MAX_UNDERLAY_FLOOR_TILES, &sidewalk, &water, &grass, &square, &sand, &other);
 
 	sidewalk_floor_list[sidewalk] = -1;
 	water_floor_list[water]       = -1;
 	grass_floor_list[grass]       = -1;
 	square_floor_list[square]     = -1;
+	sand_floor_list[sand]         = -1;
 	other_floor_list[other]       = -1;
 }
 
@@ -385,7 +393,7 @@ static void build_item_lists(void)
 	int guns    = 0;
 	int defense = 0;
 	int spell   = 0;
-	int other       = 0;
+	int other   = 0;
 
 	free(melee_items_list);  //MELEE WEAPONS
 	free(gun_items_list);    //GUNS

@@ -9,6 +9,7 @@ extern int *waypoint_list;
 extern int *sidewalk_floor_list;
 extern int *water_floor_list;
 extern int *grass_floor_list;
+extern int *sand_floor_list;
 extern int *square_floor_list;
 extern int *other_floor_list;
 extern int *melee_items_list;

@@ -65,6 +65,7 @@ static object_category floor_category_list[] = {
 	{ "water", &water_floor_list },
 	{ "grass", &grass_floor_list },
 	{ "square", &square_floor_list },
+	{ "sand", &sand_floor_list },
 	{ "other", &other_floor_list },
 	{ "all", &floor_tiles_list }
 };
