@@ -1454,7 +1454,7 @@ int level_validation()
 
 	// Load exceptions rules
 
-	load_excpt_lists("lvleditor_exceptions.dat");
+	load_excpt_lists("lvledit_exceptions.dat");
 
 	// Init map labels validator data
 	dynarray_init(&map_labels, 1024, sizeof(struct lvlval_map_label));
@@ -1557,7 +1557,7 @@ int level_validation_on_console_only()
 	
 	// Load exceptions rules
 
-	load_excpt_lists("lvleditor_exceptions.dat");
+	load_excpt_lists("lvledit_exceptions.dat");
 
 	// Init map labels validator data
 	dynarray_init(&map_labels, 1024, sizeof(struct lvlval_map_label));
