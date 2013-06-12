@@ -61,7 +61,7 @@ underlay_floor_tile_list {
 	"iso_sidewalk_0023.png",
 	"iso_sidewalk_0024.png",
 
-	"iso_miscellaneous_floor_0004.png",
+	"iso_sand_floor_0000.png",
 	"iso_sand_floor_0001.png",
 	"iso_sand_floor_0002.png",
 	"iso_sand_floor_0003.png",
