@@ -193,6 +193,9 @@ static void leveleditor_print_object_info(enum lvledit_object_type type, int *ar
 	case OBJECT_ENEMY:
 			print_enemy_info(str, array[idx]);
 			break;
+	case OBJECT_MAP_LABEL:
+			sprintf(str, "There currently is only one type of map label");
+			break;
 	default:
 			*str = 0;
 	}
