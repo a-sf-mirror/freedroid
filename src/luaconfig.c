@@ -692,6 +692,7 @@ static int lua_obstacle_ctor(lua_State *L)
 	sprintf(default_transparency, "%d", TRANSPARENCY_FOR_WALLS);
 
 	struct data_spec data_specs[] = {
+		{ "name", NULL, STRING_TYPE, &obstacle.name },
 		{ "label", NULL, STRING_TYPE, &obstacle.label },
 		{ "borders", "0", FLOAT_ARRAY, &borders },
 		{ "flags", "0", INT_ARRAY, &flags },

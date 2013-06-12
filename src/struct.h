@@ -792,6 +792,8 @@ struct obstacle_graphics {
 };
 
 typedef struct obstacle_spec {
+	char *name;
+
 	char *label; 
 
 	//--------------------

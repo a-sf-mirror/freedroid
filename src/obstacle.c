@@ -230,4 +230,27 @@ int change_obstacle_type(const char *obslabel, int type)
 	return 0;
 }
 
+/**
+ * \brief Get the type of the obstacle spec with the specified name.
+ * \param The name of the obstacle spec to get.
+ * \return The obstacle type or -1 if the obstacle spec don't exist.
+ */
+int get_obstacle_type_by_name(char *name) {
+	char *obstacle_spec_name;
+	int id = 0;
+
+	for (id = 0; id < obstacle_map.size; id++) {
+		obstacle_spec_name = get_obstacle_spec(id)->name;
+		
+		if (obstacle_spec_name == NULL)
+			continue;
+		
+		if (!strcmp(obstacle_spec_name, name))
+			return id;
+	}
+
+	ErrorMessage(__FUNCTION__, "Unable to find the obstacle specs with name \"%s\"\n", PLEASE_INFORM, IS_WARNING_ONLY, name);
+	return -1;
+}
+
 #undef _obstacle_c
