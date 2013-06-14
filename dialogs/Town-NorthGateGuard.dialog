@@ -36,12 +36,12 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	elseif (will_rush_tux()) then
 		set_rush_tux(0)
 		if (Town_NorthGateGuard_tux_nickname_loon) then
-			npc_says_random(_"Oh, the loon returned.",
-							_"Just the loon. I needn't have worried.")
+			npc_says_random(_"Oh, the loon has returned.",
+							_"Oh, it's just the loon. No need to worry.")
 		else
-			npc_says_random(_"Oh, it is you.",
+			npc_says_random(_"Oh, it's you.",
 							_"I see you have returned.",
-							_"Welcome back.")
+							_"You just can't get enough, can you?")
 		end
 		end_dialog()
 	else
@@ -98,11 +98,11 @@ Nr=5 Text=_"Oh? Who was he? And why?"
 	if (not has_met("Kevin")) then
 		add_quest(_"A strange guy stealing from town", _"The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. Apparently he lives somewhere to the east.")
 	elseif (npc_dead("Kevin")) then
-		add_quest(_"A strange guy stealing from town", _"The guard told me about a guy who stole some food and hardware, and a droid from the town. He lives somewhere in the east.")
-		end_quest(_"A strange guy stealing from town", _"Apparently it was this Kevin I recently hit a bit too hard...  Oops... Well at least he won't steal anything anymore...")
+		add_quest(_"A strange guy stealing from town", _"The guard told me about a guy who stole some food and hardware from the town. He lives somewhere in the east.")
+		end_quest(_"A strange guy stealing from town", _"Apparently it was this Kevin person I recently hit a bit too hard...  Oops... Well, at least he won't steal again...")
 		add_xp(70)
 	else
-		add_quest(_"A strange guy stealing from town", _"Ooops, the guard must be talking about Kevin. I'll better not mention I know him and where he lives or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
+		add_quest(_"A strange guy stealing from town", _"Ooops, the guard must be talking about Kevin. I'd better not mention I know him and where he lives, or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
 		add_xp(100)
 -- We should perhaps not end quest here but later when talking again to Kevin and asking about the comps
 		end_quest(_"A strange guy stealing from town", _"Though I probably should ask Kevin some day what he was doing with the town computers.")
@@ -116,19 +116,19 @@ Nr=5 Text=_"Oh? Who was he? And why?"
 
 Nr=10 Text=_"Somewhere to the east? I should look for him."
 <LuaCode>
-	npc_says(_"Great! If you find any evidences, feel free to report them to me. We will reward you.")
-	npc_says(_"Don't be gentle with him. This kind of guy deserves only one shot in the head.")
-	npc_says(_"Be careful, he is a skilled man. He succeeds to go through the vigilance of the red guard.");
-	update_quest(_"A strange guy stealing from town", _"I suggest to find out who the stange guy is. But maybe I should get some experience and better equipment first before traveling far outside of town.")
+	npc_says(_"Oh, definitely, and I'm sure all the bots out there will be glad to give you directions, too.")
+	npc_says(_"But if you're insanely lucky and you do find him, you come back straight to me, understand?")
+	npc_says(_"I'd like to wring his head off... Though it's not my call. But who knows, if the Boss feels generous we might both get rewarded.")
+	npc_says(_"Be careful anyway, this creep is a sneaky one if he got past us.")
+	update_quest(_"A strange guy stealing from town", _"I offered to find out who the stange guy is. The guard I talked to was pretty skeptical, though; I should get some experience and better equipment before traveling far outside of town.")
 	next(15)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=11 Text=_"This guy shall never come back, surely."
+Nr=11 Text=_"Surely he'll never come back here."
 <LuaCode>
-	npc_says("I'm not counting on it. First, because I would take care of him myself.")
-	npc_says("Then, robbers always come again where theirs crimes took place. There are no exception.")
-	npc_says("That's the last stupid thing they do. You can't stole the red guard two time.")
+	npc_says("I'm not counting on that. The criminal always comes back to the scene of the crime.")
+	npc_says("And that's the last stupid thing they do. You can't steal from the Red Guard twice.")
 	next(15)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -137,11 +137,11 @@ Nr=15 Text=_"BUG, REPORT ME! Town-NorthGateGuard node15 -- Guard Escort"
 NO_TEXT
 <LuaCode>
 	npc_says(_"In any case...")
-	npc_says(_"We have changed our security policy. Our leader, Spencer, want interrogate every strangers.")
-	npc_says(_"You have to talk to him, before you head out into the town to do stupid things.")
-	npc_says_random(_"And up until you do, a guard will following you. We'll be watching you.",
-					_"And up until you do, a guard will following you. I'll let the others know you've arrived.")
-	npc_says_random(_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?",
+	npc_says(_"We've changed our security policy. Our leader, Spencer, wants to interrogate any strangers we let in.")
+	npc_says(_"You have to talk to him before you head out into the town to do stupid things.")
+	npc_says_random(_"And up until you do, a guard will be following you. We'll be watching you.",
+					_"And until you do, one of us will be following you. I'll let the others know you've arrived.")
+	npc_says_random(_"I'll let you in now, but be warned: one false move and we all have flightless waterfowl for dinner. Am I making myself clear?",
 					_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
 	hide(10, 11) show(16, 17)
 </LuaCode>
@@ -151,7 +151,7 @@ Nr=16 Text=_"Yes. I understand."
 <LuaCode>
 	npc_says(_"State your name Linarian.")
 	tux_says(_"My name is %s.", get_player_name())
-	npc_says(_"You look like a really nice and clever bird. Keep going this way.")
+	npc_says(_"You don't look too stupid. Try not to mess up.")
 	npc_says(_"You may now enter %s.", get_player_name())
 	hide(16, 17) next(40)
 </LuaCode>
@@ -205,7 +205,7 @@ Nr=23 Text=_"I said: THIS PLACE LOOKS CLASSY."
 
 Nr=30 Text=_"Please don't hurt me."
 <LuaCode>
-	npc_says(_"How about I punch you until you spit out your name, and get out of here and we call it even?")
+	npc_says(_"How about I punch you until you spit out your name and get out of here, and we call it even?")
 	tux_says(_"OW")
 	npc_says(_"Your name?")
 	tux_says("%s.", get_player_name())
@@ -220,7 +220,7 @@ Nr=30 Text=_"Please don't hurt me."
 
 Nr=31 Text=_"I want to talk to your manager, moron."
 <LuaCode>
-	npc_says(_"I'll be happy to send you his way. I have ordered you to do this. But I need your name before I let you in.")
+	npc_says(_"I'll be happy to send you his way, I already told you you have to talk to him anyway. But I need your name before I let you in.")
 	tux_says("%s.", get_player_name())
 	npc_says(_"Talk to Spencer. His office is in the citadel, straight ahead, the first one on your left. You can't miss it.")
 	npc_says(_"Now stop bothering me! You crazy loon.")
@@ -259,16 +259,23 @@ NO_TEXT
 
 Nr=41 Text=_"Can you tell me where I can find Spencer?"
 <LuaCode>
-	if (not knows_spencer_office) then -- didnt see spencer
+	if (not knows_spencer_office) then -- player wasn't told where to find spencer
 		npc_says(_"Spencer's office is in the citadel, straight ahead. First one on your left.")
 		knows_spencer_office = true
 		if (has_quest("Deliverance")) and
 		   (not done_quest("Deliverance")) then
 			update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate.")
 		end
-	else -- player already met spencer
-		npc_says("No I already told you.")
-		npc_says("Stop wasting my time!")
+	else -- player was told where spencer's office is, or has met spencer
+	  if (not has_met("Spencer")) then
+		npc_says_random(_"No, you were already told that.",
+								    _"I don't believe anyone's memory is that short, even yours.")
+		npc_says(_"Stop wasting my time!")
+	  else
+		npc_says_random(_"Are you joking? You already talked to him.",
+								    _"Go ask him yourself. I know you already talked to him.")
+		npc_says(_"Stop wasting my time!")
+	  end
 	end
 	hide(41)
 </LuaCode>
@@ -276,9 +283,9 @@ Nr=41 Text=_"Can you tell me where I can find Spencer?"
 
 Nr=50 Text=_"I have found the thief you talked about and took care of him."
 <LuaCode>
-	npc_says(_"I must say, you are efficient. Well, at least we won't lose anything else to that freak. Thanks.")
+	npc_says(_"Really? Wow... I must say, you are efficient. Well, at least we won't lose anything else to that freak.")
 	if (Town_NorthGateGuard_tux_nickname_loon) then
-		npc_says(_"I will never again call you loon. You are a most deadly penguin.")
+		npc_says(_"I will never again call you a loon. You are a most deadly penguin.")
 		Town_NorthGateGuard_tux_nickname_loon = false
 	end
 	npc_says(_"Here's a little reward we scraped together in case anyone solved our thief problem. I'll let Spencer know what you did.")
