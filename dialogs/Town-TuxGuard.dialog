@@ -30,9 +30,12 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		npc_says(_"I'm to keep an eye on you until you talk to Spencer.")
 		set_bot_name(_"Red Guard Escort")
 	elseif (tux_has_joined_guard) then
-		npc_says(_"Now that you are one of us, I don't have to be suspicious of you.")
+		npc_says(_"I'll let you be now; no need to suspect one of our own!")
 	else
 		npc_says(_"Spencer seems to think that you are harmless. Go about your business.")
+		if (Town_NorthGateGuard_tux_nickname_loon) then
+		  npc_says("Babysitting a loon... Now I can say I've done it all!")
+		else end
 	end
 	show_node_if((not has_met("Spencer")), 20)
 	show(99)
@@ -41,17 +44,30 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 
 Nr=20 Text=_"Where can I find Spencer?"
 <LuaCode>
-	npc_says(_"He's usually in his office in the citadel.")
-	npc_says(_"Head down the main corridor until you pass the citadel gates.")
-	npc_says(_"His office has purple walls, you won't miss it.")
-	tux_says(_"Okay.")
+	if (not knows_spencer_office) then
+	  npc_says(_"He's usually in his office in the citadel.")
+	  npc_says(_"Head down the main corridor until you pass the citadel gates.")
+	  npc_says(_"His office has purple walls, you won't miss it.")
+	  tux_says(_"Okay.")
+	  knows_spencer_office = true
+	else
+	  npc_says_random(_"Come on, you know that already.",
+					_"I'm pretty sure you know that...",
+					_"We told you! Stop stalling!")
+	end
 	hide(20)
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"I'll be going then."
 <LuaCode>
-	npc_says(_"Mhmmm.")
+	if (guard_follow_tux) then
+		npc_says_random(_"Not without me, you won't.",
+					_"I'll be watching you, then.",
+					_"Hey, wait up!")
+	else
+		npc_says(_"Mhmmm.")
+	end
 	if (Town_NorthGateGuard_tux_nickname_loon) then
 		npc_says(_"%s... the Loon", get_player_name())
 	end
