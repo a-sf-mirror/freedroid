@@ -61,13 +61,14 @@ struct event_trigger * visible_event_at_location(int x, int y, int z);
 
 // lua.c
 void init_lua(void);
-lua_State *get_lua_state(enum lua_target target);
+lua_State *get_lua_state(enum lua_target);
 lua_State *load_lua_coroutine(enum lua_target, const char *);
-int resume_lua_coroutine(lua_State*);
-void run_lua(enum lua_target, const char *code);
+int resume_lua_coroutine(lua_State *);
+void run_lua(enum lua_target, const char *);
 void run_lua_file(enum lua_target, const char *);
+int call_lua_func(enum lua_target, const char *, const char *, const char *, const char *, ...);
 void reset_lua_state(void);
-void write_lua_variables(struct auto_string *savestruct_autostr);
+void write_lua_variables(struct auto_string *);
 
 // luaconfig.c
 void init_luaconfig(void);

@@ -1479,6 +1479,210 @@ luaL_Reg lfuncs[] = {
 	{NULL, NULL}
 };
 
+/*
+ * Prepare a lua function call by pushing on the Lua stack the name of
+ * the function to call and the arguments of the call (see comment of call_lua_func()).
+ */
+static int push_func_and_args(lua_State *L, const char *module, const char *func, const char *sig, va_list *vl)
+{
+	 /* push function */
+	if (module) {
+		lua_getglobal(L, module);
+		lua_getfield(L, -1, func);
+		lua_remove(L, -2);
+	} else {
+		lua_getglobal(L, func);
+	}
+
+	while (sig && *sig) { /* repeat for each argument */
+		switch (*sig++) {
+		case 'f': /* double argument */
+			lua_pushnumber(L, va_arg(*vl, double));
+			break;
+		case 'd': /* int argument */
+			lua_pushinteger(L, va_arg(*vl, int));
+			break;
+		case 's': /* string argument */
+			lua_pushstring(L, va_arg(*vl, char *));
+			break;
+		case 'S': /* dynarray of strings : push a table containing the strings */
+			{
+				int i;
+				struct dynarray *array = va_arg(*vl, struct dynarray *);
+				lua_createtable(L, array->size, 0);
+				for (i=0; i<array->size; i++)
+				{
+					char *text = ((char **)(array->arr))[i];
+					lua_pushstring(L, text);
+					lua_rawseti(L, -2, i+1); // table[i+1] = text
+				}
+			}
+			break;
+		default:
+			DebugPrintf(-1, "call_lua_func: invalid input option (%c).", *(sig - 1));
+			return 0;
+		}
+	}
+
+	return 1;
+}
+
+/*
+ * Retrieve the returned values of a lua function call.
+ * The results are stored in the locations pointed to by the pointer arguments
+ * that follow the signature string (see comment of call_lua_func()).
+ */
+static int pop_results(lua_State *L, const char *sig, va_list *vl)
+{
+	if (!sig)
+		return 1;
+
+	int nres = strlen(sig);
+	int index;
+	int rc = 0;
+
+	for (index = -nres; *sig; index++) { /* repeat for each result */
+		int ltype = lua_type(L, index);
+		switch (*sig++) {
+		case 'f': /* double result */
+			if (ltype != LUA_TNUMBER) {
+				DebugPrintf(-1, "call_lua_func: wrong result type for #%d returned value (number expected)", index);
+				goto pop_and_return;
+			}
+			*va_arg(*vl, double *) = lua_tonumber(L, index);
+			break;
+		case 'd': /* int result */
+			if (ltype != LUA_TNUMBER) {
+				DebugPrintf(-1, "call_lua_func: wrong result type for #%d returned value (number expected)", index);
+				goto pop_and_return;
+			}
+			*va_arg(*vl, int *) = lua_tointeger(L, index);
+			break;
+		case 's': /* string result */
+			if (ltype != LUA_TSTRING) {
+				DebugPrintf(-1, "call_lua_func: wrong result type for #%d returned value (string expected)", index);
+				goto pop_and_return;
+			}
+			*va_arg(*vl, const char **) = strdup(lua_tostring(L, index));
+			break;
+		case 'S': /* dynarray of strings result */
+			{
+				int i;
+				if (ltype != LUA_TTABLE) {
+					DebugPrintf(-1, "call_lua_func: wrong result type for #%d returned value (table expected)", index);
+					goto pop_and_return;
+				}
+				struct dynarray *array = va_arg(*vl, struct dynarray *);
+				for (i=1; i<=lua_rawlen(L, index); i++) {
+					lua_rawgeti(L, index, i);
+					if (!lua_isstring(L, -1)) {
+						DebugPrintf(-1, "call_lua_func: wrong result type for #%d:%d returned value (string expected).\nSkeeping that value", index, i);
+					} else {
+						char *nodename = strdup(lua_tostring(L, -1));
+						dynarray_add(array, &nodename, sizeof(string));
+					}
+					lua_pop(L, 1);
+				}
+			}
+			break;
+		default:
+			DebugPrintf(-1, "call_lua_func: invalid output option (%c)", *(sig - 1));
+			goto pop_and_return;
+		}
+	}
+
+	rc = 1;
+
+pop_and_return:
+	lua_pop(L, nres);
+	return rc;
+}
+
+/**
+ * \brief Helper function to call a Lua function.
+ *
+ * \details Call a Lua function passing parameters and retrieving results through the
+ * Lua stack.
+ * (inspired from a code found in "Programming in Lua, 2ed").
+ *
+ * Usage:
+ *
+ * To execute a Lua function call such as "var1, var2 = my_module.my_func(param1)",
+ * use "call_lua_func(lua_target, "my_module", "my_func", insig, outsig, param1, &var1, var2)"
+ *
+ * C being a strong typed language, the type of the input parameters and of the
+ * returned values has to be defined, through 'insig' (for input parameters)
+ * and 'outsig' (for returned values). A type is defined by a single specific
+ * character, and 'insig' (resp. 'outsig') is a string containing a list of
+ * those characters, one character per parameter (resp. returned value).
+ *
+ * Known types are:
+ *   'f' for double type
+ *   'd' for int type
+ *   's' for string type (i.e. char*)
+ *   'S' for dynarray of strings
+ *
+ * Following 'insig' and 'outsig' is a list of data to be used as parameters for
+ * the Lua function (one data per character in 'insig'), followed by a list
+ * of pointers to store the returned values (one pointer per character in 'outsig').
+ * Note 1: memory of string returned values is allocated by call_lua_func().
+ * Note 2: memory of string dynarray slots is allocated by call_lua_func(),
+ *         and the dynarray has to be freed before the call.
+ *
+ * If the Lua function is not inside a module, set 'module' to NULL.
+ * If the Lua function has no parameters, set 'insig' to NULL.
+ * If the Lua does not return values, set 'outsig' to NULL.
+ *
+ * Exemples (of doubtful utility...):
+ * double sine;
+ * call_lua_func(LUA_DIALOG, "math", "sin", "f", "f", 3.14, &sine);
+ * char *tmpname;
+ * call_lua_func(LUA_DIALOG, "os", "tmpname", NULL, "s", tmpname);
+ *
+ * \param target A lua_target enum value defining the Lua context to use
+ * \param module Name of the module containing the Lua function, or NULL if none
+ * \param func   Name of the Lua function to call
+ * \param insig  Signature string for the input parameters, or NULL
+ * \param outsig Signature string for the returned values
+ * \param ...    Input parameters data and pointers to returned value storages
+ *
+ * \return 1 if the function call succeeded, else return 0
+ */
+int call_lua_func(enum lua_target target, const char *module, const char *func, const char *insig, const char *outsig, ...)
+{
+	int narg = (insig) ? strlen(insig) : 0;   /* number of arguments */
+	int nres = (outsig) ? strlen(outsig) : 0; /* number of results */
+
+	lua_State *L = get_lua_state(target);
+
+	va_list vl;
+	va_start(vl, outsig);
+
+	/* do the call */
+	if (!push_func_and_args(L, module, func, insig, &vl)) {
+		ErrorMessage(__FUNCTION__, "Aborting lua function call.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		va_end(vl);
+		return 0;
+	}
+
+	if (lua_pcall(L, narg, nres, 0) != 0) {
+		DebugPrintf(-1, "call_lua_func: Error calling ’%s’: %s", func, lua_tostring(L, -1));
+		lua_pop(L, 1);
+		ErrorMessage(__FUNCTION__, "Aborting lua function call.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		va_end(vl);
+		return 0;
+	}
+
+	if (!pop_results(L, outsig, &vl)) {
+		ErrorMessage(__FUNCTION__, "Aborting lua function call.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		va_end(vl);
+		return 0;
+	}
+
+	va_end(vl);
+	return 1;
+}
+
 static void pretty_print_lua_error(lua_State* L, const char *code, const char *funcname)
 {
 	const char *error = lua_tostring(L, -1);
@@ -1581,6 +1785,37 @@ void run_lua_file(enum lua_target target, const char *path)
 		ErrorMessage(__FUNCTION__, "Cannot run script file %s: %s.\n",
 		         PLEASE_INFORM, IS_FATAL, path, lua_tostring(L, -1));
 	}
+}
+
+/*
+ * Load a lua module in a lua context.
+ * The file containing the module is added to the package.path lua global
+ * variable.
+ * The module is loaded by calling 'require(module)'.
+ */
+static void load_lua_module(enum lua_target target, const char *dir, const char *module)
+{
+	char *module_file;
+	char fpath[2048];
+	lua_State *L = get_lua_state(target);
+
+	module_file = (char *)MyMalloc(strlen(module)+strlen(".lua")+1);
+	strcpy(module_file, module);
+	strcat(module_file, ".lua");
+
+	if (!find_file(module_file, dir, fpath, 1)) {
+		// TODO: instead of adding the module filepath, only add the directory path if not yet done
+		lua_getglobal(L, "package"); /* -> stack: package */
+		lua_getfield(L, 1, "path");  /* -> stack: package > package.path */
+		lua_pushliteral(L, ";");     /* -> stack: package > package.path > ";" */
+		lua_pushstring(L, fpath);    /* -> stack: package > package.path > ";" > fpath */
+		lua_concat(L, 3);            /* -> stack: package > package.path";"fpath */
+		lua_setfield(L, 1, "path");  /* package.path = package.path";"fpath -> stack: package */
+		lua_pop(L, 1);
+		call_lua_func(target, NULL, "require", "s", NULL, module);
+	}
+
+	free(module_file);
 }
 
 void init_lua()
