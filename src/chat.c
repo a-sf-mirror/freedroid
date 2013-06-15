@@ -681,7 +681,7 @@ void chat_run()
 {
 #	define LOAD_LUA_SCRIPT(script) \
 	    if (script && strlen(script)) \
-	    	current_chat_context->lua_coroutine = load_lua_coroutine(LUA_DIALOG, (script))
+		current_chat_context->script_coroutine = load_lua_coroutine(LUA_DIALOG, (script))
 
 	struct chat_context *current_chat_context = NULL;
 	struct widget *chat_ui = WIDGET(chat_menu);
@@ -822,10 +822,11 @@ void chat_run()
 				case RUN_STARTUP_SCRIPT:
 				case RUN_NODE_SCRIPT:
 				{
-					if (current_chat_context->lua_coroutine) {
-						if (resume_lua_coroutine(current_chat_context->lua_coroutine)) {
+					if (current_chat_context->script_coroutine) {
+						if (resume_lua_coroutine(current_chat_context->script_coroutine)) {
 							// the lua script reached its end, remove its reference
-							current_chat_context->lua_coroutine = NULL;
+							free(current_chat_context->script_coroutine);
+							current_chat_context->script_coroutine = NULL;
 							// end dialog, if asked by the lua script
 							if (current_chat_context->end_dialog)
 								goto end_current_dialog;
@@ -834,7 +835,7 @@ void chat_run()
 
 					// next step to run once the script has ended
 					// (note: do not replace the test with an 'else')
-					if (!current_chat_context->lua_coroutine) {
+					if (!current_chat_context->script_coroutine) {
 						if (current_chat_context->state == RUN_INIT_SCRIPT)
 							current_chat_context->state = LOAD_STARTUP_SCRIPT;
 						else

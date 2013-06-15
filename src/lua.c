@@ -152,7 +152,6 @@ static int lua_event_teleport_home(lua_State * L)
 
 	return 0;
 }
-
  
 static int lua_event_has_teleport_anchor(lua_State * L)
 {
@@ -1296,8 +1295,7 @@ luaL_Reg lfuncs[] = {
 	{"downgrade_program", lua_event_downgrade_program}
 	,
 	{"get_program_revision", lua_event_get_program_revision}
-        ,
-
+	,
 	/* del_item_backpack(string item_name[, int multiplicity = 1])
 	 * add_item(string item_name, int multiplicity)
 	 * - Deletes or adds the given number of items from/to the inventory.
@@ -1730,7 +1728,43 @@ static void pretty_print_lua_error(lua_State* L, const char *code, const char *f
 	free_autostr(erronous_code);
 }
 
-lua_State *load_lua_coroutine(enum lua_target target, const char *code)
+/**
+ * \brief Prepare to call a lua function in a coroutine
+ *
+ * \details Create a new lua thread, and fill the lua stack with the function to
+ * call and its argument, in preparation to a call to resume_coroutine, which will
+ * actually start the coroutine.
+ * (See call_lua_func() for an explanation of the parameters, given that there are
+ * no returned values for coroutine)
+ *
+ * \param target A lua_target enum value defining the Lua context to use
+ * \param module Name of the module containing the Lua function, or NULL if none
+ * \param func   Name of the Lua function to call
+ * \param insig  Signature string for the input parameters, or NULL
+ * \param ...    Input parameters data
+ * 
+ * \return Pointer to a lua_coroutine struct holding the data needed to start (resume) the coroutine
+ */
+struct lua_coroutine *prepare_lua_coroutine(enum lua_target target, const char *module, const char *func, const char *insig, ...)
+{
+        lua_State *L = get_lua_state(target);
+        lua_State *co_L = lua_newthread(L);
+
+        struct lua_coroutine *new_coroutine = (struct lua_coroutine *)MyMalloc(sizeof(struct lua_coroutine));
+        new_coroutine->thread = co_L;
+        new_coroutine->nargs = (insig) ? strlen(insig) : 0;
+
+        va_list vl;
+        va_start(vl, insig);
+
+        push_func_and_args(co_L, module, func, insig, &vl);
+
+	va_end(vl);
+
+        return new_coroutine;
+}
+
+struct lua_coroutine *load_lua_coroutine(enum lua_target target, const char *code)
 {
 	lua_State *L = get_lua_state(target);
 	lua_State *co_L = lua_newthread(L);
@@ -1739,30 +1773,34 @@ lua_State *load_lua_coroutine(enum lua_target target, const char *code)
 		pretty_print_lua_error(co_L, code, __FUNCTION__);
 		return NULL;
 	}
+	struct lua_coroutine *new_coroutine = (struct lua_coroutine *)MyMalloc(sizeof(struct lua_coroutine));
+	new_coroutine->thread = co_L;
+	new_coroutine->nargs = 0;
 
-	return co_L;
+	return new_coroutine;
 }
 
-int resume_lua_coroutine(lua_State* L)
+int resume_lua_coroutine(struct lua_coroutine *coroutine)
 {
-	int rtn = lua_resume(L, NULL, 0);
+	int rtn = lua_resume(coroutine->thread, NULL, coroutine->nargs);
 
 	switch (rtn) {
 		case 0:
 			// The lua script has ended
 			return TRUE;
 		case LUA_YIELD:
-			// The lua script is 'pausing'
+			// The lua script is 'pausing'. Next resume will be without arguments
+			coroutine->nargs = 0;
 			return FALSE;
 		default:
 		{
 			// Any other return code is an error.
 			// Use the lua debug API to get the code of the current script
 			lua_Debug ar;
-			lua_getstack(L, 0, &ar);
-			lua_getinfo(L, "S", &ar);
-			pretty_print_lua_error(L, ar.source, __FUNCTION__);
-			return TRUE; // let's pretend the lua script has ended
+			lua_getstack(coroutine->thread, 0, &ar);
+			lua_getinfo(coroutine->thread, "S", &ar);
+			pretty_print_lua_error(coroutine->thread, ar.source, __FUNCTION__);
+			return TRUE; // Pretend the lua script has ended
 		}
 	}
 

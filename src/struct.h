@@ -1011,6 +1011,11 @@ struct tux_motion_class_images {
 /**
  * Holds all variables needed to run a chat
  */
+struct lua_coroutine {
+	lua_State *thread;
+	int nargs;
+};
+
 struct chat_context {
        enum chat_context_state state;  // current state of the chat engine.
        int wait_user_click;            // TRUE if the chat engine is waiting for a user click.
@@ -1027,7 +1032,7 @@ struct chat_context {
 
        struct dialogue_option dialog_options[MAX_DIALOGUE_OPTIONS_IN_ROSTER];  // The dialog nodes
        int current_option;             // Current dialog node to run (-1 if none is selected)
-       lua_State *lua_coroutine;       // Handle to the lua co-routine running the current node script
+       struct lua_coroutine *script_coroutine;	// Handle to the lua co-routine running the current node script
 
        char *topic_stack[CHAT_TOPIC_STACK_SIZE];  // Stack of topics. A topic is a dialog node selector.
        unsigned int topic_stack_slot;             // Index of the top of the stack
