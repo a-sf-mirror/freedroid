@@ -197,7 +197,7 @@ Mission Name=_"Tutorial Movement"
 +++
 Mission Name=_"Tutorial Melee"
 Mission target is to kill droids with marker : 2037
-Completion LuaCode={ display_console_message(_"Melee droids destroyed!") }
+Completion LuaCode={ display_big_message(_"Melee droids destroyed!") }
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -206,7 +206,7 @@ Completion LuaCode={ display_console_message(_"Melee droids destroyed!") }
 +++
 Mission Name=_"Tutorial Shooting"
 Mission target is to kill droids with marker : 3037
-Completion LuaCode={ display_console_message(_"Shooting range cleared!") }
+Completion LuaCode={ display_big_message(_"Shooting range cleared!") }
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -215,7 +215,7 @@ Completion LuaCode={ display_console_message(_"Shooting range cleared!") }
 +++
 Mission Name=_"Tutorial Hacking"
 Mission target is to kill droids with marker : 4037
-Completion LuaCode={ display_console_message(_"Hacking area cleared!") }
+Completion LuaCode={ display_big_message(_"Hacking area cleared!") }
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
