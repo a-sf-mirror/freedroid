@@ -730,6 +730,9 @@ Nr=50 Text=_"So how does this work?"
 	npc_says(_"Because of this, you can run various programs on the bots.")
 	npc_says(_"You can attempt to take them over, or monkey with their programming, or even cause them to damage themselves.")
 	npc_says(_"Likewise, there are certain programs that affect you or items around you.")
+	if (not has_quest("Tutorial Hacking")) then
+		add_quest(_"Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
+	end
 	hide(50) show(51)
 </LuaCode>
 ----------------------------------------------------------------------
