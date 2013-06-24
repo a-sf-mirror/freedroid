@@ -26,18 +26,20 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-		TutorialTom_doors = {"TutorialEntry", "TutorialZigzag1", "TutorialZigzag2", "TutorialZigzag3", "TutorialZigzag4"}
-		TutorialTom_doors2 = {TutorialTom_doors[1], TutorialTom_doors[2], TutorialTom_doors[3], TutorialTom_doors[4], TutorialTom_doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialStorage", "TutorialShootingOut", "TutorialTakeover"}
-		items_up = {"Entropy Inverter", "Tachyon Condensator", "Antimatter-Matter Converter", "Superconducting Relay Unit", "Plasma Transistor"}
-		ranged_combat = {"Normal Jacket", "Big kitchen knife", "Shoes", "Standard Shield", "Worker Helmet"}
-		-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
-		for var in ipairs(TutorialTom_doors2) do
-			change_obstacle_state(TutorialTom_doors2[var], "closed")
-		end
-		-- we also need remove all tux skills, except use weapon
-		downgrade_program("Hacking")
-		downgrade_program("Repair equipment")
-		downgrade_program("Emergency shutdown")
+		-- initialize
+			TutorialTom_doors = {"TutorialEntry", "TutorialZigzag1", "TutorialZigzag2", "TutorialZigzag3", "TutorialZigzag4"}
+			TutorialTom_doors2 = {TutorialTom_doors[1], TutorialTom_doors[2], TutorialTom_doors[3], TutorialTom_doors[4], TutorialTom_doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialStorage", "TutorialShootingOut", "TutorialTakeover"}
+			items_up = {"Entropy Inverter", "Tachyon Condensator", "Antimatter-Matter Converter", "Superconducting Relay Unit", "Plasma Transistor"}
+			ranged_combat = {"Normal Jacket", "Big kitchen knife", "Shoes", "Standard Shield", "Worker Helmet"}
+			-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
+			for var in ipairs(TutorialTom_doors2) do
+				change_obstacle_state(TutorialTom_doors2[var], "closed")
+			end
+			-- we also need remove all tux skills, except use weapon
+			downgrade_program("Hacking")
+			downgrade_program("Repair equipment")
+			downgrade_program("Emergency shutdown")
+		-- done initializing
 		set_bot_name(_"Tutorial Tom")
 		display_console_message(_"Met [b]Tutorial Tom[/b]!")
 </LuaCode>
@@ -50,8 +52,8 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		show(1, 7, 80)
 		set_rush_tux(0)
 	elseif (has_quest("Tutorial Movement")) and
-		   (not TutorialTom_talk_to_tom) then
-		TutorialTom_talk_to_tom = true
+		   (not TutorialTom_talk_to_tom_EveryTime) then -- only once
+		TutorialTom_talk_to_tom_EveryTime = true
 		npc_says(_"Glad to see you figured out the quest log!")
 	elseif (has_quest("Tutorial Movement")) and
 		   (TutorialTom_move_black) and
