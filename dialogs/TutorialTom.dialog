@@ -64,6 +64,10 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
 	end
 
+	if (tut_tux_items_passed) then
+		show(5)
+	end
+
 	if (TutorialTom_Tux_PastWall) then
 		hide(70) show(30, 38)
 	end
@@ -81,8 +85,11 @@ Nr=1 Text=_"Yes, it would be most kind of you. I don't remember anything."
 		add_quest(_"Tutorial Movement", _"To talk to someone, left click on them. You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the 'Q' key to open or close the quest log. Left click back on Tutorial Tom to learn more!")
 	end
 	display_big_message(_"Press 'Q' for Quests!")
+	hide(1, 7, 80) show(2, 3, 4, 8)
+	if (tut_tux_items_passed) then
+		show(5)
+	end
 	end_dialog()
-	hide(1, 7, 80) show(2, 3, 4, 5, 8)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -145,7 +152,7 @@ Nr=7 Text=_"No, thanks, I still remember how to walk, run, navigate, and pick th
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=8 Text=_"Thank you, that was very informative. Can we move on now?"
+Nr=8 Text=_"Thank you, that was very informative. I think I got how to move. Can we move on now?"
 <LuaCode>
 	end_quest(_"Tutorial Movement")
 	npc_says(_"I just closed your first quest. You can still see what you learned by clicking on the 'done quests' tab in the quest screen.", "NO_WAIT")

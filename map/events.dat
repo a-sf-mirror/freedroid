@@ -1841,6 +1841,28 @@ Trigger at label="tutmove-2"
 </LuaCode>
 * End of trigger *
 
+
+
+* New event trigger *
+Name=_"Items-check1"
+Trigger at label="37_items_passed1"
+Silent=1
+<LuaCode>
+	tut_tux_items_passed = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Items-check2"
+Trigger at label="37_items_passed2"
+Silent=1
+<LuaCode>
+	tut_tux_items_passed = true
+</LuaCode>
+* End of trigger *
+
+
+
 * New event trigger *
 Name=_"PastWall-N"
 Trigger at label="Tutorial-PastWall1"
