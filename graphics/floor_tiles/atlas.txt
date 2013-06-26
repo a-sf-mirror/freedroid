@@ -144,7 +144,7 @@ disco/iso_60_0000.png 966 687 137 70 off -67 -33
 disco/iso_80_0000.png 1104 687 137 70 off -67 -33
 iso_grass_floor_0029.png 1242 687 123 69 off -40 -34
 iso_grass_floor_0030.png 1366 687 120 69 off -36 -33
-iso_miscellaneous_floor_0000.png 1487 687 136 69 off 0 0
+iso_miscellaneous_floor_0000.png 1487 687 136 69 off -68 -34
 iso_water_deep_0001.png 1624 687 136 69 off -68 -35
 iso_water_deep_0002.png 1761 687 136 69 off -68 -35
 iso_water_deep_0003.png 1898 687 136 69 off -68 -35
