@@ -1,5 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
+AUTOMAKE_OPTIONS = subdir-objects
+
 if BUILD_LUA
 freedroidRPG_LDADD = ../lua/liblua.a
 freedroidRPG_CFLAGS = -I../lua
