@@ -608,22 +608,25 @@ static void __obstacle_action(level *lvl, int index, enum interactive_obstacle_t
 	colldet_filter filter = ObstacleByIdPassFilter;
 	filter.data = &index;
 
-	if (DirectLineColldet(Me.pos.x, Me.pos.y, vpos.x, vpos.y, Me.pos.z, &filter)) {
-		// Do the specific action
-		switch (act) {
-			case ACT_CHEST:
-				act_chest(lvl, o);
-				break;
-			case ACT_TERMINAL:
-				act_terminal(lvl, o);
-				break;
-			case ACT_SIGN:
-				act_sign(lvl, o);
-				break;
-			case ACT_BARREL:
-				act_barrel(lvl, o);
-				break;
-		}
+	if (!DirectLineColldet(Me.pos.x, Me.pos.y, vpos.x, vpos.y, Me.pos.z, &filter))
+		return;
+
+	event_obstacle_action(o);
+
+	// Do the specific action
+	switch (act) {
+		case ACT_CHEST:
+			act_chest(lvl, o);
+			break;
+		case ACT_TERMINAL:
+			act_terminal(lvl, o);
+			break;
+		case ACT_SIGN:
+			act_sign(lvl, o);
+			break;
+		case ACT_BARREL:
+			act_barrel(lvl, o);
+			break;
 	}
 }
 

@@ -44,12 +44,12 @@ struct event_trigger {
 	int enabled;		//is the trigger enabled?
 	int silent;		//do we have to advertise this trigger to the user? (teleporters..)
 
-
 	enum {
 		POSITION,
 		ENTER_LEVEL,
 		EXIT_LEVEL,
 		ENEMY_DEATH,
+		OBSTACLE_ACTION,
 	} trigger_type;
 
 	union {
@@ -67,6 +67,11 @@ struct event_trigger {
 			char *dialog_name;
 			int marker;
 		} enemy_death;
+		struct {
+			int level;
+			int type;
+			char *label;
+		} obstacle_action;
 	} trigger;
 };
 
@@ -116,6 +121,12 @@ static void clear_out_events(void)
 #define ENEMY_DEATH_DIALOG_NAME "Enemy dialog name=\""
 #define ENEMY_DEATH_MARKER "Enemy marker="
 
+// For obstacle events
+#define OBSTACLE_ACTION_TRIGGER "Trigger on obstacle"
+#define OBSTACLE_ACTION_LVLNUM "Obstacle level number="
+#define OBSTACLE_ACTION_TYPE "Obstacle type name=\""
+#define OBSTACLE_ACTION_LABEL "Obstacle label=\""
+
 /** 
  *
  *
@@ -129,6 +140,7 @@ static void load_events(char *EventSectionPointer)
 	char *TempEnemyFaction;
 	char s;
 	struct event_trigger temp;
+	char *temp_str;
 
 	EventPointer = EventSectionPointer;
 	while ((EventPointer = strstr(EventPointer, EVENT_TRIGGER_BEGIN_STRING)) != NULL) {
@@ -159,7 +171,7 @@ static void load_events(char *EventSectionPointer)
 			temp.trigger_type = EXIT_LEVEL;
 			ReadValueFromString(EventPointer, LEVEL_EXIT_LVLNUM_VALUE, "%d",
 						&temp.trigger.change_level.level, EndOfEvent);
-		} else {
+		} else if (strstr(EventPointer, ENEMY_DEATH_LVLNUM_VALUE)) {
 			temp.trigger_type = ENEMY_DEATH;
 			ReadValueFromString(EventPointer, ENEMY_DEATH_LVLNUM_VALUE, "%d",
 						&temp.trigger.enemy_death.level, EndOfEvent);
@@ -177,6 +189,18 @@ static void load_events(char *EventSectionPointer)
 			}
 			ReadValueFromStringWithDefault(EventPointer, ENEMY_DEATH_MARKER, "%d", "-1",
 						&temp.trigger.enemy_death.marker, EndOfEvent);
+		} else if (strstr(EventPointer, OBSTACLE_ACTION_TRIGGER)) {
+			temp.trigger_type = OBSTACLE_ACTION;
+			ReadValueFromStringWithDefault(EventPointer, OBSTACLE_ACTION_LVLNUM, "%d", "-1",
+						&temp.trigger.obstacle_action.level, EndOfEvent);
+			temp_str = ReadAndMallocStringFromDataOptional(EventPointer, OBSTACLE_ACTION_TYPE, "\"");
+			if (temp_str) {
+				temp.trigger.obstacle_action.type = get_obstacle_type_by_name(temp_str);
+				free(temp_str);
+			} else {
+				temp.trigger.obstacle_action.type = -1;
+			}
+			temp.trigger.obstacle_action.label = ReadAndMallocStringFromDataOptional(EventPointer, OBSTACLE_ACTION_LABEL, "\"");
 		}
 
 		temp.name = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_NAME_STRING, "\"");
@@ -309,6 +333,42 @@ void event_enemy_died(enemy *dead)
 		if (arr[i].trigger.enemy_death.marker != -1)
 			if (arr[i].trigger.enemy_death.marker != dead->marker)
 				continue;
+
+		run_lua(LUA_DIALOG, arr[i].lua_code);
+	}
+}
+
+/**
+ * Trigger action event on obstacle.
+ */
+void event_obstacle_action(obstacle *o)
+{
+	int i;
+	struct event_trigger *arr = event_triggers.arr;
+
+	for (i = 0; i < event_triggers.size; i++) {
+		if (arr[i].trigger_type != OBSTACLE_ACTION)
+			continue;
+			
+		if (!arr[i].enabled)
+			continue;
+
+		if (arr[i].trigger.obstacle_action.level != -1)
+			if (arr[i].trigger.obstacle_action.level != o->pos.z)
+				continue;
+
+		if (arr[i].trigger.obstacle_action.type != -1)
+			if (arr[i].trigger.obstacle_action.type != o->type)
+				continue;
+
+		if (arr[i].trigger.obstacle_action.label) {
+			
+			level *lvl = curShip.AllLevels[o->pos.z];
+			char *label = (char *) get_obstacle_extension(lvl, o, OBSTACLE_EXTENSION_LABEL);
+			
+			if (!label || strcmp(arr[i].trigger.obstacle_action.label, label))
+				continue;
+		}
 
 		run_lua(LUA_DIALOG, arr[i].lua_code);
 	}
