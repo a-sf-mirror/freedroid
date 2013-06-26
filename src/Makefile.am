@@ -1,5 +1,8 @@
 ## Process this file with automake to produce Makefile.in
 
+AUTOMAKE_OPTIONS = subdir-objects
+SUBDIRS = lvledit widgets mapgen
+
 if BUILD_LUA
 freedroidRPG_LDADD = ../lua/liblua.a
 freedroidRPG_CFLAGS = -I../lua
