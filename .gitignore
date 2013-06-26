@@ -30,6 +30,12 @@ install-sh
 aclocal.m4
 autom4te.cache
 depcomp
+compile
+src/version.c
+src/.dirstamp
+src/lvledit/.dirstamp
+src/mapgen/.dirstamp
+src/widgets/.dirstamp
 
 # Helpers
 TAGS
@@ -41,5 +47,3 @@ callgrind.out*
 stderr.txt
 stdout.txt
 
-src/version.c
-compile
