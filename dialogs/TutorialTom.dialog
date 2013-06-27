@@ -64,7 +64,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
 	end
 
-	if (tut_tux_items_passed) then
+	if (tut_tux_items_entered) then
 		show(5)
 	end
 
@@ -86,7 +86,7 @@ Nr=1 Text=_"Yes, it would be most kind of you. I don't remember anything."
 	end
 	display_big_message(_"Press 'Q' for Quests!")
 	hide(1, 7, 80) show(2, 3, 4, 8)
-	if (tut_tux_items_passed) then
+	if (tut_tux_items_entered) then
 		show(5)
 	end
 	end_dialog()
