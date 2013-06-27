@@ -1854,7 +1854,7 @@ Trigger at label="tutmove-2"
 
 * New event trigger *
 Name=_"Items-check1"
-Trigger at label="37_items_passed1"
+Trigger at label="37_items_entered1"
 Silent=1
 <LuaCode>
 	tut_tux_items_passed = true
@@ -1863,7 +1863,7 @@ Silent=1
 
 * New event trigger *
 Name=_"Items-check2"
-Trigger at label="37_items_passed2"
+Trigger at label="37_items_entered2"
 Silent=1
 <LuaCode>
 	tut_tux_items_passed = true
