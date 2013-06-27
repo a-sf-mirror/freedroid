@@ -1850,8 +1850,6 @@ Trigger at label="tutmove-2"
 </LuaCode>
 * End of trigger *
 
-
-
 * New event trigger *
 Name=_"Items-check1"
 Trigger at label="37_items_entered1"
@@ -1870,7 +1868,23 @@ Silent=1
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"Chest-check1"
+Trigger at label="37_chest_entered1"
+Silent=1
+<LuaCode>
+	tut_tux_chest_entered = true
+</LuaCode>
+* End of trigger *
 
+* New event trigger *
+Name=_"Check-check2"
+Trigger at label="37_chest_entered2"
+Silent=1
+<LuaCode>
+	tut_tux_chest_entered = true
+</LuaCode>
+* End of trigger *
 
 * New event trigger *
 Name=_"PastWall-N"
