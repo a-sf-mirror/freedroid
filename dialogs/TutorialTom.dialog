@@ -64,7 +64,8 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
 	end
 
-	if (tut_tux_items_entered) then
+	if (tut_tux_items_entered) and
+	   (not TutorialTom_Tux_found_all_items) then
 		show(5)
 	end
 
@@ -86,7 +87,8 @@ Nr=1 Text=_"Yes, it would be most kind of you. I don't remember anything."
 	end
 	display_big_message(_"Press 'Q' for Quests!")
 	hide(1, 7, 80) show(2, 3, 4, 8)
-	if (tut_tux_items_entered) then
+	if (tut_tux_items_entered) and
+	   (not TutorialTom_Tux_found_all_items) then
 		show(5)
 	end
 	end_dialog()
@@ -141,6 +143,12 @@ Nr=5 Text=_"I'm sensing some sort of strange presence in the vicinity."
 	npc_says(_"Feel free to stop and examine them to get practice.")
 	npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]I key[/b], where you can examine it further.")
 	update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'Z' key, and press 'X' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'I'.")
+	if (has_item("Mug")) and -- these are the items in the item room
+	   (has_item("Anti-grav Pod for Droids")) and
+	   (has_item("Plasma Transistor")) then
+		npc_says("Oh great, I see you found all the items hidden in the room. Good job!")
+		TutorialTom_Tux_found_all_items = true
+	end
 	hide(5)
 </LuaCode>
 ----------------------------------------------------------------------
