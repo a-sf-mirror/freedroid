@@ -398,189 +398,34 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Tamara Shelf trigger 1"
-Trigger at label="0-tamara-book-1"
-Silent=1
+Name=_"Tamara Shelf Trigger 1"
+Trigger on obstacle
+Obstacle label="tamara-book-1"
 <LuaCode>
-	if (cmp_obstacle_state("tamara-book-1", "looted")) then
-		if (tamara_shelf_count ~= 3) or
-			(tamara_shelf_count == nil) then
-			if (tamara_book_1 == nil) or
-			   (tamara_book_1 ~= "done") then
-				set_rush_tux("1", "Tamara")
-				tamara_book_1 = "done"
-				if (tamara_shelf_count == nil) then
-					tamara_shelf_count = 1
-				else
-					tamara_shelf_count = tamara_shelf_count + 1
-				end
-			end
-		end
-	end
+	set_rush_tux("1", "Tamara")
+	tamara_shelf_count = tamara_shelf_count == nil and 1 or tamara_shelf_count + 1
 </LuaCode>
 * End of trigger *
 
 * New event trigger *
-Name=_"Tamara Shelf trigger 2-1"
-Trigger at label="0-tamara-book-2-1"
-Silent=1
+Name=_"Tamara Shelf Trigger 2"
+Trigger on obstacle
+Obstacle label="tamara-book-2"
 <LuaCode>
-	if (cmp_obstacle_state("tamara-book-2", "looted")) then
-		if (tamara_shelf_count ~= 3) or
-			(tamara_shelf_count == nil) then
-			if (tamara_book_2 == nil) or
-			   (tamara_book_2 ~= "done") then
-				set_rush_tux("1", "Tamara")
-				tamara_book_2 = "done"
-				if (tamara_shelf_count == nil) then
-					tamara_shelf_count = 1
-				else
-					tamara_shelf_count = tamara_shelf_count + 1
-				end
-			end
-		end
-	end
+	set_rush_tux("1", "Tamara")
+	tamara_shelf_count = tamara_shelf_count == nil and 1 or tamara_shelf_count + 1
 </LuaCode>
 * End of trigger *
 
 * New event trigger *
-Name=_"Tamara Shelf trigger 2-2"
-Trigger at label="0-tamara-book-2-2"
-Silent=1
+Name=_"Tamara Shelf Trigger 3"
+Trigger on obstacle
+Obstacle label="tamara-book-3"
 <LuaCode>
-	if (cmp_obstacle_state("tamara-book-2", "looted")) then
-		if (tamara_shelf_count ~= 3) or
-			(tamara_shelf_count == nil) then
-			if (tamara_book_2 == nil) or
-			   (tamara_book_2 ~= "done") then
-				set_rush_tux("1", "Tamara")
-				tamara_book_2 = "done"
-				if (tamara_shelf_count == nil) then
-					tamara_shelf_count = 1
-				else
-					tamara_shelf_count = tamara_shelf_count + 1
-				end
-			end
-		end
-	end
+	set_rush_tux("1", "Tamara")
+	tamara_shelf_count = tamara_shelf_count == nil and 1 or tamara_shelf_count + 1
 </LuaCode>
 * End of trigger *
-
-* New event trigger *
-Name=_"Tamara Shelf trigger 2-3"
-Trigger at label="0-tamara-book-2-3"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("tamara-book-2", "looted")) then
-		if (tamara_shelf_count ~= 3) or
-			(tamara_shelf_count == nil) then
-			if (tamara_book_2 == nil) or
-			   (tamara_book_2 ~= "done") then
-				set_rush_tux("1", "Tamara")
-				tamara_book_2 = "done"
-				if (tamara_shelf_count == nil) then
-					tamara_shelf_count = 1
-				else
-					tamara_shelf_count = tamara_shelf_count + 1
-				end
-			end
-		end
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name=_"Tamara Shelf trigger 2-4"
-Trigger at label="0-tamara-book-2-4"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("tamara-book-2", "looted")) then
-		if (tamara_shelf_count ~= 3) or
-			(tamara_shelf_count == nil) then
-			if (tamara_book_2 == nil) or
-			   (tamara_book_2 ~= "done") then
-				set_rush_tux("1", "Tamara")
-				tamara_book_2 = "done"
-				if (tamara_shelf_count == nil) then
-					tamara_shelf_count = 1
-				else
-					tamara_shelf_count = tamara_shelf_count + 1
-				end
-			end
-		end
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name=_"Tamara Shelf trigger 2-5"
-Trigger at label="0-tamara-book-2-5"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("tamara-book-2", "looted")) then
-		if (tamara_shelf_count ~= 3) or
-			(tamara_shelf_count == nil) then
-			if (tamara_book_2 == nil) or
-			   (tamara_book_2 ~= "done") then
-				set_rush_tux("1", "Tamara")
-				tamara_book_2 = "done"
-				if (tamara_shelf_count == nil) then
-					tamara_shelf_count = 1
-				else
-					tamara_shelf_count = tamara_shelf_count + 1
-				end
-			end
-		end
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name=_"Tamara Shelf trigger 3-1"
-Trigger at label="0-tamara-book-3-1"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("tamara-book-3", "looted")) then
-		if (tamara_shelf_count ~= 3) or
-			(tamara_shelf_count == nil) then
-			if (tamara_book_3 == nil) or
-			   (tamara_book_3 ~= "done") then
-				set_rush_tux("1", "Tamara")
-				tamara_book_3 = "done"
-				if (tamara_shelf_count == nil) then
-					tamara_shelf_count = 1
-				else
-					tamara_shelf_count = tamara_shelf_count + 1
-				end
-			end
-		end
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name=_"Tamara Shelf trigger 3-2"
-Trigger at label="0-tamara-book-3-2"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("tamara-book-3", "looted")) then
-		if (tamara_shelf_count ~= 3) or
-			(tamara_shelf_count == nil) then
-			if (tamara_book_3 == nil) or
-			   (tamara_book_3 ~= "done") then
-				set_rush_tux("1", "Tamara")
-				tamara_book_3 = "done"
-				if (tamara_shelf_count == nil) then
-					tamara_shelf_count = 1
-				else
-					tamara_shelf_count = tamara_shelf_count + 1
-				end
-			end
-		end
-	end
-</LuaCode>
-* End of trigger *
-
 
 ##############
 ## Level  1 ##
