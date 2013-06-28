@@ -1015,9 +1015,166 @@ static int lua_npc_shop_ctor(lua_State *L)
 }
 
 /**
+ * \brief 
+ * \param L Lua state.
+ */
+static void get_one_item(lua_State *L, void *data)
+{
+	struct itemspec *item = (struct itemspec *)data;
+	char *item_slot;
+	char *item_durability;
+	char *item_drop_class;
+	char *item_armor_class;
+	char *item_dropped;
+	char *item_damage;
+	char *item_motion_class;
+	char *item_bullet_type;
+	char *item_ammunition_type;
+
+	struct data_spec data_specs[] = {
+		{"name", 					NULL,		STRING_TYPE, &item->item_name						},
+		{"slot",					"none",		STRING_TYPE, &item_slot								},
+		{"weapon.damage",			NULL,		STRING_TYPE, &item_damage							},
+		{"weapon.attack_time",		"0",		FLOAT_TYPE,	 &item->item_gun_recharging_time		},
+		{"weapon.reloading_time",	"0",		FLOAT_TYPE,	 &item->item_gun_reloading_time			},
+		{"weapon.bullet.type", 		"NO BULLET IMAGE",	STRING_TYPE, 	&item_bullet_type			},
+		{"weapon.bullet.speed",	 	"0",		FLOAT_TYPE,	 &item->item_gun_speed					},
+		{"weapon.bullet.lifetime",	"0",		FLOAT_TYPE,	 &item->item_gun_bullet_lifetime		},
+		{"weapon.bullet.angle",	 	"0",		FLOAT_TYPE,	 &item->item_gun_start_angle_modifier	},
+		{"weapon.ammunition.type", 	"none", 	STRING_TYPE, &item_ammunition_type					},
+		{"weapon.ammunition.clip",	"0",		INT_TYPE, 	 &item->item_gun_ammo_clip_size			},
+		{"weapon.melee",			"false",	BOOL_TYPE,	 &item->item_weapon_is_melee			},
+		{"weapon.two_hand",	 		"false",	BOOL_TYPE,	 &item->item_gun_requires_both_hands	},
+		{"weapon.motion_class",		NULL,		STRING_TYPE, &item_motion_class						},
+		{"armor_class",				NULL,		STRING_TYPE, &item_armor_class						},
+		{"use_help",				NULL,		STRING_TYPE, &item->item_combat_use_description		},
+		{"requirements.strength", 	"-1",		SHORT_TYPE,  &item->item_require_strength			},
+		{"requirements.dexterity",	"-1",		SHORT_TYPE,	 &item->item_require_dexterity			},
+		{"requirements.cooling",	"-1",		SHORT_TYPE,	 &item->item_require_cooling			},
+		{"inventory.x",	 			"1",		INT_TYPE, 	 &item->inv_size.x						},
+		{"inventory.y",				"1",		INT_TYPE,	 &item->inv_size.y						},
+		{"inventory.stackable",		"false",	BOOL_TYPE,	 &item->item_group_together_in_inventory},
+		{"inventory.image",			NULL,		STRING_TYPE, &item->item_inv_file_name				},
+		{"base_price",				"-1",		INT_TYPE,	 &item->base_list_price					},
+		{"drop.class", 				NULL,   	STRING_TYPE, &item_drop_class						},
+		{"drop.number",				NULL,		STRING_TYPE, &item_dropped							},
+		{"drop.sound",				NULL, 		STRING_TYPE, &item->item_drop_sound_file_name		},
+		{"durability",				NULL, 		STRING_TYPE, &item_durability						},
+		{"description",				"", 		STRING_TYPE, &item->item_description				},
+		{"tux_part",				NULL, 		STRING_TYPE, &item->tux_part_instance				},
+		{"rotation_series",			NULL, 		STRING_TYPE, &item->item_rotation_series_prefix		},
+		{ NULL, NULL, 0, 0 }
+	};
+
+	fill_structure_from_table(L, data_specs);
+
+	if (!item->item_name) {
+		ErrorMessage(__FUNCTION__, "No name for item. The name must be given.", PLEASE_INFORM, IS_WARNING_ONLY);
+	}
+
+	// Set the item slot
+	item->slot = get_slot_type_by_name(item_slot);
+	free(item_slot);
+
+	// Set the durability
+	get_range_from_string(item_durability, &item->base_item_durability, &item->item_durability_modifier, -1);
+	item->item_durability_modifier -= item->base_item_durability;
+	free(item_durability);
+	
+	// Set armor class
+	get_range_from_string(item_armor_class, (int *)&item->base_armor_class, &item->armor_class_modifier, 0);
+	item->armor_class_modifier -= item->base_armor_class;
+	free(item_armor_class);
+	
+	// Set the drop class
+	if (item_drop_class) {
+		get_range_from_string(item_drop_class, &item->min_drop_class, &item->max_drop_class, -1);
+		free(item_drop_class);
+	} else {
+		item->min_drop_class = item->max_drop_class = -1;
+	}
+	
+	if (item->min_drop_class != -1) {
+		// Increment the item count per drop class
+		int cc;
+		for (cc = 0; cc < 10; cc++) {
+			if (cc > item->max_drop_class)
+				break;
+			if (cc < item->min_drop_class)
+				continue;
+			else
+				item_count_per_class[cc]++;
+		}
+		
+		// Set the number of dropped item
+		get_range_from_string(item_dropped, &item->drop_amount, &item->drop_amount_max, 1);
+	}
+	free(item_dropped);
+	
+	// Set damage
+	get_range_from_string(item_damage, (int *)&item->base_item_gun_damage, (int *)&item->item_gun_damage_modifier, 0);
+	item->item_gun_damage_modifier -= item->base_item_gun_damage;
+	free(item_damage);
+			
+	// Set motion class
+	item->motion_class = get_motion_class_id_by_name(item_motion_class);
+	free(item_motion_class);
+
+	// TODO: remake the ammunition system 
+	// Set amunition type
+	if (strcmp(item_ammunition_type, "none") == 0) {
+		item->item_gun_use_ammunition = 0;
+	} else if (strcmp(item_ammunition_type, "laser_ammunition") == 0) {
+		item->item_gun_use_ammunition = 1;
+	} else if (strcmp(item_ammunition_type, "plasma_ammunition") == 0) {
+		item->item_gun_use_ammunition = 2;
+	} else if (strcmp(item_ammunition_type, "exterminator_ammunition") == 0) {
+		item->item_gun_use_ammunition = 3;
+	} else if (strcmp(item_ammunition_type, "22LR") == 0) {
+		item->item_gun_use_ammunition = 4;
+	} else if (strcmp(item_ammunition_type, "Sshell") == 0) {
+		item->item_gun_use_ammunition = 5;
+	} else if (strcmp(item_ammunition_type, "9mm") == 0) {
+		item->item_gun_use_ammunition = 6;
+	} else if (strcmp(item_ammunition_type, "7.62mm") == 0) {
+		item->item_gun_use_ammunition = 7;
+	} else if (strcmp(item_ammunition_type, "50BMG") == 0) {
+		item->item_gun_use_ammunition = 8;
+	} else {
+		ErrorMessage(__FUNCTION__, "\
+The type of ammunition used by an item in item_spec.lua was not recognized. \n\
+This string was: %s\n", PLEASE_INFORM, IS_FATAL, item_ammunition_type);
+	}
+	free(item_ammunition_type);
+
+	item->item_gun_bullet_pass_through_hit_bodies = FALSE;
+	
+	if (item->slot == WEAPON_SLOT) {
+		// Set bullet image type
+		item->item_gun_bullet_image_type = GetBulletByName(item_bullet_type);
+	}
+	free(item_bullet_type);
+}
+
+static int lua_item_list_ctor(lua_State *L)
+{
+	struct dynarray item_specs = { 0 };
+
+	fill_dynarray_from_table(L, &item_specs, sizeof(struct itemspec), get_one_item);
+
+	// Copy the array of item_specs
+	Number_Of_Item_Types = item_specs.size;
+	ItemMap = (itemspec *) MyMalloc(sizeof(itemspec) * Number_Of_Item_Types + 1);
+	memcpy(ItemMap, item_specs.arr, sizeof(itemspec) * Number_Of_Item_Types);
+
+	dynarray_free(&item_specs);
+
+	return 0;
+}
+
+/**
  * Add lua constructors of new data types
  */
-
 void init_luaconfig()
 {
 	int i;
@@ -1035,6 +1192,7 @@ void init_luaconfig()
 		{"overlay_floor_tile_list", lua_overlay_floor_tile_list_ctor},
 		{"npc_list", lua_npc_list_ctor},
 		{"npc_shop", lua_npc_shop_ctor},
+		{"item_list", lua_item_list_ctor},
 		{NULL, NULL}
 	};
 

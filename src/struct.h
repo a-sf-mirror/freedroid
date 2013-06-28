@@ -266,22 +266,22 @@ typedef struct itemspec {
 	float item_gun_reloading_time;	// time needed to put a new charger
 	short item_gun_bullet_image_type;	// which type of image to use for displaying this bullet
 	float item_gun_speed;	// how fast should a bullet move straightforward?
-	short base_item_gun_damage;	//   damage done by this bullettype 
-	short item_gun_damage_modifier;	// modifier to the damage done by this bullettype 
+	int base_item_gun_damage;	//   damage done by this bullettype 
+	int item_gun_damage_modifier;	// modifier to the damage done by this bullettype 
 	float item_gun_bullet_lifetime;	// how long does a 'bullet' from this gun type live?
 	char item_gun_bullet_pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword)
 	short item_gun_ammo_clip_size;	//max. number of bullets in the charger
 
 	// the following values have only relevance in case of a melee weapon
-	short int item_weapon_is_melee;
+	char item_weapon_is_melee;
 	float item_gun_start_angle_modifier;	// where to start with a melee weapon swing
 	int item_gun_use_ammunition;        // which ammunition does this gun use? see ammo_desc_for_weapon()
 	char item_gun_requires_both_hands;	// is this a (strictly) 2-handed weapon?
 	short int motion_class;				// Tux's motion class to use
 
 	// how good is the item as armour or shield or other protection???
-	short base_armor_class;
-	short armor_class_modifier;
+	int base_armor_class;
+	int armor_class_modifier;
 
 	// which requirement for strength, dexterity and cooling does the item have?
 	short int item_require_strength;
@@ -289,8 +289,8 @@ typedef struct itemspec {
 	short int item_require_cooling;
 
 	// what durability does the item have?
-	short int base_item_durability;
-	short int item_durability_modifier;
+	int base_item_durability;
+	int item_durability_modifier;
 
 	point inv_size;
 	struct image inventory_image;
@@ -299,8 +299,8 @@ typedef struct itemspec {
 
 	short int base_list_price;	// the base price of this item at the shop
 
-	short int min_drop_class;
-	short int max_drop_class;
+	int min_drop_class;
+	int max_drop_class;
 	int drop_amount;		// minimum number of items to drop at once
 	int drop_amount_max;	// maximum of items to drop at once
 
