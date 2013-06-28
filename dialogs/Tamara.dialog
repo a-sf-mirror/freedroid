@@ -45,7 +45,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		npc_says(_"Please put everything back in place if you don't need it.")
 		tamara_shelf_count_2_done = true
 	elseif (tamara_shelf_count == 3) and (not tamara_shelf_count_3_done) then
-		npc_says(_"Please be careful with these books. They are older than most computers in this town")
+		npc_says(_"Please be careful with these books. They are older than most computers in this town.")
 		tamara_shelf_count_3_done = true
 		tamara_shelf_stuff = "done"
 	elseif (tamara_shelf_count) and (tamara_shelf_count > 3) then

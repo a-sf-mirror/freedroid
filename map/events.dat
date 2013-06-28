@@ -404,6 +404,15 @@ Obstacle label="tamara-book-1"
 <LuaCode>
 	set_rush_tux("1", "Tamara")
 	tamara_shelf_count = tamara_shelf_count == nil and 1 or tamara_shelf_count + 1
+	--[[
+	"var = a_test and val1 or val2" means:
+
+	if (a_test) then
+	  var = val1
+	else
+	  var = val2
+	end
+	]]--
 </LuaCode>
 * End of trigger *
 
