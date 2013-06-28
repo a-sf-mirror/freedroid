@@ -3600,14 +3600,6 @@ x=27 y=5 name="N-exit-4-inner"
 x=81 y=73 name="Bruce-move-target-label"
 x=20 y=17 name="TeleporterRoom-exit-1"
 x=20 y=18 name="TeleporterRoom-exit-2"
-x=75 y=26 name="0-tamara-book-1"
-x=75 y=31 name="0-tamara-book-3-1"
-x=75 y=32 name="0-tamara-book-3-2"
-x=74 y=29 name="0-tamara-book-2-1"
-x=74 y=30 name="0-tamara-book-2-2"
-x=73 y=29 name="0-tamara-book-2-3"
-x=73 y=30 name="0-tamara-book-2-4"
-x=74 y=31 name="0-tamara-book-2-5"
 /plabelinfolvl
 piteminfolvl
 it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1
