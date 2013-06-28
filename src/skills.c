@@ -377,6 +377,11 @@ int DoSkill(int skill_index, int SpellCost)
 		break;
 
 	case PROGRAM_FORM_SELF:
+	
+		if (!strcmp(SpellSkillMap[skill_index].effect, "teleport_home"))
+			if (!TeleportHome())
+				return 0;
+		
 		Me.energy -= hitdmg;
 		Me.temperature += SpellCost;
 		Me.slowdown_duration += strcmp(SpellSkillMap[skill_index].effect, "slowdown") ? 0 : effdur;
@@ -384,7 +389,7 @@ int DoSkill(int skill_index, int SpellCost)
 		Me.invisible_duration += strcmp(SpellSkillMap[skill_index].effect, "invisibility") ? 0 : effdur;
 		Me.nmap_duration += strcmp(SpellSkillMap[skill_index].effect, "nmap") ? 0 : effdur;
 		Me.light_bonus_end_date = Me.current_game_date + (strcmp(SpellSkillMap[skill_index].effect, "light") ? 0 : effdur);
-		break;
+		return 1;
 
 	case PROGRAM_FORM_BULLET:
 		Me.temperature += SpellCost;
@@ -447,14 +452,6 @@ int DoSkill(int skill_index, int SpellCost)
 			// will be handled in the inventory screen management function.
 			//
 			play_sound("effects/tux_ingame_comments/CantRepairThat.ogg");
-		}
-		goto out;
-	}
-
-	if (!strcmp(SpellSkillMap[skill_index].effect, "teleport_home")) {
-		if (!TeleportHome()) {
-			Me.temperature -= SpellCost;
-			return 0;
 		}
 		goto out;
 	}
