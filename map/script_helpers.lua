@@ -461,7 +461,6 @@ function get_random_bot_59()
 	return bot_59
 end
 
-
 function scandir(subdir, filter, exclude)
 	local filtered = {}
 	local exclude_dict = {}
@@ -489,6 +488,16 @@ function scandir(subdir, filter, exclude)
 
 	return filtered
 end
+
+function has_items(...)
+	for _,item in ipairs({...}) do
+		if (not has_item(item)) then
+			return false
+		end
+	end
+	return true
+end
+
 
 --[[
 >>>>>>>>>>>>>>>>>>                                  <<<<<<<<<<<<<<<<<<<<
