@@ -69,11 +69,20 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		show(5)
 	end
 
-
-	if (tut_tux_chest_entered) then
+	if (tut_tux_chest_entered) and
+	   (not tut_item_chest_opened) then
 		show(10)
+	elseif (tut_item_chest_opened) then
+		hide(10)
+		show(11)
 	end
 
+	if (has_item("Normal Jacket")) or
+	   (has_item("Improvised Buckler")) or
+	   (has_item("Shoes")) or
+	   (has_item("Worker Helmet")) then
+		hide(11)
+	end
 
 	if (TutorialTom_Tux_PastWall) then
 		hide(70) show(30, 38)
@@ -188,8 +197,10 @@ Nr=10 Text=_"What is in that chest?"
 <LuaCode>
 	npc_says(_"Well, you can interact with several types of objects by simply [b]left clicking[/b] on them.")
 	npc_says(_"Left click on the chest to open it up and see what is inside.")
-	add_quest(_"Tutorial Melee", _"I'm supposed to left click on chests to open them up.")
-	hide(10) show(11, 19)
+	if (not has_quest("Tutorial Melee")) then
+		add_quest(_"Tutorial Melee", _"I'm supposed to left click on chests to open them up.")
+	end
+	hide(10) show(19)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

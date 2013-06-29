@@ -1763,6 +1763,16 @@ Silent=1
 	end
 </LuaCode>
 * End of trigger *
+
+* New event trigger *
+Name=_"24-trigger-barrel"
+Trigger on obstacle
+Obstacle label="37_chest"
+<LuaCode>
+	tut_item_chest_opened = true
+</LuaCode>
+* End of trigger *
+
 ##############
 ## Level 38 ##
 ##############
