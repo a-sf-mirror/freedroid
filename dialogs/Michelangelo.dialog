@@ -102,9 +102,7 @@ Nr=11 Text=_"Can I buy some food here?"
 
 Nr=12 Text=_"I want some yummy army snacks!"
 <LuaCode>
-	if (has_item("Fork")) and
-	   (has_item_backpack("Plate")) and
-	   (has_item_backpack("Mug")) then
+	if (has_item("Fork", "Plate", "Mug")) then
 		if (has_item_equipped("Fork")) then
 			npc_says(_"I am supposed to read this out to all newcomers. Here goes:")
 			npc_says(_"'Please note that the army rations model #23 you are about to eat is provided 'as is' without warranty of any kind.")
