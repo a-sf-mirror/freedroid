@@ -344,10 +344,6 @@ function has_item_backpack(item_name)
 	return (count_item_backpack(item_name) > 0)
 end
 
-function has_item(item_name)
-	return (count_item(item_name) > 0)
-end
-
 function del_item(item_name) 
 	if (count_item_backpack(item_name) > 0) then
 		del_item_backpack(item_name)
@@ -489,9 +485,9 @@ function scandir(subdir, filter, exclude)
 	return filtered
 end
 
-function has_items(...)
+function has_item(...)
 	for _,item in ipairs({...}) do
-		if (not has_item(item)) then
+		if (not (count_item(item) > 0)) then
 			return false
 		end
 	end
