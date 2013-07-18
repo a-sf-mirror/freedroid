@@ -1,8 +1,8 @@
-cppcheckflags = -I.                                                            \
-				-I..                                                           \
-				-I/usr/include/SDL                                             \
-				--enable=performance,portability,unusedFunction,missingInclude \
-				--force                                                        \
+cppcheckflags = -I.                                                                    \
+				-I..                                                                   \
+				-I/usr/include/SDL                                                     \
+				--enable=warning,performance,portability,unusedFunction,missingInclude \
+				--force                                                                \
 				--quiet
 
 cppcheck:
