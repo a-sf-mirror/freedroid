@@ -1098,13 +1098,13 @@ int LoadGameConfig(void)
 
 	sprintf(fname, "%s/fdrpg.cfg", our_config_dir);
 	if ((configfile = fopen(fname, "rb")) == NULL) {
-		fprintf(stderr, "Unable to open configuration file %s\n", fname);
+		fprintf(stderr, "\nUnable to open configuration file %s\n", fname);
 		return (ERR);
 	}
 
 	char *stuff = (char *)malloc(FS_filelength(configfile) + 1);
 	if (fread(stuff, FS_filelength(configfile), 1, configfile) != 1) {
-		ErrorMessage(__FUNCTION__, "Failed to read config file: %s.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
+		ErrorMessage(__FUNCTION__, "\nFailed to read config file: %s.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
 		fclose(configfile);
 		free(stuff);
 		return ERR;
