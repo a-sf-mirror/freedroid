@@ -203,7 +203,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_chest_grey_closed_n.png",
-	label = "Chest",
+	label = _"Chest",
 	borders = borders(0.80, 0.60),
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -213,7 +213,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_chest_grey_closed_w.png",
-	label = "Chest",
+	label = _"Chest",
 	borders = borders(0.60, 0.80),
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -320,7 +320,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_terminal_s.png",
-	label = "Terminal",
+	label = _"Terminal",
 	borders = borders(0.80, 0.80),
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -329,7 +329,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_terminal_e.png",
-	label = "Terminal",
+	label = _"Terminal",
 	borders = borders(0.80, 0.80),
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -338,7 +338,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_terminal_n.png",
-	label = "Terminal",
+	label = _"Terminal",
 	borders = borders(0.80, 0.80),
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -347,7 +347,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_terminal_w.png",
-	label = "Terminal",
+	label = _"Terminal",
 	borders = borders(0.80, 0.80),
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -374,7 +374,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_barrel.png",
-	label = "Barrel",
+	label = _"Barrel",
 	borders = borders(0.70, 0.70),
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -383,7 +383,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_barrel_rusty.png",
-	label = "Barrel",
+	label = _"Barrel",
 	borders = borders(0.70, 0.70),
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -392,7 +392,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_crate_ns.png",
-	label = "Crate",
+	label = _"Crate",
 	borders = borders(0.80, 0.95),
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -401,7 +401,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_crate_we.png",
-	label = "Crate",
+	label = _"Crate",
 	borders = borders(0.80, 0.75),
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -1691,7 +1691,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_sign_questionmark.png",
-	label = "Sign",
+	label = _"Sign",
 	borders = borders(0.50, 0.60),
 	emitted_light_strength = 5,
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
@@ -1701,7 +1701,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_sign_exclamationmark.png",
-	label = "Sign",
+	label = _"Sign",
 	borders = borders(0.60, 0.50),
 	emitted_light_strength = 5,
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
@@ -1711,7 +1711,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_sign_lessthenmark.png",
-	label = "Sign",
+	label = _"Sign",
 	borders = borders(0.50, 0.60),
 	emitted_light_strength = 5,
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
@@ -2561,7 +2561,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_chest_greyrusty_closed_w.png",
-	label = "Chest",
+	label = _"Chest",
 	borders = borders(0.60, 0.80),
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -2571,7 +2571,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_chest_greyrusty_closed_n.png",
-	label = "Chest",
+	label = _"Chest",
 	borders = borders(0.80, 0.60),
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -2595,7 +2595,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_chest_greyrusty_closed_s.png",
-	label = "Chest",
+	label = _"Chest",
 	borders = borders(0.80, 0.60),
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -2605,7 +2605,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_chest_greyrusty_closed_e.png",
-	label = "Chest",
+	label = _"Chest",
 	borders = borders(0.60, 0.80),
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -2677,7 +2677,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_solarpanel.png",
-	label = "Solar Panel",
+	label = _"Solar Panel",
 	borders = borders(0.95, 1.05),
 	flags = { IS_SMASHABLE, IS_CLICKABLE },
 	after_smashing = 407,
@@ -2801,7 +2801,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_crate_ns_megasys.png",
-	label = "Crate",
+	label = _"Crate",
 	borders = borders(0.80, 0.95),
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -2834,7 +2834,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_wallterminal_n.png",
-	label = "Terminal",
+	label = _"Terminal",
 	borders = borders(0.60, 0.40),
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -2843,7 +2843,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_wallterminal_w.png",
-	label = "Terminal",
+	label = _"Terminal",
 	borders = borders(0.40, 0.60),
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -2852,7 +2852,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_wallterminal_s.png",
-	label = "Terminal",
+	label = _"Terminal",
 	borders = borders(0.60, 0.40),
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -2861,7 +2861,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_wallterminal_e.png",
-	label = "Terminal",
+	label = _"Terminal",
 	borders = borders(0.40, 0.60),
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -2894,7 +2894,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_weapon_crate.png",
-	label = "Weapon Crate",
+	label = _"Weapon Crate",
 	borders = borders(1.30, 1.30),
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
@@ -3055,7 +3055,7 @@ obstacle {
 
 obstacle {
 	image_filenames = { "iso_sign_questionmark_anim_dark.png", "iso_sign_questionmark_anim_bright.png" },
-	label = "Sign",
+	label = _"Sign",
 	borders = borders(0.50, 0.60),
 	emitted_light_strength = { 0, 5 },
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
@@ -3066,7 +3066,7 @@ obstacle {
 
 obstacle {
 	image_filenames = { "iso_sign_exclamationmark_anim_dark.png", "iso_sign_exclamationmark_anim_bright.png" },
-	label = "Sign",
+	label = _"Sign",
 	borders = borders(0.60, 0.50),
 	emitted_light_strength = { 0, 5 },
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
@@ -3076,7 +3076,7 @@ obstacle {
 }
 obstacle {
 	image_filenames = { "iso_sign_lessthenmark_anim_dark.png", "iso_sign_lessthenmark_anim_bright.png" },
-	label = "Sign",
+	label = _"Sign",
 	borders = borders(0.50, 0.60),
 	emitted_light_strength = { 0, 5 },
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
@@ -3094,7 +3094,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_blue_w.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.10, 1.55),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3104,7 +3104,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_blue_s.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.55, 1.10),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0  },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3114,7 +3114,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_blue_e.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.10, 1.55),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3124,7 +3124,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_blue_n.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.55, 1.10),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3134,7 +3134,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_white_w.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.00, 1.55),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3144,7 +3144,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_white_s.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.55, 1.00),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3154,7 +3154,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_white_e.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.00, 1.55),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3164,7 +3164,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_white_n.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.55, 1.00),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3174,7 +3174,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_red_w.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.10, 1.55),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3184,7 +3184,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_red_s.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.55, 1.10),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3194,7 +3194,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_red_e.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.10, 1.55),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3204,7 +3204,7 @@ obstacle {
 
 obstacle {
 	image_filenames = "iso_vendingmachine_red_n.png",
-	label = "Vending Machine",
+	label = _"Vending Machine",
 	borders = borders(1.55, 1.10),
 	emitted_light_strength = { 3, 5, 7, 6, 4, 3, 3, 0, 0, 0, 3, 0 },
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
@@ -3239,7 +3239,7 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	label = "Bookshelf",
+	label = _"Bookshelf",
 	after_looting = 467,
 }
 
@@ -3256,7 +3256,7 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	label = "Bookshelf",
+	label = _"Bookshelf",
 	after_looting = 469,
 }
 
@@ -3273,7 +3273,7 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	label = "Bookshelf",
+	label = _"Bookshelf",
 	after_looting = 471,
 }
 
@@ -3290,7 +3290,7 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	label = "Bookshelf",
+	label = _"Bookshelf",
 	after_looting = 473,
 }
 
@@ -3307,7 +3307,7 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	label = "Bookshelf",
+	label = _"Bookshelf",
 	after_looting = 475,
 }
 
@@ -3324,7 +3324,7 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	label = "Bookshelf",
+	label = _"Bookshelf",
 	after_looting = 477,
 }
 
@@ -3341,7 +3341,7 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	label = "Bookshelf",
+	label = _"Bookshelf",
 	after_looting = 479,
 }
 
@@ -3358,7 +3358,7 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	label = "Bookshelf",
+	label = _"Bookshelf",
 	after_looting = 481,
 }
 
