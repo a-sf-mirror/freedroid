@@ -323,6 +323,11 @@ Nr=62 Text=_"I would like to practice selling an item."
 	npc_says(_"However, if you sell the items from the chest (which should have been equipped automatically) I won't be giving you replacements.")
 	npc_says(_"Select the Small Axe and click the sell button.")
 	add_item("Small Axe")
+	i = 1
+	while (i < 100) do  -- this is a ugly hack to get rid of the "Item received: Small Axe" centerprint
+	display_big_message("")
+		i = i + 1
+	end
 	hide(62) next(63)
 </LuaCode>
 ----------------------------------------------------------------------
