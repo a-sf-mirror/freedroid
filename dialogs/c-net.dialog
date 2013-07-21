@@ -65,7 +65,7 @@ NO_TEXT
 		cli_says(_"Password : ", "NO_WAIT")
 		tux_says("******", "NO_WAIT")
 	end
-	npc_says(_"Last login from dev/tty3 on unknown", "NO_WAIT")
+	npc_says(_"Last login from /dev/tty3 on unknown", "NO_WAIT")
 	cli_says(c_net_prompt, "NO_WAIT")
 	show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 </LuaCode>
@@ -82,7 +82,7 @@ NO_TEXT
 	--else
 	--	c_net_username = "root"
 	--	c_net_prompt = c_net_username .. "@c-net:~$"
-	--	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
+	--	npc_says(_"Last login from /dev/tty3 on unknown" , "NO_WAIT")
 	--	cli_says(c_net_prompt, "NO_WAIT")
 	--	show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 	--end
@@ -100,7 +100,7 @@ NO_TEXT
 	else
 		c_net_username = "lily"
 		c_net_prompt = c_net_username .. "@c-net:~$"
-		npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
+		npc_says(_"Last login from /dev/tty3 on unknown" , "NO_WAIT")
 		cli_says(c_net_prompt, "NO_WAIT")
 		show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 	end
@@ -119,7 +119,7 @@ NO_TEXT
 	--	tux_says("************************************")
 	--	c_net_username = "cpain"
 	--	c_net_prompt = c_net_username .. "@c-net:~$"
-	--	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
+	--	npc_says(_"Last login from /dev/tty3 on unknown" , "NO_WAIT")
 	--	cli_says(c_net_prompt, "NO_WAIT")
 	--	show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 	--end

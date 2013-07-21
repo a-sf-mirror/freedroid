@@ -38,9 +38,9 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	cli_says(_"Login failed. Entering as Guest")
 	npc_says(_" ", "NO_WAIT")
 	if (DSB_PowerControlGate1_date == nil) then
-		npc_says(_"First login from dev/ttySO on %s %d", DSB_PowerControlGate1_date_1, DSB_PowerControlGate1_year,  "NO_WAIT")
+		npc_says(_"First login from /dev/ttySO on %s %d", DSB_PowerControlGate1_date_1, DSB_PowerControlGate1_year,  "NO_WAIT")
 	else
-		npc_says(_"Last login from dev/ttyS0 on %s %d", DSB_PowerControlGate1_date, DSB_PowerControlGate1_year, "NO_WAIT")
+		npc_says(_"Last login from /dev/ttyS0 on %s %d", DSB_PowerControlGate1_date, DSB_PowerControlGate1_year, "NO_WAIT")
 	end
 	DSB_PowerControlGate1_date = DSB_PowerControlGate1_date_1
 

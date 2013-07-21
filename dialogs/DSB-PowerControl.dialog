@@ -33,7 +33,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	tux_says(_"admin", "NO_WAIT")
 	cli_says(_" Password : ", "NO_WAIT")
 	tux_says(_"*******", "NO_WAIT")
-	npc_says(_"First login from dev/ttySO on %s %d", DSB_PC_date, DSB_PC_year,  "NO_WAIT")
+	npc_says(_"First login from /dev/ttySO on %s %d", DSB_PC_date, DSB_PC_year,  "NO_WAIT")
 </LuaCode>
 
 <EveryTime LuaCode>

@@ -43,9 +43,9 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	tux_says("*******")
 	--	npc_says("First login, %s ", os.date())
 	if (AfterTakeover_date == nil) then
-		npc_says(_"First login from dev/ttySO on %s %d", AfterTakeover_date_1, AfterTakeover_year,  "NO_WAIT")
+		npc_says(_"First login from /dev/ttySO on %s %d", AfterTakeover_date_1, AfterTakeover_year,  "NO_WAIT")
 	else
-		npc_says(_"Last login from dev/ttyS0 on %s %d", AfterTakeover_date, AfterTakeover_year, "NO_WAIT")
+		npc_says(_"Last login from /dev/ttyS0 on %s %d", AfterTakeover_date, AfterTakeover_year, "NO_WAIT")
 	end
 	AfterTakeover_date = AfterTakeover_date_1
 	npc_says(_"Welcome to [b]%s[/b]!", bot_name(), "NO_WAIT")
