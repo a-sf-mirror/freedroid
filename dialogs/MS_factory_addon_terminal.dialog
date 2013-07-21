@@ -35,7 +35,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	if (not has_ms_addon_password )  then
 		tux_says("*******", "NO_WAIT")
 		npc_says(_"Incorrect password or username")
-		tux_says("Mmmh...")
+		tux_says(_"Mmmh...")
 		cli_says(_"Password : ", "NO_WAIT")
 		tux_says("***********", "NO_WAIT")
 		npc_says(_"Incorrect password or username")

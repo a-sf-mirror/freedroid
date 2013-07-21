@@ -56,7 +56,7 @@ Nr=1 Text=_"What are your offers today?"
 
 Nr=99 Text=_"See you later."
 <LuaCode>
-	npc_says("Bye bye.")
+	npc_says(_"Bye bye.")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

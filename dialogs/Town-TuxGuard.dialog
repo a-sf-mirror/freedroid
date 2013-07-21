@@ -34,7 +34,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	else
 		npc_says(_"Spencer seems to think that you are harmless. Go about your business.")
 		if (Town_NorthGateGuard_tux_nickname_loon) then
-		  npc_says("Babysitting a loon... Now I can say I've done it all!")
+		  npc_says(_"Babysitting a loon... Now I can say I've done it all!")
 		else end
 	end
 	show_node_if((not has_met("Spencer")), 20)

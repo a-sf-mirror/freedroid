@@ -32,7 +32,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	Maintenance_Terminal_prompt = "dixon@maintenance: ~ # "
 
 	cli_says(_"Login : ", "NO_WAIT")
-	tux_says("dixon", "NO_WAIT")
+	tux_says(_"dixon", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says("*******", "NO_WAIT")
 	npc_says(_"Hello, Dave.")

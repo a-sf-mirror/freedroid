@@ -373,13 +373,13 @@ Nr=68 Text=_"forkBOMB.sh -execute"
 Nr=70 Text=_"radio.sh"
 <LuaCode>
 
-npc_says("Valid tracks:", "NO_WAIT")
+npc_says(_"Valid tracks:", "NO_WAIT")
 npc_says("Ambience, Bleostrada, HellFortressEntrance, ImperialArmy, NewTutorialStage, TechBattle, TheBeginning, underground, AmbientBattle, hellforce, HellFortressTwo, menu, Suspicion, temple, town")
 
 	local try_again_radio = true
 
 	while (try_again_radio) do
-		local track = user_input_string("please enter track")
+		local track = user_input_string(_"please enter track")
 		if (track == "Ambience" ) or
 		   (track == "AmbientBattle" ) or
 		   (track == "Bleostrada" ) or
@@ -403,10 +403,10 @@ npc_says("Ambience, Bleostrada, HellFortressEntrance, ImperialArmy, NewTutorialS
 			try_again_radio = false
 			next(20)
 		else
-			npc_says("WARNING, '%s' not a vaild track.", track)
-			npc_says("enter 'exit' to exit.")
-			npc_says("Please retry.")
-			npc_says("Valid tracks:", "NO_WAIT")
+			npc_says(_"WARNING, '%s' not a vaild track.", track)
+			npc_says(_"enter 'exit' to exit.")
+			npc_says(_"Please retry.")
+			npc_says(_"Valid tracks:", "NO_WAIT")
 			npc_says("Ambience, Bleostrada, HellFortressEntrance, ImperialArmy, NewTutorialStage, TechBattle, TheBeginning, underground, AmbientBattle, hellforce, HellFortressTwo, menu, Suspicion, temple, town")
 		end
 	end

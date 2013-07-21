@@ -82,8 +82,8 @@ freedroid-discussion@lists.sourceforge.net
 			ControllableBot_try_again = false
 			end_dialog()
 		else
-			npc_says("WARNING, '%s' not a vaild map label.", ControllableBot_response)
-			npc_says("Please retry.")
+			npc_says(_"WARNING, '%s' not a vaild map label.", ControllableBot_response)
+			npc_says(_"Please retry.")
 		end
 	end
 </LuaCode>

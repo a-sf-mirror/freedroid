@@ -486,7 +486,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=51 Text="Yes"
+Nr=51 Text=_"Yes"
 Topic="drain_ask"
 NO_TEXT
 <LuaCode>
@@ -618,7 +618,7 @@ Topic="settings.plx"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=75 Text="Yes"
+Nr=75 Text=_"Yes"
 Topic="reprogramm_bots"
 <LuaCode>
 	npc_says(_"Bots will be reprogrammed after takeover: [b]true[/b]")
@@ -629,7 +629,7 @@ Topic="reprogramm_bots"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=76 Text="No"
+Nr=76 Text=_"No"
 Topic="reprogramm_bots"
 <LuaCode>
 	npc_says(_"Bots will be reprogrammed after takeover: [b]false[/b]")
@@ -640,7 +640,7 @@ Topic="reprogramm_bots"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=80 Text="leave settings.plx"
+Nr=80 Text=_"leave settings.plx"
 Topic="settings.plx"
 NO_TEXT
 <LuaCode>

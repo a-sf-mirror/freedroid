@@ -82,7 +82,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	   (has_item("Shoes")) or
 	   (has_item("Worker Helmet")) then
 		hide(11)
-		npc_says("Excellent, I see you already took on the armor that was in the box.")
+		npc_says(_"Excellent, I see you already took on the armor that was in the box.")
 		if (not armor_node_one) then
 			show(12)
 		end
@@ -168,7 +168,7 @@ Nr=5 Text=_"I'm sensing some sort of strange presence in the vicinity."
 	if (has_item("Mug")) and -- these are the items in the item room
 	   (has_item("Anti-grav Pod for Droids")) and
 	   (has_item("Plasma Transistor")) then
-		npc_says("Oh great, I see you found all the items hidden in the room. Good job!")
+		npc_says(_"Oh great, I see you found all the items hidden in the room. Good job!")
 		TutorialTom_Tux_found_all_items = true
 	end
 	hide(5)

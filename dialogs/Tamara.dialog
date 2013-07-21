@@ -210,7 +210,7 @@ Nr=34 Text=_"What can you tell me about robotic girlfriends?" Topic="About bots"
 
 Nr=39 Text=_"Can I come back to you on that later?" Topic="About bots"
 <LuaCode>
-	npc_says("Don't hesitate to talk to me again for futher questions.")
+	npc_says(_"Don't hesitate to talk to me again for futher questions.")
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
