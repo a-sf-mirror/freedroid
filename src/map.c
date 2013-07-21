@@ -1570,7 +1570,7 @@ int save_special_forces(const char *filename)
 			autostr_append(s_forces_str, "Faction=\"%s\" ", get_faction_from_id(en->faction));
 			autostr_append(s_forces_str, "UseDialog=\"%s\" ", en->dialog_section_name);
 
-			autostr_append(s_forces_str, "ShortLabel=\"%s\" ", en->short_description_text);
+			autostr_append(s_forces_str, "ShortLabel=_\"%s\" ", en->short_description_text);
 			autostr_append(s_forces_str, "Marker=%d ", en->marker);
 			autostr_append(s_forces_str, "RushTux=%d ", en->will_rush_tux);
 
@@ -1727,7 +1727,7 @@ static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_numbe
 		if (newen->short_description_text)
 			free(newen->short_description_text);
 
-		newen->short_description_text = ReadAndMallocStringFromData(special_droid, "ShortLabel=\"", "\"");;
+		newen->short_description_text = ReadAndMallocStringFromData(special_droid, "ShortLabel=_\"", "\"");;
 
 		char *death_drop;
 		death_drop = ReadAndMallocStringFromData(special_droid, "DropItemName=\"", "\"");
