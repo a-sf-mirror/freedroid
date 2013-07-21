@@ -30,6 +30,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	Kevin_max_lessons = 6      -- the max number of lessons Kevin is willing to teach
 	Kevin_lessons_taught = 0   -- the number of lessons Kevin has already taught, initialized with 0
 	Kevin_next_lesson_cost = 0 -- the training point cost of the upcoming lesson
+	Kevin_talk_later = 0       -- to trigger the stdoubt node
 </LuaCode>
 
 <EveryTime LuaCode>
@@ -376,9 +377,25 @@ NO_TEXT
 
 Nr=99 Text=_"Let us talk later."
 <LuaCode>
-	npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.",
-					_"If you need to contact me, my number is 127.0.0.1",
-					_"Keep your system up to date, Linarian.")
+	if (Kevin_talk_later == 10) then
+		npc_says(_"Hey Linarian...")
+		tux_says(_"Mmmh, yes?")
+		npc_says(_"Do you know this feeling...")
+		npc_says(_"...when you get a really strange output...")
+		npc_says(_"... and you look at the code...")
+		npc_says(_"... again and again...")
+		npc_says(_"... but you see no path it could come from?")
+		tux_says(_"Hmm, yes, I get this sometimes...")
+		npc_says(_"I checked online if there is a name for this symptom... but couldn't find anything...")
+		npc_says(_"I guess I am going to call it 'stdoubt'.")
+		tux_says(_"Ok...")
+		tux_says("...")
+	else
+		npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.",
+						_"If you need to contact me, my number is 127.0.0.1",
+						_"Keep your system up to date, Linarian.")
+	end
+	Kevin_talk_later = Kevin_talk_later + 1
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
