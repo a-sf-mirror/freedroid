@@ -528,7 +528,7 @@ function level24obstacles()
 		   (randobstacletype == 61) or
 		   (randobstacletype == 62) then
 		   -- cat ./map/obstacle_specs.lua | grep "image_filenames" | nl -v 0| grep "DUMMY"
-			display_big_message(randobstacletype.." getting new id")
+			display_big_message(randobstacletype.._" getting new id")
 			level24newid()
 			level24idcheck()
 		end
