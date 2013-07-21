@@ -82,6 +82,13 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	   (has_item("Shoes")) or
 	   (has_item("Worker Helmet")) then
 		hide(11)
+		npc_says("Excellent, I see you already took on the armor that was in the box.")
+		if (not armor_node_one) then
+			show(12)
+		end
+		if (not armor_node_two) then
+			show(13)
+		end
 	end
 
 	if (TutorialTom_Tux_PastWall) then
@@ -217,7 +224,7 @@ Nr=11 Text=_"Some items came out."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=12 Text=_"Armor? I should know more about this."
+Nr=12 Text=_"Armor? I should know more about this." -- armor_node_one
 <LuaCode>
 	npc_says(_"In the years since you entered stasis, mankind has done much research in the field of robotics.")
 	npc_says(_"One branch in particular that has served us well is the realm of nanotechnology.")
@@ -228,7 +235,7 @@ Nr=12 Text=_"Armor? I should know more about this."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=13 Text=_"How does wearing clothes and holding shields help me?"
+Nr=13 Text=_"How does wearing clothes and holding shields help me?" -- armor_node_two
 <LuaCode>
 	npc_says(_"Well, it can help you avoid indecent exposure charges.")
 	tux_says("...")
@@ -274,6 +281,10 @@ Nr=16 Text=_"You mentioned discarding an item. Why would I want to do that?"
 	npc_says(_"Armor or weapons may affect you in different ways.")
 	npc_says(_"Some will help you out, for example by increasing your cooling rate or increasing your dexterity. This is the work of specialized nanobots, but the reverse can happen too.")
 	hide(16)
+	armor_node_two = true
+	if (armor_node_one) then
+		show(19)
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -363,6 +374,10 @@ NO_TEXT
 	npc_says(_"This generally means that the shopkeeper can't give you a reasonable deal on it.")
 	npc_says(_"Someone else probably wants the item.")
 	npc_says(_"You might check your questbook to see if it is mentioned there.")
+	armor_node_one = true
+	if (armor_node_two) then
+		show(19)
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 
