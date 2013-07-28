@@ -34,6 +34,7 @@
 #include "global.h"
 #include "proto.h"
 
+#ifdef HAVE_LIBGL
 // Copy-paste of glext.h because SDL's is outdated
 #ifndef GL_KHR_debug
 #define GL_DEBUG_OUTPUT_SYNCHRONOUS       0x8242
@@ -110,6 +111,7 @@ static void gl_debug_callback(GLenum source, GLenum type, GLuint id,
 	sprintf(buf, "Source = %x, type = %x, id = %d, severity = %x: %s ", source, type, id, severity, message);
 	ErrorMessage(__FUNCTION__, buf, NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 }
+#endif // HAVE_LIBGL
 
 /**
  * Initialize and enabled the OpenGL debug features.
@@ -152,10 +154,10 @@ int init_opengl_debug(void)
  */
 void open_gl_check_error_status(const char *name_of_calling_function)
 {
+#ifdef HAVE_LIBGL
 	char *enum_str = "UNKNOWN";
 	int fatal = IS_WARNING_ONLY;
 
-#ifdef HAVE_LIBGL
 	switch (glGetError()) {
 		case GL_NO_ERROR:
 			return;
