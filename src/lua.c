@@ -1571,6 +1571,7 @@ static int pop_results(lua_State *L, const char *sig, va_list *vl)
 					goto pop_and_return;
 				}
 				struct dynarray *array = va_arg(*vl, struct dynarray *);
+				dynarray_init(array, lua_rawlen(L, index), sizeof(char *)); // the dynarray was reseted by the caller
 				for (i=1; i<=lua_rawlen(L, index); i++) {
 					lua_rawgeti(L, index, i);
 					if (!lua_isstring(L, -1)) {
