@@ -41,18 +41,6 @@ AC_DEFUN([KYUA_LUA], [
         PKG_CHECK_MODULES([LUA], [lua5.2 >= 5.2], [lua_found=yes], [true])
     fi
 
-    if test "${lua_found}" = no; then
-        AC_PATH_PROGS([LUA_CONFIG], [lua-config], no)
-		if test "$LUA_CONFIG" = "no" ; then
-			AC_SUBST([LUA_CFLAGS], [-I../lua])
-			lua_found=no
-		else
-            AC_SUBST([LUA_CFLAGS], [$(${LUA_CONFIG} --include)])
-            AC_SUBST([LUA_LIBS], [$(${LUA_CONFIG} --libs)])
-            lua_found=yes
-        fi
-    fi
-
     if test "${lua_found}" = yes; then
         AC_MSG_NOTICE([using LUA_CFLAGS = ${LUA_CFLAGS}])
         AC_MSG_NOTICE([using LUA_LIBS = ${LUA_LIBS}])
