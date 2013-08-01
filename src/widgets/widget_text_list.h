@@ -51,13 +51,22 @@
 /// \n
 /// An entry of the list is composed of two data: the text to be displayed,
 /// and a user data. This user data can be used to store any integer value,
-/// such as an index to an other array.
+/// such as an index to an other array.\n
 /// \n
 /// Currently, there are no specific functions to handle the text list, apart
-/// from widget_text_list::widget_text_list_init(), which replaces all the
-/// current content with a new one, and widget_text_list::widget_text_list_add()
-/// to add one entry to the current list. Removing/changing the content is to
-/// be done by the user code.\n
+/// from widget_text_list_init(), which replaces all the current content with a
+/// new one, and widget_text_list_add() to add one entry to the current list.
+/// Removing/changing the content is to be done by the user code.\n
+/// \n
+/// \note widget_text_list_add() and widget_text_list_init() directly store the
+/// string pointers without duplication of the text.\n
+/// So the widget's user has to ensure that the strings are available while the
+/// widget is used. The widget's user also has to free the current text entries
+/// before to call widget_text_list_init().\n
+/// \n
+/// \note widget_text_list_dupadd() is a special version of widget_text_list_add()
+/// that duplicates the string, avoiding  the widget's user to have to handle
+/// deallocation when the widget's content is re-initialized.
 /// \n
 ///
 /// \par Callback on user's selection
@@ -171,6 +180,7 @@ struct widget_text_list {
 struct widget_text_list *widget_text_list_create();
 void widget_text_list_init(struct widget_text_list *, string[], int *);
 void widget_text_list_add(struct widget_text_list *, string, int);
+void widget_text_list_dupadd(struct widget_text_list *, const char *, int);
 int widget_text_list_get_data(struct widget_text_list *, int);
 int widget_text_list_can_scroll_up(struct widget_text_list *);
 int widget_text_list_can_scroll_down(struct widget_text_list *);

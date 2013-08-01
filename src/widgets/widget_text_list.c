@@ -43,6 +43,7 @@
 struct text_list_entry {
 	char *text;          /**< Pointer to the text. Must be already allocated. No ownership is transfered. */
 	int data;            /**< An integer user data (example: Index of this text entry in an other list). */
+	int is_allocated;    /**< If true, the memory holding the text is allocated by the widget. */
 	SDL_Rect rect;       /**< Outer rectangle used by the text entry. */
 	SDL_Rect text_rect;  /**< Inner rectangle used by the text entry. */
 };
@@ -289,13 +290,15 @@ struct widget_text_list *widget_text_list_create()
 }
 
 /**
- * \brief Initialize the list of text entries, and reset widget state.
+ * \brief Initialize the widget content, and reset the widget state.
  * \ingroup gui2d_textlist
  *
  * \details Replace the current list of text entries with a new one, and reset
- * internal attributes.
+ * internal attributes. If some of the current text entries were duplicated,
+ * they are freed. Store the string pointers without duplication, so no memory
+ * is allocated.
  *
- * \param wl        Pointer to the widget_text_list_object
+ * \param wl       Pointer to the widget_text_list_object
  * \param text_arr Array of strings that will populate the 'text' array of the
  *                 widget. The last element of this array must be NULL.
  * \param data_arr Array of integers that will populate the 'data' array of
@@ -307,12 +310,22 @@ struct widget_text_list *widget_text_list_create()
  */
 void widget_text_list_init(struct widget_text_list *wl, string text_arr[], int *data_arr)
 {
-	// Reset the entries dynarray.
+	int i;
+
+	// Reset the entries dynarray, freeing allocated strings if needed
+	struct text_list_entry *list_entries = wl->entries.arr;
+	for (i = 0; i < wl->entries.size; i++) {
+		if (list_entries[i].is_allocated) {
+			free(list_entries[i].text);
+		}
+		list_entries[i].text = NULL;
+	}
 	wl->entries.size = 0;
 
-	struct text_list_entry one_entry = {NULL, -1, {0, 0, 0, 0}};
+	// Fill with new content
+	struct text_list_entry one_entry = {NULL, -1, FALSE, {0, 0, 0, 0}, {0, 0, 0, 0}};
 
-	int i = 0;
+	i = 0;
 	while (text_arr[i] && strlen(text_arr[i])) {
 		one_entry.text = text_arr[i];
 		if (data_arr)
@@ -332,10 +345,11 @@ void widget_text_list_init(struct widget_text_list *wl, string text_arr[], int *
 }
 
 /**
- * \brief Add an entry to a widget list.
+ * \brief Add an entry to a widget list, by pointer copy.
  * \ingroup gui2d_textlist
  *
- * \details Add an entry at the end of the current list of text entries.
+ * \details Add an entry at the end of the current list of text entries. Store
+ * the string pointer without duplication, so no memory is allocated.
  *
  * \param wl   Pointer to the widget_text_list_object
  * \param text Pointer to a string to be added to the list of entries.
@@ -343,7 +357,25 @@ void widget_text_list_init(struct widget_text_list *wl, string text_arr[], int *
  */
 void widget_text_list_add(struct widget_text_list *wl, string text, int data)
 {
-	struct text_list_entry one_entry = {text, data, {0, 0, 0, 0}};
+	struct text_list_entry one_entry = {text, data, FALSE, {0, 0, 0, 0}, {0, 0, 0, 0}};
+	dynarray_add(&wl->entries, &one_entry, sizeof(struct text_list_entry));
+}
+
+/**
+ * \brief Add an entry to a widget list, duplicating the string.
+ * \ingroup gui2d_textlist
+ *
+ * \details Add an entry at the end of the current list of text entries. The
+ * string is internally duplicated with memory allocation.
+ *
+ * \param wl   Pointer to the widget_text_list_object
+ * \param text Pointer to a string to be added to the list of entries.
+ * \param data Integer value to be added as the 'data' of the added entry.
+ */
+void widget_text_list_dupadd(struct widget_text_list *wl, const char *text, int data)
+{
+	char *dup_text = strdup(text);
+	struct text_list_entry one_entry = {dup_text, data, TRUE, {0, 0, 0, 0}, {0, 0, 0, 0}};
 	dynarray_add(&wl->entries, &one_entry, sizeof(struct text_list_entry));
 }
 
