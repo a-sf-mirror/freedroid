@@ -18,6 +18,22 @@ AC_PROG_MAKE_SET
 AM_PATH_PYTHON([2.6])
 
 AC_HEADER_STDC
+
+AC_MSG_CHECKING(for -fnested-functions)
+AC_COMPILE_IFELSE(
+        [
+                AC_LANG_PROGRAM([], [void foo(void) {}; foo();])
+        ],
+        [
+                AC_MSG_RESULT(no)
+                []
+        ],
+        [
+                AC_MSG_RESULT(required)
+                [CFLAGS="$CFLAGS -fnested-functions"]
+        ]
+)
+
 # Checks for libraries.
 AC_CHECK_LIB([m], [sin],, 
 	AC_MSG_ERROR([libm not found!! 
