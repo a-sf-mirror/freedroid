@@ -55,10 +55,8 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		end_dialog()
 	end
 
-	if (partner_started()) and
-	   (TutorialTom_glasswall_smashed) and
-	   (cmp_obstacle_state("TutorialWall", "broken")) and
-	   (not TutorialTom_glasswall_done) then -- wall section, shown if tux destroyed the wall by hand
+	if (partner_started()) and (TutorialTom_glasswall_smashed) and (cmp_obstacle_state("TutorialWall", "broken")) and (not TutorialTom_glasswall_done) then
+		-- wall section, shown if tux destroyed the wall by hand
 		npc_says(_"Great, you figured out how deal with this obstacle.")
 		npc_says(_"Let's proceed.")
 		TutorialTom_glasswall_done = true
