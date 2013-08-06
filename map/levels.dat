@@ -62074,6 +62074,7 @@ t18 x55.50 y20.50
 t18 x55.50 y19.50
 t18 x55.50 y18.50
 t18 x55.50 y17.50
+t18 x65.50 y73.50
 /obsdata
 plabelinfolvl
 x=50 y=28 name="59to60ctrlroom"
@@ -62446,6 +62447,7 @@ x=55 y=16 name="59_trap_238"
 x=55 y=15 name="59_trap_249"
 x=80 y=40 name="59_trap_297"
 x=55 y=15 name="59_trap_239"
+x=65 y=73 name="59_trap_364"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
