@@ -100,7 +100,7 @@ FreedroidRPG %s encountered a problem ", freedroid_version);
 		fprintf(stderr, "\
 \n\
 \n\
-If you encounter this message, please inform the FreedroidRPG developers about it\n\
+If you encounter this message, please inform the FreedroidRPG developers about it!\n\
 You can \n\
 \n\
   send an e-mail to                    freedroid-discussion AT lists.sourceforge.net\n\
