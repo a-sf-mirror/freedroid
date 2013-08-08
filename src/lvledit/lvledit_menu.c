@@ -617,7 +617,7 @@ static void LevelOptions(void)
 		MenuTexts[i] = Options[i];
 		i++;
 
-		sprintf(Options[i], _("Drop class"));
+		sprintf(Options[i], _("Item drop class for obstacles"));
 		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel()->drop_class);
 		strcat(Options[i], Options[i + 1]);
 		MenuTexts[i] = Options[i];

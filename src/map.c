@@ -327,8 +327,8 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 		loadlevel->flags = 0;
 	}
 
-	if (!strncmp(fp, "drop class:", 11)) {
-		fp += strlen("drop class:");
+	if (!strncmp(fp, "item drop class:", 11)) {
+		fp += strlen("item drop class:");
 		while (*(fp + off) != '\n')
 			off++;
 		fp[off] = 0;
@@ -1434,7 +1434,7 @@ random dungeon: %d\n\
 teleport pair: %d\n\
 dungeon generated: %d\n\
 environmental flags: %d\n\
-drop class: %d\n\
+item drop class: %d\n\
 jump target north: %d\n\
 jump target south: %d\n\
 jump target east: %d\n\
