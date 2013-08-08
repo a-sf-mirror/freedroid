@@ -327,6 +327,18 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 		loadlevel->flags = 0;
 	}
 
+	if (!strncmp(fp, "drop class:", 11)) {
+		fp += strlen("drop class:");
+		while (*(fp + off) != '\n')
+			off++;
+		fp[off] = 0;
+		loadlevel->drop_class = atoi(fp);
+		fp[off] = '\n';
+		fp += off + 1;
+	} else {
+		loadlevel->drop_class = 0;
+	}
+
 	if (loadlevel->ylen >= MAX_MAP_LINES) {
 		ErrorMessage(__FUNCTION__, "\
 A map/level in FreedroidRPG which was supposed to load has more map lines than allowed\n\
@@ -941,7 +953,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 
 		// Drop items after destroying the obstacle, in order to avoid collisions
 		if (obstacle_drops_treasure)
-			DropRandomItem(level, target_obstacle->pos.x, target_obstacle->pos.y, 0, FALSE);
+			DropRandomItem(level, target_obstacle->pos.x, target_obstacle->pos.y, BoxLevel->drop_class, FALSE);
 
 		// Now that the obstacle is removed AND ONLY NOW that the obstacle is
 		// removed, we may start a blast at this position.  Otherwise we would
@@ -1422,6 +1434,7 @@ random dungeon: %d\n\
 teleport pair: %d\n\
 dungeon generated: %d\n\
 environmental flags: %d\n\
+drop class: %d\n\
 jump target north: %d\n\
 jump target south: %d\n\
 jump target east: %d\n\
@@ -1433,6 +1446,7 @@ jump target west: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum,
 		lvl->teleport_pair,
 		(reset_random_levels && lvl->random_dungeon) ? 0 : lvl->dungeon_generated,
 		lvl->flags,
+		lvl->drop_class,
 		lvl->jump_target_north,
 		lvl->jump_target_south,
 		lvl->jump_target_east,

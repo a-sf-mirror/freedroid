@@ -759,6 +759,8 @@ typedef struct level {
 	char *Levelname;
 	char *Background_Song_Name;
 
+	short int drop_class;
+
 	int floor_layers;
 	map_tile *map[MAX_MAP_LINES];	// this is a vector of pointers
 	int jump_target_north;

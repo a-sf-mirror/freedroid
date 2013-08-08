@@ -544,6 +544,7 @@ static void LevelOptions(void)
 		SET_LEVEL_INTERFACE_POSITION,
 		SET_RANDOM_LEVEL,
 		SET_RANDOM_DROIDS,
+		SET_DROP_CLASS,
 		SET_TELEPORT_BLOCKED,
 		SET_TELEPORT_PAIR,
 		CHANGE_LIGHT,
@@ -613,6 +614,12 @@ static void LevelOptions(void)
 					strcat(Options[i], ", ");
 				strcat(Options[i], Droidmap[droid_types[j]].droidname);
 		}
+		MenuTexts[i] = Options[i];
+		i++;
+
+		sprintf(Options[i], _("Drop class"));
+		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel()->drop_class);
+		strcat(Options[i], Options[i + 1]);
 		MenuTexts[i] = Options[i];
 		i++;
 
@@ -698,6 +705,22 @@ static void LevelOptions(void)
 			break;
 		case SET_RANDOM_DROIDS:
 			get_random_droids_from_user();
+			break;
+		case SET_DROP_CLASS:
+			if (LeftPressed() || RightPressed()) {	//left or right arrow ? handled below 
+				break;
+			}
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
+				SDL_Delay(1);
+
+			tgt = get_number_popup("\n Please enter new drop class: \n\n", "");
+			if (tgt < 0)
+				EditLevel()->drop_class = 0;
+			else if (tgt > 9)
+				EditLevel()->drop_class = 9;
+			else
+				EditLevel()->drop_class = tgt;
+				
 			break;
 		case SET_TELEPORT_BLOCKED:
 			EditLevel()->flags ^= TELEPORT_BLOCKED;
@@ -845,6 +868,20 @@ static void LevelOptions(void)
 					if (new_layers <= MAX_FLOOR_LAYERS)
 						EditLevel()->floor_layers = new_layers;
 					while (RightPressed()) ;
+				}
+				break;
+			case SET_DROP_CLASS:
+				if (LeftPressed()) {
+					EditLevel()->drop_class--;
+					if (EditLevel()->drop_class < 0)
+						EditLevel()->drop_class = 0;
+					while (LeftPressed());
+				}
+				if (RightPressed()) {
+					EditLevel()->drop_class++;
+					if (EditLevel()->drop_class > 9)
+						EditLevel()->drop_class = 9;
+					while (RightPressed());
 				}
 				break;
 

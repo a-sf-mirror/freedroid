@@ -161,7 +161,7 @@ static void throw_out_all_chest_content(int obst_index)
 	// If the chest was empty, maybe generate a random item to be dropped
 	if (!drop_count) {
 		find_dropable_position_near_chest(&item_x, &item_y, obst_index, lvl);
-		DropRandomItem(Me.pos.z, item_x, item_y, 0, FALSE);
+		DropRandomItem(Me.pos.z, item_x, item_y, lvl->drop_class, FALSE);
 	}
 }
 
