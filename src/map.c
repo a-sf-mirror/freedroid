@@ -327,7 +327,7 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 		loadlevel->flags = 0;
 	}
 
-	if (!strncmp(fp, "item drop class:", 11)) {
+	if (!strncmp(fp, "item drop class:", 16)) {
 		fp += strlen("item drop class:");
 		while (*(fp + off) != '\n')
 			off++;
