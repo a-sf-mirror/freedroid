@@ -1498,7 +1498,7 @@ void TuxReloadWeapon()
 	{
 		No_Ammo_Sound();
 		No_Ammo_Sound();
-		append_new_game_message(_("Out of \4%s\5!"), ammo_type);
+		append_new_game_message(_("Out of [s]%s[v]!"), ammo_type);
 		return;
 	}
 	int i;

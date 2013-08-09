@@ -72,11 +72,11 @@ droidspec *Droidmap;
 
 blastspec Blastmap[ALLBLASTTYPES];
 
-char font_switchto_red[2] = { 1, 0 };
-char font_switchto_blue[2] = { 2, 0 };
-char font_switchto_neon[2] = { 3, 0 };
-char font_switchto_msgstat[2] = { 4, 0 };
-char font_switchto_msgvar[2] = { 5, 0 };
+char font_switchto_red[] = { 1, 0, 'r' };
+char font_switchto_blue[] = { 2, 0, 'w' };
+char font_switchto_neon[] = { 3, 0, 'n' };
+char font_switchto_msgstat[] = { 4, 0, 's' };
+char font_switchto_msgvar[] = { 5, 0, 'v' };
 
 int skip_initial_menus = FALSE;
 

@@ -200,27 +200,45 @@ int get_letter_spacing(BFont_Info *font) {
 }
 
 /**
- * Handle font switching on special characters. Returns 1 if the font was
- * changed and 0 if it was not.
+ * Handle font switching on special characters (\x) or formatting tags (aka bbcodes).
+ * Returns 1 if the font was changed and 0 if it was not.
  */
-int handle_switch_font_char(unsigned char c)
+int handle_switch_font_char(char **ptr)
 {
-	if (c == font_switchto_red[0]) {
+	if (**ptr == '[' && *(*ptr+2) != ']')
+		return FALSE;
+
+	int index = 0;
+	int incr = 1;
+
+	if (**ptr == '[') {
+		(*ptr)++;
+		index = 2;
+		incr = 2;
+	}
+
+	if (**ptr == font_switchto_red[index]) {
 		SetCurrentFont(Red_BFont);
+		(*ptr) += incr;
 		return TRUE;
-	} else if (c == font_switchto_blue[0]) {
+	} else if (**ptr == font_switchto_blue[index]) {
 		SetCurrentFont(Blue_BFont);
+		(*ptr) += incr;
 		return TRUE;
-	} else if (c == font_switchto_neon[0]) {
+	} else if (**ptr == font_switchto_neon[index]) {
 		SetCurrentFont(FPS_Display_BFont);
+		(*ptr) += incr;
 		return TRUE;
-	} else if (c == font_switchto_msgstat[0]) {
+	} else if (**ptr == font_switchto_msgstat[index]) {
 		SetCurrentFont(Messagestat_BFont);
+		(*ptr) += incr;
 		return TRUE;
-	} else if (c == font_switchto_msgvar[0]) {
+	} else if (**ptr == font_switchto_msgvar[index]) {
 		SetCurrentFont(Messagevar_BFont);
+		(*ptr) += incr;
 		return TRUE;
 	}
+
 	return FALSE;
 }
 
@@ -265,7 +283,7 @@ int put_char(BFont_Info *font, int x, int y, unsigned char c)
  */
 void put_string(BFont_Info *font, int x, int y, const char *text)
 {
-	int i = 0;
+	char *ptr = (char *)text;
 
 	SetCurrentFont(font);
 
@@ -279,12 +297,15 @@ void put_string(BFont_Info *font, int x, int y, const char *text)
 
 	start_image_batch();
 
-	while (text[i] != '\0') {
-		int letter_spacing = get_letter_spacing(GetCurrentFont());
-		if (!handle_switch_font_char(text[i])) {
-			x += put_char(GetCurrentFont(), x, y, text[i]) + letter_spacing;
+	int letter_spacing = get_letter_spacing(GetCurrentFont());
+
+	while (*ptr != '\0') {
+		if (handle_switch_font_char(&ptr)) {
+			letter_spacing = get_letter_spacing(GetCurrentFont());
+			continue;
 		}
-		i++;
+		x += put_char(GetCurrentFont(), x, y, *ptr) + letter_spacing;
+		ptr++;
 	}
 
 	end_image_batch();
@@ -302,14 +323,17 @@ void put_string(BFont_Info *font, int x, int y, const char *text)
  */
 int text_width(BFont_Info *font, const char *text)
 {
-	int i = 0, width = 0;
+	char *ptr = (char *)text;
+	int width = 0;
 	int letter_spacing = get_letter_spacing(font);
-	while (text[i] != '\0') {
-		if (handle_switch_font_char(text[i]))
+
+	while (*ptr != '\0') {
+		if (handle_switch_font_char(&ptr)) {
 			letter_spacing = get_letter_spacing(font);
-		else
-			width += CharWidth(font, text[i]) + letter_spacing;
-		i++;
+			continue;
+		}
+		width += CharWidth(font, *ptr) + letter_spacing;
+		ptr++;
 	}
 	return width;
 }
@@ -320,18 +344,19 @@ int text_width(BFont_Info *font, const char *text)
  */
 int limit_text_width(BFont_Info *font, const char *text, int limit)
 {
-	int i = 0, width = 0;
+	char *ptr = (char *)text;
+	int width = 0;
 	int letter_spacing = get_letter_spacing(font);
-	while (text[i] != '\0') {
-		if (handle_switch_font_char(text[i])) {
+
+	while (*ptr != '\0') {
+		if (handle_switch_font_char(&ptr)) {
 			letter_spacing = get_letter_spacing(font);
-			i++;
 			continue;
 		}
-		width += CharWidth(font, text[i]) + letter_spacing;
-		i++;
+		width += CharWidth(font, *ptr) + letter_spacing;
+		ptr++;
 		if (width >= limit)
-			return i;
+			return (ptr - text);
 	}
 	return -1;
 }

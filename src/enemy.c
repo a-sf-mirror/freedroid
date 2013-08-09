@@ -886,19 +886,19 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 		if (killertype > -1) {	    //killed by someone else, and we know who it is
 			enemy *killer = NULL;
 			killer = enemy_resolve_address(killertype, &killer);
-			append_new_game_message(_("Your friend \4%s\5 was killed by %s."),
+			append_new_game_message(_("Your friend [s]%s[v] was killed by %s."),
 			target->short_description_text, killer->short_description_text);
 		} else if ((killertype == -1) && (givexp)) {      //You killed someone
-                        append_new_game_message(_("You killed \4%s\5."), target->short_description_text);
+			append_new_game_message(_("You killed [s]%s[v]."), target->short_description_text);
 			Me.destroyed_bots[target->type]++;
 		} else if (killertype == -2) {  //bot killed itself
-                        append_new_game_message(_("\4%s\5 halted and caught fire."), target->short_description_text);
+			append_new_game_message(_("[s]%s[v] halted and caught fire."), target->short_description_text);
 		} else {
-                        append_new_game_message(_("\4%s\5 is dead."), target->short_description_text);
+			append_new_game_message(_("[s]%s[v] is dead."), target->short_description_text);
 		}
 	} else {
 		if (givexp && (killertype == -1)) {
-			append_new_game_message(_("For defeating \4%s\5, you receive %d experience."), target->short_description_text,
+			append_new_game_message(_("For defeating [s]%s[v], you receive %d experience."), target->short_description_text,
 						reward);
 			Me.destroyed_bots[target->type]++;		
 		}
@@ -908,10 +908,10 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 //	It just confuses beginners while giving little or no valuable info to even an experienced player.
 /*
  		else if (killertype && killertype != -1)
-			append_new_game_message(_("\4%s\5 was killed by %s."), target->short_description_text,
+			append_new_game_message(_("[s]%s[v] was killed by %s."), target->short_description_text,
 						Droidmap[killertype].droidname);
 		else
-			append_new_game_message(_("\4%s\5 died."), target->short_description_text);
+			append_new_game_message(_("[s]%s[v] died."), target->short_description_text);
 */
 	}
 

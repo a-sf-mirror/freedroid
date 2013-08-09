@@ -81,7 +81,7 @@ static void quest_browser_append_mission_info(const char *mis_name, int full_des
 
 	for (i = 0; i < MAX_MISSION_DESCRIPTION_TEXTS; i++) {
 		if (mis->mission_diary_texts[i]) {
-			autostr_append(quest_browser_text, "\3-------- \1%s %d  %02d:%02d\3 --------\n\2%s\n\3", _("Day"), 
+			autostr_append(quest_browser_text, "[n]-------- [r]%s %d  %02d:%02d[n] --------\n[w]%s\n[n]", _("Day"),
 					get_days_of_game_duration(mis->mission_description_time[i]),
 					get_hours_of_game_duration(mis->mission_description_time[i]),
 					get_minutes_of_game_duration(mis->mission_description_time[i]),
@@ -178,21 +178,21 @@ static void print_statistics(void)
 	}
 
 	//Assemble Output
-	autostr_printf(quest_browser_text, _("\1Parafunken Statistics\2\n"));
+	autostr_printf(quest_browser_text, _("[r]Parafunken Statistics[w]\n"));
 
 	// This is where we display grand total statistics
-	autostr_append(quest_browser_text, _("\1Overview\2\n"));
+	autostr_append(quest_browser_text, _("[r]Overview[w]\n"));
 	statistics_browser_lines_needed[display] = get_lines_needed(quest_browser_text->value, mission_description_rect, 1);
 	if (stats_display[display++]) {
-		autostr_append(quest_browser_text, _("Time Played: \3%dh%dm\2\n"),
+		autostr_append(quest_browser_text, _("Time Played: [n]%dh%dm[w]\n"),
 					   (int) Me.current_game_date / (60 * 60),
 					   ((int)Me.current_game_date / 60) % 60);
-		autostr_append(quest_browser_text, _("Distance Traveled: \3%.1fm\2\n"), Me.meters_traveled);
+		autostr_append(quest_browser_text, _("Distance Traveled: [n]%.1fm[w]\n"), Me.meters_traveled);
 		if (Me.map_maker_is_present)
-			autostr_append(quest_browser_text, _("Percentage explored: \3%.1f%%\2\n"), calculate_total_explored_percentage() * 100);
-		autostr_append(quest_browser_text, _("Destroyed Enemies: \3%i\2\n"), total_destroyed);
-		autostr_append(quest_browser_text, _("Captured Enemies: \3%i\2\n"), total_takeover_success);
-		autostr_append(quest_browser_text, _("Damage Dealt: \3%i\2\n"), total_damage_dealt);
+			autostr_append(quest_browser_text, _("Percentage explored: [n]%.1f%%[w]\n"), calculate_total_explored_percentage() * 100);
+		autostr_append(quest_browser_text, _("Destroyed Enemies: [n]%i[w]\n"), total_destroyed);
+		autostr_append(quest_browser_text, _("Captured Enemies: [n]%i[w]\n"), total_takeover_success);
+		autostr_append(quest_browser_text, _("Damage Dealt: [n]%i[w]\n"), total_damage_dealt);
 	}
 
 	// This is where we display statistics about the best and worst relationships with bots:
@@ -200,22 +200,22 @@ static void print_statistics(void)
 	// Takeover  -> type with highest takeover % (%rate, # attempts)
 	// Defending -> type most damage done to Tux (# damage)
 	// Failed Takeovers -> lowest takeover % (% rate, # attempts)
-	autostr_append(quest_browser_text, _("\1Preferences\2\n"));
+	autostr_append(quest_browser_text, _("[r]Preferences[w]\n"));
 	statistics_browser_lines_needed[display] = get_lines_needed(quest_browser_text->value, mission_description_rect, 1);
 	if (stats_display[display++]) {
 		if (fav_destroyed != -1) {
-			autostr_append(quest_browser_text, _("Attacking: \3%s\2 (\3%i\2 "), 
+			autostr_append(quest_browser_text, _("Attacking: [n]%s[w] ([n]%i[w] "),
 				Droidmap[fav_destroyed].default_short_description, Me.destroyed_bots[fav_destroyed]);
 			if (Droidmap[fav_destroyed].is_human)
 				autostr_append(quest_browser_text, _("killed,"));
 			else
 				autostr_append(quest_browser_text, _("destroyed,"));
-			autostr_append(quest_browser_text, _(" \3%i\2 DP)\n"), Me.damage_dealt[fav_destroyed]);
+			autostr_append(quest_browser_text, _(" [n]%i[w] DP)\n"), Me.damage_dealt[fav_destroyed]);
 		} else
 			autostr_append(quest_browser_text, _("Attacking: no droids destroyed\n"));
 
 		if (fav_capture_target != -1)
-			autostr_append(quest_browser_text, _("Takeover: \3%s\2 (\3%i%%\2 rate, \3%i\2 attempts)\n"),
+			autostr_append(quest_browser_text, _("Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"),
 					Droidmap[fav_capture_target].default_short_description, fav_capture_success_rate,
 					Me.TakeoverSuccesses[fav_capture_target] + Me.TakeoverFailures[fav_capture_target]);
 		else
@@ -223,7 +223,7 @@ static void print_statistics(void)
 
 
 		if (worst_capture_target != -1)
-			autostr_append(quest_browser_text, _("Failed Takeover: \3%s\2 (\3%i%%\2 rate, \3%i\2 attempts)\n"),
+			autostr_append(quest_browser_text, _("Failed Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"),
 					Droidmap[worst_capture_target].default_short_description, worst_capture_success_rate,
 					Me.TakeoverSuccesses[worst_capture_target] + Me.TakeoverFailures[worst_capture_target]);
 		else
@@ -247,18 +247,18 @@ static void print_statistics(void)
 			statistics_browser_lines_needed[display] = get_lines_needed(quest_browser_text->value, mission_description_rect, 1);
 			if (stats_display[display++]) {
 				if (Droidmap[model].is_human) {
-					autostr_append(quest_browser_text, _("Killed: \3%d\2\n"), Me.destroyed_bots[model]);
+					autostr_append(quest_browser_text, _("Killed: [n]%d[w]\n"), Me.destroyed_bots[model]);
 				} else {
-					autostr_append(quest_browser_text, _("Destroyed: \3%d\2\n"), Me.destroyed_bots[model]);
-					autostr_append(quest_browser_text, _("Takeovers: \3%d\2/\3%d\2/\3"), Me.TakeoverSuccesses[model], Me.TakeoverFailures[model]);
+					autostr_append(quest_browser_text, _("Destroyed: [n]%d[w]\n"), Me.destroyed_bots[model]);
+					autostr_append(quest_browser_text, _("Takeovers: [n]%d[w]/[n]%d[w]/[n]"), Me.TakeoverSuccesses[model], Me.TakeoverFailures[model]);
 					if (Me.TakeoverSuccesses[model] + Me.TakeoverFailures[model])
-						autostr_append(quest_browser_text, _("%d%%\2"),
+						autostr_append(quest_browser_text, "%d%%\2",
 							(100 * Me.TakeoverSuccesses[model])/(Me.TakeoverSuccesses[model] + Me.TakeoverFailures[model]));
 					else
-						autostr_append(quest_browser_text, _(" 0%%\2"));
+						autostr_append(quest_browser_text, " 0%%\2");
 					autostr_append(quest_browser_text, _(" (success/fail/ratio)\n"));
 				}
-				autostr_append(quest_browser_text, _("Damage: \3%d\2 (dealt)\n"), Me.damage_dealt[model]);
+				autostr_append(quest_browser_text, _("Damage: [n]%d[w] (dealt)\n"), Me.damage_dealt[model]);
 			}
 		} else {
 			statistics_browser_lines_needed[display++] = -1;
@@ -417,10 +417,10 @@ static void quest_browser_display_mission_list(int list_type)
 		
 		switch (list_type) {
 			case QUEST_BROWSER_SHOW_OPEN_MISSIONS:
-				txt = _("\3No open quests yet.\2");
+				txt = _("[n]No open quests yet.[w]");
 				break;
 			case QUEST_BROWSER_SHOW_DONE_MISSIONS:
-				txt = _("\3No completed quests yet.\2");
+				txt = _("[n]No completed quests yet.[w]");
 				break;
 		}
 

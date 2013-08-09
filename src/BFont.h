@@ -36,7 +36,7 @@ int CharWidth(BFont_Info * Font, unsigned char c);
 int get_letter_spacing(BFont_Info *font);
 
 /* Handle font switching on special characters. */
-int handle_switch_font_char(unsigned char c);
+int handle_switch_font_char(char **ptr);
 
 /* Write a single character on the screen with the specified font */
 int put_char(BFont_Info *font, int x, int y, unsigned char c);

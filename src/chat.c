@@ -791,7 +791,7 @@ void chat_run()
 				case LOAD_INIT_SCRIPT:
 				{
 					if (current_chat_context->display_log_markers)
-						widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
+						widget_text_init(chat_log, _("[n]--- Start of Dialog ---\n"));
 					LOAD_LUA_SCRIPT(current_chat_context->initialization_code);
 					current_chat_context->state = RUN_INIT_SCRIPT;
 					break;
@@ -799,7 +799,7 @@ void chat_run()
 				case LOAD_STARTUP_SCRIPT:
 				{
 					if (current_chat_context->display_log_markers && current_chat_context->npc->chat_character_initialized)
-						widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
+						widget_text_init(chat_log, _("[n]--- Start of Dialog ---\n"));
 					LOAD_LUA_SCRIPT(current_chat_context->startup_code);
 					current_chat_context->state = RUN_STARTUP_SCRIPT;
 					break;

@@ -442,8 +442,7 @@ static int display_text_using_line_height_with_cursor(const char *text, int star
 			cursor_y = MyCursorY;
 		}
 
-		if (handle_switch_font_char(*tmp)) {
-			tmp++;
+		if (handle_switch_font_char(&tmp)) {
 			current_curpos++;
 			continue;
 		}
