@@ -5638,7 +5638,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 1
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -6110,7 +6110,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 4
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -6853,7 +6853,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 5
 jump target north: -1
 jump target south: -1
 jump target east: 14
@@ -8372,7 +8372,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 2
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -16610,7 +16610,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 1
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -17345,7 +17345,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 2
 jump target north: 15
 jump target south: -1
 jump target east: 20
@@ -18827,7 +18827,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 4
 jump target north: -1
 jump target south: 14
 jump target east: 16
@@ -20798,7 +20798,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 1
 jump target north: 19
 jump target south: 9
 jump target east: 25
@@ -29084,7 +29084,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 5
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -30559,7 +30559,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 5
 jump target north: 49
 jump target south: 50
 jump target east: 54
@@ -36783,7 +36783,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 3
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -40972,7 +40972,7 @@ random dungeon: 2
 teleport pair: 1
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 4
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -43809,7 +43809,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 6
 jump target north: 31
 jump target south: 52
 jump target east: 51
@@ -46924,7 +46924,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 7
 jump target north: 54
 jump target south: 53
 jump target east: -1
@@ -49606,7 +49606,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 7
 jump target north: 50
 jump target south: 66
 jump target east: 53
@@ -53048,7 +53048,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 7
 jump target north: 51
 jump target south: 65
 jump target east: -1
@@ -56686,7 +56686,7 @@ random dungeon: 2
 teleport pair: 2
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 3
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -56800,7 +56800,7 @@ random dungeon: 2
 teleport pair: 3
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 3
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -56914,7 +56914,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 5
 jump target north: 61
 jump target south: 59
 jump target east: 50
@@ -58401,7 +58401,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 1
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -59317,7 +59317,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 8
 jump target north: 57
 jump target south: 67
 jump target east: 52
@@ -65803,7 +65803,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 environmental flags: 0
-item drop class: 0
+item drop class: 3
 jump target north: -1
 jump target south: -1
 jump target east: -1
