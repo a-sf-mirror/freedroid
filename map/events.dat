@@ -1334,6 +1334,14 @@ display_big_message("BARREL DESTROYED!!")
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"24-trigger-barrel"
+Trigger on obstacle
+Obstacle label="24-enemy-barrel"
+<LuaCode>
+create_droid("24-barrel-enemy-trap", "614")
+</LuaCode>
+* End of trigger *
 ##############
 ## Level 25 ##
 ##############
