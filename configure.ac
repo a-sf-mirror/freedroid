@@ -92,7 +92,7 @@ if test x$arch_native = xyes; then
 fi
 
 if test x$sanitize_address = xyes; then
-	CFLAGS="$CFLAGS -fsanitize=address"
+	CFLAGS="$CFLAGS -fsanitize=address -fno-omit-frame-pointer"
 fi
 
 if test x$use_debug = xyes; then
