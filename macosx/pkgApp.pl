@@ -45,7 +45,7 @@ sub recurse {
 	    next NAME_LOOP;
 	}
 
-	## leave sys libraries alone and dont include them
+	## leave sys libraries alone and don't include them
 	if ( $name =~ m,^(/System/Library|/usr/lib|\@executable_name), &&
 	     $name !~ m,^(/usr/lib/libiconv), ){ 
 	    next NAME_LOOP; 
