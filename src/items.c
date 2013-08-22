@@ -1651,7 +1651,8 @@ void HandleInventoryScreen(void)
 		int item_idx;
 		level *item_lvl = NULL;
 
-		if ((item_idx = get_floor_item_index_under_mouse_cursor(&item_lvl)) != -1) {
+		if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()) 
+		   && (item_idx = get_floor_item_index_under_mouse_cursor(&item_lvl)) != -1) {
 			// Try to auto-put or auto-equip the item. If it's not possible,
 			// the item will be 'put in hand'.
 			if (check_for_items_to_pickup(item_lvl, item_idx)) {
