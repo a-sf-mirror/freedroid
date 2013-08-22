@@ -75,7 +75,8 @@ npc_list{
 
 npc_shop{
 name = "Stone",
-items = {{"Big kitchen knife"},
+items = {
+	 {"Big kitchen knife"},
 	 {"Meat cleaver"},
 	 {"Small Axe"},
 	 {"Large Axe"},
@@ -98,7 +99,8 @@ items = {{"Big kitchen knife"},
 
 npc_shop{
 name = "DocMoore",
-items = {{"Diet supplement", 3 },
+items = {
+	 {"Diet supplement", 3 },
 	 {"Antibiotic"},
 	 {"Doc-in-a-can"}
 	}
@@ -106,7 +108,8 @@ items = {{"Diet supplement", 3 },
 
 npc_shop{
 name = "Lukas",
-items = {{"9x19mm Ammunition"},
+items = {
+	 {"9x19mm Ammunition"},
 	 {"7.62x39mm Ammunition"},
 	 {".50 BMG (12.7x99mm) Ammunition"},
 	 {"2 mm Exterminator Ammunition"},
@@ -127,14 +130,16 @@ items = {{"9x19mm Ammunition"},
 	
 npc_shop{
 name = "Skippy",
-items = {-- "Map Maker", Script?
+items = {
+	 -- "Map Maker", Script?
 	 {"Teleporter homing beacon", 3}
 	}
 }
 
 npc_shop{
 name = "Duncan",
-items = {{"VMX Gas Grenade"},
+items = {
+	 {"VMX Gas Grenade"},
 	 {"VMX Gas Grenade"},
 	 {"Small EMP Shockwave Generator", 2},
 	 {"Electronic Noise Generator", 2},
@@ -144,7 +149,8 @@ items = {{"VMX Gas Grenade"},
 
 npc_shop{
 name = "Ewald",
-items = {{"Bottled ice"},
+items = {
+	 {"Bottled ice"},
 	 {"Industrial coolant"},
 	 {"Liquid nitrogen"},
 	 {"Barf's Energy Drink"},
@@ -157,7 +163,8 @@ items = {{"Bottled ice"},
 
 npc_shop{
 name = "Vending-Machine",
-items = {{"Bottled ice"},
+items = {
+	 {"Bottled ice"},
 	 {"Industrial coolant"},
 	 {"Barf's Energy Drink"},
 	 {"Diet supplement"},
@@ -166,7 +173,8 @@ items = {{"Bottled ice"},
 
 npc_shop{
 name = "Sorenson",
-items = {{"Source Book of Emergency shutdown"},
+items = {
+	 {"Source Book of Emergency shutdown"},
 	 {"Source Book of Check system integrity"},
 	 {"Source Book of Sanctuary"},
 	 {"Source Book of Malformed packet"},
@@ -187,7 +195,8 @@ items = {{"Source Book of Emergency shutdown"},
 
 npc_shop{
 name = "Tamara",
-items = {{"Source Book of Emergency shutdown"},
+items = {
+	 {"Source Book of Emergency shutdown"},
 	 {"Source Book of Check system integrity"},
 	 {"Source Book of Sanctuary"},
 	 {"Source Book of Malformed packet"},
@@ -208,7 +217,8 @@ items = {{"Source Book of Emergency shutdown"},
 
 npc_shop{
 name = "Karol",
-items = {{"Chainsaw"},
+items = {
+	 {"Chainsaw"},
 	 {"Iron pipe"},
 	 {"Big wrench"},
 	 {"Power hammer"},
