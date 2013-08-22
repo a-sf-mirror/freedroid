@@ -115,7 +115,7 @@ Nr=6 Text=_"Yeah. I want to fight."
 	add_quest(_"Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
 	npc_says(_"Oh, and the room is made out of some special material. People reported their teleporter gadgets didn't work in there. Take care!")
 	update_quest(_"Novice Arena", _"Butch says that teleporter gadgets may not work in this arena.")
-	change_obstacle_state("NoviceArenaAccessDoor", "opened")
+	change_obstacle_state("Arena-AccessGate", "opened")
 	hide(6, 12, 13) show(9)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -210,7 +210,7 @@ Nr=15 Text=_"End the violence! All blood is red!"
 	tux_says(_"You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!")
 	npc_says(_"Great. Get in the door, newbie.")
 	add_quest(_"Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
-	change_obstacle_state("NoviceArenaAccessDoor", "opened")
+	change_obstacle_state("Arena-AccessGate", "opened")
 	hide(15)
 </LuaCode>
 ----------------------------------------------------------------------
