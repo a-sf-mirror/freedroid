@@ -69,25 +69,28 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		show(5)
 	end
 
-	if (tut_tux_chest_entered) and
-	   (not tut_item_chest_opened) then
-		show(10)
-	elseif (tut_item_chest_opened) then
-		hide(10)
-		show(11)
-	end
+	if (not tut_tux_melee_entered ) then
 
-	if (has_item("Normal Jacket")) or
-	   (has_item("Improvised Buckler")) or
-	   (has_item("Shoes")) or
-	   (has_item("Worker Helmet")) then
-		hide(11)
-		npc_says(_"Excellent, I see you already took on the armor that was in the box.")
-		if (not armor_node_one) then
-			show(12)
+		if (tut_tux_chest_entered) and
+		   (not tut_item_chest_opened) then
+			show(10)
+		elseif (tut_item_chest_opened) then
+			hide(10)
+			show(11)
 		end
-		if (not armor_node_two) then
-			show(13)
+
+		if (has_item("Normal Jacket")) or
+		   (has_item("Improvised Buckler")) or
+		   (has_item("Shoes")) or
+		   (has_item("Worker Helmet")) then
+			hide(11)
+			npc_says(_"Excellent, I see you already took on the armor that was in the box.")
+			if (not armor_node_one) then
+				show(12)
+			end
+			if (not armor_node_two) then
+				show(13)
+			end
 		end
 	end
 

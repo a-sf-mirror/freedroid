@@ -1749,6 +1749,24 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
+Name=_"Melee-check1"
+Trigger at label="37_melee_entered1"
+Silent=1
+<LuaCode>
+	tut_tux_melee_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Melee-check2"
+Trigger at label="37_melee_entered2"
+Silent=1
+<LuaCode>
+	tut_tux_melee_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
 Name=_"PastWall-N"
 Trigger at label="Tutorial-PastWall1"
 Silent=1
