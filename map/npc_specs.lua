@@ -58,6 +58,7 @@ npc_list{
 	"DSB-MachineDeckControl",
 	"DocMoore",
 	"Dixon",
+	"DeadGuy",
 	"Cryo-Terminal",
 	"c-net",
 	"Chandra",
