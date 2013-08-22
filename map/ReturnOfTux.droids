@@ -296,10 +296,6 @@ T=999: PosX=59 PosY=59 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"999 C
 ** Beginning of new Level **
 Level=29
 
-T=123: PosX=5 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Race Condition" Marker=1029 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=139: PosX=10 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Undeclared Variable" Marker=1029 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=247: PosX=18 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Segmentation Fault" Marker=1029 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=249: PosX=10 PosY=2 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Buffer Overflow" Marker=1029 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
