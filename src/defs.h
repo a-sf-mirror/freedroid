@@ -103,7 +103,7 @@ enum {
 #define FLOOR_TILES_VISIBLE_AROUND_TUX ((GameConfig . screen_width >= 1024 ? 13 : GameConfig . screen_width >= 800 ? 9 : 7))
 #define MAX_ITEMS_PER_LEVEL 300
 #define MAX_ITEMS_IN_INVENTORY 100
-#define MAX_ITEMS_IN_NPC_SHOPLIST 50
+#define MAX_ITEMS_IN_NPC_SHOPLIST 200
 #define INVENTORY_GRID_WIDTH 10
 #define INVENTORY_GRID_HEIGHT 6
 #define INV_SUBSQUARE_WIDTH (31)
