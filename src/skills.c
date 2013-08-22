@@ -354,25 +354,25 @@ int DoSkill(int skill_index, int SpellCost)
 			droid_below_mouse_cursor->poison_damage_per_sec += hitdmg;
 		}
 
-		if (!strcmp(SpellSkillMap[skill_index].effect, "takeover") 
-				&& !is_friendly(droid_below_mouse_cursor->faction, FACTION_SELF)) {
-			// Only hostile droids can be hacked. 
-			
-			float used_capsules_ratio = 1;		
-			if (droid_takeover(droid_below_mouse_cursor, &used_capsules_ratio)) {
-				// Only capsules that were used generate heat - hard fights are more exhausting that easy ones
-				Me.temperature += used_capsules_ratio * SpellCost;
-				
-				// upon successful takeover
-				// go directly to chat to choose droid program
-				if (GameConfig.talk_to_bots_after_takeover)
-					chat_with_droid(droid_below_mouse_cursor);
-				goto out;
-			}
-		} else {
-			goto out;
-		}
+		if (!strcmp(SpellSkillMap[skill_index].effect, "takeover")) {
+			if (!is_friendly(droid_below_mouse_cursor->faction, FACTION_SELF)) {
+				// Only hostile droids can be hacked.
 
+				float used_capsules_ratio = 1;
+				if (droid_takeover(droid_below_mouse_cursor, &used_capsules_ratio)) {
+					// Only capsules that were used generate heat - hard fights are more exhausting that easy ones
+					Me.temperature += used_capsules_ratio * SpellCost;
+
+					// upon successful takeover
+					// go directly to chat to choose droid program
+					if (GameConfig.talk_to_bots_after_takeover)
+						chat_with_droid(droid_below_mouse_cursor);
+					return 1;
+				}
+			} else {
+				return 1;
+			}
+		}
 		Me.temperature += SpellCost;
 		break;
 
@@ -434,15 +434,15 @@ int DoSkill(int skill_index, int SpellCost)
 
 	/*handle the special extra effects of the skill */
 	if (!strcmp(SpellSkillMap[skill_index].effect, "none")) {
-		goto out;
+		return 1;
 	}
 
 	if (!strcmp(SpellSkillMap[skill_index].effect, "weapon")) {
 		if (!MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
-			goto out;
+			return 1;
 		if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
 			tux_wants_to_attack_now(TRUE);
-		goto out;
+		return 1;
 	}
 
 	if (!strcmp(SpellSkillMap[skill_index].effect, "repair")) {
@@ -453,10 +453,8 @@ int DoSkill(int skill_index, int SpellCost)
 			//
 			play_sound("effects/tux_ingame_comments/CantRepairThat.ogg");
 		}
-		goto out;
+		return 1;
 	}
-
- out:
 
 	return 1;
 };				// void HandleCurrentlyActivatedSkill( void )
