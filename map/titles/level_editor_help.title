@@ -133,7 +133,7 @@ You can also use them to add dialogs to obstacles, so you can talk to them as th
 To plant a label on an obstacle, you must first mark this obstacle (see obstacle mode explanation above).
 Clicking the icon with the sign and the O on it you will be prompted for the new label to attach to this obstacle.
 
-
+You can toggle display of map labels using the small icon with the label-circle on it.
 
 	Saving maps
 
@@ -165,17 +165,21 @@ in order to switch to the next or previous (refers to level numbers) level, or, 
 								A level can only have one adjacent level (one it touches edges with) in each of the four cardinal directions (North, South, West, East).
 				Random dungeon:	If you set this option to 'Yes', the map will automatically generate a dungeon. You set the number of teleporters to and from this map clicking on the option.
 								Randomly generated dungeons automatically will have everything necessary, like waypoints, bots, and obstacles, set.
+				Item drop class for obstacles:	Set of what item class items dropped by barrels/chests/crates should be.
+				Teleport blockade:	Make it (im)possible to teleport away from a level.
 				Teleport pair:	This important if you make a dungeon that is not directly connected to another map. You can set the number of exits and entrances for a randomly generated dungeon here.
 				Light:			How much light would you like to have? Press space to switch between ambient (general brightness of the present map) and bonus (light emitted by some obstacles, such as lamps or mushrooms) mode.
 				Background music:	Here you can set a music track to be played while the player walks around on the map. Possible tracks can be found in ./sound/music/ .
 									Just enter the file name including the .ogg extension.
-				Infinite running:	If you have this set to "yes", Tux' stamina will not decrease while running across the map. This should only be used if the level has no hostile NPCs on it, like on level 0, the Town, for example.
+				Infinite running Stamina:	If you have this set to "yes", Tux' stamina will not decrease while running across the map. This should only be used if the level has no hostile NPCs on it, like on level 0, the Town, for example.
 				add/rem level:		Lets you add a new level or remove the current level.
 
 		Advanced options
 Here you can run the map level validator.
 The map level validator checks all the paths between connected waypoints to ensure they are not blocked by obstacles. More detailed output explaining which paths are blocked can be found in the terminal, given the case that the game is run using it, or a global error output file.
+It can also check if you have obstacles near map borders in a critial way.
 This should ALWAYS be run before calling a map finished.
+"freedroidRPG -b leveltest" does also run this check.
 
 		Playtest mapfile
 Allows you to playtest your modifications easily.
