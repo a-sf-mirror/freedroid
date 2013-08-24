@@ -174,11 +174,15 @@ obstacle {
 }
 
 obstacle {
-	image_filenames = "DUMMY OBSTACLE"
+	image_filenames = "iso_trapdoor_w.png",
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filenames = "DUMMY OBSTACLE"
+	image_filenames = "iso_trapdoor_n.png",
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
@@ -453,11 +457,17 @@ obstacle {
 }
 
 obstacle {
-	image_filenames = "DUMMY OBSTACLE"
+	image_filenames = "iso_trapdoor_closed_n.png",
+	borders = borders(1.00, 1.00),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filenames = "DUMMY OBSTACLE"
+	image_filenames = "iso_trapdoor_closed_w.png",
+	borders = borders(1.00, 1.00),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
@@ -1051,13 +1061,13 @@ obstacle {
 }
 
 obstacle {
-	image_filenames = "iso_trapdoor_n.png",
+	image_filenames = "iso_trapdoor_s.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filenames = "iso_trapdoor_w.png",
+	image_filenames = "iso_trapdoor_e.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
@@ -3365,6 +3375,20 @@ obstacle {
 obstacle {
 	image_filenames = "iso_bookshelf_long_looted_n.png",
 	borders = borders(2.20, 0.60),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_trapdoor_closed_e.png",
+	borders = borders(1.00, 1.00),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_trapdoor_closed_s.png",
+	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
