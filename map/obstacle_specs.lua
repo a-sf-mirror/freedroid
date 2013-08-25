@@ -459,14 +459,14 @@ obstacle {
 obstacle {
 	image_filenames = "iso_trapdoor_closed_n.png",
 	borders = borders(1.00, 1.00),
-	flags = { BLOCKS_VISION },
+	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
 	image_filenames = "iso_trapdoor_closed_w.png",
 	borders = borders(1.00, 1.00),
-	flags = { BLOCKS_VISION },
+	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
 }
 
@@ -3382,14 +3382,14 @@ obstacle {
 obstacle {
 	image_filenames = "iso_trapdoor_closed_e.png",
 	borders = borders(1.00, 1.00),
-	flags = { BLOCKS_VISION },
+	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
 	image_filenames = "iso_trapdoor_closed_s.png",
 	borders = borders(1.00, 1.00),
-	flags = { BLOCKS_VISION },
+	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
 }
 
