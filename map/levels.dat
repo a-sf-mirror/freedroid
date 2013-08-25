@@ -10455,8 +10455,8 @@ t135 x82.00 y27.50
 t135 x82.00 y28.50
 t138 x82.00 y29.50
 t134 x82.50 y29.50
-t149 x83.79 y26.74
-t26 x83.50 y29.50
+t6 x83.51 y29.44
+t483 x83.56 y26.71
 t115 x44.16 y53.34
 t5 x29.11 y47.70
 t114 x34.51 y52.44
@@ -11349,14 +11349,14 @@ x=28 y=27 name="8-bridge-spawn4"
 piteminfolvl
 /piteminfolvl
 obstacleextensions
-idx=537 type=30 data={
-	AccessDoorToWarehouse
-}
 idx=999 type=31 data={
 	it: n="Tungsten spikes"  X=6.000000  Y=67.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
 }
 idx=295 type=32 data={
 	House for sale.
+}
+idx=537 type=30 data={
+	TrapdoorToWarehouse
 }
 /obstacleextensions
 wp

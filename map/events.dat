@@ -588,7 +588,11 @@ Silent=0
 Name=_"Enter Warehouse"
 Trigger at label="8to1"
 Silent=0
-<LuaCode> teleport("1from8") </LuaCode>
+<LuaCode>
+	if (cmp_obstacle_state("TrapdoorToWarehouse", "opened")) then
+		teleport("1from8")
+	end
+</LuaCode>
 * End of trigger *
 
 * New event trigger *
