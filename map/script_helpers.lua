@@ -174,6 +174,19 @@ obstacle_states = {
 
 	[480] = {["unlooted"] = 480, ["looted"] = 481,},
 	[481] = {["looted"] = 481, ["unlooted"] = 480,},
+
+	-- trapdoors
+	[150] = {["opened"] = 150, ["closed"] = 482,},
+	[482] = {["closed"] = 482, ["opened"] = 150,},
+
+	[149] = {["opened"] = 149, ["closed"] = 483,},
+	[483] = {["closed"] = 483, ["opened"] = 149,},
+
+	[24] = {["opened"] = 24, ["closed"] = 61,},
+	[61] = {["closed"] = 61, ["opened"] = 24,},
+
+	[23] = {["opened"] = 23, ["closed"] = 62,},
+	[62] = {["closed"] = 62, ["opened"] = 23,},
 };
 
 function get_obstacle_state_id(id, state)
