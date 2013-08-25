@@ -67,7 +67,7 @@ Mission Name=_"Anything but the army snacks, please!"
 Mission Name=_"Novice Arena"
 Mission target is to kill droids with marker : 1029
 Completion LuaCode={
-	change_obstacle_state("NoviceArenaExitDoor", "opened")
+	--change_obstacle_state("NoviceArenaExitDoor", "opened")
 	display_console_message(_"Novice arena cleared!")
 	display_big_message(_"Level cleared!")
 	update_quest(_"Novice Arena", _"I won the fight in the novice arena.")

@@ -19,21 +19,33 @@ Each trigger has the following field:
 Name=_"To Maintenance Tunnels"
 Trigger at label="0to6"
 Silent=0
-<LuaCode> teleport("6from0") </LuaCode>
+<LuaCode>
+	if (cmp_obstacle_state("NorthernMaintainanceTrapdoor", "opened")) then
+		teleport("6from0")
+	end
+</LuaCode>
 * End of trigger *
 
 * New event trigger *
 Name=_"To Novice Arena"
 Trigger at label="0to29"
 Silent=0
-<LuaCode> teleport("29from0") </LuaCode>
+<LuaCode>
+	if (cmp_obstacle_state("Arena-AccessTrapdoor", "opened")) then
+		teleport("29from0")
+	end
+</LuaCode>
 * End of trigger *
 
 * New event trigger *
 Name=_"To Master Arena"
 Trigger at label="0to30"
 Silent=0
-<LuaCode> teleport("30from0") </LuaCode>
+<LuaCode>
+	if (cmp_obstacle_state("MasterArenaAccessTrapdoor", "opened")) then
+		teleport("30from0")
+	end
+</LuaCode>
 * End of trigger *
 
 * New event trigger *

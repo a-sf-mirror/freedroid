@@ -231,7 +231,7 @@ Topic="The yellow toolkit"
 Nr=13 Text=_"How did it happen that the bots took your tools away?"
 Topic="The yellow toolkit"
 <LuaCode>
-	if (cmp_obstacle_state("NorthernMaintainanceDoor", "opened")) then
+	if (cmp_obstacle_state("NorthernMaintainanceTrapdoor", "opened")) then
 		npc_says(_"Ah, it is a strange story, I am sure you would not believe me. I will tell you some other time, but now you should hurry to get the toolkit.")
 	else
 		npc_says(_"Long story. Just before the Great Assault I was installing some cables in the backup power supply system.")
@@ -267,7 +267,7 @@ Topic="The yellow toolkit"
 	npc_says(_"I think you could go to see the Singularity and speak to it. You are perfectly suited to become an ambassador.")
 	npc_says(_"You should try to help them and they might want to give back the toolkit.")
 	npc_says(_"Will you do me this favor?")
-	change_obstacle_state("NorthernMaintainanceDoor", "opened")
+	change_obstacle_state("NorthernMaintainanceTrapdoor", "opened")
 	Dixon_Singularity_peace = true
 	hide(15, 24, 26, 28) show (21, 22)
 	topic("Toolkit peace mission Y/N")
@@ -358,7 +358,7 @@ Topic="The yellow toolkit"
 	npc_says(_"There you will find the maintenance access hatch.", "NO_WAIT")
 	npc_says(_"Once you get inside, you'll need to use the terminal to unlock the door. I'll write down my password for you.", "NO_WAIT")
 	npc_says(_"Good luck. Oh, and please come back alive. Better come back with nothing than not at all.")
-	change_obstacle_state("NorthernMaintainanceDoor", "opened")
+	change_obstacle_state("NorthernMaintainanceTrapdoor", "opened")
 	hide(14, 15, 24, 26, 28)
 	pop_topic() -- "The yellow toolkit"
 </LuaCode>

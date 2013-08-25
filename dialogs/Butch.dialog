@@ -108,14 +108,14 @@ Nr=5 Text=_"Arena? What arena?"
 
 Nr=6 Text=_"Yeah. I want to fight."
 <LuaCode>
-	npc_says(_"Good. I opened up the novice arena gate. Just climb down the ladder south of here.")
+	npc_says(_"Good. I opened up the novice arena door. Just climb down the ladder south of here.")
 	npc_says(_"But remember, the escape hatch won't be opened until you kill all the bots.")
 	npc_says(_"And be careful, your brain will be fooled by what happens in the holographic world. Any damage you take there, will result in actual physical damage.")
 	npc_says(_"So even if the enemies are only holograms, they can still hurt you... and even kill you.")
 	add_quest(_"Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
 	npc_says(_"Oh, and the room is made out of some special material. People reported their teleporter gadgets didn't work in there. Take care!")
 	update_quest(_"Novice Arena", _"Butch says that teleporter gadgets may not work in this arena.")
-	change_obstacle_state("Arena-AccessGate", "opened")
+	change_obstacle_state("Arena-AccessTrapdoor", "opened")
 	hide(6, 12, 13) show(9)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -154,7 +154,7 @@ Nr=9 Text=_"I want a bigger challenge."
 		add_quest(_"Time to say goodnight", _"I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to climb down the ladder to the north arena and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
 		npc_says(_"Remember, if your teleporter didn't work in the noob-, errr, novide-arena, it won't work in the master arena either...")
 		update_quest(_"Time to say goodnight", _"Again, Butch warned me about possibly broken teleporter gadgets.")
-		change_obstacle_state("MasterArenaAccessDoor", "opened")
+		change_obstacle_state("MasterArenaAccessTrapdoor", "opened")
 	end
 	hide(9)
 </LuaCode>
@@ -210,7 +210,7 @@ Nr=15 Text=_"End the violence! All blood is red!"
 	tux_says(_"You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!")
 	npc_says(_"Great. Get in the door, newbie.")
 	add_quest(_"Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
-	change_obstacle_state("Arena-AccessGate", "opened")
+	change_obstacle_state("Arena-AccessTrapdoor", "opened")
 	hide(15)
 </LuaCode>
 ----------------------------------------------------------------------

@@ -304,7 +304,7 @@ t173 x15.50 y50.50
 t173 x15.50 y51.50
 t173 x29.50 y39.50
 t177 x30.00 y38.50
-t149 x17.84 y40.90
+t61 x32.34 y62.41
 t170 x16.50 y44.50
 t170 x17.50 y44.50
 t170 x19.50 y44.50
@@ -312,7 +312,7 @@ t170 x20.50 y44.50
 t275 x21.00 y44.50
 t173 x20.95 y43.98
 t173 x21.00 y41.00
-t191 x20.97 y43.00
+t181 x20.96 y42.99
 t170 x18.50 y44.50
 t178 x21.50 y40.50
 t170 x31.00 y38.00
@@ -657,8 +657,8 @@ t173 x21.00 y62.50
 t173 x21.00 y61.50
 t180 x21.00 y60.50
 t177 x16.00 y60.50
-t192 x19.00 y60.00
-t150 x18.32 y62.36
+t186 x33.00 y59.96
+t482 x17.85 y40.82
 t177 x30.00 y60.50
 t167 x31.00 y60.00
 t167 x34.00 y60.00
@@ -669,8 +669,8 @@ t173 x35.00 y63.50
 t173 x35.00 y64.50
 t179 x35.00 y65.50
 t167 x35.00 y65.50
-t192 x33.00 y60.00
-t150 x32.33 y62.31
+t186 x18.96 y59.95
+t61 x18.32 y62.42
 t176 x29.50 y61.50
 t176 x29.50 y62.50
 t176 x29.50 y63.50
@@ -1659,7 +1659,7 @@ t117 x61.50 y50.00
 t117 x61.50 y51.00
 t117 x61.50 y52.00
 t6 x59.50 y53.00
-t9 x54.50 y53.00
+t10 x54.50 y53.00
 t216 x60.50 y51.50
 t79 x52.98 y49.79
 t77 x53.63 y49.90
@@ -1718,7 +1718,7 @@ t117 x16.00 y55.50
 t155 x57.00 y30.00
 t155 x59.00 y30.00
 t11 x52.00 y13.00
-t11 x52.00 y17.00
+t15 x52.00 y17.00
 t11 x66.00 y17.00
 t133 x68.50 y11.50
 t133 x67.50 y11.50
@@ -3645,12 +3645,6 @@ idx=616 type=30 data={
 idx=3373 type=30 data={
 	Main Gate Outer W
 }
-idx=200 type=30 data={
-	MasterArenaAccessDoor
-}
-idx=557 type=30 data={
-	NorthernMaintainanceDoor
-}
 idx=224 type=32 data={
 	c-net
 }
@@ -3735,9 +3729,6 @@ idx=3111 type=32 data={
 idx=3268 type=32 data={
 	Unauthorized access is strictly forbidden!
 }
-idx=545 type=30 data={
-	Arena-AccessGate
-}
 idx=230 type=32 data={
 	c-net
 }
@@ -3758,6 +3749,15 @@ idx=1182 type=30 data={
 }
 idx=2912 type=30 data={
 	tamara-book-3
+}
+idx=546 type=30 data={
+	MasterArenaAccessTrapdoor
+}
+idx=192 type=30 data={
+	NorthernMaintainanceTrapdoor
+}
+idx=558 type=30 data={
+	Arena-AccessTrapdoor
 }
 /obstacleextensions
 wp
