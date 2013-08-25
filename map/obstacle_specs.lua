@@ -1,3 +1,26 @@
+--[[
+							Obstacle Flags:
+
+	IS_WALL					 (Not in use? Can we remove this?)
+
+	Flags for walls so that the wall-drawing function of the editor knows what to do:
+	IS_HORIZONTAL
+	IS_VERTICAL
+	CORNER_NE
+	CORNER_NW
+	CORNER_SE
+	CORNER_SW
+
+	BLOCKS_VISION_TOO		 Light will not pass through this obstacle, it will cast realtime-"shadow"
+	IS_SMASHABLE			 Obstacle can be destroyed (barrels/chests/glasswalls)
+	DROPS_RANDOM_TREASURE	 Obstacle drops items on destruction (barrels/chests)
+	NEEDS_PRE_PUT			 Obstacle will be displayed underneath of most other obstacles (usefull for blood/droidnests etc which should not render partly on top of nearby walls)
+	GROUND_LEVEL			 Obstacle does not block bullets
+	IS_WALKABLE				 Obstacle can be walked through although it has a collision rectangle ("closed"-frames of animated doors etc)
+	IS_CLICKABLE   			 Obstacle can be clicked on
+	IS_VOLATILE 			 Obstacle vanishes when level respawns (blood/oil...)
+]]--
+
 function borders(left, right, upper, lower)
 	if upper == nil then
 		return { -left / 2, left / 2, -right / 2, right / 2 }
