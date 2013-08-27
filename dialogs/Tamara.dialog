@@ -201,7 +201,7 @@ Nr=34 Text=_"What can you tell me about robotic girlfriends?" Topic="About bots"
 <LuaCode>
 	npc_says(_"Well, the Greeks wrote down a story about Pygmalion, the sculptor of Cyprus.")
 	npc_says(_"Pygmalion carved an ivory woman of far surpassing natural beauty and fell in love.")
-	npc_says(_"Venus, the goddess of love, brought the ivory woman to life.")
+	npc_says(_"Aphrodite, the goddess of love, brought the ivory woman to life.")
 	npc_says(_"The woman, Galatea, likewise fell in love and married her creator Pygmalion.")
 	npc_says(_"So you could say that this is one of the few stories that end well.")
 	hide_node_about_bots(34)
