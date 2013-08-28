@@ -94,9 +94,16 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		end
 	end
 
+	if (tut_tux_melee_entered) and
+	   (not tut_tux_wall_entered) then -- tux is still in bot melee area
+	   show(24)
+	end
+
 	if (TutorialTom_Tux_PastWall) then
 		hide(70) show(30, 38)
 	end
+
+
 
 	show(99)
 </LuaCode>
@@ -457,16 +464,21 @@ Nr=23 Text=_"I'm ready to fight my first bot."
 	change_obstacle_state("TutorialMelee1", "opened")
 	add_item("Doc-in-a-can", 3)
 	update_quest(_"Tutorial Melee", _"I'm going to fight my first bot! To start melee combat left click on the bot. Tom wants the Entropy Inverter from the bot after I've defeated it, so I should pick that up.")
-	end_dialog()
 	hide(23) show(24, 25)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=24 Text=_"Can you heal me?"
 <LuaCode>
-	npc_says(_"You should be more careful, Linarian. But yes, I can heal you.")
-	npc_says(_"There, all better.")
-	heal_tux()
+	if (tux_hp_ratio() == 1) then
+		npc_says("You are fine, there is nothing that I can do.")
+		hide(24)
+	else
+		npc_says(_"You should be more careful, Linarian. But yes, I can heal you.")
+		npc_says(_"There, all better.")
+		heal_tux()
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 

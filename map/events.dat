@@ -1783,6 +1783,25 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
+Name=_"Wall-check1"
+Trigger at label="37-wall-entered1"
+Silent=1
+<LuaCode>
+	tut_tux_wall_entered = true
+</LuaCode>
+* End of trigger *
+
+
+* New event trigger *
+Name=_"Wall-check2"
+Trigger at label="37-wall-entered2"
+Silent=1
+<LuaCode>
+	tut_tux_wall_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
 Name=_"PastWall-N"
 Trigger at label="Tutorial-PastWall1"
 Silent=1
