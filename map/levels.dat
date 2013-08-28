@@ -39680,8 +39680,8 @@ x=16 y=34 name="37_chest_entered1"
 x=17 y=34 name="37_chest_entered2"
 x=16 y=49 name="37_melee_entered1"
 x=17 y=49 name="37_melee_entered2"
-x=16 y=61 name="37-wall-entered1"
-x=17 y=61 name="37-wall-entered2"
+x=16 y=61 name="37_glasswall_entered1"
+x=17 y=61 name="37_glasswall_entered2"
 /plabelinfolvl
 piteminfolvl
 it: n="Plasma Transistor"  X=12.000000  Y=21.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1

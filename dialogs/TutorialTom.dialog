@@ -45,24 +45,40 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (partner_started()) then
-		npc_says(_"Hi Linarian, I've been expecting you. My name is Tutorial Tom.")
-		npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things.")
-		npc_says(_"So let's start with the basics, shall we?")
-		show(1, 7, 80)
-		set_rush_tux(0)
-	elseif (has_quest("Tutorial Movement")) and
-		   (not TutorialTom_talk_to_tom_EveryTime) then -- only once
-		TutorialTom_talk_to_tom_EveryTime = true
-		npc_says(_"Glad to see you figured out the quest log!")
-	elseif (has_quest("Tutorial Movement")) and
-		   (TutorialTom_move_black) and
-		   (not TutorialTom_sprinting) then
-		TutorialTom_sprinting = true
-		npc_says(_"Speaking of moment, you can also [b]sprint[/b] by holding the [b]control key[/b].")
-		update_quest(_"Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
-		npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
+	if (partner_started()) and
+	   (TutorialTom_glasswall_smashed) and
+	   (cmp_obstacle_state("TutorialWall", "broken")) and
+	   (not TutorialTom_glasswall_done) then -- wall section, shown if tux destroyed the wall by hand
+		npc_says("Great, you figured out how deal with this obstacle.")
+		npc_says("Let's proceed.")
+		TutorialTom_glasswall_done = true
+		if (not TutorialTom_Tux_PastWall) then
+			TutorialTom_Tux_PastWall = true
+			set_bot_destination("Tutorial-PastWall1", "TutorialTom")
+		end
 	end
+
+	if (not cmp_obstacle_state("TutorialWall", "broken")) then --to avoid regressions with code above
+		if (partner_started()) then
+			npc_says(_"Hi Linarian, I've been expecting you. My name is Tutorial Tom.")
+			npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things.")
+			npc_says(_"So let's start with the basics, shall we?")
+			show(1, 7, 80)
+			set_rush_tux(0)
+		elseif (has_quest("Tutorial Movement")) and
+			   (not TutorialTom_talk_to_tom_EveryTime) then -- only once
+			TutorialTom_talk_to_tom_EveryTime = true
+			npc_says(_"Glad to see you figured out the quest log!")
+		elseif (has_quest("Tutorial Movement")) and
+			   (TutorialTom_move_black) and
+			   (not TutorialTom_sprinting) then
+			TutorialTom_sprinting = true
+			npc_says(_"Speaking of moment, you can also [b]sprint[/b] by holding the [b]control key[/b].")
+			update_quest(_"Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
+			npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
+		end
+	end
+
 
 	if (tut_tux_items_entered) and
 	   (not TutorialTom_Tux_found_all_items) then
@@ -95,8 +111,12 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	end
 
 	if (tut_tux_melee_entered) and
-	   (not tut_tux_wall_entered) then -- tux is still in bot melee area
+	   (not tut_tux_glass_entered) then -- tux is still in bot melee area
 	   show(24)
+	end
+
+	if (tut_tux_glass_entered) then
+		show(70)
 	end
 
 	if (TutorialTom_Tux_PastWall) then
@@ -405,7 +425,7 @@ Nr=19 Text=_"I think I'm ready for the next section of the tutorial."
 	end
 	change_obstacle_state("TutorialEquipOut", "opened")
 	end_dialog()
-	hide(10, 11, 12, 13, 14, 15, 16, 17, 61, 62, 63, 64, 65, 19) show(20, 29)
+	hide(10, 11, 12, 13, 14, 15, 16, 17, 61, 62, 63, 64, 65, 19) show(20)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -571,7 +591,7 @@ Nr=29 Text=_"I'm ready to move on."
 	npc_says(_"I'll unlock the door to the south. Follow the corridor east to the shooting range.")
 	change_obstacle_state("TutorialMeleeOut", "opened")
 	set_bot_destination("TutorialTom-Wall")
-	hide(20, 21, 22, 23, 24, 25, 26, 27, 28, 29) show(70)
+	hide(20, 21, 22, 23, 24, 25, 26, 27, 28, 29)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -978,7 +998,6 @@ Nr=60 Text=_"Upgrading items is still too complex for me. Can you explain it aga
 	npc_says(_"Let's try it, shall we?")
 	upgrade_items()
 	npc_says(_"I hope it's clear now.")
-
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -988,7 +1007,7 @@ Nr=70 Text=_"There is a wall in the path! How will we get through?"
 		npc_says(_"Uhm, looks like the wall is already broken, I'll repair it.")
 		change_obstacle_state("TutorialWall", "intact")
 	else
-		npc_says(_"Notice part of it is made of a weak material, glass.")
+		npc_says(_"Notice that part of it is made of a weak material, glass.")
 		npc_says(_"Obstacles you can interact with change color when your cursor is hovering over them.")
 		npc_says(_"[b]Left click[/b] on the glass wall to break it.")
 		npc_says(_"After you break through the glass wall, walk to the other side so I know you are ready to move on.")

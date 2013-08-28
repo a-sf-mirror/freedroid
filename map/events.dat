@@ -1783,21 +1783,20 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Wall-check1"
-Trigger at label="37-wall-entered1"
+Name=_"Glass-check1"
+Trigger at label="37_glasswall_entered1"
 Silent=1
 <LuaCode>
-	tut_tux_wall_entered = true
+	tut_tux_glass_entered = true
 </LuaCode>
 * End of trigger *
 
-
 * New event trigger *
-Name=_"Wall-check2"
-Trigger at label="37-wall-entered2"
+Name=_"Glass-check2"
+Trigger at label="37_glasswall_entered2"
 Silent=1
 <LuaCode>
-	tut_tux_wall_entered = true
+	tut_tux_glass_entered = true
 </LuaCode>
 * End of trigger *
 
@@ -1806,9 +1805,10 @@ Name=_"PastWall-N"
 Trigger at label="Tutorial-PastWall1"
 Silent=1
 <LuaCode>
-	if (not TutorialTom_Tux_PastWall) then
-		TutorialTom_Tux_PastWall = true
-		set_bot_destination("Tutorial-PastWall1", "TutorialTom")
+	if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and walked through it
+	   (not TutorialTom_glasswall_done) then
+		TutorialTom_glasswall_smashed = true
+		set_rush_tux(1, "TutorialTom")
 	end
 </LuaCode>
 * End of trigger *
@@ -1818,9 +1818,10 @@ Name=_"PastWall-S"
 Trigger at label="Tutorial-PastWall2"
 Silent=1
 <LuaCode>
-	if (not TutorialTom_Tux_PastWall) then
-		TutorialTom_Tux_PastWall = true
-		set_bot_destination("Tutorial-PastWall1", "TutorialTom")
+	if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and walked through it
+	   (not TutorialTom_glasswall_done) then
+		TutorialTom_glasswall_smashed = true
+		set_rush_tux(1, "TutorialTom")
 	end
 </LuaCode>
 * End of trigger *
@@ -1834,6 +1835,15 @@ Obstacle label="37_chest"
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"Tutorial Wall trigger"
+Trigger on obstacle
+Obstacle label="TutorialWall"
+<LuaCode>
+	TutorialTom_glasswall_smashed = true
+	set_rush_tux(1, "TutorialTom")
+</LuaCode>
+* End of trigger *
 ##############
 ## Level 38 ##
 ##############
