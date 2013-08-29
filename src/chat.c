@@ -679,6 +679,8 @@ static void process_chat_option(struct chat_context *context)
  */
 void chat_run()
 {
+	 char *empty_entries[] = { NULL };
+
 #	define LOAD_LUA_SCRIPT(script) \
 	    if (script && strlen(script)) \
 		current_chat_context->script_coroutine = load_lua_coroutine(LUA_DIALOG, (script))
@@ -697,6 +699,7 @@ void chat_run()
 
 	// Init some widgets
 	widget_text_init(chat_log, "");
+	widget_text_list_init(chat_selector, empty_entries, NULL);
 
 	// Dialog engine main code.
 	//
@@ -866,6 +869,9 @@ end_current_dialog:
 		current_chat_context->npc->chat_character_initialized = TRUE;
 
 		chat_pop_context();
+			   // Tux's option entries have been freed by chat_pop_context()
+			   // so we have to clean-up the widget using it
+			   widget_text_list_init(chat_selector, empty_entries, NULL);
 	}
 
 	// Close chat screen
