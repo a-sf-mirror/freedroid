@@ -198,10 +198,10 @@ n						cycle through selected obstacles (next)
 z						undo last action
 y						redo last undid action
 c						set paths between waypoints
-ctrl+x					cut selected obstacle(s)
-ctrl+c					copy selected obstacle(s)
-ctrl+v					paste cut/copied obstacle(s)
-alt+shift				drag/move selected obstacles using the mouse
+ctrl+x or backspace		cut selected object(s), can be used to delete objects by not pasting afterwards
+ctrl+c					copy selected object(s)
+ctrl+v					paste cut/copied object(s)
+alt+shift				drag/move selected object using the mouse
 arrow keys				scroll around the map
 ctrl+arrow keys			scroll around in bigger steps
 mousewheel				scroll through obstacles of the object selector
