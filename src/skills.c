@@ -328,7 +328,7 @@ int DoSkill(int skill_index, int SpellCost)
 	case PROGRAM_FORM_INSTANT:
 		droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor();
 		if (droid_below_mouse_cursor == NULL)
-			goto done_handling_instant_hits;
+			return 0;
 		if (!DirectLineColldet(Me.pos.x,
 				       Me.pos.y,
 				       translate_pixel_to_map_location((float)input_axis.x,
@@ -336,7 +336,7 @@ int DoSkill(int skill_index, int SpellCost)
 								       TRUE),
 				       translate_pixel_to_map_location((float)input_axis.x,
 								       (float)input_axis.y, FALSE), Me.pos.z, &FlyablePassFilter))
-			goto done_handling_instant_hits;
+			return 0;
 
 		if ((Droidmap[droid_below_mouse_cursor->type].is_human && !SpellSkillMap[skill_index].hurt_humans)
 		    || (!Droidmap[droid_below_mouse_cursor->type].is_human && !SpellSkillMap[skill_index].hurt_bots))
@@ -374,7 +374,7 @@ int DoSkill(int skill_index, int SpellCost)
 			}
 		}
 		Me.temperature += SpellCost;
-		break;
+		return 1;
 
 	case PROGRAM_FORM_SELF:
 	
@@ -428,35 +428,34 @@ int DoSkill(int skill_index, int SpellCost)
 
 		return 1;
 
-	}
+	case PROGRAM_FORM_SPECIAL:
 
- done_handling_instant_hits:
-
-	/*handle the special extra effects of the skill */
-	if (!strcmp(SpellSkillMap[skill_index].effect, "none")) {
-		return 1;
-	}
-
-	if (!strcmp(SpellSkillMap[skill_index].effect, "weapon")) {
-		if (!MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
+		/*handle the special extra effects of the skill */
+		if (!strcmp(SpellSkillMap[skill_index].effect, "none")) {
 			return 1;
-		if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
-			tux_wants_to_attack_now(TRUE);
-		return 1;
-	}
-
-	if (!strcmp(SpellSkillMap[skill_index].effect, "repair")) {
-		if (!MouseCursorIsInInvRect(GetMousePos_x(), GetMousePos_y())
-		    || (!GameConfig.Inventory_Visible)) {
-			// Do nothing here.  The right mouse click while in inventory screen
-			// will be handled in the inventory screen management function.
-			//
-			play_sound("effects/tux_ingame_comments/CantRepairThat.ogg");
 		}
-		return 1;
+
+		if (!strcmp(SpellSkillMap[skill_index].effect, "weapon")) {
+			if (!MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
+				return 0;
+				
+			tux_wants_to_attack_now(TRUE);
+			return 1;
+		}
+		
+		if (!strcmp(SpellSkillMap[skill_index].effect, "repair")) {
+			if (!MouseCursorIsInInvRect(GetMousePos_x(), GetMousePos_y())
+				|| (!GameConfig.Inventory_Visible)) {
+				// Do nothing here.  The right mouse click while in inventory screen
+				// will be handled in the inventory screen management function.
+				//
+				play_sound("effects/tux_ingame_comments/CantRepairThat.ogg");
+			}
+			return 1;
+		}
 	}
 
-	return 1;
+	return 0;
 };				// void HandleCurrentlyActivatedSkill( void )
 
 

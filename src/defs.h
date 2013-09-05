@@ -136,9 +136,10 @@ enum upgrade_socket_types {
 
 enum skill_forms {
 	PROGRAM_FORM_INSTANT = 10,	//instant hit whatever behind cursor
-	PROGRAM_FORM_RADIAL,	//nova
-	PROGRAM_FORM_BULLET,	//fire a bullet
-	PROGRAM_FORM_SELF,	//instant hit player
+	PROGRAM_FORM_RADIAL,		//nova
+	PROGRAM_FORM_BULLET,		//fire a bullet
+	PROGRAM_FORM_SELF,			//instant hit player
+	PROGRAM_FORM_SPECIAL,		//special effect
 };
 
 enum _game_mouse_cursors {

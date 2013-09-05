@@ -290,6 +290,8 @@ There are more skills defined, than the maximum number specified in the code!", 
 			ProgramToFill->form = PROGRAM_FORM_RADIAL;
 		if (!strcmp(pform, "self"))
 			ProgramToFill->form = PROGRAM_FORM_SELF;
+		if (!strcmp(pform, "special"))
+			ProgramToFill->form = PROGRAM_FORM_SPECIAL;
 
 		free(pform);
 
