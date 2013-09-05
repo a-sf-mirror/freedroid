@@ -92,6 +92,12 @@ void equip_item(item *new_item)
 		give_item(old_item);
 	}
 
+	// Before equipping a shield, if a two-handed weapon is equipped, you need to drop it.
+	if (new_itemspec->slot == SHIELD_SLOT && Me.weapon_item.type != -1 
+			&& ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
+		give_item(&Me.weapon_item);
+	}
+
 	// Move the new item to the now empty equipment slot.
 	MoveItem(new_item, old_item);
 }
