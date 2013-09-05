@@ -67,7 +67,7 @@ const char *keybindNames[] = {
 	"place_obstacle_kp7", "place_obstacle_kp8", "place_obstacle_kp9",
 	"change_obstacle_label", "change_map_label", "zoom_out",
 	"cycle_marked_object",
-	"cut", "copy", "paste",
+	"cut", "copy", "paste", "delete",
 	"next_selection_type", "previous_selection_type",
 	"next_tab", "previous_tab", "undo", "redo", "beautify_grass", "beautify_water",
 	"toggle_waypoint", "toggle_waypoint_randomspawn", "connect_waypoint",
@@ -278,6 +278,7 @@ void input_set_default(void)
 	input_set_keybind("cut", SDLK_x, KMOD_LCTRL);
 	input_set_keybind("copy", SDLK_c, KMOD_LCTRL);
 	input_set_keybind("paste", SDLK_v, KMOD_LCTRL);
+	input_set_keybind("delete", SDLK_BACKSPACE, KMOD_NONE);
 	input_set_keybind("next_selection_type", SDLK_TAB, KMOD_NONE);
 	input_set_keybind("previous_selection_type", SDLK_TAB, KMOD_LSHIFT);
 	input_set_keybind("run_map_validator", SDLK_e, KMOD_LCTRL);
@@ -764,6 +765,9 @@ static int input_key(int keynum, int value)
 			return 0;
 		} else if (KEYPRESS("paste")) {
 			level_editor_paste_selection();
+			return 0;
+		} else if (KEYPRESS("delete")) {
+			level_editor_delete_selection();
 			return 0;
 		}
 	}

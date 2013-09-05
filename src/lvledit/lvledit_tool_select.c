@@ -837,6 +837,63 @@ void level_editor_cycle_marked_object()
 	state.rect_nbelem_selected = 1;
 }
 
+static int clear_current_floor_layers(level *lvl, int coord_x, int coord_y)
+{
+	int i;
+
+	if (GameConfig.show_all_floor_layers) {
+		for (i = 0; i < lvl->floor_layers; i++)
+			action_set_floor_layer(lvl, coord_x, coord_y, i, ISO_FLOOR_EMPTY);
+		return i;
+	} else {
+		action_set_floor_layer(lvl, coord_x, coord_y, current_floor_layer, ISO_FLOOR_EMPTY);
+		return 1;
+	}
+}
+
+void level_editor_delete_selection()
+{
+	struct selected_element *e;
+	int nbelem = 0;
+	if (mode != FD_RECTDONE) {
+		// We get called from the outside so check mode coherency first
+		return;
+	}
+
+	list_for_each_entry(e, &selected_elements, node) {
+		switch (e->type) {
+		case OBJECT_OBSTACLE:
+			action_remove_obstacle_user(EditLevel(), e->data);
+			nbelem++;
+			break;
+		case OBJECT_FLOOR:
+			// We replace the tile we cut by a black tile
+			nbelem += clear_current_floor_layers(EditLevel(),
+				((struct lvledit_map_tile *) (e->data))->coord.x,
+				((struct lvledit_map_tile *) (e->data))->coord.y);
+			break;
+		case OBJECT_ITEM:
+			action_remove_item(EditLevel(), e->data);
+			nbelem++;
+			break;
+		case OBJECT_WAYPOINT:
+			action_remove_waypoint(EditLevel(), ((waypoint *)(e->data))->x, ((waypoint *)(e->data))->y);
+			nbelem++;
+			break;
+		case OBJECT_MAP_LABEL:
+			action_remove_map_label(EditLevel(), ((map_label *)(e->data))->pos.x, ((map_label *)(e->data))->pos.y);
+			nbelem++;
+			break;
+		default:
+			break;
+		}
+	}
+	
+	action_push(ACT_MULTIPLE_ACTIONS, nbelem);
+
+	clear_selection(-1);
+}
+
 void level_editor_copy_selection()
 {
 	struct selected_element *e;
@@ -900,65 +957,6 @@ void level_editor_copy_selection()
 			;
 		}
 	}
-}
-
-static int clear_current_floor_layers(level *lvl, int coord_x, int coord_y)
-{
-	int i;
-
-	if (GameConfig.show_all_floor_layers) {
-		for (i = 0; i < lvl->floor_layers; i++)
-			action_set_floor_layer(lvl, coord_x, coord_y, i, ISO_FLOOR_EMPTY);
-		return i;
-	} else {
-		action_set_floor_layer(lvl, coord_x, coord_y, current_floor_layer, ISO_FLOOR_EMPTY);
-		return 1;
-	}
-}
-
-void level_editor_cut_selection()
-{
-	struct selected_element *e;
-	int nbelem = 0;
-	if (mode != FD_RECTDONE) {
-		// We get called from the outside so check mode coherency first
-		return;
-	}
-
-	level_editor_copy_selection();
-
-	list_for_each_entry(e, &selected_elements, node) {
-		switch (e->type) {
-		case OBJECT_OBSTACLE:
-			action_remove_obstacle_user(EditLevel(), e->data);
-			nbelem++;
-			break;
-		case OBJECT_FLOOR:
-			// We replace the tile we cut by a black tile
-			nbelem += clear_current_floor_layers(EditLevel(),
-				((struct lvledit_map_tile *) (e->data))->coord.x,
-				((struct lvledit_map_tile *) (e->data))->coord.y);
-			break;
-		case OBJECT_ITEM:
-			action_remove_item(EditLevel(), e->data);
-			nbelem++;
-			break;
-		case OBJECT_WAYPOINT:
-			action_remove_waypoint(EditLevel(), ((waypoint *)(e->data))->x, ((waypoint *)(e->data))->y);
-			nbelem++;
-			break;
-		case OBJECT_MAP_LABEL:
-			action_remove_map_label(EditLevel(), ((map_label *)(e->data))->pos.x, ((map_label *)(e->data))->pos.y);
-			nbelem++;
-			break;
-		default:
-			break;
-		}
-	}
-	
-	action_push(ACT_MULTIPLE_ACTIONS, nbelem);
-
-	clear_selection(-1);
 }
 
 void level_editor_paste_selection()
@@ -1112,6 +1110,12 @@ void level_editor_paste_selection()
 	}
 	
 	action_push(ACT_MULTIPLE_ACTIONS, nbact);
+}
+
+void level_editor_cut_selection()
+{
+	level_editor_copy_selection();
+	level_editor_delete_selection();
 }
 
 int leveleditor_select_input(SDL_Event * event)
