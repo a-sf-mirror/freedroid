@@ -49,8 +49,8 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	   (TutorialTom_glasswall_smashed) and
 	   (cmp_obstacle_state("TutorialWall", "broken")) and
 	   (not TutorialTom_glasswall_done) then -- wall section, shown if tux destroyed the wall by hand
-		npc_says("Great, you figured out how deal with this obstacle.")
-		npc_says("Let's proceed.")
+		npc_says(_"Great, you figured out how deal with this obstacle.")
+		npc_says(_"Let's proceed.")
 		TutorialTom_glasswall_done = true
 		if (not TutorialTom_Tux_PastWall) then
 			TutorialTom_Tux_PastWall = true
@@ -492,7 +492,7 @@ Nr=23 Text=_"I'm ready to fight my first bot."
 Nr=24 Text=_"Can you heal me?"
 <LuaCode>
 	if (tux_hp_ratio() == 1) then
-		npc_says("You are fine, there is nothing that I can do.")
+		npc_says(_"You are fine, there is nothing that I can do.")
 		hide(24)
 	else
 		npc_says(_"You should be more careful, Linarian. But yes, I can heal you.")
