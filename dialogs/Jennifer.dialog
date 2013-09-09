@@ -83,7 +83,7 @@ Nr=4 Text=_"Why are you still alive anyway?"
 	npc_says(_"So the bots can identify us as 'friendly' and won't rip us apart.")
 	tux_says(_"Uh.")
 	tux_says(_"Is there any way for me to get such a chip?")
-	npc_says(_"I don't think you will be able to ge one. You don't look very human-like.")
+	npc_says(_"I don't think you will be able to get one. You don't look very human-like.")
 	npc_says(_"How did you get in here anyway?")
 	hide(4) show(5, 6, 7)
 </LuaCode>
