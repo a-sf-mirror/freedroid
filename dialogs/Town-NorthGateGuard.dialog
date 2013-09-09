@@ -127,8 +127,8 @@ Nr=10 Text=_"Somewhere to the east? I should look for him."
 
 Nr=11 Text=_"Surely he'll never come back here."
 <LuaCode>
-	npc_says("I'm not counting on that. The criminal always comes back to the scene of the crime.")
-	npc_says("And that's the last stupid thing they do. You can't steal from the Red Guard twice.")
+	npc_says(_"I'm not counting on that. The criminal always comes back to the scene of the crime.")
+	npc_says(_"And that's the last stupid thing they do. You can't steal from the Red Guard twice.")
 	next(15)
 </LuaCode>
 ----------------------------------------------------------------------
