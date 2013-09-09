@@ -349,7 +349,7 @@ int GetMissionIndexByName(const char *name)
 			return cidx;
 	}
 
-	ErrorMessage(__FUNCTION__, "Unable to find mission named %s\n", PLEASE_INFORM, IS_FATAL, name);
+	ErrorMessage(__FUNCTION__, "Unable to find mission named \"%s\"\n", PLEASE_INFORM, IS_FATAL, name);
 	return -1;
 }
 
