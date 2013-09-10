@@ -39682,6 +39682,10 @@ x=16 y=49 name="37_melee_entered1"
 x=17 y=49 name="37_melee_entered2"
 x=16 y=61 name="37_glasswall_entered1"
 x=17 y=61 name="37_glasswall_entered2"
+x=33 y=59 name="tutorial-range-entered1"
+x=34 y=59 name="tutorial-range-entered2"
+x=35 y=59 name="tutorial-range-entered3"
+x=36 y=59 name="tutorial-range-entered4"
 /plabelinfolvl
 piteminfolvl
 it: n="Plasma Transistor"  X=12.000000  Y=21.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1

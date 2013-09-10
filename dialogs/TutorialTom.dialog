@@ -632,7 +632,10 @@ Nr=32 Text=_"So how do I use guns?"
 		TutorialTom_guns_how_to = true
 		update_quest(_"Tutorial Shooting", _"If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the 'R' key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition.")
 	end
-	if (not TutorialTom_opened_door) then show(33) end
+	if (not TutorialTom_opened_door) then
+		show(33)
+	end
+	hide(32)
 </LuaCode>
 ----------------------------------------------------------------------
 
