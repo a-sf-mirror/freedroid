@@ -39662,22 +39662,11 @@ t117 x31.50 y24.00
 plabelinfolvl
 x=2 y=50 name="melee1"
 x=2 y=58 name="melee2"
-x=38 y=55 name="shootingrange1"
-x=43 y=57 name="shootingrange2"
-x=43 y=52 name="shootingrange3"
-x=39 y=47 name="shootingrange4"
-x=39 y=42 name="shootingrange5"
-x=43 y=45 name="shootingrange6"
-x=41 y=54 name="shootingrange7"
-x=38 y=45 name="shootingrange8"
 x=11 y=14 name="TutorialTuxStart"
 x=10 y=12 name="tutmove-1"
 x=13 y=12 name="tutmove-2"
-x=34 y=50 name="TutorialTom-Ranged"
-x=38 y=50 name="TutorialTux-Ranged"
 x=34 y=25 name="TutorialTom-Terminals"
 x=34 y=27 name="TutorialTux-Terminals"
-x=34 y=10 name="TutorialTom-Takeover"
 x=16 y=43 name="TutorialTom-Chest"
 x=16 y=41 name="TutorialTux-Chest"
 x=16 y=57 name="TutorialTom-Melee"
@@ -39693,10 +39682,25 @@ x=16 y=49 name="37_melee_entered1"
 x=17 y=49 name="37_melee_entered2"
 x=16 y=61 name="37_glasswall_entered1"
 x=17 y=61 name="37_glasswall_entered2"
-x=33 y=59 name="tutorial-range-entered1"
-x=34 y=59 name="tutorial-range-entered2"
-x=35 y=59 name="tutorial-range-entered3"
-x=36 y=59 name="tutorial-range-entered4"
+x=38 y=6 name="shootingrange5"
+x=42 y=9 name="shootingrange6"
+x=42 y=16 name="shootingrange3"
+x=40 y=18 name="shootingrange7"
+x=37 y=19 name="shootingrange1"
+x=42 y=21 name="shootingrange2"
+x=42 y=14 name="shootingrange4"
+x=43 y=6 name="shootingrange8"
+x=34 y=10 name="TutorialTom-Ranged"
+x=34 y=50 name="TutorialTom-Takeover"
+x=34 y=8 name="TutorialTux-Ranged"
+x=34 y=59 name="tutorial-takeover-entered2"
+x=35 y=59 name="tutorial-takeover-entered3"
+x=36 y=59 name="tutorial-takeover-entered4"
+x=34 y=38 name="tutorial-range-entered2"
+x=35 y=38 name="tutorial-range-entered3"
+x=36 y=38 name="tutorial-range-entered4"
+x=33 y=59 name="tutorial-takeover-entered1"
+x=33 y=38 name="tutorial-range-entered1"
 /plabelinfolvl
 piteminfolvl
 it: n="Plasma Transistor"  X=12.000000  Y=21.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
@@ -39704,18 +39708,6 @@ it: n="Anti-grav Pod for Droids"  X=19.000000  Y=26.000000  MDur=-1  CDur=1.0000
 it: n="Mug"  X=22.000000  Y=31.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
 /piteminfolvl
 obstacleextensions
-idx=381 type=30 data={
-	TutorialTakeoverCage
-}
-idx=77 type=30 data={
-	TutorialShootCage
-}
-idx=501 type=30 data={
-	TutorialTakeover
-}
-idx=502 type=30 data={
-	TutorialShootingOut
-}
 idx=723 type=30 data={
 	TutorialEntry
 }
@@ -39782,6 +39774,21 @@ idx=443 type=31 data={
 idx=500 type=30 data={
 	TutorialStorage
 }
+idx=77 type=30 data={
+	TutorialTakeoverCage
+}
+idx=501 type=30 data={
+	TutorialShootingOut
+}
+idx=499 type=30 data={
+	TutorialTakeover
+}
+idx=502 type=30 data={
+	TutorialWhateverdoor
+}
+idx=381 type=30 data={
+	TutorialShootCage
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  38 y=  42 rnd=0	 c:    5
@@ -39804,16 +39811,16 @@ Nr.= 16 x=  34 y=  10 rnd=1	 c:   15
 Nr.= 17 x=  32 y=  13 rnd=1	 c:   15
 Nr.= 18 x=  34 y=  50 rnd=1	 c:   19
 Nr.= 19 x=  34 y=  48 rnd=1	 c:   18  13
-Nr.= 20 x=  38 y=  16 rnd=0	 c:   29  21  22  23  43
+Nr.= 20 x=  38 y=  16 rnd=0	 c:   29  21  22  23  43  54  53
 Nr.= 21 x=  40 y=  18 rnd=0	 c:   29  20  22
 Nr.= 22 x=  41 y=  15 rnd=0	 c:   21  23  20  24  25  44
-Nr.= 23 x=  39 y=  14 rnd=0	 c:   22  20  21  43  44
+Nr.= 23 x=  39 y=  14 rnd=0	 c:   22  20  21  43  44  29
 Nr.= 24 x=  41 y=  11 rnd=0	 c:   22  25  45  44
-Nr.= 25 x=  43 y=  10 rnd=0	 c:   24  27  45
-Nr.= 26 x=  40 y=   6 rnd=0	 c:   28  27  45
-Nr.= 27 x=  42 y=   6 rnd=0	 c:   25  26  45
+Nr.= 25 x=  43 y=  10 rnd=0	 c:   24  27  45  55  26
+Nr.= 26 x=  40 y=   6 rnd=0	 c:   28  27  45  25  56
+Nr.= 27 x=  42 y=   6 rnd=0	 c:   25  26  45  57  58
 Nr.= 28 x=  38 y=   6 rnd=0	 c:   26
-Nr.= 29 x=  38 y=  20 rnd=0	 c:   20  21
+Nr.= 29 x=  38 y=  20 rnd=0	 c:   20  21  23
 Nr.= 30 x=  16 y=  57 rnd=1	 c:   49
 Nr.= 31 x=  16 y=  43 rnd=1	 c:   30
 Nr.= 32 x=  16 y=  30 rnd=1	 c:   31
@@ -39837,6 +39844,13 @@ Nr.= 49 x=  15 y=  58 rnd=1	 c:   30
 Nr.= 50 x=  25 y=  63 rnd=1	 c:   51
 Nr.= 51 x=  34 y=  63 rnd=1	 c:   18
 Nr.= 52 x=  15 y=  13 rnd=1	 c:   33
+Nr.= 53 x=  37 y=  17 rnd=0	 c:   54  20
+Nr.= 54 x=  42 y=  21 rnd=0	 c:   53  20
+Nr.= 55 x=  42 y=  16 rnd=0	 c:   25
+Nr.= 56 x=  43 y=   6 rnd=0	 c:   26  57
+Nr.= 57 x=  43 y=   8 rnd=0	 c:   56  27  59
+Nr.= 58 x=  37 y=   7 rnd=0	 c:   27  59
+Nr.= 59 x=  38 y=   5 rnd=0	 c:   58  57
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 38
