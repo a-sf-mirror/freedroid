@@ -304,7 +304,7 @@ NO_TEXT
 		tux_says(_"Hm, I still don't have the data cube.")
 	end
 	npc_says(_"... What?")
-	npc_says(_"Then you had better go and look for it. Don't waste my time, Linarian.")
+	npc_says(_"Then you better go and look for it. Don't waste my time, Linarian.")
 	data_cube_lost = true
 	hide(21, 22, 23)
 	pop_topic("Deliver the cube")
@@ -416,7 +416,7 @@ Nr=44 Text=_"It's done. Your soldiers were killed, but I managed to reach a comp
 
 Nr=45 Text=_"I will need some time to get myself ready before I clean up Hell Fortress."
 <LuaCode>
-	npc_says(_"You had better be ready.")
+	npc_says(_"You better be ready.")
 </LuaCode>
 ----------------------------------------------------------------------
 
