@@ -39792,6 +39792,12 @@ idx=502 type=30 data={
 idx=501 type=30 data={
 	TutorialWall
 }
+idx=7 type=32 data={
+	TutorialTerminal
+}
+idx=8 type=30 data={
+	TutorialDoor
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  38 y=  42 rnd=0	 c:    5

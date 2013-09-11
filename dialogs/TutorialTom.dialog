@@ -28,7 +28,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 <FirstTime LuaCode>
 		-- initialize
 			TutorialTom_doors = {"TutorialEntry", "TutorialZigzag1", "TutorialZigzag2", "TutorialZigzag3", "TutorialZigzag4"}
-			TutorialTom_doors2 = {TutorialTom_doors[1], TutorialTom_doors[2], TutorialTom_doors[3], TutorialTom_doors[4], TutorialTom_doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialStorage", "TutorialTakeover"}
+			TutorialTom_doors2 = {TutorialTom_doors[1], TutorialTom_doors[2], TutorialTom_doors[3], TutorialTom_doors[4], TutorialTom_doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialDoor", "TutorialStorage", "TutorialTakeover"}
 			items_up = {"Entropy Inverter", "Tachyon Condensator", "Antimatter-Matter Converter", "Superconducting Relay Unit", "Plasma Transistor"}
 			ranged_combat = {"Normal Jacket", "Big kitchen knife", "Shoes", "Standard Shield", "Worker Helmet"}
 			-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
@@ -563,11 +563,11 @@ Nr=28 Text=_"I've beaten the second bot."
 	if (has_item_backpack("Tachyon Condensator")) then
 		npc_says(_"Very good! You've completed your melee training.")
 		npc_says(_"These skills will serve you well in the future.")
-		npc_says(_"As a reward, I'm trading you a .22 Automatic pistol for that Tachyon Condensator.")
+		--npc_says(_"As a reward, I'm trading you a .22 Automatic pistol for that Tachyon Condensator.")  -- glasswall moved to later part of tutorial
 		npc_says(_"Talk to me when you're ready to move on to the next part of the tutorial.")
 		del_item_backpack("Tachyon Condensator", 1)
-		add_item(".22 Automatic", 1)
-		TutorialTom_has_gun = true
+	--	add_item(".22 Automatic", 1)
+	--	TutorialTom_has_gun = true
 		hide(28) show(29)
 	else
 		npc_says(_"You didn't bring back the Tachyon Condensator. You'll need to bring it back before we can continue.")
@@ -582,15 +582,15 @@ Nr=28 Text=_"I've beaten the second bot."
 Nr=29 Text=_"I'm ready to move on."
 <LuaCode>
 	if (not done_quest("Tutorial Melee")) then
-		end_quest(_"Tutorial Melee", _"I decided to move on and go to the shooting tutorial.")
+		end_quest(_"Tutorial Melee", _"I decided to move on and go to next unit of the tutorial.")
 	end
-	if (TutorialTom_has_gun) then
+	--[[ if (TutorialTom_has_gun) then
 		npc_says(_"I'll bet you're itching to try that pistol out on some bots.")
 		npc_says(_"Our next destination is the ranged combat training area, so you're in luck.")
-	end
-	npc_says(_"I'll unlock the door to the south. Follow the corridor east to the shooting range.")
+	end ]]--
+	npc_says(_"I'll unlock the door to the south. Follow the corridor east.")
 	change_obstacle_state("TutorialMeleeOut", "opened")
-	set_bot_destination("TutorialTom-Wall")
+	set_bot_destination("TutorialTom-Terminal")
 	hide(20, 21, 22, 23, 24, 25, 26, 27, 28, 29)
 	end_dialog()
 </LuaCode>

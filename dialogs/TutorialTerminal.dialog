@@ -42,10 +42,10 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	end
 	TutorialTerminal_date = TutorialTerminal_date_1
 
-	if (cmp_obstacle_state("TutorialTakeover", "closed")) then
+	if (cmp_obstacle_state("TutorialDoor", "closed")) then
 		npc_says(_"Gate status: CLOSED", "NO_WAIT")
 		show(0)
-	elseif (cmp_obstacle_state("TutorialTakeover", "opened")) then
+	elseif (cmp_obstacle_state("TutorialDoor", "opened")) then
 		npc_says(_"Gate status: OPEN", "NO_WAIT")
 		show(10)
 	else
@@ -62,7 +62,7 @@ NO_TEXT
 	tux_says(_"open gate", "NO_WAIT")
 	npc_says(_"Access granted. Opening gate ...")
 	npc_says(_"Gate status: OPEN")
-	change_obstacle_state("TutorialTakeover", "opened")
+	change_obstacle_state("TutorialDoor", "opened")
 	cli_says(TutorialTerminal_prompt, "NO_WAIT")
 	hide(0) show(10)
 </LuaCode>
@@ -74,7 +74,7 @@ NO_TEXT
 	tux_says(_"close gate", "NO_WAIT")
 	npc_says(_"Access granted. Closing gate ...")
 	npc_says(_"Gate status: CLOSED")
-	change_obstacle_state("TutorialTakeover", "closed")
+	change_obstacle_state("TutorialDoor", "closed")
 	cli_says(TutorialTerminal_prompt, "NO_WAIT")
 	hide(10) show(0)
 </LuaCode>
@@ -84,7 +84,7 @@ Nr=99 Text=_"logout"
 NO_TEXT
 <LuaCode>
 	tux_says(_"logout", "NO_WAIT")
-	npc_says(_"Exiting")
+	npc_says(_"Exiting...")
 	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 	end_dialog()
 </LuaCode>
