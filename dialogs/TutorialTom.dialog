@@ -28,7 +28,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 <FirstTime LuaCode>
 		-- initialize
 			TutorialTom_doors = {"TutorialEntry", "TutorialZigzag1", "TutorialZigzag2", "TutorialZigzag3", "TutorialZigzag4"}
-			TutorialTom_doors2 = {TutorialTom_doors[1], TutorialTom_doors[2], TutorialTom_doors[3], TutorialTom_doors[4], TutorialTom_doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialStorage", "TutorialShootingOut", "TutorialTakeover"}
+			TutorialTom_doors2 = {TutorialTom_doors[1], TutorialTom_doors[2], TutorialTom_doors[3], TutorialTom_doors[4], TutorialTom_doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialStorage", "TutorialTakeover"}
 			items_up = {"Entropy Inverter", "Tachyon Condensator", "Antimatter-Matter Converter", "Superconducting Relay Unit", "Plasma Transistor"}
 			ranged_combat = {"Normal Jacket", "Big kitchen knife", "Shoes", "Standard Shield", "Worker Helmet"}
 			-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
@@ -54,7 +54,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		TutorialTom_glasswall_done = true
 		if (not TutorialTom_Tux_PastWall) then
 			TutorialTom_Tux_PastWall = true
-			set_bot_destination("Tutorial-PastWall1", "TutorialTom")
+			set_bot_destination("tutorial-range-entered1", "TutorialTom")
 		end
 	end
 
@@ -754,7 +754,7 @@ NO_TEXT
 	del_item_backpack("Laser pistol")
 	del_item_backpack("Plasma pistol")
 	npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
-	change_obstacle_state("TutorialShootingOut", "opened")
+	--change_obstacle_state("TutorialShootingOut", "opened")
 	hide(30, 31, 32, 33, 37, 38, 39) show(40)
 	end_dialog()
 </LuaCode>

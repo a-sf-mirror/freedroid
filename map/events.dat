@@ -1801,32 +1801,6 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"PastWall-N"
-Trigger at label="Tutorial-PastWall1"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and walked through it
-	   (not TutorialTom_glasswall_done) then
-		TutorialTom_glasswall_smashed = true
-		set_rush_tux(1, "TutorialTom")
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name=_"PastWall-S"
-Trigger at label="Tutorial-PastWall2"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and walked through it
-	   (not TutorialTom_glasswall_done) then
-		TutorialTom_glasswall_smashed = true
-		set_rush_tux(1, "TutorialTom")
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
 Name=_"24-trigger-barrel"
 Trigger on obstacle
 Obstacle label="37_chest"
@@ -1843,58 +1817,6 @@ Obstacle label="TutorialWall"
 	TutorialTom_glasswall_smashed = true
 	set_rush_tux(1, "TutorialTom")
 </LuaCode>
-
-* New event trigger *
-Name=_"PastWall-S"
-Trigger at label="tutorial-range-entered2"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and walked through it
-	   (not TutorialTom_glasswall_done) then
-		TutorialTom_glasswall_smashed = true
-		set_rush_tux(1, "TutorialTom")
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name=_"PastWall-S"
-Trigger at label="tutorial-range-entered2"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and walked through it
-	   (not TutorialTom_glasswall_done) then
-		TutorialTom_glasswall_smashed = true
-		set_rush_tux(1, "TutorialTom")
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name=_"PastWall-S"
-Trigger at label="tutorial-range-entered2"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and walked through it
-	   (not TutorialTom_glasswall_done) then
-		TutorialTom_glasswall_smashed = true
-		set_rush_tux(1, "TutorialTom")
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name=_"PastWall-S"
-Trigger at label="tutorial-range-entered2"
-Silent=1
-<LuaCode>
-	if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and walked through it
-	   (not TutorialTom_glasswall_done) then
-		TutorialTom_glasswall_smashed = true
-		set_rush_tux(1, "TutorialTom")
-	end
-</LuaCode>
-* End of trigger *
 
 * End of trigger *
 ##############
