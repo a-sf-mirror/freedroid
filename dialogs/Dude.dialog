@@ -59,7 +59,7 @@ get_town_score()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=0 Text_="Left out."
+Nr=0 Text=_"Left out."
 <LuaCode>
 	npc_says(_"Left out on purpose...")
 	hide(0)
@@ -505,20 +505,20 @@ Nr=73 Text="WillGapes"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=80 Text_="Become Red Guard"
+Nr=80 Text=_"Become Red Guard"
 <LuaCode>
 	tux_has_joined_guard = true
 	npc_says(_"You are now a member of the Red Guard.")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=81 Text_="Craft addons"
+Nr=81 Text=_"Craft addons"
 <LuaCode>
 	craft_addons()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=82 Text_="Upgrade items"
+Nr=82 Text=_"Upgrade items"
 <LuaCode>
 	upgrade_items()
 </LuaCode>
