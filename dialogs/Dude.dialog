@@ -92,37 +92,37 @@ Nr=4 Text="Arthur"
 
 Nr=5 Text="Bender"
 <LuaCode>
-	call_subdialog("Bender")
+	start_chat("Bender")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text="Benjamin"
 <LuaCode>
-	call_subdialog("Benjamin")
+	start_chat("Benjamin")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text="Bruce"
 <LuaCode>
-	call_subdialog("Bruce")
+	start_chat("Bruce")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=8 Text="Butch"
 <LuaCode>
-	call_subdialog("Butch")
+	start_chat("Butch")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=9 Text="c-net"
 <LuaCode>
-	call_subdialog("c-net")
+	start_chat("c-net")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text="c-net_sub_nethack"
 <LuaCode>
-	call_subdialog("c-net_sub_nethack")
+	start_chat("c-net_sub_nethack")
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -134,374 +134,374 @@ Nr=11 Text="Chandra"
 
 Nr=12 Text="Cryo-Terminal"
 <LuaCode>
-	call_subdialog("Cryo-Terminal")
+	start_chat("Cryo-Terminal")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text="DeadGuy"
 <LuaCode>
-	call_subdialog("DeadGuy")
+	start_chat("DeadGuy")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=14 Text="Dixon"
 <LuaCode>
-	call_subdialog("Dixon")
+	start_chat("Dixon")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=15 Text="DocMoore"
 <LuaCode>
-	call_subdialog("DocMoore")
+	start_chat("DocMoore")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=16 Text="DSB-MachineDeckControl"
 <LuaCode>
-	call_subdialog("DSB-MachineDeckControl")
+	start_chat("DSB-MachineDeckControl")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=17 Text="DSB-PowerControl"
 <LuaCode>
-	call_subdialog("DSB-PowerControl")
+	start_chat("DSB-PowerControl")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=18 Text="DSB-PowerControlGate1"
 <LuaCode>
-	call_subdialog("DSB.PowerControlGate1")
+	start_chat("DSB.PowerControlGate1")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=19 Text="Dude"
 <LuaCode>
 	npc_says(_"Beware of recursion!")
-	call_subdialog("Dude")
+	start_chat("Dude")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text="Duncan"
 <LuaCode>
-	call_subdialog("Duncan")
+	start_chat("Duncan")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=21 Text="Engel"
 <LuaCode>
-	call_subdialog("Engel")
+	start_chat("Engel")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=22 Text="Ewald"
 <LuaCode>
-	call_subdialog("Ewald")
+	start_chat("Ewald")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=23 Text="Ewalds_296"
 <LuaCode>
-	call_subdialog("Ewalds_296")
+	start_chat("Ewalds_296")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=24 Text="Francis"
 <LuaCode>
-	call_subdialog("Francis")
+	start_chat("Francis")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=25 Text="Geist"
 <LuaCode>
-	call_subdialog("Geist")
+	start_chat("Geist")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=26 Text="Guy"
 <LuaCode>
-	call_subdialog("Guy")
+	start_chat("Guy")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=27 Text="Geist"
 <Lua7Code>
-	call_subdialog("Geist")
+	start_chat("Geist")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=28 Text="HF-EntranceBot"
 <LuaCode>
-	call_subdialog("HF-EntranceBot")
+	start_chat("HF-EntranceBot")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=29 Text="HF-FirmwareUpdateServer"
 <LuaCode>
-	call_subdialog("HF-FirmwareUpdateServer")
+	start_chat("HF-FirmwareUpdateServer")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=30 Text="InvaderBot"
 <LuaCode>
-	call_subdialog("InvaderBot")
+	start_chat("InvaderBot")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text="Iris"
 <LuaCode>
-	call_subdialog("Iris")
+	start_chat("Iris")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=32 Text="Jasmine"
 <LuaCode>
-	call_subdialog("Jasmine")
+	start_chat("Jasmine")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=33 Text="Jennifer"
 <LuaCode>
-	call_subdialog("Jennifer")
+	start_chat("Jennifer")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=34 Text="John"
 <LuaCode>
-	call_subdialog("John")
+	start_chat("John")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=35 Text="Karol"
 <LuaCode>
-	call_subdialog("Karol")
+	start_chat("Karol")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=36 Text="Kevin-Lawnmower"
 <LuaCode>
-	call_subdialog("Kevin-Lawnmower")
+	start_chat("Kevin-Lawnmower")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=37 Text="Kevin"
 <LuaCode>
-	call_subdialog("Kevin")
+	start_chat("Kevin")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=38 Text="Kevin-Guard"
 <LuaCode>
-	call_subdialog("Kevin-Guard")
+	start_chat("Kevin-Guard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=39 Text="Koan"
 <LuaCode>
-	call_subdialog("Koan")
+	start_chat("Koan")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=40 Text="Lukas"
 <LuaCode>
-	call_subdialog("Lukas")
+	start_chat("Lukas")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=41 Text="Maintenance-Terminal"
 <LuaCode>
-	call_subdialog("Maintenance-Terminal")
+	start_chat("Maintenance-Terminal")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=42 Text="Michelanglo"
 <LuaCode>
-	call_subdialog("Michelanglo")
+	start_chat("Michelanglo")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=43 Text="MiniFactory-Terminal"
 <LuaCode>
-	call_subdialog("MiniFactory-Terminal")
+	start_chat("MiniFactory-Terminal")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=44 Text="MO-HFGateAccessServer"
 <LuaCode>
-	call_subdialog("MO-HFGateAccessServer")
+	start_chat("MO-HFGateAccessServer")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=45 Text="MO-RGGateGuard"
 <LuaCode>
-	call_subdialog("MO-RGGateGuard")
+	start_chat("MO-RGGateGuard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=46 Text="MO-RGGateGuardLeader"
 <LuaCode>
-	call_subdialog("MO-RGGateGuardLeader")
+	start_chat("MO-RGGateGuardLeader")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=47 Text="MS-Factory-Addon-Terminal"
 <LuaCode>
-	call_subdialog("MS-Factory-Addon-Terminal")
+	start_chat("MS-Factory-Addon-Terminal")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=48 Text="Pendragon"
 <LuaCode>
-	call_subdialog("Pendragon")
+	start_chat("Pendragon")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=49 Text="Peter"
 <LuaCode>
-	call_subdialog("Peter")
+	start_chat("Peter")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text="Richard"
 <LuaCode>
-	call_subdialog("Richard")
+	start_chat("Richard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=51 Text="SACD"
 <LuaCode>
-	call_subdialog("SACD")
+	start_chat("SACD")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=52 Text="SADD"
 <LuaCode>
-	call_subdialog("SADD")
+	start_chat("SADD")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=53 Text="Singularity-Drone"
 <LuaCode>
-	call_subdialog("Singularity-Drone")
+	start_chat("Singularity-Drone")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=54 Text="Singularity"
 <LuaCode>
-	call_subdialog("Singularity")
+	start_chat("Singularity")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=55 Text="Skippy"
 <LuaCode>
-	call_subdialog("Skippy")
+	start_chat("Skippy")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=56 Text="Sorenson"
 <LuaCode>
-	call_subdialog("Sorenson")
+	start_chat("Sorenson")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=57 Text="Spencer"
 <LuaCode>
-	call_subdialog("Spencer")
+	start_chat("Spencer")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=58 Text="Stone"
 <LuaCode>
-	call_subdialog("Stone")
+	start_chat("Stone")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=59 Text="Tamara"
 <LuaCode>
-	call_subdialog("Tamara")
+	start_chat("Tamara")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=60 Text="Tania"
 <LuaCode>
-	call_subdialog("Tania")
+	start_chat("Tania")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=61 Text="Template"
 <LuaCode>
-	call_subdialog("Template")
+	start_chat("Template")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=62 Text="Terminal"
 <LuaCode>
-	call_subdialog("Terminal")
+	start_chat("Terminal")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=63 Text="TestDroid"
 <LuaCode>
-	call_subdialog("TestDroid")
+	start_chat("TestDroid")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=64 Text="Town-614"
 <LuaCode>
-	call_subdialog("Town-614")
+	start_chat("Town-614")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=65 Text="Town-GuardhouseGuard"
 <LuaCode>
-	call_subdialog("Town-GuardhouseGuard")
+	start_chat("Town-GuardhouseGuard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=66 Text="Town-NorthGateGuard"
 <LuaCode>
-	call_subdialog("Town-NorthGateGuard")
+	start_chat("Town-NorthGateGuard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=67 Text="Town-TeleportGuard"
 <LuaCode>
-	call_subdialog("Town-TeleportGuard")
+	start_chat("Town-TeleportGuard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=68 Text="Town-TuxGuard"
 <LuaCode>
-	call_subdialog("Town-TuxGuard")
+	start_chat("Town-TuxGuard")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=69 Text="TutorialTerminal"
 <LuaCode>
-	call_subdialog("TutorialTerminal")
+	start_chat("TutorialTerminal")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=70 Text="TutorialTom"
 <LuaCode>
-	call_subdialog("TutorialTom")
+	start_chat("TutorialTom")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=71 Text="Tybalt"
 <LuaCode>
-	call_subdialog("Tybalt")
+	start_chat("Tybalt")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=72 Text="Vending-Machine"
 <LuaCode>
-	call_subdialog("Vening-Machine")
+	start_chat("Vening-Machine")
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=73 Text="WillGapes"
 <LuaCode>
-	call_subdialog("WillGapes")
+	start_chat("WillGapes")
 </LuaCode>
 ----------------------------------------------------------------------
 
