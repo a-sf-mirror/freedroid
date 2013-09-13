@@ -56742,7 +56742,7 @@ idx=2442 type=32 data={
 	I have no idea what this red thing is, but it looks pretty cool.
 }
 idx=3081 type=32 data={
-	MS_factory_addon_terminal
+	MS-Factory-Addon-Terminal
 }
 /obstacleextensions
 wp

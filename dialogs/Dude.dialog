@@ -343,9 +343,9 @@ Nr=46 Text="MO-RGGateGuardLeader"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=47 Text="MS_factory_addon_terminal"
+Nr=47 Text="MS-Factory-Addon-Terminal"
 <LuaCode>
-	call_subdialog("MS_factory_addon_terminal")
+	call_subdialog("MS-Factory-Addon-Terminal")
 </LuaCode>
 ----------------------------------------------------------------------
 

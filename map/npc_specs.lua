@@ -25,7 +25,7 @@ npc_list{
 	"Richard",
 	"Peter",
 	"Pendragon",
-	"MS_factory_addon_terminal",
+	"MS-Factory-Addon-Terminal",
 	"MO-RGGateGuardLeader",
 	"MO-RGGateGuard",
 	"MO-HFGateAccessServer",
