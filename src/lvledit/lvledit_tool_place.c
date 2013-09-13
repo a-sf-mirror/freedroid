@@ -343,7 +343,7 @@ static void add_wall(float x, float y, int type, enum _level_editor_directions d
 	wall->position.y = y;
 
 	// Create the new wall on the map
-	wall->address = action_create_obstacle_user(EditLevel(), x, y, type);
+	wall->address = add_obstacle(EditLevel(), x, y, type);
 
 	// Add the new wall in the linked list
 	list_add_tail(&(wall->list), &(state.l_elements_head));
@@ -397,7 +397,7 @@ static void line_moving_backwards(void)
 	last_pos = last_wall->position;
 
 	// Remove the last wall
-	action_remove_obstacle_user(EditLevel(), last_wall->address);
+	del_obstacle(last_wall->address);
 	list_del(&last_wall->list);
 	free(last_wall);
 
@@ -618,6 +618,10 @@ static void end_wall_line(int commit)
 			// When the user wants cancel the line of walls, we must remove all
 			// the walls
 			del_obstacle(e->address);
+		} else {
+			/* Add all the actions needed to be able to delete
+			 * the entire line of walls. */
+			action_push(ACT_REMOVE_OBSTACLE, e->address);
 		}
 		nb_actions++;
 
