@@ -762,7 +762,7 @@ Nr=55 Text=_"Thanks. I'm ready now."
 	TutorialTom_hacking_bots = true
 	update_quest(_"Tutorial Hacking", _"Tutorial Tom wants me to hack those bots. The only thing I need to worry about is overheating. But if I get too hot I can always try the Emergency shutdown program.")
 	change_obstacle_state("TutorialTakeoverCage", "opened")
-	hide(55) show(56)
+	hide(55) -- show(56) <- move this!
 	end_dialog()
 -- TODO Also explain improving program revisions
 </LuaCode>
@@ -815,9 +815,16 @@ Nr=58 Text=_"Can you tell me more about upgrading items?"
 	npc_says(_"Pay attention to the type of socket the add-on needs.")
 	update_quest(_"Tutorial Upgrading Items", _"Before crafting an add-on I have to get some materials. The best way is to extract them from the bots, using Extract Bot Parts skill. Each add-on requires a socket in the item. When the add-on is ready, I have to create a socket in the item and plug the add-on. Only technicians can craft add-ons or plug them.")
 -- TODO decide on what type of upgrade should player make?
-	for var in ipairs(items_up) do
+--[[	for var in ipairs(items_up) do
 		add_item(items_up[var], 20)
-	end
+	end ]]-- FOR SOME REASON this was not working... add items one by one
+
+	add_item("Entropy Inverter", 20)
+	add_item("Tachyon Condensator", 20)
+	add_item("Antimatter-Matter Converter", 20)
+	add_item("Superconducting Relay Unit", 20)
+	add_item("Plasma Transistor", 20)
+
 	craft_addons()
 	npc_says(_"Now you'll need to pay some more money in order to make a socket and plug in the add-on. Here, take some.")
 	add_gold(600)
@@ -832,9 +839,16 @@ Nr=59 Text=_"I wasted my materials on the add-on I didn't need. Can you give mor
 <LuaCode>
 	npc_says(_"Yes, but only this time. I'll give you some money too. Just be more careful in the future and make wise choices.")
 	npc_says(_"Reality is not as generous as I am.")
-	for var in ipairs(items_up) do
+--[[	for var in ipairs(items_up) do
 		add_item(items_up[var], 20)
-	end
+	end ]]--FOR SOME REASON this was not working... add items one by one
+
+	add_item("Entropy Inverter", 20)
+	add_item("Tachyon Condensator", 20)
+	add_item("Antimatter-Matter Converter", 20)
+	add_item("Superconducting Relay Unit", 20)
+	add_item("Plasma Transistor", 20)
+
 	add_gold(600)
 	tux_says(_"Thank you.")
 	npc_says(_"Think carefully before you make your next add-on.")
