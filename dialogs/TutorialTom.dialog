@@ -45,6 +45,16 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 </LuaCode>
 
 <EveryTime LuaCode>
+	if (TutorialTom_start_chat) then --initiated by TutorialTerminal.dialog
+		npc_says(_"Well done.")
+		npc_says(_"Now follow me to the next section. You will learn how to hack bots.")
+		TutorialTom_start_chat = false -- don't show this again
+		teleport_npc("TutorialTomPostTerminalTeleportTarget")
+		set_bot_destination("TutorialTom-Takeover")
+		change_obstacle_state("TutorialTakeover", "opened") --door
+		end_dialog()
+	end
+
 	if (partner_started()) and
 	   (TutorialTom_glasswall_smashed) and
 	   (cmp_obstacle_state("TutorialWall", "broken")) and
