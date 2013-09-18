@@ -1756,11 +1756,29 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Check-check2"
+Name=_"Chest-check2"
 Trigger at label="37_chest_entered2"
 Silent=1
 <LuaCode>
 	tut_tux_chest_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Terminal-check1"
+Trigger at label="37_terminal_entered1"
+Silent=1
+<LuaCode>
+	tut_tux_terminal_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Terminal-check2"
+Trigger at label="37_terminal_entered2"
+Silent=1
+<LuaCode>
+	tut_tux_terminal_entered = true
 </LuaCode>
 * End of trigger *
 

@@ -115,6 +115,10 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	   show(24)
 	end
 
+	if (tut_tux_terminal_entered) then
+		hide(24)
+	end
+
 	if (tut_tux_glass_entered) then
 		show(70)
 	end
