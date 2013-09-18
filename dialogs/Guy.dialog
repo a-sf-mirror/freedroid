@@ -36,10 +36,15 @@ freedroid-discussion@lists.sourceforge.net
 </LuaCode>
 
 <EveryTime LuaCode>
-tux_says("tux_says()", "NO_WAIT")
-npc_says("npc_says()", "NO_WAIT")
-cli_says("cli_says()", "NO_WAIT")
-npc_says("", "NO_WAIT")  -- extra linebreak for cli_says()
+	tux_says("tux_says()", "NO_WAIT")
+	npc_says("npc_says()", "NO_WAIT")
+	cli_says("cli_says()", "NO_WAIT")
+	npc_says("", "NO_WAIT")  -- extra linebreak for cli_says()
+
+	GuyArray = {"one", "two", "three"}
+	for var in ipairs(GuyArray) do
+		npc_says(GuyArray[var], "NO_WAIT")
+	end
 
 	next(0)
 </LuaCode>
