@@ -28,7 +28,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 <FirstTime LuaCode>
 		-- initialize
 			TutorialTom_doors = {"TutorialEntry", "TutorialZigzag1", "TutorialZigzag2", "TutorialZigzag3", "TutorialZigzag4"}
-			TutorialTom_doors2 = {TutorialTom_doors[1], TutorialTom_doors[2], TutorialTom_doors[3], TutorialTom_doors[4], TutorialTom_doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialDoor", "TutorialStorage", "TutorialTakeover"}
+			TutorialTom_doors2 = {TutorialTom_doors[1], TutorialTom_doors[2], TutorialTom_doors[3], TutorialTom_doors[4], TutorialTom_doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialDoor", "TutorialGlasswallDoor", "TutorialStorage", "TutorialTakeover"}
 			items_up = {"Entropy Inverter", "Tachyon Condensator", "Antimatter-Matter Converter", "Superconducting Relay Unit", "Plasma Transistor"}
 			ranged_combat = {"Normal Jacket", "Big kitchen knife", "Shoes", "Standard Shield", "Worker Helmet"}
 			-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
@@ -137,7 +137,16 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		hide(70) show(30, 38)
 	end
 
+	if (done_quest("Tutorial Hacking")) and
+	   (not tut_tux_glass_entered) then
+		show(71)
+	else
+		hide(71)
+	end
 
+	if (tut_tux_glass_entered) then
+		hide(57)
+	end
 
 	show(99)
 </LuaCode>
@@ -612,9 +621,16 @@ Nr=29 Text=_"I'm ready to move on."
 ----------------------------------------------------------------------
 
 
+Nr=71 Text=_"I defeated all the bots in the cage."
+<LuaCode>
+	npc_says(_"Well done!")
+	npc_says(_"Then let us move towards the next stage of the Tutorial")
+	change_obstacle_state("TutorialGlasswallDoor", "opened")
 
+	end_dialog()
+</LuaCode>
 
-
+----------------------------------------------------------------------
 
 
 
@@ -669,7 +685,7 @@ Nr=42 Text=_"Alright, I'm ready to go hack some bots."
 	npc_says(_"You will need to login, by left clicking on it, and then select unlock door.")
 	npc_says(_"Terminals act very similar to hacked bots.")
 	add_quest(_"Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
-	hide(42, 58, 59, 60) show(50, 56)
+	hide(42, 58, 59, 60) show(50)--  56 
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -879,6 +895,12 @@ Nr=60 Text=_"Upgrading items is still too complex for me. Can you explain it aga
 	npc_says(_"I hope it's clear now.")
 </LuaCode>
 ----------------------------------------------------------------------
+
+
+
+
+
+
 
 Nr=70 Text=_"There is a wall in the path! How will we get through?"
 <LuaCode>
@@ -1143,8 +1165,8 @@ Nr=84 Text=_"Ranged Combat"
 Nr=85 Text=_"Abilities"
 <LuaCode>
 	npc_says(_"OK, I'll take us there and give you some armor and a weapon.")
-	teleport_npc("TutorialTom-Terminals")
-	teleport("TutorialTux-Terminals")
+	teleport_npc("TutorialTom-Terminal")
+	teleport("TutorialTux-Terminal")
 	for var in ipairs(ranged_combat) do
 		add_item(ranged_combat[var])
 	end
@@ -1155,8 +1177,8 @@ Nr=85 Text=_"Abilities"
 Nr=86 Text=_"Upgrading Items & Terminals"
 <LuaCode>
 	npc_says(_"OK, I'll take us there and give you some armor and a weapon to work with.")
-	teleport_npc("TutorialTom-Terminals")
-	teleport("TutorialTux-Terminals")
+	teleport_npc("TutorialTom-Terminal")
+	teleport("TutorialTux-Terminal")
 	for var in ipairs(ranged_combat) do
 		add_item(ranged_combat[var])
 	end

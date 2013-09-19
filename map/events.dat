@@ -1819,6 +1819,24 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
+Name=_"Glass-check3"
+Trigger at label="37_glasswall_entered3"
+Silent=1
+<LuaCode>
+	tut_tux_glass_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Glass-check4"
+Trigger at label="37_glasswall_entered4"
+Silent=1
+<LuaCode>
+	tut_tux_glass_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
 Name=_"24-trigger-barrel"
 Trigger on obstacle
 Obstacle label="37_chest"

@@ -39675,8 +39675,6 @@ x=2 y=58 name="melee2"
 x=11 y=14 name="TutorialTuxStart"
 x=10 y=12 name="tutmove-1"
 x=13 y=12 name="tutmove-2"
-x=34 y=25 name="TutorialTom-Terminals"
-x=34 y=27 name="TutorialTux-Terminals"
 x=16 y=43 name="TutorialTom-Chest"
 x=16 y=41 name="TutorialTux-Chest"
 x=16 y=57 name="TutorialTom-Melee"
@@ -39711,6 +39709,9 @@ x=34 y=38 name="37_glasswall_entered2"
 x=35 y=38 name="37_glasswall_entered3"
 x=36 y=38 name="37_glasswall_entered4"
 x=26 y=63 name="TutorialTomPostTerminalTeleportTarget"
+x=34 y=27 name="TutorialTux-Glasswall"
+x=34 y=25 name="TutorialTom-Glasswall"
+x=22 y=63 name="TutorialTux-Terminal"
 /plabelinfolvl
 piteminfolvl
 it: n="Plasma Transistor"  X=12.000000  Y=21.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1
