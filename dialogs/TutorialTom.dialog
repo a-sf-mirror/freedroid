@@ -64,8 +64,9 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		TutorialTom_glasswall_done = true
 		if (not TutorialTom_Tux_PastWall) then
 			TutorialTom_Tux_PastWall = true
-			set_bot_destination("tutorial-range-entered1", "TutorialTom")
+			set_bot_destination("TutorialTom-Ranged", "TutorialTom")
 		end
+		end_dialog()
 	end
 
 	if (not cmp_obstacle_state("TutorialWall", "broken")) then --to avoid regressions with code above
@@ -134,7 +135,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	end
 
 	if (TutorialTom_Tux_PastWall) then
-		hide(70) show(30, 38)
+		hide(70) show(30)
 	end
 
 	if (done_quest("Tutorial Hacking")) and
@@ -623,7 +624,7 @@ Nr=71 Text=_"I defeated all the bots in the cage."
 	npc_says(_"Well done!")
 	npc_says(_"Then let us move towards the next stage of the Tutorial")
 	change_obstacle_state("TutorialGlasswallDoor", "opened")
-	npc_says(_"As a reward, I'm giving you a .22 Automatic pistol,")
+	npc_says(_"As a reward, I'm giving you a .22 Automatic pistol.")
 	add_item(".22 Automatic", 1)
 	TutorialTom_has_gun = true
 	end_dialog()
@@ -805,15 +806,6 @@ Nr=56 Text=_"I'm finished. I'm ready to move on."
 			TutorialTom_hacking_bots = false
 			update_quest(_"Tutorial Hacking", _"Well, it took a lot of work, but I showed those bots who's boss.")
 		end
-	end
-	npc_says(_"Now, there's one last thing you should know.")
-	npc_says(_"You Linarians can apparently withdraw from our world temporarily.")
-	npc_says(_"Time stops, and everything freezes in place.")
-	npc_says(_"This can be accomplished by using the [b]Esc key[/b].")
-	if (not TutorialTom_hacking_bots) then
-		npc_says(_"Your final task is to leave us using this menu.")
-		npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
-		npc_says(_"You'll need it if our world is to survive.")
 	end
 	hide(51, 52, 53, 54, 55, 57)
 	end_dialog()
@@ -1019,11 +1011,10 @@ Nr=35 Text=_"I killed all the bots."
 	if (done_quest("Tutorial Shooting")) then
 		npc_says(_"Excellent job.")
 		npc_says(_"Keep shooting like that, and the bots will never stand a chance, as long as you still have ammo.")
-		npc_says(_"Next, we'll be moving on to learning the [b]Hacking[/b] program.")
-		npc_says(_"But first, you'll need to give me your weapons.")
-		npc_says(_"Put all your ranged weapons in your inventory, then talk to me and we'll move on.")
+
+
 		update_quest(_"Tutorial Shooting", _"That was like shooting fish in a barrel. I could use a fish about now.")
-		hide(35, 38) show(36, 37)
+		hide(35) show(36, 37)
 		end_dialog()
 	else
 		npc_says(_"I don't mind if you don't want to do this, but please don't try to trick me.")
@@ -1045,63 +1036,25 @@ Nr=36 Text=_"I would like a few more bots to shoot at."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=37 Text=_"I'm ready to move on."
+Nr=37 Text=_"So, what's next?"
 <LuaCode>
-	if (has_item_backpack(".22 Automatic")) and
-	   (has_item_backpack("Laser pistol")) and
-	   (has_item_backpack("Plasma pistol")) then
-		hide(36, 37) next(39)
-	else
-		npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
-		npc_says(_"You will need to have the guns in your inventory to give them to me, so if you dropped them, please go get them.")
-		npc_says(_"That includes the laser and plasma pistols in the storage room to the west.")
-		end_dialog()
+	npc_says(_"Now, there's one last thing you should know.")
+	npc_says(_"You Linarians can apparently withdraw from our world temporarily.")
+	npc_says(_"Time stops, and everything freezes in place.")
+	npc_says(_"This can be accomplished by using the [b]Esc key[/b].")
+	if (not TutorialTom_hacking_bots) then
+		npc_says(_"Your final task is to leave us using this menu.")
+		npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
+		npc_says(_"You'll need it if our world is to survive.")
 	end
+	
+	hide(30, 31, 32, 33, 36)
+	-- show(47)
+	
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=38 Text=_"I'd rather just move on to the next section of the tutorial."
-<LuaCode>
-	npc_says(_"As you wish, Linarian.")
-	if (TutorialTom_opened_door) then
-		if (has_item_backpack(".22 Automatic")) and
-		   (has_item_backpack("Laser pistol")) and
-		   (has_item_backpack("Plasma pistol")) then
-			end_quest(_"Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
-			next(39)
-		else
-			npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
-			npc_says(_"You will need to have the guns in your inventory to give them to me, so if you dropped them, please go get them.")
-			npc_says(_"That includes the laser and plasma pistols in the storage room to the west.")
-		end
-	elseif (TutorialTom_has_gun) then
-		if (has_item_backpack(".22 Automatic")) then
-			end_quest(_"Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
-			next(39)
-		else
-			npc_says(_"I'll need you to surrender your .22 pistol. Unequip it, then talk to me again.")
-			end_dialog()
-		end
-	else
-		end_quest(_"Tutorial Shooting", _"I decided not to do the shooting tutorial.")
-		--next(39)
-	end
-</LuaCode>
 ----------------------------------------------------------------------
-
- Nr=39 Text="BUG, REPORT ME! tutorial node39 -- REMOVE WEAPONS" --hidden
- NO_TEXT
-<LuaCode>
-	del_item_backpack(".22 Automatic")
-	del_item_backpack("Laser pistol")
-	del_item_backpack("Plasma pistol")
-	npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
-	--change_obstacle_state("TutorialShootingOut", "opened")
-	hide(30, 31, 32, 33, 37, 38, 39) show(40)
-	end_dialog()
-</LuaCode>
-----------------------------------------------------------------------
-
 
 ----------------------------------------------------------------------
 ---                                                                ---
