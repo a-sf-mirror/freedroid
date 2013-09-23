@@ -218,7 +218,10 @@ Nr=5 Text=_"I'm sensing some sort of strange presence in the vicinity."
 	npc_says(_"On our way to the next stopping point, we'll pass some items on the floor.")
 	npc_says(_"Feel free to stop and examine them to get practice.")
 	npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]I key[/b], where you can examine it further.")
-	update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'Z' key, and press 'X' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'I'.")
+	if (not TutorialTom_TutMovement_ToggleDetectItems) then
+		update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'Z' key, and press 'X' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'I'.")
+		TutorialTom_TutMovement_ToggleDetectItems = true
+	end
 	if (has_item("Mug")) and -- these are the items in the item room
 	   (has_item("Anti-grav Pod for Droids")) and
 	   (has_item("Plasma Transistor")) then
