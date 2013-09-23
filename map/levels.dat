@@ -39758,7 +39758,7 @@ idx=648 type=30 data={
 idx=544 type=31 data={
 	it: n="Normal Jacket"  X=18.000000  Y=39.000000  AC=13  MDur=13  CDur=6.000000  AClip=0  Multi=1
 	it: n="Improvised Buckler"  X=18.000000  Y=39.000000  AC=7  MDur=9  CDur=6.000000  AClip=0  Multi=1
-	it: n="Shoes"  X=18.000000  Y=39.000000  AC=4  MDur=6  CDur=1.000000  AClip=0  Multi=1
+	it: n="Shoes"  X=18.000000  Y=39.000000  AC=4  MDur=9  CDur=1.000000  AClip=0  Multi=1
 	it: n="Worker Helmet"  X=18.000000  Y=39.000000  AC=7  MDur=25  CDur=18.000000  AClip=0  Multi=1
 }
 idx=728 type=32 data={
