@@ -1205,6 +1205,12 @@ item_list{
 	description =_[[Said to be the downscaled version of the original Pandora's Sphere, this device extinguishes life with superheated plasma.]],
 	rotation_series = "grenades/plasma",
 },
+
+
+----------------------------------------------------------------------
+---
+---             Armor
+---
 ----------------------------------------------------------------------
 
 {
@@ -2810,6 +2816,46 @@ item_list{
 	rotation_series = "weapons/plasma_gun",
 	tux_part = "iso_gun1",
 },
+
 ----------------------------------------------------------------------
+---
+---             Tutorial
+--- (Items to be used in the tutorial only!)
+----------------------------------------------------------------------
+
+
+{
+	name =_"Small Tutorial Axe",
+	slot = "weapon",
+	weapon = {
+		damage = "2:6",
+		attack_time = 0.600000,
+		reloading_time = 0.000000,
+		melee = true,
+		bullet = melee_bullet,
+		motion_class = "1hmelee",
+	},
+	requirements = {strength = 14, dexterity = 15},
+	durability = "40:60",
+	base_price = 80,
+	inventory = {x = 2, y = 3, image = "weapons/small_axe/inv_image_tutorial.png" },
+	drop = {sound = "drop_sword_sound.ogg"},
+	description =_[[While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well.
+Sell me!]],
+	rotation_series = "weapons/small_axe",
+	tux_part = "iso_small_axe",
+},
+
+{
+	name =_"Bottled Tutorial ice",
+	use_help =_"Cooling aid",
+	base_price = 15,
+	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/force_capsule/inv_image_small_tutorial.png" },
+	drop = {sound = "drop_potion_sound.ogg"},
+	description =_[[This bottle is filled with ice. It can keep you cool during a warm summer day.
+Buy me!]],
+	rotation_series = "pills_potions/force_capsule",
+},
+
 
 }

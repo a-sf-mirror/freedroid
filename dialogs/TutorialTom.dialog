@@ -379,7 +379,7 @@ Nr=62 Text=_"I would like to practice selling an item."
 	npc_says(_"Items that you have equipped have a hand icon on them.")
 	npc_says(_"However, if you sell the items from the chest (which should have been equipped automatically) I won't be giving you replacements.")
 	npc_says(_"Select the Small Axe and click the sell button.")
-	add_item("Small Axe")
+	add_item("Small Tutorial Axe")
 	i = 1
 	while (i < 100) do  -- this is a ugly hack to get rid of the "Item received: Small Axe" centerprint
 	display_big_message("")
@@ -393,7 +393,7 @@ Nr=63 Text=_"Let me try that again."
 NO_TEXT
 <LuaCode>
 	trade_with("TutorialTom")
-	if (has_item_backpack("Small Axe")) then
+	if (has_item_backpack("Small Tutorial Axe")) then
 		show(63)
 	else
 		hide(63)
@@ -408,7 +408,7 @@ Nr=64 Text=_"How about buying an item?"
 	npc_says(_"With the circuits from selling the Small Axe to me, you can afford to buy a unit of Bottled ice.")
 	npc_says(_"Since Bottled ice combine together, a slider will pop-up asking how many you'd like to buy.")
 	npc_says(_"You have enough circuits for one unit.")
-	sell_item("Bottled ice")
+	sell_item("Bottled Tutorial ice")
 	hide(64) next(65)
 </LuaCode>
 ----------------------------------------------------------------------
