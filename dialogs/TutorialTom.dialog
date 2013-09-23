@@ -586,11 +586,8 @@ Nr=28 Text=_"I've beaten the second bot."
 	if (has_item_backpack("Tachyon Condensator")) then
 		npc_says(_"Very good! You've completed your melee training.")
 		npc_says(_"These skills will serve you well in the future.")
-		--npc_says(_"As a reward, I'm trading you a .22 Automatic pistol for that Tachyon Condensator.")  -- glasswall moved to later part of tutorial
 		npc_says(_"Talk to me when you're ready to move on to the next part of the tutorial.")
 		del_item_backpack("Tachyon Condensator", 1)
-	--	add_item(".22 Automatic", 1)
-	--	TutorialTom_has_gun = true
 		hide(28) show(29)
 	else
 		npc_says(_"You didn't bring back the Tachyon Condensator. You'll need to bring it back before we can continue.")
@@ -626,7 +623,9 @@ Nr=71 Text=_"I defeated all the bots in the cage."
 	npc_says(_"Well done!")
 	npc_says(_"Then let us move towards the next stage of the Tutorial")
 	change_obstacle_state("TutorialGlasswallDoor", "opened")
-
+	npc_says(_"As a reward, I'm giving you a .22 Automatic pistol,")
+	add_item(".22 Automatic", 1)
+	TutorialTom_has_gun = true
 	end_dialog()
 </LuaCode>
 
@@ -1090,17 +1089,17 @@ Nr=38 Text=_"I'd rather just move on to the next section of the tutorial."
 </LuaCode>
 ----------------------------------------------------------------------
 
--- Nr=39 Text="BUG, REPORT ME! tutorial node39 -- REMOVE WEAPONS" --hidden
--- NO_TEXT
---<LuaCode>
---	del_item_backpack(".22 Automatic")
---	del_item_backpack("Laser pistol")
---	del_item_backpack("Plasma pistol")
---	npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
+ Nr=39 Text="BUG, REPORT ME! tutorial node39 -- REMOVE WEAPONS" --hidden
+ NO_TEXT
+<LuaCode>
+	del_item_backpack(".22 Automatic")
+	del_item_backpack("Laser pistol")
+	del_item_backpack("Plasma pistol")
+	npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
 	--change_obstacle_state("TutorialShootingOut", "opened")
---	hide(30, 31, 32, 33, 37, 38, 39) show(40)
---	end_dialog()
---</LuaCode>
+	hide(30, 31, 32, 33, 37, 38, 39) show(40)
+	end_dialog()
+</LuaCode>
 ----------------------------------------------------------------------
 
 
