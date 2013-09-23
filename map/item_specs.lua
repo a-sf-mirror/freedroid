@@ -2841,7 +2841,8 @@ item_list{
 	inventory = {x = 2, y = 3, image = "weapons/small_axe/inv_image_tutorial.png" },
 	drop = {sound = "drop_sword_sound.ogg"},
 	description =_[[While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well.
-Sell me!]],
+Sell me!
+Click the red Button with the cross on it when you are done.]],
 	rotation_series = "weapons/small_axe",
 	tux_part = "iso_small_axe",
 },
@@ -2853,7 +2854,8 @@ Sell me!]],
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/force_capsule/inv_image_small_tutorial.png" },
 	drop = {sound = "drop_potion_sound.ogg"},
 	description =_[[This bottle is filled with ice. It can keep you cool during a warm summer day.
-Buy me!]],
+Buy me!
+Click the red Button with the cross on it when you are done.]],
 	rotation_series = "pills_potions/force_capsule",
 },
 

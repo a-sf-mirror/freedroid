@@ -420,7 +420,7 @@ NO_TEXT
 		add_gold(15 - get_gold())
 	end
 	trade_with("TutorialTom")
-	if (count_item_backpack("Bottled ice") < 1) then
+	if (count_item_backpack("Bottled Tutorial ice") < 1) then
 		show(65)
 	else
 		hide(65)
@@ -436,6 +436,23 @@ NO_TEXT
 	npc_says(_"This generally means that the shopkeeper can't give you a reasonable deal on it.")
 	npc_says(_"Someone else probably wants the item.")
 	npc_says(_"You might check your questbook to see if it is mentioned there.")
+	if (has_item_backpack("Bottled Tutorial ice")) then --before player notices, swap the "tutorial" item to normal one :P
+		del_item_backpack("Bottled Tutorial ice")
+		add_item("Bottled ice")
+		display_big_message("") -- so that we don't have the   Item Recieved: spam   on the screen which might be confusing
+		display_big_message("")
+		display_big_message("")
+		display_big_message("")
+		display_big_message("")
+		display_big_message("")
+		display_big_message("")
+		display_big_message("")
+		display_big_message("")
+		display_big_message("")
+		display_big_message("")
+	else
+		npc_says("ERROR OCCURED, TutorialTom node 66, player doesn't have botteled tutorial ice, WTF happened??")
+	end
 	armor_node_one = true
 	if (armor_node_two) then
 		show(19)
