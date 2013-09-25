@@ -33,7 +33,7 @@ ffmpegflags =	-f image2pipe                    \
 				-preset medium                   \
 				-crf 22                          \
 				-pix_fmt yuv420p                 \
-				-threads 2                       \
+				-threads:0 2                     \
 				-b:v 3000k                       \
 				-maxrate 8000k                   \
 				-bufsize 10000k FreedroidRPG.mp4
