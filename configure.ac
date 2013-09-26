@@ -92,6 +92,8 @@ if test x$arch_native = xyes; then
 fi
 
 if test x$sanitize_address = xyes; then
+	AC_MSG_NOTICE([Building with -fsanitize=address -fno-omit-frame-pointer. Also using embedded Lua!])
+	embedded_lua=yes;
 	CFLAGS="$CFLAGS -fsanitize=address -fno-omit-frame-pointer"
 fi
 
