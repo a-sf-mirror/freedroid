@@ -864,7 +864,7 @@ Nr=58 Text=_"Can you tell me more about upgrading items?"
 
 	craft_addons()
 	npc_says(_"Now you'll need to pay some more money in order to make a socket and plug in the add-on. Here, take some.")
-	add_gold(600)
+	add_gold(1200)
 	npc_says(_"Choose an item and add an appropriate socket by clicking '+' on the right of the item. Then attach the add-on to this item and confirm your choice.")
 	upgrade_items()
 	end_quest(_"Tutorial Upgrading Items",_"Maybe I need some time to practice this, but I got the basics.")
@@ -886,7 +886,7 @@ Nr=59 Text=_"I wasted my materials on the add-on I didn't need. Can you give mor
 	add_item("Superconducting Relay Unit", 20)
 	add_item("Plasma Transistor", 20)
 
-	add_gold(600)
+	add_gold(1200)
 	tux_says(_"Thank you.")
 	npc_says(_"Think carefully before you make your next add-on.")
 	hide(59)
