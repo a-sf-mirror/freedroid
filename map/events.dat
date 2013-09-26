@@ -1853,7 +1853,42 @@ Obstacle label="TutorialWall"
 	TutorialTom_glasswall_smashed = true
 	set_rush_tux(1, "TutorialTom")
 </LuaCode>
+* End of trigger *
 
+* New event trigger *
+Name=_"Tutorial Takeover entered 1"
+Trigger at label="tutorial-takeover-entered1"
+Silent=1
+<LuaCode>
+	tut_tux_takeover_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Tutorial Takeover entered 2"
+Trigger at label="tutorial-takeover-entered2"
+Silent=1
+<LuaCode>
+	tut_tux_takeover_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Tutorial Takeover entered 3"
+Trigger at label="tutorial-takeover-entered3"
+Silent=1
+<LuaCode>
+	tut_tux_takeover_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Tutorial Takeover entered 4"
+Trigger at label="tutorial-takeover-entered4"
+Silent=1
+<LuaCode>
+	tut_tux_takeover_entered = true
+</LuaCode>
 * End of trigger *
 ##############
 ## Level 38 ##

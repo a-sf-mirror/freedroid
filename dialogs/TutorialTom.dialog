@@ -130,6 +130,12 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		hide(24)
 	end
 
+	if (cmp_obstacle_state("TutorialDoor", "opened")) and
+	   (tut_tux_takeover_entered) and
+	   (not TutorialTom_node50_done) then
+		show(50)
+	end
+
 	if (tut_tux_glass_entered) then
 		show(70)
 	end
@@ -652,12 +658,6 @@ Nr=71 Text=_"I defeated all the bots in the cage."
 
 ----------------------------------------------------------------------
 
-
-
-
-
-
-
 Nr=40 Text=_"Why are we stopping?"
 <LuaCode>
 	npc_says(_"You've done well so far, Linarian. Let's take a little break.")
@@ -705,7 +705,7 @@ Nr=42 Text=_"Alright, I'm ready to go hack some bots."
 	npc_says(_"You will need to login, by left clicking on it, and then select unlock door.")
 	npc_says(_"Terminals act very similar to hacked bots.")
 	add_quest(_"Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
-	hide(42, 58, 59, 60) show(50)--  56 
+	hide(42, 58, 59, 60)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -722,6 +722,7 @@ Nr=50 Text=_"So how does this work?"
 	if (not has_quest("Tutorial Hacking")) then
 		add_quest(_"Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
 	end
+	TutorialTom_node50_done = true
 	hide(50) show(51)
 </LuaCode>
 ----------------------------------------------------------------------
