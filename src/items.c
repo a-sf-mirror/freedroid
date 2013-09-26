@@ -79,17 +79,24 @@ void equip_item(item *new_item)
 	
 	new_itemspec = &ItemMap[new_item->type];
 
-	// If we're equipping a two-handed weapon, we need to unequip the shield
-	// as well. We drop the shield to the inventory or to the floor.
-	if (new_itemspec->item_gun_requires_both_hands && Me.shield_item.type != -1) {
-		give_item(&Me.shield_item);
-	}
+	// If the item can't be equiped, stop now and throw a warning.
+	if (!equippable_item(new_item)) {
+		ErrorMessage(__FUNCTION__, "Tried to equip the item \"%s\" which can't be equipped.\n", 
+				PLEASE_INFORM, IS_WARNING_ONLY, new_itemspec->item_name);
+		return;
+ 	}
 
 	// If there's an existing item in the equipment slot, drop it to the
 	// inventory or to the floor.
 	old_item = get_equipped_item_in_slot_for(new_item->type);
 	if (old_item->type != -1) {
 		give_item(old_item);
+	}
+
+	// If we're equipping a two-handed weapon, we need to unequip the shield
+	// as well. We drop the shield to the inventory or to the floor.
+	if (new_itemspec->item_gun_requires_both_hands && Me.shield_item.type != -1) {
+		give_item(&Me.shield_item);
 	}
 
 	// Before equipping a shield, if a two-handed weapon is equipped, you need to drop it.
