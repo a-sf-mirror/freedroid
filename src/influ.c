@@ -1479,14 +1479,14 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 
 void TuxReloadWeapon()
 {
-	if (ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size == Me.weapon_item.ammo_clip)
-		return;		//clip full, return without reloading 
-
-	if (Me.paralyze_duration)	//do not reload when paralyzed 
-		return;
-
 	if (Me.weapon_item.type == -1)
-		return;		// do not reload Tux's fists
+		return;		// Do not reload Tux's fists.
+
+	if (Me.paralyze_duration)
+		return;		// Do not reload when paralyzed.
+
+	if (ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size == Me.weapon_item.ammo_clip)
+		return;		// Clip full, return without reloading.
 
 	const char *ammo_type = ammo_desc_for_weapon(Me.weapon_item.type);
 
