@@ -908,12 +908,6 @@ Nr=60 Text=_"Upgrading items is still too complex for me. Can you explain it aga
 </LuaCode>
 ----------------------------------------------------------------------
 
-
-
-
-
-
-
 Nr=70 Text=_"There is a wall in the path! How will we get through?"
 <LuaCode>
 	if (cmp_obstacle_state("TutorialWall", "broken")) then
@@ -928,28 +922,6 @@ Nr=70 Text=_"There is a wall in the path! How will we get through?"
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Nr=30 Text=_"Ranged weaponry seems safer than getting up close and personal."
 <LuaCode>
@@ -1073,9 +1045,6 @@ Nr=37 Text=_"So, what's next?"
 	-- show(47)
 	
 </LuaCode>
-----------------------------------------------------------------------
-
-----------------------------------------------------------------------
 
 ----------------------------------------------------------------------
 ---                                                                ---
