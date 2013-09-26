@@ -211,11 +211,11 @@ static void explode_font()
 
 	} else {
 		fprintf(stderr, "Loading font \"%s\":%s\n", font_name, IMG_GetError());
-		/* free memory allocated for the BFont_Info structure */
 		free(Font);
 		exit(1);
 	}
-
+	/* free memory allocated for the BFont_Info structure */
+	free(Font);
 }
 
 int main(int argc, char **argv)

@@ -247,6 +247,7 @@ static void get_offset_for_image(struct img *img)
 		img->xoff = 0;
 		img->yoff = 0;
 		fclose(OffsetFile);
+		free(dat);
 		return;
 	}
 	fclose(OffsetFile);
