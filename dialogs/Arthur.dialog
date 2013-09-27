@@ -29,7 +29,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 <FirstTime LuaCode>
 	tux_says(_"Hello!")
 	npc_says(_"Bonjour!")
-	tux_says(_"I'm' %s, and who are you?", get_player_name())
+	tux_says(_"I'm %s, and who are you?", get_player_name())
 	npc_says(_"My name is Arthur.")
 	set_bot_name(_"Arthur")
 	show(1)
