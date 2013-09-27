@@ -260,7 +260,7 @@ void show_item_upgrade_ui()
 	sprintf(buffer, _("Circuits: %d"), Me.Gold);
 	display_text(buffer, rects.money_text.x, rects.money_text.y, NULL);
 	if (ui.cost > Me.Gold) {
-		SetCurrentFont(Messagestat_BFont);
+		SetCurrentFont(Messagered_BFont);
 	} else {
 		SetCurrentFont(Messagevar_BFont);
 	}
