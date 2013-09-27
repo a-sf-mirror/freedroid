@@ -828,6 +828,8 @@ void chat_run()
 					if (current_chat_context->script_coroutine) {
 						if (resume_lua_coroutine(current_chat_context->script_coroutine)) {
 							// the lua script reached its end, remove its reference
+							lua_State *L = get_lua_state(LUA_DIALOG);
+							lua_pop(L, 1);
 							free(current_chat_context->script_coroutine);
 							current_chat_context->script_coroutine = NULL;
 							// end dialog, if asked by the lua script
@@ -869,9 +871,9 @@ end_current_dialog:
 		current_chat_context->npc->chat_character_initialized = TRUE;
 
 		chat_pop_context();
-			   // Tux's option entries have been freed by chat_pop_context()
-			   // so we have to clean-up the widget using it
-			   widget_text_list_init(chat_selector, empty_entries, NULL);
+		// Tux's option entries have been freed by chat_pop_context()
+		// so we have to clean-up the widget using it
+		widget_text_list_init(chat_selector, empty_entries, NULL);
 	}
 
 	// Close chat screen
