@@ -3423,7 +3423,7 @@ obstacle {
 	after_smashing = 488,
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	label = _"Statue",	
+	label = _"Statue",
 }
 obstacle {
 	image_filenames = "iso_statue_883_n.png",
@@ -3432,7 +3432,7 @@ obstacle {
 	after_smashing = 489,
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	label = _"Statue",	
+	label = _"Statue",
 }
 obstacle {
 	image_filenames = "iso_statue_883_s.png",
@@ -3441,7 +3441,7 @@ obstacle {
 	after_smashing = 490,
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	label = _"Statue",	
+	label = _"Statue",
 }
 obstacle {
 	image_filenames = "iso_statue_883_w.png",
@@ -3450,7 +3450,7 @@ obstacle {
 	after_smashing = 491,
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	label = _"Statue",	
+	label = _"Statue",
 }
 obstacle {
 	image_filenames = "iso_statue_883_smashed_e.png",
