@@ -463,6 +463,10 @@ leveleditor_obstacle_category {
 		"iso_wrecked_car_e.png",
 		"iso_wrecked_car_n.png",
 		"iso_crushed_476.png",
-		"floor_tiles/iso_collapsingfloor_visible.png"
+		"floor_tiles/iso_collapsingfloor_visible.png",
+		"iso_statue_883_e.png",
+		"iso_statue_883_n.png",
+		"iso_statue_883_s.png",
+		"iso_statue_883_w.png"
 	}
 }

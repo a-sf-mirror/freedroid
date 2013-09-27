@@ -3416,6 +3416,67 @@ obstacle {
 	transparency = NO_TRANSPARENCY,
 }
 
+obstacle {
+	image_filenames = "iso_statue_883_e.png",
+	borders = borders(1.80, 1.80),
+	flags = { BLOCKS_VISION, IS_SMASHABLE, IS_CLICKABLE },
+	after_smashing = 488,
+	transparency = NO_TRANSPARENCY,
+	action = "barrel",
+	label = _"Statue",	
+}
+obstacle {
+	image_filenames = "iso_statue_883_n.png",
+	borders = borders(1.80, 1.80),
+	flags = { BLOCKS_VISION, IS_SMASHABLE, IS_CLICKABLE },
+	after_smashing = 489,
+	transparency = NO_TRANSPARENCY,
+	action = "barrel",
+	label = _"Statue",	
+}
+obstacle {
+	image_filenames = "iso_statue_883_s.png",
+	borders = borders(1.80, 1.80),
+	flags = { BLOCKS_VISION, IS_SMASHABLE, IS_CLICKABLE },
+	after_smashing = 490,
+	transparency = NO_TRANSPARENCY,
+	action = "barrel",
+	label = _"Statue",	
+}
+obstacle {
+	image_filenames = "iso_statue_883_w.png",
+	borders = borders(1.80, 1.80),
+	flags = { BLOCKS_VISION, IS_SMASHABLE, IS_CLICKABLE },
+	after_smashing = 491,
+	transparency = NO_TRANSPARENCY,
+	action = "barrel",
+	label = _"Statue",	
+}
+obstacle {
+	image_filenames = "iso_statue_883_smashed_e.png",
+	borders = borders(1.80, 1.80),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+obstacle {
+	image_filenames = "iso_statue_883_smashed_n.png",
+	borders = borders(1.80, 1.80),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+obstacle {
+	image_filenames = "iso_statue_883_smashed_s.png",
+	borders = borders(1.80, 1.80),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+obstacle {
+	image_filenames = "iso_statue_883_smashed_w.png",
+	borders = borders(1.80, 1.80),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
 --[[ IMPORTANT NOTE:
 Before you add a new obstacle to the end of this list, please try to
 replace one of these DUMMY OBSTACLEs.
