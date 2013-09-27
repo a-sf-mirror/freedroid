@@ -47,6 +47,7 @@ EXTERN char font_switchto_blue[2];
 EXTERN char font_switchto_neon[2];
 EXTERN char font_switchto_msgstat[2];
 EXTERN char font_switchto_msgvar[2];
+EXTERN char font_switchto_msgred[2];
 
 EXTERN int SpellHitPercentageTable[];
 EXTERN float MeleeDamageMultiplierTable[];
@@ -124,6 +125,7 @@ EXTERN BFont_Info *Para_BFont;
 EXTERN BFont_Info *FPS_Display_BFont;
 EXTERN BFont_Info *Blue_BFont;
 EXTERN BFont_Info *Red_BFont;
+EXTERN BFont_Info *Messagered_BFont;
 EXTERN float Overall_Average;
 EXTERN int SkipAFewFrames;
 

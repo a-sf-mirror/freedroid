@@ -527,7 +527,7 @@ void InitPictures(void)
  */
 void InitOurBFonts(void)
 {
-#define ALL_BFONTS_WE_LOAD 7
+#define ALL_BFONTS_WE_LOAD 8
 
 #define PARA_FONT_FILE 		"font/parafont"
 #define MENU_FONT_FILE 		"font/cpuFont"
@@ -536,6 +536,7 @@ void InitOurBFonts(void)
 #define RED_FONT_FILE 		"font/font05_red"
 #define BLUE_FONT_FILE 		"font/font05_white"
 #define FPS_FONT_FILE 		"font/font05"
+#define MESSAGERED_FONT_FILE 	"font/small_red"
 
 	char fpath[2048];
 	int i;
@@ -547,6 +548,7 @@ void InitOurBFonts(void)
 		FPS_FONT_FILE,
 		RED_FONT_FILE,
 		BLUE_FONT_FILE,
+		MESSAGERED_FONT_FILE,
 	};
 	BFont_Info **MenuFontPointers[ALL_BFONTS_WE_LOAD] = {
 		&Menu_BFont,
@@ -555,7 +557,8 @@ void InitOurBFonts(void)
 		&Para_BFont,
 		&FPS_Display_BFont,
 		&Red_BFont,
-		&Blue_BFont
+		&Blue_BFont,
+		&Messagered_BFont
 	};
 
 	for (i = 0; i < ALL_BFONTS_WE_LOAD; i++) {
