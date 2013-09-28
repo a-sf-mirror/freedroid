@@ -524,6 +524,12 @@ Nr=82 Text=_"Upgrade items"
 </LuaCode>
 ----------------------------------------------------------------------
 
+Nr=82 Text=_"Shop"
+<LuaCode>
+	trade_with("Dude")
+</LuaCode>
+----------------------------------------------------------------------
+
 Nr=99 Text="Exit"
 <LuaCode>
 	npc_says(_"Closing...")
