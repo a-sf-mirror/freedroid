@@ -1626,7 +1626,7 @@ static int do_savegame_selection_and_act(int action)
 		goto do_action;
 	} else {
 
-		MenuTexts[0] = _("BACK");
+		MenuTexts[0] = _("Back");
 		MenuTexts[1] = "";
 
 		DoMenuSelection(_("\n\nNo saved games found!"), MenuTexts, 1, "title.jpg", NULL);
@@ -1650,7 +1650,7 @@ static int do_savegame_selection_and_act(int action)
 
 		// We do a final safety check to ask for confirmation.
 		MenuTexts[0] = _("Sure!");
-		MenuTexts[1] = _("BACK");
+		MenuTexts[1] = _("Back");
 		MenuTexts[2] = "";
 		sprintf(SafetyText, _("Really delete hero '%s'?"), Me.character_name);
 		int FinalDecision = DoMenuSelection(SafetyText, MenuTexts, 1, "title.jpg", NULL);
