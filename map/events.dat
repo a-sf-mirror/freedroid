@@ -1897,11 +1897,15 @@ Name=_"Tutorial Range entered1"
 Trigger at label="tutorial-range-entered1"
 Silent=1
 <LuaCode>
-       if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and wa
-          (not TutorialTom_glasswall_done) then
-               TutorialTom_glasswall_smashed = true
-               set_rush_tux(1, "TutorialTom")
-       end
+	if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and wa
+	   (not TutorialTom_glasswall_done) then
+			TutorialTom_glasswall_smashed = true
+			set_rush_tux(1, "TutorialTom")
+	end
+	downgrade_program("Hacking") -- to make sure we can't hack/etc the droids in shooting area
+	downgrade_program("Malformed packet")
+	downgrade_program("Calculate Pi")
+	tut_tux_ranged_entered = true
 </LuaCode>
 * End of trigger *
 ##############

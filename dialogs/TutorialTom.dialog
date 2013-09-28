@@ -156,6 +156,11 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		hide(55, 57)
 	end
 
+	if (tut_tux_ranged_entered) and
+	   (not tux_node38_done) then
+		show(38)
+	end
+
 	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -931,7 +936,7 @@ Nr=30 Text=_"Ranged weaponry seems safer than getting up close and personal."
 	npc_says(_"Well, Linarian, most of the time it is.")
 	npc_says(_"There are some bots with ranged weaponry, but we don't have any of those in captivity.")
 	add_quest(_"Tutorial Shooting", _"I am learning about how to use ranged weapons.")
-	hide(30) show(31)
+	hide(30) show(31, 38)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -1048,6 +1053,17 @@ Nr=37 Text=_"So, what's next?"
 	-- show(47)
 	
 </LuaCode>
+
+Nr=38 Text=_"Why can't I hack the bots here, or use programs on them?"
+<LuaCode>
+	npc_says(_"Well, that would be cheating, don't you think so?")
+	npc_says(_"Shooting moving targets needs a bit of practice, yes...")
+	npc_says(_"...but in the end you will profit a lot from it.")
+	tux_says(_"Ok, I will try my best.")
+	tux_node38_done = true
+	hide(38)
+</LuaCode>
+----------------------------------------------------------------------
 
 ----------------------------------------------------------------------
 ---                                                                ---
