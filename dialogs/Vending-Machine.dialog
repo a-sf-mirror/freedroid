@@ -25,13 +25,16 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
+	play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
 	trade_with("Vending-Machine")
 	end_dialog()
+	play_sound("effects/Menu_Item_Selected_Sound_1.ogg") -- there is no node 99 selectable so just play this here
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"Exit"
 <LuaCode>
+--	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
