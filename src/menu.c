@@ -44,7 +44,7 @@ void Options_Menu(void);
 
 void LevelEditor(void);
 
-#define SINGLE_PLAYER_STRING "Play"
+#define SINGLE_PLAYER_STRING _("Play")
 #define LOAD_EXISTING_HERO_STRING _("Your characters: ")
 #define DELETE_EXISTING_HERO_STRING _("Select character to delete: ")
 
@@ -1510,7 +1510,7 @@ static char *get_new_character_name(void)
 		// Check if name already exists
 		loop = savegame_exists(str);
 		if (loop) {
-			alert_window("A character named \"%s\" already exists.\nPlease choose another name.", str);
+			alert_window(_("A character named \"%s\" already exists.\nPlease choose another name."), str);
 			free(str);
 		}
 	}
