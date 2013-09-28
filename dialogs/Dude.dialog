@@ -51,30 +51,36 @@ get_town_score()
 		60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
 		70, 71, 72, 73, 80, 81, 82, 99)
 
-	local filename = user_input_string("Please enter the dialog file name of the desired NPC (Chandra, Bender...) or other action to jump to (redguard, craft, upgrade, shop or exit) If the input is invalid, the game will crash! To abort, enter 'continue' or press enter or escape.")
-	if (not (filename == "continue" or filename == "")) then
-		if (filename == "redguard") then
-			next(80)
-		elseif (filename == "craft") then
-			next(81)
-		elseif (filename == "upgrade") then
-			next(82)
-		elseif (filename == "shop") then
-			next(83)
-		elseif (filename == "exit") then
-			next(99)
-		else
-			tux_says(_"Starting " .. filename)
-			start_chat(filename)
+	function DudeInputField()
+		local filename = user_input_string("Please enter the dialog file name of the desired NPC (Chandra, Bender...) or other action to jump to (redguard, craft, upgrade, shop or exit) If the input is invalid, the game will crash! To abort, enter 'continue' or press enter or escape.")
+		if (not (filename == "continue" or filename == "")) then
+			if (filename == "redguard") then
+				next(80)
+			elseif (filename == "craft") then
+				next(81)
+			elseif (filename == "upgrade") then
+				next(82)
+			elseif (filename == "shop") then
+				next(83)
+			elseif (filename == "exit") then
+				next(99)
+			else
+				tux_says(_"Starting " .. filename)
+				start_chat(filename)
+			end
 		end
 	end
+
+	DudeInputField()
+
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=0 Text=_"Left out."
+Nr=0 Text=_"Show input field again."
 <LuaCode>
-	npc_says(_"Left out on purpose...")
+	DudeInputField()
 	hide(0)
+	show(0) -- done on purpose
 </LuaCode>
 ----------------------------------------------------------------------
 
