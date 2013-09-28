@@ -393,24 +393,6 @@ const char *teleporter_square_below_mouse_cursor(void)
 	return NULL;
 }
 
-/**
- * Enable or disable the trigger with the given name.
- */
-void event_modify_trigger_state(const char *name, int state)
-{
-	int i;
-	struct event_trigger *arr = event_triggers.arr;
-
-	for (i = 0; i < event_triggers.size; i++) {
-		if (!arr[i].name)
-			break;
-
-		if (!strcmp(arr[i].name, name)) {
-			arr[i].enabled = state;
-			return;
-		}
-	}
-}
 
 /**
  * Visible event Trigger at a location

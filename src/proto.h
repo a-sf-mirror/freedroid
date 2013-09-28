@@ -57,7 +57,6 @@ void event_level_changed(int past_lvl, int cur_lvl);
 void event_enemy_died(enemy *dead);
 void event_obstacle_action(obstacle *o);
 const char *teleporter_square_below_mouse_cursor(void);
-void event_modify_trigger_state(const char *name, int state);
 struct event_trigger * visible_event_at_location(int x, int y, int z);
 
 // lua.c

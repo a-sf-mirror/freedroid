@@ -177,20 +177,6 @@ static int lua_event_display_console_message(lua_State * L)
 	return 0;
 }
 
-static int lua_event_enable_trigger(lua_State * L)
-{
-	const char *name = luaL_checkstring(L, 1);
-	event_modify_trigger_state(name, 1);
-	return 0;
-}
-
-static int lua_event_disable_trigger(lua_State * L)
-{
-	const char *name = luaL_checkstring(L, 1);
-	event_modify_trigger_state(name, 0);
-	return 0;
-}
-
 static int lua_event_change_obstacle(lua_State * L)
 {
 	const char *obslabel = luaL_checkstring(L, 1);
@@ -1220,15 +1206,6 @@ luaL_Reg lfuncs[] = {
 	 * Displays a message on the game console.
 	 */
 	{"event_display_console_message", lua_event_display_console_message}
-	,
-
-	/* enable_trigger(string event_name)
-	 * disable_trigger(string event_name)
-	 * Enables/Disables the event trigger with the given name
-	 */
-	{"enable_trigger", lua_event_enable_trigger}
-	,
-	{"disable_trigger", lua_event_disable_trigger}
 	,
 
 	/* change_obstacle_type(string obstacle_label, int obstacle_type)
