@@ -655,7 +655,7 @@ Nr=71 Text=_"I defeated all the bots in the cage."
 	add_item(".22 Automatic", 1)
 	TutorialTom_has_gun = true
 	TutorialTom_hide_71 = true
-	hide(52, 53, 57, 71)
+	hide(42, 50, 51, 52, 53, 57, 71)
 	end_dialog()
 </LuaCode>
 
