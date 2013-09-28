@@ -658,6 +658,7 @@ Nr=71 Text=_"I defeated all the bots in the cage."
 	change_obstacle_state("TutorialGlasswallDoor", "opened")
 	npc_says(_"As a reward, I'm giving you a .22 Automatic pistol.")
 	add_item(".22 Automatic", 1)
+	add_item(".22 LR Ammunition", 10)
 	TutorialTom_has_gun = true
 	TutorialTom_hide_71 = true
 	hide(42, 50, 51, 52, 53, 57, 71)
@@ -983,6 +984,7 @@ Nr=33 Text=_"I think I understand how to use guns now."
 	else
 		npc_says(_"Here's my personal .22 Automatic pistol. It's not much as guns go, but it can do the trick.")
 		add_item(".22 Automatic", 1)
+		add_item(".22 LR Ammunition", 10)
 	end
 	npc_says(_"Here is some more ammunition for it.")
 	npc_says(_"You'll no doubt get more mileage out of the plasma pistol, though. Or any other gun, for that matter.")
