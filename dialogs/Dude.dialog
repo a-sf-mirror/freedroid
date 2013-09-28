@@ -51,6 +51,11 @@ get_town_score()
 		60,     62, 63, 64, 65, 66, 67, 68, 69,
 		70, 71, 72, 73, 80, 81, 82, 99)
 
+--[[ subdialogs
+	node  2: 614_sub
+	node 10: c-net_sub_nethack
+]]--
+
 	function DudeInputField()
 		local filename = user_input_string("Please enter the dialog file name of the desired NPC (Chandra, Bender...) or other action to jump to (redguard, craft, upgrade, shop or exit) If the input is invalid, the game will crash! To abort, enter 'continue' or press enter or escape.")
 		if (not (filename == "continue" or filename == "")) then
@@ -92,7 +97,7 @@ Nr=1 Text="24-Controllable-Bot"
 
 Nr=2 Text="614_sub"
 <LuaCode>
-	start_chat("614_sub")
+	call_subdialog("614_sub")
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -140,7 +145,7 @@ Nr=9 Text="c-net"
 
 Nr=10 Text="c-net_sub_nethack"
 <LuaCode>
-	start_chat("c-net_sub_nethack")
+	call_subdialog("c-net_sub_nethack")
 </LuaCode>
 ----------------------------------------------------------------------
 
