@@ -145,14 +145,15 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	end
 
 	if (done_quest("Tutorial Hacking")) and
-	   (not tut_tux_glass_entered) then
+	   (not tut_tux_glass_entered) and
+	   (not TutorialTom_hide_71) then
 		show(71)
 	else
 		hide(71)
 	end
 
 	if (tut_tux_glass_entered) then
-		hide(57)
+		hide(55, 57)
 	end
 
 	show(99)
@@ -653,6 +654,8 @@ Nr=71 Text=_"I defeated all the bots in the cage."
 	npc_says(_"As a reward, I'm giving you a .22 Automatic pistol.")
 	add_item(".22 Automatic", 1)
 	TutorialTom_has_gun = true
+	TutorialTom_hide_71 = true
+	hide(52, 53, 57, 71)
 	end_dialog()
 </LuaCode>
 
