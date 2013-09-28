@@ -1358,6 +1358,7 @@ Obstacle label="24-enemy-barrel"
 create_droid("24-barrel-enemy-trap", "614")
 </LuaCode>
 * End of trigger *
+
 ##############
 ## Level 25 ##
 ##############
@@ -1888,6 +1889,19 @@ Trigger at label="tutorial-takeover-entered4"
 Silent=1
 <LuaCode>
 	tut_tux_takeover_entered = true
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Tutorial Range entered1"
+Trigger at label="tutorial-range-entered1"
+Silent=1
+<LuaCode>
+       if (cmp_obstacle_state("TutorialWall", "broken")) and -- tux broke the wall and wa
+          (not TutorialTom_glasswall_done) then
+               TutorialTom_glasswall_smashed = true
+               set_rush_tux(1, "TutorialTom")
+       end
 </LuaCode>
 * End of trigger *
 ##############
