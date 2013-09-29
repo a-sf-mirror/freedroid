@@ -168,12 +168,12 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 Nr=1 Text=_"Yes, it would be most kind of you. I don't remember anything."
 <LuaCode>
 	npc_says(_"You Linarians keep a quest [b]Log[/b] where you write down key bits of information.")
-	npc_says(_"When you aren't speaking with someone, you can open it up or close it by pressing the [b]Q key[/b].")
+	npc_says(_"When you aren't speaking with someone, you can open it up or close it by pressing the [b]q key[/b].")
 	npc_says(_"I'll assign you a new quest, so you can try it out. Once you are done, [b]left click[/b] on me.")
 	if (not has_quest("Tutorial Movement")) then
-		add_quest(_"Tutorial Movement", _"To talk to someone, left click on them. You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the 'Q' key to open or close the quest log. Left click back on Tutorial Tom to learn more!")
+		add_quest(_"Tutorial Movement", _"To talk to someone, left click on them. You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the 'q' key to open or close the quest log. Left click back on Tutorial Tom to learn more!")
 	end
-	display_big_message(_"Press 'Q' for Quests!")
+	display_big_message(_"Press 'q' for Quests!")
 	hide(1, 7, 80) show(2, 3, 4, 8)
 	if (tut_tux_items_entered) and
 	   (not TutorialTom_Tux_found_all_items) then
@@ -215,8 +215,8 @@ Nr=4 Text=_"What else makes me different as a Linarian?"
 	npc_says(_"However, using these [b]Programs[/b], adversely affect your body temperature, which you must regulate.")
 	npc_says(_"But you normally have a special program called [b]Emergency Shutdown[/b], which freezes your motions for several seconds but significantly cools your body.")
 	npc_says(_"This, and the ability to hack bots will soon return once your mind recovers from the stasis.")
-	npc_says(_"Once it does, we'll talk more about programs. You can toggle the [b]Skills/Program menu[/b] by pressing the [b]S key[/b].")
-	update_quest(_"Tutorial Movement", _"View the Skills/Program menu by pressing the 'S' key.")
+	npc_says(_"Once it does, we'll talk more about programs. You can toggle the [b]Skills/Program menu[/b] by pressing the [b]s key[/b].")
+	update_quest(_"Tutorial Movement", _"View the Skills/Program menu by pressing the 's' key.")
 	hide(4)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -225,13 +225,13 @@ Nr=5 Text=_"I'm sensing some sort of strange presence in the vicinity."
 <LuaCode>
 	npc_says(_"Ah, yes.", "NO_WAIT")
 	npc_says(_"Linarians seem to [b]detect items[/b] - even through walls - in an augmented reality.")
-	npc_says(_"The [b]Z key[/b] will toggles this augmentation, while the [b]X key[/b] momentarily flashes it.")
+	npc_says(_"The [b]z key[/b] will toggles this augmentation, while the [b]x key[/b] momentarily flashes it.")
 	npc_says(_"Moving your pointer over an item will tell you more about that item.")
 	npc_says(_"On our way to the next stopping point, we'll pass some items on the floor.")
 	npc_says(_"Feel free to stop and examine them to get practice.")
-	npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]I key[/b], where you can examine it further.")
+	npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]i key[/b], where you can examine it further.")
 	if (not TutorialTom_TutMovement_ToggleDetectItems) then
-		update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'Z' key, and press 'X' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'I'.")
+		update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'z' key, and press 'x' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'i'.")
 		TutorialTom_TutMovement_ToggleDetectItems = true
 	end
 	if (has_item("Mug")) and -- these are the items in the item room
@@ -360,7 +360,7 @@ Nr=16 Text=_"You mentioned discarding an item. Why would I want to do that?"
 Nr=17 Text=_"Repair equipment program? How do I use that?"
 <LuaCode>
 	npc_says(_"Perhaps I should start by explaining programs in general.")
-	npc_says(_"To use a program, select it through your HUD (remember the [b]S key[/b] toggles your [b]Skills/Program menu[/b]).")
+	npc_says(_"To use a program, select it through your HUD (remember the [b]s key[/b] toggles your [b]Skills/Program menu[/b]).")
 	npc_says(_"After you've selected a program, run the program by right clicking. Depending on the program you can target an enemy, an item, or just the world.")
 	npc_says(_"You can also assign quick-select keys to programs. Simply hover over the program in the Skills/Program menu and press one of the keys [b]F5[/b] to [b]F12[/b]. Then, whenever you press this button, you will select the corresponding program.")
 	npc_says(_"If you're curious what a program does, you can find out by clicking the question mark in the Skills/Program menu.")
@@ -672,7 +672,7 @@ Nr=40 Text=_"Why are we stopping?"
 	npc_says(_"You've done well so far, Linarian. Let's take a little break.")
 	npc_says(_"Once you get out into the real world, you'll find that your current abilities aren't always enough to survive.")
 	npc_says(_"As you achieve combat experience, you'll be able to apply it to better yourself.")
-	npc_says(_"As with most things, you view this as a panel in your HUD. Press the [b]C key[/b] to open the [b]Character panel[/b].")
+	npc_says(_"As with most things, you view this as a panel in your HUD. Press the [b]c key[/b] to open the [b]Character panel[/b].")
 	npc_says(_"Once you've gained enough experience, you'll level up. This will automatically improve some of your statistics.")
 	npc_says(_"You'll also be given 5 points to spend however you choose in three different areas. Characteristics, Skills and Programs.")
 	npc_says(_"[b]Strength[/b] governs the amount of damage you do with each hit in melee combat.")
@@ -962,11 +962,11 @@ Nr=32 Text=_"So how do I use guns?"
 	npc_says(_"There are a couple of new tricks with ranged weapons. If you want to [b]move while firing[/b]: hold [b]shift[/b] and [b]left click[/b] your desired position.")
 	npc_says(_"If you'd rather stay in place: Hold [b]A[/b], then [b]left click[/b] your target.")
 	npc_says(_"When your weapon runs out of ammo during combat, it will try to automatically reload if you have extra ammunition for it.")
-	npc_says(_"Sometimes, you will need or want to manually reload. You can do this by pressing the [b]R key[/b].")
+	npc_says(_"Sometimes, you will need or want to manually reload. You can do this by pressing the [b]r key[/b].")
 	npc_says(_"If you are reloading, or you are out of ammo, the small message screen at the bottom of your HUD will tell you what type of ammo to get.")
 	if (not TutorialTom_guns_how_to) then
 		TutorialTom_guns_how_to = true
-		update_quest(_"Tutorial Shooting", _"If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the 'R' key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition.")
+		update_quest(_"Tutorial Shooting", _"If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the 'r' key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition.")
 	end
 	if (not TutorialTom_opened_door) then
 		show(33)
