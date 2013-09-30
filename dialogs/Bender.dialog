@@ -34,7 +34,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_met("Bender")) then
+	if (has_met("Bender")) then -- to avoid displaying 2 "hello"s etc when we talk to Bender for the first time 
 		tux_says(_"Hello!")
 		npc_says(_"Hey, man!")
 		tux_says(_"How are you doing?")
