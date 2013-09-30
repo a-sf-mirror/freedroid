@@ -1003,10 +1003,13 @@ int validate_dialogs()
 		k = 0;
 		for (j = 0; j < MAX_DIALOGUE_OPTIONS_IN_ROSTER; j++) {
 			if (dummy_context->dialog_options[j].lua_code && strlen(dummy_context->dialog_options[j].lua_code)) {
-				if (!(k%5)) {
+				if (!(k%6)) {
 					printf("\n");
+				} else {
+					printf("\t");
 				}
-				printf("|node %2d|\t", j);
+				printf("|node %2d|", j);
+
 				run_lua(LUA_DIALOG, dummy_context->dialog_options[j].lua_code);
 				k++;
 			}
