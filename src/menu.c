@@ -1413,8 +1413,8 @@ static void OSD_fill(char *MenuTexts[MAX_MENU_ITEMS])
 	sprintf(MenuTexts[0], _("Show position: %s"), GameConfig.Draw_Position ? _("YES") : _("NO"));
 	sprintf(MenuTexts[1], _("Show framerate: %s"), GameConfig.Draw_Framerate ? _("YES") : _("NO"));
 	sprintf(MenuTexts[2], _("Show enemies' energy bars: %s"), GameConfig.enemy_energy_bars_visible ? _("YES") : _("NO"));
-	sprintf(MenuTexts[3], _("<-- Screen messages at most: %d -->"), GameConfig.number_of_big_screen_messages);
-	sprintf(MenuTexts[4], _("<-- Screen message time: %3.1f -->"), GameConfig.delay_for_big_screen_messages);
+	sprintf(MenuTexts[3], _("<-- Max. screen messages: %d -->"), GameConfig.number_of_big_screen_messages);
+	sprintf(MenuTexts[4], _("<-- Screen message lifetime: %3.1fs -->"), GameConfig.delay_for_big_screen_messages);
 	strcpy(MenuTexts[5], _("Back"));
 	MenuTexts[6][0] = '\0';
 
