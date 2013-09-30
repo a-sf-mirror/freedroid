@@ -149,7 +149,7 @@ static int savegame_bench()
 /* Test of dynamic arrays */
 static int dynarray_test()
 {
-	int loop = 10;
+	int loop = 5;
 	item dummy;
 	memset(&dummy, 0, sizeof(item));
 	dummy.pos.x = 1.0;
