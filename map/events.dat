@@ -1141,6 +1141,7 @@ Silent=1
 <LuaCode>
 	teleport("24teleportend")
 </LuaCode>
+* End of trigger *
 
 * New event trigger *
 Name=_"24fdrpgdeathlabel"
@@ -1164,6 +1165,7 @@ Silent=0
 	end
 	play_sound("effects/bot_sounds/voice_samples/58.ogg")
 </LuaCode>
+* End of trigger *
 
 * New event trigger *
 Name=_"24-freeze-tux-trap"
@@ -1173,6 +1175,7 @@ Silent=0
 	freeze_tux(5)
 	hurt_tux(10)
 </LuaCode>
+* End of trigger *
 
 * New event trigger *
 Name=_"24-obstacle-trigger"
