@@ -159,8 +159,8 @@ Level=16
 Level=17
 
 T=821: PosX=66 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=883: PosX=63 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=751: PosX=69 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=63 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=751: PosX=70 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=598: PosX=60 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=603: PosX=76 PosY=38 Faction="civilian" UseDialog="Kevin-Lawnmower" ShortLabel=_"Lawn Mower" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=JAS: PosX=66 PosY=52 Faction="civilian" UseDialog="Jasmine" ShortLabel=_"Cute Girl" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
@@ -317,7 +317,7 @@ T=420: PosX=18 PosY=26 Faction="civilian" UseDialog="TestDroid" ShortLabel=_"TD"
 T=420: PosX=18 PosY=22 Faction="civilian" UseDialog="TestDroid" ShortLabel=_"TD" Marker=2031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=420: PosX=26 PosY=11 Faction="civilian" UseDialog="TestDroid" ShortLabel=_"TD" Marker=2031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=883: PosX=27 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard" Marker=3031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=GUN: PosX=48 PosY=88 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Autogun" Marker=3031 RushTux=0 Fixed=1 DropItemName="none" MaxDistanceToHome=0
+T=GUN: PosX=49 PosY=88 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Autogun" Marker=3031 RushTux=0 Fixed=1 DropItemName="none" MaxDistanceToHome=0
 T=GUN: PosX=52 PosY=88 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Autogun" Marker=3031 RushTux=0 Fixed=1 DropItemName="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
@@ -368,11 +368,11 @@ Level=36
 ** Beginning of new Level **
 Level=37
 
-T=123: PosX=42 PosY=6 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=43 PosY=6 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=123: PosX=40 PosY=6 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=247: PosX=42 PosY=9 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=247: PosX=42 PosY=13 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=247: PosX=41 PosY=15 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=42 PosY=16 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=123: PosX=40 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=123: PosX=38 PosY=20 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=123: PosX=39 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=3037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
