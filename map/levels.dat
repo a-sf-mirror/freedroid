@@ -66498,8 +66498,19 @@ it: n="Brain stimulator"  X=20.500000  Y=5.500000  MDur=-1  CDur=0.000000  AClip
 it: n="PC LOAD LETTER"  X=21.500000  Y=5.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1
 /piteminfolvl
 obstacleextensions
+idx=295 type=32 data={
+	?
+}
+idx=297 type=32 data={
+	!
+}
+idx=299 type=32 data={
+	<
+}
 /obstacleextensions
 wp
+Nr.=  0 x=  98 y=   0 rnd=1	 c:    1
+Nr.=  1 x=  97 y=   0 rnd=1	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 *** End of Ship Data ***
