@@ -372,7 +372,11 @@ Nr=17 Text=_"Repair equipment program? How do I use that?"
 	npc_says(_"Now, to answer your question, you use your repair equipment program by selecting it in the Skills/Program menu, then right clicking on the item you wish to repair.")
 	improve_program("Repair equipment")
 	TutorialTom_has_repair = true
-	update_quest(_"Tutorial Melee", _"Run a program by right clicking after it has been selected from the Skills/Program menu. My shoes are damaged, so I might try the repair equipment program on them to slightly repair them.")
+	if (not has_quest("Tutorial Melee")) then -- this might be tricky
+		add_quest(_"Tutorial Melee", _"Run a program by right clicking after it has been selected from the Skills/Program menu. My shoes are damaged, so I might try the repair equipment program on them to slightly repair them.")
+	else
+		update_quest(_"Tutorial Melee", _"Run a program by right clicking after it has been selected from the Skills/Program menu. My shoes are damaged, so I might try the repair equipment program on them to slightly repair them.")
+	end
 	hide(17)
 </LuaCode>
 ----------------------------------------------------------------------
