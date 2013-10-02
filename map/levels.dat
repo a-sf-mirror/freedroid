@@ -66517,6 +66517,15 @@ idx=297 type=32 data={
 idx=299 type=32 data={
 	<
 }
+idx=296 type=32 data={
+	? (flashing)
+}
+idx=298 type=32 data={
+	! (flashing)
+}
+idx=300 type=32 data={
+	< (flashing)
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  98 y=   0 rnd=1	 c:    1
