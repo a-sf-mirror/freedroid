@@ -458,8 +458,9 @@ NO_TEXT
 	npc_says(_"Someone else probably wants the item.")
 	npc_says(_"You might check your questbook to see if it is mentioned there.")
 	if (has_item_backpack("Bottled Tutorial ice")) then --before player notices, swap the "tutorial" item to normal one :P
-		del_item_backpack("Bottled Tutorial ice")
-		add_item("Bottled ice")
+		local Tutorial_ice_amount = count_item("Bottled Tutorial ice")
+		del_item_backpack("Bottled Tutorial ice", Tutorial_ice_amount)
+		add_item("Bottled ice", Tutorial_ice_amount)
 		display_big_message("") -- so that we don't have the   Item Recieved: spam   on the screen which might be confusing
 		display_big_message("")
 		display_big_message("")
