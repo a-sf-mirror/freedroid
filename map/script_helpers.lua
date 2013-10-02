@@ -259,19 +259,17 @@ function update_quest(quest, text)
 end
 
 function end_quest(quest, text)
-	if (done_quest(quest)) then
-		if (not running_benchmark()) then -- don't spam the validator
-			print("\n\tERROR")
-			print("\tTried to end already done quest!")
-			print("\tWe will continue execution, quest is:")
-			print(quest)
-		end
-	elseif (not has_quest(quest)) then
-		if (not running_benchmark()) then -- don't spam the validator
-			print("\n\tSEVERE ERROR")
-			print("\tTried to end never assigned quest!")
-			print("\tWe will continue execution, quest is:")
-			print(quest)
+	if (not running_benchmark()) then -- don't spam the validator
+		if (done_quest(quest)) then
+				print("\n\tERROR")
+				print("\tTried to end already done quest!")
+				print("\tWe will continue execution, quest is:")
+				print(quest)
+		elseif (not has_quest(quest)) then
+				print("\n\tSEVERE ERROR")
+				print("\tTried to end never assigned quest!")
+				print("\tWe will continue execution, quest is:")
+				print(quest)
 		end
 	end
 
