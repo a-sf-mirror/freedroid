@@ -175,7 +175,7 @@ Nr=0 Text=_"RUNNING TEST NODE"
 		else
 			guy_fail("QUEST 3")
 		end
-		complete_quest("24_dude_test_quest", "Complete 24 dude quest.")
+		end_quest("24_dude_test_quest", "Complete 24 dude quest.")
 		if (done_quest("24_dude_test_quest")) then
 			npc_says("QUEST test 4 succeeded", "NO_WAIT")
 		else
