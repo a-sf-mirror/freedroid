@@ -31,6 +31,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 </LuaCode>
 
 <EveryTime LuaCode>
+	play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
 	AfterTakeover_year = os.date("%Y") + 45 -- current year + 45
 	AfterTakeover_date_1 = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
 	AfterTakeover_repair_time = 0
@@ -667,6 +668,7 @@ NO_TEXT
 	end
 	hide(21)
 	end_dialog()
+	play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 </LuaCode>
 ----------------------------------------------------------------------
 
