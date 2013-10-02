@@ -250,6 +250,18 @@ function update_quest(quest, text)
 end
 
 function end_quest(quest, text)
+	if (done_quest(quest)) then
+		print("\n\tERROR")
+		print("\tTried to end already done quest!")
+		print("\tWe will continue execution, quest is:")
+		print(quest)
+	elseif (not has_quest(quest)) then
+		print("\n\tSEVERE ERROR")
+		print("\tTried to end never assigned quest!")
+		print("\tWe will continue execution, quest is:")
+		print(quest)
+	end
+
 	complete_quest(quest, text)
 	play_sound("effects/Mission_Status_Change_Sound_0.ogg")
 	if (run_from_dialog()) then
