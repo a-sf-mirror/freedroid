@@ -35,7 +35,7 @@
 
 #define IS_CHEST(t)  ( get_obstacle_spec(t)->action && !strncmp(get_obstacle_spec(t)->action, "chest", 5) )
 #define IS_BARREL(t) ( (t) >= ISO_BARREL_1       && (t) <= ISO_BARREL_4     )
-#define IS_SIGN(t)   ( (t) >= ISO_SIGN_1         && (t) <= ISO_SIGN_3       )  || (     (t) >= ISO_SIGN_1_FLASH  &&  (t) <= ISO_SIGN_3_FLASH )
+#define IS_SIGN(t)   ( ( (t) >= ISO_SIGN_1         && (t) <= ISO_SIGN_3     ) || (     (t) >= ISO_SIGN_1_FLASH  &&  (t) <= ISO_SIGN_3_FLASH ) )
 
 static char *bigline = "====================================================================";
 static char *line = "--------------------------------------------------------------------";
