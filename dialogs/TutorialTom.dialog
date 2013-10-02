@@ -823,15 +823,17 @@ Nr=55 Text=_"Thanks. I'm ready now."
 	npc_says(_"If you need more help, don't hesitate to ask.")
 	npc_says(_"Oh, and Linarian... If you fail when hacking, you'll receive an electrical shock.")
 	npc_says(_"It shouldn't kill you, but you need to be aware of it nonetheless.")
-	improve_program("Hacking")
-	improve_program("Emergency shutdown")
-	add_item("Liquid nitrogen", 1)
-	add_item("Source Book of Calculate Pi", 1)
-	add_item("Source Book of Malformed packet", 1)
-	TutorialTom_hacking_bots = true
-	update_quest(_"Tutorial Hacking", _"Tutorial Tom wants me to hack those bots. The only thing I need to worry about is overheating. But if I get too hot I can always try the Emergency shutdown program.")
-	change_obstacle_state("TutorialTakeoverCage", "opened")
-	hide(55) -- show(56) <- move this!
+	if (not TutorialTom_hacking_bots) then
+		improve_program("Hacking")
+		improve_program("Emergency shutdown")
+		add_item("Liquid nitrogen", 1)
+		add_item("Source Book of Calculate Pi", 1)
+		add_item("Source Book of Malformed packet", 1)
+		TutorialTom_hacking_bots = true
+		update_quest(_"Tutorial Hacking", _"Tutorial Tom wants me to hack those bots. The only thing I need to worry about is overheating. But if I get too hot I can always try the Emergency shutdown program.")
+		change_obstacle_state("TutorialTakeoverCage", "opened")
+	end
+	hide(55)
 	end_dialog()
 -- TODO Also explain improving program revisions
 </LuaCode>
