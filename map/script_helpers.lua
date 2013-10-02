@@ -220,10 +220,12 @@ function add_quest(quest, text)
 	if (not running_benchmark()) then
 		if done_quest(quest) or
 		   has_quest(quest) then
-			print("\n\tSEVERE ERROR")
-			print("\tTried to assign already assigned quest!")
-			print("\tWe will continue execution, quest is:")
-			print(quest)
+			if (not running_benchmark()) then -- don't spam the validator
+				print("\n\tSEVERE ERROR")
+				print("\tTried to assign already assigned quest!")
+				print("\tWe will continue execution, quest is:")
+				print(quest)
+			end
 		end
 	end
 	assign_quest(quest, text)
@@ -247,24 +249,30 @@ function update_quest(quest, text)
 			display_big_message("   ".._"Quest log updated: " .. quest)
 		end
 	else -- we don't have the quest, wtf?
-		print("\n\tSEVERE ERROR")
-		print("\tTried to update quest that was never assigned!")
-		print("\tWe will continue execution, quest is:")
-		print(quest)
+		if (not running_benchmark()) then -- don't spam the validator
+			print("\n\tSEVERE ERROR")
+			print("\tTried to update quest that was never assigned!")
+			print("\tWe will continue execution, quest is:")
+			print(quest)
+		end
 	end
 end
 
 function end_quest(quest, text)
 	if (done_quest(quest)) then
-		print("\n\tERROR")
-		print("\tTried to end already done quest!")
-		print("\tWe will continue execution, quest is:")
-		print(quest)
+		if (not running_benchmark()) then -- don't spam the validator
+			print("\n\tERROR")
+			print("\tTried to end already done quest!")
+			print("\tWe will continue execution, quest is:")
+			print(quest)
+		end
 	elseif (not has_quest(quest)) then
-		print("\n\tSEVERE ERROR")
-		print("\tTried to end never assigned quest!")
-		print("\tWe will continue execution, quest is:")
-		print(quest)
+		if (not running_benchmark()) then -- don't spam the validator
+			print("\n\tSEVERE ERROR")
+			print("\tTried to end never assigned quest!")
+			print("\tWe will continue execution, quest is:")
+			print(quest)
+		end
 	end
 
 	complete_quest(quest, text)
