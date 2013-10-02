@@ -161,6 +161,10 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		show(38)
 	end
 
+	if (has_quest("Tutorial Shooting")) then 
+		hide(30) --avoid assigning the quest twice etc..
+	end
+
 	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
