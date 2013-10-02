@@ -760,7 +760,10 @@ Nr=51 Text=_"Tell me about taking bots over."
 	npc_says(_"At that point, you have 10 more seconds in which to activate more cores than the bot.")
 	npc_says(_"Each activation of one core will consume one charge and you have a limited number of charges, 3 by default, so choose your targets carefully.")
 	npc_says(_"I can tell you about some more advanced techniques, if you'd like.")
-	update_quest(_"Tutorial Hacking", _"Apparently in order to hack, all I have to do is select the Hacking program, right click a bot, and play a little game. I've got this!")
+	if (not TutorialTom_updated_hacking_quest) then
+		update_quest(_"Tutorial Hacking", _"Apparently in order to hack, all I have to do is select the Hacking program, right click a bot, and play a little game. I've got this!")
+		TutorialTom_updated_hacking_quest = true
+	end
 	show(52, 53, 54) hide(51)
 </LuaCode>
 ----------------------------------------------------------------------
