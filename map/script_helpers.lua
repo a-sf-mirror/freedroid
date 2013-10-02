@@ -246,6 +246,11 @@ function update_quest(quest, text)
 		else
 			display_big_message("   ".._"Quest log updated: " .. quest)
 		end
+	else -- we don't have the quest, wtf?
+		print("\n\tSEVERE ERROR")
+		print("\tTried to update quest that was never assigned!")
+		print("\tWe will continue execution, quest is:")
+		print(quest)
 	end
 end
 
