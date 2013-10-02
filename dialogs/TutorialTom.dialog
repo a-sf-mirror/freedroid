@@ -234,7 +234,8 @@ Nr=5 Text=_"I'm sensing some sort of strange presence in the vicinity."
 	npc_says(_"On our way to the next stopping point, we'll pass some items on the floor.")
 	npc_says(_"Feel free to stop and examine them to get practice.")
 	npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]i key[/b], where you can examine it further.")
-	if (not TutorialTom_TutMovement_ToggleDetectItems) then
+	if (not TutorialTom_TutMovement_ToggleDetectItems) and
+		has_quest("Tutorial Movement") then
 		update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'z' key, and press 'x' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'i'.")
 		TutorialTom_TutMovement_ToggleDetectItems = true
 	end
