@@ -738,7 +738,7 @@ Nr=50 Text=_"So how does this work?"
 	npc_says(_"Because of this, you can run various programs on the bots.")
 	npc_says(_"You can attempt to take them over, or monkey with their programming, or even cause them to damage themselves.")
 	npc_says(_"Likewise, there are certain programs that affect you or items around you.")
-	if (not has_quest("Tutorial Hacking")) then
+	if (not has_quest("Tutorial Hacking")) then -- quest already added in node 42
 		add_quest(_"Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
 	end
 	TutorialTom_node50_done = true
@@ -836,24 +836,6 @@ Nr=55 Text=_"Thanks. I'm ready now."
 	hide(55)
 	end_dialog()
 -- TODO Also explain improving program revisions
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=56 Text=_"I'm finished. I'm ready to move on."
-<LuaCode>
-	if (TutorialTom_hacking_bots) then
-		if (not done_quest("Tutorial Hacking")) then
-			npc_says(_"The bots aren't dead, Linarian.")
-			npc_says(_"Come back and talk to me after they are.")
-			npc_says(_"If you're having trouble, you might try the [b]Malformed Packet[/b] program.")
-		else
-			npc_says(_"Well done! That concludes our tutorial.")
-			TutorialTom_hacking_bots = false
-			update_quest(_"Tutorial Hacking", _"Well, it took a lot of work, but I showed those bots who's boss.")
-		end
-	end
-	hide(51, 52, 53, 54, 55, 57)
-	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -1029,8 +1011,6 @@ Nr=35 Text=_"I killed all the bots."
 	if (done_quest("Tutorial Shooting")) then
 		npc_says(_"Excellent job.")
 		npc_says(_"Keep shooting like that, and the bots will never stand a chance, as long as you still have ammo.")
-
-
 		update_quest(_"Tutorial Shooting", _"That was like shooting fish in a barrel. I could use a fish about now.")
 		hide(35) show(36, 37)
 		end_dialog()
@@ -1070,6 +1050,7 @@ Nr=37 Text=_"So, what's next?"
 	-- show(47)
 	
 </LuaCode>
+----------------------------------------------------------------------
 
 Nr=38 Text=_"Why can't I hack the bots here, or use programs on them?"
 <LuaCode>
