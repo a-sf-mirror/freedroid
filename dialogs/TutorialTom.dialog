@@ -709,7 +709,7 @@ Nr=41 Text=_"I'll have to keep that in mind."
 	npc_says(_"Since you'll be hacking up ahead, you should probably use a few of them on [b]Cooling[/b].")
 	npc_says(_"But, again, that's your choice.")
 	add_xp(2000)
-	hide(41) show(42, 58)
+	hide(41) show(58)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -875,7 +875,7 @@ Nr=58 Text=_"Can you tell me more about upgrading items?"
 	npc_says(_"Choose an item and add an appropriate socket by clicking '+' on the right of the item. Then attach the add-on to this item and confirm your choice.")
 	upgrade_items()
 	end_quest(_"Tutorial Upgrading Items",_"Maybe I need some time to practice this, but I got the basics.")
-	hide(58) show(59, 60)
+	hide(58) show(59, 60, 42)
 </LuaCode>
 ----------------------------------------------------------------------
 
