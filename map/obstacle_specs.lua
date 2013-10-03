@@ -3481,4 +3481,11 @@ obstacle {
 Before you add a new obstacle to the end of this list, please try to
 replace one of these DUMMY OBSTACLEs.
 Thank you.
+
+Dummy obstacle code for usage:
+
+obstacle {
+	image_filenames = "DUMMY OBSTACLE"
+}
+
 ]]--
