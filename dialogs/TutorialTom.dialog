@@ -667,6 +667,23 @@ Nr=71 Text=_"I defeated all the bots in the cage."
 	npc_says(_"Then let us move towards the next stage of the Tutorial")
 	change_obstacle_state("TutorialGlasswallDoor", "opened")
 	npc_says(_"As a reward, I'm giving you a .22 Automatic pistol.")
+	if (has_item("Source Book of Calculate Pi")) and --plural
+	   (has_item("Source Book of Malformed packet")) then
+		npc_says(_"But I have to take this sourcebooks from you to preven you from cheating in the next section of the tutorial.")
+		npc_says(_"Sorry about that...")
+		tux_says(_"Ok...")
+	elseif (has_item("Source Book of Calculate Pi")) or --singular
+	   (has_item("Source Book of Malformed packet")) then
+	   npc_says(_"But I have to take this sourcebook from you to preven you from cheating in the next section of the tutorial.")
+	   npc_says(_"Sorry about that...")
+	   tux_says(_"Ok...")
+	end
+	if (has_item("Source Book of Calculate Pi")) then -- ugly, but it shall do
+		del_item("Source Book of Calculate Pi")
+	end
+	if (has_item("Source Book of Malformed packet")) then
+		del_item("Source Book of Malformed packet")
+	end
 	add_item(".22 Automatic", 1)
 	add_item(".22 LR Ammunition", 10)
 	TutorialTom_has_gun = true
@@ -1001,8 +1018,22 @@ Nr=33 Text=_"I think I understand how to use guns now."
 
 Nr=34 Text=_"I ran out of ammo. Can I have some more?"
 <LuaCode>
-	npc_says(_"Check the storage room to the west for more guns and ammo.")
-	hide(34)
+	if (cmp_obstacle_state("37-ammo-chest", "unlocked")) then -- check if tux has opened the ammo chest already :  yes
+		if (has_item_backpack("Laser power pack")) or -- check if tux still has ammo left
+		   (has_item_backpack("Plasma energy container")) or
+		   (has_item_backpack(".22 LR Ammunition")) then
+			npc_says(_"Looks like you still have some ammo left in your inventory...")
+			npc_says(_"Why don't you use this first?")
+			npc_says(_"Try to switch to another gun maybe...")
+		else -- chest opened but no ammo left in inventory...
+			npc_says(_"Ok, I will give you some more ammo. You seem to be in need, indeed...")
+			add_item("Laser power pack", 10)
+			add_item("Plasma energy container", 10)
+			add_item(".22 LR Ammunition", 10)
+		end
+	else
+		npc_says(_"Check the storage room to the west for more guns and ammo.")
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -1046,7 +1077,7 @@ Nr=37 Text=_"So, what's next?"
 		npc_says(_"You'll need it if our world is to survive.")
 	end
 	
-	hide(30, 31, 32, 33, 36)
+	hide(30, 31, 32, 33, 34, 35, 36, 38)
 	-- show(47)
 	
 </LuaCode>

@@ -1921,6 +1921,7 @@ Silent=1
 	tut_tux_ranged_entered = true
 </LuaCode>
 * End of trigger *
+
 ##############
 ## Level 38 ##
 ##############
