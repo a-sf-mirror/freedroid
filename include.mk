@@ -14,8 +14,6 @@ cppcheck-report:
 	@echo "`cppcheck --version`"
 	mkdir -p cppcheck-report
 	cppcheck croppy gluem src $(cppcheckflags) --xml 2> cppcheck-report/cppcheck.xml
-	## the script currently sucks, so we may need to modify cppchecks output file by ourselves...
-	sed -i cppcheck-report/cppcheck.xml -e '/toomanyconfigs/d'
 	$(CPPCHECK-HTMLREPORT) --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
 	@echo "Open  cppcheck-report/index.html   to view results."
 
