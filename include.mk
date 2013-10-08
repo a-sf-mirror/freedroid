@@ -12,19 +12,17 @@ cppcheck-full:
 	cppcheck croppy gluem src $(cppcheckflags) --force
 
 cppcheck-report:
-	@echo "Usage: make CPPCHECK-HTMLREPORT=path/to/cppcheck-htmlreport cppcheck-report"
 	@echo "`cppcheck --version`"
 	mkdir -p cppcheck-report
 	cppcheck croppy gluem src $(cppcheckflags) --xml 2> cppcheck-report/cppcheck.xml
-	$(CPPCHECK-HTMLREPORT) --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
+	cppcheck-htmlreport --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
 	@echo "Open  cppcheck-report/index.html   to view results."
 
 cppcheck-full-report:
-	@echo "Usage: make CPPCHECK-HTMLREPORT=path/to/cppcheck-htmlreport cppcheck-report"
 	@echo "`cppcheck --version`"
 	mkdir -p cppcheck-report
 	cppcheck croppy gluem src $(cppcheckflags) --force --xml 2> cppcheck-report/cppcheck.xml
-	$(CPPCHECK-HTMLREPORT) --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
+	cppcheck-htmlreport --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
 	@echo "Open  cppcheck-report/index.html   to view results."
 
 gourceflags =	-c 0.8                           \
