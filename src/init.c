@@ -621,17 +621,17 @@ You may redistribute copies of FreedroidRPG\n\
 under the terms of the GNU General Public License.\n\
 For more information about these matters, see the file named COPYING.\n";
 
-char usage_string[] = "\
+char usage_string[] = "\n\
 Usage: freedroidRPG [-h | --help] \n\
                     [-v | --version] \n\
                     [-e | --editor] \n\
-                    [-s | --sound] [-q | --nosound] \n\
-                    [-o | --open_gl] [-n | --no_open_gl] \n\
-                    [-f | --fullscreen] [-w | --window] \n\
-                    [-d X | --debug=X]       X = 0-5; default 1 \n\
-                    [-l character-name | --load=character-name] \n\
+                    [-s | --sound]        [-q | --nosound] \n\
+                    [-o | --open_gl]      [-n | --no_open_gl] \n\
+                    [-f | --fullscreen]   [-w | --window] \n\
+                    [-d X | --debug=X]      X = 0-5; default 1 \n\
+                    [-l character-name    | --load=character-name] \n\
                     [-r Y | --resolution=Y]  Y = 99 lists hardcoded resolutions. \n\
-                          Y may also be of the form 'WxH' e.g. '800x600'\n\
+                        Y may also be of the form 'WxH' e.g. '800x600'\n\
 \n\
 Please report bugs either by entering them into the bug tracker\n\
 on our website at:\n\n\
