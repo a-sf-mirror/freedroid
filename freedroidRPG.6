@@ -45,10 +45,16 @@
 .\"
 .Sh SYNOPSIS
 .Nm
+.Op Fl h | -help
+.Op Fl v | -version
+.Op Fl e | -editor
+.Op Fl s | -sound | q | -nosound
+.Op Fl n | -no_open_gl | o | -open_gl
 .Op Fl f | -fullscreen | w | -window
+.Op Fl d | -debug
+.Op Fl l | -load
 .Op Fl r | -resolution
-.Op Fl q | -nosound
-.Op Fl n | -no_open_gl
+
 .\"
 .\"
 .\"
@@ -102,14 +108,16 @@ Use SDL rendering rather than OpenGL.
 .\"
 .It Fl r Ar Y No |  Fl -resolution= Ar Y
 Selects a resolution to start the game in. -r 99 lists common resolutions. Resolutions can also be set
-in-game.
+in-game. You can also specify a resolution via -r800x600.
 .\"
 .It Fl e | -editor
 Skips the main menu and opens up the level editor.
 .\"
 .It Fl l Ar character-name | Fl -load Ar character-name
-Skip the main menu and load the saved game. The parameter character-name should be saved
-game name.
+Skip the main menu and load the saved game. The parameter character-name should be saved game name.
+.\"
+.It Fl d Ar X | Fl -debug Ar X
+Shows mostly useless debug output. Debug level (X) maybe 0-5, default is 1.
 .El
 .\"
 .\"
