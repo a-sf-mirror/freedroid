@@ -621,7 +621,7 @@ You may redistribute copies of FreedroidRPG\n\
 under the terms of the GNU General Public License.\n\
 For more information about these matters, see the file named COPYING.\n";
 
-char usage_string[] = "\n\
+char usage_string[] = "\
 Usage: freedroidRPG [-h | --help] \n\
                     [-v | --version] \n\
                     [-e | --editor] \n\
@@ -1082,7 +1082,7 @@ void InitFreedroid(int argc, char **argv)
 	// We mention the version of FreedroidRPG, so that debug reports
 	// are easier to assign to the different versions of the game.
 	//
-	DebugPrintf(-4, "\nHello, this is FreedroidRPG, version %s.", freedroid_version);
+	DebugPrintf(-4, "\nHello, this is FreedroidRPG, version %s.\n", freedroid_version);
 
 	set_signal_handlers();
 
