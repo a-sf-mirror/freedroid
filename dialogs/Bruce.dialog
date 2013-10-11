@@ -296,7 +296,7 @@ Nr=43 Text=_"20 circuits? I'll sell it for... a hundred." Topic="Bruce wants Dix
 Nr=44 Text=_"20 circuits? Do you think I'm stupid? I'll sell it for 1000!" Topic="Bruce wants Dixon's helmet"
 <LuaCode>
 	npc_says(_"That's way too expensive.")
-	tux_says(_"Fine, I'll keep it than.")
+	tux_says(_"Fine, I'll keep it then.")
 	npc_says(_"You're the greediest penguin I've ever met.")
 	npc_says(_"Forget about the deal!")
 	Bruce_helmet_sell = -1000
