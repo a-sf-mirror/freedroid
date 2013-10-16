@@ -1854,7 +1854,7 @@ void run_lua_file(enum lua_target target, const char *path)
 
 /*
  * Load a lua module in a lua context.
- * The file containing the module is added to the package.path lua global
+ * The directory containing the module is added to the package.path lua global
  * variable.
  * The module is loaded by calling 'require(module)'.
  */
@@ -1868,17 +1868,39 @@ static void load_lua_module(enum lua_target target, const char *dir, const char 
 	strcpy(module_file, module);
 	strcat(module_file, ".lua");
 
+	/*
+	 * Add the module's dir to the Lua package.path
+	 */
+
 	if (!find_file(module_file, dir, fpath, 1)) {
-		// TODO: instead of adding the module filepath, only add the directory path if not yet done
-		lua_getglobal(L, "package"); /* -> stack: package */
-		lua_getfield(L, 1, "path");  /* -> stack: package > package.path */
-		lua_pushliteral(L, ";");     /* -> stack: package > package.path > ";" */
-		lua_pushstring(L, fpath);    /* -> stack: package > package.path > ";" > fpath */
-		lua_concat(L, 3);            /* -> stack: package > package.path";"fpath */
-		lua_setfield(L, 1, "path");  /* package.path = package.path";"fpath -> stack: package */
-		lua_pop(L, 1);
-		call_lua_func(target, NULL, "require", "s", NULL, module);
+
+		// Keep the dirname of the file path and add the search pattern
+		char *ptr = strstr(fpath, module_file);
+		strcpy(ptr, "?.lua");
+
+		// Get current Lua package.path
+		lua_getglobal(L, "package");
+		lua_getfield(L, 1, "path");
+		const char *package_path = lua_tostring(L, -1);
+		lua_pop(L, 2);
+
+		// Add the search path, if needed
+		if (!strstr(package_path, fpath)) {
+			lua_getglobal(L, "package"); /* -> stack: package */
+			lua_getfield(L, 1, "path");  /* -> stack: package.path < package */
+			lua_pushliteral(L, ";");     /* -> stack: ";" < package.path < package */
+			lua_pushstring(L, fpath);    /* -> stack: fpath < ";" < package.path < package */
+			lua_concat(L, 3);            /* -> stack: package.path;fpath < package */
+			lua_setfield(L, 1, "path");  /* package.path = package.path;fpath -> stack: package */
+			lua_pop(L, 1);
+		}
 	}
+
+	/*
+	 * Call "require(module)" to load the module
+	 */
+
+	call_lua_func(target, NULL, "require", "s", NULL, module);
 
 	free(module_file);
 }
