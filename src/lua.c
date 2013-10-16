@@ -1143,6 +1143,12 @@ static int lua_find_file(lua_State *L)
 	return 1;
 }
 
+static int lua_term_has_color_cap(lua_State *L)
+{
+	lua_pushboolean(L, (term_has_color_cap == TRUE));
+	return 1;
+}
+
 static int lua_dir(lua_State *L)
 {
 	/* Note: Code taken (and adapted) from "Programming in Lua, 2nd edition" */
@@ -1451,6 +1457,8 @@ luaL_Reg lfuncs[] = {
 	{"find_file", lua_find_file},
 	{"dir", lua_dir},
 
+	{"term_has_color_cap", lua_term_has_color_cap },
+
 	{NULL, NULL}
 };
 
@@ -1685,11 +1693,9 @@ static void pretty_print_lua_error(lua_State* L, const char *code, const char *f
 
 	while (ptr != NULL) {
 		if (err_line != cur_line) {
-			autostr_append(erronous_code, "%d %s\n", cur_line, ptr);
-#ifndef __WIN32__
-		} else if (!strcmp(getenv("TERM"), "xterm")) { //color highlighting for Linux/Unix terminals
+			autostr_append(erronous_code, "%d  %s\n", cur_line, ptr);
+		} else if (term_has_color_cap) { //color highlighting for Linux/Unix terminals
 			autostr_append(erronous_code, "\033[41m>%d %s\033[0m\n", cur_line, ptr);
-#endif
 		} else {
 			autostr_append(erronous_code, ">%d %s\n", cur_line, ptr);
 		}

@@ -70,6 +70,7 @@ EXTERN SDL_Rect Cons_Text_Rect;
 
 extern char *our_homedir;
 extern char *our_config_dir;
+extern int term_has_color_cap;
 
 EXTERN int Number_Of_Droid_Types;
 EXTERN int QuitProgram;

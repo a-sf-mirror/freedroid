@@ -61,6 +61,7 @@ long Overall_Frames_Displayed = 0;
 
 char *our_homedir = NULL;
 char *our_config_dir = NULL;
+int term_has_color_cap = FALSE;
 
 mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[UP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/UpButton.png", {600, 94, 40, 40}, TRUE},

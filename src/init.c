@@ -1012,6 +1012,16 @@ static void detect_available_resolutions(void)
  * ----------------------------------------------------------------- */
 void InitFreedroid(int argc, char **argv)
 {
+	// Get color capability of current output stream.
+	// Real code to get such a capability has to use setupterm() and
+	// tigetnum() from the ncurses lib.
+	// In order to avoid a dependency to ncurses, we use here a simple trick.
+	term_has_color_cap = FALSE;
+#ifndef __WIN32__
+	if (isatty(STDOUT_FILENO) && !strncmp(getenv("TERM"), "xterm", 5))
+		term_has_color_cap = TRUE;
+#endif
+
 	struct stat statbuf;
 
 	// Get the homedir, and define the directory where the config file and
