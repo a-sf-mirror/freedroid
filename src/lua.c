@@ -1905,36 +1905,33 @@ static void load_lua_module(enum lua_target target, const char *dir, const char 
 	free(module_file);
 }
 
+/**
+ * Initialize the Lua state used to load the config files
+ */
 void init_lua()
 {
 	char fpath[2048];
-	int i;
 
-	dialog_lua_state = luaL_newstate();
-	luaL_openlibs(dialog_lua_state);
+	dialog_lua_state = NULL;
+
 	config_lua_state = luaL_newstate();
 	luaL_openlibs(config_lua_state);
 
-	for (i = 0; lfuncs[i].name != NULL; i++) {
-		lua_pushcfunction(dialog_lua_state, lfuncs[i].func);
-		lua_setglobal(dialog_lua_state, lfuncs[i].name);
-	}
-
 	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
-		run_lua_file(LUA_DIALOG, fpath);
 		run_lua_file(LUA_CONFIG, fpath);
 	}
 }
 
 /**
- * Reset Lua state
+ * Reset (or create) the Lua state used to load and execute the dialogs
  */
 void reset_lua_state(void)
 {
 	int i;
 	char fpath[2048];
 
-	lua_close(dialog_lua_state);
+	if (dialog_lua_state)
+		lua_close(dialog_lua_state);
 	dialog_lua_state = luaL_newstate();
 	luaL_openlibs(dialog_lua_state);
 
