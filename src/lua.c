@@ -1630,7 +1630,7 @@ pop_and_return:
  * \param outsig Signature string for the returned values
  * \param ...    Input parameters data and pointers to returned value storages
  *
- * \return 1 if the function call succeeded, else return 0
+ * \return TRUE if the function call succeeded, else return FALSE
  */
 int call_lua_func(enum lua_target target, const char *module, const char *func, const char *insig, const char *outsig, ...)
 {
@@ -1646,25 +1646,25 @@ int call_lua_func(enum lua_target target, const char *module, const char *func, 
 	if (!push_func_and_args(L, module, func, insig, &vl)) {
 		ErrorMessage(__FUNCTION__, "Aborting lua function call.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		va_end(vl);
-		return 0;
+		return FALSE;
 	}
 
-	if (lua_pcall(L, narg, nres, 0) != 0) {
+	if (lua_pcall(L, narg, nres, 0) != LUA_OK) {
 		DebugPrintf(-1, "call_lua_func: Error calling ’%s’: %s", func, lua_tostring(L, -1));
 		lua_pop(L, 1);
 		ErrorMessage(__FUNCTION__, "Aborting lua function call.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		va_end(vl);
-		return 0;
+		return FALSE;
 	}
 
 	if (!pop_results(L, outsig, &vl)) {
 		ErrorMessage(__FUNCTION__, "Aborting lua function call.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		va_end(vl);
-		return 0;
+		return FALSE;
 	}
 
 	va_end(vl);
-	return 1;
+	return TRUE;
 }
 
 static void pretty_print_lua_error(lua_State* L, const char *code, const char *funcname)
