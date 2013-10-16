@@ -1667,13 +1667,12 @@ int call_lua_func(enum lua_target target, const char *module, const char *func, 
 	return TRUE;
 }
 
-static void pretty_print_lua_error(lua_State* L, const char *code, const char *funcname)
+static void pretty_print_lua_error(lua_State* L, const char *code, int cur_line, const char *funcname)
 {
 	const char *error = lua_tostring(L, -1);
 	char *display_code = strdup(code);
 	const char *ptr = error;
 	int err_line = 0;
-	int cur_line = 2;
 	struct auto_string *erronous_code;
 
 	erronous_code = alloc_autostr(16);
@@ -1713,7 +1712,7 @@ static void pretty_print_lua_error(lua_State* L, const char *code, const char *f
 }
 
 /**
- * \brief Prepare to call a lua function in a coroutine
+ * \brief Prepare to call a lua function from a module in a coroutine
  *
  * \details Create a new lua thread, and fill the lua stack with the function to
  * call and its argument, in preparation to a call to resume_coroutine, which will
@@ -1731,30 +1730,42 @@ static void pretty_print_lua_error(lua_State* L, const char *code, const char *f
  */
 struct lua_coroutine *prepare_lua_coroutine(enum lua_target target, const char *module, const char *func, const char *insig, ...)
 {
-        lua_State *L = get_lua_state(target);
-        lua_State *co_L = lua_newthread(L);
+	lua_State *L = get_lua_state(target);
+	lua_State *co_L = lua_newthread(L);
 
-        struct lua_coroutine *new_coroutine = (struct lua_coroutine *)MyMalloc(sizeof(struct lua_coroutine));
-        new_coroutine->thread = co_L;
-        new_coroutine->nargs = (insig) ? strlen(insig) : 0;
+	struct lua_coroutine *new_coroutine = (struct lua_coroutine *)MyMalloc(sizeof(struct lua_coroutine));
+	new_coroutine->thread = co_L;
+	new_coroutine->nargs = (insig) ? strlen(insig) : 0;
 
-        va_list vl;
-        va_start(vl, insig);
+	va_list vl;
+	va_start(vl, insig);
 
-        push_func_and_args(co_L, module, func, insig, &vl);
+	push_func_and_args(co_L, module, func, insig, &vl);
 
 	va_end(vl);
 
-        return new_coroutine;
+	return new_coroutine;
 }
 
+/**
+ * \brief Prepare to call a lua function, given in a source code, in a coroutine
+ *
+ * \details Create a new lua thread, and fill the lua stack with the function to
+ * call and its argument, in preparation to a call to resume_coroutine, which will
+ * actually start the coroutine.
+ *
+ * \param target A lua_target enum value defining the Lua context to use
+ * \param code   The code of the function to execute
+ *
+ * \return Pointer to a lua_coroutine struct holding the data needed to start (resume) the coroutine
+ */
 struct lua_coroutine *load_lua_coroutine(enum lua_target target, const char *code)
 {
 	lua_State *L = get_lua_state(target);
 	lua_State *co_L = lua_newthread(L);
 
 	if (luaL_loadstring(co_L, code)) {
-		pretty_print_lua_error(co_L, code, __FUNCTION__);
+		pretty_print_lua_error(co_L, code, 2, __FUNCTION__);
 		return NULL;
 	}
 	struct lua_coroutine *new_coroutine = (struct lua_coroutine *)MyMalloc(sizeof(struct lua_coroutine));
@@ -1779,11 +1790,43 @@ int resume_lua_coroutine(struct lua_coroutine *coroutine)
 		default:
 		{
 			// Any other return code is an error.
-			// Use the lua debug API to get the code of the current script
+			// Use the lua debug API to get informations about the code of the current script
 			lua_Debug ar;
 			lua_getstack(coroutine->thread, 0, &ar);
 			lua_getinfo(coroutine->thread, "S", &ar);
-			pretty_print_lua_error(coroutine->thread, ar.source, __FUNCTION__);
+
+			if (ar.source[0] != '@') {
+				// ar.source contains the script code
+				pretty_print_lua_error(coroutine->thread, ar.source, 2, __FUNCTION__);
+			} else {
+				// The script code is in an external file
+				// Extract the erroneous function's code from the source file
+				FILE *src = fopen(ar.short_src, "r");
+				struct auto_string *code = alloc_autostr(256);
+				char buffer[256] = "";
+				char *ptr = buffer;
+				int lc = 1;
+				for (;;) {
+					if (*ptr == '\0') {
+						if (feof(src)) break;
+						size_t nbc = fread(buffer, 1, 255, src);
+						buffer[nbc] = '\0';
+						ptr = buffer;
+					}
+					if (*ptr == '\n') lc++;
+					if (lc > ar.lastlinedefined) break;
+					if (lc >= ar.linedefined && lc <= ar.lastlinedefined) {
+						// The use of autostr_append to add a single character is
+						// not efficient, but this code is used only in case of a
+						// script error, so we do not really care of efficiency
+						autostr_append(code, "%c", *ptr);
+					}
+					ptr++;
+				}
+
+				pretty_print_lua_error(coroutine->thread, code->value, ar.linedefined, __FUNCTION__);
+				free_autostr(code);
+			}
 			return TRUE; // Pretend the lua script has ended
 		}
 	}
@@ -1796,7 +1839,7 @@ void run_lua(enum lua_target target, const char *code)
 	lua_State *L = get_lua_state(target);
 
 	if (luaL_dostring(L, code))
-		pretty_print_lua_error(L, code, __FUNCTION__);
+		pretty_print_lua_error(L, code, 2, __FUNCTION__);
 }
 
 void run_lua_file(enum lua_target target, const char *path)
