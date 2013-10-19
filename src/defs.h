@@ -212,13 +212,13 @@ enum {
 #define FD_DATADIR ".."		// our local fallback
 #endif
 
-#define GRAPHICS_DIR		"graphics/"
-#define SOUND_DIR		"sound/"
-#define MAP_DIR			"map/"
-#define TITLES_DIR		"map/titles/"
-#define DIALOG_DIR		"dialogs/"
-
-#define ICON_FILE		"paraicon.bmp"
+#define GRAPHICS_DIR  "graphics/"
+#define SOUND_DIR     "sound/"
+#define MAP_DIR       "map/"
+#define TITLES_DIR    "map/titles/"
+#define DIALOG_DIR    "dialogs/"
+#define LUA_MOD_DIR   "lua_modules/"
+#define ICON_FILE     "paraicon.bmp"
 
 //--------------------
 #define SKILL_LEVEL_BUTTON_HEIGHT 32
