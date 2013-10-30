@@ -671,10 +671,11 @@ static int lua_chat_says(lua_State * L)
 	return lua_yield(L, 0);
 }
 
+#ifndef WITH_NEW_DIALOG
 static int lua_chat_push_topic(lua_State * L)
 {
 	const char *topic = luaL_checkstring(L, 1);
-	
+
 	chat_push_topic(topic);
 
 	return 0;
@@ -736,6 +737,7 @@ static int lua_chat_call_subdialog(lua_State * L)
 	chat_push_context(new_chat_context);
 	return lua_yield(L, 0); // lua_yield must be called in a return statement
 }
+#endif
 
 static int lua_start_chat(lua_State * L)
 {
@@ -766,7 +768,10 @@ static int lua_start_chat(lua_State * L)
 	dialog_name = partner->dialog_section_name;
 
 	chat_context = chat_create_context(partner, npc, dialog_name);
-	chat_push_context(chat_context);
+	if (!chat_push_context(chat_context)) {
+		chat_delete_context(chat_context);
+		return 0;
+	}
 
 	if (!called_from_dialog) {
 		// Open the chat screen and run the chat engine.
@@ -780,6 +785,7 @@ static int lua_start_chat(lua_State * L)
 	return 0;
 }
 
+#ifndef WITH_NEW_DIALOG
 static int lua_chat_set_next_node(lua_State * L)
 {
 	int nodenb = luaL_checkint(L, 1);
@@ -794,6 +800,7 @@ static int lua_chat_set_next_node(lua_State * L)
 
 	return 0;
 }
+#endif
 
 static int lua_chat_end_dialog(lua_State * L)
 {
@@ -809,6 +816,7 @@ static int lua_chat_partner_started(lua_State * L)
 	return 1;
 }
 
+#ifndef WITH_NEW_DIALOG
 static int __lua_chat_toggle_node(lua_State * L, int value)
 {
 	int i = 1, flag;
@@ -837,6 +845,7 @@ static int lua_chat_disable_node(lua_State * L)
 {
 	return __lua_chat_toggle_node(L, 0);
 }
+#endif
 
 static int lua_chat_drop_dead(lua_State * L)
 {
@@ -1342,16 +1351,20 @@ luaL_Reg lfuncs[] = {
 	,
 	{"chat_says", lua_chat_says}
 	,
+#ifndef WITH_NEW_DIALOG
 	{"topic", lua_chat_push_topic}
 	,
 	{"pop_topic", lua_chat_pop_topic}
 	,
 	{"call_subdialog", lua_chat_call_subdialog}
 	,
+#endif
 	{"start_chat", lua_start_chat}
 	,
-	{"set_next_node", lua_chat_set_next_node}
+#ifndef WITH_NEW_DIALOG
+	{"next", lua_chat_set_next_node}
 	,
+#endif
 	{"end_dialog", lua_chat_end_dialog}
 	,
 	/* NOTE:  if (partner_started())  will always be true
@@ -1359,11 +1372,12 @@ luaL_Reg lfuncs[] = {
 	 */
 	{"partner_started", lua_chat_partner_started}
 	,
-	{"enable_node", lua_chat_enable_node}
+#ifndef WITH_NEW_DIALOG
+	{"show", lua_chat_enable_node}
 	,
-	{"disable_node", lua_chat_disable_node}
+	{"hide", lua_chat_disable_node}
 	,
-
+#endif
 	{"drop_dead", lua_chat_drop_dead}
 	,
 	{"bot_exists", lua_chat_bot_exists}
@@ -1827,6 +1841,7 @@ int resume_lua_coroutine(struct lua_coroutine *coroutine)
 				pretty_print_lua_error(coroutine->thread, code->value, ar.linedefined, __FUNCTION__);
 				free_autostr(code);
 			}
+
 			return TRUE; // Pretend the lua script has ended
 		}
 	}
@@ -1940,9 +1955,19 @@ void reset_lua_state(void)
 		lua_setglobal(dialog_lua_state, lfuncs[i].name);
 	}
 
+#ifdef WITH_NEW_DIALOG
+	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDutils");
+#endif
+
 	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
 		run_lua_file(LUA_DIALOG, fpath);
 	}
+
+#ifdef WITH_NEW_DIALOG
+	// Load and initialize lua part of the dialog engine
+	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDdialog");
+	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "s", NULL, DIALOG_DIR);
+#endif
 }
 
 /**

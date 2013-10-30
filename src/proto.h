@@ -602,7 +602,7 @@ void alert_window(const char *text, ...) PRINTF_FMT_ATTRIBUTE(1,2);
 int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels);
 void SetNewBigScreenMessage(const char *ScreenMessageText);
 void DisplayBigScreenMessage(void);
-void chat_with_droid(Enemy ChatDroid);
+int chat_with_droid(Enemy ChatDroid);
 
 int display_text_using_line_height(const char *, int, int, const SDL_Rect*, float);
 int display_text(const char *, int, int, const SDL_Rect*);
@@ -697,7 +697,8 @@ int load_texture_atlas(const char *, const char *, struct image *(*get_storage_f
 // chat.c
 struct widget_group *create_chat_dialog(void);
 struct chat_context *chat_create_context(struct enemy *, struct npc *, const char *);
-void chat_push_context(struct chat_context *);
+int chat_push_context(struct chat_context *);
+void chat_delete_context(struct chat_context *);
 void chat_push_topic(const char *topic);
 void chat_pop_topic(void);
 void chat_add_response(const char *);

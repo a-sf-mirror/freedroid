@@ -68,6 +68,9 @@ void npc_add(const char *dialog_basename)
 	n->chat_character_initialized = FALSE;
 	n->last_trading_date = 0.0f;
 
+#ifdef WITH_NEW_DIALOG
+	dynarray_free(&n->enabled_nodes);
+#endif
 	npc_clear_inventory(n);
 	npc_insert(n);	
 }

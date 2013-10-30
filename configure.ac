@@ -77,15 +77,16 @@ esac
 
 dnl Commandline options
 
-AC_ARG_ENABLE(opengl,       [  --disable-opengl        Do not build the OpenGL support (not recommended!) [[default=auto]]], want_gl="$enableval", want_gl=yes)
-AC_ARG_ENABLE(vorbis,       [  --disable-vorbis        Do not include support for OGG/Vorbis audio files (no music) [[default=auto]]], want_vorbis="$enableval", want_vorbis=yes)
-AC_ARG_ENABLE(fastmath,     [  --enable-fastmath       Compile with -ffast-math [[default=yes]]], fast_math="$enableval", fast_math=yes)
-AC_ARG_ENABLE(debug,        [  --enable-debug          Compile with debugging support [[default=no]]], use_debug="$enableval", use_debug=no)
-AC_ARG_ENABLE(native-arch,        [  --enable-native-arch          Compile with -march=native and -mtune=native [[default=no]]], arch_native="$enableval",arch_native=no)
-AC_ARG_ENABLE(sanitize-address,        [  --enable-sanitize-address          Compile with -fsanitize=address [[default=no]]], sanitize_address="$enableval",sanitize_address=no)
-AC_ARG_WITH(extra-warnings, [  --with-extra-warnings   Generate more warning messages when compiling [[default=no]]], more_warn="$withval", more_warn=no)
-AC_ARG_ENABLE(backtrace,    [  --disable-backtrace     Disable the use of backtrace() to generate nice bug reports [[default=enabled]]], want_backtrace="$enableval", want_backtrace=yes)
-AC_ARG_WITH(embedded-lua, [  --with-embedded-lua        Uses the Lua libraries bundled with FreedroidRPG instead of system libraries [[default=system lua]]], embedded_lua="$withval", embedded_lua=no)
+AC_ARG_ENABLE(opengl,            [  --disable-opengl            Do not build the OpenGL support (not recommended!) [[default=auto]]], want_gl="$enableval", want_gl=yes)
+AC_ARG_ENABLE(vorbis,            [  --disable-vorbis            Do not include support for OGG/Vorbis audio files (no music) [[default=auto]]], want_vorbis="$enableval", want_vorbis=yes)
+AC_ARG_ENABLE(fastmath,          [  --enable-fastmath           Compile with -ffast-math [[default=yes]]], fast_math="$enableval", fast_math=yes)
+AC_ARG_ENABLE(debug,             [  --enable-debug              Compile with debugging support [[default=no]]], use_debug="$enableval", use_debug=no)
+AC_ARG_ENABLE(native-arch,       [  --enable-native-arch        Compile with -march=native and -mtune=native [[default=no]]], arch_native="$enableval",arch_native=no)
+AC_ARG_ENABLE(sanitize-address,  [  --enable-sanitize-address   Compile with -fsanitize=address [[default=no]]], sanitize_address="$enableval",sanitize_address=no)
+AC_ARG_WITH(extra-warnings,      [  --with-extra-warnings       Generate more warning messages when compiling [[default=no]]], more_warn="$withval", more_warn=no)
+AC_ARG_ENABLE(backtrace,         [  --disable-backtrace         Disable the use of backtrace() to generate nice bug reports [[default=enabled]]], want_backtrace="$enableval", want_backtrace=yes)
+AC_ARG_WITH(embedded-lua,        [  --with-embedded-lua         Uses the Lua libraries bundled with FreedroidRPG instead of system libraries [[default=system lua]]], embedded_lua="$withval", embedded_lua=no)
+AC_ARG_WITH(new-dialog,          [  --with-new-dialog           Uses the new dialog engine [[default=no]]], new_dialog="$withval", new_dialog=no)
 
 if test x$arch_native = xyes; then
 	CFLAGS="$CFLAGS -O3 -march=native -mtune=native"
@@ -118,6 +119,10 @@ if test x$embedded_lua = xno; then
 		CFLAGS="$CFLAGS $LUA_CFLAGS"
 		LIBS="$LIBS $LUA_LIBS"
 	fi
+fi
+
+if test x$new_dialog = xyes; then
+	CFLAGS="$CFLAGS -DWITH_NEW_DIALOG"
 fi
 
 dnl Check for SDL
@@ -220,7 +225,7 @@ else
 	   AC_MSG_RESULT(yes)
 	   dnl for backwards compatibility with our previous check, define
 	   dnl the corresponding config.h-define
-	   AC_DEFINE(HAVE_LIBGL,1, [Define to 1 if openGL libs were found])
+	   AC_DEFINE(HAVE_LIBGL, 1, [Define to 1 if openGL libs were found])
 	   LIBS="$LIBS $GL_LIBS"
 	   CFLAGS="$CFLAGS $GL_CFLAGS"
 	   summary_have_gl="yes"

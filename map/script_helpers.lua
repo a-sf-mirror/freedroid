@@ -2,9 +2,6 @@
 math.randomseed(os.time())
 
 -- aliases for dialogs
-next = set_next_node
-show = enable_node
-hide = disable_node
 get_program = get_program_revision
 
 -- gettext function for dialogs
@@ -491,34 +488,6 @@ function get_random_bot_59()
 			  834, 834, 883, 883, 883, 999, 999, 999, 543,
 			  543, 543, 603) -- "GUN")
 	return bot_59
-end
-
-function scandir(subdir, filter, exclude)
-	local filtered = {}
-	local exclude_dict = {}
-	local files = dir(subdir)
-	filter = filter or ".*"
-	exclude = exclude or {}
-
-	if (files) then
-		-- transform the exclude list into a 'dictionary'
-		for _,v in ipairs(exclude) do
-			exclude_dict[v] = true
-		end
-
-		-- for each file in the directory, check if it matches the regexp
-		-- filter and if it is not in the exclude list
-		for _,file in ipairs(files) do
-			if ((file:match(filter) == file) and not exclude_dict[file]) then
-				filtered[#filtered + 1] = file
-			end
-		end
-
-		-- alphabetic sort
-		table.sort(filtered)
-	end
-
-	return filtered
 end
 
 function has_item(...)

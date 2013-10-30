@@ -56,6 +56,7 @@ struct dynarray {
 };
 
 typedef struct dynarray item_dynarray;
+typedef struct dynarray string_dynarray;
 
 typedef struct upgrade_socket_dynarray {
 	struct upgrade_socket *arr;
@@ -477,7 +478,10 @@ typedef struct enemy {
 typedef struct npc {
 	string dialog_basename;
 	uint8_t chat_character_initialized;
-	uint8_t chat_flags[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
+
+	uint8_t chat_flags[MAX_DIALOGUE_OPTIONS_IN_ROSTER]; // [#ifndef WITH_NEW_DIALOG] TODO: Remove for new dialog engine
+
+	string_dynarray enabled_nodes;
 
 	string shoplist[MAX_ITEMS_IN_INVENTORY]; //list of items that can be put in the inventory of the NPC
 	int shoplistweight[MAX_ITEMS_IN_INVENTORY]; //weight of each item: relative probability of appearance in inventory
@@ -874,6 +878,7 @@ typedef struct ship {
 	level *AllLevels[MAX_LEVELS];
 } ship;
 
+#ifndef WITH_NEW_DIALOG
 typedef struct dialogue_option {
 	char *topic;
 	char *option_text;
@@ -881,6 +886,7 @@ typedef struct dialogue_option {
 	luacode lua_code;
 	int exists;
 } dialogue_option;
+#endif
 
 typedef struct colldet_filter {
 	int (*callback) (struct colldet_filter *filter, obstacle *obs, int obs_idx);
@@ -1019,27 +1025,32 @@ struct lua_coroutine {
 };
 
 struct chat_context {
-       enum chat_context_state state;  // current state of the chat engine.
-       int wait_user_click;            // TRUE if the chat engine is waiting for a user click.
-       int display_log_markers;        // If TRUE, clear the chat log window when the dialog is started.
+	enum chat_context_state state;  // current state of the chat engine.
+	int wait_user_click;            // TRUE if the chat engine is waiting for a user click.
+#ifndef WITH_NEW_DIALOG
+	int display_log_markers;        // If TRUE, clear the chat log window when the dialog is started.
+#endif
+	enemy *partner;                 // The bot we are talking with.
+	struct npc *npc;                // The NPC containing the specifications of the dialog to run.
+	int partner_started;            // TRUE if the dialog was started by the partner.
+	int end_dialog;                 // TRUE if a dialog lua script asked to end the dialog.
 
-       enemy *partner;                 // The bot we are talking with.
-       struct npc *npc;                // The NPC containing the specifications of the dialog to run.
-       int partner_started;            // TRUE if the dialog was started by the partner.
-       int end_dialog;                 // TRUE if a dialog lua script asked to end the dialog.
+#ifndef WITH_NEW_DIALOG
+	char *initialization_code;      // lua initialization code (run on the first activation)
+	char *startup_code;             // lua startup code (run on every activation)
+	void (*on_delete)(struct chat_context *);  // Called when the chat context is deleted
 
-       char *initialization_code;      // lua initialization code (run on the first activation)
-       char *startup_code;             // lua startup code (run on every activation)
-       void (*on_delete)(struct chat_context *);  // Called when the chat context is deleted
+	struct dialogue_option dialog_options[MAX_DIALOGUE_OPTIONS_IN_ROSTER];  // The dialog nodes
+#endif
+	int current_option;             // Current dialog node to run (-1 if none is selected)
+	struct lua_coroutine *script_coroutine;	// Handle to the lua co-routine running the current node script
 
-       struct dialogue_option dialog_options[MAX_DIALOGUE_OPTIONS_IN_ROSTER];  // The dialog nodes
-       int current_option;             // Current dialog node to run (-1 if none is selected)
-       struct lua_coroutine *script_coroutine;	// Handle to the lua co-routine running the current node script
+#ifndef WITH_NEW_DIALOG
+	char *topic_stack[CHAT_TOPIC_STACK_SIZE];  // Stack of topics. A topic is a dialog node selector.
+	unsigned int topic_stack_slot;             // Index of the top of the stack
+#endif
 
-       char *topic_stack[CHAT_TOPIC_STACK_SIZE];  // Stack of topics. A topic is a dialog node selector.
-       unsigned int topic_stack_slot;             // Index of the top of the stack
-
-       struct list_head stack_node;    // Used to create a stack of chat_context.
+	struct list_head stack_node;    // Used to create a stack of chat_context.
 };
 
 #endif

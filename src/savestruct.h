@@ -128,6 +128,10 @@ void write_string_array(struct auto_string *, string *, int);
 /*! \ingroup genrw */
 void read_string_array(lua_State *, int, string *, int);
 /*! \ingroup genrw */
+void write_string_dynarray(struct auto_string *, string_dynarray *);
+/*! \ingroup genrw */
+void read_string_dynarray(lua_State *, int, string_dynarray *);
+/*! \ingroup genrw */
 void write_uint8_t_array(struct auto_string *, uint8_t *, int);
 /*! \ingroup genrw */
 void read_uint8_t_array(lua_State *, int, uint8_t *, int);
