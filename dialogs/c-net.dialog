@@ -438,7 +438,7 @@ Nr=82 Text="nethack"
 NO_TEXT
 <LuaCode>
 	tux_says("./nethack", "NO_WAIT")
-	call_subdialog("c-net_sub_nethack")
+	call_subdialog("c-net-nethack_sub")
 	cli_says(c_net_prompt, "NO_WAIT")
 </LuaCode>
 ----------------------------------------------------------------------

@@ -67,20 +67,19 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		end_dialog()
 	end
 
-	if (not cmp_obstacle_state("TutorialWall", "broken")) then --to avoid regressions with code above
+	if (not cmp_obstacle_state("TutorialWall", "broken")) then
+		 --to avoid regressions with code above
 		if (partner_started()) then
 			npc_says(_"Hi Linarian, I've been expecting you. My name is Tutorial Tom.")
 			npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things.")
 			npc_says(_"So let's start with the basics, shall we?")
 			show(1, 7, 80)
 			set_rush_tux(0)
-		elseif (has_quest("Tutorial Movement")) and
-			   (not TutorialTom_talk_to_tom_EveryTime) then -- only once
+		elseif (has_quest("Tutorial Movement")) and (not TutorialTom_talk_to_tom_EveryTime) then
+			 -- only once
 			TutorialTom_talk_to_tom_EveryTime = true
 			npc_says(_"Glad to see you figured out the quest log!")
-		elseif (has_quest("Tutorial Movement")) and
-			   (TutorialTom_move_black) and
-			   (not TutorialTom_sprinting) then
+		elseif (has_quest("Tutorial Movement")) and (TutorialTom_move_black) and (not TutorialTom_sprinting) then
 			TutorialTom_sprinting = true
 			npc_says(_"Speaking of moment, you can also [b]sprint[/b] by holding the [b]control key[/b].")
 			update_quest(_"Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
@@ -89,25 +88,20 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 	end
 
 
-	if (tut_tux_items_entered) and
-	   (not TutorialTom_Tux_found_all_items) then
+	if (tut_tux_items_entered) and (not TutorialTom_Tux_found_all_items) then
 		show(5)
 	end
 
 	if (not tut_tux_melee_entered ) then
 
-		if (tut_tux_chest_entered) and
-		   (not tut_item_chest_opened) then
+		if (tut_tux_chest_entered) and (not tut_item_chest_opened) then
 			show(10)
 		elseif (tut_item_chest_opened) then
 			hide(10)
 			show(11)
 		end
 
-		if (has_item("Normal Jacket")) or
-		   (has_item("Improvised Buckler")) or
-		   (has_item("Shoes")) or
-		   (has_item("Worker Helmet")) then
+		if (has_item("Normal Jacket")) or (has_item("Improvised Buckler")) or (has_item("Shoes")) or (has_item("Worker Helmet")) then
 			hide(11)
 			npc_says(_"Excellent, I see you already took on the armor that was in the box.")
 			if (not armor_node_one) then
@@ -119,8 +113,8 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		end
 	end
 
-	if (tut_tux_melee_entered) and
-	   (not tut_tux_glass_entered) then -- tux is still in bot melee area
+	if (tut_tux_melee_entered) and (not tut_tux_glass_entered) then
+		 -- tux is still in bot melee area
 	   show(24)
 	end
 
@@ -128,9 +122,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		hide(24)
 	end
 
-	if (cmp_obstacle_state("TutorialDoor", "opened")) and
-	   (tut_tux_takeover_entered) and
-	   (not TutorialTom_node50_done) then
+	if (cmp_obstacle_state("TutorialDoor", "opened")) and (tut_tux_takeover_entered) and (not TutorialTom_node50_done) then
 		show(50)
 	end
 
@@ -142,9 +134,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		hide(70) show(30)
 	end
 
-	if (done_quest("Tutorial Hacking")) and
-	   (not tut_tux_glass_entered) and
-	   (not TutorialTom_hide_71) then
+	if (done_quest("Tutorial Hacking")) and (not tut_tux_glass_entered) and (not TutorialTom_hide_71) then
 		show(71)
 	else
 		hide(71)
@@ -154,8 +144,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		hide(55, 57)
 	end
 
-	if (tut_tux_ranged_entered) and
-	   (not tux_node38_done) then
+	if (tut_tux_ranged_entered) and (not tux_node38_done) then
 		show(38)
 	end
 
@@ -177,8 +166,7 @@ Nr=1 Text=_"Yes, it would be most kind of you. I don't remember anything."
 	end
 	display_big_message(_"Press 'q' for Quests!")
 	hide(1, 7, 80) show(2, 3, 4, 8)
-	if (tut_tux_items_entered) and
-	   (not TutorialTom_Tux_found_all_items) then
+	if (tut_tux_items_entered) and (not TutorialTom_Tux_found_all_items) then
 		show(5)
 	end
 	end_dialog()
@@ -232,14 +220,12 @@ Nr=5 Text=_"I'm sensing some sort of strange presence in the vicinity."
 	npc_says(_"On our way to the next stopping point, we'll pass some items on the floor.")
 	npc_says(_"Feel free to stop and examine them to get practice.")
 	npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]i key[/b], where you can examine it further.")
-	if (not TutorialTom_TutMovement_ToggleDetectItems) and
-		has_quest("Tutorial Movement") then
+	if (not TutorialTom_TutMovement_ToggleDetectItems) and has_quest("Tutorial Movement") then
 		update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'z' key, and press 'x' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'i'.")
 		TutorialTom_TutMovement_ToggleDetectItems = true
 	end
-	if (has_item("Mug")) and -- these are the items in the item room
-	   (has_item("Anti-grav Pod for Droids")) and
-	   (has_item("Plasma Transistor")) then
+	if (has_item("Mug")) and (has_item("Anti-grav Pod for Droids")) and (has_item("Plasma Transistor")) then
+	 	-- these are the items in the room item
 		npc_says(_"Oh great, I see you found all the items hidden in the room. Good job!")
 		TutorialTom_Tux_found_all_items = true
 	end
@@ -665,13 +651,13 @@ Nr=71 Text=_"I defeated all the bots in the cage."
 	npc_says(_"Then let us move towards the next stage of the Tutorial")
 	change_obstacle_state("TutorialGlasswallDoor", "opened")
 	npc_says(_"As a reward, I'm giving you a .22 Automatic pistol.")
-	if (has_item("Source Book of Calculate Pi")) and --plural
-	   (has_item("Source Book of Malformed packet")) then
+	if (has_item("Source Book of Calculate Pi")) and (has_item("Source Book of Malformed packet")) then
+		 --plural
 		npc_says(_"But I have to take this sourcebooks from you to preven you from cheating in the next section of the tutorial.")
 		npc_says(_"Sorry about that...")
 		tux_says(_"Ok...")
-	elseif (has_item("Source Book of Calculate Pi")) or --singular
-	   (has_item("Source Book of Malformed packet")) then
+	elseif (has_item("Source Book of Calculate Pi")) or (has_item("Source Book of Malformed packet")) then
+	   --singular
 	   npc_says(_"But I have to take this sourcebook from you to preven you from cheating in the next section of the tutorial.")
 	   npc_says(_"Sorry about that...")
 	   tux_says(_"Ok...")
@@ -1017,9 +1003,8 @@ Nr=33 Text=_"I think I understand how to use guns now."
 Nr=34 Text=_"I ran out of ammo. Can I have some more?"
 <LuaCode>
 	if (cmp_obstacle_state("37-ammo-chest", "unlocked")) then -- check if tux has opened the ammo chest already :  yes
-		if (has_item_backpack("Laser power pack")) or -- check if tux still has ammo left
-		   (has_item_backpack("Plasma energy container")) or
-		   (has_item_backpack(".22 LR Ammunition")) then
+		if (has_item_backpack("Laser power pack")) or (has_item_backpack("Plasma energy container")) or (has_item_backpack(".22 LR Ammunition")) then
+			 -- check if tux still has ammo left
 			npc_says(_"Looks like you still have some ammo left in your inventory...")
 			npc_says(_"Why don't you use this first?")
 			npc_says(_"Try to switch to another gun maybe...")

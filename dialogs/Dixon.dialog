@@ -75,8 +75,8 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		end_dialog()
 	end
 
-	if (done_quest(_"The yellow toolkit")) and
-	   (not Dixon_hide_node_56) then	-- effects of the toolkit-quest
+	if (done_quest(_"The yellow toolkit")) and (not Dixon_hide_node_56) then
+		-- effects of the toolkit-quest
 		if (Dixon_no_ambassador) then			-- Tux does not get the toolkit
 			if (Dixon_everything_alright) then
 				show(56)
@@ -104,8 +104,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 
 	if (Tamara_have_296_book) then
 		hide(70)
-	elseif (not Dixon_296_book_examine_library) and
-	   (Ewalds_296_needs_sourcebook) then
+	elseif (not Dixon_296_book_examine_library) and (Ewalds_296_needs_sourcebook) then
 		show(70)
 	end
 
@@ -413,8 +412,8 @@ Nr=32 Text=_"I killed that strange bot that robbed you. So, here is your toolkit
 
 Nr=33 Text=_"I got your toolkit. You can buy it from me if you want."
 <LuaCode>
-	if (Dixon_Singularity_peace) and
-	   (not Singularity_deal) then -- Tux disappointed Dixon by turning his peaceful mission into a massacre
+	if (Dixon_Singularity_peace) and (not Singularity_deal) then
+		-- Tux disappointed Dixon by turning his peaceful mission into a massacre
 		Dixon_mood = Dixon_mood + 30
 	end
 	npc_says(_"WHAT!?", "NO_WAIT")

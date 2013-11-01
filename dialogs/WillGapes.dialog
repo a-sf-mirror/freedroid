@@ -29,8 +29,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		npc_says(_"Don't come any closer! Or I'll turn you into scrap metal!")
 		npc_says(_"Wait... You're not a robot. Who are you? What are you doing here?")
 		show(1, 2, 3)
-	elseif (has_quest("Gapes Gluttony")) and
-		   (not done_quest("Gapes Gluttony")) then
+	elseif (has_quest("Gapes Gluttony")) and (not done_quest("Gapes Gluttony")) then
 		if (has_item_backpack("Lunch in a Picnic Basket")) then
 			del_item_backpack("Lunch in a Picnic Basket")
 			show(9)
@@ -39,8 +38,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 			tux_says(_"No, not yet.")
 			npc_says(_"Hurry... I'm starting to feel weak.")
 		end
-	elseif (WillGapes_generous) and
-		   (get_tux_hp() < 20) then
+	elseif (WillGapes_generous) and (get_tux_hp() < 20) then
 		npc_says(_"Hey, are you all right? It looks like the robots are winning.")
 		npc_says(_"I found this in the First Aid kit. Maybe it will help.")
 		add_item("Antibiotic")
