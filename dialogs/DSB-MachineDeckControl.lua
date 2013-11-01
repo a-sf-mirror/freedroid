@@ -1,0 +1,80 @@
+---------------------------------------------------------------------
+-- This file is part of Freedroid
+--
+-- Freedroid is free software; you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation; either version 2 of the License, or
+-- (at your option) any later version.
+--
+-- Freedroid is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-- GNU General Public License for more details.
+--
+-- You should have received a copy of the GNU General Public License
+-- along with Freedroid; see the file COPYING. If not, write to the
+-- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+-- MA 02111-1307 USA
+----------------------------------------------------------------------
+
+return {
+	FirstTime = function()
+		play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
+		cli_says(_"Login : ", "NO_WAIT")
+		tux_says(_"admin", "NO_WAIT")
+		cli_says(_"Password : ", "NO_WAIT")
+		tux_says(_"*******", "NO_WAIT")
+		DSB_MDC_year = os.date("%Y") + 45 -- current year + 45
+		DSB_MDC_date = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
+		cli_says(_"First login from /dev/ttySO on %s %d", DSB_MDC_date, DSB_MDC_year, "NO_WAIT")
+	end,
+
+	EveryTime = function()
+		DSB_MachineDeckControl_prompt = "admin@main.mdc.dsb.ms: ~ #"
+		cli_says(DSB_MachineDeckControl_prompt, "NO_WAIT")
+		if (not done_quest("Opening access to MS Office")) then
+			show("node7")
+		end
+		show("node99", "node1")
+	end,
+
+	{
+		id = "node1",
+		text = _"passwd",
+		code = function()
+			npc_says(_"Changing password for admin. Enter new password: ")
+			npc_says(_"Enter new password again: ")
+			npc_says(_"Password successfully changed.")
+			DSB_MDC_password = true
+			cli_says(DSB_MachineDeckControl_prompt, "NO_WAIT")
+			hide("node1")
+		end,
+	},
+	{
+		id = "node7",
+		text = _"shieldmgr --disable --force",
+		code = function()
+			npc_says(_"Disabling disruptor shield... ")
+			npc_says(_"Shield disabled.")
+			if (DSB_MDC_password) then
+				end_quest(_"Opening access to MS Office", _"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
+				hide("node7")
+				play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
+				end_dialog()
+			else
+				npc_says(_"WARNING: Another user is using this computer.")
+				npc_says(_"Disruptor shield is active.")
+			end
+			cli_says(DSB_MachineDeckControl_prompt, "NO_WAIT")
+		end,
+	},
+	{
+		id = "node99",
+		text = _"logout",
+		code = function()
+			npc_says(_"Exiting")
+			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
+			end_dialog()
+		end,
+	},
+}
