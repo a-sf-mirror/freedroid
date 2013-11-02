@@ -55,7 +55,8 @@ return {
 			end
 		end
 
-		if ((fuel > 4) and (fuel <= 97)) then
+		if (fuel > 4) and
+		   (fuel <= 97) then
 			fuel = math.floor(fuel*0.7-2)
 			if (fuel < 0) then
 				fuel = 0

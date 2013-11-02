@@ -74,7 +74,8 @@ return {
 
 		if (Tamara_have_296_book) then
 			hide("node70")
-		elseif (not Dixon_296_book_examine_library) and (Ewalds_296_needs_sourcebook) then
+		elseif (not Dixon_296_book_examine_library) and
+		       (Ewalds_296_needs_sourcebook) then
 			show("node70")
 		end
 

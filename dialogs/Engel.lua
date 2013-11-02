@@ -23,7 +23,9 @@ return {
 	end,
 
 	EveryTime = function()
-		if (get_program_revision("Extract bot parts") > 0) then show("node18") end
+		if (get_program_revision("Extract bot parts") > 0) then
+			show("node18")
+		end
 		show("node99")
 	end,
 

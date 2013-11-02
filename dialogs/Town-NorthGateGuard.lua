@@ -47,8 +47,8 @@ return {
 		end
 		show_node_if(knows_spencer_office, "node41")
 		if (KevinMurder) and
-		(not done_quest("A strange guy stealing from town")) and
-		(has_quest("A strange guy stealing from town")) then
+		   (not done_quest("A strange guy stealing from town")) and
+		   (has_quest("A strange guy stealing from town")) then
 			show("node50")
 		end
 	end,
@@ -104,7 +104,8 @@ return {
 				-- We should perhaps not end quest here but later when talking again to Kevin and asking about the comps
 				end_quest(_"A strange guy stealing from town", _"Though I probably should ask Kevin some day what he was doing with the town computers.")
 			end
-			if (not has_met("Kevin") and not npc_dead("Kevin")) then
+			if (not has_met("Kevin")) and
+			   (not npc_dead("Kevin")) then
 				show("node10") -- We should add other nodes in the other cases.
 			end
 			hide("node5") show("node11")
@@ -272,7 +273,7 @@ return {
 				npc_says(_"Spencer's office is in the citadel, straight ahead. First one on your left.")
 				knows_spencer_office = true
 				if (has_quest("Deliverance")) and
-				(not done_quest("Deliverance")) then
+				   (not done_quest("Deliverance")) then
 					update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate.")
 				end
 			else -- player was told where spencer's office is, or has met spencer

@@ -28,7 +28,7 @@ return {
 			npc_says(_"Spencer seems to think that you are harmless. Go about your business.")
 			if (Town_NorthGateGuard_tux_nickname_loon) then
 				npc_says(_"Babysitting a loon... Now I can say I've done it all!")
-			else end
+			end
 		end
 		show_node_if((not has_met("Spencer")), "node20")
 		show("node99")
@@ -46,8 +46,8 @@ return {
 				knows_spencer_office = true
 			else
 				npc_says_random(_"Come on, you know that already.",
-					_"I'm pretty sure you know that...",
-					_"We told you! Stop stalling!")
+								_"I'm pretty sure you know that...",
+								_"We told you! Stop stalling!")
 			end
 			hide("node20")
 		end,
@@ -58,8 +58,8 @@ return {
 		code = function()
 			if (guard_follow_tux) then
 				npc_says_random(_"Not without me, you won't.",
-					_"I'll be watching you, then.",
-					_"Hey, wait up!")
+								_"I'll be watching you, then.",
+								_"Hey, wait up!")
 			else
 				npc_says(_"Mhmmm.")
 			end

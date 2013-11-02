@@ -23,7 +23,8 @@ return {
 			npc_says(_"Don't come any closer! Or I'll turn you into scrap metal!")
 			npc_says(_"Wait... You're not a robot. Who are you? What are you doing here?")
 			show("node1", "node2", "node3")
-		elseif (has_quest("Gapes Gluttony")) and (not done_quest("Gapes Gluttony")) then
+		elseif (has_quest("Gapes Gluttony")) and
+		       (not done_quest("Gapes Gluttony")) then
 			if (has_item_backpack("Lunch in a Picnic Basket")) then
 				del_item_backpack("Lunch in a Picnic Basket")
 				show("node9")
@@ -32,7 +33,8 @@ return {
 				tux_says(_"No, not yet.")
 				npc_says(_"Hurry... I'm starting to feel weak.")
 			end
-		elseif (WillGapes_generous) and (get_tux_hp() < 20) then
+		elseif (WillGapes_generous) and
+		       (get_tux_hp() < 20) then
 			npc_says(_"Hey, are you all right? It looks like the robots are winning.")
 			npc_says(_"I found this in the First Aid kit. Maybe it will help.")
 			add_item("Antibiotic")

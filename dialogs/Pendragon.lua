@@ -26,9 +26,9 @@ return {
 	EveryTime = function()
 		branch_to_tania = false
 		if (Tania_stopped_by_Pendragon) and
-		(not Pendragon_OK_w_Tania) and --Tania Escape Quest stuff
-		(Spencer_Tania_sent_to_DocMoore) or
-		(Tania_set_free) then
+		   (not Pendragon_OK_w_Tania) and --Tania Escape Quest stuff
+		   (Spencer_Tania_sent_to_DocMoore) or
+		   (Tania_set_free) then
 			if (not done_quest("Tania's Escape")) then
 				npc_says(_"Tania has been waiting to talk to you.")
 			else

@@ -24,16 +24,20 @@ return {
 
 	EveryTime = function()
 		if (Tania_at_Ewalds_Bar) and
-		(not Ewald_got_told_Tanias_story) then
+		   (not Ewald_got_told_Tanias_story) then
 			Ewald_got_told_Tanias_story = true
 			npc_says(_"Your lady friend just told me the epic story of how you rescued her.")
 			npc_says(_"That was really something.")
 			npc_says(_"I'd give you a drink on the house, but unfortunately I'm still out.")
 		end
 
-		if (drank_all_Ewald_had) then show("node14") end
+		if (drank_all_Ewald_had) then
+		   show("node14")
+		end
 
-		if (Ewald_gambling) then show("node30") end
+		if (Ewald_gambling) then
+			show("node30")
+		end
 
 		show("node99")
 	end,
@@ -81,7 +85,7 @@ return {
 			npc_says(_"Well... We are a bit short on supplies right now... Erm... AH! I know!")
 			npc_says(_"I have WATER!")
 			if (not has_item_backpack("Mug")) and
-			(not has_item_backpack("Cup")) then
+			   (not has_item_backpack("Cup")) then
 				npc_says(_"But you'll need a mug or a cup for me to put it in.")
 			else
 				hide("node3") show("node4", "node5", "node6")

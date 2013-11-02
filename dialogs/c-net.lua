@@ -241,7 +241,9 @@ return {
 				npc_says(_"Mounting volume \"Kevins_Security_File\"...")
 				npc_says(_"Private memory and/or virtual address space exhausted.", "NO_WAIT")
 				npc_says(_"Not enough free memory to load data file.", "NO_WAIT")
-			elseif (has_quest("Deliverance")) and (not done_quest("Deliverance")) and (has_item_backpack("Data cube")) then
+			elseif (has_quest("Deliverance")) and
+			       (not done_quest("Deliverance")) and
+			       (has_item_backpack("Data cube")) then
 				npc_says(_"List for Spencer:")
 				npc_says("Alastra, Maria Grazia", "NO_WAIT")
 				npc_says("Arana, Pedro", "NO_WAIT")
@@ -377,21 +379,21 @@ return {
 			while (try_again_radio) do
 				local track = user_input_string(_"please enter track")
 				if (track == "Ambience" ) or
-				(track == "AmbientBattle" ) or
-				(track == "Bleostrada" ) or
-				(track == "hellforce" ) or
-				(track == "HellFortressEntrance" ) or
-				(track == "HellFortressTwo" ) or
-				(track == "ImperialArmy" ) or
-				(track == "menu" ) or
-				(track == "NewTutorialStage" ) or
-				(track == "Suspicion" ) or
-				(track == "TechBattle" ) or
-				(track == "temple" ) or
-				(track == "TheBeginning" ) or
-				(track == "town" ) or
-				(track == "underground" ) or
-				(running_benchmark()) then
+				   (track == "AmbientBattle" ) or
+				   (track == "Bleostrada" ) or
+				   (track == "hellforce" ) or
+				   (track == "HellFortressEntrance" ) or
+				   (track == "HellFortressTwo" ) or
+				   (track == "ImperialArmy" ) or
+				   (track == "menu" ) or
+				   (track == "NewTutorialStage" ) or
+				   (track == "Suspicion" ) or
+				   (track == "TechBattle" ) or
+				   (track == "temple" ) or
+				   (track == "TheBeginning" ) or
+				   (track == "town" ) or
+				   (track == "underground" ) or
+				   (running_benchmark()) then
 					switch_background_music(track .. ".ogg")
 					try_again_radio = false
 					next("node20")
@@ -453,9 +455,9 @@ return {
 		code = function()
 			tux_says(_"./global_thermonuclear_war", "NO_WAIT")
 			npc_says_random(_"Sorry, only winning move is not to play. New game?",
-				_"Mankind exterminated. You lost!",
-				_"No victory possible. LOSER! Play again?",
-				_"Everyone dies, new game?", "NO_WAIT")
+							_"Mankind exterminated. You lost!",
+							_"No victory possible. LOSER! Play again?",
+							_"Everyone dies, new game?", "NO_WAIT")
 			cli_says(c_net_prompt, "NO_WAIT")
 		end,
 	},
@@ -488,9 +490,9 @@ return {
 			else
 				npc_says(_"You are already playing Progress Quest:")
 				npc_says_random(_"You are selling an item!",
-					_"You are killing a creature!",
-					_"You are gaining a level!",
-					_"You are casting a spell!")
+								_"You are killing a creature!",
+								_"You are gaining a level!",
+								_"You are casting a spell!")
 				cli_says(c_net_prompt, "NO_WAIT")
 			end
 		end,

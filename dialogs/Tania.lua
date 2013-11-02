@@ -37,7 +37,7 @@ return {
 			hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node10", "node11", "node12", "node13", "node14", "node17", "node18", "node19", "node90")
 			if (not Tania_follow_tux) then
 				npc_says_random(_"I long to see the surface.",
-					_"You are the most interesting hallucination yet.")
+								_"You are the most interesting hallucination yet.")
 				show("node90")
 				if (not SACD_gunsoff) then --Guns are still on
 					hide("node27")
@@ -61,10 +61,11 @@ return {
 					next("node55")
 				else
 					npc_says_random(_"Are we there yet?",
-						_"How much longer?")
+									_"How much longer?")
 				end
 				show("node92")
-			elseif (not Spencer_Tania_sent_to_DocMoore) and (not Tania_set_free) then --at the Town Entrance, waiting for Spencer's OK
+			elseif (not Spencer_Tania_sent_to_DocMoore) and
+			       (not Tania_set_free) then --at the Town Entrance, waiting for Spencer's OK
 				hide("node45", "node46", "node47", "node49", "node50", "node51", "node52", "node53", "node56", "node57", "node58", "node59", "node92")
 				if (Tania_just_stopped_by_Pendragon) then
 					Tania_just_stopped_by_Pendragon = false
@@ -86,14 +87,16 @@ return {
 					Tania_at_Ewalds_Bar = true
 				end
 				end_quest(_"Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
-				if (difficulty("hard")) and (not Tania_mapper_given == true) then
+				if (difficulty("hard")) and
+				   (not Tania_mapper_given == true) then
 					npc_says("I'm so glad that I am finally here, take this.")
 					add_item("Source Book of Network Mapper")
 					Tania_mapper_given = true
 				end
 				branch_to_pendragon = true
 			else --"Tania's Escape" was a success!
-				if (not Tania_DocMoore_cleared) and (not Tania_set_free) then --send to Bar
+				if (not Tania_DocMoore_cleared) and
+				   (not Tania_set_free) then --send to Bar
 					Tania_DocMoore_cleared = true
 					heal_npc()
 					npc_says(_"I have good news: the doctor says I'm healthy!")
@@ -266,7 +269,8 @@ return {
 			npc_says(_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels.")
 			add_quest(_"Tania's Escape", _"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
 			npc_says(_"It's dangerous to go alone! Take this!")
-			if (difficulty("easy")) and (not Tania_mapper_given == true) then
+			if (difficulty("easy")) and
+			   (not Tania_mapper_given == true) then
 				add_item("Source Book of Network Mapper")
 				Tania_mapper_given = true
 			end
@@ -298,7 +302,8 @@ return {
 			npc_says(_"I hope these books will help you.")
 			display_big_message(_"Tania is now free!")
 			add_xp(1500)
-			if (difficulty("normal")) and (not Tania_mapper_given == true) then
+			if (difficulty("normal")) and
+			   (not Tania_mapper_given == true) then
 				add_item("Source Book of Network Mapper")
 				Tania_mapper_given = true
 			end
@@ -484,10 +489,12 @@ return {
 			if (has_item_backpack("Doc-in-a-can")) then
 				show("node59")
 			end
-			if (has_item_backpack("Antibiotic") and (injured_level < 3)) then
+			if (has_item_backpack("Antibiotic") and
+			   (injured_level < 3)) then
 				show("node58")
 			end
-			if (has_item_backpack("Diet supplement") and (injured_level < 2)) then
+			if (has_item_backpack("Diet supplement") and
+			   (injured_level < 2)) then
 				show("node57")
 			end
 			show("node56")

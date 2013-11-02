@@ -24,8 +24,8 @@ return {
 
 	EveryTime = function()
 		if (has_quest("Droids are my friends")) and
-		(done_quest("Droids are my friends")) and
-		(not Singularity_reward_for_toolkit) then
+		   (done_quest("Droids are my friends")) and
+		   (not Singularity_reward_for_toolkit) then
 			show("node22")
 			Singularity_reward_for_toolkit = true
 		end

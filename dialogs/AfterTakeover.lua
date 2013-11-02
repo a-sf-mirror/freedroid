@@ -526,10 +526,10 @@ return {
 					-- gettext strings left out on purpose
 				end
 				if (Dixon_mood) and
-				(Dixon_mood > 150) and
-				(Bruce_hurt) and
-				(has_quest("Opening access to MS Office")) and
-				(not tux_has_edge) then
+				   (Dixon_mood > 150) and
+				   (Bruce_hurt) and
+				   (has_quest("Opening access to MS Office")) and
+				   (not tux_has_edge) then
 					npc_says(_"()%%#@(%% THE BLADE IS YOURS. )##%%*&%%*!")
 					tux_has_edge = true
 					add_item("Nobody's edge",1)

@@ -206,8 +206,8 @@ return {
 		text = _"Huh? I d0n'7 f33l g00d.",
 		code = function()
 			npc_says_random(_"Yes! I am free! At last I am free!",
-				_"Yes! I am free!",
-				_"Yes! I am free at last!")
+							_"Yes! I am free!",
+							_"Yes! I am free at last!")
 			tux_says(_"W417... 1 f331... H0rr1b13...")
 			npc_says(_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!")
 			improve_skill("programming")

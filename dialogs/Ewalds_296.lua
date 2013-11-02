@@ -34,7 +34,7 @@ return {
 		end
 
 		if (Ewalds_296_reactor_fix) and
-		(not Ewalds_296_self_sacrifice) then
+		   (not Ewalds_296_self_sacrifice) then
 			show("node11")
 		end
 

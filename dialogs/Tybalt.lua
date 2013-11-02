@@ -34,7 +34,8 @@ return {
 			show("node10")
 		end
 
-		show_node_if((tybalt_bribe) and (not Tybalt_money_back), "node60")
+		show_node_if((tybalt_bribe) and
+					 (not Tybalt_money_back), "node60")
 
 		if (tux_has_joined_guard) then
 			hide("node50", "node54", "node55", "node56")

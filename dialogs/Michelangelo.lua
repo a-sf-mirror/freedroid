@@ -90,7 +90,11 @@ return {
 			npc_says(_"They are made fully out of artificial nutrients and carcinogenic flavors. Even the army hated them.")
 			npc_says(_"It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat.")
 			npc_says(_"I can give you some, but it's not worthy of being called food.")
-			if (Michelangelo_been_asked_for_army_snacks) then show("node26") else show("node12") end
+			if (Michelangelo_been_asked_for_army_snacks) then
+				show("node26")
+			else
+				show("node12")
+			end
 			hide("node11")
 		end,
 	},
@@ -190,7 +194,11 @@ return {
 				npc_says(_"I'm confused, nothing of my upper gastronomy is ready to eat. Not one cheese cake.")
 				npc_says(_"But don't despair, Michelangelo is slaving over his stove. A army of bots could not stop the Master when he's cooking.")
 				npc_says(_"Until my next batch of food comes out of the macrowave oven, all I have are the odoriferous military rations.")
-				if (Michelangelo_been_asked_for_army_snacks) then show("node26") else show("node12") end
+				if (Michelangelo_been_asked_for_army_snacks) then
+					show("node26")
+				else
+					show("node12")
+				end
 			else
 				if (not Michelangelo_food_dish) then
 					Michelangelo_food_dish = math.random()
@@ -209,7 +217,8 @@ return {
 					end
 				elseif (Michelangelo_food_dish > 0.8) then
 					npc_says(_"Try this crab cake.")
-					if ((not has_item("Fork")) and (not has_item_backpack("Plate"))) then
+					if (not has_item("Fork")) and
+					   (not has_item_backpack("Plate")) then
 						npc_says(_"Where is your plate and fork?")
 					elseif (not has_item_equipped("Fork")) then
 						npc_says(_"You need to equip your fork before you can use it to eat.")
@@ -226,7 +235,11 @@ return {
 					npc_says(_"How about a... yummy army snack instead?")
 					Michelangelo_food_dish = false
 					Michelangelo_food_cooking_time = game_time() -- wait before you can eat.
-					if (Michelangelo_been_asked_for_army_snacks) then show("node26") else show("node12") end
+					if (Michelangelo_been_asked_for_army_snacks) then
+						show("node26")
+					else
+						show("node12")
+					end
 				elseif (Michelangelo_food_dish > 0.4) then
 					npc_says(_"I am in the midst of a culinary masterpiece.")
 					npc_says(_"I cannot rush art for I am an artist!")
@@ -238,7 +251,11 @@ return {
 					npc_says(_"But if you are really hungry, I still have some of those disgusting army snacks.")
 					Michelangelo_food_dish = false
 					Michelangelo_food_cooking_time = game_time() -- wait before you can eat.
-					if (Michelangelo_been_asked_for_army_snacks) then show("node26") else show("node12") end
+					if (Michelangelo_been_asked_for_army_snacks) then
+						show("node26")
+					else
+						show("node12")
+					end
 				end
 			end
 			hide("node24")
@@ -362,7 +379,11 @@ return {
 		text = _"I need a dilithium crystal.",
 		code = function()
 			npc_says(_"I am already using the ones you got me. They are being used to feed the town.")
-			if (Michelangelo_been_asked_for_spare_dilithium) then show("node76") else show("node77") end
+			if (Michelangelo_been_asked_for_spare_dilithium) then
+				show("node76")
+			else
+				show("node77")
+			end
 			hide("node75") show("node32")
 		end,
 	},

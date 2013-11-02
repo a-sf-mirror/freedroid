@@ -34,12 +34,12 @@ return {
 				end
 			else
 				npc_says_random(_"Sure is dark around here.",
-					_"I wish there was some decent lighting.")
+								_"I wish there was some decent lighting.")
 			end
 		end
 
 		if (Iris_false_happy) and
-		(not guard_follow_tux) then
+		   (not guard_follow_tux) then
 			Iris_false_happy = false
 			show("node4")
 		end
@@ -51,7 +51,7 @@ return {
 		text = _"Hello.",
 		code = function()
 			npc_says_random(_"Hello",
-				_"Hi there!")
+							_"Hi there!")
 			hide("node0") show("node1")
 		end,
 	},

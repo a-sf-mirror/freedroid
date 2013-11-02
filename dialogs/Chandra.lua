@@ -30,7 +30,7 @@ return {
 		end
 
 		if (Chandra_node10_show) and
-		(not tux_has_joined_guard) then
+		   (not tux_has_joined_guard) then
 			show("node10")
 		end
 
@@ -51,7 +51,7 @@ return {
 		code = function()
 			npc_says(_"Welcome. I am Chandra. Some would call me the local sage.")
 			if (linarian_chandra) and
-			(not Chandra_first_contact) then
+			   (not Chandra_first_contact) then
 				show("node15")
 			end
 			hide("node0") show("node1", "node2", "node9")

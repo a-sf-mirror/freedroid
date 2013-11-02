@@ -45,7 +45,7 @@ return {
 			show("node5")
 		else
 			if (not has_quest("Deliverance")) and
-			(not (Francis_refused_deliverance)) then
+			   (not (Francis_refused_deliverance)) then
 				show("node90")
 				npc_says(_"Welcome back %s.", get_player_name())
 			else
@@ -58,12 +58,12 @@ return {
 			end
 
 			if (cryo_614_lock_gate) and
-			(not cryo_outergate_code) then
+			   (not cryo_outergate_code) then
 				show("node30")
 			end
 
 			if (tux_has_joined_guard) and
-			(not Francis_guard_response) then
+			   (not Francis_guard_response) then
 				Francis_guard_response = true
 				tux_says(_"I joined the Red Guard.")
 				npc_says(_"Oh...")
@@ -73,8 +73,8 @@ return {
 		end
 		-- in case Francis gets stuck at FrancisSafe:
 		if (npc_dead("InvaderBot")) and
-		(Francis_invaderbot_neutralized) and
-		(not Francis_movement_free) then -- this way we prevent him from walking to the label whenever we talk to him again which may look strange
+		   (Francis_invaderbot_neutralized) and
+		   (not Francis_movement_free) then -- this way we prevent him from walking to the label whenever we talk to him again which may look strange
 			set_bot_destination("InvaderBot-Alive-Check-W")
 			Francis_movement_free = true
 		end

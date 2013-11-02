@@ -25,18 +25,22 @@ return {
 
 		if (not has_met("Duncan")) then
 			show("node0", "node90", "node99")
-		elseif (not guard_follow_tux) and (not Duncan_Koan_quest) then
+		elseif (not guard_follow_tux) and
+		       (not Duncan_Koan_quest) then
 			next("node50")
 		end
 
 		if (not Duncan_Koan_quest_really_done) then
-			if (has_item_backpack("Pandora's Cube")) or (npc_dead("Koan")) or (Koan_spared_via_dialog) then
+			if (has_item_backpack("Pandora's Cube")) or
+			   (npc_dead("Koan")) or
+			   (Koan_spared_via_dialog) then
 				--Koan died, and you brought the cube back or
 				--Koan died, but you didn't bring the cube back or
 				--Koan is alive!
 				if (not Duncan_Koan_quest_done) then --if you just came back from Koan
 					next("node60")
-				elseif (not Duncan_not_given_cube) and npc_dead("Koan") then
+				elseif (not Duncan_not_given_cube) and
+				       (npc_dead("Koan")) then
 					--if, after talking to Duncan, Koan became dead
 					next("node60")
 				end
@@ -164,7 +168,8 @@ return {
 			npc_says(_"I will be waiting here for your return.")
 			tux_says(_"That is all I need to know. I will find Koan.")
 			npc_says(_"Only time will tell.")
-			if (cmp_obstacle_state("DesertGate", "closed")) and (not has_met("Tania")) then
+			if (cmp_obstacle_state("DesertGate", "closed")) and
+			   (not has_met("Tania")) then
 				npc_says(_"Here are a couple of circuits to grease open the western gate, if you know what I mean.")
 				add_gold(25)
 			end

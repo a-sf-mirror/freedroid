@@ -48,19 +48,24 @@ return {
 			hide("node2", "node12")
 		end
 
-		if (Tania_met_Pendragon) and (not Spencer_Tania_sent_to_DocMoore) and (not Tania_set_free) then
+		if (Tania_met_Pendragon) and
+		   (not Spencer_Tania_sent_to_DocMoore) and
+		   (not Tania_set_free) then
 			show("node50")
 		end
 
-		if (not has_quest("Opening access to MS Office")) and (done_quest("A kingdom for a cluster!")) then
+		if (not has_quest("Opening access to MS Office")) and
+		   (done_quest("A kingdom for a cluster!")) then
 			show("node37")
 		end
 
-		if (not has_quest("Propagating a faulty firmware update")) and (done_quest("Opening access to MS Office")) then
+		if (not has_quest("Propagating a faulty firmware update")) and
+		   (done_quest("Opening access to MS Office")) then
 			show("node44")
 		end
 
-		if (data_cube_lost) and (not done_quest("Deliverance")) then
+		if (data_cube_lost) and
+		   (not done_quest("Deliverance")) then
 			show("node29")
 		end
 
@@ -73,7 +78,8 @@ return {
 		code = function()
 			npc_says(_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?")
 			knows_spencer_office = true
-			if (has_quest("Deliverance") and not done_quest("Deliverance")) then
+			if (has_quest("Deliverance")) and
+			   (not done_quest("Deliverance")) then
 				show("node20")
 			end
 			hide("node0") show("node1", "node7")
@@ -181,7 +187,8 @@ return {
 		code = function()
 			if (not done_quest("The yellow toolkit")) then
 				npc_says(_"I think our teleporter service man, Dixon, has some problem. You might want to talk to him.")
-			elseif (not Dixon_mood) or (Dixon_mood < 50) then
+			elseif (not Dixon_mood) or
+			       (Dixon_mood < 50) then
 				npc_says(_"Dixon told me about the matter with his toolkit. He seemed pretty impressed by you.")
 			elseif (Dixon_mood < 120) then
 				npc_says(_"Dixon has his toolkit back.", "NO_WAIT")

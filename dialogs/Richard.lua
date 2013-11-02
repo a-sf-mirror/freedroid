@@ -129,7 +129,11 @@ return {
 				npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
 				hide("node31") show("node30")
 			else
-				if (get_gold() < 300 ) then next("node52") else next("node41") end
+				if (get_gold() < 300 ) then
+					next("node52")
+				else
+					next("node41")
+				end
 			end
 		end,
 	},

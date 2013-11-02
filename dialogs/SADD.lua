@@ -33,14 +33,18 @@ return {
 		if (has_quest("SADD's power supply")) then
 			if (not done_quest("SADD's power supply")) then
 				if (has_item_backpack("Red Dilithium Crystal")) then
-					if (SADD_asked_for_exterminator) then show("node30") else show("node33") end
+					if (SADD_asked_for_exterminator) then
+						show("node30")
+					else
+						show("node33")
+					end
 				else
 					show("node31")
 				end
 			else
 				hide("node30", "node31", "node33") -- add in more lab missions here in the future
 				if (SADD_trick) and
-				(not SADD_NoExit) then
+				   (not SADD_NoExit) then
 					SADD_NoExit = true
 					npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage", "NO_WAIT")
 					npc_says(_"Must protect secret information")
@@ -221,7 +225,7 @@ return {
 			end_dialog()
 			hide("node30")
 			if (has_item("The Super Exterminator!!!")) and
-			(SADD_super_exterminator) then
+			   (SADD_super_exterminator) then
 				show("node37")
 			end
 		end,

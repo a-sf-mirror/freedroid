@@ -49,7 +49,7 @@ return {
 		text = _"Ok, if I want to buy me one of those mapping pills. How much are they?",
 		code = function()
 			npc_says_random(_"They only cost 50 circuits. Special price only for you!",
-				_"You're so lucky! I just decided to cut the price in half! One of those devices only costs 50 circuits now!")
+							_"You're so lucky! I just decided to cut the price in half! One of those devices only costs 50 circuits now!")
 			hide("node1") show("node11", "node12")
 		end,
 	},

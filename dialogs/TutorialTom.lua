@@ -48,7 +48,10 @@ return {
 			end_dialog()
 		end
 
-		if (partner_started()) and (TutorialTom_glasswall_smashed) and (cmp_obstacle_state("TutorialWall", "broken")) and (not TutorialTom_glasswall_done) then
+		if (partner_started()) and
+		   (TutorialTom_glasswall_smashed) and
+		   (cmp_obstacle_state("TutorialWall", "broken")) and
+		   (not TutorialTom_glasswall_done) then
 			-- wall section, shown if tux destroyed the wall by hand
 			npc_says(_"Great, you figured out how deal with this obstacle.")
 			npc_says(_"Let's proceed.")
@@ -68,11 +71,14 @@ return {
 				npc_says(_"So let's start with the basics, shall we?")
 				show("node1", "node7", "node80")
 				set_rush_tux(0)
-			elseif (has_quest("Tutorial Movement")) and (not TutorialTom_talk_to_tom_EveryTime) then
+			elseif (has_quest("Tutorial Movement")) and
+				   (not TutorialTom_talk_to_tom_EveryTime) then
 				-- only once
 				TutorialTom_talk_to_tom_EveryTime = true
 				npc_says(_"Glad to see you figured out the quest log!")
-			elseif (has_quest("Tutorial Movement")) and (TutorialTom_move_black) and (not TutorialTom_sprinting) then
+			elseif (has_quest("Tutorial Movement")) and
+			       (TutorialTom_move_black) and
+			       (not TutorialTom_sprinting) then
 				TutorialTom_sprinting = true
 				npc_says(_"Speaking of moment, you can also [b]sprint[/b] by holding the [b]control key[/b].")
 				update_quest(_"Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
@@ -80,20 +86,25 @@ return {
 			end
 		end
 
-		if (tut_tux_items_entered) and (not TutorialTom_Tux_found_all_items) then
+		if (tut_tux_items_entered) and
+		   (not TutorialTom_Tux_found_all_items) then
 			show("node5")
 		end
 
 		if (not tut_tux_melee_entered ) then
 
-			if (tut_tux_chest_entered) and (not tut_item_chest_opened) then
+			if (tut_tux_chest_entered) and
+			   (not tut_item_chest_opened) then
 				show("node10")
 			elseif (tut_item_chest_opened) then
 				hide("node10")
 				show("node11")
 			end
 
-			if (has_item("Normal Jacket")) or (has_item("Improvised Buckler")) or (has_item("Shoes")) or (has_item("Worker Helmet")) then
+			if (has_item("Normal Jacket")) or
+			   (has_item("Improvised Buckler")) or
+			   (has_item("Shoes")) or
+			   (has_item("Worker Helmet")) then
 				hide("node11")
 				npc_says(_"Excellent, I see you already took on the armor that was in the box.")
 				if (not armor_node_one) then
@@ -105,7 +116,8 @@ return {
 			end
 		end
 
-		if (tut_tux_melee_entered) and (not tut_tux_glass_entered) then
+		if (tut_tux_melee_entered) and
+		   (not tut_tux_glass_entered) then
 			-- tux is still in bot melee area
 			show("node24")
 		end
@@ -114,7 +126,9 @@ return {
 			hide("node24")
 		end
 
-		if (cmp_obstacle_state("TutorialDoor", "opened")) and (tut_tux_takeover_entered) and (not TutorialTom_node50_done) then
+		if (cmp_obstacle_state("TutorialDoor", "opened")) and
+		   (tut_tux_takeover_entered) and
+		   (not TutorialTom_node50_done) then
 			show("node50")
 		end
 
@@ -126,7 +140,9 @@ return {
 			hide("node70") show("node30")
 		end
 
-		if (done_quest("Tutorial Hacking")) and (not tut_tux_glass_entered) and (not TutorialTom_hide_71) then
+		if (done_quest("Tutorial Hacking")) and
+		   (not tut_tux_glass_entered) and
+		   (not TutorialTom_hide_71) then
 			show("node71")
 		else
 			hide("node71")
@@ -136,7 +152,8 @@ return {
 			hide("node55", "node57")
 		end
 
-		if (tut_tux_ranged_entered) and (not tux_node38_done) then
+		if (tut_tux_ranged_entered) and
+		   (not tux_node38_done) then
 			show("node38")
 		end
 
@@ -159,7 +176,8 @@ return {
 			end
 			display_big_message(_"Press 'q' for Quests!")
 			hide("node1", "node7", "node80") show("node2", "node3", "node4", "node8")
-			if (tut_tux_items_entered) and (not TutorialTom_Tux_found_all_items) then
+			if (tut_tux_items_entered) and
+			   (not TutorialTom_Tux_found_all_items) then
 				show("node5")
 			end
 			end_dialog()
@@ -217,11 +235,14 @@ return {
 			npc_says(_"On our way to the next stopping point, we'll pass some items on the floor.")
 			npc_says(_"Feel free to stop and examine them to get practice.")
 			npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]i key[/b], where you can examine it further.")
-			if (not TutorialTom_TutMovement_ToggleDetectItems) and has_quest("Tutorial Movement") then
+			if (not TutorialTom_TutMovement_ToggleDetectItems) and
+			    has_quest("Tutorial Movement") then
 				update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'z' key, and press 'x' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'i'.")
 				TutorialTom_TutMovement_ToggleDetectItems = true
 			end
-			if (has_item("Mug")) and (has_item("Anti-grav Pod for Droids")) and (has_item("Plasma Transistor")) then
+			if (has_item("Mug")) and
+			   (has_item("Anti-grav Pod for Droids")) and
+			   (has_item("Plasma Transistor")) then
 				-- these are the items in the room item
 				npc_says(_"Oh great, I see you found all the items hidden in the room. Good job!")
 				TutorialTom_Tux_found_all_items = true
@@ -1094,12 +1115,14 @@ return {
 			npc_says(_"Then let us move towards the next stage of the Tutorial")
 			change_obstacle_state("TutorialGlasswallDoor", "opened")
 			npc_says(_"As a reward, I'm giving you a .22 Automatic pistol.")
-			if (has_item("Source Book of Calculate Pi")) and (has_item("Source Book of Malformed packet")) then
+			if (has_item("Source Book of Calculate Pi")) and
+			   (has_item("Source Book of Malformed packet")) then
 				--plural
 				npc_says(_"But I have to take this sourcebooks from you to preven you from cheating in the next section of the tutorial.")
 				npc_says(_"Sorry about that...")
 				tux_says(_"Ok...")
-			elseif (has_item("Source Book of Calculate Pi")) or (has_item("Source Book of Malformed packet")) then
+			elseif (has_item("Source Book of Calculate Pi")) or
+			       (has_item("Source Book of Malformed packet")) then
 				--singular
 				npc_says(_"But I have to take this sourcebook from you to preven you from cheating in the next section of the tutorial.")
 				npc_says(_"Sorry about that...")

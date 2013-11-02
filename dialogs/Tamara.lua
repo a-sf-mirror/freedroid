@@ -31,17 +31,21 @@ return {
 	end,
 
 	EveryTime = function()
-		if (tamara_shelf_count == 1) and (not tamara_shelf_count_1_done) then
+		if (tamara_shelf_count == 1) and
+		   (not tamara_shelf_count_1_done) then
 			npc_says(_"Hey, please don't make such a mess here.")
 			tamara_shelf_count_1_done = true
-		elseif (tamara_shelf_count == 2) and (not tamara_shelf_count_2_done) then
+		elseif (tamara_shelf_count == 2) and
+		       (not tamara_shelf_count_2_done) then
 			npc_says(_"Please put everything back in place if you don't need it.")
 			tamara_shelf_count_2_done = true
-		elseif (tamara_shelf_count == 3) and (not tamara_shelf_count_3_done) then
+		elseif (tamara_shelf_count == 3) and
+		       (not tamara_shelf_count_3_done) then
 			npc_says(_"Please be careful with these books. They are older than most computers in this town.")
 			tamara_shelf_count_3_done = true
 			tamara_shelf_stuff = "done"
-		elseif (tamara_shelf_count) and (tamara_shelf_count > 3) then
+		elseif (tamara_shelf_count) and
+		       (tamara_shelf_count > 3) then
 			npc_says("ERROR: Tamara.dialog, EveryTime LuaCode: unhandled value for tamara_shelf_count, please report. value is: %s", tamara_shelf_count)
 		end
 
@@ -55,12 +59,12 @@ return {
 		end
 
 		show_node_if(((not won_nethack) and
-				(not Tamara_asked_hacking)), 2)
+				      (not Tamara_asked_hacking)), 2)
 
 		show_node_if(Tamara_bot_apocalypse_book, "node21")
 
 		if (Ewalds_296_needs_sourcebook) and
-		(not Tamara_have_296_book) then
+		   (not Tamara_have_296_book) then
 			show("node50")
 		end
 
@@ -73,13 +77,15 @@ return {
 			end
 		end
 
-		if (Kevin_sigtalk and not tamara_robotic_girlfriends_node) then
+		if (Kevin_sigtalk) and
+		   (not tamara_robotic_girlfriends_node) then
 			Tamara_about_bots_nodes = Tamara_about_bots_nodes + 1
 			tamara_robotic_girlfriends_node = true;
 			show("node34")
 		end
 
-		show_node_if(Tamara_talked_about_bots and (Tamara_about_bots_nodes > 0), "node31")
+		show_node_if(Tamara_talked_about_bots and
+		            (Tamara_about_bots_nodes > 0), "node31")
 
 		show("node99")
 	end,

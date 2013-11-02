@@ -24,8 +24,8 @@ return {
 		end
 
 		if (has_quest("Bender's problem")) and
-		(DocMoore_met) and
-		(not done_quest("Bender's problem")) then
+		   (DocMoore_met) and
+		   (not done_quest("Bender's problem")) then
 			show("node2")
 		end
 
@@ -71,8 +71,8 @@ return {
 		end
 
 		if (DocMoore_met) and
-		(has_item("Rubber duck")) and
-		(not DocMoore_not_seen_rubber_duck_lie) then
+		   (has_item("Rubber duck")) and
+		   (not DocMoore_not_seen_rubber_duck_lie) then
 			npc_says(_"Oh, did you by any chance see a bright yellow item made out of polyvinyl chloride?")
 			show("node42", "node43")
 		end
@@ -168,7 +168,7 @@ return {
 		text = _"What do you mean, self-inflicted damage?",
 		code = function()
 			if (guard_follow_tux) or
-			(tux_has_joined_guard) then
+			   (tux_has_joined_guard) then
 				npc_says(_"Well, you see that Bender character on my doorstep?")
 			else
 				npc_says(_"Well, you see that idiotic Bender character on my doorstep?")

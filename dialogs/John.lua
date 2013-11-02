@@ -39,7 +39,7 @@ return {
 
 			-- if Tux ran into false teleporter of the storage room
 			if (John_lvl28to28_teleported) and
-			(not John_lvl28to28_hide) then
+			   (not John_lvl28to28_hide) then
 				tux_says(_"What was that?!")
 				npc_says(_"See..?")
 				npc_says(_"It's not as easy as you thought.")
@@ -50,13 +50,13 @@ return {
 
 			-- Puzzle is neither solved nor locked:
 			if (not John_puzzle_locked) or
-			(not John_puzzle_solved) then
+			   (not John_puzzle_solved) then
 
 				-- Tux walked through the false teleporter one time
 				if (not John_problems_1) then
 					if (JohnPuzzlefalseA == 1) or
-					(JohnPuzzlefalseB == 1) or
-					(JohnPuzzlefalseC == 1) then
+					   (JohnPuzzlefalseB == 1) or
+					   (JohnPuzzlefalseC == 1) then
 						npc_says(_"Looks like you had some problems?")
 						tux_says(_"Yes...")
 						npc_says(_"Ok, I'll give you another chance.")
@@ -69,8 +69,8 @@ return {
 				--Tux walked through the same teleporter twice (wtf?!)
 
 				if (JohnPuzzlefalseA == 2) or
-				(JohnPuzzlefalseB == 2) or
-				(JohnPuzzlefalseC == 2) then
+				   (JohnPuzzlefalseB == 2) or
+				   (JohnPuzzlefalseC == 2) then
 					npc_says(_"Dude!")
 					npc_says(_"You made the same mistake twice.")
 					npc_says(_"You walked through the same teleporter twice!")
@@ -100,9 +100,9 @@ return {
 
 			-- if Tux solved the puzzle, went into the correct teleporter
 			if (not John_puzzle_locked) and
-			(John_puzzle_solved) then
+			   (John_puzzle_solved) then
 				if (John_lvl28to28_teleported) or
-				(John_puzzle_score > 0 ) then
+				   (John_puzzle_score > 0 ) then
 					npc_says(_"Congratulations, you solved my little puzzle.")
 					npc_says(_"I give you this as a small reward.")
 					add_item("Dexterity Pill", 1)

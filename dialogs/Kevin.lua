@@ -38,20 +38,20 @@ return {
 			push_topic("Backdoor")
 		else
 			tux_says_random(_"Hello.",
-				_"Hi there, Kevin.")
+							_"Hi there, Kevin.")
 			npc_says_random(_"Well, hello again.",
-				_"Hello hello.",
-				_"Welcome back.")
+							_"Hello hello.",
+							_"Welcome back.")
 		end
 
 		if (has_quest("A strange guy stealing from town")) and
-		(not done_quest("A strange guy stealing from town")) then
+		   (not done_quest("A strange guy stealing from town")) then
 			add_xp(100)
 			end_quest(_"A strange guy stealing from town", _"Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
 		end
 
 		if (has_quest("And there was light...")) and
-		(done_quest("And there was light...")) then
+		   (done_quest("And there was light...")) then
 			show("node8", "node10")
 			if (not Kevin_did_And_there_was_light) then
 				Kevin_did_And_there_was_light = true -- Tux spoke with Kevin after completing the quest "And there was light..."
@@ -286,7 +286,11 @@ return {
 				npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 				npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
 			else
-				if (get_gold() < 300) then next("node40") else next("node41") end
+				if (get_gold() < 300) then
+					next("node40")
+				else
+					next("node41")
+				end
 			end
 			hide("node31") show("node30")
 		end,
@@ -414,8 +418,8 @@ return {
 				tux_says("...")
 			else
 				npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.",
-					_"If you need to contact me, my number is 127.0.0.1",
-					_"Keep your system up to date, Linarian.")
+								_"If you need to contact me, my number is 127.0.0.1",
+								_"Keep your system up to date, Linarian.")
 			end
 			Kevin_talk_later = Kevin_talk_later + 1
 			end_dialog()

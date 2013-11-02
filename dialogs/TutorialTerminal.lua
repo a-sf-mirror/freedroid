@@ -80,9 +80,9 @@ return {
 			npc_says(_"Exiting...")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			if (cmp_obstacle_state("TutorialDoor", "opened")) and
-			(TutorialTom_start_chat == nil) then
-				TutorialTom_start_chat = true
-				start_chat("TutorialTom")
+			   (TutorialTom_start_chat == nil) then
+					TutorialTom_start_chat = true
+					start_chat("TutorialTom")
 			end
 			end_dialog()
 		end,

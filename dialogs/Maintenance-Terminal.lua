@@ -139,7 +139,7 @@ return {
 			npc_says(_"Opening Access Gate ...", "NO_WAIT")
 			if (Singularity_quest_rejected) then
 				npc_says(_"Permission denied.")
-				if (Maintenance_Terminal_accessgate_nope == "official") then else
+				if (not Maintenance_Terminal_accessgate_nope == "official") then
 					Maintenance_Terminal_accessgate_nope = "true"
 				end
 			else
