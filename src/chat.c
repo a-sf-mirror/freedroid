@@ -1092,8 +1092,6 @@ int validate_dialogs()
 	}
 
 	list_for_each_entry(n, &npc_head, node) {
-//		if (strcmp(n->dialog_basename, "TutorialTom") && strcmp(n->dialog_basename, "614_cryo")) continue;
-
 		printf("Testing dialog \"%s\"...\n", n->dialog_basename);
 
 		struct chat_context *dummy_context = chat_create_context(dummy_partner, n, n->dialog_basename);
@@ -1140,10 +1138,15 @@ int validate_dialogs()
 
 		int rtn;
 		if (call_lua_func(LUA_DIALOG, "FDdialog", "validate_dialog", "s", "d", n->dialog_basename, &rtn)) {
+			if (!rtn) {
+				error_caught = TRUE;
+			}
 			if (term_has_color_cap)
 				printf("Result: %s\n", rtn ? "\033[32msuccess\033[0m" : "\033[31mfailed\033[0m");
 			else
 				printf("Result: %s\n", rtn ? "success" : "failed");
+		} else {
+			error_caught = TRUE;
 		}
 
 		// Remove the dialog from the chat context stack
