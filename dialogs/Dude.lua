@@ -117,7 +117,12 @@ return {
 				-- "subdialogs" can not be run solely
 				"614_sub.lua", "c-net-nethack_sub.lua",
 				-- dialog of terminals can not be run, currently, because they have no associated 'bot'
-				"Cryo-Terminal.lua", "c-net.lua" }
+				"Cryo-Terminal.lua", "c-net.lua", "DSB-MachineDeckControl.lua",
+				"DSB-PowerControlGate1.lua", "HF-FirmwareUpdateServer.lua",
+				"MO-HFGateAccessServer.lua", "MS-Factory-Addon-Terminal.lua",
+				"Maintenance-Terminal.lua", "MiniFactory-Terminal.lua",
+				"Terminal.lua", "TutorialTerminal.lua", "Vending-Machine.lua",
+				"DSB-PowerControl.lua" }
 
 			local dircontent = FDutils.system.scandir(FDdialog.dialogs_dir, ".*%.lua", exclude)
 			if (dircontent) then
