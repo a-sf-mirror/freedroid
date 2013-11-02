@@ -1135,8 +1135,15 @@ static int lua_switch_background_music_to(lua_State *L)
 
 static int lua_exit_game(lua_State *L)
 {
-	Terminate(EXIT_SUCCESS, TRUE);
-	return 0;
+	int exit_status = luaL_checkinteger(L, 1);
+
+	if (exit_status == 1) {
+		Terminate(EXIT_FAILURE, TRUE);
+		return 0;
+	} else {
+		Terminate(EXIT_SUCCESS, TRUE);
+		return 0;
+	}
 }
 
 static int lua_find_file(lua_State *L)

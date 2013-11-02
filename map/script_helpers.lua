@@ -549,6 +549,6 @@ function guy_fail(test, ...)
 	print(test)
 	npc_says("%s failed!" ,test , "NO_WAIT")
 	end_dialog()
-	exit_game()
+	exit_game(1)
 end
 
