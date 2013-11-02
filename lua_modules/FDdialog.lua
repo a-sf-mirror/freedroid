@@ -317,7 +317,13 @@ function FDdialog.Dialog.validate(self)
 
 	local function _try(node, script)
 		if (script) then
-			local rtn,err = pcall(script, node, self)
+			local rtn, err
+			if (node) then
+				rtn,err = pcall(script, node, self)
+			else
+				-- FirstTime and EveryTime codes have no 'node' parameter
+				rtn,err = pcall(script, self)
+			end
 			if (not rtn) then
 				print("\n" .. FDutils.text.red("Execution error: " .. err))
 				valid = 0
