@@ -225,12 +225,13 @@ return {
 				end
 			end
 
-			if (DeadGuy_death_trigger == "works" ) then
-				npc_says("NPC DEATH test 3 succeeded", "NO_WAIT")
-			else
-				guy_fail("NPC DEATH 3")
+			if not (running_benchmark()) then
+				if (DeadGuy_death_trigger == "works" ) then
+					npc_says("NPC DEATH test 3 succeeded", "NO_WAIT")
+				else
+					guy_fail("NPC DEATH 3")
+				end
 			end
-
 			-- one day we might be able to revive DeadGuy
 
 			--[[ if (not npc_dead("Dude")) then
