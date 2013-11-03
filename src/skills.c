@@ -316,6 +316,12 @@ void HandleCurrentlyActivatedSkill()
 	return;
 };				// void HandleCurrentlyActivatedSkill( void )
 
+/**
+ * \brief Perform a skill action.
+ * \param skill_index The index of the skill.
+ * \param SpellCost The cost of spell calculated before.
+ * \return FALSE if the skill has failed, TRUE otherwise.
+ */
 int DoSkill(int skill_index, int SpellCost)
 {
 	enemy *droid_below_mouse_cursor = NULL;
@@ -340,7 +346,7 @@ int DoSkill(int skill_index, int SpellCost)
 
 		if ((Droidmap[droid_below_mouse_cursor->type].is_human && !SpellSkillMap[skill_index].hurt_humans)
 		    || (!Droidmap[droid_below_mouse_cursor->type].is_human && !SpellSkillMap[skill_index].hurt_bots))
-			return 1;
+			return 0;
 
 		if (hitdmg > 0)
 			hit_enemy(droid_below_mouse_cursor, hitdmg, 1, -1, 1);
@@ -370,7 +376,7 @@ int DoSkill(int skill_index, int SpellCost)
 					return 1;
 				}
 			} else {
-				return 1;
+				return 0;
 			}
 		}
 		Me.temperature += SpellCost;
