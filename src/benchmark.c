@@ -248,7 +248,10 @@ int benchmark()
 				printf("Running test %s took %d milliseconds.\n", do_benchmark, stop_stamp - start_stamp);
 				return OK;
 			} else {
-				printf("Test failed!\n");
+				if (term_has_color_cap)
+					printf("\033[31mTest failed!\033[0m\n");
+				else
+					printf("Test failed!\n");
 				return ERR;
 			}
 		}

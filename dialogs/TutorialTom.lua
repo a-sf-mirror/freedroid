@@ -101,7 +101,8 @@ return {
 				show("node11")
 			end
 
-			if (has_item("Normal Jacket")) or
+			if (has_item("Normal J
+			acket")) or
 			   (has_item("Improvised Buckler")) or
 			   (has_item("Shoes")) or
 			   (has_item("Worker Helmet")) then
