@@ -101,11 +101,11 @@ Nr=50 Text=_"You got me curious. How can you help me understand computers better
 <LuaCode>
 	npc_says(_"Simplicity! Sign this contract. No need to read it.")
 	npc_says(_"You trust Sorenson, right?")
-	hide(50) show(51, 79)
+	topic("Sorenson contract") show(51, 79)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=51 Text=_"Sure. I'll sign it."
+Nr=51 Text=_"Sure. I'll sign it." Topic="Sorenson contract"
 <LuaCode>
 	npc_says(_"Go0d. H3re is th3 con7ract. S1gn it!")
 	tux_says(_"Ok, here go --")
@@ -114,49 +114,49 @@ Nr=51 Text=_"Sure. I'll sign it."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=52 Text=_"Um... Your voice sounds strange. Is everything fine?"
+Nr=52 Text=_"Um... Your voice sounds strange. Is everything fine?" Topic="Sorenson contract"
 <LuaCode>
 	npc_says(_"519n 7h3 c0n7r4c7!!!!")
 	hide(52) show(53)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=53 Text=_"Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. "
+Nr=53 Text=_"Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. " Topic="Sorenson contract"
 <LuaCode>
 	npc_says(_"519n 17!!!!")
 	hide(53)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=55 Text=_"Sure, no problem... Now, how shall I sign this?"
+Nr=55 Text=_"Sure, no problem... Now, how shall I sign this?" Topic="Sorenson contract"
 <LuaCode>
 	hide(52, 53, 55, 78, 79)
 	show(60, 61, 62, 63, 64, 65, 66)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=60 Text=_"Tux."
+Nr=60 Text=_"Tux." Topic="Sorenson contract"
 NO_TEXT
 <LuaCode>
 	next(70)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=61 Text=_"Tux, the Linarian"
+Nr=61 Text=_"Tux, the Linarian" Topic="Sorenson contract"
 NO_TEXT
 <LuaCode>
 	next(70)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=62 Text=_"I accept the contract, Tux"
+Nr=62 Text=_"I accept the contract, Tux" Topic="Sorenson contract"
 NO_TEXT
 <LuaCode>
 	next(70)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=63 Text=_"Elbereth"
+Nr=63 Text=_"Elbereth" Topic="Sorenson contract"
 NO_TEXT
 <LuaCode>
 	npc_says(_"4444! 17 burn5! 7'm m3171n9!")
@@ -165,7 +165,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=64 Text=_"Francis"
+Nr=64 Text=_"Francis" Topic="Sorenson contract"
 <LuaCode>
 	npc_says(_"H4! Y0ur s0ul 15 min3, Francis!")
 	npc_says(_"Wh47? N07 w0rk1b9?")
@@ -177,7 +177,7 @@ Nr=64 Text=_"Francis"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=65 Text=_"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esquire, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
+Nr=65 Text=_"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esquire, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux." Topic="Sorenson contract"
 <LuaCode>
 	npc_says(_"Huh?")
 	tux_says(_"I... Don't feel... good... Blood loss... So... Cold...")
@@ -187,7 +187,7 @@ Nr=65 Text=_"The great destroyer of evil, the purger of all things foul, the fri
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=66 Text=_"X"
+Nr=66 Text=_"X" Topic="Sorenson contract"
 NO_TEXT
 <LuaCode>
 	npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
@@ -197,7 +197,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=70 Text=_"Huh? I d0n'7 f33l g00d."
+Nr=70 Text=_"Huh? I d0n'7 f33l g00d." Topic="Sorenson contract"
 <LuaCode>
 	npc_says_random(_"Yes! I am free! At last I am free!",
 					_"Yes! I am free!",
@@ -210,7 +210,7 @@ Nr=70 Text=_"Huh? I d0n'7 f33l g00d."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=78 Text=_"In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
+Nr=78 Text=_"In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it." Topic="Sorenson contract"
 <LuaCode>
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
 	hide(78)
@@ -219,7 +219,7 @@ Nr=78 Text=_"In blood? Yuck. I am not going to do this, blood is too messy for a
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=79 Text=_"There is no way I will sign something without reading it. Forget about it."
+Nr=79 Text=_"There is no way I will sign something without reading it. Forget about it." Topic="Sorenson contract"
 <LuaCode>
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
 	hide(79)

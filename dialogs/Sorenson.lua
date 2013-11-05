@@ -100,12 +100,13 @@ return {
 		code = function()
 			npc_says(_"Simplicity! Sign this contract. No need to read it.")
 			npc_says(_"You trust Sorenson, right?")
-			hide("node50") show("node51", "node79")
+			push_topic("Sorenson contract") show("node51", "node79")
 		end,
 	},
 	{
 		id = "node51",
 		text = _"Sure. I'll sign it.",
+		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"Go0d. H3re is th3 con7ract. S1gn it!")
 			tux_says(_"Ok, here go --")
@@ -116,6 +117,7 @@ return {
 	{
 		id = "node52",
 		text = _"Um... Your voice sounds strange. Is everything fine?",
+		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"519n 7h3 c0n7r4c7!!!!")
 			hide("node52") show("node53")
@@ -124,6 +126,7 @@ return {
 	{
 		id = "node53",
 		text = _"Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. ",
+		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"519n 17!!!!")
 			hide("node53")
@@ -132,6 +135,7 @@ return {
 	{
 		id = "node55",
 		text = _"Sure, no problem... Now, how shall I sign this?",
+		topic = "Sorenson contract",
 		code = function()
 			hide("node52", "node53", "node55", "node78", "node79")
 			show("node60", "node61", "node62", "node63", "node64", "node65", "node66")
@@ -140,6 +144,7 @@ return {
 	{
 		id = "node60",
 		text = _"Tux.",
+		topic = "Sorenson contract",
 		code = function()
 			next("node70")
 		end,
@@ -147,6 +152,7 @@ return {
 	{
 		id = "node61",
 		text = _"Tux, the Linarian",
+		topic = "Sorenson contract",
 		code = function()
 			next("node70")
 		end,
@@ -154,6 +160,7 @@ return {
 	{
 		id = "node62",
 		text = _"I accept the contract, Tux",
+		topic = "Sorenson contract",
 		code = function()
 			next("node70")
 		end,
@@ -161,6 +168,7 @@ return {
 	{
 		id = "node63",
 		text = _"Elbereth",
+		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"4444! 17 burn5! 7'm m3171n9!")
 			npc_says(_"44444444444444444!")
@@ -170,6 +178,7 @@ return {
 	{
 		id = "node64",
 		text = _"Francis",
+		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"H4! Y0ur s0ul 15 min3, Francis!")
 			npc_says(_"Wh47? N07 w0rk1b9?")
@@ -183,6 +192,7 @@ return {
 	{
 		id = "node65",
 		text = _"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esquire, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux.",
+		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"Huh?")
 			tux_says(_"I... Don't feel... good... Blood loss... So... Cold...")
@@ -194,6 +204,7 @@ return {
 	{
 		id = "node66",
 		text = _"X",
+		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
 			hide("node66")
@@ -204,6 +215,7 @@ return {
 	{
 		id = "node70",
 		text = _"Huh? I d0n'7 f33l g00d.",
+		topic = "Sorenson contract",
 		code = function()
 			npc_says_random(_"Yes! I am free! At last I am free!",
 							_"Yes! I am free!",
@@ -217,6 +229,7 @@ return {
 	},
 	{
 		id = "node78",
+		topic = "Sorenson contract",
 		text = _"In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it.",
 		code = function()
 			npc_says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
@@ -227,6 +240,7 @@ return {
 	},
 	{
 		id = "node79",
+		topic = "Sorenson contract",
 		text = _"There is no way I will sign something without reading it. Forget about it.",
 		code = function()
 			npc_says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
