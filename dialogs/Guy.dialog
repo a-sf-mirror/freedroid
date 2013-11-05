@@ -214,7 +214,7 @@ Nr=0 Text=_"RUNNING TEST NODE"
 
 ---------------------------------------------------------- NPC DEATH TEST
 	if (not has_met("Guy")) then
-		if (not npc_dead("DeadGuy"))  then
+		if (not npc_dead("DeadGuy")) then
 			npc_says("NPC DEATH test 1 succeeded", "NO_WAIT")
 		else
 			guy_fail("NPC DEATH 1")
@@ -231,12 +231,19 @@ Nr=0 Text=_"RUNNING TEST NODE"
 		end
 	end
 
-	 -- one day we might be able to revive DeadGuy
+	if not (running_benchmark()) then
+		if (DeadGuy_death_trigger == "works" ) then
+			npc_says("NPC DEATH test 3 succeeded", "NO_WAIT")
+		else
+			guy_fail("NPC DEATH 3")
+		end
+	end
+	-- one day we might be able to revive DeadGuy
 
---[[ if (not npc_dead("Dude")) then
-		npc_says("NPC DEATH test 3 succeeded", "NO_WAIT")
+	--[[ if (not npc_dead("Dude")) then
+		npc_says("NPC DEATH test 4 succeeded", "NO_WAIT")
 	else
-		guy_fail("NPC DEATH 3")
+		guy_fail("NPC DEATH 4")
 	end ]]--
 
 ---------------------------------------------------------- OTHER
