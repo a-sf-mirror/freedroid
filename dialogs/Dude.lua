@@ -61,7 +61,7 @@ return {
 		npc_says(_"Don't do this if you are just normally playing.", "NO_WAIT")
 		npc_says(_"These dialogs can currently be accessed:", "NO_WAIT")
 
-		show("exit")
+		show("node0", "craft", "upgrade", "shop", "exit")
 
 		dude_choose_action(this_dialog)
 	end,
