@@ -280,6 +280,26 @@ return {
 				guy_fail("GOLD 6")
 			end
 
+
+			---------------------------------------------------------- RUSH TUX
+			if (not has_met("Guy")) then
+				if not (will_rush_tux()) then
+					npc_says("RUSH TUX test 1 succeded", "NO_WAIT")
+				else
+					guy_fail("RUSH TUX 1")
+				end
+			else
+				npc_says("Skipping RUSH TUX test 1 because it would fail since we rush tux on second time we call the dialog.")
+			end
+
+			set_rush_tux(1)
+
+			if (will_rush_tux()) then
+				npc_says("RUSH TUX test 2 succeded", "NO_WAIT")
+			else
+				guy_fail("RUSH TUX 2")
+			end
+
 			---------------------------------------------------------- OTHER
 
 			set_death_item("Pandora's Cube")
