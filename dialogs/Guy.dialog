@@ -246,6 +246,47 @@ Nr=0 Text=_"RUNNING TEST NODE"
 		guy_fail("NPC DEATH 4")
 	end ]]--
 
+
+---------------------------------------------------------- Gold
+	if (get_gold() == 0) then
+		npc_says("GOLD test 1 succeded", "NO_WAIT")
+	else
+		guy_fail("GOLD 1")
+	end
+
+	add_gold(100)
+	if (get_gold() == 100) then
+		npc_says("GOLD test 2 succeded", "NO_WAIT")
+	else
+		guy_fail("GOLD 2")
+	end
+
+	if (not del_gold(1000)) then
+		npc_says("GOLD test 3 succeded", "NO_WAIT")
+	else
+		guy_fail("GOLD 3")
+	end
+
+	if (get_gold() == 100) then -- check if gold changed, just to be sure...
+		npc_says("GOLD test 4 succeded", "NO_WAIT")
+	else
+		guy_fail("GOLD 4")
+	end
+
+	if (del_gold(100)) then
+		npc_says("GOLD test 5 succeded", "NO_WAIT")
+	else
+		guy_fail("GOLD 5")
+	end
+
+	add_gold(100)
+	add_gold(-100)
+	if (get_gold() == 0) then
+		npc_says("GOLD test 6 succeded")
+	else
+		guy_fail("GOLD 6")
+	end
+
 ---------------------------------------------------------- OTHER
 
 	set_death_item("Pandora's Cube")
