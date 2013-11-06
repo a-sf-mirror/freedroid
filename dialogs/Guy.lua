@@ -19,7 +19,7 @@
 
 return {
 	FirstTime = function()
-		---------------------------------------------------------- HAS_MET
+---------------------------------------------------------- HAS_MET
 		if (not has_met("Guy")) then
 			npc_says("HAS MET test 1 succeeded", "NO_WAIT")
 		else
@@ -48,7 +48,7 @@ return {
 		code = function()
 			show("node0")
 			hide("node0")
-			---------------------------------------------------------- ITEM
+---------------------------------------------------------- ITEM
 			add_item("Laser Scalpel")
 			add_item(".22 Automatic", 2)
 			if (has_item(".22 Automatic")) then
@@ -85,7 +85,7 @@ return {
 			else
 				guy_fail("DEL ITEM 2")
 			end
-			---------------------------------------------------------- FACTION
+---------------------------------------------------------- FACTION
 			npc_faction("self", "Guy - self")
 			npc_faction("ms", "Guy - ms")
 			npc_faction("redguard", "Guy - redguard" )
@@ -94,7 +94,7 @@ return {
 			npc_faction("crazy", "Guy - crazy")
 			npc_faction("singularity", "Guy - singularity")
 			npc_faction("neutral", "Guy - neutral")
-			---------------------------------------------------------- HEALTH
+---------------------------------------------------------- HEALTH
 			heal_tux()
 			hurt_tux(1)
 			hurt_tux(-1)
@@ -109,7 +109,7 @@ return {
 			else
 				guy_fail("HEALTH 2")
 			end
-			---------------------------------------------------------- COOL
+---------------------------------------------------------- COOL
 			heat_tux(1)
 			heat_tux(-1)
 			if (get_tux_cool() == 100) then
@@ -117,14 +117,14 @@ return {
 			else
 				guy_fail("COOL 1")
 			end
-			---------------------------------------------------------- TELEPORT
+---------------------------------------------------------- TELEPORT
 			teleport("24-tux1")
 			teleport("24-tux2")
 			teleport_npc("24-guy1")
 			teleport_npc("24-guy2")
 			teleport_npc("24-dude1", "Dude")
 			teleport_npc("24-dude2", "Dude")
-			---------------------------------------------------------- SKILLS
+---------------------------------------------------------- SKILLS
 			--npc_says(get_skill("programming"))
 			if (not has_met("Guy")) then
 				improve_skill("programming")
@@ -136,7 +136,7 @@ return {
 			else
 				tux_says("Skipping SKILL test 1 due to missing possibility to downgrade skills!")
 			end
-			---------------------------------------------------------- PROGRAMMS
+---------------------------------------------------------- PROGRAMMS
 			improve_program("Ricer CFLAGS")
 			downgrade_program("Ricer CFLAGS")
 			if (get_program_revision("Ricer CFLAGS") == 0) then
@@ -144,7 +144,7 @@ return {
 			else
 				guy_fail("PROGRAMM 1")
 			end
-			---------------------------------------------------------- QUESTS
+---------------------------------------------------------- QUESTS
 			if (not has_met("Guy")) then
 				if (not has_quest("24_dude_test_quest")) then
 					npc_says("QUEST test 1 succeeded", "NO_WAIT")
@@ -180,7 +180,7 @@ return {
 				tux_says("Skipping QUEST test 4 due to missing possibility to remove quests!")
 			end
 
-			---------------------------------------------------------- OBSTACLES
+---------------------------------------------------------- OBSTACLES
 
 			change_obstacle_message("24_guy_sign", "Guy signmessage B")
 			display_big_message("Sign message changed from")
@@ -206,7 +206,7 @@ return {
 			end
 			change_obstacle_type("24_guy_door", "6") -- set it back to door
 
-			---------------------------------------------------------- NPC DEATH TEST
+---------------------------------------------------------- NPC DEATH TEST
 			if (not has_met("Guy")) then
 				if (not npc_dead("DeadGuy")) then
 					npc_says("NPC DEATH test 1 succeeded", "NO_WAIT")
@@ -281,7 +281,7 @@ return {
 			end
 
 
-			---------------------------------------------------------- RUSH TUX
+---------------------------------------------------------- RUSH TUX
 			if (not has_met("Guy")) then
 				if not (will_rush_tux()) then
 					npc_says("RUSH TUX test 1 succeded", "NO_WAIT")
@@ -289,7 +289,7 @@ return {
 					guy_fail("RUSH TUX 1")
 				end
 			else
-				npc_says("Skipping RUSH TUX test 1 because it would fail since we rush tux on second time we call the dialog.")
+				tux_says("Skipping RUSH TUX test 1 because it would fail since we directly rush tux on second time we call the dialog.")
 			end
 
 			set_rush_tux(1)
@@ -299,8 +299,7 @@ return {
 			else
 				guy_fail("RUSH TUX 2")
 			end
-
-			---------------------------------------------------------- OTHER
+---------------------------------------------------------- OTHER
 
 			set_death_item("Pandora's Cube")
 			npc_says("")
