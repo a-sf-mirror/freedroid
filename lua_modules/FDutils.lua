@@ -181,7 +181,14 @@ function FDutils.text.highlight(text, mode)
 	FDutils.text.color_cap = FDutils.text.color_cap or term_has_color_cap()
 	-- ANSI prefix codes
 	local highlight_mode = {
-		red = "\27[31m",
+		black  = "\27[30m",
+		red    = "\27[31m",
+		green  = "\27[32m",
+		yellow = "\27[33m",
+		blue   = "\27[34m",
+		purple = "\27[35m",
+		cyan   = "\27[36m",
+		white  = "\27[37m"
 	}
 	-- Return highlighted text if the terminal has color capabilities
 	return FDutils.text.color_cap and highlight_mode[mode] .. text .. "\27[0m" or text
