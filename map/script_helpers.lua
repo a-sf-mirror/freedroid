@@ -526,13 +526,8 @@ function level24obstacles()
 		randobstacletype = math.random(0,465) -- 466 obstacles
 	end
 	function level24idcheck()
-		if (randobstacletype == 22) or
-		   (randobstacletype == 23) or
-		   (randobstacletype == 24) or
-		   (randobstacletype == 25) or
-		   (randobstacletype == 61) or
-		   (randobstacletype == 62) then
-		   -- cat ./map/obstacle_specs.lua | grep "image_filenames" | nl -v 0| grep "DUMMY"
+		if (randobstacletype == 25) then
+		   -- cat ./map/obstacle_specs.lua | grep "image_filenames" | nl -v 0| grep "DUMMY"     (note: skip the last one)
 			display_big_message(randobstacletype.._" getting new id")
 			level24newid()
 			level24idcheck()
