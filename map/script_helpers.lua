@@ -218,10 +218,10 @@ function add_quest(quest, text)
 		if done_quest(quest) or
 		   has_quest(quest) then
 			if (not running_benchmark()) then -- don't spam the validator
-				print("\n\tSEVERE ERROR")
-				print("\tTried to assign already assigned quest!")
-				print("\tWe will continue execution, quest is:")
-				print(quest)
+				print(FDutils.text.highlight("\n\tSEVERE ERROR", "red"))
+				print(FDutils.text.highlight("\tTried to assign already assigned quest!", "red"))
+				print(FDutils.text.highlight("\tWe will continue execution, quest is:", "red"))
+				print(FDutils.text.highlight(quest, "red"))
 			end
 		end
 	end
@@ -247,10 +247,10 @@ function update_quest(quest, text)
 		end
 	else -- we don't have the quest, wtf?
 		if (not running_benchmark()) then -- don't spam the validator
-			print("\n\tSEVERE ERROR")
-			print("\tTried to update quest that was never assigned!")
-			print("\tWe will continue execution, quest is:")
-			print(quest)
+			print(FDutils.text.highlight("\n\tSEVERE ERROR", "red"))
+			print(FDutils.text.highlight("\tTried to update quest that was never assigned!", "red"))
+			print(FDutils.text.highlight("\tWe will continue execution, quest is:", "red"))
+			print(FDutils.text.highlight(quest, "red"))
 		end
 	end
 end
@@ -258,15 +258,15 @@ end
 function end_quest(quest, text)
 	if (not running_benchmark()) then -- don't spam the validator
 		if (done_quest(quest)) then
-				print("\n\tERROR")
-				print("\tTried to end already done quest!")
-				print("\tWe will continue execution, quest is:")
-				print(quest)
+				print(FDutils.text.highlight("\n\tERROR", "red"))
+				print(FDutils.text.highlight("\tTried to end already done quest!", "red"))
+				print(FDutils.text.highlight("\tWe will continue execution, quest is:", "red"))
+				print(FDutils.text.highlight(quest, "red"))
 		elseif (not has_quest(quest)) then
-				print("\n\tSEVERE ERROR")
-				print("\tTried to end never assigned quest!")
-				print("\tWe will continue execution, quest is:")
-				print(quest)
+				print(FDutils.text.highlight("\n\tSEVERE ERROR", "red"))
+				print(FDutils.text.highlight("\tTried to end never assigned quest!", "red"))
+				print(FDutils.text.highlight("\tWe will continue execution, quest is:", "red"))
+				print(FDutils.text.highlight(quest, "red"))
 		end
 	end
 
@@ -545,8 +545,8 @@ function level24obstacles()
 end
 
 function guy_fail(test, ...)
-	print[[ERROR! The following test failed:]]
-	print(test)
+	print(FDutils.text.highlight("ERROR! The following test failed:", "red"))
+	print(FDutils.text.highlight(test, "red"))
 	npc_says("%s failed!" ,test , "NO_WAIT")
 	end_dialog()
 	exit_game(1)
