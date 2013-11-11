@@ -300,6 +300,13 @@ return {
 				guy_fail("RUSH TUX 2")
 			end
 ---------------------------------------------------------- OTHER
+			-- print some useless colorful foo
+
+			Guy_colors={"black", "red", "green", "yellow", "blue", "purple", "cyan", "white"}
+
+			for k, color in ipairs(Guy_colors) do
+				print(FDutils.text.highlight(color, color))
+			end
 
 			set_death_item("Pandora's Cube")
 			npc_says("")
