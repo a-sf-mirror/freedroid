@@ -2070,7 +2070,7 @@ int try_give_item(item *ItemPointer)
 	    (ItemMap[ItemPointer->type].inv_size.y == 1) && (ItemMap[ItemPointer->type].item_combat_use_description)) {
 		DebugPrintf(2, "\n\nTrying to place this item inside of the quick inventory first...");
 		Inv_Loc.y = INVENTORY_GRID_HEIGHT - 1;
-		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_size.x + 1; Inv_Loc.x++) {
+		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_WIDTH - ItemMap[ItemPointer->type].inv_size.x + 1; Inv_Loc.x++) {
 			if (place_item_on_this_position_if_you_can(ItemPointer, Inv_Loc, InvPos))
 				return 1;
 		}
