@@ -303,6 +303,9 @@ return {
 			-- print some useless colorful foo
 
 			Guy_colors={"black", "red", "green", "yellow", "blue", "purple", "cyan", "white"}
+			if (running_benchmark()) then -- for nodes we use printf which has no linebreak at the end.
+				print("")				  -- "black" would get appended directly to a node but this avoids it.
+			end
 
 			for k, color in ipairs(Guy_colors) do
 				print(FDutils.text.highlight(color, color))
