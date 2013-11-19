@@ -947,6 +947,8 @@ int MyRandom(int UpperBound)
  */
 void Teleport(int LNum, float X, float Y, int with_sound_and_fading, int with_animation_reset)
 {
+	int old_lvl = Me.pos.z;
+
 	// Check if we are in editor and not in game test mode then we store the level number
 	//
 	if(game_root_mode == ROOT_IS_LVLEDIT && game_status != INSIDE_GAME)
@@ -962,10 +964,6 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading, int with_an
 	}
 
 	if (LNum != Me.pos.z) {
-
-		// Notify level change events on this level
-		if (game_status == INSIDE_GAME)
-			event_level_changed(Me.pos.z, LNum);
 
 		// In case a real level change has happened,
 		// we need to do a lot of work.  Therefore we start by activating
@@ -1046,6 +1044,10 @@ This indicates an error in the map system of FreedroidRPG.", PLEASE_INFORM, IS_F
 		append_new_game_message(_("Arrived at %s."), D_(curShip.AllLevels[Me.pos.z]->Levelname));
 		fade_in_screen();
 	}
+	
+	// Notify level change events on this level
+	if (game_status == INSIDE_GAME && LNum != old_lvl)
+		event_level_changed(Me.pos.z, LNum);
 }
 
 /**
