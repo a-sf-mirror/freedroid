@@ -541,7 +541,8 @@ Silent=0
 
 * New event trigger *
 Name=_"Singularity Attacked"
-Trigger on enemy death in level=6
+Trigger on enemy death
+Enemy level=6
 Enemy faction="singularity"
 <LuaCode> 
 	set_faction_state("singularity", "hostile") 
@@ -551,7 +552,8 @@ Enemy faction="singularity"
 
 * New event trigger *
 Name=_"Singularity Death"
-Trigger on enemy death in level=6
+Trigger on enemy death
+Enemy level=6
 Enemy dialog name="Singularity"
 <LuaCode>
 	if (has_quest("The yellow toolkit") and not done_quest("The yellow toolkit")) then
@@ -6168,7 +6170,8 @@ Silent=1
 ################
 * New event trigger *
 Name=_"HF-EntranceBot Dies"
-Trigger on enemy death in level=50
+Trigger on enemy death
+Enemy level=50
 Enemy dialog name="HF-EntranceBot"
 <LuaCode>
 	if (not cmp_obstacle_state("HF-Gate-inner", "opened")) then
@@ -6180,8 +6183,9 @@ Enemy dialog name="HF-EntranceBot"
 
 * New event trigger *
 Name=_"Spencer Dies"
+Trigger on enemy death
+Enemy level=0
 Enemy dialog name="Spencer"
-Trigger on enemy death in level=0
 <LuaCode>
 	if (not Spencer_can_die) then
 		display_big_message(_"Spencer still needed alive to win game.")
@@ -6191,7 +6195,8 @@ Trigger on enemy death in level=0
 
 * New event trigger *
 Name=_"Kevin Murder"
-Trigger on enemy death in level=17
+Trigger on enemy death
+Enemy level=17
 Enemy dialog name="Kevin"
 <LuaCode>
 	change_obstacle_state("KevinsDoor", "closed")
@@ -6208,7 +6213,8 @@ Enemy dialog name="Kevin"
 
 * New event trigger *
 Name=_"DeadGuy dead"
-Trigger on enemy death in level=24
+Trigger on enemy death
+Enemy level=24
 Enemy dialog name="DeadGuy"
 <LuaCode>
 	DeadGuy_death_trigger = "works"

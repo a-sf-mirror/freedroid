@@ -116,7 +116,8 @@ static void clear_out_events(void)
 #define LEVEL_EXIT_LVLNUM_VALUE "Trigger exiting level="
 
 // For enemy-death events
-#define ENEMY_DEATH_LVLNUM_VALUE "Trigger on enemy death in level="
+#define ENEMY_DEATH_TRIGGER "Trigger on enemy death"
+#define ENEMY_DEATH_LVLNUM "Enemy level="
 #define ENEMY_DEATH_FACTION "Enemy faction=\""
 #define ENEMY_DEATH_DIALOG_NAME "Enemy dialog name=\""
 #define ENEMY_DEATH_MARKER "Enemy marker="
@@ -171,9 +172,9 @@ static void load_events(char *EventSectionPointer)
 			temp.trigger_type = EXIT_LEVEL;
 			ReadValueFromString(EventPointer, LEVEL_EXIT_LVLNUM_VALUE, "%d",
 						&temp.trigger.change_level.level, EndOfEvent);
-		} else if (strstr(EventPointer, ENEMY_DEATH_LVLNUM_VALUE)) {
+		} else if (strstr(EventPointer, ENEMY_DEATH_TRIGGER)) {
 			temp.trigger_type = ENEMY_DEATH;
-			ReadValueFromString(EventPointer, ENEMY_DEATH_LVLNUM_VALUE, "%d",
+			ReadValueFromStringWithDefault(EventPointer, ENEMY_DEATH_LVLNUM, "%d", "-1",
 						&temp.trigger.enemy_death.level, EndOfEvent);
 			if (strstr(EventPointer, ENEMY_DEATH_FACTION)) {
 				TempEnemyFaction = ReadAndMallocStringFromData(EventPointer, ENEMY_DEATH_FACTION, "\"");
@@ -319,8 +320,9 @@ void event_enemy_died(enemy *dead)
 		if (!arr[i].enabled)
 			continue;
 
-		if (arr[i].trigger.enemy_death.level != dead->pos.z)
-			continue;
+		if (arr[i].trigger.enemy_death.level != -1)
+			if (arr[i].trigger.enemy_death.level != dead->pos.z)
+				continue;
 
 		if (arr[i].trigger.enemy_death.faction != -1)
 			if (arr[i].trigger.enemy_death.faction != dead->faction)
