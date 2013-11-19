@@ -397,14 +397,13 @@ npc_says("Ambience, Bleostrada, HellFortressEntrance, ImperialArmy, NewTutorialS
 		   (track == "underground" ) or
 		   (running_benchmark()) then
 			switch_background_music(track .. ".ogg")
-			town_track = track
 			try_again_radio = false
 			next(20)
 		elseif (track == "exit" ) then
 			try_again_radio = false
 			next(20)
 		else
-			npc_says(_"WARNING, '%s' not a valid track.", track)
+			npc_says(_"WARNING, '%s' not a vaild track.", track)
 			npc_says(_"enter 'exit' to exit.")
 			npc_says(_"Please retry.")
 			npc_says(_"Valid tracks:", "NO_WAIT")

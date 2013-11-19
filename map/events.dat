@@ -448,16 +448,6 @@ Obstacle label="tamara-book-3"
 </LuaCode>
 * End of trigger *
 
-* New event trigger *
-Name=_"Restore town music"
-Trigger entering level=0
-<LuaCode>
-	if not (town_track == nil) then
-		switch_background_music(town_track .. ".ogg")
-	end
-</LuaCode>
-* End of trigger *
-
 ##############
 ## Level  1 ##
 ##############
@@ -473,6 +463,19 @@ Name=_"To Warehouse Level 2"
 Trigger at label="1to2"
 Silent=0
 <LuaCode> teleport("2from1") </LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Restore town music"
+Trigger entering level=0
+<LuaCode>
+--[[ NOTE: this does not work, but maybe one day it will.
+		   I assume that this trigger is overridden by the funcion which
+		   reads the music entry from levels.dat and plays that one ]]--
+	if not (track == nil) then
+		switch_background_music(track .. ".ogg")
+	end
+</LuaCode>
 * End of trigger *
 
 ##############
