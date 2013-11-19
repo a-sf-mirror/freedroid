@@ -71,6 +71,7 @@ npc_list{
 	"AfterTakeover",
 	"614_cryo",
 	"24-Controllable-Bot",
+	"Mike",
 	"Guy"} -- check this dialog first until we can check every dialog independently
 
 npc_shop{

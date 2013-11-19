@@ -1442,6 +1442,123 @@ Silent=0
 <LuaCode> teleport("0from29") </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"Start New Wave"
+Trigger at label="ArenaStartWaveSquare"
+Silent=0
+<LuaCode>
+	if (arena_next_wave == nil) then
+		return -- No next wave need to be teleported, stop now. 
+	end
+
+	local waves
+	if (arena_current_level == 1) then
+		-- Waves for novice event
+		waves = {
+			{123, nil, nil, 123, 123, nil, nil, 123, nil},
+			{123, 123, nil, 139, 123, 123, nil, 139, nil},
+			{nil, nil, nil, 123, nil, nil, nil, 123, 302}
+		}
+	elseif (arena_current_level == 2) then
+		-- Waves for elite event
+		waves = {
+			{123, 123, 139, 139, 123, 123, 139, 139, nil},
+			{247, 139, 139, 139, 247, 139, 139, 139, nil},
+			{nil, 302, 476, nil, nil, 302, 476, nil, nil},
+			{247, 247, 247, 476, 249, 249, 249, 476, nil},
+			{nil, 249, nil, 476, nil, 249, nil, 476, 883}
+		}
+	elseif (arena_current_level == 3) then
+		-- Waves for champion event
+		waves = {
+			{302, 302, 476, 476, 302, 302, 476, 476, nil},
+			{571, 249, 249, 249, 571, 249, 249, 249, nil},
+			{420, 476, 476, 476, 420, 476, 476, 476, nil},
+			{nil, nil, 615, nil, nil, 420, 420, 420, nil},
+			{nil, 249, nil, 476, nil, 249, nil, 476, 883},
+			{493, 571, 493, 571, 493, 571, 493, 571, nil},
+			{nil, 883, 249, 249, nil, 883, 249, 249, nil},
+			{598, 598, nil, 615, 598, 598, nil, 615, nil},
+			{571, 571, 476, 598, 571, 571, 476, 598, 834}
+		}
+	end
+
+	local bots = waves[arena_next_wave]
+	arena_final_wave = arena_next_wave >= #waves
+	arena_current_wave = arena_next_wave
+	arena_next_wave = nil
+	arena_left = false
+
+	-- Close doors before the first wave.
+	if (arena_current_wave == 1) then 
+		change_obstacle_state("Arena-AccessTrapdoor", "closed")
+		change_obstacle_state("Arena-RingEntrance", "closed")
+	end
+
+	-- Initialize counter of bot.
+	arena_remaining_bots = 0
+
+	-- Teleport the bots into battlefield.
+	for num,bot in pairs(bots) do
+		create_droid("Arena-Teleport"..num, bot)
+		arena_remaining_bots = arena_remaining_bots + 1
+	end
+
+	-- Display the number of the wave.
+	if (not arena_final_wave) then
+		display_big_message(_"Wave "..arena_current_wave)
+	else
+		display_big_message(_"Final Wave - Take care!")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Arena Bot Killed"
+Trigger on enemy death in level=29
+Enemy faction="ms"
+<LuaCode>
+	if (arena_remaining_bots == nil) then
+		return -- The counter of bot is disabled, stop now.
+	else 
+		-- For each death, decrement the number of remaining bots.
+		arena_remaining_bots = arena_remaining_bots - 1
+	end
+
+	if (arena_remaining_bots <= 0) then
+		arena_remaining_bots = nil -- Delete the counter of bot
+
+		-- If Tux haven't reached the final wave, ...
+		if (not arena_final_wave) then
+			arena_next_wave = arena_current_wave + 1
+			display_big_message(_"All bots are killed ! Go to center for next wave.")
+		else 
+			arena_won = true 
+			display_big_message(_"All bots are killed ! You won.")
+
+			-- Open the doors
+			change_obstacle_state("Arena-RingEntrance", "opened")
+			change_obstacle_state("Arena-AccessTrapdoor", "opened")
+		end
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Stop Arena"
+Trigger at label="StopArenaSquare"
+Silent=1
+<LuaCode>
+	if (not arena_won and arena_left == false and not arena_remaining_bots) then
+		arena_left = true
+		arena_next_wave = nil
+
+		change_obstacle_state("Arena-AccessTrapdoor", "opened")
+		change_obstacle_state("Arena-RingEntrance", "opened")
+	end
+</LuaCode>
+* End of trigger *
+
 ##############
 ## Level 30 ##
 ##############

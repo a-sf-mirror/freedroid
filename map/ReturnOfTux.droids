@@ -296,6 +296,8 @@ T=999: PosX=59 PosY=59 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"999 C
 ** Beginning of new Level **
 Level=29
 
+T=571: PosX=36 PosY=24 Faction="redguard" UseDialog="Mike" ShortLabel=_"571 - Arena Manager" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
