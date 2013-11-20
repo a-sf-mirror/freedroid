@@ -436,7 +436,7 @@ static void build_item_lists(void)
 		} else if (ItemMap[i].slot & (SHIELD_SLOT | HELM_SLOT | ARMOR_SLOT | BOOT_SLOT)) {
 			defense_items_list[defense] = i;
 			defense++;
-		} else if (ItemMap[i].item_combat_use_description) {
+		} else if (ItemMap[i].right_use.tooltip) {
 			spell_items_list[spell] = i;
 			spell++;
 		} else {

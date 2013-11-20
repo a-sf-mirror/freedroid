@@ -1025,6 +1025,7 @@ static void get_one_item(lua_State *L, void *data)
 	char *item_durability;
 	char *item_drop_class;
 	char *item_armor_class;
+	char *item_right_use_busy_type;
 	char *item_dropped;
 	char *item_damage;
 	char *item_motion_class;
@@ -1047,7 +1048,11 @@ static void get_one_item(lua_State *L, void *data)
 		{"weapon.two_hand",	 		"false",	BOOL_TYPE,	 &item->item_gun_requires_both_hands	},
 		{"weapon.motion_class",		NULL,		STRING_TYPE, &item_motion_class						},
 		{"armor_class",				NULL,		STRING_TYPE, &item_armor_class						},
-		{"use_help",				NULL,		STRING_TYPE, &item->item_combat_use_description		},
+		{"right_use.tooltip",		NULL,		STRING_TYPE, &item->right_use.tooltip				},
+		{"right_use.skill",			NULL,		STRING_TYPE, &item->right_use.skill					},
+		{"right_use.add_skill",		NULL,		STRING_TYPE, &item->right_use.add_skill				},
+		{"right_use.busy.type",		NULL,		STRING_TYPE, &item_right_use_busy_type				},
+		{"right_use.busy.duration",	"0",		INT_TYPE,	 &item->right_use.busy_time				},
 		{"requirements.strength", 	"-1",		SHORT_TYPE,  &item->item_require_strength			},
 		{"requirements.dexterity",	"-1",		SHORT_TYPE,	 &item->item_require_dexterity			},
 		{"requirements.cooling",	"-1",		SHORT_TYPE,	 &item->item_require_cooling			},
@@ -1085,7 +1090,15 @@ static void get_one_item(lua_State *L, void *data)
 	get_range_from_string(item_armor_class, (int *)&item->base_armor_class, &item->armor_class_modifier, 0);
 	item->armor_class_modifier -= item->base_armor_class;
 	free(item_armor_class);
-	
+
+	// Set busy type
+	if (item_right_use_busy_type) {
+		item->right_use.busy_type = get_busy_type_by_name(item_right_use_busy_type);
+	} else {
+		item->right_use.busy_type = NONE;
+	}
+	free(item_right_use_busy_type);
+
 	// Set the drop class
 	if (item_drop_class) {
 		get_range_from_string(item_drop_class, &item->min_drop_class, &item->max_drop_class, -1);

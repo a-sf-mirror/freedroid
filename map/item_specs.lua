@@ -129,7 +129,7 @@ item_list{
 		motion_class = "1hmelee",
 	},
 	armor_class = "0:0",
-	use_help =_"The item do nothing when right clicked.",
+	right_use = {tooltip =_"The item do nothing when right clicked."},
 	inventory = {x = 1, y = 1, image = "inventory_image_7.png" },
 	drop = {class = nil, number = "0:0", sound = "Item_Drop_Sound_0.ogg"},
 	base_price = 0,
@@ -1143,7 +1143,7 @@ item_list{
 
 {
 	name =_"VMX Gas Grenade",
-	use_help =_"Gas attack",
+	right_use = {tooltip =_"Gas attack", skill =_"Gas grenade", busy = {type = "throwing", duration = 1}},
 	base_price = 250,
 	inventory = {x = 1, y = 1,stackable = true, image = "grenades/vmx/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -1154,7 +1154,7 @@ item_list{
 
 {
 	name =_"Small EMP Shockwave Generator",
-	use_help =_"Small Electromagnetic pulse",
+	right_use = {tooltip =_"Small Electromagnetic pulse", skill =_"Small EMP grenade", busy = {type = "throwing", duration = 1}},
 	base_price = 100,
 	inventory = {x = 1, y = 1,stackable = true, image = "grenades/emp/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -1165,7 +1165,7 @@ item_list{
 
 {
 	name =_"EMP Shockwave Generator",
-	use_help =_"Electromagnetic pulse",
+	right_use = {tooltip =_"Electromagnetic pulse", skill =_"EMP grenade", busy = {type = "throwing", duration = 1}},
 	base_price = 150,
 	inventory = {x = 1, y = 1,stackable = true, image = "grenades/emp/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -1176,7 +1176,7 @@ item_list{
 
 {
 	name =_"Electronic Noise Generator",
-	use_help =_"Disable Electronics",
+	right_use = {tooltip =_"Disable Electronics", skill =_"Electronic Noise", busy = {type = "throwing", duration = 1}},
 	base_price = 90,
 	inventory = {x = 1, y = 1,stackable = true, image = "grenades/emp/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -1187,7 +1187,7 @@ item_list{
 
 {
 	name =_"Small Plasma Shockwave Emitter",
-	use_help =_"Explosion",
+	right_use = {tooltip =_"Explosion", skill =_"Small Plasma grenade", busy = {type = "throwing", duration = 1}},
 	base_price = 200,
 	inventory = {x = 1, y = 1,stackable = true, image = "grenades/plasma/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -1198,7 +1198,7 @@ item_list{
 
 {
 	name =_"Plasma Shockwave Emitter",
-	use_help =_"Huge explosion",
+	right_use = {tooltip =_"Huge explosion", skill =_"Plasma grenade", busy = {type = "throwing", duration = 1}},
 	base_price = 250,
 	inventory = {x = 1, y = 1,stackable = true, image = "grenades/plasma/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -1507,7 +1507,7 @@ item_list{
 
 {
 	name =_"Source Book of Emergency shutdown",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Emergency shutdown"},
 	base_price = 500,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_green.png" },
 	drop = {class = "2:9", sound = "drop_book_sound.ogg"},
@@ -1518,7 +1518,7 @@ item_list{
 
 {
 	name =_"Source Book of Check system integrity",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Check system integrity"},
 	base_price = 250,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_white.png" },
 	drop = {class = "2:9", sound = "drop_book_sound.ogg"},
@@ -1529,7 +1529,7 @@ item_list{
 
 {
 	name =_"Source Book of Sanctuary",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Sanctuary"},
 	base_price = 450,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_green.png" },
 	drop = {sound = "drop_book_sound.ogg"},
@@ -1540,7 +1540,7 @@ item_list{
 
 {
 	name =_"Source Book of Malformed packet",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Malformed packet"},
 	base_price = 300,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_purple.png" },
 	drop = {class = "2:9", sound = "drop_book_sound.ogg"},
@@ -1551,7 +1551,7 @@ item_list{
 
 {
 	name =_"Source Book of Calculate Pi",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Calculate Pi"},
 	base_price = 300,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_orange.png" },
 	drop = {class = "2:9", sound = "drop_book_sound.ogg"},
@@ -1562,7 +1562,7 @@ item_list{
 
 {
 	name =_"Source Book of Blue Screen",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Blue Screen"},
 	base_price = 300,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_blue.png" },
 	drop = {class = "3:9", sound = "drop_book_sound.ogg"},
@@ -1573,7 +1573,7 @@ item_list{
 
 {
 	name =_"Source Book of Broadcast Blue Screen",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Broadcast Blue Screen"},
 	base_price = 900,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_blue.png" },
 	drop = {class = "5:9", sound = "drop_book_sound.ogg"},
@@ -1584,7 +1584,7 @@ item_list{
 
 {
 	name =_"Source Book of Invisibility",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Invisibility"},
 	base_price = 600,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_green.png" },
 	drop = {class = "4:9", sound = "drop_book_sound.ogg"},
@@ -1595,7 +1595,7 @@ item_list{
 
 {
 	name =_"Source Book of Virus",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Virus"},
 	base_price = 450,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_red.png" },
 	drop = {class = "4:9", sound = "drop_book_sound.ogg"},
@@ -1606,7 +1606,7 @@ item_list{
 
 {
 	name =_"Source Book of Broadcast virus",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Broadcast virus"},
 	base_price = 1350,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_red.png" },
 	drop = {class = "6:9", sound = "drop_book_sound.ogg"},
@@ -1617,7 +1617,7 @@ item_list{
 
 {
 	name =_"Source Book of Dispel smoke",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Dispel smoke"},
 	base_price = 600,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_grey.png" },
 	drop = {class = "3:9", sound = "drop_book_sound.ogg"},
@@ -1628,7 +1628,7 @@ item_list{
 
 {
 	name =_"Source Book of Killer poke",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Killer poke"},
 	base_price = 1200,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_greenblue.png" },
 	drop = {class = "5:9", sound = "drop_book_sound.ogg"},
@@ -1639,7 +1639,7 @@ item_list{
 
 {
 	name =_"Source Book of Repair equipment",
-	use_help =_"Learn about repairing items",
+	right_use = {tooltip =_"Learn about repairing items", add_skill =_"Repair equipment"},
 	base_price = 1200,
 	inventory = {x = 2, y = 2, image = "repairbook/inv_image.png" },
 	drop = {class = "4:9", sound = "drop_book_sound.ogg"},
@@ -1650,7 +1650,7 @@ item_list{
 
 {
 	name =_"Source Book of Plasma discharge",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Plasma discharge"},
 	base_price = 600,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image.png" },
 	drop = {sound = "drop_book_sound.ogg"},
@@ -1661,7 +1661,7 @@ item_list{
 
 {
 	name =_"Source Book of Nethack",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Nethack"},
 	base_price = 450,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_yellow.png" },
 	drop = {sound = "drop_book_sound.ogg"},
@@ -1672,7 +1672,7 @@ item_list{
 
 {
 	name =_"Source Book of Ricer CFLAGS",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Ricer CFLAGS"},
 	base_price = 600,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image.png" },
 	drop = {sound = "drop_book_sound.ogg"},
@@ -1683,7 +1683,7 @@ item_list{
 
 {
 	name =_"Source Book of Reverse-engineer",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Reverse-engineer"},
 	base_price = 450,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_orange.png" },
 	drop = {sound = "drop_book_sound.ogg"},
@@ -1694,7 +1694,7 @@ item_list{
 
 {
 	name =_"Source Book of Light",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Light"},
 	base_price = 450,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_white.png" },
 	drop = {sound = "drop_book_sound.ogg"},
@@ -1705,7 +1705,7 @@ item_list{
 
 {
 	name =_"Source Book of Network Mapper",
-	use_help =_"Permanently acquire/enhance this program",
+	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Network Mapper"},
 	base_price = 300,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_green.png" },
 	drop = {sound = "drop_book_sound.ogg"},
@@ -1740,7 +1740,7 @@ item_list{
 
 {
 	name =_"Strength Pill",
-	use_help =_"Permanently gain +1 strength",
+	right_use = {tooltip =_"Permanently gain +1 strength", busy = {type = "drinking", duration = 1}},
 	base_price = 250,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/strength/inv_image.png" },
 	drop = {class = "2:9", sound = "Item_Drop_Sound_4.ogg"},
@@ -1751,7 +1751,7 @@ item_list{
 
 {
 	name =_"Dexterity Pill",
-	use_help =_"Permanently gain +1 dexterity",
+	right_use = {tooltip =_"Permanently gain +1 dexterity", busy = {type = "drinking", duration = 1}},
 	base_price = 250,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/dexterity/inv_image.png" },
 	drop = {class = "2:9", sound = "Item_Drop_Sound_4.ogg"},
@@ -1762,7 +1762,7 @@ item_list{
 
 {
 	name =_"Code Pill",
-	use_help =_"Permanently gain +1 cooling",
+	right_use = {tooltip =_"Permanently gain +1 cooling", busy = {type = "drinking", duration = 1}},
 	base_price = 250,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/magic/inv_image.png" },
 	drop = {class = "2:9", sound = "Item_Drop_Sound_4.ogg"},
@@ -1783,7 +1783,7 @@ item_list{
 
 {
 	name =_"Brain Enlargement Pill",
-	use_help =_"Gain fast acting cancer",
+	right_use = {tooltip =_"Gain fast acting cancer"},
 	base_price = 0,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/brain_enlargement_antidode/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -1794,7 +1794,7 @@ item_list{
 
 {
 	name =_"Diet supplement",
-	use_help =_"Recover Health",
+	right_use = {tooltip =_"Recover Health", busy = {type = "drinking", duration = 1}},
 	base_price = 20,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/health_capsule/inv_image_small.png" },
 	drop = {class = "0:5", sound = "drop_potion_sound.ogg"},
@@ -1805,7 +1805,7 @@ item_list{
 
 {
 	name =_"Antibiotic",
-	use_help =_"Recover Health",
+	right_use = {tooltip =_"Recover Health", busy = {type = "drinking", duration = 1}},
 	base_price = 40,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/health_capsule/inv_image_medium.png" },
 	drop = {class = "4:7", sound = "drop_potion_sound.ogg"},
@@ -1816,7 +1816,7 @@ item_list{
 
 {
 	name =_"Doc-in-a-can",
-	use_help =_"Recover Health",
+	right_use = {tooltip =_"Recover Health", busy = {type = "drinking", duration = 1}},
 	base_price = 60,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/health_capsule/inv_image_big.png" },
 	drop = {class = "6:9", sound = "drop_potion_sound.ogg"},
@@ -1827,7 +1827,7 @@ item_list{
 
 {
 	name =_"Bottled ice",
-	use_help =_"Cooling aid",
+	right_use = {tooltip =_"Cooling aid", busy = {type = "drinking", duration = 1}},
 	base_price = 15,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/force_capsule/inv_image_small.png" },
 	drop = {class = "0:5", sound = "drop_potion_sound.ogg"},
@@ -1838,7 +1838,7 @@ item_list{
 
 {
 	name =_"Industrial coolant",
-	use_help =_"Cooling aid",
+	right_use = {tooltip =_"Cooling aid", busy = {type = "drinking", duration = 1}},
 	base_price = 30,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/force_capsule/inv_image_medium.png" },
 	drop = {class = "4:7", sound = "drop_potion_sound.ogg"},
@@ -1849,7 +1849,7 @@ item_list{
 
 {
 	name =_"Liquid nitrogen",
-	use_help =_"Extreme Cooling aid",
+	right_use = {tooltip =_"Extreme Cooling aid", busy = {type = "drinking", duration = 1}},
 	base_price = 45,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/force_capsule/inv_image_big.png" },
 	drop = {class = "6:9", sound = "drop_potion_sound.ogg"},
@@ -1860,7 +1860,7 @@ item_list{
 
 {
 	name =_"Barf's Energy Drink",
-	use_help =_"Cool down, cure minor wounds.",
+	right_use = {tooltip =_"Cool down, cure minor wounds.", busy = {type = "drinking", duration = 1}},
 	base_price = 50,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/blue_energy_drink/inv_image.png" },
 	drop = {class = "2:9", sound = "drop_potion_sound.ogg"},
@@ -1871,7 +1871,7 @@ item_list{
 
 {
 	name =_"Running Power Capsule",
-	use_help =_"Recover Running Power",
+	right_use = {tooltip =_"Recover Running Power", busy = {type = "drinking", duration = 1}},
 	base_price = 45,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/energy_capsule/inv_image.png" },
 	drop = {class = "2:9", sound = "drop_potion_sound.ogg"},
@@ -1882,7 +1882,7 @@ item_list{
 
 {
 	name =_"Strength Capsule",
-	use_help =_"Temporary Boost to Strength",
+	right_use = {tooltip =_"Temporary Boost to Strength", busy = {type = "drinking", duration = 1}},
 	base_price = 150,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/energy_capsule/inv_image.png" },
 	drop = {class = "2:9", sound = "drop_potion_sound.ogg"},
@@ -1893,7 +1893,7 @@ item_list{
 
 {
 	name =_"Dexterity Capsule",
-	use_help =_"Temporary Boost to Dexterity",
+	right_use = {tooltip =_"Temporary Boost to Dexterity", busy = {type = "drinking", duration = 1}},
 	base_price = 150,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/energy_capsule/inv_image.png" },
 	drop = {class = "2:9", sound = "drop_potion_sound.ogg"},
@@ -2018,7 +2018,7 @@ item_list{
 
 {
 	name =_"Map Maker",
-	use_help =_"To implant the automap device",
+	right_use = {tooltip =_"To implant the automap device"},
 	base_price = 75,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/magic/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2029,7 +2029,7 @@ item_list{
 
 {
 	name =_"Light Enhancer? to be included in the future...",
-	use_help =_"See better in the dark.",
+	right_use = {tooltip =_"See better in the dark."},
 	base_price = 18,
 	inventory = {x = 2, y = 2, image = "map_maker/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2091,7 +2091,7 @@ item_list{
 
 {
 	name =_"Teleporter homing beacon",
-	use_help =_"Teleports you elsewhere",
+	right_use = {tooltip =_"Teleports you elsewhere", skill =_"Sanctuary"},
 	base_price = 40,
 	inventory = {x = 1, y = 1,stackable = true, image = "tele_beacon/inv_image.png" },
 	drop = {sound = "drop_book_sound.ogg"},
@@ -2849,7 +2849,7 @@ Click the red button with the cross on it when you are done.]],
 
 {
 	name =_"Bottled Tutorial ice",
-	use_help =_"Cooling aid",
+	right_use = {tooltip =_"Cooling aid"},
 	base_price = 15,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/force_capsule/inv_image_small_tutorial.png" },
 	drop = {sound = "drop_potion_sound.ogg"},

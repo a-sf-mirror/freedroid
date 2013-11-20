@@ -660,34 +660,6 @@ void Quick_ApplyItem(int ItemKey)
 };				// void Quick_ApplyItem( item* CurItem )
 
 /**
- * There are many spellbooks.  These are handled inside the code via 
- * their item_type, an integer.  Now these spellbooks affect skills.  The
- * skills are handled internally via their index in the skill list.  So
- * at some points, it's convenient to look up the skill associated with
- * the spellbook.  So we do this once and have it available all the time
- * in a convenient and easy to maintain fashion.
- */
-static int associate_skill_with_item(int item_type)
-{
-	int associated_skill = (-1);
-	if (!item_type || item_type == -1)
-		return 0;	//we have a problem here...
-
-	if (!strstr(ItemMap[item_type].item_name, "Source Book of")) {
-		fprintf(stderr, "Game took item %d for a source book - this is a bug\n", item_type);
-		return 0;
-	}
-
-	char *pos = strstr(ItemMap[item_type].item_name, "Source Book of");
-	pos += strlen("Source Book of ");
-
-	associated_skill = get_program_index_with_name(pos);
-
-	return (associated_skill);
-
-};				// int associate_skill_with_item ( int item_type )
-
-/**
  * This function checks whether a given item has the name specified. This is
  * used to match an item which its type in a flexible way (match by name instead
  * of matching by index value)
@@ -733,7 +705,7 @@ void ApplyItem(item * CurItem)
 	if (CurItem->type < 0)
 		return;
 
-	if (!ItemMap[CurItem->type].item_combat_use_description) {
+	if (!ItemMap[CurItem->type].right_use.tooltip) {
 		Me.TextVisibleTime = 0;
 		Me.TextToBeDisplayed = _("I can't use this item here.");
 		return;
@@ -777,78 +749,34 @@ void ApplyItem(item * CurItem)
 		Me.energy += 15;
 		Me.temperature -= 15;
 		Me.running_power += 15;
-		Me.busy_time = 1;
-		Me.busy_type = DRINKING_POTION;
 	} else if (MatchItemWithName(CurItem->type, "Diet supplement")) {
 		Me.energy += 25;
-		Me.busy_type = DRINKING_POTION;
-		Me.busy_time = 1;
 		play_sound_cached("effects/new_healing_sound.ogg");
 	} else if (MatchItemWithName(CurItem->type, "Antibiotic")) {
 		Me.energy += 50;
-		Me.busy_time = 1;
-		Me.busy_type = DRINKING_POTION;
 		play_sound_cached("effects/new_healing_sound.ogg");
 	} else if (MatchItemWithName(CurItem->type, "Doc-in-a-can")) {
 		Me.energy += Me.maxenergy;
-		Me.busy_time = 1;
-		Me.busy_type = DRINKING_POTION;
 		play_sound_cached("effects/new_healing_sound.ogg");
 	} else if (MatchItemWithName(CurItem->type, "Bottled ice")) {
 		Me.temperature -= 50;
-		Me.busy_time = 1;
-		Me.busy_type = DRINKING_POTION;
 	} else if (MatchItemWithName(CurItem->type, "Industrial coolant")) {
 		Me.temperature -= 100;
-		Me.busy_time = 1;
-		Me.busy_type = DRINKING_POTION;
 	} else if (MatchItemWithName(CurItem->type, "Liquid nitrogen")) {
 		Me.temperature = 0;
-		Me.busy_time = 1;
-		Me.busy_type = DRINKING_POTION;
 	} else if (MatchItemWithName(CurItem->type, "Running Power Capsule")) {
 		Me.running_power = Me.max_running_power;
 		Me.running_must_rest = FALSE;
-		Me.busy_time = 1;
-		Me.busy_type = DRINKING_POTION;
 	} else if (MatchItemWithName(CurItem->type, "Strength Capsule")) {
 		Me.current_power_bonus = 30;
 		Me.power_bonus_end_date = Me.current_game_date + 2.0 * 60;
-		Me.busy_time = 1;
-		Me.busy_type = DRINKING_POTION;
 	} else if (MatchItemWithName(CurItem->type, "Dexterity Capsule")) {
 		Me.current_dexterity_bonus = 30;
 		Me.dexterity_bonus_end_date = Me.current_game_date + 2.0 * 60;
-		Me.busy_time = 1;
-		Me.busy_type = DRINKING_POTION;
 	} else if (MatchItemWithName(CurItem->type, "Map Maker")) {
 		Me.map_maker_is_present = TRUE;
 		GameConfig.Automap_Visible = TRUE;
 		Play_Spell_ForceToEnergy_Sound();
-	} else if (MatchItemWithName(CurItem->type, "VMX Gas Grenade")) {
-		DoSkill(get_program_index_with_name("Gas grenade"), 0);
-		Me.busy_time = 1;
-		Me.busy_type = THROWING_GRENADE;
-	} else if (MatchItemWithName(CurItem->type, "Small EMP Shockwave Generator")) {
-		DoSkill(get_program_index_with_name("Small EMP grenade"), 0);
-		Me.busy_time = 1;
-		Me.busy_type = THROWING_GRENADE;
-	} else if (MatchItemWithName(CurItem->type, "EMP Shockwave Generator")) {
-		DoSkill(get_program_index_with_name("EMP grenade"), 0);
-		Me.busy_time = 1;
-		Me.busy_type = THROWING_GRENADE;
-	} else if (MatchItemWithName(CurItem->type, "Electronic Noise Generator")) {
-		DoSkill(get_program_index_with_name("Electronic Noise"), 0);
-		Me.busy_time = 1;
-		Me.busy_type = THROWING_GRENADE;
-	} else if (MatchItemWithName(CurItem->type, "Small Plasma Shockwave Emitter")) {
-		DoSkill(get_program_index_with_name("Small Plasma grenade"), 0);
-		Me.busy_time = 1;
-		Me.busy_type = THROWING_GRENADE;
-	} else if (MatchItemWithName(CurItem->type, "Plasma Shockwave Emitter")) {
-		DoSkill(get_program_index_with_name("Plasma grenade"), 0);
-		Me.busy_time = 1;
-		Me.busy_type = THROWING_GRENADE;
 	} else if (MatchItemWithName(CurItem->type, "Strength Pill")) {
 		Me.base_strength++;
 	} else if (MatchItemWithName(CurItem->type, "Dexterity Pill")) {
@@ -862,29 +790,35 @@ void ApplyItem(item * CurItem)
 		Me.base_physique = 5;
 		Takeover_Game_Lost_Sound();
 		append_new_game_message(_("The doctor warned you. You are now weak and sickly."));
-	} else if (MatchItemWithName(CurItem->type, "Teleporter homing beacon")) {
-		failed_usage = !DoSkill(get_program_index_with_name("Sanctuary"), 0);
-	} else if (strstr(ItemMap[CurItem->type].item_name, "Source Book of")) {
-		int sidx = associate_skill_with_item(CurItem->type);
-		failed_usage = improve_program(sidx);
+	}
+
+	// Do the skill
+	if (ItemMap[CurItem->type].right_use.skill) {
+		failed_usage = !DoSkill(get_program_index_with_name(ItemMap[CurItem->type].right_use.skill), 0);
+	// Improve the skill
+	} else if (ItemMap[CurItem->type].right_use.add_skill) {
+		failed_usage = improve_program(get_program_index_with_name(ItemMap[CurItem->type].right_use.add_skill));
 
 		if(failed_usage == 0) {
 			Play_Spell_ForceToEnergy_Sound();
 		} else {
-			append_new_game_message(_("You have reached the maximum skill level for %s"),ItemMap[CurItem->type].item_name + strlen("Source Book of "));
+			append_new_game_message(_("You have reached the maximum skill level for %s"), 
+									ItemMap[CurItem->type].right_use.add_skill);
 			Takeover_Game_Deadlock_Sound();
 		}
-	} else if (MatchItemWithName(CurItem->type, "Source Book of Repair equipment")) {
-		failed_usage = improve_program(get_program_index_with_name("Repair equipment"));
 	}
 
-	play_item_sound(CurItem->type, &Me.pos);
-
-	// In some cases the item concerned is a one-shot-device like a health potion, which should
-	// evaporize after the first application.  Therefore we delete the item from the inventory list.
-	//
-
 	if (!failed_usage) {
+
+		play_item_sound(CurItem->type, &Me.pos);
+
+		// Apply busy time and busy type
+		Me.busy_time = ItemMap[CurItem->type].right_use.busy_time;
+		Me.busy_type = ItemMap[CurItem->type].right_use.busy_type;
+
+		// In some cases the item concerned is a one-shot-device like a health potion, which should
+		// evaporize after the first application.  Therefore we delete the item from the inventory list.
+		//
 		if (CurItem->multiplicity > 1)
 			CurItem->multiplicity--;
 		else
@@ -2067,7 +2001,7 @@ int try_give_item(item *ItemPointer)
 	// inventory later.
 
 	if ((ItemMap[ItemPointer->type].inv_size.x == 1) &&
-	    (ItemMap[ItemPointer->type].inv_size.y == 1) && (ItemMap[ItemPointer->type].item_combat_use_description)) {
+	    (ItemMap[ItemPointer->type].inv_size.y == 1) && (ItemMap[ItemPointer->type].right_use.tooltip)) {
 		DebugPrintf(2, "\n\nTrying to place this item inside of the quick inventory first...");
 		Inv_Loc.y = INVENTORY_GRID_HEIGHT - 1;
 		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_WIDTH - ItemMap[ItemPointer->type].inv_size.x + 1; Inv_Loc.x++) {
@@ -2173,6 +2107,16 @@ enum slot_type get_slot_type_by_name(char *name)
 			return slots[i].slot;
 	}
 	return NO_SLOT;
+}
+
+enum _busytype get_busy_type_by_name(char *name)
+{
+	if (!strcmp(name, "drinking")) {
+		return DRINKING_POTION;
+	} else if (!strcmp(name, "throwing")) {
+		return THROWING_GRENADE;
+	}
+	return NONE;
 }
 
 #undef _items_c

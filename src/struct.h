@@ -253,8 +253,6 @@ typedef struct itemspec {
 	char *item_description;
 	char *item_drop_sound_file_name;
 	char *item_inv_file_name;
-
-	char *item_combat_use_description;
 	
 	enum slot_type slot;
 	
@@ -292,6 +290,14 @@ typedef struct itemspec {
 	// what durability does the item have?
 	int base_item_durability;
 	int item_durability_modifier;
+
+	struct {
+		char *tooltip;
+		char *skill;
+		char *add_skill;
+		enum _busytype busy_type;
+		int busy_time;
+	} right_use;
 
 	point inv_size;
 	struct image inventory_image;
