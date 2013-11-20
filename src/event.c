@@ -46,8 +46,7 @@ struct event_trigger {
 
 	enum {
 		POSITION,
-		ENTER_LEVEL,
-		EXIT_LEVEL,
+		CHANGE_LEVEL,
 		ENEMY_DEATH,
 		OBSTACLE_ACTION,
 	} trigger_type;
@@ -59,7 +58,8 @@ struct event_trigger {
 			int y;
 		} position;
 		struct {
-			int level;
+			int exit_level;
+			int enter_level;
 		} change_level;
 		struct {
 			int level;
@@ -109,11 +109,10 @@ static void clear_out_events(void)
 #define EVENT_TRIGGER_LABEL_STRING "Trigger at label=\""
 #define EVENT_TRIGGER_IS_SILENT_STRING "Silent="
 
-// For level-enter events
-#define LEVEL_EVENT_LVLNUM_VALUE "Trigger entering level="
-
-// For level-exit events
-#define LEVEL_EXIT_LVLNUM_VALUE "Trigger exiting level="
+// For level-change events
+#define LEVEL_CHANGE_TRIGGER "Trigger changing level"
+#define LEVEL_CHANGE_EXITING "Exiting level="
+#define LEVEL_CHANGE_ENTERING "Entering level="
 
 // For enemy-death events
 #define ENEMY_DEATH_TRIGGER "Trigger on enemy death"
@@ -164,14 +163,12 @@ static void load_events(char *EventSectionPointer)
 			free(TempMapLabelName);
 			ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
 						&temp.silent, EndOfEvent);
-		} else if (strstr(EventPointer, LEVEL_EVENT_LVLNUM_VALUE)) {
-			temp.trigger_type = ENTER_LEVEL;
-			ReadValueFromString(EventPointer, LEVEL_EVENT_LVLNUM_VALUE, "%d",
-						&temp.trigger.change_level.level, EndOfEvent);
-		} else if (strstr(EventPointer, LEVEL_EXIT_LVLNUM_VALUE)) {
-			temp.trigger_type = EXIT_LEVEL;
-			ReadValueFromString(EventPointer, LEVEL_EXIT_LVLNUM_VALUE, "%d",
-						&temp.trigger.change_level.level, EndOfEvent);
+		} else if (strstr(EventPointer, LEVEL_CHANGE_TRIGGER)) {
+			temp.trigger_type = CHANGE_LEVEL;
+			ReadValueFromStringWithDefault(EventPointer, LEVEL_CHANGE_ENTERING, "%d", "-1",
+						&temp.trigger.change_level.enter_level, EndOfEvent);
+			ReadValueFromStringWithDefault(EventPointer, LEVEL_CHANGE_EXITING, "%d", "-1",
+						&temp.trigger.change_level.exit_level, EndOfEvent);
 		} else if (strstr(EventPointer, ENEMY_DEATH_TRIGGER)) {
 			temp.trigger_type = ENEMY_DEATH;
 			ReadValueFromStringWithDefault(EventPointer, ENEMY_DEATH_LVLNUM, "%d", "-1",
@@ -287,19 +284,19 @@ void event_level_changed(int past_lvl, int cur_lvl)
 	struct event_trigger *arr = event_triggers.arr;
 
 	for (i = 0; i < event_triggers.size; i++) {
-		if (arr[i].trigger_type == ENTER_LEVEL) {
-			if (arr[i].trigger.change_level.level != cur_lvl)
-				continue;
-
-		} else if (arr[i].trigger_type == EXIT_LEVEL) {
-			if (arr[i].trigger.change_level.level != past_lvl)
-				continue;
-
-		} else
+		if (arr[i].trigger_type != CHANGE_LEVEL)
 			continue;
 
 		if (!arr[i].enabled)
 			continue;
+
+		if (arr[i].trigger.change_level.exit_level != -1)
+			if (arr[i].trigger.change_level.exit_level != past_lvl)
+				continue;
+
+		if (arr[i].trigger.change_level.enter_level != -1)
+			if (arr[i].trigger.change_level.enter_level != cur_lvl)
+				continue;
 
 		run_lua(LUA_DIALOG, arr[i].lua_code);
 	}

@@ -196,7 +196,8 @@ Silent=1
 
 * New event trigger *
 Name=_"Escort Tux Teleport Out"
-Trigger exiting level=0
+Trigger changing level
+Exiting level=0
 <LuaCode>
 	if (guard_follow_tux) then
 		set_bot_state("patrol", "Town-TuxGuard")
@@ -450,7 +451,8 @@ Obstacle label="tamara-book-3"
 
 * New event trigger *
 Name=_"Restore town music"
-Trigger entering level=0
+Trigger changing level
+Entering level=0
 <LuaCode>
 	if not (town_track == nil) then
 		switch_background_music(town_track .. ".ogg")
@@ -681,7 +683,8 @@ Silent=0
 
 * New event trigger *
 Name=_"296 Teleport Point"
-Trigger exiting level=13
+Trigger changing level
+Exiting level=13
 <LuaCode>
 	if (Ewalds_296_self_sacrifice) and
 	   (not done_quest("An Explosive Situation")) and
@@ -771,7 +774,8 @@ Silent=1
 
 * New event trigger *
 Name=_"Exiting from Kevin's Backdoor - Teleport"
-Trigger exiting level=17
+Trigger changing level
+Exiting level=17
 <LuaCode>
 	if (Kevin_entering_from_back) then
 		set_rush_tux(0, "Kevin")
@@ -1431,7 +1435,8 @@ Silent=1
 ##############
 * New event trigger *
 Name=_"Respawn Novice Arena"
-Trigger entering level=29
+Trigger changing level
+Entering level=29
 <LuaCode> respawn_level(29) </LuaCode>
 * End of trigger *
 
@@ -1564,7 +1569,8 @@ Silent=1
 ##############
 * New event trigger *
 Name=_"Respawn Master Arena"
-Trigger entering level=30
+Trigger changing level
+Entering level=30
 <LuaCode> respawn_level(30) </LuaCode>
 * End of trigger *
 
