@@ -25,6 +25,11 @@ return {
 		else
 			guy_fail("HAS MET")
 		end
+
+		if (not has_quest("24_guy_death_quest")) then
+			add_quest("24_guy_death_quest", "Quest to check if droid markers work.")
+		end
+
 		npc_says("This text is only shown as you speak to this character the first time.")
 	end,
 
@@ -169,6 +174,7 @@ return {
 				else
 					guy_fail("QUEST 3")
 				end
+
 				end_quest("24_dude_test_quest", "Complete 24 dude quest.")
 				if (done_quest("24_dude_test_quest")) then
 					npc_says("QUEST test 4 succeeded", "NO_WAIT")
@@ -178,6 +184,16 @@ return {
 			else
 				tux_says("Skipping QUEST test 3 due to missing possibility to remove quests!")
 				tux_says("Skipping QUEST test 4 due to missing possibility to remove quests!")
+			end
+
+			if (has_met("Guy")) then -- need to have met guy to let the DeadGuy die...
+				if (done_quest("24_guy_death_quest")) then -- check droid markers
+					npc_says("QUEST test 5 succeeded","NO_WAIT")
+				else
+					guy_fail("QUEST 5")
+				end
+			else
+				tux_says("Skipping QUEST test 5, we need to have met Guy...")
 			end
 
 ---------------------------------------------------------- OBSTACLES

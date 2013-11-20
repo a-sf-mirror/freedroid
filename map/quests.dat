@@ -292,6 +292,17 @@ Mission Name=_"24_label_test_quest"
 Mission Name=_"24_dude_test_quest"
 ** End of this mission target subsection **
 
+** Start of this mission target subsection **
++++
++++ Free Tania & Escort Tania to the town
++++
+Mission Name=_"24_guy_death_quest"
+Mission target is to kill droids with marker : 2025
+Completion LuaCode={
+	display_big_message("24 guy death quest solved")
+}
+** End of this mission target subsection **
+
 
 *** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***
 
