@@ -179,19 +179,19 @@ function FDdialog.Dialog.get_options(self)
 	return options
 end
 
---! \fn pair find_nodes(string nodeid)
+--! \fn pair find_node(string nodeid)
 --!
 --! \brief Return a node given its ID
 --!
 --! \param  nodeid ID of the searched node
---! \return        Pair of (index, node) or (nil, nil) if not found
+--! \return        Pair of (node, index) or (nil, nil) if not found
 --!
 --! \memberof Lua::FDdialog::Dialog
 
 function FDdialog.Dialog.find_node(self, nodeid)
 	for i,node in ipairs(self.nodes) do
 		if (node.id == nodeid) then
-			return i, node
+			return node, i
 		end
 	end
 	return nil, nil
@@ -208,7 +208,7 @@ end
 
 function FDdialog.Dialog.foreach_node(self, nodes, func)
 	for _,nodeid in ipairs(nodes) do
-		local i, node = self:find_node(nodeid)
+		local node,i  = self:find_node(nodeid)
 		if (node) then
 			func(node)
 		end
@@ -601,8 +601,8 @@ end
 
 function FDdialog.next_node(nodename)
 	local current_dialog = FDdialog.stack:top()
-	local idx, node = current_dialog:find_node(nodename)
-	if (not idx) then
+	local node, idx = current_dialog:find_node(nodename)
+	if (not node) then
 		print("next() called on unknown node: ", nodename)
 	else
 		current_dialog.next_node = idx

@@ -36,7 +36,7 @@ end
 local function dude_choose_action(this_dialog)
 	local actionname = user_input_string("Please enter the dialog name of the desired NPC (Chandra, Bender...) or other action to jump to (redguard, craft, upgrade, shop or exit). If the input is invalid, the game will crash! To abort, enter 'continue' or press enter or escape.")
 	if (not (actionname == "continue" or actionname == "")) then
-		local index,actionnode = this_dialog:find_node(actionname)
+		local actionnode = this_dialog:find_node(actionname)
 		if (actionnode and actionnode.code) then
 			actionnode:code(this_dialog)
 		end
