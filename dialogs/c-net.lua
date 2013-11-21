@@ -40,7 +40,7 @@ return {
 	--
 	{
 		topic = "c-net-nethack_sub",
-		subnodes = include("c-net-nethack_sub"),
+		generator = include("c-net-nethack_sub"),
 	},
 	--
 	------------------------------

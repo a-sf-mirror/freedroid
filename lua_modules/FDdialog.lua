@@ -152,7 +152,7 @@ end
 
 FDdialog.Dialog = {
 	--! \privatesection
-	name = "",          --!< \brief Dialog's name                                                   \memberof Lua::FDdialog::Dialog
+	name = "",              --!< \brief Dialog's name                                                   \memberof Lua::FDdialog::Dialog
 	nodes = nil,		--!< \brief List of dialog's nodes                                          \memberof Lua::FDdialog::Dialog
 	topics = nil,		--!< \brief Stack of topics (see Node)                                      \memberof Lua::FDdialog::Dialog
 	next_node = nil		--!< \brief Next node to run after the end of the current node's script     \memberof Lua::FDdialog::Dialog
@@ -282,21 +282,21 @@ function FDdialog.Dialog.new(name, filename)
 	-- new_dialog.nodes
 	--
 	for node_number, node_def in ipairs(new_dialog) do
-		if (not node_def.subnodes) then
+		if (not node_def.generator) then
 			_insert_node(node_def)
 		else
-			-- If there is a subnodes key in the parsed node, then the subnodes
-			-- are extracted and added to the dialog
-			local subnodes = nil
-			if (type(node_def.subnodes) == "function") then
-				subnodes = node_def.subnodes(new_dialog)
+			-- If there is a generator key in the parsed node, then the
+			-- generated nodes are extracted and added to the dialog
+			local gennodes = nil
+			if (type(node_def.generator) == "function") then
+				gennodes = node_def.generator(new_dialog)
 			else
-				subnodes = node_def.subnodes
+				gennodes = node_def.generator
 			end
-			for _,subnode_def in ipairs(subnodes) do
-				_insert_node(subnode_def, node_def.topic or "")
+			for _,gennode_def in ipairs(gennodes) do
+				_insert_node(gennode_def, node_def.topic or "")
 			end
-			subnodes = nil
+			gennodes = nil
 		end
 		new_dialog[node_number] = nil
 	end

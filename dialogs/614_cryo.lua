@@ -27,7 +27,7 @@ return {
 	--
 	{
 		topic = "614_sub",
-		subnodes = include("614_sub"),
+		generator = include("614_sub"),
 	},
 	--
 	------------------------------

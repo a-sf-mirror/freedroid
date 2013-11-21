@@ -111,7 +111,7 @@ return {
 	},
 	
 	{
-		subnodes = function()
+		generator = function()
 			local nodes = {}
 			local exclude = {
 				-- "subdialogs" can not be run solely
