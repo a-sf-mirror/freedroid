@@ -52,7 +52,7 @@ return {
 		get_town_score()
 	end,
 
-	EveryTime = function(this_dialog)
+	EveryTime = function(this_node, this_dialog)
 		npc_says(_"Hello.")
 		if (tux_has_joined_guard) then
 			npc_says(_"Red Guard membership: [b]true[/b]")

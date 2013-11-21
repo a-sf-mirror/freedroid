@@ -253,7 +253,7 @@ function FDdialog.Dialog.new(name, filename)
 	local new_dialog = filename and dofile(filename) or {}
 	setmetatable(new_dialog, {__index = FDdialog.Dialog})
 
-	local function _insert_node(node_def, with_topic)
+	local function _create_node(node_def, with_topic)
 		-- Create a new node instance
 		local rtn,data = pcall(FDdialog.Node.new, node_def)
 		if (not rtn) then
@@ -269,8 +269,11 @@ function FDdialog.Dialog.new(name, filename)
 			error("Error while loading " .. filename .. "\n" ..
 			      FDutils.text.red("An other node with id \"" .. node.id .. "\" is already registered"), 0)
 		end
-		-- Insert node
-		table.insert(new_dialog.nodes, node)
+		return node
+	end
+
+	local function _insert_node(node_def, with_topic)
+		table.insert(new_dialog.nodes, _create_node(node_def, with_topic))
 	end
 
 	new_dialog.name = name
@@ -301,6 +304,16 @@ function FDdialog.Dialog.new(name, filename)
 		new_dialog[node_number] = nil
 	end
 
+	--
+	-- Create nodes for FirstTime and EveryTime
+	--
+	if (new_dialog.FirstTime) then
+		new_dialog.FirstTime = _create_node({ id = "FirstTime", code = new_dialog.FirstTime }, "")
+	end
+	if (new_dialog.EveryTime) then
+		new_dialog.EveryTime = _create_node({ id = "EveryTime", code = new_dialog.EveryTime }, "")
+	end
+
 	return new_dialog
 end
 
@@ -316,14 +329,9 @@ function FDdialog.Dialog.validate(self)
 	local valid = 1
 
 	local function _try(node, script)
-		if (script) then
+		if (node and script) then
 			local rtn, err
-			if (node) then
-				rtn,err = pcall(script, node, self)
-			else
-				-- FirstTime and EveryTime codes have no 'node' parameter
-				rtn,err = pcall(script, self)
-			end
+			rtn,err = pcall(script, node, self)
 			if (not rtn) then
 				print("\n" .. FDutils.text.red("Execution error: " .. err))
 				valid = 0
@@ -336,14 +344,14 @@ function FDdialog.Dialog.validate(self)
 	--
 	-- Check specific nodes
 	--
-	if (self.FirstTime) then
+	if (self.FirstTime and self.FirstTime.code) then
 		io.write("  FirstTime")
-		_try(nil, self.FirstTime)
+		_try(self.FirstTime, self.FirstTime.code)
 	end
 
-	if (self.EveryTime) then
+	if (self.EveryTime and self.EveryTime.code) then
 		io.write("  EveryTime")
-		_try(nil, self.EveryTime)
+		_try(self.EveryTime, self.EveryTime.code)
 	end
 
 	--
@@ -410,12 +418,12 @@ end
 
 function FDdialog.run_init()
 	local current_dialog = FDdialog.stack:top()
-	local script = current_dialog and current_dialog.FirstTime
+	local node = current_dialog and current_dialog.FirstTime
 	current_dialog.next_node = nil
-	if (not script) then
+	if (not node) then
 		return
 	end
-	script(current_dialog)
+	node:code(current_dialog)
 	return current_dialog.next_node and FDdialog.run_node(current_dialog.next_node)
 end
 
@@ -427,12 +435,12 @@ end
 
 function FDdialog.run_startup()
 	local current_dialog = FDdialog.stack:top()
-	local script = current_dialog and current_dialog.EveryTime
+	local node = current_dialog and current_dialog.EveryTime
 	current_dialog.next_node = nil
-	if (not script) then
+	if (not node) then
 		return
 	end
-	script(current_dialog)
+	node:code(current_dialog)
 	return current_dialog.next_node and FDdialog.run_node(current_dialog.next_node)
 end
 
