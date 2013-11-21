@@ -1,12 +1,37 @@
 This file describes location event triggers: they will execute some code
 when the player is at a certain location.
 Each trigger has the following field:
-	- name is a unique name for the trigger. For non silent triggers such 
+	- Name :  is a unique name for the trigger. For non silent triggers such 
 	as teleporters, this is this name that will be displayed on screen.
-	- silent (1 by default) is a flag that tells the game not to display the
+	- Silent : (1 by default) is a flag that tells the game not to display the
 	trigger on screen when the player puts the mouse cursor over it
-	- trigger at label indicates what map label the event trigger is located at
-	- luacode contains the lua code to execute
+	- Trigger at label : indicates what map label the event trigger is located at
+	- <Luacode> : contains the lua code to execute
+
+There are different kind of triggers:
+
+Map labels: gets triggered when tux walks over it, needs
+Trigger at label="foo"
+
+Enemy death events: is triggered when a marked character dies, needs
+Trigger on enemy death
+Enemy level=24
+Enemy dialog name="DeadGuy"
+
+Level triggers: are executed when tux enters/exits, changes to  a level, needs
+
+Trigger changing level
+Exiting level=0
+
+Note: you can combine Exiting and Entering level to only have a the event trigger
+when tux moves from defined level A to defined level B
+
+Onbstacel triggers: is executed when tux performs an actions with an obstacle
+(opens a chest, beats a barrel, etc), needs:
+
+Trigger on obstacle
+Obstacle label="tamara-book-1"
+
 
 *** START OF EVENT ACTION AND EVENT TRIGGER FILE *** 
 
