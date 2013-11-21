@@ -2431,9 +2431,7 @@ obstacle {
 }
 
 obstacle {
-	image_filenames = "iso_wall_glass_broken_ns.png",
-	flags = { IS_WALKABLE },
-	transparency = NO_TRANSPARENCY,
+	image_filenames = "DUMMY OBSTACLE"
 }
 
 obstacle {
@@ -3081,9 +3079,7 @@ obstacle {
 }
 
 obstacle {
-	image_filenames = "iso_wall_glass_broken_we.png",
-	flags = { IS_WALKABLE },
-	transparency = NO_TRANSPARENCY,
+	image_filenames = "DUMMY OBSTACLE"
 }
 
 obstacle {
@@ -3474,6 +3470,18 @@ obstacle {
 	image_filenames = "iso_statue_883_smashed_w.png",
 	borders = borders(1.80, 1.80),
 	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_wall_glass_broken_ns.png",
+	flags = { IS_WALKABLE, IS_VERTICAL },
+	transparency = NO_TRANSPARENCY,
+}
+
+obstacle {
+	image_filenames = "iso_wall_glass_broken_we.png",
+	flags = { IS_WALKABLE, IS_HORIZONTAL },
 	transparency = NO_TRANSPARENCY,
 }
 
