@@ -34,7 +34,10 @@ local function dude_create_node(dialogname)
 end
 
 local function dude_choose_action(this_dialog)
-	local actionname = user_input_string("Please enter the dialog name of the desired NPC (Chandra, Bender...) or other action to jump to (redguard, craft, upgrade, shop or exit). If the input is invalid, the game will crash! To abort, enter 'continue' or press enter or escape.")
+	local actionname = user_input_string("Please enter the dialog name of the desired NPC (Chandra, Bender...) " ..
+	                                     "or other action to jump to (redguard, craft, upgrade, shop or exit). " ..
+	                                     "If the input is invalid, the game will crash! To abort, enter " ..
+	                                     "'continue' or press enter or escape.")
 	if (not (actionname == "continue" or actionname == "")) then
 		local actionnode = this_dialog:find_node(actionname)
 		if (actionnode and actionnode.code) then
@@ -60,8 +63,13 @@ return {
 		npc_says(_"Take care, this may be a little buggy.", "NO_WAIT")
 		npc_says(_"Don't do this if you are just normally playing.", "NO_WAIT")
 		npc_says(_"These dialogs can currently be accessed:", "NO_WAIT")
-
-		show("node0", "craft", "upgrade", "shop", "exit")
+		local node_list = ""
+		for idx,node in ipairs(this_dialog.nodes) do
+			if (node.id ~= "node0") then
+				node_list = node_list .. node.id .. ", "
+			end
+		end
+		npc_says(string.sub(node_list, 1, -2))
 
 		dude_choose_action(this_dialog)
 	end,
@@ -79,6 +87,7 @@ return {
 	
 	{
 		id = "redguard",
+		enabled = true,
 		text = _"Become Red Guard",
 		code = function()
 			tux_has_joined_guard = true
@@ -88,6 +97,7 @@ return {
 
 	{
 		id = "craft",
+		enabled = true,
 		text = _"Craft addons",
 		code = function()
 			craft_addons()
@@ -96,6 +106,7 @@ return {
 
 	{
 		id = "upgrade",
+		enabled = true,
 		text = _"Upgrade items",
 		code = function()
 			upgrade_items()
@@ -104,6 +115,7 @@ return {
 
 	{
 		id = "shop",
+		enabled = true,
 		text = _"Shop",
 		code = function()
 			trade_with("Dude")
@@ -137,6 +149,7 @@ return {
 
 	{
 		id = "exit",
+		enabled = true,
 		text = _"Exit",
 		code = function()
 			npc_says(_"Closing...")
