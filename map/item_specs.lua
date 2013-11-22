@@ -130,7 +130,7 @@ item_list{
 	},
 	armor_class = "0:0",
 	right_use = {tooltip =_"The item do nothing when right clicked."},
-	inventory = {x = 1, y = 1, image = "inventory_image_7.png" },
+	inventory = {x = 1, y = 1, image = "inventory_image_bug.png" },
 	drop = {class = nil, number = "0:0", sound = "Item_Drop_Sound_0.ogg"},
 	base_price = 0,
 	description =_[[Dummy item. If you see this, report it as bug.]],
