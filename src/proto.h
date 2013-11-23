@@ -52,7 +52,7 @@ void PlayATitleFile(char *Filename);
 
 // event.c
 void GetEventTriggers(const char *EventsAndEventTriggersFilename);
-void trigger_position_events(void);
+void event_position_changed(gps pos);
 void event_level_changed(int past_lvl, int cur_lvl);
 void event_enemy_died(enemy *dead);
 void event_obstacle_action(obstacle *o);

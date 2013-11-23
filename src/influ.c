@@ -431,6 +431,7 @@ void tux_get_move_target_and_attack(gps * movetgt)
  */
 static void move_tux_according_to_his_speed()
 {
+	
 	float planned_step_x;
 	float planned_step_y;
 
@@ -449,7 +450,9 @@ static void move_tux_according_to_his_speed()
 	Me.pos.x += planned_step_x;
 	Me.pos.y += planned_step_y;
 
-	trigger_position_events();
+	if (((int)GetInfluPositionHistoryX(0) != (int)Me.pos.x || ((int)GetInfluPositionHistoryY(0) != (int)Me.pos.y))) {
+		event_position_changed(Me.pos);
+	}
 
 	// If the Tux got stuck, i.e. if he got no speed at all and still is 
 	// currently not in a 'passable' position, the fallback handling needs

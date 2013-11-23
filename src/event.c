@@ -25,7 +25,9 @@
  */
 
 /** 
- * This file contains functions related to events and event triggers.
+ * This file contains functions related to events and event triggers. These functions 
+ * check, whether the necessary conditions for an event are satisfied, and in case that
+ * they are, they order the appropriate event to be executed.
  */
 
 #define _event_c
@@ -238,19 +240,12 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename)
 };
 
 /**
- *
- * This function checks for triggered position-based events. Those events are
- * usually entered via the mission file and read into the appropriate
- * structures via the InitNewMission function.  Here we check, whether
- * the necessary conditions for an event are satisfied, and in case that
- * they are, we order the appropriate event to be executed.
- *
+ * \brief Trigger a position-based events for the given positions. 
+ * \param cur_pos The current position.
  */
-void trigger_position_events(void)
+void event_position_changed(gps pos)
 {
 	int i;
-	int position_previous_x = (int)(GetInfluPositionHistoryX(0));
-	int position_previous_y = (int)(GetInfluPositionHistoryY(0));
 	struct event_trigger *arr = event_triggers.arr;
 
 	for (i = 0; i < event_triggers.size; i++) {
@@ -258,19 +253,16 @@ void trigger_position_events(void)
 		if (arr[i].trigger_type != POSITION)
 			continue;
 
-		if (arr[i].trigger.position.level != Me.pos.z)
- 			continue;
-
 		if (!arr[i].enabled)
 			continue;
 
-		if (((int)Me.pos.x == arr[i].trigger.position.x) 
-		&& ((int)Me.pos.y == arr[i].trigger.position.y)) {
+		if (arr[i].trigger.position.level != pos.z)
+ 			continue;
 
-			if ((position_previous_x != arr[i].trigger.position.x) 
-			|| (position_previous_y != arr[i].trigger.position.y))
+		if (((int)pos.x == arr[i].trigger.position.x) 
+				&& ((int)pos.y == arr[i].trigger.position.y)) {
 
-				run_lua(LUA_DIALOG, arr[i].lua_code);
+			run_lua(LUA_DIALOG, arr[i].lua_code);
 		}
 	}
 }

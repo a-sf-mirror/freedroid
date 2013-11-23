@@ -1044,10 +1044,15 @@ This indicates an error in the map system of FreedroidRPG.", PLEASE_INFORM, IS_F
 		append_new_game_message(_("Arrived at %s."), D_(curShip.AllLevels[Me.pos.z]->Levelname));
 		fade_in_screen();
 	}
-	
-	// Notify level change events on this level
-	if (game_status == INSIDE_GAME && LNum != old_lvl)
-		event_level_changed(Me.pos.z, LNum);
+
+	if (game_status == INSIDE_GAME) {
+		// Notify level change events on this level.
+		if (LNum != old_lvl)
+			event_level_changed(Me.pos.z, LNum);
+
+		// Notify position changed.
+		event_position_changed(Me.pos);
+	}
 }
 
 /**
