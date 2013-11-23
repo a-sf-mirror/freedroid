@@ -411,6 +411,7 @@ static void build_item_lists(void)
 	int defense = 0;
 	int spell   = 0;
 	int other   = 0;
+	int all     = 0;
 
 	free(melee_items_list);  //MELEE WEAPONS
 	free(gun_items_list);    //GUNS
@@ -443,14 +444,15 @@ static void build_item_lists(void)
 			other_items_list[other] = i;
 			other++;
 		}
-		all_items_list[i] = i;
+		all_items_list[all] = i;
+		all++;
 	}
 	melee_items_list[melee]     = -1;
 	gun_items_list[guns]        = -1;
 	defense_items_list[defense] = -1;
 	spell_items_list[spell]     = -1;
 	other_items_list[other]     = -1;
-	all_items_list[i]           = -1;
+	all_items_list[all]           = -1;
 
 }
 
