@@ -196,6 +196,7 @@ return {
 	{
 		id = "node11",
 		text = _"BUG, REPORT ME! Maintenance-Terminal node11 -- Disable Guns",
+		echo_text = false,
 		code = function()
 			npc_says(_"Disabling gun 01 ...")
 			change_obstacle_state("Maintenance-gun1", "disabled")

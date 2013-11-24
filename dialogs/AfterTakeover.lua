@@ -66,6 +66,7 @@ return {
 	{
 		id = "node1",
 		text = _"cd repair&settings/",
+		echo_text = false,
 		code = function()
 			tux_says(_"cd repair&settings/", "NO_WAIT")
 			next("node2")
@@ -75,6 +76,7 @@ return {
 	{
 		id = "node2",
 		text = _"BUG, REPORT ME! Aftertakeover node2",
+		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
 			terminal_sub = string.format(_"%s@hacked_%s/repair&settings: ~ # ", get_player_name(), bot_type())
@@ -84,6 +86,7 @@ return {
 	{
 		id = "node3",
 		text = "cd ..",
+		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
 			tux_says("cd ..", "NO_WAIT")
@@ -94,6 +97,7 @@ return {
 	{
 		id = "node11",
 		text = _"./hold_position.sh",
+		echo_text = false,
 		code = function()
 			tux_says(_"./hold_position.sh", "NO_WAIT")
 			npc_says(_"Holding position.", "NO_WAIT")
@@ -113,6 +117,7 @@ return {
 	{
 		id = "node12",
 		text = _"./follow_me.sh",
+		echo_text = false,
 		code = function()
 			tux_says(_"./follow_me.sh", "NO_WAIT")
 			npc_says(_"Initiating tracking sequence.", "NO_WAIT")
@@ -131,6 +136,7 @@ return {
 	{
 		id = "node13",
 		text = _"./move_freely.sh",
+		echo_text = false,
 		code = function()
 			tux_says(_"./move_freely.sh", "NO_WAIT")
 			npc_says(_"Enable movement.", "NO_WAIT")
@@ -151,6 +157,7 @@ return {
 	{
 		id = "node20",
 		text = _"./repair.plx",
+		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
 			local function calculate_bot_repair_penalty(constant, ability_value)
@@ -217,6 +224,7 @@ return {
 	{
 		id = "node21",
 		text = _"Y",
+		echo_text = false,
 		topic = "repair_YN",
 		code = function()
 			tux_says(_"Y", "NO_WAIT")
@@ -230,6 +238,7 @@ return {
 	{
 		id = "node22",
 		text = _"N",
+		echo_text = false,
 		topic = "repair_YN",
 		code = function()
 			tux_says(_"N", "NO_WAIT")
@@ -242,6 +251,7 @@ return {
 	{
 		id = "node30",
 		text = _"./settings.plx",
+		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
 			next("node38")
@@ -251,6 +261,7 @@ return {
 	{
 		id = "node31",
 		text = _"confirmation of hcf.py",
+		echo_text = false,
 		topic = "settings.plx",
 		code = function()
 			npc_says(_"Always ask for confirmation before execution of hcf.py? [Y/N]", "NO_WAIT")
@@ -261,6 +272,7 @@ return {
 	{
 		id = "node32",
 		text = _"Y (always ask)",
+		echo_text = false,
 		topic = "setting hcf.py confirmation Y/N",
 		code = function()
 			npc_says(_"Confirmation will now be asked before execution of hcf.py.")
@@ -272,6 +284,7 @@ return {
 	{
 		id = "node33",
 		text = _"N (don't ask)",
+		echo_text = false,
 		topic = "setting hcf.py confirmation Y/N",
 		code = function()
 			npc_says(_"hcf.py will be executed without asking for confirmation.")
@@ -283,6 +296,7 @@ return {
 	{
 		id = "node35",
 		text = _"broadcast commands",
+		echo_text = false,
 		topic = "settings.plx",
 		code = function()
 			npc_says(_"Broadcast commands to all units on level? [Y/N]", "NO_WAIT")
@@ -293,6 +307,7 @@ return {
 	{
 		id = "node36",
 		text = _"Y (enable broadcast)",
+		echo_text = false,
 		topic = "enable broadcast Y/N",
 		code = function()
 			npc_says(_"Commands will be broadcast and executed by all bots on this level under your control.", "NO_WAIT")
@@ -305,6 +320,7 @@ return {
 	{
 		id = "node37",
 		text = _"N (disable broadcast)",
+		echo_text = false,
 		topic = "enable broadcast Y/N",
 		code = function()
 			npc_says(_"Commands will only be executed by this bot.", "NO_WAIT")
@@ -317,6 +333,7 @@ return {
 	{
 		id = "node38",
 		text = "BUG, REPORT ME! Aftertakeover node38",
+		echo_text = false,
 		topic = "settings.plx",
 		code = function()
 			tux_says(_"./settings.plx", "NO_WAIT")
@@ -335,6 +352,7 @@ return {
 	{
 		id = "node40",
 		text = _"./hostname",
+		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
 			tux_says(_"./hostname", "NO_WAIT")
@@ -350,6 +368,7 @@ return {
 	{
 		id = "node41",
 		text = _"Yes",
+		echo_text = false,
 		topic = "change hostname Y/N",
 		code = function()
 			tux_says(_"Y", "NO_WAIT")
@@ -367,6 +386,7 @@ return {
 	{
 		id = "node42",
 		text = _"No",
+		echo_text = false,
 		topic = "change hostname Y/N",
 		code = function()
 			tux_says(_"N", "NO_WAIT")
@@ -378,6 +398,7 @@ return {
 	{
 		id = "node43",
 		text = "BUG, REPORT ME! Aftertakeover node43",
+		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
 			tux_says(new_name,"NO_WAIT")
@@ -390,6 +411,7 @@ return {
 	{
 		id = "node44",
 		text = _"Yes",
+		echo_text = false,
 		topic = "confirm hostname Y/N",
 		code = function()
 			tux_says(_"Y", "NO_WAIT")
@@ -404,6 +426,7 @@ return {
 	{
 		id = "node45",
 		text = _"No",
+		echo_text = false,
 		topic = "confirm hostname Y/N",
 		code = function()
 			tux_says(_"N", "NO_WAIT")
@@ -415,6 +438,7 @@ return {
 	{
 		id = "node47",
 		text = _"./hcf.py",
+		echo_text = false,
 		code = function()
 			tux_says(_"./hcf.py", "NO_WAIT")
 			if (Aftertakeover_confirm_hcf) then
@@ -429,6 +453,7 @@ return {
 	{
 		id = "node48",
 		text = _"Yes",
+		echo_text = false,
 		topic = "confirm self-destruct Y/N",
 		code = function()
 			npc_says(_"Destruction confirmed.")
@@ -439,6 +464,7 @@ return {
 	{
 		id = "node49",
 		text = _"No",
+		echo_text = false,
 		topic = "confirm self-destruct Y/N",
 		code = function()
 			npc_says(_"Destruction averted.")
@@ -449,6 +475,7 @@ return {
 	{
 		id = "node50",
 		text = _"PLEASE REPORT, BUG AFTERTAKEOVER NODE 50",
+		echo_text = false,
 		code = function()
 			Aftertakeover_freezetime = (bot_class() * 0.8)
 			if (Aftertakeover_freezetime < 1) then
@@ -483,6 +510,7 @@ return {
 	{
 		id = "node51",
 		text = _"Yes",
+		echo_text = false,
 		topic = "drain_ask",
 		code = function()
 			if (Aftertakeover_drain_attempt == "ask") then
@@ -509,6 +537,7 @@ return {
 	{
 		id = "node53",
 		text = _"BUG OCCURED Aftertakeover node 53",
+		echo_text = false,
 		code = function()
 			if (Aftertakeover_hcfnow) then
 				npc_says(_"Executing: Halt and Catch Fire.", "NO_WAIT")
@@ -645,6 +674,7 @@ return {
 	{
 		id = "node80",
 		text = _"leave settings.plx",
+		echo_text = false,
 		topic = "settings.plx",
 		code = function()
 			npc_says(_"Settings saved", "NO_WAIT")
@@ -657,6 +687,7 @@ return {
 	{
 		id = "node99",
 		text = "logout",
+		echo_text = false,
 		code = function()
 			tux_says("logout","NO_WAIT")
 			npc_says(_"Closing remote connection...")

@@ -61,6 +61,7 @@ return {
 	{
 		id = "node3",
 		text = _"If you keep standing here more bots will come and they will kill you. Go somewhere safe, and set up defense there.",
+		echo_text = false,
 		code = function()
 			tux_says(_"If you keep standing here more bots will come and --")
 			npc_says(_"Sehr gut. Let them come. We are ready.") -- Sehr gut = Very good or very well.
@@ -93,6 +94,7 @@ return {
 	{
 		id = "node7",
 		text = _"You guys are totally nuts. Get a life.",
+		echo_text = false,
 		code = function()
 			tux_says(_"You guys are tota --")
 			npc_says(_"WHAT?! What is it that you want to say?")
@@ -175,6 +177,7 @@ return {
 	{
 		id = "node17",
 		text = "BUG, REPORT ME! Engel node17 -- checks",
+		echo_text = false,
 		topic = "Extract bot parts",
 		code = function()
 			local rev = get_program_revision("Extract bot parts")
@@ -224,6 +227,7 @@ return {
 	{
 		id = "node20",
 		text = "BUG, REPORT ME! Engel node20 -- 1st LESSON",
+		echo_text = false,
 		topic = "Extract bot parts",
 		code = function()
 			npc_says(_"Let us start with Entropy Inverters. This is quite simple.")
@@ -242,6 +246,7 @@ return {
 	{
 		id = "node30",
 		text = "BUG, REPORT ME! Engel node30 -- 2nd LESSON",
+		echo_text = false,
 		topic = "Extract bot parts",
 		code = function()
 			npc_says(_"How about... Plasma Transistors? Trivial.")
@@ -260,6 +265,7 @@ return {
 	{
 		id = "node40",
 		text = "BUG, REPORT ME! Engel node40 -- 3rd LESSON",
+		echo_text = false,
 		topic = "Extract bot parts",
 		code = function()
 			npc_says(_"Hmmm... Ah, gut. Superconductors.")
@@ -279,6 +285,7 @@ return {
 	{
 		id = "node50",
 		text = "BUG, REPORT ME! Engel node50 -- 4th LESSON",
+		echo_text = false,
 		topic = "Extract bot parts",
 		code = function()
 			npc_says(_"I will tell you everything about Antimatter-Matter Converters.")
@@ -299,6 +306,7 @@ return {
 	{
 		id = "node60",
 		text = "BUG, REPORT ME! Engel node60 -- 5th LESSON",
+		echo_text = false,
 		topic = "Extract bot parts",
 		code = function()
 			npc_says(_"I will teach you about Tachyon Condensators.")
@@ -311,6 +319,7 @@ return {
 	{
 		id = "node70",
 		text = "BUG, REPORT ME! Engel node70 -- NO MORE LESSONS",
+		echo_text = false,
 		topic = "Extract bot parts",
 		code = function()
 			npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?") -- nein = no , ja = yes, in this case it can be understood as "did you understand?"

@@ -51,6 +51,7 @@ return {
 	{
 		id = "node99",
 		text = _"BUG, REPORT ME! invaderbot node99 -- END NODE",
+		echo_text = false,
 		code = function()
 			play_sound("effects/bot_sounds/First_Contact_Sound_3.ogg")
 			npc_says(_"Uploading Status...")

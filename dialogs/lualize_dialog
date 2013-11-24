@@ -174,7 +174,7 @@ cat > $awk_script <<-"EOF"
 	}
 
 	/^NO_TEXT$/ && (in_node == 1) {
-		node[idx,"disabled"] = 1
+		node[idx,"no_echo"] = 1
 		next
 	}
 
@@ -246,8 +246,8 @@ cat > $awk_script <<-"EOF"
 				if (node[i,"comment"] != "") print node[i,"comment"]
 				print "  id = \"" prefix "node" i "\","
 				print "  text = " node[i,"text"] ","
+				if (node[i,"no_echo"]) print "  echo_text = false,"
 				if (node[i,"topic"]) print "  topic = " node[i,"topic"] ","
-				#if (node[i,"disabled"]) print "  enabled = false,"
 				print "  code = function()"
 				print node[i,"code"]
 				print "    end,"

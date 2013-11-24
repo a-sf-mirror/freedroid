@@ -69,6 +69,7 @@ return {
 	{
 		id = "node5",
 		text = _"I'll state my name.",
+		echo_text = false,
 		code = function()
 			tux_says(get_player_name())
 			npc_says(_"Identifying as %s", get_player_name(), "NO_WAIT")
@@ -88,6 +89,7 @@ return {
 	{
 		id = "node6",
 		text = _"I'll try 'Kevin'.",
+		echo_text = false,
 		code = function()
 			tux_says(_"Kevin")
 			npc_says(_"Identifying as Kevin...", "NO_WAIT")
@@ -118,6 +120,7 @@ return {
 	{
 		id = "node30",
 		text = _"version",
+		echo_text = false,
 		code = function()
 			tux_says(_"version", "NO_WAIT")
 			npc_says(_"printing version...", "NO_WAIT")
@@ -128,6 +131,7 @@ return {
 	{
 		id = "node31",
 		text = _"fuel_level",
+		echo_text = false,
 		code = function()
 			tux_says(_"fuel_level", "NO_WAIT")
 			npc_says(_"Printing fuel level...")
@@ -144,6 +148,7 @@ return {
 	{
 		id = "node50",
 		text = _"It can have one drink...",
+		echo_text = false,
 		code = function()
 			tux_says(_"So, where do I have to put in the drink...?", "NO_WAIT")
 			tux_says(_"Ah, here!", "NO_WAIT")
@@ -165,6 +170,7 @@ return {
 	{
 		id = "node51",
 		text = _"No, I cannot spare any drinks!",
+		echo_text = false,
 		code = function()
 			tux_says(_"Sorry, tin can.")
 			npc_says(_"Import error: [b]null[/b] fuel received.", "NO_WAIT")
@@ -177,6 +183,7 @@ return {
 	{
 		id = "node99",
 		text = _"exit",
+		echo_text = false,
 		code = function()
 			tux_says(_"exit","NO_WAIT")
 			npc_says(_"exiting...")

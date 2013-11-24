@@ -46,6 +46,7 @@ return {
 	{
 		id = "node1",
 		text = _"What is a fascist?",
+		echo_text = false,
 		code = function()
 			tux_says(_"What is ...", "NO_WAIT")
 			npc_says(_"LALALALALA - I'm not hearing you. I have my fingers in my ears and just go - LALALALALA")

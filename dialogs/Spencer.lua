@@ -280,6 +280,7 @@ return {
 	{
 		id = "node21",
 		text = _"(Give the data cube to Spencer)",
+		echo_text = false,
 		topic = "Deliver the cube",
 		code = function()
 			tux_says(_"Here, take it.")
@@ -296,6 +297,7 @@ return {
 	{
 		id = "node22",
 		text = _"(Lie about the oversight of the data cube)",
+		echo_text = false,
 		topic = "Deliver the cube",
 		code = function()
 			next("node23")
@@ -304,6 +306,7 @@ return {
 	{
 		id = "node23",
 		text = _"(Apologize for the oversight of the data cube)",
+		echo_text = false,
 		topic = "Deliver the cube",
 		code = function()
 			if (not data_cube_lost) then
@@ -321,6 +324,7 @@ return {
 	{
 		id = "node24",
 		text = _"(Lie about the loss of the data cube)",
+		echo_text = false,
 		topic = "Deliver the cube",
 		code = function()
 			tux_says(_"I think I lost the data cube.")

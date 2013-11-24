@@ -120,6 +120,7 @@ return {
 	{
 		id = "node8",
 		text = _"If things are so bad right now, why don't you leave?",
+		echo_text = false,
 		code = function()
 			tux_says(_"If things are so bad right now, why --")
 			npc_says(_"I don't want to hear this jabberwocky.", "NO_WAIT")

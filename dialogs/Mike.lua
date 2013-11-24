@@ -48,6 +48,7 @@ return {
 	{
 		id = "choose",
 		text = _"BUG, REPORT ME! Francis choose",
+		echo_text = false,
 		code = function()
 			arena_current_level = nil
 			arena_won = false
@@ -84,6 +85,7 @@ return {
 	{
 		id = "end",
 		text = _"Exit",
+		echo_text = false,
 		code = function()
 			npc_says("Terminate")
 			end_dialog()

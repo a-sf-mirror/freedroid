@@ -96,6 +96,7 @@ return {
 	{
 		id = "node20",
 		text = "BUG, REPORT ME! MO-RGGateGuardLeader node20",
+		echo_text = false,
 		code = function()
 			npc_says(_"Right, there is a message from Spencer, you can enter Hell Fortress. And may the source be with you!")
 			tux_says(_"See...")

@@ -116,6 +116,7 @@ return {
 	{
 		id = "node21",
 		text = _"Sign up for a course in improving my ranged weapons skill. (costs 100 circuits, 3 training points)",
+		echo_text = false,
 		code = function()
 			tux_says(_"Yes, I'd like some basic training in ranged combat.")
 			cost = 100
@@ -137,6 +138,7 @@ return {
 	{
 		id = "node22",
 		text = _"Yes, I want even more training. (costs 200 circuits, 6 training points)",
+		echo_text = false,
 		code = function()
 			tux_says(_"So lets start the second course?")
 			cost = 200
@@ -154,6 +156,7 @@ return {
 	{
 		id = "node23",
 		text = _"I'm eager for more training. (costs 300 circuits, 9 training points)",
+		echo_text = false,
 		code = function()
 			tux_says(_"So can you help me become even better with guns?")
 			cost = 300
@@ -172,6 +175,7 @@ return {
 	{
 		id = "node24",
 		text = _"Yes, I wish to train some more. (costs 400 circuits, 12 training points)",
+		echo_text = false,
 		code = function()
 			tux_says(_"I'd like to learn how to be a crack shot.")
 			cost = 400
@@ -189,6 +193,7 @@ return {
 	{
 		id = "node25",
 		text = _"I want to become a god in ranged combat. (costs 500 circuits, 15 training points)",
+		echo_text = false,
 		code = function()
 			tux_says(_"Teach me how to be at one with my weapon.")
 			cost = 500
@@ -207,6 +212,7 @@ return {
 	{
 		id = "node27",
 		text = "BUG, REPORT ME! node27 Benjamin",
+		echo_text = false,
 		code = function()
 			npc_says_random(
 				_"You need more circuits.",
@@ -221,6 +227,7 @@ return {
 	{
 		id = "node28",
 		text = "BUG, REPORT ME! node28 Benjamin",
+		echo_text = false,
 		code = function()
 			npc_says_random(
 				_"You are not ready. Go kill some bots and come back.",

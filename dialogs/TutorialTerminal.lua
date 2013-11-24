@@ -51,6 +51,7 @@ return {
 	{
 		id = "node0",
 		text = _"open gate",
+		echo_text = false,
 		code = function()
 			tux_says(_"open gate", "NO_WAIT")
 			npc_says(_"Access granted. Opening gate ...")
@@ -63,6 +64,7 @@ return {
 	{
 		id = "node10",
 		text = _"close gate",
+		echo_text = false,
 		code = function()
 			tux_says(_"close gate", "NO_WAIT")
 			npc_says(_"Access granted. Closing gate ...")
@@ -75,6 +77,7 @@ return {
 	{
 		id = "node99",
 		text = _"logout",
+		echo_text = false,
 		code = function()
 			tux_says(_"logout", "NO_WAIT")
 			npc_says(_"Exiting...")

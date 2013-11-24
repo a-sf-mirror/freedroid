@@ -76,6 +76,7 @@ return {
 	{
 		id = "node1",
 		text = _"status",
+		echo_text = false,
 		code = function()
 			tux_says(_"status", "NO_WAIT")
 			if (cmp_obstacle_state("HF-Gate-outer", "opened")) then
@@ -104,6 +105,7 @@ return {
 	{
 		id = "node2",
 		text = _"open gate",
+		echo_text = false,
 		code = function()
 			tux_says(_"open gate", "NO_WAIT")
 			npc_says(_"Permission denied")
@@ -138,6 +140,7 @@ return {
 	{
 		id = "node4",
 		text = _"man open gates",
+		echo_text = false,
 		code = function()
 			tux_says(_"man open gates", "NO_WAIT")
 			npc_says(_"NAME", "NO_WAIT")
@@ -169,6 +172,7 @@ return {
 	{
 		id = "node5",
 		text = _"open gates --inner",
+		echo_text = false,
 		code = function()
 			tux_says(_"open gates --inner", "NO_WAIT")
 			npc_says(_"inner gate opened", "NO_WAIT")
@@ -185,6 +189,7 @@ return {
 	{
 		id = "node6",
 		text = _"open gates --outer",
+		echo_text = false,
 		code = function()
 			tux_says(_"open gates --outer", "NO_WAIT")
 			npc_says(_"outer gate opened", "NO_WAIT")
@@ -201,6 +206,7 @@ return {
 	{
 		id = "node7",
 		text = _"open gates --inner --outer",
+		echo_text = false,
 		code = function()
 			tux_says(_"open gates --inner --outer", "NO_WAIT")
 			npc_says(_"inner gate opened", "NO_WAIT")
@@ -216,6 +222,7 @@ return {
 	{
 		id = "node99",
 		text = _"logout",
+		echo_text = false,
 		code = function()
 			tux_says(_"logout")
 			npc_says(_"exiting...")

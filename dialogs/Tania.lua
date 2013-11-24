@@ -367,6 +367,7 @@ return {
 	{
 		id = "node48",
 		text = "BUG, REPORT ME! Tania node48 -- TANIA'S THIRST FOR WATER",
+		echo_text = false,
 		code = function()
 			number_of_liquid_items = 0
 			if (has_item_backpack("Bottled ice")) then
@@ -458,6 +459,7 @@ return {
 	{
 		id = "node54",
 		text = "BUG, REPORT ME! Tania node54 -- NO LIQUID ITEMS",
+		echo_text = false,
 		code = function()
 			number_of_liquid_items = number_of_liquid_items - 1
 			if (number_of_liquid_items < 1) then
@@ -473,6 +475,7 @@ return {
 	{
 		id = "node55",
 		text = "BUG, REPORT ME! Tania node55 -- HANDLE INJURIES",
+		echo_text = false,
 		code = function()
 			injured_level = 0
 			if (npc_damage_amount() > 10) then
@@ -563,6 +566,7 @@ return {
 		--Pre-"Tania's Escape" Quest
 		id = "node90",
 		text = _"I think I have to go.",
+		echo_text = false,
 		code = function()
 			hide("node90") next("node99")
 		end,
@@ -571,6 +575,7 @@ return {
 		--"Tania's Escape" Quest (Underground)
 		id = "node91",
 		text = _"Follow me to the Surface!",
+		echo_text = false,
 		code = function()
 			hide("node91") next("node99")
 		end,
@@ -579,6 +584,7 @@ return {
 		--"Tania's Escape" Quest (Western Desert)
 		id = "node92",
 		text = _"Follow me to the Town!",
+		echo_text = false,
 		code = function()
 			hide("node92") next("node99")
 		end,
@@ -587,6 +593,7 @@ return {
 		--"Tania's Escape" Quest (Western Town Gate)
 		id = "node93",
 		text = _"Wait here.",
+		echo_text = false,
 		code = function()
 			hide("node93") next("node99")
 		end,
@@ -595,6 +602,7 @@ return {
 		--"Tania's Escape" Quest (Western Town Gate to Doctor's Office)
 		id = "node94",
 		text = _"See you later.",
+		echo_text = false,
 		code = function()
 			hide("node94") next("node99")
 		end,
@@ -602,6 +610,7 @@ return {
 	{
 		id = "node99",
 		text = "BUG, REPORT ME! Tania node99 -- EXIT DIALOG",
+		echo_text = false,
 		code = function()
 			if (has_quest("Tania's Escape")) then
 				hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node10", "node11", "node12", "node13", "node14", "node18", "node19")

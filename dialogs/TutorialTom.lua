@@ -1019,6 +1019,7 @@ return {
 	{
 		id = "node63",
 		text = _"Let me try that again.",
+		echo_text = false,
 		code = function()
 			trade_with("TutorialTom")
 			if (has_item_backpack("Small Tutorial Axe")) then
@@ -1045,6 +1046,7 @@ return {
 		--hidden
 		id = "node65",
 		text = _"Let me try that again.",
+		echo_text = false,
 		code = function()
 			if (get_gold() < 15) then
 				add_gold(15 - get_gold())
@@ -1062,6 +1064,7 @@ return {
 		--hidden
 		id = "node66",
 		text = "BUG, REPORT ME! tutorial node66 -- LAST BITS ABOUT SHOPS",
+		echo_text = false,
 		code = function()
 			npc_says(_"You will occasionally run into items that can't be sold.")
 			npc_says(_"This generally means that the shopkeeper can't give you a reasonable deal on it.")

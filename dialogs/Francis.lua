@@ -144,6 +144,7 @@ return {
 	{
 		id = "node6",
 		text = _"BUG, REPORT ME! Francis node4",
+		echo_text = false,
 		code = function()
 			npc_says(_"Thank heavens! You have protected us from this bot.")
 			npc_says(_"You have been in stasis for quite some time, but you still can defend yourself. Perhaps the legends are true after all...")
@@ -326,6 +327,7 @@ return {
 	{
 		id = "node98",
 		text = _"BUG, REPORT ME! Francis node98",
+		echo_text = false,
 		code = function()
 			if (Francis_help > 0) then
 				npc_says(_"Oh... I almost forgot... This is a small help but I hope it will make your life a little easier.")

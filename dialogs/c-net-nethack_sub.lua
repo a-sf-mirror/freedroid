@@ -32,6 +32,7 @@ return {
 		-- start a new nethack game
 		id = "c-net-nethack_sub.node0",
 		text = _"nethack",
+		echo_text = false,
 		code = function()
 			hide("c-net-nethack_sub.node0")
 			-- Start at level 1, amulet at level 7, win with amulet at level 1
@@ -127,6 +128,7 @@ return {
 		--hidden
 		id = "c-net-nethack_sub.node8",
 		text = "JOB ASSIGNMENT - BUG NODE 8 c-net sub nethack",
+		echo_text = false,
 		code = function()
 			hide("c-net-nethack_sub.node3", "c-net-nethack_sub.node4", "c-net-nethack_sub.node5", "c-net-nethack_sub.node6", "c-net-nethack_sub.node7")
 			if (selection == 0) then
@@ -202,6 +204,7 @@ return {
 		--hidden
 		id = "c-net-nethack_sub.node13",
 		text = "RACE ASSIGNMENT - BUG NODE 13 c-net sub nethack ",
+		echo_text = false,
 		code = function()
 			hide("c-net-nethack_sub.node9", "c-net-nethack_sub.node10", "c-net-nethack_sub.node11", "c-net-nethack_sub.node12")
 			if (selection == 0) then
@@ -261,6 +264,7 @@ return {
 		--hidden
 		id = "c-net-nethack_sub.node16",
 		text = "GENDER SELECTION - BUG NODE 16 c-net sub nethack",
+		echo_text = false,
 		code = function()
 			hide("c-net-nethack_sub.node14", "c-net-nethack_sub.node15")
 			if (selection == 0) then
@@ -280,6 +284,7 @@ return {
 		--hidden
 		id = "c-net-nethack_sub.node20",
 		text = "START GAME - BUG NODE 20 c-net sub nethack",
+		echo_text = false,
 		code = function()
 			-- Goddess/Gods don't give you a choice
 			local random_var = math.random(3)
@@ -327,6 +332,7 @@ return {
 		-- Description + Random Encounter
 		id = "c-net-nethack_sub.node30",
 		text = "AT A NEW LEVEL - BUG NODE 30 c-net sub nethack",
+		echo_text = false,
 		code = function()
 			if (n_level < 0) then n_level = 0 end
 			hide("c-net-nethack_sub.node62", "c-net-nethack_sub.node63", "c-net-nethack_sub.node30")
@@ -637,6 +643,7 @@ return {
 	{
 		id = "c-net-nethack_sub.node60",
 		text = "CALCULATE DAMAGE - BUG NODE 60 c-net sub nethack",
+		echo_text = false,
 		code = function()
 			hide("c-net-nethack_sub.node50", "c-net-nethack_sub.node51", "c-net-nethack_sub.node52", "c-net-nethack_sub.node53", "c-net-nethack_sub.node54")
 			if (n_emtype == 0) then
@@ -761,6 +768,7 @@ return {
 	{
 		id = "c-net-nethack_sub.node61",
 		text = "END LEVEL - BUG NODE 61 c-net sub nethack",
+		echo_text = false,
 		code = function()
 			hide("c-net-nethack_sub.node50", "c-net-nethack_sub.node51", "c-net-nethack_sub.node52", "c-net-nethack_sub.node53", "c-net-nethack_sub.node54")
 			if ((n_yendor == "yes") and (math.random(3)>2)) then --have the Amulet of Yendor
@@ -810,6 +818,7 @@ return {
 	{
 		id = "c-net-nethack_sub.node70",
 		text = "END GAME W/ WIN/LOSS - BUG NODE 70 c-net sub nethack",
+		echo_text = false,
 		code = function()
 			n_hp = 0
 			hide("c-net-nethack_sub.node20", "c-net-nethack_sub.node62", "c-net-nethack_sub.node63", "c-net-nethack_sub.node30", "c-net-nethack_sub.node50", "c-net-nethack_sub.node51", "c-net-nethack_sub.node52", "c-net-nethack_sub.node53", "c-net-nethack_sub.node54", "c-net-nethack_sub.node60", "c-net-nethack_sub.node99")
@@ -819,6 +828,7 @@ return {
 	{
 		id = "c-net-nethack_sub.node80",
 		text = "LOAD SAVE - BUG NODE 80 c-net sub nethack",
+		echo_text = false,
 		code = function()
 			npc_says(_"Save game detected: %s %s %s %s in service to [b]%s[/b] on level [b]%d[/b].", n_alignment, n_role, n_race, n_sex, n_god, n_level, "NO_WAIT")
 			if (n_yendor == "yes") then
@@ -865,6 +875,7 @@ return {
 	{
 		id = "c-net-nethack_sub.node84",
 		text = "LOAD SAVE - BUG NODE 84 c-net sub nethack",
+		echo_text = false,
 		code = function()
 			npc_says(_"Your stats are: [b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 			npc_says(_"A [b]%s[/b] is before you. What do you do?", n_emname, "NO_WAIT")

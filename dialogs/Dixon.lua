@@ -557,6 +557,7 @@ return {
 	{
 		id = "node60",
 		text = _"I have a problem with the Automated Factory.",
+		echo_text = false,
 		code = function()
 			if (Dixon_mood > 50) then
 				npc_says(_"You have a problem... really amazing.")

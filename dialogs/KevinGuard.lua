@@ -187,6 +187,7 @@ return {
 	{
 		id = "node99",
 		text = _"See you later, tin can.",
+		echo_text = false,
 		code = function()
 			npc_says(_"[b]EOT acknowledged. Connection closed.[/b]")
 			npc_says(_"[b]Goodbye.[/b]")

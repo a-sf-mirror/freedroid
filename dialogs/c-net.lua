@@ -48,6 +48,7 @@ return {
 	{
 		id = "node0",
 		text = "guest",
+		echo_text = false,
 		code = function()
 			c_net_username = get_player_name()
 			c_net_prompt = c_net_username .. "@c-net:~$"
@@ -76,6 +77,7 @@ return {
 	{
 		id = "node1",
 		text = "root",
+		echo_text = false,
 		code = function()
 			tux_says("root", "NO_WAIT")
 			cli_says(_"Password : ", "NO_WAIT")
@@ -94,6 +96,7 @@ return {
 	{
 		id = "node2",
 		text = "lily",
+		echo_text = false,
 		code = function()
 			tux_says("lily", "NO_WAIT")
 			cli_says(_"Password : ", "NO_WAIT")
@@ -112,6 +115,7 @@ return {
 	{
 		id = "node3",
 		text = "cpain",
+		echo_text = false,
 		code = function()
 			tux_says("cpain", "NO_WAIT")
 			cli_says(_"Password: ", "NO_WAIT")
@@ -131,6 +135,7 @@ return {
 	{
 		id = "node9",
 		text = "BUG, REPORT ME! cnet node9",
+		echo_text = false,
 		code = function()
 			npc_says(_"Login incorrect", "NO_WAIT")
 			npc_says(_"Connection to c-net terminated.")
@@ -142,6 +147,7 @@ return {
 		-- ../ date finger users whoami
 		id = "node10",
 		text = "cd info_commands/",
+		echo_text = false,
 		code = function()
 			c_net_prompt = c_net_username .. "@c-net:~/info_commands$"
 			npc_says(" ", "NO_WAIT")
@@ -152,6 +158,7 @@ return {
 	{
 		id = "node11",
 		text = "cd ../",
+		echo_text = false,
 		code = function()
 			c_net_prompt = c_net_username .. "@c-net:~$"
 			npc_says(" ", "NO_WAIT")
@@ -162,6 +169,7 @@ return {
 	{
 		id = "node12",
 		text = "date",
+		echo_text = false,
 		code = function()
 			-- npc_says(get_date() ,"NO_WAIT")
 			tux_says("date", "NO_WAIT")
@@ -172,6 +180,7 @@ return {
 	{
 		id = "node13",
 		text = "finger",
+		echo_text = false,
 		code = function()
 			tux_says("finger", "NO_WAIT")
 			knows_c_net_users = true
@@ -186,6 +195,7 @@ return {
 	{
 		id = "node14",
 		text = "users",
+		echo_text = false,
 		code = function()
 			tux_says("users", "NO_WAIT")
 			npc_says("bossman cpain guest lily", "NO_WAIT")
@@ -196,6 +206,7 @@ return {
 	{
 		id = "node15",
 		text = "whoami",
+		echo_text = false,
 		code = function()
 			tux_says("whoami", "NO_WAIT")
 			npc_says(c_net_username, "NO_WAIT")
@@ -205,6 +216,7 @@ return {
 	{
 		id = "node16",
 		text = "uname",
+		echo_text = false,
 		code = function()
 			tux_says("uname", "NO_WAIT")
 			npc_says("Nkernel", "NO_WAIT")
@@ -215,6 +227,7 @@ return {
 		-- ../ ls readdrive ./statistics.pl
 		id = "node20",
 		text = "cd file_commands/",
+		echo_text = false,
 		code = function()
 			c_net_prompt = c_net_username .. "@c-net:~/file_commands$"
 			npc_says(" ", "NO_WAIT")
@@ -225,6 +238,7 @@ return {
 	{
 		id = "node21",
 		text = "cd ../",
+		echo_text = false,
 		code = function()
 			c_net_prompt = c_net_username .. "@c-net:~$"
 			npc_says(" ", "NO_WAIT")
@@ -235,6 +249,7 @@ return {
 	{
 		id = "node23",
 		text = _"mountdisk.sh",
+		echo_text = false,
 		code = function()
 			tux_says(_"./mountdisk.sh", "NO_WAIT")
 			if (has_item_backpack("Kevin's Data Cube")) then
@@ -303,6 +318,7 @@ return {
 	{
 		id = "node24",
 		text = _"statistics.pl",
+		echo_text = false,
 		code = function()
 			tux_says("./statistics.pl", "NO_WAIT")
 			npc_says(_"Corrupted file.", "NO_WAIT")
@@ -314,6 +330,7 @@ return {
 	{
 		id = "node30",
 		text = "cd documents/",
+		echo_text = false,
 		code = function()
 			c_net_prompt = c_net_username .. "@c-net:~/documents$"
 			tux_says("cd documents/", "NO_WAIT")
@@ -331,6 +348,7 @@ return {
 	{
 		id = "node31",
 		text = "cd ../",
+		echo_text = false,
 		code = function()
 			c_net_prompt = c_net_username .. "@c-net:~$"
 			npc_says(" ", "NO_WAIT")
@@ -415,6 +433,7 @@ return {
 	{
 		id = "node80",
 		text = "cd games/",
+		echo_text = false,
 		code = function()
 			npc_says(" ", "NO_WAIT")
 			c_net_prompt = c_net_username .. "@c-net:~/games$"
@@ -425,6 +444,7 @@ return {
 	{
 		id = "node81",
 		text = "cd ../",
+		echo_text = false,
 		code = function()
 			c_net_prompt = c_net_username .. "@c-net:~$"
 			npc_says(" ", "NO_WAIT")
@@ -435,6 +455,7 @@ return {
 	{
 		id = "node82",
 		text = "nethack",
+		echo_text = false,
 		code = function()
 			tux_says("./nethack", "NO_WAIT")
 			push_topic("c-net-nethack_sub")
@@ -453,6 +474,7 @@ return {
 	{
 		id = "node83",
 		text = _"global_thermonuclear_war",
+		echo_text = false,
 		code = function()
 			tux_says(_"./global_thermonuclear_war", "NO_WAIT")
 			npc_says_random(_"Sorry, only winning move is not to play. New game?",
@@ -465,6 +487,7 @@ return {
 	{
 		id = "node85",
 		text = _"tetris",
+		echo_text = false,
 		code = function()
 			tux_says(_"./tetris", "NO_WAIT")
 			npc_says("Never gonna give you up,")
@@ -481,6 +504,7 @@ return {
 	{
 		id = "node86",
 		text = _"progress_quest",
+		echo_text = false,
 		code = function()
 			tux_says(_"./progress_quest", "NO_WAIT")
 			if (not playing_progress_quest) then
@@ -501,6 +525,7 @@ return {
 	{
 		id = "node87",
 		text = _"BUG c-net node 87 -- ROLL STATS",
+		echo_text = false,
 		code = function()
 			local str = math.random(0,6) + math.random(0,6) + math.random(0,6)
 			local con = math.random(0,6) + math.random(0,6) + math.random(0,6)
@@ -515,6 +540,7 @@ return {
 	{
 		id = "node88",
 		text = _"Accept Character",
+		echo_text = false,
 		code = function()
 			npc_says(_"Welcome to Progress Quest!")
 			cli_says(c_net_prompt, "NO_WAIT")
@@ -524,6 +550,7 @@ return {
 	{
 		id = "node89",
 		text = _"Reroll Character",
+		echo_text = false,
 		code = function()
 			next("node87")
 		end,
@@ -531,6 +558,7 @@ return {
 	{
 		id = "node99",
 		text = "logout",
+		echo_text = false,
 		code = function()
 			tux_says("logout", "NO_WAIT")
 			npc_says(_"Connection to c-net closed.")

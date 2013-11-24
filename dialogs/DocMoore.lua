@@ -268,6 +268,7 @@ return {
 	{
 		id = "node43",
 		text = _"I think I did.",
+		echo_text = false,
 		code = function()
 			tux_says(_"Hmm... Yellow, bright, PVC...?")
 			tux_says(_"I think I did.")
@@ -307,6 +308,7 @@ return {
 	{
 		id = "node53",
 		text = _"BUG REPORT ME! Francis node 53!",
+		echo_text = false,
 		code = function()
 			npc_says(_"Those pills are only one variant of a fantastic scientific breakthrough that happened shortly before the Great Assault.")
 			npc_says(_"Three kinds of enhancement pills were developed. One for strength, one for dexterity and one for programming abilities.")

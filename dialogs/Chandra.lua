@@ -309,6 +309,7 @@ return {
 	{
 		id = "node21",
 		text = _"(Calmly accept this information)",
+		echo_text = false,
 		topic = "Linarians Attacked",
 		code = function()
 			tux_says(_"What happened to the other Linarians that survived first contact?")
@@ -323,6 +324,7 @@ return {
 	{
 		id = "node22",
 		text = _"(Respond angrily)",
+		echo_text = false,
 		topic = "Linarians Attacked",
 		code = function()
 			tux_says(_"Your people slaughtered us?!")
@@ -351,6 +353,7 @@ return {
 	{
 		id = "node24",
 		text = _"(Attack)",
+		echo_text = false,
 		topic = "Linarians Attacked",
 		code = function()
 			tux_says(_"Stupid humans! How dare you?! Your crimes are unforgivable! You all deserve to be slaughtered by these robots!")

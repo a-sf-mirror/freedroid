@@ -120,6 +120,7 @@ FDdialog.Node = {
 	id = "NOID",		            --!< \brief String ID                                                                  \memberof Lua::FDdialog::Node
 	enabled = false,	            --!< \brief Enable flag : If true, the node is returned by Dialog.get_options()        \memberof Lua::FDdialog::Node
 	text = "NOTEXT",	            --!< \brief Text displayed in the Tux options list - can be a string or a function     \memberof Lua::FDdialog::Node
+	echo_text = true,               --!< \brief Echo text in the chat log                                                  \memberof Lua::FDdialog::Node
 	topic = "",			            --!< \brief Used to group nodes into specific sub-parts of a dialog                    \memberof Lua::FDdialog::Node
 	code = function() return end	--!< \brief Script to run when the node is activated                                   \memberof Lua::FDdialog::Node 
 	--! \publicsection
@@ -482,7 +483,7 @@ function FDdialog.run_node(node_idx)
 	if (not node) then
 		return
 	end
-	if (node.enabled) then
+	if (node.enabled and node.echo_text) then
 		tux_says(node:get_text(), "NO_WAIT")
 	end
 	node:code(current_dialog)

@@ -144,6 +144,7 @@ return {
 	{
 		id = "node60",
 		text = _"Tux.",
+		echo_text = false,
 		topic = "Sorenson contract",
 		code = function()
 			next("node70")
@@ -152,6 +153,7 @@ return {
 	{
 		id = "node61",
 		text = _"Tux, the Linarian",
+		echo_text = false,
 		topic = "Sorenson contract",
 		code = function()
 			next("node70")
@@ -160,6 +162,7 @@ return {
 	{
 		id = "node62",
 		text = _"I accept the contract, Tux",
+		echo_text = false,
 		topic = "Sorenson contract",
 		code = function()
 			next("node70")
@@ -168,6 +171,7 @@ return {
 	{
 		id = "node63",
 		text = _"Elbereth",
+		echo_text = false,
 		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"4444! 17 burn5! 7'm m3171n9!")
@@ -204,6 +208,7 @@ return {
 	{
 		id = "node66",
 		text = _"X",
+		echo_text = false,
 		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")

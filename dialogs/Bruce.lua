@@ -168,6 +168,7 @@ return {
 	{
 		id = "node20",
 		text = "BUG! REPORT ME! BRUCE NODE 20",
+		echo_text = false,
 		topic = "Bruce wants Dixon's helmet",
 		code = function()
 			npc_says(_"What do you have there?")
@@ -189,6 +190,7 @@ return {
 	{
 		id = "node30",
 		text = "BUG! REPORT ME! BRUCE NODE 30",
+		echo_text = false,
 		topic = "Bruce wants Dixon's helmet",
 		code = function()
 			npc_says(_"So, what about the helmet now?")
@@ -265,6 +267,7 @@ return {
 	{
 		id = "node41",
 		text = _"You can have it for free.",
+		echo_text = false,
 		topic = "Bruce wants Dixon's helmet",
 		code = function()
 			tux_says(_"I changed my mind.")

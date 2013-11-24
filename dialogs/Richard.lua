@@ -88,6 +88,7 @@ return {
 	{
 		id = "node41",
 		text = "BUG, REPORT ME! Richard node41",
+		echo_text = false,
 		code = function()
 			tux_says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
 			npc_says_random(
@@ -140,6 +141,7 @@ return {
 	{
 		id = "node52",
 		text = "BUG, REPORT ME! Richard node52",
+		echo_text = false,
 		code = function()
 			tux_says_random(
 				_"Hold on, I don't seem to have enough money right now.",
