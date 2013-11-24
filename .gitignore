@@ -42,8 +42,8 @@ TAGS
 cscope.out
 doxygen/
 callgrind.out*
+doxygen.log
 
 # Output
 stderr.txt
 stdout.txt
-

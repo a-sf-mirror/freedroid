@@ -265,7 +265,10 @@ AM_CONDITIONAL(CROSS_COMPILING, test x$cross_compiling = xyes)
 
 AM_CONDITIONAL(BUILD_LUA, test x$embedded_lua = xyes)
 
-AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile graphics/obstacles/Makefile graphics/floor_tiles/Makefile croppy/Makefile win32/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile croppy/Makefile \
+                 graphics/obstacles/Makefile graphics/floor_tiles/Makefile \
+                 win32/Makefile \
+                 doc/Makefile doc/manual/Makefile])
 
 AC_OUTPUT
 

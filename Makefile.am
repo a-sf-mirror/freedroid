@@ -13,9 +13,9 @@ extradirs = win32 croppy
 endif 
 
 if CROSS_COMPILING
-SUBDIRS = src gluem $(extradirs)
+SUBDIRS = src gluem doc $(extradirs)
 else
-SUBDIRS = src gluem graphics/floor_tiles graphics/obstacles $(extradirs)
+SUBDIRS = src gluem doc graphics/floor_tiles graphics/obstacles $(extradirs)
 endif
 
 man_MANS = freedroidRPG.6
@@ -92,7 +92,7 @@ dist-macosx: src/freedroidRPG
 	perl macosx/pkgApp.pl $(macosx_dir)/Contents MacOS/freedroidRPG Frameworks
 
 doc:
-	doxygen Doxyfile
+	$(MAKE) -C doc $(AM_MAKEFLAGS) doc
 
 help:
 	@echo "Make targets:"
@@ -110,3 +110,5 @@ help:
 	@echo " * gource                - Generate gource video from git log (requires git repository)"
 	@echo " * gource_ffmpeg         - Generate gource video from git log and record using ffmpeg (requires git repository, ffmpeg and x264)"
 	@echo " * help                  - This output"
+
+.PHONY: sign doc help
