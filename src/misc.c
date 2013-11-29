@@ -1051,7 +1051,7 @@ This indicates an error in the map system of FreedroidRPG.", PLEASE_INFORM, IS_F
 			event_level_changed(Me.pos.z, LNum);
 
 		// Notify position changed.
-		event_position_changed(Me.pos);
+		event_position_changed(Me.pos, TRUE);
 	}
 }
 

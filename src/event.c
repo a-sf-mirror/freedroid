@@ -58,6 +58,7 @@ struct event_trigger {
 			int level;
 			int x;
 			int y;
+			int teleported;
 		} position;
 		struct {
 			int exit_level;
@@ -109,6 +110,7 @@ static void clear_out_events(void)
 
 // For position-based events
 #define EVENT_TRIGGER_LABEL_STRING "Trigger at label=\""
+#define EVENT_TRIGGER_TELEPORTED "Teleported="
 #define EVENT_TRIGGER_IS_SILENT_STRING "Silent="
 
 // For level-change events
@@ -165,6 +167,8 @@ static void load_events(char *EventSectionPointer)
 			free(TempMapLabelName);
 			ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
 						&temp.silent, EndOfEvent);
+			ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_TELEPORTED, "%d", "-1",
+						&temp.trigger.position.teleported, EndOfEvent);
 		} else if (strstr(EventPointer, LEVEL_CHANGE_TRIGGER)) {
 			temp.trigger_type = CHANGE_LEVEL;
 			ReadValueFromStringWithDefault(EventPointer, LEVEL_CHANGE_ENTERING, "%d", "-1",
@@ -242,8 +246,9 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename)
 /**
  * \brief Trigger a position-based events for the given positions. 
  * \param cur_pos The current position.
+ * \param teleported TRUE if the event come from a teleportation, FALSE otherwise.
  */
-void event_position_changed(gps pos)
+void event_position_changed(gps pos, int teleported)
 {
 	int i;
 	struct event_trigger *arr = event_triggers.arr;
@@ -258,6 +263,10 @@ void event_position_changed(gps pos)
 
 		if (arr[i].trigger.position.level != pos.z)
  			continue;
+
+		if (arr[i].trigger.position.teleported != -1)
+			if (arr[i].trigger.position.teleported != teleported)
+				continue;
 
 		if (((int)pos.x == arr[i].trigger.position.x) 
 				&& ((int)pos.y == arr[i].trigger.position.y)) {

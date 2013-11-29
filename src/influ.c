@@ -451,7 +451,7 @@ static void move_tux_according_to_his_speed()
 	Me.pos.y += planned_step_y;
 
 	if (((int)GetInfluPositionHistoryX(0) != (int)Me.pos.x || ((int)GetInfluPositionHistoryY(0) != (int)Me.pos.y))) {
-		event_position_changed(Me.pos);
+		event_position_changed(Me.pos, FALSE);
 	}
 
 	// If the Tux got stuck, i.e. if he got no speed at all and still is 
