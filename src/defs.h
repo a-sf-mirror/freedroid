@@ -1543,7 +1543,8 @@ enum slot_type {
 
 // These are flags to change the level's environment
 enum level_flags {
-	TELEPORT_BLOCKED = 1
+	TELEPORT_BLOCKED 	= 1 << 0,
+	NO_RESPAWN 			= 1 << 1,
 };
 
 // Current step of the dialog Finite state Machine

@@ -544,6 +544,7 @@ static void LevelOptions(void)
 		SET_LEVEL_INTERFACE_POSITION,
 		SET_RANDOM_LEVEL,
 		SET_RANDOM_DROIDS,
+		SET_NO_RESPAWN,
 		SET_DROP_CLASS,
 		SET_TELEPORT_BLOCKED,
 		SET_TELEPORT_PAIR,
@@ -614,6 +615,11 @@ static void LevelOptions(void)
 					strcat(Options[i], ", ");
 				strcat(Options[i], Droidmap[droid_types[j]].droidname);
 		}
+		MenuTexts[i] = Options[i];
+		i++;
+
+		sprintf(Options[i], "%s: %s", _("Respawn"),
+			EditLevel()->flags & NO_RESPAWN ? _("no") : _("yes"));
 		MenuTexts[i] = Options[i];
 		i++;
 
@@ -705,6 +711,9 @@ static void LevelOptions(void)
 			break;
 		case SET_RANDOM_DROIDS:
 			get_random_droids_from_user();
+			break;
+		case SET_NO_RESPAWN:
+			EditLevel()->flags ^= NO_RESPAWN;
 			break;
 		case SET_DROP_CLASS:
 			if (LeftPressed() || RightPressed()) {	//left or right arrow ? handled below 

@@ -425,10 +425,7 @@ void UpdateCountersForThisFrame()
 			// Now maybe it's time to respawn?  If we really have multiple
 			// players of course, this check would have to look a bit different...
 			//
-			if (Me.time_since_last_visit_or_respawn[i] > 600) {
-				/* Do not respawn the town. At all. */
-				if (!strcmp(curShip.AllLevels[i]->Levelname, "Town"))
-					continue;
+			if (Me.time_since_last_visit_or_respawn[i] > 600 && !(curShip.AllLevels[i]->flags & NO_RESPAWN)) {
 
 				DebugPrintf(-10, "\nNow respawning all bots on level : %d. ", i);
 				Me.time_since_last_visit_or_respawn[i] = 0;
