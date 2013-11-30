@@ -119,17 +119,8 @@ item_list{
 {
 	name =_"The first item is VERY buggy ingame, so don't use it.",
 	slot = "none",
-	weapon = {
-		damage = "0",
-		attack_time = 0.000000,
-		reloading_time = 0.000000,
-		bullet = {type = "none", speed = 0.000000, lifetime = 0.000000, angle = 0.000000},
-		ammunition = {type = "Sshell", clip = 2},
-		melee = true,
-		motion_class = "1hmelee",
-	},
 	armor_class = "0:0",
-	right_use = {tooltip =_"The item do nothing when right clicked."},
+	right_use = {tooltip =_"Dummy item. If you see this, please report it as bug."},
 	inventory = {x = 1, y = 1, image = "inventory_image_bug.png" },
 	drop = {class = nil, number = "0:0", sound = "Item_Drop_Sound_0.ogg"},
 	base_price = 0,
