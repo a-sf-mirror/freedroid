@@ -241,20 +241,31 @@ return {
 				end
 			end
 
-			if not (running_benchmark()) then
-				if (DeadGuy_death_trigger == "works" ) then
-					npc_says("NPC DEATH test 3 succeeded", "NO_WAIT")
-				else
-					guy_fail("NPC DEATH 3")
-				end
-			end
 			-- one day we might be able to revive DeadGuy
 
 			--[[ if (not npc_dead("Dude")) then
-			npc_says("NPC DEATH test 4 succeeded", "NO_WAIT")
+			npc_says("NPC DEATH test 3 succeeded", "NO_WAIT")
 		else
-			guy_fail("NPC DEATH 4")
+			guy_fail("NPC DEATH 3")
 			end ]]--
+
+---------------------------------------------------------- EVENTS
+
+			if not (running_benchmark()) then
+				if (l24_event_test == "works" ) then
+					npc_says("EVENT test 1 (map label) succeeded", "NO_WAIT")
+				else
+					guy_fail("EVENT test 1 (map label)")
+				end
+			end
+
+			if not (running_benchmark()) then
+				if (DeadGuy_death_trigger == "works" ) then
+					npc_says("EVENT test 2 (death event) succeeded", "NO_WAIT")
+				else
+					guy_fail("EVENT test (death event) 2")
+				end
+			end
 
 ---------------------------------------------------------- Gold
 			if (get_gold() == 0) then

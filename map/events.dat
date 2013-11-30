@@ -1400,6 +1400,15 @@ Silent=0
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"24-tux1"
+Trigger at label="24-tux1"
+Silent=1
+<LuaCode>
+	l24_event_test = "works"
+</LuaCode>
+* End of trigger *
+
 ##############
 ## Level 25 ##
 ##############
