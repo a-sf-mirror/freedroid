@@ -184,6 +184,10 @@ obstacle_states = {
 
 	[23] = {["opened"] = 23, ["closed"] = 62,},
 	[62] = {["closed"] = 62, ["opened"] = 23,},
+
+	-- teleporter
+	[16] = {["purple"] = 16, ["blue"] = 17,},
+	[17] = {["blue"] = 17, ["purple"] = 16,},
 };
 
 function get_obstacle_state_id(id, state)

@@ -436,12 +436,37 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Home Teleport"
+Name=_"Town-HomeSpot-Starting"
 Trigger at label="TeleportHomeTarget"
+Teleported=0
 Silent=1
 <LuaCode>
 	if (has_teleport_anchor()) then
 		teleport_home()
+		change_obstacle_state("Town-Teleporter", "purple")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Town-HomeSpot-Finishing"
+Trigger at label="TeleportHomeTarget"
+Teleported=1
+Silent=1
+<LuaCode>
+	if (has_teleport_anchor()) then
+		change_obstacle_state("Town-Teleporter", "blue")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Town-HomeSpot-Exiting"
+Trigger changing level
+Exiting level=0
+<LuaCode>
+	if (not has_teleport_anchor()) then
+		change_obstacle_state("Town-Teleporter", "purple")
 	end
 </LuaCode>
 * End of trigger *

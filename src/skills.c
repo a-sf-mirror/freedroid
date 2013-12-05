@@ -242,9 +242,6 @@ int TeleportHome(void)
 		Me.teleport_anchor.x = 0;
 		Me.teleport_anchor.y = 0;
 		Me.teleport_anchor.z = -1;
-		
-		// Toggle the color of teleporter (purple)
-		change_obstacle_type("Town-Teleporter", ISO_TELEPORTER_1);
 
 		return 1;
 	}
@@ -254,9 +251,6 @@ int TeleportHome(void)
 	Me.teleport_anchor.x = Me.pos.x;
 	Me.teleport_anchor.y = Me.pos.y;
 	Me.teleport_anchor.z = Me.pos.z;
-	
-	// Toggle the color of teleporter (blue)
-	change_obstacle_type("Town-Teleporter", ISO_TELEPORTER_2);
 
 	teleport_arrival_sound();
 	reset_visible_levels();
