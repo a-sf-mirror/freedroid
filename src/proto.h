@@ -388,7 +388,7 @@ void play_sound_at_position(const char *filename, struct gps *listener, struct g
 
 // items.c
 void init_item(item *);
-item create_item_with_name(const char *item_name, int full_durability, int multiplicity);
+item create_item_with_id(const char *item_id, int full_durability, int multiplicity);
 void equip_item(item *new_item);
 item *get_equipped_item_in_slot_for(int item_type);
 void MoveItem(item * SourceItem, item * DestItem);
@@ -407,8 +407,8 @@ void DamageProtectiveEquipment(void);
 void append_item_name(item *ShowItem, struct auto_string *str);
 item *DropItemAt(int, int, float, float, int);
 void Quick_ApplyItem(int ItemKey);
-int MatchItemWithName(int type, const char *name);
-int GetItemIndexByName(const char *name);
+int item_spec_eq_id(int type, const char *id);
+int get_item_type_by_id(const char *id);
 void ApplyItem(item * CurItem);
 int Inv_Pos_Is_Free(int x, int y);
 int GetInventoryItemAt(int x, int y);
@@ -432,6 +432,7 @@ int get_floor_item_index_under_mouse_cursor(level **item_lvl);
 int item_is_currently_equipped(item * Item);
 const char *ammo_desc_for_weapon(int);
 enum slot_type get_slot_type_by_name(char *name);
+const char *item_specs_get_name(int type);
 enum _busytype get_busy_type_by_name(char *name);
 
 // item_upgrades.c

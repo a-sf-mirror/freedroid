@@ -248,7 +248,8 @@ struct addon_spec {
 };
 
 typedef struct itemspec {
-	char *item_name;
+	char *id;
+	char *name;
 	char *item_rotation_series_prefix;
 	char *item_description;
 	char *item_drop_sound_file_name;

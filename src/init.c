@@ -485,9 +485,9 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 		// Now we read in the monster level = maximum treasure chest to pick from
 		ReadValueFromString(RobotPointer, "Drops item class=", "%hd", &Droidmap[RobotIndex].drop_class, EndOfDataPointer);
 
-		char *tmp_item_name = ReadAndMallocStringFromData(RobotPointer, WEAPON_ITEM_BEGIN_STRING, "\"");
-		Droidmap[RobotIndex].weapon_item.type = GetItemIndexByName(tmp_item_name);
-		free(tmp_item_name);
+		char *tmp_item_id = ReadAndMallocStringFromData(RobotPointer, WEAPON_ITEM_BEGIN_STRING, "\"");
+		Droidmap[RobotIndex].weapon_item.type = get_item_type_by_id(tmp_item_id);
+		free(tmp_item_id);
 		ReadValueFromStringWithDefault(RobotPointer, "Gun muzzle height=", "%d", "30", &Droidmap[RobotIndex].gun_muzzle_height, EndOfDataPointer);
 
 		// Now we read in the % chance for droid to drop botpart
@@ -1212,7 +1212,7 @@ void ThouArtDefeated(void)
 		DropItemAt(Me.special_item.type, Me.pos.z, Me.pos.x - 0.5, Me.pos.y, 1);
 	}
 	if (Me.Gold > 0) {
-		DropItemAt(GetItemIndexByName("Valuable Circuits"), Me.pos.z, Me.pos.x, Me.pos.y, 1);
+		DropItemAt(get_item_type_by_id("Valuable Circuits"), Me.pos.z, Me.pos.x, Me.pos.y, 1);
 	}
 
 	GameOver = TRUE;

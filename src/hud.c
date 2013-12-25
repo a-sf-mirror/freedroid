@@ -120,7 +120,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	append_item_name(item, str);
 
 	// We don't want any more information for Valuable Circuits
-	if (MatchItemWithName(item->type, "Valuable Circuits"))
+	if (item_spec_eq_id(item->type, "Valuable Circuits"))
 		return;
 	
 	autostr_append(str, "\n");
@@ -282,7 +282,7 @@ static void prepare_text_window_content(struct auto_string *str)
 	 * description field.  If the requirements for this item are not met, we
 	 * show a text. */
 	if (item_held_in_hand != NULL) {
-		autostr_printf(str, "%s%s", font_switchto_neon, D_(ItemMap[item_held_in_hand->type].item_name));
+		autostr_printf(str, "%s%s", font_switchto_neon, item_specs_get_name(item_held_in_hand->type));
 
 		if (!ItemUsageRequirementsMet(item_held_in_hand, FALSE)) {
 			autostr_append(str, "\n%s%s", font_switchto_red, _("REQUIREMENTS NOT MET"));

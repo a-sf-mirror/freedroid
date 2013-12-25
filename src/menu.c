@@ -650,7 +650,7 @@ void Cheatmenu(void)
 			break;
 
 		case 't':
-			cheat_gun = create_item_with_name("Cheat Gun", TRUE, 1);
+			cheat_gun = create_item_with_id("Cheat Gun", TRUE, 1);
 			equip_item(&cheat_gun);
 			break;
 

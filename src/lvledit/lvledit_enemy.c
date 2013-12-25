@@ -249,7 +249,7 @@ static void edit_special_force_info(enemy *en)
 	en->max_distance_to_home = numb;
 
 	autostr_append(displayed_text, "%d\n Item dropped on death: ", numb);
-	sprintf(suggested_val, "%s", (en->on_death_drop_item_code == -1) ? "none" : ItemMap[en->on_death_drop_item_code].item_name);
+	sprintf(suggested_val, "%s", (en->on_death_drop_item_code == -1) ? "none" : ItemMap[en->on_death_drop_item_code].id);
 
 	// Change the item dropped on death
 	while (1) {
@@ -261,8 +261,8 @@ static void edit_special_force_info(enemy *en)
 			en->on_death_drop_item_code = -1;
 			break;
 
-		} else if (GetItemIndexByName(user_input) != -1) {
-			en->on_death_drop_item_code = GetItemIndexByName(user_input);
+		} else if (get_item_type_by_id(user_input) != -1) {
+			en->on_death_drop_item_code = get_item_type_by_id(user_input);
 			break;
 		}
 
@@ -272,7 +272,7 @@ static void edit_special_force_info(enemy *en)
 	}
 
 	autostr_append(displayed_text, "%s\n Rushes Tux: ",
-				(en->on_death_drop_item_code == -1) ? "none" : ItemMap[en->on_death_drop_item_code].item_name);
+				(en->on_death_drop_item_code == -1) ? "none" : ItemMap[en->on_death_drop_item_code].id);
 	sprintf(suggested_val, "%s", en->will_rush_tux ? "yes" : "no");
 
 	// Rush Tux

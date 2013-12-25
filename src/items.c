@@ -51,14 +51,14 @@ void init_item(item *it)
 	it->inventory_position.y = -1;
 }
 
-item create_item_with_name(const char *item_name, int full_durability, int multiplicity)
+item create_item_with_id(const char *item_id, int full_durability, int multiplicity)
 {
 	item new_item;
-	
+
 	init_item(&new_item);
-	new_item.type = GetItemIndexByName(item_name);
+	new_item.type = get_item_type_by_id(item_id);
 	FillInItemProperties(&new_item, full_durability, multiplicity);
-	
+
 	return new_item;
 }
 
@@ -82,7 +82,7 @@ void equip_item(item *new_item)
 	// If the item can't be equiped, stop now and throw a warning.
 	if (!equippable_item(new_item)) {
 		ErrorMessage(__FUNCTION__, "Tried to equip the item \"%s\" which can't be equipped.\n", 
-				PLEASE_INFORM, IS_WARNING_ONLY, new_itemspec->item_name);
+				PLEASE_INFORM, IS_WARNING_ONLY, new_itemspec->id);
 		return;
  	}
 
@@ -214,7 +214,7 @@ unsigned long calculate_item_buy_price(item * BuyItem)
 	for (i = 0; i < BuyItem->upgrade_sockets.size; i++) {
 		const char *addon = BuyItem->upgrade_sockets.arr[i].addon;
 		if (addon) {
-			int type = GetItemIndexByName(addon);
+			int type = get_item_type_by_id(addon);
 			price += ItemMap[type].base_list_price;
 		}
 	}
@@ -366,10 +366,10 @@ void append_item_name(item * ShowItem, struct auto_string *str)
 		autostr_append(str, "%s", font_switchto_neon);
 	}
 
-	if (MatchItemWithName(ShowItem->type, "Valuable Circuits"))
+	if (item_spec_eq_id(ShowItem->type, "Valuable Circuits"))
 		autostr_append(str, "%d ", ShowItem->multiplicity);
 
-	autostr_append(str, "%s", D_(ItemMap[ShowItem->type].item_name));
+	autostr_append(str, "%s", item_specs_get_name(ShowItem->type));
 
 	if (ShowItem->quality == GOOD_QUALITY) {
 		autostr_append(str, "\n%s", font_switchto_blue);
@@ -474,7 +474,7 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 		// If class == 0, we want to avoid to drop 0-1 valuable circuits
 		int how_many = (class == 0) ? 2 : 0;
 		how_many += MONEY_PER_BOT_CLASS * class + MyRandom(MONEY_PER_BOT_CLASS - 1);
-		DropItemAt(GetItemIndexByName("Valuable Circuits"), level_num, x, y, how_many);
+		DropItemAt(get_item_type_by_id("Valuable Circuits"), level_num, x, y, how_many);
 	}
 
 	if ((DropDecision < ITEM_DROP_PERCENTAGE)) {
@@ -664,16 +664,15 @@ void Quick_ApplyItem(int ItemKey)
  * used to match an item which its type in a flexible way (match by name instead
  * of matching by index value)
  */
-int GetItemIndexByName(const char *name)
+int get_item_type_by_id(const char *id)
 {
 	int cidx = 0;
-
 	for (; cidx < Number_Of_Item_Types; cidx++) {
-		if (!strcmp(ItemMap[cidx].item_name, name))
+		if (!strcmp(ItemMap[cidx].id, id))
 			return cidx;
 	}
 
-	ErrorMessage(__FUNCTION__, "Unable to find item name %s\n", PLEASE_INFORM, IS_WARNING_ONLY, name);
+	ErrorMessage(__FUNCTION__, "Unable to find item id %s\n", PLEASE_INFORM, IS_WARNING_ONLY, id);
 	return -1;
 }
 
@@ -682,15 +681,15 @@ int GetItemIndexByName(const char *name)
  * used to match an item which its type in a flexible way (match by name instead
  * of matching by index value)
  */
-int MatchItemWithName(int type, const char *name)
+int item_spec_eq_id(int type, const char *id)
 {
 	if (type < 0 || type >= Number_Of_Item_Types)
-		return 0;
+		return FALSE;
 
-	if (!strcmp(ItemMap[type].item_name, name))
-		return 1;
+	if (!strcmp(ItemMap[type].id, id))
+		return TRUE;
 	else
-		return 0;
+		return FALSE;
 }
 
 /**
@@ -745,45 +744,45 @@ void ApplyItem(item * CurItem)
 	// and therefore all we need to do from here on is execute the item effect
 	// upon the influencer or his environment.
 	//
-	if (MatchItemWithName(CurItem->type, "Barf's Energy Drink")) {
+	if (item_spec_eq_id(CurItem->type, "Barf's Energy Drink")) {
 		Me.energy += 15;
 		Me.temperature -= 15;
 		Me.running_power += 15;
-	} else if (MatchItemWithName(CurItem->type, "Diet supplement")) {
+	} else if (item_spec_eq_id(CurItem->type, "Diet supplement")) {
 		Me.energy += 25;
 		play_sound_cached("effects/new_healing_sound.ogg");
-	} else if (MatchItemWithName(CurItem->type, "Antibiotic")) {
+	} else if (item_spec_eq_id(CurItem->type, "Antibiotic")) {
 		Me.energy += 50;
 		play_sound_cached("effects/new_healing_sound.ogg");
-	} else if (MatchItemWithName(CurItem->type, "Doc-in-a-can")) {
+	} else if (item_spec_eq_id(CurItem->type, "Doc-in-a-can")) {
 		Me.energy += Me.maxenergy;
 		play_sound_cached("effects/new_healing_sound.ogg");
-	} else if (MatchItemWithName(CurItem->type, "Bottled ice")) {
+	} else if (item_spec_eq_id(CurItem->type, "Bottled ice")) {
 		Me.temperature -= 50;
-	} else if (MatchItemWithName(CurItem->type, "Industrial coolant")) {
+	} else if (item_spec_eq_id(CurItem->type, "Industrial coolant")) {
 		Me.temperature -= 100;
-	} else if (MatchItemWithName(CurItem->type, "Liquid nitrogen")) {
+	} else if (item_spec_eq_id(CurItem->type, "Liquid nitrogen")) {
 		Me.temperature = 0;
-	} else if (MatchItemWithName(CurItem->type, "Running Power Capsule")) {
+	} else if (item_spec_eq_id(CurItem->type, "Running Power Capsule")) {
 		Me.running_power = Me.max_running_power;
 		Me.running_must_rest = FALSE;
-	} else if (MatchItemWithName(CurItem->type, "Strength Capsule")) {
+	} else if (item_spec_eq_id(CurItem->type, "Strength Capsule")) {
 		Me.current_power_bonus = 30;
 		Me.power_bonus_end_date = Me.current_game_date + 2.0 * 60;
-	} else if (MatchItemWithName(CurItem->type, "Dexterity Capsule")) {
+	} else if (item_spec_eq_id(CurItem->type, "Dexterity Capsule")) {
 		Me.current_dexterity_bonus = 30;
 		Me.dexterity_bonus_end_date = Me.current_game_date + 2.0 * 60;
-	} else if (MatchItemWithName(CurItem->type, "Map Maker")) {
+	} else if (item_spec_eq_id(CurItem->type, "Map Maker")) {
 		Me.map_maker_is_present = TRUE;
 		GameConfig.Automap_Visible = TRUE;
 		Play_Spell_ForceToEnergy_Sound();
-	} else if (MatchItemWithName(CurItem->type, "Strength Pill")) {
+	} else if (item_spec_eq_id(CurItem->type, "Strength Pill")) {
 		Me.base_strength++;
-	} else if (MatchItemWithName(CurItem->type, "Dexterity Pill")) {
+	} else if (item_spec_eq_id(CurItem->type, "Dexterity Pill")) {
 		Me.base_dexterity++;
-	} else if (MatchItemWithName(CurItem->type, "Code Pill")) {
+	} else if (item_spec_eq_id(CurItem->type, "Code Pill")) {
 		Me.base_cooling++;
-	} else if (MatchItemWithName(CurItem->type, "Brain Enlargement Pill")) {
+	} else if (item_spec_eq_id(CurItem->type, "Brain Enlargement Pill")) {
 		Me.base_cooling = 5;
 		Me.base_strength = 5;
 		Me.base_dexterity = 5;
@@ -1904,7 +1903,7 @@ int try_give_item(item *ItemPointer)
 	// In the special case of money, we add the amount of money to our
 	// money counter and eliminate the item on the floor.
 
-	if (MatchItemWithName(ItemPointer->type, "Valuable Circuits")) {
+	if (item_spec_eq_id(ItemPointer->type, "Valuable Circuits")) {
 		play_item_sound(ItemPointer->type, &Me.pos);
 		Me.Gold += ItemPointer->multiplicity;
 		DeleteItem(ItemPointer);
@@ -2046,7 +2045,7 @@ const char *ammo_desc_for_weapon(int type) {
 
 	if (weapon->item_gun_use_ammunition < 0 || weapon->item_gun_use_ammunition >= sizeof(ammo_desc)/sizeof(ammo_desc[0])) {
 		ErrorMessage(__FUNCTION__, "Unknown ammunition type %d for weapon %s.",
-					 PLEASE_INFORM, IS_FATAL, weapon->item_gun_use_ammunition, weapon->item_name);
+					 PLEASE_INFORM, IS_FATAL, weapon->item_gun_use_ammunition, weapon->id);
 	}
 
 	return ammo_desc[weapon->item_gun_use_ammunition];
@@ -2107,6 +2106,21 @@ enum slot_type get_slot_type_by_name(char *name)
 			return slots[i].slot;
 	}
 	return NO_SLOT;
+}
+
+/**
+ * \brief Get the name of a item specs by its type.
+ * If the item spec haven't a title, the name is used, and otherwise "UNNAMED ITEM".
+ * \param type A valid type of itemspec (different of -1).
+ * \return The title of the item.
+ */
+const char *item_specs_get_name(int type)
+{
+	if (ItemMap[type].name)
+		return D_(ItemMap[type].name);
+	else if (ItemMap[type].id)
+		return ItemMap[type].id;
+	return "BUG - UNNAMED ITEM";
 }
 
 enum _busytype get_busy_type_by_name(char *name)

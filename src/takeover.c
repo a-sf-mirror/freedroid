@@ -212,14 +212,14 @@ static void show_droid_info(int droidtype)
  */
 static void init_droid_description(struct widget_text *w, int droidtype)
 {
-	char *item_name;
+	const char *item_name;
 	int weapon_type;
 
 	autostr_append(w->text, _("Unit Type %s\n"), Droidmap[droidtype].droidname);
 	autostr_append(w->text, _("Entry : %d\n"), droidtype + 1);
 
 	if ((weapon_type = Droidmap[droidtype].weapon_item.type) >= 0)	// make sure item != -1 
-		item_name = D_(ItemMap[weapon_type].item_name);	// does not segfault
+		item_name = item_specs_get_name(weapon_type);	// does not segfault
 	else
 		item_name = _("none");
 

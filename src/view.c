@@ -1507,7 +1507,7 @@ static void blit_all_item_slots(int mask)
 			// special item properties...
 			//
 			put_string(FPS_Display_BFont, item_level->ItemList[i].text_slot_rectangle.x,
-					  item_level->ItemList[i].text_slot_rectangle.y, D_(ItemMap[item_level->ItemList[i].type].item_name));
+					  item_level->ItemList[i].text_slot_rectangle.y, item_specs_get_name(item_level->ItemList[i].type));
 	
 		}
 	}
@@ -1619,7 +1619,7 @@ void update_item_text_slot_positions(void)
 			//
 			update_virtual_position(&cur_item->virt_pos, &cur_item->pos, Me.pos.z);
 			cur_item->text_slot_rectangle.h = FontHeight(BFont_to_use);
-			cur_item->text_slot_rectangle.w = text_width(BFont_to_use, D_(ItemMap[cur_item->type].item_name));
+			cur_item->text_slot_rectangle.w = text_width(BFont_to_use, item_specs_get_name(cur_item->type));
 			cur_item->text_slot_rectangle.x =
 				translate_map_point_to_screen_pixel_x(cur_item->virt_pos.x, cur_item->virt_pos.y) - cur_item->text_slot_rectangle.w / 2;
 			cur_item->text_slot_rectangle.y =

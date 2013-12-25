@@ -399,7 +399,7 @@ static void calculate_cost_and_bonuses(void)
 			if (addon->type != -1) {
 				socket = &temp.upgrade_sockets.arr[i];
 				free(socket->addon);
-				socket->addon = strdup(ItemMap[addon->type].item_name);
+				socket->addon = strdup(ItemMap[addon->type].id);
 			}
 		}
 	}
@@ -510,7 +510,7 @@ static int set_customized_item(item *it)
 	for (i = 0; i < ADDON_ITEMS_MAX && i < ui.custom_item.upgrade_sockets.size; i++) {
 		socket = &ui.custom_item.upgrade_sockets.arr[i];
 		if (socket->addon) {
-			ui.addon_items[i] = create_item_with_name(socket->addon, TRUE, 1);
+			ui.addon_items[i] = create_item_with_id(socket->addon, TRUE, 1);
 		}
 	}
 
@@ -567,7 +567,7 @@ static void apply_customization(void)
 		socket = &ui.custom_item.upgrade_sockets.arr[i];
 		if (!socket->addon && addon->type != -1) {
 			free(socket->addon);
-			socket->addon = strdup(ItemMap[addon->type].item_name);
+			socket->addon = strdup(ItemMap[addon->type].id);
 		}
 	}
 

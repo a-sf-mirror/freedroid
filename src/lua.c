@@ -339,9 +339,9 @@ static int lua_event_get_program_revision(lua_State * L)
 
 static int lua_event_delete_item(lua_State * L)
 {
-	const char *itemname = luaL_checkstring(L, 1);
+	const char *item_id = luaL_checkstring(L, 1);
 	int mult = luaL_optinteger(L, 2, 1);
-	DeleteInventoryItemsOfType(GetItemIndexByName(itemname), mult);
+	DeleteInventoryItemsOfType(get_item_type_by_id(item_id), mult);
 	return 0;
 }
 
@@ -351,7 +351,7 @@ static int lua_event_give_item(lua_State * L)
 	int mult = luaL_optinteger(L, 2, 1);
 
 	item NewItem;
-	NewItem = create_item_with_name(itemname, TRUE, mult);
+	NewItem = create_item_with_id(itemname, TRUE, mult);
 
 	// Either we put the new item directly into inventory or we issue a warning
 	// that there is no room and then drop the item to the floor directly under 
@@ -381,17 +381,17 @@ static int lua_event_sell_item(lua_State *L)
 
 static int lua_event_count_item_backpack(lua_State * L)
 {
-	const char *itemname = luaL_checkstring(L, 1);
+	const char *item_id = luaL_checkstring(L, 1);
 
-	lua_pushinteger(L, CountItemtypeInInventory(GetItemIndexByName(itemname)));
+	lua_pushinteger(L, CountItemtypeInInventory(get_item_type_by_id(item_id)));
 
 	return 1;
 }
 
 static int lua_event_has_item_equipped(lua_State * L)
 {
-	const char *itemname = luaL_checkstring(L, 1);
-	int item = GetItemIndexByName(itemname);
+	const char *item_id = luaL_checkstring(L, 1);
+	int item = get_item_type_by_id(item_id);
 	if ((Me.weapon_item.type == item) || (Me.drive_item.type == item) 
 		|| (Me.armour_item.type == item) || (Me.shield_item.type == item) 
 		|| (Me.special_item.type == item)) {
@@ -411,7 +411,7 @@ static int lua_event_equip_item(lua_State * L)
 			     IS_WARNING_ONLY);
 		return 0;
 	}
-	item new_item = create_item_with_name(item_name, TRUE, 1);
+	item new_item = create_item_with_id(item_name, TRUE, 1);
 	equip_item(&new_item);
 	SetNewBigScreenMessage(_("1 Item received!"));
 	return 0;
@@ -419,12 +419,12 @@ static int lua_event_equip_item(lua_State * L)
 
 static int lua_set_death_item(lua_State * L)
 {
-	const char *item_name = luaL_checkstring(L, 1);
+	const char *item_id = luaL_checkstring(L, 1);
 	enemy *en = get_enemy_arg(L, 2);
-	if (!strcmp(item_name, "NONE"))
+	if (!strcmp(item_id, "NONE"))
 		en->on_death_drop_item_code = -1;
 	else
-		en->on_death_drop_item_code = GetItemIndexByName(item_name);
+		en->on_death_drop_item_code = get_item_type_by_id(item_id);
 	return 0;
 }
 

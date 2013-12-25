@@ -134,37 +134,38 @@ static void print_item_info(char *str, int item_idx)
 {
 	struct itemspec *item = &ItemMap[item_idx];
 	if (item->item_gun_ammo_clip_size) { //Mostly Guns
-		sprintf(str, 	"%s (%d/%s)\n\
-			Damage: %d-%d, Recharge: %.2f, Reload: %.2f,\n\
+		sprintf(str, 	"%s (%s)\n\
+			Damage: %d-%d, Recharge: %.2f, Reload: %.2f, Ammo: (%d/%s)\n\\n\
 			STR: >%d\n%s",
-				item->item_name, item->item_gun_ammo_clip_size, ammo_desc_for_weapon(item_idx),
+				item_specs_get_name(item_idx), item->id,
 				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
 				item->item_gun_recharging_time, item->item_gun_reloading_time,
+				item->item_gun_ammo_clip_size, ammo_desc_for_weapon(item_idx),
 				item->item_require_strength,
 				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
 
 	} else if (item->slot == WEAPON_SLOT) { //Most Melee Weapons
-		sprintf(str, 	"%s\n\
+		sprintf(str, 	"%s (%s)\n\
 			Damage: %d-%d, Recharge: %.2f,\n\
 			STR: >%d, DEX: >%d, COOL: >%d\n%s",
-				item->item_name,
+				item_specs_get_name(item_idx), item->id,
 				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
 				item->item_gun_recharging_time,
 				item->item_require_strength, item->item_require_dexterity, item->item_require_cooling,
 				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
 
 	} else if (item->slot & (SHIELD_SLOT | HELM_SLOT | ARMOR_SLOT | BOOT_SLOT)) {
-		sprintf(str, 	"%s\n\
+		sprintf(str, 	"%s (%s)\n\
 			Armor: %d-%d, Durability:  %d-%d,\n\
 			STR: >%d, DEX: >%d, COOL: >%d\n",
-				item->item_name,
+				item_specs_get_name(item_idx), item->id,
 				item->base_armor_class, item->base_armor_class + item->armor_class_modifier,
 				item->base_item_durability, item->base_item_durability + item->item_durability_modifier,
 				item->item_require_strength, item->item_require_dexterity, item->item_require_cooling);
 
 	} else {
-		sprintf(str, 	"%s\n%s",
-			item->item_name, item->item_description);
+		sprintf(str, 	"%s (%s)\n%s",
+			item_specs_get_name(item_idx), item->id, item->item_description);
 	}
 }
 

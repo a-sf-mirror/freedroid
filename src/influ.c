@@ -144,7 +144,7 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 
 				// So no ammunition... We should say so and reload...
 				//
-				append_new_game_message(_("%s empty, reloading..."),ItemMap[Me.weapon_item.type].item_name);
+				append_new_game_message(_("%s empty, reloading..."), item_specs_get_name(Me.weapon_item.type));
 				TuxReloadWeapon();
 				return;
 
@@ -1493,7 +1493,7 @@ void TuxReloadWeapon()
 
 	const char *ammo_type = ammo_desc_for_weapon(Me.weapon_item.type);
 
-	int count = CountItemtypeInInventory(GetItemIndexByName(ammo_type));
+	int count = CountItemtypeInInventory(get_item_type_by_id(ammo_type));
 	if (count > ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size - Me.weapon_item.ammo_clip)
 		count = ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size - Me.weapon_item.ammo_clip;
 
@@ -1506,7 +1506,7 @@ void TuxReloadWeapon()
 	}
 	int i;
 	for (i = 0; i < count; i++)
-		DeleteOneInventoryItemsOfType(GetItemIndexByName(ammo_type));
+		DeleteOneInventoryItemsOfType(get_item_type_by_id(ammo_type));
 	Me.weapon_item.ammo_clip += count;
 	Me.busy_time = ItemMap[Me.weapon_item.type].item_gun_reloading_time;
 	Me.busy_time *= RangedRechargeMultiplierTable[Me.ranged_weapon_skill];

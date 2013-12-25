@@ -117,6 +117,7 @@ melee_bullet = {type = "NO BULLET IMAGE - melee", speed = 0.100000, lifetime = 0
 item_list{
 
 {
+	id = "The first item is VERY buggy ingame, so don't use it.",
 	name =_"The first item is VERY buggy ingame, so don't use it.",
 	slot = "none",
 	armor_class = "0:0",
@@ -135,6 +136,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Big kitchen knife",
 	name =_"Big kitchen knife",
 	slot = "weapon",
 	weapon = {
@@ -156,6 +158,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Cutlass",
 	name =_"Cutlass",
 	slot = "weapon",
 	weapon = {
@@ -178,6 +181,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Antique Greatsword",
 	name =_"Antique Greatsword",
 	slot = "weapon",
 	weapon = {
@@ -201,6 +205,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Chainsaw",
 	name =_"Chainsaw",
 	slot = "weapon",
 	weapon = {
@@ -224,6 +229,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Meat cleaver",
 	name =_"Meat cleaver",
 	slot = "weapon",
 	weapon = {
@@ -245,6 +251,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Small Axe",
 	name =_"Small Axe",
 	slot = "weapon",
 	weapon = {
@@ -267,6 +274,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Large Axe",
 	name =_"Large Axe",
 	slot = "weapon",
 	weapon = {
@@ -290,6 +298,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Hunting knife",
 	name =_"Hunting knife",
 	slot = "weapon",
 	weapon = {
@@ -311,6 +320,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Iron pipe",
 	name =_"Iron pipe",
 	slot = "weapon",
 	weapon = {
@@ -332,6 +342,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Big wrench",
 	name =_"Big wrench",
 	slot = "weapon",
 	weapon = {
@@ -353,6 +364,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Crowbar",
 	name =_"Crowbar",
 	slot = "weapon",
 	weapon = {
@@ -375,6 +387,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Power hammer",
 	name =_"Power hammer",
 	slot = "weapon",
 	weapon = {
@@ -397,6 +410,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Mace",
 	name =_"Mace",
 	slot = "weapon",
 	weapon = {
@@ -419,6 +433,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Baseball bat",
 	name =_"Baseball bat",
 	slot = "weapon",
 	weapon = {
@@ -442,6 +457,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Iron bar",
 	name =_"Iron bar",
 	slot = "weapon",
 	weapon = {
@@ -465,6 +481,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Sledgehammer",
 	name =_"Sledgehammer",
 	slot = "weapon",
 	weapon = {
@@ -488,6 +505,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Light saber",
 	name =_"Light saber",
 	slot = "weapon",
 	weapon = {
@@ -512,6 +530,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Laser staff",
 	name =_"Laser staff",
 	slot = "weapon",
 	weapon = {
@@ -535,6 +554,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Nobody's edge",
 	name =_"Nobody's edge",
 	slot = "weapon",
 	weapon = {
@@ -555,6 +575,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Laser Scalpel",
 	name =_"Laser Scalpel",
 	slot = "weapon",
 	weapon = {
@@ -575,6 +596,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Shock knife",
 	name =_"Shock knife",
 	slot = "weapon",
 	weapon = {
@@ -595,6 +617,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Energy whip",
 	name =_"Energy whip",
 	slot = "weapon",
 	weapon = {
@@ -619,6 +642,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = ".22 LR Ammunition",
 	name =_".22 LR Ammunition",
 	base_price = 4,
 	inventory = {x = 2, y = 1,stackable = true, image = "weapons/22_ammo/inv_image.png" },
@@ -629,6 +653,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = ".22 Automatic",
 	name =_".22 Automatic",
 	slot = "weapon",
 	weapon = {
@@ -651,6 +676,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = ".22 Hunting Rifle",
 	name =_".22 Hunting Rifle",
 	slot = "weapon",
 	weapon = {
@@ -674,6 +700,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Shotgun shells",
 	name =_"Shotgun shells",
 	base_price = 12,
 	inventory = {x = 2, y = 1,stackable = true, image = "weapons/shotgun_ammo/inv_image.png" },
@@ -684,6 +711,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Two Barrel sawn off shotgun",
 	name =_"Two Barrel sawn off shotgun",
 	slot = "weapon",
 	weapon = {
@@ -706,6 +734,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Two Barrel shotgun",
 	name =_"Two Barrel shotgun",
 	slot = "weapon",
 	weapon = {
@@ -729,6 +758,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Pump action shotgun",
 	name =_"Pump action shotgun",
 	slot = "weapon",
 	weapon = {
@@ -752,6 +782,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "9x19mm Ammunition",
 	name =_"9x19mm Ammunition",
 	base_price = 18,
 	inventory = {x = 2, y = 1,stackable = true, image = "weapons/9mm_ammo/inv_image.png" },
@@ -762,6 +793,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "9mm Automatic",
 	name =_"9mm Automatic",
 	slot = "weapon",
 	weapon = {
@@ -784,6 +816,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "9mm Sub Machine Gun",
 	name =_"9mm Sub Machine Gun",
 	slot = "weapon",
 	weapon = {
@@ -807,6 +840,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "7.62x39mm Ammunition",
 	name =_"7.62x39mm Ammunition",
 	base_price = 24,
 	inventory = {x = 2, y = 1,stackable = true, image = "weapons/7_62mm_ammo/inv_image.png" },
@@ -817,6 +851,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "7.62mm Hunting Rifle",
 	name =_"7.62mm Hunting Rifle",
 	slot = "weapon",
 	weapon = {
@@ -840,6 +875,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "7.62mm AK-47",
 	name =_"7.62mm AK-47",
 	slot = "weapon",
 	weapon = {
@@ -863,6 +899,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = ".50 BMG (12.7x99mm) Ammunition",
 	name =_".50 BMG (12.7x99mm) Ammunition",
 	base_price = 200,
 	inventory = {x = 1, y = 1, image = "weapons/50_bmg_ammo/inv_image.png" },
@@ -873,6 +910,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Barrett M82 Sniper Rifle",
 	name =_"Barrett M82 Sniper Rifle",
 	slot = "weapon",
 	weapon = {
@@ -897,6 +935,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Laser power pack",
 	name =_"Laser power pack",
 	base_price = 2,
 	inventory = {x = 2, y = 2,stackable = true, image = "weapons/laser_power_pack/inv_image.png" },
@@ -907,6 +946,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Laser pistol",
 	name =_"Laser pistol",
 	slot = "weapon",
 	weapon = {
@@ -929,6 +969,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Laser Rifle",
 	name =_"Laser Rifle",
 	slot = "weapon",
 	weapon = {
@@ -952,6 +993,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Laser Pulse Rifle",
 	name =_"Laser Pulse Rifle",
 	slot = "weapon",
 	weapon = {
@@ -975,6 +1017,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Laser Pulse Cannon",
 	name =_"Laser Pulse Cannon",
 	slot = "weapon",
 	weapon = {
@@ -999,6 +1042,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Plasma energy container",
 	name =_"Plasma energy container",
 	base_price = 4,
 	inventory = {x = 2, y = 2,stackable = true, image = "weapons/plasma_energy_container/inv_image.png" },
@@ -1009,6 +1053,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Plasma pistol",
 	name =_"Plasma pistol",
 	slot = "weapon",
 	weapon = {
@@ -1031,6 +1076,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Plasma gun",
 	name =_"Plasma gun",
 	slot = "weapon",
 	weapon = {
@@ -1054,6 +1100,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "2 mm Exterminator Ammunition",
 	name =_"2 mm Exterminator Ammunition",
 	base_price = 5,
 	inventory = {x = 2, y = 2,stackable = true, image = "weapons/exterminator_ammo/inv_image.png" },
@@ -1064,6 +1111,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Exterminator",
 	name =_"Exterminator",
 	slot = "weapon",
 	weapon = {
@@ -1087,6 +1135,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "The Super Exterminator!!!",
 	name =_"The Super Exterminator!!!",
 	slot = "weapon",
 	weapon = {
@@ -1110,6 +1159,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Electro Laser Rifle",
 	name =_"Electro Laser Rifle",
 	slot = "weapon",
 	weapon = {
@@ -1133,6 +1183,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "VMX Gas Grenade",
 	name =_"VMX Gas Grenade",
 	right_use = {tooltip =_"Gas attack", skill =_"Gas grenade", busy = {type = "throwing", duration = 1}},
 	base_price = 250,
@@ -1144,6 +1195,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Small EMP Shockwave Generator",
 	name =_"Small EMP Shockwave Generator",
 	right_use = {tooltip =_"Small Electromagnetic pulse", skill =_"Small EMP grenade", busy = {type = "throwing", duration = 1}},
 	base_price = 100,
@@ -1155,6 +1207,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "EMP Shockwave Generator",
 	name =_"EMP Shockwave Generator",
 	right_use = {tooltip =_"Electromagnetic pulse", skill =_"EMP grenade", busy = {type = "throwing", duration = 1}},
 	base_price = 150,
@@ -1166,6 +1219,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Electronic Noise Generator",
 	name =_"Electronic Noise Generator",
 	right_use = {tooltip =_"Disable Electronics", skill =_"Electronic Noise", busy = {type = "throwing", duration = 1}},
 	base_price = 90,
@@ -1177,6 +1231,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Small Plasma Shockwave Emitter",
 	name =_"Small Plasma Shockwave Emitter",
 	right_use = {tooltip =_"Explosion", skill =_"Small Plasma grenade", busy = {type = "throwing", duration = 1}},
 	base_price = 200,
@@ -1188,6 +1243,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Plasma Shockwave Emitter",
 	name =_"Plasma Shockwave Emitter",
 	right_use = {tooltip =_"Huge explosion", skill =_"Plasma grenade", busy = {type = "throwing", duration = 1}},
 	base_price = 250,
@@ -1205,6 +1261,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Normal Jacket",
 	name =_"Normal Jacket",
 	slot = "armour",
 	armor_class = "3:9",
@@ -1219,6 +1276,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Reinforced Jacket",
 	name =_"Reinforced Jacket",
 	slot = "armour",
 	armor_class = "9:18",
@@ -1234,6 +1292,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Protective Jacket",
 	name =_"Protective Jacket",
 	slot = "armour",
 	armor_class = "18:30",
@@ -1249,6 +1308,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Red Guard's Light Robe",
 	name =_"Red Guard's Light Robe",
 	slot = "armour",
 	armor_class = "36:42",
@@ -1264,6 +1324,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Red Guard's Heavy Robe",
 	name =_"Red Guard's Heavy Robe",
 	slot = "armour",
 	armor_class = "42:48",
@@ -1284,6 +1345,7 @@ item_list{
 
 
 {
+	id = "Improvised Buckler",
 	name =_"Improvised Buckler",
 	slot = "shield",
 	armor_class = "10:20",
@@ -1298,6 +1360,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Bot Carapace",
 	name =_"Bot Carapace",
 	slot = "shield",
 	armor_class = "15:25",
@@ -1312,6 +1375,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Standard Shield",
 	name =_"Standard Shield",
 	slot = "shield",
 	armor_class = "25:30",
@@ -1326,6 +1390,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Heavy Shield",
 	name =_"Heavy Shield",
 	slot = "shield",
 	armor_class = "25:30",
@@ -1341,6 +1406,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Riot Shield",
 	name =_"Riot Shield",
 	slot = "shield",
 	armor_class = "35:40",
@@ -1360,6 +1426,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Pot Helmet",
 	name =_"Pot Helmet",
 	slot = "special",
 	armor_class = "3:6",
@@ -1374,6 +1441,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Worker Helmet",
 	name =_"Worker Helmet",
 	slot = "special",
 	armor_class = "4:7",
@@ -1388,6 +1456,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Miner Helmet",
 	name =_"Miner Helmet",
 	slot = "special",
 	armor_class = "5:10",
@@ -1402,6 +1471,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Light Battle Helmet",
 	name =_"Light Battle Helmet",
 	slot = "special",
 	armor_class = "8:12",
@@ -1417,6 +1487,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Battle Helmet",
 	name =_"Battle Helmet",
 	slot = "special",
 	armor_class = "12:16",
@@ -1432,6 +1503,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Dixon's Helmet",
 	name =_"Dixon's Helmet",
 	slot = "special",
 	armor_class = "11",
@@ -1451,6 +1523,7 @@ item_list{
 
 
 {
+	id = "Shoes",
 	name =_"Shoes",
 	slot = "drive",
 	armor_class = "2:6",
@@ -1465,6 +1538,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Worker Shoes",
 	name =_"Worker Shoes",
 	slot = "drive",
 	armor_class = "6:10",
@@ -1479,6 +1553,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Battle Shoes",
 	name =_"Battle Shoes",
 	slot = "drive",
 	armor_class = "10:14",
@@ -1497,6 +1572,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Emergency shutdown",
 	name =_"Source Book of Emergency shutdown",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Emergency shutdown"},
 	base_price = 500,
@@ -1508,6 +1584,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Check system integrity",
 	name =_"Source Book of Check system integrity",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Check system integrity"},
 	base_price = 250,
@@ -1519,6 +1596,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Sanctuary",
 	name =_"Source Book of Sanctuary",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Sanctuary"},
 	base_price = 450,
@@ -1530,6 +1608,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Malformed packet",
 	name =_"Source Book of Malformed packet",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Malformed packet"},
 	base_price = 300,
@@ -1541,6 +1620,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Calculate Pi",
 	name =_"Source Book of Calculate Pi",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Calculate Pi"},
 	base_price = 300,
@@ -1552,6 +1632,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Blue Screen",
 	name =_"Source Book of Blue Screen",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Blue Screen"},
 	base_price = 300,
@@ -1563,6 +1644,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Broadcast Blue Screen",
 	name =_"Source Book of Broadcast Blue Screen",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Broadcast Blue Screen"},
 	base_price = 900,
@@ -1574,6 +1656,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Invisibility",
 	name =_"Source Book of Invisibility",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Invisibility"},
 	base_price = 600,
@@ -1585,6 +1668,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Virus",
 	name =_"Source Book of Virus",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Virus"},
 	base_price = 450,
@@ -1596,6 +1680,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Broadcast virus",
 	name =_"Source Book of Broadcast virus",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Broadcast virus"},
 	base_price = 1350,
@@ -1607,6 +1692,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Dispel smoke",
 	name =_"Source Book of Dispel smoke",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Dispel smoke"},
 	base_price = 600,
@@ -1618,6 +1704,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Killer poke",
 	name =_"Source Book of Killer poke",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Killer poke"},
 	base_price = 1200,
@@ -1629,6 +1716,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Repair equipment",
 	name =_"Source Book of Repair equipment",
 	right_use = {tooltip =_"Learn about repairing items", add_skill =_"Repair equipment"},
 	base_price = 1200,
@@ -1640,6 +1728,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Plasma discharge",
 	name =_"Source Book of Plasma discharge",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Plasma discharge"},
 	base_price = 600,
@@ -1651,6 +1740,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Nethack",
 	name =_"Source Book of Nethack",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Nethack"},
 	base_price = 450,
@@ -1662,6 +1752,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Ricer CFLAGS",
 	name =_"Source Book of Ricer CFLAGS",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Ricer CFLAGS"},
 	base_price = 600,
@@ -1673,6 +1764,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Reverse-engineer",
 	name =_"Source Book of Reverse-engineer",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Reverse-engineer"},
 	base_price = 450,
@@ -1684,6 +1776,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Light",
 	name =_"Source Book of Light",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Light"},
 	base_price = 450,
@@ -1695,6 +1788,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Source Book of Network Mapper",
 	name =_"Source Book of Network Mapper",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Network Mapper"},
 	base_price = 300,
@@ -1706,6 +1800,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Nuclear Science for Dummies IV",
 	name =_"Nuclear Science for Dummies IV",
 	base_price = 600,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_green.png" },
@@ -1716,6 +1811,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Manual of the Automated Factory",
 	name =_"Manual of the Automated Factory",
 	base_price = 0,
 	inventory = {x = 2, y = 2, image = "repairbook/inv_image.png" },
@@ -1730,6 +1826,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Strength Pill",
 	name =_"Strength Pill",
 	right_use = {tooltip =_"Permanently gain +1 strength", busy = {type = "drinking", duration = 1}},
 	base_price = 250,
@@ -1741,6 +1838,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Dexterity Pill",
 	name =_"Dexterity Pill",
 	right_use = {tooltip =_"Permanently gain +1 dexterity", busy = {type = "drinking", duration = 1}},
 	base_price = 250,
@@ -1752,6 +1850,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Code Pill",
 	name =_"Code Pill",
 	right_use = {tooltip =_"Permanently gain +1 cooling", busy = {type = "drinking", duration = 1}},
 	base_price = 250,
@@ -1763,6 +1862,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Brain Enlargement Pills Antidote",
 	name =_"Brain Enlargement Pills Antidote",
 	base_price = 0,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/brain_enlargement_antidode/inv_image.png" },
@@ -1773,6 +1873,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Brain Enlargement Pill",
 	name =_"Brain Enlargement Pill",
 	right_use = {tooltip =_"Gain fast acting cancer"},
 	base_price = 0,
@@ -1784,6 +1885,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Diet supplement",
 	name =_"Diet supplement",
 	right_use = {tooltip =_"Recover Health", busy = {type = "drinking", duration = 1}},
 	base_price = 20,
@@ -1795,6 +1897,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Antibiotic",
 	name =_"Antibiotic",
 	right_use = {tooltip =_"Recover Health", busy = {type = "drinking", duration = 1}},
 	base_price = 40,
@@ -1806,6 +1909,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Doc-in-a-can",
 	name =_"Doc-in-a-can",
 	right_use = {tooltip =_"Recover Health", busy = {type = "drinking", duration = 1}},
 	base_price = 60,
@@ -1817,6 +1921,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Bottled ice",
 	name =_"Bottled ice",
 	right_use = {tooltip =_"Cooling aid", busy = {type = "drinking", duration = 1}},
 	base_price = 15,
@@ -1828,6 +1933,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Industrial coolant",
 	name =_"Industrial coolant",
 	right_use = {tooltip =_"Cooling aid", busy = {type = "drinking", duration = 1}},
 	base_price = 30,
@@ -1839,6 +1945,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Liquid nitrogen",
 	name =_"Liquid nitrogen",
 	right_use = {tooltip =_"Extreme Cooling aid", busy = {type = "drinking", duration = 1}},
 	base_price = 45,
@@ -1850,6 +1957,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Barf's Energy Drink",
 	name =_"Barf's Energy Drink",
 	right_use = {tooltip =_"Cool down, cure minor wounds.", busy = {type = "drinking", duration = 1}},
 	base_price = 50,
@@ -1861,6 +1969,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Running Power Capsule",
 	name =_"Running Power Capsule",
 	right_use = {tooltip =_"Recover Running Power", busy = {type = "drinking", duration = 1}},
 	base_price = 45,
@@ -1872,6 +1981,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Strength Capsule",
 	name =_"Strength Capsule",
 	right_use = {tooltip =_"Temporary Boost to Strength", busy = {type = "drinking", duration = 1}},
 	base_price = 150,
@@ -1883,6 +1993,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Dexterity Capsule",
 	name =_"Dexterity Capsule",
 	right_use = {tooltip =_"Temporary Boost to Dexterity", busy = {type = "drinking", duration = 1}},
 	base_price = 150,
@@ -1898,6 +2009,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Valuable Circuits",
 	name =_"Valuable Circuits",
 	base_price = 1,
 	inventory = {x = 1, y = 1,stackable = true, image = "cyberbucks/inv_image.png" },
@@ -1908,6 +2020,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Anti-grav Pod for Droids",
 	name =_"Anti-grav Pod for Droids",
 	base_price = 450,
 	inventory = {x = 2, y = 2, image = "antigrav_unit/inv_image.png" },
@@ -1918,6 +2031,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Dixon's Toolbox",
 	name =_"Dixon's Toolbox",
 	base_price = 0,
 	inventory = {x = 2, y = 2, image = "dixons_toolbox/inv_image.png" },
@@ -1928,6 +2042,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Toolbox",
 	name =_"Toolbox",
 	base_price = 0,
 	inventory = {x = 2, y = 2, image = "toolbox/inv_image.png" },
@@ -1938,6 +2053,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Entropy Inverter",
 	name =_"Entropy Inverter",
 	base_price = 40,
 	inventory = {x = 1, y = 1,stackable = true, image = "entropy_inverter/inv_image.png" },
@@ -1948,6 +2064,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Plasma Transistor",
 	name =_"Plasma Transistor",
 	base_price = 40,
 	inventory = {x = 1, y = 1,stackable = true, image = "plasma_transistor/inv_image.png" },
@@ -1958,6 +2075,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Superconducting Relay Unit",
 	name =_"Superconducting Relay Unit",
 	base_price = 50,
 	inventory = {x = 1, y = 1,stackable = true, image = "superconducting_relay_unit/inv_image.png" },
@@ -1968,6 +2086,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Antimatter-Matter Converter",
 	name =_"Antimatter-Matter Converter",
 	base_price = 100,
 	inventory = {x = 1, y = 1,stackable = true, image = "antimatter_matter_converter/inv_image.png" },
@@ -1978,6 +2097,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Tachyon Condensator",
 	name =_"Tachyon Condensator",
 	base_price = 40,
 	inventory = {x = 1, y = 1,stackable = true, image = "tachyon_converter/inv_image.png" },
@@ -1988,6 +2108,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Desk Lamp",
 	name =_"Desk Lamp",
 	base_price = 32,
 	inventory = {x = 2, y = 2, image = "desk_lamp/inv_image.png" },
@@ -1998,6 +2119,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Red Dilithium Crystal",
 	name =_"Red Dilithium Crystal",
 	base_price = 0,
 	inventory = {x = 2, y = 2,stackable = true, image = "red_dilitium_crystal/inv_image.png" },
@@ -2008,6 +2130,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Map Maker",
 	name =_"Map Maker",
 	right_use = {tooltip =_"To implant the automap device"},
 	base_price = 75,
@@ -2019,6 +2142,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Light Enhancer? to be included in the future...",
 	name =_"Light Enhancer? to be included in the future...",
 	right_use = {tooltip =_"See better in the dark."},
 	base_price = 18,
@@ -2030,6 +2154,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Fork",
 	name =_"Fork",
 	slot = "weapon",
 	weapon = {
@@ -2051,6 +2176,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Plate",
 	name =_"Plate",
 	base_price = 50,
 	inventory = {x = 2, y = 2,stackable = true, image = "eating_plate/inv_image.png" },
@@ -2061,6 +2187,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Mug",
 	name =_"Mug",
 	base_price = 50,
 	inventory = {x = 1, y = 1, image = "drinking_mug/inv_image.png" },
@@ -2071,6 +2198,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Cup",
 	name =_"Cup",
 	base_price = 50,
 	inventory = {x = 1, y = 1, image = "drinking_mug_2/inv_image.png" },
@@ -2081,6 +2209,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Teleporter homing beacon",
 	name =_"Teleporter homing beacon",
 	right_use = {tooltip =_"Teleports you elsewhere", skill =_"Sanctuary"},
 	base_price = 40,
@@ -2092,6 +2221,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Data cube",
 	name =_"Data cube",
 	base_price = 40,
 	inventory = {x = 1, y = 1, image = "datacube/inv_image.png" },
@@ -2102,6 +2232,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Kevin's Data Cube",
 	name =_"Kevin's Data Cube",
 	base_price = 0,
 	inventory = {x = 2, y = 2, image = "kevins_datacube/inv_image.png" },
@@ -2112,6 +2243,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Pandora's Cube",
 	name =_"Pandora's Cube",
 	base_price = 0,
 	inventory = {x = 3, y = 3, image = "datacube/inv_image.png" },
@@ -2122,6 +2254,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Rubber duck",
 	name =_"Rubber duck",
 	base_price = 0,
 	inventory = {x = 1, y = 1, image = "rubber_duck/inv_image.png" },
@@ -2132,6 +2265,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Empty Picnic Basket",
 	name =_"Empty Picnic Basket",
 	base_price = 0,
 	inventory = {x = 4, y = 4, image = "empty_picnic_basket/inv_image.png" },
@@ -2142,6 +2276,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Lunch in a Picnic Basket",
 	name =_"Lunch in a Picnic Basket",
 	base_price = 0,
 	inventory = {x = 4, y = 4, image = "picnic_basket/inv_image.png" },
@@ -2152,6 +2287,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Gapes OTP Token",
 	name =_"Gapes OTP Token",
 	base_price = 0,
 	inventory = {x = 1, y = 1, image = "addons/tinfoil_patch/inv_image.png" },
@@ -2162,6 +2298,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "MS Stock Certificate",
 	name =_"MS Stock Certificate",
 	base_price = 0,
 	inventory = {x = 1, y = 1, image = "stock_certificate/inv_image.png" },
@@ -2172,6 +2309,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Elbow Grease Can",
 	name =_"Elbow Grease Can",
 	base_price = 0,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/blue_energy_drink/inv_image.png" },
@@ -2186,6 +2324,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Linarian power crank",
 	name =_"Linarian power crank",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/linarian_power_crank/inv_image.png" },
@@ -2196,6 +2335,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Tungsten spikes",
 	name =_"Tungsten spikes",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/tungsten_spikes/inv_image.png" },
@@ -2206,6 +2346,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Tinfoil patch",
 	name =_"Tinfoil patch",
 	base_price = 100,
 	inventory = {x = 2, y = 2,stackable = true, image = "addons/tinfoil_patch/inv_image.png" },
@@ -2216,6 +2357,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Laser sight",
 	name =_"Laser sight",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/laser_sight/inv_image.png" },
@@ -2226,6 +2368,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Exoskeletal joint",
 	name =_"Exoskeletal joint",
 	base_price = 100,
 	inventory = {x = 2, y = 2, image = "addons/exoskeletal_joint/inv_image.png" },
@@ -2236,6 +2379,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Heatsink",
 	name =_"Heatsink",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/heatsink/inv_image.png" },
@@ -2246,6 +2390,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Peltier element",
 	name =_"Peltier element",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/peltier_element/inv_image.png" },
@@ -2256,6 +2401,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Steel mesh",
 	name =_"Steel mesh",
 	base_price = 100,
 	inventory = {x = 2, y = 2,stackable = true, image = "addons/steel_mesh/inv_image.png" },
@@ -2266,6 +2412,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Shock discharger",
 	name =_"Shock discharger",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/shock_discharger/inv_image.png" },
@@ -2276,6 +2423,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Silencer",
 	name =_"Silencer",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/silencer/inv_image.png" },
@@ -2286,6 +2434,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Coprocessor",
 	name =_"Coprocessor",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/coprocessor/inv_image.png" },
@@ -2296,6 +2445,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Pedometer",
 	name =_"Pedometer",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/pedometer/inv_image.png" },
@@ -2306,6 +2456,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Foot warmers",
 	name =_"Foot warmers",
 	base_price = 100,
 	inventory = {x = 2, y = 2, image = "addons/foot_warmers/inv_image.png" },
@@ -2316,6 +2467,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Circuit jammer",
 	name =_"Circuit jammer",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/circuit_jammer/inv_image.png" },
@@ -2326,6 +2478,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Sensor disruptor",
 	name =_"Sensor disruptor",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/sensor_disruptor/inv_image.png" },
@@ -2336,6 +2489,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Headlamp",
 	name =_"Headlamp",
 	base_price = 100,
 	inventory = {x = 2, y = 1, image = "addons/headlamp/inv_image.png" },
@@ -2346,6 +2500,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Brain stimulator",
 	name =_"Brain stimulator",
 	base_price = 100,
 	inventory = {x = 2, y = 2, image = "addons/brain_stimulator/inv_image.png" },
@@ -2360,6 +2515,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "NPC Hand to hand weapon",
 	name =_"NPC Hand to hand weapon",
 	slot = "weapon",
 	weapon = {
@@ -2381,6 +2537,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 123 Weak Robotic Arm",
 	name =_"Droid 123 Weak Robotic Arm",
 	slot = "weapon",
 	weapon = {
@@ -2402,6 +2559,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 139 Plasma Trash Vaporiser",
 	name =_"Droid 139 Plasma Trash Vaporiser",
 	slot = "weapon",
 	weapon = {
@@ -2425,6 +2583,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 247 Robotic Arm",
 	name =_"Droid 247 Robotic Arm",
 	slot = "weapon",
 	weapon = {
@@ -2446,6 +2605,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 249 Pulse Laser Welder",
 	name =_"Droid 249 Pulse Laser Welder",
 	slot = "weapon",
 	weapon = {
@@ -2469,6 +2629,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 296 Plasmabeam Cutter",
 	name =_"Droid 296 Plasmabeam Cutter",
 	slot = "weapon",
 	weapon = {
@@ -2490,6 +2651,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 302 Overcharged Barcode Reader",
 	name =_"Droid 302 Overcharged Barcode Reader",
 	slot = "weapon",
 	weapon = {
@@ -2511,6 +2673,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 329 Dual Overcharged Barcode Reader",
 	name =_"Droid 329 Dual Overcharged Barcode Reader",
 	slot = "weapon",
 	weapon = {
@@ -2532,6 +2695,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 420 Laser Scalpel",
 	name =_"Droid 420 Laser Scalpel",
 	slot = "weapon",
 	weapon = {
@@ -2553,6 +2717,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 476 Small Laser",
 	name =_"Droid 476 Small Laser",
 	slot = "weapon",
 	weapon = {
@@ -2576,6 +2741,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 493 Power Hammer",
 	name =_"Droid 493 Power Hammer",
 	slot = "weapon",
 	weapon = {
@@ -2597,6 +2763,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 516 Robotic Fist",
 	name =_"Droid 516 Robotic Fist",
 	slot = "weapon",
 	weapon = {
@@ -2618,6 +2785,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 543 Tree Harvester",
 	name =_"Droid 543 Tree Harvester",
 	slot = "weapon",
 	weapon = {
@@ -2639,6 +2807,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 571 Robotic Fist",
 	name =_"Droid 571 Robotic Fist",
 	slot = "weapon",
 	weapon = {
@@ -2660,6 +2829,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 598 Robotic Fist",
 	name =_"Droid 598 Robotic Fist",
 	slot = "weapon",
 	weapon = {
@@ -2681,6 +2851,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 7xx Tux Seeking Missiles",
 	name =_"Droid 7xx Tux Seeking Missiles",
 	slot = "weapon",
 	weapon = {
@@ -2704,6 +2875,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid Advanced Twin Laser",
 	name =_"Droid Advanced Twin Laser",
 	slot = "weapon",
 	weapon = {
@@ -2728,6 +2900,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Droid 883 Exterminator",
 	name =_"Droid 883 Exterminator",
 	slot = "weapon",
 	weapon = {
@@ -2752,6 +2925,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Autogun Laser Pistol",
 	name =_"Autogun Laser Pistol",
 	slot = "weapon",
 	weapon = {
@@ -2778,6 +2952,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "PC LOAD LETTER",
 	name =_"PC LOAD LETTER",
 	base_price = 0,
 	inventory = {x = 1, y = 1, image = "stock_certificate/inv_image.png" },
@@ -2788,6 +2963,7 @@ item_list{
 ----------------------------------------------------------------------
 
 {
+	id = "Cheat Gun",
 	name =_"Cheat Gun",
 	slot = "weapon",
 	weapon = {
@@ -2816,6 +2992,7 @@ item_list{
 
 
 {
+	id = "Small Tutorial Axe",
 	name =_"Small Tutorial Axe",
 	slot = "weapon",
 	weapon = {
@@ -2839,6 +3016,7 @@ Click the red button with the cross on it when you are done.]],
 },
 
 {
+	id = "Bottled Tutorial ice",
 	name =_"Bottled Tutorial ice",
 	right_use = {tooltip =_"Cooling aid"},
 	base_price = 15,

@@ -62,7 +62,7 @@ everything that needs to be known about the add-on. The recognized fields are:
 --]]
 
 addon{
-name = _"Linarian power crank",
+name = "Linarian power crank",
 upgrade_cost = 30,
 require_socket = "mechanical",
 require_item = "melee weapon",
@@ -71,7 +71,7 @@ materials = { ["Entropy Inverter"] = 10 }
 }
 
 addon{
-name = _"Tungsten spikes",
+name = "Tungsten spikes",
 upgrade_cost = 30,
 require_socket = "mechanical",
 require_item = "melee weapon",
@@ -80,7 +80,7 @@ materials = { ["Plasma Transistor"] = 10 }
 }
 
 addon{
-name = _"Tinfoil patch",
+name = "Tinfoil patch",
 upgrade_cost = 50,
 require_socket = "mechanical",
 require_item = "armor",
@@ -89,7 +89,7 @@ materials = { ["Entropy Inverter"] = 20, ["Plasma Transistor"] = 10 }
 }
 
 addon{
-name = _"Laser sight",
+name = "Laser sight",
 upgrade_cost = 45,
 require_socket = "universal",
 require_item = "ranged weapon",
@@ -98,7 +98,7 @@ materials = { ["Antimatter-Matter Converter"] = 3, ["Plasma Transistor"] = 10 }
 }
 
 addon{
-name = _"Exoskeletal joint",
+name = "Exoskeletal joint",
 upgrade_cost = 80,
 require_socket = "universal",
 require_item = "armor",
@@ -107,7 +107,7 @@ materials = { ["Superconducting Relay Unit"] = 10, ["Entropy Inverter"] = 10 }
 }
 
 addon{
-name = _"Heatsink",
+name = "Heatsink",
 upgrade_cost = 50,
 require_socket = "mechanical",
 require_item = "armor",
@@ -116,7 +116,7 @@ materials = { ["Entropy Inverter"] = 10 }
 }
 
 addon{
-name = _"Peltier element",
+name = "Peltier element",
 upgrade_cost = 60,
 require_socket = "electric",
 require_item = "armor",
@@ -125,7 +125,7 @@ materials = { ["Tachyon Condensator"] = 15 }
 }
 
 addon{
-name = _"Steel mesh",
+name = "Steel mesh",
 upgrade_cost = 45,
 require_socket = "mechanical",
 require_item = "armor",
@@ -134,7 +134,7 @@ materials = { ["Antimatter-Matter Converter"] = 5, ["Tachyon Condensator"] = 5 }
 }
 
 addon{
-name = _"Shock discharger",
+name = "Shock discharger",
 upgrade_cost = 100,
 require_socket = "electric",
 require_item = "melee weapon",
@@ -143,7 +143,7 @@ materials = { ["Superconducting Relay Unit"] = 20, ["Tachyon Condensator"] = 5 }
 }
 
 addon{
-name = _"Silencer",
+name = "Silencer",
 upgrade_cost = 30,
 require_socket = "mechanical",
 require_item = "ranged weapon",
@@ -152,7 +152,7 @@ materials = { ["Entropy Inverter"] = 25, ["Plasma Transistor"] = 10 }
 }
 
 addon{
-name = _"Coprocessor",
+name = "Coprocessor",
 upgrade_cost = 80,
 require_socket = "electric",
 bonuses = { all_attributes = 3 },
@@ -160,7 +160,7 @@ materials = { ["Tachyon Condensator"] = 5, ["Plasma Transistor"] = 15 }
 }
 
 addon{
-name = _"Pedometer",
+name = "Pedometer",
 upgrade_cost = 40,
 require_socket = "electric",
 require_item = "boots",
@@ -169,7 +169,7 @@ materials = { ["Superconducting Relay Unit"] = 3, ["Plasma Transistor"] = 10 }
 }
 
 addon{
-name = _"Foot warmers",
+name = "Foot warmers",
 upgrade_cost = 50,
 require_socket = "electric",
 require_item = "boots",
@@ -178,7 +178,7 @@ materials = { ["Entropy Inverter"] = 20, ["Plasma Transistor"] = 5 }
 }
 
 addon{
-name = _"Circuit jammer",
+name = "Circuit jammer",
 upgrade_cost = 200,
 require_socket = "electric",
 require_item = "melee weapon",
@@ -187,7 +187,7 @@ materials = { ["Antimatter-Matter Converter"] = 8, ["Tachyon Condensator"] = 8 }
 }
 
 addon{
-name = _"Sensor disruptor",
+name = "Sensor disruptor",
 upgrade_cost = 100,
 require_socket = "universal",
 require_item = "melee weapon",
@@ -196,7 +196,7 @@ materials = { ["Antimatter-Matter Converter"] = 8, ["Superconducting Relay Unit"
 }
 
 addon{
-name = _"Headlamp",
+name = "Headlamp",
 upgrade_cost = 45,
 require_socket = "electric",
 require_item = "helmet",
@@ -205,7 +205,7 @@ materials = { ["Entropy Inverter"] = 15, ["Plasma Transistor"] = 5 }
 }
 
 addon{
-name = _"Brain stimulator",
+name = "Brain stimulator",
 upgrade_cost = 100,
 require_socket = "electric",
 require_item = "helmet",

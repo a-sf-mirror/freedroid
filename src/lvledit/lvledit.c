@@ -156,7 +156,7 @@ item *ItemDropFromLevelEditor(void)
 				previous_mouse_position_index = Number_Of_Item_Types - 1;
 			} else
 				put_string(FPS_Display_BFont, 20, 440 * GameConfig.screen_height / 480,
-					      D_(ItemMap[previous_mouse_position_index].item_name));
+					      item_specs_get_name(previous_mouse_position_index));
 		}
 
 		blit_mouse_cursor();

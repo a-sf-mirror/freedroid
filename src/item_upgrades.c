@@ -337,7 +337,7 @@ void print_addon_description(struct addon_spec *spec, struct auto_string *desc)
 	// an arbitrary type to calculate the effects of the add-on.
 	init_item(&temp_item);
 	temp_item.type = 1;
-	create_upgrade_socket(&temp_item, UPGRADE_SOCKET_TYPE_UNIVERSAL, ItemMap[spec->type].item_name);
+	create_upgrade_socket(&temp_item, UPGRADE_SOCKET_TYPE_UNIVERSAL, ItemMap[spec->type].id);
 	calculate_item_bonuses(&temp_item);
 	get_item_bonus_string(&temp_item, "\n", desc);
 	DeleteItem(&temp_item);
@@ -427,7 +427,7 @@ void calculate_item_bonuses(item *it)
 	for (i = 0; i < it->upgrade_sockets.size; i++) {
 		addon = it->upgrade_sockets.arr[i].addon;
 		if (addon) {
-			spec = get_addon_spec(GetItemIndexByName(addon));
+			spec = get_addon_spec(get_item_type_by_id(addon));
 			for (j = 0; j < spec->bonuses.size; j++) {
 				apply_addon_bonus(it, &((struct addon_bonus*) spec->bonuses.arr)[j]);
 			}

@@ -103,7 +103,7 @@ static void select_recipe(int index)
 	//clean the array
 	memset(&ui.materials_for_selected, 0, sizeof(struct material) * 5);
 	for (i = 0; i < spec->materials.size; i++) {
-		ui.materials_for_selected[i].item_type = GetItemIndexByName(materials[i].name);
+		ui.materials_for_selected[i].item_type = get_item_type_by_id(materials[i].name);
 		ui.materials_for_selected[i].required = materials[i].value;
 		ui.materials_for_selected[i].available = CountItemtypeInInventory(ui.materials_for_selected[i].item_type);
 	}
@@ -130,7 +130,7 @@ static void check_recipe_requirements()
 
 		// Check if the player has enough materials.
 		for (j = 0; j < spec->materials.size; j++) {
-			int type = GetItemIndexByName(materials[j].name);
+			int type = get_item_type_by_id(materials[j].name);
 			int count = CountItemtypeInInventory(type);
 			if (count < materials[j].value) {
 				recipes[i].available = FALSE;
@@ -153,14 +153,14 @@ static void craft_item()
 
 		// Subtract materials.
 		for (i = 0; i < spec->materials.size; i++) {
-			int type = GetItemIndexByName(materials[i].name);
+			int type = get_item_type_by_id(materials[i].name);
 			int count = materials[i].value;
 			DeleteInventoryItemsOfType(type, count);
 		}
 
 		// Create the item and add it to the inventory.
 		int type = arr[ui.selection].item_type;
-		it = create_item_with_name(ItemMap[type].item_name, TRUE, 1);
+		it = create_item_with_id(ItemMap[type].id, TRUE, 1);
 		give_item(&it);
 
 		// The player lost some materials so some of the recipes might have become
@@ -290,7 +290,7 @@ void show_addon_crafting_ui()
 			SetCurrentFont(Red_BFont);
 		}
 		int type = arr[i].item_type;
-		display_text(ItemMap[type].item_name, rect.x + rect.h, rect.y + 4, NULL);
+		display_text(item_specs_get_name(type), rect.x + rect.h, rect.y + 4, NULL);
 		struct image *img = get_item_inventory_image(type);
 		if (img) {
 			float scale = (float)(RECIPE_LIST_IMG_WIDTH + RECIPE_LIST_IMG_HEIGHT) / (img->w + img->h);

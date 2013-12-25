@@ -167,7 +167,7 @@ static int animate_autogun(level* autogun_lvl, void *scenery_piece)
 	static float BulletSpeed = 0.0;
 	
 	if (!static_initialized) {
-		weapon_item_type = GetItemIndexByName("Laser pistol");
+		weapon_item_type = get_item_type_by_id("Laser pistol");
 		bullet_image_type = ItemMap[weapon_item_type].item_gun_bullet_image_type;	// which gun do we have ? 
 		BulletSpeed = ItemMap[weapon_item_type].item_gun_speed;
 		static_initialized = TRUE;

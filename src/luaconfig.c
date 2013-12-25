@@ -465,7 +465,7 @@ static int lua_register_addon(lua_State *L)
 	// Read the item name and find the item index.
 	memset(&addonspec, 0, sizeof(struct addon_spec));
 	get_value_from_table(L, "name", STRING_TYPE, &name);
-	addonspec.type = GetItemIndexByName(name);
+	addonspec.type = get_item_type_by_id(name);
 	free(name);
 
 	// Read the simple add-on specific fields.
@@ -1033,7 +1033,8 @@ static void get_one_item(lua_State *L, void *data)
 	char *item_ammunition_type;
 
 	struct data_spec data_specs[] = {
-		{"name", 					NULL,		STRING_TYPE, &item->item_name						},
+		{"id", 						NULL,		STRING_TYPE, &item->id								},
+		{"name", 					NULL,		STRING_TYPE, &item->name							},
 		{"slot",					"none",		STRING_TYPE, &item_slot								},
 		{"weapon.damage",			NULL,		STRING_TYPE, &item_damage							},
 		{"weapon.attack_time",		"0",		FLOAT_TYPE,	 &item->item_gun_recharging_time		},
@@ -1073,8 +1074,8 @@ static void get_one_item(lua_State *L, void *data)
 
 	fill_structure_from_table(L, data_specs);
 
-	if (!item->item_name) {
-		ErrorMessage(__FUNCTION__, "No name for item. The name must be given.", PLEASE_INFORM, IS_WARNING_ONLY);
+	if (!item->id) {
+		ErrorMessage(__FUNCTION__, "No id for item. The id must be given.", PLEASE_INFORM, IS_WARNING_ONLY);
 	}
 
 	// Set the item slot

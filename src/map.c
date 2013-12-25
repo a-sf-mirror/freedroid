@@ -539,9 +539,9 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, item *Target
 {
 	init_item(TargetItem);
 
-	char *iname = ReadAndMallocStringFromData(ItemPointer, ITEM_NAME_STRING, "\"");
-	TargetItem->type = GetItemIndexByName(iname);
-	free(iname);
+	char *item_id = ReadAndMallocStringFromData(ItemPointer, ITEM_ID_STRING, "\"");
+	TargetItem->type = get_item_type_by_id(item_id);
+	free(item_id);
 
 	ReadValueFromString(ItemPointer, ITEM_POS_X_STRING, "%f", &(TargetItem->pos.x), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_POS_Y_STRING, "%f", &(TargetItem->pos.y), ItemsSectionEnd);
@@ -702,21 +702,21 @@ static char *decode_item_section(level *loadlevel, char *data)
 	// The damage will be restored later!
 	Preserved_Letter = ItemsSectionEnd[0];
 	ItemsSectionEnd[0] = 0;
-	NumberOfItemsInThisLevel = CountStringOccurences(ItemsSectionBegin, ITEM_NAME_STRING);
+	NumberOfItemsInThisLevel = CountStringOccurences(ItemsSectionBegin, ITEM_ID_STRING);
 	DebugPrintf(1, "\nNumber of items found in this level : %d.", NumberOfItemsInThisLevel);
 
 	// Now we decode all the item information
 	ItemPointer = ItemsSectionBegin;
 	char *NextItemPointer;
 	for (i = 0; i < NumberOfItemsInThisLevel; i++) {
-		if ((ItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING))) {
-			NextItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING);
+		if ((ItemPointer = strstr(ItemPointer + 1, ITEM_ID_STRING))) {
+			NextItemPointer = strstr(ItemPointer + 1, ITEM_ID_STRING);
 			if (NextItemPointer)
 				NextItemPointer[0] = 0;
 			ReadInOneItem(ItemPointer, ItemsSectionEnd, &(loadlevel->ItemList[i]));
 			loadlevel->ItemList[i].pos.z = loadlevel->levelnum;
 			if (NextItemPointer)
-				NextItemPointer[0] = ITEM_NAME_STRING[0];
+				NextItemPointer[0] = ITEM_ID_STRING[0];
 		}
 	}
 
@@ -1263,7 +1263,7 @@ static void encode_map_labels(struct auto_string *shipstr, level *lvl)
 static void WriteOutOneItem(struct auto_string *shipstr, item *ItemToWriteOut)
 {
 
-	autostr_append(shipstr, "%s%s\" %s%f %s%f ", ITEM_NAME_STRING, ItemMap[ItemToWriteOut->type].item_name,
+	autostr_append(shipstr, "%s%s\" %s%f %s%f ", ITEM_ID_STRING, ItemMap[ItemToWriteOut->type].id,
 			ITEM_POS_X_STRING, ItemToWriteOut->pos.x, ITEM_POS_Y_STRING, ItemToWriteOut->pos.y);
 
 	if (ItemToWriteOut->armor_class) {
@@ -1589,8 +1589,8 @@ int save_special_forces(const char *filename)
 			autostr_append(s_forces_str, "RushTux=%d ", en->will_rush_tux);
 
 			autostr_append(s_forces_str, "Fixed=%hi ", en->CompletelyFixed);
-			autostr_append(s_forces_str, "DropItemName=\"%s\" ",
-						(en->on_death_drop_item_code == -1) ? "none" : ItemMap[en->on_death_drop_item_code].item_name);
+			autostr_append(s_forces_str, "DropItemId=\"%s\" ",
+						(en->on_death_drop_item_code == -1) ? "none" : ItemMap[en->on_death_drop_item_code].id);
 			autostr_append(s_forces_str, "MaxDistanceToHome=%hd\n", en->max_distance_to_home);
 		}
 
@@ -1744,9 +1744,9 @@ static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_numbe
 		newen->short_description_text = ReadAndMallocStringFromData(special_droid, "ShortLabel=_\"", "\"");;
 
 		char *death_drop;
-		death_drop = ReadAndMallocStringFromData(special_droid, "DropItemName=\"", "\"");
+		death_drop = ReadAndMallocStringFromData(special_droid, "DropItemId=\"", "\"");
 		if (strcmp(death_drop, "none")) {
-			newen->on_death_drop_item_code = GetItemIndexByName(death_drop);
+			newen->on_death_drop_item_code = get_item_type_by_id(death_drop);
 		} else {
 			newen->on_death_drop_item_code = -1;
 		}

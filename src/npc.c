@@ -163,11 +163,11 @@ void npc_inventory_delete_item(struct npc *n, int index)
  * Add an item in the NPC inventory, given its name
  * Returns 0 on success.
  */
-static int add_item(struct npc *n, const char *item_name)
+static int add_item(struct npc *n, const char *item_id)
 {
 	int i;
 	int stack_item = -1;
-	int item_type = GetItemIndexByName(item_name);
+	int item_type = get_item_type_by_id(item_id);
 	int amount = 1;
 
 	// Stackable items are added in quantities larger than one. We use 50 as the value.
@@ -184,13 +184,13 @@ static int add_item(struct npc *n, const char *item_name)
 		}
 	}
 
-	DebugPrintf(DEBUG_SHOP, "adding item %s\n", item_name);
+	DebugPrintf(DEBUG_SHOP, "adding item %s\n", item_id);
 	if (stack_item != -1) {
 		((item *)(n->npc_inventory.arr))[i].multiplicity += amount;
 	} else {
 		item it;
 		init_item(&it);
-		it.type = GetItemIndexByName(item_name);
+		it.type = get_item_type_by_id(item_id);
 		FillInItemProperties(&it, TRUE, 1);
 		it.multiplicity = amount;
 		dynarray_add(&n->npc_inventory, &it, sizeof(it));
