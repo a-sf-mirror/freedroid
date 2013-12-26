@@ -1556,37 +1556,57 @@ int call_lua_func(enum lua_target target, const char *module, const char *func, 
 
 static void pretty_print_lua_error(lua_State* L, const char *code, int cur_line, const char *funcname)
 {
-	const char *error = lua_tostring(L, -1);
-	char *display_code = strdup(code);
-	const char *ptr = error;
 	int err_line = 0;
 	struct auto_string *erronous_code;
 
 	erronous_code = alloc_autostr(16);
 
-	//Find which line the error is on (if there is a line number in the error message)
-	while (*ptr != 0 && *ptr != ':') {
-		ptr++;
+	// Find which line the error is on (if there is a line number in the error message)
+	const char *error = lua_tostring(L, -1);
+	const char *error_ptr = error;
+
+	while (*error_ptr != 0 && *error_ptr != ':') {
+		error_ptr++;
 	}
-	if (*ptr != 0) {
+	if (*error_ptr != 0) {
 		// Line number found
-		ptr++;
-		err_line = strtol(ptr, NULL, 10);
+		error_ptr++;
+		err_line = strtol(error_ptr, NULL, 10);
 	}
 
-	//Break up lua code by newlines then insert line numbers & error notification
-	ptr = strtok(display_code,"\n");
+	// Break up lua code by newlines then insert line numbers & error notification.
+	// Note: strtok() can not be used to split display_code, because a sequence
+	// of two or more contiguous delimiter bytes in the parsed string is considered
+	// to be a single delimiter.
+	char *display_code = strdup(code);
+	char *ptr = display_code;
 
-	while (ptr != NULL) {
+	for (;;) {
+		int done = FALSE;
+		char *line = ptr;
+
+		if (*line == '\0')
+			break;
+
+		ptr = strchr(line, '\n');
+		if (ptr)
+			*ptr = '\0';
+		else
+			done = TRUE;
+
 		if (err_line != cur_line) {
-			autostr_append(erronous_code, "%d  %s\n", cur_line, ptr);
+			autostr_append(erronous_code, "%d  %s\n", cur_line, line);
 		} else if (term_has_color_cap) { //color highlighting for Linux/Unix terminals
-			autostr_append(erronous_code, "\033[41m>%d %s\033[0m\n", cur_line, ptr);
+			autostr_append(erronous_code, "\033[41m>%d %s\033[0m\n", cur_line, line);
 		} else {
-			autostr_append(erronous_code, ">%d %s\n", cur_line, ptr);
+			autostr_append(erronous_code, ">%d %s\n", cur_line, line);
 		}
 
-		ptr = strtok(NULL, "\n");
+		if (done)
+			break;
+
+		*ptr = '\n';
+		ptr++;
 		cur_line++;
 	}
 
@@ -1700,14 +1720,14 @@ int resume_lua_coroutine(struct lua_coroutine *coroutine)
 						buffer[nbc] = '\0';
 						ptr = buffer;
 					}
-					if (*ptr == '\n') lc++;
 					if (lc > ar.lastlinedefined) break;
-					if (lc >= ar.linedefined && lc <= ar.lastlinedefined) {
+					if (lc >= ar.linedefined) {
 						// The use of autostr_append to add a single character is
 						// not efficient, but this code is used only in case of a
 						// script error, so we do not really care of efficiency
 						autostr_append(code, "%c", *ptr);
 					}
+					if (*ptr == '\n') lc++;
 					ptr++;
 				}
 
