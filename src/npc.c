@@ -1,4 +1,4 @@
-/* 
+/*
  *
  *   Copyright (c) 2009-2010 Arthur Huillet
  *
@@ -16,8 +16,8 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  along with Freedroid; see the file COPYING. If not, write to the
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  *  MA  02111-1307  USA
  *
  */
@@ -60,7 +60,7 @@ void npc_insert(struct npc *n)
 	list_add(&n->node, &npc_head);
 }
 
-void npc_add(const char *dialog_basename) 
+void npc_add(const char *dialog_basename)
 {
 	struct npc *n = MyMalloc(sizeof(struct npc));
 
@@ -71,7 +71,7 @@ void npc_add(const char *dialog_basename)
 	dynarray_free(&n->enabled_nodes);
 
 	npc_clear_inventory(n);
-	npc_insert(n);	
+	npc_insert(n);
 }
 
 void init_npcs()
@@ -109,7 +109,7 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name, int wei
 	int i;
 	struct npc *n;
 
-	n = npc_get(dialog_basename); 
+	n = npc_get(dialog_basename);
 	for (i = 0; i < MAX_ITEMS_IN_NPC_SHOPLIST; i++) {
 		if (n->shoplist[i] == NULL)
 			break;
@@ -198,7 +198,7 @@ static int add_item(struct npc *n, const char *item_id)
 	return 0;
 }
 
-/** 
+/**
  * Pick an item at random from the NPC shoplist
  */
 static const char *npc_pick_item(struct npc *n)
@@ -220,7 +220,7 @@ static const char *npc_pick_item(struct npc *n)
 }
 
 /**
- * Refresh the inventory of an NPC so as to introduce a bit 
+ * Refresh the inventory of an NPC so as to introduce a bit
  * of variation in what NPCs sell.
  */
 static void npc_refresh_inventory(struct npc *n)

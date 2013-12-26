@@ -1,6 +1,6 @@
 /*
  *
- *   Copyright (c) 2008-2010 Arthur Huillet 
+ *   Copyright (c) 2008-2010 Arthur Huillet
  *
  *
  *  This file is part of Freedroid
@@ -16,8 +16,8 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  along with Freedroid; see the file COPYING. If not, write to the
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  *  MA  02111-1307  USA
  *
  */
@@ -97,7 +97,7 @@ static enemy *get_enemy_arg(lua_State *L, int param_number)
 /** Helper to modify the enemy state
   * with a constant set of names.
   */
-static void set_bot_state(enemy *en, const char *cmd) 
+static void set_bot_state(enemy *en, const char *cmd)
 {
 	if (!strcmp(cmd, "follow_tux")) {
 		en->follow_tux = TRUE;
@@ -140,7 +140,7 @@ static int lua_event_teleport(lua_State * L)
 static int lua_event_teleport_npc(lua_State * L)
 {
 	const char *label = luaL_checkstring(L, 1);
-	enemy *en = get_enemy_arg(L, 2); 
+	enemy *en = get_enemy_arg(L, 2);
 	gps teleport_pos = get_map_label_center(label);
 	teleport_enemy(en, teleport_pos.z, teleport_pos.x, teleport_pos.y);
 	return 0;
@@ -152,7 +152,7 @@ static int lua_event_teleport_home(lua_State * L)
 
 	return 0;
 }
- 
+
 static int lua_event_has_teleport_anchor(lua_State * L)
 {
 	if (Me.teleport_anchor.z != -1)
@@ -188,10 +188,10 @@ static int lua_event_change_obstacle(lua_State * L)
 static int lua_event_get_obstacle_type(lua_State * L)
 {
 	const char *obslabel = luaL_checkstring(L, 1);
-	
+
 	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel, NULL);
 
-	lua_pushinteger(L, our_obstacle->type);	
+	lua_pushinteger(L, our_obstacle->type);
 	return 1;
 }
 
@@ -354,7 +354,7 @@ static int lua_event_give_item(lua_State * L)
 	NewItem = create_item_with_id(itemname, TRUE, mult);
 
 	// Either we put the new item directly into inventory or we issue a warning
-	// that there is no room and then drop the item to the floor directly under 
+	// that there is no room and then drop the item to the floor directly under
 	// the current Tux position.  That can't fail, right?
 	char msg[1000];
 	if (!give_item(&NewItem)) {
@@ -392,8 +392,8 @@ static int lua_event_has_item_equipped(lua_State * L)
 {
 	const char *item_id = luaL_checkstring(L, 1);
 	int item = get_item_type_by_id(item_id);
-	if ((Me.weapon_item.type == item) || (Me.drive_item.type == item) 
-		|| (Me.armour_item.type == item) || (Me.shield_item.type == item) 
+	if ((Me.weapon_item.type == item) || (Me.drive_item.type == item)
+		|| (Me.armour_item.type == item) || (Me.shield_item.type == item)
 		|| (Me.special_item.type == item)) {
 		lua_pushboolean(L, TRUE);
 	} else {
@@ -598,7 +598,7 @@ static int lua_event_craft_addons(lua_State * L)
 
 static int lua_event_heal_npc(lua_State * L)
 {
-	enemy *en = get_enemy_arg(L, 1); 
+	enemy *en = get_enemy_arg(L, 1);
 	en->energy = Droidmap[en->type].maxenergy;
 	return 0;
 }
@@ -629,7 +629,7 @@ static int lua_event_npc_dead(lua_State *L)
 			break;
 		}
 	}
-	
+
 	lua_pushboolean(L, dead);
 	return 1;
 }
@@ -637,7 +637,7 @@ static int lua_event_npc_dead(lua_State *L)
 static int lua_event_freeze_tux_npc(lua_State * L)
 {
 	float duration = luaL_checknumber(L, 1);
-	enemy *en = get_enemy_arg(L, 2); 
+	enemy *en = get_enemy_arg(L, 2);
 	en->paralysation_duration_left = duration;
 	Me.paralyze_duration = duration;
 	return 0;
@@ -733,7 +733,7 @@ static int lua_chat_partner_started(lua_State * L)
 
 static int lua_chat_drop_dead(lua_State * L)
 {
-	enemy *en = get_enemy_arg(L, 1); 
+	enemy *en = get_enemy_arg(L, 1);
 	hit_enemy(en, en->energy + 1, 0, Droidmap[en->type].is_human - 2, 0);
 
 	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
@@ -746,7 +746,7 @@ static int lua_chat_drop_dead(lua_State * L)
 static int lua_chat_set_bot_state(lua_State * L)
 {
 	const char *cmd = luaL_checkstring(L, 1);
-	enemy *en = get_enemy_arg(L, 2); 
+	enemy *en = get_enemy_arg(L, 2);
 	set_bot_state(en, cmd);
 	return 0;
 }
@@ -770,7 +770,7 @@ static int lua_chat_broadcast_bot_state(lua_State * L)
 static int lua_set_bot_destination(lua_State * L)
 {
 	const char *label = luaL_checkstring(L, 1);
-	enemy *en = get_enemy_arg(L, 2); 
+	enemy *en = get_enemy_arg(L, 2);
 	gps dest_pos = get_map_label_center(label);
 	struct level *lvl = curShip.AllLevels[dest_pos.z];
 	int destinationwaypoint = get_waypoint(lvl, dest_pos.x, dest_pos.y);
@@ -836,7 +836,7 @@ static int lua_chat_bot_exists(lua_State *L)
 
 static int lua_chat_get_bot_type(lua_State * L)
 {
-	enemy *en = get_enemy_arg(L, 1); 
+	enemy *en = get_enemy_arg(L, 1);
 	lua_pushstring(L, Droidmap[en->type].droidname);
 	return 1;
 }
@@ -850,7 +850,7 @@ static int lua_event_bot_class(lua_State * L)
 
 static int lua_chat_get_bot_name(lua_State * L)
 {
-	enemy *en = get_enemy_arg(L, 1); 
+	enemy *en = get_enemy_arg(L, 1);
 	lua_pushstring(L, en->short_description_text);
 	return 1;
 }
@@ -858,7 +858,7 @@ static int lua_chat_get_bot_name(lua_State * L)
 static int lua_chat_set_bot_name(lua_State * L)
 {
 	const char *bot_name = luaL_checkstring(L, 1);
-	enemy *en = get_enemy_arg(L, 2); 
+	enemy *en = get_enemy_arg(L, 2);
 	free(en->short_description_text);
 	en->short_description_text = strdup(bot_name);
 	return 0;
@@ -873,7 +873,7 @@ static int lua_difficulty_level(lua_State * L)
 static int lua_set_npc_faction(lua_State *L)
 {
 	const char *fact = luaL_checkstring(L, 1);
-	enemy *en = get_enemy_arg(L, 2); 
+	enemy *en = get_enemy_arg(L, 2);
 	en->faction = get_faction_id(fact);
 	return 0;
 }
@@ -903,7 +903,7 @@ static int lua_set_faction_state(lua_State *L)
 	enum faction_state state;
 	enum faction_id fact_id = get_faction_id(fact_name);
 	enum faction_id fact2_id = get_faction_id(fact2_name);
-	
+
 	if (!strcmp(state_str, "hostile"))
 		state = HOSTILE;
 	else if (!strcmp(state_str, "friendly"))
@@ -1083,7 +1083,7 @@ static int lua_dir(lua_State *L)
 }
 
 luaL_Reg lfuncs[] = {
-	/* teleport(string map_label) 
+	/* teleport(string map_label)
 	 * Teleports the player to the given map label.
 	 */
 	{"teleport", lua_event_teleport}
@@ -1093,7 +1093,7 @@ luaL_Reg lfuncs[] = {
 	 */
 	{"teleport_npc", lua_event_teleport_npc}
 	,
-	/* teleport_home(string map_label) 
+	/* teleport_home(string map_label)
 	 * Teleports the player to the home.
 	 */
 	{"teleport_home", lua_event_teleport_home}
@@ -1201,7 +1201,7 @@ luaL_Reg lfuncs[] = {
 	,
 	{"sell_item", lua_event_sell_item}
 	,
-	/* set_death_item(string item_name [, string  npc]) 
+	/* set_death_item(string item_name [, string  npc])
 	 * changes the item dropped when the droid dies
 	*/
 	{"set_death_item", lua_set_death_item}
@@ -1238,7 +1238,7 @@ luaL_Reg lfuncs[] = {
 	,
 	{"craft_addons", lua_event_craft_addons}
 	,
-	{"get_player_name", lua_chat_player_name} 
+	{"get_player_name", lua_chat_player_name}
 	,
 	{"chat_says", lua_chat_says}
 	,
@@ -1612,7 +1612,7 @@ static void pretty_print_lua_error(lua_State* L, const char *code, int cur_line,
  * \param func   Name of the Lua function to call
  * \param insig  Signature string for the input parameters, or NULL
  * \param ...    Input parameters data
- * 
+ *
  * \return Pointer to a lua_coroutine struct holding the data needed to start (resume) the coroutine
  */
 struct lua_coroutine *prepare_lua_coroutine(enum lua_target target, const char *module, const char *func, const char *insig, ...)

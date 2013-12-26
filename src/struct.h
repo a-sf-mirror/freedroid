@@ -1,8 +1,8 @@
-/* 
+/*
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
- *   Copyright (c) 2004-2010 Arthur Huillet 
+ *   Copyright (c) 2004-2010 Arthur Huillet
  *
  *
  *  This file is part of Freedroid
@@ -18,8 +18,8 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  along with Freedroid; see the file COPYING. If not, write to the
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  *  MA  02111-1307  USA
  *
  */
@@ -254,9 +254,9 @@ typedef struct itemspec {
 	char *item_description;
 	char *item_drop_sound_file_name;
 	char *item_inv_file_name;
-	
+
 	enum slot_type slot;
-	
+
 	char *tux_part_instance;
 
 	char item_group_together_in_inventory;
@@ -266,8 +266,8 @@ typedef struct itemspec {
 	float item_gun_reloading_time;	// time needed to put a new charger
 	short item_gun_bullet_image_type;	// which type of image to use for displaying this bullet
 	float item_gun_speed;	// how fast should a bullet move straightforward?
-	int base_item_gun_damage;	//   damage done by this bullettype 
-	int item_gun_damage_modifier;	// modifier to the damage done by this bullettype 
+	int base_item_gun_damage;	//   damage done by this bullettype
+	int item_gun_damage_modifier;	// modifier to the damage done by this bullettype
 	float item_gun_bullet_lifetime;	// how long does a 'bullet' from this gun type live?
 	char item_gun_bullet_pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword)
 	short item_gun_ammo_clip_size;	//max. number of bullets in the charger
@@ -363,14 +363,14 @@ typedef struct droidspec {
 	char *droid_death_sound_file_name;
 	char *droid_attack_animation_sound_file_name;
 	int class;
-	float maxenergy;	// the maximum energy the batteries can carry 
+	float maxenergy;	// the maximum energy the batteries can carry
 
 	float healing_friendly; // the energy/second the droid heals as a friendly towards Tux
 	float healing_hostile;  // the energy/second the droid heals as a hostile towards Tux
 
 	float maxspeed;
 
-	short experience_reward;	// experience_reward for the elimination of one droid of this type 
+	short experience_reward;	// experience_reward for the elimination of one droid of this type
 
 	float aggression_distance;
 	float time_spent_eyeing_tux;
@@ -389,7 +389,7 @@ typedef struct droidspec {
 	short greeting_sound_type;	// which sample to play in order to 'greet' the influencer?
 	short to_hit;		// chance that this droid hits an unarmoured target
 	float recover_time_after_getting_hit;
-	char *notes;		// notes on the droid of this type 
+	char *notes;		// notes on the droid of this type
 	short int is_human;
 	short individual_shape_nr;
 } droidspec;
@@ -494,7 +494,7 @@ typedef struct npc {
 
 	float last_trading_date; // when did we trade with this NPC the last time?
 
-	list_head_t node; 
+	list_head_t node;
 } npc;
 
 typedef char automap_data_t[100][100];
@@ -507,12 +507,12 @@ typedef struct tux {
 	float dexterity_bonus_end_date;
 	float light_bonus_end_date;
 
-	finepoint speed;	// the current speed of the droid 
-	gps pos;		// current position in the whole ship 
+	finepoint speed;	// the current speed of the droid
+	gps pos;		// current position in the whole ship
 	gps teleport_anchor;	// where from have you last teleported home
 	gps mouse_move_target;	// where the tux is going automatically by virtue of mouse move
 
-	short int current_enemy_target_n;	//which enemy has been targeted 
+	short int current_enemy_target_n;	//which enemy has been targeted
 	uint8_t god_mode;
 	enemy *current_enemy_target_addr;	// which enemy has been targeted, address
 
@@ -523,7 +523,7 @@ typedef struct tux {
 	int map_maker_is_present;
 
 	float maxenergy;	// current top limit for the influencers energy
-	float energy;		// current energy level 
+	float energy;		// current energy level
 	float max_temperature;	// current top limit for temperature (highest is better)
 	float temperature;	// current temperature
 	float old_temperature;	// current temperature
@@ -537,12 +537,12 @@ typedef struct tux {
 
 	double busy_time;	// time remaining, until the weapon is ready to fire again...
 	int busy_type;		// reason why tux is busy (enum)
-	double phase;		// the current phase of animation 
+	double phase;		// the current phase of animation
 	float angle;
-	float walk_cycle_phase;	// 
-	float weapon_swing_time;	// How long is the current weapon swing in progress (in seconds of course) 
+	float walk_cycle_phase;	//
+	float weapon_swing_time;	// How long is the current weapon swing in progress (in seconds of course)
 	float MissionTimeElapsed;
-	float got_hit_time;	// how long stunned now since the last time tux got hit 
+	float got_hit_time;	// how long stunned now since the last time tux got hit
 
 	string savegame_version_string;	// a string to identify games from older FreedroidRPG versions
 
@@ -564,8 +564,8 @@ typedef struct tux {
 	int paralyzing_melee_targets;	// duration for how long hit enemies are paralyzed
 	float experience_factor; // multiplier for the experience gained from bots
 
-	unsigned int Experience;	
-	int exp_level;			
+	unsigned int Experience;
+	int exp_level;
 
 	unsigned int Gold;
 	string character_name;
@@ -637,7 +637,7 @@ typedef struct tux {
 typedef struct bulletspec {
 	char *name;		// what is the name of this bullet type
 	char *sound;		// what sound to play
-	int phases;		// how many phases in motion to show 
+	int phases;		// how many phases in motion to show
 	double phase_changes_per_second;	// how many different phases to display every second
 	int blast_type;
 	struct image image[BULLET_DIRECTIONS][MAX_PHASES_IN_A_BULLET];
@@ -671,7 +671,7 @@ typedef struct melee_shot	// this is a melee shot
 {
 	uint8_t attack_target_type;	//type of attack
 	uint8_t mine;		//is it mine?
-	short int bot_target_n;	//which enemy has been targeted 
+	short int bot_target_n;	//which enemy has been targeted
 	enemy *bot_target_addr;	// which enemy has been targeted, address
 	short int to_hit;	//chance to hit, percent
 	short int damage;
@@ -805,7 +805,7 @@ struct obstacle_graphics {
 typedef struct obstacle_spec {
 	char *name;
 
-	char *label; 
+	char *label;
 
 	//--------------------
 	// Some obstacles will block the Tux from walking through them.
@@ -908,7 +908,7 @@ typedef struct screen_resolution {
 
 /*
  * [way|location]_free_of_droids's execution context
- * 
+ *
  * Note : '2' excepted bots are needed when the pathfinder is called
  *         to let a bot reach an other one (used during attack, for example).
  */

@@ -1,4 +1,4 @@
-/* 
+/*
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
@@ -18,8 +18,8 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  along with Freedroid; see the file COPYING. If not, write to the
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  *  MA  02111-1307  USA
  *
  */
@@ -720,7 +720,7 @@ end_current_dialog:
 }
 
 /**
- * This is more or less the 'main' function of the chat with friendly 
+ * This is more or less the 'main' function of the chat with friendly
  * droids and characters.  It is invoked directly from the user interface
  * function as soon as the player requests communication or there is a
  * friendly bot who rushes Tux and opens talk.
@@ -755,14 +755,14 @@ int chat_with_droid(struct enemy *partner)
 }
 
 /**
- * Validate dialogs syntax and Lua code 
- * This validator loads all known dialogs, checking them for syntax. 
+ * Validate dialogs syntax and Lua code
+ * This validator loads all known dialogs, checking them for syntax.
  * It tries to compile each Lua code snippet in the dialogs, checking them for syntax as well.
  * It then proceeds to executing each Lua code snippet, which makes it possible to check for some errors
- * such as typos in function calls (calls to non existing functions). However, this runtime check does not cover 100% of 
+ * such as typos in function calls (calls to non existing functions). However, this runtime check does not cover 100% of
  * the Lua code because of branches (when it encounters a if, it will not test both the "then" and "else" branches).
  *
- * As a result, the fact that the validator finds no error does not imply there are no errors in dialogs. 
+ * As a result, the fact that the validator finds no error does not imply there are no errors in dialogs.
  * Syntax is checked fully, but runtime validation cannot check all of the code.
  */
 int validate_dialogs()
@@ -813,7 +813,7 @@ int validate_dialogs()
 	/* takeover requires user input - hardcode it to win */
 	run_lua(LUA_DIALOG, "function takeover(a)\nreturn true\nend\n");
 
-	/* push_topic() and pop_topic() cannot be tested because the validator doesn't follow 
+	/* push_topic() and pop_topic() cannot be tested because the validator doesn't follow
 	 the logical order of nodes */
 	run_lua(LUA_DIALOG, "function topic(a)\nend\n");
 	run_lua(LUA_DIALOG, "function pop_topic(a)\nend\n");
