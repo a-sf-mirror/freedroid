@@ -671,74 +671,6 @@ static int lua_chat_says(lua_State * L)
 	return lua_yield(L, 0);
 }
 
-#ifndef WITH_NEW_DIALOG
-static int lua_chat_push_topic(lua_State * L)
-{
-	const char *topic = luaL_checkstring(L, 1);
-
-	chat_push_topic(topic);
-
-	return 0;
-}
-
-static int lua_chat_pop_topic(lua_State * L)
-{
-	chat_pop_topic();
-
-	return 0;
-}
-
-static void fake_npc_dispose(struct chat_context *chat_context)
-{
-	free(chat_context->npc);
-}
-
-static int lua_chat_call_subdialog(lua_State * L)
-{
-	struct chat_context *current_chat_context, *new_chat_context;
-	struct enemy *partner;
-	struct npc *fake_npc;
-	const char *dialog_name;
-	int i;
-
-	// A subdialog uses the same partner and npc than its caller dialog.
-	// The caller dialog is the one on top of the chat_context stack.
-	// However, the dialog flags (defining which dialog nodes are showed) of
-	// the current npc cannot be used and more importantly they must not be
-	// changed during the subdialog.
-	// We thus create a fake npc which is a copy of the current npc, but with
-	// reinitialized dialog flags. It also means that those dialog flags will
-	// not be saved.
-
-	current_chat_context = chat_get_current_context();
-	partner = current_chat_context->partner;
-
-	fake_npc = (struct npc *)MyMalloc(sizeof(struct npc));
-	memcpy(fake_npc, current_chat_context->npc, sizeof(struct npc));
-	for (i = 0; i<MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-		fake_npc->chat_flags[i] = 0;
-	}
-	fake_npc->chat_character_initialized = TRUE; // no init script in a subdialog
-
-	dialog_name = luaL_checkstring(L, 1);
-
-	new_chat_context = chat_create_context(partner, fake_npc, dialog_name);
-
-	// Specific setting for subdialog :
-	//  - do not reset the chat log window
-	//  - delete the fake npc when the subdialog ends
-
-	new_chat_context->display_log_markers = FALSE;
-	new_chat_context->on_delete = fake_npc_dispose;
-
-	// Push the chat context and yield the current dialog script, to let the
-	// chat engine run the subdialog.
-
-	chat_push_context(new_chat_context);
-	return lua_yield(L, 0); // lua_yield must be called in a return statement
-}
-#endif
-
 static int lua_start_chat(lua_State * L)
 {
 	int called_from_dialog;
@@ -785,23 +717,6 @@ static int lua_start_chat(lua_State * L)
 	return 0;
 }
 
-#ifndef WITH_NEW_DIALOG
-static int lua_chat_set_next_node(lua_State * L)
-{
-	int nodenb = luaL_checkint(L, 1);
-
-	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
-
-	if (!current_chat_context->dialog_options[nodenb].exists) {
-		ErrorMessage(__FUNCTION__, "A dialog tried to run node %d that does not exist.\n", PLEASE_INFORM, IS_WARNING_ONLY, nodenb);
-		return 0;
-	}
-	current_chat_context->current_option = nodenb;
-
-	return 0;
-}
-#endif
-
 static int lua_chat_end_dialog(lua_State * L)
 {
 	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
@@ -815,37 +730,6 @@ static int lua_chat_partner_started(lua_State * L)
 	lua_pushboolean(L, current_chat_context->partner_started);
 	return 1;
 }
-
-#ifndef WITH_NEW_DIALOG
-static int __lua_chat_toggle_node(lua_State * L, int value)
-{
-	int i = 1, flag;
-
-	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
-
-	while ((flag = luaL_optinteger(L, i, -1)) != -1) {
-		i++;
-		// for each optional node
-		if (!current_chat_context->dialog_options[flag].exists) {
-			ErrorMessage(__FUNCTION__, "A dialog tried to %s chat node %d that does not exist.\n", PLEASE_INFORM,
-				     IS_WARNING_ONLY, value == 1 ? "enable" : "disable", flag);
-			continue;
-		}
-		current_chat_context->npc->chat_flags[flag] = value;
-	}
-	return 0;
-}
-
-static int lua_chat_enable_node(lua_State * L)
-{
-	return __lua_chat_toggle_node(L, 1);
-}
-
-static int lua_chat_disable_node(lua_State * L)
-{
-	return __lua_chat_toggle_node(L, 0);
-}
-#endif
 
 static int lua_chat_drop_dead(lua_State * L)
 {
@@ -1358,20 +1242,8 @@ luaL_Reg lfuncs[] = {
 	,
 	{"chat_says", lua_chat_says}
 	,
-#ifndef WITH_NEW_DIALOG
-	{"topic", lua_chat_push_topic}
-	,
-	{"pop_topic", lua_chat_pop_topic}
-	,
-	{"call_subdialog", lua_chat_call_subdialog}
-	,
-#endif
 	{"start_chat", lua_start_chat}
 	,
-#ifndef WITH_NEW_DIALOG
-	{"next", lua_chat_set_next_node}
-	,
-#endif
 	{"end_dialog", lua_chat_end_dialog}
 	,
 	/* NOTE:  if (partner_started())  will always be true
@@ -1379,12 +1251,6 @@ luaL_Reg lfuncs[] = {
 	 */
 	{"partner_started", lua_chat_partner_started}
 	,
-#ifndef WITH_NEW_DIALOG
-	{"show", lua_chat_enable_node}
-	,
-	{"hide", lua_chat_disable_node}
-	,
-#endif
 	{"drop_dead", lua_chat_drop_dead}
 	,
 	{"bot_exists", lua_chat_bot_exists}
@@ -1962,19 +1828,15 @@ void reset_lua_state(void)
 		lua_setglobal(dialog_lua_state, lfuncs[i].name);
 	}
 
-#ifdef WITH_NEW_DIALOG
 	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDutils");
-#endif
 
 	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
 		run_lua_file(LUA_DIALOG, fpath);
 	}
 
-#ifdef WITH_NEW_DIALOG
 	// Load and initialize lua part of the dialog engine
 	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDdialog");
 	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "s", NULL, DIALOG_DIR);
-#endif
 }
 
 /**

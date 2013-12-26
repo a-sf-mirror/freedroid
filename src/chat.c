@@ -42,11 +42,6 @@
 
 #include "widgets/widgets.h"
 
-#ifndef WITH_NEW_DIALOG
-/* Some forward declarations */
-static void load_dialog(const char *, struct chat_context *);
-#endif
-
 /* Stack of chat contexts. The current context is at the top of the stack */
 static struct list_head chat_context_stack = LIST_HEAD_INIT(chat_context_stack);
 static int chat_context_stack_size = 0;
@@ -112,13 +107,11 @@ int chat_push_context(struct chat_context *chat_context)
 	list_add(&chat_context->stack_node, &chat_context_stack);
 	chat_context_stack_size++;
 
-#ifdef WITH_NEW_DIALOG
 	if (!call_lua_func(LUA_DIALOG, "FDdialog", "push_dialog", "sS", NULL, chat_context->npc->dialog_basename, &chat_context->npc->enabled_nodes)) {
 		list_del(chat_context_stack.next);
 		chat_context_stack_size--;
 		return FALSE;
 	}
-#endif
 
 	return TRUE;
 }
@@ -133,7 +126,6 @@ static void chat_pop_context()
 {
 	struct chat_context *top_chat_context = chat_get_current_context();
 	if (top_chat_context) {
-#ifdef WITH_NEW_DIALOG
 		// clear the enabled_nodes dynarray, before to fill it with new values
 		int i;
 		for (i = 0; i < top_chat_context->npc->enabled_nodes.size; i++) {
@@ -146,41 +138,13 @@ static void chat_pop_context()
 		// Tell lua dialog engine to pop the current dialog, and get the currently enabled
 		// nodes (so that they will be saved along with the npc data)
 		call_lua_func(LUA_DIALOG, "FDdialog", "pop_dialog", NULL, "S", &top_chat_context->npc->enabled_nodes);
-#endif
+
 		// remove the dialog from the chat context stack
 		list_del(chat_context_stack.next);
 		chat_delete_context(top_chat_context);
 		chat_context_stack_size--;
 	}
 }
-
-#ifndef WITH_NEW_DIALOG
-/**
- * Initialize a dialog option to "empty" default values.
- *
- * @param d Pointer to the struct dialogue_option to initialize.
- */
-static void init_dialog_option(dialogue_option *d)
-{
-	d->topic = NULL;
-	d->option_text = NULL;
-	d->no_text = 0;
-	d->lua_code = NULL;
-	d->exists = 0;
-}
-
-/**
- * Free the memory used by a dialogue_option.
- *
- * @param d Pointer to the struct dialogue_option to free.
- */
-static void delete_dialog_option(dialogue_option *d)
-{
-	free(d->topic);
-	free(d->option_text);
-	free(d->lua_code);
-}
-#endif
 
 /**
  * Create a chat context and initialize it.
@@ -201,27 +165,6 @@ struct chat_context *chat_create_context(enemy *partner, struct npc *npc, const 
 	new_chat_context->npc = npc;
 	new_chat_context->partner_started = partner->will_rush_tux;
 
-#ifndef WITH_NEW_DIALOG
-	int i;
-	char dialog_filename[1024];
-	char fpath[2048];
-
-	new_chat_context->display_log_markers = TRUE;
-
-	// topic_stack[0] is never replaced, so a static allocation is enough.
-	new_chat_context->topic_stack[0] = "";
-
-	// Load dialog
-	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-		init_dialog_option(&new_chat_context->dialog_options[i]);
-	}
-
-	strcpy(dialog_filename, dialog_name);
-	strncat(dialog_filename, ".dialog", 7);
-	find_file(dialog_filename, DIALOG_DIR, fpath, 0);
-	load_dialog(fpath, new_chat_context);
-#endif
-
 	// The first time a dialog is open, the init script has to be run first.
 	// The next times the dialog is open, directly run the startup script.
 	new_chat_context->state = LOAD_INIT_SCRIPT;
@@ -229,15 +172,6 @@ struct chat_context *chat_create_context(enemy *partner, struct npc *npc, const 
 		new_chat_context->state = LOAD_STARTUP_SCRIPT;
 	}
 
-#ifndef WITH_NEW_DIALOG
-	// Ensure the initialization of the option flags on the first run of
-	// the dialog.
-	if (!npc->chat_character_initialized) {
-		for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-			new_chat_context->npc->chat_flags[i] = 0;
-		}
-	}
-#endif
 	// No dialog option currently selected by the user
 	new_chat_context->current_option = -1;
 
@@ -251,154 +185,8 @@ struct chat_context *chat_create_context(enemy *partner, struct npc *npc, const 
  */
 void chat_delete_context(struct chat_context *chat_context)
 {
-#ifndef WITH_NEW_DIALOG
-	int i;
-
-	free(chat_context->initialization_code);
-	free(chat_context->startup_code);
-
-	// topic_stack[0] is not dynamically allocated, so there is no need to free it.
-	for (i = chat_context->topic_stack_slot; i > 0; i--)
-		free(chat_context->topic_stack[chat_context->topic_stack_slot]);
-
-	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-		delete_dialog_option(&chat_context->dialog_options[i]);
-	}
-
-	if (chat_context->on_delete) {
-		chat_context->on_delete(chat_context);
-	}
-#endif
-
 	free(chat_context);
 }
-
-#ifndef WITH_NEW_DIALOG
-/**
- * \brief Push a new topic in the topic stack.
- * \param topic The topic name.
- */
-void chat_push_topic(const char *topic)
-{
-	struct chat_context *current_chat_context = chat_get_current_context();
-
-	if (current_chat_context->topic_stack_slot < CHAT_TOPIC_STACK_SIZE - 1) {
-		current_chat_context->topic_stack[++current_chat_context->topic_stack_slot] = strdup(topic);
-	} else {
-		ErrorMessage(__FUNCTION__,
-			     "The maximum depth of %d topics has been maxed out.",
-			     PLEASE_INFORM, IS_WARNING_ONLY, CHAT_TOPIC_STACK_SIZE);
-	}
-}
-
-/**
- * \brief Pop the top topic in the topic stack.
- */
-void chat_pop_topic()
-{
-	struct chat_context *current_chat_context = chat_get_current_context();
-
-	if (current_chat_context->topic_stack_slot > 0) {
-		free(current_chat_context->topic_stack[current_chat_context->topic_stack_slot]);
-		current_chat_context->topic_stack[current_chat_context->topic_stack_slot] = NULL;
-		current_chat_context->topic_stack_slot--;
-	} else {
-		ErrorMessage(__FUNCTION__,
-			     "Root topic can't be popped.",
-			     PLEASE_INFORM, IS_WARNING_ONLY);
-	}
-}
-#endif
-
-#ifndef WITH_NEW_DIALOG
-/**
- * This function should load new chat dialogue information from the
- * chat info file into the chat roster.
- *
- */
-static void load_dialog(const char *fpath, struct chat_context *context)
-{
-	char *ChatData;
-	char *SectionPointer;
-	char *EndOfSectionPointer;
-	int i;
-	int OptionIndex;
-	int NumberOfOptionsInSection;
-	char *text;
-
-#define CHAT_CHARACTER_BEGIN_STRING "Beginning of new chat dialog for character=\""
-#define CHAT_CHARACTER_END_STRING "End of chat dialog for character"
-#define NEW_OPTION_BEGIN_STRING "\nNr="
-#define NO_TEXT_OPTION_STRING "NO_TEXT"
-
-	// Read the whole chat file information into memory
-	ChatData = ReadAndMallocAndTerminateFile(fpath, CHAT_CHARACTER_END_STRING);
-	SectionPointer = ChatData;
-
-	// Read the initialization code
-	//
-	context->initialization_code = ReadAndMallocStringFromDataOptional(SectionPointer, "<FirstTime LuaCode>", "</LuaCode>");
-	context->startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "<EveryTime LuaCode>", "</LuaCode>");
-
-	// At first we go take a look on how many options we have
-	// to decode from this section.
-	//
-	NumberOfOptionsInSection = CountStringOccurences(SectionPointer, NEW_OPTION_BEGIN_STRING);
-
-	// Now we see which option index is assigned to this option.
-	// It may happen, that some numbers are OMITTED here!  This
-	// should be perfectly ok and allowed as far as the code is
-	// concerned in order to give the content writers more freedom.
-	//
-	for (i = 0; i < NumberOfOptionsInSection; i++) {
-		SectionPointer = LocateStringInData(SectionPointer, NEW_OPTION_BEGIN_STRING);
-		ReadValueFromString(SectionPointer, NEW_OPTION_BEGIN_STRING, "%d",
-				    &OptionIndex, SectionPointer + strlen(NEW_OPTION_BEGIN_STRING) + 50);
-
-		SectionPointer++;
-
-		// Find the end of this dialog option
-		EndOfSectionPointer = strstr(SectionPointer, NEW_OPTION_BEGIN_STRING);
-
-		if (EndOfSectionPointer) {	//then we are not the last option
-			*EndOfSectionPointer = 0;
-		}
-		// Anything that is loaded into the chat roster doesn't need to be freed,
-		// cause this will be done by the next 'InitChatRoster' function anyway.
-		//
-		text = ReadAndMallocStringFromDataOptional(SectionPointer, "Text=\"", "\"");
-		if (!text) {
-			text = ReadAndMallocStringFromData(SectionPointer, "Text=_\"", "\"");
-		}
-		context->dialog_options[OptionIndex].option_text = L_(text);
-
-		text = ReadAndMallocStringFromDataOptional(SectionPointer, "Topic=\"", "\"");
-		if (text) {
-			context->dialog_options[OptionIndex].topic = text;
-		} else {
-			// topic content has to be malloc'd.
-			context->dialog_options[OptionIndex].topic = strdup("");
-		}
-
-		context->dialog_options[OptionIndex].no_text = strstr(SectionPointer, NO_TEXT_OPTION_STRING) > 0;
-
-		context->dialog_options[OptionIndex].lua_code = ReadAndMallocStringFromDataOptional(SectionPointer, "<LuaCode>", "</LuaCode>");
-
-		context->dialog_options[OptionIndex].exists = 1;
-
-		if (EndOfSectionPointer)
-			*EndOfSectionPointer = NEW_OPTION_BEGIN_STRING[0];
-	}
-
-	// Now we've got all the information we wanted from the dialogues file.
-	// We can now free the loaded file again.  Upon a new character dialogue
-	// being initiated, we'll just reload the file.  This is very convenient,
-	// for it allows making and testing changes to the dialogues without even
-	// having to restart FreedroidRPG!  Very cool!
-	//
-	free(ChatData);
-}
-#endif
 
 /**
  * Fill the chat selector widget with the currently selected options
@@ -410,15 +198,6 @@ static void fill_chat_selector(struct chat_context *context)
 
 	widget_text_list_init(chat_selector, empty_entries, NULL);
 
-#ifndef WITH_NEW_DIALOG
-	char *topic = context->topic_stack[context->topic_stack_slot];
-	// We filter out those answering options that are allowed by the flag mask
-	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-		if (context->npc->chat_flags[i] && !(strcmp(topic, context->dialog_options[i].topic))) {
-			widget_text_list_add(chat_selector, context->dialog_options[i].option_text, i);
-		}
-	}
-#else
 	// Call FDdialog.get_options() to get the list of option texts to display.
 	// Note: call_lua_func() can not be used here, because extracting data from a
 	// returned table is not yet implemented.
@@ -453,7 +232,6 @@ static void fill_chat_selector(struct chat_context *context)
 	}
 
 	lua_pop(L, 1);
-#endif
 }
 
 /**
@@ -730,25 +508,6 @@ void chat_add_response(const char *response)
 	chat_log->scroll_offset = 0;
 }
 
-#ifndef WITH_NEW_DIALOG
-/**
- * Process the chat option selected by the user.
- *
- * Echo the option text of the chosen option, unless NO_TEXT is set.
- */
-static void process_chat_option(struct chat_context *context)
-{
-	int current_selection = context->current_option;
-
-	// Echo option text
-	if (!context->dialog_options[current_selection].no_text) {
-		chat_add_response("\1- ");
-		chat_add_response(L_(context->dialog_options[current_selection].option_text));
-		chat_add_response("\n");
-	}
-}
-#endif
-
 /**
  * Run the dialog defined by the chat contest on top of the stack.
  *
@@ -760,12 +519,6 @@ static void process_chat_option(struct chat_context *context)
 void chat_run()
 {
 	 char *empty_entries[] = { NULL };
-
-#ifndef WITH_NEW_DIALOG
-#define LOAD_LUA_SCRIPT(script) \
-	    if (script && strlen(script)) \
-		current_chat_context->script_coroutine = load_lua_coroutine(LUA_DIALOG, (script))
-#endif
 
 	struct chat_context *current_chat_context = NULL;
 	struct widget *chat_ui = WIDGET(chat_menu);
@@ -879,29 +632,17 @@ void chat_run()
 			switch (current_chat_context->state) {
 				case LOAD_INIT_SCRIPT:
 				{
-#ifndef WITH_NEW_DIALOG
-					if (current_chat_context->display_log_markers)
-						widget_text_init(chat_log, _("[n]--- Start of Dialog ---\n"));
-					LOAD_LUA_SCRIPT(current_chat_context->initialization_code);
-#else
 					widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
 					current_chat_context->script_coroutine = prepare_lua_coroutine(LUA_DIALOG, "FDdialog", "run_init", NULL);
-#endif
 					// next step
 					current_chat_context->state = RUN_INIT_SCRIPT;
 					break;
 				}
 				case LOAD_STARTUP_SCRIPT:
 				{
-#ifndef WITH_NEW_DIALOG
-					if (current_chat_context->display_log_markers && current_chat_context->npc->chat_character_initialized)
-						widget_text_init(chat_log, _("[n]--- Start of Dialog ---\n"));
-					LOAD_LUA_SCRIPT(current_chat_context->startup_code);
-#else
 					if (current_chat_context->npc->chat_character_initialized)
 						widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
 					current_chat_context->script_coroutine = prepare_lua_coroutine(LUA_DIALOG, "FDdialog", "run_startup", NULL);
-#endif
 					// next step
 					current_chat_context->state = RUN_STARTUP_SCRIPT;
 					break;
@@ -913,12 +654,7 @@ void chat_run()
 					// Also, reset chat control variables, so the user will have to
 					// select a new option, unless the lua code ends the dialog
 					// or auto-activates an other option.
-#ifndef WITH_NEW_DIALOG
-					process_chat_option(current_chat_context);
-					LOAD_LUA_SCRIPT(current_chat_context->dialog_options[current_chat_context->current_option].lua_code);
-#else
 					current_chat_context->script_coroutine = prepare_lua_coroutine(LUA_DIALOG, "FDdialog", "run_node", "d", current_chat_context->current_option);
-#endif
 					current_chat_context->end_dialog = 0;
 					current_chat_context->current_option = -1;
 					// next step
@@ -981,10 +717,6 @@ end_current_dialog:
 
 	// Close chat screen
 	chat_ui->enabled = FALSE;
-
-#ifndef WITH_NEW_DIALOG
-#undef LOAD_LUA_SCRIPT
-#endif
 }
 
 /**
@@ -1096,40 +828,6 @@ int validate_dialogs()
 
 		struct chat_context *dummy_context = chat_create_context(dummy_partner, n, n->dialog_basename);
 
-#ifndef WITH_NEW_DIALOG
-		dummy_context->display_log_markers = FALSE;
-
-		chat_push_context(dummy_context);
-
-		if (dummy_context->initialization_code && strlen(dummy_context->initialization_code)) {
-			printf("\tFirstTime code\n");
-			run_lua(LUA_DIALOG, dummy_context->initialization_code);
-		}
-
-		if (dummy_context->startup_code && strlen(dummy_context->startup_code)) {
-			printf("\tEveryTime code\n");
-			run_lua(LUA_DIALOG, dummy_context->startup_code);
-		}
-
-		int j, k = 0;
-		for (j = 0; j < MAX_DIALOGUE_OPTIONS_IN_ROSTER; j++) {
-			if (dummy_context->dialog_options[j].lua_code && strlen(dummy_context->dialog_options[j].lua_code)) {
-				if (!(k%6)) {
-					printf("\n");
-				} else {
-					printf("\t");
-				}
-				printf("|node %2d|", j);
-
-				run_lua(LUA_DIALOG, dummy_context->dialog_options[j].lua_code);
-				k++;
-			}
-		}
-
-		printf("\n... dialog OK\n\n");
-
-		chat_pop_context();
-#else
 		// We want the dialog validator to catch all errors. It thus has to call
 		// push_dialog() itself. As a consequence, so we can not use chat_push_context().
 		check_chat_context_stack_size();
@@ -1155,7 +853,6 @@ int validate_dialogs()
 		chat_context_stack_size--;
 
 		printf("\n");
-#endif
 	}
 
 	/* Re-enable sound as needed. */

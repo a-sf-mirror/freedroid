@@ -86,7 +86,6 @@ AC_ARG_ENABLE(sanitize-address,  [  --enable-sanitize-address   Compile with -fs
 AC_ARG_WITH(extra-warnings,      [  --with-extra-warnings       Generate more warning messages when compiling [[default=no]]], more_warn="$withval", more_warn=no)
 AC_ARG_ENABLE(backtrace,         [  --disable-backtrace         Disable the use of backtrace() to generate nice bug reports [[default=enabled]]], want_backtrace="$enableval", want_backtrace=yes)
 AC_ARG_WITH(embedded-lua,        [  --with-embedded-lua         Uses the Lua libraries bundled with FreedroidRPG instead of system libraries [[default=system lua]]], embedded_lua="$withval", embedded_lua=no)
-AC_ARG_WITH(new-dialog,          [  --with-new-dialog           Uses the new dialog engine [[default=no]]], new_dialog="$withval", new_dialog=no)
 
 if test x$arch_native = xyes; then
 	CFLAGS="$CFLAGS -O3 -march=native -mtune=native"
@@ -119,10 +118,6 @@ if test x$embedded_lua = xno; then
 		CFLAGS="$CFLAGS $LUA_CFLAGS"
 		LIBS="$LIBS $LUA_LIBS"
 	fi
-fi
-
-if test x$new_dialog = xyes; then
-	CFLAGS="$CFLAGS -DWITH_NEW_DIALOG"
 fi
 
 dnl Check for SDL

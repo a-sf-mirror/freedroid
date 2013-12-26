@@ -1176,8 +1176,6 @@ void write_npc(struct auto_string *strout, npc *data)
     write_string(strout, &data->dialog_basename);
     autostr_append(strout, ",\n" "chat_character_initialized = ");
     write_uint8_t(strout, &data->chat_character_initialized);
-    autostr_append(strout, ",\n" "chat_flags = ");
-    write_uint8_t_array(strout, data->chat_flags, MAX_DIALOGUE_OPTIONS_IN_ROSTER);
     autostr_append(strout, ",\n" "enabled_nodes = ");
     write_string_dynarray(strout, &data->enabled_nodes);
     autostr_append(strout, ",\n" "shoplist = ");
@@ -1201,10 +1199,6 @@ void read_npc(lua_State* L, int index, npc *data)
     }
     if (lua_getfield_or_warn(L, index, "chat_character_initialized")) {
         read_uint8_t(L, -1, &data->chat_character_initialized);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "chat_flags")) {
-        read_uint8_t_array(L, -1, data->chat_flags, MAX_DIALOGUE_OPTIONS_IN_ROSTER);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "enabled_nodes")) {
