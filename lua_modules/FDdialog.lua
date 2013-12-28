@@ -447,7 +447,9 @@ function FDdialog.run_init()
 	if (not node) then
 		return
 	end
+	tux = FDrpg.get_tux()
 	node:code(current_dialog)
+	tux = nil
 	return current_dialog.next_node and FDdialog.run_node(current_dialog.next_node)
 end
 
@@ -464,7 +466,9 @@ function FDdialog.run_startup()
 	if (not node) then
 		return
 	end
+	tux = FDrpg.get_tux()
 	node:code(current_dialog)
+	tux = nil
 	return current_dialog.next_node and FDdialog.run_node(current_dialog.next_node)
 end
 
@@ -483,10 +487,12 @@ function FDdialog.run_node(node_idx)
 	if (not node) then
 		return
 	end
+	tux = FDrpg.get_tux()
 	if (node.enabled and node.echo_text) then
-		tux_says(node:get_text(), "NO_WAIT")
+		tux:says(node:get_text(), "NO_WAIT")
 	end
 	node:code(current_dialog)
+	tux = nil
 	return current_dialog.next_node and FDdialog.run_node(current_dialog.next_node)
 end
 
