@@ -35,10 +35,14 @@
 #include "lauxlib.h"
 #include "lualib.h"
 
+extern int FDtux_init(lua_State *);
+extern int FDtux_get_instance(lua_State *);
+
 /**
  * List of binding initializers (functions creating class-type metatables)
  */
 const luaL_Reg luaFD_initializers[] = {
+	{ "FDtux", FDtux_init },
 	{ NULL, NULL }
 };
 
@@ -46,6 +50,7 @@ const luaL_Reg luaFD_initializers[] = {
  * List of functions available in the 'FDrpg' library (instance getters)
  */
 const luaL_Reg luaFD_instances[] = {
+		{ "get_tux", FDtux_get_instance },
 		{ NULL, NULL }
 };
 
