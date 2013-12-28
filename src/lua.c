@@ -1554,7 +1554,7 @@ int call_lua_func(enum lua_target target, const char *module, const char *func, 
 	return TRUE;
 }
 
-static void pretty_print_lua_error(lua_State* L, const char *code, int cur_line, const char *funcname)
+static void pretty_print_lua_error(lua_State* L, const char* error_msg, const char *code, int cur_line, const char *funcname)
 {
 	int err_line = 0;
 	struct auto_string *erronous_code;
@@ -1562,8 +1562,7 @@ static void pretty_print_lua_error(lua_State* L, const char *code, int cur_line,
 	erronous_code = alloc_autostr(16);
 
 	// Find which line the error is on (if there is a line number in the error message)
-	const char *error = lua_tostring(L, -1);
-	const char *error_ptr = error;
+	const char *error_ptr = error_msg;
 
 	while (*error_ptr != 0 && *error_ptr != ':') {
 		error_ptr++;
@@ -1612,7 +1611,7 @@ static void pretty_print_lua_error(lua_State* L, const char *code, int cur_line,
 
 	fflush(stdout);
 	ErrorMessage(funcname, "Error running Lua code: %s.\nErroneous LuaCode={\n%s}",
-			 PLEASE_INFORM, IS_WARNING_ONLY, error, erronous_code->value);
+			 PLEASE_INFORM, IS_WARNING_ONLY, error_msg, erronous_code->value);
 
 	free(display_code);
 	free_autostr(erronous_code);
@@ -1672,7 +1671,8 @@ struct lua_coroutine *load_lua_coroutine(enum lua_target target, const char *cod
 	lua_State *co_L = lua_newthread(L);
 
 	if (luaL_loadstring(co_L, code)) {
-		pretty_print_lua_error(co_L, code, 2, __FUNCTION__);
+		pretty_print_lua_error(co_L, lua_tostring(co_L, -1), code, 2, __FUNCTION__);
+		lua_pop(L, -1);
 		return NULL;
 	}
 	struct lua_coroutine *new_coroutine = (struct lua_coroutine *)MyMalloc(sizeof(struct lua_coroutine));
@@ -1698,13 +1698,28 @@ int resume_lua_coroutine(struct lua_coroutine *coroutine)
 		{
 			// Any other return code is an error.
 			// Use the lua debug API to get informations about the code of the current script
+			char *error_msg = strdup(lua_tostring(coroutine->thread, -1));
+
 			lua_Debug ar;
 			lua_getstack(coroutine->thread, 0, &ar);
-			lua_getinfo(coroutine->thread, "S", &ar);
+			lua_getinfo(coroutine->thread, "nS", &ar);
+
+			if (ar.what[0] == 'C') {
+				// Error caught in a C function.
+				// Try to get the lua calling code from the call stack.
+				if (!lua_getstack(coroutine->thread, 1, &ar)) {
+					// Nothing in the call stack. Display an error msg and exit.
+					ErrorMessage(__FUNCTION__, "Error in a lua API call in function '%s()': %s.\n",
+							PLEASE_INFORM, IS_WARNING_ONLY, ar.name, error_msg);
+					goto EXIT;
+				}
+				// Get the info of the lua calling code, and continue to display it
+				lua_getinfo(coroutine->thread, "nS", &ar);
+			}
 
 			if (ar.source[0] != '@') {
 				// ar.source contains the script code
-				pretty_print_lua_error(coroutine->thread, ar.source, 2, __FUNCTION__);
+				pretty_print_lua_error(coroutine->thread, error_msg, ar.source, 2, __FUNCTION__);
 			} else {
 				// The script code is in an external file
 				// Extract the erroneous function's code from the source file
@@ -1731,9 +1746,13 @@ int resume_lua_coroutine(struct lua_coroutine *coroutine)
 					ptr++;
 				}
 
-				pretty_print_lua_error(coroutine->thread, code->value, ar.linedefined, __FUNCTION__);
+				pretty_print_lua_error(coroutine->thread, error_msg, code->value, ar.linedefined, __FUNCTION__);
 				free_autostr(code);
 			}
+
+EXIT:
+			free(error_msg);
+			lua_pop(coroutine->thread, 1);
 
 			return TRUE; // Pretend the lua script has ended
 		}
@@ -1746,8 +1765,10 @@ void run_lua(enum lua_target target, const char *code)
 {
 	lua_State *L = get_lua_state(target);
 
-	if (luaL_dostring(L, code))
-		pretty_print_lua_error(L, code, 2, __FUNCTION__);
+	if (luaL_dostring(L, code)) {
+		pretty_print_lua_error(L, lua_tostring(L, -1), code, 2, __FUNCTION__);
+		lua_pop(L, -1);
+	}
 }
 
 void run_lua_file(enum lua_target target, const char *path)
