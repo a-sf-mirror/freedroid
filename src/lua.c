@@ -1831,6 +1831,18 @@ void init_lua()
 }
 
 /**
+ * Close all active lua states. To be called when the game quits, to call
+ * the lua garbage collector, in order to call all Lua object 'destructors'
+ */
+void close_lua()
+{
+	if (dialog_lua_state)
+		lua_close(dialog_lua_state);
+	if (config_lua_state)
+		lua_close(config_lua_state);
+}
+
+/**
  * Reset (or create) the Lua state used to load and execute the dialogs
  */
 void reset_lua_state(void)
@@ -1853,6 +1865,8 @@ void reset_lua_state(void)
 	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
 		run_lua_file(LUA_DIALOG, fpath);
 	}
+
+	luaFD_init(get_lua_state(LUA_DIALOG));
 
 	// Load and initialize lua part of the dialog engine
 	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDdialog");

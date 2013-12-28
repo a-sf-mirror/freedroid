@@ -61,6 +61,7 @@ struct event_trigger * visible_event_at_location(int x, int y, int z);
 
 // lua.c
 void init_lua(void);
+void close_lua(void);
 lua_State *get_lua_state(enum lua_target);
 struct lua_coroutine *prepare_lua_coroutine(enum lua_target, const char *, const char *, const char *, ...);
 struct lua_coroutine *load_lua_coroutine(enum lua_target, const char *);
@@ -816,5 +817,7 @@ void add_obstacle_to_group(const char *group_name, int type);
 struct obstacle_group *find_obstacle_group(int type);
 int change_obstacle_type(const char *obslabel, int type);
 int get_obstacle_type_by_name(char *name);
+
+int luaFD_init(lua_State *);
 
 #endif

@@ -70,7 +70,8 @@ freedroidRPG_SOURCES = version.c \
 	lvledit/lvledit_widget_minimap.c lvledit/lvledit_widget_minimap.h \
 	lvledit/lvledit_widgets.c lvledit/lvledit_widgets.h \
 	mapgen/mapgen.c mapgen/mapgen.h mapgen/gram_simple.c animate.c \
-	mapgen/themes.c mapgen/themes.h
+	mapgen/themes.c mapgen/themes.h \
+	lua/luaFD.c lua/luaFD_bindings.h
 
 savestruct.c savestruct.h: struct.h savestruct_internal.h gen_savestruct.py
 	$(PYTHON) gen_savestruct.py struct.h savestruct

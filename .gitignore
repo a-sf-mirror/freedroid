@@ -36,6 +36,7 @@ src/.dirstamp
 src/lvledit/.dirstamp
 src/mapgen/.dirstamp
 src/widgets/.dirstamp
+src/lua/.dirstamp
 
 # Helpers
 TAGS

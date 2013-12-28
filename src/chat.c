@@ -787,6 +787,7 @@ int validate_dialogs()
 
 	/* _says functions are not run by the validator, as they display
 	   text on screen and wait for clicks */
+	run_lua(LUA_DIALOG, "function chat_says(a)\nend\n");
 	run_lua(LUA_DIALOG, "function npc_says(a)\nend\n");
 	run_lua(LUA_DIALOG, "function tux_says(a)\nend\n");
 	run_lua(LUA_DIALOG, "function cli_says(a)\nend\n");

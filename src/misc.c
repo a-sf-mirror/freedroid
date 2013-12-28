@@ -1249,10 +1249,14 @@ void Terminate(int exit_code, int save_config)
 		printf("\n---------------------------------------------------------------------------------");
 		printf("\nTermination of freedroidRPG initiated... ");
 	}
-	// We save the config file in any case.
 
+	// Save the config file in any case.
 	if (save_config)
 		SaveGameConfig();
+
+	// Close active lua states, to force a call to garbage collector, in order
+	// to call Lua binding 'destructors'.
+	close_lua();
 
 	if (!do_benchmark) {
 		printf("Thank you for playing freedroidRPG.\n\n");

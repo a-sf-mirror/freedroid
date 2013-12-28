@@ -114,6 +114,7 @@ typedef struct mouse_press_button {
 	char scale_this_button;
 } mouse_press_button, *Mouse_press_button;
 
+/* Type definitions needed to create specific save/load functions */
 typedef char *string;
 
 typedef struct keybind {
