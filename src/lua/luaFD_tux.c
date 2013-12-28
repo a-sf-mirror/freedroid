@@ -42,6 +42,17 @@
 // FDtux cfuns
 //////////////////////////////////////////////////////////////////////
 
+static int get_hp(lua_State *L)
+{
+	/* Check that 'self' is of the right type */
+	struct tux** self = (struct tux**)luaL_testudata(L, 1, "FDtux");
+	if (!self) {
+		return luaL_error(L, "%s() %s", __FUNCTION__, "called with a userdata of wrong type (FDtux expected)");
+	}
+
+	lua_pushinteger(L, (int)(*self)->energy);
+	return 1;
+}
 
 //////////////////////////////////////////////////////////////////////
 // FDtux binding
@@ -51,6 +62,7 @@
  * FDtux cfuns
  */
 static const luaL_Reg tux_cfuns[] = {
+		{ "get_hp", get_hp },
 		{ NULL, NULL }
 };
 
