@@ -365,6 +365,8 @@ function FDdialog.Dialog.validate(self)
 		return true
 	end
 
+	tux = FDrpg.get_tux()
+	
 	--
 	-- Check specific nodes
 	--
@@ -396,6 +398,9 @@ function FDdialog.Dialog.validate(self)
 	end
 
 	io.write("\n")
+	
+	tux = nil
+	
 	return valid
 end
 
