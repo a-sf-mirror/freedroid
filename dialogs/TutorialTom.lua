@@ -1145,14 +1145,19 @@ return {
 			end_dialog()
 		end,
 	},
+
+--    							Quick Menu (to jump to sections)
+
 	{
 		id = "node80",
 		text = _"I'd like to skip to a later section of the Tutorial.",
 		code = function()
 			npc_says(_"OK, what would you like to learn about?")
-			show("node81", "node82", "node83", "node84", "node85", "node86", "node87") hide("node1", "node7", "node80")
+			show("node81", "node82", "node83", "node84", "node85", "node86", "node87")
+			hide("node1", "node7", "node80")
 		end,
 	},
+
 	{
 		id = "node81",
 		text = _"Chests and Armor",
@@ -1160,9 +1165,12 @@ return {
 			npc_says(_"OK, I'll take us to the Chest.")
 			teleport_npc("TutorialTom-Chest")
 			teleport("TutorialTux-Chest")
-			next("node10") hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
+			tutorial_chests_and_armor_and_shops()
+			next("node10")
+			hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
 		end,
 	},
+
 	{
 		id = "node82",
 		text = _"Shops",
@@ -1171,9 +1179,13 @@ return {
 			npc_says(_"I'll tell you about the shops.")
 			teleport_npc("TutorialTom-Chest")
 			teleport("TutorialTux-Chest")
-			next("node61") show("node19") hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
+			tutorial_chests_and_armor_and_shops()
+			next("node61")
+			show("node19")
+			hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
 		end,
 	},
+
 	{
 		id = "node83",
 		text = _"Melee Combat",
@@ -1182,27 +1194,12 @@ return {
 			teleport_npc("TutorialTom-Melee")
 			teleport("TutorialTux-Melee")
 			add_quest(_"Tutorial Melee", _"I skipped ahead to the Melee practice. Tom gave me some armor to use.")
-			add_item("Normal Jacket")
-			add_item("Improvised Buckler")
-			add_item("Shoes")
-			add_item("Worker Helmet")
-			next("node20") hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
+			tutorial_melee_combat()
+			next("node20")
+			hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
 		end,
 	},
-	{
-		id = "node84",
-		text = _"Ranged Combat",
-		code = function()
-			npc_says(_"OK, I'll take us to the shooting range and give you some armor and a weapon.")
-			teleport_npc("TutorialTom-Ranged")
-			teleport("TutorialTux-Ranged")
-			for var in ipairs(ranged_combat) do
-				add_item(ranged_combat[var])
-			end
-			change_obstacle_state("TutorialShootCage", "opened")
-			next("node30")hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
-		end,
-	},
+
 	{
 		id = "node85",
 		text = _"Abilities",
@@ -1210,12 +1207,12 @@ return {
 			npc_says(_"OK, I'll take us there and give you some armor and a weapon.")
 			teleport_npc("TutorialTom-Terminal")
 			teleport("TutorialTux-Terminal")
-			for var in ipairs(ranged_combat) do
-				add_item(ranged_combat[var])
-			end
-			next("node40") hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
+			tutorial_abilities()
+			next("node40")
+			hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
 		end,
 	},
+
 	{
 		id = "node86",
 		text = _"Upgrading Items & Terminals",
@@ -1223,12 +1220,16 @@ return {
 			npc_says(_"OK, I'll take us there and give you some armor and a weapon to work with.")
 			teleport_npc("TutorialTom-Terminal")
 			teleport("TutorialTux-Terminal")
-			for var in ipairs(ranged_combat) do
-				add_item(ranged_combat[var])
+			tutorial_upgrade_items_and_terminal()
+			if (not has_quest("Tutorial Upgrading Items")) then
+				add_quest("Tutorial Upgrading Items", "")
 			end
-			next("node58") show("node42") hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
+			next("node58")
+			show("node42")
+			hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
 		end,
 	},
+
 	{
 		id = "node87",
 		text = _"Hacking Bots",
@@ -1237,9 +1238,26 @@ return {
 			add_xp(2000)
 			teleport_npc("TutorialTom-Takeover")
 			teleport("TutorialTom-Takeover")
-			next("node50") hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
+			tutorial_hacking()
+			next("node50")
+			hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
 		end,
 	},
+
+	{
+		id = "node84",
+		text = _"Ranged Combat",
+		code = function()
+			npc_says(_"OK, I'll take us to the shooting range and give you some armor and a weapon.")
+			teleport_npc("TutorialTom-Ranged")
+			teleport("TutorialTux-Ranged")
+			change_obstacle_state("TutorialShootCage", "opened")
+			tutorial_ranged_combat()
+			next("node30")
+			hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")
+		end,
+	},
+
 	{
 		id = "node99",
 		text = _"Let me take a short break and practice on my own for a while.",
