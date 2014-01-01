@@ -1,7 +1,8 @@
 cppcheckflags = -I.                                                                    \
 				-I..                                                                   \
 				-I/usr/include/SDL                                                     \
-				--enable=warning,performance,portability,unusedFunction,missingInclude
+				--enable=warning,performance,portability,unusedFunction,missingInclude,style \
+				--suppress=variableScope
 
 cppcheck:
 	@echo "`cppcheck --version`"
