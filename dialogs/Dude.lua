@@ -152,7 +152,7 @@ return {
 		id = "exit",
 		enabled = true,
 		text = function()
-			return _"Exit this dialog for the ".. Dude_exit_node_count + 1 .. "th time."
+			return string.format( _"Exit this dialog for the %sth time", Dude_exit_node_count + 1)
 		end,
 		code = function()
 			npc_says(_"Closing...")
