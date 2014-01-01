@@ -35,8 +35,6 @@ return {
 
 	EveryTime = function()
 		tux:says("tux:says()", "NO_WAIT")
-		tux_says("tux_says()", "NO_WAIT")
-		-- Guy:says("Guy:says()", "NO_WAIT") -- to be implemented
 		npc_says("npc_says()", "NO_WAIT")
 		cli_says("cli_says()", "NO_WAIT")
 		npc_says("", "NO_WAIT") -- extra linebreak for cli_says()
@@ -141,7 +139,7 @@ return {
 					guy_fail("SKILL 1")
 				end
 			else
-				tux_says("Skipping SKILL test 1 due to missing possibility to downgrade skills!")
+				tux:says("Skipping SKILL test 1 due to missing possibility to downgrade skills!")
 			end
 ---------------------------------------------------------- PROGRAMMS
 			improve_program("Ricer CFLAGS")
@@ -160,7 +158,7 @@ return {
 				end
 				add_quest("24_dude_test_quest", "Add 24 dude quest.")
 			else
-				tux_says("Skipping QUEST test 1 due to missing possibility to remove quests!")
+				tux:says("Skipping QUEST test 1 due to missing possibility to remove quests!")
 			end
 
 			if (has_quest("24_dude_test_quest")) then
@@ -184,8 +182,8 @@ return {
 					guy_fail("QUEST 4")
 				end
 			else
-				tux_says("Skipping QUEST test 3 due to missing possibility to remove quests!")
-				tux_says("Skipping QUEST test 4 due to missing possibility to remove quests!")
+				tux:says("Skipping QUEST test 3 due to missing possibility to remove quests!")
+				tux:says("Skipping QUEST test 4 due to missing possibility to remove quests!")
 			end
 
 			if (has_met("Guy")) then -- need to have met guy to let the DeadGuy die...
@@ -195,7 +193,7 @@ return {
 					guy_fail("QUEST 5")
 				end
 			else
-				tux_says("Skipping QUEST test 5, we need to have met Guy...")
+				tux:says("Skipping QUEST test 5, we need to have met Guy...")
 			end
 
 ---------------------------------------------------------- OBSTACLES
@@ -318,7 +316,7 @@ return {
 					guy_fail("RUSH TUX 1")
 				end
 			else
-				tux_says("Skipping RUSH TUX test 1 because it would fail since we directly rush tux on second time we call the dialog.")
+				tux:says("Skipping RUSH TUX test 1 because it would fail since we directly rush tux on second time we call the dialog.")
 			end
 
 			set_rush_tux(1)
