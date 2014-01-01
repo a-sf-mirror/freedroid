@@ -50,6 +50,7 @@ return {
 	FirstTime = function()
 		level24obstacles()
 		get_town_score()
+		Dude_exit_node_count = 0
 	end,
 
 	EveryTime = function(this_node, this_dialog)
@@ -150,9 +151,12 @@ return {
 	{
 		id = "exit",
 		enabled = true,
-		text = _"Exit",
+		text = function()
+			return _"Exit this dialog for the ".. Dude_exit_node_count + 1 .. "th time."
+		end,
 		code = function()
 			npc_says(_"Closing...")
+			Dude_exit_node_count = Dude_exit_node_count + 1 -- do the computation of the var now
 			end_dialog()
 		end,
 	},
