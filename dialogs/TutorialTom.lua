@@ -17,6 +17,47 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+-- helper functions for the quickmenu thingy
+
+local function tutorial_chests_and_armor_and_shops()
+		tut_tux_items_entered = true
+		tut_tux_chest_entered = true
+end
+
+local function tutorial_melee_combat()
+	tutorial_chests_and_armor_and_shops()
+
+	tut_tux_melee_entered = true
+	add_item("Normal Jacket")
+	add_item("Improvised Buckler")
+	add_item("Shoes")
+	add_item("Worker Helmet")
+end
+
+local function tutorial_abilities()
+	tutorial_melee_combat()
+
+	tut_tux_terminal_entered = true
+end
+
+local function tutorial_upgrade_items_and_terminal()
+	tutorial_abilities()
+end
+
+local function tutorial_hacking()
+	tutorial_upgrade_items_and_terminal()
+
+	tut_tux_takeover_entered = true
+end
+
+local function tutorial_ranged_combat()
+	tutorial_hacking()
+
+	tut_tux_glass_entered = true
+end
+
+-- actual dialog
+
 return {
 	FirstTime = function()
 		-- initialize
