@@ -34,7 +34,11 @@ pacman -S libgl libvorbis lua sdl sdl_gfx sdl_image sdl_mixer
 
 There is also a freedroidrpg-git pkgbuild at the arch user repository: https://aur.archlinux.org/packages.php?ID=57483
 
-4) Please contribute lists for your distribution!
+4) Gentoo
+
+emerge -av libsdl sdl-image sdl-gfx sdl-mixer libogg libvorbis eselect-opengl lua virtual/jpeg media-libs/libpng
+
+5) Please contribute lists for your distribution!
 
 Building with autotools
 =========================
