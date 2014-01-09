@@ -137,7 +137,7 @@ item_list{
 
 {
 	id = "Big kitchen knife",
-	name =_"Big kitchen knife",
+	name =_"Big Kitchen Knife",
 	slot = "weapon",
 	weapon = {
 		damage = "1:2",
@@ -230,7 +230,7 @@ item_list{
 
 {
 	id = "Meat cleaver",
-	name =_"Meat cleaver",
+	name =_"Meat Cleaver",
 	slot = "weapon",
 	weapon = {
 		damage = "1:3",
@@ -299,7 +299,7 @@ item_list{
 
 {
 	id = "Hunting knife",
-	name =_"Hunting knife",
+	name =_"Hunting Knife",
 	slot = "weapon",
 	weapon = {
 		damage = "0:2",
@@ -321,7 +321,7 @@ item_list{
 
 {
 	id = "Iron pipe",
-	name =_"Iron pipe",
+	name =_"Iron Pipe",
 	slot = "weapon",
 	weapon = {
 		damage = "1:3",
@@ -343,7 +343,7 @@ item_list{
 
 {
 	id = "Big wrench",
-	name =_"Big wrench",
+	name =_"Big Wrench",
 	slot = "weapon",
 	weapon = {
 		damage = "1:4",
@@ -388,7 +388,7 @@ item_list{
 
 {
 	id = "Power hammer",
-	name =_"Power hammer",
+	name =_"Power Hammer",
 	slot = "weapon",
 	weapon = {
 		damage = "1:2",
@@ -434,7 +434,7 @@ item_list{
 
 {
 	id = "Baseball bat",
-	name =_"Baseball bat",
+	name =_"Baseball Bat",
 	slot = "weapon",
 	weapon = {
 		damage = "4:10",
@@ -458,7 +458,7 @@ item_list{
 
 {
 	id = "Iron bar",
-	name =_"Iron bar",
+	name =_"Iron Bar",
 	slot = "weapon",
 	weapon = {
 		damage = "6:12",
@@ -506,7 +506,7 @@ item_list{
 
 {
 	id = "Light saber",
-	name =_"Light saber",
+	name =_"Light Saber",
 	slot = "weapon",
 	weapon = {
 		damage = "30:40",
@@ -531,7 +531,7 @@ item_list{
 
 {
 	id = "Laser staff",
-	name =_"Laser staff",
+	name =_"Laser Staff",
 	slot = "weapon",
 	weapon = {
 		damage = "40:60",
@@ -555,7 +555,7 @@ item_list{
 
 {
 	id = "Nobody's edge",
-	name =_"Nobody's edge",
+	name =_"Nobody's Edge",
 	slot = "weapon",
 	weapon = {
 		damage = "40:40",
@@ -597,7 +597,7 @@ item_list{
 
 {
 	id = "Shock knife",
-	name =_"Shock knife",
+	name =_"Shock Knife",
 	slot = "weapon",
 	weapon = {
 		damage = "40:40",
@@ -618,7 +618,7 @@ item_list{
 
 {
 	id = "Energy whip",
-	name =_"Energy whip",
+	name =_"Energy Whip",
 	slot = "weapon",
 	weapon = {
 		damage = "40:40",
@@ -701,7 +701,7 @@ item_list{
 
 {
 	id = "Shotgun shells",
-	name =_"Shotgun shells",
+	name =_"Shotgun Shells",
 	base_price = 12,
 	inventory = {x = 2, y = 1,stackable = true, image = "weapons/shotgun_ammo/inv_image.png" },
 	drop = {sound = "Item_Range_Weapon_Put_Sound_0.ogg"},
@@ -712,7 +712,7 @@ item_list{
 
 {
 	id = "Two Barrel sawn off shotgun",
-	name =_"Two Barrel sawn off shotgun",
+	name =_"Two Barrel Sawn Off Shotgun",
 	slot = "weapon",
 	weapon = {
 		damage = "2:10",
@@ -735,7 +735,7 @@ item_list{
 
 {
 	id = "Two Barrel shotgun",
-	name =_"Two Barrel shotgun",
+	name =_"Two Barrel Shotgun",
 	slot = "weapon",
 	weapon = {
 		damage = "2:18",
@@ -759,7 +759,7 @@ item_list{
 
 {
 	id = "Pump action shotgun",
-	name =_"Pump action shotgun",
+	name =_"Pump Action Shotgun",
 	slot = "weapon",
 	weapon = {
 		damage = "2:14",
@@ -936,7 +936,7 @@ item_list{
 
 {
 	id = "Laser power pack",
-	name =_"Laser power pack",
+	name =_"Laser Power Pack",
 	base_price = 2,
 	inventory = {x = 2, y = 2,stackable = true, image = "weapons/laser_power_pack/inv_image.png" },
 	drop = {class = "2:9", number = "10:20", sound = "Item_Range_Weapon_Put_Sound_0.ogg"},
@@ -947,7 +947,7 @@ item_list{
 
 {
 	id = "Laser pistol",
-	name =_"Laser pistol",
+	name =_"Laser Pistol",
 	slot = "weapon",
 	weapon = {
 		damage = "4:10",
@@ -1043,7 +1043,7 @@ item_list{
 
 {
 	id = "Plasma energy container",
-	name =_"Plasma energy container",
+	name =_"Plasma Energy Container",
 	base_price = 4,
 	inventory = {x = 2, y = 2,stackable = true, image = "weapons/plasma_energy_container/inv_image.png" },
 	drop = {class = "2:9", number = "10:20", sound = "Item_Range_Weapon_Put_Sound_0.ogg"},
@@ -1054,7 +1054,7 @@ item_list{
 
 {
 	id = "Plasma pistol",
-	name =_"Plasma pistol",
+	name =_"Plasma Pistol",
 	slot = "weapon",
 	weapon = {
 		damage = "12:18",
@@ -1077,7 +1077,7 @@ item_list{
 
 {
 	id = "Plasma gun",
-	name =_"Plasma gun",
+	name =_"Plasma Gun",
 	slot = "weapon",
 	weapon = {
 		damage = "24:30",
@@ -1101,7 +1101,7 @@ item_list{
 
 {
 	id = "2 mm Exterminator Ammunition",
-	name =_"2 mm Exterminator Ammunition",
+	name =_"2mm Exterminator Ammunition",
 	base_price = 5,
 	inventory = {x = 2, y = 2,stackable = true, image = "weapons/exterminator_ammo/inv_image.png" },
 	drop = {class = "6:9", number = "5:10", sound = "Item_Range_Weapon_Put_Sound_0.ogg"},
@@ -1573,7 +1573,7 @@ item_list{
 
 {
 	id = "Source Book of Emergency shutdown",
-	name =_"Source Book of Emergency shutdown",
+	name =_"Source Book of Emergency Shutdown",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Emergency shutdown"},
 	base_price = 500,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_green.png" },
@@ -1585,7 +1585,7 @@ item_list{
 
 {
 	id = "Source Book of Check system integrity",
-	name =_"Source Book of Check system integrity",
+	name =_"Source Book of Check System Integrity",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Check system integrity"},
 	base_price = 250,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_white.png" },
@@ -1609,7 +1609,7 @@ item_list{
 
 {
 	id = "Source Book of Malformed packet",
-	name =_"Source Book of Malformed packet",
+	name =_"Source Book of Malformed Packet",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Malformed packet"},
 	base_price = 300,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_purple.png" },
@@ -1681,7 +1681,7 @@ item_list{
 
 {
 	id = "Source Book of Broadcast virus",
-	name =_"Source Book of Broadcast virus",
+	name =_"Source Book of Broadcast Virus",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Broadcast virus"},
 	base_price = 1350,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_red.png" },
@@ -1693,7 +1693,7 @@ item_list{
 
 {
 	id = "Source Book of Dispel smoke",
-	name =_"Source Book of Dispel smoke",
+	name =_"Source Book of Dispel Smoke",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Dispel smoke"},
 	base_price = 600,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_grey.png" },
@@ -1705,7 +1705,7 @@ item_list{
 
 {
 	id = "Source Book of Killer poke",
-	name =_"Source Book of Killer poke",
+	name =_"Source Book of Killer Poke",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Killer poke"},
 	base_price = 1200,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_greenblue.png" },
@@ -1717,7 +1717,7 @@ item_list{
 
 {
 	id = "Source Book of Repair equipment",
-	name =_"Source Book of Repair equipment",
+	name =_"Source Book of Repair Equipment",
 	right_use = {tooltip =_"Learn about repairing items", add_skill =_"Repair equipment"},
 	base_price = 1200,
 	inventory = {x = 2, y = 2, image = "repairbook/inv_image.png" },
@@ -1729,7 +1729,7 @@ item_list{
 
 {
 	id = "Source Book of Plasma discharge",
-	name =_"Source Book of Plasma discharge",
+	name =_"Source Book of Plasma Discharge",
 	right_use = {tooltip =_"Permanently acquire/enhance this program", add_skill =_"Plasma discharge"},
 	base_price = 600,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image.png" },
@@ -1886,7 +1886,7 @@ item_list{
 
 {
 	id = "Diet supplement",
-	name =_"Diet supplement",
+	name =_"Diet Supplement",
 	right_use = {tooltip =_"Recover Health", busy = {type = "drinking", duration = 1}},
 	base_price = 20,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/health_capsule/inv_image_small.png" },
@@ -1922,7 +1922,7 @@ item_list{
 
 {
 	id = "Bottled ice",
-	name =_"Bottled ice",
+	name =_"Bottled Ice",
 	right_use = {tooltip =_"Cooling aid", busy = {type = "drinking", duration = 1}},
 	base_price = 15,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/force_capsule/inv_image_small.png" },
@@ -1934,7 +1934,7 @@ item_list{
 
 {
 	id = "Industrial coolant",
-	name =_"Industrial coolant",
+	name =_"Industrial Coolant",
 	right_use = {tooltip =_"Cooling aid", busy = {type = "drinking", duration = 1}},
 	base_price = 30,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/force_capsule/inv_image_medium.png" },
@@ -1946,7 +1946,7 @@ item_list{
 
 {
 	id = "Liquid nitrogen",
-	name =_"Liquid nitrogen",
+	name =_"Liquid Nitrogen",
 	right_use = {tooltip =_"Extreme Cooling aid", busy = {type = "drinking", duration = 1}},
 	base_price = 45,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/force_capsule/inv_image_big.png" },
@@ -2210,7 +2210,7 @@ item_list{
 
 {
 	id = "Teleporter homing beacon",
-	name =_"Teleporter homing beacon",
+	name =_"Teleporter Homing Beacon",
 	right_use = {tooltip =_"Teleports you elsewhere", skill =_"Sanctuary"},
 	base_price = 40,
 	inventory = {x = 1, y = 1,stackable = true, image = "tele_beacon/inv_image.png" },
@@ -2222,7 +2222,7 @@ item_list{
 
 {
 	id = "Data cube",
-	name =_"Data cube",
+	name =_"Data Cube",
 	base_price = 40,
 	inventory = {x = 1, y = 1, image = "datacube/inv_image.png" },
 	drop = {sound = "drop_book_sound.ogg"},
@@ -2255,7 +2255,7 @@ item_list{
 
 {
 	id = "Rubber duck",
-	name =_"Rubber duck",
+	name =_"Rubber Duck",
 	base_price = 0,
 	inventory = {x = 1, y = 1, image = "rubber_duck/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2325,7 +2325,7 @@ item_list{
 
 {
 	id = "Linarian power crank",
-	name =_"Linarian power crank",
+	name =_"Linarian Power Crank",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/linarian_power_crank/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2336,7 +2336,7 @@ item_list{
 
 {
 	id = "Tungsten spikes",
-	name =_"Tungsten spikes",
+	name =_"Tungsten Spikes",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/tungsten_spikes/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2347,7 +2347,7 @@ item_list{
 
 {
 	id = "Tinfoil patch",
-	name =_"Tinfoil patch",
+	name =_"Tinfoil Patch",
 	base_price = 100,
 	inventory = {x = 2, y = 2,stackable = true, image = "addons/tinfoil_patch/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2358,7 +2358,7 @@ item_list{
 
 {
 	id = "Laser sight",
-	name =_"Laser sight",
+	name =_"Laser Sight",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/laser_sight/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2369,7 +2369,7 @@ item_list{
 
 {
 	id = "Exoskeletal joint",
-	name =_"Exoskeletal joint",
+	name =_"Exoskeletal Joint",
 	base_price = 100,
 	inventory = {x = 2, y = 2, image = "addons/exoskeletal_joint/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2391,7 +2391,7 @@ item_list{
 
 {
 	id = "Peltier element",
-	name =_"Peltier element",
+	name =_"Peltier Element",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/peltier_element/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2402,7 +2402,7 @@ item_list{
 
 {
 	id = "Steel mesh",
-	name =_"Steel mesh",
+	name =_"Steel Mesh",
 	base_price = 100,
 	inventory = {x = 2, y = 2,stackable = true, image = "addons/steel_mesh/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2413,7 +2413,7 @@ item_list{
 
 {
 	id = "Shock discharger",
-	name =_"Shock discharger",
+	name =_"Shock Discharger",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/shock_discharger/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2457,7 +2457,7 @@ item_list{
 
 {
 	id = "Foot warmers",
-	name =_"Foot warmers",
+	name =_"Foot Warmers",
 	base_price = 100,
 	inventory = {x = 2, y = 2, image = "addons/foot_warmers/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2468,7 +2468,7 @@ item_list{
 
 {
 	id = "Circuit jammer",
-	name =_"Circuit jammer",
+	name =_"Circuit Jammer",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/circuit_jammer/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2479,7 +2479,7 @@ item_list{
 
 {
 	id = "Sensor disruptor",
-	name =_"Sensor disruptor",
+	name =_"Sensor Disruptor",
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/sensor_disruptor/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2501,7 +2501,7 @@ item_list{
 
 {
 	id = "Brain stimulator",
-	name =_"Brain stimulator",
+	name =_"Brain Stimulator",
 	base_price = 100,
 	inventory = {x = 2, y = 2, image = "addons/brain_stimulator/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -2516,7 +2516,7 @@ item_list{
 
 {
 	id = "NPC Hand to hand weapon",
-	name =_"NPC Hand to hand weapon",
+	name =_"NPC Hand to Hand Weapon",
 	slot = "weapon",
 	weapon = {
 		damage = "3:8",
@@ -3017,7 +3017,7 @@ Click the red button with the cross on it when you are done.]],
 
 {
 	id = "Bottled Tutorial ice",
-	name =_"Bottled Tutorial ice",
+	name =_"Bottled Tutorial Ice",
 	right_use = {tooltip =_"Cooling aid"},
 	base_price = 15,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/force_capsule/inv_image_small_tutorial.png" },
