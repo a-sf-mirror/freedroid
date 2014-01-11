@@ -47,7 +47,7 @@ return {
 	end,
 	{
 		id = "choose",
-		text = _"BUG, REPORT ME! Francis choose",
+		text = _"BUG, REPORT ME! Mike node 'choose'",
 		echo_text = false,
 		code = function()
 			arena_current_level = nil
