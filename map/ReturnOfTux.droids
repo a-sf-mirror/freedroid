@@ -386,7 +386,7 @@ T=123: PosX=42 PosY=56 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Targe
 T=123: PosX=37 PosY=55 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Target" Marker=3037 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=247: PosX=2 PosY=60 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Kill Me Too" Marker=2037 RushTux=0 Fixed=0 DropItemId="Tachyon Condensator" MaxDistanceToHome=0
 T=123: PosX=2 PosY=51 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Kill Me" Marker=1037 RushTux=0 Fixed=0 DropItemId="Entropy Inverter" MaxDistanceToHome=0
-T=PRO: PosX=13 PosY=13 Faction="civilian" UseDialog="TutorialTom" ShortLabel=_"???" Marker=9999 RushTux=1 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=PRO: PosX=13 PosY=13 Faction="neutral" UseDialog="TutorialTom" ShortLabel=_"???" Marker=9999 RushTux=1 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
