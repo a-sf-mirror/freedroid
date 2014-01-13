@@ -121,8 +121,8 @@ return {
 			elseif (cmp_obstacle_state("CryoOuterGate", "opened")) then
 				npc_says(_"Cryo Complex Gates status: OPEN", "NO_WAIT")
 				show("node80")
-			else
-				npc_says(_"GAME BUG. PLEASE REPORT, Cryo-Terminal node 60")
+		--	else -- when the door was half-opened or closed and we tried to access it, we hit this code
+		--		npc_says(_"GAME BUG. PLEASE REPORT, Cryo-Terminal node 60")
 			end
 			cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 		end,
