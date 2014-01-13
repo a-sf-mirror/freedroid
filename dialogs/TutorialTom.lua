@@ -677,7 +677,7 @@ return {
 			npc_says(_"In that case, I'll let you in to the armory. There are some crates and chests in there with weapons and ammunition.")
 			npc_says(_"Be careful though, smashing open crates and barrels could hurt you.")
 			if (TutorialTom_has_gun) then
-				npc_says(_"You already got the .22 pistol I gave you earlier when destroying that 247. It's not much as guns go, but it can do the trick.")
+				npc_says(_"You already got the .22 pistol I gave you earlier? It's not much as guns go, but it can do the trick.")
 			else
 				npc_says(_"Here's my personal .22 Automatic pistol. It's not much as guns go, but it can do the trick.")
 				add_item(".22 Automatic", 1)
