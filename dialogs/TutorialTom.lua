@@ -856,7 +856,7 @@ return {
 		text = _"Tell me about taking bots over.",
 		code = function()
 			npc_says(_"I'm afraid that you will have to experience it for yourself to really understand.")
-			npc_says(_"However, you did leave yourself instructions before you went into stasis sleep.")
+		--	npc_says(_"However, you did leave yourself instructions before you went into stasis sleep.")
 			npc_says(_"Taking over a bot comes in the form of a game or competition placing you against the bot.")
 			npc_says(_"You initiate it by selecting the [b]Hacking[/b] program, then [b]right-clicking[/b] on a hostile bot.")
 			npc_says(_"The field of play is split into two sides, one yellow, one purple, representing circuit boards.")
