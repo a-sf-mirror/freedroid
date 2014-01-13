@@ -930,7 +930,7 @@ return {
 		text = _"Thanks. I'm ready now.",
 		code = function()
 			npc_says(_"We have several bots behind that fence for you to practice on.")
-			npc_says(_"Take them over, then talk to me when they're all dead, and we'll be done with the tutorial.")
+			npc_says(_"Take them over, then talk to me when they're all dead.")
 			npc_says(_"If you need more help, don't hesitate to ask.")
 			npc_says(_"Oh, and Linarian... If you fail when hacking, you'll receive an electrical shock.")
 			npc_says(_"It shouldn't kill you, but you need to be aware of it nonetheless.")
