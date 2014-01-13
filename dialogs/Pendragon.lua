@@ -255,13 +255,17 @@ return {
 					npc_says(_"Good.")
 					tux_says(_"Here, take it.")
 					npc_says(_"You may pass.")
-					update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a little tax.")
+					if (has_quest("Doing Duncan a favor")) then
+						update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a little tax.")
+					end
 				elseif (desertgate_tax == 40) then
 					npc_says(_"At last.")
 					tux_says(_"Here, let me pass now.")
 					npc_says(_"You may pass, Loon.")
 					npc_says(_"But don't expect any help in there.")
-					update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a tax.")
+					if (has_quest("Doing Duncan a favor")) then
+						update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a tax.")
+					end
 				end
 				del_gold(desertgate_tax)
 				desertgate_tax = 0
