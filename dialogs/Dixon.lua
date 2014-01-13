@@ -241,7 +241,7 @@ return {
 			npc_says(_"Will you do me this favor?")
 			change_obstacle_state("NorthernMaintainanceTrapdoor", "opened")
 			Dixon_Singularity_peace = true
-			hide("node15", "node24", "node26", "node28") show (21, 22)
+			hide("node15", "node24", "node26", "node28") show("node21", "node22")
 			push_topic("Toolkit peace mission Y/N")
 		end,
 	},
