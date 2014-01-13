@@ -859,7 +859,7 @@ return {
 			npc_says(_"However, you did leave yourself instructions before you went into stasis sleep.")
 			npc_says(_"Taking over a bot comes in the form of a game or competition placing you against the bot.")
 			npc_says(_"You initiate it by selecting the [b]Hacking[/b] program, then [b]right-clicking[/b] on a hostile bot.")
-			npc_says(_"The field of play is split into two sides, one green, one maroon, representing circuit boards.")
+			npc_says(_"The field of play is split into two sides, one yellow, one purple, representing circuit boards.")
 			npc_says(_"In the center of the field is a column of boxes known as logic cores. These cores have wires attached to them from both circuit boards.")
 			npc_says(_"Your objective is to activate as many cores in your chosen color as possible at the end of each round.")
 			npc_says(_"This is accomplished by selecting a wire with the up or down buttons, then pressing spacebar to activate that core.")
