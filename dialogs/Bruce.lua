@@ -36,7 +36,7 @@ return {
 			push_topic("Bruce wants Dixon's helmet")
 		else
 			if (not Bruce_hurt) and
-			(has_item_equipped("Dixon's Helmet")) then
+			(Tux:has_item_equipped("Dixon's Helmet")) then
 				if (Bruce_Dixons_helmet_lost) then
 					npc_says(_"So, you've 'lost' the helmet, heh?")
 					npc_says(_"Then, what's that on your head?")
@@ -172,7 +172,7 @@ return {
 		topic = "Bruce wants Dixon's helmet",
 		code = function()
 			npc_says(_"What do you have there?")
-			tux_says(_"What do you mean?")
+			Tux:says(_"What do you mean?")
 			npc_says(_"That helmet. I could make good use of it, it looks quite solid.")
 			npc_says(_"Can I buy it from you?")
 			Bruce_wants_helmet = true
@@ -199,44 +199,44 @@ return {
 			end
 			if (Bruce_helmet_sell == 20) then
 				npc_says(_"You agreed.")
-				tux_says(_"Indeed.")
+				Tux:says(_"Indeed.")
 			elseif (Bruce_helmet_sell == 100) then
 				npc_says(_"You suggested 100 circuits as a price.")
 				npc_says(_"That is acceptable to me.")
-				tux_says(_"Excellent.")
+				Tux:says(_"Excellent.")
 			elseif (Bruce_helmet_sell == 0) then
 				npc_says(_"You said you would give me the helmet for free.")
-				tux_says(_"Yes, that's true.")
+				Tux:says(_"Yes, that's true.")
 			end
-			if (has_item_equipped("Dixon's Helmet")) then
+			if (Tux:has_item_equipped("Dixon's Helmet")) then
 				npc_says(_"Please unequip it, so we can proceed.")
 				npc_says(_"I want to see your face as we talk.")
 				end_dialog()
-			elseif (has_item("Dixon's Helmet")) then
+			elseif (Tux:has_item("Dixon's Helmet")) then
 				if (Bruce_helmet_sell == 0) then
-					tux_says(_"Here you go.")
+					Tux:says(_"Here you go.")
 					npc_says(_"Oh, thank you!")
 					npc_says(_"Here, take this Lamp, as a token of my esteem.")
-					tux_says(_"Oh, thank you very much!")
+					Tux:says(_"Oh, thank you very much!")
 					npc_says(_"You're welcome.")
-					add_item("Desk Lamp")
+					Tux:add_item("Desk Lamp")
 				elseif (Bruce_helmet_sell == 20) then
 					npc_says(_"Fine.")
 					npc_says(_"Here are your 20 circuits.")
-					tux_says(_"Here's your new helmet.")
+					Tux:says(_"Here's your new helmet.")
 					npc_says(_"Thank you.")
-					tux_says(_"You're welcome.")
-					add_gold(20)
+					Tux:says(_"You're welcome.")
+					Tux:add_gold(20)
 				elseif (Bruce_helmet_sell == 100) then
 					npc_says(_"Hmm...")
 					npc_says(_"OK.")
 					npc_says(_"Here, take the hundred bucks.")
 					npc_says(_"Now give me that helmet!")
-					tux_says(_"Here, take it.")
-					add_gold(100)
+					Tux:says(_"Here, take it.")
+					Tux:add_gold(100)
 				end
 				if (Bruce_helmet_sell > -1) then
-					del_item("Dixon's Helmet")
+					Tux:del_item("Dixon's Helmet")
 					Bruce_wants_helmet = false
 					pop_topic() -- "Bruce wants Dixon's helmet"
 				end
@@ -257,7 +257,7 @@ return {
 			npc_says(_"Good.")
 			npc_says(_"Let's say, 20 circuits?")
 			Bruce_helmet_deal = true
-			if (has_item_equipped("Dixon's Helmet")) then
+			if (Tux:has_item_equipped("Dixon's Helmet")) then
 				npc_says(_"Please take off the helmet, so we can proceed trading.")
 				end_dialog()
 			end
@@ -270,11 +270,11 @@ return {
 		echo_text = false,
 		topic = "Bruce wants Dixon's helmet",
 		code = function()
-			tux_says(_"I changed my mind.")
-			tux_says(_"You can have it. For free.")
+			Tux:says(_"I changed my mind.")
+			Tux:says(_"You can have it. For free.")
 			npc_says(_"Oh... Oh my! thanks!")
 			npc_says(_"Wait, let me go get something first.")
-			tux_says(_"Sure.")
+			Tux:says(_"Sure.")
 			Bruce_helmet_sell = 0
 			hide("node41", "node42", "node43", "node44", "node45")
 			set_bot_destination("Bruce-move-target-label")
@@ -315,7 +315,7 @@ return {
 		topic = "Bruce wants Dixon's helmet",
 		code = function()
 			npc_says(_"That's way too expensive.")
-			tux_says(_"Fine, I'll keep it then.")
+			Tux:says(_"Fine, I'll keep it then.")
 			npc_says(_"You're the greediest penguin I've ever met.")
 			npc_says(_"Forget about the deal!")
 			Bruce_helmet_sell = -1000

@@ -26,7 +26,7 @@ return {
 		if (Skippy_angry) then
 			-- We probably at some point want to be able to make Skippy happy again, maybe by Tux finishing a quest or something that helps Skippy or a friend of his or similar.
 			npc_says(_"What? You again? I don't want you here, get out.")
-			tux_says(_"See you later.")
+			Tux:says(_"See you later.")
 			npc_says(_"Don't come back. I hate you.")
 			end_dialog()
 		end
@@ -119,11 +119,11 @@ return {
 		id = "node11",
 		text = _"Ok, I'll take one. (costs 50 circuits)",
 		code = function()
-			if (del_gold(50)) then
+			if (Tux:del_gold(50)) then
 				npc_says(_"Here is your pill.", "NO_WAIT")
 				npc_says(_"Just swallow it, and it should work.")
 				npc_says(_"I give a 30 day warranty and adjustments, in case it doesn't work as expected.")
-				add_item("Map Maker",1)
+				Tux:add_item("Map Maker",1)
 				display_big_message(_"Swallow pill and press tab to see automap.")
 			else
 				npc_says(_"Hey, I'm not a bank!", "NO_WAIT")

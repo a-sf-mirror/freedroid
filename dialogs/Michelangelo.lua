@@ -26,26 +26,26 @@ return {
 	EveryTime = function()
 		hide("node29") -- the node will be re-shown later if we have enought crystals
 
-		if (has_quest("Anything but the army snacks, please!")) then
-			if (done_quest("Anything but the army snacks, please!")) then
+		if (Tux:has_quest("Anything but the army snacks, please!")) then
+			if (Tux:done_quest("Anything but the army snacks, please!")) then
 				show("node24") hide("node11")
-				if (has_quest("SADD's power supply")) then
-					if (done_quest("SADD's power supply")) then
+				if (Tux:has_quest("SADD's power supply")) then
+					if (Tux:done_quest("SADD's power supply")) then
 						hide("node75", "node76", "node77")
 					else
-						if (not has_item_backpack("Red Dilithium Crystal")) then show("node40", "node75") end
+						if (not Tux:has_item_backpack("Red Dilithium Crystal")) then show("node40", "node75") end
 					end
 				end
-				if (has_quest("Gapes Gluttony")) then
-					if (not done_quest("Gapes Gluttony")) then
+				if (Tux:has_quest("Gapes Gluttony")) then
+					if (not Tux:done_quest("Gapes Gluttony")) then
 						show_if((not Michelangelo_been_asked_meal_to_go), "node21")
 						hide("node24")
-					elseif (has_item_backpack("Empty Picnic Basket")) then
+					elseif (Tux:has_item_backpack("Empty Picnic Basket")) then
 						show("node22")
 					end
 				end
 			else
-				local nb_crystals = count_item_backpack("Red Dilithium Crystal")
+				local nb_crystals = Tux:count_item_backpack("Red Dilithium Crystal")
 				if (nb_crystals > 2) then
 					show("node29")
 				elseif (nb_crystals > 0) then
@@ -102,8 +102,8 @@ return {
 		id = "node12",
 		text = _"I want some yummy army snacks!",
 		code = function()
-			if (has_item("Fork", "Plate", "Mug")) then
-				if (has_item_equipped("Fork")) then
+			if (Tux:has_item("Fork", "Plate", "Mug")) then
+				if (Tux:has_item_equipped("Fork")) then
 					npc_says(_"I am supposed to read this out to all newcomers. Here goes:")
 					npc_says(_"'Please note that the army rations model #23 you are about to eat is provided 'as is' without warranty of any kind.")
 					npc_says(_"That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you.")
@@ -164,11 +164,11 @@ return {
 		id = "node21",
 		text = _"Can I get a meal to go?",
 		code = function()
-			tux_says(_"I've found a man who has nothing left to eat but army snacks. He has information for me, but I've got to feed him first.")
+			Tux:says(_"I've found a man who has nothing left to eat but army snacks. He has information for me, but I've got to feed him first.")
 			npc_says(_"I see. We do not have much to spare, but I will see what I can do. I will let you borrow my picnic basket, but I must have it back.")
 			npc_says(_"Here... This meal should satisfy his hunger. I even added a dessert.")
-			tux_says(_"Thank you. I'm sure it will be delicious.")
-			add_item("Lunch in a Picnic Basket")
+			Tux:says(_"Thank you. I'm sure it will be delicious.")
+			Tux:add_item("Lunch in a Picnic Basket")
 			Michelangelo_been_asked_meal_to_go = true
 			hide("node21")
 		end,
@@ -178,10 +178,10 @@ return {
 		text = _"I've brought your Picnic Basket back.",
 		code = function()
 			npc_says(_"Oh, thank you. Hopefully, the meal hit the spot.")
-			tux_says(_"Yes, he enjoyed it, and I got my information.")
+			Tux:says(_"Yes, he enjoyed it, and I got my information.")
 			npc_says(_"Excellent! Now, perhaps these antibiotics will help you on your mission.")
-			del_item_backpack("Empty Picnic Basket")
-			add_item("Antibiotic", 3)
+			Tux:del_item_backpack("Empty Picnic Basket")
+			Tux:add_item("Antibiotic", 3)
 			hide("node22")
 		end,
 	},
@@ -205,32 +205,32 @@ return {
 				end
 				if (Michelangelo_food_dish > 0.9) then
 					npc_says(_"Here, try this slice of lemon meringue pie.")
-					if (not has_item("Fork")) then
+					if (not Tux:has_item("Fork")) then
 						npc_says(_"Wait, you don't have a fork. You need a fork...")
-					elseif (not has_item_equipped("Fork")) then
+					elseif (not Tux:has_item_equipped("Fork")) then
 						npc_says(_"You need to equip your fork before you can use it to eat.")
 					else
-						tux_says(_"It is as if a cloud from heaven was made into a pie.")
-						hurt_tux(-20)
+						Tux:says(_"It is as if a cloud from heaven was made into a pie.")
+						Tux:hurt(-20)
 						Michelangelo_food_dish = false
 						Michelangelo_food_cooking_time = game_time() -- wait before you can eat.
 					end
 				elseif (Michelangelo_food_dish > 0.8) then
 					npc_says(_"Try this crab cake.")
-					if (not has_item("Fork")) and
-					   (not has_item_backpack("Plate")) then
+					if (not Tux:has_item("Fork")) and
+					   (not Tux:has_item_backpack("Plate")) then
 						npc_says(_"Where is your plate and fork?")
-					elseif (not has_item_equipped("Fork")) then
+					elseif (not Tux:has_item_equipped("Fork")) then
 						npc_says(_"You need to equip your fork before you can use it to eat.")
 					else
-						tux_says(_"Such an intense, delectable, blend of savory spices... it melts in my mouth.")
-						hurt_tux(-40) -- cholesterol not included ;-)
+						Tux:says(_"Such an intense, delectable, blend of savory spices... it melts in my mouth.")
+						Tux:hurt(-40) -- cholesterol not included ;-)
 						Michelangelo_food_dish = false
 						Michelangelo_food_cooking_time = game_time() -- wait before you can eat.
 					end
 				elseif (Michelangelo_food_dish > 0.6) then
 					npc_says(_"May I interest you in some eggs sardou?")
-					tux_says(_"EGGS!?")
+					Tux:says(_"EGGS!?")
 					npc_says(_"Oh, Michelangelo had forgotten...")
 					npc_says(_"How about a... yummy army snack instead?")
 					Michelangelo_food_dish = false
@@ -275,7 +275,7 @@ return {
 		text = _"Hmm... Crunchy... That is... Oh... No. Ugh. Help.",
 		code = function()
 			npc_says(_"Oh yes. You were warned, so don't blame me.")
-			tux_says(_"Bleah! That is not food!")
+			Tux:says(_"Bleah! That is not food!")
 			npc_says(_"We already know that. There is nothing else to eat here, so I hope you get used to the taste.")
 			npc_says(_"That thing only looks okay, and has a nice color.")
 			npc_says(_"But as you can see, the color cannot be eaten, only the taste counts.")
@@ -289,9 +289,9 @@ return {
 			npc_says(_"I will start cooking at once.")
 			npc_says(_"Thank you, Linarian. As soon as the food cubes are ready I will be able to give them away to the hungry people.")
 			display_big_message(_"Restored Michelangelo's power supply")
-			add_xp(350)
-			del_item_backpack("Red Dilithium Crystal", 3)
-			end_quest(_"Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the town's cantina.")
+			Tux:add_xp(350)
+			Tux:del_item_backpack("Red Dilithium Crystal", 3)
+			Tux:end_quest(_"Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the town's cantina.")
 			Michelangelo_food_cooking_time = game_time() -- wait before you can eat.
 			hide("node29", "node31", "node32", "node40")
 		end,
@@ -354,9 +354,9 @@ return {
 				npc_says(_"Well, you ARE the red guard", "NO_WAIT")
 				npc_says(_"Why can't you just talk to Spencer?")
 				npc_says(_"I want my battery back!")
-				tux_says(_"Umm... I guess you have a point there.")
-				tux_says(_"But sorry, I don't think there is anything I can do right now,", "NO_WAIT")
-				tux_says(_"Talk to Spencer yourself.")
+				Tux:says(_"Umm... I guess you have a point there.")
+				Tux:says(_"But sorry, I don't think there is anything I can do right now,", "NO_WAIT")
+				Tux:says(_"Talk to Spencer yourself.")
 			else
 				npc_says(_"I did.")
 				npc_says(_"They said it was already fed to their reactor as fuel.")
@@ -401,8 +401,8 @@ return {
 		code = function()
 			npc_says(_"I guess I can spare one of them, since it is an emergency.")
 			Michelangelo_been_asked_for_spare_dilithium = true
-			add_item("Red Dilithium Crystal", 1)
-			update_quest(_"SADD's power supply", _"I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!")
+			Tux:add_item("Red Dilithium Crystal", 1)
+			Tux:update_quest(_"SADD's power supply", _"I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!")
 			hide("node77")
 		end,
 	},
@@ -425,16 +425,16 @@ return {
 			npc_says(_"I have smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the town walls.")
 			npc_says(_"The bots know no mercy. They cannot even define it, infernal scrap metal fiends.")
 			npc_says(_"Feel free to go, Linarian, but make sure to be very dead before they start killing you.")
-			tux_says(_"Where can I get the crystals?")
+			Tux:says(_"Where can I get the crystals?")
 			npc_says(_"There is an old dilithium mine to the east. I am sure there is lots of that stuff there.")
 			npc_says(_"I will talk to the guards, they will open the eastern gate for you.")
 			npc_says(_"Good luck. Try not to get yourself killed.")
-			tux_says(_"How many dilithium crystals do you need?")
+			Tux:says(_"How many dilithium crystals do you need?")
 			npc_says(_"A single small crystal could power my oven for a decade if it is of good quality. But unfortunately my oven requires two to operate correctly. And since it is so dangerous to send anyone to get dilithium, could you get me a spare as well?")
-			tux_says(_"So you need three dilithium crystals?")
+			Tux:says(_"So you need three dilithium crystals?")
 			npc_says(_"Yes. Please get me three dilithium crystals.")
 			change_obstacle_state("EastGateOfTown", "opened")
-			add_quest(_"Anything but the army snacks, please!", _"I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking, the whole town is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")
+			Tux:add_quest(_"Anything but the army snacks, please!", _"I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking, the whole town is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")
 			hide("node19", "node40", "node41", "node42", "node70", "node81")
 		end,
 	},

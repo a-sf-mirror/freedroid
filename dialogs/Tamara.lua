@@ -22,7 +22,7 @@ return {
 		-- Initialization
 		Tamara_about_bots_nodes = 0
 
-		tux_says(_"Hi, I'm %s.", get_player_name())
+		Tux:says(_"Hi, I'm %s.", Tux:get_player_name())
 		npc_says(_"Welcome to the Library, I'm Tamara.")
 		npc_says(_"Please take a look around and see if there is something here that interests you.")
 		npc_says(_"You are welcome to ask me if you have any questions.")
@@ -49,11 +49,11 @@ return {
 			npc_says("ERROR: Tamara.dialog, EveryTime LuaCode: unhandled value for tamara_shelf_count, please report. value is: %s", tamara_shelf_count)
 		end
 
-		if (has_met("Tamara")) then
+		if (Tux:has_met("Tamara")) then
 			npc_says(_"What can I help you with?")
 		end
 
-		if (has_met("Sorenson")) and
+		if (Tux:has_met("Sorenson")) and
 		(not Tamara_talked_about_sister) then
 			show("node1")
 		end
@@ -190,7 +190,7 @@ return {
 			npc_says(_"It is a shortening of the word 'robot', derived from the Czech word for forced labor.")
 			npc_says(_"R.U.R. (Rossum's Universal Robots), a play, introduced \'robots\' as artificial people.")
 			npc_says(_"In the play the robots revolted, took over the world, and killed all the humans.")
-			tux_says(_"Ironic.")
+			Tux:says(_"Ironic.")
 			hide_node_about_bots(32)
 		end,
 	},
@@ -234,13 +234,13 @@ return {
 		text = _"Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?",
 		code = function()
 			npc_says(_"It's interesting you should be looking for that - the library has two copies.")
-			tux_says(_"I need one - it's a matter of life and death!")
+			Tux:says(_"I need one - it's a matter of life and death!")
 			npc_says(_"Life and death?")
-			tux_says(_"There's a nuclear reactor going super critical under the town - if I have the book, maybe I can stop it.")
+			Tux:says(_"There's a nuclear reactor going super critical under the town - if I have the book, maybe I can stop it.")
 			npc_says(_"In that case, you can have it. My mission is to preserve our culture, which won't matter if we're all dead.")
-			tux_says(_"Thank you, Tamara.")
-			update_quest(_"An Explosive Situation", _"I was able to get a copy of Subatomic and Nuclear Science for Dummies, Volume IV from the librarian, Tamara. I'd better hurry back to Ewald's 296 with it.")
-			add_item("Nuclear Science for Dummies IV")
+			Tux:says(_"Thank you, Tamara.")
+			Tux:update_quest(_"An Explosive Situation", _"I was able to get a copy of Subatomic and Nuclear Science for Dummies, Volume IV from the librarian, Tamara. I'd better hurry back to Ewald's 296 with it.")
+			Tux:add_item("Nuclear Science for Dummies IV")
 			Tamara_have_296_book = true
 			hide("node50")
 			end_dialog()

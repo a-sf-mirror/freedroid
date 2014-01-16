@@ -21,7 +21,7 @@ return {
 	EveryTime = function()
 		Town_NorthGateGuard_doors1 = {"Main Gate Outer W", "Main Gate Outer E", "Main Gate Guardhouse"}
 		Town_NorthGateGuard_doors = {Town_NorthGateGuard_doors1[1], Town_NorthGateGuard_doors1[2], Town_NorthGateGuard_doors1[3], "Main Gate Inner W", "Main Gate Inner E"}
-		if (not has_met("Town-NorthGateGuard")) then
+		if (not Tux:has_met("Town-NorthGateGuard")) then
 			npc_says(_"Hey you! Linarian! What do you want here?")
 			show("node1", "node2", "node3")
 			set_rush_tux(0)
@@ -38,7 +38,7 @@ return {
 			end
 			end_dialog()
 		else
-			tux_says(_"Can I ask you something?")
+			Tux:says(_"Can I ask you something?")
 			if (Town_NorthGateGuard_tux_nickname_loon) then
 				npc_says(_"Yes, Loon.", "NO_WAIT")
 			end
@@ -47,8 +47,8 @@ return {
 		end
 		show_if(knows_spencer_office, "node41")
 		if (KevinMurder) and
-		   (not done_quest("A strange guy stealing from town")) and
-		   (has_quest("A strange guy stealing from town")) then
+		   (not Tux:done_quest("A strange guy stealing from town")) and
+		   (Tux:has_quest("A strange guy stealing from town")) then
 			show("node50")
 		end
 	end,
@@ -92,19 +92,19 @@ return {
 			npc_says(_"Heh, you sure are a curious little bird, in more than one way I might say.")
 			npc_says(_"On the day he visited all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen.")
 			npc_says(_"I think that freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly.")
-			if (not has_met("Kevin")) then
-				add_quest(_"A strange guy stealing from town", _"The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. Apparently he lives somewhere to the east.")
+			if (not Tux:has_met("Kevin")) then
+				Tux:add_quest(_"A strange guy stealing from town", _"The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. Apparently he lives somewhere to the east.")
 			elseif (npc_dead("Kevin")) then
-				add_quest(_"A strange guy stealing from town", _"The guard told me about a guy who stole some food and hardware from the town. He lives somewhere in the east.")
-				end_quest(_"A strange guy stealing from town", _"Apparently it was this Kevin person I recently hit a bit too hard... Oops... Well, at least he won't steal again...")
-				add_xp(70)
+				Tux:add_quest(_"A strange guy stealing from town", _"The guard told me about a guy who stole some food and hardware from the town. He lives somewhere in the east.")
+				Tux:end_quest(_"A strange guy stealing from town", _"Apparently it was this Kevin person I recently hit a bit too hard... Oops... Well, at least he won't steal again...")
+				Tux:add_xp(70)
 			else
-				add_quest(_"A strange guy stealing from town", _"Ooops, the guard must be talking about Kevin. I'd better not mention I know him and where he lives, or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
-				add_xp(100)
+				Tux:add_quest(_"A strange guy stealing from town", _"Ooops, the guard must be talking about Kevin. I'd better not mention I know him and where he lives, or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
+				Tux:add_xp(100)
 				-- We should perhaps not end quest here but later when talking again to Kevin and asking about the comps
-				end_quest(_"A strange guy stealing from town", _"Though I probably should ask Kevin some day what he was doing with the town computers.")
+				Tux:end_quest(_"A strange guy stealing from town", _"Though I probably should ask Kevin some day what he was doing with the town computers.")
 			end
-			if (not has_met("Kevin")) and
+			if (not Tux:has_met("Kevin")) and
 			   (not npc_dead("Kevin")) then
 				show("node10") -- We should add other nodes in the other cases.
 			end
@@ -119,7 +119,7 @@ return {
 			npc_says(_"But if you're insanely lucky and you do find him, you come back straight to me, understand?")
 			npc_says(_"I'd like to wring his head off... Though it's not my call. But who knows, if the Boss feels generous we might both get rewarded.")
 			npc_says(_"Be careful anyway, this creep is a sneaky one if he got past us.")
-			update_quest(_"A strange guy stealing from town", _"I offered to find out who the stange guy is. The guard I talked to was pretty skeptical, though; I should get some experience and better equipment before traveling far outside of town.")
+			Tux:update_quest(_"A strange guy stealing from town", _"I offered to find out who the stange guy is. The guard I talked to was pretty skeptical, though; I should get some experience and better equipment before traveling far outside of town.")
 			next("node15")
 		end,
 	},
@@ -152,9 +152,9 @@ return {
 		text = _"Yes. I understand.",
 		code = function()
 			npc_says(_"State your name Linarian.")
-			tux_says(_"My name is %s.", get_player_name())
+			Tux:says(_"My name is %s.", Tux:get_player_name())
 			npc_says(_"You don't look too stupid. Try not to mess up.")
-			npc_says(_"You may now enter %s.", get_player_name())
+			npc_says(_"You may now enter %s.", Tux:get_player_name())
 			hide("node16", "node17") next("node40")
 		end,
 	},
@@ -185,7 +185,7 @@ return {
 			npc_says(_"The red outfit indicates that I am of the Red Guard. We are the defenders of the town and impose the law.")
 			npc_says(_"With the continued bot attacks, and the grumbling townsfolk, all of us are a little on edge.")
 			npc_says(_"Tell me your name, and then you may pass.")
-			tux_says(_"My name is %s.", get_player_name())
+			Tux:says(_"My name is %s.", Tux:get_player_name())
 			npc_says(_"You may enter.")
 			next("node40")
 		end,
@@ -214,13 +214,13 @@ return {
 		text = _"Please don't hurt me.",
 		code = function()
 			npc_says(_"How about I punch you until you spit out your name and get out of here, and we call it even?")
-			tux_says(_"OW")
+			Tux:says(_"OW")
 			npc_says(_"Your name?")
-			tux_says("%s.", get_player_name())
-			tux_says(_"OW. That HURT!")
+			Tux:says("%s.", Tux:get_player_name())
+			Tux:says(_"OW. That HURT!")
 			npc_says(_"Get out of here. The Doc is the third door on the right along the main path.")
-			if (not del_health(40)) then
-				del_health(1)
+			if (not Tux:del_health(40)) then
+				Tux:del_health(1)
 			end
 			next("node40")
 		end,
@@ -230,13 +230,13 @@ return {
 		text = _"I want to talk to your manager, moron.",
 		code = function()
 			npc_says(_"I'll be happy to send you his way, I already told you you have to talk to him anyway. But I need your name before I let you in.")
-			tux_says("%s.", get_player_name())
+			Tux:says("%s.", Tux:get_player_name())
 			npc_says(_"Talk to Spencer. His office is in the citadel, straight ahead, the first one on your left. You can't miss it.")
 			npc_says(_"Now stop bothering me! You crazy loon.")
 			Town_NorthGateGuard_tux_nickname_loon = true
 			knows_spencer_office = true
-			if (has_quest("Deliverance")) then
-				update_quest(_"Deliverance", _"I've managed to get into town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate. The guard also calls me a loon.")
+			if (Tux:has_quest("Deliverance")) then
+				Tux:update_quest(_"Deliverance", _"I've managed to get into town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate. The guard also calls me a loon.")
 			end
 			next("node40")
 		end,
@@ -247,8 +247,8 @@ return {
 		code = function()
 			npc_says(_"You are as out of your mind as that Sorenson lady.")
 			npc_says(_"But I guess she's already here, so it doesn't matter if we have another loon.")
-			tux_says(_"I'm a Linarian, not a loon. %s the Linarian.", get_player_name())
-			npc_says(_"Get out of here %s, the loon, and stop bothering me.", get_player_name())
+			Tux:says(_"I'm a Linarian, not a loon. %s the Linarian.", Tux:get_player_name())
+			npc_says(_"Get out of here %s, the loon, and stop bothering me.", Tux:get_player_name())
 			Town_NorthGateGuard_tux_nickname_loon = true
 			next("node40")
 		end,
@@ -274,12 +274,12 @@ return {
 			if (not knows_spencer_office) then -- player wasn't told where to find spencer
 				npc_says(_"Spencer's office is in the citadel, straight ahead. First one on your left.")
 				knows_spencer_office = true
-				if (has_quest("Deliverance")) and
-				   (not done_quest("Deliverance")) then
-					update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate.")
+				if (Tux:has_quest("Deliverance")) and
+				   (not Tux:done_quest("Deliverance")) then
+					Tux:update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate.")
 				end
 			else -- player was told where spencer's office is, or has met spencer
-				if (not has_met("Spencer")) then
+				if (not Tux:has_met("Spencer")) then
 					npc_says_random(_"No, you were already told that.",
 						_"I don't believe anyone's memory is that short, even yours.")
 					npc_says(_"Stop wasting my time!")
@@ -302,10 +302,10 @@ return {
 				Town_NorthGateGuard_tux_nickname_loon = false
 			end
 			npc_says(_"Here's a little reward we scraped together in case anyone solved our thief problem. I'll let Spencer know what you did.")
-			add_gold(250)
+			Tux:add_gold(250)
 			KevinMurder = false
 			KevinMurderCongratulation = true
-			end_quest(_"A strange guy stealing from town", _"I killed the thief who stole from town. The Red Guard rewarded me for it, but did I do the right thing? Hmm...")
+			Tux:end_quest(_"A strange guy stealing from town", _"I killed the thief who stole from town. The Red Guard rewarded me for it, but did I do the right thing? Hmm...")
 			hide("node50")
 			end_dialog()
 		end,
@@ -318,7 +318,7 @@ return {
 				_"Finally...",
 				_"It was about time...")
 			if (Town_NorthGateGuard_tux_nickname_loon) then
-				npc_says(_"%s... the Loon", get_player_name())
+				npc_says(_"%s... the Loon", Tux:get_player_name())
 			end
 			end_dialog()
 		end,

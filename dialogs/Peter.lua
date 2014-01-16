@@ -23,8 +23,8 @@ return {
 	end,
 
 	EveryTime = function()
-		if (has_met("Peter")) then
-			tux_says_random(_"Hello.",
+		if (Tux:has_met("Peter")) then
+			Tux:says_random(_"Hello.",
 				_"Hi there.", "NO_WAIT")
 			npc_says_random(_"Well, hello again.",
 				_"Hello hello.",
@@ -48,7 +48,7 @@ return {
 		text = _"What is a fascist?",
 		echo_text = false,
 		code = function()
-			tux_says(_"What is ...", "NO_WAIT")
+			Tux:says(_"What is ...", "NO_WAIT")
 			npc_says(_"LALALALALA - I'm not hearing you. I have my fingers in my ears and just go - LALALALALA")
 		end,
 	},

@@ -23,9 +23,9 @@ return {
 		DSB_PC_year = os.date("%Y") + 45 -- current year + 45
 		DSB_PC_date = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
 		cli_says(_"Login : ", "NO_WAIT")
-		tux_says(_"admin", "NO_WAIT")
+		Tux:says(_"admin", "NO_WAIT")
 		cli_says(_" Password : ", "NO_WAIT")
-		tux_says(_"*******", "NO_WAIT")
+		Tux:says(_"*******", "NO_WAIT")
 		npc_says(_"First login from /dev/ttySO on %s %d", DSB_PC_date, DSB_PC_year, "NO_WAIT")
 	end,
 

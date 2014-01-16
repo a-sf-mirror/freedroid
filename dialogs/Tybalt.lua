@@ -19,16 +19,16 @@
 
 return {
 	FirstTime = function()
-		tux_says(_"Hi! I'm new h...", "NO_WAIT")
+		Tux:says(_"Hi! I'm new h...", "NO_WAIT")
 		npc_says(_"I don't care! Identify yourself, right now!")
-		tux_says(_"%s... I'm %s.", get_player_name(), get_player_name())
+		Tux:says(_"%s... I'm %s.", Tux:get_player_name(), Tux:get_player_name())
 		npc_says(_"All right, I'm Tybalt. I'm guarding the town citadel gate. Only authorized personnel are permitted.")
 		set_bot_name(_"Tybalt - Citadel Gate Guard")
 		show("node0", "node5", "node10")
 	end,
 
 	EveryTime = function()
-		show_if((not has_met("Spencer")), "node0")
+		show_if((not Tux:has_met("Spencer")), "node0")
 
 		if (cmp_obstacle_state("Town-CitadelGate", "closed")) then
 			show("node10")
@@ -109,7 +109,7 @@ return {
 		text = _"Is there another entrance to the Citadel?",
 		code = function()
 			npc_says(_"Yes. All with a bunch of laser autoguns. Adjusted to shoot on sight.")
-			npc_says(_"%s, I discourage you to test our security system.", get_player_name())
+			npc_says(_"%s, I discourage you to test our security system.", Tux:get_player_name())
 			hide("node11", "node12")
 		end,
 	},
@@ -119,7 +119,7 @@ return {
 		code = function()
 			npc_says(_"I am always looking. What? Are you planning to steal from us, like that last guy from out of town?")
 			npc_says(_"I'm stationed here to make certain that doesn't happen again. Apparently the last guy suborned the droid that was here and took it with him.")
-			update_quest(_"A strange guy stealing from town", _"Apparently Tybalt was stationed to stop another break-in at the Red Guard citadel. What a boring job.")
+			Tux:update_quest(_"A strange guy stealing from town", _"Apparently Tybalt was stationed to stop another break-in at the Red Guard citadel. What a boring job.")
 			Tybalt_not_looking = true
 			hide("node13")
 		end,
@@ -148,7 +148,7 @@ return {
 		text = _"Here you go.",
 		topic = "bribe citadel guard",
 		code = function()
-			if (del_gold(100)) then
+			if (Tux:del_gold(100)) then
 				npc_says(_"Thank you.")
 				tybalt_bribe = true
 				show("node56")
@@ -166,10 +166,10 @@ return {
 		text = _"Ok, now please open the door for me.",
 		code = function()
 			npc_says(_"What door?")
-			tux_says(_"The door to the citadel!")
+			Tux:says(_"The door to the citadel!")
 			npc_says(_"But you are not a member of the Red Guard.")
 			npc_says(_"You cannot come in.")
-			tux_says(_"I paid you!")
+			Tux:says(_"I paid you!")
 			npc_says(_"Really? I don't remember that.")
 			hide("node56") show("node60")
 		end,
@@ -183,11 +183,11 @@ return {
 				npc_says(_"I'm not a charity. If this is a problem, talk to Spencer.")
 				npc_says(_"But he doesn't love robbers and foul play.")
 			else
-				npc_says(_"Wait, %s, maybe we may make a deal.", get_player_name())
+				npc_says(_"Wait, %s, maybe we may make a deal.", Tux:get_player_name())
 				npc_says(_"You don't talk to Spencer about it, and I don't tell him you tried to bribe me.")
 				npc_says(_"Just because I am such a nice guy, I'm even willing to give you half of your money back.")
 				npc_says(_"Of course, if you still want to complain, I'll get you kicked out of the Red Guard in no time.")
-				add_gold(50)
+				Tux:add_gold(50)
 				Tybalt_money_back = true
 			end
 			hide("node60")

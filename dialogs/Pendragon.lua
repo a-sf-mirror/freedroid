@@ -29,7 +29,7 @@ return {
 		   (not Pendragon_OK_w_Tania) and --Tania Escape Quest stuff
 		   (Spencer_Tania_sent_to_DocMoore) or
 		   (Tania_set_free) then
-			if (not done_quest("Tania's Escape")) then
+			if (not Tux:done_quest("Tania's Escape")) then
 				npc_says(_"Tania has been waiting to talk to you.")
 			else
 				npc_says(_"Spencer says it is OK?")
@@ -41,9 +41,9 @@ return {
 		elseif (Tania_stopped_by_Pendragon) then
 			if (not Tania_met_Pendragon) then
 				npc_says(_"Halt! Who goes there?")
-				tux_says(_"Someone I found in the desert, Tania.")
+				Tux:says(_"Someone I found in the desert, Tania.")
 			end
-			npc_says(_"%s, you may enter.", get_player_name())
+			npc_says(_"%s, you may enter.", Tux:get_player_name())
 			npc_says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the town.")
 			if (not Tania_met_Pendragon) then
 				change_obstacle_state("DesertGate-Inner", "opened")
@@ -64,13 +64,13 @@ return {
 		if (desertgate_tax ~= 0) then
 			if (cmp_obstacle_state("DesertGate", "closed")) then
 				npc_says(_"Got the money?")
-				show_if((get_gold() >= desertgate_tax), "node45")
+				show_if((Tux:get_gold() >= desertgate_tax), "node45")
 			end
 			hide("node40")
 		end
 
 		if (cmp_obstacle_state("DesertGate", "opened")) or
-		(has_met("Tania")) then
+		(Tux:has_met("Tania")) then
 			hide("node40", "node45")
 		end
 
@@ -109,7 +109,7 @@ return {
 		code = function()
 			npc_says(_"I go by Pendragon, because I can pull a knife from thin air.")
 			npc_says(_"And you?")
-			tux_says(_"%s, because it is my name?", get_player_name())
+			Tux:says(_"%s, because it is my name?", Tux:get_player_name())
 			set_bot_name(_"Pendragon - Fighter")
 			hide("node2")
 		end,
@@ -127,19 +127,19 @@ return {
 		id = "node12",
 		text = _"Yes (costs 100 valuable circuits, 5 training points)",
 		code = function()
-			if (get_skill("melee") < 1) then
-				if (train_skill(100, 5, "melee")) then
-					del_health(25)
+			if (Tux:get_skill("melee") < 1) then
+				if (Tux:train_skill(100, 5, "melee")) then
+					Tux:del_health(25)
 					npc_says(_"Let us begin then.")
 					npc_says(_"Come closer...")
 					npc_says(_"HA!")
-					tux_says(_"Ouch! What the hell are you doing?")
+					Tux:says(_"Ouch! What the hell are you doing?")
 					npc_says(_"Lesson number one. Never trust the opponent.")
-					tux_says(_"Just let me get up an -- ouch! Stop it.")
+					Tux:says(_"Just let me get up an -- ouch! Stop it.")
 					npc_says(_"Lesson number two. The bots have no mercy.")
 					npc_says(_"They won't let you get up if you fall down. They will kill you.")
 					npc_says(_"Now, lesson number -- ugh! That hurt!")
-					tux_says(_"Lesson number three. Never underestimate the enemy.")
+					Tux:says(_"Lesson number three. Never underestimate the enemy.")
 					npc_says(_"Ugh. Yes. You are correct.")
 					npc_says(_"I need to... Lie down for a while... My head hurts...")
 					npc_says(_"Lesson number four. Never hit your sparring partner with full force.")
@@ -147,7 +147,7 @@ return {
 					npc_says(_"This is enough training for today.")
 					Pendragon_beaten_up = true
 				else
-					if (get_gold() >= 100) then
+					if (Tux:get_gold() >= 100) then
 						npc_says(_"You don't have enough experience. I can't teach you anything more right now.")
 						npc_says(_"First collect more experience. Then we can go on.")
 					else
@@ -203,10 +203,10 @@ return {
 			npc_says(_"I will teach you to keep your mouth shut when told to. Observe very carefully.")
 			npc_says(_"Make sure you pay attention.")
 			npc_says(_"TAKE THIS!")
-			tux_says(_"OW!")
-			if (not del_health(40)) then
-				if (not del_health(20)) then
-					del_health(5)
+			Tux:says(_"OW!")
+			if (not Tux:del_health(40)) then
+				if (not Tux:del_health(20)) then
+					Tux:del_health(5)
 				end
 			end
 			npc_says(_"Now go away.")
@@ -227,11 +227,11 @@ return {
 		text = _"I want to pass the gate.",
 		code = function()
 			npc_says(_"Fine.")
-			tux_says(_"Can you open it please?")
+			Tux:says(_"Can you open it please?")
 			npc_says(_"Yes, I can.")
-			tux_says(_"Thanks.")
-			tux_says(_"Uhm...")
-			tux_says(_"Will you do it?")
+			Tux:says(_"Thanks.")
+			Tux:says(_"Uhm...")
+			Tux:says(_"Will you do it?")
 			npc_says(_"Yes. But you have to pay a one-time tax for it first.")
 			if (not Town_NorthGateGuard_tux_nickname_loon) then
 				npc_says(_"Pay 30 circuits and you may pass.")
@@ -240,7 +240,7 @@ return {
 				npc_says(_"You can enter the desert, but first you'll have to pay 40 circuits.")
 				desertgate_tax = 40
 			end
-			if (get_gold() >= desertgate_tax) then
+			if (Tux:get_gold() >= desertgate_tax) then
 				show("node45")
 			end
 			hide("node40")
@@ -250,24 +250,24 @@ return {
 		id = "node45",
 		text = _"Yes, I've got the money.",
 		code = function()
-			if (get_gold() >= desertgate_tax) then
+			if (Tux:get_gold() >= desertgate_tax) then
 				if (desertgate_tax == 30) then
 					npc_says(_"Good.")
-					tux_says(_"Here, take it.")
+					Tux:says(_"Here, take it.")
 					npc_says(_"You may pass.")
-					if (has_quest("Doing Duncan a favor")) then
-						update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a little tax.")
+					if (Tux:has_quest("Doing Duncan a favor")) then
+						Tux:update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a little tax.")
 					end
 				elseif (desertgate_tax == 40) then
 					npc_says(_"At last.")
-					tux_says(_"Here, let me pass now.")
+					Tux:says(_"Here, let me pass now.")
 					npc_says(_"You may pass, Loon.")
 					npc_says(_"But don't expect any help in there.")
-					if (has_quest("Doing Duncan a favor")) then
-						update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a tax.")
+					if (Tux:has_quest("Doing Duncan a favor")) then
+						Tux:update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a tax.")
 					end
 				end
-				del_gold(desertgate_tax)
+				Tux:del_gold(desertgate_tax)
 				desertgate_tax = 0
 				change_obstacle_state("DesertGate", "opened")
 			else

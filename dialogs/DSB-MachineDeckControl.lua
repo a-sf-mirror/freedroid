@@ -21,9 +21,9 @@ return {
 	FirstTime = function()
 		play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
 		cli_says(_"Login : ", "NO_WAIT")
-		tux_says(_"admin", "NO_WAIT")
+		Tux:says(_"admin", "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
-		tux_says(_"*******", "NO_WAIT")
+		Tux:says(_"*******", "NO_WAIT")
 		DSB_MDC_year = os.date("%Y") + 45 -- current year + 45
 		DSB_MDC_date = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
 		cli_says(_"First login from /dev/ttySO on %s %d", DSB_MDC_date, DSB_MDC_year, "NO_WAIT")
@@ -32,7 +32,7 @@ return {
 	EveryTime = function()
 		DSB_MachineDeckControl_prompt = "admin@main.mdc.dsb.ms: ~ #"
 		cli_says(DSB_MachineDeckControl_prompt, "NO_WAIT")
-		if (not done_quest("Opening access to MS Office")) then
+		if (not Tux:done_quest("Opening access to MS Office")) then
 			show("node7")
 		end
 		show("node99", "node1")
@@ -57,7 +57,7 @@ return {
 			npc_says(_"Disabling disruptor shield... ")
 			npc_says(_"Shield disabled.")
 			if (DSB_MDC_password) then
-				end_quest(_"Opening access to MS Office", _"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
+				Tux:end_quest(_"Opening access to MS Office", _"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
 				hide("node7")
 				play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 				end_dialog()

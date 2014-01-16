@@ -84,8 +84,8 @@ return {
 		code = function()
 			npc_says(_"Well... We are a bit short on supplies right now... Erm... AH! I know!")
 			npc_says(_"I have WATER!")
-			if (not has_item_backpack("Mug")) and
-			   (not has_item_backpack("Cup")) then
+			if (not Tux:has_item_backpack("Mug")) and
+			   (not Tux:has_item_backpack("Cup")) then
 				npc_says(_"But you'll need a mug or a cup for me to put it in.")
 			else
 				hide("node3") show("node4", "node5", "node6")
@@ -97,7 +97,7 @@ return {
 		text = _"I want double water on the rocks. Stirred, not shaken.",
 		code = function()
 			npc_says(_"Here you go. That one is on the house. And if the water is not enough, just ask me for more.")
-			heat_tux(-20)
+			Tux:heat(-20)
 			hide("node4", "node5", "node6") show("node9")
 		end,
 	},
@@ -106,7 +106,7 @@ return {
 		text = _"Long Island iced water please.",
 		code = function()
 			npc_says(_"Here you go.")
-			heat_tux(-30)
+			Tux:heat(-30)
 			hide("node4", "node5", "node6") show("node8")
 		end,
 	},
@@ -115,7 +115,7 @@ return {
 		text = _"I want something cheap... Give me some fortified water.",
 		code = function()
 			npc_says(_"Eh... Sure, as you wish. Here you go.")
-			heat_tux(-50)
+			Tux:heat(-50)
 			hide("node4", "node5", "node6") show("node7")
 		end,
 	},
@@ -124,7 +124,7 @@ return {
 		text = _"Ugh... Ahh... I like it. Give me some more of that.",
 		code = function()
 			npc_says(_"Uh... Sure...")
-			heat_tux(-1000)
+			Tux:heat(-1000)
 			hide("node7") show("node10")
 		end,
 	},
@@ -133,7 +133,7 @@ return {
 		text = _"Ahh... Fresh water! Give me some more of that.",
 		code = function()
 			npc_says(_"Yeah, I thought you would like it. Here is more.")
-			heat_tux(-1000)
+			Tux:heat(-1000)
 			hide("node8") show("node10")
 		end,
 	},
@@ -142,7 +142,7 @@ return {
 		text = _"Hmm... Lots of ice. Give me one more double water, but now without any ice.",
 		code = function()
 			npc_says(_"One double water coming up.")
-			heat_tux(-1000)
+			Tux:heat(-1000)
 			hide("node9") show("node10")
 		end,
 	},
@@ -151,7 +151,7 @@ return {
 		text = _"MORE! I want more water!",
 		code = function()
 			npc_says(_"Erm... Ok... Here, have some of my special, water colada.")
-			heat_tux(-1000)
+			Tux:heat(-1000)
 			hide("node10") show("node11")
 		end,
 	},
@@ -183,19 +183,19 @@ return {
 				npc_says(_"*sigh*")
 				npc_says(_"I wish I could once use such a gun.")
 				npc_says(_"You are a Guard member, right?")
-				if (has_item("Barrett M82 Sniper Rifle") or
-					has_item("Exterminator")) then
-					tux_says(_"Yes, I am a Guard member. No, it is not allowed to give guns to people who are high.")
+				if (Tux:has_item("Barrett M82 Sniper Rifle") or
+					Tux:has_item("Exterminator")) then
+					Tux:says(_"Yes, I am a Guard member. No, it is not allowed to give guns to people who are high.")
 					npc_says(_"Pleeeeaaaase.")
-					tux_says(_"No exceptions. I apologize. Please think responsibly; there is a good reason for this rule.")
+					Tux:says(_"No exceptions. I apologize. Please think responsibly; there is a good reason for this rule.")
 					npc_says(_"Hmm. You're right, I better ask again later.")
 					npc_says(_"Well, since you won't let me play with your big guns, we could always try a gambling game or two.")
 				else
-					tux_says(_"The fact that I am a Red Guard member does not necessarily mean that I have a big gun with me.")
+					Tux:says(_"The fact that I am a Red Guard member does not necessarily mean that I have a big gun with me.")
 					npc_says(_"Really?")
 					npc_says(_"Stop kidding me. I know you have big a gun somewhere.")
 					npc_says(_"Every Guard has one.")
-					tux_says(_"Look at me! Do you see any gun here at my belt or in my hands?")
+					Tux:says(_"Look at me! Do you see any gun here at my belt or in my hands?")
 					npc_says(_"Hmm... You are right. No gun, indeed.")
 					npc_says(_"Sorry.")
 					npc_says(_"Since there are no big guns to shoot, how about shooting some dice? Would you like to gamble?")
@@ -216,7 +216,7 @@ return {
 		text = _"Hey, I could use a refreshing drink!",
 		code = function()
 			npc_says(_"Here, have a Watery Mary.")
-			heat_tux(-1000)
+			Tux:heat(-1000)
 			hide("node14")
 		end,
 	},
@@ -303,7 +303,7 @@ return {
 		topic = "Gambling",
 		code = function()
 			-- Ewald forces you to gamble semi-responsibly ;-)
-			max = get_gold()
+			max = Tux:get_gold()
 
 			if (max > 40) then
 				show("node36")
@@ -362,7 +362,7 @@ return {
 		code = function()
 			npc_says(_"Dice it is. Roll your first die.")
 			tux1=math.random(1,6)
-			tux_says(_"I rolled a %d.", tux1)
+			Tux:says(_"I rolled a %d.", tux1)
 			npc_says(_"What multiplier are you going to bet?")
 			show("node41", "node42", "node43")
 		end,
@@ -403,7 +403,7 @@ return {
 			ewd1,ewd2,ewd3 = math.random(1,6),math.random(1,6),math.random(1,6)
 			npc_says(_"My rolls are %d, %d and %d.", ewd1, ewd2, ewd3)
 			tux2,tux3 = math.random(1,6),math.random(1,6)
-			tux_says(_"I rolled a %d and a %d.", tux2, tux3)
+			Tux:says(_"I rolled a %d and a %d.", tux2, tux3)
 
 			npc_says(_"It looks like I scored %d and you scored %d.", ewd1 + ewd2 + ewd3, tux1 + tux2 + tux3)
 
@@ -413,7 +413,7 @@ return {
 					_"You won!")
 				local bet_gain = {easy = 0.95, normal = 0.85, hard = 0.8}
 				bet = bet * bet_gain[difficulty()]
-				add_gold(bet)
+				Tux:add_gold(bet)
 				total_bet = total_bet + bet
 				display_console_message(string.format(_"You won %d valuable circuits by gambling dice with Ewald.", math.floor(bet)))
 			else -- House Wins!
@@ -421,7 +421,7 @@ return {
 					_"You lost. Better luck next time.",
 					_"You lost, try again?",
 					_"You lost. Maybe you might like coin-flipping better?")
-				del_gold(bet)
+				Tux:del_gold(bet)
 				total_bet = total_bet - bet
 				display_console_message(string.format(_"You lost %d valuable circuits by gambling dice with Ewald.", bet))
 			end
@@ -542,7 +542,7 @@ return {
 
 			npc_says(_"The last four coin flips:")
 			ewd2, ewd3, ewd4 = flip_coin(), flip_coin(), flip_coin()
-			tux_says(_"Last flip. I hope it is the one I want!")
+			Tux:says(_"Last flip. I hope it is the one I want!")
 			ewd5 = flip_coin()
 
 			ewald_sum = ewd1 + ewd2 + ewd3 + ewd4 + ewd5
@@ -597,7 +597,7 @@ return {
 				npc_says(_"THIS IS AN ERROR! REPORT IT PLEASE! E-MAIL: freedroid-discussion@lists.sourceforge.net")
 			end
 
-			add_gold(bet)
+			Tux:add_gold(bet)
 			total_bet = total_bet + bet
 
 			next("node60")
@@ -621,7 +621,7 @@ return {
 		topic = "Gambling",
 		code = function()
 			npc_says(_"Sure.")
-			local max = get_gold()
+			local max = Tux:get_gold()
 			if (max > 4 * next_bet) then
 				bet = next_bet
 				next("node" .. next_gamble_node)

@@ -23,7 +23,7 @@ return {
 	end,
 
 	EveryTime = function()
-		if (get_program_revision("Extract bot parts") > 0) then
+		if (Tux:get_program_revision("Extract bot parts") > 0) then
 			show("node18")
 		end
 		show("node99")
@@ -63,7 +63,7 @@ return {
 		text = _"If you keep standing here more bots will come and they will kill you. Go somewhere safe, and set up defense there.",
 		echo_text = false,
 		code = function()
-			tux_says(_"If you keep standing here more bots will come and --")
+			Tux:says(_"If you keep standing here more bots will come and --")
 			npc_says(_"Sehr gut. Let them come. We are ready.") -- Sehr gut = Very good or very well.
 			npc_says(_"What a beautiful day. Yes.")
 			hide("node3") show("node5")
@@ -96,11 +96,11 @@ return {
 		text = _"You guys are totally nuts. Get a life.",
 		echo_text = false,
 		code = function()
-			tux_says(_"You guys are tota --")
+			Tux:says(_"You guys are tota --")
 			npc_says(_"WHAT?! What is it that you want to say?")
-			tux_says(_"Erm... I --")
+			Tux:says(_"Erm... I --")
 			npc_says(_"WHAT!? SPIT IT OUT, BACKPFEIFENGESICHT!") -- Backpfeife = Slap in the face Gesicht = face / a face badly in need of a slap in it
-			tux_says(_"Er... You guys are really great and I admire your bravery in the face of certain death.")
+			Tux:says(_"Er... You guys are really great and I admire your bravery in the face of certain death.")
 			npc_says(_"Donnerwetter, you are a funny one.") -- donner = thunder, wetter = weather, Thunderstorm. In this sense Donnerwetter means "wow!".
 			npc_says(_"I hope that one day we shall meet again, maybe in a better time.")
 			npc_says(_"Maybe then you will tell us other gut jokes that you know.") --gut = good
@@ -121,7 +121,7 @@ return {
 		id = "node12",
 		text = _"I want to know how to extract modules from the bots.",
 		code = function()
-			if (get_program_revision("Extract bot parts") > 4) then
+			if (Tux:get_program_revision("Extract bot parts") > 4) then
 				npc_says(_"I schon told you alles I know about that.") -- schon = already , alles = everything/all
 				hide("node12", "node15")
 			else
@@ -146,17 +146,17 @@ return {
 		id = "node14",
 		text = _"What happens to these bot parts?",
 		code = function()
-			tux_says(_"Are they used to build other bots?")
+			Tux:says(_"Are they used to build other bots?")
 			npc_says(_"Most of them are used to bauen little nette gadgets.") --bauen = build , in this context more like 'create' | nette= nice
 			npc_says(_"You can use them to make weapons better or make you stronger.")
-			tux_says(_"How does this work?")
+			Tux:says(_"How does this work?")
 			npc_says(_"I don't know.")
 			npc_says(_"But these gadgets are very nice for making your equipment better.")
-			tux_says(_"So they are kind of add-ons?")
+			Tux:says(_"So they are kind of add-ons?")
 			npc_says(_"Yes.")
 			npc_says(_"Ask the Stadtmenschen if you want to know more.") --Stadtmenschen = townspeople
 
-			if (not has_met("Dixon")) then
+			if (not Tux:has_met("Dixon")) then
 				npc_says(_"I think the Rot Guard makes them.") --Rot = red
 				npc_says(_"If you have Gluck, they won't kill you directly.") --Gluck (should actually be 'Glück' but there is no ü in the font) = luck
 			end
@@ -180,17 +180,17 @@ return {
 		echo_text = false,
 		topic = "Extract bot parts",
 		code = function()
-			local rev = get_program_revision("Extract bot parts")
+			local rev = Tux:get_program_revision("Extract bot parts")
 
 			if (rev > 4) then -- Max level
 				next("node70")
-			elseif (can_tux_train(50, 1)) then
-				del_gold(50)
-				del_points(1)
-				improve_program("Extract bot parts")
+			elseif (Tux:can_train(50, 1)) then
+				Tux:del_gold(50)
+				Tux:del_points(1)
+				Tux:improve_program("Extract bot parts")
 				next("node" .. 20 + 10 * rev) -- Learn next rev; shows one of the nodes 20, 30, 40, 50, 60
 			else -- Can't train
-				if (get_gold() >= 50) then -- Training points were the problem
+				if (Tux:get_gold() >= 50) then -- Training points were the problem
 					npc_says(_"Hmmm...")
 					npc_says(_"You look green. Toughen up. Get some experience, kill some bots.")
 					npc_says(_"Then we can talk.")
@@ -209,7 +209,7 @@ return {
 		text = _"Your lessons are very helpful, but at the same time difficult to understand.",
 		code = function()
 			npc_says(_"If you want me to repeat something, don't hesitate to ask.")
-			local rev = get_program_revision("Extract bot parts")
+			local rev = Tux:get_program_revision("Extract bot parts")
 			for i = 0, 4 do
 				if (rev > i) then show("node" .. 19 + 10*i) else break end -- show some of the nodes 19, 29, 39, 49, 59
 			end

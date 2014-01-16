@@ -42,8 +42,8 @@ return {
 			npc_says(_"Non-human detected. Administering paralyzing shock.")
 			npc_says(_"NOTE: If you are a human, try again, and make sure you enter a word and not digits.")
 			freeze_tux_npc(7)
-			hurt_tux(20)
-			heat_tux(20)
+			Tux:hurt(20)
+			Tux:heat(20)
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()
 		else
@@ -60,7 +60,7 @@ return {
 			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
 				npc_says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
 			else
-				npc_says(_"Currently deployed firmware is v. 5.0.8+%swashere+gpl", get_player_name())
+				npc_says(_"Currently deployed firmware is v. 5.0.8+%swashere+gpl", Tux:get_player_name())
 			end
 		end,
 	},
@@ -78,7 +78,7 @@ return {
 				npc_says(_"Conflicts resolved,")
 				npc_says(_"Firmware update propagated!")
 				HF_FirmwareUpdateServer_uploaded_faulty_firmware_update = true
-				end_quest(_"Propagating a faulty firmware update", _"I managed to upload the faulty firmware update to all bots within transmission range. Victory is mine!")
+				Tux:end_quest(_"Propagating a faulty firmware update", _"I managed to upload the faulty firmware update to all bots within transmission range. Victory is mine!")
 				kill_faction("ms", "no_respawn")
 				hide("node3")
 			else

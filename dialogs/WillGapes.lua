@@ -19,25 +19,25 @@
 
 return {
 	EveryTime = function()
-		if (not has_met("WillGapes")) then
+		if (not Tux:has_met("WillGapes")) then
 			npc_says(_"Don't come any closer! Or I'll turn you into scrap metal!")
 			npc_says(_"Wait... You're not a robot. Who are you? What are you doing here?")
 			show("node1", "node2", "node3")
-		elseif (has_quest("Gapes Gluttony")) and
-		       (not done_quest("Gapes Gluttony")) then
-			if (has_item_backpack("Lunch in a Picnic Basket")) then
-				del_item_backpack("Lunch in a Picnic Basket")
+		elseif (Tux:has_quest("Gapes Gluttony")) and
+		       (not Tux:done_quest("Gapes Gluttony")) then
+			if (Tux:has_item_backpack("Lunch in a Picnic Basket")) then
+				Tux:del_item_backpack("Lunch in a Picnic Basket")
 				show("node9")
 			else
 				npc_says(_"Have you brought me some food?")
-				tux_says(_"No, not yet.")
+				Tux:says(_"No, not yet.")
 				npc_says(_"Hurry... I'm starting to feel weak.")
 			end
 		elseif (WillGapes_generous) and
-		       (get_tux_hp() < 20) then
+		       (Tux:get_hp() < 20) then
 			npc_says(_"Hey, are you all right? It looks like the robots are winning.")
 			npc_says(_"I found this in the First Aid kit. Maybe it will help.")
-			add_item("Antibiotic")
+			Tux:add_item("Antibiotic")
 			WillGapes_generous = false
 		else
 			npc_says(_"I see you're still alive. Maybe the robots won't win after all.")
@@ -49,7 +49,7 @@ return {
 		id = "node1",
 		text = _"A friend...",
 		code = function()
-			tux_says(_"My name is %s, and I'm here to stop the robots!", get_player_name())
+			Tux:says(_"My name is %s, and I'm here to stop the robots!", Tux:get_player_name())
 			npc_says(_"Stop them!? You can't. It's too late. The robots have killed everyone.")
 			hide("node1", "node2", "node3") show("node4", "node5", "node6")
 		end,
@@ -59,7 +59,7 @@ return {
 		text = _"I am Luke Skywalker, a Jedi Knight, and I'm here to save you!",
 		code = function()
 			npc_says(_"Huh? Am I dreaming?")
-			tux_says(_"Sorry, I've always wanted to say that.")
+			Tux:says(_"Sorry, I've always wanted to say that.")
 			npc_says(_"Who are you really?")
 			next("node1")
 		end,
@@ -106,7 +106,7 @@ return {
 		code = function()
 			npc_says(_"If you bring me a well-cooked meal, I will tell you about Hell's Fortress.")
 			npc_says(_"Trust me, you won't survive long in there without my help.")
-			add_quest(_"Gapes Gluttony", _"I found a man who is starving. He is willing to tell me about Hell's Fortress if I will bring him some food. I should speak to Michelangelo about this.")
+			Tux:add_quest(_"Gapes Gluttony", _"I found a man who is starving. He is willing to tell me about Hell's Fortress if I will bring him some food. I should speak to Michelangelo about this.")
 			hide("node7")
 		end,
 	},
@@ -128,13 +128,13 @@ return {
 			npc_says(_"It's about time! I'm starving.")
 			npc_says(_"Oh, this is delicious!")
 			npc_says(_"[b]om nom nom[/b]")
-			tux_says(_"Um...You're welcome?")
+			Tux:says(_"Um...You're welcome?")
 			npc_says(_"...")
-			tux_says(_"Now, how about some information?")
+			Tux:says(_"Now, how about some information?")
 			npc_says(_"OK, so what do you want to know?")
-			end_quest(_"Gapes Gluttony", _"I brought the full picnic basket to Gapes, and he tore into it like a wild animal. It was a disgusting sight, but thankfully it ended quickly.")
-			del_item_backpack("Lunch in a Picnic Basket")
-			add_item("Empty Picnic Basket")
+			Tux:end_quest(_"Gapes Gluttony", _"I brought the full picnic basket to Gapes, and he tore into it like a wild animal. It was a disgusting sight, but thankfully it ended quickly.")
+			Tux:del_item_backpack("Lunch in a Picnic Basket")
+			Tux:add_item("Empty Picnic Basket")
 			WillGapes_generous = true
 			hide("node9") show("node11", "node12")
 		end,
@@ -167,10 +167,10 @@ return {
 			npc_says(_"But you will have to find some other way into the headquarters. Guests were never given clearance.")
 			npc_says(_"However, owners are.")
 			npc_says(_"I guess that is all this otherwise worthless piece of paper is useful for anymore.")
-			tux_says(_"Paper?")
+			Tux:says(_"Paper?")
 			npc_says(_"Sheet of cellulose.")
 			npc_says(_"Here, take it.")
-			add_item("MS Stock Certificate", 1)
+			Tux:add_item("MS Stock Certificate", 1)
 			hide("node13")
 		end,
 	},

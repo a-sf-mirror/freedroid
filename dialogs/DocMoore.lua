@@ -23,9 +23,9 @@ return {
 			show("node0")
 		end
 
-		if (has_quest("Bender's problem")) and
+		if (Tux:has_quest("Bender's problem")) and
 		   (DocMoore_met) and
-		   (not done_quest("Bender's problem")) then
+		   (not Tux:done_quest("Bender's problem")) then
 			show("node2")
 		end
 
@@ -35,34 +35,34 @@ return {
 			show("node25")
 		end
 
-		if (has_item_backpack("Strength Pill")) then show("node50") end
-		if (has_item_backpack("Dexterity Pill")) then show("node51") end
-		if (has_item_backpack("Code Pill")) then show("node52") end
+		if (Tux:has_item_backpack("Strength Pill")) then show("node50") end
+		if (Tux:has_item_backpack("Dexterity Pill")) then show("node51") end
+		if (Tux:has_item_backpack("Code Pill")) then show("node52") end
 
-		if (has_item_backpack("Diet supplement")) then show("node55") end
-		if (has_item_backpack("Antibiotic")) then show("node56") end
-		if (has_item_backpack("Doc-in-a-can")) then show("node57") end
+		if (Tux:has_item_backpack("Diet supplement")) then show("node55") end
+		if (Tux:has_item_backpack("Antibiotic")) then show("node56") end
+		if (Tux:has_item_backpack("Doc-in-a-can")) then show("node57") end
 
-		if (tux_hp_ratio() < 0.1) then
+		if (Tux:get_hp_ratio() < 0.1) then
 			npc_says(_"You look gravely injured.")
 			npc_says(_"I will help you.")
-			tux_says(_"I...")
+			Tux:says(_"I...")
 			npc_says(_"It's ok, you'll be fine soon.")
 			npc_says(_"A little spray here...")
 			npc_says(_"An injection there...", "NO_WAIT")
-			tux_says(_"OW!")
+			Tux:says(_"OW!")
 			npc_says(_"Now, swallow this pill.")
-			tux_says(_"*glup*")
+			Tux:says(_"*glup*")
 			npc_says(_"Ok, you are fixed now.")
-			tux_says(_"Oh, thank you!")
+			Tux:says(_"Oh, thank you!")
 			npc_says(_"Take better care of yourself, Linarian.")
-			heal_tux()
+			Tux:heal()
 		end
 
-		if (tux_hp_ratio() < 0.2) then
+		if (Tux:get_hp_ratio() < 0.2) then
 			npc_says(_"You don't look too good...")
 			npc_says(_"I can help you if you want.")
-		elseif (tux_hp_ratio() < 0.4) then
+		elseif (Tux:get_hp_ratio() < 0.4) then
 			npc_says(_"You should take better care of yourself out there.")
 		end
 
@@ -71,7 +71,7 @@ return {
 		end
 
 		if (DocMoore_met) and
-		   (has_item("Rubber duck")) and
+		   (Tux:has_item("Rubber duck")) and
 		   (not DocMoore_not_seen_rubber_duck_lie) then
 			npc_says(_"Oh, did you by any chance see a bright yellow item made out of polyvinyl chloride?")
 			show("node42", "node43")
@@ -85,16 +85,16 @@ return {
 		text = _"Hello!",
 		code = function()
 			npc_says(_"Hello. I'm Doc Moore. I'm the medic of this town. I don't believe we've met?")
-			tux_says(_"I'm %s.", get_player_name())
+			Tux:says(_"I'm %s.", Tux:get_player_name())
 			npc_says(_"Um, what are you? Some kind of overgrown penguin?")
-			tux_says(_"I'm a Linarian.")
+			Tux:says(_"I'm a Linarian.")
 			npc_says(_"Oh, I vaguely remember reading something about Linarian biology back in my university days...")
 			npc_says(_"Wait... did you come from outside of town?")
-			tux_says(_"Yes, I had to fight my way here through a bunch of bots.")
+			Tux:says(_"Yes, I had to fight my way here through a bunch of bots.")
 			npc_says(_"Oh my!")
 			npc_says(_"Well, I should be able to heal you if you get hurt.")
 			DocMoore_met = true
-			if (has_quest("Bender's problem")) then
+			if (Tux:has_quest("Bender's problem")) then
 				show("node2")
 			end
 			set_bot_name(_"Doc Moore - Medic")
@@ -126,8 +126,8 @@ return {
 				npc_says(_"But remember, I'll only give you this help once, because you didn't know the effects.")
 				npc_says(_"Should you take that junk again, I won't feel responsible for what happens to you any more.")
 				DocMoore_healed_tux = true
-				update_quest(_"Bender's problem", _"The doctor was easily fooled. I have the pills that Bender needs.")
-				add_item("Brain Enlargement Pills Antidote",1)
+				Tux:update_quest(_"Bender's problem", _"The doctor was easily fooled. I have the pills that Bender needs.")
+				Tux:add_item("Brain Enlargement Pills Antidote",1)
 			end
 			hide("node2")
 		end,
@@ -153,12 +153,12 @@ return {
 				npc_says(_"However, self-inflicted damage might be exempted from this rule in some cases...")
 				show("node11")
 			end
-			if (tux_hp_ratio() == 1) then
+			if (Tux:get_hp_ratio() == 1) then
 				npc_says(_"You seem to be in excellent health, there is nothing I can do for you right now.")
 			else
 				npc_says_random(_"There, it's done. You're completely fixed. You can go now.",
 					_"You need to keep better care of yourself. You're completely fixed. You can go now.")
-				heal_tux()
+				Tux:heal()
 			end
 			hide("node0")
 		end,
@@ -173,7 +173,7 @@ return {
 			else
 				npc_says(_"Well, you see that idiotic Bender character on my doorstep?")
 			end
-			tux_says(_"What can you tell me about Bender?")
+			Tux:says(_"What can you tell me about Bender?")
 			npc_says(_"Bender asked my advice about some pills he saw advertised in an e-mail. I told him not to buy them.")
 			npc_says(_"But guess what? He bought and took the stupid pills anyway, and then he came back to me to fix him.")
 			npc_says(_"If he, or anyone, is going to completely disregard my medical advice, and then think they are going to get my medical supplies, then they are wrong.")
@@ -203,28 +203,28 @@ return {
 		text = _"Your wish is my command!",
 		code = function()
 			npc_says(_"Huh? What?")
-			tux_says(_"Humans... You are so interesting. I always wanted to know exactly how much blood you have.")
+			Tux:says(_"Humans... You are so interesting. I always wanted to know exactly how much blood you have.")
 			npc_says(_"Don't do this. Don't do this.")
-			tux_says(_"Prepare, Doctor. The experiment begins.")
+			Tux:says(_"Prepare, Doctor. The experiment begins.")
 			npc_says(_"Don't do this! DON'T DO THIS!")
 			npc_says(_"AAAAAAAAAAAA!")
-			tux_says(_"Ugh. Human blood is disgusting. At least four liters. I feel sick.")
+			Tux:says(_"Ugh. Human blood is disgusting. At least four liters. I feel sick.")
 			npc_says(_" . . .")
-			tux_says(_"I guess this means I get to inherit all your stuff. I hope you don't mind if I take everything?")
+			Tux:says(_"I guess this means I get to inherit all your stuff. I hope you don't mind if I take everything?")
 			npc_says(_" . . .")
-			tux_says(_"Good. I am very glad not to hear a disapproval.")
+			Tux:says(_"Good. I am very glad not to hear a disapproval.")
 			npc_says(_" . . .")
 			killed_docmoore = true
 			drop_dead()
-			add_item("Diet supplement",15)
-			add_item("Diet supplement",15)
-			add_item("Doc-in-a-can",10)
-			add_item("Antibiotic",10)
-			add_item("Brain Enlargement Pills Antidote",5)
-			add_item("Laser Scalpel",1)
-			add_item("Doc-in-a-can",10)
-			add_item("Antibiotic",10)
-			add_item("Brain Enlargement Pills Antidote",5)
+			Tux:add_item("Diet supplement",15)
+			Tux:add_item("Diet supplement",15)
+			Tux:add_item("Doc-in-a-can",10)
+			Tux:add_item("Antibiotic",10)
+			Tux:add_item("Brain Enlargement Pills Antidote",5)
+			Tux:add_item("Laser Scalpel",1)
+			Tux:add_item("Doc-in-a-can",10)
+			Tux:add_item("Antibiotic",10)
+			Tux:add_item("Brain Enlargement Pills Antidote",5)
 			hide("node22", "node10", "node11", "node50", "node51", "node52", "node55", "node56", "node57")
 		end,
 	},
@@ -233,7 +233,7 @@ return {
 		text = _"Is Tania OK?",
 		code = function()
 			npc_says(_"Haven't you heard of doctor-patient confidentiality?")
-			tux_says(_"Ummm...")
+			Tux:says(_"Ummm...")
 			npc_says(_"No worries. She is fine.")
 			heal_npc("Tania")
 			hide("node25")
@@ -259,7 +259,7 @@ return {
 		id = "node42",
 		text = _"Hmm. I cannot remember.",
 		code = function()
-			tux_says(_"I'm sorry.")
+			Tux:says(_"I'm sorry.")
 			npc_says(_"No problem. Thanks anyway.")
 			DocMoore_not_seen_rubber_duck_lie = true
 			hide("node42", "node43")
@@ -270,17 +270,17 @@ return {
 		text = _"I think I did.",
 		echo_text = false,
 		code = function()
-			tux_says(_"Hmm... Yellow, bright, PVC...?")
-			tux_says(_"I think I did.")
-			tux_says(_"Do you mean this rubber duck by any chance?")
+			Tux:says(_"Hmm... Yellow, bright, PVC...?")
+			Tux:says(_"I think I did.")
+			Tux:says(_"Do you mean this rubber duck by any chance?")
 			npc_says(_"Ooh, you found it.")
-			tux_says(_"Here, take it if it's yours.")
+			Tux:says(_"Here, take it if it's yours.")
 			npc_says(_"Thanks.")
 			npc_says(_"Take this healthy drink as reward.")
-			tux_says(_"Looks.. erm... interesting...")
-			tux_says(_"Thank you. I am sure it ... can be quite useful in some situations.")
-			add_item("Doc-in-a-can", 1)
-			del_item("Rubber duck")
+			Tux:says(_"Looks.. erm... interesting...")
+			Tux:says(_"Thank you. I am sure it ... can be quite useful in some situations.")
+			Tux:add_item("Doc-in-a-can", 1)
+			Tux:del_item("Rubber duck")
 			hide("node42", "node43")
 		end,
 	},
@@ -336,10 +336,10 @@ return {
 		code = function()
 			npc_says(_"Have you tasted the army snacks that the cook, Michelangelo, has been handing out?")
 			if (Michelangelo_been_asked_for_army_snacks) then
-				tux_says(_"Yes, those were horrible. They had a nice color though.")
+				Tux:says(_"Yes, those were horrible. They had a nice color though.")
 				npc_says(_"The dye used to make that color is a known carcinogen.")
 			else
-				tux_says(_"No, should I?")
+				Tux:says(_"No, should I?")
 				npc_says(_"Not if you can avoid it.")
 			end
 			npc_says(_"Well, unlike the army snacks, the Diet Supplements actually have a slight nutritional benefit.")
@@ -352,7 +352,7 @@ return {
 		text = _"What can you tell me about Antibiotics?",
 		code = function()
 			npc_says(_"Basically it is bottled up poison made by bacteria.")
-			tux_says(_"And that is good for me?")
+			Tux:says(_"And that is good for me?")
 			npc_says(_"Yep. It kills the bacteria that want to kill you. It improves your health significantly.")
 			hide("node56")
 		end,
@@ -362,7 +362,7 @@ return {
 		text = _"What is a Doc-in-a-can?",
 		code = function()
 			npc_says(_"It is a device that releases millions of short-lived nanobots that swarm all over your body inside and out repairing and fixing almost all but the most serious wounds.")
-			tux_says(_"Wouldn't long-lived nanobots work better?")
+			Tux:says(_"Wouldn't long-lived nanobots work better?")
 			npc_says(_"They found that long-lived nanobots evolve self-replication and act like a cancer. A cancer of gray goo that eats everything.")
 			npc_says(_"Several planets were made uninhabitable before they figured that one out.")
 			hide("node57")

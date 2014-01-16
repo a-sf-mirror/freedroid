@@ -23,7 +23,7 @@ return {
 	end,
 
 	EveryTime = function()
-		if (has_met("Karol")) then
+		if (Tux:has_met("Karol")) then
 			show("node1")
 		end
 

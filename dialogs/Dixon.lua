@@ -22,9 +22,9 @@ return {
 		Maintenance_Terminal_accessgate_nope = "somevalue"
 		Dixon_mood = 0
 		set_bot_name(_"Dixon - Mechanic")
-		tux_says(_"Hi! I'm new here.")
+		Tux:says(_"Hi! I'm new here.")
 		npc_says(_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division.")
-		tux_says(_"I'm %s, a Linarian.", get_player_name())
+		Tux:says(_"I'm %s, a Linarian.", Tux:get_player_name())
 		show("node1", "node4")
 	end,
 
@@ -45,7 +45,7 @@ return {
 			end_dialog()
 		end
 
-		if (done_quest(_"The yellow toolkit")) and (not Dixon_hide_node_56) then
+		if (Tux:done_quest(_"The yellow toolkit")) and (not Dixon_hide_node_56) then
 			-- effects of the toolkit-quest
 			if (Dixon_no_ambassador) then -- Tux does not get the toolkit
 				if (Dixon_everything_alright) then
@@ -58,7 +58,7 @@ return {
 			else -- Tux got the toolkit by force
 				show("node53")
 			end
-		elseif (has_item_backpack("Dixon's Toolbox")) then -- Giving Dixon the toolkit
+		elseif (Tux:has_item_backpack("Dixon's Toolbox")) then -- Giving Dixon the toolkit
 			if (Singularity_deal) then
 				show("node31", "node33")
 			else
@@ -132,7 +132,7 @@ return {
 			npc_says(_"Our defensive bots are falling into disrepair and many are in desperate need of maintenance.")
 			npc_says(_"The technical division is very understaffed right now. On average one person has to do the jobs of three people.", "NO_WAIT")
 			npc_says(_"We just cannot afford to do any non-critical jobs right now. ")
-			if (not has_quest("The yellow toolkit")) then
+			if (not Tux:has_quest("The yellow toolkit")) then
 				show("node10")
 			end
 			hide("node6")
@@ -154,7 +154,7 @@ return {
 			npc_says(_"The salvaged components are used to craft addons. Your equipment has specific sockets to insert them.", "NO_WAIT")
 			npc_says(_"They can increase the power of items. But items can only have a limited number of addons.")
 			npc_says(_"To produce and assemble them, you may use a small factory in the Maintenance Tunnels.")
-			if (not has_quest(_"The yellow toolkit")) then
+			if (not Tux:has_quest(_"The yellow toolkit")) then
 				npc_says(_"Currently, the maintenance tunnels are not accessible. We have many problems with bots. You can't go there, access has been limited.")
 				show("node10")
 			end
@@ -167,9 +167,9 @@ return {
 		code = function()
 			npc_says(_"We need people badly, so it would be great if you could give us a helping hand even for a few days.", "NO_WAIT")
 			npc_says(_"Now, what are your skills? Where do you think you could be the most useful?")
-			tux_says(_"I can handle computers very well. I also know a lot about laboratory equipment.", "NO_WAIT")
+			Tux:says(_"I can handle computers very well. I also know a lot about laboratory equipment.", "NO_WAIT")
 			npc_says(_"And what about construction? Mechanical devices? Repairing broken power lines? Building laser pistols? Anything like that?")
-			tux_says(_"Well... I can build an igloo and make pykrete out of snow... And... Umm...", "NO_WAIT")
+			Tux:says(_"Well... I can build an igloo and make pykrete out of snow... And... Umm...", "NO_WAIT")
 			npc_says(_"Well, I appreciate your enthusiasm, but at the same time I am afraid that waiting half a year for snowfall does not sound so appealing to me right now.")
 			npc_says(_"Now... Which project I should assign you to... Hmm...", "NO_WAIT")
 			npc_says(_"Ah, I know what you could do for us. We need some autotools to automate a few tasks. There is a set of them in the maintenance tunnels below the town.")
@@ -177,7 +177,7 @@ return {
 			npc_says(_"The bots under the town took it from me during the Great Assault. I was lucky, they could have killed me with ease.")
 			npc_says(_"Since the toolkit can't be teleported, everyone has been reluctant to go after it.")
 			npc_says(_"If you could get it back for us, it would help the town very much.")
-			add_quest(_"The yellow toolkit", _"Dixon, the leader of the Red Guard technical division, lost his yellow toolkit in the town's maintenance tunnels. I am supposed to get it from there.")
+			Tux:add_quest(_"The yellow toolkit", _"Dixon, the leader of the Red Guard technical division, lost his yellow toolkit in the town's maintenance tunnels. I am supposed to get it from there.")
 			hide("node10") show("node11", "node13", "node28")
 			push_topic("The yellow toolkit")
 		end,
@@ -251,7 +251,7 @@ return {
 		topic = "Toolkit peace mission Y/N",
 		code = function()
 			npc_says(_"Excellent. The tunnels are open. Come in peace.")
-			update_quest(_"The yellow toolkit", _"I refused to seize the toolkit from the bots by force because I think they might be sentient. Life is precious and should be preserved. Thus, Dixon send me to talk to them and negotiate with them to get the toolkit.")
+			Tux:update_quest(_"The yellow toolkit", _"I refused to seize the toolkit from the bots by force because I think they might be sentient. Life is precious and should be preserved. Thus, Dixon send me to talk to them and negotiate with them to get the toolkit.")
 			hide("node21", "node22")
 			pop_topic() -- "Toolkit peace mission Y/N"
 			pop_topic() -- "The yellow toolkit"
@@ -263,7 +263,7 @@ return {
 		topic = "Toolkit peace mission Y/N",
 		code = function()
 			npc_says(_"OK, I understand. However, I will try to contact them somehow. We will see, if there is a benefit in this.")
-			end_quest(_"The yellow toolkit", _"I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved. I also turned down Dixon's request to be his middleman.")
+			Tux:end_quest(_"The yellow toolkit", _"I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved. I also turned down Dixon's request to be his middleman.")
 			Singularity_quest_rejected = true
 			hide("node21", "node22")
 			pop_topic() -- "Toolkit peace mission Y/N"
@@ -278,16 +278,16 @@ return {
 			npc_says(_"OH MY GOD! Linarian, there is no time to lose!", "NO_WAIT")
 			npc_says(_"I will call the military division and arrange a sweep of the tunnels at once.")
 			npc_says(_"May the heavens have mercy upon us, but better them than us.")
-			tux_says(_"I will go in there first and clean out the place. Then your people can mop up after me and kill the remainder.")
+			Tux:says(_"I will go in there first and clean out the place. Then your people can mop up after me and kill the remainder.")
 			npc_says(_"Linarian, my people do not carry guns. We are mechanics. You want the military division's help.")
 			npc_says(_"Erm... And aren't you being too aggressive? Maybe they do not wish us harm...")
-			tux_says(_"DIXON! Snap out of it! We need to take action NOW. There is no such thing as a friendly bot. They are probably planning to kill us all in our sleep!")
+			Tux:says(_"DIXON! Snap out of it! We need to take action NOW. There is no such thing as a friendly bot. They are probably planning to kill us all in our sleep!")
 			npc_says(_"... *sigh*", "NO_WAIT")
 			npc_says(_"With heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone.", "NO_WAIT")
 			npc_says(_"The tunnels are open. Good luck.")
 			npc_says(_"Once you get inside, you'll need to use the terminal to unlock the door. I've written my password down for you.", "NO_WAIT")
 			npc_says(_"I will talk to Spencer and ask him for a few attack teams. We will take care of the bots.")
-			update_quest(_"The yellow toolkit", _"The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
+			Tux:update_quest(_"The yellow toolkit", _"The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
 			Dixon_Singularity_war = true
 			-- The singularity faction is set to hostile as soon as the quest begins.
 			set_faction_state("singularity", "hostile")
@@ -306,7 +306,7 @@ return {
 			npc_says(_"No one jokes about the bots anymore. We have seen too much death to do that. It is a serious matter.")
 			npc_says(_"The bots are our enemies, executioners, killers. Not even Ewald tells jokes about them anymore.")
 			npc_says(_"Once you get into the tunnels, you'll need to use the terminal to unlock the door. I've written my password down for you.", "NO_WAIT")
-			update_quest(_"The yellow toolkit", _"The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
+			Tux:update_quest(_"The yellow toolkit", _"The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
 			hide("node11")
 			next("node28")
 		end,
@@ -323,7 +323,7 @@ return {
 			local dev_numbers = {_"a small device", _"two small devices", _"three small devices"}
 			local dev_ref = {_"it", _"one", _"one"}
 			npc_says(_"Great. Be careful down there. Just try to get the toolkit and get out of there as quickly as possible.")
-			add_item("EMP Shockwave Generator", dev_count)
+			Tux:add_item("EMP Shockwave Generator", dev_count)
 			npc_says(_"I will give you %s that can emit an Electro Magnetic Pulse.", dev_numbers[dev_count])
 			npc_says(_"If you get in trouble just activate %s and it emits a shockwave damaging any bot nearby. It should give you some breathing room.", dev_ref[dev_count])
 			npc_says(_"Best of all, it's completely harmless to biologicals. But make sure not to fry the circuits of our own 614 guard bots or computer terminals.")
@@ -344,16 +344,16 @@ return {
 			npc_says(_"Our roads need fixing, our power lines need fixing, our walls need fixing... Heck, everything needs fixing in this place.")
 			npc_says(_"With those little gadgets we will be able to automate a lot of those simple repairs, saving us a lot of time.")
 			npc_says(_"Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day.")
-			del_item_backpack("Dixon's Toolbox", 1)
-			add_item("Dixon's Helmet", 1)
+			Tux:del_item_backpack("Dixon's Toolbox", 1)
+			Tux:add_item("Dixon's Helmet", 1)
 			local questendsentence = _"I guess this is better than nothing."
 			if (Dixon_Singularity_peace) then -- If Tux fulfilled his peaceful mission
 				npc_says(_"It is good to see that the way of the pacifist is a successful one!")
 				questendsentence = _"He was proud to see pacifism works."
 				Dixon_mood = Dixon_mood - 100
 			end
-			end_quest(_"The yellow toolkit", _"I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. " .. questendsentence)
-			add_gold(100 - Dixon_mood)
+			Tux:end_quest(_"The yellow toolkit", _"I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. " .. questendsentence)
+			Tux:add_gold(100 - Dixon_mood)
 			hide("node31", "node33")
 		end,
 	},
@@ -370,14 +370,14 @@ return {
 			npc_says(_"Here is some money, you deserve it for getting my toolkit back.")
 			npc_says(_"Finally, I would like to say that the technical division is not interested in further cooperation with you, but I think you would fit very well in the military division. You should talk to them.")
 			npc_says(_"I am sorry, but I must go now. My duties call.")
-			del_item_backpack("Dixon's Toolbox", 1)
+			Tux:del_item_backpack("Dixon's Toolbox", 1)
 			local disappointment_sentence = _"Dixon didn't seem too happy about this solution, but I don't care. "
 			if (Dixon_Singularity_peace) then -- Tux disappointed Dixon by turning his peaceful mission into a massacre
 				Dixon_mood = Dixon_mood + 50
 				disappointment_sentence = _"Dixon was very disappointed about this solution, but I don't care. "
 			end
-			add_gold(150 - Dixon_mood)
-			end_quest(_"The yellow toolkit", _"Finally. I am tired, covered in bruises and oil... But I made sure that the bots are dead. It felt great to break their metal bodies and crush their circuits. " .. disappointment_sentence .. _"It was fun killing the bots. Nothing else matters.")
+			Tux:add_gold(150 - Dixon_mood)
+			Tux:end_quest(_"The yellow toolkit", _"Finally. I am tired, covered in bruises and oil... But I made sure that the bots are dead. It felt great to break their metal bodies and crush their circuits. " .. disappointment_sentence .. _"It was fun killing the bots. Nothing else matters.")
 			hide("node32", "node33")
 		end,
 	},
@@ -447,9 +447,9 @@ return {
 			npc_says(_"Here. It is all there.", "NO_WAIT")
 			npc_says(_"Now get out of here. I am a pacifist, but I am willing to make a special exception just for you.", "NO_WAIT")
 			npc_says(_"Get out of my sight.")
-			add_gold(250)
-			del_item_backpack("Dixon's Toolbox", 1)
-			end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a nice sum of money. Life is good.")
+			Tux:add_gold(250)
+			Tux:del_item_backpack("Dixon's Toolbox", 1)
+			Tux:end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a nice sum of money. Life is good.")
 			hide("node35", "node43")
 			end_dialog()
 		end,
@@ -460,9 +460,9 @@ return {
 		code = function()
 			npc_says(_"I am not happy about this. I suggest you leave town.", "NO_WAIT")
 			npc_says(_"Accidents... Happen.")
-			add_gold(350)
-			del_item_backpack("Dixon's Toolbox", 1)
-			end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a huge sum of money. Life is great.")
+			Tux:add_gold(350)
+			Tux:del_item_backpack("Dixon's Toolbox", 1)
+			Tux:end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a huge sum of money. Life is great.")
 			hide("node36", "node45")
 			end_dialog()
 		end,
@@ -474,9 +474,9 @@ return {
 			npc_says(_"Linarian. Now we part as usual. However should I ever see you after the war is over...", "NO_WAIT")
 			npc_says(_"I promise to kill you.")
 			npc_says(_"Now take your money and get out of my face. I do not want to see you here ever again.")
-			add_gold(400)
-			del_item_backpack("Dixon's Toolbox", 1)
-			end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me.")
+			Tux:add_gold(400)
+			Tux:del_item_backpack("Dixon's Toolbox", 1)
+			Tux:end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me.")
 			hide("node47")
 			end_dialog()
 		end,
@@ -549,7 +549,7 @@ return {
 			npc_says(_"The Library of Alexandria, the Colossus of Rhodes, the Black Island...")
 			npc_says(_"And this is just one of those things.", "NO_WAIT")
 			npc_says(_"Just go and see for yourself. Otherwise you will not believe me.")
-			end_quest(_"The yellow toolkit", _"The tunnels bots seem to be working together with Dixon in keeping the town working. All is well that ends well.")
+			Tux:end_quest(_"The yellow toolkit", _"The tunnels bots seem to be working together with Dixon in keeping the town working. All is well that ends well.")
 			Dixon_hide_node_56 = true
 			hide("node58")
 		end,
@@ -567,7 +567,7 @@ return {
 			else
 				npc_says(_"We haven't used it for a long time, so I am not surprised.")
 				npc_says(_"What is the error code?")
-				tux_says(_"Erm... I don't recall it.")
+				Tux:says(_"Erm... I don't recall it.")
 				npc_says(_"So, I should guess?")
 				npc_says(_"Hm... It could be the common error when the autofactory is restarting.", "NO_WAIT")
 				npc_says(_"Its code should be 0x06660... 0x06661696... C, I think. It means 'fail' in hex.")
@@ -584,9 +584,9 @@ return {
 		text = _"Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?",
 		code = function()
 			npc_says(_"Unfortunately, I never added that one to my library.")
-			tux_says(_"Library... Of course! Thanks, Dixon!")
+			Tux:says(_"Library... Of course! Thanks, Dixon!")
 			npc_says(_"Uh... You're welcome, I guess.")
-			update_quest(_"An Explosive Situation", _"I spoke to Dixon, who didn't have a copy of the book. He did give me an idea, though - I'll head for the library in town.")
+			Tux:update_quest(_"An Explosive Situation", _"I spoke to Dixon, who didn't have a copy of the book. He did give me an idea, though - I'll head for the library in town.")
 			Dixon_296_book_examine_library = true
 			hide("node70")
 		end,

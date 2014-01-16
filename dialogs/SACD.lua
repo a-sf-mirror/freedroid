@@ -26,14 +26,14 @@ return {
 		SACD_year = os.date("%Y") + 45 -- current year + 45
 		SACD_date_1 = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
 		if (not SACD_login) then
-			update_quest(_"Tania's Escape", _"I have found the Secret Area Control Datacenter.")
-			add_xp(1000)
+			Tux:update_quest(_"Tania's Escape", _"I have found the Secret Area Control Datacenter.")
+			Tux:add_xp(1000)
 			SACD_login = true
 		end
 		cli_says(_"Login : ", "NO_WAIT")
-		tux_says(_"admin", "NO_WAIT")
+		Tux:says(_"admin", "NO_WAIT")
 		cli_says(_" Password : ", "NO_WAIT")
-		tux_says(_"*******", "NO_WAIT")
+		Tux:says(_"*******", "NO_WAIT")
 		if (SACD_date == nil) then
 			npc_says(_"First login from /dev/ttySO on %s %d", SACD_date_1, SACD_year, "NO_WAIT")
 		else
@@ -84,7 +84,7 @@ return {
 			change_obstacle_state("SA-Main-Enter", "opened")
 			npc_says(_"ERROR: An error occurred while opening some doors.")
 			npc_says(_"Please enter unlock security override password:")
-			tux_says(_"CTRL+C")
+			Tux:says(_"CTRL+C")
 			npc_says(_"Invalid password. Entering lockdown mode.")
 			npc_says(_"ERROR: Lockdown mode encountered an error.", "NO_WAIT")
 			npc_says(_"ERROR: error encountered an error.", "NO_WAIT")

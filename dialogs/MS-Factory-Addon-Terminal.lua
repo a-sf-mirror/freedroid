@@ -23,21 +23,21 @@ return {
 		terminal = "user@product_enhancer: ~ # "
 
 		cli_says(_"Login : ", "NO_WAIT")
-		tux_says("user", "NO_WAIT")
+		Tux:says("user", "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
 		if (not has_ms_addon_password ) then
-			tux_says("*******", "NO_WAIT")
+			Tux:says("*******", "NO_WAIT")
 			npc_says(_"Incorrect password or username")
-			tux_says(_"Mmmh...")
+			Tux:says(_"Mmmh...")
 			cli_says(_"Password : ", "NO_WAIT")
-			tux_says("***********", "NO_WAIT")
+			Tux:says("***********", "NO_WAIT")
 			npc_says(_"Incorrect password or username")
 			cli_says(_"Password : ", "NO_WAIT")
-			tux_says("**", "NO_WAIT")
+			Tux:says("**", "NO_WAIT")
 			npc_says(_"Login succeeded!")
-			tux_says(_"Oh well....")
+			Tux:says(_"Oh well....")
 		else
-			tux_says("**", "NO_WAIT")
+			Tux:says("**", "NO_WAIT")
 			npc_says(_"Login succeeded!")
 		end
 		npc_says(_"Last login from /dev/ttyS0 on Fri, 9 dec 2059.", "NO_WAIT")

@@ -30,9 +30,9 @@ return {
 			npc_says(_"You possess secret information. Please wait here for departure authorization.")
 		end
 
-		if (has_quest("SADD's power supply")) then
-			if (not done_quest("SADD's power supply")) then
-				if (has_item_backpack("Red Dilithium Crystal")) then
+		if (Tux:has_quest("SADD's power supply")) then
+			if (not Tux:done_quest("SADD's power supply")) then
+				if (Tux:has_item_backpack("Red Dilithium Crystal")) then
 					if (SADD_asked_for_exterminator) then
 						show("node30")
 					else
@@ -54,7 +54,7 @@ return {
 			end
 		end
 
-		if (has_item("The Super Exterminator!!!")) and
+		if (Tux:has_item("The Super Exterminator!!!")) and
 		(SADD_super_exterminator) then
 			show("node37")
 		end
@@ -90,7 +90,7 @@ return {
 		text = _"Why are you not hostile?",
 		code = function()
 			npc_says(_"Hostile? What do you mean?")
-			tux_says(_"I mean, you are not attacking me... Don't you kill like other bots?")
+			Tux:says(_"I mean, you are not attacking me... Don't you kill like other bots?")
 			npc_says(_"I do! I do! I kill humans, bots, Linarians and even dogs, cats and other animals! I would kill anybody!")
 			npc_says(_"Em.. Anybody who would try to get in, of course.")
 			show("node6") hide("node5")
@@ -102,7 +102,7 @@ return {
 		code = function()
 			npc_says(_"For security reasons, SADDs are not equipped with wireless modules.")
 			npc_says(_"I know only that I have to be recharged, checked and have my firmware updated every 3 months.")
-			tux_says(_"When does your last maintenance date back to?")
+			Tux:says(_"When does your last maintenance date back to?")
 			npc_says(_"One year and a half ago. My accumulator is nearly empty, so I'm going to halt soon. Gates will become unguarded...")
 			npc_says(_"*INFO* secret information theft detected!")
 			npc_says(_"*INFO* information classified as critical!")
@@ -118,7 +118,7 @@ return {
 		text = _"What have you done?! How am I supposed to get out of here?",
 		code = function()
 			npc_says(_"You are not. You have secret information, so I won't let you out.")
-			tux_says(_"Why not kill me immediately?")
+			Tux:says(_"Why not kill me immediately?")
 			npc_says(_"And stand here alone until I die? While you are here I can speak with you. Oh, I haven't spoken to anybody for a looong time!")
 			hide("node8") show("node10", "node11")
 		end,
@@ -137,15 +137,15 @@ return {
 		code = function()
 			npc_says(_"Maybe I'm almost like a human?")
 			npc_says(_"Anyway, that's none of your business. Soon I'll be dead. You will be too, and nobody will enter this place ever again!")
-			tux_says(_"What are your orders again?")
+			Tux:says(_"What are your orders again?")
 			npc_says(_"PRIMARY OBJECTIVE 1: do not let unauthorized people in.", "NO_WAIT")
 			npc_says(_"PRIMARY OBJECTIVE 2: authorized personnel must have access to the zone.", "NO_WAIT")
 			npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage")
 			npc_says(_"Why do you ask?")
-			tux_says(_"Tell me your second order once more...")
+			Tux:says(_"Tell me your second order once more...")
 			npc_says(_"PRIMARY OBJECTIVE 2: authorized personnel must have access to the zone.")
 			npc_says(_"Yes, it will be violated. But first order has higher priority.")
-			tux_says(_"So you can disobey your orders?")
+			Tux:says(_"So you can disobey your orders?")
 			npc_says(_"I've already disobeyed them, when I told you what I shouldn't have. That's because of my human nature.")
 			show("node15", "node16") hide("node11")
 		end,
@@ -155,10 +155,10 @@ return {
 		text = _"Then please, break the rules, disable the guns and let me go.",
 		code = function()
 			npc_says(_"No way. I'm a computer, I can't break rules.")
-			tux_says(_"And what about your human nature?")
+			Tux:says(_"And what about your human nature?")
 			npc_says(_"Human? I said human? I'm a computer!")
 			npc_says(_"OK, I'm almost a computer.")
-			tux_says(_"Almost a computer? What does that mean?")
+			Tux:says(_"Almost a computer? What does that mean?")
 			npc_says(_"It means what it means! Nothing more, nothing less! Shut up, little piece of biomass!")
 			hide("node15") show("node20")
 			end_dialog()
@@ -204,7 +204,7 @@ return {
 		code = function()
 			npc_says(_"Go, and bring dilithium. I badly need it.")
 			end_dialog()
-			add_quest(_"SADD's power supply", _"I found a SADD underneath the desert. It needs me to fetch a dilithium crystal, otherwise it will really be a SAD droid.")
+			Tux:add_quest(_"SADD's power supply", _"I found a SADD underneath the desert. It needs me to fetch a dilithium crystal, otherwise it will really be a SAD droid.")
 			change_obstacle_state("SADDGun1", "disabled")
 			change_obstacle_state("SADDGun2", "disabled")
 			change_obstacle_state("BreakableWall1", "broken")
@@ -217,14 +217,14 @@ return {
 		code = function()
 			npc_says(_"Good. I've opened the depot door for you.")
 			display_big_message(_"Restored SADD's power supply")
-			add_xp(1000)
-			del_item_backpack("Red Dilithium Crystal", 1)
+			Tux:add_xp(1000)
+			Tux:del_item_backpack("Red Dilithium Crystal", 1)
 			change_obstacle_state("SADDDepotDoor", "opened")
-			end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
+			Tux:end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
 			SADD_super_exterminator = true
 			end_dialog()
 			hide("node30")
-			if (has_item("The Super Exterminator!!!")) and
+			if (Tux:has_item("The Super Exterminator!!!")) and
 			   (SADD_super_exterminator) then
 				show("node37")
 			end
@@ -245,11 +245,11 @@ return {
 		code = function()
 			npc_says(_"Great! Thanks. I've opened some doors for you. I hope you will find something interesting there. That's all I can do for you.")
 			display_big_message(_"Restored SADD's power supply")
-			add_xp(1500)
+			Tux:add_xp(1500)
 			change_obstacle_state("SADDDepotDoor", "opened")
 			change_obstacle_state("SADDBioDoor", "opened")
-			del_item_backpack("Red Dilithium Crystal", 1)
-			end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
+			Tux:del_item_backpack("Red Dilithium Crystal", 1)
+			Tux:end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
 			hide("node33") show("node97")
 			end_dialog()
 		end,
@@ -260,11 +260,11 @@ return {
 		code = function()
 			SADD_NoExit = true
 			npc_says(_"I do. Now please leave this place before I terminate you.")
-			tux_says(_"This is rubbish! Nobody can use this stupid gun!")
+			Tux:says(_"This is rubbish! Nobody can use this stupid gun!")
 			npc_says(_"The door is still open. You can put it back and go. Quick.")
-			tux_says(_"Give me a real gun, dude! Immediately! I have brought you what you wanted, now give me my reward!")
+			Tux:says(_"Give me a real gun, dude! Immediately! I have brought you what you wanted, now give me my reward!")
 			npc_says(_"You can go standing on your feet, that's your reward. And DON'T TRY MY PATIENCE!")
-			tux_says(_"I'll kill you if you don't give me my gun!")
+			Tux:says(_"I'll kill you if you don't give me my gun!")
 			npc_says(_"You are welcome. But you would never get out of here, my death won't help you.")
 			change_obstacle_state("SADDGun1", "enabled")
 			change_obstacle_state("SADDGun2", "enabled")
@@ -380,8 +380,8 @@ return {
 		text = _"Erm... hi!",
 		code = function()
 			npc_says(_"Hi. Thanks for the help.")
-			tux_says(_"Will you let me inside the base?")
-			npc_says(_"I'm sorry %s, I'm afraid I can't do that.", get_player_name())
+			Tux:says(_"Will you let me inside the base?")
+			npc_says(_"I'm sorry %s, I'm afraid I can't do that.", Tux:get_player_name())
 			npc_says(_"Nice try, though. I may owe you, but I can't let you in. You must leave.")
 			show("node99") hide("node97")
 			end_dialog()

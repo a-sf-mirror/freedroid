@@ -23,9 +23,9 @@ return {
 	end,
 
 	EveryTime = function()
-		tux_says(_"Um... Hello?")
+		Tux:says(_"Um... Hello?")
 		npc_says(_"AH! A Visitor! Come in! Come in!")
-		tux_says(_"I think I should go now. Right now. See you later.")
+		Tux:says(_"I think I should go now. Right now. See you later.")
 		npc_says(_"No, don't go. I will not let you go before we talk. Important things.")
 		npc_says(_"I can help you understand computers... Greater than ever before.")
 		show("node99")
@@ -38,19 +38,19 @@ return {
 			npc_says(_"I? Sorenson is a great computer person.")
 			npc_says(_"Knows the deep codes. Walks the paths.")
 			npc_says(_"Sees the light of all chips. Knows how to use every keyboard.")
-			tux_says(_"Erm...")
+			Tux:says(_"Erm...")
 			npc_says(_"Sees the bit. Knows the bytes. Explores the great networks.")
 			npc_says(_"The best friend of the clean and pure code.")
 			npc_says(_"The great light on the night sky of the hollow web of computer power.")
-			tux_says(_"Yes, I get the idea...")
+			Tux:says(_"Yes, I get the idea...")
 			npc_says(_"Seeker of clean languages. The great knower of obscure secrets.")
 			npc_says(_"The one who speaks to hard drives. The best --")
-			tux_says(_"I KNOW! I KNOW!")
+			Tux:says(_"I KNOW! I KNOW!")
 			npc_says(_"Oh.")
 			npc_says(_"Sorenson did not tell you most yet.")
 			npc_says(_"She did not tell you she is the great controller of light.")
 			npc_says(_"She did not tell you she is the walker of the dark corridors --")
-			tux_says(_"STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!")
+			Tux:says(_"STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!")
 			npc_says(_"Apology is being extended by me. Sorenson overdid it.")
 			npc_says(_"Sorenson the coder greets you.")
 			set_bot_name(_"Sorenson - Mystery coder")
@@ -109,7 +109,7 @@ return {
 		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"Go0d. H3re is th3 con7ract. S1gn it!")
-			tux_says(_"Ok, here go --")
+			Tux:says(_"Ok, here go --")
 			npc_says(_"N0! 1n bl00d!")
 			hide("node51") show("node52", "node55", "node78")
 		end,
@@ -186,7 +186,7 @@ return {
 		code = function()
 			npc_says(_"H4! Y0ur s0ul 15 min3, Francis!")
 			npc_says(_"Wh47? N07 w0rk1b9?")
-			tux_says(_"Erm. I have a confession to make. My name is not Francis.")
+			Tux:says(_"Erm. I have a confession to make. My name is not Francis.")
 			npc_says(_"N0000000000!!!!!!!")
 			npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
 			hide("node64")
@@ -199,9 +199,9 @@ return {
 		topic = "Sorenson contract",
 		code = function()
 			npc_says(_"Huh?")
-			tux_says(_"I... Don't feel... good... Blood loss... So... Cold...")
+			Tux:says(_"I... Don't feel... good... Blood loss... So... Cold...")
 			npc_says(_"N0! Idi07!")
-			kill_tux()
+			Tux:kill()
 			-- hide("node65")
 		end,
 	},
@@ -225,9 +225,9 @@ return {
 			npc_says_random(_"Yes! I am free! At last I am free!",
 							_"Yes! I am free!",
 							_"Yes! I am free at last!")
-			tux_says(_"W417... 1 f331... H0rr1b13...")
+			Tux:says(_"W417... 1 f331... H0rr1b13...")
 			npc_says(_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!")
-			improve_skill("programming")
+			Tux:improve_skill("programming")
 			hide("node60", "node61", "node62", "node63", "node64", "node65", "node66")
 			drop_dead()
 		end,

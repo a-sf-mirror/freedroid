@@ -367,7 +367,7 @@ return {
 					display_console_message(_"You ascended a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role .._" in Nethack!")
 					if (not won_nethack) then
 						won_nethack = true
-						improve_program("Hacking")
+						Tux:improve_program("Hacking")
 						display_big_message(_"By ascending in Nethack, you have improved your Hacking ability!")
 					end
 					next("c-net-nethack_sub.node70")

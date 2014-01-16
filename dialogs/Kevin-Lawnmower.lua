@@ -43,7 +43,7 @@ return {
 			npc_says(_"All movement suppressed...")
 			npc_says(_"Scanning area for possible compatible energy sources...")
 			hide("node5", "node6")
-			if (has_item_backpack("Barf's Energy Drink")) then
+			if (Tux:has_item_backpack("Barf's Energy Drink")) then
 				npc_says(_"Compatible energy source found!")
 				npc_says(_"[b]Barf's Energy Drink[/b]")
 				show("node50", "node51")
@@ -71,8 +71,8 @@ return {
 		text = _"I'll state my name.",
 		echo_text = false,
 		code = function()
-			tux_says(get_player_name())
-			npc_says(_"Identifying as %s", get_player_name(), "NO_WAIT")
+			Tux:says(Tux:get_player_name())
+			npc_says(_"Identifying as %s", Tux:get_player_name(), "NO_WAIT")
 			if (Kevins_Lawnmower_tux_login_granted) then
 				npc_says(_"Welcome to Kevin's lawnmower.")
 				show("node20")
@@ -81,7 +81,7 @@ return {
 				npc_says(_"Verification failed!")
 				npc_says(_"WARNING: LOGIN ATTEMPT REPORTED. THERE WILL BE CONSEQUENCES!")
 				Kevins_Lawnmower_tux_login = true
-				heat_tux(15)
+				Tux:heat(15)
 				end_dialog()
 			end
 		end,
@@ -91,7 +91,7 @@ return {
 		text = _"I'll try 'Kevin'.",
 		echo_text = false,
 		code = function()
-			tux_says(_"Kevin")
+			Tux:says(_"Kevin")
 			npc_says(_"Identifying as Kevin...", "NO_WAIT")
 			npc_says(_"Identification failed!", "NO_WAIT")
 			npc_says(_"Liar!", "NO_WAIT")
@@ -101,7 +101,7 @@ return {
 			npc_says(_"IN 1 SECOND!")
 			npc_says(_"DIE!")
 			Kevins_Lawnmower_tux_login_kevin_attempt = true
-			heat_tux(25)
+			Tux:heat(25)
 			end_dialog()
 		end,
 	},
@@ -109,7 +109,7 @@ return {
 		id = "node20",
 		text = _"help",
 		code = function()
-			tux_says(_"Available commands:", "NO_WAIT")
+			Tux:says(_"Available commands:", "NO_WAIT")
 			npc_says(_"help", "NO_WAIT")
 			npc_says(_"version", "NO_WAIT")
 			npc_says(_"fuel_level", "NO_WAIT")
@@ -122,7 +122,7 @@ return {
 		text = _"version",
 		echo_text = false,
 		code = function()
-			tux_says(_"version", "NO_WAIT")
+			Tux:says(_"version", "NO_WAIT")
 			npc_says(_"printing version...", "NO_WAIT")
 			npc_says(_"MowOS 0.4.2", "NO_WAIT")
 			hide("node30")
@@ -133,7 +133,7 @@ return {
 		text = _"fuel_level",
 		echo_text = false,
 		code = function()
-			tux_says(_"fuel_level", "NO_WAIT")
+			Tux:says(_"fuel_level", "NO_WAIT")
 			npc_says(_"Printing fuel level...")
 			if (fuel < 5) then
 				npc_says(_"WARNING, less than [b]5%%[/b] fuel remaining!")
@@ -150,8 +150,8 @@ return {
 		text = _"It can have one drink...",
 		echo_text = false,
 		code = function()
-			tux_says(_"So, where do I have to put in the drink...?", "NO_WAIT")
-			tux_says(_"Ah, here!", "NO_WAIT")
+			Tux:says(_"So, where do I have to put in the drink...?", "NO_WAIT")
+			Tux:says(_"Ah, here!", "NO_WAIT")
 			npc_says(_"[b]glug glug glug[/b]")
 			npc_says(_"Tank refilled.")
 			npc_says(_"Fuel status:")
@@ -160,8 +160,8 @@ return {
 			npc_says(_"1 month and 14 days.")
 			npc_says(_"Dropping waste product of last fuel filling...")
 			npc_says(_"Done.")
-			del_item("Barf's Energy Drink", 1)
-			add_item("Tungsten spikes", 2)
+			Tux:del_item("Barf's Energy Drink", 1)
+			Tux:add_item("Tungsten spikes", 2)
 			fuel = 100
 			set_bot_state("home")
 			hide("node50", "node51")
@@ -172,7 +172,7 @@ return {
 		text = _"No, I cannot spare any drinks!",
 		echo_text = false,
 		code = function()
-			tux_says(_"Sorry, tin can.")
+			Tux:says(_"Sorry, tin can.")
 			npc_says(_"Import error: [b]null[/b] fuel received.", "NO_WAIT")
 			npc_says(_"WARNING, less than [b]5[/b]%% fuel remaining!")
 			npc_says(_"Resuming hibernation...")
@@ -185,7 +185,7 @@ return {
 		text = _"exit",
 		echo_text = false,
 		code = function()
-			tux_says(_"exit","NO_WAIT")
+			Tux:says(_"exit","NO_WAIT")
 			npc_says(_"exiting...")
 			hide("node31", "node30", "node20", "node50", "node51")
 			end_dialog()

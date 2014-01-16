@@ -19,11 +19,11 @@
 
 return {
 	EveryTime = function()
-		if (has_met("Koan")) then
+		if (Tux:has_met("Koan")) then
 			hide("node56")
 		end
 
-		if (not has_met("Duncan")) then
+		if (not Tux:has_met("Duncan")) then
 			show("node0", "node90", "node99")
 		elseif (not guard_follow_tux) and
 		       (not Duncan_Koan_quest) then
@@ -31,7 +31,7 @@ return {
 		end
 
 		if (not Duncan_Koan_quest_really_done) then
-			if (has_item_backpack("Pandora's Cube")) or
+			if (Tux:has_item_backpack("Pandora's Cube")) or
 			   (npc_dead("Koan")) or
 			   (Koan_spared_via_dialog) then
 				--Koan died, and you brought the cube back or
@@ -167,15 +167,15 @@ return {
 			npc_says(_"There is something you must know.")
 			npc_says(_"There are not too many bots in the desert, but they are invincible. It is best to avoid them.")
 			npc_says(_"I will be waiting here for your return.")
-			tux_says(_"That is all I need to know. I will find Koan.")
+			Tux:says(_"That is all I need to know. I will find Koan.")
 			npc_says(_"Only time will tell.")
 			if (cmp_obstacle_state("DesertGate", "closed")) and
-			   (not has_met("Tania")) then
+			   (not Tux:has_met("Tania")) then
 				npc_says(_"Here are a couple of circuits to grease open the western gate, if you know what I mean.")
-				add_gold(25)
+				Tux:add_gold(25)
 			end
 			npc_says(_"Good luck!")
-			add_quest(_"Doing Duncan a favor", _"I have to find Koan in the desert west of town and get Duncan something very precious.")
+			Tux:add_quest(_"Doing Duncan a favor", _"I have to find Koan in the desert west of town and get Duncan something very precious.")
 			hide("node52", "node59") show("node55", "node56")
 		end,
 	},
@@ -211,16 +211,16 @@ return {
 		text = "BUG, REPORT ME! duncan node60 -- MURDERING DONE OR SAVED HIM",
 		echo_text = false,
 		code = function()
-			if (has_item_backpack("Pandora's Cube")) then
+			if (Tux:has_item_backpack("Pandora's Cube")) then
 				if (Duncan_Koan_quest_done) then
 					if (npc_dead("Koan")) then -- we killed koan manually or using the dialog and got
 						--the cube when we return first time to Duncan after seeing Koan
-						tux_says(_"Hey, I think I finally found your cube.")
+						Tux:says(_"Hey, I think I finally found your cube.")
 						npc_says(_"Oh, great!")
 					else -- does this ever show up though?
-						tux_says(_"Hey!")
+						Tux:says(_"Hey!")
 						npc_says(_"Hmm...?")
-						tux_says(_"I think I found Koan after all ... finally.")
+						Tux:says(_"I think I found Koan after all ... finally.")
 						npc_says(_"Oh, nice!")
 						npc_says(_"Did you also get the cube?")
 						Duncan_Koan_quest_really_done = true
@@ -238,30 +238,30 @@ return {
 				if (Duncan_talked_Koan_dead) then -- let Duncan ask for the cube differently if
 					-- tux already returned without the cube while Koan was dead
 					npc_says(_"Did you finally find the cube?")
-					tux_says(_"Uhmmm...")
+					Tux:says(_"Uhmmm...")
 					npc_says(_"You better go getting it!")
 				else -- we killed koan somehow but don't have the cube
 					npc_says(_"You don't look too well, what did happen?")
-					tux_says(_"He ... he is dead...")
+					Tux:says(_"He ... he is dead...")
 					npc_says(_"Koan?")
 					if (Koan_spared_via_dialog) then -- we told Koan we won't kill him, and lied to Duncan
 						--about not finding him. Afterwards we went back to Koan and killed him manually
 						npc_says(_"I thought you hadn't found him?")
-						tux_says(_"Yes, I didn't find him at first, now I did.")
+						Tux:says(_"Yes, I didn't find him at first, now I did.")
 					else -- we lost the cube and killed Koan via dialog
-						tux_says(_"Yes.")
+						Tux:says(_"Yes.")
 					end
 					npc_says(_"And the cube that he was carrying? Where is it?")
-					tux_says(_"I must have left it somewhere...")
+					Tux:says(_"I must have left it somewhere...")
 					npc_says(_"Fetch it and bring it to me.")
 					Duncan_talked_Koan_dead = true
-					update_quest(_"Doing Duncan a favor", _"Unfortunately, I forgot to bring the cube. Duncan was not amused.")
+					Tux:update_quest(_"Doing Duncan a favor", _"Unfortunately, I forgot to bring the cube. Duncan was not amused.")
 				end
 				end_dialog()
 			elseif (Koan_spared_via_dialog) then -- we didn't kill via the dialog
-				tux_says(_"I could not find him anywhere in the desert. I don't think he is there anymore.")
+				Tux:says(_"I could not find him anywhere in the desert. I don't think he is there anymore.")
 				npc_says(_"I see.")
-				end_quest(_"Doing Duncan a favor", _"I lied to Duncan about not finding Koan.")
+				Tux:end_quest(_"Doing Duncan a favor", _"I lied to Duncan about not finding Koan.")
 				Duncan_Koan_quest_done = true
 				end_dialog()
 			end
@@ -292,9 +292,9 @@ return {
 		text = _"A 'few' bots? The place was crawling with Harvesters! I nearly got killed!",
 		code = function()
 			npc_says(_"There were only one hundred and twenty bots in the entire desert region. This hardly qualifies as many, considering the size of the area.")
-			tux_says(_"What? You know exactly how many bots were in the desert? Without being there? I don't like this.")
+			Tux:says(_"What? You know exactly how many bots were in the desert? Without being there? I don't like this.")
 			npc_says(_"I just know a lot of things. You do not need to worry about it.")
-			tux_says(_"I don't like this at all. I'm getting out of here.")
+			Tux:says(_"I don't like this at all. I'm getting out of here.")
 			npc_says(_"As you wish.")
 			end_dialog()
 			hide("node64")
@@ -313,7 +313,7 @@ return {
 		text = _"WHAT? No way I am giving you a doomsday device! Forget about it.",
 		code = function()
 			npc_says(_"I understand. So be it.")
-			end_quest(_"Doing Duncan a favor", _"No way am I giving Duncan that cube thingie. Who knows what he would do with it.")
+			Tux:end_quest(_"Doing Duncan a favor", _"No way am I giving Duncan that cube thingie. Who knows what he would do with it.")
 			Duncan_not_given_cube = true
 			end_dialog()
 			hide("node67", "node68")
@@ -324,10 +324,10 @@ return {
 		text = "BUG, REPORT ME! duncan node69",
 		echo_text = false,
 		code = function()
-			add_xp(3000)
-			del_item_backpack("Pandora's Cube", 1)
+			Tux:add_xp(3000)
+			Tux:del_item_backpack("Pandora's Cube", 1)
 			sell_item("Plasma Shockwave Emitter")
-			end_quest(_"Doing Duncan a favor", _"I gave Duncan the cube thingie. It feels nice to help people.")
+			Tux:end_quest(_"Doing Duncan a favor", _"I gave Duncan the cube thingie. It feels nice to help people.")
 			Duncan_Koan_quest_really_done = true
 			end_dialog()
 		end,
@@ -339,7 +339,7 @@ return {
 			npc_says(_"What a great way to start a conversation.")
 			npc_says(_"Yes, that is true. I am not who I seem to be.")
 			npc_says(_"But then again, neither are you, so my thoughts are, we are even.")
-			tux_says(_"What do you mean? I am %s and not anyone else.", get_player_name())
+			Tux:says(_"What do you mean? I am %s and not anyone else.", Tux:get_player_name())
 			npc_says(_"And I am Duncan McNamara, the maker of grenades and nothing else.")
 			set_bot_name(_"Duncan - Bombmaker")
 			npc_says(_"I believe the topic is thoroughly exhausted now.")
@@ -370,7 +370,7 @@ return {
 		echo_text = false,
 		code = function()
 			npc_says(_"I wish you cold winds.")
-			tux_says(_"Huh? How do you know the Linarian farewell? No one around here knows it.")
+			Tux:says(_"Huh? How do you know the Linarian farewell? No one around here knows it.")
 			npc_says(_"I read many books on Linarians. That is all.")
 			npc_says(_"Nothing more and nothing less.")
 			show("node98") next("node98")

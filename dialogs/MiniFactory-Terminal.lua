@@ -23,9 +23,9 @@ return {
 		terminal = "dixon@autofactory: ~ # "
 
 		cli_says(_"Login : ", "NO_WAIT")
-		tux_says("dixon", "NO_WAIT")
+		Tux:says("dixon", "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
-		tux_says("*******", "NO_WAIT")
+		Tux:says("*******", "NO_WAIT")
 		npc_says(_"Hello, Dave.")
 		npc_says(_"Last login from /dev/ttyS0 on Sun, 3 dec 2056.", "NO_WAIT")
 		cli_says(terminal, "NO_WAIT")

@@ -23,7 +23,7 @@ return {
 		if (Kevin_entering_from_back) then
 			end_dialog()
 		elseif (KevinGuard_door_open) then
-			tux_says(_"It's me.")
+			Tux:says(_"It's me.")
 			change_obstacle_state("KevinsDoor", "opened")
 			npc_says(_"[b]Identity confirmed. You may pass.[/b]")
 			show("node99")

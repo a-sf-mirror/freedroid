@@ -33,7 +33,7 @@ return {
 			end_dialog()
 		end
 
-		if (has_quest("Tania's Escape")) then
+		if (Tux:has_quest("Tania's Escape")) then
 			hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node10", "node11", "node12", "node13", "node14", "node17", "node18", "node19", "node90")
 			if (not Tania_follow_tux) then
 				npc_says_random(_"I long to see the surface.",
@@ -69,28 +69,28 @@ return {
 				hide("node45", "node46", "node47", "node49", "node50", "node51", "node52", "node53", "node56", "node57", "node58", "node59", "node92")
 				if (Tania_just_stopped_by_Pendragon) then
 					Tania_just_stopped_by_Pendragon = false
-					update_quest(_"Tania's Escape", _"Pendragon just stopped Tania and I at the town gate. Apparently he won't let her in, unless Spencer gives the go-ahead.")
+					Tux:update_quest(_"Tania's Escape", _"Pendragon just stopped Tania and I at the town gate. Apparently he won't let her in, unless Spencer gives the go-ahead.")
 					npc_says(_"It is OK. I'll wait here at the gate.")
 					end_dialog()
 				end
 				show("node93")
-			elseif (not done_quest("Tania's Escape")) then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar)
+			elseif (not Tux:done_quest("Tania's Escape")) then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar)
 				npc_says(_"What is the news?")
-				tux_says(_"I talked to Spencer, and he said you were welcome to enter the town.")
+				Tux:says(_"I talked to Spencer, and he said you were welcome to enter the town.")
 				npc_says(_"That is great news!")
 				if (Spencer_Tania_sent_to_DocMoore) then
-					tux_says(_"He said you must first get checked out by Doc Moore though.")
+					Tux:says(_"He said you must first get checked out by Doc Moore though.")
 					set_bot_destination("DocPatient-Enter")
 				else --DocMoore is Dead!
-					tux_says(_"He said you are free to go where you like.")
+					Tux:says(_"He said you are free to go where you like.")
 					set_bot_destination("BarPatron-Enter")
 					Tania_at_Ewalds_Bar = true
 				end
-				end_quest(_"Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
+				Tux:end_quest(_"Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
 				if (difficulty("hard")) and
 				   (not Tania_mapper_given == true) then
 					npc_says("I'm so glad that I am finally here, take this.")
-					add_item("Source Book of Network Mapper")
+					Tux:add_item("Source Book of Network Mapper")
 					Tania_mapper_given = true
 				end
 				branch_to_pendragon = true
@@ -101,7 +101,7 @@ return {
 					heal_npc()
 					npc_says(_"I have good news: the doctor says I'm healthy!")
 					npc_says(_"Where should I go?")
-					if (done_quest("Anything but the army snacks, please!")) then
+					if (Tux:done_quest("Anything but the army snacks, please!")) then
 						show("node70")
 					else
 						show("node71")
@@ -141,7 +141,7 @@ return {
 		text = _"Imaginary?! I am as real as you are.",
 		code = function()
 			npc_says(_"This place is locked. Hermetically sealed and guarded by bots. So you can't possibly be anything more than the product of my imagination.")
-			tux_says(_"But who are you?")
+			Tux:says(_"But who are you?")
 			npc_says(_"A figment of my imagination should know my name: Tania.")
 			set_bot_name(_"Tania - lonely scientist")
 			hide("node2") show("node12")
@@ -185,7 +185,7 @@ return {
 		code = function()
 			npc_says(_"No, Peter ate them all. That killed him.")
 			npc_says(_"*cries*")
-			tux_says(_"They say that strength pills are absolutely safe!")
+			Tux:says(_"They say that strength pills are absolutely safe!")
 			npc_says(_"They are like money. Having money is good, but if you have too much, you can decide that you can do anything.")
 			npc_says(_"Peter became not very strong, but very-very-very strong. He thought he could make an exit with his bare hands.")
 			npc_says(_"*cries*")
@@ -200,7 +200,7 @@ return {
 			npc_says(_"That would be something different from what I've done in the last months at least. Some entertainment.")
 			npc_says_random(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.",
 				_"You are now completely healed. You should take better care of yourself.")
-			heal_tux()
+			Tux:heal()
 			Tania_heal_node8 = true
 			hide("node8")
 		end,
@@ -267,14 +267,14 @@ return {
 		text = _"I will disable the guns for you.",
 		code = function()
 			npc_says(_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels.")
-			add_quest(_"Tania's Escape", _"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
+			Tux:add_quest(_"Tania's Escape", _"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
 			npc_says(_"It's dangerous to go alone! Take this!")
 			if (difficulty("easy")) and
 			   (not Tania_mapper_given == true) then
-				add_item("Source Book of Network Mapper")
+				Tux:add_item("Source Book of Network Mapper")
 				Tania_mapper_given = true
 			end
-			add_item("EMP Shockwave Generator", 5)
+			Tux:add_item("EMP Shockwave Generator", 5)
 			hide("node17")
 		end,
 	},
@@ -301,16 +301,16 @@ return {
 			npc_says(_"Thanks, thanks a lot! Now I will be able to see the sun, trees, rivers... I missed those so much!")
 			npc_says(_"I hope these books will help you.")
 			display_big_message(_"Tania is now free!")
-			add_xp(1500)
+			Tux:add_xp(1500)
 			if (difficulty("normal")) and
 			   (not Tania_mapper_given == true) then
-				add_item("Source Book of Network Mapper")
+				Tux:add_item("Source Book of Network Mapper")
 				Tania_mapper_given = true
 			end
-			add_item("Source Book of Check system integrity",1)
-			add_item("Source Book of Sanctuary",1)
-			update_quest(_"Tania's Escape", _"Tania is free now, I got some books as reward.")
-			tux_says(_"You could always come back with me to the town. There are people there.")
+			Tux:add_item("Source Book of Check system integrity",1)
+			Tux:add_item("Source Book of Sanctuary",1)
+			Tux:update_quest(_"Tania's Escape", _"Tania is free now, I got some books as reward.")
+			Tux:says(_"You could always come back with me to the town. There are people there.")
 			npc_says(_"I'd love to, but you'll have to escort me.")
 			Tania_guns_off = true
 			hide("node27") show("node40", "node41")
@@ -336,7 +336,7 @@ return {
 		text = _"I'm ready to escort you to the town.",
 		code = function()
 			Tania_follow_tux = true
-			update_quest(_"Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
+			Tux:update_quest(_"Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
 			set_bot_state("follow_tux")
 			hide("node8", "node40", "node41") next("node91")
 		end,
@@ -370,19 +370,19 @@ return {
 		echo_text = false,
 		code = function()
 			number_of_liquid_items = 0
-			if (has_item_backpack("Bottled ice")) then
+			if (Tux:has_item_backpack("Bottled ice")) then
 				number_of_liquid_items = number_of_liquid_items + 1
 				show("node49")
 			end
-			if (has_item_backpack("Industrial coolant")) then
+			if (Tux:has_item_backpack("Industrial coolant")) then
 				number_of_liquid_items = number_of_liquid_items + 1
 				show("node50")
 			end
-			if (has_item_backpack("Liquid nitrogen")) then
+			if (Tux:has_item_backpack("Liquid nitrogen")) then
 				number_of_liquid_items = number_of_liquid_items + 1
 				show("node51")
 			end
-			if (has_item_backpack("Barf's Energy Drink")) then
+			if (Tux:has_item_backpack("Barf's Energy Drink")) then
 				number_of_liquid_items = number_of_liquid_items + 1
 				show("node52")
 			end
@@ -401,8 +401,8 @@ return {
 			npc_says(_"Thank you very much.")
 			npc_says(_"I feel very refreshed!")
 			heal_npc()
-			del_item_backpack("Bottled ice")
-			update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some bottled ice, and she looked much more healthy.")
+			Tux:del_item_backpack("Bottled ice")
+			Tux:update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some bottled ice, and she looked much more healthy.")
 			hide("node49", "node50", "node51", "node52", "node53")
 		end,
 	},
@@ -411,13 +411,13 @@ return {
 		text = _"I have some industrial coolant you could have.",
 		code = function()
 			npc_says(_"I can't drink this.")
-			if has_met("Ewald") then
-				tux_says(_"I've seen the town bartender put it in drinks.")
+			if Tux:has_met("Ewald") then
+				Tux:says(_"I've seen the town bartender put it in drinks.")
 				npc_says(_"I guess I'll give it a try then.")
-				del_item_backpack("Industrial coolant")
+				Tux:del_item_backpack("Industrial coolant")
 				heal_npc()
 				npc_says(_"I feel very cold, but better.") --TODO: freeze her here
-				update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some Industrial coolant. At first she was hesitant, but she tried it.")
+				Tux:update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some Industrial coolant. At first she was hesitant, but she tried it.")
 				hide("node49", "node50", "node52", "node53")
 			else
 				next("node54")
@@ -440,8 +440,8 @@ return {
 			npc_says(_"Thank you very much.")
 			npc_says(_"I feel very energetic!")
 			heal_npc()
-			del_item_backpack("Barf's Energy Drink")
-			update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her a bottle of Barf's Energy Drink. After downing it in a couple seconds, she looked much more energetic!")
+			Tux:del_item_backpack("Barf's Energy Drink")
+			Tux:update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her a bottle of Barf's Energy Drink. After downing it in a couple seconds, she looked much more energetic!")
 			hide("node49", "node50", "node51", "node52", "node53")
 		end,
 	},
@@ -451,7 +451,7 @@ return {
 		text = _"Sorry, I have nothing to offer you.",
 		code = function()
 			npc_says(_"I feel very ill.")
-			update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat, but I decided not to share any of my liquids with her.")
+			Tux:update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat, but I decided not to share any of my liquids with her.")
 			drop_dead()
 			hide("node49", "node50", "node51", "node52", "node53")
 		end,
@@ -489,14 +489,14 @@ return {
 				injured_level = 3
 			end
 
-			if (has_item_backpack("Doc-in-a-can")) then
+			if (Tux:has_item_backpack("Doc-in-a-can")) then
 				show("node59")
 			end
-			if (has_item_backpack("Antibiotic") and
+			if (Tux:has_item_backpack("Antibiotic") and
 			   (injured_level < 3)) then
 				show("node58")
 			end
-			if (has_item_backpack("Diet supplement") and
+			if (Tux:has_item_backpack("Diet supplement") and
 			   (injured_level < 2)) then
 				show("node57")
 			end
@@ -516,7 +516,7 @@ return {
 		text = _"Here, take this Diet supplement.",
 		code = function()
 			npc_says(_"I feel better now.")
-			del_item_backpack("Diet supplement")
+			Tux:del_item_backpack("Diet supplement")
 			heal_npc()
 			hide("node56", "node57", "node58", "node59")
 		end,
@@ -526,7 +526,7 @@ return {
 		text = _"I'm proscribing you some antibiotics.",
 		code = function()
 			npc_says(_"I feel much better.")
-			del_item_backpack("Antibiotic")
+			Tux:del_item_backpack("Antibiotic")
 			heal_npc()
 			hide("node56", "node57", "node58", "node59")
 		end,
@@ -536,7 +536,7 @@ return {
 		text = _"I have a Doc-in-a-can. It should heal you right up.",
 		code = function()
 			npc_says(_"I feel fit as new!")
-			del_item_backpack("Doc-in-a-can")
+			Tux:del_item_backpack("Doc-in-a-can")
 			heal_npc()
 			hide("node56", "node57", "node58", "node59")
 		end,
@@ -612,20 +612,20 @@ return {
 		text = "BUG, REPORT ME! Tania node99 -- EXIT DIALOG",
 		echo_text = false,
 		code = function()
-			if (has_quest("Tania's Escape")) then
+			if (Tux:has_quest("Tania's Escape")) then
 				hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node10", "node11", "node12", "node13", "node14", "node18", "node19")
 				if (not SACD_gunsoff) then --still underground, guns on
-					tux_says(_"I think I have to go.")
+					Tux:says(_"I think I have to go.")
 				elseif (not Tania_surface) then --still underground
-					tux_says(_"Follow me to the Surface!")
+					Tux:says(_"Follow me to the Surface!")
 				elseif (not Tania_stopped_by_Pendragon) then --"Tania's Escape" Quest (Western Desert)
-					tux_says(_"Follow me to the Town!")
+					Tux:says(_"Follow me to the Town!")
 					npc_says(_"Lead on, my little penguin.")
 				elseif (not Spencer_Tania_sent_to_DocMoore) then --"Tania's Escape" Quest (Western Town Gate)
-					tux_says(_"Wait here.")
+					Tux:says(_"Wait here.")
 					npc_says(_"OK. But please, come back soon.")
 				elseif (Spencer_Tania_sent_to_DocMoore) then --"Tania's Escape" Quest (Tania free in the town somewhere)
-					tux_says(_"See you later.")
+					Tux:says(_"See you later.")
 					npc_says_random(_"Please be safe!",
 						_"Thanks again.",
 						_"Please come back again, my little penguin.")

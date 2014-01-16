@@ -19,24 +19,24 @@
 
 return {
 	FirstTime = function()
-		tux_says(_"Hello! I'm new here.")
+		Tux:says(_"Hello! I'm new here.")
 		npc_says(_"Hey, man! I'm Bender, the dead man of this town. And you?")
 		set_bot_name("Bender")
-		tux_says(_"I'm %s. I'm fine, thank you.", get_player_name(), "NO_WAIT")
+		Tux:says(_"I'm %s. I'm fine, thank you.", Tux:get_player_name(), "NO_WAIT")
 		show("node0")
 	end,
 
 	EveryTime = function()
-		if (has_met("Bender")) then -- to avoid displaying 2 "hello"s etc when we talk to Bender for the first time
-			tux_says(_"Hello!")
+		if (Tux:has_met("Bender")) then -- to avoid displaying 2 "hello"s etc when we talk to Bender for the first time
+			Tux:says(_"Hello!")
 			npc_says(_"Hey, man!")
-			tux_says(_"How are you doing?")
-			if (has_quest("Bender's problem")) then
-				if (not done_quest("Bender's problem")) then
+			Tux:says(_"How are you doing?")
+			if (Tux:has_quest("Bender's problem")) then
+				if (not Tux:done_quest("Bender's problem")) then
 					npc_says(_"Too bad. I have never felt so sick.", "NO_WAIT")
 					npc_says(_"Let me die, man!")
 
-					if (has_item_backpack("Brain Enlargement Pills Antidote")) then
+					if (Tux:has_item_backpack("Brain Enlargement Pills Antidote")) then
 						hide("node11", "node12") show("node9")
 					else
 						hide("node9") show("node12")
@@ -46,8 +46,8 @@ return {
 				elseif (not tux_has_joined_guard) then
 					npc_says(_"Much better. I'm cured. You're a good guy, man!", "NO_WAIT")
 					npc_says(_"What was your name again?")
-					tux_says(get_player_name())
-					npc_says(_"Thanks %s, I owe you one.", get_player_name(), "NO_WAIT")
+					Tux:says(Tux:get_player_name())
+					npc_says(_"Thanks %s, I owe you one.", Tux:get_player_name(), "NO_WAIT")
 					npc_says(_"And I'll sure vote for you, if you want into the Red Guard!")
 				elseif (not Bender_congrats) then
 					npc_says(_"Much better. I'm cured. You're a good guy, man!", "NO_WAIT")
@@ -72,7 +72,7 @@ return {
 
 		if (Bender_gave_elbow_grease) then
 			hide("node40")
-		elseif (Bender_elbow_grease or has_item_backpack("Manual of the Automated Factory")) then
+		elseif (Bender_elbow_grease or Tux:has_item_backpack("Manual of the Automated Factory")) then
 			show("node40")
 		end
 
@@ -156,7 +156,7 @@ return {
 				npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
 			end
 			npc_says(_"Just get me a cure, and I'll be forever grateful!")
-			add_quest(_"Bender's problem", _"I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The town doctor will not give him the antidote, so it is up to me to save him.")
+			Tux:add_quest(_"Bender's problem", _"I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The town doctor will not give him the antidote, so it is up to me to save him.")
 			refused_to_help_Bender = false
 			hide("node0", "node6", "node7", "node8") show("node11")
 			pop_topic()
@@ -200,10 +200,10 @@ return {
 			end
 			npc_says(_"Thanks, man!")
 			change_obstacle_state("TownDocBackdoor", "opened") -- Allows Bender to do something useful instead of just keeping watch outside the Docs after healed.
-			add_xp(150)
-			del_item_backpack("Brain Enlargement Pills Antidote", 1)
-			add_item("Strength Pill", 2)
-			end_quest(_"Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
+			Tux:add_xp(150)
+			Tux:del_item_backpack("Brain Enlargement Pills Antidote", 1)
+			Tux:add_item("Strength Pill", 2)
+			Tux:end_quest(_"Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
 			set_bot_destination("NewSpencer")
 			Bender_at_Spencer = true --have Bender go "talk" to Spencer
 			hide("node9", "node10", "node50") show("node20")
@@ -246,7 +246,7 @@ return {
 		code = function()
 			npc_says(_"No. I have one left.")
 			npc_says(_"Here, take it. I don't want it.")
-			add_item("Brain Enlargement Pill", 1)
+			Tux:add_item("Brain Enlargement Pill", 1)
 			hide("node20")
 		end,
 	},
@@ -267,7 +267,7 @@ return {
 			npc_says(_"I know the shop keeper Lily's password.")
 			npc_says(_"I sometimes login to her account and mess with it for the LULZ.")
 			npc_says(_"It's the end of the world as we know it, and I... am so incredibly bored.")
-			tux_says(_"Erm... excuse me?")
+			Tux:says(_"Erm... excuse me?")
 			npc_says(_"Just a song my mother used to sing to me.")
 			hide("node31") show("node32", "node33")
 		end,
@@ -277,12 +277,12 @@ return {
 		text = _"Hey, could you tell me Lily's password?",
 		code = function()
 			npc_says(_"Sure, but we will have to shake on it.")
-			tux_says(_"OK...")
+			Tux:says(_"OK...")
 			npc_says(_"It is an asterisk repeated four times.")
 			know_lily_password = true
-			tux_says(_"Wow.")
+			Tux:says(_"Wow.")
 			npc_says(_"I am the most awesome hacker ever.")
-			tux_says(_"Sure...")
+			Tux:says(_"Sure...")
 			hide("node32")
 		end,
 	},
@@ -298,15 +298,15 @@ return {
 		text = _"Can you spare some elbow grease?",
 		code = function()
 			npc_says(_"Yes, you are talking to the right guy, man.")
-			if (not done_quest("Bender's problem")) then
+			if (not Tux:done_quest("Bender's problem")) then
 				npc_says(_"But now, I'm no good. I can't make you any elbow grease, sorry man.")
 				npc_says(_"Maybe if I was feeling better...")
 			else
 				npc_says(_"Elbow grease just takes a bit of hard work. I'm not a fan of hard work, so I keep a can with me at all times.")
 				npc_says(_"But since you helped me out with the Doctor, I'll give it to you.")
 				Bender_gave_elbow_grease = true
-				add_item("Elbow Grease Can", 1)
-				tux_says(_"Thanks man!")
+				Tux:add_item("Elbow Grease Can", 1)
+				Tux:says(_"Thanks man!")
 			end
 			hide("node40")
 		end,

@@ -44,13 +44,13 @@ return {
 			npc_says(_"Have you neutralized the threat yet?")
 			show("node5")
 		else
-			if (not has_quest("Deliverance")) and
+			if (not Tux:has_quest("Deliverance")) and
 			   (not (Francis_refused_deliverance)) then
 				show("node90")
-				npc_says(_"Welcome back %s.", get_player_name())
+				npc_says(_"Welcome back %s.", Tux:get_player_name())
 			else
 				show("node99")
-				npc_says(_"It's good to see you again, %s.", get_player_name())
+				npc_says(_"It's good to see you again, %s.", Tux:get_player_name())
 			end
 
 			if (Francis_tux_dismissed) then
@@ -65,10 +65,10 @@ return {
 			if (tux_has_joined_guard) and
 			   (not Francis_guard_response) then
 				Francis_guard_response = true
-				tux_says(_"I joined the Red Guard.")
+				Tux:says(_"I joined the Red Guard.")
 				npc_says(_"Oh...")
 				npc_says(_"Well. Congratulations are in order, I suppose.")
-				tux_says(_"...")
+				Tux:says(_"...")
 			end
 		end
 		-- in case Francis gets stuck at FrancisSafe:
@@ -123,8 +123,8 @@ return {
 			npc_says(_"[b](The old man grips his chest and collapses in what appears to have been a fatal heart attack.)[/b]")
 			teleport_npc("NewTuxStartGameSquare", "InvaderBot")
 			set_npc_faction("ms", "InvaderBot")
-			add_quest(_"Deliverance", _"The mysterious old man died from a heart attack caused by fear. He had a small data cube on his body. I wonder what's on it...?")
-			add_item("Data cube")
+			Tux:add_quest(_"Deliverance", _"The mysterious old man died from a heart attack caused by fear. He had a small data cube on his body. I wonder what's on it...?")
+			Tux:add_item("Data cube")
 			drop_dead()
 			hide("node1", "node3")
 			end_dialog()
@@ -169,7 +169,7 @@ return {
 		code = function()
 			npc_says(_"So you really can't remember, eh?")
 			npc_says(_"Long stasis sleep can cause neurological damage and impact the memory. Looks like that is what happened here.")
-			npc_says(_"If the computer is not lying, then your name is %s.", get_player_name())
+			npc_says(_"If the computer is not lying, then your name is %s.", Tux:get_player_name())
 			npc_says(_"I'm just glad that we realized that you were a legendary Linarian and started the thawing process when we did.")
 			hide("node11") show("node12")
 		end,
@@ -253,7 +253,7 @@ return {
 		code = function()
 			cryo_outergate_code = true
 			npc_says(_"Oh. You'll need to put the cryonic terminals into admin mode to access the gate controls.")
-			tux_says(_"How do I do that?")
+			Tux:says(_"How do I do that?")
 			npc_says(_"You press star-pound-zero-six-pound and then enter the free-speech number.")
 			npc_says(_"It is kind of long, so I'll write it down for you.")
 			npc_says(_"If the 614 bot locks the gate, it is for a good reason. Lock the gate behind you!")
@@ -266,7 +266,7 @@ return {
 		code = function()
 			npc_says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
 			npc_says(_"Oh, I almost forgot... Could you take this data cube and give it to Spencer once you get to town?")
-			tux_says(_"Spencer?")
+			Tux:says(_"Spencer?")
 			npc_says(_"Yes. He's the leader of the Red Guard.")
 			hide("node90") show("node91", "node92", "node93")
 			push_topic("Deliver the cube")
@@ -291,8 +291,8 @@ return {
 		code = function()
 			npc_says(_"Thank you.")
 			npc_says(_"You can ask one of the guards in town, they'll know where to find Spencer.")
-			add_item("Data cube", 1)
-			add_quest(_"Deliverance", _"Francis asked me to deliver a data cube for him. When I reach the town, I'm supposed to give it to Spencer, who's in charge of the Red Guard ruling the nearby town. Of course, my first job is to survive the trip there...")
+			Tux:add_item("Data cube", 1)
+			Tux:add_quest(_"Deliverance", _"Francis asked me to deliver a data cube for him. When I reach the town, I'm supposed to give it to Spencer, who's in charge of the Red Guard ruling the nearby town. Of course, my first job is to survive the trip there...")
 			hide("node91", "node92", "node93", "node94")
 			next("node98")
 		end,
@@ -305,7 +305,7 @@ return {
 			Francis_help = Francis_help - 10
 			npc_says(_"Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there.")
 			npc_says(_"But... The prospect of facing that... That man again... I just can't bear it.")
-			npc_says(_"Please, %s, will you do me this favor?", get_player_name())
+			npc_says(_"Please, %s, will you do me this favor?", Tux:get_player_name())
 			hide("node93") show("node94")
 		end,
 	},
@@ -331,7 +331,7 @@ return {
 		code = function()
 			if (Francis_help > 0) then
 				npc_says(_"Oh... I almost forgot... This is a small help but I hope it will make your life a little easier.")
-				add_gold(Francis_help)
+				Tux:add_gold(Francis_help)
 			end
 			npc_says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")
 			end_dialog()

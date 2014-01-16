@@ -26,7 +26,7 @@ return {
 	end,
 
 	EveryTime = function()
-		if (has_item_backpack("Kevin's Data Cube")) then
+		if (Tux:has_item_backpack("Kevin's Data Cube")) then
 			show("node6")
 		end
 		show("node99")
@@ -59,8 +59,8 @@ return {
 			npc_says(_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of data in there. Maybe we could use Hydra to evaluate the data.")
 			npc_says(_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!")
 			npc_says(_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down.")
-			del_item_backpack("Kevin's Data Cube", 1)
-			end_quest(_"A kingdom for a cluster!", _"Yes, that was simple. I wish everything else went as smoothly as this one did...")
+			Tux:del_item_backpack("Kevin's Data Cube", 1)
+			Tux:end_quest(_"A kingdom for a cluster!", _"Yes, that was simple. I wish everything else went as smoothly as this one did...")
 			hide("node6") show("node9", "node10")
 		end,
 	},
@@ -79,7 +79,7 @@ return {
 		text = _"So... What's the story on those data cubes, anyway?",
 		code = function()
 			npc_says(_"Well, they were originally developed for use with the Open-Pandora computing platform.")
-			tux_says(_"The what?")
+			Tux:says(_"The what?")
 			npc_says(_"It was a handheld gaming computer, built on open-source software.")
 			npc_says(_"The device had limited storage capabilities, so an enterprising hacker designed the data cubes.")
 			npc_says(_"Those were the beginning days of open-source hardware. It's one of the few open-source innovations still around.")
@@ -90,7 +90,7 @@ return {
 		text = "BUG, REPORT ME! Richard node41",
 		echo_text = false,
 		code = function()
-			tux_says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
+			Tux:says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
 			npc_says_random(
 				_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
 				_"I cannot teach you when you have no training points. Come back when you are more prepared.",
@@ -124,13 +124,13 @@ return {
 		id = "node51",
 		text = _"Yes, please teach me.",
 		code = function()
-			if (train_program(300, get_program("Hacking") * 2, "Hacking")) then
+			if (Tux:train_program(300, get_program("Hacking") * 2, "Hacking")) then
 				npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 				npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 				npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
 				hide("node31") show("node30")
 			else
-				if (get_gold() < 300 ) then
+				if (Tux:get_gold() < 300 ) then
 					next("node52")
 				else
 					next("node41")
@@ -143,7 +143,7 @@ return {
 		text = "BUG, REPORT ME! Richard node52",
 		echo_text = false,
 		code = function()
-			tux_says_random(
+			Tux:says_random(
 				_"Hold on, I don't seem to have enough money right now.",
 				_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
 			npc_says_random(

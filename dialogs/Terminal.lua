@@ -25,7 +25,7 @@ return {
 			Terminal_connected = true
 			cli_says(_"Welcome to this terminal.")
 		else
-			tux_says_random(_"Hello.",
+			Tux:says_random(_"Hello.",
 				_"Hi there.", "NO_WAIT")
 			npc_says_random(_"Well, hello again.",
 				_"Hello hello.",

@@ -73,7 +73,7 @@ return {
 		text = _"How does teleportation work?",
 		code = function()
 			npc_says(_"Something about knitting or crochet.")
-			tux_says(_"Strings?")
+			Tux:says(_"Strings?")
 			npc_says(_"Yeah, something about tying them in knots.")
 			npc_says(_"It is supposed to be a pleasant way to relax.")
 			npc_says(_"Although some things can't be teleported because something about Einstein playing dice with Schrodinger's cat.")
@@ -85,7 +85,7 @@ return {
 		text = _"Einstein playing dice with a cat?",
 		code = function()
 			npc_says(_"The cat would eat the dice.")
-			tux_says(_"So, no dice?")
+			Tux:says(_"So, no dice?")
 			npc_says(_"Yeah. If you want to play dice you should talk to the bartender, Ewald.")
 			set_bot_name(_"Ewald - Barkeeper", "Ewald")
 			hide("node12")
@@ -98,7 +98,7 @@ return {
 			npc_says(_"Well, first the computer needs to scan you.")
 			npc_says(_"But it did that as soon as you entered the town.")
 			npc_says(_"Then all you need is one of these Teleporter homing beacons. I'll give you one.")
-			add_item("Teleporter homing beacon")
+			Tux:add_item("Teleporter homing beacon")
 			npc_says(_"They send a coded signal to our computer here, which does all of the quantum doohickeys to move you around.")
 			npc_says(_"Of course, if you had another way to send a coded signal, that would work as well.")
 			hide("node13") show("node14")

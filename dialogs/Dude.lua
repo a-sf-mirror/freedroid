@@ -27,7 +27,7 @@ local function dude_create_node(dialogname)
 		text = dialogname,
 		enabled = true,
 		code = function()
-			tux_says(_"Starting " .. dialogname)
+			Tux:says(_"Starting " .. dialogname)
 			start_chat(dialogname)
 		end,
 	}

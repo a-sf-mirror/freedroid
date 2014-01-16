@@ -19,9 +19,9 @@
 
 return {
 	FirstTime = function()
-		tux_says(_"Hello!")
+		Tux:says(_"Hello!")
 		npc_says(_"Bonjour!")
-		tux_says(_"I'm %s, and who are you?", get_player_name())
+		Tux:says(_"I'm %s, and who are you?", Tux:get_player_name())
 		npc_says(_"My name is Arthur.")
 		set_bot_name(_"Arthur")
 		show("node1")
@@ -42,13 +42,13 @@ return {
 		text = _"What are you doing here?",
 		code = function()
 			npc_says(_"I'm programming.")
-			tux_says(_"Oh, interesting.")
-			tux_says(_"And, mmh, what are working on?")
+			Tux:says(_"Oh, interesting.")
+			Tux:says(_"And, mmh, what are working on?")
 			npc_says(_"My current project is a role playing game.")
 			npc_says(_"The main character will be a penguin which, well, has to save the world basically.")
-			tux_says(_"Oh, interesting! Tell me when you have it ready, I'd love to take a look at it.")
+			Tux:says(_"Oh, interesting! Tell me when you have it ready, I'd love to take a look at it.")
 			npc_says(_"It's going to be ready when it's going to be ready.")
-			tux_says(_"Sure, take your time.")
+			Tux:says(_"Sure, take your time.")
 			set_bot_name(_"Arthur - Game developer")
 			hide("node1")
 			Arthur_node_1 = "node2"
@@ -58,10 +58,10 @@ return {
 		id = "node2",
 		text = _"Hi Arthur, how is your game going?",
 		code = function()
-			tux_says(_"Do you mind sharing any more details?")
+			Tux:says(_"Do you mind sharing any more details?")
 			npc_says(_"Hmm, there are still some parts to be finished.")
 			npc_says(_"Do you think there should be some kind of zombie apocalypse which the player will have to deal with?")
-			tux_says(_"Of course! Sounds cool!")
+			Tux:says(_"Of course! Sounds cool!")
 			Arthur_node_1 = "node3"
 			hide("node2")
 		end,
@@ -71,7 +71,7 @@ return {
 		text = _"Hey, is the your game finished already?",
 		code = function()
 			npc_says(_"I'm doing the final polishing right now.")
-			tux_says(_"Ah ok.")
+			Tux:says(_"Ah ok.")
 			hide("node3")
 		end,
 	},

@@ -20,7 +20,7 @@
 return {
 	EveryTime = function()
 		play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
-		-- name = get_player_name() -- We need to generate the option text of option 0 to use this properly
+		-- name = Tux:get_player_name() -- We need to generate the option text of option 0 to use this properly
 		if (c_net_terminals_disabled) then
 			npc_says(_" . ")
 			end_dialog()
@@ -50,24 +50,24 @@ return {
 		text = "guest",
 		echo_text = false,
 		code = function()
-			c_net_username = get_player_name()
+			c_net_username = Tux:get_player_name()
 			c_net_prompt = c_net_username .. "@c-net:~$"
-			tux_says("guest", "NO_WAIT")
+			Tux:says("guest", "NO_WAIT")
 			if (not c_net_terminal_logged_in) then
 				c_net_terminal_logged_in = true
 				npc_says(_"First time login detected.")
 				npc_says(_"Please enter your name", "NO_WAIT")
 				cli_says(_"Name : ", "NO_WAIT")
-				tux_says(c_net_username)
+				Tux:says(c_net_username)
 				npc_says(_"Please set password for your personalized guest login, %s", c_net_username, "NO_WAIT")
 				npc_says(_"Use at least one lower case letter, one upper case letter, one number, and one symbol.", "NO_WAIT")
 				cli_says(_"Password : ", "NO_WAIT")
-				tux_says("******")
+				Tux:says("******")
 			else
 				cli_says(_"Name : ", "NO_WAIT")
-				tux_says(c_net_username, "NO_WAIT")
+				Tux:says(c_net_username, "NO_WAIT")
 				cli_says(_"Password : ", "NO_WAIT")
-				tux_says("******", "NO_WAIT")
+				Tux:says("******", "NO_WAIT")
 			end
 			npc_says(_"Last login from /dev/tty3 on unknown", "NO_WAIT")
 			cli_says(c_net_prompt, "NO_WAIT")
@@ -79,9 +79,9 @@ return {
 		text = "root",
 		echo_text = false,
 		code = function()
-			tux_says("root", "NO_WAIT")
+			Tux:says("root", "NO_WAIT")
 			cli_says(_"Password : ", "NO_WAIT")
-			tux_says("******")
+			Tux:says("******")
 			--if (not knows_root_password) then
 			next("node9")
 			--else
@@ -98,9 +98,9 @@ return {
 		text = "lily",
 		echo_text = false,
 		code = function()
-			tux_says("lily", "NO_WAIT")
+			Tux:says("lily", "NO_WAIT")
 			cli_says(_"Password : ", "NO_WAIT")
-			tux_says("******")
+			Tux:says("******")
 			if (not know_lily_password) then
 				next("node9")
 			else
@@ -117,13 +117,13 @@ return {
 		text = "cpain",
 		echo_text = false,
 		code = function()
-			tux_says("cpain", "NO_WAIT")
+			Tux:says("cpain", "NO_WAIT")
 			cli_says(_"Password: ", "NO_WAIT")
 			--if (not knows_sorenson_password) then
-			tux_says("******")
+			Tux:says("******")
 			next("node9")
 			--else
-			-- tux_says("************************************")
+			-- Tux:says("************************************")
 			-- c_net_username = "cpain"
 			-- c_net_prompt = c_net_username .. "@c-net:~$"
 			-- npc_says(_"Last login from /dev/tty3 on unknown" , "NO_WAIT")
@@ -172,7 +172,7 @@ return {
 		echo_text = false,
 		code = function()
 			-- npc_says(get_date() ,"NO_WAIT")
-			tux_says("date", "NO_WAIT")
+			Tux:says("date", "NO_WAIT")
 			npc_says(_"Date unknown", "NO_WAIT")
 			cli_says(c_net_prompt, "NO_WAIT")
 		end,
@@ -182,12 +182,12 @@ return {
 		text = "finger",
 		echo_text = false,
 		code = function()
-			tux_says("finger", "NO_WAIT")
+			Tux:says("finger", "NO_WAIT")
 			knows_c_net_users = true
 			npc_says("Login Tty Name", "NO_WAIT")
 			npc_says("bossman tty7 Spencer", "NO_WAIT")
 			npc_says("cpain tty5 Sorenson", "NO_WAIT")
-			npc_says("guest tty3 " .. get_player_name() .. "", "NO_WAIT")
+			npc_says("guest tty3 " .. Tux:get_player_name() .. "", "NO_WAIT")
 			npc_says("lily tty2 Lily Stone", "NO_WAIT")
 			cli_says(c_net_prompt, "NO_WAIT")
 		end,
@@ -197,7 +197,7 @@ return {
 		text = "users",
 		echo_text = false,
 		code = function()
-			tux_says("users", "NO_WAIT")
+			Tux:says("users", "NO_WAIT")
 			npc_says("bossman cpain guest lily", "NO_WAIT")
 			knows_c_net_users = true
 			cli_says(c_net_prompt, "NO_WAIT")
@@ -208,7 +208,7 @@ return {
 		text = "whoami",
 		echo_text = false,
 		code = function()
-			tux_says("whoami", "NO_WAIT")
+			Tux:says("whoami", "NO_WAIT")
 			npc_says(c_net_username, "NO_WAIT")
 			cli_says(c_net_prompt, "NO_WAIT")
 		end,
@@ -218,7 +218,7 @@ return {
 		text = "uname",
 		echo_text = false,
 		code = function()
-			tux_says("uname", "NO_WAIT")
+			Tux:says("uname", "NO_WAIT")
 			npc_says("Nkernel", "NO_WAIT")
 			cli_says(c_net_prompt, "NO_WAIT")
 		end,
@@ -251,14 +251,14 @@ return {
 		text = _"mountdisk.sh",
 		echo_text = false,
 		code = function()
-			tux_says(_"./mountdisk.sh", "NO_WAIT")
-			if (has_item_backpack("Kevin's Data Cube")) then
+			Tux:says(_"./mountdisk.sh", "NO_WAIT")
+			if (Tux:has_item_backpack("Kevin's Data Cube")) then
 				npc_says(_"Mounting volume \"Kevins_Security_File\"...")
 				npc_says(_"Private memory and/or virtual address space exhausted.", "NO_WAIT")
 				npc_says(_"Not enough free memory to load data file.", "NO_WAIT")
-			elseif (has_quest("Deliverance")) and
-			       (not done_quest("Deliverance")) and
-			       (has_item_backpack("Data cube")) then
+			elseif (Tux:has_quest("Deliverance")) and
+			       (not Tux:done_quest("Deliverance")) and
+			       (Tux:has_item_backpack("Data cube")) then
 				npc_says(_"List for Spencer:")
 				npc_says("Alastra, Maria Grazia", "NO_WAIT")
 				npc_says("Arana, Pedro", "NO_WAIT")
@@ -306,7 +306,7 @@ return {
 				npc_says("Wood, JK", "NO_WAIT")
 				npc_says("Winterer, Armin", "NO_WAIT")
 				if (not deliverance_datacube_c_net_list) then
-					update_quest(_"Deliverance", _"I found a terminal in the town which could read the data cube Francis gave me. It looks like there was a list of names on it, but I have no clue what's the deal with these names.")
+					Tux:update_quest(_"Deliverance", _"I found a terminal in the town which could read the data cube Francis gave me. It looks like there was a list of names on it, but I have no clue what's the deal with these names.")
 					deliverance_datacube_c_net_list = true
 				end
 			else
@@ -320,7 +320,7 @@ return {
 		text = _"statistics.pl",
 		echo_text = false,
 		code = function()
-			tux_says("./statistics.pl", "NO_WAIT")
+			Tux:says("./statistics.pl", "NO_WAIT")
 			npc_says(_"Corrupted file.", "NO_WAIT")
 			-- npc_says(_"Bot #Dead# Tux #Hacked/Failed#Ratio", "NO_WAIT")
 			-- npc_says(print_stats(),"NO_WAIT")
@@ -333,7 +333,7 @@ return {
 		echo_text = false,
 		code = function()
 			c_net_prompt = c_net_username .. "@c-net:~/documents$"
-			tux_says("cd documents/", "NO_WAIT")
+			Tux:says("cd documents/", "NO_WAIT")
 			if (c_net_username =="root") then
 				show("node66")
 			end
@@ -382,7 +382,7 @@ return {
 			display_big_message(_"Terminals Disabled")
 			npc_says(_"Script run. After logout this terminal will be disabled.", "NO_WAIT")
 			cli_says(_"root@c-net:~$", "NO_WAIT")
-			-- add_xp(30) -- Eventually make this a quest goal.
+			-- Tux:add_xp(30) -- Eventually make this a quest goal.
 		end,
 	},
 	{
@@ -457,7 +457,7 @@ return {
 		text = "nethack",
 		echo_text = false,
 		code = function()
-			tux_says("./nethack", "NO_WAIT")
+			Tux:says("./nethack", "NO_WAIT")
 			push_topic("c-net-nethack_sub")
 			-- call c-net-nethack_sub subdialog
 			next("c-net-nethack_sub.everytime")
@@ -476,7 +476,7 @@ return {
 		text = _"global_thermonuclear_war",
 		echo_text = false,
 		code = function()
-			tux_says(_"./global_thermonuclear_war", "NO_WAIT")
+			Tux:says(_"./global_thermonuclear_war", "NO_WAIT")
 			npc_says_random(_"Sorry, only winning move is not to play. New game?",
 							_"Mankind exterminated. You lost!",
 							_"No victory possible. LOSER! Play again?",
@@ -489,7 +489,7 @@ return {
 		text = _"tetris",
 		echo_text = false,
 		code = function()
-			tux_says(_"./tetris", "NO_WAIT")
+			Tux:says(_"./tetris", "NO_WAIT")
 			npc_says("Never gonna give you up,")
 			npc_says("Never gonna let you down,")
 			npc_says("Never gonna run around and desert you.")
@@ -506,7 +506,7 @@ return {
 		text = _"progress_quest",
 		echo_text = false,
 		code = function()
-			tux_says(_"./progress_quest", "NO_WAIT")
+			Tux:says(_"./progress_quest", "NO_WAIT")
 			if (not playing_progress_quest) then
 				playing_progress_quest = true
 				npc_says(_"Roll your Stats.")
@@ -560,7 +560,7 @@ return {
 		text = "logout",
 		echo_text = false,
 		code = function()
-			tux_says("logout", "NO_WAIT")
+			Tux:says("logout", "NO_WAIT")
 			npc_says(_"Connection to c-net closed.")
 			-- set_internet_login_time()
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")

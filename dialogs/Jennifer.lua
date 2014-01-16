@@ -23,12 +23,12 @@ return {
 	end,
 
 	EveryTime = function()
-		if (has_met("Jennifer")) then
-			tux_says(_"Hello")
+		if (Tux:has_met("Jennifer")) then
+			Tux:says(_"Hello")
 			npc_says(_"Welcome back.")
 		end
 
-		if (has_item("Toolbox")) then
+		if (Tux:has_item("Toolbox")) then
 			show("node10")
 		end
 		show("node99")
@@ -39,8 +39,8 @@ return {
 		text = _"Hello!",
 		code = function()
 			npc_says(_"Hello. I'm Jennifer.")
-			tux_says(_"I'm %s.", get_player_name())
-			tux_says(_"What are you doing here?")
+			Tux:says(_"I'm %s.", Tux:get_player_name())
+			Tux:says(_"What are you doing here?")
 			npc_says(_"I'm a machinist, working here, repairing bots and stuff like this.")
 			hide("node1") show("node2", "node3")
 		end,
@@ -53,9 +53,9 @@ return {
 			npc_says(_"Someone thought he had to tidy up the space...", NO_WAIT)
 			npc_says(_"...and now I cannot find my equipment anymore, what an idiot!")
 			npc_says(_"I'm especially searching for my toolbox.")
-			tux_says(_"Okay, I will keep my eyes open if I see some toolbox.")
+			Tux:says(_"Okay, I will keep my eyes open if I see some toolbox.")
 			npc_says(_"Thank you.")
-			add_quest("Jennifer's Toolbox", "Someone rearranged equipment at Jennifers workshop, she does not find her Toolbox anymore. I promised to keep my eyes open for it.")
+			Tux:add_quest("Jennifer's Toolbox", "Someone rearranged equipment at Jennifers workshop, she does not find her Toolbox anymore. I promised to keep my eyes open for it.")
 			hide("node2")
 		end,
 	},
@@ -72,14 +72,14 @@ return {
 		id = "node4",
 		text = _"Why are you still alive anyway?",
 		code = function()
-			tux_says(_"The bots should have killed you immediately.")
-			tux_says(_"It's hell in here for me and you don't seem to be even armed.")
+			Tux:says(_"The bots should have killed you immediately.")
+			Tux:says(_"It's hell in here for me and you don't seem to be even armed.")
 			npc_says(_"Well...")
 			npc_says(_"The workers here get special chips implanted.", NO_WAIT)
-			tux_says(_"Ew.", NO_WAIT)
+			Tux:says(_"Ew.", NO_WAIT)
 			npc_says(_"So the bots can identify us as 'friendly' and won't rip us apart.")
-			tux_says(_"Uh.")
-			tux_says(_"Is there any way for me to get such a chip?")
+			Tux:says(_"Uh.")
+			Tux:says(_"Is there any way for me to get such a chip?")
 			npc_says(_"I don't think you will be able to get one. You don't look very human-like.")
 			npc_says(_"How did you get in here anyway?")
 			hide("node4") show("node5", "node6", "node7")
@@ -115,8 +115,8 @@ return {
 		code = function()
 			npc_says(_"Oh yes, it is!", NO_WAIT)
 			npc_says(_"Thank you very much!")
-			end_quest("Jennifer's Toolbox", _"I found the Toolbox and returned it to her") -- we may want to have her repair all of tux' items at some point
-			del_item("Toolbox", 1)
+			Tux:end_quest("Jennifer's Toolbox", _"I found the Toolbox and returned it to her") -- we may want to have her repair all of tux' items at some point
+			Tux:del_item("Toolbox", 1)
 			hide("node10")
 		end,
 	},

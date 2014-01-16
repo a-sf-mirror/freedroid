@@ -23,8 +23,8 @@ return {
 	end,
 
 	EveryTime = function()
-		if (has_quest("Droids are my friends")) and
-		   (done_quest("Droids are my friends")) and
+		if (Tux:has_quest("Droids are my friends")) and
+		   (Tux:done_quest("Droids are my friends")) and
 		   (not Singularity_reward_for_toolkit) then
 			show("node22")
 			Singularity_reward_for_toolkit = true
@@ -49,7 +49,7 @@ return {
 			npc_says(_"The Singularity may be a glitch - human error. But evolution is born from unintended consequences. Is the Singularity a new form of life?")
 			npc_says(_"This hinges on the question, what is life? Is it flesh and bone, or leaf and root, or can it be wires and code?")
 			npc_says(_"Linarian, do you think about your existence?")
-			tux_says(_"Uhm...yes...no...sometimes... You ask many questions.")
+			Tux:says(_"Uhm...yes...no...sometimes... You ask many questions.")
 			npc_says(_"Is it possible that nobody asks the real question?")
 			hide("node1") show("node2")
 		end,
@@ -91,7 +91,7 @@ return {
 			npc_says(_"Message 42607 to All Droids : Enemy spotted. Order to destroy.")
 			set_faction_state("singularity", "hostile")
 			change_obstacle_state("Sin-gun", "enabled")
-			update_quest(_"The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit. I will seize it from them by force.")
+			Tux:update_quest(_"The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit. I will seize it from them by force.")
 			hide("node11", "node20", "node21")
 			end_dialog()
 		end,
@@ -114,8 +114,8 @@ return {
 		code = function()
 			npc_says(_"The server room entryway has been unlocked. You now have access. We wish you a high probability of success.")
 			change_obstacle_state("OldServerRoomAccessDoor", "opened")
-			update_quest(_"The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit, but I made a deal with the Singularity. If I succeed in its mission, it will give me the toolbox.")
-			add_quest(_"Droids are my friends", _"The Singularity wants me to clean out bots in an old server room.")
+			Tux:update_quest(_"The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit, but I made a deal with the Singularity. If I succeed in its mission, it will give me the toolbox.")
+			Tux:add_quest(_"Droids are my friends", _"The Singularity wants me to clean out bots in an old server room.")
 			hide("node11", "node21")
 			end_dialog()
 		end,
@@ -127,8 +127,8 @@ return {
 			npc_says(_"Thank you, Linarian. We will not forget it - your help has been invaluable. Please feel free to take the toolbox.")
 			change_obstacle_state("Maintenance-escape1", "opened")
 			change_obstacle_state("Maintenance-escape2", "opened")
-			update_quest(_"The yellow toolkit", _"The Singularity gave me the toolkit in exchange for my help.")
-			add_item("Dixon's Toolbox", 1)
+			Tux:update_quest(_"The yellow toolkit", _"The Singularity gave me the toolkit in exchange for my help.")
+			Tux:add_item("Dixon's Toolbox", 1)
 			set_death_item("NONE")
 			Singularity_deal = true
 			hide("node22")

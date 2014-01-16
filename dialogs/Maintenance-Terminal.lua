@@ -25,9 +25,9 @@ return {
 		Maintenance_Terminal_prompt = "dixon@maintenance: ~ # "
 
 		cli_says(_"Login : ", "NO_WAIT")
-		tux_says(_"dixon", "NO_WAIT")
+		Tux:says(_"dixon", "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
-		tux_says("*******", "NO_WAIT")
+		Tux:says("*******", "NO_WAIT")
 		npc_says(_"Hello, Dave.")
 		if (Maintenance_Terminal_date == nil) then
 			npc_says(_"First login from /dev/ttySO on %s %d", Maintenance_Terminal_date_1, Maintenance_Terminal_year, "NO_WAIT")
@@ -109,7 +109,7 @@ return {
 		text = _"sudo enable guns",
 		code = function()
 			cli_says(_"[sudo] password for dixon: ")
-			tux_says("*******", "NO_WAIT")
+			Tux:says("*******", "NO_WAIT")
 			npc_says(_"Enabling gun 01 ...", "NO_WAIT")
 			change_obstacle_state("Maintenance-gun1", "enabled")
 			npc_says(_"Enabling gun 02 ...", "NO_WAIT")
@@ -154,7 +154,7 @@ return {
 		text = _"sudo disable guns",
 		code = function()
 			cli_says(_"[sudo] password for dixon: ")
-			tux_says("*******")
+			Tux:says("*******")
 			npc_says(_"Would you like a sandwich with that?")
 			cli_says("> ", "NO_WAIT")
 			show("node8", "node9")
@@ -189,7 +189,7 @@ return {
 		text = _"sudo disable guns",
 		code = function()
 			cli_says(_"[sudo] password for dixon: ")
-			tux_says("*******")
+			Tux:says("*******")
 			hide("node10") next("node11")
 		end,
 	},

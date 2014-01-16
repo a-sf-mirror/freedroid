@@ -24,8 +24,8 @@ return {
 	end,
 
 	EveryTime = function()
-		if (has_met("MO-RGGateGuardLeader")) then
-			if (done_quest("Opening access to MS Office")) then
+		if (Tux:has_met("MO-RGGateGuardLeader")) then
+			if (Tux:done_quest("Opening access to MS Office")) then
 				if (MO_RGGateGuardLeader_informed) then
 					next("node20")
 				else
@@ -56,7 +56,7 @@ return {
 			npc_says(_"There are trillions of millions of quintillions of bots in there!")
 			npc_says(_"Besides that, on the other side of the door is a disruptor shield, which we can't control.")
 			npc_says(_"* Throws a stone through the door")
-			if (done_quest("Opening access to MS Office")) then
+			if (Tux:done_quest("Opening access to MS Office")) then
 				npc_says(_"* Stone freely flies through the gate and drops on the ground on the other side")
 				npc_says(_"HOLY MECHANICAL MARVEL! SHIELD DISABLED! PREPARE FOR BOT ATTACK!")
 				next("node10")
@@ -83,7 +83,7 @@ return {
 		code = function()
 			npc_says(_"WHAT?! Not an attack?!")
 			npc_says(_"I hope you are telling the truth. One second...")
-			if (has_quest("Propagating a faulty firmware update")) then
+			if (Tux:has_quest("Propagating a faulty firmware update")) then
 				change_obstacle_state("MSAreaDoor", "opened")
 				MO_RGGateGuardLeader_informed = true
 				next("node20")
@@ -99,7 +99,7 @@ return {
 		echo_text = false,
 		code = function()
 			npc_says(_"Right, there is a message from Spencer, you can enter Hell Fortress. And may the source be with you!")
-			tux_says(_"See...")
+			Tux:says(_"See...")
 			npc_says(_"Yeah, you were right...")
 			end_dialog()
 		end,

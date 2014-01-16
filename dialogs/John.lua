@@ -30,7 +30,7 @@ return {
 		John_puzzle_score = JohnPuzzlefalseA + JohnPuzzlefalseB + JohnPuzzlefalseC
 
 		if (John_dislike) then
-			tux_says(_"I am s-")
+			Tux:says(_"I am s-")
 			npc_says(_"Go away please.")
 			end_dialog()
 		end
@@ -40,11 +40,11 @@ return {
 			-- if Tux ran into false teleporter of the storage room
 			if (John_lvl28to28_teleported) and
 			   (not John_lvl28to28_hide) then
-				tux_says(_"What was that?!")
+				Tux:says(_"What was that?!")
 				npc_says(_"See..?")
 				npc_says(_"It's not as easy as you thought.")
 				npc_says(_"Take a closer look at the storage room again...")
-				tux_says(_"Okay.")
+				Tux:says(_"Okay.")
 				John_lvl28to28_hide = true
 			end
 
@@ -58,10 +58,10 @@ return {
 					   (JohnPuzzlefalseB == 1) or
 					   (JohnPuzzlefalseC == 1) then
 						npc_says(_"Looks like you had some problems?")
-						tux_says(_"Yes...")
+						Tux:says(_"Yes...")
 						npc_says(_"Ok, I'll give you another chance.")
 						npc_says(_"But it will be your last chance, so take care...")
-						tux_says(_"Thanks.")
+						Tux:says(_"Thanks.")
 						John_problems_1 = true
 					end
 				end
@@ -75,7 +75,7 @@ return {
 					npc_says(_"You made the same mistake twice.")
 					npc_says(_"You walked through the same teleporter twice!")
 					npc_says(_"What's wrong with your mind?")
-					tux_says(_"I-")
+					Tux:says(_"I-")
 					npc_says(_"How is that ever going to work?")
 					npc_says(_"I locked the puzzle.")
 					npc_says(_"It doesn't seem like you'd ever be able to solve it.")
@@ -86,11 +86,11 @@ return {
 					-- Tux walked through a false teleporter second time
 					if (John_puzzle_score >= 2) then
 						npc_says(_"Sorry, seems like that puzzle was too hard for you.")
-						tux_says(_"But I-")
+						Tux:says(_"But I-")
 						npc_says(_"It is locked now.")
-						tux_says(_"I was very close to the solution.")
+						Tux:says(_"I was very close to the solution.")
 						npc_says(_"Well, why did you still fail if you were so close?")
-						tux_says(_"Hmpf..")
+						Tux:says(_"Hmpf..")
 						John_puzzle_locked = true
 					end
 				end
@@ -105,15 +105,15 @@ return {
 				   (John_puzzle_score > 0 ) then
 					npc_says(_"Congratulations, you solved my little puzzle.")
 					npc_says(_"I give you this as a small reward.")
-					add_item("Dexterity Pill", 1)
+					Tux:add_item("Dexterity Pill", 1)
 				else
 					-- Tux solved the puzzle without retrying!
 					npc_says(_"Wow... you solved it, and on your first time, too.")
 					npc_says(_"That's pretty good.")
 					npc_says(_"Here, take this as reward.")
-					tux_says(_"Oh, thank you.")
-					add_item("Dexterity Pill", 1)
-					add_item("Strength Pill", 1)
+					Tux:says(_"Oh, thank you.")
+					Tux:add_item("Dexterity Pill", 1)
+					Tux:add_item("Strength Pill", 1)
 				end
 				John_puzzle_locked = true
 				set_bot_destination("JohnFreeLabel")
@@ -132,12 +132,12 @@ return {
 		code = function()
 			npc_says(_"Hello.")
 			npc_says(_"Errr... How did you get in here?!")
-			tux_says(_"I just walked through the door.")
+			Tux:says(_"I just walked through the door.")
 			npc_says(_"And your name?")
-			tux_says(_"I'm %s.", get_player_name())
+			Tux:says(_"I'm %s.", Tux:get_player_name())
 			npc_says(_"And you were not slaughtered by the bots outside?")
-			tux_says(_"Apparently, I am still alive.")
-			tux_says(_"Does that answer your question?")
+			Tux:says(_"Apparently, I am still alive.")
+			Tux:says(_"Does that answer your question?")
 			npc_says(_"It does... smart aleck.")
 			hide("node0") show("node1")
 		end,
@@ -148,7 +148,7 @@ return {
 		code = function()
 			npc_says(_"I'm living here.")
 			npc_says(_"What did you expect?")
-			tux_says(_"Okay, that question was a little stupid.")
+			Tux:says(_"Okay, that question was a little stupid.")
 			hide("node1") show("node2")
 		end,
 	},
@@ -158,7 +158,7 @@ return {
 		code = function()
 			npc_says(_"Not that I know.")
 			npc_says(_"Only you and me.")
-			tux_says(_"Okay, that question was also a little stupid.")
+			Tux:says(_"Okay, that question was also a little stupid.")
 			hide("node2") show("node3")
 		end,
 	},
@@ -184,7 +184,7 @@ return {
 		id = "node5",
 		text = _"Sounds interesting.",
 		code = function()
-			tux_says(_"Can you tell me more about it?")
+			Tux:says(_"Can you tell me more about it?")
 			npc_says(_"No.")
 			npc_says(_"But you can experience it for yourself.")
 			npc_says(_"Interested?")
@@ -197,10 +197,10 @@ return {
 		code = function()
 			npc_says(_"Ok, so the entrance is in my storage room.")
 			npc_says(_"Shouldn't be too difficult to find.")
-			tux_says(_"Ok, let me take a look.")
+			Tux:says(_"Ok, let me take a look.")
 			npc_says(_"Wait, wait. I'll give you a hint:")
 			npc_says(_"'Looking from above hostiles may appear as salvation.'")
-			tux_says(_"Uh, ok, thanks.")
+			Tux:says(_"Uh, ok, thanks.")
 			John_puzzle_started = true
 			hide("node10", "node11")
 			end_dialog()
@@ -210,7 +210,7 @@ return {
 		id = "node11",
 		text = _"Hmm... I don't trust you.",
 		code = function()
-			tux_says(_"I think, it's a trap!")
+			Tux:says(_"I think, it's a trap!")
 			npc_says(_"Well, you can leave at any time.")
 			npc_says(_"I wish you would!")
 			John_dislike = true

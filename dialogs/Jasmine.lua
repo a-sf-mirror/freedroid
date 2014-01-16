@@ -85,7 +85,7 @@ return {
 		text = _"You are the most beautiful human I have ever seen.",
 		code = function()
 			npc_says(_"And you are at least a quarter wrong.")
-			tux_says(_"You're so cute, baby seals and polar bears sent each other pictures of you.")
+			Tux:says(_"You're so cute, baby seals and polar bears sent each other pictures of you.")
 			npc_says(_"Now, please get out of my sight.")
 			hide("node8") show("node9")
 		end,
@@ -95,10 +95,10 @@ return {
 		text = _"Will you marry me?",
 		code = function()
 			npc_says(_"Forget it.")
-			tux_says(_"Roses are red,")
-			tux_says(_"Violets are blue,")
-			tux_says(_"All of my base,")
-			tux_says(_"Are belong to you.")
+			Tux:says(_"Roses are red,")
+			Tux:says(_"Violets are blue,")
+			Tux:says(_"All of my base,")
+			Tux:says(_"Are belong to you.")
 			npc_says("...")
 			hide("node9")
 		end,
@@ -114,7 +114,7 @@ return {
 			else
 				npc_says(_"Yeah. Wha -- SIGSEGV.")
 				npc_says(_"Segmentation fault.")
-				tux_says(_"Huh?")
+				Tux:says(_"Huh?")
 				npc_says(_"Traceback printed to stdout.")
 				npc_says(_"Kernel panic in module: Jasmine")
 				npc_says(_"Buffer overrun in anger.c:1532")

@@ -25,7 +25,7 @@ return {
 		TutorialTerminal_prompt = "guest@example.com: ~ #"
 
 		cli_says("Login : ", "NO_WAIT")
-		tux_says(_"guest", "NO_WAIT")
+		Tux:says(_"guest", "NO_WAIT")
 		cli_says(_"Entering as Guest", "NO_WAIT")
 		npc_says("", "NO_WAIT")
 		if (TutorialTerminal_date == nil) then
@@ -53,7 +53,7 @@ return {
 		text = _"open gate",
 		echo_text = false,
 		code = function()
-			tux_says(_"open gate", "NO_WAIT")
+			Tux:says(_"open gate", "NO_WAIT")
 			npc_says(_"Access granted. Opening gate ...")
 			npc_says(_"Gate status: OPEN")
 			change_obstacle_state("TutorialDoor", "opened")
@@ -66,7 +66,7 @@ return {
 		text = _"close gate",
 		echo_text = false,
 		code = function()
-			tux_says(_"close gate", "NO_WAIT")
+			Tux:says(_"close gate", "NO_WAIT")
 			npc_says(_"Access granted. Closing gate ...")
 			npc_says(_"Gate status: CLOSED")
 			change_obstacle_state("TutorialDoor", "closed")
@@ -79,7 +79,7 @@ return {
 		text = _"logout",
 		echo_text = false,
 		code = function()
-			tux_says(_"logout", "NO_WAIT")
+			Tux:says(_"logout", "NO_WAIT")
 			npc_says(_"Exiting...")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			if (cmp_obstacle_state("TutorialDoor", "opened")) and

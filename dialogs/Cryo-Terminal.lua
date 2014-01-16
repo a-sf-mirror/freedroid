@@ -93,7 +93,7 @@ return {
 			Cryo_term_unlocked = true
 			npc_says(_"Enter command code", "NO_WAIT")
 			cli_says("> ")
-			tux_says("09F911029D74E35BD84156C5635688C0")
+			Tux:says("09F911029D74E35BD84156C5635688C0")
 			npc_says(_"Unlocked. Entering admin mode...")
 			Cryo_Terminal_prompt = "admin@cryo-solutions: ~ # "
 			cli_says(Cryo_Terminal_prompt, "NO_WAIT")

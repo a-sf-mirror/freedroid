@@ -37,25 +37,25 @@ return {
 			show("node90", "node91", "node92")
 			push_topic("Backdoor")
 		else
-			tux_says_random(_"Hello.",
+			Tux:says_random(_"Hello.",
 							_"Hi there, Kevin.")
 			npc_says_random(_"Well, hello again.",
 							_"Hello hello.",
 							_"Welcome back.")
 		end
 
-		if (has_quest("A strange guy stealing from town")) and
-		   (not done_quest("A strange guy stealing from town")) then
-			add_xp(100)
-			end_quest(_"A strange guy stealing from town", _"Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
+		if (Tux:has_quest("A strange guy stealing from town")) and
+		   (not Tux:done_quest("A strange guy stealing from town")) then
+			Tux:add_xp(100)
+			Tux:end_quest(_"A strange guy stealing from town", _"Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
 		end
 
-		if (has_quest("And there was light...")) and
-		   (done_quest("And there was light...")) then
+		if (Tux:has_quest("And there was light...")) and
+		   (Tux:done_quest("And there was light...")) then
 			show("node8", "node10")
 			if (not Kevin_did_And_there_was_light) then
 				Kevin_did_And_there_was_light = true -- Tux spoke with Kevin after completing the quest "And there was light..."
-				update_quest(_"And there was light...", _"Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
+				Tux:update_quest(_"And there was light...", _"Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
 			end
 		end
 
@@ -86,7 +86,7 @@ return {
 			npc_says(_"One of the side effects of always deleting all cookies.")
 			npc_says(_"Don't worry about me. I'll be fine.")
 			npc_says(_"I'm Kevin, a computer security expert.")
-			tux_says(_"In other words: You are a hacker.")
+			Tux:says(_"In other words: You are a hacker.")
 			npc_says(_"Eh... I guess you could put it that way, yes.")
 			set_bot_name(_"Kevin - Hacker")
 			hide("node0") show("node30")
@@ -100,7 +100,7 @@ return {
 			npc_says(_"It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level.")
 			npc_says(_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them.")
 			npc_says(_"Best make it quick. I'm already sick of stabilizing the stupid power grid.")
-			update_quest(_"And there was light...", _"The entrance is in Kevin's garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
+			Tux:update_quest(_"And there was light...", _"The entrance is in Kevin's garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
 			hide("node6", "node7")
 		end,
 	},
@@ -116,7 +116,7 @@ return {
 		id = "node8",
 		text = _"About that project you said you have running...",
 		code = function()
-			if (done_quest("A kingdom for a cluster!")) then
+			if (Tux:done_quest("A kingdom for a cluster!")) then
 				npc_says(_"I've already received the results from the evaluation of my data in the cluster. Good work.")
 			else
 				npc_says(_"Yes, since the energy supply has been constant, results were much better. I've achieved my goal.")
@@ -132,7 +132,7 @@ return {
 		id = "node9",
 		text = _"Maybe I can help somehow to find a suitable cluster.",
 		code = function()
-			if (has_quest("A kingdom for a cluster!")) then
+			if (Tux:has_quest("A kingdom for a cluster!")) then
 				npc_says(_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore.")
 				npc_says(_"The fate of the town now rests in your hands. Take the data cube I gave you to the cluster. Only there can the data be evaluated properly.")
 			else
@@ -141,8 +141,8 @@ return {
 				npc_says(_"Also, the cluster is inside of the guard citadel. I hear that only members of the Red Guard are allowed to enter the complex.")
 				npc_says(_"But maybe you can arrange that somehow. For me it would be impossible, because of my reputation.")
 				npc_says(_"I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there.")
-				add_quest(_"A kingdom for a cluster!", _"Kevin gave me a cube full of some kind of data. I am supposed to take it to a computer cluster for analysis. Ought to be simple.")
-				add_item("Kevin's Data Cube", 1)
+				Tux:add_quest(_"A kingdom for a cluster!", _"Kevin gave me a cube full of some kind of data. I am supposed to take it to a computer cluster for analysis. Ought to be simple.")
+				Tux:add_item("Kevin's Data Cube", 1)
 				set_death_item("NONE") -- to make sure we don't get two data cubes!!
 			end
 			hide("node9")
@@ -175,7 +175,7 @@ return {
 			npc_says(_"Now watch. Observe carefully. See how I enter the system... Yes. Watch the connection glowing, burning like a bright star...")
 			npc_says(_"...only to die seconds after, as the system far away collapses under it's own weight... It's done.")
 			npc_says(_"That is all I want to show you for now. Maybe later I will teach you something else.")
-			improve_program("Hacking")
+			Tux:improve_program("Hacking")
 			next("node15")
 		end,
 	},
@@ -195,7 +195,7 @@ return {
 		topic = "Kevin's Reward",
 		code = function()
 			npc_says(_"Eh... Here, take these 900 circuits. That should be enough.")
-			add_gold(900)
+			Tux:add_gold(900)
 			next("node15")
 		end,
 	},
@@ -246,15 +246,15 @@ return {
 		id = "node30",
 		text = _"What can you teach me about hacking?",
 		code = function()
-			if (not done_quest("And there was light...")) then
-				if (not has_quest("And there was light...")) then
+			if (not Tux:done_quest("And there was light...")) then
+				if (not Tux:has_quest("And there was light...")) then
 					npc_says(_"Not now, I'm busy.")
 					npc_says(_"I've got an important research project going on. In fact this project might be crucial to the survival of the whole town.")
 					npc_says(_"There is tremendous importance in it. But the project is in danger. There are some maintenance bots down at the energy source.")
 					npc_says(_"They are trying to 'maintain' machines by rebooting them all the time. This must stop, but I can't leave this place.")
 					npc_says(_"I must balance the remaining power in such a way that my project can continue uninterrupted.")
 					npc_says(_"Now, if you go down there and make the power flow stable, then I'll find the time to teach you something.")
-					add_quest(_"And there was light...", _"Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots.")
+					Tux:add_quest(_"And there was light...", _"Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots.")
 					show("node6", "node7")
 				else
 					npc_says(_"As I've told you, I cannot teach you anything right now. I don't have the time.")
@@ -281,13 +281,13 @@ return {
 		id = "node31",
 		text = _"Yes, please teach me how to become a hacker.",
 		code = function()
-			if (train_program(300, Kevin_next_lesson_cost, "Hacking")) then
+			if (Tux:train_program(300, Kevin_next_lesson_cost, "Hacking")) then
 				Kevin_lessons_taught = Kevin_lessons_taught + 1
 				npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 				npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 				npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
 			else
-				if (get_gold() < 300) then
+				if (Tux:get_gold() < 300) then
 					next("node40")
 				else
 					next("node41")
@@ -301,7 +301,7 @@ return {
 		text = "BUG, REPORT ME! Kevin node40",
 		echo_text = false,
 		code = function()
-			tux_says_random(_"Hold on, I don't seem to have that much money right now.",
+			Tux:says_random(_"Hold on, I don't seem to have that much money right now.",
 				_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
 			npc_says_random(_"Ok, come back when you can afford to pay me if you are interested.",
 				_"Please don't bother me if you can't pay me.",
@@ -315,7 +315,7 @@ return {
 		text = "BUG, REPORT ME! Kevin node41",
 		echo_text = false,
 		code = function()
-			tux_says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
+			Tux:says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
 			npc_says_random(
 				_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
 				_"I cannot teach you when you have no training points. Come back when you are more prepared.",
@@ -342,7 +342,7 @@ return {
 		id = "node61",
 		text = _"Yes, I tried to login.",
 		code = function()
-			if (done_quest("And there was light...")) then
+			if (Tux:done_quest("And there was light...")) then
 				npc_says(_"Please, don't touch it.")
 				npc_says(_"I don't want you to break it somehow.")
 				Kevins_Lawnmower_tux_login_granted = true -- Tux has access to Kevin-Lawnmower
@@ -409,17 +409,17 @@ return {
 		code = function()
 			if (Kevin_talk_later == 10) then
 				npc_says(_"Hey Linarian...")
-				tux_says(_"Mmmh, yes?")
+				Tux:says(_"Mmmh, yes?")
 				npc_says(_"Do you know this feeling...")
 				npc_says(_"...when you get a really strange output...")
 				npc_says(_"... and you look at the code...")
 				npc_says(_"... again and again...")
 				npc_says(_"... but you see no path it could come from?")
-				tux_says(_"Hmm, yes, I get this sometimes...")
+				Tux:says(_"Hmm, yes, I get this sometimes...")
 				npc_says(_"I checked online if there is a name for this symptom... but couldn't find anything...")
 				npc_says(_"I guess I am going to call it 'stdoubt'.")
-				tux_says(_"Ok...")
-				tux_says("...")
+				Tux:says(_"Ok...")
+				Tux:says("...")
 			else
 				npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.",
 								_"If you need to contact me, my number is 127.0.0.1",

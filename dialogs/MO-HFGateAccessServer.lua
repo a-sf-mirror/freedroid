@@ -46,15 +46,15 @@ return {
 			npc_says(_"Non-human detected. Administering paralyzing shock.")
 			npc_says(_"NOTE: If you are a human, try again, and make sure you enter a word and not digits.")
 			freeze_tux_npc(7)
-			hurt_tux(20)
-			heat_tux(20)
+			Tux:hurt(20)
+			Tux:heat(20)
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()
 		else
 			npc_says(_"Welcome to MS gate access server for region #54648.")
 			if (not MO_HFGateAccessServer_Spencer_chat) then
-				tux_says(_"WHAT?!")
-				update_quest(_"Propagating a faulty firmware update", _"The firmware server seems to actually be an access server to a gate. What am I supposed to do now?")
+				Tux:says(_"WHAT?!")
+				Tux:update_quest(_"Propagating a faulty firmware update", _"The firmware server seems to actually be an access server to a gate. What am I supposed to do now?")
 				MO_HFGateAccessServer_Spencer = true
 				MO_HFGateAccessServer_Spencer_chat = true
 				MO_HFGateAccessServer_skip_captcha = true
@@ -78,7 +78,7 @@ return {
 		text = _"status",
 		echo_text = false,
 		code = function()
-			tux_says(_"status", "NO_WAIT")
+			Tux:says(_"status", "NO_WAIT")
 			if (cmp_obstacle_state("HF-Gate-outer", "opened")) then
 				npc_says(_"Gate 1 status: OPENED", "NO_WAIT")
 			else
@@ -107,11 +107,11 @@ return {
 		text = _"open gate",
 		echo_text = false,
 		code = function()
-			tux_says(_"open gate", "NO_WAIT")
+			Tux:says(_"open gate", "NO_WAIT")
 			npc_says(_"Permission denied")
-			hurt_tux(5)
-			heat_tux(10)
-			update_quest("Open Sesame", "The server is secured, looks like I have to hack it.")
+			Tux:hurt(5)
+			Tux:heat(10)
+			Tux:update_quest("Open Sesame", "The server is secured, looks like I have to hack it.")
 			hide("node2") show("node3")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()
@@ -122,16 +122,16 @@ return {
 		text = _"(Try hacking the server)",
 		code = function()
 			if (takeover(get_program("Hacking")+3)) then
-				tux_says(_"sudo !!")
+				Tux:says(_"sudo !!")
 				npc_says(_"sudo open gates", "NO_WAIT")
 				npc_says(_"Which gates do you want to open?")
-				update_quest("Open Sesame", "Whew, I finally managed to hack the gate access server. I can open the gates now.")
+				Tux:update_quest("Open Sesame", "Whew, I finally managed to hack the gate access server. I can open the gates now.")
 				MO_HFGateAccessServer_hacked = true
 				hide("node3") show("node4")
 			else
 				npc_says(_"Permission denied.")
-				heat_tux(15)
-				hurt_tux(10)
+				Tux:heat(15)
+				Tux:hurt(10)
 				play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 				end_dialog()
 			end
@@ -142,7 +142,7 @@ return {
 		text = _"man open gates",
 		echo_text = false,
 		code = function()
-			tux_says(_"man open gates", "NO_WAIT")
+			Tux:says(_"man open gates", "NO_WAIT")
 			npc_says(_"NAME", "NO_WAIT")
 			npc_says(_" open gates -- opens gates via console", "NO_WAIT")
 			npc_says(" ")
@@ -174,13 +174,13 @@ return {
 		text = _"open gates --inner",
 		echo_text = false,
 		code = function()
-			tux_says(_"open gates --inner", "NO_WAIT")
+			Tux:says(_"open gates --inner", "NO_WAIT")
 			npc_says(_"inner gate opened", "NO_WAIT")
 			npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
 			npc_says(_"Anomalies detected!")
 			change_obstacle_state("HF-Gate-inner", "opened")
 			if (cmp_obstacle_state("HF-Gate-outer", "opened")) then
-				update_quest("Open Sesame", "I think I managed to open the gates to the Hell Fortress. But where can I find them?")
+				Tux:update_quest("Open Sesame", "I think I managed to open the gates to the Hell Fortress. But where can I find them?")
 				hide("node7")
 			end
 			hide("node5")
@@ -191,13 +191,13 @@ return {
 		text = _"open gates --outer",
 		echo_text = false,
 		code = function()
-			tux_says(_"open gates --outer", "NO_WAIT")
+			Tux:says(_"open gates --outer", "NO_WAIT")
 			npc_says(_"outer gate opened", "NO_WAIT")
 			npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
 			npc_says(_"Anomalies detected!")
 			change_obstacle_state("HF-Gate-outer", "opened")
 			if (cmp_obstacle_state("HF-Gate-inner", "opened")) then
-				update_quest("Open Sesame", "I think I managed to open the gates to Hell Fortress. But where can I find them?")
+				Tux:update_quest("Open Sesame", "I think I managed to open the gates to Hell Fortress. But where can I find them?")
 				hide("node7")
 			end
 			hide("node6")
@@ -208,14 +208,14 @@ return {
 		text = _"open gates --inner --outer",
 		echo_text = false,
 		code = function()
-			tux_says(_"open gates --inner --outer", "NO_WAIT")
+			Tux:says(_"open gates --inner --outer", "NO_WAIT")
 			npc_says(_"inner gate opened", "NO_WAIT")
 			npc_says(_"outer gate opened", "NO_WAIT")
 			npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
 			npc_says(_"Anomalies detected!")
 			change_obstacle_state("HF-Gate-inner", "opened")
 			change_obstacle_state("HF-Gate-outer", "opened")
-			update_quest("Open Sesame", "I think I managed to open the gates to Hell Fortress. But where can I find them?")
+			Tux:update_quest("Open Sesame", "I think I managed to open the gates to Hell Fortress. But where can I find them?")
 			hide("node5", "node6", "node7")
 		end,
 	},
@@ -224,7 +224,7 @@ return {
 		text = _"logout",
 		echo_text = false,
 		code = function()
-			tux_says(_"logout")
+			Tux:says(_"logout")
 			npc_says(_"exiting...")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()

@@ -24,7 +24,7 @@ return {
 
 	EveryTime = function()
 		if (Iris_wants_lamp) then
-			if (has_item_backpack("Desk Lamp")) then
+			if (Tux:has_item_backpack("Desk Lamp")) then
 				if (Iris_deal) then
 					npc_says(_"Hey, remember our deal?")
 					npc_says(_"I'll trade you a book, for that lamp and 100 credits.")
@@ -61,7 +61,7 @@ return {
 		code = function()
 			npc_says(_"I'm Iris")
 			set_bot_name(_"Iris")
-			tux_says(_"Hello Iris.")
+			Tux:says(_"Hello Iris.")
 			hide("node1") show("node2")
 		end,
 	},
@@ -70,7 +70,7 @@ return {
 		text = _"What are you doing here?",
 		code = function()
 			npc_says(_"I'm here just for vacations.")
-			tux_says(_"And what do you usually do?")
+			Tux:says(_"And what do you usually do?")
 			npc_says(_"Usually I hunt bots.") --she may be a spy of the rebel faction that is not yet implemented
 			set_bot_name(_"Iris - bot hunter")
 			hide("node2") show("node3")
@@ -100,13 +100,13 @@ return {
 				npc_says(_"Not really.")
 				npc_says(_"The town is quite ugly and dark.")
 				npc_says(_"And there are very strange people here.")
-				tux_says(_"I know exactly what you are talking about...")
+				Tux:says(_"I know exactly what you are talking about...")
 				npc_says(_"I think this room could use some decoration.")
 				npc_says(_"It looks so cold and dark...")
 			end
 			if (not Iris_traded_lamp) then
 				Iris_wants_lamp = true
-				if (has_item_backpack("Desk Lamp")) then
+				if (Tux:has_item_backpack("Desk Lamp")) then
 					show("node5")
 				else
 					npc_says(_"Perhaps what I need is a lamp.")
@@ -132,11 +132,11 @@ return {
 			npc_says(_"Oh, I have a nice book here.")
 			npc_says(_"But it's not worth the old dusty lamp.")
 			npc_says(_"I give it to you for the lamp and 100 circuits.")
-			if (get_gold() > 99) then
+			if (Tux:get_gold() > 99) then
 				show("node7")
 			else
-				tux_says(_"I don't have that much right now.")
-				tux_says(_"Let me get back to you about that.")
+				Tux:says(_"I don't have that much right now.")
+				Tux:says(_"Let me get back to you about that.")
 				end_dialog()
 			end
 			hide("node6")
@@ -147,14 +147,14 @@ return {
 		id = "node7",
 		text = _"Sure, sounds like a fair trade.",
 		code = function()
-			if (del_gold(100)) then
-				tux_says(_"Take these 100 valuable circuits.")
+			if (Tux:del_gold(100)) then
+				Tux:says(_"Take these 100 valuable circuits.")
 				npc_says(_"Ok, here it is. Take this book.")
 				npc_says(_"It's quite old and some pages are missing, but the main message is still clear.")
-				tux_says(_"Oh, thanks!")
-				add_item("Source Book of Invisibility")
+				Tux:says(_"Oh, thanks!")
+				Tux:add_item("Source Book of Invisibility")
 				Iris_wants_lamp = false
-				del_item_backpack("Desk Lamp", 1)
+				Tux:del_item_backpack("Desk Lamp", 1)
 				Iris_traded_lamp = true
 			else
 				npc_says(_"Don't try to trick me, fat bird.")

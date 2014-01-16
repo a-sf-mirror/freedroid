@@ -60,7 +60,7 @@ return {
 		code = function()
 			npc_says(_"Haha, good one.")
 			npc_says(_"Sorry, they are not for sale.")
-			tux_says(_"I'll get one for free?")
+			Tux:says(_"I'll get one for free?")
 			npc_says(_"You are the funniest Linarian I've ever seen.")
 			npc_says(_"If the only one.")
 			npc_says(_"Now go, kill some bots.")

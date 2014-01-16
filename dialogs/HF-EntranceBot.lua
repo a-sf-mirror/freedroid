@@ -23,8 +23,8 @@ return {
 		npc_says(_"Access is restricted to authorized personnel.")
 		npc_says(_"Proof of authorization is required.")
 		if (HF_EntranceBot_MSStockCertificateOpensGate) then
-			tux_says(_"How many times do I have to show you my certificate, tin can?")
-			if (has_item("MS Stock Certificate")) then
+			Tux:says(_"How many times do I have to show you my certificate, tin can?")
+			if (Tux:has_item("MS Stock Certificate")) then
 				npc_says(_"[b]Validating certificate...[/b]")
 				npc_says(_"[b]Validation complete.[/b]", "NO_WAIT")
 				npc_says(_"[b]Certificate valid.[/b]", "NO_WAIT")
@@ -32,8 +32,8 @@ return {
 				change_obstacle_state("HF-EntranceInnerGate", "opened")
 				hide("node1", "node2", "node3")
 			else
-				tux_says(_"Oh, I... uh... must have left it in my other armor.")
-				tux_says(_"I'll go get it for you. Yes. Because I TOTALLY know where it is. I hope.")
+				Tux:says(_"Oh, I... uh... must have left it in my other armor.")
+				Tux:says(_"I'll go get it for you. Yes. Because I TOTALLY know where it is. I hope.")
 			end
 		else
 			show("node1", "node2", "node3")
@@ -57,10 +57,10 @@ return {
 		code = function()
 			npc_says(_"Me too.")
 			npc_says(_"Please prove your statement.")
-			tux_says(_"Do I look like a typical MegaSys slave, errr, worker to you, stupid bot?")
+			Tux:says(_"Do I look like a typical MegaSys slave, errr, worker to you, stupid bot?")
 			npc_says(_"No insults, please. But, no")
-			if (has_item("MS Stock Certificate")) then
-				tux_says(_"But I have this certificate")
+			if (Tux:has_item("MS Stock Certificate")) then
+				Tux:says(_"But I have this certificate")
 				npc_says(_"[b]Validating certificate...[/b]")
 				npc_says(_"[b]Validation complete.[/b]", "NO_WAIT")
 				npc_says(_"[b]Certificate valid.[/b]", "NO_WAIT")
@@ -85,7 +85,7 @@ return {
 			npc_says(_"The book 'Nuclear Science for Dummies IV'.")
 			npc_says(_"And a MegaSys Vision Enhancement Device 3000 - what you cannot see, can't see you either!")
 			npc_says(_"If you order [b]RIGHT NOW[/b], we will [b]SHIP FOR FREE!!![/b]")
-			tux_says(_"No, thanks.")
+			Tux:says(_"No, thanks.")
 			hide("node3")
 		end,
 	},

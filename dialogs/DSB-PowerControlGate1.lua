@@ -25,9 +25,9 @@ return {
 		DSB_PowerControlGate1_prompt = "guest@gate1.pc.dsb.ms: ~ #"
 
 		cli_says(_"Login : ", "NO_WAIT")
-		tux_says(_"admin", "NO_WAIT")
+		Tux:says(_"admin", "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
-		tux_says(_"*******", "NO_WAIT")
+		Tux:says(_"*******", "NO_WAIT")
 		cli_says(_"Login failed. Entering as Guest")
 		npc_says(_" ", "NO_WAIT")
 		if (DSB_PowerControlGate1_date == nil) then

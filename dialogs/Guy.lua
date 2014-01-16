@@ -20,14 +20,14 @@
 return {
 	FirstTime = function()
 ---------------------------------------------------------- HAS_MET
-		if (not has_met("Guy")) then
+		if (not Tux:has_met("Guy")) then
 			npc_says("HAS MET test 1 succeeded", "NO_WAIT")
 		else
 			guy_fail("HAS MET")
 		end
 
-		if (not has_quest("24_guy_death_quest")) then
-			add_quest("24_guy_death_quest", "Quest to check if droid markers work.")
+		if (not Tux:has_quest("24_guy_death_quest")) then
+			Tux:add_quest("24_guy_death_quest", "Quest to check if droid markers work.")
 		end
 
 		npc_says("This text is only shown as you speak to this character the first time.")
@@ -54,21 +54,21 @@ return {
 			show("node0")
 			hide("node0")
 ---------------------------------------------------------- ITEM
-			add_item("Laser Scalpel")
-			add_item(".22 Automatic", 2)
-			if (has_item(".22 Automatic")) then
+			Tux:add_item("Laser Scalpel")
+			Tux:add_item(".22 Automatic", 2)
+			if (Tux:has_item(".22 Automatic")) then
 				npc_says("ADD ITEM test 1 succeeded", "NO_WAIT")
 			else
 				guy_fail("ADD ITEM 1")
 			end
 
-			if (has_item_backpack(".22 Automatic")) then
+			if (Tux:has_item_backpack(".22 Automatic")) then
 				npc_says("ADD ITEM test 2 succeeded", "NO_WAIT")
 			else
 				guy_fail("ADD ITEM 2")
 			end
 
-			if (has_item_equipped("Laser Scalpel")) then
+			if (Tux:has_item_equipped("Laser Scalpel")) then
 				npc_says("ADD ITEM test 3 succeeded", "NO_WAIT")
 			else
 				guy_fail("ADD ITEM 3")
@@ -76,16 +76,16 @@ return {
 
 			-- ru654
 			--[[ NOTE we need del_item_equipped() or unequipp_item()
-			del_item("Laser Scalpel")
-			if (not has_item("Laser Scalpel")) then
+			Tux:del_item("Laser Scalpel")
+			if (not Tux:has_item("Laser Scalpel")) then
 				npc_says("DEL ITEM 1 test succeeded", "NO_WAIT")
 			else
 				guy_fail("DEL ITEM 1")
 			end
 			]]--
 
-			del_item_backpack(".22 Automatic", 2)
-			if (not has_item_backpack(".22 Automatic")) then
+			Tux:del_item_backpack(".22 Automatic", 2)
+			if (not Tux:has_item_backpack(".22 Automatic")) then
 				npc_says("DEL ITEM test 2 succeeded", "NO_WAIT")
 			else
 				guy_fail("DEL ITEM 2")
@@ -100,40 +100,40 @@ return {
 			npc_faction("singularity", "Guy - singularity")
 			npc_faction("neutral", "Guy - neutral")
 ---------------------------------------------------------- HEALTH
-			heal_tux()
-			hurt_tux(1)
-			hurt_tux(-1)
+			Tux:heal()
+			Tux:hurt(1)
+			Tux:hurt(-1)
 			if (Tux:get_hp() == 60) then
 				npc_says("HEALTH test 1 succeded", "NO_WAIT")
 			else
 				guy_fail("HEALTH 1")
 			end
 
-			if (get_tux_max_hp() == 60) then
+			if (Tux:get_max_hp() == 60) then
 				npc_says("HEALTH test 2 succeded", "NO_WAIT")
 			else
 				guy_fail("HEALTH 2")
 			end
 ---------------------------------------------------------- COOL
-			heat_tux(1)
-			heat_tux(-1)
-			if (get_tux_cool() == 100) then
+			Tux:heat(1)
+			Tux:heat(-1)
+			if (Tux:get_cool() == 100) then
 				npc_says("COOL test 1 succeeded", "NO_WAIT")
 			else
 				guy_fail("COOL 1")
 			end
 ---------------------------------------------------------- TELEPORT
-			teleport("24-tux1")
-			teleport("24-tux2")
+			Tux:teleport("24-tux1")
+			Tux:teleport("24-tux2")
 			teleport_npc("24-guy1")
 			teleport_npc("24-guy2")
 			teleport_npc("24-dude1", "Dude")
 			teleport_npc("24-dude2", "Dude")
 ---------------------------------------------------------- SKILLS
-			--npc_says(get_skill("programming"))
-			if (not has_met("Guy")) then
-				improve_skill("programming")
-				if (get_skill("programming") == 1) then
+			--npc_says(Tux:get_skill("programming"))
+			if (not Tux:has_met("Guy")) then
+				Tux:improve_skill("programming")
+				if (Tux:get_skill("programming") == 1) then
 					npc_says("SKILL test 1 succeeded", "NO_WAIT")
 				else
 					guy_fail("SKILL 1")
@@ -142,41 +142,41 @@ return {
 				Tux:says("Skipping SKILL test 1 due to missing possibility to downgrade skills!")
 			end
 ---------------------------------------------------------- PROGRAMMS
-			improve_program("Ricer CFLAGS")
-			downgrade_program("Ricer CFLAGS")
-			if (get_program_revision("Ricer CFLAGS") == 0) then
+			Tux:improve_program("Ricer CFLAGS")
+			Tux:downgrade_program("Ricer CFLAGS")
+			if (Tux:get_program_revision("Ricer CFLAGS") == 0) then
 				npc_says("PROGRAMM test 1 succeeded", "NO_WAIT")
 			else
 				guy_fail("PROGRAMM 1")
 			end
 ---------------------------------------------------------- QUESTS
-			if (not has_met("Guy")) then
-				if (not has_quest("24_dude_test_quest")) then
+			if (not Tux:has_met("Guy")) then
+				if (not Tux:has_quest("24_dude_test_quest")) then
 					npc_says("QUEST test 1 succeeded", "NO_WAIT")
 				else
 					guy_fail("QUEST 1")
 				end
-				add_quest("24_dude_test_quest", "Add 24 dude quest.")
+				Tux:add_quest("24_dude_test_quest", "Add 24 dude quest.")
 			else
 				Tux:says("Skipping QUEST test 1 due to missing possibility to remove quests!")
 			end
 
-			if (has_quest("24_dude_test_quest")) then
+			if (Tux:has_quest("24_dude_test_quest")) then
 				npc_says("QUEST test 2 succeeded", "NO_WAIT")
 			else
 				guy_fail("QUEST 2")
 			end
-			update_quest("24_dude_test_quest", "Update 24 dude quest.")
+			Tux:update_quest("24_dude_test_quest", "Update 24 dude quest.")
 
-			if (not has_met("Guy")) then
-				if (not done_quest("24_dude_test_quest")) then
+			if (not Tux:has_met("Guy")) then
+				if (not Tux:done_quest("24_dude_test_quest")) then
 					npc_says("QUEST test 3 succeeded", "NO_WAIT")
 				else
 					guy_fail("QUEST 3")
 				end
 
-				end_quest("24_dude_test_quest", "Complete 24 dude quest.")
-				if (done_quest("24_dude_test_quest")) then
+				Tux:end_quest("24_dude_test_quest", "Complete 24 dude quest.")
+				if (Tux:done_quest("24_dude_test_quest")) then
 					npc_says("QUEST test 4 succeeded", "NO_WAIT")
 				else
 					guy_fail("QUEST 4")
@@ -186,8 +186,8 @@ return {
 				Tux:says("Skipping QUEST test 4 due to missing possibility to remove quests!")
 			end
 
-			if (has_met("Guy")) then -- need to have met guy to let the DeadGuy die...
-				if (done_quest("24_guy_death_quest")) then -- check droid markers
+			if (Tux:has_met("Guy")) then -- need to have met guy to let the DeadGuy die...
+				if (Tux:done_quest("24_guy_death_quest")) then -- check droid markers
 					npc_says("QUEST test 5 succeeded","NO_WAIT")
 				else
 					guy_fail("QUEST 5")
@@ -223,7 +223,7 @@ return {
 			change_obstacle_type("24_guy_door", "6") -- set it back to door
 
 ---------------------------------------------------------- NPC DEATH TEST
-			if (not has_met("Guy")) then
+			if (not Tux:has_met("Guy")) then
 				if (not npc_dead("DeadGuy")) then
 					npc_says("NPC DEATH test 1 succeeded", "NO_WAIT")
 				else
@@ -249,7 +249,7 @@ return {
 			guy_fail("NPC DEATH 3")
 			end ]]--
 ---------------------------------------------------------- FACTION DEATH TEST
-			if (not has_met("Guy")) then
+			if (not Tux:has_met("Guy")) then
 				if (not npc_dead("FactionDeadBot")) then  -- it's alive
 					npc_says("FACTION DEATH test 1 succeeded", "NO_WAIT")
 				else
@@ -311,40 +311,40 @@ return {
 			end
 
 ---------------------------------------------------------- Gold
-			if (get_gold() == 0) then
+			if (Tux:get_gold() == 0) then
 				npc_says("GOLD test 1 succeded", "NO_WAIT")
 			else
 				guy_fail("GOLD 1")
 			end
 
-			add_gold(100)
-			if (get_gold() == 100) then
+			Tux:add_gold(100)
+			if (Tux:get_gold() == 100) then
 				npc_says("GOLD test 2 succeded", "NO_WAIT")
 			else
 				guy_fail("GOLD 2")
 			end
 
-			if (not del_gold(1000)) then
+			if (not Tux:del_gold(1000)) then
 				npc_says("GOLD test 3 succeded", "NO_WAIT")
 			else
 				guy_fail("GOLD 3")
 			end
 
-			if (get_gold() == 100) then -- check if gold changed, just to be sure...
+			if (Tux:get_gold() == 100) then -- check if gold changed, just to be sure...
 				npc_says("GOLD test 4 succeded", "NO_WAIT")
 			else
 				guy_fail("GOLD 4")
 			end
 
-			if (del_gold(100)) then
+			if (Tux:del_gold(100)) then
 				npc_says("GOLD test 5 succeded", "NO_WAIT")
 			else
 				guy_fail("GOLD 5")
 			end
 
-			add_gold(100)
-			add_gold(-100)
-			if (get_gold() == 0) then
+			Tux:add_gold(100)
+			Tux:add_gold(-100)
+			if (Tux:get_gold() == 0) then
 				npc_says("GOLD test 6 succeded")
 			else
 				guy_fail("GOLD 6")
@@ -352,7 +352,7 @@ return {
 
 
 ---------------------------------------------------------- RUSH TUX
-			if (not has_met("Guy")) then
+			if (not Tux:has_met("Guy")) then
 				if not (will_rush_tux()) then
 					npc_says("RUSH TUX test 1 succeded", "NO_WAIT")
 				else

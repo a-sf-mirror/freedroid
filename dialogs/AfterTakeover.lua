@@ -30,11 +30,11 @@ return {
 		AfterTakeover_repair_time = 0
 		AfterTakeover_repair_circuits = 0
 		AfterTakeover_repair_heat = 0
-		terminal = string.format(_"%s@hacked_%s: ~ # ", get_player_name(), bot_type())
+		terminal = string.format(_"%s@hacked_%s: ~ # ", Tux:get_player_name(), bot_type())
 		cli_says(_"Login : ", "NO_WAIT")
-		tux_says(get_player_name(), "NO_WAIT")
+		Tux:says(Tux:get_player_name(), "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
-		tux_says("*******")
+		Tux:says("*******")
 		-- npc_says("First login, %s ", os.date())
 		if (AfterTakeover_date == nil) then
 			npc_says(_"First login from /dev/ttySO on %s %d", AfterTakeover_date_1, AfterTakeover_year, "NO_WAIT")
@@ -68,7 +68,7 @@ return {
 		text = _"cd repair&settings/",
 		echo_text = false,
 		code = function()
-			tux_says(_"cd repair&settings/", "NO_WAIT")
+			Tux:says(_"cd repair&settings/", "NO_WAIT")
 			next("node2")
 			push_topic("repair_and_settings")
 		end,
@@ -79,7 +79,7 @@ return {
 		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
-			terminal_sub = string.format(_"%s@hacked_%s/repair&settings: ~ # ", get_player_name(), bot_type())
+			terminal_sub = string.format(_"%s@hacked_%s/repair&settings: ~ # ", Tux:get_player_name(), bot_type())
 			cli_says(terminal_sub, "NO_WAIT")
 		end,
 	},
@@ -89,7 +89,7 @@ return {
 		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
-			tux_says("cd ..", "NO_WAIT")
+			Tux:says("cd ..", "NO_WAIT")
 			cli_says(terminal, "NO_WAIT")
 			pop_topic()
 		end,
@@ -99,7 +99,7 @@ return {
 		text = _"./hold_position.sh",
 		echo_text = false,
 		code = function()
-			tux_says(_"./hold_position.sh", "NO_WAIT")
+			Tux:says(_"./hold_position.sh", "NO_WAIT")
 			npc_says(_"Holding position.", "NO_WAIT")
 			npc_says(_"script V 1.0.2 (c) gnu.org, 2054", "NO_WAIT")
 			npc_says(_"Checking requirements...")
@@ -119,11 +119,11 @@ return {
 		text = _"./follow_me.sh",
 		echo_text = false,
 		code = function()
-			tux_says(_"./follow_me.sh", "NO_WAIT")
+			Tux:says(_"./follow_me.sh", "NO_WAIT")
 			npc_says(_"Initiating tracking sequence.", "NO_WAIT")
 			npc_says(_"Movement unit: Enabled.", "NO_WAIT")
-			npc_says(_"Acquiring lock on position of %s.", get_player_name(), "NO_WAIT")
-			npc_says(_"Status: Following %s.", get_player_name(), "NO_WAIT")
+			npc_says(_"Acquiring lock on position of %s.", Tux:get_player_name(), "NO_WAIT")
+			npc_says(_"Status: Following %s.", Tux:get_player_name(), "NO_WAIT")
 			if (Aftertakeover_broadcast_mode) then
 				broadcast_bot_state("follow_tux")
 			else
@@ -138,7 +138,7 @@ return {
 		text = _"./move_freely.sh",
 		echo_text = false,
 		code = function()
-			tux_says(_"./move_freely.sh", "NO_WAIT")
+			Tux:says(_"./move_freely.sh", "NO_WAIT")
 			npc_says(_"Enable movement.", "NO_WAIT")
 			npc_says(_"script V 1.0.5 (c) gnu.org, 2054", "NO_WAIT")
 			npc_says(_"Checking requirements...")
@@ -161,7 +161,7 @@ return {
 		topic = "repair_and_settings",
 		code = function()
 			local function calculate_bot_repair_penalty(constant, ability_value)
-				ability_value = ability_value + get_program_revision("Repair equipment")
+				ability_value = ability_value + Tux:get_program_revision("Repair equipment")
 				return (1200 + npc_max_health()) * math.exp(-0.02 * ability_value) * constant / 15000
 				-- (1200 + npc_max_health()) / 1500 is the bot_modifier, arranging the values between 0.8 (small bots) and 1 (big bots)
 				-- math.exp(-0.02 * ability_value) is the ability_modifier, reducing the costs by ~2% per ability_level
@@ -169,14 +169,14 @@ return {
 				-- the denominators 1500 and 10 are combined to 15000
 			end
 
-			tux_says(_"./repair.plx", "NO_WAIT")
+			Tux:says(_"./repair.plx", "NO_WAIT")
 			damage = npc_damage_amount()
 			if (damage > 0) then
-				npc_says(_"Available amount of valuable circuits for repair: %d.", get_gold())
+				npc_says(_"Available amount of valuable circuits for repair: %d.", Tux:get_gold())
 				-- Estimate the average repair costs: --
-				AfterTakeover_repair_time = damage * calculate_bot_repair_penalty(1, get_program_revision("Check system integrity"))
-				AfterTakeover_repair_circuits = math.max(1, damage * calculate_bot_repair_penalty(7, get_program_revision("Extract bot parts")))
-				AfterTakeover_repair_heat = math.max(1, damage * calculate_bot_repair_penalty(3, get_program_revision("Hacking")))
+				AfterTakeover_repair_time = damage * calculate_bot_repair_penalty(1, Tux:get_program_revision("Check system integrity"))
+				AfterTakeover_repair_circuits = math.max(1, damage * calculate_bot_repair_penalty(7, Tux:get_program_revision("Extract bot parts")))
+				AfterTakeover_repair_heat = math.max(1, damage * calculate_bot_repair_penalty(3, Tux:get_program_revision("Hacking")))
 
 				Aftertakeover_repair_time_estimation = math.ceil(AfterTakeover_repair_time * 1.2)
 				Aftertakeover_repair_circuits_estimation = math.ceil(AfterTakeover_repair_time * 1.2)
@@ -201,9 +201,9 @@ return {
 					repair_circuits,
 					math.ceil(AfterTakeover_repair_heat * 1.2))
 				hide("node20")
-				if (get_gold() < AfterTakeover_repair_circuits * 1.2) then
+				if (Tux:get_gold() < AfterTakeover_repair_circuits * 1.2) then
 					npc_says(_"You do not have enough valuable circuits to ensure repair of this %s unit.", bot_type())
-				elseif (get_tux_cool() < AfterTakeover_repair_heat * 1.2) then
+				elseif (Tux:get_cool() < AfterTakeover_repair_heat * 1.2) then
 					npc_says(_"You cannot dissipate enough heat to ensure repair of this %s unit.", bot_type())
 				else
 					npc_says(_"Do you want to start repair of this %s unit?", bot_type())
@@ -227,7 +227,7 @@ return {
 		echo_text = false,
 		topic = "repair_YN",
 		code = function()
-			tux_says(_"Y", "NO_WAIT")
+			Tux:says(_"Y", "NO_WAIT")
 			npc_says(_"Repair in progress.", "NO_WAIT")
 			npc_says(_"Logout to complete repair process.")
 			AfterTakeover_repair = true
@@ -241,7 +241,7 @@ return {
 		echo_text = false,
 		topic = "repair_YN",
 		code = function()
-			tux_says(_"N", "NO_WAIT")
+			Tux:says(_"N", "NO_WAIT")
 			npc_says(_"Repair aborted.", "NO_WAIT")
 			AfterTakeover_repair = false
 			pop_topic()
@@ -336,7 +336,7 @@ return {
 		echo_text = false,
 		topic = "settings.plx",
 		code = function()
-			tux_says(_"./settings.plx", "NO_WAIT")
+			Tux:says(_"./settings.plx", "NO_WAIT")
 			npc_says(_"Welcome to the settings menu.", "NO_WAIT")
 			npc_says(_"Version: 1.82c", "NO_WAIT")
 			npc_says(_"No upgrades found.", "NO_WAIT")
@@ -355,7 +355,7 @@ return {
 		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
-			tux_says(_"./hostname", "NO_WAIT")
+			Tux:says(_"./hostname", "NO_WAIT")
 			npc_says(_"Welcome to the hostname menu.", "NO_WAIT")
 			npc_says(_"Version: 0.15.01", "NO_WAIT")
 			npc_says(_"Current botname: [b]%s[/b]", bot_name(), "NO_WAIT")
@@ -371,7 +371,7 @@ return {
 		echo_text = false,
 		topic = "change hostname Y/N",
 		code = function()
-			tux_says(_"Y", "NO_WAIT")
+			Tux:says(_"Y", "NO_WAIT")
 			cli_says(_"New Name: ", "NO_WAIT")
 
 			new_name = user_input_string(string.format(_"Type a new name for this %s unit.", bot_type()),
@@ -389,7 +389,7 @@ return {
 		echo_text = false,
 		topic = "change hostname Y/N",
 		code = function()
-			tux_says(_"N", "NO_WAIT")
+			Tux:says(_"N", "NO_WAIT")
 			cli_says(terminal_sub, "NO_WAIT")
 			hide("node41", "node42")
 			pop_topic()
@@ -401,7 +401,7 @@ return {
 		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
-			tux_says(new_name,"NO_WAIT")
+			Tux:says(new_name,"NO_WAIT")
 			npc_says(_"Confirm renaming from [b]%s[/b] to [b]%s[/b]? [Y/N]", bot_name(), new_name, "NO_WAIT")
 			cli_says("> ", "NO_WAIT")
 			show("node44", "node45")
@@ -414,7 +414,7 @@ return {
 		echo_text = false,
 		topic = "confirm hostname Y/N",
 		code = function()
-			tux_says(_"Y", "NO_WAIT")
+			Tux:says(_"Y", "NO_WAIT")
 			display_console_message(string.format(_"Renamed [b]%s[/b] to [b]%s[/b].", bot_name(), new_name))
 			set_bot_name(new_name)
 			npc_says(_"This %s unit is now designated: [b]%s[/b]", bot_type(), bot_name(), "NO_WAIT")
@@ -429,7 +429,7 @@ return {
 		echo_text = false,
 		topic = "confirm hostname Y/N",
 		code = function()
-			tux_says(_"N", "NO_WAIT")
+			Tux:says(_"N", "NO_WAIT")
 			cli_says(terminal_sub, "NO_WAIT")
 			hide("node44", "node45")
 			pop_topic()
@@ -440,7 +440,7 @@ return {
 		text = _"./hcf.py",
 		echo_text = false,
 		code = function()
-			tux_says(_"./hcf.py", "NO_WAIT")
+			Tux:says(_"./hcf.py", "NO_WAIT")
 			if (Aftertakeover_confirm_hcf) then
 				npc_says(_"Are you really sure you want to destroy %s? Y/N", bot_name())
 				show("node48", "node49")
@@ -514,7 +514,7 @@ return {
 		topic = "drain_ask",
 		code = function()
 			if (Aftertakeover_drain_attempt == "ask") then
-				tux_says(_"Yes")
+				Tux:says(_"Yes")
 			end
 			hide("node51", "node52")
 			next("node53")
@@ -557,11 +557,11 @@ return {
 				if (Dixon_mood) and
 				   (Dixon_mood > 150) and
 				   (Bruce_hurt) and
-				   (has_quest("Opening access to MS Office")) and
+				   (Tux:has_quest("Opening access to MS Office")) and
 				   (not tux_has_edge) then
 					npc_says(_"()%%#@(%% THE BLADE IS YOURS. )##%%*&%%*!")
 					tux_has_edge = true
-					add_item("Nobody's edge",1)
+					Tux:add_item("Nobody's edge",1)
 				end
 				drop_dead()
 			else
@@ -689,14 +689,14 @@ return {
 		text = "logout",
 		echo_text = false,
 		code = function()
-			tux_says("logout","NO_WAIT")
+			Tux:says("logout","NO_WAIT")
 			npc_says(_"Closing remote connection...")
 			if (AfterTakeover_repair) then
 				heal_npc()
 				-- Apply repair costs: --
 				freeze_tux_npc(AfterTakeover_repair_time)
-				del_gold(AfterTakeover_repair_circuits)
-				heat_tux(AfterTakeover_repair_heat)
+				Tux:del_gold(AfterTakeover_repair_circuits)
+				Tux:heat(AfterTakeover_repair_heat)
 				AfterTakeover_repair = false
 			end
 			hide("node21")

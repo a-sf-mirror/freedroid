@@ -29,18 +29,18 @@ return {
 		if (MO_HFGateAccessServer_Spencer) then
 			npc_says(_"Red Guard HQ, Spencer speaking.")
 			npc_says(_"Are you receiving me?")
-			tux_says(_"Yes.")
-			tux_says(_"Spencer, we have a problem.")
+			Tux:says(_"Yes.")
+			Tux:says(_"Spencer, we have a problem.")
 			npc_says(_"Yes, Richard detected abnormalities with the server. Can you report anything regarding this?")
-			tux_says(_"Indeed, the server says it is a gate server, not a firmware server.")
+			Tux:says(_"Indeed, the server says it is a gate server, not a firmware server.")
 			npc_says(_"Bah!")
 			npc_says(_"Must prevent access to the real update server. Can you open the gate?")
 			npc_says(_"Inside, follow the mrkers o e groun")
 			npc_says(_"Ri ard sa... e c nn cti n *bzzzzzzzzz* bad.")
 			npc_says(_"Goo*sizzle*ck.")
 			npc_says(_"O*crack*r")
-			update_quest(_"Propagating a faulty firmware update", _"Spencer contacted me and said I was supposed to find the real firmware update server. I hope I survive this...")
-			add_quest(_"Open Sesame", "It turns out what we thought was the firmware update server was just a gate access server. Spencer speculates the real firmware server is behind this gate. There should be something on the ground I am supposed to follow.")
+			Tux:update_quest(_"Propagating a faulty firmware update", _"Spencer contacted me and said I was supposed to find the real firmware update server. I hope I survive this...")
+			Tux:add_quest(_"Open Sesame", "It turns out what we thought was the firmware update server was just a gate access server. Spencer speculates the real firmware server is behind this gate. There should be something on the ground I am supposed to follow.")
 			Spencer_can_die = true
 			end_dialog()
 		elseif (tux_has_joined_guard) then
@@ -54,18 +54,18 @@ return {
 			show("node50")
 		end
 
-		if (not has_quest("Opening access to MS Office")) and
-		   (done_quest("A kingdom for a cluster!")) then
+		if (not Tux:has_quest("Opening access to MS Office")) and
+		   (Tux:done_quest("A kingdom for a cluster!")) then
 			show("node37")
 		end
 
-		if (not has_quest("Propagating a faulty firmware update")) and
-		   (done_quest("Opening access to MS Office")) then
+		if (not Tux:has_quest("Propagating a faulty firmware update")) and
+		   (Tux:done_quest("Opening access to MS Office")) then
 			show("node44")
 		end
 
 		if (data_cube_lost) and
-		   (not done_quest("Deliverance")) then
+		   (not Tux:done_quest("Deliverance")) then
 			show("node29")
 		end
 
@@ -78,8 +78,8 @@ return {
 		code = function()
 			npc_says(_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?")
 			knows_spencer_office = true
-			if (has_quest("Deliverance")) and
-			   (not done_quest("Deliverance")) then
+			if (Tux:has_quest("Deliverance")) and
+			   (not Tux:done_quest("Deliverance")) then
 				show("node20")
 			end
 			hide("node0") show("node1", "node7")
@@ -108,7 +108,7 @@ return {
 		text = _"How about some circuits instead?",
 		code = function()
 			npc_says(_"For 15 million circuits, no less, hehe.")
-			if (get_gold() >= 15000000) then -- player cheated obviously :-)
+			if (Tux:get_gold() >= 15000000) then -- player cheated obviously :-)
 				show("node9")
 			end
 			hide("node3", "node7", "node12") show("node4")
@@ -133,7 +133,7 @@ return {
 			npc_says(_"I've unlocked the access-way to the warehouse. It's to the north of this town, somewhat hidden in the woods northeast.")
 			npc_says(_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there.", "NO_WAIT")
 			npc_says(_"I wish you the best of luck.")
-			add_quest(_"Opening a can of bots...", _"I am supposed to clean out the first level of some warehouse. Sounds easy. It lies nearby, somewhat hidden in the woods north-east of town.")
+			Tux:add_quest(_"Opening a can of bots...", _"I am supposed to clean out the first level of some warehouse. Sounds easy. It lies nearby, somewhat hidden in the woods north-east of town.")
 			change_obstacle_state("TrapdoorToWarehouse", "opened")
 			hide("node6")
 		end,
@@ -142,8 +142,8 @@ return {
 		id = "node7",
 		text = _"How is it going?",
 		code = function()
-			if (has_quest("Opening a can of bots...")) then
-				if (done_quest("Opening a can of bots...")) then
+			if (Tux:has_quest("Opening a can of bots...")) then
+				if (Tux:done_quest("Opening a can of bots...")) then
 					if (Spencer_reward_for_warehouse_given) then
 						npc_says(_"Thanks to you, we've been able to transport all the goods we need right now. You've really helped us out there.")
 						npc_says(_"Rest assured that we will never forget your brave activity for our community.")
@@ -151,9 +151,9 @@ return {
 						npc_says(_"Man, you really did it! I can hardly believe it, but all the bots are gone!", "NO_WAIT")
 						npc_says(_"Take these 500 circuits as a reward. And be assured that you've earned my deepest respect, Linarian.")
 						npc_says(_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots.")
-						add_gold(500)
+						Tux:add_gold(500)
 						Spencer_reward_for_warehouse_given = true
-						update_quest(_"Opening a can of bots...", _"Ouch. It wasn't. At least I am alive, and the warehouse is clear. *Whew*.")
+						Tux:update_quest(_"Opening a can of bots...", _"Ouch. It wasn't. At least I am alive, and the warehouse is clear. *Whew*.")
 					end
 				else
 					npc_says(_"Not too good. Without the supplies from the warehouse we are doomed. So my problems are still the same.")
@@ -178,14 +178,14 @@ return {
 			npc_says(_"However, if you did in fact NOT cheat, please tell the developers how you got so much money so they can fix it. :)")
 			npc_says(_"Contact information can be found at http://www.freedroid.org/Contact")
 			hide("node9")
-			del_gold(1000000)
+			Tux:del_gold(1000000)
 		end,
 	},
 	{
 		id = "node12",
 		text = _"Have I done enough quests to become a member now?",
 		code = function()
-			if (not done_quest("The yellow toolkit")) then
+			if (not Tux:done_quest("The yellow toolkit")) then
 				npc_says(_"I think our teleporter service man, Dixon, has some problem. You might want to talk to him.")
 			elseif (not Dixon_mood) or
 			       (Dixon_mood < 50) then
@@ -210,29 +210,29 @@ return {
 				-- Tux needs to pay 800 circuits to join the guard.
 			end
 
-			if (done_quest("Anything but the army snacks, please!")) then
+			if (Tux:done_quest("Anything but the army snacks, please!")) then
 				npc_says(_"When I was eating, Michelangelo told me about his renewed oven energy supply. He seemed very pleased, and so was I.")
 			else
 				npc_says(_"I think you should visit the town's cook sometime. He's usually in the restaurant kitchen.")
 			end
 
-			if (done_quest("Novice Arena")) then
+			if (Tux:done_quest("Novice Arena")) then
 				npc_says(_"From Butch I hear you've become a novice arena master. Congratulations.")
 			else
 				npc_says(_"You might want to score some arena victories. That could also help your reputation a lot.")
 			end
 
-			if (done_quest("Bender's problem")) then
+			if (Tux:done_quest("Bender's problem")) then
 				npc_says(_"Helping Bender along was also a smart move. But you should be very careful with that one. He can get mad rather easily. A bit of a security threat, but we can't be too picky.")
 			else
 				npc_says(_"As far as I know, Bender is still very sick.")
 			end
 
-			if (done_quest("Opening a can of bots...")) then
+			if (Tux:done_quest("Opening a can of bots...")) then
 				npc_says(_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget.")
 			else
 				npc_says(_"Personally I'm also worrying about how we will manage to get some necessary supplies from our warehouse. It's filled with bots and we just don't have the manpower to spare to clean them out.")
-				if (not has_quest("Opening a can of bots...")) then
+				if (not Tux:has_quest("Opening a can of bots...")) then
 					show("node6")
 				end
 			end
@@ -264,11 +264,11 @@ return {
 		code = function()
 			npc_says(_"Ah, excellent, the list I asked for.")
 			npc_says(_"It figures he would ask someone to deliver it for him.")
-			tux_says(_"Why's that?")
+			Tux:says(_"Why's that?")
 			npc_says(_"We had a little disagreement, Francis and I. He refused to accept our rule and do the task we gave him.")
 			npc_says(_"I had to persuade him myself.")
 			npc_says(_"Well, give me the data cube.")
-			if (has_item_backpack("Data cube")) then
+			if (Tux:has_item_backpack("Data cube")) then
 				show("node21", "node22", "node25", "node26")
 			else
 				show("node23", "node25", "node26")
@@ -283,12 +283,12 @@ return {
 		echo_text = false,
 		topic = "Deliver the cube",
 		code = function()
-			tux_says(_"Here, take it.")
-			del_item_backpack("Data cube", 1)
+			Tux:says(_"Here, take it.")
+			Tux:del_item_backpack("Data cube", 1)
 			npc_says(_"Thank you for the good work you have done. I think you deserve a small reward.")
-			add_xp(100)
-			add_gold(100)
-			end_quest(_"Deliverance", _"I gave Spencer the data cube. He gave me a small reward.")
+			Tux:add_xp(100)
+			Tux:add_gold(100)
+			Tux:end_quest(_"Deliverance", _"I gave Spencer the data cube. He gave me a small reward.")
 			data_cube_lost = false
 			hide("node20", "node21", "node22", "node23", "node24", "node25", "node26")
 			pop_topic("Deliver the cube")
@@ -310,9 +310,9 @@ return {
 		topic = "Deliver the cube",
 		code = function()
 			if (not data_cube_lost) then
-				tux_says(_"Oh, erm... Hehe, I think I forgot it somewhere.")
+				Tux:says(_"Oh, erm... Hehe, I think I forgot it somewhere.")
 			else
-				tux_says(_"Hm, I still don't have the data cube.")
+				Tux:says(_"Hm, I still don't have the data cube.")
 			end
 			npc_says(_"... What?")
 			npc_says(_"Then you better go and look for it. Don't waste my time, Linarian.")
@@ -327,12 +327,12 @@ return {
 		echo_text = false,
 		topic = "Deliver the cube",
 		code = function()
-			tux_says(_"I think I lost the data cube.")
+			Tux:says(_"I think I lost the data cube.")
 			npc_says(_"Come on, you've got to be kidding! ...")
 			npc_says(_"So I will call one minion for this job. You are very useless, unable to bring a small thing.")
 			npc_says(_"Get out of my sight!")
-			end_quest(_"Deliverance", _"I lied about the data cube and Spencer thinks now I lost the cube. I won a little time for people in cryonic stasis. But, I couldn't stop Spencer's project.")
-			add_xp(250)
+			Tux:end_quest(_"Deliverance", _"I lied about the data cube and Spencer thinks now I lost the cube. I won a little time for people in cryonic stasis. But, I couldn't stop Spencer's project.")
+			Tux:add_xp(250)
 			hide("node21", "node22", "node23")
 			end_dialog()
 		end,
@@ -355,10 +355,10 @@ return {
 		code = function()
 			npc_says(_"We had an unfortunate misunderstanding, so we had a very hard time talking together.")
 			npc_says(_"I wanted him to go through the people in cryonic freezing in the facility, and make a list of disposable ones and people unlikely to survive. This cube contains that list.")
-			tux_says(_"Disposable people? Unlikely to survive? Can't they just stay in cryonics indefinitely?")
+			Tux:says(_"Disposable people? Unlikely to survive? Can't they just stay in cryonics indefinitely?")
 			npc_says(_"No. They take up a lot of space, and keeping them alive takes a lot of power, which is running out. Most of the people there are sick or dying anyway, which is why they're frozen in the first place. We can't afford to waste any resources.")
 			npc_says(_"We even had to confiscate the town cook's macrowave oven battery, which means we can't eat warm food anymore. We needed it to keep the town's defenses up.")
-			update_quest(_"Deliverance", _"I learn incredible information. Apparently the data cube stored a list of people in freezing in the cryonic facility. Spencer wants to dispose of some of them because keeping them alive uses up the town's power...")
+			Tux:update_quest(_"Deliverance", _"I learn incredible information. Apparently the data cube stored a list of people in freezing in the cryonic facility. Spencer wants to dispose of some of them because keeping them alive uses up the town's power...")
 			hide("node26") show("node24")
 		end,
 	},
@@ -368,7 +368,7 @@ return {
 		code = function()
 			npc_says(_"Well, I'm listening to you. But you must be quickly, I've no time to loose.")
 			npc_says(_"If you found the data cube, just give it.")
-			if (has_item_backpack("Data cube")) then
+			if (Tux:has_item_backpack("Data cube")) then
 				show("node21", "node22")
 			else
 				show("node23")
@@ -407,7 +407,7 @@ return {
 			npc_says(_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best to use the north gate out of town, then head east, and turn north again along the shore.")
 			npc_says(_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance.")
 			npc_says(_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield.")
-			add_quest(_"Opening access to MS Office", _"Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility north of the town. By taking over the control droid, I should be able to control the disruptor shield at the facility. I could activate it permanently, thereby locking off the Hell Fortress, and the bots it's producing, forever. Alternatively, I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop.")
+			Tux:add_quest(_"Opening access to MS Office", _"Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility north of the town. By taking over the control droid, I should be able to control the disruptor shield at the facility. I could activate it permanently, thereby locking off the Hell Fortress, and the bots it's producing, forever. Alternatively, I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop.")
 			change_obstacle_state("DisruptorShieldBaseGate", "opened")
 			hide("node39", "node40")
 		end,
@@ -432,16 +432,16 @@ return {
 			npc_says(_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own.", "NO_WAIT")
 			npc_says(_"However I'll ask Richard to see if we can contact you as soon as you find the server so we know if you're alive and there is still hope, or if things are going to go back to the way they were before you were taken out of stasis sleep...")
 			npc_says(_"Good luck.")
-			add_quest(_"Propagating a faulty firmware update", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
+			Tux:add_quest(_"Propagating a faulty firmware update", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
 			npc_says(_"Wait. I have a weapon here. It is not an Exterminator, but should save your life in the Hell Fortress.")
-			add_item("Electro Laser Rifle", 1)
+			Tux:add_item("Electro Laser Rifle", 1)
 
 			if (difficulty_level() > 2) then -- difficulty neither easy, nor normal, nor hard
 				npc_says("ERROR, Spencer NODE 44, game difficulty not handled")
 			end
 			local dev_count = 2 - difficulty_level()
 			if (not difficulty_level() == 0) then
-				add_item("Plasma Shockwave Emitter", dev_count)
+				Tux:add_item("Plasma Shockwave Emitter", dev_count)
 			end
 			npc_says(_"In the name of the Red Guard I wish you the best of luck!")
 			hide("node44") show("node45")
@@ -483,7 +483,7 @@ return {
 			else
 				npc_says(_"You must take her straight away to Doc Moore. We can't have a disease breaking out.")
 				Spencer_Tania_sent_to_DocMoore = true
-				update_quest(_"Tania's Escape", _"Spencer said it was okay for Tania to enter the town, as long as she goes to see Doc Moore first thing. Now all I have to do is tell her and Pendragon.")
+				Tux:update_quest(_"Tania's Escape", _"Spencer said it was okay for Tania to enter the town, as long as she goes to see Doc Moore first thing. Now all I have to do is tell her and Pendragon.")
 			end
 			hide("node51")
 		end,
@@ -497,9 +497,9 @@ return {
 			npc_says(_"About your friend, she can come in provided that she pulls her weight around here.")
 			Tania_set_free = true
 			if (killed_docmoore) then
-				update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I denied everything and he bought it! He says it is OK for Tania to enter the town: I should tell her and Pendragon.")
+				Tux:update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I denied everything and he bought it! He says it is OK for Tania to enter the town: I should tell her and Pendragon.")
 			else
-				update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer said Doc Moore was found dead! Oh, and Tania can enter the town. I should go tell her that.")
+				Tux:update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer said Doc Moore was found dead! Oh, and Tania can enter the town. I should go tell her that.")
 			end
 			hide("node52", "node53", "node54")
 		end,
@@ -515,11 +515,11 @@ return {
 				change_obstacle_state("Main Gate Guardhouse", "closed")
 				npc_says(_"Your friend can come in, but we will be watching the two of you closely.")
 				Tania_set_free = true
-				update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I told him the truth, and he kicked me out of the Red Guard. But he let Tania in, Now all I have to do is tell her and Pendragon.")
+				Tux:update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I told him the truth, and he kicked me out of the Red Guard. But he let Tania in, Now all I have to do is tell her and Pendragon.")
 			else
 				npc_says(_"As the law, I pronounce you GUILTY of MURDER.")
 				npc_says(_"The punishment is death.")
-				update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me guilty of murder, and sentenced me to death.")
+				Tux:update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me guilty of murder, and sentenced me to death.")
 				set_faction_state("redguard", "hostile")
 				end_dialog()
 			end
@@ -532,7 +532,7 @@ return {
 		code = function()
 			npc_says(_"You are a sociopath, and a danger to us all!")
 			npc_says(_"We must stop you before you kill again.")
-			update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me too dangerous to live.")
+			Tux:update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me too dangerous to live.")
 			set_faction_state("redguard", "hostile")
 			hide("node52", "node53", "node54")
 			end_dialog()

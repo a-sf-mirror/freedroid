@@ -1,0 +1,73 @@
+#!/bin/sh
+
+if [[ $# -ne 1 ]] ; then
+  echo "Usage: $0 <dialog_file.lua>"
+  exit 1
+fi
+
+F=$1
+
+# cfuns
+
+sed -i -e "s/[^:]get_player_name(/Tux:get_player_name(/g" $F
+sed -i -e "s/[^:]get_tux_hp(/Tux:get_hp(/g" $F
+sed -i -e "s/[^:]get_tux_max_hp(/Tux:get_max_hp(/g" $F
+sed -i -e "s/[^:]get_tux_cool(/Tux:get_cool(/g" $F
+sed -i -e "s/[^:]meters_traveled(/Tux:get_meters_traveled(/g" $F
+
+sed -i -e "s/[^:]kill_tux(/Tux:kill(/g" $F
+sed -i -e "s/[^:]heal_tux(/Tux:heal(/g" $F
+sed -i -e "s/[^:]hurt_tux(/Tux:hurt(/g" $F
+sed -i -e "s/[^:]heat_tux(/Tux:heat(/g" $F
+sed -i -e "s/[^:]freeze_tux((/Tux:freeze(/g" $F
+sed -i -e "s/[^:]add_xp(/Tux:add_xp(/g" $F
+sed -i -e "s/[^:]add_gold(/Tux:add_gold(/g" $F
+sed -i -e "s/[^:]get_gold(/Tux:get_gold(/g" $F
+sed -i -e "s/[^:]del_training_points(/Tux:del_training_points(/g" $F
+sed -i -e "s/[^:]get_training_points(/Tux:get_training_points(/g" $F
+sed -i -e "s/[^:]improve_skill(/Tux:improve_skill(/g" $F
+sed -i -e "s/[^:]get_skill(/Tux:get_skill(/g" $F
+sed -i -e "s/[^:]improve_program(/Tux:improve_program(/g" $F
+sed -i -e "s/[^:]downgrade_program(/Tux:downgrade_program(/g" $F
+sed -i -e "s/[^:]get_program_revision(/Tux:get_program_revision(/g" $F
+sed -i -e "s/[^:]change_stat(/Tux:change_stat(/g" $F
+
+sed -i -e "s/[^:]assign_quest(/Tux:assign_quest(/g" $F
+sed -i -e "s/[^:]has_quest(/Tux:has_quest(/g" $F
+sed -i -e "s/[^:]complete_quest(/Tux:complete_quest(/g" $F
+sed -i -e "s/[^:]done_quest(/Tux:done_quest(/g" $F
+
+sed -i -e "s/[^:]add_item(/Tux:add_item(/g" $F
+sed -i -e "s/[^:]del_item_backpack(/Tux:del_item_backpack(/g" $F
+sed -i -e "s/[^:]count_item_backpack(/Tux:count_item_backpack(/g" $F
+sed -i -e "s/[^:]equip_item(/Tux:equip_item(/g" $F
+sed -i -e "s/[^:]has_item_equipped(/Tux:has_item_equipped(/g" $F
+
+sed -i -e "s/[^:]has_met(/Tux:has_met(/g" $F
+
+sed -i -e "s/[^:]teleport(/Tux:teleport(/g" $F
+sed -i -e "s/[^:]teleport_home()/Tux:teleport(\"_HOME_\")/g" $F
+sed -i -e "s/[^:]has_teleport_anchor(/Tux:has_teleport_anchor(/g" $F
+
+# lfuns
+
+sed -i -e "s/[^:]tux_hp_ratio(/Tux:get_hp_ratio(/g" $F
+sed -i -e "s/[^:]del_gold(/Tux:del_gold(/g" $F
+sed -i -e "s/[^:]del_points(/Tux:del_points(/g" $F
+sed -i -e "s/[^:]del_health(/Tux:del_health(/g" $F
+sed -i -e "s/[^:]can_tux_train(/Tux:can_train(/g" $F
+sed -i -e "s/[^:]train_skill(/Tux:train_skill(/g" $F
+sed -i -e "s/[^:]train_program(/Tux:train_program(/g" $F
+
+sed -i -e "s/[^:]add_quest(/Tux:add_quest(/g" $F
+sed -i -e "s/[^:]update_quest(/Tux:update_quest(/g" $F
+sed -i -e "s/[^:]end_quest(/Tux:end_quest(/g" $F
+
+sed -i -e "s/[^:]count_item(/Tux:count_item(/g" $F
+sed -i -e "s/[^:]has_item(/Tux:has_item(/g" $F
+sed -i -e "s/[^:]has_item_backpack(/Tux:has_item_backpack(/g" $F
+sed -i -e "s/[^:]del_item(/Tux:del_item(/g" $F
+
+sed -i -e "s/[^:]tux_says(/Tux:says(/g" $F
+sed -i -e "s/[^:]tux_says_random(/Tux:says_random(/g" $F
+

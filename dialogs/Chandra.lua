@@ -25,7 +25,7 @@ return {
 	end,
 
 	EveryTime = function()
-		if (not has_met("Chandra")) then
+		if (not Tux:has_met("Chandra")) then
 			npc_says(_"Good to see you again. How can I help you?")
 		end
 
@@ -87,7 +87,7 @@ return {
 			npc_says(_"Now, I make the assumption that you and I are alive.")
 			npc_says(_"But, if we are not dead, and if bots are killing everything alive...")
 			npc_says(_"... THEN WE HAVE A CONTRADICTION!")
-			tux_says(_"Calm down. There must be some logic behind this.")
+			Tux:says(_"Calm down. There must be some logic behind this.")
 			npc_says(_"There can be none!")
 			npc_says(_"They could just enter the town and massacre everyone...")
 			npc_says(_"But they do not even seem to try!")
@@ -144,7 +144,7 @@ return {
 		text = _"I'm having difficulty overcoming the bots. What can I do?",
 		code = function()
 			npc_says(_"There are many things you can do. The first is to fight more bots.")
-			tux_says(_"Er... Wouldn't that cause me to be beaten up more, and therefore be counter-productive?")
+			Tux:says(_"Er... Wouldn't that cause me to be beaten up more, and therefore be counter-productive?")
 			npc_says(_"Your logic is infallible, Linarian, but you are forgetting one thing: the more you fight, the more experienced you become, and the better you become at surviving.")
 			npc_says(_"Also, if you have the money and can find a supplier, it is wise to invest in better equipment - more protective clothing and better weaponry.")
 			npc_says(_"My advice is to invest in a ranged weapon. While it can create a huge hole in your wallet, it also creates several in the bots, and is better than a huge hole in you.")
@@ -177,7 +177,7 @@ return {
 		topic = "Bot Information",
 		code = function()
 			npc_says(_"I know of two types, the 123 and the 139. The former is a simple cleaning bot, and is fairly weak. The latter is a mobile trash compactor. Don't get your flippers get caught in one of those.")
-			tux_says(_"I've seen some of those on my way here. They were... Shooting at me.")
+			Tux:says(_"I've seen some of those on my way here. They were... Shooting at me.")
 			npc_says(_"Many strange things have happened since the Great Assault.")
 			npc_says(_"Anyway, because the class 100 bots are neither fast nor dangerous, the Red Guard often uses them for target practice.")
 			npc_says(_"If I were you, I would not overestimate them.")
@@ -195,10 +195,10 @@ return {
 			npc_says(_"The 247 is often called the 'Banshee'. Being a simple servant robot, it isn't very well equipped to kill, although its arms are quite strong.")
 			npc_says(_"Also, as I said, the 200s were built to report quickly. The 247 is no exception, and moves faster than some of us can run. As a killer bot, it has a fast rate of attack. It is not something to be trifled with.")
 			npc_says(_"The 249 is a cheaper version of the Banshee. It uses a tripedal drive instead of anti-gravity propulsion, and is therefore slower. However it is much more dangerous: its machine gun has a very high rate of fire.")
-			tux_says(_"Machine gun?! But... But it's a servant bot!")
-			npc_says(_"I know, %s. I know.", get_player_name())
+			Tux:says(_"Machine gun?! But... But it's a servant bot!")
+			npc_says(_"I know, %s. I know.", Tux:get_player_name())
 			npc_says(_"Let's see... Oh, there is also the 296, which was used for serving drinks. Ewald once had one of those in his bar.")
-			tux_says(_"Once? What happened to it?")
+			Tux:says(_"Once? What happened to it?")
 			npc_says(_"No one knows. One day it simply wasn't there. Ewald probably remembers more than I do, though.")
 			Chandra_bot_information_nodes = Chandra_bot_information_nodes - 1
 			hide("node12")
@@ -220,14 +220,14 @@ return {
 		text = _"Where in the void is this world?",
 		code = function()
 			npc_says(_"I guess you mean in the universe?")
-			tux_says(_"Yes, I think that is your name for it.")
+			Tux:says(_"Yes, I think that is your name for it.")
 			npc_says(_"Well, we are in a barred spiral galaxy, twenty-six thousand light years away from the galactic core.")
 			npc_says(_"The galactic radius is 43,000 light years and the circumference is estimated at 270,000 light years.")
 			npc_says(_"This is a planetary system of ten planets, and we are presently located on the third one from our star, Sol.")
 			npc_says(_"I am not an astronomer, so I could be wrong. I am too tired to keep track of what is a planet and what is just an oversized rock.")
-			tux_says(_"This could be just about anywhere. Your description is too ambiguous.")
+			Tux:says(_"This could be just about anywhere. Your description is too ambiguous.")
 			npc_says(_"Sorry, star sciences are my weak point.")
-			tux_says(_"...Right.")
+			Tux:says(_"...Right.")
 			hide("node14")
 		end,
 	},
@@ -236,7 +236,7 @@ return {
 		text = _"Chandra? Francis in the cryonic facility mentioned your name.",
 		code = function()
 			npc_says(_"Oh did he? What exactly did he say about me?")
-			tux_says(_"He said you might know more about who I am, about Linarians.")
+			Tux:says(_"He said you might know more about who I am, about Linarians.")
 			npc_says(_"Hmmm... I'm not so sure about 'who', but he is quite right about my knowledge of Linarians... quite right indeed. What would you like to know, my friend?")
 			if (Chandra_revenge) then
 				end_dialog()
@@ -312,7 +312,7 @@ return {
 		echo_text = false,
 		topic = "Linarians Attacked",
 		code = function()
-			tux_says(_"What happened to the other Linarians that survived first contact?")
+			Tux:says(_"What happened to the other Linarians that survived first contact?")
 			npc_says(_"Sadly, I do not know. All that remains are legends. For a time, Linarians wandered the planet performing grand deeds and earning the respect of most of humanity.")
 			npc_says(_"But as time passed, so did the memories of the great deeds. It is unlikely that you will find many who know more about your people's noble past.")
 			npc_says(_"Perhaps there are still other Linarians alive here on our planet. Or maybe some went back to your own planet.")
@@ -327,14 +327,14 @@ return {
 		echo_text = false,
 		topic = "Linarians Attacked",
 		code = function()
-			tux_says(_"Your people slaughtered us?!")
+			Tux:says(_"Your people slaughtered us?!")
 			npc_says(_"Yes, this is the truth and it is something most humans regret. It is this regret that has helped erase the Linarians from our history.")
 			npc_says(_"Humanity does not have a pretty history. We have done many horrible things to each other as well. There are many things we regret so deeply that we wish we could forget.")
 			npc_says(_"Over time, most people have willingly forgotten our actions and focused on the good deeds the Linarians performed despite our senseless behavior.")
 			npc_says(_"Even though we tried to celebrate the grand deeds and heroics of the surviving Linarians, the memories faded. The memories turned into legends and myths as the Linarians slowly withdrew from the world.")
 			npc_says(_"Perhaps there are still other Linarians alive here on our planet. Or maybe some went back to your own planet.")
 			npc_says(_"Spencer and the Red Guard would not want you to know these things, as you might not be willing to help our failing community.")
-			npc_says(_"However, to not share this information with you is another transgression that I cannot be a part of. Please %s, we need your help!", get_player_name())
+			npc_says(_"However, to not share this information with you is another transgression that I cannot be a part of. Please %s, we need your help!", Tux:get_player_name())
 			hide("node21", "node22") show("node23", "node24")
 		end,
 	},
@@ -356,9 +356,9 @@ return {
 		echo_text = false,
 		topic = "Linarians Attacked",
 		code = function()
-			tux_says(_"Stupid humans! How dare you?! Your crimes are unforgivable! You all deserve to be slaughtered by these robots!")
+			Tux:says(_"Stupid humans! How dare you?! Your crimes are unforgivable! You all deserve to be slaughtered by these robots!")
 			npc_says(_"But...")
-			tux_says(_"And I am more than happy to help them!")
+			Tux:says(_"And I am more than happy to help them!")
 			set_npc_faction("crazy")
 			Chandra_revenge = true
 			end_dialog()

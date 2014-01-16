@@ -23,8 +23,8 @@ return {
 	end,
 
 	EveryTime = function()
-		if (has_met("Benjamin")) then
-			tux_says_random(_"Hello.",
+		if (Tux:has_met("Benjamin")) then
+			Tux:says_random(_"Hello.",
 				_"Greetings Master Benjamin.")
 			npc_says_random(_"Well, hello again.",
 				_"Hello hello.",
@@ -80,29 +80,29 @@ return {
 		id = "node20",
 		text = _"Can you teach me how to properly use rifles and guns?",
 		code = function()
-			if (get_skill("ranged") == 0) then
+			if (Tux:get_skill("ranged") == 0) then
 				npc_says(_"If anyone in this town knows more about guns than me, then my name's not Benjamin.", "NO_WAIT")
 				npc_says(_"Of course, I will need compensation for the ammunition spent in the training and for my time.")
 				npc_says(_"Say... A hundred circuits should be enough for a beginner lesson.")
 				npc_says(_"Interested?")
 				show("node21")
-			elseif (get_skill("ranged") == 1) then
+			elseif (Tux:get_skill("ranged") == 1) then
 				npc_says(_"Oh, you are ready for some more training?", "NO_WAIT")
 				npc_says(_"It will of course cost a bit more money as well as mental focus on your part.")
 				npc_says(_"It will take you two hundred circuits and double the effort on your part to become a true apprentice.")
 				npc_says(_"Interested?")
 				show("node22")
-			elseif (get_skill("ranged") == 2) then
+			elseif (Tux:get_skill("ranged") == 2) then
 				npc_says(_"I see you have taken a liking to guns.", "NO_WAIT")
 				npc_says(_"But the next step will cost even more money and require the mental focus equaling all your previous training.")
 				npc_says(_"Interested?")
 				show("node23")
-			elseif (get_skill("ranged") == 3) then
+			elseif (Tux:get_skill("ranged") == 3) then
 				npc_says(_"Oh, you want to become a real master with shooters?", "NO_WAIT")
 				npc_says(_"It will cost you 400 valuable circuits and an awful lot of mental focusing on the task.")
 				npc_says(_"Interested?")
 				show("node24")
-			elseif (get_skill("ranged") == 4) then
+			elseif (Tux:get_skill("ranged") == 4) then
 				npc_says(_"To become a true god of firearms, just like me, you need ridiculous amounts of training.", "NO_WAIT")
 				npc_says(_"It will of course cost a fair bit of cold, hard circuits as well. 500, to be precise.")
 				npc_says(_"Interested?")
@@ -118,9 +118,9 @@ return {
 		text = _"Sign up for a course in improving my ranged weapons skill. (costs 100 circuits, 3 training points)",
 		echo_text = false,
 		code = function()
-			tux_says(_"Yes, I'd like some basic training in ranged combat.")
+			Tux:says(_"Yes, I'd like some basic training in ranged combat.")
 			cost = 100
-			if train_skill(cost, 3, "ranged") then
+			if Tux:train_skill(cost, 3, "ranged") then
 				npc_says(_"Suits me well enough, I'm not busy at the moment anyway.")
 				npc_says(_"Now, the most important thing is that you turn off the auto-aim on your weapon, like this.", "NO_WAIT")
 				npc_says(_"Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire.")
@@ -131,7 +131,7 @@ return {
 				npc_says(_"Okay, I think that it is enough for today.")
 				hide("node21") show("node20")
 			else
-				if (get_gold() < cost ) then next("node27") else next("node28") end
+				if (Tux:get_gold() < cost ) then next("node27") else next("node28") end
 			end
 		end,
 	},
@@ -140,16 +140,16 @@ return {
 		text = _"Yes, I want even more training. (costs 200 circuits, 6 training points)",
 		echo_text = false,
 		code = function()
-			tux_says(_"So lets start the second course?")
+			Tux:says(_"So lets start the second course?")
 			cost = 200
-			if train_skill(cost, 6, "ranged") then
+			if Tux:train_skill(cost, 6, "ranged") then
 				npc_says(_"Very well.")
 				npc_says(_"You must remain calm whilst shooting.", "NO_WAIT")
 				npc_says(_"Try breathing out as you pull the trigger, and squeeze it gently rather than jerking it.")
 				npc_says(_"That's right. You will find yourself hitting the target much more often now.")
 				hide("node22") show("node20")
 			else
-				if (get_gold() < cost ) then next("node27") else next("node28") end
+				if (Tux:get_gold() < cost ) then next("node27") else next("node28") end
 			end
 		end,
 	},
@@ -158,9 +158,9 @@ return {
 		text = _"I'm eager for more training. (costs 300 circuits, 9 training points)",
 		echo_text = false,
 		code = function()
-			tux_says(_"So can you help me become even better with guns?")
+			Tux:says(_"So can you help me become even better with guns?")
 			cost = 300
-			if train_skill(cost, 9, "ranged") then
+			if Tux:train_skill(cost, 9, "ranged") then
 				npc_says(_"Of course.")
 				npc_says(_"Next lesson: hitting a moving target.")
 				npc_says(_"It's pretty simple really, just watch to see where it is going and then aim slightly ahead if you are using a non-laser gun.")
@@ -168,7 +168,7 @@ return {
 				npc_says(_"I think that is enough training for now. Next time, firing on the move!")
 				hide("node23") show("node20")
 			else
-				if (get_gold() < cost ) then next("node27") else next("node28") end
+				if (Tux:get_gold() < cost ) then next("node27") else next("node28") end
 			end
 		end,
 	},
@@ -177,16 +177,16 @@ return {
 		text = _"Yes, I wish to train some more. (costs 400 circuits, 12 training points)",
 		echo_text = false,
 		code = function()
-			tux_says(_"I'd like to learn how to be a crack shot.")
+			Tux:says(_"I'd like to learn how to be a crack shot.")
 			cost = 400
-			if train_skill(cost, 12, "ranged") then
+			if Tux:train_skill(cost, 12, "ranged") then
 				npc_says(_"Firing on the move is difficult, but can make survival much more likely!")
 				npc_says(_"The secret is to keep your weapon steadily but loosely, so that it isn't jarred.")
 				npc_says(_"Oh yes, and be careful of your footing. You should be looking where you are firing, not where you are stepping.")
 				npc_says(_"Keep practicing and you will get the hang of it eventually.")
 				hide("node24") show("node20")
 			else
-				if (get_gold() < cost ) then next("node27") else next("node28") end
+				if (Tux:get_gold() < cost ) then next("node27") else next("node28") end
 			end
 		end,
 	},
@@ -195,9 +195,9 @@ return {
 		text = _"I want to become a god in ranged combat. (costs 500 circuits, 15 training points)",
 		echo_text = false,
 		code = function()
-			tux_says(_"Teach me how to be at one with my weapon.")
+			Tux:says(_"Teach me how to be at one with my weapon.")
 			cost = 500
-			if train_skill(cost, 15, "ranged") then
+			if Tux:train_skill(cost, 15, "ranged") then
 				npc_says(_"The ultimate secret to becoming a god in ranged combat is something you should value.")
 				npc_says(_"I don't tell everyone this, so keep it to yourself, alright?")
 				npc_says(_"To become a god in ranged combat you need to...")
@@ -205,7 +205,7 @@ return {
 				npc_says(_"Go ahead and use my firing range as much as you need.")
 				hide("node25") show("node20")
 			else
-				if (get_gold() < cost ) then next("node27") else next("node28") end
+				if (Tux:get_gold() < cost ) then next("node27") else next("node28") end
 			end
 		end,
 	},
@@ -298,7 +298,7 @@ return {
 		id = "node41",
 		text = _"How many exterminators does the Red Guard have?",
 		code = function()
-			if (del_gold(50)) then
+			if (Tux:del_gold(50)) then
 				npc_says(_"It might come as a surprise to you, but we don't have many. A little over twenty, last time I checked.", "NO_WAIT")
 				npc_says(_"Thankfully, as you can clearly see, it's more than enough to keep all of the cursed bots away.")
 				hide("node41") show("node44")
@@ -320,7 +320,7 @@ return {
 		id = "node44",
 		text = _"That is not many. Why there are so few of them right now?",
 		code = function()
-			if (del_gold(50)) then
+			if (Tux:del_gold(50)) then
 				npc_says(_"They were a very lucky find.", "NO_WAIT")
 				npc_says(_"We found a crashed army truck on the Terminal Field. It had six crates inside it, each containing five exterminators.")
 				npc_says(_"We tried, but we could not replicate the technology, only bullets.", "NO_WAIT")
@@ -335,7 +335,7 @@ return {
 		id = "node46",
 		text = _"What is the exterminator ammunition made from?",
 		code = function()
-			if (del_gold(50)) then
+			if (Tux:del_gold(50)) then
 				npc_says(_"We use radioactive isotopes, whatever type happens to be on hand. Mostly plutonium and uranium, but we are not too picky.")
 				npc_says(_"When we get low on ammo, we send in a chain gang of criminals and sluggards into mine shaft K-17.")
 				npc_says(_"That place was closed down ages ago because of high radiation levels, but it's full of good ore from which we make bullets and power our nuclear reactors.")
@@ -370,7 +370,7 @@ return {
 		id = "node51",
 		text = _"What makes the exterminator so powerful?",
 		code = function()
-			if (get_gold(50)) then
+			if (Tux:get_gold(50)) then
 				npc_says(_"That's a tricky question. Most of the force comes from the miniature nuclear explosions which happen once the bullet hits something.")
 				npc_says(_"Of course, the high velocity of the impact can cause tremendous devastation by itself.")
 				npc_says(_"We never bothered with doing much research on that topic. It works, and that is enough for us.")

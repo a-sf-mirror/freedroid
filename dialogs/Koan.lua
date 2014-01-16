@@ -20,7 +20,7 @@
 return {
 	EveryTime = function()
 		if (Tania_surface) and
-		   (not done_quest("Tania's Escape")) and
+		   (not Tux:done_quest("Tania's Escape")) and
 		   (not Tania_stopped_by_Pendragon) then --Tania is following you
 			tania_is_here = true
 			heal_npc("Tania")
@@ -34,10 +34,10 @@ return {
 			npc_says(_"Once I am gone this oasis of peace in the world will dry up and die. A shame.")
 			npc_says(_"I hoped to turn the whole desert into a sanctuary. And now my dream will never come true.")
 			npc_says(_"Do what you must.")
-			if has_quest("Doing Duncan a favor") then
+			if Tux:has_quest("Doing Duncan a favor") then
 				show("node2")
 			else
-				if (not has_met("Duncan")) then
+				if (not Tux:has_met("Duncan")) then
 					show("node4")
 				else
 					show("node5")
@@ -50,7 +50,7 @@ return {
 			if (tania_is_here) then
 				npc_says(_"I see you have brought a friend along with you.")
 			end
-		elseif has_quest("Doing Duncan a favor") then
+		elseif Tux:has_quest("Doing Duncan a favor") then
 			npc_says(_"I see the troubles of the world in your eyes.")
 			show("node10", "node11")
 			hide("node20", "node21", "node99")
@@ -68,7 +68,7 @@ return {
 		text = _"With pleasure.",
 		code = function()
 			drop_dead()
-			update_quest(_"Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
+			Tux:update_quest(_"Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
 			respawn_level(38) --this is the desert above the bunker
 			if (tania_is_here) then
 				Koan_murdered = true
@@ -83,11 +83,11 @@ return {
 			npc_says(_"Thank you.")
 			npc_says(_"Feel free to stay here. There is no danger.")
 			npc_says(_"The water is safe to drink and the fruit from the tree is quite delicious. I have a few extra provisions here with me. Please take some.")
-			add_item("Strength Pill", 1)
-			add_item("Doc-in-a-can", 2)
-			add_item("Source Book of Repair equipment", 1)
-			add_item("Strength Capsule", 1)
-			if has_quest("Doing Duncan a favor") then
+			Tux:add_item("Strength Pill", 1)
+			Tux:add_item("Doc-in-a-can", 2)
+			Tux:add_item("Source Book of Repair equipment", 1)
+			Tux:add_item("Strength Capsule", 1)
+			if Tux:has_quest("Doing Duncan a favor") then
 				next("node12")
 			end
 			hide("node2", "node3") show("node5", "node20", "node99")
@@ -121,7 +121,7 @@ return {
 		text = _"You shall die.",
 		code = function()
 			drop_dead()
-			update_quest(_"Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
+			Tux:update_quest(_"Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
 			respawn_level(38) --this is the desert above the bunker
 			if (tania_is_here) then
 				Koan_murdered = true
@@ -143,7 +143,7 @@ return {
 		echo_text = false,
 		code = function()
 			Koan_spared_via_dialog = true
-			update_quest(_"Doing Duncan a favor", _"I met and talked to Koan, but didn't kill him.")
+			Tux:update_quest(_"Doing Duncan a favor", _"I met and talked to Koan, but didn't kill him.")
 			show("node13")
 		end,
 	},
@@ -185,7 +185,7 @@ return {
 		code = function()
 			npc_says_random(_"This place will always wait for you.",
 				_"This is a sanctuary from the desert above.")
-			heal_tux()
+			Tux:heal()
 			hide("node2", "node3", "node4", "node5")
 			end_dialog()
 		end,

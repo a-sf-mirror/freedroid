@@ -30,7 +30,7 @@ return {
 				npc_says(_"Babysitting a loon... Now I can say I've done it all!")
 			end
 		end
-		show_if((not has_met("Spencer")), "node20")
+		show_if((not Tux:has_met("Spencer")), "node20")
 		show("node99")
 	end,
 
@@ -42,7 +42,7 @@ return {
 				npc_says(_"He's usually in his office in the citadel.")
 				npc_says(_"Head down the main corridor until you pass the citadel gates.")
 				npc_says(_"His office has purple walls, you won't miss it.")
-				tux_says(_"Okay.")
+				Tux:says(_"Okay.")
 				knows_spencer_office = true
 			else
 				npc_says_random(_"Come on, you know that already.",
@@ -64,7 +64,7 @@ return {
 				npc_says(_"Mhmmm.")
 			end
 			if (Town_NorthGateGuard_tux_nickname_loon) then
-				npc_says(_"%s... the Loon", get_player_name())
+				npc_says(_"%s... the Loon", Tux:get_player_name())
 			end
 			end_dialog()
 		end,
