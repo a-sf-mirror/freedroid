@@ -22,39 +22,28 @@
  */
 
 /**
- * \file luaFD_bindings.h
- * \brief This file contains the declarations needed to create Lua bindings of
- *  some C structs.
- *
+ * \file luaFD.h
  */
 
-/// \defgroup luaFD_bindings Lua bindings
-///
-/// Some doc on how to write and use a binding - TO BE WRITTEN
+#ifndef _luafd_h
+#define _luafd_h
 
-#ifndef _luafd_bindings_h
-#define _luafd_bindings_h
-
-#include "luaFD.h"
+#include "lua.h"
 #include "lauxlib.h"
+#include "lualib.h"
 
-extern int luaFD_tux_init(lua_State *);
-extern int luaFD_tux_get_instance(lua_State *);
+#if DOXYGEN
+	#define LUAFD_DOC(...) __VA_ARGS__;
+#else
+	#define LUAFD_DOC(...)
+#endif
 
-/**
- * List of binding initializers (functions creating class-type metatables)
- */
-const luaL_Reg luaFD_initializers[] = {
-	{ "FDtux", luaFD_tux_init },
-	{ NULL, NULL }
-};
+#define LUAFD_CFUN(name) { #name, _##name }
 
-/**
- * List of functions available in the 'FDrpg' library (instance getters)
- */
-const luaL_Reg luaFD_instances[] = {
-		{ "get_tux", luaFD_tux_get_instance },
-		{ NULL, NULL }
-};
+#define GET_SELF_INSTANCE_OF(type, L, class) \
+	type ** self = (type **)luaL_testudata(L, 1, class); \
+	if (!self) { \
+		return luaL_error(L, "%s() called with a userdata of wrong type (%s expected)", __FUNCTION__, class); \
+	}
 
-#endif /* _luafd_bindings_h */
+#endif /* _luafd_h */

@@ -29,6 +29,7 @@
 
 #include "defs.h"
 
+#include "luaFD.h"
 #include "luaFD_bindings.h"
 
 /**

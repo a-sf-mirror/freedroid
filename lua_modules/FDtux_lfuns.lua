@@ -26,7 +26,38 @@
 --! \brief This file contains the Lua functions to add to FDtux (Lua binding of Tux).
 --!
 
-FDtux.says = function(self, text, ...)
-	local text, no_wait = chat_says_format('\1- ' .. text .. '\n', ...)
+local function output_msg(msg)
+	if (run_from_dialog()) then
+		cli_says(msg, "NO_WAIT")
+		npc_says("")
+	else
+		display_big_message(msg)
+	end
+end
+
+--! \addtogroup FDtux
+--!@{
+-- start FDtux submodule
+
+--! \fn void says(self, format, ...)
+--!
+--! \brief Display a formatted text in the chat log
+--!
+--! Output a text in the chat log and wait the user to click.\n
+--! The text is displayed using the color/font associated to Tux words.\n
+--! If the last argument is "NO WAIT", the user's click is not waited. This
+--! optional argument is not used to create the formatted text.
+--!
+--! \param self   [\p FDtux]  FDtux instance
+--! \param format [\p string] Format string (as used in string.format())
+--! \param ...    [\p any]    Arguments expected by the format string to create the displayed text
+--!
+--! \bindtype lfun
+
+function FDtux.says(self, format, ...)
+	local text, no_wait = chat_says_format('\1- ' .. format .. '\n', ...)
 	chat_says(text, no_wait)
 end
+
+-- end FDtux submodule
+--!@}

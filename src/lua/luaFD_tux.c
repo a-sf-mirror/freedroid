@@ -34,51 +34,62 @@
 #include "global.h"
 #include "proto.h"
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
+#include "luaFD.h"
 
-//////////////////////////////////////////////////////////////////////
-// FDtux cfuns
-//////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+/// \defgroup FDtux Lua Tux binding
+/// \ingroup luaFD_bindings
+///
+/// Some doc on FDtux - TO BE WRITTEN
+///
+///@{
+// start FDtux submodule
+// Note: Functions comments are written to reflect their Lua usage.
 
-static int get_hp(lua_State *L)
+/**
+ * \brief Get Tux's current health
+ *
+ * \param self [\p FDtux] FDtux instance
+ *
+ * \return Health value
+ *
+ * \bindtype cfun
+ */
+LUAFD_DOC(integer get_hp(self))
+
+static int _get_hp(lua_State *L)
 {
-	/* Check that 'self' is of the right type */
-	struct tux** self = (struct tux**)luaL_testudata(L, 1, "FDtux");
-	if (!self) {
-		return luaL_error(L, "%s() %s", __FUNCTION__, "called with a userdata of wrong type (FDtux expected)");
-	}
+	GET_SELF_INSTANCE_OF(struct tux, L, "FDtux");
 
 	lua_pushinteger(L, (int)(*self)->energy);
 	return 1;
 }
 
-//////////////////////////////////////////////////////////////////////
-// FDtux binding
-//////////////////////////////////////////////////////////////////////
+// end FDtux submodule
+///@}
+///////////////////////////////////////////////////////////////////////////////
 
 /**
- * FDtux cfuns
+ * FDtux cfuns list
  */
 static const luaL_Reg tux_cfuns[] = {
-		{ "get_hp", get_hp },
+		LUAFD_CFUN(get_hp),
 		{ NULL, NULL }
 };
 
 /**
  * \brief Create class-type metatable for Tux lua binding
  *
- * \details This function creates and stores in the C registry a FDtux metatable
- * containing cfuns and lfuns to act on the Tux C struct.
- * cfuns are defined in the tux_cfuns array.
+ * This function creates and stores in the C registry a FDtux metatable containing
+ * cfuns and lfuns to act on the Tux C struct.\n
+ * cfuns are defined in the tux_cfuns array.\n
  * lfuns are defined in the FDtux_lfuns.lua file.
  *
  * \param L Pointer to the Lua state to use
  *
  * \return TRUE
  */
-int FDtux_init(lua_State *L)
+int luaFD_tux_init(lua_State *L)
 {
 	// Create a metatable that will contain the Tux cfuncs and lfuncs.
 	// The metatable is stored in the C registry.
@@ -130,18 +141,18 @@ int FDtux_init(lua_State *L)
 /**
  * \brief Get a FDtux instance (singleton)
  *
- * \details On first call, this function creates a Lua userdata which acts as
- *  a FDtux instance: the userdata is actually a pointer to the 'Me' C struct,
- *  associated to a FDtux_class metatable.
- *  The userdata is stored in the C registry, to be returned on next calls of
- *  this function.
- *  The created FDtux instance is thus a singleton.
+ * On first call, this function creates a Lua userdata which acts as a FDtux
+ * instance: the userdata is actually a pointer to the 'Me' C struct, associated
+ * to a FDtux_class metatable.\n
+ * The userdata is stored in the C registry, to be returned on next calls of this
+ * function.\n
+ * The created FDtux instance is thus a singleton.
  *
  * \param L Pointer to the Lua state to use
  *
  * \return 1 (userdata on the Lua stack)
  */
-int FDtux_get_instance(lua_State *L)
+int luaFD_tux_get_instance(lua_State *L)
 {
 	// Try to get the userdata from the C registry.
 	// If it does not exist, create it.
