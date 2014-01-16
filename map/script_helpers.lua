@@ -474,16 +474,6 @@ function difficulty()
 	return levels[difficulty_level()+1]
 end
 
-
-function show_node_if(case, ...)
-	local arg = {...}
-	if (case) then
-		show(unpack(arg))
-	else
-		hide(unpack(arg))
-	end
-end
-
 function get_random_bot_59()
 	local bot_59 = get_random(123, 139, 247, 249, 296, 296, 302, 302, 329, 329, 420,
 			  420, 476, 476, 493, 493, 516, 516, 516, 571, 571, 571, 598,

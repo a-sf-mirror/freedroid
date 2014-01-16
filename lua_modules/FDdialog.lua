@@ -527,6 +527,26 @@ function FDdialog.disable_nodes(...)
 	return current_dialog and current_dialog:disable_nodes({...})
 end
 
+--! \fn void enable_nodes_if(expr, ...)
+--!
+--! \brief If 'expr' is true, enable a list of nodes in the current dialog,
+--!        else disable them.
+--!
+--! \param expr Test expression
+--! \param ...  List of nodes to enable/disable
+--!
+--! \memberof Lua::FDdialog
+
+function FDdialog.enable_nodes_if(expr, ...)
+	local current_dialog = FDdialog.stack:top()
+	if not current_dialog then return end
+	if (expr) then
+		current_dialog:enable_nodes({...})
+	else
+		current_dialog:disable_nodes({...})
+	end
+end
+
 --! \fn void push_topic(string topic)
 --!
 --! \brief Push a topic key of the current topic stack
@@ -573,7 +593,7 @@ function FDdialog.push_dialog(dialog_name, enabled_nodes)
 	FDdialog.stack:push(new_dialog)
 end
 
---! \fn string{] pop_dialog()
+--! \fn string{} pop_dialog()
 --!
 --! \brief Pop the current dialog from the dialog stack and return the list of enabled nodes
 --!
@@ -656,6 +676,7 @@ end
 
 next = FDdialog.next_node
 show = FDdialog.enable_nodes
+show_if = FDdialog.enable_nodes_if
 hide = FDdialog.disable_nodes
 push_topic = FDdialog.push_topic
 pop_topic = FDdialog.pop_topic

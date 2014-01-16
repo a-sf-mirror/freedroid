@@ -64,7 +64,7 @@ return {
 		if (desertgate_tax ~= 0) then
 			if (cmp_obstacle_state("DesertGate", "closed")) then
 				npc_says(_"Got the money?")
-				show_node_if((get_gold() >= desertgate_tax), "node45")
+				show_if((get_gold() >= desertgate_tax), "node45")
 			end
 			hide("node40")
 		end

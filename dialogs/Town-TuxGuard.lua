@@ -30,7 +30,7 @@ return {
 				npc_says(_"Babysitting a loon... Now I can say I've done it all!")
 			end
 		end
-		show_node_if((not has_met("Spencer")), "node20")
+		show_if((not has_met("Spencer")), "node20")
 		show("node99")
 	end,
 

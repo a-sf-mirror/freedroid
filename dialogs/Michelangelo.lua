@@ -38,7 +38,7 @@ return {
 				end
 				if (has_quest("Gapes Gluttony")) then
 					if (not done_quest("Gapes Gluttony")) then
-						show_node_if((not Michelangelo_been_asked_meal_to_go), "node21")
+						show_if((not Michelangelo_been_asked_meal_to_go), "node21")
 						hide("node24")
 					elseif (has_item_backpack("Empty Picnic Basket")) then
 						show("node22")

@@ -58,10 +58,10 @@ return {
 			show("node1")
 		end
 
-		show_node_if(((not won_nethack) and
-				      (not Tamara_asked_hacking)), 2)
+		show_if(((not won_nethack) and
+				      (not Tamara_asked_hacking)), "node2")
 
-		show_node_if(Tamara_bot_apocalypse_book, "node21")
+		show_if(Tamara_bot_apocalypse_book, "node21")
 
 		if (Ewalds_296_needs_sourcebook) and
 		   (not Tamara_have_296_book) then
@@ -84,7 +84,7 @@ return {
 			show("node34")
 		end
 
-		show_node_if(Tamara_talked_about_bots and
+		show_if(Tamara_talked_about_bots and
 		            (Tamara_about_bots_nodes > 0), "node31")
 
 		show("node99")
@@ -139,8 +139,8 @@ return {
 			npc_says_random(_"Some of these might interest you.",
 				_"I only have a few programming volumes, feel free to look through them.")
 			trade_with("Tamara")
-			show_node_if(not Tamara_bot_apocalypse_book, "node20")
-			show_node_if(not Tamara_talked_about_bots, "node30")
+			show_if(not Tamara_bot_apocalypse_book, "node20")
+			show_if(not Tamara_talked_about_bots, "node30")
 		end,
 	},
 	{

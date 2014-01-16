@@ -112,6 +112,7 @@ cat > $awk_script <<-"EOF"
 		$0 = replace($0, "show_node_if", 1)
 		$0 = replace($0, "next", 0)
 		gsub("topic\\(", "push_topic(")
+		gsub("show_node_if\\(", "show_if(")
 		gsub("pop_push_topic", "pop_topic")
 		if ( prefix != "" )
 			gsub("end_dialog\\(\\)", "next(\"after-" substr(prefix, 1, length(prefix) - 1) "\")")

@@ -45,7 +45,7 @@ return {
 			npc_says(_"You can ask, but don't expect a reply.", "NO_WAIT")
 			npc_says(_"I'm guarding this gate, and if I get distracted the bots might overrun this town and kill everybody in it.")
 		end
-		show_node_if(knows_spencer_office, "node41")
+		show_if(knows_spencer_office, "node41")
 		if (KevinMurder) and
 		   (not done_quest("A strange guy stealing from town")) and
 		   (has_quest("A strange guy stealing from town")) then

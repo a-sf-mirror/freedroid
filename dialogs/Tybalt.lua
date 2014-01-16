@@ -28,13 +28,13 @@ return {
 	end,
 
 	EveryTime = function()
-		show_node_if((not has_met("Spencer")), "node0")
+		show_if((not has_met("Spencer")), "node0")
 
 		if (cmp_obstacle_state("Town-CitadelGate", "closed")) then
 			show("node10")
 		end
 
-		show_node_if((tybalt_bribe) and
+		show_if((tybalt_bribe) and
 					 (not Tybalt_money_back), "node60")
 
 		if (tux_has_joined_guard) then

@@ -24,7 +24,7 @@ return {
 
 	EveryTime = function()
 		if (has_quest("Saving the shop")) then
-			show_node_if((get_gold() > 1400), "node23")
+			show_if((get_gold() > 1400), "node23")
 			if (done_quest("Saving the shop")) then
 				hide("node23") show("node10")
 			end
@@ -51,7 +51,7 @@ return {
 		text = _"I would like to trade with you.",
 		code = function()
 			npc_says(_"Good! Here is the selection of items I have for sale.")
-			show_node_if((not Stone_asked_for_guns), "node2")
+			show_if((not Stone_asked_for_guns), "node2")
 			trade_with("Stone")
 		end,
 	},
@@ -166,7 +166,7 @@ return {
 		code = function()
 			npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand circuits.")
 			add_quest(_"Saving the shop", _"Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon. She needs 2000 in cash to stay afloat. I could try to help her out.")
-			show_node_if((get_gold() > 2000), "node23")
+			show_if((get_gold() > 2000), "node23")
 			hide("node15")
 		end,
 	},

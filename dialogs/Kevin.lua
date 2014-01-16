@@ -60,7 +60,7 @@ return {
 		end
 
 		if (Jasmine_sigsegv) then
-			show_node_if((not Kevin_sigtalk), "node20")
+			show_if((not Kevin_sigtalk), "node20")
 		end
 
 		if (not Kevins_Lawnmower_tux_login_granted) then
