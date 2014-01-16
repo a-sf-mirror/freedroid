@@ -34,7 +34,7 @@ return {
 	end,
 
 	EveryTime = function()
-		tux:says("tux:says()", "NO_WAIT")
+		Tux:says("Tux:says()", "NO_WAIT")
 		npc_says("npc_says()", "NO_WAIT")
 		cli_says("cli_says()", "NO_WAIT")
 		npc_says("", "NO_WAIT") -- extra linebreak for cli_says()
@@ -103,7 +103,7 @@ return {
 			heal_tux()
 			hurt_tux(1)
 			hurt_tux(-1)
-			if (tux:get_hp() == 60) then
+			if (Tux:get_hp() == 60) then
 				npc_says("HEALTH test 1 succeded", "NO_WAIT")
 			else
 				guy_fail("HEALTH 1")
@@ -139,7 +139,7 @@ return {
 					guy_fail("SKILL 1")
 				end
 			else
-				tux:says("Skipping SKILL test 1 due to missing possibility to downgrade skills!")
+				Tux:says("Skipping SKILL test 1 due to missing possibility to downgrade skills!")
 			end
 ---------------------------------------------------------- PROGRAMMS
 			improve_program("Ricer CFLAGS")
@@ -158,7 +158,7 @@ return {
 				end
 				add_quest("24_dude_test_quest", "Add 24 dude quest.")
 			else
-				tux:says("Skipping QUEST test 1 due to missing possibility to remove quests!")
+				Tux:says("Skipping QUEST test 1 due to missing possibility to remove quests!")
 			end
 
 			if (has_quest("24_dude_test_quest")) then
@@ -182,8 +182,8 @@ return {
 					guy_fail("QUEST 4")
 				end
 			else
-				tux:says("Skipping QUEST test 3 due to missing possibility to remove quests!")
-				tux:says("Skipping QUEST test 4 due to missing possibility to remove quests!")
+				Tux:says("Skipping QUEST test 3 due to missing possibility to remove quests!")
+				Tux:says("Skipping QUEST test 4 due to missing possibility to remove quests!")
 			end
 
 			if (has_met("Guy")) then -- need to have met guy to let the DeadGuy die...
@@ -193,7 +193,7 @@ return {
 					guy_fail("QUEST 5")
 				end
 			else
-				tux:says("Skipping QUEST test 5, we need to have met Guy...")
+				Tux:says("Skipping QUEST test 5, we need to have met Guy...")
 			end
 
 ---------------------------------------------------------- OBSTACLES
@@ -359,7 +359,7 @@ return {
 					guy_fail("RUSH TUX 1")
 				end
 			else
-				tux:says("Skipping RUSH TUX test 1 because it would fail since we directly rush tux on second time we call the dialog.")
+				Tux:says("Skipping RUSH TUX test 1 because it would fail since we directly rush tux on second time we call the dialog.")
 			end
 
 			set_rush_tux(1)
