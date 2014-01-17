@@ -2704,11 +2704,10 @@ void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag,
 	// The unwanted cases MUST be handled first...
 	//
 	if (CurItem->type == (-1)) {
+		ErrorMessage(__FUNCTION__, "Tried to draw an item of type -1 (item %p on level %d). Ignoring.", PLEASE_INFORM, IS_WARNING_ONLY, CurItem, CurItem->pos.z);
 		return;
-		fprintf(stderr, "\n\nItemNumber '%d' on level %d\n", ItemNumber, CurItem->pos.z);
-		ErrorMessage(__FUNCTION__, "\
-There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM, IS_FATAL);
 	}
+
 	// We don't blit any item, that we're currently holding in our hand, do we?
 	if (item_held_in_hand == CurItem)
 		return;
