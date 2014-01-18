@@ -78,27 +78,6 @@ define_read_xxx(uint8_t);
 define_write_xxx(uint8_t, "%hu");
 
 /**
- * \fn void read_char(lua_State *L, int index, char *data)
- * Read a char data from the Lua stack.
- * \ingroup simplerw
- *
- * \param L     Current Lua State
- * \param index Lua stack index of the data
- * \param data  Pointer to the resulting data storage
- */
-define_read_xxx(char);
-
-/**
- * \fn void write_char(struct auto_string *strout, char *data)
- * Write a char data into an auto_string.
- * \ingroup simplerw
- *
- * \param strout The auto_string to be filled
- * \param data   Pointer to the data to write
- */
-define_write_xxx(char, "%hd");
-
-/**
  * \fn void read_uint16_t(lua_State *L, int index, uint16_t *data)
  * Read a uint16_t data from the Lua stack.
  * \ingroup simplerw
@@ -435,31 +414,7 @@ void write_list_head_t(struct auto_string *strout, list_head_t *data)
  * \param data  Pointer to the resulting data storage
  * \param size  Size of the array (max number of value to read)
  */
-void read_char_array(lua_State *L, int index, char *data, int size)
-{
-	*data = '\0';
-	lua_is_of_type_or_abort(L, index, LUA_TSTRING);
-	char *ptr = (char *)lua_tostring(L, index);
-	if (ptr) {
-		memcpy(data, ptr, size);
-		// ensure the string is null-terminated
-		*(data+size-1) = '\0';
-	}
-}
 
-/**
- * Write a char array.
- * \ingroup overloadrw
- *
- * In order to improve read performances, a char array is saved as a Lua string.
- * \param strout The auto_string to be filled
- * \param data   Pointer to the data to write
- * \param size   Size of the array
- */
-void write_char_array(struct auto_string *strout, char *data, int size)
-{
-	autostr_append(strout, "\"%.*s\"", size, data);
-}
 
 /**
  * Read a keybind_t array.

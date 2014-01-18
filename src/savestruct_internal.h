@@ -99,7 +99,7 @@
 /// \note
 /// It is sometimes not possible to rely on the macros that creates
 /// the _array or _dynarray write/read functions, mainly when a specific
-/// behavior is needed - such as with write_char_array(), for example.
+/// behavior is needed - such as with write_char_array() (removed), for example.
 /// If the write/read functions of a type have to be hardcoded, then they have
 /// to be flagged as such in the python script (so that the script does not
 /// auto-create them), by adding that type to the 'hardcoded_types' list.
@@ -281,8 +281,6 @@ void read_##X##_dynarray(lua_State *L, int index, X##_dynarray *result)\
 
 void read_uint8_t(lua_State *L, int index, uint8_t *data);
 void write_uint8_t(struct auto_string *strout, uint8_t *data);
-void read_char(lua_State *L, int index, char *data);
-void write_char(struct auto_string *strout, char *data);
 void read_uint16_t(lua_State *L, int index, uint16_t *data);
 void write_uint16_t(struct auto_string *strout, uint16_t *data);
 void read_int16_t(lua_State *L, int index, int16_t *data);
@@ -320,8 +318,6 @@ void write_list_head_t(struct auto_string *strout, list_head_t *data);
 /// Some types can not be saved using the 'standard' scheme, and need specific
 /// read/write functions.
 
-void read_char_array(lua_State *L, int index, char *data, int size);
-void write_char_array(struct auto_string *strout, char *data, int size);
 void read_keybind_t_array(lua_State *L, int index, keybind_t *result, int size);
 void write_keybind_t_array(struct auto_string *strout, keybind_t *data, int size);
 
