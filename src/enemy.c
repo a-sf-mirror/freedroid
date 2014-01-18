@@ -830,7 +830,7 @@ in FreedroidRPG.\n", PLEASE_INFORM, IS_FATAL);
 };				// int MakeSureEnemyIsInsideThisLevel ( int Enum )
 
 /**
- * When an enemy is his, this causes some blood to be sprayed on the floor.
+ * When an enemy is hit, this causes some blood to be sprayed on the floor.
  * The blood is just an obstacle (several types of blood exist) with 
  * preput flag set, so that the Tux and everyone can really step *on* the
  * blood.
