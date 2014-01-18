@@ -433,6 +433,17 @@ return {
 			npc_says(_"However I'll ask Richard to see if we can contact you as soon as you find the server so we know if you're alive and there is still hope, or if things are going to go back to the way they were before you were taken out of stasis sleep...")
 			npc_says(_"Good luck.")
 			add_quest(_"Propagating a faulty firmware update", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
+			npc_says(_"Wait. I have a weapon here. It is not an Exterminator, but should save your life in the Hell Fortress.")
+			add_item("Electro Laser Rifle", 1)
+
+			if (difficulty_level() > 2) then -- difficulty neither easy, nor normal, nor hard
+				npc_says("ERROR, Spencer NODE 44, game difficulty not handled")
+			end
+			local dev_count = 2 - difficulty_level()
+			if (not difficulty_level() == 0) then
+				add_item("Plasma Shockwave Emitter", dev_count)
+			end
+			npc_says(_"In the name of the Red Guard I wish you the best luck!")
 			hide("node44") show("node45")
 		end,
 	},
