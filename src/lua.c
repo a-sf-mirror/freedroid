@@ -878,6 +878,25 @@ static int lua_set_npc_faction(lua_State *L)
 	return 0;
 }
 
+static int lua_kill_faction(lua_State *L)
+{
+	const char *fact = luaL_checkstring(L, 1);
+	const char *respawn = luaL_optstring(L, 2, "");
+	enemy *erot, *nerot;
+	if (strcmp(respawn, "no_respawn") && (strcmp(respawn, "")))
+		ErrorMessage(__FUNCTION__, "\
+				Received optional second argument \"%s\". Accepted value is \"no_respawn\".\n\
+				Faction \"%s\" will now be killed and will respawn as usual.", PLEASE_INFORM, IS_WARNING_ONLY, respawn, fact);
+	BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
+		if (erot->faction != get_faction_id(fact))
+			continue;
+		hit_enemy(erot, erot->energy + 1, 0, -2, 0);
+		if (!strcmp(respawn, "no_respawn"))
+			erot->will_respawn = FALSE;
+	}
+	return 0;
+}
+
 static int lua_user_input_string(lua_State *L)
 {
 	const char *title = luaL_checkstring(L, 1);
@@ -1301,6 +1320,13 @@ luaL_Reg lfuncs[] = {
 
 	{"set_npc_faction", lua_set_npc_faction},
 	{"set_faction_state", lua_set_faction_state},
+	/*
+	  kill_faction() kills all enemies belonging
+	  to a specified faction. The second argument is
+	  optional, and specifies whether or not the faction
+	  will respawn. It can only be the string "no_respawn".
+	*/
+	{"kill_faction", lua_kill_faction},
 
 	{"user_input_string", lua_user_input_string},
 

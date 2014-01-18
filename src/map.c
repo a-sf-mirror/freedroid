@@ -91,7 +91,7 @@ void respawn_level(int level_num)
 	// Now we can give new life to dead bots...
 	//
 	BROWSE_DEAD_BOTS_SAFE(erot, nerot) {
-		if (erot->pos.z != level_num || Droidmap[erot->type].is_human)
+		if (erot->pos.z != level_num || Droidmap[erot->type].is_human || !erot->will_respawn)
 			continue;
 		/* Move the bot to the alive list */
 		list_move(&(erot->global_list), &alive_bots_head);

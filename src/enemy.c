@@ -323,6 +323,7 @@ enemy *enemy_new(int type)
 
 	// Set the default value of the 'global state' attributes
 	this_enemy->faction = FACTION_BOTS;
+	this_enemy->will_respawn = TRUE;
 	this_enemy->will_rush_tux = FALSE;
 	this_enemy->combat_state = WAYPOINTLESS_WANDERING;
 	this_enemy->state_timeout = 0.0;

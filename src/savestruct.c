@@ -485,6 +485,8 @@ void write_enemy(struct auto_string *strout, enemy *data)
     write_int16_t(strout, &data->on_death_drop_item_code);
     autostr_append(strout, ",\n" "faction = ");
     write_int32_t(strout, &data->faction);
+    autostr_append(strout, ",\n" "will_respawn = ");
+    write_uint8_t(strout, &data->will_respawn);
     autostr_append(strout, ",\n" "will_rush_tux = ");
     write_uint8_t(strout, &data->will_rush_tux);
     autostr_append(strout, ",\n" "combat_state = ");
@@ -596,6 +598,10 @@ void read_enemy(lua_State* L, int index, enemy *data)
     }
     if (lua_getfield_or_warn(L, index, "faction")) {
         read_int32_t(L, -1, &data->faction);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "will_respawn")) {
+        read_uint8_t(L, -1, &data->will_respawn);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "will_rush_tux")) {

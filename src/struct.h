@@ -435,6 +435,7 @@ typedef struct enemy {
 	// 2nd set ('global state')
 	//
 	int faction;
+	uint8_t will_respawn;		// will this robot be revived by respawn_level()?
 	uint8_t will_rush_tux;          // will this robot approach the Tux on sight and open communication?
 	int combat_state;               // current state of the bot
 	float state_timeout;            // time spent in this state (used by "timeout" states such as STOP_AND_EYE_TARGET only)
