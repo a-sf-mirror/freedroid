@@ -218,8 +218,11 @@ int change_obstacle_type(const char *obslabel, int type)
 	update_obstacle_automap(obstacle_level->levelnum, our_obstacle);
 	
 	if (type != -1) {
+		// Unglue and reglue the obstacle, to take into account any collrect change
+		unglue_obstacle(obstacle_level, our_obstacle);
 		our_obstacle->type = type;
 		our_obstacle->frame_index = 0;
+		glue_obstacle(obstacle_level, our_obstacle);
 	} else {
 		del_obstacle(our_obstacle);
 	}
