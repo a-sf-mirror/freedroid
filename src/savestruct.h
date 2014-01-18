@@ -82,7 +82,11 @@ void read_automap_data_t_array(lua_State *, int, automap_data_t *, int);
 /*! \ingroup genrw */
 void write_blast_array(struct auto_string *, blast *, int);
 /*! \ingroup genrw */
+void read_blast_array(lua_State *, int, blast *, int);
+/*! \ingroup genrw */
 void write_bullet_array(struct auto_string *, bullet *, int);
+/*! \ingroup genrw */
+void read_bullet_array(lua_State *, int, bullet *, int);
 /*! \ingroup genrw */
 void write_float_array(struct auto_string *, float *, int);
 /*! \ingroup genrw */
@@ -106,6 +110,8 @@ void read_item_dynarray(lua_State *, int, item_dynarray *);
 /*! \ingroup genrw */
 void write_melee_shot_array(struct auto_string *, melee_shot *, int);
 /*! \ingroup genrw */
+void read_melee_shot_array(lua_State *, int, melee_shot *, int);
+/*! \ingroup genrw */
 void write_mission_array(struct auto_string *, mission *, int);
 /*! \ingroup genrw */
 void read_mission_array(lua_State *, int, mission *, int);
@@ -115,6 +121,8 @@ void write_moderately_finepoint_array(struct auto_string *, moderately_finepoint
 void read_moderately_finepoint_array(lua_State *, int, moderately_finepoint *, int);
 /*! \ingroup genrw */
 void write_spell_active_array(struct auto_string *, spell_active *, int);
+/*! \ingroup genrw */
+void read_spell_active_array(lua_State *, int, spell_active *, int);
 /*! \ingroup genrw */
 void write_string_array(struct auto_string *, string *, int);
 /*! \ingroup genrw */
