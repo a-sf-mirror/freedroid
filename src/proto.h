@@ -150,7 +150,7 @@ void blit_tux(int x, int y);
 struct tux_part_render_data *tux_get_part_render_data(char *part_name);
 void tux_rendering_load_specs(const char *config_filename);
 void PutBullet(int Bullet_number, int mask);
-void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item);
+void PutItem(item *CurItem, int mask, int put_thrown_items_flag, int highlight_item);
 void PutBlast(int);
 void PutEnemy(enemy * e, int x, int y, int mask, int highlight);
 void PutMouseMoveCursor(void);

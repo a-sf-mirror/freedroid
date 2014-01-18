@@ -1324,9 +1324,9 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 					item_under_cursor = get_floor_item_index_under_mouse_cursor(&item_under_cursor_lvl);
 					if (item_under_cursor != -1 && item_under_cursor_lvl != NULL &&
 						the_item->pos.z == item_under_cursor_lvl->levelnum && item_under_cursor == e->code_number)
-						PutItem(the_item, e->code_number, mask, PUT_NO_THROWN_ITEMS, TRUE);
+						PutItem(the_item, mask, PUT_NO_THROWN_ITEMS, TRUE);
 					else
-						PutItem(the_item, e->code_number, mask, PUT_NO_THROWN_ITEMS, FALSE);				
+						PutItem(the_item, mask, PUT_NO_THROWN_ITEMS, FALSE);				
 				}
 			}
 			break;
@@ -1411,9 +1411,9 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 				if (the_item->throw_time > 0) {
 					if (item_under_cursor != -1 && item_under_cursor == e->code_number
 						&& item_under_cursor_lvl->levelnum == the_item->pos.z)
-						PutItem(the_item, e->code_number, mask, PUT_ONLY_THROWN_ITEMS, TRUE);
+						PutItem(the_item, mask, PUT_ONLY_THROWN_ITEMS, TRUE);
 					else
-						PutItem(the_item, e->code_number, mask, PUT_ONLY_THROWN_ITEMS, FALSE);
+						PutItem(the_item, mask, PUT_ONLY_THROWN_ITEMS, FALSE);
 				}
 			}
 			// DebugPrintf ( -1 , "\nThrown item now blitted..." );
@@ -2693,7 +2693,7 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
  * The only given parameter is the number of the item within
  * the AllItems array.
  */
-void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item)
+void PutItem(item *CurItem, int mask, int put_thrown_items_flag, int highlight_item)
 {
 	float r, g, b;
 	float zf = 1.0;
