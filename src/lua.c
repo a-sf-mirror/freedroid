@@ -351,19 +351,25 @@ static int lua_event_give_item(lua_State * L)
 	int mult = luaL_optinteger(L, 2, 1);
 
 	item NewItem;
-	NewItem = create_item_with_id(itemname, TRUE, mult);
 
-	// Either we put the new item directly into inventory or we issue a warning
-	// that there is no room and then drop the item to the floor directly under
-	// the current Tux position.  That can't fail, right?
-	char msg[1000];
-	if (!give_item(&NewItem)) {
-		sprintf(msg, _("Received Item: %s (on floor)"), itemname);
+	if ((mult != 0)) { // big bad bug here...
+		NewItem = create_item_with_id(itemname, TRUE, mult);
+
+		// Either we put the new item directly into inventory or we issue a warning
+		// that there is no room and then drop the item to the floor directly under
+		// the current Tux position.  That can't fail, right?
+		char msg[1000];
+		if (!give_item(&NewItem)) {
+			sprintf(msg, _("Received Item: %s (on floor)"), itemname);
+		} else {
+			sprintf(msg, _("Received Item: %s"), itemname);
+		}
+		SetNewBigScreenMessage(msg);
 	} else {
-		sprintf(msg, _("Received Item: %s"), itemname);
+		ErrorMessage(__FUNCTION__, "WARNING, trying to add 0 amount of an item. This is buggy.", PLEASE_INFORM, IS_WARNING_ONLY);
 	}
-	SetNewBigScreenMessage(msg);
 	return 0;
+
 }
 
 static int lua_event_sell_item(lua_State *L)
