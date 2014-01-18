@@ -819,6 +819,9 @@ int validate_dialogs()
 	run_lua(LUA_DIALOG, "function topic(a)\nend\n");
 	run_lua(LUA_DIALOG, "function pop_topic(a)\nend\n");
 
+	/* set_mouse_move_target() breaks validator */
+	run_lua(LUA_DIALOG, "function set_mouse_move_target(a)\nend\n");
+
 	/* This dummy is needed for the Lua functions that communicates with a npc */
 	BROWSE_ALIVE_BOTS(dummy_partner) {
 		break;

@@ -1101,6 +1101,21 @@ static int lua_dir(lua_State *L)
 	return 1;
 }
 
+static int lua_set_mouse_move_target(lua_State *L)
+{
+	/* USE WITH CARE!
+	 * I made this function so we could automatizes some tests on level 24
+	 * This is not supposed to be used in the "real game"
+	 */
+	Me.mouse_move_target.x = luaL_checknumber(L, 1);
+	Me.mouse_move_target.y = luaL_checknumber(L, 2);
+	Me.mouse_move_target.z = luaL_checknumber(L, 3);
+
+	move_tux();
+
+	return 1;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label)
 	 * Teleports the player to the given map label.
@@ -1371,6 +1386,11 @@ luaL_Reg lfuncs[] = {
 	{"dir", lua_dir},
 
 	{"term_has_color_cap", lua_term_has_color_cap },
+	/* USE WITH CARE!
+	 * I made this function so we could automatizes some tests on level 24
+	 * This is not supposed to be used in the "real game"
+	 */
+	{"set_mouse_move_target", lua_set_mouse_move_target},
 
 	{NULL, NULL}
 };
