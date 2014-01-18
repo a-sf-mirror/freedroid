@@ -1471,6 +1471,8 @@ Silent=0
 	set_mouse_move_target(42.5, 46.5, 24)
 </LuaCode>
 * End of trigger *
+
+* New event trigger *
 Name=_"24-tux1"
 Trigger at label="24-tux1"
 Silent=1

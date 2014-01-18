@@ -247,7 +247,6 @@ T=BAR: PosX=42 PosY=20 Faction="civilian" UseDialog="Guy" ShortLabel=_"Guy" Mark
 T=302: PosX=40 PosY=66 Faction="civilian" UseDialog="24-Controllable-Bot" ShortLabel=_"Controllable Bot" Marker=2024 RushTux=0 Fixed=1 DropItemId="none" MaxDistanceToHome=0
 T=KEV: PosX=38 PosY=20 Faction="civilian" UseDialog="DeadGuy" ShortLabel=_"DeadGuy" Marker=2025 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=123: PosX=36 PosY=20 Faction="test" UseDialog="FactionDeadBot" ShortLabel=_"FactionDeadBot" Marker=2026 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
