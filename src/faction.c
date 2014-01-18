@@ -50,7 +50,8 @@ static struct {
 		{ FACTION_CIVILIAN, "civilian" },
 		{ FACTION_CRAZY, "crazy" },
 		{ FACTION_SINGULARITY, "singularity"},
-		{ FACTION_NEUTRAL, "neutral"}
+		{ FACTION_NEUTRAL, "neutral"},
+		{ FACTION_TEST, "test"} // extra faction for level 24, behaves neutral
 };
 
 /**
@@ -168,6 +169,11 @@ void init_factions()
 	/* Neutral does not attack anyone, neither is it being attacked */
 	for (i = 0; i < FACTION_NUMBER_OF_FACTIONS; i++) {
 		set_faction_state(FACTION_NEUTRAL, i, FRIENDLY);
+	}
+
+	/* Test as well does not attack anyone, neither is it being attacked */
+	for (i = 0; i < FACTION_NUMBER_OF_FACTIONS; i++) {
+		set_faction_state(FACTION_TEST, i, FRIENDLY);
 	}
 
 	/* Each faction is friendly towards itself. Otherwise, its members attack each other and/or commit suicide. */
