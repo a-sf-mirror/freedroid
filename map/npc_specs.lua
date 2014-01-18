@@ -49,6 +49,7 @@ npc_list{
 	"HF-EntranceBot",
 	"Geist",
 	"Francis",
+	"FactionDeadBot",
 	"Ewalds_296",
 	"Ewald",
 	"Engel",

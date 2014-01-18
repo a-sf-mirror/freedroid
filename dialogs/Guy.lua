@@ -248,9 +248,52 @@ return {
 		else
 			guy_fail("NPC DEATH 3")
 			end ]]--
+---------------------------------------------------------- FACTION DEATH TEST
+			if (not has_met("Guy")) then
+				if (not npc_dead("FactionDeadBot")) then  -- it's alive
+					npc_says("FACTION DEATH test 1 succeeded", "NO_WAIT")
+				else
+					guy_fail("FACTION DEATH 1")
+				end
 
+				kill_faction("test") -- kill test faction
+
+				if not (running_benchmark()) then -- remember: our dialog validator is quite dump :(
+					if (npc_dead("FactionDeadBot")) then -- we killed it, it's dead
+						npc_says("FACTION DEATH test 2 succeeded", "NO_WAIT")
+					else
+						guy_fail("FACTION DEATH 2")
+					end
+				end
+				-- @TODO: implement revive and additional checks
+				respawn_level(24) --respawn level, now check if bot is alive again
+				if not (running_benchmark()) then -- remember: our dialog validator is quite dump :(
+					if (not npc_dead("FactionDeadBot")) then --it's alive again
+						npc_says("FACTION DEATH test 3 succeeded", "NO_WAIT")
+					else
+						guy_fail("FACTION DEATH 3")
+					end
+				end
+				-- now check if kill_faction with no_respawn works
+				kill_faction("test", "no_respawn")
+				if not (running_benchmark()) then -- remember: our dialog validator is quite dump :(
+					if (npc_dead("FactionDeadBot")) then -- we killed it, it's dead
+						npc_says("FACTION DEATH test 4 succeeded", "NO_WAIT")
+					else
+						guy_fail("FACTION DEATH 4")
+					end
+				end
+					-- now respawn and check if its still dead.
+				respawn_level(24)
+				if not (running_benchmark()) then -- remember: our dialog validator is quite dump :(
+					if (npc_dead("FactionDeadBot")) then -- we killed it, no_respawn was given, it should still be dead
+						npc_says("FACTION DEATH test 5 succeeded", "NO_WAIT")
+					else
+						guy_fail("FACTION DEATH 5")
+					end
+				end
+			end
 ---------------------------------------------------------- EVENTS
-
 			if not (running_benchmark()) then
 				if (l24_event_test == "works" ) then
 					npc_says("EVENT test 1 (map label) succeeded", "NO_WAIT")
