@@ -39,8 +39,6 @@ extern char *freedroid_version;
 #define EXTERN extern
 
 EXTERN float FPSover1;
-EXTERN float FPSover10;
-EXTERN float FPSover100;
 EXTERN char *AllSkillTexts[];
 EXTERN char font_switchto_red[2];
 EXTERN char font_switchto_blue[2];
