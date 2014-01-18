@@ -868,11 +868,6 @@ float Frame_Time(void)
 	return Rate_To_Be_Returned;
 }
 
-int Get_Average_FPS(void)
-{
-	return ((int)(1.0 / Overall_Average));
-};				// int Get_Average_FPS( void )
-
 /**
  * 
  * With framerate computation, there is a problem when some interruption occurs, like e.g.

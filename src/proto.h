@@ -551,7 +551,6 @@ int find_subdir(const char *, char *);
 void Pause(void);
 void ComputeFPSForThisFrame(void);
 void StartTakingTimeForFPSCalculation(void);
-int Get_Average_FPS(void);
 float Frame_Time(void);
 void Activate_Conservative_Frame_Computation(void);
 void update_frames_displayed(void);
