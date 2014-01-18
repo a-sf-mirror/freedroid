@@ -50,8 +50,13 @@ void glue_obstacle(level *lvl, obstacle *o)
 	int x_min, x_max, x;
 	int y_min, y_max, y;
 	int idx;
+	obstacle_spec *spec;
 
 	if (o->type == -1)
+		return;
+
+	spec = get_obstacle_spec(o->type);
+	if (spec->block_area_type == COLLISION_TYPE_NONE)
 		return;
 
 	obstacle_boundaries(o, &x_min, &x_max, &y_min, &y_max);
