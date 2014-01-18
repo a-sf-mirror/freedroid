@@ -443,7 +443,7 @@ return {
 			if (not difficulty_level() == 0) then
 				add_item("Plasma Shockwave Emitter", dev_count)
 			end
-			npc_says(_"In the name of the Red Guard I wish you the best luck!")
+			npc_says(_"In the name of the Red Guard I wish you the best of luck!")
 			hide("node44") show("node45")
 		end,
 	},
