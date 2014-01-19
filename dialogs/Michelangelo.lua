@@ -17,6 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Tux = FDrpg.get_tux()
+
 return {
 	FirstTime = function()
 		Michelangelo_food_cooking_time = 0

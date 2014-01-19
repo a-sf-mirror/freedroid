@@ -365,8 +365,6 @@ function FDdialog.Dialog.validate(self)
 		return true
 	end
 
-	Tux = FDrpg.get_tux()
-	
 	--
 	-- Check specific nodes
 	--
@@ -398,8 +396,6 @@ function FDdialog.Dialog.validate(self)
 	end
 
 	io.write("\n")
-	
-	Tux = nil
 	
 	return valid
 end
@@ -452,9 +448,7 @@ function FDdialog.run_init()
 	if (not node) then
 		return
 	end
-	Tux = FDrpg.get_tux()
 	node:code(current_dialog)
-	Tux = nil
 	return current_dialog.next_node and FDdialog.run_node(current_dialog.next_node)
 end
 
@@ -471,9 +465,7 @@ function FDdialog.run_startup()
 	if (not node) then
 		return
 	end
-	Tux = FDrpg.get_tux()
 	node:code(current_dialog)
-	Tux = nil
 	return current_dialog.next_node and FDdialog.run_node(current_dialog.next_node)
 end
 
@@ -492,12 +484,11 @@ function FDdialog.run_node(node_idx)
 	if (not node) then
 		return
 	end
-	Tux = FDrpg.get_tux()
 	if (node.enabled and node.echo_text) then
+		local Tux = FDrpg.get_tux()
 		Tux:says(node:get_text(), "NO_WAIT")
 	end
 	node:code(current_dialog)
-	Tux = nil
 	return current_dialog.next_node and FDdialog.run_node(current_dialog.next_node)
 end
 

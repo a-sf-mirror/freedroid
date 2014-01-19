@@ -17,6 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Tux = FDrpg.get_tux()
+
 return {
 	EveryTime = function()
 		Town_NorthGateGuard_doors1 = {"Main Gate Outer W", "Main Gate Outer E", "Main Gate Guardhouse"}

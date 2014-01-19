@@ -17,6 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Tux = FDrpg.get_tux()
+
 return {
 	FirstTime = function()
 		Aftertakeover_drain_attempt = "ask"

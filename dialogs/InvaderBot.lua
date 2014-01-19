@@ -17,6 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Tux = FDrpg.get_tux()
+
 return {
 	EveryTime = function()
 		npc_says(_"Target Acquired...","NO_WAIT")

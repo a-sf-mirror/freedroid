@@ -17,6 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Tux = FDrpg.get_tux()
+
 return {
 	EveryTime = function()
 		play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")

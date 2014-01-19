@@ -17,6 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Tux = FDrpg.get_tux()
+
 local function dude_dialog_name(filename)
 	return string.sub(filename, 1, -(string.len(".lua") + 1))
 end

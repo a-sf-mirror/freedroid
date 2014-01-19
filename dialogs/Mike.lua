@@ -17,6 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Tux = FDrpg.get_tux()
+
 local function start_arena(level) 
 	arena_current_level = level
 	arena_next_wave = 1

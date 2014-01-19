@@ -7,6 +7,22 @@ fi
 
 F=$1
 
+# Check license in header
+
+if [[ `head -17 $F | tail -1` != "-- MA 02111-1307 USA" ]] ; then
+  echo "License header not found. Can not work with this file"
+  exit 1
+fi
+
+# Add global Tux
+
+grep -q "local Tux = FDrpg.get_tux()" $F
+if [[ $? -ne 0 ]] ; then
+  sed -i -e "18 a \\
+\\
+local Tux = FDrpg.get_tux()" $F
+fi
+
 # cfuns
 
 sed -i -e "s/[^:]get_player_name(/Tux:get_player_name(/g" $F

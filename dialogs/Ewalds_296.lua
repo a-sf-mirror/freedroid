@@ -17,6 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Tux = FDrpg.get_tux()
+
 return {
 	FirstTime = function()
 		npc_says(_"HI THERE! I'll be your humble servant for the duration of your stay at Ewald's bar! We hope you enjoy your stay here and come again! Don't forget to tell ALL your friends about us! I LOVE YOU!")

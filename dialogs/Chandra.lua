@@ -17,6 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Tux = FDrpg.get_tux()
+
 return {
 	FirstTime = function()
 		npc_says(_"So the rumors are true - a real live Linarian walks among us!")

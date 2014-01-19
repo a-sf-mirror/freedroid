@@ -17,6 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Tux = FDrpg.get_tux()
+
 -- helper functions for the quickmenu thingy
 
 local function tutorial_chests_and_armor_and_shops()
