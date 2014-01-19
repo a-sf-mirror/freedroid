@@ -34,6 +34,14 @@ return {
 	end,
 
 	EveryTime = function()
+		-- Tux:says_random..
+		Tux:says_random("1", "2", "3", "4", "5", "NO_WAIT")
+		Tux:says_random("1", "2", "3", "4", "5", "NO_WAIT")
+		Tux:says_random("1", "2", "3", "4", "5", "NO_WAIT")
+		Tux:says_random("1", "2", "3", "4", "5", "NO_WAIT")
+		Tux:says_random("1", "2", "3", "4", "5", "NO_WAIT")
+		Tux:says_random("1", "2", "3", "4", "5", "NO_WAIT")
+
 		Tux:says("Tux:says()", "NO_WAIT")
 		npc_says("npc_says()", "NO_WAIT")
 		cli_says("cli_says()", "NO_WAIT")
