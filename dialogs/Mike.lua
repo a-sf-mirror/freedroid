@@ -34,6 +34,12 @@ return {
 		if (arena_current_level ~= nil) then
 			if (arena_won) then
 				npc_says("You have won the arena.")
+				if (not done_quest("Novice Arena")) then
+					--change_obstacle_state("NoviceArenaExitDoor", "opened")
+					display_console_message(_"Novice arena cleared!")
+					display_big_message(_"Level cleared!")
+					Tux:end_quest(_"Novice Arena", _"I won the fight in the novice arena.")
+				end
 				next("choose")
 			elseif (arena_left) then
 				npc_says("You have left the arena.")
