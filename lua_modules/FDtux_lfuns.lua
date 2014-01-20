@@ -174,7 +174,7 @@ function FDtux.train_skill(self, gold, points, skill)
 		return false
 	end
 
-	self:add_gold(-amount)
+	self:add_gold(-gold)
 	self:del_training_points(points)
 	self:improve_skill(skill)
 
