@@ -54,8 +54,8 @@ return {
 			npc_says(_"SUCCESS")
 			npc_says(_"Testing Assembly Hardware...", "NO_WAIT")
 			if (not Lvl6_elbow_grease_applied) then
-				npc_says(_"FAILURE")
-				npc_says(_"Error code: 0x06661696C")
+				npc_says(_"DECLINE")
+				npc_says(_"Error code: 0x6465636c6365")
 				npc_says(_"Please read the manual and follow the instructions.")
 				cli_says(_"WARNING: ", "NO_WAIT")
 				npc_says(_"The manual is outdated. Please refer to the fixed directive 33 in the reference book.")

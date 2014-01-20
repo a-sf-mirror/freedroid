@@ -570,9 +570,9 @@ return {
 				npc_says(_"We haven't used it for a long time, so I am not surprised.")
 				npc_says(_"What is the error code?")
 				Tux:says(_"Erm... I don't recall it.")
-				npc_says(_"So, I should guess?")
+				npc_says(_"So, I should guess?") -- 0x6465636c6365
 				npc_says(_"Hm... It could be the common error when the autofactory is restarting.", "NO_WAIT")
-				npc_says(_"Its code should be 0x06660... 0x06661696... C, I think. It means 'fail' in hex.")
+				npc_says(_"Its code should be 0x6465636c... 0x6465636c6365... C, I think. It means 'decline' in hex.")
 				npc_says(_"There is a really easy way to solve it. It's not in the official instructions, but I expect it to solve your problem.")
 				npc_says(_"You just have to apply some elbow grease to the mechanism at the end of the line.")
 				npc_says(_"You can ask Bender for it. He makes much elbow grease and should be able to give you a small can.")
