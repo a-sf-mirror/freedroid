@@ -125,7 +125,7 @@ Level=11
 ** Beginning of new Level **
 Level=12
 
-T=INV: PosX=54 PosY=41 Faction="civilian" UseDialog="InvaderBot" ShortLabel=_"Invading Robot" Marker=2012 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=INV: PosX=54 PosY=41 Faction="civilian" UseDialog="InvaderBot" ShortLabel=_"Invading Robot" Marker=2012 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=10
 T=614: PosX=63 PosY=22 Faction="redguard" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot" Marker=1012 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=PRO: PosX=47 PosY=42 Faction="civilian" UseDialog="Francis" ShortLabel=_"Old Guy" Marker=9999 RushTux=1 Fixed=0 DropItemId="none" MaxDistanceToHome=17
 ** End of this levels Special Forces data **
