@@ -3,20 +3,29 @@ Dialog Designer Manual {#dialog}
 
 **Note:** This manual describes how to technically write a dialog file.\n
 It does not (_yet_) contain any information on how to structure the nodes of a
-dialog, or how to write a _good story_.\n
-There is also no documentation (_yet_) on the Lua functions that are to be used
-to interact with the FreedroidRPG core.
+dialog, or how to write a _good story_.
 
+To interact with the FreedroidRPG core, some Lua functions are provided, defined
+in src/lua.c and map/script_helpers.lua. The documentation of those functions is to
+be written.
+
+To interact with FreedroidRPG game objects Lua bindings are provided. For instance,
+_FDtux_ is the Lua binding of _Tux_, the internal data defining the player and her
+ingame's character.\n
+The Lua bindings are documented in the [Modules](../modules.html) section of the Doxygen doc.
 \n
 \n
 Structure of a basic dialog file {#basic_dialog}
 ================================================
 -------------------------------------------------------------------------------
 
-A dialog file is written in Lua, and, in its basic form, in **must** have the
+A dialog file is written in Lua, and, in its basic form, it **must** have the
 following structure:
 
 ~~~~~~~~~~~{.lua}
+
+local Tux = FDrpg.get_tux()
+
 return {
     FirstTime = function()
                     -- lua code to execute the first time the dialog is open
@@ -133,6 +142,62 @@ FirstTime = {
             }
 ~~~~~~~~~~~
 
+\n
+Reference to an ingame datastructure
+------------------------------------
+
+As was stated in the introduction, there are two sets of functions that can be
+used to interact with the game:
+
+- The first set is composed of functions defined as global Lua data, such as the
+   _show()_ function used in the former paragraph. Being global data, those functions
+   can be used _directly_.
+
+- The second set is composed of functions defined in Lua bindings (_Lua classes_).
+   For instance, all functions related to an NPC are defined in the `FDnpc` binding
+   (not yet available...). To use them, a reference of an actual NPC is to be created (using
+   the `FDrpg` Lua module), so that those functions will be _applied_ to that specific NPC.
+   Such a reference is usually called an _instance_.\n
+   In the following exemple, we want to get the amount of gold of the user. A `get_gold()`
+   function is available in the `FDtux` class. So, we first set the local var `Tux` as
+   an instance of `FDtux`, and then call `get_gold()` on that instance:
+   ~~~~~~~~~~~{.lua}
+   code = function()
+	local Tux = FDrpg.get_tux()
+	local amount_of_gold = Tux:get_gold()
+	...
+   end,
+   ~~~~~~~~~~~
+
+More than often, the `Tux` instance is needed in every node's script. To avoid
+the need to create that instance in each script, we prefer to make it be available
+to the whole dialog, using a local upvalue as was shown in the very first listing:
+
+~~~~~~~~~~~{.lua}
+
+local Tux = FDrpg.get_tux()
+
+return {
+    FirstTime = function()
+                    -- lua code to execute the first time the dialog is open
+                end,
+
+    EveryTime = function()
+                    -- lua code to execute each time the dialog is open
+                end,
+
+    {
+        -- node definition
+    },
+
+    {
+        -- node definition
+    },
+}
+~~~~~~~~~~~
+
+This also enables the use of `Tux` even outside of node's scripts, for instance
+in `text` definitions (see @ref advanced_text).
 
 \n
 \n
@@ -148,18 +213,30 @@ also possible to use a computed value. Two forms are available:
 
 - 
   ~~~~~~~~~~~{.lua}
-  text = "Hello. I have " .. get_gold() .. " credits in my pocket.",
+  text = "Hello. I have " .. Tux:get_gold() .. " credits in my pocket.",
   ~~~~~~~~~~~
   In this form, the `text` value is computed each time the dialog is loaded, and
   the `text` content will not change while the chat screen is open.
 - 
   ~~~~~~~~~~~{.lua}
   text = function()
-             return "Hello. I have " .. get_gold() .. " credits in my pocket."
+             return "Hello. I have " .. Tux:get_gold() .. " credits in my pocket."
          end,
   ~~~~~~~~~~~
   In this form, the `text` value is a function, which will be called each time
   the text is to be displayed. Thus, its content can change during a chat.
+
+_Note about internationalization_: `gettext` markers have to be added if a string
+needs to be translated. For instance, using the first form:
+~~~~~~~~~~~{.lua}
+text = _"Hello. I have " .. Tux:get_gold() .. _" credits in my pocket.",
+~~~~~~~~~~~
+But then 2 separate unrelated strings are defined in the l10n template file (.po),
+confusing the translators. You should rather use one single string, with text
+formatting:
+~~~~~~~~~~~{.lua}
+text = string.format(_"Hello. I have %s credits in my pocket.", Tux:get_gold()),
+~~~~~~~~~~~
 
 \n
 Accessing the dialog structure from a node's code {#advanced_code}
@@ -443,7 +520,7 @@ for none,filename in ipairs(dircontent) do
         text = dialogname,
         enabled = true,
         code = function()
-            tux_says(_"Starting " .. dialogname)
+            Tux:says(_"Starting " .. dialogname)
             start_chat(dialogname)
         end,
     }
@@ -476,7 +553,7 @@ return {
                                 text = dialogname,
                                 enabled = true,
                                 code = function()
-                                    tux_says(_"Starting " .. dialogname)
+                                    Tux:says(_"Starting " .. dialogname)
                                     start_chat(dialogname)
                                 end,
                             }
