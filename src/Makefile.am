@@ -35,7 +35,7 @@ freedroidRPG_SOURCES = version.c \
 	lang.h lists.c lists.h \
 	gen_savestruct.py savestruct.c savestruct.h savestruct_internal.c savestruct_internal.h \
 	string.c pathfinder.c \
-	benchmark.c \
+	benchmark.c rtprof.c \
 	npc.c \
 	obstacle_extension.c \
 	quest_browser_ui.c \

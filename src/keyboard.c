@@ -82,6 +82,12 @@ const char *keybindNames[] = {
 	"cheat_menu", "cheat_level_editor",
 	"cheat_reload_graphics",
 	"cheat_inc_repair" , "cheat_dec_repair",
+
+#ifdef WITH_RTPROF
+	/* RT Profiler keys */
+	"rtprof_switch_activation", "rtprof_clear_probes",
+#endif
+
 	NULL
 };				/* must terminate with NULL */
 
@@ -301,6 +307,11 @@ void input_set_default(void)
 	input_set_keybind("cheat_inc_repair", SDLK_r, KMOD_RCTRL );
 	input_set_keybind("cheat_dec_repair", SDLK_r, KMOD_RCTRL | KMOD_RSHIFT );
 
+#ifdef WITH_RTPROF
+	/* RT Profiler */
+	input_set_keybind("rtprof_switch_activation", SDLK_p, KMOD_LALT);
+	input_set_keybind("rtprof_clear_probes", SDLK_o, KMOD_LALT);
+#endif
 }
 
 #define KEYCHART_RECT_X (GameConfig.screen_width / 250)
@@ -682,6 +693,15 @@ static int input_key(int keynum, int value)
 			}
 			return 0;
 		}
+#ifdef WITH_RTPROF
+		else if (KEYPRESS("rtprof_switch_activation")) {
+			rtprof_switch_activation();
+			return 0;
+		} else if (KEYPRESS("rtprof_clear_probes")) {
+			rtprof_clear_probes();
+			return 0;
+		}
+#endif
 	} else if (INLVLEDIT()) {
 		if (KEYPRESS("drop_item")) {
 			ItemDropFromLevelEditor();

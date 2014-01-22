@@ -819,4 +819,11 @@ int get_obstacle_type_by_name(char *name);
 
 int luaFD_init(lua_State *);
 
+#ifdef WITH_RTPROF
+// rtprof.c
+void rtprof_switch_activation();
+void rtprof_clear_probes();
+void rtprof_display();
+#endif
+
 #endif

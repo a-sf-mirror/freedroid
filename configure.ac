@@ -86,6 +86,7 @@ AC_ARG_ENABLE(sanitize-address,  [  --enable-sanitize-address   Compile with -fs
 AC_ARG_WITH(extra-warnings,      [  --with-extra-warnings       Generate more warning messages when compiling [[default=no]]], more_warn="$withval", more_warn=no)
 AC_ARG_ENABLE(backtrace,         [  --disable-backtrace         Disable the use of backtrace() to generate nice bug reports [[default=enabled]]], want_backtrace="$enableval", want_backtrace=yes)
 AC_ARG_WITH(embedded-lua,        [  --with-embedded-lua         Uses the Lua libraries bundled with FreedroidRPG instead of system libraries [[default=system lua]]], embedded_lua="$withval", embedded_lua=no)
+AC_ARG_ENABLE(rtprof,            [  --enable-rtprof             Enable the integration of the ingame real-time profiler [[default=no]]], want_rtprof="$enableval", want_rtprof=no)
 
 if test x$arch_native = xyes; then
 	CFLAGS="$CFLAGS -O3 -march=native -mtune=native"
@@ -184,6 +185,19 @@ AC_DEFINE(HAVE_LIBVORBIS,0, [Define to 1 if Vorbis libs were found])
 summary_sound="disabled"
 fi
 
+summary_rtprof="no"
+if test x$want_rtprof = xyes; then
+summary_rtprof="yes"
+AC_CHECK_LIB([rt], [clock_gettime],
+  AC_DEFINE(WITH_RTPROF, 1, [Define to 1 if rt lib were found and rtprof was enabled]),
+  AC_MSG_WARN([
+--------------------------------------------------
+librt (or clock_gettime) not found!
+The ingame real-time profiler will not be compiled.
+--------------------------------------------------])
+  summary_rtprof="no")
+fi
+
 if test x$bsd = xtrue; then
 	AC_CHECK_LIB([execinfo], [backtrace],, AC_MSG_WARN([
 --------------------------------------------------
@@ -267,11 +281,13 @@ AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile croppy/Makefile \
 
 AC_OUTPUT
 
-echo "Summary:
+echo "
+Summary:
 
 	use embedded Lua library (not system-wide):	$embedded_lua
 	compile with OpenGL support:	$summary_have_gl
-	compile with sound support:	$summary_sound"
+	compile with sound support:	$summary_sound
+	embed the real-time profiler:   $summary_rtprof"
 
 if test x$cross_compiling = xyes; then
 	echo "	cross-compiling detected, so will not build some subdirs"

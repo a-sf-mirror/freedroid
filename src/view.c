@@ -1833,6 +1833,10 @@ void AssembleCombatPicture(int mask)
 		User_Rect.w = GameConfig.screen_width - User_Rect.x;
 	}
 
+#ifdef WITH_RTPROF
+	rtprof_display();
+#endif
+
 	if (!(mask & NO_CURSOR))
 		blit_mouse_cursor();
 

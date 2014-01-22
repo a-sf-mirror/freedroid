@@ -15,6 +15,7 @@ doc: local-doc $(DOCSUBDIRS)
 local-doc:
 	@rm -f doxygen.log
 	doxygen Doxyfile
+	@cp *.png $(top_srcdir)/doxygen
 
 $(DOCSUBDIRS): 
 	$(MAKE) -C $(@:%-doc=%) $(AM_MAKEFLAGS) doc
