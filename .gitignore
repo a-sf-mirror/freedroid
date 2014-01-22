@@ -37,6 +37,8 @@ src/lvledit/.dirstamp
 src/mapgen/.dirstamp
 src/widgets/.dirstamp
 src/lua/.dirstamp
+doc/Doxyfile
+doc/manual/Doxyfile
 
 # Helpers
 TAGS
