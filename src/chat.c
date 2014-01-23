@@ -632,7 +632,7 @@ void chat_run()
 			switch (current_chat_context->state) {
 				case LOAD_INIT_SCRIPT:
 				{
-					widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
+					widget_text_init(chat_log, _("[n]--- Start of Dialog ---\n"));
 					current_chat_context->script_coroutine = prepare_lua_coroutine(LUA_DIALOG, "FDdialog", "run_init", NULL);
 					// next step
 					current_chat_context->state = RUN_INIT_SCRIPT;
@@ -641,7 +641,7 @@ void chat_run()
 				case LOAD_STARTUP_SCRIPT:
 				{
 					if (current_chat_context->npc->chat_character_initialized)
-						widget_text_init(chat_log, _("\3--- Start of Dialog ---\n"));
+						widget_text_init(chat_log, _("[n]--- Start of Dialog ---\n"));
 					current_chat_context->script_coroutine = prepare_lua_coroutine(LUA_DIALOG, "FDdialog", "run_startup", NULL);
 					// next step
 					current_chat_context->state = RUN_STARTUP_SCRIPT;

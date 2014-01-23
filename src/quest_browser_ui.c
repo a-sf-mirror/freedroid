@@ -62,12 +62,12 @@ static void quest_browser_append_mission_info(const char *mis_name, int full_des
 	int mis_num = GetMissionIndexByName(mis_name);
 	struct mission *mis = &Me.AllMissions[mis_num];
 
-	autostr_append(quest_browser_text, "\3%s \1%s\n\3", _("Quest:"),  _(mis->mission_name));
+	autostr_append(quest_browser_text, "[n]%s [r]%s\n[n]", _("Quest:"),  _(mis->mission_name));
 	
 	if (!full_description)
 		return;
 
-	autostr_append(quest_browser_text, "\3%s \2", _("Status:"));
+	autostr_append(quest_browser_text, "[n]%s [w]", _("Status:"));
 
 	const char *status;
 	if (mis->MissionIsComplete)
@@ -77,7 +77,7 @@ static void quest_browser_append_mission_info(const char *mis_name, int full_des
 	else
 		status = _("STILL OPEN");
 
-	autostr_append(quest_browser_text, "%s\n\3%s\n", status, _("Details:"));
+	autostr_append(quest_browser_text, "%s\n[n]%s\n", status, _("Details:"));
 
 	for (i = 0; i < MAX_MISSION_DESCRIPTION_TEXTS; i++) {
 		if (mis->mission_diary_texts[i]) {
@@ -243,7 +243,7 @@ static void print_statistics(void)
 		model = srt[counter];
 		//only show bot types the player has interacted with:
 		if (Me.damage_dealt[model] || Me.TakeoverSuccesses[model] || Me.TakeoverFailures[model] || Me.destroyed_bots[model]) {
-			autostr_append(quest_browser_text, "\1%s\2\n", Droidmap[model].default_short_description);
+			autostr_append(quest_browser_text, "[r]%s[w]\n", Droidmap[model].default_short_description);
 			statistics_browser_lines_needed[display] = get_lines_needed(quest_browser_text->value, mission_description_rect, 1);
 			if (stats_display[display++]) {
 				if (Droidmap[model].is_human) {
@@ -252,10 +252,10 @@ static void print_statistics(void)
 					autostr_append(quest_browser_text, _("Destroyed: [n]%d[w]\n"), Me.destroyed_bots[model]);
 					autostr_append(quest_browser_text, _("Takeovers: [n]%d[w]/[n]%d[w]/[n]"), Me.TakeoverSuccesses[model], Me.TakeoverFailures[model]);
 					if (Me.TakeoverSuccesses[model] + Me.TakeoverFailures[model])
-						autostr_append(quest_browser_text, "%d%%\2",
+						autostr_append(quest_browser_text, "%d%%[w]",
 							(100 * Me.TakeoverSuccesses[model])/(Me.TakeoverSuccesses[model] + Me.TakeoverFailures[model]));
 					else
-						autostr_append(quest_browser_text, " 0%%\2");
+						autostr_append(quest_browser_text, " 0%%[w]");
 					autostr_append(quest_browser_text, _(" (success/fail/ratio)\n"));
 				}
 				autostr_append(quest_browser_text, _("Damage: [n]%d[w] (dealt)\n"), Me.damage_dealt[model]);

@@ -1477,7 +1477,7 @@ int level_validation()
 		if (!level_exists(l)) {
 			// Empty level
 			char txt[40];
- 			sprintf(txt, "%03d: \2empty", l);
+			sprintf(txt, "%03d: [w]empty", l);
  			int lines = display_text_using_line_height(txt, col_pos, row_pos, &report_rect, 1.0);
  			row_pos += lines * row_height;
 			SetCurrentFont(current_font);	// Reset font
@@ -1493,14 +1493,14 @@ int level_validation()
 			char txt[40];
 			switch (validator_ctx.return_code) {
 			case VALIDATION_ERROR:
-				sprintf(txt, "\2%03d: \1fail", l);
+				sprintf(txt, "[w]%03d: [r]fail", l);
 				break;
 			case VALIDATION_WARNING:
-				sprintf(txt, "\2%03d: \3warn", l);
+				sprintf(txt, "[w]%03d: [n]warn", l);
 				break;
 			case VALIDATION_PASS:
 			default:
-				sprintf(txt, "\2%03d: \2pass", l);
+				sprintf(txt, "[w]%03d: [w]pass", l);
 				break;
 			}
 			int lines = display_text_using_line_height(txt, col_pos, row_pos, &report_rect, 1.0);
@@ -1529,12 +1529,12 @@ int level_validation()
 
 	if (final_rc != VALIDATION_PASS) {
 		posy -= row_height;
-		put_string_centered(FPS_Display_BFont, posy, "\1Some tests were invalid. See the report in the console\3");
+		put_string_centered(FPS_Display_BFont, posy, "[r]Some tests were invalid. See the report in the console[n]");
 	}
 
 	if (uncaught_excpt) {
 		posy -= row_height;
-		put_string_centered(FPS_Display_BFont, posy, "\1Some exceptions were not caught. See the report in the console\3");
+		put_string_centered(FPS_Display_BFont, posy, "[r]Some exceptions were not caught. See the report in the console[n]");
 	}
 
 	our_SDL_flip_wrapper();
