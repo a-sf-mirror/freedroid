@@ -1593,21 +1593,20 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	} move_type = NO_MOVE;
 
 	int shoot_target = FALSE;
-
-	// The bot and its target are on different levels. 
-	if (ThisRobot->pos.z != move_pos.z) {
-		// Before to start the attack, the bot has to reach its target's level.
-		// Hence, compute virtual position to reach, and wait until the bot is at
-		// the right level.
-		update_virtual_position(&move_pos, tpos, ThisRobot->pos.z);
-		move_type = REACH_MELEE;
-		shoot_target = FALSE;
-		goto EXECUTE_ATTACK;
-	}
-
 	int melee_weapon = ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_weapon_is_melee;
 
 	if (melee_weapon) {
+		// The bot and its target are on different levels.
+		if (ThisRobot->pos.z != move_pos.z) {
+			// Before to start the attack, the bot has to reach its target's level.
+			// Hence, compute virtual position to reach, and wait until the bot is at
+			// the right level.
+			update_virtual_position(&move_pos, tpos, ThisRobot->pos.z);
+			move_type = REACH_MELEE;
+			shoot_target = FALSE;
+			goto EXECUTE_ATTACK;
+		}
+
 		// Check visibility
 		int target_visible =
 		    DirectLineColldet(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, move_pos.x, move_pos.y, move_pos.z,
