@@ -231,7 +231,7 @@ end
 --! \memberof Lua::FDdialog::Dialog
 
 function FDdialog.Dialog.foreach_node(self, nodes, func)
-	for _,nodeid in ipairs(nodes) do
+	for idx,nodeid in ipairs(nodes) do
 		local node,i  = self:find_node(nodeid)
 		if (node) then
 			func(node)
@@ -320,7 +320,7 @@ function FDdialog.Dialog.new(name, filename)
 			else
 				gennodes = node_def.generator
 			end
-			for _,gennode_def in ipairs(gennodes) do
+			for i,gennode_def in ipairs(gennodes) do
 				_insert_node(gennode_def, node_def.topic or "")
 			end
 			gennodes = nil

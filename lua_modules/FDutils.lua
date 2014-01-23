@@ -62,13 +62,13 @@ function FDutils.system.scandir(subdir, filter, exclude)
 
 	if (files) then
 		-- transform the exclude list into a 'dictionary'
-		for _,v in ipairs(exclude) do
+		for i,v in ipairs(exclude) do
 			exclude_dict[v] = true
 		end
 
 		-- for each file in the directory, check if it matches the regexp
 		-- filter and if it is not in the exclude list
-		for _,file in ipairs(files) do
+		for i,file in ipairs(files) do
 			if ((file:match(filter) == file) and not exclude_dict[file]) then
 				filtered[#filtered + 1] = file
 			end

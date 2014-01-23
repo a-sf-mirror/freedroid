@@ -485,7 +485,7 @@ function get_random_bot_59()
 end
 
 function has_item(...)
-	for _,item in ipairs({...}) do
+	for i,item in ipairs({...}) do
 		if (not (count_item(item) > 0)) then
 			return false
 		end
