@@ -233,7 +233,7 @@ void GetQuestList(char *QuestListFilename)
 #define MISSION_TARGET_NAME_INITIALIZER "Mission Name=_\""
 
 #define MISSION_TARGET_KILL_ONE_STRING "Mission target is to kill droids with marker : "
-#define MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL "Mission target is to kill all hostile droids this first level : "
+#define MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL "Mission target is to kill all hostile droids on this level : "
 
 #define MISSION_ASSIGNMENT_LUACODE_STRING "Assignment LuaCode={"
 #define MISSION_COMPLETION_LUACODE_STRING "Completion LuaCode={"

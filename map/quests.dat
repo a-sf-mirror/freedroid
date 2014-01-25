@@ -86,7 +86,7 @@ Completion LuaCode={
 +++ Clean out the first level of the warehouse
 +++
 Mission Name=_"Opening a can of bots..."
-Mission target is to kill all hostile droids this first level : 1
+Mission target is to kill all hostile droids on this level : 1
 Completion LuaCode={ update_quest(_"Opening a can of bots...", _"The first level of the warehouse has been cleared of bots; Dixon's men can now safely retrieve the supplies from here.") }
 ** End of this mission target subsection **
 
@@ -95,7 +95,7 @@ Completion LuaCode={ update_quest(_"Opening a can of bots...", _"The first level
 +++ Clean out the second level under Kevins station
 +++
 Mission Name=_"And there was light..."
-Mission target is to kill all hostile droids this first level : 18
+Mission target is to kill all hostile droids on this level : 18
 Completion LuaCode={
 	update_quest(_"And there was light...", _"Hope everything is back to normal now. I better go check with Kevin.")
 	display_console_message(_"All hostiles on level disabled.")
@@ -245,7 +245,7 @@ Completion LuaCode={ display_console_message(_"Tutorial Upgrading Items finished
 +++ Clean out the old server room
 +++
 Mission Name=_"Droids are my friends"
-Mission target is to kill all hostile droids this first level : 58
+Mission target is to kill all hostile droids on this level : 58
 Completion LuaCode={ update_quest(_"Droids are my friends", _"The old server room is now secured.") }
 ** End of this mission target subsection **
 
