@@ -48,6 +48,7 @@ static char *get_current_skill_button_tooltip()
 	if (!buffer)
 		buffer = alloc_autostr(64);
 
+	// L10N Hint: Tooltip of skill button: <skill name>\n Heat: <skill heat cost>\n Revision: <skill revision>
 	autostr_printf(buffer, _("%s\nHeat: %d\nRevision: %d\n"), SpellSkillMap[Me.readied_skill].name, calculate_program_heat_cost(Me.readied_skill), Me.skill_level[Me.readied_skill]);
 
 	return buffer->value;
@@ -100,7 +101,7 @@ static void current_ammo_update(struct widget *w)
 	if (Me.busy_type == WEAPON_RELOAD)
 		autostr_printf(text, _("reloading"));
 	else if (!Me.weapon_item.ammo_clip)
-		autostr_printf(text, _("%s EMPTY"), font_switchto_red);
+		autostr_printf(text, _("[r]EMPTY"));
 	else
 		autostr_printf(text, "%5d / %2d", Me.weapon_item.ammo_clip, ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size);
 }

@@ -127,35 +127,45 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 
 	// Weapon damage
 	if (ItemMap[item->type].slot == WEAPON_SLOT) {
-		autostr_append(str, _("Damage: %d"), item->damage);
-		if (item->damage_modifier)
-			autostr_append(str, _(" to %d"), item->damage_modifier + item->damage);
-		autostr_append(str, "\n");
+		if (item->damage_modifier) {
+			// L10N Hint: On item description: range
+			autostr_append(str, _("Damage: %d to %d\n"), item->damage, item->damage_modifier + item->damage);
+		} else {
+			// L10N Hint: On item description
+			autostr_append(str, _("Damage: %d\n"), item->damage);
+		}
 	}
 	// Multiplicity
 	if (ItemMap[item->type].item_group_together_in_inventory) {
+		// L10N Hint: On item description
 		autostr_append(str, _("Multiplicity: %d\n"), item->multiplicity);
 	}
 	// Armor bonus
 	if (item->armor_class) {
-			autostr_append(str, _("Armor: %d\n"), item->armor_class);
+		// L10N Hint: On item description: Armor bonus
+		autostr_append(str, _("Armor: %d\n"), item->armor_class);
 	}
 	// Durability or indestructible status
 	if (item->max_durability != (-1)) {
+		// L10N Hint: On item description: 'current' of 'maximum'
 		autostr_append(str, _("Durability: %d of %d\n"), (int)item->current_durability, (int)item->max_durability);
 	} else if (ItemMap[item->type].base_item_durability != (-1)) {
+		// L10N Hint: On item description : durability
 		autostr_append(str, _("Indestructible\n"));
 	}
 	// Ranged weapon ammunition
 	if (ItemMap[item->type].item_gun_ammo_clip_size) {
+		// L10N Hint: On item description: 'current' of 'maximum' amount of ammo
 		autostr_append(str, _("Ammo: %d of %d\n"), item->ammo_clip, ItemMap[item->type].item_gun_ammo_clip_size);
 	}
 	// Strength, dexterity or cooling requirements
 	if ((ItemMap[item->type].item_require_strength != (-1)) || (ItemMap[item->type].item_require_dexterity != (-1))) {
 		if (ItemMap[item->type].item_require_strength != (-1)) {
+			// L10N Hint: On item description
 			autostr_append(str, _("Required strength: %d\n"), ItemMap[item->type].item_require_strength);
 		}
 		if (ItemMap[item->type].item_require_dexterity != (-1)) {
+			// L10N Hint: On item description
 			autostr_append(str, _("Required dexterity: %d\n"), ItemMap[item->type].item_require_dexterity);
 		}
 	}
@@ -177,6 +187,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 
 	// Socket count
 	if (item->upgrade_sockets.size) {
+		// L10N Hint: On item description: 'used sockets' / 'number of sockets'
 		autostr_append(str, _("Sockets: used %d/%d\n"), count_used_sockets(item), 
 							     item->upgrade_sockets.size);
 	}
@@ -388,13 +399,13 @@ static void prepare_text_window_content(struct auto_string *str)
 			gps obst_vpos;
 			update_virtual_position(&obst_vpos, &(obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].pos), Me.pos.z);
 			if (obst_vpos.x != -1) {
-				const char *label =  _(get_obstacle_spec(obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type)->label);
+				char *label =  D_(get_obstacle_spec(obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type)->label);
 				if (!label) {
 					ErrorMessage(__FUNCTION__, "Obstacle type %d is clickable, and as such requires a label to be displayed on mouseover.\n", PLEASE_INFORM, IS_WARNING_ONLY, obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type);
-					label = "No label for this obstacle";
+					label = _("No label for this obstacle");
 				}
 
-				autostr_printf(str, "%s", label);
+				autostr_printf(str, label);
 				best_banner_pos_x = translate_map_point_to_screen_pixel_x(obst_vpos.x, obst_vpos.y) + 50;
 				best_banner_pos_y = translate_map_point_to_screen_pixel_y(obst_vpos.x, obst_vpos.y) - 20;
 			}
@@ -647,6 +658,7 @@ static void show_top_right_text(void)
 		if (GameConfig.Draw_Position) {
 			sprintf(level_name_and_time, "%s (%03.1f:%03.1f:%d)  ",
 				D_(curShip.AllLevels[Me.pos.z]->Levelname), Me.pos.x, Me.pos.y, Me.pos.z);
+			// L10N Hint: In-game date: Day <day number> <hour>:<minute>
 			sprintf(temp_text, _("Day %d  %02d:%02d"),
 				get_days_of_game_duration(Me.current_game_date),
 				get_hours_of_game_duration(Me.current_game_date), get_minutes_of_game_duration(Me.current_game_date));

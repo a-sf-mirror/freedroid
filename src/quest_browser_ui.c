@@ -62,12 +62,12 @@ static void quest_browser_append_mission_info(const char *mis_name, int full_des
 	int mis_num = GetMissionIndexByName(mis_name);
 	struct mission *mis = &Me.AllMissions[mis_num];
 
-	autostr_append(quest_browser_text, "[n]%s [r]%s\n[n]", _("Quest:"),  _(mis->mission_name));
+	autostr_append(quest_browser_text, _("[n]Quest [r]%s\n[n]"), mis->mission_name);
 	
 	if (!full_description)
 		return;
 
-	autostr_append(quest_browser_text, "[n]%s [w]", _("Status:"));
+	autostr_append(quest_browser_text, _("[n]Status [w]"));
 
 	const char *status;
 	if (mis->MissionIsComplete)
@@ -204,13 +204,16 @@ static void print_statistics(void)
 	statistics_browser_lines_needed[display] = get_lines_needed(quest_browser_text->value, mission_description_rect, 1);
 	if (stats_display[display++]) {
 		if (fav_destroyed != -1) {
-			autostr_append(quest_browser_text, _("Attacking: [n]%s[w] ([n]%i[w] "),
-				Droidmap[fav_destroyed].default_short_description, Me.destroyed_bots[fav_destroyed]);
 			if (Droidmap[fav_destroyed].is_human)
-				autostr_append(quest_browser_text, _("killed,"));
+				autostr_append(quest_browser_text, _("Attacking: [n]%s[w] ([n]%i[w] killed, [n]%i[w] DP)\n"),
+				               Droidmap[fav_destroyed].default_short_description,
+				               Me.destroyed_bots[fav_destroyed],
+				               Me.damage_dealt[fav_destroyed]);
 			else
-				autostr_append(quest_browser_text, _("destroyed,"));
-			autostr_append(quest_browser_text, _(" [n]%i[w] DP)\n"), Me.damage_dealt[fav_destroyed]);
+				autostr_append(quest_browser_text, _("Attacking: [n]%s[w] ([n]%i[w] destroyed, [n]%i[w] DP)\n"),
+				               Droidmap[fav_destroyed].default_short_description,
+				               Me.destroyed_bots[fav_destroyed],
+				               Me.damage_dealt[fav_destroyed]);
 		} else
 			autostr_append(quest_browser_text, _("Attacking: no droids destroyed\n"));
 

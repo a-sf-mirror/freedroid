@@ -1163,7 +1163,7 @@ void InitFreedroid(int argc, char **argv)
 
 	next_startup_percentage(100);
 	if (strstr(VERSION, "rc") && !do_benchmark)
-		alert_window("%s", _("You are playing a Release Candidate.\nStrange bugs may still be present in the game.\nPlease report any issues you find to our bugtracker at http://bugs.freedroid.org/\nThank you for helping us test the game.\n\nGood luck!\n"));
+		alert_window(_("You are playing a Release Candidate.\nStrange bugs may still be present in the game.\nPlease report any issues you find to our bugtracker at http://bugs.freedroid.org/\nThank you for helping us test the game.\n\nGood luck!\n"));
 
 };				// void InitFreedroid ( void ) 
 

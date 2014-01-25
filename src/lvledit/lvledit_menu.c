@@ -101,31 +101,19 @@ void EditLevelDimensions(void)
 		InitiateMenu("--EDITOR_BACKGROUND--");
 
 		i = 0;
-		sprintf(Options[i], _("North"));
-		strcat(Options[i], " ");
-		strcat(Options[i], _("Edge"));
-		strcat(Options[i], ": -/+  (<-/->)");
+		sprintf(Options[i], _("North Edge: -/+  (<-/->)"));
 		MenuTexts[i] = Options[i];
 		i++;
 
-		sprintf(Options[i], _("East"));
-		strcat(Options[i], " ");
-		strcat(Options[i], _("Edge"));
-		strcat(Options[i], ": -/+  (<-/->)");
+		sprintf(Options[i], _("East Edge: -/+  (<-/->)"));
 		MenuTexts[i] = Options[i];
 		i++;
 
-		sprintf(Options[i], _("South"));
-		strcat(Options[i], " ");
-		strcat(Options[i], _("Edge"));
-		strcat(Options[i], ": -/+  (<-/->)");
+		sprintf(Options[i], _("South Edge: -/+  (<-/->)"));
 		MenuTexts[i] = Options[i];
 		i++;
 
-		sprintf(Options[i], _("West"));
-		strcat(Options[i], " ");
-		strcat(Options[i], _("Edge"));
-		strcat(Options[i], ": -/+  (<-/->)");
+		sprintf(Options[i], _("West Edge: -/+  (<-/->)"));
 		MenuTexts[i] = Options[i];
 		i++;
 
@@ -238,32 +226,16 @@ static void SetLevelInterfaces(void)
 
 		i = 0;
 
-		sprintf(Options[i], _("Neighbor level"));
-		strcat(Options[i], " ");
-		strcat(Options[i], _("North"));
-		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel->jump_target_north);
-		strcat(Options[i], Options[i + 1]);
+		sprintf(Options[i], _("Neighbor level North: %d.  (<-/->)"), EditLevel->jump_target_north);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Neighbor level"));
-		strcat(Options[i], " ");
-		strcat(Options[i], _("East"));
-		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel->jump_target_east);
-		strcat(Options[i], Options[i + 1]);
+		sprintf(Options[i], _("Neighbor level East: %d.  (<-/->)"), EditLevel->jump_target_east);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Neighbor level"));
-		strcat(Options[i], " ");
-		strcat(Options[i], _("South"));
-		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel->jump_target_south);
-		strcat(Options[i], Options[i + 1]);
+		sprintf(Options[i], _("Neighbor level South: %d.  (<-/->)"), EditLevel->jump_target_south);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Neighbor level"));
-		strcat(Options[i], " ");
-		strcat(Options[i], _("West"));
-		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel->jump_target_west);
-		strcat(Options[i], Options[i + 1]);
+		sprintf(Options[i], _("Neighbor level West: %d.  (<-/->)"), EditLevel->jump_target_west);
 		MenuTexts[i] = Options[i];
 		i++;
 		MenuTexts[i++] = _("Back");
@@ -482,7 +454,7 @@ static void AddRemLevel(void)
 				action_jump_to_level_center(new_level_num);
 			}
 			else      //curShip.num_levels >= MAX_LEVELS
-				alert_window("%s", _("Reached the maximum number of levels."));
+				alert_window(_("Reached the maximum number of levels."));
 			break;
 		case REMOVE_CURRENT_LEVEL:
 			if (game_root_mode == ROOT_IS_GAME)
@@ -491,7 +463,7 @@ static void AddRemLevel(void)
 				SDL_Delay(1);
 
 			if (EditLevel()->levelnum == 0) {
-				alert_window("%s", _("Cannot remove level number 0.\n"));
+				alert_window(_("Cannot remove level number 0.\n"));
 				break;
 			}
 
@@ -560,56 +532,48 @@ static void LevelOptions(void)
 		InitiateMenu("--EDITOR_BACKGROUND--");
 
 		i = 0;
-		sprintf(Options[i], _("Level"));
-		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel()->levelnum);
-		strcat(Options[i], Options[i + 1]);
+		sprintf(Options[i], _("Level: %d.  (<-/->)"), EditLevel()->levelnum);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Name"));
-		sprintf(Options[i + 1], ": %s", EditLevel()->Levelname);
-		strcat(Options[i], Options[i + 1]);
+		sprintf(Options[i], _("Name: %s"), EditLevel()->Levelname);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Size"));
-		sprintf(Options[i + 1], ":  X %d  Y %d ", EditLevel()->xlen, EditLevel()->ylen);
-		strcat(Options[i], Options[i + 1]);
+		sprintf(Options[i], _("Size:  X %d  Y %d"), EditLevel()->xlen, EditLevel()->ylen);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Floor layers"));
-		sprintf(Options[i + 1], ":  %d", EditLevel()->floor_layers);
-		strcat(Options[i], Options[i + 1]);
+		sprintf(Options[i], _("Floor layers:  %d"), EditLevel()->floor_layers);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Edge"));
-		strcat(Options[i], " ");
-		sprintf(Options[i + 1], _("Interface"));
-		strcat(Options[i], Options[i + 1]);
-		strcat(Options[i], ":");
+		sprintf(Options[i], _("Edge Interface: "));
 		if (EditLevel()->jump_target_north == -1 && EditLevel()->jump_target_east == -1
 		    && EditLevel()->jump_target_south == -1 && EditLevel()->jump_target_west == -1) {
-			strcat(Options[i], " none");
+			strcat(Options[i], _("none"));
 		} else {
 			if (EditLevel()->jump_target_north != -1)
-				sprintf(Options[i] + strlen(Options[i]), "  N: %d", EditLevel()->jump_target_north);
+				sprintf(Options[i] + strlen(Options[i]), _(" N: %d"), EditLevel()->jump_target_north);
 			if (EditLevel()->jump_target_east != -1)
-				sprintf(Options[i] + strlen(Options[i]), "  E: %d", EditLevel()->jump_target_east);
+				sprintf(Options[i] + strlen(Options[i]), _(" E: %d"), EditLevel()->jump_target_east);
 			if (EditLevel()->jump_target_south != -1)
-				sprintf(Options[i] + strlen(Options[i]), "  S: %d", EditLevel()->jump_target_south);
+				sprintf(Options[i] + strlen(Options[i]), _(" S: %d"), EditLevel()->jump_target_south);
 			if (EditLevel()->jump_target_west != -1)
-				sprintf(Options[i] + strlen(Options[i]), "  W: %d", EditLevel()->jump_target_west);
+				sprintf(Options[i] + strlen(Options[i]), _(" W: %d"), EditLevel()->jump_target_west);
 
 		}
 		MenuTexts[i] = Options[i];
 		i++;
 
-		sprintf(Options[i], "%s: %s", _("Random dungeon"),
-			EditLevel()->random_dungeon == 2 ? _("2 connections") : EditLevel()->random_dungeon ==
-			1 ? _("1 connection") : _("no"));
+		if (EditLevel()->random_dungeon == 2) {
+			sprintf(Options[i], _("Random dungeon: 2 connections"));
+		} else if (EditLevel()->random_dungeon == 1) {
+			sprintf(Options[i], _("Random dungeon: 1 connection"));
+		} else {
+			sprintf(Options[i], _("Random dungeon; no"));
+		}
 		MenuTexts[i] = Options[i];
 		i++;
 
 		droid_types = EditLevel()->random_droids.types;
-		sprintf(Options[i], "Random droids: %d Types: ", EditLevel()->random_droids.nr);
+		sprintf(Options[i], _("Random droids: %d Types: "), EditLevel()->random_droids.nr);
 		for (j = 0; j < EditLevel()->random_droids.types_size; j++) {
 				if (j)
 					strcat(Options[i], ", ");
@@ -623,9 +587,7 @@ static void LevelOptions(void)
 		MenuTexts[i] = Options[i];
 		i++;
 
-		sprintf(Options[i], _("Item drop class for obstacles"));
-		sprintf(Options[i + 1], ": %d.  (<-/->)", EditLevel()->drop_class);
-		strcat(Options[i], Options[i + 1]);
+		sprintf(Options[i], _("Item drop class for obstacles: %d.  (<-/->)"), EditLevel()->drop_class);
 		MenuTexts[i] = Options[i];
 		i++;
 
@@ -639,9 +601,7 @@ static void LevelOptions(void)
 		MenuTexts[i] = Options[i];
 		i++;
 
-		sprintf(Options[i], _("Light"));
-		strcat(Options[i], ":  ");
-		strcat(Options[i], _("Ambient"));
+		sprintf(Options[i], _("Light:  Ambient"));
 		if (l == 0) {
 			sprintf(Options[i + 1], " [%d]  ", EditLevel()->minimum_light_value);
 			strcat(Options[i], Options[i + 1]);
@@ -663,8 +623,7 @@ static void LevelOptions(void)
 		strcat(Options[i], Options[i + 1]);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Infinite Running Stamina"));
-		strcat(Options[i], ": ");
+		sprintf(Options[i], _("Infinite Running Stamina: "));
 		if (EditLevel()->infinite_running_on_this_level)
 			strcat(Options[i], _("yes"));
 		else
@@ -1028,9 +987,7 @@ int DoLevelEditorMainMenu()
 		InitiateMenu("--EDITOR_BACKGROUND--");
 
 		i = 0;
-		sprintf(Options[i], _("Level"));
-		sprintf(Options[i + 1], ": %d - %s", EditLevel()->levelnum, EditLevel()->Levelname);
-		strcat(Options[i], Options[i + 1]);
+		sprintf(Options[i], _("Level: %d - %s"), EditLevel()->levelnum, EditLevel()->Levelname);
 		MenuTexts[i] = Options[i];
 		i++;
 		MenuTexts[i++] = _("Level Options");
@@ -1045,7 +1002,7 @@ int DoLevelEditorMainMenu()
 			//              MenuTexts[i++] = " ";
 		}
 		MenuTexts[i++] = _("Continue Editing");
-                MenuTexts[i++] = _("Show Help");
+		MenuTexts[i++] = _("Show Help");
 		MenuTexts[i++] = _("Quit to Main Menu");
 		MenuTexts[i++] = _("Exit FreedroidRPG");
 		MenuTexts[i++] = "";

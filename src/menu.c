@@ -94,18 +94,17 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 	if (!strcmp(MenuTexts[0], SINGLE_PLAYER_STRING)) {
 		put_string_right(FPS_Display_BFont, GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), freedroid_version);
 		// printf ("\n%s %s  \n", PACKAGE, VERSION);
-		sprintf(open_gl_string, _("OpenGL support compiled: "));
 #ifdef HAVE_LIBGL
-		strcat(open_gl_string, _(" YES "));
+		sprintf(open_gl_string, _("OpenGL support compiled: YES"));
 #else
-		strcat(open_gl_string, _(" NO "));
+		sprintf(open_gl_string, _("OpenGL support compiled: NO"));
 #endif
 		put_string_left(FPS_Display_BFont, GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), open_gl_string);
 		sprintf(open_gl_string, _("OpenGL output active: "));
 		if (use_open_gl)
-			strcat(open_gl_string, _(" YES "));
+			sprintf(open_gl_string, _("OpenGL output active: YES"));
 		else
-			strcat(open_gl_string, _(" NO "));
+			sprintf(open_gl_string, _("OpenGL output active: NO"));
 		put_string_left(FPS_Display_BFont, GameConfig.screen_height - FontHeight(GetCurrentFont()), open_gl_string);
 	}
 	// Now that the possible font-changing small info printing is
@@ -853,7 +852,7 @@ static int Game_handle(int n)
 	case DIFFICULTY:
 		GameConfig.difficulty_level++;
 		GameConfig.difficulty_level %= 3;
-		alert_window("%s", _("You need to restart FreedroidRPG for the difficulty change to take effect.\n\nSorry for the inconvenience."));
+		alert_window("%s", _("You need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience."));
 		return CONTINUE_MENU;
 	case LEAVE_MENU:
 		return EXIT_MENU;
@@ -866,9 +865,9 @@ static int Game_handle(int n)
 static void Game_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	const char *difficulty_str[] = {
-		[DIFFICULTY_EASY] = "easy",
-		[DIFFICULTY_NORMAL] = "normal",
-		[DIFFICULTY_HARD] = "hard",
+		[DIFFICULTY_EASY] = N_("easy"),
+		[DIFFICULTY_NORMAL] = N_("normal"),
+		[DIFFICULTY_HARD] = N_("hard"),
 	};
 
 	sprintf(MenuTexts[0], _("Difficulty: %s"), _(difficulty_str[GameConfig.difficulty_level]));
@@ -1144,26 +1143,15 @@ static void Graphics_fill(char *MenuTexts[MAX_MENU_ITEMS])
 	int i = 0;
 	sprintf(MenuTexts[i++], _("Change screen resolution"));
 
-	sprintf(Options[i], _("Fullscreen mode"));
-	sprintf(Options[i + 1], ": %s", GameConfig.fullscreen_on ? _("ON") : _("OFF"));
-
-	strcat(Options[i], Options[i + 1]);
-
+	sprintf(Options[i], _("Fullscreen mode: %s"), GameConfig.fullscreen_on ? _("ON") : _("OFF"));
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("<-- Gamma correction"));
-	sprintf(Options[i + 1], ": %1.2f -->", GameConfig.current_gamma_correction);
 
-	strcat(Options[i], Options[i + 1]);
-
+	sprintf(Options[i], _("<-- Gamma correction: %1.2f -->"), GameConfig.current_gamma_correction);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("Show blood"));
 
-	sprintf(Options[i + 1], ": %s", GameConfig.show_blood ? _("YES") : _("NO"));
-
-	strcat(Options[i], Options[i + 1]);
-
+	sprintf(Options[i], _("Show blood: %s"), GameConfig.show_blood ? _("YES") : _("NO"));
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
 
@@ -1253,36 +1241,34 @@ static void Sound_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(Options[i], _("<-- Background music volume"));
-	sprintf(Options[i + 1], ": %1.2f -->", GameConfig.Current_BG_Music_Volume);
-	strcat(Options[i], Options[i + 1]);
+	sprintf(Options[i], _("<-- Background music volume: %1.2f -->"), GameConfig.Current_BG_Music_Volume);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("<-- Sound effects volume"));
-	sprintf(Options[i + 1], ": %1.2f -->", GameConfig.Current_Sound_FX_Volume);
-	strcat(Options[i], Options[i + 1]);
+
+	sprintf(Options[i], _("<-- Sound effects volume: %1.2f -->"), GameConfig.Current_Sound_FX_Volume);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("<-- Output"));
+
 	switch (GameConfig.Current_Sound_Output_Fmt) {
 	case SOUND_OUTPUT_FMT_STEREO:
-		strcat(Options[i], _(": Stereo -->"));
+		sprintf(Options[i], _("<-- Output: Stereo -->"));
 		break;
 
 	case SOUND_OUTPUT_FMT_SURROUND40:
-		strcat(Options[i], _(": 4.0 Surround -->"));
+		sprintf(Options[i], _("<-- Output: 4.0 Surround -->"));
 		break;
 
 	case SOUND_OUTPUT_FMT_SURROUND51:
-		strcat(Options[i], _(": 5.1 Surround -->"));
+		sprintf(Options[i], _("<-- Output: 5.1 Surround -->"));
 		break;
 		
 	default:
-		strcat(Options[i], _(": Error -->"));
+		sprintf(Options[i], _("<-- Output: Error -->"));
 		break;
 	}
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
+
 	strncpy(MenuTexts[i++], _("Back"), 1024);
 	MenuTexts[i++][0] = '\0';
 }
@@ -1330,19 +1316,13 @@ static void Performance_fill(char *MenuTexts[])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(Options[i], _("Limit framerate (powersaving)"));
-	sprintf(Options[i + 1], ": %s", GameConfig.limit_framerate ? _("YES") : _("NO"));
-	strcat(Options[i], Options[i + 1]);
+	sprintf(Options[i], _("Limit framerate (powersaving): %s"), GameConfig.limit_framerate ? _("YES") : _("NO"));
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("Show light radius"));
-	sprintf(Options[i + 1], ": %s", GameConfig.skip_light_radius ? _("NO") : _("YES"));
-	strcat(Options[i], Options[i + 1]);
+	sprintf(Options[i], _("Show light radius: %s"), GameConfig.skip_light_radius ? _("NO") : _("YES"));
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("Show obstacle shadows"));
-	sprintf(Options[i + 1], ": %s", GameConfig.skip_shadow_blitting ? _("NO") : _("YES"));
-	strcat(Options[i], Options[i + 1]);
+	sprintf(Options[i], _("Show obstacle shadows: %s"), GameConfig.skip_shadow_blitting ? _("NO") : _("YES"));
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
 	strncpy(MenuTexts[i++], _("Back"), 1024);
@@ -1443,9 +1423,7 @@ static void Droid_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(Options[i], _("Show enemies' states"));
-	sprintf(Options[i + 1], ": %s", GameConfig.All_Texts_Switch ? _("YES") : _("NO"));
-	strcat(Options[i], Options[i + 1]);
+	sprintf(Options[i], _("Show enemies' states: %s"), GameConfig.All_Texts_Switch ? _("YES") : _("NO"));
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
 	strncpy(MenuTexts[i++], _("Back"), 1024);

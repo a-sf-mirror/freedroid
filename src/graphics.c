@@ -227,6 +227,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 			item_description.text = alloc_autostr(100);
 			autostr_append(item_description.text, "%d\n", knob_at);
 			if (unit_price) {
+				// L10N Hint: Used on object selector's widget to display unit price * number of objects
 				autostr_append(item_description.text, _("%d price\n"), unit_price * knob_at);
 			}
 			old_knob_at = knob_at;

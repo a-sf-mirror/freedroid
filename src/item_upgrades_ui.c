@@ -168,7 +168,15 @@ static void show_socket_creation_menu()
 	int i;
 	char buffer[64];
 	point cursor;
-	const char *names[] = { _("Electric"), _("Mechanical"), _("Universal"), _("Cancel") };
+	const char *names[] = {
+			// L10N Hint: Socket's type
+			_("Electric"),
+			// L10N Hint: Socket's type
+			_("Mechanical"),
+			// L10N Hint: Socket's type
+			_("Universal"),
+			// L10N Hint: Cancel socket's type choice menu
+			_("Cancel") };
 	const int costs[] = { ELECTRIC_SOCKET_COST, MECHANICAL_SOCKET_COST, UNIVERSAL_SOCKET_COST, -1 };
 
 	// Get the position of the cursor for mouse hover tests.

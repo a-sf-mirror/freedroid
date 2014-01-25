@@ -367,6 +367,7 @@ void UpdateCountersForThisFrame()
 		if (Me.energy - lose_life < 1 && Me.paralyze_duration == 0) {
 			DoSkill(get_program_index_with_name("Emergency shutdown"),
 				calculate_program_heat_cost(get_program_index_with_name("Emergency shutdown")));
+			// L10N Hint: Screen message, displayed below 'Automatically shutting down'
 			SetNewBigScreenMessage(_("due to near lethal overheating"));
 			SetNewBigScreenMessage(_("Automatically shutting down"));
 			lose_life = (Me.temperature - Me.max_temperature) * latest_frame_time / 10;

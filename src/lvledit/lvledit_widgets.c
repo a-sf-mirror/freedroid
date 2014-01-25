@@ -51,46 +51,46 @@ typedef struct {
 } object_category;
 
 static object_category obstacle_category_list[] = {
-	{ "wall", &wall_tiles_list },
-	{ "furniture", &furniture_tiles_list },
-	{ "machinery", &machinery_tiles_list },
-	{ "container", &container_tiles_list },
-	{ "nature", &nature_tiles_list },
-	{ "other", &misc_tiles_list },
-	{ "all", &all_obstacles_list }
+	{ N_("wall"), &wall_tiles_list },
+	{ N_("furniture"), &furniture_tiles_list },
+	{ N_("machinery"), &machinery_tiles_list },
+	{ N_("container"), &container_tiles_list },
+	{ N_("nature"), &nature_tiles_list },
+	{ N_("other"), &misc_tiles_list },
+	{ N_("all"), &all_obstacles_list }
 };
 
 static object_category floor_category_list[] = {
-	{ "sidewalk", &sidewalk_floor_list },
-	{ "water", &water_floor_list },
-	{ "grass", &grass_floor_list },
-	{ "square", &square_floor_list },
-	{ "sand", &sand_floor_list },
-	{ "other", &other_floor_list },
-	{ "all", &floor_tiles_list }
+	{ N_("sidewalk"), &sidewalk_floor_list },
+	{ N_("water"), &water_floor_list },
+	{ N_("grass"), &grass_floor_list },
+	{ N_("square"), &square_floor_list },
+	{ N_("sand"), &sand_floor_list },
+	{ N_("other"), &other_floor_list },
+	{ N_("all"), &floor_tiles_list }
 };
 
 static object_category item_category_list[] = {
-	{ "melee", &melee_items_list },
-	{ "gun", &gun_items_list },
-	{ "defensive", &defense_items_list },
-	{ "useable", &spell_items_list },
-	{ "other", &other_items_list },
-	{ "all", &all_items_list }
+	{ N_("melee"), &melee_items_list },
+	{ N_("gun"), &gun_items_list },
+	{ N_("defensive"), &defense_items_list },
+	{ N_("useable"), &spell_items_list },
+	{ N_("other"), &other_items_list },
+	{ N_("all"), &all_items_list }
 };
 
 static object_category waypoint_category_list[] = {
-	{ "all", &waypoint_list }
+	{ N_("all"), &waypoint_list }
 };
 
 static object_category map_label_category_list[] = {
-	{ "all", &map_label_list }
+	{ N_("all"), &map_label_list }
 };
 
 static object_category enemy_category_list[] = {
-	{ "droids", &droid_enemies_list },
-	{ "humans", &human_enemies_list },
-	{ "all", &all_enemies_list },
+	{ N_("droids"), &droid_enemies_list },
+	{ N_("humans"), &human_enemies_list },
+	{ N_("all"), &all_enemies_list },
 };
 
 static struct {

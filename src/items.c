@@ -737,6 +737,7 @@ void ApplyItem(item * CurItem)
 		default:
 			msg = _("You are doing something so weird the game does not understand what it is");
 		}
+		// L10N Hint: the trailing %s is what the player is currently already doing (drinking, running a program, ...)
 		append_new_game_message(_("How do you expect to do two things at a time? %s"), msg);
 		return;		//if the player is busy reloading or anything
 	}
@@ -801,6 +802,7 @@ void ApplyItem(item * CurItem)
 		if(failed_usage == 0) {
 			Play_Spell_ForceToEnergy_Sound();
 		} else {
+			// L10N Hint: the trailing %s is a program name
 			append_new_game_message(_("You have reached the maximum skill level for %s"), 
 									ItemMap[CurItem->type].right_use.add_skill);
 			Takeover_Game_Deadlock_Sound();
@@ -2031,14 +2033,14 @@ int try_give_item(item *ItemPointer)
 const char *ammo_desc_for_weapon(int type) {
 	const char *ammo_desc[] = {
 		"", // no ammunition
-		_("Laser power pack"),
-		_("Plasma energy container"),
-		_("2 mm Exterminator Ammunition"),
-		_(".22 LR Ammunition"),
-		_("Shotgun shells"),
-		_("9x19mm Ammunition"),
-		_("7.62x39mm Ammunition"),
-		_(".50 BMG (12.7x99mm) Ammunition"),
+		N_("Laser power pack"),
+		N_("Plasma energy container"),
+		N_("2 mm Exterminator Ammunition"),
+		N_(".22 LR Ammunition"),
+		N_("Shotgun shells"),
+		N_("9x19mm Ammunition"),
+		N_("7.62x39mm Ammunition"),
+		N_(".50 BMG (12.7x99mm) Ammunition"),
 	};
 
 	itemspec *weapon = &ItemMap[type];

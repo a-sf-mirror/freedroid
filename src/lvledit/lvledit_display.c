@@ -64,6 +64,7 @@ int lvledit_set_zoomfact(float zf)
  */
 static void gps_show() {
 	static char gps_text[200];
+	// L10N Hint: Used to display a GPS position (X=10.5 Y=34.3 L=12 layer=1)
 	snprintf(gps_text, sizeof(gps_text) - 1, _(" X=%3.1f Y=%3.1f L=%d layer=%d\n"), Me.pos.x, Me.pos.y, Me.pos.z, current_floor_layer);
 	display_text_using_line_height(gps_text, User_Rect.x + 1, GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), NULL /*&User_Rect */ , 1.0);
 }

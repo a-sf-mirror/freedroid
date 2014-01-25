@@ -299,8 +299,9 @@ static void fill_item_description(struct widget_text *desc, item *show_item, int
 		}
 
 		if (ItemMap[show_item->type].item_group_together_in_inventory) {
-			autostr_append(desc->text, _("Price per unit: %s%d%s\n"), buyone_highlight, price, font_switchto_neon);
-			autostr_append(desc->text, _("%s all: %s%d%s\n"), action, buyall_highlight, price * show_item->multiplicity, font_switchto_neon);
+			autostr_append(desc->text, _("Price per unit: %s%d%s\n%s all: %s%d%s\n"),
+			               buyone_highlight, price, font_switchto_neon,
+			               action, buyall_highlight, price * show_item->multiplicity, font_switchto_neon);
 		} else {
 			autostr_append(desc->text, _("%s Price: %s%d%s\n"), action, buyone_highlight, price, font_switchto_neon);
 		}
@@ -334,7 +335,7 @@ static void fill_item_description(struct widget_text *desc, item *show_item, int
 
 	if (info->item_gun_use_ammunition)
 		autostr_append(desc->text, _("\nThis weapon requires %s."),
-					   ammo_desc_for_weapon(show_item->type));
+					   _(ammo_desc_for_weapon(show_item->type)));
 }
 
 /**
