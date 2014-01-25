@@ -232,7 +232,7 @@ void GetQuestList(char *QuestListFilename)
 
 #define MISSION_TARGET_NAME_INITIALIZER "Mission Name=_\""
 
-#define MISSION_TARGET_KILL_ONE_STRING "Mission target is to kill droids with marker : "
+#define MISSION_TARGET_KILL_MARKER "Mission target is to kill droids with marker : "
 #define MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL "Mission target is to kill all hostile droids on this level : "
 
 #define MISSION_ASSIGNMENT_LUACODE_STRING "Assignment LuaCode={"
@@ -270,7 +270,7 @@ void GetQuestList(char *QuestListFilename)
 		// influencer has to do, so that the mission can be thought of as completed
 		//
 
-		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_KILL_ONE_STRING, "%d", "-1",
+		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_KILL_MARKER, "%d", "-1",
 				    &Me.AllMissions[MissionTargetIndex].KillOne, EndOfMissionTargetPointer);
 
 		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL, "%d", "-1", 
