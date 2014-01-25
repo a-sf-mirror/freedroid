@@ -7,10 +7,16 @@ freedroidRPG_LDADD = ../lua/liblua.a
 freedroidRPG_CFLAGS = -I../lua
 else
 freedroidRPG_LDADD = 
+freedroidRPG_CFLAGS =
 endif
 
 if WIN32
 freedroidRPG_LDADD += ../win32/freedroidRPG.coff
+endif
+
+if USE_NLS
+freedroidRPG_LDADD += @LIBINTL@
+freedroidRPG_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"
 endif
 
 bin_PROGRAMS = freedroidRPG

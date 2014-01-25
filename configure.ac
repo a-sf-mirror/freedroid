@@ -16,6 +16,8 @@ AC_PROG_RANLIB
 AM_PROG_CC_C_O
 AC_PROG_MAKE_SET
 AM_PATH_PYTHON([2.6])
+AM_GNU_GETTEXT_VERSION([0.18])
+AM_GNU_GETTEXT([external])
 
 AC_HEADER_STDC
 
@@ -274,10 +276,15 @@ AM_CONDITIONAL(CROSS_COMPILING, test x$cross_compiling = xyes)
 
 AM_CONDITIONAL(BUILD_LUA, test x$embedded_lua = xyes)
 
-AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile croppy/Makefile \
-                 graphics/obstacles/Makefile graphics/floor_tiles/Makefile \
-                 win32/Makefile \
-                 doc/Doxyfile doc/Makefile doc/manual/Doxyfile doc/manual/Makefile])
+AM_CONDITIONAL(USE_NLS, test x$USE_NLS = xyes)
+
+AC_CONFIG_FILES([
+	Makefile src/Makefile
+	gluem/Makefile croppy/Makefile
+	graphics/obstacles/Makefile graphics/floor_tiles/Makefile
+	win32/Makefile
+	doc/Doxyfile doc/Makefile doc/manual/Doxyfile doc/manual/Makefile
+	po/Makefile po/po-src/Makefile.in])
 
 AC_OUTPUT
 

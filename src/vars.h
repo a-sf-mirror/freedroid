@@ -33,6 +33,8 @@
 
 tux_t Me;
 
+// We want those names to be in the translation template file, so
+// we mark them with the 'neutral i18n macro'.
 char *AllSkillTexts[NUMBER_OF_SKILL_LEVELS] = {
 	N_("untrained"),
 	N_("novice"),

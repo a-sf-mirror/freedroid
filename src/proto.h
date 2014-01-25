@@ -548,6 +548,7 @@ int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
 void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen);
 int find_file(const char *fname, const char *datadir, char *File_Path, int silent);
 int find_subdir(const char *, char *);
+const char *find_localedir(void);
 void Pause(void);
 void ComputeFPSForThisFrame(void);
 void StartTakingTimeForFPSCalculation(void);

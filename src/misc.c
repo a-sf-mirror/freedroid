@@ -697,6 +697,58 @@ int find_subdir(const char *subdir, char *subdir_path)
 	return 0;
 }
 
+const char *find_localedir(void)
+{
+#ifdef ENABLE_NLS
+	// We want to choose between the use of a local subdir containing
+	// the translations or the system wide subdir. It depends on how
+	// the game is started and if we use an installed version or a built
+	// one.
+	// There is however no easy way to check if a folder contains a gettext
+	// locale infrastructure.
+	// So, we have to use a trick: we search a mandatory file (levels.dat) and
+	// depending on where it is found we decide which folder to use as the
+	// locale subdir.
+
+	int i;
+	char *file_path;
+	FILE *fp;
+
+	for (i = 0; i < 3; i++) {
+		if (i == 0)
+			file_path = "./" MAP_DIR "levels.dat";
+		if (i == 1)
+			file_path = "../" MAP_DIR "levels.dat";
+		if (i == 2)
+			file_path = "../.." MAP_DIR "levels.dat";
+
+		if ((fp = fopen((file_path), "r")) != NULL) {	/* found it? */
+			fclose(fp);
+			break;
+		}
+	}
+
+	switch (i) {
+	case 0:
+		return "./locale";
+		break;
+	case 1:
+		return "../locale";
+		break;
+	case 2:
+		return "../../locale";
+		break;
+	default:
+		return LOCALEDIR;
+		break;
+	}
+
+	return LOCALEDIR;
+#else
+	return NULL;
+#endif
+}
+
 /**
  * This function realizes the Pause-Mode: the game process is halted,
  * while the graphics and animations are not.  This mode 

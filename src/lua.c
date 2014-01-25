@@ -660,7 +660,7 @@ static int lua_chat_says(lua_State * L)
 	const char *answer = luaL_checkstring(L, 1);
 	int no_wait = !strcmp(luaL_optstring(L, 2, "WAIT"), "NO_WAIT");
 
-	chat_add_response(L_(answer));
+	chat_add_response(answer);
 
 	if (no_wait)
 		return 0;
@@ -1115,6 +1115,20 @@ static int lua_set_mouse_move_target(lua_State *L)
 
 	move_tux();
 
+	return 1;
+}
+
+static int lua_assets_gettext(lua_State *L)
+{
+	char *text = (char *)luaL_checkstring(L, 1);
+	lua_pushstring(L, D_(text));
+	return 1;
+}
+
+static int lua_dialogs_gettext(lua_State *L)
+{
+	char *text = (char *)luaL_checkstring(L, 1);
+	lua_pushstring(L, L_(text));
 	return 1;
 }
 
@@ -1894,6 +1908,11 @@ void init_lua()
 	config_lua_state = luaL_newstate();
 	luaL_openlibs(config_lua_state);
 
+	// Add a context specific lua_gettext
+	luaL_Reg lua_gettext = { "_", lua_assets_gettext };
+	lua_pushcfunction(config_lua_state, lua_gettext.func);
+	lua_setglobal(config_lua_state, lua_gettext.name);
+
 	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
 		run_lua_file(LUA_CONFIG, fpath);
 	}
@@ -1923,6 +1942,11 @@ void reset_lua_state(void)
 		lua_close(dialog_lua_state);
 	dialog_lua_state = luaL_newstate();
 	luaL_openlibs(dialog_lua_state);
+
+	// Add a context specific lua_gettext
+	luaL_Reg lua_gettext = { "_", lua_dialogs_gettext };
+	lua_pushcfunction(dialog_lua_state, lua_gettext.func);
+	lua_setglobal(dialog_lua_state, lua_gettext.name);
 
 	for (i = 0; lfuncs[i].name != NULL; i++) {
 		lua_pushcfunction(dialog_lua_state, lfuncs[i].func);

@@ -4,11 +4,6 @@ math.randomseed(os.time())
 -- aliases for dialogs
 get_program = get_program_revision
 
--- gettext function for dialogs
-function _(a)
-	return a
-end
-
 -- compute the "town score" to determine whether the player can become
 -- a red guard
 function get_town_score()
