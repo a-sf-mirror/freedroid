@@ -129,18 +129,7 @@ void CheckIfMissionIsComplete(void)
 			}
 			checked_one_criterion = TRUE;
 		}
-		// Continue if the Mission target must_clear_second_level is given but not fulfilled
-		//
-		if (Me.AllMissions[mis_num].must_clear_second_level != (-1)) {
-			enemy *erot;
-			BROWSE_LEVEL_BOTS(erot, Me.AllMissions[mis_num].must_clear_second_level) {
-				if (!is_friendly(erot->faction, FACTION_SELF)) {
-					this_mission_seems_completed = FALSE;
-					break;
-				}
-			}
-			checked_one_criterion = TRUE;
-		}
+
 
 		// If the mission actually had criteria we checked for, and those criteria
 		// are OK, the mission is finished.
@@ -245,7 +234,6 @@ void GetQuestList(char *QuestListFilename)
 
 #define MISSION_TARGET_KILL_ONE_STRING "Mission target is to kill droids with marker : "
 #define MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL "Mission target is to kill all hostile droids this first level : "
-#define MISSION_TARGET_MUST_CLEAR_SECOND_LEVEL "Mission target is to also kill all hostile droids on second level : "
 
 #define MISSION_ASSIGNMENT_LUACODE_STRING "Assignment LuaCode={"
 #define MISSION_COMPLETION_LUACODE_STRING "Completion LuaCode={"
@@ -287,9 +275,6 @@ void GetQuestList(char *QuestListFilename)
 
 		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL, "%d", "-1", 
 				    &Me.AllMissions[MissionTargetIndex].must_clear_first_level, EndOfMissionTargetPointer);
-
-		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_CLEAR_SECOND_LEVEL, "%d", "-1",
-				    &Me.AllMissions[MissionTargetIndex].must_clear_second_level, EndOfMissionTargetPointer);
 
 		if (strstr(MissionTargetPointer, MISSION_COMPLETION_LUACODE_STRING)) {
 			Me.AllMissions[MissionTargetIndex].completion_lua_code =

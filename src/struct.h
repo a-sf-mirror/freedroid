@@ -219,7 +219,6 @@ typedef struct mission {
 
 	int KillOne;
 	int must_clear_first_level;
-	int must_clear_second_level;
 
 	luacode completion_lua_code;
 	luacode assignment_lua_code;

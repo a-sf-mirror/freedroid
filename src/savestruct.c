@@ -1084,8 +1084,6 @@ void write_mission(struct auto_string *strout, mission *data)
     write_int32_t(strout, &data->KillOne);
     autostr_append(strout, ",\n" "must_clear_first_level = ");
     write_int32_t(strout, &data->must_clear_first_level);
-    autostr_append(strout, ",\n" "must_clear_second_level = ");
-    write_int32_t(strout, &data->must_clear_second_level);
     autostr_append(strout, ",\n" "completion_lua_code = ");
     write_luacode(strout, &data->completion_lua_code);
     autostr_append(strout, ",\n" "assignment_lua_code = ");
@@ -1127,10 +1125,6 @@ void read_mission(lua_State* L, int index, mission *data)
     }
     if (lua_getfield_or_warn(L, index, "must_clear_first_level")) {
         read_int32_t(L, -1, &data->must_clear_first_level);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "must_clear_second_level")) {
-        read_int32_t(L, -1, &data->must_clear_second_level);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "completion_lua_code")) {
