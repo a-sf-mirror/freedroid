@@ -101,12 +101,12 @@ void CheckIfMissionIsComplete(void)
 		this_mission_seems_completed = TRUE;
 		checked_one_criterion = FALSE;
 
-		// Continue if the Mission target KillOne is given but not fulfilled
+		// Continue if the Mission target KillMarker is given but not fulfilled
 		//
-		if (Me.AllMissions[mis_num].KillOne != (-1)) {
+		if (Me.AllMissions[mis_num].KillMarker != (-1)) {
 			enemy *erot;
 			BROWSE_ALIVE_BOTS(erot) {
-				if (erot->marker == Me.AllMissions[mis_num].KillOne) {
+				if (erot->marker == Me.AllMissions[mis_num].KillMarker) {
 					DebugPrintf(MIS_COMPLETE_DEBUG,
 						    "\nOne of the marked droids is still alive... (%p at %f:%f on %d)\n", erot,
 						    erot->pos.x, erot->pos.y, erot->pos.z);
@@ -117,11 +117,11 @@ void CheckIfMissionIsComplete(void)
 			}
 			checked_one_criterion = TRUE;
 		}
-		// Continue if the Mission target must_clear_first_level is given but not fulfilled
+		// Continue if the Mission target must_clear_level is given but not fulfilled
 		//
-		if (Me.AllMissions[mis_num].must_clear_first_level != (-1)) {
+		if (Me.AllMissions[mis_num].must_clear_level != (-1)) {
 			enemy *erot;
-			BROWSE_LEVEL_BOTS(erot, Me.AllMissions[mis_num].must_clear_first_level) {
+			BROWSE_LEVEL_BOTS(erot, Me.AllMissions[mis_num].must_clear_level) {
 				if (!is_friendly(erot->faction, FACTION_SELF)) {
 					this_mission_seems_completed = FALSE;
 					break;
@@ -271,10 +271,10 @@ void GetQuestList(char *QuestListFilename)
 		//
 
 		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_KILL_MARKER, "%d", "-1",
-				    &Me.AllMissions[MissionTargetIndex].KillOne, EndOfMissionTargetPointer);
+				    &Me.AllMissions[MissionTargetIndex].KillMarker, EndOfMissionTargetPointer);
 
 		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_CLEAR_LEVEL, "%d", "-1", 
-				    &Me.AllMissions[MissionTargetIndex].must_clear_first_level, EndOfMissionTargetPointer);
+				    &Me.AllMissions[MissionTargetIndex].must_clear_level, EndOfMissionTargetPointer);
 
 		if (strstr(MissionTargetPointer, MISSION_COMPLETION_LUACODE_STRING)) {
 			Me.AllMissions[MissionTargetIndex].completion_lua_code =

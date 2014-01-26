@@ -217,8 +217,8 @@ typedef struct mission {
 	int MissionWasFailed;	// has the mission been failed?
 	int MissionExistsAtAll;	// is this mission entry used at all, or is it just unused memory?
 
-	int KillOne;
-	int must_clear_first_level;
+	int KillMarker;
+	int must_clear_level;
 
 	luacode completion_lua_code;
 	luacode assignment_lua_code;

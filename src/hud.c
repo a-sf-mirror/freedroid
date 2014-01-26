@@ -610,7 +610,7 @@ static void show_top_left_text(void)
 		if (!Me.AllMissions[i].MissionWasAssigned)
 			continue;
 
-		if (Me.AllMissions[i].must_clear_first_level == Me.pos.z) {
+		if (Me.AllMissions[i].must_clear_level == Me.pos.z) {
 			remaining_bots = 0;
 
 			enemy *erot, *nerot;
