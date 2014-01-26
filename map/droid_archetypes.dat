@@ -360,6 +360,33 @@ Filename prefix for graphics="516"
 Notes concerning this droid=_"Early crew droid. Able to carry out simple flight checks only. No longer supplied." 
 
 ** Start of new Robot: ** 
+Droidname: 543
+Default description:_"543 Forest Harvester"
+Droid uses portrait rotation series with prefix="harvester"
+Maximum speed of this droid: 2
+Class of this droid: 5
+Drops item class=5
+Maximum energy of this droid: 300
+Rate of healing: 2
+Experience_Reward gained for destroying one of this type: 250
+Aggression distance of this droid=10.0
+Time spent eyeing Tux=1.0
+Weapon item="Droid 543 Tree Harvester"
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
+Greeting Sound number=11
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=60
+Time to recover after getting hit=0.40
+Is this 'droid' a human : 0
+Filename prefix for graphics="harvester"
+Notes concerning this droid=_"Run away! This bot will kill you!"
+
+** Start of new Robot: **
 Droidname: 571
 Default description:_"571 Apollo"
 Droid uses portrait rotation series with prefix="571"
@@ -996,28 +1023,6 @@ Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
 Filename prefix for graphics="bartender"
 Notes concerning this droid=_"This is the bartender."
-
-** Start of new Robot: ** 
-Droidname: 543
-Default description:_"543 Forest Harvester"
-Droid uses portrait rotation series with prefix="harvester"
-Maximum speed of this droid: 2
-Class of this droid: 5
-Drops item class=5
-Maximum energy of this droid: 300
-Rate of healing: 2
-Experience_Reward gained for destroying one of this type: 250
-Aggression distance of this droid=10.0
-Time spent eyeing Tux=1.0
-Weapon item="Droid 543 Tree Harvester"
-Greeting Sound number=11
-Death sound file name="none"
-Attack animation sound file name="none"
-Chance of this robot scoring a hit=60
-Time to recover after getting hit=0.40
-Is this 'droid' a human : 0
-Filename prefix for graphics="harvester"
-Notes concerning this droid=_"Run away! This bot will kill you!" 
 
 ** Start of new Robot: ** 
 Droidname: FEM
