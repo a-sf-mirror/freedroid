@@ -409,7 +409,7 @@ return {
 			npc_says(_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best to use the north gate out of town, then head east, and turn north again along the shore.")
 			npc_says(_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance.")
 			npc_says(_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield.")
-			Tux:add_quest(_"Opening access to MS Office", _"Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility north of the town. By taking over the control droid, I should be able to control the disruptor shield at the facility. I could activate it permanently, thereby locking off the Hell Fortress, and the bots it's producing, forever. Alternatively, I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop.")
+			Tux:add_quest(_"Opening access to MS Office", _"Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility north of the town. By taking over the control droid, I should be able to control the disruptor shield at the facility. I can disable disruptor shield, fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop.")
 			change_obstacle_state("DisruptorShieldBaseGate", "opened")
 			hide("node39", "node40")
 		end,
