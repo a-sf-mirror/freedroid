@@ -30,7 +30,7 @@ yum install SDL_image-devel SDL_net-devel SDL_mixer-devel SDL_gfx-devel libjpeg-
 
 3) Archlinux
 
-pacman -S libgl libvorbis lua sdl sdl_gfx sdl_image sdl_mixer
+pacman -S libgl libvorbis lua sdl sdl_gfx sdl_image sdl_mixer gettext
 
 There is also a freedroidrpg-git pkgbuild at the arch user repository: https://aur.archlinux.org/packages.php?ID=57483
 
