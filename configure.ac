@@ -291,10 +291,11 @@ AC_OUTPUT
 echo "
 Summary:
 
-	use embedded Lua library (not system-wide):	$embedded_lua
-	compile with OpenGL support:	$summary_have_gl
-	compile with sound support:	$summary_sound
-	embed the real-time profiler:   $summary_rtprof"
+	use embedded Lua library (not system-wide):  $embedded_lua
+	compile with OpenGL support:                 $summary_have_gl
+	compile with sound support:                  $summary_sound
+	embed the real-time profiler:                $summary_rtprof
+	localization enabled:                        $USE_NLS"
 
 if test x$cross_compiling = xyes; then
 	echo "	cross-compiling detected, so will not build some subdirs"
