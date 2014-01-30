@@ -1,10 +1,14 @@
 #! /bin/sh
 
-AUTORECONF=`which autoreconf`
-if test -z $AUTORECONF; then
-	echo "*** No autoreconf found, please install it ***"
-	exit 1
-fi
+missing=0
+for tool in autoreconf autopoint aclocal autoconf autoheader automake ; do
+	file=`which $tool`
+	if test -z $file ; then
+		echo "*** No $tool found, please install it ***"
+		missing=1
+	fi
+done
+[ $missing -eq 1 ] && exit 1
 
 rm -rf autom4te.cache
 
