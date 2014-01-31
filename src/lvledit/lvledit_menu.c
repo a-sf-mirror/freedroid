@@ -567,7 +567,7 @@ static void LevelOptions(void)
 		} else if (EditLevel()->random_dungeon == 1) {
 			sprintf(Options[i], _("Random dungeon: 1 connection"));
 		} else {
-			sprintf(Options[i], _("Random dungeon; no"));
+			sprintf(Options[i], _("Random dungeon: no"));
 		}
 		MenuTexts[i] = Options[i];
 		i++;
