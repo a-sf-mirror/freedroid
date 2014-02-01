@@ -128,44 +128,44 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	// Weapon damage
 	if (ItemMap[item->type].slot == WEAPON_SLOT) {
 		if (item->damage_modifier) {
-			// L10N Hint: On item description: range
+			// TRANSLATORS: On item description: range
 			autostr_append(str, _("Damage: %d to %d\n"), item->damage, item->damage_modifier + item->damage);
 		} else {
-			// L10N Hint: On item description
+			// TRANSLATORS: On item description
 			autostr_append(str, _("Damage: %d\n"), item->damage);
 		}
 	}
 	// Multiplicity
 	if (ItemMap[item->type].item_group_together_in_inventory) {
-		// L10N Hint: On item description
+		// TRANSLATORS: On item description
 		autostr_append(str, _("Multiplicity: %d\n"), item->multiplicity);
 	}
 	// Armor bonus
 	if (item->armor_class) {
-		// L10N Hint: On item description: Armor bonus
+		// TRANSLATORS: On item description: Armor bonus
 		autostr_append(str, _("Armor: %d\n"), item->armor_class);
 	}
 	// Durability or indestructible status
 	if (item->max_durability != (-1)) {
-		// L10N Hint: On item description: 'current' of 'maximum'
+		// TRANSLATORS: On item description: 'current' of 'maximum'
 		autostr_append(str, _("Durability: %d of %d\n"), (int)item->current_durability, (int)item->max_durability);
 	} else if (ItemMap[item->type].base_item_durability != (-1)) {
-		// L10N Hint: On item description : durability
+		// TRANSLATORS: On item description : durability
 		autostr_append(str, _("Indestructible\n"));
 	}
 	// Ranged weapon ammunition
 	if (ItemMap[item->type].item_gun_ammo_clip_size) {
-		// L10N Hint: On item description: 'current' of 'maximum' amount of ammo
+		// TRANSLATORS: On item description: 'current' of 'maximum' amount of ammo
 		autostr_append(str, _("Ammo: %d of %d\n"), item->ammo_clip, ItemMap[item->type].item_gun_ammo_clip_size);
 	}
 	// Strength, dexterity or cooling requirements
 	if ((ItemMap[item->type].item_require_strength != (-1)) || (ItemMap[item->type].item_require_dexterity != (-1))) {
 		if (ItemMap[item->type].item_require_strength != (-1)) {
-			// L10N Hint: On item description
+			// TRANSLATORS: On item description
 			autostr_append(str, _("Required strength: %d\n"), ItemMap[item->type].item_require_strength);
 		}
 		if (ItemMap[item->type].item_require_dexterity != (-1)) {
-			// L10N Hint: On item description
+			// TRANSLATORS: On item description
 			autostr_append(str, _("Required dexterity: %d\n"), ItemMap[item->type].item_require_dexterity);
 		}
 	}
@@ -187,7 +187,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 
 	// Socket count
 	if (item->upgrade_sockets.size) {
-		// L10N Hint: On item description: 'used sockets' / 'number of sockets'
+		// TRANSLATORS: On item description: 'used sockets' / 'number of sockets'
 		autostr_append(str, _("Sockets: used %d/%d\n"), count_used_sockets(item), 
 							     item->upgrade_sockets.size);
 	}
@@ -658,7 +658,7 @@ static void show_top_right_text(void)
 		if (GameConfig.Draw_Position) {
 			sprintf(level_name_and_time, "%s (%03.1f:%03.1f:%d)  ",
 				D_(curShip.AllLevels[Me.pos.z]->Levelname), Me.pos.x, Me.pos.y, Me.pos.z);
-			// L10N Hint: In-game date: Day <day number> <hour>:<minute>
+			// TRANSLATORS: In-game date: Day <day number> <hour>:<minute>
 			sprintf(temp_text, _("Day %d  %02d:%02d"),
 				get_days_of_game_duration(Me.current_game_date),
 				get_hours_of_game_duration(Me.current_game_date), get_minutes_of_game_duration(Me.current_game_date));

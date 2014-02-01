@@ -241,84 +241,84 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 {
 	// Append the bonuses to the string.
 	if (it->bonus_to_str) {
-		// L10N Hint: Item's bonus: '10 to strength' means 'add 10 to player's strength'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to strength' means 'add 10 to player's strength'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d to strength%s"), it->bonus_to_str, separator);
 	}
 	if (it->bonus_to_dex) {
-		// L10N Hint: Item's bonus: '10 to dexterity' means 'add 10 to player's dexterity'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to dexterity' means 'add 10 to player's dexterity'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d to dexterity%s"), it->bonus_to_dex, separator);
 	}
 	if (it->bonus_to_cooling) {
-		// L10N Hint: Item's bonus: '10 to cooling' means 'add 10 to player's cooling capability'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to cooling' means 'add 10 to player's cooling capability'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d to cooling%s"), it->bonus_to_cooling, separator);
 	}
 	if (it->bonus_to_physique) {
-		// L10N Hint: Item's bonus: '10 to physique' means 'add 10 to player's physique'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to physique' means 'add 10 to player's physique'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d to physique%s"), it->bonus_to_physique, separator);
 	}
 	if (it->bonus_to_health_points) {
-		// L10N Hint: Item's bonus: '10 to health points' means 'add 10 to player's health'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to health points' means 'add 10 to player's health'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d health points%s"), it->bonus_to_health_points, separator);
 	}
 	if (it->bonus_to_health_recovery) {
-		// L10N Hint: Item's bonus: '0.1 to health points per seconds' means 'add 0.1 to player's recovery rate'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '0.1 to health points per seconds' means 'add 0.1 to player's recovery rate'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+0.1f health points per second%s"), it->bonus_to_health_recovery, separator);
 	}
 	if (it->bonus_to_cooling_rate) {
 		if (it->bonus_to_cooling_rate > 0) {
-			// L10N Hint: Item's bonus: '0.1 cooling per seconds' means 'add 0.1 to player's cooling rate'
-			// L10N (trailing %s contains a text separator)
+			// TRANSLATORS: Item's bonus: '0.1 cooling per seconds' means 'add 0.1 to player's cooling rate'
+			// TRANSLATORS: (trailing %s contains a text separator)
 			autostr_append(desc, _("%0.1f cooling per second%s"), it->bonus_to_cooling_rate, separator);
 		} else {
-			// L10N Hint: Item's bonus: '0.1 heating per seconds' means 'remove 0.1 to player's cooling rate'
-			// L10N (trailing %s contains a text separator)
+			// TRANSLATORS: Item's bonus: '0.1 heating per seconds' means 'remove 0.1 to player's cooling rate'
+			// TRANSLATORS: (trailing %s contains a text separator)
 			autostr_append(desc, _("%0.1f heating per second%s"), -it->bonus_to_cooling_rate, separator);
 		}
 	}
 	if (it->bonus_to_attack) {
-		// L10N Hint: Item's bonus: '10 to attacks' means 'add 10 to player's attack capability'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to attacks' means 'add 10 to player's attack capability'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d%% to attack%s"), it->bonus_to_attack, separator);
 	}
 	if (it->bonus_to_all_attributes) {
-		// L10N Hint: Item's bonus: '10 to all attributes' means 'add 10 to all player's capabilities'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to all attributes' means 'add 10 to all player's capabilities'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d to all attributes%s"), it->bonus_to_all_attributes, separator);
 	}
 	if (it->bonus_to_damage) {
-		// L10N Hint: Item's bonus: '10 to damage' means 'add 10 to player's damage'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to damage' means 'add 10 to player's damage'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d to damage%s"), it->bonus_to_damage, separator);
 	}
 	if (it->bonus_to_armor_class) {
-		// L10N Hint: Item's bonus: '10 to armor' means 'add 10 to player's armor'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to armor' means 'add 10 to player's armor'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d to armor%s"), it->bonus_to_armor_class, separator);
 	}
 	if (it->bonus_to_paralyze_enemy) {
-		// L10N Hint: Item's bonus: '10 to paralyze enemy' means 'add 10 to player's paralyze capability'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to paralyze enemy' means 'add 10 to player's paralyze capability'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d to paralyze enemy%s"), it->bonus_to_paralyze_enemy, separator);
 	}
 	if (it->bonus_to_slow_enemy) {
-		// L10N Hint: Item's bonus: '10 to slow enemy' means 'add 10 to player's capability to slow an ennemy'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to slow enemy' means 'add 10 to player's capability to slow an ennemy'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d to slow enemy%s"), it->bonus_to_slow_enemy, separator);
 	}
 	if (it->bonus_to_light_radius) {
-		// L10N Hint: Item's bonus: '10 to light radius' means 'add 10 to the light radius around the player'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to light radius' means 'add 10 to the light radius around the player'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d to light radius%s"), it->bonus_to_light_radius, separator);
 	}
 	if (it->bonus_to_experience_gain) {
-		// L10N Hint: Item's bonus: '10 to experience gain' means 'add 10 to the player's experience multiplier'
-		// L10N (trailing %s contains a text separator)
+		// TRANSLATORS: Item's bonus: '10 to experience gain' means 'add 10 to the player's experience multiplier'
+		// TRANSLATORS: (trailing %s contains a text separator)
 		autostr_append(desc, _("%+d%% to experience gain%s"), it->bonus_to_experience_gain, separator);
 	}
 }

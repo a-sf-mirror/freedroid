@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-01-29 14:40+0100\n"
+"POT-Creation-Date: 2014-02-01 20:11+0100\n"
 "PO-Revision-Date: 2013-09-01 00:37+0200\n"
 "Last-Translator: Freedroid <bugs@freedroid.org>\n"
 "Language-Team: German\n"
@@ -122,37 +122,37 @@ msgstr ""
 msgid "[n]--- Start of Dialog ---\n"
 msgstr ""
 
-#. L10N Hint: Your friend <bot's short description> was killed by <bot's short description>
+#. TRANSLATORS: Your friend <bot's short description> was killed by <bot's short description>
 #: src/enemy.c:891
 #, c-format
 msgid "Your friend [s]%s[v] was killed by %s."
 msgstr ""
 
-#. L10N Hint: You killed <bot's short description>
+#. TRANSLATORS: You killed <bot's short description>
 #: src/enemy.c:895
 #, c-format
 msgid "You killed [s]%s[v]."
 msgstr ""
 
-#. L10N Hint: <bot's short description> halted and caught fire
+#. TRANSLATORS: <bot's short description> halted and caught fire
 #: src/enemy.c:899
 #, c-format
 msgid "[s]%s[v] halted and caught fire."
 msgstr ""
 
-#. L10N Hint: <bot's short description> is dead
+#. TRANSLATORS: <bot's short description> is dead
 #: src/enemy.c:902
 #, c-format
 msgid "[s]%s[v] is dead."
 msgstr ""
 
-#. L10N Hint: For defeating <bot's short description>, you receive <10> experience
+#. TRANSLATORS: For defeating <bot's short description>, you receive <10> experience
 #: src/enemy.c:907
 #, c-format
 msgid "For defeating [s]%s[v], you receive %d experience."
 msgstr ""
 
-#. L10N Hint: Tooltip of skill button: <skill name>\n Heat: <skill heat cost>\n Revision: <skill revision>
+#. TRANSLATORS: Tooltip of skill button: <skill name>\n Heat: <skill heat cost>\n Revision: <skill revision>
 #: src/game_ui.c:52
 #, c-format
 msgid ""
@@ -177,60 +177,60 @@ msgstr ""
 msgid "XP"
 msgstr ""
 
-#. L10N Hint: Used on object selector's widget to display unit price * number of objects
+#. TRANSLATORS: Used on object selector's widget to display unit price * number of objects
 #: src/graphics.c:231
 #, c-format
 msgid "%d price\n"
 msgstr ""
 
-#. L10N Hint: On item description: range
+#. TRANSLATORS: On item description: range
 #: src/hud.c:132
 #, c-format
 msgid "Damage: %d to %d\n"
 msgstr ""
 
-#. L10N Hint: On item description
+#. TRANSLATORS: On item description
 #: src/hud.c:135
 #, c-format
 msgid "Damage: %d\n"
 msgstr ""
 
-#. L10N Hint: On item description
+#. TRANSLATORS: On item description
 #: src/hud.c:141
 #, c-format
 msgid "Multiplicity: %d\n"
 msgstr ""
 
-#. L10N Hint: On item description: Armor bonus
+#. TRANSLATORS: On item description: Armor bonus
 #: src/hud.c:146
 #, c-format
 msgid "Armor: %d\n"
 msgstr ""
 
-#. L10N Hint: On item description: 'current' of 'maximum'
+#. TRANSLATORS: On item description: 'current' of 'maximum'
 #: src/hud.c:151
 #, c-format
 msgid "Durability: %d of %d\n"
 msgstr ""
 
-#. L10N Hint: On item description : durability
+#. TRANSLATORS: On item description : durability
 #: src/hud.c:154 src/shop.c:317
 msgid "Indestructible\n"
 msgstr ""
 
-#. L10N Hint: On item description: 'current' of 'maximum' amount of ammo
+#. TRANSLATORS: On item description: 'current' of 'maximum' amount of ammo
 #: src/hud.c:159
 #, c-format
 msgid "Ammo: %d of %d\n"
 msgstr ""
 
-#. L10N Hint: On item description
+#. TRANSLATORS: On item description
 #: src/hud.c:165
 #, c-format
 msgid "Required strength: %d\n"
 msgstr ""
 
-#. L10N Hint: On item description
+#. TRANSLATORS: On item description
 #: src/hud.c:169
 #, c-format
 msgid "Required dexterity: %d\n"
@@ -240,7 +240,7 @@ msgstr ""
 msgid "Right click to use\n"
 msgstr ""
 
-#. L10N Hint: On item description: 'used sockets' / 'number of sockets'
+#. TRANSLATORS: On item description: 'used sockets' / 'number of sockets'
 #: src/hud.c:191
 #, c-format
 msgid "Sockets: used %d/%d\n"
@@ -264,19 +264,19 @@ msgstr ""
 msgid "Bots remaining on level: %d\n"
 msgstr ""
 
-#. L10N Hint: In-game date: Day <day number> <hour>:<minute>
+#. TRANSLATORS: In-game date: Day <day number> <hour>:<minute>
 #: src/hud.c:662 src/hud.c:669
 #, c-format
 msgid "Day %d  %02d:%02d"
 msgstr ""
 
-#. L10N Hint: Console msg when a weapon is empty
+#. TRANSLATORS: Console msg when a weapon is empty
 #: src/influ.c:147
 #, c-format
 msgid "%s empty, reloading..."
 msgstr ""
 
-#. L10N Hint: Out of <ammo type>
+#. TRANSLATORS: Out of <ammo type>
 #: src/influ.c:1505
 #, c-format
 msgid "Out of [s]%s[v]!"
@@ -313,113 +313,113 @@ msgstr ""
 msgid "Game won.\n"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to strength' means 'add 10 to player's strength'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to strength' means 'add 10 to player's strength'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:246
 #, c-format
 msgid "%+d to strength%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to dexterity' means 'add 10 to player's dexterity'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to dexterity' means 'add 10 to player's dexterity'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:251
 #, c-format
 msgid "%+d to dexterity%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to cooling' means 'add 10 to player's cooling capability'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to cooling' means 'add 10 to player's cooling capability'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:256
 #, c-format
 msgid "%+d to cooling%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to physique' means 'add 10 to player's physique'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to physique' means 'add 10 to player's physique'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:261
 #, c-format
 msgid "%+d to physique%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to health points' means 'add 10 to player's health'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to health points' means 'add 10 to player's health'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:266
 #, c-format
 msgid "%+d health points%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '0.1 to health points per seconds' means 'add 0.1 to player's recovery rate'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '0.1 to health points per seconds' means 'add 0.1 to player's recovery rate'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:271
 #, c-format
 msgid "%+0.1f health points per second%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '0.1 cooling per seconds' means 'add 0.1 to player's cooling rate'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '0.1 cooling per seconds' means 'add 0.1 to player's cooling rate'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:277
 #, c-format
 msgid "%0.1f cooling per second%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '0.1 heating per seconds' means 'remove 0.1 to player's cooling rate'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '0.1 heating per seconds' means 'remove 0.1 to player's cooling rate'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:281
 #, c-format
 msgid "%0.1f heating per second%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to attacks' means 'add 10 to player's attack capability'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to attacks' means 'add 10 to player's attack capability'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:287
 #, c-format
 msgid "%+d%% to attack%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to all attributes' means 'add 10 to all player's capabilities'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to all attributes' means 'add 10 to all player's capabilities'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:292
 #, c-format
 msgid "%+d to all attributes%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to damage' means 'add 10 to player's damage'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to damage' means 'add 10 to player's damage'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:297
 #, c-format
 msgid "%+d to damage%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to armor' means 'add 10 to player's armor'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to armor' means 'add 10 to player's armor'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:302
 #, c-format
 msgid "%+d to armor%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to paralyze enemy' means 'add 10 to player's paralyze capability'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to paralyze enemy' means 'add 10 to player's paralyze capability'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:307
 #, c-format
 msgid "%+d to paralyze enemy%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to slow enemy' means 'add 10 to player's capability to slow an ennemy'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to slow enemy' means 'add 10 to player's capability to slow an ennemy'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:312
 #, c-format
 msgid "%+d to slow enemy%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to light radius' means 'add 10 to the light radius around the player'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to light radius' means 'add 10 to the light radius around the player'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:317
 #, c-format
 msgid "%+d to light radius%s"
 msgstr ""
 
-#. L10N Hint: Item's bonus: '10 to experience gain' means 'add 10 to the player's experience multiplier'
-#. L10N (trailing %s contains a text separator)
+#. TRANSLATORS: Item's bonus: '10 to experience gain' means 'add 10 to the player's experience multiplier'
+#. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:322
 #, c-format
 msgid "%+d%% to experience gain%s"
@@ -465,22 +465,22 @@ msgstr ""
 msgid "Install to a helmet\n"
 msgstr ""
 
-#. L10N Hint: Socket's type
+#. TRANSLATORS: Socket's type
 #: src/item_upgrades_ui.c:173
 msgid "Electric"
 msgstr ""
 
-#. L10N Hint: Socket's type
+#. TRANSLATORS: Socket's type
 #: src/item_upgrades_ui.c:175
 msgid "Mechanical"
 msgstr ""
 
-#. L10N Hint: Socket's type
+#. TRANSLATORS: Socket's type
 #: src/item_upgrades_ui.c:177
 msgid "Universal"
 msgstr ""
 
-#. L10N Hint: Cancel socket's type choice menu
+#. TRANSLATORS: Cancel socket's type choice menu
 #: src/item_upgrades_ui.c:179
 msgid "Cancel"
 msgstr ""
@@ -560,7 +560,7 @@ msgid ""
 "You are doing something so weird the game does not understand what it is"
 msgstr ""
 
-#. L10N Hint: the trailing %s is what the player is currently already doing (drinking, running a program, ...)
+#. TRANSLATORS: the trailing %s is what the player is currently already doing (drinking, running a program, ...)
 #: src/items.c:741
 #, c-format
 msgid "How do you expect to do two things at a time? %s"
@@ -570,7 +570,7 @@ msgstr ""
 msgid "The doctor warned you. You are now weak and sickly."
 msgstr ""
 
-#. L10N Hint: the trailing %s is a program name
+#. TRANSLATORS: the trailing %s is a program name
 #: src/items.c:806
 #, c-format
 msgid "You have reached the maximum skill level for %s"
@@ -703,7 +703,7 @@ msgstr ""
 msgid "Overheating!"
 msgstr ""
 
-#. L10N Hint: Screen message, displayed below 'Automatically shutting down'
+#. TRANSLATORS: Screen message, displayed below 'Automatically shutting down'
 #: src/main.c:402
 msgid "due to near lethal overheating"
 msgstr ""
@@ -1564,7 +1564,7 @@ msgid ""
 "The new name of the map label already exists, please choose an other name."
 msgstr ""
 
-#. L10N Hint: Used to display a GPS position (X=10.5 Y=34.3 L=12 layer=1)
+#. TRANSLATORS: Used to display a GPS position (X=10.5 Y=34.3 L=12 layer=1)
 #: src/lvledit/lvledit_display.c:68
 #, c-format
 msgid " X=%3.1f Y=%3.1f L=%d layer=%d\n"

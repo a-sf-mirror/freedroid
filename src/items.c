@@ -737,7 +737,7 @@ void ApplyItem(item * CurItem)
 		default:
 			msg = _("You are doing something so weird the game does not understand what it is");
 		}
-		// L10N Hint: the trailing %s is what the player is currently already doing (drinking, running a program, ...)
+		// TRANSLATORS: the trailing %s is what the player is currently already doing (drinking, running a program, ...)
 		append_new_game_message(_("How do you expect to do two things at a time? %s"), msg);
 		return;		//if the player is busy reloading or anything
 	}
@@ -802,7 +802,7 @@ void ApplyItem(item * CurItem)
 		if(failed_usage == 0) {
 			Play_Spell_ForceToEnergy_Sound();
 		} else {
-			// L10N Hint: the trailing %s is a program name
+			// TRANSLATORS: the trailing %s is a program name
 			append_new_game_message(_("You have reached the maximum skill level for %s"), 
 									ItemMap[CurItem->type].right_use.add_skill);
 			Takeover_Game_Deadlock_Sound();

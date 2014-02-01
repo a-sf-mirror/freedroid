@@ -143,7 +143,7 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 				No_Ammo_Sound();
 
 				// So no ammunition... We should say so and reload...
-				// L10N Hint: Console msg when a weapon is empty
+				// TRANSLATORS: Console msg when a weapon is empty
 				append_new_game_message(_("%s empty, reloading..."), item_specs_get_name(Me.weapon_item.type));
 				TuxReloadWeapon();
 				return;
@@ -1501,7 +1501,7 @@ void TuxReloadWeapon()
 	{
 		No_Ammo_Sound();
 		No_Ammo_Sound();
-		// L10N Hint: Out of <ammo type>
+		// TRANSLATORS: Out of <ammo type>
 		append_new_game_message(_("Out of [s]%s[v]!"), _(ammo_type));
 		return;
 	}
