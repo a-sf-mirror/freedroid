@@ -97,6 +97,7 @@ po/*/quot.sed
 po/*/remove-potcdate.sin
 po/*/remove-potcdate.sed
 po/*/POTFILES
+po/*/*\.po~
 
 # Result of translation build
 po/*/*.pot
