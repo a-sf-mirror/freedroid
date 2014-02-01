@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-02-01 20:47+0100\n"
+"POT-Creation-Date: 2014-02-01 23:37+0100\n"
 "PO-Revision-Date: 2014-01-30 17:23+0100\n"
 "Last-Translator: Freedroid <bugs@freedroid.org>\n"
 "Language-Team: German\n"
@@ -2035,7 +2035,7 @@ msgid ""
 msgstr ""
 
 #: dialogs/Butch.lua:117 dialogs/Butch.lua:119 dialogs/Butch.lua:131
-#: dialogs/Butch.lua:223 dialogs/Mike.lua:41
+#: dialogs/Butch.lua:223 dialogs/Mike.lua:37 dialogs/Mike.lua:41
 msgid "Novice Arena"
 msgstr ""
 
@@ -9328,12 +9328,40 @@ msgstr ""
 msgid "Yes. Please get me three dilithium crystals."
 msgstr ""
 
+#: dialogs/Mike.lua:36
+msgid "You have won the arena."
+msgstr ""
+
 #: dialogs/Mike.lua:39
 msgid "Novice arena cleared!"
 msgstr ""
 
 #: dialogs/Mike.lua:40
 msgid "Level cleared!"
+msgstr ""
+
+#: dialogs/Mike.lua:45
+msgid "You have left the arena."
+msgstr ""
+
+#: dialogs/Mike.lua:48
+msgid "The arena is already started."
+msgstr ""
+
+#: dialogs/Mike.lua:65
+msgid "Choose a level."
+msgstr ""
+
+#: dialogs/Mike.lua:81
+msgid "Start Elite Arena"
+msgstr ""
+
+#: dialogs/Mike.lua:89
+msgid "Start Champion Arena"
+msgstr ""
+
+#: dialogs/Mike.lua:98
+msgid "Terminate"
 msgstr ""
 
 #: dialogs/MiniFactory-Terminal.lua:32
