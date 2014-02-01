@@ -11,10 +11,10 @@
 
 /* TO BE IMPLEMENTED
 #define D_(String) (String[0]!='\0'?dgettext("freedroidrpg-map", String):"")
-#define L_(String) (String[0]!='\0'?dgettext("freedroidrpg-dialogs", String):"")
 */
 #define D_(String) (String)
-#define L_(String) (String)
+
+#define L_(String) (String[0]!='\0'?dgettext("freedroidrpg-dialogs", String):"")
 
 #else
 
