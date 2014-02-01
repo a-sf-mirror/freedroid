@@ -33,8 +33,8 @@ return {
 	EveryTime = function()
 		if (arena_current_level ~= nil) then
 			if (arena_won) then
-				npc_says("You have won the arena.")
-				if (not done_quest("Novice Arena")) then
+				npc_says(_"You have won the arena.")
+				if (not done_quest(_"Novice Arena")) then
 					--change_obstacle_state("NoviceArenaExitDoor", "opened")
 					display_console_message(_"Novice arena cleared!")
 					display_big_message(_"Level cleared!")
@@ -42,10 +42,10 @@ return {
 				end
 				next("choose")
 			elseif (arena_left) then
-				npc_says("You have left the arena.")
+				npc_says(_"You have left the arena.")
 				next("choose")
 			else
-				npc_says("The arena is already started.")
+				npc_says(_"The arena is already started.")
 			end
 		else
 			next("choose")
@@ -62,7 +62,7 @@ return {
 			arena_won = false
 			arena_left = nil
 
-			npc_says("Choose a level.")
+			npc_says(_"Choose a level.")
 			show("arena1", "arena2", "arena3")
 		end,
 	},
@@ -78,7 +78,7 @@ return {
 		id = "arena2",
 		text = _"Arena Level Elite",
 		code = function()
-			npc_says("Start Elite Arena")
+			npc_says(_"Start Elite Arena")
 			start_arena(2)
 		end,
 	},
@@ -86,7 +86,7 @@ return {
 		id = "arena3",
 		text = _"Arena Level Champion",
 		code = function()
-			npc_says("Start Champion Arena")
+			npc_says(_"Start Champion Arena")
 			start_arena(3)
 		end,
 	},
@@ -95,7 +95,7 @@ return {
 		text = _"Exit",
 		echo_text = false,
 		code = function()
-			npc_says("Terminate")
+			npc_says(_"Terminate")
 			end_dialog()
 		end,
 	},
