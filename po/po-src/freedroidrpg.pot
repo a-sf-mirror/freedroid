@@ -1,22 +1,21 @@
-# German translations for freedroidrpg package
-# German messages for freedroidrpg.
-# Copyright (C) 2013 FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
-# Freedroid <bugs@freedroid.org>, 2014.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR FreedroidRPG Project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
 "POT-Creation-Date: 2014-02-02 22:02+0100\n"
-"PO-Revision-Date: 2013-09-01 00:37+0200\n"
-"Last-Translator: Freedroid <bugs@freedroid.org>\n"
-"Language-Team: German\n"
-"Language: de\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/addon_crafting_ui.c:100
 msgid "Features:"
