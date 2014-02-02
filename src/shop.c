@@ -256,7 +256,7 @@ void ShowItemPicture(int PosX, int PosY, int Number)
 		strcpy(LastImageSeriesPrefix, ItemMap[Number].item_rotation_series_prefix);
 	}
 
-	RotationIndex = (SDL_GetTicks() / 70);
+	RotationIndex = (SDL_GetTicks() / 45);
 
 	RotationIndex = RotationIndex - (RotationIndex / NumberOfImagesInThisRotation) * NumberOfImagesInThisRotation;
 
