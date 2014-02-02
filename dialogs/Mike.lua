@@ -70,7 +70,7 @@ return {
 		id = "arena1",
 		text = _"Arena Level Novice",
 		code = function()
-			npc_says("Start Novice Arena")
+			npc_says(_"Start Novice Arena")
 			start_arena(1)
 		end,
 	},

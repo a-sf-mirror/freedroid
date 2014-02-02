@@ -101,7 +101,7 @@ return {
 			Tux:says(_"Violets are blue,")
 			Tux:says(_"All of my base,")
 			Tux:says(_"Are belong to you.")
-			npc_says("...")
+			npc_says(_"...")
 			hide("node9")
 		end,
 	},

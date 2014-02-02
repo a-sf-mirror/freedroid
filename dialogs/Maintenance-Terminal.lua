@@ -52,7 +52,7 @@ return {
 				npc_says(_"Found 02 connected gates.")
 				npc_says(_"Found 01 connected automated factories.")
 				npc_says(_"Anomalies detected.")
-				npc_says("...")
+				npc_says(_"...")
 			end
 
 			if (cmp_obstacle_state("Maintenance-gun", "enabled")) then

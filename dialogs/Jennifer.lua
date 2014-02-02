@@ -66,7 +66,7 @@ return {
 		text = _"You are repairing these bots?!",
 		code = function()
 			npc_says(_"Uhm yes, that's my job here.")
-			npc_says("...")
+			npc_says(_"...")
 			hide("node3") show("node4")
 		end,
 	},

@@ -73,8 +73,8 @@ return {
 			npc_says(_"Compressing image....")
 			npc_says(_"Advertising update to clients...")
 			npc_says(_"Waiting for all connections....")
-			npc_says("...")
-			npc_says("...")
+			npc_says(_"...")
+			npc_says(_"...")
 			npc_says(_"Please resolve merge conflicts:")
 			if (takeover(get_program("Hacking")+4)) then
 				npc_says(_"Conflicts resolved,")

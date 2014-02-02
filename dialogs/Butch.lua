@@ -198,7 +198,7 @@ return {
 		id = "node13",
 		text = _"No way! Violence is wrong! Make love not war!",
 		code = function()
-			npc_says(". . .")
+			npc_says(_". . .")
 			hide("node6", "node13") show("node14")
 		end,
 	},
@@ -206,7 +206,7 @@ return {
 		id = "node14",
 		text = _"Roses, not destruction!",
 		code = function()
-			npc_says(". . .")
+			npc_says(_". . .")
 			hide("node14") show("node15")
 		end,
 	},

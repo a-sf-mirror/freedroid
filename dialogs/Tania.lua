@@ -91,7 +91,7 @@ return {
 				Tux:end_quest(_"Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
 				if (difficulty("hard")) and
 				   (not Tania_mapper_given == true) then
-					npc_says("I'm so glad that I am finally here, take this.")
+					npc_says(_"I'm so glad that I am finally here, take this.")
 					Tux:add_item("Source Book of Network Mapper")
 					Tania_mapper_given = true
 				end
