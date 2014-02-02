@@ -174,7 +174,7 @@ return {
 			if (not Tux:has_met("Dixon")) then
 			--; TRANSLATORS: Rot = red
 				npc_says(_"I think the Rot Guard makes them.")
-				--; TRANSLATORS: Gluck (should actually be 'Glück' but there is no ü in the font) = luck, fortune
+				--; TRANSLATORS: Gluck (should actually be 'Glueck' but there is no ue character in the font) = luck, fortune
 				npc_says(_"If you have Gluck, they won't kill you directly.")
 			end
 
@@ -360,7 +360,7 @@ return {
 		id = "node99",
 		text = _"I'll be going then.",
 		code = function()
-			--; TRANSLATORS: viel Gluck = good luck (should be "viel Glück, but the ü is missing in the font)
+			--; TRANSLATORS: viel Gluck = good luck (should be "viel Glueck, but the ue character is missing in the font)
 			npc_says(_"Goodbye and viel Gluck.")
 			end_dialog()
 		end,
