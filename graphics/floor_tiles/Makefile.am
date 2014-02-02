@@ -1,6 +1,4 @@
 ## Process this file with automake to produce Makefile.in
-SUBDIRS = ../../gluem
-
 noinst_DATA = atlas.txt
 
 atlas.txt: iso_*.png iso_*.offset */iso_*.png */iso_*.offset
