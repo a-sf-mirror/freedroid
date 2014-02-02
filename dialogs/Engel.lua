@@ -35,8 +35,10 @@ return {
 		id = "node0",
 		text = _"Hi! I'm new here. ",
 		code = function()
-			npc_says(_"Hello. We are the Fleischer brothers.") -- Fleischer is a name, but also means "butcher"
-			npc_says(_"I am Engel. He is Geist, and he does not know the language.") -- Engel = Angle, Geist = Ghost or Spirit
+			--; TRANSLATORS: Fleischer is a name, but also means "butcher"
+			npc_says(_"Hello. We are the Fleischer brothers.")
+			--; TRANSLATORS: Engel = Angle, Geist = Ghost or Spirit
+			npc_says(_"I am Engel. He is Geist, and he does not know the language.")
 			set_bot_name(_"Engel - Hunter")
 			set_bot_name(_"Geist - Hunter", "Geist")
 			hide("node0") show("node1")
@@ -56,7 +58,8 @@ return {
 		id = "node2",
 		text = _"Can I help you somehow?",
 		code = function()
-			npc_says(_"Nein. Let us die as warriors. That is all we ask for.") -- Nein = No
+			--; TRANSLATORS: Nein = No
+			npc_says(_"Nein. Let us die as warriors. That is all we ask for.")
 			hide("node2") show("node3")
 		end,
 	},
@@ -66,7 +69,8 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"If you keep standing here more bots will come and --")
-			npc_says(_"Sehr gut. Let them come. We are ready.") -- Sehr gut = Very good or very well.
+			--; TRANSLATORS: Sehr gut = Very good or very well.
+			npc_says(_"Sehr gut. Let them come. We are ready.")
 			npc_says(_"What a beautiful day. Yes.")
 			hide("node3") show("node5")
 		end,
@@ -88,7 +92,8 @@ return {
 		code = function()
 			npc_says(_"Nowhere. This is the end of the world. There is no help.")
 			npc_says(_"There is a town a bit south from here, but if I were you, I would not go there.")
-			npc_says(_"The Rot Guard is the ruler there, and cruelty is their solution to everything.") -- Rot = red
+			--; TRANSLATORS: Rot = red
+			npc_says(_"The Rot Guard is the ruler there, and cruelty is their solution to everything.")
 			npc_says(_"Real freedom is really dead.")
 			hide("node6")
 		end,
@@ -101,11 +106,14 @@ return {
 			Tux:says(_"You guys are tota --")
 			npc_says(_"WHAT?! What is it that you want to say?")
 			Tux:says(_"Erm... I --")
-			npc_says(_"WHAT!? SPIT IT OUT, BACKPFEIFENGESICHT!") -- Backpfeife = Slap in the face Gesicht = face / a face badly in need of a slap in it
+			--; TRANSLATORS: Backpfeife = Slap in the face; Gesicht = face / backpfeigengesicht: a face badly in need of a slap into it
+			npc_says(_"WHAT!? SPIT IT OUT, BACKPFEIFENGESICHT!")
 			Tux:says(_"Er... You guys are really great and I admire your bravery in the face of certain death.")
-			npc_says(_"Donnerwetter, you are a funny one.") -- donner = thunder, wetter = weather, Thunderstorm. In this sense Donnerwetter means "wow!".
+			--; TRANSLATORS: donner = thunder; wetter = weather :  Thunderstorm; here 'Donnerwetter' means "wow!".
+			npc_says(_"Donnerwetter, you are a funny one.")
 			npc_says(_"I hope that one day we shall meet again, maybe in a better time.")
-			npc_says(_"Maybe then you will tell us other gut jokes that you know.") --gut = good
+			--; TRANSLATORS: -- gut = good
+			npc_says(_"Maybe then you will tell us other gut jokes that you know.")
 			npc_says(_"Maybe one day...")
 			hide("node7")
 		end,
@@ -124,12 +132,14 @@ return {
 		text = _"I want to know how to extract modules from the bots.",
 		code = function()
 			if (Tux:get_program_revision("Extract bot parts") > 4) then
-				npc_says(_"I schon told you alles I know about that.") -- schon = already , alles = everything/all
+				--; TRANSLATORS: schon = already , alles = everything/all
+				npc_says(_"I schon told you alles I know about that.")
 				hide("node12", "node15")
 			else
 				Engel_offered_extraction_skill = true
 				npc_says(_"Yes.")
-				npc_says(_"I will sell the information for a lot of Schaltkreise.") -- Schaltkreise = circuits
+				--; TRANSLATORS: Schaltkreise = circuits
+				npc_says(_"I will sell the information for a lot of Schaltkreise.")
 				npc_says(_"Interested?")
 				show("node15", "node98")
 				push_topic("Extract bot parts")
@@ -140,7 +150,8 @@ return {
 		id = "node13",
 		text = _"Can I join your hunt?",
 		code = function()
-			npc_says(_"Nein. Our problem. Our hunt.") -- nein = no
+			--; TRANSLATORS: nein = no
+			npc_says(_"Nein. Our problem. Our hunt.")
 			hide("node13")
 		end,
 	},
@@ -149,18 +160,22 @@ return {
 		text = _"What happens to these bot parts?",
 		code = function()
 			Tux:says(_"Are they used to build other bots?")
-			npc_says(_"Most of them are used to bauen little nette gadgets.") --bauen = build , in this context more like 'create' | nette= nice
+			--; TRANSLATORS: bauen = to build, to construct ; in this context more like 'create' ;; nette = nice
+			npc_says(_"Most of them are used to bauen little nette gadgets.")
 			npc_says(_"You can use them to make weapons better or make you stronger.")
 			Tux:says(_"How does this work?")
 			npc_says(_"I don't know.")
 			npc_says(_"But these gadgets are very nice for making your equipment better.")
 			Tux:says(_"So they are kind of add-ons?")
 			npc_says(_"Yes.")
-			npc_says(_"Ask the Stadtmenschen if you want to know more.") --Stadtmenschen = townspeople
+			--; TRANSLATORS: Stadtmenschen = townspeople
+			npc_says(_"Ask the Stadtmenschen if you want to know more.")
 
 			if (not Tux:has_met("Dixon")) then
-				npc_says(_"I think the Rot Guard makes them.") --Rot = red
-				npc_says(_"If you have Gluck, they won't kill you directly.") --Gluck (should actually be 'Glück' but there is no ü in the font) = luck
+			--; TRANSLATORS: Rot = red
+				npc_says(_"I think the Rot Guard makes them.")
+				--; TRANSLATORS: Gluck (should actually be 'Glück' but there is no ü in the font) = luck, fortune
+				npc_says(_"If you have Gluck, they won't kill you directly.")
 			end
 
 			npc_says(_"But I don't know more about these gadgets.")
@@ -198,7 +213,8 @@ return {
 					npc_says(_"Then we can talk.")
 				else -- No $$$
 					npc_says(_"Hmmm...")
-					npc_says(_"Kein Geld, keine Hilfe.") -- No money, no help.
+					--; TRANSLATORS: No money, no help.
+					npc_says(_"Kein Geld, keine Hilfe.")
 					npc_says(_"Come back with some circuits.")
 				end
 
@@ -233,11 +249,12 @@ return {
 		topic = "Extract bot parts",
 		code = function()
 			npc_says(_"Let us start with Entropy Inverters. This is quite simple.")
-			npc_says(_"Just take a hammer and hit the bot sehr hard on the head.") -- sehr = very
+			--; TRANSLATORS: sehr = very
+			npc_says(_"Just take a hammer and hit the bot sehr hard on the head.")
 			npc_says(_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for.")
 		end,
 	},
-	{
+	{ -- @TODO:  add some more german stuff to the following sections...
 		id = "node29",
 		text = _"What was that about Plasma Transistors?",
 		topic = "Extract bot parts",
@@ -324,7 +341,8 @@ return {
 		echo_text = false,
 		topic = "Extract bot parts",
 		code = function()
-			npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?") -- nein = no , ja = yes, in this case it can be understood as "did you understand?"
+			-- ; TRANSLATORS: nein = no , ja = yes, in this case it can be understood as "did you understand?"
+			npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?")
 			hide("node12", "node15")
 			pop_topic() -- "Extract bot parts"
 		end,
@@ -342,7 +360,8 @@ return {
 		id = "node99",
 		text = _"I'll be going then.",
 		code = function()
-			npc_says(_"Goodbye and viel Gluck.") -- viel Gluck = good luck (should be "viel Glück, but the ü is missing in the font)
+			--; TRANSLATORS: viel Gluck = good luck (should be "viel Glück, but the ü is missing in the font)
+			npc_says(_"Goodbye and viel Gluck.")
 			end_dialog()
 		end,
 	},

@@ -32,7 +32,8 @@ return {
 		id = "node0",
 		text = _"Hello. Any idea where I can get some help here?",
 		code = function()
-			npc_says(_"Verschwinde!") -- Vanish!
+			--; TRANSLATORS: Vanish!
+			npc_says(_"Verschwinde!")
 			hide("node0") show("node1", "node2")
 		end,
 	},
@@ -40,9 +41,12 @@ return {
 		id = "node1",
 		text = _"Erm... What do you mean?",
 		code = function()
-			npc_says(_"Ich bin der Geist, der stets verneint.") -- I am the ghost that always negates (?).
-			npc_says(_"Und das mit Recht; denn alles, was entsteht,") -- For a reason; because everything that is created,
-			npc_says(_"ist wert, dass es zugrunde geht.") -- is worth, to be ruined.
+			--; TRANSLATORS: I am the ghost that always negates (?).
+			npc_says(_"Ich bin der Geist, der stets verneint.")
+			--; TRANSLATORS: For a reason; because everything that is created,
+			npc_says(_"Und das mit Recht; denn alles, was entsteht,")
+			--; TRANSLATORS: is worth, to be ruined.
+			npc_says(_"ist wert, dass es zugrunde geht.")
 			hide("node1") show("node3")
 		end,
 	},
@@ -50,9 +54,12 @@ return {
 		id = "node2",
 		text = _"I really do not understand you.",
 		code = function()
-			npc_says(_"Wer sie nicht kennte, die Elemente,") -- The one who does not know them, the Elements,
-			npc_says(_"ihre Kraft und Eigenschaft,") -- their power and their feature/characteristic,
-			npc_says(_"waere kein Meister ueber die Geister.") -- would not be a master of the ghosts.
+			--; TRANSLATORS: The one who does not know them, the Elements,
+			npc_says(_"Wer sie nicht kennte, die Elemente,")
+			--; TRANSLATORS: their power and their feature/characteristic,
+			npc_says(_"ihre Kraft und Eigenschaft,")
+			--; TRANSLATORS: would not be a master of the ghosts/spirits.
+			npc_says(_"waere kein Meister ueber die Geister.")
 			hide("node2") show("node3")
 		end,
 	},
@@ -60,7 +67,8 @@ return {
 		id = "node3",
 		text = _"I wish I knew what you are talking about.",
 		code = function()
-			npc_says(_"Verschwinde!") -- Vanish!
+			--; TRANSLATORS: Vanish!
+			npc_says(_"Verschwinde!")
 			hide("node3")
 			end_dialog()
 		end,
@@ -69,7 +77,7 @@ return {
 		id = "node99",
 		text = _"I need to go now.",
 		code = function()
-			npc_says(_" . . .")
+			npc_says(_". . .")
 			end_dialog()
 		end,
 	},
