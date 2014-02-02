@@ -25,7 +25,8 @@ return {
 		terminal = "user@product_enhancer: ~ # "
 
 		cli_says(_"Login : ", "NO_WAIT")
-		Tux:says("user", "NO_WAIT")
+		-- ; TRANSLATORS: 'user' should perhaps not be translated
+		Tux:says(_"user", "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
 		if (not has_ms_addon_password ) then
 			Tux:says("*******", "NO_WAIT")

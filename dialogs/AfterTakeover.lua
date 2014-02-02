@@ -91,7 +91,7 @@ return {
 		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
-			Tux:says("cd ..", "NO_WAIT")
+			Tux:says(_"cd ..", "NO_WAIT")
 			cli_says(terminal, "NO_WAIT")
 			pop_topic()
 		end,
@@ -691,7 +691,8 @@ return {
 		text = "logout",
 		echo_text = false,
 		code = function()
-			Tux:says("logout","NO_WAIT")
+			--; TRANSLATORS: 'logout' should be a command 
+			Tux:says(_"logout","NO_WAIT")
 			npc_says(_"Closing remote connection...")
 			if (AfterTakeover_repair) then
 				heal_npc()

@@ -25,7 +25,8 @@ return {
 		terminal = "dixon@autofactory: ~ # "
 
 		cli_says(_"Login : ", "NO_WAIT")
-		Tux:says("dixon", "NO_WAIT")
+		-- ; TRANSLATORS: dixon = name of the npc, uncapitalized
+		Tux:says(_"dixon", "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
 		Tux:says("*******", "NO_WAIT")
 		npc_says(_"Hello, Dave.")

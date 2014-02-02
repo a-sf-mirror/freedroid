@@ -175,7 +175,7 @@ return {
 			npc_says(_"[b]Processing data, please wait... Updating database, this may take a while...[/b]")
 			npc_says(_"[b]To adjust to the changes, the system must restart.[/b]")
 			npc_says(_"[b]BEEP![/b]")
-			Tux:says(". . .")
+			Tux:says(_". . .")
 			npc_says(_"... HI THERE! I'll be your humble servant for the duration of your stay in-", "NO_WAIT")
 			Tux:says(_"THE REACTOR! What about the reactor? Can you replace the module now?")
 			npc_says(_"Yes, the reactor! Your order has been processed, sir and or madam! Please wait patiently!")
@@ -307,7 +307,7 @@ return {
 			npc_says(_"Our MAGNIFICENT bartender EWALD has an UNBREAKABLE password! His account is the most secure EVER! NO ONE except for him can get on it!")
 			Tux:says(_"What's the password?")
 			npc_says(_"Five asterisks!")
-			Tux:says("...")
+			Tux:says(_"...")
 			npc_says(_"... Maybe I shouldn't have said that.")
 			Ewalds_296_has_ewalds_password = true
 			hide("node32")

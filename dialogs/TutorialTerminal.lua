@@ -26,7 +26,7 @@ return {
 		TutorialTerminal_date_1 = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
 		TutorialTerminal_prompt = "guest@example.com: ~ #"
 
-		cli_says("Login : ", "NO_WAIT")
+		cli_says(_"Login : ", "NO_WAIT")
 		Tux:says(_"guest", "NO_WAIT")
 		cli_says(_"Entering as Guest", "NO_WAIT")
 		npc_says("", "NO_WAIT")

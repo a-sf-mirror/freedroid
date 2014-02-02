@@ -366,7 +366,7 @@ return {
 		text = _"How does wearing clothes and holding shields help me?",
 		code = function()
 			npc_says(_"Well, it can help you avoid indecent exposure charges.")
-			Tux:says("...")
+			Tux:says(_"...")
 			npc_says(_"But all jokes aside, the bots will not mess around.")
 			npc_says(_"Even the best of fighters sometimes get hit by enemy blows. If I were you, I would seriously consider wearing some sort of armor before mixing it up with those bots.")
 			npc_says(_"They will help to mitigate some of the damage you take from melee or ranged combat.")

@@ -32,7 +32,8 @@ return {
 	end,
 
 	EveryTime = function()
-		cli_says("admin@main.pc.dsb.ms: ~ #", "NO_WAIT")
+		--; TRANSLATORS: 'admin' should perhaps not be translated
+		cli_says(_"admin@main.pc.dsb.ms: ~ #", "NO_WAIT")
 		show("node99")
 	end,
 

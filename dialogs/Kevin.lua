@@ -421,7 +421,7 @@ return {
 				npc_says(_"I checked online if there is a name for this symptom... but couldn't find anything...")
 				npc_says(_"I guess I am going to call it 'stdoubt'.")
 				Tux:says(_"Ok...")
-				Tux:says("...")
+				Tux:says(_"...")
 			else
 				npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.",
 								_"If you need to contact me, my number is 127.0.0.1",
