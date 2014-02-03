@@ -752,7 +752,7 @@ static int _equip_item(lua_State * L)
 
 	item new_item = create_item_with_id(item_name, TRUE, 1);
 	equip_item(&new_item);
-	SetNewBigScreenMessage(_("1 Item received!"));
+	SetNewBigScreenMessage(_("1 item received!"));
 
 	return 0;
 }

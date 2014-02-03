@@ -332,7 +332,7 @@ void leveleditor_display()
 	display_widgets();
 
 	if (EditLevel()->random_dungeon) {
-		sprintf(VanishingMessage, " This level is automatically generated. \n Editing will have no effect.");
+		sprintf(VanishingMessage, _(" This level is automatically generated. \n Editing will have no effect."));
 		VanishingMessageEndDate = SDL_GetTicks() + 100;
 	}
 

@@ -382,7 +382,7 @@ void save_map(void)
 	find_file("levels.dat", MAP_DIR, fname, 0);
 	if (SaveShip(fname, TRUE, 0)) {
 		ErrorMessage(__FUNCTION__, "Saving ship file to %s failed, possibly because of permission issues. Saving your ship to %s instead.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, MAP_DIR, our_config_dir);
-		alert_window("Saving levels to %s/levels.dat instead of the default location map/levels.dat.", our_config_dir);
+		alert_window(_("Saving levels to %s/levels.dat instead of the default location map/levels.dat."), our_config_dir);
 		sprintf(fname, "%s/levels.dat", our_config_dir);
 		SaveShip(fname, TRUE, 0);
 	}

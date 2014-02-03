@@ -203,114 +203,114 @@ void input_set_default(void)
 	   map/titles/level_editor_help.title
 	 */
 
-	input_set_keybind("keychart", SDLK_F1, KMOD_NONE);
-	input_set_keybind("fullscreen", SDLK_F2, KMOD_NONE);
-	input_set_keybind("grab_input", SDLK_g, KMOD_LCTRL);
-	input_set_keybind("quit", SDLK_q, KMOD_LCTRL);
-	input_set_keybind("wall_transparency", SDLK_t, KMOD_NONE);
-	input_set_keybind("take_screenshot", SDLK_PRINT, KMOD_NONE);
+	input_set_keybind(_("keychart"), SDLK_F1, KMOD_NONE);
+	input_set_keybind(_("fullscreen"), SDLK_F2, KMOD_NONE);
+	input_set_keybind(_("grab_input"), SDLK_g, KMOD_LCTRL);
+	input_set_keybind(_("quit"), SDLK_q, KMOD_LCTRL);
+	input_set_keybind(_("wall_transparency"), SDLK_t, KMOD_NONE);
+	input_set_keybind(_("take_screenshot"), SDLK_PRINT, KMOD_NONE);
 
 	/* Game */
-	input_set_keybind("inventory", SDLK_i, KMOD_NONE);
-	input_set_keybind("skill", SDLK_s, KMOD_NONE);
-	input_set_keybind("character", SDLK_c, KMOD_NONE);
-	input_set_keybind("quests", SDLK_q, KMOD_NONE);
-	input_set_keybind("reload", SDLK_r, KMOD_NONE);
-	input_set_keybind("autorun", SDLK_u, KMOD_NONE);
+	input_set_keybind(_("inventory"), SDLK_i, KMOD_NONE);
+	input_set_keybind(_("skill"), SDLK_s, KMOD_NONE);
+	input_set_keybind(_("character"), SDLK_c, KMOD_NONE);
+	input_set_keybind(_("quests"), SDLK_q, KMOD_NONE);
+	input_set_keybind(_("reload"), SDLK_r, KMOD_NONE);
+	input_set_keybind(_("autorun"), SDLK_u, KMOD_NONE);
 
-	input_set_keybind("move_north", SDLK_UP, KMOD_NONE);
-	input_set_keybind("move_south", SDLK_DOWN, KMOD_NONE);
-	input_set_keybind("move_east", SDLK_RIGHT, KMOD_NONE);
-	input_set_keybind("move_west", SDLK_LEFT, KMOD_NONE);
+	input_set_keybind(_("move_north"), SDLK_UP, KMOD_NONE);
+	input_set_keybind(_("move_south"), SDLK_DOWN, KMOD_NONE);
+	input_set_keybind(_("move_east"), SDLK_RIGHT, KMOD_NONE);
+	input_set_keybind(_("move_west"), SDLK_LEFT, KMOD_NONE);
 
-	input_set_keybind("quicksave", SDLK_F3, KMOD_NONE);
-	input_set_keybind("quickload", SDLK_F4, KMOD_NONE);
-	input_set_keybind("pause", SDLK_p, KMOD_NONE);
-	input_set_keybind("show_item_labels", SDLK_z, KMOD_NONE);
-	input_set_keybind("automap", SDLK_TAB, KMOD_NONE);
+	input_set_keybind(_("quicksave"), SDLK_F3, KMOD_NONE);
+	input_set_keybind(_("quickload"), SDLK_F4, KMOD_NONE);
+	input_set_keybind(_("pause"), SDLK_p, KMOD_NONE);
+	input_set_keybind(_("show_item_labels"), SDLK_z, KMOD_NONE);
+	input_set_keybind(_("automap"), SDLK_TAB, KMOD_NONE);
 
-	input_set_keybind("activate_program0", SDLK_F5, KMOD_NONE);
-	input_set_keybind("activate_program1", SDLK_F6, KMOD_NONE);
-	input_set_keybind("activate_program2", SDLK_F7, KMOD_NONE);
-	input_set_keybind("activate_program3", SDLK_F8, KMOD_NONE);
-	input_set_keybind("activate_program4", SDLK_F9, KMOD_NONE);
-	input_set_keybind("activate_program5", SDLK_F10, KMOD_NONE);
-	input_set_keybind("activate_program6", SDLK_F11, KMOD_NONE);
-	input_set_keybind("activate_program7", SDLK_F12, KMOD_NONE);
+	input_set_keybind(_("activate_program0"), SDLK_F5, KMOD_NONE);
+	input_set_keybind(_("activate_program1"), SDLK_F6, KMOD_NONE);
+	input_set_keybind(_("activate_program2"), SDLK_F7, KMOD_NONE);
+	input_set_keybind(_("activate_program3"), SDLK_F8, KMOD_NONE);
+	input_set_keybind(_("activate_program4"), SDLK_F9, KMOD_NONE);
+	input_set_keybind(_("activate_program5"), SDLK_F10, KMOD_NONE);
+	input_set_keybind(_("activate_program6"), SDLK_F11, KMOD_NONE);
+	input_set_keybind(_("activate_program7"), SDLK_F12, KMOD_NONE);
 
-	input_set_keybind("quick_inventory0", SDLK_0, KMOD_NONE);
-	input_set_keybind("quick_inventory1", SDLK_1, KMOD_NONE);
-	input_set_keybind("quick_inventory2", SDLK_2, KMOD_NONE);
-	input_set_keybind("quick_inventory3", SDLK_3, KMOD_NONE);
-	input_set_keybind("quick_inventory4", SDLK_4, KMOD_NONE);
-	input_set_keybind("quick_inventory5", SDLK_5, KMOD_NONE);
-	input_set_keybind("quick_inventory6", SDLK_6, KMOD_NONE);
-	input_set_keybind("quick_inventory7", SDLK_7, KMOD_NONE);
-	input_set_keybind("quick_inventory8", SDLK_8, KMOD_NONE);
-	input_set_keybind("quick_inventory9", SDLK_9, KMOD_NONE);
+	input_set_keybind(_("quick_inventory0"), SDLK_0, KMOD_NONE);
+	input_set_keybind(_("quick_inventory1"), SDLK_1, KMOD_NONE);
+	input_set_keybind(_("quick_inventory2"), SDLK_2, KMOD_NONE);
+	input_set_keybind(_("quick_inventory3"), SDLK_3, KMOD_NONE);
+	input_set_keybind(_("quick_inventory4"), SDLK_4, KMOD_NONE);
+	input_set_keybind(_("quick_inventory5"), SDLK_5, KMOD_NONE);
+	input_set_keybind(_("quick_inventory6"), SDLK_6, KMOD_NONE);
+	input_set_keybind(_("quick_inventory7"), SDLK_7, KMOD_NONE);
+	input_set_keybind(_("quick_inventory8"), SDLK_8, KMOD_NONE);
+	input_set_keybind(_("quick_inventory9"), SDLK_9, KMOD_NONE);
 
-	input_set_keybind("close_windows", SDLK_SPACE, KMOD_NONE);
-	input_set_keybind("game_escape_menu", SDLK_ESCAPE, KMOD_NONE);
+	input_set_keybind(_("close_windows"), SDLK_SPACE, KMOD_NONE);
+	input_set_keybind(_("game_escape_menu"), SDLK_ESCAPE, KMOD_NONE);
 
 	/* Level editor */
-	input_set_keybind("drop_item", SDLK_g, KMOD_NONE);
-	input_set_keybind("place_obstacle_kp1", SDLK_KP1, KMOD_NONE);
-	input_set_keybind("place_obstacle_kp2", SDLK_KP2, KMOD_NONE);
-	input_set_keybind("place_obstacle_kp3", SDLK_KP3, KMOD_NONE);
-	input_set_keybind("place_obstacle_kp4", SDLK_KP4, KMOD_NONE);
-	input_set_keybind("place_obstacle_kp5", SDLK_KP5, KMOD_NONE);
-	input_set_keybind("place_obstacle_kp6", SDLK_KP6, KMOD_NONE);
-	input_set_keybind("place_obstacle_kp7", SDLK_KP7, KMOD_NONE);
-	input_set_keybind("place_obstacle_kp8", SDLK_KP8, KMOD_NONE);
-	input_set_keybind("place_obstacle_kp9", SDLK_KP9, KMOD_NONE);
-	input_set_keybind("place_obstacle_kp9", SDLK_KP9, KMOD_NONE);
-	input_set_keybind("change_obstacle_label", SDLK_h, KMOD_NONE);
-	input_set_keybind("change_map_label", SDLK_m, KMOD_NONE);
-	input_set_keybind("zoom_out", SDLK_o, KMOD_NONE);
-	input_set_keybind("cycle_marked_object", SDLK_n, KMOD_NONE);
-	input_set_keybind("next_tab", SDLK_f, KMOD_NONE);
-	input_set_keybind("previous_tab", SDLK_f, KMOD_LSHIFT);
-	input_set_keybind("undo", SDLK_z, KMOD_NONE);
-	input_set_keybind("redo", SDLK_y, KMOD_NONE);
-	input_set_keybind("beautify_grass", SDLK_b, KMOD_LCTRL);
-	input_set_keybind("beautify_water", SDLK_w, KMOD_LCTRL);
-	input_set_keybind("toggle_waypoint", SDLK_w, KMOD_NONE);
-	input_set_keybind("toggle_waypoint_randomspawn", SDLK_w, KMOD_LSHIFT);
-	input_set_keybind("connect_waypoint", SDLK_c, KMOD_NONE);
-	input_set_keybind("toolbar_scroll_left", SDLK_PAGEUP, KMOD_NONE);
-	input_set_keybind("toolbar_scroll_right", SDLK_PAGEDOWN, KMOD_NONE);
-	input_set_keybind("toolbar_step_left", SDLK_PAGEUP, KMOD_LCTRL);
-	input_set_keybind("toolbar_step_right", SDLK_PAGEDOWN, KMOD_LCTRL);
-	input_set_keybind("cut", SDLK_x, KMOD_LCTRL);
-	input_set_keybind("copy", SDLK_c, KMOD_LCTRL);
-	input_set_keybind("paste", SDLK_v, KMOD_LCTRL);
-	input_set_keybind("delete", SDLK_BACKSPACE, KMOD_NONE);
-	input_set_keybind("next_selection_type", SDLK_TAB, KMOD_NONE);
-	input_set_keybind("previous_selection_type", SDLK_TAB, KMOD_LSHIFT);
-	input_set_keybind("run_map_validator", SDLK_e, KMOD_LCTRL);
+	input_set_keybind(_("drop_item"), SDLK_g, KMOD_NONE);
+	input_set_keybind(_("place_obstacle_kp1"), SDLK_KP1, KMOD_NONE);
+	input_set_keybind(_("place_obstacle_kp2"), SDLK_KP2, KMOD_NONE);
+	input_set_keybind(_("place_obstacle_kp3"), SDLK_KP3, KMOD_NONE);
+	input_set_keybind(_("place_obstacle_kp4"), SDLK_KP4, KMOD_NONE);
+	input_set_keybind(_("place_obstacle_kp5"), SDLK_KP5, KMOD_NONE);
+	input_set_keybind(_("place_obstacle_kp6"), SDLK_KP6, KMOD_NONE);
+	input_set_keybind(_("place_obstacle_kp7"), SDLK_KP7, KMOD_NONE);
+	input_set_keybind(_("place_obstacle_kp8"), SDLK_KP8, KMOD_NONE);
+	input_set_keybind(_("place_obstacle_kp9"), SDLK_KP9, KMOD_NONE);
+	input_set_keybind(_("place_obstacle_kp9"), SDLK_KP9, KMOD_NONE);
+	input_set_keybind(_("change_obstacle_label"), SDLK_h, KMOD_NONE);
+	input_set_keybind(_("change_map_label"), SDLK_m, KMOD_NONE);
+	input_set_keybind(_("zoom_out"), SDLK_o, KMOD_NONE);
+	input_set_keybind(_("cycle_marked_object"), SDLK_n, KMOD_NONE);
+	input_set_keybind(_("next_tab"), SDLK_f, KMOD_NONE);
+	input_set_keybind(_("previous_tab"), SDLK_f, KMOD_LSHIFT);
+	input_set_keybind(_("undo"), SDLK_z, KMOD_NONE);
+	input_set_keybind(_("redo"), SDLK_y, KMOD_NONE);
+	input_set_keybind(_("beautify_grass"), SDLK_b, KMOD_LCTRL);
+	input_set_keybind(_("beautify_water"), SDLK_w, KMOD_LCTRL);
+	input_set_keybind(_("toggle_waypoint"), SDLK_w, KMOD_NONE);
+	input_set_keybind(_("toggle_waypoint_randomspawn"), SDLK_w, KMOD_LSHIFT);
+	input_set_keybind(_("connect_waypoint"), SDLK_c, KMOD_NONE);
+	input_set_keybind(_("toolbar_scroll_left"), SDLK_PAGEUP, KMOD_NONE);
+	input_set_keybind(_("toolbar_scroll_right"), SDLK_PAGEDOWN, KMOD_NONE);
+	input_set_keybind(_("toolbar_step_left"), SDLK_PAGEUP, KMOD_LCTRL);
+	input_set_keybind(_("toolbar_step_right"), SDLK_PAGEDOWN, KMOD_LCTRL);
+	input_set_keybind(_("cut"), SDLK_x, KMOD_LCTRL);
+	input_set_keybind(_("copy"), SDLK_c, KMOD_LCTRL);
+	input_set_keybind(_("paste"), SDLK_v, KMOD_LCTRL);
+	input_set_keybind(_("delete"), SDLK_BACKSPACE, KMOD_NONE);
+	input_set_keybind(_("next_selection_type"), SDLK_TAB, KMOD_NONE);
+	input_set_keybind(_("previous_selection_type"), SDLK_TAB, KMOD_LSHIFT);
+	input_set_keybind(_("run_map_validator"), SDLK_e, KMOD_LCTRL);
 
 	/* Cheat */
-	input_set_keybind("cheat_xp+_1k", SDLK_KP1, KMOD_NONE);
-	input_set_keybind("cheat_xp*_2", SDLK_KP2, KMOD_NONE);
-	input_set_keybind("cheat_melee", SDLK_KP7, KMOD_NONE);
-	input_set_keybind("cheat_range", SDLK_KP8, KMOD_NONE);
-	input_set_keybind("cheat_programing", SDLK_KP9, KMOD_NONE);
-	input_set_keybind("cheat_melee_down", SDLK_KP4, KMOD_NONE);
-	input_set_keybind("cheat_range_down", SDLK_KP5, KMOD_NONE);
-	input_set_keybind("cheat_programing_down", SDLK_KP6, KMOD_NONE);
-	input_set_keybind("cheat_drop_random_item", SDLK_r, KMOD_LCTRL);
-	input_set_keybind("cheat_drop_random_magical_item", SDLK_r, KMOD_LCTRL | KMOD_LSHIFT);
-	input_set_keybind("cheat_respawn_level", SDLK_r, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
-	input_set_keybind("cheat_level_editor", SDLK_e, KMOD_LCTRL | KMOD_LALT);
-	input_set_keybind("cheat_menu", SDLK_c, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
-	input_set_keybind("cheat_reload_graphics", SDLK_g, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
-	input_set_keybind("cheat_inc_repair", SDLK_r, KMOD_RCTRL );
-	input_set_keybind("cheat_dec_repair", SDLK_r, KMOD_RCTRL | KMOD_RSHIFT );
+	input_set_keybind(_("cheat_xp+_1k"), SDLK_KP1, KMOD_NONE);
+	input_set_keybind(_("cheat_xp*_2"), SDLK_KP2, KMOD_NONE);
+	input_set_keybind(_("cheat_melee"), SDLK_KP7, KMOD_NONE);
+	input_set_keybind(_("cheat_range"), SDLK_KP8, KMOD_NONE);
+	input_set_keybind(_("cheat_programing"), SDLK_KP9, KMOD_NONE);
+	input_set_keybind(_("cheat_melee_down"), SDLK_KP4, KMOD_NONE);
+	input_set_keybind(_("cheat_range_down"), SDLK_KP5, KMOD_NONE);
+	input_set_keybind(_("cheat_programing_down"), SDLK_KP6, KMOD_NONE);
+	input_set_keybind(_("cheat_drop_random_item"), SDLK_r, KMOD_LCTRL);
+	input_set_keybind(_("cheat_drop_random_magical_item"), SDLK_r, KMOD_LCTRL | KMOD_LSHIFT);
+	input_set_keybind(_("cheat_respawn_level"), SDLK_r, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
+	input_set_keybind(_("cheat_level_editor"), SDLK_e, KMOD_LCTRL | KMOD_LALT);
+	input_set_keybind(_("cheat_menu"), SDLK_c, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
+	input_set_keybind(_("cheat_reload_graphics"), SDLK_g, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
+	input_set_keybind(_("cheat_inc_repair"), SDLK_r, KMOD_RCTRL );
+	input_set_keybind(_("cheat_dec_repair"), SDLK_r, KMOD_RCTRL | KMOD_RSHIFT );
 
 #ifdef WITH_RTPROF
 	/* RT Profiler */
-	input_set_keybind("rtprof_switch_activation", SDLK_p, KMOD_LALT);
-	input_set_keybind("rtprof_clear_probes", SDLK_o, KMOD_LALT);
+	input_set_keybind(_("rtprof_switch_activation"), SDLK_p, KMOD_LALT);
+	input_set_keybind(_("rtprof_clear_probes"), SDLK_o, KMOD_LALT);
 #endif
 }
 
@@ -336,7 +336,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 	ShadowingRectangle(Screen, keychart_rect);
 
-	put_string_centered(Para_BFont, FontHeight(Para_BFont), "Key chart");
+	put_string_centered(Para_BFont, FontHeight(Para_BFont), _("Key chart"));
 
 	if (startidx >= sizeof(keybindNames) / sizeof(keybindNames[0]))
 		return -1;

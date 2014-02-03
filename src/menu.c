@@ -1027,7 +1027,7 @@ static int Resolution_handle(int n)
 			while (EnterPressed() || SpacePressed()) ;
 			GameConfig.next_time_width_of_screen = screen_resolutions[i].xres;
 			GameConfig.next_time_height_of_screen = screen_resolutions[i].yres;
-			alert_window("You selected %d x %d pixels.\n\nYou need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience.",  screen_resolutions[i].xres, screen_resolutions[i].yres);
+			alert_window(_("You selected %d x %d pixels.\n\nYou need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience."),  screen_resolutions[i].xres, screen_resolutions[i].yres);
 			return CONTINUE_MENU;
 		}
 		++j;
@@ -1423,7 +1423,7 @@ static void Droid_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(Options[i], _("Show enemies' states: %s"), GameConfig.All_Texts_Switch ? _("YES") : _("NO"));
+	sprintf(Options[i], _("Show enemies' states (debug): %s"), GameConfig.All_Texts_Switch ? _("YES") : _("NO"));
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
 	strncpy(MenuTexts[i++], _("Back"), 1024);

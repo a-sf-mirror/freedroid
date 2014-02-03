@@ -181,7 +181,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 				autostr_append(str, _("Right click to use\n"));
 			}
 		} else {
-			autostr_append(str, "Item use: %s\n", ItemMap[item->type].right_use.tooltip);
+			autostr_append(str, _("Item use: %s\n"), ItemMap[item->type].right_use.tooltip);
 		}
 	}
 

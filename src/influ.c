@@ -971,10 +971,10 @@ void do_death_menu()
 
         while (!done) {
                 i = 0;
-                MenuTexts[i++] = "Load Latest";
-                MenuTexts[i++] = "Load Backup";
-                MenuTexts[i++] = "Quit to Main Menu";
-                MenuTexts[i++] = "Exit FreedroidRPG";
+                MenuTexts[i++] = _("Load Latest");
+                MenuTexts[i++] = _("Load Backup");
+                MenuTexts[i++] = _("Quit to Main Menu");
+                MenuTexts[i++] = _("Exit FreedroidRPG");
                 MenuTexts[i++] = "";
 
                 MenuPosition = DoMenuSelection("", MenuTexts, 1, "--GAME_BACKGROUND--", Menu_BFont);

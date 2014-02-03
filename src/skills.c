@@ -915,9 +915,9 @@ void ShowSkillsScreen(void)
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "weapon"))
 				sprintf(CharText, " ");
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "repair"))
-				sprintf(CharText, "Repair items, degrading them a bit");
+				sprintf(CharText, _("Repair items, degrading them a bit"));
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "nmap"))
-				sprintf(CharText, "Detect enemies");
+				sprintf(CharText, _("Detect enemies"));
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "light"))
 				sprintf(CharText, _("Lighten area"));
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "burnup"))

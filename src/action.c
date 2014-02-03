@@ -532,7 +532,7 @@ static void act_terminal(level *l, obstacle *o)
 {
 	char *dialog = get_obstacle_extension(l, o, OBSTACLE_EXTENSION_DIALOGFILE);
 	if (!dialog) {
-		append_new_game_message("Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\".");
+		append_new_game_message(_("Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\"."));
 		return;
 	}
 
@@ -548,7 +548,7 @@ static void act_sign(level *l, obstacle *o)
 {
 	const char *message = get_obstacle_extension(l, o, OBSTACLE_EXTENSION_SIGNMESSAGE);
 	if (!message) {
-		message = "There is nothing on this sign.";
+		message = _("There is nothing on this sign.");
 	}
 
 	append_new_game_message("%s", message);

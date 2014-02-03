@@ -360,9 +360,9 @@ static int lua_event_give_item(lua_State * L)
 	// the current Tux position.  That can't fail, right?
 	char msg[1000];
 	if (!give_item(&NewItem)) {
-		sprintf(msg, _("Received Item: %s (on floor)"), itemname);
+		sprintf(msg, _("Received item: %s (on floor)"), itemname);
 	} else {
-		sprintf(msg, _("Received Item: %s"), itemname);
+		sprintf(msg, _("Received item: %s"), itemname);
 	}
 	SetNewBigScreenMessage(msg);
 	return 0;
@@ -415,7 +415,7 @@ static int lua_event_equip_item(lua_State * L)
 	}
 	item new_item = create_item_with_id(item_name, TRUE, 1);
 	equip_item(&new_item);
-	SetNewBigScreenMessage(_("1 Item received!"));
+	SetNewBigScreenMessage(_("1 item received!"));
 	return 0;
 }
 
@@ -494,7 +494,7 @@ static int lua_event_give_xp(lua_State * L)
 	int xp = luaL_checkinteger(L, 1) * Me.experience_factor;
 	char tmpstr[150];
 	Me.Experience += xp;
-	sprintf(tmpstr, _("+%d Experience Points"), xp);
+	sprintf(tmpstr, _("+%d experience points"), xp);
 	SetNewBigScreenMessage(tmpstr);
 	return 0;
 }

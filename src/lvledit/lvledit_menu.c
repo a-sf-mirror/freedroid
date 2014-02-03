@@ -268,7 +268,7 @@ static void SetLevelInterfaces(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
+			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_north = (tgt);
@@ -283,7 +283,7 @@ static void SetLevelInterfaces(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
+			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_east = (tgt);
@@ -298,7 +298,7 @@ static void SetLevelInterfaces(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
+			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_south = (tgt);
@@ -313,7 +313,7 @@ static void SetLevelInterfaces(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
+			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_west = (tgt);
@@ -654,7 +654,7 @@ static void LevelOptions(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
+			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= 0 && tgt < curShip.num_levels) {
 				if (level_exists(tgt)) {
@@ -681,7 +681,7 @@ static void LevelOptions(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup("\n Please enter new drop class: \n\n", "");
+			tgt = get_number_popup(_("\n Please enter new drop class: \n\n"), "");
 			if (tgt < 0)
 				EditLevel()->drop_class = 0;
 			else if (tgt > 9)
@@ -1031,7 +1031,7 @@ int DoLevelEditorMainMenu()
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
+			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= 0 && tgt < curShip.num_levels) {
 				if (level_exists(tgt)) {
