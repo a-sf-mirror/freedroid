@@ -476,17 +476,18 @@ struct widget_group *get_lvledit_ui()
 			1, editor_right_button_click, NULL},
 		{LEFT_LEVEL_EDITOR_BUTTON, NULL, NULL,
 			1, editor_left_button_click, NULL, NULL},
-		{LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON, _("OBSTACLE"), NULL,
+		{LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON, _("Obstacle"), NULL,
 			2, typeselect_obstacle_button_click, NULL, typeselect_obstacle_button_update},
-		{LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON, _("FLOOR"), NULL,
+		{LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON, _("Floor"), NULL,
 			2, typeselect_floor_button_click, NULL, typeselect_floor_button_update},
-		{LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON, _("ITEM"), NULL,
+		{LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON, _("Item"), NULL,
 			2, typeselect_item_button_click, NULL, typeselect_item_button_update},
-		{LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON, _("ENEMY"), NULL,
+		{LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON, _("Enemy"), NULL,
 			2, typeselect_enemy_button_click, NULL, typeselect_enemy_button_update},
-		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, _("WP"), NULL,
+			//; TRANSLATORS: Waypoint
+		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, _("Wayp."), NULL,
 			2, typeselect_waypoint_button_click, NULL, typeselect_waypoint_button_update},
-		{LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON, _("LABEL"), NULL,
+		{LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON, _("Label"), NULL,
 			2, typeselect_map_label_button_click, NULL, typeselect_map_label_button_update}
 	};
 
