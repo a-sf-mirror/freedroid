@@ -1076,7 +1076,6 @@ static int Graphics_handle(int n)
 		SET_FULLSCREEN_FLAG,
 		SET_GAMMA_CORRECTION,
 		SET_SHOW_BLOOD_FLAG,
-		TOGGLE_LAZYLOAD,
 		LEAVE_OPTIONS_MENU
 	};
 	switch (n) {
@@ -1121,10 +1120,6 @@ static int Graphics_handle(int n)
 		GameConfig.show_blood = !GameConfig.show_blood;
 		break;
 
-	case TOGGLE_LAZYLOAD:
-		GameConfig.lazyload = !GameConfig.lazyload;
-		break;
-
 	case LEAVE_OPTIONS_MENU:
 		while (EnterPressed() || SpacePressed()) ;
 		return EXIT_MENU;
@@ -1153,9 +1148,6 @@ static void Graphics_fill(char *MenuTexts[MAX_MENU_ITEMS])
 
 	sprintf(Options[i], _("Show blood: %s"), GameConfig.show_blood ? _("YES") : _("NO"));
 	strncpy(MenuTexts[i], Options[i], 1024);
-	i++;
-
-	sprintf(MenuTexts[i], _("Graphics lazy loading: %s"), GameConfig.lazyload ? _("YES") : _("NO"));
 	i++;
 
 	strncpy(MenuTexts[i++], _("Back"), 1024);
@@ -1279,6 +1271,7 @@ static int Performance_handle(int n)
 		SET_LIMIT_FRAMERATE_FLAG = 1,
 		SKIP_LIGHT_RADIUS_MODE,
 		SKIP_SHADOWS,
+		TOGGLE_LAZYLOAD,
 		LEAVE_PERFORMANCE_TWEAKS_MENU
 	};
 	switch (n) {
@@ -1305,6 +1298,10 @@ static int Performance_handle(int n)
 		return EXIT_MENU;
 		break;
 
+	case TOGGLE_LAZYLOAD:
+		GameConfig.lazyload = !GameConfig.lazyload;
+		break;
+
 	default:
 		break;
 
@@ -1324,6 +1321,10 @@ static void Performance_fill(char *MenuTexts[])
 	i++;
 	sprintf(Options[i], _("Show obstacle shadows: %s"), GameConfig.skip_shadow_blitting ? _("NO") : _("YES"));
 	strncpy(MenuTexts[i], Options[i], 1024);
+	i++;
+	// was before:  sprintf(MenuTexts[i], _("Graphics lazy loading: %s"), GameConfig.lazyload ? _("YES") : _("NO"));
+	// moved to performance settings from graphics settings
+	sprintf(MenuTexts[i], _("Precache item graphics: %s"), GameConfig.lazyload ? _("NO") : _("YES"));
 	i++;
 	strncpy(MenuTexts[i++], _("Back"), 1024);
 	MenuTexts[i++][0] = '\0';
