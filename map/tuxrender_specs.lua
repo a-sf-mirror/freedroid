@@ -23,7 +23,7 @@ tux_animation {
              first_keyframe = 0,
              last_keyframe = 13 },
 
-  walk = { distance = 1.2,
+  walk = { distance = 0.8,
            first_keyframe  = 14,
            last_keyframe = 23 },
 
