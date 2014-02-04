@@ -69,8 +69,8 @@ return {
 			elseif (not Spencer_Tania_sent_to_DocMoore) and
 			       (not Tania_set_free) then --at the Town Entrance, waiting for Spencer's OK
 				hide("node45", "node46", "node47", "node49", "node50", "node51", "node52", "node53", "node56", "node57", "node58", "node59", "node92")
-				if (Tania_just_stopped_by_Pendragon) then
-					Tania_just_stopped_by_Pendragon = false
+				if (Tania_stopped_by_Pendragon) then
+					Tania_stopped_by_Pendragon = false
 					Tux:update_quest(_"Tania's Escape", _"Pendragon just stopped Tania and I at the town gate. Apparently he won't let her in, unless Spencer gives the go-ahead.")
 					npc_says(_"It is OK. I'll wait here at the gate.")
 					end_dialog()

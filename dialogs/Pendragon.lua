@@ -52,7 +52,7 @@ return {
 				teleport_npc("W-enter-2", "Tania") --Ensure that Tania is on Level 0!
 				set_bot_state("patrol", "Tania")
 				Tania_met_Pendragon = true
-				Tania_just_stopped_by_Pendragon = true
+				Tania_stopped_by_Pendragon = true
 				branch_to_tania = true
 			end
 		end
