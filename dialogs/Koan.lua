@@ -70,7 +70,7 @@ return {
 		text = _"With pleasure.",
 		code = function()
 			drop_dead()
-			Tux:update_quest(_"Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
+			Tux:update_quest("Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
 			respawn_level(38) --this is the desert above the bunker
 			if (tania_is_here) then
 				Koan_murdered = true
@@ -123,7 +123,7 @@ return {
 		text = _"You shall die.",
 		code = function()
 			drop_dead()
-			Tux:update_quest(_"Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
+			Tux:update_quest("Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
 			respawn_level(38) --this is the desert above the bunker
 			if (tania_is_here) then
 				Koan_murdered = true
@@ -145,7 +145,7 @@ return {
 		echo_text = false,
 		code = function()
 			Koan_spared_via_dialog = true
-			Tux:update_quest(_"Doing Duncan a favor", _"I met and talked to Koan, but didn't kill him.")
+			Tux:update_quest("Doing Duncan a favor", _"I met and talked to Koan, but didn't kill him.")
 			show("node13")
 		end,
 	},

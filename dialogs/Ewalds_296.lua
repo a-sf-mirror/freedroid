@@ -82,7 +82,7 @@ return {
 			npc_says(_"The tool I am holding is a SUPER AWESOME standard-issue Parafunken Geiger Counter. May I suggest a sample?")
 			Tux:says(_"A super awesome- I mean, a Geiger counter? To measure radiation? Interesting. It's making all those funny clicking sounds... What is it saying?")
 			npc_says(_"It is saying the reactor is nearing terminal radiation overload! AWESOME!")
-			Tux:add_quest(_"An Explosive Situation", _"I found a 296 belonging to Ewald in the maintenance tunnels underneath the town. It claims to be monitoring a damaged nuclear reactor.")
+			Tux:add_quest("An Explosive Situation", _"I found a 296 belonging to Ewald in the maintenance tunnels underneath the town. It claims to be monitoring a damaged nuclear reactor.")
 			hide("node2", "node3") show("node4", "node5", "node16")
 		end,
 	},
@@ -115,7 +115,7 @@ return {
 			Tux:says(_"... Thanks, I think I'll pass.")
 			Tux:says(_"But... If this nuclear reactor is about to explode... The town up there...")
 			npc_says(_"My data on 'Nuclear Explosion' says it will vaporize ANYTHING within several hundred kilometers! The entire area will be UNINHABITABLE for several decades! Would you like to order anything?")
-			Tux:update_quest(_"An Explosive Situation", _"Ewald's 296 has assured me that the nuclear reactor is about to explode and destroy the town! I have to do something!")
+			Tux:update_quest("An Explosive Situation", _"Ewald's 296 has assured me that the nuclear reactor is about to explode and destroy the town! I have to do something!")
 			hide("node4", "node5") show("node6", "node7")
 		end,
 	},
@@ -152,7 +152,7 @@ return {
 			Tux:says(_"Subatomic and Nuclear Science for Dummies, volume IV?. Maybe someone in town has it. I have to go now, there's no time to lose!")
 			npc_says(_"Would you like the check?")
 			Ewalds_296_needs_sourcebook = true
-			Tux:update_quest(_"An Explosive Situation", _"If I can get a copy of Subatomic and Nuclear Science for Dummies, Volume IV, the 296 may be able to stop the explosion. I hope someone in town has it!")
+			Tux:update_quest("An Explosive Situation", _"If I can get a copy of Subatomic and Nuclear Science for Dummies, Volume IV, the 296 may be able to stop the explosion. I hope someone in town has it!")
 			hide("node8")
 			end_dialog()
 		end,
@@ -180,7 +180,7 @@ return {
 			Tux:says(_"THE REACTOR! What about the reactor? Can you replace the module now?")
 			npc_says(_"Yes, the reactor! Your order has been processed, sir and or madam! Please wait patiently!")
 			Ewalds_296_reactor_fix = true
-			Tux:update_quest(_"An Explosive Situation", _"I gave the book to Ewald's 296. Now all I can do is wait while it attempts to repair the reactor.")
+			Tux:update_quest("An Explosive Situation", _"I gave the book to Ewald's 296. Now all I can do is wait while it attempts to repair the reactor.")
 			Tux:del_item("Nuclear Science for Dummies IV")
 			hide("node10")
 			end_dialog()
@@ -208,7 +208,7 @@ return {
 		code = function()
 			npc_says(_"Of course... Have a nice day.")
 			Tux:says(_"Yeah, sure. Crazy bot.")
-			Tux:update_quest(_"An Explosive Situation", _"The 296 has volunteered to sacrifice itself in order to safely destroy the reactor. It might be admirable, if it weren't a (particularly annoying) bot.")
+			Tux:update_quest("An Explosive Situation", _"The 296 has volunteered to sacrifice itself in order to safely destroy the reactor. It might be admirable, if it weren't a (particularly annoying) bot.")
 			Ewalds_296_self_sacrifice = true
 			hide("node7", "node9", "node12", "node13", "node16") show("node99")
 			end_dialog()
@@ -234,7 +234,7 @@ return {
 			npc_says(_"Negative. The reactor can only be safely destroyed using the manual self-destruction mechanism.")
 			Tux:says(_"All right then. I guess I'll just have to force you to come.")
 			npc_says(_"I cannot allow sir and or madam to come to harm.")
-			Tux:update_quest(_"An Explosive Situation", _"The 296 bravely volunteered to sacrifice itself in order to blow the reactor up safely. I wasn't about to let it throw its life away like that, but as I prepared to hack it and force it to follow me, I was suddenly teleported into town! Wait... Was that an explosion? Oh no...")
+			Tux:update_quest("An Explosive Situation", _"The 296 bravely volunteered to sacrifice itself in order to blow the reactor up safely. I wasn't about to let it throw its life away like that, but as I prepared to hack it and force it to follow me, I was suddenly teleported into town! Wait... Was that an explosion? Oh no...")
 			Ewalds_296_self_sacrifice = true
 			Ewalds_296_teleported = true
 			Tux:teleport("TeleportHomeTarget")
@@ -252,7 +252,7 @@ return {
 			Tux:says(_"Good luck, 296. You won't be forgotten.")
 			npc_says(_"Thank you, sir and or madam.")
 			npc_says(_"I must go now. Goodbye.")
-			Tux:update_quest(_"An Explosive Situation", _"The 296 has bravely volunteered to sacrifice itself in order to blow the reactor up safely. A very courageous droid - I'm sorry to see it go.")
+			Tux:update_quest("An Explosive Situation", _"The 296 has bravely volunteered to sacrifice itself in order to blow the reactor up safely. A very courageous droid - I'm sorry to see it go.")
 			Ewalds_296_self_sacrifice = true
 			hide("node7", "node9", "node12", "node14", "node15", "node16") show("node99")
 			end_dialog()
@@ -280,7 +280,7 @@ return {
 			Tux:says(_"And now you're-", "NO_WAIT")
 			npc_says(_"Back in the employ of the GREAT and SUPER AWESOME Ewald!")
 			Tux:says(_"Well, I'm glad to see you're not destroyed.")
-			Tux:end_quest(_"An Explosive Situation", _"I found Ewald's 296 alive and well in Ewald's bar! I was sure it was destroyed in that explosion I heard, but it's safe and sound. Well, I guess all's well that ends well.")
+			Tux:end_quest("An Explosive Situation", _"I found Ewald's 296 alive and well in Ewald's bar! I was sure it was destroyed in that explosion I heard, but it's safe and sound. Well, I guess all's well that ends well.")
 			Tux:add_xp(1500)
 			show("node31") hide("node30")
 		end,

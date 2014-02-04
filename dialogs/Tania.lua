@@ -71,7 +71,7 @@ return {
 				hide("node45", "node46", "node47", "node49", "node50", "node51", "node52", "node53", "node56", "node57", "node58", "node59", "node92")
 				if (Tania_stopped_by_Pendragon) then
 					Tania_stopped_by_Pendragon = false
-					Tux:update_quest(_"Tania's Escape", _"Pendragon just stopped Tania and I at the town gate. Apparently he won't let her in, unless Spencer gives the go-ahead.")
+					Tux:update_quest("Tania's Escape", _"Pendragon just stopped Tania and I at the town gate. Apparently he won't let her in, unless Spencer gives the go-ahead.")
 					npc_says(_"It is OK. I'll wait here at the gate.")
 					end_dialog()
 				end
@@ -88,7 +88,7 @@ return {
 					set_bot_destination("BarPatron-Enter")
 					Tania_at_Ewalds_Bar = true
 				end
-				Tux:end_quest(_"Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
+				Tux:end_quest("Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
 				if (difficulty("hard")) and
 				   (not Tania_mapper_given == true) then
 					npc_says(_"I'm so glad that I am finally here, take this.")
@@ -269,7 +269,7 @@ return {
 		text = _"I will disable the guns for you.",
 		code = function()
 			npc_says(_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels.")
-			Tux:add_quest(_"Tania's Escape", _"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
+			Tux:add_quest("Tania's Escape", _"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
 			npc_says(_"It's dangerous to go alone! Take this!")
 			if (difficulty("easy")) and
 			   (not Tania_mapper_given == true) then
@@ -311,7 +311,7 @@ return {
 			end
 			Tux:add_item("Source Book of Check system integrity",1)
 			Tux:add_item("Source Book of Sanctuary",1)
-			Tux:update_quest(_"Tania's Escape", _"Tania is free now, I got some books as reward.")
+			Tux:update_quest("Tania's Escape", _"Tania is free now, I got some books as reward.")
 			Tux:says(_"You could always come back with me to the town. There are people there.")
 			npc_says(_"I'd love to, but you'll have to escort me.")
 			Tania_guns_off = true
@@ -338,7 +338,7 @@ return {
 		text = _"I'm ready to escort you to the town.",
 		code = function()
 			Tania_follow_tux = true
-			Tux:update_quest(_"Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
+			Tux:update_quest("Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
 			set_bot_state("follow_tux")
 			hide("node8", "node40", "node41") next("node91")
 		end,
@@ -404,7 +404,7 @@ return {
 			npc_says(_"I feel very refreshed!")
 			heal_npc()
 			Tux:del_item_backpack("Bottled ice")
-			Tux:update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some bottled ice, and she looked much more healthy.")
+			Tux:update_quest("Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some bottled ice, and she looked much more healthy.")
 			hide("node49", "node50", "node51", "node52", "node53")
 		end,
 	},
@@ -419,7 +419,7 @@ return {
 				Tux:del_item_backpack("Industrial coolant")
 				heal_npc()
 				npc_says(_"I feel very cold, but better.") --TODO: freeze her here
-				Tux:update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some Industrial coolant. At first she was hesitant, but she tried it.")
+				Tux:update_quest("Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some Industrial coolant. At first she was hesitant, but she tried it.")
 				hide("node49", "node50", "node52", "node53")
 			else
 				next("node54")
@@ -443,7 +443,7 @@ return {
 			npc_says(_"I feel very energetic!")
 			heal_npc()
 			Tux:del_item_backpack("Barf's Energy Drink")
-			Tux:update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her a bottle of Barf's Energy Drink. After downing it in a couple seconds, she looked much more energetic!")
+			Tux:update_quest("Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her a bottle of Barf's Energy Drink. After downing it in a couple seconds, she looked much more energetic!")
 			hide("node49", "node50", "node51", "node52", "node53")
 		end,
 	},
@@ -453,7 +453,7 @@ return {
 		text = _"Sorry, I have nothing to offer you.",
 		code = function()
 			npc_says(_"I feel very ill.")
-			Tux:update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat, but I decided not to share any of my liquids with her.")
+			Tux:update_quest("Tania's Escape", _"Tania wasn't prepared for the desert heat, but I decided not to share any of my liquids with her.")
 			drop_dead()
 			hide("node49", "node50", "node51", "node52", "node53")
 		end,

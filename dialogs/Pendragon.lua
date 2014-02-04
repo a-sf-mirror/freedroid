@@ -260,7 +260,7 @@ return {
 					Tux:says(_"Here, take it.")
 					npc_says(_"You may pass.")
 					if (Tux:has_quest("Doing Duncan a favor")) then
-						Tux:update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a little tax.")
+						Tux:update_quest("Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a little tax.")
 					end
 				elseif (desertgate_tax == 40) then
 					npc_says(_"At last.")
@@ -268,7 +268,7 @@ return {
 					npc_says(_"You may pass, Loon.")
 					npc_says(_"But don't expect any help in there.")
 					if (Tux:has_quest("Doing Duncan a favor")) then
-						Tux:update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a tax.")
+						Tux:update_quest("Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a tax.")
 					end
 				end
 				Tux:del_gold(desertgate_tax)

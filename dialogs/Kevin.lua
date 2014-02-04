@@ -49,7 +49,7 @@ return {
 		if (Tux:has_quest("A strange guy stealing from town")) and
 		   (not Tux:done_quest("A strange guy stealing from town")) then
 			Tux:add_xp(100)
-			Tux:end_quest(_"A strange guy stealing from town", _"Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
+			Tux:end_quest("A strange guy stealing from town", _"Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
 		end
 
 		if (Tux:has_quest("And there was light...")) and
@@ -57,7 +57,7 @@ return {
 			show("node8", "node10")
 			if (not Kevin_did_And_there_was_light) then
 				Kevin_did_And_there_was_light = true -- Tux spoke with Kevin after completing the quest "And there was light..."
-				Tux:update_quest(_"And there was light...", _"Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
+				Tux:update_quest("And there was light...", _"Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
 			end
 		end
 
@@ -102,7 +102,7 @@ return {
 			npc_says(_"It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level.")
 			npc_says(_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them.")
 			npc_says(_"Best make it quick. I'm already sick of stabilizing the stupid power grid.")
-			Tux:update_quest(_"And there was light...", _"The entrance is in Kevin's garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
+			Tux:update_quest("And there was light...", _"The entrance is in Kevin's garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
 			hide("node6", "node7")
 		end,
 	},
@@ -143,7 +143,7 @@ return {
 				npc_says(_"Also, the cluster is inside of the guard citadel. I hear that only members of the Red Guard are allowed to enter the complex.")
 				npc_says(_"But maybe you can arrange that somehow. For me it would be impossible, because of my reputation.")
 				npc_says(_"I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there.")
-				Tux:add_quest(_"A kingdom for a cluster!", _"Kevin gave me a cube full of some kind of data. I am supposed to take it to a computer cluster for analysis. Ought to be simple.")
+				Tux:add_quest("A kingdom for a cluster!", _"Kevin gave me a cube full of some kind of data. I am supposed to take it to a computer cluster for analysis. Ought to be simple.")
 				Tux:add_item("Kevin's Data Cube", 1)
 				set_death_item("NONE") -- to make sure we don't get two data cubes!!
 			end
@@ -256,7 +256,7 @@ return {
 					npc_says(_"They are trying to 'maintain' machines by rebooting them all the time. This must stop, but I can't leave this place.")
 					npc_says(_"I must balance the remaining power in such a way that my project can continue uninterrupted.")
 					npc_says(_"Now, if you go down there and make the power flow stable, then I'll find the time to teach you something.")
-					Tux:add_quest(_"And there was light...", _"Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots.")
+					Tux:add_quest("And there was light...", _"Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots.")
 					show("node6", "node7")
 				else
 					npc_says(_"As I've told you, I cannot teach you anything right now. I don't have the time.")

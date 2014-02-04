@@ -124,7 +124,7 @@ return {
 			       (not TutorialTom_sprinting) then
 				TutorialTom_sprinting = true
 				npc_says(_"Speaking of moment, you can also [b]sprint[/b] by holding the [b]control key[/b].")
-				Tux:update_quest(_"Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
+				Tux:update_quest("Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
 				npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
 			end
 		end
@@ -215,7 +215,7 @@ return {
 			npc_says(_"When you aren't speaking with someone, you can open it up or close it by pressing the [b]q key[/b].")
 			npc_says(_"I'll assign you a new quest, so you can try it out. Once you are done, [b]left click[/b] on me.")
 			if (not Tux:has_quest("Tutorial Movement")) then
-				Tux:add_quest(_"Tutorial Movement", _"To talk to someone, left click on them. You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the 'q' key to open or close the quest log. Left click back on Tutorial Tom to learn more!")
+				Tux:add_quest("Tutorial Movement", _"To talk to someone, left click on them. You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the 'q' key to open or close the quest log. Left click back on Tutorial Tom to learn more!")
 			end
 			display_big_message(_"Press 'q' for Quests!")
 			hide("node1", "node7", "node80") show("node2", "node3", "node4", "node8")
@@ -233,7 +233,7 @@ return {
 			npc_says(_"You Linarians see the world similar to the Heads Up Displays, or [b]HUD[/b], used in computer games.")
 			npc_says(_"Linarians, like all birds, have a remarkable internal sense of direction. Apparently your HUD has a [b]compass[/b], represented by four red arrows in the upper right corner with North marked on it.")
 			npc_says(_"You can temporarily disable this compass by pressing the 'tab' key.")
-			Tux:update_quest(_"Tutorial Movement", _"I learned the four red arrows in the upper-right of my HUD is a compass with north marked on it. I can toggle it using the 'tab' key.")
+			Tux:update_quest("Tutorial Movement", _"I learned the four red arrows in the upper-right of my HUD is a compass with north marked on it. I can toggle it using the 'tab' key.")
 			npc_says(_"Rumor is there was a device Linarians used to remember every place they had been, called an [b]automap[/b].")
 			npc_says(_"Although, you don't currently have such a device, you might find someone with nanotechnology skills to make one.")
 			Tux:says(_"I'll keep that in mind.")
@@ -248,7 +248,7 @@ return {
 			npc_says(_"To move somewhere, you first need to determine where you want to go by [b]left clicking[/b] where you want to go on your HUD.")
 			npc_says(_"If you can go there, you will do so.")
 			npc_says(_"Now try to move to the red dot to the north. Then to the black grating to the east, and then talk to me again.")
-			Tux:update_quest(_"Tutorial Movement", _"I'm supposed to left click anywhere to move to a location. If I can figure out a way, I will move there automatically. Tom wants me to first try to move to the red dot to the North.")
+			Tux:update_quest("Tutorial Movement", _"I'm supposed to left click anywhere to move to a location. If I can figure out a way, I will move there automatically. Tom wants me to first try to move to the red dot to the North.")
 			TutorialTom_learn_to_walk = true
 			hide("node3")
 			end_dialog()
@@ -263,7 +263,7 @@ return {
 			npc_says(_"But you normally have a special program called [b]Emergency Shutdown[/b], which freezes your motions for several seconds but significantly cools your body.")
 			npc_says(_"This, and the ability to hack bots will soon return once your mind recovers from the stasis.")
 			npc_says(_"Once it does, we'll talk more about programs. You can toggle the [b]Skills/Program menu[/b] by pressing the [b]s key[/b].")
-			Tux:update_quest(_"Tutorial Movement", _"View the Skills/Program menu by pressing the 's' key.")
+			Tux:update_quest("Tutorial Movement", _"View the Skills/Program menu by pressing the 's' key.")
 			hide("node4")
 		end,
 	},
@@ -280,7 +280,7 @@ return {
 			npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]i key[/b], where you can examine it further.")
 			if (not TutorialTom_TutMovement_ToggleDetectItems) and
 			    Tux:has_quest("Tutorial Movement") then
-				Tux:update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'z' key, and press 'x' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'i'.")
+				Tux:update_quest("Tutorial Movement", _"Toggle detect items by pressing the 'z' key, and press 'x' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'i'.")
 				TutorialTom_TutMovement_ToggleDetectItems = true
 			end
 			if (Tux:has_item("Mug")) and
@@ -304,7 +304,7 @@ return {
 		id = "node8",
 		text = _"Thank you, that was very informative. I think I got how to move around. Can we proceed now?",
 		code = function()
-			Tux:end_quest(_"Tutorial Movement")
+			Tux:end_quest("Tutorial Movement")
 			npc_says(_"I just closed your first quest. You can still see what you learned by clicking on the 'done quests' tab in the quest screen.", "NO_WAIT")
 			hide("node8") next("node9")
 		end,
@@ -328,7 +328,7 @@ return {
 			npc_says(_"Well, you can interact with several types of objects by simply [b]left clicking[/b] on them.")
 			npc_says(_"Left click on the chest to open it up and see what is inside.")
 			if (not Tux:has_quest("Tutorial Melee")) then
-				Tux:add_quest(_"Tutorial Melee", _"I'm supposed to left click on chests to open them up.")
+				Tux:add_quest("Tutorial Melee", _"I'm supposed to left click on chests to open them up.")
 			end
 			hide("node10") show("node19")
 			end_dialog()
@@ -431,9 +431,9 @@ return {
 			Tux:improve_program("Repair equipment")
 			TutorialTom_has_repair = true
 			if (not Tux:has_quest("Tutorial Melee")) then -- this might be tricky
-				Tux:add_quest(_"Tutorial Melee", _"Run a program by right clicking after it has been selected from the Skills/Program menu. My shoes are damaged, so I might try the repair equipment program on them to slightly repair them.")
+				Tux:add_quest("Tutorial Melee", _"Run a program by right clicking after it has been selected from the Skills/Program menu. My shoes are damaged, so I might try the repair equipment program on them to slightly repair them.")
 			else
-				Tux:update_quest(_"Tutorial Melee", _"Run a program by right clicking after it has been selected from the Skills/Program menu. My shoes are damaged, so I might try the repair equipment program on them to slightly repair them.")
+				Tux:update_quest("Tutorial Melee", _"Run a program by right clicking after it has been selected from the Skills/Program menu. My shoes are damaged, so I might try the repair equipment program on them to slightly repair them.")
 			end
 			hide("node17")
 		end,
@@ -494,7 +494,7 @@ return {
 			npc_says(_"Unlike armor or weapons, multiple of these items will group together in your inventory slots.")
 			npc_says(_"If you have Diet Supplements equipped in item slot 1, you can press 1 to use one.")
 			npc_says(_"This will restore your health, and will be invaluable in the heat of battle.")
-			Tux:update_quest(_"Tutorial Melee", _"Small one-time-use items, like diet supplements, can be placed in inventory spots labels 1 to 0, and can be used by pressing the corresponding key.")
+			Tux:update_quest("Tutorial Melee", _"Small one-time-use items, like diet supplements, can be placed in inventory spots labels 1 to 0, and can be used by pressing the corresponding key.")
 			hide("node22")
 		end,
 	},
@@ -510,7 +510,7 @@ return {
 			npc_says(_"Come back and talk to me when you have the Entropy Inverter.")
 			change_obstacle_state("TutorialMelee1", "opened")
 			Tux:add_item("Doc-in-a-can", 3)
-			Tux:update_quest(_"Tutorial Melee", _"I'm going to fight my first bot! To start melee combat left click on the bot. Tom wants the Entropy Inverter from the bot after I've defeated it, so I should pick that up.")
+			Tux:update_quest("Tutorial Melee", _"I'm going to fight my first bot! To start melee combat left click on the bot. Tom wants the Entropy Inverter from the bot after I've defeated it, so I should pick that up.")
 			hide("node23") show("node24", "node25")
 			end_dialog()
 		end,
@@ -542,7 +542,7 @@ return {
 				npc_says(_"Hopefully, you can find someone to teach you.")
 				Tux:del_item_backpack("Entropy Inverter", 1)
 				Tux:add_item("Big wrench", 1)
-				Tux:update_quest(_"Tutorial Melee", _"I brought the entropy inverter to Tom and he gave me my first weapon: a Big wrench. I should equip it.")
+				Tux:update_quest("Tutorial Melee", _"I brought the entropy inverter to Tom and he gave me my first weapon: a Big wrench. I should equip it.")
 				hide("node25") show("node26")
 			else
 				npc_says(_"Trying to cheat your way through the tutorial doesn't bode well for your chances in the real world.")
@@ -612,7 +612,7 @@ return {
 		text = _"I'm ready to move on.",
 		code = function()
 			if (not Tux:done_quest("Tutorial Melee")) then
-				Tux:end_quest(_"Tutorial Melee", _"I decided to move on and go to next unit of the tutorial.")
+				Tux:end_quest("Tutorial Melee", _"I decided to move on and go to next unit of the tutorial.")
 			end
 			--[[ if (TutorialTom_has_gun) then
 			npc_says(_"I'll bet you're itching to try that pistol out on some bots.")
@@ -632,7 +632,7 @@ return {
 		code = function()
 			npc_says(_"Well, Linarian, most of the time it is.")
 			npc_says(_"There are some bots with ranged weaponry, but we don't have any of those in captivity.")
-			Tux:add_quest(_"Tutorial Shooting", _"I am learning about how to use ranged weapons.")
+			Tux:add_quest("Tutorial Shooting", _"I am learning about how to use ranged weapons.")
 			hide("node30") show("node31", "node38")
 		end,
 	},
@@ -664,7 +664,7 @@ return {
 			npc_says(_"If you are reloading, or you are out of ammo, the small message screen at the bottom of your HUD will tell you what type of ammo to get.")
 			if (not TutorialTom_guns_how_to) then
 				TutorialTom_guns_how_to = true
-				Tux:update_quest(_"Tutorial Shooting", _"If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the 'r' key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition.")
+				Tux:update_quest("Tutorial Shooting", _"If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the 'r' key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition.")
 			end
 			if (not TutorialTom_opened_door) then
 				show("node33")
@@ -690,7 +690,7 @@ return {
 			npc_says(_"Practice switching weapons and reloading.")
 			npc_says(_"On the other side of that fence are some bots. Practice killing them off with various ranged weapons.")
 			npc_says(_"Once you've gotten rid of them all, we can move on.")
-			Tux:update_quest(_"Tutorial Shooting", _"Tutorial Tom wants me to shoot those bots.")
+			Tux:update_quest("Tutorial Shooting", _"Tutorial Tom wants me to shoot those bots.")
 			-- TODO probably explain leveling as well as balancing changes to XP always risk causing leveling here. Or somehow make sure Tux can't level
 			TutorialTom_opened_door = true
 			change_obstacle_state("TutorialStorage", "opened")
@@ -728,7 +728,7 @@ return {
 			if (Tux:done_quest("Tutorial Shooting")) then
 				npc_says(_"Excellent job.")
 				npc_says(_"Keep shooting like that, and the bots will never stand a chance, as long as you still have ammo.")
-				Tux:update_quest(_"Tutorial Shooting", _"That was like shooting fish in a barrel. I could use a fish about now.")
+				Tux:update_quest("Tutorial Shooting", _"That was like shooting fish in a barrel. I could use a fish about now.")
 				hide("node35") show("node36", "node37")
 				end_dialog()
 			else
@@ -801,7 +801,7 @@ return {
 			npc_says(_"A good technician is able to make use of those parts.")
 			npc_says(_"He can create, let's say, an add-on and, after doing some modifications to the item, attach this add-on.")
 			npc_says(_"This way an upgraded item is created.")
-			Tux:add_quest(_"Tutorial Upgrading Items", _"There is a way to upgrade items if I meet a good technician. It sounds useful, maybe I should learn more about this.")
+			Tux:add_quest("Tutorial Upgrading Items", _"There is a way to upgrade items if I meet a good technician. It sounds useful, maybe I should learn more about this.")
 			npc_says(_"The [b]Hacking[/b] program we will speak a bit more of in a little while.")
 			hide("node40") show("node41")
 		end,
@@ -824,13 +824,13 @@ return {
 		text = _"Alright, I'm ready to go hack some bots.",
 		code = function()
 			if (not Tux:done_quest("Tutorial Upgrading Items")) then
-				Tux:end_quest(_"Tutorial Upgrading Items", _"I decided that I don't need to know how to upgrade items.")
+				Tux:end_quest("Tutorial Upgrading Items", _"I decided that I don't need to know how to upgrade items.")
 			end
 			npc_says(_"First, you'll need to unlock the door.")
 			npc_says(_"See that [b]Terminal[/b] to the left?")
 			npc_says(_"You will need to login, by left clicking on it, and then select unlock door.")
 			npc_says(_"Terminals act very similar to hacked bots.")
-			Tux:add_quest(_"Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
+			Tux:add_quest("Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
 			hide("node42", "node58", "node59", "node60")
 			end_dialog()
 		end,
@@ -847,7 +847,7 @@ return {
 			npc_says(_"You can attempt to take them over, or monkey with their programming, or even cause them to damage themselves.")
 			npc_says(_"Likewise, there are certain programs that affect you or items around you.")
 			if (not Tux:has_quest("Tutorial Hacking")) then -- quest already added in node 42
-				Tux:add_quest(_"Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
+				Tux:add_quest("Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
 			end
 			TutorialTom_node50_done = true
 			hide("node50") show("node51")
@@ -870,7 +870,7 @@ return {
 			npc_says(_"Each activation of one core will consume one charge and you have a limited number of charges, 3 by default, so choose your targets carefully.")
 			npc_says(_"I can tell you about some more advanced techniques, if you'd like.")
 			if (not TutorialTom_updated_hacking_quest) then
-				Tux:update_quest(_"Tutorial Hacking", _"Apparently in order to hack, all I have to do is select the Hacking program, right click a bot, and play a little game. I've got this!")
+				Tux:update_quest("Tutorial Hacking", _"Apparently in order to hack, all I have to do is select the Hacking program, right click a bot, and play a little game. I've got this!")
 				TutorialTom_updated_hacking_quest = true
 			end
 			show("node52", "node53", "node54") hide("node51")
@@ -943,7 +943,7 @@ return {
 				Tux:add_item("Source Book of Calculate Pi", 1)
 				Tux:add_item("Source Book of Malformed packet", 1)
 				TutorialTom_hacking_bots = true
-				Tux:update_quest(_"Tutorial Hacking", _"Tutorial Tom wants me to hack those bots. The only thing I need to worry about is overheating. But if I get too hot I can always try the Emergency shutdown program.")
+				Tux:update_quest("Tutorial Hacking", _"Tutorial Tom wants me to hack those bots. The only thing I need to worry about is overheating. But if I get too hot I can always try the Emergency shutdown program.")
 				change_obstacle_state("TutorialTakeoverCage", "opened")
 			end
 			hide("node55")
@@ -972,7 +972,7 @@ return {
 			npc_says(_"That's the theory. Simple, isn't it?")
 			npc_says(_"I'll give you some materials now and let you craft an add-on.")
 			npc_says(_"Pay attention to the type of socket the add-on needs.")
-			Tux:update_quest(_"Tutorial Upgrading Items", _"Before crafting an add-on I have to get some materials. The best way is to extract them from the bots, using Extract Bot Parts skill. Each add-on requires a socket in the item. When the add-on is ready, I have to create a socket in the item and plug the add-on. Only technicians can craft add-ons or plug them.")
+			Tux:update_quest("Tutorial Upgrading Items", _"Before crafting an add-on I have to get some materials. The best way is to extract them from the bots, using Extract Bot Parts skill. Each add-on requires a socket in the item. When the add-on is ready, I have to create a socket in the item and plug the add-on. Only technicians can craft add-ons or plug them.")
 			-- TODO decide on what type of upgrade should player make?
 			--[[ for var in ipairs(items_up) do
 			Tux:add_item(items_up[var], 20)
@@ -989,7 +989,7 @@ return {
 			Tux:add_gold(1200)
 			npc_says(_"Choose an item and add an appropriate socket by clicking '+' on the right of the item. Then attach the add-on to this item and confirm your choice.")
 			upgrade_items()
-			Tux:end_quest(_"Tutorial Upgrading Items",_"Maybe I need some time to practice this, but I got the basics.")
+			Tux:end_quest("Tutorial Upgrading Items",_"Maybe I need some time to practice this, but I got the basics.")
 			hide("node58") show("node59", "node60", "node42")
 		end,
 	},
@@ -1236,7 +1236,7 @@ return {
 			npc_says(_"OK, I'll take us to the melee arena and give you some armor.")
 			teleport_npc("TutorialTom-Melee")
 			Tux:teleport("TutorialTux-Melee")
-			Tux:add_quest(_"Tutorial Melee", _"I skipped ahead to the Melee practice. Tom gave me some armor to use.")
+			Tux:add_quest("Tutorial Melee", _"I skipped ahead to the Melee practice. Tom gave me some armor to use.")
 			tutorial_melee_combat()
 			next("node20")
 			hide("node81", "node82", "node83", "node84", "node85", "node86", "node87")

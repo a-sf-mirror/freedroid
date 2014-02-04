@@ -109,7 +109,7 @@ return {
 		code = function()
 			npc_says(_"If you bring me a well-cooked meal, I will tell you about Hell's Fortress.")
 			npc_says(_"Trust me, you won't survive long in there without my help.")
-			Tux:add_quest(_"Gapes Gluttony", _"I found a man who is starving. He is willing to tell me about Hell's Fortress if I will bring him some food. I should speak to Michelangelo about this.")
+			Tux:add_quest("Gapes Gluttony", _"I found a man who is starving. He is willing to tell me about Hell's Fortress if I will bring him some food. I should speak to Michelangelo about this.")
 			hide("node7")
 		end,
 	},
@@ -135,7 +135,7 @@ return {
 			npc_says(_"...")
 			Tux:says(_"Now, how about some information?")
 			npc_says(_"OK, so what do you want to know?")
-			Tux:end_quest(_"Gapes Gluttony", _"I brought the full picnic basket to Gapes, and he tore into it like a wild animal. It was a disgusting sight, but thankfully it ended quickly.")
+			Tux:end_quest("Gapes Gluttony", _"I brought the full picnic basket to Gapes, and he tore into it like a wild animal. It was a disgusting sight, but thankfully it ended quickly.")
 			Tux:del_item_backpack("Lunch in a Picnic Basket")
 			Tux:add_item("Empty Picnic Basket")
 			WillGapes_generous = true

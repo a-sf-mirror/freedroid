@@ -81,7 +81,7 @@ return {
 				npc_says(_"Conflicts resolved,")
 				npc_says(_"Firmware update propagated!")
 				HF_FirmwareUpdateServer_uploaded_faulty_firmware_update = true
-				Tux:end_quest(_"Propagating a faulty firmware update", _"I managed to upload the faulty firmware update to all bots within transmission range. Victory is mine!")
+				Tux:end_quest("Propagating a faulty firmware update", _"I managed to upload the faulty firmware update to all bots within transmission range. Victory is mine!")
 				kill_faction("ms", "no_respawn")
 				hide("node3")
 			else

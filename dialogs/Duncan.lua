@@ -177,7 +177,7 @@ return {
 				Tux:add_gold(25)
 			end
 			npc_says(_"Good luck!")
-			Tux:add_quest(_"Doing Duncan a favor", _"I have to find Koan in the desert west of town and get Duncan something very precious.")
+			Tux:add_quest("Doing Duncan a favor", _"I have to find Koan in the desert west of town and get Duncan something very precious.")
 			hide("node52", "node59") show("node55", "node56")
 		end,
 	},
@@ -257,13 +257,13 @@ return {
 					Tux:says(_"I must have left it somewhere...")
 					npc_says(_"Fetch it and bring it to me.")
 					Duncan_talked_Koan_dead = true
-					Tux:update_quest(_"Doing Duncan a favor", _"Unfortunately, I forgot to bring the cube. Duncan was not amused.")
+					Tux:update_quest("Doing Duncan a favor", _"Unfortunately, I forgot to bring the cube. Duncan was not amused.")
 				end
 				end_dialog()
 			elseif (Koan_spared_via_dialog) then -- we didn't kill via the dialog
 				Tux:says(_"I could not find him anywhere in the desert. I don't think he is there anymore.")
 				npc_says(_"I see.")
-				Tux:end_quest(_"Doing Duncan a favor", _"I lied to Duncan about not finding Koan.")
+				Tux:end_quest("Doing Duncan a favor", _"I lied to Duncan about not finding Koan.")
 				Duncan_Koan_quest_done = true
 				end_dialog()
 			end
@@ -315,7 +315,7 @@ return {
 		text = _"WHAT? No way I am giving you a doomsday device! Forget about it.",
 		code = function()
 			npc_says(_"I understand. So be it.")
-			Tux:end_quest(_"Doing Duncan a favor", _"No way am I giving Duncan that cube thingie. Who knows what he would do with it.")
+			Tux:end_quest("Doing Duncan a favor", _"No way am I giving Duncan that cube thingie. Who knows what he would do with it.")
 			Duncan_not_given_cube = true
 			end_dialog()
 			hide("node67", "node68")
@@ -329,7 +329,7 @@ return {
 			Tux:add_xp(3000)
 			Tux:del_item_backpack("Pandora's Cube", 1)
 			sell_item("Plasma Shockwave Emitter")
-			Tux:end_quest(_"Doing Duncan a favor", _"I gave Duncan the cube thingie. It feels nice to help people.")
+			Tux:end_quest("Doing Duncan a favor", _"I gave Duncan the cube thingie. It feels nice to help people.")
 			Duncan_Koan_quest_really_done = true
 			end_dialog()
 		end,

@@ -308,7 +308,7 @@ return {
 				npc_says("Wood, JK", "NO_WAIT")
 				npc_says("Winterer, Armin", "NO_WAIT")
 				if (not deliverance_datacube_c_net_list) then
-					Tux:update_quest(_"Deliverance", _"I found a terminal in the town which could read the data cube Francis gave me. It looks like there was a list of names on it, but I have no clue what's the deal with these names.")
+					Tux:update_quest("Deliverance", _"I found a terminal in the town which could read the data cube Francis gave me. It looks like there was a list of names on it, but I have no clue what's the deal with these names.")
 					deliverance_datacube_c_net_list = true
 				end
 			else

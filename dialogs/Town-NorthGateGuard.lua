@@ -95,16 +95,16 @@ return {
 			npc_says(_"On the day he visited all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen.")
 			npc_says(_"I think that freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly.")
 			if (not Tux:has_met("Kevin")) then
-				Tux:add_quest(_"A strange guy stealing from town", _"The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. Apparently he lives somewhere to the east.")
+				Tux:add_quest("A strange guy stealing from town", _"The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. Apparently he lives somewhere to the east.")
 			elseif (npc_dead("Kevin")) then
-				Tux:add_quest(_"A strange guy stealing from town", _"The guard told me about a guy who stole some food and hardware from the town. He lives somewhere in the east.")
-				Tux:end_quest(_"A strange guy stealing from town", _"Apparently it was this Kevin person I recently hit a bit too hard... Oops... Well, at least he won't steal again...")
+				Tux:add_quest("A strange guy stealing from town", _"The guard told me about a guy who stole some food and hardware from the town. He lives somewhere in the east.")
+				Tux:end_quest("A strange guy stealing from town", _"Apparently it was this Kevin person I recently hit a bit too hard... Oops... Well, at least he won't steal again...")
 				Tux:add_xp(70)
 			else
-				Tux:add_quest(_"A strange guy stealing from town", _"Ooops, the guard must be talking about Kevin. I'd better not mention I know him and where he lives, or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
+				Tux:add_quest("A strange guy stealing from town", _"Ooops, the guard must be talking about Kevin. I'd better not mention I know him and where he lives, or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
 				Tux:add_xp(100)
 				-- We should perhaps not end quest here but later when talking again to Kevin and asking about the comps
-				Tux:end_quest(_"A strange guy stealing from town", _"Though I probably should ask Kevin some day what he was doing with the town computers.")
+				Tux:end_quest("A strange guy stealing from town", _"Though I probably should ask Kevin some day what he was doing with the town computers.")
 			end
 			if (not Tux:has_met("Kevin")) and
 			   (not npc_dead("Kevin")) then
@@ -121,7 +121,7 @@ return {
 			npc_says(_"But if you're insanely lucky and you do find him, you come back straight to me, understand?")
 			npc_says(_"I'd like to wring his head off... Though it's not my call. But who knows, if the Boss feels generous we might both get rewarded.")
 			npc_says(_"Be careful anyway, this creep is a sneaky one if he got past us.")
-			Tux:update_quest(_"A strange guy stealing from town", _"I offered to find out who the stange guy is. The guard I talked to was pretty skeptical, though; I should get some experience and better equipment before traveling far outside of town.")
+			Tux:update_quest("A strange guy stealing from town", _"I offered to find out who the stange guy is. The guard I talked to was pretty skeptical, though; I should get some experience and better equipment before traveling far outside of town.")
 			next("node15")
 		end,
 	},
@@ -241,7 +241,7 @@ return {
 			Town_NorthGateGuard_tux_nickname_loon = true
 			knows_spencer_office = true
 			if (Tux:has_quest("Deliverance")) then
-				Tux:update_quest(_"Deliverance", _"I've managed to get into town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate. The guard also calls me a loon.")
+				Tux:update_quest("Deliverance", _"I've managed to get into town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate. The guard also calls me a loon.")
 			end
 			next("node40")
 		end,
@@ -283,7 +283,7 @@ return {
 				knows_spencer_office = true
 				if (Tux:has_quest("Deliverance")) and
 				   (not Tux:done_quest("Deliverance")) then
-					Tux:update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate.")
+					Tux:update_quest("Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate.")
 				end
 			else -- player was told where spencer's office is, or has met spencer
 				if (not Tux:has_met("Spencer")) then
@@ -312,7 +312,7 @@ return {
 			Tux:add_gold(250)
 			KevinMurder = false
 			KevinMurderCongratulation = true
-			Tux:end_quest(_"A strange guy stealing from town", _"I killed the thief who stole from town. The Red Guard rewarded me for it, but did I do the right thing? Hmm...")
+			Tux:end_quest("A strange guy stealing from town", _"I killed the thief who stole from town. The Red Guard rewarded me for it, but did I do the right thing? Hmm...")
 			hide("node50")
 			end_dialog()
 		end,
