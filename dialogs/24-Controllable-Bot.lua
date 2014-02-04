@@ -77,15 +77,15 @@ return {
 				ControllableBot_try_again = false
 				end_dialog()
 			else
-				npc_says(_"WARNING, '%s' not a vaild map label.", ControllableBot_response)
-				npc_says(_"Please retry.")
+				npc_says("WARNING, '%s' not a vaild map label.", ControllableBot_response)
+				npc_says("Please retry.")
 			end
 		end
 	end,
 
 	{
 		id = "node0",
-		text = _"Hiiiiiii!!!",
+		text = "Hiiiiiii!!!",
 		code = function()
 			hide("node0")
 		end,

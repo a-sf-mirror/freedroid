@@ -136,7 +136,7 @@ return {
 	},
 	{
 		id = "node15",
-		text = _"BUG, REPORT ME! Town-NorthGateGuard node15 -- Guard Escort",
+		text = "BUG, REPORT ME! Town-NorthGateGuard node15 -- Guard Escort",
 		echo_text = false,
 		code = function()
 			npc_says(_"In any case...")
@@ -154,8 +154,10 @@ return {
 		text = _"Yes. I understand.",
 		code = function()
 			npc_says(_"State your name Linarian.")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			Tux:says(_"My name is %s.", Tux:get_player_name())
 			npc_says(_"You don't look too stupid. Try not to mess up.")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			npc_says(_"You may now enter %s.", Tux:get_player_name())
 			hide("node16", "node17") next("node40")
 		end,
@@ -187,6 +189,7 @@ return {
 			npc_says(_"The red outfit indicates that I am of the Red Guard. We are the defenders of the town and impose the law.")
 			npc_says(_"With the continued bot attacks, and the grumbling townsfolk, all of us are a little on edge.")
 			npc_says(_"Tell me your name, and then you may pass.")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			Tux:says(_"My name is %s.", Tux:get_player_name())
 			npc_says(_"You may enter.")
 			next("node40")
@@ -249,7 +252,9 @@ return {
 		code = function()
 			npc_says(_"You are as out of your mind as that Sorenson lady.")
 			npc_says(_"But I guess she's already here, so it doesn't matter if we have another loon.")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			Tux:says(_"I'm a Linarian, not a loon. %s the Linarian.", Tux:get_player_name())
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			npc_says(_"Get out of here %s, the loon, and stop bothering me.", Tux:get_player_name())
 			Town_NorthGateGuard_tux_nickname_loon = true
 			next("node40")
@@ -320,6 +325,7 @@ return {
 				_"Finally...",
 				_"It was about time...")
 			if (Town_NorthGateGuard_tux_nickname_loon) then
+				--; TRANSLATORS: %s = Tux:get_player_name()
 				npc_says(_"%s... the Loon", Tux:get_player_name())
 			end
 			end_dialog()

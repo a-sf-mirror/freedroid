@@ -43,7 +43,7 @@ return {
 			npc_says(_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor.")
 			npc_says(_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing, though we also trade guns and some ammo.")
 			npc_says_random(_"Now, what will it be?",
-				_"So, what do you want to buy?")
+							_"So, what do you want to buy?")
 			trade_with("Lukas")
 			show("node3")
 		end,

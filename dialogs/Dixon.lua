@@ -26,6 +26,7 @@ return {
 		set_bot_name(_"Dixon - Mechanic")
 		Tux:says(_"Hi! I'm new here.")
 		npc_says(_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division.")
+		--; TRANSLATORS: %s = Tux:get_player_name()
 		Tux:says(_"I'm %s, a Linarian.", Tux:get_player_name())
 		show("node1", "node4")
 	end,
@@ -323,7 +324,7 @@ return {
 			end
 			local dev_count = 3 - difficulty_level()
 			local dev_numbers = {_"a small device", _"two small devices", _"three small devices"}
-			local dev_ref = {_"it", _"one", _"one"}
+			local dev_ref = {_"it", _"one", _"one"} --@TODO  this nice code, but for translations we have to make this 3 sentences per entry..
 			npc_says(_"Great. Be careful down there. Just try to get the toolkit and get out of there as quickly as possible.")
 			Tux:add_item("EMP Shockwave Generator", dev_count)
 			npc_says(_"I will give you %s that can emit an Electro Magnetic Pulse.", dev_numbers[dev_count])

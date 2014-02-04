@@ -45,6 +45,7 @@ return {
 				npc_says(_"Halt! Who goes there?")
 				Tux:says(_"Someone I found in the desert, Tania.")
 			end
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			npc_says(_"%s, you may enter.", Tux:get_player_name())
 			npc_says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the town.")
 			if (not Tania_met_Pendragon) then
@@ -111,6 +112,7 @@ return {
 		code = function()
 			npc_says(_"I go by Pendragon, because I can pull a knife from thin air.")
 			npc_says(_"And you?")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			Tux:says(_"%s, because it is my name?", Tux:get_player_name())
 			set_bot_name(_"Pendragon - Fighter")
 			hide("node2")

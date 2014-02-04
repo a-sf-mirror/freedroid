@@ -48,7 +48,7 @@ return {
 			show("node3")
 		elseif (Koan_spared_via_dialog) then
 			npc_says_random(_"It's a pleasure to meet you again.",
-				_"I am happy to see you've returned.")
+							_"I am happy to see you've returned.")
 			if (tania_is_here) then
 				npc_says(_"I see you have brought a friend along with you.")
 			end
@@ -186,7 +186,7 @@ return {
 		text = _"I will go now.",
 		code = function()
 			npc_says_random(_"This place will always wait for you.",
-				_"This is a sanctuary from the desert above.")
+							_"This is a sanctuary from the desert above.")
 			Tux:heal()
 			hide("node2", "node3", "node4", "node5")
 			end_dialog()

@@ -116,7 +116,7 @@ return {
 				npc_says(_"Sorry, there is no human alive that could give you further training.")
 				hide("node51")
 			else
-				npc_says(_"You will need " .. hacking_level * 2 .. " training points.")
+				npc_says(_"You will need " .. hacking_level * 2 .. _" training points.") -- @TODO make this properly translatable
 				npc_says(_"Still interested?")
 				show("node51")
 			end

@@ -28,6 +28,7 @@ return {
 		Tux:says(_"*******", "NO_WAIT")
 		DSB_MDC_year = os.date("%Y") + 45 -- current year + 45
 		DSB_MDC_date = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
+		--; TRANSLATORS: %s = a date ,  %d = a year number
 		cli_says(_"First login from /dev/ttySO on %s %d", DSB_MDC_date, DSB_MDC_year, "NO_WAIT")
 	end,
 

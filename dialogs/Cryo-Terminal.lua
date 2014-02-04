@@ -25,7 +25,7 @@ return {
 		Cryo_Terminal_prompt = "guest@cryo-solutions: ~ # "
 		npc_says(_"Welcome to [b]Cryonic Solutions[/b]!", "NO_WAIT")
 		npc_says_random(_"We freeze you today, so you can see tomorrow!",
-			_"Take the fast trip to the future with Cryonic Solutions!", "NO_WAIT")
+						_"Take the fast trip to the future with Cryonic Solutions!", "NO_WAIT")
 		npc_says(_"Please make your selection to learn more!", "NO_WAIT")
 		if (not Cryo_term_unlocked) then
 			show("node0", "node1", "node2", "node3")
@@ -48,6 +48,7 @@ return {
 			npc_says(_"Cryonic Solutions is a full service cryonic company.", "NO_WAIT")
 			npc_says(_"We provide not only full cryostasis, but post-stasis reintegration into the world of tomorrow!")
 			npc_says(_"Take the fast trip to the future with Cryonic Solutions!")
+			--; TRANSLATORS: %d = a year
 			npc_says(_"Cryonic Solutions, since %d, is the name people trust in cryonics!", os.date("%w") + 2011)
 			cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 			hide("node0")

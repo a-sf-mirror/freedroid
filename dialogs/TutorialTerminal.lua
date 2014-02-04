@@ -23,16 +23,19 @@ return {
 	EveryTime = function()
 		play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
 		TutorialTerminal_year = os.date("%Y") + 45 -- current year + 45
-		TutorialTerminal_date_1 = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year
+		TutorialTerminal_date_1 = os.date("%a %b %d %H:%M:%S") -- emulate os.date() but without the year --  can we translate this?
 		TutorialTerminal_prompt = "guest@example.com: ~ #"
 
 		cli_says(_"Login : ", "NO_WAIT")
+		--; TRANSLATORS: username, maybe this should stay in lowercase letters?
 		Tux:says(_"guest", "NO_WAIT")
-		cli_says(_"Entering as Guest", "NO_WAIT")
+		cli_says(_"Entering as guest", "NO_WAIT")
 		npc_says("", "NO_WAIT")
 		if (TutorialTerminal_date == nil) then
+			--; TRANSLATORS: %s = a date ,  %d = a year number
 			npc_says(_"First login from /dev/ttySO on %s %d", TutorialTerminal_date_1, TutorialTerminal_year, "NO_WAIT")
 		else
+			--; TRANSLATORS: %s = a date ,  %d = a year number
 			npc_says(_"Last login from /dev/ttyS0 on %s %d", TutorialTerminal_date, TutorialTerminal_year, "NO_WAIT")
 		end
 		TutorialTerminal_date = TutorialTerminal_date_1
@@ -44,7 +47,7 @@ return {
 			npc_says(_"Gate status: OPEN", "NO_WAIT")
 			show("node10")
 		else
-			npc_says(_"GAME BUG. PLEASE REPORT, TUTORIAL-TERMINAL EveryTime LuaCode")
+			npc_says("GAME BUG. PLEASE REPORT, TUTORIAL-TERMINAL EveryTime LuaCode")
 		end
 		cli_says(TutorialTerminal_prompt, "NO_WAIT")
 		show("node99")
@@ -52,9 +55,11 @@ return {
 
 	{
 		id = "node0",
+		--; TRANSLATORS: command,  use lowercase here
 		text = _"open gate",
 		echo_text = false,
 		code = function()
+			--; TRANSLATORS: command,  use lowercase here
 			Tux:says(_"open gate", "NO_WAIT")
 			npc_says(_"Access granted. Opening gate ...")
 			npc_says(_"Gate status: OPEN")
@@ -65,9 +70,11 @@ return {
 	},
 	{
 		id = "node10",
+		--; TRANSLATORS: command,  use lowercase here
 		text = _"close gate",
 		echo_text = false,
 		code = function()
+			--; TRANSLATORS: command,  use lowercase here
 			Tux:says(_"close gate", "NO_WAIT")
 			npc_says(_"Access granted. Closing gate ...")
 			npc_says(_"Gate status: CLOSED")
@@ -78,9 +85,11 @@ return {
 	},
 	{
 		id = "node99",
+		--; TRANSLATORS: command,  use lowercase here
 		text = _"logout",
 		echo_text = false,
 		code = function()
+			--; TRANSLATORS: command,  use lowercase here
 			Tux:says(_"logout", "NO_WAIT")
 			npc_says(_"Exiting...")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")

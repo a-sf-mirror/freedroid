@@ -24,6 +24,7 @@ return {
 		-- Initialization
 		Tamara_about_bots_nodes = 0
 
+		--; TRANSLATORS: %s =Tux:get_player_name()
 		Tux:says(_"Hi, I'm %s.", Tux:get_player_name())
 		npc_says(_"Welcome to the Library, I'm Tamara.")
 		npc_says(_"Please take a look around and see if there is something here that interests you.")

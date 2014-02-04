@@ -341,6 +341,7 @@ return {
 			npc_says(_"What a great way to start a conversation.")
 			npc_says(_"Yes, that is true. I am not who I seem to be.")
 			npc_says(_"But then again, neither are you, so my thoughts are, we are even.")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			Tux:says(_"What do you mean? I am %s and not anyone else.", Tux:get_player_name())
 			npc_says(_"And I am Duncan McNamara, the maker of grenades and nothing else.")
 			set_bot_name(_"Duncan - Bombmaker")

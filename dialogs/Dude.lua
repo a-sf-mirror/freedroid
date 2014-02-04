@@ -56,16 +56,16 @@ return {
 	end,
 
 	EveryTime = function(this_node, this_dialog)
-		npc_says(_"Hello.")
+		npc_says("Hello.")
 		if (tux_has_joined_guard) then
-			npc_says(_"Red Guard membership: [b]true[/b]")
+			npc_says("Red Guard membership: [b]true[/b]")
 		else
-			npc_says(_"Red Guard membership: [b]false[/b]")
+			npc_says("Red Guard membership: [b]false[/b]")
 		end
-		npc_says(_"Here you'll be able to access all dialogs that are available ingame.", "NO_WAIT")
-		npc_says(_"Take care, this may be a little buggy.", "NO_WAIT")
-		npc_says(_"Don't do this if you are just normally playing.", "NO_WAIT")
-		npc_says(_"These dialogs can currently be accessed:", "NO_WAIT")
+		npc_says("Here you'll be able to access all dialogs that are available ingame.", "NO_WAIT")
+		npc_says("Take care, this may be a little buggy.", "NO_WAIT")
+		npc_says("Don't do this if you are just normally playing.", "NO_WAIT")
+		npc_says("These dialogs can currently be accessed:", "NO_WAIT")
 		local node_list = ""
 		for idx,node in ipairs(this_dialog.nodes) do
 			if (node.id ~= "node0") then
@@ -80,7 +80,7 @@ return {
 	{
 		id = "node0",
 		enabled = true,
-		text = _"Show input field again.",
+		text = "Show input field again.",
 		code = function(this_node, this_dialog)
 			dude_choose_action(this_dialog)
 			hide("node0")

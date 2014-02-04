@@ -66,6 +66,7 @@ return {
 				npc_says(_"Mhmmm.")
 			end
 			if (Town_NorthGateGuard_tux_nickname_loon) then
+				--; TRANSLATORS: %s = Tux:get_player_name()
 				npc_says(_"%s... the Loon", Tux:get_player_name())
 			end
 			end_dialog()

@@ -383,6 +383,7 @@ return {
 		code = function()
 			npc_says(_"Hi. Thanks for the help.")
 			Tux:says(_"Will you let me inside the base?")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			npc_says(_"I'm sorry %s, I'm afraid I can't do that.", Tux:get_player_name())
 			npc_says(_"Nice try, though. I may owe you, but I can't let you in. You must leave.")
 			show("node99") hide("node97")

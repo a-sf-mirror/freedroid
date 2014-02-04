@@ -49,6 +49,7 @@ return {
 					npc_says(_"Much better. I'm cured. You're a good guy, man!", "NO_WAIT")
 					npc_says(_"What was your name again?")
 					Tux:says(Tux:get_player_name())
+					--; TRANSLATORS: %s = Tux:get_player_name()
 					npc_says(_"Thanks %s, I owe you one.", Tux:get_player_name(), "NO_WAIT")
 					npc_says(_"And I'll sure vote for you, if you want into the Red Guard!")
 				elseif (not Bender_congrats) then

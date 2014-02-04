@@ -198,6 +198,7 @@ return {
 			npc_says(_"Also, as I said, the 200s were built to report quickly. The 247 is no exception, and moves faster than some of us can run. As a killer bot, it has a fast rate of attack. It is not something to be trifled with.")
 			npc_says(_"The 249 is a cheaper version of the Banshee. It uses a tripedal drive instead of anti-gravity propulsion, and is therefore slower. However it is much more dangerous: its machine gun has a very high rate of fire.")
 			Tux:says(_"Machine gun?! But... But it's a servant bot!")
+			--; TRANSLATORS: %s =Tux:get_player_name()
 			npc_says(_"I know, %s. I know.", Tux:get_player_name())
 			npc_says(_"Let's see... Oh, there is also the 296, which was used for serving drinks. Ewald once had one of those in his bar.")
 			Tux:says(_"Once? What happened to it?")

@@ -70,7 +70,7 @@ return {
 		text = _"Is there anything secret in there?",
 		code = function()
 			if (not tux_has_joined_guard) then
-				npc_says(_"So, ... Hey, I don't have to answer questions.")
+				npc_says(_"So, ... Hey, I don't have to answer questions!")
 			else
 				npc_says(_"I have no time for a guided tour.")
 				npc_says(_"You can talk to Richard, the quartermaster. He knows the citadel better than I.")
@@ -111,6 +111,7 @@ return {
 		text = _"Is there another entrance to the Citadel?",
 		code = function()
 			npc_says(_"Yes. All with a bunch of laser autoguns. Adjusted to shoot on sight.")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			npc_says(_"%s, I discourage you to test our security system.", Tux:get_player_name())
 			hide("node11", "node12")
 		end,
@@ -130,6 +131,7 @@ return {
 		id = "node50",
 		text = _"I have a lot of money for you.",
 		code = function()
+			--; TRANSLATORS: "a hundred" references to a money/circuits
 			npc_says(_"Fascinating. Can I have a hundred please?")
 			hide("node50") show("node54", "node55")
 			push_topic("bribe citadel guard")
@@ -137,6 +139,7 @@ return {
 	},
 	{
 		id = "node54",
+		--; TRANSLATORS: references to a money/circuits
 		text = _"Erm... I don't have that much.",
 		topic = "bribe citadel guard",
 		code = function()
@@ -155,8 +158,11 @@ return {
 				tybalt_bribe = true
 				show("node56")
 			else
+				--; TRANSLATORS: references to a money/circuits
 				npc_says_random(_"That is not a hundred.",
+					--; TRANSLATORS: references to a money/circuits
 					_"Um, count that again.",
+					--; TRANSLATORS: references to a money/circuits
 					_"Talk to me when you have a bit more.")
 			end
 			hide("node54", "node55")
@@ -185,6 +191,7 @@ return {
 				npc_says(_"I'm not a charity. If this is a problem, talk to Spencer.")
 				npc_says(_"But he doesn't love robbers and foul play.")
 			else
+				--; TRANSLATORS: %s = Tux:get_player_name()
 				npc_says(_"Wait, %s, maybe we may make a deal.", Tux:get_player_name())
 				npc_says(_"You don't talk to Spencer about it, and I don't tell him you tried to bribe me.")
 				npc_says(_"Just because I am such a nice guy, I'm even willing to give you half of your money back.")

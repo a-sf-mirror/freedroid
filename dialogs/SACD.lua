@@ -37,8 +37,10 @@ return {
 		cli_says(_" Password : ", "NO_WAIT")
 		Tux:says(_"*******", "NO_WAIT")
 		if (SACD_date == nil) then
+			--; TRANSLATORS: %s = a date %d = a year
 			npc_says(_"First login from /dev/ttySO on %s %d", SACD_date_1, SACD_year, "NO_WAIT")
 		else
+			--; TRANSLATORS: %s = a date %d = a year
 			npc_says(_"Last login from /dev/ttyS0 on %s %d", SACD_date, SACD_year, "NO_WAIT")
 		end
 		SACD_date = SACD_date_1

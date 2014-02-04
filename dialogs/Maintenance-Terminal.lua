@@ -32,8 +32,10 @@ return {
 		Tux:says("*******", "NO_WAIT")
 		npc_says(_"Hello, Dave.")
 		if (Maintenance_Terminal_date == nil) then
+		--; TRANSLATORS: %s = a date ,  %d = a year number
 			npc_says(_"First login from /dev/ttySO on %s %d", Maintenance_Terminal_date_1, Maintenance_Terminal_year, "NO_WAIT")
 		else
+			--; TRANSLATORS: %s = a date ,  %d = a year number
 			npc_says(_"Last login from /dev/ttyS0 on %s %d", Maintenance_Terminal_date, Maintenance_Terminal_year, "NO_WAIT")
 		end
 		Maintenance_Terminal_date = Maintenance_Terminal_date_1
@@ -169,7 +171,7 @@ return {
 		topic = "Make a sandwich",
 		code = function()
 			npc_says_random(_"Now how would I make one of those?",
-				_"Sudo doesn't give you magic powers.")
+							_"Sudo doesn't give you magic powers.")
 			Maintenance_Terminal_want_sandwich = true
 			cli_says(Maintenance_Terminal_prompt, "NO_WAIT")
 			pop_topic()

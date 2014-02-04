@@ -49,9 +49,11 @@ return {
 			if (not Tux:has_quest("Deliverance")) and
 			   (not (Francis_refused_deliverance)) then
 				show("node90")
+				--; TRANSLATORS: %s =Tux:get_player_name()
 				npc_says(_"Welcome back %s.", Tux:get_player_name())
 			else
 				show("node99")
+				--; TRANSLATORS: %s =Tux:get_player_name()
 				npc_says(_"It's good to see you again, %s.", Tux:get_player_name())
 			end
 
@@ -307,6 +309,7 @@ return {
 			Francis_help = Francis_help - 10
 			npc_says(_"Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there.")
 			npc_says(_"But... The prospect of facing that... That man again... I just can't bear it.")
+			--; TRANSLATORS: %s =Tux:get_player_name()
 			npc_says(_"Please, %s, will you do me this favor?", Tux:get_player_name())
 			hide("node93") show("node94")
 		end,

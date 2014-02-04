@@ -26,7 +26,7 @@ return {
 
 	{
 		id = "node99",
-		text = "...",
+		text = _"...",
 		code = function()
 			end_dialog()
 		end,

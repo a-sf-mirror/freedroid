@@ -37,6 +37,7 @@ return {
 	},
 	{
 		id = "node99",
+		--; TRANSLATORS: command, user lowercase here
 		text = _"logout",
 		code = function()
 			end_dialog()

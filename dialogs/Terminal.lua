@@ -38,6 +38,7 @@ return {
 
 	{
 		id = "node0",
+		--; TRANSLATORS: command, user lowercase here
 		text = _"help",
 		code = function()
 			cli_says(_"Available commands: logout")
@@ -45,6 +46,7 @@ return {
 	},
 	{
 		id = "node99",
+		--; TRANSLATORS: command, user lowercase here
 		text = _"logout",
 		code = function()
 			cli_says(_"Goodbye")

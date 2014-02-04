@@ -51,6 +51,7 @@ return {
 		id = "node1",
 		text = _"A friend...",
 		code = function()
+			--; TRANSLATORS: %s =  Tux:get_player_name()
 			Tux:says(_"My name is %s, and I'm here to stop the robots!", Tux:get_player_name())
 			npc_says(_"Stop them!? You can't. It's too late. The robots have killed everyone.")
 			hide("node1", "node2", "node3") show("node4", "node5", "node6")

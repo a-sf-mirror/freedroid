@@ -136,6 +136,7 @@ return {
 			npc_says(_"Errr... How did you get in here?!")
 			Tux:says(_"I just walked through the door.")
 			npc_says(_"And your name?")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			Tux:says(_"I'm %s.", Tux:get_player_name())
 			npc_says(_"And you were not slaughtered by the bots outside?")
 			Tux:says(_"Apparently, I am still alive.")

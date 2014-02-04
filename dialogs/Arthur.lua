@@ -23,6 +23,7 @@ return {
 	FirstTime = function()
 		Tux:says(_"Hello!")
 		npc_says(_"Bonjour!")
+		--; TRANSLATORS: %s = Tux:get_player_name()
 		Tux:says(_"I'm %s, and who are you?", Tux:get_player_name())
 		npc_says(_"My name is Arthur.")
 		set_bot_name(_"Arthur")
@@ -82,6 +83,7 @@ return {
 		text = _"I have to go now.",
 		code = function()
 			npc_says_random(_"See you later.",
+				--; TRANSLATORS: Au revoir = See you later   in french
 				_"Au revoir.")
 			end_dialog()
 		end,

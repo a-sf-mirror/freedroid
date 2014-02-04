@@ -67,7 +67,7 @@ return {
 
 		if (not Kevins_Lawnmower_tux_login_granted) then
 			if (Kevins_Lawnmower_tux_login) then
-				npc_says(_"Oh, and did you play around with my Lawnmower?")
+				npc_says(_"Oh, and did you play around with my lawnmower?")
 				show("node60", "node61")
 			end
 
@@ -271,6 +271,7 @@ return {
 					Kevin_next_lesson_cost = 2 * (Kevin_lessons_taught + 1)
 					npc_says(_"I can teach you everything, for a price of course.", "NO_WAIT")
 					npc_says(_"Three hundred per lesson, up front.", "NO_WAIT")
+					--; TRANSLATORS: %d = number training points needed
 					npc_says(_"You will need %d training points.", Kevin_next_lesson_cost)
 					npc_says(_"Still interested?")
 					show("node31")

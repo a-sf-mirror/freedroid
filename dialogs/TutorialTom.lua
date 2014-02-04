@@ -824,7 +824,7 @@ return {
 		text = _"Alright, I'm ready to go hack some bots.",
 		code = function()
 			if (not Tux:done_quest("Tutorial Upgrading Items")) then
-				Tux:end_quest(_"Tutorial Upgrading Items",_"I decided that I don't need to know how to upgrade items.")
+				Tux:end_quest(_"Tutorial Upgrading Items", _"I decided that I don't need to know how to upgrade items.")
 			end
 			npc_says(_"First, you'll need to unlock the door.")
 			npc_says(_"See that [b]Terminal[/b] to the left?")
@@ -1037,7 +1037,7 @@ return {
 			npc_says(_"Some people are willing to trade items and circuits with you.")
 			--npc_says(_"Although, if you have too many circuits, they will charge you a bit more.") http://rb.freedroid.org/r/1327/
 			npc_says(_"Most are willing to buy whatever you have, at a discounted price.")
-			npc_says(_"There are also some automated vending machines, that dispense small items.") -- but these cannot buy from you.")
+			npc_says(_"There are also some automated vending machines, that dispense small items.") -- but these cannot buy from you.") -- to be implemented
 			hide("node61") show("node62")
 		end,
 	},

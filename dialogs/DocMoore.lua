@@ -129,7 +129,7 @@ return {
 				npc_says(_"Should you take that junk again, I won't feel responsible for what happens to you any more.")
 				DocMoore_healed_tux = true
 				Tux:update_quest(_"Bender's problem", _"The doctor was easily fooled. I have the pills that Bender needs.")
-				Tux:add_item("Brain Enlargement Pills Antidote",1)
+				Tux:add_item("Brain Enlargement Pills Antidote", 1)
 			end
 			hide("node2")
 		end,
@@ -138,7 +138,7 @@ return {
 		id = "node3",
 		text = _"Doctor, how can I keep healthy and alive?",
 		code = function()
-			npc_says(_"Always remember L-I-F-E")
+			npc_says(_"Always remember L-I-F-E") -- @TODO: how do we translate this? german "LEBEN" has 5 letters for example..
 			npc_says(_"L - Look at your health status regularly.")
 			npc_says(_"I - Ingest cold water if you are overheating.")
 			npc_says(_"F - Flee if you cannot fight.")
@@ -159,7 +159,7 @@ return {
 				npc_says(_"You seem to be in excellent health, there is nothing I can do for you right now.")
 			else
 				npc_says_random(_"There, it's done. You're completely fixed. You can go now.",
-					_"You need to keep better care of yourself. You're completely fixed. You can go now.")
+								_"You need to keep better care of yourself. You're completely fixed. You can go now.")
 				Tux:heal()
 			end
 			hide("node0")

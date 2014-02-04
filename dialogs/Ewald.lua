@@ -371,7 +371,7 @@ return {
 	},
 	{
 		id = "node41",
-		text = "1x",
+		text = _"1x",
 		topic = "Gambling",
 		code = function()
 			next("node44")
@@ -379,7 +379,7 @@ return {
 	},
 	{
 		id = "node42",
-		text = "2x",
+		text = _"2x",
 		topic = "Gambling",
 		code = function()
 			bet=bet*2
@@ -388,7 +388,7 @@ return {
 	},
 	{
 		id = "node43",
-		text = "3x",
+		text = _"3x",
 		topic = "Gambling",
 		code = function()
 			bet=bet*3
@@ -417,6 +417,7 @@ return {
 				bet = bet * bet_gain[difficulty()]
 				Tux:add_gold(bet)
 				total_bet = total_bet + bet
+				--; TRANSLATORS: %d = amount of valuable circuits
 				display_console_message(string.format(_"You won %d valuable circuits by gambling dice with Ewald.", math.floor(bet)))
 			else -- House Wins!
 				npc_says_random(_"You lost. Bad luck.",
@@ -425,6 +426,7 @@ return {
 					_"You lost. Maybe you might like coin-flipping better?")
 				Tux:del_gold(bet)
 				total_bet = total_bet - bet
+				--; TRANSLATORS: %d = amount of valuable circuits
 				display_console_message(string.format(_"You lost %d valuable circuits by gambling dice with Ewald.", bet))
 			end
 			hide("node41", "node42", "node43") next("node60")

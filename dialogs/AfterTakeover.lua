@@ -39,14 +39,18 @@ return {
 		Tux:says("*******")
 		-- npc_says("First login, %s ", os.date())
 		if (AfterTakeover_date == nil) then
+			--; TRANSLATORS: %s = a date ,  %d = a year number
 			npc_says(_"First login from /dev/ttySO on %s %d", AfterTakeover_date_1, AfterTakeover_year, "NO_WAIT")
 		else
+			--; TRANSLATORS: %s = a date ,  %d = a year number
 			npc_says(_"Last login from /dev/ttyS0 on %s %d", AfterTakeover_date, AfterTakeover_year, "NO_WAIT")
 		end
 		AfterTakeover_date = AfterTakeover_date_1
+		--; TRANSLATORS: %s = bot name
 		npc_says(_"Welcome to [b]%s[/b]!", bot_name(), "NO_WAIT")
 		if (npc_damage_amount() >0) then
 			npc_says(_"Hardware Check : BOT DAMAGED", "NO_WAIT")
+			--; TRANSLATORS: %s = bot type
 			npc_says(_"This %s unit could stand to be repaired.", bot_type(), "NO_WAIT")
 		end
 		if (Aftertakeover_broadcast_mode) then
@@ -81,6 +85,7 @@ return {
 		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
+			--; TRANSLATORS: first %s = Tux:get_player_name() ; second %s : bot_type()
 			terminal_sub = string.format(_"%s@hacked_%s/repair&settings: ~ # ", Tux:get_player_name(), bot_type())
 			cli_says(terminal_sub, "NO_WAIT")
 		end,
@@ -124,7 +129,9 @@ return {
 			Tux:says(_"./follow_me.sh", "NO_WAIT")
 			npc_says(_"Initiating tracking sequence.", "NO_WAIT")
 			npc_says(_"Movement unit: Enabled.", "NO_WAIT")
+			--; TRANSLATORS: first %s = Tux:get_player_name() ; second %s : bot_type()
 			npc_says(_"Acquiring lock on position of %s.", Tux:get_player_name(), "NO_WAIT")
+			--; TRANSLATORS: %s =  Tux:get_player_name()
 			npc_says(_"Status: Following %s.", Tux:get_player_name(), "NO_WAIT")
 			if (Aftertakeover_broadcast_mode) then
 				broadcast_bot_state("follow_tux")
@@ -174,6 +181,7 @@ return {
 			Tux:says(_"./repair.plx", "NO_WAIT")
 			damage = npc_damage_amount()
 			if (damage > 0) then
+				--; TRANSLATORS: %d = amount of valuable circuits
 				npc_says(_"Available amount of valuable circuits for repair: %d.", Tux:get_gold())
 				-- Estimate the average repair costs: --
 				AfterTakeover_repair_time = damage * calculate_bot_repair_penalty(1, Tux:get_program_revision("Check system integrity"))

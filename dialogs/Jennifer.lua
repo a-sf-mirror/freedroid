@@ -41,6 +41,7 @@ return {
 		text = _"Hello!",
 		code = function()
 			npc_says(_"Hello. I'm Jennifer.")
+			--; TRANSLATORS: %s=Tux:get_player_name()
 			Tux:says(_"I'm %s.", Tux:get_player_name())
 			Tux:says(_"What are you doing here?")
 			npc_says(_"I'm a machinist, working here, repairing bots and stuff like this.")
@@ -52,7 +53,7 @@ return {
 		text = _"You don't look very busy.",
 		code = function()
 			npc_says(_"Well, yes.")
-			npc_says(_"Someone thought he had to tidy up the space...", NO_WAIT)
+			npc_says(_"Someone thought he had to tidy up the space...", "NO_WAIT")
 			npc_says(_"...and now I cannot find my equipment anymore, what an idiot!")
 			npc_says(_"I'm especially searching for my toolbox.")
 			Tux:says(_"Okay, I will keep my eyes open if I see some toolbox.")
@@ -77,8 +78,8 @@ return {
 			Tux:says(_"The bots should have killed you immediately.")
 			Tux:says(_"It's hell in here for me and you don't seem to be even armed.")
 			npc_says(_"Well...")
-			npc_says(_"The workers here get special chips implanted.", NO_WAIT)
-			Tux:says(_"Ew.", NO_WAIT)
+			npc_says(_"The workers here get special chips implanted.", "NO_WAIT")
+			Tux:says(_"Ew.", "NO_WAIT")
 			npc_says(_"So the bots can identify us as 'friendly' and won't rip us apart.")
 			Tux:says(_"Uh.")
 			Tux:says(_"Is there any way for me to get such a chip?")
@@ -115,7 +116,7 @@ return {
 		id = "node10",
 		text = _"I think this is your toolbox?",
 		code = function()
-			npc_says(_"Oh yes, it is!", NO_WAIT)
+			npc_says(_"Oh yes, it is!", "NO_WAIT")
 			npc_says(_"Thank you very much!")
 			Tux:end_quest("Jennifer's Toolbox", _"I found the Toolbox and returned it to her") -- we may want to have her repair all of tux' items at some point
 			Tux:del_item("Toolbox", 1)
