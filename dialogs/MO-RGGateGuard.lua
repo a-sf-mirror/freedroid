@@ -70,9 +70,9 @@ return {
 		text = _"I'll be going then.",
 		code = function()
 			npc_says_random(_"Finally.",
-				_"Don't come back.",
-				_"It is dangerous here.",
-				_"Leave and stay away.")
+							_"Don't come back.",
+							_"It is dangerous here.",
+							_"Leave and stay away.")
 			show("node1")
 			end_dialog()
 		end,

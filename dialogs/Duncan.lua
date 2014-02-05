@@ -72,7 +72,7 @@ return {
 		text = _"I would like to buy a bomb.",
 		code = function()
 			npc_says_random(_"Yes. I am sure we can arrange something. Take a look.",
-				_"Sure. These are my offers today.")
+							_"Sure. These are my offers today.")
 			trade_with("Duncan")
 			if (not guard_follow_tux) then
 				hide("node1") show("node2", "node7")
@@ -115,8 +115,8 @@ return {
 		text = _"I want to buy some grenades.",
 		code = function()
 			npc_says_random(_"Certainly.",
-				_"Sure.",
-				_"With pleasure.")
+							_"Sure.",
+							_"With pleasure.")
 			trade_with("Duncan")
 		end,
 	},

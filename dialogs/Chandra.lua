@@ -406,7 +406,7 @@ return {
 		text = _"Thank you for your wise words.",
 		code = function()
 			npc_says_random(_"Feel free to come here any time you want.",
-				_"You flatter me.")
+							_"You flatter me.")
 			end_dialog()
 		end,
 	},

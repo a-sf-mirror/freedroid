@@ -27,7 +27,7 @@ return {
 
 	EveryTime = function()
 		if (Tux:has_met("Ewalds_296")) then
-			npc_says(_"HI THERE! I'll be your humble servant-", "NO_WAIT")
+			npc_says(_"HI THERE! I'll be your humble servant!", "NO_WAIT")
 			Tux:says(_"Uhh, yes, thank you, I know.")
 		end
 
@@ -90,6 +90,7 @@ return {
 		id = "node3",
 		text = _"DIE, YOU EVIL PIECE OF SCRAP METAL!",
 		code = function()
+			--; TRANSLATORS: sir or madam
 			npc_says(_"Sir or ma-")
 			Tux:says(_"DIE!")
 			drop_dead()
@@ -326,8 +327,8 @@ return {
 		text = _"Well, I should really be going now.",
 		code = function()
 			npc_says_random(_"Thank you, come again!",
-				_"Tell your friends about us!",
-				_"We hope you've enjoyed our service!")
+							_"Tell your friends about us!",
+							_"We hope you've enjoyed our service!")
 			end_dialog()
 		end,
 	},

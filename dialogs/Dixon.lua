@@ -319,16 +319,34 @@ return {
 		text = _"I am ready. Open the tunnels for me, Dixon.",
 		topic = "The yellow toolkit",
 		code = function()
+			--difficulty level: 0 = easy,  1= normal, 2 = hard
 			if (difficulty_level() > 2) then -- difficulty neither easy, nor normal, nor hard
 				npc_says("ERROR, Dixon NODE 28, game difficulty not handled")
 			end
-			local dev_count = 3 - difficulty_level()
-			local dev_numbers = {_"a small device", _"two small devices", _"three small devices"}
-			local dev_ref = {_"it", _"one", _"one"} --@TODO  this nice code, but for translations we have to make this 3 sentences per entry..
+			-- make stuff a bit easier for us
+			if (difficulty_level() == 0 ) then
+				local difficulty_lvl = "easy"
+			elseif (difficulty_level() == 1) then
+				local difficulty_lvl = "normal"
+			else
+				local difficulty_lvl = "hard"
+			end
 			npc_says(_"Great. Be careful down there. Just try to get the toolkit and get out of there as quickly as possible.")
-			Tux:add_item("EMP Shockwave Generator", dev_count)
-			npc_says(_"I will give you %s that can emit an Electro Magnetic Pulse.", dev_numbers[dev_count])
-			npc_says(_"If you get in trouble just activate %s and it emits a shockwave damaging any bot nearby. It should give you some breathing room.", dev_ref[dev_count])
+
+			if (difficulty_lvl == "easy") then -- 3 grenades
+				Tux:add_item("EMP Shockwave Generator", 3)
+				npc_says(_"I will give you three small devices that can emit an Electro Magnetic Pulse.")
+				npc_says(_"If you get in trouble just activate one and it emits a shockwave damaging any bot nearby. It should give you some breathing room.")
+			elseif (difficulty_lvl == "normal") then -- 2 grenades
+				Tux:add_item("EMP Shockwave Generator", 2)
+				npc_says(_"I will give you two small devices that can emit an Electro Magnetic Pulse.")
+				npc_says(_"If you get in trouble just activate one and it emits a shockwave damaging any bot nearby. It should give you some breathing room.")
+			elseif (difficulty_lvl == "hard") then -- 1 grenade
+				Tux:add_item("EMP Shockwave Generator", 1)
+				npc_says(_"I will give you a small device that can emit an Electro Magnetic Pulse.")
+				npc_says(_"If you get in trouble just activate it and it emits a shockwave damaging any bot nearby. It should give you some breathing room.")
+			end
+
 			npc_says(_"Best of all, it's completely harmless to biologicals. But make sure not to fry the circuits of our own 614 guard bots or computer terminals.")
 			npc_says(_"The entrance to the tunnels is in the courtyard of the citadel. Once you exit this building, go straight and turn to your right once inside the outer citadel gates.")
 			npc_says(_"There you will find the maintenance access hatch.", "NO_WAIT")
@@ -380,7 +398,8 @@ return {
 				disappointment_sentence = _"Dixon was very disappointed about this solution, but I don't care. "
 			end
 			Tux:add_gold(150 - Dixon_mood)
-			Tux:end_quest("The yellow toolkit", _"Finally. I am tired, covered in bruises and oil... But I made sure that the bots are dead. It felt great to break their metal bodies and crush their circuits. " .. disappointment_sentence .. _"It was fun killing the bots. Nothing else matters.")
+			-- ; TRANSLATORS: %s = another sentence which will be inserted here
+			Tux:end_quest("The yellow toolkit", _"Finally. I am tired, covered in bruises and oil... But I made sure that the bots are dead. It felt great to break their metal bodies and crush their circuits. %s It was fun killing the bots. Nothing else matters.", disappointment_sentence)
 			hide("node32", "node33")
 		end,
 	},

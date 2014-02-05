@@ -32,6 +32,7 @@ return {
 		John_puzzle_score = JohnPuzzlefalseA + JohnPuzzlefalseB + JohnPuzzlefalseC
 
 		if (John_dislike) then
+			--; TRANSLATORS: I am sorry
 			Tux:says(_"I am s-")
 			npc_says(_"Go away please.")
 			end_dialog()

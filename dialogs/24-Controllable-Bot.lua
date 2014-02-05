@@ -92,7 +92,7 @@ return {
 	},
 	{
 		id = "node99",
-		text = _"logout",
+		text = "logout",
 		code = function()
 			end_dialog()
 		end,

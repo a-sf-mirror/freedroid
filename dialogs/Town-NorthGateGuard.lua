@@ -32,11 +32,11 @@ return {
 			set_rush_tux(0)
 			if (Town_NorthGateGuard_tux_nickname_loon) then
 				npc_says_random(_"Oh, the loon has returned.",
-					_"Oh, it's just the loon. No need to worry.")
+								_"Oh, it's just the loon. No need to worry.")
 			else
 				npc_says_random(_"Oh, it's you.",
-					_"I see you have returned.",
-					_"You just can't get enough, can you?")
+								_"I see you have returned.",
+								_"You just can't get enough, can you?")
 			end
 			end_dialog()
 		else
@@ -143,9 +143,9 @@ return {
 			npc_says(_"We've changed our security policy. Our leader, Spencer, wants to interrogate any strangers we let in.")
 			npc_says(_"You have to talk to him before you head out into the town to do stupid things.")
 			npc_says_random(_"And up until you do, a guard will be following you. We'll be watching you.",
-				_"And until you do, one of us will be following you. I'll let the others know you've arrived.")
+							_"And until you do, one of us will be following you. I'll let the others know you've arrived.")
 			npc_says_random(_"I'll let you in now, but be warned: one false move and we all have flightless waterfowl for dinner. Am I making myself clear?",
-				_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
+							_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
 			hide("node10", "node11") show("node16", "node17")
 		end,
 	},
@@ -223,6 +223,7 @@ return {
 			npc_says(_"Your name?")
 			Tux:says("%s.", Tux:get_player_name())
 			Tux:says(_"OW. That HURT!")
+			--; TRANSLATORS Doc = Doctor
 			npc_says(_"Get out of here. The Doc is the third door on the right along the main path.")
 			if (not Tux:del_health(40)) then
 				Tux:del_health(1)
@@ -288,11 +289,11 @@ return {
 			else -- player was told where spencer's office is, or has met spencer
 				if (not Tux:has_met("Spencer")) then
 					npc_says_random(_"No, you were already told that.",
-						_"I don't believe anyone's memory is that short, even yours.")
+									_"I don't believe anyone's memory is that short, even yours.")
 					npc_says(_"Stop wasting my time!")
 				else
 					npc_says_random(_"Are you joking? You already talked to him.",
-						_"Go ask him yourself. I know you already talked to him.")
+									_"Go ask him yourself. I know you already talked to him.")
 					npc_says(_"Stop wasting my time!")
 				end
 			end
@@ -322,8 +323,8 @@ return {
 		text = _"I'll be going then.",
 		code = function()
 			npc_says_random(_"Mhmmm.",
-				_"Finally...",
-				_"It was about time...")
+							_"Finally...",
+							_"It was about time...")
 			if (Town_NorthGateGuard_tux_nickname_loon) then
 				--; TRANSLATORS: %s = Tux:get_player_name()
 				npc_says(_"%s... the Loon", Tux:get_player_name())

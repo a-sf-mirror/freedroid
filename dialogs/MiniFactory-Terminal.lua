@@ -22,7 +22,7 @@ local Tux = FDrpg.get_tux()
 return {
 	EveryTime = function()
 		play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
-		terminal = "dixon@autofactory: ~ # "
+		terminal = _"dixon@autofactory: ~ # "
 
 		cli_says(_"Login : ", "NO_WAIT")
 		-- ; TRANSLATORS: dixon = name of the npc, uncapitalized

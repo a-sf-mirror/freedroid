@@ -37,9 +37,13 @@ return {
 			Tux:says(_"Indeed, the server says it is a gate server, not a firmware server.")
 			npc_says(_"Bah!")
 			npc_says(_"Must prevent access to the real update server. Can you open the gate?")
+			--; TRANSLATORS: follow the markers on the ground
 			npc_says(_"Inside, follow the mrkers o e groun")
+			--; TRANSLATROS: Richard says the connection is bad
 			npc_says(_"Ri ard sa... e c nn cti n *bzzzzzzzzz* bad.")
+			--; TRANSLATORS: good luck
 			npc_says(_"Goo*sizzle*ck.")
+			--; TRANSLATORS: over
 			npc_says(_"O*crack*r")
 			Tux:update_quest("Propagating a faulty firmware update", _"Spencer contacted me and said I was supposed to find the real firmware update server. I hope I survive this...")
 			Tux:add_quest("Open Sesame", "It turns out what we thought was the firmware update server was just a gate access server. Spencer speculates the real firmware server is behind this gate. There should be something on the ground I am supposed to follow.")

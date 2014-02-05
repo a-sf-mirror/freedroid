@@ -27,10 +27,10 @@ return {
 	EveryTime = function()
 		if (Tux:has_met("Peter")) then
 			Tux:says_random(_"Hello.",
-				_"Hi there.", "NO_WAIT")
+							_"Hi there.", "NO_WAIT")
 			npc_says_random(_"Well, hello again.",
-				_"Hello hello.",
-				_"Welcome back.")
+							_"Hello hello.",
+							_"Welcome back.")
 		end
 		show("node99")
 	end,

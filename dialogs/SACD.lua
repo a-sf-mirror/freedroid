@@ -69,6 +69,7 @@ return {
 			npc_says(_"Enabling guns...")
 			npc_says(_"Connecting to peripheral controller...")
 			npc_says(_"ERROR: Guns cannot be enabled.")
+			--; TRANSLATORS: use lowercase for "admin"
 			cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
 		end,
 	},

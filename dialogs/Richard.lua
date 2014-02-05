@@ -93,16 +93,15 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
-			npc_says_random(
-				_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
-				_"I cannot teach you when you have no training points. Come back when you are more prepared.",
-				_"You are not ready. Go kill some bots and come back.",
-				_"Come back when you are mentally ready to learn.",
-				_"Come back after some more practice in the field.",
-				_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
-				_"Yeah, I don't think you have enough experience for this. Come back here after you see some more action.",
-				_"Then come back when you have a real will to learn.",
-				_"You don't have enough experience. Come here after you see some more action.")
+			npc_says_random(_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
+							_"I cannot teach you when you have no training points. Come back when you are more prepared.",
+							_"You are not ready. Go kill some bots and come back.",
+							_"Come back when you are mentally ready to learn.",
+							_"Come back after some more practice in the field.",
+							_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
+							_"Yeah, I don't think you have enough experience for this. Come back here after you see some more action.",
+							_"Then come back when you have a real will to learn.",
+							_"You don't have enough experience. Come here after you see some more action.")
 		end,
 	},
 	{
@@ -116,7 +115,8 @@ return {
 				npc_says(_"Sorry, there is no human alive that could give you further training.")
 				hide("node51")
 			else
-				npc_says(_"You will need " .. hacking_level * 2 .. _" training points.") -- @TODO make this properly translatable
+				--; TRANSLATORS: %d = a number
+				npc_says(_"You will need %d training points.", hacking_level * 2) 
 				npc_says(_"Still interested?")
 				show("node51")
 			end
@@ -145,15 +145,13 @@ return {
 		text = "BUG, REPORT ME! Richard node52",
 		echo_text = false,
 		code = function()
-			Tux:says_random(
-				_"Hold on, I don't seem to have enough money right now.",
-				_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
-			npc_says_random(
-				_"Ok, come back when you can afford to pay me if you are interested.",
-				_"Please don't bother me if you can't pay me.",
-				_"You don't have enough money! I cannot afford to just give away training for free.",
-				_"Come back when you have enough circuits.",
-				_"So come back when you have some valuables.")
+			Tux:says_random(_"Hold on, I don't seem to have enough money right now.",
+							_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
+			npc_says_random(_"Ok, come back when you can afford to pay me if you are interested.",
+							_"Please don't bother me if you can't pay me.",
+							_"You don't have enough money! I cannot afford to just give away training for free.",
+							_"Come back when you have enough circuits.",
+							_"So come back when you have some valuables.")
 		end,
 	},
 	{

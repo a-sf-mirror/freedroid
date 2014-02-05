@@ -87,6 +87,7 @@ return {
 		text = _"Hello!",
 		code = function()
 			npc_says(_"Hello. I'm Doc Moore. I'm the medic of this town. I don't believe we've met?")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			Tux:says(_"I'm %s.", Tux:get_player_name())
 			npc_says(_"Um, what are you? Some kind of overgrown penguin?")
 			Tux:says(_"I'm a Linarian.")
@@ -309,7 +310,7 @@ return {
 	},
 	{
 		id = "node53",
-		text = _"BUG REPORT ME! Francis node 53!",
+		text = "BUG REPORT ME! Francis node 53!",
 		echo_text = false,
 		code = function()
 			npc_says(_"Those pills are only one variant of a fantastic scientific breakthrough that happened shortly before the Great Assault.")
@@ -375,8 +376,8 @@ return {
 		text = _"See you later.",
 		code = function()
 			npc_says_random(_"See you later.",
-				_"Keep healthy!")
-			end_dialog()
+							_"Keep healthy!")
+				end_dialog()
 		end,
 	},
 }

@@ -23,6 +23,7 @@ return {
 	FirstTime = function()
 		Tux:says(_"Hi! I'm new h...", "NO_WAIT")
 		npc_says(_"I don't care! Identify yourself, right now!")
+		--; TRANSLATORS: %s = Tux:get_player_name()
 		Tux:says(_"%s... I'm %s.", Tux:get_player_name(), Tux:get_player_name())
 		npc_says(_"All right, I'm Tybalt. I'm guarding the town citadel gate. Only authorized personnel are permitted.")
 		set_bot_name(_"Tybalt - Citadel Gate Guard")

@@ -23,7 +23,8 @@ return {
 	FirstTime = function()
 		Tux:says(_"Hello! I'm new here.")
 		npc_says(_"Hey, man! I'm Bender, the dead man of this town. And you?")
-		set_bot_name("Bender")
+		set_bot_name(_"Bender")
+		--; TRANSLATORS: %s = Tux:get_player_name()
 		Tux:says(_"I'm %s. I'm fine, thank you.", Tux:get_player_name(), "NO_WAIT")
 		show("node0")
 	end,
@@ -333,7 +334,7 @@ return {
 		text = _"See you later.",
 		code = function()
 			npc_says_random(_"Later, man!",
-				_"Stay cool dude.")
+							_"Stay cool dude.")
 			end_dialog()
 		end,
 	},

@@ -62,7 +62,7 @@ return {
 			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
 				npc_says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
 			else
-			--; TRANSLATORS: %s = Tux:get_player_name() 
+			--; TRANSLATORS: %s in %swashere  = Tux:get_player_name() 
 				npc_says(_"Currently deployed firmware is v. 5.0.8+%swashere+gpl", Tux:get_player_name())
 			end
 		end,

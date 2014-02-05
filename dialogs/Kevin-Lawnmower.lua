@@ -138,8 +138,10 @@ return {
 			Tux:says(_"fuel_level", "NO_WAIT")
 			npc_says(_"Printing fuel level...")
 			if (fuel < 5) then
+				--; TRANSLATORS: '%%' is not a typo
 				npc_says(_"WARNING, less than [b]5%%[/b] fuel remaining!")
 			elseif (fuel <= 97) then
+				--; TRANSLATORS: '%%' is not a typo, %s = number
 				npc_says(_"[b]%s[/b]%% remaining", fuel)
 			else
 				npc_says(_"Tank completely refilled.")
@@ -157,6 +159,7 @@ return {
 			npc_says(_"[b]glug glug glug[/b]")
 			npc_says(_"Tank refilled.")
 			npc_says(_"Fuel status:")
+			--; TRANSLATORS: '%%' is not a typo
 			npc_says(_"[b]100[/b]%%!")
 			npc_says(_"This will approximately suffice for:")
 			npc_says(_"1 month and 14 days.")
@@ -176,6 +179,7 @@ return {
 		code = function()
 			Tux:says(_"Sorry, tin can.")
 			npc_says(_"Import error: [b]null[/b] fuel received.", "NO_WAIT")
+			--; TRANSLATORS: '%%' is not a typo
 			npc_says(_"WARNING, less than [b]5[/b]%% fuel remaining!")
 			npc_says(_"Resuming hibernation...")
 			hide("node50", "node51")
@@ -187,7 +191,7 @@ return {
 		text = _"exit",
 		echo_text = false,
 		code = function()
-			Tux:says(_"exit","NO_WAIT")
+			Tux:says(_"exit", "NO_WAIT")
 			npc_says(_"exiting...")
 			hide("node31", "node30", "node20", "node50", "node51")
 			end_dialog()

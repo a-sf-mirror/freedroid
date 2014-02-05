@@ -414,7 +414,7 @@ return {
 				npc_says(_"Hey Linarian...")
 				Tux:says(_"Mmmh, yes?")
 				npc_says(_"Do you know this feeling...")
-				npc_says(_"...when you get a really strange output...")
+				npc_says(_"... when you get a really strange output...")
 				npc_says(_"... and you look at the code...")
 				npc_says(_"... again and again...")
 				npc_says(_"... but you see no path it could come from?")

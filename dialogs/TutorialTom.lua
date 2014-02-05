@@ -22,8 +22,8 @@ local Tux = FDrpg.get_tux()
 -- helper functions for the quickmenu thingy
 
 local function tutorial_chests_and_armor_and_shops()
-		tut_tux_items_entered = true
-		tut_tux_chest_entered = true
+	tut_tux_items_entered = true
+	tut_tux_chest_entered = true
 end
 
 local function tutorial_melee_combat()

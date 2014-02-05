@@ -48,7 +48,7 @@ return {
 			npc_says(_"Seeker of clean languages. The great knower of obscure secrets.")
 			npc_says(_"The one who speaks to hard drives. The best --")
 			Tux:says(_"I KNOW! I KNOW!")
-			npc_says(_"Oh.")
+			npc_says(_"Oh!")
 			npc_says(_"Sorenson did not tell you most yet.")
 			npc_says(_"She did not tell you she is the great controller of light.")
 			npc_says(_"She did not tell you she is the walker of the dark corridors --")
@@ -176,7 +176,9 @@ return {
 		echo_text = false,
 		topic = "Sorenson contract",
 		code = function()
+			--; TRANSLATORS: aaaa! It burns! I'm melting!
 			npc_says(_"4444! 17 burn5! 7'm m3171n9!")
+			--; TRANSLATORS: aaaaaaaaaaaaaa
 			npc_says(_"44444444444444444!")
 			drop_dead()
 		end,
@@ -186,7 +188,9 @@ return {
 		text = _"Francis",
 		topic = "Sorenson contract",
 		code = function()
+			--; TRANSLATORS: Ha! Your soul is mine, Franics!
 			npc_says(_"H4! Y0ur s0ul 15 min3, Francis!")
+			--; TRANSLATORS: What? Not working?
 			npc_says(_"Wh47? N07 w0rk1b9?")
 			Tux:says(_"Erm. I have a confession to make. My name is not Francis.")
 			npc_says(_"N0000000000!!!!!!!")
@@ -202,6 +206,7 @@ return {
 		code = function()
 			npc_says(_"Huh?")
 			Tux:says(_"I... Don't feel... good... Blood loss... So... Cold...")
+			--; TRANSLATORS: NO! Idiot!
 			npc_says(_"N0! Idi07!")
 			Tux:kill()
 			-- hide("node65")
@@ -213,6 +218,7 @@ return {
 		echo_text = false,
 		topic = "Sorenson contract",
 		code = function()
+			--; TRANSLATORS: No! Stupid illiterate penguin! DIE!!
 			npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
 			hide("node66")
 			npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
@@ -221,12 +227,14 @@ return {
 	},
 	{
 		id = "node70",
+		--; TRANSLATORS: huh? I don't feel good.
 		text = _"Huh? I d0n'7 f33l g00d.",
 		topic = "Sorenson contract",
 		code = function()
 			npc_says_random(_"Yes! I am free! At last I am free!",
 							_"Yes! I am free!",
 							_"Yes! I am free at last!")
+			--; TRANSLATORS: Wait... I feel... horrible...
 			Tux:says(_"W417... 1 f331... H0rr1b13...")
 			npc_says(_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!")
 			Tux:improve_skill("programming")
@@ -239,6 +247,7 @@ return {
 		topic = "Sorenson contract",
 		text = _"In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it.",
 		code = function()
+			--; TRANSLATORS: Nooooooo! Time to die, mortal fool!
 			npc_says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
 			hide("node78")
 			npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
@@ -250,6 +259,7 @@ return {
 		topic = "Sorenson contract",
 		text = _"There is no way I will sign something without reading it. Forget about it.",
 		code = function()
+			--; TRANSLATORS: Nooooooo! Time to die, mortal fool!
 			npc_says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
 			hide("node79")
 			npc_faction("crazy", _"COBOL Programmer - Madly Enraged")

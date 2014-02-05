@@ -141,7 +141,7 @@ return {
 	},
 	{
 		id = "node12",
-		text = _"BUG, REPORT ME! Koan node12 -- UPDATE QUEST",
+		text = "BUG, REPORT ME! Koan node12 -- UPDATE QUEST",
 		echo_text = false,
 		code = function()
 			Koan_spared_via_dialog = true

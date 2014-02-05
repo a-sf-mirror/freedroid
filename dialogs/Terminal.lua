@@ -28,10 +28,10 @@ return {
 			cli_says(_"Welcome to this terminal.")
 		else
 			Tux:says_random(_"Hello.",
-				_"Hi there.", "NO_WAIT")
+							_"Hi there.", "NO_WAIT")
 			npc_says_random(_"Well, hello again.",
-				_"Hello hello.",
-				_"Welcome back.")
+							_"Hello hello.",
+							_"Welcome back.")
 		end
 		show("node99")
 	end,
@@ -41,7 +41,7 @@ return {
 		--; TRANSLATORS: command, user lowercase here
 		text = _"help",
 		code = function()
-			cli_says(_"Available commands: logout")
+			cli_says(_"Available commands: help, logout")
 		end,
 	},
 	{

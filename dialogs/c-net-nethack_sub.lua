@@ -348,9 +348,9 @@ return {
 					next("c-net-nethack_sub.node63")
 				else
 					npc_says_random(_"You find nothing new here.",
-						_"You find a Fake Amulet of Yendor.",
-						_"You find emptiness.",
-						_"You find an empty room.", "NO_WAIT")
+									_"You find a Fake Amulet of Yendor.",
+									_"You find emptiness.",
+									_"You find an empty room.", "NO_WAIT")
 					next("c-net-nethack_sub.node61")
 				end
 			elseif (n_level == 0) then -- At surface
@@ -358,9 +358,11 @@ return {
 					if(n_hp<70) then
 						n_hp = 70
 						npc_says_random(_"You drink from the spring at the entrance to the cave.",
-							_"You make a quick trip to the hospital.", "NO_WAIT")
+										_"You make a quick trip to the hospital.", "NO_WAIT")
 					end
-					npc_says_random(n_god.._" looks at you with impatience and points you back to the entrance of the dungeon.", _"You find your goddess, "..n_god.._", at lunch. She points back the way you came.", _"You come up and nearly catch "..n_god.._" bathing. You quickly head back the way you came.", "NO_WAIT")
+					npc_says_random(n_god.._" looks at you with impatience and points you back to the entrance of the dungeon.",
+									_"You find your goddess, "..n_god.._", at lunch. She points back the way you came.",
+									_"You come up and nearly catch "..n_god.._" bathing. You quickly head back the way you came.", "NO_WAIT")
 					hide("c-net-nethack_sub.node62")
 					next("c-net-nethack_sub.node63")
 				else -- have Amulet of Yendor -- WIN!

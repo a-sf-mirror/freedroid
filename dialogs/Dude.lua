@@ -91,17 +91,17 @@ return {
 	{
 		id = "redguard",
 		enabled = true,
-		text = _"Become Red Guard",
+		text = "Become Red Guard",
 		code = function()
 			tux_has_joined_guard = true
-			npc_says(_"You are now a member of the Red Guard.")
+			npc_says("You are now a member of the Red Guard.")
 		end,
 	},
 
 	{
 		id = "craft",
 		enabled = true,
-		text = _"Craft addons",
+		text = "Craft addons",
 		code = function()
 			craft_addons()
 		end,
@@ -110,7 +110,7 @@ return {
 	{
 		id = "upgrade",
 		enabled = true,
-		text = _"Upgrade items",
+		text = "Upgrade items",
 		code = function()
 			upgrade_items()
 		end,
@@ -119,7 +119,7 @@ return {
 	{
 		id = "shop",
 		enabled = true,
-		text = _"Shop",
+		text = "Shop",
 		code = function()
 			trade_with("Dude")
 		end,
@@ -154,10 +154,10 @@ return {
 		id = "exit",
 		enabled = true,
 		text = function()
-			return string.format( _"Exit this dialog for the %sth time", Dude_exit_node_count + 1)
+			return string.format( "Exit this dialog for the %sth time", Dude_exit_node_count + 1)
 		end,
 		code = function()
-			npc_says(_"Closing...")
+			npc_says("Closing...")
 			Dude_exit_node_count = Dude_exit_node_count + 1 -- do the computation of the var now
 			end_dialog()
 		end,

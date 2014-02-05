@@ -49,27 +49,30 @@ return {
 
 	{
 		id = "node0",
-		text = "guest",
+		--; TRANSLATORS: use lowercase for translation
+		text = _"guest",
 		echo_text = false,
 		code = function()
 			c_net_username = Tux:get_player_name()
 			c_net_prompt = c_net_username .. "@c-net:~$"
-			Tux:says("guest", "NO_WAIT")
+				--; TRANSLATORS: use lowercase for translation
+			Tux:says(_"guest", "NO_WAIT")
 			if (not c_net_terminal_logged_in) then
 				c_net_terminal_logged_in = true
 				npc_says(_"First time login detected.")
 				npc_says(_"Please enter your name", "NO_WAIT")
 				cli_says(_"Name : ", "NO_WAIT")
 				Tux:says(c_net_username)
+				--; TRANSLATORS: %s = c_net_username
 				npc_says(_"Please set password for your personalized guest login, %s", c_net_username, "NO_WAIT")
 				npc_says(_"Use at least one lower case letter, one upper case letter, one number, and one symbol.", "NO_WAIT")
 				cli_says(_"Password : ", "NO_WAIT")
-				Tux:says("******")
+				Tux:says(_"******")
 			else
 				cli_says(_"Name : ", "NO_WAIT")
 				Tux:says(c_net_username, "NO_WAIT")
 				cli_says(_"Password : ", "NO_WAIT")
-				Tux:says("******", "NO_WAIT")
+				Tux:says(_"******", "NO_WAIT")
 			end
 			npc_says(_"Last login from /dev/tty3 on unknown", "NO_WAIT")
 			cli_says(c_net_prompt, "NO_WAIT")
@@ -186,10 +189,11 @@ return {
 		code = function()
 			Tux:says("finger", "NO_WAIT")
 			knows_c_net_users = true
-			npc_says("Login Tty Name", "NO_WAIT")
+			--; TRANSLATORS: this reperesents the head of a table
+			npc_says(_"Login Tty Name", "NO_WAIT")
 			npc_says("bossman tty7 Spencer", "NO_WAIT")
 			npc_says("cpain tty5 Sorenson", "NO_WAIT")
-			npc_says("guest tty3 " .. Tux:get_player_name() .. "", "NO_WAIT")
+			npc_says("guest tty3 %s ", Tux:get_player_name(), "NO_WAIT")
 			npc_says("lily tty2 Lily Stone", "NO_WAIT")
 			cli_says(c_net_prompt, "NO_WAIT")
 		end,
@@ -391,6 +395,7 @@ return {
 		id = "node70",
 		text = _"radio.sh",
 		code = function()
+			--; TRANSLATORS: "tracks" refers to music songs/music
 			npc_says(_"Valid tracks:", "NO_WAIT")
 			npc_says("Ambience, Bleostrada, HellFortressEntrance, ImperialArmy, NewTutorialStage, TechBattle, TheBeginning, underground, AmbientBattle, hellforce, HellFortressTwo, menu, Suspicion, temple, town")
 
@@ -422,7 +427,9 @@ return {
 					try_again_radio = false
 					next("node20")
 				else
+					--; TRANSLATORS: "tracks" refers to music songs/music
 					npc_says(_"WARNING, '%s' not a valid track.", track)
+					--; TRANSLATORS: "'exit'" must not be translated
 					npc_says(_"enter 'exit' to exit.")
 					npc_says(_"Please retry.")
 					npc_says(_"Valid tracks:", "NO_WAIT")
@@ -505,10 +512,10 @@ return {
 	},
 	{
 		id = "node86",
-		text = _"progress_quest",
+		text = "progress_quest",
 		echo_text = false,
 		code = function()
-			Tux:says(_"./progress_quest", "NO_WAIT")
+			Tux:says("./progress_quest", "NO_WAIT")
 			if (not playing_progress_quest) then
 				playing_progress_quest = true
 				npc_says(_"Roll your Stats.")
@@ -526,7 +533,7 @@ return {
 	},
 	{
 		id = "node87",
-		text = _"BUG c-net node 87 -- ROLL STATS",
+		text = "BUG c-net node 87 -- ROLL STATS",
 		echo_text = false,
 		code = function()
 			local str = math.random(0,6) + math.random(0,6) + math.random(0,6)
@@ -544,6 +551,7 @@ return {
 		text = _"Accept Character",
 		echo_text = false,
 		code = function()
+			--; TRANSLATORS: "Progress Quest" should not be translated
 			npc_says(_"Welcome to Progress Quest!")
 			cli_says(c_net_prompt, "NO_WAIT")
 			show("node81", "node82", "node83", "node85", "node86") hide("node88", "node89")
@@ -563,6 +571,7 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says("logout", "NO_WAIT")
+			--; TRANSLATORS: "c-net" should probably not be translated
 			npc_says(_"Connection to c-net closed.")
 			-- set_internet_login_time()
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")

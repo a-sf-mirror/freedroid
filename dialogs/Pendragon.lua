@@ -287,7 +287,7 @@ return {
 		text = _"See you later.",
 		code = function()
 			npc_says_random(_"Have courage.",
-				_"Be strong.")
+							_"Be strong.")
 			end_dialog()
 		end,
 	},

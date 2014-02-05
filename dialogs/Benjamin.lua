@@ -27,10 +27,10 @@ return {
 	EveryTime = function()
 		if (Tux:has_met("Benjamin")) then
 			Tux:says_random(_"Hello.",
-				_"Greetings Master Benjamin.")
+							_"Greetings Master Benjamin.")
 			npc_says_random(_"Well, hello again.",
-				_"Hello hello.",
-				_"Welcome back.")
+							_"Hello hello.",
+							_"Welcome back.")
 		end
 		show("node99")
 	end,
@@ -216,14 +216,13 @@ return {
 		text = "BUG, REPORT ME! node27 Benjamin",
 		echo_text = false,
 		code = function()
-			npc_says_random(
-				_"You need more circuits.",
-				_"Please don't bother me if you can't pay me.",
-				_"I need cash to defray the costs of the ammo used in training.",
-				_"I repeat, you need to bring enough to pay for the practice targets you destroy, and for my time.",
-				_"You don't have enough money! I cannot afford to just give away training for free.",
-				_"Come back when you have enough circuits.",
-				_"So come back when you have something of value.")
+			npc_says_random(_"You need more circuits.",
+							_"Please don't bother me if you can't pay me.",
+							_"I need cash to defray the costs of the ammo used in training.",
+							_"I repeat, you need to bring enough to pay for the practice targets you destroy, and for my time.",
+							_"You don't have enough money! I cannot afford to just give away training for free.",
+							_"Come back when you have enough circuits.",
+							_"So come back when you have something of value.")
 		end,
 	},
 	{
@@ -231,15 +230,14 @@ return {
 		text = "BUG, REPORT ME! node28 Benjamin",
 		echo_text = false,
 		code = function()
-			npc_says_random(
-				_"You are not ready. Go kill some bots and come back.",
-				_"Come back when you are mentally prepared to learn.",
-				_"Come back after some more practice in the field.",
-				_"Only a well prepared mind is open to the ultimate in ranged combat secrets.",
-				_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
-				_"I don't think you have enough experience for this. Come back after you see some more action.",
-				_"Come back when you have a real will to learn.",
-				_"You don't have enough experience. Come here after you see some more action.")
+			npc_says_random(_"You are not ready. Go kill some bots and come back.",
+							_"Come back when you are mentally prepared to learn.",
+							_"Come back after some more practice in the field.",
+							_"Only a well prepared mind is open to the ultimate in ranged combat secrets.",
+							_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
+							_"I don't think you have enough experience for this. Come back after you see some more action.",
+							_"Come back when you have a real will to learn.",
+							_"You don't have enough experience. Come here after you see some more action.")
 		end,
 	},
 	{

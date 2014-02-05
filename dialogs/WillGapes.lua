@@ -28,7 +28,7 @@ return {
 		elseif (Tux:has_quest("Gapes Gluttony")) and
 		       (not Tux:done_quest("Gapes Gluttony")) then
 			if (Tux:has_item_backpack("Lunch in a Picnic Basket")) then
-				Tux:del_item_backpack("Lunch in a Picnic Basket")
+					Tux:del_item_backpack("Lunch in a Picnic Basket")
 				show("node9")
 			else
 				npc_says(_"Have you brought me some food?")

@@ -140,7 +140,7 @@ return {
 		text = _"So what interesting books do you have available right now?",
 		code = function()
 			npc_says_random(_"Some of these might interest you.",
-				_"I only have a few programming volumes, feel free to look through them.")
+							_"I only have a few programming volumes, feel free to look through them.")
 			trade_with("Tamara")
 			show_if(not Tamara_bot_apocalypse_book, "node20")
 			show_if(not Tamara_talked_about_bots, "node30")
@@ -160,8 +160,8 @@ return {
 		text = _"Have you been progressing on your book about the bots apocalypse?",
 		code = function()
 			npc_says_random(_"I need more time to finish it.",
-				_"Page-by-page, my book is growing up.",
-				_"Sorry, but you have to wait a bit more before you can read it.")
+							_"Page-by-page, my book is growing up.",
+							_"Sorry, but you have to wait a bit more before you can read it.")
 			hide("node21")
 		end,
 	},
@@ -254,8 +254,8 @@ return {
 		text = _"Thank you for the help.",
 		code = function()
 			npc_says_random(_"No problem, and remember to return your books in time.",
-				_"I aim to ensure that the great works of literature will survive this horrible apocalypse.",
-				_"That is what I'm here for. Come back at any time.")
+							_"I aim to ensure that the great works of literature will survive this horrible apocalypse.",
+							_"That is what I'm here for. Come back at any time.")
 			end_dialog()
 		end,
 	},

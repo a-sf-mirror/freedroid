@@ -88,8 +88,8 @@ return {
 		code = function()
 			npc_says(_"Exiting", "NO_WAIT")
 			npc_says_random(_"Have a nice day.",
-				_"Have a wonderful day.",
-				_"We hope your day will be most productive.")
+							_"Have a wonderful day.",
+							_"We hope your day will be most productive.")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()
 		end,

@@ -48,7 +48,7 @@ return {
 				if (SADD_trick) and
 				   (not SADD_NoExit) then
 					SADD_NoExit = true
-					npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage", "NO_WAIT")
+					npc_says(_"[b]SECONDARY OBJECTIVE[/b]: prevent secret information leakage", "NO_WAIT")
 					npc_says(_"Must protect secret information")
 					npc_says(_"Enabling guns.")
 					hide("node37") show("node50")
@@ -70,9 +70,9 @@ return {
 		code = function()
 			npc_says(_"I am a SADD - Secret Area Defense Droid.")
 			set_bot_name(_"SADD - Secret Area Defense Droid")
-			npc_says(_"PRIMARY OBJECTIVE 1: do not let unauthorized people in.", "NO_WAIT")
-			npc_says(_"PRIMARY OBJECTIVE 2: authorized personnel must have access to the zone.", "NO_WAIT")
-			npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage")
+			npc_says(_"[b]PRIMARY OBJECTIVE 1[/b]: do not let unauthorized people in.", "NO_WAIT")
+			npc_says(_"[b]PRIMARY OBJECTIVE 2[/b]: authorized personnel must have access to the zone.", "NO_WAIT")
+			npc_says(_"[b]SECONDARY OBJECTIVE[/b]: prevent secret information leakage")
 			hide("node1") show("node4", "node5")
 		end,
 	},
@@ -80,8 +80,8 @@ return {
 		id = "node4",
 		text = _"What is this place?",
 		code = function()
-			npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage")
-			npc_says(_"*INFO* secret information theft attempt detected")
+			npc_says(_"[b]SECONDARY OBJECTIVE[/b]: prevent secret information leakage")
+			npc_says(_"[b]INFO[/b] secret information theft attempt detected")
 			npc_says(_"Go away. You are not allowed to be here!")
 			hide("node4")
 			end_dialog()
@@ -106,9 +106,9 @@ return {
 			npc_says(_"I know only that I have to be recharged, checked and have my firmware updated every 3 months.")
 			Tux:says(_"When does your last maintenance date back to?")
 			npc_says(_"One year and a half ago. My accumulator is nearly empty, so I'm going to halt soon. Gates will become unguarded...")
-			npc_says(_"*INFO* secret information theft detected!")
-			npc_says(_"*INFO* information classified as critical!")
-			npc_says(_"*INFO* locking zone!")
+			npc_says(_"[b]INFO[/b] secret information theft detected!")
+			npc_says(_"[b]INFO[/b] information classified as critical!")
+			npc_says(_"[b]INFO[/b] locking zone!")
 			end_dialog()
 			change_obstacle_state("SADDGun1", "enabled")
 			change_obstacle_state("SADDGun2", "enabled")
@@ -140,12 +140,12 @@ return {
 			npc_says(_"Maybe I'm almost like a human?")
 			npc_says(_"Anyway, that's none of your business. Soon I'll be dead. You will be too, and nobody will enter this place ever again!")
 			Tux:says(_"What are your orders again?")
-			npc_says(_"PRIMARY OBJECTIVE 1: do not let unauthorized people in.", "NO_WAIT")
-			npc_says(_"PRIMARY OBJECTIVE 2: authorized personnel must have access to the zone.", "NO_WAIT")
-			npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage")
+			npc_says(_"[b]PRIMARY OBJECTIVE 1[/b]: do not let unauthorized people in.", "NO_WAIT")
+			npc_says(_"[b]PRIMARY OBJECTIVE 2[/b]: authorized personnel must have access to the zone.", "NO_WAIT")
+			npc_says(_"[b]SECONDARY OBJECTIVE[/b]: prevent secret information leakage")
 			npc_says(_"Why do you ask?")
 			Tux:says(_"Tell me your second order once more...")
-			npc_says(_"PRIMARY OBJECTIVE 2: authorized personnel must have access to the zone.")
+			npc_says(_"[b]PRIMARY OBJECTIVE 2[/b]: authorized personnel must have access to the zone.")
 			npc_says(_"Yes, it will be violated. But first order has higher priority.")
 			Tux:says(_"So you can disobey your orders?")
 			npc_says(_"I've already disobeyed them, when I told you what I shouldn't have. That's because of my human nature.")
@@ -309,8 +309,8 @@ return {
 		id = "node50",
 		text = _"Why are you shooting at me?",
 		code = function()
-			npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage", "NO_WAIT")
-			npc_says(_"DIRECTIVE 372: All persons leaving with secret information must have proper authorization.")
+			npc_says(_"[b]SECONDARY OBJECTIVE[/b]: prevent secret information leakage", "NO_WAIT")
+			npc_says(_"[b]DIRECTIVE 372[/b]: All persons leaving with secret information must have proper authorization.")
 			npc_says(_"You have secret information. You must not leave this facility without proper authorization.")
 			hide("node50") show("node51", "node53")
 		end,

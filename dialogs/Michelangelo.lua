@@ -119,8 +119,8 @@ return {
 				end
 			else
 				npc_says_random(_"You need to have a full mess kit with a Fork, Mug, and Plate before I can give you any army snacks.",
-					_"You need a Fork, Plate, and Mug before I can issue any army snacks.",
-					_"You need a full mess kit for army snacks.")
+								_"You need a Fork, Plate, and Mug before I can issue any army snacks.",
+								_"You need a full mess kit for army snacks.")
 			end
 		end,
 	},

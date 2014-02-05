@@ -128,7 +128,7 @@ return {
 		text = _"See you later.",
 		code = function()
 			npc_says_random(_"See you later.",
-				_"Bye.")
+							_"Bye.")
 			end_dialog()
 		end,
 	},

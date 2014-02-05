@@ -147,7 +147,7 @@ return {
 	},
 	{
 		id = "node6",
-		text = _"BUG, REPORT ME! Francis node4",
+		text = "BUG, REPORT ME! Francis node4",
 		echo_text = false,
 		code = function()
 			npc_says(_"Thank heavens! You have protected us from this bot.")
@@ -173,6 +173,7 @@ return {
 		code = function()
 			npc_says(_"So you really can't remember, eh?")
 			npc_says(_"Long stasis sleep can cause neurological damage and impact the memory. Looks like that is what happened here.")
+			--; TRANSLATORS: %s = Tux:get_player_name()
 			npc_says(_"If the computer is not lying, then your name is %s.", Tux:get_player_name())
 			npc_says(_"I'm just glad that we realized that you were a legendary Linarian and started the thawing process when we did.")
 			hide("node11") show("node12")

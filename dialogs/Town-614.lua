@@ -72,7 +72,7 @@ return {
 		id = "node99",
 		text = _"See you later.",
 		code = function()
-			npc_says(_"Resuming guard program.")
+			npc_says(_"Resuming guard program....")
 			end_dialog()
 		end,
 	},

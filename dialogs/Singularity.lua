@@ -90,7 +90,7 @@ return {
 		text = _"Give me the toolbox or die.",
 		code = function()
 			npc_says(_"We must accomplish what we have set out to do. We will not allow you to compromise that.")
-			npc_says(_"Message 42607 to All Droids : Enemy spotted. Order to destroy.")
+			npc_says(_"Message 42607 to All Droids : Enemy spotted. Order is to destroy.")
 			set_faction_state("singularity", "hostile")
 			change_obstacle_state("Sin-gun", "enabled")
 			Tux:update_quest("The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit. I will seize it from them by force.")
@@ -139,7 +139,7 @@ return {
 	},
 	{
 		id = "node99",
-		text = "...",
+		text = _"...",
 		code = function()
 			end_dialog()
 		end,

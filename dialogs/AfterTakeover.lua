@@ -233,10 +233,12 @@ return {
 	},
 	{
 		id = "node21",
+		--; TRANSLATORS: Y for yes
 		text = _"Y",
 		echo_text = false,
 		topic = "repair_YN",
 		code = function()
+			--; TRANSLATORS: Y for yes
 			Tux:says(_"Y", "NO_WAIT")
 			npc_says(_"Repair in progress.", "NO_WAIT")
 			npc_says(_"Logout to complete repair process.")
@@ -247,10 +249,12 @@ return {
 	},
 	{
 		id = "node22",
+		--; TRANSLATORS: N for no
 		text = _"N",
 		echo_text = false,
 		topic = "repair_YN",
 		code = function()
+			--; TRANSLATORS: N for no
 			Tux:says(_"N", "NO_WAIT")
 			npc_says(_"Repair aborted.", "NO_WAIT")
 			AfterTakeover_repair = false
@@ -281,6 +285,7 @@ return {
 	},
 	{
 		id = "node32",
+		--; TRANSLATORS: Y for yes
 		text = _"Y (always ask)",
 		echo_text = false,
 		topic = "setting hcf.py confirmation Y/N",
@@ -293,6 +298,7 @@ return {
 	},
 	{
 		id = "node33",
+		--; TRANSLATORS: N for no
 		text = _"N (don't ask)",
 		echo_text = false,
 		topic = "setting hcf.py confirmation Y/N",
@@ -316,6 +322,7 @@ return {
 	},
 	{
 		id = "node36",
+		--; TRANSLATORS: Y for yes
 		text = _"Y (enable broadcast)",
 		echo_text = false,
 		topic = "enable broadcast Y/N",
@@ -329,6 +336,7 @@ return {
 	},
 	{
 		id = "node37",
+		--; TRANSLATORS: N for no
 		text = _"N (disable broadcast)",
 		echo_text = false,
 		topic = "enable broadcast Y/N",
@@ -381,6 +389,7 @@ return {
 		echo_text = false,
 		topic = "change hostname Y/N",
 		code = function()
+			--; TRANSLATORS: Y for yes
 			Tux:says(_"Y", "NO_WAIT")
 			cli_says(_"New Name: ", "NO_WAIT")
 
@@ -399,6 +408,7 @@ return {
 		echo_text = false,
 		topic = "change hostname Y/N",
 		code = function()
+			--; TRANSLATORS: N for no
 			Tux:says(_"N", "NO_WAIT")
 			cli_says(terminal_sub, "NO_WAIT")
 			hide("node41", "node42")
@@ -424,6 +434,7 @@ return {
 		echo_text = false,
 		topic = "confirm hostname Y/N",
 		code = function()
+			--; TRANSLATORS: Y for yes
 			Tux:says(_"Y", "NO_WAIT")
 			display_console_message(string.format(_"Renamed [b]%s[/b] to [b]%s[/b].", bot_name(), new_name))
 			set_bot_name(new_name)
@@ -439,6 +450,7 @@ return {
 		echo_text = false,
 		topic = "confirm hostname Y/N",
 		code = function()
+			--; TRANSLATORS: N for no
 			Tux:says(_"N", "NO_WAIT")
 			cli_says(terminal_sub, "NO_WAIT")
 			hide("node44", "node45")

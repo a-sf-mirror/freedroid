@@ -126,7 +126,7 @@ return {
 		id = "node0",
 		text = _"Um, hi.",
 		code = function()
-			npc_says(_"Oh! It happened! I have been waiting for you for 3226 hours!")
+			npc_says(_"Oh! It happened! I have been waiting for you for 3226 hours!") --@TODO use gametime (hours since game started) instead of 3226 hours ? 
 			hide("node0") show("node1", "node3", "node14", "node19")
 		end,
 	},
@@ -201,7 +201,7 @@ return {
 		code = function()
 			npc_says(_"That would be something different from what I've done in the last months at least. Some entertainment.")
 			npc_says_random(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.",
-				_"You are now completely healed. You should take better care of yourself.")
+							_"You are now completely healed. You should take better care of yourself.")
 			Tux:heal()
 			Tania_heal_node8 = true
 			hide("node8")
@@ -629,12 +629,12 @@ return {
 				elseif (Spencer_Tania_sent_to_DocMoore) then --"Tania's Escape" Quest (Tania free in the town somewhere)
 					Tux:says(_"See you later.")
 					npc_says_random(_"Please be safe!",
-						_"Thanks again.",
-						_"Please come back again, my little penguin.")
+									_"Thanks again.",
+									_"Please come back again, my little penguin.")
 				end
 			else
 				npc_says_random(_"That's OK. But please, please, come back. I'm so lonely.",
-					_"Please come back again and get me out of here.")
+								_"Please come back again and get me out of here.")
 			end
 			end_dialog()
 		end,

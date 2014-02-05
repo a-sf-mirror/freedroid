@@ -248,9 +248,9 @@ return {
 		text = _"I'll be going then.",
 		code = function()
 			npc_says_random(_"Sure.",
-				_"See you around.",
-				_"Remember: pain is temporary but glory is forever.",
-				_"Go kill some bots.")
+							_"See you around.",
+							_"Remember: pain is temporary but glory is forever.",
+							_"Go kill some bots.")
 			end_dialog()
 		end,
 	},

@@ -21,7 +21,8 @@ local Tux = FDrpg.get_tux()
 
 return {
 	EveryTime = function()
-		play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
+		play_sound("effects/Menu_Item_Deselected_Sound_0.ogg") --@TODO check that the captcha works
+		--  < infrared_> The captcha code could probably be condensed into an array, at the cost of readability for non-coders; translating it shouldn't be a problem.
 		if (not MO_HFGateAccessServer_skip_captcha) then
 			-- Are we human? CAPTCHA!!!
 			number_one=math.random(2,7)
@@ -124,8 +125,8 @@ return {
 		text = _"(Try hacking the server)",
 		code = function()
 			if (takeover(get_program("Hacking")+3)) then
-				Tux:says(_"sudo !!")
-				npc_says(_"sudo open gates", "NO_WAIT")
+				Tux:says("sudo !!")
+				npc_says("sudo open gates", "NO_WAIT")
 				npc_says(_"Which gates do you want to open?")
 				Tux:update_quest("Open Sesame", "Whew, I finally managed to hack the gate access server. I can open the gates now.")
 				MO_HFGateAccessServer_hacked = true
