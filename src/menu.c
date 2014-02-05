@@ -92,20 +92,20 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 	// ON THE MENU SCREEN...
 	//
 	if (!strcmp(MenuTexts[0], SINGLE_PLAYER_STRING)) {
-		put_string_right(FPS_Display_BFont, GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), freedroid_version);
+		put_string_right(FPS_Display_BFont, GameConfig.screen_height - 0.7 * FontHeight(GetCurrentFont()), freedroid_version);
 		// printf ("\n%s %s  \n", PACKAGE, VERSION);
 #ifdef HAVE_LIBGL
 		sprintf(open_gl_string, _("OpenGL support compiled: YES"));
 #else
 		sprintf(open_gl_string, _("OpenGL support compiled: NO"));
 #endif
-		put_string_left(FPS_Display_BFont, GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), open_gl_string);
+		put_string_left(FPS_Display_BFont, GameConfig.screen_height - 2.4 * FontHeight(GetCurrentFont()), open_gl_string);
 		sprintf(open_gl_string, _("OpenGL output active: "));
 		if (use_open_gl)
 			sprintf(open_gl_string, _("OpenGL output active: YES"));
 		else
 			sprintf(open_gl_string, _("OpenGL output active: NO"));
-		put_string_left(FPS_Display_BFont, GameConfig.screen_height - FontHeight(GetCurrentFont()), open_gl_string);
+		put_string_left(FPS_Display_BFont, GameConfig.screen_height - 1.4 * FontHeight(GetCurrentFont()), open_gl_string);
 	}
 	// Now that the possible font-changing small info printing is
 	// done, we can finally set the right font for the menu itself.

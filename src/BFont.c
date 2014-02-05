@@ -368,12 +368,12 @@ void put_string_centered(BFont_Info *font, int y, const char *text)
 
 void put_string_right(BFont_Info *font, int y, const char *text)
 {
-	put_string(font, Screen->w - text_width(font, text) - 1, y, text);
+	put_string(font, Screen->w - text_width(font, text) - 13, y, text);
 }
 
 void put_string_left(BFont_Info *font, int y, const char *text)
 {
-	put_string(font, 0, y, text);
+	put_string(font, 13, y, text);
 }
 
 #undef _bfont_c
