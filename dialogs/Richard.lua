@@ -62,7 +62,7 @@ return {
 			npc_says(_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!")
 			npc_says(_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down.")
 			Tux:del_item_backpack("Kevin's Data Cube", 1)
-			Tux:end_quest(_"A kingdom for a cluster!", _"Yes, that was simple. I wish everything else went as smoothly as this one did...")
+			Tux:end_quest("A kingdom for a cluster!", _"Yes, that was simple. I wish everything else went as smoothly as this one did...")
 			hide("node6") show("node9", "node10")
 		end,
 	},

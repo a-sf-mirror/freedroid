@@ -293,7 +293,7 @@ return {
 			display_big_message(_"Restored Michelangelo's power supply")
 			Tux:add_xp(350)
 			Tux:del_item_backpack("Red Dilithium Crystal", 3)
-			Tux:end_quest(_"Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the town's cantina.")
+			Tux:end_quest("Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the town's cantina.")
 			Michelangelo_food_cooking_time = game_time() -- wait before you can eat.
 			hide("node29", "node31", "node32", "node40")
 		end,
@@ -404,7 +404,7 @@ return {
 			npc_says(_"I guess I can spare one of them, since it is an emergency.")
 			Michelangelo_been_asked_for_spare_dilithium = true
 			Tux:add_item("Red Dilithium Crystal", 1)
-			Tux:update_quest(_"SADD's power supply", _"I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!")
+			Tux:update_quest("SADD's power supply", _"I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!")
 			hide("node77")
 		end,
 	},
@@ -436,7 +436,7 @@ return {
 			Tux:says(_"So you need three dilithium crystals?")
 			npc_says(_"Yes. Please get me three dilithium crystals.")
 			change_obstacle_state("EastGateOfTown", "opened")
-			Tux:add_quest(_"Anything but the army snacks, please!", _"I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking, the whole town is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")
+			Tux:add_quest("Anything but the army snacks, please!", _"I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking, the whole town is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")
 			hide("node19", "node40", "node41", "node42", "node70", "node81")
 		end,
 	},

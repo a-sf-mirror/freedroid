@@ -56,7 +56,7 @@ return {
 			npc_says(_"Welcome to MS gate access server for region #54648.")
 			if (not MO_HFGateAccessServer_Spencer_chat) then
 				Tux:says(_"WHAT?!")
-				Tux:update_quest(_"Propagating a faulty firmware update", _"The firmware server seems to actually be an access server to a gate. What am I supposed to do now?")
+				Tux:update_quest("Propagating a faulty firmware update", _"The firmware server seems to actually be an access server to a gate. What am I supposed to do now?")
 				MO_HFGateAccessServer_Spencer = true
 				MO_HFGateAccessServer_Spencer_chat = true
 				MO_HFGateAccessServer_skip_captcha = true

@@ -77,7 +77,7 @@ Completion LuaCode={
 	change_obstacle_state("MasterArenaExitDoor", "opened")
 	display_console_message(_"Master arena cleared. Good job, man.")
 	display_big_message(_"Level cleared!")
-	update_quest(_"Time to say goodnight", _"I managed to win the fight in the master arena. Am I really that good, or did I cheat?")
+	update_quest("Time to say goodnight", _"I managed to win the fight in the master arena. Am I really that good, or did I cheat?")
 }
 ** End of this mission target subsection **
 
@@ -87,7 +87,7 @@ Completion LuaCode={
 +++
 Mission Name=_"Opening a can of bots..."
 Mission target is to kill all hostile droids on this level : 1
-Completion LuaCode={ update_quest(_"Opening a can of bots...", _"The first level of the warehouse has been cleared of bots; Dixon's men can now safely retrieve the supplies from here.") }
+Completion LuaCode={ update_quest("Opening a can of bots...", _"The first level of the warehouse has been cleared of bots; Dixon's men can now safely retrieve the supplies from here.") }
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -97,7 +97,7 @@ Completion LuaCode={ update_quest(_"Opening a can of bots...", _"The first level
 Mission Name=_"And there was light..."
 Mission target is to kill all hostile droids on this level : 18
 Completion LuaCode={
-	update_quest(_"And there was light...", _"Hope everything is back to normal now. I better go check with Kevin.")
+	update_quest("And there was light...", _"Hope everything is back to normal now. I better go check with Kevin.")
 	display_console_message(_"All hostiles on level disabled.")
 	display_big_message(_"Level cleared!")
 }
@@ -144,12 +144,12 @@ Completion LuaCode={
 		display_big_message(_"Tania died!")
 		display_console_message(_"Tania died!")
 		if (not Tania_surface) then
-			update_quest(_"Tania's Escape", _"Tania died before escaping her underground bunker. I was unable to protect her.")
+			update_quest("Tania's Escape", _"Tania died before escaping her underground bunker. I was unable to protect her.")
 		elseif (not Tania_stopped_by_Pendragon) then
-			update_quest(_"Tania's Escape", _"Tania died in the desert while trying to make it to the town. I was unable to protect her.")
+			update_quest("Tania's Escape", _"Tania died in the desert while trying to make it to the town. I was unable to protect her.")
 			change_obstacle_state("DesertGate-Inner", "opened")
 		else
-			update_quest(_"Tania's Escape", _"Tania died while trying to make it to the town. I was unable to protect her.")
+			update_quest("Tania's Escape", _"Tania died while trying to make it to the town. I was unable to protect her.")
 		end
 	else
 		display_big_message(_"Tania made it to the town!")
@@ -246,7 +246,7 @@ Completion LuaCode={ display_console_message(_"Tutorial Upgrading Items finished
 +++
 Mission Name=_"Droids are my friends"
 Mission target is to kill all hostile droids on this level : 58
-Completion LuaCode={ update_quest(_"Droids are my friends", _"The old server room is now secured.") }
+Completion LuaCode={ update_quest("Droids are my friends", _"The old server room is now secured.") }
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -254,7 +254,7 @@ Completion LuaCode={ update_quest(_"Droids are my friends", _"The old server roo
 +++ Save the town from nuclear disaster
 +++
 Mission Name=_"An Explosive Situation"
-Completion LuaCode={ update_quest(_"An Explosive Situation", _"Not only is the town safe, but apparently so is Ewald's 296 droid. Oh joy.") }
+Completion LuaCode={ update_quest("An Explosive Situation", _"Not only is the town safe, but apparently so is Ewald's 296 droid. Oh joy.") }
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **

@@ -128,7 +128,7 @@ return {
 				npc_says(_"But remember, I'll only give you this help once, because you didn't know the effects.")
 				npc_says(_"Should you take that junk again, I won't feel responsible for what happens to you any more.")
 				DocMoore_healed_tux = true
-				Tux:update_quest(_"Bender's problem", _"The doctor was easily fooled. I have the pills that Bender needs.")
+				Tux:update_quest("Bender's problem", _"The doctor was easily fooled. I have the pills that Bender needs.")
 				Tux:add_item("Brain Enlargement Pills Antidote", 1)
 			end
 			hide("node2")

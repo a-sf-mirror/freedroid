@@ -206,7 +206,7 @@ return {
 		code = function()
 			npc_says(_"Go, and bring dilithium. I badly need it.")
 			end_dialog()
-			Tux:add_quest(_"SADD's power supply", _"I found a SADD underneath the desert. It needs me to fetch a dilithium crystal, otherwise it will really be a SAD droid.")
+			Tux:add_quest("SADD's power supply", _"I found a SADD underneath the desert. It needs me to fetch a dilithium crystal, otherwise it will really be a SAD droid.")
 			change_obstacle_state("SADDGun1", "disabled")
 			change_obstacle_state("SADDGun2", "disabled")
 			change_obstacle_state("BreakableWall1", "broken")
@@ -222,7 +222,7 @@ return {
 			Tux:add_xp(1000)
 			Tux:del_item_backpack("Red Dilithium Crystal", 1)
 			change_obstacle_state("SADDDepotDoor", "opened")
-			Tux:end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
+			Tux:end_quest("SADD's power supply", _"I managed to restore the SADD's power supply.")
 			SADD_super_exterminator = true
 			end_dialog()
 			hide("node30")
@@ -251,7 +251,7 @@ return {
 			change_obstacle_state("SADDDepotDoor", "opened")
 			change_obstacle_state("SADDBioDoor", "opened")
 			Tux:del_item_backpack("Red Dilithium Crystal", 1)
-			Tux:end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
+			Tux:end_quest("SADD's power supply", _"I managed to restore the SADD's power supply.")
 			hide("node33") show("node97")
 			end_dialog()
 		end,

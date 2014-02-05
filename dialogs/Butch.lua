@@ -114,9 +114,9 @@ return {
 			npc_says(_"But remember, the escape hatch won't be opened until you kill all the bots.")
 			npc_says(_"And be careful, your brain will be fooled by what happens in the holographic world. Any damage you take there, will result in actual physical damage.")
 			npc_says(_"So even if the enemies are only holograms, they can still hurt you... and even kill you.")
-			Tux:add_quest(_"Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
+			Tux:add_quest("Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
 			npc_says(_"Oh, and the room is made out of some special material. People reported their teleporter gadgets didn't work in there. Take care!")
-			Tux:update_quest(_"Novice Arena", _"Butch says that teleporter gadgets may not work in this arena.")
+			Tux:update_quest("Novice Arena", _"Butch says that teleporter gadgets may not work in this arena.")
 			change_obstacle_state("Arena-AccessTrapdoor", "opened")
 			hide("node6", "node12", "node13") show("node9")
 		end,
@@ -128,7 +128,7 @@ return {
 			npc_says(_"Good for you.")
 			npc_says(_"You are a total newbie. But, a talented newbie.")
 			npc_says(_"I will put a good word in to Spencer about this.")
-			Tux:update_quest(_"Novice Arena", _"Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead.")
+			Tux:update_quest("Novice Arena", _"Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead.")
 			hide("node7", "node8") show("node9", "node11")
 		end,
 	},
@@ -156,9 +156,9 @@ return {
 				npc_says(_"You will die if you go there.")
 				npc_says(_"I pity you, silly bird. Don't go there.")
 				npc_says(_"But if you really want to, the door is now open.")
-				Tux:add_quest(_"Time to say goodnight", _"I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to climb down the ladder to the north arena and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
+				Tux:add_quest("Time to say goodnight", _"I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to climb down the ladder to the north arena and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
 				npc_says(_"Remember, if your teleporter didn't work in the noob-, errr, novice-arena, it won't work in the master arena either...")
-				Tux:update_quest(_"Time to say goodnight", _"Again, Butch warned me about possibly broken teleporter gadgets.")
+				Tux:update_quest("Time to say goodnight", _"Again, Butch warned me about possibly broken teleporter gadgets.")
 				change_obstacle_state("MasterArenaAccessTrapdoor", "opened")
 			end
 			hide("node9")
@@ -173,7 +173,7 @@ return {
 			npc_says(_"You are not a newbie... You are COMPLETELY INSANE!")
 			npc_says(_"Poor fool... You will surely die young.")
 			Tux:add_xp(8000)
-			Tux:update_quest(_"Time to say goodnight", _"I survived the master arena. A miracle. Whew.")
+			Tux:update_quest("Time to say goodnight", _"I survived the master arena. A miracle. Whew.")
 			hide("node10")
 		end,
 	},
@@ -220,7 +220,7 @@ return {
 			npc_says(_"The bots bleed black.")
 			Tux:says(_"You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!")
 			npc_says(_"Great. Get in the door, newbie.")
-			Tux:add_quest(_"Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
+			Tux:add_quest("Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
 			change_obstacle_state("Arena-AccessTrapdoor", "opened")
 			hide("node15")
 		end,

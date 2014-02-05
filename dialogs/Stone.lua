@@ -167,7 +167,7 @@ return {
 		text = _"Maybe there is still hope, Ms. Stone. How much exactly do you need?",
 		code = function()
 			npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand circuits.")
-			Tux:add_quest(_"Saving the shop", _"Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon. She needs 2000 in cash to stay afloat. I could try to help her out.")
+			Tux:add_quest("Saving the shop", _"Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon. She needs 2000 in cash to stay afloat. I could try to help her out.")
 			show_if((Tux:get_gold() > 2000), "node23")
 			hide("node15")
 		end,
@@ -192,7 +192,7 @@ return {
 				if (Tux:del_gold(2000)) then
 					Tux:says(_"Yes, I have it.")
 					npc_says(_"Oh thank you!")
-					Tux:end_quest(_"Saving the shop", _"Ms. Stone seemed relieved as I gave her the money. I hope she won't need to file bankruptcy.")
+					Tux:end_quest("Saving the shop", _"Ms. Stone seemed relieved as I gave her the money. I hope she won't need to file bankruptcy.")
 				else -- joined guard + not enough money
 					npc_says(_"Hold on a minute, you are still a bit short on money.", "NO_WAIT")
 					npc_says(_"Don't try to trick me.")
@@ -233,7 +233,7 @@ return {
 			set_bot_name(_"Lily Stone - Shop owner")
 			Tux:add_item("Two Barrel shotgun", 1)
 			Tux:add_item("Shotgun shells", 20)
-			Tux:end_quest(_"Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
+			Tux:end_quest("Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
 			hide("node31", "node32", "node33")
 			pop_topic() -- "Stone's Hero"
 		end,
@@ -245,7 +245,7 @@ return {
 		code = function()
 			npc_says(_"If you want to remain a stranger, I will respect your wishes.", "NO_WAIT")
 			npc_says(_"So be it.")
-			Tux:end_quest(_"Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me.")
+			Tux:end_quest("Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me.")
 			hide("node31", "node32", "node33")
 			pop_topic() -- "Stone's Hero"
 		end,
@@ -260,7 +260,7 @@ return {
 			npc_says(_"Say your prayers, you oversized duck!!!")
 			Tux:add_gold(1547)
 			npc_faction("crazy", _"Lily Stone - Bird Hunter")
-			Tux:end_quest(_"Saving the shop", _"I tricked that Ms. Stone into believing I was going to help her out. It was funny to see her get angry.")
+			Tux:end_quest("Saving the shop", _"I tricked that Ms. Stone into believing I was going to help her out. It was funny to see her get angry.")
 			hide("node31", "node32", "node33")
 			pop_topic() -- "Stone's Hero"
 			end_dialog()

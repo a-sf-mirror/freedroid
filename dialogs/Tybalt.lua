@@ -122,7 +122,7 @@ return {
 		code = function()
 			npc_says(_"I am always looking. What? Are you planning to steal from us, like that last guy from out of town?")
 			npc_says(_"I'm stationed here to make certain that doesn't happen again. Apparently the last guy suborned the droid that was here and took it with him.")
-			Tux:update_quest(_"A strange guy stealing from town", _"Apparently Tybalt was stationed to stop another break-in at the Red Guard citadel. What a boring job.")
+			Tux:update_quest("A strange guy stealing from town", _"Apparently Tybalt was stationed to stop another break-in at the Red Guard citadel. What a boring job.")
 			Tybalt_not_looking = true
 			hide("node13")
 		end,

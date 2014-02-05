@@ -127,7 +127,7 @@ return {
 			npc_says(_"[b](The old man grips his chest and collapses in what appears to have been a fatal heart attack.)[/b]")
 			teleport_npc("NewTuxStartGameSquare", "InvaderBot")
 			set_npc_faction("ms", "InvaderBot")
-			Tux:add_quest(_"Deliverance", _"The mysterious old man died from a heart attack caused by fear. He had a small data cube on his body. I wonder what's on it...?")
+			Tux:add_quest("Deliverance", _"The mysterious old man died from a heart attack caused by fear. He had a small data cube on his body. I wonder what's on it...?")
 			Tux:add_item("Data cube")
 			drop_dead()
 			hide("node1", "node3")
@@ -296,7 +296,7 @@ return {
 			npc_says(_"Thank you.")
 			npc_says(_"You can ask one of the guards in town, they'll know where to find Spencer.")
 			Tux:add_item("Data cube", 1)
-			Tux:add_quest(_"Deliverance", _"Francis asked me to deliver a data cube for him. When I reach the town, I'm supposed to give it to Spencer, who's in charge of the Red Guard ruling the nearby town. Of course, my first job is to survive the trip there...")
+			Tux:add_quest("Deliverance", _"Francis asked me to deliver a data cube for him. When I reach the town, I'm supposed to give it to Spencer, who's in charge of the Red Guard ruling the nearby town. Of course, my first job is to survive the trip there...")
 			hide("node91", "node92", "node93", "node94")
 			next("node98")
 		end,

@@ -242,7 +242,7 @@ return {
 			Tux:says(_"There's a nuclear reactor going super critical under the town - if I have the book, maybe I can stop it.")
 			npc_says(_"In that case, you can have it. My mission is to preserve our culture, which won't matter if we're all dead.")
 			Tux:says(_"Thank you, Tamara.")
-			Tux:update_quest(_"An Explosive Situation", _"I was able to get a copy of Subatomic and Nuclear Science for Dummies, Volume IV from the librarian, Tamara. I'd better hurry back to Ewald's 296 with it.")
+			Tux:update_quest("An Explosive Situation", _"I was able to get a copy of Subatomic and Nuclear Science for Dummies, Volume IV from the librarian, Tamara. I'd better hurry back to Ewald's 296 with it.")
 			Tux:add_item("Nuclear Science for Dummies IV")
 			Tamara_have_296_book = true
 			hide("node50")

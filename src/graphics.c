@@ -509,6 +509,7 @@ void InitPictures(void)
 
 	if (!GameConfig.lazyload) {
 		load_all_items();
+		// maybe also load all enemy models here?
 	}
 
 	Load_Blast_Surfaces();

@@ -60,7 +60,7 @@ return {
 			npc_says(_"Disabling disruptor shield... ")
 			npc_says(_"Shield disabled.")
 			if (DSB_MDC_password) then
-				Tux:end_quest(_"Opening access to MS Office", _"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
+				Tux:end_quest("Opening access to MS Office", _"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
 				hide("node7")
 				play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 				end_dialog()

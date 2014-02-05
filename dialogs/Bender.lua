@@ -159,7 +159,7 @@ return {
 				npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
 			end
 			npc_says(_"Just get me a cure, and I'll be forever grateful!")
-			Tux:add_quest(_"Bender's problem", _"I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The town doctor will not give him the antidote, so it is up to me to save him.")
+			Tux:add_quest("Bender's problem", _"I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The town doctor will not give him the antidote, so it is up to me to save him.")
 			refused_to_help_Bender = false
 			hide("node0", "node6", "node7", "node8") show("node11")
 			pop_topic()
@@ -206,7 +206,7 @@ return {
 			Tux:add_xp(150)
 			Tux:del_item_backpack("Brain Enlargement Pills Antidote", 1)
 			Tux:add_item("Strength Pill", 2)
-			Tux:end_quest(_"Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
+			Tux:end_quest("Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
 			set_bot_destination("NewSpencer")
 			Bender_at_Spencer = true --have Bender go "talk" to Spencer
 			hide("node9", "node10", "node50") show("node20")
