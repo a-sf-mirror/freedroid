@@ -2988,7 +2988,7 @@ item_list{
 		motion_class = "2hranged",
 	},
 	durability = "16000:16001",
-	base_price = 1000000000,
+	base_price = 10000,
 	inventory = {x = 2, y = 3, image = "weapons/plasma_gun/inv_image2.png" },
 	drop = {sound = "Item_Range_Weapon_Put_Sound_0.ogg"},
 	description =_[[This item is used by testers. If you find it ingame without using a cheat, please report it as a bug.]],
