@@ -1540,13 +1540,6 @@ Silent=1
 ## Level 29 ##
 ##############
 * New event trigger *
-Name=_"Respawn Novice Arena"
-Trigger changing level
-Entering level=29
-<LuaCode> respawn_level(29) </LuaCode>
-* End of trigger *
-
-* New event trigger *
 Name=_"Exit Novice Arena"
 Trigger at label="29to0"
 Silent=0
