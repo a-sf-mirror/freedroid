@@ -336,7 +336,7 @@ return {
 		text = _"No, I didn't touch it.",
 		code = function()
 			npc_says(_"Strange, I should have a look at it...") --Tux lied to him and will not directly get an account if he talks to it next time.
-			npc_says(_"...when I have more time..")
+			npc_says(_"...when I have more time...")
 			Kevins_Lawnmower_tux_login = false
 			hide("node60", "node61")
 		end,
