@@ -631,7 +631,7 @@ return {
 				npc_says(_"Your goddess %s comes to your aid and teaches you a new trick.", n_god, "NO_WAIT")
 				n_ac = n_ac + 2
 				n_tricks = n_tricks + 1
-				npc_says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_ticks, n_hp, "NO_WAIT")
+				npc_says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 			elseif (random_var > 2) then -- 54% chance:
 				npc_says_random(string.format(_"Your enemy %s bestows some burdens upon you.", n_emgod),
 								string.format(_"%s overhears your prayers and curses you.", n_emgod),
