@@ -28,7 +28,7 @@ return {
 			end_dialog()
 		else
 			npc_says(_"Welcome to the Community Network.", "NO_WAIT")
-			cli_says(_"Login :", "NO_WAIT")
+			cli_says(_"Login : ", "NO_WAIT")
 			if (knows_c_net_users) then
 				show("node1", "node2", "node3")
 			end
@@ -193,6 +193,7 @@ return {
 			npc_says(_"Login Tty Name", "NO_WAIT")
 			npc_says("bossman tty7 Spencer", "NO_WAIT")
 			npc_says("cpain tty5 Sorenson", "NO_WAIT")
+			--; TRANSLATORS: %s=Tux:get_player_name()
 			npc_says("guest tty3 %s ", Tux:get_player_name(), "NO_WAIT")
 			npc_says("lily tty2 Lily Stone", "NO_WAIT")
 			cli_says(c_net_prompt, "NO_WAIT")
