@@ -470,7 +470,7 @@ return {
 								--; TRANSLATORS: %s = enemy name
 								string.format(_"A [b]%s[/b] jumps out in front of you!", n_emname),
 								--; TRANSLATORS: %s = enemy name
-								string.format(_"You sneek up upon a [b]%s[/b].", n_emname, "NO_WAIT"))
+								string.format(_"You sneek up upon a [b]%s[/b].", n_emname), "NO_WAIT")
 				npc_says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 				show("c-net-nethack_sub.node50", "c-net-nethack_sub.node51", "c-net-nethack_sub.node53", "c-net-nethack_sub.node54")
 				if ( (n_tricks>0) or (n_sex == _"female") ) then show("c-net-nethack_sub.node52") end
@@ -956,7 +956,7 @@ return {
 							--; TRANSLATORS: god name
 							string.format(_"The vile god [b]%s[/b] cackles that you will again flee from the dungeon in terror!", n_emgod),
 							--; TRANSLATORS: both god names
-							string.format(_"[b]%s[/b] blesses your return to the dungeon.", n_god))
+							string.format(_"[b]%s[/b] blesses your return to the dungeon.", n_god), "NO_WAIT")
 			hide("c-net-nethack_sub.node81", "c-net-nethack_sub.node82", "c-net-nethack_sub.node83")
 			if (n_level < 1) then
 				next("c-net-nethack_sub.node30")
