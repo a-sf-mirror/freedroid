@@ -367,7 +367,7 @@ return {
 									--; TRANSLATORS:  %s = a god
 									string.format(_"You find your goddess, %s, at lunch. She points back the way you came.", n_god),
 									--; TRANSLATORS:  %s = a god
-									string.format(_"You come up and nearly catch %s bathing. You quickly head back the way you came.", n_god, "NO_WAIT"))
+									string.format(_"You come up and nearly catch %s bathing. You quickly head back the way you came.", n_god), "NO_WAIT")
 					hide("c-net-nethack_sub.node62")
 					next("c-net-nethack_sub.node63")
 				else -- have Amulet of Yendor -- WIN!
@@ -797,7 +797,7 @@ return {
 							if (n_sex == _"female") then n_sex=_"male" else n_sex=_"female" end
 						end
 					--; TRANSLATORS: you ascended a $alignment, $sex, $race, $role in nethack
-						npc_says(_"You are now %s %s %s %s.", alignment, sex, race, role, "NO_WAIT")
+						npc_says(_"You are now %s %s %s %s.", n_alignment, n_sex, n_race, n_role, "NO_WAIT")
 					end
 					n_emtype = 0 --no more monsters
 				else
