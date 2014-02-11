@@ -130,10 +130,8 @@ return {
 		enabled = true,
 		text = "Spam",
 		code = function()
-			spam_number = 1
-			while (spam_number < 10000 ) do
+			for spam_number=1,10000 do
 				npc_says(spam_number, "NO_WAIT")
-				spam_number = spam_number +1
 			end
 		end,
 	},
