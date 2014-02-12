@@ -24,13 +24,15 @@ freedroid_data = map graphics sound dialogs lua_modules
 
 EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.generic lua
 
+CHECKFLAGS=env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
+
 check:
-	xvfb-run -a ./src/freedroidRPG -nb text			|| exit 1
-	xvfb-run -a ./src/freedroidRPG -nb dialog		|| exit 2
-	xvfb-run -a ./src/freedroidRPG -nb loadship		|| exit 3
-	xvfb-run -a ./src/freedroidRPG -nb dynarray		|| exit 4
-	xvfb-run -a ./src/freedroidRPG -nb mapgen		|| exit 5
-	xvfb-run -a ./src/freedroidRPG -nb leveltest	|| exit 6
+	$(CHECKFLAGS) ./src/freedroidRPG -nb text			|| exit 1
+	$(CHECKFLAGS) ./src/freedroidRPG -nb dialog			|| exit 2
+	$(CHECKFLAGS) ./src/freedroidRPG -nb loadship		|| exit 3
+	$(CHECKFLAGS) ./src/freedroidRPG -nb dynarray		|| exit 4
+	$(CHECKFLAGS) ./src/freedroidRPG -nb mapgen			|| exit 5
+	$(CHECKFLAGS) ./src/freedroidRPG -nb leveltest		|| exit 6
 
 dist-hook:
 	make -C lua clean
