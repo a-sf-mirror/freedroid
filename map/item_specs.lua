@@ -1840,7 +1840,7 @@ item_list{
 {
 	id = "Strength Pill",
 	name =_"Strength Pill",
-	right_use = {tooltip =_"Permanently gain +1 strength", busy = {type = "drinking", duration = 1}},
+	right_use = {tooltip =_"Permanently gain +1 strength", busy = {type = "pill", duration = 1}},
 	base_price = 250,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/strength/inv_image.png" },
 	drop = {class = "2:9", sound = "Item_Drop_Sound_4.ogg"},
@@ -1852,7 +1852,7 @@ item_list{
 {
 	id = "Dexterity Pill",
 	name =_"Dexterity Pill",
-	right_use = {tooltip =_"Permanently gain +1 dexterity", busy = {type = "drinking", duration = 1}},
+	right_use = {tooltip =_"Permanently gain +1 dexterity", busy = {type = "pill", duration = 1}},
 	base_price = 250,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/dexterity/inv_image.png" },
 	drop = {class = "2:9", sound = "Item_Drop_Sound_4.ogg"},
@@ -1864,7 +1864,7 @@ item_list{
 {
 	id = "Code Pill",
 	name =_"Code Pill",
-	right_use = {tooltip =_"Permanently gain +1 cooling", busy = {type = "drinking", duration = 1}},
+	right_use = {tooltip =_"Permanently gain +1 cooling", busy = {type = "pill", duration = 1}},
 	base_price = 250,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/magic/inv_image.png" },
 	drop = {class = "2:9", sound = "Item_Drop_Sound_4.ogg"},
@@ -1887,7 +1887,7 @@ item_list{
 {
 	id = "Brain Enlargement Pill",
 	name =_"Brain Enlargement Pill",
-	right_use = {tooltip =_"Gain fast acting cancer"},
+	right_use = {tooltip =_"Gain fast acting cancer", busy = {type = "pill", duration = 1}},
 	base_price = 0,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/brain_enlargement_antidode/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
@@ -1911,7 +1911,7 @@ item_list{
 {
 	id = "Antibiotic",
 	name =_"Antibiotic",
-	right_use = {tooltip =_"Recover Health", busy = {type = "drinking", duration = 1}},
+	right_use = {tooltip =_"Recover Health", busy = {type = "pill", duration = 1}},
 	base_price = 40,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/health_capsule/inv_image_medium.png" },
 	drop = {class = "4:7", sound = "drop_potion_sound.ogg"},

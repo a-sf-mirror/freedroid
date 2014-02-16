@@ -609,6 +609,7 @@ enum _busytype {
 	WEAPON_RELOAD,
 	THROWING_GRENADE,
 	RUNNING_PROGRAM,
+	TAKING_PILL,
 };
 
 enum _attackhit {

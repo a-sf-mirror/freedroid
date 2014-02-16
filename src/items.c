@@ -734,6 +734,9 @@ void ApplyItem(item * CurItem)
 		case RUNNING_PROGRAM:
 			msg = _("You are running a program!");
 			break;
+		case TAKING_PILL:
+			msg = _("You are taking a pill!");
+			break;
 		default:
 			msg = _("You are doing something so weird the game does not understand what it is");
 		}
@@ -2131,6 +2134,8 @@ enum _busytype get_busy_type_by_name(char *name)
 		return DRINKING_POTION;
 	} else if (!strcmp(name, "throwing")) {
 		return THROWING_GRENADE;
+	} else if (!strcmp(name, "pill")) {
+		return TAKING_PILL;
 	}
 	return NONE;
 }
