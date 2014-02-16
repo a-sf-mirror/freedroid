@@ -39,7 +39,6 @@
 
 #include <zlib.h>
 
-extern int Number_Of_Item_Types;
 extern int debug_level;
 
 /** 

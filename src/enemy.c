@@ -44,7 +44,6 @@
 
 static int next_bot_id = 1; // defines the id of the next created enemy.
 
-void check_if_switching_to_stopandeyetuxmode_makes_sense(enemy *);
 static int TurnABitTowardsPosition(Enemy, float, float, float);
 static void MoveToMeleeCombat(Enemy, gps *, moderately_finepoint *);
 static void MoveAwayFromMeleeCombat(Enemy, moderately_finepoint *);

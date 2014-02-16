@@ -40,9 +40,6 @@
 #include "widgets/widgets.h"
 
 int Single_Player_Menu(void);
-void Options_Menu(void);
-
-void LevelEditor(void);
 
 #define SINGLE_PLAYER_STRING _("Play")
 #define LOAD_EXISTING_HERO_STRING _("Your characters: ")
