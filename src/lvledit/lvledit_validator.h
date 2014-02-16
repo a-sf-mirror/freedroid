@@ -49,8 +49,6 @@ enum validator_return_code {
 	VALIDATION_ERROR   = 2
 };
 
-#ifdef _leveleditor_validator_c
-
 struct lvlval_ctx {
 	SDL_Rect *report_rect;
 	Level this_level;
@@ -80,8 +78,6 @@ struct level_validator {
 	void *(*parse_excpt) (char *string);
 	int (*cmp) (void *opaque_data1, void *opaque_data2);
 };
-
-#endif
 
 EXTERN int level_validation(void);
 EXTERN int level_validation_on_console_only(void);

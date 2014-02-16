@@ -121,7 +121,7 @@ int init_opengl_debug(void)
 {
 #ifdef HAVE_LIBGL
 	/* Check if KHR_debug is available */
-	const char *extensions = glGetString(GL_EXTENSIONS);
+	const char *extensions = (const char*)glGetString(GL_EXTENSIONS);
 	if (!strstr(extensions, "GL_KHR_debug")) {
 		// no debug extension available
 		// We cannot use ARB_debug_output because it doesn't allow glEnable(GL_DEBUG_OUTPUT)

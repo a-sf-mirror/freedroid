@@ -67,12 +67,7 @@ float MeleeRechargeMultiplierTable[] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53,
 float RangedDamageMultiplierTable[] = { 1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36 };
 float RangedRechargeMultiplierTable[] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 };
 
-spell_skill_spec *SpellSkillMap;
 int number_of_skills;
-
-droidspec *Droidmap;
-
-blastspec Blastmap[ALLBLASTTYPES];
 
 char font_switchto_red[] = { 1, 0, 'r' };
 char font_switchto_blue[] = { 2, 0, 'w' };
@@ -82,4 +77,3 @@ char font_switchto_msgvar[] = { 5, 0, 'v' };
 
 int skip_initial_menus = FALSE;
 
-enum { INSIDE_MENU = 0, INSIDE_GAME, INSIDE_LVLEDITOR } game_status;

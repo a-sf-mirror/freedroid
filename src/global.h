@@ -37,17 +37,16 @@ extern char *freedroid_version;
 #define EXTERN
 #else
 #define EXTERN extern
+#endif
 
 EXTERN float FPSover1;
 EXTERN char *AllSkillTexts[];
-EXTERN char font_switchto_red[2];
-EXTERN char font_switchto_blue[2];
-EXTERN char font_switchto_neon[2];
-EXTERN char font_switchto_msgstat[2];
-EXTERN char font_switchto_msgvar[2];
-EXTERN char font_switchto_msgred[2];
+EXTERN char font_switchto_red[];
+EXTERN char font_switchto_blue[];
+EXTERN char font_switchto_neon[];
+EXTERN char font_switchto_msgstat[];
+EXTERN char font_switchto_msgvar[];
 
-EXTERN int SpellHitPercentageTable[];
 EXTERN float MeleeDamageMultiplierTable[];
 EXTERN float MeleeRechargeMultiplierTable[];
 EXTERN float RangedDamageMultiplierTable[];
@@ -59,8 +58,7 @@ EXTERN blastspec Blastmap[ALLBLASTTYPES];
 EXTERN int skip_initial_menus;
 EXTERN int number_of_skills;
 EXTERN int last_bot_number;
-EXTERN enum { INSIDE_MENU = 0, INSIDE_GAME, INSIDE_LVLEDITOR } game_status;
-#endif
+EXTERN enum _game_status game_status;
 
 EXTERN SDL_Rect User_Rect;
 EXTERN SDL_Rect Full_User_Rect;

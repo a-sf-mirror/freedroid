@@ -158,6 +158,12 @@ enum _game_config_screen_visible_parameters {
 	GAME_CONFIG_SCREEN_VISIBLE_SKILL_EXPLANATION = 8004,
 };
 
+enum _game_status {
+	INSIDE_MENU = 0,
+	INSIDE_GAME,
+	INSIDE_LVLEDITOR
+};
+
 #define END_OF_OFFSET_FILE_STRING "** End of iso_image offset file **"
 #define OFFSET_FILE_OFFSETX_STRING "OffsetX="
 #define OFFSET_FILE_OFFSETY_STRING "OffsetY="
