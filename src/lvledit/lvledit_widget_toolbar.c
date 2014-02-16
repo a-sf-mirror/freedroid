@@ -79,6 +79,8 @@ static int toolbar_handle_event(struct widget *w, SDL_Event *event)
 				default:
 					return 0;
 			}
+			return 1;
+
 		case SDL_MOUSEMOTION:
 			return 1;
 

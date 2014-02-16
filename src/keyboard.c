@@ -873,7 +873,7 @@ static int kptoprint(int key) {
 int getchar_raw(int *mod)
 {
 	SDL_Event event;
-	int Returnkey;
+	int Returnkey = 0;
 
 	while (1) {
 		SDL_WaitEvent(&event);	/* wait for next event */
@@ -895,7 +895,7 @@ int getchar_raw(int *mod)
 				 * asked to get a modifier, which makes sense only if we ignore CTRL as a key.
 				 */
 				if (event.key.keysym.sym >= SDLK_NUMLOCK && event.key.keysym.sym <= SDLK_COMPOSE) {
-					goto next;
+					continue;
 				}
 			}
 			/*
@@ -906,9 +906,11 @@ int getchar_raw(int *mod)
 			if(ISKEYPAD(Returnkey)) {
 				Returnkey = kptoprint(Returnkey);
 			}
-			return (Returnkey);
-		}
- next:		;
 
-	}			/* while(1) */
-}				/* getchar_raw() */
+			// A key was pressed, stop the loop
+			break;
+		}
+	}
+
+	return (Returnkey);
+}

@@ -865,9 +865,11 @@ int longest_line_width(char *text)
 		if (*text != '\0') {
 			line_start = text + 1;
 		} else {
-			return width;
+			break;
 		}
 	}
+
+	return width;
 }
 
 #undef _text_c

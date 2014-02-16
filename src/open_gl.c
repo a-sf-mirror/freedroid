@@ -195,13 +195,10 @@ SDL_Surface *our_IMG_load_wrapper(const char *file)
 	}
 
 	if (use_open_gl) {
-
 //		flip_image_vertically(surf);
-
-		return surf;;
-	} else {
-		return surf;
 	}
+
+	return surf;
 }
 
 /**
