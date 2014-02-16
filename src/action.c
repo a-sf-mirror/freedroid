@@ -244,7 +244,7 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl)
 			obst_normal = lvl->obstacle_list[obst_index].pos.x + lvl->obstacle_list[obst_index].pos.y;
 
 			if (obst_normal > max_normal &&
-				get_obstacle_spec(lvl->obstacle_list[obst_index].type)->flags & IS_CLICKABLE &&
+				(get_obstacle_spec(lvl->obstacle_list[obst_index].type)->flags & IS_CLICKABLE) &&
 				mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
 
 				max_normal = obst_normal;

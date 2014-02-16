@@ -178,11 +178,11 @@ void input_get_keybind_string(const char *cmd, char *out)
 	const char *alt_modstr = "";
 	const char *shift_modstr = "";
 
-	if (mod & KMOD_LCTRL || mod & KMOD_RCTRL)
+	if ((mod & KMOD_LCTRL) || (mod & KMOD_RCTRL))
 		ctrl_modstr = "C-";
-	if (mod & KMOD_LALT || mod & KMOD_RALT)
+	if ((mod & KMOD_LALT)  || (mod & KMOD_RALT))
 		alt_modstr = "A-";
-	if (mod & KMOD_LSHIFT || mod & KMOD_RSHIFT)
+	if ((mod & KMOD_LSHIFT) || (mod & KMOD_RSHIFT))
 		shift_modstr = "S-";
 
 	sprintf(out, "%s%s%s%s", ctrl_modstr, alt_modstr, shift_modstr, SDL_GetKeyName(key));
@@ -884,7 +884,7 @@ int getchar_raw(int *mod)
 
 		if (event.type == SDL_KEYDOWN) {
 			Returnkey = (int)event.key.keysym.sym;
-			if (!mod && event.key.keysym.mod & KMOD_SHIFT)
+			if (!mod && (event.key.keysym.mod & KMOD_SHIFT))
 				Returnkey = toupper((int)event.key.keysym.sym);
 
 			if (mod) {
