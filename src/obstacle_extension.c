@@ -181,7 +181,7 @@ void free_obstacle_extensions(level *lvl)
 		switch (ext->type) {
 			case OBSTACLE_EXTENSION_CHEST_ITEMS:
 				dynarray_free(ext->data);
-				/* Fall-through */
+				// no break
 			case OBSTACLE_EXTENSION_LABEL:
 			case OBSTACLE_EXTENSION_DIALOGFILE:
 				free(ext->data);

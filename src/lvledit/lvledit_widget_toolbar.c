@@ -64,6 +64,8 @@ static int toolbar_handle_event(struct widget *w, SDL_Event *event)
 			switch (event->button.button) {
 				case MOUSE_BUTTON_3:
 					display_info = 1;
+					break;
+
 				case MOUSE_BUTTON_1:
 					toolbar_mousepress(w, event);
 					break;	

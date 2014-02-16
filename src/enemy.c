@@ -765,26 +765,31 @@ void DropEnemyTreasure(Enemy ThisRobot)
 		    && Droidmap[ThisRobot->type].amount_of_tachyon_condensators > MyRandom(100))
 			DropItemAt(get_item_type_by_id("Tachyon Condensator"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
 				   ThisRobot->virt_pos.y, 1);
+		// no break
 	case 4:
 		if (Droidmap[ThisRobot->type].amount_of_antimatter_converters
 		    && Droidmap[ThisRobot->type].amount_of_antimatter_converters > MyRandom(100))
 			DropItemAt(get_item_type_by_id("Antimatter-Matter Converter"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
 				   ThisRobot->virt_pos.y, 1);
+		// no break
 	case 3:
 		if (Droidmap[ThisRobot->type].amount_of_superconductors
 		    && Droidmap[ThisRobot->type].amount_of_superconductors > MyRandom(100))
 			DropItemAt(get_item_type_by_id("Superconducting Relay Unit"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
 				   ThisRobot->virt_pos.y, 1);
+		// no break
 	case 2:
 		if (Droidmap[ThisRobot->type].amount_of_plasma_transistors
 		    && Droidmap[ThisRobot->type].amount_of_plasma_transistors > MyRandom(100))
 			DropItemAt(get_item_type_by_id("Plasma Transistor"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
 				   ThisRobot->virt_pos.y, 1);
+		// no break
 	case 1:
 		if (Droidmap[ThisRobot->type].amount_of_entropy_inverters
 		    && Droidmap[ThisRobot->type].amount_of_entropy_inverters > MyRandom(100))
 			DropItemAt(get_item_type_by_id("Entropy Inverter"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
 				   ThisRobot->virt_pos.y, 1);
+		// no break
 	case 0:
 		break;
 	}

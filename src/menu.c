@@ -536,9 +536,11 @@ void Cheatmenu(void)
 			break;
 		case 'k':
 			skip_dead = 2;
+			break;
 		case 'L':
 			if (skip_dead == 0)
 				skip_dead = 1;
+			break;
 		case 'l':	// robot list of this deck 
 			l = 0;	// l is counter for lines of display of enemy output
 			for (i = ((skip_dead == 1) ? 1 : 0); i < ((skip_dead == 2) ? 1 : 2); i++) {

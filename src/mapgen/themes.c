@@ -582,6 +582,7 @@ void mapgen_place_obstacles(struct dungeon_info *di, int w, int h, unsigned char
 					if (mapgen_get_room(x, y - 1) != room && mapgen_get_tile(x, y - 1) == TILE_FLOOR)
 						wall |= WALL_N;
 					themes[rooms[room2].theme](x, y, wall);
+					// no break (really ?)
 				case TILE_FLOOR:
 					wall = 0;
 					if (tiles[y * w + x - 1] == TILE_WALL)
