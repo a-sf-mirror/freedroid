@@ -293,7 +293,7 @@ item_list{
 	drop = {class = "0", sound = "drop_sword_sound.ogg"},
 	description =_[[While this weapon is somewhat slow and cumbersome to use, it is as good at leaving big dents in droids as it is at felling trees. A good hit is often capable of taking out lesser droids in a single hit.]],
 	rotation_series = "weapons/large_axe",
-	tux_part = "iso_sword",
+	tux_part = "iso_small_axe", -- hack as we currently have no animation for this
 },
 ----------------------------------------------------------------------
 
