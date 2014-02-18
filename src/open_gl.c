@@ -676,6 +676,7 @@ static struct background {
 		{"number_selector.png", EMPTY_IMAGE, 0, 0,  TRUE },
 		{"item_upgrade.png", EMPTY_IMAGE, ITEM_UPGRADE_RECT_X, ITEM_UPGRADE_RECT_Y,  FALSE },
 		{"item_upgrade_crafting.png", EMPTY_IMAGE, ADDON_CRAFTING_RECT_X, ADDON_CRAFTING_RECT_Y, FALSE },
+        {"console_bg1.jpg", EMPTY_IMAGE, 0, 0, TRUE },
 };
 
 /**

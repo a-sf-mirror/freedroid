@@ -192,7 +192,7 @@ static void show_droid_info(int droidtype)
 	SDL_SetClipRect(Screen, NULL);
 
 	// Show background
-	blit_background("title.jpg");
+    blit_background("console_bg1.jpg");
 	blit_background("takeover_browser.png");
 
 	// Show droid portrait
@@ -929,7 +929,16 @@ static void ShowPlayground(enemy * target)
 
 	phase = (int) Me.phase;
 
-	blit_background("transfer.jpg");
+	blit_background("console_bg1.jpg");
+    
+    static struct image bg;
+    if (!image_loaded(&bg)) {
+      load_image(&bg, "backgrounds/takeover_console.png", FALSE);
+    }
+
+    display_image_on_screen(&bg, GameConfig.screen_width / 2 - 340, GameConfig.screen_height / 2 - 294, IMAGE_NO_TRANSFO);
+    
+    
 
 	if (target) {
 		// Find the difference of the droid's height and Tux's height.
@@ -943,13 +952,13 @@ static void ShowPlayground(enemy * target)
 			enemy_images[target->type][0][0].offset_y;
 
 		// Offset the droid's drawing rectangle by dheight minus 30 units.
-		Set_Rect(Target_Rect, xoffs + DroidStart[!YourColor].x, yoffs + dheight - 30, User_Rect.w, User_Rect.h);
+		Set_Rect(Target_Rect, xoffs + DroidStart[!YourColor].x + 50, yoffs + dheight - 80, User_Rect.w, User_Rect.h);
 		PutIndividuallyShapedDroidBody(target, Target_Rect, FALSE, FALSE);
 	}
 	//  SDL_SetColorKey (Screen, 0, 0);
 	SDL_SetClipRect(Screen, &User_Rect);
 
-	blit_tux(xoffs + DroidStart[YourColor].x, yoffs);
+	blit_tux(xoffs + DroidStart[YourColor].x + 20, yoffs - 25);
 
 	Set_Rect(Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y, User_Rect.w, User_Rect.h);
 
