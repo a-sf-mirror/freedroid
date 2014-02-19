@@ -296,7 +296,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 		input_get_keybind_string(&(GameConfig.input_keybinds[i]), &keystr[0]);
 
-		sprintf(txt, "%s%s%s - %s\n", font_str, (i == cursor) ? "** " : "   ",
+		sprintf(txt, "%s%s%s - %s", font_str, (i == cursor) ? "** " : "   ",
 			_(GameConfig.input_keybinds[i].name), keystr);
 		put_string(GetCurrentFont(), xpos, ypos, txt);
 
