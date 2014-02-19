@@ -259,10 +259,10 @@ void input_get_keybind_string(const keybind_t *kb, char *out)
 	sprintf(out, "%s%s%s%s", ctrl_modstr, alt_modstr, shift_modstr, SDL_GetKeyName(kb->key));
 }
 
-#define KEYCHART_RECT_X (GameConfig.screen_width / 250)
+#define KEYCHART_RECT_X (GameConfig.screen_width / 100)
 #define KEYCHART_RECT_Y (GameConfig.screen_height / 10)
-#define KEYCHART_RECT_W (0.99 * GameConfig.screen_width)
-#define KEYCHART_RECT_H (0.8 * GameConfig.screen_height)
+#define KEYCHART_RECT_W (GameConfig.screen_width - 2*KEYCHART_RECT_X)
+#define KEYCHART_RECT_H (GameConfig.screen_height - 2*KEYCHART_RECT_Y)
 
 /**
  * Display the keychart
@@ -306,7 +306,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 			if (xpos > keychart_rect.x)
 				break;
 			else {
-				xpos += 300;
+				xpos += keychart_rect.w / 2;
 				ypos = keychart_rect.y;
 			}
 		}
