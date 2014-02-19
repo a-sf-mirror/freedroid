@@ -250,11 +250,11 @@ void input_get_keybind_string(const keybind_t *kb, char *out)
 	const char *shift_modstr = "";
 
 	if ((kb->mod & KMOD_LCTRL) || (kb->mod & KMOD_RCTRL))
-		ctrl_modstr = "C-";
+		ctrl_modstr = "Ctrl+";
 	if ((kb->mod & KMOD_LALT)  || (kb->mod & KMOD_RALT))
-		alt_modstr = "A-";
+		alt_modstr = "Alt+";
 	if ((kb->mod & KMOD_LSHIFT) || (kb->mod & KMOD_RSHIFT))
-		shift_modstr = "S-";
+		shift_modstr = "Shift+";
 
 	sprintf(out, "%s%s%s%s", ctrl_modstr, alt_modstr, shift_modstr, SDL_GetKeyName(kb->key));
 }
@@ -296,7 +296,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 		input_get_keybind_string(&(GameConfig.input_keybinds[i]), &keystr[0]);
 
-		sprintf(txt, "%s%s%s - %s", font_str, (i == cursor) ? "** " : "   ",
+		sprintf(txt, "%s%s%s: %s", font_str, (i == cursor) ? "> " : "   ",
 			_(GameConfig.input_keybinds[i].name), keystr);
 		put_string(GetCurrentFont(), xpos, ypos, txt);
 
