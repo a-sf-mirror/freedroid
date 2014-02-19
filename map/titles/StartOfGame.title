@@ -31,8 +31,7 @@ The title song in the sound subdirectory for this mission is : Bleostrada.ogg
 
 
 --------------------
---------------------
---------------------
+
 *** START OF PURE SCROLLTEXT DATA ***
 What a great day.
 Yes, I'm being sarcastic again.
@@ -50,92 +49,6 @@ Please.
 
     Dvorak, First AI
 
-
-
-
-CONTROLS
-
-Movement
-
-The game is controlled using the mouse. Left click onto the locations you want to move to.  Hold the button down to keep moving in that direction.  Holding down CTRL key will make you run.
-
-Attack
-
-Left clicking an enemy will cause Tux to come close to the bot and to start attacking it with the current weapon. If the current weapon is a gun then Tux will stand still and shoot the bot.
- 
-Special functions
-
-Use the right click to activate the currently selected skill/program. 
-
-Default keys (most keys can be reassigned with the ingame key chart - F1)
- 
-  Escape     ... Show main menu
-  F1         ... Show keychart
-  F2         ... Toggle fullscreen (Linux only)
-  F3         ... Quicksave
-  F4         ... Quickload
-  F5-F12     ... Quick-select program 1 through 8
-
-  I          ... Inventory panel
-  C          ... Character panel
-  S          ... Skills/Program panel
-  Space      ... Close all open panels
-  Q          ... Quest log
-  0-9        ... Use quick-inventory items 0-9
-
-  P          ... Pause
-  Hold A     ... Attack while staying at the same position
-  Hold Shift ... Keep current target selected when moving
-  Tab        ... Toggle automap
-
-  R          ... Reload weapon
-  Hold Ctrl  ... Run
-  U          ... Toggle always run
-
-  Hold X     ... Show labels for items on the ground
-  Z          ... Toggle show labels for items on the ground
-  T          ... Toggle walls becoming transparent when Tux approaches (OpenGL only)
-
-Takeover/Chat 
- 
-To chat with a friendly droid, it's enough to click on it.  To take over a hostile bot, select the takeover/chat skill from the skills screen, then click the right mouse button to initiate takeover.
-
-For the takeover game, you can use the mouse wheel or the cursor keys.
-
-You may be interested in playing the Tutorial which you can access from the main menu.
-
-If you are stuck and need help, feel free to come to #freedroid on irc.freenode.net and ask for help.
-
-That is all, have a nice game.
-
-
-Press left mouse button to start playing.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-If you are still looking for the "any" key, then please sell your computer and make sure you do not reproduce.
-Thank you.
 *** END OF PURE SCROLLTEXT DATA ***
 
 *** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***
