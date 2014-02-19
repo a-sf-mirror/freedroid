@@ -101,6 +101,7 @@ const keybind_t default_keybinds[] = {
 
 	/* Level editor */
 	{ N_("drop_item"), SDLK_g, KMOD_NONE },
+	{ N_("place_obstacle_kp0"), SDLK_KP0, KMOD_NONE },
 	{ N_("place_obstacle_kp1"), SDLK_KP1, KMOD_NONE },
 	{ N_("place_obstacle_kp2"), SDLK_KP2, KMOD_NONE },
 	{ N_("place_obstacle_kp3"), SDLK_KP3, KMOD_NONE },
@@ -109,7 +110,6 @@ const keybind_t default_keybinds[] = {
 	{ N_("place_obstacle_kp6"), SDLK_KP6, KMOD_NONE },
 	{ N_("place_obstacle_kp7"), SDLK_KP7, KMOD_NONE },
 	{ N_("place_obstacle_kp8"), SDLK_KP8, KMOD_NONE },
-	{ N_("place_obstacle_kp9"), SDLK_KP9, KMOD_NONE },
 	{ N_("place_obstacle_kp9"), SDLK_KP9, KMOD_NONE },
 	{ N_("change_obstacle_label"), SDLK_h, KMOD_NONE },
 	{ N_("change_map_label"), SDLK_m, KMOD_NONE },
@@ -205,7 +205,7 @@ void input_set_keybind(char *keybind, SDLKey key, SDLMod mod)
 {
 	int i;
 	for (i = 0; GameConfig.input_keybinds[i].name != NULL; i++)
-		if (strcmp(keybind, GameConfig.input_keybinds[i].name) == 0) {
+		if (!strcmp(keybind, GameConfig.input_keybinds[i].name)) {
 			GameConfig.input_keybinds[i].key = key;
 			GameConfig.input_keybinds[i].mod = mod;
 			return;
@@ -283,7 +283,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 	put_string_centered(Para_BFont, FontHeight(Para_BFont), _("Key chart"));
 
-	if (startidx >= sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]))
+	if (startidx >= sizeof(default_keybinds) / sizeof(default_keybinds[0]))
 		return -1;
 
 	for (i = startidx; GameConfig.input_keybinds[i].name != NULL; i++) {
@@ -350,8 +350,9 @@ void keychart()
 	int endpos;
 	int cursor = 0;
 	SDL_Event event;
-	const int maxcmds = sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]) - 2;
 	int per_page = get_nb_commands_per_page();
+	// The actual number of keybinds is the length of the default_keybinds array
+	const int maxcmds = sizeof(default_keybinds) / sizeof(default_keybinds[0]) - 2;
 
 	Activate_Conservative_Frame_Computation();
 
@@ -473,10 +474,11 @@ void input_release_keyboard(void)
  *    @param keynum The index of the  keybind.
  *    @param value The value of the keypress (defined above).
  */
-#define KEYPRESS(s)    ((strcmp(GameConfig.input_keybinds[keynum].name,s)==0) && value==KEY_PRESS)
+#define KEYPRESS(s)    (!strcmp(GameConfig.input_keybinds[keynum].name,(s)) && value==KEY_PRESS)
 #define INGAME()	(game_status == INSIDE_GAME)
 #define INMENU()	(game_status == INSIDE_MENU)
 #define INLVLEDIT()	(game_status == INSIDE_LVLEDITOR)
+
 static int input_key(int keynum, int value)
 {
 	/* Non lockable keybindings */
@@ -848,7 +850,7 @@ int getchar_raw(int *mod)
 			 * "The keyboard syms have been cleverly chosen to map to ASCII"
 			 * ... I hope that this design feature is portable, and durable ;)
 			 */
-			if(ISKEYPAD(Returnkey)) {
+			if (ISKEYPAD(Returnkey)) {
 				Returnkey = kptoprint(Returnkey);
 			}
 
