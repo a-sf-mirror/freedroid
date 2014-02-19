@@ -461,6 +461,146 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
+Name=_"0-secret-exit-door-indoor1"
+Trigger at label="0-secret-exit-door-indoor1"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 6) -- WE blue 1x1 closed door
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-indoor2"
+Trigger at label="0-secret-exit-door-indoor2"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 6) -- WE blue 1x1 closed door
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-outdoor1"
+Trigger at label="0-secret-exit-door-outdoor1"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) -- the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-outdoor2"
+Trigger at label="0-secret-exit-door-outdoor2"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-outdoor3"
+Trigger at label="0-secret-exit-door-outdoor3"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-outdoor4"
+Trigger at label="0-secret-exit-door-outdoor4"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-outdoor5"
+Trigger at label="0-secret-exit-door-outdoor5"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-outdoor6"
+Trigger at label="0-secret-exit-door-outdoor6"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-indoor-close1"
+Trigger at label="0-secret-exit-door-indoor-close1"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-indoor-close2"
+Trigger at label="0-secret-exit-door-indoor-close2"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-indoor-close3"
+Trigger at label="0-secret-exit-door-indoor-close3"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-indoor-close4"
+Trigger at label="0-secret-exit-door-indoor-close4"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-indoor-close5"
+Trigger at label="0-secret-exit-door-indoor-close5"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"0-secret-exit-door-indoor-close6"
+Trigger at label="0-secret-exit-door-indoor-close6"
+Teleported=0
+Silent=1
+<LuaCode>
+	change_obstacle_type("0-secret-exit-door", 170) --the wall that it used to be
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
 Name=_"Town-HomeSpot-Exiting"
 Trigger changing level
 Exiting level=0
