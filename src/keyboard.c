@@ -41,60 +41,132 @@
 
 static int input_keyboard_locked; // Block the execution of the keybindings.
 
-/* name of each keybinding */
-const char *keybindNames[] = {
-	/* General */
-	"keychart", "fullscreen", "quit", "wall_transparency", "grab_input", "take_screenshot",
+/* Default keybindings
+ *
+ * If changing defaults, please make sure to update relevant parts in
+ * README
+ * map/titles/StartOfGame.title
+ * map/titles/level_editor_help.title
+ */
 
-	/* Ingame */
-	"inventory", "skill", "character", "quests",
-	"reload", "autorun",
-	"move_north", "move_south", "move_east", "move_west",
-	"quicksave", "quickload", "pause",
-	"automap",
-	"show_item_labels",
-	"activate_program0", "activate_program1", "activate_program2", "activate_program3",
-	"activate_program4", "activate_program5", "activate_program6", "activate_program7",
-	"quick_inventory0", "quick_inventory1", "quick_inventory2",
-	"quick_inventory3", "quick_inventory4", "quick_inventory5",
-	"quick_inventory6", "quick_inventory7", "quick_inventory8",
-	"quick_inventory9", "close_windows", "game_escape_menu",
+const keybind_t default_keybinds[] = {
+	{ N_("keychart"), SDLK_F1, KMOD_NONE },
+	{ N_("fullscreen"), SDLK_F2, KMOD_NONE },
+	{ N_("grab_input"), SDLK_g, KMOD_LCTRL },
+	{ N_("quit"), SDLK_q, KMOD_LCTRL },
+	{ N_("wall_transparency"), SDLK_t, KMOD_NONE },
+	{ N_("take_screenshot"), SDLK_PRINT, KMOD_NONE },
 
-	/* Leveleditor */
-	"drop_item",
-	"place_obstacle_kp1", "place_obstacle_kp2", "place_obstacle_kp3",
-	"place_obstacle_kp4", "place_obstacle_kp5", "place_obstacle_kp6",
-	"place_obstacle_kp7", "place_obstacle_kp8", "place_obstacle_kp9",
-	"change_obstacle_label", "change_map_label", "zoom_out",
-	"cycle_marked_object",
-	"cut", "copy", "paste", "delete",
-	"next_selection_type", "previous_selection_type",
-	"next_tab", "previous_tab", "undo", "redo", "beautify_grass", "beautify_water",
-	"toggle_waypoint", "toggle_waypoint_randomspawn", "connect_waypoint",
-	"toolbar_scroll_left", "toolbar_scroll_right", "toolbar_step_left", "toolbar_step_right",
-	"run_map_validator",
+	/* Game */
+	{ N_("inventory"), SDLK_i, KMOD_NONE },
+	{ N_("skill"), SDLK_s, KMOD_NONE },
+	{ N_("character"), SDLK_c, KMOD_NONE },
+	{ N_("quests"), SDLK_q, KMOD_NONE },
+	{ N_("reload"), SDLK_r, KMOD_NONE },
+	{ N_("autorun"), SDLK_u, KMOD_NONE },
 
-	/* Cheat keys */
-	"cheat_xp+_1k", "cheat_xp*_2",
-	"cheat_melee", "cheat_range", "cheat_programing", "cheat_melee_down", "cheat_range_down", "cheat_programing_down",
-	"cheat_drop_random_item", "cheat_drop_random_magical_item",
-	"cheat_respawn_level",
-	"cheat_menu", "cheat_level_editor",
-	"cheat_reload_graphics",
-	"cheat_inc_repair" , "cheat_dec_repair",
+	{ N_("move_north"), SDLK_UP, KMOD_NONE },
+	{ N_("move_south"), SDLK_DOWN, KMOD_NONE },
+	{ N_("move_east"), SDLK_RIGHT, KMOD_NONE },
+	{ N_("move_west"), SDLK_LEFT, KMOD_NONE },
+
+	{ N_("quicksave"), SDLK_F3, KMOD_NONE },
+	{ N_("quickload"), SDLK_F4, KMOD_NONE },
+	{ N_("pause"), SDLK_p, KMOD_NONE },
+	{ N_("show_item_labels"), SDLK_z, KMOD_NONE },
+	{ N_("automap"), SDLK_TAB, KMOD_NONE },
+
+	{ N_("activate_program0"), SDLK_F5, KMOD_NONE },
+	{ N_("activate_program1"), SDLK_F6, KMOD_NONE },
+	{ N_("activate_program2"), SDLK_F7, KMOD_NONE },
+	{ N_("activate_program3"), SDLK_F8, KMOD_NONE },
+	{ N_("activate_program4"), SDLK_F9, KMOD_NONE },
+	{ N_("activate_program5"), SDLK_F10, KMOD_NONE },
+	{ N_("activate_program6"), SDLK_F11, KMOD_NONE },
+	{ N_("activate_program7"), SDLK_F12, KMOD_NONE },
+
+	{ N_("quick_inventory0"), SDLK_0, KMOD_NONE },
+	{ N_("quick_inventory1"), SDLK_1, KMOD_NONE },
+	{ N_("quick_inventory2"), SDLK_2, KMOD_NONE },
+	{ N_("quick_inventory3"), SDLK_3, KMOD_NONE },
+	{ N_("quick_inventory4"), SDLK_4, KMOD_NONE },
+	{ N_("quick_inventory5"), SDLK_5, KMOD_NONE },
+	{ N_("quick_inventory6"), SDLK_6, KMOD_NONE },
+	{ N_("quick_inventory7"), SDLK_7, KMOD_NONE },
+	{ N_("quick_inventory8"), SDLK_8, KMOD_NONE },
+	{ N_("quick_inventory9"), SDLK_9, KMOD_NONE },
+
+	{ N_("close_windows"), SDLK_SPACE, KMOD_NONE },
+	{ N_("game_escape_menu"), SDLK_ESCAPE, KMOD_NONE },
+
+	/* Level editor */
+	{ N_("drop_item"), SDLK_g, KMOD_NONE },
+	{ N_("place_obstacle_kp1"), SDLK_KP1, KMOD_NONE },
+	{ N_("place_obstacle_kp2"), SDLK_KP2, KMOD_NONE },
+	{ N_("place_obstacle_kp3"), SDLK_KP3, KMOD_NONE },
+	{ N_("place_obstacle_kp4"), SDLK_KP4, KMOD_NONE },
+	{ N_("place_obstacle_kp5"), SDLK_KP5, KMOD_NONE },
+	{ N_("place_obstacle_kp6"), SDLK_KP6, KMOD_NONE },
+	{ N_("place_obstacle_kp7"), SDLK_KP7, KMOD_NONE },
+	{ N_("place_obstacle_kp8"), SDLK_KP8, KMOD_NONE },
+	{ N_("place_obstacle_kp9"), SDLK_KP9, KMOD_NONE },
+	{ N_("place_obstacle_kp9"), SDLK_KP9, KMOD_NONE },
+	{ N_("change_obstacle_label"), SDLK_h, KMOD_NONE },
+	{ N_("change_map_label"), SDLK_m, KMOD_NONE },
+	{ N_("zoom_out"), SDLK_o, KMOD_NONE },
+	{ N_("cycle_marked_object"), SDLK_n, KMOD_NONE },
+	{ N_("next_tab"), SDLK_f, KMOD_NONE },
+	{ N_("previous_tab"), SDLK_f, KMOD_LSHIFT },
+	{ N_("undo"), SDLK_z, KMOD_NONE },
+	{ N_("redo"), SDLK_y, KMOD_NONE },
+	{ N_("beautify_grass"), SDLK_b, KMOD_LCTRL },
+	{ N_("beautify_water"), SDLK_w, KMOD_LCTRL },
+	{ N_("toggle_waypoint"), SDLK_w, KMOD_NONE },
+	{ N_("toggle_waypoint_randomspawn"), SDLK_w, KMOD_LSHIFT },
+	{ N_("connect_waypoint"), SDLK_c, KMOD_NONE },
+	{ N_("toolbar_scroll_left"), SDLK_PAGEUP, KMOD_NONE },
+	{ N_("toolbar_scroll_right"), SDLK_PAGEDOWN, KMOD_NONE },
+	{ N_("toolbar_step_left"), SDLK_PAGEUP, KMOD_LCTRL },
+	{ N_("toolbar_step_right"), SDLK_PAGEDOWN, KMOD_LCTRL },
+	{ N_("cut"), SDLK_x, KMOD_LCTRL },
+	{ N_("copy"), SDLK_c, KMOD_LCTRL },
+	{ N_("paste"), SDLK_v, KMOD_LCTRL },
+	{ N_("delete"), SDLK_BACKSPACE, KMOD_NONE },
+	{ N_("next_selection_type"), SDLK_TAB, KMOD_NONE },
+	{ N_("previous_selection_type"), SDLK_TAB, KMOD_LSHIFT },
+	{ N_("run_map_validator"), SDLK_e, KMOD_LCTRL },
+
+	/* Cheat */
+	{ N_("cheat_xp+_1k"), SDLK_KP1, KMOD_NONE },
+	{ N_("cheat_xp*_2"), SDLK_KP2, KMOD_NONE },
+	{ N_("cheat_melee"), SDLK_KP7, KMOD_NONE },
+	{ N_("cheat_range"), SDLK_KP8, KMOD_NONE },
+	{ N_("cheat_programing"), SDLK_KP9, KMOD_NONE },
+	{ N_("cheat_melee_down"), SDLK_KP4, KMOD_NONE },
+	{ N_("cheat_range_down"), SDLK_KP5, KMOD_NONE },
+	{ N_("cheat_programing_down"), SDLK_KP6, KMOD_NONE },
+	{ N_("cheat_drop_random_item"), SDLK_r, KMOD_LCTRL },
+	{ N_("cheat_drop_random_magical_item"), SDLK_r, KMOD_LCTRL | KMOD_LSHIFT },
+	{ N_("cheat_respawn_level"), SDLK_r, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT },
+	{ N_("cheat_level_editor"), SDLK_e, KMOD_LCTRL | KMOD_LALT },
+	{ N_("cheat_menu"), SDLK_c, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT },
+	{ N_("cheat_reload_graphics"), SDLK_g, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT },
+	{ N_("cheat_inc_repair"), SDLK_r, KMOD_RCTRL  },
+	{ N_("cheat_dec_repair"), SDLK_r, KMOD_RCTRL | KMOD_RSHIFT  },
 
 #ifdef WITH_RTPROF
-	/* RT Profiler keys */
-	"rtprof_switch_activation", "rtprof_clear_probes",
+	/* RT Profiler */
+	{ N_("rtprof_switch_activation"), SDLK_p, KMOD_LALT },
+	{ N_("rtprof_clear_probes"), SDLK_o, KMOD_LALT },
 #endif
 
-	NULL
-};				/* must terminate with NULL */
+	{ NULL }
+};
 
 /**
  * @fn void input_keyboard_init (void)
  *
- * @brief Initializes the input subsystem (does not set keys).
+ * @brief Initializes the input subsystem (using default keybindings).
  */
 void input_keyboard_init(void)
 {
@@ -102,18 +174,18 @@ void input_keyboard_init(void)
 
 	GameConfig.input_keybinds[0].name = NULL;
 
-	if (sizeof(keybindNames) / sizeof(keybindNames[0]) > sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]))
+	if (sizeof(default_keybinds) / sizeof(default_keybinds[0]) > sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]))
 		ErrorMessage(__FUNCTION__,
-			     "There are %zu keyboard commands defined in keyboard.c, but GameConfig structure only supports %zu.\n",
+			     _("There are %zu keyboard commands defined in keyboard.c, but GameConfig structure only supports %zu.\n"),
 			     PLEASE_INFORM, IS_FATAL,
-			     sizeof(keybindNames) / sizeof(keybindNames[0]),
+			     sizeof(default_keybinds) / sizeof(default_keybinds[0]),
 			     sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]));
 
 	/* creates a null keybinding for each */
-	for (i = 0; keybindNames[i] != NULL; i++) {
-		GameConfig.input_keybinds[i].name = (char *)keybindNames[i];
-		GameConfig.input_keybinds[i].key = SDLK_UNKNOWN;
-		GameConfig.input_keybinds[i].mod = KMOD_NONE;
+	for (i = 0; default_keybinds[i].name != NULL; i++) {
+		GameConfig.input_keybinds[i].name = (char *)default_keybinds[i].name;
+		GameConfig.input_keybinds[i].key = default_keybinds[i].key;
+		GameConfig.input_keybinds[i].mod = default_keybinds[i].mod;
 	}
 
 	GameConfig.input_keybinds[i].name = NULL;
@@ -132,20 +204,22 @@ void input_keyboard_init(void)
 void input_set_keybind(char *keybind, SDLKey key, SDLMod mod)
 {
 	int i;
-	for (i = 0; keybindNames[i] != NULL; i++)
+	for (i = 0; GameConfig.input_keybinds[i].name != NULL; i++)
 		if (strcmp(keybind, GameConfig.input_keybinds[i].name) == 0) {
 			GameConfig.input_keybinds[i].key = key;
 			GameConfig.input_keybinds[i].mod = mod;
 			return;
 		}
-	ErrorMessage(__FUNCTION__, "Unable to set keybinding '%s', that command doesn't exist.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY,
-		     keybind);
+	ErrorMessage(__FUNCTION__,
+	             _("Unable to set keybinding '%s', that command doesn't exist.\n"),
+	             NO_NEED_TO_INFORM, IS_WARNING_ONLY,
+	             _(keybind));
 }
 
 void input_get_keybind(const char *cmdname, SDLKey * key, SDLMod * mod)
 {
 	int i;
-	for (i = 0; keybindNames[i] != NULL; i++) {
+	for (i = 0; GameConfig.input_keybinds[i].name != NULL; i++) {
 		if (!strcmp(cmdname, GameConfig.input_keybinds[i].name)) {
 			if (key)
 				*key = GameConfig.input_keybinds[i].key;
@@ -154,8 +228,10 @@ void input_get_keybind(const char *cmdname, SDLKey * key, SDLMod * mod)
 			return;
 		}
 	}
-	ErrorMessage(__FUNCTION__, "Unable to get keybinding for command '%s', that command does not exist.\n", PLEASE_INFORM, IS_FATAL,
-		     cmdname);
+	ErrorMessage(__FUNCTION__,
+	             _("Unable to get keybinding for command '%s', that command does not exist.\n"),
+	             PLEASE_INFORM, IS_FATAL,
+	             _(cmdname));
 
 	/* This dead code writes "key" and "mod" to shut up GCC */
 	*key = GameConfig.input_keybinds[0].key;
@@ -167,151 +243,20 @@ void input_get_keybind(const char *cmdname, SDLKey * key, SDLMod * mod)
  * @param cmd name of the command
  * @param out pointer to a sufficiently large buffer to hold the key string
  */
-void input_get_keybind_string(const char *cmd, char *out)
+void input_get_keybind_string(const keybind_t *kb, char *out)
 {
-	SDLKey key;
-	SDLMod mod;
-
-	input_get_keybind(cmd, &key, &mod);
-
 	const char *ctrl_modstr = "";
 	const char *alt_modstr = "";
 	const char *shift_modstr = "";
 
-	if ((mod & KMOD_LCTRL) || (mod & KMOD_RCTRL))
+	if ((kb->mod & KMOD_LCTRL) || (kb->mod & KMOD_RCTRL))
 		ctrl_modstr = "C-";
-	if ((mod & KMOD_LALT)  || (mod & KMOD_RALT))
+	if ((kb->mod & KMOD_LALT)  || (kb->mod & KMOD_RALT))
 		alt_modstr = "A-";
-	if ((mod & KMOD_LSHIFT) || (mod & KMOD_RSHIFT))
+	if ((kb->mod & KMOD_LSHIFT) || (kb->mod & KMOD_RSHIFT))
 		shift_modstr = "S-";
 
-	sprintf(out, "%s%s%s%s", ctrl_modstr, alt_modstr, shift_modstr, SDL_GetKeyName(key));
-}
-
-
-/**
- * @fn void input_setDefault (void)
- *
- * @brief Sets the default input keys.
- */
-void input_set_default(void)
-{
-	/*
-	   If changing defaults, please make sure to update relevant parts in
-	   README 
-	   map/titles/StartOfGame.title
-	   map/titles/level_editor_help.title
-	 */
-
-	input_set_keybind(_("keychart"), SDLK_F1, KMOD_NONE);
-	input_set_keybind(_("fullscreen"), SDLK_F2, KMOD_NONE);
-	input_set_keybind(_("grab_input"), SDLK_g, KMOD_LCTRL);
-	input_set_keybind(_("quit"), SDLK_q, KMOD_LCTRL);
-	input_set_keybind(_("wall_transparency"), SDLK_t, KMOD_NONE);
-	input_set_keybind(_("take_screenshot"), SDLK_PRINT, KMOD_NONE);
-
-	/* Game */
-	input_set_keybind(_("inventory"), SDLK_i, KMOD_NONE);
-	input_set_keybind(_("skill"), SDLK_s, KMOD_NONE);
-	input_set_keybind(_("character"), SDLK_c, KMOD_NONE);
-	input_set_keybind(_("quests"), SDLK_q, KMOD_NONE);
-	input_set_keybind(_("reload"), SDLK_r, KMOD_NONE);
-	input_set_keybind(_("autorun"), SDLK_u, KMOD_NONE);
-
-	input_set_keybind(_("move_north"), SDLK_UP, KMOD_NONE);
-	input_set_keybind(_("move_south"), SDLK_DOWN, KMOD_NONE);
-	input_set_keybind(_("move_east"), SDLK_RIGHT, KMOD_NONE);
-	input_set_keybind(_("move_west"), SDLK_LEFT, KMOD_NONE);
-
-	input_set_keybind(_("quicksave"), SDLK_F3, KMOD_NONE);
-	input_set_keybind(_("quickload"), SDLK_F4, KMOD_NONE);
-	input_set_keybind(_("pause"), SDLK_p, KMOD_NONE);
-	input_set_keybind(_("show_item_labels"), SDLK_z, KMOD_NONE);
-	input_set_keybind(_("automap"), SDLK_TAB, KMOD_NONE);
-
-	input_set_keybind(_("activate_program0"), SDLK_F5, KMOD_NONE);
-	input_set_keybind(_("activate_program1"), SDLK_F6, KMOD_NONE);
-	input_set_keybind(_("activate_program2"), SDLK_F7, KMOD_NONE);
-	input_set_keybind(_("activate_program3"), SDLK_F8, KMOD_NONE);
-	input_set_keybind(_("activate_program4"), SDLK_F9, KMOD_NONE);
-	input_set_keybind(_("activate_program5"), SDLK_F10, KMOD_NONE);
-	input_set_keybind(_("activate_program6"), SDLK_F11, KMOD_NONE);
-	input_set_keybind(_("activate_program7"), SDLK_F12, KMOD_NONE);
-
-	input_set_keybind(_("quick_inventory0"), SDLK_0, KMOD_NONE);
-	input_set_keybind(_("quick_inventory1"), SDLK_1, KMOD_NONE);
-	input_set_keybind(_("quick_inventory2"), SDLK_2, KMOD_NONE);
-	input_set_keybind(_("quick_inventory3"), SDLK_3, KMOD_NONE);
-	input_set_keybind(_("quick_inventory4"), SDLK_4, KMOD_NONE);
-	input_set_keybind(_("quick_inventory5"), SDLK_5, KMOD_NONE);
-	input_set_keybind(_("quick_inventory6"), SDLK_6, KMOD_NONE);
-	input_set_keybind(_("quick_inventory7"), SDLK_7, KMOD_NONE);
-	input_set_keybind(_("quick_inventory8"), SDLK_8, KMOD_NONE);
-	input_set_keybind(_("quick_inventory9"), SDLK_9, KMOD_NONE);
-
-	input_set_keybind(_("close_windows"), SDLK_SPACE, KMOD_NONE);
-	input_set_keybind(_("game_escape_menu"), SDLK_ESCAPE, KMOD_NONE);
-
-	/* Level editor */
-	input_set_keybind(_("drop_item"), SDLK_g, KMOD_NONE);
-	input_set_keybind(_("place_obstacle_kp1"), SDLK_KP1, KMOD_NONE);
-	input_set_keybind(_("place_obstacle_kp2"), SDLK_KP2, KMOD_NONE);
-	input_set_keybind(_("place_obstacle_kp3"), SDLK_KP3, KMOD_NONE);
-	input_set_keybind(_("place_obstacle_kp4"), SDLK_KP4, KMOD_NONE);
-	input_set_keybind(_("place_obstacle_kp5"), SDLK_KP5, KMOD_NONE);
-	input_set_keybind(_("place_obstacle_kp6"), SDLK_KP6, KMOD_NONE);
-	input_set_keybind(_("place_obstacle_kp7"), SDLK_KP7, KMOD_NONE);
-	input_set_keybind(_("place_obstacle_kp8"), SDLK_KP8, KMOD_NONE);
-	input_set_keybind(_("place_obstacle_kp9"), SDLK_KP9, KMOD_NONE);
-	input_set_keybind(_("place_obstacle_kp9"), SDLK_KP9, KMOD_NONE);
-	input_set_keybind(_("change_obstacle_label"), SDLK_h, KMOD_NONE);
-	input_set_keybind(_("change_map_label"), SDLK_m, KMOD_NONE);
-	input_set_keybind(_("zoom_out"), SDLK_o, KMOD_NONE);
-	input_set_keybind(_("cycle_marked_object"), SDLK_n, KMOD_NONE);
-	input_set_keybind(_("next_tab"), SDLK_f, KMOD_NONE);
-	input_set_keybind(_("previous_tab"), SDLK_f, KMOD_LSHIFT);
-	input_set_keybind(_("undo"), SDLK_z, KMOD_NONE);
-	input_set_keybind(_("redo"), SDLK_y, KMOD_NONE);
-	input_set_keybind(_("beautify_grass"), SDLK_b, KMOD_LCTRL);
-	input_set_keybind(_("beautify_water"), SDLK_w, KMOD_LCTRL);
-	input_set_keybind(_("toggle_waypoint"), SDLK_w, KMOD_NONE);
-	input_set_keybind(_("toggle_waypoint_randomspawn"), SDLK_w, KMOD_LSHIFT);
-	input_set_keybind(_("connect_waypoint"), SDLK_c, KMOD_NONE);
-	input_set_keybind(_("toolbar_scroll_left"), SDLK_PAGEUP, KMOD_NONE);
-	input_set_keybind(_("toolbar_scroll_right"), SDLK_PAGEDOWN, KMOD_NONE);
-	input_set_keybind(_("toolbar_step_left"), SDLK_PAGEUP, KMOD_LCTRL);
-	input_set_keybind(_("toolbar_step_right"), SDLK_PAGEDOWN, KMOD_LCTRL);
-	input_set_keybind(_("cut"), SDLK_x, KMOD_LCTRL);
-	input_set_keybind(_("copy"), SDLK_c, KMOD_LCTRL);
-	input_set_keybind(_("paste"), SDLK_v, KMOD_LCTRL);
-	input_set_keybind(_("delete"), SDLK_BACKSPACE, KMOD_NONE);
-	input_set_keybind(_("next_selection_type"), SDLK_TAB, KMOD_NONE);
-	input_set_keybind(_("previous_selection_type"), SDLK_TAB, KMOD_LSHIFT);
-	input_set_keybind(_("run_map_validator"), SDLK_e, KMOD_LCTRL);
-
-	/* Cheat */
-	input_set_keybind(_("cheat_xp+_1k"), SDLK_KP1, KMOD_NONE);
-	input_set_keybind(_("cheat_xp*_2"), SDLK_KP2, KMOD_NONE);
-	input_set_keybind(_("cheat_melee"), SDLK_KP7, KMOD_NONE);
-	input_set_keybind(_("cheat_range"), SDLK_KP8, KMOD_NONE);
-	input_set_keybind(_("cheat_programing"), SDLK_KP9, KMOD_NONE);
-	input_set_keybind(_("cheat_melee_down"), SDLK_KP4, KMOD_NONE);
-	input_set_keybind(_("cheat_range_down"), SDLK_KP5, KMOD_NONE);
-	input_set_keybind(_("cheat_programing_down"), SDLK_KP6, KMOD_NONE);
-	input_set_keybind(_("cheat_drop_random_item"), SDLK_r, KMOD_LCTRL);
-	input_set_keybind(_("cheat_drop_random_magical_item"), SDLK_r, KMOD_LCTRL | KMOD_LSHIFT);
-	input_set_keybind(_("cheat_respawn_level"), SDLK_r, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
-	input_set_keybind(_("cheat_level_editor"), SDLK_e, KMOD_LCTRL | KMOD_LALT);
-	input_set_keybind(_("cheat_menu"), SDLK_c, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
-	input_set_keybind(_("cheat_reload_graphics"), SDLK_g, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
-	input_set_keybind(_("cheat_inc_repair"), SDLK_r, KMOD_RCTRL );
-	input_set_keybind(_("cheat_dec_repair"), SDLK_r, KMOD_RCTRL | KMOD_RSHIFT );
-
-#ifdef WITH_RTPROF
-	/* RT Profiler */
-	input_set_keybind(_("rtprof_switch_activation"), SDLK_p, KMOD_LALT);
-	input_set_keybind(_("rtprof_clear_probes"), SDLK_o, KMOD_LALT);
-#endif
+	sprintf(out, "%s%s%s%s", ctrl_modstr, alt_modstr, shift_modstr, SDL_GetKeyName(kb->key));
 }
 
 #define KEYCHART_RECT_X (GameConfig.screen_width / 250)
@@ -338,10 +283,10 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 	put_string_centered(Para_BFont, FontHeight(Para_BFont), _("Key chart"));
 
-	if (startidx >= sizeof(keybindNames) / sizeof(keybindNames[0]))
+	if (startidx >= sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]))
 		return -1;
 
-	for (i = startidx; keybindNames[i] != NULL; i++) {
+	for (i = startidx; GameConfig.input_keybinds[i].name != NULL; i++) {
 		char keystr[100] = "";
 		const char *font_str = font_switchto_neon;
 		
@@ -349,10 +294,10 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 			font_str = font_switchto_red;
 		}
 
-		input_get_keybind_string(keybindNames[i], &keystr[0]);
+		input_get_keybind_string(&(GameConfig.input_keybinds[i]), &keystr[0]);
 
 		sprintf(txt, "%s%s%s - %s\n", font_str, (i == cursor) ? "** " : "   ",
-			GameConfig.input_keybinds[i].name, keystr);
+			_(GameConfig.input_keybinds[i].name), keystr);
 		put_string(GetCurrentFont(), xpos, ypos, txt);
 
 		ypos += FontHeight(GetCurrentFont());
@@ -405,7 +350,7 @@ void keychart()
 	int endpos;
 	int cursor = 0;
 	SDL_Event event;
-	const int maxcmds = sizeof(keybindNames) / sizeof(keybindNames[0]) - 2;
+	const int maxcmds = sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]) - 2;
 	int per_page = get_nb_commands_per_page();
 
 	Activate_Conservative_Frame_Computation();
@@ -472,7 +417,7 @@ void keychart()
 					newmod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE);	/* We want to ignore "global" modifiers. */
 					GameConfig.input_keybinds[cursor].mod = newmod;
 
-					for (i = 0; keybindNames[i] != NULL; i++) {
+					for (i = 0; GameConfig.input_keybinds[i].name != NULL; i++) {
 						if (i == cursor)
 							continue;
 
@@ -636,7 +581,7 @@ static int input_key(int keynum, int value)
 			int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("activate_program"));
 			if (number >= 10 || number < 0) {
 				ErrorMessage(__FUNCTION__,
-					     "Tried to activate skill number %d - only shortcuts from F1 to F9 are supported\n",
+					     _("Tried to activate skill number %d - only shortcuts from F1 to F9 are supported\n"),
 					     PLEASE_INFORM, IS_WARNING_ONLY, number);
 				return 0;
 			}
@@ -655,7 +600,7 @@ static int input_key(int keynum, int value)
 			   && value == KEY_PRESS) {
 			int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("quick_inventory"));
 			if (number >= 10 || number < 0) {
-				ErrorMessage(__FUNCTION__, "Tried to use quick inventory item %d - only 1-9 + 0 are supported.\n",
+				ErrorMessage(__FUNCTION__, _("Tried to use quick inventory item %d - only 1-9 + 0 are supported.\n"),
 					     PLEASE_INFORM, IS_WARNING_ONLY, number);
 				return 0;
 			}
@@ -762,7 +707,7 @@ static int input_key(int keynum, int value)
 			   && value == KEY_PRESS) {
 			int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("place_obstacle_kp"));
 			if (number >= 10 || number < 0) {
-				ErrorMessage(__FUNCTION__, "Tried to place obstacle using kp%d - only supported are kp1 to kp9\n",
+				ErrorMessage(__FUNCTION__, _("Tried to place obstacle using kp%d - only kp1 to kp9 are supported\n"),
 					     PLEASE_INFORM, IS_WARNING_ONLY, number);
 				return 0;
 			}
@@ -833,7 +778,7 @@ static int input_key_event(SDLKey key, SDLMod mod, int value)
 	int noteaten = -1;
 	mod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE);	/* We want to ignore "global" modifiers. */
 
-	for (i = 0; keybindNames[i] != NULL; i++)
+	for (i = 0; GameConfig.input_keybinds[i].name != NULL; i++)
 		if ((GameConfig.input_keybinds[i].key == key) && (GameConfig.input_keybinds[i].mod == mod)) {
 			if (!(noteaten = input_key(i, value)))
 				break;

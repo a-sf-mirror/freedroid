@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
 		bind_textdomain_codeset("freedroidrpg-dialogs", "ISO-8859-1");
 		/* TO BE IMPLEMENTED
 		bindtextdomain("freedroidrpg-map", localedir);
-		bind_textdomain_codeset("freedroidrpg-dialogs", "ISO-8859-1");
+		bind_textdomain_codeset("freedroidrpg-map", "ISO-8859-1");
 		*/
 
 		// Default domain to use, if none is specified

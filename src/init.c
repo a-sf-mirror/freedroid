@@ -1106,7 +1106,6 @@ void InitFreedroid(int argc, char **argv)
 	ResetGameConfigToDefaultValues();
 
 	input_keyboard_init();
-	input_set_default();
 	init_lua();
 
 	LoadGameConfig();
