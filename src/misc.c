@@ -1078,7 +1078,7 @@ This indicates an error in the map system of FreedroidRPG.", PLEASE_INFORM, IS_F
 	if (game_status == INSIDE_GAME) {
 		// Notify level change events on this level.
 		if (LNum != old_lvl)
-			event_level_changed(Me.pos.z, LNum);
+			event_level_changed(old_lvl, LNum);
 
 		// Notify position changed.
 		event_position_changed(Me.pos, TRUE);

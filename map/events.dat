@@ -1621,6 +1621,18 @@ Silent=1
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"Guy 70 to 24"
+Trigger changing level
+Entering level=24
+Exiting level=70
+<LuaCode>
+	if (Guy_dialog_executing) then
+		Guy_70_to_24_passed = true
+		teleport("24-tux2")
+	end
+</LuaCode>
+* End of trigger *
 ##############
 ## Level 25 ##
 ##############
@@ -6525,6 +6537,22 @@ Name=_"Back to tunnel"
 Trigger at label="69to31"
 Silent=1
 <LuaCode> teleport("31from69") </LuaCode>
+* End of trigger *
+
+##############
+## Level 70 ##
+##############
+* New event trigger *
+Name=_"Guy 24 to 70"
+Trigger changing level
+Entering level=70
+Exiting level=24
+<LuaCode>
+	if (Guy_dialog_executing) then
+		Guy_24_to_70_passed = true
+		teleport("24-tux2")
+	end
+</LuaCode>
 * End of trigger *
 
 ################

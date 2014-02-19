@@ -36,6 +36,9 @@ return {
 	end,
 
 	EveryTime = function()
+
+		Guy_dialog_executing = true
+
 		-- Tux:says_random..
 		Tux:says_random("1", "2", "3", "4", "5", "NO_WAIT")
 		Tux:says_random("1", "2", "3", "4", "5", "NO_WAIT")
@@ -316,9 +319,30 @@ return {
 				if (DeadGuy_death_trigger == "works" ) then
 					npc_says("EVENT test 2 (death event) succeeded", "NO_WAIT")
 				else
-					guy_fail("EVENT test (death event) 2")
+					guy_fail("EVENT test 2 (death event)")
 				end
 			end
+
+			Guy_24_to_70_passed = false --reset these here.
+			Guy_70_to_24_passed = false -- needed because we might have walked around manually
+			if not (running_benchmark()) then
+				-- tux is on lvl 24 currently
+				teleport("24-exit-level-70") -- teleport from level 24 to level 70, to a label
+				if (Guy_24_to_70_passed) then -- the from24to70 event worked!    the event also teleport tux back to level 24 (from70to24!)...
+					npc_says("EVENT test 3 (Entering 70, exiting 24) succeeded", "NO_WAIT")
+				else
+					guy_fail("EVENT test 3 (Entering 70, exiting 24)")
+				end
+
+				if (Guy_70_to_24_passed) then -- ... which sets this as true.   tux is also teleported to label 24-tux2
+					npc_says("EVENT test 4 (Entering 24, exiting 70) succeeded", "NO_WAIT")
+				else
+					guy_fail("EVENT test 4 (Entering 24, exiting 70)")
+				end
+			end
+
+
+
 
 ---------------------------------------------------------- Gold
 			if (Tux:get_gold() == 0) then
@@ -396,6 +420,7 @@ return {
 			display_big_message("Big Message")
 			display_console_message("Console message, [b]blue[/b], not blue.")
 			end_dialog()
+			Guy_dialog_executing = false
 		end,
 	},
 	{
