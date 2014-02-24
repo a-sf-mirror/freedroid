@@ -49,7 +49,7 @@ static char *get_current_skill_button_tooltip()
 		buffer = alloc_autostr(64);
 
 	// TRANSLATORS: Tooltip of skill button: <skill name>\n Heat: <skill heat cost>\n Revision: <skill revision>
-	autostr_printf(buffer, _("%s\nHeat: %d\nRevision: %d\n"), SpellSkillMap[Me.readied_skill].name, calculate_program_heat_cost(Me.readied_skill), Me.skill_level[Me.readied_skill]);
+	autostr_printf(buffer, _("%s\nHeat: %d\nRevision: %d\n"), D_(SpellSkillMap[Me.readied_skill].name), calculate_program_heat_cost(Me.readied_skill), Me.skill_level[Me.readied_skill]);
 
 	return buffer->value;
 }

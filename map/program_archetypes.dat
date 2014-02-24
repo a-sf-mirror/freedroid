@@ -61,8 +61,7 @@ Cost per level=0
 
 ** Start of new program specification subsection **
 Program name=_"Sanctuary"
-Program description=_"Effect: Teleport to town or back 
-The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
+Program description=_"Effect: Teleport to town or back. The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
 Picture="TeleportHomeSpell.png"
 Form="self"
 Effect="teleport_home"
