@@ -969,6 +969,13 @@ static int lua_get_game_time(lua_State *L)
 	return 1;
 }
 
+static int lua_win_game(lua_State *L)
+{
+	ThouHastWon();
+
+	return 0;
+}
+
 static int lua_play_sound(lua_State *L)
 {
 	const char *filename = luaL_checkstring(L, 1);
@@ -1362,6 +1369,9 @@ luaL_Reg lfuncs[] = {
 	{"user_input_string", lua_user_input_string},
 
 	{"create_droid", lua_create_droid},
+
+	{"win_game", lua_win_game},
+	// Finish the game.
 
 	{"game_time", lua_get_game_time},
 	/* play_sound("file")

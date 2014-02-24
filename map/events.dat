@@ -1571,8 +1571,7 @@ Name=_"24_win_game"
 Trigger at label="24_win_game"
 Silent=0
 <LuaCode>
-	add_quest("Propagating a faulty firmware update", "Add the quest so we can end it and finish the game.")
-	end_quest("Propagating a faulty firmware update", "You won.")
+	win_game()
 </LuaCode>
 * End of trigger *
 

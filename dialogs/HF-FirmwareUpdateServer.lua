@@ -97,6 +97,9 @@ return {
 		text = _"Logout",
 		code = function()
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
+			if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				win_game() -- Comment this to test the game with all bots dead.
+			end
 			end_dialog()
 		end,
 	},

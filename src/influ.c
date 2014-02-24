@@ -326,9 +326,6 @@ float GetInfluPositionHistoryZ(int HowLongPast)
  */
 void CheckIfCharacterIsStillOk()
 {
-	if (Me.AllMissions[GetMissionIndexByName("Propagating a faulty firmware update")].MissionIsComplete) {
-		ThouHastWon();
-	}
 
 	// Now we check if the main character is really still ok.
 	//

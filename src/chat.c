@@ -822,6 +822,9 @@ int validate_dialogs()
 	/* set_mouse_move_target() breaks validator */
 	run_lua(LUA_DIALOG, "function set_mouse_move_target(a)\nend\n");
 
+	/* win_game() causes silly animations and delays the process. */
+	run_lua(LUA_DIALOG, "function win_game(a)\nend\n");
+
 	/* This dummy is needed for the Lua functions that communicates with a npc */
 	BROWSE_ALIVE_BOTS(dummy_partner) {
 		break;

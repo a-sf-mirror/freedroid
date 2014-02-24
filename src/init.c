@@ -1240,11 +1240,9 @@ void ThouArtDefeated(void)
 
 /**
  * This function displays the last seconds of the game when the influencer
- * has actually been killed.  It generates some explosions and waits for
- * some seconds, where the user can reload his latest game, or after that
- * returns to finally quit the inner game loop and the program will 
- * (outside this function) ask for a completely new game or loading a different
- * saved game or quit as in the very beginning of the game.
+ * has actually won the game.  It anims the game while it's waits for
+ * some seconds, after printed a winning message. After that, Credits.title
+ * can be displayed, or the game reboots to main.
  */
 void ThouHastWon(void)
 {
