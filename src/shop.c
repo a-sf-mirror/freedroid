@@ -653,7 +653,7 @@ static void repair_item(item * RepairItem)
 		SDL_Delay(1);
 
 	if (calculate_item_repair_price(RepairItem) > Me.Gold) {
-		alert_window("%s\n\n%s", item_specs_get_name(RepairItem->type), _("You can not afford to have this item repaired."));
+		alert_window("%s\n\n%s", D_(item_specs_get_name(RepairItem->type)), _("You can not afford to have this item repaired."));
 		return;
 	}
 
@@ -729,7 +729,7 @@ static int buy_item(item *BuyItem, int amount)
 
 	// If the item is too expensive, bail out
 	if (item_price > Me.Gold) {
-		alert_window("%s\n\n%s", item_specs_get_name(BuyItem->type), _("You can not afford this item."));
+		alert_window("%s\n\n%s", D_(item_specs_get_name(BuyItem->type)), _("You can not afford this item."));
 		return -1;
 	}
 

@@ -144,7 +144,7 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 
 				// So no ammunition... We should say so and reload...
 				// TRANSLATORS: Console msg when a weapon is empty
-				append_new_game_message(_("%s empty, reloading..."), item_specs_get_name(Me.weapon_item.type));
+				append_new_game_message(_("%s empty, reloading..."), D_(item_specs_get_name(Me.weapon_item.type)));
 				TuxReloadWeapon();
 				return;
 

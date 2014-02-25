@@ -219,7 +219,7 @@ static void init_droid_description(struct widget_text *w, int droidtype)
 	autostr_append(w->text, _("Entry : %d\n"), droidtype + 1);
 
 	if ((weapon_type = Droidmap[droidtype].weapon_item.type) >= 0)	// make sure item != -1 
-		item_name = item_specs_get_name(weapon_type);	// does not segfault
+		item_name = D_(item_specs_get_name(weapon_type));	// does not segfault
 	else
 		item_name = _("none");
 

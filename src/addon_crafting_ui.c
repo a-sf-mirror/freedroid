@@ -94,7 +94,7 @@ static void select_recipe(int index)
 	// Copy the item description to the text widget.
 	struct auto_string *desc = ui.description.text;
 	type = arr[index].item_type;
-	autostr_printf(desc, "%s", ItemMap[type].item_description);
+	autostr_printf(desc, "%s", D_(ItemMap[type].item_description));
 
 	// Append the add-on tooltip to the text widget.
 	autostr_append(desc, "\n\n%s%s%s\n", font_switchto_msgstat, _("Features:"), font_switchto_msgvar);
@@ -290,7 +290,7 @@ void show_addon_crafting_ui()
 			SetCurrentFont(Red_BFont);
 		}
 		int type = arr[i].item_type;
-		display_text(item_specs_get_name(type), rect.x + rect.h, rect.y + 4, NULL);
+		display_text(D_(item_specs_get_name(type)), rect.x + rect.h, rect.y + 4, NULL);
 		struct image *img = get_item_inventory_image(type);
 		if (img) {
 			float scale = (float)(RECIPE_LIST_IMG_WIDTH + RECIPE_LIST_IMG_HEIGHT) / (img->w + img->h);

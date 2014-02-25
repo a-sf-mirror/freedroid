@@ -369,7 +369,7 @@ void append_item_name(item * ShowItem, struct auto_string *str)
 	if (item_spec_eq_id(ShowItem->type, "Valuable Circuits"))
 		autostr_append(str, "%d ", ShowItem->multiplicity);
 
-	autostr_append(str, "%s", item_specs_get_name(ShowItem->type));
+	autostr_append(str, "%s", D_(item_specs_get_name(ShowItem->type)));
 
 	if (ShowItem->quality == GOOD_QUALITY) {
 		autostr_append(str, "\n%s", font_switchto_blue);
@@ -807,7 +807,7 @@ void ApplyItem(item * CurItem)
 		} else {
 			// TRANSLATORS: the trailing %s is a program name
 			append_new_game_message(_("You have reached the maximum skill level for %s"), 
-									ItemMap[CurItem->type].right_use.add_skill);
+									D_(ItemMap[CurItem->type].right_use.add_skill));
 			Takeover_Game_Deadlock_Sound();
 		}
 	}
@@ -2122,7 +2122,7 @@ enum slot_type get_slot_type_by_name(char *name)
 const char *item_specs_get_name(int type)
 {
 	if (ItemMap[type].name)
-		return D_(ItemMap[type].name);
+		return ItemMap[type].name;
 	else if (ItemMap[type].id)
 		return ItemMap[type].id;
 	return "BUG - UNNAMED ITEM";

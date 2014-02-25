@@ -173,7 +173,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	// Usable items should say that they can be used via right-clicking on it
 	if (ItemMap[item->type].right_use.tooltip) {
 		if (game_status == INSIDE_GAME) {
-			autostr_append(str, "%s\n", ItemMap[item->type].right_use.tooltip);
+			autostr_append(str, "%s\n", D_(ItemMap[item->type].right_use.tooltip));
 
 			// Show text only if item is in inventory
 			if (item->inventory_position.x != -1) {
@@ -181,7 +181,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 				autostr_append(str, _("Right click to use\n"));
 			}
 		} else {
-			autostr_append(str, _("Item use: %s\n"), ItemMap[item->type].right_use.tooltip);
+			autostr_append(str, _("Item use: %s\n"), D_(ItemMap[item->type].right_use.tooltip));
 		}
 	}
 
@@ -293,7 +293,7 @@ static void prepare_text_window_content(struct auto_string *str)
 	 * description field.  If the requirements for this item are not met, we
 	 * show a text. */
 	if (item_held_in_hand != NULL) {
-		autostr_printf(str, "%s%s", font_switchto_neon, item_specs_get_name(item_held_in_hand->type));
+		autostr_printf(str, "%s%s", font_switchto_neon, D_(item_specs_get_name(item_held_in_hand->type)));
 
 		if (!ItemUsageRequirementsMet(item_held_in_hand, FALSE)) {
 			autostr_append(str, "\n%s%s", font_switchto_red, _("REQUIREMENTS NOT MET"));
