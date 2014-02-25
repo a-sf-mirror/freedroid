@@ -4,6 +4,18 @@ math.randomseed(os.time())
 -- aliases for dialogs
 get_program = get_program_revision
 
+-- "_" is used as a gettext marker in dialogs as well as in config files.
+--
+-- For dialog files, it is bound to a C function which translates text using
+-- the freedroidrpg-dialog domain.
+--
+-- For config files, "_" is just used to declare i18n texts, but does not
+-- involve immediat translation. This thus has to be a 'void' function.
+--
+-- So, if _() was not defined when the lua thread was created (config files use
+-- case), it is set to a 'void' function.
+_ = _ or function(t) return t end
+
 -- compute the "town score" to determine whether the player can become
 -- a red guard
 function get_town_score()

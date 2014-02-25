@@ -1125,7 +1125,7 @@ static int lua_set_mouse_move_target(lua_State *L)
 	return 1;
 }
 
-static int lua_assets_gettext(lua_State *L)
+static int lua_data_gettext(lua_State *L)
 {
 	char *text = (char *)luaL_checkstring(L, 1);
 	lua_pushstring(L, D_(text));
@@ -1918,10 +1918,10 @@ void init_lua()
 	config_lua_state = luaL_newstate();
 	luaL_openlibs(config_lua_state);
 
-	// Add a context specific lua_gettext
-	luaL_Reg lua_gettext = { "_", lua_assets_gettext };
-	lua_pushcfunction(config_lua_state, lua_gettext.func);
-	lua_setglobal(config_lua_state, lua_gettext.name);
+	// Add a context specific lua gettext
+	luaL_Reg lua_gettexts = { "D_", lua_data_gettext };
+	lua_pushcfunction(config_lua_state, lua_gettexts.func);
+	lua_setglobal(config_lua_state, lua_gettexts.name);
 
 	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
 		run_lua_file(LUA_CONFIG, fpath);
