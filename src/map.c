@@ -405,10 +405,7 @@ static int decode_header(level *loadlevel, char *data)
 	decode_random_droids(loadlevel, data);
 
 	// Read the levelname.
-	// Accept legacy ship-files that are not yet marked-up for translation
-	if ((loadlevel->Levelname = ReadAndMallocStringFromDataOptional(data, LEVEL_NAME_STRING, "\"")) == NULL) {
-		loadlevel->Levelname = ReadAndMallocStringFromData(data, LEVEL_NAME_STRING_LEGACY, "\n");
-	}
+	loadlevel->Levelname = ReadAndMallocStringFromData(data, LEVEL_NAME_STRING, "\"");
 
 	loadlevel->Background_Song_Name = ReadAndMallocStringFromData(data, BACKGROUND_SONG_NAME_STRING, "\n");
 

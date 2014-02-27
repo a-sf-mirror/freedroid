@@ -535,7 +535,7 @@ static void LevelOptions(void)
 		sprintf(Options[i], _("Level: %d.  (<-/->)"), EditLevel()->levelnum);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Name: %s"), EditLevel()->Levelname);
+		sprintf(Options[i], _("Name (en_US): %s"), EditLevel()->Levelname);
 		MenuTexts[i] = Options[i];
 		i++;
 		sprintf(Options[i], _("Size:  X %d  Y %d"), EditLevel()->xlen, EditLevel()->ylen);
@@ -720,7 +720,7 @@ static void LevelOptions(void)
 		case SET_LEVEL_NAME:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			char *newLevelname = GetEditableStringInPopupWindow(1000, _("\n Please enter new level name: \n\n"), EditLevel()->Levelname);
+			char *newLevelname = GetEditableStringInPopupWindow(1000, _("\n Please enter new level name (in English): \n\n"), EditLevel()->Levelname);
 			if (newLevelname)
 				EditLevel()->Levelname = newLevelname;
 			break;
@@ -987,7 +987,7 @@ int DoLevelEditorMainMenu()
 		InitiateMenu("--EDITOR_BACKGROUND--");
 
 		i = 0;
-		sprintf(Options[i], _("Level: %d - %s"), EditLevel()->levelnum, EditLevel()->Levelname);
+		sprintf(Options[i], _("Level: %d - %s (en_US)"), EditLevel()->levelnum, EditLevel()->Levelname);
 		MenuTexts[i] = Options[i];
 		i++;
 		MenuTexts[i++] = _("Level Options");
