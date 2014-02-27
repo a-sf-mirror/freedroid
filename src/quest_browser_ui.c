@@ -62,7 +62,7 @@ static void quest_browser_append_mission_info(const char *mis_name, int full_des
 	int mis_num = GetMissionIndexByName(mis_name);
 	struct mission *mis = &Me.AllMissions[mis_num];
 
-	autostr_append(quest_browser_text, _("[n]Quest [r]%s\n[n]"), mis->mission_name);
+	autostr_append(quest_browser_text, _("[n]Quest [r]%s\n[n]"), D_(mis->mission_name));
 	
 	if (!full_description)
 		return;
