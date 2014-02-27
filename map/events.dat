@@ -85,7 +85,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N"
+Name="Escort Tux N"
 Trigger at label="N-enter-1"
 Silent=1
 <LuaCode>
@@ -100,7 +100,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N2"
+Name="Escort Tux N2"
 Trigger at label="N-enter-2"
 Silent=1
 <LuaCode>
@@ -115,7 +115,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N3"
+Name="Escort Tux N3"
 Trigger at label="N-enter-3"
 Silent=1
 <LuaCode>
@@ -130,7 +130,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N4"
+Name="Escort Tux N4"
 Trigger at label="N-enter-4"
 Silent=1
 <LuaCode>
@@ -145,7 +145,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N-e1-inner"
+Name="Escort Tux N-e1-inner"
 Trigger at label="N-exit-1-inner"
 Silent=1
 <LuaCode>
@@ -161,7 +161,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N-e2-inner"
+Name="Escort Tux N-e2-inner"
 Trigger at label="N-exit-2-inner"
 Silent=1
 <LuaCode>
@@ -177,7 +177,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N-e3-inner"
+Name="Escort Tux N-e3-inner"
 Trigger at label="N-exit-3-inner"
 Silent=1
 <LuaCode>
@@ -193,7 +193,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N-e4-inner"
+Name="Escort Tux N-e4-inner"
 Trigger at label="N-exit-4-inner"
 Silent=1
 <LuaCode>
@@ -209,7 +209,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux TR-exit-1"
+Name="Escort Tux TR-exit-1"
 Trigger at label="TeleporterRoom-exit-1"
 Silent=1
 <LuaCode>
@@ -220,7 +220,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux TR-exit-2"
+Name="Escort Tux TR-exit-2"
 Trigger at label="TeleporterRoom-exit-2"
 Silent=1
 <LuaCode>
@@ -231,7 +231,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux Teleport Out"
+Name="Escort Tux Teleport Out"
 Trigger changing level
 Exiting level=0
 <LuaCode>
@@ -242,7 +242,7 @@ Exiting level=0
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N-e1-outer"
+Name="Escort Tux N-e1-outer"
 Trigger at label="N-exit-1-outer"
 Silent=1
 <LuaCode>
@@ -255,7 +255,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N-e2-outer"
+Name="Escort Tux N-e2-outer"
 Trigger at label="N-exit-2-outer"
 Silent=1
 <LuaCode>
@@ -268,7 +268,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N-e3-outer"
+Name="Escort Tux N-e3-outer"
 Trigger at label="N-exit-3-outer"
 Silent=1
 <LuaCode>
@@ -281,7 +281,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Escort Tux N-e4-outer"
+Name="Escort Tux N-e4-outer"
 Trigger at label="N-exit-4-outer"
 Silent=1
 <LuaCode>
@@ -294,7 +294,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Tania Escort W-1"
+Name="Tania Escort W-1"
 Trigger at label="W-enter-1"
 Silent=1
 <LuaCode>
@@ -308,7 +308,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Tania Escort W-2"
+Name="Tania Escort W-2"
 Trigger at label="W-enter-2"
 Silent=1
 <LuaCode>
@@ -322,7 +322,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Tania Escort W-3"
+Name="Tania Escort W-3"
 Trigger at label="W-enter-3"
 Silent=1
 <LuaCode>
@@ -336,7 +336,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"DocFront-inner-N"
+Name="DocFront-inner-N"
 Trigger at label="DocFront-inner-N"
 Silent=1
 <LuaCode>
@@ -349,7 +349,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"DocFront-inner-S"
+Name="DocFront-inner-S"
 Trigger at label="DocFront-inner-S"
 Silent=1
 <LuaCode>
@@ -362,7 +362,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"DocBack-inner-W"
+Name="DocBack-inner-W"
 Trigger at label="DocBack-inner-W"
 Silent=1
 <LuaCode>
@@ -375,7 +375,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"DocBack-inner-E"
+Name="DocBack-inner-E"
 Trigger at label="DocBack-inner-E"
 Silent=1
 <LuaCode>
@@ -388,7 +388,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"DocFront-out-N"
+Name="DocFront-out-N"
 Trigger at label="DocFront-out-N"
 Silent=1
 <LuaCode>
@@ -400,7 +400,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"DocFront-out-S"
+Name="DocFront-out-S"
 Trigger at label="DocFront-out-S"
 Silent=1
 <LuaCode>
@@ -412,7 +412,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"DocBack-out-W"
+Name="DocBack-out-W"
 Trigger at label="DocBack-out-W"
 Silent=1
 <LuaCode>
@@ -424,7 +424,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"DocBack-out-E"
+Name="DocBack-out-E"
 Trigger at label="DocBack-out-E"
 Silent=1
 <LuaCode>
@@ -436,7 +436,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Town-HomeSpot-Starting"
+Name="Town-HomeSpot-Starting"
 Trigger at label="TeleportHomeTarget"
 Teleported=0
 Silent=1
@@ -449,7 +449,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Town-HomeSpot-Finishing"
+Name="Town-HomeSpot-Finishing"
 Trigger at label="TeleportHomeTarget"
 Teleported=1
 Silent=1
@@ -461,7 +461,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-indoor1"
+Name="0-secret-exit-door-indoor1"
 Trigger at label="0-secret-exit-door-indoor1"
 Teleported=0
 Silent=1
@@ -471,7 +471,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-indoor2"
+Name="0-secret-exit-door-indoor2"
 Trigger at label="0-secret-exit-door-indoor2"
 Teleported=0
 Silent=1
@@ -481,7 +481,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-outdoor1"
+Name="0-secret-exit-door-outdoor1"
 Trigger at label="0-secret-exit-door-outdoor1"
 Teleported=0
 Silent=1
@@ -491,7 +491,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-outdoor2"
+Name="0-secret-exit-door-outdoor2"
 Trigger at label="0-secret-exit-door-outdoor2"
 Teleported=0
 Silent=1
@@ -501,7 +501,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-outdoor3"
+Name="0-secret-exit-door-outdoor3"
 Trigger at label="0-secret-exit-door-outdoor3"
 Teleported=0
 Silent=1
@@ -511,7 +511,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-outdoor4"
+Name="0-secret-exit-door-outdoor4"
 Trigger at label="0-secret-exit-door-outdoor4"
 Teleported=0
 Silent=1
@@ -521,7 +521,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-outdoor5"
+Name="0-secret-exit-door-outdoor5"
 Trigger at label="0-secret-exit-door-outdoor5"
 Teleported=0
 Silent=1
@@ -531,7 +531,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-outdoor6"
+Name="0-secret-exit-door-outdoor6"
 Trigger at label="0-secret-exit-door-outdoor6"
 Teleported=0
 Silent=1
@@ -541,7 +541,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-indoor-close1"
+Name="0-secret-exit-door-indoor-close1"
 Trigger at label="0-secret-exit-door-indoor-close1"
 Teleported=0
 Silent=1
@@ -551,7 +551,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-indoor-close2"
+Name="0-secret-exit-door-indoor-close2"
 Trigger at label="0-secret-exit-door-indoor-close2"
 Teleported=0
 Silent=1
@@ -561,7 +561,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-indoor-close3"
+Name="0-secret-exit-door-indoor-close3"
 Trigger at label="0-secret-exit-door-indoor-close3"
 Teleported=0
 Silent=1
@@ -571,7 +571,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-indoor-close4"
+Name="0-secret-exit-door-indoor-close4"
 Trigger at label="0-secret-exit-door-indoor-close4"
 Teleported=0
 Silent=1
@@ -581,7 +581,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-indoor-close5"
+Name="0-secret-exit-door-indoor-close5"
 Trigger at label="0-secret-exit-door-indoor-close5"
 Teleported=0
 Silent=1
@@ -591,7 +591,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"0-secret-exit-door-indoor-close6"
+Name="0-secret-exit-door-indoor-close6"
 Trigger at label="0-secret-exit-door-indoor-close6"
 Teleported=0
 Silent=1
@@ -601,7 +601,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Town-HomeSpot-Exiting"
+Name="Town-HomeSpot-Exiting"
 Trigger changing level
 Exiting level=0
 <LuaCode>
@@ -612,7 +612,7 @@ Exiting level=0
 * End of trigger *
 
 * New event trigger *
-Name=_"Tamara Shelf Trigger 1"
+Name="Tamara Shelf Trigger 1"
 Trigger on obstacle
 Obstacle label="tamara-book-1"
 <LuaCode>
@@ -631,7 +631,7 @@ Obstacle label="tamara-book-1"
 * End of trigger *
 
 * New event trigger *
-Name=_"Tamara Shelf Trigger 2"
+Name="Tamara Shelf Trigger 2"
 Trigger on obstacle
 Obstacle label="tamara-book-2"
 <LuaCode>
@@ -641,7 +641,7 @@ Obstacle label="tamara-book-2"
 * End of trigger *
 
 * New event trigger *
-Name=_"Tamara Shelf Trigger 3"
+Name="Tamara Shelf Trigger 3"
 Trigger on obstacle
 Obstacle label="tamara-book-3"
 <LuaCode>
@@ -651,7 +651,7 @@ Obstacle label="tamara-book-3"
 * End of trigger *
 
 * New event trigger *
-Name=_"Restore town music"
+Name="Restore town music"
 Trigger changing level
 Entering level=0
 <LuaCode>
@@ -760,7 +760,7 @@ Enemy level=6
 Enemy dialog name="Singularity"
 <LuaCode>
 	if (has_quest("The yellow toolkit") and not done_quest("The yellow toolkit")) then
-		update_quest(_"The yellow toolkit", _"The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it...")
+		update_quest("The yellow toolkit", _"The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it...")
 	end
 </LuaCode>
 * End of trigger *
@@ -798,7 +798,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"Bridge Trigger 1"
+Name="Bridge Trigger 1"
 Trigger at label="8-bridge-trigger1"
 Silent=1
 <LuaCode>
@@ -813,7 +813,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Bridge Trigger 2"
+Name="Bridge Trigger 2"
 Trigger at label="8-bridge-trigger2"
 Silent=1
 <LuaCode>
@@ -850,7 +850,7 @@ Silent=0
 ##############
 
 * New event trigger *
-Name=_"InvaderBot-Alive-Check-N"
+Name="InvaderBot-Alive-Check-N"
 Trigger at label="InvaderBot-Alive-Check-N"
 Silent=1
 <LuaCode>
@@ -861,7 +861,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"InvaderBot-Alive-Check-W"
+Name="InvaderBot-Alive-Check-W"
 Trigger at label="InvaderBot-Alive-Check-W"
 Silent=1
 <LuaCode>
@@ -892,7 +892,7 @@ Exiting level=13
 	   (not Ewalds_296_teleported) then
 		teleport_npc("296TeleportTarget", "Ewalds_296")
 		Ewalds_296_teleported = true
-		update_quest(_"An Explosive Situation", _"I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened.")
+		update_quest("An Explosive Situation", _"I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened.")
 	end
 </LuaCode>
 * End of trigger *
@@ -913,7 +913,7 @@ Exiting level=13
 ##############
 
 * New event trigger *
-Name=_"Kevin Guard Rush-1"
+Name="Kevin Guard Rush-1"
 Trigger at label="Kevin-Enter-1"
 Silent=1
 <LuaCode>
@@ -923,7 +923,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Kevin Guard Rush-2"
+Name="Kevin Guard Rush-2"
 Trigger at label="Kevin-Enter-2"
 Silent=1
 <LuaCode>
@@ -933,7 +933,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Kevin Guard Rush-3"
+Name="Kevin Guard Rush-3"
 Trigger at label="Kevin-Enter-3"
 Silent=1
 <LuaCode>
@@ -950,7 +950,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"Entering to Kevin's Backdoor"
+Name="Entering to Kevin's Backdoor"
 Trigger at label="KevinsBackDoor-Entering"
 Silent=1
 <LuaCode>
@@ -962,7 +962,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Exiting from Kevin's Backdoor"
+Name="Exiting from Kevin's Backdoor"
 Trigger at label="KevinsBackDoor-Exiting"
 Silent=1
 <LuaCode>
@@ -974,7 +974,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Exiting from Kevin's Backdoor - Teleport"
+Name="Exiting from Kevin's Backdoor - Teleport"
 Trigger changing level
 Exiting level=17
 <LuaCode>
@@ -1020,7 +1020,7 @@ Silent=0
 ##############
 
 * New event trigger *
-Name=_"24close1"
+Name="24close1"
 Trigger at label="24close1"
 Silent=1
 <LuaCode>
@@ -1029,7 +1029,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24close2"
+Name="24close2"
 Trigger at label="24close2"
 Silent=1
 <LuaCode>
@@ -1038,7 +1038,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24close3"
+Name="24close3"
 Trigger at label="24close3"
 Silent=1
 <LuaCode>
@@ -1047,7 +1047,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24close4"
+Name="24close4"
 Trigger at label="24close4"
 Silent=1
 <LuaCode>
@@ -1056,7 +1056,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24close5"
+Name="24close5"
 Trigger at label="24close5"
 Silent=1
 <LuaCode>
@@ -1065,7 +1065,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24close6"
+Name="24close6"
 Trigger at label="24close6"
 Silent=1
 <LuaCode>
@@ -1074,7 +1074,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24close7"
+Name="24close7"
 Trigger at label="24close7"
 Silent=1
 <LuaCode>
@@ -1083,7 +1083,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24close8"
+Name="24close8"
 Trigger at label="24close8"
 Silent=1
 <LuaCode>
@@ -1092,7 +1092,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open1"
+Name="24open1"
 Trigger at label="24open1"
 Silent=1
 <LuaCode>
@@ -1101,7 +1101,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open2"
+Name="24open2"
 Trigger at label="24open2"
 Silent=1
 <LuaCode>
@@ -1110,7 +1110,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open3"
+Name="24open3"
 Trigger at label="24open3"
 Silent=1
 <LuaCode>
@@ -1119,7 +1119,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open4"
+Name="24open4"
 Trigger at label="24open4"
 Silent=1
 <LuaCode>
@@ -1128,7 +1128,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open5"
+Name="24open5"
 Trigger at label="24open5"
 Silent=1
 <LuaCode>
@@ -1137,7 +1137,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open6"
+Name="24open6"
 Trigger at label="24open6"
 Silent=1
 <LuaCode>
@@ -1146,7 +1146,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open7"
+Name="24open7"
 Trigger at label="24open7"
 Silent=1
 <LuaCode>
@@ -1155,7 +1155,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open8"
+Name="24open8"
 Trigger at label="24open8"
 Silent=1
 <LuaCode>
@@ -1164,7 +1164,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open9"
+Name="24open9"
 Trigger at label="24open9"
 Silent=1
 <LuaCode>
@@ -1173,7 +1173,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open10"
+Name="24open10"
 Trigger at label="24open10"
 Silent=1
 <LuaCode>
@@ -1182,7 +1182,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open11"
+Name="24open11"
 Trigger at label="24open11"
 Silent=1
 <LuaCode>
@@ -1191,7 +1191,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open12"
+Name="24open12"
 Trigger at label="24open12"
 Silent=1
 <LuaCode>
@@ -1200,7 +1200,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open13"
+Name="24open13"
 Trigger at label="24open13"
 Silent=1
 <LuaCode>
@@ -1209,7 +1209,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open14"
+Name="24open14"
 Trigger at label="24open14"
 Silent=1
 <LuaCode>
@@ -1218,7 +1218,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open15"
+Name="24open15"
 Trigger at label="24open15"
 Silent=1
 <LuaCode>
@@ -1227,7 +1227,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24open16"
+Name="24open16"
 Trigger at label="24open16"
 Silent=1
 <LuaCode>
@@ -1236,7 +1236,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24inside"
+Name="24inside"
 Trigger at label="24inside"
 Silent=1
 <LuaCode>
@@ -1246,7 +1246,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24wallrm1"
+Name="24wallrm1"
 Trigger at label="24wallrm1"
 Silent=0
 <LuaCode>
@@ -1258,7 +1258,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24wallrm2"
+Name="24wallrm2"
 Trigger at label="24wallrm2"
 Silent=0
 <LuaCode>
@@ -1270,7 +1270,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24wallrm3"
+Name="24wallrm3"
 Trigger at label="24wallrm3"
 Silent=0
 <LuaCode>
@@ -1282,7 +1282,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24wallrm4"
+Name="24wallrm4"
 Trigger at label="24wallrm4"
 Silent=0
 <LuaCode>
@@ -1294,7 +1294,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24randobstacle"
+Name="24randobstacle"
 Trigger at label="24randobstacle"
 Silent=0
 <LuaCode>
@@ -1303,7 +1303,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24teleportstart"
+Name="24teleportstart"
 Trigger at label="24teleportstart"
 Silent=0
 <LuaCode>
@@ -1312,7 +1312,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24teleport1"
+Name="24teleport1"
 Trigger at label="24teleport1"
 Silent=1
 <LuaCode>
@@ -1321,7 +1321,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24teleport2"
+Name="24teleport2"
 Trigger at label="24teleport2"
 Silent=1
 <LuaCode>
@@ -1330,7 +1330,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24teleport3"
+Name="24teleport3"
 Trigger at label="24teleport3"
 Silent=1
 <LuaCode>
@@ -1339,7 +1339,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24teleport4"
+Name="24teleport4"
 Trigger at label="24teleport4"
 Silent=1
 <LuaCode>
@@ -1348,7 +1348,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24fdrpgdeathlabel"
+Name="24fdrpgdeathlabel"
 Trigger at label="24fdrpgdeathlabel"
 Silent=0
 <LuaCode>
@@ -1358,7 +1358,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-trap-trigger"
+Name="24-trap-trigger"
 Trigger at label="24-trap-trigger"
 Silent=0
 <LuaCode>
@@ -1372,7 +1372,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-freeze-tux-trap"
+Name="24-freeze-tux-trap"
 Trigger at label="24-freeze-tux-trap"
 Silent=0
 <LuaCode>
@@ -1382,7 +1382,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-obstacle-trigger"
+Name="24-obstacle-trigger"
 Trigger at label="24-obstacle-trigger"
 Silent=0
 <LuaCode>
@@ -1391,7 +1391,7 @@ add_obstacle(24, 43, 61.5, 1)
 * End of trigger *
 
 * New event trigger *
-Name=_"24-quest-label"
+Name="24-quest-label"
 Trigger at label="24-quest-label"
 Silent=0
 <LuaCode>
@@ -1402,7 +1402,7 @@ end_quest("24_label_test_quest", "The test quest has been solved. Congratulation
 * End of trigger *
 
 * New event trigger *
-Name=_"24-chest-trap-trigger"
+Name="24-chest-trap-trigger"
 Trigger at label="24-chest-trap-trigger"
 Silent=0
 <LuaCode>
@@ -1413,7 +1413,7 @@ end
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-3"
+Name="24-collapse-3"
 Trigger at label="24-collapsing-3"
 Silent=0
 <LuaCode>
@@ -1422,7 +1422,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-4"
+Name="24-collapse-4"
 Trigger at label="24-collapsing-4"
 Silent=0
 <LuaCode>
@@ -1431,7 +1431,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-5"
+Name="24-collapse-5"
 Trigger at label="24-collapsing-5"
 Silent=0
 <LuaCode>
@@ -1440,7 +1440,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-6"
+Name="24-collapse-6"
 Trigger at label="24-collapsing-6"
 Silent=0
 <LuaCode>
@@ -1449,7 +1449,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-7"
+Name="24-collapse-7"
 Trigger at label="24-collapsing-7"
 Silent=0
 <LuaCode>
@@ -1458,7 +1458,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-8"
+Name="24-collapse-8"
 Trigger at label="24-collapsing-8"
 Silent=0
 <LuaCode>
@@ -1467,7 +1467,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-9"
+Name="24-collapse-9"
 Trigger at label="24-collapsing-9"
 Silent=0
 <LuaCode>
@@ -1476,7 +1476,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-10"
+Name="24-collapse-10"
 Trigger at label="24-collapsing-10"
 Silent=0
 <LuaCode>
@@ -1485,7 +1485,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-11"
+Name="24-collapse-11"
 Trigger at label="24-collapsing-11"
 Silent=0
 <LuaCode>
@@ -1494,7 +1494,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-12"
+Name="24-collapse-12"
 Trigger at label="24-collapsing-12"
 Silent=0
 <LuaCode>
@@ -1503,7 +1503,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-13"
+Name="24-collapse-13"
 Trigger at label="24-collapsing-13"
 Silent=0
 <LuaCode>
@@ -1512,7 +1512,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-14"
+Name="24-collapse-14"
 Trigger at label="24-collapsing-14"
 Silent=0
 <LuaCode>
@@ -1521,7 +1521,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-15"
+Name="24-collapse-15"
 Trigger at label="24-collapsing-15"
 Silent=0
 <LuaCode>
@@ -1530,7 +1530,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-16"
+Name="24-collapse-16"
 Trigger at label="24-collapsing-16"
 Silent=0
 <LuaCode>
@@ -1539,7 +1539,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-collapse-end"
+Name="24-collapse-end"
 Trigger at label="24-collapsing-end"
 Silent=0
 <LuaCode>
@@ -1549,7 +1549,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-trigger-barrel"
+Name="24-trigger-barrel"
 Trigger on obstacle
 Obstacle label="24-trigger-barrel"
 <LuaCode>
@@ -1558,7 +1558,7 @@ Obstacle label="24-trigger-barrel"
 * End of trigger *
 
 * New event trigger *
-Name=_"24-trigger-barrel"
+Name="24-trigger-barrel"
 Trigger on obstacle
 Obstacle label="24-enemy-barrel"
 <LuaCode>
@@ -1567,7 +1567,7 @@ Obstacle label="24-enemy-barrel"
 * End of trigger *
 
 * New event trigger *
-Name=_"24_win_game"
+Name="24_win_game"
 Trigger at label="24_win_game"
 Silent=0
 <LuaCode>
@@ -1576,7 +1576,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24_auto_move1"
+Name="24_auto_move1"
 Trigger at label="24_auto_move1"
 Silent=0
 <LuaCode>
@@ -1585,7 +1585,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24_auto_move2"
+Name="24_auto_move2"
 Trigger at label="24_auto_move2"
 Silent=0
 <LuaCode>
@@ -1594,7 +1594,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24_auto_move3"
+Name="24_auto_move3"
 Trigger at label="24_auto_move3"
 Silent=0
 <LuaCode>
@@ -1603,7 +1603,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24_auto_move4"
+Name="24_auto_move4"
 Trigger at label="24_auto_move4"
 Silent=0
 <LuaCode>
@@ -1612,7 +1612,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"24-tux1"
+Name="24-tux1"
 Trigger at label="24-tux1"
 Silent=1
 <LuaCode>
@@ -1621,7 +1621,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Guy 70 to 24"
+Name="Guy 70 to 24"
 Trigger changing level
 Entering level=24
 Exiting level=70
@@ -1654,7 +1654,7 @@ Silent=0
 ## Level 28 ##
 ##############
 * New event trigger *
-Name=_"From32to28"
+Name="From32to28"
 Trigger at label="28to32"
 Silent=1
 <LuaCode>
@@ -1668,7 +1668,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"From28to28"
+Name="From28to28"
 Trigger at label="28to28"
 Silent=1
 <LuaCode>
@@ -1769,7 +1769,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"Arena Bot Killed"
+Name="Arena Bot Killed"
 Trigger on enemy death in level=29
 Enemy faction="ms"
 <LuaCode>
@@ -1800,7 +1800,7 @@ Enemy faction="ms"
 * End of trigger *
 
 * New event trigger *
-Name=_"Stop Arena"
+Name="Stop Arena"
 Trigger at label="StopArenaSquare"
 Silent=1
 <LuaCode>
@@ -1835,14 +1835,14 @@ Silent=0
 ## Level 31 ##
 ##############
 * New event trigger *
-Name=_"Back to tunnel"
+Name="Back to tunnel"
 Trigger at label="31to69"
 Silent=1
 <LuaCode> teleport("69from31") </LuaCode>
 * End of trigger *
 
 * New event trigger *
-Name=_"HF-gate-check1"
+Name="HF-gate-check1"
 Trigger at label="HF-gate-check1"
 Silent=1
 <LuaCode>
@@ -1857,7 +1857,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"HF-gate-check2"
+Name="HF-gate-check2"
 Trigger at label="HF-gate-check2"
 Silent=1
 <LuaCode>
@@ -1869,7 +1869,7 @@ Silent=1
 	end
 </LuaCode>
 
-Name=_"MSO-BreakingGlassWallTrap"
+Name="MSO-BreakingGlassWallTrap"
 Trigger at label="MSO-BreakingGlassWallTrapTrigger"
 Silent=1
 <LuaCode>
@@ -1886,7 +1886,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"MSO-SwitchOffGlassWallLaserTrap"
+Name="MSO-SwitchOffGlassWallLaserTrap"
 Trigger at label="MSO-SwitchOffGlassWallLaserTrap"
 Silent=1
 <LuaCode>
@@ -1900,7 +1900,7 @@ Silent=1
 
 
  * New event trigger *
-Name=_"IntruderDetectorMSOLobby01"
+Name="IntruderDetectorMSOLobby01"
 Trigger at label="IntruderDetectorMSOLobby01"
 Silent=1
 <LuaCode>
@@ -1910,7 +1910,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"IntruderDetectorMSOLobby02"
+Name="IntruderDetectorMSOLobby02"
 Trigger at label="IntruderDetectorMSOLobby02"
 Silent=1
 <LuaCode>
@@ -1919,7 +1919,7 @@ Silent=1
 </LuaCode>
 
 * New event trigger *
-Name=_"MSO-SwitchOffLaserTrapMSOLobby-1"
+Name="MSO-SwitchOffLaserTrapMSOLobby-1"
 Trigger at label="SwitchOffLaserTrapMSOLobby-1"
 Silent=1
 <LuaCode>
@@ -1928,7 +1928,7 @@ Silent=1
 </LuaCode>
 
 * New event trigger *
-Name=_"MSO-SwitchOffLaserTrapMSOLobby-2"
+Name="MSO-SwitchOffLaserTrapMSOLobby-2"
 Trigger at label="SwitchOffLaserTrapMSOLobby-2"
 Silent=1
 <LuaCode>
@@ -1940,7 +1940,7 @@ Silent=1
 ## Level 32 ##
 ##############
 * New event trigger *
-Name=_"Falseteleporter1"
+Name="Falseteleporter1"
 Trigger at label="32to28falseA"
 Silent=1
 <LuaCode>
@@ -1952,7 +1952,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Falseteleporter2"
+Name="Falseteleporter2"
 Trigger at label="32to28falseB"
 Silent=1
 <LuaCode>
@@ -1964,7 +1964,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Falseteleporter3"
+Name="Falseteleporter3"
 Trigger at label="32to28falseC"
 Silent=1
 <LuaCode>
@@ -1976,7 +1976,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"32to38riddlesolved"
+Name="32to38riddlesolved"
 Trigger at label="32to28trueD"
 Silent=1
 <LuaCode>
@@ -2019,7 +2019,7 @@ Silent=0
 ## Level 35 ##
 ##############
 * New event trigger *
-Name=_"Back to the Desert"
+Name="Back to the Desert"
 Trigger at label="SADD-NoExit"
 Silent=1
 <LuaCode>
@@ -2047,7 +2047,7 @@ Silent=0
 		Tania_surface = true
 		teleport_npc("40from35", "Tania")
 		change_obstacle_state("DesertGate-Inner", "closed")
-		update_quest(_"Tania's Escape", _"Tania has made it to the surface for the first time in a very long time.")
+		update_quest("Tania's Escape", _"Tania has made it to the surface for the first time in a very long time.")
 	end
 	teleport("40from35")
 </LuaCode>
@@ -2088,7 +2088,7 @@ Silent=0
 ## Level 37 ##
 ##############
 * New event trigger *
-Name=_"Red Square"
+Name="Red Square"
 Trigger at label="tutmove-1"
 Silent=1
 <LuaCode>
@@ -2102,7 +2102,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Black Dot"
+Name="Black Dot"
 Trigger at label="tutmove-2"
 <LuaCode>
 	if (has_quest("Tutorial Movement")) and
@@ -2115,7 +2115,7 @@ Trigger at label="tutmove-2"
 * End of trigger *
 
 * New event trigger *
-Name=_"Items-check1"
+Name="Items-check1"
 Trigger at label="37_items_entered1"
 Silent=1
 <LuaCode>
@@ -2124,7 +2124,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Items-check2"
+Name="Items-check2"
 Trigger at label="37_items_entered2"
 Silent=1
 <LuaCode>
@@ -2133,7 +2133,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Chest-check1"
+Name="Chest-check1"
 Trigger at label="37_chest_entered1"
 Silent=1
 <LuaCode>
@@ -2142,7 +2142,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Chest-check2"
+Name="Chest-check2"
 Trigger at label="37_chest_entered2"
 Silent=1
 <LuaCode>
@@ -2151,7 +2151,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Terminal-check1"
+Name="Terminal-check1"
 Trigger at label="37_terminal_entered1"
 Silent=1
 <LuaCode>
@@ -2160,7 +2160,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Terminal-check2"
+Name="Terminal-check2"
 Trigger at label="37_terminal_entered2"
 Silent=1
 <LuaCode>
@@ -2169,7 +2169,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Melee-check1"
+Name="Melee-check1"
 Trigger at label="37_melee_entered1"
 Silent=1
 <LuaCode>
@@ -2178,7 +2178,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Melee-check2"
+Name="Melee-check2"
 Trigger at label="37_melee_entered2"
 Silent=1
 <LuaCode>
@@ -2187,7 +2187,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Glass-check1"
+Name="Glass-check1"
 Trigger at label="37_glasswall_entered1"
 Silent=1
 <LuaCode>
@@ -2196,7 +2196,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Glass-check2"
+Name="Glass-check2"
 Trigger at label="37_glasswall_entered2"
 Silent=1
 <LuaCode>
@@ -2205,7 +2205,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Glass-check3"
+Name="Glass-check3"
 Trigger at label="37_glasswall_entered3"
 Silent=1
 <LuaCode>
@@ -2214,7 +2214,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Glass-check4"
+Name="Glass-check4"
 Trigger at label="37_glasswall_entered4"
 Silent=1
 <LuaCode>
@@ -2223,7 +2223,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"24-trigger-barrel"
+Name="24-trigger-barrel"
 Trigger on obstacle
 Obstacle label="37_chest"
 <LuaCode>
@@ -2232,7 +2232,7 @@ Obstacle label="37_chest"
 * End of trigger *
 
 * New event trigger *
-Name=_"Tutorial Wall trigger"
+Name="Tutorial Wall trigger"
 Trigger on obstacle
 Obstacle label="TutorialWall"
 <LuaCode>
@@ -2242,7 +2242,7 @@ Obstacle label="TutorialWall"
 * End of trigger *
 
 * New event trigger *
-Name=_"Tutorial Takeover entered 1"
+Name="Tutorial Takeover entered 1"
 Trigger at label="tutorial-takeover-entered1"
 Silent=1
 <LuaCode>
@@ -2251,7 +2251,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Tutorial Takeover entered 2"
+Name="Tutorial Takeover entered 2"
 Trigger at label="tutorial-takeover-entered2"
 Silent=1
 <LuaCode>
@@ -2260,7 +2260,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Tutorial Takeover entered 3"
+Name="Tutorial Takeover entered 3"
 Trigger at label="tutorial-takeover-entered3"
 Silent=1
 <LuaCode>
@@ -2269,7 +2269,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Tutorial Takeover entered 4"
+Name="Tutorial Takeover entered 4"
 Trigger at label="tutorial-takeover-entered4"
 Silent=1
 <LuaCode>
@@ -2278,7 +2278,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"Tutorial Range entered1"
+Name="Tutorial Range entered1"
 Trigger at label="tutorial-range-entered1"
 Silent=1
 <LuaCode>
@@ -2446,28 +2446,28 @@ Silent=0
 ## Level 59 ##
 ##############
 * New event trigger *
-Name=_"Back to tunnel"
+Name="Back to tunnel"
 Trigger at label="59to60ctrlroom"
 Silent=1
 <LuaCode> teleport("60from59ctrlroom") </LuaCode>
 * End of trigger *
 
 * New event trigger *
-Name=_"To tunnel..."
+Name="To tunnel..."
 Trigger at label="59to60botroom"
 Silent=1
 <LuaCode> teleport("60from59botroom") </LuaCode>
 * End of trigger *
 
 * New event trigger *
-Name=_"Back to tunnel"
+Name="Back to tunnel"
 Trigger at label="59to60house"
 Silent=1
 <LuaCode> teleport("60from59house") </LuaCode>
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_0"
+Name="59_trap_0"
 Trigger at label="59_trap_0"
 Silent=1
 <LuaCode>
@@ -2478,7 +2478,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_1"
+Name="59_trap_1"
 Trigger at label="59_trap_1"
 Silent=1
 <LuaCode>
@@ -2489,7 +2489,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_2"
+Name="59_trap_2"
 Trigger at label="59_trap_2"
 Silent=1
 <LuaCode>
@@ -2500,7 +2500,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_3"
+Name="59_trap_3"
 Trigger at label="59_trap_3"
 Silent=1
 <LuaCode>
@@ -2511,7 +2511,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_4"
+Name="59_trap_4"
 Trigger at label="59_trap_4"
 Silent=1
 <LuaCode>
@@ -2522,7 +2522,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_5"
+Name="59_trap_5"
 Trigger at label="59_trap_5"
 Silent=1
 <LuaCode>
@@ -2533,7 +2533,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_6"
+Name="59_trap_6"
 Trigger at label="59_trap_6"
 Silent=1
 <LuaCode>
@@ -2544,7 +2544,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_7"
+Name="59_trap_7"
 Trigger at label="59_trap_7"
 Silent=1
 <LuaCode>
@@ -2555,7 +2555,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_8"
+Name="59_trap_8"
 Trigger at label="59_trap_8"
 Silent=1
 <LuaCode>
@@ -2566,7 +2566,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_9"
+Name="59_trap_9"
 Trigger at label="59_trap_9"
 Silent=1
 <LuaCode>
@@ -2577,7 +2577,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_10"
+Name="59_trap_10"
 Trigger at label="59_trap_10"
 Silent=1
 <LuaCode>
@@ -2588,7 +2588,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_11"
+Name="59_trap_11"
 Trigger at label="59_trap_11"
 Silent=1
 <LuaCode>
@@ -2599,7 +2599,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_12"
+Name="59_trap_12"
 Trigger at label="59_trap_12"
 Silent=1
 <LuaCode>
@@ -2610,7 +2610,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_13"
+Name="59_trap_13"
 Trigger at label="59_trap_13"
 Silent=1
 <LuaCode>
@@ -2621,7 +2621,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_14"
+Name="59_trap_14"
 Trigger at label="59_trap_14"
 Silent=1
 <LuaCode>
@@ -2632,7 +2632,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_15"
+Name="59_trap_15"
 Trigger at label="59_trap_15"
 Silent=1
 <LuaCode>
@@ -2643,7 +2643,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_16"
+Name="59_trap_16"
 Trigger at label="59_trap_16"
 Silent=1
 <LuaCode>
@@ -2654,7 +2654,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_17"
+Name="59_trap_17"
 Trigger at label="59_trap_17"
 Silent=1
 <LuaCode>
@@ -2665,7 +2665,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_18"
+Name="59_trap_18"
 Trigger at label="59_trap_18"
 Silent=1
 <LuaCode>
@@ -2676,7 +2676,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_19"
+Name="59_trap_19"
 Trigger at label="59_trap_19"
 Silent=1
 <LuaCode>
@@ -2687,7 +2687,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_20"
+Name="59_trap_20"
 Trigger at label="59_trap_20"
 Silent=1
 <LuaCode>
@@ -2698,7 +2698,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_21"
+Name="59_trap_21"
 Trigger at label="59_trap_21"
 Silent=1
 <LuaCode>
@@ -2709,7 +2709,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_22"
+Name="59_trap_22"
 Trigger at label="59_trap_22"
 Silent=1
 <LuaCode>
@@ -2720,7 +2720,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_23"
+Name="59_trap_23"
 Trigger at label="59_trap_23"
 Silent=1
 <LuaCode>
@@ -2731,7 +2731,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_24"
+Name="59_trap_24"
 Trigger at label="59_trap_24"
 Silent=1
 <LuaCode>
@@ -2742,7 +2742,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_25"
+Name="59_trap_25"
 Trigger at label="59_trap_25"
 Silent=1
 <LuaCode>
@@ -2753,7 +2753,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_26"
+Name="59_trap_26"
 Trigger at label="59_trap_26"
 Silent=1
 <LuaCode>
@@ -2764,7 +2764,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_27"
+Name="59_trap_27"
 Trigger at label="59_trap_27"
 Silent=1
 <LuaCode>
@@ -2775,7 +2775,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_28"
+Name="59_trap_28"
 Trigger at label="59_trap_28"
 Silent=1
 <LuaCode>
@@ -2786,7 +2786,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_29"
+Name="59_trap_29"
 Trigger at label="59_trap_29"
 Silent=1
 <LuaCode>
@@ -2797,7 +2797,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_30"
+Name="59_trap_30"
 Trigger at label="59_trap_30"
 Silent=1
 <LuaCode>
@@ -2808,7 +2808,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_31"
+Name="59_trap_31"
 Trigger at label="59_trap_31"
 Silent=1
 <LuaCode>
@@ -2819,7 +2819,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_32"
+Name="59_trap_32"
 Trigger at label="59_trap_32"
 Silent=1
 <LuaCode>
@@ -2830,7 +2830,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_33"
+Name="59_trap_33"
 Trigger at label="59_trap_33"
 Silent=1
 <LuaCode>
@@ -2841,7 +2841,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_34"
+Name="59_trap_34"
 Trigger at label="59_trap_34"
 Silent=1
 <LuaCode>
@@ -2852,7 +2852,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_35"
+Name="59_trap_35"
 Trigger at label="59_trap_35"
 Silent=1
 <LuaCode>
@@ -2863,7 +2863,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_36"
+Name="59_trap_36"
 Trigger at label="59_trap_36"
 Silent=1
 <LuaCode>
@@ -2874,7 +2874,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_37"
+Name="59_trap_37"
 Trigger at label="59_trap_37"
 Silent=1
 <LuaCode>
@@ -2885,7 +2885,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_38"
+Name="59_trap_38"
 Trigger at label="59_trap_38"
 Silent=1
 <LuaCode>
@@ -2896,7 +2896,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_39"
+Name="59_trap_39"
 Trigger at label="59_trap_39"
 Silent=1
 <LuaCode>
@@ -2907,7 +2907,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_40"
+Name="59_trap_40"
 Trigger at label="59_trap_40"
 Silent=1
 <LuaCode>
@@ -2918,7 +2918,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_41"
+Name="59_trap_41"
 Trigger at label="59_trap_41"
 Silent=1
 <LuaCode>
@@ -2929,7 +2929,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_42"
+Name="59_trap_42"
 Trigger at label="59_trap_42"
 Silent=1
 <LuaCode>
@@ -2940,7 +2940,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_43"
+Name="59_trap_43"
 Trigger at label="59_trap_43"
 Silent=1
 <LuaCode>
@@ -2951,7 +2951,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_44"
+Name="59_trap_44"
 Trigger at label="59_trap_44"
 Silent=1
 <LuaCode>
@@ -2962,7 +2962,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_45"
+Name="59_trap_45"
 Trigger at label="59_trap_45"
 Silent=1
 <LuaCode>
@@ -2973,7 +2973,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_46"
+Name="59_trap_46"
 Trigger at label="59_trap_46"
 Silent=1
 <LuaCode>
@@ -2984,7 +2984,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_47"
+Name="59_trap_47"
 Trigger at label="59_trap_47"
 Silent=1
 <LuaCode>
@@ -2995,7 +2995,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_48"
+Name="59_trap_48"
 Trigger at label="59_trap_48"
 Silent=1
 <LuaCode>
@@ -3006,7 +3006,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_49"
+Name="59_trap_49"
 Trigger at label="59_trap_49"
 Silent=1
 <LuaCode>
@@ -3017,7 +3017,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_50"
+Name="59_trap_50"
 Trigger at label="59_trap_50"
 Silent=1
 <LuaCode>
@@ -3028,7 +3028,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_51"
+Name="59_trap_51"
 Trigger at label="59_trap_51"
 Silent=1
 <LuaCode>
@@ -3039,7 +3039,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_52"
+Name="59_trap_52"
 Trigger at label="59_trap_52"
 Silent=1
 <LuaCode>
@@ -3050,7 +3050,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_53"
+Name="59_trap_53"
 Trigger at label="59_trap_53"
 Silent=1
 <LuaCode>
@@ -3061,7 +3061,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_54"
+Name="59_trap_54"
 Trigger at label="59_trap_54"
 Silent=1
 <LuaCode>
@@ -3072,7 +3072,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_55"
+Name="59_trap_55"
 Trigger at label="59_trap_55"
 Silent=1
 <LuaCode>
@@ -3083,7 +3083,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_56"
+Name="59_trap_56"
 Trigger at label="59_trap_56"
 Silent=1
 <LuaCode>
@@ -3094,7 +3094,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_57"
+Name="59_trap_57"
 Trigger at label="59_trap_57"
 Silent=1
 <LuaCode>
@@ -3105,7 +3105,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_58"
+Name="59_trap_58"
 Trigger at label="59_trap_58"
 Silent=1
 <LuaCode>
@@ -3116,7 +3116,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_59"
+Name="59_trap_59"
 Trigger at label="59_trap_59"
 Silent=1
 <LuaCode>
@@ -3127,7 +3127,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_60"
+Name="59_trap_60"
 Trigger at label="59_trap_60"
 Silent=1
 <LuaCode>
@@ -3138,7 +3138,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_61"
+Name="59_trap_61"
 Trigger at label="59_trap_61"
 Silent=1
 <LuaCode>
@@ -3149,7 +3149,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_62"
+Name="59_trap_62"
 Trigger at label="59_trap_62"
 Silent=1
 <LuaCode>
@@ -3160,7 +3160,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_63"
+Name="59_trap_63"
 Trigger at label="59_trap_63"
 Silent=1
 <LuaCode>
@@ -3171,7 +3171,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_64"
+Name="59_trap_64"
 Trigger at label="59_trap_64"
 Silent=1
 <LuaCode>
@@ -3182,7 +3182,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_65"
+Name="59_trap_65"
 Trigger at label="59_trap_65"
 Silent=1
 <LuaCode>
@@ -3193,7 +3193,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_66"
+Name="59_trap_66"
 Trigger at label="59_trap_66"
 Silent=1
 <LuaCode>
@@ -3204,7 +3204,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_67"
+Name="59_trap_67"
 Trigger at label="59_trap_67"
 Silent=1
 <LuaCode>
@@ -3215,7 +3215,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_68"
+Name="59_trap_68"
 Trigger at label="59_trap_68"
 Silent=1
 <LuaCode>
@@ -3226,7 +3226,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_69"
+Name="59_trap_69"
 Trigger at label="59_trap_69"
 Silent=1
 <LuaCode>
@@ -3237,7 +3237,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_70"
+Name="59_trap_70"
 Trigger at label="59_trap_70"
 Silent=1
 <LuaCode>
@@ -3248,7 +3248,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_71"
+Name="59_trap_71"
 Trigger at label="59_trap_71"
 Silent=1
 <LuaCode>
@@ -3259,7 +3259,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_72"
+Name="59_trap_72"
 Trigger at label="59_trap_72"
 Silent=1
 <LuaCode>
@@ -3270,7 +3270,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_73"
+Name="59_trap_73"
 Trigger at label="59_trap_73"
 Silent=1
 <LuaCode>
@@ -3281,7 +3281,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_74"
+Name="59_trap_74"
 Trigger at label="59_trap_74"
 Silent=1
 <LuaCode>
@@ -3292,7 +3292,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_75"
+Name="59_trap_75"
 Trigger at label="59_trap_75"
 Silent=1
 <LuaCode>
@@ -3303,7 +3303,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_76"
+Name="59_trap_76"
 Trigger at label="59_trap_76"
 Silent=1
 <LuaCode>
@@ -3314,7 +3314,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_77"
+Name="59_trap_77"
 Trigger at label="59_trap_77"
 Silent=1
 <LuaCode>
@@ -3325,7 +3325,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_78"
+Name="59_trap_78"
 Trigger at label="59_trap_78"
 Silent=1
 <LuaCode>
@@ -3336,7 +3336,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_79"
+Name="59_trap_79"
 Trigger at label="59_trap_79"
 Silent=1
 <LuaCode>
@@ -3347,7 +3347,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_80"
+Name="59_trap_80"
 Trigger at label="59_trap_80"
 Silent=1
 <LuaCode>
@@ -3358,7 +3358,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_81"
+Name="59_trap_81"
 Trigger at label="59_trap_81"
 Silent=1
 <LuaCode>
@@ -3369,7 +3369,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_82"
+Name="59_trap_82"
 Trigger at label="59_trap_82"
 Silent=1
 <LuaCode>
@@ -3380,7 +3380,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_83"
+Name="59_trap_83"
 Trigger at label="59_trap_83"
 Silent=1
 <LuaCode>
@@ -3391,7 +3391,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_84"
+Name="59_trap_84"
 Trigger at label="59_trap_84"
 Silent=1
 <LuaCode>
@@ -3402,7 +3402,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_85"
+Name="59_trap_85"
 Trigger at label="59_trap_85"
 Silent=1
 <LuaCode>
@@ -3413,7 +3413,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_86"
+Name="59_trap_86"
 Trigger at label="59_trap_86"
 Silent=1
 <LuaCode>
@@ -3424,7 +3424,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_87"
+Name="59_trap_87"
 Trigger at label="59_trap_87"
 Silent=1
 <LuaCode>
@@ -3435,7 +3435,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_88"
+Name="59_trap_88"
 Trigger at label="59_trap_88"
 Silent=1
 <LuaCode>
@@ -3446,7 +3446,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_89"
+Name="59_trap_89"
 Trigger at label="59_trap_89"
 Silent=1
 <LuaCode>
@@ -3457,7 +3457,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_90"
+Name="59_trap_90"
 Trigger at label="59_trap_90"
 Silent=1
 <LuaCode>
@@ -3468,7 +3468,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_91"
+Name="59_trap_91"
 Trigger at label="59_trap_91"
 Silent=1
 <LuaCode>
@@ -3479,7 +3479,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_92"
+Name="59_trap_92"
 Trigger at label="59_trap_92"
 Silent=1
 <LuaCode>
@@ -3490,7 +3490,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_93"
+Name="59_trap_93"
 Trigger at label="59_trap_93"
 Silent=1
 <LuaCode>
@@ -3501,7 +3501,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_94"
+Name="59_trap_94"
 Trigger at label="59_trap_94"
 Silent=1
 <LuaCode>
@@ -3512,7 +3512,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_95"
+Name="59_trap_95"
 Trigger at label="59_trap_95"
 Silent=1
 <LuaCode>
@@ -3523,7 +3523,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_96"
+Name="59_trap_96"
 Trigger at label="59_trap_96"
 Silent=1
 <LuaCode>
@@ -3534,7 +3534,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_97"
+Name="59_trap_97"
 Trigger at label="59_trap_97"
 Silent=1
 <LuaCode>
@@ -3545,7 +3545,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_98"
+Name="59_trap_98"
 Trigger at label="59_trap_98"
 Silent=1
 <LuaCode>
@@ -3556,7 +3556,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_99"
+Name="59_trap_99"
 Trigger at label="59_trap_99"
 Silent=1
 <LuaCode>
@@ -3567,7 +3567,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_100"
+Name="59_trap_100"
 Trigger at label="59_trap_100"
 Silent=1
 <LuaCode>
@@ -3578,7 +3578,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_101"
+Name="59_trap_101"
 Trigger at label="59_trap_101"
 Silent=1
 <LuaCode>
@@ -3589,7 +3589,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_102"
+Name="59_trap_102"
 Trigger at label="59_trap_102"
 Silent=1
 <LuaCode>
@@ -3600,7 +3600,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_103"
+Name="59_trap_103"
 Trigger at label="59_trap_103"
 Silent=1
 <LuaCode>
@@ -3611,7 +3611,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_104"
+Name="59_trap_104"
 Trigger at label="59_trap_104"
 Silent=1
 <LuaCode>
@@ -3622,7 +3622,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_105"
+Name="59_trap_105"
 Trigger at label="59_trap_105"
 Silent=1
 <LuaCode>
@@ -3633,7 +3633,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_106"
+Name="59_trap_106"
 Trigger at label="59_trap_106"
 Silent=1
 <LuaCode>
@@ -3644,7 +3644,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_107"
+Name="59_trap_107"
 Trigger at label="59_trap_107"
 Silent=1
 <LuaCode>
@@ -3655,7 +3655,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_108"
+Name="59_trap_108"
 Trigger at label="59_trap_108"
 Silent=1
 <LuaCode>
@@ -3666,7 +3666,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_109"
+Name="59_trap_109"
 Trigger at label="59_trap_109"
 Silent=1
 <LuaCode>
@@ -3677,7 +3677,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_110"
+Name="59_trap_110"
 Trigger at label="59_trap_110"
 Silent=1
 <LuaCode>
@@ -3688,7 +3688,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_111"
+Name="59_trap_111"
 Trigger at label="59_trap_111"
 Silent=1
 <LuaCode>
@@ -3699,7 +3699,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_112"
+Name="59_trap_112"
 Trigger at label="59_trap_112"
 Silent=1
 <LuaCode>
@@ -3710,7 +3710,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_113"
+Name="59_trap_113"
 Trigger at label="59_trap_113"
 Silent=1
 <LuaCode>
@@ -3721,7 +3721,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_114"
+Name="59_trap_114"
 Trigger at label="59_trap_114"
 Silent=1
 <LuaCode>
@@ -3732,7 +3732,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_115"
+Name="59_trap_115"
 Trigger at label="59_trap_115"
 Silent=1
 <LuaCode>
@@ -3743,7 +3743,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_116"
+Name="59_trap_116"
 Trigger at label="59_trap_116"
 Silent=1
 <LuaCode>
@@ -3754,7 +3754,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_117"
+Name="59_trap_117"
 Trigger at label="59_trap_117"
 Silent=1
 <LuaCode>
@@ -3765,7 +3765,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_118"
+Name="59_trap_118"
 Trigger at label="59_trap_118"
 Silent=1
 <LuaCode>
@@ -3776,7 +3776,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_119"
+Name="59_trap_119"
 Trigger at label="59_trap_119"
 Silent=1
 <LuaCode>
@@ -3787,7 +3787,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_120"
+Name="59_trap_120"
 Trigger at label="59_trap_120"
 Silent=1
 <LuaCode>
@@ -3798,7 +3798,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_121"
+Name="59_trap_121"
 Trigger at label="59_trap_121"
 Silent=1
 <LuaCode>
@@ -3809,7 +3809,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_122"
+Name="59_trap_122"
 Trigger at label="59_trap_122"
 Silent=1
 <LuaCode>
@@ -3820,7 +3820,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_123"
+Name="59_trap_123"
 Trigger at label="59_trap_123"
 Silent=1
 <LuaCode>
@@ -3831,7 +3831,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_124"
+Name="59_trap_124"
 Trigger at label="59_trap_124"
 Silent=1
 <LuaCode>
@@ -3842,7 +3842,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_125"
+Name="59_trap_125"
 Trigger at label="59_trap_125"
 Silent=1
 <LuaCode>
@@ -3853,7 +3853,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_126"
+Name="59_trap_126"
 Trigger at label="59_trap_126"
 Silent=1
 <LuaCode>
@@ -3864,7 +3864,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_127"
+Name="59_trap_127"
 Trigger at label="59_trap_127"
 Silent=1
 <LuaCode>
@@ -3875,7 +3875,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_128"
+Name="59_trap_128"
 Trigger at label="59_trap_128"
 Silent=1
 <LuaCode>
@@ -3886,7 +3886,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_129"
+Name="59_trap_129"
 Trigger at label="59_trap_129"
 Silent=1
 <LuaCode>
@@ -3897,7 +3897,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_130"
+Name="59_trap_130"
 Trigger at label="59_trap_130"
 Silent=1
 <LuaCode>
@@ -3908,7 +3908,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_131"
+Name="59_trap_131"
 Trigger at label="59_trap_131"
 Silent=1
 <LuaCode>
@@ -3919,7 +3919,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_132"
+Name="59_trap_132"
 Trigger at label="59_trap_132"
 Silent=1
 <LuaCode>
@@ -3930,7 +3930,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_133"
+Name="59_trap_133"
 Trigger at label="59_trap_133"
 Silent=1
 <LuaCode>
@@ -3941,7 +3941,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_134"
+Name="59_trap_134"
 Trigger at label="59_trap_134"
 Silent=1
 <LuaCode>
@@ -3952,7 +3952,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_135"
+Name="59_trap_135"
 Trigger at label="59_trap_135"
 Silent=1
 <LuaCode>
@@ -3963,7 +3963,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_136"
+Name="59_trap_136"
 Trigger at label="59_trap_136"
 Silent=1
 <LuaCode>
@@ -3974,7 +3974,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_137"
+Name="59_trap_137"
 Trigger at label="59_trap_137"
 Silent=1
 <LuaCode>
@@ -3985,7 +3985,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_138"
+Name="59_trap_138"
 Trigger at label="59_trap_138"
 Silent=1
 <LuaCode>
@@ -3996,7 +3996,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_139"
+Name="59_trap_139"
 Trigger at label="59_trap_139"
 Silent=1
 <LuaCode>
@@ -4007,7 +4007,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_140"
+Name="59_trap_140"
 Trigger at label="59_trap_140"
 Silent=1
 <LuaCode>
@@ -4018,7 +4018,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_141"
+Name="59_trap_141"
 Trigger at label="59_trap_141"
 Silent=1
 <LuaCode>
@@ -4029,7 +4029,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_142"
+Name="59_trap_142"
 Trigger at label="59_trap_142"
 Silent=1
 <LuaCode>
@@ -4040,7 +4040,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_143"
+Name="59_trap_143"
 Trigger at label="59_trap_143"
 Silent=1
 <LuaCode>
@@ -4051,7 +4051,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_144"
+Name="59_trap_144"
 Trigger at label="59_trap_144"
 Silent=1
 <LuaCode>
@@ -4062,7 +4062,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_145"
+Name="59_trap_145"
 Trigger at label="59_trap_145"
 Silent=1
 <LuaCode>
@@ -4073,7 +4073,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_146"
+Name="59_trap_146"
 Trigger at label="59_trap_146"
 Silent=1
 <LuaCode>
@@ -4084,7 +4084,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_147"
+Name="59_trap_147"
 Trigger at label="59_trap_147"
 Silent=1
 <LuaCode>
@@ -4095,7 +4095,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_148"
+Name="59_trap_148"
 Trigger at label="59_trap_148"
 Silent=1
 <LuaCode>
@@ -4106,7 +4106,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_149"
+Name="59_trap_149"
 Trigger at label="59_trap_149"
 Silent=1
 <LuaCode>
@@ -4117,7 +4117,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_150"
+Name="59_trap_150"
 Trigger at label="59_trap_150"
 Silent=1
 <LuaCode>
@@ -4128,7 +4128,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_151"
+Name="59_trap_151"
 Trigger at label="59_trap_151"
 Silent=1
 <LuaCode>
@@ -4139,7 +4139,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_152"
+Name="59_trap_152"
 Trigger at label="59_trap_152"
 Silent=1
 <LuaCode>
@@ -4150,7 +4150,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_153"
+Name="59_trap_153"
 Trigger at label="59_trap_153"
 Silent=1
 <LuaCode>
@@ -4161,7 +4161,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_154"
+Name="59_trap_154"
 Trigger at label="59_trap_154"
 Silent=1
 <LuaCode>
@@ -4172,7 +4172,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_155"
+Name="59_trap_155"
 Trigger at label="59_trap_155"
 Silent=1
 <LuaCode>
@@ -4183,7 +4183,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_156"
+Name="59_trap_156"
 Trigger at label="59_trap_156"
 Silent=1
 <LuaCode>
@@ -4194,7 +4194,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_157"
+Name="59_trap_157"
 Trigger at label="59_trap_157"
 Silent=1
 <LuaCode>
@@ -4205,7 +4205,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_158"
+Name="59_trap_158"
 Trigger at label="59_trap_158"
 Silent=1
 <LuaCode>
@@ -4216,7 +4216,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_159"
+Name="59_trap_159"
 Trigger at label="59_trap_159"
 Silent=1
 <LuaCode>
@@ -4227,7 +4227,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_160"
+Name="59_trap_160"
 Trigger at label="59_trap_160"
 Silent=1
 <LuaCode>
@@ -4238,7 +4238,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_161"
+Name="59_trap_161"
 Trigger at label="59_trap_161"
 Silent=1
 <LuaCode>
@@ -4249,7 +4249,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_162"
+Name="59_trap_162"
 Trigger at label="59_trap_162"
 Silent=1
 <LuaCode>
@@ -4260,7 +4260,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_163"
+Name="59_trap_163"
 Trigger at label="59_trap_163"
 Silent=1
 <LuaCode>
@@ -4271,7 +4271,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_164"
+Name="59_trap_164"
 Trigger at label="59_trap_164"
 Silent=1
 <LuaCode>
@@ -4282,7 +4282,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_165"
+Name="59_trap_165"
 Trigger at label="59_trap_165"
 Silent=1
 <LuaCode>
@@ -4293,7 +4293,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_166"
+Name="59_trap_166"
 Trigger at label="59_trap_166"
 Silent=1
 <LuaCode>
@@ -4304,7 +4304,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_167"
+Name="59_trap_167"
 Trigger at label="59_trap_167"
 Silent=1
 <LuaCode>
@@ -4315,7 +4315,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_168"
+Name="59_trap_168"
 Trigger at label="59_trap_168"
 Silent=1
 <LuaCode>
@@ -4326,7 +4326,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_169"
+Name="59_trap_169"
 Trigger at label="59_trap_169"
 Silent=1
 <LuaCode>
@@ -4337,7 +4337,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_170"
+Name="59_trap_170"
 Trigger at label="59_trap_170"
 Silent=1
 <LuaCode>
@@ -4348,7 +4348,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_171"
+Name="59_trap_171"
 Trigger at label="59_trap_171"
 Silent=1
 <LuaCode>
@@ -4359,7 +4359,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_172"
+Name="59_trap_172"
 Trigger at label="59_trap_172"
 Silent=1
 <LuaCode>
@@ -4370,7 +4370,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_173"
+Name="59_trap_173"
 Trigger at label="59_trap_173"
 Silent=1
 <LuaCode>
@@ -4381,7 +4381,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_174"
+Name="59_trap_174"
 Trigger at label="59_trap_174"
 Silent=1
 <LuaCode>
@@ -4392,7 +4392,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_175"
+Name="59_trap_175"
 Trigger at label="59_trap_175"
 Silent=1
 <LuaCode>
@@ -4403,7 +4403,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_176"
+Name="59_trap_176"
 Trigger at label="59_trap_176"
 Silent=1
 <LuaCode>
@@ -4414,7 +4414,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_177"
+Name="59_trap_177"
 Trigger at label="59_trap_177"
 Silent=1
 <LuaCode>
@@ -4425,7 +4425,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_178"
+Name="59_trap_178"
 Trigger at label="59_trap_178"
 Silent=1
 <LuaCode>
@@ -4436,7 +4436,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_179"
+Name="59_trap_179"
 Trigger at label="59_trap_179"
 Silent=1
 <LuaCode>
@@ -4447,7 +4447,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_180"
+Name="59_trap_180"
 Trigger at label="59_trap_180"
 Silent=1
 <LuaCode>
@@ -4458,7 +4458,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_181"
+Name="59_trap_181"
 Trigger at label="59_trap_181"
 Silent=1
 <LuaCode>
@@ -4469,7 +4469,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_182"
+Name="59_trap_182"
 Trigger at label="59_trap_182"
 Silent=1
 <LuaCode>
@@ -4480,7 +4480,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_183"
+Name="59_trap_183"
 Trigger at label="59_trap_183"
 Silent=1
 <LuaCode>
@@ -4491,7 +4491,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_184"
+Name="59_trap_184"
 Trigger at label="59_trap_184"
 Silent=1
 <LuaCode>
@@ -4502,7 +4502,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_185"
+Name="59_trap_185"
 Trigger at label="59_trap_185"
 Silent=1
 <LuaCode>
@@ -4513,7 +4513,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_186"
+Name="59_trap_186"
 Trigger at label="59_trap_186"
 Silent=1
 <LuaCode>
@@ -4524,7 +4524,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_187"
+Name="59_trap_187"
 Trigger at label="59_trap_187"
 Silent=1
 <LuaCode>
@@ -4535,7 +4535,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_188"
+Name="59_trap_188"
 Trigger at label="59_trap_188"
 Silent=1
 <LuaCode>
@@ -4546,7 +4546,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_189"
+Name="59_trap_189"
 Trigger at label="59_trap_189"
 Silent=1
 <LuaCode>
@@ -4557,7 +4557,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_190"
+Name="59_trap_190"
 Trigger at label="59_trap_190"
 Silent=1
 <LuaCode>
@@ -4568,7 +4568,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_191"
+Name="59_trap_191"
 Trigger at label="59_trap_191"
 Silent=1
 <LuaCode>
@@ -4579,7 +4579,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_192"
+Name="59_trap_192"
 Trigger at label="59_trap_192"
 Silent=1
 <LuaCode>
@@ -4590,7 +4590,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_193"
+Name="59_trap_193"
 Trigger at label="59_trap_193"
 Silent=1
 <LuaCode>
@@ -4601,7 +4601,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_194"
+Name="59_trap_194"
 Trigger at label="59_trap_194"
 Silent=1
 <LuaCode>
@@ -4612,7 +4612,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_195"
+Name="59_trap_195"
 Trigger at label="59_trap_195"
 Silent=1
 <LuaCode>
@@ -4623,7 +4623,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_196"
+Name="59_trap_196"
 Trigger at label="59_trap_196"
 Silent=1
 <LuaCode>
@@ -4634,7 +4634,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_197"
+Name="59_trap_197"
 Trigger at label="59_trap_197"
 Silent=1
 <LuaCode>
@@ -4645,7 +4645,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_198"
+Name="59_trap_198"
 Trigger at label="59_trap_198"
 Silent=1
 <LuaCode>
@@ -4656,7 +4656,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_199"
+Name="59_trap_199"
 Trigger at label="59_trap_199"
 Silent=1
 <LuaCode>
@@ -4667,7 +4667,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_200"
+Name="59_trap_200"
 Trigger at label="59_trap_200"
 Silent=1
 <LuaCode>
@@ -4678,7 +4678,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_201"
+Name="59_trap_201"
 Trigger at label="59_trap_201"
 Silent=1
 <LuaCode>
@@ -4689,7 +4689,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_202"
+Name="59_trap_202"
 Trigger at label="59_trap_202"
 Silent=1
 <LuaCode>
@@ -4700,7 +4700,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_203"
+Name="59_trap_203"
 Trigger at label="59_trap_203"
 Silent=1
 <LuaCode>
@@ -4711,7 +4711,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_204"
+Name="59_trap_204"
 Trigger at label="59_trap_204"
 Silent=1
 <LuaCode>
@@ -4722,7 +4722,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_205"
+Name="59_trap_205"
 Trigger at label="59_trap_205"
 Silent=1
 <LuaCode>
@@ -4733,7 +4733,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_206"
+Name="59_trap_206"
 Trigger at label="59_trap_206"
 Silent=1
 <LuaCode>
@@ -4744,7 +4744,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_207"
+Name="59_trap_207"
 Trigger at label="59_trap_207"
 Silent=1
 <LuaCode>
@@ -4755,7 +4755,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_208"
+Name="59_trap_208"
 Trigger at label="59_trap_208"
 Silent=1
 <LuaCode>
@@ -4766,7 +4766,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_209"
+Name="59_trap_209"
 Trigger at label="59_trap_209"
 Silent=1
 <LuaCode>
@@ -4777,7 +4777,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_210"
+Name="59_trap_210"
 Trigger at label="59_trap_210"
 Silent=1
 <LuaCode>
@@ -4788,7 +4788,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_211"
+Name="59_trap_211"
 Trigger at label="59_trap_211"
 Silent=1
 <LuaCode>
@@ -4799,7 +4799,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_212"
+Name="59_trap_212"
 Trigger at label="59_trap_212"
 Silent=1
 <LuaCode>
@@ -4810,7 +4810,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_213"
+Name="59_trap_213"
 Trigger at label="59_trap_213"
 Silent=1
 <LuaCode>
@@ -4821,7 +4821,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_214"
+Name="59_trap_214"
 Trigger at label="59_trap_214"
 Silent=1
 <LuaCode>
@@ -4832,7 +4832,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_215"
+Name="59_trap_215"
 Trigger at label="59_trap_215"
 Silent=1
 <LuaCode>
@@ -4843,7 +4843,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_216"
+Name="59_trap_216"
 Trigger at label="59_trap_216"
 Silent=1
 <LuaCode>
@@ -4854,7 +4854,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_217"
+Name="59_trap_217"
 Trigger at label="59_trap_217"
 Silent=1
 <LuaCode>
@@ -4865,7 +4865,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_218"
+Name="59_trap_218"
 Trigger at label="59_trap_218"
 Silent=1
 <LuaCode>
@@ -4876,7 +4876,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_219"
+Name="59_trap_219"
 Trigger at label="59_trap_219"
 Silent=1
 <LuaCode>
@@ -4887,7 +4887,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_220"
+Name="59_trap_220"
 Trigger at label="59_trap_220"
 Silent=1
 <LuaCode>
@@ -4898,7 +4898,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_221"
+Name="59_trap_221"
 Trigger at label="59_trap_221"
 Silent=1
 <LuaCode>
@@ -4909,7 +4909,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_222"
+Name="59_trap_222"
 Trigger at label="59_trap_222"
 Silent=1
 <LuaCode>
@@ -4920,7 +4920,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_223"
+Name="59_trap_223"
 Trigger at label="59_trap_223"
 Silent=1
 <LuaCode>
@@ -4931,7 +4931,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_224"
+Name="59_trap_224"
 Trigger at label="59_trap_224"
 Silent=1
 <LuaCode>
@@ -4942,7 +4942,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_225"
+Name="59_trap_225"
 Trigger at label="59_trap_225"
 Silent=1
 <LuaCode>
@@ -4953,7 +4953,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_226"
+Name="59_trap_226"
 Trigger at label="59_trap_226"
 Silent=1
 <LuaCode>
@@ -4964,7 +4964,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_227"
+Name="59_trap_227"
 Trigger at label="59_trap_227"
 Silent=1
 <LuaCode>
@@ -4975,7 +4975,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_228"
+Name="59_trap_228"
 Trigger at label="59_trap_228"
 Silent=1
 <LuaCode>
@@ -4986,7 +4986,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_229"
+Name="59_trap_229"
 Trigger at label="59_trap_229"
 Silent=1
 <LuaCode>
@@ -4997,7 +4997,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_230"
+Name="59_trap_230"
 Trigger at label="59_trap_230"
 Silent=1
 <LuaCode>
@@ -5008,7 +5008,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_231"
+Name="59_trap_231"
 Trigger at label="59_trap_231"
 Silent=1
 <LuaCode>
@@ -5019,7 +5019,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_232"
+Name="59_trap_232"
 Trigger at label="59_trap_232"
 Silent=1
 <LuaCode>
@@ -5030,7 +5030,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_233"
+Name="59_trap_233"
 Trigger at label="59_trap_233"
 Silent=1
 <LuaCode>
@@ -5041,7 +5041,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_234"
+Name="59_trap_234"
 Trigger at label="59_trap_234"
 Silent=1
 <LuaCode>
@@ -5052,7 +5052,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_235"
+Name="59_trap_235"
 Trigger at label="59_trap_235"
 Silent=1
 <LuaCode>
@@ -5063,7 +5063,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_236"
+Name="59_trap_236"
 Trigger at label="59_trap_236"
 Silent=1
 <LuaCode>
@@ -5074,7 +5074,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_237"
+Name="59_trap_237"
 Trigger at label="59_trap_237"
 Silent=1
 <LuaCode>
@@ -5085,7 +5085,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_238"
+Name="59_trap_238"
 Trigger at label="59_trap_238"
 Silent=1
 <LuaCode>
@@ -5096,7 +5096,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_239"
+Name="59_trap_239"
 Trigger at label="59_trap_239"
 Silent=1
 <LuaCode>
@@ -5107,7 +5107,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_240"
+Name="59_trap_240"
 Trigger at label="59_trap_240"
 Silent=1
 <LuaCode>
@@ -5118,7 +5118,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_241"
+Name="59_trap_241"
 Trigger at label="59_trap_241"
 Silent=1
 <LuaCode>
@@ -5129,7 +5129,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_242"
+Name="59_trap_242"
 Trigger at label="59_trap_242"
 Silent=1
 <LuaCode>
@@ -5140,7 +5140,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_243"
+Name="59_trap_243"
 Trigger at label="59_trap_243"
 Silent=1
 <LuaCode>
@@ -5151,7 +5151,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_244"
+Name="59_trap_244"
 Trigger at label="59_trap_244"
 Silent=1
 <LuaCode>
@@ -5162,7 +5162,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_245"
+Name="59_trap_245"
 Trigger at label="59_trap_245"
 Silent=1
 <LuaCode>
@@ -5173,7 +5173,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_246"
+Name="59_trap_246"
 Trigger at label="59_trap_246"
 Silent=1
 <LuaCode>
@@ -5184,7 +5184,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_247"
+Name="59_trap_247"
 Trigger at label="59_trap_247"
 Silent=1
 <LuaCode>
@@ -5195,7 +5195,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_248"
+Name="59_trap_248"
 Trigger at label="59_trap_248"
 Silent=1
 <LuaCode>
@@ -5206,7 +5206,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_249"
+Name="59_trap_249"
 Trigger at label="59_trap_249"
 Silent=1
 <LuaCode>
@@ -5217,7 +5217,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_250"
+Name="59_trap_250"
 Trigger at label="59_trap_250"
 Silent=1
 <LuaCode>
@@ -5228,7 +5228,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_251"
+Name="59_trap_251"
 Trigger at label="59_trap_251"
 Silent=1
 <LuaCode>
@@ -5239,7 +5239,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_252"
+Name="59_trap_252"
 Trigger at label="59_trap_252"
 Silent=1
 <LuaCode>
@@ -5250,7 +5250,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_253"
+Name="59_trap_253"
 Trigger at label="59_trap_253"
 Silent=1
 <LuaCode>
@@ -5261,7 +5261,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_254"
+Name="59_trap_254"
 Trigger at label="59_trap_254"
 Silent=1
 <LuaCode>
@@ -5272,7 +5272,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_255"
+Name="59_trap_255"
 Trigger at label="59_trap_255"
 Silent=1
 <LuaCode>
@@ -5283,7 +5283,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_256"
+Name="59_trap_256"
 Trigger at label="59_trap_256"
 Silent=1
 <LuaCode>
@@ -5294,7 +5294,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_257"
+Name="59_trap_257"
 Trigger at label="59_trap_257"
 Silent=1
 <LuaCode>
@@ -5305,7 +5305,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_258"
+Name="59_trap_258"
 Trigger at label="59_trap_258"
 Silent=1
 <LuaCode>
@@ -5316,7 +5316,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_259"
+Name="59_trap_259"
 Trigger at label="59_trap_259"
 Silent=1
 <LuaCode>
@@ -5327,7 +5327,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_260"
+Name="59_trap_260"
 Trigger at label="59_trap_260"
 Silent=1
 <LuaCode>
@@ -5338,7 +5338,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_261"
+Name="59_trap_261"
 Trigger at label="59_trap_261"
 Silent=1
 <LuaCode>
@@ -5349,7 +5349,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_262"
+Name="59_trap_262"
 Trigger at label="59_trap_262"
 Silent=1
 <LuaCode>
@@ -5360,7 +5360,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_263"
+Name="59_trap_263"
 Trigger at label="59_trap_263"
 Silent=1
 <LuaCode>
@@ -5371,7 +5371,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_264"
+Name="59_trap_264"
 Trigger at label="59_trap_264"
 Silent=1
 <LuaCode>
@@ -5382,7 +5382,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_265"
+Name="59_trap_265"
 Trigger at label="59_trap_265"
 Silent=1
 <LuaCode>
@@ -5393,7 +5393,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_266"
+Name="59_trap_266"
 Trigger at label="59_trap_266"
 Silent=1
 <LuaCode>
@@ -5404,7 +5404,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_267"
+Name="59_trap_267"
 Trigger at label="59_trap_267"
 Silent=1
 <LuaCode>
@@ -5415,7 +5415,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_268"
+Name="59_trap_268"
 Trigger at label="59_trap_268"
 Silent=1
 <LuaCode>
@@ -5426,7 +5426,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_269"
+Name="59_trap_269"
 Trigger at label="59_trap_269"
 Silent=1
 <LuaCode>
@@ -5437,7 +5437,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_270"
+Name="59_trap_270"
 Trigger at label="59_trap_270"
 Silent=1
 <LuaCode>
@@ -5448,7 +5448,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_271"
+Name="59_trap_271"
 Trigger at label="59_trap_271"
 Silent=1
 <LuaCode>
@@ -5459,7 +5459,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_272"
+Name="59_trap_272"
 Trigger at label="59_trap_272"
 Silent=1
 <LuaCode>
@@ -5470,7 +5470,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_273"
+Name="59_trap_273"
 Trigger at label="59_trap_273"
 Silent=1
 <LuaCode>
@@ -5481,7 +5481,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_274"
+Name="59_trap_274"
 Trigger at label="59_trap_274"
 Silent=1
 <LuaCode>
@@ -5492,7 +5492,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_275"
+Name="59_trap_275"
 Trigger at label="59_trap_275"
 Silent=1
 <LuaCode>
@@ -5503,7 +5503,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_276"
+Name="59_trap_276"
 Trigger at label="59_trap_276"
 Silent=1
 <LuaCode>
@@ -5514,7 +5514,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_277"
+Name="59_trap_277"
 Trigger at label="59_trap_277"
 Silent=1
 <LuaCode>
@@ -5525,7 +5525,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_278"
+Name="59_trap_278"
 Trigger at label="59_trap_278"
 Silent=1
 <LuaCode>
@@ -5536,7 +5536,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_279"
+Name="59_trap_279"
 Trigger at label="59_trap_279"
 Silent=1
 <LuaCode>
@@ -5547,7 +5547,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_280"
+Name="59_trap_280"
 Trigger at label="59_trap_280"
 Silent=1
 <LuaCode>
@@ -5558,7 +5558,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_281"
+Name="59_trap_281"
 Trigger at label="59_trap_281"
 Silent=1
 <LuaCode>
@@ -5569,7 +5569,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_282"
+Name="59_trap_282"
 Trigger at label="59_trap_282"
 Silent=1
 <LuaCode>
@@ -5580,7 +5580,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_283"
+Name="59_trap_283"
 Trigger at label="59_trap_283"
 Silent=1
 <LuaCode>
@@ -5591,7 +5591,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_284"
+Name="59_trap_284"
 Trigger at label="59_trap_284"
 Silent=1
 <LuaCode>
@@ -5602,7 +5602,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_285"
+Name="59_trap_285"
 Trigger at label="59_trap_285"
 Silent=1
 <LuaCode>
@@ -5613,7 +5613,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_286"
+Name="59_trap_286"
 Trigger at label="59_trap_286"
 Silent=1
 <LuaCode>
@@ -5624,7 +5624,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_287"
+Name="59_trap_287"
 Trigger at label="59_trap_287"
 Silent=1
 <LuaCode>
@@ -5635,7 +5635,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_288"
+Name="59_trap_288"
 Trigger at label="59_trap_288"
 Silent=1
 <LuaCode>
@@ -5646,7 +5646,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_289"
+Name="59_trap_289"
 Trigger at label="59_trap_289"
 Silent=1
 <LuaCode>
@@ -5657,7 +5657,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_290"
+Name="59_trap_290"
 Trigger at label="59_trap_290"
 Silent=1
 <LuaCode>
@@ -5668,7 +5668,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_291"
+Name="59_trap_291"
 Trigger at label="59_trap_291"
 Silent=1
 <LuaCode>
@@ -5679,7 +5679,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_292"
+Name="59_trap_292"
 Trigger at label="59_trap_292"
 Silent=1
 <LuaCode>
@@ -5690,7 +5690,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_293"
+Name="59_trap_293"
 Trigger at label="59_trap_293"
 Silent=1
 <LuaCode>
@@ -5701,7 +5701,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_294"
+Name="59_trap_294"
 Trigger at label="59_trap_294"
 Silent=1
 <LuaCode>
@@ -5712,7 +5712,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_295"
+Name="59_trap_295"
 Trigger at label="59_trap_295"
 Silent=1
 <LuaCode>
@@ -5723,7 +5723,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_296"
+Name="59_trap_296"
 Trigger at label="59_trap_296"
 Silent=1
 <LuaCode>
@@ -5734,7 +5734,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_297"
+Name="59_trap_297"
 Trigger at label="59_trap_297"
 Silent=1
 <LuaCode>
@@ -5745,7 +5745,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_298"
+Name="59_trap_298"
 Trigger at label="59_trap_298"
 Silent=1
 <LuaCode>
@@ -5756,7 +5756,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_299"
+Name="59_trap_299"
 Trigger at label="59_trap_299"
 Silent=1
 <LuaCode>
@@ -5767,7 +5767,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_300"
+Name="59_trap_300"
 Trigger at label="59_trap_300"
 Silent=1
 <LuaCode>
@@ -5778,7 +5778,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_301"
+Name="59_trap_301"
 Trigger at label="59_trap_301"
 Silent=1
 <LuaCode>
@@ -5789,7 +5789,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_302"
+Name="59_trap_302"
 Trigger at label="59_trap_302"
 Silent=1
 <LuaCode>
@@ -5800,7 +5800,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_303"
+Name="59_trap_303"
 Trigger at label="59_trap_303"
 Silent=1
 <LuaCode>
@@ -5811,7 +5811,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_304"
+Name="59_trap_304"
 Trigger at label="59_trap_304"
 Silent=1
 <LuaCode>
@@ -5822,7 +5822,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_305"
+Name="59_trap_305"
 Trigger at label="59_trap_305"
 Silent=1
 <LuaCode>
@@ -5833,7 +5833,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_306"
+Name="59_trap_306"
 Trigger at label="59_trap_306"
 Silent=1
 <LuaCode>
@@ -5844,7 +5844,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_307"
+Name="59_trap_307"
 Trigger at label="59_trap_307"
 Silent=1
 <LuaCode>
@@ -5855,7 +5855,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_308"
+Name="59_trap_308"
 Trigger at label="59_trap_308"
 Silent=1
 <LuaCode>
@@ -5866,7 +5866,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_309"
+Name="59_trap_309"
 Trigger at label="59_trap_309"
 Silent=1
 <LuaCode>
@@ -5877,7 +5877,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_310"
+Name="59_trap_310"
 Trigger at label="59_trap_310"
 Silent=1
 <LuaCode>
@@ -5888,7 +5888,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_311"
+Name="59_trap_311"
 Trigger at label="59_trap_311"
 Silent=1
 <LuaCode>
@@ -5899,7 +5899,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_312"
+Name="59_trap_312"
 Trigger at label="59_trap_312"
 Silent=1
 <LuaCode>
@@ -5910,7 +5910,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_313"
+Name="59_trap_313"
 Trigger at label="59_trap_313"
 Silent=1
 <LuaCode>
@@ -5921,7 +5921,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_314"
+Name="59_trap_314"
 Trigger at label="59_trap_314"
 Silent=1
 <LuaCode>
@@ -5932,7 +5932,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_315"
+Name="59_trap_315"
 Trigger at label="59_trap_315"
 Silent=1
 <LuaCode>
@@ -5943,7 +5943,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_316"
+Name="59_trap_316"
 Trigger at label="59_trap_316"
 Silent=1
 <LuaCode>
@@ -5954,7 +5954,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_317"
+Name="59_trap_317"
 Trigger at label="59_trap_317"
 Silent=1
 <LuaCode>
@@ -5965,7 +5965,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_318"
+Name="59_trap_318"
 Trigger at label="59_trap_318"
 Silent=1
 <LuaCode>
@@ -5976,7 +5976,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_319"
+Name="59_trap_319"
 Trigger at label="59_trap_319"
 Silent=1
 <LuaCode>
@@ -5987,7 +5987,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_320"
+Name="59_trap_320"
 Trigger at label="59_trap_320"
 Silent=1
 <LuaCode>
@@ -5998,7 +5998,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_321"
+Name="59_trap_321"
 Trigger at label="59_trap_321"
 Silent=1
 <LuaCode>
@@ -6009,7 +6009,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_322"
+Name="59_trap_322"
 Trigger at label="59_trap_322"
 Silent=1
 <LuaCode>
@@ -6020,7 +6020,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_323"
+Name="59_trap_323"
 Trigger at label="59_trap_323"
 Silent=1
 <LuaCode>
@@ -6031,7 +6031,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_324"
+Name="59_trap_324"
 Trigger at label="59_trap_324"
 Silent=1
 <LuaCode>
@@ -6042,7 +6042,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_325"
+Name="59_trap_325"
 Trigger at label="59_trap_325"
 Silent=1
 <LuaCode>
@@ -6053,7 +6053,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_326"
+Name="59_trap_326"
 Trigger at label="59_trap_326"
 Silent=1
 <LuaCode>
@@ -6064,7 +6064,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_327"
+Name="59_trap_327"
 Trigger at label="59_trap_327"
 Silent=1
 <LuaCode>
@@ -6075,7 +6075,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_328"
+Name="59_trap_328"
 Trigger at label="59_trap_328"
 Silent=1
 <LuaCode>
@@ -6086,7 +6086,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_329"
+Name="59_trap_329"
 Trigger at label="59_trap_329"
 Silent=1
 <LuaCode>
@@ -6097,7 +6097,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_330"
+Name="59_trap_330"
 Trigger at label="59_trap_330"
 Silent=1
 <LuaCode>
@@ -6108,7 +6108,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_331"
+Name="59_trap_331"
 Trigger at label="59_trap_331"
 Silent=1
 <LuaCode>
@@ -6119,7 +6119,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_332"
+Name="59_trap_332"
 Trigger at label="59_trap_332"
 Silent=1
 <LuaCode>
@@ -6130,7 +6130,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_333"
+Name="59_trap_333"
 Trigger at label="59_trap_333"
 Silent=1
 <LuaCode>
@@ -6141,7 +6141,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_334"
+Name="59_trap_334"
 Trigger at label="59_trap_334"
 Silent=1
 <LuaCode>
@@ -6152,7 +6152,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_335"
+Name="59_trap_335"
 Trigger at label="59_trap_335"
 Silent=1
 <LuaCode>
@@ -6163,7 +6163,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_336"
+Name="59_trap_336"
 Trigger at label="59_trap_336"
 Silent=1
 <LuaCode>
@@ -6174,7 +6174,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_337"
+Name="59_trap_337"
 Trigger at label="59_trap_337"
 Silent=1
 <LuaCode>
@@ -6185,7 +6185,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_338"
+Name="59_trap_338"
 Trigger at label="59_trap_338"
 Silent=1
 <LuaCode>
@@ -6196,7 +6196,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_339"
+Name="59_trap_339"
 Trigger at label="59_trap_339"
 Silent=1
 <LuaCode>
@@ -6207,7 +6207,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_340"
+Name="59_trap_340"
 Trigger at label="59_trap_340"
 Silent=1
 <LuaCode>
@@ -6218,7 +6218,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_341"
+Name="59_trap_341"
 Trigger at label="59_trap_341"
 Silent=1
 <LuaCode>
@@ -6229,7 +6229,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_342"
+Name="59_trap_342"
 Trigger at label="59_trap_342"
 Silent=1
 <LuaCode>
@@ -6240,7 +6240,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_343"
+Name="59_trap_343"
 Trigger at label="59_trap_343"
 Silent=1
 <LuaCode>
@@ -6251,7 +6251,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_344"
+Name="59_trap_344"
 Trigger at label="59_trap_344"
 Silent=1
 <LuaCode>
@@ -6262,7 +6262,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_345"
+Name="59_trap_345"
 Trigger at label="59_trap_345"
 Silent=1
 <LuaCode>
@@ -6273,7 +6273,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_346"
+Name="59_trap_346"
 Trigger at label="59_trap_346"
 Silent=1
 <LuaCode>
@@ -6284,7 +6284,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_347"
+Name="59_trap_347"
 Trigger at label="59_trap_347"
 Silent=1
 <LuaCode>
@@ -6295,7 +6295,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_348"
+Name="59_trap_348"
 Trigger at label="59_trap_348"
 Silent=1
 <LuaCode>
@@ -6306,7 +6306,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_349"
+Name="59_trap_349"
 Trigger at label="59_trap_349"
 Silent=1
 <LuaCode>
@@ -6317,7 +6317,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_350"
+Name="59_trap_350"
 Trigger at label="59_trap_350"
 Silent=1
 <LuaCode>
@@ -6328,7 +6328,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_351"
+Name="59_trap_351"
 Trigger at label="59_trap_351"
 Silent=1
 <LuaCode>
@@ -6339,7 +6339,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_352"
+Name="59_trap_352"
 Trigger at label="59_trap_352"
 Silent=1
 <LuaCode>
@@ -6350,7 +6350,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_353"
+Name="59_trap_353"
 Trigger at label="59_trap_353"
 Silent=1
 <LuaCode>
@@ -6361,7 +6361,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_354"
+Name="59_trap_354"
 Trigger at label="59_trap_354"
 Silent=1
 <LuaCode>
@@ -6372,7 +6372,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_355"
+Name="59_trap_355"
 Trigger at label="59_trap_355"
 Silent=1
 <LuaCode>
@@ -6383,7 +6383,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_356"
+Name="59_trap_356"
 Trigger at label="59_trap_356"
 Silent=1
 <LuaCode>
@@ -6394,7 +6394,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_357"
+Name="59_trap_357"
 Trigger at label="59_trap_357"
 Silent=1
 <LuaCode>
@@ -6405,7 +6405,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_358"
+Name="59_trap_358"
 Trigger at label="59_trap_358"
 Silent=1
 <LuaCode>
@@ -6416,7 +6416,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_359"
+Name="59_trap_359"
 Trigger at label="59_trap_359"
 Silent=1
 <LuaCode>
@@ -6427,7 +6427,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_360"
+Name="59_trap_360"
 Trigger at label="59_trap_360"
 Silent=1
 <LuaCode>
@@ -6438,7 +6438,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_361"
+Name="59_trap_361"
 Trigger at label="59_trap_361"
 Silent=1
 <LuaCode>
@@ -6449,7 +6449,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_362"
+Name="59_trap_362"
 Trigger at label="59_trap_362"
 Silent=1
 <LuaCode>
@@ -6460,7 +6460,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_trap_363"
+Name="59_trap_363"
 Trigger at label="59_trap_363"
 Silent=1
 <LuaCode>
@@ -6476,21 +6476,21 @@ Silent=1
 ##############
 
 * New event trigger *
-Name=_"Back to tunnel"
+Name="Back to tunnel"
 Trigger at label="60to59ctrlroom"
 Silent=1
 <LuaCode> teleport("59from60ctrlroom") </LuaCode>
 * End of trigger *
 
 * New event trigger *
-Name=_"To tunnel..."
+Name="To tunnel..."
 Trigger at label="60to59botroom"
 Silent=1
 <LuaCode> teleport("59from60botroom") </LuaCode>
 * End of trigger *
 
 * New event trigger *
-Name=_"Back to tunnel"
+Name="Back to tunnel"
 Trigger at label="60to59house"
 Silent=1
 <LuaCode> teleport("59from60house") </LuaCode>
@@ -6532,7 +6532,7 @@ Silent=1
 ## Level 69 ##
 ##############
 * New event trigger *
-Name=_"Back to tunnel"
+Name="Back to tunnel"
 Trigger at label="69to31"
 Silent=1
 <LuaCode> teleport("31from69") </LuaCode>
@@ -6542,7 +6542,7 @@ Silent=1
 ## Level 70 ##
 ##############
 * New event trigger *
-Name=_"Guy 24 to 70"
+Name="Guy 24 to 70"
 Trigger changing level
 Entering level=70
 Exiting level=24
@@ -6558,7 +6558,7 @@ Exiting level=24
 ## NPC Deaths ##
 ################
 * New event trigger *
-Name=_"HF-EntranceBot Dies"
+Name="HF-EntranceBot Dies"
 Trigger on enemy death
 Enemy level=50
 Enemy dialog name="HF-EntranceBot"
@@ -6571,7 +6571,7 @@ Enemy dialog name="HF-EntranceBot"
 * End of trigger *
 
 * New event trigger *
-Name=_"Spencer Dies"
+Name="Spencer Dies"
 Trigger on enemy death
 Enemy level=0
 Enemy dialog name="Spencer"
@@ -6583,7 +6583,7 @@ Enemy dialog name="Spencer"
 * End of trigger *
 
 * New event trigger *
-Name=_"Kevin Murder"
+Name="Kevin Murder"
 Trigger on enemy death
 Enemy level=17
 Enemy dialog name="Kevin"
@@ -6601,7 +6601,7 @@ Enemy dialog name="Kevin"
 * End of trigger *
 
 * New event trigger *
-Name=_"DeadGuy dead"
+Name="DeadGuy dead"
 Trigger on enemy death
 Enemy level=24
 Enemy dialog name="DeadGuy"

@@ -103,7 +103,8 @@ static void clear_out_events(void)
 
 #define EVENT_TRIGGER_BEGIN_STRING "* New event trigger *"
 #define EVENT_TRIGGER_END_STRING "* End of trigger *"
-#define EVENT_TRIGGER_NAME_STRING "Name=_\""
+#define EVENT_TRIGGER_NAME_MARKED_STRING "Name=_\""
+#define EVENT_TRIGGER_NAME_STRING "Name=\""
 #define EVENT_TRIGGER_LUACODE_STRING "<LuaCode>"
 #define EVENT_TRIGGER_LUACODE_END_STRING "</LuaCode>"
 #define EVENT_TRIGGER_ENABLED_STRING "Enable this trigger by default="
@@ -207,7 +208,10 @@ static void load_events(char *EventSectionPointer)
 			temp.trigger.obstacle_action.label = ReadAndMallocStringFromDataOptional(EventPointer, OBSTACLE_ACTION_LABEL, "\"");
 		}
 
-		temp.name = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_NAME_STRING, "\"");
+		temp.name = ReadAndMallocStringFromDataOptional(EventPointer, EVENT_TRIGGER_NAME_MARKED_STRING, "\"");
+		if (!temp.name) {
+			temp.name = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_NAME_STRING, "\"");
+		}
 
 		temp.lua_code =
 			ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LUACODE_STRING, EVENT_TRIGGER_LUACODE_END_STRING);
