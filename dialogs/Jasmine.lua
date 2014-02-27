@@ -43,7 +43,7 @@ return {
 		code = function()
 			npc_says(_"People call me Jasmine...")
 			npc_says(_"That is not my real name, but it will do for now.")
-			set_bot_name(_"Jasmine")
+			set_bot_name("Jasmine")
 			hide("node1") show("node2", "node3", "node4", "node5")
 		end,
 	},
@@ -53,7 +53,7 @@ return {
 		code = function()
 			npc_says(_"I live with him, stupid.")
 			npc_says(_"I like him. He... He is very much like me.")
-			set_bot_name(_"Jasmine - Girlfriend of a true Hacker")
+			set_bot_name("Jasmine - Girlfriend of a true Hacker")
 			hide("node2")
 		end,
 	},

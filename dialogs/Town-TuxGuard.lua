@@ -23,7 +23,7 @@ return {
 	EveryTime = function()
 		if (guard_follow_tux) then
 			npc_says(_"I'm to keep an eye on you until you talk to Spencer.")
-			set_bot_name(_"Red Guard Escort")
+			set_bot_name("Red Guard Escort")
 		elseif (tux_has_joined_guard) then
 			npc_says(_"I'll let you be now; no need to suspect one of our own!")
 		else

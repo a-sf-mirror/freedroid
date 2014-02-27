@@ -55,7 +55,7 @@ return {
 			Tux:says(_"STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!")
 			npc_says(_"Apology is being extended by me. Sorenson overdid it.")
 			npc_says(_"Sorenson the coder greets you.")
-			set_bot_name(_"Sorenson - Mystery coder")
+			set_bot_name("Sorenson - Mystery coder")
 			hide("node20")
 		end,
 	},

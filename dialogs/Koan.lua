@@ -100,7 +100,7 @@ return {
 		id = "node4",
 		text = _"Who are you? Who is Duncan?",
 		code = function()
-			set_bot_name(_"Koan")
+			set_bot_name("Koan")
 			npc_says(_"I am Koan.")
 			npc_says(_"Duncan is one obsessed with destroying things, while I create.")
 			npc_says(_"Therefore he desires my destruction.")
@@ -111,7 +111,7 @@ return {
 		id = "node5",
 		text = _"Who are you?",
 		code = function()
-			set_bot_name(_"Koan")
+			set_bot_name("Koan")
 			npc_says(_"I am Koan.")
 			npc_says(_"Beyond that I am a creator.")
 			npc_says(_"I give life to things, even if they eventually will be destroyed.")

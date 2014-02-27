@@ -23,7 +23,7 @@ return {
 	FirstTime = function()
 		Tux:says(_"Hello! I'm new here.")
 		npc_says(_"Hey, man! I'm Bender, the dead man of this town. And you?")
-		set_bot_name(_"Bender")
+		set_bot_name("Bender")
 		--; TRANSLATORS: %s = Tux:get_player_name()
 		Tux:says(_"I'm %s. I'm fine, thank you.", Tux:get_player_name(), "NO_WAIT")
 		show("node0")
@@ -93,7 +93,7 @@ return {
 		code = function()
 			npc_says(_"Yeah. I'm the strongest man in all the world. That's 'cause I took ALL of the strength pills.")
 			npc_says(_"And yet, I might be dead soon. The doc warned me, but I didn't listen. GRAH!")
-			set_bot_name(_"Bender - The strongest one")
+			set_bot_name("Bender - The strongest one")
 			show("node1", "node2")
 			push_topic("Sick Bender")
 		end,

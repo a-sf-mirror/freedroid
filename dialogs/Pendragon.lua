@@ -89,7 +89,7 @@ return {
 			npc_says(_"You don't say. I'm not living here either. I'm just on vacation.")
 			npc_says(_"Normally I'm a fighter. But now I try to relax, chill, take it easy and have a lot of fun.")
 			npc_says(_"And in case you couldn't tell, that was sarcasm.")
-			set_bot_name(_"Fighter")
+			set_bot_name("Fighter")
 			hide("node0") show("node1", "node2")
 		end,
 	},
@@ -114,7 +114,7 @@ return {
 			npc_says(_"And you?")
 			--; TRANSLATORS: %s = Tux:get_player_name()
 			Tux:says(_"%s, because it is my name?", Tux:get_player_name())
-			set_bot_name(_"Pendragon - Fighter")
+			set_bot_name("Pendragon - Fighter")
 			hide("node2")
 		end,
 	},

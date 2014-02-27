@@ -48,7 +48,7 @@ return {
 		id = "after-614_sub",
 		code = function()
 			pop_topic()
-			set_bot_name(_"614 - Cryo Lab Guard Bot")
+			set_bot_name("614 - Cryo Lab Guard Bot")
 			hide("node0")
 		end,
 	},

@@ -62,7 +62,7 @@ return {
 		text = _"Who are you?",
 		code = function()
 			npc_says(_"I'm Iris")
-			set_bot_name(_"Iris")
+			set_bot_name("Iris")
 			Tux:says(_"Hello Iris.")
 			hide("node1") show("node2")
 		end,
@@ -74,7 +74,7 @@ return {
 			npc_says(_"I'm here just for vacations.")
 			Tux:says(_"And what do you usually do?")
 			npc_says(_"Usually I hunt bots.") --she may be a spy of the rebel faction that is not yet implemented
-			set_bot_name(_"Iris - bot hunter")
+			set_bot_name("Iris - bot hunter")
 			hide("node2") show("node3")
 		end,
 	},

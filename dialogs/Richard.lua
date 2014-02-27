@@ -40,7 +40,7 @@ return {
 		code = function()
 			npc_says(_"Welcome, welcome! I'm Richard. I'm the computer guy around here.")
 			npc_says(_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time.")
-			set_bot_name(_"Richard - Programmer")
+			set_bot_name("Richard - Programmer")
 			hide("node0") show("node1")
 		end,
 	},

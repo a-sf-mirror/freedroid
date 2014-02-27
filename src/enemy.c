@@ -893,22 +893,22 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 			killer = enemy_resolve_address(killertype, &killer);
 			// TRANSLATORS: Your friend <bot's short description> was killed by <bot's short description>
 			append_new_game_message(_("Your friend [s]%s[v] was killed by %s."),
-			                        target->short_description_text, killer->short_description_text);
+			                        D_(target->short_description_text), D_(killer->short_description_text));
 		} else if ((killertype == -1) && (givexp)) {      //You killed someone
 			// TRANSLATORS: You killed <bot's short description>
-			append_new_game_message(_("You killed [s]%s[v]."), target->short_description_text);
+			append_new_game_message(_("You killed [s]%s[v]."), D_(target->short_description_text));
 			Me.destroyed_bots[target->type]++;
 		} else if (killertype == -2) {  //bot killed itself
 			// TRANSLATORS: <bot's short description> halted and caught fire
-			append_new_game_message(_("[s]%s[v] halted and caught fire."), target->short_description_text);
+			append_new_game_message(_("[s]%s[v] halted and caught fire."), D_(target->short_description_text));
 		} else {
 			// TRANSLATORS: <bot's short description> is dead
-			append_new_game_message(_("[s]%s[v] is dead."), target->short_description_text);
+			append_new_game_message(_("[s]%s[v] is dead."), D_(target->short_description_text));
 		}
 	} else {
 		if (givexp && (killertype == -1)) {
 			// TRANSLATORS: For defeating <bot's short description>, you receive <10> experience
-			append_new_game_message(_("For defeating [s]%s[v], you receive %d experience."), target->short_description_text,
+			append_new_game_message(_("For defeating [s]%s[v], you receive %d experience."), D_(target->short_description_text),
 						reward);
 			Me.destroyed_bots[target->type]++;		
 		}

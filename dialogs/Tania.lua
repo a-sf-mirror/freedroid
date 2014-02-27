@@ -145,7 +145,7 @@ return {
 			npc_says(_"This place is locked. Hermetically sealed and guarded by bots. So you can't possibly be anything more than the product of my imagination.")
 			Tux:says(_"But who are you?")
 			npc_says(_"A figment of my imagination should know my name: Tania.")
-			set_bot_name(_"Tania - lonely scientist")
+			set_bot_name("Tania - lonely scientist")
 			hide("node2") show("node12")
 		end,
 	},

@@ -99,7 +99,7 @@ return {
 		code = function()
 			npc_says(_"My name is Will Gapes. I'm the chief software architect for MegaSys. I helped start the company.")
 			npc_says(_"Without my help this company would still be learning BASIC!")
-			set_bot_name(_"Will Gapes - MegaSys CSA")
+			set_bot_name("Will Gapes - MegaSys CSA")
 			hide("node6") show("node8")
 		end,
 	},

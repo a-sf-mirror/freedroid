@@ -217,7 +217,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	BFont_Info *BFont_to_use = Blue_BFont;
 	Uint8 r, g, b;
 
-	text_length = text_width(BFont_to_use, cur_enemy->short_description_text);
+	text_length = text_width(BFont_to_use, D_(cur_enemy->short_description_text));
 
 	rect.h = FontHeight(BFont_to_use);
 
@@ -265,7 +265,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 
 	// Display droid's short description text
 	rect.x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
-	put_string(BFont_to_use, rect.x, rect.y, cur_enemy->short_description_text);
+	put_string(BFont_to_use, rect.x, rect.y, D_(cur_enemy->short_description_text));
 }
 
 /**

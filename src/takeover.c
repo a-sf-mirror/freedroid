@@ -204,7 +204,7 @@ static void show_droid_info(int droidtype)
 	clip.y = UNIVERSAL_COORD_H(57);
 	clip.w = UNIVERSAL_COORD_W(200);
 	clip.h = UNIVERSAL_COORD_H(30);
-	display_text_using_line_height(Droidmap[droidtype].default_short_description, clip.x, clip.y, &clip, 1.0);
+	display_text_using_line_height(D_(Droidmap[droidtype].default_short_description), clip.x, clip.y, &clip, 1.0);
 }
 
 /**
@@ -593,7 +593,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 
 		reward = Droidmap[target->type].experience_reward * Me.experience_factor;
 		Me.Experience += reward;
-		append_new_game_message(_("For taking control of your enemy, [s]%s[v], you receive %d experience."), target->short_description_text, reward);
+		append_new_game_message(_("For taking control of your enemy, [s]%s[v], you receive %d experience."), D_(target->short_description_text), reward);
 
 		// Maybe the enemy in question was a kind of 'boss monster' or it had
 		// some special item, that is relevant to a mission or quest.  In that

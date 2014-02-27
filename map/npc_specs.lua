@@ -1,77 +1,81 @@
+-- Comments after the NPC names are meant to declare alternative i18n'd names
+-- those will be set in dialog scripts (via a call to set_bot_name()).
+-- Those declarations are currently needed, here, due to the separation between
+-- the translation domains of dialog and config files.
 npc_list{
-	"WillGapes",
+	"WillGapes",             --[[ _"Will Gapes - MegaSys CSA" ]]--
 	"Vending-Machine",
-	"Tybalt",
-	"TutorialTom",
+	"Tybalt",                --[[ _"Tybalt - Citadel Gate Guard" ]]--
+	"TutorialTom",           --[[ _"Tutorial Tom" ]]--
 	"TutorialTerminal",
-	"Town-TuxGuard",
+	"Town-TuxGuard",         --[[ _"Red Guard Escort" ]]--
 	"Town-TeleporterGuard",
 	"Town-NorthGateGuard",
 	"Town-GuardhouseGuard",
 	"Town-614",
 	"TestDroid",
 	"Terminal",
-	"Tania",
-	"Tamara",
-	"Stone",
+	"Tania",                 --[[ _"Tania - lonely scientist" ]]--
+	"Tamara",                --[[ _"Tamara - Librarian" ]]--
+	"Stone",                 --[[ _"Stone - Shop owner", _"Lily Stone - Shop owner" ]]--
 	"Spencer",
-	"Sorenson",
-	"Skippy",
+	"Sorenson",              --[[ _"Sorenson - Mystery coder" ]]--
+	"Skippy",                --[[ _"Skippy - Map-Maker Maker" ]]--
 	"Singularity-Drone",
 	"Singularity",
 	--	"Serge",
-	"SADD",
+	"SADD",                  --[[ _"SADD - Exterminate Mode", _"SADD - Secret Area Defense Droid" ]]--
 	"SACD",
-	"Richard",
+	"Richard",               --[[ _"Richard - Programmer" ]]--
 	"Peter",
-	"Pendragon",
+	"Pendragon",             --[[ _"Fighter", _"Pendragon - Fighter" ]]--
 	"MS-Factory-Addon-Terminal",
 	"MO-RGGateGuardLeader",
 	"MO-RGGateGuard",
 	"MO-HFGateAccessServer",
 	"MiniFactory-Terminal",
 	"Mike",
-	"Michelangelo",
+	"Michelangelo",          --[[ _"Michelangelo - Chef" ]]--
 	"Maintenance-Terminal",
 	"Lukas",
 	--	"Lina",
-	"Koan",
+	"Koan",                  --[[ _"Koan" ]]--
 	"Kevin-Lawnmower",
-	"KevinGuard",
-	"Kevin",
-	"Karol",
+	"KevinGuard",            --[[ _"614 - Kevin's Guard" ]]--
+	"Kevin",                 --[[ _"Kevin - Hacker" ]]--
+	"Karol",                 --[[ _"Karol - Shop owner" ]]--
 	"John",
 	"Jennifer",
-	"Jasmine",
-	"Iris",
+	"Jasmine",               --[[ _"Jasmine", _"Jasmine - Girlfriend of a true Hacker" ]]--
+	"Iris",                  --[[ _"Iris", _"Iris - bot hunter" ]]--
 	"InvaderBot",
 	"HF-FirmwareUpdateServer",
 	"HF-EntranceBot",
-	"Geist",
-	"Francis",
+	"Geist",                 --[[ _"Geist - Hunter" ]]--
+	"Francis",               --[[ _"Dr. Francis - Cryonicist" ]]--
 	"FactionDeadBot",
 	"Ewalds_296",
-	"Ewald",
-	"Engel",
-	"Duncan",
+	"Ewald",                 --[[ _"Ewald - Barkeeper" ]]--
+	"Engel",                 --[[ _"Engel - Hunter" ]]--
+	"Duncan",                --[[ _"Duncan - Bombmaker" ]]--
 	"Dude",
 	"DSB-PowerControlGate1",
 	"DSB-PowerControl",
 	"DSB-MachineDeckControl",
-	"DocMoore",
-	"Dixon",
+	"DocMoore",              --[[ _"Doc Moore - Medic" ]]--
+	"Dixon",                 --[[ _"Dixon - Mechanic" ]]--
 	"DeadGuy",
 	"Cryo-Terminal",
 	"c-net",
 	"Chandra",
-	"Butch",
-	"Bruce",
+	"Butch",                 --[[ _"Butch - Arena Master" ]]--
+	"Bruce",                 --[[ _"Bruce - Mine Worker" ]]--
 	--	"Boris",
-	"Benjamin",
-	"Bender",
-	"Arthur",
+	"Benjamin",              --[[ _"Benjamin - Gunsmith" ]]--
+	"Bender",                --[[ _"Bender", _"Bender - The strongest one" ]]--
+	"Arthur",                --[[ _"Arthur", _"Arthur - Game developer" ]]--
 	"AfterTakeover",
-	"614_cryo",
+	"614_cryo",              --[[ _"614 - Cryo Lab Guard Bot" ]]--
 	"24-Controllable-Bot",
 	"Guy"} -- check this dialog first until we can check every dialog independently
 

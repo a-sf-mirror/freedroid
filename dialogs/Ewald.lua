@@ -52,7 +52,7 @@ return {
 			npc_says(_"I used to do a lot of drugs, and I destroyed my brain.")
 			npc_says(_"I'm not too smart now, but I'm very happy all the time!")
 			npc_says(_"Want something to drink?")
-			set_bot_name(_"Ewald - Barkeeper")
+			set_bot_name("Ewald - Barkeeper")
 			hide("node0") show("node1", "node2", "node13")
 		end,
 	},

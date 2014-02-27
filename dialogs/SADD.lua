@@ -69,7 +69,7 @@ return {
 		text = _"Who are you and what are you doing?",
 		code = function()
 			npc_says(_"I am a SADD - Secret Area Defense Droid.")
-			set_bot_name(_"SADD - Secret Area Defense Droid")
+			set_bot_name("SADD - Secret Area Defense Droid")
 			npc_says(_"[b]PRIMARY OBJECTIVE 1[/b]: do not let unauthorized people in.", "NO_WAIT")
 			npc_says(_"[b]PRIMARY OBJECTIVE 2[/b]: authorized personnel must have access to the zone.", "NO_WAIT")
 			npc_says(_"[b]SECONDARY OBJECTIVE[/b]: prevent secret information leakage")

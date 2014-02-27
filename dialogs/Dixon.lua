@@ -23,7 +23,7 @@ return {
 	FirstTime = function()
 		Maintenance_Terminal_accessgate_nope = "somevalue"
 		Dixon_mood = 0
-		set_bot_name(_"Dixon - Mechanic")
+		set_bot_name("Dixon - Mechanic")
 		Tux:says(_"Hi! I'm new here.")
 		npc_says(_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division.")
 		--; TRANSLATORS: %s = Tux:get_player_name()

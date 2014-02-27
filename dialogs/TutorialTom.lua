@@ -76,8 +76,8 @@ return {
 		Tux:downgrade_program("Repair equipment")
 		Tux:downgrade_program("Emergency shutdown")
 		-- done initializing
-		set_bot_name(_"Tutorial Tom")
-		display_console_message(_"Met [b]Tutorial Tom[/b]!")
+		set_bot_name("Tutorial Tom")
+		display_console_message(string.format(_"Met [b]%s[/b]!", bot_translated_name()))
 	end,
 
 	EveryTime = function()

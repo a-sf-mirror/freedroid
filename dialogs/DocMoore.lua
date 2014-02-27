@@ -100,7 +100,7 @@ return {
 			if (Tux:has_quest("Bender's problem")) then
 				show("node2")
 			end
-			set_bot_name(_"Doc Moore - Medic")
+			set_bot_name("Doc Moore - Medic")
 			hide("node0") show("node1", "node3", "node10")
 		end,
 	},

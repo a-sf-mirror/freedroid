@@ -90,7 +90,7 @@ return {
 			npc_says(_"I'm Kevin, a computer security expert.")
 			Tux:says(_"In other words: You are a hacker.")
 			npc_says(_"Eh... I guess you could put it that way, yes.")
-			set_bot_name(_"Kevin - Hacker")
+			set_bot_name("Kevin - Hacker")
 			hide("node0") show("node30")
 		end,
 	},

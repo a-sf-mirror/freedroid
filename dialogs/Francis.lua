@@ -197,7 +197,7 @@ return {
 		text = _"Who are you? What is going on?",
 		code = function()
 			npc_says(_"My name is Dr. Francis Spark. I am... uh... the keeper of this cryonic facility.")
-			set_bot_name(_"Dr. Francis - Cryonicist")
+			set_bot_name("Dr. Francis - Cryonicist")
 			npc_says(_"Currently, there is a war raging all around the globe. One day, our once loyal bots rebelled against us and began trying to wipe us out. The beginning of this war has been dubbed 'The Great Assault.'")
 			npc_says(_"And it looks like humans are losing the war. Our town isn't doing so well at this point either. But there is still hope, since you were discovered here.")
 			hide("node15") show("node16", "node17")

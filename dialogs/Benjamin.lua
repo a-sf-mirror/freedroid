@@ -40,7 +40,7 @@ return {
 		text = _"Hello!",
 		code = function()
 			npc_says(_"Ah, so you are the new member. Welcome. My name is Benjamin, and I take care of our ranged weaponry here in the citadel.")
-			set_bot_name(_"Benjamin - Gunsmith")
+			set_bot_name("Benjamin - Gunsmith")
 			hide("node0") show("node1", "node20", "node30")
 		end,
 	},

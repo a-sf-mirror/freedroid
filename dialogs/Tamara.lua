@@ -29,7 +29,7 @@ return {
 		npc_says(_"Welcome to the Library, I'm Tamara.")
 		npc_says(_"Please take a look around and see if there is something here that interests you.")
 		npc_says(_"You are welcome to ask me if you have any questions.")
-		set_bot_name(_"Tamara - Librarian")
+		set_bot_name("Tamara - Librarian")
 		show("node10")
 	end,
 

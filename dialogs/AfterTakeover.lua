@@ -47,7 +47,7 @@ return {
 		end
 		AfterTakeover_date = AfterTakeover_date_1
 		--; TRANSLATORS: %s = bot name
-		npc_says(_"Welcome to [b]%s[/b]!", bot_name(), "NO_WAIT")
+		npc_says(_"Welcome to [b]%s[/b]!", bot_translated_name(), "NO_WAIT")
 		if (npc_damage_amount() >0) then
 			npc_says(_"Hardware Check : BOT DAMAGED", "NO_WAIT")
 			--; TRANSLATORS: %s = bot type
@@ -204,7 +204,7 @@ return {
 
 				-- Display the maximum repair costs: --
 				npc_says(_"Repairs on %s will take less than %d %s, %d valuable %s, and %d heat.",
-					bot_name(),
+					bot_translated_name(),
 					Aftertakeover_repair_time_estimation,
 					repair_seconds,
 					Aftertakeover_repair_circuits_estimation,
@@ -225,7 +225,7 @@ return {
 				AfterTakeover_repair_circuits = math.ceil(AfterTakeover_repair_circuits * (math.random() * 0.4 + 0.8))
 				AfterTakeover_repair_heat = math.ceil(AfterTakeover_repair_heat * (math.random() * 0.4 + 0.8))
 			else
-				npc_says(_"%s is currently undamaged.", bot_name(), "NO_WAIT")
+				npc_says(_"%s is currently undamaged.", bot_translated_name(), "NO_WAIT")
 				hide("node20")
 			end
 			cli_says(terminal_sub, "NO_WAIT")
@@ -376,7 +376,7 @@ return {
 			Tux:says(_"./hostname", "NO_WAIT")
 			npc_says(_"Welcome to the hostname menu.", "NO_WAIT")
 			npc_says(_"Version: 0.15.01", "NO_WAIT")
-			npc_says(_"Current botname: [b]%s[/b]", bot_name(), "NO_WAIT")
+			npc_says(_"Current botname: [b]%s[/b]", bot_translated_name(), "NO_WAIT")
 			npc_says(_"Select new name? [Y/N]", "NO_WAIT")
 			cli_says("> ", "NO_WAIT")
 			show("node41", "node42")
@@ -422,7 +422,7 @@ return {
 		topic = "repair_and_settings",
 		code = function()
 			Tux:says(new_name,"NO_WAIT")
-			npc_says(_"Confirm renaming from [b]%s[/b] to [b]%s[/b]? [Y/N]", bot_name(), new_name, "NO_WAIT")
+			npc_says(_"Confirm renaming from [b]%s[/b] to [b]%s[/b]? [Y/N]", bot_translated_name(), new_name, "NO_WAIT")
 			cli_says("> ", "NO_WAIT")
 			show("node44", "node45")
 			push_topic("confirm hostname Y/N")
@@ -436,9 +436,9 @@ return {
 		code = function()
 			--; TRANSLATORS: Y for yes
 			Tux:says(_"Y", "NO_WAIT")
-			display_console_message(string.format(_"Renamed [b]%s[/b] to [b]%s[/b].", bot_name(), new_name))
+			display_console_message(string.format(_"Renamed [b]%s[/b] to [b]%s[/b].", bot_translated_name(), new_name))
 			set_bot_name(new_name)
-			npc_says(_"This %s unit is now designated: [b]%s[/b]", bot_type(), bot_name(), "NO_WAIT")
+			npc_says(_"This %s unit is now designated: [b]%s[/b]", bot_type(), bot_translated_name(), "NO_WAIT")
 			cli_says(terminal_sub, "NO_WAIT")
 			hide("node44", "node45")
 			pop_topic()
@@ -464,7 +464,7 @@ return {
 		code = function()
 			Tux:says(_"./hcf.py", "NO_WAIT")
 			if (Aftertakeover_confirm_hcf) then
-				npc_says(_"Are you really sure you want to destroy %s? Y/N", bot_name())
+				npc_says(_"Are you really sure you want to destroy %s? Y/N", bot_translated_name())
 				show("node48", "node49")
 				push_topic("confirm self-destruct Y/N")
 			else

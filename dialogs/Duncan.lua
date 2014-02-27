@@ -63,7 +63,7 @@ return {
 		text = _"Hi... Erm... Who are you?",
 		code = function()
 			npc_says(_"Duncan McNamara, The Red Guard's resident bomb maker, at your service.")
-			set_bot_name(_"Duncan - Bombmaker")
+			set_bot_name("Duncan - Bombmaker")
 			hide("node0", "node90") show("node1")
 		end,
 	},
@@ -344,7 +344,7 @@ return {
 			--; TRANSLATORS: %s = Tux:get_player_name()
 			Tux:says(_"What do you mean? I am %s and not anyone else.", Tux:get_player_name())
 			npc_says(_"And I am Duncan McNamara, the maker of grenades and nothing else.")
-			set_bot_name(_"Duncan - Bombmaker")
+			set_bot_name("Duncan - Bombmaker")
 			npc_says(_"I believe the topic is thoroughly exhausted now.")
 			hide("node0", "node1", "node2", "node90") show("node5", "node92")
 		end,

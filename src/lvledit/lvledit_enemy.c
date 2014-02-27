@@ -196,7 +196,7 @@ static void edit_special_force_info(enemy *en)
 	free(en->dialog_section_name);
 	en->dialog_section_name = strdup(user_input);
 
-	autostr_append(displayed_text, _("%s\n Short description: "), user_input);
+	autostr_append(displayed_text, _("%s\n Short description (in English): "), user_input);
 	sprintf(suggested_val, "%s", en->short_description_text);
 	free(user_input);
 

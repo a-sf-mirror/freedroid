@@ -39,8 +39,8 @@ return {
 			npc_says(_"Hello. We are the Fleischer brothers.")
 			--; TRANSLATORS: Engel = Angle, Geist = Ghost or Spirit
 			npc_says(_"I am Engel. He is Geist, and he does not know the language.")
-			set_bot_name(_"Engel - Hunter")
-			set_bot_name(_"Geist - Hunter", "Geist")
+			set_bot_name("Engel - Hunter")
+			set_bot_name("Geist - Hunter", "Geist")
 			hide("node0") show("node1")
 		end,
 	},

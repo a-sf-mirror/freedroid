@@ -857,6 +857,13 @@ static int lua_chat_get_bot_name(lua_State * L)
 	return 1;
 }
 
+static int lua_chat_get_bot_translated_name(lua_State * L)
+{
+	enemy *en = get_enemy_arg(L, 1);
+	lua_pushstring(L, D_(en->short_description_text));
+	return 1;
+}
+
 static int lua_chat_set_bot_name(lua_State * L)
 {
 	const char *bot_name = luaL_checkstring(L, 1);
@@ -1351,6 +1358,7 @@ luaL_Reg lfuncs[] = {
 	{"bot_class", lua_event_bot_class},
 
 	{"bot_name", lua_chat_get_bot_name},
+	{"bot_translated_name", lua_chat_get_bot_translated_name},
 
 	{"set_bot_name", lua_chat_set_bot_name},
 

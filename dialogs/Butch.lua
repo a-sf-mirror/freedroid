@@ -93,7 +93,7 @@ return {
 		text = _"And who are you?",
 		code = function()
 			npc_says(_"Butch... The arena master.")
-			set_bot_name(_"Butch - Arena Master")
+			set_bot_name("Butch - Arena Master")
 			hide("node1", "node4") show("node5")
 		end,
 	},

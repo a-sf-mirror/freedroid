@@ -44,7 +44,7 @@ return {
 		text = _"Hi! I'm new here.",
 		code = function()
 			npc_says(_"Welcome to our town! I'm Ms. Stone. I run this shop.")
-			set_bot_name(_"Stone - Shop owner")
+			set_bot_name("Stone - Shop owner")
 			hide("node0") show("node1", "node3", "node10")
 		end,
 	},
@@ -142,7 +142,7 @@ return {
 			if (Tux:done_quest("Saving the shop")) then
 				npc_says(_"Thanks to you I have a chance now.", "NO_WAIT")
 				npc_says(_"Ha! It's time to show the world that Lily Stone is not going down without putting up a REAL good fight.")
-				set_bot_name(_"Lily Stone - Shop owner")
+				set_bot_name("Lily Stone - Shop owner")
 			else
 				npc_says(_"I'll be finished in about a week.", "NO_WAIT")
 				npc_says(_"The Stone family always bought cheap and sold at a low profit. The times have changed, but not my prices.")
@@ -230,7 +230,7 @@ return {
 			npc_says(_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all.")
 			--; TRANSLATORS: %s = Tux:get_player_name()
 			npc_says(_"%s, if you ever find out who started the Great Assault... GIVE THEM A SWIFT KICK FROM LILY STONE!!!", Tux:get_player_name())
-			set_bot_name(_"Lily Stone - Shop owner")
+			set_bot_name("Lily Stone - Shop owner")
 			Tux:add_item("Two Barrel shotgun", 1)
 			Tux:add_item("Shotgun shells", 20)
 			Tux:end_quest("Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")

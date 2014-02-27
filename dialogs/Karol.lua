@@ -38,7 +38,7 @@ return {
 		code = function()
 			npc_says(_"Hi, yes, you can buy stuff from me.")
 			npc_says(_"My name is Karol. I sell mostly tools which are needed to manufacture bots.")
-			set_bot_name(_"Karol - Shop owner")
+			set_bot_name("Karol - Shop owner")
 			hide("node0") show("node1")
 		end,
 	},

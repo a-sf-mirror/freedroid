@@ -206,12 +206,12 @@ static void print_statistics(void)
 		if (fav_destroyed != -1) {
 			if (Droidmap[fav_destroyed].is_human)
 				autostr_append(quest_browser_text, _("Attacking: [n]%s[w] ([n]%i[w] killed, [n]%i[w] DP)\n"),
-				               Droidmap[fav_destroyed].default_short_description,
+				               D_(Droidmap[fav_destroyed].default_short_description),
 				               Me.destroyed_bots[fav_destroyed],
 				               Me.damage_dealt[fav_destroyed]);
 			else
 				autostr_append(quest_browser_text, _("Attacking: [n]%s[w] ([n]%i[w] destroyed, [n]%i[w] DP)\n"),
-				               Droidmap[fav_destroyed].default_short_description,
+				               D_(Droidmap[fav_destroyed].default_short_description),
 				               Me.destroyed_bots[fav_destroyed],
 				               Me.damage_dealt[fav_destroyed]);
 		} else
@@ -219,7 +219,7 @@ static void print_statistics(void)
 
 		if (fav_capture_target != -1)
 			autostr_append(quest_browser_text, _("Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"),
-					Droidmap[fav_capture_target].default_short_description, fav_capture_success_rate,
+					D_(Droidmap[fav_capture_target].default_short_description), fav_capture_success_rate,
 					Me.TakeoverSuccesses[fav_capture_target] + Me.TakeoverFailures[fav_capture_target]);
 		else
 			autostr_append(quest_browser_text, _("Takeover: none successful\n"));
@@ -227,7 +227,7 @@ static void print_statistics(void)
 
 		if (worst_capture_target != -1)
 			autostr_append(quest_browser_text, _("Failed Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"),
-					Droidmap[worst_capture_target].default_short_description, worst_capture_success_rate,
+					D_(Droidmap[worst_capture_target].default_short_description), worst_capture_success_rate,
 					Me.TakeoverSuccesses[worst_capture_target] + Me.TakeoverFailures[worst_capture_target]);
 		else
 			autostr_append(quest_browser_text, _("Failed Takeover: no failures\n"));
@@ -246,7 +246,7 @@ static void print_statistics(void)
 		model = srt[counter];
 		//only show bot types the player has interacted with:
 		if (Me.damage_dealt[model] || Me.TakeoverSuccesses[model] || Me.TakeoverFailures[model] || Me.destroyed_bots[model]) {
-			autostr_append(quest_browser_text, "[r]%s[w]\n", Droidmap[model].default_short_description);
+			autostr_append(quest_browser_text, "[r]%s[w]\n", D_(Droidmap[model].default_short_description));
 			statistics_browser_lines_needed[display] = get_lines_needed(quest_browser_text->value, mission_description_rect, 1);
 			if (stats_display[display++]) {
 				if (Droidmap[model].is_human) {

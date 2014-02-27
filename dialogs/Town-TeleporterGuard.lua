@@ -89,7 +89,7 @@ return {
 			npc_says(_"The cat would eat the dice.")
 			Tux:says(_"So, no dice?")
 			npc_says(_"Yeah. If you want to play dice you should talk to the bartender, Ewald.")
-			set_bot_name(_"Ewald - Barkeeper", "Ewald")
+			set_bot_name("Ewald - Barkeeper", "Ewald")
 			hide("node12")
 		end,
 	},

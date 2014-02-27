@@ -71,7 +71,7 @@ return {
 		code = function()
 			npc_says(_"Hello. I'm Michelangelo. I haven't been here for long either.")
 			npc_says(_"I wish the bots had just killed me, but I got 'lucky' and ended up in this hellhole.")
-			set_bot_name(_"Michelangelo - Chef")
+			set_bot_name("Michelangelo - Chef")
 			hide("node0") show("node10", "node11")
 		end,
 	},

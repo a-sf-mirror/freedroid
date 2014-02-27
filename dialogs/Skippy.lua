@@ -42,7 +42,7 @@ return {
 			npc_says(_"I already saw you coming. Due to my mapping device! It's great stuff!")
 			npc_says(_"And as a special favour, I'll sell you a mapping device for half price!")
 			npc_says(_"What a GREAT offer! You're so lucky!")
-			set_bot_name(_"Skippy - Map-Maker Maker")
+			set_bot_name("Skippy - Map-Maker Maker")
 			hide("node0") show("node1", "node2", "node3", "node10", "node20")
 		end,
 	},

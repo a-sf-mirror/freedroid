@@ -59,7 +59,7 @@ return {
 		text = _"I saw this building as I was walking by, and I decided to take a look inside.",
 		code = function()
 			npc_says(_"[b]Your reason is curiosity. Master Kevin likes curious people.[/b]")
-			set_bot_name(_"614 - Kevin's Guard")
+			set_bot_name("614 - Kevin's Guard")
 			npc_says(_"[b]You may pass.[/b]")
 			hide("node1", "node3", "node17") show("node4")
 		end,
@@ -94,7 +94,7 @@ return {
 		text = _"I have some very valuable information. Your master might be interested in it.",
 		code = function()
 			npc_says(_"[b]Master Kevin will be pleased. You may pass.[/b]")
-			set_bot_name(_"614 - Kevin's Guard")
+			set_bot_name("614 - Kevin's Guard")
 			npc_says(_"[b]Door opening sequence initiated.[/b]")
 			hide("node5", "node6", "node7", "node12", "node13", "node14", "node18", "node19", "node99") show("node4")
 		end,

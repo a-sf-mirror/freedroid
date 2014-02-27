@@ -65,7 +65,7 @@ return {
 			else
 				npc_says(_"Good day. I am Bruce.")
 				npc_says(_"I am unwell.")
-				set_bot_name(_"Bruce - Mine Worker")
+				set_bot_name("Bruce - Mine Worker")
 				hide("node0") show("node1")
 			end
 		end,

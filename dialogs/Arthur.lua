@@ -26,7 +26,7 @@ return {
 		--; TRANSLATORS: %s = Tux:get_player_name()
 		Tux:says(_"I'm %s, and who are you?", Tux:get_player_name())
 		npc_says(_"My name is Arthur.")
-		set_bot_name(_"Arthur")
+		set_bot_name("Arthur")
 		show("node1")
 	end,
 
@@ -52,7 +52,7 @@ return {
 			Tux:says(_"Oh, interesting! Tell me when you have it ready, I'd love to take a look at it.")
 			npc_says(_"It's going to be ready when it's going to be ready.")
 			Tux:says(_"Sure, take your time.")
-			set_bot_name(_"Arthur - Game developer")
+			set_bot_name("Arthur - Game developer")
 			hide("node1")
 			Arthur_node_1 = "node2"
 		end,

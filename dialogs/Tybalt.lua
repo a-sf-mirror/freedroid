@@ -26,7 +26,7 @@ return {
 		--; TRANSLATORS: %s = Tux:get_player_name()
 		Tux:says(_"%s... I'm %s.", Tux:get_player_name(), Tux:get_player_name())
 		npc_says(_"All right, I'm Tybalt. I'm guarding the town citadel gate. Only authorized personnel are permitted.")
-		set_bot_name(_"Tybalt - Citadel Gate Guard")
+		set_bot_name("Tybalt - Citadel Gate Guard")
 		show("node0", "node5", "node10")
 	end,
 
