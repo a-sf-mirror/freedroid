@@ -1,4 +1,4 @@
-SUBDIRS = po-src po-dialogs
+SUBDIRS = po-src po-dialogs po-data
 
 # Special constructs to enable recursive call of
 # update-po and update-gmo.
