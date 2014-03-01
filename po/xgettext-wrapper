@@ -1,0 +1,137 @@
+#!/bin/bash
+#
+#  Copyright (c) 2014 Samuel Degrande
+#
+#  This file is part of Freedroid
+#
+#  Freedroid is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  Freedroid is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with Freedroid; see the file COPYING. If not, write to the
+#  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+#  MA  02111-1307  USA
+#
+
+# xgettext can not handle several file formats in a POTFILES.
+#
+# This wrapper script loops on each file listed in a POTFILES,
+# calls xgettext for each file with the right language parameter,
+# concatenating all results in the destination pot file.
+#
+# For lua, dat and droids files, extract_strings() extracts the marked strings
+# and creates a pseudo c-code which is passed to xgettext.
+
+extract_strings()
+{
+	inf=$1
+	outf=$2
+	gawk '
+		/_\"|_\[{2}/ { 
+			inline = $0
+			outline = ""
+			postout = ""
+			if (match(inline, "_\\[{2}([^\\]]+)$")) {
+				stop = 0
+				while (stop == 0) {
+					if (getline <= 0) {
+						print inline "EOF but ]] expected" > "/dev/stderr"
+						exit
+					}
+					inline = inline "\\n" $0
+					postout = postout "\n"
+					if (match($0, "\\]{2}")) {
+						stop = 1
+					}
+				}
+			}
+			while (match(inline, "_\"([^\"]|\\\\\")+\"")) {
+				match_start = RSTART
+				match_length = RLENGTH
+				outline = outline "a=_(" substr(inline, match_start+1, match_length-1) "); "
+				inline = substr(inline, match_start + match_length)
+			}
+			while (match(inline, "_\\[{2}[^\\]]+\\]{2}")) {
+				match_start = RSTART
+				match_length = RLENGTH
+				outline = outline "a=_(\"" substr(inline, match_start+3, match_length-5) "\"); "
+				inline = substr(inline, match_start + match_length)
+			}
+			print outline postout
+			next
+		}
+		{ print " " ; }
+       ' $1 > $2
+}
+
+if [ $# -ne 0 ] ; then
+	SYS_XGETTEXT=${1}
+	shift
+	if [ $# -ne 0 ] ; then
+		files_from=""
+		domain=""
+		directory=""
+		declare -a ARGS
+		j=1
+		for (( i=1 ; $i <= $# ; i+=1 )) ; do
+			val=${!i#--files-from=}
+			if [ " ${val}" != " ${!i}" ] ; then
+				files_from="${val}"
+				continue
+			fi
+			val=${!i#--default-domain=}
+			if [ " ${val}" != " ${!i}" ] ; then
+				domain="${val}"
+				continue
+			fi
+			val=${!i#--directory=}
+			if [ " ${val}" != " ${!i}" ] ; then
+				directory="${val}"
+				continue
+			fi
+			ARGS[$j]="${!i}"
+			j+=1
+		done
+		if [ " ${files_from}" != " " ] ; then
+			first=1
+			out=$(mktemp XXX.pot)
+			while read F ; do
+				if [ " ${F:0:1}" != " #" ] ; then
+					lang=C
+					case ${F/*./} in
+						"c" | "h" )
+							lang=C;
+							from_directory=${directory};;
+						"lua" | "dat" | "droids" )
+							lang=C;
+							mkdir -p tmp/$(dirname $F);
+							extract_strings ${directory}/$F tmp/$F;
+							from_directory=tmp;;
+					esac
+					if (( ${first} )) ; then 
+						${SYS_XGETTEXT} "${ARGS[@]}" --directory=${from_directory} --language=${lang} -o ${out} $F
+#						echo ${SYS_XGETTEXT} "${ARGS[@]}" --directory=${from_directory} --language=${lang} -o ${out} $F
+						first=0
+					else
+						${SYS_XGETTEXT} "${ARGS[@]}" --directory=${from_directory} --language=${lang} -j -o ${out} $F
+#						echo ${SYS_XGETTEXT} "${ARGS[@]}" --directory=${from_directory} --language=${lang} -j -o ${out} $F
+					fi
+				fi
+			done < ${files_from}
+			mv ${out} ${domain}.po
+			rm -rf tmp
+			exit 0
+		fi
+	fi
+	${SYS_XGETTEXT} "$@"
+	exit 0
+fi
+echo "$0: Error. No arguments"
+exit 1

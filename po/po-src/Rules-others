@@ -1,7 +1,7 @@
 # Additional make targets
 
-# Regenerate POTFILES.in if the list of source files changed
-# (executed before the main update-po rule)
+#== Regenerate POTFILES.in if the list of source files changed
+#== (executed before the main update-po rule)
 
 update-po: update-pot
 update-pot:
@@ -9,11 +9,11 @@ update-pot:
 	 if ! cmp -s POTFILES.inT POTFILES.in ; then \
 	   rm POTFILES.in && mv POTFILES.inT POTFILES.in; \
 	   echo "POTFILES.in updated"; \
-         else \
-           rm POTFILES.inT; \
-         fi
+	 else \
+	   rm POTFILES.inT; \
+	 fi
 
-# Auto-install catalogs locally
+#== Auto-install catalogs locally
 
 update-gmo: stamp-li
 all: stamp-li

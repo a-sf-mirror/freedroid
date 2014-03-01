@@ -5,10 +5,18 @@ DOMAIN = freedroidrpg-dialogs
 
 # These two variables depend on the location of this directory.
 subdir = po/po-dialogs
-top_builddir = ../..
+top_builddir = ${top_srcdir}
 
 # These options get passed to xgettext.
-XGETTEXT_OPTIONS = --language=Lisp --keyword=_
+SYS_XGETTEXT:=${XGETTEXT}
+XGETTEXT=${top_srcdir}/po/xgettext-wrapper ${SYS_XGETTEXT}
+XGETTEXT_OPTIONS = --width=80 --no-wrap --keyword=_ --from-code=UTF-8
+
+# These options get passed to msgmerge.
+MSGMERGE_OPTIONS = --width=80 --no-wrap --verbose --quiet
+
+# These options get passed to msgcat and msggrep.
+MSGCAT_OPTIONS = --width=80 --no-wrap
 
 # This is the copyright holder that gets inserted into the header of the
 # $(DOMAIN).pot file.  Set this to the copyright holder of the surrounding
