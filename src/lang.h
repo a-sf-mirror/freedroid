@@ -8,12 +8,7 @@
 
 #define _(String)  (String[0]!='\0'?gettext(String):"")
 #define N_(String) (String)
-
-/* TO BE IMPLEMENTED
-#define D_(String) (String[0]!='\0'?dgettext("freedroidrpg-map", String):"")
-*/
-#define D_(String) (String)
-
+#define D_(String) (String[0]!='\0'?dgettext("freedroidrpg-data", String):"")
 #define L_(String) (String[0]!='\0'?dgettext("freedroidrpg-dialogs", String):"")
 
 #else
