@@ -101,7 +101,7 @@ if test x$sanitize_address = xyes; then
 fi
 
 if test x$use_debug = xyes; then
-	CFLAGS="$CFLAGS -g3 -ggdb"
+	CFLAGS="$CFLAGS -g3 -ggdb -Og"
 fi
 
 if test x$more_warn = xyes; then
