@@ -535,7 +535,7 @@ static void LevelOptions(void)
 		sprintf(Options[i], _("Level: %d.  (<-/->)"), EditLevel()->levelnum);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Name (en_US): %s"), EditLevel()->Levelname);
+		sprintf(Options[i], _("Level name (untranslated): %s"), EditLevel()->Levelname);
 		MenuTexts[i] = Options[i];
 		i++;
 		sprintf(Options[i], _("Size:  X %d  Y %d"), EditLevel()->xlen, EditLevel()->ylen);
@@ -987,7 +987,7 @@ int DoLevelEditorMainMenu()
 		InitiateMenu("--EDITOR_BACKGROUND--");
 
 		i = 0;
-		sprintf(Options[i], _("Level: %d - %s (en_US)"), EditLevel()->levelnum, EditLevel()->Levelname);
+		sprintf(Options[i], _("Level name (untranslated): %d - %s"), EditLevel()->levelnum, EditLevel()->Levelname);
 		MenuTexts[i] = Options[i];
 		i++;
 		MenuTexts[i++] = _("Level Options");
