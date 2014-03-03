@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-03-01 22:54+0100\n"
+"POT-Creation-Date: 2014-03-03 21:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,22 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: map/script_helpers.lua:242 map/script_helpers.lua:245
+msgid "New Quest assigned: "
+msgstr ""
+
+#: map/script_helpers.lua:254 map/script_helpers.lua:257
+msgid "Quest log updated: "
+msgstr ""
+
+#: map/script_helpers.lua:287 map/script_helpers.lua:290
+msgid "Quest completed: "
+msgstr ""
+
+#: map/script_helpers.lua:531
+msgid " getting new id"
+msgstr ""
 
 #: src/action.c:535
 msgid "Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\"."
@@ -1110,20 +1126,20 @@ msgstr ""
 msgid "Lost %d valuable circuits!"
 msgstr ""
 
-#: src/main.c:397
+#: src/main.c:394
 msgid "Overheating!"
 msgstr ""
 
 #. TRANSLATORS: Screen message, displayed below 'Automatically shutting down'
-#: src/main.c:402
+#: src/main.c:399
 msgid "due to near lethal overheating"
 msgstr ""
 
-#: src/main.c:403
+#: src/main.c:400
 msgid "Automatically shutting down"
 msgstr ""
 
-#: src/main.c:425
+#: src/main.c:422
 msgid "Weapon reloaded"
 msgstr ""
 

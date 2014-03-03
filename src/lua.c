@@ -1132,6 +1132,13 @@ static int lua_set_mouse_move_target(lua_State *L)
 	return 1;
 }
 
+static int lua_src_gettext(lua_State *L)
+{
+	char *text = (char *)luaL_checkstring(L, 1);
+	lua_pushstring(L, _(text));
+	return 1;
+}
+
 static int lua_data_gettext(lua_State *L)
 {
 	char *text = (char *)luaL_checkstring(L, 1);
@@ -1961,10 +1968,16 @@ void reset_lua_state(void)
 	dialog_lua_state = luaL_newstate();
 	luaL_openlibs(dialog_lua_state);
 
-	// Add a context specific lua_gettext
-	luaL_Reg lua_gettext = { "_", lua_dialogs_gettext };
-	lua_pushcfunction(dialog_lua_state, lua_gettext.func);
-	lua_setglobal(dialog_lua_state, lua_gettext.name);
+	// Add context specific lua gettexts
+	luaL_Reg lua_gettext[] = {
+			{ "_",  lua_dialogs_gettext },
+			{ "S_", lua_src_gettext },
+			{ NULL, NULL }
+	};
+	for (i = 0; lua_gettext[i].name != NULL; i++) {
+		lua_pushcfunction(dialog_lua_state, lua_gettext[i].func);
+		lua_setglobal(dialog_lua_state, lua_gettext[i].name);
+	}
 
 	for (i = 0; lfuncs[i].name != NULL; i++) {
 		lua_pushcfunction(dialog_lua_state, lfuncs[i].func);
