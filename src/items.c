@@ -57,6 +57,11 @@ item create_item_with_id(const char *item_id, int full_durability, int multiplic
 
 	init_item(&new_item);
 	new_item.type = get_item_type_by_id(item_id);
+	if (new_item.type < 0 || new_item.type >= Number_Of_Item_Types) {
+		ErrorMessage(__FUNCTION__, "No items with the name \"%s\" exist in the game. Cannot create item.\nChanging item type to bug item to avoid crash.\n", PLEASE_INFORM, IS_WARNING_ONLY, item_id);
+		new_item.type = 0;
+	}
+
 	FillInItemProperties(&new_item, full_durability, multiplicity);
 
 	return new_item;
@@ -301,6 +306,12 @@ static enum item_quality random_item_quality()
  */
 void FillInItemProperties(item *it, int full_durability, int multiplicity)
 {
+	// Some basic error checking of item type.
+	if ((it->type < 0) || (it->type >= Number_Of_Item_Types)) {
+		ErrorMessage(__FUNCTION__, "Cannot fill in information for item with invalid type.\n", PLEASE_INFORM, IS_FATAL);
+		return;
+	}	
+
 	itemspec *spec = &ItemMap[it->type];
 
 	it->multiplicity = multiplicity;

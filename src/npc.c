@@ -169,6 +169,12 @@ static int add_item(struct npc *n, const char *item_id)
 	int item_type = get_item_type_by_id(item_id);
 	int amount = 1;
 
+	// Check to make certain we recieved a valid item name
+	if ((item_type < 0) || (item_type >= Number_Of_Item_Types)) {
+		ErrorMessage(__FUNCTION__, "No items with the name \"%s\" exist in the game. Cannot create item.\nCannot add item to shop.\n", PLEASE_INFORM, IS_WARNING_ONLY, item_id);
+		return 1;
+	}
+
 	// Stackable items are added in quantities larger than one. We use 50 as the value.
 	if (ItemMap[item_type].item_group_together_in_inventory) {
 		amount = 90 + MyRandom(10);
