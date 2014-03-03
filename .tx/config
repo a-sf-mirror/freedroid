@@ -1,0 +1,507 @@
+[main]
+host = https://www.transifex.com
+
+[freedroid-rpg.src-freedroidrpg]
+file_filter = po/po-src/tx/freedroidrpg-<lang>.po
+source_file = po/po-src/tx/freedroidrpg.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Dude]
+file_filter = po/po-dialogs/tx/Dude-<lang>.po
+source_file = po/po-dialogs/tx/Dude.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Francis]
+file_filter = po/po-dialogs/tx/Francis-<lang>.po
+source_file = po/po-dialogs/tx/Francis.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Arthur]
+file_filter = po/po-dialogs/tx/Arthur-<lang>.po
+source_file = po/po-dialogs/tx/Arthur.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-614_cryo]
+file_filter = po/po-dialogs/tx/614_cryo-<lang>.po
+source_file = po/po-dialogs/tx/614_cryo.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-614_sub]
+file_filter = po/po-dialogs/tx/614_sub-<lang>.po
+source_file = po/po-dialogs/tx/614_sub.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-AfterTakeover]
+file_filter = po/po-dialogs/tx/AfterTakeover-<lang>.po
+source_file = po/po-dialogs/tx/AfterTakeover.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Benjamin]
+file_filter = po/po-dialogs/tx/Benjamin-<lang>.po
+source_file = po/po-dialogs/tx/Benjamin.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Bender]
+file_filter = po/po-dialogs/tx/Bender-<lang>.po
+source_file = po/po-dialogs/tx/Bender.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Bruce]
+file_filter = po/po-dialogs/tx/Bruce-<lang>.po
+source_file = po/po-dialogs/tx/Bruce.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Butch]
+file_filter = po/po-dialogs/tx/Butch-<lang>.po
+source_file = po/po-dialogs/tx/Butch.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-c-net-nethack_sub]
+file_filter = po/po-dialogs/tx/c-net-nethack_sub-<lang>.po
+source_file = po/po-dialogs/tx/c-net-nethack_sub.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-c-net]
+file_filter = po/po-dialogs/tx/c-net-<lang>.po
+source_file = po/po-dialogs/tx/c-net.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Chandra]
+file_filter = po/po-dialogs/tx/Chandra-<lang>.po
+source_file = po/po-dialogs/tx/Chandra.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Cryo-Terminal]
+file_filter = po/po-dialogs/tx/Cryo-Terminal-<lang>.po
+source_file = po/po-dialogs/tx/Cryo-Terminal.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-DeadGuy]
+file_filter = po/po-dialogs/tx/DeadGuy-<lang>.po
+source_file = po/po-dialogs/tx/DeadGuy.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Dixon]
+file_filter = po/po-dialogs/tx/Dixon-<lang>.po
+source_file = po/po-dialogs/tx/Dixon.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-DocMoore]
+file_filter = po/po-dialogs/tx/DocMoore-<lang>.po
+source_file = po/po-dialogs/tx/DocMoore.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-DSB-MachineDeckControl]
+file_filter = po/po-dialogs/tx/DSB-MachineDeckControl-<lang>.po
+source_file = po/po-dialogs/tx/DSB-MachineDeckControl.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-DSB-PowerControl]
+file_filter = po/po-dialogs/tx/DSB-PowerControl-<lang>.po
+source_file = po/po-dialogs/tx/DSB-PowerControl.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-DSB-PowerControlGate1]
+file_filter = po/po-dialogs/tx/DSB-PowerControlGate1-<lang>.po
+source_file = po/po-dialogs/tx/DSB-PowerControlGate1.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Duncan]
+file_filter = po/po-dialogs/tx/Duncan-<lang>.po
+source_file = po/po-dialogs/tx/Duncan.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Engel]
+file_filter = po/po-dialogs/tx/Engel-<lang>.po
+source_file = po/po-dialogs/tx/Engel.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Ewald]
+file_filter = po/po-dialogs/tx/Ewald-<lang>.po
+source_file = po/po-dialogs/tx/Ewald.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Ewalds_296]
+file_filter = po/po-dialogs/tx/Ewalds_296-<lang>.po
+source_file = po/po-dialogs/tx/Ewalds_296.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-FactionDeadBot]
+file_filter = po/po-dialogs/tx/FactionDeadBot-<lang>.po
+source_file = po/po-dialogs/tx/FactionDeadBot.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Geist]
+file_filter = po/po-dialogs/tx/Geist-<lang>.po
+source_file = po/po-dialogs/tx/Geist.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Guy]
+file_filter = po/po-dialogs/tx/Guy-<lang>.po
+source_file = po/po-dialogs/tx/Guy.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-HF-EntranceBot]
+file_filter = po/po-dialogs/tx/HF-EntranceBot-<lang>.po
+source_file = po/po-dialogs/tx/HF-EntranceBot.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-HF-FirmwareUpdateServer]
+file_filter = po/po-dialogs/tx/HF-FirmwareUpdateServer-<lang>.po
+source_file = po/po-dialogs/tx/HF-FirmwareUpdateServer.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-InvaderBot]
+file_filter = po/po-dialogs/tx/InvaderBot-<lang>.po
+source_file = po/po-dialogs/tx/InvaderBot.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Iris]
+file_filter = po/po-dialogs/tx/Iris-<lang>.po
+source_file = po/po-dialogs/tx/Iris.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Jasmine]
+file_filter = po/po-dialogs/tx/Jasmine-<lang>.po
+source_file = po/po-dialogs/tx/Jasmine.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Jennifer]
+file_filter = po/po-dialogs/tx/Jennifer-<lang>.po
+source_file = po/po-dialogs/tx/Jennifer.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-John]
+file_filter = po/po-dialogs/tx/John-<lang>.po
+source_file = po/po-dialogs/tx/John.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Karol]
+file_filter = po/po-dialogs/tx/Karol-<lang>.po
+source_file = po/po-dialogs/tx/Karol.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Kevin-Lawnmower]
+file_filter = po/po-dialogs/tx/Kevin-Lawnmower-<lang>.po
+source_file = po/po-dialogs/tx/Kevin-Lawnmower.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Kevin]
+file_filter = po/po-dialogs/tx/Kevin-<lang>.po
+source_file = po/po-dialogs/tx/Kevin.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-KevinGuard]
+file_filter = po/po-dialogs/tx/KevinGuard-<lang>.po
+source_file = po/po-dialogs/tx/KevinGuard.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Koan]
+file_filter = po/po-dialogs/tx/Koan-<lang>.po
+source_file = po/po-dialogs/tx/Koan.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Lukas]
+file_filter = po/po-dialogs/tx/Lukas-<lang>.po
+source_file = po/po-dialogs/tx/Lukas.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Maintenance-Terminal]
+file_filter = po/po-dialogs/tx/Maintenance-Terminal-<lang>.po
+source_file = po/po-dialogs/tx/Maintenance-Terminal.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Michelangelo]
+file_filter = po/po-dialogs/tx/Michelangelo-<lang>.po
+source_file = po/po-dialogs/tx/Michelangelo.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Mike]
+file_filter = po/po-dialogs/tx/Mike-<lang>.po
+source_file = po/po-dialogs/tx/Mike.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-MiniFactory-Terminal]
+file_filter = po/po-dialogs/tx/MiniFactory-Terminal-<lang>.po
+source_file = po/po-dialogs/tx/MiniFactory-Terminal.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-MO-HFGateAccessServer]
+file_filter = po/po-dialogs/tx/MO-HFGateAccessServer-<lang>.po
+source_file = po/po-dialogs/tx/MO-HFGateAccessServer.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-MO-RGGateGuard]
+file_filter = po/po-dialogs/tx/MO-RGGateGuard-<lang>.po
+source_file = po/po-dialogs/tx/MO-RGGateGuard.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-MO-RGGateGuardLeader]
+file_filter = po/po-dialogs/tx/MO-RGGateGuardLeader-<lang>.po
+source_file = po/po-dialogs/tx/MO-RGGateGuardLeader.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-MS-Factory-Addon-Terminal]
+file_filter = po/po-dialogs/tx/MS-Factory-Addon-Terminal-<lang>.po
+source_file = po/po-dialogs/tx/MS-Factory-Addon-Terminal.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Pendragon]
+file_filter = po/po-dialogs/tx/Pendragon-<lang>.po
+source_file = po/po-dialogs/tx/Pendragon.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Peter]
+file_filter = po/po-dialogs/tx/Peter-<lang>.po
+source_file = po/po-dialogs/tx/Peter.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Richard]
+file_filter = po/po-dialogs/tx/Richard-<lang>.po
+source_file = po/po-dialogs/tx/Richard.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-SACD]
+file_filter = po/po-dialogs/tx/SACD-<lang>.po
+source_file = po/po-dialogs/tx/SACD.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-SADD]
+file_filter = po/po-dialogs/tx/SADD-<lang>.po
+source_file = po/po-dialogs/tx/SADD.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Singularity-Drone]
+file_filter = po/po-dialogs/tx/Singularity-Drone-<lang>.po
+source_file = po/po-dialogs/tx/Singularity-Drone.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Singularity]
+file_filter = po/po-dialogs/tx/Singularity-<lang>.po
+source_file = po/po-dialogs/tx/Singularity.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Skippy]
+file_filter = po/po-dialogs/tx/Skippy-<lang>.po
+source_file = po/po-dialogs/tx/Skippy.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Sorenson]
+file_filter = po/po-dialogs/tx/Sorenson-<lang>.po
+source_file = po/po-dialogs/tx/Sorenson.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Spencer]
+file_filter = po/po-dialogs/tx/Spencer-<lang>.po
+source_file = po/po-dialogs/tx/Spencer.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Stone]
+file_filter = po/po-dialogs/tx/Stone-<lang>.po
+source_file = po/po-dialogs/tx/Stone.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Tamara]
+file_filter = po/po-dialogs/tx/Tamara-<lang>.po
+source_file = po/po-dialogs/tx/Tamara.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Tania]
+file_filter = po/po-dialogs/tx/Tania-<lang>.po
+source_file = po/po-dialogs/tx/Tania.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Terminal]
+file_filter = po/po-dialogs/tx/Terminal-<lang>.po
+source_file = po/po-dialogs/tx/Terminal.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-TestDroid]
+file_filter = po/po-dialogs/tx/TestDroid-<lang>.po
+source_file = po/po-dialogs/tx/TestDroid.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Town-614]
+file_filter = po/po-dialogs/tx/Town-614-<lang>.po
+source_file = po/po-dialogs/tx/Town-614.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Town-GuardhouseGuard]
+file_filter = po/po-dialogs/tx/Town-GuardhouseGuard-<lang>.po
+source_file = po/po-dialogs/tx/Town-GuardhouseGuard.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Town-NorthGateGuard]
+file_filter = po/po-dialogs/tx/Town-NorthGateGuard-<lang>.po
+source_file = po/po-dialogs/tx/Town-NorthGateGuard.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Town-TeleporterGuard]
+file_filter = po/po-dialogs/tx/Town-TeleporterGuard-<lang>.po
+source_file = po/po-dialogs/tx/Town-TeleporterGuard.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Town-TuxGuard]
+file_filter = po/po-dialogs/tx/Town-TuxGuard-<lang>.po
+source_file = po/po-dialogs/tx/Town-TuxGuard.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-TutorialTerminal]
+file_filter = po/po-dialogs/tx/TutorialTerminal-<lang>.po
+source_file = po/po-dialogs/tx/TutorialTerminal.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-TutorialTom]
+file_filter = po/po-dialogs/tx/TutorialTom-<lang>.po
+source_file = po/po-dialogs/tx/TutorialTom.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Tybalt]
+file_filter = po/po-dialogs/tx/Tybalt-<lang>.po
+source_file = po/po-dialogs/tx/Tybalt.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Vending-Machine]
+file_filter = po/po-dialogs/tx/Vending-Machine-<lang>.po
+source_file = po/po-dialogs/tx/Vending-Machine.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-WillGapes]
+file_filter = po/po-dialogs/tx/WillGapes-<lang>.po
+source_file = po/po-dialogs/tx/WillGapes.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.data-droid_archetypes]
+file_filter = po/po-data/tx/droid_archetypes-<lang>.po
+source_file = po/po-data/tx/droid_archetypes.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.data-events]
+file_filter = po/po-data/tx/events-<lang>.po
+source_file = po/po-data/tx/events.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.data-item_specs]
+file_filter = po/po-data/tx/item_specs-<lang>.po
+source_file = po/po-data/tx/item_specs.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.data-levels]
+file_filter = po/po-data/tx/levels-<lang>.po
+source_file = po/po-data/tx/levels.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.data-npc_specs]
+file_filter = po/po-data/tx/npc_specs-<lang>.po
+source_file = po/po-data/tx/npc_specs.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.data-obstacle_specs]
+file_filter = po/po-data/tx/obstacle_specs-<lang>.po
+source_file = po/po-data/tx/obstacle_specs.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.data-program_archetypes]
+file_filter = po/po-data/tx/program_archetypes-<lang>.po
+source_file = po/po-data/tx/program_archetypes.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.data-quests]
+file_filter = po/po-data/tx/quests-<lang>.po
+source_file = po/po-data/tx/quests.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.data-ReturnOfTux]
+file_filter = po/po-data/tx/ReturnOfTux-<lang>.po
+source_file = po/po-data/tx/ReturnOfTux.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.all_in_one]
+file_filter = po/tx/all_in_one-<lang>.po
+source_file = po/tx/all_in_one.pot
+source_lang = en
+type = PO
+

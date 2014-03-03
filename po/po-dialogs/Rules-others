@@ -37,3 +37,125 @@ local-install:
 	done
 
 .PHONY: local-install update-pot
+
+#== Transifex synchronization
+
+TXPROJ   = freedroid-rpg
+TXFILES  = $(shell grep -v -E "^\#" POTFILES.in)
+TXPREFIX = dialog
+TXPROPS  = '{"category":"dialog"}'
+TXCRED   = $(shell $(top_srcdir)/po/tx-credentials)
+
+# Update the transifex potfiles
+#
+# The single game's pot file is split into individual pot files (as defined by TXFILES),
+# and for each individual file:
+# - if the associated resource is not found in the tx config file:
+#   - the resource is created,
+#   - the pot file is pushed,
+#   - and the category is changed.
+# - else:
+#   - the pot file is pushed.
+#
+# Note: It is not yet possible to define a resource's category using tx-set
+# (transifex-client version 0.10). We thus directly use the transifex remote
+# API to change it once the resource has been pushed.
+
+tx-update: $(DOMAIN).pot
+	@test " $(TXCRED)" = " " \
+	 && { \
+	      echo "You do not have a Transifex account"; \
+	      exit 1; \
+	    }; \
+	$(mkdir_p) tx; \
+	files='$(TXFILES)'; \
+	for file in $$files; do \
+	  base=`basename $$file`; \
+	  rsrc=`echo $$base | sed -s 's/\..*$$//'`; \
+	  msggrep $(MSGCAT_OPTIONS) --location=$$file -o tx/$$rsrc.pot $(DOMAIN).pot; \
+	  if test -r tx/$$rsrc.pot; then \
+	    if ! tx -q status -r $(TXPROJ).$(TXPREFIX)-$$rsrc 2&>/dev/null; then \
+	      echo "Creating $(TXPREFIX)-$$rsrc"; \
+	      tx -q set --auto-local -r $(TXPROJ).$(TXPREFIX)-$$rsrc "tx/$$rsrc-<lang>.po" -t PO --source-lang en --source-file tx/$$rsrc.pot --execute; \
+	      if tx -q push -r $(TXPROJ).$(TXPREFIX)-$$rsrc -s; then \
+	        curl_output=`curl -s -L $(TXCRED) -X PUT -d $(TXPROPS) -H "Content-Type: application/json" https://www.transifex.com/api/2/project/$(TXPROJ)/resource/$(TXPREFIX)-$$rsrc;` \
+	        rtn=$$?; \
+	        if test $$rtn -ne 0 -o " $$curl_output" != " OK"; then echo "Warning. Failed to set properties: $$curl_output (error code $$rtn)"; fi; \
+	      fi; \
+	    else \
+	      echo "Updating $(TXPREFIX)-$$rsrc"; \
+	      tx -q push -r $(TXPROJ).$(TXPREFIX)-$$rsrc -s; \
+	    fi; \
+	  fi; \
+	done; \
+	rm -rf tx
+
+# Pull the translations from transifex.
+#
+# For each lang and each individual pot file (as defined by TXFILES):
+# - the translation is fetched from transifex
+# - merged into the game's po file of that lang
+# - merged with the game's pot file (to synchronize comments and file positions)
+#
+# Note: the translated strings of a transifex file will override the
+# translated strings of the game's file.
+
+tx-pull:
+	@test " $(TXCRED)" = " " \
+	 && { \
+	      echo "You do not have a Transifex account"; \
+	      exit 1; \
+	    }; \
+	$(mkdir_p) tx; \
+	catalogs='$(CATALOGS)'; \
+	files='$(TXFILES)'; \
+	for cat in $$catalogs; do \
+	  cat=`basename $$cat`; \
+	  lang=`echo $$cat | sed -e 's/\.gmo$$//'`; \
+	  for file in $$files; do \
+	    base=`basename $$file`; \
+	    rsrc=`echo $$base | sed -s 's/\..*$$//'`; \
+	    echo "Pulling $$rsrc-$$lang.po from transifex"; \
+	    if tx -q pull -r $(TXPROJ).$(TXPREFIX)-$$rsrc -l $$lang; then \
+	      if test -r tx/$$rsrc-$$lang.po; then \
+	        echo "Merging with $$lang.po"; \
+	        msgcat $(MSGCAT_OPTIONS) --use-first -o $$lang.po tx/$$rsrc-$$lang.po $$lang.po; \
+	      else \
+	        echo "Nothing to merge"; \
+	      fi; \
+	    fi; \
+	  done; \
+	  $(MSGMERGE_UPDATE) $(MSGMERGE_OPTIONS) $$lang.po $(DOMAIN).pot; \
+	done; \
+	rm -rf tx
+
+# Push the translations to transifex.
+#
+# For each lang:
+# - the game's po file is split into individual po files (as defined by TXFILES)
+# - for each individual po file:
+#   - the po file is pushed to transifex
+
+tx-push:
+	@test " $(TXCRED)" = " " \
+	 && { \
+	      echo "You do not have a Transifex account"; \
+	      exit 1; \
+	    }; \
+	$(mkdir_p) tx; \
+	catalogs='$(CATALOGS)'; \
+	files='$(shell cat POTFILES.in | grep -v -E "^#")'; \
+	for cat in $$catalogs; do \
+	  cat=`basename $$cat`; \
+	  lang=`echo $$cat | sed -e 's/\.gmo$$//'`; \
+	  for file in $$files; do \
+	    base=`basename $$file`; \
+	    rsrc=`echo $$base | sed -s 's/\..*$$//'`; \
+	    msggrep $(MSGCAT_OPTIONS) --location=$$file -o tx/$$rsrc-$$lang.po $$lang.po; \
+	    echo "Pushing $$rsrc-$$lang.po to transifex"; \
+	    tx -q push -r $(TXPROJ).$(TXPREFIX)-$$rsrc -l $$lang -t; \
+	  done; \
+	done; \
+	rm -rf tx
+
+.PHONY: tx-update tx-pull tx-push
