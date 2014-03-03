@@ -5,7 +5,7 @@
 
 update-po: update-pot
 update-pot:
-	@$(top_srcdir)/po/update-potfiles src > POTFILES.inT ; \
+	@$(top_srcdir)/po/update-potfiles -i src > POTFILES.inT ; \
 	 if ! cmp -s POTFILES.inT POTFILES.in ; then \
 	   rm POTFILES.in && mv POTFILES.inT POTFILES.in; \
 	   echo "POTFILES.in updated"; \
