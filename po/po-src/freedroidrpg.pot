@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-03-03 21:43+0100\n"
+"POT-Creation-Date: 2014-03-03 22:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2225,7 +2225,7 @@ msgstr ""
 
 #: src/lvledit/lvledit_menu.c:538
 #, c-format
-msgid "Name (en_US): %s"
+msgid "Level name (untranslated): %s"
 msgstr ""
 
 #: src/lvledit/lvledit_menu.c:541
@@ -2358,7 +2358,7 @@ msgstr ""
 
 #: src/lvledit/lvledit_menu.c:990
 #, c-format
-msgid "Level: %d - %s (en_US)"
+msgid "Level name (untranslated): %d - %s"
 msgstr ""
 
 #: src/lvledit/lvledit_menu.c:993
