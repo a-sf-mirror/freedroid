@@ -110,7 +110,7 @@ int main(int argc, char **argv)
 	char output_directory[4096];
 
 	if (argc < 4) {
-		fprintf(stderr, "Usage: %s <atlas_file> <atlas_directory> <output_directory>\n", argv[0]);
+		fprintf(stderr, "Usage: %s <atlas_text_file> <atlas_image_directory> <output_directory>\n", argv[0]);
 		return 1;
 	}
 
