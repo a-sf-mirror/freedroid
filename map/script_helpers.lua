@@ -239,10 +239,10 @@ function add_quest(quest, text)
 	assign_quest(quest, text)
 	play_sound("effects/Mission_Status_Change_Sound_0.ogg")
 	if (run_from_dialog()) then
-		cli_says("   ".._"New Quest assigned: " .. quest,"NO_WAIT")
+		cli_says("   "..S_"New Quest assigned: " .. quest,"NO_WAIT")
 		npc_says("")
 	else
-		display_big_message("   ".._"New Quest assigned: " .. quest)
+		display_big_message("   "..S_"New Quest assigned: " .. quest)
 	end
 end
 
@@ -254,7 +254,7 @@ function update_quest(quest, text)
 			cli_says("   ".._"Quest log updated: " .. quest, "NO_WAIT")
 			npc_says("")
 		else
-			display_big_message("   ".._"Quest log updated: " .. quest)
+			display_big_message("   "..S_"Quest log updated: " .. quest)
 		end
 	else -- we don't have the quest, wtf?
 		if (not running_benchmark()) then -- don't spam the validator
@@ -284,10 +284,10 @@ function end_quest(quest, text)
 	complete_quest(quest, text)
 	play_sound("effects/Mission_Status_Change_Sound_0.ogg")
 	if (run_from_dialog()) then
-		cli_says("   ".._"Quest completed: " .. quest,"NO_WAIT")
+		cli_says("   "..S_"Quest completed: " .. quest,"NO_WAIT")
 		npc_says("")
 	else
-		display_big_message("   ".._"Quest completed: " .. quest)
+		display_big_message("   "..S_"Quest completed: " .. quest)
 	end
 end
 
@@ -528,7 +528,7 @@ function level24obstacles()
 	function level24idcheck()
 		if (randobstacletype == 25) then
 		   -- cat ./map/obstacle_specs.lua | grep "image_filenames" | nl -v 0| grep "DUMMY"     (note: skip the last one)
-			display_big_message(randobstacletype.._" getting new id")
+			display_big_message(randobstacletype..S_" getting new id")
 			level24newid()
 			level24idcheck()
 		end
