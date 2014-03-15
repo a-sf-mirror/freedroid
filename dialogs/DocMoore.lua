@@ -20,13 +20,13 @@
 local Tux = FDrpg.get_tux()
 
 return {
-	EveryTime = function()
-		if (not DocMoore_met) then
-			show("node0")
-		end
+	FirstTime = function()
+		show("node0")
+	end,
 
+	EveryTime = function()
 		if (Tux:has_quest("Bender's problem")) and
-		   (DocMoore_met) and
+		   (Tux:has_met("DocMoore")) and
 		   (not Tux:done_quest("Bender's problem")) then
 			show("node2")
 		end
@@ -72,7 +72,7 @@ return {
 			set_rush_tux(0)
 		end
 
-		if (DocMoore_met) and
+		if (Tux:has_met("DocMoore")) and
 		   (Tux:has_item("Rubber duck")) and
 		   (not DocMoore_not_seen_rubber_duck_lie) then
 			npc_says(_"Oh, did you by any chance see a bright yellow item made out of polyvinyl chloride?")
@@ -96,7 +96,6 @@ return {
 			Tux:says(_"Yes, I had to fight my way here through a bunch of bots.")
 			npc_says(_"Oh my!")
 			npc_says(_"Well, I should be able to heal you if you get hurt.")
-			DocMoore_met = true
 			if (Tux:has_quest("Bender's problem")) then
 				show("node2")
 			end
