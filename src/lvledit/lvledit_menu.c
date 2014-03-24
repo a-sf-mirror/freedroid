@@ -905,8 +905,6 @@ static void AdvancedOptions(void)
 		LEAVE_OPTIONS_MENU,
 	};
 
-	game_status = INSIDE_MENU;
-
 	while (!proceed_now) {
 
 		InitiateMenu("--EDITOR_BACKGROUND--");
@@ -946,7 +944,6 @@ static void AdvancedOptions(void)
 		}		// switch
 	}
 
-	game_status = INSIDE_LVLEDITOR;
 	return;
 };				// void AdvancedOptions ( void );
 
