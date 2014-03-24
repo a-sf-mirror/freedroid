@@ -391,5 +391,14 @@ EXTERN struct {
 
 EXTERN struct dynarray bullet_specs;
 
+#undef EXTERN
+#ifdef _lang_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+
+EXTERN struct dynarray lang_specs;
+
 #endif				// _global_h
 

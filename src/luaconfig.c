@@ -1186,6 +1186,26 @@ static int lua_item_list_ctor(lua_State *L)
 	return 0;
 }
 
+static void get_one_lang(lua_State *L, void *data)
+{
+	struct langspec *lang = (struct langspec *)data;
+
+	struct data_spec data_specs[] = {
+		{ "name",   NULL, STRING_TYPE, &(lang->name)   },
+		{ "locale", NULL, STRING_TYPE, &(lang->locale) },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	fill_structure_from_table(L, data_specs);
+}
+
+static int lua_languages_ctor(lua_State *L)
+{
+	fill_dynarray_from_table(L, &lang_specs, sizeof(struct langspec), get_one_lang);
+
+	return 0;
+}
+
 /**
  * Add lua constructors of new data types
  */
@@ -1207,6 +1227,7 @@ void init_luaconfig()
 		{"npc_list", lua_npc_list_ctor},
 		{"npc_shop", lua_npc_shop_ctor},
 		{"item_list", lua_item_list_ctor},
+		{"languages", lua_languages_ctor},
 		{NULL, NULL}
 	};
 

@@ -130,33 +130,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Couldn't change working directory to %s.\n", dirname(argv[0]));
 #endif
 
-#ifdef ENABLE_NLS
-	// Only use localization on messages, to avoid issues when
-	// reading/writing numerical data.
-
-	setlocale(LC_ALL, "C");
-	setlocale(LC_MESSAGES, "");
-
-	const char *localedir = find_localedir();
-	if (!localedir) {
-		fprintf(stderr, "Locale dir not found. Disabling localization.\n");
-		setlocale(LC_MESSAGES, "C");
-	} else {
-		// i18n text domain declarations.
-		// Note: our bitmap fonts are not utf-8 compliant, but contain part of the
-		// latin-1 alphabet. So we enforce a conversion to iso-8859-1.
-
-		bindtextdomain("freedroidrpg", localedir);
-		bind_textdomain_codeset("freedroidrpg", "ISO-8859-1");
-		bindtextdomain("freedroidrpg-dialogs", localedir);
-		bind_textdomain_codeset("freedroidrpg-dialogs", "ISO-8859-1");
-		bindtextdomain("freedroidrpg-data", localedir);
-		bind_textdomain_codeset("freedroidrpg-data", "ISO-8859-1");
-
-		// Default domain to use, if none is specified
-		textdomain("freedroidrpg");
-	}
-#endif
+	lang_init();
 
 	QuitProgram = FALSE;
 	draw_collision_rectangles = FALSE;

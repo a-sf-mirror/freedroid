@@ -177,6 +177,8 @@ typedef struct configuration_for_freedroid {
 
 	int difficulty_level;
 
+	string locale;
+
 	// This must be the last element of the structure, because the
 	// input keybind parsing code uses strtok which messes with the
 	// string.
@@ -1032,6 +1034,11 @@ struct chat_context {
 	struct lua_coroutine *script_coroutine;	// Handle to the lua co-routine running the current node script
 
 	struct list_head stack_node;    // Used to create a stack of chat_context.
+};
+
+struct langspec {
+	char *name;
+	char *locale;
 };
 
 #endif

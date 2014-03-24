@@ -260,6 +260,8 @@ void write_configuration_for_freedroid(struct auto_string *strout, configuration
     write_int32_t(strout, &data->show_all_floor_layers);
     autostr_append(strout, ",\n" "difficulty_level = ");
     write_int32_t(strout, &data->difficulty_level);
+    autostr_append(strout, ",\n" "locale = ");
+    write_string(strout, &data->locale);
     autostr_append(strout, ",\n" "input_keybinds = ");
     write_keybind_t_array(strout, data->input_keybinds, 100);
     autostr_append(strout, ",\n" "}");
@@ -457,6 +459,10 @@ void read_configuration_for_freedroid(lua_State* L, int index, configuration_for
     }
     if (lua_getfield_or_warn(L, index, "difficulty_level")) {
         read_int32_t(L, -1, &data->difficulty_level);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "locale")) {
+        read_string(L, -1, &data->locale);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "input_keybinds")) {

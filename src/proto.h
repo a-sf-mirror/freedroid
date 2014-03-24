@@ -828,4 +828,8 @@ void rtprof_clear_probes();
 void rtprof_display();
 #endif
 
+// lang.c
+void lang_set(const char *);
+void lang_init();
+
 #endif

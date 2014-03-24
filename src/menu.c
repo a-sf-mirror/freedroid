@@ -693,12 +693,18 @@ enum {
 	CONTINUE_MENU = -1,
 #define MENU(x, y) MENU_##y,
 	MENU_LIST
+#ifdef ENABLE_NLS
+	MENU(Language, LANGUAGE)
+#endif
 #undef MENU
 	MENU_NUM
 };
 
 #define MENU(x, y) static int x##_handle (int); static void x##_fill (char *[MAX_MENU_ITEMS]);
 MENU_LIST
+#ifdef ENABLE_NLS
+MENU(Language, LANGUAGE)
+#endif
 #undef MENU
     struct Menu {
 	int (*HandleSelection) (int);
@@ -708,6 +714,9 @@ MENU_LIST
 struct Menu menus[] = {
 #define MENU(x, y) { x##_handle, x##_fill },
 	MENU_LIST
+#ifdef ENABLE_NLS
+	MENU(Language, LANGUAGE)
+#endif
 #undef MENU
 	{NULL, NULL}
 };
@@ -881,6 +890,9 @@ static int Options_handle(int n)
 		GRAPHICS_OPTIONS,
 		SOUND_OPTIONS,
 		KEYMAP_OPTIONS,
+#ifdef ENABLE_NLS
+		LANGUAGE_OPTIONS,
+#endif
 		DROID_TALK_OPTIONS,
 		ON_SCREEN_DISPLAYS,
 		PERFORMANCE_TWEAKS_OPTIONS,
@@ -890,6 +902,10 @@ static int Options_handle(int n)
 	case (-1):
 		return EXIT_MENU;
 		break;
+#ifdef ENABLE_NLS
+	case LANGUAGE_OPTIONS:
+		return MENU_LANGUAGE;
+#endif
 	case GAME_OPTIONS:
 		return MENU_GAME;
 	case GRAPHICS_OPTIONS:
@@ -915,15 +931,19 @@ static int Options_handle(int n)
 
 static void Options_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
-	strncpy(MenuTexts[0], _("Gameplay"), 1024);
-	strncpy(MenuTexts[1], _("Graphics"), 1024);
-	strncpy(MenuTexts[2], _("Sound"), 1024);
-	strncpy(MenuTexts[3], _("Keys"), 1024);
-	strncpy(MenuTexts[4], _("Droid talk"), 1024);
-	strncpy(MenuTexts[5], _("On-Screen displays"), 1024);
-	strncpy(MenuTexts[6], _("Performance tweaks"), 1024);
-	strncpy(MenuTexts[7], _("Back"), 1024);
-	MenuTexts[8][0] = '\0';
+	int i = 0;
+	strncpy(MenuTexts[i++], _("Gameplay"), 1024);
+	strncpy(MenuTexts[i++], _("Graphics"), 1024);
+	strncpy(MenuTexts[i++], _("Sound"), 1024);
+	strncpy(MenuTexts[i++], _("Keys"), 1024);
+#ifdef ENABLE_NLS
+	strncpy(MenuTexts[i++], _("Languages"), 1024);
+#endif
+	strncpy(MenuTexts[i++], _("Droid talk"), 1024);
+	strncpy(MenuTexts[i++], _("On-Screen displays"), 1024);
+	strncpy(MenuTexts[i++], _("Performance tweaks"), 1024);
+	strncpy(MenuTexts[i++], _("Back"), 1024);
+	MenuTexts[i++][0] = '\0';
 }
 
 static int Escape_handle(int n)
@@ -984,6 +1004,47 @@ static void Escape_fill(char *MenuTexts[MAX_MENU_ITEMS])
 	strncpy(MenuTexts[6], _("Exit FreedroidRPG"), 1024);
 	MenuTexts[7][0] = '\0';
 }
+
+#ifdef ENABLE_NLS
+static int Language_handle(int n)
+{
+	if (n == -1)
+		return EXIT_MENU;
+
+	n -= 2; // Second menu entry is index 0 of the language list
+
+	// Do nothing if 'Back' was selected
+	if (n >= lang_specs.size)
+		return EXIT_MENU;
+
+	if (n == -1) {
+		// 'System default' was selected
+		lang_set("");
+	}  else {
+		// Else, use the selected language
+		struct langspec *lang = dynarray_member(&lang_specs, n, sizeof(struct langspec));
+		lang_set(lang->locale);
+	}
+
+	return EXIT_MENU;
+}
+#endif
+
+#ifdef ENABLE_NLS
+static void Language_fill(char *MenuTexts[MAX_MENU_ITEMS])
+{
+	int i = 0;
+	int l;
+
+	strncpy(MenuTexts[i++], _("System default"), 1024);
+	for (l = 0; l < lang_specs.size; l++) {
+		struct langspec *lang = dynarray_member(&lang_specs, l, sizeof(struct langspec));
+		strncpy(MenuTexts[i++], lang->name, 1024);
+	}
+	strncpy(MenuTexts[i++], _("Back"), 1024);
+	MenuTexts[i++][0] = '\0';
+}
+#endif
 
 extern screen_resolution screen_resolutions[];
 

@@ -38,7 +38,7 @@ freedroidRPG_SOURCES = version.c \
 	proto.h struct.h system.h BFont.h \
 	open_gl.c open_gl_atlas.c open_gl_debug.c mission.c chat.c light.c \
 	getopt.c getopt1.c getopt.h scandir.c scandir.h sound_effects.c \
-	lang.h lists.c lists.h \
+	lang.c lang.h lists.c lists.h \
 	gen_savestruct.py savestruct.c savestruct.h savestruct_internal.c savestruct_internal.h \
 	string.c pathfinder.c \
 	benchmark.c rtprof.c \

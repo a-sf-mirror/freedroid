@@ -557,6 +557,11 @@ void Init_Game_Data()
 
 #define INIT_GAME_DATA_DEBUG 1
 
+	// Load the languages specs
+	dynarray_free(&lang_specs);
+	find_file("languages.lua", MAP_DIR, fpath, 0);
+	run_lua_file(LUA_CONFIG, fpath);
+
 	// Load programs (spells) information
 	//
 	find_file("program_archetypes.dat", MAP_DIR, fpath, 0);
@@ -934,6 +939,10 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.next_time_height_of_screen = GameConfig.screen_height;
 	GameConfig.fullscreen_on = FALSE;
 	GameConfig.difficulty_level = DIFFICULTY_NORMAL;
+	if (GameConfig.locale && strlen(GameConfig.locale)) {
+		free(GameConfig.locale);
+		GameConfig.locale = strdup("");
+	}
 }
 
 /** 
