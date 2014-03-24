@@ -6614,6 +6614,12 @@ msgstr ""
 msgid "Starting "
 msgstr ""
 
+#. TRANSLATORS: Used to test l10n, so put here anything you want in your language
+#. TRANSLATORS: (can also be used to test non ASCII characters).
+#: dialogs/Dude.lua:98
+msgid "Untranslated reply."
+msgstr "Antwort in Deutsch."
+
 #: dialogs/Duncan.lua:63
 msgid "Hi... Erm... Who are you?"
 msgstr ""

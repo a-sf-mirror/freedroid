@@ -87,6 +87,17 @@ return {
 			show("node0")  -- done on purpose
 		end,
 	},
+
+	{
+		id = "l10n",
+		enabled = true,
+		text = "Test l10n",
+		code = function()
+			--; TRANSLATORS: Used to test l10n, so put here anything you want in your language 
+			--; TRANSLATORS: (can also be used to test non ASCII characters).
+			npc_says(_"Untranslated reply.")
+		end,
+	},
 	
 	{
 		id = "redguard",
