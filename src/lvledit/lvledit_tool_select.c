@@ -320,7 +320,7 @@ static void select_item_on_tile(int x, int y)
 		if (it->type == -1)
 			continue;
 
-		if ((fabsf(x - it->pos.x) <= 0.5) && (fabsf(y - it->pos.y) <= 0.5)) {
+		if ((it->pos.x - x) >= 0 && (it->pos.x - x) <= 1 && (it->pos.y - y) >= 0 && (it->pos.y - y) <= 1) {
 			if (!element_in_selection(it)) {
 				add_object_to_list(&selected_elements, it, OBJECT_ITEM);
 				state.rect_nbelem_selected++;
