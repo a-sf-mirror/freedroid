@@ -566,6 +566,8 @@ int level_exists(int);
 void freeze_world(void);
 void unfreeze_world(void);
 int world_frozen(void);
+int fd_setenv(const char *, const char *, int);
+int fd_unsetenv(const char *);
 
 // enemy.c 
 void SetRestOfGroupToState(Enemy ThisRobot, short NewState);

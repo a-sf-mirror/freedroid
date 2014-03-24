@@ -36,6 +36,8 @@
 #include "proto.h"
 #include "savestruct.h"
 
+#include <stdlib.h>
+
 //--------------------
 // This header file is needed
 #if HAVE_EXECINFO_H
@@ -1367,5 +1369,69 @@ uint32_t pot_gte(uint32_t v)
 	return (++pot);
 
 }				// uint32_t pot_gte( uint32_t v)
+
+/*
+ * Some systems do not have setenv().
+ * On those systems, we use putenv().
+ */
+int fd_setenv(const char *var, const char *val, int overwrite)
+{
+	int ret;
+
+#ifdef HAVE_SETENV
+	ret = setenv(var, val, overwrite);
+#else
+	// putenv does not make a copy of its argument, and inserts the pointer to
+	// the argument into the environment array.
+	// The following not trivial code is needed to avoid memleak.
+	// (see POS34-C on https://www.securecoding.cert.org)
+	static char *oldenv = NULL;
+	const size_t len = strlen(var) + 1 + strlen(val) + 2;
+	char *env = (char *)MyMalloc(len);
+	snprintf(env, len, "%s=%s", var, val);
+	ret = putenv(env);
+	if (ret != 0) {
+		free(env);
+		ErrorMessage(__FUNCTION__, "Error when calling putenv() to set %s to %s\n", PLEASE_INFORM, IS_WARNING_ONLY, var, val);
+		return ret;
+	}
+	if (oldenv != NULL) {
+		free(oldenv);
+	}
+	oldenv = env;
+#endif
+	return ret;
+}
+
+/*
+ * Some systems do not have unsetenv().
+ * On those systems, we use putenv().
+ */
+int fd_unsetenv(const char *var)
+{
+	int ret;
+
+#ifdef HAVE_UNSETENV
+	ret = unsetenv(var);
+#else
+	// See fdrpg_setenv() comment
+
+	static char *oldenv = NULL;
+	const size_t len = strlen(var) + 2;
+	char *env = (char *)MyMalloc(len);
+	snprintf(env, len, "%s=", var);
+	ret = putenv(env);
+	if (ret != 0) {
+		free(env);
+		ErrorMessage(__FUNCTION__, "Error when calling putenv() to unset %s\n", PLEASE_INFORM, IS_WARNING_ONLY, var);
+		return ret;
+	}
+	if (oldenv != NULL) {
+		free(oldenv);
+	}
+	oldenv = env;
+#endif
+	return ret;
+}
 
 #undef _misc_c
