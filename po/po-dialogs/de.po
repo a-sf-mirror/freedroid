@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-03-01 22:54+0100\n"
+"POT-Creation-Date: 2014-03-24 23:39+0100\n"
 "PO-Revision-Date: 2014-01-30 17:23+0100\n"
 "Last-Translator: Freedroid <bugs@freedroid.org>\n"
 "Language-Team: German\n"
@@ -68,7 +68,7 @@ msgid "Secondary objective: Protect facility by locking outer gates if Threat De
 msgstr ""
 
 #: dialogs/614_cryo.lua:84 dialogs/Arthur.lua:85 dialogs/Bender.lua:334
-#: dialogs/DocMoore.lua:376 dialogs/DocMoore.lua:378 dialogs/Duncan.lua:392
+#: dialogs/DocMoore.lua:375 dialogs/DocMoore.lua:377 dialogs/Duncan.lua:392
 #: dialogs/Duncan.lua:398 dialogs/Ewald.lua:690 dialogs/Iris.lua:171
 #: dialogs/Jasmine.lua:110 dialogs/Jennifer.lua:128 dialogs/Jennifer.lua:130
 #: dialogs/John.lua:232 dialogs/Karol.lua:55 dialogs/Michelangelo.lua:447
@@ -222,6 +222,11 @@ msgstr ""
 msgid "Password : "
 msgstr ""
 
+#. TRANSLATORS: %s = a date ,  %d = a year number
+#. TRANSLATORS: %s = a date , %y = a year
+#. TRANSLATORS: %s = a date ,  %d = a year number
+#. TRANSLATORS: %s = a date %d = a year
+#. TRANSLATORS: %s = a date ,  %d = a year number
 #: dialogs/AfterTakeover.lua:43 dialogs/DSB-MachineDeckControl.lua:32
 #: dialogs/DSB-PowerControl.lua:32 dialogs/DSB-PowerControlGate1.lua:37
 #: dialogs/Maintenance-Terminal.lua:36 dialogs/SACD.lua:41
@@ -230,6 +235,9 @@ msgstr ""
 msgid "First login from /dev/ttySO on %s %d"
 msgstr ""
 
+#. TRANSLATORS: %s = a date ,  %d = a year number
+#. TRANSLATORS: %s = a date %d = a year
+#. TRANSLATORS: %s = a date ,  %d = a year number
 #: dialogs/AfterTakeover.lua:46 dialogs/DSB-PowerControlGate1.lua:40
 #: dialogs/Maintenance-Terminal.lua:39 dialogs/SACD.lua:44
 #: dialogs/TutorialTerminal.lua:39
@@ -237,6 +245,7 @@ msgstr ""
 msgid "Last login from /dev/ttyS0 on %s %d"
 msgstr ""
 
+#. TRANSLATORS: %s = bot name
 #: dialogs/AfterTakeover.lua:50
 #, c-format
 msgid "Welcome to [b]%s[/b]!"
@@ -246,6 +255,7 @@ msgstr ""
 msgid "Hardware Check : BOT DAMAGED"
 msgstr ""
 
+#. TRANSLATORS: %s = bot type
 #: dialogs/AfterTakeover.lua:54
 #, c-format
 msgid "This %s unit could stand to be repaired."
@@ -275,6 +285,7 @@ msgstr ""
 msgid "BUG, REPORT ME! Aftertakeover node2"
 msgstr ""
 
+#. TRANSLATORS: first %s = Tux:get_player_name() ; second %s : bot_type()
 #: dialogs/AfterTakeover.lua:89
 #, c-format
 msgid "%s@hacked_%s/repair&settings: ~ # "
@@ -320,11 +331,13 @@ msgstr ""
 msgid "Movement unit: Enabled."
 msgstr ""
 
+#. TRANSLATORS: first %s = Tux:get_player_name() ; second %s : bot_type()
 #: dialogs/AfterTakeover.lua:133
 #, c-format
 msgid "Acquiring lock on position of %s."
 msgstr ""
 
+#. TRANSLATORS: %s =  Tux:get_player_name()
 #: dialogs/AfterTakeover.lua:135
 #, c-format
 msgid "Status: Following %s."
@@ -358,6 +371,7 @@ msgstr ""
 msgid "./repair.plx"
 msgstr ""
 
+#. TRANSLATORS: %d = amount of valuable circuits
 #: dialogs/AfterTakeover.lua:185
 #, c-format
 msgid "Available amount of valuable circuits for repair: %d."
@@ -404,6 +418,7 @@ msgstr ""
 msgid "%s is currently undamaged."
 msgstr ""
 
+#. TRANSLATORS: Y for yes
 #: dialogs/AfterTakeover.lua:237 dialogs/AfterTakeover.lua:242
 #: dialogs/AfterTakeover.lua:393 dialogs/AfterTakeover.lua:438
 msgid "Y"
@@ -417,6 +432,7 @@ msgstr ""
 msgid "Logout to complete repair process."
 msgstr ""
 
+#. TRANSLATORS: N for no
 #: dialogs/AfterTakeover.lua:253 dialogs/AfterTakeover.lua:258
 #: dialogs/AfterTakeover.lua:412 dialogs/AfterTakeover.lua:454
 msgid "N"
@@ -438,6 +454,7 @@ msgstr ""
 msgid "Always ask for confirmation before execution of hcf.py? [Y/N]"
 msgstr ""
 
+#. TRANSLATORS: Y for yes
 #: dialogs/AfterTakeover.lua:289
 msgid "Y (always ask)"
 msgstr ""
@@ -446,6 +463,7 @@ msgstr ""
 msgid "Confirmation will now be asked before execution of hcf.py."
 msgstr ""
 
+#. TRANSLATORS: N for no
 #: dialogs/AfterTakeover.lua:302
 msgid "N (don't ask)"
 msgstr ""
@@ -462,6 +480,7 @@ msgstr ""
 msgid "Broadcast commands to all units on level? [Y/N]"
 msgstr ""
 
+#. TRANSLATORS: Y for yes
 #: dialogs/AfterTakeover.lua:326
 msgid "Y (enable broadcast)"
 msgstr ""
@@ -474,6 +493,7 @@ msgstr ""
 msgid "Entering \"botnet\" mode..."
 msgstr ""
 
+#. TRANSLATORS: N for no
 #: dialogs/AfterTakeover.lua:340
 msgid "N (disable broadcast)"
 msgstr ""
@@ -832,6 +852,9 @@ msgstr ""
 msgid "Leaving settings.plx"
 msgstr ""
 
+#. TRANSLATORS: 'logout' should be a command
+#. TRANSLATORS: command, user lowercase here
+#. TRANSLATORS: command,  use lowercase here
 #: dialogs/AfterTakeover.lua:715 dialogs/DSB-MachineDeckControl.lua:76
 #: dialogs/DSB-PowerControl.lua:43 dialogs/DSB-PowerControlGate1.lua:87
 #: dialogs/Guy.lua:428 dialogs/Maintenance-Terminal.lua:229
@@ -856,6 +879,7 @@ msgstr ""
 msgid "Bonjour!"
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Arthur.lua:27
 #, c-format
 msgid "I'm %s, and who are you?"
@@ -938,6 +962,7 @@ msgstr ""
 msgid "I have to go now."
 msgstr ""
 
+#. TRANSLATORS: Au revoir = See you later   in french
 #: dialogs/Arthur.lua:87
 msgid "Au revoir."
 msgstr ""
@@ -950,6 +975,7 @@ msgstr ""
 msgid "Hey, man! I'm Bender, the dead man of this town. And you?"
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Bender.lua:28
 #, c-format
 msgid "I'm %s. I'm fine, thank you."
@@ -979,6 +1005,7 @@ msgstr ""
 msgid "What was your name again?"
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Bender.lua:54
 #, c-format
 msgid "Thanks %s, I owe you one."
@@ -2776,11 +2803,13 @@ msgstr ""
 msgid "an evil"
 msgstr ""
 
+#. TRANSLATORS: you are $alignment, $sex, $race, $role
 #: dialogs/c-net-nethack_sub.lua:326
 #, c-format
 msgid "Hello, welcome to Nethack! You are %s %s %s %s."
 msgstr ""
 
+#. TRANSLATORS: boths %s represent a name of a god
 #: dialogs/c-net-nethack_sub.lua:328
 #, c-format
 msgid "Your goddess, [b]%s[/b] desires the Amulet of Yendor, which the evil god [b]%s[/b] has hidden at the bottom of this dungeon."
@@ -2835,21 +2864,25 @@ msgstr ""
 msgid "You make a quick trip to the hospital."
 msgstr ""
 
+#. TRANSLATORS:  %s = a god
 #: dialogs/c-net-nethack_sub.lua:366
 #, c-format
 msgid "%s looks at you with impatience and points you back to the entrance of the dungeon."
 msgstr ""
 
+#. TRANSLATORS:  %s = a god
 #: dialogs/c-net-nethack_sub.lua:368
 #, c-format
 msgid "You find your goddess, %s, at lunch. She points back the way you came."
 msgstr ""
 
+#. TRANSLATORS:  %s = a god
 #: dialogs/c-net-nethack_sub.lua:370
 #, c-format
 msgid "You come up and nearly catch %s bathing. You quickly head back the way you came."
 msgstr ""
 
+#. TRANSLATORS:  %s = a god
 #: dialogs/c-net-nethack_sub.lua:375
 #, c-format
 msgid "You present the [b]Amulet of Yendor[/b] to [b]%s[/b] and you are rewarded with everlasting life."
@@ -2859,6 +2892,7 @@ msgstr ""
 msgid "You win!"
 msgstr ""
 
+#. TRANSLATORS: you ascended a $alignment, $sex, $race, $role in nethack
 #: dialogs/c-net-nethack_sub.lua:378
 #, c-format
 msgid "You ascended a %s %s %s %s in Nethack!"
@@ -2868,6 +2902,7 @@ msgstr ""
 msgid "By ascending in Nethack, you have improved your Hacking ability!"
 msgstr ""
 
+#. TRANSLATORS: %s = n_level
 #: dialogs/c-net-nethack_sub.lua:388
 #, c-format
 msgid "You are on level [b]%s[/b]:"
@@ -3161,31 +3196,38 @@ msgstr ""
 msgid "banana slug"
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:465
 #, c-format
 msgid "A wild [b]%s[/b] appears!"
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:467
 #, c-format
 msgid "You notice a [b]%s[/b] in front of you."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:469
 #, c-format
 msgid "You turn around and see a [b]%s[/b] right behind you!"
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:471
 #, c-format
 msgid "A [b]%s[/b] jumps out in front of you!"
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:473
 #, c-format
 msgid "You sneek up upon a [b]%s[/b]."
 msgstr ""
 
+#. TRANSLATORS: n_ac n_tricks n_hp
+#. TRANSLATORS: all numbers
 #: dialogs/c-net-nethack_sub.lua:474 dialogs/c-net-nethack_sub.lua:629
 #: dialogs/c-net-nethack_sub.lua:634 dialogs/c-net-nethack_sub.lua:644
 #: dialogs/c-net-nethack_sub.lua:684 dialogs/c-net-nethack_sub.lua:844
@@ -3255,21 +3297,25 @@ msgstr ""
 msgid "You throw your bola at the %s, causing it to trip and take %s damage."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:511
 #, c-format
 msgid "Your arrow misses the %s."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:513
 #, c-format
 msgid "Blow after blow is rained down upon the %s but they all miss."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:515
 #, c-format
 msgid "Your sword glances off the magical aura of the %s."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:517
 #, c-format
 msgid "Your really awesome attack took too long to power up, and the %s moved."
@@ -3291,6 +3337,7 @@ msgstr ""
 msgid "You chicken out!"
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:542
 #, c-format
 msgid "The %s throws a bola at you, tripping you and stopping your escape"
@@ -3300,16 +3347,19 @@ msgstr ""
 msgid "You stand there like a deer in the headlights."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:545
 #, c-format
 msgid "You try to go, but the %s grabs you."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy god name
 #: dialogs/c-net-nethack_sub.lua:547
 #, c-format
 msgid "%s strikes you with fear, and you cannot move."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:549
 #, c-format
 msgid "The %s tackles you and pins you to the floor."
@@ -3323,6 +3373,7 @@ msgstr ""
 msgid "Trick"
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:563
 #, c-format
 msgid "You toss a rock. The sound distracts the %s"
@@ -3332,6 +3383,7 @@ msgstr ""
 msgid "You toss a smoke-bomb and escape."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:566
 #, c-format
 msgid "You stumble over a rock, creating a chain of reactions, ending in the tunnel collapsing on the %s."
@@ -3341,6 +3393,7 @@ msgstr ""
 msgid "You stab yourself with a fake dagger and pretend to be dead."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:569
 #, c-format
 msgid "You walk like a duck, quack like a duck and swim like a duck. The %s figures you must be a duck."
@@ -3354,16 +3407,20 @@ msgstr ""
 msgid "You pull a rabbit from your tophat."
 msgstr ""
 
+#. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:575
 #, c-format
 msgid "The %s is not impressed by your tricks."
 msgstr ""
 
+#. TRANSLATORS:  %s = enemy name
+#. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:579
 #, c-format
 msgid "You try to act like a duck, but %s has an elephant and a lighter, and you don't want to be the punchline."
 msgstr ""
 
+#. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:581
 #, c-format
 msgid "%s sees your trick, and shows you an even better one."
@@ -3373,31 +3430,37 @@ msgstr ""
 msgid "Not having any tricks left, you resort to you trying your feminine wiles."
 msgstr ""
 
+#. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:589
 #, c-format
 msgid "You succeed getting past the %s."
 msgstr ""
 
+#. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:591
 #, c-format
 msgid "You distract the %s long enough to escape."
 msgstr ""
 
+#. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:593
 #, c-format
 msgid "Your plight is noticed by a hero, who valiantly rescues you from the dastardly %s."
 msgstr ""
 
+#. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:597
 #, c-format
 msgid "The %s casts change gender on you."
 msgstr ""
 
+#. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:599
 #, c-format
 msgid "The %s curses you."
 msgstr ""
 
+#. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:601
 #, c-format
 msgid "The %s casts a polymorph spell."
@@ -3407,16 +3470,19 @@ msgstr ""
 msgid "The Random Number God strikes you, changing your gender."
 msgstr ""
 
+#. TRANSLATORS: you ascended a $alignment, $sex, $race, $role in nethack
 #: dialogs/c-net-nethack_sub.lua:605 dialogs/c-net-nethack_sub.lua:800
 #, c-format
 msgid "You are now %s %s %s %s."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:610
 #, c-format
 msgid "The %s notes your physique, but has too high of an IQ to be impressed."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:612
 #, c-format
 msgid "%s might be more malleable if you were in better health."
@@ -3656,6 +3722,7 @@ msgstr ""
 msgid "A nurse patches some of your wounds."
 msgstr ""
 
+#. TRANSLATORS: %s = god name
 #: dialogs/c-net-nethack_sub.lua:748
 #, c-format
 msgid "You drink a bottle of greater healing. %s sends some salve to sooth your wounds."
@@ -3729,11 +3796,14 @@ msgstr ""
 msgid "You reform your wicked ways, and join the side of good."
 msgstr ""
 
+#. TRANSLATORS: %s = enemy god name
+#. TRANSLATORS: %s = god name
 #: dialogs/c-net-nethack_sub.lua:774 dialogs/c-net-nethack_sub.lua:783
 #, c-format
 msgid "%s is unhappy about this."
 msgstr ""
 
+#. TRANSLATORS: %s = god name
 #: dialogs/c-net-nethack_sub.lua:776
 #, c-format
 msgid "%s likes this."
@@ -3756,6 +3826,7 @@ msgstr ""
 msgid "a neutral"
 msgstr ""
 
+#. TRANSLATORS: %s 1 = god name  %s 2 = enemy god name
 #: dialogs/c-net-nethack_sub.lua:789
 #, c-format
 msgid "Both %s and %s don't know how to feel about this."
@@ -3781,41 +3852,49 @@ msgstr ""
 msgid "You try on the shiny necklace you find."
 msgstr ""
 
+#. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:807
 #, c-format
 msgid "The devious %s stabs you, causing %s damage."
 msgstr ""
 
+#. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:809
 #, c-format
 msgid "You suffer %s damage as the %s tosses you up into the air like a ragdoll."
 msgstr ""
 
+#. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:811
 #, c-format
 msgid "The %s breathes fire at you, burning your map and causing %s damage."
 msgstr ""
 
+#. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:813
 #, c-format
 msgid "The %s throws an exploding banana at you, but you duck, so it only causes %s damage."
 msgstr ""
 
+#. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:815
 #, c-format
 msgid "The %s hits you with its best shot, causing %s damage."
 msgstr ""
 
+#. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:817
 #, c-format
 msgid "The %s hits you against the wall, causing %s of hurt."
 msgstr ""
 
+#. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:819
 #, c-format
 msgid "The %s snipes you with an arrow causing %s damage."
 msgstr ""
 
+#. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:821
 #, c-format
 msgid "The %s bites you causing %s damage."
@@ -3874,11 +3953,13 @@ msgstr ""
 msgid "Game over."
 msgstr ""
 
+#. TRANSLATORS: digit
 #: dialogs/c-net-nethack_sub.lua:872
 #, c-format
 msgid "You come to the end of level %s and the [b]Amulet of Yendor[/b] compels you down, deeper into the depths."
 msgstr ""
 
+#. TRANSLATORS: digit
 #: dialogs/c-net-nethack_sub.lua:876
 #, c-format
 msgid "You come to the end of level %s and see a way up and a way down. Which do you choose?"
@@ -3973,6 +4054,7 @@ msgstr ""
 msgid "Show stats"
 msgstr ""
 
+#. TRANSLATORS: n_ac, n_tricks, n_hp
 #: dialogs/c-net-nethack_sub.lua:945
 #, c-format
 msgid "[b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health"
@@ -3982,16 +4064,19 @@ msgstr ""
 msgid "Load Character"
 msgstr ""
 
+#. TRANSLATORS: both god names
 #: dialogs/c-net-nethack_sub.lua:955
 #, c-format
 msgid "[b]%s[/b], the enemy of your goddess [b]%s[/b], plans your demise with glee."
 msgstr ""
 
+#. TRANSLATORS: god name
 #: dialogs/c-net-nethack_sub.lua:957
 #, c-format
 msgid "The vile god [b]%s[/b] cackles that you will again flee from the dungeon in terror!"
 msgstr ""
 
+#. TRANSLATORS: both god names
 #: dialogs/c-net-nethack_sub.lua:959
 #, c-format
 msgid "[b]%s[/b] blesses your return to the dungeon."
@@ -4001,11 +4086,13 @@ msgstr ""
 msgid "New Game"
 msgstr ""
 
+#. TRANSLATORS: n_ac, n_tricks, n_hp
 #: dialogs/c-net-nethack_sub.lua:984
 #, c-format
 msgid "Your stats are: [b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health."
 msgstr ""
 
+#. TRANSLATORS: n_emname
 #: dialogs/c-net-nethack_sub.lua:986
 #, c-format
 msgid "A [b]%s[/b] is before you. What do you do?"
@@ -4023,6 +4110,8 @@ msgstr ""
 msgid "Welcome to the Community Network."
 msgstr ""
 
+#. TRANSLATORS: use lowercase for translation
+#. TRANSLATORS: username, maybe this should stay in lowercase letters?
 #: dialogs/c-net.lua:53 dialogs/c-net.lua:59 dialogs/TutorialTerminal.lua:31
 msgid "guest"
 msgstr ""
@@ -4039,6 +4128,7 @@ msgstr ""
 msgid "Name : "
 msgstr ""
 
+#. TRANSLATORS: %s = c_net_username
 #: dialogs/c-net.lua:67
 #, c-format
 msgid "Please set password for your personalized guest login, %s"
@@ -4073,10 +4163,12 @@ msgstr ""
 msgid "Date unknown"
 msgstr ""
 
+#. TRANSLATORS: this reperesents the head of a table
 #: dialogs/c-net.lua:193
 msgid "Login Tty Name"
 msgstr ""
 
+#. TRANSLATORS: %s=Tux:get_player_name()
 #: dialogs/c-net.lua:258
 msgid "mountdisk.sh"
 msgstr ""
@@ -4157,6 +4249,7 @@ msgstr ""
 msgid "radio.sh"
 msgstr ""
 
+#. TRANSLATORS: "tracks" refers to music songs/music
 #: dialogs/c-net.lua:400 dialogs/c-net.lua:436
 msgid "Valid tracks:"
 msgstr ""
@@ -4165,11 +4258,13 @@ msgstr ""
 msgid "please enter track"
 msgstr ""
 
+#. TRANSLATORS: "tracks" refers to music songs/music
 #: dialogs/c-net.lua:432
 #, c-format
 msgid "WARNING, '%s' not a valid track."
 msgstr ""
 
+#. TRANSLATORS: "'exit'" must not be translated
 #: dialogs/c-net.lua:434
 msgid "enter 'exit' to exit."
 msgstr ""
@@ -4243,6 +4338,7 @@ msgstr ""
 msgid "Accept Character"
 msgstr ""
 
+#. TRANSLATORS: "Progress Quest" should not be translated
 #: dialogs/c-net.lua:556
 msgid "Welcome to Progress Quest!"
 msgstr ""
@@ -4251,6 +4347,7 @@ msgstr ""
 msgid "Reroll Character"
 msgstr ""
 
+#. TRANSLATORS: "c-net" should probably not be translated
 #: dialogs/c-net.lua:576
 msgid "Connection to c-net closed."
 msgstr ""
@@ -4535,6 +4632,7 @@ msgstr ""
 msgid "Machine gun?! But... But it's a servant bot!"
 msgstr ""
 
+#. TRANSLATORS: %s =Tux:get_player_name()
 #: dialogs/Chandra.lua:202
 #, c-format
 msgid "I know, %s. I know."
@@ -4857,6 +4955,7 @@ msgstr ""
 msgid "We provide not only full cryostasis, but post-stasis reintegration into the world of tomorrow!"
 msgstr ""
 
+#. TRANSLATORS: %d = a year
 #: dialogs/Cryo-Terminal.lua:52
 #, c-format
 msgid "Cryonic Solutions, since %d, is the name people trust in cryonics!"
@@ -4989,6 +5088,7 @@ msgstr ""
 msgid "Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Dixon.lua:30
 #, c-format
 msgid "I'm %s, a Linarian."
@@ -5952,6 +6052,9 @@ msgstr ""
 msgid "Hello. I'm Doc Moore. I'm the medic of this town. I don't believe we've met?"
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
+#. TRANSLATORS: %s=Tux:get_player_name()
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/DocMoore.lua:91 dialogs/Jennifer.lua:45 dialogs/John.lua:141
 #, c-format
 msgid "I'm %s."
@@ -5985,391 +6088,391 @@ msgstr ""
 msgid "Well, I should be able to heal you if you get hurt."
 msgstr ""
 
-#: dialogs/DocMoore.lua:109
+#: dialogs/DocMoore.lua:108
 msgid "Do you also sell medical equipment?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:111
+#: dialogs/DocMoore.lua:110
 msgid "Yes. Here is what I can offer today."
 msgstr ""
 
-#: dialogs/DocMoore.lua:118
+#: dialogs/DocMoore.lua:117
 msgid "Doc, I took some of those brain enlargement pills..."
 msgstr ""
 
-#: dialogs/DocMoore.lua:121
+#: dialogs/DocMoore.lua:120
 msgid "Sorry, but I already gave you some medical help."
 msgstr ""
 
-#: dialogs/DocMoore.lua:122
+#: dialogs/DocMoore.lua:121
 msgid "To poison yourself again, that's entirely your own business and I'm not responsible."
 msgstr ""
 
-#: dialogs/DocMoore.lua:123
+#: dialogs/DocMoore.lua:122
 msgid "As far as I am concerned, in this town everyone gets everything equally."
 msgstr ""
 
-#: dialogs/DocMoore.lua:126
+#: dialogs/DocMoore.lua:125
 msgid "Oh no, not another one. Those pills are almost pure biological waste."
 msgstr ""
 
-#: dialogs/DocMoore.lua:127
+#: dialogs/DocMoore.lua:126
 msgid "Taking that stuff almost always equals delayed suicide."
 msgstr ""
 
-#: dialogs/DocMoore.lua:128
+#: dialogs/DocMoore.lua:127
 msgid "Now, take this antidote. It should remove the dangerous substances within your body."
 msgstr ""
 
-#: dialogs/DocMoore.lua:129
+#: dialogs/DocMoore.lua:128
 msgid "But remember, I'll only give you this help once, because you didn't know the effects."
 msgstr ""
 
-#: dialogs/DocMoore.lua:130
+#: dialogs/DocMoore.lua:129
 msgid "Should you take that junk again, I won't feel responsible for what happens to you any more."
 msgstr ""
 
-#: dialogs/DocMoore.lua:132
+#: dialogs/DocMoore.lua:131
 msgid "The doctor was easily fooled. I have the pills that Bender needs."
 msgstr ""
 
-#: dialogs/DocMoore.lua:140
+#: dialogs/DocMoore.lua:139
 msgid "Doctor, how can I keep healthy and alive?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:142
+#: dialogs/DocMoore.lua:141
 msgid "Always remember L-I-F-E"
 msgstr ""
 
-#: dialogs/DocMoore.lua:143
+#: dialogs/DocMoore.lua:142
 msgid "L - Look at your health status regularly."
 msgstr ""
 
-#: dialogs/DocMoore.lua:144
+#: dialogs/DocMoore.lua:143
 msgid "I - Ingest cold water if you are overheating."
 msgstr ""
 
-#: dialogs/DocMoore.lua:145
+#: dialogs/DocMoore.lua:144
 msgid "F - Flee if you cannot fight."
 msgstr ""
 
-#: dialogs/DocMoore.lua:146
+#: dialogs/DocMoore.lua:145
 msgid "E - Evacuate to the town if you cannot flee."
 msgstr ""
 
-#: dialogs/DocMoore.lua:152
+#: dialogs/DocMoore.lua:151
 msgid "Can you fix me up?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:154
+#: dialogs/DocMoore.lua:153
 msgid "Sure, as the only doctor of this slowly growing community, I take responsibility for everyone's health."
 msgstr ""
 
-#: dialogs/DocMoore.lua:156
+#: dialogs/DocMoore.lua:155
 msgid "However, self-inflicted damage might be exempted from this rule in some cases..."
 msgstr ""
 
-#: dialogs/DocMoore.lua:160
+#: dialogs/DocMoore.lua:159
 msgid "You seem to be in excellent health, there is nothing I can do for you right now."
 msgstr ""
 
-#: dialogs/DocMoore.lua:162
+#: dialogs/DocMoore.lua:161
 msgid "There, it's done. You're completely fixed. You can go now."
 msgstr ""
 
-#: dialogs/DocMoore.lua:163
+#: dialogs/DocMoore.lua:162
 msgid "You need to keep better care of yourself. You're completely fixed. You can go now."
 msgstr ""
 
-#: dialogs/DocMoore.lua:171
+#: dialogs/DocMoore.lua:170
 msgid "What do you mean, self-inflicted damage?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:175
+#: dialogs/DocMoore.lua:174
 msgid "Well, you see that Bender character on my doorstep?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:177
+#: dialogs/DocMoore.lua:176
 msgid "Well, you see that idiotic Bender character on my doorstep?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:179
+#: dialogs/DocMoore.lua:178
 msgid "What can you tell me about Bender?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:180
+#: dialogs/DocMoore.lua:179
 msgid "Bender asked my advice about some pills he saw advertised in an e-mail. I told him not to buy them."
 msgstr ""
 
-#: dialogs/DocMoore.lua:181
+#: dialogs/DocMoore.lua:180
 msgid "But guess what? He bought and took the stupid pills anyway, and then he came back to me to fix him."
 msgstr ""
 
-#: dialogs/DocMoore.lua:182
+#: dialogs/DocMoore.lua:181
 msgid "If he, or anyone, is going to completely disregard my medical advice, and then think they are going to get my medical supplies, then they are wrong."
 msgstr ""
 
-#: dialogs/DocMoore.lua:183
+#: dialogs/DocMoore.lua:182
 msgid "He won't get anything from me anymore. It would be unfair to the community to waste all the supplies on him, and that's my final word on that."
 msgstr ""
 
-#: dialogs/DocMoore.lua:190
+#: dialogs/DocMoore.lua:189
 msgid "Doc... I really want the antidote."
 msgstr ""
 
-#: dialogs/DocMoore.lua:192
+#: dialogs/DocMoore.lua:191
 msgid "No! I am not giving it to you. Forget about it."
 msgstr ""
 
-#: dialogs/DocMoore.lua:198
+#: dialogs/DocMoore.lua:197
 msgid "My patience is running out. Give me the antidote. Now."
 msgstr ""
 
-#: dialogs/DocMoore.lua:200
+#: dialogs/DocMoore.lua:199
 msgid "No! Over my dead body."
 msgstr ""
 
-#: dialogs/DocMoore.lua:206
+#: dialogs/DocMoore.lua:205
 msgid "Your wish is my command!"
 msgstr ""
 
-#: dialogs/DocMoore.lua:208
+#: dialogs/DocMoore.lua:207
 msgid "Huh? What?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:209
+#: dialogs/DocMoore.lua:208
 msgid "Humans... You are so interesting. I always wanted to know exactly how much blood you have."
 msgstr ""
 
-#: dialogs/DocMoore.lua:210
+#: dialogs/DocMoore.lua:209
 msgid "Don't do this. Don't do this."
 msgstr ""
 
-#: dialogs/DocMoore.lua:211
+#: dialogs/DocMoore.lua:210
 msgid "Prepare, Doctor. The experiment begins."
 msgstr ""
 
-#: dialogs/DocMoore.lua:212
+#: dialogs/DocMoore.lua:211
 msgid "Don't do this! DON'T DO THIS!"
 msgstr ""
 
-#: dialogs/DocMoore.lua:213
+#: dialogs/DocMoore.lua:212
 msgid "AAAAAAAAAAAA!"
 msgstr ""
 
-#: dialogs/DocMoore.lua:214
+#: dialogs/DocMoore.lua:213
 msgid "Ugh. Human blood is disgusting. At least four liters. I feel sick."
 msgstr ""
 
-#: dialogs/DocMoore.lua:215 dialogs/DocMoore.lua:217 dialogs/DocMoore.lua:219
+#: dialogs/DocMoore.lua:214 dialogs/DocMoore.lua:216 dialogs/DocMoore.lua:218
 msgid " . . ."
 msgstr ""
 
-#: dialogs/DocMoore.lua:216
+#: dialogs/DocMoore.lua:215
 msgid "I guess this means I get to inherit all your stuff. I hope you don't mind if I take everything?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:218
+#: dialogs/DocMoore.lua:217
 msgid "Good. I am very glad not to hear a disapproval."
 msgstr ""
 
-#: dialogs/DocMoore.lua:236
+#: dialogs/DocMoore.lua:235
 msgid "Is Tania OK?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:238
+#: dialogs/DocMoore.lua:237
 msgid "Haven't you heard of doctor-patient confidentiality?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:239
+#: dialogs/DocMoore.lua:238
 msgid "Ummm..."
 msgstr ""
 
-#: dialogs/DocMoore.lua:240
+#: dialogs/DocMoore.lua:239
 msgid "No worries. She is fine."
 msgstr ""
 
-#: dialogs/DocMoore.lua:247
+#: dialogs/DocMoore.lua:246
 msgid "Forget it. Getting the antidote is not worth the effort."
 msgstr ""
 
-#: dialogs/DocMoore.lua:249
+#: dialogs/DocMoore.lua:248
 msgid "I am not giving it to you, and that won't change."
 msgstr ""
 
-#: dialogs/DocMoore.lua:255
+#: dialogs/DocMoore.lua:254
 msgid "May I buy some medical equipment?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:257
+#: dialogs/DocMoore.lua:256
 msgid "Sure. Here is what I can offer today."
 msgstr ""
 
-#: dialogs/DocMoore.lua:263
+#: dialogs/DocMoore.lua:262
 msgid "Hmm. I cannot remember."
 msgstr ""
 
-#: dialogs/DocMoore.lua:265 dialogs/Town-TeleporterGuard.lua:60
+#: dialogs/DocMoore.lua:264 dialogs/Town-TeleporterGuard.lua:60
 msgid "I'm sorry."
 msgstr ""
 
-#: dialogs/DocMoore.lua:266
+#: dialogs/DocMoore.lua:265
 msgid "No problem. Thanks anyway."
 msgstr ""
 
-#: dialogs/DocMoore.lua:273 dialogs/DocMoore.lua:277
+#: dialogs/DocMoore.lua:272 dialogs/DocMoore.lua:276
 msgid "I think I did."
 msgstr ""
 
-#: dialogs/DocMoore.lua:276
+#: dialogs/DocMoore.lua:275
 msgid "Hmm... Yellow, bright, PVC...?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:278
+#: dialogs/DocMoore.lua:277
 msgid "Do you mean this rubber duck by any chance?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:279
+#: dialogs/DocMoore.lua:278
 msgid "Ooh, you found it."
 msgstr ""
 
-#: dialogs/DocMoore.lua:280
+#: dialogs/DocMoore.lua:279
 msgid "Here, take it if it's yours."
 msgstr ""
 
-#: dialogs/DocMoore.lua:281 dialogs/John.lua:67 dialogs/Pendragon.lua:236
+#: dialogs/DocMoore.lua:280 dialogs/John.lua:67 dialogs/Pendragon.lua:236
 msgid "Thanks."
 msgstr ""
 
-#: dialogs/DocMoore.lua:282
+#: dialogs/DocMoore.lua:281
 msgid "Take this healthy drink as reward."
 msgstr ""
 
-#: dialogs/DocMoore.lua:283
+#: dialogs/DocMoore.lua:282
 msgid "Looks.. erm... interesting..."
 msgstr ""
 
-#: dialogs/DocMoore.lua:284
+#: dialogs/DocMoore.lua:283
 msgid "Thank you. I am sure it ... can be quite useful in some situations."
 msgstr ""
 
-#: dialogs/DocMoore.lua:292
+#: dialogs/DocMoore.lua:291
 msgid "What can you tell me about Strength Pills?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:299
+#: dialogs/DocMoore.lua:298
 msgid "What can you tell me about Dexterity Pills?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:306
+#: dialogs/DocMoore.lua:305
 msgid "What can you tell me about Code Pills?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:316
+#: dialogs/DocMoore.lua:315
 msgid "Those pills are only one variant of a fantastic scientific breakthrough that happened shortly before the Great Assault."
 msgstr ""
 
-#: dialogs/DocMoore.lua:317
+#: dialogs/DocMoore.lua:316
 msgid "Three kinds of enhancement pills were developed. One for strength, one for dexterity and one for programming abilities."
 msgstr ""
 
-#: dialogs/DocMoore.lua:318
+#: dialogs/DocMoore.lua:317
 msgid "These pills work on a nanotechnological basis with small machines connecting to your muscle and nerve tissue."
 msgstr ""
 
-#: dialogs/DocMoore.lua:319
+#: dialogs/DocMoore.lua:318
 msgid "The machines connect together and form some inorganic artificial tissue that has been optimized for certain qualities."
 msgstr ""
 
-#: dialogs/DocMoore.lua:320
+#: dialogs/DocMoore.lua:319
 msgid "Since this invention only came about shortly before the Great Assault, these pills are now very rare."
 msgstr ""
 
-#: dialogs/DocMoore.lua:321
+#: dialogs/DocMoore.lua:320
 msgid "But if you should get them, even better, because the effects are permanent, and as far as we can tell, there aren't any side effects!"
 msgstr ""
 
-#: dialogs/DocMoore.lua:327
+#: dialogs/DocMoore.lua:326
 msgid "What can you tell me about Brain Pills?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:330
+#: dialogs/DocMoore.lua:329
 msgid "I already warned you about those!"
 msgstr ""
 
-#: dialogs/DocMoore.lua:332
+#: dialogs/DocMoore.lua:331
 msgid "Those pills are almost pure biological waste! They are sold to stupid ignorant gullible people. Never EVER take one."
 msgstr ""
 
-#: dialogs/DocMoore.lua:338
+#: dialogs/DocMoore.lua:337
 msgid "What can you tell me about Diet supplements?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:340
+#: dialogs/DocMoore.lua:339
 msgid "Have you tasted the army snacks that the cook, Michelangelo, has been handing out?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:342
+#: dialogs/DocMoore.lua:341
 msgid "Yes, those were horrible. They had a nice color though."
 msgstr ""
 
-#: dialogs/DocMoore.lua:343
+#: dialogs/DocMoore.lua:342
 msgid "The dye used to make that color is a known carcinogen."
 msgstr ""
 
-#: dialogs/DocMoore.lua:345
+#: dialogs/DocMoore.lua:344
 msgid "No, should I?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:346
+#: dialogs/DocMoore.lua:345
 msgid "Not if you can avoid it."
 msgstr ""
 
-#: dialogs/DocMoore.lua:348
+#: dialogs/DocMoore.lua:347
 msgid "Well, unlike the army snacks, the Diet Supplements actually have a slight nutritional benefit."
 msgstr ""
 
-#: dialogs/DocMoore.lua:349
+#: dialogs/DocMoore.lua:348
 msgid "After taking one your health should improve slightly."
 msgstr ""
 
-#: dialogs/DocMoore.lua:355
+#: dialogs/DocMoore.lua:354
 msgid "What can you tell me about Antibiotics?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:357
+#: dialogs/DocMoore.lua:356
 msgid "Basically it is bottled up poison made by bacteria."
 msgstr ""
 
-#: dialogs/DocMoore.lua:358
+#: dialogs/DocMoore.lua:357
 msgid "And that is good for me?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:359
+#: dialogs/DocMoore.lua:358
 msgid "Yep. It kills the bacteria that want to kill you. It improves your health significantly."
 msgstr ""
 
-#: dialogs/DocMoore.lua:365
+#: dialogs/DocMoore.lua:364
 msgid "What is a Doc-in-a-can?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:367
+#: dialogs/DocMoore.lua:366
 msgid "It is a device that releases millions of short-lived nanobots that swarm all over your body inside and out repairing and fixing almost all but the most serious wounds."
 msgstr ""
 
-#: dialogs/DocMoore.lua:368
+#: dialogs/DocMoore.lua:367
 msgid "Wouldn't long-lived nanobots work better?"
 msgstr ""
 
-#: dialogs/DocMoore.lua:369
+#: dialogs/DocMoore.lua:368
 msgid "They found that long-lived nanobots evolve self-replication and act like a cancer. A cancer of gray goo that eats everything."
 msgstr ""
 
-#: dialogs/DocMoore.lua:370
+#: dialogs/DocMoore.lua:369
 msgid "Several planets were made uninhabitable before they figured that one out."
 msgstr ""
 
-#: dialogs/DocMoore.lua:379
+#: dialogs/DocMoore.lua:378
 msgid "Keep healthy!"
 msgstr ""
 
@@ -6432,6 +6535,7 @@ msgstr ""
 msgid " Password : "
 msgstr ""
 
+#. TRANSLATORS: 'admin' should perhaps not be translated
 #: dialogs/DSB-PowerControl.lua:37
 msgid "admin@main.pc.dsb.ms: ~ #"
 msgstr ""
@@ -6448,6 +6552,7 @@ msgstr ""
 msgid "GAME BUG. PLEASE REPORT."
 msgstr ""
 
+#. TRANSLATORS: command,  use lowercase here
 #: dialogs/DSB-PowerControlGate1.lua:57 dialogs/MO-HFGateAccessServer.lua:110
 #: dialogs/MO-HFGateAccessServer.lua:113 dialogs/TutorialTerminal.lua:59
 #: dialogs/TutorialTerminal.lua:63
@@ -6477,6 +6582,7 @@ msgstr ""
 msgid "Gate status: OPEN"
 msgstr ""
 
+#. TRANSLATORS: command,  use lowercase here
 #: dialogs/DSB-PowerControlGate1.lua:75 dialogs/TutorialTerminal.lua:74
 #: dialogs/TutorialTerminal.lua:78
 msgid "close gate"
@@ -6905,6 +7011,7 @@ msgstr ""
 msgid "But then again, neither are you, so my thoughts are, we are even."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Duncan.lua:345
 #, c-format
 msgid "What do you mean? I am %s and not anyone else."
@@ -6966,10 +7073,12 @@ msgstr ""
 msgid "Hi! I'm new here. "
 msgstr ""
 
+#. TRANSLATORS: Fleischer is a name, but also means "butcher"
 #: dialogs/Engel.lua:39
 msgid "Hello. We are the Fleischer brothers."
 msgstr ""
 
+#. TRANSLATORS: Engel = Angle, Geist = Ghost or Spirit
 #: dialogs/Engel.lua:41
 msgid "I am Engel. He is Geist, and he does not know the language."
 msgstr ""
@@ -6986,6 +7095,7 @@ msgstr ""
 msgid "No mercy. We hunt them."
 msgstr ""
 
+#. TRANSLATORS: Nein = No
 #: dialogs/Engel.lua:62
 msgid "Nein. Let us die as warriors. That is all we ask for."
 msgstr ""
@@ -6998,6 +7108,7 @@ msgstr ""
 msgid "If you keep standing here more bots will come and --"
 msgstr ""
 
+#. TRANSLATORS: Sehr gut = Very good or very well.
 #: dialogs/Engel.lua:73
 msgid "Sehr gut. Let them come. We are ready."
 msgstr ""
@@ -7038,6 +7149,7 @@ msgstr ""
 msgid "There is a town a bit south from here, but if I were you, I would not go there."
 msgstr ""
 
+#. TRANSLATORS: Rot = red
 #: dialogs/Engel.lua:96
 msgid "The Rot Guard is the ruler there, and cruelty is their solution to everything."
 msgstr ""
@@ -7062,6 +7174,7 @@ msgstr ""
 msgid "Erm... I --"
 msgstr ""
 
+#. TRANSLATORS: Backpfeife = Slap in the face; Gesicht = face / backpfeigengesicht: a face badly in need of a slap into it
 #: dialogs/Engel.lua:110
 msgid "WHAT!? SPIT IT OUT, BACKPFEIFENGESICHT!"
 msgstr ""
@@ -7070,6 +7183,7 @@ msgstr ""
 msgid "Er... You guys are really great and I admire your bravery in the face of certain death."
 msgstr ""
 
+#. TRANSLATORS: donner = thunder; wetter = weather :  Thunderstorm; here 'Donnerwetter' means "wow!".
 #: dialogs/Engel.lua:113
 msgid "Donnerwetter, you are a funny one."
 msgstr ""
@@ -7078,6 +7192,7 @@ msgstr ""
 msgid "I hope that one day we shall meet again, maybe in a better time."
 msgstr ""
 
+#. TRANSLATORS: -- gut = good
 #: dialogs/Engel.lua:116
 msgid "Maybe then you will tell us other gut jokes that you know."
 msgstr ""
@@ -7102,10 +7217,12 @@ msgstr ""
 msgid "I want to know how to extract modules from the bots."
 msgstr ""
 
+#. TRANSLATORS: schon = already , alles = everything/all
 #: dialogs/Engel.lua:136
 msgid "I schon told you alles I know about that."
 msgstr ""
 
+#. TRANSLATORS: Schaltkreise = circuits
 #: dialogs/Engel.lua:142
 msgid "I will sell the information for a lot of Schaltkreise."
 msgstr ""
@@ -7114,6 +7231,7 @@ msgstr ""
 msgid "Can I join your hunt?"
 msgstr ""
 
+#. TRANSLATORS: nein = no
 #: dialogs/Engel.lua:154
 msgid "Nein. Our problem. Our hunt."
 msgstr ""
@@ -7126,6 +7244,7 @@ msgstr ""
 msgid "Are they used to build other bots?"
 msgstr ""
 
+#. TRANSLATORS: bauen = to build, to construct ; in this context more like 'create' ;; nette = nice
 #: dialogs/Engel.lua:164
 msgid "Most of them are used to bauen little nette gadgets."
 msgstr ""
@@ -7150,14 +7269,17 @@ msgstr ""
 msgid "So they are kind of add-ons?"
 msgstr ""
 
+#. TRANSLATORS: Stadtmenschen = townspeople
 #: dialogs/Engel.lua:172
 msgid "Ask the Stadtmenschen if you want to know more."
 msgstr ""
 
+#. TRANSLATORS: Rot = red
 #: dialogs/Engel.lua:176
 msgid "I think the Rot Guard makes them."
 msgstr ""
 
+#. TRANSLATORS: Gluck (should actually be 'Glueck' but there is no ue character in the font) = luck, fortune
 #: dialogs/Engel.lua:178
 msgid "If you have Gluck, they won't kill you directly."
 msgstr ""
@@ -7186,6 +7308,7 @@ msgstr ""
 msgid "Then we can talk."
 msgstr ""
 
+#. TRANSLATORS: No money, no help.
 #: dialogs/Engel.lua:217
 msgid "Kein Geld, keine Hilfe."
 msgstr ""
@@ -7210,6 +7333,7 @@ msgstr ""
 msgid "Let us start with Entropy Inverters. This is quite simple."
 msgstr ""
 
+#. TRANSLATORS: sehr = very
 #: dialogs/Engel.lua:253
 msgid "Just take a hammer and hit the bot sehr hard on the head."
 msgstr ""
@@ -7310,6 +7434,7 @@ msgstr ""
 msgid "This should be enough for now."
 msgstr ""
 
+#. TRANSLATORS: viel Gluck = good luck (should be "viel Glueck, but the ue character is missing in the font)
 #: dialogs/Engel.lua:364
 msgid "Goodbye and viel Gluck."
 msgstr ""
@@ -7735,6 +7860,7 @@ msgstr ""
 msgid "You won!"
 msgstr ""
 
+#. TRANSLATORS: %d = amount of valuable circuits
 #: dialogs/Ewald.lua:421
 #, c-format
 msgid "You won %d valuable circuits by gambling dice with Ewald."
@@ -7756,6 +7882,7 @@ msgstr ""
 msgid "You lost. Maybe you might like coin-flipping better?"
 msgstr ""
 
+#. TRANSLATORS: %d = amount of valuable circuits
 #: dialogs/Ewald.lua:430
 #, c-format
 msgid "You lost %d valuable circuits by gambling dice with Ewald."
@@ -8167,6 +8294,7 @@ msgstr ""
 msgid "DIE, YOU EVIL PIECE OF SCRAP METAL!"
 msgstr ""
 
+#. TRANSLATORS: sir or madam
 #: dialogs/Ewalds_296.lua:94
 msgid "Sir or ma-"
 msgstr ""
@@ -8607,11 +8735,13 @@ msgstr ""
 msgid "Have you neutralized the threat yet?"
 msgstr ""
 
+#. TRANSLATORS: %s =Tux:get_player_name()
 #: dialogs/Francis.lua:53
 #, c-format
 msgid "Welcome back %s."
 msgstr ""
 
+#. TRANSLATORS: %s =Tux:get_player_name()
 #: dialogs/Francis.lua:57
 #, c-format
 msgid "It's good to see you again, %s."
@@ -8721,6 +8851,7 @@ msgstr ""
 msgid "Long stasis sleep can cause neurological damage and impact the memory. Looks like that is what happened here."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Francis.lua:177
 #, c-format
 msgid "If the computer is not lying, then your name is %s."
@@ -8926,6 +9057,7 @@ msgstr ""
 msgid "But... The prospect of facing that... That man again... I just can't bear it."
 msgstr ""
 
+#. TRANSLATORS: %s =Tux:get_player_name()
 #: dialogs/Francis.lua:314
 #, c-format
 msgid "Please, %s, will you do me this favor?"
@@ -8967,6 +9099,7 @@ msgstr ""
 msgid "Hello. Any idea where I can get some help here?"
 msgstr ""
 
+#. TRANSLATORS: Vanish!
 #: dialogs/Geist.lua:36 dialogs/Geist.lua:71
 msgid "Verschwinde!"
 msgstr ""
@@ -8975,14 +9108,17 @@ msgstr ""
 msgid "Erm... What do you mean?"
 msgstr ""
 
+#. TRANSLATORS: I am the ghost that always negates (?).
 #: dialogs/Geist.lua:45
 msgid "Ich bin der Geist, der stets verneint."
 msgstr ""
 
+#. TRANSLATORS: For a reason; because everything that is created,
 #: dialogs/Geist.lua:47
 msgid "Und das mit Recht; denn alles, was entsteht,"
 msgstr ""
 
+#. TRANSLATORS: is worth, to be ruined.
 #: dialogs/Geist.lua:49
 msgid "ist wert, dass es zugrunde geht."
 msgstr ""
@@ -8991,14 +9127,17 @@ msgstr ""
 msgid "I really do not understand you."
 msgstr ""
 
+#. TRANSLATORS: The one who does not know them, the Elements,
 #: dialogs/Geist.lua:58
 msgid "Wer sie nicht kennte, die Elemente,"
 msgstr ""
 
+#. TRANSLATORS: their power and their feature/characteristic,
 #: dialogs/Geist.lua:60
 msgid "ihre Kraft und Eigenschaft,"
 msgstr ""
 
+#. TRANSLATORS: would not be a master of the ghosts/spirits.
 #: dialogs/Geist.lua:62
 msgid "waere kein Meister ueber die Geister."
 msgstr ""
@@ -9193,6 +9332,7 @@ msgstr ""
 msgid "Currently deployed firmware is v. 5.0.8+worldto-nogpl."
 msgstr ""
 
+#. TRANSLATORS: %s in %swashere  = Tux:get_player_name()
 #: dialogs/HF-FirmwareUpdateServer.lua:66
 #, c-format
 msgid "Currently deployed firmware is v. 5.0.8+%swashere+gpl"
@@ -9706,6 +9846,7 @@ msgstr ""
 msgid "I found the Toolbox and returned it to her"
 msgstr ""
 
+#. TRANSLATORS: I am sorry
 #: dialogs/John.lua:36
 msgid "I am s-"
 msgstr ""
@@ -10116,6 +10257,7 @@ msgstr ""
 msgid "IN 1 SECOND!"
 msgstr ""
 
+#. TRANSLATORS: command, user lowercase here
 #: dialogs/Kevin-Lawnmower.lua:112 dialogs/Kevin-Lawnmower.lua:115
 #: dialogs/Terminal.lua:42
 msgid "help"
@@ -10152,11 +10294,13 @@ msgstr ""
 msgid "Printing fuel level..."
 msgstr ""
 
+#. TRANSLATORS: '%%' is not a typo
 #: dialogs/Kevin-Lawnmower.lua:142
 #, c-format
 msgid "WARNING, less than [b]5%%[/b] fuel remaining!"
 msgstr ""
 
+#. TRANSLATORS: '%%' is not a typo, %s = number
 #: dialogs/Kevin-Lawnmower.lua:145
 #, c-format
 msgid "[b]%s[/b]%% remaining"
@@ -10190,6 +10334,7 @@ msgstr ""
 msgid "Fuel status:"
 msgstr ""
 
+#. TRANSLATORS: '%%' is not a typo
 #: dialogs/Kevin-Lawnmower.lua:163
 #, c-format
 msgid "[b]100[/b]%%!"
@@ -10223,6 +10368,7 @@ msgstr ""
 msgid "Import error: [b]null[/b] fuel received."
 msgstr ""
 
+#. TRANSLATORS: '%%' is not a typo
 #: dialogs/Kevin-Lawnmower.lua:183
 #, c-format
 msgid "WARNING, less than [b]5[/b]%% fuel remaining!"
@@ -10585,6 +10731,8 @@ msgstr ""
 msgid "Three hundred per lesson, up front."
 msgstr ""
 
+#. TRANSLATORS: %d = number training points needed
+#. TRANSLATORS: %d = a number
 #: dialogs/Kevin.lua:275 dialogs/Richard.lua:119
 #, c-format
 msgid "You will need %d training points."
@@ -12420,6 +12568,7 @@ msgstr ""
 msgid "Someone I found in the desert, Tania."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Pendragon.lua:49
 #, c-format
 msgid "%s, you may enter."
@@ -12473,6 +12622,7 @@ msgstr ""
 msgid "And you?"
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Pendragon.lua:116
 #, c-format
 msgid "%s, because it is my name?"
@@ -12850,6 +13000,7 @@ msgstr ""
 msgid "I have found the Secret Area Control Datacenter."
 msgstr ""
 
+#. TRANSLATORS: use lowercase for "admin"
 #: dialogs/SACD.lua:47 dialogs/SACD.lua:61 dialogs/SACD.lua:73
 #: dialogs/SACD.lua:102
 msgid "admin@sadefence: ~ #"
@@ -13352,6 +13503,7 @@ msgstr ""
 msgid "Will you let me inside the base?"
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/SADD.lua:387
 #, c-format
 msgid "I'm sorry %s, I'm afraid I can't do that."
@@ -13929,10 +14081,12 @@ msgstr ""
 msgid "Elbereth"
 msgstr ""
 
+#. TRANSLATORS: aaaa! It burns! I'm melting!
 #: dialogs/Sorenson.lua:180
 msgid "4444! 17 burn5! 7'm m3171n9!"
 msgstr ""
 
+#. TRANSLATORS: aaaaaaaaaaaaaa
 #: dialogs/Sorenson.lua:182
 msgid "44444444444444444!"
 msgstr ""
@@ -13941,10 +14095,12 @@ msgstr ""
 msgid "Francis"
 msgstr ""
 
+#. TRANSLATORS: Ha! Your soul is mine, Franics!
 #: dialogs/Sorenson.lua:192
 msgid "H4! Y0ur s0ul 15 min3, Francis!"
 msgstr ""
 
+#. TRANSLATORS: What? Not working?
 #: dialogs/Sorenson.lua:194
 msgid "Wh47? N07 w0rk1b9?"
 msgstr ""
@@ -13970,6 +14126,7 @@ msgstr ""
 msgid "I... Don't feel... good... Blood loss... So... Cold..."
 msgstr ""
 
+#. TRANSLATORS: NO! Idiot!
 #: dialogs/Sorenson.lua:210
 msgid "N0! Idi07!"
 msgstr ""
@@ -13978,10 +14135,12 @@ msgstr ""
 msgid "X"
 msgstr ""
 
+#. TRANSLATORS: No! Stupid illiterate penguin! DIE!!
 #: dialogs/Sorenson.lua:222
 msgid "N0! S7up1d illi73r4t3 p3n9u1n! D13!!"
 msgstr ""
 
+#. TRANSLATORS: huh? I don't feel good.
 #: dialogs/Sorenson.lua:231
 msgid "Huh? I d0n'7 f33l g00d."
 msgstr ""
@@ -13998,6 +14157,7 @@ msgstr ""
 msgid "Yes! I am free at last!"
 msgstr ""
 
+#. TRANSLATORS: Wait... I feel... horrible...
 #: dialogs/Sorenson.lua:238
 msgid "W417... 1 f331... H0rr1b13..."
 msgstr ""
@@ -14010,6 +14170,7 @@ msgstr ""
 msgid "In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
 msgstr ""
 
+#. TRANSLATORS: Nooooooo! Time to die, mortal fool!
 #: dialogs/Sorenson.lua:251
 msgid "N00oo00oo0! T1m3 to d1e, m0rtal foo1!"
 msgstr ""
@@ -14018,6 +14179,7 @@ msgstr ""
 msgid "There is no way I will sign something without reading it. Forget about it."
 msgstr ""
 
+#. TRANSLATORS: Nooooooo! Time to die, mortal fool!
 #: dialogs/Sorenson.lua:263
 msgid "N00oo00oo0! T1m3 to d1e, m0rta1 foo1!"
 msgstr ""
@@ -14058,6 +14220,7 @@ msgstr ""
 msgid "Must prevent access to the real update server. Can you open the gate?"
 msgstr ""
 
+#. TRANSLATORS: follow the markers on the ground
 #: dialogs/Spencer.lua:41
 msgid "Inside, follow the mrkers o e groun"
 msgstr ""
@@ -14066,10 +14229,12 @@ msgstr ""
 msgid "Ri ard sa... e c nn cti n *bzzzzzzzzz* bad."
 msgstr ""
 
+#. TRANSLATORS: good luck
 #: dialogs/Spencer.lua:45
 msgid "Goo*sizzle*ck."
 msgstr ""
 
+#. TRANSLATORS: over
 #: dialogs/Spencer.lua:47
 msgid "O*crack*r"
 msgstr ""
@@ -14986,6 +15151,7 @@ msgstr ""
 msgid "Wait a second... I think I recognize you..."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Stone.lua:208
 #, c-format
 msgid "You are %s, aren't you...?"
@@ -15027,6 +15193,7 @@ msgstr ""
 msgid "It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Stone.lua:232
 #, c-format
 msgid "%s, if you ever find out who started the Great Assault... GIVE THEM A SWIFT KICK FROM LILY STONE!!!"
@@ -15092,6 +15259,7 @@ msgstr ""
 msgid "I hope to see you again, soon!"
 msgstr ""
 
+#. TRANSLATORS: %s =Tux:get_player_name()
 #: dialogs/Tamara.lua:28
 #, c-format
 msgid "Hi, I'm %s."
@@ -16153,6 +16321,7 @@ msgstr ""
 msgid "State your name Linarian."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Town-NorthGateGuard.lua:158 dialogs/Town-NorthGateGuard.lua:193
 #, c-format
 msgid "My name is %s."
@@ -16162,6 +16331,7 @@ msgstr ""
 msgid "You don't look too stupid. Try not to mess up."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Town-NorthGateGuard.lua:161
 #, c-format
 msgid "You may now enter %s."
@@ -16275,11 +16445,13 @@ msgstr ""
 msgid "But I guess she's already here, so it doesn't matter if we have another loon."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Town-NorthGateGuard.lua:257
 #, c-format
 msgid "I'm a Linarian, not a loon. %s the Linarian."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Town-NorthGateGuard.lua:259
 #, c-format
 msgid "Get out of here %s, the loon, and stop bothering me."
@@ -16353,6 +16525,7 @@ msgstr ""
 msgid "It was about time..."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Town-NorthGateGuard.lua:330 dialogs/Town-TuxGuard.lua:70
 #, c-format
 msgid "%s... the Loon"
@@ -18279,6 +18452,7 @@ msgstr ""
 msgid "I don't care! Identify yourself, right now!"
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Tybalt.lua:27
 #, c-format
 msgid "%s... I'm %s."
@@ -18364,6 +18538,7 @@ msgstr ""
 msgid "Yes. All with a bunch of laser autoguns. Adjusted to shoot on sight."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Tybalt.lua:116
 #, c-format
 msgid "%s, I discourage you to test our security system."
@@ -18389,10 +18564,12 @@ msgstr ""
 msgid "I have a lot of money for you."
 msgstr ""
 
+#. TRANSLATORS: "a hundred" references to a money/circuits
 #: dialogs/Tybalt.lua:136
 msgid "Fascinating. Can I have a hundred please?"
 msgstr ""
 
+#. TRANSLATORS: references to a money/circuits
 #: dialogs/Tybalt.lua:144
 msgid "Erm... I don't have that much."
 msgstr ""
@@ -18401,14 +18578,17 @@ msgstr ""
 msgid "Well, too bad."
 msgstr ""
 
+#. TRANSLATORS: references to a money/circuits
 #: dialogs/Tybalt.lua:163
 msgid "That is not a hundred."
 msgstr ""
 
+#. TRANSLATORS: references to a money/circuits
 #: dialogs/Tybalt.lua:165
 msgid "Um, count that again."
 msgstr ""
 
+#. TRANSLATORS: references to a money/circuits
 #: dialogs/Tybalt.lua:167
 msgid "Talk to me when you have a bit more."
 msgstr ""
@@ -18457,6 +18637,7 @@ msgstr ""
 msgid "But he doesn't love robbers and foul play."
 msgstr ""
 
+#. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Tybalt.lua:196
 #, c-format
 msgid "Wait, %s, maybe we may make a deal."
@@ -18538,6 +18719,7 @@ msgstr ""
 msgid "A friend..."
 msgstr ""
 
+#. TRANSLATORS: %s =  Tux:get_player_name()
 #: dialogs/WillGapes.lua:55
 #, c-format
 msgid "My name is %s, and I'm here to stop the robots!"

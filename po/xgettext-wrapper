@@ -33,7 +33,13 @@ extract_strings()
 {
 	inf=$1
 	outf=$2
+	comment=$3
 	gawk '
+		/TRANSLATORS:/ {
+			sub("--;", "//")
+			print $0
+			next
+		}
 		/_\"|_\[{2}/ { 
 			inline = $0
 			outline = ""
@@ -117,11 +123,9 @@ if [ $# -ne 0 ] ; then
 					esac
 					if (( ${first} )) ; then 
 						${SYS_XGETTEXT} "${ARGS[@]}" --directory=${from_directory} --language=${lang} -o ${out} $F
-#						echo ${SYS_XGETTEXT} "${ARGS[@]}" --directory=${from_directory} --language=${lang} -o ${out} $F
 						first=0
 					else
 						${SYS_XGETTEXT} "${ARGS[@]}" --directory=${from_directory} --language=${lang} -j -o ${out} $F
-#						echo ${SYS_XGETTEXT} "${ARGS[@]}" --directory=${from_directory} --language=${lang} -j -o ${out} $F
 					fi
 				fi
 			done < ${files_from}
