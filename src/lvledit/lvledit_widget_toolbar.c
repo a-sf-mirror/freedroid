@@ -139,7 +139,7 @@ static void print_item_info(char *str, int item_idx)
 	struct itemspec *item = &ItemMap[item_idx];
 	if (item->item_gun_ammo_clip_size) { //Mostly Guns
 		sprintf(str, 	"%s (%s)\n\
-			Damage: %d-%d, Recharge: %.2f, Reload: %.2f, Ammo: (%d/%s)\n\\n\
+			Damage: %d-%d, Recharge: %.2f, Reload: %.2f, Ammo: (%d/%s)\n\
 			STR: >%d\n%s",
 				item_specs_get_name(item_idx), item->id,
 				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
