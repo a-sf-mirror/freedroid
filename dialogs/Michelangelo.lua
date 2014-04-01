@@ -169,6 +169,7 @@ return {
 			Tux:says(_"I've found a man who has nothing left to eat but army snacks. He has information for me, but I've got to feed him first.")
 			npc_says(_"I see. We do not have much to spare, but I will see what I can do. I will let you borrow my picnic basket, but I must have it back.")
 			npc_says(_"Here... This meal should satisfy his hunger. I even added a dessert.")
+			Tux:update_quest("Gapes Gluttony", _"Michelangelo gave me a healthy meal with dessert for Will Gapes. I have to remember to return the basket!")
 			Tux:says(_"Thank you. I'm sure it will be delicious.")
 			Tux:add_item("Lunch in a Picnic Basket")
 			Michelangelo_been_asked_meal_to_go = true
