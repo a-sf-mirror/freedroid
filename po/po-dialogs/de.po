@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-03-24 23:39+0100\n"
+"POT-Creation-Date: 2014-04-02 21:58+0200\n"
 "PO-Revision-Date: 2014-01-30 17:23+0100\n"
 "Last-Translator: Freedroid <bugs@freedroid.org>\n"
 "Language-Team: German\n"
@@ -71,7 +71,7 @@ msgstr ""
 #: dialogs/DocMoore.lua:375 dialogs/DocMoore.lua:377 dialogs/Duncan.lua:392
 #: dialogs/Duncan.lua:398 dialogs/Ewald.lua:690 dialogs/Iris.lua:171
 #: dialogs/Jasmine.lua:110 dialogs/Jennifer.lua:128 dialogs/Jennifer.lua:130
-#: dialogs/John.lua:232 dialogs/Karol.lua:55 dialogs/Michelangelo.lua:447
+#: dialogs/John.lua:232 dialogs/Karol.lua:55 dialogs/Michelangelo.lua:448
 #: dialogs/Pendragon.lua:287 dialogs/Richard.lua:159 dialogs/Skippy.lua:31
 #: dialogs/Skippy.lua:168 dialogs/Spencer.lua:551 dialogs/Stone.lua:271
 #: dialogs/Tania.lua:606 dialogs/Tania.lua:630 dialogs/Town-614.lua:73
@@ -2387,7 +2387,7 @@ msgid "OK, but please don't forget the helmet deal!"
 msgstr ""
 
 #: dialogs/Bruce.lua:376 dialogs/Butch.lua:248 dialogs/Engel.lua:361
-#: dialogs/Michelangelo.lua:445 dialogs/MO-RGGateGuard.lua:70
+#: dialogs/Michelangelo.lua:446 dialogs/MO-RGGateGuard.lua:70
 #: dialogs/Spencer.lua:549 dialogs/Town-NorthGateGuard.lua:323
 #: dialogs/Town-TuxGuard.lua:59 dialogs/WillGapes.lua:182
 msgid "I'll be going then."
@@ -6973,7 +6973,7 @@ msgstr ""
 msgid "I don't like this at all. I'm getting out of here."
 msgstr ""
 
-#: dialogs/Duncan.lua:300 dialogs/Michelangelo.lua:271
+#: dialogs/Duncan.lua:300 dialogs/Michelangelo.lua:272
 msgid "As you wish."
 msgstr ""
 
@@ -11580,8 +11580,8 @@ msgstr ""
 msgid "Well, that is all. Here is the junk that you wanted. Enjoy."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:118 dialogs/Michelangelo.lua:213
-#: dialogs/Michelangelo.lua:226
+#: dialogs/Michelangelo.lua:118 dialogs/Michelangelo.lua:214
+#: dialogs/Michelangelo.lua:227
 msgid "You need to equip your fork before you can use it to eat."
 msgstr ""
 
@@ -11678,378 +11678,382 @@ msgid "Here... This meal should satisfy his hunger. I even added a dessert."
 msgstr ""
 
 #: dialogs/Michelangelo.lua:172
+msgid "Michelangelo gave me a healthy meal with dessert for Will Gapes. I have to remember to return the basket!"
+msgstr ""
+
+#: dialogs/Michelangelo.lua:173
 msgid "Thank you. I'm sure it will be delicious."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:180
+#: dialogs/Michelangelo.lua:181
 msgid "I've brought your Picnic Basket back."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:182
+#: dialogs/Michelangelo.lua:183
 msgid "Oh, thank you. Hopefully, the meal hit the spot."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:183
+#: dialogs/Michelangelo.lua:184
 msgid "Yes, he enjoyed it, and I got my information."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:184
+#: dialogs/Michelangelo.lua:185
 msgid "Excellent! Now, perhaps these antibiotics will help you on your mission."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:192
+#: dialogs/Michelangelo.lua:193
 msgid "Got any food yet?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:196
+#: dialogs/Michelangelo.lua:197
 msgid "I'm confused, nothing of my upper gastronomy is ready to eat. Not one cheese cake."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:197
+#: dialogs/Michelangelo.lua:198
 msgid "But don't despair, Michelangelo is slaving over his stove. A army of bots could not stop the Master when he's cooking."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:198
+#: dialogs/Michelangelo.lua:199
 msgid "Until my next batch of food comes out of the macrowave oven, all I have are the odoriferous military rations."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:209
+#: dialogs/Michelangelo.lua:210
 msgid "Here, try this slice of lemon meringue pie."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:211
+#: dialogs/Michelangelo.lua:212
 msgid "Wait, you don't have a fork. You need a fork..."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:215
+#: dialogs/Michelangelo.lua:216
 msgid "It is as if a cloud from heaven was made into a pie."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:221
+#: dialogs/Michelangelo.lua:222
 msgid "Try this crab cake."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:224
+#: dialogs/Michelangelo.lua:225
 msgid "Where is your plate and fork?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:228
+#: dialogs/Michelangelo.lua:229
 msgid "Such an intense, delectable, blend of savory spices... it melts in my mouth."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:234
+#: dialogs/Michelangelo.lua:235
 msgid "May I interest you in some eggs sardou?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:235
+#: dialogs/Michelangelo.lua:236
 msgid "EGGS!?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:236
+#: dialogs/Michelangelo.lua:237
 msgid "Oh, Michelangelo had forgotten..."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:237
+#: dialogs/Michelangelo.lua:238
 msgid "How about a... yummy army snack instead?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:246
+#: dialogs/Michelangelo.lua:247
 msgid "I am in the midst of a culinary masterpiece."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:247
+#: dialogs/Michelangelo.lua:248
 msgid "I cannot rush art for I am an artist!"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:250
+#: dialogs/Michelangelo.lua:251
 msgid "I had prepared some delicacies, but the ravenous Red Guard ate it all."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:251
+#: dialogs/Michelangelo.lua:252
 msgid "Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:252
+#: dialogs/Michelangelo.lua:253
 msgid "I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:253
+#: dialogs/Michelangelo.lua:254
 msgid "But if you are really hungry, I still have some of those disgusting army snacks."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:268
+#: dialogs/Michelangelo.lua:269
 msgid "I am racked with hunger pains, give me some army snacks!"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:270
+#: dialogs/Michelangelo.lua:271
 msgid "I thought you would have learned by now."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:277
+#: dialogs/Michelangelo.lua:278
 msgid "Hmm... Crunchy... That is... Oh... No. Ugh. Help."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:279
+#: dialogs/Michelangelo.lua:280
 msgid "Oh yes. You were warned, so don't blame me."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:280
+#: dialogs/Michelangelo.lua:281
 msgid "Bleah! That is not food!"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:281
+#: dialogs/Michelangelo.lua:282
 msgid "We already know that. There is nothing else to eat here, so I hope you get used to the taste."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:282
+#: dialogs/Michelangelo.lua:283
 msgid "That thing only looks okay, and has a nice color."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:283
+#: dialogs/Michelangelo.lua:284
 msgid "But as you can see, the color cannot be eaten, only the taste counts."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:288 dialogs/Michelangelo.lua:303
+#: dialogs/Michelangelo.lua:289 dialogs/Michelangelo.lua:304
 msgid "I have the dilithium you wanted."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:290 dialogs/Michelangelo.lua:305
+#: dialogs/Michelangelo.lua:291 dialogs/Michelangelo.lua:306
 msgid "Really? I thought you were dead, but not only did you come back alive, you also brought some power crystals for my trusty oven."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:291
+#: dialogs/Michelangelo.lua:292
 msgid "I will start cooking at once."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:292
+#: dialogs/Michelangelo.lua:293
 msgid "Thank you, Linarian. As soon as the food cubes are ready I will be able to give them away to the hungry people."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:293
+#: dialogs/Michelangelo.lua:294
 msgid "Restored Michelangelo's power supply"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:296
+#: dialogs/Michelangelo.lua:297
 msgid "I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the town's cantina."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:306
+#: dialogs/Michelangelo.lua:307
 msgid "However I need at least three crystals. Can you come back with all the crystals I need?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:312
+#: dialogs/Michelangelo.lua:313
 msgid "What was I supposed to do again?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:314
+#: dialogs/Michelangelo.lua:315
 msgid "Get me three dilithium crystals before the whole stupid town commits mass suicide because of poor food quality."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:315
+#: dialogs/Michelangelo.lua:316
 msgid "Of course our heinous food might do us in far before that. I swear I saw that stuff glow it the dark and try to sneak away from my plate a few times."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:321
+#: dialogs/Michelangelo.lua:322
 msgid "Where can I find dilithium crystals?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:323
+#: dialogs/Michelangelo.lua:324
 msgid "There is an old abandoned dilithium mine is to the east of the town."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:324
+#: dialogs/Michelangelo.lua:325
 msgid "Be careful if you go down there!"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:330
+#: dialogs/Michelangelo.lua:331
 msgid "What is this 'dilithium'?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:332
+#: dialogs/Michelangelo.lua:333
 msgid "You do not know? I thought Linarians were unmatched in their knowledge of the universe. Anyway..."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:333
+#: dialogs/Michelangelo.lua:334
 msgid "Dilithium is a substance which is usually seen in the form of a small crystal."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:334
+#: dialogs/Michelangelo.lua:335
 msgid "It somehow generates and stores amazing amounts of electricity. I do not know the details. I'm a cook, not a quantum scientist."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:340
+#: dialogs/Michelangelo.lua:341
 msgid "I have an idea. Use fire to cook the food for the town."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:342
+#: dialogs/Michelangelo.lua:343
 msgid "A nice idea, but there is a couple of major problems with it."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:343
+#: dialogs/Michelangelo.lua:344
 msgid "We are a town of 450 hungry people. It would need to be a very big fire to supply heat for all of the meals."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:344
+#: dialogs/Michelangelo.lua:345
 msgid "There is nothing to burn inside the town. If you want you can go and try to chop some trees in the region to the north, but odds are the bots will chop you down before you get a chance to swing the hatchet once."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:345
+#: dialogs/Michelangelo.lua:346
 msgid "Finally, the meal cubes which we have in the freezer are optimized for macrowaves. If we stick them in a fire they will combust and not cook."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:346
+#: dialogs/Michelangelo.lua:347
 msgid "No oven means having to use premacrowaved food."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:347
+#: dialogs/Michelangelo.lua:348
 msgid "And the only such thing around is that abhorrent military sludge."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:353
+#: dialogs/Michelangelo.lua:354
 msgid "Tell the Red Guard that you need your battery back."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:356
+#: dialogs/Michelangelo.lua:357
 msgid "Well, you ARE the red guard"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:357
+#: dialogs/Michelangelo.lua:358
 msgid "Why can't you just talk to Spencer?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:358
+#: dialogs/Michelangelo.lua:359
 msgid "I want my battery back!"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:359
+#: dialogs/Michelangelo.lua:360
 msgid "Umm... I guess you have a point there."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:360
+#: dialogs/Michelangelo.lua:361
 msgid "But sorry, I don't think there is anything I can do right now,"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:361
+#: dialogs/Michelangelo.lua:362
 msgid "Talk to Spencer yourself."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:363 dialogs/Michelangelo.lua:373
+#: dialogs/Michelangelo.lua:364 dialogs/Michelangelo.lua:374
 msgid "I did."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:364
+#: dialogs/Michelangelo.lua:365
 msgid "They said it was already fed to their reactor as fuel."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:371
+#: dialogs/Michelangelo.lua:372
 msgid "Why don't you send someone for the dilithium?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:374
+#: dialogs/Michelangelo.lua:375
 msgid "Yesterday a guard patrol found a few tiny bits of him and lots of dried blood."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:375
+#: dialogs/Michelangelo.lua:376
 msgid "The bots made a bloody mess out of him."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:381
+#: dialogs/Michelangelo.lua:382
 msgid "I need a dilithium crystal."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:383
+#: dialogs/Michelangelo.lua:384
 msgid "I am already using the ones you got me. They are being used to feed the town."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:394 dialogs/Michelangelo.lua:402
+#: dialogs/Michelangelo.lua:395 dialogs/Michelangelo.lua:403
 msgid "I need one of the dilithium crystals back, it is a matter of life or death!"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:396
+#: dialogs/Michelangelo.lua:397
 msgid "I gave you all of the crystals I can spare."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:404
+#: dialogs/Michelangelo.lua:405
 msgid "I guess I can spare one of them, since it is an emergency."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:407
+#: dialogs/Michelangelo.lua:408
 msgid "I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:413
+#: dialogs/Michelangelo.lua:414
 msgid "Maybe I can get you some dilithium."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:415
+#: dialogs/Michelangelo.lua:416
 msgid "Have you gotten overheated, Linarian?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:416
+#: dialogs/Michelangelo.lua:417
 msgid "Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:417
+#: dialogs/Michelangelo.lua:418
 msgid "If you want to die just walk into a nuclear reactor or something. So much simpler."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:423
+#: dialogs/Michelangelo.lua:424
 msgid "Don't worry, I'll be fine."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:425
+#: dialogs/Michelangelo.lua:426
 msgid "Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:426
+#: dialogs/Michelangelo.lua:427
 msgid "I have seen corpses with nearly all of the fingers ripped off. People with eyes drilled out by some big tool."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:427
+#: dialogs/Michelangelo.lua:428
 msgid "I have smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the town walls."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:428
+#: dialogs/Michelangelo.lua:429
 msgid "The bots know no mercy. They cannot even define it, infernal scrap metal fiends."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:429
+#: dialogs/Michelangelo.lua:430
 msgid "Feel free to go, Linarian, but make sure to be very dead before they start killing you."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:430
+#: dialogs/Michelangelo.lua:431
 msgid "Where can I get the crystals?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:431
+#: dialogs/Michelangelo.lua:432
 msgid "There is an old dilithium mine to the east. I am sure there is lots of that stuff there."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:432
+#: dialogs/Michelangelo.lua:433
 msgid "I will talk to the guards, they will open the eastern gate for you."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:433
+#: dialogs/Michelangelo.lua:434
 msgid "Good luck. Try not to get yourself killed."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:434
+#: dialogs/Michelangelo.lua:435
 msgid "How many dilithium crystals do you need?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:435
+#: dialogs/Michelangelo.lua:436
 msgid "A single small crystal could power my oven for a decade if it is of good quality. But unfortunately my oven requires two to operate correctly. And since it is so dangerous to send anyone to get dilithium, could you get me a spare as well?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:436
+#: dialogs/Michelangelo.lua:437
 msgid "So you need three dilithium crystals?"
 msgstr ""
 
-#: dialogs/Michelangelo.lua:437
+#: dialogs/Michelangelo.lua:438
 msgid "Yes. Please get me three dilithium crystals."
 msgstr ""
 
-#: dialogs/Michelangelo.lua:439
+#: dialogs/Michelangelo.lua:440
 msgid "I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking, the whole town is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop."
 msgstr ""
 
