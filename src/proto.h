@@ -68,6 +68,7 @@ struct lua_coroutine *load_lua_coroutine(enum lua_target, const char *);
 int resume_lua_coroutine(struct lua_coroutine *);
 void run_lua(enum lua_target, const char *);
 void run_lua_file(enum lua_target, const char *);
+void set_lua_ctor_upvalue(enum lua_target, const char *, void *);
 int call_lua_func(enum lua_target, const char *, const char *, const char *, const char *, ...);
 void reset_lua_state(void);
 void write_lua_variables(struct auto_string *);

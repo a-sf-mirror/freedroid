@@ -1212,31 +1212,47 @@ static int lua_languages_ctor(lua_State *L)
 void init_luaconfig()
 {
 	int i;
+	lua_State *L = get_lua_state(LUA_CONFIG);
+
+	// Register standard C functions
 
 	luaL_Reg lfuncs[] = {
-		{"addon", lua_register_addon},
-		{"tux_animation", lua_tuxanimation_ctor},
-		{"tux_rendering_config", lua_tuxrendering_config_ctor},
-		{"tux_ordering", lua_tuxordering_ctor},
-		{"obstacle", lua_obstacle_ctor},
-		{"leveleditor_obstacle_category", lua_leveleditor_obstacle_category_ctor},
-		{"bullet_list", lua_bullet_list_ctor},
-		{"blast", lua_blast_ctor},
-		{"underlay_floor_tile_list", lua_underlay_floor_tile_list_ctor},
-		{"overlay_floor_tile_list", lua_overlay_floor_tile_list_ctor},
-		{"npc_list", lua_npc_list_ctor},
-		{"npc_shop", lua_npc_shop_ctor},
-		{"item_list", lua_item_list_ctor},
-		{"languages", lua_languages_ctor},
+		{ "addon",                         lua_register_addon                     },
+		{ "tux_animation",                 lua_tuxanimation_ctor                  },
+		{ "tux_rendering_config",          lua_tuxrendering_config_ctor           },
+		{ "tux_ordering",                  lua_tuxordering_ctor                   },
+		{ "obstacle",                      lua_obstacle_ctor                      },
+		{ "leveleditor_obstacle_category", lua_leveleditor_obstacle_category_ctor },
+		{ "bullet_list",                   lua_bullet_list_ctor                   },
+		{ "blast",                         lua_blast_ctor                         },
+		{ "underlay_floor_tile_list",      lua_underlay_floor_tile_list_ctor      },
+		{ "overlay_floor_tile_list",       lua_overlay_floor_tile_list_ctor       },
+		{ "npc_list",                      lua_npc_list_ctor                      },
+		{ "npc_shop",                      lua_npc_shop_ctor                      },
+		{ "item_list",                     lua_item_list_ctor                     },
+		{ "languages",                     lua_languages_ctor                     },
 		{NULL, NULL}
 	};
-
-	lua_State *L = get_lua_state(LUA_CONFIG);
 
 	for (i = 0; lfuncs[i].name != NULL; i++) {
 		lua_pushcfunction(L, lfuncs[i].func);
 		lua_setglobal(L, lfuncs[i].name);
 	}
+
+	// Register C closures
+
+	luaL_Reg lclos[] = {
+		{NULL, NULL}
+	};
+
+	for (i = 0; lclos[i].name != NULL; i++) {
+		 // Initialize a pointer upvalue with a NULL content
+		lua_pushlightuserdata(L, NULL);
+		lua_pushcclosure(L, lclos[i].func, 1);
+		lua_setglobal(L, lclos[i].name);
+	}
+
+	// Additional initializations
 
 	init_obstacle_flags();
 }

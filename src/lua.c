@@ -1868,6 +1868,20 @@ void run_lua_file(enum lua_target target, const char *path)
 	}
 }
 
+void set_lua_ctor_upvalue(enum lua_target target, const char *fn, void *p)
+{
+	lua_State *L = get_lua_state(target);
+
+	lua_getglobal(L, fn);
+	lua_pushlightuserdata(L, p);
+	if (!lua_setupvalue(L, -2, 1)) {
+		lua_pop(L, 2);
+		ErrorMessage(__FUNCTION__, "No upvalue defined for %s closure.\n",
+		             PLEASE_INFORM, IS_FATAL, fn);
+	}
+	lua_pop(L, 1);
+}
+
 /*
  * Load a lua module in a lua context.
  * The directory containing the module is added to the package.path lua global
