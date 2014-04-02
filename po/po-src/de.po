@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-04-02 21:58+0200\n"
+"POT-Creation-Date: 2014-04-02 22:30+0200\n"
 "PO-Revision-Date: 2013-09-01 00:37+0200\n"
 "Last-Translator: Freedroid <bugs@freedroid.org>\n"
 "Language-Team: German\n"
@@ -659,6 +659,414 @@ msgstr ""
 msgid "I can't carry any more."
 msgstr ""
 
+#: src/items.c:2050
+msgid "Laser power pack"
+msgstr ""
+
+#: src/items.c:2051
+msgid "Plasma energy container"
+msgstr ""
+
+#: src/items.c:2052
+msgid "2 mm Exterminator Ammunition"
+msgstr ""
+
+#: src/items.c:2053
+msgid ".22 LR Ammunition"
+msgstr ""
+
+#: src/items.c:2054
+msgid "Shotgun shells"
+msgstr ""
+
+#: src/items.c:2055
+msgid "9x19mm Ammunition"
+msgstr ""
+
+#: src/items.c:2056
+msgid "7.62x39mm Ammunition"
+msgstr ""
+
+#: src/items.c:2057
+msgid ".50 BMG (12.7x99mm) Ammunition"
+msgstr ""
+
+#: src/keyboard.c:53
+msgid "keychart"
+msgstr ""
+
+#: src/keyboard.c:54
+msgid "fullscreen"
+msgstr ""
+
+#: src/keyboard.c:55
+msgid "grab_input"
+msgstr ""
+
+#: src/keyboard.c:56
+msgid "quit"
+msgstr ""
+
+#: src/keyboard.c:57
+msgid "wall_transparency"
+msgstr ""
+
+#: src/keyboard.c:58
+msgid "take_screenshot"
+msgstr ""
+
+#: src/keyboard.c:61
+msgid "inventory"
+msgstr ""
+
+#: src/keyboard.c:62
+msgid "skill"
+msgstr ""
+
+#: src/keyboard.c:63
+msgid "character"
+msgstr ""
+
+#: src/keyboard.c:64
+msgid "quests"
+msgstr ""
+
+#: src/keyboard.c:65
+msgid "reload"
+msgstr ""
+
+#: src/keyboard.c:66
+msgid "autorun"
+msgstr ""
+
+#: src/keyboard.c:68
+msgid "move_north"
+msgstr ""
+
+#: src/keyboard.c:69
+msgid "move_south"
+msgstr ""
+
+#: src/keyboard.c:70
+msgid "move_east"
+msgstr ""
+
+#: src/keyboard.c:71
+msgid "move_west"
+msgstr ""
+
+#: src/keyboard.c:73
+msgid "quicksave"
+msgstr ""
+
+#: src/keyboard.c:74
+msgid "quickload"
+msgstr ""
+
+#: src/keyboard.c:75
+msgid "pause"
+msgstr ""
+
+#: src/keyboard.c:76
+msgid "show_item_labels"
+msgstr ""
+
+#: src/keyboard.c:77
+msgid "automap"
+msgstr ""
+
+#: src/keyboard.c:79
+msgid "activate_program0"
+msgstr ""
+
+#: src/keyboard.c:80
+msgid "activate_program1"
+msgstr ""
+
+#: src/keyboard.c:81
+msgid "activate_program2"
+msgstr ""
+
+#: src/keyboard.c:82
+msgid "activate_program3"
+msgstr ""
+
+#: src/keyboard.c:83
+msgid "activate_program4"
+msgstr ""
+
+#: src/keyboard.c:84
+msgid "activate_program5"
+msgstr ""
+
+#: src/keyboard.c:85
+msgid "activate_program6"
+msgstr ""
+
+#: src/keyboard.c:86
+msgid "activate_program7"
+msgstr ""
+
+#: src/keyboard.c:88
+msgid "quick_inventory0"
+msgstr ""
+
+#: src/keyboard.c:89
+msgid "quick_inventory1"
+msgstr ""
+
+#: src/keyboard.c:90
+msgid "quick_inventory2"
+msgstr ""
+
+#: src/keyboard.c:91
+msgid "quick_inventory3"
+msgstr ""
+
+#: src/keyboard.c:92
+msgid "quick_inventory4"
+msgstr ""
+
+#: src/keyboard.c:93
+msgid "quick_inventory5"
+msgstr ""
+
+#: src/keyboard.c:94
+msgid "quick_inventory6"
+msgstr ""
+
+#: src/keyboard.c:95
+msgid "quick_inventory7"
+msgstr ""
+
+#: src/keyboard.c:96
+msgid "quick_inventory8"
+msgstr ""
+
+#: src/keyboard.c:97
+msgid "quick_inventory9"
+msgstr ""
+
+#: src/keyboard.c:99
+msgid "close_windows"
+msgstr ""
+
+#: src/keyboard.c:100
+msgid "game_escape_menu"
+msgstr ""
+
+#: src/keyboard.c:103
+msgid "drop_item"
+msgstr ""
+
+#: src/keyboard.c:104
+msgid "place_obstacle_kp0"
+msgstr ""
+
+#: src/keyboard.c:105
+msgid "place_obstacle_kp1"
+msgstr ""
+
+#: src/keyboard.c:106
+msgid "place_obstacle_kp2"
+msgstr ""
+
+#: src/keyboard.c:107
+msgid "place_obstacle_kp3"
+msgstr ""
+
+#: src/keyboard.c:108
+msgid "place_obstacle_kp4"
+msgstr ""
+
+#: src/keyboard.c:109
+msgid "place_obstacle_kp5"
+msgstr ""
+
+#: src/keyboard.c:110
+msgid "place_obstacle_kp6"
+msgstr ""
+
+#: src/keyboard.c:111
+msgid "place_obstacle_kp7"
+msgstr ""
+
+#: src/keyboard.c:112
+msgid "place_obstacle_kp8"
+msgstr ""
+
+#: src/keyboard.c:113
+msgid "place_obstacle_kp9"
+msgstr ""
+
+#: src/keyboard.c:114
+msgid "change_obstacle_label"
+msgstr ""
+
+#: src/keyboard.c:115
+msgid "change_map_label"
+msgstr ""
+
+#: src/keyboard.c:116
+msgid "zoom_out"
+msgstr ""
+
+#: src/keyboard.c:117
+msgid "cycle_marked_object"
+msgstr ""
+
+#: src/keyboard.c:118
+msgid "next_tab"
+msgstr ""
+
+#: src/keyboard.c:119
+msgid "previous_tab"
+msgstr ""
+
+#: src/keyboard.c:120
+msgid "undo"
+msgstr ""
+
+#: src/keyboard.c:121
+msgid "redo"
+msgstr ""
+
+#: src/keyboard.c:122
+msgid "beautify_grass"
+msgstr ""
+
+#: src/keyboard.c:123
+msgid "beautify_water"
+msgstr ""
+
+#: src/keyboard.c:124
+msgid "toggle_waypoint"
+msgstr ""
+
+#: src/keyboard.c:125
+msgid "toggle_waypoint_randomspawn"
+msgstr ""
+
+#: src/keyboard.c:126
+msgid "connect_waypoint"
+msgstr ""
+
+#: src/keyboard.c:127
+msgid "toolbar_scroll_left"
+msgstr ""
+
+#: src/keyboard.c:128
+msgid "toolbar_scroll_right"
+msgstr ""
+
+#: src/keyboard.c:129
+msgid "toolbar_step_left"
+msgstr ""
+
+#: src/keyboard.c:130
+msgid "toolbar_step_right"
+msgstr ""
+
+#: src/keyboard.c:131
+msgid "cut"
+msgstr ""
+
+#: src/keyboard.c:132
+msgid "copy"
+msgstr ""
+
+#: src/keyboard.c:133
+msgid "paste"
+msgstr ""
+
+#: src/keyboard.c:134
+msgid "delete"
+msgstr ""
+
+#: src/keyboard.c:135
+msgid "next_selection_type"
+msgstr ""
+
+#: src/keyboard.c:136
+msgid "previous_selection_type"
+msgstr ""
+
+#: src/keyboard.c:137
+msgid "run_map_validator"
+msgstr ""
+
+#: src/keyboard.c:140
+msgid "cheat_xp+_1k"
+msgstr ""
+
+#: src/keyboard.c:141
+msgid "cheat_xp*_2"
+msgstr ""
+
+#: src/keyboard.c:142
+msgid "cheat_melee"
+msgstr ""
+
+#: src/keyboard.c:143
+msgid "cheat_range"
+msgstr ""
+
+#: src/keyboard.c:144
+msgid "cheat_programing"
+msgstr ""
+
+#: src/keyboard.c:145
+msgid "cheat_melee_down"
+msgstr ""
+
+#: src/keyboard.c:146
+msgid "cheat_range_down"
+msgstr ""
+
+#: src/keyboard.c:147
+msgid "cheat_programing_down"
+msgstr ""
+
+#: src/keyboard.c:148
+msgid "cheat_drop_random_item"
+msgstr ""
+
+#: src/keyboard.c:149
+msgid "cheat_drop_random_magical_item"
+msgstr ""
+
+#: src/keyboard.c:150
+msgid "cheat_respawn_level"
+msgstr ""
+
+#: src/keyboard.c:151
+msgid "cheat_level_editor"
+msgstr ""
+
+#: src/keyboard.c:152
+msgid "cheat_menu"
+msgstr ""
+
+#: src/keyboard.c:153
+msgid "cheat_reload_graphics"
+msgstr ""
+
+#: src/keyboard.c:154
+msgid "cheat_inc_repair"
+msgstr ""
+
+#: src/keyboard.c:155
+msgid "cheat_dec_repair"
+msgstr ""
+
+#: src/keyboard.c:159
+msgid "rtprof_switch_activation"
+msgstr ""
+
+#: src/keyboard.c:160
+msgid "rtprof_clear_probes"
+msgstr ""
+
 #: src/keyboard.c:284
 msgid "Key chart"
 msgstr ""
@@ -809,6 +1217,18 @@ msgid ""
 "You need to restart FreedroidRPG for the changes to take effect.\n"
 "\n"
 "Sorry for the inconvenience."
+msgstr ""
+
+#: src/menu.c:876
+msgid "easy"
+msgstr ""
+
+#: src/menu.c:877
+msgid "normal"
+msgstr ""
+
+#: src/menu.c:878
+msgid "hard"
 msgstr ""
 
 #: src/menu.c:881
@@ -1518,6 +1938,46 @@ msgstr ""
 msgid "Click to continue..."
 msgstr ""
 
+#: src/vars.h:39
+msgid "untrained"
+msgstr ""
+
+#: src/vars.h:40
+msgid "novice"
+msgstr ""
+
+#: src/vars.h:41
+msgid "apprentice"
+msgstr ""
+
+#: src/vars.h:42
+msgid "professional"
+msgstr ""
+
+#: src/vars.h:43
+msgid "expert"
+msgstr ""
+
+#: src/vars.h:44
+msgid "master"
+msgstr ""
+
+#: src/vars.h:45
+msgid "god"
+msgstr ""
+
+#: src/vars.h:46
+msgid "haxx0r"
+msgstr ""
+
+#: src/vars.h:47
+msgid "l33t haxx0r"
+msgstr ""
+
+#: src/vars.h:48
+msgid "cheater"
+msgstr ""
+
 #: src/lua/luaFD_tux.c:283
 #, c-format
 msgid "+%d Experience Points"
@@ -1947,6 +2407,81 @@ msgstr ""
 
 #: src/lvledit/lvledit_tool_place.c:685
 msgid "Place tool does not support this type of object."
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:54
+msgid "wall"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:55
+msgid "furniture"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:56
+msgid "machinery"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:57
+msgid "container"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:58
+msgid "nature"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:59 src/lvledit/lvledit_widgets.c:69
+#: src/lvledit/lvledit_widgets.c:78
+msgid "other"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:60 src/lvledit/lvledit_widgets.c:70
+#: src/lvledit/lvledit_widgets.c:79 src/lvledit/lvledit_widgets.c:83
+#: src/lvledit/lvledit_widgets.c:87 src/lvledit/lvledit_widgets.c:93
+msgid "all"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:64
+msgid "sidewalk"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:65
+msgid "water"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:66
+msgid "grass"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:67
+msgid "square"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:68
+msgid "sand"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:74
+msgid "melee"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:75
+msgid "gun"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:76
+msgid "defensive"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:77
+msgid "useable"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:91
+msgid "droids"
+msgstr ""
+
+#: src/lvledit/lvledit_widgets.c:92
+msgid "humans"
 msgstr ""
 
 #: src/lvledit/lvledit_widgets.c:252

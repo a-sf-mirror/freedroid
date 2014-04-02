@@ -10,7 +10,7 @@ top_builddir = ${top_srcdir}
 # These options get passed to xgettext.
 SYS_XGETTEXT:=${XGETTEXT}
 XGETTEXT=${top_srcdir}/po/xgettext-wrapper ${SYS_XGETTEXT}
-XGETTEXT_OPTIONS = --width=80 --no-wrap --keyword=_ --keyword=S_ --from-code=UTF-8
+XGETTEXT_OPTIONS = --width=80 --no-wrap --keyword=_ --keyword=N_ --keyword=L_ --keyword=D_ --keyword=S_ --from-code=UTF-8
 
 # These options get passed to msgmerge.
 MSGMERGE_OPTIONS = --width=80 --no-wrap --verbose --quiet

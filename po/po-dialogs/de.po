@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-04-02 21:58+0200\n"
+"POT-Creation-Date: 2014-04-02 22:30+0200\n"
 "PO-Revision-Date: 2014-01-30 17:23+0100\n"
 "Last-Translator: Freedroid <bugs@freedroid.org>\n"
 "Language-Team: German\n"
@@ -857,9 +857,8 @@ msgstr ""
 #. TRANSLATORS: command,  use lowercase here
 #: dialogs/AfterTakeover.lua:715 dialogs/DSB-MachineDeckControl.lua:76
 #: dialogs/DSB-PowerControl.lua:43 dialogs/DSB-PowerControlGate1.lua:87
-#: dialogs/Guy.lua:428 dialogs/Maintenance-Terminal.lua:229
-#: dialogs/MiniFactory-Terminal.lua:103 dialogs/MO-HFGateAccessServer.lua:227
-#: dialogs/MO-HFGateAccessServer.lua:230
+#: dialogs/Maintenance-Terminal.lua:229 dialogs/MiniFactory-Terminal.lua:103
+#: dialogs/MO-HFGateAccessServer.lua:227 dialogs/MO-HFGateAccessServer.lua:230
 #: dialogs/MS-Factory-Addon-Terminal.lua:70 dialogs/SACD.lua:108
 #: dialogs/Terminal.lua:50 dialogs/TestDroid.lua:41
 #: dialogs/TutorialTerminal.lua:89 dialogs/TutorialTerminal.lua:93
@@ -6610,16 +6609,6 @@ msgstr ""
 msgid "We hope your day will be most productive."
 msgstr ""
 
-#: dialogs/Dude.lua:32
-msgid "Starting "
-msgstr ""
-
-#. TRANSLATORS: Used to test l10n, so put here anything you want in your language
-#. TRANSLATORS: (can also be used to test non ASCII characters).
-#: dialogs/Dude.lua:98
-msgid "Untranslated reply."
-msgstr "Antwort in Deutsch."
-
 #: dialogs/Duncan.lua:63
 msgid "Hi... Erm... Who are you?"
 msgstr ""
@@ -9154,10 +9143,6 @@ msgstr ""
 
 #: dialogs/Geist.lua:78
 msgid "I need to go now."
-msgstr ""
-
-#: dialogs/Guy.lua:65
-msgid "RUNNING TEST NODE"
 msgstr ""
 
 #: dialogs/HF-EntranceBot.lua:24
@@ -18922,3 +18907,6 @@ msgstr ""
 #: dialogs/WillGapes.lua:184
 msgid "Be careful!"
 msgstr ""
+
+#~ msgid "Untranslated reply."
+#~ msgstr "Antwort in Deutsch."

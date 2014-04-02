@@ -18,7 +18,6 @@ dialogs/DocMoore.lua
 dialogs/DSB-MachineDeckControl.lua
 dialogs/DSB-PowerControl.lua
 dialogs/DSB-PowerControlGate1.lua
-dialogs/Dude.lua
 dialogs/Duncan.lua
 dialogs/Engel.lua
 dialogs/Ewald.lua
@@ -26,7 +25,6 @@ dialogs/Ewalds_296.lua
 dialogs/FactionDeadBot.lua
 dialogs/Francis.lua
 dialogs/Geist.lua
-dialogs/Guy.lua
 dialogs/HF-EntranceBot.lua
 dialogs/HF-FirmwareUpdateServer.lua
 dialogs/InvaderBot.lua
