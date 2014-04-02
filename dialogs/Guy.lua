@@ -62,7 +62,7 @@ return {
 
 	{
 		id = "node0",
-		text = _"RUNNING TEST NODE",
+		text = "RUNNING TEST NODE",
 		code = function()
 			show("node0")
 			hide("node0")
@@ -425,7 +425,7 @@ return {
 	},
 	{
 		id = "node99",
-		text = _"logout",
+		text = "logout",
 		code = function()
 			end_dialog()
 		end,

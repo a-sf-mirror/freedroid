@@ -29,7 +29,7 @@ local function dude_create_node(dialogname)
 		text = dialogname,
 		enabled = true,
 		code = function()
-			Tux:says(_"Starting " .. dialogname)
+			Tux:says("Starting " .. dialogname)
 			start_chat(dialogname)
 		end,
 	}
@@ -95,7 +95,7 @@ return {
 		code = function()
 			--; TRANSLATORS: Used to test l10n, so put here anything you want in your language 
 			--; TRANSLATORS: (can also be used to test non ASCII characters).
-			npc_says(_"Untranslated reply.")
+			npc_says("Untranslated reply.")
 		end,
 	},
 	
