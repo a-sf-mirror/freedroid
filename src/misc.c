@@ -67,8 +67,10 @@ struct data_dir data_dirs[] = {
 	[MAP_DIR]=     { "map",         "" },
 	[TITLES_DIR]=  { "map/titles",  "" },
 	[DIALOG_DIR]=  { "dialogs",     "" },
-	[LUA_MOD_DIR]= { "lua_modules", "" },
-	[LOCALE_DIR]=  { "locale",      "" }
+#ifdef ENABLE_NLS
+	[LOCALE_DIR]=  { "locale",      "" },
+#endif
+	[LUA_MOD_DIR]= { "lua_modules", "" }
 };
 #define WELL_KNOWN_DATA_FILE "lua_modules/FDdialog.lua"
 
@@ -630,7 +632,9 @@ int init_data_dirs_path()
 
 	// Directories to look for the data dirs
 	char *top_data_dir[]   = { ".", "..", "../..", FD_DATADIR };
+#ifdef ENABLE_NLS
 	char *top_locale_dir[] = { ".", "..", "../..", LOCALEDIR };
+#endif
 	int slen = sizeof(top_data_dir)/sizeof(top_data_dir[0]);
 
 	// To find the root of the data dirs, we search a well known file that is
@@ -641,7 +645,11 @@ int init_data_dirs_path()
 		if ((f = fopen(file_path, "r")) != NULL) {
 			// File found, so now fill the data dir paths
 			for (j = 0; j < LAST_DATA_DIR; j++) {
-				char *dir = (j == LOCALE_DIR) ? top_locale_dir[i] : top_data_dir[i];
+				char *dir = top_data_dir[i];
+#ifdef ENABLE_NLS
+				if (j == LOCALE_DIR)
+					dir = top_locale_dir[i];
+#endif
 				int nb = snprintf(data_dirs[j].path, PATH_MAX, "%s/%s", dir, data_dirs[j].name);
 				if (nb >= PATH_MAX) {
 					ErrorMessage(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s/%s",

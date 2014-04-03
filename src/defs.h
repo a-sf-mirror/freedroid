@@ -1566,8 +1566,10 @@ enum data_dir_handle {
 	MAP_DIR,
 	TITLES_DIR,
 	DIALOG_DIR,
-	LUA_MOD_DIR,
+#ifdef ENABLE_NLS
 	LOCALE_DIR,
+#endif
+	LUA_MOD_DIR,
 	LAST_DATA_DIR
 };
 
