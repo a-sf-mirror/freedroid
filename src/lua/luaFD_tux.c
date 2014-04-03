@@ -949,8 +949,8 @@ int luaFD_tux_init(lua_State *L)
 	luaL_getmetatable(L, "FDtux");                                              // stack: (-1) metatable (1)
 	lua_setglobal(L, "FDtux");                                                  // empty stack
 
-	char fpath[2048];
-	if (!find_file("FDtux_lfuns.lua", LUA_MOD_DIR, fpath, 1)) {
+	char fpath[PATH_MAX];
+	if (!find_file("FDtux_lfuns.lua", LUA_MOD_DIR, fpath)) {
 		if (luaL_loadfile(L, fpath)) {
 			DebugPrintf(-1, "Error while loading ’%s’: %s", "FDtux_lfuns.lua", lua_tostring(L, -1));
 			lua_pop(L, 1);

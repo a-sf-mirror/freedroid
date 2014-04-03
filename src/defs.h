@@ -218,12 +218,6 @@ enum {
 #define FD_DATADIR ".."		// our local fallback
 #endif
 
-#define GRAPHICS_DIR  "graphics/"
-#define SOUND_DIR     "sound/"
-#define MAP_DIR       "map/"
-#define TITLES_DIR    "map/titles/"
-#define DIALOG_DIR    "dialogs/"
-#define LUA_MOD_DIR   "lua_modules/"
 #define ICON_FILE     "paraicon.bmp"
 
 //--------------------
@@ -1564,6 +1558,19 @@ enum chat_context_state {
 	SELECT_NEXT_NODE = 4,
 	RUN_NODE_SCRIPT = 5
 };
+
+// Indexes of known data dirs (used in conjunction with data_dirs[])
+enum data_dir_handle {
+	GRAPHICS_DIR = 0,
+	SOUND_DIR,
+	MAP_DIR,
+	TITLES_DIR,
+	DIALOG_DIR,
+	LUA_MOD_DIR,
+	LOCALE_DIR,
+	LAST_DATA_DIR
+};
+
 
 // Draw quads borders (OpenGL only)
 #define DEBUG_QUAD_BORDER 0

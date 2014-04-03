@@ -807,8 +807,8 @@ static int Startup_handle(int n)
 	case TUTORIAL_POSITION:	//Similar hack to start Tutorial.
 		game_root_mode = ROOT_IS_GAME;
 		skip_initial_menus = 1;
-		char fpp[2048];
-		find_file("levels.dat", MAP_DIR, fpp, 0);
+		char fpp[PATH_MAX];
+		find_file("levels.dat", MAP_DIR, fpp);
 		LoadShip(fpp, 0);
 		PrepareStartOfNewCharacter("TutorialTuxStart");
 		skip_initial_menus = 0;
@@ -1762,10 +1762,8 @@ int Single_Player_Menu(void)
 			while (EnterPressed() || SpacePressed()) ;
 			char_name = get_new_character_name();
 			if (char_name && strlen(char_name)) {
-				char fp[2048];
-				// Note: if this file is changed, then misc.c:find_localedir()
-				// has to be adapted.
-				find_file("levels.dat", MAP_DIR, fp, 0);
+				char fp[PATH_MAX];
+				find_file("levels.dat", MAP_DIR, fp);
 				LoadShip(fp, 0);
 				PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 				free(Me.character_name);

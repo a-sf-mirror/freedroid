@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-04-02 22:30+0200\n"
+"POT-Creation-Date: 2014-04-02 23:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -330,19 +330,19 @@ msgstr ""
 msgid "Out of [s]%s[v]!"
 msgstr ""
 
-#: src/init.c:872 src/saveloadgame.c:444
+#: src/init.c:897 src/saveloadgame.c:444
 msgid "--- Message Log ---"
 msgstr ""
 
-#: src/init.c:874
+#: src/init.c:899
 msgid "Starting tutorial."
 msgstr ""
 
-#: src/init.c:876
+#: src/init.c:901
 msgid "Starting new game."
 msgstr ""
 
-#: src/init.c:1174
+#: src/init.c:1199
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -352,11 +352,11 @@ msgid ""
 "Good luck!\n"
 msgstr ""
 
-#: src/init.c:1192 src/init.c:1193
+#: src/init.c:1217 src/init.c:1218
 msgid "Game over.\n"
 msgstr ""
 
-#: src/init.c:1262 src/init.c:1263
+#: src/init.c:1287 src/init.c:1288
 msgid "Game won.\n"
 msgstr ""
 
@@ -1129,20 +1129,20 @@ msgstr ""
 msgid "Lost %d valuable circuits!"
 msgstr ""
 
-#: src/main.c:368
+#: src/main.c:369
 msgid "Overheating!"
 msgstr ""
 
 #. TRANSLATORS: Screen message, displayed below 'Automatically shutting down'
-#: src/main.c:373
+#: src/main.c:374
 msgid "due to near lethal overheating"
 msgstr ""
 
-#: src/main.c:374
+#: src/main.c:375
 msgid "Automatically shutting down"
 msgstr ""
 
-#: src/main.c:396
+#: src/main.c:397
 msgid "Weapon reloaded"
 msgstr ""
 
@@ -1473,15 +1473,15 @@ msgstr ""
 msgid "Delete existing Hero"
 msgstr ""
 
-#: src/misc.c:783
+#: src/misc.c:801
 msgid "GAME PAUSED"
 msgstr ""
 
-#: src/misc.c:784
+#: src/misc.c:802
 msgid "press p to resume"
 msgstr ""
 
-#: src/misc.c:1076
+#: src/misc.c:1094
 #, c-format
 msgid "Arrived at %s."
 msgstr ""

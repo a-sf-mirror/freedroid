@@ -552,32 +552,32 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
  */
 void Init_Game_Data()
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	char *Data;
 
 #define INIT_GAME_DATA_DEBUG 1
 
 	// Load the languages specs
 	dynarray_free(&lang_specs);
-	find_file("languages.lua", MAP_DIR, fpath, 0);
+	find_file("languages.lua", MAP_DIR, fpath);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load programs (spells) information
 	//
-	find_file("program_archetypes.dat", MAP_DIR, fpath, 0);
+	find_file("program_archetypes.dat", MAP_DIR, fpath);
 	DebugPrintf(INIT_GAME_DATA_DEBUG, "\nvoid Init_Game_Data:  Data will be taken from file : %s. Commencing... \n", fpath);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Programs_Data(Data);
 	free(Data);
 
 	// Load the blast data (required for the bullets to load)
-	find_file("blast_specs.lua", MAP_DIR, fpath, 0);
+	find_file("blast_specs.lua", MAP_DIR, fpath);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load the bullet data (required for the item archtypes to load)
 	//
 	dynarray_free(&bullet_specs);
-	find_file("bullet_specs.lua", MAP_DIR, fpath, 0);
+	find_file("bullet_specs.lua", MAP_DIR, fpath);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load Tux animation and rendering specifications.
@@ -588,21 +588,20 @@ void Init_Game_Data()
 	Load_Enemy_Surfaces();
 
 	// Item archetypes must be loaded too
-	find_file("item_specs.lua", MAP_DIR, fpath, 1);
+	find_file("item_specs.lua", MAP_DIR, fpath);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load add-on specifications.
-	find_file("addon_specs.lua", MAP_DIR, fpath, 1);
+	find_file("addon_specs.lua", MAP_DIR, fpath);
 	run_lua_file(LUA_CONFIG, fpath);
 
-	find_file("difficulty_params.dat", MAP_DIR, fpath, 0);
+	find_file("difficulty_params.dat", MAP_DIR, fpath);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Difficulty_Parameters(Data);
 	free(Data);
 
 	// Time to eat some droid archetypes...
-	//
-	find_file("droid_archetypes.dat", MAP_DIR, fpath, 0);
+	find_file("droid_archetypes.dat", MAP_DIR, fpath);
 	DebugPrintf(INIT_GAME_DATA_DEBUG, "\nvoid Init_Game_Data:  Data will be taken from file : %s. Commencing... \n", fpath);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Robot_Data(Data);
@@ -610,11 +609,11 @@ void Init_Game_Data()
 
 	// Load obstacle specifications.
 	dynarray_init(&obstacle_map, 512, sizeof(struct obstacle_spec));
-	find_file("obstacle_specs.lua", MAP_DIR, fpath, 0);
+	find_file("obstacle_specs.lua", MAP_DIR, fpath);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load floor tile specifications.
-	find_file("floor_tiles.lua", MAP_DIR, fpath, 0);
+	find_file("floor_tiles.lua", MAP_DIR, fpath);
 	run_lua_file(LUA_CONFIG, fpath);
 	dirty_animated_floor_tile_list();
 
@@ -880,8 +879,8 @@ void prepare_level_editor()
 {
 	game_root_mode = ROOT_IS_LVLEDIT;
 	skip_initial_menus = 1;
-	char fp[2048];
-	find_file("levels.dat", MAP_DIR, fp, 0);
+	char fp[PATH_MAX];
+	find_file("levels.dat", MAP_DIR, fp);
 	LoadShip(fp, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 	skip_initial_menus = 0;

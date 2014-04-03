@@ -125,6 +125,7 @@ EXTERN BFont_Info *Red_BFont;
 EXTERN BFont_Info *Messagered_BFont;
 EXTERN float Overall_Average;
 EXTERN int SkipAFewFrames;
+EXTERN struct data_dir data_dirs[];
 
 #undef EXTERN
 #ifdef _view_c
@@ -401,4 +402,3 @@ EXTERN struct dynarray bullet_specs;
 EXTERN struct dynarray lang_specs;
 
 #endif				// _global_h
-

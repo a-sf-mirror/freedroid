@@ -297,7 +297,7 @@ static void get_excpt_list(char *section_pointer)
 
 static void load_excpt_lists(char *filename)
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	char *main_file_pointer;
 	char *section_pointer;
 
@@ -305,7 +305,7 @@ static void load_excpt_lists(char *filename)
 #	define END_OF_DATA_STRING     "*** End of LevelValidator Exceptions List ***"
 
 	// Read whole file in memory    
-	find_file(filename, MAP_DIR, fpath, 0);
+	find_file(filename, MAP_DIR, fpath);
 	main_file_pointer = ReadAndMallocAndTerminateFile(fpath, END_OF_DATA_STRING);
 
 	// Search beginning of list 

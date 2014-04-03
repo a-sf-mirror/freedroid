@@ -531,8 +531,8 @@ struct widget_group *get_lvledit_ui()
 	lvledit_build_tile_lists();
 
 	// Load categories for obstacles
-	char fpath[4096];
-	find_file("lvledit_obstacle_categories.lua", MAP_DIR, fpath, 0);
+	char fpath[PATH_MAX];
+	find_file("lvledit_obstacle_categories.lua", MAP_DIR, fpath);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Build list of all obstacles

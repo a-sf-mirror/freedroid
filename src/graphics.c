@@ -540,7 +540,7 @@ void InitOurBFonts(void)
 #define FPS_FONT_FILE 		"font/font05"
 #define MESSAGERED_FONT_FILE 	"font/small_red"
 
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	int i;
 	const char *MenuFontFiles[ALL_BFONTS_WE_LOAD] = {
 		MENU_FONT_FILE,
@@ -564,13 +564,13 @@ void InitOurBFonts(void)
 	};
 
 	for (i = 0; i < ALL_BFONTS_WE_LOAD; i++) {
-		char constructed_fname[2048];
+		char constructed_fname[PATH_MAX];
 		sprintf(constructed_fname, "%s", MenuFontFiles[i]);
 		strcat(constructed_fname, ".png");
 
-		if (find_file(constructed_fname, GRAPHICS_DIR, fpath, 0) != 0) {	//if the file wasn't found, default to the standard ASCII7bit file
+		if (find_file(constructed_fname, GRAPHICS_DIR, fpath) != 0) {	//if the file wasn't found, default to the standard ASCII7bit file
 			sprintf(constructed_fname, "%s.png", MenuFontFiles[i]);
-			if (find_file(constructed_fname, GRAPHICS_DIR, fpath, 0) != 0) {
+			if (find_file(constructed_fname, GRAPHICS_DIR, fpath) != 0) {
 				fprintf(stderr, "\n\nFont file: '%s'.\n", MenuFontFiles[i]);
 				ErrorMessage(__FUNCTION__, "\
 A font file for the BFont library was not found.", PLEASE_INFORM, IS_FATAL);
@@ -824,7 +824,7 @@ void InitVideo(void)
 {
 	char vid_driver[81];
 	Uint32 video_flags = 0;	// flags for SDL video mode 
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	char window_title_string[200];
 
 	// Tell SDL to center the window once we make it
@@ -895,7 +895,7 @@ void InitVideo(void)
 	if (vid_info->wm_available) {	/* if there's a window-manager */
 		SDL_Surface *icon;
 		SDL_WM_SetCaption(window_title_string, "");
-		find_file(ICON_FILE, GRAPHICS_DIR, fpath, 0);
+		find_file(ICON_FILE, GRAPHICS_DIR, fpath);
 		icon = IMG_Load(fpath);
 		SDL_WM_SetIcon(icon, NULL);
 		SDL_FreeSurface(icon);

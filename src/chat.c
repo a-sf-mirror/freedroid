@@ -767,7 +767,7 @@ int chat_with_droid(struct enemy *partner)
  */
 int validate_dialogs()
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	enemy *dummy_partner;
 	struct npc *n;
 	int error_caught = FALSE;
@@ -778,7 +778,7 @@ int validate_dialogs()
 	int old_sound_on = sound_on;
 	sound_on = FALSE;
 
-	find_file("levels.dat", MAP_DIR, fpath, 0);
+	find_file("levels.dat", MAP_DIR, fpath);
 	LoadShip(fpath, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 

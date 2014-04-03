@@ -495,7 +495,7 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
  */
 void load_image_surface(struct image *img, const char *filename, int use_offset_file)
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 
 	if (image_loaded(img)) {
 		ErrorMessage(__FUNCTION__, 
@@ -503,7 +503,7 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 		return;
 	}
 
-	find_file(filename, GRAPHICS_DIR, fpath, 0);
+	find_file(filename, GRAPHICS_DIR, fpath);
 	SDL_Surface *surface = IMG_Load(fpath);
 	if (surface == NULL) {
 		ErrorMessage(__FUNCTION__, "Could not load image.\n File name: %s. IMG_GetError(): %s.\n", PLEASE_INFORM, IS_WARNING_ONLY, fpath, IMG_GetError());

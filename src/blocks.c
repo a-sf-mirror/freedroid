@@ -185,14 +185,14 @@ static void load_item_graphics(int item_type)
 {
 	SDL_Surface *original_img;
 	SDL_Surface *tmp_surf2 = NULL;
-	char fpath[2048];
-	char our_filename[2000];
+	char fpath[PATH_MAX];
+	char our_filename[PATH_MAX];
 	itemspec *spec = &ItemMap[item_type];
 
 	sprintf(our_filename, "items/%s", spec->item_inv_file_name);
 
 	// Load the inventory image	
-	find_file(our_filename, GRAPHICS_DIR, fpath, 0);
+	find_file(our_filename, GRAPHICS_DIR, fpath);
 
 	original_img = IMG_Load(fpath);
 	if (original_img == NULL) {
@@ -542,10 +542,10 @@ void Load_Enemy_Surfaces(void)
 	}
 
 
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	char *Data;
 
-	find_file("enemy_surfaces.dat", MAP_DIR, fpath, 0);
+	find_file("enemy_surfaces.dat", MAP_DIR, fpath);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	get_enemy_surfaces_data(Data);
 	free(Data);

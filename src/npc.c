@@ -76,9 +76,9 @@ void npc_add(const char *dialog_basename)
 
 void init_npcs()
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 
-	find_file("npc_specs.lua", MAP_DIR, fpath, 0);
+	find_file("npc_specs.lua", MAP_DIR, fpath);
 	run_lua_file(LUA_CONFIG, fpath);
 }
 

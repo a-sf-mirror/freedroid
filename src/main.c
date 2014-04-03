@@ -130,6 +130,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Couldn't change working directory to %s.\n", dirname(argv[0]));
 #endif
 
+	init_data_dirs_path();
 	lang_init();
 
 	QuitProgram = FALSE;

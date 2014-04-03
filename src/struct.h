@@ -1041,4 +1041,9 @@ struct langspec {
 	char *locale;
 };
 
+struct data_dir {
+	const char *name;
+	char path[PATH_MAX];
+};
+
 #endif

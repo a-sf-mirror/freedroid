@@ -294,8 +294,8 @@ void channel_done(int channel)
  */
 static void LoadAndFadeInBackgroundMusic(void)
 {
-	char fpath[2048];
-	char filename_raw[2048];
+	char fpath[PATH_MAX];
+	char filename_raw[PATH_MAX];
 
 	if (!sound_on)
 		return;
@@ -325,7 +325,7 @@ static void LoadAndFadeInBackgroundMusic(void)
 
 	strcpy(filename_raw, "music/");
 	strcat(filename_raw, NewMusicTargetFileName);
-	find_file(filename_raw, SOUND_DIR, fpath, 0);
+	find_file(filename_raw, SOUND_DIR, fpath);
 	Loaded_MOD_Files[0] = Mix_LoadMUS(fpath);
 	if (Loaded_MOD_Files[0] == NULL) {
 		DebugPrintf(0, "The music file %s could not be loaded!\n", NewMusicTargetFileName);
@@ -399,7 +399,7 @@ void play_sound(const char *filename)
 	Mix_ChannelFinished(channel_done);
 
 	// Try to load the requested sound file into memory.
-	if (find_file(filename, SOUND_DIR, fpath, 1) == 0) {
+	if (find_file(filename, SOUND_DIR, fpath) == 0) {
 		One_Shot_WAV_File = Mix_LoadWAV(fpath);
 		if (One_Shot_WAV_File == NULL) {
 			ErrorMessage(__FUNCTION__, "Corrupt sound file encountered: %s.",
@@ -528,7 +528,7 @@ void play_sound_cached_v(const char *SoundSampleFileName, double volume)
 static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned short angle, unsigned char distance)
 {
 	int channel_to_play_sample_on = 0;
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	int index_of_sample_to_be_played = 0;
 	int sound_must_be_loaded = TRUE;
 	int i;
@@ -567,7 +567,7 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 
 		// Now we try to load the requested sound file into memory...
 		//
-		find_file(SoundSampleFileName, SOUND_DIR, fpath, 0);
+		find_file(SoundSampleFileName, SOUND_DIR, fpath);
 		Mix_Chunk *loaded_wav_chunk = Mix_LoadWAV(fpath);
 		if (!loaded_wav_chunk) {
 			fprintf(stderr, "\n\nfpath: '%s'\n", fpath);

@@ -1638,7 +1638,7 @@ void CountNumberOfDroidsOnShip(void)
  * ----------------------------------------------------------------- */
 int GetCrew(char *filename)
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	char *MainDroidsFilePointer;
 	char *DroidSectionPointer;
 	char *EndOfThisDroidSectionPointer;
@@ -1652,7 +1652,7 @@ int GetCrew(char *filename)
 	//For that, we must get it into memory first.
 	//The procedure is the same as with LoadShip
 	//
-	find_file(filename, MAP_DIR, fpath, 0);
+	find_file(filename, MAP_DIR, fpath);
 
 	MainDroidsFilePointer = ReadAndMallocAndTerminateFile(fpath, END_OF_DROID_DATA_STRING);
 

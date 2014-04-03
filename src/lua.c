@@ -1067,14 +1067,18 @@ static int lua_exit_game(lua_State *L)
 
 static int lua_find_file(lua_State *L)
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	const char *filename = (char *)luaL_checkstring(L, 1);
-	const char *subdir   = (char *)luaL_checkstring(L, 2);
-	if (find_file(filename, subdir, fpath, 0)) {
-		lua_pushnil(L); /* return nil on error */
-		return 1;
+	int subdir_handle    = luaL_checkinteger(L, 2);
+
+	if (subdir_handle >= 0 && subdir_handle < LAST_DATA_DIR) {
+		if (!find_file(filename, subdir_handle, fpath)) {
+			lua_pushstring(L, fpath);
+			return 1;
+		}
 	}
-	lua_pushstring(L, fpath);
+
+	lua_pushnil(L); /* return nil on error */
 	return 1;
 }
 
@@ -1088,21 +1092,18 @@ static int lua_dir(lua_State *L)
 {
 	/* Note: Code taken (and adapted) from "Programming in Lua, 2nd edition" */
 
-	char dirpath[2048];
 	DIR *dir = NULL;
 	struct dirent *entry = NULL;
 	int i;
-	const char *subdir = luaL_checkstring(L, 1);
+	int subdir_handle = luaL_checkinteger(L, 1);
 
-	/* find full path */
-	if (find_subdir(subdir, dirpath)) {
+	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
 		lua_pushnil(L); /* return nil on error */
 		return 1;
 	}
 
 	/* open directory */
-	/* No need to check for errors since the same opendir() call was done in find_subdir */
-	dir = opendir(dirpath);
+	dir = opendir(data_dirs[subdir_handle].path);
 
 	/* create the returned result table */
 	lua_newtable(L);
@@ -1888,10 +1889,10 @@ void set_lua_ctor_upvalue(enum lua_target target, const char *fn, void *p)
  * variable.
  * The module is loaded by calling 'require(module)'.
  */
-static void load_lua_module(enum lua_target target, const char *dir, const char *module)
+static void load_lua_module(enum lua_target target, int subdir, const char *module)
 {
 	char *module_file;
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	lua_State *L = get_lua_state(target);
 
 	module_file = (char *)MyMalloc(strlen(module)+strlen(".lua")+1);
@@ -1902,7 +1903,7 @@ static void load_lua_module(enum lua_target target, const char *dir, const char 
 	 * Add the module's dir to the Lua package.path
 	 */
 
-	if (!find_file(module_file, dir, fpath, 1)) {
+	if (!find_file(module_file, subdir, fpath)) {
 
 		// Keep the dirname of the file path and add the search pattern
 		char *ptr = strstr(fpath, module_file);
@@ -1940,7 +1941,7 @@ static void load_lua_module(enum lua_target target, const char *dir, const char 
  */
 void init_lua()
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 
 	dialog_lua_state = NULL;
 
@@ -1952,7 +1953,7 @@ void init_lua()
 	lua_pushcfunction(config_lua_state, lua_gettexts.func);
 	lua_setglobal(config_lua_state, lua_gettexts.name);
 
-	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
+	if (!find_file("script_helpers.lua", MAP_DIR, fpath)) {
 		run_lua_file(LUA_CONFIG, fpath);
 	}
 }
@@ -2000,7 +2001,7 @@ void reset_lua_state(void)
 
 	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDutils");
 
-	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
+	if (!find_file("script_helpers.lua", MAP_DIR, fpath)) {
 		run_lua_file(LUA_DIALOG, fpath);
 	}
 
@@ -2008,7 +2009,7 @@ void reset_lua_state(void)
 
 	// Load and initialize lua part of the dialog engine
 	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDdialog");
-	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "s", NULL, DIALOG_DIR);
+	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "d", NULL, DIALOG_DIR);
 }
 
 /**

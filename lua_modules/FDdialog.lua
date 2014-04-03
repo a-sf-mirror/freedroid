@@ -406,15 +406,15 @@ end
 ------------
 
 --! \privatesection
-FDdialog.dialogs_dir = "../dialogs"     --!< \brief Directory containing the dialogs     \memberof Lua::FDdialog
-FDdialog.stack = FDdialog.Stack.new()   --!< \brief Dialogs stack                        \memberof Lua::FDdialog
+FDdialog.dialogs_dir = -1               --!< \brief Opaque handle to the directory containing the dialogs     \memberof Lua::FDdialog
+FDdialog.stack = FDdialog.Stack.new()   --!< \brief Dialogs stack                                             \memberof Lua::FDdialog
 --! \publicsection
 
 --! \fn void set_dialog_dir(string dir)
 --!
---! \brief Set dialogs' directory
+--! \brief Set dialogs' directory handle
 --!
---! \param dir Directory containing the dialogs
+--! \param dir_handle Opaque handle to the directory containing the dialogs
 --!
 --! \memberof Lua::FDdialog
 

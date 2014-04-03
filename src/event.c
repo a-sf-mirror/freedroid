@@ -234,11 +234,11 @@ static void load_events(char *EventSectionPointer)
 void GetEventTriggers(const char *EventsAndEventTriggersFilename)
 {
 	char *EventSectionPointer;
-	char fpath[2048];
+	char fpath[PATH_MAX];
 
 	clear_out_events();
 
-	find_file(EventsAndEventTriggersFilename, MAP_DIR, fpath, 0);
+	find_file(EventsAndEventTriggersFilename, MAP_DIR, fpath);
 	EventSectionPointer =
 		ReadAndMallocAndTerminateFile(fpath, "*** END OF EVENT ACTION AND EVENT TRIGGER FILE *** LEAVE THIS TERMINATOR IN HERE ***");
 

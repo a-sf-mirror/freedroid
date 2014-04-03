@@ -61,6 +61,17 @@ char *our_homedir = NULL;
 char *our_config_dir = NULL;
 int term_has_color_cap = FALSE;
 
+struct data_dir data_dirs[] = {
+	[GRAPHICS_DIR]={ "graphics",    "" },
+	[SOUND_DIR]=   { "sound",       "" },
+	[MAP_DIR]=     { "map",         "" },
+	[TITLES_DIR]=  { "map/titles",  "" },
+	[DIALOG_DIR]=  { "dialogs",     "" },
+	[LUA_MOD_DIR]= { "lua_modules", "" },
+	[LOCALE_DIR]=  { "locale",      "" }
+};
+#define WELL_KNOWN_DATA_FILE "lua_modules/FDdialog.lua"
+
 mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[UP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/UpButton.png", {600, 94, 40, 40}, TRUE},
 	[DOWN_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/DownButton.png", {600, 316, 40, 40}, TRUE},
@@ -606,149 +617,86 @@ void ShowGenericButtonFromList(int ButtonIndex)
 	display_image_on_screen(img, AllMousePressButtons[ButtonIndex].button_rect.x * scale_x, AllMousePressButtons[ButtonIndex].button_rect.y * scale_y, set_image_transformation(scale_x, scale_y, 1.0, 1.0, 1.0, 1.0, 0));
 }
 
-/* -----------------------------------------------------------------
- * find a given filename in subdir relative to FD_DATADIR, 
- *
- * if you pass NULL as subdir, it will be ignored
- *
- * fills in the (ALLOC'd) string and returns 0 if okay, 1 on error
- *
- * ----------------------------------------------------------------- */
-int find_file(const char *fname, const char *subdir, char *File_Path, int silent)
+int init_data_dirs_path()
 {
-	int i;
-	FILE *fp;		// this is the file we want to find?
+	int i, j;
+	FILE *f;
+	char file_path[PATH_MAX];
 
-	*File_Path = 0;
-	if (!subdir)
-		subdir = "";
-
-	for (i = 0; i < 4; i++) {
-		if (i == 0)
-			sprintf((File_Path), ".");	/* first try local subdirs */
-		if (i == 1)
-			sprintf((File_Path), "..");	/* first try local subdirs */
-		if (i == 2)
-			sprintf((File_Path), "../..");	/* first try local subdirs */
-		if (i == 3)
-			sprintf((File_Path), "%s", FD_DATADIR);	/* then the DATADIR */
-
-		strcat((File_Path), "/");
-		strcat((File_Path), subdir);
-		strcat((File_Path), "/");
-
-		strcat((File_Path), fname);
-
-		if ((fp = fopen((File_Path), "r")) != NULL) {	/* found it? */
-			fclose(fp);
-			break;
-		} else {
-			if (i != 3)
-				DebugPrintf(1, "\nfind_file could not succeed with LOCAL path: %s.", File_Path);
-			else {
-				if (!silent) {
-					DebugPrintf(-4, "The file name was: %s.\n", fname);
-					ErrorMessage(__FUNCTION__, "File not found ", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-				}
-				return 1;
-			}
-		}
-	}			// for i 
-
-	// DebugPrintf( 0 , "\nfind_file determined file path: %s." , File_Path );
-
-	return 0;
-};				// char * find_file ( ... )
-
-int find_subdir(const char *subdir, char *subdir_path)
-{
-	int i;
-	DIR *dir_stream = NULL;
-
-	if (!subdir) {
-		ErrorMessage(__FUNCTION__, "Subdir parameter is empty.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-		return 1;
+	// Reset the data dirs paths
+	for (i = 0; i < LAST_DATA_DIR; i++) {
+		data_dirs[i].path[0] = '\0';
 	}
 
-	*subdir_path = '\0';
+	// Directories to look for the data dirs
+	char *top_data_dir[]   = { ".", "..", "../..", FD_DATADIR };
+	char *top_locale_dir[] = { ".", "..", "../..", LOCALEDIR };
+	int slen = sizeof(top_data_dir)/sizeof(top_data_dir[0]);
 
-	for (i = 0; i < 4; i++) {
-		if (i == 0)
-			sprintf(subdir_path, ".");	/* first try local subdirs */
-		if (i == 1)
-			sprintf(subdir_path, "..");	/* first try local subdirs */
-		if (i == 2)
-			sprintf(subdir_path, "../..");	/* first try local subdirs */
-		if (i == 3)
-			sprintf(subdir_path, FD_DATADIR);	/* then the DATADIR */
+	// To find the root of the data dirs, we search a well known file that is
+	// always needed for the game to work.
+	for (i = 0; i < slen ; i++) {
+		sprintf(file_path, "%s/" WELL_KNOWN_DATA_FILE, top_data_dir[i]);
 
-		strcat(subdir_path, "/");
-		strcat(subdir_path, subdir);
-
-		if ((dir_stream = opendir(subdir_path)) != NULL) {	/* found it? */
-			closedir(dir_stream);
-			break;
-		} else {
-			if (i == 3) {
-				ErrorMessage(__FUNCTION__, "Subdir %s not found.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, subdir);
-				return 1;
+		if ((f = fopen(file_path, "r")) != NULL) {
+			// File found, so now fill the data dir paths
+			for (j = 0; j < LAST_DATA_DIR; j++) {
+				char *dir = (j == LOCALE_DIR) ? top_locale_dir[i] : top_data_dir[i];
+				int nb = snprintf(data_dirs[j].path, PATH_MAX, "%s/%s", dir, data_dirs[j].name);
+				if (nb >= PATH_MAX) {
+					ErrorMessage(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s/%s",
+					             PLEASE_INFORM, IS_FATAL, dir, data_dirs[j].name);
+				}
 			}
+			fclose(f);
+			return 1;
 		}
+	}
+
+	// The searched file was not found. Complain.
+	if (getcwd(file_path, PATH_MAX)) {
+		ErrorMessage(__FUNCTION__, "Data dirs not found ! (current directory: %s)",
+	                 PLEASE_INFORM, IS_FATAL, file_path);
+	} else {
+		ErrorMessage(__FUNCTION__, "Data dirs not found ! (and cannot find the current working directory)",
+	                 PLEASE_INFORM, IS_FATAL);
 	}
 
 	return 0;
 }
 
-const char *find_localedir(void)
+/* -----------------------------------------------------------------
+ * find a given filename in subdir.
+ *
+ * fills in the (ALLOC'd) string and returns 0 if okay, 1 on error.
+ * file_path's length HAS to be PATH_MAX.
+ * ----------------------------------------------------------------- */
+int find_file(const char *fname, int subdir_handle, char *file_path)
 {
-#ifdef ENABLE_NLS
-	// We want to choose between the use of a local subdir containing
-	// the translations or the system wide subdir. It depends on how
-	// the game is started and if we use an installed version or a built
-	// one.
-	// There is however no easy way to check if a folder contains a gettext
-	// locale infrastructure.
-	// So, we have to use a trick: we search a mandatory file (levels.dat) and
-	// depending on where it is found we decide which folder to use as the
-	// locale subdir.
-
-	int i;
-	char *file_path;
 	FILE *fp;
 
-	for (i = 0; i < 3; i++) {
-		if (i == 0)
-			file_path = "./" MAP_DIR "levels.dat";
-		if (i == 1)
-			file_path = "../" MAP_DIR "levels.dat";
-		if (i == 2)
-			file_path = "../.." MAP_DIR "levels.dat";
-
-		if ((fp = fopen((file_path), "r")) != NULL) {	/* found it? */
-			fclose(fp);
-			break;
-		}
+	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
+		ErrorMessage(__FUNCTION__, "Called with a wrong subdir handle (%d)",
+		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, subdir_handle);
+		return 1;
 	}
 
-	switch (i) {
-	case 0:
-		return "./locale";
-		break;
-	case 1:
-		return "../locale";
-		break;
-	case 2:
-		return "../../locale";
-		break;
-	default:
-		return LOCALEDIR;
-		break;
+	int nb = snprintf(file_path, PATH_MAX, "%s/%s", data_dirs[subdir_handle].path, fname);
+	if (nb >= PATH_MAX) {
+		*file_path = 0;
+		ErrorMessage(__FUNCTION__, "Pathname too long (max is %d): %s/%s",
+		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, PATH_MAX, data_dirs[subdir_handle].name, fname);
+		return 1;
 	}
 
-	return LOCALEDIR;
-#else
-	return NULL;
-#endif
+	if ((fp = fopen(file_path, "r")) == NULL) {	/* not found */
+		*file_path = 0;
+		ErrorMessage(__FUNCTION__, "File %s not found in %s/",
+		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname, data_dirs[subdir_handle].name);
+		return 1;
+	}
+
+	return 0;
 }
 
 /**

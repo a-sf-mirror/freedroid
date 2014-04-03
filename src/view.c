@@ -2095,11 +2095,11 @@ static void tux_rendering_validate()
  */
 void tux_rendering_load_specs(const char *config_filename)
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 
 	tux_rendering_init();
 
-	find_file(config_filename, MAP_DIR, fpath, 1);
+	find_file(config_filename, MAP_DIR, fpath);
 	run_lua_file(LUA_CONFIG, fpath);
 	tux_rendering_validate(); // check mandatory specifications/configurations
 
@@ -2744,7 +2744,7 @@ void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, ui
 	    { {NULL, NULL, NULL, NULL}, {NULL, NULL, NULL, NULL} };
 	static struct image PrerotatedSparkSurfaces[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES][FIXED_NUMBER_OF_SPARK_ANGLES];
 	SDL_Surface *tmp_surf;
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	int NumberOfPicturesToUse;
 	int i, k;
 	float Angle;
@@ -2789,7 +2789,7 @@ FreedroidRPG encountered a radial wave type that exceeds the CONSTANT for wave t
 FreedroidRPG encountered a radial wave type that does not exist in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 			}
 
-			find_file(ConstructedFilename, GRAPHICS_DIR, fpath, 0);
+			find_file(ConstructedFilename, GRAPHICS_DIR, fpath);
 
 			tmp_surf = our_IMG_load_wrapper(fpath);
 			if (tmp_surf == NULL) {

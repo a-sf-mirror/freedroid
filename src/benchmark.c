@@ -85,8 +85,8 @@ static int loadship_bench()
 	int loop = 10;
 
 	// Find a ship file to load
-	char fp[2048];
-	find_file("levels.dat", MAP_DIR, fp, 0);
+	char fp[PATH_MAX];
+	find_file("levels.dat", MAP_DIR, fp);
 
 	// Load it many times
 	timer_start();
@@ -206,8 +206,8 @@ static int level_test()
 	int failed;
 
 	// Load default ship
-	char fp[2048];
-	find_file("levels.dat", MAP_DIR, fp, 0);
+	char fp[PATH_MAX];
+	find_file("levels.dat", MAP_DIR, fp);
 	LoadShip(fp, 0);
 
 	timer_start();

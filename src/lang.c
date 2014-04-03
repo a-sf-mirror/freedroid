@@ -87,9 +87,10 @@ void lang_init()
 	setlocale(LC_ALL, "C");
 	setlocale(LC_MESSAGES, "");
 
-	const char *localedir = find_localedir();
-	if (!localedir) {
-		fprintf(stderr, "Locale dir not found. Disabling localization.\n");
+	const char *localedir = data_dirs[LOCALE_DIR].path;
+	if (strlen(localedir) == 0) {
+		ErrorMessage(__FUNCTION__, "Locale dir not found. Disabling localization.\n",
+		             NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		setlocale(LC_MESSAGES, "C");
 	} else {
 		// i18n text domain declarations.
