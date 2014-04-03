@@ -176,7 +176,7 @@ void next_startup_percentage(int done)
  */
 void PlayATitleFile(char *Filename)
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 	char *TitleFilePointer;
 	char *NextSubsectionStartPointer;
 	char *PreparedBriefingText;
@@ -184,18 +184,10 @@ void PlayATitleFile(char *Filename)
 	char *TitleSongName;
 	char *background_name;
 	int ThisTextLength;
-	char finaldir[50];
+
 	while (SpacePressed() || MouseLeftPressed()) ;
 
-	snprintf(finaldir, 50, "%s/", TITLES_DIR);
-
-	// Now its time to start loading the title file...
-	//
-	if (find_file(Filename, finaldir, fpath, 0))	//if file not found, retry with english version
-	{
-		snprintf(finaldir, 50, "%s/", TITLES_DIR);
-		find_file(Filename, finaldir, fpath, 0);
-	}
+	find_file(Filename, TITLES_DIR, fpath);
 
 	TitleFilePointer = ReadAndMallocAndTerminateFile(fpath, "*** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***");
 
