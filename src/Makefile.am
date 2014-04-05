@@ -83,7 +83,7 @@ savestruct.c savestruct.h: struct.h savestruct_internal.h gen_savestruct.py
 	$(PYTHON) gen_savestruct.py struct.h savestruct
 
 version.c: dummy
-	version_string=`echo "char *freedroid_version = \"$$(git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@")\";"` \
+	version_string=`echo "char *freedroid_version = \"$$(git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@")$$(git diff --exit-code >& /dev/null || echo "_mod")\";"` \
 	&& (echo $$version_string | cmp -s - $@) || echo $$version_string > $@
 
 clean-local:
