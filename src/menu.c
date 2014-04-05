@@ -819,10 +819,10 @@ static int Startup_handle(int n)
 	case OPTIONS_POSITION:
 		return MENU_OPTIONS;
 	case CREDITS_POSITION:
-		PlayATitleFile("Credits.title");
+		PlayATitleFile("Credits.lua");
 		break;
 	case CONTRIBUTE_POSITION:
-		PlayATitleFile("Contribute.title");
+		PlayATitleFile("Contribute.lua");
 		break;
 	case (-1):
 	case EXIT_FREEDROID_POSITION:

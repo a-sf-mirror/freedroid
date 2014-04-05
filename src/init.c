@@ -176,56 +176,33 @@ void next_startup_percentage(int done)
  */
 void PlayATitleFile(char *Filename)
 {
+	struct title_screen screen = { NULL, NULL, NULL };
 	char fpath[PATH_MAX];
-	char *TitleFilePointer;
-	char *NextSubsectionStartPointer;
-	char *PreparedBriefingText;
-	char *TerminationPointer;
-	char *TitleSongName;
-	char *background_name;
-	int ThisTextLength;
 
 	while (SpacePressed() || MouseLeftPressed()) ;
 
-	find_file(Filename, TITLES_DIR, fpath);
+	find_localized_file(Filename, TITLES_DIR, fpath);
+	set_lua_ctor_upvalue(LUA_CONFIG, "title_screen", &screen);
+	run_lua_file(LUA_CONFIG, fpath);
 
-	TitleFilePointer = ReadAndMallocAndTerminateFile(fpath, "*** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***");
+	// Remove trailing whitespaces and carriage returns.
+	char *ptr = screen.text + strlen(screen.text) - 1;
+	while (*ptr != '\0' && (*ptr == ' ' || *ptr == '\t' || *ptr == '\n')) *(ptr--) = '\0';
 
-	TitleSongName =
-	    ReadAndMallocStringFromData(TitleFilePointer, "The title song in the sound subdirectory for this mission is : ", "\n");
-
-	background_name = ReadAndMallocStringFromDataOptional(TitleFilePointer, "Background file: ", "\n");
-	if (!background_name)
-		background_name = strdup("title.jpg");
-
-	SwitchBackgroundMusicTo(TitleSongName);
-	free(TitleSongName);
+	SwitchBackgroundMusicTo(screen.song);
 
 	SDL_SetClipRect(Screen, NULL);
 	SetCurrentFont(Para_BFont);
 
-	NextSubsectionStartPointer = TitleFilePointer;
-	while ((NextSubsectionStartPointer = strstr(NextSubsectionStartPointer, "*** START OF PURE SCROLLTEXT DATA ***"))
-	       != NULL) {
-		NextSubsectionStartPointer += strlen("*** START OF PURE SCROLLTEXT DATA ***\n");
-		if ((TerminationPointer = strstr(NextSubsectionStartPointer, "\n*** END OF PURE SCROLLTEXT DATA ***")) == NULL) {
-			ErrorMessage(__FUNCTION__, "Unterminated Subsection in Mission briefing....Terminating...\n", PLEASE_INFORM,
-				     IS_FATAL);
-		}
-		ThisTextLength = TerminationPointer - NextSubsectionStartPointer;
-		PreparedBriefingText = MyMalloc(ThisTextLength + 10);
-		strncpy(PreparedBriefingText, NextSubsectionStartPointer, ThisTextLength);
-		PreparedBriefingText[ThisTextLength] = 0;
-
-		ScrollText((PreparedBriefingText), background_name);
-		free(PreparedBriefingText);
-	}
+	ScrollText(screen.text,screen.background);
 
 	clear_screen();
 	our_SDL_flip_wrapper();
-	free(TitleFilePointer);
-	free(background_name);
-};				// void PlayATitleFile ( char* Filename )
+
+	free(screen.background);
+	free(screen.song);
+	free(screen.text);
+}
 
 /**
  * This function reads the descriptions of the different programs
@@ -826,7 +803,7 @@ void PrepareStartOfNewCharacter(char *start_label)
 	GetEventTriggers("events.dat");
 
 	if (!skip_initial_menus)
-		PlayATitleFile("StartOfGame.title");
+		PlayATitleFile("StartOfGame.lua");
 
 	init_npcs();
 	init_factions();
@@ -1231,7 +1208,7 @@ void ThouArtDefeated(void)
 
 	}
 	if (!skip_initial_menus)
-		PlayATitleFile("GameLost.title");
+		PlayATitleFile("GameLost.lua");
 
         do_death_menu();
 
@@ -1278,7 +1255,7 @@ void ThouHastWon(void)
 	//
 	//PlayATitleFile("EndOfGame.title");
 	if (!skip_initial_menus)
-		PlayATitleFile("Credits.title");
+		PlayATitleFile("Credits.lua");
 
 	input_handle();
 
