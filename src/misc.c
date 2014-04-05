@@ -674,37 +674,112 @@ int init_data_dirs_path()
 }
 
 /* -----------------------------------------------------------------
- * find a given filename in subdir.
+ * check if a given filename exists in subdir.
+ *
+ * fills in the (ALLOC'd) string and returns 1 if okay, 0 on error.
+ * file_path's length HAS to be PATH_MAX.
+ * ----------------------------------------------------------------- */
+static int _file_exists(const char *fname, const char *subdir, char *file_path)
+{
+	int nb = snprintf(file_path, PATH_MAX, "%s/%s", subdir, fname);
+	if (nb >= PATH_MAX) {
+		*file_path = 0;
+		ErrorMessage(__FUNCTION__, "Pathname too long (max is %d): %s/%s",
+		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, PATH_MAX, subdir, fname);
+		return 0;
+	}
+
+	FILE *fp = fopen(file_path, "r");
+	if (!fp) {
+		/* not found */
+		*file_path = 0;
+		return 0;
+	}
+
+	return 1;
+}
+
+/* -----------------------------------------------------------------
+ * Find a filename in subdir (using a data_dir handle).
  *
  * fills in the (ALLOC'd) string and returns 0 if okay, 1 on error.
  * file_path's length HAS to be PATH_MAX.
  * ----------------------------------------------------------------- */
 int find_file(const char *fname, int subdir_handle, char *file_path)
 {
-	FILE *fp;
-
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
 		ErrorMessage(__FUNCTION__, "Called with a wrong subdir handle (%d)",
 		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, subdir_handle);
 		return 1;
 	}
 
-	int nb = snprintf(file_path, PATH_MAX, "%s/%s", data_dirs[subdir_handle].path, fname);
-	if (nb >= PATH_MAX) {
-		*file_path = 0;
-		ErrorMessage(__FUNCTION__, "Pathname too long (max is %d): %s/%s",
-		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, PATH_MAX, data_dirs[subdir_handle].name, fname);
-		return 1;
-	}
-
-	if ((fp = fopen(file_path, "r")) == NULL) {	/* not found */
-		*file_path = 0;
+	if (!_file_exists(fname, data_dirs[subdir_handle].path, file_path)) {
 		ErrorMessage(__FUNCTION__, "File %s not found in %s/",
 		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname, data_dirs[subdir_handle].name);
 		return 1;
 	}
 
 	return 0;
+}
+
+/* -----------------------------------------------------------------
+ * Find a localized version of a filename in subdir (using a data_dir handle).
+ *
+ * The localized versions are to be put in subdirs, using locale names.
+ * For instances, map/titles/fr ou map/titles/de.
+ *             
+ * As with gettext(), generalizations of the locale name are tried
+ * in turn. So if the locale is 'fr_FR', but the 'fr_FR' subdir does
+ * not exists, then the 'fr' subdir is checked.
+ *
+ * fills in the (ALLOC'd) string and returns 0 if okay, 1 on error.
+ * file_path's length HAS to be PATH_MAX.
+ * ----------------------------------------------------------------- */
+int find_localized_file(const char *fname, int subdir_handle, char *file_path)
+{
+	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
+		ErrorMessage(__FUNCTION__, "Called with a wrong subdir handle (%d)",
+		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, subdir_handle);
+		return 1;
+	}
+
+	if (!GameConfig.locale || strlen(GameConfig.locale) == 0) {
+		return find_file(fname, subdir_handle, file_path);
+	}
+
+	// A locale name is typically of the form language[_territory][.codeset][@modifier]
+	// We try each possible locale name in turn from the whole one to 'language' only.
+	char *locale = strdup(GameConfig.locale);
+	char *sep = "@._";
+	int i;
+
+	for (i = -1; i < (int)strlen(sep); i++) {
+		// 'i == -1' is a special case, to use the full locale name
+		if (i != -1) {
+			char *ptr = strchr(locale, sep[i]);
+			if (!ptr) {
+				continue;
+			}
+			*ptr = '\0';
+		}
+
+		char l10ndir[PATH_MAX];
+		int nb = snprintf(l10ndir, PATH_MAX, "%s/%s", data_dirs[subdir_handle].path, locale);
+		if (nb >= PATH_MAX) {
+			ErrorMessage(__FUNCTION__, "Dirname too long (max is %d): %s/%s - Using untranslated version of %s",
+			             NO_NEED_TO_INFORM, IS_WARNING_ONLY, PATH_MAX, data_dirs[subdir_handle].path, locale, fname);
+			break;
+		}
+		if (_file_exists(fname, l10ndir, file_path)) {
+			free(locale);
+			return 0;
+		}
+	}
+
+	free(locale);
+
+	// Localized version not found. Use untranslated version.
+	return find_file(fname, subdir_handle, file_path);
 }
 
 /**
