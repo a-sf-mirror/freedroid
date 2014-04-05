@@ -737,6 +737,7 @@ int find_file(const char *fname, int subdir_handle, char *file_path)
  * ----------------------------------------------------------------- */
 int find_localized_file(const char *fname, int subdir_handle, char *file_path)
 {
+#ifdef ENABLE_NLS
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
 		ErrorMessage(__FUNCTION__, "Called with a wrong subdir handle (%d)",
 		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, subdir_handle);
@@ -777,6 +778,7 @@ int find_localized_file(const char *fname, int subdir_handle, char *file_path)
 	}
 
 	free(locale);
+#endif
 
 	// Localized version not found. Use untranslated version.
 	return find_file(fname, subdir_handle, file_path);
