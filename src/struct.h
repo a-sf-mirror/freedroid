@@ -1041,6 +1041,12 @@ struct langspec {
 	char *locale;
 };
 
+struct title_screen {
+	char *background;
+	char *song;
+	char *text;
+};
+
 struct data_dir {
 	const char *name;
 	char path[PATH_MAX];

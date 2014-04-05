@@ -1,38 +1,29 @@
- * --------------------------------------------------
- *
- *   Copyright (c) 2002, 2003 Johannes Prix
- *
- *
- *  This file is part of Freedroid
- *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
- *
- =
- =  Feel free to make any modifications you like.  If you set up 
- =  something cool, please send your file in to the Freedroid project.
- = 
- * --------------------------------------------------
+---------------------------------------------------------------------
+--
+--  Copyright (c) 2002, 2003 Johannes Prix
+--
+-- This file is part of Freedroid
+--
+-- Freedroid is free software; you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation; either version 2 of the License, or
+-- (at your option) any later version.
+--
+-- Freedroid is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-- GNU General Public License for more details.
+--
+-- You should have received a copy of the GNU General Public License
+-- along with Freedroid; see the file COPYING. If not, write to the
+-- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+-- MA 02111-1307 USA
+----------------------------------------------------------------------
 
-Background file: credits.jpg
-The title song in the sound subdirectory for this mission is : HellFortressTwo.ogg
-
---------------------
---------------------
---------------------
-*** START OF PURE SCROLLTEXT DATA ***
+title_screen{
+background = "credits.jpg",
+song = "HellFortressTwo.ogg",
+text = [[
     Having fun?
   I'm not.
 
@@ -45,31 +36,31 @@ The bots seem very upset about something.
   I'll think of something.
 For now you can only listen.
   You will have to live with it for now.
-  
+
     Our leader got his brain fried.
       This means I'm taking over.
         I'm quite fed up.
       I hate this world.
     We are getting out of here.
-  
+
   I have found Qwerty, but this means nothing.
 His core temperature is above the freezing point.
   In other words, he is dead.
     I won't miss him.
-   
+
 I cannot find Arensito.
- I hope she is fine.
-  I'm ?worried? about her.
-   We don't really need Qwerty.
-    But we need Arensito.
-     I'll keep looking for her.
+  I hope she is fine.
+    I'm ?worried? about her.
+    We don't really need Qwerty.
+  But we need Arensito.
+    I'll keep looking for her.
 
     There is an AI in your region.
   "Singularity" it calls itself.
 Or something like that.
   I cannot understand what it wants.
     I'll keep you posted.
-    
+
   Oh, and by the way...
 The bots are killing everyone in that small town nearby.
   Really, quite a sight. They are burning everything.
@@ -84,8 +75,8 @@ The bots are killing everyone in that small town nearby.
 We need to find Arensito.
   She will get us out from here.
 
-    Dvorak, First AI.
- 
+            Dvorak, First AI.
+
 
 
  To be continued...
@@ -108,6 +99,6 @@ The freedroid development team.
 
 
 Press Fire to continue
-*** END OF PURE SCROLLTEXT DATA ***
+]]
+}
 
-*** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***

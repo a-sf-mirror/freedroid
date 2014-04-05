@@ -1206,6 +1206,24 @@ static int lua_languages_ctor(lua_State *L)
 	return 0;
 }
 
+static int lua_title_screen_ctor(lua_State *L)
+{
+	struct title_screen *title = (struct title_screen *)lua_touserdata(L, lua_upvalueindex(1));
+
+
+	// Specification of the data structure to retrieve from the lua table
+	struct data_spec data_specs[] = {
+		{ "background", "title.jpg", STRING_TYPE, &title->background },
+		{ "song",       NULL,        STRING_TYPE, &title->song       },
+		{ "text",       NULL,        STRING_TYPE, &title->text       },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	fill_structure_from_table(L, data_specs);
+
+	return 0;
+}
+
 /**
  * Add lua constructors of new data types
  */
@@ -1242,6 +1260,7 @@ void init_luaconfig()
 	// Register C closures
 
 	luaL_Reg lclos[] = {
+		{ "title_screen", lua_title_screen_ctor },
 		{NULL, NULL}
 	};
 
