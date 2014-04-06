@@ -6,6 +6,9 @@ SUBDIRS = po-src po-dialogs po-data
 # top configure.ac, but this needs automake 1.13
 # Inspired by http://lackof.org/taggart/hacking/make-example/
 
+# disables -j , hack to fix some race condition
+.NOTPARALLEL:
+
 UPDATEPODIRS = $(SUBDIRS:%=updatepo-%)
 
 update-po: update-po-@USE_NLS@
