@@ -1044,7 +1044,7 @@ Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
 Filename prefix for graphics="female_hunter"
-Notes concerning this droid=_"Blabla - TODO."
+Notes concerning this droid=_"This hunter has fought with many robots before, and will not be scared by a mere linarian."
 
 ** Start of new Robot: ** 
 Droidname: TRM
@@ -1093,7 +1093,7 @@ Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Filename prefix for graphics="autogun"
-Notes concerning this droid=_"Autogun. --todo"
+Notes concerning this droid=_"Carefully designed by Future Ballistics(R), this autogun will shred you into pieces if you try pass across them."
 
 ** Start of new Robot: ** 
 Droidname: INV
