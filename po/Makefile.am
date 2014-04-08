@@ -82,3 +82,8 @@ $(TXTARGETS):
 	 esac;
 
 .PHONY: $(TXTARGETS)
+
+clean:
+	rm -f ./po-data/*.gmo
+	rm -f ./po-dialogs/*.gmo
+	rm -f ./po-src/*.gmo
