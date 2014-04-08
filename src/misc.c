@@ -696,6 +696,7 @@ static int _file_exists(const char *fname, const char *subdir, char *file_path)
 		return 0;
 	}
 
+	fclose(fp);
 	return 1;
 }
 
