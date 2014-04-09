@@ -95,8 +95,8 @@ void blit_mouse_cursor(void)
 		cursor_index = 3;
 		break;
 	default:
-		ErrorMessage(__FUNCTION__, "Illegal mouse cursor encountered: %d",
-					 PLEASE_INFORM, IS_FATAL, mouse_cursor);
+		error_message(__FUNCTION__, "Illegal mouse cursor encountered: %d",
+					 PLEASE_INFORM | IS_FATAL, mouse_cursor);
 		break;
 	}
 
@@ -572,15 +572,15 @@ void InitOurBFonts(void)
 			sprintf(constructed_fname, "%s.png", MenuFontFiles[i]);
 			if (find_file(constructed_fname, GRAPHICS_DIR, fpath) != 0) {
 				fprintf(stderr, "\n\nFont file: '%s'.\n", MenuFontFiles[i]);
-				ErrorMessage(__FUNCTION__, "\
-A font file for the BFont library was not found.", PLEASE_INFORM, IS_FATAL);
+				error_message(__FUNCTION__, "\
+A font file for the BFont library was not found.", PLEASE_INFORM | IS_FATAL);
 			}
 		}
 
 		if ((*MenuFontPointers[i] = LoadFont(constructed_fname)) == NULL) {
 			fprintf(stderr, "\n\nFont file: '%s'.\n", MenuFontFiles[i]);
-			ErrorMessage(__FUNCTION__, "\
-A font file for the BFont library could not be loaded.", PLEASE_INFORM, IS_FATAL);
+			error_message(__FUNCTION__, "\
+A font file for the BFont library could not be loaded.", PLEASE_INFORM | IS_FATAL);
 		} else {
 			DebugPrintf(1, "\nSDL Menu Font initialisation successful.\n");
 		}
@@ -677,8 +677,8 @@ static void set_double_buffering_attribute(void)
 #ifdef HAVE_LIBGL
 
 	if (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1)) {
-		ErrorMessage(__FUNCTION__, "\
-Unable to set SDL_GL_DOUBLEBUFFER attribute!", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "\
+Unable to set SDL_GL_DOUBLEBUFFER attribute!", PLEASE_INFORM | IS_FATAL);
 	}
 	// Since the OpenGL stuff hasn't been initialized yet, it's normal
 	// to get an GL_INVALID_OPERATION here, if we would really do the
@@ -743,11 +743,11 @@ static void set_video_mode_for_open_gl(void)
 	video_mode_ok_check_result = SDL_VideoModeOK(GameConfig.screen_width, GameConfig.screen_height, vid_bpp, video_flags);
 	switch (video_mode_ok_check_result) {
 	case 0:
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 				     "SDL reported that the video mode (%d x %d) mentioned above is not supported\n"
                      "To see all possible resolutions please run 'freedroidRPG -r99'\n"
-                     "Resetting to current resolution (%d x %d)...\n",
-                     NO_NEED_TO_INFORM, IS_WARNING_ONLY,
+                     "Resetting to current resolution (%d x %d)...",
+                     NO_REPORT,
                      GameConfig.screen_width, GameConfig.screen_height,
                      vid_info->current_w, vid_info->current_h);
 		//resetting configuration file to current (desktop) settings
@@ -766,7 +766,7 @@ static void set_video_mode_for_open_gl(void)
 			   ErrorMessage ( __FUNCTION__  , "\
 			   SDL reported, that the video mode mentioned \nabove is not supported UNDER THE COLOR DEPTH MENTIONED ABOVE!\n\
 			   We'll be using the alternate color depth given above instead...",
-			   PLEASE_INFORM, IS_WARNING_ONLY );
+			   PLEASE_INFORM );
 			 */
 			vid_bpp = video_mode_ok_check_result;
 		}
@@ -868,11 +868,11 @@ void InitVideo(void)
 
 		if (!SDL_VideoModeOK(GameConfig.screen_width, GameConfig.screen_height, 32, video_flags))
 		{
-			ErrorMessage(__FUNCTION__,
+			error_message(__FUNCTION__,
 			             "SDL reported that the video mode (%d x %d) mentioned above is not supported\n"
 			             "To see all possible resolutions please run 'freedroidRPG -r99'\n"
-			             "Resetting to current resolution (%d x %d)...\n",
-			             NO_NEED_TO_INFORM, IS_WARNING_ONLY,
+			             "Resetting to current resolution (%d x %d)...",
+			             NO_REPORT,
 			             GameConfig.screen_width, GameConfig.screen_height,
 			             vid_info->current_w, vid_info->current_h);
 			//resetting configuration file to current (desktop) settings
@@ -1173,7 +1173,7 @@ void save_screenshot(const char *filename, int width)
 		screenshot = zoomSurface(Screen, scale_factor, scale_factor, 0);
 
 	if (screenshot == NULL) {
-		ErrorMessage(__FUNCTION__, "Cannot save image: %s\n", PLEASE_INFORM, IS_WARNING_ONLY, filename);
+		error_message(__FUNCTION__, "Cannot save image: %s", PLEASE_INFORM, filename);
 		return;
 	}
 

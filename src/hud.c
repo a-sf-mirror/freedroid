@@ -110,9 +110,9 @@ void append_item_description(struct auto_string *str, item *item)
 		return;
 
 	if (item->type == (-1)) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 An item description was requested for an item, that does not seem to \n\
-exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
+exist really (i.e. has a type = (-1) ).", PLEASE_INFORM | IS_FATAL);
 		return;
 	}
 
@@ -401,7 +401,7 @@ static void prepare_text_window_content(struct auto_string *str)
 			if (obst_vpos.x != -1) {
 				char *label =  D_(get_obstacle_spec(obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type)->label);
 				if (!label) {
-					ErrorMessage(__FUNCTION__, "Obstacle type %d is clickable, and as such requires a label to be displayed on mouseover.\n", PLEASE_INFORM, IS_WARNING_ONLY, obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type);
+					error_message(__FUNCTION__, "Obstacle type %d is clickable, and as such requires a label to be displayed on mouseover.", PLEASE_INFORM, obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type);
 					label = _("No label for this obstacle");
 				}
 
@@ -717,8 +717,8 @@ void toggle_game_config_screen_visibility(int screen_visible)
 		GameConfig.Inventory_Visible = FALSE;
 		break;
 	default:
-		ErrorMessage(__FUNCTION__, "\
-unhandled skill screen code received.  something is going VERY wrong!", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "\
+unhandled skill screen code received.  something is going VERY wrong!", PLEASE_INFORM | IS_FATAL);
 		break;
 	}
 

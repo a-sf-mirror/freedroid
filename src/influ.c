@@ -349,10 +349,10 @@ static void CheckForTuxOutOfMap()
 	//
 	if (!pos_inside_level(Me.pos.x, Me.pos.y, MoveLevel)) {
 		fprintf(stderr, "\n\nplayer's last position: X=%f, Y=%f, Z=%d.\n", Me.pos.x, Me.pos.y, Me.pos.z);
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 A player's Tux was found outside the map.\n\
 This indicates either a bug in the FreedroidRPG code or\n\
-a bug in the currently used map system of FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
+a bug in the currently used map system of FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
 	}
 };				// void CheckForTuxOutOfMap ( )
 
@@ -625,7 +625,7 @@ static void move_tux_towards_intermediate_point(void)
 
 			break;
 		default:
-			ErrorMessage(__FUNCTION__, "Unhandled combo action for intermediate course encountered!", PLEASE_INFORM, IS_FATAL);
+			error_message(__FUNCTION__, "Unhandled combo action for intermediate course encountered!", PLEASE_INFORM | IS_FATAL);
 			break;
 		}
 
@@ -931,7 +931,7 @@ void start_tux_death_explosions(void)
 		while (AllBlasts[counter++].type != INFOUT) ;
 		counter -= 1;
 		if (counter >= MAXBLASTS) {
-			ErrorMessage(__FUNCTION__, "Ran out of blasts!!!", PLEASE_INFORM, IS_FATAL);
+			error_message(__FUNCTION__, "Ran out of blasts!!!", PLEASE_INFORM | IS_FATAL);
 		}
 		AllBlasts[counter].type = DROIDBLAST;
 		AllBlasts[counter].pos.x = Me.pos.x - 0.125 / 2 + MyRandom(10) * 0.05;

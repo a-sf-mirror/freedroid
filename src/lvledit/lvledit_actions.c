@@ -183,7 +183,7 @@ static action *action_create(int type, va_list args)
 			act->d.delete_enemy = va_arg(args, enemy *);
 			break;
 		default:
-			ErrorMessage(__FUNCTION__, "Unknown action type %d\n", PLEASE_INFORM, IS_FATAL, type);
+			error_message(__FUNCTION__, "Unknown action type %d", PLEASE_INFORM | IS_FATAL, type);
 	}
 
 	return act;
@@ -772,7 +772,7 @@ static void action_do(level * level, action * a)
 		action_set_floor_layer(level, a->d.change_floor.x, a->d.change_floor.y, a->d.change_floor.layer, a->d.change_floor.type);
 		break;
 	case ACT_MULTIPLE_ACTIONS:
-		ErrorMessage(__FUNCTION__, "Passed a multiple actions meta-action as parameter. A real action is needed.\n", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Passed a multiple actions meta-action as parameter. A real action is needed.", PLEASE_INFORM);
 		break;
 	case ACT_SET_OBSTACLE_LABEL:
 		action_change_obstacle_label(level, a->d.change_obstacle_name.obstacle, a->d.change_obstacle_name.new_name, 1);
@@ -1061,8 +1061,8 @@ void level_editor_edit_chest(obstacle *o)
 	// Safety check
 	struct obstacle_spec *obs_spec = get_obstacle_spec(o->type);
 	if (!obs_spec->action || strncmp(obs_spec->action, "chest", 5)) {
-		ErrorMessage(__FUNCTION__, "Tried to edit the contents of a chest, but the obstacle is not a chest.\n",
-				     PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Tried to edit the contents of a chest, but the obstacle is not a chest.",
+				     PLEASE_INFORM | IS_FATAL);
 	}
 
 	while (!done) {

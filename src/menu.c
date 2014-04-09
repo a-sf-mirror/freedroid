@@ -1560,7 +1560,7 @@ static char *get_new_character_name(void)
 int load_named_game(const char *name)
 {
 	if (strlen(name) >= MAX_CHARACTER_NAME_LENGTH) {
-		ErrorMessage(__FUNCTION__, "The saved game name is too long.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "The saved game name is too long.", NO_REPORT);
 		return ERR;
 	}
 

@@ -47,7 +47,7 @@ int next_glue_timestamp(void)
 	glue_timestamp++;
 
 	if (glue_timestamp == 0) {
-		ErrorMessage(__FUNCTION__, "The glue timestamp overflowed. This might not be properly handled.\n", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "The glue timestamp overflowed. This might not be properly handled.", PLEASE_INFORM);
 	}
 
 	return glue_timestamp;

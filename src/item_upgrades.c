@@ -152,11 +152,11 @@ int item_can_be_installed_to_socket(item *dstitem, item *addon, int socketid)
 
 	// Make sure that the socket and the add-on exist.
 	if (socketid >= dstitem->upgrade_sockets.size) {
-		ErrorMessage(__FUNCTION__, "Socket index out of bounds", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Socket index out of bounds", PLEASE_INFORM);
 		return FALSE;
 	}
 	if (addon->type == -1) {
-		ErrorMessage(__FUNCTION__, "Add-on type was -1", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Add-on type was -1", PLEASE_INFORM);
 		return FALSE;
 	}
 

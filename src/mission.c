@@ -47,9 +47,9 @@ void mission_diary_add(const char *mis_name, const char *diarytext)
 		idx++;
 
 	if (idx >= MAX_MISSION_DESCRIPTION_TEXTS) {
-		ErrorMessage(__FUNCTION__,
-			     "There is no more room to append mission diary text \"%s\" to mission name \"%s\". Doing nothing.\n",
-			     PLEASE_INFORM, IS_WARNING_ONLY, diarytext, mis_name);
+		error_message(__FUNCTION__,
+			     "There is no more room to append mission diary text \"%s\" to mission name \"%s\". Doing nothing.",
+			     PLEASE_INFORM, diarytext, mis_name);
 		return;
 	}
 
@@ -253,8 +253,8 @@ void GetQuestList(char *QuestListFilename)
 		EndOfMissionTargetPointer = LocateStringInData(MissionTargetPointer, MISSION_TARGET_SUBSECTION_END_STRING);
 
 		if (MissionTargetIndex >= MAX_MISSIONS_IN_GAME)
-			ErrorMessage(__FUNCTION__, "The number of quests specified in %s exceeds MAX_MISSIONS_IN_GAME (%d).\n",
-				     PLEASE_INFORM, IS_FATAL, QuestListFilename, MAX_MISSIONS_IN_GAME);
+			error_message(__FUNCTION__, "The number of quests specified in %s exceeds MAX_MISSIONS_IN_GAME (%d).",
+				     PLEASE_INFORM | IS_FATAL, QuestListFilename, MAX_MISSIONS_IN_GAME);
 
 		// We need to add an inner terminator here, so that the strstr operation
 		// below will know where to stop within this subsection.
@@ -334,7 +334,7 @@ int GetMissionIndexByName(const char *name)
 			return cidx;
 	}
 
-	ErrorMessage(__FUNCTION__, "Unable to find mission named \"%s\"\n", PLEASE_INFORM, IS_FATAL, name);
+	error_message(__FUNCTION__, "Unable to find mission named \"%s\"", PLEASE_INFORM | IS_FATAL, name);
 	return -1;
 }
 

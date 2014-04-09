@@ -769,7 +769,7 @@ void mapgen_add_door(int x, int y, int from, int to)
 {
 	int num = rooms[from].num_doors;
 	if (num == MAX_DOORS) {
-			ErrorMessage(__FUNCTION__, "Maximal number of doors for a room exceeded\n", PLEASE_INFORM, IS_FATAL);
+			error_message(__FUNCTION__, "Maximal number of doors for a room exceeded", PLEASE_INFORM | IS_FATAL);
 			return;
 	}
 	rooms[from].doors[num].x = x;
@@ -820,7 +820,7 @@ void MakeConnect(int x, int y, enum connection_type type)
 			wp_x = x - 1;
 			break;
 		default:
-			ErrorMessage(__FUNCTION__, "Unknown connection type %d\n", PLEASE_INFORM, IS_FATAL, type);
+			error_message(__FUNCTION__, "Unknown connection type %d", PLEASE_INFORM | IS_FATAL, type);
 			break;
 
 	} 

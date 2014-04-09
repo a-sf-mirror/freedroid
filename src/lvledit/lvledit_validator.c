@@ -243,7 +243,7 @@ static void get_excpt_list(char *section_pointer)
 
 		char *validator_type = ReadAndMallocStringFromData(ptr, "Type=\"", "\"");
 		if (!validator_type) {
-			ErrorMessage(__FUNCTION__, "The Validator's Type of an exception was not found!\n", PLEASE_INFORM, IS_FATAL);
+			error_message(__FUNCTION__, "The Validator's Type of an exception was not found!", PLEASE_INFORM | IS_FATAL);
 			return;
 		}
 
@@ -276,8 +276,8 @@ static void get_excpt_list(char *section_pointer)
 		free(validator_type);
 
 		if (one_validator->initial == '\0') {	// Sub-validator was not found
-			ErrorMessage(__FUNCTION__, "The Validator's Type specified in an exception does not exist!\n", PLEASE_INFORM,
-				     IS_FATAL);
+			error_message(__FUNCTION__, "The Validator's Type specified in an exception does not exist!",
+					PLEASE_INFORM | IS_FATAL);
 			return;
 		}
 		
@@ -311,7 +311,7 @@ static void load_excpt_lists(char *filename)
 	// Search beginning of list 
 	section_pointer = strstr(main_file_pointer, START_OF_DATA_STRING);
 	if (section_pointer == NULL) {
-		ErrorMessage(__FUNCTION__, "Start of exceptions list not found!\n", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Start of exceptions list not found!", PLEASE_INFORM | IS_FATAL);
 		return;
 	}
 	// Parse the list
@@ -524,7 +524,7 @@ static void *lvlval_waypoint_parse_excpt(char *string)
 {
 	char *validator_type = ReadAndMallocStringFromData(string, "Type=\"", "\"");
 	if (!validator_type || strlen(validator_type) != 2) {
-		ErrorMessage(__FUNCTION__, "The Subtest name of an exception is not valid!\n", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "The Subtest name of an exception is not valid!", PLEASE_INFORM | IS_FATAL);
 		return NULL;
 	}
 
@@ -556,7 +556,7 @@ static void *lvlval_waypoint_parse_excpt(char *string)
 		break;
 
 	default:
-		ErrorMessage(__FUNCTION__, "The Subtest name of an exception is invalid!\n", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "The Subtest name of an exception is invalid!", PLEASE_INFORM | IS_FATAL);
 		free(data);
 		return NULL;
 	}
@@ -916,7 +916,7 @@ static void *lvlval_neighborhood_parse_excpt(char *string)
 
 	char *direction_name = ReadAndMallocStringFromData(string, "Interface:", " ");
 	if (!direction_name) {
-		ErrorMessage(__FUNCTION__, "The Direction of an exception was not found!\n", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "The Direction of an exception was not found!", PLEASE_INFORM | IS_FATAL);
 		free(data);
 		return NULL;
 	}
@@ -1119,7 +1119,7 @@ static void *lvlval_obstacles_parse_excpt(char *string)
 {
 	char *validator_type = ReadAndMallocStringFromData(string, "Type=\"", "\"");
 	if (!validator_type || strlen(validator_type) != 2) {
-		ErrorMessage(__FUNCTION__, "The Subtest name of an exception is not valid!\n", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "The Subtest name of an exception is not valid!", PLEASE_INFORM | IS_FATAL);
 		return NULL;
 	}
 
@@ -1141,7 +1141,7 @@ static void *lvlval_obstacles_parse_excpt(char *string)
 		break;
 
 	default:
-		ErrorMessage(__FUNCTION__, "The Subtest name of an exception is invalid!\n", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "The Subtest name of an exception is invalid!", PLEASE_INFORM | IS_FATAL);
 		free(data);
 		return NULL;
 	}
@@ -1282,7 +1282,7 @@ static void *lvlval_extensions_parse_excpt(char *string)
 {
 	char *validator_type = ReadAndMallocStringFromData(string, "Type=\"", "\"");
 	if (!validator_type || strlen(validator_type) != 2) {
-		ErrorMessage(__FUNCTION__, "The Subtest name of an exception is not valid!\n", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "The Subtest name of an exception is not valid!", PLEASE_INFORM | IS_FATAL);
 		return NULL;
 	}
 
@@ -1301,7 +1301,7 @@ static void *lvlval_extensions_parse_excpt(char *string)
 		break;
 
 	default:
-		ErrorMessage(__FUNCTION__, "The Subtest name of an exception is invalid!\n", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "The Subtest name of an exception is invalid!", PLEASE_INFORM | IS_FATAL);
 		free(data);
 		return NULL;
 	}

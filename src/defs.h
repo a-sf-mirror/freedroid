@@ -55,12 +55,9 @@
 //
 #define SAVE_LOAD_GAME_DEBUG 1
 enum {
-	NO_NEED_TO_INFORM = 0,
-	PLEASE_INFORM = 1
-};
-enum {
-	IS_WARNING_ONLY = 0,
-	IS_FATAL = 1
+	NO_REPORT     = 0,
+	PLEASE_INFORM = 1 << 1,
+	IS_FATAL      = 1 << 2
 };
 
 enum {

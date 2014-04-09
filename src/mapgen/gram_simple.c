@@ -271,7 +271,7 @@ static void bulldozer(unsigned char *seen, int r)
 	struct cplist_t cplist[300];
 	int max_connections = find_connection_points(r, cplist, 3);
 	if (!max_connections)
-		ErrorMessage(__FUNCTION__, "Room %d does not have any connection points.\n", PLEASE_INFORM, IS_FATAL, r);
+		error_message(__FUNCTION__, "Room %d does not have any connection points.", PLEASE_INFORM | IS_FATAL, r);
 
 	// Mark the room as seen by a bulldozer
 	seen[r] = 1;

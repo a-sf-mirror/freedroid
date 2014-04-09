@@ -223,7 +223,7 @@ static struct image *leveleditor_get_object_image(enum lvledit_object_type type,
 	case OBJECT_ENEMY:
 			return get_droid_portrait_image(array[idx]);
 	default:
-			ErrorMessage(__FUNCTION__, "Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_FATAL, type);
+			error_message(__FUNCTION__, "Abstract object type %d for leveleditor not supported.", PLEASE_INFORM | IS_FATAL, type);
 			break;
 	}
 

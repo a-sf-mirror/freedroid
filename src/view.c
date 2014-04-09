@@ -299,7 +299,7 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 	gps pos;
 
 	if ((o->type <= -1) || (o->type >= obstacle_map.size)) {
-		ErrorMessage(__FUNCTION__, "The obstacle type %d that was given is incorrect. Resetting type to 1.", PLEASE_INFORM, IS_WARNING_ONLY, o->type);
+		error_message(__FUNCTION__, "The obstacle type %d that was given is incorrect. Resetting type to 1.", PLEASE_INFORM, o->type);
 		o->type = 1;
 	}
 
@@ -922,7 +922,7 @@ void update_virtual_position(gps * target_pos, gps * source_pos, int level_num)
 	//
 	if (source_pos->z < 0 || source_pos->z >= sizeof(gps_transform_matrix)/sizeof(gps_transform_matrix[0]) ||
 		level_num < 0 || level_num >= sizeof(gps_transform_matrix[0])/sizeof(gps_transform_matrix[0][0])) {
-		ErrorMessage(__FUNCTION__, "Virtual position update was required for level %d relative to level %d - one of those are incorrect level numbers.\n", PLEASE_INFORM, IS_WARNING_ONLY, source_pos->z, level_num);
+		error_message(__FUNCTION__, "Virtual position update was required for level %d relative to level %d - one of those are incorrect level numbers.", PLEASE_INFORM, source_pos->z, level_num);
 		target_pos->x = (-1);
 		target_pos->y = (-1);
 		target_pos->z = (-1);
@@ -963,7 +963,7 @@ int resolve_virtual_position(gps *rpos, gps *vpos)
 	// Check pre-conditions
 
 	if (vpos->z == -1) {
-		ErrorMessage(__FUNCTION__, "Resolve virtual position was called with an invalid virtual position (%f:%f:%d).\n", PLEASE_INFORM, IS_WARNING_ONLY, vpos->x, vpos->y, vpos->z);
+		error_message(__FUNCTION__, "Resolve virtual position was called with an invalid virtual position (%f:%f:%d).", PLEASE_INFORM, vpos->x, vpos->y, vpos->z);
 		print_trace(0);
 		rpos->x = vpos->x;
 		rpos->y = vpos->y;
@@ -1224,7 +1224,7 @@ static void show_obstacle(int mask, obstacle * o, int code_number)
 
 	// Safety checks
 	if ((o->type <= -1) || (o->type >= obstacle_map.size)) {
-		ErrorMessage(__FUNCTION__, "The blitting list contained an illegal obstacle type %d.", PLEASE_INFORM, IS_FATAL, o->type);
+		error_message(__FUNCTION__, "The blitting list contained an illegal obstacle type %d.", PLEASE_INFORM | IS_FATAL, o->type);
 	}
 
 	if (!(mask & OMIT_OBSTACLES)) {
@@ -1269,8 +1269,8 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			//
 			if ((((obstacle *) e->element_pointer)->type <= -1) ||
 			    ((obstacle *) e->element_pointer)->type >= obstacle_map.size) {
-				ErrorMessage(__FUNCTION__,
-					     "The blitting list contained an illegal obstacle type %d, for obstacle at coordinates %f %f. Doing nothing.", PLEASE_INFORM, IS_WARNING_ONLY, 
+				error_message(__FUNCTION__,
+					     "The blitting list contained an illegal obstacle type %d, for obstacle at coordinates %f %f. Doing nothing.", PLEASE_INFORM, 
 						 ((obstacle *) e->element_pointer)->type, ((obstacle *) e->element_pointer)->pos.x, ((obstacle *) e->element_pointer)->pos.y);
 				break;
 
@@ -1421,8 +1421,8 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 		case BLITTING_TYPE_MOVE_CURSOR:
 			break;
 		default:
-			ErrorMessage(__FUNCTION__, "\
-						The blitting list contained an illegal blitting object type.", PLEASE_INFORM, IS_FATAL);
+			error_message(__FUNCTION__, "\
+						The blitting list contained an illegal blitting object type.", PLEASE_INFORM | IS_FATAL);
 			break;
 		}
 	}
@@ -2045,9 +2045,9 @@ static void tux_rendering_validate()
 {
 	// At least one motion_class is needed
 	if (tux_rendering.motion_class_names.size < 1) {
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 			"Tux rendering specification is invalid: at least one motion_class is needed",
-			PLEASE_INFORM, IS_FATAL);
+			PLEASE_INFORM | IS_FATAL);
 	}
 
 	// There must be a rendering order defined for each motion class, each rotation
@@ -2056,10 +2056,10 @@ static void tux_rendering_validate()
 	for (i = 0; i < tux_rendering.motion_class_names.size; i++) {
 		for (j = 0; j < MAX_TUX_DIRECTIONS; j++) {
 			if (tux_rendering.render_order[i][j] == NULL) {
-				ErrorMessage(__FUNCTION__,
+				error_message(__FUNCTION__,
 					"Tux rendering specification is invalid: no rendering order defined for motion_class \"%s\""
 					" and rotation index %d",
-					PLEASE_INFORM, IS_FATAL,
+					PLEASE_INFORM | IS_FATAL,
 					get_motion_class_name_by_id(i), j);
 			} else {
 				// Check that there is a rendering order for every animation phases
@@ -2078,10 +2078,10 @@ static void tux_rendering_validate()
 
 				for (phase = 0; phase < TUX_TOTAL_PHASES; phase++) {
 					if (check_phase[phase] == 0) {
-						ErrorMessage(__FUNCTION__,
+						error_message(__FUNCTION__,
 							"Tux rendering specification is invalid: no rendering order defined for motion_class \"%s\","
 							" rotation index %d and animation phase %d",
-							PLEASE_INFORM, IS_FATAL,
+							PLEASE_INFORM | IS_FATAL,
 							get_motion_class_name_by_id(i), j, phase);
 					}
 				}
@@ -2464,8 +2464,8 @@ int set_rotation_model_for_this_robot(enemy * ThisRobot)
 	// A sanity check for roation model to use can never hurt...
 	//
 	if ((RotationModel < 0) || (RotationModel >= ENEMY_ROTATION_MODELS_AVAILABLE)) {
-		ErrorMessage(__FUNCTION__, "\
-There was a rotation model type given, that exceeds the number of rotation models allowed and loaded in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "\
+There was a rotation model type given, that exceeds the number of rotation models allowed and loaded in FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
 	}
 
 	return (RotationModel);
@@ -2586,8 +2586,8 @@ void PutEnemy(enemy * e, int x, int y, int mask, int highlight)
 	// heavy editing of the crew initialization functions ;)
 	//
 	if (e->type >= Number_Of_Droid_Types) {
-		ErrorMessage(__FUNCTION__, "\
-There was a droid type on this level, that does not really exist.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "\
+There was a droid type on this level, that does not really exist.", PLEASE_INFORM | IS_FATAL);
 		e->type = 0;
 	}
 	// Since we will need that several times in the sequel, we find out the correct
@@ -2658,8 +2658,8 @@ void PutBullet(int bullet_index, int mask)
 	if ((CurBullet->type >= bullet_specs.size) || (CurBullet->type < 0)) {
 		fprintf(stderr, "\nPutBullet:  bullet type received: %d.", CurBullet->type);
 		fflush(stderr);
-		ErrorMessage(__FUNCTION__, "\
-There was a bullet to be blitted of a type that does not really exist.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "\
+There was a bullet to be blitted of a type that does not really exist.", PLEASE_INFORM | IS_FATAL);
 	}
 
 	struct bulletspec *bullet_spec = dynarray_member(&bullet_specs, CurBullet->type, sizeof(struct bulletspec));
@@ -2708,7 +2708,7 @@ void PutItem(item *CurItem, int mask, int put_thrown_items_flag, int highlight_i
 	// The unwanted cases MUST be handled first...
 	//
 	if (CurItem->type == (-1)) {
-		ErrorMessage(__FUNCTION__, "Tried to draw an item of type -1 (item %p on level %d). Ignoring.", PLEASE_INFORM, IS_WARNING_ONLY, CurItem, CurItem->pos.z);
+		error_message(__FUNCTION__, "Tried to draw an item of type -1 (item %p on level %d). Ignoring.", PLEASE_INFORM, CurItem, CurItem->pos.z);
 		return;
 	}
 
@@ -2769,8 +2769,8 @@ void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, ui
 		for (k = 0; k < FIXED_NUMBER_OF_PROTOTYPES; k++) {
 			if (SparkType >= NUMBER_OF_SPARK_TYPES) {
 				fprintf(stderr, "\n\nSparkType: %d\n", SparkType);
-				ErrorMessage(__FUNCTION__, "\
-FreedroidRPG encountered a radial wave type that exceeds the CONSTANT for wave types.", PLEASE_INFORM, IS_FATAL);
+				error_message(__FUNCTION__, "\
+FreedroidRPG encountered a radial wave type that exceeds the CONSTANT for wave types.", PLEASE_INFORM | IS_FATAL);
 			}
 
 			switch (SparkType) {
@@ -2785,8 +2785,8 @@ FreedroidRPG encountered a radial wave type that exceeds the CONSTANT for wave t
 				break;
 			default:
 				fprintf(stderr, "\n\nSparkType: %d\n", SparkType);
-				ErrorMessage(__FUNCTION__, "\
-FreedroidRPG encountered a radial wave type that does not exist in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
+				error_message(__FUNCTION__, "\
+FreedroidRPG encountered a radial wave type that does not exist in FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
 			}
 
 			find_file(ConstructedFilename, GRAPHICS_DIR, fpath);
@@ -2794,9 +2794,9 @@ FreedroidRPG encountered a radial wave type that does not exist in FreedroidRPG.
 			tmp_surf = our_IMG_load_wrapper(fpath);
 			if (tmp_surf == NULL) {
 				fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
-				ErrorMessage(__FUNCTION__, "\
+				error_message(__FUNCTION__, "\
 FreedroidRPG wanted to load a certain image file into memory, but the SDL\n\
-function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
+function used for this did not succeed.", PLEASE_INFORM | IS_FATAL);
 			}
 			// SDL_SetColorKey( tmp_surf , 0 , 0 ); 
 			SparkPrototypeSurface[SparkType][k] = SDL_DisplayFormatAlpha(tmp_surf);
@@ -2889,9 +2889,9 @@ void PutBlast(int Blast_number)
 	}
 	// DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
 	if (CurBlast->type >= ALLBLASTTYPES) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 The PutBlast function should blit a blast of a type that does not\n\
-exist at all.", PLEASE_INFORM, IS_FATAL);
+exist at all.", PLEASE_INFORM | IS_FATAL);
 	}
 	// draw position is relative to current level, so compute the appropriate virtual position
 	gps vpos;

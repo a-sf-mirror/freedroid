@@ -226,8 +226,8 @@ static int Get_Programs_Data(char *DataPointer)
 	SpellSkillMap = (spell_skill_spec *) MyMalloc(sizeof(spell_skill_spec) * (Number_Of_Programs + 1));
 
 	if (Number_Of_Programs >= MAX_NUMBER_OF_PROGRAMS) {
-		ErrorMessage(__FUNCTION__, "\
-There are more skills defined, than the maximum number specified in the code!", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "\
+There are more skills defined, than the maximum number specified in the code!", PLEASE_INFORM | IS_FATAL);
 	}
 
 	char *whattogrep = NEW_PROGRAM_BEGIN_STRING;
@@ -378,10 +378,10 @@ static void Get_Robot_Data(void *DataPointer)
 
 	Number_Of_Droid_Types = CountStringOccurences(DataPointer, NEW_ROBOT_BEGIN_STRING);
 	if (NB_DROID_TYPES < Number_Of_Droid_Types + 2) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 The value of %d for \"NB_DROID_TYPES\" defined in struct.h is less than %d\n\
 which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_TYPES\"!",
-			PLEASE_INFORM, IS_FATAL, NB_DROID_TYPES, Number_Of_Droid_Types + 2);
+			PLEASE_INFORM | IS_FATAL, NB_DROID_TYPES, Number_Of_Droid_Types + 2);
 	}
 
 	// Not that we know how many robots are defined in freedroid.ruleset, we can allocate
@@ -740,13 +740,12 @@ void ParseCommandLine(int argc, char *const argv[])
 							snprintf(tmp, 129, "\t\t%d = %s\n", i, hard_resolutions[i].comment);
 							strncat(txt, tmp, 128);
 						}
-						ErrorMessage(__FUNCTION__, "  %s%s  %s", NO_NEED_TO_INFORM, IS_FATAL,
+						error_message(__FUNCTION__, "  %s%s  %s", IS_FATAL,
 								 "\tThe resolution identifier given is not a valid resolution code.\n"
 								 "\tThese codes correspond to the following hardcoded resolutions available:\n",
 								 txt,
 								 "\tAdditional resolutions may be specified by the form 'WxH' e.g. '800x600'\n"
-								 "\tThe in-game menu automatically detects fullscreen modes supported by your hardware.\n"
-								 "\n---------------------------------------------------------------------------------\n");
+								 "\tThe in-game menu automatically detects fullscreen modes supported by your hardware.");
 						free(txt);
 					}
 				}
@@ -949,10 +948,10 @@ static void detect_available_resolutions(void)
 	// Get available fullscreen/hardware modes (reported by SDL)
 	modes = SDL_ListModes(NULL, SDL_FULLSCREEN|SDL_HWSURFACE);
 	if (modes == (SDL_Rect**) -1) {
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 			"SDL reports all resolutions are supported in fullscreen mode.\n"
 			"Please use -r WIDTHxHEIGHT to specify any one you like.\n"
-			"Defaulting to a sane one for now\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+			"Defaulting to a sane one for now", NO_REPORT);
 			screen_resolutions[0] =	(screen_resolution) {DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, "", TRUE};
 			i = 1;
 	} else {
@@ -1088,7 +1087,7 @@ void InitFreedroid(int argc, char **argv)
 	LoadGameConfig();
 
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
-		ErrorMessage(__FUNCTION__, "Couldn't initialize SDL: %s\n", PLEASE_INFORM, IS_FATAL,  SDL_GetError());
+		error_message(__FUNCTION__, "Couldn't initialize SDL: %s", PLEASE_INFORM | IS_FATAL,  SDL_GetError());
 	// So the video library could be initialized.  So it should also be
 	// cleaned up and closed once we're done and quit FreedroidRPG.
 	atexit(SDL_Quit);

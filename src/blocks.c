@@ -66,7 +66,7 @@ static int __enemy_animation(const char *filename, int *rotation, int *phase, in
 	}
 
 	if (i == sizeof(animations) / sizeof(animations[0])) {
-		ErrorMessage(__FUNCTION__, "Unexpected image filename '%s' for enemy '%s'.", PLEASE_INFORM, IS_WARNING_ONLY,
+		error_message(__FUNCTION__, "Unexpected image filename '%s' for enemy '%s'.", PLEASE_INFORM,
 			filename, PrefixToFilename[current_enemy_nr]);
 		return -1;
 	}
@@ -134,8 +134,8 @@ static void load_enemy_graphics(int enemy_model_nr)
 
 	current_enemy_nr = enemy_model_nr;
 	if (load_texture_atlas(atlas_filename, atlas_directory, compute_number_of_phases_for_enemy)) {
-		ErrorMessage(__FUNCTION__, "Unable to access the texture atlas for enemy '%s' at '%s'.",
-			PLEASE_INFORM, IS_FATAL, PrefixToFilename[enemy_model_nr], atlas_filename);
+		error_message(__FUNCTION__, "Unable to access the texture atlas for enemy '%s' at '%s'.",
+			PLEASE_INFORM | IS_FATAL, PrefixToFilename[enemy_model_nr], atlas_filename);
 	}
 
 	first_walk_animation_image[enemy_model_nr] = 1;
@@ -152,14 +152,14 @@ static void load_enemy_graphics(int enemy_model_nr)
 	// currently allowed from the array size...
 	//
 	if (last_stand_animation_image[enemy_model_nr] >= MAX_ENEMY_MOVEMENT_PHASES) {
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 			"The number of images found in the image collection for enemy model %d is bigger than currently allowed (found %d images, max. %d).",
-			PLEASE_INFORM, IS_FATAL, enemy_model_nr, last_stand_animation_image[enemy_model_nr], MAX_ENEMY_MOVEMENT_PHASES);
+			PLEASE_INFORM | IS_FATAL, enemy_model_nr, last_stand_animation_image[enemy_model_nr], MAX_ENEMY_MOVEMENT_PHASES);
 	}
 
 	if (load_texture_atlas(atlas_filename, atlas_directory, get_storage_for_enemy_image)) {
-		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for enemy '%s' at %s.",
-			PLEASE_INFORM, IS_FATAL, PrefixToFilename[enemy_model_nr], atlas_filename);
+		error_message(__FUNCTION__, "Unable to load texture atlas for enemy '%s' at %s.",
+			PLEASE_INFORM | IS_FATAL, PrefixToFilename[enemy_model_nr], atlas_filename);
 	}
 }
 
@@ -196,8 +196,8 @@ static void load_item_graphics(int item_type)
 
 	original_img = IMG_Load(fpath);
 	if (original_img == NULL) {
-		ErrorMessage(__FUNCTION__, "\
-Inventory image for item type %d, at path %s was not found", PLEASE_INFORM, IS_FATAL, item_type, fpath);
+		error_message(__FUNCTION__, "\
+Inventory image for item type %d, at path %s was not found", PLEASE_INFORM | IS_FATAL, item_type, fpath);
 	}
 
 	int target_x = spec->inv_size.x * 32;
@@ -381,11 +381,11 @@ void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our
 	// Let's see if we can find an offset file...
 	//
 	if ((OffsetFile = fopen(offset_file_name, "rb")) == NULL) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 FreedroidRPG was unable to open offset file %s for an isometric image.\n\
 Since the offset could not be obtained from the offset file, 0 will be used instead.\n\
 This can lead to minor positioning perturbations\n\
-in graphics displayed, but FreedroidRPG will continue to work.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, offset_file_name);
+in graphics displayed, but FreedroidRPG will continue to work.", NO_REPORT, offset_file_name);
 		our_iso_image->offset_x = 0;
 		our_iso_image->offset_y = 0;
 		return;
@@ -418,8 +418,8 @@ void LoadAndPrepareEnemyRotationModelNr(int ModelNr)
 	// in FreedroidRPG at all!
 	//
 	if ((ModelNr < 0) || (ModelNr >= ENEMY_ROTATION_MODELS_AVAILABLE)) {
-		ErrorMessage(__FUNCTION__, "\
-FreedroidRPG received a rotation model number that does not exist: %d\n", PLEASE_INFORM, IS_FATAL, ModelNr);
+		error_message(__FUNCTION__, "\
+FreedroidRPG received a rotation model number that does not exist: %d", PLEASE_INFORM | IS_FATAL, ModelNr);
 	}
 	// Now we can check if the given rotation model type was perhaps already
 	// allocated and loaded and fully prepared.  Then of course we need not 
@@ -480,7 +480,7 @@ void get_enemy_surfaces_data(char *DataPointer)
 
 	while ((SurfacePointer = strstr(SurfacePointer, NEW_SURFACE_BEGIN_STRING)) != NULL) {
 		if (SurfaceIndex >= ENEMY_ROTATION_MODELS_AVAILABLE) {
-			ErrorMessage(__FUNCTION__, "enemy_surfaces.dat specifies more surfaces than ENEMY_ROTATION_MODELS_AVAILABLE (%d) allows.", PLEASE_INFORM, IS_FATAL, ENEMY_ROTATION_MODELS_AVAILABLE);
+			error_message(__FUNCTION__, "enemy_surfaces.dat specifies more surfaces than ENEMY_ROTATION_MODELS_AVAILABLE (%d) allows.", PLEASE_INFORM | IS_FATAL, ENEMY_ROTATION_MODELS_AVAILABLE);
 		}
 
  		DebugPrintf(1, "\n\nFound another surface specification entry!  Lets add that to the others!");
@@ -565,9 +565,9 @@ static void load_droid_portrait(int type)
 struct image *get_droid_portrait_image(int type)
 {
 	if (type >= ENEMY_ROTATION_MODELS_AVAILABLE) {
-		ErrorMessage(__FUNCTION__, "Tried to load a portrait image of a bot those type is #%d, but the maximum configured value is %d.\n"
+		error_message(__FUNCTION__, "Tried to load a portrait image of a bot those type is #%d, but the maximum configured value is %d."
 				                   "ENEMY_ROTATION_MODELS_AVAILABLE should be raised.", 
-				                   PLEASE_INFORM, IS_FATAL,
+				                   PLEASE_INFORM | IS_FATAL,
 				                   type, ENEMY_ROTATION_MODELS_AVAILABLE - 1);
 		return NULL;
 	}
@@ -640,8 +640,8 @@ static void validate_obstacle_graphics(void)
 			const char *filename = ((char **)get_obstacle_spec(i)->filenames.arr)[j];
 			if (!image_loaded(&graphics->images[j])) {
 				if (strcmp(filename, "DUMMY OBSTACLE")) {
-					ErrorMessage(__FUNCTION__, "Could not load the image '%s' for obstacle %d.",
-						PLEASE_INFORM, IS_WARNING_ONLY, filename, i);
+					error_message(__FUNCTION__, "Could not load the image '%s' for obstacle %d.",
+						PLEASE_INFORM, filename, i);
 				}
 			}
 		}
@@ -662,8 +662,8 @@ static struct image *get_storage_for_obstacle_image(const char *filename)
 		}
 	}
 
-	ErrorMessage(__FUNCTION__, "Obstacles texture atlas specifies element %s which is not expected.",
-		PLEASE_INFORM, IS_WARNING_ONLY, filename);
+	error_message(__FUNCTION__, "Obstacles texture atlas specifies element %s which is not expected.",
+		PLEASE_INFORM, filename);
 	return NULL;
 }
 
@@ -682,8 +682,8 @@ static struct image *get_storage_for_obstacle_shadow_image(const char *filename)
 		}
 	}
 
-	ErrorMessage(__FUNCTION__, "Obstacle shadows texture atlas specifies element %s which is not expected.",
-		PLEASE_INFORM, IS_WARNING_ONLY, filename);
+	error_message(__FUNCTION__, "Obstacle shadows texture atlas specifies element %s which is not expected.",
+		PLEASE_INFORM, filename);
 	return NULL;
 }
 
@@ -693,7 +693,7 @@ void load_all_obstacles(int with_startup_bar)
 	struct image empty_image = EMPTY_IMAGE;
 
 	if (load_texture_atlas("obstacles/atlas.txt", "obstacles/", get_storage_for_obstacle_image)) {
-		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for obstacles at obstacles/atlas.txt.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Unable to load texture atlas for obstacles at obstacles/atlas.txt.", PLEASE_INFORM | IS_FATAL);
 	}
 
 	if (with_startup_bar)
@@ -709,7 +709,7 @@ void load_all_obstacles(int with_startup_bar)
 	}
 
 	if (load_texture_atlas("obstacles/shadow_atlas.txt", "obstacles/", get_storage_for_obstacle_shadow_image))
-		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for obstacle shadows at obstacle/shadow_atlas.txt.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Unable to load texture atlas for obstacle shadows at obstacle/shadow_atlas.txt.", PLEASE_INFORM | IS_FATAL);
 
 	if (with_startup_bar)
 		next_startup_percentage(8);
@@ -737,8 +737,8 @@ static struct image *get_storage_for_floor_tile(const char *filename)
 		}
 	}
 
-	ErrorMessage(__FUNCTION__, "Floor tiles texture atlas specifies element %s which is not expected.",
-		PLEASE_INFORM, IS_WARNING_ONLY, filename);
+	error_message(__FUNCTION__, "Floor tiles texture atlas specifies element %s which is not expected.",
+		PLEASE_INFORM, filename);
 	return NULL;
 }
 
@@ -751,7 +751,7 @@ void load_floor_tiles(void)
 {
 	// Try to load the atlas
 	if (load_texture_atlas("floor_tiles/atlas.txt", "floor_tiles/", get_storage_for_floor_tile)) {
-		ErrorMessage(__FUNCTION__, "Unable to load floor tiles atlas at floor_tiles/atlas.txt.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Unable to load floor tiles atlas at floor_tiles/atlas.txt.", PLEASE_INFORM | IS_FATAL);
 	}
 }
 
@@ -783,21 +783,21 @@ static struct image *get_storage_for_tux_image(const char *filename)
 	int phase;
 
 	if (sscanf(filename, "tux_rot_%02d_phase_%02d.png", &rotation, &phase) != 2) {
-		ErrorMessage(__FUNCTION__, "Invalid filename '%s' in tux texture atlas.",
-			PLEASE_INFORM, IS_WARNING_ONLY, filename);
+		error_message(__FUNCTION__, "Invalid filename '%s' in tux texture atlas.",
+			PLEASE_INFORM, filename);
 		return NULL;
 	}
 
 	if (rotation >= MAX_TUX_DIRECTIONS) {
-		ErrorMessage(__FUNCTION__, "Invalid rotation index %d in tux texture atlas.\n"
-			"Maximum allowed value for the rotation index is %d.", PLEASE_INFORM, IS_WARNING_ONLY,
+		error_message(__FUNCTION__, "Invalid rotation index %d in tux texture atlas.\n"
+			"Maximum allowed value for the rotation index is %d.", PLEASE_INFORM,
 			rotation, MAX_TUX_DIRECTIONS - 1);
 		return NULL;
 	}
 
 	if (phase >= TUX_TOTAL_PHASES) {
-		ErrorMessage(__FUNCTION__, "Invalid phase index %d in tux texture atlas.\n"
-			"Maximum allowed value for the phase index is %d.", PLEASE_INFORM, IS_WARNING_ONLY,
+		error_message(__FUNCTION__, "Invalid phase index %d in tux texture atlas.\n"
+			"Maximum allowed value for the phase index is %d.", PLEASE_INFORM,
 			phase, TUX_TOTAL_PHASES - 1);
 		return NULL;
 	}
@@ -828,8 +828,8 @@ void load_tux_graphics(int motion_class, int tux_part_group, const char *part_st
 	current_tux_motion_class = motion_class;
 	current_tux_part_group = tux_part_group;
 	if (load_texture_atlas(atlas_filename, atlas_directory, get_storage_for_tux_image)) {
-		ErrorMessage(__FUNCTION__, "Unable to load tux texture atlas at %s.",
-			PLEASE_INFORM, IS_FATAL, atlas_filename);
+		error_message(__FUNCTION__, "Unable to load tux texture atlas at %s.",
+			PLEASE_INFORM | IS_FATAL, atlas_filename);
 	}
 }
 

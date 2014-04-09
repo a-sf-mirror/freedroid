@@ -368,8 +368,8 @@ static void show_character_screen_skills()
 	//
 	if ((Me.melee_weapon_skill < 0) || (Me.melee_weapon_skill >= NUMBER_OF_SKILL_LEVELS)) {
 		fprintf(stderr, "\nmelee_weapon_skill: %d.", Me.melee_weapon_skill);
-		ErrorMessage(__FUNCTION__, "\
-Error: melee weapon skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "\
+Error: melee weapon skill seems out of bounds.", PLEASE_INFORM | IS_FATAL);
 	}
 	SetCurrentFont(Messagestat_BFont);
 	display_text(_("Melee"), RIGHT_TXT_X + CharacterRect.x, MELEE_SKILL_Y + CharacterRect.y, &CharacterRect);
@@ -382,8 +382,8 @@ Error: melee weapon skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
 	//
 	if ((Me.ranged_weapon_skill < 0) || (Me.ranged_weapon_skill >= NUMBER_OF_SKILL_LEVELS)) {
 		fprintf(stderr, "\nranged_weapon_skill: %d.", Me.ranged_weapon_skill);
-		ErrorMessage(__FUNCTION__, "\
-Error: ranged weapon skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "\
+Error: ranged weapon skill seems out of bounds.", PLEASE_INFORM | IS_FATAL);
 	}
 	SetCurrentFont(Messagestat_BFont);
 	display_text(_("Ranged"), RIGHT_TXT_X + CharacterRect.x, RANGED_SKILL_Y + CharacterRect.y, &CharacterRect);
@@ -396,8 +396,8 @@ Error: ranged weapon skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
 	//
 	if ((Me.spellcasting_skill < 0) || (Me.spellcasting_skill >= NUMBER_OF_SKILL_LEVELS)) {
 		fprintf(stderr, "\nProgramming_Skill: %d.", Me.spellcasting_skill);
-		ErrorMessage(__FUNCTION__, "\
-Error: Programming_Skill skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "\
+Error: Programming_Skill skill seems out of bounds.", PLEASE_INFORM | IS_FATAL);
 	}
 	SetCurrentFont(Messagestat_BFont);
 	display_text(_("Programming"), RIGHT_TXT_X + CharacterRect.x, SPELLCASTING_SKILL_Y + CharacterRect.y, &CharacterRect);

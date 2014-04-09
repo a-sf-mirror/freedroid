@@ -175,9 +175,9 @@ void input_keyboard_init(void)
 	GameConfig.input_keybinds[0].name = NULL;
 
 	if (sizeof(default_keybinds) / sizeof(default_keybinds[0]) > sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]))
-		ErrorMessage(__FUNCTION__,
-			     "There are %zu keyboard commands defined in keyboard.c, but GameConfig structure only supports %zu.\n",
-			     PLEASE_INFORM, IS_FATAL,
+		error_message(__FUNCTION__,
+			     "There are %zu keyboard commands defined in keyboard.c, but GameConfig structure only supports %zu.",
+			     PLEASE_INFORM | IS_FATAL,
 			     sizeof(default_keybinds) / sizeof(default_keybinds[0]),
 			     sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]));
 
@@ -210,9 +210,9 @@ void input_set_keybind(char *keybind, SDLKey key, SDLMod mod)
 			GameConfig.input_keybinds[i].mod = mod;
 			return;
 		}
-	ErrorMessage(__FUNCTION__,
-	             "Unable to set keybinding '%s', that command doesn't exist.\n",
-	             NO_NEED_TO_INFORM, IS_WARNING_ONLY,
+	error_message(__FUNCTION__,
+	             "Unable to set keybinding '%s', that command doesn't exist.",
+	             NO_REPORT,
 	             keybind);
 }
 
@@ -228,9 +228,9 @@ void input_get_keybind(const char *cmdname, SDLKey * key, SDLMod * mod)
 			return;
 		}
 	}
-	ErrorMessage(__FUNCTION__,
-	             "Unable to get keybinding for command '%s', that command does not exist.\n",
-	             PLEASE_INFORM, IS_FATAL,
+	error_message(__FUNCTION__,
+	             "Unable to get keybinding for command '%s', that command does not exist.",
+	             PLEASE_INFORM | IS_FATAL,
 	             cmdname);
 
 	/* This dead code writes "key" and "mod" to shut up GCC */
@@ -582,9 +582,9 @@ static int input_key(int keynum, int value)
 			   && value == KEY_PRESS) {
 			int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("activate_program"));
 			if (number >= 10 || number < 0) {
-				ErrorMessage(__FUNCTION__,
-					     "Tried to activate skill number %d - only shortcuts from F1 to F9 are supported\n",
-					     PLEASE_INFORM, IS_WARNING_ONLY, number);
+				error_message(__FUNCTION__,
+					     "Tried to activate skill number %d - only shortcuts from F1 to F9 are supported",
+					     PLEASE_INFORM, number);
 				return 0;
 			}
 
@@ -602,8 +602,8 @@ static int input_key(int keynum, int value)
 			   && value == KEY_PRESS) {
 			int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("quick_inventory"));
 			if (number >= 10 || number < 0) {
-				ErrorMessage(__FUNCTION__, "Tried to use quick inventory item %d - only 1-9 + 0 are supported.\n",
-					     PLEASE_INFORM, IS_WARNING_ONLY, number);
+				error_message(__FUNCTION__, "Tried to use quick inventory item %d - only 1-9 + 0 are supported.",
+					     PLEASE_INFORM, number);
 				return 0;
 			}
 
@@ -709,8 +709,8 @@ static int input_key(int keynum, int value)
 			   && value == KEY_PRESS) {
 			int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("place_obstacle_kp"));
 			if (number >= 10 || number < 0) {
-				ErrorMessage(__FUNCTION__, "Tried to place obstacle using kp%d - only kp1 to kp9 are supported\n",
-					     PLEASE_INFORM, IS_WARNING_ONLY, number);
+				error_message(__FUNCTION__, "Tried to place obstacle using kp%d - only kp1 to kp9 are supported",
+					     PLEASE_INFORM, number);
 				return 0;
 			}
 			level_editor_place_aligned_object(number);

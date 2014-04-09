@@ -954,14 +954,14 @@ int luaFD_tux_init(lua_State *L)
 		if (luaL_loadfile(L, fpath)) {
 			DebugPrintf(-1, "Error while loading ’%s’: %s", "FDtux_lfuns.lua", lua_tostring(L, -1));
 			lua_pop(L, 1);
-			ErrorMessage(__FUNCTION__, "Aborting loading FDtux lfuns.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+			error_message(__FUNCTION__, "Aborting loading FDtux lfuns.", NO_REPORT);
 			return FALSE;
 		}
 
 		if (lua_pcall(L, 0, LUA_MULTRET, 0) != LUA_OK) {
 			DebugPrintf(-1, "Error while running ’%s’: %s", "FDtux_lfuns.lua", lua_tostring(L, -1));
 			lua_pop(L, 1);
-			ErrorMessage(__FUNCTION__, "Aborting loading FDtux lfuns.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+			error_message(__FUNCTION__, "Aborting loading FDtux lfuns.", NO_REPORT);
 			return FALSE;
 		}
 	}

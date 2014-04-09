@@ -84,8 +84,8 @@ int find_saved_games(struct dirent ***namelist)
 
 	if (n == -1)
 	{
-		ErrorMessage(__FUNCTION__, "Error occurred while reading save game directory.",
-					 NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Error occurred while reading save game directory.",
+					 NO_REPORT);
 		return 0;
 	}
 
@@ -153,11 +153,11 @@ void LoadAndShowStats(char *CoreFilename)
 
 	if (stat(filename, &(FileInfoBuffer))) {
 		fprintf(stderr, "\n\nfilename: %s. \n", filename);
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 FreedroidRPG was unable to determine the time of the last modification on\n\
 your saved game file.\n\
 This is either a bug in FreedroidRPG or an indication, that the directory\n\
-or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+or file permissions of ~/.freedroid_rpg are somehow not right.", NO_REPORT);
 		return;
 	};
 
@@ -177,11 +177,11 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFO
 	sprintf(filename, "%s/%s%s", our_config_dir, CoreFilename, ".shp");
 	if (stat(filename, &(FileInfoBuffer))) {
 		fprintf(stderr, "\n\nfilename: %s. \n", filename);
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 FreedroidRPG was unable to determine the time of the last modification on\n\
 your saved game file.\n\
 This is either a bug in FreedroidRPG or an indication, that the directory\n\
-or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFORM, IS_FATAL);
+or file permissions of ~/.freedroid_rpg are somehow not right.", IS_FATAL);
 	}
 	FileSize += FileInfoBuffer.st_size;
 
@@ -254,17 +254,17 @@ int SaveGame(void)
 	ret = rename(filename, filename2);
 
 	if (ret && errno != ENOENT) {
-		ErrorMessage(__FUNCTION__, "Unable to create the shipfile backup\n", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Unable to create the shipfile backup", PLEASE_INFORM);
 	}
 
 	put_string_centered(Menu_BFont, 10, _("Saving"));
 	our_SDL_flip_wrapper();
 
 	if (SaveShip(filename, FALSE, 1) != OK) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 The SAVING OF THE SHIP DATA FOR THE SAVED GAME FAILED!\n\
 This is either a bug in FreedroidRPG or an indication, that the directory\n\
-or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, IS_FATAL);
+or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM | IS_FATAL);
 	} else {
 		DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\nShip data for saved game seems to have been saved correctly.\n");
 	}
@@ -276,12 +276,11 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 	ret = rename(filename, filename2);
 
 	if (ret && errno != ENOENT) {
-		ErrorMessage(__FUNCTION__, "Unable to create the savegame backup\n", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Unable to create the savegame backup", PLEASE_INFORM);
 	}
 
 	if ((SaveGameFile = fopen(filename, "wb")) == NULL) {
-		printf(_("\n\nError opening save game file for writing...\n\nTerminating...\n\n"));
-		Terminate(EXIT_FAILURE, TRUE);
+		error_message(__FUNCTION__, "Error opening save game file for writing...\n\nTerminating...", IS_FATAL);
 	}
 
 	save_game_data(savestruct_autostr);

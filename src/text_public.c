@@ -85,44 +85,41 @@ void DebugPrintf(int db_level, const char *fmt, ...)
  * This function should help to simplify and standardize the many error
  * messages possible in FreedroidRPG.
  */
-void ErrorMessage(const char *FunctionName, const char *fmt, int InformDevelopers, int IsFatal, ...)
+void error_message(const char *fn, const char *fmt, int error_type, ...)
 {
 	va_list args;
-	va_start(args, IsFatal);
+	va_start(args, error_type);
 
-	fprintf(stderr, "\n---------------------------------------------------------------------------------\n\
-FreedroidRPG %s encountered a problem ", freedroid_version);
-	fprintf(stderr, "in function:  %s \n", FunctionName);
+	fprintf(stderr, "\n---------------------------------------------------------------------------------\n"
+	                "FreedroidRPG %s encountered a problem in function: %s\n", freedroid_version, fn);
 	vfprintf(stderr, fmt, args);
-
-	if (InformDevelopers) {
-		fprintf(stderr, "\
-\n\
-\n\
-If you encounter this message, please inform the FreedroidRPG developers about it!\n\
-You can \n\
-\n\
-  send an e-mail to                    freedroid-discussion AT lists.sourceforge.net\n\
-  mention it on our IRC channel        #freedroid on irc.freenode.net\n\
-  or report the bug on our tracker at  http://bugs.freedroid.org/\n\
-\n\
-Thank you!\n\n");
-	}
-
-	if (IsFatal) {
-		fprintf(stderr, "FreedroidRPG will terminate now to draw attention to the problems it could\n\
-not resolve. We are sorry if that interrupts a major game of yours.\n");
-	} else {
-		fprintf(stderr, "The problem mentioned above is not fatal, we continue the execution.\n");
-		fprintf(stderr, "---------------------------------------------------------------------------------\n");
-	}
+	fprintf(stderr, "\n");
 
 	va_end(args);
 
-	if (IsFatal)
-		Terminate(EXIT_FAILURE, TRUE);
+	if (error_type & PLEASE_INFORM) {
+		fprintf(stderr, "\n\n"
+		                "If you encounter this message, please inform the FreedroidRPG developers about it!\n"
+		                "You can\n"
+		                "  send an e-mail to                    freedroid-discussion AT lists.sourceforge.net\n"""
+		                "  mention it on our IRC channel        #freedroid on irc.freenode.net\n"
+		                "  or report the bug on our tracker at  http://bugs.freedroid.org/\n"
+		                "\n"
+		                "Thank you!\n");
+	}
 
-};				// void ErrorMessage ( ... )
+	if (error_type & IS_FATAL) {
+		fprintf(stderr, "\nFreedroidRPG will terminate now to draw attention to the problems it could\n"
+		                "not resolve. We are sorry if that interrupts a major game of yours.\n"
+		                "---------------------------------------------------------------------------------\n");
+	} else {
+		fprintf(stderr, "\nThe problem mentioned above is not fatal, we continue the execution.\n"
+		                "---------------------------------------------------------------------------------\n");
+	}
+
+	if (error_type & IS_FATAL)
+		Terminate(EXIT_FAILURE, TRUE);
+}
 
 /**
  * This function does something similar to memmem.  Indeed, it would be
@@ -215,10 +212,10 @@ char *ReadAndMallocStringFromData(char *SearchString, const char *StartIndicatio
 	char *result = ReadAndMallocStringFromDataOptional(SearchString, StartIndicationString, EndIndicationString);
 	if (!result) {
 		fprintf(stderr, "\n\nStartIndicationString: '%s'\nEndIndicationString: '%s'\n", StartIndicationString, EndIndicationString);
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 The string that is supposed to prefix an entry in a text data file\n\
 of FreedroidRPG was not found within this text data file.\n\
-This indicates some corruption in the data file in question.", PLEASE_INFORM, IS_FATAL);
+This indicates some corruption in the data file in question.", PLEASE_INFORM | IS_FATAL);
 	}
 	return result;
 };				// char* ReadAndMallocStringFromData ( ... )
@@ -261,10 +258,10 @@ char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_S
 	if ((DataFile = fopen(filename, "rb")) == NULL) {
 		fprintf(stderr, "\n\nfilename: '%s'\n", filename);
 
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 FreedroidRPG was unable to open a given text file,\n\
 that should be there and should be accessible.\n\
-This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
+This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
 	} else {
 		DebugPrintf(1, "\nchar* ReadAndMallocAndTerminateFile ( char* filename ) : Opening file succeeded...");
 	}
@@ -274,22 +271,22 @@ This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFO
 	Data = (char *)MyMalloc(MemoryAmount);
 
 	if (fread(Data, 1, MemoryAmount, DataFile) < filelen && ferror(DataFile)) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 		FreedroidRPG was unable to read a given text file, that should be there and\n\
 		should be accessible.\n\
-		Filename: %s", PLEASE_INFORM, IS_FATAL, filename);
+		Filename: %s", PLEASE_INFORM | IS_FATAL, filename);
 	} else {
 		DebugPrintf(1, "\n%s(): Reading file succeeded...", __FUNCTION__);
 	}
 
 	if (fclose(DataFile) == EOF) {
 		fprintf(stderr, "\n\nfilename: '%s'\n", filename);
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 		FreedroidRPG was unable to close a given text file, that should be there and\n\
 		should be accessible.\n\
 		This indicates a strange bug in this installation of Freedroid, that is\n\
 		very likely a problem with the file/directory permissions of the files\n\
-		belonging to FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
+		belonging to FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
 	} else {
 		DebugPrintf(1, "\n%s(): file closed successfully...\n", __FUNCTION__);
 	}
@@ -297,15 +294,12 @@ This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFO
 	// NOTE: Since we do not assume to always have pure text files here, we switched to
 	// MyMemmem, so that we can handle 0 entries in the middle of the file content as well
 	if (File_End_String) {
-		if ((ReadPointer =
-		     MyMemmem(Data, (size_t) MemoryAmount, (char *)File_End_String, (size_t) strlen(File_End_String))) == NULL) {
-			fprintf(stderr, "\n\nfilename: '%s'\n", filename);
-			fprintf(stderr, "File_End_String: '%s'\n", File_End_String);
-
-			ErrorMessage(__FUNCTION__, "\
-		    FreedroidRPG was unable to find the string, that should indicate the end of\n\
-		    the given text file within this file.\n\
-		    This indicates a corrupt or outdated data or saved game file.", PLEASE_INFORM, IS_FATAL);
+		if ((ReadPointer = MyMemmem(Data, (size_t) MemoryAmount, (char *)File_End_String, (size_t) strlen(File_End_String))) == NULL) {
+			error_message(__FUNCTION__, "FreedroidRPG was unable to find the string, that should indicate the end of\n"
+			                            "the given text file within this file.\n"
+			                            "This indicates a corrupt or outdated data or saved game file."
+			                            "  filename: '%s' - File_End_String: '%s'",
+			              PLEASE_INFORM | IS_FATAL, filename, File_End_String);
 		} else {
 			ReadPointer[0] = 0;
 		}
@@ -329,9 +323,9 @@ char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer
 
 	if ((temp = strstr(SearchBeginPointer, SearchTextPointer)) == NULL) {
 		fprintf(stderr, "\n\nSearchTextPointer: '%s'\n", SearchTextPointer);
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 The string that was supposed to be in the text data file could not be found.\n\
-This indicates a corrupted or seriously outdated game data or saved game file.", PLEASE_INFORM, IS_FATAL);
+This indicates a corrupted or seriously outdated game data or saved game file.", PLEASE_INFORM | IS_FATAL);
 	}
 
 	return (temp);
@@ -366,11 +360,10 @@ ReadValueFromStringWithDefault(char *SearchBeginPointer, const char *ValuePrecee
 	// Now we try to read in the value!!!
 	//
 	if (sscanf(SourceLocation, FormatString, TargetValue) == EOF) {
-		fprintf(stderr, "\n\nFormatString: '%s'\n", FormatString);
-		fprintf(stderr, "ValuePreceedText: '%s'\n", ValuePreceedText);
-		ErrorMessage(__FUNCTION__, "\
-sscanf using a certain format string failed!\n\
-This indicates a corrupted or seriously outdated game data or saved game file.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "sscanf using a certain format string failed!\n"
+		                            "This indicates a corrupted or seriously outdated game data or saved game file.\n"
+		                            "  FormatString: '%s' - ValuePreceedText: '%s'",
+		              PLEASE_INFORM | IS_FATAL, FormatString, ValuePreceedText);
 	}
 	// Now that we are done, we restore the given SearchArea to former glory
 	if (EndOfSearchSectionPointer) {
@@ -402,11 +395,10 @@ ReadValueFromString(char *SearchBeginPointer, const char *ValuePreceedText, cons
 	// Now we try to read in the value!!!
 	//
 	if (sscanf(SourceLocation, FormatString, TargetValue) == EOF) {
-		fprintf(stderr, "\n\nFormatString: '%s'\n", FormatString);
-		fprintf(stderr, "ValuePreceedText: '%s'\n", ValuePreceedText);
-		ErrorMessage(__FUNCTION__, "\
-sscanf using a certain format string failed!\n\
-This indicates a corrupted or seriously outdated game data or saved game file.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "sscanf using a certain format string failed!\n"
+		                            "This indicates a corrupted or seriously outdated game data or saved game file.\n"
+		                            "  FormatString: '%s' - ValuePreceedText: '%s'",
+		              PLEASE_INFORM | IS_FATAL, FormatString, ValuePreceedText);
 	}
 
 	if (EndOfSearchSectionPointer) {
@@ -440,10 +432,10 @@ int ReadRangeFromString(char *SearchString, const char *StartIndicationString, c
 
 	//Handle corrupted values.
 	if (*min < 0) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 The value read in as a minimum (%d) is a negative number.\n\
 This most likely means corrupted data.\n\
-Setting both the maximum and minimum to the default value (%d).", NO_NEED_TO_INFORM, IS_WARNING_ONLY, *min, default_val);
+Setting both the maximum and minimum to the default value (%d).", NO_REPORT, *min, default_val);
 		*min = *max = default_val;
 		return FALSE;
 	}
@@ -499,19 +491,19 @@ int get_range_from_string(const char *str, int *min, int *max, int default_value
 		return TRUE; // Values are in the good order.
 	}
 
-	ErrorMessage(__FUNCTION__, "The value read in as a maximum (%d) is less than the minimum (%d).\n"
+	error_message(__FUNCTION__, "The value read in as a maximum (%d) is less than the minimum (%d).\n"
 	                           "This most likely means corrupted data.\n"
 	                           "Setting both the maximum and minimum to the default value (%d).",
-	                           NO_NEED_TO_INFORM, IS_WARNING_ONLY, *max, *min, default_value);
+	                           NO_REPORT, *max, *min, default_value);
 	*min = *max = default_value;
 	return FALSE;
 
 read_error:
 	// Failed to read the string.
-	ErrorMessage(__FUNCTION__, "The string (\"%s\") cannot be legaly converted to a range of integers.\n"
+	error_message(__FUNCTION__, "The string (\"%s\") cannot be legaly converted to a range of integers.\n"
 	                           "This most likely means corrupted data.\n"
 	                           "Setting both the maximum and minimum to the default value (%d).",
-	                           NO_NEED_TO_INFORM, IS_WARNING_ONLY, str, default_value);
+	                           NO_REPORT, str, default_value);
 	*min = *max = default_value;
 	return FALSE;
 }
@@ -577,7 +569,7 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 	int cursz = 1048576;	//start with 1MB
 	unsigned char *temp_dbuffer = malloc(cursz);
 	if (fread(src, filelen, 1, DataFile) != 1) {
-		ErrorMessage(__FUNCTION__, "Error reading compressed data stream.", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Error reading compressed data stream.", PLEASE_INFORM);
 		free(temp_dbuffer);
 		free(src);
 		return -1;
@@ -599,9 +591,9 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 
 	ret = inflateInit2(&strm, 47);
 	if (ret != Z_OK) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 		zlib was unable to start decompressing a stream.\n\
-		This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFORM, IS_WARNING_ONLY);
+		This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFORM);
 		free(temp_dbuffer);
 		free(src);
 		return -1;
@@ -623,9 +615,9 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 		case Z_MEM_ERROR:
 			(void)inflateEnd(&strm);
 
-			ErrorMessage(__FUNCTION__, "\
+			error_message(__FUNCTION__, "\
 			zlib was unable to decompress a stream\n\
-			This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFORM, IS_WARNING_ONLY);
+			This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFORM);
 			free(temp_dbuffer);
 			free(src);
 			return -1;
@@ -664,8 +656,8 @@ int deflate_to_stream(unsigned char *source_buffer, int size, FILE *dest)
 
     ret = deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY);
 	if (ret != Z_OK) {
-		ErrorMessage(__FUNCTION__, "\
-		zlib was unable to start compressing a string.", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "\
+		zlib was unable to start compressing a string.", PLEASE_INFORM);
 		return -1;
 	}
 

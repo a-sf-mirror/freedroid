@@ -386,8 +386,8 @@ static void select_object_on_tile(int x, int y)
 		select_special_forces_on_tile(x, y);
 		break;
 	default:
-		ErrorMessage(__FUNCTION__,
-				"Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_WARNING_ONLY, selection_type());
+		error_message(__FUNCTION__,
+				"Abstract object type %d for leveleditor not supported.", PLEASE_INFORM, selection_type());
 		break;
 	}
 }
@@ -829,7 +829,7 @@ void level_editor_cycle_marked_object()
 			level_editor_cycle_marked_item();
 			break;
 		default:
-			ErrorMessage(__FUNCTION__, "Unhandled selection type. \n", IS_WARNING_ONLY, NO_NEED_TO_INFORM);
+			error_message(__FUNCTION__, "Unhandled selection type.", NO_REPORT);
 			break;
 	}
 	

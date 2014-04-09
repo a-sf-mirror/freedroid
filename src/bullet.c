@@ -113,8 +113,8 @@ int find_free_melee_shot_index(void)
 		}
 	}
 
-	ErrorMessage(__FUNCTION__, "\
-I seem to have run out of free melee shot entries.", PLEASE_INFORM, IS_WARNING_ONLY);
+	error_message(__FUNCTION__, "\
+I seem to have run out of free melee shot entries.", PLEASE_INFORM);
 
 	return (0);
 
@@ -149,9 +149,9 @@ void DoMeleeDamage(void)
 			/* Attack an enemy */
 			enemy *tg = enemy_resolve_address(CurMelS->bot_target_n, &CurMelS->bot_target_addr);
 			if (!tg) {
-				ErrorMessage(__FUNCTION__,
-					     "Melee shot was set to ATTACK_TARGET_IS_ENEMY but had no targeted enemy. Deleting.\n",
-					     NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+				error_message(__FUNCTION__,
+					     "Melee shot was set to ATTACK_TARGET_IS_ENEMY but had no targeted enemy. Deleting.",
+					     NO_REPORT);
 				delete_melee_shot(CurMelS);
 				continue;
 			}
@@ -280,13 +280,13 @@ void StartBlast(float x, float y, int level, int type, int dmg, int faction, cha
 
 	if (!resolve_virtual_position(&blast_pos, &blast_vpos)) {
 		// The blast position is nowhere....
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 A BLAST VIRTUAL POSITION WAS FOUND TO BE INCONSISTENT.\n\
 \n\
 However, the error is not fatal and will be silently compensated for now.\n\
 When reporting a problem to the FreedroidRPG developers, please note if this\n\
 warning message was created prior to the error in your report.\n\
-However, it should NOT cause any serious trouble for FreedroidRPG.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+However, it should NOT cause any serious trouble for FreedroidRPG.", NO_REPORT);
 		return;
 	}
 	// If the blast is not on a visible level, we do not take care of it
@@ -346,14 +346,14 @@ void animate_blasts(void)
 			// Therefore we introduce some extra security here...
 			//
 			if (!pos_inside_level(CurBlast->pos.x, CurBlast->pos.y, curShip.AllLevels[CurBlast->pos.z])) {
-				ErrorMessage(__FUNCTION__, "\
+				error_message(__FUNCTION__, "\
 A BLAST WAS FOUND TO EXIST OUTSIDE THE BOUNDS OF THE MAP.\n\
 This is an indication of an inconsistency in FreedroidRPG.\n\
 \n\
 However, the error is not fatal and will be silently compensated for now.\n\
 When reporting a problem to the FreedroidRPG developers, please note if this\n\
 warning message was created prior to the error in your report.\n\
-However, it should NOT cause any serious trouble for FreedroidRPG.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+However, it should NOT cause any serious trouble for FreedroidRPG.", NO_REPORT);
 				CurBlast->pos.x = 0;
 				CurBlast->pos.y = 0;
 				CurBlast->pos.z = 0;
@@ -579,8 +579,8 @@ int find_free_bullet_index(void)
 
 	// If this point is ever reached, there's a severe bug in here...
 	//
-	ErrorMessage(__FUNCTION__, "\
-I seem to have run out of free bullet entries.  This can't normally happen.  --> some bug in here, oh no...", PLEASE_INFORM, IS_FATAL);
+	error_message(__FUNCTION__, "\
+I seem to have run out of free bullet entries.  This can't normally happen.  --> some bug in here, oh no...", PLEASE_INFORM | IS_FATAL);
 
 	return (-1);		// can't happen.  just to make compilers happy (no warnings)
 
@@ -859,8 +859,8 @@ int GetBulletByName(const char *bullet_name)
 		if (!strcmp(bullet_name, bullet_spec->name))
 			return i;
 	}
-	ErrorMessage(__FUNCTION__, "\
-The bullet name \"%s\" lacks a definition.", PLEASE_INFORM, IS_WARNING_ONLY, bullet_name);
+	error_message(__FUNCTION__, "\
+The bullet name \"%s\" lacks a definition.", PLEASE_INFORM, bullet_name);
 	return 0;
 }
 

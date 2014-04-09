@@ -58,7 +58,7 @@ item create_item_with_id(const char *item_id, int full_durability, int multiplic
 	init_item(&new_item);
 	new_item.type = get_item_type_by_id(item_id);
 	if (new_item.type < 0 || new_item.type >= Number_Of_Item_Types) {
-		ErrorMessage(__FUNCTION__, "No items with the name \"%s\" exist in the game. Cannot create item.\nChanging item type to bug item to avoid crash.\n", PLEASE_INFORM, IS_WARNING_ONLY, item_id);
+		error_message(__FUNCTION__, "No items with the name \"%s\" exist in the game. Cannot create item.\nChanging item type to bug item to avoid crash.", PLEASE_INFORM, item_id);
 		new_item.type = 0;
 	}
 
@@ -86,8 +86,8 @@ void equip_item(item *new_item)
 
 	// If the item can't be equiped, stop now and throw a warning.
 	if (!equippable_item(new_item)) {
-		ErrorMessage(__FUNCTION__, "Tried to equip the item \"%s\" which can't be equipped.\n", 
-				PLEASE_INFORM, IS_WARNING_ONLY, new_itemspec->id);
+		error_message(__FUNCTION__, "Tried to equip the item \"%s\" which can't be equipped.",
+				PLEASE_INFORM, new_itemspec->id);
 		return;
  	}
 
@@ -308,7 +308,7 @@ void FillInItemProperties(item *it, int full_durability, int multiplicity)
 {
 	// Some basic error checking of item type.
 	if ((it->type < 0) || (it->type >= Number_Of_Item_Types)) {
-		ErrorMessage(__FUNCTION__, "Cannot fill in information for item with invalid type.\n", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Cannot fill in information for item with invalid type.", PLEASE_INFORM | IS_FATAL);
 		return;
 	}	
 
@@ -402,9 +402,9 @@ item *DropItemAt(int ItemType, int level_num, float x, float y, int multiplicity
 	gps item_pos;
 
 	if (ItemType < 0 || ItemType >= Number_Of_Item_Types)
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 Received item type %d that is outside the range of allowed item types.",
-			     PLEASE_INFORM, IS_FATAL, ItemType);
+			     PLEASE_INFORM | IS_FATAL, ItemType);
 
 	// Fix virtual position (e.g. from a dying robot)
 	item_pos.x = x;
@@ -428,7 +428,7 @@ static int get_random_item_type(int class)
 {
 
 	if (class > 9) {
-		ErrorMessage(__FUNCTION__, "Random item class %d exceeds 9.\n", class, PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Random item class %d exceeds 9.", class, PLEASE_INFORM | IS_FATAL);
 	}
 
 	int a = MyRandom(item_count_per_class[class] - 1) + 1;
@@ -446,7 +446,7 @@ static int get_random_item_type(int class)
 	}
 
 	if (a) {
-		ErrorMessage(__FUNCTION__, "Looking for random item with class %d, a = %d after the loop.", PLEASE_INFORM, IS_FATAL, class,
+		error_message(__FUNCTION__, "Looking for random item with class %d, a = %d after the loop.", PLEASE_INFORM | IS_FATAL, class,
 			     a);
 	}
 	//printf("Dropping item %s (%d <= class <= %d), class %d\n", ItemMap[i].item_name, ItemMap[i].min_drop_class, ItemMap[i].max_drop_class, class);
@@ -683,7 +683,7 @@ int get_item_type_by_id(const char *id)
 			return cidx;
 	}
 
-	ErrorMessage(__FUNCTION__, "Unable to find item id %s\n", PLEASE_INFORM, IS_WARNING_ONLY, id);
+	error_message(__FUNCTION__, "Unable to find item id %s", PLEASE_INFORM, id);
 	return -1;
 }
 
@@ -945,9 +945,9 @@ static int FindFirstInventoryIndexWithItemType(int Itemtype)
 	// Severe error:  Item type NOT found in inventory!!!
 	//
 	fprintf(stderr, "\n\nItemType: '%d'.\n", Itemtype);
-	ErrorMessage(__FUNCTION__, "\
+	error_message(__FUNCTION__, "\
 There was an item code for an item to locate in inventory, but inventory\n\
-did not contain this item type at all!  This indicates a severe bug in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
+did not contain this item type at all!  This indicates a severe bug in FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
 
 	return (-1);
 
@@ -993,10 +993,10 @@ void DeleteOneInventoryItemsOfType(int Itemtype)
 	// This point must never be reached or a severe error has occurred...
 	//
 	fprintf(stderr, "\n\nItemType: '%d'.\n", Itemtype);
-	ErrorMessage(__FUNCTION__, "\
+	error_message(__FUNCTION__, "\
 One single item of all the items of a given type in the Tux inventory\n\
 should be removed, but there was not even one such item ever found in\n\
-Tux inventory.  Something must have gone awry...", PLEASE_INFORM, IS_FATAL);
+Tux inventory.  Something must have gone awry...", PLEASE_INFORM | IS_FATAL);
 
 };				// void DeleteOneInventoryItemsOfType( int Itemtype  )
 
@@ -1178,8 +1178,8 @@ static int find_free_floor_index(level* drop_level)
 	}
 
 	// We did not find a free index.
-	ErrorMessage(__FUNCTION__, "The item array for level %d was full.\n",
-	            PLEASE_INFORM, IS_WARNING_ONLY, drop_level->levelnum);
+	error_message(__FUNCTION__, "The item array for level %d was full.",
+	            PLEASE_INFORM, drop_level->levelnum);
 	return -1;
 }
 
@@ -1370,10 +1370,10 @@ int GetFreeInventoryIndex(void)
 	// occurred, an error message must be printed out and the program
 	// must be terminated.
 	//
-	ErrorMessage(__FUNCTION__, "\
+	error_message(__FUNCTION__, "\
 A FREE INVENTORY INDEX POSITION COULD NOT BE FOUND.\n\
 This is an internal error, that must never happen unless there are\n\
-severe bugs in the inventory system.", PLEASE_INFORM, IS_FATAL);
+severe bugs in the inventory system.", PLEASE_INFORM | IS_FATAL);
 	return (-1);		// just to make compilers happy.
 };				// int GetFreeInventoryIndex( void )
 
@@ -2060,8 +2060,8 @@ const char *ammo_desc_for_weapon(int type) {
 	itemspec *weapon = &ItemMap[type];
 
 	if (weapon->item_gun_use_ammunition < 0 || weapon->item_gun_use_ammunition >= sizeof(ammo_desc)/sizeof(ammo_desc[0])) {
-		ErrorMessage(__FUNCTION__, "Unknown ammunition type %d for weapon %s.",
-					 PLEASE_INFORM, IS_FATAL, weapon->item_gun_use_ammunition, weapon->id);
+		error_message(__FUNCTION__, "Unknown ammunition type %d for weapon %s.",
+					 PLEASE_INFORM | IS_FATAL, weapon->item_gun_use_ammunition, weapon->id);
 	}
 
 	return ammo_desc[weapon->item_gun_use_ammunition];

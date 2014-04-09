@@ -120,8 +120,8 @@ obstacle *add_obstacle(level *lvl, float x, float y, int type)
 		return &lvl->obstacle_list[i];
 	}
 
-	ErrorMessage(__FUNCTION__, "\
-	    Ran out of obstacle positions (%d) in level %d !", PLEASE_INFORM, IS_FATAL, MAX_OBSTACLES_ON_MAP, lvl->levelnum);
+	error_message(__FUNCTION__, "\
+	    Ran out of obstacle positions (%d) in level %d !", PLEASE_INFORM | IS_FATAL, MAX_OBSTACLES_ON_MAP, lvl->levelnum);
 
 	return NULL;
 }
@@ -252,7 +252,7 @@ int get_obstacle_type_by_name(char *name) {
 			return id;
 	}
 
-	ErrorMessage(__FUNCTION__, "Unable to find the obstacle specs with name \"%s\"\n", PLEASE_INFORM, IS_WARNING_ONLY, name);
+	error_message(__FUNCTION__, "Unable to find the obstacle specs with name \"%s\"", PLEASE_INFORM, name);
 	return -1;
 }
 

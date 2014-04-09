@@ -160,14 +160,14 @@ void InitAudio(void)
 		fprintf(stderr, " \n\nSDL just reported a problem.\n"
 			"The error string from SDL_GetError\nwas: %s \n"
 			"The error string from the SDL mixer subsystem was: %s \n", SDL_GetError(), Mix_GetError());
-		ErrorMessage(__FUNCTION__, "\n"
+		error_message(__FUNCTION__, "\n"
 					"The SDL AUDIO SUBSYSTEM COULD NOT BE INITIALIZED.\n\n"
 					"Please check that your sound card is properly configured,\n"
 					"i.e. if other applications are able to play sounds.\n\n"
 					"If you for some reason cannot get your sound card ready, \n"
 					"you can choose to play without sound.\n\n"
 					"If you want this, use the appropriate command line option and FreedroidRPG will\n"
-					"not complain any more.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+					"not complain any more.", NO_REPORT);
 		sound_on = FALSE;
 		return;
 	} else {
@@ -184,9 +184,9 @@ void InitAudio(void)
 			"using audio output format: %d \n", 
 			SDL_GetError(), Mix_GetError(), GameConfig.Current_Sound_Output_Fmt);
 
-		ErrorMessage(__FUNCTION__, "\n"
+		error_message(__FUNCTION__, "\n"
 			"\nA Problem occured while trying to open the audio device.\n"
-			"Reverting to default settings.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+			"Reverting to default settings.", NO_REPORT);
 
 		// revert to stereo if we fail to open the audio device
 		GameConfig.Current_Sound_Output_Fmt = SOUND_OUTPUT_FMT_STEREO;
@@ -195,14 +195,14 @@ void InitAudio(void)
 			fprintf(stderr, "\n\nSDL just reported a problem.\n"
 			"The error string from SDL_GetError\nwas: %s \n"
 			"The error string from the SDL mixer subsystem was: %s \n", SDL_GetError(), Mix_GetError());
-			ErrorMessage(__FUNCTION__, "\n"
+			error_message(__FUNCTION__, "\n"
 						"The SDL AUDIO CHANNEL COULD NOT BE OPENED.\n\n"
 						"Please check that your sound card is properly configured,\n"
 						"i.e. if other applications are able to play sounds.\n\n"
 						"If you for some reason cannot get your sound card ready,\n"
 						"you can choose to play without sound.\n\n"
 						"If you want this, use the appropriate command line option and FreedroidRPG will\n"
-						"not complain any more.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+						"not complain any more.", NO_REPORT);
 			sound_on = FALSE;
 			return;
 		}
@@ -402,16 +402,16 @@ void play_sound(const char *filename)
 	if (find_file(filename, SOUND_DIR, fpath) == 0) {
 		One_Shot_WAV_File = Mix_LoadWAV(fpath);
 		if (One_Shot_WAV_File == NULL) {
-			ErrorMessage(__FUNCTION__, "Corrupt sound file encountered: %s.",
-						 NO_NEED_TO_INFORM, IS_WARNING_ONLY, fpath);
+			error_message(__FUNCTION__, "Corrupt sound file encountered: %s.",
+						 NO_REPORT, fpath);
 			return;
 		}
 	}
 
 	// Now some error checking against failed/missing sound samples...
 	if (One_Shot_WAV_File == NULL) {
-		ErrorMessage(__FUNCTION__, "Missing sound file: '%s'.",
-					 NO_NEED_TO_INFORM, FALSE, filename);
+		error_message(__FUNCTION__, "Missing sound file: '%s'.",
+					 NO_REPORT, filename);
 		return;
 	}
 
@@ -425,8 +425,8 @@ void play_sound(const char *filename)
 	Newest_Sound_Channel = Mix_PlayChannel(-1, One_Shot_WAV_File, 0);
 	if (Newest_Sound_Channel <= -1) {
 		fprintf(stderr, "\n\nfilename: '%s' Mix_GetError(): %s \n", filename, Mix_GetError());
-		ErrorMessage(__FUNCTION__, "\n"
-					"The SDL MIXER WAS UNABLE TO PLAY A CERTAIN FILE LOADED INTO MEMORY FOR PLAYING ONCE.\n", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "\n"
+					"The SDL MIXER WAS UNABLE TO PLAY A CERTAIN FILE LOADED INTO MEMORY FOR PLAYING ONCE.", PLEASE_INFORM);
 
 		// If we receive an error playing a sound file here, we must see to it that the callback
 		// code and allocation there and all that doesn't get touched.
@@ -571,7 +571,7 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 		Mix_Chunk *loaded_wav_chunk = Mix_LoadWAV(fpath);
 		if (!loaded_wav_chunk) {
 			fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
-			ErrorMessage(__FUNCTION__, "Could not load sound file \"%s\": %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fpath, Mix_GetError());
+			error_message(__FUNCTION__, "Could not load sound file \"%s\": %s", NO_REPORT, fpath, Mix_GetError());
 			// If the sample couldn't be loaded, we just quit, not marking anything
 			// as loaded and inside the cache and also not trying to play anything...
 			//
@@ -608,19 +608,19 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 	// loaded into memory or has resided in memory already for some time...
 	dynamic_WAV_cache_last_use[index_of_sample_to_be_played] = SDL_GetTicks();
 	if (Mix_PlayChannel(channel_to_play_sample_on, dynamic_WAV_cache[index_of_sample_to_be_played], 0) <= -1) {
-		fprintf(stderr, "\n\nSoundSampleFileName: '%s' Mix_GetError(): %s \n", SoundSampleFileName, Mix_GetError());
-		ErrorMessage(__FUNCTION__, "\n"
-					"The SDL mixer was unable to play a certain sound sample file, that was supposed to be cached for later.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__,
+				"The SDL mixer was unable to play a certain sound sample file, that was supposed to be cached for later.\n"
+				"SoundSampleFileName: '%s' Mix_GetError(): %s",
+				NO_REPORT, SoundSampleFileName, Mix_GetError());
 	}
 
 	// if we found a free channel, let's apply an effect to it.
 	if (channel_to_play_sample_on != -1) {
 		if (!Mix_SetPosition(channel_to_play_sample_on, angle, distance)){
-			fprintf(stderr, "\n\nSoundSampleFileName: '%s' channel: '%d' Mix_GetError(): %s \n",
-				SoundSampleFileName, channel_to_play_sample_on, Mix_GetError());
-			ErrorMessage(__FUNCTION__, 
-						"\n"
-						"The SDL mixer was unable to register an effect on given channel.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+			error_message(__FUNCTION__,
+					"The SDL mixer was unable to register an effect on given channel.\n"
+					"SoundSampleFileName: '%s' channel: '%d' Mix_GetError(): %s",
+					NO_REPORT, SoundSampleFileName, channel_to_play_sample_on, Mix_GetError());
 		}
 	}
 }

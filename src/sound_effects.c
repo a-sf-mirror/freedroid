@@ -134,7 +134,7 @@ void play_greeting_sound(enemy *ThisRobot)
 
 	// Ensure that SoundCode will index a sound in the sounds[] c string array.
 	if ((SoundCode < 0) || (SoundCode >= (sizeof(sounds) / sizeof(sounds[0])))) {
-		ErrorMessage(__FUNCTION__, "\nUnknown Greeting sound!!!", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Unknown Greeting sound!!!", PLEASE_INFORM);
 		return;
 	}
 
@@ -227,9 +227,8 @@ void play_item_sound(int item_type, struct gps *item_pos)
 	// First some sanity check...
 	//
 	if (item_type < 0) {
-		fprintf(stderr, "\n\nitem_type %d \n", item_type);
-		ErrorMessage(__FUNCTION__, "\
-		                           negative item type received!\n", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "\
+		                           negative item type received (%d)!", PLEASE_INFORM | IS_FATAL, item_type);
 	}
 	// Now we can proceed and just play the sound associated with that item...
 	//

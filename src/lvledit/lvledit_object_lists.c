@@ -309,8 +309,8 @@ void lvledit_set_obstacle_list_for_category(const char *category_name, struct dy
 			if (!strcmp(filename, current_filename)) {
 				// If the image isn't loaded the obstacle isn't inserted in the obstacle list
 				if (!image_loaded(get_obstacle_image(j, 0))) {
-					ErrorMessage(__FUNCTION__, "The image '%s' for obstacle %d isn't loaded. The obstacle won't be included in obstacle list in the leveleditor.",
-						PLEASE_INFORM, IS_WARNING_ONLY, current_filename, j);
+					error_message(__FUNCTION__, "The image '%s' for obstacle %d isn't loaded. The obstacle won't be included in obstacle list in the leveleditor.",
+						PLEASE_INFORM, current_filename, j);
 					break;
 				}
 
@@ -320,7 +320,7 @@ void lvledit_set_obstacle_list_for_category(const char *category_name, struct dy
 		}
 
 		if (j == obstacle_map.size)
-			ErrorMessage(__FUNCTION__, "Could not find obstacle with the given filename: %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
+			error_message(__FUNCTION__, "Could not find obstacle with the given filename: %s.", PLEASE_INFORM, filename);
 	}
 	idx_list[idx] = -1;
 
@@ -331,7 +331,7 @@ void lvledit_set_obstacle_list_for_category(const char *category_name, struct dy
 		}
 	}
 
-	ErrorMessage(__FUNCTION__, "Unknown obstacle category: %s.", PLEASE_INFORM, IS_WARNING_ONLY, category_name);
+	error_message(__FUNCTION__, "Unknown obstacle category: %s.", PLEASE_INFORM, category_name);
 }
 
 static void sort_floor_tiles_by_categories(struct dynarray *floor_tiles, int base, int *sidewalk, int *water, int *grass, int *square, int *sand, int *other)

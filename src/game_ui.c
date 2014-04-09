@@ -409,10 +409,10 @@ static struct widget_group *create_hud_bar()
 	int left_scaling_panel_x = left_panel_x + img_1->w;
 	int fill = center_panel_x - left_scaling_panel_x;
 	if (fill < 0)
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 			"No space left to place the following background spacer image: %s.\n\n"
 			"You need to run the game in a higher resolution mode",
-			PLEASE_INFORM, IS_FATAL,
+			PLEASE_INFORM | IS_FATAL,
 			"widgets/hud_background_2.png");
 	if (fill > 0)
 		widget_background_add(panel, img_2, left_scaling_panel_x, WIDGET(panel)->rect.y, fill, img_2->h, 0);
@@ -421,10 +421,10 @@ static struct widget_group *create_hud_bar()
 	int right_scaling_panel_x = center_panel_x + img_3->w;
 	fill = right_panel_x - right_scaling_panel_x;
 	if (fill < 0)
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 			"No space left to place the following background spacer image: %s.\n\n"
 			"You need to run the game in a higher resolution mode",
-			PLEASE_INFORM, IS_FATAL,
+			PLEASE_INFORM | IS_FATAL,
 			"widgets/hud_background_4.png");
 	if (fill > 0)
 		widget_background_add(panel, img_4, right_scaling_panel_x, WIDGET(panel)->rect.y, fill, img_4->h, 0);

@@ -540,7 +540,7 @@ void adapt_button_positions_to_screen_resolution(void);
 #else
 #define PRINTF_FMT_ATTRIBUTE(fmt,firstarg)
 #endif
-void ErrorMessage(const char *FunctionName, const char *ProblemDescription, int InformDevelopers, int IsFatal, ...) PRINTF_FMT_ATTRIBUTE(2,5);
+void error_message(const char *, const char *, int, ...) PRINTF_FMT_ATTRIBUTE(2,4);
 void ShowGenericButtonFromList(int ButtonIndex);
 int mouse_cursor_is_on_that_image(float pos_x, float pos_y, struct image *our_iso_image);
 int MouseCursorIsInRect(const SDL_Rect *, int, int);

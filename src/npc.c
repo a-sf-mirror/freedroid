@@ -51,7 +51,7 @@ struct npc *npc_get(const char *dialog_basename)
 			return n;
 	}
 
-	ErrorMessage(__FUNCTION__, "Could not find NPC with name \"%s\".", PLEASE_INFORM, IS_WARNING_ONLY, dialog_basename);
+	error_message(__FUNCTION__, "Could not find NPC with name \"%s\".", PLEASE_INFORM, dialog_basename);
 	return NULL;
 }
 
@@ -116,7 +116,7 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name, int wei
 	}
 
 	if (i == MAX_ITEMS_IN_NPC_SHOPLIST) {
-		ErrorMessage(__FUNCTION__, "Shop list for character \"%s\" is full. Cannot add item \"%s\".\n", PLEASE_INFORM, IS_WARNING_ONLY, n->dialog_basename, item_name);
+		error_message(__FUNCTION__, "Shop list for character \"%s\" is full. Cannot add item \"%s\".", PLEASE_INFORM, n->dialog_basename, item_name);
 		return 1;
 	}
 
@@ -171,7 +171,7 @@ static int add_item(struct npc *n, const char *item_id)
 
 	// Check to make certain we recieved a valid item name
 	if ((item_type < 0) || (item_type >= Number_Of_Item_Types)) {
-		ErrorMessage(__FUNCTION__, "No items with the name \"%s\" exist in the game. Cannot create item.\nCannot add item to shop.\n", PLEASE_INFORM, IS_WARNING_ONLY, item_id);
+		error_message(__FUNCTION__, "No items with the name \"%s\" exist in the game. Cannot create item.\nCannot add item to shop.", PLEASE_INFORM, item_id);
 		return 1;
 	}
 

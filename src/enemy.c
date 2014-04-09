@@ -100,7 +100,7 @@ static int enemy_find_closest_waypoint(struct enemy *this_bot)
 	}
 
 	if (best_waypoint == -1)
-		ErrorMessage(__FUNCTION__, "Found no closest waypoint on level %d.", PLEASE_INFORM, IS_WARNING_ONLY, lvl->levelnum);
+		error_message(__FUNCTION__, "Found no closest waypoint on level %d.", PLEASE_INFORM, lvl->levelnum);
 
 	return best_waypoint;
 }
@@ -164,13 +164,13 @@ int teleport_to_random_waypoint(enemy *erot, level *this_level, char *wp_used)
 	// Use a fallback waypoint if no free waypoint is found
 	if (found_wp == -1) {
 		if (last_checked_wp == -1) {
-			ErrorMessage(__FUNCTION__, "All waypoints on level %d are forbidden for random bots. Something is wrong."
-			                           " Forcing the bot to teleport to a forbidden waypoint.\n",
-			                           PLEASE_INFORM, IS_WARNING_ONLY, this_level->levelnum);
+			error_message(__FUNCTION__, "All waypoints on level %d are forbidden for random bots. Something is wrong."
+			                           " Forcing the bot to teleport to a forbidden waypoint.",
+			                           PLEASE_INFORM, this_level->levelnum);
 			found_wp = start_wp;
 		} else {
-			ErrorMessage(__FUNCTION__, "There was no free waypoint found on level %d to place another random bot.\n",
-			                            NO_NEED_TO_INFORM, IS_WARNING_ONLY, this_level->levelnum);
+			error_message(__FUNCTION__, "There was no free waypoint found on level %d to place another random bot.",
+			                            NO_REPORT, this_level->levelnum);
 			found_wp = last_checked_wp;
 		}
 	}
@@ -191,10 +191,10 @@ void teleport_enemy(enemy *robot, int z, float x, float y)
 {
 	// Check the validity of the teleport destination
 	if (!level_exists(z) || !pos_inside_level(x, y, curShip.AllLevels[z])) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 				Trying to teleport NPC (dialog name %s) from x=%f y=%f level=%d to x=%f y=%f level=%d\n\
 				is not possible because the target location is not valid.", 
-				PLEASE_INFORM, IS_WARNING_ONLY, robot->dialog_section_name, robot->pos.x, robot->pos.y, robot->pos.z, x, y, z);
+				PLEASE_INFORM, robot->dialog_section_name, robot->pos.x, robot->pos.y, robot->pos.z, x, y, z);
 		return;
 	}
 
@@ -637,12 +637,11 @@ static int set_new_random_waypoint(enemy *this_robot)
 	int num_conn = current_waypoint->connections.size;
 	if (num_conn == 0)	// no connections found!
 	{
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 				     "Found a waypoint without connection\n"
 				     "The offending waypoint nr. is: %d at %d, %d.\n"
-				     "The map level in question got nr.: %d.\n",
+				     "The map level in question got nr.: %d.",
 				     PLEASE_INFORM,
-				     IS_WARNING_ONLY,
 				     this_robot->nextwaypoint, current_waypoint->x, current_waypoint->y,
 				     this_robot->pos.z);
 		return FALSE;
@@ -798,7 +797,7 @@ void DropEnemyTreasure(Enemy ThisRobot)
 		// We make sure the item created is of a reasonable type
 		//
 		if ((ThisRobot->on_death_drop_item_code <= 0) || (ThisRobot->on_death_drop_item_code >= Number_Of_Item_Types)) {
-			ErrorMessage(__FUNCTION__, "Bot at %f %f (level %d, dialog %s) is specified to drop an item that doesn't exist (item type %d).", PLEASE_INFORM, IS_WARNING_ONLY, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z, ThisRobot->dialog_section_name, ThisRobot->on_death_drop_item_code);
+			error_message(__FUNCTION__, "Bot at %f %f (level %d, dialog %s) is specified to drop an item that doesn't exist (item type %d).", PLEASE_INFORM, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z, ThisRobot->dialog_section_name, ThisRobot->on_death_drop_item_code);
 			return;
 		}
 
@@ -822,11 +821,11 @@ int MakeSureEnemyIsInsideHisLevel(Enemy ThisRobot)
 	// that's an error and needs to be corrected.
 	//
 	if (!pos_inside_level(ThisRobot->pos.x, ThisRobot->pos.y, curShip.AllLevels[ThisRobot->pos.z])) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 There was a droid found outside the bounds of this level (when dying).\n\
 This is an error and should not occur, but most likely it does since\n\
 the bots are allowed some motion without respect to existing waypoints\n\
-in FreedroidRPG.\n", PLEASE_INFORM, IS_FATAL);
+in FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
 		return (FALSE);
 	}
 
@@ -862,7 +861,7 @@ static void enemy_spray_blood(enemy * CurEnemy)
 		blood_group = get_obstacle_group_by_name("oil stains");
 
 	if (!blood_group) {
-		ErrorMessage(__FUNCTION__, "Could not find obstacle group for blood.", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Could not find obstacle group for blood.", PLEASE_INFORM);
 		return;
 	}
 
@@ -2589,9 +2588,9 @@ void animate_enemy(enemy *our_enemy)
 		break;
 	default:
 		fprintf(stderr, "\nThe animation type found is: %d.", our_enemy->animation_type);
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 		    There was an animation type encountered that isn't defined in FreedroidRPG.\n\
-		    That means:  Something is going *terribly* wrong!", PLEASE_INFORM, IS_FATAL);
+		    That means:  Something is going *terribly* wrong!", PLEASE_INFORM | IS_FATAL);
 		break;
 	}
 }
@@ -2714,7 +2713,7 @@ int get_droid_type(const char *type_name)
 			return i;
 	}
 
-	ErrorMessage(__FUNCTION__, "Droid type \"%s\" does not exist.", PLEASE_INFORM, IS_WARNING_ONLY, type_name);
+	error_message(__FUNCTION__, "Droid type \"%s\" does not exist.", PLEASE_INFORM, type_name);
 
 	return 0;
 }

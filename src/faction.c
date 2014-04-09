@@ -66,7 +66,7 @@ enum faction_id get_faction_id(const char *name)
 			return factions[i].id;
 	}
 
-	ErrorMessage(__FUNCTION__, "Faction name %s does not exist.", PLEASE_INFORM, IS_WARNING_ONLY, name);
+	error_message(__FUNCTION__, "Faction name %s does not exist.", PLEASE_INFORM, name);
 	return FACTION_SELF;
 }
 
@@ -78,7 +78,7 @@ enum faction_id get_faction_id(const char *name)
 const char *get_faction_from_id(int faction_id)
 {
 	if ((faction_id < 0) || (faction_id >= (sizeof(factions) / sizeof(factions[0])))) {
-		ErrorMessage(__FUNCTION__, "Malformed faction id! Faction %d does not exist.", PLEASE_INFORM, IS_WARNING_ONLY, faction_id);
+		error_message(__FUNCTION__, "Malformed faction id! Faction %d does not exist.", PLEASE_INFORM, faction_id);
 		return factions[FACTION_SELF].name;
 	}
 

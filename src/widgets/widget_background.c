@@ -159,11 +159,11 @@ void widget_background_load_3x3_tiles(struct widget_background *panel, char *bas
 
 	// Check if the original tiles' size is bigger than the panel's size.
 	if (width > WIDGET(panel)->rect.w || height > WIDGET(panel)->rect.h)
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 			"The following tile set cannot be loaded: %s.\n"
 			"(minimum required widget size: %i x %i - available widget size: %i x %i)\n\n"
 			"You need to run the game in a higher resolution mode",
-			PLEASE_INFORM, IS_FATAL,
+			PLEASE_INFORM | IS_FATAL,
 			base_name, width, height, WIDGET(panel)->rect.w, WIDGET(panel)->rect.h);
 
 	// Compute tiles position

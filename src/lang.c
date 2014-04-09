@@ -59,7 +59,7 @@ void lang_set(const char *locale)
 	}
 
 	if (!setlocale(LC_MESSAGES, "")) {
-		ErrorMessage(__FUNCTION__, "Error when calling setlocale() to set %s locale\n", PLEASE_INFORM, IS_WARNING_ONLY, locale);
+		error_message(__FUNCTION__, "Error when calling setlocale() to set %s locale", PLEASE_INFORM, locale);
 		return;
 	}
 
@@ -89,8 +89,8 @@ void lang_init()
 
 	const char *localedir = data_dirs[LOCALE_DIR].path;
 	if (strlen(localedir) == 0) {
-		ErrorMessage(__FUNCTION__, "Locale dir not found. Disabling localization.\n",
-		             NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Locale dir not found. Disabling localization.",
+		             NO_REPORT);
 		setlocale(LC_MESSAGES, "C");
 	} else {
 		// i18n text domain declarations.

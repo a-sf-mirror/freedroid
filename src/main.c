@@ -188,8 +188,8 @@ int main(int argc, char *argv[])
 			LevelEditor();
 			break;
 		case ROOT_IS_UNKNOWN:
-			ErrorMessage(__FUNCTION__, "Game root mode is unknown - was not properly set to GAME or LVLEDIT.\n", PLEASE_INFORM,
-				     IS_FATAL);
+			error_message(__FUNCTION__, "Game root mode is unknown - was not properly set to GAME or LVLEDIT.",
+					PLEASE_INFORM | IS_FATAL);
 			break;
 		}
 	}			// while !QuitProgram 

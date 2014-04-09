@@ -545,9 +545,9 @@ int MouseCursorIsOnButton(int ButtonIndex, int x, int y)
 	// some sense.
 	//
 	if ((ButtonIndex >= MAX_MOUSE_PRESS_BUTTONS) || (ButtonIndex < 0)) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 A Button that should be checked for mouse contact was requested, but the\n\
-button index given exceeds the number of buttons defined in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
+button index given exceeds the number of buttons defined in FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
 	}
 
 	Copy_Rect(AllMousePressButtons[ButtonIndex].button_rect, temp_rect);
@@ -579,8 +579,8 @@ void ShowGenericButtonFromList(int ButtonIndex)
 
 	// Safety check
 	if ((ButtonIndex >= MAX_MOUSE_PRESS_BUTTONS) || (ButtonIndex < 0)) {
-		ErrorMessage(__FUNCTION__, "Request to display button index %d could not be fulfilled: the\n\
-				button index given exceeds the number of buttons defined in FreedroidRPG.", PLEASE_INFORM, IS_WARNING_ONLY, ButtonIndex);
+		error_message(__FUNCTION__, "Request to display button index %d could not be fulfilled: the\n\
+				button index given exceeds the number of buttons defined in FreedroidRPG.", PLEASE_INFORM, ButtonIndex);
 		return;
 	}
 
@@ -652,8 +652,8 @@ int init_data_dirs_path()
 #endif
 				int nb = snprintf(data_dirs[j].path, PATH_MAX, "%s/%s", dir, data_dirs[j].name);
 				if (nb >= PATH_MAX) {
-					ErrorMessage(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s/%s",
-					             PLEASE_INFORM, IS_FATAL, dir, data_dirs[j].name);
+					error_message(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s/%s",
+					             PLEASE_INFORM | IS_FATAL, dir, data_dirs[j].name);
 				}
 			}
 			fclose(f);
@@ -663,11 +663,11 @@ int init_data_dirs_path()
 
 	// The searched file was not found. Complain.
 	if (getcwd(file_path, PATH_MAX)) {
-		ErrorMessage(__FUNCTION__, "Data dirs not found ! (current directory: %s)",
-	                 PLEASE_INFORM, IS_FATAL, file_path);
+		error_message(__FUNCTION__, "Data dirs not found ! (current directory: %s)",
+	                 PLEASE_INFORM | IS_FATAL, file_path);
 	} else {
-		ErrorMessage(__FUNCTION__, "Data dirs not found ! (and cannot find the current working directory)",
-	                 PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Data dirs not found ! (and cannot find the current working directory)",
+	                 PLEASE_INFORM | IS_FATAL);
 	}
 
 	return 0;
@@ -684,8 +684,8 @@ static int _file_exists(const char *fname, const char *subdir, char *file_path)
 	int nb = snprintf(file_path, PATH_MAX, "%s/%s", subdir, fname);
 	if (nb >= PATH_MAX) {
 		*file_path = 0;
-		ErrorMessage(__FUNCTION__, "Pathname too long (max is %d): %s/%s",
-		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, PATH_MAX, subdir, fname);
+		error_message(__FUNCTION__, "Pathname too long (max is %d): %s/%s",
+		             NO_REPORT, PATH_MAX, subdir, fname);
 		return 0;
 	}
 
@@ -709,14 +709,14 @@ static int _file_exists(const char *fname, const char *subdir, char *file_path)
 int find_file(const char *fname, int subdir_handle, char *file_path)
 {
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
-		ErrorMessage(__FUNCTION__, "Called with a wrong subdir handle (%d)",
-		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, subdir_handle);
+		error_message(__FUNCTION__, "Called with a wrong subdir handle (%d)",
+		             NO_REPORT, subdir_handle);
 		return 1;
 	}
 
 	if (!_file_exists(fname, data_dirs[subdir_handle].path, file_path)) {
-		ErrorMessage(__FUNCTION__, "File %s not found in %s/",
-		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname, data_dirs[subdir_handle].name);
+		error_message(__FUNCTION__, "File %s not found in %s",
+		             NO_REPORT, fname, data_dirs[subdir_handle].name);
 		return 1;
 	}
 
@@ -740,8 +740,8 @@ int find_localized_file(const char *fname, int subdir_handle, char *file_path)
 {
 #ifdef ENABLE_NLS
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
-		ErrorMessage(__FUNCTION__, "Called with a wrong subdir handle (%d)",
-		             NO_NEED_TO_INFORM, IS_WARNING_ONLY, subdir_handle);
+		error_message(__FUNCTION__, "Called with a wrong subdir handle (%d)",
+		             NO_REPORT, subdir_handle);
 		return 1;
 	}
 
@@ -768,8 +768,8 @@ int find_localized_file(const char *fname, int subdir_handle, char *file_path)
 		char l10ndir[PATH_MAX];
 		int nb = snprintf(l10ndir, PATH_MAX, "%s/%s", data_dirs[subdir_handle].path, locale);
 		if (nb >= PATH_MAX) {
-			ErrorMessage(__FUNCTION__, "Dirname too long (max is %d): %s/%s - Using untranslated version of %s",
-			             NO_NEED_TO_INFORM, IS_WARNING_ONLY, PATH_MAX, data_dirs[subdir_handle].path, locale, fname);
+			error_message(__FUNCTION__, "Dirname too long (max is %d): %s/%s - Using untranslated version of %s",
+			             NO_REPORT, PATH_MAX, data_dirs[subdir_handle].path, locale, fname);
 			break;
 		}
 		if (_file_exists(fname, l10ndir, file_path)) {
@@ -1050,10 +1050,10 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading, int with_an
 		if (!level_exists(LNum) || !pos_inside_level(Me.pos.x, Me.pos.y, curShip.AllLevels[LNum])) {
 			fprintf(stderr, "\n\ntarget location was: lev=%d x=%f y=%f.\n", LNum, X, Y);
 			fprintf(stderr, "source location was: lev=%d x=%f y=%f.", Me.pos.z, Me.pos.x, Me.pos.y);
-			ErrorMessage(__FUNCTION__, "\
+			error_message(__FUNCTION__, "\
 A Teleport was requested, but the location to teleport to lies beyond\n\
 the bounds of this 'ship' which means the current collection of levels.\n\
-This indicates an error in the map system of FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
+This indicates an error in the map system of FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
 		}
 
 		// Refresh some speed-up data structures
@@ -1179,7 +1179,7 @@ int LoadGameConfig(void)
 
 	char *stuff = (char *)malloc(FS_filelength(configfile) + 1);
 	if (fread(stuff, FS_filelength(configfile), 1, configfile) != 1) {
-		ErrorMessage(__FUNCTION__, "\nFailed to read config file: %s.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
+		error_message(__FUNCTION__, "\nFailed to read config file: %s.", NO_REPORT, fname);
 		fclose(configfile);
 		free(stuff);
 		return ERR;
@@ -1188,7 +1188,7 @@ int LoadGameConfig(void)
 	fclose(configfile);
 
 	if (setjmp(saveload_jmpbuf)) {
-		ErrorMessage(__FUNCTION__, "Failed to read config file: %s.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
+		error_message(__FUNCTION__, "Failed to read config file: %s.", NO_REPORT, fname);
 		configfile = NULL;
 		free(stuff);
 		ResetGameConfigToDefaultValues();
@@ -1202,14 +1202,14 @@ int LoadGameConfig(void)
 	free(stuff);
 
 	if (!GameConfig.freedroid_version_string || strcmp(GameConfig.freedroid_version_string, VERSION)) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 Settings file found in your ~/.freedroid_rpg dir does not\n\
 seem to be from the same version as this installation of FreedroidRPG.\n\
 This is perfectly normal if you have just upgraded your version of\n\
 FreedroidRPG.  However, the loading of your settings will be canceled now,\n\
 because the format of the settings file is no longer supported.\n\
 No need to panic.  The default settings will be used instead and a new\n\
-settings file will be generated.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+settings file will be generated.", NO_REPORT);
 		ResetGameConfigToDefaultValues();
 		return (ERR);
 	};
@@ -1292,7 +1292,7 @@ int SaveGameConfig(void)
 	savestruct_autostr = alloc_autostr(4096);
 	save_freedroid_configuration(savestruct_autostr);
 	if (fwrite(savestruct_autostr->value, savestruct_autostr->length, 1, config_file) != 1) {
-		ErrorMessage(__FUNCTION__, "Failed to write configuration file: %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
+		error_message(__FUNCTION__, "Failed to write configuration file: %s", NO_REPORT, fname);
 		free_autostr(savestruct_autostr);	
 		return ERR;
 	}
@@ -1385,7 +1385,7 @@ obstacle *give_pointer_to_obstacle_with_label(const char *obstacle_label, int *l
 		}
 	}
 
-	ErrorMessage(__FUNCTION__, "Obstacle label \"%s\" was not found on the map.", PLEASE_INFORM, IS_FATAL, obstacle_label);
+	error_message(__FUNCTION__, "Obstacle label \"%s\" was not found on the map.", PLEASE_INFORM | IS_FATAL, obstacle_label);
 	return NULL;
 }
 
@@ -1428,7 +1428,7 @@ int fd_setenv(const char *var, const char *val, int overwrite)
 	ret = putenv(env);
 	if (ret != 0) {
 		free(env);
-		ErrorMessage(__FUNCTION__, "Error when calling putenv() to set %s to %s\n", PLEASE_INFORM, IS_WARNING_ONLY, var, val);
+		error_message(__FUNCTION__, "Error when calling putenv() to set %s to %s\n", PLEASE_INFORM, var, val);
 		return ret;
 	}
 	if (oldenv != NULL) {
@@ -1459,7 +1459,7 @@ int fd_unsetenv(const char *var)
 	ret = putenv(env);
 	if (ret != 0) {
 		free(env);
-		ErrorMessage(__FUNCTION__, "Error when calling putenv() to unset %s\n", PLEASE_INFORM, IS_WARNING_ONLY, var);
+		error_message(__FUNCTION__, "Error when calling putenv() to unset %s\n", PLEASE_INFORM, var);
 		return ret;
 	}
 	if (oldenv != NULL) {

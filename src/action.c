@@ -431,7 +431,7 @@ static int reach_obstacle_from_specific_direction(level *obst_lvl, int obst_inde
 		Me.mouse_move_target.y -= spec->block_area_parm_2;
 		break;
 	default:
-		ErrorMessage(__FUNCTION__, "Invalid direction!!", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Invalid direction!!", PLEASE_INFORM | IS_FATAL);
 		break;
 	}
     return 0;
@@ -500,7 +500,7 @@ static int approach(int type)
 	}
 
 
-	ErrorMessage(__FUNCTION__, "Tried to approach obstacle type %d, but this is not a known type.", PLEASE_INFORM, IS_WARNING_ONLY, type);
+	error_message(__FUNCTION__, "Tried to approach obstacle type %d, but this is not a known type.", PLEASE_INFORM, type);
 
 	return UNDEFINED;
 }
@@ -729,7 +729,7 @@ action_fptr get_action_by_name(const char *action_name)
 			return action_map[i].action;
 	}
 
-	ErrorMessage(__FUNCTION__, "\nUnknown obstacle action '%s'.\n", PLEASE_INFORM, IS_FATAL, action_name);
+	error_message(__FUNCTION__, "\nUnknown obstacle action '%s'.", PLEASE_INFORM | IS_FATAL, action_name);
 	return NULL;
 }
 

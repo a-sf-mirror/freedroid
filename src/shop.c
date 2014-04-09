@@ -245,7 +245,7 @@ void ShowItemPicture(int PosX, int PosY, int Number)
 				NumberOfImagesInThisRotation = i;
 
 				if (!NumberOfImagesInThisRotation)
-					ErrorMessage(__FUNCTION__, "Unable to load any item rotation image for item \"%s\". File \"%s\" was not found.", PLEASE_INFORM, IS_WARNING_ONLY, ItemMap[Number].id, ConstructedFileName);
+					error_message(__FUNCTION__, "Unable to load any item rotation image for item \"%s\". File \"%s\" was not found.", PLEASE_INFORM, ItemMap[Number].id, ConstructedFileName);
 
 				break;
 			}
@@ -680,14 +680,14 @@ static void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 	// items, so some extra care will be taken here...
 	//
 	if (SellItem->multiplicity < 1) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 		An item sold seemed to have multiplicity < 1.  This might be due to some\n\
 		fatal errors in the engine OR it might be due to some items dropped on the\n\
 		maps somewhere long ago still had multiplicity=0 setting, which should not\n\
 		normally occur with 'freshly' generated items.  Well, that's some dust from\n\
 		the past, but now it should be fixed and not occur in future releases (0.9.10\n\
 		    or later) of the game.  If you encounter this message after release 0.9.10,\n\
-		please inform the developers...", PLEASE_INFORM, IS_WARNING_ONLY);
+		please inform the developers...", PLEASE_INFORM);
 	}
 
 	if (AmountToSellAtMost > SellItem->multiplicity)

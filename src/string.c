@@ -93,7 +93,7 @@ static int autostr_vprintf(struct auto_string *str, unsigned long offset,
 	va_end(tmp_args);
 
 	if (nr < 0) {
-		ErrorMessage(__FUNCTION__, "An error occurred when calling vsnprintf: %s\n", PLEASE_INFORM, IS_WARNING_ONLY, strerror(errno));
+		error_message(__FUNCTION__, "An error occurred when calling vsnprintf: %s", PLEASE_INFORM, strerror(errno));
 		return -1;
 	}
 

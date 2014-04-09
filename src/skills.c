@@ -123,7 +123,7 @@ void downgrade_program(int prog_id)
 			}
 		}
 
-		ErrorMessage(__FUNCTION__, "No skills are available for selection.", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "No skills are available for selection.", PLEASE_INFORM);
 	}
 }
 
@@ -201,8 +201,8 @@ int get_program_index_with_name(const char *pname)
 
 	fprintf(stderr, "%s\n", pname);
 
-	ErrorMessage(__FUNCTION__, "\
-FreedroidRPG could not find the program name above in the program spec array!", PLEASE_INFORM, IS_FATAL);
+	error_message(__FUNCTION__, "\
+FreedroidRPG could not find the program name above in the program spec array!", PLEASE_INFORM | IS_FATAL);
 	return -1;
 }
 
@@ -657,9 +657,9 @@ void activate_nth_skill(int skill_num)
 	if (Me.skill_level[skill_num] > 0) {
 		Me.readied_skill = skill_num;
 	} else {
-		ErrorMessage(__FUNCTION__,
-			"Tried to activate skill number %d which was not acquired yet.\n",
-				PLEASE_INFORM, IS_WARNING_ONLY, skill_num);
+		error_message(__FUNCTION__,
+			"Tried to activate skill number %d which was not acquired yet.",
+				PLEASE_INFORM, skill_num);
 	}
 
 };				// void activate_nth_skill ( int skill_num )
@@ -682,9 +682,9 @@ void set_nth_quick_skill(int quick_skill)
 			
 		if (Me.skill_level[ski] <=  0) {
 			// Invalid skill was selected
-			ErrorMessage(__FUNCTION__,
-				"Tried to set skill number %d in quick skills. Skill was not acquired yet.\n",
-					PLEASE_INFORM, IS_WARNING_ONLY, ski);
+			error_message(__FUNCTION__,
+				"Tried to set skill number %d in quick skills. Skill was not acquired yet.",
+					PLEASE_INFORM, ski);
 			return;
 		}
 		int i;

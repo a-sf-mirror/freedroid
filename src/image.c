@@ -478,7 +478,7 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 	} else {
 
 		if (!source->surface) {
-			ErrorMessage(__FUNCTION__, "Trying to create subimage from image source %p (width %d height %d), but image SDL surface is NULL.", PLEASE_INFORM, IS_WARNING_ONLY, source, source->w, source->h);
+			error_message(__FUNCTION__, "Trying to create subimage from image source %p (width %d height %d), but image SDL surface is NULL.", PLEASE_INFORM, source, source->w, source->h);
 			return;
 		}
 
@@ -498,15 +498,15 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 	char fpath[PATH_MAX];
 
 	if (image_loaded(img)) {
-		ErrorMessage(__FUNCTION__, 
-				"The image has already been loaded: %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
+		error_message(__FUNCTION__,
+				"The image has already been loaded: %s.", PLEASE_INFORM, filename);
 		return;
 	}
 
 	find_file(filename, GRAPHICS_DIR, fpath);
 	SDL_Surface *surface = IMG_Load(fpath);
 	if (surface == NULL) {
-		ErrorMessage(__FUNCTION__, "Could not load image.\n File name: %s. IMG_GetError(): %s.\n", PLEASE_INFORM, IS_WARNING_ONLY, fpath, IMG_GetError());
+		error_message(__FUNCTION__, "Could not load image.\n File name: %s. IMG_GetError(): %s.", PLEASE_INFORM, fpath, IMG_GetError());
 		struct image empty = EMPTY_IMAGE;
 		*img = empty;
 		return;
@@ -541,7 +541,7 @@ void load_image(struct image *img, const char *filename, int use_offset_file)
 	load_image_surface(img, filename, use_offset_file);
 
 	if (use_open_gl && (img->w > gl_max_texture_size || img->h > gl_max_texture_size)) {
-		ErrorMessage(__FUNCTION__, "Your system only supports %dx%d textures. Image %s is %dx%d and therefore cannot be used as an OpenGL texture.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, gl_max_texture_size, gl_max_texture_size, filename, img->w, img->h);
+		error_message(__FUNCTION__, "Your system only supports %dx%d textures. Image %s is %dx%d and therefore cannot be used as an OpenGL texture.", NO_REPORT, gl_max_texture_size, gl_max_texture_size, filename, img->w, img->h);
 		return;
 	}
 

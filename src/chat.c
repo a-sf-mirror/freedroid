@@ -71,10 +71,10 @@ static void check_chat_context_stack_size()
 		first = FALSE;
 	}
 
-	ErrorMessage(__FUNCTION__, "The chat context stack reached its maximum (%d).\n"
+	error_message(__FUNCTION__, "The chat context stack reached its maximum (%d).\n"
 			                   "It could mean that we are under an infinite recursion attack, so our last defense is to stop the game.\n"
-			                   "Current dialog stack (from first to last stacked dialog):\n%s\n",
-			                   PLEASE_INFORM, IS_FATAL, CHAT_CONTEXT_STACK_SIZE, chat_stack_str->value);
+			                   "Current dialog stack (from first to last stacked dialog):\n%s",
+			                   PLEASE_INFORM | IS_FATAL, CHAT_CONTEXT_STACK_SIZE, chat_stack_str->value);
 }
 
 /**
@@ -209,13 +209,13 @@ static void fill_chat_selector(struct chat_context *context)
 	lua_remove(L, -2);
 	if (lua_pcall(L, 0, 1, 0)) {
 		DebugPrintf(-1, "error while calling FDdialog.get_options(): %s", lua_tostring(L, -1));
-		ErrorMessage(__FUNCTION__, "Aborting chat selector filling.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Aborting chat selector filling.", NO_REPORT);
 		return;
 	}
 
 	if (!lua_istable(L, -1)) {
 		DebugPrintf(-1, "function FDdialog.get_options() must return a table");
-		ErrorMessage(__FUNCTION__, "Aborting chat selector filling.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Aborting chat selector filling.", NO_REPORT);
 		return;
 	}
 

@@ -106,10 +106,8 @@ static void gl_debug_callback(GLenum source, GLenum type, GLuint id,
 	}
 
 	// Report a good looking error message
-	char buf[strlen(message) + 150];
-
-	sprintf(buf, "Source = %x, type = %x, id = %d, severity = %x: %s ", source, type, id, severity, message);
-	ErrorMessage(__FUNCTION__, buf, NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+	error_message(__FUNCTION__, "Source = %x, type = %x, id = %d, severity = %x: %s",
+			NO_REPORT, source, type, id, severity, message);
 }
 #endif // HAVE_LIBGL
 
@@ -132,7 +130,7 @@ int init_opengl_debug(void)
 	glDebugMessageCallback = SDL_GL_GetProcAddress("glDebugMessageCallback");
 
 	if (!glDebugMessageCallback || !glDebugMessageControl) {
-		ErrorMessage(__FUNCTION__, "Unable to retrieve function pointers for glDebugMessageCallback and glDebugMessageControl, but debug extension is present.", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Unable to retrieve function pointers for glDebugMessageCallback and glDebugMessageControl, but debug extension is present.", PLEASE_INFORM);
 		return 1;
 	}
 
@@ -156,7 +154,7 @@ void open_gl_check_error_status(const char *name_of_calling_function)
 {
 #ifdef HAVE_LIBGL
 	char *enum_str = "UNKNOWN";
-	int fatal = IS_WARNING_ONLY;
+	int error_type = PLEASE_INFORM;
 
 	switch (glGetError()) {
 		case GL_NO_ERROR:
@@ -172,19 +170,19 @@ void open_gl_check_error_status(const char *name_of_calling_function)
 			break;
 		case GL_STACK_OVERFLOW:
 			enum_str = "GL_STACK_OVERFLOW";
-			fatal = IS_FATAL;
+			error_type |= IS_FATAL;
 			break;
 		case GL_STACK_UNDERFLOW:
 			enum_str = "GL_STACK_UNDERFLOW";
-			fatal = IS_FATAL;
+			error_type |= IS_FATAL;
 			break;
 		case GL_OUT_OF_MEMORY:
 			enum_str = "GL_OUT_OF_MEMORY";
-			fatal = IS_FATAL;
+			error_type |= IS_FATAL;
 			break;
 	}
 	
-	ErrorMessage(__FUNCTION__, "Error code %s received, called by %s.", PLEASE_INFORM, fatal, enum_str, name_of_calling_function);
+	error_message(__FUNCTION__, "Error code %s received, called by %s.", error_type, enum_str, name_of_calling_function);
 #endif
 }
 

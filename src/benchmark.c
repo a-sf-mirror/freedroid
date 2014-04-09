@@ -131,8 +131,8 @@ static int savegame_bench()
 
 	// Load it
 	if (LoadGame() == ERR) {
-		ErrorMessage(__FUNCTION__, "Whoops, that failed. Maybe you have to save a game under the name \"MapEd\" to make this work?\n",
-				NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Whoops, that failed. Maybe you have to save a game under the name \"MapEd\" to make this work?",
+				NO_REPORT);
 		return -1;
 	}
 	

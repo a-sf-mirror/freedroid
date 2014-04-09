@@ -143,8 +143,8 @@ void respawn_level(int level_num)
 				}
 			}
 		} else {
-			ErrorMessage(__FUNCTION__, "There is no waypoint on level %d - unable to place random bots.\n",
-					PLEASE_INFORM, IS_WARNING_ONLY, level_num);
+			error_message(__FUNCTION__, "There is no waypoint on level %d - unable to place random bots.",
+					PLEASE_INFORM, level_num);
 		}
 	}
 }
@@ -174,9 +174,9 @@ gps get_map_label_center(const char *map_label)
 		}
 	}
 
-	ErrorMessage(__FUNCTION__, "\
+	error_message(__FUNCTION__, "\
 Resolving map label   \"%s\"   failed on the entire world!\n\
-This is a severe error in the game data of FreedroidRPG.", PLEASE_INFORM, IS_WARNING_ONLY, map_label);
+This is a severe error in the game data of FreedroidRPG.", PLEASE_INFORM, map_label);
 
 	return position;
 };
@@ -340,10 +340,10 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 	}
 
 	if (loadlevel->ylen >= MAX_MAP_LINES) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 A map/level in FreedroidRPG which was supposed to load has more map lines than allowed\n\
 for a map/level as by the constant MAX_MAP_LINES in defs.h.\n\
-Sorry, but unless this constant is raised, FreedroidRPG will refuse to load this map.", PLEASE_INFORM, IS_FATAL);
+Sorry, but unless this constant is raised, FreedroidRPG will refuse to load this map.", PLEASE_INFORM | IS_FATAL);
 	}
 }
 
@@ -1012,7 +1012,7 @@ Uint16 get_map_brick(level *lvl, float x, float y, int layer)
 
 	if (BrickWanted >= underlay_floor_tiles.size) {
 		if (BrickWanted < MAX_UNDERLAY_FLOOR_TILES || (BrickWanted - MAX_UNDERLAY_FLOOR_TILES) >= overlay_floor_tiles.size) {
-			ErrorMessage(__FUNCTION__, "Level %d at %d %d in %d layer uses an unknown floor tile: %d.\n", PLEASE_INFORM, IS_WARNING_ONLY,
+			error_message(__FUNCTION__, "Level %d at %d %d in %d layer uses an unknown floor tile: %d.", PLEASE_INFORM,
 				lvl->levelnum, RoundX, RoundY, layer, BrickWanted);
 			return ISO_FLOOR_EMPTY;
 		}
@@ -1036,13 +1036,13 @@ static level *decode_level(char **buffer)
 	loadlevel = (level *)MyMalloc(sizeof(level));
 	
 	if (decode_header(loadlevel, data)) {
-		ErrorMessage(__FUNCTION__, "Unable to decode level header!", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Unable to decode level header!", PLEASE_INFORM | IS_FATAL);
 	}
 	
 	// The order of sections in the file has to match this.	
 	data = decode_map(loadlevel, data);
 	if (!data) {
-		ErrorMessage(__FUNCTION__, "Unable to decode the map for level %d\n", PLEASE_INFORM, IS_FATAL, loadlevel->levelnum);
+		error_message(__FUNCTION__, "Unable to decode the map for level %d", PLEASE_INFORM | IS_FATAL, loadlevel->levelnum);
 	}
 	data = decode_obstacles(loadlevel, data);
 	data = decode_map_labels(loadlevel, data);
@@ -1144,18 +1144,18 @@ int LoadShip(char *filename, int compressed)
 	//
 	ShipFile = fopen(filename, "rb");
 	if (!ShipFile) {
-		ErrorMessage(__FUNCTION__, "Unable to open ship file %s: %s.\n", PLEASE_INFORM, IS_FATAL, filename, strerror(errno));
+		error_message(__FUNCTION__, "Unable to open ship file %s: %s.", PLEASE_INFORM | IS_FATAL, filename, strerror(errno));
 	}
 
 	if (compressed) {
 		if (inflate_stream(ShipFile, (unsigned char **)&ShipData, NULL)) {
-			ErrorMessage(__FUNCTION__, "Unable to decompress ship file %s.\n", PLEASE_INFORM, IS_FATAL, filename);
+			error_message(__FUNCTION__, "Unable to decompress ship file %s.", PLEASE_INFORM | IS_FATAL, filename);
 		}
 	} else {
 		int length = FS_filelength(ShipFile);
 		ShipData = malloc(length + 1);
 		if (!fread(ShipData, length, 1, ShipFile))
-			ErrorMessage(__FUNCTION__, "Reading ship file %s failed with fread().\n", PLEASE_INFORM, IS_FATAL, filename);
+			error_message(__FUNCTION__, "Reading ship file %s failed with fread().", PLEASE_INFORM | IS_FATAL, filename);
 		ShipData[length] = 0;
 	}
 
@@ -1169,11 +1169,11 @@ int LoadShip(char *filename, int compressed)
 		int this_levelnum = this_level->levelnum;
 
 		if (this_levelnum >= MAX_LEVELS)
-			ErrorMessage(__FUNCTION__, "One levelnumber in savegame (%d) is bigger than the maximum allowed (%d).\n",
-				     PLEASE_INFORM, IS_FATAL, this_levelnum, MAX_LEVELS - 1);
+			error_message(__FUNCTION__, "One levelnumber in savegame (%d) is bigger than the maximum allowed (%d).",
+					PLEASE_INFORM | IS_FATAL, this_levelnum, MAX_LEVELS - 1);
 		if (level_exists(this_levelnum))
-			ErrorMessage(__FUNCTION__, "Two levels with same levelnumber (%d) found in the savegame.\n", PLEASE_INFORM,
-				     IS_FATAL, this_levelnum);
+			error_message(__FUNCTION__, "Two levels with same levelnumber (%d) found in the savegame.",
+					PLEASE_INFORM | IS_FATAL, this_levelnum);
 
 		curShip.AllLevels[this_levelnum] = this_level;
 		curShip.num_levels = this_levelnum + 1;
@@ -1194,7 +1194,7 @@ int LoadShip(char *filename, int compressed)
 	int check_level = curShip.num_levels;
 	while (check_level--) {
 		if (!level_exists(check_level)) {
-			ErrorMessage(__FUNCTION__, "Level number %d should exist but is NULL.", PLEASE_INFORM, IS_FATAL, check_level);
+			error_message(__FUNCTION__, "Level number %d should exist but is NULL.", PLEASE_INFORM | IS_FATAL, check_level);
 		}
 	}
 
@@ -1511,7 +1511,7 @@ int SaveShip(const char *filename, int reset_random_levels, int compress)
 
 	// Open the ship file 
 	if ((ShipFile = fopen(filename, "wb")) == NULL) {
-		ErrorMessage(__FUNCTION__, "Error opening ship file %s for writing.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, filename);
+		error_message(__FUNCTION__, "Error opening ship file %s for writing.", NO_REPORT, filename);
 		return ERR;
 	}
 
@@ -1531,7 +1531,7 @@ int SaveShip(const char *filename, int reset_random_levels, int compress)
 		deflate_to_stream((unsigned char *)shipstr->value, shipstr->length, ShipFile);
 	}	else {
 		if (fwrite((unsigned char *)shipstr->value, shipstr->length, 1, ShipFile) != 1) {
-			ErrorMessage(__FUNCTION__, "Error writing ship file %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
+			error_message(__FUNCTION__, "Error writing ship file %s.", PLEASE_INFORM, filename);
 			fclose(ShipFile);
 			free_autostr(shipstr);
 			return ERR;
@@ -1539,7 +1539,7 @@ int SaveShip(const char *filename, int reset_random_levels, int compress)
 	}
 
 	if (fclose(ShipFile) == EOF) {
-		ErrorMessage(__FUNCTION__, "Closing of ship file failed!", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Closing of ship file failed!", PLEASE_INFORM);
 		free_autostr(shipstr);
 		return ERR;
 	}
@@ -1556,7 +1556,7 @@ int save_special_forces(const char *filename)
 	int i;
 
 	if ((s_forces_file = fopen(filename, "wb")) == NULL) {
-		ErrorMessage(__FUNCTION__, "Error opening Special Forces file %s for writing.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, filename);
+		error_message(__FUNCTION__, "Error opening Special Forces file %s for writing.", NO_REPORT, filename);
 		return ERR;
 	}
 
@@ -1598,13 +1598,13 @@ int save_special_forces(const char *filename)
 	autostr_append(s_forces_str, "*** End of Droid Data ***");
 
 	if (fwrite((unsigned char *)s_forces_str->value, s_forces_str->length, 1, s_forces_file) != 1) {
-		ErrorMessage(__FUNCTION__, "Error writing SpecialForces file %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
+		error_message(__FUNCTION__, "Error writing SpecialForces file %s.", PLEASE_INFORM, filename);
 		fclose(s_forces_file);
 		goto out;
 	}
 
 	if (fclose(s_forces_file) == EOF) {
-		ErrorMessage(__FUNCTION__, "Closing of Special Forces file failed!", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Closing of Special Forces file failed!", PLEASE_INFORM);
 		goto out;
 	}
 
@@ -1668,7 +1668,7 @@ int GetCrew(char *filename)
 		DebugPrintf(1, "\nFound another levels droids description starting point entry!");
 		EndOfThisDroidSectionPointer = strstr(DroidSectionPointer, DROIDS_LEVEL_DESCRIPTION_END_STRING);
 		if (EndOfThisDroidSectionPointer == NULL) {
-			ErrorMessage(__FUNCTION__, "Unterminated droid section encountered!", PLEASE_INFORM, IS_FATAL);
+			error_message(__FUNCTION__, "Unterminated droid section encountered!", PLEASE_INFORM | IS_FATAL);
 		}
 		// EndOfThisDroidSectionPointer[0]=0;
 		GetThisLevelsDroids(DroidSectionPointer);

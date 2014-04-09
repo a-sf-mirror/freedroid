@@ -423,7 +423,7 @@ static void fill_structure_from_table(lua_State *L, struct data_spec *data_specs
 void fill_dynarray_from_table(lua_State *L, struct dynarray *array, int datasize, void (*extract_cb)(lua_State *, void *))
 {
 	if (lua_type(L, -1) != LUA_TTABLE) {
-		ErrorMessage(__FUNCTION__, "A Lua table is expected, but was not found", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "A Lua table is expected, but was not found", PLEASE_INFORM | IS_FATAL);
 	}
 	if (lua_rawlen(L, -1) < 1) {
 		dynarray_free(array);
@@ -563,9 +563,9 @@ static int lua_tuxrendering_config_ctor(lua_State *L)
 
 	// At least one motion class needs to be defined
 	if (tux_rendering.motion_class_names.size < 1) {
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 			"Tux rendering specification is invalid: at least one motion_class is needed",
-			PLEASE_INFORM, IS_FATAL);
+			PLEASE_INFORM | IS_FATAL);
 	}
 
 	// Initialize the data structure used to store the Tux's parts rendering orders
@@ -608,10 +608,10 @@ static int lua_tuxordering_ctor(lua_State *L)
 	// ready to store the retrieved rendering orders)
 	int motion_class_id = get_motion_class_id_by_name(type);
 	if (motion_class_id == -1) {
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 				"Invalid tux_ordering spec:\n"
 				"Unknown motion_class (%s)",
-				PLEASE_INFORM, IS_FATAL, type);
+				PLEASE_INFORM | IS_FATAL, type);
 	}
 
 	// Fill the rendering order data structure according to what was retrieved
@@ -622,30 +622,30 @@ static int lua_tuxordering_ctor(lua_State *L)
 		// Check validity of the rotation index
 		int rotation_idx = ((int *)rotations.arr)[i];
 		if (rotation_idx < 0 || rotation_idx >= MAX_TUX_DIRECTIONS) {
-			ErrorMessage(__FUNCTION__,
+			error_message(__FUNCTION__,
 					"Invalid tux_ordering spec (motion_class: %s):\n"
 					"rotation index (%d) must be between 0 and %d",
-					PLEASE_INFORM, IS_FATAL, type, rotation_idx, MAX_TUX_DIRECTIONS - 1);
+					PLEASE_INFORM | IS_FATAL, type, rotation_idx, MAX_TUX_DIRECTIONS - 1);
 		}
 
 		// Check validity of the phase values
 		if (phase_start < 0 || phase_start >= TUX_TOTAL_PHASES) {
-			ErrorMessage(__FUNCTION__,
+			error_message(__FUNCTION__,
 					"Invalid tux_ordering spec (motion_class: %s - rotation %d):\n"
 					"phase_start (%d) must be between 0 and %d",
-					PLEASE_INFORM, IS_FATAL, type, rotation_idx, phase_start, TUX_TOTAL_PHASES - 1);
+					PLEASE_INFORM | IS_FATAL, type, rotation_idx, phase_start, TUX_TOTAL_PHASES - 1);
 		}
 		if (phase_end < -1 || phase_end >= TUX_TOTAL_PHASES) {
-			ErrorMessage(__FUNCTION__,
+			error_message(__FUNCTION__,
 					"Invalid tux_ordering spec (motion_class: %s - rotation %d):\n"
 					"phase_end (%d) must be between -1 and %d",
-					PLEASE_INFORM, IS_FATAL, type, rotation_idx, phase_end, TUX_TOTAL_PHASES - 1);
+					PLEASE_INFORM | IS_FATAL, type, rotation_idx, phase_end, TUX_TOTAL_PHASES - 1);
 		}
 		if ((phase_end != -1) && (phase_end < phase_start)) {
-			ErrorMessage(__FUNCTION__,
+			error_message(__FUNCTION__,
 					"Invalid tux_ordering spec (motion_class: %s - rotation %d):\n"
 					"phase_start value (%d) must be lower or equal to phase_end value (%d)",
-					PLEASE_INFORM, IS_FATAL, type, rotation_idx, phase_start, phase_end);
+					PLEASE_INFORM | IS_FATAL, type, rotation_idx, phase_start, phase_end);
 		}
 
 		// Get the head of the tux_part_render_set linked list associated to the
@@ -710,8 +710,8 @@ static int lua_obstacle_ctor(lua_State *L)
 	};
 
 	if (!get_value_from_table(L, "image_filenames", STRING_ARRAY, &obstacle.filenames)) {
-			ErrorMessage(__FUNCTION__, "No image filename for obstacle. At least one image filename must be given.",
-				PLEASE_INFORM, IS_FATAL);
+			error_message(__FUNCTION__, "No image filename for obstacle. At least one image filename must be given.",
+				PLEASE_INFORM | IS_FATAL);
 	}
 
 	fill_structure_from_table(L, data_specs);
@@ -833,7 +833,7 @@ static int lua_blast_ctor(lua_State *L)
 	static int blast_index = 0;
 	blastspec* blast = &Blastmap[blast_index++];
 	if (blast_index > ALLBLASTTYPES)
-		ErrorMessage(__FUNCTION__, "Maximum number of blast types was exceeded.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Maximum number of blast types was exceeded.", PLEASE_INFORM | IS_FATAL);
 
 	struct data_spec data_specs[] = {
 		{ "name", NULL, STRING_TYPE, &blast->name },
@@ -894,7 +894,7 @@ static int lua_underlay_floor_tile_list_ctor(lua_State *L)
 {
 	get_floor_tile_list(L, &underlay_floor_tiles);
 	if (underlay_floor_tiles.size >= MAX_UNDERLAY_FLOOR_TILES)
-		ErrorMessage(__FUNCTION__, "Maximum number of underlay floor tile types has been exceeded.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Maximum number of underlay floor tile types has been exceeded.", PLEASE_INFORM | IS_FATAL);
 	return 0;
 }
 
@@ -902,7 +902,7 @@ static int lua_overlay_floor_tile_list_ctor(lua_State *L)
 {
 	get_floor_tile_list(L, &overlay_floor_tiles);
 	if (overlay_floor_tiles.size >= MAX_OVERLAY_FLOOR_TILES)
-		ErrorMessage(__FUNCTION__, "Maximum number of overlay floor tile types has been exceeded.", PLEASE_INFORM, IS_FATAL);
+		error_message(__FUNCTION__, "Maximum number of overlay floor tile types has been exceeded.", PLEASE_INFORM | IS_FATAL);
 	return 0;
 }
 
@@ -1075,7 +1075,7 @@ static void get_one_item(lua_State *L, void *data)
 	fill_structure_from_table(L, data_specs);
 
 	if (!item->id) {
-		ErrorMessage(__FUNCTION__, "No id for item. The id must be given.", PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "No id for item. The id must be given.", PLEASE_INFORM);
 	}
 
 	// Set the item slot
@@ -1155,9 +1155,9 @@ static void get_one_item(lua_State *L, void *data)
 	} else if (strcmp(item_ammunition_type, "50BMG") == 0) {
 		item->item_gun_use_ammunition = 8;
 	} else {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 The type of ammunition used by an item in item_spec.lua was not recognized. \n\
-This string was: %s\n", PLEASE_INFORM, IS_FATAL, item_ammunition_type);
+This string was: %s", PLEASE_INFORM | IS_FATAL, item_ammunition_type);
 	}
 	free(item_ammunition_type);
 

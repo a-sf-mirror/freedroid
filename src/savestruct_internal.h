@@ -136,7 +136,7 @@
 	lua_getfield(L, n, t);\
 	int rc = !lua_isnil(L, -1);\
 	if (!rc) {\
-		ErrorMessage(__FUNCTION__, "Field \"%s\" not found\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, t);\
+		error_message(__FUNCTION__, "Field \"%s\" not found\n", NO_REPORT, t);\
 		alert_window(_("An error occurred when trying to load the savegame.\n"\
 		               "A common reason for this is that FreedroidRPG has been "\
 		               "updated to a newer version since the save was made, in "\
@@ -161,7 +161,7 @@
 #define lua_is_of_type_or_abort(L, n, t)\
 do {\
 	if (lua_type(L, n) != t) {\
-		ErrorMessage(__FUNCTION__, "Unexpected data type\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);\
+		error_message(__FUNCTION__, "Unexpected data type\n", NO_REPORT);\
 		alert_window(_("An error occurred when trying to load the savegame.\n"\
 		               "A data type was found to be incompatible with the "\
 		               "expected one. Your savegame could be corrupted and so "\

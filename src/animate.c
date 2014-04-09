@@ -242,9 +242,9 @@ static int animate_autogun(level* autogun_lvl, void *scenery_piece)
 		break;
 	default:
 		fprintf(stderr, "\n*AutogunType: '%d'.\n", *AutogunType);
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 There seems to be an autogun in the autogun list of this level, but it\n\
-is not really an autogun.  Instead it's something else.", PLEASE_INFORM, IS_FATAL);
+is not really an autogun.  Instead it's something else.", PLEASE_INFORM | IS_FATAL);
 		break;
 	}
 	
@@ -439,7 +439,7 @@ animation_fptr get_animation_by_name(const char *animation_name)
 			return animation_map[i].animation;
 	}
 
-	ErrorMessage(__FUNCTION__, "\nUnknown scenery piece animation '%s'.\n", PLEASE_INFORM, IS_FATAL, animation_name);
+	error_message(__FUNCTION__, "\nUnknown scenery piece animation '%s'.", PLEASE_INFORM | IS_FATAL, animation_name);
 	return NULL;
 }
 

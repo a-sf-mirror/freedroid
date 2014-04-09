@@ -190,7 +190,7 @@ SDL_Surface *our_IMG_load_wrapper(const char *file)
 	surf = IMG_Load(file);
 
 	if (surf == NULL) {
-		ErrorMessage(__FUNCTION__, "IMG_Load returned NULL. IMG_GetError() : %s.\n", PLEASE_INFORM, IS_WARNING_ONLY, IMG_GetError());
+		error_message(__FUNCTION__, "IMG_Load returned NULL. IMG_GetError() : %s.", PLEASE_INFORM, IMG_GetError());
 		return (NULL);
 	}
 
@@ -697,7 +697,7 @@ void blit_background(const char *background)
 	}
 
 	if (!bg) {
-		ErrorMessage(__FUNCTION__, "Received a request to display background %s which is unknown. Doing nothing.", PLEASE_INFORM, IS_WARNING_ONLY, background);
+		error_message(__FUNCTION__, "Received a request to display background %s which is unknown. Doing nothing.", PLEASE_INFORM, background);
 		return;
 	}
 

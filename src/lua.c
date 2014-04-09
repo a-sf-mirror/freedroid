@@ -64,7 +64,7 @@ static struct chat_context *__get_current_chat_context(const char *funcname)
 {
 	struct chat_context *current_chat_context = chat_get_current_context();
 	if (!current_chat_context)
-		ErrorMessage(funcname, _("No chat context available on the context stack."), PLEASE_INFORM, IS_FATAL);
+		error_message(funcname, _("No chat context available on the context stack."), PLEASE_INFORM | IS_FATAL);
 	return current_chat_context;
 }
 
@@ -85,7 +85,7 @@ static enemy *get_enemy_opt(lua_State *L, int param_number, int optional)
 
 	enemy *en = get_enemy_with_dialog(dialog);
 	if (!optional && !en)
-		ErrorMessage(__FUNCTION__, _("Could not find a droid corresponding to the dialog \"%s\"."), PLEASE_INFORM, IS_FATAL, dialog);
+		error_message(__FUNCTION__, "Could not find a droid corresponding to the dialog \"%s\".", PLEASE_INFORM | IS_FATAL, dialog);
 	return en;
 }
 
@@ -117,9 +117,9 @@ static void set_bot_state(enemy *en, const char *cmd)
 		en->CompletelyFixed = FALSE;
 		en->combat_state = SELECT_NEW_WAYPOINT;
 	} else {
-		ErrorMessage(__FUNCTION__,
-		     "I was called with an invalid state named %s. Accepted values are \"follow_tux\", \"fixed\", \"free\", \"home\", and \"patrol\".\n",
-		     PLEASE_INFORM, IS_WARNING_ONLY, cmd);
+		error_message(__FUNCTION__,
+		     "I was called with an invalid state named %s. Accepted values are \"follow_tux\", \"fixed\", \"free\", \"home\", and \"patrol\".",
+		     PLEASE_INFORM, cmd);
 	}
 }
 
@@ -281,9 +281,9 @@ static int lua_event_improve_skill(lua_State * L)
 		skillptr = &Me.spellcasting_skill;
 		SetNewBigScreenMessage(_("Programming ability improved!"));
 	} else {
-		ErrorMessage(__FUNCTION__,
-			     "Lua script called me with an incorrect parameter. Accepted values are \"melee\", \"ranged\", and \"programming\".\n",
-			     PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__,
+			     "Lua script called me with an incorrect parameter. Accepted values are \"melee\", \"ranged\", and \"programming\".",
+			     PLEASE_INFORM);
 	}
 
 	if (skillptr) {
@@ -303,9 +303,9 @@ static int lua_event_get_skill(lua_State * L)
 	} else if (!strcmp(skilltype, "programming")) {
 		skillptr = &Me.spellcasting_skill;
 	} else {
-		ErrorMessage(__FUNCTION__,
-			     "Lua script called me with an incorrect parameter. Accepted values are \"melee\", \"ranged\", and \"programming\".\n",
-			     PLEASE_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__,
+			     "Lua script called me with an incorrect parameter. Accepted values are \"melee\", \"ranged\", and \"programming\".",
+			     PLEASE_INFORM);
 	}
 
 	if (skillptr) {
@@ -350,7 +350,7 @@ static int lua_event_give_item(lua_State * L)
 	const char *itemname = luaL_checkstring(L, 1);
 	int mult = luaL_optinteger(L, 2, 1);
 
-	if (!mult) { ErrorMessage(__FUNCTION__, "Tried to give %s with multiplicity 0.", PLEASE_INFORM, IS_WARNING_ONLY, itemname); return 0; } 
+	if (!mult) { error_message(__FUNCTION__, "Tried to give %s with multiplicity 0.", PLEASE_INFORM, itemname); return 0; }
 
 	item NewItem;
 	NewItem = create_item_with_id(itemname, TRUE, mult);
@@ -409,8 +409,7 @@ static int lua_event_equip_item(lua_State * L)
 	const char *item_name = luaL_checkstring(L, 1);
 
 	if (!item_name) {
-		ErrorMessage(__FUNCTION__, "Tried to add item without a name\n", PLEASE_INFORM,
-			     IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Tried to add item without a name", PLEASE_INFORM);
 		return 0;
 	}
 	item new_item = create_item_with_id(item_name, TRUE, 1);
@@ -518,8 +517,8 @@ static int lua_event_add_gold(lua_State * L)
 	char tmpstr[150];
 
 	if (nb < 0 && -nb > Me.Gold) {
-		ErrorMessage(__FUNCTION__, "Tried to remove %d gold from the player that only has %d!\n", PLEASE_INFORM,
-			     IS_WARNING_ONLY, -nb, Me.Gold);
+		error_message(__FUNCTION__, "Tried to remove %d gold from the player that only has %d!", PLEASE_INFORM,
+			     -nb, Me.Gold);
 		nb = -Me.Gold;
 	}
 
@@ -555,9 +554,9 @@ static int lua_event_change_stat(lua_State * L)
 	} else if (!strcmp(characteristic, "vitality")) {
 		statptr = &Me.base_physique;
 	} else {
-		ErrorMessage(__FUNCTION__,
+		error_message(__FUNCTION__,
 			     "I was called with characteristic name %s - accepted values are \"strength\", \"dexterity\", \"CPU\", and \"vitality\".",
-			     PLEASE_INFORM, IS_WARNING_ONLY, characteristic);
+			     PLEASE_INFORM, characteristic);
 		return 0;
 	}
 
@@ -778,19 +777,19 @@ static int lua_set_bot_destination(lua_State * L)
 	int destinationwaypoint = get_waypoint(lvl, dest_pos.x, dest_pos.y);
 
 	if (dest_pos.z !=  en->pos.z) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 				Sending bot %s to map label %s (found on level %d) cannot be done because the bot\n\
 				is not on the same level (z = %d). Doing nothing.",
-				PLEASE_INFORM, IS_WARNING_ONLY, en->dialog_section_name, label, dest_pos.z, en->pos.z);
+				PLEASE_INFORM, en->dialog_section_name, label, dest_pos.z, en->pos.z);
 		return 0;
 	}
 
 	if (destinationwaypoint == -1) {
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 				Map label %s (found on level %d) does not have a waypoint. Cannot send bot %s\n\
 				to this location. Doing nothing.\n\
 				GPS center coordinates x=%f, y=%f.",
-				PLEASE_INFORM, IS_WARNING_ONLY, label, dest_pos.z, en->dialog_section_name, dest_pos.x, dest_pos.y);
+				PLEASE_INFORM, label, dest_pos.z, en->dialog_section_name, dest_pos.x, dest_pos.y);
 		return 0;
 	}
 
@@ -893,9 +892,9 @@ static int lua_kill_faction(lua_State *L)
 	const char *respawn = luaL_optstring(L, 2, "");
 	enemy *erot, *nerot;
 	if (strcmp(respawn, "no_respawn") && (strcmp(respawn, "")))
-		ErrorMessage(__FUNCTION__, "\
+		error_message(__FUNCTION__, "\
 				Received optional second argument \"%s\". Accepted value is \"no_respawn\".\n\
-				Faction \"%s\" will now be killed and will respawn as usual.", PLEASE_INFORM, IS_WARNING_ONLY, respawn, fact);
+				Faction \"%s\" will now be killed and will respawn as usual.", PLEASE_INFORM, respawn, fact);
 	BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
 		if (erot->faction != get_faction_id(fact))
 			continue;
@@ -937,7 +936,7 @@ static int lua_set_faction_state(lua_State *L)
 	else if (!strcmp(state_str, "friendly"))
 		state = FRIENDLY;
 	else {
-		ErrorMessage(__FUNCTION__, "Unknown faction state %s.", PLEASE_INFORM, IS_WARNING_ONLY, state_str);
+		error_message(__FUNCTION__, "Unknown faction state %s.", PLEASE_INFORM, state_str);
 		return 0;
 	}
 
@@ -1619,7 +1618,7 @@ int call_lua_func(enum lua_target target, const char *module, const char *func, 
 
 	/* do the call */
 	if (!push_func_and_args(L, module, func, insig, &vl)) {
-		ErrorMessage(__FUNCTION__, "Aborting lua function call.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Aborting lua function call.", NO_REPORT);
 		va_end(vl);
 		return FALSE;
 	}
@@ -1627,13 +1626,13 @@ int call_lua_func(enum lua_target target, const char *module, const char *func, 
 	if (lua_pcall(L, narg, nres, 0) != LUA_OK) {
 		DebugPrintf(-1, "call_lua_func: Error calling ’%s’: %s", func, lua_tostring(L, -1));
 		lua_pop(L, 1);
-		ErrorMessage(__FUNCTION__, "Aborting lua function call.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Aborting lua function call.", NO_REPORT);
 		va_end(vl);
 		return FALSE;
 	}
 
 	if (!pop_results(L, outsig, &vl)) {
-		ErrorMessage(__FUNCTION__, "Aborting lua function call.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		error_message(__FUNCTION__, "Aborting lua function call.", NO_REPORT);
 		va_end(vl);
 		return FALSE;
 	}
@@ -1698,8 +1697,8 @@ static void pretty_print_lua_error(lua_State* L, const char* error_msg, const ch
 	}
 
 	fflush(stdout);
-	ErrorMessage(funcname, "Error running Lua code: %s.\nErroneous LuaCode={\n%s}",
-			 PLEASE_INFORM, IS_WARNING_ONLY, error_msg, erronous_code->value);
+	error_message(funcname, "Error running Lua code: %s.\nErroneous LuaCode={\n%s}",
+			 PLEASE_INFORM, error_msg, erronous_code->value);
 
 	free(display_code);
 	free_autostr(erronous_code);
@@ -1797,8 +1796,8 @@ int resume_lua_coroutine(struct lua_coroutine *coroutine)
 				// Try to get the lua calling code from the call stack.
 				if (!lua_getstack(coroutine->thread, 1, &ar)) {
 					// Nothing in the call stack. Display an error msg and exit.
-					ErrorMessage(__FUNCTION__, "Error in a lua API call in function '%s()': %s.\n",
-							PLEASE_INFORM, IS_WARNING_ONLY, ar.name, error_msg);
+					error_message(__FUNCTION__, "Error in a lua API call in function '%s()': %s.",
+							PLEASE_INFORM, ar.name, error_msg);
 					goto EXIT;
 				}
 				// Get the info of the lua calling code, and continue to display it
@@ -1864,8 +1863,8 @@ void run_lua_file(enum lua_target target, const char *path)
 	lua_State *L = get_lua_state(target);
 
 	if (luaL_dofile(L, path)) {
-		ErrorMessage(__FUNCTION__, "Cannot run script file %s: %s.\n",
-		         PLEASE_INFORM, IS_FATAL, path, lua_tostring(L, -1));
+		error_message(__FUNCTION__, "Cannot run script file %s: %s.",
+		         PLEASE_INFORM | IS_FATAL, path, lua_tostring(L, -1));
 	}
 }
 
@@ -1877,8 +1876,8 @@ void set_lua_ctor_upvalue(enum lua_target target, const char *fn, void *p)
 	lua_pushlightuserdata(L, p);
 	if (!lua_setupvalue(L, -2, 1)) {
 		lua_pop(L, 2);
-		ErrorMessage(__FUNCTION__, "No upvalue defined for %s closure.\n",
-		             PLEASE_INFORM, IS_FATAL, fn);
+		error_message(__FUNCTION__, "No upvalue defined for %s closure.",
+		             PLEASE_INFORM | IS_FATAL, fn);
 	}
 	lua_pop(L, 1);
 }
