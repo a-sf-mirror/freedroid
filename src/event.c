@@ -238,7 +238,7 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename)
 
 	clear_out_events();
 
-	find_file(EventsAndEventTriggersFilename, MAP_DIR, fpath);
+	find_file(EventsAndEventTriggersFilename, MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	EventSectionPointer =
 		ReadAndMallocAndTerminateFile(fpath, "*** END OF EVENT ACTION AND EVENT TRIGGER FILE *** LEAVE THIS TERMINATOR IN HERE ***");
 

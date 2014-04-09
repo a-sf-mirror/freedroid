@@ -1071,7 +1071,7 @@ static int lua_find_file(lua_State *L)
 	int subdir_handle    = luaL_checkinteger(L, 2);
 
 	if (subdir_handle >= 0 && subdir_handle < LAST_DATA_DIR) {
-		if (!find_file(filename, subdir_handle, fpath)) {
+		if (find_file(filename, subdir_handle, fpath, PLEASE_INFORM)) {
 			lua_pushstring(L, fpath);
 			return 1;
 		}
@@ -1902,7 +1902,7 @@ static void load_lua_module(enum lua_target target, int subdir, const char *modu
 	 * Add the module's dir to the Lua package.path
 	 */
 
-	if (!find_file(module_file, subdir, fpath)) {
+	if (find_file(module_file, subdir, fpath, PLEASE_INFORM)) {
 
 		// Keep the dirname of the file path and add the search pattern
 		char *ptr = strstr(fpath, module_file);
@@ -1952,9 +1952,8 @@ void init_lua()
 	lua_pushcfunction(config_lua_state, lua_gettexts.func);
 	lua_setglobal(config_lua_state, lua_gettexts.name);
 
-	if (!find_file("script_helpers.lua", MAP_DIR, fpath)) {
-		run_lua_file(LUA_CONFIG, fpath);
-	}
+	find_file("script_helpers.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	run_lua_file(LUA_CONFIG, fpath);
 }
 
 /**
@@ -2000,9 +1999,8 @@ void reset_lua_state(void)
 
 	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDutils");
 
-	if (!find_file("script_helpers.lua", MAP_DIR, fpath)) {
-		run_lua_file(LUA_DIALOG, fpath);
-	}
+	find_file("script_helpers.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	run_lua_file(LUA_DIALOG, fpath);
 
 	luaFD_init(get_lua_state(LUA_DIALOG));
 

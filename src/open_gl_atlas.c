@@ -44,11 +44,11 @@
 static char *get_texture_atlas(const char *path)
 {
 	char fpath[PATH_MAX];
-	find_file(path, GRAPHICS_DIR, fpath);
-
-	char *dataout = ReadAndMallocAndTerminateFile(fpath, NULL);
-
-	return dataout;
+	if (find_file(path, GRAPHICS_DIR, fpath, PLEASE_INFORM)) {
+		char *dataout = ReadAndMallocAndTerminateFile(fpath, NULL);
+		return dataout;
+	}
+	return NULL;
 }
 
 static int read_atlas_header(const char *buf, char *path)

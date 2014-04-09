@@ -192,12 +192,12 @@ static void load_item_graphics(int item_type)
 	sprintf(our_filename, "items/%s", spec->item_inv_file_name);
 
 	// Load the inventory image	
-	find_file(our_filename, GRAPHICS_DIR, fpath);
+	find_file(our_filename, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 
 	original_img = IMG_Load(fpath);
 	if (original_img == NULL) {
-		error_message(__FUNCTION__, "\
-Inventory image for item type %d, at path %s was not found", PLEASE_INFORM | IS_FATAL, item_type, fpath);
+		error_message(__FUNCTION__, "Inventory image for item type %d, at path %s was not found",
+				PLEASE_INFORM | IS_FATAL, item_type, fpath);
 	}
 
 	int target_x = spec->inv_size.x * 32;
@@ -545,7 +545,7 @@ void Load_Enemy_Surfaces(void)
 	char fpath[PATH_MAX];
 	char *Data;
 
-	find_file("enemy_surfaces.dat", MAP_DIR, fpath);
+	find_file("enemy_surfaces.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	get_enemy_surfaces_data(Data);
 	free(Data);

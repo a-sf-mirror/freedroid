@@ -778,7 +778,7 @@ int validate_dialogs()
 	int old_sound_on = sound_on;
 	sound_on = FALSE;
 
-	find_file("levels.dat", MAP_DIR, fpath);
+	find_file("levels.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	LoadShip(fpath, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 

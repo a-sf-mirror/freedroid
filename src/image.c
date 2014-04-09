@@ -503,7 +503,12 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 		return;
 	}
 
-	find_file(filename, GRAPHICS_DIR, fpath);
+	if (!find_file(filename, GRAPHICS_DIR, fpath, PLEASE_INFORM)) {
+		struct image empty = EMPTY_IMAGE;
+		*img = empty;
+		return;
+	}
+
 	SDL_Surface *surface = IMG_Load(fpath);
 	if (surface == NULL) {
 		error_message(__FUNCTION__, "Could not load image.\n File name: %s. IMG_GetError(): %s.", PLEASE_INFORM, fpath, IMG_GetError());

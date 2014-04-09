@@ -57,7 +57,8 @@
 enum {
 	NO_REPORT     = 0,
 	PLEASE_INFORM = 1 << 1,
-	IS_FATAL      = 1 << 2
+	IS_FATAL      = 1 << 2,
+	SILENT        = 1 << 3    // Special flag, used with find_file() to disable any output
 };
 
 enum {

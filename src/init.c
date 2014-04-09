@@ -181,27 +181,28 @@ void PlayATitleFile(char *Filename)
 
 	while (SpacePressed() || MouseLeftPressed()) ;
 
-	find_localized_file(Filename, TITLES_DIR, fpath);
-	set_lua_ctor_upvalue(LUA_CONFIG, "title_screen", &screen);
-	run_lua_file(LUA_CONFIG, fpath);
+	if (find_localized_file(Filename, TITLES_DIR, fpath, PLEASE_INFORM)) {
+		set_lua_ctor_upvalue(LUA_CONFIG, "title_screen", &screen);
+		run_lua_file(LUA_CONFIG, fpath);
 
-	// Remove trailing whitespaces and carriage returns.
-	char *ptr = screen.text + strlen(screen.text) - 1;
-	while (*ptr != '\0' && (*ptr == ' ' || *ptr == '\t' || *ptr == '\n')) *(ptr--) = '\0';
+		// Remove trailing whitespaces and carriage returns.
+		char *ptr = screen.text + strlen(screen.text) - 1;
+		while (*ptr != '\0' && (*ptr == ' ' || *ptr == '\t' || *ptr == '\n')) *(ptr--) = '\0';
 
-	SwitchBackgroundMusicTo(screen.song);
+		SwitchBackgroundMusicTo(screen.song);
 
-	SDL_SetClipRect(Screen, NULL);
-	SetCurrentFont(Para_BFont);
+		SDL_SetClipRect(Screen, NULL);
+		SetCurrentFont(Para_BFont);
 
-	ScrollText(screen.text,screen.background);
+		ScrollText(screen.text,screen.background);
 
-	clear_screen();
-	our_SDL_flip_wrapper();
+		clear_screen();
+		our_SDL_flip_wrapper();
 
-	free(screen.background);
-	free(screen.song);
-	free(screen.text);
+		free(screen.background);
+		free(screen.song);
+		free(screen.text);
+	}
 }
 
 /**
@@ -524,29 +525,27 @@ void Init_Game_Data()
 	char fpath[PATH_MAX];
 	char *Data;
 
-#define INIT_GAME_DATA_DEBUG 1
-
 	// Load the languages specs
 	dynarray_free(&lang_specs);
-	find_file("languages.lua", MAP_DIR, fpath);
-	run_lua_file(LUA_CONFIG, fpath);
+	if (find_file("languages.lua", MAP_DIR, fpath, PLEASE_INFORM)) {
+		run_lua_file(LUA_CONFIG, fpath);
+	}
 
 	// Load programs (spells) information
 	//
-	find_file("program_archetypes.dat", MAP_DIR, fpath);
-	DebugPrintf(INIT_GAME_DATA_DEBUG, "\nvoid Init_Game_Data:  Data will be taken from file : %s. Commencing... \n", fpath);
+	find_file("program_archetypes.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Programs_Data(Data);
 	free(Data);
 
 	// Load the blast data (required for the bullets to load)
-	find_file("blast_specs.lua", MAP_DIR, fpath);
+	find_file("blast_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load the bullet data (required for the item archtypes to load)
 	//
 	dynarray_free(&bullet_specs);
-	find_file("bullet_specs.lua", MAP_DIR, fpath);
+	find_file("bullet_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load Tux animation and rendering specifications.
@@ -557,32 +556,31 @@ void Init_Game_Data()
 	Load_Enemy_Surfaces();
 
 	// Item archetypes must be loaded too
-	find_file("item_specs.lua", MAP_DIR, fpath);
+	find_file("item_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load add-on specifications.
-	find_file("addon_specs.lua", MAP_DIR, fpath);
+	find_file("addon_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
-	find_file("difficulty_params.dat", MAP_DIR, fpath);
+	find_file("difficulty_params.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Difficulty_Parameters(Data);
 	free(Data);
 
 	// Time to eat some droid archetypes...
-	find_file("droid_archetypes.dat", MAP_DIR, fpath);
-	DebugPrintf(INIT_GAME_DATA_DEBUG, "\nvoid Init_Game_Data:  Data will be taken from file : %s. Commencing... \n", fpath);
+	find_file("droid_archetypes.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Robot_Data(Data);
 	free(Data);
 
 	// Load obstacle specifications.
 	dynarray_init(&obstacle_map, 512, sizeof(struct obstacle_spec));
-	find_file("obstacle_specs.lua", MAP_DIR, fpath);
+	find_file("obstacle_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load floor tile specifications.
-	find_file("floor_tiles.lua", MAP_DIR, fpath);
+	find_file("floor_tiles.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 	dirty_animated_floor_tile_list();
 
@@ -848,7 +846,7 @@ void prepare_level_editor()
 	game_root_mode = ROOT_IS_LVLEDIT;
 	skip_initial_menus = 1;
 	char fp[PATH_MAX];
-	find_file("levels.dat", MAP_DIR, fp);
+	find_file("levels.dat", MAP_DIR, fp, PLEASE_INFORM | IS_FATAL);
 	LoadShip(fp, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 	skip_initial_menus = 0;

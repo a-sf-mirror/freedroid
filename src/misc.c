@@ -703,24 +703,24 @@ static int _file_exists(const char *fname, const char *subdir, char *file_path)
 /* -----------------------------------------------------------------
  * Find a filename in subdir (using a data_dir handle).
  *
- * fills in the (ALLOC'd) string and returns 0 if okay, 1 on error.
+ * fills in the (ALLOC'd) string and returns 1 if okay, 0 on error.
  * file_path's length HAS to be PATH_MAX.
  * ----------------------------------------------------------------- */
-int find_file(const char *fname, int subdir_handle, char *file_path)
+int find_file(const char *fname, int subdir_handle, char *file_path, int error_report)
 {
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
 		error_message(__FUNCTION__, "Called with a wrong subdir handle (%d)",
-		             NO_REPORT, subdir_handle);
-		return 1;
+		             error_report | PLEASE_INFORM, subdir_handle);
+		return 0;
 	}
 
 	if (!_file_exists(fname, data_dirs[subdir_handle].path, file_path)) {
 		error_message(__FUNCTION__, "File %s not found in %s",
-		             NO_REPORT, fname, data_dirs[subdir_handle].name);
-		return 1;
+		             error_report, fname, data_dirs[subdir_handle].name);
+		return 0;
 	}
 
-	return 0;
+	return 1;
 }
 
 /* -----------------------------------------------------------------
@@ -733,20 +733,20 @@ int find_file(const char *fname, int subdir_handle, char *file_path)
  * in turn. So if the locale is 'fr_FR', but the 'fr_FR' subdir does
  * not exists, then the 'fr' subdir is checked.
  *
- * fills in the (ALLOC'd) string and returns 0 if okay, 1 on error.
+ * fills in the (ALLOC'd) string and returns 1 if okay, 0 on error.
  * file_path's length HAS to be PATH_MAX.
  * ----------------------------------------------------------------- */
-int find_localized_file(const char *fname, int subdir_handle, char *file_path)
+int find_localized_file(const char *fname, int subdir_handle, char *file_path, int error_report)
 {
 #ifdef ENABLE_NLS
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
 		error_message(__FUNCTION__, "Called with a wrong subdir handle (%d)",
-		             NO_REPORT, subdir_handle);
-		return 1;
+		              error_report | PLEASE_INFORM, subdir_handle);
+		return 0;
 	}
 
 	if (!GameConfig.locale || strlen(GameConfig.locale) == 0) {
-		return find_file(fname, subdir_handle, file_path);
+		return find_file(fname, subdir_handle, file_path, error_report);
 	}
 
 	// A locale name is typically of the form language[_territory][.codeset][@modifier]
@@ -769,12 +769,12 @@ int find_localized_file(const char *fname, int subdir_handle, char *file_path)
 		int nb = snprintf(l10ndir, PATH_MAX, "%s/%s", data_dirs[subdir_handle].path, locale);
 		if (nb >= PATH_MAX) {
 			error_message(__FUNCTION__, "Dirname too long (max is %d): %s/%s - Using untranslated version of %s",
-			             NO_REPORT, PATH_MAX, data_dirs[subdir_handle].path, locale, fname);
+			             error_report, PATH_MAX, data_dirs[subdir_handle].path, locale, fname);
 			break;
 		}
 		if (_file_exists(fname, l10ndir, file_path)) {
 			free(locale);
-			return 0;
+			return 1;
 		}
 	}
 
@@ -782,7 +782,7 @@ int find_localized_file(const char *fname, int subdir_handle, char *file_path)
 #endif
 
 	// Localized version not found. Use untranslated version.
-	return find_file(fname, subdir_handle, file_path);
+	return find_file(fname, subdir_handle, file_path, error_report);
 }
 
 /**

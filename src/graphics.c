@@ -565,28 +565,15 @@ void InitOurBFonts(void)
 
 	for (i = 0; i < ALL_BFONTS_WE_LOAD; i++) {
 		char constructed_fname[PATH_MAX];
-		sprintf(constructed_fname, "%s", MenuFontFiles[i]);
-		strcat(constructed_fname, ".png");
-
-		if (find_file(constructed_fname, GRAPHICS_DIR, fpath) != 0) {	//if the file wasn't found, default to the standard ASCII7bit file
-			sprintf(constructed_fname, "%s.png", MenuFontFiles[i]);
-			if (find_file(constructed_fname, GRAPHICS_DIR, fpath) != 0) {
-				fprintf(stderr, "\n\nFont file: '%s'.\n", MenuFontFiles[i]);
-				error_message(__FUNCTION__, "\
-A font file for the BFont library was not found.", PLEASE_INFORM | IS_FATAL);
-			}
-		}
+		sprintf(constructed_fname, "%s.png", MenuFontFiles[i]);
+		find_file(constructed_fname, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 
 		if ((*MenuFontPointers[i] = LoadFont(constructed_fname)) == NULL) {
-			fprintf(stderr, "\n\nFont file: '%s'.\n", MenuFontFiles[i]);
-			error_message(__FUNCTION__, "\
-A font file for the BFont library could not be loaded.", PLEASE_INFORM | IS_FATAL);
-		} else {
-			DebugPrintf(1, "\nSDL Menu Font initialisation successful.\n");
+			error_message(__FUNCTION__, "A font file for the BFont library could not be loaded (%s).",
+					PLEASE_INFORM | IS_FATAL, MenuFontFiles[i]);
 		}
 	}
-
-};				// InitOurBFonts ( void )
+}
 
 /**
  * This function initializes the timer subsystem.
@@ -825,7 +812,6 @@ void InitVideo(void)
 	char vid_driver[81];
 	Uint32 video_flags = 0;	// flags for SDL video mode 
 	char fpath[PATH_MAX];
-	char window_title_string[200];
 
 	// Tell SDL to center the window once we make it
 	putenv("SDL_VIDEO_CENTERED=1");
@@ -891,14 +877,16 @@ void InitVideo(void)
 
 	// End of possibly open-gl dependant initialisation stuff...
 	//
-	sprintf(window_title_string, "FreedroidRPG %s", VERSION);
 	if (vid_info->wm_available) {	/* if there's a window-manager */
-		SDL_Surface *icon;
+		char window_title_string[200];
+		sprintf(window_title_string, "FreedroidRPG %s", VERSION);
 		SDL_WM_SetCaption(window_title_string, "");
-		find_file(ICON_FILE, GRAPHICS_DIR, fpath);
-		icon = IMG_Load(fpath);
-		SDL_WM_SetIcon(icon, NULL);
-		SDL_FreeSurface(icon);
+
+		if (find_file(ICON_FILE, GRAPHICS_DIR, fpath, PLEASE_INFORM)) {
+			SDL_Surface *icon = IMG_Load(fpath);
+			SDL_WM_SetIcon(icon, NULL);
+			SDL_FreeSurface(icon);
+		}
 	}
 
 	InitOurBFonts();

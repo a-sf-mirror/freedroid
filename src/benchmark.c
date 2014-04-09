@@ -82,20 +82,22 @@ static int dialog_test()
 /* LoadShip (level loading) performance test */
 static int loadship_bench()
 {
+	int failed = TRUE;
 	int loop = 10;
 
 	// Find a ship file to load
 	char fp[PATH_MAX];
-	find_file("levels.dat", MAP_DIR, fp);
-
-	// Load it many times
-	timer_start();
-	while (loop--) {
-		LoadShip(fp, 0);
+	if (find_file("levels.dat", MAP_DIR, fp, NO_REPORT)) {
+		// Load it many times
+		timer_start();
+		while (loop--) {
+			LoadShip(fp, 0);
+		}
+		timer_stop();
+		failed = FALSE;
 	}
-	timer_stop();
 
-	return 0;
+	return failed;
 }
 
 /* LoadGame (savegame loading) performance test */
@@ -203,16 +205,16 @@ static int mapgen_bench()
 /* Levels validator (not an actual benchmark) */
 static int level_test()
 {
-	int failed;
+	int failed = TRUE;
 
 	// Load default ship
 	char fp[PATH_MAX];
-	find_file("levels.dat", MAP_DIR, fp);
-	LoadShip(fp, 0);
-
-	timer_start();
-	failed = level_validation_on_console_only();
-	timer_stop();
+	if (find_file("levels.dat", MAP_DIR, fp, NO_REPORT)) {
+		LoadShip(fp, 0);
+		timer_start();
+		failed = level_validation_on_console_only();
+		timer_stop();
+	}
 
 	return failed;
 }

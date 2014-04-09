@@ -2099,7 +2099,7 @@ void tux_rendering_load_specs(const char *config_filename)
 
 	tux_rendering_init();
 
-	find_file(config_filename, MAP_DIR, fpath);
+	find_file(config_filename, MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 	tux_rendering_validate(); // check mandatory specifications/configurations
 
@@ -2768,9 +2768,8 @@ void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, ui
 	if (SparkPrototypeSurface[SparkType][0] == NULL) {
 		for (k = 0; k < FIXED_NUMBER_OF_PROTOTYPES; k++) {
 			if (SparkType >= NUMBER_OF_SPARK_TYPES) {
-				fprintf(stderr, "\n\nSparkType: %d\n", SparkType);
-				error_message(__FUNCTION__, "\
-FreedroidRPG encountered a radial wave type that exceeds the CONSTANT for wave types.", PLEASE_INFORM | IS_FATAL);
+				error_message(__FUNCTION__, "FreedroidRPG encountered a radial wave type that exceeds the CONSTANT for wave types (%d).",
+						PLEASE_INFORM | IS_FATAL, SparkType);
 			}
 
 			switch (SparkType) {
@@ -2784,19 +2783,17 @@ FreedroidRPG encountered a radial wave type that exceeds the CONSTANT for wave t
 				sprintf(ConstructedFilename, "radial_spells/red_fire_%d.png", k);
 				break;
 			default:
-				fprintf(stderr, "\n\nSparkType: %d\n", SparkType);
-				error_message(__FUNCTION__, "\
-FreedroidRPG encountered a radial wave type that does not exist in FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
+				error_message(__FUNCTION__, "FreedroidRPG encountered a radial wave type that does not exist in FreedroidRPG (%d).",
+						PLEASE_INFORM | IS_FATAL, SparkType);
 			}
 
-			find_file(ConstructedFilename, GRAPHICS_DIR, fpath);
+			find_file(ConstructedFilename, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 
 			tmp_surf = our_IMG_load_wrapper(fpath);
 			if (tmp_surf == NULL) {
-				fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
-				error_message(__FUNCTION__, "\
-FreedroidRPG wanted to load a certain image file into memory, but the SDL\n\
-function used for this did not succeed.", PLEASE_INFORM | IS_FATAL);
+				error_message(__FUNCTION__, "FreedroidRPG wanted to load a certain image file into memory, but the SDL\n"
+				                            "function used for this did not succeed (%s).",
+				              PLEASE_INFORM | IS_FATAL, fpath);
 			}
 			// SDL_SetColorKey( tmp_surf , 0 , 0 ); 
 			SparkPrototypeSurface[SparkType][k] = SDL_DisplayFormatAlpha(tmp_surf);

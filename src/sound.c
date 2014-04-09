@@ -325,15 +325,14 @@ static void LoadAndFadeInBackgroundMusic(void)
 
 	strcpy(filename_raw, "music/");
 	strcat(filename_raw, NewMusicTargetFileName);
-	find_file(filename_raw, SOUND_DIR, fpath);
-	Loaded_MOD_Files[0] = Mix_LoadMUS(fpath);
-	if (Loaded_MOD_Files[0] == NULL) {
-		DebugPrintf(0, "The music file %s could not be loaded!\n", NewMusicTargetFileName);
-		return;
-	} else
-		DebugPrintf(1, "\nSuccessfully loaded file %s.", fpath);
-
-	Mix_PlayMusic(Loaded_MOD_Files[0], -1);
+	if (find_file(filename_raw, SOUND_DIR, fpath, PLEASE_INFORM)) {
+		Loaded_MOD_Files[0] = Mix_LoadMUS(fpath);
+		if (Loaded_MOD_Files[0] == NULL) {
+			error_message(__FUNCTION__, "The music file %s could not be loaded!", PLEASE_INFORM, NewMusicTargetFileName);
+			return;
+		}
+		Mix_PlayMusic(Loaded_MOD_Files[0], -1);
+	}
 
 	Mix_VolumeMusic((int)rintf(GameConfig.Current_BG_Music_Volume * MIX_MAX_VOLUME));
 }
@@ -399,19 +398,13 @@ void play_sound(const char *filename)
 	Mix_ChannelFinished(channel_done);
 
 	// Try to load the requested sound file into memory.
-	if (find_file(filename, SOUND_DIR, fpath) == 0) {
-		One_Shot_WAV_File = Mix_LoadWAV(fpath);
-		if (One_Shot_WAV_File == NULL) {
-			error_message(__FUNCTION__, "Corrupt sound file encountered: %s.",
-						 NO_REPORT, fpath);
-			return;
-		}
+	if (!find_file(filename, SOUND_DIR, fpath, PLEASE_INFORM)) {
+		return;
 	}
-
-	// Now some error checking against failed/missing sound samples...
+	One_Shot_WAV_File = Mix_LoadWAV(fpath);
 	if (One_Shot_WAV_File == NULL) {
-		error_message(__FUNCTION__, "Missing sound file: '%s'.",
-					 NO_REPORT, filename);
+		error_message(__FUNCTION__, "Corrupt sound file encountered: %s.",
+					 PLEASE_INFORM, fpath);
 		return;
 	}
 
@@ -567,11 +560,12 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 
 		// Now we try to load the requested sound file into memory...
 		//
-		find_file(SoundSampleFileName, SOUND_DIR, fpath);
+		if (!find_file(SoundSampleFileName, SOUND_DIR, fpath, PLEASE_INFORM)) {
+			return;
+		}
 		Mix_Chunk *loaded_wav_chunk = Mix_LoadWAV(fpath);
 		if (!loaded_wav_chunk) {
-			fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
-			error_message(__FUNCTION__, "Could not load sound file \"%s\": %s", NO_REPORT, fpath, Mix_GetError());
+			error_message(__FUNCTION__, "Could not load sound file \"%s\": %s", PLEASE_INFORM, fpath, Mix_GetError());
 			// If the sample couldn't be loaded, we just quit, not marking anything
 			// as loaded and inside the cache and also not trying to play anything...
 			//

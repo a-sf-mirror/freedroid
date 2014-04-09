@@ -87,6 +87,9 @@ void DebugPrintf(int db_level, const char *fmt, ...)
  */
 void error_message(const char *fn, const char *fmt, int error_type, ...)
 {
+	if (error_type & SILENT)
+		return;
+
 	va_list args;
 	va_start(args, error_type);
 

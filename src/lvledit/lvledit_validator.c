@@ -304,20 +304,21 @@ static void load_excpt_lists(char *filename)
 #	define START_OF_DATA_STRING   "*** Beginning of LevelValidator Exceptions List ***"
 #	define END_OF_DATA_STRING     "*** End of LevelValidator Exceptions List ***"
 
-	// Read whole file in memory    
-	find_file(filename, MAP_DIR, fpath);
-	main_file_pointer = ReadAndMallocAndTerminateFile(fpath, END_OF_DATA_STRING);
+	// Read whole file in memory
+	if (find_file(filename, MAP_DIR, fpath, NO_REPORT)) {
+		main_file_pointer = ReadAndMallocAndTerminateFile(fpath, END_OF_DATA_STRING);
 
-	// Search beginning of list 
-	section_pointer = strstr(main_file_pointer, START_OF_DATA_STRING);
-	if (section_pointer == NULL) {
-		error_message(__FUNCTION__, "Start of exceptions list not found!", PLEASE_INFORM | IS_FATAL);
-		return;
+		// Search beginning of list
+		section_pointer = strstr(main_file_pointer, START_OF_DATA_STRING);
+		if (section_pointer == NULL) {
+			error_message(__FUNCTION__, "Start of exceptions list not found!", PLEASE_INFORM);
+			return;
+		}
+		// Parse the list
+		get_excpt_list(section_pointer);
+
+		free(main_file_pointer);
 	}
-	// Parse the list
-	get_excpt_list(section_pointer);
-
-	free(main_file_pointer);
 
 #	undef START_OF_DATA_STRING
 #	undef END_OF_DATA_STRING
