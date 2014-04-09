@@ -245,7 +245,7 @@ return {
 		text = _"My limbs don't seem to want to work properly. Can you help me with that?",
 		code = function()
 			npc_says(_"Ah yes, movement. It's second nature to us humans, but our research with you in the past showed that your brain seems to work more like a computer.")
-			npc_says(_"To move somewhere, you first need to determine where you want to go by [b]left clicking[/b] where you want to go on your HUD.")
+			npc_says(_"To move somewhere, you have to [b]left click[/b] on the destination on your HUD.")
 			npc_says(_"If you can go there, you will do so.")
 			npc_says(_"Now try to move to the red dot to the north. Then to the black grating to the east, and then talk to me again.")
 			Tux:update_quest("Tutorial Movement", _"I'm supposed to left click anywhere to move to a location. If I can figure out a way, I will move there automatically. Tom wants me to first try to move to the red dot to the North.")
