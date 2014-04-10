@@ -59,16 +59,22 @@ void lang_set(const char *locale)
 	}
 
 	if (!setlocale(LC_MESSAGES, "")) {
-		error_message(__FUNCTION__, "Error when calling setlocale() to set %s locale", PLEASE_INFORM, locale);
+		error_message(__FUNCTION__, "Error when calling setlocale() to set %s locale", PLEASE_INFORM, (locale) ? locale : "NULL");
 		return;
 	}
 
+
+	// 'locale' and GameConfig.locale can possibly be the same pointer.
+	// So we make a copy of 'locale' to avoid any issue.
+	char *ll = (locale) ? strdup(locale) : NULL;
 	if (GameConfig.locale)
 		free(GameConfig.locale);
-	if (locale)
-		GameConfig.locale = strdup(locale);
+	if (ll)
+		GameConfig.locale = strdup(ll);
 	else
 		GameConfig.locale = strdup("");
+	if (ll)
+		free(ll);
 #endif
 }
 
