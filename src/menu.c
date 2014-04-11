@@ -507,8 +507,9 @@ void Cheatmenu(void)
 		printf_SDL(Screen, -1, -1, " s. Double speed running: %s\n", GameConfig.cheat_double_speed ? "ON" : "OFF");
 		printf_SDL(Screen, -1, -1, " t. Give a cheat gun\n");
 		printf_SDL(Screen, -1, -1, " x. Cheatkeys : %s", GameConfig.enable_cheatkeys ? "ON\n" : "OFF\n");
+		printf_SDL(Screen, -1, -1, " T. Add a training point. Current training points: %d\n", Me.points_to_distribute);
+		printf_SDL(Screen, -1, -1, " e. Show enemies' states: %s", GameConfig.All_Texts_Switch ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " q. RESUME game\n");
-		printf_SDL(Screen, -1, -1, " T. Add a training point. Current training points: %d\n", Me.points_to_distribute); 
 
 		// Now we show it...
 		//
@@ -652,6 +653,10 @@ void Cheatmenu(void)
 			equip_item(&cheat_gun);
 			break;
 
+		case 'e':
+			GameConfig.All_Texts_Switch = !GameConfig.All_Texts_Switch;
+			break;
+
 		case 'x':
 			GameConfig.enable_cheatkeys = !GameConfig.enable_cheatkeys;
 			break;
@@ -685,7 +690,7 @@ void Cheatmenu(void)
     MENU(Options, OPTIONS) MENU(Resolution, RESOLUTION)			\
     MENU(Graphics, GRAPHICS) MENU(Sound, SOUND)				\
     MENU(Performance, PERFORMANCE) \
-    MENU(OSD, OSD) MENU(Droid, DROID) \
+    MENU(OSD, OSD) \
     MENU(Game, GAME)
 
 enum {
@@ -893,7 +898,6 @@ static int Options_handle(int n)
 #ifdef ENABLE_NLS
 		LANGUAGE_OPTIONS,
 #endif
-		DROID_TALK_OPTIONS,
 		ON_SCREEN_DISPLAYS,
 		PERFORMANCE_TWEAKS_OPTIONS,
 		LEAVE_OPTIONS_MENU
@@ -915,8 +919,6 @@ static int Options_handle(int n)
 	case KEYMAP_OPTIONS:
 		keychart();
 		return CONTINUE_MENU;
-	case DROID_TALK_OPTIONS:
-		return MENU_DROID;
 	case ON_SCREEN_DISPLAYS:
 		return MENU_OSD;
 	case PERFORMANCE_TWEAKS_OPTIONS:
@@ -939,7 +941,6 @@ static void Options_fill(char *MenuTexts[MAX_MENU_ITEMS])
 #ifdef ENABLE_NLS
 	strncpy(MenuTexts[i++], _("Languages"), 1024);
 #endif
-	strncpy(MenuTexts[i++], _("Droid talk"), 1024);
 	strncpy(MenuTexts[i++], _("On-Screen displays"), 1024);
 	strncpy(MenuTexts[i++], _("Performance tweaks"), 1024);
 	strncpy(MenuTexts[i++], _("Back"), 1024);
@@ -1461,35 +1462,9 @@ static void OSD_fill(char *MenuTexts[MAX_MENU_ITEMS])
 
 }
 
-static int Droid_handle(int n)
-{
-	enum {
-		ALL_TEXTS = 1,
-		LEAVE_DROID_TALK_OPTIONS_MENU
-	};
-	int *ptrs[] = {
-		&GameConfig.All_Texts_Switch,
-	};
 
-	if (n < LEAVE_DROID_TALK_OPTIONS_MENU && n > 0)
-		*ptrs[n - 1] = !*ptrs[n - 1];
-	else {
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) ;
-		return EXIT_MENU;
-	}
-	return CONTINUE_MENU;
-}
 
-static void Droid_fill(char *MenuTexts[MAX_MENU_ITEMS])
-{
-	char Options[20][1000];
-	int i = 0;
-	sprintf(Options[i], _("Show enemies' states (debug): %s"), GameConfig.All_Texts_Switch ? _("YES") : _("NO"));
-	strncpy(MenuTexts[i], Options[i], 1024);
-	i++;
-	strncpy(MenuTexts[i++], _("Back"), 1024);
-	MenuTexts[i++][0] = '\0';
-}
+
 
 #define FIRST_MIS_SELECT_ITEM_POS_X (0.0)
 #define FIRST_MIS_SELECT_ITEM_POS_Y (BANNER_HEIGHT + FontHeight(Menu_BFont))
