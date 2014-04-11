@@ -220,8 +220,10 @@ static int lua_change_obstacle_message(lua_State *L)
 
 static int lua_event_heal_tux(lua_State * L)
 {
-	Me.energy = Me.maxenergy;
-	play_sound_cached("effects/new_healing_sound.ogg");
+	if (Me.energy > 0) {
+		Me.energy = Me.maxenergy;
+		play_sound_cached("effects/new_healing_sound.ogg");
+	}
 	return 0;
 }
 
