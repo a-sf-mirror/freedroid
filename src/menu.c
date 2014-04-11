@@ -531,7 +531,7 @@ void Cheatmenu(void)
 				break;
 			}
 			if (Me.invisible_duration > 0) {
-				Me.invisible_duration = 0.01;
+				Me.invisible_duration = 0.0;
 				break;
 			}
 			break;
