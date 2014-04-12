@@ -1027,7 +1027,7 @@ static int Language_handle(int n)
 		lang_set(lang->locale);
 	}
 
-	return EXIT_MENU;
+	return CONTINUE_MENU;
 }
 #endif
 
@@ -1036,13 +1036,21 @@ static void Language_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	int i = 0;
 	int l;
+	char mark;
 
-	strncpy(MenuTexts[i++], _("System default"), 1024);
+	mark = ' ';
+	if (!GameConfig.locale || strlen(GameConfig.locale) == 0)
+		mark = '*';
+	snprintf(MenuTexts[i++], 1024, "%c %s  ", mark, _("System default"));
+
 	for (l = 0; l < lang_specs.size; l++) {
 		struct langspec *lang = dynarray_member(&lang_specs, l, sizeof(struct langspec));
-		strncpy(MenuTexts[i++], lang->name, 1024);
+		mark = ' ';
+		if (GameConfig.locale && !strcmp(GameConfig.locale, lang->locale))
+			mark = '*';
+		snprintf(MenuTexts[i++], 1024, "%c %s  ", mark, lang->name);
 	}
-	strncpy(MenuTexts[i++], _("Back"), 1024);
+	snprintf(MenuTexts[i++], 1024, "  %s  ", _("Back"));
 	MenuTexts[i++][0] = '\0';
 }
 #endif
