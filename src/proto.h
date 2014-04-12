@@ -831,6 +831,7 @@ void rtprof_display();
 
 // lang.c
 void lang_set(const char *);
+char *lang_get();
 void lang_init();
 
 #endif

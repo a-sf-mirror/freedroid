@@ -35,6 +35,8 @@
  * Set the locale used by the game for text translation.
  *
  * On success, the locale is set into the game config.
+ * Note: GameConfig.locale is set to "" to denote the use of the system
+ * default locale.
  *
  * \param locale Pointer to the locale name, or "" to use system default.
  */
@@ -48,8 +50,10 @@ void lang_set(const char *locale)
 	// only have a few locales pre-configured.
 	//
 	// So in order to be able to use all our translations, we rather rely
-	// on the LANGUAGE envvar. And in order to use it, setlocale() has to
-	// be called with an emtpy locale name. (see GNU gettext manual).
+	// on the LANGUAGE envvar and ask gettext to use the system default
+	// locale. (gettext() gives precedence to LANGUAGE over any other envvar,
+	// see GNU gettext manual)
+
 	if (!locale || strlen(locale) == 0) {
 		if (fd_unsetenv("LANGUAGE") != 0)
 			return;
@@ -58,11 +62,11 @@ void lang_set(const char *locale)
 			return;
 	}
 
+	// Use LANGUAGE or system default locale
 	if (!setlocale(LC_MESSAGES, "")) {
 		error_message(__FUNCTION__, "Error when calling setlocale() to set %s locale", PLEASE_INFORM, (locale) ? locale : "NULL");
 		return;
 	}
-
 
 	// 'locale' and GameConfig.locale can possibly be the same pointer.
 	// So we make a copy of 'locale' to avoid any issue.
@@ -75,6 +79,26 @@ void lang_set(const char *locale)
 		GameConfig.locale = strdup("");
 	if (ll)
 		free(ll);
+#endif
+}
+
+/**
+ * Return the locale used by the game for text translation.
+ *
+ * \return Pointer to the locale name, or NULL if localization is disabled.
+ */
+char *lang_get()
+{
+#ifdef ENABLE_NLS
+	// If GameConfig.locale is not set, then return the system default locale
+
+	if (GameConfig.locale && strlen(GameConfig.locale) != 0) {
+		return GameConfig.locale;
+	} else {
+		return setlocale(LC_MESSAGES, "");
+	}
+#else
+	return NULL;
 #endif
 }
 

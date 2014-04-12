@@ -43,9 +43,6 @@
 #if HAVE_SIGNAL_H
 #  include <signal.h>
 #endif
-#ifdef HAVE_LANGINFO_H
-#include <langinfo.h>
-#endif
 
 static int world_is_frozen = 0;
 long oneframedelay = 0;
@@ -745,15 +742,7 @@ int find_localized_file(const char *fname, int subdir_handle, char *file_path, i
 		return 0;
 	}
 
-	// If GameConfig.local is not set or is empty, then the game uses the
-	// system default locale. We thus need to retrieve it, to use the right
-	// localized version of the searched file.
-	char *used_locale = GameConfig.locale;
-#ifdef HAVE_NL_LANGINFO
-	if (!GameConfig.locale || strlen(GameConfig.locale) == 0) {
-		used_locale = nl_langinfo(_NL_LOCALE_NAME(LC_MESSAGES));
-	}
-#endif
+	char *used_locale = lang_get();
 
 	if (!used_locale || strlen(used_locale) == 0) {
 		return find_file(fname, subdir_handle, file_path, error_report);
