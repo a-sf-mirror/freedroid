@@ -411,8 +411,8 @@ return {
 
 			if ((ewd1+ewd2+ewd3) < (tux1+tux2+tux3)) then --Tux wins!
 				npc_says_random(_"You won! Good job.",
-					_"You won! Man you are lucky!",
-					_"You won!")
+								_"You won! Man you are lucky!",
+								_"You won!")
 				local bet_gain = {easy = 0.95, normal = 0.85, hard = 0.8}
 				bet = bet * bet_gain[difficulty()]
 				Tux:add_gold(bet)
@@ -421,9 +421,9 @@ return {
 				display_console_message(string.format(_"You won %d valuable circuits by gambling dice with Ewald.", math.floor(bet)))
 			else -- House Wins!
 				npc_says_random(_"You lost. Bad luck.",
-					_"You lost. Better luck next time.",
-					_"You lost, try again?",
-					_"You lost. Maybe you might like coin-flipping better?")
+								_"You lost. Better luck next time.",
+								_"You lost, try again?",
+								_"You lost. Maybe you might like coin-flipping better?")
 				Tux:del_gold(bet)
 				total_bet = total_bet - bet
 				--; TRANSLATORS: %d = amount of valuable circuits
@@ -451,10 +451,10 @@ return {
 		topic = "Gambling",
 		code = function()
 			npc_says_random(_"Heads, eh? I always like heads.",
-				_"Heads? Sometimes I pick heads... when I don't pick tails.",
-				_"When I think too much about it, I end up picking heads.",
-				_"Just the other day I found out that 'obverse' was the fancy name for 'heads'. Trippy.",
-				_"I think I would have picked tails this time.")
+							_"Heads? Sometimes I pick heads... when I don't pick tails.",
+							_"When I think too much about it, I end up picking heads.",
+							_"Just the other day I found out that 'obverse' was the fancy name for 'heads'. Trippy.",
+							_"I think I would have picked tails this time.")
 			tux1 = 0
 			hide("node51", "node52") next("node53")
 		end,
@@ -465,10 +465,10 @@ return {
 		topic = "Gambling",
 		code = function()
 			npc_says_random(_"Tails? Fits, since you've got one.",
-				_"Tails? I always liked that game... good times.",
-				_"Tails. When I don't pick heads, I always pick tails.",
-				_"Just the other day I found out that 'reverse' was the fancy name for 'tails'. Trippy.",
-				_"I think I would have picked heads this time.")
+							_"Tails? I always liked that game... good times.",
+							_"Tails. When I don't pick heads, I always pick tails.",
+							_"Just the other day I found out that 'reverse' was the fancy name for 'tails'. Trippy.",
+							_"I think I would have picked heads this time.")
 			tux1 = 1
 			hide("node51", "node52") next("node53")
 		end,
@@ -496,9 +496,9 @@ return {
 			tux2 = 0 -- Set to 'even'
 
 			local random_says = {_"Even, eh? I always like even. It is so symmetric.",
-				_"Even? Sometimes I pick even... when I don't pick odd.",
-				_"When I think too much about it, I end up picking even.",
-				_"I think I would have picked even this time."}
+								 _"Even? Sometimes I pick even... when I don't pick odd.",
+								 _"When I think too much about it, I end up picking even.",
+								 _"I think I would have picked even this time."}
 
 			if (ewd1 ~= tux1) then
 				table.insert(random_says, _"Hoping to guess them all wrong, eh?")
@@ -518,9 +518,9 @@ return {
 			tux2 = 1 -- Set to 'odd'
 
 			local random_says = {_"Odd? Fits, since you're pretty odd yourself.",
-				_"Odd? Well that is odd... I was thinking of odd.",
-				_"Odd. When I don't pick even, I always pick odd too.",
-				_"I think I would have picked even this time."}
+								 _"Odd? Well that is odd... I was thinking of odd.",
+								 _"Odd. When I don't pick even, I always pick odd too.",
+								 _"I think I would have picked even this time."}
 
 			if (ewd1 == tux1) then
 				table.insert(random_says, _"Honing up on your math, eh?")
@@ -571,18 +571,18 @@ return {
 
 			if (win == 1) then -- WIN
 				npc_says_random(_"Looks like another winning combination! Good job!",
-					_"You have the best luck! You won!",
-					_"Too many of these and I'll go out of business. You won!",
-					_"You will have to tell me how you did it. You Won!",
-					_"Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!")
+								_"You have the best luck! You won!",
+								_"Too many of these and I'll go out of business. You won!",
+								_"You will have to tell me how you did it. You Won!",
+								_"Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!")
 				display_console_message(string.format(_"You won %d valuable circuits in the coin-flip game with Ewald.", bet))
 			elseif (win == 0) then --LOSS
 				npc_says_random(_"Looks like you got everything wrong... here is some of your bet back.",
-					_"Well, close, but exactly wrong. Here is some of your bet back.",
-					_"You need to do exactly opposite of what you did here. Here is part of your bet back.",
-					_"Close, but no cigar. Here is some of your money back.",
-					_"Next time pick the opposite of what you did this time... or something.",
-					_"Close only counts in hand grenades and horseshoes. But some money back.")
+								_"Well, close, but exactly wrong. Here is some of your bet back.",
+								_"You need to do exactly opposite of what you did here. Here is part of your bet back.",
+								_"Close, but no cigar. Here is some of your money back.",
+								_"Next time pick the opposite of what you did this time... or something.",
+								_"Close only counts in hand grenades and horseshoes. But some money back.")
 
 				local bet_loss = {easy = 1, normal = 0.75, hard = 0.5} -- easy: 100% back normal: 75% back, hard: 50% back
 				bet = bet*bet_loss[difficulty()]
@@ -590,10 +590,10 @@ return {
 				display_console_message(string.format(_"You lost %d valuable circuits in the coin-flip game with Ewald.", math.floor(bet)))
 			elseif (win == 0.5) then -- COMPLETE LOSS (0% back)
 				npc_says_random(_"You lost. You were half right, but half wrong. Pick one and stay with it.",
-					_"You lost. You were all messed up. Better luck next time.",
-					_"You lost. Maybe you should try something else for a while?",
-					_"You lost.",
-					_"You lost. You might try the dice game next time.")
+								_"You lost. You were all messed up. Better luck next time.",
+								_"You lost. Maybe you should try something else for a while?",
+								_"You lost.",
+								_"You lost. You might try the dice game next time.")
 				bet = -bet
 
 				display_console_message(string.format(_"You lost %d valuable circuits in the coin-flip game with Ewald.", bet))
@@ -674,8 +674,8 @@ return {
 		topic = "Gambling",
 		code = function()
 			npc_says_random(_"We can play again whenever you want!",
-				_"You are right, I'm going to clean you out!",
-				_"The house always wins; sooner or later...")
+							_"You are right, I'm going to clean you out!",
+							_"The house always wins; sooner or later...")
 			-- end any partial gambling node
 			hide("node31", "node32", "node33", "node34") -- Choose game
 			hide("node35", "node36", "node36", "node37", "node38", "node39") -- Choose bet
@@ -690,9 +690,9 @@ return {
 		text = _"See you later.",
 		code = function()
 			npc_says_random(_"Goodbye and remember: My bar is always open.",
-				_"Come back soon!",
-				_"You are welcome to unwind with old Ewald any time. Come back soon.",
-				_"Remember, you can always come back here to relax and kick back.")
+							_"Come back soon!",
+							_"You are welcome to unwind with old Ewald any time. Come back soon.",
+							_"Remember, you can always come back here to relax and kick back.")
 			end_dialog()
 		end,
 	},
