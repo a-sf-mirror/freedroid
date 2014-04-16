@@ -71,7 +71,7 @@ tx-update: $(DOMAIN).pot
 	files='$(TXFILES)'; \
 	for file in $$files; do \
 	  base=`basename $$file`; \
-	  rsrc=`echo $$base | sed -s 's/\..*$$//'`; \
+	  rsrc=`echo $$base | sed -e 's/\..*$$//'`; \
 	  msggrep $(MSGCAT_OPTIONS) --location=$$file -o tx/$$rsrc.pot $(DOMAIN).pot; \
 	  if test -r tx/$$rsrc.pot; then \
 	    if ! tx -q status -r $(TXPROJ).$(TXPREFIX)-$$rsrc 2&>/dev/null; then \
@@ -114,7 +114,7 @@ tx-pull:
 	  lang=`echo $$cat | sed -e 's/\.gmo$$//'`; \
 	  for file in $$files; do \
 	    base=`basename $$file`; \
-	    rsrc=`echo $$base | sed -s 's/\..*$$//'`; \
+	    rsrc=`echo $$base | sed -e 's/\..*$$//'`; \
 	    echo "Pulling $$rsrc-$$lang.po from transifex"; \
 	    if tx -q pull -r $(TXPROJ).$(TXPREFIX)-$$rsrc -l $$lang; then \
 	      if test -r tx/$$rsrc-$$lang.po; then \
@@ -150,7 +150,7 @@ tx-push:
 	  lang=`echo $$cat | sed -e 's/\.gmo$$//'`; \
 	  for file in $$files; do \
 	    base=`basename $$file`; \
-	    rsrc=`echo $$base | sed -s 's/\..*$$//'`; \
+	    rsrc=`echo $$base | sed -e 's/\..*$$//'`; \
 	    msggrep $(MSGCAT_OPTIONS) --location=$$file -o tx/$$rsrc-$$lang.po $$lang.po; \
 	    echo "Pushing $$rsrc-$$lang.po to transifex"; \
 	    tx -q push -r $(TXPROJ).$(TXPREFIX)-$$rsrc -l $$lang -t; \
