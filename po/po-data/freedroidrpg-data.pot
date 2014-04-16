@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-03-01 22:42+0100\n"
+"POT-Creation-Date: 2014-04-09 00:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,15 +47,15 @@ msgid "249 Chicago"
 msgstr ""
 
 #: map/droid_archetypes.dat:171
-msgid "Cheaper version of the anti-grav servant robot."
+msgid "Cheaper version of the anti-grav servant robot. This one is armed with rapid fire weaponry."
 msgstr ""
 
 #: map/droid_archetypes.dat:175 map/ReturnOfTux.droids:275
 msgid "296 Sawmill"
 msgstr ""
 
-#: map/droid_archetypes.dat:198 map/droid_archetypes.dat:387
-msgid "Run away! This bot will kill you!"
+#: map/droid_archetypes.dat:198
+msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carring drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
 msgstr ""
 
 #: map/droid_archetypes.dat:202 map/ReturnOfTux.droids:103
@@ -111,6 +111,10 @@ msgstr ""
 
 #: map/droid_archetypes.dat:364 map/ReturnOfTux.droids:282
 msgid "543 Forest Harvester"
+msgstr ""
+
+#: map/droid_archetypes.dat:387
+msgid "This bot was designed for logging, but instead of harvesting trees, it's now harvesting people!!! Run away! This bot will kill you!"
 msgstr ""
 
 #: map/droid_archetypes.dat:391 map/ReturnOfTux.droids:283
@@ -318,7 +322,7 @@ msgid "Bartender"
 msgstr ""
 
 #: map/droid_archetypes.dat:1025
-msgid "This is the bartender."
+msgid "This is the bartender. Care for a drink?"
 msgstr ""
 
 #: map/droid_archetypes.dat:1029
@@ -326,7 +330,7 @@ msgid "Female Hunter"
 msgstr ""
 
 #: map/droid_archetypes.dat:1047
-msgid "Blabla - TODO."
+msgid "This hunter has fought with many robots before, and will not be scared by a mere linarian."
 msgstr ""
 
 #: map/droid_archetypes.dat:1051
@@ -343,7 +347,7 @@ msgid "Autogun"
 msgstr ""
 
 #: map/droid_archetypes.dat:1096
-msgid "Autogun. --todo"
+msgid "Carefully designed by Future Ballistics(R), this autogun will shred you into pieces if you try pass across them."
 msgstr ""
 
 #: map/droid_archetypes.dat:1100

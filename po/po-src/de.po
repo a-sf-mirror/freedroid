@@ -1,17 +1,18 @@
-# German translations for freedroidrpg package
-# German messages for freedroidrpg.
-# Copyright (C) 2013 FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
-# Freedroid <bugs@freedroid.org>, 2014.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR FreedroidRPG Project
+# This file is distributed under the same license as the PACKAGE package.
 #
+# Translators:
+# Link_Mario <Link-Mario@gmx.de>, 2014
+# matthiaskrgr <matthias.krueger@famsik.de>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: freedroidrpg 0.15+git\n"
+"Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-04-02 23:37+0200\n"
-"PO-Revision-Date: 2013-09-01 00:37+0200\n"
-"Last-Translator: Freedroid <bugs@freedroid.org>\n"
-"Language-Team: German\n"
+"POT-Creation-Date: 2014-04-16 10:43+0000\n"
+"PO-Revision-Date: 2014-04-16 10:43+0000\n"
+"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
+"Language-Team: German (http://www.transifex.com/projects/p/freedroid-rpg/language/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,163 +22,163 @@ msgstr ""
 #: lua_modules/FDtux_lfuns.lua:239 map/script_helpers.lua:242
 #: map/script_helpers.lua:245
 msgid "New Quest assigned: "
-msgstr ""
+msgstr "Neue Aufgabe erhalten:"
 
 #: lua_modules/FDtux_lfuns.lua:259 map/script_helpers.lua:254
 #: map/script_helpers.lua:257
 msgid "Quest log updated: "
-msgstr ""
+msgstr "Aufgabe aktualisiert:"
 
 #: lua_modules/FDtux_lfuns.lua:301 map/script_helpers.lua:287
 #: map/script_helpers.lua:290
 msgid "Quest completed: "
-msgstr ""
+msgstr "Aufgabe abgeschlossen:"
 
 #: map/script_helpers.lua:531
 msgid " getting new id"
-msgstr ""
+msgstr "Erhalte neue ID"
 
 #: src/action.c:535
 msgid "Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\"."
-msgstr ""
+msgstr "Bunte Formen erscheinen auf dem Bildschirm, aber sie sehen nicht wie gewohnte Computerschnittstellen aus, die du kennst. Vielleicht nennt man dies einen Bildschirm- \"schoner\"."
 
 #: src/action.c:551
 msgid "There is nothing on this sign."
-msgstr ""
+msgstr "Auf diesem Schild steht nichts drauf."
 
 #: src/addon_crafting_ui.c:100
 msgid "Features:"
-msgstr ""
+msgstr "Eigenschaften:"
 
 #: src/addon_crafting_ui.c:259
 msgid "Craft Addons"
-msgstr ""
+msgstr "Addons bauen"
 
 #: src/addon_crafting_ui.c:263
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
 #: src/addon_crafting_ui.c:267
 msgid "Parts"
-msgstr ""
+msgstr "Teile"
 
 #: src/automap.c:317
 msgid "Compass on. You need a Map Maker to enable the minimap."
-msgstr ""
+msgstr "Kompass aktiviert. Aber du brauchst noch einen Gegenstand, um die Minikarte zu verwenden."
 
 #: src/automap.c:319
 msgid "Compass off."
-msgstr ""
+msgstr "Kompass deaktiviert."
 
 #: src/character.c:155
 msgid "Level Gained!"
-msgstr ""
+msgstr "Neue Stufe erreicht!"
 
 #: src/character.c:375
 msgid "Melee"
-msgstr ""
+msgstr "Nahkampf"
 
 #: src/character.c:389
 msgid "Ranged"
-msgstr ""
+msgstr "Fernkampf"
 
 #: src/character.c:403
 msgid "Programming"
-msgstr ""
+msgstr "Programmierung"
 
 #: src/character.c:444
 msgid "Level"
-msgstr ""
+msgstr "Stufe"
 
 #: src/character.c:450
 msgid "Experience"
-msgstr ""
+msgstr "Erfahrung"
 
 #: src/character.c:456
 msgid "Next level"
-msgstr ""
+msgstr "Nächste Stufe"
 
 #: src/character.c:462
 msgid "Circuits"
-msgstr ""
+msgstr "Schaltkreise"
 
 #: src/character.c:468
 msgid "Strength"
-msgstr ""
+msgstr "Stärke"
 
 #: src/character.c:476
 msgid "Dexterity"
-msgstr ""
+msgstr "Geschicklichkeit"
 
 #: src/character.c:484
 msgid "Physique"
-msgstr ""
+msgstr "Statur"
 
 #: src/character.c:492
 msgid "Cooling"
-msgstr ""
+msgstr "Kühlung"
 
 #: src/character.c:501
 msgid "Training points"
-msgstr ""
+msgstr "Trainingspunkte"
 
 #: src/character.c:507 src/game_ui.c:246
 msgid "Health"
-msgstr ""
+msgstr "Gesundheit"
 
 #: src/character.c:513 src/game_ui.c:320
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatur"
 
 #: src/character.c:519
 msgid "Stamina"
-msgstr ""
+msgstr "Ausdauer"
 
 #: src/character.c:525
 msgid "Attack"
-msgstr ""
+msgstr "Angriff"
 
 #: src/character.c:531
 msgid "Damage"
-msgstr ""
+msgstr " Schaden"
 
 #: src/character.c:543
 msgid "Armor"
-msgstr ""
+msgstr "Rüstung"
 
 #: src/chat.c:635 src/chat.c:644
 msgid "[n]--- Start of Dialog ---\n"
-msgstr ""
+msgstr "[n]--- Anfang des Dialogs ---\n"
 
 #. TRANSLATORS: Your friend <bot's short description> was killed by <bot's short description>
-#: src/enemy.c:895
+#: src/enemy.c:894
 #, c-format
 msgid "Your friend [s]%s[v] was killed by %s."
-msgstr ""
+msgstr "Dein Freund [s]%s[v] wurde von %s getötet."
 
 #. TRANSLATORS: You killed <bot's short description>
-#: src/enemy.c:899
+#: src/enemy.c:898
 #, c-format
 msgid "You killed [s]%s[v]."
-msgstr ""
+msgstr "Du hast [s]%s[v] getötet."
 
 #. TRANSLATORS: <bot's short description> halted and caught fire
-#: src/enemy.c:903
+#: src/enemy.c:902
 #, c-format
 msgid "[s]%s[v] halted and caught fire."
-msgstr ""
+msgstr "[s]%s[v] blieb stehen und fing Feuer."
 
 #. TRANSLATORS: <bot's short description> is dead
-#: src/enemy.c:906
+#: src/enemy.c:905
 #, c-format
 msgid "[s]%s[v] is dead."
-msgstr ""
+msgstr "[s]%s[v] ist hinüber."
 
 #. TRANSLATORS: For defeating <bot's short description>, you receive <10> experience
-#: src/enemy.c:911
+#: src/enemy.c:910
 #, c-format
 msgid "For defeating [s]%s[v], you receive %d experience."
-msgstr ""
+msgstr "Für das Bekämpfen von [s]%s[v] erhätst du %d Erfahrungspunkte."
 
 #. TRANSLATORS: Tooltip of skill button: <skill name>\n Heat: <skill heat cost>\n Revision: <skill revision>
 #: src/game_ui.c:52
@@ -187,163 +188,166 @@ msgid ""
 "Heat: %d\n"
 "Revision: %d\n"
 msgstr ""
+"%s\n"
+"Hitze: %d\n"
+"Version: %d\n"
 
 #: src/game_ui.c:102
 msgid "reloading"
-msgstr ""
+msgstr "nachladen"
 
 #: src/game_ui.c:104
 msgid "[r]EMPTY"
-msgstr ""
+msgstr " [r]LEER"
 
 #: src/game_ui.c:179
 msgid "RUN"
-msgstr ""
+msgstr "RENNEN"
 
 #: src/game_ui.c:216
 msgid "XP"
-msgstr ""
+msgstr "EP"
 
 #. TRANSLATORS: Used on object selector's widget to display unit price * number of objects
 #: src/graphics.c:231
 #, c-format
 msgid "%d price\n"
-msgstr ""
+msgstr "Preis: %d\n"
 
 #. TRANSLATORS: On item description: range
 #: src/hud.c:132
 #, c-format
 msgid "Damage: %d to %d\n"
-msgstr ""
+msgstr "Schaden: %d bis %d\n"
 
 #. TRANSLATORS: On item description
 #: src/hud.c:135
 #, c-format
 msgid "Damage: %d\n"
-msgstr ""
+msgstr "Schaden: %d\n"
 
 #. TRANSLATORS: On item description
 #: src/hud.c:141
 #, c-format
 msgid "Multiplicity: %d\n"
-msgstr ""
+msgstr "Anzahl: %d\n"
 
 #. TRANSLATORS: On item description: Armor bonus
 #: src/hud.c:146
 #, c-format
 msgid "Armor: %d\n"
-msgstr ""
+msgstr "Rüstung: %d\n"
 
 #. TRANSLATORS: On item description: 'current' of 'maximum'
 #: src/hud.c:151
 #, c-format
 msgid "Durability: %d of %d\n"
-msgstr ""
+msgstr "Haltbarkeit: %d von %d\n"
 
 #. TRANSLATORS: On item description : durability
 #: src/hud.c:154 src/shop.c:317
 msgid "Indestructible\n"
-msgstr ""
+msgstr "Unzerstörbar\n"
 
 #. TRANSLATORS: On item description: 'current' of 'maximum' amount of ammo
 #: src/hud.c:159
 #, c-format
 msgid "Ammo: %d of %d\n"
-msgstr ""
+msgstr "Munition: %d von %d\n"
 
 #. TRANSLATORS: On item description
 #: src/hud.c:165
 #, c-format
 msgid "Required strength: %d\n"
-msgstr ""
+msgstr "Mindeststärke: %d\n"
 
 #. TRANSLATORS: On item description
 #: src/hud.c:169
 #, c-format
 msgid "Required dexterity: %d\n"
-msgstr ""
+msgstr "Mindestgeschicklichkeit: %d\n"
 
 #: src/hud.c:181
 msgid "Right click to use\n"
-msgstr ""
+msgstr "Rechtsklicken zum Benutzen\n"
 
 #: src/hud.c:184
 #, c-format
 msgid "Item use: %s\n"
-msgstr ""
+msgstr "Gegenstand benutzt: %s\n"
 
 #. TRANSLATORS: On item description: 'used sockets' / 'number of sockets'
 #: src/hud.c:191
 #, c-format
 msgid "Sockets: used %d/%d\n"
-msgstr ""
+msgstr "Sockel: %d von %d belegt\n"
 
 #: src/hud.c:299
 msgid "REQUIREMENTS NOT MET"
-msgstr ""
+msgstr "ANFORDERUNGEN NICHT ERFÜLLT"
 
 #: src/hud.c:405
 msgid "No label for this obstacle"
-msgstr ""
+msgstr "Keine Beschriftung für dieses Hindernis"
 
 #: src/hud.c:617
 #, c-format
 msgid "FPS: %d\n"
-msgstr ""
+msgstr "FPS: %d\n"
 
 #: src/hud.c:633
 #, c-format
 msgid "Bots remaining on level: %d\n"
-msgstr ""
+msgstr "Verbleibende Bots auf dieser Ebene: %d\n"
 
 #. TRANSLATORS: In-game date: Day <day number> <hour>:<minute>
 #: src/hud.c:662 src/hud.c:669
 #, c-format
 msgid "Day %d  %02d:%02d"
-msgstr ""
+msgstr "Tag %d  %02d:%02d"
 
 #. TRANSLATORS: Console msg when a weapon is empty
 #: src/influ.c:147
 #, c-format
 msgid "%s empty, reloading..."
-msgstr ""
+msgstr "%s leer, lade nach…"
 
-#: src/influ.c:971 src/menu.c:998
+#: src/influ.c:971 src/menu.c:999
 msgid "Load Latest"
-msgstr ""
+msgstr "Letzten Spielstand laden"
 
-#: src/influ.c:972 src/menu.c:999
+#: src/influ.c:972 src/menu.c:1000
 msgid "Load Backup"
-msgstr ""
+msgstr "Sicherungskopie laden"
 
-#: src/influ.c:973 src/menu.c:1001 src/lvledit/lvledit_menu.c:1003
+#: src/influ.c:973 src/menu.c:1002 src/lvledit/lvledit_menu.c:1003
 msgid "Quit to Main Menu"
-msgstr ""
+msgstr "Zurück zum Hauptmenü"
 
-#: src/influ.c:974 src/menu.c:846 src/menu.c:1004
+#: src/influ.c:974 src/menu.c:851 src/menu.c:1005
 #: src/lvledit/lvledit_menu.c:1004
 msgid "Exit FreedroidRPG"
-msgstr ""
+msgstr "FreedroidRPG beenden"
 
 #. TRANSLATORS: Out of <ammo type>
 #: src/influ.c:1502
 #, c-format
 msgid "Out of [s]%s[v]!"
-msgstr ""
+msgstr "Kein(e) [s]%s[v] mehr!"
 
-#: src/init.c:897 src/saveloadgame.c:444
+#: src/init.c:837 src/saveloadgame.c:443
 msgid "--- Message Log ---"
-msgstr ""
+msgstr "--- Nachrichteneintrag ---"
 
-#: src/init.c:899
+#: src/init.c:839
 msgid "Starting tutorial."
-msgstr ""
+msgstr "Starte Einführung."
 
-#: src/init.c:901
+#: src/init.c:841
 msgid "Starting new game."
-msgstr ""
+msgstr "Starte neues Spiel."
 
-#: src/init.c:1199
+#: src/init.c:1139
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -352,312 +356,318 @@ msgid ""
 "\n"
 "Good luck!\n"
 msgstr ""
+"Dies ist ein Release Kandidat.\n"
+"In diesem Spiel können immer noch merkwürdige Bugs auftreten.\n"
+"Um sie beheben zu können, sollten sie beim Bugtracker unter http://bugs.freedroid.org/ gemeldet werden.\n"
+"Vielen Dank im Voraus, dass dieses Spiel getestet wird.\n"
+"\n"
+"Viel Glück!\n"
 
-#: src/init.c:1217 src/init.c:1218
+#: src/init.c:1157 src/init.c:1158
 msgid "Game over.\n"
-msgstr ""
+msgstr "Spiel vorbei.\n"
 
-#: src/init.c:1287 src/init.c:1288
+#: src/init.c:1227 src/init.c:1228
 msgid "Game won.\n"
-msgstr ""
+msgstr "Spiel gewonnen!!!\n"
 
 #. TRANSLATORS: Item's bonus: '10 to strength' means 'add 10 to player's strength'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:246
 #, c-format
 msgid "%+d to strength%s"
-msgstr ""
+msgstr "%+d um %s zu verstärken"
 
 #. TRANSLATORS: Item's bonus: '10 to dexterity' means 'add 10 to player's dexterity'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:251
 #, c-format
 msgid "%+d to dexterity%s"
-msgstr ""
+msgstr "%+d um %s Genauigkeit zu verbessern"
 
 #. TRANSLATORS: Item's bonus: '10 to cooling' means 'add 10 to player's cooling capability'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:256
 #, c-format
 msgid "%+d to cooling%s"
-msgstr ""
+msgstr "%+d um %s Kühlung zu verbessern"
 
 #. TRANSLATORS: Item's bonus: '10 to physique' means 'add 10 to player's physique'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:261
 #, c-format
 msgid "%+d to physique%s"
-msgstr ""
+msgstr "%+d um %s Statur zu verbessern"
 
 #. TRANSLATORS: Item's bonus: '10 to health points' means 'add 10 to player's health'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:266
 #, c-format
 msgid "%+d health points%s"
-msgstr ""
+msgstr "%+d Kraftpunkte für %s"
 
 #. TRANSLATORS: Item's bonus: '0.1 to health points per seconds' means 'add 0.1 to player's recovery rate'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:271
 #, c-format
 msgid "%+0.1f health points per second%s"
-msgstr ""
+msgstr "%+0.1f Kraftpunkte pro Sekunde für %s"
 
 #. TRANSLATORS: Item's bonus: '0.1 cooling per seconds' means 'add 0.1 to player's cooling rate'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:277
 #, c-format
 msgid "%0.1f cooling per second%s"
-msgstr ""
+msgstr "%0.1f Kühlung pro Sekunde für %s"
 
 #. TRANSLATORS: Item's bonus: '0.1 heating per seconds' means 'remove 0.1 to player's cooling rate'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:281
 #, c-format
 msgid "%0.1f heating per second%s"
-msgstr ""
+msgstr "%0.1f Hitze pro Sekunde für %s"
 
 #. TRANSLATORS: Item's bonus: '10 to attacks' means 'add 10 to player's attack capability'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:287
 #, c-format
 msgid "%+d%% to attack%s"
-msgstr ""
+msgstr "%+d%% auf %s Angriffskraft"
 
 #. TRANSLATORS: Item's bonus: '10 to all attributes' means 'add 10 to all player's capabilities'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:292
 #, c-format
 msgid "%+d to all attributes%s"
-msgstr ""
+msgstr "%+d auf alle Attribute von %s"
 
 #. TRANSLATORS: Item's bonus: '10 to damage' means 'add 10 to player's damage'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:297
 #, c-format
 msgid "%+d to damage%s"
-msgstr ""
+msgstr "%+d auf %s Schaden"
 
 #. TRANSLATORS: Item's bonus: '10 to armor' means 'add 10 to player's armor'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:302
 #, c-format
 msgid "%+d to armor%s"
-msgstr ""
+msgstr "%+d auf %s Rüstung"
 
 #. TRANSLATORS: Item's bonus: '10 to paralyze enemy' means 'add 10 to player's paralyze capability'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:307
 #, c-format
 msgid "%+d to paralyze enemy%s"
-msgstr ""
+msgstr "%+d, dass %s Gegner paralysiert"
 
 #. TRANSLATORS: Item's bonus: '10 to slow enemy' means 'add 10 to player's capability to slow an ennemy'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:312
 #, c-format
 msgid "%+d to slow enemy%s"
-msgstr ""
+msgstr "%+d, dass %s Gegner verlangsamt"
 
 #. TRANSLATORS: Item's bonus: '10 to light radius' means 'add 10 to the light radius around the player'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:317
 #, c-format
 msgid "%+d to light radius%s"
-msgstr ""
+msgstr "%+d auf %s Lichtradius"
 
 #. TRANSLATORS: Item's bonus: '10 to experience gain' means 'add 10 to the player's experience multiplier'
 #. TRANSLATORS: (trailing %s contains a text separator)
 #: src/item_upgrades.c:322
 #, c-format
 msgid "%+d%% to experience gain%s"
-msgstr ""
+msgstr "%+d%% mehr Erfahrung für %s"
 
 #: src/item_upgrades.c:340
 msgid "Install to a mechanical socket\n"
-msgstr ""
+msgstr "Benötigt mechanischen Sockel\n"
 
 #: src/item_upgrades.c:342
 msgid "Install to an electric socket\n"
-msgstr ""
+msgstr "Benötigt elektrischen Sockel\n"
 
 #: src/item_upgrades.c:344
 msgid "Install to a universal socket\n"
-msgstr ""
+msgstr "Benötigt universellen Sockel\n"
 
 #: src/item_upgrades.c:352
 msgid "Install to a melee weapon\n"
-msgstr ""
+msgstr "Für Nahkampfwaffen\n"
 
 #: src/item_upgrades.c:354
 msgid "Install to a ranged weapon\n"
-msgstr ""
+msgstr "Für Fernkampfwaffen\n"
 
 #: src/item_upgrades.c:356
 msgid "Install to any armor\n"
-msgstr ""
+msgstr "Für jede Rüstung\n"
 
 #: src/item_upgrades.c:358
 msgid "Install to boots\n"
-msgstr ""
+msgstr "Für Stiefel\n"
 
 #: src/item_upgrades.c:360
 msgid "Install to a jacket\n"
-msgstr ""
+msgstr "Für Kleidungen\n"
 
 #: src/item_upgrades.c:362
 msgid "Install to a shield\n"
-msgstr ""
+msgstr "Für Schilde\n"
 
 #: src/item_upgrades.c:364
 msgid "Install to a helmet\n"
-msgstr ""
+msgstr "Für Helme\n"
 
 #. TRANSLATORS: Socket's type
 #: src/item_upgrades_ui.c:173
 msgid "Electric"
-msgstr ""
+msgstr "Elektrisch"
 
 #. TRANSLATORS: Socket's type
 #: src/item_upgrades_ui.c:175
 msgid "Mechanical"
-msgstr ""
+msgstr "Mechanisch"
 
 #. TRANSLATORS: Socket's type
 #: src/item_upgrades_ui.c:177
 msgid "Universal"
-msgstr ""
+msgstr "Universell"
 
 #. TRANSLATORS: Cancel socket's type choice menu
 #: src/item_upgrades_ui.c:179
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: src/item_upgrades_ui.c:188
 msgid "Add socket"
-msgstr ""
+msgstr "Sockel hinzufügen"
 
 #: src/item_upgrades_ui.c:190
 msgid "Type"
-msgstr ""
+msgstr "Art"
 
 #: src/item_upgrades_ui.c:191
 msgid "Cost"
-msgstr ""
+msgstr "Kosten"
 
 #: src/item_upgrades_ui.c:258
 msgid "Place an item here"
-msgstr ""
+msgstr "Hier Item einlegen"
 
 #: src/item_upgrades_ui.c:264
 msgid "Upgrade Items"
-msgstr ""
+msgstr "Gegenstände verbessern"
 
 #: src/item_upgrades_ui.c:268
 #, c-format
 msgid "Circuits: %d"
-msgstr ""
+msgstr "Schaltkreise: %d"
 
 #: src/item_upgrades_ui.c:275
 #, c-format
 msgid "Cost: %d"
-msgstr ""
+msgstr "Kosten: %d"
 
 #: src/item_upgrades_ui.c:278
 msgid "Bonuses"
-msgstr ""
+msgstr "Boni"
 
 #: src/items.c:387
 msgid "Good quality"
-msgstr ""
+msgstr "Gute Qualität"
 
 #: src/items.c:390
 msgid "Bad quality"
-msgstr ""
+msgstr "Schlechte Qualität"
 
 #: src/items.c:720
 msgid "I can't use this item here."
-msgstr ""
+msgstr "Diesen Gegenstand kann ich hier nicht nutzen."
 
 #: src/items.c:726
 msgid "You can not use any items while paralyzed."
-msgstr ""
+msgstr "Du bist paralysiert und kannst keine Gegenstände benutzen!"
 
 #: src/items.c:734
 msgid "You are drinking a potion!"
-msgstr ""
+msgstr "Du trinkst einen Trank."
 
 #: src/items.c:737
 msgid "Your are waiting for your weapon to fire again!"
-msgstr ""
+msgstr "Du wartest darauf, dass deine Waffe wieder schießen kann!"
 
 #: src/items.c:740
 msgid "You are reloading your weapon!"
-msgstr ""
+msgstr "Du lädst deine Waffe nach!"
 
 #: src/items.c:743
 msgid "You are throwing a grenade!"
-msgstr ""
+msgstr "Du wirfst eine Granate!"
 
 #: src/items.c:746
 msgid "You are running a program!"
-msgstr ""
+msgstr "Du benutzt ein Programm!"
 
 #: src/items.c:749
 msgid "You are taking a pill!"
-msgstr ""
+msgstr "Du schluckst eine Pille!"
 
 #: src/items.c:752
 msgid "You are doing something so weird the game does not understand what it is"
-msgstr ""
+msgstr "Du machst etwas so merkwürdiges, sodass das Spiel nicht versteht, was du machst."
 
 #. TRANSLATORS: the trailing %s is what the player is currently already doing (drinking, running a program, ...)
 #: src/items.c:755
 #, c-format
 msgid "How do you expect to do two things at a time? %s"
-msgstr ""
+msgstr "Wie kannst du erwarten 2 Dinge auf einmal zu tun? %s"
 
 #: src/items.c:806
 msgid "The doctor warned you. You are now weak and sickly."
-msgstr ""
+msgstr "Der Dok hat dich gewarnt. Jetzt bist du schwach und krank."
 
 #. TRANSLATORS: the trailing %s is a program name
 #: src/items.c:820
 #, c-format
 msgid "You have reached the maximum skill level for %s"
-msgstr ""
+msgstr "Du hast die maximale Fähigkeitsstufe für %s erreicht"
 
 #: src/items.c:1573
 msgid "You can not use the inventory while paralyzed."
-msgstr ""
+msgstr "Du kannst das Inventar nicht benutzen, wenn du paralysiert bist."
 
 #: src/items.c:1653
 msgid "You cannot fight with this!"
-msgstr ""
+msgstr "Damit kannst du nicht kämpfen!"
 
 #: src/items.c:1659
 msgid "You cannot yet fight with this!"
-msgstr ""
+msgstr "Du kannst im Moment nicht damit kämpfen!"
 
 #: src/items.c:1698
 msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
-msgstr ""
+msgstr "Anforderung für Zwei-Hand-Waffe nicht erfüllt: Schildbonus zählt nicht."
 
 #: src/items.c:1711
 msgid "You cannot equip this!"
-msgstr ""
+msgstr "Das kannst du nicht anlegen!"
 
 #: src/items.c:1717
 msgid "You cannot equip this yet!"
-msgstr ""
+msgstr "Das kannst du im Moment nicht anlegen!"
 
 #: src/items.c:1749
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
-msgstr ""
+msgstr "Anforderungen für Schild nicht erfüllt: Bonus für Zwei-Hand-Waffe zählt nicht."
 
 #: src/items.c:1891 src/items.c:2092
 msgid "I can't carry any more."
-msgstr ""
+msgstr "Ich kann nichts mehr tragen."
 
 #: src/items.c:2050
 msgid "Laser power pack"
@@ -673,7 +683,7 @@ msgstr ""
 
 #: src/items.c:2053
 msgid ".22 LR Ammunition"
-msgstr ""
+msgstr ".22 LG-Munition"
 
 #: src/items.c:2054
 msgid "Shotgun shells"
@@ -681,15 +691,15 @@ msgstr ""
 
 #: src/items.c:2055
 msgid "9x19mm Ammunition"
-msgstr ""
+msgstr "9x19mm Munition"
 
 #: src/items.c:2056
 msgid "7.62x39mm Ammunition"
-msgstr ""
+msgstr "Kaliber 7.62x39mm Munition"
 
 #: src/items.c:2057
 msgid ".50 BMG (12.7x99mm) Ammunition"
-msgstr ""
+msgstr "Kaliber .50 BMG  (12.7x99mm) Munition"
 
 #: src/keyboard.c:53
 msgid "keychart"
@@ -1069,235 +1079,229 @@ msgstr ""
 
 #: src/keyboard.c:284
 msgid "Key chart"
-msgstr ""
+msgstr "Tastaturbelegung"
 
 #: src/keyboard.c:316
 msgid "ARROWS to select, ENTER to remap, ESCAPE to exit"
-msgstr ""
+msgstr "PFEILE zum Auswählen, ENTER zum Neubelegen, ESCAPE zum Beenden."
 
 #: src/keyboard.c:765
 #, c-format
 msgid "Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."
-msgstr ""
+msgstr "Bildschirmfoto unter \"%s\" in deinem .freedroid_rpg/ Verzeichnis gespeichert."
 
 #: src/lua.c:67
 msgid "No chat context available on the context stack."
-msgstr ""
+msgstr "Kein Textinhalt auf dem Textstapel verfügbar."
 
-#: src/lua.c:88
-#, c-format
-msgid "Could not find a droid corresponding to the dialog \"%s\"."
-msgstr ""
-
-#: src/lua.c:276 src/lua/luaFD_tux.c:404
+#: src/lua.c:278 src/lua/luaFD_tux.c:404
 msgid "Melee fighting ability improved!"
-msgstr ""
+msgstr "Nahkampffähigkeit verbessert!"
 
-#: src/lua.c:279 src/lua/luaFD_tux.c:407
+#: src/lua.c:281 src/lua/luaFD_tux.c:407
 msgid "Ranged combat ability improved!"
-msgstr ""
+msgstr "Fernkampffähigkeit verbessert!"
 
-#: src/lua.c:282 src/lua/luaFD_tux.c:410
+#: src/lua.c:284 src/lua/luaFD_tux.c:410
 msgid "Programming ability improved!"
-msgstr ""
-
-#: src/lua.c:363
-#, c-format
-msgid "Received item: %s (on floor)"
-msgstr ""
+msgstr "Programmierfähigkeit verbessert!"
 
 #: src/lua.c:365
 #, c-format
+msgid "Received item: %s (on floor)"
+msgstr "Gegenstand erhalten: %s (auf Boden)"
+
+#: src/lua.c:367
+#, c-format
 msgid "Received item: %s"
-msgstr ""
+msgstr "Gegenstand erhalten: %s"
 
-#: src/lua.c:418 src/lua/luaFD_tux.c:755
+#: src/lua.c:419 src/lua/luaFD_tux.c:755
 msgid "1 item received!"
-msgstr ""
+msgstr "1 Gegenstand erhalten!"
 
-#: src/lua.c:497
+#: src/lua.c:498
 #, c-format
 msgid "+%d experience points"
-msgstr ""
+msgstr "+%d Erfahrungpunkte"
 
-#: src/lua.c:529 src/lua/luaFD_tux.c:317
+#: src/lua.c:530 src/lua/luaFD_tux.c:317
 #, c-format
 msgid "Gained %d valuable circuits!"
-msgstr ""
+msgstr "Du hast %d Schaltkreise erhalten!"
 
-#: src/lua.c:531 src/lua/luaFD_tux.c:319
+#: src/lua.c:532 src/lua/luaFD_tux.c:319
 #, c-format
 msgid "Lost %d valuable circuits!"
-msgstr ""
+msgstr "Du hast %d Schaltkreise verloren!"
 
 #: src/main.c:369
 msgid "Overheating!"
-msgstr ""
+msgstr "Überhitzung!"
 
 #. TRANSLATORS: Screen message, displayed below 'Automatically shutting down'
 #: src/main.c:374
 msgid "due to near lethal overheating"
-msgstr ""
+msgstr "infolge fast tödlicher Überhitzung"
 
 #: src/main.c:375
 msgid "Automatically shutting down"
-msgstr ""
+msgstr "Automatisches Herunterfahren"
 
 #: src/main.c:397
 msgid "Weapon reloaded"
-msgstr ""
+msgstr "Waffe geladen"
 
-#: src/menu.c:44 src/menu.c:840
+#: src/menu.c:44 src/menu.c:845
 msgid "Play"
-msgstr ""
+msgstr "Spielen"
 
 #: src/menu.c:45
 msgid "Your characters: "
-msgstr ""
+msgstr "Deine Charaktere:"
 
 #: src/menu.c:46
 msgid "Select character to delete: "
-msgstr ""
+msgstr "Wähle Charakter zum Löschen:"
 
 #: src/menu.c:95
 #, c-format
 msgid "OpenGL support compiled: YES"
-msgstr ""
+msgstr "OpenGL-Unterstützung kompiliert: JA"
 
 #: src/menu.c:97
 #, c-format
 msgid "OpenGL support compiled: NO"
-msgstr ""
+msgstr "OpenGL-Unterstützung kompiliert: NEIN"
 
 #: src/menu.c:100
 #, c-format
 msgid "OpenGL output active: "
-msgstr ""
+msgstr "OpenGL-Ausgabe aktiv: "
 
 #: src/menu.c:102
 #, c-format
 msgid "OpenGL output active: YES"
-msgstr ""
+msgstr "OpenGL Ausgabe aktiv: JA"
 
 #: src/menu.c:104
 #, c-format
 msgid "OpenGL output active: NO"
-msgstr ""
+msgstr "OpenGL Ausgabe aktiv: NEIN"
 
-#: src/menu.c:226 src/menu.c:1633
+#: src/menu.c:226 src/menu.c:1616
 msgid "[down]"
-msgstr ""
+msgstr "[runter]"
 
-#: src/menu.c:227 src/menu.c:1622
+#: src/menu.c:227 src/menu.c:1605
 msgid "[up]"
-msgstr ""
+msgstr "[hoch]"
 
-#: src/menu.c:841
+#: src/menu.c:846
 msgid "Tutorial"
-msgstr ""
+msgstr "Einführung"
 
-#: src/menu.c:842
+#: src/menu.c:847
 msgid "Level Editor"
-msgstr ""
+msgstr "Leveleditor"
 
-#: src/menu.c:843 src/menu.c:997
+#: src/menu.c:848 src/menu.c:998
 msgid "Options"
-msgstr ""
+msgstr "Optionen"
 
-#: src/menu.c:844
+#: src/menu.c:849
 msgid "Credits"
-msgstr ""
+msgstr "Credits"
 
-#: src/menu.c:845
+#: src/menu.c:850
 msgid "Contribute"
-msgstr ""
+msgstr "Mitwirken"
 
-#: src/menu.c:863 src/menu.c:1170 src/menu.c:1270 src/menu.c:1277
+#: src/menu.c:868 src/menu.c:1179 src/menu.c:1279 src/menu.c:1286
 msgid ""
 "You need to restart FreedroidRPG for the changes to take effect.\n"
 "\n"
 "Sorry for the inconvenience."
 msgstr ""
+"FreedroidRPG muss neu gestartet werden, damit die Änderungen in Kraft treten.\n"
+"\n"
+"Wir entschuldigen uns für diese Umständlichkeit."
 
-#: src/menu.c:876
+#: src/menu.c:881
 msgid "easy"
 msgstr ""
 
-#: src/menu.c:877
+#: src/menu.c:882
 msgid "normal"
 msgstr ""
 
-#: src/menu.c:878
+#: src/menu.c:883
 msgid "hard"
 msgstr ""
 
-#: src/menu.c:881
+#: src/menu.c:886
 #, c-format
 msgid "Difficulty: %s"
-msgstr ""
+msgstr "Schwierigkeitsgrad: %s"
 
-#: src/menu.c:882 src/menu.c:945 src/menu.c:1044 src/menu.c:1128
-#: src/menu.c:1213 src/menu.c:1324 src/menu.c:1389 src/menu.c:1459
-#: src/menu.c:1490 src/menu.c:1637 src/menu.c:1668 src/menu.c:1692
-#: src/menu.c:1750 src/lvledit/lvledit_menu.c:126
-#: src/lvledit/lvledit_menu.c:241 src/lvledit/lvledit_menu.c:415
-#: src/lvledit/lvledit_menu.c:634 src/lvledit/lvledit_menu.c:915
+#: src/menu.c:887 src/menu.c:946 src/menu.c:1053 src/menu.c:1137
+#: src/menu.c:1222 src/menu.c:1333 src/menu.c:1398 src/menu.c:1468
+#: src/menu.c:1620 src/menu.c:1651 src/menu.c:1675 src/menu.c:1733
+#: src/lvledit/lvledit_menu.c:126 src/lvledit/lvledit_menu.c:241
+#: src/lvledit/lvledit_menu.c:415 src/lvledit/lvledit_menu.c:634
+#: src/lvledit/lvledit_menu.c:915
 msgid "Back"
-msgstr ""
-
-#: src/menu.c:935
-msgid "Gameplay"
-msgstr ""
-
-#: src/menu.c:936
-msgid "Graphics"
-msgstr ""
+msgstr "Zurück"
 
 #: src/menu.c:937
-msgid "Sound"
-msgstr ""
+msgid "Gameplay"
+msgstr "Gameplay"
 
 #: src/menu.c:938
-msgid "Keys"
-msgstr ""
+msgid "Graphics"
+msgstr "Grafik"
+
+#: src/menu.c:939
+msgid "Sound"
+msgstr "Ton"
 
 #: src/menu.c:940
-msgid "Languages"
-msgstr ""
+msgid "Keys"
+msgstr "Tasten"
 
 #: src/menu.c:942
-msgid "Droid talk"
-msgstr ""
-
-#: src/menu.c:943
-msgid "On-Screen displays"
-msgstr ""
+msgid "Languages"
+msgstr "Sprachen"
 
 #: src/menu.c:944
+msgid "On-Screen displays"
+msgstr "Bildschirmmenüs"
+
+#: src/menu.c:945
 msgid "Performance tweaks"
-msgstr ""
+msgstr "Performanceverbesserungen"
 
-#: src/menu.c:992
+#: src/menu.c:993
 msgid "Resume Play"
-msgstr ""
+msgstr "Zurück zum Spiel"
 
-#: src/menu.c:994
+#: src/menu.c:995
 msgid "Resume Playtest"
-msgstr ""
+msgstr "Zurück zum Spieltest"
 
-#: src/menu.c:996
+#: src/menu.c:997
 msgid "Save Hero"
-msgstr ""
+msgstr "Held speichern"
 
-#: src/menu.c:1003
+#: src/menu.c:1004
 msgid "Return to Level Editor"
-msgstr ""
+msgstr "Zurück zum Leveleditor"
 
-#: src/menu.c:1039
+#: src/menu.c:1044
 msgid "System default"
-msgstr ""
+msgstr "Systemstandard"
 
-#: src/menu.c:1090
+#: src/menu.c:1099
 #, c-format
 msgid ""
 "You selected %d x %d pixels.\n"
@@ -1306,128 +1310,126 @@ msgid ""
 "\n"
 "Sorry for the inconvenience."
 msgstr ""
+"Du hast eine Auflösung von %d x %d Pixeln gewählt.\n"
+"\n"
+"FreedroidRPG muss neu gestartet werden, damit die Änderungen in Kraft treten.\n"
+"\n"
+"Wir entschuldigen uns für diese Umständlichkeit."
 
-#: src/menu.c:1199
+#: src/menu.c:1208
 #, c-format
 msgid "Change screen resolution"
-msgstr ""
+msgstr "Bildschirmauflösung ändern"
 
-#: src/menu.c:1201
+#: src/menu.c:1210
 #, c-format
 msgid "Fullscreen mode: %s"
-msgstr ""
+msgstr "Vollbildmodus: %s."
 
-#: src/menu.c:1201
+#: src/menu.c:1210
 msgid "ON"
-msgstr ""
+msgstr "AN"
 
-#: src/menu.c:1201
+#: src/menu.c:1210
 msgid "OFF"
-msgstr ""
+msgstr "AUS"
 
-#: src/menu.c:1205
+#: src/menu.c:1214
 #, c-format
 msgid "<-- Gamma correction: %1.2f -->"
-msgstr ""
+msgstr "<-- Gammakorrektur %1.2f -->"
 
-#: src/menu.c:1209
+#: src/menu.c:1218
 #, c-format
 msgid "Show blood: %s"
-msgstr ""
+msgstr "Blut zeigen: %s"
 
-#: src/menu.c:1209 src/menu.c:1376 src/menu.c:1379 src/menu.c:1382
-#: src/menu.c:1387 src/menu.c:1454 src/menu.c:1455 src/menu.c:1456
-#: src/menu.c:1487
+#: src/menu.c:1218 src/menu.c:1385 src/menu.c:1388 src/menu.c:1391
+#: src/menu.c:1396 src/menu.c:1463 src/menu.c:1464 src/menu.c:1465
 msgid "YES"
-msgstr ""
+msgstr "JA"
 
-#: src/menu.c:1209 src/menu.c:1376 src/menu.c:1379 src/menu.c:1382
-#: src/menu.c:1387 src/menu.c:1454 src/menu.c:1455 src/menu.c:1456
-#: src/menu.c:1487
+#: src/menu.c:1218 src/menu.c:1385 src/menu.c:1388 src/menu.c:1391
+#: src/menu.c:1396 src/menu.c:1463 src/menu.c:1464 src/menu.c:1465
 msgid "NO"
-msgstr ""
+msgstr "NEIN"
 
-#: src/menu.c:1296
+#: src/menu.c:1305
 #, c-format
 msgid "<-- Background music volume: %1.2f -->"
-msgstr ""
+msgstr "<-- Hintergrundmusik Lautstärke: %1.2f -->"
 
-#: src/menu.c:1300
+#: src/menu.c:1309
 #, c-format
 msgid "<-- Sound effects volume: %1.2f -->"
-msgstr ""
+msgstr "<-- Soundeffekte Lautstärke: %1.2f -->"
 
-#: src/menu.c:1306
+#: src/menu.c:1315
 #, c-format
 msgid "<-- Output: Stereo -->"
-msgstr ""
+msgstr "<-- Ausgabe: Stereo -->"
 
-#: src/menu.c:1310
+#: src/menu.c:1319
 #, c-format
 msgid "<-- Output: 4.0 Surround -->"
-msgstr ""
+msgstr "<-- Ausgabe: 4.0 Surround -->"
 
-#: src/menu.c:1314
+#: src/menu.c:1323
 #, c-format
 msgid "<-- Output: 5.1 Surround -->"
-msgstr ""
+msgstr "<-- Ausgabe: 5.1 Surround -->"
 
-#: src/menu.c:1318
+#: src/menu.c:1327
 #, c-format
 msgid "<-- Output: Error -->"
-msgstr ""
+msgstr "<-- Ausgabe: Fehler -->"
 
-#: src/menu.c:1376
+#: src/menu.c:1385
 #, c-format
 msgid "Limit framerate (powersaving): %s"
-msgstr ""
+msgstr "Bildwiederholrate begrenzen (stromsparen): %s"
 
-#: src/menu.c:1379
+#: src/menu.c:1388
 #, c-format
 msgid "Show light radius: %s"
-msgstr ""
+msgstr "Lichtradius anzeigen: %s"
 
-#: src/menu.c:1382
+#: src/menu.c:1391
 #, c-format
 msgid "Show obstacle shadows: %s"
-msgstr ""
+msgstr "Hindernisschatten anzeigen: %s"
 
-#: src/menu.c:1387
+#: src/menu.c:1396
 #, c-format
 msgid "Precache item graphics: %s"
-msgstr ""
+msgstr "Gegenstandgrafiken vorladen: %s"
 
-#: src/menu.c:1454
+#: src/menu.c:1463
 #, c-format
 msgid "Show position: %s"
-msgstr ""
+msgstr "Zeige Position: %s"
 
-#: src/menu.c:1455
+#: src/menu.c:1464
 #, c-format
 msgid "Show framerate: %s"
-msgstr ""
+msgstr "Zeige Framerate: %s"
 
-#: src/menu.c:1456
+#: src/menu.c:1465
 #, c-format
 msgid "Show enemies' energy bars: %s"
-msgstr ""
+msgstr "Zeige KP der Gegner: %s"
 
-#: src/menu.c:1457
+#: src/menu.c:1466
 #, c-format
 msgid "<-- Max. screen messages: %d -->"
-msgstr ""
+msgstr "<-- Max. Bildschirmnachrichten: %d -->"
 
-#: src/menu.c:1458
+#: src/menu.c:1467
 #, c-format
 msgid "<-- Screen message lifetime: %3.1fs -->"
-msgstr ""
+msgstr "<-- Bildschirmnachrichten Lebensdauer: %3.1fs -->"
 
-#: src/menu.c:1487
-#, c-format
-msgid "Show enemies' states (debug): %s"
-msgstr ""
-
-#: src/menu.c:1530
+#: src/menu.c:1513
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -1438,54 +1440,67 @@ msgid ""
 "\n"
 "     > "
 msgstr ""
+"\n"
+"     Bitte einen Namen für\n"
+"     den neuen Helden eingeben: \n"
+"\n"
+"     ---ENTER zum Akzeptieren.\n"
+"     ---ESCAPE zum Abbrechen.\n"
+"\n"
+"     > "
 
-#: src/menu.c:1552
+#: src/menu.c:1535
 #, c-format
 msgid ""
 "A character named \"%s\" already exists.\n"
 "Please choose another name."
 msgstr ""
+"Ein Charakter mit dem Namen \"%s\" existiert schon.\n"
+"Bitte wähle einen anderen Namen."
 
-#: src/menu.c:1671
+#: src/menu.c:1654
 msgid ""
 "\n"
 "\n"
 "No saved games found!"
 msgstr ""
+"\n"
+"\n"
+"Keine Spielstände gefunden!"
 
-#: src/menu.c:1691
+#: src/menu.c:1674
 msgid "Sure!"
-msgstr ""
+msgstr "Sicher!"
 
-#: src/menu.c:1694
+#: src/menu.c:1677
 #, c-format
 msgid "Really delete hero '%s'?"
-msgstr ""
+msgstr "Wirklich den Helden '%s' löschen?"
 
-#: src/menu.c:1747
+#: src/menu.c:1730
 msgid "New Hero"
-msgstr ""
+msgstr "Neuer Held"
 
-#: src/menu.c:1748
+#: src/menu.c:1731
 msgid "Load existing Hero"
-msgstr ""
+msgstr "Lade vorhandenen Helden"
 
-#: src/menu.c:1749
+#: src/menu.c:1732
 msgid "Delete existing Hero"
-msgstr ""
+msgstr "Lösche vorhandenen Helden"
 
-#: src/misc.c:801
+#: src/misc.c:816
 msgid "GAME PAUSED"
-msgstr ""
+msgstr "SPIEL PAUSIERT"
 
-#: src/misc.c:802
+#: src/misc.c:817
 msgid "press p to resume"
-msgstr ""
+msgstr "Drücke p zum Fortfahren"
 
-#: src/misc.c:1094
+#: src/misc.c:1110
 #, c-format
 msgid "Arrived at %s."
-msgstr ""
+msgstr "%s erreicht."
 
 #: src/quest_browser_ui.c:65
 #, c-format
@@ -1493,174 +1508,167 @@ msgid ""
 "[n]Quest [r]%s\n"
 "[n]"
 msgstr ""
+"[n]Aufgabe [r]%s\n"
+"[n]"
 
 #: src/quest_browser_ui.c:70
 msgid "[n]Status [w]"
-msgstr ""
+msgstr "[n]Status [w]"
 
 #: src/quest_browser_ui.c:74
 msgid "COMPLETE"
-msgstr ""
+msgstr "ERLEDIGT"
 
 #: src/quest_browser_ui.c:76
 msgid "FAILED"
-msgstr ""
+msgstr "GESCHEITERT"
 
 #: src/quest_browser_ui.c:78
 msgid "STILL OPEN"
-msgstr ""
+msgstr "NOCH OFFEN"
 
 #: src/quest_browser_ui.c:80
 msgid "Details:"
-msgstr ""
+msgstr "Details:"
 
 #: src/quest_browser_ui.c:84
 msgid "Day"
-msgstr ""
+msgstr "Tag"
 
 #: src/quest_browser_ui.c:181
 msgid "[r]Parafunken Statistics[w]\n"
-msgstr ""
+msgstr "[r]Parafunken Statistiken[w]\n"
 
 #: src/quest_browser_ui.c:184
 msgid "[r]Overview[w]\n"
-msgstr ""
+msgstr "[r]Übersicht[w]\n"
 
 #: src/quest_browser_ui.c:187
 #, c-format
 msgid "Time Played: [n]%dh%dm[w]\n"
-msgstr ""
+msgstr "Spielzeit: [n]%dh%dm[w]\n"
 
 #: src/quest_browser_ui.c:190
 #, c-format
 msgid "Distance Traveled: [n]%.1fm[w]\n"
-msgstr ""
+msgstr "Bisher zurückgelegt: [n]%.1fm[w]\n"
 
 #: src/quest_browser_ui.c:192
 #, c-format
 msgid "Percentage explored: [n]%.1f%%[w]\n"
-msgstr ""
+msgstr "Bisher erkundet: [n]%.1f%%[w]\n"
 
 #: src/quest_browser_ui.c:193
 #, c-format
 msgid "Destroyed Enemies: [n]%i[w]\n"
-msgstr ""
+msgstr "Zerstörte Feinde: [n]%i[w]\n"
 
 #: src/quest_browser_ui.c:194
 #, c-format
 msgid "Captured Enemies: [n]%i[w]\n"
-msgstr ""
+msgstr "Übernommene Feinde: [n]%i[w]\n"
 
 #: src/quest_browser_ui.c:195
 #, c-format
 msgid "Damage Dealt: [n]%i[w]\n"
-msgstr ""
+msgstr "Schaden ausgeteilt (Gesamt): [n]%i[w]\n"
 
 #: src/quest_browser_ui.c:203
 msgid "[r]Preferences[w]\n"
-msgstr ""
+msgstr "[r]Einstellungen[w]\n"
 
 #: src/quest_browser_ui.c:208
 #, c-format
 msgid "Attacking: [n]%s[w] ([n]%i[w] killed, [n]%i[w] DP)\n"
-msgstr ""
+msgstr "Angriff: [n]%s[w] ([n]%i[w] getötet, [n]%i[w] DP)\n"
 
 #: src/quest_browser_ui.c:213
 #, c-format
 msgid "Attacking: [n]%s[w] ([n]%i[w] destroyed, [n]%i[w] DP)\n"
-msgstr ""
+msgstr "Angriff: [n]%s[w] ([n]%i[w] zerstört, [n]%i[w] DP)\n"
 
 #: src/quest_browser_ui.c:218
 msgid "Attacking: no droids destroyed\n"
 msgstr ""
+"Attackiert: keine Droiden zerstört\n"
+"\n"
 
 #: src/quest_browser_ui.c:221
 #, c-format
 msgid "Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"
-msgstr ""
+msgstr "Übernahme: [n]%s[w] ([n]%i%%[w] Erfolgsrate, [n]%i[w] Versuche)\n"
 
 #: src/quest_browser_ui.c:225
 msgid "Takeover: none successful\n"
-msgstr ""
+msgstr "Übernommen: kein Erfolg\n"
 
 #: src/quest_browser_ui.c:229
 #, c-format
 msgid "Failed Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"
-msgstr ""
+msgstr "Fehlgeschlagene Übernahmen: [n]%s[w] ([n]%i%%[w] Rate, [n]%i[w] Versuche)\n"
 
 #: src/quest_browser_ui.c:233
 msgid "Failed Takeover: no failures\n"
-msgstr ""
+msgstr "Fehlgeschlagene Übernahme: keine\n"
 
 #: src/quest_browser_ui.c:253
 #, c-format
 msgid "Killed: [n]%d[w]\n"
-msgstr ""
+msgstr "Getötet: [n]%d[w]\n"
 
 #: src/quest_browser_ui.c:255
 #, c-format
 msgid "Destroyed: [n]%d[w]\n"
-msgstr ""
+msgstr "Zerstört: [n]%d[w]\n"
 
 #: src/quest_browser_ui.c:256
 #, c-format
 msgid "Takeovers: [n]%d[w]/[n]%d[w]/[n]"
-msgstr ""
+msgstr "Übernommen: [n]%d[w]/[n]%d[w]/[n]"
 
 #: src/quest_browser_ui.c:262
 msgid " (success/fail/ratio)\n"
-msgstr ""
+msgstr " (Erfolg/Fehlschlag/Rate)\n"
 
 #: src/quest_browser_ui.c:264
 #, c-format
 msgid "Damage: [n]%d[w] (dealt)\n"
-msgstr ""
+msgstr "Schaden: [n]%d[w] (ausgeteilt)\n"
 
 #: src/quest_browser_ui.c:423
 msgid "[n]No open quests yet.[w]"
-msgstr ""
+msgstr "[n]Keine Aufgaben offen.[w]"
 
 #: src/quest_browser_ui.c:426
 msgid "[n]No completed quests yet.[w]"
-msgstr ""
+msgstr "[n]Keine Aufgaben abgeschlossen.[w]"
 
 #: src/saveloadgame.c:167
 msgid "Last Modified:"
-msgstr ""
+msgstr "Zuletzt geändert:"
 
 #: src/saveloadgame.c:195
 #, c-format
 msgid "File Size: %2.3f MB"
-msgstr ""
+msgstr "Dateigröße: %2.3f MiB"
 
 #: src/saveloadgame.c:231
 msgid "You are dead. Savegame not modified."
-msgstr ""
+msgstr "Du bist tot. Spielstand nicht verändert."
 
 #: src/saveloadgame.c:260
 msgid "Saving"
-msgstr ""
+msgstr "Speichern"
 
-#: src/saveloadgame.c:283
-#, c-format
-msgid ""
-"\n"
-"\n"
-"Error opening save game file for writing...\n"
-"\n"
-"Terminating...\n"
-"\n"
-msgstr ""
-
-#: src/saveloadgame.c:294
+#: src/saveloadgame.c:293
 msgid "Game saved."
-msgstr ""
+msgstr "Spiel gespeichert."
 
-#: src/saveloadgame.c:344
+#: src/saveloadgame.c:343
 msgid "Loading"
-msgstr ""
+msgstr "Laden"
 
-#: src/saveloadgame.c:361
+#: src/saveloadgame.c:360
 msgid ""
 "W A R N I N G !\n"
 "\n"
@@ -1668,22 +1676,27 @@ msgid ""
 "This might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\n"
 "The other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."
 msgstr ""
+"W A R N U N G !\n"
+"\n"
+"FreedroidRPG konnte den Spielstand, der geladen werden sollte, nicht finden.\n"
+"Es könnte sein, dass er wirklich nicht da ist, weil er nie angelegt wurde.\n"
+"Anderseits könnte es ein schwerwiegender Fehler in FreedroidRPG sein. Sollte dies der Fall sein, bitte die Entwickler dieses Spiels darüber informieren."
 
-#: src/saveloadgame.c:362
+#: src/saveloadgame.c:361
 msgid "Failed to load old game."
-msgstr ""
+msgstr "Konnte alten Spielstand nicht laden."
 
-#: src/saveloadgame.c:396
+#: src/saveloadgame.c:395
 msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
-msgstr ""
+msgstr "Version oder Struktur passt nicht! Der Spielstand passt nicht zu dieser Version von FreedroidRPG… er könnte fehlerhaft sein."
 
-#: src/saveloadgame.c:440
+#: src/saveloadgame.c:439
 msgid "Updating Tux images (this may take a little while...)"
-msgstr ""
+msgstr "Tux Bilder aktualisieren (könnte eine Weile dauern…)"
 
-#: src/saveloadgame.c:445
+#: src/saveloadgame.c:444
 msgid "Game loaded."
-msgstr ""
+msgstr "Spiel geladen."
 
 #: src/savestruct_internal.h:140
 msgid ""
@@ -1692,6 +1705,10 @@ msgid ""
 "If you see this message and you have not updated the game, make sure to report this to the developers.\n"
 "Thanks!"
 msgstr ""
+"Beim Laden des Spielstands ist ein Fehler aufgetreten.\n"
+"Ein häufiger Fehler ist, dass der Spielstand von einer älteren Version des Spiels stammt, weshalb es vorkommen kann, dass er mit der aktuellen Version nicht funktioniert.\n"
+"Wer diese Nachricht sieht, obwohl er keine neue Spielversion installiert hat, soll diesen Fehler bei den Entwicklern melden.\n"
+"Vielen Dank!"
 
 #: src/savestruct_internal.h:165
 msgid ""
@@ -1700,14 +1717,18 @@ msgid ""
 "If you see this message and you have not manually modified your savegame, make sure to report this to the developers.\n"
 "Thanks!"
 msgstr ""
+"Beim Laden des Spielstands ist ein Fehler aufgetreten.\n"
+"Es wurde ein Datentyp gefunden, der nicht erwartet wurde. Der Spielstand könnte beschädigt sein, also wurde der Ladevorgang abgebrochen.\n"
+"Sollte diese Nachricht erscheinen, obwohl der Spielstand nicht modifiziert wurde, bitte den Fehler bei den Entwicklern melden.\n"
+"Vielen Dank!"
 
 #: src/shop.c:275
 msgid "Buy"
-msgstr ""
+msgstr "Kaufen"
 
 #: src/shop.c:293
 msgid "Sell"
-msgstr ""
+msgstr "Verkaufen"
 
 #: src/shop.c:302
 #, c-format
@@ -1715,35 +1736,37 @@ msgid ""
 "Price per unit: %s%d%s\n"
 "%s all: %s%d%s\n"
 msgstr ""
+"Preis pro Einheit: %s%d%s\n"
+"Alle %s zusammen: %s%d%s\n"
 
 #: src/shop.c:306
 #, c-format
 msgid "%s Price: %s%d%s\n"
-msgstr ""
+msgstr "%s Preis: %s%d%s\n"
 
 #: src/shop.c:319
 #, c-format
 msgid "Repair cost: %ld\n"
-msgstr ""
+msgstr "Reperaturkosten: %ld\n"
 
 #: src/shop.c:322
 msgid "Unsellable\n"
-msgstr ""
+msgstr "Unverkäuflich\n"
 
 #: src/shop.c:327
 #, c-format
 msgid "Recharge time: %3.2f\n"
-msgstr ""
+msgstr "Nachladezeit: %3.2f\n"
 
 #: src/shop.c:331
 #, c-format
 msgid "Time to reload ammo clip: %3.2f\n"
-msgstr ""
+msgstr "Zeit zum Nachladen der Munition: %3.2f\n"
 
 #: src/shop.c:334
 #, c-format
 msgid "Notes: %s"
-msgstr ""
+msgstr "Anmerkungen: %s"
 
 #: src/shop.c:337
 #, c-format
@@ -1751,124 +1774,126 @@ msgid ""
 "\n"
 "This weapon requires %s."
 msgstr ""
+"\n"
+"Diese Waffe benötigt %s."
 
 #: src/shop.c:656
 msgid "You can not afford to have this item repaired."
-msgstr ""
+msgstr "Du kannst es dir nicht leisten, das hier zu reparieren."
 
 #: src/shop.c:732
 msgid "You can not afford this item."
-msgstr ""
+msgstr "Das kannst du dir nicht leisten."
 
 #: src/skills.c:217
 msgid "You cannot teleport here!"
-msgstr ""
+msgstr "Hier kannst du dich nicht teleportieren!"
 
 #: src/skills.c:861
 #, c-format
 msgid "Program revision: %c%d%c "
-msgstr ""
+msgstr "Programmversion: %c%d%c "
 
 #: src/skills.c:870
 #, c-format
 msgid "Heat produced: %c%d%c "
-msgstr ""
+msgstr "Produzierte Hitze: %c%d%c "
 
 #: src/skills.c:872
 #, c-format
 msgid "Cooling: %c%d%c "
-msgstr ""
+msgstr "Kühlung: %c%d%c "
 
 #: src/skills.c:882
 #, c-format
 msgid "Damage: %c%d%c "
-msgstr ""
+msgstr "Schaden: %c%d%c "
 
 #: src/skills.c:884
 #, c-format
 msgid "Damage: %c%d-%d%c "
-msgstr ""
+msgstr "Schaden: %c%d-%d%c "
 
 #: src/skills.c:888
 #, c-format
 msgid "Healing: %c%d%c "
-msgstr ""
+msgstr "Heilung: %c%d%c "
 
 #: src/skills.c:890
 #, c-format
 msgid "Healing: %c%d-%d%c "
-msgstr ""
+msgstr "Heilung: %c%d-%d%c "
 
 #: src/skills.c:899
 #, c-format
 msgid "Paralyze"
-msgstr ""
+msgstr "Paralyse"
 
 #: src/skills.c:901
 #, c-format
 msgid "Slow down"
-msgstr ""
+msgstr "Verlangsamung"
 
 #: src/skills.c:903
 #, c-format
 msgid "Invisible"
-msgstr ""
+msgstr "Unsichtbar"
 
 #: src/skills.c:905
 #, c-format
 msgid "Poison"
-msgstr ""
+msgstr "Gift"
 
 #: src/skills.c:908
 #, c-format
 msgid "Takeover charges: %c%d%c "
-msgstr ""
+msgstr "Übernahmekosten: %c%d%c "
 
 #: src/skills.c:910
 #, c-format
 msgid "Escape"
-msgstr ""
+msgstr "Flucht"
 
 #: src/skills.c:912
 #, c-format
 msgid "Passive"
-msgstr ""
+msgstr "Passiv"
 
 #: src/skills.c:918
 #, c-format
 msgid "Repair items, degrading them a bit"
-msgstr ""
+msgstr "Repariere Gegenstände, aber mit Verlust der Haltbarkeit"
 
 #: src/skills.c:920
 #, c-format
 msgid "Detect enemies"
-msgstr ""
+msgstr "Erkenne Feinde"
 
 #: src/skills.c:922
 #, c-format
 msgid "Lighten area"
-msgstr ""
+msgstr "Bereich ausleuchten"
 
 #: src/skills.c:928
 #, c-format
 msgid " for %c%.1f%c seconds"
-msgstr ""
+msgstr " für %c%.1f%c Sekunden"
 
 #: src/takeover.c:218
 #, c-format
 msgid "Unit Type %s\n"
-msgstr ""
+msgstr "Einheitentyp %s\n"
 
 #: src/takeover.c:219
 #, c-format
 msgid "Entry : %d\n"
-msgstr ""
+msgstr "Eintrag : %d\n"
 
 #: src/takeover.c:224 src/lvledit/lvledit_enemy.c:252
 #: src/lvledit/lvledit_enemy.c:260 src/lvledit/lvledit_enemy.c:275
 #: src/lvledit/lvledit_menu.c:550
 msgid "none"
-msgstr ""
+msgstr "keiner"
 
 #: src/takeover.c:226
 #, c-format
@@ -1876,6 +1901,8 @@ msgid ""
 "\n"
 "Armament : %s\n"
 msgstr ""
+"\n"
+"Rüstung: %s\n"
 
 #: src/takeover.c:227
 #, c-format
@@ -1883,6 +1910,8 @@ msgid ""
 "\n"
 "Cores : %d\n"
 msgstr ""
+"\n"
+"Kerne: %d\n"
 
 #: src/takeover.c:235
 #, c-format
@@ -1890,6 +1919,8 @@ msgid ""
 "\n"
 "Takeover Success : %2d%%\n"
 msgstr ""
+"\n"
+"Übernahmeerfolge: %2d%%\n"
 
 #: src/takeover.c:238
 #, c-format
@@ -1897,46 +1928,48 @@ msgid ""
 "\n"
 "Notes: %s\n"
 msgstr ""
+"\n"
+"Anmerkungen: %s\n"
 
 #: src/takeover.c:314
 #, c-format
 msgid "Color-%d.%d"
-msgstr ""
+msgstr "Farbe-%d.%d"
 
 #: src/takeover.c:344
 #, c-format
 msgid "Subliminal"
-msgstr ""
+msgstr "Unterbewusst"
 
 #: src/takeover.c:398
 #, c-format
 msgid "Finish-%d.%d"
-msgstr ""
+msgstr "Erledigt-%d.%d"
 
 #: src/takeover.c:557
 msgid "For more information, click the help button."
-msgstr ""
+msgstr "Für mehr Infos, bitte auf den Hilfe-Button klicken."
 
 #: src/takeover.c:596
 #, c-format
 msgid "For taking control of your enemy, [s]%s[v], you receive %d experience."
-msgstr ""
+msgstr "Für die Übernahme deines Feindes [s]%s[v], erhältst du %d Erfahrungspunkte."
 
 #: src/takeover.c:891
 msgid "Complete"
-msgstr ""
+msgstr "Komplett"
 
 #: src/takeover.c:896
 msgid "Rejected"
-msgstr ""
+msgstr "Abgelehnt"
 
 #: src/takeover.c:901
 msgid "Deadlock"
-msgstr ""
+msgstr "Verklemmt"
 
 #: src/text.c:169
 msgid "Click to continue..."
-msgstr ""
+msgstr "Klicken zum Fortfahren…"
 
 #: src/vars.h:39
 msgid "untrained"
@@ -1981,17 +2014,17 @@ msgstr ""
 #: src/lua/luaFD_tux.c:283
 #, c-format
 msgid "+%d Experience Points"
-msgstr ""
+msgstr "+%d Erfahrungspunkte"
 
 #: src/lua/luaFD_tux.c:680
 #, c-format
 msgid "Received Item: %s (on floor)"
-msgstr ""
+msgstr "Gegenstand (vom Boden) erhalten: %s"
 
 #: src/lua/luaFD_tux.c:682
 #, c-format
 msgid "Received Item: %s"
-msgstr ""
+msgstr "Gegenstand erhalten: %s"
 
 #: src/lvledit/lvledit.c:152
 msgid "Cancel item drop"
@@ -2019,12 +2052,12 @@ msgstr ""
 #: src/lvledit/lvledit_display.c:68
 #, c-format
 msgid " X=%3.1f Y=%3.1f L=%d layer=%d\n"
-msgstr ""
+msgstr " X=%3.1f Y=%3.1f L=%d layer=%d\n"
 
 #: src/lvledit/lvledit_display.c:77
 #, c-format
 msgid " FPS=%d\n"
-msgstr ""
+msgstr "BPS=%d\n"
 
 #: src/lvledit/lvledit_display.c:94
 #, c-format
@@ -2045,15 +2078,17 @@ msgid ""
 " This level is automatically generated. \n"
 " Editing will have no effect."
 msgstr ""
+"Diese Ebene wurde automatisch generiert.\n"
+"Sie kann nicht editiert werden."
 
 #: src/lvledit/lvledit_enemy.c:87
 msgid "Number of random droids:"
-msgstr ""
+msgstr "Anzahl zufälliger Droiden:"
 
 #: src/lvledit/lvledit_enemy.c:100 src/lvledit/lvledit_enemy.c:163
 #: src/lvledit/lvledit_enemy.c:244
 msgid "Invalid number! The number must be natural."
-msgstr ""
+msgstr "Ungültige Zahl! Es wird eine natürliche Zahl benötigt."
 
 #: src/lvledit/lvledit_enemy.c:106
 #, c-format
@@ -2061,17 +2096,21 @@ msgid ""
 " %d\n"
 "Droid types:"
 msgstr ""
+" %d\n"
+"Droid-Typen:"
 
 #: src/lvledit/lvledit_enemy.c:127
 #, c-format
 msgid "%s is not a droid type!"
-msgstr ""
+msgstr "%s ist kein Droid-Typ!"
 
 #: src/lvledit/lvledit_enemy.c:151
 msgid ""
 "New enemy info:\n"
 " Marker: "
 msgstr ""
+"Neue Gegner-Info:\n"
+"Marker: "
 
 #: src/lvledit/lvledit_enemy.c:168
 #, c-format
@@ -2079,6 +2118,8 @@ msgid ""
 "%d\n"
 " Faction: "
 msgstr ""
+"%d\n"
+"Fraktion: "
 
 #: src/lvledit/lvledit_enemy.c:178
 #, c-format
@@ -2086,11 +2127,13 @@ msgid ""
 "%s\n"
 " Dialog name: "
 msgstr ""
+"%s\n"
+"Dialogname: "
 
 #: src/lvledit/lvledit_enemy.c:191
 #, c-format
 msgid "Dialog \"%s\" not found!"
-msgstr ""
+msgstr "Dialog \"%s\" nicht gefunden!"
 
 #: src/lvledit/lvledit_enemy.c:199
 #, c-format
@@ -2098,6 +2141,8 @@ msgid ""
 "%s\n"
 " Short description (in English): "
 msgstr ""
+"%s\n"
+"Kurzbeschreibung (auf Englisch): "
 
 #: src/lvledit/lvledit_enemy.c:211
 #, c-format
@@ -2105,20 +2150,22 @@ msgid ""
 "%s\n"
 " Completely fixed: "
 msgstr ""
+"%s\n"
+"Vollständig behoben: "
 
 #: src/lvledit/lvledit_enemy.c:212 src/lvledit/lvledit_enemy.c:221
 #: src/lvledit/lvledit_enemy.c:231 src/lvledit/lvledit_enemy.c:276
 #: src/lvledit/lvledit_enemy.c:284 src/lvledit/lvledit_menu.c:586
 #: src/lvledit/lvledit_menu.c:595 src/lvledit/lvledit_menu.c:628
 msgid "yes"
-msgstr ""
+msgstr "Ja"
 
 #: src/lvledit/lvledit_enemy.c:212 src/lvledit/lvledit_enemy.c:225
 #: src/lvledit/lvledit_enemy.c:231 src/lvledit/lvledit_enemy.c:276
 #: src/lvledit/lvledit_enemy.c:288 src/lvledit/lvledit_menu.c:586
 #: src/lvledit/lvledit_menu.c:595 src/lvledit/lvledit_menu.c:630
 msgid "no"
-msgstr ""
+msgstr "Nein"
 
 #: src/lvledit/lvledit_enemy.c:231
 #, c-format
@@ -2126,6 +2173,8 @@ msgid ""
 "%s\n"
 " Max distance from home: "
 msgstr ""
+"%s\n"
+"Max.-Distanz vom Startpunkt: "
 
 #: src/lvledit/lvledit_enemy.c:251
 #, c-format
@@ -2133,11 +2182,13 @@ msgid ""
 "%d\n"
 " Item dropped on death: "
 msgstr ""
+"%d\n"
+"Verliert Gegenstand bei Tod: "
 
 #: src/lvledit/lvledit_enemy.c:269
 #, c-format
 msgid "Item \"%s\" not found!"
-msgstr ""
+msgstr "Gegenstand \"%s\" nicht gefunden!"
 
 #: src/lvledit/lvledit_enemy.c:274
 #, c-format
@@ -2146,64 +2197,68 @@ msgid ""
 " Rushes Tux: "
 msgstr ""
 
-#: src/lvledit/lvledit_map.c:385
-#, c-format
-msgid "Saving levels to %s/levels.dat instead of the default location map/levels.dat."
+#: src/lvledit/lvledit_map.c:386 src/lvledit/lvledit_map.c:400
+msgid "Your ship was saved..."
 msgstr ""
 
-#: src/lvledit/lvledit_map.c:396
-msgid "Your ship was saved..."
+#: src/lvledit/lvledit_map.c:395
+#, c-format
+msgid "Saving map files to %s/ instead of the default location %s/."
+msgstr ""
+
+#: src/lvledit/lvledit_map.c:406
+msgid "Your ship can not be saved !!! See the console output..."
 msgstr ""
 
 #: src/lvledit/lvledit_menu.c:104
 #, c-format
 msgid "North Edge: -/+  (<-/->)"
-msgstr ""
+msgstr "Nördliche Ecke: -/+  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:108
 #, c-format
 msgid "East Edge: -/+  (<-/->)"
-msgstr ""
+msgstr "Östliche Ecke: -/+  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:112
 #, c-format
 msgid "South Edge: -/+  (<-/->)"
-msgstr ""
+msgstr "Südliche Ecke: -/+  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:116
 #, c-format
 msgid "West Edge: -/+  (<-/->)"
-msgstr ""
+msgstr "Westliche Ecke: -/+  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:120
 #, c-format
 msgid "Current level size in X: %d."
-msgstr ""
+msgstr "Momentane Levelgröße in X: %d."
 
 #: src/lvledit/lvledit_menu.c:123
 #, c-format
 msgid "Current level size in Y: %d."
-msgstr ""
+msgstr "Momentane Levelgröße in Y: %d."
 
 #: src/lvledit/lvledit_menu.c:229
 #, c-format
 msgid "Neighbor level North: %d.  (<-/->)"
-msgstr ""
+msgstr "Nördliche Nachbarebene: %d  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:232
 #, c-format
 msgid "Neighbor level East: %d.  (<-/->)"
-msgstr ""
+msgstr "Östliche Nachbarebene: %d  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:235
 #, c-format
 msgid "Neighbor level South: %d.  (<-/->)"
-msgstr ""
+msgstr "Südliche Nachbarebene: %d  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:238
 #, c-format
 msgid "Neighbor level West: %d.  (<-/->)"
-msgstr ""
+msgstr "Westliche Nachbarebene: %d  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:271 src/lvledit/lvledit_menu.c:286
 #: src/lvledit/lvledit_menu.c:301 src/lvledit/lvledit_menu.c:316
@@ -2213,91 +2268,94 @@ msgid ""
 " Please enter new level number: \n"
 "\n"
 msgstr ""
+"\n"
+"Bitte neue Ebenennummer eingeben: \n"
+"\n"
 
 #: src/lvledit/lvledit_menu.c:413
 msgid "Add New Level"
-msgstr ""
+msgstr "Neues Level hinzufügen"
 
 #: src/lvledit/lvledit_menu.c:414
 msgid "Remove Current Level"
-msgstr ""
+msgstr "Aktuelles Level entfernen"
 
 #: src/lvledit/lvledit_menu.c:457
 msgid "Reached the maximum number of levels."
-msgstr ""
+msgstr "Die maximale Anzahl an Levels wurde erreicht."
 
 #: src/lvledit/lvledit_menu.c:466
 msgid "Cannot remove level number 0.\n"
-msgstr ""
+msgstr "Kann Ebene 0 nicht löschen.\n"
 
 #: src/lvledit/lvledit_menu.c:535
 #, c-format
 msgid "Level: %d.  (<-/->)"
-msgstr ""
+msgstr "Ebene: %d.  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:538
 #, c-format
 msgid "Level name (untranslated): %s"
-msgstr ""
+msgstr "Name der Ebene (nicht übersetzt): %s"
 
 #: src/lvledit/lvledit_menu.c:541
 #, c-format
 msgid "Size:  X %d  Y %d"
-msgstr ""
+msgstr "Größe:  X %d  Y %d"
 
 #: src/lvledit/lvledit_menu.c:544
 #, c-format
 msgid "Floor layers:  %d"
-msgstr ""
+msgstr "Schichten:  %d"
 
 #: src/lvledit/lvledit_menu.c:547
 #, c-format
 msgid "Edge Interface: "
-msgstr ""
+msgstr "Verbindungsecken:"
 
 #: src/lvledit/lvledit_menu.c:553
 #, c-format
 msgid " N: %d"
-msgstr ""
+msgstr " N: %d"
 
 #: src/lvledit/lvledit_menu.c:555
 #, c-format
 msgid " E: %d"
-msgstr ""
+msgstr " O: %d"
 
 #: src/lvledit/lvledit_menu.c:557
 #, c-format
 msgid " S: %d"
-msgstr ""
+msgstr " S: %d"
 
 #: src/lvledit/lvledit_menu.c:559
 #, c-format
 msgid " W: %d"
-msgstr ""
+msgstr " W: %d"
 
 #: src/lvledit/lvledit_menu.c:566
 #, c-format
 msgid "Random dungeon: 2 connections"
-msgstr ""
+msgstr "Zufallsverlies: 2 Verbindungen"
 
 #: src/lvledit/lvledit_menu.c:568
 #, c-format
 msgid "Random dungeon: 1 connection"
-msgstr ""
+msgstr "Zufallsverlies: 1 Verbindung"
 
 #: src/lvledit/lvledit_menu.c:570
 #, c-format
 msgid "Random dungeon: no"
-msgstr ""
+msgstr "Zufallsverlies: keins"
 
 #: src/lvledit/lvledit_menu.c:576
 #, c-format
 msgid "Random droids: %d Types: "
-msgstr ""
+msgstr "Zufällige Droiden: %d Typen: "
 
 #: src/lvledit/lvledit_menu.c:585
 msgid "Respawn"
-msgstr ""
+msgstr "Neu aufstellen"
 
 #: src/lvledit/lvledit_menu.c:590
 #, c-format
@@ -2306,34 +2364,34 @@ msgstr ""
 
 #: src/lvledit/lvledit_menu.c:594
 msgid "Teleport blockade"
-msgstr ""
+msgstr "Teleporterblockade"
 
 #: src/lvledit/lvledit_menu.c:599
 msgid "Teleport pair"
-msgstr ""
+msgstr "Teleporterpaar"
 
 #: src/lvledit/lvledit_menu.c:604
 #, c-format
 msgid "Light:  Ambient"
-msgstr ""
+msgstr "Licht:  Umgebung"
 
 #: src/lvledit/lvledit_menu.c:608 src/lvledit/lvledit_menu.c:613
 msgid "Bonus"
-msgstr ""
+msgstr "Bonus"
 
 #: src/lvledit/lvledit_menu.c:621
 #, c-format
 msgid "Background Music"
-msgstr ""
+msgstr "Hintergrundmusik"
 
 #: src/lvledit/lvledit_menu.c:626
 #, c-format
 msgid "Infinite Running Stamina: "
-msgstr ""
+msgstr "Unendlich Kondition zum Rennen: "
 
 #: src/lvledit/lvledit_menu.c:633
 msgid "Add/Rem Level"
-msgstr ""
+msgstr "Ebene hinzufügen/entfernen"
 
 #: src/lvledit/lvledit_menu.c:684
 msgid ""
@@ -2348,6 +2406,9 @@ msgid ""
 " Please enter new level name (in English): \n"
 "\n"
 msgstr ""
+"\n"
+"Bitte neuen Ebenennamen vergeben (auf Englisch): \n"
+"\n"
 
 #: src/lvledit/lvledit_menu.c:731
 msgid ""
@@ -2355,6 +2416,9 @@ msgid ""
 " Please enter new music file name: \n"
 "\n"
 msgstr ""
+"\n"
+"Bitte neuen Namen für Musikdatei vergeben: \n"
+"\n"
 
 #: src/lvledit/lvledit_menu.c:752
 #, c-format
@@ -2363,51 +2427,54 @@ msgid ""
 " Please enter new number of floor layers (valid values are between 1 and %d): \n"
 "\n"
 msgstr ""
+"\n"
+"Bitte neue Anzahl von Schichten angeben (gültige Werte zwischen 1 und %d): \n"
+"\n"
 
 #: src/lvledit/lvledit_menu.c:913
 msgid "Run Map Level Validator"
-msgstr ""
+msgstr "Kartenvalidator ausführen"
 
 #: src/lvledit/lvledit_menu.c:987
 #, c-format
 msgid "Level name (untranslated): %d - %s"
-msgstr ""
+msgstr "Levelname (unübersetzt): %d - %s"
 
 #: src/lvledit/lvledit_menu.c:990
 msgid "Level Options"
-msgstr ""
+msgstr "Level-Optionen"
 
 #: src/lvledit/lvledit_menu.c:991
 msgid "Advanced Options"
-msgstr ""
+msgstr "Erweiterte Optionen"
 
 #: src/lvledit/lvledit_menu.c:993
 msgid "Playtest Mapfile"
-msgstr ""
+msgstr "Karte testen"
 
 #: src/lvledit/lvledit_menu.c:994
 msgid "Save Mapfile"
-msgstr ""
+msgstr "Karte speichern"
 
 #: src/lvledit/lvledit_menu.c:997
 msgid "Return to Game"
-msgstr ""
+msgstr "Zurück zum Spiel"
 
 #: src/lvledit/lvledit_menu.c:998
 msgid "Saving disabled"
-msgstr ""
+msgstr "Speichern nicht verfügbar"
 
 #: src/lvledit/lvledit_menu.c:1001
 msgid "Continue Editing"
-msgstr ""
+msgstr "Bearbeitung fortfahren"
 
 #: src/lvledit/lvledit_menu.c:1002
 msgid "Show Help"
-msgstr ""
+msgstr "Zeige Hilfe"
 
 #: src/lvledit/lvledit_tool_place.c:685
 msgid "Place tool does not support this type of object."
-msgstr ""
+msgstr "Dieses Objekt kann nicht abgelegt werden."
 
 #: src/lvledit/lvledit_widgets.c:54
 msgid "wall"
@@ -2487,12 +2554,12 @@ msgstr ""
 #: src/lvledit/lvledit_widgets.c:252
 #, c-format
 msgid "Zoom factor set to %f."
-msgstr ""
+msgstr "Zoomfaktor auf %f gestellt."
 
 #: src/lvledit/lvledit_widgets.c:254
 #, c-format
 msgid "Could not change zoom factor."
-msgstr ""
+msgstr "Zoomfaktor konnte nicht geändert werden."
 
 #: src/lvledit/lvledit_widgets.c:422
 msgid ""
@@ -2500,6 +2567,9 @@ msgid ""
 "\n"
 "Use this button to undo your last actions."
 msgstr ""
+"Rückgängig\n"
+"\n"
+"Dieser Button macht deine letzte(n) Aktion(en) rückgängig."
 
 #: src/lvledit/lvledit_widgets.c:425
 msgid ""
@@ -2507,6 +2577,9 @@ msgid ""
 "\n"
 "Use this button to redo an action."
 msgstr ""
+"Wiederholen\n"
+"\n"
+"Dieser Button macht deine letzte(n) Aktion(en), die Rückgängig gemacht wurden, wieder rückgängig."
 
 #: src/lvledit/lvledit_widgets.c:428
 msgid ""
@@ -2514,6 +2587,9 @@ msgid ""
 "\n"
 "This button will save your current map over the file '../map/levels.dat' from your current working directory."
 msgstr ""
+"Karte abspeichern\n"
+"\n"
+"Abhängig von deinem derzeitigen Arbeitsverzeichnis speichert dieser Button deine aktuelle Karte unter  '../map/levels.dat' ab."
 
 #: src/lvledit/lvledit_widgets.c:431
 msgid ""
@@ -2523,6 +2599,11 @@ msgid ""
 "\n"
 "You can also use Ctrl-b for this."
 msgstr ""
+"Gras aufhübschen\n"
+"\n"
+"Betätige diesen Button, um automatisch harte Übergänge zwischen Gras-Sand-Teilen \"aufzuhübschen\". Wirkt sich auf den gewählten Untergrund oder, wenn nicht möglich, auf die gesamte Ebene aus.\n"
+"\n"
+"Kann auch mittels Strg+b verwendet werden."
 
 #: src/lvledit/lvledit_widgets.c:434
 msgid ""
@@ -2532,6 +2613,11 @@ msgid ""
 "\n"
 "You can also use Ctrl-X for this."
 msgstr ""
+"Lösche gewähltes Objekt\n"
+"\n"
+"Benutze diesen Button, um das markierte Objekt zu löschen.\n"
+"\n"
+"Kann auch mittels Strg+b verwendet werden."
 
 #: src/lvledit/lvledit_widgets.c:437
 msgid ""
@@ -2634,24 +2720,48 @@ msgstr ""
 
 #: src/lvledit/lvledit_widgets.c:479
 msgid "Obstacle"
-msgstr ""
+msgstr "Hindernis"
 
 #: src/lvledit/lvledit_widgets.c:481
 msgid "Floor"
-msgstr ""
+msgstr "Boden"
 
 #: src/lvledit/lvledit_widgets.c:483
 msgid "Item"
-msgstr ""
+msgstr "Gegenstand"
 
 #: src/lvledit/lvledit_widgets.c:485
 msgid "Enemy"
-msgstr ""
+msgstr "Gegner"
 
 #: src/lvledit/lvledit_widgets.c:488
 msgid "Wayp."
-msgstr ""
+msgstr "Wegpunkt"
 
 #: src/lvledit/lvledit_widgets.c:490
 msgid "Label"
-msgstr ""
+msgstr "Beschriftung"
+
+#~ msgid "Could not find a droid corresponding to the dialog \"%s\"."
+#~ msgstr "Keinen Droiden gefunden, der zum Dialog mit \"%s\" passt."
+
+#~ msgid "Droid talk"
+#~ msgstr "Robo-Sprache"
+
+#~ msgid "Show enemies' states (debug): %s"
+#~ msgstr "Zeige Status der Feinde (Debug): %s"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "Error opening save game file for writing...\n"
+#~ "\n"
+#~ "Terminating...\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "Fehler beim Speichern des Spielstands…\n"
+#~ "\n"
+#~ "Beende Spiel…\n"
+#~ "\n"

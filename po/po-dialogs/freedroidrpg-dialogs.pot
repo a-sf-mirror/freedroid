@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-04-02 22:30+0200\n"
+"POT-Creation-Date: 2014-04-16 10:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16848,7 +16848,7 @@ msgid "Ah yes, movement. It's second nature to us humans, but our research with 
 msgstr ""
 
 #: dialogs/TutorialTom.lua:248
-msgid "To move somewhere, you first need to determine where you want to go by [b]left clicking[/b] where you want to go on your HUD."
+msgid "To move somewhere, you have to [b]left click[/b] on the destination on your HUD."
 msgstr ""
 
 #: dialogs/TutorialTom.lua:249
