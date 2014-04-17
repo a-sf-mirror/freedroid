@@ -184,9 +184,11 @@ static void print_statistics(void)
 	autostr_append(quest_browser_text, _("[r]Overview[w]\n"));
 	statistics_browser_lines_needed[display] = get_lines_needed(quest_browser_text->value, mission_description_rect, 1);
 	if (stats_display[display++]) {
+		// ; TRANSLATORS: h in %dh is for hours, m in %dm is for minutes, please also translate this :)
 		autostr_append(quest_browser_text, _("Time Played: [n]%dh%dm[w]\n"),
 					   (int) Me.current_game_date / (60 * 60),
 					   ((int)Me.current_game_date / 60) % 60);
+		// ; TRANSLATORS: m in %.1fm is for meters, please also translate this :)
 		autostr_append(quest_browser_text, _("Distance Traveled: [n]%.1fm[w]\n"), Me.meters_traveled);
 		if (Me.map_maker_is_present)
 			autostr_append(quest_browser_text, _("Percentage explored: [n]%.1f%%[w]\n"), calculate_total_explored_percentage() * 100);
