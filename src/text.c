@@ -176,7 +176,7 @@ void alert_window(const char *text, ...)
 		
 		switch (e.type) {
 		case SDL_QUIT:
-			Terminate(EXIT_SUCCESS, TRUE);
+			Terminate(EXIT_SUCCESS);
 			break;
 		case SDL_KEYDOWN:
 			if (e.key.keysym.sym == SDLK_SPACE || e.key.keysym.sym == SDLK_RETURN || e.key.keysym.sym == SDLK_ESCAPE)

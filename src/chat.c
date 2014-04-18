@@ -599,7 +599,7 @@ void chat_run()
 
 			// Specific events handling
 			if (event.type == SDL_QUIT) {
-				Terminate(EXIT_SUCCESS, TRUE);
+				Terminate(EXIT_SUCCESS);
 			}
 			if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE) {
 				if (GameConfig.enable_cheatkeys)

@@ -431,7 +431,7 @@ void print_trace(int signum)
 		fprintf(stderr, "\n%s():  received UNKNOWN SIGNAL %d!  ERROR! \n", __FUNCTION__, signum);
 	}
 
-	Terminate(EXIT_FAILURE, TRUE);
+	Terminate(EXIT_FAILURE);
 
 };				// void print_trace ( int sig_num )
 
@@ -808,7 +808,7 @@ void Pause(void)
 		SDL_WaitEvent(&event);
 
 		if (event.type == SDL_QUIT) {
-			Terminate(EXIT_SUCCESS, TRUE);
+			Terminate(EXIT_SUCCESS);
 		}
 
 		AssembleCombatPicture(SHOW_ITEMS);
@@ -1310,15 +1310,15 @@ int SaveGameConfig(void)
  * This function is used for terminating freedroid.  It will close
  * the SDL submodules and exit.
  */
-void Terminate(int exit_code, int save_config)
+void Terminate(int exit_code)
 {
 	if (!do_benchmark) {
 		printf("\n---------------------------------------------------------------------------------");
 		printf("\nTermination of freedroidRPG initiated... ");
 	}
 
-	// Save the config file in any case.
-	if (save_config)
+	// Save the config file only in case of success.
+	if (exit_code == EXIT_SUCCESS)
 		SaveGameConfig();
 
 	// Close active lua states, to force a call to garbage collector, in order

@@ -57,7 +57,7 @@ void *MyMalloc(long Mamount)
 	if ((Mptr = calloc(1, (size_t) Mamount)) == NULL) {
 		fprintf(stderr, " MyMalloc(%ld) did not succeed!\n", Mamount);
 		fflush(stderr);
-		Terminate(EXIT_FAILURE, TRUE);
+		Terminate(EXIT_FAILURE);
 	}
 
 	return Mptr;
@@ -121,7 +121,7 @@ void error_message(const char *fn, const char *fmt, int error_type, ...)
 	}
 
 	if (error_type & IS_FATAL)
-		Terminate(EXIT_FAILURE, TRUE);
+		Terminate(EXIT_FAILURE);
 }
 
 /**

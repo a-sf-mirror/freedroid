@@ -304,7 +304,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 		if (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
-				Terminate(EXIT_SUCCESS, TRUE);
+				Terminate(EXIT_SUCCESS);
 			}
 			//(clever?) hack : mouse wheel up and down behave
 			//exactly like UP and DOWN arrow, so we mangle the event
@@ -831,7 +831,7 @@ static int Startup_handle(int n)
 		break;
 	case (-1):
 	case EXIT_FREEDROID_POSITION:
-		Terminate(EXIT_SUCCESS, TRUE);
+		Terminate(EXIT_SUCCESS);
 		break;
 	default:
 		break;
@@ -978,7 +978,7 @@ static int Escape_handle(int n)
 		break;
 	case QUIT_POSITION:
 		DebugPrintf(2, "\nvoid EscapeMenu( void ): Quit requested by user.  Terminating...");
-		Terminate(EXIT_SUCCESS, TRUE);
+		Terminate(EXIT_SUCCESS);
 		break;
 	default:
 		break;

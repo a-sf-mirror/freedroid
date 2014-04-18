@@ -993,7 +993,7 @@ void do_death_menu()
                         done = !done;
                         break;
                 case QUIT_POSITION:
-                        Terminate(EXIT_SUCCESS, TRUE);
+                        Terminate(EXIT_SUCCESS);
                         break;
                 default:
                         break;

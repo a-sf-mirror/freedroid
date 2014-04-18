@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
 	if (do_benchmark) {
 		/* Benchmark mode? Do not run the regular game from here. */
 		int failed = benchmark();
-		Terminate(failed ? EXIT_FAILURE : EXIT_SUCCESS, FALSE);
+		Terminate(failed ? EXIT_FAILURE : EXIT_SUCCESS);
 	}
 
 	int skip_menu = FALSE;
@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
 
 	LightRadiusClean();
 
-	Terminate(EXIT_SUCCESS, TRUE);
+	Terminate(EXIT_SUCCESS);
 	return (0);
 };				// int main ( void )
 

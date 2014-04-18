@@ -1083,7 +1083,7 @@ int DoLevelEditorMainMenu()
 			break;
 		case QUIT_POSITION:
 			DebugPrintf(2, "\nvoid EscapeMenu( void ): Quit Requested by user.  Terminating...");
-			Terminate(EXIT_SUCCESS, TRUE);
+			Terminate(EXIT_SUCCESS);
 			break;
 		default:
 			break;

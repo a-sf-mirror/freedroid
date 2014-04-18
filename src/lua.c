@@ -1058,10 +1058,10 @@ static int lua_exit_game(lua_State *L)
 	int exit_status = luaL_checkinteger(L, 1);
 
 	if (exit_status == 1) {
-		Terminate(EXIT_FAILURE, TRUE);
+		Terminate(EXIT_FAILURE);
 		return 0;
 	} else {
-		Terminate(EXIT_SUCCESS, TRUE);
+		Terminate(EXIT_SUCCESS);
 		return 0;
 	}
 }

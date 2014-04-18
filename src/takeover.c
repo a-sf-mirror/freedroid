@@ -265,7 +265,7 @@ static void ChooseColor(enemy *target)
 		while (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
-				Terminate(EXIT_SUCCESS, TRUE);
+				Terminate(EXIT_SUCCESS);
 			}
 
 			if (event.type == SDL_MOUSEBUTTONDOWN) {
@@ -383,7 +383,7 @@ static void PlayGame(int countdown, enemy *target)
 					return;	/* leave now, to avoid changing of LeaderColor! */
 				}
 			} else if (event.type == SDL_QUIT) {
-				Terminate(EXIT_SUCCESS, TRUE);
+				Terminate(EXIT_SUCCESS);
 			}
 		}
 
@@ -561,7 +561,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 		while (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
-				Terminate(EXIT_SUCCESS, TRUE);
+				Terminate(EXIT_SUCCESS);
 			}
 
 			if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
@@ -1720,12 +1720,12 @@ void to_show_banner(const char *left, const char *right)
 	left_len = strlen(left);
 	if (left_len > LEFT_TEXT_LEN) {
 		printf("\nWarning: String %s too long for Left Infoline!!", left);
-		Terminate(EXIT_FAILURE, TRUE);
+		Terminate(EXIT_FAILURE);
 	}
 	right_len = strlen(right);
 	if (right_len > RIGHT_TEXT_LEN) {
 		printf("\nWarning: String %s too long for Right Infoline!!", right);
-		Terminate(EXIT_FAILURE, TRUE);
+		Terminate(EXIT_FAILURE);
 	}
 	// Now prepare the left/right text-boxes 
 	memset(left_box, ' ', LEFT_TEXT_LEN);	// pad with spaces 

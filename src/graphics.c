@@ -241,7 +241,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 		while (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
-				Terminate(EXIT_SUCCESS, TRUE);
+				Terminate(EXIT_SUCCESS);
 			} else if (event.type == SDL_KEYDOWN) {
 				switch(event.key.keysym.sym) {
 					case SDLK_LEFT:
@@ -584,7 +584,7 @@ void init_timer(void)
 	//
 	if (SDL_InitSubSystem(SDL_INIT_TIMER) == -1) {
 		fprintf(stderr, "Couldn't initialize SDL: %s\n", SDL_GetError());
-		Terminate(EXIT_FAILURE, FALSE);
+		Terminate(EXIT_FAILURE);
 	}
 }
 
@@ -766,7 +766,7 @@ static void set_video_mode_for_open_gl(void)
 	Screen = SDL_SetVideoMode(GameConfig.screen_width, GameConfig.screen_height, vid_bpp, video_flags);
 	if (!Screen) {
 		fprintf(stderr, "Video mode set failed: %s\n", SDL_GetError());
-		Terminate(EXIT_FAILURE, FALSE);
+		Terminate(EXIT_FAILURE);
 	} else {
 		//      open_gl_check_error_status ( __FUNCTION__ );
 		SDL_GL_GetAttribute(SDL_GL_BUFFER_SIZE, &buffer_size);
@@ -825,7 +825,7 @@ void InitVideo(void)
 		DebugPrintf(-4, "\nVideo system type: %s.", vid_driver);
 	} else {
 		fprintf(stderr, "Video driver seems not to exist or initialization failure!\nError code: %s\n", SDL_GetError());
-		Terminate(EXIT_FAILURE, FALSE);
+		Terminate(EXIT_FAILURE);
 	}
 
 	// We check if the program has been compiled with OpenGL libraries present
@@ -843,7 +843,7 @@ void InitVideo(void)
 	vid_info = SDL_GetVideoInfo();
 	if (!vid_info) {
 		fprintf(stderr, "Could not obtain video info via SDL: %s\n", SDL_GetError());
-		Terminate(EXIT_FAILURE, FALSE);
+		Terminate(EXIT_FAILURE);
 	}
 
 	if (use_open_gl) {
@@ -869,7 +869,7 @@ void InitVideo(void)
 		}
 		if (!(Screen = SDL_SetVideoMode(GameConfig.screen_width, GameConfig.screen_height, 0, video_flags))) {
 			fprintf(stderr, "Video mode set failed: %s\n", SDL_GetError());
-			Terminate(EXIT_FAILURE, FALSE);
+			Terminate(EXIT_FAILURE);
 		}
 	}
 
