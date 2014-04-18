@@ -4,7 +4,7 @@
 -- the translation domains of dialog and config files.
 npc_list{
 	"WillGapes",             --[[ _"Will Gapes - MegaSys CSA" ]]--
-	"Vending-Machine",
+	"Vending-Machine",       --[[TRM]]--
 	"Tybalt",                --[[ _"Tybalt - Citadel Gate Guard" ]]--
 	"TutorialTom",           --[[ _"Tutorial Tom" ]]--
 	"TutorialTerminal",
@@ -14,7 +14,7 @@ npc_list{
 	"Town-GuardhouseGuard",
 	"Town-614",
 	"TestDroid",
-	"Terminal",
+	"Terminal",              --[[TRM]]--
 	"Tania",                 --[[ _"Tania - lonely scientist" ]]--
 	"Tamara",                --[[ _"Tamara - Librarian" ]]--
 	"Stone",                 --[[ _"Stone - Shop owner", _"Lily Stone - Shop owner" ]]--
@@ -29,14 +29,14 @@ npc_list{
 	"Richard",               --[[ _"Richard - Programmer" ]]--
 	"Peter",
 	"Pendragon",             --[[ _"Fighter", _"Pendragon - Fighter" ]]--
-	"MS-Factory-Addon-Terminal",
+	"MS-Factory-Addon-Terminal",--[[TRM]]--
 	"MO-RGGateGuardLeader",
 	"MO-RGGateGuard",
-	"MO-HFGateAccessServer",
-	"MiniFactory-Terminal",
+	"MO-HFGateAccessServer", --[[TRM]]--
+	"MiniFactory-Terminal",  --[[TRM]]--
 	"Mike",
 	"Michelangelo",          --[[ _"Michelangelo - Chef" ]]--
-	"Maintenance-Terminal",
+	"Maintenance-Terminal",  --[[TRM]]--
 	"Lukas",
 	--	"Lina",
 	"Koan",                  --[[ _"Koan" ]]--
@@ -49,7 +49,7 @@ npc_list{
 	"Jasmine",               --[[ _"Jasmine", _"Jasmine - Girlfriend of a true Hacker" ]]--
 	"Iris",                  --[[ _"Iris", _"Iris - bot hunter" ]]--
 	"InvaderBot",
-	"HF-FirmwareUpdateServer",
+	"HF-FirmwareUpdateServer",--[[TRM]]--
 	"HF-EntranceBot",
 	"Geist",                 --[[ _"Geist - Hunter" ]]--
 	"Francis",               --[[ _"Dr. Francis - Cryonicist" ]]--
@@ -59,14 +59,14 @@ npc_list{
 	"Engel",                 --[[ _"Engel - Hunter" ]]--
 	"Duncan",                --[[ _"Duncan - Bombmaker" ]]--
 	"Dude",
-	"DSB-PowerControlGate1",
-	"DSB-PowerControl",
-	"DSB-MachineDeckControl",
+	"DSB-PowerControlGate1", --[[TRM]]--
+	"DSB-PowerControl",      --[[TRM]]--
+	"DSB-MachineDeckControl",--[[TRM]]--
 	"DocMoore",              --[[ _"Doc Moore - Medic" ]]--
 	"Dixon",                 --[[ _"Dixon - Mechanic" ]]--
 	"DeadGuy",
-	"Cryo-Terminal",
-	"c-net",
+	"Cryo-Terminal",         --[[TRM]]--
+	"c-net",                 --[[TRM]]--
 	"Chandra",
 	"Butch",                 --[[ _"Butch - Arena Master" ]]--
 	"Bruce",                 --[[ _"Bruce - Mine Worker" ]]--
