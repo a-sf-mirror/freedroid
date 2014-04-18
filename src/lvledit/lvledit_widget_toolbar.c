@@ -106,8 +106,9 @@ static void print_obstacle_info(char *str, int obs_idx)
 {
 	int flags = get_obstacle_spec(obs_idx)->flags;
 
-	sprintf(str, "Obs. number %d, %s\n", obs_idx, ((char **)get_obstacle_spec(obs_idx)->filenames.arr)[0]);
-
+	// ;TRANSLATORS: "Obs." is for "obstacle" please keep it abbreviated in your language respectively
+	sprintf(str, _("Obs. number %d, %s\n"), obs_idx, ((char **)get_obstacle_spec(obs_idx)->filenames.arr)[0]);
+	// these refer to the internal flags, so let's not translate them for now...
 	if (flags & IS_HORIZONTAL)
 		strcat(str, "- IS_HORIZONTAL\n");
 	if (flags & IS_VERTICAL)
@@ -124,10 +125,10 @@ static void print_obstacle_info(char *str, int obs_idx)
 
 static void print_enemy_info(char *str, int en_idx)
 {
-	sprintf(str, 	"%s\n\
+	sprintf(str, 	_("%s\n\
 			class: %d, xp_reward: %hd\n\
 			heal: %.2f /s, max_energy: %.2f, max_speed: %.2f\n\
-			aggression_dist: %.2f, eyeing_tux_for: %.2f s",
+			aggression_dist: %.2f, eyeing_tux_for: %.2f s"),
 				Droidmap[en_idx].droidname,
 				Droidmap[en_idx].class, Droidmap[en_idx].experience_reward,
 				Droidmap[en_idx].healing_friendly, Droidmap[en_idx].maxenergy, Droidmap[en_idx].maxspeed,
@@ -138,9 +139,9 @@ static void print_item_info(char *str, int item_idx)
 {
 	struct itemspec *item = &ItemMap[item_idx];
 	if (item->item_gun_ammo_clip_size) { //Mostly Guns
-		sprintf(str, 	"%s (%s)\n\
+		sprintf(str, 	_("%s (%s)\n\
 			Damage: %d-%d, Recharge: %.2f, Reload: %.2f, Ammo: (%d/%s)\n\
-			STR: >%d\n%s",
+			STR: >%d\n%s"),
 				item_specs_get_name(item_idx), item->id,
 				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
 				item->item_gun_recharging_time, item->item_gun_reloading_time,
@@ -149,9 +150,9 @@ static void print_item_info(char *str, int item_idx)
 				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
 
 	} else if (item->slot == WEAPON_SLOT) { //Most Melee Weapons
-		sprintf(str, 	"%s (%s)\n\
+		sprintf(str, 	_("%s (%s)\n\
 			Damage: %d-%d, Recharge: %.2f,\n\
-			STR: >%d, DEX: >%d, COOL: >%d\n%s",
+			STR: >%d, DEX: >%d, COOL: >%d\n%s"),
 				item_specs_get_name(item_idx), item->id,
 				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
 				item->item_gun_recharging_time,
@@ -159,16 +160,16 @@ static void print_item_info(char *str, int item_idx)
 				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
 
 	} else if (item->slot & (SHIELD_SLOT | HELM_SLOT | ARMOR_SLOT | BOOT_SLOT)) {
-		sprintf(str, 	"%s (%s)\n\
+		sprintf(str, 	_("%s (%s)\n\
 			Armor: %d-%d, Durability:  %d-%d,\n\
-			STR: >%d, DEX: >%d, COOL: >%d\n",
+			STR: >%d, DEX: >%d, COOL: >%d\n"),
 				item_specs_get_name(item_idx), item->id,
 				item->base_armor_class, item->base_armor_class + item->armor_class_modifier,
 				item->base_item_durability, item->base_item_durability + item->item_durability_modifier,
 				item->item_require_strength, item->item_require_dexterity, item->item_require_cooling);
 
 	} else {
-		sprintf(str, 	"%s (%s)\n%s",
+		sprintf(str, 	_("%s (%s)\n%s"),
 			item_specs_get_name(item_idx), item->id, item->item_description);
 	}
 }
@@ -180,17 +181,17 @@ static void leveleditor_print_object_info(enum lvledit_object_type type, int *ar
 			if (array[idx] >= MAX_UNDERLAY_FLOOR_TILES) {
 				int index = array[idx] - MAX_UNDERLAY_FLOOR_TILES;
 				struct floor_tile_spec *floor_tile = dynarray_member(&overlay_floor_tiles, index, sizeof(struct floor_tile_spec));
-				sprintf(str, "Overlay floor tile number %d, filename %s\n", index, ((char **)floor_tile->filenames.arr)[0]);
+				sprintf(str, _("Overlay floor tile number %d, filename %s\n"), index, ((char **)floor_tile->filenames.arr)[0]);
 			} else {
 				struct floor_tile_spec *floor_tile = dynarray_member(&underlay_floor_tiles, array[idx], sizeof(struct floor_tile_spec));
-				sprintf(str, "Underlay floor tile number %d, filename %s\n", array[idx], ((char **)floor_tile->filenames.arr)[0]);
+				sprintf(str, _("Underlay floor tile number %d, filename %s\n"), array[idx], ((char **)floor_tile->filenames.arr)[0]);
 			}
 			break;
 	case OBJECT_OBSTACLE:
 			print_obstacle_info(str, array[idx]);
 			break;
 	case OBJECT_WAYPOINT:
-			sprintf(str, "Waypoint %s connection, %sused for random spawn\n", "two way", array[idx] ? "not " : "");
+			sprintf(str, _("Waypoint %s connection, %sused for random spawn\n"), _("two way"), array[idx] ? _("not ") : "");
 			break;
 	case OBJECT_ITEM:
 			print_item_info(str, array[idx]);
@@ -199,7 +200,7 @@ static void leveleditor_print_object_info(enum lvledit_object_type type, int *ar
 			print_enemy_info(str, array[idx]);
 			break;
 	case OBJECT_MAP_LABEL:
-			sprintf(str, "There currently is only one type of map label");
+			sprintf(str, _("There currently is only one type of map label"));
 			break;
 	default:
 			*str = 0;
