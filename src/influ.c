@@ -138,7 +138,7 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 	// we have to check for enough ammunition first...
 	//
 	if (Me.weapon_item.type >= 0) {
-		if (ItemMap[Me.weapon_item.type].item_gun_use_ammunition) {
+		if (ItemMap[Me.weapon_item.type].ammo_id) {
 			if (Me.weapon_item.ammo_clip <= 0) {
 				No_Ammo_Sound();
 
@@ -161,7 +161,7 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 
 	//Weapon uses ammo? remove one bullet !
 	if (Me.weapon_item.type >= 0) {
-		if (ItemMap[Me.weapon_item.type].item_gun_use_ammunition) {
+		if (ItemMap[Me.weapon_item.type].ammo_id) {
 			Me.weapon_item.ammo_clip--;
 		}
 	}
@@ -1488,9 +1488,9 @@ void TuxReloadWeapon()
 	if (ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size == Me.weapon_item.ammo_clip)
 		return;		// Clip full, return without reloading.
 
-	const char *ammo_type = ammo_desc_for_weapon(Me.weapon_item.type);
+	int ammo_type = get_item_type_by_id(ItemMap[Me.weapon_item.type].ammo_id);
 
-	int count = CountItemtypeInInventory(get_item_type_by_id(ammo_type));
+	int count = CountItemtypeInInventory(ammo_type);
 	if (count > ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size - Me.weapon_item.ammo_clip)
 		count = ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size - Me.weapon_item.ammo_clip;
 
@@ -1499,12 +1499,12 @@ void TuxReloadWeapon()
 		No_Ammo_Sound();
 		No_Ammo_Sound();
 		// TRANSLATORS: Out of <ammo type>
-		append_new_game_message(_("Out of [s]%s[v]!"), _(ammo_type));
+		append_new_game_message(_("Out of [s]%s[v]!"), _(item_specs_get_name(ammo_type)));
 		return;
 	}
 	int i;
 	for (i = 0; i < count; i++)
-		DeleteOneInventoryItemsOfType(get_item_type_by_id(ammo_type));
+		DeleteOneInventoryItemsOfType(ammo_type);
 	Me.weapon_item.ammo_clip += count;
 	Me.busy_time = ItemMap[Me.weapon_item.type].item_gun_reloading_time;
 	Me.busy_time *= RangedRechargeMultiplierTable[Me.ranged_weapon_skill];

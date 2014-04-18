@@ -95,7 +95,7 @@ static void current_ammo_update(struct widget *w)
 
 	if (Me.weapon_item.type == -1 || &Me.weapon_item == item_held_in_hand)
 		return;
-	if (!ItemMap[Me.weapon_item.type].item_gun_use_ammunition)
+	if (!ItemMap[Me.weapon_item.type].ammo_id)
 		return;
 
 	if (Me.busy_type == WEAPON_RELOAD)

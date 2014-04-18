@@ -432,7 +432,6 @@ void DeleteItem(item * Item);
 void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical);
 int get_floor_item_index_under_mouse_cursor(level **item_lvl);
 int item_is_currently_equipped(item * Item);
-const char *ammo_desc_for_weapon(int);
 enum slot_type get_slot_type_by_name(char *name);
 const char *item_specs_get_name(int type);
 enum _busytype get_busy_type_by_name(char *name);

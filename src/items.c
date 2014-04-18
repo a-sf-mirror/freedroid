@@ -2044,29 +2044,6 @@ int try_give_item(item *ItemPointer)
 	return 1;
 }
 
-const char *ammo_desc_for_weapon(int type) {
-	const char *ammo_desc[] = {
-		"", // no ammunition
-		N_("Laser power pack"),
-		N_("Plasma energy container"),
-		N_("2 mm Exterminator Ammunition"),
-		N_(".22 LR Ammunition"),
-		N_("Shotgun shells"),
-		N_("9x19mm Ammunition"),
-		N_("7.62x39mm Ammunition"),
-		N_(".50 BMG (12.7x99mm) Ammunition"),
-	};
-
-	itemspec *weapon = &ItemMap[type];
-
-	if (weapon->item_gun_use_ammunition < 0 || weapon->item_gun_use_ammunition >= sizeof(ammo_desc)/sizeof(ammo_desc[0])) {
-		error_message(__FUNCTION__, "Unknown ammunition type %d for weapon %s.",
-					 PLEASE_INFORM | IS_FATAL, weapon->item_gun_use_ammunition, weapon->id);
-	}
-
-	return ammo_desc[weapon->item_gun_use_ammunition];
-}
-
 /**
  * \brief Places the item to the inventory of the player or to the floor.
  *

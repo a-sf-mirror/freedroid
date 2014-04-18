@@ -1030,7 +1030,6 @@ static void get_one_item(lua_State *L, void *data)
 	char *item_damage;
 	char *item_motion_class;
 	char *item_bullet_type;
-	char *item_ammunition_type;
 
 	struct data_spec data_specs[] = {
 		{"id", 						NULL,		STRING_TYPE, &item->id								},
@@ -1043,7 +1042,7 @@ static void get_one_item(lua_State *L, void *data)
 		{"weapon.bullet.speed",	 	"0",		FLOAT_TYPE,	 &item->item_gun_speed					},
 		{"weapon.bullet.lifetime",	"0",		FLOAT_TYPE,	 &item->item_gun_bullet_lifetime		},
 		{"weapon.bullet.angle",	 	"0",		FLOAT_TYPE,	 &item->item_gun_start_angle_modifier	},
-		{"weapon.ammunition.type", 	"none", 	STRING_TYPE, &item_ammunition_type					},
+		{"weapon.ammunition.id", 	NULL, 		STRING_TYPE, &item->ammo_id							},
 		{"weapon.ammunition.clip",	"0",		INT_TYPE, 	 &item->item_gun_ammo_clip_size			},
 		{"weapon.melee",			"false",	BOOL_TYPE,	 &item->item_weapon_is_melee			},
 		{"weapon.two_hand",	 		"false",	BOOL_TYPE,	 &item->item_gun_requires_both_hands	},
@@ -1133,33 +1132,6 @@ static void get_one_item(lua_State *L, void *data)
 	// Set motion class
 	item->motion_class = get_motion_class_id_by_name(item_motion_class);
 	free(item_motion_class);
-
-	// TODO: remake the ammunition system 
-	// Set amunition type
-	if (strcmp(item_ammunition_type, "none") == 0) {
-		item->item_gun_use_ammunition = 0;
-	} else if (strcmp(item_ammunition_type, "laser_ammunition") == 0) {
-		item->item_gun_use_ammunition = 1;
-	} else if (strcmp(item_ammunition_type, "plasma_ammunition") == 0) {
-		item->item_gun_use_ammunition = 2;
-	} else if (strcmp(item_ammunition_type, "exterminator_ammunition") == 0) {
-		item->item_gun_use_ammunition = 3;
-	} else if (strcmp(item_ammunition_type, "22LR") == 0) {
-		item->item_gun_use_ammunition = 4;
-	} else if (strcmp(item_ammunition_type, "Sshell") == 0) {
-		item->item_gun_use_ammunition = 5;
-	} else if (strcmp(item_ammunition_type, "9mm") == 0) {
-		item->item_gun_use_ammunition = 6;
-	} else if (strcmp(item_ammunition_type, "7.62mm") == 0) {
-		item->item_gun_use_ammunition = 7;
-	} else if (strcmp(item_ammunition_type, "50BMG") == 0) {
-		item->item_gun_use_ammunition = 8;
-	} else {
-		error_message(__FUNCTION__, "\
-The type of ammunition used by an item in item_spec.lua was not recognized. \n\
-This string was: %s", PLEASE_INFORM | IS_FATAL, item_ammunition_type);
-	}
-	free(item_ammunition_type);
 
 	item->item_gun_bullet_pass_through_hit_bodies = FALSE;
 	

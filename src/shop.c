@@ -333,9 +333,10 @@ static void fill_item_description(struct widget_text *desc, item *show_item, int
 
 	autostr_append(desc->text, _("Notes: %s"), D_(info->item_description));
 
-	if (info->item_gun_use_ammunition)
-		autostr_append(desc->text, _("\nThis weapon requires %s."),
-					   _(ammo_desc_for_weapon(show_item->type)));
+	if (info->ammo_id) {
+		const char *ammo = _(item_specs_get_name(get_item_type_by_id(info->ammo_id)));
+		autostr_append(desc->text, _("\nThis weapon requires %s."), ammo);
+	}
 }
 
 /**

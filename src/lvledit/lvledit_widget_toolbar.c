@@ -145,7 +145,7 @@ static void print_item_info(char *str, int item_idx)
 				item_specs_get_name(item_idx), item->id,
 				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
 				item->item_gun_recharging_time, item->item_gun_reloading_time,
-				item->item_gun_ammo_clip_size, _(ammo_desc_for_weapon(item_idx)),
+				item->item_gun_ammo_clip_size, item->ammo_id,
 				item->item_require_strength,
 				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
 
