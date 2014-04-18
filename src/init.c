@@ -48,6 +48,7 @@
 
 void Init_Game_Data(void);
 void UpdateCountersForThisFrame();
+void DoAllMovementAndAnimations(void);
 
 static struct {
 	double maxspeed_calibrator;
@@ -1150,7 +1151,6 @@ void InitFreedroid(int argc, char **argv)
  */
 void ThouArtDefeated(void)
 {
-	int j;
 	int now;
 
 	DebugPrintf(1, "\n%s(): Real function call confirmed.", __FUNCTION__);
@@ -1191,18 +1191,16 @@ void ThouArtDefeated(void)
 	GameOver = TRUE;
 
 	while ((SDL_GetTicks() - now < 1000 * WAIT_AFTER_KILLED)) {
+		StartTakingTimeForFPSCalculation();
 
 		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
-		animate_blasts();
-		MoveBullets();
-		MoveActiveSpells();
-		move_enemies();
-		animate_scenery();
+
 		UpdateCountersForThisFrame();
 		
-		for (j = 0; j < MAXBULLETS; j++)
-			CheckBulletCollisions(j);
+		DoAllMovementAndAnimations();
+		move_enemies();
 
+		ComputeFPSForThisFrame();
 	}
 	if (!skip_initial_menus)
 		PlayATitleFile("GameLost.lua");
@@ -1220,7 +1218,6 @@ void ThouArtDefeated(void)
  */
 void ThouHastWon(void)
 {
-	int j;
 	int now;
 
 	DebugPrintf(1, "\n%s(): Real function call confirmed.", __FUNCTION__);
@@ -1233,19 +1230,16 @@ void ThouHastWon(void)
 	GameOver = TRUE;
 
 	while ((SDL_GetTicks() - now < 1000 * WAIT_AFTER_GAME_WON)) {
+		StartTakingTimeForFPSCalculation();
 
-		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS );
-		animate_blasts();
-		MoveBullets();
-		MoveActiveSpells();
+		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
+
+		UpdateCountersForThisFrame();
+		
+		DoAllMovementAndAnimations();
 		move_enemies();
-		animate_scenery();
 
-		// ReactToSpecialKeys();
-
-		for (j = 0; j < MAXBULLETS; j++)
-			CheckBulletCollisions(j);
-
+		ComputeFPSForThisFrame();
 	}
 
 	// Now it's time for the end game title file...
