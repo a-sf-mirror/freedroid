@@ -373,7 +373,6 @@ items = {
 	 {"Rubber duck"},
 	 {"Empty Picnic Basket"},
 	 {"Lunch in a Picnic Basket"},
-	 {"Gapes OTP Token"},
 	 {"MS Stock Certificate"},
 	 {"Elbow Grease Can"},
 	 {"Linarian power crank"},

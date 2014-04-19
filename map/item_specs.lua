@@ -2299,17 +2299,6 @@ item_list{
 ----------------------------------------------------------------------
 
 {
-	id = "Gapes OTP Token",
-	name =_"Gapes OTP Token",
-	base_price = 0,
-	inventory = {x = 1, y = 1, image = "addons/tinfoil_patch/inv_image.png" },
-	drop = {sound = "Item_Drop_Sound_4.ogg"},
-	description =_[[This is credit-card sized device which has displays a changing seven character string of letters and numbers. On the back is inscribed 'William Gapes, MegaSystems.']],
-	rotation_series = "addons/tinfoil_patch",
-},
-----------------------------------------------------------------------
-
-{
 	id = "MS Stock Certificate",
 	name =_"MS Stock Certificate",
 	base_price = 0,
