@@ -7,7 +7,7 @@ npc_list{
 	"Vending-Machine",       --[[TRM]]--
 	"Tybalt",                --[[ _"Tybalt - Citadel Gate Guard" ]]--
 	"TutorialTom",           --[[ _"Tutorial Tom" ]]--
-	"TutorialTerminal",
+	"TutorialTerminal",      --[[TRM]]--
 	"Town-TuxGuard",         --[[ _"Red Guard Escort" ]]--
 	"Town-TeleporterGuard",
 	"Town-NorthGateGuard",
@@ -25,7 +25,7 @@ npc_list{
 	"Singularity",
 	--	"Serge",
 	"SADD",                  --[[ _"SADD - Exterminate Mode", _"SADD - Secret Area Defense Droid" ]]--
-	"SACD",
+	"SACD",                  --[[TRM]]--
 	"Richard",               --[[ _"Richard - Programmer" ]]--
 	"Peter",
 	"Pendragon",             --[[ _"Fighter", _"Pendragon - Fighter" ]]--
