@@ -643,11 +643,16 @@ int init_data_dirs_path()
 			// File found, so now fill the data dir paths
 			for (j = 0; j < LAST_DATA_DIR; j++) {
 				char *dir = top_data_dir[i];
+				const char *subdir = data_dirs[j].name;
 #ifdef ENABLE_NLS
-				if (j == LOCALE_DIR)
+				if (j == LOCALE_DIR) {
 					dir = top_locale_dir[i];
+					// LOCALEDIR envvar already points to the locale subdir
+					if (!strcmp(dir, LOCALEDIR))
+						subdir = "";
+				}
 #endif
-				int nb = snprintf(data_dirs[j].path, PATH_MAX, "%s/%s", dir, data_dirs[j].name);
+				int nb = snprintf(data_dirs[j].path, PATH_MAX, "%s/%s", dir, subdir);
 				if (nb >= PATH_MAX) {
 					error_message(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s/%s",
 					             PLEASE_INFORM | IS_FATAL, dir, data_dirs[j].name);
