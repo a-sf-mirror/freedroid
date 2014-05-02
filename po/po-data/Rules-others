@@ -22,7 +22,7 @@ stamp-li: $(GMOFILES)
 	@$(MAKE) local-install ; \
 	 echo "touch stamp-li" && \
 	 echo timestamp > stamp-liT && \
-	 mv stamp-liT stamp-li; \
+	 mv stamp-liT stamp-li
 
 local-install:
 	@catalogs='$(CATALOGS)'; \
