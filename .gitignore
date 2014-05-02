@@ -102,4 +102,5 @@ po/*/POTFILES
 po/*/*.po~
 po/*/*.gmo
 po/*/stamp-*
+po/l10n-others/tx
 locale/

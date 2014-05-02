@@ -505,3 +505,57 @@ source_file = po/tx/all_in_one.pot
 source_lang = en
 type = PO
 
+[freedroid-rpg.title-Contribute]
+file_filter = po/l10n-others/tx/title-Contribute-<lang>.txt
+source_file = po/l10n-others/tx/title-Contribute.txt
+source_lang = en
+type = TXT
+
+[freedroid-rpg.title-Controls]
+file_filter = po/l10n-others/tx/title-Controls-<lang>.txt
+source_file = po/l10n-others/tx/title-Controls.txt
+source_lang = en
+type = TXT
+
+[freedroid-rpg.title-Credits]
+file_filter = po/l10n-others/tx/title-Credits-<lang>.txt
+source_file = po/l10n-others/tx/title-Credits.txt
+source_lang = en
+type = TXT
+
+[freedroid-rpg.title-EndOfGame]
+file_filter = po/l10n-others/tx/title-EndOfGame-<lang>.txt
+source_file = po/l10n-others/tx/title-EndOfGame.txt
+source_lang = en
+type = TXT
+
+[freedroid-rpg.title-GameLost]
+file_filter = po/l10n-others/tx/title-GameLost-<lang>.txt
+source_file = po/l10n-others/tx/title-GameLost.txt
+source_lang = en
+type = TXT
+
+[freedroid-rpg.title-StartOfGame]
+file_filter = po/l10n-others/tx/title-StartOfGame-<lang>.txt
+source_file = po/l10n-others/tx/title-StartOfGame.txt
+source_lang = en
+type = TXT
+
+[freedroid-rpg.title-TakeoverInstructions]
+file_filter = po/l10n-others/tx/title-TakeoverInstructions-<lang>.txt
+source_file = po/l10n-others/tx/title-TakeoverInstructions.txt
+source_lang = en
+type = TXT
+
+[freedroid-rpg.title-level_editor_help]
+file_filter = po/l10n-others/tx/title-level_editor_help-<lang>.txt
+source_file = po/l10n-others/tx/title-level_editor_help.txt
+source_lang = en
+type = TXT
+
+[freedroid-rpg.README]
+file_filter = po/l10n-others/tx/README-<lang>.txt
+source_file = po/l10n-others/tx/README.txt
+source_lang = en
+type = TXT
+
