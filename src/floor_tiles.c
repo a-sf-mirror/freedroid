@@ -36,6 +36,25 @@
  */
 
 /**
+ * The pathfinder needs to mark the map tiles that were already explored.
+ * We use a timestamp as such a mark, in order to avoid to reinitialize all
+ * map tiles each time the pathfinder is run.
+ * This function increments to current timestamp value.
+ */
+int next_pathfinder_timestamp(void)
+{
+	static int pathfinder_timestamp = 0;
+
+	pathfinder_timestamp++;
+
+	if (pathfinder_timestamp == 0) {
+		error_message(__FUNCTION__, "The pathfinder timestamp overflowed. This might not be properly handled.", PLEASE_INFORM);
+	}
+
+	return pathfinder_timestamp;
+}
+
+/**
  * In order to make sure that an obstacle is only displayed/checked once, the collision detection and display code use a timestamp.
  * Every time a new collision detection is started, and every time a new frame is displayed, the timestamp is increased.
  * Obstacles with the same timestamp are obstacles that have already been checked.

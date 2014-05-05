@@ -329,6 +329,7 @@ float translate_pixel_to_map_location(float axis_x, float axis_y, int give_x);
 float translate_pixel_to_zoomed_map_location(float axis_x, float axis_y, int give_x);
 
 //floor_tiles.c
+int next_pathfinder_timestamp(void);
 int next_glue_timestamp(void);
 void free_glued_obstacles(level *lvl);
 struct image *get_floor_tile_image(int floor_value);

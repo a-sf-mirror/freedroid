@@ -58,6 +58,7 @@ void init_map_tile(struct map_tile* tile)
 	for (i = 1; i < MAX_FLOOR_LAYERS; i++)
 		tile->floor_values[i] = ISO_FLOOR_EMPTY;
 	dynarray_init(&tile->glued_obstacles, 0, sizeof(int));
+	tile->timestamp = 0;
 }
 
 /**

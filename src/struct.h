@@ -754,6 +754,7 @@ typedef struct obstacle {
 typedef struct map_tile {
 	Uint16 floor_values[MAX_FLOOR_LAYERS];
 	struct dynarray glued_obstacles;
+	int timestamp;
 } map_tile;
 
 struct obstacle_extension {
