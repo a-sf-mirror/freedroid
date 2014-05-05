@@ -894,7 +894,7 @@ void level_editor_place_aligned_object(int positionid)
 void CreateNewMapLevel(int level_num)
 {
 	level *NewLevel;
-	int i, k, l;
+	int i, k;
 
 	// Get the memory for one level 
 	//
@@ -925,10 +925,7 @@ void CreateNewMapLevel(int level_num)
 	for (i = 0; i < NewLevel->ylen; i++) {
 		NewLevel->map[i] = MyMalloc(NewLevel->xlen * sizeof(map_tile));
 		for (k = 0; k < NewLevel->xlen; k++) {
-			NewLevel->map[i][k].floor_values[0] = ISO_FLOOR_SAND;
-			for (l = 1; l < MAX_FLOOR_LAYERS; l++)
-				NewLevel->map[i][k].floor_values[l] = ISO_FLOOR_EMPTY;
-			dynarray_init(&NewLevel->map[i][k].glued_obstacles, 0, sizeof(int));
+			init_map_tile(&NewLevel->map[i][k]);
 		}
 	}
 	// Now we initialize the level jump interface variables with 'empty' values

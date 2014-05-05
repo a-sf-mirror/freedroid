@@ -48,6 +48,18 @@
 
 void GetThisLevelsDroids(char *section_pointer);
 
+/*
+ * Initialize a map tile with default values.
+ */
+void init_map_tile(struct map_tile* tile)
+{
+	int i;
+	tile->floor_values[0] = ISO_FLOOR_SAND;
+	for (i = 1; i < MAX_FLOOR_LAYERS; i++)
+		tile->floor_values[i] = ISO_FLOOR_EMPTY;
+	dynarray_init(&tile->glued_obstacles, 0, sizeof(int));
+}
+
 /**
  * This function removes all volatile obstacles from a given level.
  * An example of a volatile obstacle is the blood.
@@ -758,14 +770,13 @@ static char *decode_map(level *loadlevel, char *data)
 		/* Decode it */
 		Buffer = MyMalloc((loadlevel->xlen + 10) * sizeof(map_tile));
 		for (col = 0; col < loadlevel->xlen; col++) {
+			// Make sure that all floor layers are always initialized properly.
+			init_map_tile(&Buffer[col]);
+
 			for (layer = 0; layer < loadlevel->floor_layers; layer++) {
 				tmp = strtol(this_line + 4 * (loadlevel->floor_layers * col + layer), NULL, 10);
 				Buffer[col].floor_values[layer] = (Uint16) tmp;
 			}
-			// Make sure that all floor layers are always initialized properly.
-			for ( ; layer < MAX_FLOOR_LAYERS; layer++)
-				Buffer[col].floor_values[layer] = ISO_FLOOR_EMPTY;
-			dynarray_init(&Buffer[col].glued_obstacles, 0, sizeof(int));
 		}
 
 		// Now the old text pointer can be replaced with a pointer to the

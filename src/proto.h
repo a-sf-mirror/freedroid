@@ -306,6 +306,7 @@ void toggle_quest_browser(void);
 struct widget_group *create_quest_browser(void);
 
 // map.c 
+void init_map_tile(struct map_tile*);
 void respawn_level(int level_num);
 gps get_map_label_center(const char *map_label);
 int smash_obstacle(float x, float y, int level);
