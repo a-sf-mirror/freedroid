@@ -33,7 +33,6 @@
 #include "global.h"
 #include "proto.h"
 
-static char recursion_grid[MAX_MAP_LINES][MAX_MAP_LINES];
 static moderately_finepoint last_sight_contact;
 
 static int recursive_find_walkable_point(int, float, float, float, float, int, moderately_finepoint *, int *, int, pathfinder_context *);
@@ -47,10 +46,13 @@ static void streamline_intermediate_course(gps *, moderately_finepoint *, int, p
  * position to the mouse move target, we must set up a path composed of
  * several smaller direct line.
  *
- * The pathfinder algorithm is based an the classical A* algorithm
+ * The pathfinder algorithm is based on the classical A* algorithm
+ *
+ * curpos and move_target are 'virtual positions' defined relatively to Tux's or bot's
+ * current level.
  */
-int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints,
-						 int maxwp, pathfinder_context * ctx)
+int set_up_intermediate_course_between_positions(gps *curpos, moderately_finepoint *move_target, moderately_finepoint *waypoints,
+						 int maxwp, pathfinder_context *ctx)
 {
 	int i;
 	moderately_finepoint tmp;
@@ -66,7 +68,7 @@ int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepo
 	// First we clear out the position grid and initialize the target
 	// point, which will be the result of the recursion.
 	//
-	memset(recursion_grid, TILE_IS_UNPROCESSED, MAX_MAP_LINES * MAX_MAP_LINES);
+	ctx->timestamp = next_pathfinder_timestamp();
 
 	clear_out_intermediate_points(curpos, waypoints, maxwp);
 
@@ -117,8 +119,8 @@ void clear_out_intermediate_points(gps * curpos, moderately_finepoint * intermed
 }				// void clear_out_intermediate_points ( )
 
 /**
- *
- *
+ * All positions are 'virtual positions' defined relatively to Tux's or bot's
+ * current level
  */
 static int recursive_find_walkable_point(int levelnum, float x1, float y1, float x2, float y2, int recursion_depth,
 					 moderately_finepoint * waypoints, int *next_index_to_set_up, int maxwp, pathfinder_context * ctx)
@@ -129,8 +131,15 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 #define MAX_RECUSION_DEPTH 50
 
 	// At first we mark the current position as processed...
-	//
-	recursion_grid[(int)x1][(int)y1] = TILE_IS_PROCESSED;
+	{
+		// We need to convert (X1,Y1,L) into a real position to get
+		// the reference of the map tile to mark.
+		gps vpos = { x1, y1, levelnum };
+		gps rpos;
+		resolve_virtual_position(&rpos, &vpos);
+		level *lvl = curShip.AllLevels[rpos.z];
+		lvl->map[(int)rpos.y][(int)rpos.x].timestamp = ctx->timestamp;
+	}
 
 	// Maybe the recursion is too deep already.  Then we just return and report
 	// failure.
@@ -153,7 +162,8 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 		*next_index_to_set_up = 2;
 		return (TRUE);
 	}
-	// So at this point we know, that the current position is not one from where
+
+	// So at this point we know that the current position is not one from where
 	// we would be able to reach our goal.
 	//
 	// Therefore we will try other positions that might bring us more luck, but
@@ -222,8 +232,12 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 	for (i = 0; i < 4; i++) {
 		float centered_x = rintf(x1 + ordered_moves[i].x + 0.5) - 0.5;
 		float centered_y = rintf(y1 + ordered_moves[i].y + 0.5) - 0.5;
+		gps vpos = { centered_x, centered_y, levelnum };
+		gps rpos;
+		resolve_virtual_position(&rpos, &vpos);
+		level *lvl = curShip.AllLevels[rpos.z];
 
-		if ((recursion_grid[(int)centered_x][(int)centered_y] == TILE_IS_UNPROCESSED)
+		if ((lvl->map[(int)rpos.y][(int)rpos.x].timestamp != ctx->timestamp)
 		    && DirectLineColldet(x1, y1, centered_x, centered_y, levelnum, ctx->dlc_filter)
 		    && ((ctx->frw_ctx == NULL) || way_free_of_droids(x1, y1, centered_x, centered_y, levelnum, ctx->frw_ctx))
 		    ) {

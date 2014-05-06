@@ -200,6 +200,9 @@ int location_free_of_droids(float x, float y, int levelnum, freeway_context *ctx
  *
  * OBSTACLES ARE NOT TAKEN INTO CONSIDERATION, ONLY DROIDS!!!
  *
+ * TODO: The 2 points of the segment can be outside of the 'levelnum'.
+ * We should thus also check bots on neighbor levels (using same principle
+ * than in DirectLineColldet)
  */
 int way_free_of_droids(float x1, float y1, float x2, float y2, int levelnum, freeway_context * ctx)
 {

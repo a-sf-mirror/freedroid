@@ -418,7 +418,7 @@ void tux_get_move_target_and_attack(gps * movetgt)
 	// New move target.
 	movetgt->x = Me.pos.x + RemainingWay.x;
 	movetgt->y = Me.pos.y + RemainingWay.y;
-	movetgt->z = Me.mouse_move_target.z;
+	movetgt->z = Me.pos.z;
 
 	return;
 }				// void tux_get_move_target_and_attack( )

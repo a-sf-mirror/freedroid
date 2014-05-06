@@ -930,6 +930,7 @@ typedef struct freeway_context {
 typedef struct pathfinder_context {
 	colldet_filter *dlc_filter;	// DLC filter to use
 	freeway_context *frw_ctx;	// [way|location]_free_of_droids's execution context to use
+	int timestamp;
 } pathfinder_context;
 
 typedef struct {
