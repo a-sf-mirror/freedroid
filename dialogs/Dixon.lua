@@ -17,6 +17,29 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+-- Global variables:
+	-- intern
+		-- Dixon_mood				indicates Dixon's mood against Tux:
+			-- -100				Dixon is overjoyed
+			-- 0				Dixon is in a friendly mood
+			-- 30				Dixon is a little bit displeased
+			-- 60				Dixon is somewhat angry
+			-- 120				Dixon is fairly angry and refuses to talk to Tux
+			-- 180				Dixon is very angry with Tux, he will kill him at sight
+		-- Dixon_Singularity_war		Tux is going to get the toolkit by force
+		-- Dixon_Singularity_peace		Tux is going to get the toolkit by diplomacy
+		-- [none of the two above]		Tux just walks into the tunnels without a special attitude
+		-- Dixon_no_ambassador			Tux turned down Dixon's request to negotiate with the Singularity
+		-- Dixon_everything_alright		whether Tux has already asked once if everything is alright
+		-- Dixon_296_book_examine_library	Tux got the hint to look in the library for the book
+	-- extern
+		-- Singularity_deal			given by Singularity (Tux got the toolbox by a deal with the Singularity)
+		-- Engel_offered_extraction_skill	given by Engel
+		-- Ewalds_296_needs_sourcebook		given by Ewalds_296 (Tux knows that the 296 needs the book)
+		-- Tamara_have_296_book			given by Tamara (Tux has got the book about nuclear sciences)
+		-- MiniFactory_init_failed		given by MiniFactory (Tux has tried (unsuccessfully) to start the MiniFactory)
+		-- Lvl6_elbow_grease_applied		given by events.dat (the MiniFactory is running)
+
 local Tux = FDrpg.get_tux()
 
 return {
