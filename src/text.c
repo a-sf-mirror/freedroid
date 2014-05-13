@@ -393,10 +393,13 @@ static int display_text_using_line_height_with_cursor(const char *text, int star
 	int empty_lines_started = 0;
 	int current_curpos = 0;
 
+	if (text == NULL)
+		return 0;
+
 	int letter_spacing = get_letter_spacing(GetCurrentFont());
 	int tab_width = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + letter_spacing);
 
-	if (!*text)
+	if (text[0]=='\0')
 		nblines = 0;
 
 	// We position the internal text cursor on the right spot for
