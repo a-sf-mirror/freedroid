@@ -418,7 +418,7 @@ static void quest_browser_display_mission_list(int list_type)
 			}
 		}
 	} else {
-		const char *txt;
+		const char *txt = NULL;
 		
 		switch (list_type) {
 			case QUEST_BROWSER_SHOW_OPEN_MISSIONS:
