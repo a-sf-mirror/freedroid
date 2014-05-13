@@ -40,10 +40,10 @@ static int current_enemy_nr;
 static int __enemy_animation(const char *filename, int *rotation, int *phase, int *first_image, int **last_image)
 {
 	int i;
-	int rotation_index;
-	int phase_index;
-	int first_animation_image;
-	int* last_animation_image;
+	int rotation_index = 0;
+	int phase_index = 0;
+	int first_animation_image = 0;
+	int* last_animation_image = NULL;
 
 	struct {
 		const char *format_string;
