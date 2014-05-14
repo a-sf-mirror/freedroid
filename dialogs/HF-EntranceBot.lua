@@ -84,7 +84,7 @@ return {
 			npc_says(_"It contains:")
 			npc_says(_"The latest version of the [b]MegaSys[/b] operating system for [b]ONE DROID[/b]")
 			npc_says(_"Ten mini surveillance robots.")
-			npc_says(_"The book 'Nuclear Science for Dummies IV'.")
+			npc_says(_"The book 'Subatomic and Nuclear Science for Dummies, Volume IV'.")
 			npc_says(_"And a MegaSys Vision Enhancement Device 3000 - what you cannot see, can't see you either!")
 			npc_says(_"If you order [b]RIGHT NOW[/b], we will [b]SHIP FOR FREE!!![/b]")
 			Tux:says(_"No, thanks.")

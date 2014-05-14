@@ -1801,11 +1801,11 @@ item_list{
 
 {
 	id = "Nuclear Science for Dummies IV",
-	name =_"Nuclear Science for Dummies IV",
+	name =_"Subatomic and Nuclear Science for Dummies, Volume IV",
 	base_price = 600,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image_green.png" },
 	drop = {sound = "drop_book_sound.ogg"},
-	description =_[[From the back of the cover: 'The Nuclear Science for Dummies is the most popular handbook series for learning nuclear science: Learn to generate enough power to keep you town lit up for a decade! Discover how to really scare neighboring countries! Find out how to make your very own mutant pet!' This obviously important tome of knowledge from before the great assault comes with no warranty whatsoever.]],
+	description =_[[From the back of the cover: 'Subatomic and Nuclear Science for Dummies, Volume IV is the most popular handbook series for learning nuclear science: Learn to generate enough power to keep you town lit up for a decade! Discover how to really scare neighboring countries! Find out how to make your very own mutant pet!' This obviously important tome of knowledge from before the great assault comes with no warranty whatsoever.]],
 	rotation_series = "spellbook",
 },
 ----------------------------------------------------------------------
