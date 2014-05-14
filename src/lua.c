@@ -953,6 +953,7 @@ static int lua_create_droid(lua_State *L)
 	const char *type_name = luaL_checkstring(L, 2);
 	const char *fact_name = luaL_optstring(L, 3, "ms");
 	const char *dialog    = luaL_optstring(L, 4, "AfterTakeover");
+	const char *Sensor_ID = luaL_optstring(L, 5, NULL);
 	gps pos = get_map_label_center(map_label);
 	int type;
 
@@ -965,6 +966,8 @@ static int lua_create_droid(lua_State *L)
 	en->pos.z = pos.z;
 	en->faction = get_faction_id(fact_name);
 	en->dialog_section_name = strdup(dialog);
+	if (Sensor_ID != NULL) 
+		en->sensor_id = get_sensor_id_by_name(Sensor_ID);
 	enemy_insert_into_lists(en, TRUE);
 
 	return 0;

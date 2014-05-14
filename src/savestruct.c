@@ -489,6 +489,8 @@ void write_enemy(struct auto_string *strout, enemy *data)
     write_string(strout, &data->short_description_text);
     autostr_append(strout, ",\n" "on_death_drop_item_code = ");
     write_int16_t(strout, &data->on_death_drop_item_code);
+    autostr_append(strout, ",\n" "sensor_id = ");
+    write_int32_t(strout, &data->sensor_id);
     autostr_append(strout, ",\n" "faction = ");
     write_int32_t(strout, &data->faction);
     autostr_append(strout, ",\n" "will_respawn = ");
@@ -600,6 +602,10 @@ void read_enemy(lua_State* L, int index, enemy *data)
     }
     if (lua_getfield_or_warn(L, index, "on_death_drop_item_code")) {
         read_int16_t(L, -1, &data->on_death_drop_item_code);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "sensor_id")) {
+        read_int32_t(L, -1, &data->sensor_id);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "faction")) {

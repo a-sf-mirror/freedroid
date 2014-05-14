@@ -1708,8 +1708,22 @@ static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_numbe
 
 		// Create a new enemy, and initialize its 'identity' and 'global state'
 		// (the enemy will be fully initialized by respawn_level())
+
+
 		enemy *newen = enemy_new(droid_type);
+
+
 		newen->SpecialForce = TRUE;
+
+
+		char *tmp_sensor_ID = ReadAndMallocStringFromDataOptional(special_droid, "UseSensor=\"","\"");
+
+		if (!tmp_sensor_ID)
+			newen->sensor_id=Droidmap[newen->type].sensor_id;	//Not declared? In this case, use default.
+		else
+			newen->sensor_id=get_sensor_id_by_name(tmp_sensor_ID);	// Otherwise, use the specified sensor!
+
+		free(tmp_sensor_ID);
 
 		ReadValueFromStringWithDefault(special_droid, "Fixed=", "%hd", "0", &(newen->CompletelyFixed), special_droid_end);
 		ReadValueFromStringWithDefault(special_droid, "Marker=", "%d", "0000", &(newen->marker), special_droid_end);

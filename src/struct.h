@@ -366,6 +366,7 @@ typedef struct droidspec {
 	char *droid_attack_animation_sound_file_name;
 	int class;
 	float maxenergy;	// the maximum energy the batteries can carry
+	int sensor_id;		// What sensor is the most common to this droid?
 
 	float healing_friendly; // the energy/second the droid heals as a friendly towards Tux
 	float healing_hostile;  // the energy/second the droid heals as a hostile towards Tux
@@ -431,6 +432,8 @@ typedef struct enemy {
 	string dialog_section_name;
 	string short_description_text;
 	short int on_death_drop_item_code;  // drop a pre-determined item when dying
+	int sensor_id;			// What is the sensor of this droid? Some droids have different sensors.
+
 
 	//--------------------
 	// 2nd set ('global state')

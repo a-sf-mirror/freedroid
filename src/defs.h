@@ -1571,6 +1571,13 @@ enum data_dir_handle {
 	LAST_DATA_DIR
 };
 
+// Add the sensor features (for droids).
+enum sensor_features {
+    SENSOR_FEATURELESS = 0,		// Any sensor without any feature, featureless.
+    SENSOR_DETECT_INVISIBLE = 1 << 1,	// Sensor that allows the droid to see invisible tux.
+    SENSOR_THROUGH_WALLS = 1 << 2	// Sensor that allows the droid to see through walls.
+};
+
 
 // Draw quads borders (OpenGL only)
 #define DEBUG_QUAD_BORDER 0

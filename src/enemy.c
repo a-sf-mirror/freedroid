@@ -319,7 +319,8 @@ enemy *enemy_new(int type)
 	this_enemy->dialog_section_name = NULL;
 	this_enemy->short_description_text = strdup(Droidmap[this_enemy->type].default_short_description);
 	this_enemy->on_death_drop_item_code = -1;
-
+	this_enemy->sensor_id = Droidmap[this_enemy->type].sensor_id;
+	
 	// Set the default value of the 'global state' attributes
 	this_enemy->faction = FACTION_BOTS;
 	this_enemy->will_respawn = TRUE;
@@ -1056,9 +1057,12 @@ static void MoveThisEnemy(enemy * ThisRobot)
 static gps *enemy_get_target_position(enemy * ThisRobot)
 {
 	if (ThisRobot->attack_target_type == ATTACK_TARGET_IS_PLAYER) {
-		if (Me.invisible_duration > 0)
+
+		if ((Me.invisible_duration <= 0) || (ThisRobot->sensor_id & SENSOR_DETECT_INVISIBLE))
+			return &Me.pos;
+		else
 			return NULL;
-		return &Me.pos;
+
 	} else if (ThisRobot->attack_target_type == ATTACK_TARGET_IS_ENEMY) {
 		enemy *bot_enemy = enemy_resolve_address(ThisRobot->bot_target_n, &ThisRobot->bot_target_addr);
 		if (!bot_enemy || bot_enemy->energy <= 0)
@@ -1349,7 +1353,7 @@ void update_vector_to_shot_target_for_enemy(enemy * this_robot)
 	squared_best_dist = squared_aggression_distance;
 
 	// First check if Tux is a potential target
-	if (Me.invisible_duration <= 0) {
+	if ((Me.invisible_duration <= 0) || (this_robot->sensor_id & SENSOR_DETECT_INVISIBLE)) {
 		if (is_potential_target(this_robot, &Me.pos, &squared_best_dist)) {
 			this_robot->attack_target_type = ATTACK_TARGET_IS_PLAYER;
 		}
@@ -1415,7 +1419,7 @@ static void state_machine_situational_transitions(enemy * ThisRobot)
 
 	// Rush Tux when he's close & visible
 	update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, Me.pos.z);
-	if (ThisRobot->will_rush_tux && ThisRobot->virt_pos.z != -1 && (Me.invisible_duration <= 0)
+	if (ThisRobot->will_rush_tux && ThisRobot->virt_pos.z != -1 && ((Me.invisible_duration <= 0) || (ThisRobot->sensor_id & SENSOR_DETECT_INVISIBLE))
 	    && (powf(Me.pos.x - ThisRobot->virt_pos.x, 2) + powf(Me.pos.y - ThisRobot->virt_pos.y, 2)) < 16) {
 		ThisRobot->combat_state = RUSH_TUX_AND_OPEN_TALK;
 	}
@@ -1826,7 +1830,7 @@ static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_f
 
 static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
-	if (!ThisRobot->follow_tux || Me.invisible_duration > 0) {
+	if (!ThisRobot->follow_tux || ((Me.invisible_duration > 0) && (!(ThisRobot->sensor_id & SENSOR_DETECT_INVISIBLE)) )) {
 		ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
 		new_move_target->x = ThisRobot->pos.x;
 		new_move_target->y = ThisRobot->pos.y;
@@ -2640,6 +2644,29 @@ void enemy_set_reference(short int *enemy_number, enemy ** enemy_addr, enemy * a
 	}
 }
 
+ /* This function converts a sensor string human-readable to a sensor ID, computer-readable. */
+int get_sensor_id_by_name(const char *sensor) {
+        // Using a extensive if-loop, check if the string matches, and assign a numeric sensor.
+
+	if (!strcmp(sensor, "infrared")) {
+        	return SENSOR_DETECT_INVISIBLE;
+	} else if (!strcmp(sensor, "xray")) {
+		return SENSOR_THROUGH_WALLS;
+	} else if (!strcmp(sensor, "radar")) {
+		return SENSOR_DETECT_INVISIBLE | SENSOR_THROUGH_WALLS;
+	} else if (!strcmp(sensor, "spectral")) {
+		return SENSOR_FEATURELESS;
+	} else {
+		error_message(__FUNCTION__, "\
+		    FreedroidRPG was requested to process sensor \"%s\".\n\
+		    But there is no such sensor! We are now setting the sensor to \"spectral\" (without any feature).\n\
+		    Accepted sensors are: \n\
+		    infrared, ultrasonic, radar and spectral. The default is spectral.\n\
+		    Please note that it is case-sensitive.", PLEASE_INFORM, sensor);
+		return SENSOR_FEATURELESS;
+	}
+}
+
 /**
  * This function checks if the enemy at 'target_pos' is a potential target for
  * 'this_robot'.
@@ -2673,9 +2700,13 @@ static int is_potential_target(enemy * this_robot, gps * target_pos, float *squa
 	if (squared_target_dist > *squared_best_dist) {
 		return FALSE;
 	}
-	// If the target is not visible, then it cannot be attacked
-	if (!DirectLineColldet(this_robot->pos.x, this_robot->pos.y, target_vpos.x, target_vpos.y, this_robot->pos.z, &VisiblePassFilter)) {
-		return FALSE;
+	// If the target is not visible, then it cannot be attacked...
+	// Unless if the droid's sensor can see through walls!
+	if (!(this_robot->sensor_id & SENSOR_THROUGH_WALLS)) {
+		// Only apply this rule if the bot don't have a compatible sensor.
+		if (!DirectLineColldet(this_robot->pos.x, this_robot->pos.y, target_vpos.x, target_vpos.y, this_robot->pos.z, &VisiblePassFilter)) {
+			return FALSE;
+		}
 	}
 	// For a range weapon, check if the target can be directly shot
 	int melee_weapon = ItemMap[Droidmap[this_robot->type].weapon_item.type].item_weapon_is_melee;
