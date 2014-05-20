@@ -141,14 +141,14 @@ Building In Windows
 
 	In order to compile FreedroidRPG, you have to first install some library dependencies. We provide those libraries in 2 binary packages, so you do not need to compile them yourself
 	In a MinGW Shell, type the following commands:
-		wget http://buildbot.freedroid.org/downloads/freedroidRPG_dev.tar.gz
-		wget http://buildbot.freedroid.org/downloads/freedroidRPG_dependencies.zip
+		wget http://buildbot.freedroid.org/downloads/win32/freedroidRPG-win32-dev.tar.gz
+		wget http://buildbot.freedroid.org/downloads/win32/freedroidRPG-win32-dependencies.zip
 		cd /
-		tar -xzf ~/freedroidRPG_dev.tar.gz
+		tar -xzf ~/freedroidRPG-win32-dev.tar.gz
 		cd /bin
-		unzip ~/freedroidRPG_dependencies.zip
+		unzip ~/freedroidRPG-win32-dependencies.zip
 		cd /c/WINDOWS/system32
-		unzip ~/freedroidRPG_dependencies.zip
+		unzip ~/freedroidRPG-win32-dependencies.zip
 		cd
 
 5) FreedroidRPG compilation
