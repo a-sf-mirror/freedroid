@@ -162,7 +162,7 @@ Building In Windows
 
 	 compile the game:
 	 ./autogen.sh
-	 CFLAGS=-I/include ./configure --without-x --disable-sdltest
+	 CPPFLAGS=-I/include ./configure --without-x --disable-sdltest
 	 make
 
 
