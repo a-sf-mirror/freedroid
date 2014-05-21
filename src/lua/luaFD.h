@@ -41,7 +41,7 @@
 #define LUAFD_CFUN(name) { #name, _##name }
 
 #define GET_SELF_INSTANCE_OF(type, L, class) \
-	type ** self = (type **)luaL_testudata(L, 1, class); \
+	type * self = (type *)luaL_testudata(L, 1, class); \
 	if (!self) { \
 		return luaL_error(L, "%s() called with a userdata of wrong type (%s expected)", __FUNCTION__, class); \
 	}
