@@ -2002,16 +2002,18 @@ void reset_lua_state(void)
 		lua_setglobal(dialog_lua_state, lfuncs[i].name);
 	}
 
-	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDutils");
+	// Bindings
+	luaFD_init(get_lua_state(LUA_DIALOG));
 
+	// Load and initialize some Lua modules
+	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDutils");
+	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDdialog");
+	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "d", NULL, DIALOG_DIR);
+
+	// Finally load the script helpers Lua functions
 	find_file("script_helpers.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_DIALOG, fpath);
 
-	luaFD_init(get_lua_state(LUA_DIALOG));
-
-	// Load and initialize lua part of the dialog engine
-	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDdialog");
-	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "d", NULL, DIALOG_DIR);
 }
 
 /**
