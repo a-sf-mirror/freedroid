@@ -1109,7 +1109,7 @@ luaL_Reg lfuncs[] = {
 	/* teleport(string map_label)
 	 * Teleports the player to the given map label.
 	 */
-	{"teleport", lua_event_teleport}
+	{"teleport", lua_event_teleport} // -> FDtux:teleport
 	,
 	/* teleport_npc(string map_label, [dialog name])
 	 * Teleports the current npc, or named npc to the given map label
@@ -1119,12 +1119,12 @@ luaL_Reg lfuncs[] = {
 	/* teleport_home(string map_label)
 	 * Teleports the player to the home.
 	 */
-	{"teleport_home", lua_event_teleport_home}
+	{"teleport_home", lua_event_teleport_home} // -> FDtux:teleport_home
 	,
 	/* has_teleport_anchor()
 	 * Return true if a teleport anchor is active.
 	 */
-	{"has_teleport_anchor", lua_event_has_teleport_anchor}
+	{"has_teleport_anchor", lua_event_has_teleport_anchor} // -> FDtux:has_teleport_anchor
 	,
 	/* display_big_message(string msg)
 	 * Displays a big vanishing message on screen (seen in game, not in the dialog).
@@ -1161,25 +1161,25 @@ luaL_Reg lfuncs[] = {
 	 * 	This number can obviously be negative.
 	 * heat_tux(int amount)	- Increases temperature (=removes cooling), number can be negative.
 	 */
-	{"kill_tux", lua_event_kill_tux}
+	{"kill_tux", lua_event_kill_tux} // -> FDtux:kill
 	,
-	{"heal_tux", lua_event_heal_tux}
+	{"heal_tux", lua_event_heal_tux} // -> FDtux:heal
 	,
-	{"hurt_tux", lua_event_hurt_tux}
+	{"hurt_tux", lua_event_hurt_tux} // -> FDtux:hurt
 	,
-	{"heat_tux", lua_event_heat_tux}
+	{"heat_tux", lua_event_heat_tux} // -> FDtux:heat
 	,
 	/* get_tux_hp()             - Returns Tux's current health
 	 * get_tux_max_hp()         - Returns Tux's current maximum health
 	 * see also: tux_hp_ratio() - Returns the ratio of the two
 	 */
-	{"get_tux_hp", lua_event_get_tux_hp}
+	{"get_tux_hp", lua_event_get_tux_hp} // -> FDtux:get_hp
 	,
-	{"get_tux_max_hp", lua_event_get_tux_max_hp}
+	{"get_tux_max_hp", lua_event_get_tux_max_hp} // -> FDtux:get_max_hp
 	,
 	/* get_tux_cool()		- Returns Tux's current remaining heat absorbing capabilities
 	 */
-	{"get_tux_cool", lua_event_get_tux_cool}
+	{"get_tux_cool", lua_event_get_tux_cool} // -> FDtux:get_cool
 	,
 	/* improve_skill(string skill_name)
 	 * get_skill()
@@ -1187,20 +1187,20 @@ luaL_Reg lfuncs[] = {
 	 * by one level.
 	 * get_skill returns the current level (as an integer) of one of the three skills.
 	 */
-	{"improve_skill", lua_event_improve_skill}
+	{"improve_skill", lua_event_improve_skill} // -> FDtux:improve_skill
 	,
-	{"get_skill", lua_event_get_skill}
+	{"get_skill", lua_event_get_skill} // -> FDtux:get_skill
 	,
 
 	/* improve_program(string program_name)
 	 * Improve the program given by one level.
 	 * get_program_revision(string program_name) returns current program revision level
 	 */
-	{"improve_program", lua_event_improve_program}
+	{"improve_program", lua_event_improve_program} // -> FDtux:improve_program
 	,
-	{"downgrade_program", lua_event_downgrade_program}
+	{"downgrade_program", lua_event_downgrade_program} // -> FDtux:downgrade_program
 	,
-	{"get_program_revision", lua_event_get_program_revision}
+	{"get_program_revision", lua_event_get_program_revision} // -> FDtux:get_program_revision
 	,
 	/* del_item_backpack(string item_name[, int multiplicity = 1])
 	 * add_item(string item_name, int multiplicity)
@@ -1212,15 +1212,15 @@ luaL_Reg lfuncs[] = {
 	 * has_item_equipped(string item_name)
 	 * - returns true when the item is equipped
 	 */
-	{"del_item_backpack", lua_event_delete_item}
+	{"del_item_backpack", lua_event_delete_item} // -> FDtux:del_item_backpack
 	,
-	{"add_item", lua_event_give_item}
+	{"add_item", lua_event_give_item} // -> FDtux:add_item
 	,
-	{"count_item_backpack", lua_event_count_item_backpack}
+	{"count_item_backpack", lua_event_count_item_backpack} // -> FDtux:count_item_backpack
 	,
-	{"has_item_equipped", lua_event_has_item_equipped}
+	{"has_item_equipped", lua_event_has_item_equipped} // -> FDtux:has_item_equipped
 	,
-	{"equip_item", lua_event_equip_item}
+	{"equip_item", lua_event_equip_item} // -> FDtux:equip_item
 	,
 	{"sell_item", lua_event_sell_item}
 	,
@@ -1231,27 +1231,27 @@ luaL_Reg lfuncs[] = {
 	,
 	{"add_diary_entry", lua_event_add_diary_entry}
 	,
-	{"has_met", lua_event_has_met}
+	{"has_met", lua_event_has_met} // -> FDtux:has_met
 	,
-	{"assign_quest", lua_event_assign_mission}
+	{"assign_quest", lua_event_assign_mission} // -> FDtux:assign_quest
 	,
-	{"has_quest", lua_event_is_mission_assigned}
+	{"has_quest", lua_event_is_mission_assigned} // -> FDtux:has_quest
 	,
-	{"complete_quest", lua_event_complete_mission}
+	{"complete_quest", lua_event_complete_mission} // -> FDtux:complete_quest
 	,
-	{"done_quest", lua_event_is_mission_complete}
+	{"done_quest", lua_event_is_mission_complete} // -> FDtux:done_quest
 	,
-	{"add_xp", lua_event_give_xp}
+	{"add_xp", lua_event_give_xp} // -> FDtux:add_xp
 	,
-	{"del_training_points", lua_event_eat_training_points}
+	{"del_training_points", lua_event_eat_training_points} // -> FDtux:del_training_points
 	,
-	{"get_training_points", lua_event_get_training_points}
+	{"get_training_points", lua_event_get_training_points} // -> FDtux:get_training_points
 	,
-	{"add_gold", lua_event_add_gold}
+	{"add_gold", lua_event_add_gold} // -> FDtux:add_gold
 	,
-	{"get_gold", lua_event_get_gold}
+	{"get_gold", lua_event_get_gold} // -> FDtux:get_gold
 	,
-	{"change_stat", lua_event_change_stat}
+	{"change_stat", lua_event_change_stat} // -> FDtux:change_stat
 	,
 	{"respawn_level", lua_event_respawn_level}
 	,
@@ -1261,7 +1261,7 @@ luaL_Reg lfuncs[] = {
 	,
 	{"craft_addons", lua_event_craft_addons}
 	,
-	{"get_player_name", lua_chat_player_name}
+	{"get_player_name", lua_chat_player_name} // -> FDtux:get_player_name
 	,
 	{"chat_says", lua_chat_says}
 	,
@@ -1347,7 +1347,7 @@ luaL_Reg lfuncs[] = {
 	 */
 	{"play_sound", lua_play_sound},
 	// freeze_tux() freezes tux for the given amount of seconds
-	{"freeze_tux", lua_event_freeze_tux},
+	{"freeze_tux", lua_event_freeze_tux}, // -> FDtux:freeze
 	// freeze_npc() freezes the npc for the given amount of seconds
 	{"freeze_npc", lua_event_freeze_npc},
 	/* add_obstacle(lvl, x, y, obst_ID) add obstacles to maps at given position
@@ -1357,7 +1357,7 @@ luaL_Reg lfuncs[] = {
 	 */
 	{"add_obstacle", lua_add_obstacle},
 	// meters_traveled() returns ingame meters tux has traveled
-	{"meters_traveled", lua_meters_traveled},
+	{"meters_traveled", lua_meters_traveled}, // -> FDtux:get_meters_traveled
 	// if (run_from_dialog()) then
 	// to check if certain code was run from inside a dialog or not
 	{"run_from_dialog", lua_run_from_dialog},

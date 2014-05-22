@@ -224,7 +224,7 @@ function cmp_obstacle_state(label, state)
 end
 
 -- Quest functions
-function add_quest(quest, text)
+function add_quest(quest, text) -- FDtux:add_quest
 	if (not running_benchmark()) then
 		if done_quest(quest) or
 		   has_quest(quest) then
@@ -246,7 +246,7 @@ function add_quest(quest, text)
 	end
 end
 
-function update_quest(quest, text)
+function update_quest(quest, text) -- FDtux:update_quest
 	if (has_quest(quest)) then
 		add_diary_entry(quest, text)
 		play_sound("effects/Mission_Status_Change_Sound_0.ogg")
@@ -266,7 +266,7 @@ function update_quest(quest, text)
 	end
 end
 
-function end_quest(quest, text)
+function end_quest(quest, text) -- FDtux:end_quest
 	if (not running_benchmark()) then -- don't spam the validator
 		if (done_quest(quest)) then
 				print(FDutils.text.highlight("\n\tERROR", "red"))
@@ -311,7 +311,7 @@ function chat_says_format(text, ...)
 	return text, no_wait
 end
 
-function tux_says(text, ...)
+function tux_says(text, ...) -- FDtux:says
 	local text, no_wait = chat_says_format('\1- ' .. text .. '\n', ...)
 	chat_says(text, no_wait)
 end
@@ -352,7 +352,7 @@ function npc_says_random(...)
 	end
 end
 
-function tux_says_random(...)
+function tux_says_random(...) -- FDtux:says_random
 	arg = {...}
 	if (arg[#arg] == "NO_WAIT") then
 		tux_says(arg[math.random(#arg-1)],"NO_WAIT")
@@ -366,7 +366,7 @@ function get_random(...)
 	return arg[math.random(#arg)]
 end
 
-function del_gold(gold_amount)
+function del_gold(gold_amount) -- FDtux:del_gold
 	if (gold_amount <= get_gold()) then
 		add_gold(-gold_amount)
 		return true
@@ -375,7 +375,7 @@ function del_gold(gold_amount)
 	end
 end
 
-function count_item(item_name) 
+function count_item(item_name) -- FDtux:count_item
 	local number = count_item_backpack(item_name) 
 	if has_item_equipped(item_name) then
 		return number + 1
@@ -384,11 +384,11 @@ function count_item(item_name)
 	end
 end
 
-function has_item_backpack(item_name)
+function has_item_backpack(item_name) -- FDtux:has_item_backpack
 	return (count_item_backpack(item_name) > 0)
 end
 
-function del_item(item_name) 
+function del_item(item_name) -- FDtux:del_item
 	if (count_item_backpack(item_name) > 0) then
 		del_item_backpack(item_name)
 		return true
@@ -397,7 +397,7 @@ function del_item(item_name)
 	end
 end
 
-function del_points(num_points)
+function del_points(num_points) -- FDtux:del_points
 	if (get_training_points() >= num_points) then
 		del_training_points(num_points)
 		return true
@@ -406,7 +406,7 @@ function del_points(num_points)
 	end
 end
 
-function can_tux_train(gold_amount, num_points)
+function can_tux_train(gold_amount, num_points) -- FDtux:can_train
 	if (get_gold() < gold_amount) then
 		return false
 	end
@@ -418,7 +418,7 @@ function can_tux_train(gold_amount, num_points)
 	return true
 end
 
-function train_skill(gold_amount, num_points, skill)
+function train_skill(gold_amount, num_points, skill) -- FDtux:train_skill
 	if (get_gold() < gold_amount) then
 		return false
 	end
@@ -433,7 +433,7 @@ function train_skill(gold_amount, num_points, skill)
 	return true
 end
 
-function train_program(gold_amount, num_points, program)
+function train_program(gold_amount, num_points, program) -- FDtux:train_program
 	if (get_gold() < gold_amount) then
 		return false
 	end
@@ -448,7 +448,7 @@ function train_program(gold_amount, num_points, program)
 	return true
 end
 
-function tux_hp_ratio()
+function tux_hp_ratio() -- FDtux:get_hp_ratio
 	return get_tux_hp()/get_tux_max_hp()
 end
 
@@ -456,7 +456,7 @@ function npc_damage_ratio()
 	return npc_damage_amount()/npc_max_health()
 end
 
-function del_health(num_points)
+function del_health(num_points) -- FDtux:del_health
 	if (num_points < get_tux_hp()) then
 		hurt_tux(num_points)
 		return true
@@ -491,7 +491,7 @@ function get_random_bot_59()
 	return bot_59
 end
 
-function has_item(...)
+function has_item(...) -- FDtux:has_item
 	for i,item in ipairs({...}) do
 		if (not (count_item(item) > 0)) then
 			return false
