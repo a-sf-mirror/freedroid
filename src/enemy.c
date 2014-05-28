@@ -394,6 +394,65 @@ void clear_enemies(void)
 	enemy_reset_fabric();
 }
 
+/** Helper to modify the enemy state
+ * with a constant set of names.
+ */
+void enemy_set_state(enemy *en, const char *cmd)
+{
+	if (!strcmp(cmd, "follow_tux")) {
+		en->follow_tux = TRUE;
+		en->CompletelyFixed = FALSE;
+	} else if (!strcmp(cmd, "fixed")) {
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = TRUE;
+	} else if (!strcmp(cmd, "free")) {
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = FALSE;
+	} else if (!strcmp(cmd, "home")) {
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = FALSE;
+		en->combat_state = RETURNING_HOME;
+	} else if (!strcmp(cmd, "patrol")) {
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = FALSE;
+		en->combat_state = SELECT_NEW_WAYPOINT;
+	} else {
+		error_message(__FUNCTION__,
+		     "I was called with an invalid state named %s. Accepted values are \"follow_tux\", \"fixed\", \"free\", \"home\", and \"patrol\".",
+		     PLEASE_INFORM, cmd);
+	}
+}
+
+int enemy_set_destination(enemy *en, const char *label)
+{
+	gps dest_pos = get_map_label_center(label);
+	struct level *lvl = curShip.AllLevels[dest_pos.z];
+	int destinationwaypoint = get_waypoint(lvl, dest_pos.x, dest_pos.y);
+
+	if (dest_pos.z !=  en->pos.z) {
+		error_message(__FUNCTION__, "\
+				Sending bot %s to map label %s (found on level %d) cannot be done because the bot\n\
+				is not on the same level (z = %d). Doing nothing.",
+				PLEASE_INFORM, en->dialog_section_name, label, dest_pos.z, en->pos.z);
+		return 0;
+	}
+
+	if (destinationwaypoint == -1) {
+		error_message(__FUNCTION__, "\
+				Map label %s (found on level %d) does not have a waypoint. Cannot send bot %s\n\
+				to this location. Doing nothing.\n\
+				GPS center coordinates x=%f, y=%f.",
+				PLEASE_INFORM, label, dest_pos.z, en->dialog_section_name, dest_pos.x, dest_pos.y);
+		return 0;
+	}
+
+	clear_out_intermediate_points(&en->pos, &en->PrivatePathway[0], 5);
+	en->lastwaypoint = destinationwaypoint;
+	en->nextwaypoint = destinationwaypoint;
+	en->combat_state = TURN_TOWARDS_NEXT_WAYPOINT;
+	return 0;
+}
+
 static void enemy_get_current_walk_target(enemy *ThisRobot, moderately_finepoint *a)
 {
 	int count;

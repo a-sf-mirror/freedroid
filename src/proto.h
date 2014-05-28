@@ -577,6 +577,8 @@ int MakeSureEnemyIsInsideHisLevel(Enemy ThisRobot);
 int CheckEnemyEnemyCollision(enemy *);
 void move_enemies(void);
 void clear_enemies(void);
+void enemy_set_state(enemy *, const char *);
+int enemy_set_destination(enemy *, const char *);
 void enemy_reset(enemy *this_bot);
 void enemy_reset_fabric(void);
 enemy *enemy_new(int type);
