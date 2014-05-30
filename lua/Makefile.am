@@ -8,9 +8,6 @@ export VPATH
 all-local:
 	$(MAKE) -f $(LUA_MAKEFILE) $(AM_MAKEFLAGS) liblua.a
 
-check-local:
-	$(MAKE) -f $(LUA_MAKEFILE) $(AM_MAKEFLAGS) test
-
 clean-local:
 	$(MAKE) -f $(LUA_MAKEFILE) $(AM_MAKEFLAGS) clean
 
