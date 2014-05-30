@@ -3,17 +3,16 @@
 AUTOMAKE_OPTIONS = subdir-objects
 
 # Initialize automake variables
-AM_CFLAGS =
 AM_CPPFLAGS =
 freedroidRPG_LDADD =
 
 if BUILD_LUA
-freedroidRPG_LDADD += ../lua/liblua.a
-AM_CFLAGS += -I../lua
+freedroidRPG_LDADD += $(top_builddir)/lua/liblua.a
+AM_CPPFLAGS += -I$(top_srcdir)/lua
 endif
 
 if WIN32
-freedroidRPG_LDADD += ../win32/freedroidRPG.coff
+freedroidRPG_LDADD += $(top_builddir)/win32/freedroidRPG.coff
 endif
 
 if USE_NLS
@@ -41,7 +40,7 @@ freedroidRPG_SOURCES = version.c \
 	open_gl.c open_gl_atlas.c open_gl_debug.c mission.c chat.c light.c \
 	getopt.c getopt1.c getopt.h scandir.c scandir.h sound_effects.c \
 	lang.c lang.h lists.c lists.h \
-	gen_savestruct.py savestruct.c savestruct.h savestruct_internal.c savestruct_internal.h \
+	gen_savestruct.py savestruct_internal.c savestruct_internal.h \
 	string.c pathfinder.c \
 	benchmark.c rtprof.c \
 	npc.c \
@@ -81,19 +80,18 @@ freedroidRPG_SOURCES = version.c \
 	mapgen/themes.c mapgen/themes.h \
 	lua/luaFD.c lua/luaFD_bindings.h lua/luaFD_tux.c
 
-savestruct.c savestruct.h: struct.h savestruct_internal.h gen_savestruct.py
-	$(PYTHON) gen_savestruct.py struct.h savestruct
+nodist_freedroidRPG_SOURCES = savestruct.c savestruct.h
+BUILT_SOURCES = savestruct.h
+
+savestruct.h: struct.h savestruct_internal.h gen_savestruct.py
+	$(PYTHON) $(srcdir)/gen_savestruct.py $(srcdir)/struct.h savestruct
 
 version.c: dummy
 	version_string=`echo "char *freedroid_version = \"$$(git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@")$$(git diff --exit-code >& /dev/null || echo "_mod")\";"` \
 	&& (echo $$version_string | cmp -s - $@) || echo $$version_string > $@
 
-clean-local:
-	cd ../lua; make clean
-
-../lua/liblua.a: 
-	cd ../lua; make CC=${CC} AR="${AR} rcu" RANLIB="${RANLIB}" liblua.a
-
 dummy:
+
+CLEANFILES = savestruct.c savestruct.h version.c
 
 .PHONY: dummy

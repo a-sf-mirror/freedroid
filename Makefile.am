@@ -12,17 +12,21 @@ else
 extradirs = win32 croppy 
 endif 
 
+if BUILD_LUA
+MAYBE_EMBEDDED_LUA = lua
+endif
+
 if CROSS_COMPILING
-SUBDIRS = src gluem doc po $(extradirs)
+SUBDIRS = $(MAYBE_EMBEDDED_LUA) src gluem doc po $(extradirs)
 else
-SUBDIRS = src gluem doc po graphics/floor_tiles graphics/obstacles $(extradirs)
+SUBDIRS = $(MAYBE_EMBEDDED_LUA) src gluem doc po graphics/floor_tiles graphics/obstacles $(extradirs)
 endif
 
 man_MANS = freedroidRPG.6
 
 freedroid_data = map graphics sound dialogs lua_modules
 
-EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.generic lua
+EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.generic
 
 CHECKFLAGS=env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
 
@@ -35,7 +39,6 @@ check:
 	$(CHECKFLAGS) ./src/freedroidRPG -nb leveltest		|| exit 6
 
 dist-hook:
-	make -C lua clean
 	find $(distdir) -name ".git"              | xargs rm -rf
 	find $(distdir) -name "*~"                | xargs rm -f
 	find $(distdir) -name ".#*"               | xargs rm -f

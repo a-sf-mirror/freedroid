@@ -279,7 +279,7 @@ AM_CONDITIONAL(BUILD_LUA, test x$embedded_lua = xyes)
 AM_CONDITIONAL(USE_NLS, test x$USE_NLS = xyes)
 
 AC_CONFIG_FILES([
-	Makefile src/Makefile
+	Makefile lua/Makefile src/Makefile
 	gluem/Makefile croppy/Makefile
 	graphics/obstacles/Makefile graphics/floor_tiles/Makefile
 	win32/Makefile
