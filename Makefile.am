@@ -30,6 +30,8 @@ EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.generic
 
 CHECKFLAGS=env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
 
+AM_MAKEFLAGS = CC=$(CC) RANLIB=$(RANLIB) STRIP=$(STRIP)
+
 check:
 	$(CHECKFLAGS) ./src/freedroidRPG -nb text			|| exit 1
 	$(CHECKFLAGS) ./src/freedroidRPG -nb dialog			|| exit 2
