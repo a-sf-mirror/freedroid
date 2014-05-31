@@ -1348,14 +1348,13 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 void blit_nonpreput_objects_according_to_blitting_list(int mask)
 {
 	enemy *enemy_under_cursor = NULL;
-	int item_under_cursor = -1;
 	level *item_under_cursor_lvl = NULL;
 
 	// We memorize which 'enemy' is currently under the mouse target, so that we
 	// can properly highlight this enemy...
 	//
 	enemy_under_cursor = GetLivingDroidBelowMouseCursor();
-	item_under_cursor = get_floor_item_index_under_mouse_cursor(&item_under_cursor_lvl);
+	int item_under_cursor = get_floor_item_index_under_mouse_cursor(&item_under_cursor_lvl);
 
 	// Now it's time to blit all the elements from the list...
 	//
