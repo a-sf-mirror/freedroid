@@ -3,9 +3,20 @@ AUTOMAKE_OPTIONS = subdir-objects
 
 # Initialize automake variables
 AM_CPPFLAGS =
+explodefont_LDADD =
+gluefont_LDADD =
+make_atlas_LDADD =
+explode_atlas_LDADD =
 
 if BUILD_LUA
 AM_CPPFLAGS += -I$(top_srcdir)/lua
+endif
+
+if USE_NLS
+explodefont_LDADD += @LIBINTL@
+gluefont_LDADD += @LIBINTL@
+make_atlas_LDADD += @LIBINTL@
+explode_atlas_LDADD += @LIBINTL@
 endif
 
 bin_PROGRAMS = explodefont gluefont make_atlas explode_atlas
