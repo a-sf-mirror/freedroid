@@ -16,6 +16,10 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Robotic" },
+PURPOSE = "$$NAME$$ is apart of the droid collective known as Singularity."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

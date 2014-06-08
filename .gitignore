@@ -106,3 +106,9 @@ po/*/*.gmo
 po/*/stamp-*
 po/l10n-others/tx
 locale/
+
+# Wiki parse output
+doc/wiki/wiki.d/Doc.*
+doc/wiki/wiki.d/*.txt
+doc/wiki/uploads/Droids/*.png
+doc/wiki/uploads/Items/*.jpg

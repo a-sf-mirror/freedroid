@@ -16,6 +16,17 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Obsessed", "Distracted", "Intelligent" },
+MARKERS = { NPCID1 = "Jasmine" },
+PURPOSE = "$$NAME$$ will help to improve Tux\'s skills.",
+BACKSTORY = "$$NAME$$ stole material from the town and works in isolation on research to defeating the bots.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ is $$NPCID1$$\'s creator and boyfriend." },
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

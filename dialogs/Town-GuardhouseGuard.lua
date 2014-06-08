@@ -16,6 +16,12 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Militaristic","Consiliatory" },
+MARKERS = { NPCID1 = "Town-NorthGateGuard" },
+PURPOSE = "$$NAME$$ is another guard at the main entrance to town.",
+BAKCSTORY = "$$NAME$$ explains to Tux $$NPCID1$$\'s abbrassiveness."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

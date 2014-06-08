@@ -16,6 +16,10 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Helpful" },
+PURPOSE = "$$NAME$$ guides the player through the various aspects of playing the game."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

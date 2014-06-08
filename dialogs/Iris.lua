@@ -16,6 +16,12 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Independent", "Free Spirit", "Reclusive" },
+MARKERS = { ITEMID1 = "Desk Lamp" },
+BACKSTORY = "$$NAME$$ is a bot hunter living in the town. $$NAME$$ complains about the amount of light in her quarters
+	 and will trade with Tux for a $$ITEMID1$$."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

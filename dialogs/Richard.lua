@@ -16,6 +16,11 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Intelligent" },
+MARKERS = { DROIDID1 = "614" },
+BACKSTORY = "$$NAME$$ is the Red Guard\'s Computer Cluster maintainer and occassional $$DROIDID1$$ programmer."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

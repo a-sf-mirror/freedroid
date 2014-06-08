@@ -16,6 +16,26 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Militaristic", "Not Very Intelligent" },
+MARKERS = {
+	NPCID1 = "Ewald",
+	NPCID2 = "Sorenson",
+	ITEMID1="Teleporter homing beacon"
+},
+PURPOSE = "$$NAME$$ guards the town\'s teleporter and attempts to explain how teleporters work, albeit in a not so
+	 intelligent fashion. $$NAME$$ also informs Tux of how to use the teleporter and gives a $$ITEMID1$$ to Tux.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ suggests that if Tux wants to \'play dice\' that he visit $$NPCID1$$."
+	},
+	{
+		actor = "$$NPCID2$$",
+		text = "$$NAME$$ explains how $$NPCID2$$ saved the town by locking down the teleporter."
+	}
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

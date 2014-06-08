@@ -16,6 +16,19 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Friendly", "Desperate" },
+MARKERS = {
+	QUESTID1 = "Saving the shop",
+	ITEMID1 = "Two Barrel shotgun",
+	ITEMID2 = "Shotgun shells"
+},
+PURPOSE = "$$NAME$$ is the first seller of equipment available in the town. She sells armament for the first part of game.",
+BACKSTORY = "$$NAME$$ has continued to take care of her shop after The Great Assault. However, the Red Guard taxes represent
+	 such a significant financial burden that she is having problems with its finances. $$NAME$$\'s grandfather knows Tux as
+	 a ancient hero. She managed to hide her grandfather\'s $$ITEMID1$$ from the Red Guard. She may give it and some $$ITEMID2$$
+	 to Tux as a reward for completing the $$QUESTID1$$ quest."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

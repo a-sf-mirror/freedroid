@@ -16,6 +16,14 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Robotic", "Secretive", "Agressive" },
+MARKERS = { NPCID1 = "Tania", QUESTID1 = "SADD\'s power supply" },
+PURPOSE = "If allowed out of the entrance, $$NAME$$ will attack $$NPCID1$$. Tux must rush to save her.
+	 $$NAME$$ will trick Tux as part of $$QUESTID1$$ quest.",
+BACKSTORY = "$$NAME$$, or \'Secret Area Defence Droid\', is the guardian of the \'Secret Area\' facility,
+	 a forgotten underground military research facility. It takes guarding the facility\'s secrets very seriously!"
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

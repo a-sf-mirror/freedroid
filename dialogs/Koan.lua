@@ -16,6 +16,23 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Contemplative", "Peaceful", "Hopeful" },
+MARKERS = { NPCID1 = "Duncan", QUESTID1 = "Doing Duncan a favor", NPCID2 = "Tania" },
+PURPOSE = "$$NAME$$ is the focus of the $$QUESTID1$$ quest",
+BACKSTORY = "$$NAME$$ has turned a hidden bunker into an \'Oasis of Peace\' hidden from the ravaged world above.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ is the opposite of $$NPCID1$$. $$NPCID1$$ destroys life while $$NAME$$ creates life."
+	},
+	{
+		actor = "$$NPCID2$$",
+		text = "$$NAME$$ has an unknown relationship with $$NPCID2$$. She will be very angry if $$NAME$$ is killed."
+	},
+}
+WIKI]]--
+
 
 local Tux = FDrpg.get_tux()
 

@@ -16,6 +16,20 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Militaristic", "Focused", "Vengeful" },
+MARKERS = { NPCID1 = "Geist", },
+PURPOSE = "$$NAME$$ improves Tux\'s skills.",
+BACKSTORY = "$$NAME$$ and $$NPCID1$$ have become bot hunters after the loss their mother to a bot attack. $$NAME$$ use to
+	 construct bots, and now finances himself by recovering bot parts and selling them. He speaks broken English (with some
+	 German). His family name is Fleischer (in English - \"butcher\"). $$NAME$$ is mistrustful of the Red Gaurd.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NPCID1$$ and $$NAME$$ are brothers."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

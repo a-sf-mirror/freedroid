@@ -16,6 +16,21 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Technical", "Distracted", "Friendly", "Pascifist" },
+MARKERS = { NPCID1 = "Singularity", ITEMID1 = "Dixon\'s Toolbox" },
+PURPOSE = "$$NAME$$ can give the player access to the maintenance tunnels below the town as well as information about how Tux
+	 can manufacture equipment add-ons.",
+BACKSTORY = "$$NAME$$ is an engineer for the Read Guard and provides maintenance for the town and its defences. $$NAME$$ was
+	 badly wounded in a droid attack.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ met $$NPCID1$$ in the maintenance tunnels just before the start of The Great Assult. $$NPCID1$$ took
+			 $$ITEMID1$$ from him for its own survival."
+	},
+}
+WIKI]]--
 
 -- Global variables:
 	-- intern

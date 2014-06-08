@@ -16,6 +16,10 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Robotic" },
+PURPOSE = "$$NAME$$ is the first bot Tux encounters in the game. It starts the first fight during the introduction."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

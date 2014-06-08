@@ -16,6 +16,18 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Folksy", "Knowledgeable", "Friendly" },
+MARKERS = { NPCID1 = "Bender" },
+PURPOSE = "$$NAME$$ will heal Tux for free and also provides information about medical equipment in the game.",
+BACKSTORY = "$$NAME$$ provides medical services to the town, but only if injuries are \'Not Self-Inflicted\'.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ refuses to help $$NPCID1$$ for ignoring his medical advice."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

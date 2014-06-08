@@ -16,6 +16,18 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Sagely", "Absent-Minded" },
+MARKERS = { NPCID1 = "Francis" },
+PURPOSE = "$$NAME$$ gives more explanation of what is going on in the world, particularly about the Linarian race and the
+	 town. Chandra raises several questions regarding the story.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NPCID1$$ and $$NAME$$ know each other. $$NPCID1$$ sent Tux to talk with $$NAME$$ about Linarians."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

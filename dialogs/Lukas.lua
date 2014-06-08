@@ -16,6 +16,11 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Militaristic", "Helpful" },
+PURPOSE = "$$NAME$$ will sell Tux more capable weapons and armor after Tux has joined the Red Guard.",
+BACKSTORY = "$$NAME$$ is the Red Guard\'s Quartermaster/Storesman",
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

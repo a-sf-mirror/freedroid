@@ -16,6 +16,16 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Pushy", "Isolated" },
+MARKERS = {
+	ITEMID1 = "Map Maker",
+	ITEMID2 = "Teleporter homing beacon",
+	NPCID1 = "Town-TeleporterGuard"
+},
+PURPOSE = "$$NAME$$ is a technology trader. He also sells a $$ITEMID1$$ pill that enables Tux's mapping abilites during the
+	 game. $$NAME$$ is also the only other way Tux can obtain a $$ITEMID2$$ after using the one received from $$NPCID1$$.",
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

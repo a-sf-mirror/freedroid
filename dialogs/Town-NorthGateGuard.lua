@@ -16,6 +16,19 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Militaristic", "Vigilent", "Condesending" },
+MARKERS = { NPCID1 = "Kevin", QUESTID1 = "A strange guy stealing from town" },
+PURPOSE = "$$NAME$$ is the first town resident and Red Guard member Tux encounters.",
+BACKSTORY = "$$NAME$$ aggressively guards the main entrance to town. $$NAME$$ lost his sister in The Great Assult.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ is angry at the theft undertaken by $$NPCID1$$. $$NAME$$ does not know who $$NPCID1$$ is but
+		 wants him found. This initiates $$QUESTID1$$."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

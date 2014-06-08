@@ -16,6 +16,11 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Robotic" },
+BACKSTORY = "$$NAME$$ is a bot used by MegaSys for testing purposes. Because $$NAME$$ is running a very rudimentary
+	 operating system, Tux cannot takeover and control $$NAME$$."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

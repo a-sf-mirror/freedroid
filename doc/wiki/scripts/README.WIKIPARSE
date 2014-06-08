@@ -1,0 +1,167 @@
+ * ----------------------------------------------------------------------
+ *	Copyright (c) 2014 Scott Furry
+ *
+ *	This file is part of Freedroid
+ *
+ *	Freedroid is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 2 of the License, or
+ *	(at your option) any later version.
+ *
+ *	Freedroid is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with Freedroid; see the file COPYING. If not, write to the
+ *	Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *	MA  02111-1307  USA
+ *
+ * ----------------------------------------------------------------------
+Freedroid RPG - wiki parsing README
+----------
+Rationale:
+----------
+Information on the wiki pages can sometimes get out of date or become inconsistent
+with the current release. Wiki page editing/updating can sometimes become a major
+chore espically with major changes to the code base.
+
+------------
+Description:
+------------
+Wiki Parsing automates the process of parsing game source files and updating wiki
+pages containing game playing information. The wiki pages produced as a result
+include NPC/Character/Item information and Map of levels in game.
+
+----------
+Execution:
+----------
+cd <path to FDRPG root>
+lua doc/wiki/scripts/wiki_parse.lua [-s] [-l] [-v | -vv]
+switches:
+	s	enable sandbox output - disables some wiki text conversions
+		- output can be pasted into wiki sandbox for testing
+		(see assumptions: OUTPUT NOT HUMAN READABLE below)
+	l	produce a list of file links
+		- saved as FDRPG root/doc/wiki/wiki.d/output_images.txt
+		(see assumptions: PATH STRUCTURE - FILE NAMES below)
+	v	verbose output - produce verbose output to stdout
+		- note large scrollback produced
+		- prints out basic information about parsing
+	vv	double verbose output - produce extreme verbose output to stdout
+		- implies verbose output
+		- note HUGE scrollback produced
+		- prints out basic information about parsing
+		- prints out detailed module table contents
+		RECOMMEND: pipe this output to file for easier review
+
+		e.g. lua doc/wiki/scripts/wiki_parse.lua [-v | -vv] > [path/]filename
+		-- output path should be used to prevent writing garbage to FDRPG root
+		-- suggest doc/wiki/wiki.d for path as .gitignore is set to ignore *.txt files
+
+NOTE:
+Wiki Parsing is intended to be used by the FDRPG buildbot as part of build process.
+
+INPUT
+All scripts necessary for wiki parsing are located at FDRPG root/doc/wiki/scripts
+
+OUTPUT
+Wiki Parsing will save files to the following locations:
+wiki pages for uploading	FRRPG root/doc/wiki/wiki.d/Doc.*
+images for wiki pages		FRRPG root/doc/wiki/uploads
+
+These locations are then to be rsync'd with the FDRPG wiki site.
+
+LUA MODULE LOADING
+wiki_parse.lua processes the following FDRPG data files using the given lua code modules
+	droid_archetypes.dat    - modWP_Droid.lua
+	events.dat              - modWP_Events.lua
+	item_specs.lua          - modWP_Items.lua
+	levels.dat              - modWP_Levels.lua
+	npc_specs.lua           - modWP_NPC.lua
+	ReturnOfTux.droids      - modWP_ROTD.lua
+	quests.dat              - modWP_Quests
+
+For each module, the sequence used is:
+- 'require' module (with path - see Assumptions:PATH STRUCTURE below)
+- call module's "ProcessData" function -> process source files into data structs
+- call module's WikiWrite function -> convert data structures to wiki pages
+## NOTE: some code modules may not have a WikiWrite function - but the module is needed to parse information.
+The produced data is used by other modules for wiki pages.
+## NOTE: process modWP_Levels and modWP_NPC last (in that order) due to dependencies on other moduels
+
+FDRPG LUA DATA FILES
+(i.e. item_specs.lua and npc_specs.lua )
+FDRPG data files in lua format are parsed differently than plain text files.
+
+Functions used to extract data must be in the lua global space or parsing will fail.
+Also modWPCommon.Process.FileToChunk() function is used to removed gettext markers before processing as
+lua's dofile() will fail if gettext markers are present.
+
+Once the lua data files is loaded into memory as a "chunk", variables and structures in the data
+file can be accessed directly by the wiki parsing script.
+
+------------
+Assumptions:
+------------
+BUILDBOT
+Files from previous iterations/executions are removed by the buildbot.
+
+PLATFORM
+It is assumed that wiki_parsing.lua and its modules are being executed on a Linux-based platform.
+Also, lua 5.2 is required. No other third-party lua modules/dependencies are used.
+
+The script also executes a bash script for some file handling processes.
+
+PAGE HISTORY
+History of pmwiki page edits on auto-generated pages will not be retained between builds. The process
+to keep this history is specific to pmwiki and not practical to integrate or emulate. A warning
+is posted on auto-generated pages to users about the lack of edit/history retension.
+
+Changes to the layout of auto-generated wiki pages should go through the Review Board process.
+
+PATH STRUCTURE - FILE NAMES
+Lua is not very aware of path structures and file names. The paths and file names used to find
+lua modules and FDRPG data files had to be hardcoded into the wiki parsing source. Any changes made to
+the overall FDRPG project structure will need to be pushed into wiki parsing.
+
+When executing wiki_parsing, it is assumed that the current working directory is set to the FDRPG root.
+Any other location will cause the script to fail and exit.
+
+DATA FILES - TEXT MARKERS
+Data files make frequent use of text markers (e.g. levels.dat "Levelnumber:") to identify data.
+Assumption is that these markers do not change. If the markers are changed, changes must be
+pushed into wiki parsing source.
+
+OUTPUT NOT HUMAN READABLE
+The output of wiki parsing is not meant to be human readable. The data written to file is intended to
+be used directly as a wiki page. If one wishes to view the data, perform the following (current for pmwiki):
+1) pass the flag "-s" to wiki_parse.lua
+	- this will set the value of modWPCommon.sandbox to "true" and disable some wiki conversions
+2) open resulting doc/wiki/wiki.d/Doc.* file
+3) copy everything after "text=" and before "time="
+4) open the page http://www.freedroid.org/pmwiki/pmwiki.php?n=Main.WikiSandbox?action=edit in your browser
+	- FDRPG pmwiki sandbox page in edit mode
+5) paste into the sandbox page text box
+6) select "preview" button to view resulting wiki page
+
+----------
+Features:
+----------
+modWPCommon.lua function "WikifyText" replaces characters pmwiki considers "special".
+see - http://www.pmwiki.org/wiki/PmWiki/PageFileFormat "text=" description.
+Currently -> replace "%" with %25 <- must do this FIRST
+             replace "<" with %3c
+             replace "\n" with %0a
+
+modWPCommon.lua function "extractText" - built to remove the gettext markers and quotation marks
+from a string. This function is used frequently when extracting text data from FDRPG data files.
+Adding/Removing gettext markers to data in source files should not cause the wiki parse process to
+fail or produce bad results.
+
+.gitignore files are used to exclude images and Doc.* files. The images are copies of items already
+under git control. Also, wiki parsing can change the contents of Doc.* files frequently.
+
+Efforts have been made to centralize the defintions of wiki text markup to a single file should
+the decision be made to change wiki engines. This is a future proofing function.

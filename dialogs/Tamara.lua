@@ -16,6 +16,19 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Intelligent", "Timid" },
+MARKERS = { NPCID1 = "Sorenson", QUESTID1 = "An Explosive Situation" },
+PURPOSE = "$$NAME$$ can sell Tux skills books. Her skills are needed to aid Tux in resolving the $$QUESTID1$$ quest.",
+BACKSTORY = "$$NAME$$ is the town\'s librarian, which she use to run with $$NPCID1$$ until their falling out. $$NAME$$ also documents bot history in her spare time.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ and $$NPCID1$$ are half-sisters who have not talked to each other since $$NAME$$ locked $$NPCID1$$
+			 in her bedroom for staring into computer screens too much."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

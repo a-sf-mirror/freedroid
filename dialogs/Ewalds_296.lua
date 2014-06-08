@@ -16,6 +16,18 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Robotic", "Programmaticly Helpful" },
+MARKERS = { NPCID1 = "Ewald" },
+BACKSTORY = "$$NAME$$ is a Customer Service Droid. While in the storage room below the town bar, $$NAME$$ fell into a sinkhole.
+	 Since then, $$NAME$$\'s previous programming has been used to prevent the town\'s backup nuclear reactor from failing. For now...",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ was programmed to work in the town bar for its proprietor, $$NPCID1$$."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

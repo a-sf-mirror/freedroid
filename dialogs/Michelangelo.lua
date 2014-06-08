@@ -16,6 +16,12 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Depressed", "Frustrated" },
+MARKERS = { ITEMID1 = "Red Dilithium Crystal" },
+PURPOSE = "$$NAME$$ directs Tux to where he can find $$ITEMID1$$s.",
+BACKSTORY = "$$NAME$$ is frustrated by his inability to be a chef, as well as his current working conditions.",
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

@@ -16,6 +16,11 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Friendly", "Mentally Diminished" },
+PURPOSE = "$$NAME$$ can play two gambling games in an attempt to improve Tux\'s finances. He gives some cooling drinks for free when Tux begs for it.",
+BACKSTORY = "$$NAME$$ is a former drug addict who now runs the town bar. His brain is damaged heavily because of drug Use. Now he always smiles.",
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

@@ -16,6 +16,14 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Robotic" },
+MARKERS = { NPCID1 = "Kevin" },
+PURPOSE = "$$NAME$$ defends $$NPCID1$$\'s compound and mows the lawn.",
+RELATIONSHIP = {
+	{ actor = "$$NPCID1$$", text = "$$NAME$$ is owned by $$NPCID1$$." },
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

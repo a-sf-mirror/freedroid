@@ -16,6 +16,26 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Delusional", "Lonely", "Heartbroken", "Intelligent" },
+MARKERS = {
+	NPCID1 = "Koan",
+	NPCID2 = "SADD",
+	QUESTID1 = "Tania's Escape",
+	ITEMID1 = "Strength Pill",
+},
+PURPOSE = "$$NAME$$\'s entrapment is the subject of the quest $$QUESTID1$$. Tux must rush to prevent $$NPCID2$$ from attacking $$NAME$$.",
+BACKSTORY = "$$NAME$$ is a brilliant biologist who worked in the \'Secret Area\' facility. This facility developed and produced
+	 $$ITEMID1$$s. Since The Great Assult, $$NAME$$ has been living locked up in the facility. Initially, $$NAME$$ had a companion,
+	 Peter, who, after consuming too many $$ITEMID1$$s, became delusional about his increased abilities and perished in an accident.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "The relationship between $$NAME$$ and $$NPCID1$$ is unclear. However, $$NAME$$ will respond badly if Tux
+		 has killed him."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

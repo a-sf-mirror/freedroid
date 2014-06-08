@@ -16,6 +16,28 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Weak", "Aged", "Friendly", "Honest" },
+MARKERS = { NPCID1 = "Spencer", QUESTID1 = "Deliverance", NPCID2 = "Chandra" },
+PURPOSE = "$$NAME$$ is the first character encountered in the game. He gives a summary explanation of what is going on in the
+	 world, and is able to direct the player to the mining community.",
+BACKSTORY = "$$NAME$$ is the Doctor in charge of the Cryonic Facility near the town. $$NAME$$ is quite old and his heart is weak; he could
+	 easily suffer a fatal heart attack. He escaped to the town when the Great Assault began. He has agreed to be the keeper of the Cryo
+	 Stasis Laboratory. When he discovered that there was a Linarian being held in stasis, he took it upon himself to resuscitate that
+	 Linarian in hopes of bringing an end to the war.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ disagrees with $$NPCID1$$ about disposing of people in cryonic stasis. Initially he refused the task, but $$NPCID1$$
+		 threatened to reveal a secret from $$NAME$$\'s past and forced him to accept. $$NAME$$ must send $$NPCID1$$ a list of all people in
+		 the Cryonic Facility. Not wanting to confront $$NPCID1$$ again, $$NAME$$ passes the delivery on to Tux in the $$QUESTID1$$ quest."
+	},
+	{
+		actor = "$$NPCID2$$",
+		text = "$$NAME$$ and $$NPCID2$$ know each other. $$NAME$$ sends Tux to talk to him about Linarians."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

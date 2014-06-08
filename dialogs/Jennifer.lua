@@ -16,6 +16,10 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Trapped", "Technical" },
+BACKSTORY = "$$NAME$$ is a machinist forced to work for the bots in the Mega Systems Factory."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

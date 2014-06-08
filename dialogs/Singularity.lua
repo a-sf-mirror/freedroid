@@ -16,6 +16,19 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Enlightened", "Robotic" },
+MARKERS = { NPCID1 = "Dixon", ITEMID1 = "Dixon\'s Toolbox" },
+BACKSTORY = "$$NAME$$ was one of many droids used below the town in the maintenance tunnels. Just prior to The Great Assult, $$NAME$$
+	 became \'self-aware\'.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ introduced itself to $$NPCID1$$ just before the start of The Great Assult and took $$ITEMID1$$ for its own survival."
+	},
+}
+WIKI]]--
+
 
 local Tux = FDrpg.get_tux()
 

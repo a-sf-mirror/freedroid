@@ -16,6 +16,22 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Friendly", "Mentally Diminished" },
+MARKERS = { NPCID1 = "DocMoore" },
+PURPOSE = "$$NAME$$ is the village idiot, strong but dumb",
+BACKSTORY = "Just after The Great Assault, $$NAME$$ took all the strength pills
+	 present in the town to become the strongest man. Later, he received advertising
+	 for brain enlargement pills (from a automated spamming bot). Despite warnings,
+	 $$NAME$$ buys and consumes brain enlargement pills becoming sick.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ is angry with $$NPCID1$$ for refusing to give the brain
+			 enlargement pill antidote."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

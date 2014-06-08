@@ -16,6 +16,10 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Exhausted", "Haunted", "Trapped" },
+BACKSTORY = "$$NAME$$ is a mine worker and former member of the Red Guard. He is haunted by the loss of comrades at Hell Fortress."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

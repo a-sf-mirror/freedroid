@@ -16,6 +16,11 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Militarist", "Aggressive", "Confident" },
+MARKERS = { QUESTID1 = "Doing Duncan a favor" },
+PURPOSE = "$$NAME$$ helps improve Tux\'s skill. Tux must bribe $$NAME$$ in order to complete the $$QUESTID1$$ quest"
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

@@ -16,6 +16,18 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Militaristic", "Focused", "Vengeful" },
+MARKERS = { NPCID1 = "Engel" },
+BACKSTORY = "$$NAME$$ and $$NPCID1$$ have become bot hunters after the loss their mother to a bot attack. He does not speak English.
+	 His family name is Fleischer (in English - \"butcher\").",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NPCID1$$ and $$NAME$$ are brothers."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

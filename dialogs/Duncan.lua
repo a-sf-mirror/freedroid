@@ -16,6 +16,19 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Devious", "Focused", "Polite", "Vengeful" },
+MARKERS = { NPCID1 = "Koan" },
+PURPOSE = "$$NAME$$ sells grenades to Tux. $$NAME$$ also hints at the future of the Red Guard.",
+BACKSTORY = "$$NAME$$ is the bomb maker for the Red Guard. $$NAME$$ hints that he threw a grenade that caused great
+	 distruction and resulted in the loss of many of \'his people\'.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ is the opposite of $$NPCID1$$. $$NAME$$ destroys life while $$NPCID1$$ creates life."
+	},
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

@@ -16,6 +16,21 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Militaristic", "Amoral" },
+MARKERS = { NPCID1 = "Francis" },
+PURPOSE = "$$NAME$$ is the leader of the Red Guard and gives Tux several quests that involve either ensuring the survival
+	 of the town, the downfall of the bots or actions Tux can take to join the Red Guard. $$NAME$$ has the final say on
+	 whether Tux can join the Red Guard.",
+RELATIONSHIP = {
+	{
+		actor = "$$NPCID1$$",
+		text = "$$NAME$$ disagrees with $$NPCID1$$ about disposing of people in cryonic stasis. $$NAME$$ wants to dispose of some of
+		 these people because he wants resources used by cryonic stasis for the town\'s survival. $$NAME$$ threatened to reveal a
+		 secret from $$NPCID1$$\'s past to force compliance."
+	}
+}
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

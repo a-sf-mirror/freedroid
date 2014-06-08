@@ -16,6 +16,11 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Militaristic", "Condesending" },
+MARKERS = { NPCID1 = "Spencer" },
+PURPOSE = "When Tux fist visits the town, $$NAME$$ will escort Tux to visit $$NPCID1$$. After that, $$NAME$$ will patrol the town."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

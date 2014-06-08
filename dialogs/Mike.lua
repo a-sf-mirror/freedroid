@@ -16,6 +16,11 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Robotic" },
+PURPOSE = "$$NAME$$ controls arena functions in the game.",
+BACKSTORY = "$$NAME$$ is the Arena Master for the Red Guard.",
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 

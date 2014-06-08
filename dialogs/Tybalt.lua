@@ -16,6 +16,18 @@
 -- Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
+--[[WIKI
+PERSONALITY = { "Millitarist", "Devious" },
+MARKERS = {
+	NPCID1 = "Kevin",
+	NPCID2 = "Richard",
+	DROIDID1 = "614",
+	QUESTID1 = "An Explosive Situation"
+},
+PURPOSE = "$$NAME$$ guards the inner gate to the Red Guard citadel and will refuse entry to non-Red Guard members - even if bribed!.
+	 $$NAME$$ jokingly hints at $$QUESTID1$$. If Tux asks about the citadel, $$NAME$$ suggests he visit $$NPCID2$$ to learn more.",
+BACKSTORY = "$$NAME$$ is at his current post after the theft of a $$DROIDID1$$ by $$NPCID1$$. $$NAME$$ is unhappy with this situation."
+WIKI]]--
 
 local Tux = FDrpg.get_tux()
 
