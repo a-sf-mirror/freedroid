@@ -96,6 +96,7 @@ int png_save_surface(const char *filename, SDL_Surface *surf)
 		NULL, png_user_error, png_user_warn);
 	if (png_ptr == NULL) {
 		printf("png_create_write_struct error!\n");
+		fclose(fp);
 		return -1;
 	}
 
@@ -103,6 +104,7 @@ int png_save_surface(const char *filename, SDL_Surface *surf)
 	if (info_ptr == NULL) {
 		png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
 		printf("png_create_info_struct error!\n");
+		fclose(fp);
 		return -1;
 	}
 
