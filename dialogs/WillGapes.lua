@@ -182,6 +182,7 @@ return {
 			npc_says(_"Sheet of cellulose.")
 			npc_says(_"Here, take it.")
 			Tux:add_item("MS Stock Certificate", 1)
+			Tux:update_quest("Propagating a faulty firmware update", _"Will Gapes gave me his MS Stock Certificate so that I can gain access to the MegaSys Factory.")
 			hide("node13")
 		end,
 	},
