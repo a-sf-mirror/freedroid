@@ -1,4 +1,4 @@
-/* 
+/*
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
@@ -363,7 +363,7 @@ Sorry, but unless this constant is raised, FreedroidRPG will refuse to load this
 static void decode_random_droids(level *loadlevel, char *data)
 {
 	char *search_ptr;
-	char *end_ptr = data;
+	char *end_ptr;
 
 #define DROIDS_NUMBER_INDICATION_STRING "number of random droids: "
 #define ALLOWED_TYPE_INDICATION_STRING "random droid types: "
