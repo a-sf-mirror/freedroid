@@ -928,14 +928,24 @@ end
 
 --	convert level number and name to text format
 --	[in]	levelnumber	level to be converted
+--	[in]	label		text to be used for wiki presentation
+--	[in]	withURL		false - return just formated anchor
+--						true - return full url#anchor to level information
 --	[ret]	string	"XX - level name"
-function modWP_Levels.WikiEntryLevelText( levelnumber, label )
+function modWP_Levels.WikiEntryLevelText( levelnumber, label, withURL )
 	local asLink = false
 	if (( label == nil) or ( not label )) then
 		label = ""
 	else
 		asLink = true
 	end
+	local useURL = false
+	if (( withURL == nil ) or ( not withURL )) then
+		useURL = false
+	else
+		useURL = true
+	end
+	
 	levelnumber = assert(tonumber(levelnumber), "WikiEntryLevelText: unable to convert " .. levelnumber)
 	local levelindex = modWP_Levels.GetIndexByValue( modWP_Levels.AllLevelData, levelnumber, "levelnumber" )
 	local levelname = modWP_Levels.AllLevelData[levelindex].levelname
@@ -944,7 +954,13 @@ function modWP_Levels.WikiEntryLevelText( levelnumber, label )
 		return strText
 	else
 		strText = "Level " .. strText
-		local leveltext = modWP_Levels.modcommon.Wiki.LinkText(	modWP_Levels.AllLevelData[levelindex].urlAnchor,strText )
+		local urltext = ""
+		if ( not useURL ) then
+			urltext = modWP_Levels.AllLevelData[levelindex].urlAnchor
+		else
+			urltext = modWP_Levels.modcommon.outputfilenames.levels .. modWP_Levels.AllLevelData[levelindex].urlAnchor
+		end
+		local leveltext = modWP_Levels.modcommon.Wiki.LinkText(	urltext, strText )
 		return modWP_Levels.modcommon.Wiki.TextEntry( label, leveltext,	modWP_Levels.modcommon.Wiki.Seperator, nil, false )
 	end
 end

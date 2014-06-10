@@ -565,7 +565,7 @@ function modWP_NPC.WikiWrite()
 		wikitext[#wikitext + 1] = modWIKI.HeaderLevel(2) .. npc.name
 		wikitext[#wikitext + 1] = modWIKI.ImageText( modWIKI.URL_ImgDroid .. portraitname, npc.graphics_prefix, "margin-right=\'1.0em\'")
 		wikitext[#wikitext + 1] = modWIKI.FrameStartLeft("border=\'0px\' width=65pct")
-		wikitext[#wikitext + 1] = modLevel.WikiEntryLevelText( npc.level, "Location" ) .. modWIKI.ForceBreak
+		wikitext[#wikitext + 1] = modLevel.WikiEntryLevelText( npc.level, "Location", true ) .. modWIKI.ForceBreak
 		--	preprocess link to droid type if not human
 		local modeltext = npc.ROTDType
 		if ( not npc.is_human ) then
