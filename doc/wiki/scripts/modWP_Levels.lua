@@ -737,6 +737,7 @@ function modWP_Levels.WikiWrite()
 
 	local wikitext = {}
 	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG Level Maps")
+	wikitext = modWIKI.WarnAutoGen( wikitext )	
 	--	make menu for levels
 	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
 	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid RPG Levels"
@@ -749,7 +750,6 @@ function modWP_Levels.WikiWrite()
 	wikitext[#wikitext + 1] = LI .. modWIKI.LinkText(modWIKI.HLink .. "lvlslistnumber", "List of All FDRPG Levels")
 	wikitext[#wikitext + 1] = modWIKI.FrameEnd
 
-	wikitext = modWIKI.WarnAutoGen( wikitext )
 	wikitext = modWIKI.WarnSpoil( wikitext )
 	--	page contents start here
 	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "mapship")

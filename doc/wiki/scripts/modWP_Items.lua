@@ -249,6 +249,7 @@ function modWP_Items.WikiWrite()
 	local filepath = tostring(modWP_Items.modcommon.paths.destRootFile .. filename)
 	local wikitext = {}
 	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG Items")
+	wikitext = modWIKI.WarnAutoGen( wikitext )	
 	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
 	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid Items Types"
 	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "allItems","Items")
@@ -257,8 +258,6 @@ function modWP_Items.WikiWrite()
 	end	--	make menu for item types (slots)
 	wikitext[#wikitext + 1] = modWIKI.FrameEnd
 	--	end menu
-	--	auto-generated text warning - page edits
-	wikitext = modWIKI.WarnAutoGen( wikitext )
 	--	auto-generated text warning - spoilers
 	wikitext = modWIKI.WarnSpoil( wikitext )
 	--	page contents start here

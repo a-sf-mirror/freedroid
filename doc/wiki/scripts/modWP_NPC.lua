@@ -534,6 +534,7 @@ function modWP_NPC.WikiWrite()
 	local modQuests = modWP_NPC.modules[modWP_NPC.wikirequiredModules[4]]
 
 	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG NPC\'s")
+	wikitext = modWIKI.WarnAutoGen( wikitext )
 	--	make menu for npc types
 	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
 	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid NPC\'s"
@@ -544,7 +545,6 @@ function modWP_NPC.WikiWrite()
 	wikitext[#wikitext + 1] = modWIKI.FrameEnd
 	--	end menu
 
-	wikitext = modWIKI.WarnAutoGen( wikitext )
 	wikitext = modWIKI.WarnSpoil( wikitext )
 	--	page contents start here
 	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "allNPC")

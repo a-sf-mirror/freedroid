@@ -211,6 +211,7 @@ function modWP_Droid.WikiWrite()
 	local filepath = tostring(modWP_Droid.modcommon.paths.destRootFile .. filename)
 	local wikitext = {}
 	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG Droid Types")
+	wikitext = modWIKI.WarnAutoGen( wikitext )
 	--	make menu for droid types
 	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
 	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid Droid Types"
@@ -224,7 +225,6 @@ function modWP_Droid.WikiWrite()
 	wikitext[#wikitext + 1] = modWIKI.FrameEnd
 	--	end menu
 
-	wikitext = modWIKI.WarnAutoGen( wikitext )
 	wikitext = modWIKI.WarnSpoil( wikitext )
 	--	page contents start here
 	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "alldroids")
