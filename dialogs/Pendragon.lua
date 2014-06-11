@@ -18,7 +18,7 @@
 ----------------------------------------------------------------------
 --[[WIKI
 PERSONALITY = { "Militarist", "Aggressive", "Confident" },
-MARKERS = { QUESTID1 = "Doing Duncan a favor" },
+MARKERS = { QUESTID1 = "Doing Duncan a favour" },
 PURPOSE = "$$NAME$$ helps improve Tux\'s skill. Tux must bribe $$NAME$$ in order to complete the $$QUESTID1$$ quest"
 WIKI]]--
 

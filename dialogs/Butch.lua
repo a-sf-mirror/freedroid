@@ -17,7 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 --[[WIKI
-PERSONALITY = { "Militaristic", "Abrassive", "Domineering", "Condesending" },
+PERSONALITY = { "Militaristic", "Abrasive", "Domineering", "Condescending" },
 PURPOSE = "$$NAME$$ enables Tux's access to the training arenas."
 WIKI]]--
 

@@ -26,7 +26,7 @@ MARKERS = {
 },
 PURPOSE = "$$NAME$$\'s entrapment is the subject of the quest $$QUESTID1$$. Tux must rush to prevent $$NPCID2$$ from attacking $$NAME$$.",
 BACKSTORY = "$$NAME$$ is a brilliant biologist who worked in the \'Secret Area\' facility. This facility developed and produced
-	 $$ITEMID1$$s. Since The Great Assult, $$NAME$$ has been living locked up in the facility. Initially, $$NAME$$ had a companion,
+	 $$ITEMID1$$s. Since The Great Assault, $$NAME$$ has been living locked up in the facility. Initially, $$NAME$$ had a companion,
 	 Peter, who, after consuming too many $$ITEMID1$$s, became delusional about his increased abilities and perished in an accident.",
 RELATIONSHIP = {
 	{

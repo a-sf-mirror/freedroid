@@ -237,7 +237,7 @@ return {
 		id = "node17",
 		text = _"Keeper? You don't sound so sure... What is the deal with this place?",
 		code = function()
-			npc_says(_"I'm sorry, but you probably need to start traveling to the town. The Red Guard are not known to be the most patient.")
+			npc_says(_"I'm sorry, but you probably need to start travelling to the town. The Red Guard are not known to be the most patient.")
 			npc_says(_"They were the ones who wanted me to thaw you out, after all. You'd better get going.")
 			Francis_tux_dismissed = true
 			hide("node17") show("node20", "node21")

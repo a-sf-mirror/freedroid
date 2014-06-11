@@ -21,10 +21,10 @@ PERSONALITY = { "Mentally Unstable", "Brilliant", "Possessed" },
 MARKERS = { NPCID1 = "Tamara" },
 PURPOSE = "$$NAME$$ will help to improve Tux\'s abilities and sell skills books.",
 BACKSTORY = "$$NAME$$ is one of the most brilliant programmers ever to have lived. A former Mega System employee, she is
-	 rumored to have sold her soul to the devil in order to improve her coding skills. Like all such deals, this one has
+	 rumoured to have sold her soul to the devil in order to improve her coding skills. Like all such deals, this one has
 	 had consequences she could not have foreseen. It is said that she can be released from her burden, but that no human
 	 could bear to release her. When she left Mega System, she ran a library with her sister. $$NAME$$ locked down the
-	 town\'s teleport system after The Great Assult saving the town from being overrun by bots. $$NAME$$ speaks rather
+	 town\'s teleport system after The Great Assault saving the town from being overrun by bots. $$NAME$$ speaks rather
 	 broken English due to her obsessive coding.",
 RELATIONSHIP = {
 	{

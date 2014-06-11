@@ -617,10 +617,10 @@ return {
 	},
 	{
 		id = "node60",
-		text = _"BUG, REPORT ME! ewald node56 -- Reintialize variable",
+		text = _"BUG, REPORT ME! ewald node56 -- Reinitialize variable",
 		echo_text = false,
 		code = function()
-			-- ReInitialize variables here
+			-- Re Initialize variables here
 			tux1, tux2, tux3 = 0, 0, 0
 			ewd1, ewd2, ewd3, ewd4, ewd5 = 0, 0, 0, 0, 0
 

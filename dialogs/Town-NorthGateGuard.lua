@@ -17,10 +17,10 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 --[[WIKI
-PERSONALITY = { "Militaristic", "Vigilent", "Condesending" },
+PERSONALITY = { "Militaristic", "Vigilant", "Condescending" },
 MARKERS = { NPCID1 = "Kevin", QUESTID1 = "A strange guy stealing from town" },
 PURPOSE = "$$NAME$$ is the first town resident and Red Guard member Tux encounters.",
-BACKSTORY = "$$NAME$$ aggressively guards the main entrance to town. $$NAME$$ lost his sister in The Great Assult.",
+BACKSTORY = "$$NAME$$ aggressively guards the main entrance to town. $$NAME$$ lost his sister in The Great Assault.",
 RELATIONSHIP = {
 	{
 		actor = "$$NPCID1$$",

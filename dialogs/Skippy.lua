@@ -23,7 +23,7 @@ MARKERS = {
 	ITEMID2 = "Teleporter homing beacon",
 	NPCID1 = "Town-TeleporterGuard"
 },
-PURPOSE = "$$NAME$$ is a technology trader. He also sells a $$ITEMID1$$ pill that enables Tux's mapping abilites during the
+PURPOSE = "$$NAME$$ is a technology trader. He also sells a $$ITEMID1$$ pill that enables Tux's mapping abilities during the
 	 game. $$NAME$$ is also the only other way Tux can obtain a $$ITEMID2$$ after using the one received from $$NPCID1$$.",
 WIKI]]--
 
@@ -81,7 +81,7 @@ return {
 		text = _"You said you make these things yourself? How do you do that?",
 		code = function()
 			npc_says(_"Oh, I've always been a geek. And I got blueprints from before the Great Assault.")
-			npc_says(_"You can't order anything from a catalog anymore.")
+			npc_says(_"You can't order anything from a catalogue any more.")
 			npc_says(_"The only source of these gizmos is here. It's me!")
 			hide("node3")
 		end,

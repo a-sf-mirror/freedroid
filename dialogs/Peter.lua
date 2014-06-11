@@ -17,8 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 --[[WIKI
-PERSONALITY = { "Beligerent", "Resentful" },
-BACKSTORY = "$$NAME$$ is being held prisoner in the inner citadel for being apart of a resistence movement against the Red Guard."
+PERSONALITY = { "Belligerent", "Resentful" },
+BACKSTORY = "$$NAME$$ is being held prisoner in the inner citadel for being apart of a resistance movement against the Red Guard."
 WIKI]]--
 
 local Tux = FDrpg.get_tux()

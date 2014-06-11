@@ -349,32 +349,32 @@ return {
 
 ---------------------------------------------------------- Gold
 			if (Tux:get_gold() == 0) then
-				npc_says("GOLD test 1 succeded", "NO_WAIT")
+				npc_says("GOLD test 1 succeed", "NO_WAIT")
 			else
 				guy_fail("GOLD 1")
 			end
 
 			Tux:add_gold(100)
 			if (Tux:get_gold() == 100) then
-				npc_says("GOLD test 2 succeded", "NO_WAIT")
+				npc_says("GOLD test 2 succeed", "NO_WAIT")
 			else
 				guy_fail("GOLD 2")
 			end
 
 			if (not Tux:del_gold(1000)) then
-				npc_says("GOLD test 3 succeded", "NO_WAIT")
+				npc_says("GOLD test 3 succeed", "NO_WAIT")
 			else
 				guy_fail("GOLD 3")
 			end
 
 			if (Tux:get_gold() == 100) then -- check if gold changed, just to be sure...
-				npc_says("GOLD test 4 succeded", "NO_WAIT")
+				npc_says("GOLD test 4 succeed", "NO_WAIT")
 			else
 				guy_fail("GOLD 4")
 			end
 
 			if (Tux:del_gold(100)) then
-				npc_says("GOLD test 5 succeded", "NO_WAIT")
+				npc_says("GOLD test 5 succeed", "NO_WAIT")
 			else
 				guy_fail("GOLD 5")
 			end
@@ -382,7 +382,7 @@ return {
 			Tux:add_gold(100)
 			Tux:add_gold(-100)
 			if (Tux:get_gold() == 0) then
-				npc_says("GOLD test 6 succeded")
+				npc_says("GOLD test 6 succeed")
 			else
 				guy_fail("GOLD 6")
 			end
@@ -391,7 +391,7 @@ return {
 ---------------------------------------------------------- RUSH TUX
 			if (not Tux:has_met("Guy")) then
 				if not (will_rush_tux()) then
-					npc_says("RUSH TUX test 1 succeded", "NO_WAIT")
+					npc_says("RUSH TUX test 1 succeed", "NO_WAIT")
 				else
 					guy_fail("RUSH TUX 1")
 				end
@@ -402,7 +402,7 @@ return {
 			set_rush_tux(1)
 
 			if (will_rush_tux()) then
-				npc_says("RUSH TUX test 2 succeded", "NO_WAIT")
+				npc_says("RUSH TUX test 2 succeed", "NO_WAIT")
 			else
 				guy_fail("RUSH TUX 2")
 			end

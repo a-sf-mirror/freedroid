@@ -17,12 +17,12 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 --[[WIKI
-PERSONALITY = { "Robotic", "Agressive" },
+PERSONALITY = { "Robotic", "Aggressive" },
 MARKERS = { NPCID1 = "Kevin" },
 PURPOSE = "$$NAME$$ defends the main entrance to $$NPCID1$$\'s compound",
 BACKSTORY = "$$NAME$$ was originally station in the mining town until stolen by $$NPCID1$$.",
 RELATIONSHIP = {
-	{ actor = "$$NPCID1$$", text = "$$NAME$$ is now owned and programed by $$NPCID1$$." },
+	{ actor = "$$NPCID1$$", text = "$$NAME$$ is now owned and programmed by $$NPCID1$$." },
 }
 WIKI]]--
 

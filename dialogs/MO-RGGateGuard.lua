@@ -17,8 +17,8 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 --[[WIKI
-PERSONALITY = { "Militarist", "Abrassive" },
-BACKSTORY = "$$NAME$$ mans the defense structure near the Hell Fortress",
+PERSONALITY = { "Militarist", "Abrasive" },
+BACKSTORY = "$$NAME$$ mans the defence structure near the Hell Fortress",
 WIKI]]--
 
 local Tux = FDrpg.get_tux()

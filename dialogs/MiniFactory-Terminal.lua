@@ -64,8 +64,8 @@ return {
 				npc_says(_"The reference book is outdated. Please refer to the ticket 2012 in the technician database.")
 				cli_says(_"WARNING: ", "NO_WAIT")
 				npc_says(_"The ticket 2012 is outdated. Please refer to the manual.")
-				npc_says(_"Canceling Initialization Process...")
-				npc_says(_"Initialization has been canceled to prevent any damage.")
+				npc_says(_"Cancelling Initialization Process...")
+				npc_says(_"Initialization has been cancelled to prevent any damage.")
 				MiniFactory_init_failed = true
 			else
 				npc_says(_"SUCCESS")

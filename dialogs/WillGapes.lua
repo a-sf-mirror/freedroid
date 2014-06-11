@@ -20,9 +20,9 @@
 PERSONALITY = { "Paranoid", "Fearful" },
 MARKERS = {	QUESTID1 = "Propagating a faulty firmware update" },
 PURPOSE = "$$NAME$$ aids Tux in the $$QUESTID1$$ quest by providing the means for Tux to access the Mega Systems factory.",
-BACKSTORY = "$$NAME$$ helped start the Mega Systems company and was the chief software architect prior to The Great Assult.
-	 $$NAME$$ has been living in an isolated bunker since The Great Assult and is unaware of other survivors. He has insight
-	 into how The Great Assult may have started."
+BACKSTORY = "$$NAME$$ helped start the Mega Systems company and was the chief software architect prior to The Great Assault.
+	 $$NAME$$ has been living in an isolated bunker since The Great Assault and is unaware of other survivors. He has insight
+	 into how The Great Assault may have started."
 WIKI]]--
 
 local Tux = FDrpg.get_tux()

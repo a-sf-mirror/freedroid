@@ -22,7 +22,7 @@ MARKERS = { NPCID1 = "Geist", },
 PURPOSE = "$$NAME$$ improves Tux\'s skills.",
 BACKSTORY = "$$NAME$$ and $$NPCID1$$ have become bot hunters after the loss their mother to a bot attack. $$NAME$$ use to
 	 construct bots, and now finances himself by recovering bot parts and selling them. He speaks broken English (with some
-	 German). His family name is Fleischer (in English - \"butcher\"). $$NAME$$ is mistrustful of the Red Gaurd.",
+	 German). His family name is Fleischer (in English - \"butcher\"). $$NAME$$ is mistrustful of the Red Guard.",
 RELATIONSHIP = {
 	{
 		actor = "$$NPCID1$$",

@@ -32,7 +32,7 @@ return {
 	end,
 
 	EveryTime = function()
-		hide("node29") -- the node will be re-shown later if we have enought crystals
+		hide("node29") -- the node will be re-shown later if we have enough crystals
 
 		if (Tux:has_quest("Anything but the army snacks, please!")) then
 			if (Tux:done_quest("Anything but the army snacks, please!")) then
@@ -300,7 +300,7 @@ return {
 			display_big_message(_"Restored Michelangelo's power supply")
 			Tux:add_xp(350)
 			Tux:del_item_backpack("Red Dilithium Crystal", 3)
-			Tux:end_quest("Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the town's cantina.")
+			Tux:end_quest("Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil spectre of eating army snacks is lifted from the town's cantina.")
 			Michelangelo_food_cooking_time = game_time() -- wait before you can eat.
 			hide("node29", "node31", "node32", "node40")
 		end,

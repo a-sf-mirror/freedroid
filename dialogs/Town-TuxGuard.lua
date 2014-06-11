@@ -17,7 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 --[[WIKI
-PERSONALITY = { "Militaristic", "Condesending" },
+PERSONALITY = { "Militaristic", "Condescending" },
 MARKERS = { NPCID1 = "Spencer" },
 PURPOSE = "When Tux fist visits the town, $$NAME$$ will escort Tux to visit $$NPCID1$$. After that, $$NAME$$ will patrol the town."
 WIKI]]--

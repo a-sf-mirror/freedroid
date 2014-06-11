@@ -18,7 +18,7 @@
 ----------------------------------------------------------------------
 --[[WIKI
 PERSONALITY = { "Robotic" },
-PURPOSE = "$$NAME$$ is the next bot Tux encounters in the game. It provides some background story about bots during The Great Assult.",
+PURPOSE = "$$NAME$$ is the next bot Tux encounters in the game. It provides some background story about bots during The Great Assault.",
 BACKSTORY = "$$NAME$$ defends the Cryogenic Laboratory. $$NAME$$ offers and will provide its product history, advertising its manufacturer, on request."
 WIKI]]--
 

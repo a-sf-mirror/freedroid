@@ -21,7 +21,7 @@ PERSONALITY = { "Devious", "Focused", "Polite", "Vengeful" },
 MARKERS = { NPCID1 = "Koan" },
 PURPOSE = "$$NAME$$ sells grenades to Tux. $$NAME$$ also hints at the future of the Red Guard.",
 BACKSTORY = "$$NAME$$ is the bomb maker for the Red Guard. $$NAME$$ hints that he threw a grenade that caused great
-	 distruction and resulted in the loss of many of \'his people\'.",
+	 destruction and resulted in the loss of many of \'his people\'.",
 RELATIONSHIP = {
 	{
 		actor = "$$NPCID1$$",

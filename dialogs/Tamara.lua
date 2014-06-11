@@ -241,7 +241,7 @@ return {
 		text = _"Can I come back to you on that later?",
 		topic = "About bots",
 		code = function()
-			npc_says(_"Don't hesitate to talk to me again for futher questions.")
+			npc_says(_"Don't hesitate to talk to me again for further questions.")
 			pop_topic()
 		end,
 	},

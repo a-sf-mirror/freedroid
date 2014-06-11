@@ -490,7 +490,7 @@ return {
 		id = "node22",
 		text = _"Tell me about health drinks.",
 		code = function()
-			npc_says(_"Man has practiced medicine in one form or another for hundreds of years.")
+			npc_says(_"Man has practised medicine in one form or another for hundreds of years.")
 			npc_says(_"Using some of the same nanotechnology that makes up your armor, we've perfected drinks that instantaneously restore your health.")
 			npc_says(_"There are many kinds, but all accomplish the same thing, to varying degrees.")
 			npc_says(_"Certain items, like health drinks, can be used directly without clicking on them.")

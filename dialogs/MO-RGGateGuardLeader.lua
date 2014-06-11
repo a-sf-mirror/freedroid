@@ -17,7 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 --[[WIKI
-PERSONALITY = { "Militarist", "Abrassive" },
+PERSONALITY = { "Militarist", "Abrasive" },
 BACKSTORY = "$$NAME$$ is the leader of the defense structure near the Hell Fortress",
 WIKI]]--
 
