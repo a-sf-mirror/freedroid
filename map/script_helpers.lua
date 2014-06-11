@@ -316,7 +316,7 @@ function tux_says(text, ...) -- FDtux:says
 	chat_says(text, no_wait)
 end
 
-function npc_says(text, ...)
+function npc_says(text, ...) -- FDnpc:says
 	local text, no_wait = chat_says_format('\2' .. text .. '\n', ...)
 	chat_says(apply_bbcode(text,"\3","\2"), no_wait)
 end
@@ -343,7 +343,7 @@ function apply_bbcode(text,magic_num_b,magic_num_nrm)
 	return text
 end
 
-function npc_says_random(...)
+function npc_says_random(...) -- FDnpc:says_random
 	arg = {...}
 	if (arg[#arg] == "NO_WAIT") then
 		npc_says(arg[math.random(#arg-1)],"NO_WAIT")
@@ -452,7 +452,7 @@ function tux_hp_ratio() -- FDtux:get_hp_ratio
 	return get_tux_hp()/get_tux_max_hp()
 end
 
-function npc_damage_ratio()
+function npc_damage_ratio() -- FDnpc:get_damage_ratio
 	return npc_damage_amount()/npc_max_health()
 end
 
@@ -465,7 +465,7 @@ function del_health(num_points) -- FDtux:del_health
 	end
 end
 
-function drain_bot()
+function drain_bot() -- FDnpc:drain_health
 --[[ npc_damage_amount - npc_max_health   will return the HPs of the droid
 	 for example:  max_HP = 20, DMG_amount = 10 ; 10-20 = -10
 					 hurt_tux(-10) will heal tux by 10 HP

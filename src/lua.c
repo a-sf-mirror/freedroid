@@ -1114,7 +1114,7 @@ luaL_Reg lfuncs[] = {
 	/* teleport_npc(string map_label, [dialog name])
 	 * Teleports the current npc, or named npc to the given map label
 	 */
-	{"teleport_npc", lua_event_teleport_npc}
+	{"teleport_npc", lua_event_teleport_npc} // -> FDnpc:teleport
 	,
 	/* teleport_home(string map_label)
 	 * Teleports the player to the home.
@@ -1227,7 +1227,7 @@ luaL_Reg lfuncs[] = {
 	/* set_death_item(string item_name [, string  npc])
 	 * changes the item dropped when the droid dies
 	*/
-	{"set_death_item", lua_set_death_item}
+	{"set_death_item", lua_set_death_item} // -> FDnpc:set_death_item
 	,
 	{"add_diary_entry", lua_event_add_diary_entry}
 	,
@@ -1274,22 +1274,22 @@ luaL_Reg lfuncs[] = {
 	 */
 	{"partner_started", lua_chat_partner_started}
 	,
-	{"drop_dead", lua_chat_drop_dead}
+	{"drop_dead", lua_chat_drop_dead}  // -> FDnpc:drop_dead
 	,
-	{"bot_exists", lua_chat_bot_exists}
+	{"bot_exists", lua_chat_bot_exists} // <Fluzz> Is that really needed ?
 	,
-	{"set_bot_state", lua_chat_set_bot_state}
+	{"set_bot_state", lua_chat_set_bot_state} // -> FDnpc:set_state
 	,
-	{"set_bot_destination", lua_set_bot_destination}
+	{"set_bot_destination", lua_set_bot_destination} // -> FDnpc:set_destination
 	,
-	{"broadcast_bot_state", lua_chat_broadcast_bot_state}
+	{"broadcast_bot_state", lua_chat_broadcast_bot_state} // <Fluzz> Broadcast only to bots with same dialog. Intended ?
 	,
 	/* set_rush_tux()   - Sets or unsets if the NPC should rush and talk to Tux
 	 * will_rush_tux() - Checks if the NPC is planning on rushing Tux
 	 */
-	{"set_rush_tux", lua_set_rush_tux}
+	{"set_rush_tux", lua_set_rush_tux} // -> FDnpc:set_rush_tux
 	,
-	{"will_rush_tux", lua_will_rush_tux}
+	{"will_rush_tux", lua_will_rush_tux} // -> FDnpc:get_rush_tux
 	,
 	{"takeover", lua_chat_takeover}
 	,
@@ -1298,32 +1298,32 @@ luaL_Reg lfuncs[] = {
 	 * npc_max_health([dialog])		- Returns the max possible health for the NPC
 	 * see also: npc_damage_ratio([dialog]) - Returns the ratio of the two
 	 */
-	{"heal_npc", lua_event_heal_npc}
+	{"heal_npc", lua_event_heal_npc} // -> FDnpc:heal
 	,
-	{"npc_damage_amount", lua_get_npc_damage_amount}
+	{"npc_damage_amount", lua_get_npc_damage_amount} // -> FDnpc:get_damage
 	,
-	{"npc_max_health", lua_get_npc_max_health}
+	{"npc_max_health", lua_get_npc_max_health} // -> FDnpc:get_max_health
 	,
 	{"freeze_tux_npc", lua_event_freeze_tux_npc}
 	,
-	{"npc_dead", lua_event_npc_dead},
+	{"npc_dead", lua_event_npc_dead},  // -> FDnpc:is_dead
 	/* bot_type() tells you what model
 	   bot_class() tells you the class of a bot
 	   bot_name() tells you what name it displays
 	   set_bot_name() puts a new name in
 	 */
-	{"bot_type", lua_chat_get_bot_type},
+	{"bot_type", lua_chat_get_bot_type}, // -> FDnpc:get_type
 
-	{"bot_class", lua_event_bot_class},
+	{"bot_class", lua_event_bot_class}, // -> FDnpc:get_class
 
-	{"bot_name", lua_chat_get_bot_name},
-	{"bot_translated_name", lua_chat_get_bot_translated_name},
+	{"bot_name", lua_chat_get_bot_name}, // -> FDnpc:get_name
+	{"bot_translated_name", lua_chat_get_bot_translated_name}, // -> FDnpc:get_translated_name
 
-	{"set_bot_name", lua_chat_set_bot_name},
+	{"set_bot_name", lua_chat_set_bot_name}, // -> FDnpc:set_name
 
 	{"difficulty_level", lua_difficulty_level},
 
-	{"set_npc_faction", lua_set_npc_faction},
+	{"set_npc_faction", lua_set_npc_faction}, // -> FDnpc:set_faction
 	{"set_faction_state", lua_set_faction_state},
 	/*
 	  kill_faction() kills all enemies belonging
@@ -1349,7 +1349,7 @@ luaL_Reg lfuncs[] = {
 	// freeze_tux() freezes tux for the given amount of seconds
 	{"freeze_tux", lua_event_freeze_tux}, // -> FDtux:freeze
 	// freeze_npc() freezes the npc for the given amount of seconds
-	{"freeze_npc", lua_event_freeze_npc},
+	{"freeze_npc", lua_event_freeze_npc}, // -> FDnpc:freeze
 	/* add_obstacle(lvl, x, y, obst_ID) add obstacles to maps at given position
 	 * add_obstacle(8, 41.4, 51.5, 100)
 	 * where 8 is the level number, x and y are the coorinates and 100
