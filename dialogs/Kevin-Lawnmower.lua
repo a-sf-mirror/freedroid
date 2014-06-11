@@ -25,6 +25,7 @@ RELATIONSHIP = {
 }
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -35,32 +36,32 @@ return {
 	EveryTime = function()
 
 		if (Kevin_entering_from_back) then
-			npc_says(_"Intruder detected.")
-			npc_says(_"[b]Security mode:[/b] ACTIVATED")
+			Npc:says(_"Intruder detected.")
+			Npc:says(_"[b]Security mode:[/b] ACTIVATED")
 			end_dialog()
 			return
 		end
 
-		npc_says(_"Welcome to Kevin's personal lawnmower.")
-		npc_says(_"Your connection with this bot has been logged and reported to Kevin.")
-		npc_says(_"Please state your name for identification.")
-		npc_says(_"WARNING: ANY ABUSE WILL BE PUNISHED!")
+		Npc:says(_"Welcome to Kevin's personal lawnmower.")
+		Npc:says(_"Your connection with this bot has been logged and reported to Kevin.")
+		Npc:says(_"Please state your name for identification.")
+		Npc:says(_"WARNING: ANY ABUSE WILL BE PUNISHED!")
 
 		if (fuel < 5) then
-			set_bot_state("fixed")
-			npc_says(_"WARNING:", "NO_WAIT")
-			npc_says(_"Less than [b]5%%[/b] fuel remaining!", "NO_WAIT")
-			npc_says(_"All movement suppressed...")
-			npc_says(_"Scanning area for possible compatible energy sources...")
+			Npc:set_state("fixed")
+			Npc:says(_"WARNING:", "NO_WAIT")
+			Npc:says(_"Less than [b]5%%[/b] fuel remaining!", "NO_WAIT")
+			Npc:says(_"All movement suppressed...")
+			Npc:says(_"Scanning area for possible compatible energy sources...")
 			hide("node5", "node6")
 			if (Tux:has_item_backpack("Barf's Energy Drink")) then
-				npc_says(_"Compatible energy source found!")
-				npc_says(_"[b]Barf's Energy Drink[/b]")
+				Npc:says(_"Compatible energy source found!")
+				Npc:says(_"[b]Barf's Energy Drink[/b]")
 				show("node50", "node51")
 			else
-				npc_says(_"Could not detect compatible energy source.")
-				npc_says(_"Recommended energy source: [b]Barf's Energy Drink[/b]")
-				npc_says(_"Resuming hibernation...")
+				Npc:says(_"Could not detect compatible energy source.")
+				Npc:says(_"Recommended energy source: [b]Barf's Energy Drink[/b]")
+				Npc:says(_"Resuming hibernation...")
 				end_dialog()
 			end
 		end
@@ -82,14 +83,14 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(Tux:get_player_name())
-			npc_says(_"Identifying as %s", Tux:get_player_name(), "NO_WAIT")
+			Npc:says(_"Identifying as %s", Tux:get_player_name(), "NO_WAIT")
 			if (Kevins_Lawnmower_tux_login_granted) then
-				npc_says(_"Welcome to Kevin's lawnmower.")
+				Npc:says(_"Welcome to Kevin's lawnmower.")
 				show("node20")
 				hide("node5", "node6", "node30", "node30", "node31")
 			else
-				npc_says(_"Verification failed!")
-				npc_says(_"WARNING: LOGIN ATTEMPT REPORTED. THERE WILL BE CONSEQUENCES!")
+				Npc:says(_"Verification failed!")
+				Npc:says(_"WARNING: LOGIN ATTEMPT REPORTED. THERE WILL BE CONSEQUENCES!")
 				Kevins_Lawnmower_tux_login = true
 				Tux:heat(15)
 				end_dialog()
@@ -102,14 +103,14 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"Kevin")
-			npc_says(_"Identifying as Kevin...", "NO_WAIT")
-			npc_says(_"Identification failed!", "NO_WAIT")
-			npc_says(_"Liar!", "NO_WAIT")
-			npc_says(_"WARNING: ABUSE REPORTED!")
-			npc_says(_"PUNISHMENT IN 3 SECONDS!")
-			npc_says(_"IN 2 SECONDS!")
-			npc_says(_"IN 1 SECOND!")
-			npc_says(_"DIE!")
+			Npc:says(_"Identifying as Kevin...", "NO_WAIT")
+			Npc:says(_"Identification failed!", "NO_WAIT")
+			Npc:says(_"Liar!", "NO_WAIT")
+			Npc:says(_"WARNING: ABUSE REPORTED!")
+			Npc:says(_"PUNISHMENT IN 3 SECONDS!")
+			Npc:says(_"IN 2 SECONDS!")
+			Npc:says(_"IN 1 SECOND!")
+			Npc:says(_"DIE!")
 			Kevins_Lawnmower_tux_login_kevin_attempt = true
 			Tux:heat(25)
 			end_dialog()
@@ -120,10 +121,10 @@ return {
 		text = _"help",
 		code = function()
 			Tux:says(_"Available commands:", "NO_WAIT")
-			npc_says(_"help", "NO_WAIT")
-			npc_says(_"version", "NO_WAIT")
-			npc_says(_"fuel_level", "NO_WAIT")
-			npc_says(_"exit", "NO_WAIT")
+			Npc:says(_"help", "NO_WAIT")
+			Npc:says(_"version", "NO_WAIT")
+			Npc:says(_"fuel_level", "NO_WAIT")
+			Npc:says(_"exit", "NO_WAIT")
 			show("node30", "node31", "node20")
 		end,
 	},
@@ -133,8 +134,8 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"version", "NO_WAIT")
-			npc_says(_"printing version...", "NO_WAIT")
-			npc_says(_"MowOS 0.4.2", "NO_WAIT")
+			Npc:says(_"printing version...", "NO_WAIT")
+			Npc:says(_"MowOS 0.4.2", "NO_WAIT")
 			hide("node30")
 		end,
 	},
@@ -144,15 +145,15 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"fuel_level", "NO_WAIT")
-			npc_says(_"Printing fuel level...")
+			Npc:says(_"Printing fuel level...")
 			if (fuel < 5) then
 				--; TRANSLATORS: '%%' is not a typo
-				npc_says(_"WARNING, less than [b]5%%[/b] fuel remaining!")
+				Npc:says(_"WARNING, less than [b]5%%[/b] fuel remaining!")
 			elseif (fuel <= 97) then
 				--; TRANSLATORS: '%%' is not a typo, %s = number
-				npc_says(_"[b]%s[/b]%% remaining", fuel)
+				Npc:says(_"[b]%s[/b]%% remaining", fuel)
 			else
-				npc_says(_"Tank completely refilled.")
+				Npc:says(_"Tank completely refilled.")
 			end
 			hide("node31")
 		end,
@@ -164,19 +165,19 @@ return {
 		code = function()
 			Tux:says(_"So, where do I have to put in the drink...?", "NO_WAIT")
 			Tux:says(_"Ah, here!", "NO_WAIT")
-			npc_says(_"[b]glug glug glug[/b]")
-			npc_says(_"Tank refilled.")
-			npc_says(_"Fuel status:")
+			Npc:says(_"[b]glug glug glug[/b]")
+			Npc:says(_"Tank refilled.")
+			Npc:says(_"Fuel status:")
 			--; TRANSLATORS: '%%' is not a typo
-			npc_says(_"[b]100[/b]%%!")
-			npc_says(_"This will approximately suffice for:")
-			npc_says(_"1 month and 14 days.")
-			npc_says(_"Dropping waste product of last fuel filling...")
-			npc_says(_"Done.")
+			Npc:says(_"[b]100[/b]%%!")
+			Npc:says(_"This will approximately suffice for:")
+			Npc:says(_"1 month and 14 days.")
+			Npc:says(_"Dropping waste product of last fuel filling...")
+			Npc:says(_"Done.")
 			Tux:del_item("Barf's Energy Drink", 1)
 			Tux:add_item("Tungsten spikes", 2)
 			fuel = 100
-			set_bot_state("home")
+			Npc:set_state("home")
 			hide("node50", "node51")
 		end,
 	},
@@ -186,10 +187,10 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"Sorry, tin can.")
-			npc_says(_"Import error: [b]null[/b] fuel received.", "NO_WAIT")
+			Npc:says(_"Import error: [b]null[/b] fuel received.", "NO_WAIT")
 			--; TRANSLATORS: '%%' is not a typo
-			npc_says(_"WARNING, less than [b]5[/b]%% fuel remaining!")
-			npc_says(_"Resuming hibernation...")
+			Npc:says(_"WARNING, less than [b]5[/b]%% fuel remaining!")
+			Npc:says(_"Resuming hibernation...")
 			hide("node50", "node51")
 			end_dialog()
 		end,
@@ -200,7 +201,7 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"exit", "NO_WAIT")
-			npc_says(_"exiting...")
+			Npc:says(_"exiting...")
 			hide("node31", "node30", "node20", "node50", "node51")
 			end_dialog()
 		end,

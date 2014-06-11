@@ -20,13 +20,14 @@
 PURPOSE = "$$NAME$$ is a character used for Debug purposes",
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
 	FirstTime = function()
 ---------------------------------------------------------- HAS_MET
 		if (not Tux:has_met("Guy")) then
-			npc_says("HAS MET test 1 succeeded", "NO_WAIT")
+			Npc:says("HAS MET test 1 succeeded", "NO_WAIT")
 		else
 			guy_fail("HAS MET")
 		end
@@ -35,7 +36,7 @@ return {
 			Tux:add_quest("24_guy_death_quest", "Quest to check if droid markers work.")
 		end
 
-		npc_says("This text is only shown as you speak to this character the first time.")
+		Npc:says("This text is only shown as you speak to this character the first time.")
 	end,
 
 	EveryTime = function()
@@ -51,13 +52,13 @@ return {
 		Tux:says_random("1", "2", "3", "4", "5", "NO_WAIT")
 
 		Tux:says("Tux:says()", "NO_WAIT")
-		npc_says("npc_says()", "NO_WAIT")
+		Npc:says("Npc:says()", "NO_WAIT")
 		cli_says("cli_says()", "NO_WAIT")
-		npc_says("", "NO_WAIT") -- extra linebreak for cli_says()
+		Npc:says("", "NO_WAIT") -- extra linebreak for cli_says()
 
 		GuyArray = {"one", "two", "three"}
 		for var in ipairs(GuyArray) do
-			npc_says(GuyArray[var], "NO_WAIT")
+			Npc:says(GuyArray[var], "NO_WAIT")
 		end
 
 		next("node0")
@@ -73,19 +74,19 @@ return {
 			Tux:add_item("Laser Scalpel")
 			Tux:add_item(".22 Automatic", 2)
 			if (Tux:has_item(".22 Automatic")) then
-				npc_says("ADD ITEM test 1 succeeded", "NO_WAIT")
+				Npc:says("ADD ITEM test 1 succeeded", "NO_WAIT")
 			else
 				guy_fail("ADD ITEM 1")
 			end
 
 			if (Tux:has_item_backpack(".22 Automatic")) then
-				npc_says("ADD ITEM test 2 succeeded", "NO_WAIT")
+				Npc:says("ADD ITEM test 2 succeeded", "NO_WAIT")
 			else
 				guy_fail("ADD ITEM 2")
 			end
 
 			if (Tux:has_item_equipped("Laser Scalpel")) then
-				npc_says("ADD ITEM test 3 succeeded", "NO_WAIT")
+				Npc:says("ADD ITEM test 3 succeeded", "NO_WAIT")
 			else
 				guy_fail("ADD ITEM 3")
 			end
@@ -94,7 +95,7 @@ return {
 			--[[ NOTE we need del_item_equipped() or unequipp_item()
 			Tux:del_item("Laser Scalpel")
 			if (not Tux:has_item("Laser Scalpel")) then
-				npc_says("DEL ITEM 1 test succeeded", "NO_WAIT")
+				Npc:says("DEL ITEM 1 test succeeded", "NO_WAIT")
 			else
 				guy_fail("DEL ITEM 1")
 			end
@@ -102,7 +103,7 @@ return {
 
 			Tux:del_item_backpack(".22 Automatic", 2)
 			if (not Tux:has_item_backpack(".22 Automatic")) then
-				npc_says("DEL ITEM test 2 succeeded", "NO_WAIT")
+				Npc:says("DEL ITEM test 2 succeeded", "NO_WAIT")
 			else
 				guy_fail("DEL ITEM 2")
 			end
@@ -120,13 +121,13 @@ return {
 			Tux:hurt(1)
 			Tux:hurt(-1)
 			if (Tux:get_hp() == 60) then
-				npc_says("HEALTH test 1 succeded", "NO_WAIT")
+				Npc:says("HEALTH test 1 succeded", "NO_WAIT")
 			else
 				guy_fail("HEALTH 1")
 			end
 
 			if (Tux:get_max_hp() == 60) then
-				npc_says("HEALTH test 2 succeded", "NO_WAIT")
+				Npc:says("HEALTH test 2 succeded", "NO_WAIT")
 			else
 				guy_fail("HEALTH 2")
 			end
@@ -134,23 +135,23 @@ return {
 			Tux:heat(1)
 			Tux:heat(-1)
 			if (Tux:get_cool() == 100) then
-				npc_says("COOL test 1 succeeded", "NO_WAIT")
+				Npc:says("COOL test 1 succeeded", "NO_WAIT")
 			else
 				guy_fail("COOL 1")
 			end
 ---------------------------------------------------------- TELEPORT
 			Tux:teleport("24-tux1")
 			Tux:teleport("24-tux2")
-			teleport_npc("24-guy1")
-			teleport_npc("24-guy2")
-			teleport_npc("24-dude1", "Dude")
-			teleport_npc("24-dude2", "Dude")
+			Npc:teleport("24-guy1")
+			Npc:teleport("24-guy2")
+			Dude:teleport("24-dude1")
+			Dude:teleport("24-dude2")
 ---------------------------------------------------------- SKILLS
-			--npc_says(Tux:get_skill("programming"))
+			--Npc:says(Tux:get_skill("programming"))
 			if (not Tux:has_met("Guy")) then
 				Tux:improve_skill("programming")
 				if (Tux:get_skill("programming") == 1) then
-					npc_says("SKILL test 1 succeeded", "NO_WAIT")
+					Npc:says("SKILL test 1 succeeded", "NO_WAIT")
 				else
 					guy_fail("SKILL 1")
 				end
@@ -161,14 +162,14 @@ return {
 			Tux:improve_program("Ricer CFLAGS")
 			Tux:downgrade_program("Ricer CFLAGS")
 			if (Tux:get_program_revision("Ricer CFLAGS") == 0) then
-				npc_says("PROGRAMM test 1 succeeded", "NO_WAIT")
+				Npc:says("PROGRAMM test 1 succeeded", "NO_WAIT")
 			else
 				guy_fail("PROGRAMM 1")
 			end
 ---------------------------------------------------------- QUESTS
 			if (not Tux:has_met("Guy")) then
 				if (not Tux:has_quest("24_dude_test_quest")) then
-					npc_says("QUEST test 1 succeeded", "NO_WAIT")
+					Npc:says("QUEST test 1 succeeded", "NO_WAIT")
 				else
 					guy_fail("QUEST 1")
 				end
@@ -178,7 +179,7 @@ return {
 			end
 
 			if (Tux:has_quest("24_dude_test_quest")) then
-				npc_says("QUEST test 2 succeeded", "NO_WAIT")
+				Npc:says("QUEST test 2 succeeded", "NO_WAIT")
 			else
 				guy_fail("QUEST 2")
 			end
@@ -186,14 +187,14 @@ return {
 
 			if (not Tux:has_met("Guy")) then
 				if (not Tux:done_quest("24_dude_test_quest")) then
-					npc_says("QUEST test 3 succeeded", "NO_WAIT")
+					Npc:says("QUEST test 3 succeeded", "NO_WAIT")
 				else
 					guy_fail("QUEST 3")
 				end
 
 				Tux:end_quest("24_dude_test_quest", "Complete 24 dude quest.")
 				if (Tux:done_quest("24_dude_test_quest")) then
-					npc_says("QUEST test 4 succeeded", "NO_WAIT")
+					Npc:says("QUEST test 4 succeeded", "NO_WAIT")
 				else
 					guy_fail("QUEST 4")
 				end
@@ -204,7 +205,7 @@ return {
 
 			if (Tux:has_met("Guy")) then -- need to have met guy to let the DeadGuy die...
 				if (Tux:done_quest("24_guy_death_quest")) then -- check droid markers
-					npc_says("QUEST test 5 succeeded","NO_WAIT")
+					Npc:says("QUEST test 5 succeeded","NO_WAIT")
 				else
 					guy_fail("QUEST 5")
 				end
@@ -219,20 +220,20 @@ return {
 			display_big_message("Guy signmessage A' to 'Guy signmessage B'")
 
 			if (cmp_obstacle_state("24_guy_door", "opened")) then
-				npc_says("OBSTACLE test 1 succeeded", "NO_WAIT")
+				Npc:says("OBSTACLE test 1 succeeded", "NO_WAIT")
 			else
 				guy_fail("OBSTACLE 1")
 			end
 			change_obstacle_state("24_guy_door", "closed")
 			if (cmp_obstacle_state("24_guy_door", "closed")) then
-				npc_says("OBSTACLE test 2 succeeded", "NO_WAIT")
+				Npc:says("OBSTACLE test 2 succeeded", "NO_WAIT")
 			else
 				guy_fail("OBSTACLE 2")
 			end
 			change_obstacle_state("24_guy_door", "opened") -- 6 = door
 			change_obstacle_type("24_guy_door", "1")
 			if (get_obstacle_type("24_guy_door") == 1) then
-				npc_says("OBSTACLE test 3 succeeded", "NO_WAIT")
+				Npc:says("OBSTACLE test 3 succeeded", "NO_WAIT")
 			else
 				guy_fail("OBSTACLE 3")
 			end
@@ -240,18 +241,18 @@ return {
 
 ---------------------------------------------------------- NPC DEATH TEST
 			if (not Tux:has_met("Guy")) then
-				if (not npc_dead("DeadGuy")) then
-					npc_says("NPC DEATH test 1 succeeded", "NO_WAIT")
+				if (not DeadGuy:is_dead()) then
+					Npc:says("NPC DEATH test 1 succeeded", "NO_WAIT")
 				else
 					guy_fail("NPC DEATH 1")
 				end
 
-				drop_dead("DeadGuy") -- kill Dude
+				DeadGuy:drop_dead() -- kill Dude
 			end
 
 			if not (running_benchmark()) then -- remember: our dialog validator is quite dump :(
-				if (npc_dead("DeadGuy")) then
-					npc_says("NPC DEATH test 2 succeeded", "NO_WAIT")
+				if (DeadGuy:is_dead()) then
+					Npc:says("NPC DEATH test 2 succeeded", "NO_WAIT")
 				else
 					guy_fail("NPC DEATH 2")
 				end
@@ -259,15 +260,15 @@ return {
 
 			-- one day we might be able to revive DeadGuy
 
-			--[[ if (not npc_dead("Dude")) then
-			npc_says("NPC DEATH test 3 succeeded", "NO_WAIT")
+			--[[ if (not Dude:is_dead()) then
+			Npc:says("NPC DEATH test 3 succeeded", "NO_WAIT")
 		else
 			guy_fail("NPC DEATH 3")
 			end ]]--
 ---------------------------------------------------------- FACTION DEATH TEST
 			if (not Tux:has_met("Guy")) then
-				if (not npc_dead("FactionDeadBot")) then  -- it's alive
-					npc_says("FACTION DEATH test 1 succeeded", "NO_WAIT")
+				if (not FactionDeadBot:is_dead()) then  -- it's alive
+					Npc:says("FACTION DEATH test 1 succeeded", "NO_WAIT")
 				else
 					guy_fail("FACTION DEATH 1")
 				end
@@ -275,8 +276,8 @@ return {
 				kill_faction("test") -- kill test faction
 
 				if not (running_benchmark()) then -- remember: our dialog validator is quite dump :(
-					if (npc_dead("FactionDeadBot")) then -- we killed it, it's dead
-						npc_says("FACTION DEATH test 2 succeeded", "NO_WAIT")
+					if (FactionDeadBot:is_dead()) then -- we killed it, it's dead
+						Npc:says("FACTION DEATH test 2 succeeded", "NO_WAIT")
 					else
 						guy_fail("FACTION DEATH 2")
 					end
@@ -284,8 +285,8 @@ return {
 				-- @TODO: implement revive and additional checks
 				respawn_level(24) --respawn level, now check if bot is alive again
 				if not (running_benchmark()) then -- remember: our dialog validator is quite dump :(
-					if (not npc_dead("FactionDeadBot")) then --it's alive again
-						npc_says("FACTION DEATH test 3 succeeded", "NO_WAIT")
+					if (not FactionDeadBot:is_dead()) then --it's alive again
+						Npc:says("FACTION DEATH test 3 succeeded", "NO_WAIT")
 					else
 						guy_fail("FACTION DEATH 3")
 					end
@@ -293,8 +294,8 @@ return {
 				-- now check if kill_faction with no_respawn works
 				kill_faction("test", "no_respawn")
 				if not (running_benchmark()) then -- remember: our dialog validator is quite dump :(
-					if (npc_dead("FactionDeadBot")) then -- we killed it, it's dead
-						npc_says("FACTION DEATH test 4 succeeded", "NO_WAIT")
+					if (FactionDeadBot:is_dead()) then -- we killed it, it's dead
+						Npc:says("FACTION DEATH test 4 succeeded", "NO_WAIT")
 					else
 						guy_fail("FACTION DEATH 4")
 					end
@@ -302,8 +303,8 @@ return {
 					-- now respawn and check if its still dead.
 				respawn_level(24)
 				if not (running_benchmark()) then -- remember: our dialog validator is quite dump :(
-					if (npc_dead("FactionDeadBot")) then -- we killed it, no_respawn was given, it should still be dead
-						npc_says("FACTION DEATH test 5 succeeded", "NO_WAIT")
+					if (FactionDeadBot:is_dead()) then -- we killed it, no_respawn was given, it should still be dead
+						Npc:says("FACTION DEATH test 5 succeeded", "NO_WAIT")
 					else
 						guy_fail("FACTION DEATH 5")
 					end
@@ -312,7 +313,7 @@ return {
 ---------------------------------------------------------- EVENTS
 			if not (running_benchmark()) then
 				if (l24_event_test == "works" ) then
-					npc_says("EVENT test 1 (map label) succeeded", "NO_WAIT")
+					Npc:says("EVENT test 1 (map label) succeeded", "NO_WAIT")
 				else
 					guy_fail("EVENT test 1 (map label)")
 				end
@@ -320,7 +321,7 @@ return {
 
 			if not (running_benchmark()) then
 				if (DeadGuy_death_trigger == "works" ) then
-					npc_says("EVENT test 2 (death event) succeeded", "NO_WAIT")
+					Npc:says("EVENT test 2 (death event) succeeded", "NO_WAIT")
 				else
 					guy_fail("EVENT test 2 (death event)")
 				end
@@ -332,13 +333,13 @@ return {
 				-- tux is on lvl 24 currently
 				teleport("24-exit-level-70") -- teleport from level 24 to level 70, to a label
 				if (Guy_24_to_70_passed) then -- the from24to70 event worked!    the event also teleport tux back to level 24 (from70to24!)...
-					npc_says("EVENT test 3 (Entering 70, exiting 24) succeeded", "NO_WAIT")
+					Npc:says("EVENT test 3 (Entering 70, exiting 24) succeeded", "NO_WAIT")
 				else
 					guy_fail("EVENT test 3 (Entering 70, exiting 24)")
 				end
 
 				if (Guy_70_to_24_passed) then -- ... which sets this as true.   tux is also teleported to label 24-tux2
-					npc_says("EVENT test 4 (Entering 24, exiting 70) succeeded", "NO_WAIT")
+					Npc:says("EVENT test 4 (Entering 24, exiting 70) succeeded", "NO_WAIT")
 				else
 					guy_fail("EVENT test 4 (Entering 24, exiting 70)")
 				end
@@ -349,32 +350,32 @@ return {
 
 ---------------------------------------------------------- Gold
 			if (Tux:get_gold() == 0) then
-				npc_says("GOLD test 1 succeed", "NO_WAIT")
+				Npc:says("GOLD test 1 succeed", "NO_WAIT")
 			else
 				guy_fail("GOLD 1")
 			end
 
 			Tux:add_gold(100)
 			if (Tux:get_gold() == 100) then
-				npc_says("GOLD test 2 succeed", "NO_WAIT")
+				Npc:says("GOLD test 2 succeed", "NO_WAIT")
 			else
 				guy_fail("GOLD 2")
 			end
 
 			if (not Tux:del_gold(1000)) then
-				npc_says("GOLD test 3 succeed", "NO_WAIT")
+				Npc:says("GOLD test 3 succeed", "NO_WAIT")
 			else
 				guy_fail("GOLD 3")
 			end
 
 			if (Tux:get_gold() == 100) then -- check if gold changed, just to be sure...
-				npc_says("GOLD test 4 succeed", "NO_WAIT")
+				Npc:says("GOLD test 4 succeed", "NO_WAIT")
 			else
 				guy_fail("GOLD 4")
 			end
 
 			if (Tux:del_gold(100)) then
-				npc_says("GOLD test 5 succeed", "NO_WAIT")
+				Npc:says("GOLD test 5 succeed", "NO_WAIT")
 			else
 				guy_fail("GOLD 5")
 			end
@@ -382,7 +383,7 @@ return {
 			Tux:add_gold(100)
 			Tux:add_gold(-100)
 			if (Tux:get_gold() == 0) then
-				npc_says("GOLD test 6 succeed")
+				Npc:says("GOLD test 6 succeed")
 			else
 				guy_fail("GOLD 6")
 			end
@@ -390,8 +391,8 @@ return {
 
 ---------------------------------------------------------- RUSH TUX
 			if (not Tux:has_met("Guy")) then
-				if not (will_rush_tux()) then
-					npc_says("RUSH TUX test 1 succeed", "NO_WAIT")
+				if not (Npc:get_rush_tux()) then
+					Npc:says("RUSH TUX test 1 succeed", "NO_WAIT")
 				else
 					guy_fail("RUSH TUX 1")
 				end
@@ -399,10 +400,10 @@ return {
 				Tux:says("Skipping RUSH TUX test 1 because it would fail since we directly rush tux on second time we call the dialog.")
 			end
 
-			set_rush_tux(1)
+			Npc:set_rush_tux(true)
 
-			if (will_rush_tux()) then
-				npc_says("RUSH TUX test 2 succeed", "NO_WAIT")
+			if (Npc:get_rush_tux()) then
+				Npc:says("RUSH TUX test 2 succeed", "NO_WAIT")
 			else
 				guy_fail("RUSH TUX 2")
 			end
@@ -418,8 +419,8 @@ return {
 				print(FDutils.text.highlight(color, color))
 			end
 
-			set_death_item("Pandora's Cube")
-			npc_says("")
+			Npc:set_death_item("Pandora's Cube")
+			Npc:says("")
 			display_big_message("Big Message")
 			display_console_message("Console message, [b]blue[/b], not blue.")
 			end_dialog()

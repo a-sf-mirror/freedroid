@@ -20,6 +20,7 @@
 PURPOSE = "Another shop keeper."
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -39,9 +40,9 @@ return {
 		id = "node0",
 		text = _"Hello. Can I buy something from you?",
 		code = function()
-			npc_says(_"Hi, yes, you can buy stuff from me.")
-			npc_says(_"My name is Karol. I sell mostly tools which are needed to manufacture bots.")
-			set_bot_name("Karol - Shop owner")
+			Npc:says(_"Hi, yes, you can buy stuff from me.")
+			Npc:says(_"My name is Karol. I sell mostly tools which are needed to manufacture bots.")
+			Npc:set_name("Karol - Shop owner")
 			hide("node0") show("node1")
 		end,
 	},
@@ -49,7 +50,7 @@ return {
 		id = "node1",
 		text = _"What are your offers today?",
 		code = function()
-			npc_says(_"Take a look.")
+			Npc:says(_"Take a look.")
 			trade_with("Karol")
 		end,
 	},
@@ -57,7 +58,7 @@ return {
 		id = "node99",
 		text = _"See you later.",
 		code = function()
-			npc_says(_"Bye bye.")
+			Npc:says(_"Bye bye.")
 			end_dialog()
 		end,
 	},

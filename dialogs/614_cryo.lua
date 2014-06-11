@@ -22,6 +22,7 @@ PURPOSE = "$$NAME$$ is the next bot Tux encounters in the game. It provides some
 BACKSTORY = "$$NAME$$ defends the Cryogenic Laboratory. $$NAME$$ offers and will provide its product history, advertising its manufacturer, on request."
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -53,7 +54,7 @@ return {
 		id = "after-614_sub",
 		code = function()
 			pop_topic()
-			set_bot_name("614 - Cryo Lab Guard Bot")
+			Npc:set_name("614 - Cryo Lab Guard Bot")
 			hide("node0")
 		end,
 	},
@@ -61,15 +62,15 @@ return {
 		id = "node4",
 		text = _"Have you detected any hostile bot activity?",
 		code = function()
-			npc_says(_"Order Received. Initiating proximity energy level scan...")
-			npc_says(_"***** Proximity Scan Results *****", "NO_WAIT")
-			npc_says(_"Hostile Numeric Presence: [b]HIGH[/b]", "NO_WAIT")
-			npc_says(_"Enemy Energy Levels: [b]LOW[/b]", "NO_WAIT")
-			npc_says(_"Threat Degree Analysis: [b]MODERATE[/b]", "NO_WAIT")
+			Npc:says(_"Order Received. Initiating proximity energy level scan...")
+			Npc:says(_"***** Proximity Scan Results *****", "NO_WAIT")
+			Npc:says(_"Hostile Numeric Presence: [b]HIGH[/b]", "NO_WAIT")
+			Npc:says(_"Enemy Energy Levels: [b]LOW[/b]", "NO_WAIT")
+			Npc:says(_"Threat Degree Analysis: [b]MODERATE[/b]", "NO_WAIT")
 			if (cmp_obstacle_state("CryoOuterGate", "closed")) then
-				npc_says(_"Cryo Complex Gates Status: [b]CLOSED[/b]")
+				Npc:says(_"Cryo Complex Gates Status: [b]CLOSED[/b]")
 			else
-				npc_says(_"Cryo Complex Gates Status: [b]OPEN[/b]")
+				Npc:says(_"Cryo Complex Gates Status: [b]OPEN[/b]")
 			end
 			hide("node4")
 		end,
@@ -78,8 +79,8 @@ return {
 		id = "node5",
 		text = _"What are your orders?",
 		code = function()
-			npc_says(_"Primary objective: Protect the living beings inside this complex from attacks by hostile bots.")
-			npc_says(_"Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: [b]HIGH[/b].")
+			Npc:says(_"Primary objective: Protect the living beings inside this complex from attacks by hostile bots.")
+			Npc:says(_"Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: [b]HIGH[/b].")
 			cryo_614_lock_gate = true
 			hide("node5")
 		end,
@@ -88,7 +89,7 @@ return {
 		id = "node99",
 		text = _"See you later.",
 		code = function()
-			npc_says(_"Resuming guard program.")
+			Npc:says(_"Resuming guard program.")
 			end_dialog()
 		end,
 	},

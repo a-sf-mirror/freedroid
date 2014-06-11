@@ -22,12 +22,13 @@ MARKERS = { DROIDID1 = "614" },
 BACKSTORY = "$$NAME$$ is the Red Guard\'s Computer Cluster maintainer and occassional $$DROIDID1$$ programmer."
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
 	FirstTime = function()
 		show("node0")
-		if (npc_dead("Kevin")) then
+		if (Kevin:is_dead()) then
 			show("node50")
 		end
 	end,
@@ -43,9 +44,9 @@ return {
 		id = "node0",
 		text = _"Hi! I'm new here. ",
 		code = function()
-			npc_says(_"Welcome, welcome! I'm Richard. I'm the computer guy around here.")
-			npc_says(_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time.")
-			set_bot_name("Richard - Programmer")
+			Npc:says(_"Welcome, welcome! I'm Richard. I'm the computer guy around here.")
+			Npc:says(_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time.")
+			Npc:set_name("Richard - Programmer")
 			hide("node0") show("node1")
 		end,
 	},
@@ -53,9 +54,9 @@ return {
 		id = "node1",
 		text = _"A computer cluster? What's that?",
 		code = function()
-			npc_says(_"A cluster is a group of computers, connected in a way that helps them collaborate in solving problems.")
-			npc_says(_"As they say, 'two heads are better than one'. And we have a lot of heads here.")
-			npc_says(_"That is why I call this cluster 'Hydra'. A lot of heads indeed.")
+			Npc:says(_"A cluster is a group of computers, connected in a way that helps them collaborate in solving problems.")
+			Npc:says(_"As they say, 'two heads are better than one'. And we have a lot of heads here.")
+			Npc:says(_"That is why I call this cluster 'Hydra'. A lot of heads indeed.")
 			hide("node1")
 		end,
 	},
@@ -63,9 +64,9 @@ return {
 		id = "node6",
 		text = _"I have a data cube with some information. Can you tell me something more about it?",
 		code = function()
-			npc_says(_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of data in there. Maybe we could use Hydra to evaluate the data.")
-			npc_says(_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!")
-			npc_says(_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down.")
+			Npc:says(_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of data in there. Maybe we could use Hydra to evaluate the data.")
+			Npc:says(_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!")
+			Npc:says(_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down.")
 			Tux:del_item_backpack("Kevin's Data Cube", 1)
 			Tux:end_quest("A kingdom for a cluster!", _"Yes, that was simple. I wish everything else went as smoothly as this one did...")
 			hide("node6") show("node9", "node10")
@@ -75,9 +76,9 @@ return {
 		id = "node9",
 		text = _"Hey, did you get something out of that data cube?",
 		code = function()
-			npc_says(_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes.")
-			npc_says(_"Seems like the disruptor shield which thwarts all our attacks on Hell Fortress can be controlled from somewhere outside, or something like that.")
-			npc_says(_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more.")
+			Npc:says(_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes.")
+			Npc:says(_"Seems like the disruptor shield which thwarts all our attacks on Hell Fortress can be controlled from somewhere outside, or something like that.")
+			Npc:says(_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more.")
 			hide("node9")
 		end,
 	},
@@ -85,11 +86,11 @@ return {
 		id = "node10",
 		text = _"So... What's the story on those data cubes, anyway?",
 		code = function()
-			npc_says(_"Well, they were originally developed for use with the Open-Pandora computing platform.")
+			Npc:says(_"Well, they were originally developed for use with the Open-Pandora computing platform.")
 			Tux:says(_"The what?")
-			npc_says(_"It was a handheld gaming computer, built on open-source software.")
-			npc_says(_"The device had limited storage capabilities, so an enterprising hacker designed the data cubes.")
-			npc_says(_"Those were the beginning days of open-source hardware. It's one of the few open-source innovations still around.")
+			Npc:says(_"It was a handheld gaming computer, built on open-source software.")
+			Npc:says(_"The device had limited storage capabilities, so an enterprising hacker designed the data cubes.")
+			Npc:says(_"Those were the beginning days of open-source hardware. It's one of the few open-source innovations still around.")
 		end,
 	},
 	{
@@ -98,7 +99,7 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
-			npc_says_random(_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
+			Npc:says_random(_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
 							_"I cannot teach you when you have no training points. Come back when you are more prepared.",
 							_"You are not ready. Go kill some bots and come back.",
 							_"Come back when you are mentally ready to learn.",
@@ -113,16 +114,16 @@ return {
 		id = "node50",
 		text = _"What can you teach me about hacking?",
 		code = function()
-			npc_says(_"I can teach you everything, for a price of course.", "NO_WAIT")
-			npc_says(_"Three hundred per lesson, up front.", "NO_WAIT")
+			Npc:says(_"I can teach you everything, for a price of course.", "NO_WAIT")
+			Npc:says(_"Three hundred per lesson, up front.", "NO_WAIT")
 			hacking_level = get_program("Hacking")
 			if (hacking_level > 8) then
-				npc_says(_"Sorry, there is no human alive that could give you further training.")
+				Npc:says(_"Sorry, there is no human alive that could give you further training.")
 				hide("node51")
 			else
 				--; TRANSLATORS: %d = a number
-				npc_says(_"You will need %d training points.", hacking_level * 2) 
-				npc_says(_"Still interested?")
+				Npc:says(_"You will need %d training points.", hacking_level * 2)
+				Npc:says(_"Still interested?")
 				show("node51")
 			end
 		end,
@@ -132,9 +133,9 @@ return {
 		text = _"Yes, please teach me.",
 		code = function()
 			if (Tux:train_program(300, get_program("Hacking") * 2, "Hacking")) then
-				npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
-				npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
-				npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
+				Npc:says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
+				Npc:says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
+				Npc:says(_"Now I see the feature set of your hacking program has already improved a lot.")
 				hide("node31") show("node30")
 			else
 				if (Tux:get_gold() < 300 ) then
@@ -152,7 +153,7 @@ return {
 		code = function()
 			Tux:says_random(_"Hold on, I don't seem to have enough money right now.",
 							_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
-			npc_says_random(_"Ok, come back when you can afford to pay me if you are interested.",
+			Npc:says_random(_"Ok, come back when you can afford to pay me if you are interested.",
 							_"Please don't bother me if you can't pay me.",
 							_"You don't have enough money! I cannot afford to just give away training for free.",
 							_"Come back when you have enough circuits.",
@@ -163,7 +164,7 @@ return {
 		id = "node99",
 		text = _"See you later.",
 		code = function()
-			npc_says(_"Take care, Linarian.")
+			Npc:says(_"Take care, Linarian.")
 			end_dialog()
 		end,
 	},

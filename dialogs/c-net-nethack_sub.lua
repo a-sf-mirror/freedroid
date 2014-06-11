@@ -17,6 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -58,7 +59,7 @@ return {
 			n_god = "" --your goddess
 			n_emgod = "" --your enemy god
 
-			npc_says(_"Shall I pick a character's race, role, gender and alignment for you? [b][y/n][/b]", "NO_WAIT")
+			Npc:says(_"Shall I pick a character's race, role, gender and alignment for you? [b][y/n][/b]", "NO_WAIT")
 			cli_says("> ", "NO_WAIT")
 			n_randomchoice = "no"
 			selection = 0
@@ -81,7 +82,7 @@ return {
 		code = function()
 			hide("c-net-nethack_sub.node1", "c-net-nethack_sub.node2")
 			n_randomchoice = "no"
-			npc_says(_"Choose your job.", "NO_WAIT")
+			Npc:says(_"Choose your job.", "NO_WAIT")
 			cli_says("> ", "NO_WAIT")
 			show("c-net-nethack_sub.node3", "c-net-nethack_sub.node4", "c-net-nethack_sub.node5", "c-net-nethack_sub.node6", "c-net-nethack_sub.node7")
 		end,
@@ -162,7 +163,7 @@ return {
 			selection = 0
 
 			if (n_randomchoice == "no") then
-				npc_says(_"Choose your race.", "NO_WAIT")
+				Npc:says(_"Choose your race.", "NO_WAIT")
 				cli_says("> ", "NO_WAIT")
 				show("c-net-nethack_sub.node9", "c-net-nethack_sub.node10", "c-net-nethack_sub.node11", "c-net-nethack_sub.node12")
 			else
@@ -238,7 +239,7 @@ return {
 
 			selection = 0
 			if (n_randomchoice == "no") then
-				npc_says(_"Choose your gender.", "NO_WAIT")
+				Npc:says(_"Choose your gender.", "NO_WAIT")
 				cli_says("> ", "NO_WAIT")
 				show("c-net-nethack_sub.node14", "c-net-nethack_sub.node15")
 			else
@@ -323,11 +324,11 @@ return {
 			if (n_tricks<1) then n_tricks = 1 end
 
 			--; TRANSLATORS: you are $alignment, $sex, $race, $role
-			npc_says(_"Hello, welcome to Nethack! You are %s %s %s %s.", n_alignment, n_sex, n_race, n_role, "NO_WAIT")
+			Npc:says(_"Hello, welcome to Nethack! You are %s %s %s %s.", n_alignment, n_sex, n_race, n_role, "NO_WAIT")
 			--; TRANSLATORS: boths %s represent a name of a god
-			npc_says(_"Your goddess, [b]%s[/b] desires the Amulet of Yendor, which the evil god [b]%s[/b] has hidden at the bottom of this dungeon.", n_god, n_emgod, "NO_WAIT")
-			npc_says(_"Return with the [b]Amulet of Yendor[/b], and you shall be rewarded!", "NO_WAIT")
-			npc_says(_"You are all alone on the surface. There is a stairway down.", "NO_WAIT")
+			Npc:says(_"Your goddess, [b]%s[/b] desires the Amulet of Yendor, which the evil god [b]%s[/b] has hidden at the bottom of this dungeon.", n_god, n_emgod, "NO_WAIT")
+			Npc:says(_"Return with the [b]Amulet of Yendor[/b], and you shall be rewarded!", "NO_WAIT")
+			Npc:says(_"You are all alone on the surface. There is a stairway down.", "NO_WAIT")
 			show("c-net-nethack_sub.node63")
 			cli_says("> ", "NO_WAIT")
 		end,
@@ -342,14 +343,14 @@ return {
 			hide("c-net-nethack_sub.node62", "c-net-nethack_sub.node63", "c-net-nethack_sub.node30")
 			if (n_level == n_yendorlevel) then -- At Yendor level
 				if (n_yendor == "no") then -- get yendor
-					npc_says(_"The door closes behind you.", "NO_WAIT")
-					npc_says(_"You find the [b]Amulet of Yendor[/b], and take it and suddenly feel a compulsion to go down, into the depths.", "NO_WAIT")
-					npc_says(_"%s awaits you at the surface", n_god, "NO_WAIT")
+					Npc:says(_"The door closes behind you.", "NO_WAIT")
+					Npc:says(_"You find the [b]Amulet of Yendor[/b], and take it and suddenly feel a compulsion to go down, into the depths.", "NO_WAIT")
+					Npc:says(_"%s awaits you at the surface", n_god, "NO_WAIT")
 					n_yendor = "yes"
-					npc_says(_"There is only an exit into the depths.", "NO_WAIT")
+					Npc:says(_"There is only an exit into the depths.", "NO_WAIT")
 					next("c-net-nethack_sub.node63")
 				else
-					npc_says_random(_"You find nothing new here.",
+					Npc:says_random(_"You find nothing new here.",
 									_"You find a Fake Amulet of Yendor.",
 									_"You find emptiness.",
 									_"You find an empty room.", "NO_WAIT")
@@ -359,11 +360,11 @@ return {
 				if (n_yendor == "no") then
 					if(n_hp<70) then
 						n_hp = 70
-						npc_says_random(_"You drink from the spring at the entrance to the cave.",
+						Npc:says_random(_"You drink from the spring at the entrance to the cave.",
 										_"You make a quick trip to the hospital.", "NO_WAIT")
 					end
 					--; TRANSLATORS:  %s = a god
-					npc_says_random(string.format(_"%s looks at you with impatience and points you back to the entrance of the dungeon.", n_god),
+					Npc:says_random(string.format(_"%s looks at you with impatience and points you back to the entrance of the dungeon.", n_god),
 									--; TRANSLATORS:  %s = a god
 									string.format(_"You find your goddess, %s, at lunch. She points back the way you came.", n_god),
 									--; TRANSLATORS:  %s = a god
@@ -372,8 +373,8 @@ return {
 					next("c-net-nethack_sub.node63")
 				else -- have Amulet of Yendor -- WIN!
 					--; TRANSLATORS:  %s = a god
-					npc_says(_"You present the [b]Amulet of Yendor[/b] to [b]%s[/b] and you are rewarded with everlasting life.", n_god, "NO_WAIT")
-					npc_says(_"You win!", "NO_WAIT")
+					Npc:says(_"You present the [b]Amulet of Yendor[/b] to [b]%s[/b] and you are rewarded with everlasting life.", n_god, "NO_WAIT")
+					Npc:says(_"You win!", "NO_WAIT")
 					--; TRANSLATORS: you ascended a $alignment, $sex, $race, $role in nethack
 					display_console_message(_"You ascended a %s %s %s %s in Nethack!", n_alignment, n_sex, n_race, n_role)
 					if (not won_nethack) then
@@ -385,9 +386,9 @@ return {
 				end
 			else
 				--; TRANSLATORS: %s = n_level
-				npc_says(_"You are on level [b]%s[/b]:", n_level, "NO_WAIT")
+				Npc:says(_"You are on level [b]%s[/b]:", n_level, "NO_WAIT")
 				--Describe the level
-				npc_says_random(_"You find yourself in a series of passages all alike.",
+				Npc:says_random(_"You find yourself in a series of passages all alike.",
 								_"You find yourself in an underground office building.",
 								_"You find yourself in a labyrinth, with 1980's music playing mysteriously.",
 								_"You find yourself inside a Cretaceous limestone cave.",
@@ -462,7 +463,7 @@ return {
 					n_emiq = 1 + math.random(20)
 				end
 				--; TRANSLATORS: %s = enemy name
-				npc_says_random(string.format(_"A wild [b]%s[/b] appears!", n_emname),
+				Npc:says_random(string.format(_"A wild [b]%s[/b] appears!", n_emname),
 								--; TRANSLATORS: %s = enemy name
 								string.format(_"You notice a [b]%s[/b] in front of you.", n_emname),
 								--; TRANSLATORS: %s = enemy name
@@ -471,7 +472,7 @@ return {
 								string.format(_"A [b]%s[/b] jumps out in front of you!", n_emname),
 								--; TRANSLATORS: %s = enemy name
 								string.format(_"You sneek up upon a [b]%s[/b].", n_emname), "NO_WAIT")
-				npc_says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
+				Npc:says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 				show("c-net-nethack_sub.node50", "c-net-nethack_sub.node51", "c-net-nethack_sub.node53", "c-net-nethack_sub.node54")
 				if ( (n_tricks>0) or (n_sex == _"female") ) then show("c-net-nethack_sub.node52") end
 				cli_says("> ", "NO_WAIT")
@@ -483,7 +484,7 @@ return {
 		text = _"Attack",
 		code = function()
 			if (n_emtype == 0) then --inanimate object
-				npc_says_random(string.format(_"You attack the inanimate %s.", n_emname),
+				Npc:says_random(string.format(_"You attack the inanimate %s.", n_emname),
 								_"You go to attack, but then think better.",
 								string.format(_"You charge the %s and strike a mighty blow...", n_emname),
 								_"You are puzzled as to what you plan to attack.",
@@ -494,7 +495,7 @@ return {
 				local damage = math.random((n_ac+1)*10)
 				if (damage > n_emac) then --check if you hit
 									--; TRANSLATORS %s1 = enemy name, %s2 = digit
-					npc_says_random(string.format(_"Your fireball hits the %s causing %s damage.", n_emname, damage),
+					Npc:says_random(string.format(_"Your fireball hits the %s causing %s damage.", n_emname, damage),
 									--; TRANSLATORS %s1 = enemy name, %s2 = digit
 									string.format(_"A bolt from your crossbow hits the %s causing %s damage.", n_emname, damage),
 									--; TRANSLATORS %s2 = digit
@@ -508,7 +509,7 @@ return {
 					n_emhp = n_emhp - damage + n_emac
 				else -- no hit
 									--; TRANSLATORS: %s = enemy name
-					npc_says_random(string.format(_"Your arrow misses the %s.", n_emname),
+					Npc:says_random(string.format(_"Your arrow misses the %s.", n_emname),
 									--; TRANSLATORS: %s = enemy name
 									string.format(_"Blow after blow is rained down upon the %s but they all miss.", n_emname),
 									--; TRANSLATORS: %s = enemy name
@@ -527,19 +528,19 @@ return {
 			hide("c-net-nethack_sub.node50", "c-net-nethack_sub.node51", "c-net-nethack_sub.node52", "c-net-nethack_sub.node53", "c-net-nethack_sub.node54")
 			local random_var = math.random(3)
 			if (random_var > 2) then
-				npc_says_random(_"You escape!",
+				Npc:says_random(_"You escape!",
 								_"You run away!",
 								_"You chicken out!", "NO_WAIT")
 				next("c-net-nethack_sub.node62")
 				n_level=n_level-1
 			elseif (random_var > 1) then
-				npc_says_random(_"You escape!",
+				Npc:says_random(_"You escape!",
 								_"You run away!",
 								_"You chicken out!", "NO_WAIT")
 				next("c-net-nethack_sub.node63")
 			else
 								--; TRANSLATORS: %s = enemy name
-				npc_says_random(string.format(_"The %s throws a bola at you, tripping you and stopping your escape", n_emname),
+				Npc:says_random(string.format(_"The %s throws a bola at you, tripping you and stopping your escape", n_emname),
 								_"You stand there like a deer in the headlights.",
 								--; TRANSLATORS: %s = enemy name
 								string.format(_"You try to go, but the %s grabs you.", n_emname),
@@ -560,7 +561,7 @@ return {
 				n_tricks = n_tricks - 1
 				if (math.random(3)>1) then
 									--; TRANSLATORS: %s = enemy name
-					npc_says_random(string.format(_"You toss a rock. The sound distracts the %s", n_emname),
+					Npc:says_random(string.format(_"You toss a rock. The sound distracts the %s", n_emname),
 									_"You toss a smoke-bomb and escape.",
 									--; TRANSLATORS: %s = enemy name
 									string.format(_"You stumble over a rock, creating a chain of reactions, ending in the tunnel collapsing on the %s.", n_emname),
@@ -572,7 +573,7 @@ return {
 					next("c-net-nethack_sub.node61")
 				else
 									--; TRANSLATORS:  %s = enemy name
-					npc_says_random(string.format(_"The %s is not impressed by your tricks.", n_emname),
+					Npc:says_random(string.format(_"The %s is not impressed by your tricks.", n_emname),
 									--; TRANSLATORS:  %s = enemy name
 									string.format("%s has seen this one before, and is not impressed.", n_emname),
 									--; TRANSLATORS:  %s = enemy name
@@ -582,11 +583,11 @@ return {
 					next("c-net-nethack_sub.node60")
 				end
 			elseif (n_sex == _"female") then
-				npc_says(_"Not having any tricks left, you resort to you trying your feminine wiles.", "NO_WAIT")
+				Npc:says(_"Not having any tricks left, you resort to you trying your feminine wiles.", "NO_WAIT")
 				if (n_hp > n_emiq) then
 					if (math.random(6)>1) then
 										--; TRANSLATORS:  %s = enemy name
-						npc_says_random(string.format(_"You succeed getting past the %s.", n_emname),
+						Npc:says_random(string.format(_"You succeed getting past the %s.", n_emname),
 										--; TRANSLATORS:  %s = enemy name
 										string.format(_"You distract the %s long enough to escape.", n_emname),
 										--; TRANSLATORS:  %s = enemy name
@@ -594,7 +595,7 @@ return {
 						next("c-net-nethack_sub.node61")
 					else
 										--; TRANSLATORS:  %s = enemy name
-						npc_says_random(string.format(_"The %s casts change gender on you.", n_emname),
+						Npc:says_random(string.format(_"The %s casts change gender on you.", n_emname),
 										--; TRANSLATORS:  %s = enemy name
 										string.format(_"The %s curses you.", n_emname),
 										--; TRANSLATORS:  %s = enemy name
@@ -602,12 +603,12 @@ return {
 										_"The Random Number God strikes you, changing your gender.", "NO_WAIT")
 						n_sex = _"male"
 						--; TRANSLATORS n_alignment, n_sex, m_race, n_role, 
-						npc_says(_"You are now %s %s %s %s.", n_alignment, n_sex, n_race, n_role , "NO_WAIT")
+						Npc:says(_"You are now %s %s %s %s.", n_alignment, n_sex, n_race, n_role , "NO_WAIT")
 						next("c-net-nethack_sub.node60")
 					end
 				else
 									--; TRANSLATORS: %s = enemy name
-					npc_says_random(string.format(_"The %s notes your physique, but has too high of an IQ to be impressed.", n_emname),
+					Npc:says_random(string.format(_"The %s notes your physique, but has too high of an IQ to be impressed.", n_emname),
 									--; TRANSLATORS: %s = enemy name
 									string.format(_"%s might be more malleable if you were in better health.", n_emname), "NO_WAIT")
 					next("c-net-nethack_sub.node60")
@@ -623,17 +624,17 @@ return {
 		code = function()
 			local random_var = math.random(6)
 			if ( random_var == 6) then --16% chance:
-				npc_says(_"Your goddess %s comes to your aid and gives you strength.", n_god, "NO_WAIT")
+				Npc:says(_"Your goddess %s comes to your aid and gives you strength.", n_god, "NO_WAIT")
 				n_ac = n_ac + 2
 				n_hp = n_hp + 51
-				npc_says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
+				Npc:says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 			elseif ( random_var == 5 ) then --16% chance:
-				npc_says(_"Your goddess %s comes to your aid and teaches you a new trick.", n_god, "NO_WAIT")
+				Npc:says(_"Your goddess %s comes to your aid and teaches you a new trick.", n_god, "NO_WAIT")
 				n_ac = n_ac + 2
 				n_tricks = n_tricks + 1
-				npc_says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
+				Npc:says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 			elseif (random_var > 2) then -- 54% chance:
-				npc_says_random(string.format(_"Your enemy %s bestows some burdens upon you.", n_emgod),
+				Npc:says_random(string.format(_"Your enemy %s bestows some burdens upon you.", n_emgod),
 								string.format(_"%s overhears your prayers and curses you.", n_emgod),
 								_"While you were praying a leprechaun stole your sword.",
 								_"While you were praying a hermit crab moved into your helmet. It's his now.", "NO_WAIT")
@@ -641,9 +642,9 @@ return {
 				n_tricks = n_tricks - 1
 				if (n_ac < 1) then n_ac =0 end
 				if (n_tricks < 1) then n_tricks =0 end
-				npc_says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
+				Npc:says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 			else -- 54% chance:
-				npc_says_random(_"Nothing happens.",
+				Npc:says_random(_"Nothing happens.",
 								string.format(_"%s can't take your prayers right now, please leave a message...", n_god),
 								_"Twice nothing happens.",
 								string.format(_"%s left her cellphone at home today.", n_god),
@@ -658,7 +659,7 @@ return {
 		text = _"Xyzzy",
 		code = function()
 			if (math.random(10)>1) then --90% chance:
-				npc_says_random(_"Nothing happens.",
+				Npc:says_random(_"Nothing happens.",
 								_"Surprisingly, nothing happens.",
 								_"You are shocked, SHOCKED, to find nothing happens.",
 								_"Time was frozen then unfrozen but for you, nothing happens.",
@@ -666,7 +667,7 @@ return {
 								_"You wait for a moment, then, suddenly, nothing happens.",
 								_"Twice nothing happens.", "NO_WAIT")
 				if (n_emtype == 0) then
-					npc_says_random(_"You take a short nap.",
+					Npc:says_random(_"You take a short nap.",
 									_"You meditate.",
 									_"You check your e-mail.",
 									_"You sip a cup of late-afternoon tea in quiet retrospection.",
@@ -679,15 +680,15 @@ return {
 					else
 						if (n_hp < 256) then n_hp = 256 end
 					end
-					npc_says(_"You feel refreshed.", "NO_WAIT")
+					Npc:says(_"You feel refreshed.", "NO_WAIT")
 					--; TRANSLATORS: n_ac n_tricks n_hp
-					npc_says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
+					Npc:says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 					next("c-net-nethack_sub.node61")
 				else
 					next("c-net-nethack_sub.node60")
 				end
 			else --10% chance:
-				npc_says_random(_"Suddenly you find yourself teleported to the next level.",
+				Npc:says_random(_"Suddenly you find yourself teleported to the next level.",
 								_"Everything goes black.",
 								_"Everything goes white.",
 								_"Suddenly, there is nothing.",
@@ -714,7 +715,7 @@ return {
 			else
 				if (n_emhp < 1) then
 									--; TRANSLATORS %s = enemy name
-					npc_says_random(string.format(_"The %s passed out.", n_emname),
+					Npc:says_random(string.format(_"The %s passed out.", n_emname),
 									--; TRANSLATORS %s = enemy name
 									string.format(_"The %s suddenly is gone.",  n_emname),
 									--; TRANSLATORS %s = enemy name
@@ -724,7 +725,7 @@ return {
 					-- Rewards:
 					local random_var = math.random(1,4)
 					if (random_var == 4) then --Improve AC
-						npc_says_random(_"You find prayer beads invoking the goodwill of the Random Number God.",
+						Npc:says_random(_"You find prayer beads invoking the goodwill of the Random Number God.",
 										_"You find a lightning rod.",
 										_"You find a sword of greater death.",
 										_"You find a vorpal dagger.",
@@ -742,7 +743,7 @@ return {
 										_"You find a 'weapon'.", "NO_WAIT")
 						n_ac = n_ac + (math.random(n_emtype + 1) +1)
 					elseif (random_var == 3) then --Improve HP
-						npc_says_random(_"You find a bandage and put it on.",
+						Npc:says_random(_"You find a bandage and put it on.",
 										_"A nurse patches some of your wounds.",
 										--; TRANSLATORS: %s = god name
 										string.format(_"You drink a bottle of greater healing. %s sends some salve to sooth your wounds.", n_god),
@@ -750,14 +751,14 @@ return {
 										_"You apply some sunscreen from your backpack.",
 										_"You decide that you are healthier than you thought.", "NO_WAIT")
 						n_hp = n_hp +(n_emtype * 10 * math.random(3))
-						npc_says_random(_"Your health improves.",
+						Npc:says_random(_"Your health improves.",
 										_"You feel more vigorous.",
 										_"Your arm spontaneously regenerates.",
 										_"Your leg grows back.",
 										_"Your acne clears up.",
 										_"You stop hemorrhaging blood.", "NO_WAIT")
 					elseif (random_var == 2) then --Get a trick!
-						npc_says_random(_"You find a tophat with a rabbit.",
+						Npc:says_random(_"You find a tophat with a rabbit.",
 										_"You find a deck of cards.",
 										_"You find a coin with two heads.",
 										_"You find a stick with two snakes wrapped around it.",
@@ -769,26 +770,26 @@ return {
 					elseif(random_var == 1) then --Status change
 						random_var = math.random(1,5)
 						if (random_var == 1) then --become good
-							npc_says(_"You reform your wicked ways, and join the side of good.", "NO_WAIT")
+							Npc:says(_"You reform your wicked ways, and join the side of good.", "NO_WAIT")
 											--; TRANSLATORS: %s = enemy god name
-							npc_says_random(string.format(_"%s is unhappy about this.", n_emgod),
+							Npc:says_random(string.format(_"%s is unhappy about this.", n_emgod),
 											--; TRANSLATORS: %s = god name
 											string.format(_"%s likes this.", n_god), "NO_WAIT")
 							n_alignment = _"a good"
 						elseif (random_var == 2) then --become evil
-							npc_says(_"The urge to sin fills you, you now are evil!", "NO_WAIT")
+							Npc:says(_"The urge to sin fills you, you now are evil!", "NO_WAIT")
 											--; TRANSLATORS %s = enemy god name
-							npc_says_random(string.format(_"%s is happy about this.", n_emgod),
+							Npc:says_random(string.format(_"%s is happy about this.", n_emgod),
 											--; TRANSLATORS: %s = god name
 											string.format(_"%s is unhappy about this.", n_god), "NO_WAIT")
 							n_alignment=_"an evil"
 						elseif (random_var == 3) then --become neutral
-							npc_says(_"You decide good and evil are too two sides of the same coin, so you take the coin.", "NO_WAIT")
+							Npc:says(_"You decide good and evil are too two sides of the same coin, so you take the coin.", "NO_WAIT")
 							n_alignment = _"a neutral"
 							--; TRANSLATORS: %s 1 = god name  %s 2 = enemy god name
-							npc_says(_"Both %s and %s don't know how to feel about this.", n_god, n_emgod, "NO_WAIT")
+							Npc:says(_"Both %s and %s don't know how to feel about this.", n_god, n_emgod, "NO_WAIT")
 						else --change gender
-							npc_says_random(_"You put on a tarnished belt, and you feel something strange happen.",
+							Npc:says_random(_"You put on a tarnished belt, and you feel something strange happen.",
 											_"You have been cursed.",
 											_"You have been blessed.",
 											_"You drink from a sparkling well, and something weird happens.",
@@ -797,14 +798,14 @@ return {
 							if (n_sex == _"female") then n_sex=_"male" else n_sex=_"female" end
 						end
 					--; TRANSLATORS: you ascended a $alignment, $sex, $race, $role in nethack
-						npc_says(_"You are now %s %s %s %s.", n_alignment, n_sex, n_race, n_role, "NO_WAIT")
+						Npc:says(_"You are now %s %s %s %s.", n_alignment, n_sex, n_race, n_role, "NO_WAIT")
 					end
 					n_emtype = 0 --no more monsters
 				else
 					damage = math.random((n_emac+1)*10)
 					if (damage > n_ac) then
 										--; TRANSLATORS: enemy name, damage (digit)
-						npc_says_random(string.format(_"The devious %s stabs you, causing %s damage.", n_emname, damage-n_ac),
+						Npc:says_random(string.format(_"The devious %s stabs you, causing %s damage.", n_emname, damage-n_ac),
 										--; TRANSLATORS: enemy name, damage (digit)
 										string.format(_"You suffer %s damage as the %s tosses you up into the air like a ragdoll.", damage-n_ac, n_emname),
 										--; TRANSLATORS: enemy name, damage (digit)
@@ -821,7 +822,7 @@ return {
 										string.format(_"The %s bites you causing %s damage.", n_emname, damage-n_ac), "NO_WAIT")
 						n_hp = n_hp - damage + n_ac
 					else
-						npc_says_random(string.format(_"You dodge a blow from the %s.", n_emname),
+						Npc:says_random(string.format(_"You dodge a blow from the %s.", n_emname),
 										string.format(_"%s tries to hit you, but misses.", n_emname),
 										string.format(_"%s blow hits your cap of cool, causing no damage.", n_emname),
 										string.format(_"%s pokes you really hard. You are annoyed.", n_emname),
@@ -831,17 +832,17 @@ return {
 
 				-- Did you survive?
 				if (n_hp < 1) then --No :-(
-					npc_says_random(_"You died.",
+					Npc:says_random(_"You died.",
 									_"A Valkyrie carries you off to Valhalla.",
 									_"Hermes, with Death and Sleep, asks if you've seen his Caduceus anywhere, and then brings you to the river Leith.",
 									_"Your soul finds itself traveling along the path of the moon, far away from your broken body.",
 									_"You are fully one with everything. Your battered body no longer concerns you.",
 									_"You failed to enlist the Random Number God to your side. You died.", "NO_WAIT")
-					npc_says(_"Game over.", "NO_WAIT")
+					Npc:says(_"Game over.", "NO_WAIT")
 					next("c-net-nethack_sub.node70")
 				else --Yes :-)
 					--; TRANSLATORS: all numbers
-					npc_says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
+					Npc:says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 					if (n_emhp < 1) then
 						next("c-net-nethack_sub.node61")
 					else
@@ -869,11 +870,11 @@ return {
 			hide("c-net-nethack_sub.node50", "c-net-nethack_sub.node51", "c-net-nethack_sub.node52", "c-net-nethack_sub.node53", "c-net-nethack_sub.node54")
 			if ((n_yendor == "yes") and (math.random(3)>2)) then --have the Amulet of Yendor
 				--; TRANSLATORS: digit
-				npc_says(_"You come to the end of level %s and the [b]Amulet of Yendor[/b] compels you down, deeper into the depths.", n_level, "NO_WAIT")
+				Npc:says(_"You come to the end of level %s and the [b]Amulet of Yendor[/b] compels you down, deeper into the depths.", n_level, "NO_WAIT")
 				next("c-net-nethack_sub.node63")
 			else --still need the Amulet of Yendor
 				--; TRANSLATORS: digit
-				npc_says(_"You come to the end of level %s and see a way up and a way down. Which do you choose?", n_level, "NO_WAIT")
+				Npc:says(_"You come to the end of level %s and see a way up and a way down. Which do you choose?", n_level, "NO_WAIT")
 				if (math.random(3)>1) then show("c-net-nethack_sub.node53") end
 				show("c-net-nethack_sub.node62", "c-net-nethack_sub.node63")
 				cli_says("> ", "NO_WAIT")
@@ -884,7 +885,7 @@ return {
 		id = "c-net-nethack_sub.node62",
 		text = _"Go Up",
 		code = function()
-			npc_says_random(_"You climb up the ladder with care.",
+			Npc:says_random(_"You climb up the ladder with care.",
 							_"You shimmy up the crevasse.",
 							_"You ascend the Gothic staircase.",
 							_"You untie the balloon.",
@@ -902,7 +903,7 @@ return {
 		id = "c-net-nethack_sub.node63",
 		text = _"Go Down",
 		code = function()
-			npc_says_random(_"You rappel down the pit to the level below.",
+			Npc:says_random(_"You rappel down the pit to the level below.",
 							_"You lower yourself using footholds cut long ago into the living earth.",
 							_"You take the staircase down to the lower level.",
 							_"By playing with the levers before you, you teleport into the depths below.",
@@ -929,9 +930,9 @@ return {
 		echo_text = false,
 		code = function()
 			--; TRNSLATORS: n_alignment, n_role, n_race, n_sex, n_god, n_level
-			npc_says(_"Save game detected: %s %s %s %s in service to [b]%s[/b] on level [b]%d[/b].", n_alignment, n_role, n_race, n_sex, n_god, n_level, "NO_WAIT")
+			Npc:says(_"Save game detected: %s %s %s %s in service to [b]%s[/b] on level [b]%d[/b].", n_alignment, n_role, n_race, n_sex, n_god, n_level, "NO_WAIT")
 			if (n_yendor == "yes") then
-				npc_says(_"Save game has the [b]Amulet of Yendor[/b]!", "NO_WAIT")
+				Npc:says(_"Save game has the [b]Amulet of Yendor[/b]!", "NO_WAIT")
 			end
 			cli_says("> ", "NO_WAIT")
 			show("c-net-nethack_sub.node81", "c-net-nethack_sub.node82", "c-net-nethack_sub.node83", "c-net-nethack_sub.node99")
@@ -942,7 +943,7 @@ return {
 		text = _"Show stats",
 		code = function()
 			--; TRANSLATORS: n_ac, n_tricks, n_hp
-			npc_says(_"[b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health", n_ac, n_tricks, n_hp, "NO_WAIT")
+			Npc:says(_"[b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health", n_ac, n_tricks, n_hp, "NO_WAIT")
 			cli_says("> ", "NO_WAIT")
 			hide("c-net-nethack_sub.node81")
 		end,
@@ -952,7 +953,7 @@ return {
 		text = _"Load Character",
 		code = function()
 			--; TRANSLATORS: both god names
-			npc_says_random(string.format(_"[b]%s[/b], the enemy of your goddess [b]%s[/b], plans your demise with glee.", n_emgod, n_god),
+			Npc:says_random(string.format(_"[b]%s[/b], the enemy of your goddess [b]%s[/b], plans your demise with glee.", n_emgod, n_god),
 							--; TRANSLATORS: god name
 							string.format(_"The vile god [b]%s[/b] cackles that you will again flee from the dungeon in terror!", n_emgod),
 							--; TRANSLATORS: both god names
@@ -981,9 +982,9 @@ return {
 		echo_text = false,
 		code = function()
 			--; TRANSLATORS: n_ac, n_tricks, n_hp
-			npc_says(_"Your stats are: [b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
+			Npc:says(_"Your stats are: [b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 			--; TRANSLATORS: n_emname
-			npc_says(_"A [b]%s[/b] is before you. What do you do?", n_emname, "NO_WAIT")
+			Npc:says(_"A [b]%s[/b] is before you. What do you do?", n_emname, "NO_WAIT")
 			show("c-net-nethack_sub.node50", "c-net-nethack_sub.node51", "c-net-nethack_sub.node53", "c-net-nethack_sub.node54")
 			if ((n_tricks>0) or (n_sex == _"female")) then show("c-net-nethack_sub.node52") end
 			cli_says("> ", "NO_WAIT")

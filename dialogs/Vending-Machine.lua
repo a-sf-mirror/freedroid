@@ -17,19 +17,20 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
 	EveryTime = function()
 		play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
-		npc_says(_"[b][OK][/b] Waking up from sleep mode...", "NO_WAIT")
-		npc_says(_"[b][OK][/b] Obtaining ware table...", "NO_WAIT")
-		npc_says(_"[b][OK][/b] Loading graphical user interface...", "NO_WAIT")
-		npc_says(_"[b][OK][/b] Preparing trade...", "NO_WAIT")
+		Npc:says(_"[b][OK][/b] Waking up from sleep mode...", "NO_WAIT")
+		Npc:says(_"[b][OK][/b] Obtaining ware table...", "NO_WAIT")
+		Npc:says(_"[b][OK][/b] Loading graphical user interface...", "NO_WAIT")
+		Npc:says(_"[b][OK][/b] Preparing trade...", "NO_WAIT")
 		trade_with("Vending-Machine")
-		npc_says(_"Trade done.", "NO_WAIT")
-		npc_says(_"[b][OK][/b] Shutting down graphical user interface...", "NO_WAIT")
-		npc_says(_"[b][OK][/b] Entering sleep mode...", "NO_WAIT")
+		Npc:says(_"Trade done.", "NO_WAIT")
+		Npc:says(_"[b][OK][/b] Shutting down graphical user interface...", "NO_WAIT")
+		Npc:says(_"[b][OK][/b] Entering sleep mode...", "NO_WAIT")
 		end_dialog()
 		play_sound("effects/Menu_Item_Selected_Sound_1.ogg") -- there is no node 99 selectable so just play this here
 	end,

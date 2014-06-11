@@ -21,6 +21,7 @@ PERSONALITY = { "Belligerent", "Resentful" },
 BACKSTORY = "$$NAME$$ is being held prisoner in the inner citadel for being apart of a resistance movement against the Red Guard."
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -32,7 +33,7 @@ return {
 		if (Tux:has_met("Peter")) then
 			Tux:says_random(_"Hello.",
 							_"Hi there.", "NO_WAIT")
-			npc_says_random(_"Well, hello again.",
+			Npc:says_random(_"Well, hello again.",
 							_"Hello hello.",
 							_"Welcome back.")
 		end
@@ -43,9 +44,9 @@ return {
 		id = "node0",
 		text = _"Why are you here?",
 		code = function()
-			npc_says(_"I'm a political prisoner.")
-			npc_says(_"Those red fascists put me here.")
-			npc_says(_"And I guess you are a fascist too, as only Red Guard members are allowed in here.")
+			Npc:says(_"I'm a political prisoner.")
+			Npc:says(_"Those red fascists put me here.")
+			Npc:says(_"And I guess you are a fascist too, as only Red Guard members are allowed in here.")
 			hide("node0") show("node1")
 		end,
 	},
@@ -55,14 +56,14 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"What is ...", "NO_WAIT")
-			npc_says(_"LALALALALA - I'm not hearing you. I have my fingers in my ears and just go - LALALALALA")
+			Npc:says(_"LALALALALA - I'm not hearing you. I have my fingers in my ears and just go - LALALALALA")
 		end,
 	},
 	{
 		id = "node99",
 		text = _"Talk to you later.",
 		code = function()
-			npc_says(_"Not in your life, Fascist!")
+			Npc:says(_"Not in your life, Fascist!")
 			end_dialog()
 		end,
 	},

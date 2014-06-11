@@ -17,6 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -29,7 +30,7 @@ return {
 		else
 			Tux:says_random(_"Hello.",
 							_"Hi there.", "NO_WAIT")
-			npc_says_random(_"Well, hello again.",
+			Npc:says_random(_"Well, hello again.",
 							_"Hello hello.",
 							_"Welcome back.")
 		end

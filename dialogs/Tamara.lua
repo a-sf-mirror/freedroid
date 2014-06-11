@@ -30,6 +30,7 @@ RELATIONSHIP = {
 }
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -39,34 +40,34 @@ return {
 
 		--; TRANSLATORS: %s =Tux:get_player_name()
 		Tux:says(_"Hi, I'm %s.", Tux:get_player_name())
-		npc_says(_"Welcome to the Library, I'm Tamara.")
-		npc_says(_"Please take a look around and see if there is something here that interests you.")
-		npc_says(_"You are welcome to ask me if you have any questions.")
-		set_bot_name("Tamara - Librarian")
+		Npc:says(_"Welcome to the Library, I'm Tamara.")
+		Npc:says(_"Please take a look around and see if there is something here that interests you.")
+		Npc:says(_"You are welcome to ask me if you have any questions.")
+		Npc:set_name("Tamara - Librarian")
 		show("node10")
 	end,
 
 	EveryTime = function()
 		if (tamara_shelf_count == 1) and
 		   (not tamara_shelf_count_1_done) then
-			npc_says(_"Hey, please don't make such a mess here.")
+			Npc:says(_"Hey, please don't make such a mess here.")
 			tamara_shelf_count_1_done = true
 		elseif (tamara_shelf_count == 2) and
 		       (not tamara_shelf_count_2_done) then
-			npc_says(_"Please put everything back in place if you don't need it.")
+			Npc:says(_"Please put everything back in place if you don't need it.")
 			tamara_shelf_count_2_done = true
 		elseif (tamara_shelf_count == 3) and
 		       (not tamara_shelf_count_3_done) then
-			npc_says(_"Please be careful with these books. They are older than most computers in this town.")
+			Npc:says(_"Please be careful with these books. They are older than most computers in this town.")
 			tamara_shelf_count_3_done = true
 			tamara_shelf_stuff = "done"
 		elseif (tamara_shelf_count) and
 		       (tamara_shelf_count > 3) then
-			npc_says("ERROR: Tamara.dialog, EveryTime LuaCode: unhandled value for tamara_shelf_count, please report. value is: %s", tamara_shelf_count)
+			Npc:says("ERROR: Tamara.dialog, EveryTime LuaCode: unhandled value for tamara_shelf_count, please report. value is: %s", tamara_shelf_count)
 		end
 
 		if (Tux:has_met("Tamara")) then
-			npc_says(_"What can I help you with?")
+			Npc:says(_"What can I help you with?")
 		end
 
 		if (Tux:has_met("Sorenson")) and
@@ -110,13 +111,13 @@ return {
 		id = "node1",
 		text = _"Hmm, you look very similar to another person I met, by the name of Sorenson.",
 		code = function()
-			npc_says(_"Well, it's understandable. We are sisters.")
-			npc_says(_"Or actually half sisters. She is also half crazy, so we don't communicate much.")
-			npc_says(_"*sigh*")
-			npc_says(_"We used to. Even ran this library together.")
-			npc_says(_"Then she started reading more and more books and sitting in front of the computer day and night, never sleeping.")
-			npc_says(_"In the end she completely lost her marbles, sadly.")
-			npc_says(_"Now all she does is sit locked in her house staring into the computer.")
+			Npc:says(_"Well, it's understandable. We are sisters.")
+			Npc:says(_"Or actually half sisters. She is also half crazy, so we don't communicate much.")
+			Npc:says(_"*sigh*")
+			Npc:says(_"We used to. Even ran this library together.")
+			Npc:says(_"Then she started reading more and more books and sitting in front of the computer day and night, never sleeping.")
+			Npc:says(_"In the end she completely lost her marbles, sadly.")
+			Npc:says(_"Now all she does is sit locked in her house staring into the computer.")
 			Tamara_talked_about_sister = true
 			hide("node1")
 		end,
@@ -127,13 +128,13 @@ return {
 		code = function()
 			Tamara_asked_hacking = true
 			if (Tamara_talked_about_sister) then
-				npc_says(_"My sister used to play Nethack all the time, about the time she became really good at hacking.")
+				Npc:says(_"My sister used to play Nethack all the time, about the time she became really good at hacking.")
 			else
-				npc_says(_"Everyone I know who is good with computers always talks about beating Nethack.")
+				Npc:says(_"Everyone I know who is good with computers always talks about beating Nethack.")
 			end
-			npc_says(_"I think there might be a version on the town's computers.")
-			npc_says(_"I've never played it.")
-			npc_says(_"That might be why I'm no good with computers.")
+			Npc:says(_"I think there might be a version on the town's computers.")
+			Npc:says(_"I've never played it.")
+			Npc:says(_"That might be why I'm no good with computers.")
 			hide("node2")
 		end,
 	},
@@ -141,10 +142,10 @@ return {
 		id = "node10",
 		text = _"I see you have a huge source code book collection. Mind if I buy some from you?",
 		code = function()
-			npc_says(_"This is a library, not a book shop.")
-			npc_says(_"However, valuable books have a tendency to simply vanish and never get returned by some people...")
-			npc_says(_"Especially strangers just passing by...")
-			npc_says(_"Thus I'm forced to take a deposit for each book.")
+			Npc:says(_"This is a library, not a book shop.")
+			Npc:says(_"However, valuable books have a tendency to simply vanish and never get returned by some people...")
+			Npc:says(_"Especially strangers just passing by...")
+			Npc:says(_"Thus I'm forced to take a deposit for each book.")
 			hide("node10") show("node11")
 		end,
 	},
@@ -152,7 +153,7 @@ return {
 		id = "node11",
 		text = _"So what interesting books do you have available right now?",
 		code = function()
-			npc_says_random(_"Some of these might interest you.",
+			Npc:says_random(_"Some of these might interest you.",
 							_"I only have a few programming volumes, feel free to look through them.")
 			trade_with("Tamara")
 			show_if(not Tamara_bot_apocalypse_book, "node20")
@@ -163,7 +164,7 @@ return {
 		id = "node20",
 		text = _"Do you have any books about the bot apocalypse?",
 		code = function()
-			npc_says(_"I'm writing one, but it isn't complete, and there are no publishers left.")
+			Npc:says(_"I'm writing one, but it isn't complete, and there are no publishers left.")
 			Tamara_bot_apocalypse_book = true
 			hide("node20")
 		end,
@@ -172,7 +173,7 @@ return {
 		id = "node21",
 		text = _"Have you been progressing on your book about the bots apocalypse?",
 		code = function()
-			npc_says_random(_"I need more time to finish it.",
+			Npc:says_random(_"I need more time to finish it.",
 							_"Page-by-page, my book is growing up.",
 							_"Sorry, but you have to wait a bit more before you can read it.")
 			hide("node21")
@@ -182,8 +183,8 @@ return {
 		id = "node30",
 		text = _"Do you have any books about robotics?",
 		code = function()
-			npc_says(_"Sorry, most of them have been stolen or borrowed.")
-			npc_says(_"However, I can tell you all about robots and automata in literature. Interested?")
+			Npc:says(_"Sorry, most of them have been stolen or borrowed.")
+			Npc:says(_"However, I can tell you all about robots and automata in literature. Interested?")
 			Tamara_talked_about_bots = true
 			Tamara_about_bots_nodes = Tamara_about_bots_nodes + 2
 			hide("node30") show("node32", "node33", "node39")
@@ -194,7 +195,7 @@ return {
 		id = "node31",
 		text = _"I would like to know some more about bots.",
 		code = function()
-			npc_says(_"If you mean in culture, I have some anecdote you could be interested in.")
+			Npc:says(_"If you mean in culture, I have some anecdote you could be interested in.")
 			push_topic("About bots")
 		end,
 	},
@@ -203,9 +204,9 @@ return {
 		text = _"Where does the word 'bot' come from?",
 		topic = "About bots",
 		code = function()
-			npc_says(_"It is a shortening of the word 'robot', derived from the Czech word for forced labor.")
-			npc_says(_"R.U.R. (Rossum's Universal Robots), a play, introduced \'robots\' as artificial people.")
-			npc_says(_"In the play the robots revolted, took over the world, and killed all the humans.")
+			Npc:says(_"It is a shortening of the word 'robot', derived from the Czech word for forced labor.")
+			Npc:says(_"R.U.R. (Rossum's Universal Robots), a play, introduced \'robots\' as artificial people.")
+			Npc:says(_"In the play the robots revolted, took over the world, and killed all the humans.")
 			Tux:says(_"Ironic.")
 			hide_node_about_bots(32)
 		end,
@@ -215,11 +216,11 @@ return {
 		text = _"What about the creation of robots for defense?",
 		topic = "About bots",
 		code = function()
-			npc_says(_"During the Holy Roman Empire, the Jewish people of the Prague ghetto needed protection.")
-			npc_says(_"So a holy rabbi shaped a Golem out of clay, and brought it to life through rituals and writing 'emet' (truth) on its head.")
-			npc_says(_"The Golem initially protected the Jews, but was brainless and stupid, and so soon became dangerously violent to even the Jews.")
-			npc_says(_"It was only by trickery that the rabbi was able to even get close to the Golem.")
-			npc_says(_"But as the rabbi changed 'emet' to 'met' (death), the Golem fell on him, and both the creator and creation became lifeless.")
+			Npc:says(_"During the Holy Roman Empire, the Jewish people of the Prague ghetto needed protection.")
+			Npc:says(_"So a holy rabbi shaped a Golem out of clay, and brought it to life through rituals and writing 'emet' (truth) on its head.")
+			Npc:says(_"The Golem initially protected the Jews, but was brainless and stupid, and so soon became dangerously violent to even the Jews.")
+			Npc:says(_"It was only by trickery that the rabbi was able to even get close to the Golem.")
+			Npc:says(_"But as the rabbi changed 'emet' to 'met' (death), the Golem fell on him, and both the creator and creation became lifeless.")
 			hide_node_about_bots(33)
 		end,
 	},
@@ -228,11 +229,11 @@ return {
 		text = _"What can you tell me about robotic girlfriends?",
 		topic = "About bots",
 		code = function()
-			npc_says(_"Well, the Greeks wrote down a story about Pygmalion, the sculptor of Cyprus.")
-			npc_says(_"Pygmalion carved an ivory woman of far surpassing natural beauty and fell in love.")
-			npc_says(_"Aphrodite, the goddess of love, brought the ivory woman to life.")
-			npc_says(_"The woman, Galatea, likewise fell in love and married her creator Pygmalion.")
-			npc_says(_"So you could say that this is one of the few stories that end well.")
+			Npc:says(_"Well, the Greeks wrote down a story about Pygmalion, the sculptor of Cyprus.")
+			Npc:says(_"Pygmalion carved an ivory woman of far surpassing natural beauty and fell in love.")
+			Npc:says(_"Aphrodite, the goddess of love, brought the ivory woman to life.")
+			Npc:says(_"The woman, Galatea, likewise fell in love and married her creator Pygmalion.")
+			Npc:says(_"So you could say that this is one of the few stories that end well.")
 			hide_node_about_bots(34)
 		end,
 	},
@@ -241,7 +242,7 @@ return {
 		text = _"Can I come back to you on that later?",
 		topic = "About bots",
 		code = function()
-			npc_says(_"Don't hesitate to talk to me again for further questions.")
+			Npc:says(_"Don't hesitate to talk to me again for further questions.")
 			pop_topic()
 		end,
 	},
@@ -249,11 +250,11 @@ return {
 		id = "node50",
 		text = _"Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?",
 		code = function()
-			npc_says(_"It's interesting you should be looking for that - the library has two copies.")
+			Npc:says(_"It's interesting you should be looking for that - the library has two copies.")
 			Tux:says(_"I need one - it's a matter of life and death!")
-			npc_says(_"Life and death?")
+			Npc:says(_"Life and death?")
 			Tux:says(_"There's a nuclear reactor going super critical under the town - if I have the book, maybe I can stop it.")
-			npc_says(_"In that case, you can have it. My mission is to preserve our culture, which won't matter if we're all dead.")
+			Npc:says(_"In that case, you can have it. My mission is to preserve our culture, which won't matter if we're all dead.")
 			Tux:says(_"Thank you, Tamara.")
 			Tux:update_quest("An Explosive Situation", _"I was able to get a copy of Subatomic and Nuclear Science for Dummies, Volume IV from the librarian, Tamara. I'd better hurry back to Ewald's 296 with it.")
 			Tux:add_item("Nuclear Science for Dummies IV")
@@ -266,7 +267,7 @@ return {
 		id = "node99",
 		text = _"Thank you for the help.",
 		code = function()
-			npc_says_random(_"No problem, and remember to return your books in time.",
+			Npc:says_random(_"No problem, and remember to return your books in time.",
 							_"I aim to ensure that the great works of literature will survive this horrible apocalypse.",
 							_"That is what I'm here for. Come back at any time.")
 			end_dialog()

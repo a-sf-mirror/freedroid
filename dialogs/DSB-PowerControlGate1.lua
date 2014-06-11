@@ -17,6 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -31,13 +32,13 @@ return {
 		cli_says(_"Password : ", "NO_WAIT")
 		Tux:says(_"*******", "NO_WAIT")
 		cli_says(_"Login failed. Entering as Guest")
-		npc_says(_" ", "NO_WAIT")
+		Npc:says(_" ", "NO_WAIT")
 		if (DSB_PowerControlGate1_date == nil) then
 		--; TRANSLATORS: %s = a date ,  %d = a year number
-			npc_says(_"First login from /dev/ttySO on %s %d", DSB_PowerControlGate1_date_1, DSB_PowerControlGate1_year, "NO_WAIT")
+			Npc:says(_"First login from /dev/ttySO on %s %d", DSB_PowerControlGate1_date_1, DSB_PowerControlGate1_year, "NO_WAIT")
 		else
 			--; TRANSLATORS: %s = a date ,  %d = a year number
-			npc_says(_"Last login from /dev/ttyS0 on %s %d", DSB_PowerControlGate1_date, DSB_PowerControlGate1_year, "NO_WAIT")
+			Npc:says(_"Last login from /dev/ttyS0 on %s %d", DSB_PowerControlGate1_date, DSB_PowerControlGate1_year, "NO_WAIT")
 		end
 		DSB_PowerControlGate1_date = DSB_PowerControlGate1_date_1
 
@@ -47,7 +48,7 @@ return {
 		elseif (cmp_obstacle_state("DSB-PCGate1", "opened")) then
 			show("node10")
 		else
-			npc_says(_"GAME BUG. PLEASE REPORT.")
+			Npc:says(_"GAME BUG. PLEASE REPORT.")
 		end
 		show("node99")
 	end,
@@ -57,13 +58,13 @@ return {
 		text = _"open gate",
 		code = function()
 			--if (not dsb_pc_access) then
-			npc_says(_"Gate status: CLOSED", "NO_WAIT")
-			npc_says(_"Security Access to this area denied.")
-			npc_says(_"Contact personnel in the Machine Deck Control Room if you believe this to be an error.")
+			Npc:says(_"Gate status: CLOSED", "NO_WAIT")
+			Npc:says(_"Security Access to this area denied.")
+			Npc:says(_"Contact personnel in the Machine Deck Control Room if you believe this to be an error.")
 			--else
-			-- npc_says(_"Gate status: CLOSED", "NO_WAIT")
-			-- npc_says(_"Access granted. Opening gate ...")
-			--- npc_says(_"Gate status: OPEN")
+			-- Npc:says(_"Gate status: CLOSED", "NO_WAIT")
+			-- Npc:says(_"Access granted. Opening gate ...")
+			--- Npc:says(_"Gate status: OPEN")
 			-- change_obstacle_state("DSB-PCGate1", "opened")
 			-- hide("node0") show("node10")
 			--end
@@ -74,9 +75,9 @@ return {
 		id = "node10",
 		text = _"close gate",
 		code = function()
-			npc_says(_"Gate status: OPEN", "NO_WAIT")
-			npc_says(_"Access granted. Closing gate ...")
-			npc_says(_"Gate status: CLOSED")
+			Npc:says(_"Gate status: OPEN", "NO_WAIT")
+			Npc:says(_"Access granted. Closing gate ...")
+			Npc:says(_"Gate status: CLOSED")
 			change_obstacle_state("DSB-PCGate1", "closed")
 			cli_says(DSB_PowerControlGate1_prompt, "NO_WAIT")
 			hide("node10") show("node0")
@@ -86,8 +87,8 @@ return {
 		id = "node99",
 		text = _"logout",
 		code = function()
-			npc_says(_"Exiting", "NO_WAIT")
-			npc_says_random(_"Have a nice day.",
+			Npc:says(_"Exiting", "NO_WAIT")
+			Npc:says_random(_"Have a nice day.",
 							_"Have a wonderful day.",
 							_"We hope your day will be most productive.")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")

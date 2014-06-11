@@ -21,6 +21,7 @@ PERSONALITY = { "Trapped", "Technical" },
 BACKSTORY = "$$NAME$$ is a machinist forced to work for the bots in the Mega Systems Factory."
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -31,7 +32,7 @@ return {
 	EveryTime = function()
 		if (Tux:has_met("Jennifer")) then
 			Tux:says(_"Hello")
-			npc_says(_"Welcome back.")
+			Npc:says(_"Welcome back.")
 		end
 
 		if (Tux:has_item("Toolbox")) then
@@ -44,11 +45,11 @@ return {
 		id = "node1",
 		text = _"Hello!",
 		code = function()
-			npc_says(_"Hello. I'm Jennifer.")
+			Npc:says(_"Hello. I'm Jennifer.")
 			--; TRANSLATORS: %s=Tux:get_player_name()
 			Tux:says(_"I'm %s.", Tux:get_player_name())
 			Tux:says(_"What are you doing here?")
-			npc_says(_"I'm a machinist, working here, repairing bots and stuff like this.")
+			Npc:says(_"I'm a machinist, working here, repairing bots and stuff like this.")
 			hide("node1") show("node2", "node3")
 		end,
 	},
@@ -56,12 +57,12 @@ return {
 		id = "node2",
 		text = _"You don't look very busy.",
 		code = function()
-			npc_says(_"Well, yes.")
-			npc_says(_"Someone thought he had to tidy up the space...", "NO_WAIT")
-			npc_says(_"...and now I cannot find my equipment anymore, what an idiot!")
-			npc_says(_"I'm especially searching for my toolbox.")
+			Npc:says(_"Well, yes.")
+			Npc:says(_"Someone thought he had to tidy up the space...", "NO_WAIT")
+			Npc:says(_"...and now I cannot find my equipment anymore, what an idiot!")
+			Npc:says(_"I'm especially searching for my toolbox.")
 			Tux:says(_"Okay, I will keep my eyes open if I see some toolbox.")
-			npc_says(_"Thank you.")
+			Npc:says(_"Thank you.")
 			Tux:add_quest("Jennifer's Toolbox", "Someone rearranged equipment at Jennifers workshop, she does not find her Toolbox anymore. I promised to keep my eyes open for it.")
 			hide("node2")
 		end,
@@ -70,8 +71,8 @@ return {
 		id = "node3",
 		text = _"You are repairing these bots?!",
 		code = function()
-			npc_says(_"Uhm yes, that's my job here.")
-			npc_says(_"...")
+			Npc:says(_"Uhm yes, that's my job here.")
+			Npc:says(_"...")
 			hide("node3") show("node4")
 		end,
 	},
@@ -81,14 +82,14 @@ return {
 		code = function()
 			Tux:says(_"The bots should have killed you immediately.")
 			Tux:says(_"It's hell in here for me and you don't seem to be even armed.")
-			npc_says(_"Well...")
-			npc_says(_"The workers here get special chips implanted.", "NO_WAIT")
+			Npc:says(_"Well...")
+			Npc:says(_"The workers here get special chips implanted.", "NO_WAIT")
 			Tux:says(_"Ew.", "NO_WAIT")
-			npc_says(_"So the bots can identify us as 'friendly' and won't rip us apart.")
+			Npc:says(_"So the bots can identify us as 'friendly' and won't rip us apart.")
 			Tux:says(_"Uh.")
 			Tux:says(_"Is there any way for me to get such a chip?")
-			npc_says(_"I don't think you will be able to get one. You don't look very human-like.")
-			npc_says(_"How did you get in here anyway?")
+			Npc:says(_"I don't think you will be able to get one. You don't look very human-like.")
+			Npc:says(_"How did you get in here anyway?")
 			hide("node4") show("node5", "node6", "node7")
 		end,
 	},
@@ -96,7 +97,7 @@ return {
 		id = "node5",
 		text = _"That's a long story...",
 		code = function()
-			npc_says(_"Mh well ok.")
+			Npc:says(_"Mh well ok.")
 			hide("node5", "node6", "node7")
 		end,
 	},
@@ -104,7 +105,7 @@ return {
 		id = "node6",
 		text = _"I walked in through the front door.",
 		code = function()
-			npc_says(_"Heh. I see.")
+			Npc:says(_"Heh. I see.")
 			hide("node5", "node6", "node7")
 		end,
 	},
@@ -112,7 +113,7 @@ return {
 		id = "node7",
 		text = _"This is none of your business.",
 		code = function()
-			npc_says(_"If you say so...")
+			Npc:says(_"If you say so...")
 			hide("node5", "node6", "node7")
 		end,
 	},
@@ -120,8 +121,8 @@ return {
 		id = "node10",
 		text = _"I think this is your toolbox?",
 		code = function()
-			npc_says(_"Oh yes, it is!", "NO_WAIT")
-			npc_says(_"Thank you very much!")
+			Npc:says(_"Oh yes, it is!", "NO_WAIT")
+			Npc:says(_"Thank you very much!")
 			Tux:end_quest("Jennifer's Toolbox", _"I found the Toolbox and returned it to her") -- we may want to have her repair all of tux' items at some point
 			Tux:del_item("Toolbox", 1)
 			hide("node10")
@@ -131,7 +132,7 @@ return {
 		id = "node99",
 		text = _"See you later.",
 		code = function()
-			npc_says_random(_"See you later.",
+			Npc:says_random(_"See you later.",
 							_"Bye.")
 			end_dialog()
 		end,

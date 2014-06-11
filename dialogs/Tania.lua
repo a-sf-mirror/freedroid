@@ -37,6 +37,7 @@ RELATIONSHIP = {
 }
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -48,9 +49,9 @@ return {
 		branch_to_pendragon = false
 		show("node90")
 		if (Koan_murdered) then
-			npc_says(_"You just killed him!")
-			npc_says(_"How could you?")
-			npc_says(_"You murderer!")
+			Npc:says(_"You just killed him!")
+			Npc:says(_"How could you?")
+			Npc:says(_"You murderer!")
 			npc_faction("crazy", _"Tania - Avenging Koan")
 			end_dialog()
 		end
@@ -58,7 +59,7 @@ return {
 		if (Tux:has_quest("Tania's Escape")) then
 			hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node10", "node11", "node12", "node13", "node14", "node17", "node18", "node19", "node90")
 			if (not Tania_follow_tux) then
-				npc_says_random(_"I long to see the surface.",
+				Npc:says_random(_"I long to see the surface.",
 								_"You are the most interesting hallucination yet.")
 				show("node90")
 				if (not SACD_gunsoff) then --Guns are still on
@@ -72,17 +73,17 @@ return {
 					show("node40", "node41")
 				end
 			elseif (not Tania_surface) then --Tania is following you, but still Underground
-				npc_says(_"I can't wait to leave this place.")
+				Npc:says(_"I can't wait to leave this place.")
 				show("node91")
 			elseif (not Tania_stopped_by_Pendragon) then --in the Western Desert
 				if (not Tania_discussed_surface) then
 					Tania_discussed_surface = true
-					npc_says(_"It is so very bright and hot out here.") --thirsty dialog
+					Npc:says(_"It is so very bright and hot out here.") --thirsty dialog
 					show("node45", "node46", "node47")
-				elseif (npc_damage_amount() > 10) then --skip to injury dialog
+				elseif (Npc:get_damage() > 10) then --skip to injury dialog
 					next("node55")
 				else
-					npc_says_random(_"Are we there yet?",
+					Npc:says_random(_"Are we there yet?",
 									_"How much longer?")
 				end
 				show("node92")
@@ -92,26 +93,26 @@ return {
 				if (Tania_stopped_by_Pendragon) then
 					Tania_stopped_by_Pendragon = false
 					Tux:update_quest("Tania's Escape", _"Pendragon just stopped Tania and I at the town gate. Apparently he won't let her in, unless Spencer gives the go-ahead.")
-					npc_says(_"It is OK. I'll wait here at the gate.")
+					Npc:says(_"It is OK. I'll wait here at the gate.")
 					end_dialog()
 				end
 				show("node93")
 			elseif (not Tux:done_quest("Tania's Escape")) then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar)
-				npc_says(_"What is the news?")
+				Npc:says(_"What is the news?")
 				Tux:says(_"I talked to Spencer, and he said you were welcome to enter the town.")
-				npc_says(_"That is great news!")
+				Npc:says(_"That is great news!")
 				if (Spencer_Tania_sent_to_DocMoore) then
 					Tux:says(_"He said you must first get checked out by Doc Moore though.")
-					set_bot_destination("DocPatient-Enter")
+					Npc:set_destination("DocPatient-Enter")
 				else --DocMoore is Dead!
 					Tux:says(_"He said you are free to go where you like.")
-					set_bot_destination("BarPatron-Enter")
+					Npc:set_destination("BarPatron-Enter")
 					Tania_at_Ewalds_Bar = true
 				end
 				Tux:end_quest("Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
 				if (difficulty("hard")) and
 				   (not Tania_mapper_given == true) then
-					npc_says(_"I'm so glad that I am finally here, take this.")
+					Npc:says(_"I'm so glad that I am finally here, take this.")
 					Tux:add_item("Source Book of Network Mapper")
 					Tania_mapper_given = true
 				end
@@ -120,9 +121,9 @@ return {
 				if (not Tania_DocMoore_cleared) and
 				   (not Tania_set_free) then --send to Bar
 					Tania_DocMoore_cleared = true
-					heal_npc()
-					npc_says(_"I have good news: the doctor says I'm healthy!")
-					npc_says(_"Where should I go?")
+					Npc:heal()
+					Npc:says(_"I have good news: the doctor says I'm healthy!")
+					Npc:says(_"Where should I go?")
 					if (Tux:done_quest("Anything but the army snacks, please!")) then
 						show("node70")
 					else
@@ -146,7 +147,7 @@ return {
 		id = "node0",
 		text = _"Um, hi.",
 		code = function()
-			npc_says(_"Oh! It happened! I have been waiting for you for 3226 hours!") --@TODO use gametime (hours since game started) instead of 3226 hours ? 
+			Npc:says(_"Oh! It happened! I have been waiting for you for 3226 hours!") --@TODO use gametime (hours since game started) instead of 3226 hours ?
 			hide("node0") show("node1", "node3", "node14", "node19")
 		end,
 	},
@@ -154,7 +155,7 @@ return {
 		id = "node1",
 		text = _"You knew I would come?",
 		code = function()
-			npc_says(_"Of course, my little imaginary friend!")
+			Npc:says(_"Of course, my little imaginary friend!")
 			hide("node1") show("node2", "node5")
 		end,
 	},
@@ -162,10 +163,10 @@ return {
 		id = "node2",
 		text = _"Imaginary?! I am as real as you are.",
 		code = function()
-			npc_says(_"This place is locked. Hermetically sealed and guarded by bots. So you can't possibly be anything more than the product of my imagination.")
+			Npc:says(_"This place is locked. Hermetically sealed and guarded by bots. So you can't possibly be anything more than the product of my imagination.")
 			Tux:says(_"But who are you?")
-			npc_says(_"A figment of my imagination should know my name: Tania.")
-			set_bot_name("Tania - lonely scientist")
+			Npc:says(_"A figment of my imagination should know my name: Tania.")
+			Npc:set_name("Tania - lonely scientist")
 			hide("node2") show("node12")
 		end,
 	},
@@ -173,7 +174,7 @@ return {
 		id = "node3",
 		text = _"Where am I?",
 		code = function()
-			npc_says(_"In a prison, a luxurious prison. I am feeling quite lonely, as you can see. Big room, plenty of food, a waterfall behind the window...")
+			Npc:says(_"In a prison, a luxurious prison. I am feeling quite lonely, as you can see. Big room, plenty of food, a waterfall behind the window...")
 			hide("node3") show("node4", "node6")
 		end,
 	},
@@ -181,7 +182,7 @@ return {
 		id = "node4",
 		text = _"All I see through the window are ray emitters. And we are below ground level..",
 		code = function()
-			npc_says(_"Yes, I know. But I so badly want to see sun, rivers, trees... there definitely is waterfall behind them!")
+			Npc:says(_"Yes, I know. But I so badly want to see sun, rivers, trees... there definitely is waterfall behind them!")
 			hide("node4")
 		end,
 	},
@@ -189,7 +190,7 @@ return {
 		id = "node5",
 		text = _"It is dark here.",
 		code = function()
-			npc_says(_"The main power supply is down, so only the emergency lights work. Peter tried to switch it back on, but he didn't succeed.")
+			Npc:says(_"The main power supply is down, so only the emergency lights work. Peter tried to switch it back on, but he didn't succeed.")
 			hide("node5")
 		end,
 	},
@@ -197,7 +198,7 @@ return {
 		id = "node6",
 		text = _"This place doesn't look like a prison.",
 		code = function()
-			npc_says(_"In the past it was a secret lab. You heard about those strength pills? They were invented here. Other pills too, but I was working on the strength ones.")
+			Npc:says(_"In the past it was a secret lab. You heard about those strength pills? They were invented here. Other pills too, but I was working on the strength ones.")
 			hide("node6") show("node7", "node8")
 		end,
 	},
@@ -205,13 +206,13 @@ return {
 		id = "node7",
 		text = _"Can you give me some pills then?",
 		code = function()
-			npc_says(_"No, Peter ate them all. That killed him.")
-			npc_says(_"*cries*")
+			Npc:says(_"No, Peter ate them all. That killed him.")
+			Npc:says(_"*cries*")
 			Tux:says(_"They say that strength pills are absolutely safe!")
-			npc_says(_"They are like money. Having money is good, but if you have too much, you can decide that you can do anything.")
-			npc_says(_"Peter became not very strong, but very-very-very strong. He thought he could make an exit with his bare hands.")
-			npc_says(_"*cries*")
-			npc_says(_"If you go further down the corridor, you will find debris and a big stone. That is his grave.")
+			Npc:says(_"They are like money. Having money is good, but if you have too much, you can decide that you can do anything.")
+			Npc:says(_"Peter became not very strong, but very-very-very strong. He thought he could make an exit with his bare hands.")
+			Npc:says(_"*cries*")
+			Npc:says(_"If you go further down the corridor, you will find debris and a big stone. That is his grave.")
 			hide("node7") show("node10", "node11")
 		end,
 	},
@@ -219,8 +220,8 @@ return {
 		id = "node8",
 		text = _"So you are a biologist? Could you heal me?",
 		code = function()
-			npc_says(_"That would be something different from what I've done in the last months at least. Some entertainment.")
-			npc_says_random(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.",
+			Npc:says(_"That would be something different from what I've done in the last months at least. Some entertainment.")
+			Npc:says_random(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.",
 							_"You are now completely healed. You should take better care of yourself.")
 			Tux:heal()
 			Tania_heal_node8 = true
@@ -231,7 +232,7 @@ return {
 		id = "node10",
 		text = _"You loved him?",
 		code = function()
-			npc_says(_"I still do.")
+			Npc:says(_"I still do.")
 			hide("node10")
 		end,
 	},
@@ -239,7 +240,7 @@ return {
 		id = "node11",
 		text = _"But why not go out through the door?",
 		code = function()
-			npc_says(_"It is locked and very reliable. Even a tank would not be able to smash it! And if a door was broken, SADDs would attack, that's their program.")
+			Npc:says(_"It is locked and very reliable. Even a tank would not be able to smash it! And if a door was broken, SADDs would attack, that's their program.")
 			hide("node11") show("node18")
 		end,
 	},
@@ -247,8 +248,8 @@ return {
 		id = "node12",
 		text = _"Autoguns have made a hole in the wall. I came through this hole.",
 		code = function()
-			npc_says(_"Do you mean I can go out to the surface?!")
-			npc_says(_"Oh god! I - I told Peter that he chose the wrong place, but he was so stubborn!")
+			Npc:says(_"Do you mean I can go out to the surface?!")
+			Npc:says(_"Oh god! I - I told Peter that he chose the wrong place, but he was so stubborn!")
 			hide("node12") show("node13")
 		end,
 	},
@@ -256,7 +257,7 @@ return {
 		id = "node13",
 		text = _"Yes, you can get to the surface. But the guns are still on.",
 		code = function()
-			npc_says(_"All hope is lost! I'm a scientist, not a warrior.")
+			Npc:says(_"All hope is lost! I'm a scientist, not a warrior.")
 			hide("node13") show("node15")
 		end,
 	},
@@ -264,7 +265,7 @@ return {
 		id = "node14",
 		text = _"It is strange to see a girl in such a beautiful dress here.",
 		code = function()
-			npc_says(_"I'm going to spend all my life here! So forgive me some little indulgences.")
+			Npc:says(_"I'm going to spend all my life here! So forgive me some little indulgences.")
 			hide("node14")
 		end,
 	},
@@ -272,7 +273,7 @@ return {
 		id = "node15",
 		text = _"Maybe is it possible to disable the guns?",
 		code = function()
-			npc_says(_"Theoretically yes, but in practice I'm not sure you would be able to do that.")
+			Npc:says(_"Theoretically yes, but in practice I'm not sure you would be able to do that.")
 			hide("node15") show("node16")
 		end,
 	},
@@ -280,7 +281,7 @@ return {
 		id = "node16",
 		text = _"How can I disable the guns?",
 		code = function()
-			npc_says(_"Somewhere in a distant part of the lab should be an SACD - Secret Area Control Datacenter. It controls all the defense systems in the base. If you manage to get to it, you would be able to control the base. However, it's very hard to find and get to the SACD.")
+			Npc:says(_"Somewhere in a distant part of the lab should be an SACD - Secret Area Control Datacenter. It controls all the defense systems in the base. If you manage to get to it, you would be able to control the base. However, it's very hard to find and get to the SACD.")
 			hide("node16") show("node17")
 		end,
 	},
@@ -288,9 +289,9 @@ return {
 		id = "node17",
 		text = _"I will disable the guns for you.",
 		code = function()
-			npc_says(_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels.")
+			Npc:says(_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels.")
 			Tux:add_quest("Tania's Escape", _"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
-			npc_says(_"It's dangerous to go alone! Take this!")
+			Npc:says(_"It's dangerous to go alone! Take this!")
 			if (difficulty("easy")) and
 			   (not Tania_mapper_given == true) then
 				Tux:add_item("Source Book of Network Mapper")
@@ -304,7 +305,7 @@ return {
 		id = "node18",
 		text = _"Why not just open them? There should be a way of unlocking the base.",
 		code = function()
-			npc_says(_"To open the door you need to know the password. Only the commander of the area and his deputy knew it. The commander was killed by bots as soon as the assault started, and the deputy was in town, I don't know what happened to him.")
+			Npc:says(_"To open the door you need to know the password. Only the commander of the area and his deputy knew it. The commander was killed by bots as soon as the assault started, and the deputy was in town, I don't know what happened to him.")
 			hide("node18")
 		end,
 	},
@@ -312,7 +313,7 @@ return {
 		id = "node19",
 		text = _"Carpets, sofa, bookshelves. Where did you get all this?",
 		code = function()
-			npc_says(_"Peter did all he could to make this room comfortable. The sofa and armchair are from the commanders cabinet, the books are from the lounge...")
+			Npc:says(_"Peter did all he could to make this room comfortable. The sofa and armchair are from the commanders cabinet, the books are from the lounge...")
 			hide("node19")
 		end,
 	},
@@ -320,8 +321,8 @@ return {
 		id = "node27",
 		text = _"The sentry guns are off. You can go now!",
 		code = function()
-			npc_says(_"Thanks, thanks a lot! Now I will be able to see the sun, trees, rivers... I missed those so much!")
-			npc_says(_"I hope these books will help you.")
+			Npc:says(_"Thanks, thanks a lot! Now I will be able to see the sun, trees, rivers... I missed those so much!")
+			Npc:says(_"I hope these books will help you.")
 			display_big_message(_"Tania is now free!")
 			Tux:add_xp(1500)
 			if (difficulty("normal")) and
@@ -333,7 +334,7 @@ return {
 			Tux:add_item("Source Book of Sanctuary",1)
 			Tux:update_quest("Tania's Escape", _"Tania is free now, I got some books as reward.")
 			Tux:says(_"You could always come back with me to the town. There are people there.")
-			npc_says(_"I'd love to, but you'll have to escort me.")
+			Npc:says(_"I'd love to, but you'll have to escort me.")
 			Tania_guns_off = true
 			hide("node27") show("node40", "node41")
 		end,
@@ -342,7 +343,7 @@ return {
 		id = "node28",
 		text = _"Where can I find that SACD?",
 		code = function()
-			npc_says(_"To the right from the entrance of the area, there is a hall. In the south part of this hall you will find a triple hermetic door. The control center is behind that door. But it is locked, so you will have to find another way there. The cable collectors may help you.")
+			Npc:says(_"To the right from the entrance of the area, there is a hall. In the south part of this hall you will find a triple hermetic door. The control center is behind that door. But it is locked, so you will have to find another way there. The cable collectors may help you.")
 			hide("node28")
 		end,
 	},
@@ -359,7 +360,7 @@ return {
 		code = function()
 			Tania_follow_tux = true
 			Tux:update_quest("Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
-			set_bot_state("follow_tux")
+			Npc:set_state("follow_tux")
 			hide("node8", "node40", "node41") next("node91")
 		end,
 	},
@@ -381,8 +382,8 @@ return {
 		id = "node47",
 		text = _"It must be hard adjusting to the bright sunlight.",
 		code = function()
-			npc_says(_"I was underground for so long.")
-			npc_says(_"It is all so bright on my eyes.")
+			Npc:says(_"I was underground for so long.")
+			Npc:says(_"It is all so bright on my eyes.")
 			hide("node45", "node46", "node47") next("node48")
 		end,
 	},
@@ -409,7 +410,7 @@ return {
 				show("node52")
 			end
 			if (number_of_liquid_items > 0) then
-				npc_says(_"I hope we get there soon. I'm very thirsty.")
+				Npc:says(_"I hope we get there soon. I'm very thirsty.")
 			else
 				next("node54")
 			end
@@ -420,9 +421,9 @@ return {
 		id = "node49",
 		text = _"Would you like some bottled ice?",
 		code = function()
-			npc_says(_"Thank you very much.")
-			npc_says(_"I feel very refreshed!")
-			heal_npc()
+			Npc:says(_"Thank you very much.")
+			Npc:says(_"I feel very refreshed!")
+			Npc:heal()
 			Tux:del_item_backpack("Bottled ice")
 			Tux:update_quest("Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some bottled ice, and she looked much more healthy.")
 			hide("node49", "node50", "node51", "node52", "node53")
@@ -432,13 +433,13 @@ return {
 		id = "node50",
 		text = _"I have some industrial coolant you could have.",
 		code = function()
-			npc_says(_"I can't drink this.")
+			Npc:says(_"I can't drink this.")
 			if Tux:has_met("Ewald") then
 				Tux:says(_"I've seen the town bartender put it in drinks.")
-				npc_says(_"I guess I'll give it a try then.")
+				Npc:says(_"I guess I'll give it a try then.")
 				Tux:del_item_backpack("Industrial coolant")
-				heal_npc()
-				npc_says(_"I feel very cold, but better.") --TODO: freeze her here
+				Npc:heal()
+				Npc:says(_"I feel very cold, but better.") --TODO: freeze her here
 				Tux:update_quest("Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some Industrial coolant. At first she was hesitant, but she tried it.")
 				hide("node49", "node50", "node52", "node53")
 			else
@@ -451,7 +452,7 @@ return {
 		id = "node51",
 		text = _"Can I offer you some liquid nitrogen?",
 		code = function()
-			npc_says(_"I can't drink this.")
+			Npc:says(_"I can't drink this.")
 			next("node54") hide("node51")
 		end,
 	},
@@ -459,9 +460,9 @@ return {
 		id = "node52",
 		text = _"You could have a bottle of Barf's Energy Drink if you are thirsty?",
 		code = function()
-			npc_says(_"Thank you very much.")
-			npc_says(_"I feel very energetic!")
-			heal_npc()
+			Npc:says(_"Thank you very much.")
+			Npc:says(_"I feel very energetic!")
+			Npc:heal()
 			Tux:del_item_backpack("Barf's Energy Drink")
 			Tux:update_quest("Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her a bottle of Barf's Energy Drink. After downing it in a couple seconds, she looked much more energetic!")
 			hide("node49", "node50", "node51", "node52", "node53")
@@ -472,9 +473,9 @@ return {
 		id = "node53",
 		text = _"Sorry, I have nothing to offer you.",
 		code = function()
-			npc_says(_"I feel very ill.")
+			Npc:says(_"I feel very ill.")
 			Tux:update_quest("Tania's Escape", _"Tania wasn't prepared for the desert heat, but I decided not to share any of my liquids with her.")
-			drop_dead()
+			Npc:drop_dead()
 			hide("node49", "node50", "node51", "node52", "node53")
 		end,
 	},
@@ -485,10 +486,10 @@ return {
 		code = function()
 			number_of_liquid_items = number_of_liquid_items - 1
 			if (number_of_liquid_items < 1) then
-				if (npc_damage_amount() > 10) then
+				if (Npc:get_damage() > 10) then
 					next("node55")
 				else
-					npc_says(_"I feel a little faint, but I think I will survive.")
+					Npc:says(_"I feel a little faint, but I think I will survive.")
 				end
 				hide("node53")
 			end
@@ -500,14 +501,14 @@ return {
 		echo_text = false,
 		code = function()
 			injured_level = 0
-			if (npc_damage_amount() > 10) then
-				npc_says(_"I am injured!")
+			if (Npc:get_damage() > 10) then
+				Npc:says(_"I am injured!")
 				injured_level = 1
-			elseif (npc_damage_amount() > 40) then
-				npc_says(_"I am badly injured!")
+			elseif (Npc:get_damage() > 40) then
+				Npc:says(_"I am badly injured!")
 				injured_level = 2
-			elseif (npc_damage_amount() > 60) then
-				npc_says(_"I am seriously injured!")
+			elseif (Npc:get_damage() > 60) then
+				Npc:says(_"I am seriously injured!")
 				injured_level = 3
 			end
 
@@ -529,7 +530,7 @@ return {
 		id = "node56",
 		text = _"There is nothing I can do about your injuries right now.",
 		code = function()
-			npc_says(_"I hope we get to the town soon.")
+			Npc:says(_"I hope we get to the town soon.")
 			hide("node56", "node57", "node58", "node59")
 		end,
 	},
@@ -537,9 +538,9 @@ return {
 		id = "node57",
 		text = _"Here, take this Diet supplement.",
 		code = function()
-			npc_says(_"I feel better now.")
+			Npc:says(_"I feel better now.")
 			Tux:del_item_backpack("Diet supplement")
-			heal_npc()
+			Npc:heal()
 			hide("node56", "node57", "node58", "node59")
 		end,
 	},
@@ -547,9 +548,9 @@ return {
 		id = "node58",
 		text = _"I'm proscribing you some antibiotics.",
 		code = function()
-			npc_says(_"I feel much better.")
+			Npc:says(_"I feel much better.")
 			Tux:del_item_backpack("Antibiotic")
-			heal_npc()
+			Npc:heal()
 			hide("node56", "node57", "node58", "node59")
 		end,
 	},
@@ -557,9 +558,9 @@ return {
 		id = "node59",
 		text = _"I have a Doc-in-a-can. It should heal you right up.",
 		code = function()
-			npc_says(_"I feel fit as new!")
+			Npc:says(_"I feel fit as new!")
 			Tux:del_item_backpack("Doc-in-a-can")
-			heal_npc()
+			Npc:heal()
 			hide("node56", "node57", "node58", "node59")
 		end,
 	},
@@ -567,9 +568,9 @@ return {
 		id = "node70",
 		text = _"I think you would enjoy some of Michelangelo's cooking at the restaurant.",
 		code = function()
-			set_bot_destination("BarPatron-Enter")
+			Npc:set_destination("BarPatron-Enter")
 			Tania_at_Ewalds_Bar = true
-			npc_says(_"It has been so long since I've had a nice meal.")
+			Npc:says(_"It has been so long since I've had a nice meal.")
 			hide("node70")
 		end,
 	},
@@ -577,10 +578,10 @@ return {
 		id = "node71",
 		text = _"You might try the bar. But stay away from the food. It is horrible.",
 		code = function()
-			set_bot_destination("BarPatron-Enter")
+			Npc:set_destination("BarPatron-Enter")
 			Tania_at_Ewalds_Bar = true
-			npc_says(_"I really miss good food, especially lemon meringue pie.")
-			npc_says(_"Oh well.")
+			Npc:says(_"I really miss good food, especially lemon meringue pie.")
+			Npc:says(_"Oh well.")
 			hide("node71")
 		end,
 	},
@@ -642,18 +643,18 @@ return {
 					Tux:says(_"Follow me to the Surface!")
 				elseif (not Tania_stopped_by_Pendragon) then --"Tania's Escape" Quest (Western Desert)
 					Tux:says(_"Follow me to the Town!")
-					npc_says(_"Lead on, my little penguin.")
+					Npc:says(_"Lead on, my little penguin.")
 				elseif (not Spencer_Tania_sent_to_DocMoore) then --"Tania's Escape" Quest (Western Town Gate)
 					Tux:says(_"Wait here.")
-					npc_says(_"OK. But please, come back soon.")
+					Npc:says(_"OK. But please, come back soon.")
 				elseif (Spencer_Tania_sent_to_DocMoore) then --"Tania's Escape" Quest (Tania free in the town somewhere)
 					Tux:says(_"See you later.")
-					npc_says_random(_"Please be safe!",
+					Npc:says_random(_"Please be safe!",
 									_"Thanks again.",
 									_"Please come back again, my little penguin.")
 				end
 			else
-				npc_says_random(_"That's OK. But please, please, come back. I'm so lonely.",
+				Npc:says_random(_"That's OK. But please, please, come back. I'm so lonely.",
 								_"Please come back again and get me out of here.")
 			end
 			end_dialog()

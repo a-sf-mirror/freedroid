@@ -22,6 +22,7 @@ PURPOSE = "$$NAME$$ will sell Tux more capable weapons and armor after Tux has j
 BACKSTORY = "$$NAME$$ is the Red Guard\'s Quartermaster/Storesman",
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -37,7 +38,7 @@ return {
 		id = "node0",
 		text = _"Hi! I'm new here.",
 		code = function()
-			npc_says(_"A newcomer! Great! We can always use more people. Welcome to the Red Guard! I'm Lukas. I'm in charge of our little armory here.")
+			Npc:says(_"A newcomer! Great! We can always use more people. Welcome to the Red Guard! I'm Lukas. I'm in charge of our little armory here.")
 			hide("node0") show("node1", "node2")
 		end,
 	},
@@ -45,9 +46,9 @@ return {
 		id = "node1",
 		text = _"Spencer said you'd be able to provide me with better armor and equipment.",
 		code = function()
-			npc_says(_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor.")
-			npc_says(_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing, though we also trade guns and some ammo.")
-			npc_says_random(_"Now, what will it be?",
+			Npc:says(_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor.")
+			Npc:says(_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing, though we also trade guns and some ammo.")
+			Npc:says_random(_"Now, what will it be?",
 							_"So, what do you want to buy?")
 			trade_with("Lukas")
 			show("node3")
@@ -57,7 +58,7 @@ return {
 		id = "node2",
 		text = _"What do you do all day here at the armory?",
 		code = function()
-			npc_says(_"Oh, there's always something to do. Don't worry. I'm pretty occupied keeping the place in order.")
+			Npc:says(_"Oh, there's always something to do. Don't worry. I'm pretty occupied keeping the place in order.")
 			hide("node2")
 		end,
 	},
@@ -65,12 +66,12 @@ return {
 		id = "node3",
 		text = _"I'd like to buy an exterminator.",
 		code = function()
-			npc_says(_"Haha, good one.")
-			npc_says(_"Sorry, they are not for sale.")
+			Npc:says(_"Haha, good one.")
+			Npc:says(_"Sorry, they are not for sale.")
 			Tux:says(_"I'll get one for free?")
-			npc_says(_"You are the funniest Linarian I've ever seen.")
-			npc_says(_"If the only one.")
-			npc_says(_"Now go, kill some bots.")
+			Npc:says(_"You are the funniest Linarian I've ever seen.")
+			Npc:says(_"If the only one.")
+			Npc:says(_"Now go, kill some bots.")
 			hide("node3")
 		end,
 	},

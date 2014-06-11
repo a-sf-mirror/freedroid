@@ -26,23 +26,24 @@ RELATIONSHIP = {
 }
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
 	EveryTime = function()
-		set_rush_tux(0)
+		Npc:set_rush_tux(false)
 		if (Kevin_entering_from_back) then
 			end_dialog()
 		elseif (KevinGuard_door_open) then
 			Tux:says(_"It's me.")
 			change_obstacle_state("KevinsDoor", "opened")
-			npc_says(_"[b]Identity confirmed. You may pass.[/b]")
+			Npc:says(_"[b]Identity confirmed. You may pass.[/b]")
 			show("node99")
 			end_dialog()
 		else
-			npc_says(_"[b]Intruder, lower your weapons and identify yourself or face immediate termination.[/b]")
-			npc_says(_"[b]Any attempts to enter without authorization will be punished.[/b]")
-			npc_says(_"[b]I will not let you injure my master.[/b]")
+			Npc:says(_"[b]Intruder, lower your weapons and identify yourself or face immediate termination.[/b]")
+			Npc:says(_"[b]Any attempts to enter without authorization will be punished.[/b]")
+			Npc:says(_"[b]I will not let you injure my master.[/b]")
 			hide("node99") show("node2", "node8")
 		end
 	end,
@@ -51,7 +52,7 @@ return {
 		id = "node1",
 		text = _"I must talk to your master.",
 		code = function()
-			npc_says(_"[b]State your reason.[/b]")
+			Npc:says(_"[b]State your reason.[/b]")
 			hide("node1", "node3", "node17") show("node5", "node6", "node7")
 		end,
 	},
@@ -59,7 +60,7 @@ return {
 		id = "node2",
 		text = _"Don't shoot! I come in peace.",
 		code = function()
-			npc_says(_"[b]State the purpose of your presence here.[/b]")
+			Npc:says(_"[b]State the purpose of your presence here.[/b]")
 			hide("node2", "node8") show("node1", "node3", "node17")
 		end,
 	},
@@ -67,9 +68,9 @@ return {
 		id = "node3",
 		text = _"I saw this building as I was walking by, and I decided to take a look inside.",
 		code = function()
-			npc_says(_"[b]Your reason is curiosity. Master Kevin likes curious people.[/b]")
-			set_bot_name("614 - Kevin's Guard")
-			npc_says(_"[b]You may pass.[/b]")
+			Npc:says(_"[b]Your reason is curiosity. Master Kevin likes curious people.[/b]")
+			Npc:set_name("614 - Kevin's Guard")
+			Npc:says(_"[b]You may pass.[/b]")
 			hide("node1", "node3", "node17") show("node4")
 		end,
 	},
@@ -86,7 +87,7 @@ return {
 		id = "node5",
 		text = _"Umm... His life is in grave danger. ",
 		code = function()
-			npc_says(_"[b]Error: Reason invalid.[/b]")
+			Npc:says(_"[b]Error: Reason invalid.[/b]")
 			hide("node5") show("node12")
 		end,
 	},
@@ -94,7 +95,7 @@ return {
 		id = "node6",
 		text = _"The people from the uhh... town want me to have a word with him. Yeah, that's it.",
 		code = function()
-			npc_says(_"[b]Error: Reason invalid.[/b]")
+			Npc:says(_"[b]Error: Reason invalid.[/b]")
 			hide("node6")
 		end,
 	},
@@ -102,9 +103,9 @@ return {
 		id = "node7",
 		text = _"I have some very valuable information. Your master might be interested in it.",
 		code = function()
-			npc_says(_"[b]Master Kevin will be pleased. You may pass.[/b]")
-			set_bot_name("614 - Kevin's Guard")
-			npc_says(_"[b]Door opening sequence initiated.[/b]")
+			Npc:says(_"[b]Master Kevin will be pleased. You may pass.[/b]")
+			Npc:set_name("614 - Kevin's Guard")
+			Npc:says(_"[b]Door opening sequence initiated.[/b]")
 			hide("node5", "node6", "node7", "node12", "node13", "node14", "node18", "node19", "node99") show("node4")
 		end,
 	},
@@ -112,9 +113,9 @@ return {
 		id = "node8",
 		text = _"Step aside, you stupid tin can!",
 		code = function()
-			npc_says(_"[b]You shall not pass. Activating disintegrator beam in ten seconds.[/b]")
-			npc_says(_"[b]Nine.[/b]")
-			npc_says(_"[b]Eight.[/b]")
+			Npc:says(_"[b]You shall not pass. Activating disintegrator beam in ten seconds.[/b]")
+			Npc:says(_"[b]Nine.[/b]")
+			Npc:says(_"[b]Eight.[/b]")
 			hide("node2", "node8") show("node9", "node10")
 		end,
 	},
@@ -122,8 +123,8 @@ return {
 		id = "node9",
 		text = _"Wait, that's not what I meant!",
 		code = function()
-			npc_says(_"[b]Seven.[/b]")
-			npc_says(_"[b]Six.[/b]")
+			Npc:says(_"[b]Seven.[/b]")
+			Npc:says(_"[b]Six.[/b]")
 			hide("node9", "node10") show("node99")
 		end,
 	},
@@ -131,8 +132,8 @@ return {
 		id = "node10",
 		text = _"I am not afraid of you.",
 		code = function()
-			npc_says(_"[b]Seven.[/b]")
-			npc_says(_"[b]Six.[/b]")
+			Npc:says(_"[b]Seven.[/b]")
+			Npc:says(_"[b]Six.[/b]")
 			hide("node9", "node10") show("node11")
 		end,
 	},
@@ -140,8 +141,8 @@ return {
 		id = "node11",
 		text = _"Wait, that's not what I meant!",
 		code = function()
-			npc_says(_"[b]Five.[/b]")
-			npc_says(_"[b]Four.[/b]")
+			Npc:says(_"[b]Five.[/b]")
+			Npc:says(_"[b]Four.[/b]")
 			hide("node11") show("node99")
 		end,
 	},
@@ -149,7 +150,7 @@ return {
 		id = "node12",
 		text = _"Enemies are approaching from every side!",
 		code = function()
-			npc_says(_"[b]Error: Reason invalid.[/b]")
+			Npc:says(_"[b]Error: Reason invalid.[/b]")
 			hide("node12") show("node13")
 		end,
 	},
@@ -157,7 +158,7 @@ return {
 		id = "node13",
 		text = _"We are surrounded! They will attack any second now!",
 		code = function()
-			npc_says(_"[b]Error: Reason invalid.[/b]")
+			Npc:says(_"[b]Error: Reason invalid.[/b]")
 			hide("node13") show("node14")
 		end,
 	},
@@ -165,7 +166,7 @@ return {
 		id = "node14",
 		text = _"Are you listening to me?",
 		code = function()
-			npc_says(_"[b]Error: Reason invalid.[/b]")
+			Npc:says(_"[b]Error: Reason invalid.[/b]")
 			hide("node14") show("node18")
 		end,
 	},
@@ -173,9 +174,9 @@ return {
 		id = "node17",
 		text = _"I do not have to tell you anything, bot.",
 		code = function()
-			npc_says(_"[b]Engaging aggression circuits. You shall be disintegrated in ten seconds.[/b]")
-			npc_says(_"[b]Nine.[/b]")
-			npc_says(_"[b]Eight.[/b]")
+			Npc:says(_"[b]Engaging aggression circuits. You shall be disintegrated in ten seconds.[/b]")
+			Npc:says(_"[b]Nine.[/b]")
+			Npc:says(_"[b]Eight.[/b]")
 			hide("node1", "node3", "node17") show("node9", "node10")
 		end,
 	},
@@ -183,7 +184,7 @@ return {
 		id = "node18",
 		text = _"I think I just found an error in your programming.",
 		code = function()
-			npc_says(_"[b]Error: Reason invalid.[/b]")
+			Npc:says(_"[b]Error: Reason invalid.[/b]")
 			hide("node18") show("node19")
 		end,
 	},
@@ -191,7 +192,7 @@ return {
 		id = "node19",
 		text = _"Thought so.",
 		code = function()
-			npc_says(_"[b]Error: Reason invalid.[/b]")
+			Npc:says(_"[b]Error: Reason invalid.[/b]")
 			hide("node19")
 		end,
 	},
@@ -200,8 +201,8 @@ return {
 		text = _"See you later, tin can.",
 		echo_text = false,
 		code = function()
-			npc_says(_"[b]EOT acknowledged. Connection closed.[/b]")
-			npc_says(_"[b]Goodbye.[/b]")
+			Npc:says(_"[b]EOT acknowledged. Connection closed.[/b]")
+			Npc:says(_"[b]Goodbye.[/b]")
 			end_dialog()
 		end,
 	},

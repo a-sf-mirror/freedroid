@@ -21,6 +21,7 @@ PERSONALITY = { "Robotic" },
 PURPOSE = "$$NAME$$ is used for debugging Aftertakeover features.",
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -70,19 +71,19 @@ return {
 			if (ControllableBot_response_is == "state") or
 			   (running_benchmark()) then
 				if not (running_benchmark()) then -- sucks but can't be helped currently afaik
-					set_bot_state(ControllableBot_response)
+					Npc:set_state(ControllableBot_response)
 				end
 				ControllableBot_try_again = false
 				end_dialog()
 			elseif (ControllableBot_response_is == "waypoint") or
 			       (running_benchmark()) then
-				set_bot_state("free")
-				set_bot_destination(ControllableBot_response)
+				Npc:set_state("free")
+				Npc:set_destination(ControllableBot_response)
 				ControllableBot_try_again = false
 				end_dialog()
 			else
-				npc_says("WARNING, '%s' not a vaild map label.", ControllableBot_response)
-				npc_says("Please retry.")
+				Npc:says("WARNING, '%s' not a vaild map label.", ControllableBot_response)
+				Npc:says("Please retry.")
 			end
 		end
 	end,

@@ -21,16 +21,17 @@ PERSONALITY = { "Elusive", "Obsessed", "Friendly" },
 BACKSTORY = "$$NAME$$ is a game programmer.",
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
 	FirstTime = function()
 		Tux:says(_"Hello!")
-		npc_says(_"Bonjour!")
+		Npc:says(_"Bonjour!")
 		--; TRANSLATORS: %s = Tux:get_player_name()
 		Tux:says(_"I'm %s, and who are you?", Tux:get_player_name())
-		npc_says(_"My name is Arthur.")
-		set_bot_name("Arthur")
+		Npc:says(_"My name is Arthur.")
+		Npc:set_name("Arthur")
 		show("node1")
 	end,
 
@@ -48,15 +49,15 @@ return {
 		id = "node1",
 		text = _"What are you doing here?",
 		code = function()
-			npc_says(_"I'm programming.")
+			Npc:says(_"I'm programming.")
 			Tux:says(_"Oh, interesting.")
 			Tux:says(_"And, mmh, what are working on?")
-			npc_says(_"My current project is a role playing game.")
-			npc_says(_"The main character will be a penguin which, well, has to save the world basically.")
+			Npc:says(_"My current project is a role playing game.")
+			Npc:says(_"The main character will be a penguin which, well, has to save the world basically.")
 			Tux:says(_"Oh, interesting! Tell me when you have it ready, I'd love to take a look at it.")
-			npc_says(_"It's going to be ready when it's going to be ready.")
+			Npc:says(_"It's going to be ready when it's going to be ready.")
 			Tux:says(_"Sure, take your time.")
-			set_bot_name("Arthur - Game developer")
+			Npc:set_name("Arthur - Game developer")
 			hide("node1")
 			Arthur_node_1 = "node2"
 		end,
@@ -66,8 +67,8 @@ return {
 		text = _"Hi Arthur, how is your game going?",
 		code = function()
 			Tux:says(_"Do you mind sharing any more details?")
-			npc_says(_"Hmm, there are still some parts to be finished.")
-			npc_says(_"Do you think there should be some kind of zombie apocalypse which the player will have to deal with?")
+			Npc:says(_"Hmm, there are still some parts to be finished.")
+			Npc:says(_"Do you think there should be some kind of zombie apocalypse which the player will have to deal with?")
 			Tux:says(_"Of course! Sounds cool!")
 			Arthur_node_1 = "node3"
 			hide("node2")
@@ -77,7 +78,7 @@ return {
 		id = "node3",
 		text = _"Hey, is the your game finished already?",
 		code = function()
-			npc_says(_"I'm doing the final polishing right now.")
+			Npc:says(_"I'm doing the final polishing right now.")
 			Tux:says(_"Ah ok.")
 			hide("node3")
 		end,
@@ -86,7 +87,7 @@ return {
 		id = "node99",
 		text = _"I have to go now.",
 		code = function()
-			npc_says_random(_"See you later.",
+			Npc:says_random(_"See you later.",
 				--; TRANSLATORS: Au revoir = See you later   in french
 				_"Au revoir.")
 			end_dialog()

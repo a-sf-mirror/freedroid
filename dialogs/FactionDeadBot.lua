@@ -20,6 +20,7 @@
 PURPOSE = "$$NAME$$ is a character used for Debug purposes"
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {

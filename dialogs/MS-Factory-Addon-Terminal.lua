@@ -17,6 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -30,20 +31,20 @@ return {
 		cli_says(_"Password : ", "NO_WAIT")
 		if (not has_ms_addon_password ) then
 			Tux:says("*******", "NO_WAIT")
-			npc_says(_"Incorrect password or username")
+			Npc:says(_"Incorrect password or username")
 			Tux:says(_"Mmmh...")
 			cli_says(_"Password : ", "NO_WAIT")
 			Tux:says("***********", "NO_WAIT")
-			npc_says(_"Incorrect password or username")
+			Npc:says(_"Incorrect password or username")
 			cli_says(_"Password : ", "NO_WAIT")
 			Tux:says("**", "NO_WAIT")
-			npc_says(_"Login succeeded!")
+			Npc:says(_"Login succeeded!")
 			Tux:says(_"Oh well....")
 		else
 			Tux:says("**", "NO_WAIT")
-			npc_says(_"Login succeeded!")
+			Npc:says(_"Login succeeded!")
 		end
-		npc_says(_"Last login from /dev/ttyS0 on Fri, 9 dec 2059.", "NO_WAIT")
+		Npc:says(_"Last login from /dev/ttyS0 on Fri, 9 dec 2059.", "NO_WAIT")
 		cli_says(terminal, "NO_WAIT")
 		has_ms_addon_password = true
 		show("node10", "node20", "node99")
@@ -69,8 +70,8 @@ return {
 		id = "node99",
 		text = _"logout",
 		code = function()
-			npc_says(_"Exiting", "NO_WAIT")
-			npc_says(_"M$ - What will be next?")
+			Npc:says(_"Exiting", "NO_WAIT")
+			Npc:says(_"M$ - What will be next?")
 			hide("node10", "node20")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()

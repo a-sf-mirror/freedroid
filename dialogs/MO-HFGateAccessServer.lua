@@ -17,6 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -46,15 +47,15 @@ return {
 			MO_HFGateAccessServer_skip_captcha = false
 		end
 		if (captcha ~= response) then
-			npc_says(_"Non-human detected. Administering paralyzing shock.")
-			npc_says(_"NOTE: If you are a human, try again, and make sure you enter a word and not digits.")
+			Npc:says(_"Non-human detected. Administering paralyzing shock.")
+			Npc:says(_"NOTE: If you are a human, try again, and make sure you enter a word and not digits.")
 			freeze_tux_npc(7)
 			Tux:hurt(20)
 			Tux:heat(20)
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()
 		else
-			npc_says(_"Welcome to MS gate access server for region #54648.")
+			Npc:says(_"Welcome to MS gate access server for region #54648.")
 			if (not MO_HFGateAccessServer_Spencer_chat) then
 				Tux:says(_"WHAT?!")
 				Tux:update_quest("Propagating a faulty firmware update", _"The firmware server seems to actually be an access server to a gate. What am I supposed to do now?")
@@ -70,7 +71,7 @@ return {
 				play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 				end_dialog()
 			else
-				npc_says(_"Please select action")
+				Npc:says(_"Please select action")
 			end
 			show("node1", "node99")
 		end
@@ -83,18 +84,18 @@ return {
 		code = function()
 			Tux:says(_"status", "NO_WAIT")
 			if (cmp_obstacle_state("HF-Gate-outer", "opened")) then
-				npc_says(_"Gate 1 status: OPENED", "NO_WAIT")
+				Npc:says(_"Gate 1 status: OPENED", "NO_WAIT")
 			else
-				npc_says(_"Gate 1 status: CLOSED", "NO_WAIT")
+				Npc:says(_"Gate 1 status: CLOSED", "NO_WAIT")
 				if (not MO_HFGateAccessServer_hacked) then
 					show("node2")
 				end
 			end
 
 			if (cmp_obstacle_state("HF-Gate-inner", "opened")) then
-				npc_says(_"Gate 2 status: OPENED", "NO_WAIT")
+				Npc:says(_"Gate 2 status: OPENED", "NO_WAIT")
 			else
-				npc_says(_"Gate 2 status: CLOSED", "NO_WAIT")
+				Npc:says(_"Gate 2 status: CLOSED", "NO_WAIT")
 				if (not MO_HFGateAccessServer_hacked) then
 					show("node2")
 				end
@@ -111,7 +112,7 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"open gate", "NO_WAIT")
-			npc_says(_"Permission denied")
+			Npc:says(_"Permission denied")
 			Tux:hurt(5)
 			Tux:heat(10)
 			Tux:update_quest("Open Sesame", "The server is secured, looks like I have to hack it.")
@@ -126,13 +127,13 @@ return {
 		code = function()
 			if (takeover(get_program("Hacking")+3)) then
 				Tux:says("sudo !!")
-				npc_says("sudo open gates", "NO_WAIT")
-				npc_says(_"Which gates do you want to open?")
+				Npc:says("sudo open gates", "NO_WAIT")
+				Npc:says(_"Which gates do you want to open?")
 				Tux:update_quest("Open Sesame", "Whew, I finally managed to hack the gate access server. I can open the gates now.")
 				MO_HFGateAccessServer_hacked = true
 				hide("node3") show("node4")
 			else
-				npc_says(_"Permission denied.")
+				Npc:says(_"Permission denied.")
 				Tux:heat(15)
 				Tux:hurt(10)
 				play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
@@ -146,29 +147,29 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"man open gates", "NO_WAIT")
-			npc_says(_"NAME", "NO_WAIT")
-			npc_says(_" open gates -- opens gates via console", "NO_WAIT")
-			npc_says(" ")
-			npc_says(_"SYNOPSIS", "NO_WAIT")
-			npc_says(_" open gates --inner --outer", "NO_WAIT")
-			npc_says(_" ")
-			npc_says(_"DESCRIPTION", "NO_WAIT")
-			npc_says(_" Opens gates via console. Awesome, isn't it?", "NO_WAIT")
-			npc_says(" ")
-			npc_says(_"OPTIONS", "NO_WAIT")
-			npc_says(_" --inner", "NO_WAIT")
-			npc_says(_" Opens the inner gate.", "NO_WAIT")
-			npc_says(" ", "NO_WAIT")
-			npc_says(_" --outer", "NO_WAIT")
-			npc_says(_" Opens the outer gate.", "NO_WAIT")
-			npc_says(" ")
-			npc_says(_"SEE ALSO", "NO_WAIT")
-			npc_says(_" These are not the gates you are looking for.", "NO_WAIT")
-			npc_says(" ")
-			npc_says(_"AUTHOR", "NO_WAIT")
-			npc_says(_" The Hell Fortress GateAccessServer Manual Writer", "NO_WAIT")
-			npc_says(" ")
-			npc_says(_" February 22, 1992")
+			Npc:says(_"NAME", "NO_WAIT")
+			Npc:says(_" open gates -- opens gates via console", "NO_WAIT")
+			Npc:says(" ")
+			Npc:says(_"SYNOPSIS", "NO_WAIT")
+			Npc:says(_" open gates --inner --outer", "NO_WAIT")
+			Npc:says(_" ")
+			Npc:says(_"DESCRIPTION", "NO_WAIT")
+			Npc:says(_" Opens gates via console. Awesome, isn't it?", "NO_WAIT")
+			Npc:says(" ")
+			Npc:says(_"OPTIONS", "NO_WAIT")
+			Npc:says(_" --inner", "NO_WAIT")
+			Npc:says(_" Opens the inner gate.", "NO_WAIT")
+			Npc:says(" ", "NO_WAIT")
+			Npc:says(_" --outer", "NO_WAIT")
+			Npc:says(_" Opens the outer gate.", "NO_WAIT")
+			Npc:says(" ")
+			Npc:says(_"SEE ALSO", "NO_WAIT")
+			Npc:says(_" These are not the gates you are looking for.", "NO_WAIT")
+			Npc:says(" ")
+			Npc:says(_"AUTHOR", "NO_WAIT")
+			Npc:says(_" The Hell Fortress GateAccessServer Manual Writer", "NO_WAIT")
+			Npc:says(" ")
+			Npc:says(_" February 22, 1992")
 			hide("node4") show("node5", "node6", "node7")
 		end,
 	},
@@ -178,9 +179,9 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"open gates --inner", "NO_WAIT")
-			npc_says(_"inner gate opened", "NO_WAIT")
-			npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
-			npc_says(_"Anomalies detected!")
+			Npc:says(_"inner gate opened", "NO_WAIT")
+			Npc:says(_"[b]WARNING[/b]:", "NO_WAIT")
+			Npc:says(_"Anomalies detected!")
 			change_obstacle_state("HF-Gate-inner", "opened")
 			if (cmp_obstacle_state("HF-Gate-outer", "opened")) then
 				Tux:update_quest("Open Sesame", "I think I managed to open the gates to the Hell Fortress. But where can I find them?")
@@ -195,9 +196,9 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"open gates --outer", "NO_WAIT")
-			npc_says(_"outer gate opened", "NO_WAIT")
-			npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
-			npc_says(_"Anomalies detected!")
+			Npc:says(_"outer gate opened", "NO_WAIT")
+			Npc:says(_"[b]WARNING[/b]:", "NO_WAIT")
+			Npc:says(_"Anomalies detected!")
 			change_obstacle_state("HF-Gate-outer", "opened")
 			if (cmp_obstacle_state("HF-Gate-inner", "opened")) then
 				Tux:update_quest("Open Sesame", "I think I managed to open the gates to Hell Fortress. But where can I find them?")
@@ -212,10 +213,10 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"open gates --inner --outer", "NO_WAIT")
-			npc_says(_"inner gate opened", "NO_WAIT")
-			npc_says(_"outer gate opened", "NO_WAIT")
-			npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
-			npc_says(_"Anomalies detected!")
+			Npc:says(_"inner gate opened", "NO_WAIT")
+			Npc:says(_"outer gate opened", "NO_WAIT")
+			Npc:says(_"[b]WARNING[/b]:", "NO_WAIT")
+			Npc:says(_"Anomalies detected!")
 			change_obstacle_state("HF-Gate-inner", "opened")
 			change_obstacle_state("HF-Gate-outer", "opened")
 			Tux:update_quest("Open Sesame", "I think I managed to open the gates to Hell Fortress. But where can I find them?")
@@ -228,7 +229,7 @@ return {
 		echo_text = false,
 		code = function()
 			Tux:says(_"logout")
-			npc_says(_"exiting...")
+			Npc:says(_"exiting...")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()
 		end,

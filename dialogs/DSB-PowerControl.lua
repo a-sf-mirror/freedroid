@@ -17,6 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -29,7 +30,7 @@ return {
 		cli_says(_" Password : ", "NO_WAIT")
 		Tux:says(_"*******", "NO_WAIT")
 		--; TRANSLATORS: %s = a date , %y = a year
-		npc_says(_"First login from /dev/ttySO on %s %d", DSB_PC_date, DSB_PC_year, "NO_WAIT")
+		Npc:says(_"First login from /dev/ttySO on %s %d", DSB_PC_date, DSB_PC_year, "NO_WAIT")
 	end,
 
 	EveryTime = function()
@@ -42,7 +43,7 @@ return {
 		id = "node99",
 		text = _"logout",
 		code = function()
-			npc_says(_"Exiting...")
+			Npc:says(_"Exiting...")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()
 		end,

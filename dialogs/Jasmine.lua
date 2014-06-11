@@ -27,6 +27,7 @@ RELATIONSHIP = {
 }
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -43,7 +44,7 @@ return {
 		id = "node0",
 		text = _"Hi! I'm new here.",
 		code = function()
-			npc_says(_"Yes. Hello. What do you want?")
+			Npc:says(_"Yes. Hello. What do you want?")
 			hide("node0") show("node1", "node8")
 		end,
 	},
@@ -51,9 +52,9 @@ return {
 		id = "node1",
 		text = _"Who are you?",
 		code = function()
-			npc_says(_"People call me Jasmine...")
-			npc_says(_"That is not my real name, but it will do for now.")
-			set_bot_name("Jasmine")
+			Npc:says(_"People call me Jasmine...")
+			Npc:says(_"That is not my real name, but it will do for now.")
+			Npc:set_name("Jasmine")
 			hide("node1") show("node2", "node3", "node4", "node5")
 		end,
 	},
@@ -61,9 +62,9 @@ return {
 		id = "node2",
 		text = _"What are you doing in Kevin's place?",
 		code = function()
-			npc_says(_"I live with him, stupid.")
-			npc_says(_"I like him. He... He is very much like me.")
-			set_bot_name("Jasmine - Girlfriend of a true Hacker")
+			Npc:says(_"I live with him, stupid.")
+			Npc:says(_"I like him. He... He is very much like me.")
+			Npc:set_name("Jasmine - Girlfriend of a true Hacker")
 			hide("node2")
 		end,
 	},
@@ -71,7 +72,7 @@ return {
 		id = "node3",
 		text = _"How are you?",
 		code = function()
-			npc_says(_"Annoyed. Now leave me alone.")
+			Npc:says(_"Annoyed. Now leave me alone.")
 			hide("node3")
 		end,
 	},
@@ -79,7 +80,7 @@ return {
 		id = "node4",
 		text = _"Why does such a nice lady act so harshly? Can't we all just get along?",
 		code = function()
-			npc_says(_"No.")
+			Npc:says(_"No.")
 			hide("node4")
 		end,
 	},
@@ -87,8 +88,8 @@ return {
 		id = "node5",
 		text = _"What are you up to?",
 		code = function()
-			npc_says(_"Nothing. Quit asking questions.")
-			npc_says(_"Don't bore me.")
+			Npc:says(_"Nothing. Quit asking questions.")
+			Npc:says(_"Don't bore me.")
 			hide("node5")
 		end,
 	},
@@ -96,9 +97,9 @@ return {
 		id = "node8",
 		text = _"You are the most beautiful human I have ever seen.",
 		code = function()
-			npc_says(_"And you are at least a quarter wrong.")
+			Npc:says(_"And you are at least a quarter wrong.")
 			Tux:says(_"You're so cute, baby seals and polar bears sent each other pictures of you.")
-			npc_says(_"Now, please get out of my sight.")
+			Npc:says(_"Now, please get out of my sight.")
 			hide("node8") show("node9")
 		end,
 	},
@@ -106,12 +107,12 @@ return {
 		id = "node9",
 		text = _"Will you marry me?",
 		code = function()
-			npc_says(_"Forget it.")
+			Npc:says(_"Forget it.")
 			Tux:says(_"Roses are red,")
 			Tux:says(_"Violets are blue,")
 			Tux:says(_"All of my base,")
 			Tux:says(_"Are belong to you.")
-			npc_says(_"...")
+			Npc:says(_"...")
 			hide("node9")
 		end,
 	},
@@ -121,18 +122,18 @@ return {
 		code = function()
 			if (Jasmine_count < 2) then
 				Jasmine_count = Jasmine_count + 1
-				npc_says(_"Yeah. Whatever.")
+				Npc:says(_"Yeah. Whatever.")
 				end_dialog()
 			else
-				npc_says(_"Yeah. Wha -- SIGSEGV.")
-				npc_says(_"Segmentation fault.")
+				Npc:says(_"Yeah. Wha -- SIGSEGV.")
+				Npc:says(_"Segmentation fault.")
 				Tux:says(_"Huh?")
-				npc_says(_"Traceback printed to stdout.")
-				npc_says(_"Kernel panic in module: Jasmine")
-				npc_says(_"Buffer overrun in anger.c:1532")
-				npc_says(_"Core dumped. System halted.")
+				Npc:says(_"Traceback printed to stdout.")
+				Npc:says(_"Kernel panic in module: Jasmine")
+				Npc:says(_"Buffer overrun in anger.c:1532")
+				Npc:says(_"Core dumped. System halted.")
 				Jasmine_count = 0
-				drop_dead()
+				Npc:drop_dead()
 				Jasmine_sigsegv = true
 			end
 		end,

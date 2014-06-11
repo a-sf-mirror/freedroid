@@ -17,6 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -41,16 +42,16 @@ return {
 		end
 		response = user_input_string(string.format(_"CAPTCHA: Please write the lowercase word that answers the following: %d - %d = ?", number_one, number_two))
 		if (captcha ~= response) then
-			npc_says(_"Non-human detected. Administering paralyzing shock.")
-			npc_says(_"NOTE: If you are a human, try again, and make sure you enter a word and not digits.")
+			Npc:says(_"Non-human detected. Administering paralyzing shock.")
+			Npc:says(_"NOTE: If you are a human, try again, and make sure you enter a word and not digits.")
 			freeze_tux_npc(7)
 			Tux:hurt(20)
 			Tux:heat(20)
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()
 		else
-			npc_says(_"Welcome to MS firmware update server for region #54658.")
-			npc_says(_"Please select action")
+			Npc:says(_"Welcome to MS firmware update server for region #54658.")
+			Npc:says(_"Please select action")
 			show("node1", "node3", "node99")
 		end
 	end,
@@ -60,10 +61,10 @@ return {
 		text = _"Get current OS version",
 		code = function()
 			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
-				npc_says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
+				Npc:says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
 			else
 			--; TRANSLATORS: %s in %swashere  = Tux:get_player_name() 
-				npc_says(_"Currently deployed firmware is v. 5.0.8+%swashere+gpl", Tux:get_player_name())
+				Npc:says(_"Currently deployed firmware is v. 5.0.8+%swashere+gpl", Tux:get_player_name())
 			end
 		end,
 	},
@@ -71,22 +72,22 @@ return {
 		id = "node3",
 		text = _"Propagate firmware update",
 		code = function()
-			npc_says(_"Compressing image....")
-			npc_says(_"Advertising update to clients...")
-			npc_says(_"Waiting for all connections....")
-			npc_says(_"...")
-			npc_says(_"...")
-			npc_says(_"Please resolve merge conflicts:")
+			Npc:says(_"Compressing image....")
+			Npc:says(_"Advertising update to clients...")
+			Npc:says(_"Waiting for all connections....")
+			Npc:says(_"...")
+			Npc:says(_"...")
+			Npc:says(_"Please resolve merge conflicts:")
 			if (takeover(get_program("Hacking")+4)) then
-				npc_says(_"Conflicts resolved,")
-				npc_says(_"Firmware update propagated!")
+				Npc:says(_"Conflicts resolved,")
+				Npc:says(_"Firmware update propagated!")
 				HF_FirmwareUpdateServer_uploaded_faulty_firmware_update = true
 				Tux:end_quest("Propagating a faulty firmware update", _"I managed to upload the faulty firmware update to all bots within transmission range. Victory is mine!")
 				kill_faction("ms", "no_respawn")
 				hide("node3")
 			else
-				npc_says(_"Merge failed.")
-				npc_says(_"Exiting...")
+				Npc:says(_"Merge failed.")
+				Npc:says(_"Exiting...")
 				play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 				end_dialog()
 			end

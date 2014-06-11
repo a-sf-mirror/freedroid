@@ -17,6 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -30,24 +31,24 @@ return {
 		--; TRANSLATORS: username, maybe this should stay in lowercase letters?
 		Tux:says(_"guest", "NO_WAIT")
 		cli_says(_"Entering as guest", "NO_WAIT")
-		npc_says("", "NO_WAIT")
+		Npc:says("", "NO_WAIT")
 		if (TutorialTerminal_date == nil) then
 			--; TRANSLATORS: %s = a date ,  %d = a year number
-			npc_says(_"First login from /dev/ttySO on %s %d", TutorialTerminal_date_1, TutorialTerminal_year, "NO_WAIT")
+			Npc:says(_"First login from /dev/ttySO on %s %d", TutorialTerminal_date_1, TutorialTerminal_year, "NO_WAIT")
 		else
 			--; TRANSLATORS: %s = a date ,  %d = a year number
-			npc_says(_"Last login from /dev/ttyS0 on %s %d", TutorialTerminal_date, TutorialTerminal_year, "NO_WAIT")
+			Npc:says(_"Last login from /dev/ttyS0 on %s %d", TutorialTerminal_date, TutorialTerminal_year, "NO_WAIT")
 		end
 		TutorialTerminal_date = TutorialTerminal_date_1
 
 		if (cmp_obstacle_state("TutorialDoor", "closed")) then
-			npc_says(_"Gate status: CLOSED", "NO_WAIT")
+			Npc:says(_"Gate status: CLOSED", "NO_WAIT")
 			show("node0")
 		elseif (cmp_obstacle_state("TutorialDoor", "opened")) then
-			npc_says(_"Gate status: OPEN", "NO_WAIT")
+			Npc:says(_"Gate status: OPEN", "NO_WAIT")
 			show("node10")
 		else
-			npc_says("GAME BUG. PLEASE REPORT, TUTORIAL-TERMINAL EveryTime LuaCode")
+			Npc:says("GAME BUG. PLEASE REPORT, TUTORIAL-TERMINAL EveryTime LuaCode")
 		end
 		cli_says(TutorialTerminal_prompt, "NO_WAIT")
 		show("node99")
@@ -61,8 +62,8 @@ return {
 		code = function()
 			--; TRANSLATORS: command,  use lowercase here
 			Tux:says(_"open gate", "NO_WAIT")
-			npc_says(_"Access granted. Opening gate ...")
-			npc_says(_"Gate status: OPEN")
+			Npc:says(_"Access granted. Opening gate ...")
+			Npc:says(_"Gate status: OPEN")
 			change_obstacle_state("TutorialDoor", "opened")
 			cli_says(TutorialTerminal_prompt, "NO_WAIT")
 			hide("node0") show("node10")
@@ -76,8 +77,8 @@ return {
 		code = function()
 			--; TRANSLATORS: command,  use lowercase here
 			Tux:says(_"close gate", "NO_WAIT")
-			npc_says(_"Access granted. Closing gate ...")
-			npc_says(_"Gate status: CLOSED")
+			Npc:says(_"Access granted. Closing gate ...")
+			Npc:says(_"Gate status: CLOSED")
 			change_obstacle_state("TutorialDoor", "closed")
 			cli_says(TutorialTerminal_prompt, "NO_WAIT")
 			hide("node10") show("node0")
@@ -91,7 +92,7 @@ return {
 		code = function()
 			--; TRANSLATORS: command,  use lowercase here
 			Tux:says(_"logout", "NO_WAIT")
-			npc_says(_"Exiting...")
+			Npc:says(_"Exiting...")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			if (cmp_obstacle_state("TutorialDoor", "opened")) and
 			   (TutorialTom_start_chat == nil) then

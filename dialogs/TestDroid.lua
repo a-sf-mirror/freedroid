@@ -22,6 +22,7 @@ BACKSTORY = "$$NAME$$ is a bot used by MegaSys for testing purposes. Because $$N
 	 operating system, Tux cannot takeover and control $$NAME$$."
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {

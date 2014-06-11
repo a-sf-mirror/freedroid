@@ -22,19 +22,20 @@ MARKERS = { NPCID1 = "Spencer" },
 PURPOSE = "When Tux fist visits the town, $$NAME$$ will escort Tux to visit $$NPCID1$$. After that, $$NAME$$ will patrol the town."
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
 	EveryTime = function()
 		if (guard_follow_tux) then
-			npc_says(_"I'm to keep an eye on you until you talk to Spencer.")
-			set_bot_name("Red Guard Escort")
+			Npc:says(_"I'm to keep an eye on you until you talk to Spencer.")
+			Npc:set_name("Red Guard Escort")
 		elseif (tux_has_joined_guard) then
-			npc_says(_"I'll let you be now; no need to suspect one of our own!")
+			Npc:says(_"I'll let you be now; no need to suspect one of our own!")
 		else
-			npc_says(_"Spencer seems to think that you are harmless. Go about your business.")
+			Npc:says(_"Spencer seems to think that you are harmless. Go about your business.")
 			if (Town_NorthGateGuard_tux_nickname_loon) then
-				npc_says(_"Babysitting a loon... Now I can say I've done it all!")
+				Npc:says(_"Babysitting a loon... Now I can say I've done it all!")
 			end
 		end
 		show_if((not Tux:has_met("Spencer")), "node20")
@@ -46,13 +47,13 @@ return {
 		text = _"Where can I find Spencer?",
 		code = function()
 			if (not knows_spencer_office) then
-				npc_says(_"He's usually in his office in the citadel.")
-				npc_says(_"Head down the main corridor until you pass the citadel gates.")
-				npc_says(_"His office has purple walls, you won't miss it.")
+				Npc:says(_"He's usually in his office in the citadel.")
+				Npc:says(_"Head down the main corridor until you pass the citadel gates.")
+				Npc:says(_"His office has purple walls, you won't miss it.")
 				Tux:says(_"Okay.")
 				knows_spencer_office = true
 			else
-				npc_says_random(_"Come on, you know that already.",
+				Npc:says_random(_"Come on, you know that already.",
 								_"I'm pretty sure you know that...",
 								_"We told you! Stop stalling!")
 			end
@@ -64,15 +65,15 @@ return {
 		text = _"I'll be going then.",
 		code = function()
 			if (guard_follow_tux) then
-				npc_says_random(_"Not without me, you won't.",
+				Npc:says_random(_"Not without me, you won't.",
 								_"I'll be watching you, then.",
 								_"Hey, wait up!")
 			else
-				npc_says(_"Mhmmm.")
+				Npc:says(_"Mhmmm.")
 			end
 			if (Town_NorthGateGuard_tux_nickname_loon) then
 				--; TRANSLATORS: %s = Tux:get_player_name()
-				npc_says(_"%s... the Loon", Tux:get_player_name())
+				Npc:says(_"%s... the Loon", Tux:get_player_name())
 			end
 			end_dialog()
 		end,

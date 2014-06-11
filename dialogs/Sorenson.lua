@@ -35,6 +35,7 @@ RELATIONSHIP = {
 }
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -44,10 +45,10 @@ return {
 
 	EveryTime = function()
 		Tux:says(_"Um... Hello?")
-		npc_says(_"AH! A Visitor! Come in! Come in!")
+		Npc:says(_"AH! A Visitor! Come in! Come in!")
 		Tux:says(_"I think I should go now. Right now. See you later.")
-		npc_says(_"No, don't go. I will not let you go before we talk. Important things.")
-		npc_says(_"I can help you understand computers... Greater than ever before.")
+		Npc:says(_"No, don't go. I will not let you go before we talk. Important things.")
+		Npc:says(_"I can help you understand computers... Greater than ever before.")
 		show("node99")
 	end,
 
@@ -55,25 +56,25 @@ return {
 		id = "node20",
 		text = _"Who are you?",
 		code = function()
-			npc_says(_"I? Sorenson is a great computer person.")
-			npc_says(_"Knows the deep codes. Walks the paths.")
-			npc_says(_"Sees the light of all chips. Knows how to use every keyboard.")
+			Npc:says(_"I? Sorenson is a great computer person.")
+			Npc:says(_"Knows the deep codes. Walks the paths.")
+			Npc:says(_"Sees the light of all chips. Knows how to use every keyboard.")
 			Tux:says(_"Erm...")
-			npc_says(_"Sees the bit. Knows the bytes. Explores the great networks.")
-			npc_says(_"The best friend of the clean and pure code.")
-			npc_says(_"The great light on the night sky of the hollow web of computer power.")
+			Npc:says(_"Sees the bit. Knows the bytes. Explores the great networks.")
+			Npc:says(_"The best friend of the clean and pure code.")
+			Npc:says(_"The great light on the night sky of the hollow web of computer power.")
 			Tux:says(_"Yes, I get the idea...")
-			npc_says(_"Seeker of clean languages. The great knower of obscure secrets.")
-			npc_says(_"The one who speaks to hard drives. The best --")
+			Npc:says(_"Seeker of clean languages. The great knower of obscure secrets.")
+			Npc:says(_"The one who speaks to hard drives. The best --")
 			Tux:says(_"I KNOW! I KNOW!")
-			npc_says(_"Oh!")
-			npc_says(_"Sorenson did not tell you most yet.")
-			npc_says(_"She did not tell you she is the great controller of light.")
-			npc_says(_"She did not tell you she is the walker of the dark corridors --")
+			Npc:says(_"Oh!")
+			Npc:says(_"Sorenson did not tell you most yet.")
+			Npc:says(_"She did not tell you she is the great controller of light.")
+			Npc:says(_"She did not tell you she is the walker of the dark corridors --")
 			Tux:says(_"STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!")
-			npc_says(_"Apology is being extended by me. Sorenson overdid it.")
-			npc_says(_"Sorenson the coder greets you.")
-			set_bot_name("Sorenson - Mystery coder")
+			Npc:says(_"Apology is being extended by me. Sorenson overdid it.")
+			Npc:says(_"Sorenson the coder greets you.")
+			Npc:set_name("Sorenson - Mystery coder")
 			hide("node20")
 		end,
 	},
@@ -81,10 +82,10 @@ return {
 		id = "node30",
 		text = _"Why are you like this? What happened to you?",
 		code = function()
-			npc_says(_"Was learning COBOL. Pain. Torture. Horrible screaming.")
-			npc_says(_"Sorenson asked for help. Many days and nights.")
-			npc_says(_"Light arrived. Light offered help. Sorenson changed.")
-			npc_says(_"Free person now.")
+			Npc:says(_"Was learning COBOL. Pain. Torture. Horrible screaming.")
+			Npc:says(_"Sorenson asked for help. Many days and nights.")
+			Npc:says(_"Light arrived. Light offered help. Sorenson changed.")
+			Npc:says(_"Free person now.")
 			hide("node30") show("node31")
 		end,
 	},
@@ -92,8 +93,8 @@ return {
 		id = "node31",
 		text = _"What is this COBOL?",
 		code = function()
-			npc_says(_"COBOL is the mind-crippler.")
-			npc_says(_"Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate.")
+			Npc:says(_"COBOL is the mind-crippler.")
+			Npc:says(_"Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate.")
 			hide("node31")
 		end,
 	},
@@ -101,7 +102,7 @@ return {
 		id = "node40",
 		text = _"I see you have a huge source code book collection. Mind if I buy some from you?",
 		code = function()
-			npc_says(_"Of course not. Trade is good.")
+			Npc:says(_"Of course not. Trade is good.")
 			trade_with("Sorenson")
 			hide("node40") show("node41")
 		end,
@@ -110,7 +111,7 @@ return {
 		id = "node41",
 		text = _"Can I take a look at your books again?",
 		code = function()
-			npc_says(_"Yes. Sure. Of course.")
+			Npc:says(_"Yes. Sure. Of course.")
 			trade_with("Sorenson")
 		end,
 	},
@@ -118,8 +119,8 @@ return {
 		id = "node50",
 		text = _"You got me curious. How can you help me understand computers better?",
 		code = function()
-			npc_says(_"Simplicity! Sign this contract. No need to read it.")
-			npc_says(_"You trust Sorenson, right?")
+			Npc:says(_"Simplicity! Sign this contract. No need to read it.")
+			Npc:says(_"You trust Sorenson, right?")
 			push_topic("Sorenson contract") show("node51", "node79")
 		end,
 	},
@@ -128,9 +129,9 @@ return {
 		text = _"Sure. I'll sign it.",
 		topic = "Sorenson contract",
 		code = function()
-			npc_says(_"Go0d. H3re is th3 con7ract. S1gn it!")
+			Npc:says(_"Go0d. H3re is th3 con7ract. S1gn it!")
 			Tux:says(_"Ok, here go --")
-			npc_says(_"N0! 1n bl00d!")
+			Npc:says(_"N0! 1n bl00d!")
 			hide("node51") show("node52", "node55", "node78")
 		end,
 	},
@@ -139,7 +140,7 @@ return {
 		text = _"Um... Your voice sounds strange. Is everything fine?",
 		topic = "Sorenson contract",
 		code = function()
-			npc_says(_"519n 7h3 c0n7r4c7!!!!")
+			Npc:says(_"519n 7h3 c0n7r4c7!!!!")
 			hide("node52") show("node53")
 		end,
 	},
@@ -148,7 +149,7 @@ return {
 		text = _"Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. ",
 		topic = "Sorenson contract",
 		code = function()
-			npc_says(_"519n 17!!!!")
+			Npc:says(_"519n 17!!!!")
 			hide("node53")
 		end,
 	},
@@ -195,10 +196,10 @@ return {
 		topic = "Sorenson contract",
 		code = function()
 			--; TRANSLATORS: aaaa! It burns! I'm melting!
-			npc_says(_"4444! 17 burn5! 7'm m3171n9!")
+			Npc:says(_"4444! 17 burn5! 7'm m3171n9!")
 			--; TRANSLATORS: aaaaaaaaaaaaaa
-			npc_says(_"44444444444444444!")
-			drop_dead()
+			Npc:says(_"44444444444444444!")
+			Npc:drop_dead()
 		end,
 	},
 	{
@@ -207,11 +208,11 @@ return {
 		topic = "Sorenson contract",
 		code = function()
 			--; TRANSLATORS: Ha! Your soul is mine, Franics!
-			npc_says(_"H4! Y0ur s0ul 15 min3, Francis!")
+			Npc:says(_"H4! Y0ur s0ul 15 min3, Francis!")
 			--; TRANSLATORS: What? Not working?
-			npc_says(_"Wh47? N07 w0rk1b9?")
+			Npc:says(_"Wh47? N07 w0rk1b9?")
 			Tux:says(_"Erm. I have a confession to make. My name is not Francis.")
-			npc_says(_"N0000000000!!!!!!!")
+			Npc:says(_"N0000000000!!!!!!!")
 			npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
 			hide("node64")
 			end_dialog()
@@ -222,10 +223,10 @@ return {
 		text = _"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esquire, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux.",
 		topic = "Sorenson contract",
 		code = function()
-			npc_says(_"Huh?")
+			Npc:says(_"Huh?")
 			Tux:says(_"I... Don't feel... good... Blood loss... So... Cold...")
 			--; TRANSLATORS: NO! Idiot!
-			npc_says(_"N0! Idi07!")
+			Npc:says(_"N0! Idi07!")
 			Tux:kill()
 			-- hide("node65")
 		end,
@@ -237,7 +238,7 @@ return {
 		topic = "Sorenson contract",
 		code = function()
 			--; TRANSLATORS: No! Stupid illiterate penguin! DIE!!
-			npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
+			Npc:says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
 			hide("node66")
 			npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
 			end_dialog()
@@ -249,15 +250,15 @@ return {
 		text = _"Huh? I d0n'7 f33l g00d.",
 		topic = "Sorenson contract",
 		code = function()
-			npc_says_random(_"Yes! I am free! At last I am free!",
+			Npc:says_random(_"Yes! I am free! At last I am free!",
 							_"Yes! I am free!",
 							_"Yes! I am free at last!")
 			--; TRANSLATORS: Wait... I feel... horrible...
 			Tux:says(_"W417... 1 f331... H0rr1b13...")
-			npc_says(_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!")
+			Npc:says(_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!")
 			Tux:improve_skill("programming")
 			hide("node60", "node61", "node62", "node63", "node64", "node65", "node66")
-			drop_dead()
+			Npc:drop_dead()
 		end,
 	},
 	{
@@ -266,7 +267,7 @@ return {
 		text = _"In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it.",
 		code = function()
 			--; TRANSLATORS: Nooooooo! Time to die, mortal fool!
-			npc_says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
+			Npc:says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
 			hide("node78")
 			npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
 			end_dialog()
@@ -278,7 +279,7 @@ return {
 		text = _"There is no way I will sign something without reading it. Forget about it.",
 		code = function()
 			--; TRANSLATORS: Nooooooo! Time to die, mortal fool!
-			npc_says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
+			Npc:says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
 			hide("node79")
 			npc_faction("crazy", _"COBOL Programmer - Madly Enraged")
 			end_dialog()
@@ -288,7 +289,7 @@ return {
 		id = "node99",
 		text = _"I really must be going now. Goodbye.",
 		code = function()
-			npc_says(_"Please come back later, Linarian. We must talk again.")
+			Npc:says(_"Please come back later, Linarian. We must talk again.")
 			end_dialog()
 		end,
 	},

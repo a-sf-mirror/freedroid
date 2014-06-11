@@ -21,6 +21,7 @@ PERSONALITY = { "Robotic" },
 BACKSTORY = "$$NAME$$s defend the Town. They will offer and provide their product history, advertising its manufacturer, on request."
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -59,7 +60,7 @@ return {
 		id = "node4",
 		text = _"Have you detected any hostile bot activity?",
 		code = function()
-			npc_says(_"No. The hostiles have not shown up within the last 24 hours.")
+			Npc:says(_"No. The hostiles have not shown up within the last 24 hours.")
 			hide("node4")
 		end,
 	},
@@ -67,8 +68,8 @@ return {
 		id = "node5",
 		text = _"What are your orders?",
 		code = function()
-			npc_says(_"My orders are to protect the living beings in this town from attacks by hostile bots.")
-			npc_says(_"This has top priority. There are no other priorities.")
+			Npc:says(_"My orders are to protect the living beings in this town from attacks by hostile bots.")
+			Npc:says(_"This has top priority. There are no other priorities.")
 			hide("node5")
 		end,
 	},
@@ -76,7 +77,7 @@ return {
 		id = "node99",
 		text = _"See you later.",
 		code = function()
-			npc_says(_"Resuming guard program....")
+			Npc:says(_"Resuming guard program....")
 			end_dialog()
 		end,
 	},

@@ -17,6 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -29,8 +30,8 @@ return {
 		Tux:says(_"dixon", "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
 		Tux:says("*******", "NO_WAIT")
-		npc_says(_"Hello, Dave.")
-		npc_says(_"Last login from /dev/ttyS0 on Sun, 3 dec 2056.", "NO_WAIT")
+		Npc:says(_"Hello, Dave.")
+		Npc:says(_"Last login from /dev/ttyS0 on Sun, 3 dec 2056.", "NO_WAIT")
 		cli_says(terminal, "NO_WAIT")
 		show("node0", "node99")
 	end,
@@ -39,7 +40,7 @@ return {
 		id = "node0",
 		text = _"autofactory start",
 		code = function()
-			npc_says(_"I'm sorry. I'm afraid I can't let you do that.")
+			Npc:says(_"I'm sorry. I'm afraid I can't let you do that.")
 			cli_says(terminal, "NO_WAIT")
 			hide("node0") show("node1")
 		end,
@@ -48,32 +49,32 @@ return {
 		id = "node1",
 		text = _"sudo autofactory start",
 		code = function()
-			npc_says(_"Commencing Initialization Process")
-			npc_says(_"Activating Production Line...", "NO_WAIT")
-			npc_says(_"SUCCESS")
-			npc_says(_"Configuring Fabrication Data...", "NO_WAIT")
-			npc_says(_"SUCCESS")
-			npc_says(_"Testing Assembly Hardware...", "NO_WAIT")
+			Npc:says(_"Commencing Initialization Process")
+			Npc:says(_"Activating Production Line...", "NO_WAIT")
+			Npc:says(_"SUCCESS")
+			Npc:says(_"Configuring Fabrication Data...", "NO_WAIT")
+			Npc:says(_"SUCCESS")
+			Npc:says(_"Testing Assembly Hardware...", "NO_WAIT")
 			if (not Lvl6_elbow_grease_applied) then
-				npc_says(_"DECLINE")
-				npc_says(_"Error code: 0x6465636c6365")
-				npc_says(_"Please read the manual and follow the instructions.")
+				Npc:says(_"DECLINE")
+				Npc:says(_"Error code: 0x6465636c6365")
+				Npc:says(_"Please read the manual and follow the instructions.")
 				cli_says(_"WARNING: ", "NO_WAIT")
-				npc_says(_"The manual is outdated. Please refer to the fixed directive 33 in the reference book.")
+				Npc:says(_"The manual is outdated. Please refer to the fixed directive 33 in the reference book.")
 				cli_says(_"WARNING: ", "NO_WAIT")
-				npc_says(_"The reference book is outdated. Please refer to the ticket 2012 in the technician database.")
+				Npc:says(_"The reference book is outdated. Please refer to the ticket 2012 in the technician database.")
 				cli_says(_"WARNING: ", "NO_WAIT")
-				npc_says(_"The ticket 2012 is outdated. Please refer to the manual.")
-				npc_says(_"Cancelling Initialization Process...")
-				npc_says(_"Initialization has been cancelled to prevent any damage.")
+				Npc:says(_"The ticket 2012 is outdated. Please refer to the manual.")
+				Npc:says(_"Cancelling Initialization Process...")
+				Npc:says(_"Initialization has been cancelled to prevent any damage.")
 				MiniFactory_init_failed = true
 			else
-				npc_says(_"SUCCESS")
-				npc_says(_"Final Initialization Instructions...")
-				npc_says(_"The Automated Factory is booted up and ready to work.", "NO_WAIT")
+				Npc:says(_"SUCCESS")
+				Npc:says(_"Final Initialization Instructions...")
+				Npc:says(_"The Automated Factory is booted up and ready to work.", "NO_WAIT")
 				if (Maintenace_Terminal_want_sandwich) then
 					cli_says(_"WARNING:", "NO_WAIT")
-					npc_says(_"The Automated Factory is unable to make a sandwich.")
+					Npc:says(_"The Automated Factory is unable to make a sandwich.")
 				end
 				Minifactory_online = true
 				MiniFactory_init_failed = false
@@ -102,8 +103,8 @@ return {
 		id = "node99",
 		text = _"logout",
 		code = function()
-			npc_says(_"Exiting", "NO_WAIT")
-			npc_says(_"Goodbye Dave.")
+			Npc:says(_"Exiting", "NO_WAIT")
+			Npc:says(_"Goodbye Dave.")
 			hide("node10", "node20")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()

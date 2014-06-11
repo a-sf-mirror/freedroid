@@ -21,6 +21,7 @@ PERSONALITY = { "Militarist", "Abrasive" },
 BACKSTORY = "$$NAME$$ mans the defence structure near the Hell Fortress",
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -36,7 +37,7 @@ return {
 		id = "node0",
 		text = _"Hi! I'm new here.",
 		code = function()
-			npc_says(_"Great. Now back to where you came from. This is no place for you.")
+			Npc:says(_"Great. Now back to where you came from. This is no place for you.")
 			hide("node0") show("node1")
 		end,
 	},
@@ -44,9 +45,9 @@ return {
 		id = "node1",
 		text = _"What's the matter with this gate?",
 		code = function()
-			npc_says(_"This is a gate to an automated bot factory we call the Hell Fortress.")
-			npc_says(_"You must be crazy if you want to get in there. That place is full of bots.")
-			npc_says(_"Get out of here. They might attack at any moment!")
+			Npc:says(_"This is a gate to an automated bot factory we call the Hell Fortress.")
+			Npc:says(_"You must be crazy if you want to get in there. That place is full of bots.")
+			Npc:says(_"Get out of here. They might attack at any moment!")
 			hide("node1") show("node2")
 		end,
 	},
@@ -54,10 +55,10 @@ return {
 		id = "node2",
 		text = _"What if I just walk in there? Will you try to stop me?",
 		code = function()
-			npc_says(_"Of course not. Murdering you would be a complete waste of time.")
-			npc_says(_"The bots and disruptor shield will take care of that for me.")
-			npc_says(_"Just remember to give me your valuables before you commit suicide.")
-			npc_says(_"You won't need any money once you're dead, and I could use it, eh?")
+			Npc:says(_"Of course not. Murdering you would be a complete waste of time.")
+			Npc:says(_"The bots and disruptor shield will take care of that for me.")
+			Npc:says(_"Just remember to give me your valuables before you commit suicide.")
+			Npc:says(_"You won't need any money once you're dead, and I could use it, eh?")
 			hide("node2") show("node3")
 		end,
 	},
@@ -65,7 +66,7 @@ return {
 		id = "node3",
 		text = _"Thanks for the advice.",
 		code = function()
-			npc_says(_"You're dead if you don't take it.")
+			Npc:says(_"You're dead if you don't take it.")
 			hide("node3")
 		end,
 	},
@@ -73,7 +74,7 @@ return {
 		id = "node99",
 		text = _"I'll be going then.",
 		code = function()
-			npc_says_random(_"Finally.",
+			Npc:says_random(_"Finally.",
 							_"Don't come back.",
 							_"It is dangerous here.",
 							_"Leave and stay away.")

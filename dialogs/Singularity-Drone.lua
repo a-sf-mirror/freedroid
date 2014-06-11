@@ -21,6 +21,7 @@ PERSONALITY = { "Robotic" },
 PURPOSE = "$$NAME$$ is apart of the droid collective known as Singularity."
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {

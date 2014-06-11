@@ -20,6 +20,7 @@
 PURPOSE = "$$NAME$$ is a character used for Debug purposes"
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 local function dude_dialog_name(filename)
@@ -59,23 +60,23 @@ return {
 	end,
 
 	EveryTime = function(this_node, this_dialog)
-		npc_says("Hello.")
+		Npc:says("Hello.")
 		if (tux_has_joined_guard) then
-			npc_says("Red Guard membership: [b]true[/b]")
+			Npc:says("Red Guard membership: [b]true[/b]")
 		else
-			npc_says("Red Guard membership: [b]false[/b]")
+			Npc:says("Red Guard membership: [b]false[/b]")
 		end
-		npc_says("Here you'll be able to access all dialogs that are available ingame.", "NO_WAIT")
-		npc_says("Take care, this may be a little buggy.", "NO_WAIT")
-		npc_says("Don't do this if you are just normally playing.", "NO_WAIT")
-		npc_says("These dialogs can currently be accessed:", "NO_WAIT")
+		Npc:says("Here you'll be able to access all dialogs that are available ingame.", "NO_WAIT")
+		Npc:says("Take care, this may be a little buggy.", "NO_WAIT")
+		Npc:says("Don't do this if you are just normally playing.", "NO_WAIT")
+		Npc:says("These dialogs can currently be accessed:", "NO_WAIT")
 		local node_list = ""
 		for idx,node in ipairs(this_dialog.nodes) do
 			if (node.id ~= "node0") then
 				node_list = node_list .. node.id .. ", "
 			end
 		end
-		npc_says(string.sub(node_list, 1, -2))
+		Npc:says(string.sub(node_list, 1, -2))
 
 		dude_choose_action(this_dialog)
 	end,
@@ -98,7 +99,7 @@ return {
 		code = function()
 			--; TRANSLATORS: Used to test l10n, so put here anything you want in your language 
 			--; TRANSLATORS: (can also be used to test non ASCII characters).
-			npc_says("Untranslated reply.")
+			Npc:says("Untranslated reply.")
 		end,
 	},
 	
@@ -108,7 +109,7 @@ return {
 		text = "Become Red Guard",
 		code = function()
 			tux_has_joined_guard = true
-			npc_says("You are now a member of the Red Guard.")
+			Npc:says("You are now a member of the Red Guard.")
 		end,
 	},
 
@@ -145,7 +146,7 @@ return {
 		text = "Spam",
 		code = function()
 			for spam_number=1,10000 do
-				npc_says(spam_number, "NO_WAIT")
+				Npc:says(spam_number, "NO_WAIT")
 			end
 		end,
 	},
@@ -182,7 +183,7 @@ return {
 			return string.format( "Exit this dialog for the %sth time", Dude_exit_node_count + 1)
 		end,
 		code = function()
-			npc_says("Closing...")
+			Npc:says("Closing...")
 			Dude_exit_node_count = Dude_exit_node_count + 1 -- do the computation of the var now
 			end_dialog()
 		end,

@@ -21,20 +21,21 @@ PERSONALITY = {"Robotic"},
 PURPOSE = "$$NAME$$ guards and limits access to the Mega Systems Factory entrance"
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
 	EveryTime = function()
-		npc_says(_"Welcome to the MegaSys Factory complex.")
-		npc_says(_"Access is restricted to authorized personnel.")
-		npc_says(_"Proof of authorization is required.")
+		Npc:says(_"Welcome to the MegaSys Factory complex.")
+		Npc:says(_"Access is restricted to authorized personnel.")
+		Npc:says(_"Proof of authorization is required.")
 		if (HF_EntranceBot_MSStockCertificateOpensGate) then
 			Tux:says(_"How many times do I have to show you my certificate, tin can?")
 			if (Tux:has_item("MS Stock Certificate")) then
-				npc_says(_"[b]Validating certificate...[/b]")
-				npc_says(_"[b]Validation complete.[/b]", "NO_WAIT")
-				npc_says(_"[b]Certificate valid.[/b]", "NO_WAIT")
-				npc_says(_"You may enter.")
+				Npc:says(_"[b]Validating certificate...[/b]")
+				Npc:says(_"[b]Validation complete.[/b]", "NO_WAIT")
+				Npc:says(_"[b]Certificate valid.[/b]", "NO_WAIT")
+				Npc:says(_"You may enter.")
 				change_obstacle_state("HF-EntranceInnerGate", "opened")
 				hide("node1", "node2", "node3")
 			else
@@ -51,8 +52,8 @@ return {
 		id = "node1",
 		text = _"I am THE ONE.",
 		code = function()
-			npc_says(_"You are THE ONE without permission.")
-			npc_says(_"Please consider leaving.")
+			Npc:says(_"You are THE ONE without permission.")
+			Npc:says(_"Please consider leaving.")
 			hide("node1")
 			end_dialog()
 		end,
@@ -61,16 +62,16 @@ return {
 		id = "node2",
 		text = _"I am working here.",
 		code = function()
-			npc_says(_"Me too.")
-			npc_says(_"Please prove your statement.")
+			Npc:says(_"Me too.")
+			Npc:says(_"Please prove your statement.")
 			Tux:says(_"Do I look like a typical MegaSys slave, errr, worker to you, stupid bot?")
-			npc_says(_"No insults, please. But, no")
+			Npc:says(_"No insults, please. But, no")
 			if (Tux:has_item("MS Stock Certificate")) then
 				Tux:says(_"But I have this certificate")
-				npc_says(_"[b]Validating certificate...[/b]")
-				npc_says(_"[b]Validation complete.[/b]", "NO_WAIT")
-				npc_says(_"[b]Certificate valid.[/b]", "NO_WAIT")
-				npc_says(_"You may enter.")
+				Npc:says(_"[b]Validating certificate...[/b]")
+				Npc:says(_"[b]Validation complete.[/b]", "NO_WAIT")
+				Npc:says(_"[b]Certificate valid.[/b]", "NO_WAIT")
+				Npc:says(_"You may enter.")
 				change_obstacle_state("HF-EntranceInnerGate", "opened")
 				HF_EntranceBot_MSStockCertificateOpensGate = true
 			else
@@ -83,14 +84,14 @@ return {
 		id = "node3",
 		text = _"I have come to save the world, I don't need any proof.",
 		code = function()
-			npc_says(_"Feel uncertain about the future?")
-			npc_says(_"Purchase the MegaSys Security Bundle to help safeguard your home.")
-			npc_says(_"It contains:")
-			npc_says(_"The latest version of the [b]MegaSys[/b] operating system for [b]ONE DROID[/b]")
-			npc_says(_"Ten mini surveillance robots.")
-			npc_says(_"The book 'Subatomic and Nuclear Science for Dummies, Volume IV'.")
-			npc_says(_"And a MegaSys Vision Enhancement Device 3000 - what you cannot see, can't see you either!")
-			npc_says(_"If you order [b]RIGHT NOW[/b], we will [b]SHIP FOR FREE!!![/b]")
+			Npc:says(_"Feel uncertain about the future?")
+			Npc:says(_"Purchase the MegaSys Security Bundle to help safeguard your home.")
+			Npc:says(_"It contains:")
+			Npc:says(_"The latest version of the [b]MegaSys[/b] operating system for [b]ONE DROID[/b]")
+			Npc:says(_"Ten mini surveillance robots.")
+			Npc:says(_"The book 'Subatomic and Nuclear Science for Dummies, Volume IV'.")
+			Npc:says(_"And a MegaSys Vision Enhancement Device 3000 - what you cannot see, can't see you either!")
+			Npc:says(_"If you order [b]RIGHT NOW[/b], we will [b]SHIP FOR FREE!!![/b]")
 			Tux:says(_"No, thanks.")
 			hide("node3")
 		end,
@@ -99,7 +100,7 @@ return {
 		id = "node99",
 		text = _"Bye",
 		code = function()
-			npc_says(_"Remember, MegaSys products are the best!")
+			Npc:says(_"Remember, MegaSys products are the best!")
 			end_dialog()
 		end,
 	},

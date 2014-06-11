@@ -21,15 +21,16 @@ PERSONALITY = { "Robotic" },
 PURPOSE = "$$NAME$$ is the first bot Tux encounters in the game. It starts the first fight during the introduction."
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
 	EveryTime = function()
-		npc_says(_"Target Acquired...","NO_WAIT")
-		npc_says(_"Scanning...")
-		npc_says(_"Non-Human Lifeform Identified","NO_WAIT")
-		npc_says(_"Species Identified: Linarian")
-		npc_says(_"Current Status: Unknown")
+		Npc:says(_"Target Acquired...","NO_WAIT")
+		Npc:says(_"Scanning...")
+		Npc:says(_"Non-Human Lifeform Identified","NO_WAIT")
+		Npc:says(_"Species Identified: Linarian")
+		Npc:says(_"Current Status: Unknown")
 		show("node0", "node1", "node2")
 	end,
 
@@ -60,9 +61,9 @@ return {
 		echo_text = false,
 		code = function()
 			play_sound("effects/bot_sounds/First_Contact_Sound_3.ogg")
-			npc_says(_"Uploading Status...")
-			set_npc_faction("ms")
-			npc_says(_"Linarian is hostile. Destroy!")
+			Npc:says(_"Uploading Status...")
+			Npc:set_faction("ms")
+			Npc:says(_"Linarian is hostile. Destroy!")
 			end_dialog()
 		end,
 	},

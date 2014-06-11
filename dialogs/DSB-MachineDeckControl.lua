@@ -17,6 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
@@ -45,9 +46,9 @@ return {
 		id = "node1",
 		text = _"passwd",
 		code = function()
-			npc_says(_"Changing password for admin. Enter new password: ")
-			npc_says(_"Enter new password again: ")
-			npc_says(_"Password successfully changed.")
+			Npc:says(_"Changing password for admin. Enter new password: ")
+			Npc:says(_"Enter new password again: ")
+			Npc:says(_"Password successfully changed.")
 			DSB_MDC_password = true
 			cli_says(DSB_MachineDeckControl_prompt, "NO_WAIT")
 			hide("node1")
@@ -57,16 +58,16 @@ return {
 		id = "node7",
 		text = _"shieldmgr --disable --force",
 		code = function()
-			npc_says(_"Disabling disruptor shield... ")
-			npc_says(_"Shield disabled.")
+			Npc:says(_"Disabling disruptor shield... ")
+			Npc:says(_"Shield disabled.")
 			if (DSB_MDC_password) then
 				Tux:end_quest("Opening access to MS Office", _"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
 				hide("node7")
 				play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 				end_dialog()
 			else
-				npc_says(_"WARNING: Another user is using this computer.")
-				npc_says(_"Disruptor shield is active.")
+				Npc:says(_"WARNING: Another user is using this computer.")
+				Npc:says(_"Disruptor shield is active.")
 			end
 			cli_says(DSB_MachineDeckControl_prompt, "NO_WAIT")
 		end,
@@ -75,7 +76,7 @@ return {
 		id = "node99",
 		text = _"logout",
 		code = function()
-			npc_says(_"Exiting...")
+			Npc:says(_"Exiting...")
 			play_sound("effects/Menu_Item_Selected_Sound_1.ogg")
 			end_dialog()
 		end,

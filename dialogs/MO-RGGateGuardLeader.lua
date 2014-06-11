@@ -21,11 +21,12 @@ PERSONALITY = { "Militarist", "Abrasive" },
 BACKSTORY = "$$NAME$$ is the leader of the defense structure near the Hell Fortress",
 WIKI]]--
 
+local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
 return {
 	FirstTime = function()
-		npc_says(_"Hey, Linarian! What do you want here?")
+		Npc:says(_"Hey, Linarian! What do you want here?")
 		show("node1", "node2", "node3")
 	end,
 
@@ -35,10 +36,10 @@ return {
 				if (MO_RGGateGuardLeader_informed) then
 					next("node20")
 				else
-					npc_says(_"Hey, Linarian! What do you want here?")
+					Npc:says(_"Hey, Linarian! What do you want here?")
 				end
 			else
-				npc_says(_"GET OUT OF HERE YOU IDIOT!")
+				Npc:says(_"GET OUT OF HERE YOU IDIOT!")
 				next("node99")
 			end
 		end
@@ -48,9 +49,9 @@ return {
 		id = "node1",
 		text = _"Just taking a look around.",
 		code = function()
-			npc_says(_"Oh, look. The bird wants to go for a walk.", "NO_WAIT")
-			npc_says(_"We don't call this place 'hell' for nothing.")
-			npc_says(_"Get outta here!")
+			Npc:says(_"Oh, look. The bird wants to go for a walk.", "NO_WAIT")
+			Npc:says(_"We don't call this place 'hell' for nothing.")
+			Npc:says(_"Get outta here!")
 			hide("node1", "node3") next("node99")
 		end,
 	},
@@ -58,17 +59,17 @@ return {
 		id = "node2",
 		text = _"I'd like to go through that gate.",
 		code = function()
-			npc_says(_"Are you totally out of your mind?", "NO_WAIT")
-			npc_says(_"There are trillions of millions of quintillions of bots in there!")
-			npc_says(_"Besides that, on the other side of the door is a disruptor shield, which we can't control.")
-			npc_says(_"* Throws a stone through the door")
+			Npc:says(_"Are you totally out of your mind?", "NO_WAIT")
+			Npc:says(_"There are trillions of millions of quintillions of bots in there!")
+			Npc:says(_"Besides that, on the other side of the door is a disruptor shield, which we can't control.")
+			Npc:says(_"* Throws a stone through the door")
 			if (Tux:done_quest("Opening access to MS Office")) then
-				npc_says(_"* Stone freely flies through the gate and drops on the ground on the other side")
-				npc_says(_"HOLY MECHANICAL MARVEL! SHIELD DISABLED! PREPARE FOR BOT ATTACK!")
+				Npc:says(_"* Stone freely flies through the gate and drops on the ground on the other side")
+				Npc:says(_"HOLY MECHANICAL MARVEL! SHIELD DISABLED! PREPARE FOR BOT ATTACK!")
 				next("node10")
 			else
-				npc_says(_"* Stone disappears leaving a small cloud of dust *")
-				npc_says(_"Find a different gate to go through.")
+				Npc:says(_"* Stone disappears leaving a small cloud of dust *")
+				Npc:says(_"Find a different gate to go through.")
 				next("node99")
 			end
 			hide("node1", "node3")
@@ -78,8 +79,8 @@ return {
 		id = "node3",
 		text = _"I have some business on the other side!",
 		code = function()
-			npc_says(_"Are you in a rush to die?")
-			npc_says(_"Go away!")
+			Npc:says(_"Are you in a rush to die?")
+			Npc:says(_"Go away!")
 			hide("node1", "node3") next("node99")
 		end,
 	},
@@ -87,14 +88,14 @@ return {
 		id = "node10",
 		text = _"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all the bots around! Didn't Spencer inform you?",
 		code = function()
-			npc_says(_"WHAT?! Not an attack?!")
-			npc_says(_"I hope you are telling the truth. One second...")
+			Npc:says(_"WHAT?! Not an attack?!")
+			Npc:says(_"I hope you are telling the truth. One second...")
 			if (Tux:has_quest("Propagating a faulty firmware update")) then
 				change_obstacle_state("MSAreaDoor", "opened")
 				MO_RGGateGuardLeader_informed = true
 				next("node20")
 			else
-				npc_says(_"Nothing from Spencer, ya fat duck. Now leave.")
+				Npc:says(_"Nothing from Spencer, ya fat duck. Now leave.")
 				end_dialog()
 			end
 		end,
@@ -104,9 +105,9 @@ return {
 		text = "BUG, REPORT ME! MO-RGGateGuardLeader node20",
 		echo_text = false,
 		code = function()
-			npc_says(_"Right, there is a message from Spencer, you can enter Hell Fortress. And may the source be with you!")
+			Npc:says(_"Right, there is a message from Spencer, you can enter Hell Fortress. And may the source be with you!")
 			Tux:says(_"See...")
-			npc_says(_"Yeah, you were right...")
+			Npc:says(_"Yeah, you were right...")
 			end_dialog()
 		end,
 	},
@@ -114,7 +115,7 @@ return {
 		id = "node99",
 		text = _"Relax, I'm leaving.",
 		code = function()
-			npc_says(_"You better be. AND DON'T COME BACK!")
+			Npc:says(_"You better be. AND DON'T COME BACK!")
 			end_dialog()
 		end,
 	},
