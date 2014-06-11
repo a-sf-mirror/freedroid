@@ -41,11 +41,15 @@
 extern int luaFD_tux_init(lua_State *);
 extern int luaFD_tux_get_instance(lua_State *);
 
+extern int luaFD_npc_init(lua_State *);
+extern int luaFD_npc_get_instance(lua_State *);
+
 /**
  * List of binding initializers (functions creating class-type metatables)
  */
 const luaL_Reg luaFD_initializers[] = {
 	{ "FDtux", luaFD_tux_init },
+	{ "FDnpc", luaFD_npc_init },
 	{ NULL, NULL }
 };
 
@@ -54,6 +58,7 @@ const luaL_Reg luaFD_initializers[] = {
  */
 const luaL_Reg luaFD_instances[] = {
 		{ "get_tux", luaFD_tux_get_instance },
+		{ "get_npc", luaFD_npc_get_instance },
 		{ NULL, NULL }
 };
 
