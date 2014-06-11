@@ -973,6 +973,22 @@ int luaFD_tux_init(lua_State *L)
 
 	luaL_getmetatable(L, "FDtux");                                              // stack: (-1) metatable (1)
 	luaL_setfuncs(L, tux_cfuns, 0);                                             // stack: (-1) metatable (1)
+
+	// When running the dialogs validator, the execution of some methods will
+	// crash because the game engine is not actually running.
+	// The __override_for_validator lfun redefines those methods (cfuns as
+	// well as lfuns) so that they do not call the engine.
+	if (do_benchmark && !strncmp(do_benchmark, "dialog", 6)) {
+		// Run FDtux.__override_for_validator, if it exists
+		lua_getfield(L, -1, "__override_for_validator");                        // stack: (-1) fun < metatable (1)
+		if (!lua_isnil(L, -1)) {
+			lua_pushvalue(L, -2);                                               // stack: (-1) metatable < fun < metatable (1)
+			lua_call(L, 1, 0);                                                  // stack: (-1) metatable (1)
+		} else {
+			lua_pop(L, 1);                                                      // stack: (-1) metatable (1)
+		}
+	}
+
 	lua_pop(L, 1);                                                              // empty stack
 
 	return TRUE;

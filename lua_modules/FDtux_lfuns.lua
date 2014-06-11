@@ -425,3 +425,10 @@ end
 
 -- end FDtux submodule
 --!@}
+
+-- Override some methods (cfuns as well as lfuns) when used during dialog validation
+function FDtux.__override_for_validator(FDtux)
+	-- _says functions are not run by the validator, as they display
+	-- text on screen and wait for clicks
+	FDtux.says = function(self) end
+end
