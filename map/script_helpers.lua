@@ -1,3 +1,29 @@
+-- Auto-create instance of NPCs binding
+-- (This avoid the need to explicitely it in the dialog scripts)
+-- The dialog's name of the NPC is used to create the Lua instance.
+-- It must univoquely identify one single NPC. Failing to respect
+-- that constraint can lead to some strange behaviors...
+-- You were warned !
+setmetatable(_G, {
+	__index = function(t, name)
+		if rawget(_G, name) == nil then
+			-- script_helpers.lua is also loaded in the 'config'
+			-- context, without the FDrpg module being loaded.
+			if rawget(_G, "FDrpg") == nil then
+				return nil
+			end
+			local rtn, npc = pcall(FDrpg.get_npc, name)
+			if not rtn then
+				return nil
+			end
+			-- print("Creating " .. name)
+			rawset(_G, name, npc)
+			return npc
+		end
+		return rawget(_G, name)
+	end,
+})
+
 -- set the random seed
 math.randomseed(os.time())
 
