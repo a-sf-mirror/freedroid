@@ -94,6 +94,8 @@ fresh_install:
 	File /r "${SRC_DIR}\map"
 	File /r "${SRC_DIR}\graphics"
 	File /r "${SRC_DIR}\dialogs"
+	File /r "${SRC_DIR}\lua_modules"
+	File /r "${SRC_DIR}\locale"
 
 	WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
 
@@ -161,6 +163,8 @@ Section Uninstall
 	RMDir /r "$INSTDIR\map\"
 	RMDir /r "$INSTDIR\graphics\"
 	RMDir /r "$INSTDIR\dialogs\"
+	RMDir /r "$INSTDIR\lua_modules\"
+	RMDir /r "$INSTDIR\locale\"
 	
 	RMDir "$INSTDIR\"
 

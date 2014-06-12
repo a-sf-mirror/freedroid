@@ -68,13 +68,18 @@ sign:
 win_txts = COPYING AUTHORS README ChangeLog
 win_dir = freedroidrpg-win32
 dist-win32: src/freedroidRPG.exe
+	@if [ "$(DLL_PATH) " = " " ] ; then \
+	  echo "DLL_PATH not defined. Aborting."; \
+	  exit 1; \
+	 fi
 	rm -rf $(win_dir)
 	mkdir -p $(win_dir)
-	rsync -ar --exclude='.git' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound lua_modules $(win_dir)
+	rsync -ar --exclude='.git' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound lua_modules locale $(win_dir)
 	cp src/freedroidRPG.exe $(win_dir)
 	for i in $(win_txts); do \
 	   sed 's/$$/\r/' $$i > $(win_dir)/$$i.txt; \
 	done
+	perl win32/pkgApp.pl $(win_dir) freedroidRPG.exe $(DLL_PATH)
 
 $(win_dir): dist-win32
 
