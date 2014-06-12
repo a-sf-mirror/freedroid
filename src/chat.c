@@ -788,36 +788,21 @@ int validate_dialogs()
 	/* _says functions are not run by the validator, as they display
 	   text on screen and wait for clicks */
 	run_lua(LUA_DIALOG, "function chat_says(a)\nend\n");
-	run_lua(LUA_DIALOG, "function npc_says(a)\nend\n");
-	run_lua(LUA_DIALOG, "function tux_says(a)\nend\n");
 	run_lua(LUA_DIALOG, "function cli_says(a)\nend\n");
 
 	/* Subdialogs currently call run_chat and we cannot do that when validating dialogs */
-	run_lua(LUA_DIALOG, "function call_subdialog(a)\nend\n");
 	run_lua(LUA_DIALOG, "function start_chat(a)\nend\n");
 
 	/* Shops must not be run (display + wait for clicks) */
 	run_lua(LUA_DIALOG, "function trade_with(a)\nend\n");
 
-	/* drop_dead cannot be tested because it means we would try to kill our dummy bot
-	 several times, which is not allowed by the engine */
-	run_lua(LUA_DIALOG, "function drop_dead(a)\nend\n");
-
 	run_lua(LUA_DIALOG, "function user_input_string(a)\nreturn \"dummy\";\nend\n");
 
 	run_lua(LUA_DIALOG, "function upgrade_items(a)\nend\n");
 	run_lua(LUA_DIALOG, "function craft_addons(a)\nend\n");
-	/* set_bot_destination cannot be tested because this may be invoked when the bot is
-	 on a different level than where the bot starts */
-	run_lua(LUA_DIALOG, "function set_bot_destination(a)\nend\n");
 
 	/* takeover requires user input - hardcode it to win */
 	run_lua(LUA_DIALOG, "function takeover(a)\nreturn true\nend\n");
-
-	/* push_topic() and pop_topic() cannot be tested because the validator doesn't follow
-	 the logical order of nodes */
-	run_lua(LUA_DIALOG, "function topic(a)\nend\n");
-	run_lua(LUA_DIALOG, "function pop_topic(a)\nend\n");
 
 	/* set_mouse_move_target() breaks validator */
 	run_lua(LUA_DIALOG, "function set_mouse_move_target(a)\nend\n");
