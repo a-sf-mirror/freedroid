@@ -29,6 +29,7 @@ src/skills.c
 src/takeover.c
 src/text.c
 src/vars.h
+src/lua/luaFD_npc.c
 src/lua/luaFD_tux.c
 src/lvledit/lvledit.c
 src/lvledit/lvledit_actions.c
@@ -37,4 +38,5 @@ src/lvledit/lvledit_enemy.c
 src/lvledit/lvledit_map.c
 src/lvledit/lvledit_menu.c
 src/lvledit/lvledit_tool_place.c
+src/lvledit/lvledit_widget_toolbar.c
 src/lvledit/lvledit_widgets.c

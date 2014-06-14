@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-04-09 00:05+0000\n"
+"POT-Creation-Date: 2014-06-14 00:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "123 Acolyte"
 msgstr ""
 
-#: map/droid_archetypes.dat:89 map/droid_archetypes.dat:1123
+#: map/droid_archetypes.dat:89 map/droid_archetypes.dat:1126
 msgid "A simple rubbish disposal robot. Common device in most factories to maintain a clean yard."
 msgstr ""
 
@@ -172,193 +172,193 @@ msgstr ""
 msgid "711 Grillmeister"
 msgstr ""
 
-#: map/droid_archetypes.dat:576
+#: map/droid_archetypes.dat:577
 msgid "A heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military."
 msgstr ""
 
-#: map/droid_archetypes.dat:580 map/ReturnOfTux.droids:149
+#: map/droid_archetypes.dat:581 map/ReturnOfTux.droids:149
 #: map/ReturnOfTux.droids:289
 msgid "742 Zeus"
 msgstr ""
 
-#: map/droid_archetypes.dat:603
+#: map/droid_archetypes.dat:604
 msgid "This version is the one mainly used by the military."
 msgstr ""
 
-#: map/droid_archetypes.dat:607 map/ReturnOfTux.droids:225
+#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:225
 #: map/ReturnOfTux.droids:290
 msgid "751 Soviet"
 msgstr ""
 
-#: map/droid_archetypes.dat:630
+#: map/droid_archetypes.dat:631
 msgid "A very heavy duty battle droid. Only a few have so far entered service. These are the most powerful battle units ever built."
 msgstr ""
 
-#: map/droid_archetypes.dat:634 map/ReturnOfTux.droids:148
+#: map/droid_archetypes.dat:635 map/ReturnOfTux.droids:148
 #: map/ReturnOfTux.droids:291
 msgid "821 Ufo"
 msgstr ""
 
-#: map/droid_archetypes.dat:657
+#: map/droid_archetypes.dat:658
 msgid "A very reliable anti-grav unit is fitted into this droid. It will patrol the ship and eliminate intruders as soon as detected by powerful sensors."
 msgstr ""
 
-#: map/droid_archetypes.dat:661 map/ReturnOfTux.droids:147
+#: map/droid_archetypes.dat:662 map/ReturnOfTux.droids:147
 #: map/ReturnOfTux.droids:292
 msgid "834 Wisp"
 msgstr ""
 
-#: map/droid_archetypes.dat:684
+#: map/droid_archetypes.dat:685
 msgid "Early type anti-grav security droid. Fitted with an over-driven anti-grav unit. This droid is very fast but is not reliable."
 msgstr ""
 
-#: map/droid_archetypes.dat:688 map/ReturnOfTux.droids:293
+#: map/droid_archetypes.dat:689 map/ReturnOfTux.droids:293
 msgid "883 Dalex"
 msgstr ""
 
-#: map/droid_archetypes.dat:711
+#: map/droid_archetypes.dat:712
 msgid "This droid was designed from archive data. For some unknown reason it instills great fear in Human adversaries."
 msgstr ""
 
-#: map/droid_archetypes.dat:715 map/ReturnOfTux.droids:294
+#: map/droid_archetypes.dat:716 map/ReturnOfTux.droids:294
 msgid "999 Cerebrum"
 msgstr ""
 
-#: map/droid_archetypes.dat:738
+#: map/droid_archetypes.dat:740
 msgid "Experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience."
 msgstr ""
 
-#: map/droid_archetypes.dat:742 map/droid_archetypes.dat:764
+#: map/droid_archetypes.dat:744 map/droid_archetypes.dat:766
 msgid "Older Man"
 msgstr ""
 
-#: map/droid_archetypes.dat:760
+#: map/droid_archetypes.dat:762
 msgid "This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards."
 msgstr ""
 
-#: map/droid_archetypes.dat:782
+#: map/droid_archetypes.dat:784
 msgid "Some people say that every doctor is addicted to drugs. You estimate that right now this one is high on at least four different narcotics. Doc Moore seems very happy indeed..."
 msgstr ""
 
-#: map/droid_archetypes.dat:786 map/droid_archetypes.dat:808
+#: map/droid_archetypes.dat:788 map/droid_archetypes.dat:810
 msgid "Red Guard"
 msgstr ""
 
-#: map/droid_archetypes.dat:804
+#: map/droid_archetypes.dat:806
 msgid "This is a typical red (male) guard/fighter character.  They are equipped with powerful PowerExterminators."
 msgstr ""
 
-#: map/droid_archetypes.dat:826
+#: map/droid_archetypes.dat:828
 msgid "This is Dixon, unlike a typical red (male) guard/fighter character, he has a knife weapon, and lowered aggression."
 msgstr ""
 
-#: map/droid_archetypes.dat:830
+#: map/droid_archetypes.dat:832
 msgid "Matron"
 msgstr ""
 
-#: map/droid_archetypes.dat:848
+#: map/droid_archetypes.dat:850
 msgid "This is the hot_mama shopkeeper character model."
 msgstr ""
 
-#: map/droid_archetypes.dat:852 map/ReturnOfTux.droids:215
+#: map/droid_archetypes.dat:854 map/ReturnOfTux.droids:215
 #: map/ReturnOfTux.droids:461
 msgid "Female Scientist"
 msgstr ""
 
-#: map/droid_archetypes.dat:870
+#: map/droid_archetypes.dat:872
 msgid "This is the female scientist character model.  They are not armed as powerfully as e.g. the red guards."
 msgstr ""
 
-#: map/droid_archetypes.dat:874 map/ReturnOfTux.droids:12
+#: map/droid_archetypes.dat:876 map/ReturnOfTux.droids:12
 msgid "Mine Worker"
 msgstr ""
 
-#: map/droid_archetypes.dat:892
+#: map/droid_archetypes.dat:894
 msgid "This is the brown worker model.  They are not armed as powerfully as e.g. the red guards."
 msgstr ""
 
-#: map/droid_archetypes.dat:896
+#: map/droid_archetypes.dat:898
 msgid "Blue Brother"
 msgstr ""
 
-#: map/droid_archetypes.dat:914
+#: map/droid_archetypes.dat:916
 msgid "This is a useless comment. Thanks for your attention."
 msgstr ""
 
-#: map/droid_archetypes.dat:918 map/ReturnOfTux.droids:16
+#: map/droid_archetypes.dat:920 map/ReturnOfTux.droids:16
 msgid "Cook"
 msgstr ""
 
-#: map/droid_archetypes.dat:936
+#: map/droid_archetypes.dat:938
 msgid "This is the cook."
 msgstr ""
 
-#: map/droid_archetypes.dat:941
+#: map/droid_archetypes.dat:943
 msgid "Balding Man"
 msgstr ""
 
-#: map/droid_archetypes.dat:959
+#: map/droid_archetypes.dat:961
 msgid "This is a typical professor/sage character of some older age. They are not armed as powerfully as e.g. the red guards."
 msgstr ""
 
-#: map/droid_archetypes.dat:963
+#: map/droid_archetypes.dat:965
 msgid "Pretty Woman"
 msgstr ""
 
-#: map/droid_archetypes.dat:981
+#: map/droid_archetypes.dat:983
 msgid "This is a typical sex bomb.  This one is even armed."
 msgstr ""
 
-#: map/droid_archetypes.dat:985
+#: map/droid_archetypes.dat:987
 msgid "Woman"
 msgstr ""
 
-#: map/droid_archetypes.dat:1003
+#: map/droid_archetypes.dat:1005
 msgid "This is Tania. She is human."
 msgstr ""
 
-#: map/droid_archetypes.dat:1007
+#: map/droid_archetypes.dat:1009
 msgid "Bartender"
 msgstr ""
 
-#: map/droid_archetypes.dat:1025
+#: map/droid_archetypes.dat:1027
 msgid "This is the bartender. Care for a drink?"
 msgstr ""
 
-#: map/droid_archetypes.dat:1029
+#: map/droid_archetypes.dat:1031
 msgid "Female Hunter"
 msgstr ""
 
-#: map/droid_archetypes.dat:1047
+#: map/droid_archetypes.dat:1049
 msgid "This hunter has fought with many robots before, and will not be scared by a mere linarian."
 msgstr ""
 
-#: map/droid_archetypes.dat:1051
+#: map/droid_archetypes.dat:1053
 msgid "ERROR: THIS IS A TERMINAL"
 msgstr ""
 
-#: map/droid_archetypes.dat:1069
+#: map/droid_archetypes.dat:1071
 msgid "This is a terminal."
 msgstr ""
 
-#: map/droid_archetypes.dat:1073 map/ReturnOfTux.droids:322
+#: map/droid_archetypes.dat:1075 map/ReturnOfTux.droids:322
 #: map/ReturnOfTux.droids:323
 msgid "Autogun"
 msgstr ""
 
-#: map/droid_archetypes.dat:1096
+#: map/droid_archetypes.dat:1099
 msgid "Carefully designed by Future Ballistics(R), this autogun will shred you into pieces if you try pass across them."
 msgstr ""
 
-#: map/droid_archetypes.dat:1100
+#: map/droid_archetypes.dat:1103
 msgid "Invader Bot"
 msgstr ""
 
-#: map/droid_archetypes.dat:1127
+#: map/droid_archetypes.dat:1130
 msgid "Authority Figure"
 msgstr ""
 
-#: map/droid_archetypes.dat:1150
+#: map/droid_archetypes.dat:1153
 msgid "It has long since been known that game development is the most important job in the world. Also the coolest. We know that thanks to this guy."
 msgstr ""
 
@@ -1356,11 +1356,11 @@ msgid "Knowing what your enemies are up to is easy with a little signal intellig
 msgstr ""
 
 #: map/item_specs.lua:1804
-msgid "Nuclear Science for Dummies IV"
+msgid "Subatomic and Nuclear Science for Dummies, Volume IV"
 msgstr ""
 
 #: map/item_specs.lua:1808
-msgid "From the back of the cover: 'The Nuclear Science for Dummies is the most popular handbook series for learning nuclear science: Learn to generate enough power to keep you town lit up for a decade! Discover how to really scare neighboring countries! Find out how to make your very own mutant pet!' This obviously important tome of knowledge from before the great assault comes with no warranty whatsoever."
+msgid "From the back of the cover: 'Subatomic and Nuclear Science for Dummies, Volume IV is the most popular handbook series for learning nuclear science: Learn to generate enough power to keep you town lit up for a decade! Discover how to really scare neighboring countries! Find out how to make your very own mutant pet!' This obviously important tome of knowledge from before the great assault comes with no warranty whatsoever."
 msgstr ""
 
 #: map/item_specs.lua:1815
@@ -1468,7 +1468,7 @@ msgstr ""
 msgid "Bottled Ice"
 msgstr ""
 
-#: map/item_specs.lua:1938 map/item_specs.lua:1950 map/item_specs.lua:3033
+#: map/item_specs.lua:1938 map/item_specs.lua:1950 map/item_specs.lua:3022
 msgid "Cooling aid"
 msgstr ""
 
@@ -1719,290 +1719,282 @@ msgid "This is a 'Dr. How?'-brand picnic basket stuffed full of enough food and 
 msgstr ""
 
 #: map/item_specs.lua:2303
-msgid "Gapes OTP Token"
-msgstr ""
-
-#: map/item_specs.lua:2307
-msgid "This is credit-card sized device which has displays a changing seven character string of letters and numbers. On the back is inscribed 'William Gapes, MegaSystems.'"
-msgstr ""
-
-#: map/item_specs.lua:2314
 msgid "MS Stock Certificate"
 msgstr ""
 
-#: map/item_specs.lua:2318
+#: map/item_specs.lua:2307
 msgid "This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer. Must be redeemed in a stock trading terminal."
 msgstr ""
 
-#: map/item_specs.lua:2325
+#: map/item_specs.lua:2314
 msgid "Elbow Grease Can"
 msgstr ""
 
-#: map/item_specs.lua:2329
+#: map/item_specs.lua:2318
 msgid "A can filled with elbow grease. Hard to make it if you are not a strong man."
 msgstr ""
 
-#: map/item_specs.lua:2340
+#: map/item_specs.lua:2329
 msgid "Linarian Power Crank"
 msgstr ""
 
-#: map/item_specs.lua:2344
+#: map/item_specs.lua:2333
 msgid "This mechanical crank, product of the highly advanced and sophisticated technological genius of the Linarian race, performs elaborate operations on energy and directs it towards a biochemical structure. For short, it buffs up your muscles. That's good."
 msgstr ""
 
-#: map/item_specs.lua:2351
+#: map/item_specs.lua:2340
 msgid "Tungsten Spikes"
 msgstr ""
 
-#: map/item_specs.lua:2355
+#: map/item_specs.lua:2344
 msgid "This polycarbonate surface is lined with hard tungsten spikes, and can be installed into a mechanical socket on most melee weapons, offering a simple and affordable solution to increasing damage dealt. Handle only with gloves. Do not attempt to use as footwear. Do not attempt to eat."
 msgstr ""
 
-#: map/item_specs.lua:2362
+#: map/item_specs.lua:2351
 msgid "Tinfoil Patch"
 msgstr ""
 
-#: map/item_specs.lua:2366
+#: map/item_specs.lua:2355
 msgid "When attached to your armor, this patch of tinfoil allows you to stay cooler by reducing the amount of electromagnetic radiation that your body absorbs."
 msgstr ""
 
-#: map/item_specs.lua:2373
+#: map/item_specs.lua:2362
 msgid "Laser Sight"
 msgstr ""
 
-#: map/item_specs.lua:2377
+#: map/item_specs.lua:2366
 msgid "A miniaturized laser powered by a nuclear battery. When attached parallel to the barrel of a gun, it makes a little red dot on the target and helps with aiming."
 msgstr ""
 
-#: map/item_specs.lua:2384
+#: map/item_specs.lua:2373
 msgid "Exoskeletal Joint"
 msgstr ""
 
-#: map/item_specs.lua:2388
+#: map/item_specs.lua:2377
 msgid "This electromechanical joint helps you to perform physically demanding tasks more easily by amplifying the movements of your body."
 msgstr ""
 
-#: map/item_specs.lua:2395
+#: map/item_specs.lua:2384
 msgid "Heatsink"
 msgstr ""
 
-#: map/item_specs.lua:2399
+#: map/item_specs.lua:2388
 msgid "A simple heatsink add-on that keeps you cooler by dissipating heat from your armor."
 msgstr ""
 
-#: map/item_specs.lua:2406
+#: map/item_specs.lua:2395
 msgid "Peltier Element"
 msgstr ""
 
-#: map/item_specs.lua:2410
+#: map/item_specs.lua:2399
 msgid "A thermoelectric device that increases your cooling rate."
 msgstr ""
 
-#: map/item_specs.lua:2417
+#: map/item_specs.lua:2406
 msgid "Steel Mesh"
 msgstr ""
 
-#: map/item_specs.lua:2421
+#: map/item_specs.lua:2410
 msgid "A sturdy metal mesh that provides an extra protective layer to your armor."
 msgstr ""
 
-#: map/item_specs.lua:2428
+#: map/item_specs.lua:2417
 msgid "Shock Discharger"
 msgstr ""
 
-#: map/item_specs.lua:2432
+#: map/item_specs.lua:2421
 msgid "When installed to a melee weapon, this nifty device gives a small electric shock to enemies you hit."
 msgstr ""
 
-#: map/item_specs.lua:2439
+#: map/item_specs.lua:2428
 msgid "Silencer"
 msgstr ""
 
-#: map/item_specs.lua:2443
+#: map/item_specs.lua:2432
 msgid "Allowing you to catch yours enemies by surprise, this silencer helps you to do more damage in ranged combat."
 msgstr ""
 
-#: map/item_specs.lua:2450
+#: map/item_specs.lua:2439
 msgid "Coprocessor"
 msgstr ""
 
-#: map/item_specs.lua:2454
+#: map/item_specs.lua:2443
 msgid "By speeding up your computations, this chip helps you to excel in many activities."
 msgstr ""
 
-#: map/item_specs.lua:2461
+#: map/item_specs.lua:2450
 msgid "Pedometer"
 msgstr ""
 
-#: map/item_specs.lua:2465
+#: map/item_specs.lua:2454
 msgid "A device that helps you to move dexterously by giving feedback on your foot movement."
 msgstr ""
 
-#: map/item_specs.lua:2472
+#: map/item_specs.lua:2461
 msgid "Foot Warmers"
 msgstr ""
 
-#: map/item_specs.lua:2476
+#: map/item_specs.lua:2465
 msgid "This pair of electric fuzzy foot warmers would make even a penguin warm and comfortable in any shoes, and help maintain a healthy body temperature, thus preventing colds and making you look cool. At least, that's what the advertisement says. And ads don't lie, do they?"
 msgstr ""
 
-#: map/item_specs.lua:2483
+#: map/item_specs.lua:2472
 msgid "Circuit Jammer"
 msgstr ""
 
-#: map/item_specs.lua:2487
+#: map/item_specs.lua:2476
 msgid "This item improves your melee weapon by blasting the enemies you hit with an electromagnetic pulse. The pulse is powerful enough to temporarily shut down the circuits of the attacked bot."
 msgstr ""
 
-#: map/item_specs.lua:2494
+#: map/item_specs.lua:2483
 msgid "Sensor Disruptor"
 msgstr ""
 
-#: map/item_specs.lua:2498
+#: map/item_specs.lua:2487
 msgid "When attached to a melee weapon, this item induces errors to the sensors of the bots you attack, causing them to slow down momentarily."
 msgstr ""
 
-#: map/item_specs.lua:2505
+#: map/item_specs.lua:2494
 msgid "Headlamp"
 msgstr ""
 
-#: map/item_specs.lua:2509
+#: map/item_specs.lua:2498
 msgid "When fastened to your helmet, this lamp allows you to see better in dark environments."
 msgstr ""
 
-#: map/item_specs.lua:2516
+#: map/item_specs.lua:2505
 msgid "Brain Stimulator"
 msgstr ""
 
-#: map/item_specs.lua:2520
+#: map/item_specs.lua:2509
 msgid "A chip that allows faster learning by connecting directly to the brain via a neural interface (colloquially referred to as a 'weird swim cap with little thingies on it') and providing additional feedback on various actions."
 msgstr ""
 
-#: map/item_specs.lua:2531
+#: map/item_specs.lua:2520
 msgid "NPC Hand to Hand Weapon"
 msgstr ""
 
-#: map/item_specs.lua:2545
+#: map/item_specs.lua:2534
 msgid "Bot use only"
 msgstr ""
 
-#: map/item_specs.lua:2553
+#: map/item_specs.lua:2542
 msgid "Droid 123 Weak Robotic Arm"
 msgstr ""
 
-#: map/item_specs.lua:2567 map/item_specs.lua:2591 map/item_specs.lua:2613
-#: map/item_specs.lua:2637 map/item_specs.lua:2659 map/item_specs.lua:2681
-#: map/item_specs.lua:2703 map/item_specs.lua:2725 map/item_specs.lua:2749
-#: map/item_specs.lua:2771 map/item_specs.lua:2793 map/item_specs.lua:2815
-#: map/item_specs.lua:2837 map/item_specs.lua:2859 map/item_specs.lua:2883
-#: map/item_specs.lua:2908 map/item_specs.lua:2933
+#: map/item_specs.lua:2556 map/item_specs.lua:2580 map/item_specs.lua:2602
+#: map/item_specs.lua:2626 map/item_specs.lua:2648 map/item_specs.lua:2670
+#: map/item_specs.lua:2692 map/item_specs.lua:2714 map/item_specs.lua:2738
+#: map/item_specs.lua:2760 map/item_specs.lua:2782 map/item_specs.lua:2804
+#: map/item_specs.lua:2826 map/item_specs.lua:2848 map/item_specs.lua:2872
+#: map/item_specs.lua:2897 map/item_specs.lua:2922
 msgid "Droid weaponry"
 msgstr ""
 
-#: map/item_specs.lua:2575
+#: map/item_specs.lua:2564
 msgid "Droid 139 Plasma Trash Vaporiser"
 msgstr ""
 
-#: map/item_specs.lua:2599
+#: map/item_specs.lua:2588
 msgid "Droid 247 Robotic Arm"
 msgstr ""
 
-#: map/item_specs.lua:2621
+#: map/item_specs.lua:2610
 msgid "Droid 249 Pulse Laser Welder"
 msgstr ""
 
-#: map/item_specs.lua:2645
+#: map/item_specs.lua:2634
 msgid "Droid 296 Plasmabeam Cutter"
 msgstr ""
 
-#: map/item_specs.lua:2667
+#: map/item_specs.lua:2656
 msgid "Droid 302 Overcharged Barcode Reader"
 msgstr ""
 
-#: map/item_specs.lua:2689
+#: map/item_specs.lua:2678
 msgid "Droid 329 Dual Overcharged Barcode Reader"
 msgstr ""
 
-#: map/item_specs.lua:2711
+#: map/item_specs.lua:2700
 msgid "Droid 420 Laser Scalpel"
 msgstr ""
 
-#: map/item_specs.lua:2733
+#: map/item_specs.lua:2722
 msgid "Droid 476 Small Laser"
 msgstr ""
 
-#: map/item_specs.lua:2757
+#: map/item_specs.lua:2746
 msgid "Droid 493 Power Hammer"
 msgstr ""
 
-#: map/item_specs.lua:2779
+#: map/item_specs.lua:2768
 msgid "Droid 516 Robotic Fist"
 msgstr ""
 
-#: map/item_specs.lua:2801
+#: map/item_specs.lua:2790
 msgid "Droid 543 Tree Harvester"
 msgstr ""
 
-#: map/item_specs.lua:2823
+#: map/item_specs.lua:2812
 msgid "Droid 571 Robotic Fist"
 msgstr ""
 
-#: map/item_specs.lua:2845
+#: map/item_specs.lua:2834
 msgid "Droid 598 Robotic Fist"
 msgstr ""
 
-#: map/item_specs.lua:2867
+#: map/item_specs.lua:2856
 msgid "Droid 7xx Tux Seeking Missiles"
 msgstr ""
 
-#: map/item_specs.lua:2891
+#: map/item_specs.lua:2880
 msgid "Droid Advanced Twin Laser"
 msgstr ""
 
-#: map/item_specs.lua:2916
+#: map/item_specs.lua:2905
 msgid "Droid 883 Exterminator"
 msgstr ""
 
-#: map/item_specs.lua:2941
+#: map/item_specs.lua:2930
 msgid "Autogun Laser Pistol"
 msgstr ""
 
-#: map/item_specs.lua:2956
+#: map/item_specs.lua:2945
 msgid "This is the laser weapon of the autogun. If you see this item whilst normal gameplay, please make a bugreport."
 msgstr ""
 
-#: map/item_specs.lua:2968
+#: map/item_specs.lua:2957
 msgid "PC LOAD LETTER"
 msgstr ""
 
-#: map/item_specs.lua:2972
+#: map/item_specs.lua:2961
 msgid "An envelop saying 'PC LOAD LETTERS'. I have no idea what that means..."
 msgstr ""
 
-#: map/item_specs.lua:2979
+#: map/item_specs.lua:2968
 msgid "Cheat Gun"
 msgstr ""
 
-#: map/item_specs.lua:2994
+#: map/item_specs.lua:2983
 msgid "This item is used by testers. If you find it ingame without using a cheat, please report it as a bug."
 msgstr ""
 
-#: map/item_specs.lua:3008
+#: map/item_specs.lua:2997
 msgid "Small Tutorial Axe"
 msgstr ""
 
-#: map/item_specs.lua:3023
+#: map/item_specs.lua:3012
 msgid ""
 "While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well.\n"
 "Sell me!\n"
 "Click the red button with the cross on it when you are done."
 msgstr ""
 
-#: map/item_specs.lua:3032
+#: map/item_specs.lua:3021
 msgid "Bottled Tutorial Ice"
 msgstr ""
 
-#: map/item_specs.lua:3037
+#: map/item_specs.lua:3026
 msgid ""
 "This bottle is filled with ice. It can keep you cool during a warm summer day.\n"
 "Buy me!\n"
@@ -2148,9 +2140,9 @@ msgid "Tutorial"
 msgstr ""
 
 #: map/levels.dat:40424 map/levels.dat:40774 map/levels.dat:40928
-#: map/levels.dat:56331 map/levels.dat:63176 map/levels.dat:63831
-#: map/levels.dat:64046 map/levels.dat:64171 map/levels.dat:64732
-#: map/levels.dat:65082 map/levels.dat:65410
+#: map/levels.dat:56331 map/levels.dat:63177 map/levels.dat:63832
+#: map/levels.dat:64047 map/levels.dat:64172 map/levels.dat:64733
+#: map/levels.dat:65083 map/levels.dat:65411
 msgid "World Edge"
 msgstr ""
 
@@ -2198,27 +2190,27 @@ msgstr ""
 msgid "Freight Station"
 msgstr ""
 
-#: map/levels.dat:58201
+#: map/levels.dat:58202
 msgid "Old Server Room"
 msgstr ""
 
-#: map/levels.dat:59117
+#: map/levels.dat:59118
 msgid "Factory Office"
 msgstr ""
 
-#: map/levels.dat:62885
+#: map/levels.dat:62886
 msgid "Strange Dungeon"
 msgstr ""
 
-#: map/levels.dat:63509
+#: map/levels.dat:63510
 msgid "Landing Zone"
 msgstr ""
 
-#: map/levels.dat:65603
+#: map/levels.dat:65604
 msgid "Shelter"
 msgstr ""
 
-#: map/levels.dat:65720
+#: map/levels.dat:65721
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT ment to be accessible without cheating."
 msgstr ""
 

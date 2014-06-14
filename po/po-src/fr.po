@@ -4,13 +4,15 @@
 #
 # Translators:
 # Benjamin Leduc <giby_the_kid@yahoo.fr>, 2014
+# fluzz <fluzz@gmx.com>, 2014
+# sebastienadam <sebastien.adam.be@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-04-16 10:43+0000\n"
-"PO-Revision-Date: 2014-04-16 10:43+0000\n"
-"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
+"POT-Creation-Date: 2014-06-14 00:45+0200\n"
+"PO-Revision-Date: 2014-06-14 09:08+0000\n"
+"Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -18,22 +20,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lua_modules/FDtux_lfuns.lua:239 map/script_helpers.lua:242
-#: map/script_helpers.lua:245
+#: lua_modules/FDtux_lfuns.lua:239 map/script_helpers.lua:268
+#: map/script_helpers.lua:271
 msgid "New Quest assigned: "
 msgstr "Nouvelle Quête à accomplir : "
 
-#: lua_modules/FDtux_lfuns.lua:259 map/script_helpers.lua:254
-#: map/script_helpers.lua:257
+#: lua_modules/FDtux_lfuns.lua:259 map/script_helpers.lua:280
+#: map/script_helpers.lua:283
 msgid "Quest log updated: "
-msgstr "Journal des Quêtes mise à jour :"
+msgstr "Journal des Quêtes mis à jour :"
 
-#: lua_modules/FDtux_lfuns.lua:301 map/script_helpers.lua:287
-#: map/script_helpers.lua:290
+#: lua_modules/FDtux_lfuns.lua:301 map/script_helpers.lua:313
+#: map/script_helpers.lua:316
 msgid "Quest completed: "
 msgstr "Quête accomplie :"
 
-#: map/script_helpers.lua:531
+#: map/script_helpers.lua:557
 msgid " getting new id"
 msgstr ""
 
@@ -147,37 +149,37 @@ msgstr "Armure "
 
 #: src/chat.c:635 src/chat.c:644
 msgid "[n]--- Start of Dialog ---\n"
-msgstr ""
+msgstr "[n]--- Début de la discussion ---\n"
 
 #. TRANSLATORS: Your friend <bot's short description> was killed by <bot's short description>
-#: src/enemy.c:894
+#: src/enemy.c:954
 #, c-format
 msgid "Your friend [s]%s[v] was killed by %s."
 msgstr "Votre ami [s]%s[v] a été tué par %s."
 
 #. TRANSLATORS: You killed <bot's short description>
-#: src/enemy.c:898
+#: src/enemy.c:958
 #, c-format
 msgid "You killed [s]%s[v]."
 msgstr "Vous avez tué [s]%s[v]."
 
 #. TRANSLATORS: <bot's short description> halted and caught fire
-#: src/enemy.c:902
+#: src/enemy.c:962
 #, c-format
 msgid "[s]%s[v] halted and caught fire."
 msgstr ""
 
 #. TRANSLATORS: <bot's short description> is dead
-#: src/enemy.c:905
+#: src/enemy.c:965
 #, c-format
 msgid "[s]%s[v] is dead."
 msgstr "[s]%s[v] est mort. "
 
 #. TRANSLATORS: For defeating <bot's short description>, you receive <10> experience
-#: src/enemy.c:910
+#: src/enemy.c:970
 #, c-format
 msgid "For defeating [s]%s[v], you receive %d experience."
-msgstr "Pour avoir battu [s]%s[v], vous gagnez %d points d'experience. "
+msgstr "Pour avoir battu [s]%s[v], vous gagnez %d points d'expérience. "
 
 #. TRANSLATORS: Tooltip of skill button: <skill name>\n Heat: <skill heat cost>\n Revision: <skill revision>
 #: src/game_ui.c:52
@@ -189,11 +191,11 @@ msgid ""
 msgstr ""
 "%s\n"
 "Chaleur : %d\n"
-"Revision : %d\n"
+"Révision : %d\n"
 
 #: src/game_ui.c:102
 msgid "reloading"
-msgstr "Rechargement "
+msgstr "rechargement "
 
 #: src/game_ui.c:104
 msgid "[r]EMPTY"
@@ -223,13 +225,13 @@ msgstr ""
 #: src/hud.c:135
 #, c-format
 msgid "Damage: %d\n"
-msgstr ""
+msgstr "Dégâts : %d\n"
 
 #. TRANSLATORS: On item description
 #: src/hud.c:141
 #, c-format
 msgid "Multiplicity: %d\n"
-msgstr "Multiciplité : %d \n"
+msgstr "Multiplicité : %d \n"
 
 #. TRANSLATORS: On item description: Armor bonus
 #: src/hud.c:146
@@ -273,7 +275,7 @@ msgstr "Cliquez droit pour utiliser\n"
 #: src/hud.c:184
 #, c-format
 msgid "Item use: %s\n"
-msgstr ""
+msgstr "Objet utilisé : %s\n"
 
 #. TRANSLATORS: On item description: 'used sockets' / 'number of sockets'
 #: src/hud.c:191
@@ -313,15 +315,15 @@ msgstr "%s vide, rechargement..."
 
 #: src/influ.c:971 src/menu.c:999
 msgid "Load Latest"
-msgstr ""
+msgstr "Charger le dernier "
 
 #: src/influ.c:972 src/menu.c:1000
 msgid "Load Backup"
-msgstr ""
+msgstr "Charger la Sauvegarde "
 
 #: src/influ.c:973 src/menu.c:1002 src/lvledit/lvledit_menu.c:1003
 msgid "Quit to Main Menu"
-msgstr ""
+msgstr "Retour au Menu Principal"
 
 #: src/influ.c:974 src/menu.c:851 src/menu.c:1005
 #: src/lvledit/lvledit_menu.c:1004
@@ -334,19 +336,19 @@ msgstr "Quitter FreedroidRPG"
 msgid "Out of [s]%s[v]!"
 msgstr ""
 
-#: src/init.c:837 src/saveloadgame.c:443
+#: src/init.c:850 src/saveloadgame.c:443
 msgid "--- Message Log ---"
 msgstr ""
 
-#: src/init.c:839
+#: src/init.c:852
 msgid "Starting tutorial."
 msgstr "Commencer le Tutoriel. "
 
-#: src/init.c:841
+#: src/init.c:854
 msgid "Starting new game."
 msgstr "Commencer une nouvelle partie. "
 
-#: src/init.c:1139
+#: src/init.c:1152
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -362,11 +364,11 @@ msgstr ""
 "\n"
 "Bonne chance !\n"
 
-#: src/init.c:1157 src/init.c:1158
+#: src/init.c:1169 src/init.c:1170
 msgid "Game over.\n"
-msgstr "Fin de la partie \n"
+msgstr "Fin de la partie.\n"
 
-#: src/init.c:1227 src/init.c:1228
+#: src/init.c:1236 src/init.c:1237
 msgid "Game won.\n"
 msgstr "Vous avez gagné la partie. \n"
 
@@ -497,10 +499,12 @@ msgstr "Installer à une prise universelle \n"
 #: src/item_upgrades.c:352
 msgid "Install to a melee weapon\n"
 msgstr ""
+"Installer à une arme de combat rapproché\n"
+" \n"
 
 #: src/item_upgrades.c:354
 msgid "Install to a ranged weapon\n"
-msgstr ""
+msgstr "Installer à une arme à feu\n"
 
 #: src/item_upgrades.c:356
 msgid "Install to any armor\n"
@@ -530,7 +534,7 @@ msgstr "Électrique "
 #. TRANSLATORS: Socket's type
 #: src/item_upgrades_ui.c:175
 msgid "Mechanical"
-msgstr "Méchanique "
+msgstr "Mécanique "
 
 #. TRANSLATORS: Socket's type
 #: src/item_upgrades_ui.c:177
@@ -556,11 +560,11 @@ msgstr "Coût "
 
 #: src/item_upgrades_ui.c:258
 msgid "Place an item here"
-msgstr ""
+msgstr "Placez un objet ici"
 
 #: src/item_upgrades_ui.c:264
 msgid "Upgrade Items"
-msgstr ""
+msgstr "Améliorer l'objet"
 
 #: src/item_upgrades_ui.c:268
 #, c-format
@@ -664,41 +668,9 @@ msgstr "Vous ne pouvez pas encore porter ça !"
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr ""
 
-#: src/items.c:1891 src/items.c:2092
+#: src/items.c:1891 src/items.c:2069
 msgid "I can't carry any more."
 msgstr "Je ne peux plus rien porter."
-
-#: src/items.c:2050
-msgid "Laser power pack"
-msgstr ""
-
-#: src/items.c:2051
-msgid "Plasma energy container"
-msgstr ""
-
-#: src/items.c:2052
-msgid "2 mm Exterminator Ammunition"
-msgstr ""
-
-#: src/items.c:2053
-msgid ".22 LR Ammunition"
-msgstr "Cartouches .22 LR"
-
-#: src/items.c:2054
-msgid "Shotgun shells"
-msgstr ""
-
-#: src/items.c:2055
-msgid "9x19mm Ammunition"
-msgstr "Balles 9x19mm"
-
-#: src/items.c:2056
-msgid "7.62x39mm Ammunition"
-msgstr "Munitions 7.62x39mm"
-
-#: src/items.c:2057
-msgid ".50 BMG (12.7x99mm) Ammunition"
-msgstr "Balles .50 BMG (12.7x99mm)"
 
 #: src/keyboard.c:53
 msgid "keychart"
@@ -706,7 +678,7 @@ msgstr ""
 
 #: src/keyboard.c:54
 msgid "fullscreen"
-msgstr ""
+msgstr "Plein écran"
 
 #: src/keyboard.c:55
 msgid "grab_input"
@@ -714,7 +686,7 @@ msgstr ""
 
 #: src/keyboard.c:56
 msgid "quit"
-msgstr ""
+msgstr "Quitter"
 
 #: src/keyboard.c:57
 msgid "wall_transparency"
@@ -978,19 +950,19 @@ msgstr ""
 
 #: src/keyboard.c:131
 msgid "cut"
-msgstr ""
+msgstr "Couper "
 
 #: src/keyboard.c:132
 msgid "copy"
-msgstr ""
+msgstr "Copier"
 
 #: src/keyboard.c:133
 msgid "paste"
-msgstr ""
+msgstr "Coller "
 
 #: src/keyboard.c:134
 msgid "delete"
-msgstr ""
+msgstr "Effacer "
 
 #: src/keyboard.c:135
 msgid "next_selection_type"
@@ -1089,47 +1061,47 @@ msgstr ""
 msgid "Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."
 msgstr ""
 
-#: src/lua.c:67
+#: src/lua.c:67 src/lua/luaFD_npc.c:69
 msgid "No chat context available on the context stack."
 msgstr ""
 
-#: src/lua.c:278 src/lua/luaFD_tux.c:404
+#: src/lua.c:249 src/lua/luaFD_tux.c:404
 msgid "Melee fighting ability improved!"
 msgstr "Capacité de combat rapproché améliorée !"
 
-#: src/lua.c:281 src/lua/luaFD_tux.c:407
+#: src/lua.c:252 src/lua/luaFD_tux.c:407
 msgid "Ranged combat ability improved!"
 msgstr "Capacité de combat à distance améliorée !"
 
-#: src/lua.c:284 src/lua/luaFD_tux.c:410
+#: src/lua.c:255 src/lua/luaFD_tux.c:410
 msgid "Programming ability improved!"
 msgstr "Capacité de programmation améliorée !"
 
-#: src/lua.c:365
+#: src/lua.c:336
 #, c-format
 msgid "Received item: %s (on floor)"
 msgstr ""
 
-#: src/lua.c:367
+#: src/lua.c:338
 #, c-format
 msgid "Received item: %s"
 msgstr ""
 
-#: src/lua.c:419 src/lua/luaFD_tux.c:755
+#: src/lua.c:390 src/lua/luaFD_tux.c:755
 msgid "1 item received!"
 msgstr "1 objet obtenu !"
 
-#: src/lua.c:498
+#: src/lua.c:469
 #, c-format
 msgid "+%d experience points"
 msgstr "+%d points d'experience "
 
-#: src/lua.c:530 src/lua/luaFD_tux.c:317
+#: src/lua.c:501 src/lua/luaFD_tux.c:317
 #, c-format
 msgid "Gained %d valuable circuits!"
 msgstr "Gagné %d précieux circuits !"
 
-#: src/lua.c:532 src/lua/luaFD_tux.c:319
+#: src/lua.c:503 src/lua/luaFD_tux.c:319
 #, c-format
 msgid "Lost %d valuable circuits!"
 msgstr "Perdu %d précieux circuits !"
@@ -1145,11 +1117,11 @@ msgstr "en raison d'une surchauffe presque mortelle"
 
 #: src/main.c:375
 msgid "Automatically shutting down"
-msgstr ""
+msgstr "Pistolet Automatique"
 
 #: src/main.c:397
 msgid "Weapon reloaded"
-msgstr ""
+msgstr "Arme rechargée"
 
 #: src/menu.c:44 src/menu.c:845
 msgid "Play"
@@ -1157,21 +1129,21 @@ msgstr "Jouer"
 
 #: src/menu.c:45
 msgid "Your characters: "
-msgstr ""
+msgstr "Vos personnages :"
 
 #: src/menu.c:46
 msgid "Select character to delete: "
-msgstr ""
+msgstr "Choisissez un perso à effacer : "
 
 #: src/menu.c:95
 #, c-format
 msgid "OpenGL support compiled: YES"
-msgstr ""
+msgstr "Compilé avec support OpenGL : OUI "
 
 #: src/menu.c:97
 #, c-format
 msgid "OpenGL support compiled: NO"
-msgstr ""
+msgstr "Compilé avec support OpenGL : NON "
 
 #: src/menu.c:100
 #, c-format
@@ -1190,11 +1162,11 @@ msgstr ""
 
 #: src/menu.c:226 src/menu.c:1616
 msgid "[down]"
-msgstr ""
+msgstr "[bas] "
 
 #: src/menu.c:227 src/menu.c:1605
 msgid "[up]"
-msgstr ""
+msgstr "[haut] "
 
 #: src/menu.c:846
 msgid "Tutorial"
@@ -1228,15 +1200,15 @@ msgstr ""
 
 #: src/menu.c:881
 msgid "easy"
-msgstr ""
+msgstr "Facile "
 
 #: src/menu.c:882
 msgid "normal"
-msgstr ""
+msgstr "normal"
 
 #: src/menu.c:883
 msgid "hard"
-msgstr ""
+msgstr "difficile "
 
 #: src/menu.c:886
 #, c-format
@@ -1250,7 +1222,7 @@ msgstr "Difficulté : %s"
 #: src/lvledit/lvledit_menu.c:415 src/lvledit/lvledit_menu.c:634
 #: src/lvledit/lvledit_menu.c:915
 msgid "Back"
-msgstr "Retours "
+msgstr "Retour"
 
 #: src/menu.c:937
 msgid "Gameplay"
@@ -1274,11 +1246,11 @@ msgstr "Langues"
 
 #: src/menu.c:944
 msgid "On-Screen displays"
-msgstr ""
+msgstr "Menus à l'écran"
 
 #: src/menu.c:945
 msgid "Performance tweaks"
-msgstr ""
+msgstr "Réglage des performances"
 
 #: src/menu.c:993
 msgid "Resume Play"
@@ -1290,7 +1262,7 @@ msgstr ""
 
 #: src/menu.c:997
 msgid "Save Hero"
-msgstr "Sauvegarder le Héro "
+msgstr "Sauvegarder le Héros"
 
 #: src/menu.c:1004
 msgid "Return to Level Editor"
@@ -1298,7 +1270,7 @@ msgstr "Retourner à l'éditeur de niveau"
 
 #: src/menu.c:1044
 msgid "System default"
-msgstr ""
+msgstr "Valeur par défaut"
 
 #: src/menu.c:1099
 #, c-format
@@ -1313,7 +1285,7 @@ msgstr ""
 #: src/menu.c:1208
 #, c-format
 msgid "Change screen resolution"
-msgstr "Changer la résolution de l'écran"
+msgstr "Changer la résolution écran"
 
 #: src/menu.c:1210
 #, c-format
@@ -1381,37 +1353,37 @@ msgstr ""
 #: src/menu.c:1385
 #, c-format
 msgid "Limit framerate (powersaving): %s"
-msgstr ""
+msgstr "Limitation fréquence image (économie d'énergie) : %s"
 
 #: src/menu.c:1388
 #, c-format
 msgid "Show light radius: %s"
-msgstr ""
+msgstr "Affichage des halos lumineux : %s"
 
 #: src/menu.c:1391
 #, c-format
 msgid "Show obstacle shadows: %s"
-msgstr ""
+msgstr "Affichage des ombres : %s"
 
 #: src/menu.c:1396
 #, c-format
 msgid "Precache item graphics: %s"
-msgstr ""
+msgstr "Préchargement des images : %s"
 
 #: src/menu.c:1463
 #, c-format
 msgid "Show position: %s"
-msgstr ""
+msgstr "Affichage de la position : %s"
 
 #: src/menu.c:1464
 #, c-format
 msgid "Show framerate: %s"
-msgstr ""
+msgstr "Affichage de la fréquence image : %s"
 
 #: src/menu.c:1465
 #, c-format
 msgid "Show enemies' energy bars: %s"
-msgstr ""
+msgstr "Affichage de la barre d'énergie des ennemis : %s"
 
 #: src/menu.c:1466
 #, c-format
@@ -1460,25 +1432,25 @@ msgstr "Voulez-vous vraiment effacer le héro '%s' ? "
 
 #: src/menu.c:1730
 msgid "New Hero"
-msgstr "Nouveau Héro "
+msgstr "Nouveau Héros "
 
 #: src/menu.c:1731
 msgid "Load existing Hero"
-msgstr "Charger un précédent héro "
+msgstr "Charger un Héros existant"
 
 #: src/menu.c:1732
 msgid "Delete existing Hero"
-msgstr "Effacer un ancien Héro"
+msgstr "Effacer un ancien Héros"
 
-#: src/misc.c:816
+#: src/misc.c:821
 msgid "GAME PAUSED"
 msgstr "JEU EN PAUSE "
 
-#: src/misc.c:817
+#: src/misc.c:822
 msgid "press p to resume"
 msgstr "Appuyez sur p pour reprendre"
 
-#: src/misc.c:1110
+#: src/misc.c:1115
 #, c-format
 msgid "Arrived at %s."
 msgstr "Arrivé à %s "
@@ -1489,6 +1461,8 @@ msgid ""
 "[n]Quest [r]%s\n"
 "[n]"
 msgstr ""
+"[n]Quête [r]%s\n"
+"[n]"
 
 #: src/quest_browser_ui.c:70
 msgid "[n]Status [w]"
@@ -1496,19 +1470,19 @@ msgstr ""
 
 #: src/quest_browser_ui.c:74
 msgid "COMPLETE"
-msgstr ""
+msgstr "COMPLÈTE "
 
 #: src/quest_browser_ui.c:76
 msgid "FAILED"
-msgstr ""
+msgstr "ÈCHEC "
 
 #: src/quest_browser_ui.c:78
 msgid "STILL OPEN"
-msgstr ""
+msgstr "EN COURS "
 
 #: src/quest_browser_ui.c:80
 msgid "Details:"
-msgstr "Details :"
+msgstr "Détails :"
 
 #: src/quest_browser_ui.c:84
 msgid "Day"
@@ -1516,107 +1490,107 @@ msgstr "Jour"
 
 #: src/quest_browser_ui.c:181
 msgid "[r]Parafunken Statistics[w]\n"
-msgstr ""
+msgstr "[r]Statistiques Parafunken[w] \n"
 
 #: src/quest_browser_ui.c:184
 msgid "[r]Overview[w]\n"
-msgstr ""
+msgstr "[r]Vu d'ensemble[w]\n"
 
-#: src/quest_browser_ui.c:187
+#: src/quest_browser_ui.c:188
 #, c-format
 msgid "Time Played: [n]%dh%dm[w]\n"
-msgstr ""
-
-#: src/quest_browser_ui.c:190
-#, c-format
-msgid "Distance Traveled: [n]%.1fm[w]\n"
-msgstr ""
+msgstr "Temps de Jeu : [n]%dh%dm[w]\n"
 
 #: src/quest_browser_ui.c:192
+#, c-format
+msgid "Distance Traveled: [n]%.1fm[w]\n"
+msgstr "Distance Parcourue : [n]%.1fm[w]\n"
+
+#: src/quest_browser_ui.c:194
 #, c-format
 msgid "Percentage explored: [n]%.1f%%[w]\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:193
-#, c-format
-msgid "Destroyed Enemies: [n]%i[w]\n"
-msgstr ""
-
-#: src/quest_browser_ui.c:194
-#, c-format
-msgid "Captured Enemies: [n]%i[w]\n"
-msgstr ""
-
 #: src/quest_browser_ui.c:195
 #, c-format
+msgid "Destroyed Enemies: [n]%i[w]\n"
+msgstr " Ennemis Détruits : [n]%i[w]\n"
+
+#: src/quest_browser_ui.c:196
+#, c-format
+msgid "Captured Enemies: [n]%i[w]\n"
+msgstr "Ennemis Capturés : [n]%i[w]\n"
+
+#: src/quest_browser_ui.c:197
+#, c-format
 msgid "Damage Dealt: [n]%i[w]\n"
-msgstr ""
+msgstr "Dégâts infligés : [n]%i[w]\n"
 
-#: src/quest_browser_ui.c:203
+#: src/quest_browser_ui.c:205
 msgid "[r]Preferences[w]\n"
-msgstr ""
+msgstr "[r]Préférences[w]\n"
 
-#: src/quest_browser_ui.c:208
+#: src/quest_browser_ui.c:210
 #, c-format
 msgid "Attacking: [n]%s[w] ([n]%i[w] killed, [n]%i[w] DP)\n"
-msgstr ""
+msgstr "Attaque : [n]%s[w] ([n]%i[w] tués, [n]%i[w] DP)\n"
 
-#: src/quest_browser_ui.c:213
+#: src/quest_browser_ui.c:215
 #, c-format
 msgid "Attacking: [n]%s[w] ([n]%i[w] destroyed, [n]%i[w] DP)\n"
-msgstr ""
+msgstr "Attaque : [n]%s[w] ([n]%i[w] détruits, [n]%i[w] DP)\n"
 
-#: src/quest_browser_ui.c:218
+#: src/quest_browser_ui.c:220
 msgid "Attacking: no droids destroyed\n"
-msgstr ""
+msgstr "Attaque : aucun droïde détruits\n"
 
-#: src/quest_browser_ui.c:221
+#: src/quest_browser_ui.c:223
 #, c-format
 msgid "Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"
-msgstr ""
+msgstr "Prise de contrôle : [n]%s[w] ([n]%i%%[w] taux, [n]%i[w] tentatives)\n"
 
-#: src/quest_browser_ui.c:225
+#: src/quest_browser_ui.c:227
 msgid "Takeover: none successful\n"
-msgstr ""
+msgstr "Prise de contrôle : aucune réussie\n"
 
-#: src/quest_browser_ui.c:229
+#: src/quest_browser_ui.c:231
 #, c-format
 msgid "Failed Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"
-msgstr ""
+msgstr "Echec de prise de contrôle : [n]%s[w] ([n]%i%%[w] taux, [n]%i[w] tentatives)\n"
 
-#: src/quest_browser_ui.c:233
+#: src/quest_browser_ui.c:235
 msgid "Failed Takeover: no failures\n"
-msgstr ""
-
-#: src/quest_browser_ui.c:253
-#, c-format
-msgid "Killed: [n]%d[w]\n"
-msgstr ""
+msgstr "Echec de prise de contrôle : aucun échec\n"
 
 #: src/quest_browser_ui.c:255
 #, c-format
-msgid "Destroyed: [n]%d[w]\n"
-msgstr ""
+msgid "Killed: [n]%d[w]\n"
+msgstr "Tués : [n]%d[w]\n"
 
-#: src/quest_browser_ui.c:256
+#: src/quest_browser_ui.c:257
+#, c-format
+msgid "Destroyed: [n]%d[w]\n"
+msgstr "Détruits : [n]%d[w]\n"
+
+#: src/quest_browser_ui.c:258
 #, c-format
 msgid "Takeovers: [n]%d[w]/[n]%d[w]/[n]"
-msgstr ""
-
-#: src/quest_browser_ui.c:262
-msgid " (success/fail/ratio)\n"
-msgstr ""
+msgstr "Contrôlés : [n]%d[w]/[n]%d[w]/[n]"
 
 #: src/quest_browser_ui.c:264
+msgid " (success/fail/ratio)\n"
+msgstr "(succès/échec/ratio)\n"
+
+#: src/quest_browser_ui.c:266
 #, c-format
 msgid "Damage: [n]%d[w] (dealt)\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:423
+#: src/quest_browser_ui.c:425
 msgid "[n]No open quests yet.[w]"
 msgstr ""
 
-#: src/quest_browser_ui.c:426
+#: src/quest_browser_ui.c:428
 msgid "[n]No completed quests yet.[w]"
 msgstr ""
 
@@ -1635,11 +1609,11 @@ msgstr ""
 
 #: src/saveloadgame.c:260
 msgid "Saving"
-msgstr "S"
+msgstr "Sauvegarde "
 
 #: src/saveloadgame.c:293
 msgid "Game saved."
-msgstr "Partie sauvegardé."
+msgstr "Partie sauvegardée."
 
 #: src/saveloadgame.c:343
 msgid "Loading"
@@ -1656,7 +1630,7 @@ msgstr ""
 
 #: src/saveloadgame.c:361
 msgid "Failed to load old game."
-msgstr ""
+msgstr "Impossible de charger l'ancienne sauvegarde. "
 
 #: src/saveloadgame.c:395
 msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
@@ -1668,7 +1642,7 @@ msgstr ""
 
 #: src/saveloadgame.c:444
 msgid "Game loaded."
-msgstr "Partie chargé."
+msgstr "Partie chargée."
 
 #: src/savestruct_internal.h:140
 msgid ""
@@ -1700,25 +1674,27 @@ msgid ""
 "Price per unit: %s%d%s\n"
 "%s all: %s%d%s\n"
 msgstr ""
+"Prix à la pièce : %s%d%s\n"
+"%s all: %s%d%s\n"
 
 #: src/shop.c:306
 #, c-format
 msgid "%s Price: %s%d%s\n"
-msgstr "%s Prix: %s%d%s\n"
+msgstr "%s Prix : %s%d%s\n"
 
 #: src/shop.c:319
 #, c-format
 msgid "Repair cost: %ld\n"
-msgstr ""
+msgstr "Prix de la réparation : %ld\n"
 
 #: src/shop.c:322
 msgid "Unsellable\n"
-msgstr ""
+msgstr "Invendable\n"
 
 #: src/shop.c:327
 #, c-format
 msgid "Recharge time: %3.2f\n"
-msgstr ""
+msgstr "Temps de rechargement : %3.2f\n"
 
 #: src/shop.c:331
 #, c-format
@@ -1728,26 +1704,28 @@ msgstr ""
 #: src/shop.c:334
 #, c-format
 msgid "Notes: %s"
-msgstr ""
+msgstr "Notes : %s"
 
-#: src/shop.c:337
+#: src/shop.c:338
 #, c-format
 msgid ""
 "\n"
 "This weapon requires %s."
 msgstr ""
+"\n"
+"Cette arme nécessite %s."
 
-#: src/shop.c:656
+#: src/shop.c:657
 msgid "You can not afford to have this item repaired."
-msgstr ""
+msgstr "Vous n'avez pas de quoi faire réparer cet équipement. "
 
-#: src/shop.c:732
+#: src/shop.c:733
 msgid "You can not afford this item."
-msgstr ""
+msgstr "Vous n'avez pas de quoi acheter cet équipement. "
 
 #: src/skills.c:217
 msgid "You cannot teleport here!"
-msgstr ""
+msgstr "Vous ne pouvez pas vous téléporter ici ! "
 
 #: src/skills.c:861
 #, c-format
@@ -1792,17 +1770,17 @@ msgstr ""
 #: src/skills.c:901
 #, c-format
 msgid "Slow down"
-msgstr ""
+msgstr "Ralentir "
 
 #: src/skills.c:903
 #, c-format
 msgid "Invisible"
-msgstr ""
+msgstr "Invisible"
 
 #: src/skills.c:905
 #, c-format
 msgid "Poison"
-msgstr ""
+msgstr "Poison"
 
 #: src/skills.c:908
 #, c-format
@@ -1812,22 +1790,22 @@ msgstr ""
 #: src/skills.c:910
 #, c-format
 msgid "Escape"
-msgstr ""
+msgstr "Évasion"
 
 #: src/skills.c:912
 #, c-format
 msgid "Passive"
-msgstr ""
+msgstr "Passif"
 
 #: src/skills.c:918
 #, c-format
 msgid "Repair items, degrading them a bit"
-msgstr ""
+msgstr "Réparer les équipements, les dégradant un peu"
 
 #: src/skills.c:920
 #, c-format
 msgid "Detect enemies"
-msgstr ""
+msgstr "Détecter les ennemis "
 
 #: src/skills.c:922
 #, c-format
@@ -1853,7 +1831,7 @@ msgstr ""
 #: src/lvledit/lvledit_enemy.c:260 src/lvledit/lvledit_enemy.c:275
 #: src/lvledit/lvledit_menu.c:550
 msgid "none"
-msgstr ""
+msgstr "Aucun(e)"
 
 #: src/takeover.c:226
 #, c-format
@@ -1891,7 +1869,7 @@ msgstr ""
 #: src/takeover.c:344
 #, c-format
 msgid "Subliminal"
-msgstr ""
+msgstr "Subliminale"
 
 #: src/takeover.c:398
 #, c-format
@@ -1900,12 +1878,12 @@ msgstr ""
 
 #: src/takeover.c:557
 msgid "For more information, click the help button."
-msgstr ""
+msgstr "Pour plus d'information, cliquez sur le bouton d'aide."
 
 #: src/takeover.c:596
 #, c-format
 msgid "For taking control of your enemy, [s]%s[v], you receive %d experience."
-msgstr ""
+msgstr "Pour avoir pris le contrôle de votre ennemi, [s]%s[v], vous avez reçu %d expérience."
 
 #: src/takeover.c:891
 msgid "Complete"
@@ -1913,7 +1891,7 @@ msgstr ""
 
 #: src/takeover.c:896
 msgid "Rejected"
-msgstr ""
+msgstr "Rejeté "
 
 #: src/takeover.c:901
 msgid "Deadlock"
@@ -1921,35 +1899,35 @@ msgstr ""
 
 #: src/text.c:169
 msgid "Click to continue..."
-msgstr ""
+msgstr "Cliquez pour continuer..."
 
 #: src/vars.h:39
 msgid "untrained"
-msgstr ""
+msgstr "sans entrainement"
 
 #: src/vars.h:40
 msgid "novice"
-msgstr ""
+msgstr "Débutant"
 
 #: src/vars.h:41
 msgid "apprentice"
-msgstr ""
+msgstr "apprenti"
 
 #: src/vars.h:42
 msgid "professional"
-msgstr ""
+msgstr "professionnel"
 
 #: src/vars.h:43
 msgid "expert"
-msgstr ""
+msgstr "expert"
 
 #: src/vars.h:44
 msgid "master"
-msgstr ""
+msgstr "maître"
 
 #: src/vars.h:45
 msgid "god"
-msgstr ""
+msgstr "dieu"
 
 #: src/vars.h:46
 msgid "haxx0r"
@@ -1961,6 +1939,10 @@ msgstr ""
 
 #: src/vars.h:48
 msgid "cheater"
+msgstr ""
+
+#: src/lua/luaFD_npc.c:581
+msgid "Current chat context has no 'partner'. How is it possible ?."
 msgstr ""
 
 #: src/lua/luaFD_tux.c:283
@@ -2131,16 +2113,16 @@ msgid ""
 " Rushes Tux: "
 msgstr ""
 
-#: src/lvledit/lvledit_map.c:386 src/lvledit/lvledit_map.c:400
+#: src/lvledit/lvledit_map.c:379 src/lvledit/lvledit_map.c:393
 msgid "Your ship was saved..."
 msgstr ""
 
-#: src/lvledit/lvledit_map.c:395
+#: src/lvledit/lvledit_map.c:388
 #, c-format
 msgid "Saving map files to %s/ instead of the default location %s/."
 msgstr ""
 
-#: src/lvledit/lvledit_map.c:406
+#: src/lvledit/lvledit_map.c:399
 msgid "Your ship can not be saved !!! See the console output..."
 msgstr ""
 
@@ -2205,7 +2187,7 @@ msgstr ""
 
 #: src/lvledit/lvledit_menu.c:413
 msgid "Add New Level"
-msgstr ""
+msgstr "Ajouter un Nouveau Niveau "
 
 #: src/lvledit/lvledit_menu.c:414
 msgid "Remove Current Level"
@@ -2222,7 +2204,7 @@ msgstr ""
 #: src/lvledit/lvledit_menu.c:535
 #, c-format
 msgid "Level: %d.  (<-/->)"
-msgstr ""
+msgstr "Niveau : %d.  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:538
 #, c-format
@@ -2308,12 +2290,12 @@ msgstr ""
 
 #: src/lvledit/lvledit_menu.c:608 src/lvledit/lvledit_menu.c:613
 msgid "Bonus"
-msgstr ""
+msgstr "Bonus"
 
 #: src/lvledit/lvledit_menu.c:621
 #, c-format
 msgid "Background Music"
-msgstr ""
+msgstr "Musique de Fond"
 
 #: src/lvledit/lvledit_menu.c:626
 #, c-format
@@ -2398,80 +2380,155 @@ msgstr ""
 msgid "Place tool does not support this type of object."
 msgstr ""
 
+#: src/lvledit/lvledit_widget_toolbar.c:110
+#, c-format
+msgid "Obs. number %d, %s\n"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:128
+#, c-format
+msgid ""
+"%s\n"
+"\t\t\tclass: %d, xp_reward: %hd\n"
+"\t\t\theal: %.2f /s, max_energy: %.2f, max_speed: %.2f\n"
+"\t\t\taggression_dist: %.2f, eyeing_tux_for: %.2f s"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:142
+#, c-format
+msgid ""
+"%s (%s)\n"
+"\t\t\tDamage: %d-%d, Recharge: %.2f, Reload: %.2f, Ammo: (%d/%s)\n"
+"\t\t\tSTR: >%d\n"
+"%s"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:153
+#, c-format
+msgid ""
+"%s (%s)\n"
+"\t\t\tDamage: %d-%d, Recharge: %.2f,\n"
+"\t\t\tSTR: >%d, DEX: >%d, COOL: >%d\n"
+"%s"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:163
+#, c-format
+msgid ""
+"%s (%s)\n"
+"\t\t\tArmor: %d-%d, Durability:  %d-%d,\n"
+"\t\t\tSTR: >%d, DEX: >%d, COOL: >%d\n"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:172
+#, c-format
+msgid ""
+"%s (%s)\n"
+"%s"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:184
+#, c-format
+msgid "Overlay floor tile number %d, filename %s\n"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:187
+#, c-format
+msgid "Underlay floor tile number %d, filename %s\n"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:194
+#, c-format
+msgid "Waypoint %s connection, %sused for random spawn\n"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:194
+msgid "two way"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:194
+msgid "not "
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:203
+#, c-format
+msgid "There currently is only one type of map label"
+msgstr ""
+
 #: src/lvledit/lvledit_widgets.c:54
 msgid "wall"
-msgstr ""
+msgstr "mur"
 
 #: src/lvledit/lvledit_widgets.c:55
 msgid "furniture"
-msgstr ""
+msgstr "meuble"
 
 #: src/lvledit/lvledit_widgets.c:56
 msgid "machinery"
-msgstr ""
+msgstr "machines"
 
 #: src/lvledit/lvledit_widgets.c:57
 msgid "container"
-msgstr ""
+msgstr "conteneur"
 
 #: src/lvledit/lvledit_widgets.c:58
 msgid "nature"
-msgstr ""
+msgstr "nature"
 
 #: src/lvledit/lvledit_widgets.c:59 src/lvledit/lvledit_widgets.c:69
 #: src/lvledit/lvledit_widgets.c:78
 msgid "other"
-msgstr ""
+msgstr "autre"
 
 #: src/lvledit/lvledit_widgets.c:60 src/lvledit/lvledit_widgets.c:70
 #: src/lvledit/lvledit_widgets.c:79 src/lvledit/lvledit_widgets.c:83
 #: src/lvledit/lvledit_widgets.c:87 src/lvledit/lvledit_widgets.c:93
 msgid "all"
-msgstr ""
+msgstr "tout"
 
 #: src/lvledit/lvledit_widgets.c:64
 msgid "sidewalk"
-msgstr ""
+msgstr "trottoir"
 
 #: src/lvledit/lvledit_widgets.c:65
 msgid "water"
-msgstr ""
+msgstr "eau"
 
 #: src/lvledit/lvledit_widgets.c:66
 msgid "grass"
-msgstr ""
+msgstr "hérbe "
 
 #: src/lvledit/lvledit_widgets.c:67
 msgid "square"
-msgstr ""
+msgstr "caré "
 
 #: src/lvledit/lvledit_widgets.c:68
 msgid "sand"
-msgstr ""
+msgstr "sable "
 
 #: src/lvledit/lvledit_widgets.c:74
 msgid "melee"
-msgstr ""
+msgstr "mêlée"
 
 #: src/lvledit/lvledit_widgets.c:75
 msgid "gun"
-msgstr ""
+msgstr "arme "
 
 #: src/lvledit/lvledit_widgets.c:76
 msgid "defensive"
-msgstr ""
+msgstr "défensif"
 
 #: src/lvledit/lvledit_widgets.c:77
 msgid "useable"
-msgstr ""
+msgstr "utilisable "
 
 #: src/lvledit/lvledit_widgets.c:91
 msgid "droids"
-msgstr ""
+msgstr "droïdes "
 
 #: src/lvledit/lvledit_widgets.c:92
 msgid "humans"
-msgstr ""
+msgstr "humains "
 
 #: src/lvledit/lvledit_widgets.c:252
 #, c-format
@@ -2627,15 +2684,15 @@ msgstr ""
 
 #: src/lvledit/lvledit_widgets.c:481
 msgid "Floor"
-msgstr ""
+msgstr "Sol"
 
 #: src/lvledit/lvledit_widgets.c:483
 msgid "Item"
-msgstr ""
+msgstr "Objet"
 
 #: src/lvledit/lvledit_widgets.c:485
 msgid "Enemy"
-msgstr ""
+msgstr "Enemi "
 
 #: src/lvledit/lvledit_widgets.c:488
 msgid "Wayp."
@@ -2644,6 +2701,18 @@ msgstr ""
 #: src/lvledit/lvledit_widgets.c:490
 msgid "Label"
 msgstr ""
+
+#~ msgid ".22 LR Ammunition"
+#~ msgstr "Cartouches .22 LR"
+
+#~ msgid "9x19mm Ammunition"
+#~ msgstr "Balles 9x19mm"
+
+#~ msgid "7.62x39mm Ammunition"
+#~ msgstr "Munitions 7.62x39mm"
+
+#~ msgid ".50 BMG (12.7x99mm) Ammunition"
+#~ msgstr "Balles .50 BMG (12.7x99mm)"
 
 #~ msgid "Droid talk"
 #~ msgstr "Droïdes Parlants   "

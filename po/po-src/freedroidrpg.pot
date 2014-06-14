@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-04-16 10:43+0000\n"
+"POT-Creation-Date: 2014-06-14 00:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,22 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: lua_modules/FDtux_lfuns.lua:239 map/script_helpers.lua:242
-#: map/script_helpers.lua:245
+#: lua_modules/FDtux_lfuns.lua:239 map/script_helpers.lua:268
+#: map/script_helpers.lua:271
 msgid "New Quest assigned: "
 msgstr ""
 
-#: lua_modules/FDtux_lfuns.lua:259 map/script_helpers.lua:254
-#: map/script_helpers.lua:257
+#: lua_modules/FDtux_lfuns.lua:259 map/script_helpers.lua:280
+#: map/script_helpers.lua:283
 msgid "Quest log updated: "
 msgstr ""
 
-#: lua_modules/FDtux_lfuns.lua:301 map/script_helpers.lua:287
-#: map/script_helpers.lua:290
+#: lua_modules/FDtux_lfuns.lua:301 map/script_helpers.lua:313
+#: map/script_helpers.lua:316
 msgid "Quest completed: "
 msgstr ""
 
-#: map/script_helpers.lua:531
+#: map/script_helpers.lua:557
 msgid " getting new id"
 msgstr ""
 
@@ -149,31 +149,31 @@ msgid "[n]--- Start of Dialog ---\n"
 msgstr ""
 
 #. TRANSLATORS: Your friend <bot's short description> was killed by <bot's short description>
-#: src/enemy.c:894
+#: src/enemy.c:954
 #, c-format
 msgid "Your friend [s]%s[v] was killed by %s."
 msgstr ""
 
 #. TRANSLATORS: You killed <bot's short description>
-#: src/enemy.c:898
+#: src/enemy.c:958
 #, c-format
 msgid "You killed [s]%s[v]."
 msgstr ""
 
 #. TRANSLATORS: <bot's short description> halted and caught fire
-#: src/enemy.c:902
+#: src/enemy.c:962
 #, c-format
 msgid "[s]%s[v] halted and caught fire."
 msgstr ""
 
 #. TRANSLATORS: <bot's short description> is dead
-#: src/enemy.c:905
+#: src/enemy.c:965
 #, c-format
 msgid "[s]%s[v] is dead."
 msgstr ""
 
 #. TRANSLATORS: For defeating <bot's short description>, you receive <10> experience
-#: src/enemy.c:910
+#: src/enemy.c:970
 #, c-format
 msgid "For defeating [s]%s[v], you receive %d experience."
 msgstr ""
@@ -330,19 +330,19 @@ msgstr ""
 msgid "Out of [s]%s[v]!"
 msgstr ""
 
-#: src/init.c:837 src/saveloadgame.c:443
+#: src/init.c:850 src/saveloadgame.c:443
 msgid "--- Message Log ---"
 msgstr ""
 
-#: src/init.c:839
+#: src/init.c:852
 msgid "Starting tutorial."
 msgstr ""
 
-#: src/init.c:841
+#: src/init.c:854
 msgid "Starting new game."
 msgstr ""
 
-#: src/init.c:1139
+#: src/init.c:1152
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -352,11 +352,11 @@ msgid ""
 "Good luck!\n"
 msgstr ""
 
-#: src/init.c:1157 src/init.c:1158
+#: src/init.c:1169 src/init.c:1170
 msgid "Game over.\n"
 msgstr ""
 
-#: src/init.c:1227 src/init.c:1228
+#: src/init.c:1236 src/init.c:1237
 msgid "Game won.\n"
 msgstr ""
 
@@ -654,40 +654,8 @@ msgstr ""
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr ""
 
-#: src/items.c:1891 src/items.c:2092
+#: src/items.c:1891 src/items.c:2069
 msgid "I can't carry any more."
-msgstr ""
-
-#: src/items.c:2050
-msgid "Laser power pack"
-msgstr ""
-
-#: src/items.c:2051
-msgid "Plasma energy container"
-msgstr ""
-
-#: src/items.c:2052
-msgid "2 mm Exterminator Ammunition"
-msgstr ""
-
-#: src/items.c:2053
-msgid ".22 LR Ammunition"
-msgstr ""
-
-#: src/items.c:2054
-msgid "Shotgun shells"
-msgstr ""
-
-#: src/items.c:2055
-msgid "9x19mm Ammunition"
-msgstr ""
-
-#: src/items.c:2056
-msgid "7.62x39mm Ammunition"
-msgstr ""
-
-#: src/items.c:2057
-msgid ".50 BMG (12.7x99mm) Ammunition"
 msgstr ""
 
 #: src/keyboard.c:53
@@ -1079,47 +1047,47 @@ msgstr ""
 msgid "Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."
 msgstr ""
 
-#: src/lua.c:67
+#: src/lua.c:67 src/lua/luaFD_npc.c:69
 msgid "No chat context available on the context stack."
 msgstr ""
 
-#: src/lua.c:278 src/lua/luaFD_tux.c:404
+#: src/lua.c:249 src/lua/luaFD_tux.c:404
 msgid "Melee fighting ability improved!"
 msgstr ""
 
-#: src/lua.c:281 src/lua/luaFD_tux.c:407
+#: src/lua.c:252 src/lua/luaFD_tux.c:407
 msgid "Ranged combat ability improved!"
 msgstr ""
 
-#: src/lua.c:284 src/lua/luaFD_tux.c:410
+#: src/lua.c:255 src/lua/luaFD_tux.c:410
 msgid "Programming ability improved!"
 msgstr ""
 
-#: src/lua.c:365
+#: src/lua.c:336
 #, c-format
 msgid "Received item: %s (on floor)"
 msgstr ""
 
-#: src/lua.c:367
+#: src/lua.c:338
 #, c-format
 msgid "Received item: %s"
 msgstr ""
 
-#: src/lua.c:419 src/lua/luaFD_tux.c:755
+#: src/lua.c:390 src/lua/luaFD_tux.c:755
 msgid "1 item received!"
 msgstr ""
 
-#: src/lua.c:498
+#: src/lua.c:469
 #, c-format
 msgid "+%d experience points"
 msgstr ""
 
-#: src/lua.c:530 src/lua/luaFD_tux.c:317
+#: src/lua.c:501 src/lua/luaFD_tux.c:317
 #, c-format
 msgid "Gained %d valuable circuits!"
 msgstr ""
 
-#: src/lua.c:532 src/lua/luaFD_tux.c:319
+#: src/lua.c:503 src/lua/luaFD_tux.c:319
 #, c-format
 msgid "Lost %d valuable circuits!"
 msgstr ""
@@ -1457,15 +1425,15 @@ msgstr ""
 msgid "Delete existing Hero"
 msgstr ""
 
-#: src/misc.c:816
+#: src/misc.c:821
 msgid "GAME PAUSED"
 msgstr ""
 
-#: src/misc.c:817
+#: src/misc.c:822
 msgid "press p to resume"
 msgstr ""
 
-#: src/misc.c:1110
+#: src/misc.c:1115
 #, c-format
 msgid "Arrived at %s."
 msgstr ""
@@ -1509,101 +1477,101 @@ msgstr ""
 msgid "[r]Overview[w]\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:187
+#: src/quest_browser_ui.c:188
 #, c-format
 msgid "Time Played: [n]%dh%dm[w]\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:190
+#: src/quest_browser_ui.c:192
 #, c-format
 msgid "Distance Traveled: [n]%.1fm[w]\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:192
+#: src/quest_browser_ui.c:194
 #, c-format
 msgid "Percentage explored: [n]%.1f%%[w]\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:193
+#: src/quest_browser_ui.c:195
 #, c-format
 msgid "Destroyed Enemies: [n]%i[w]\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:194
+#: src/quest_browser_ui.c:196
 #, c-format
 msgid "Captured Enemies: [n]%i[w]\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:195
+#: src/quest_browser_ui.c:197
 #, c-format
 msgid "Damage Dealt: [n]%i[w]\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:203
+#: src/quest_browser_ui.c:205
 msgid "[r]Preferences[w]\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:208
+#: src/quest_browser_ui.c:210
 #, c-format
 msgid "Attacking: [n]%s[w] ([n]%i[w] killed, [n]%i[w] DP)\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:213
+#: src/quest_browser_ui.c:215
 #, c-format
 msgid "Attacking: [n]%s[w] ([n]%i[w] destroyed, [n]%i[w] DP)\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:218
+#: src/quest_browser_ui.c:220
 msgid "Attacking: no droids destroyed\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:221
+#: src/quest_browser_ui.c:223
 #, c-format
 msgid "Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:225
+#: src/quest_browser_ui.c:227
 msgid "Takeover: none successful\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:229
+#: src/quest_browser_ui.c:231
 #, c-format
 msgid "Failed Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:233
+#: src/quest_browser_ui.c:235
 msgid "Failed Takeover: no failures\n"
-msgstr ""
-
-#: src/quest_browser_ui.c:253
-#, c-format
-msgid "Killed: [n]%d[w]\n"
 msgstr ""
 
 #: src/quest_browser_ui.c:255
 #, c-format
+msgid "Killed: [n]%d[w]\n"
+msgstr ""
+
+#: src/quest_browser_ui.c:257
+#, c-format
 msgid "Destroyed: [n]%d[w]\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:256
+#: src/quest_browser_ui.c:258
 #, c-format
 msgid "Takeovers: [n]%d[w]/[n]%d[w]/[n]"
 msgstr ""
 
-#: src/quest_browser_ui.c:262
+#: src/quest_browser_ui.c:264
 msgid " (success/fail/ratio)\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:264
+#: src/quest_browser_ui.c:266
 #, c-format
 msgid "Damage: [n]%d[w] (dealt)\n"
 msgstr ""
 
-#: src/quest_browser_ui.c:423
+#: src/quest_browser_ui.c:425
 msgid "[n]No open quests yet.[w]"
 msgstr ""
 
-#: src/quest_browser_ui.c:426
+#: src/quest_browser_ui.c:428
 msgid "[n]No completed quests yet.[w]"
 msgstr ""
 
@@ -1717,18 +1685,18 @@ msgstr ""
 msgid "Notes: %s"
 msgstr ""
 
-#: src/shop.c:337
+#: src/shop.c:338
 #, c-format
 msgid ""
 "\n"
 "This weapon requires %s."
 msgstr ""
 
-#: src/shop.c:656
+#: src/shop.c:657
 msgid "You can not afford to have this item repaired."
 msgstr ""
 
-#: src/shop.c:732
+#: src/shop.c:733
 msgid "You can not afford this item."
 msgstr ""
 
@@ -1950,6 +1918,10 @@ msgstr ""
 msgid "cheater"
 msgstr ""
 
+#: src/lua/luaFD_npc.c:581
+msgid "Current chat context has no 'partner'. How is it possible ?."
+msgstr ""
+
 #: src/lua/luaFD_tux.c:283
 #, c-format
 msgid "+%d Experience Points"
@@ -2118,16 +2090,16 @@ msgid ""
 " Rushes Tux: "
 msgstr ""
 
-#: src/lvledit/lvledit_map.c:386 src/lvledit/lvledit_map.c:400
+#: src/lvledit/lvledit_map.c:379 src/lvledit/lvledit_map.c:393
 msgid "Your ship was saved..."
 msgstr ""
 
-#: src/lvledit/lvledit_map.c:395
+#: src/lvledit/lvledit_map.c:388
 #, c-format
 msgid "Saving map files to %s/ instead of the default location %s/."
 msgstr ""
 
-#: src/lvledit/lvledit_map.c:406
+#: src/lvledit/lvledit_map.c:399
 msgid "Your ship can not be saved !!! See the console output..."
 msgstr ""
 
@@ -2383,6 +2355,81 @@ msgstr ""
 
 #: src/lvledit/lvledit_tool_place.c:685
 msgid "Place tool does not support this type of object."
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:110
+#, c-format
+msgid "Obs. number %d, %s\n"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:128
+#, c-format
+msgid ""
+"%s\n"
+"\t\t\tclass: %d, xp_reward: %hd\n"
+"\t\t\theal: %.2f /s, max_energy: %.2f, max_speed: %.2f\n"
+"\t\t\taggression_dist: %.2f, eyeing_tux_for: %.2f s"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:142
+#, c-format
+msgid ""
+"%s (%s)\n"
+"\t\t\tDamage: %d-%d, Recharge: %.2f, Reload: %.2f, Ammo: (%d/%s)\n"
+"\t\t\tSTR: >%d\n"
+"%s"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:153
+#, c-format
+msgid ""
+"%s (%s)\n"
+"\t\t\tDamage: %d-%d, Recharge: %.2f,\n"
+"\t\t\tSTR: >%d, DEX: >%d, COOL: >%d\n"
+"%s"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:163
+#, c-format
+msgid ""
+"%s (%s)\n"
+"\t\t\tArmor: %d-%d, Durability:  %d-%d,\n"
+"\t\t\tSTR: >%d, DEX: >%d, COOL: >%d\n"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:172
+#, c-format
+msgid ""
+"%s (%s)\n"
+"%s"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:184
+#, c-format
+msgid "Overlay floor tile number %d, filename %s\n"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:187
+#, c-format
+msgid "Underlay floor tile number %d, filename %s\n"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:194
+#, c-format
+msgid "Waypoint %s connection, %sused for random spawn\n"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:194
+msgid "two way"
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:194
+msgid "not "
+msgstr ""
+
+#: src/lvledit/lvledit_widget_toolbar.c:203
+#, c-format
+msgid "There currently is only one type of map label"
 msgstr ""
 
 #: src/lvledit/lvledit_widgets.c:54
