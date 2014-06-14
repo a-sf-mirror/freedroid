@@ -23,6 +23,14 @@ WIKI]]--
 local Npc = FDrpg.get_npc()
 local Tux = FDrpg.get_tux()
 
+local function guy_fail(test, ...)
+	print(FDutils.text.highlight("ERROR! The following test failed:", "red"))
+	print(FDutils.text.highlight(test, "red"))
+	npc_says("%s failed!" ,test , "NO_WAIT")
+	end_dialog()
+	exit_game(1)
+end
+
 return {
 	FirstTime = function()
 ---------------------------------------------------------- HAS_MET

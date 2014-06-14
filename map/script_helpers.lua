@@ -565,11 +565,4 @@ function level24obstacles()
 	change_obstacle_type("24randobst", randobstacletype)
 end
 
-function guy_fail(test, ...)
-	print(FDutils.text.highlight("ERROR! The following test failed:", "red"))
-	print(FDutils.text.highlight(test, "red"))
-	npc_says("%s failed!" ,test , "NO_WAIT")
-	end_dialog()
-	exit_game(1)
-end
 
