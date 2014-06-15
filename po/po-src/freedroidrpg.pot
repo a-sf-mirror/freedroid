@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-06-14 00:45+0200\n"
+"POT-Creation-Date: 2014-06-15 22:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,10 +30,6 @@ msgstr ""
 #: lua_modules/FDtux_lfuns.lua:301 map/script_helpers.lua:313
 #: map/script_helpers.lua:316
 msgid "Quest completed: "
-msgstr ""
-
-#: map/script_helpers.lua:557
-msgid " getting new id"
 msgstr ""
 
 #: src/action.c:535
@@ -1843,11 +1839,6 @@ msgstr ""
 msgid "Color-%d.%d"
 msgstr ""
 
-#: src/takeover.c:344
-#, c-format
-msgid "Subliminal"
-msgstr ""
-
 #: src/takeover.c:398
 #, c-format
 msgid "Finish-%d.%d"
@@ -1919,7 +1910,12 @@ msgid "cheater"
 msgstr ""
 
 #: src/lua/luaFD_npc.c:581
-msgid "Current chat context has no 'partner'. How is it possible ?."
+msgid "Current chat context has no 'partner'. How is it possible ?"
+msgstr ""
+
+#: src/lua/luaFD_npc.c:587
+#, c-format
+msgid "Could not find a droid with name \"%s\""
 msgstr ""
 
 #: src/lua/luaFD_tux.c:283
@@ -2380,6 +2376,11 @@ msgid ""
 "%s"
 msgstr ""
 
+#: src/lvledit/lvledit_widget_toolbar.c:150
+#: src/lvledit/lvledit_widget_toolbar.c:160
+msgid "Requires two hands\n"
+msgstr ""
+
 #: src/lvledit/lvledit_widget_toolbar.c:153
 #, c-format
 msgid ""
@@ -2395,13 +2396,6 @@ msgid ""
 "%s (%s)\n"
 "\t\t\tArmor: %d-%d, Durability:  %d-%d,\n"
 "\t\t\tSTR: >%d, DEX: >%d, COOL: >%d\n"
-msgstr ""
-
-#: src/lvledit/lvledit_widget_toolbar.c:172
-#, c-format
-msgid ""
-"%s (%s)\n"
-"%s"
 msgstr ""
 
 #: src/lvledit/lvledit_widget_toolbar.c:184

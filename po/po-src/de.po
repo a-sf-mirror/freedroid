@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-06-14 00:45+0200\n"
+"POT-Creation-Date: 2014-06-15 22:39+0200\n"
 "PO-Revision-Date: 2014-06-14 09:08+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/freedroid-rpg/language/de/)\n"
@@ -33,10 +33,6 @@ msgstr "Aufgabe aktualisiert:"
 #: map/script_helpers.lua:316
 msgid "Quest completed: "
 msgstr "Aufgabe abgeschlossen:"
-
-#: map/script_helpers.lua:557
-msgid " getting new id"
-msgstr "Erhalte neue ID"
 
 #: src/action.c:535
 msgid "Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\"."
@@ -1904,11 +1900,6 @@ msgstr ""
 msgid "Color-%d.%d"
 msgstr "Farbe-%d.%d"
 
-#: src/takeover.c:344
-#, c-format
-msgid "Subliminal"
-msgstr "Unterbewusst"
-
 #: src/takeover.c:398
 #, c-format
 msgid "Finish-%d.%d"
@@ -1980,8 +1971,13 @@ msgid "cheater"
 msgstr "Betrüger"
 
 #: src/lua/luaFD_npc.c:581
-msgid "Current chat context has no 'partner'. How is it possible ?."
+msgid "Current chat context has no 'partner'. How is it possible ?"
 msgstr ""
+
+#: src/lua/luaFD_npc.c:587
+#, fuzzy, c-format
+msgid "Could not find a droid with name \"%s\""
+msgstr "Keinen Droiden gefunden, der zum Dialog mit \"%s\" passt."
 
 #: src/lua/luaFD_tux.c:283
 #, c-format
@@ -2493,6 +2489,11 @@ msgstr ""
 "\t\t\tSTR: >%d\n"
 "%s"
 
+#: src/lvledit/lvledit_widget_toolbar.c:150
+#: src/lvledit/lvledit_widget_toolbar.c:160
+msgid "Requires two hands\n"
+msgstr ""
+
 #: src/lvledit/lvledit_widget_toolbar.c:153
 #, c-format
 msgid ""
@@ -2516,15 +2517,6 @@ msgstr ""
 "%s (%s)\n"
 "\t\t\tRüstung: %d-%d, Haltbarkeit:  %d-%d,\n"
 "\t\t\tSTR: >%d, GEW: >%d, Kühlung: >%d\n"
-
-#: src/lvledit/lvledit_widget_toolbar.c:172
-#, c-format
-msgid ""
-"%s (%s)\n"
-"%s"
-msgstr ""
-"%s (%s)\n"
-"%s"
 
 #: src/lvledit/lvledit_widget_toolbar.c:184
 #, c-format
@@ -2867,6 +2859,19 @@ msgstr "Wegpunkt"
 msgid "Label"
 msgstr "Beschriftung"
 
+#~ msgid " getting new id"
+#~ msgstr "Erhalte neue ID"
+
+#~ msgid "Subliminal"
+#~ msgstr "Unterbewusst"
+
+#~ msgid ""
+#~ "%s (%s)\n"
+#~ "%s"
+#~ msgstr ""
+#~ "%s (%s)\n"
+#~ "%s"
+
 #~ msgid ".22 LR Ammunition"
 #~ msgstr ".22 LG-Munition"
 
@@ -2878,9 +2883,6 @@ msgstr "Beschriftung"
 
 #~ msgid ".50 BMG (12.7x99mm) Ammunition"
 #~ msgstr "Kaliber .50 BMG  (12.7x99mm) Munition"
-
-#~ msgid "Could not find a droid corresponding to the dialog \"%s\"."
-#~ msgstr "Keinen Droiden gefunden, der zum Dialog mit \"%s\" passt."
 
 #~ msgid "Droid talk"
 #~ msgstr "Robo-Sprache"
