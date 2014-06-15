@@ -341,7 +341,7 @@ static void PlayGame(int countdown, enemy *target)
 
 	SDL_Event event;
 
-	sprintf(count_text, _("Subliminal"));	/* Make sure a value gets assigned to count_text */
+	sprintf(count_text, " ");	/* Make sure a value gets assigned to count_text */
 	count_tick_len = 100;	/* countdown in 1/10 second steps */
 	move_tick_len = 60;	/* allow motion at this tick-speed in ms */
 

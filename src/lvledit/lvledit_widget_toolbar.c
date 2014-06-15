@@ -147,7 +147,7 @@ static void print_item_info(char *str, int item_idx)
 				item->item_gun_recharging_time, item->item_gun_reloading_time,
 				item->item_gun_ammo_clip_size, item->ammo_id,
 				item->item_require_strength,
-				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
+				item->item_gun_requires_both_hands ? _("Requires two hands\n") : "" );
 
 	} else if (item->slot == WEAPON_SLOT) { //Most Melee Weapons
 		sprintf(str, 	_("%s (%s)\n\
@@ -157,7 +157,7 @@ static void print_item_info(char *str, int item_idx)
 				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
 				item->item_gun_recharging_time,
 				item->item_require_strength, item->item_require_dexterity, item->item_require_cooling,
-				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
+				item->item_gun_requires_both_hands ? _("Requires two hands\n") : "" );
 
 	} else if (item->slot & (SHIELD_SLOT | HELM_SLOT | ARMOR_SLOT | BOOT_SLOT)) {
 		sprintf(str, 	_("%s (%s)\n\
@@ -169,7 +169,7 @@ static void print_item_info(char *str, int item_idx)
 				item->item_require_strength, item->item_require_dexterity, item->item_require_cooling);
 
 	} else {
-		sprintf(str, 	_("%s (%s)\n%s"),
+		sprintf(str, "%s (%s)\n%s",
 			item_specs_get_name(item_idx), item->id, item->item_description);
 	}
 }

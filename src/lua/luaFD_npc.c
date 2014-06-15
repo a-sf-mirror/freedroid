@@ -578,13 +578,13 @@ int luaFD_npc_get_instance(lua_State *L)
 		struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
 		partner = current_chat_context->partner;
 		if (!partner) {
-			error_message(__FUNCTION__, _("Current chat context has no 'partner'. How is it possible ?."), PLEASE_INFORM | IS_FATAL);
+			error_message(__FUNCTION__, _("Current chat context has no 'partner'. How is it possible ?"), PLEASE_INFORM | IS_FATAL);
 			return 0;
 		}
 	} else {
 		partner = get_enemy_with_dialog(dialog);
 		if (!partner)
-			return luaL_error(L, "Could not find a droid with name \"%s\"", dialog);
+			return luaL_error(L, _("Could not find a droid with name \"%s\""), dialog);
 	}
 
 	// Try to get the userdata from the C registry.

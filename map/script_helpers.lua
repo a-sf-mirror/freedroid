@@ -554,7 +554,7 @@ function level24obstacles()
 	function level24idcheck()
 		if (randobstacletype == 25) then
 		   -- cat ./map/obstacle_specs.lua | grep "image_filenames" | nl -v 0| grep "DUMMY"     (note: skip the last one)
-			display_big_message(randobstacletype..S_" getting new id")
+			display_big_message(randobstacletype.." getting new id")
 			level24newid()
 			level24idcheck()
 		end
