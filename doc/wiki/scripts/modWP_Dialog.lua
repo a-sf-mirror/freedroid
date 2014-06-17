@@ -56,7 +56,7 @@ modWP_Dialog.wikiheadmarker = "WIKI"
 modWP_Dialog.codemarker = "wikiheader"
 --	text patterns used to locate data in dialog file
 modWP_Dialog.patterns_dialog = {
-	botname = "set_bot_name",
+	botname = "Npc:set_name",
 	quest_given = "Tux:add_quest",
 	quest_update = "Tux:update_quest",
 	quest_end = "Tux:end_quest",
