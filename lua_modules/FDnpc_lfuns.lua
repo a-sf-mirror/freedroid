@@ -73,7 +73,7 @@ end
 --!
 --! \bindtype lfun
 
-function FDnpc:drain_health(self)
+function FDnpc.drain_health(self)
 	--[[ For example, if NPC's health = 10, hurt_tux(-10) will heal tux by 10 HP
 	     To have the difficulty lvl influence the HP tux gets we divide the
 	     HP by the difficulty_lvl+1 (to prevent division by zero)
