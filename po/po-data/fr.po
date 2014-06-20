@@ -425,7 +425,7 @@ msgstr ""
 
 #: map/events.dat:769
 msgid "Automated Factory Mechanism"
-msgstr ""
+msgstr "Mécanisme de l'Usine Automatisée"
 
 #: map/events.dat:777
 msgid "Elbow grease has been applied to the Automated Factory."
@@ -473,15 +473,15 @@ msgstr "Quitter l'arène débutant"
 
 #: map/events.dat:1701
 msgid "Start New Wave"
-msgstr ""
+msgstr "Démarrer la Prochaine Vague"
 
 #: map/events.dat:1764
 msgid "Wave "
-msgstr ""
+msgstr "Vague"
 
 #: map/events.dat:1766
 msgid "Final Wave - Take care!"
-msgstr ""
+msgstr "Dernier Vague - Prenez garde !"
 
 #: map/events.dat:1789
 msgid "All bots are killed! Go to center for next wave."

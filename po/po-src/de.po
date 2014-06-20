@@ -4,14 +4,16 @@
 #
 # Translators:
 # Link_Mario <Link-Mario@gmx.de>, 2014
+# Link_Mario <Link-Mario@gmx.de>, 2014
+# matthiaskrgr <matthias.krueger@famsik.de>, 2014
 # matthiaskrgr <matthias.krueger@famsik.de>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-06-15 22:39+0200\n"
-"PO-Revision-Date: 2014-06-14 09:08+0000\n"
-"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"POT-Creation-Date: 2014-06-20 14:38+0000\n"
+"PO-Revision-Date: 2014-06-20 16:26+0000\n"
+"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/freedroid-rpg/language/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1970,15 +1972,6 @@ msgstr "B3u43 Häxx0r"
 msgid "cheater"
 msgstr "Betrüger"
 
-#: src/lua/luaFD_npc.c:581
-msgid "Current chat context has no 'partner'. How is it possible ?"
-msgstr ""
-
-#: src/lua/luaFD_npc.c:587
-#, fuzzy, c-format
-msgid "Could not find a droid with name \"%s\""
-msgstr "Keinen Droiden gefunden, der zum Dialog mit \"%s\" passt."
-
 #: src/lua/luaFD_tux.c:283
 #, c-format
 msgid "+%d Experience Points"
@@ -2858,6 +2851,10 @@ msgstr "Wegpunkt"
 #: src/lvledit/lvledit_widgets.c:490
 msgid "Label"
 msgstr "Beschriftung"
+
+#, fuzzy
+#~ msgid "Could not find a droid with name \"%s\""
+#~ msgstr "Keinen Droiden gefunden, der zum Dialog mit \"%s\" passt."
 
 #~ msgid " getting new id"
 #~ msgstr "Erhalte neue ID"

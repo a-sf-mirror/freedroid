@@ -1361,11 +1361,11 @@ msgstr "Mit einem einfachen Signal lässt sich herausfinden, was deine Feinde so
 
 #: map/item_specs.lua:1804
 msgid "Subatomic and Nuclear Science for Dummies, Volume IV"
-msgstr ""
+msgstr "Subatomare und Nukleare Wissenschaft für Dummies, Teil IV"
 
 #: map/item_specs.lua:1808
 msgid "From the back of the cover: 'Subatomic and Nuclear Science for Dummies, Volume IV is the most popular handbook series for learning nuclear science: Learn to generate enough power to keep you town lit up for a decade! Discover how to really scare neighboring countries! Find out how to make your very own mutant pet!' This obviously important tome of knowledge from before the great assault comes with no warranty whatsoever."
-msgstr ""
+msgstr "Auf der Rückseite des Buches steht: \"Die Reihe 'Nukleare Wissenschaften für Dummies' ist die bekannteste, mit der man nukleare Wissenschaften erlernen kann: Erfahren sie, wie sie genug Strom produzieren, um eine ganze Stadt für ein Jahrzehnt zu beleuchten! Lernen Sie, wie sie ihre Nachbarländer richtig einschüchtern können! Finden Sie heraus, wie sie ihr eigenes Mutanten-Haustier erschaffen!\" Dieser offenbar wichtige Schinken aus der Zeit vor dem Großen Angriff scheint allerdings keine Garantie für was auch immer zu liefern"
 
 #: map/item_specs.lua:1815
 msgid "Manual of the Automated Factory"

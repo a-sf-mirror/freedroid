@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-06-14 00:45+0200\n"
-"PO-Revision-Date: 2014-06-14 09:11+0000\n"
+"POT-Creation-Date: 2014-06-20 14:38+0000\n"
+"PO-Revision-Date: 2014-06-20 14:00+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/freedroid-rpg/language/de/)\n"
 "Language: de\n"
@@ -8129,10 +8129,6 @@ msgstr "Du hast verloren. Versuch nächstes mal das Würfelspiel."
 msgid "THIS IS AN ERROR! REPORT IT PLEASE! E-MAIL: freedroid-discussion@lists.sourceforge.net"
 msgstr "DIES IST EIN FEHLER! MELDE IHN SOFORT! E-MAIL: freedroid-discussion@lists.sourceforge.net"
 
-#: dialogs/Ewald.lua:621
-msgid "BUG, REPORT ME! ewald node56 -- Reinitialize variable"
-msgstr ""
-
 #: dialogs/Ewald.lua:633
 msgid "Let us start again with the same bet."
 msgstr "Fangen wir nochmal mit dem gleichen Einsatz an."
@@ -8908,7 +8904,7 @@ msgstr "Wächter? Du klingst nicht so sicher… Was ist das hier für ein Ort?"
 
 #: dialogs/Francis.lua:241
 msgid "I'm sorry, but you probably need to start travelling to the town. The Red Guard are not known to be the most patient."
-msgstr ""
+msgstr "Tut mir leid, aber du solltest zur Stadt gehen. Die Rote Garde will dich so bald wie möglich sehen."
 
 #: dialogs/Francis.lua:242
 msgid "They were the ones who wanted me to thaw you out, after all. You'd better get going."
@@ -9250,7 +9246,7 @@ msgstr "10 Mini Überwachungsroboter."
 
 #: dialogs/HF-EntranceBot.lua:92
 msgid "The book 'Subatomic and Nuclear Science for Dummies, Volume IV'."
-msgstr ""
+msgstr "Das Buch 'Subatomare und Nukleare Wissenschaft für Dummies, Teil IV'."
 
 #: dialogs/HF-EntranceBot.lua:93
 msgid "And a MegaSys Vision Enhancement Device 3000 - what you cannot see, can't see you either!"
@@ -11822,7 +11818,7 @@ msgstr "Michelangelos Stromversorgung wiederhergestellt"
 
 #: dialogs/Michelangelo.lua:304
 msgid "I gave the cook, Michelangelo, enough dilithium to last a decade. The evil spectre of eating army snacks is lifted from the town's cantina."
-msgstr ""
+msgstr "Ich gab dem Koch Michelangelo genug Dilizium für ein ganzes Jahrzehnt. Das Schreckgespenst der Armee-Rationen wurde von der städtischen Kantine verbannt."
 
 #: dialogs/Michelangelo.lua:314
 msgid "However I need at least three crystals. Can you come back with all the crystals I need?"
@@ -12171,11 +12167,11 @@ msgstr "Ticket 2012 ist nicht mehr aktuell. Konsultieren Sie das Handbuch."
 
 #: dialogs/MiniFactory-Terminal.lua:68
 msgid "Cancelling Initialization Process..."
-msgstr ""
+msgstr "Breche Initialisierungsprozess ab…"
 
 #: dialogs/MiniFactory-Terminal.lua:69
 msgid "Initialization has been cancelled to prevent any damage."
-msgstr ""
+msgstr "Initialisierung wurde abgebrochen um Schäden zu vermeiden."
 
 #: dialogs/MiniFactory-Terminal.lua:73
 msgid "Final Initialization Instructions..."
@@ -13742,7 +13738,7 @@ msgstr "Oh, ich war schon immer ein Technikfreak. Und ich habe die Blaupausen au
 
 #: dialogs/Skippy.lua:85
 msgid "You can't order anything from a catalogue any more."
-msgstr ""
+msgstr "Man kann nichts mehr aus Katalogen bestellen, weißt du."
 
 #: dialogs/Skippy.lua:86
 msgid "The only source of these gizmos is here. It's me!"
@@ -15490,7 +15486,7 @@ msgstr "Kann ich später wieder darauf zurück kommen?"
 
 #: dialogs/Tamara.lua:245
 msgid "Don't hesitate to talk to me again for further questions."
-msgstr ""
+msgstr "Zögere nicht, mich nochmal zu befragen."
 
 #: dialogs/Tamara.lua:253
 msgid "It's interesting you should be looking for that - the library has two copies."
@@ -17257,7 +17253,7 @@ msgstr "Erzähl mir mehr über diese Heiltränke."
 
 #: dialogs/TutorialTom.lua:494
 msgid "Man has practised medicine in one form or another for hundreds of years."
-msgstr ""
+msgstr "Der Mensch wendet die Medizin in der einen oder anderen Form seit Jahrtausenden an."
 
 #: dialogs/TutorialTom.lua:495
 msgid "Using some of the same nanotechnology that makes up your armor, we've perfected drinks that instantaneously restore your health."
@@ -18910,7 +18906,7 @@ msgstr "Ein Blatt Zellulose."
 
 #: dialogs/WillGapes.lua:186
 msgid "Will Gapes gave me his MS Stock Certificate so that I can gain access to the MegaSys Factory."
-msgstr ""
+msgstr "Will Gapes gab mir sein MS Wertpapier damit ich in die MegaSys Fabrik reinkomme."
 
 #: dialogs/WillGapes.lua:194
 msgid "Be careful!"

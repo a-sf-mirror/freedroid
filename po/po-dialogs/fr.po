@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-06-14 00:45+0200\n"
+"POT-Creation-Date: 2014-06-20 14:38+0000\n"
 "PO-Revision-Date: 2014-06-14 09:11+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
@@ -7773,11 +7773,11 @@ msgstr "Mais si jamais tu t'es partiellement trompé... hé bien tu ne gagnes ri
 
 #: dialogs/Ewald.lua:291
 msgid "Let's go for a game of dice."
-msgstr ""
+msgstr "Allons-y pour un jeu de dés."
 
 #: dialogs/Ewald.lua:300
 msgid "I want to play coin-flipping."
-msgstr ""
+msgstr "Je veux jouer à pile ou face."
 
 #: dialogs/Ewald.lua:323
 msgid "Then, how many are you going to bet?"
@@ -8132,10 +8132,6 @@ msgstr "Tu as perdu. Tu pourrais essayer les dés la prochaine fois."
 msgid "THIS IS AN ERROR! REPORT IT PLEASE! E-MAIL: freedroid-discussion@lists.sourceforge.net"
 msgstr "CECI EST UNE ERREUR! MERCI DE LA REPORTER. E-MAIL: freedroid-discussion@lists.sourceforge.net"
 
-#: dialogs/Ewald.lua:621
-msgid "BUG, REPORT ME! ewald node56 -- Reinitialize variable"
-msgstr ""
-
 #: dialogs/Ewald.lua:633
 msgid "Let us start again with the same bet."
 msgstr "Recommençons avec le même pari."
@@ -8150,7 +8146,7 @@ msgstr "Je préfère parier une autre somme."
 
 #: dialogs/Ewald.lua:658
 msgid "What other games are you playing?"
-msgstr ""
+msgstr "A quel autres jeux joue-tu ?"
 
 #: dialogs/Ewald.lua:661
 msgid "I play just a dice game and a coin-flipping game."
@@ -8180,7 +8176,7 @@ msgstr "On pourra rejouer quand tu veux."
 
 #: dialogs/Ewald.lua:683
 msgid "You are right, I'm going to clean you out!"
-msgstr ""
+msgstr "Tu as raison, j'allais te plumer."
 
 #: dialogs/Ewald.lua:684
 msgid "The house always wins; sooner or later..."
@@ -15377,7 +15373,7 @@ msgstr ""
 
 #: dialogs/Tamara.lua:165
 msgid "Do you have any books about the bot apocalypse?"
-msgstr ""
+msgstr "Avez-vous des livres sur l’apocalypse des robots ? "
 
 #: dialogs/Tamara.lua:167
 msgid "I'm writing one, but it isn't complete, and there are no publishers left."
@@ -15385,7 +15381,7 @@ msgstr "J'en écrit un mais, il est loin d'être fini et… il ne reste plus auc
 
 #: dialogs/Tamara.lua:174
 msgid "Have you been progressing on your book about the bots apocalypse?"
-msgstr ""
+msgstr "Avez-vous avancé sur votre livre au sujet de l'apocalypse des robots ?"
 
 #: dialogs/Tamara.lua:176
 msgid "I need more time to finish it."
@@ -15393,11 +15389,11 @@ msgstr "J'aurais besoin de plus de temps pour le finir. "
 
 #: dialogs/Tamara.lua:177
 msgid "Page-by-page, my book is growing up."
-msgstr ""
+msgstr "Page par page, mon livre grossit."
 
 #: dialogs/Tamara.lua:178
 msgid "Sorry, but you have to wait a bit more before you can read it."
-msgstr ""
+msgstr "Désolé, mais vous devrez attendre un peu plus avant de pouvoir le lire."
 
 #: dialogs/Tamara.lua:184
 msgid "Do you have any books about robotics?"
