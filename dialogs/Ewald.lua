@@ -618,7 +618,7 @@ return {
 	},
 	{
 		id = "node60",
-		text = _"BUG, REPORT ME! ewald node56 -- Reinitialize variable",
+		text = "BUG, REPORT ME! ewald node56 -- Reinitialize variable",
 		echo_text = false,
 		code = function()
 			-- Re Initialize variables here
