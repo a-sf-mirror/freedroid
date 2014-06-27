@@ -1297,7 +1297,8 @@ int SaveGameConfig(void)
 	save_freedroid_configuration(savestruct_autostr);
 	if (fwrite(savestruct_autostr->value, savestruct_autostr->length, 1, config_file) != 1) {
 		error_message(__FUNCTION__, "Failed to write configuration file: %s", NO_REPORT, fname);
-		free_autostr(savestruct_autostr);	
+		free_autostr(savestruct_autostr);
+		fclose(config_file);
 		return ERR;
 	}
 
