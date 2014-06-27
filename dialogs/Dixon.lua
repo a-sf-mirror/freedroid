@@ -362,25 +362,18 @@ return {
 			if (difficulty_level() > 2) then -- difficulty neither easy, nor normal, nor hard
 				Npc:says("ERROR, Dixon NODE 28, game difficulty not handled")
 			end
-			-- make stuff a bit easier for us
-			if (difficulty_level() == 0 ) then
-				local difficulty_lvl = "easy"
-			elseif (difficulty_level() == 1) then
-				local difficulty_lvl = "normal"
-			else
-				local difficulty_lvl = "hard"
-			end
 			Npc:says(_"Great. Be careful down there. Just try to get the toolkit and get out of there as quickly as possible.")
 
-			if (difficulty_lvl == "easy") then -- 3 grenades
+			-- Give a few grenades accordingly to difficult level.
+			if (difficulty_level() == 0) then -- Easy, 3 grenades
 				Tux:add_item("EMP Shockwave Generator", 3)
 				Npc:says(_"I will give you three small devices that can emit an Electro Magnetic Pulse.")
 				Npc:says(_"If you get in trouble just activate one and it emits a shockwave damaging any bot nearby. It should give you some breathing room.")
-			elseif (difficulty_lvl == "normal") then -- 2 grenades
+			elseif (difficulty_level() == 1) then -- Normal, 2 grenades
 				Tux:add_item("EMP Shockwave Generator", 2)
 				Npc:says(_"I will give you two small devices that can emit an Electro Magnetic Pulse.")
 				Npc:says(_"If you get in trouble just activate one and it emits a shockwave damaging any bot nearby. It should give you some breathing room.")
-			elseif (difficulty_lvl == "hard") then -- 1 grenade
+			elseif (difficulty_level() == 2) then -- Hard, 1 grenade
 				Tux:add_item("EMP Shockwave Generator", 1)
 				Npc:says(_"I will give you a small device that can emit an Electro Magnetic Pulse.")
 				Npc:says(_"If you get in trouble just activate it and it emits a shockwave damaging any bot nearby. It should give you some breathing room.")
