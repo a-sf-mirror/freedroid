@@ -79,7 +79,7 @@ function FDnpc.drain_health(self)
 	     HP by the difficulty_lvl+1 (to prevent division by zero)
 	     -10/2 (difficulty_lvl = 3/hard) = -5.  Tux will be healed by 5 HP ]]--
 	local tux = FDrpg.get_tux()
-	tux:hurt(-(self.get_health)/(difficulty_level()+1))
+	tux:hurt(-(self:get_health())/(difficulty_level()+1))
 	self:drop_dead()
 end
 
