@@ -38,9 +38,15 @@ return {
 		Kevin_lessons_taught = 0 -- the number of lessons Kevin has already taught, initialized with 0
 		Kevin_next_lesson_cost = 0 -- the training point cost of the upcoming lesson
 		Kevin_talk_later = 0 -- to trigger the stdoubt node
+		Kevin_hacking = false -- Should we display Kevin's hacking node?
 	end,
 
 	EveryTime = function()
+		if (Kevin_hacking) then
+			show("node30")
+			Kevin_hacking=false
+		end
+
 		if (Kevin_entering_from_back) then
 			Npc:says(_"Hey, what are you doing?")
 			Npc:says(_"You aren't allowed to enter through the backdoor, least of all make one...")
@@ -250,6 +256,7 @@ return {
 		id = "node21",
 		text = _"I thought you would be more worried about her death.",
 		code = function()
+			--; TRANSLATORS: %s = a week day.
 			Npc:says(_"Why? I have backups from last %s. No reason to worry at all.",
 				get_random(_"Monday", _"Tuesday", _"Wednesday", _"Thursday", _"Friday", _"Saturday", _"Sunday"))
 			Npc:says(_"It will be a while till I get her together again, but she will be fine.")
@@ -289,6 +296,7 @@ return {
 					show("node31")
 				end
 			end
+			Kevin_hacking=true
 			hide("node30")
 		end,
 	},
