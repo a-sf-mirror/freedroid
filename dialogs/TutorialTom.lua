@@ -1134,7 +1134,7 @@ return {
 				display_big_message("")
 				display_big_message("")
 			else
-				Npc:says("ERROR OCCURED, TutorialTom node 66, player doesn't have botteled tutorial ice, WTF happened??")
+				Npc:says("ERROR OCCURRED, TutorialTom node 66, player doesn't have bottled tutorial ice, WTF happened??")
 			end
 			armor_node_one = true
 			if (armor_node_two) then
@@ -1169,13 +1169,13 @@ return {
 			if (Tux:has_item("Source Book of Calculate Pi")) and
 			   (Tux:has_item("Source Book of Malformed packet")) then
 				--plural
-				Npc:says(_"But I have to take this sourcebooks from you to preven you from cheating in the next section of the tutorial.")
+				Npc:says(_"But I have to take this sourcebooks from you to prevent you from cheating in the next section of the tutorial.")
 				Npc:says(_"Sorry about that...")
 				Tux:says(_"Ok...")
 			elseif (Tux:has_item("Source Book of Calculate Pi")) or
 			       (Tux:has_item("Source Book of Malformed packet")) then
 				--singular
-				Npc:says(_"But I have to take this sourcebook from you to preven you from cheating in the next section of the tutorial.")
+				Npc:says(_"But I have to take this sourcebook from you to prevent you from cheating in the next section of the tutorial.")
 				Npc:says(_"Sorry about that...")
 				Tux:says(_"Ok...")
 			end

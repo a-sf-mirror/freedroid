@@ -19,7 +19,7 @@
 --[[WIKI
 PERSONALITY = { "Intelligent" },
 MARKERS = { DROIDID1 = "614" },
-BACKSTORY = "$$NAME$$ is the Red Guard\'s Computer Cluster maintainer and occassional $$DROIDID1$$ programmer."
+BACKSTORY = "$$NAME$$ is the Red Guard\'s Computer Cluster maintainer and occasional $$DROIDID1$$ programmer."
 WIKI]]--
 
 local Npc = FDrpg.get_npc()

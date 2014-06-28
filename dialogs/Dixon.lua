@@ -17,7 +17,7 @@
 -- MA 02111-1307 USA
 ----------------------------------------------------------------------
 --[[WIKI
-PERSONALITY = { "Technical", "Distracted", "Friendly", "Pascifist" },
+PERSONALITY = { "Technical", "Distracted", "Friendly", "Pacifist" },
 MARKERS = { NPCID1 = "Singularity", ITEMID1 = "Dixon\'s Toolbox" },
 PURPOSE = "$$NAME$$ can give the player access to the maintenance tunnels below the town as well as information about how Tux
 	 can manufacture equipment add-ons.",

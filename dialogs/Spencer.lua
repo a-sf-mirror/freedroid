@@ -56,7 +56,7 @@ return {
 			Npc:says(_"Must prevent access to the real update server. Can you open the gate?")
 			--; TRANSLATORS: follow the markers on the ground
 			Npc:says(_"Inside, follow the mrkers o e groun")
-			--; TRANSLATROS: Richard says the connection is bad
+			--; TRANSLATORS: Richard says the connection is bad
 			Npc:says(_"Ri ard sa... e c nn cti n *bzzzzzzzzz* bad.")
 			--; TRANSLATORS: good luck
 			Npc:says(_"Goo*sizzle*ck.")
