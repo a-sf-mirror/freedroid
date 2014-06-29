@@ -494,8 +494,8 @@ typedef struct npc {
 
 	string_dynarray enabled_nodes;
 
-	string shoplist[MAX_ITEMS_IN_INVENTORY]; //list of items that can be put in the inventory of the NPC
-	int shoplistweight[MAX_ITEMS_IN_INVENTORY]; //weight of each item: relative probability of appearance in inventory
+	string shoplist[MAX_ITEMS_IN_NPC_SHOPLIST]; //list of items that can be put in the inventory of the NPC
+	int shoplistweight[MAX_ITEMS_IN_NPC_SHOPLIST]; //weight of each item: relative probability of appearance in inventory
 	item_dynarray npc_inventory;
 
 	float last_trading_date; // when did we trade with this NPC the last time?
