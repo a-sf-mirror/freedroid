@@ -50,6 +50,7 @@ static void MoveAwayFromMeleeCombat(Enemy, moderately_finepoint *);
 static void ReachMeleeCombat(Enemy, gps *, moderately_finepoint *, pathfinder_context *);
 static void RawStartEnemysShot(enemy *, float, float);
 static int is_potential_target(enemy * this_robot, gps * target_pos, float *squared_best_dist);
+static int can_see_tux(enemy *);
 
 LIST_HEAD(alive_bots_head);
 LIST_HEAD(dead_bots_head);
@@ -1117,7 +1118,7 @@ static gps *enemy_get_target_position(enemy * ThisRobot)
 {
 	if (ThisRobot->attack_target_type == ATTACK_TARGET_IS_PLAYER) {
 
-		if ((Me.invisible_duration <= 0) || (ThisRobot->sensor_id & SENSOR_DETECT_INVISIBLE))
+		if (can_see_tux(ThisRobot))
 			return &Me.pos;
 		else
 			return NULL;
@@ -1478,7 +1479,7 @@ static void state_machine_situational_transitions(enemy * ThisRobot)
 
 	// Rush Tux when he's close & visible
 	update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, Me.pos.z);
-	if (ThisRobot->will_rush_tux && ThisRobot->virt_pos.z != -1 && ((Me.invisible_duration <= 0) || (ThisRobot->sensor_id & SENSOR_DETECT_INVISIBLE))
+	if (ThisRobot->will_rush_tux && ThisRobot->virt_pos.z != -1 && can_see_tux(ThisRobot)
 	    && (powf(Me.pos.x - ThisRobot->virt_pos.x, 2) + powf(Me.pos.y - ThisRobot->virt_pos.y, 2)) < 16) {
 		ThisRobot->combat_state = RUSH_TUX_AND_OPEN_TALK;
 	}
@@ -1889,7 +1890,7 @@ static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_f
 
 static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
-	if (!ThisRobot->follow_tux || ((Me.invisible_duration > 0) && (!(ThisRobot->sensor_id & SENSOR_DETECT_INVISIBLE)) )) {
+	if (!ThisRobot->follow_tux || (!can_see_tux(ThisRobot)) ) {
 		ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
 		new_move_target->x = ThisRobot->pos.x;
 		new_move_target->y = ThisRobot->pos.y;
@@ -2725,6 +2726,14 @@ int get_sensor_id_by_name(const char *sensor) {
 		return SENSOR_FEATURELESS;
 	}
 }
+
+ /* This helper function checks if a robot can see tux even when invisible. */
+int can_see_tux(enemy *ThisRobot) {
+
+	return ((Me.invisible_duration <= 0) || (ThisRobot->sensor_id & SENSOR_DETECT_INVISIBLE));
+	
+}
+
 
 /**
  * This function checks if the enemy at 'target_pos' is a potential target for
