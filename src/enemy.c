@@ -815,6 +815,9 @@ static void set_new_waypointless_walk_target(enemy * ThisRobot, moderately_finep
 void DropEnemyTreasure(Enemy ThisRobot)
 {
 
+	// First of all: Update virtual position, avoiding bugs.
+	update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, ThisRobot->pos.z);
+
 	// If the Tux has the skill to extract certain components from dead bots,
 	// these components will be thrown out automatically, when the bot is killed.
 	//
