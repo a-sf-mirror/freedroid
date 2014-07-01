@@ -205,97 +205,6 @@ void PlayATitleFile(char *Filename)
 		free(screen.text);
 	}
 }
-
-/**
- * This function reads the descriptions of the different programs
- * (source and blobs) that are used for magic
- */
-static int Get_Programs_Data(char *DataPointer)
-{
-	char *ProgramPointer;
-	char *EndOfProgramData;
-
-#define PROGRAM_SECTION_BEGIN_STRING "*** Start of program data section: ***"
-#define PROGRAM_SECTION_END_STRING "*** End of program data section ***"
-#define NEW_PROGRAM_BEGIN_STRING "** Start of new program specification subsection **"
-
-	ProgramPointer = LocateStringInData(DataPointer, PROGRAM_SECTION_BEGIN_STRING);
-	EndOfProgramData = LocateStringInData(DataPointer, PROGRAM_SECTION_END_STRING);
-
-	int Number_Of_Programs = CountStringOccurences(DataPointer, NEW_PROGRAM_BEGIN_STRING);
-	number_of_skills = Number_Of_Programs;
-
-	SpellSkillMap = (spell_skill_spec *) MyMalloc(sizeof(spell_skill_spec) * (Number_Of_Programs + 1));
-
-	if (Number_Of_Programs >= MAX_NUMBER_OF_PROGRAMS) {
-		error_message(__FUNCTION__, "\
-There are more skills defined, than the maximum number specified in the code!", PLEASE_INFORM | IS_FATAL);
-	}
-
-	char *whattogrep = NEW_PROGRAM_BEGIN_STRING;
-
-	spell_skill_spec *ProgramToFill = SpellSkillMap;
-
-	while ((ProgramPointer = strstr(ProgramPointer, whattogrep)) != NULL) {
-		ProgramPointer++;
-		char *EndOfThisProgram = strstr(ProgramPointer, whattogrep);
-
-		if (EndOfThisProgram)
-			EndOfThisProgram[0] = 0;
-
-		ProgramToFill->name = ReadAndMallocStringFromData(ProgramPointer, "Program name=_\"", "\"");
-		ProgramToFill->description = ReadAndMallocStringFromData(ProgramPointer, "Program description=_\"", "\"");
-		ProgramToFill->icon_name = ReadAndMallocStringFromData(ProgramPointer, "Picture=\"", "\"");
-
-		struct image empty = EMPTY_IMAGE;
-		ProgramToFill->icon_surface = empty;
-
-		ProgramToFill->effect = ReadAndMallocStringFromData(ProgramPointer, "Effect=\"", "\"");
-
-		char *pform = ReadAndMallocStringFromData(ProgramPointer, "Form=\"", "\"");
-		if (!strcmp(pform, "instant"))
-			ProgramToFill->form = PROGRAM_FORM_INSTANT;
-		if (!strcmp(pform, "bullet"))
-			ProgramToFill->form = PROGRAM_FORM_BULLET;
-		if (!strcmp(pform, "radial"))
-			ProgramToFill->form = PROGRAM_FORM_RADIAL;
-		if (!strcmp(pform, "self"))
-			ProgramToFill->form = PROGRAM_FORM_SELF;
-		if (!strcmp(pform, "special"))
-			ProgramToFill->form = PROGRAM_FORM_SPECIAL;
-
-		free(pform);
-
-		ReadValueFromStringWithDefault(ProgramPointer, "Base damage=", "%hd", "0", &ProgramToFill->damage_base, EndOfProgramData);
-		ReadValueFromStringWithDefault(ProgramPointer, "Mod damage=", "%hd", "0", &ProgramToFill->damage_mod, EndOfProgramData);
-		ReadValueFromStringWithDefault(ProgramPointer, "Damage per level=", "%hd", "0",
-					       &ProgramToFill->damage_per_level, EndOfProgramData);
-
-		ReadValueFromStringWithDefault(ProgramPointer, "Affect bots=", "%hd", "1", &ProgramToFill->hurt_bots, EndOfProgramData);
-		ReadValueFromStringWithDefault(ProgramPointer, "Affect humans=", "%hd", "1", &ProgramToFill->hurt_humans, EndOfProgramData);
-
-		ReadValueFromStringWithDefault(ProgramPointer, "Cost=", "%hd", "0", &ProgramToFill->heat_cost, EndOfProgramData);
-		ReadValueFromStringWithDefault(ProgramPointer, "Cost per level=", "%hd", "0",
-					       &ProgramToFill->heat_cost_per_level, EndOfProgramData);
-		ReadValueFromStringWithDefault(ProgramPointer, "Present at startup=", "%hd", "0",
-					       &ProgramToFill->present_at_startup, EndOfProgramData);
-		ReadValueFromStringWithDefault(ProgramPointer, "Artwork internal code=", "%d", "-1",
-					       &ProgramToFill->graphics_code, EndOfProgramData);
-		ReadValueFromStringWithDefault(ProgramPointer, "Effect duration=", "%f", "0",
-					       &ProgramToFill->effect_duration, EndOfProgramData);
-		ReadValueFromStringWithDefault(ProgramPointer, "Effect duration per level=", "%f", "0",
-					       &ProgramToFill->effect_duration_per_level, EndOfProgramData);
-
-		//ReadValueFromStringWithDefault( ProgramPointer , "Bonus to tohit modifier=" , "%d" , "0",
-
-		ProgramToFill++;
-		if (EndOfThisProgram)
-			EndOfThisProgram[0] = '*';	// We put back the star at its place 
-	}
-
-	return 0;
-}
-
 static void Get_Difficulty_Parameters(void *DataPointer)
 {
 	char *EndOfDataPointer;
@@ -544,12 +453,9 @@ void Init_Game_Data()
 		run_lua_file(LUA_CONFIG, fpath);
 	}
 
-	// Load programs (spells) information
-	//
-	find_file("program_archetypes.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
-	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
-	Get_Programs_Data(Data);
-	free(Data);
+	// Load skills and programs (spells) information
+	find_file("skill_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load the blast data (required for the bullets to load)
 	find_file("blast_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);

@@ -75,6 +75,7 @@ void write_lua_variables(struct auto_string *);
 
 // luaconfig.c
 void init_luaconfig(void);
+void lua_end_skill_init(void);
 
 // influ.c 
 float calc_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y);

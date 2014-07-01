@@ -1197,6 +1197,92 @@ static int lua_title_screen_ctor(lua_State *L)
 }
 
 /**
+ * \brief Skill constructor. Called when a 'skill' object is read in a Lua config file.
+ * \param L Lua state.
+ */
+static void get_one_skill(lua_State *L, void *data)
+{
+	struct spell_skill_spec *skill = (struct spell_skill_spec *)data;
+	char *skill_target;
+	char *skill_form;
+	char *skill_damage;
+
+	struct data_spec data_specs[] = {
+		{"name", 						NULL,		STRING_TYPE,	&skill->name						},
+		{"icon", 						NULL,		STRING_TYPE,	&skill->icon_name					},
+		{"target", 						NULL,		STRING_TYPE,	&skill_target						},
+		{"form", 						NULL,		STRING_TYPE,	&skill_form							},
+		{"damage.base", 				NULL,		STRING_TYPE,	&skill_damage						},
+		{"damage.per_level", 			"0",		SHORT_TYPE,		&skill->damage_per_level			},
+		{"effect.type", 				"none",		STRING_TYPE,	&skill->effect						},
+		{"effect.duration.base",		"0",		FLOAT_TYPE,		&skill->effect_duration				},
+		{"effect.duration.per_level",	"0",		FLOAT_TYPE,		&skill->effect_duration_per_level	},
+		{"cost.base", 					"0",		SHORT_TYPE,		&skill->heat_cost					},
+		{"cost.per_level", 				"0",		SHORT_TYPE,		&skill->heat_cost_per_level			},
+		{"description", 				"",			STRING_TYPE,	&skill->description					},
+		{"artwork",						"0", 		INT_TYPE,		&skill->graphics_code				},
+		{"startup", 					"false",	BOOL_TYPE,		&skill->present_at_startup			},
+		{ NULL, NULL, 0, 0 }
+	};
+
+	fill_structure_from_table(L, data_specs);
+
+	skill->hurt_bots = 0;
+	skill->hurt_humans = 0;
+	if (skill_target) {
+		if (!strcmp(skill_target, "bot")) {
+			skill->hurt_bots = 1;
+		} else if (!strcmp(skill_target, "human")) {
+			skill->hurt_humans = 1;
+		} else if (!strcmp(skill_target, "all")) {
+			skill->hurt_bots = 1;
+			skill->hurt_humans = 1;
+		}
+	}
+	free(skill_target);
+
+	if (skill_form) {
+		if (!strcmp(skill_form, "instant"))
+			skill->form = PROGRAM_FORM_INSTANT;
+		if (!strcmp(skill_form, "bullet"))
+			skill->form = PROGRAM_FORM_BULLET;
+		if (!strcmp(skill_form, "radial"))
+			skill->form = PROGRAM_FORM_RADIAL;
+		if (!strcmp(skill_form, "self"))
+			skill->form = PROGRAM_FORM_SELF;
+	} else {
+		skill->form = PROGRAM_FORM_INSTANT;
+	}
+	free(skill_form);
+
+	get_range_from_string(skill_damage, (int *)&skill->damage_base, (int *)&skill->damage_mod, 0);
+	free(skill_damage);
+
+	skill->icon_surface = (struct image)EMPTY_IMAGE;
+}
+
+static int lua_skill_list_ctor(lua_State *L)
+{
+	struct dynarray skill_specs = { 0 };
+
+	fill_dynarray_from_table(L, &skill_specs, sizeof(struct spell_skill_spec), get_one_skill);
+
+	if (number_of_skills >= MAX_NUMBER_OF_PROGRAMS) {
+		error_message(__FUNCTION__, "\
+There are more skills defined, than the maximum number specified in the code!", PLEASE_INFORM | IS_FATAL);
+	}
+
+	// Copy the array of item_specs
+	number_of_skills = skill_specs.size;
+	SpellSkillMap = (spell_skill_spec *) MyMalloc(sizeof(spell_skill_spec) * number_of_skills + 1);
+	memcpy(SpellSkillMap, skill_specs.arr, sizeof(spell_skill_spec) * number_of_skills);
+
+	dynarray_free(&skill_specs);
+
+	return 0;
+}
+
+/**
  * Add lua constructors of new data types
  */
 void init_luaconfig()
@@ -1221,6 +1307,7 @@ void init_luaconfig()
 		{ "npc_shop",                      lua_npc_shop_ctor                      },
 		{ "item_list",                     lua_item_list_ctor                     },
 		{ "languages",                     lua_languages_ctor                     },
+		{ "skill_list",                    lua_skill_list_ctor                    },
 		{NULL, NULL}
 	};
 

@@ -723,13 +723,13 @@ typedef struct spell_skill_spec {
 	struct image icon_surface;
 	short heat_cost;
 	short heat_cost_per_level;
-	short damage_base;
-	short damage_mod;
+	int damage_base;
+	int damage_mod;
 	short damage_per_level;
 	short hurt_bots;
 	short hurt_humans;
 	short form;
-	short present_at_startup;
+	char present_at_startup;
 	char *description;
 	char *effect;
 	float effect_duration;
