@@ -35,7 +35,7 @@ return {
 			Npc:says(_"Welcome back.")
 		end
 
-		if (Tux:has_item("Toolbox")) then
+		if (Tux:has_item("Toolbox") and Tux:has_quest("Jennifer's Toolbox")) then
 			show("node10")
 		end
 		show("node99")
