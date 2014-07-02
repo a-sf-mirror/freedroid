@@ -1405,14 +1405,15 @@ static int OSD_handle(int n)
 		SHOW_POSITION = 1,
 		SHOW_FRAMERATE,
 		SHOW_ENEMY_ENERGY_BARS,
+		SHOW_EFFECT_COUNTDOWNS,
 		PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION,
 		BIG_SCREEN_MESSAGES_DURATION_POSITION,
 		LEAVE_OPTIONS_MENU
 	};
 
-	int *shows[4] = {
+	int *shows[5] = {
 		&GameConfig.Draw_Position, &GameConfig.Draw_Framerate,
-		&GameConfig.enemy_energy_bars_visible
+		&GameConfig.enemy_energy_bars_visible, &GameConfig.effect_countdowns_visible
 	};
 
 	if (n >= 1 && n < PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION) {
@@ -1460,14 +1461,15 @@ static int OSD_handle(int n)
 
 static void OSD_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
-	sprintf(MenuTexts[0], _("Show position: %s"), GameConfig.Draw_Position ? _("YES") : _("NO"));
-	sprintf(MenuTexts[1], _("Show framerate: %s"), GameConfig.Draw_Framerate ? _("YES") : _("NO"));
-	sprintf(MenuTexts[2], _("Show enemies' energy bars: %s"), GameConfig.enemy_energy_bars_visible ? _("YES") : _("NO"));
-	sprintf(MenuTexts[3], _("<-- Max. screen messages: %d -->"), GameConfig.number_of_big_screen_messages);
-	sprintf(MenuTexts[4], _("<-- Screen message lifetime: %3.1fs -->"), GameConfig.delay_for_big_screen_messages);
-	strcpy(MenuTexts[5], _("Back"));
-	MenuTexts[6][0] = '\0';
-
+	int i = 0;
+	sprintf(MenuTexts[i++], _("Show position: %s"), GameConfig.Draw_Position ? _("YES") : _("NO"));
+	sprintf(MenuTexts[i++], _("Show framerate: %s"), GameConfig.Draw_Framerate ? _("YES") : _("NO"));
+	sprintf(MenuTexts[i++], _("Show enemies' energy bars: %s"), GameConfig.enemy_energy_bars_visible ? _("YES") : _("NO"));
+	sprintf(MenuTexts[i++], _("Show effect countdowns: %s"), GameConfig.effect_countdowns_visible ? _("YES") : _("NO"));
+	sprintf(MenuTexts[i++], _("<-- Max. screen messages: %d -->"), GameConfig.number_of_big_screen_messages);
+	sprintf(MenuTexts[i++], _("<-- Screen message lifetime: %3.1fs -->"), GameConfig.delay_for_big_screen_messages);
+	strncpy(MenuTexts[i++], _("Back"), 1024);
+	MenuTexts[i][0] = '\0';
 }
 
 

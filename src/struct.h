@@ -145,6 +145,7 @@ typedef struct configuration_for_freedroid {
 	int skip_light_radius;
 	int skill_explanation_screen_visible;
 	int enemy_energy_bars_visible;
+	int effect_countdowns_visible;
 	int limit_framerate;
 	int omit_obstacles_in_level_editor;
 	int omit_map_labels_in_level_editor;
