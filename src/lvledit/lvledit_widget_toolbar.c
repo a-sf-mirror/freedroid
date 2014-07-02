@@ -37,24 +37,30 @@
 static struct widget_lvledit_categoryselect *previous_category = NULL;
 static int num_blocks_per_line = 0;
 
-static int display_info = 0;
+static int display_info_idx = 0;
 
-static void toolbar_mousepress(struct widget *vt, SDL_Event *event)
+static int toolbar_mousepress(struct widget *vt, SDL_Event *event, int select)
 {
 	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 	int i;
 	int x;
+	int idx = -1;
 
 	for (i = 0; i < num_blocks_per_line; i++) {
 		x = INITIAL_BLOCK_WIDTH / 2 + INITIAL_BLOCK_WIDTH * i;
 
 		if (event->button.x > x && event->button.x < x + INITIAL_BLOCK_WIDTH)
-			cs->selected_tile_nb = cs->toolbar_first_block + i;
+			idx = cs->toolbar_first_block + i;
 	}
 
 	for (i = 0; cs->indices[i] != -1; i++) ;
-	if (cs->selected_tile_nb >= i - 1)
-		cs->selected_tile_nb = i - 1;
+	if (idx >= i - 1)
+		idx = i - 1;
+
+	if (select && idx != -1)
+		cs->selected_tile_nb = idx;
+
+	return idx;
 }
 
 static int toolbar_handle_event(struct widget *w, SDL_Event *event)
@@ -63,11 +69,11 @@ static int toolbar_handle_event(struct widget *w, SDL_Event *event)
 		case SDL_MOUSEBUTTONDOWN:
 			switch (event->button.button) {
 				case MOUSE_BUTTON_3:
-					display_info = 1;
+					display_info_idx = toolbar_mousepress(w, event, FALSE);
 					break;
 
 				case MOUSE_BUTTON_1:
-					toolbar_mousepress(w, event);
+					toolbar_mousepress(w, event, TRUE);
 					break;	
 
 				case SDL_BUTTON_WHEELUP:
@@ -88,12 +94,12 @@ static int toolbar_handle_event(struct widget *w, SDL_Event *event)
 
 		case SDL_MOUSEBUTTONUP:
 			if (event->button.button == 3)
-				display_info = 0;
+				display_info_idx = -1;
 			return 1;
 
 		case SDL_USEREVENT:
 			if (event->user.code == EVENT_MOUSE_LEAVE)
-				display_info = 0;
+				display_info_idx = -1;
 			break;
 
 		default:
@@ -285,9 +291,9 @@ static void toolbar_display(struct widget *vt)
 
 		if (cindex == cs->selected_tile_nb) {
 			HighlightRectangle(Screen, TargetRectangle);
-			if (display_info) {
+			if (display_info_idx != -1) {
 				// Display information about the currently selected object
-				leveleditor_print_object_info(cs->type, cs->indices, cindex, VanishingMessage);
+				leveleditor_print_object_info(cs->type, cs->indices, display_info_idx, VanishingMessage);
 				VanishingMessageEndDate = SDL_GetTicks() + 100;
 			}
 		}
