@@ -612,6 +612,7 @@ void alert_window(const char *text, ...) PRINTF_FMT_ATTRIBUTE(1,2);
 int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels);
 void SetNewBigScreenMessage(const char *ScreenMessageText);
 void DisplayBigScreenMessage(void);
+void display_effect_countdowns(void);
 int chat_with_droid(Enemy ChatDroid);
 
 int display_text_using_line_height(const char *, int, int, const SDL_Rect*, float);

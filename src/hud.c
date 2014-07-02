@@ -685,6 +685,7 @@ void show_texts_and_banner(void) {
 	show_current_text_banner();
 	show_top_left_text();
 	show_top_right_text();
+	display_effect_countdowns();
 	DisplayBigScreenMessage();
 }
 

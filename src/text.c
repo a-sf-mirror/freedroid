@@ -384,6 +384,58 @@ void DisplayBigScreenMessage(void)
 
 };				// void DisplayBigScreenMessage( void )
 
+static void display_countdown(int pixel_x, int pixel_y, const char* message, float duration)
+{
+	char text[100];
+	int minutes = ((int) duration) / 60;
+	int seconds = ((int) duration) - (minutes * 60);
+
+	if (minutes >= 60) {
+		sprintf(text, "%s", message);
+	} else if (minutes) {
+		sprintf(text, "%s %dm%ds", message, minutes, seconds);
+	} else {
+		sprintf(text, "%s %.1fs", message, duration);
+	}
+
+	pixel_x -= text_width(GetCurrentFont(), text) / 2;
+
+	display_text_using_line_height(text, pixel_x, pixel_y, NULL /* clip */, 1.0);
+}
+
+/**
+ * This function displays the remaining seconds of effect on Tux above him.
+ */
+void display_effect_countdowns(void)
+{
+	int pixel_x, pixel_y;
+	translate_map_point_to_screen_pixel(Me.pos.x, Me.pos.y, &pixel_x, &pixel_y);
+	pixel_y -= 128; /* tux height... */
+
+	if (Me.slowdown_duration > 0.0) {
+		SetCurrentFont(Blue_BFont);
+		display_countdown(pixel_x, pixel_y, _("slowed"), Me.slowdown_duration);
+		pixel_y -= FontHeight(Blue_BFont);
+	}
+
+	if (Me.paralyze_duration > 0.0) {
+		SetCurrentFont(Red_BFont);
+		display_countdown(pixel_x, pixel_y, _("paralyzed"), Me.paralyze_duration);
+		pixel_y -= FontHeight(Red_BFont);
+	}
+
+	if (Me.invisible_duration > 0.0) {
+		SetCurrentFont(FPS_Display_BFont);
+		display_countdown(pixel_x, pixel_y, _("invisible"), Me.invisible_duration);
+		pixel_y -= FontHeight(FPS_Display_BFont);
+	}
+
+	if (Me.nmap_duration > 0.0) {
+		SetCurrentFont(FPS_Display_BFont);
+		display_countdown(pixel_x, pixel_y, _("scanning"), Me.nmap_duration);
+	}
+};		// void display_effect_countdowns( void )
+
 static int display_text_using_line_height_with_cursor(const char *text, int startx, int starty, const SDL_Rect *clip, float line_height_factor, int curpos)
 {
 	char *tmp;		// mobile pointer to the current position in the string to be printed
