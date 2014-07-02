@@ -731,8 +731,8 @@ static void RunSubMenu(int startup, int menu_id)
 	int can_continue = 0;
 	char *texts[MAX_MENU_ITEMS];
 	int i = 0;
+	int pos = 1;
 	while (!can_continue) {
-		int pos;
 		// We need to fill at each loop because
 		// several menus change their contents
 		for (i = 0; i < MAX_MENU_ITEMS; i++)
@@ -742,7 +742,7 @@ static void RunSubMenu(int startup, int menu_id)
 		if (startup)
 			pos = DoMenuSelection("", texts, -1, "title.jpg", Menu_BFont);
 		else
-			pos = DoMenuSelection("", texts, 1, "--GAME_BACKGROUND--", Menu_BFont);
+			pos = DoMenuSelection("", texts, pos, "--GAME_BACKGROUND--", Menu_BFont);
 
 		int ret = menus[menu_id].HandleSelection(pos);
 
