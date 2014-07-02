@@ -32,7 +32,7 @@ return {
 	EveryTime = function()
 		if (Tux:has_quest("Novice Arena")) then
 			if (not Tux:done_quest("Novice Arena")) then
-				Npc:says(_"I've already opened the door for you. All you need to do is walk in there and crush all four bots.")
+				Npc:says(_"I've already opened the door for you. All you need to do is walk in there and talk to Mike.")
 			else
 				if (not Butch_enable_first_set) then
 					Butch_enable_first_set = true
@@ -115,8 +115,8 @@ return {
 		id = "node6",
 		text = _"Yeah. I want to fight.",
 		code = function()
-			Npc:says(_"Good. I opened up the novice arena door. Just climb down the ladder south of here.")
-			Npc:says(_"But remember, the escape hatch won't be opened until you kill all the bots.")
+			Npc:says(_"Good. I opened up the arena door. Just climb down the ladder south of here.")
+			Npc:says(_"You'll need search for Mike, the arena manager, there.")
 			Npc:says(_"And be careful, your brain will be fooled by what happens in the holographic world. Any damage you take there, will result in actual physical damage.")
 			Npc:says(_"So even if the enemies are only holograms, they can still hurt you... and even kill you.")
 			Tux:add_quest("Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
