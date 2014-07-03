@@ -1786,7 +1786,7 @@ void HandleInventoryScreen(void)
 	//
 	if (MouseRightClicked()) {
 
-		if (Me.readied_skill == get_program_index_with_name("Repair equipment")) {
+		if (Me.readied_skill == get_program_index_with_name("Repair equipment") && Me.busy_time <= 0) {
 			// Here we know, that the repair skill is selected, therefore we try to 
 			// repair the item currently under the mouse cursor.
 			//
