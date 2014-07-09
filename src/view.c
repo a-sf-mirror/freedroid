@@ -2552,16 +2552,16 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	struct image *img = &enemy_images[RotationModel][RotationIndex][(int)ThisRobot->animation_phase];
 	display_image_on_map(img, bot_pos.x, bot_pos.y, set_image_transformation(zf, zf, r, g, b, 1.0, highlight));
 
-	int screen_x, screen_y;
-	translate_map_point_to_screen_pixel(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, &screen_x, &screen_y);
+	if (GameConfig.enemy_energy_bars_visible) {
+		int screen_x, screen_y;
+		translate_map_point_to_screen_pixel(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, &screen_x, &screen_y);
 
-	TargetRectangle.x = screen_x - (enemy_images[RotationModel][RotationIndex][0].w * zf) / 2;
-	TargetRectangle.y = screen_y - (enemy_images[RotationModel][RotationIndex][0].h * zf) / 1;
-	TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].w * zf;
-	TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].h * zf;
-
-	if (GameConfig.enemy_energy_bars_visible)
+		TargetRectangle.x = screen_x - (enemy_images[RotationModel][RotationIndex][0].w * zf) / 2;
+		TargetRectangle.y = screen_y - (enemy_images[RotationModel][RotationIndex][0].h * zf) / 1;
+		TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].w * zf;
+		TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].h * zf;
 		PutEnemyEnergyBar(ThisRobot, TargetRectangle);
+	}
 }
 
 /**
