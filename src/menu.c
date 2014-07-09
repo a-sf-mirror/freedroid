@@ -849,7 +849,7 @@ static void Startup_fill(char *MenuTexts[MAX_MENU_ITEMS])
 	strncpy(MenuTexts[i++], _("Credits"), 1024);
 	strncpy(MenuTexts[i++], _("Contribute"), 1024);
 	strncpy(MenuTexts[i++], _("Exit FreedroidRPG"), 1024);
-	MenuTexts[i++][0] = '\0';
+	MenuTexts[i][0] = '\0';
 }
 
 static int Game_handle(int n)
@@ -944,7 +944,7 @@ static void Options_fill(char *MenuTexts[MAX_MENU_ITEMS])
 	strncpy(MenuTexts[i++], _("On-Screen displays"), 1024);
 	strncpy(MenuTexts[i++], _("Performance tweaks"), 1024);
 	strncpy(MenuTexts[i++], _("Back"), 1024);
-	MenuTexts[i++][0] = '\0';
+	MenuTexts[i][0] = '\0';
 }
 
 static int Escape_handle(int n)
@@ -1051,7 +1051,7 @@ static void Language_fill(char *MenuTexts[MAX_MENU_ITEMS])
 		snprintf(MenuTexts[i++], 1024, "%c %s  ", mark, lang->name);
 	}
 	snprintf(MenuTexts[i++], 1024, "  %s  ", _("Back"));
-	MenuTexts[i++][0] = '\0';
+	MenuTexts[i][0] = '\0';
 }
 #endif
 
@@ -1220,7 +1220,7 @@ static void Graphics_fill(char *MenuTexts[MAX_MENU_ITEMS])
 	i++;
 
 	strncpy(MenuTexts[i++], _("Back"), 1024);
-	MenuTexts[i++][0] = '\0';
+	MenuTexts[i][0] = '\0';
 }
 
 static int Sound_handle(int n)
@@ -1331,7 +1331,7 @@ static void Sound_fill(char *MenuTexts[MAX_MENU_ITEMS])
 	i++;
 
 	strncpy(MenuTexts[i++], _("Back"), 1024);
-	MenuTexts[i++][0] = '\0';
+	MenuTexts[i][0] = '\0';
 }
 
 static int Performance_handle(int n)
@@ -1396,7 +1396,7 @@ static void Performance_fill(char *MenuTexts[])
 	sprintf(MenuTexts[i], _("Precache item graphics: %s"), GameConfig.lazyload ? _("NO") : _("YES"));
 	i++;
 	strncpy(MenuTexts[i++], _("Back"), 1024);
-	MenuTexts[i++][0] = '\0';
+	MenuTexts[i][0] = '\0';
 }
 
 static int OSD_handle(int n)
