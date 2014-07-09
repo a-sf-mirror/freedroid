@@ -56,7 +56,7 @@ modWP_Dialog.wikiheadmarker = "WIKI"
 modWP_Dialog.codemarker = "wikiheader"
 --	text patterns used to locate data in dialog file
 modWP_Dialog.patterns_dialog = {
-	botname = "Npc:set_name",
+	botname = ":set_name",
 	quest_given = "Tux:add_quest",
 	quest_update = "Tux:update_quest",
 	quest_end = "Tux:end_quest",
@@ -64,6 +64,12 @@ modWP_Dialog.patterns_dialog = {
 	improveSkill = "Tux:improve_skill",
 	trainskill = "Tux:train_skill"
 }
+-- text pattern to isolate npc name
+modWP_Dialog.pattern_botname = "([%a]+)" .. modWP_Dialog.patterns_dialog.botname
+
+-- text pattern indicating lua tables refer to dialog character
+modWP_Dialog.FDnpc = "Npc"
+
 --	variable holder id of dialog file being updated.
 --	referenced in fn wkihead to direct storage of wikihead data
 modWP_Dialog.lastdialog = ""
@@ -130,19 +136,23 @@ function modWP_Dialog.ParseDialog( npcDlgName )
 			if ( retrievedArgs == nil ) then
 				goto DIALOG_NEXT_TESTPATTERN end
 			if subkey == "botname" then
-				if (#retrievedArgs == 1) then
-					-- alias for this character
-					for subsubkey, aliasvalue in pairs(retrievedArgs) do
-						if ( npcDlgName:gmatch(aliasvalue) and ( npcDlgName:len() == aliasvalue:len() )) then
-						else
-							modWP_Dialog.modcommon.Process.InsertToNoKeyTable( dlgData.alias, aliasvalue )
+				local charName = modWP_Dialog.modcommon.Extract.SearchText( line, modWP_Dialog.pattern_botname, "[MATCH]" )
+				if ( charName ~= nil ) then
+					if ( charName ~= modWP_Dialog.FDnpc ) then
+						--	alias for another character
+						--	bot name:set_name = bot alias ==> charName:set_name = retrievedArgs[1]
+						dlgData.alias[#dlgData.alias + 1] = { npc = charName, name = retrievedArgs[1] }
+					else
+						for subsubkey, aliasvalue in pairs(retrievedArgs) do
+							if ( npcDlgName:gmatch(aliasvalue) and ( npcDlgName:len() == aliasvalue:len() )) then
+								-- alias name matches dialog name -- skip
+							else
+								-- have alias for this character
+								modWP_Dialog.modcommon.Process.InsertToNoKeyTable( dlgData.alias, aliasvalue )
+							end
 						end
-					end
-				else
-					--	alias for another character
-					--	bot name,bot alias = retrievedArgs[2], retrievedArgs[1]
-					dlgData.alias[#dlgData.alias + 1] = { npc = retrievedArgs[2], name = retrievedArgs[1] }
-				end	--	botname & argument size
+					end	--	botname & argument size
+				end
 			elseif (( subkey == "quest_given" )
 				or ( subkey == "quest_update" )
 				or ( subkey == "quest_end" )) then
