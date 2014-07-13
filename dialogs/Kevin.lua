@@ -56,6 +56,12 @@ return {
 			Npc:says(_"But this isn't the case here, so explain yourself.")
 			show("node90", "node91", "node92")
 			push_topic("Backdoor")
+		elseif (not has_met("Kevin")) then -- don't say "hello again" when meeting for the first time
+			Tux:says_random(_"Hello.",
+							_"Hi there.")
+			Npc:says_random(_"Well, hello.",
+							_"Hello hello.",
+							_"Uhm hello.")
 		else
 			Tux:says_random(_"Hello.",
 							_"Hi there, Kevin.")
