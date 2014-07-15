@@ -191,8 +191,6 @@ void Terminate(int exit_code, int save_config)
  * -----------------------------------------------------------------*/
 void ParseCommandLine(int argc, char *const argv[])
 {
-	int c;
-
 	static struct option long_options[] = 
 	{
 		{ "version",          0, 0,  'v' },
@@ -208,6 +206,7 @@ void ParseCommandLine(int argc, char *const argv[])
 	};
 
 	while (1) {
+		int c;
 		c = getopt_long(argc, argv, "gqnvi:o:h?d::", long_options, NULL);
 		if (c == -1)
 			break;
