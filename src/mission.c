@@ -43,7 +43,7 @@ void mission_diary_add(const char *mis_name, const char *diarytext)
 	int mis_num = GetMissionIndexByName(mis_name);
 	int idx = 0;
 
-	while (Me.AllMissions[mis_num].mission_diary_texts[idx] && idx < MAX_MISSION_DESCRIPTION_TEXTS)
+	while (idx < MAX_MISSION_DESCRIPTION_TEXTS && Me.AllMissions[mis_num].mission_diary_texts[idx])
 		idx++;
 
 	if (idx >= MAX_MISSION_DESCRIPTION_TEXTS) {
