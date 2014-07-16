@@ -109,7 +109,6 @@ int find_free_melee_shot_index(void)
 	for (j = 0; j < MAX_MELEE_SHOTS; j++) {
 		if (AllMeleeShots[j].attack_target_type == ATTACK_TARGET_IS_NOTHING) {
 			return (j);
-			break;
 		}
 	}
 
@@ -573,7 +572,6 @@ int find_free_bullet_index(void)
 	for (j = 0; j < MAXBULLETS; j++) {
 		if (AllBullets[j].type == INFOUT) {
 			return (j);
-			break;
 		}
 	}
 
