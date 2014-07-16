@@ -873,7 +873,7 @@ static void detect_available_resolutions(void)
 			i = 1;
 	} else {
 		// Add resolutions to the screen_resolutions array
-		for (i = 0; modes[i] && i < MAX_RESOLUTIONS; ++i) 
+		for (i = 0; i < MAX_RESOLUTIONS && modes[i]; ++i)
 			screen_resolutions[i] = (screen_resolution) {modes[i]->w, modes[i]->h, "", TRUE};
 	}
 
