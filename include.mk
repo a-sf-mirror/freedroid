@@ -23,21 +23,18 @@ cppcheck-report:
 	mkdir -p cppcheck-report
 	cppcheck croppy gluem src $(cppcheckflags) --xml-version=2 --xml 2> cppcheck-report/cppcheck.xml
 	cppcheck-htmlreport --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
-	@echo "Open  cppcheck-report/index.html   to view results."
 
 cppcheck-report-full:
 	@echo "`cppcheck --version`"
 	mkdir -p cppcheck-report
 	cppcheck croppy gluem src $(cppcheckflags) --xml-version=2 --force --xml 2> cppcheck-report/cppcheck.xml
 	cppcheck-htmlreport --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
-	@echo "Open  cppcheck-report/index.html   to view results."
 
 cppcheck-report-fast:
 	@echo "`cppcheck --version`"
 	mkdir -p cppcheck-report
 	cppcheck croppy gluem src $(cppcheckflags) --xml-version=2 --max-configs=1 --xml 2> cppcheck-report/cppcheck.xml
 	cppcheck-htmlreport --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
-	@echo "Open  cppcheck-report/index.html   to view results."
 
 gourceflags =	-c 0.8                           \
 				--seconds-per-day 0.001          \
