@@ -24,6 +24,7 @@ npc_list{
 	"Singularity-Drone",
 	"Singularity",
 	--	"Serge",
+	"Scavenger",             --[[ _"Scavenger Bot" ]]--
 	"SADD",                  --[[ _"SADD - Exterminate Mode", _"SADD - Secret Area Defense Droid" ]]--
 	"SACD",                  --[[TRM]]--
 	"Richard",               --[[ _"Richard - Programmer" ]]--
@@ -65,6 +66,7 @@ npc_list{
 	"DocMoore",              --[[ _"Doc Moore - Medic" ]]--
 	"Dixon",                 --[[ _"Dixon - Mechanic" ]]--
 	"DeadGuy",
+	"Cult-Member",             --[[ _"Cult Member" ]]--
 	"Cryo-Terminal",         --[[TRM]]--
 	"c-net",                 --[[TRM]]--
 	"Chandra",

@@ -907,6 +907,12 @@ Exiting level=13
 ##############
 ## Level 16 ##
 ##############
+* New event trigger *
+Name=_"To Omega Island"
+Trigger at label="16to72"
+Silent=0
+<LuaCode> teleport("72from16") </LuaCode>
+* End of trigger *
 
 ##############
 ## Level 17 ##
@@ -6552,6 +6558,16 @@ Exiting level=24
 		teleport("24-tux2")
 	end
 </LuaCode>
+* End of trigger *
+
+##############
+## Level 72 ##
+##############
+* New event trigger *
+Name=_"Back to mainland"
+Trigger at label="72to16"
+Silent=0
+<LuaCode> teleport("16from72") </LuaCode>
 * End of trigger *
 
 ################
