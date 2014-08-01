@@ -31,7 +31,7 @@ return {
 
 	{
 		id = "node0",
-		text = _"Hello",
+		text = _"Hello.",
 		code = function()
 			Npc:says(_"Welcome, fellow robot.")
 			Tux:says(_"Er... I'm not a robot!")
@@ -75,7 +75,7 @@ return {
 	},
 	{
 		id = "node90",
-		text = _"I think I'll be going now",
+		text = _"I think I'll be going now.",
 		code = function()
 			Npc:says(_"Peace and regular maintenance, until we meet in the cloud.")
 			end_dialog()

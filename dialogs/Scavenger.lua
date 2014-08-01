@@ -31,7 +31,7 @@ return {
 
 	{
 		id = "node0",
-		text = _"Hello",
+		text = _"Hello.",
 		code = function()
 			Npc:says_random(_"I'm looking for replacement parts. You're blocking my light.",
                                         _"Ooh, is that a 45nm plasma transducer coil you're standing on? Please move aside.",
