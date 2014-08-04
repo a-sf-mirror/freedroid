@@ -76,20 +76,19 @@ static int set_random_droid_types(level *lvl, const char *input, char **droid_ty
 void get_random_droids_from_user()
 {
 	char *user_input;
-	char suggested_val[200];
 	level *lvl = EditLevel();
 	struct auto_string *displayed_text = alloc_autostr(64);
+	struct auto_string *suggested_val = alloc_autostr(256);
 	int numb;
 	char *droid_type = NULL;
 
 	InitiateMenu("--EDITOR_BACKGROUND--");
 
 	autostr_printf(displayed_text, _("Number of random droids:"));
-
-	sprintf(suggested_val, "%d", lvl->random_droids.nr);
+	autostr_printf(suggested_val, "%d", lvl->random_droids.nr);
  
 	while (1) {
-		numb = get_number_popup(displayed_text->value, suggested_val);
+		numb = get_number_popup(displayed_text->value, suggested_val->value);
 		// If there was no input the user wants to exit this popup
 		if (numb == -2)
 			goto out;
@@ -106,15 +105,16 @@ void get_random_droids_from_user()
 	autostr_append(displayed_text, _(" %d\nDroid types:"), lvl->random_droids.nr);
 
 	// Fill the suggested_val with the current droid types
-	sprintf(suggested_val, "%s", "");
+	autostr_printf(suggested_val, "%s", "");
 	int i;
 	int *type_index = lvl->random_droids.types;
-	for (i = 0; i < lvl->random_droids.types_size; i++)
-		sprintf(suggested_val, "%s%s, ", suggested_val, Droidmap[type_index[i]].droidname);
+	for (i = 0; i < lvl->random_droids.types_size; i++) {
+		autostr_append(suggested_val, "%s, ", Droidmap[type_index[i]].droidname);
+	}
 
 	// Get the droid types
 	while (1) {
-		user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
+		user_input = GetEditableStringInPopupWindow(suggested_val->length, displayed_text->value, suggested_val->value);
 		if (!user_input)
 			goto out;
 
@@ -126,13 +126,15 @@ void get_random_droids_from_user()
 
 		alert_window(_("%s is not a droid type!"), droid_type);
 		RestoreMenuBackground(0);
-		sprintf(suggested_val, "%s", user_input);
+		//sprintf(suggested_val, "%s", user_input);
+		autostr_printf(suggested_val, "%s", user_input);
 		free(user_input);
 		free(droid_type);
 	}
 
 out:
 	free_autostr(displayed_text);
+	free_autostr(suggested_val);
 }
 
 /**
