@@ -174,6 +174,7 @@ static void validator_print_error(struct lvlval_ctx *validator_ctx, struct lvlva
 	
 	vprintf(validator_error->format, args);
 	printf("\n");
+	va_end(args);
 }
 
 static void validator_print_separator(struct lvlval_ctx *validator_ctx)
