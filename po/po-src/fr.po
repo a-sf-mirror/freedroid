@@ -8,13 +8,14 @@
 # fluzz <fluzz@gmx.com>, 2014
 # sebastienadam <sebastien.adam.be@gmail.com>, 2014
 # sebastienadam <sebastien.adam.be@gmail.com>, 2014
+# Xenux <xenux@freedroid.org>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-06-20 14:38+0000\n"
-"PO-Revision-Date: 2014-06-20 16:26+0000\n"
-"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
+"POT-Creation-Date: 2014-08-06 20:51+0000\n"
+"PO-Revision-Date: 2014-08-06 21:30+0000\n"
+"Last-Translator: Xenux <xenux@freedroid.org>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -150,31 +151,31 @@ msgid "[n]--- Start of Dialog ---\n"
 msgstr "[n]--- Début de la discussion ---\n"
 
 #. TRANSLATORS: Your friend <bot's short description> was killed by <bot's short description>
-#: src/enemy.c:954
+#: src/enemy.c:958
 #, c-format
 msgid "Your friend [s]%s[v] was killed by %s."
 msgstr "Votre ami [s]%s[v] a été tué par %s."
 
 #. TRANSLATORS: You killed <bot's short description>
-#: src/enemy.c:958
+#: src/enemy.c:962
 #, c-format
 msgid "You killed [s]%s[v]."
 msgstr "Vous avez tué [s]%s[v]."
 
 #. TRANSLATORS: <bot's short description> halted and caught fire
-#: src/enemy.c:962
+#: src/enemy.c:966
 #, c-format
 msgid "[s]%s[v] halted and caught fire."
 msgstr "[s]%s[v] s'est arrêté et a pris feu."
 
 #. TRANSLATORS: <bot's short description> is dead
-#: src/enemy.c:965
+#: src/enemy.c:969
 #, c-format
 msgid "[s]%s[v] is dead."
 msgstr "[s]%s[v] est mort."
 
 #. TRANSLATORS: For defeating <bot's short description>, you receive <10> experience
-#: src/enemy.c:970
+#: src/enemy.c:974
 #, c-format
 msgid "For defeating [s]%s[v], you receive %d experience."
 msgstr "Pour avoir battu [s]%s[v], tu gagnes %d points d'expérience."
@@ -334,19 +335,19 @@ msgstr "Quitter FreedroidRPG"
 msgid "Out of [s]%s[v]!"
 msgstr "Plus de [s]%s[v] !"
 
-#: src/init.c:850 src/saveloadgame.c:443
+#: src/init.c:756 src/saveloadgame.c:443
 msgid "--- Message Log ---"
 msgstr "--- Historique des messages ---"
 
-#: src/init.c:852
+#: src/init.c:758
 msgid "Starting tutorial."
 msgstr "Commencer le Tutoriel."
 
-#: src/init.c:854
+#: src/init.c:760
 msgid "Starting new game."
 msgstr "Commencer une nouvelle partie."
 
-#: src/init.c:1152
+#: src/init.c:1058
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -362,11 +363,11 @@ msgstr ""
 "\n"
 "Bonne chance !\n"
 
-#: src/init.c:1169 src/init.c:1170
+#: src/init.c:1075 src/init.c:1076
 msgid "Game over.\n"
 msgstr "Fin de la partie.\n"
 
-#: src/init.c:1236 src/init.c:1237
+#: src/init.c:1142 src/init.c:1143
 msgid "Game won.\n"
 msgstr "Tu as gagné la partie.\n"
 
@@ -1156,11 +1157,11 @@ msgstr "Activation d'OpenGL : OUI"
 msgid "OpenGL output active: NO"
 msgstr "Activation d'OpenGL : NON"
 
-#: src/menu.c:226 src/menu.c:1616
+#: src/menu.c:226 src/menu.c:1618
 msgid "[down]"
 msgstr "[bas] "
 
-#: src/menu.c:227 src/menu.c:1605
+#: src/menu.c:227 src/menu.c:1607
 msgid "[up]"
 msgstr "[haut] "
 
@@ -1212,8 +1213,8 @@ msgid "Difficulty: %s"
 msgstr "Difficulté : %s"
 
 #: src/menu.c:887 src/menu.c:946 src/menu.c:1053 src/menu.c:1137
-#: src/menu.c:1222 src/menu.c:1333 src/menu.c:1398 src/menu.c:1468
-#: src/menu.c:1620 src/menu.c:1651 src/menu.c:1675 src/menu.c:1733
+#: src/menu.c:1222 src/menu.c:1333 src/menu.c:1398 src/menu.c:1471
+#: src/menu.c:1622 src/menu.c:1653 src/menu.c:1677 src/menu.c:1735
 #: src/lvledit/lvledit_menu.c:126 src/lvledit/lvledit_menu.c:241
 #: src/lvledit/lvledit_menu.c:415 src/lvledit/lvledit_menu.c:634
 #: src/lvledit/lvledit_menu.c:915
@@ -1312,12 +1313,14 @@ msgid "Show blood: %s"
 msgstr "Mode sanglant : %s"
 
 #: src/menu.c:1218 src/menu.c:1385 src/menu.c:1388 src/menu.c:1391
-#: src/menu.c:1396 src/menu.c:1463 src/menu.c:1464 src/menu.c:1465
+#: src/menu.c:1396 src/menu.c:1465 src/menu.c:1466 src/menu.c:1467
+#: src/menu.c:1468
 msgid "YES"
 msgstr "OUI"
 
 #: src/menu.c:1218 src/menu.c:1385 src/menu.c:1388 src/menu.c:1391
-#: src/menu.c:1396 src/menu.c:1463 src/menu.c:1464 src/menu.c:1465
+#: src/menu.c:1396 src/menu.c:1465 src/menu.c:1466 src/menu.c:1467
+#: src/menu.c:1468
 msgid "NO"
 msgstr "NON"
 
@@ -1371,32 +1374,37 @@ msgstr "Affichage des ombres : %s"
 msgid "Precache item graphics: %s"
 msgstr "Préchargement des images : %s"
 
-#: src/menu.c:1463
+#: src/menu.c:1465
 #, c-format
 msgid "Show position: %s"
 msgstr "Affichage de la position : %s"
 
-#: src/menu.c:1464
+#: src/menu.c:1466
 #, c-format
 msgid "Show framerate: %s"
 msgstr "Affichage de la fréquence image : %s"
 
-#: src/menu.c:1465
+#: src/menu.c:1467
 #, c-format
 msgid "Show enemies' energy bars: %s"
 msgstr "Affichage de la barre d'énergie des ennemis : %s"
 
-#: src/menu.c:1466
+#: src/menu.c:1468
+#, c-format
+msgid "Show effect countdowns: %s"
+msgstr "Affichage des comptes à rebours des effets : %s"
+
+#: src/menu.c:1469
 #, c-format
 msgid "<-- Max. screen messages: %d -->"
 msgstr "<-- Nb messages écran : %d -->"
 
-#: src/menu.c:1467
+#: src/menu.c:1470
 #, c-format
 msgid "<-- Screen message lifetime: %3.1fs -->"
 msgstr "<-- Durée affichage messages écran : %3.1fs -->"
 
-#: src/menu.c:1513
+#: src/menu.c:1515
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -1416,7 +1424,7 @@ msgstr ""
 "\n"
 "     > "
 
-#: src/menu.c:1535
+#: src/menu.c:1537
 #, c-format
 msgid ""
 "A character named \"%s\" already exists.\n"
@@ -1425,7 +1433,7 @@ msgstr ""
 "Un personnage nommé \"%s\" existe déjà.\n"
 "Merci de choisir un autre nom."
 
-#: src/menu.c:1654
+#: src/menu.c:1656
 msgid ""
 "\n"
 "\n"
@@ -1435,24 +1443,24 @@ msgstr ""
 "\n"
 "Aucune sauvegarde disponible !"
 
-#: src/menu.c:1674
+#: src/menu.c:1676
 msgid "Sure!"
 msgstr "Bien sûr !"
 
-#: src/menu.c:1677
+#: src/menu.c:1679
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr "Veux-tu vraiment effacer le héros '%s' ?"
 
-#: src/menu.c:1730
+#: src/menu.c:1732
 msgid "New Hero"
 msgstr "Nouvel Héros"
 
-#: src/menu.c:1731
+#: src/menu.c:1733
 msgid "Load existing Hero"
 msgstr "Charger un Héros existant"
 
-#: src/menu.c:1732
+#: src/menu.c:1734
 msgid "Delete existing Hero"
 msgstr "Effacer un Héros existant"
 
@@ -1510,11 +1518,13 @@ msgstr "[r]Statistiques Parafunken[w] \n"
 msgid "[r]Overview[w]\n"
 msgstr "[r]Vu d'ensemble[w]\n"
 
+#. TRANSLATORS: h in %dh is for hours, m in %dm is for minutes, please also translate this :)
 #: src/quest_browser_ui.c:188
 #, c-format
 msgid "Time Played: [n]%dh%dm[w]\n"
 msgstr "Temps de jeu : [n]%dh%dm[w]\n"
 
+#. TRANSLATORS: m in %.1fm is for meters, please also translate this :)
 #: src/quest_browser_ui.c:192
 #, c-format
 msgid "Distance Traveled: [n]%.1fm[w]\n"
@@ -1854,8 +1864,8 @@ msgstr "Type unité %s\n"
 msgid "Entry : %d\n"
 msgstr "Numéro : %d\n"
 
-#: src/takeover.c:224 src/lvledit/lvledit_enemy.c:252
-#: src/lvledit/lvledit_enemy.c:260 src/lvledit/lvledit_enemy.c:275
+#: src/takeover.c:224 src/lvledit/lvledit_enemy.c:254
+#: src/lvledit/lvledit_enemy.c:262 src/lvledit/lvledit_enemy.c:277
 #: src/lvledit/lvledit_menu.c:550
 msgid "none"
 msgstr "aucun(e)"
@@ -1930,6 +1940,22 @@ msgstr "Impasse"
 #: src/text.c:169
 msgid "Click to continue..."
 msgstr "Cliquer pour continuer..."
+
+#: src/text.c:417
+msgid "slowed"
+msgstr "ralenti"
+
+#: src/text.c:423
+msgid "paralyzed"
+msgstr "paralysé"
+
+#: src/text.c:429
+msgid "invisible"
+msgstr "invisible"
+
+#: src/text.c:435
+msgid "scanning"
+msgstr ""
 
 #: src/vars.h:39
 msgid "untrained"
@@ -2054,12 +2080,12 @@ msgstr ""
 msgid "Number of random droids:"
 msgstr "Nombre de droïdes aléatoires :"
 
-#: src/lvledit/lvledit_enemy.c:100 src/lvledit/lvledit_enemy.c:163
-#: src/lvledit/lvledit_enemy.c:244
+#: src/lvledit/lvledit_enemy.c:99 src/lvledit/lvledit_enemy.c:165
+#: src/lvledit/lvledit_enemy.c:246
 msgid "Invalid number! The number must be natural."
 msgstr "Nombre invalide ! Le nombre doit être entier."
 
-#: src/lvledit/lvledit_enemy.c:106
+#: src/lvledit/lvledit_enemy.c:105
 #, c-format
 msgid ""
 " %d\n"
@@ -2073,7 +2099,7 @@ msgstr ""
 msgid "%s is not a droid type!"
 msgstr "%s n'est pas un type de droïde !"
 
-#: src/lvledit/lvledit_enemy.c:151
+#: src/lvledit/lvledit_enemy.c:153
 msgid ""
 "New enemy info:\n"
 " Marker: "
@@ -2081,7 +2107,7 @@ msgstr ""
 "Information nouvel ennemi :\n"
 " Marqueur : "
 
-#: src/lvledit/lvledit_enemy.c:168
+#: src/lvledit/lvledit_enemy.c:170
 #, c-format
 msgid ""
 "%d\n"
@@ -2090,7 +2116,7 @@ msgstr ""
 "%d\n"
 " Faction: "
 
-#: src/lvledit/lvledit_enemy.c:178
+#: src/lvledit/lvledit_enemy.c:180
 #, c-format
 msgid ""
 "%s\n"
@@ -2099,12 +2125,12 @@ msgstr ""
 "%s\n"
 " Nom du dialogue : "
 
-#: src/lvledit/lvledit_enemy.c:191
+#: src/lvledit/lvledit_enemy.c:193
 #, c-format
 msgid "Dialog \"%s\" not found!"
 msgstr "Dialogue \"%s\" non trouvé !"
 
-#: src/lvledit/lvledit_enemy.c:199
+#: src/lvledit/lvledit_enemy.c:201
 #, c-format
 msgid ""
 "%s\n"
@@ -2113,7 +2139,7 @@ msgstr ""
 "%s\n"
 " Description courte (en Anglais) : "
 
-#: src/lvledit/lvledit_enemy.c:211
+#: src/lvledit/lvledit_enemy.c:213
 #, c-format
 msgid ""
 "%s\n"
@@ -2122,21 +2148,21 @@ msgstr ""
 "%s\n"
 " Entièrement fixe : "
 
-#: src/lvledit/lvledit_enemy.c:212 src/lvledit/lvledit_enemy.c:221
-#: src/lvledit/lvledit_enemy.c:231 src/lvledit/lvledit_enemy.c:276
-#: src/lvledit/lvledit_enemy.c:284 src/lvledit/lvledit_menu.c:586
+#: src/lvledit/lvledit_enemy.c:214 src/lvledit/lvledit_enemy.c:223
+#: src/lvledit/lvledit_enemy.c:233 src/lvledit/lvledit_enemy.c:278
+#: src/lvledit/lvledit_enemy.c:286 src/lvledit/lvledit_menu.c:586
 #: src/lvledit/lvledit_menu.c:595 src/lvledit/lvledit_menu.c:628
 msgid "yes"
 msgstr "oui"
 
-#: src/lvledit/lvledit_enemy.c:212 src/lvledit/lvledit_enemy.c:225
-#: src/lvledit/lvledit_enemy.c:231 src/lvledit/lvledit_enemy.c:276
-#: src/lvledit/lvledit_enemy.c:288 src/lvledit/lvledit_menu.c:586
+#: src/lvledit/lvledit_enemy.c:214 src/lvledit/lvledit_enemy.c:227
+#: src/lvledit/lvledit_enemy.c:233 src/lvledit/lvledit_enemy.c:278
+#: src/lvledit/lvledit_enemy.c:290 src/lvledit/lvledit_menu.c:586
 #: src/lvledit/lvledit_menu.c:595 src/lvledit/lvledit_menu.c:630
 msgid "no"
 msgstr "non"
 
-#: src/lvledit/lvledit_enemy.c:231
+#: src/lvledit/lvledit_enemy.c:233
 #, c-format
 msgid ""
 "%s\n"
@@ -2145,7 +2171,7 @@ msgstr ""
 "%s\n"
 " Distance maximale au domicile : "
 
-#: src/lvledit/lvledit_enemy.c:251
+#: src/lvledit/lvledit_enemy.c:253
 #, c-format
 msgid ""
 "%d\n"
@@ -2154,12 +2180,12 @@ msgstr ""
 "%d\n"
 " Objet déposé une fois mort : "
 
-#: src/lvledit/lvledit_enemy.c:269
+#: src/lvledit/lvledit_enemy.c:271
 #, c-format
 msgid "Item \"%s\" not found!"
 msgstr "Objet \"%s\" non trouvé !"
 
-#: src/lvledit/lvledit_enemy.c:274
+#: src/lvledit/lvledit_enemy.c:276
 #, c-format
 msgid ""
 "%s\n"
@@ -2446,16 +2472,17 @@ msgstr "Continuer l'édition"
 msgid "Show Help"
 msgstr "Montrer l'aide"
 
-#: src/lvledit/lvledit_tool_place.c:685
+#: src/lvledit/lvledit_tool_place.c:686
 msgid "Place tool does not support this type of object."
 msgstr "L'outil de placement ne supporte pas ce type d'objet."
 
-#: src/lvledit/lvledit_widget_toolbar.c:110
+#. TRANSLATORS: "Obs." is for "obstacle" please keep it abbreviated in your language respectively
+#: src/lvledit/lvledit_widget_toolbar.c:116
 #, c-format
 msgid "Obs. number %d, %s\n"
 msgstr "Num. obs. %d, %s\n"
 
-#: src/lvledit/lvledit_widget_toolbar.c:128
+#: src/lvledit/lvledit_widget_toolbar.c:134
 #, c-format
 msgid ""
 "%s\n"
@@ -2468,7 +2495,7 @@ msgstr ""
 "\t\t\tsoin : %.2f /s, énergie_max : %.2f, vitesse_max : %.2f\n"
 "\t\t\tdist_aggression : %.2f, regarde_tux_en : %.2f s"
 
-#: src/lvledit/lvledit_widget_toolbar.c:142
+#: src/lvledit/lvledit_widget_toolbar.c:148
 #, c-format
 msgid ""
 "%s (%s)\n"
@@ -2481,12 +2508,12 @@ msgstr ""
 "\t\t\tFORCE: >%d\n"
 "%s"
 
-#: src/lvledit/lvledit_widget_toolbar.c:150
-#: src/lvledit/lvledit_widget_toolbar.c:160
+#: src/lvledit/lvledit_widget_toolbar.c:156
+#: src/lvledit/lvledit_widget_toolbar.c:166
 msgid "Requires two hands\n"
 msgstr "Nécessite les deux mains\n"
 
-#: src/lvledit/lvledit_widget_toolbar.c:153
+#: src/lvledit/lvledit_widget_toolbar.c:159
 #, c-format
 msgid ""
 "%s (%s)\n"
@@ -2499,7 +2526,7 @@ msgstr ""
 "\t\t\tFORCE : >%d, DEXT : >%d, REFROID : >%d\n"
 "%s"
 
-#: src/lvledit/lvledit_widget_toolbar.c:163
+#: src/lvledit/lvledit_widget_toolbar.c:169
 #, c-format
 msgid ""
 "%s (%s)\n"
@@ -2510,30 +2537,30 @@ msgstr ""
 "\t\t\tArmure : %d-%d, Résistance :  %d-%d,\n"
 "\t\t\tFORCE: >%d, DEXT: >%d, REFROID: >%d\n"
 
-#: src/lvledit/lvledit_widget_toolbar.c:184
+#: src/lvledit/lvledit_widget_toolbar.c:190
 #, c-format
 msgid "Overlay floor tile number %d, filename %s\n"
 msgstr "Numéro tuile couche haute du sol %d, nom fichier %s\n"
 
-#: src/lvledit/lvledit_widget_toolbar.c:187
+#: src/lvledit/lvledit_widget_toolbar.c:193
 #, c-format
 msgid "Underlay floor tile number %d, filename %s\n"
 msgstr "Numéro tuile couche basse du sol %d, nom fichier %s\n"
 
-#: src/lvledit/lvledit_widget_toolbar.c:194
+#: src/lvledit/lvledit_widget_toolbar.c:200
 #, c-format
 msgid "Waypoint %s connection, %sused for random spawn\n"
 msgstr "Connexion %s point étape, %sutilisé pour régénération aléatoire\n"
 
-#: src/lvledit/lvledit_widget_toolbar.c:194
+#: src/lvledit/lvledit_widget_toolbar.c:200
 msgid "two way"
 msgstr "bidir"
 
-#: src/lvledit/lvledit_widget_toolbar.c:194
+#: src/lvledit/lvledit_widget_toolbar.c:200
 msgid "not "
 msgstr "non "
 
-#: src/lvledit/lvledit_widget_toolbar.c:203
+#: src/lvledit/lvledit_widget_toolbar.c:209
 #, c-format
 msgid "There currently is only one type of map label"
 msgstr "Il n'y a actuellement qu'un seul type d'étiquette de carte"
@@ -2843,6 +2870,7 @@ msgstr "Objet"
 msgid "Enemy"
 msgstr "Ennemi"
 
+#. TRANSLATORS: Waypoint
 #: src/lvledit/lvledit_widgets.c:488
 msgid "Wayp."
 msgstr "PtEtp."

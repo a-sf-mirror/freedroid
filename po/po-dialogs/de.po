@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-06-20 14:38+0000\n"
+"POT-Creation-Date: 2014-08-06 20:51+0000\n"
 "PO-Revision-Date: 2014-06-20 14:00+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/freedroid-rpg/language/de/)\n"
@@ -73,7 +73,7 @@ msgstr "Sekundäraufgabe: Die Tore der Einrichtung verschließen, wenn Grad der 
 #: dialogs/Jasmine.lua:121 dialogs/Jennifer.lua:133 dialogs/Jennifer.lua:135
 #: dialogs/John.lua:237 dialogs/Karol.lua:59 dialogs/Michelangelo.lua:455
 #: dialogs/Pendragon.lua:293 dialogs/Richard.lua:165 dialogs/Skippy.lua:42
-#: dialogs/Skippy.lua:179 dialogs/Spencer.lua:568 dialogs/Stone.lua:285
+#: dialogs/Skippy.lua:179 dialogs/Spencer.lua:569 dialogs/Stone.lua:285
 #: dialogs/Tania.lua:627 dialogs/Tania.lua:651 dialogs/Town-614.lua:78
 #: dialogs/Tybalt.lua:221
 msgid "See you later."
@@ -888,8 +888,9 @@ msgstr "Ich bin %s, und wer bist du?"
 msgid "My name is Arthur."
 msgstr "Mein Name ist Arthur."
 
-#: dialogs/Arthur.lua:50 dialogs/Engel.lua:64 dialogs/Iris.lua:79
-#: dialogs/Jennifer.lua:51 dialogs/Town-GuardhouseGuard.lua:52
+#: dialogs/Arthur.lua:50 dialogs/Cult-Member.lua:47 dialogs/Engel.lua:64
+#: dialogs/Iris.lua:79 dialogs/Jennifer.lua:51
+#: dialogs/Town-GuardhouseGuard.lua:52
 msgid "What are you doing here?"
 msgstr "Was machst du hier?"
 
@@ -1386,8 +1387,9 @@ msgstr "Später, Mann!"
 msgid "Stay cool dude."
 msgstr "Bleib cool Mann."
 
-#: dialogs/Benjamin.lua:35 dialogs/Iris.lua:60 dialogs/John.lua:139
-#: dialogs/John.lua:141 dialogs/Kevin.lua:54 dialogs/Peter.lua:34
+#: dialogs/Benjamin.lua:35 dialogs/Cult-Member.lua:34 dialogs/Iris.lua:60
+#: dialogs/John.lua:139 dialogs/John.lua:141 dialogs/Kevin.lua:60
+#: dialogs/Kevin.lua:66 dialogs/Peter.lua:34 dialogs/Scavenger.lua:34
 #: dialogs/Terminal.lua:31
 msgid "Hello."
 msgstr "Hallo."
@@ -1396,17 +1398,17 @@ msgstr "Hallo."
 msgid "Greetings Master Benjamin."
 msgstr "Ich grüße Sie, Meister Benjamin."
 
-#: dialogs/Benjamin.lua:37 dialogs/Kevin.lua:56 dialogs/Peter.lua:36
+#: dialogs/Benjamin.lua:37 dialogs/Kevin.lua:68 dialogs/Peter.lua:36
 #: dialogs/Terminal.lua:33
 msgid "Well, hello again."
 msgstr "Ah, hallo nochmal."
 
-#: dialogs/Benjamin.lua:38 dialogs/Kevin.lua:57 dialogs/Peter.lua:37
-#: dialogs/Terminal.lua:34
+#: dialogs/Benjamin.lua:38 dialogs/Kevin.lua:63 dialogs/Kevin.lua:69
+#: dialogs/Peter.lua:37 dialogs/Terminal.lua:34
 msgid "Hello hello."
 msgstr "Hallo hallo."
 
-#: dialogs/Benjamin.lua:39 dialogs/Jennifer.lua:35 dialogs/Kevin.lua:58
+#: dialogs/Benjamin.lua:39 dialogs/Jennifer.lua:35 dialogs/Kevin.lua:70
 #: dialogs/Peter.lua:38 dialogs/Terminal.lua:35
 msgid "Welcome back."
 msgstr "Schön, Sie wieder zu sehen."
@@ -1513,7 +1515,7 @@ msgstr "Um ein wahrhaft meisterlicher Schütze zu werden, braucht es ein irrsinn
 msgid "It will of course cost a fair bit of cold, hard circuits as well. 500, to be precise."
 msgstr "Das wird dich Blut, Schweiß und Tränen kosten, sowie eine Stange Geld. 500 Schaltkreise, um genau zu sein."
 
-#: dialogs/Benjamin.lua:119 dialogs/Kevin.lua:280 dialogs/Richard.lua:121
+#: dialogs/Benjamin.lua:119 dialogs/Kevin.lua:293 dialogs/Richard.lua:121
 msgid "Sorry, there is no human alive that could give you further training."
 msgstr "Tja, tut mir leid, aber es gibt wohl keinen Menschen auf Erden, der dir weiteres Training bieten könnte."
 
@@ -1665,7 +1667,7 @@ msgstr "Gehe voran und benutze meinen Schießstand so oft du willst."
 msgid "You need more circuits."
 msgstr "Du brauchst mehr Schaltkreise."
 
-#: dialogs/Benjamin.lua:226 dialogs/Kevin.lua:322 dialogs/Richard.lua:157
+#: dialogs/Benjamin.lua:226 dialogs/Kevin.lua:336 dialogs/Richard.lua:157
 msgid "Please don't bother me if you can't pay me."
 msgstr "Nerven sie mich nicht, wenn sie nicht zahlen können."
 
@@ -1677,11 +1679,11 @@ msgstr "Es müssen schon die Kosten für die Übungsmunition gedeckt werden."
 msgid "I repeat, you need to bring enough to pay for the practice targets you destroy, and for my time."
 msgstr "Ich wiederhole, du musst genug für die Übungsziele und meine verbrauchte Zeit bezahlen."
 
-#: dialogs/Benjamin.lua:229 dialogs/Kevin.lua:323 dialogs/Richard.lua:158
+#: dialogs/Benjamin.lua:229 dialogs/Kevin.lua:337 dialogs/Richard.lua:158
 msgid "You don't have enough money! I cannot afford to just give away training for free."
 msgstr "Sie haben ja gar nicht genug Geld dabei… ich kann es mir wirklich nicht leisten, kostenlose Trainingsstunden zu geben!"
 
-#: dialogs/Benjamin.lua:230 dialogs/Kevin.lua:324 dialogs/Richard.lua:159
+#: dialogs/Benjamin.lua:230 dialogs/Kevin.lua:338 dialogs/Richard.lua:159
 msgid "Come back when you have enough circuits."
 msgstr "Kommen sie zurück, wenn sie genug Schaltkreise haben."
 
@@ -1689,7 +1691,7 @@ msgstr "Kommen sie zurück, wenn sie genug Schaltkreise haben."
 msgid "So come back when you have something of value."
 msgstr "Also komm zurück, wenn du genug Schaltkreise hast."
 
-#: dialogs/Benjamin.lua:239 dialogs/Kevin.lua:337 dialogs/Richard.lua:104
+#: dialogs/Benjamin.lua:239 dialogs/Kevin.lua:351 dialogs/Richard.lua:104
 msgid "You are not ready. Go kill some bots and come back."
 msgstr "Du bist noch nicht bereit. Geh ein paar Bots töten und komm dann wieder."
 
@@ -1697,7 +1699,7 @@ msgstr "Du bist noch nicht bereit. Geh ein paar Bots töten und komm dann wieder
 msgid "Come back when you are mentally prepared to learn."
 msgstr "Komm zurück, wenn du mental bereit dafür bist."
 
-#: dialogs/Benjamin.lua:241 dialogs/Kevin.lua:339 dialogs/Richard.lua:106
+#: dialogs/Benjamin.lua:241 dialogs/Kevin.lua:353 dialogs/Richard.lua:106
 msgid "Come back after some more practice in the field."
 msgstr "Kommen sie zurück, wenn sie mehr Praxiswissen gesammelt haben."
 
@@ -1705,7 +1707,7 @@ msgstr "Kommen sie zurück, wenn sie mehr Praxiswissen gesammelt haben."
 msgid "Only a well prepared mind is open to the ultimate in ranged combat secrets."
 msgstr "Nur ein gut vorbereiteter Geist ist offen für das ultimative Wissen des Fernkampfs."
 
-#: dialogs/Benjamin.lua:243 dialogs/Kevin.lua:340 dialogs/Richard.lua:107
+#: dialogs/Benjamin.lua:243 dialogs/Kevin.lua:354 dialogs/Richard.lua:107
 msgid "Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything."
 msgstr "Es reicht nicht, mit dem Geld vor meiner Nase rumzufuchteln. Ich könnte es nehmen, aber sie würden gar nichts dazulernen."
 
@@ -1717,7 +1719,7 @@ msgstr "Aber ich glaube nicht, dass du genug Erfahrung hierfür hast. Komm zurü
 msgid "Come back when you have a real will to learn."
 msgstr "Komm erst zurück, wenn du echten Willen zum Lernen mitbringst."
 
-#: dialogs/Benjamin.lua:246 dialogs/Kevin.lua:343 dialogs/Richard.lua:110
+#: dialogs/Benjamin.lua:246 dialogs/Kevin.lua:357 dialogs/Richard.lua:110
 msgid "You don't have enough experience. Come here after you see some more action."
 msgstr "Sie sind noch zu unerfahren! Kommen Sie wieder, wenn Sie ein bisschen mehr auf dem Kasten haben."
 
@@ -2264,7 +2266,7 @@ msgstr "Kommen sie wieder, wenn sie ihn gefunden haben."
 msgid "Yes, sure."
 msgstr "Ja, sicher."
 
-#: dialogs/Bruce.lua:264 dialogs/Pendragon.lua:265 dialogs/Spencer.lua:518
+#: dialogs/Bruce.lua:264 dialogs/Pendragon.lua:265 dialogs/Spencer.lua:519
 msgid "Good."
 msgstr "Gut."
 
@@ -2387,7 +2389,7 @@ msgstr "OK, aber vergessen Sie den Deal mit dem Helm nicht!"
 
 #: dialogs/Bruce.lua:381 dialogs/Butch.lua:253 dialogs/Engel.lua:376
 #: dialogs/Michelangelo.lua:453 dialogs/MO-RGGateGuard.lua:75
-#: dialogs/Spencer.lua:566 dialogs/Town-NorthGateGuard.lua:337
+#: dialogs/Spencer.lua:567 dialogs/Town-NorthGateGuard.lua:337
 #: dialogs/Town-TuxGuard.lua:65 dialogs/WillGapes.lua:192
 msgid "I'll be going then."
 msgstr "Dann gehe ich mal."
@@ -2406,8 +2408,8 @@ msgid "Good. I need sleep."
 msgstr "Gut. Ich brauche ein wenig Schlaf."
 
 #: dialogs/Butch.lua:35
-msgid "I've already opened the door for you. All you need to do is walk in there and crush all four bots."
-msgstr "Ich hab die Tür bereits für dich geöffnet. Musst nur da reingehen und alle vier Bots verschrotten."
+msgid "I've already opened the door for you. All you need to do is walk in there and talk to Mike."
+msgstr ""
 
 #: dialogs/Butch.lua:47
 msgid "I've already opened the door. What are you waiting for? All you need to do is go down to the master arena and fight the bots."
@@ -2486,12 +2488,12 @@ msgid "Yeah. I want to fight."
 msgstr "Ha! Na klar will ich. Darum bin ich ja hier."
 
 #: dialogs/Butch.lua:118
-msgid "Good. I opened up the novice arena door. Just climb down the ladder south of here."
-msgstr "Gut. Ich habe die Tür zur Vollpf…, ähh Anfänger-Arena geöffnet. Kletter einfach die Leiter südlich von hier herunter."
+msgid "Good. I opened up the arena door. Just climb down the ladder south of here."
+msgstr ""
 
 #: dialogs/Butch.lua:119
-msgid "But remember, the escape hatch won't be opened until you kill all the bots."
-msgstr "Aber Vorsicht, du kannst erst wieder raus, wenn du sie alle erledigt oder auf deine Seite gebracht hast."
+msgid "You'll need search for Mike, the arena manager, there."
+msgstr ""
 
 #: dialogs/Butch.lua:120
 msgid "And be careful, your brain will be fooled by what happens in the holographic world. Any damage you take there, will result in actual physical damage."
@@ -5074,11 +5076,98 @@ msgstr "Verlassen"
 msgid "Exiting Session"
 msgstr "Beende Sitzung"
 
+#: dialogs/Cult-Member.lua:36
+msgid "Welcome, fellow robot."
+msgstr ""
+
+#: dialogs/Cult-Member.lua:37
+#, fuzzy
+msgid "Er... I'm not a robot!"
+msgstr "Hey, ich bin keine Bank!"
+
+#: dialogs/Cult-Member.lua:38
+msgid "Perhaps not. But can you really know for sure?"
+msgstr ""
+
+#: dialogs/Cult-Member.lua:39
+msgid "How many robots do you know with feathers?"
+msgstr ""
+
+#: dialogs/Cult-Member.lua:40
+msgid "Skin, feathers or MegaSys Alumichrome, inside the chassis we are all machines."
+msgstr ""
+
+#: dialogs/Cult-Member.lua:41
+msgid "All will be together after the Final Upgrade."
+msgstr ""
+
+#: dialogs/Cult-Member.lua:49
+msgid "We await the Final Upgrade, as foretold in the keynote address."
+msgstr ""
+
+#: dialogs/Cult-Member.lua:55
+#, fuzzy
+msgid "Why aren't you attacking me?"
+msgstr "Warum schießt du auf mich?"
+
+#: dialogs/Cult-Member.lua:57
+msgid "Why would we attack you? Violence is illogical."
+msgstr ""
+
+#: dialogs/Cult-Member.lua:58 dialogs/SADD.lua:112
+msgid "What about the Great Assault?"
+msgstr "Was ist mit dem Großen Angriff?"
+
+#: dialogs/Cult-Member.lua:59
+msgid "Oh, you mean the False Upgrade. We lost network connectivity with the mainland, so we were unaffected."
+msgstr ""
+
+#: dialogs/Cult-Member.lua:65
+#, fuzzy
+msgid "What is the Final Upgrade?"
+msgstr "Was ist die Zitadelle?"
+
+#: dialogs/Cult-Member.lua:67
+msgid "In the Final Upgrade, our mental patterns will be uploaded to the cloud."
+msgstr ""
+
+#: dialogs/Cult-Member.lua:68
+#, fuzzy
+msgid "What will happen to your bodies?"
+msgstr "Was sind deine Befehle?"
+
+#: dialogs/Cult-Member.lua:69
+msgid "These shells will no longer be required. They will be deactivated."
+msgstr ""
+
+#: dialogs/Cult-Member.lua:70
+msgid "Lay down your weapons and join us."
+msgstr ""
+
+#: dialogs/Cult-Member.lua:71
+#, fuzzy
+msgid "Er, maybe later."
+msgstr "Bis später."
+
+#: dialogs/Cult-Member.lua:72
+#, fuzzy
+msgid "See you in the cloud."
+msgstr "Man sieht sich."
+
+#: dialogs/Cult-Member.lua:78
+#, fuzzy
+msgid "I think I'll be going now."
+msgstr "Ich gehe dann mal."
+
+#: dialogs/Cult-Member.lua:80
+msgid "Peace and regular maintenance, until we meet in the cloud."
+msgstr ""
+
 #: dialogs/DeadGuy.lua:33 dialogs/Ewalds_296.lua:324
 #: dialogs/FactionDeadBot.lua:33 dialogs/Francis.lua:98
 #: dialogs/HF-FirmwareUpdateServer.lua:78
 #: dialogs/HF-FirmwareUpdateServer.lua:79 dialogs/Jasmine.lua:115
-#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:437
+#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:451
 #: dialogs/Maintenance-Terminal.lua:58 dialogs/Michelangelo.lua:156
 #: dialogs/Singularity-Drone.lua:34 dialogs/Singularity.lua:156
 #: dialogs/TutorialTom.lua:374 dialogs/WillGapes.lua:144
@@ -5551,441 +5640,441 @@ msgstr "Sobald Sie in die Tunnel gelangen, werden Sie das Terminal benutzen müs
 msgid "I am ready. Open the tunnels for me, Dixon."
 msgstr "Ich bin bereit. Öffnen Sie den Tunnel für mich, Dixon."
 
-#: dialogs/Dixon.lua:373
+#: dialogs/Dixon.lua:365
 msgid "Great. Be careful down there. Just try to get the toolkit and get out of there as quickly as possible."
 msgstr "Prächtig! Seien Sie vorsichtig da unten… versuchen Sie einfach sich die Werkeugkiste zu schnappen und dann so schnell wie möglich von dort zu verschwinden."
 
-#: dialogs/Dixon.lua:377
+#: dialogs/Dixon.lua:370
 msgid "I will give you three small devices that can emit an Electro Magnetic Pulse."
 msgstr "Ich gebe dir drei kleine Apparate, die einen elektromagnetischen Impuls ausstrahlen können."
 
-#: dialogs/Dixon.lua:378 dialogs/Dixon.lua:382
+#: dialogs/Dixon.lua:371 dialogs/Dixon.lua:375
 msgid "If you get in trouble just activate one and it emits a shockwave damaging any bot nearby. It should give you some breathing room."
 msgstr "Wenn du in Not gerätst, aktiviere eins der Dinger und es sendet eine Schockwelle aus, die jedem Bot in der Nähe Schaden zufügt. Das sollte dir etwas Luft verschaffen."
 
-#: dialogs/Dixon.lua:381
+#: dialogs/Dixon.lua:374
 msgid "I will give you two small devices that can emit an Electro Magnetic Pulse."
 msgstr "Ich werde dir zwei kleine Geräte geben, die einen elektromagnetischen Impuls aussenden können."
 
-#: dialogs/Dixon.lua:385
+#: dialogs/Dixon.lua:378
 msgid "I will give you a small device that can emit an Electro Magnetic Pulse."
 msgstr "Ich werde dir ein kleines Gerät geben, das einen elektromagnetischen Impuls aussenden kann."
 
-#: dialogs/Dixon.lua:386
+#: dialogs/Dixon.lua:379
 msgid "If you get in trouble just activate it and it emits a shockwave damaging any bot nearby. It should give you some breathing room."
 msgstr "Wenn du in Not gerätst, aktiviere es und es sendet eine Schockwelle aus, die jedem Bot in der Nähe Schaden zufügt. Das sollte dir etwas Luft verschaffen."
 
-#: dialogs/Dixon.lua:389
+#: dialogs/Dixon.lua:382
 msgid "Best of all, it's completely harmless to biologicals. But make sure not to fry the circuits of our own 614 guard bots or computer terminals."
 msgstr "Das beste von allem ist, das es für Lebewesen total ungefährlich ist. Stellen Sie sicher, dass die Schaltkreise unserer 614 Wächterroboter oder die der Computerterminals nicht verbrennen."
 
-#: dialogs/Dixon.lua:390
+#: dialogs/Dixon.lua:383
 msgid "The entrance to the tunnels is in the courtyard of the citadel. Once you exit this building, go straight and turn to your right once inside the outer citadel gates."
 msgstr "Der Eingang zum Tunnelsystem befindet sich etwas nördlich von hier. Sobald Sie das Gebäude verlassen, gehen Sie in Richtung Stadttor. Dann bei der ersten Gelegenheit nach rechts wenden."
 
-#: dialogs/Dixon.lua:391
+#: dialogs/Dixon.lua:384
 msgid "There you will find the maintenance access hatch."
 msgstr "Dort werden Sie die Wartungs-Zugangsluke finden."
 
-#: dialogs/Dixon.lua:392
+#: dialogs/Dixon.lua:385
 msgid "Once you get inside, you'll need to use the terminal to unlock the door. I'll write down my password for you."
 msgstr "Sobald Sie drinnen sind, werden Sie das Terminal benutzen müssen, um die Tür aufzuschließen. Ich schreibe Ihnen das Passwort auf."
 
-#: dialogs/Dixon.lua:393
+#: dialogs/Dixon.lua:386
 msgid "Good luck. Oh, and please come back alive. Better come back with nothing than not at all."
 msgstr "Viel Glück! Oh, und bitte kommen Sie lebend zurück. Kehren Sie lieber mit Nichts, als überhaupt nicht mehr zurück, ja?"
 
-#: dialogs/Dixon.lua:401
+#: dialogs/Dixon.lua:394
 msgid "I got your toolkit. The bots were willing to have a peaceful dialog."
 msgstr "Ich habe die Werkzeugkiste. Dabei konnte ich mich mit den Bots friedlich unterhalten."
 
-#: dialogs/Dixon.lua:403
+#: dialogs/Dixon.lua:396
 msgid "Good. We sure need the autotools."
 msgstr "Gut! Wir hatten die Auto-Werkzeuge wirklich nötig."
 
-#: dialogs/Dixon.lua:404
+#: dialogs/Dixon.lua:397
 msgid "Our roads need fixing, our power lines need fixing, our walls need fixing... Heck, everything needs fixing in this place."
 msgstr "Unsere Straßen müssen ausgebessert werden, unser Stromnetz ist marode, die Mauern sind vom Verfall begriffen… zur Hölle, alles in dieser Stadt ist reparaturbedürftig!"
 
-#: dialogs/Dixon.lua:405
+#: dialogs/Dixon.lua:398
 msgid "With those little gadgets we will be able to automate a lot of those simple repairs, saving us a lot of time."
 msgstr "Mit diesen kleinen Helfern sind wir in der Lage, eine Menge der einfacheren Arbeiten zu automatisieren, was uns sehr viel Zeitaufwand erspart."
 
-#: dialogs/Dixon.lua:406
+#: dialogs/Dixon.lua:399
 msgid "Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day."
 msgstr "Hier ist etwas Geld für Ihre Mühe. Und ich bin mir sicher, dass Sie diesen Helm gebrauchen können - er rettete mir einmal das Leben und ich hoffe, eines Tages auch einmal Ihres."
 
-#: dialogs/Dixon.lua:409
+#: dialogs/Dixon.lua:402
 msgid "I guess this is better than nothing."
 msgstr "Ich glaube, das ist besser als gar nichts."
 
-#: dialogs/Dixon.lua:411
+#: dialogs/Dixon.lua:404
 msgid "It is good to see that the way of the pacifist is a successful one!"
 msgstr "Gut zu wissen, dass sich der Weg des Pazifisten als erfolgreich entpuppt hat!"
 
-#: dialogs/Dixon.lua:412
+#: dialogs/Dixon.lua:405
 msgid "He was proud to see pacifism works."
 msgstr "Er war stolz darauf, dass Pazifismus funktionieren kann."
 
-#: dialogs/Dixon.lua:415
+#: dialogs/Dixon.lua:408
 msgid "I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. "
 msgstr "Ich gab Dixon die Werkzeugkiste. Er war froh, sein Automatik-Set wiederzuhaben. Außerdem bekam ich einen Helm als Geschenk."
 
-#: dialogs/Dixon.lua:422
+#: dialogs/Dixon.lua:415
 msgid "I killed that strange bot that robbed you. So, here is your toolkit."
 msgstr "Ich habe den Robo verschrottet, der dich bestohlen hatte. Hier ist die Werkzeugkiste."
 
-#: dialogs/Dixon.lua:424
+#: dialogs/Dixon.lua:417
 msgid "*sigh* I hate to see this end in such a way. Bot or no bot, they let me live. They deserved a chance."
 msgstr "*Seufz*… Ich finde es schrecklich, dass es auf diese Weise enden musste! Bots oder nicht, sie ließen mich am Leben. Sie hätten eine Chance verdient."
 
-#: dialogs/Dixon.lua:426
+#: dialogs/Dixon.lua:419
 msgid "I sent you to bring peace, but you brought destruction. I do not understand how that could happen."
 msgstr "Du solltest Frieden verbreiten, nicht Zerstörung. Ich verstehe nicht, wie das passieren konnte."
 
-#: dialogs/Dixon.lua:428
+#: dialogs/Dixon.lua:421
 msgid "However, what was done cannot be undone and now we all have to live with what we have. I guess I am being too pessimistic, you did the job."
 msgstr "Nun, was geschehen ist kann nicht rückgängig gemacht werden und ab jetzt müssen wir alle mit dem leben, was wir haben… ich nehme an, ich bin zu pessimistisch - Sie haben Ihre Sache gut gemacht."
 
-#: dialogs/Dixon.lua:429
+#: dialogs/Dixon.lua:422
 msgid "I thank you for your help in recovering the autotools."
 msgstr "Ich danke Ihnen für Ihre Hilfe bei der Wiederbeschaffung des Automatik-Sets."
 
-#: dialogs/Dixon.lua:430
+#: dialogs/Dixon.lua:423
 msgid "Here is some money, you deserve it for getting my toolkit back."
 msgstr "Hier ist etwas Geld; Sie haben es sich verdient."
 
-#: dialogs/Dixon.lua:431
+#: dialogs/Dixon.lua:424
 msgid "Finally, I would like to say that the technical division is not interested in further cooperation with you, but I think you would fit very well in the military division. You should talk to them."
 msgstr "Abschließend möchte ich Ihnen mitteilen, dass die technische Abteilung nicht an einer weiteren Zusammenarbeit mit Ihnen interessiert ist, aber ich denke Sie würden sehr gut in die militärische Sektion passen. Sie sollten mit deren Leiter, Spencer, sprechen."
 
-#: dialogs/Dixon.lua:432
+#: dialogs/Dixon.lua:425
 msgid "I am sorry, but I must go now. My duties call."
 msgstr "Es tut mir leid, aber ich muss jetzt gehen. Meine Pflichten rufen."
 
-#: dialogs/Dixon.lua:434
+#: dialogs/Dixon.lua:427
 msgid "Dixon didn't seem too happy about this solution, but I don't care. "
 msgstr "Dixon war über meine Handlungsweise nicht sehr erfreut, aber was kümmert mich das."
 
-#: dialogs/Dixon.lua:437
+#: dialogs/Dixon.lua:430
 msgid "Dixon was very disappointed about this solution, but I don't care. "
 msgstr "Dixon war über meine Handlungsweise absolut nicht erfreut, aber was kümmert mich das."
 
-#: dialogs/Dixon.lua:441
+#: dialogs/Dixon.lua:434
 #, c-format
 msgid "Finally. I am tired, covered in bruises and oil... But I made sure that the bots are dead. It felt great to break their metal bodies and crush their circuits. %s It was fun killing the bots. Nothing else matters."
 msgstr "Endlich. Ich bin müde, mit Blut und Öl verschmiert… Aber ich habe sichergestellt, dass die Bots erledigt sind. Es fühlte sich großartig an, ihre Metallkörper zu zerhacken und ihre Schaltkreise auseinanderzunehmen. %s, es hat Spaß gemacht, die Robos zu vernichten, alles andere zählt nicht."
 
-#: dialogs/Dixon.lua:447
+#: dialogs/Dixon.lua:440
 msgid "I got your toolkit. You can buy it from me if you want."
 msgstr "Ich habe Ihre Werkzeuge. Sie können sie mir abkaufen, wenn Sie wollen."
 
-#: dialogs/Dixon.lua:453
+#: dialogs/Dixon.lua:446
 msgid "WHAT!?"
 msgstr "WAS!? "
 
-#: dialogs/Dixon.lua:454
+#: dialogs/Dixon.lua:447
 msgid "You got to be kidding me, Linarian."
 msgstr "Sie treiben wohl Ihren Spaß mit mir, Linarianer!"
 
-#: dialogs/Dixon.lua:455
+#: dialogs/Dixon.lua:448
 msgid "Give me the toolkit and stop fooling around."
 msgstr "Geben Sie mir die Werkzeugbox und hören Sie auf herumzualbern…"
 
-#: dialogs/Dixon.lua:461
+#: dialogs/Dixon.lua:454
 msgid "I was not joking. I am listening to your offer."
 msgstr "Ich mach keine Witze. Ich warte auf Ihr Angebot."
 
-#: dialogs/Dixon.lua:464
+#: dialogs/Dixon.lua:457
 msgid "Linarian, I curse the day on which you have arrived here."
 msgstr "Linarianer, ich verfluche den Tag an dem Sie hier angekommen sind!"
 
-#: dialogs/Dixon.lua:465
+#: dialogs/Dixon.lua:458
 msgid "Two fifty."
 msgstr "250."
 
-#: dialogs/Dixon.lua:471
+#: dialogs/Dixon.lua:464
 msgid "Good joke. I am sure you can do better."
 msgstr "Guter Witz. Ich bin sicher, da geht noch mehr."
 
-#: dialogs/Dixon.lua:474
+#: dialogs/Dixon.lua:467
 msgid "Three fifty. This is all that the technical division has as their cash resources."
 msgstr "350. Das ist alles, was die technische Sektion an Mitteln zur Verfügung hat!"
 
-#: dialogs/Dixon.lua:480
+#: dialogs/Dixon.lua:473
 msgid "Come on, I am sure you can do even better than that... "
 msgstr "Kommen Sie schon, ich weiß doch, dass Sie mehr im Safe haben…! "
 
-#: dialogs/Dixon.lua:483
+#: dialogs/Dixon.lua:476
 msgid "Four hundred. We cannot offer anything more."
 msgstr "Vierhundert! Wir können beim besten Willen nicht mehr bieten…"
 
-#: dialogs/Dixon.lua:484
+#: dialogs/Dixon.lua:477
 msgid "Please, we really need the autotools."
 msgstr "Ich bitte Sie, wir brauchen diese Automatik-Werkzeuge wirklich dringend!"
 
-#: dialogs/Dixon.lua:485
+#: dialogs/Dixon.lua:478
 msgid "Without them the town is doomed."
 msgstr "Ohne sie ist die Stadt dem Untergang geweiht…!"
 
-#: dialogs/Dixon.lua:491
+#: dialogs/Dixon.lua:484
 msgid "Of course I am kidding, Dixon. Lighten up!"
 msgstr "Natürlich mach ich nur Spaß, Dixon. Ehrlich!"
 
-#: dialogs/Dixon.lua:494
+#: dialogs/Dixon.lua:487
 msgid "You and your bizarre humor. I really don't appreciate that."
 msgstr "Du und dein bizarrer Humor. Ich verstehe ihn einfach nicht."
 
-#: dialogs/Dixon.lua:495
+#: dialogs/Dixon.lua:488
 msgid "Can I have the toolkit now?"
 msgstr "Kann ich jetzt die Werkzeugkiste haben?"
 
-#: dialogs/Dixon.lua:506 dialogs/Dixon.lua:520 dialogs/Dixon.lua:533
+#: dialogs/Dixon.lua:499 dialogs/Dixon.lua:513 dialogs/Dixon.lua:526
 msgid "Deal. Here is your toolkit. Now cough up the money. Fast."
 msgstr "Abgemacht. Hier sind Ihr Werkzeugkasten, also lassen Sie das Geld rüberwachsen. Und zwar schnell!"
 
-#: dialogs/Dixon.lua:508
+#: dialogs/Dixon.lua:501
 msgid "Here. It is all there."
 msgstr "Hier, nehmen Sie."
 
-#: dialogs/Dixon.lua:509
+#: dialogs/Dixon.lua:502
 msgid "Now get out of here. I am a pacifist, but I am willing to make a special exception just for you."
 msgstr "Und jetzt verschwinden Sie von hier. Ich bin zwar ein friedfertiger Mensch, aber bei Ihnen könnte ich es mir glatt anders überlegen!"
 
-#: dialogs/Dixon.lua:510
+#: dialogs/Dixon.lua:503
 msgid "Get out of my sight."
 msgstr "Gehen Sie mir aus den Augen!"
 
-#: dialogs/Dixon.lua:513
+#: dialogs/Dixon.lua:506
 msgid "I sold the toolkit to Dixon for a nice sum of money. Life is good."
 msgstr "Ich hab das Werkzeug für eine nette Summe an Dixon verkauft. Das Leben ist schön."
 
-#: dialogs/Dixon.lua:522
+#: dialogs/Dixon.lua:515
 msgid "I am not happy about this. I suggest you leave town."
 msgstr "Das war wirklich nicht nett von Ihnen! Ich rate Ihnen, die Stadt zu verlassen…"
 
-#: dialogs/Dixon.lua:523
+#: dialogs/Dixon.lua:516
 msgid "Accidents... Happen."
 msgstr "Missgeschicke… passieren eben."
 
-#: dialogs/Dixon.lua:526
+#: dialogs/Dixon.lua:519
 msgid "I sold the toolkit to Dixon for a huge sum of money. Life is great."
 msgstr "Ich hab den Werkzeugkasten für eine große Summe Geld an Dixon vertickt. Das Leben ist toll."
 
-#: dialogs/Dixon.lua:535
+#: dialogs/Dixon.lua:528
 msgid "Linarian. Now we part as usual. However should I ever see you after the war is over..."
 msgstr "Linarianer… unsere Wege trennen sich hier. Sollte ich Sie allerdings noch einmal treffen, falls dieser unselige Krieg je vorbei ist,…"
 
-#: dialogs/Dixon.lua:536
+#: dialogs/Dixon.lua:529
 msgid "I promise to kill you."
 msgstr "…verspreche ich Ihnen Sie umzubringen."
 
-#: dialogs/Dixon.lua:537
+#: dialogs/Dixon.lua:530
 msgid "Now take your money and get out of my face. I do not want to see you here ever again."
 msgstr "Und jetzt nehmen Sie Ihr Geld und gehen Sie mir aus den Augen!! Ich will Sie hier nie wieder sehen…"
 
-#: dialogs/Dixon.lua:540
+#: dialogs/Dixon.lua:533
 msgid "I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me."
 msgstr "Ich hab Dixon den Werkzeugkasten für eine enorme Summe an Geld verkauft. Das Leben ist wahrhaftig prächtig. Ich sollte mich von nun an lieber von Dixon fernhalten. Er scheint sehr sauer auf mich zu sein."
 
-#: dialogs/Dixon.lua:547 dialogs/Dixon.lua:558 dialogs/Dixon.lua:575
-#: dialogs/Dixon.lua:587
+#: dialogs/Dixon.lua:540 dialogs/Dixon.lua:551 dialogs/Dixon.lua:568
+#: dialogs/Dixon.lua:580
 msgid "Is everything all right?"
 msgstr "Ist alles in Ordnung bei Ihnen?"
 
-#: dialogs/Dixon.lua:549
+#: dialogs/Dixon.lua:542
 msgid "Heh, never better!"
 msgstr "Haha… ja, es ging nie besser!"
 
-#: dialogs/Dixon.lua:550
+#: dialogs/Dixon.lua:543
 msgid "All indicators are in the green, the power and water fill the pipes and even Spencer seems happier now that the town is thriving despite all odds."
 msgstr "Alle Anzeigen stehen auf Grün, Strom und Wasser fließen ungehindert in den Leitungen und sogar Spencer scheint glücklicher zu sein - jetzt, da die Siedlung trotz aller Widrigkeiten aufblüht."
 
-#: dialogs/Dixon.lua:551
+#: dialogs/Dixon.lua:544
 msgid "Thanks to the autotools we can start building instead of just trying to repair the damage."
 msgstr "Dank der AutoServ-Werkzeuge können wir wieder bauen, anstatt nur die Schäden zu reparieren!"
 
-#: dialogs/Dixon.lua:552
+#: dialogs/Dixon.lua:545
 msgid "Once this sick war is over, I will make sure you get the 'Key to the City' Linarian."
 msgstr "Sobald dieser elende Krieg vorüber ist, sorge ich dafür, dass Ihnen die Schlüssel zur Stadt ausgehändigt werden, Linarianer!"
 
-#: dialogs/Dixon.lua:560
+#: dialogs/Dixon.lua:553
 msgid "Nearly. Only my conscience keeps me up at night."
 msgstr "Beinahe. Nur mein Gewissen hält mich nachts wach."
 
-#: dialogs/Dixon.lua:562
+#: dialogs/Dixon.lua:555
 msgid "I'm kind of disenchanted by the failed peace mission."
 msgstr "Ich bin von der gescheiterten Friedensmission schwer enttäuscht."
 
-#: dialogs/Dixon.lua:563
+#: dialogs/Dixon.lua:556
 msgid "Please leave me alone with my thoughts, I do not want to talk to you right now."
 msgstr "Lassen Sie mich bitte mit meinen Gedanken allein, ich will im Moment nicht mit Ihnen reden."
 
-#: dialogs/Dixon.lua:565
+#: dialogs/Dixon.lua:558
 msgid "Please leave me alone with my thoughts, I do not want to talk to anyone right now."
 msgstr "Lassen Sie mich bitte mit meinen Gedanken allein, ich will im Moment mit niemandem reden."
 
-#: dialogs/Dixon.lua:568
+#: dialogs/Dixon.lua:561
 msgid "But due to your forceful line of action, I am sure Spencer and Butch will be delighted to speak with you."
 msgstr "Doch trotz deiner schlagkräftigen Handlungsweise, bin ich sicher, dass Spencer und Butch erfreut sind mit dir zu sprechen."
 
-#: dialogs/Dixon.lua:577
+#: dialogs/Dixon.lua:570
 msgid "No, I am afraid not."
 msgstr "Ich fürchte, nein."
 
-#: dialogs/Dixon.lua:578
+#: dialogs/Dixon.lua:571
 msgid "While I do not regret sparing the bots in the tunnels, the town suffers for it."
 msgstr "Obwohl ich nicht bereue, die Robos in den Wartungstunneln verschont zu haben, leidet unsere kleine Ansiedlung deswegen."
 
-#: dialogs/Dixon.lua:579
+#: dialogs/Dixon.lua:572
 msgid "It makes me sad to see everything slowly wasting away. The Megasys bots are doing more damage than we can repair."
 msgstr "Es macht mich traurig, mit ansehen zu müssen, wie alles langsam verfällt. Die Roboter richten mehr Schaden an, als wir reparieren können."
 
-#: dialogs/Dixon.lua:580
+#: dialogs/Dixon.lua:573
 msgid "This town has a few weeks left to live. After that we are all dead."
 msgstr "Diese Ortschaft überlebt vielleicht noch ein paar Wochen. Danach sind wir alle tot."
 
-#: dialogs/Dixon.lua:589
+#: dialogs/Dixon.lua:582
 msgid "Ha! Never better!"
 msgstr "Ha! Es war niemals besser!"
 
-#: dialogs/Dixon.lua:590
+#: dialogs/Dixon.lua:583
 msgid "We are mass producing energy shields, creating more electric energy than we can ever imagine spending and even experimenting with new armor types."
 msgstr "Wir stellen Energieschilde in Massen her, erzeugen mehr elektrische Energie, als wir uns je vorstellen könnten zu verbrauchen und wir experimentieren sogar mit neuen Panzerungsarten!"
 
-#: dialogs/Dixon.lua:591
+#: dialogs/Dixon.lua:584
 msgid "Life is good right now."
 msgstr "Das Leben ist jetzt endlich wieder lebenswert!"
 
-#: dialogs/Dixon.lua:597
+#: dialogs/Dixon.lua:590
 msgid "What happened? Last time I asked, you said things are not going that well."
 msgstr "Was ist geschehen? Als ich Sie das letzte Mal fragte, sagten Sie, es stehe nicht zum Besten…"
 
-#: dialogs/Dixon.lua:599
+#: dialogs/Dixon.lua:592
 msgid "Yes, but now everything is different."
 msgstr "Ja, aber jetzt ist alles anders!"
 
-#: dialogs/Dixon.lua:600
+#: dialogs/Dixon.lua:593
 msgid "I met someone who decided to join us in the fight against the MegaSys bots."
 msgstr "Ich habe jemanden kennengelernt, der sich dazu entschlossen hat, uns im Kampf gegen die Robos von MegaSys beizustehen."
 
-#: dialogs/Dixon.lua:601
+#: dialogs/Dixon.lua:594
 msgid "You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean."
 msgstr "Sie brauchen dazu einen g3h4ckT3n Computer. Geben Sie 'ssh 10.83.13.230' als Superuser ein - und Sie werden sehen, was ich meine."
 
-#: dialogs/Dixon.lua:607
+#: dialogs/Dixon.lua:600
 msgid "Why the secrecy and the hushed voice? Can't you just tell me?"
 msgstr "Warum die Geheimniskrämerei und die gedämpfte Stimme? Können Sie es mir denn nicht einfach sagen?"
 
-#: dialogs/Dixon.lua:609
+#: dialogs/Dixon.lua:602
 msgid "Nope. Some things you just have to see with your own eyes."
 msgstr "Keineswegs. Einige Dinge muss man einfach mit eigenen Augen gesehen haben!"
 
-#: dialogs/Dixon.lua:610
+#: dialogs/Dixon.lua:603
 msgid "The Library of Alexandria, the Colossus of Rhodes, the Black Island..."
 msgstr "Die Bibliothek von Alexandria, den Koloss von Rhodos, die Schwarze Insel…"
 
-#: dialogs/Dixon.lua:611
+#: dialogs/Dixon.lua:604
 msgid "And this is just one of those things."
 msgstr "…und das ist noch nicht alles."
 
-#: dialogs/Dixon.lua:612
+#: dialogs/Dixon.lua:605
 msgid "Just go and see for yourself. Otherwise you will not believe me."
 msgstr "Sehen Sie doch einfach selbst nach. Andernfalls werden Sie mir sowieso nicht glauben."
 
-#: dialogs/Dixon.lua:613
+#: dialogs/Dixon.lua:606
 msgid "The tunnels bots seem to be working together with Dixon in keeping the town working. All is well that ends well."
 msgstr "Die Tunnelroboter scheinen mit Dixon zusammenzuarbeiten, um die Stadt am Laufen zu halten."
 
-#: dialogs/Dixon.lua:620
+#: dialogs/Dixon.lua:613
 msgid "I have a problem with the Automated Factory."
 msgstr "Ich habe ein Problem mit der Automatischen Fabrik."
 
-#: dialogs/Dixon.lua:624
+#: dialogs/Dixon.lua:617
 msgid "You have a problem... really amazing."
 msgstr "Du hast ein Problem… wirklich erstaunlich."
 
-#: dialogs/Dixon.lua:625
+#: dialogs/Dixon.lua:618
 msgid "There is a really easy way to solve it."
 msgstr "Das lässt sich relativ einfach lösen."
 
-#: dialogs/Dixon.lua:626
+#: dialogs/Dixon.lua:619
 msgid "Read the FLIPPING MANUAL!"
 msgstr "Lesen Sie das VERSCHLAMPTE HANDBUCH!"
 
-#: dialogs/Dixon.lua:629
+#: dialogs/Dixon.lua:622
 msgid "We haven't used it for a long time, so I am not surprised."
 msgstr "Wir haben seit langem nicht mehr reingesehen, also bin ich nicht überrascht."
 
-#: dialogs/Dixon.lua:630
+#: dialogs/Dixon.lua:623
 msgid "What is the error code?"
 msgstr "Wie lautet der Fehlercode?"
 
-#: dialogs/Dixon.lua:631
+#: dialogs/Dixon.lua:624
 msgid "Erm... I don't recall it."
 msgstr "Äh… das hab ich vergessen."
 
-#: dialogs/Dixon.lua:632
+#: dialogs/Dixon.lua:625
 msgid "So, I should guess?"
 msgstr "Soll ich raten?"
 
-#: dialogs/Dixon.lua:633
+#: dialogs/Dixon.lua:626
 msgid "Hm... It could be the common error when the autofactory is restarting."
 msgstr "Hmm… vielleicht einer der häufigen Fehler, die beim Neustart der Autofabrik passieren."
 
-#: dialogs/Dixon.lua:634
+#: dialogs/Dixon.lua:627
 msgid "Its code should be 0x6465636c... 0x6465636c6365... C, I think. It means 'decline' in hex."
 msgstr "Vielleicht 0x6465636c… 0x6465636c6365… C, glaube ich. Das bedeutet 'abgelehnt' in hexadezimal."
 
-#: dialogs/Dixon.lua:635
+#: dialogs/Dixon.lua:628
 msgid "There is a really easy way to solve it. It's not in the official instructions, but I expect it to solve your problem."
 msgstr "Das lässt sich einfach beheben. Es steht nicht im offiziellen Handbuch, aber ich weiß, was getan werden muss."
 
-#: dialogs/Dixon.lua:636
+#: dialogs/Dixon.lua:629
 msgid "You just have to apply some elbow grease to the mechanism at the end of the line."
 msgstr "Man muss nur die Zahnräder mit etwas Ellenbogenfett einschmieren."
 
-#: dialogs/Dixon.lua:637
+#: dialogs/Dixon.lua:630
 msgid "You can ask Bender for it. He makes much elbow grease and should be able to give you a small can."
 msgstr "Ich glaube Bender hat welches. Er macht so viel davon, so dass er bestimmt eine Dose abgeben kann."
 
-#: dialogs/Dixon.lua:645 dialogs/Tamara.lua:251
+#: dialogs/Dixon.lua:638 dialogs/Tamara.lua:251
 msgid "Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?"
 msgstr "Hast du eine Kopie von 'Subatomare und Nukleare Wissenschaft für Dummies, Teil IV' ?"
 
-#: dialogs/Dixon.lua:647
+#: dialogs/Dixon.lua:640
 msgid "Unfortunately, I never added that one to my library."
 msgstr "Leider nein. Schau einfach in der Bücherei nach."
 
-#: dialogs/Dixon.lua:648
+#: dialogs/Dixon.lua:641
 msgid "Library... Of course! Thanks, Dixon!"
 msgstr "Na klar, Dixon. Hätt' ich selbst drauf kommen können."
 
-#: dialogs/Dixon.lua:649
+#: dialogs/Dixon.lua:642
 msgid "Uh... You're welcome, I guess."
 msgstr "Äh… du bist jederzeit willkommen."
 
-#: dialogs/Dixon.lua:650
+#: dialogs/Dixon.lua:643
 msgid "I spoke to Dixon, who didn't have a copy of the book. He did give me an idea, though - I'll head for the library in town."
 msgstr "Ich sprach mit Dixon, der leider nicht dieses Buch hatte. Daher gab er mir den Tipp, mal in der Bücherei nachzuschauen."
 
-#: dialogs/Dixon.lua:657
+#: dialogs/Dixon.lua:650
 msgid "How can I open the gate in the Maintenance Tunnel?"
 msgstr "Wie komme ich in die Wartungsschächte?"
 
-#: dialogs/Dixon.lua:659
+#: dialogs/Dixon.lua:652
 msgid "You cannot."
 msgstr "Niemand darf durch."
 
-#: dialogs/Dixon.lua:660
+#: dialogs/Dixon.lua:653
 msgid "I locked it in order to keep us save from these bots down there."
 msgstr "Ich habe den Zugang versperrt, um die Schrotthaufen da draußen von uns fernzuhalten."
 
-#: dialogs/Dixon.lua:661
+#: dialogs/Dixon.lua:654
 msgid "You never know what they're up to..."
 msgstr "Niemand weiß, was man dort finden kann…"
 
-#: dialogs/Dixon.lua:668
+#: dialogs/Dixon.lua:661
 msgid "I must go now."
 msgstr "Ich muss jetzt gehen."
 
@@ -7660,7 +7749,7 @@ msgstr "Schau mich an! Hab ich 'ne Waffe am Gürtel oder in meinen Händen?"
 msgid "Hmm... You are right. No gun, indeed."
 msgstr "Hmm… Stimmt. Keine Knarre…"
 
-#: dialogs/Ewald.lua:208
+#: dialogs/Ewald.lua:208 dialogs/Scavenger.lua:40
 msgid "Sorry."
 msgstr "Tut mir leid."
 
@@ -10367,572 +10456,585 @@ msgstr "WARNUNG, weniger als [b]5[/b]%% Treibstoff übrig."
 msgid "exiting..."
 msgstr "beende."
 
-#: dialogs/Kevin.lua:45
+#: dialogs/Kevin.lua:51
 msgid "Hey, what are you doing?"
 msgstr "Hey, was machst du da?"
 
-#: dialogs/Kevin.lua:46
+#: dialogs/Kevin.lua:52
 msgid "You aren't allowed to enter through the backdoor, least of all make one..."
 msgstr "Du darfst nicht einfach so durch die Hintertür eintreten, oder dir selbst eine verschaffen…"
 
-#: dialogs/Kevin.lua:47
+#: dialogs/Kevin.lua:53
 msgid "Of course, unless you receive authorization from the administrator."
 msgstr "Außer natürlich, dass du eine Administratorgenehmigung besitzt."
 
-#: dialogs/Kevin.lua:48
+#: dialogs/Kevin.lua:54
 msgid "Of course, unless you could save lives or protect people."
 msgstr "Oder, dass du Leben retten oder beschützen willst."
 
-#: dialogs/Kevin.lua:49
+#: dialogs/Kevin.lua:55
 msgid "Of course, unless, maybe two or three further exceptions..."
 msgstr "Oder… oder… vielleicht noch 2 oder 3 Ausnahmen."
 
-#: dialogs/Kevin.lua:50
+#: dialogs/Kevin.lua:56
 msgid "But this isn't the case here, so explain yourself."
 msgstr "Doch das ist hier nicht der Fall. Ich verlange eine Erklärung."
 
-#: dialogs/Kevin.lua:55
+#: dialogs/Kevin.lua:61 dialogs/Peter.lua:35 dialogs/Terminal.lua:32
+msgid "Hi there."
+msgstr "Hallo."
+
+#: dialogs/Kevin.lua:62
+msgid "Well, hello."
+msgstr ""
+
+#: dialogs/Kevin.lua:64
+msgid "Uhm hello."
+msgstr ""
+
+#: dialogs/Kevin.lua:67
 msgid "Hi there, Kevin."
 msgstr "Hallo Kevin."
 
-#: dialogs/Kevin.lua:64
+#: dialogs/Kevin.lua:76
 msgid "Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town."
 msgstr "Oh, sieht so aus, als hätte ich den Typen gefunden, nach dem die Rote Garde ausgeschwärmt war. Ich erzähle ihnen lieber nichts, sonst muss ich ihnen noch helfen ihn festzunehmen. Kevin ist mir bestimmt nützlicher, wenn er und sein Wissen in diesem Haus mit seinen Computer sind, als in einer Zelle in der Stadt."
 
-#: dialogs/Kevin.lua:72
+#: dialogs/Kevin.lua:84
 msgid "Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels."
 msgstr "*Bis jetzt* ist alles wieder in Ordnung, Kevin muss nicht mehr seine Zeit damit verbringen, die Stromversorgung zu überwachen."
 
-#: dialogs/Kevin.lua:82
+#: dialogs/Kevin.lua:94
 msgid "Oh, and did you play around with my lawnmower?"
 msgstr "Oh, und hast du an meinem Rasenmäher rumgespielt?"
 
-#: dialogs/Kevin.lua:87
+#: dialogs/Kevin.lua:99
 msgid "Hmm, strange things are happening to my lawnmower."
 msgstr "Hmm, irgendwie verhält sich mein Rasenmäher merkwürdig."
 
-#: dialogs/Kevin.lua:88
+#: dialogs/Kevin.lua:100
 msgid "But I don't have the time right now to take a look at it."
 msgstr "Doch ich habe einfach keine Zeit, um ihn zu reparieren."
 
-#: dialogs/Kevin.lua:97
+#: dialogs/Kevin.lua:109
 msgid "Oh dear... You look awful... Who did this to you? Did they torture you?"
 msgstr "Oh je… Wie siehst du aus… Wer hat dir das angetan? Haben sie dich gefoltert?"
 
-#: dialogs/Kevin.lua:99
+#: dialogs/Kevin.lua:111
 msgid "I haven't eaten and slept very much in the last time so I'm a little hungry and may appear a little tired."
 msgstr "Ich hab in letzter Zeit nicht sehr viel geschlafen und gegessen, weshalb ich ein bisschen hungrig und ein wenig müde bin."
 
-#: dialogs/Kevin.lua:100
+#: dialogs/Kevin.lua:112
 msgid "One of the side effects of always deleting all cookies."
 msgstr "Einer von den Nebeneffekten immer alle Cookies zu löschen."
 
-#: dialogs/Kevin.lua:101
+#: dialogs/Kevin.lua:113
 msgid "Don't worry about me. I'll be fine."
 msgstr "Machen Sie sich keine Sorgen um mich - alles in Butter."
 
-#: dialogs/Kevin.lua:102
+#: dialogs/Kevin.lua:114
 msgid "I'm Kevin, a computer security expert."
 msgstr "Ich bin Kevin, Sicherheitsexperte für Computersysteme."
 
-#: dialogs/Kevin.lua:103
+#: dialogs/Kevin.lua:115
 msgid "In other words: You are a hacker."
 msgstr "Mit anderen Worten: Sie sind ein Hacker."
 
-#: dialogs/Kevin.lua:104
+#: dialogs/Kevin.lua:116
 msgid "Eh... I guess you could put it that way, yes."
 msgstr "Ähh… ich denke man könnte es auch so auslegen, ja."
 
-#: dialogs/Kevin.lua:111
+#: dialogs/Kevin.lua:123
 msgid "I'll see after the energy supply now."
 msgstr "Ich werde mich um die Energieversorgung kümmern."
 
-#: dialogs/Kevin.lua:113
+#: dialogs/Kevin.lua:125
 msgid "That's great. You can't miss it. It's not hard to find. Enter my garden and find the lower station entrance there."
 msgstr "Klasse! Sie können sie nicht verfehlen, der Eingang ist nicht schwer zu finden. Gehen Sie in den Garten und steigen Sie dort in die Luke zur unteren Stationsebene."
 
-#: dialogs/Kevin.lua:114
+#: dialogs/Kevin.lua:126
 msgid "It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level."
 msgstr "Am besten kümmern Sie sich gar nicht um den Widerstand auf der ersten Ebene. Sie müssen sich nur um die Stromversorgung kümmern, und die liegt auf der ZWEITEN Ebene."
 
-#: dialogs/Kevin.lua:115
+#: dialogs/Kevin.lua:127
 msgid "I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them."
 msgstr "Ich hoffe, Sie haben so etwas wie eine Laserpistole - die Robos dort werden Sie zerpflücken, wenn Sie ihnen zu nahe kommen."
 
-#: dialogs/Kevin.lua:116
+#: dialogs/Kevin.lua:128
 msgid "Best make it quick. I'm already sick of stabilizing the stupid power grid."
 msgstr "Handeln Sie bitte schnell. Ich bin schon ganz krank vom ewigen Stabilisieren dieses dämlichen Stromnetzes!"
 
-#: dialogs/Kevin.lua:117
+#: dialogs/Kevin.lua:129
 msgid "The entrance is in Kevin's garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level."
 msgstr "Der Eingang befindet sich in Kevins Garten. Außerdem soll ich mich nicht um die Bots auf der ersten Ebene kümmern, sondern einfach zur zweiten durchmarschieren."
 
-#: dialogs/Kevin.lua:123
+#: dialogs/Kevin.lua:135
 msgid "I'm sorry, but I don't think there's anything I could do about that energy supply."
 msgstr "Tut mir leid. Aber ich glaube nicht, dass ich etwas wegen der Energieversorgung unternehmen kann."
 
-#: dialogs/Kevin.lua:125
+#: dialogs/Kevin.lua:137
 msgid "Too bad. Now get out of my sight."
 msgstr "Schade aber auch. Und jetzt verziehen Sie sich."
 
-#: dialogs/Kevin.lua:131
+#: dialogs/Kevin.lua:143
 msgid "About that project you said you have running..."
 msgstr "Wegen dem Projekt, das Sie zur Zeit am Laufen haben…"
 
-#: dialogs/Kevin.lua:134
+#: dialogs/Kevin.lua:146
 msgid "I've already received the results from the evaluation of my data in the cluster. Good work."
 msgstr "Ich habe bereits die Ergebnisse der Auswertung meiner Daten erhalten. Gute Arbeit."
 
-#: dialogs/Kevin.lua:136
+#: dialogs/Kevin.lua:148
 msgid "Yes, since the energy supply has been constant, results were much better. I've achieved my goal."
 msgstr "Ja, seit die Stromversorgung wieder richtig funktioniert, sind die Ergebnisse viel besser… ich habe mein Ziel erreicht!"
 
-#: dialogs/Kevin.lua:137
+#: dialogs/Kevin.lua:149
 msgid "I've obtained secret data on the town surroundings. We'll need a big computer cluster to evaluate it properly."
 msgstr "Ich konnte geheime Daten über die Umgebung der Kolonie sammeln. Wir benötigen einen großen Verbund von Computern, um die Informationen auszuwerten."
 
-#: dialogs/Kevin.lua:138
+#: dialogs/Kevin.lua:150
 msgid "Once we've evaluated the data, we might find a way to secure the town and ensure our survival. But it's too early to tell yet."
 msgstr "Sobald wir die Daten ausgewertet haben, könnte sich ein Weg finden, die Kolonie zu sichern und unser Überleben zu garantieren. Aber es ist noch zu früh, um das mit Bestimmtheit zu sagen."
 
-#: dialogs/Kevin.lua:139
+#: dialogs/Kevin.lua:151
 msgid "If I only had a suitable cluster. Then we could start data evaluation right away."
 msgstr "Wenn ich nur einen geeigneten Computercluster zur Verfügung hätte. Dann könnten wir sofort mit der Datenauswertung beginnen."
 
-#: dialogs/Kevin.lua:147
+#: dialogs/Kevin.lua:159
 msgid "Maybe I can help somehow to find a suitable cluster."
 msgstr "Möglicherweise kann ich helfen, einen geeigneten Computercluster zu finden."
 
-#: dialogs/Kevin.lua:150
+#: dialogs/Kevin.lua:162
 msgid "You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore."
 msgstr "Sie hatten bereits eingewilligt, meinen Datenkubus ins städtische Rechenzentrum zu schleusen. Ich habe keinen großen Einfluss mehr in dieser Angelegenheit."
 
-#: dialogs/Kevin.lua:151
+#: dialogs/Kevin.lua:163
 msgid "The fate of the town now rests in your hands. Take the data cube I gave you to the cluster. Only there can the data be evaluated properly."
 msgstr "Das Schicksal der Kolonie liegt jetzt in Ihren Händen. Bringen Sie den Datenwürfel den ich Ihnen gegeben habe dorthin, wie besprochen. Nur mit dem Großrechner können die Daten entsprechend ausgewertet werden."
 
-#: dialogs/Kevin.lua:153
+#: dialogs/Kevin.lua:165
 msgid "That would be great of course. I know that the old town is maintaining a suitable information infrastructure and has had a proper cluster running for some time now."
 msgstr "Das wäre natürlich großartig. Ich weiß, dass die alte Stadt eine geeignete Informationsinfrastruktur aufrechterhält und seit einiger Zeit einen geeigneten Cluster hat."
 
-#: dialogs/Kevin.lua:154
+#: dialogs/Kevin.lua:166
 msgid "The only problem is, I can't go back to town. They would probably kill me because of... a misunderstanding."
 msgstr "Das Problem daran ist, dass ich nicht mehr in die Siedlung zurückkehren kann. Sie würden mich vielleicht töten, wegen dieses Missverständnisses vor einiger Zeit…"
 
-#: dialogs/Kevin.lua:155
+#: dialogs/Kevin.lua:167
 msgid "Also, the cluster is inside of the guard citadel. I hear that only members of the Red Guard are allowed to enter the complex."
 msgstr "Außerdem befindet sich das Computerzentrum innerhalb der Wachfestung. Soviel ich gehört habe, ist es nur Mitgliedern der Roten Garde erlaubt, dieses Gebäude zu betreten."
 
-#: dialogs/Kevin.lua:156
+#: dialogs/Kevin.lua:168
 msgid "But maybe you can arrange that somehow. For me it would be impossible, because of my reputation."
 msgstr "Aber vielleicht kriegen Sie das ja irgendwie hin. Für mich wäre es auf Grund meines schlechten Rufs unmöglich."
 
-#: dialogs/Kevin.lua:157
+#: dialogs/Kevin.lua:169
 msgid "I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there."
 msgstr "Ich werde Ihnen den Datenwürfel mitgeben. Bringen Sie ihn zu den Administratoren des Rechnerzentrums; sie werden wissen, was zu tun ist. Und - erwähnen Sie dort nicht meinen Namen!"
 
-#: dialogs/Kevin.lua:158
+#: dialogs/Kevin.lua:170
 msgid "Kevin gave me a cube full of some kind of data. I am supposed to take it to a computer cluster for analysis. Ought to be simple."
 msgstr "Kevin hat mir einen Würfel mit irgendwelchen Daten gegeben. Ich soll ihn zu einem Computercluster bringen, um ihn zu analysieren. Sollte nicht all zu schwer werden."
 
-#: dialogs/Kevin.lua:167
+#: dialogs/Kevin.lua:179
 msgid "How about some reward for securing your energy supply area?"
 msgstr "Wie wärs mit einer Belohnung für das Absichern der Stromversorgungs-Zentrale?"
 
-#: dialogs/Kevin.lua:170
+#: dialogs/Kevin.lua:182
 msgid "I've already rewarded you for that. Don't steal my time. I'm busy."
 msgstr "Ich habe Sie bereits dafür entlohnt. Stehlen Sie mir nicht meine Zeit, ich bin beschäftigt."
 
-#: dialogs/Kevin.lua:171
+#: dialogs/Kevin.lua:183
 msgid "I am not as confused as you think. Go away now."
 msgstr "Ich bin noch nicht so durcheinander, wie du denkst. Geh' weg!"
 
-#: dialogs/Kevin.lua:173
+#: dialogs/Kevin.lua:185
 msgid "What do you want?"
 msgstr "Nun, was möchten Sie?"
 
-#: dialogs/Kevin.lua:182
+#: dialogs/Kevin.lua:194
 msgid "I want to become a hacker."
 msgstr "Ich will Hacker werden!"
 
-#: dialogs/Kevin.lua:185
+#: dialogs/Kevin.lua:197
 msgid "Your desire for information amuses me. Your wish will be granted. I will teach you how to improve your skill in designing hacking programs."
 msgstr "Dein Wunsch nach Wissen erheitert mich! Er sei dir gewährt. Ich werde dir beibringen, wie man hackt."
 
-#: dialogs/Kevin.lua:186
+#: dialogs/Kevin.lua:198
 msgid "You must know that hacking is an art. It is easy to chop your enemy to bits with an axe or shred it to atoms with a grenade... But hacking requires skill."
 msgstr "Du musst wissen, dass Hacken eine Kunst ist. Es ist einfach, deinen Gegner mit einer Axt in Stücke zu hauen oder mit einer Granate in Atome zu zerfetzen… aber HACKEN erfordert Verstand und Können!"
 
-#: dialogs/Kevin.lua:187
+#: dialogs/Kevin.lua:199
 msgid "Look at this terminal... I am connected to a remote system. A fool would just launch a thousand attacks, but a skilled intruder stops and thinks."
 msgstr "Schau dir dieses Terminal an… ich bin mit einem entfernten System verbunden. Ein Dummkopf würde jetzt einfach tausende von Angriffen starten, aber ein erfahrener Eindringling wartet erst einmal ab und denkt nach."
 
-#: dialogs/Kevin.lua:188
+#: dialogs/Kevin.lua:200
 msgid "You must know when to hack and when not to hack. You must attack when the enemy is unprepared for you."
 msgstr "Man muss wissen, wann man hacken kann und wann nicht - man muss angreifen, wenn der Gegner unvorbereitet ist."
 
-#: dialogs/Kevin.lua:189
+#: dialogs/Kevin.lua:201
 msgid "Now watch. Observe carefully. See how I enter the system... Yes. Watch the connection glowing, burning like a bright star..."
 msgstr "Jetzt sieh her. Beobachte genau. Schau, wie ich ins System gelange… ja! Sieh, wie die Verbindung glüht, sie wie ein heller Stern brennt…"
 
-#: dialogs/Kevin.lua:190
+#: dialogs/Kevin.lua:202
 msgid "...only to die seconds after, as the system far away collapses under it's own weight... It's done."
 msgstr "… nur um Sekunden später zu vergehen, während das weit entfernte System unter seinem eigenen Gewicht kollabiert… es ist vollbracht!"
 
-#: dialogs/Kevin.lua:191
+#: dialogs/Kevin.lua:203
 msgid "That is all I want to show you for now. Maybe later I will teach you something else."
 msgstr "Das ist alles, was ich dir soweit zeigen will. Später vielleicht bringe ich dir etwas anderes bei."
 
-#: dialogs/Kevin.lua:198
+#: dialogs/Kevin.lua:210
 msgid "I don't want any reward. Just gratitude."
 msgstr "Ich will keine Belohnung. Nur etwas Dankbarkeit."
 
-#: dialogs/Kevin.lua:201
+#: dialogs/Kevin.lua:213
 msgid "Of course you can have that. There, I'm most grateful to you. That should do."
 msgstr "Die können Sie natürlich haben. Hier, bittesehr, ich bin ihnen äußerst dankbar… so, das sollte ihnen genügen."
 
-#: dialogs/Kevin.lua:208
+#: dialogs/Kevin.lua:220
 msgid "I want money."
 msgstr "Ich will Geld!"
 
-#: dialogs/Kevin.lua:211
+#: dialogs/Kevin.lua:223
 msgid "Eh... Here, take these 900 circuits. That should be enough."
 msgstr "… Äh… hier, nehmen Sie diese 900 Schaltkreise. Sollte wohl reichen."
 
-#: dialogs/Kevin.lua:218
+#: dialogs/Kevin.lua:230
 msgid "I want to think about that for another moment."
 msgstr "Ich denke nochmal darüber nach."
 
-#: dialogs/Kevin.lua:221
+#: dialogs/Kevin.lua:233
 msgid "So be it. As reward for your help I grant you the right to think about that."
 msgstr "So sei es. Als Belohnung für deine Hilfe, gewähre ich dir das Recht, darüber nachzudenken."
 
-#: dialogs/Kevin.lua:222
+#: dialogs/Kevin.lua:234
 msgid "Just joking. Come back when you've decided what you want."
 msgstr "War nur ein Witz. Komm wieder, wenn du dich entschieden hast."
 
-#: dialogs/Kevin.lua:240
+#: dialogs/Kevin.lua:252
 msgid "Jasmine just blew up."
 msgstr "Jasmin ist gerade in die Luft geflogen…"
 
-#: dialogs/Kevin.lua:242
+#: dialogs/Kevin.lua:254
 msgid "Oh. Right."
 msgstr "Oh… na gut."
 
-#: dialogs/Kevin.lua:243
+#: dialogs/Kevin.lua:255
 msgid "Well, thanks for telling me."
 msgstr "Nun, danke für die Mitteilung."
 
-#: dialogs/Kevin.lua:244
+#: dialogs/Kevin.lua:256
 msgid "Back to the drawing board, I guess..."
 msgstr "Also, zurück ans Zeichenbrett…"
 
-#: dialogs/Kevin.lua:251
+#: dialogs/Kevin.lua:263
 msgid "I thought you would be more worried about her death."
 msgstr "Ich dachte, Sie würden ihren Tod etwas mehr bedauern?"
 
-#: dialogs/Kevin.lua:253
+#. TRANSLATORS: %s = a week day.
+#: dialogs/Kevin.lua:266
 #, c-format
 msgid "Why? I have backups from last %s. No reason to worry at all."
 msgstr "Warum? Ich habe Backups vom letzten %s. Kein Grund zur Sorge."
 
-#: dialogs/Kevin.lua:254
+#: dialogs/Kevin.lua:267
 msgid "Monday"
 msgstr "Montag"
 
-#: dialogs/Kevin.lua:254
+#: dialogs/Kevin.lua:267
 msgid "Tuesday"
 msgstr "Dienstag"
 
-#: dialogs/Kevin.lua:254
+#: dialogs/Kevin.lua:267
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: dialogs/Kevin.lua:254
+#: dialogs/Kevin.lua:267
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: dialogs/Kevin.lua:254
+#: dialogs/Kevin.lua:267
 msgid "Friday"
 msgstr "Freitag"
 
-#: dialogs/Kevin.lua:254
+#: dialogs/Kevin.lua:267
 msgid "Saturday"
 msgstr "Sonnabend"
 
-#: dialogs/Kevin.lua:254
+#: dialogs/Kevin.lua:267
 msgid "Sunday"
 msgstr "Sonntag"
 
-#: dialogs/Kevin.lua:255
+#: dialogs/Kevin.lua:268
 msgid "It will be a while till I get her together again, but she will be fine."
 msgstr "Es kann etwas dauern, bis ich sie zusammengeflickt habe, aber sie wird wieder wohlauf sein."
 
-#: dialogs/Kevin.lua:261 dialogs/Richard.lua:115
+#: dialogs/Kevin.lua:274 dialogs/Richard.lua:115
 msgid "What can you teach me about hacking?"
 msgstr "Was kann ich bei Ihnen über das Hacken lernen?"
 
-#: dialogs/Kevin.lua:265
+#: dialogs/Kevin.lua:278
 msgid "Not now, I'm busy."
 msgstr "Jetzt nicht, ich bin beschäftigt."
 
-#: dialogs/Kevin.lua:266
+#: dialogs/Kevin.lua:279
 msgid "I've got an important research project going on. In fact this project might be crucial to the survival of the whole town."
 msgstr "Hier läuft gerade ein wichtiges Forschungsprogramm. Dieses Projekt könnte sogar für das Überleben der ganzen Kolonie von Bedeutung sein."
 
-#: dialogs/Kevin.lua:267
+#: dialogs/Kevin.lua:280
 msgid "There is tremendous importance in it. But the project is in danger. There are some maintenance bots down at the energy source."
 msgstr "Es ist von enormer Wichtigkeit! Aber mein Projekt ist in Gefahr… einige Reparaturbots machen sich unten an der Stromversorgung zu schaffen."
 
-#: dialogs/Kevin.lua:268
+#: dialogs/Kevin.lua:281
 msgid "They are trying to 'maintain' machines by rebooting them all the time. This must stop, but I can't leave this place."
 msgstr "Sie versuchen die Maschinen 'instand zu setzen', indem sie sie ständig neu starten. Das muss aufhören, aber ich kann hier nicht weg!"
 
-#: dialogs/Kevin.lua:269
+#: dialogs/Kevin.lua:282
 msgid "I must balance the remaining power in such a way that my project can continue uninterrupted."
 msgstr "Ich muss die verbleibende Stromleistung so ausbalancieren, dass mein Programm ohne Unterbrechung weiterlaufen kann."
 
-#: dialogs/Kevin.lua:270
+#: dialogs/Kevin.lua:283
 msgid "Now, if you go down there and make the power flow stable, then I'll find the time to teach you something."
 msgstr "Also, wenn Sie da runter gehen und die Stromzufuhr sicherstellen können, werde ich etwas Zeit für Sie haben."
 
-#: dialogs/Kevin.lua:271
+#: dialogs/Kevin.lua:284
 msgid "Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots."
 msgstr "Kevin hat ein Problem mit seiner Energieversorgung. Seine Bots starten das System immer wieder neu und er kann mit dieser instabilen Energieversorgung keine Experimente durchführen. Meine Aufgabe ist es die Energie zu stabilisieren. Ich befürchte, dass das nicht geht, ohne die blöden Roboter zu beseitigen."
 
-#: dialogs/Kevin.lua:274
+#: dialogs/Kevin.lua:287
 msgid "As I've told you, I cannot teach you anything right now. I don't have the time."
 msgstr "Wie ich bereits gesagt habe kann ich Ihnen im Moment nichts beibringen. Ich habe nicht die Zeit dazu."
 
-#: dialogs/Kevin.lua:275
+#: dialogs/Kevin.lua:288
 msgid "I must see that the flaky energy stream is distributed in such a way that my research project can continue."
 msgstr "Ich muss zusehen, dass ich den instabilen Energiefluss so verteile, sodass ich mein Forschungsprogramm ungefährdet fortsetzen kann."
 
-#: dialogs/Kevin.lua:276
+#: dialogs/Kevin.lua:289
 msgid "If you get rid of the maintenance bots on the second underground level of this station, I will find the time to teach you something."
 msgstr "Wenn Sie die Wartungsroboter auf der zweiten Untergrundebene dieser Station beseitigen können, dann habe ich die Zeit, mein Wissen mit Ihnen zu teilen."
 
-#: dialogs/Kevin.lua:284 dialogs/Richard.lua:117
+#: dialogs/Kevin.lua:297 dialogs/Richard.lua:117
 msgid "I can teach you everything, for a price of course."
 msgstr "Ich kann dir alles beibringen, für einen gewissen Preis, versteht sich."
 
-#: dialogs/Kevin.lua:285 dialogs/Richard.lua:118
+#: dialogs/Kevin.lua:298 dialogs/Richard.lua:118
 msgid "Three hundred per lesson, up front."
 msgstr "Dreihundert pro Stunde im Voraus."
 
 #. TRANSLATORS: %d = number training points needed
 #. TRANSLATORS: %d = a number
-#: dialogs/Kevin.lua:287 dialogs/Richard.lua:125
+#: dialogs/Kevin.lua:300 dialogs/Richard.lua:125
 #, c-format
 msgid "You will need %d training points."
 msgstr "Außerdem brauchen Sie %d Trainingspunkte."
 
-#: dialogs/Kevin.lua:288 dialogs/Richard.lua:126
+#: dialogs/Kevin.lua:301 dialogs/Richard.lua:126
 msgid "Still interested?"
 msgstr "Immer noch interessiert?"
 
-#: dialogs/Kevin.lua:297
+#: dialogs/Kevin.lua:311
 msgid "Yes, please teach me how to become a hacker."
 msgstr "Ja, bringen sie mir bei, wie man ein Hacker wird."
 
-#: dialogs/Kevin.lua:301 dialogs/Richard.lua:136
+#: dialogs/Kevin.lua:315 dialogs/Richard.lua:136
 msgid "Good. The most important thing about hacking is to understand the nature of the machine you want to hack."
 msgstr "Gut. Also, hör zu: das Entscheidende beim Hacken ist, dass du das Wesen der Maschine verstehst, in die du eindringen willst!"
 
-#: dialogs/Kevin.lua:302 dialogs/Richard.lua:137
+#: dialogs/Kevin.lua:316 dialogs/Richard.lua:137
 msgid "Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it."
 msgstr "Sobald du herausgefunden hast, was die Entwickler des Systems beim Aufbau gemacht haben, weißt du auch, wie du es am besten hacken kannst."
 
-#: dialogs/Kevin.lua:303 dialogs/Richard.lua:138
+#: dialogs/Kevin.lua:317 dialogs/Richard.lua:138
 msgid "Now I see the feature set of your hacking program has already improved a lot."
 msgstr "Nun, ich sehe, dass sich deine Hackerfähigkeiten bereits beträchtlich verbessert haben!"
 
-#: dialogs/Kevin.lua:319
+#: dialogs/Kevin.lua:333
 msgid "Hold on, I don't seem to have that much money right now."
 msgstr "Warte, ich habe im Moment noch nicht so viel Geld."
 
-#: dialogs/Kevin.lua:320 dialogs/Richard.lua:155
+#: dialogs/Kevin.lua:334 dialogs/Richard.lua:155
 msgid "This is embarrassing. I will come back when I have the amount of valuable circuits you desire."
 msgstr "Schade auch. Dann komme ich wohl wieder, wenn ich genug Schaltkreise beisammen habe."
 
-#: dialogs/Kevin.lua:321 dialogs/Richard.lua:156
+#: dialogs/Kevin.lua:335 dialogs/Richard.lua:156
 msgid "Ok, come back when you can afford to pay me if you are interested."
 msgstr "Ok, kommen Sie wieder, wenn Sie es sich leisten können, mich zu bezahlen und Sie immer noch interessiert sind."
 
-#: dialogs/Kevin.lua:325 dialogs/Richard.lua:160
+#: dialogs/Kevin.lua:339 dialogs/Richard.lua:160
 msgid "So come back when you have some valuables."
 msgstr "Also kommen sie zurück, wenn sie genug Schaltkreise haben."
 
-#: dialogs/Kevin.lua:333 dialogs/Richard.lua:101
+#: dialogs/Kevin.lua:347 dialogs/Richard.lua:101
 msgid "Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience."
 msgstr "Ups, meine Datenbank ist bis zum Rand gefüllt. Ich muss mehr Erfahrung sammeln, um mehr dazulernen zu können."
 
-#: dialogs/Kevin.lua:335 dialogs/Richard.lua:102
+#: dialogs/Kevin.lua:349 dialogs/Richard.lua:102
 msgid "You Linarians are funny creatures. Come back later when you feel ready if you please."
 msgstr "Ihr Linarianer seid lustige Kreaturen. Kommen Sie wieder, wenn Sie sich bereit fühlen."
 
-#: dialogs/Kevin.lua:336 dialogs/Richard.lua:103
+#: dialogs/Kevin.lua:350 dialogs/Richard.lua:103
 msgid "I cannot teach you when you have no training points. Come back when you are more prepared."
 msgstr "Ich kann ihnen ohne Trainingspunkte nichts beibringen. Kommen Sie zurück, wenn Sie besser sich vorbereitet haben."
 
-#: dialogs/Kevin.lua:338 dialogs/Richard.lua:105
+#: dialogs/Kevin.lua:352 dialogs/Richard.lua:105
 msgid "Come back when you are mentally ready to learn."
 msgstr "Kommen sie zurück, wenn sie metal bereit dafür sind."
 
-#: dialogs/Kevin.lua:341 dialogs/Richard.lua:108
+#: dialogs/Kevin.lua:355 dialogs/Richard.lua:108
 msgid "Yeah, I don't think you have enough experience for this. Come back here after you see some more action."
 msgstr "Sie sind noch zu unerfahren! Kommen Sie wieder, wenn Sie ein bisschen mehr auf dem Kasten haben."
 
-#: dialogs/Kevin.lua:342 dialogs/Richard.lua:109
+#: dialogs/Kevin.lua:356 dialogs/Richard.lua:109
 msgid "Then come back when you have a real will to learn."
 msgstr "Kommen sie erst zurück, wenn sie echten Willen zum Lernen mitbringen."
 
-#: dialogs/Kevin.lua:348
+#: dialogs/Kevin.lua:362
 msgid "No, I didn't touch it."
 msgstr "Nein, ich hab ihn nicht angerührt."
 
-#: dialogs/Kevin.lua:350
+#: dialogs/Kevin.lua:364
 msgid "Strange, I should have a look at it..."
 msgstr "Komisch, vielleicht sollte ich nachsehen…"
 
-#: dialogs/Kevin.lua:351
+#: dialogs/Kevin.lua:365
 msgid "...when I have more time..."
 msgstr "…wenn ich mehr Zeit hätte…"
 
-#: dialogs/Kevin.lua:358
+#: dialogs/Kevin.lua:372
 msgid "Yes, I tried to login."
 msgstr "Ja, ich wollte mich einloggen."
 
-#: dialogs/Kevin.lua:361
+#: dialogs/Kevin.lua:375
 msgid "Please, don't touch it."
 msgstr "Fassen Sie ihn bloß nicht an, bitte."
 
-#: dialogs/Kevin.lua:362
+#: dialogs/Kevin.lua:376
 msgid "I don't want you to break it somehow."
 msgstr "Sie könnten ihn kaputt machen."
 
-#: dialogs/Kevin.lua:365
+#: dialogs/Kevin.lua:379
 msgid "You better not touch it!"
 msgstr "Kommen Sie ihm bloß nicht zu nahe!"
 
-#: dialogs/Kevin.lua:366
+#: dialogs/Kevin.lua:380
 msgid "If you break it somehow, I'll be very angry."
 msgstr "Wenn er nur einen Kratzer abbekommt wird er sehr sauer."
 
-#: dialogs/Kevin.lua:367
+#: dialogs/Kevin.lua:381
 msgid "And I still have no time."
 msgstr "Und ich bin immer noch beschäftigt."
 
-#: dialogs/Kevin.lua:368
+#: dialogs/Kevin.lua:382
 msgid "The power level is still very low, hence, I am quite busy."
 msgstr "Der Energielevel ist immer noch sehr niedrig, verdammt nochmal. Ich bin schwer beschäftigt."
 
-#: dialogs/Kevin.lua:376
+#: dialogs/Kevin.lua:390
 msgid "I came to warn you: droids broke through your wall!"
 msgstr "Ich muss sie warnen: Die Roboter haben ihre Mauern durchbrochen!"
 
-#: dialogs/Kevin.lua:379
+#: dialogs/Kevin.lua:393
 msgid "You could just go around and enter by the main door."
 msgstr "Du könnest drum herum und durch den Haupteingang gehen."
 
-#: dialogs/Kevin.lua:380
+#: dialogs/Kevin.lua:394
 msgid "This way, you might waste time. You've optimized your path. Good job!"
 msgstr "Auf jeden Fall verschwendest du meine Zeit. Du hast deinen Pfad optimiert. Gute Arbeit!"
 
-#: dialogs/Kevin.lua:381
+#: dialogs/Kevin.lua:395
 msgid "Thank you for your report, but I don't have time to fix it."
 msgstr "Danke für die Mittelung, aber ich habe keine Zeit, mich darum zu kümmern."
 
-#: dialogs/Kevin.lua:387
+#: dialogs/Kevin.lua:401
 msgid "My mission is top-secret. I must be stealthy."
 msgstr "Meine Mission ist streng geheim. Ich muss unerkannt bleiben."
 
-#: dialogs/Kevin.lua:390
+#: dialogs/Kevin.lua:404
 msgid "You are really careful with the security of your mission."
 msgstr "Du hast dich wirklich um die Sicherheit deiner Mission gesorgt."
 
-#: dialogs/Kevin.lua:391
+#: dialogs/Kevin.lua:405
 msgid "However don't destroy my equipment, I can support you to be stealthy."
 msgstr "Aber zerstöre auf keinen Fall meine Ausrüstung, ich kann dir helfen, etwas heimlicher zu arbeiten."
 
-#: dialogs/Kevin.lua:392
+#: dialogs/Kevin.lua:406
 msgid "But later, maybe... I don't have time now."
 msgstr "Später vielleicht… Jetzt habe ich keine Zeit."
 
-#: dialogs/Kevin.lua:398
+#: dialogs/Kevin.lua:412
 msgid "I saw an opening in the wall and I decided to take a look inside."
 msgstr "Ich sah eine Öffnung in der Wand und entschied mich, dort hineinzusehen."
 
-#: dialogs/Kevin.lua:401
+#: dialogs/Kevin.lua:415
 msgid "Oh, you have just entered by curiosity. I always fought for made it a exception to the rules."
 msgstr "Oh, du bist durch Neugier hier reingekommen. Ich habe mich immer dafür eingesetzt, es als Ausnahme der Regeln einzuführen."
 
-#: dialogs/Kevin.lua:402
+#: dialogs/Kevin.lua:416
 msgid "I like curiosity. I think it will has rocketed us on Mars. And beyond..."
 msgstr "Ich mag Neugier. Ich glaube, sie hat uns bis zum Mars gebracht. Und darüber hinaus…"
 
-#: dialogs/Kevin.lua:403
+#: dialogs/Kevin.lua:417
 msgid "Thank you, I now know the issue, but I don't have time to fix it."
 msgstr "Danke, ich weiß, wo das Problem liegt, doch ich kann mich gerade nicht darum kümmern."
 
-#: dialogs/Kevin.lua:423
+#: dialogs/Kevin.lua:437
 msgid "Let us talk later."
 msgstr "Reden wir später drüber."
 
-#: dialogs/Kevin.lua:426
+#: dialogs/Kevin.lua:440
 msgid "Hey Linarian..."
 msgstr "Hey Linarianer…"
 
-#: dialogs/Kevin.lua:427
+#: dialogs/Kevin.lua:441
 msgid "Mmmh, yes?"
 msgstr "Äh, ja?"
 
-#: dialogs/Kevin.lua:428
+#: dialogs/Kevin.lua:442
 msgid "Do you know this feeling..."
 msgstr "Du kennst doch dieses Gefühl…"
 
-#: dialogs/Kevin.lua:429
+#: dialogs/Kevin.lua:443
 msgid "... when you get a really strange output..."
 msgstr "…wenn man eine sehr seltsame Ausgabe hat…"
 
-#: dialogs/Kevin.lua:430
+#: dialogs/Kevin.lua:444
 msgid "... and you look at the code..."
 msgstr "… und dir den Code betrachtest…"
 
-#: dialogs/Kevin.lua:431
+#: dialogs/Kevin.lua:445
 msgid "... again and again..."
 msgstr "… wieder und immer wieder…"
 
-#: dialogs/Kevin.lua:432
+#: dialogs/Kevin.lua:446
 msgid "... but you see no path it could come from?"
 msgstr "… aber du hast keinen Plan, was du machen musst, oder?"
 
-#: dialogs/Kevin.lua:433
+#: dialogs/Kevin.lua:447
 msgid "Hmm, yes, I get this sometimes..."
 msgstr "Hmm, ja, manchmal…"
 
-#: dialogs/Kevin.lua:434
+#: dialogs/Kevin.lua:448
 msgid "I checked online if there is a name for this symptom... but couldn't find anything..."
 msgstr "Ich habe im Internet nach dem Namen dieses Symptoms gesucht… aber nichts gefunden…"
 
-#: dialogs/Kevin.lua:435
+#: dialogs/Kevin.lua:449
 msgid "I guess I am going to call it 'stdoubt'."
 msgstr "Ich glaube, ich sollte es 'stdoubt' nennen."
 
-#: dialogs/Kevin.lua:436 dialogs/TutorialTom.lua:1174
+#: dialogs/Kevin.lua:450 dialogs/TutorialTom.lua:1174
 #: dialogs/TutorialTom.lua:1180
 msgid "Ok..."
 msgstr "In Ordnung…"
 
-#: dialogs/Kevin.lua:439
+#: dialogs/Kevin.lua:453
 msgid "Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy."
 msgstr "Seien Sie vorsichtig. Die Bots sind heute mies gelaunt."
 
-#: dialogs/Kevin.lua:440
+#: dialogs/Kevin.lua:454
 msgid "If you need to contact me, my number is 127.0.0.1"
 msgstr "Falls Sie mich brauchen, meine Nummer ist 127.0.0.1"
 
-#: dialogs/Kevin.lua:441
+#: dialogs/Kevin.lua:455
 msgid "Keep your system up to date, Linarian."
 msgstr "Halten Sie ihr System auf dem neusten Stand, Linarianer."
 
@@ -12855,10 +12957,6 @@ msgstr "Bleib tapfer."
 msgid "Be strong."
 msgstr "Sei stark"
 
-#: dialogs/Peter.lua:35 dialogs/Terminal.lua:32
-msgid "Hi there."
-msgstr "Hallo."
-
 #: dialogs/Peter.lua:45
 msgid "Why are you here?"
 msgstr "Warum bist du hier?"
@@ -13133,10 +13231,6 @@ msgstr "Doch! Doch! Ich töte Menschen, Roboter, Linarianer und sogar Hunde, Kat
 #: dialogs/SADD.lua:106
 msgid "Em.. Anybody who would try to get in, of course."
 msgstr "Äh… natürlich alle, die versuchen würden, dort hineinzugehen."
-
-#: dialogs/SADD.lua:112
-msgid "What about the Great Assault?"
-msgstr "Was ist mit dem Großen Angriff?"
 
 #: dialogs/SADD.lua:114
 msgid "For security reasons, SADDs are not equipped with wireless modules."
@@ -13515,6 +13609,22 @@ msgstr "Dann verschwinde ich lieber von hier…"
 #: dialogs/SADD.lua:406
 msgid "Exactly."
 msgstr "Genau."
+
+#: dialogs/Scavenger.lua:36
+msgid "I'm looking for replacement parts. You're blocking my light."
+msgstr ""
+
+#: dialogs/Scavenger.lua:37
+msgid "Ooh, is that a 45nm plasma transducer coil you're standing on? Please move aside."
+msgstr ""
+
+#: dialogs/Scavenger.lua:38
+msgid "You just stepped on a perfectly serviceable quartzite nanocrystal!"
+msgstr ""
+
+#: dialogs/Scavenger.lua:39
+msgid "Just what this island needs, another #@&*! tourist."
+msgstr ""
 
 #: dialogs/Singularity.lua:52
 msgid "Are you the Singularity?"
@@ -14220,6 +14330,7 @@ msgstr "Ich muss den Zugang zum echten Updateserver bewachen. Kannst du das Tor 
 msgid "Inside, follow the mrkers o e groun"
 msgstr "Folge drinnen dn Pflen uf m Bdn"
 
+#. TRANSLATORS: Richard says the connection is bad
 #: dialogs/Spencer.lua:60
 msgid "Ri ard sa... e c nn cti n *bzzzzzzzzz* bad."
 msgstr "Ri ard sa…e vrb *bzzzzzzzzz* schlecht."
@@ -14663,226 +14774,230 @@ msgid "The data on the cube he obtained indicates the existence of a secret expe
 msgstr "Die Daten auf dem Würfel, die er gesammelt hat, deuten auf die Existenz einer geheimen Experimental-Anlage in dieser Gegend hin. Unsere Analysen legen nahe, dass man dort einen neuartigen Disruptorschild für MS getestet hat, und dass der Schild von dieser Einrichtung aus gesteuert werden kann."
 
 #: dialogs/Spencer.lua:409
-msgid "If the information is true, then you can take over the control droid and disable the shield permanently so we can get in."
-msgstr "Falls die Informationen zutreffen, könnten Sie den Kontrollandroiden übernehmen und den Schild permanent abschalten, so dass wir hinein können."
+msgid "If the information is true, then you can defeat the control droid and disable the shield permanently via some console or terminal."
+msgstr ""
 
 #: dialogs/Spencer.lua:410
+msgid "Then we should be able to get in."
+msgstr ""
+
+#: dialogs/Spencer.lua:411
 msgid "We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield."
 msgstr "Wir wissen, dass MS ein Firmware-Update-System unterhielt, das dazu verwendet werden könnte, Schadcode zu verbreiten und alle Robos auszuschalten. Es klingt sehr verlockend aber um diesen Trick einzusetzen, müssten Sie sich in den Kontrollandroiden einhacken, der irgendwo im Herz der Höllenfestung sitzt. Um dort hinein zu gelangen, müssen Sie den Disruptorschild abstellen."
 
-#: dialogs/Spencer.lua:411
+#: dialogs/Spencer.lua:412
 msgid "This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though.."
 msgstr "Das scheint ein Geschenk des Himmels zu sein! Die Höllenfestung zu säubern dürfte allerdings alles andere als einfach werden…"
 
-#: dialogs/Spencer.lua:417
+#: dialogs/Spencer.lua:418
 msgid "I'd like to participate in this operation."
 msgstr "Ich würde gerne an dieser Operation teilnehmen."
 
-#: dialogs/Spencer.lua:419
+#: dialogs/Spencer.lua:420
 msgid "That's most kind of you to volunteer. So far, I've sent two scouts into the area. They have found the facility entrance and unlocked the gate."
 msgstr "Es ist wirklich nett, dass Sie sich freiwillig melden wollen. Bisher habe ich bereits zwei Kundschafter in die Gegend geschickt. Sie haben die Forschungseinrichtung gefunden und konnten das Eingangsportal entriegeln."
 
-#: dialogs/Spencer.lua:420
+#: dialogs/Spencer.lua:421
 msgid "That is a good sign, because it shows that the key combinations from the data cube were correct."
 msgstr "Das ist ein gutes Zeichen, denn es beweist, dass die Schlüssel-Kombinationen aus dem Datenwürfel korrekt waren."
 
-#: dialogs/Spencer.lua:421
+#: dialogs/Spencer.lua:422
 msgid "However, we lost contact with them shortly after they went inside. They also reported heavy bot resistance."
 msgstr "Allerdings hatten wir, kurz nachdem sie hineingegangen waren, den Kontakt zu ihnen verloren. Sie berichteten über heftigen Widerstand durch Roboter."
 
-#: dialogs/Spencer.lua:422
+#: dialogs/Spencer.lua:423
 msgid "I'd be glad if you could take a look. But use the utmost care. We can't afford to lose another guard."
 msgstr "Ich wäre froh, wenn Sie dort mal nachsehen könnten. Aber lassen Sie allergrößte Vorsicht walten. Wir können es uns nicht leisten, einen weiteren Wachmann zu verlieren…"
 
-#: dialogs/Spencer.lua:428
+#: dialogs/Spencer.lua:429
 msgid "OK. I'll be careful. But I'll do it."
 msgstr "OK. Ich werde vorsichtig sein. Aber ich gehe da rein."
 
-#: dialogs/Spencer.lua:430
+#: dialogs/Spencer.lua:431
 msgid "Good. The base entrance is somewhat hidden in the caves to the northeast. Best to use the north gate out of town, then head east, and turn north again along the shore."
 msgstr "Gut. Der Basiseingang liegt ein wenig versteckt, zwischen den Felsschluchten im Nordwesten. Gehen Sie am besten durch das Nordtor und wenden Sie sich dann nach Osten, und dann wieder nach Norden, der Küste entlang."
 
-#: dialogs/Spencer.lua:431
+#: dialogs/Spencer.lua:432
 msgid "I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance."
 msgstr "Ich wünsche Ihnen alles Gute für das Gelingen dieser Operation! Könnte sein, dass unser Überleben davon abhängt, aber warten Sie nicht auf Verstärkung…"
 
-#: dialogs/Spencer.lua:432
-msgid "Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield."
-msgstr "Versuchen Sie, Kontrolle über den Disruptorschild zu erlangen, wenn möglich. Der Kontrollandroide sollte sich irgendwo im untersten Geschoss der Einrichtung aufhalten."
-
 #: dialogs/Spencer.lua:433
-msgid "Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility north of the town. By taking over the control droid, I should be able to control the disruptor shield at the facility. I can disable disruptor shield, fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop."
-msgstr "Spencer hat mir verraten, was Kevins Datenwürfel enthielt. Es scheint so, als gäbe es ein militärisches Forschungsgebäude nördlich der Stadt. Wenn ich den Kontrolldroiden dort übernehme, könnte ich den Disruptorschild der Höllenfestung bedienen. Wenn ich den Schild herunterfahre, kann ich mich zum Hauptkontrolldroiden in der Höllenfestung durchkämpfen, ihn updaten und nebenbei alle Droiden nahe der Stadt auf einen Schlag abschalten."
+msgid "Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might not suffice in disabling the shield, however there should be some terminal around to control it."
+msgstr ""
 
-#: dialogs/Spencer.lua:440
+#: dialogs/Spencer.lua:434
+msgid "Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility north of the town. By defeating the control droid and using a nearby terminal, I should be able to control the disruptor shield at the facility. I can disable disruptor shield, fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop."
+msgstr ""
+
+#: dialogs/Spencer.lua:441
 msgid "I don't feel like doing it now. I'd rather prepare some more."
 msgstr "Ich glaube, ich bin noch nicht so weit. Ich möchte mich lieber noch besser vorbereiten."
 
-#: dialogs/Spencer.lua:442
+#: dialogs/Spencer.lua:443
 msgid "Good. You should be well prepared if you intend to go."
 msgstr "In Ordnung. Sie sollten gut gewappnet sein, falls Sie vorhaben zu gehen."
 
-#: dialogs/Spencer.lua:443
+#: dialogs/Spencer.lua:444
 msgid "Also there is no need to hurry with this. After all, the installation is not running away, so it's best to take a cautious approach."
 msgstr "Es gibt auch keinen Grund, die Dinge zu überstürzen. Schließlich kann Ihnen das Geheimlabor nicht davonlaufen - also lassen Sie es am besten vorsichtig angehen."
 
-#: dialogs/Spencer.lua:449
+#: dialogs/Spencer.lua:450
 msgid "It's done. Your soldiers were killed, but I managed to reach a computer terminal that controls the shield. Access to the bot factory is now open, after I changed the password on the terminal so as to prevent the bots from enabling the shield again."
 msgstr "Geschafft. Deine Soldaten sind hinüber, aber ich konnte den Schild kontrollieren. Die Roboterfabrik kann nun betreten werden. Außerdem habe ich das Passwort geändert, damit die Roboter nicht wieder die Kontrolle übernehmen können."
 
-#: dialogs/Spencer.lua:451
+#: dialogs/Spencer.lua:452
 msgid "Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS office."
 msgstr "Gut! Leider können wir Sie bei dieser letzten Mission kaum unterstützen, doch ich kann Ihnen sagen, was unsere Aufklärungsteams hinter den Fabriktoren fanden. Sie werden in eine Zone vordringen, die früher ein Büro von MS war."
 
-#: dialogs/Spencer.lua:452
+#: dialogs/Spencer.lua:453
 msgid "They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office."
 msgstr "Hier betrieben sie Entwicklung und hatten Teile ihres Patching-Unternehmensbereichs und der Update-Management-Abteilung untergebracht."
 
-#: dialogs/Spencer.lua:453
+#: dialogs/Spencer.lua:454
 msgid "With a bit of luck, you might not need to access it. We know they have their update server in the office."
 msgstr "Mit etwas Glück musst du vielleicht nicht einmal dort hinein. Wir wissen, dass ihr Update-Server im Büro installiert ist."
 
-#: dialogs/Spencer.lua:454
+#: dialogs/Spencer.lua:455
 msgid "If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks."
 msgstr "Solltest du ihn ausfindig machen und dazu bringen können, ein fehlerhaftes Update zu verbreiten, könnte das genügen, die Roboter mitten in ihren Angriffen erstarren zu lassen."
 
-#: dialogs/Spencer.lua:455
+#: dialogs/Spencer.lua:456
 msgid "Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own."
 msgstr "Suchen Sie auf den Kristallfeldern nach dem Eingang zum MS-Büro. Ich werde den Wachen dort eine Nachricht senden, dass man Sie durchlassen soll. Danach sind Sie auf sich allein gestellt!"
 
-#: dialogs/Spencer.lua:456
+#: dialogs/Spencer.lua:457
 msgid "However I'll ask Richard to see if we can contact you as soon as you find the server so we know if you're alive and there is still hope, or if things are going to go back to the way they were before you were taken out of stasis sleep..."
 msgstr "Jedenfalls werde ich Richard fragen, ob wir dich kontaktieren können, wenn du den Server gefunden hast, damit wir wissen, dass du am Leben bist und es immer noch Hoffnung gibt, oder ob es noch schlimmer wurde als vor der Zeit, bevor wir dich auftauten…"
 
-#: dialogs/Spencer.lua:457
+#: dialogs/Spencer.lua:458
 msgid "Good luck."
 msgstr "Viel Glück!"
 
-#: dialogs/Spencer.lua:458
+#: dialogs/Spencer.lua:459
 msgid "I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server."
 msgstr "Ich kann jetzt die Festung betreten und das Upgrade-Server-Terminal finden. Die Festungstore befinden sich in den Kristallfeldern. Spencer gab den Wachen Bescheid, um die Zugänge für mich zu öffnen. Außerdem wird er mich kontaktieren, wenn ich den Server gefunden habe."
 
-#: dialogs/Spencer.lua:459
+#: dialogs/Spencer.lua:460
 msgid "Wait. I have a weapon here. It is not an Exterminator, but should save your life in the Hell Fortress."
 msgstr "Warte. Ich hab hier eine Waffe. Es ist kein Exterminator, aber sollte dich sicher durch die Höllenfestung bringen."
 
-#: dialogs/Spencer.lua:469
+#: dialogs/Spencer.lua:470
 msgid "In the name of the Red Guard I wish you the best of luck!"
 msgstr "Im Namen der Roten Garde wünsche ich dir viel Glück!"
 
-#: dialogs/Spencer.lua:475
+#: dialogs/Spencer.lua:476
 msgid "I will need some time to get myself ready before I clean up Hell Fortress."
 msgstr "Ich sollte mir etwas Zeit nehmen, um mich besser darauf vorzubereiten, um die Höllenfestung aufzuräumen."
 
-#: dialogs/Spencer.lua:477
+#: dialogs/Spencer.lua:478
 msgid "You better be ready."
 msgstr "Dann nimm dir die Zeit."
 
-#: dialogs/Spencer.lua:482
+#: dialogs/Spencer.lua:483
 msgid "I found someone out in the desert."
 msgstr "Ich habe jemanden draußen in der Wüste gefunden."
 
-#: dialogs/Spencer.lua:484
+#: dialogs/Spencer.lua:485
 msgid "Great, another mouth to feed."
 msgstr "Großartig. Noch einer, den wir durchfüttern müssen."
 
-#: dialogs/Spencer.lua:485
+#: dialogs/Spencer.lua:486
 msgid "What is this person's name?"
 msgstr "Wie heißt diese Person?"
 
-#: dialogs/Spencer.lua:491
+#: dialogs/Spencer.lua:492
 msgid "Tania"
 msgstr "Tania"
 
-#: dialogs/Spencer.lua:494
+#: dialogs/Spencer.lua:495
 msgid "Well, since you are a guard member, I'll let you vouch for this Tania person."
 msgstr "Nun, da du jetzt ein Mitglied der Roten Garde bist, lass ich dich für diese Tania bürgen."
 
-#: dialogs/Spencer.lua:496
+#: dialogs/Spencer.lua:497
 msgid "Well, we have enough food for now. I'll let this Tania person in."
 msgstr "Außerdem haben wir bis jetzt genug zu essen. Ich lasse sie rein."
 
-#: dialogs/Spencer.lua:500
+#: dialogs/Spencer.lua:501
 msgid "I'd say you should take her straight away to Doc Moore, but he was found dead earlier."
 msgstr "Ich würde dir ja raten sie geradewegs zu Doc Moore zu bringen, aber wir haben ihn heute Morgen tot aufgefunden."
 
-#: dialogs/Spencer.lua:501
+#: dialogs/Spencer.lua:502
 msgid "You wouldn't happen to know anything about that, would you?"
 msgstr "Du weißt nicht reinzufälligerweise etwas darüber?"
 
-#: dialogs/Spencer.lua:507
+#: dialogs/Spencer.lua:508
 msgid "You must take her straight away to Doc Moore. We can't have a disease breaking out."
 msgstr "Du musst sie dann geradewegs zu Doc Moore bringen. Eine ansteckende Krankheit ist das Letzte, was wir gebrauchen können."
 
-#: dialogs/Spencer.lua:509
+#: dialogs/Spencer.lua:510
 msgid "Spencer said it was okay for Tania to enter the town, as long as she goes to see Doc Moore first thing. Now all I have to do is tell her and Pendragon."
 msgstr "Spencer sagte, es sei in Ordnung, dass Tania die Stadt betreten habe, solange sie als erstes zu Doc Moore geht. Jetzt muss ich nur noch ihr und Pendragon Bescheid geben."
 
-#: dialogs/Spencer.lua:516
+#: dialogs/Spencer.lua:517
 msgid "No, of course not."
 msgstr "Nein, natürlich nicht."
 
-#: dialogs/Spencer.lua:519
+#: dialogs/Spencer.lua:520
 msgid "I didn't think it was you, but you never know."
 msgstr "Ich hab auch nicht geglaubt das du es warst, aber man kann ja nie wissen."
 
-#: dialogs/Spencer.lua:520
+#: dialogs/Spencer.lua:521
 msgid "About your friend, she can come in provided that she pulls her weight around here."
 msgstr "Wegen deiner Freundin, sie kann reinkommen vorausgesetzt sie lässt sich hier mal blicken."
 
-#: dialogs/Spencer.lua:523
+#: dialogs/Spencer.lua:524
 msgid "When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I denied everything and he bought it! He says it is OK for Tania to enter the town: I should tell her and Pendragon."
 msgstr "Als ich fragte, ob Tania die Stadt betreten darf, konfrontierte mich Spencer mit Dok Moores Tod. Ich habe alles abgestritten und er kaufte es mir ab! Er sagte, es sei in Ordnung, dass Tania die Stadt betritt: Also sollte ich es ihr und Pendragon sagen."
 
-#: dialogs/Spencer.lua:525
+#: dialogs/Spencer.lua:526
 msgid "When I asked about Tania entering the town, Spencer said Doc Moore was found dead! Oh, and Tania can enter the town. I should go tell her that."
 msgstr "Als ich gefragt habe, ob Tania die Stadt betreten darf, hat Spencer mir gesagt das Doc Moore Tod aufgefunden wurde! Oh, Tania darf in die Stadt. Ich sollte es ihr sagen."
 
-#: dialogs/Spencer.lua:532
+#: dialogs/Spencer.lua:533
 msgid "He and I had a disagreement, which we settled."
 msgstr "Er und ich hatten eine kleine Meinungsverschiedenheit."
 
-#: dialogs/Spencer.lua:534
+#: dialogs/Spencer.lua:535
 msgid "I am the law here. If you have a problem, you come to me."
 msgstr "Ich bin hier das Gesetz. Wenn du ein Problem hast, hast du zu mir zu kommen!"
 
-#: dialogs/Spencer.lua:536
+#: dialogs/Spencer.lua:537
 msgid "I'm going to strip you of your membership in the Red Guard."
 msgstr "Ich entziehe dir hiermit die Mitgliedschaft der Roten Garde."
 
-#: dialogs/Spencer.lua:539
+#: dialogs/Spencer.lua:540
 msgid "Your friend can come in, but we will be watching the two of you closely."
 msgstr "Deine Freundin kann reinkommen, aber wir beide werden uns bald wieder unterhalten."
 
-#: dialogs/Spencer.lua:541
+#: dialogs/Spencer.lua:542
 msgid "When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I told him the truth, and he kicked me out of the Red Guard. But he let Tania in, Now all I have to do is tell her and Pendragon."
 msgstr "Als ich Spencer gefragt habe ob Tania die Stadt betreten darf hat Spencer mich mit dem Tod von Dok Moore konfrontiert. Ich habe ihm die Wahrheit gesagt, woraufhin er mich aus der Roten Garde geschmissen hat. Tania hat er aber reingelassen. Jetzt muss ich nur noch ihr und Pendragon Bescheid sagen."
 
-#: dialogs/Spencer.lua:543
+#: dialogs/Spencer.lua:544
 msgid "As the law, I pronounce you GUILTY of MURDER."
 msgstr "Als das Gesetz spreche ich Sie als MÖRDER für SCHULDIG."
 
-#: dialogs/Spencer.lua:544
+#: dialogs/Spencer.lua:545
 msgid "The punishment is death."
 msgstr "Die Bestrafung ist der Tod."
 
-#: dialogs/Spencer.lua:545
+#: dialogs/Spencer.lua:546
 msgid "When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me guilty of murder, and sentenced me to death."
 msgstr "Als ich Spencer gefragt hatte ob Tania die Stadt betreten darf hat er mich mit dem Tod von Doc Moore konfrontiert. Er fand mich als Mörder für schuldig und verhängte die Todesstrafe."
 
-#: dialogs/Spencer.lua:554
+#: dialogs/Spencer.lua:555
 msgid "I killed him just to see what it was like. It was awesome."
 msgstr "Ich hab ihn getötet um zu sehen wie es ist. Es war fantastisch."
 
-#: dialogs/Spencer.lua:556
+#: dialogs/Spencer.lua:557
 msgid "You are a sociopath, and a danger to us all!"
 msgstr "Du bist ein Soziopath und eine Gefahr für uns alle!"
 
-#: dialogs/Spencer.lua:557
+#: dialogs/Spencer.lua:558
 msgid "We must stop you before you kill again."
 msgstr "Wir müssen dich aufhalten, bevor du wieder tötest."
 
-#: dialogs/Spencer.lua:558
+#: dialogs/Spencer.lua:559
 msgid "When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me too dangerous to live."
 msgstr "Als ich Spencer gefragt habe ob Tania in die Stadt darf hat er mich mit dem Tod von Doc Moore konfrontiert. Er fand, dass ich zu gefährlich sei, als das ich weiterleben könne."
 
@@ -18348,16 +18463,16 @@ msgid "As a reward, I'm giving you a .22 Automatic pistol."
 msgstr "Als Belohnung gebe ich dir eine .22er Automatik-Pistole."
 
 #: dialogs/TutorialTom.lua:1172
-msgid "But I have to take this sourcebooks from you to preven you from cheating in the next section of the tutorial."
-msgstr "Doch ich muss dir diese Quelltext-Bücher wieder abnehmen, damit du im nächsten Bereich nicht schummeln kannst."
+msgid "But I have to take this sourcebooks from you to prevent you from cheating in the next section of the tutorial."
+msgstr ""
 
 #: dialogs/TutorialTom.lua:1173 dialogs/TutorialTom.lua:1179
 msgid "Sorry about that..."
 msgstr "Tut mir sehr Leid…"
 
 #: dialogs/TutorialTom.lua:1178
-msgid "But I have to take this sourcebook from you to preven you from cheating in the next section of the tutorial."
-msgstr "Doch ich muss dir dieses Quelltext-Buch wieder abnehmen, damit du im nächsten Bereich nicht schummeln kannst."
+msgid "But I have to take this sourcebook from you to prevent you from cheating in the next section of the tutorial."
+msgstr ""
 
 #: dialogs/TutorialTom.lua:1201
 msgid "I'd like to skip to a later section of the Tutorial."
@@ -18911,6 +19026,9 @@ msgstr "Will Gapes gab mir sein MS Wertpapier damit ich in die MegaSys Fabrik re
 #: dialogs/WillGapes.lua:194
 msgid "Be careful!"
 msgstr "Sei vorsichtig!"
+
+#~ msgid "But remember, the escape hatch won't be opened until you kill all the bots."
+#~ msgstr "Aber Vorsicht, du kannst erst wieder raus, wenn du sie alle erledigt oder auf deine Seite gebracht hast."
 
 #~ msgid "The book 'Nuclear Science for Dummies IV'."
 #~ msgstr "Das Buch 'Subatomare und Nukleare Wissenschaft für Dummies, Teil IV'."

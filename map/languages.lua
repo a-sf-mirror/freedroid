@@ -22,6 +22,7 @@
 ]]--
 
 languages{
+	{ name = "Brasileiro", locale = "pt_BR" },
 	{ name = "Deutsch",  locale = "de_DE" },
 	{ name = "Francais", locale = "fr_FR" },
 }
