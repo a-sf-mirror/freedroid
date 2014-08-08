@@ -1058,4 +1058,13 @@ struct data_dir {
 	char path[PATH_MAX];
 };
 
+struct difficulty {
+	float droid_max_speed;
+	float droid_hpmax;
+	float droid_hostile_healing;
+	float droid_friendly_healing;
+	float droid_experience_reward;
+	float droid_aggression_distance;
+};
+
 #endif

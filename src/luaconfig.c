@@ -1178,6 +1178,30 @@ static int lua_languages_ctor(lua_State *L)
 	return 0;
 }
 
+static void get_one_difficulty(lua_State *L, void *data)
+{
+	struct difficulty *diff = (struct difficulty *)data;
+
+	struct data_spec data_specs[] = {
+		{ "droid_max_speed",           "0", FLOAT_TYPE, &diff->droid_max_speed           },
+		{ "droid_hpmax",               "0", FLOAT_TYPE, &diff->droid_hpmax               },
+		{ "droid_hostile_healing",     "0", FLOAT_TYPE, &diff->droid_hostile_healing     },
+		{ "droid_friendly_healing",    "0", FLOAT_TYPE, &diff->droid_friendly_healing    },
+		{ "droid_experience_reward",   "0", FLOAT_TYPE, &diff->droid_experience_reward   },
+		{ "droid_aggression_distance", "0", FLOAT_TYPE, &diff->droid_aggression_distance },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	fill_structure_from_table(L, data_specs);
+}
+
+static int lua_difficulties_ctor(lua_State *L)
+{
+	fill_dynarray_from_table(L, &difficulties, sizeof(struct difficulty), get_one_difficulty);
+
+	return 0;
+}
+
 static int lua_title_screen_ctor(lua_State *L)
 {
 	struct title_screen *title = (struct title_screen *)lua_touserdata(L, lua_upvalueindex(1));
@@ -1307,6 +1331,7 @@ void init_luaconfig()
 		{ "npc_shop",                      lua_npc_shop_ctor                      },
 		{ "item_list",                     lua_item_list_ctor                     },
 		{ "languages",                     lua_languages_ctor                     },
+		{ "difficulties",                  lua_difficulties_ctor                  },
 		{ "skill_list",                    lua_skill_list_ctor                    },
 		{NULL, NULL}
 	};

@@ -401,4 +401,6 @@ EXTERN struct dynarray bullet_specs;
 
 EXTERN struct dynarray lang_specs;
 
+EXTERN struct dynarray difficulties;
+
 #endif				// _global_h

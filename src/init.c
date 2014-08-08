@@ -50,14 +50,7 @@ void Init_Game_Data(void);
 void UpdateCountersForThisFrame();
 void DoAllMovementAndAnimations(void);
 
-static struct {
-	double maxspeed_calibrator;
-	double maxenergy_calibrator;
-	float healing_hostile_calibrator;
-	float healing_friendly_calibrator;
-	double experience_reward_calibrator;
-	double aggression_distance_calibrator;
-} difficulty_parameters[3];
+struct dynarray difficulties;
 
 /**
  *
@@ -203,45 +196,6 @@ void PlayATitleFile(char *Filename)
 		free(screen.background);
 		free(screen.song);
 		free(screen.text);
-	}
-}
-static void Get_Difficulty_Parameters(void *DataPointer)
-{
-	char *EndOfDataPointer;
-	char *startptr;
-	char tmp[256];
-	const char *diffstr[] = { "easy", "normal", "hard" };
-	int i;
-
-#define MAXSPEED_CALIBRATOR_STRING "Droid maxspeed factor in %s: "
-#define MAXENERGY_CALIBRATOR_STRING "Droid maximum energy factor in %s: "
-#define HEALING_HOSTILE_CALIBRATOR_STRING "Hostile healing speed factor in %s: "
-#define HEALING_FRIENDLY_CALIBRATOR_STRING "Friendly healing speed factor in %s: "
-#define EXPERIENCE_REWARD_CALIBRATOR_STRING "Droid experience_reward factor in %s: "
-#define AGGRESSION_DISTANCE_CALIBRATOR_STRING "Droid aggression distance factor in %s: "
-
-	startptr = LocateStringInData(DataPointer, "*** Start of difficulty parameters ***");
-	EndOfDataPointer = LocateStringInData(DataPointer, "*** End of difficulty parameters ***");
-
-	for (i = 0; i < 3; i++) {
-
-		sprintf(tmp, MAXSPEED_CALIBRATOR_STRING, diffstr[i]);
-		ReadValueFromString(startptr, tmp, "%lf", &difficulty_parameters[i].maxspeed_calibrator, EndOfDataPointer);
-
-		sprintf(tmp, MAXENERGY_CALIBRATOR_STRING, diffstr[i]);
-		ReadValueFromString(startptr, tmp, "%lf", &difficulty_parameters[i].maxenergy_calibrator, EndOfDataPointer);
-
-		sprintf(tmp, HEALING_HOSTILE_CALIBRATOR_STRING, diffstr[i]);
-		ReadValueFromString(startptr, tmp, "%f", &difficulty_parameters[i].healing_hostile_calibrator, EndOfDataPointer);
-
-		sprintf(tmp, HEALING_FRIENDLY_CALIBRATOR_STRING, diffstr[i]);
-		ReadValueFromString(startptr, tmp, "%f", &difficulty_parameters[i].healing_friendly_calibrator, EndOfDataPointer);
-
-		sprintf(tmp, EXPERIENCE_REWARD_CALIBRATOR_STRING, diffstr[i]);
-		ReadValueFromString(startptr, tmp, "%lf", &difficulty_parameters[i].experience_reward_calibrator, EndOfDataPointer);
-
-		sprintf(tmp, AGGRESSION_DISTANCE_CALIBRATOR_STRING, diffstr[i]);
-		ReadValueFromString(startptr, tmp, "%lf", &difficulty_parameters[i].aggression_distance_calibrator, EndOfDataPointer);
 	}
 }
 
@@ -429,13 +383,15 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 			EndOfThisRobot[0] = '*';	// We put back the star at its place
 	}
 
+	struct difficulty *diff = dynarray_member(&difficulties, GameConfig.difficulty_level, sizeof(struct difficulty));
+
 	for (i = 0; i < Number_Of_Droid_Types; i++) {
-		Droidmap[i].maxspeed *= difficulty_parameters[GameConfig.difficulty_level].maxspeed_calibrator;
-		Droidmap[i].maxenergy *= difficulty_parameters[GameConfig.difficulty_level].maxenergy_calibrator;
-		Droidmap[i].experience_reward *= difficulty_parameters[GameConfig.difficulty_level].experience_reward_calibrator;
-		Droidmap[i].aggression_distance *= difficulty_parameters[GameConfig.difficulty_level].aggression_distance_calibrator;
-		Droidmap[i].healing_friendly *= difficulty_parameters[GameConfig.difficulty_level].healing_friendly_calibrator;
-		Droidmap[i].healing_hostile *= difficulty_parameters[GameConfig.difficulty_level].healing_hostile_calibrator;
+		Droidmap[i].maxspeed *= diff->droid_max_speed;
+		Droidmap[i].maxenergy *= diff->droid_hpmax;
+		Droidmap[i].experience_reward *= diff->droid_experience_reward;
+		Droidmap[i].aggression_distance *= diff->droid_aggression_distance;
+		Droidmap[i].healing_friendly *= diff->droid_friendly_healing;
+		Droidmap[i].healing_hostile *= diff->droid_hostile_healing;
 	}
 };				// int Get_Robot_Data ( void )
 /**
@@ -452,6 +408,10 @@ void Init_Game_Data()
 	if (find_file("languages.lua", MAP_DIR, fpath, PLEASE_INFORM)) {
 		run_lua_file(LUA_CONFIG, fpath);
 	}
+
+	// Load difficulties.
+	find_file("difficulties.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load skills and programs (spells) information
 	find_file("skill_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
@@ -481,11 +441,6 @@ void Init_Game_Data()
 	// Load add-on specifications.
 	find_file("addon_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
-
-	find_file("difficulty_params.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
-	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
-	Get_Difficulty_Parameters(Data);
-	free(Data);
 
 	// Time to eat some droid archetypes...
 	find_file("droid_archetypes.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
