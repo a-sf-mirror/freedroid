@@ -269,7 +269,7 @@ function modWPCommon.Test.FileExists( name )
 	return returnval
 end
 
---	test existance of multiple files
+--	test existence of multiple files
 --	[in] filenames	table of path/filenames to be tested
 function modWPCommon.Test.Files( filenames )
 	for item,filename in pairs(filenames) do
@@ -679,7 +679,7 @@ modWPCommon.Wiki.ColourCaution	= "color=#ff7f00"
 --	wiki markup to denote end of wiki colour markup
 modWPCommon.Wiki.ColourEnd		= "%%"
 
---	text used to have wiki page display a seperation line
+--	text used to have wiki page display a separation line
 modWPCommon.Wiki.LineSep = string.rep("-",4)
 
 --	text used to have wiki page insert end of line linebreak
@@ -688,8 +688,8 @@ modWPCommon.Wiki.LineBreakEnd = string.rep("\\",2)
 --	text used to have wiki page force line break and clear float settings
 modWPCommon.Wiki.ForceBreak = "[[<<]]"
 
---	text to seperate label from data
-modWPCommon.Wiki.Seperator = ": "
+--	text to separate label from data
+modWPCommon.Wiki.Separator = ": "
 
 --	text used for List Item on wiki pages
 modWPCommon.Wiki.LI = "* "
@@ -775,8 +775,8 @@ function modWPCommon.Wiki.TableRowAppend( extrastyle )
 	return "(:cell" .. extrastyle .. ":)"
 end
 
---	text placeholder to seperate adjacent, inline tables
-modWPCommon.Wiki.TableSeperator = "%lfloat%&nbsp;%%"
+--	text placeholder to separate adjacent, inline tables
+modWPCommon.Wiki.TableSeparator = "%lfloat%&nbsp;%%"
 
 --	text entry formating
 ----------------------------------------

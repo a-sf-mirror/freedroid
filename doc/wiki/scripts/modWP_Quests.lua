@@ -244,7 +244,7 @@ end
 function modWP_Quests.WikiWrite()
 	local modWIKI = modWP_Quests.modcommon.Wiki
 	local LI = modWIKI.LI
-	local SEP = modWIKI.Seperator
+	local SEP = modWIKI.Separator
 	local modNPC = assert(require(modWP_Quests.requiredModules[1]))
 	local filename = modWP_Quests.modcommon.outputfilenames.quests
 	local filepath = tostring(modWP_Quests.modcommon.paths.destRootFile .. filename)

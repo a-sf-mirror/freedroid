@@ -206,7 +206,7 @@ function modWP_Droid.WikiWrite()
 	local modItems = assert(require(modWP_Droid.wikirequiredModules[1]))
 	local modWIKI = modWP_Droid.modcommon.Wiki
 	local LI = modWIKI.LI
-	local SEP = modWIKI.Seperator
+	local SEP = modWIKI.Separator
 	local filename = modWP_Droid.modcommon.outputfilenames.droids
 	local filepath = tostring(modWP_Droid.modcommon.paths.destRootFile .. filename)
 	local wikitext = {}
@@ -284,8 +284,8 @@ function modWP_Droid.WikiWrite()
 		textdata = modWIKI.TableGen( tblstyle, nil, droidlabel, droiddata, "width=\'80%\'", "align=center" )
 		wikitext = modWIKI.PageAppend( wikitext, textdata )
 		--	table seperator
-		wikitext[#wikitext + 1] = modWIKI.TableSeperator
-		wikitext[#wikitext + 1] = modWIKI.TableSeperator
+		wikitext[#wikitext + 1] = modWIKI.TableSeparator
+		wikitext[#wikitext + 1] = modWIKI.TableSeparator
 		--	display drop percentages
 		DataSequence = { "pct_EntropyInvrtr", "pct_PlasmaTrans", "pct_SprCondRelay", "pct_AMConverter", "pct_TachyonCond" }
 		local tblheader = select(1, modWP_Droid.GetDroidStringsPair( droiditem, "droppct" ))

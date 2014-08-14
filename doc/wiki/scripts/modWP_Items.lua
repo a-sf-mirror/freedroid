@@ -336,7 +336,7 @@ end
 --	wiki format parent/child item data
 function modWP_Items.WikiPrintParentChildData( itemIndex, parentID, childrenID, textColour, makelink )
 	local modWIKI = modWP_Items.modcommon.Wiki
-	local SEP = modWIKI.Seperator
+	local SEP = modWIKI.Separator
 	local text = {}
 	if ((( parentID == nil ) or ( itemIndex == nil ))
 		or ( type(parentID) ~= 'table' )) then

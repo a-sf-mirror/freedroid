@@ -89,7 +89,7 @@ For each module, the sequence used is:
 - call module's WikiWrite function -> convert data structures to wiki pages
 ## NOTE: some code modules may not have a WikiWrite function - but the module is needed to parse information.
 The produced data is used by other modules for wiki pages.
-## NOTE: process modWP_Levels and modWP_NPC last (in that order) due to dependencies on other moduels
+## NOTE: process modWP_Levels and modWP_NPC last (in that order) due to dependencies on other modules
 
 FDRPG LUA DATA FILES
 (i.e. item_specs.lua and npc_specs.lua )

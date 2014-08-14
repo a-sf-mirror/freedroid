@@ -228,7 +228,7 @@ function modWP_Levels.ProcessData()
 					table.remove(modWP_Levels[tbl.name],levelindex)
 				end
 			end	--	loop through other tables
-		end	--	Level as referenece
+		end	--	Level as reference
 		LevelItem["urlAnchor"] = modWP_Levels.modcommon.Wiki.HLink .. modWP_Levels.modcommon.Wiki.WikifyLink( "level" .. LevelItem.levelnumber )
 	end	--	loop through AllLevelData
 	modWP_Levels.GridTrim()
@@ -723,7 +723,7 @@ end
 function modWP_Levels.WikiWrite()
 	local modWIKI = modWP_Levels.modcommon.Wiki
 	local LI = modWIKI.LI
-	local SEP = modWIKI.Seperator
+	local SEP = modWIKI.Separator
 	local colourCryo = "color=#5f5fff"
 	local colourTown = "green"
 	local filename = modWP_Levels.modcommon.outputfilenames.levels
@@ -961,7 +961,7 @@ function modWP_Levels.WikiEntryLevelText( levelnumber, label, withURL )
 			urltext = modWP_Levels.modcommon.outputfilenames.levels .. modWP_Levels.AllLevelData[levelindex].urlAnchor
 		end
 		local leveltext = modWP_Levels.modcommon.Wiki.LinkText(	urltext, strText )
-		return modWP_Levels.modcommon.Wiki.TextEntry( label, leveltext,	modWP_Levels.modcommon.Wiki.Seperator, nil, false )
+		return modWP_Levels.modcommon.Wiki.TextEntry( label, leveltext,	modWP_Levels.modcommon.Wiki.Separator, nil, false )
 	end
 end
 

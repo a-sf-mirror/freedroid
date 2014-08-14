@@ -359,7 +359,7 @@ function modWP_NPC.ProcessNPCAliases()
 		local aliastext = modWP_NPC.modcommon.Extract.SearchText( line, pattern, "[MATCH]" )
 		--	alias not found
 		if ( aliastext == nil ) then goto ALIAS_NEXT_LINE end
-		--	stuff in between are aliases (may be comma seperated)
+		--	stuff in between are aliases (may be comma separated)
 		local npc,npcindex = modWP_NPC.modcommon.Extract.GetTableItem(modWP_NPC.AllNPCData,"name", charname)
 		--	character name not found in AllNPCData
 		if (npc == nil) then goto ALIAS_NEXT_LINE end
@@ -444,7 +444,7 @@ function modWP_NPC.ProcessHeaderMarkers()
 			if (not (#replacetext > 0)) then
 				replacetext = "<" .. marker .. ">"
 			end
-			-- replace all occurrances of "subkey" with replace text
+			-- replace all occurrences of "subkey" with replace text
 			local searchText = modWP_NPC.MarkerSearchText .. subkey .. modWP_NPC.MarkerSearchText
 			if ( npc.wikihead.PURPOSE ~= nil ) then
 				npc.wikihead.PURPOSE = npc.wikihead.PURPOSE:gsub(searchText, replacetext)
@@ -523,7 +523,7 @@ function modWP_NPC.WikiWrite()
 	-- now make the page
 	local modWIKI = modWP_NPC.modcommon.Wiki
 	local LI = modWIKI.LI
-	local SEP = modWIKI.Seperator
+	local SEP = modWIKI.Separator
 	local filename = modWP_NPC.modcommon.outputfilenames.npc
 	local filepath = tostring(modWP_NPC.modcommon.paths.destRootFile .. filename)
 	local wikitext = {}

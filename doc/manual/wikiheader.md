@@ -1,7 +1,7 @@
 Dialog Wiki Information Header {#wikiheader}
 ============================================
 
-This chapter describes an addition to the dialog files to embed character informtion into a dialog file.
+This chapter describes an addition to the dialog files to embed character information into a dialog file.
 This process was originally developed to aid in parsing of source code to populating a wiki page. However, the
 wiki header details can also be used to amplify game character details and aid future development.
 \n
@@ -115,12 +115,12 @@ Marker - Value {#wiki_marker_value}
 -----------------------------------
 
 _value_ is a unique identifier of the game element involved. This text will be used by wiki parsing to look up actual presentation text
-or links to element's information on other wiki pages. All instances of _key_ will be replaced with an assoicated URL link or anchor
+or links to element's information on other wiki pages. All instances of _key_ will be replaced with an associated URL link or anchor
 to what value identifies.
 \n
 \n
 If the value text appears in angle brackets ( `<text>` ) on the wiki page it indicates that the identifier _value_ represents could not be
-located in the source. Likely causes are that _value_ is mispelled or the identifier has been removed from source.
+located in the source. Likely causes are that _value_ is misspelled or the identifier has been removed from source.
 \n
 \n
 Purpose {#wiki_purpose}
