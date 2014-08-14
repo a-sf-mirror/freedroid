@@ -169,7 +169,7 @@ static int add_item(struct npc *n, const char *item_id)
 	int item_type = get_item_type_by_id(item_id);
 	int amount = 1;
 
-	// Check to make certain we recieved a valid item name
+	// Check to make certain we received a valid item name
 	if ((item_type < 0) || (item_type >= Number_Of_Item_Types)) {
 		error_message(__FUNCTION__, "No items with the name \"%s\" exist in the game. Cannot create item.\nCannot add item to shop.", PLEASE_INFORM, item_id);
 		return 1;

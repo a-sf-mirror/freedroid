@@ -41,7 +41,7 @@
  * \brief Structure type used for storing a text entry.
  */
 struct text_list_entry {
-	char *text;          /**< Pointer to the text. Must be already allocated. No ownership is transfered. */
+	char *text;          /**< Pointer to the text. Must be already allocated. No ownership is transferred. */
 	int data;            /**< An integer user data (example: Index of this text entry in an other list). */
 	int is_allocated;    /**< If true, the memory holding the text is allocated by the widget. */
 	SDL_Rect rect;       /**< Outer rectangle used by the text entry. */

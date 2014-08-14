@@ -254,7 +254,7 @@ is not really an autogun.  Instead it's something else.", PLEASE_INFORM | IS_FAT
 /*
  * This function animates an animated obstacle.
  * It can be a 'frame animated' obstacle, i.e. an obstacle associated to
- * several images, and/or an obstacle emiting an animated glowing light.
+ * several images, and/or an obstacle emitting an animated glowing light.
  */
 static int animate_obstacle(level *obstacle_lvl, void *scenery_piece)
 {

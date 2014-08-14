@@ -129,13 +129,13 @@ return {
 			Tux:hurt(1)
 			Tux:hurt(-1)
 			if (Tux:get_hp() == 60) then
-				Npc:says("HEALTH test 1 succeded", "NO_WAIT")
+				Npc:says("HEALTH test 1 succeeded", "NO_WAIT")
 			else
 				guy_fail("HEALTH 1")
 			end
 
 			if (Tux:get_max_hp() == 60) then
-				Npc:says("HEALTH test 2 succeded", "NO_WAIT")
+				Npc:says("HEALTH test 2 succeeded", "NO_WAIT")
 			else
 				guy_fail("HEALTH 2")
 			end

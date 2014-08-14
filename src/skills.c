@@ -645,7 +645,7 @@ static void establish_skill_subset_map(int *SkillSubsetMap)
 
 /** Activate nth skill from all skills.
  * @param skill_num is a index into all skills array. 
- *        It must points an aquired skill.
+ *        It must points an acquired skill.
  *
  */
 void activate_nth_skill(int skill_num)
@@ -674,7 +674,7 @@ void set_nth_quick_skill(int quick_skill)
 					       GetMousePos_y()) +
 		    NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible;
 		
-		// Variable number is an index into already aquired skills.
+		// Variable number is an index into already acquired skills.
 		// We change it into index into array of all skills.
 		int SkillSubsetMap[number_of_skills];
 		establish_skill_subset_map(&(SkillSubsetMap[0]));
@@ -741,7 +741,7 @@ static void load_skill_level_images_if_needed(void)
 /**
  * This function displays the SKILLS SCREEN.  This is NOT the same as the
  * CHARACTER SCREEN.  In the skills screen you can see what skills/spells
- * you currenlty have availabe and you can select a new readied skill by
+ * you currenlty have available and you can select a new readied skill by
  * clicking on it with the mouse.
  */
 void ShowSkillsScreen(void)

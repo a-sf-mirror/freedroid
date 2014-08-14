@@ -51,7 +51,7 @@ static struct image ToColumnBlock;
 static struct image ToLeaderBlock;
 
 //--------------------
-// Class seperation of the blocks 
+// Class separation of the blocks 
 //
 int BlockClass[TO_BLOCKS] = {
 	CONNECTOR,		// cable

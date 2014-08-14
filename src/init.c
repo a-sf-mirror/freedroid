@@ -421,7 +421,7 @@ void Init_Game_Data()
 	find_file("blast_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
-	// Load the bullet data (required for the item archtypes to load)
+	// Load the bullet data (required for the item archetypes to load)
 	//
 	dynarray_free(&bullet_specs);
 	find_file("bullet_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);

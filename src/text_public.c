@@ -224,7 +224,7 @@ This indicates some corruption in the data file in question.", PLEASE_INFORM | I
 };				// char* ReadAndMallocStringFromData ( ... )
 
 /**
- * This function counts the number of occurences of a string in a given
+ * This function counts the number of occurrences of a string in a given
  * other string.
  */
 int CountStringOccurences(char *SearchString, const char *TargetString)

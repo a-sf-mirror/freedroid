@@ -470,7 +470,7 @@ static void probe_display_vtribargraph(int x, int y, int width, int height, int 
  * Display a 1 dimensional statistic
  *
  * Display a 1D array of vertical bars. The height of each bar depends
- * on the relative number of occurence of each value.
+ * on the relative number of occurrence of each value.
  * The display size of a bar is adapted to best fit the graph's width and
  * height.
  *

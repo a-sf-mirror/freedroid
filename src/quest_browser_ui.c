@@ -242,7 +242,7 @@ static void print_statistics(void)
 	// This is where we display statistics about each bot/human type we have interacted with:
 	// Killed/Destroyed: humans are 'killed', bots are 'destroyed', show #
 	// Takeover: # successes, # failures, % success/total (hidden for human models)
-	// Damage: # damage dealt, # damage recieved, % delt/total
+	// Damage: # damage dealt, # damage received, % delt/total
 	int counter;
 	for (counter = 0; counter < Number_Of_Droid_Types; counter++) {
 		model = srt[counter];

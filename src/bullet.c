@@ -416,7 +416,7 @@ void MoveActiveSpells(void)
 
 		// We do some collision checking with the obstacles in each
 		// 'active_direction' of the spell and deactivate those directions,
-		// where some collision with solid material has happend.
+		// where some collision with solid material has happened.
 		//
 		for (direction_index = 0; direction_index < RADIAL_SPELL_DIRECTIONS; direction_index++) {
 			if (AllActiveSpells[i].active_directions[direction_index] == FALSE)

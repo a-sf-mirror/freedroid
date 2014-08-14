@@ -101,7 +101,7 @@ int item_can_be_customized(item *it)
 
 /**
  * \brief Checks if the spec of an add-on is compatible with an item.
- * \param addonspec Spec of the add-on whose compatiblity to test.
+ * \param addonspec Spec of the add-on whose compatibility to test.
  * \param it Item to which the add-on would be installed.
  * \return TRUE if compatible, FALSE if incompatible.
  */

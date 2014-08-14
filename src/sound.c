@@ -185,7 +185,7 @@ void InitAudio(void)
 			SDL_GetError(), Mix_GetError(), GameConfig.Current_Sound_Output_Fmt);
 
 		error_message(__FUNCTION__, "\n"
-			"\nA Problem occured while trying to open the audio device.\n"
+			"\nA Problem occurred while trying to open the audio device.\n"
 			"Reverting to default settings.", NO_REPORT);
 
 		// revert to stereo if we fail to open the audio device

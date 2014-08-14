@@ -1115,7 +1115,7 @@ void FillInDefaultBulletStruct(bullet * CurBullet, int bullet_image_type, short 
 	CurBullet->height = 0;
 	CurBullet->type = bullet_image_type;
 
-	// Previously, we had the damage done only dependant upon the weapon used.  Now
+	// Previously, we had the damage done only dependent upon the weapon used.  Now
 	// the damage value is taken directly from the character stats, and the UpdateAll...stats
 	// has to do the right computation and updating of this value.  hehe. very convenient.
 	CurBullet->damage = Me.base_damage + MyRandom(Me.damage_modifier);

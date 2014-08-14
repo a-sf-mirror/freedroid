@@ -224,7 +224,7 @@ static void update_secondary_stats_from_primary_stats()
 	//
 	Me.to_hit = 100 - 40 * exp(- 0.03 * Me.dexterity);
 
-	// How many life points can this character aquire currently
+	// How many life points can this character acquire currently
 	//
 	Me.maxenergy = BASE_HPMAX + (Me.exp_level) * HPMAX_GAIN_PER_LEVEL
                                   + (Me.physique) * HPMAX_GAIN_PER_PHY_POINT;

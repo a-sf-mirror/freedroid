@@ -1122,7 +1122,7 @@ return {
 				local Tutorial_ice_amount = Tux:count_item("Bottled Tutorial ice")
 				Tux:del_item_backpack("Bottled Tutorial ice", Tutorial_ice_amount)
 				Tux:add_item("Bottled ice", Tutorial_ice_amount)
-				display_big_message("") -- so that we don't have the Item Recieved: spam on the screen which might be confusing
+				display_big_message("") -- so that we don't have the Item Received: spam on the screen which might be confusing
 				display_big_message("")
 				display_big_message("")
 				display_big_message("")

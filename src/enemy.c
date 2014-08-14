@@ -1487,7 +1487,7 @@ static void state_machine_situational_transitions(enemy * ThisRobot)
 		ThisRobot->combat_state = RUSH_TUX_AND_OPEN_TALK;
 	}
 
-	// Transition away from Rush Tux gracefully if it is unset or if the bot became agressive
+	// Transition away from Rush Tux gracefully if it is unset or if the bot became aggressive
 	if (ThisRobot->combat_state == RUSH_TUX_AND_OPEN_TALK) {
 		if (!ThisRobot->will_rush_tux)
 			ThisRobot->combat_state = UNDEFINED_STATE;

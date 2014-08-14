@@ -14,7 +14,7 @@
 	BLOCKS_VISION_TOO		 Light will not pass through this obstacle, it will cast realtime-"shadow"
 	IS_SMASHABLE			 Obstacle can be destroyed (barrels/chests/glasswalls)
 	DROPS_RANDOM_TREASURE	 Obstacle drops items on destruction (barrels/chests)
-	NEEDS_PRE_PUT			 Obstacle will be displayed underneath of most other obstacles (usefull for blood/droidnests etc which should not render partly on top of nearby walls)
+	NEEDS_PRE_PUT			 Obstacle will be displayed underneath of most other obstacles (useful for blood/droidnests etc which should not render partly on top of nearby walls)
 	GROUND_LEVEL			 Obstacle does not block bullets
 	IS_WALKABLE				 Obstacle can be walked through although it has a collision rectangle ("closed"-frames of animated doors etc)
 	IS_CLICKABLE   			 Obstacle can be clicked on

@@ -576,7 +576,7 @@ typedef struct tux {
 
 	unsigned int Gold;
 	string character_name;
-	mission AllMissions[MAX_MISSIONS_IN_GAME];	// What must be done to fullfill this mission?
+	mission AllMissions[MAX_MISSIONS_IN_GAME];	// What must be done to fulfill this mission?
 	int marker;		// In case you've taken over a marked droid, this will contain the marker
 	float LastCrysoundTime;
 	float TextVisibleTime;

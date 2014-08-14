@@ -440,7 +440,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
  * its submenus.  This means usual content of the screen, i.e. the 
  * combat screen and top status bar, is "faded out", the rest of 
  * the screen is cleared.  This function resolves some redundancy 
- * that occured since there are so many submenus needing this.
+ * that occurred since there are so many submenus needing this.
  */
 void InitiateMenu(const char *background_name)
 {

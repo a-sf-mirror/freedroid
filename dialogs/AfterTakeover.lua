@@ -526,7 +526,7 @@ return {
 			elseif (Aftertakeover_drain_attempt == "auto") then
 				next("node53")
 			else
-				Npc:says("ERROR OCCURED; Aftertakeover node 50, state for Aftertakeover_drain_attempt not handled.")
+				Npc:says("ERROR OCCURRED; Aftertakeover node 50, state for Aftertakeover_drain_attempt not handled.")
 			end
 		end,
 	},
@@ -559,7 +559,7 @@ return {
 	},
 	{
 		id = "node53",
-		text = _"BUG OCCURED Aftertakeover node 53",
+		text = _"BUG OCCURRED Aftertakeover node 53",
 		echo_text = false,
 		code = function()
 			if (Aftertakeover_hcfnow) then

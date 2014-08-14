@@ -875,7 +875,7 @@ void InitVideo(void)
 
 	vid_bpp = 32;		/* start with the simplest */
 
-	// End of possibly open-gl dependant initialisation stuff...
+	// End of possibly open-gl dependent initialisation stuff...
 	//
 	if (vid_info->wm_available) {	/* if there's a window-manager */
 		char window_title_string[200];

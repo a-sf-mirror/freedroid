@@ -84,7 +84,7 @@ void equip_item(item *new_item)
 	
 	new_itemspec = &ItemMap[new_item->type];
 
-	// If the item can't be equiped, stop now and throw a warning.
+	// If the item can't be equipped, stop now and throw a warning.
 	if (!equippable_item(new_item)) {
 		error_message(__FUNCTION__, "Tried to equip the item \"%s\" which can't be equipped.",
 				PLEASE_INFORM, new_itemspec->id);
