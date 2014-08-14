@@ -1104,45 +1104,14 @@ enemy *GetLivingDroidBelowMouseCursor()
 
 };				// int GetLivingDroidBelowMouseCursor ( )
 
-void FillInDefaultBulletStruct(bullet * CurBullet, int bullet_image_type, short int weapon_item_type)
-{
-
-	memset(CurBullet, 0, sizeof(bullet));
-	// Fill in what wasn't specified
-	CurBullet->pos.x = Me.pos.x;
-	CurBullet->pos.y = Me.pos.y;
-	CurBullet->pos.z = Me.pos.z;
-	CurBullet->height = 0;
-	CurBullet->type = bullet_image_type;
-
-	// Previously, we had the damage done only dependent upon the weapon used.  Now
-	// the damage value is taken directly from the character stats, and the UpdateAll...stats
-	// has to do the right computation and updating of this value.  hehe. very convenient.
-	CurBullet->damage = Me.base_damage + MyRandom(Me.damage_modifier);
-	CurBullet->mine = TRUE;
-	CurBullet->owner = -1;
-	CurBullet->time_to_hide_still = 0.3;
-	CurBullet->bullet_lifetime = ItemMap[weapon_item_type].item_gun_bullet_lifetime;
-	CurBullet->pass_through_hit_bodies = ItemMap[weapon_item_type].item_gun_bullet_pass_through_hit_bodies;
-
-	CurBullet->time_in_seconds = 0;
-
-	CurBullet->freezing_level = 0;
-	CurBullet->poison_duration = 0;
-	CurBullet->poison_damage_per_sec = 0;
-	CurBullet->paralysation_duration = 0;
-}
-
 /**
- * This function fires a bullet from the influencer in some direction, 
+ * This function fires a bullet from the influencer in some direction,
  * no matter whether this is 'allowed' or not, not questioning anything
  * and SILENTLY TRUSTING THAT THIS TUX HAS A RANGED WEAPON EQUIPPED.
  */
 void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, bullet * bullet_parameters,
-			    moderately_finepoint target_location)
+                            moderately_finepoint target_location)
 {
-	int i = 0;
-	bullet *CurBullet = NULL;
 	float BulletSpeed = ItemMap[weapon_item_type].item_gun_speed;
 	double speed_norm;
 	moderately_finepoint speed;
@@ -1152,16 +1121,16 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 
 	DebugPrintf(1, "\n%s(): target location: x=%f, y=%f.", __FUNCTION__, target_location.x, target_location.y);
 
-	// We search for the first free bullet entry in the 
+	// We search for the first free bullet entry in the
 	// bullet list...
 	//
-	i = find_free_bullet_index();
-	CurBullet = &(AllBullets[i]);
+	int bullet_index = find_free_bullet_index();
+	struct bullet *new_bullet = &(AllBullets[bullet_index]);
 
 	if (bullet_parameters)
-		memcpy(CurBullet, bullet_parameters, sizeof(bullet));
+		memcpy(new_bullet, bullet_parameters, sizeof(struct bullet));
 	else
-		FillInDefaultBulletStruct(CurBullet, bullet_image_type, weapon_item_type);
+		bullet_init_for_player(new_bullet, bullet_image_type, weapon_item_type);
 
 	// Now we can set up recharging time for the Tux...
 	// The firewait time is now modified by the ranged weapon skill
@@ -1182,10 +1151,10 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	speed_norm = sqrt(speed.x * speed.x + speed.y * speed.y);
 	if (!speed_norm)
 		fprintf(stderr, "Bullet speed is zero\n");
-	CurBullet->speed.x = (speed.x / speed_norm);
-	CurBullet->speed.y = (speed.y / speed_norm);
-	CurBullet->speed.x *= BulletSpeed;
-	CurBullet->speed.y *= BulletSpeed;
+	new_bullet->speed.x = (speed.x / speed_norm);
+	new_bullet->speed.y = (speed.y / speed_norm);
+	new_bullet->speed.x *= BulletSpeed;
+	new_bullet->speed.y *= BulletSpeed;
 
 	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG, "\nFireTuxRangedWeaponRaw(...) : speed_norm = %f.", speed_norm);
 
@@ -1195,8 +1164,8 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	// As a reaction, we will shift the target point by a similar vector
 	// and then re-compute the bullet vector.
 	//
-	offset.x = OffsetFactor * (CurBullet->speed.x / BulletSpeed);
-	offset.y = OffsetFactor * (CurBullet->speed.y / BulletSpeed);
+	offset.x = OffsetFactor * (new_bullet->speed.x / BulletSpeed);
+	offset.y = OffsetFactor * (new_bullet->speed.y / BulletSpeed);
 
 	// And now we re-do it all!  But this time with the extra offset
 	// applied to the SHOT TARGET POINT!
@@ -1204,42 +1173,26 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	speed.x = target_location.x - Me.pos.x - offset.x;
 	speed.y = target_location.y - Me.pos.y - offset.y;
 	speed_norm = sqrt(speed.x * speed.x + speed.y * speed.y);
-	CurBullet->speed.x = (speed.x / speed_norm);
-	CurBullet->speed.y = (speed.y / speed_norm);
-	CurBullet->speed.x *= BulletSpeed;
-	CurBullet->speed.y *= BulletSpeed;
-
-	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG, "\nFireTuxRangedWeaponRaw(...) : speed_norm = %f.", speed_norm);
+	new_bullet->speed.x = (speed.x / speed_norm);
+	new_bullet->speed.y = (speed.y / speed_norm);
+	new_bullet->speed.x *= BulletSpeed;
+	new_bullet->speed.y *= BulletSpeed;
 
 	// Now we determine the angle of rotation to be used for
 	// the picture of the bullet itself
 	//
 
-	CurBullet->angle = -(atan2(speed.y, speed.x) * 180 / M_PI + 90 + 45);
-
-	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG, "\nFireTuxRangedWeaponRaw(...) : Phase of bullet=%d.", CurBullet->phase);
-	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG, "\nFireTuxRangedWeaponRaw(...) : angle of bullet=%f.", CurBullet->angle);
+	new_bullet->angle = -(atan2(speed.y, speed.x) * 180 / M_PI + 90 + 45);
 
 	// To prevent influ from hitting himself with his own bullets,
 	// move them a bit..
 	//
-	offset.x = OffsetFactor * (CurBullet->speed.x / BulletSpeed);
-	offset.y = OffsetFactor * (CurBullet->speed.y / BulletSpeed);
+	offset.x = OffsetFactor * (new_bullet->speed.x / BulletSpeed);
+	offset.y = OffsetFactor * (new_bullet->speed.y / BulletSpeed);
 
-	CurBullet->pos.x += offset.x;
-	CurBullet->pos.y += offset.y;
-	CurBullet->pos.z = Me.pos.z;
-	CurBullet->height = tux_rendering.gun_muzzle_height;
-
-	CurBullet->faction = FACTION_SELF;
-
-	DebugPrintf(0, "\nOffset:  x=%f y=%f.", offset.x, offset.y);
-
-	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG,
-		    "\nFireTuxRangedWeaponRaw(...) : final position of bullet = (%f/%f).", CurBullet->pos.x, CurBullet->pos.y);
-	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG, "\nFireTuxRangedWeaponRaw(...) : BulletSpeed=%f.", BulletSpeed);
-
-};				// void FireTuxRangedWeaponRaw ( ) 
+	new_bullet->pos.x += offset.x;
+	new_bullet->pos.y += offset.y;
+}
 
 /**
  * In some cases, the mouse button will be pressed, but still some signs

@@ -585,6 +585,80 @@ I seem to have run out of free bullet entries.  This can't normally happen.  -->
 };				// void find_free_bullet_entry_pointer ( void )
 
 /**
+ * \brief Initialize a bullet - Common part
+ *
+ * \param bullet            Pointer to the bullet struct to fill in
+ * \param bullet_type       Type of the bullet (i.e. its graphical representation)
+ * \param from_pos          Starting position of the bullet
+ * \param height            Vertical offset applied when drawing the bullet, to simulate a shot starting from the gun's muzzle
+ * \param weapon_item_type  Type of the weapon used to shoot the bullet (defines
+ *                          the behavior of the bullet)
+ */
+static void _bullet_init(struct bullet *bullet, int bullet_type, gps *from_pos, int height, short int weapon_item_type)
+{
+	memset(bullet, 0, sizeof(struct bullet));
+
+	// Fill in non-zero field
+	bullet->type = bullet_type;
+	bullet->pos.x = from_pos->x;
+	bullet->pos.y = from_pos->y;
+	bullet->pos.z = from_pos->z;
+	bullet->height = height;
+
+	// Bullet characteristics defined by the weapon used to fire the bullet.
+	bullet->bullet_lifetime = ItemMap[weapon_item_type].item_gun_bullet_lifetime;
+	bullet->pass_through_hit_bodies = ItemMap[weapon_item_type].item_gun_bullet_pass_through_hit_bodies;
+}
+
+
+/**
+ * \brief Initialize a bullet, shot by the player
+ *
+ * \param bullet            Pointer to the bullet struct to fill in
+ * \param bullet_type       Type of the bullet (i.e. its graphical representation)
+ * \param weapon_item_type  Type of the weapon used to shoot the bullet (defines
+ *                          the behavior of the bullet)
+ */
+void bullet_init_for_player(struct bullet *bullet, int bullet_type, short int weapon_item_type)
+{
+	// Initialize the characteristics that do not depend on the shooter
+	_bullet_init(bullet, bullet_type, &Me.pos, tux_rendering.gun_muzzle_height, weapon_item_type);
+
+	// The damage depends on the weapon's type + the player's stats.
+	// It is computed and stored in the Me struct.
+	bullet->damage = Me.base_damage + MyRandom(Me.damage_modifier);
+
+	// Remember that the bullet was shot by Tux.
+	bullet->mine = TRUE;
+	bullet->owner = -1;
+	bullet->faction = FACTION_SELF;
+	bullet->time_to_hide_still = 0.3;
+}
+
+/**
+ * \brief Initialize a bullet, shot by a bot
+ *
+ * \param bullet            Pointer to the bullet struct to fill in
+ * \param bullet_type       Type of the bullet (i.e. its graphical representation)
+ * \param weapon_item_type  Type of the weapon used to shoot the bullet (defines
+ *                          the behavior of the bullet)
+ * \param bot               Pointer to the bot that fired the bullet
+ */
+void bullet_init_for_enemy(struct bullet *bullet, int bullet_type, short int weapon_item_type, struct enemy *bot)
+{
+	// Initialize the characteristics that do not depend on the shooter
+	_bullet_init(bullet, bullet_type, &(bot->virt_pos), Droidmap[bot->type].gun_muzzle_height, weapon_item_type);
+
+	// The damage depends on the weapon's type only.
+	bullet->damage = ItemMap[weapon_item_type].base_item_gun_damage +
+	                 MyRandom(ItemMap[weapon_item_type].item_gun_damage_modifier);
+
+	// Remember that the bullet was shot by this bot.
+	bullet->owner = bot->id;
+	bullet->faction = bot->faction;
+}
+
+/**
  *
  *
  */
