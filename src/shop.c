@@ -99,7 +99,7 @@ int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWo
 	// pure unequipped inventory
 	//
 	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		if (Me.Inventory[i].type == (-1) || Me.Inventory[i].type < 0)
+		if (Me.Inventory[i].type < 0)
 			continue;
 		else {
 			*CurrentItemPointer = &(Me.Inventory[i]);
