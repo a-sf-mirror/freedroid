@@ -7055,7 +7055,7 @@ msgstr "Eu não gosto nem um pouquinho disso. Estou caindo fora."
 
 #: dialogs/Duncan.lua:314 dialogs/Michelangelo.lua:279
 msgid "As you wish."
-msgstr "Como desejares."
+msgstr "Como quiser."
 
 #: dialogs/Duncan.lua:321
 msgid "Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
@@ -9105,15 +9105,15 @@ msgstr "Não é nada... nada importante... se eu não soubesse nada sobre seus p
 
 #: dialogs/Francis.lua:309
 msgid "Spencer wanted me to list all people in cryonic stasis. We had an argument about it, but in the end I gave in. Maybe it's needed. I couldn't avoid it."
-msgstr ""
+msgstr "Spencer queria que eu listasse todas as pessoas em estase criogênica. Nós tivemos uma discussão sobre isso, mas eu desisti. Talvez foi necessário. Eu não poderia evitar."
 
 #: dialogs/Francis.lua:310
 msgid "I'm not a bad person, but I don't like these types of decisions. Lose-lose decisions are especially difficult. But, I suppose, it's like that for everybody."
-msgstr ""
+msgstr "Eu não sou uma pessoa malvada, mas eu não gosto desse tipo de decisões. Decisões onde só se perde são especialmente difíceis. Mas, eu suponho que é assim para todos."
 
 #: dialogs/Francis.lua:311
 msgid "Bring your questions to Spencer. I'd rather not discuss it anymore, it is too troubling, especially since I'm complicit in whatever happens."
-msgstr ""
+msgstr "Leve suas questões à Spencer. Eu prefiro não discutir mais sobre isso, é muito problemático, especialmente porque estou implicitamente de acordo com o que quer que aconteça."
 
 #: dialogs/Francis.lua:317
 msgid "All right, I'll deliver the cube."
@@ -9133,11 +9133,11 @@ msgstr "Entregue o cubo você mesmo."
 
 #: dialogs/Francis.lua:334
 msgid "Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there."
-msgstr ""
+msgstr "Oh, eu poderia, acredite em mim. Eu sou capaz de correr minhas próprias jornadas, mesmo com as massas de robôs lá fora."
 
 #: dialogs/Francis.lua:335
 msgid "But... The prospect of facing that... That man again... I just can't bear it."
-msgstr ""
+msgstr "Mas... O prospecto de encarar... Aquele homem novamente... Eu não posso suportar."
 
 #. TRANSLATORS: %s =Tux:get_player_name()
 #: dialogs/Francis.lua:337
@@ -9359,27 +9359,27 @@ msgstr "Lembre-se, os produtos da MegaSys são os melhores!"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:31 dialogs/MO-HFGateAccessServer.lua:33
 msgid "one"
-msgstr ""
+msgstr "um"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:33 dialogs/MO-HFGateAccessServer.lua:35
 msgid "two"
-msgstr ""
+msgstr "dois"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:35 dialogs/MO-HFGateAccessServer.lua:37
 msgid "three"
-msgstr ""
+msgstr "três"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:37 dialogs/MO-HFGateAccessServer.lua:39
 msgid "four"
-msgstr ""
+msgstr "quatro"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:39 dialogs/MO-HFGateAccessServer.lua:41
 msgid "five"
-msgstr ""
+msgstr "cinco"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:41 dialogs/MO-HFGateAccessServer.lua:43
 msgid "six"
-msgstr ""
+msgstr "seis"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:43 dialogs/MO-HFGateAccessServer.lua:45
 #, c-format
@@ -9396,7 +9396,7 @@ msgstr "NOTA: Se você for humano, tente novamente, e tenha certeza que entraste
 
 #: dialogs/HF-FirmwareUpdateServer.lua:53
 msgid "Welcome to MS firmware update server for region #54658."
-msgstr "Bem vindo ao servidor MS de firmware para região #54658."
+msgstr "Bem-vindo ao servidor MS de firmware para a região #54658."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:54 dialogs/MO-HFGateAccessServer.lua:74
 msgid "Please select action"
@@ -9418,7 +9418,7 @@ msgstr "A versão atual é 5.0.8+%sesteveaqui+gpl"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:73
 msgid "Propagate firmware update"
-msgstr ""
+msgstr "Propagar atualização de firmware"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:75
 msgid "Compressing image...."
@@ -9442,11 +9442,11 @@ msgstr "Conflitos resolvidos,"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:83
 msgid "Firmware update propagated!"
-msgstr "A nova atualização de Firmware está disponível!"
+msgstr "A nova atualização de firmware está disponível!"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:85
 msgid "I managed to upload the faulty firmware update to all bots within transmission range. Victory is mine!"
-msgstr ""
+msgstr "Consegui fazer o upload do firmware defeituoso para todos os robôs dentro do alcance de transmissão. A vitória é minha!"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:89
 msgid "Merge failed."
@@ -9498,7 +9498,7 @@ msgstr "O linariano é hostil. Destruir!"
 
 #: dialogs/Iris.lua:38
 msgid "Hey, remember our deal?"
-msgstr "Ei, lembra-se de nosso acordo?"
+msgstr "Ei, lembra do nosso acordo?"
 
 #: dialogs/Iris.lua:39
 msgid "I'll trade you a book, for that lamp and 100 credits."
@@ -9582,7 +9582,7 @@ msgstr "Esta cidade é meio feia e escura."
 
 #: dialogs/Iris.lua:111
 msgid "And there are very strange people here."
-msgstr "E há muitas pessoas estranhas aqui."
+msgstr "E há pessoas bastante estranhas aqui."
 
 #: dialogs/Iris.lua:112
 msgid "I know exactly what you are talking about..."
@@ -9738,7 +9738,7 @@ msgstr "E você está pelo menos um quarto errado."
 
 #: dialogs/Jasmine.lua:101
 msgid "You're so cute, baby seals and polar bears sent each other pictures of you."
-msgstr "Você é tão fofa, Focas e Ursos Polares enviam fotos de você."
+msgstr "Você é tão fofa que focas e ursos polares enviam fotos de você."
 
 #: dialogs/Jasmine.lua:102
 msgid "Now, please get out of my sight."
@@ -9746,11 +9746,11 @@ msgstr "Agora, por favor desapareça."
 
 #: dialogs/Jasmine.lua:108
 msgid "Will you marry me?"
-msgstr "Você vai se casar comigo?"
+msgstr "Você casaria comigo?"
 
 #: dialogs/Jasmine.lua:110
 msgid "Forget it."
-msgstr "Esqueça isso."
+msgstr "Esqueça."
 
 #: dialogs/Jasmine.lua:111
 msgid "Roses are red,"
@@ -9766,7 +9766,7 @@ msgstr "Toda a minha base,"
 
 #: dialogs/Jasmine.lua:114
 msgid "Are belong to you."
-msgstr "Pertence à ti."
+msgstr "Pertence a ti."
 
 #: dialogs/Jasmine.lua:125
 msgid "Yeah. Whatever."
@@ -9794,7 +9794,7 @@ msgstr "Kernel panic no módulo: Jasmim"
 
 #: dialogs/Jasmine.lua:133
 msgid "Buffer overrun in anger.c:1532"
-msgstr "Sobrecarga de memória em furia.c:1532"
+msgstr "Sobrecarga de memória em raiva.c:1532"
 
 #: dialogs/Jasmine.lua:134
 msgid "Core dumped. System halted."
@@ -9818,7 +9818,7 @@ msgstr "Bem, sim."
 
 #: dialogs/Jennifer.lua:61
 msgid "Someone thought he had to tidy up the space..."
-msgstr "Alguém achou que ele tinha que arrumar o espaço..."
+msgstr "Alguém achou que precisava organizar o espaço..."
 
 #: dialogs/Jennifer.lua:62
 msgid "...and now I cannot find my equipment anymore, what an idiot!"
@@ -9830,7 +9830,7 @@ msgstr "Eu estou procurando minha caixa de ferramentas, em especial."
 
 #: dialogs/Jennifer.lua:64
 msgid "Okay, I will keep my eyes open if I see some toolbox."
-msgstr "Ok, manterei meus olhos abertos se eu ver uma caixa de ferramentas."
+msgstr "Ok, manterei meus olhos abertos pra ver se acho uma caixa de ferramentas."
 
 #: dialogs/Jennifer.lua:72
 msgid "You are repairing these bots?!"
@@ -9850,7 +9850,7 @@ msgstr "Os robôs deveriam ter te matado imediatamente."
 
 #: dialogs/Jennifer.lua:84
 msgid "It's hell in here for me and you don't seem to be even armed."
-msgstr "Está um inferno aqui para mim e você nem parece estar armada."
+msgstr "Está um inferno aqui pra mim e você nem parece estar armada."
 
 #: dialogs/Jennifer.lua:85
 msgid "Well..."
@@ -9882,7 +9882,7 @@ msgstr "Eu não acho que você consiga um. Você não parece um humano."
 
 #: dialogs/Jennifer.lua:92
 msgid "How did you get in here anyway?"
-msgstr "Mas, Como você chegou aqui?"
+msgstr "Mas, como você chegou aqui?"
 
 #: dialogs/Jennifer.lua:98
 msgid "That's a long story..."
@@ -9906,11 +9906,11 @@ msgstr "Não é da sua conta."
 
 #: dialogs/Jennifer.lua:116
 msgid "If you say so..."
-msgstr "Se você diz assim..."
+msgstr "Se você diz..."
 
 #: dialogs/Jennifer.lua:122
 msgid "I think this is your toolbox?"
-msgstr "Eu acho que esta é sua caixa de ferramentas?"
+msgstr "Eu acho que esta é a sua caixa de ferramentas?"
 
 #: dialogs/Jennifer.lua:124
 msgid "Oh yes, it is!"
@@ -9918,7 +9918,7 @@ msgstr "Oh sim, ela é!"
 
 #: dialogs/Jennifer.lua:125
 msgid "Thank you very much!"
-msgstr "Muito obrigado mesmo!"
+msgstr "Muito obrigada mesmo!"
 
 #: dialogs/Jennifer.lua:126
 msgid "I found the Toolbox and returned it to her"
@@ -9979,7 +9979,7 @@ msgstr "Você andou pelo teletransportador errado duas vezes!"
 
 #: dialogs/John.lua:85
 msgid "What's wrong with your mind?"
-msgstr "O que está de errado no seu cérebro?"
+msgstr "O que há de errado com o seu cérebro?"
 
 #: dialogs/John.lua:86
 msgid "I-"
@@ -10067,11 +10067,11 @@ msgstr "Aparentemente, eu ainda estou vivo."
 
 #: dialogs/John.lua:149
 msgid "Does that answer your question?"
-msgstr "Isso responde sua questão?"
+msgstr "Isso responde a sua questão?"
 
 #: dialogs/John.lua:150
 msgid "It does... smart aleck."
-msgstr "Sim...sabichão."
+msgstr "Sim... sabichão."
 
 #: dialogs/John.lua:156
 msgid "What do you do here?"
@@ -10223,11 +10223,11 @@ msgstr "Intruso detectado."
 
 #: dialogs/Kevin-Lawnmower.lua:40
 msgid "[b]Security mode:[/b] ACTIVATED"
-msgstr "[b]Modo de Segurança:[/b] ATIVO"
+msgstr "[b]Modo de Segurança:[/b] ATIVADO"
 
 #: dialogs/Kevin-Lawnmower.lua:45
 msgid "Welcome to Kevin's personal lawnmower."
-msgstr "Bem-vindo ao cortador de grama privado do Kevin."
+msgstr "Bem-vindo ao cortador de grama pessoal do Kevin."
 
 #: dialogs/Kevin-Lawnmower.lua:46
 msgid "Your connection with this bot has been logged and reported to Kevin."
@@ -11052,7 +11052,7 @@ msgstr "[b]Intruso, abaixe suas armas e identifique-se, ou enfrente aniquilaçã
 
 #: dialogs/KevinGuard.lua:45
 msgid "[b]Any attempts to enter without authorization will be punished.[/b]"
-msgstr "[b]Qualquer tentativa de entrar sem autorização será punido.[/b]"
+msgstr "[b]Qualquer tentativa de entrar sem autorização será punida.[/b]"
 
 #: dialogs/KevinGuard.lua:46
 msgid "[b]I will not let you injure my master.[/b]"
@@ -11060,7 +11060,7 @@ msgstr "[b]Não te deixarei machucar meu mestre.[/b]"
 
 #: dialogs/KevinGuard.lua:53
 msgid "I must talk to your master."
-msgstr ""
+msgstr "Preciso falar com o seu mestre."
 
 #: dialogs/KevinGuard.lua:55
 msgid "[b]State your reason.[/b]"
@@ -11068,15 +11068,15 @@ msgstr "[b]Diga sua razão.[/b]"
 
 #: dialogs/KevinGuard.lua:61
 msgid "Don't shoot! I come in peace."
-msgstr ""
+msgstr "Não atire! Eu venho em paz."
 
 #: dialogs/KevinGuard.lua:63
 msgid "[b]State the purpose of your presence here.[/b]"
-msgstr "[b]Coloque a razão de sua presença.[/b]"
+msgstr "[b]Declare a razão de sua presença.[/b]"
 
 #: dialogs/KevinGuard.lua:69
 msgid "I saw this building as I was walking by, and I decided to take a look inside."
-msgstr ""
+msgstr "Eu vi este prédio enquanto passava e decidi dar uma olhada dentro."
 
 #: dialogs/KevinGuard.lua:71
 msgid "[b]Your reason is curiosity. Master Kevin likes curious people.[/b]"
@@ -11088,22 +11088,22 @@ msgstr "[b]Você pode passar.[/b]"
 
 #: dialogs/KevinGuard.lua:88
 msgid "Umm... His life is in grave danger. "
-msgstr ""
+msgstr "Umm... A vida dele está em grave perigo."
 
 #: dialogs/KevinGuard.lua:90 dialogs/KevinGuard.lua:98
 #: dialogs/KevinGuard.lua:153 dialogs/KevinGuard.lua:161
 #: dialogs/KevinGuard.lua:169 dialogs/KevinGuard.lua:187
 #: dialogs/KevinGuard.lua:195
 msgid "[b]Error: Reason invalid.[/b]"
-msgstr "[b]Erro: Razão Invalida.[/b]"
+msgstr "[b]Erro: Razão Inválida.[/b]"
 
 #: dialogs/KevinGuard.lua:96
 msgid "The people from the uhh... town want me to have a word with him. Yeah, that's it."
-msgstr ""
+msgstr "O pessoal da uhh... cidade quer que eu fale com ele. É, é isso."
 
 #: dialogs/KevinGuard.lua:104
 msgid "I have some very valuable information. Your master might be interested in it."
-msgstr ""
+msgstr "Eu tenho informações bastante valiosas. Seu mestre pode estar interessado nelas."
 
 #: dialogs/KevinGuard.lua:106
 msgid "[b]Master Kevin will be pleased. You may pass.[/b]"
@@ -11111,11 +11111,11 @@ msgstr "[b]Mestre Kevin ficará satisfeito. Você pode passar.[/b]"
 
 #: dialogs/KevinGuard.lua:108
 msgid "[b]Door opening sequence initiated.[/b]"
-msgstr "[b]Sequencia de abertura iniciada.[/b]"
+msgstr "[b]Sequência de abertura iniciada.[/b]"
 
 #: dialogs/KevinGuard.lua:114
 msgid "Step aside, you stupid tin can!"
-msgstr ""
+msgstr "Saia da frente, sua lata velha e estúpida!"
 
 #: dialogs/KevinGuard.lua:116
 msgid "[b]You shall not pass. Activating disintegrator beam in ten seconds.[/b]"
@@ -11131,7 +11131,7 @@ msgstr "[b]Oito[/b]"
 
 #: dialogs/KevinGuard.lua:124 dialogs/KevinGuard.lua:142
 msgid "Wait, that's not what I meant!"
-msgstr ""
+msgstr "Espere, não foi isso que eu quis dizer!"
 
 #: dialogs/KevinGuard.lua:126 dialogs/KevinGuard.lua:135
 msgid "[b]Seven.[/b]"
@@ -11143,7 +11143,7 @@ msgstr "[b]Seis[/b]"
 
 #: dialogs/KevinGuard.lua:133
 msgid "I am not afraid of you."
-msgstr ""
+msgstr "Eu não tenho medo de você."
 
 #: dialogs/KevinGuard.lua:144
 msgid "[b]Five.[/b]"
@@ -11155,19 +11155,19 @@ msgstr "[b]Quatro[/b]"
 
 #: dialogs/KevinGuard.lua:151
 msgid "Enemies are approaching from every side!"
-msgstr ""
+msgstr "Inimigos estão se aproximando por todos os lados!"
 
 #: dialogs/KevinGuard.lua:159
 msgid "We are surrounded! They will attack any second now!"
-msgstr ""
+msgstr "Estamos cercados! Eles irão atacar a qualquer momento!"
 
 #: dialogs/KevinGuard.lua:167
 msgid "Are you listening to me?"
-msgstr ""
+msgstr "Você está me ouvindo?"
 
 #: dialogs/KevinGuard.lua:175
 msgid "I do not have to tell you anything, bot."
-msgstr ""
+msgstr "Eu não tenho que te dizer nada, robô."
 
 #: dialogs/KevinGuard.lua:177
 msgid "[b]Engaging aggression circuits. You shall be disintegrated in ten seconds.[/b]"
@@ -11175,19 +11175,19 @@ msgstr "[b]Engajando circuitos de agressão. Você será desintegrado em dez seg
 
 #: dialogs/KevinGuard.lua:185
 msgid "I think I just found an error in your programming."
-msgstr ""
+msgstr "Acho que eu acabei de encontrar um erro na sua programação."
 
 #: dialogs/KevinGuard.lua:193
 msgid "Thought so."
-msgstr ""
+msgstr "Foi o que eu achei."
 
 #: dialogs/KevinGuard.lua:201
 msgid "See you later, tin can."
-msgstr ""
+msgstr "Te vejo mais tarde, lata velha."
 
 #: dialogs/KevinGuard.lua:204
 msgid "[b]EOT acknowledged. Connection closed.[/b]"
-msgstr "[b]EOT Reconhecido. Conexão terminada.[/b]"
+msgstr "[b]EOT confirmado. Conexão terminada.[/b]"
 
 #: dialogs/KevinGuard.lua:205
 msgid "[b]Goodbye.[/b]"
@@ -11195,7 +11195,7 @@ msgstr "[b]Tchau.[/b]"
 
 #: dialogs/Koan.lua:53
 msgid "So you have come. I knew Duncan would not let me live for too long."
-msgstr "Então você veio. Eu sabia que o Duncan não me deixaria viver por muito tempo."
+msgstr "Então você veio. Eu sabia que Duncan não me deixaria viver por muito tempo."
 
 #: dialogs/Koan.lua:54
 msgid "Once I am gone this oasis of peace in the world will dry up and die. A shame."
@@ -11203,47 +11203,47 @@ msgstr "Assim que eu for este oásis de paz no mundo vai secar e morrer. Uma pen
 
 #: dialogs/Koan.lua:55
 msgid "I hoped to turn the whole desert into a sanctuary. And now my dream will never come true."
-msgstr "Eu queria tornar todo o deserto em um santuário. E agora meu sonho nunca será realidade."
+msgstr "Eu queria transformar todo o deserto em um santuário. E agora meu sonho nunca virará realidade."
 
 #: dialogs/Koan.lua:56
 msgid "Do what you must."
-msgstr "Faça o que tem que ser feito."
+msgstr "Faça o que tiver de fazer."
 
 #: dialogs/Koan.lua:68
 msgid "It's a pleasure to meet you again."
-msgstr "É um prazer encontrar-te novamente."
+msgstr "É um prazer te encontrar novamente."
 
 #: dialogs/Koan.lua:69
 msgid "I am happy to see you've returned."
-msgstr ""
+msgstr "Estou feliz em ver que você retornou."
 
 #: dialogs/Koan.lua:71
 msgid "I see you have brought a friend along with you."
-msgstr "Eu vejo que trouxeste uma amiga contigo."
+msgstr "Vejo que trouxeste uma amiga contigo."
 
 #: dialogs/Koan.lua:74
 msgid "I see the troubles of the world in your eyes."
-msgstr "Eu vejo problemas do mundo em teus olhos."
+msgstr "Eu vejo os problemas do mundo nos seus olhos."
 
 #: dialogs/Koan.lua:78
 msgid "Come sit down my friend."
-msgstr ""
+msgstr "Venha se sentar, meu amigo."
 
 #: dialogs/Koan.lua:79
 msgid "Please take some time and relax here in the cool."
-msgstr ""
+msgstr "Por favor passe um tempo aqui no fresco e relaxe."
 
 #: dialogs/Koan.lua:81
 msgid "I see you've brought a friend along with you."
-msgstr "Eu vejo que trouxeste uma amiga contigo."
+msgstr "Vejo que trouxeste uma amiga contigo."
 
 #: dialogs/Koan.lua:91 dialogs/Koan.lua:144
 msgid "I took revenge for Duncan by killing Koan."
-msgstr ""
+msgstr "Vinguei Duncan matando Koan."
 
 #: dialogs/Koan.lua:101
 msgid "No. I have not come here to kill you."
-msgstr ""
+msgstr "Não. Não vim aqui para matá-lo."
 
 #: dialogs/Koan.lua:104
 msgid "Feel free to stay here. There is no danger."
@@ -11251,11 +11251,11 @@ msgstr "Sinta-se à vontade para ficar aqui. Não há perigo."
 
 #: dialogs/Koan.lua:105
 msgid "The water is safe to drink and the fruit from the tree is quite delicious. I have a few extra provisions here with me. Please take some."
-msgstr ""
+msgstr "A água é boa para beber e as frutas da árvore são deliciosas. Eu tenho algumas provisões extras aqui comigo. Por favor, leve algumas."
 
 #: dialogs/Koan.lua:119
 msgid "Who are you? Who is Duncan?"
-msgstr ""
+msgstr "Quem é você? Quem é Duncan?"
 
 #: dialogs/Koan.lua:122 dialogs/Koan.lua:133
 msgid "I am Koan."
@@ -11271,7 +11271,7 @@ msgstr "Logo, ele deseja minha destruição."
 
 #: dialogs/Koan.lua:134
 msgid "Beyond that I am a creator."
-msgstr ""
+msgstr "Sou um criador."
 
 #: dialogs/Koan.lua:135
 msgid "I give life to things, even if they eventually will be destroyed."
@@ -11279,23 +11279,23 @@ msgstr "Eu dou vida às coisas, mesmo que eventualmente elas venham a ser destru
 
 #: dialogs/Koan.lua:141
 msgid "You shall die."
-msgstr ""
+msgstr "Morra."
 
 #: dialogs/Koan.lua:154
 msgid "Duncan sent me to kill you, but I came to make certain you were safe."
-msgstr ""
+msgstr "Duncan me enviou para matá-lo, mas eu vim para ter certeza de que você estava bem."
 
 #: dialogs/Koan.lua:156
 msgid "Thanks for checking up on me."
-msgstr ""
+msgstr "Obrigado por vir ver como eu estava."
 
 #: dialogs/Koan.lua:166
 msgid "I met and talked to Koan, but didn't kill him."
-msgstr ""
+msgstr "Eu encontrei Koan e falei com ele, mas não o matei."
 
 #: dialogs/Koan.lua:172
 msgid "Why does Duncan want you dead?"
-msgstr ""
+msgstr "Por que Duncan quer você morto?"
 
 #: dialogs/Koan.lua:174
 msgid "Very simple. He likes destruction, and I am creation."
@@ -11307,19 +11307,19 @@ msgstr "Nada mais."
 
 #: dialogs/Koan.lua:181
 msgid "What is this place? Why is there grass and water under the desert?"
-msgstr ""
+msgstr "O que é este lugar? Por que há grama e água embaixo do deserto?"
 
 #: dialogs/Koan.lua:183
 msgid "Ah, yes. That is my fault, I am afraid."
-msgstr "Ah, sim. Receio que isto seja minha culpa."
+msgstr "Ah, sim. Receio que isso seja culpa minha."
 
 #: dialogs/Koan.lua:184
 msgid "Wherever I go, life follows me."
-msgstr "Aonde quer que eu vá, a vida vai atrás."
+msgstr "Aonde quer que eu vá, a vida me segue."
 
 #: dialogs/Koan.lua:185
 msgid "I thought I could hide from Duncan in this old bunker."
-msgstr "Eu achei que pudesse me esconder do Duncan nesta velha carvoeira."
+msgstr "Eu achei que pudesse me esconder do Duncan neste velho bunker."
 
 #: dialogs/Koan.lua:186
 msgid "When I woke up the next day, things were as you see them now."
@@ -11327,39 +11327,39 @@ msgstr "Quando eu acordei, as coisas estavam como elas estão agora."
 
 #: dialogs/Koan.lua:192
 msgid "This was a bunker?"
-msgstr ""
+msgstr "Isto era um bunker?"
 
 #: dialogs/Koan.lua:194
 msgid "Yes. The place has changed a bit, as you can see."
-msgstr "Sim. Esse lugar mudou um pouquinho, como você pode ver."
+msgstr "Sim. O lugar mudou um pouquinho, como você pode ver."
 
 #: dialogs/Koan.lua:195
 msgid "I like the way it is right now. The water cools everything down and the plants give the air a very fresh smell."
-msgstr ""
+msgstr "Gosto do jeito que está agora. A água esfria o ambiente e as plantas dão um cheirinho fresco ao ar."
 
 #: dialogs/Koan.lua:196
 msgid "As soon as I leave, everything will die. I have seen that happen before."
-msgstr ""
+msgstr "Assim que eu partir, tudo irá morrer. Já vi acontecer antes."
 
 #: dialogs/Koan.lua:197
 msgid "Because this place is just like a small bit of paradise, I decided to stay here."
-msgstr ""
+msgstr "Por este lugar ser como um pequeno pedaço do paraíso, decidi ficar aqui."
 
 #: dialogs/Koan.lua:198
 msgid "I do not want this wonderful bunker to become devoid of life again."
-msgstr ""
+msgstr "Não quero que este maravilhoso bunker fique sem vida novamente."
 
 #: dialogs/Koan.lua:204
 msgid "I will go now."
-msgstr ""
+msgstr "Eu irei agora."
 
 #: dialogs/Koan.lua:206
 msgid "This place will always wait for you."
-msgstr ""
+msgstr "Este lugar estará sempre esperando por você."
 
 #: dialogs/Koan.lua:207
 msgid "This is a sanctuary from the desert above."
-msgstr ""
+msgstr "Este é um refúgio do deserto acima."
 
 #: dialogs/Lukas.lua:41
 msgid "A newcomer! Great! We can always use more people. Welcome to the Red Guard! I'm Lukas. I'm in charge of our little armory here."
@@ -11371,7 +11371,7 @@ msgstr "Spencer disse que você poderia me providenciar uma armadura e equipamen
 
 #: dialogs/Lukas.lua:49
 msgid "Of course. As a member of our Guard, you're entitled to wear one of our suits of armor."
-msgstr "Claro. Como um membro de nossa Guarda, você está intitulado para vestir uma de nossas armaduras."
+msgstr "Claro. Como um membro de nossa Guarda, você está intitulado a vestir uma de nossas armaduras."
 
 #: dialogs/Lukas.lua:50
 msgid "There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing, though we also trade guns and some ammo."
@@ -11391,7 +11391,7 @@ msgstr "O que você faz todo dia na armaria?"
 
 #: dialogs/Lukas.lua:61
 msgid "Oh, there's always something to do. Don't worry. I'm pretty occupied keeping the place in order."
-msgstr "Oh, aqui sempre tem algo para fazer. Não se preocupe. Eu estou bem ocupado mantendo este lugar em ordem."
+msgstr "Oh, aqui sempre tem algo pra fazer. Não se preocupe. Eu estou bem ocupado mantendo este lugar em ordem."
 
 #: dialogs/Lukas.lua:67
 msgid "I'd like to buy an exterminator."
@@ -11427,7 +11427,7 @@ msgstr "dixon"
 
 #: dialogs/Maintenance-Terminal.lua:34 dialogs/MiniFactory-Terminal.lua:33
 msgid "Hello, Dave."
-msgstr ""
+msgstr "Olá, Dave."
 
 #: dialogs/Maintenance-Terminal.lua:49
 msgid "sys_status --all"
@@ -11435,7 +11435,7 @@ msgstr ""
 
 #: dialogs/Maintenance-Terminal.lua:53
 msgid "Detecting connected devices..."
-msgstr ""
+msgstr "Detectando dispositivos conectados..."
 
 #: dialogs/Maintenance-Terminal.lua:54
 msgid "Found 03 connected auto-guns."
@@ -11451,7 +11451,7 @@ msgstr ""
 
 #: dialogs/Maintenance-Terminal.lua:57
 msgid "Anomalies detected."
-msgstr ""
+msgstr "Anomalias detectadas."
 
 #: dialogs/Maintenance-Terminal.lua:62
 msgid "Gun 01 status: ENABLED"
@@ -11479,27 +11479,27 @@ msgstr ""
 
 #: dialogs/Maintenance-Terminal.lua:78
 msgid "Access Gate status: OPEN"
-msgstr ""
+msgstr "Estado do Portão de Acesso: ABERTO"
 
 #: dialogs/Maintenance-Terminal.lua:81
 msgid "Access Gate status: CLOSED"
-msgstr ""
+msgstr "Estado do Portão de Acesso: FECHADO"
 
 #: dialogs/Maintenance-Terminal.lua:86
 msgid "Factory Gate status: OPEN"
-msgstr ""
+msgstr "Estado do Portão da Fábrica: ABERTO"
 
 #: dialogs/Maintenance-Terminal.lua:88
 msgid "Factory Gate status: CLOSED"
-msgstr ""
+msgstr "Estado do Portão da Fábrica: FECHADO"
 
 #: dialogs/Maintenance-Terminal.lua:93
 msgid "Automated Factory status: ONLINE"
-msgstr ""
+msgstr "Estado da Fábrica Automatizada: ONLINE"
 
 #: dialogs/Maintenance-Terminal.lua:95
 msgid "Automated Factory status: OFFLINE"
-msgstr ""
+msgstr "Estado da Fábrica Automatizada: OFFLINE"
 
 #: dialogs/Maintenance-Terminal.lua:105
 msgid "disable guns"
@@ -11507,7 +11507,7 @@ msgstr ""
 
 #: dialogs/Maintenance-Terminal.lua:107 dialogs/MiniFactory-Terminal.lua:43
 msgid "I'm sorry. I'm afraid I can't let you do that."
-msgstr "Desculpe-me. Eu não posso deixar-lhe fazer isso."
+msgstr "Desculpe-me. Eu não posso lhe deixar fazer isso."
 
 #: dialogs/Maintenance-Terminal.lua:114
 msgid "sudo enable guns"
@@ -11539,19 +11539,19 @@ msgstr "SUCESSO"
 
 #: dialogs/Maintenance-Terminal.lua:131
 msgid "close access gate"
-msgstr ""
+msgstr "fechar portão de acesso"
 
 #: dialogs/Maintenance-Terminal.lua:133
 msgid "Closing Access Gate ..."
-msgstr ""
+msgstr "Fechando Portão de Acesso ..."
 
 #: dialogs/Maintenance-Terminal.lua:142
 msgid "open access gate"
-msgstr ""
+msgstr "abrir portão de acesso"
 
 #: dialogs/Maintenance-Terminal.lua:144
 msgid "Opening Access Gate ..."
-msgstr ""
+msgstr "Abrindo Portão de Acesso ..."
 
 #: dialogs/Maintenance-Terminal.lua:146 dialogs/MO-HFGateAccessServer.lua:136
 msgid "Permission denied."
@@ -11563,19 +11563,19 @@ msgstr ""
 
 #: dialogs/Maintenance-Terminal.lua:163
 msgid "Would you like a sandwich with that?"
-msgstr ""
+msgstr "Você gostaria de um sanduíche também?"
 
 #: dialogs/Maintenance-Terminal.lua:174
 msgid "Now how would I make one of those?"
-msgstr ""
+msgstr "Mas como eu faria um desses?"
 
 #: dialogs/Maintenance-Terminal.lua:175
 msgid "Sudo doesn't give you magic powers."
-msgstr ""
+msgstr "Sudo não lhe dá poderes mágicos."
 
 #: dialogs/Maintenance-Terminal.lua:186
 msgid "Good choice."
-msgstr ""
+msgstr "Boa escolha."
 
 #: dialogs/Maintenance-Terminal.lua:203
 msgid "BUG, REPORT ME! Maintenance-Terminal node11 -- Disable Guns"
@@ -11599,19 +11599,19 @@ msgstr ""
 
 #: dialogs/Maintenance-Terminal.lua:221
 msgid "Opening Automated Factory Gate ..."
-msgstr ""
+msgstr "Abrindo Portão da Fábrica Automatizada ..."
 
 #: dialogs/Maintenance-Terminal.lua:233 dialogs/MiniFactory-Terminal.lua:107
 msgid "Goodbye Dave."
-msgstr ""
+msgstr "Adeus, Dave."
 
 #: dialogs/Michelangelo.lua:79
 msgid "Hello. I'm Michelangelo. I haven't been here for long either."
-msgstr "Olá. Eu sou Michelangelo. Também não estive aqui à muito tempo."
+msgstr "Olá. Eu sou Michelangelo. Também não estou aqui há muito tempo."
 
 #: dialogs/Michelangelo.lua:80
 msgid "I wish the bots had just killed me, but I got 'lucky' and ended up in this hellhole."
-msgstr "Eu gostaria que os robôs tivessem me matado, mas eu tive 'sorte' e fui parar nesse inferno."
+msgstr "Eu gostaria que os robôs tivessem me matado, mas eu tive 'sorte' e vim parar nesse inferno."
 
 #: dialogs/Michelangelo.lua:89
 msgid "Don't ask."
@@ -11627,11 +11627,11 @@ msgstr "Posso comprar comida por aqui?"
 
 #: dialogs/Michelangelo.lua:98
 msgid "There is no food here, just the odious military rations."
-msgstr "Não há comida, somente rações militares odiosas."
+msgstr "Não há comida, somente as odiosas rações militares."
 
 #: dialogs/Michelangelo.lua:99
 msgid "They are made fully out of artificial nutrients and carcinogenic flavors. Even the army hated them."
-msgstr "Elas são feitas de nutrientes artificiais e sabores cariogênicos. Até o exército odiou-os."
+msgstr "Elas são feitas de nutrientes artificiais e sabores cancerígenos. Até o exército os odiou."
 
 #: dialogs/Michelangelo.lua:100
 msgid "It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat."
@@ -11647,19 +11647,19 @@ msgstr "Eu quero algumas apetitosas rações militares!"
 
 #: dialogs/Michelangelo.lua:116
 msgid "I am supposed to read this out to all newcomers. Here goes:"
-msgstr "Eu devo ler isso para todos os visitantes. Aqui vai:"
+msgstr "Eu devo ler isso para todos os recém-chegados. Aqui vai:"
 
 #: dialogs/Michelangelo.lua:117
 msgid "'Please note that the army rations model #23 you are about to eat is provided 'as is' without warranty of any kind."
-msgstr "'Por favor note que a ração militar modelo #23 que você está prestes a comer é disponibilizado 'como está', sem nenhuma garantia."
+msgstr "'Por favor note que a ração militar modelo #23 que você está prestes a comer é disponibilizada 'como está', sem nenhuma garantia."
 
 #: dialogs/Michelangelo.lua:118
 msgid "That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you."
-msgstr "Isso inclui a garantia implícita de consumibilidade ou a adequação para um propósito específico. Todo o risco sobre a qualidade desta comida é sua responsabilidade."
+msgstr "Isso inclui a garantia implícita de consumibilidade ou a adequação para um propósito específico. Todo o risco sobre a qualidade desta comida é de sua responsabilidade."
 
 #: dialogs/Michelangelo.lua:119
 msgid "Should the army meal model #23 prove poisonous, you agree to cover the cost of keeping you alive by the base medical staff or the costs of your cremation in our nuclear furnaces.'"
-msgstr "Se a ração militar modelo #23 se mostrar venenoso, você concorda em cobrir os custos de lhe manter vivo por pessoal da enfermaria ou os custos da cremação em nossos fornos nucleares.'"
+msgstr "Se a ração militar modelo #23 se mostrar venenosa você concorda em cobrir os custos de lhe manter vivo por pessoal da enfermaria ou os custos da cremação em nossos fornos nucleares.'"
 
 #: dialogs/Michelangelo.lua:120
 msgid "Well, that is all. Here is the junk that you wanted. Enjoy."
@@ -11704,19 +11704,19 @@ msgstr ""
 
 #: dialogs/Michelangelo.lua:144
 msgid "And the bots are keeping us busy by murdering, chopping, slicing, cleaving, rending and wounding us. How wonderful."
-msgstr ""
+msgstr "E os robôs nos mantêm ocupados nos matando, cortando, picando, perfurando, rasgando e ferindo. Que maravilha."
 
 #: dialogs/Michelangelo.lua:145
 msgid "The guards gave me a filthy hovel to live in. The walls are so thin that every night I am rocked to sleep by the bots communicating with those beeps and modem sounds."
-msgstr ""
+msgstr "Os guardas me deram uma cabana imunda pra morar. As paredes são tão finas que toda noite vou dormir com os sons dos robôs se comunicando com aqueles bipes e sons de modem."
 
 #: dialogs/Michelangelo.lua:146
 msgid "It sounds like they are singing something. Every night they start their song... I cannot sleep thanks to that electric chorus."
-msgstr ""
+msgstr "Soa como se estivessem cantando alguma coisa. Toda noite eles começam a sua música... Eu não consigo dormir por causa daquele coro elétrico."
 
 #: dialogs/Michelangelo.lua:147
 msgid "Have I mentioned that the only food that we have is some kind of pestilential military ration? The smell alone is making me want to vomit."
-msgstr ""
+msgstr "Eu já mencionei que a única comida que temos é algum tipo de ração militar pestilenta? Só o cheiro já me faz querer vomitar."
 
 #: dialogs/Michelangelo.lua:154
 msgid "Cheer up! All will be fine! Happy days are coming! Hurray!"
@@ -11740,11 +11740,11 @@ msgstr "Não posso! Meu belo microondas está sem energia. A miserável Guarda V
 
 #: dialogs/Michelangelo.lua:167
 msgid "I wish I could kill them all with my bare hands. They deserve it."
-msgstr "Eu gostaria de matar-los com minhas próprias mãos. Eles mereciam."
+msgstr "Eu gostaria de matá-los com minhas próprias mãos. Eles mereciam."
 
 #: dialogs/Michelangelo.lua:168
 msgid "If only I had some dilithium to use as a backup power source..."
-msgstr "Se eu tivesse algum dilítio para utilizar como fonte de energia reserva..."
+msgstr "Se ao menos eu tivesse algum dilítio para utilizar como fonte de energia reserva..."
 
 #: dialogs/Michelangelo.lua:174
 msgid "Can I get a meal to go?"
@@ -11752,7 +11752,7 @@ msgstr "Posso levar comida para viagem?"
 
 #: dialogs/Michelangelo.lua:176
 msgid "I've found a man who has nothing left to eat but army snacks. He has information for me, but I've got to feed him first."
-msgstr ""
+msgstr "Eu encontrei um homem que não tem mais nada pra comer além de rações militares. Ele tem informações pra mim, mas eu tenho de alimentá-lo primeiro."
 
 #: dialogs/Michelangelo.lua:177
 msgid "I see. We do not have much to spare, but I will see what I can do. I will let you borrow my picnic basket, but I must have it back."
@@ -11760,35 +11760,35 @@ msgstr ""
 
 #: dialogs/Michelangelo.lua:178
 msgid "Here... This meal should satisfy his hunger. I even added a dessert."
-msgstr ""
+msgstr "Aqui... Esta refeição deve satisfazer a fome dele. Eu até adicionei uma sobremesa."
 
 #: dialogs/Michelangelo.lua:179
 msgid "Michelangelo gave me a healthy meal with dessert for Will Gapes. I have to remember to return the basket!"
-msgstr ""
+msgstr "Michelangelo me deu uma refeição saudável com sobremesa para Will Gapes. Eu tenho que lembrar de devolver a cesta!"
 
 #: dialogs/Michelangelo.lua:180
 msgid "Thank you. I'm sure it will be delicious."
-msgstr ""
+msgstr "Obrigado. Tenho certeza de que está deliciosa."
 
 #: dialogs/Michelangelo.lua:188
 msgid "I've brought your Picnic Basket back."
-msgstr ""
+msgstr "Trouxe sua cesta de piquinique de volta."
 
 #: dialogs/Michelangelo.lua:190
 msgid "Oh, thank you. Hopefully, the meal hit the spot."
-msgstr ""
+msgstr "Oh, obrigado. Espero que a refeição tenha acertado no lugar certo."
 
 #: dialogs/Michelangelo.lua:191
 msgid "Yes, he enjoyed it, and I got my information."
-msgstr ""
+msgstr "Sim, ele a adorou, e eu consegui a minha informação."
 
 #: dialogs/Michelangelo.lua:192
 msgid "Excellent! Now, perhaps these antibiotics will help you on your mission."
-msgstr ""
+msgstr "Excelente! Agora, talvez estes antibióticos lhe ajudem na sua missão."
 
 #: dialogs/Michelangelo.lua:200
 msgid "Got any food yet?"
-msgstr ""
+msgstr "Você já tem alguma comida?"
 
 #: dialogs/Michelangelo.lua:204
 msgid "I'm confused, nothing of my upper gastronomy is ready to eat. Not one cheese cake."
@@ -11800,35 +11800,35 @@ msgstr ""
 
 #: dialogs/Michelangelo.lua:206
 msgid "Until my next batch of food comes out of the macrowave oven, all I have are the odoriferous military rations."
-msgstr ""
+msgstr "Até a minha próxima fornada sair do forno de microondas, tudo que eu tenho são as mal-cheirosas rações militares."
 
 #: dialogs/Michelangelo.lua:217
 msgid "Here, try this slice of lemon meringue pie."
-msgstr ""
+msgstr "Aqui, prove esta fatia de torta de limão com merengue."
 
 #: dialogs/Michelangelo.lua:219
 msgid "Wait, you don't have a fork. You need a fork..."
-msgstr ""
+msgstr "Espere, você não tem um garfo. Você precisa de um garfo..."
 
 #: dialogs/Michelangelo.lua:223
 msgid "It is as if a cloud from heaven was made into a pie."
-msgstr ""
+msgstr "É como se uma nuvem do paraíso tivesse se tornado uma torta."
 
 #: dialogs/Michelangelo.lua:229
 msgid "Try this crab cake."
-msgstr ""
+msgstr "Experimente este bolinho de caranguejo."
 
 #: dialogs/Michelangelo.lua:232
 msgid "Where is your plate and fork?"
-msgstr ""
+msgstr "Onde estão o seu prato e garfo?"
 
 #: dialogs/Michelangelo.lua:236
 msgid "Such an intense, delectable, blend of savory spices... it melts in my mouth."
-msgstr ""
+msgstr "Uma combinação tão intensa e deliciosa de saborosos temperos... derrete na minha boca."
 
 #: dialogs/Michelangelo.lua:242
 msgid "May I interest you in some eggs sardou?"
-msgstr ""
+msgstr "Posso lhe oferecer alguns ovos sardou?"
 
 #: dialogs/Michelangelo.lua:243
 msgid "EGGS!?"
@@ -11836,43 +11836,43 @@ msgstr "OVOS?!"
 
 #: dialogs/Michelangelo.lua:244
 msgid "Oh, Michelangelo had forgotten..."
-msgstr ""
+msgstr "Oh, Michelangelo esqueceu..."
 
 #: dialogs/Michelangelo.lua:245
 msgid "How about a... yummy army snack instead?"
-msgstr ""
+msgstr "Que tal... uma deliciosa ração militar, então?"
 
 #: dialogs/Michelangelo.lua:254
 msgid "I am in the midst of a culinary masterpiece."
-msgstr ""
+msgstr "Estou no meio de uma obra-prima culinária."
 
 #: dialogs/Michelangelo.lua:255
 msgid "I cannot rush art for I am an artist!"
-msgstr ""
+msgstr "Eu não posso apressar a arte, pois sou um artista!"
 
 #: dialogs/Michelangelo.lua:258
 msgid "I had prepared some delicacies, but the ravenous Red Guard ate it all."
-msgstr ""
+msgstr "Eu tinha preparado algumas iguarias, mas aquela Guarda Vermelha esfomeada comeu todas."
 
 #: dialogs/Michelangelo.lua:259
 msgid "Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly."
-msgstr ""
+msgstr "Mas não foi uma grande perda, eu tenho uma segunda fornada assando e ela estará pronta em breve."
 
 #: dialogs/Michelangelo.lua:260
 msgid "I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!"
-msgstr ""
+msgstr "Eu acho que o humor da cidade melhorará quando o mestre cozinheiro Michelangelo começar a trabalhar. Ha!"
 
 #: dialogs/Michelangelo.lua:261
 msgid "But if you are really hungry, I still have some of those disgusting army snacks."
-msgstr ""
+msgstr "Mas se você estiver faminto eu ainda tenho algumas daquelas repulsivas rações militares."
 
 #: dialogs/Michelangelo.lua:276
 msgid "I am racked with hunger pains, give me some army snacks!"
-msgstr ""
+msgstr "Estou morrendo de fome, me dê algumas rações militares!"
 
 #: dialogs/Michelangelo.lua:278
 msgid "I thought you would have learned by now."
-msgstr "Eu achei que você tina aprendido a lição."
+msgstr "Eu achei que você tinha aprendido a lição."
 
 #: dialogs/Michelangelo.lua:285
 msgid "Hmm... Crunchy... That is... Oh... No. Ugh. Help."
@@ -11888,7 +11888,7 @@ msgstr "Bleah! Isso não é comida!"
 
 #: dialogs/Michelangelo.lua:289
 msgid "We already know that. There is nothing else to eat here, so I hope you get used to the taste."
-msgstr "Nós sabemos isso. Não há nada mais para comer, então se acostume com o sabor."
+msgstr "Nós já sabemos disso. Não há nada mais para comer, então se acostume com o sabor."
 
 #: dialogs/Michelangelo.lua:290
 msgid "That thing only looks okay, and has a nice color."
@@ -11896,7 +11896,7 @@ msgstr "Essa coisa apenas parece ok, e tem uma bela cor."
 
 #: dialogs/Michelangelo.lua:291
 msgid "But as you can see, the color cannot be eaten, only the taste counts."
-msgstr "Mas como você vê, a cor não pode ser comida, apenas o sabor que conta."
+msgstr "Mas como você vê, a cor não pode ser comida, é apenas o sabor que conta."
 
 #: dialogs/Michelangelo.lua:296 dialogs/Michelangelo.lua:311
 msgid "I have the dilithium you wanted."
@@ -11904,7 +11904,7 @@ msgstr "Eu tenho o dilítio que você queria."
 
 #: dialogs/Michelangelo.lua:298 dialogs/Michelangelo.lua:313
 msgid "Really? I thought you were dead, but not only did you come back alive, you also brought some power crystals for my trusty oven."
-msgstr "Realmente? Eu achei que você estava morto, mas não somente voltou vivo, como também trouxe alguns cristais de energia para meu confiável imcroondas."
+msgstr "Realmente? Eu achei que você estava morto, mas não somente voltou vivo, como também trouxe alguns cristais de energia para o meu confiável microondas."
 
 #: dialogs/Michelangelo.lua:299
 msgid "I will start cooking at once."
@@ -11912,7 +11912,7 @@ msgstr "Começarei a cozinhar imediatamente."
 
 #: dialogs/Michelangelo.lua:300
 msgid "Thank you, Linarian. As soon as the food cubes are ready I will be able to give them away to the hungry people."
-msgstr ""
+msgstr "Obrigado, Linariano. Assim que os cubos de comida estiverem prontos eu os darei para as pessoas famintas."
 
 #: dialogs/Michelangelo.lua:301
 msgid "Restored Michelangelo's power supply"
@@ -11920,7 +11920,7 @@ msgstr ""
 
 #: dialogs/Michelangelo.lua:304
 msgid "I gave the cook, Michelangelo, enough dilithium to last a decade. The evil spectre of eating army snacks is lifted from the town's cantina."
-msgstr ""
+msgstr "Eu dei ao cozinheiro, Michelangelo, dilítio o suficiente para durar a década inteira. O espectro maligno de ter de comer as rações militares foi expulso da cantina da cidade."
 
 #: dialogs/Michelangelo.lua:314
 msgid "However I need at least three crystals. Can you come back with all the crystals I need?"
@@ -11928,11 +11928,11 @@ msgstr "Entretanto eu preciso de pelo menos três cristais. Você pode voltar co
 
 #: dialogs/Michelangelo.lua:320
 msgid "What was I supposed to do again?"
-msgstr ""
+msgstr "O que era pra eu fazer, mesmo?"
 
 #: dialogs/Michelangelo.lua:322
 msgid "Get me three dilithium crystals before the whole stupid town commits mass suicide because of poor food quality."
-msgstr ""
+msgstr "Me consiga três cristais de dilítio antes que toda a maldita cidade cometa suicídio em massa pela má qualidade da comida."
 
 #: dialogs/Michelangelo.lua:323
 msgid "Of course our heinous food might do us in far before that. I swear I saw that stuff glow it the dark and try to sneak away from my plate a few times."
@@ -11940,59 +11940,59 @@ msgstr ""
 
 #: dialogs/Michelangelo.lua:329
 msgid "Where can I find dilithium crystals?"
-msgstr ""
+msgstr "Onde eu posso encontrar cristais de dilítio?"
 
 #: dialogs/Michelangelo.lua:331
 msgid "There is an old abandoned dilithium mine is to the east of the town."
-msgstr ""
+msgstr "Há uma antiga mina de dilítio abandonada a leste da cidade."
 
 #: dialogs/Michelangelo.lua:332
 msgid "Be careful if you go down there!"
-msgstr ""
+msgstr "Tome cuidado se for até lá!"
 
 #: dialogs/Michelangelo.lua:338
 msgid "What is this 'dilithium'?"
-msgstr ""
+msgstr "O que é esse 'dilítio'?"
 
 #: dialogs/Michelangelo.lua:340
 msgid "You do not know? I thought Linarians were unmatched in their knowledge of the universe. Anyway..."
-msgstr ""
+msgstr "Você não sabe? Achei que Linarianos não tivessem par em seu conhecimento do universo. Enfim..."
 
 #: dialogs/Michelangelo.lua:341
 msgid "Dilithium is a substance which is usually seen in the form of a small crystal."
-msgstr ""
+msgstr "Dilítio é uma substância que é normalmente vista na forma de um pequeno cristal."
 
 #: dialogs/Michelangelo.lua:342
 msgid "It somehow generates and stores amazing amounts of electricity. I do not know the details. I'm a cook, not a quantum scientist."
-msgstr ""
+msgstr "De alguma forma ela gera e armazena quantidades incríveis de eletricidade. Eu não sei os detalhes. Sou um cozinheiro, não um cientista quântico."
 
 #: dialogs/Michelangelo.lua:348
 msgid "I have an idea. Use fire to cook the food for the town."
-msgstr ""
+msgstr "Eu tenho uma ideia. Use fogo pra cozinhar a comida para a cidade."
 
 #: dialogs/Michelangelo.lua:350
 msgid "A nice idea, but there is a couple of major problems with it."
-msgstr ""
+msgstr "Uma boa ideia, mas há alguns grandes problemas com ela."
 
 #: dialogs/Michelangelo.lua:351
 msgid "We are a town of 450 hungry people. It would need to be a very big fire to supply heat for all of the meals."
-msgstr ""
+msgstr "Somos uma cidade de 450 pessoas famintas. Seria necessário um fogo bem grande para fornecer calor para todas as refeições."
 
 #: dialogs/Michelangelo.lua:352
 msgid "There is nothing to burn inside the town. If you want you can go and try to chop some trees in the region to the north, but odds are the bots will chop you down before you get a chance to swing the hatchet once."
-msgstr ""
+msgstr "Não há nada para queimar dentro da cidade. Se você quiser pode ir e tentar cortar algumas árvores na região ao norte, mas, provavelmente, serão os robôs que irão lhe cortar antes que você tenha a chance de usar o machado sequer uma vez."
 
 #: dialogs/Michelangelo.lua:353
 msgid "Finally, the meal cubes which we have in the freezer are optimized for macrowaves. If we stick them in a fire they will combust and not cook."
-msgstr ""
+msgstr "Por fim, as refeições em cubos que temos no freezer são otimizadas para microondas. Se os jogarmos no fogo eles entraram em combustão ao invés de cozinhar."
 
 #: dialogs/Michelangelo.lua:354
 msgid "No oven means having to use premacrowaved food."
-msgstr ""
+msgstr "Sem microondas significa ter de usar comida pré-cozida."
 
 #: dialogs/Michelangelo.lua:355
 msgid "And the only such thing around is that abhorrent military sludge."
-msgstr ""
+msgstr "E a única que temos por aqui é aquele repugnante lixo militar."
 
 #: dialogs/Michelangelo.lua:361
 msgid "Tell the Red Guard that you need your battery back."
@@ -12024,63 +12024,63 @@ msgstr "Fale com Spencer você mesmo."
 
 #: dialogs/Michelangelo.lua:371 dialogs/Michelangelo.lua:381
 msgid "I did."
-msgstr "Eu fiz."
+msgstr "Eu falei."
 
 #: dialogs/Michelangelo.lua:372
 msgid "They said it was already fed to their reactor as fuel."
-msgstr "Eles disseram que já foi alimentado ao seu reator como combustível."
+msgstr "Eles disseram que já foi dado ao seu reator como combustível."
 
 #: dialogs/Michelangelo.lua:379
 msgid "Why don't you send someone for the dilithium?"
-msgstr ""
+msgstr "Por que você não envia alguém atrás do dilítio?"
 
 #: dialogs/Michelangelo.lua:382
 msgid "Yesterday a guard patrol found a few tiny bits of him and lots of dried blood."
-msgstr ""
+msgstr "Ontem uma patrulha encontrou alguns pedacinhos dele e um monte de sangue seco."
 
 #: dialogs/Michelangelo.lua:383
 msgid "The bots made a bloody mess out of him."
-msgstr ""
+msgstr "Os robôs fizeram uma bagunça com ele."
 
 #: dialogs/Michelangelo.lua:389
 msgid "I need a dilithium crystal."
-msgstr ""
+msgstr "Eu preciso de um cristal de dilítio."
 
 #: dialogs/Michelangelo.lua:391
 msgid "I am already using the ones you got me. They are being used to feed the town."
-msgstr ""
+msgstr "Já estou usando os que você pegou pra mim. Eles estão sendo usados pra alimentar a cidade."
 
 #: dialogs/Michelangelo.lua:402 dialogs/Michelangelo.lua:410
 msgid "I need one of the dilithium crystals back, it is a matter of life or death!"
-msgstr ""
+msgstr "Eu preciso de um dos cristais de dilítio de volta, é uma questão de vida ou morte!"
 
 #: dialogs/Michelangelo.lua:404
 msgid "I gave you all of the crystals I can spare."
-msgstr ""
+msgstr "Eu te dei todos os cristais que podia."
 
 #: dialogs/Michelangelo.lua:412
 msgid "I guess I can spare one of them, since it is an emergency."
-msgstr ""
+msgstr "Acho que posso ficar sem um deles, já que é uma emergência."
 
 #: dialogs/Michelangelo.lua:415
 msgid "I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!"
-msgstr ""
+msgstr "Me lembrei que havia dado ao Michelangelo três cristais de dilítio quando ele só precisava de dois para o seu forno. Eu lhe convenci que era uma questão de vida ou morte (O PAZ é uma forma de vida?), então ele me deu um deles. Parece que eu me poupei de uma viagem de volta à velha mina de dilítio!"
 
 #: dialogs/Michelangelo.lua:421
 msgid "Maybe I can get you some dilithium."
-msgstr ""
+msgstr "Talvez eu possa lhe conseguir um pouco de dilítio."
 
 #: dialogs/Michelangelo.lua:423
 msgid "Have you gotten overheated, Linarian?"
-msgstr ""
+msgstr "Você sobreaqueceu, Linariano?"
 
 #: dialogs/Michelangelo.lua:424
 msgid "Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot."
-msgstr ""
+msgstr "Olhe, há inúmeras maneiras pra você se matar, e a maioria iria doer bem menos que ser morto por um robô."
 
 #: dialogs/Michelangelo.lua:425
 msgid "If you want to die just walk into a nuclear reactor or something. So much simpler."
-msgstr ""
+msgstr "Se você quer morrer simplesmente entre em um reator nuclear ou algo assim. Bem mais simples."
 
 #: dialogs/Michelangelo.lua:431
 msgid "Don't worry, I'll be fine."
@@ -12088,59 +12088,59 @@ msgstr "Não se preocupe, ficarei bem."
 
 #: dialogs/Michelangelo.lua:433
 msgid "Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly."
-msgstr ""
+msgstr "Você sabe como os robôs agem? Alguns querem lhe matar o quanto antes... Outros querem fazer o mesmo, mas bem devagar."
 
 #: dialogs/Michelangelo.lua:434
 msgid "I have seen corpses with nearly all of the fingers ripped off. People with eyes drilled out by some big tool."
-msgstr ""
+msgstr "Eu já vi corpos com quase todos os dedos arrancados fora. Pessoas com os olhos perfurados por alguma grande ferramenta."
 
 #: dialogs/Michelangelo.lua:435
 msgid "I have smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the town walls."
-msgstr ""
+msgstr "Eu senti o cheiro da carne queimada e ouvi os gritos dos prisioneiros enquanto eram incinerados vivos fora dos muros da cidade."
 
 #: dialogs/Michelangelo.lua:436
 msgid "The bots know no mercy. They cannot even define it, infernal scrap metal fiends."
-msgstr ""
+msgstr "Os robôs não conhecem compaixão. Eles não podem nem defini-la, esses infernais demônios de sucata."
 
 #: dialogs/Michelangelo.lua:437
 msgid "Feel free to go, Linarian, but make sure to be very dead before they start killing you."
-msgstr ""
+msgstr "Sinta-se livre para ir, Linariano, mas tenha certeza de estar bem morto antes que eles comecem a lhe matar."
 
 #: dialogs/Michelangelo.lua:438
 msgid "Where can I get the crystals?"
-msgstr ""
+msgstr "Onde eu posso conseguir os cristais?"
 
 #: dialogs/Michelangelo.lua:439
 msgid "There is an old dilithium mine to the east. I am sure there is lots of that stuff there."
-msgstr ""
+msgstr "Há uma antiga mina de dilítio a leste da cidade. Tenho certeza de que há bastante cristais lá embaixo."
 
 #: dialogs/Michelangelo.lua:440
 msgid "I will talk to the guards, they will open the eastern gate for you."
-msgstr ""
+msgstr "Eu falarei com os guardas, eles abrirão o portão leste pra você."
 
 #: dialogs/Michelangelo.lua:441
 msgid "Good luck. Try not to get yourself killed."
-msgstr ""
+msgstr "Boa sorte. Tente não ser morto."
 
 #: dialogs/Michelangelo.lua:442
 msgid "How many dilithium crystals do you need?"
-msgstr ""
+msgstr "De quantos cristais de dilítio você precisa?"
 
 #: dialogs/Michelangelo.lua:443
 msgid "A single small crystal could power my oven for a decade if it is of good quality. But unfortunately my oven requires two to operate correctly. And since it is so dangerous to send anyone to get dilithium, could you get me a spare as well?"
-msgstr ""
+msgstr "Um pequeno cristal poderia alimentar o meu forno por uma década de for de boa qualidade. Mas, infelizmente, meu forno requer dois para operar corretamente. E já que é tão perigoso mandar alguém atrás do dilítio, você poderia pegar um de reserva pra mim também?"
 
 #: dialogs/Michelangelo.lua:444
 msgid "So you need three dilithium crystals?"
-msgstr ""
+msgstr "Então você precisa de três cristais de dilítio?"
 
 #: dialogs/Michelangelo.lua:445
 msgid "Yes. Please get me three dilithium crystals."
-msgstr ""
+msgstr "Sim. Por favor consiga pra mim três cristais de dilítio."
 
 #: dialogs/Michelangelo.lua:447
 msgid "I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking, the whole town is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop."
-msgstr ""
+msgstr "Eu devo conseguir três cristais de dilítio para aquele cozinheiro, o Michelangelo. Sem eles ele não pode cozinhar nada com o seu forno de microondas. E sem a sua comida a cidade inteira não tem escolha a não ser comer as rações militares. Muitos já cometeram suicídio por causa da comida horrível. Esta loucura precisa parar."
 
 #: dialogs/Mike.lua:42
 msgid "You have won the arena."
@@ -12236,7 +12236,7 @@ msgstr "Configurando Informação de Fabricação..."
 
 #: dialogs/MiniFactory-Terminal.lua:57
 msgid "Testing Assembly Hardware..."
-msgstr "Testando montagem de Hardware..."
+msgstr "Testando Montagem de Hardware..."
 
 #: dialogs/MiniFactory-Terminal.lua:59
 msgid "DECLINE"
@@ -12257,7 +12257,7 @@ msgstr "AVISO: "
 
 #: dialogs/MiniFactory-Terminal.lua:63
 msgid "The manual is outdated. Please refer to the fixed directive 33 in the reference book."
-msgstr "O manual está desatualizado. Refira-se a diretiva de número 33 no livro de referência."
+msgstr "O manual está desatualizado. Refira-se à diretiva de número 33 no livro de referência."
 
 #: dialogs/MiniFactory-Terminal.lua:65
 msgid "The reference book is outdated. Please refer to the ticket 2012 in the technician database."
@@ -12269,11 +12269,11 @@ msgstr "O ticket 2012 está desatualizado. Por favor refira ao manual."
 
 #: dialogs/MiniFactory-Terminal.lua:68
 msgid "Cancelling Initialization Process..."
-msgstr ""
+msgstr "Cancelando Processo de Inicialização..."
 
 #: dialogs/MiniFactory-Terminal.lua:69
 msgid "Initialization has been cancelled to prevent any damage."
-msgstr ""
+msgstr "Inicialização foi cancelada para prevenir qualquer dano."
 
 #: dialogs/MiniFactory-Terminal.lua:73
 msgid "Final Initialization Instructions..."
