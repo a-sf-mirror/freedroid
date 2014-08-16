@@ -4,13 +4,14 @@
 #
 # Translators:
 # Jonatas L. Nogueira <cpntb1@ymail.com>, 2014
+# Jonatas L. Nogueira <cpntb1@ymail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
 "POT-Creation-Date: 2014-08-06 20:52+0000\n"
-"PO-Revision-Date: 2014-08-06 20:52+0000\n"
-"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
+"PO-Revision-Date: 2014-08-13 18:32+0000\n"
+"Last-Translator: Jonatas L. Nogueira <cpntb1@ymail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/freedroid-rpg/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -453,7 +454,7 @@ msgstr "Eu acabei de ouvir uma explosão - O 296 de Ewald deve ter explodido o r
 
 #: map/events.dat:911
 msgid "To Omega Island"
-msgstr ""
+msgstr "Para Ilha Ômega"
 
 #: map/events.dat:952
 msgid "To Kevin's Underground Station"
@@ -569,7 +570,7 @@ msgstr "Precisamos ir mais fundo..."
 
 #: map/events.dat:6567
 msgid "Back to mainland"
-msgstr ""
+msgstr "Voltar ao Continente"
 
 #: map/events.dat:6583
 msgid "Security failure at Hell's Fortress reception desk."
@@ -2067,7 +2068,7 @@ msgstr "Laboratório Criogênico"
 
 #: map/levels.dat:16699
 msgid "Three Fermis Land"
-msgstr ""
+msgstr "Terra de Três Fermis"
 
 #: map/levels.dat:17434
 msgid "Scientists quarters and Telemetry"
@@ -2100,7 +2101,7 @@ msgstr "Oceano do Fim do Mundo"
 
 #: map/levels.dat:23884
 msgid "DEBUG LEVEL 24 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
-msgstr ""
+msgstr "NÍVEL DEBUG 24 -- Nível criado para testes, NÃO deve ser acessível sem trapacear."
 
 #: map/levels.dat:24463
 msgid "Broken Glass Path"
@@ -2235,7 +2236,7 @@ msgstr "Oceano Vazio"
 
 #: map/levels.dat:66826
 msgid "Omega Island"
-msgstr ""
+msgstr "Ilha Ômega"
 
 #: map/npc_specs.lua:6
 msgid "Will Gapes - MegaSys CSA"
@@ -2279,7 +2280,7 @@ msgstr "Skippy - Cartógrafo"
 
 #: map/npc_specs.lua:27
 msgid "Scavenger Bot"
-msgstr ""
+msgstr "Robô Reciclador"
 
 #: map/npc_specs.lua:28
 msgid "SADD - Exterminate Mode"
@@ -2368,7 +2369,7 @@ msgstr "Dixon - Mecânico"
 #: map/npc_specs.lua:69 map/ReturnOfTux.droids:579 map/ReturnOfTux.droids:580
 #: map/ReturnOfTux.droids:581 map/ReturnOfTux.droids:582
 msgid "Cult Member"
-msgstr ""
+msgstr "Membro Cultista"
 
 #: map/npc_specs.lua:73
 msgid "Butch - Arena Master"

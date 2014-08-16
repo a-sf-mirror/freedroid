@@ -4340,7 +4340,7 @@ msgstr ""
 
 #: dialogs/c-net.lua:553
 msgid "Accept Character"
-msgstr ""
+msgstr "Accepter le Personnage"
 
 #. TRANSLATORS: "Progress Quest" should not be translated
 #: dialogs/c-net.lua:557
@@ -4349,12 +4349,12 @@ msgstr ""
 
 #: dialogs/c-net.lua:564
 msgid "Reroll Character"
-msgstr ""
+msgstr "Relancer le Personnage"
 
 #. TRANSLATORS: "c-net" should probably not be translated
 #: dialogs/c-net.lua:577
 msgid "Connection to c-net closed."
-msgstr ""
+msgstr " Fermeture de la connexion à C-net."
 
 #: dialogs/Chandra.lua:37
 msgid "So the rumors are true - a real live Linarian walks among us!"
@@ -6631,7 +6631,7 @@ msgstr "Mot de passe :"
 #. TRANSLATORS: 'admin' should perhaps not be translated
 #: dialogs/DSB-PowerControl.lua:38
 msgid "admin@main.pc.dsb.ms: ~ #"
-msgstr ""
+msgstr "admin@main.pc.dsb.ms: ~ #"
 
 #: dialogs/DSB-PowerControlGate1.lua:34
 msgid "Login failed. Entering as Guest"
@@ -9338,7 +9338,7 @@ msgstr "Dix mini-robots de surveillance. "
 
 #: dialogs/HF-EntranceBot.lua:92
 msgid "The book 'Subatomic and Nuclear Science for Dummies, Volume IV'."
-msgstr ""
+msgstr "Le livre 'Les sciences Nucléaires et Subatomiques pour les Nuls, Volume IV'."
 
 #: dialogs/HF-EntranceBot.lua:93
 msgid "And a MegaSys Vision Enhancement Device 3000 - what you cannot see, can't see you either!"
@@ -9741,7 +9741,7 @@ msgstr "Et vous avez au moins à un quart faux."
 
 #: dialogs/Jasmine.lua:101
 msgid "You're so cute, baby seals and polar bears sent each other pictures of you."
-msgstr ""
+msgstr "Tu es tellement jolie que les bébés phoques et les ours polaires s'envoient entre eux des photos de toi."
 
 #: dialogs/Jasmine.lua:102
 msgid "Now, please get out of my sight."
@@ -9757,19 +9757,19 @@ msgstr "Oubliez ça."
 
 #: dialogs/Jasmine.lua:111
 msgid "Roses are red,"
-msgstr ""
+msgstr "Les roses sont rouges,"
 
 #: dialogs/Jasmine.lua:112
 msgid "Violets are blue,"
-msgstr ""
+msgstr "Les violettes sont bleus,"
 
 #: dialogs/Jasmine.lua:113
 msgid "All of my base,"
-msgstr ""
+msgstr "Tous de ma base,"
 
 #: dialogs/Jasmine.lua:114
 msgid "Are belong to you."
-msgstr ""
+msgstr "Sont appartient à toi."
 
 #: dialogs/Jasmine.lua:125
 msgid "Yeah. Whatever."
@@ -10443,7 +10443,7 @@ msgstr ""
 
 #: dialogs/Kevin-Lawnmower.lua:189
 msgid "Sorry, tin can."
-msgstr ""
+msgstr "Désolé, boîte de conserve."
 
 #: dialogs/Kevin-Lawnmower.lua:190
 msgid "Import error: [b]null[/b] fuel received."
@@ -16304,7 +16304,7 @@ msgstr "Il y a une semaine, j'ai laissé un étranger qui prétendait aussi jete
 
 #: dialogs/Town-NorthGateGuard.lua:83
 msgid "I'd like to get into town."
-msgstr ""
+msgstr "Je voudrais entrer dans la ville."
 
 #: dialogs/Town-NorthGateGuard.lua:85
 msgid "Funny, exactly the same could be said about all of the crazy bots out there."
@@ -16364,7 +16364,7 @@ msgstr ""
 
 #: dialogs/Town-NorthGateGuard.lua:132
 msgid "Somewhere to the east? I should look for him."
-msgstr ""
+msgstr "Quelque part à l'ouest ? Je devrais partir à sa recherche."
 
 #: dialogs/Town-NorthGateGuard.lua:134
 msgid "Oh, definitely, and I'm sure all the bots out there will be glad to give you directions, too."
@@ -16424,7 +16424,7 @@ msgstr "Je te laisse passer, mais attention : Un pas de travers et on aura tous
 
 #: dialogs/Town-NorthGateGuard.lua:162
 msgid "Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?"
-msgstr ""
+msgstr "Lunarien, je te laisse entrer. Fait quelque chose de stupide, et ne tu ne ressortira pas. Compris ?"
 
 #: dialogs/Town-NorthGateGuard.lua:168
 msgid "Yes. I understand."
@@ -16604,7 +16604,7 @@ msgstr "C'est une blague ? Tu lui a déjà parlé."
 
 #: dialogs/Town-NorthGateGuard.lua:310
 msgid "Go ask him yourself. I know you already talked to him."
-msgstr ""
+msgstr "Va lui demander toi-même. Je sais que tu lui as déjà parlé."
 
 #: dialogs/Town-NorthGateGuard.lua:319
 msgid "I have found the thief you talked about and took care of him."
@@ -16851,7 +16851,7 @@ msgstr "Connexion comme invité"
 #: dialogs/TutorialTom.lua:85
 #, c-format
 msgid "Met [b]%s[/b]!"
-msgstr ""
+msgstr "Rencontrer [b]%s[/b]!"
 
 #: dialogs/TutorialTom.lua:90
 msgid "Well done."
@@ -16879,7 +16879,7 @@ msgstr "Une longue hibernation peut malheureusement déclencher des trous de mé
 
 #: dialogs/TutorialTom.lua:119
 msgid "So let's start with the basics, shall we?"
-msgstr "Peut on commencer avec les choses de base? "
+msgstr "Peut-on commencer avec les choses de base? "
 
 #: dialogs/TutorialTom.lua:126
 msgid "Glad to see you figured out the quest log!"
@@ -16915,7 +16915,7 @@ msgstr "Lorsque vous n'êtes pas en train de parler avec quelqu'un, vous pouvez 
 
 #: dialogs/TutorialTom.lua:221
 msgid "I'll assign you a new quest, so you can try it out. Once you are done, [b]left click[/b] on me."
-msgstr "Je vais te donner une nouvelle quête comme ça tu pourras essayer tout de suite. Une fois que tu aura terminé, effectue un [b]clic gauche[/b] sur moi."
+msgstr "Je vais te donner une nouvelle quête, comme ça tu pourras essayer tout de suite. Une fois que tu auras terminé, fait un [b]clic gauche[/b] sur moi."
 
 #: dialogs/TutorialTom.lua:223
 msgid "To talk to someone, left click on them. You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the 'q' key to open or close the quest log. Left click back on Tutorial Tom to learn more!"
@@ -17443,7 +17443,7 @@ msgstr " Pouvez vous me soigner ?"
 
 #: dialogs/TutorialTom.lua:528
 msgid "You are fine, there is nothing that I can do."
-msgstr ""
+msgstr "Vous êtes très bien, il n'y a rien que je puisse faire."
 
 #: dialogs/TutorialTom.lua:531
 msgid "You should be more careful, Linarian. But yes, I can heal you."
@@ -17613,7 +17613,7 @@ msgstr "Et notre prochaine destination est la zone d'entrainement de combat à d
 
 #: dialogs/TutorialTom.lua:626
 msgid "I'll unlock the door to the south. Follow the corridor east."
-msgstr ""
+msgstr "Je vais ouvrir la porte sud. Suivez le couloir est."
 
 #: dialogs/TutorialTom.lua:636
 msgid "Ranged weaponry seems safer than getting up close and personal."
@@ -18481,7 +18481,7 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:1201
 msgid "I'd like to skip to a later section of the Tutorial."
-msgstr ""
+msgstr "Je voudrais passer à une autre section du tutoriel."
 
 #: dialogs/TutorialTom.lua:1203
 msgid "OK, what would you like to learn about?"
@@ -18545,7 +18545,7 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:1297
 msgid "Ranged Combat"
-msgstr ""
+msgstr "Combat à distance"
 
 #: dialogs/TutorialTom.lua:1299
 msgid "OK, I'll take us to the shooting range and give you some armor and a weapon."
@@ -18553,11 +18553,11 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:1311
 msgid "Let me take a short break and practice on my own for a while."
-msgstr ""
+msgstr "Laissez-moi faire une petite pause et pratiquer par moi-même pendant quelques temps."
 
 #: dialogs/TutorialTom.lua:1313
 msgid "Ok, I'll be around if you need any more questions answered. Don't hesitate to ask."
-msgstr ""
+msgstr "OK, je reste dans les parage. Si tu as la moindre question, n'hésite pas à demander."
 
 #: dialogs/Tybalt.lua:37
 msgid "Hi! I'm new h..."

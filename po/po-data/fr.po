@@ -4,14 +4,15 @@
 #
 # Translators:
 # Duong Khang NGUYEN <neoneurone@gmail.com>, 2014
+# sebastienadam <sebastien.adam.be@gmail.com>, 2014
 # Xenux <xenux@freedroid.org>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
 "POT-Creation-Date: 2014-08-06 20:52+0000\n"
-"PO-Revision-Date: 2014-08-06 20:52+0000\n"
-"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
+"PO-Revision-Date: 2014-08-11 15:00+0000\n"
+"Last-Translator: sebastienadam <sebastien.adam.be@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -454,7 +455,7 @@ msgstr "Je viens tout juste d'entendre une explosion - Le 296 d'Ewald vient cert
 
 #: map/events.dat:911
 msgid "To Omega Island"
-msgstr ""
+msgstr "Vers l'Îles Omega"
 
 #: map/events.dat:952
 msgid "To Kevin's Underground Station"
@@ -570,7 +571,7 @@ msgstr "Nous devons nous enfoncer plus profondément..."
 
 #: map/events.dat:6567
 msgid "Back to mainland"
-msgstr ""
+msgstr "Vers le Continent"
 
 #: map/events.dat:6583
 msgid "Security failure at Hell's Fortress reception desk."
@@ -950,7 +951,7 @@ msgstr "Une arme lente, mais un impact détruit le robot instantanément. Une bo
 
 #: map/item_specs.lua:1104
 msgid "2mm Exterminator Ammunition"
-msgstr ""
+msgstr "Munitions de l'exterminateur 2mm"
 
 #: map/item_specs.lua:1108
 msgid "Exterminators need this kind of ammunition. It can cause skin irritations due to leaking extermination radiation when carried close to the body for long time."
@@ -1010,7 +1011,7 @@ msgstr "Générateur de décharges IEM"
 
 #: map/item_specs.lua:1212
 msgid "Electromagnetic pulse"
-msgstr ""
+msgstr "Impulsion électromagnétique"
 
 #: map/item_specs.lua:1216
 msgid "This sphere contains a few strange bits of technology invented by Nikola Tesla in the early 20th century. The magnetic pulse that it generates can destroy most electronic devices in just one blast."
@@ -1046,7 +1047,7 @@ msgstr "Emetteur de décharges à plasma"
 
 #: map/item_specs.lua:1248
 msgid "Huge explosion"
-msgstr ""
+msgstr "Explosion géante"
 
 #: map/item_specs.lua:1252
 msgid "Said to be the downscaled version of the original Pandora's Sphere, this device extinguishes life with superheated plasma."
@@ -1058,7 +1059,7 @@ msgstr "Veste de base"
 
 #: map/item_specs.lua:1272
 msgid "This piece of clothing made out of Synthex(TM) does a decent job of protection. I guess. Maybe. I'm not sure."
-msgstr ""
+msgstr "Cette pièce d'habillement fabriqué à partir de Synthex(TM) protège de manière correct. Sûrement. Peut-être. Ce n'est pas sûr. "
 
 #: map/item_specs.lua:1280
 msgid "Reinforced Jacket"
@@ -1223,7 +1224,7 @@ msgstr "Tout le monde a besoin de relâcher la pression de temps en temps."
 
 #: map/item_specs.lua:1588
 msgid "Source Book of Check System Integrity"
-msgstr ""
+msgstr "Livre Source de Vérification d'Intégrité Système"
 
 #: map/item_specs.lua:1593
 msgid "An incredible healing program, probably the only one you will ever need."
@@ -1239,7 +1240,7 @@ msgstr "C'est une façon de fuir face au danger très rapidement. C'est très ut
 
 #: map/item_specs.lua:1612
 msgid "Source Book of Malformed Packet"
-msgstr ""
+msgstr "Livre Source de Paquet Malformé"
 
 #: map/item_specs.lua:1617
 msgid "When computers are presented with the unexpected, they can damage themselves."
@@ -1307,11 +1308,11 @@ msgstr "Mettre en pagaille la mémoire d'un robot peut lui faire causer des domm
 
 #: map/item_specs.lua:1720
 msgid "Source Book of Repair Equipment"
-msgstr ""
+msgstr "Livre Source de Réparer l'Équipement"
 
 #: map/item_specs.lua:1721
 msgid "Learn about repairing items"
-msgstr ""
+msgstr "Apprends comment réparer des objets"
 
 #: map/item_specs.lua:1725
 msgid "This manual will help you fix a broken dishwasher, a car, or a gun. The covers does not mention anything about breaking robots however."
@@ -1319,7 +1320,7 @@ msgstr ""
 
 #: map/item_specs.lua:1732
 msgid "Source Book of Plasma Discharge"
-msgstr ""
+msgstr "Livre Source de Décharge de plasma"
 
 #: map/item_specs.lua:1737
 msgid "The overload setting exists for emergencies. Plasma does not discriminate between bots and humans. Everything is the same to it."
@@ -1395,7 +1396,7 @@ msgstr "Gélule de force"
 
 #: map/item_specs.lua:1843
 msgid "Permanently gain +1 strength"
-msgstr ""
+msgstr "Gagne de manière permanent +1 en Force"
 
 #: map/item_specs.lua:1847
 msgid "These pills permanently raise strength within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
@@ -1407,7 +1408,7 @@ msgstr "Gélule de dextérité"
 
 #: map/item_specs.lua:1855
 msgid "Permanently gain +1 dexterity"
-msgstr ""
+msgstr "Gagne de manière permanent +1 en Dextérité"
 
 #: map/item_specs.lua:1859
 msgid "These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
@@ -1419,7 +1420,7 @@ msgstr "Gélule de code"
 
 #: map/item_specs.lua:1867
 msgid "Permanently gain +1 cooling"
-msgstr ""
+msgstr "Gagne de manière permanente +1 en Refroidissement"
 
 #: map/item_specs.lua:1871
 msgid "Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf these down to *see* the code."
@@ -1448,7 +1449,7 @@ msgstr ""
 
 #: map/item_specs.lua:1901
 msgid "Diet Supplement"
-msgstr ""
+msgstr "Supplément diététique"
 
 #: map/item_specs.lua:1902 map/item_specs.lua:1914 map/item_specs.lua:1926
 msgid "Recover Health"
@@ -1476,7 +1477,7 @@ msgstr "Ceci est une boisson contenant des nanorobots conçus pour soigner tout 
 
 #: map/item_specs.lua:1937
 msgid "Bottled Ice"
-msgstr ""
+msgstr "Glace en Bouteille"
 
 #: map/item_specs.lua:1938 map/item_specs.lua:1950 map/item_specs.lua:3022
 msgid "Cooling aid"
@@ -1488,7 +1489,7 @@ msgstr "Cette bouteille est remplie de glace. Elle peut vous rafraîchir pendant
 
 #: map/item_specs.lua:1949
 msgid "Industrial Coolant"
-msgstr ""
+msgstr "Refroidissant Industriel"
 
 #: map/item_specs.lua:1954
 msgid "Bartenders around the world add this to drinks to get them cold very fast. Plus, the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
@@ -1496,7 +1497,7 @@ msgstr "Les barmans du monde entier en ajoutent à leur cocktails pour les refro
 
 #: map/item_specs.lua:1961
 msgid "Liquid Nitrogen"
-msgstr ""
+msgstr "Nitrogène Liquide"
 
 #: map/item_specs.lua:1962
 msgid "Extreme Cooling aid"
@@ -1682,7 +1683,7 @@ msgstr ""
 
 #: map/item_specs.lua:2237
 msgid "Data Cube"
-msgstr ""
+msgstr "Cube de données"
 
 #: map/item_specs.lua:2241
 msgid "This was the most common form of portable information storage used on Earth until the Great Assault, its three-dimensional memory capable of storing up to 2 terabytes and compatible with most of the hardware on the planet."
@@ -1987,7 +1988,7 @@ msgstr ""
 
 #: map/item_specs.lua:2983
 msgid "This item is used by testers. If you find it ingame without using a cheat, please report it as a bug."
-msgstr ""
+msgstr "Cet objet est utilisé par les testeurs. Si bous le trouvé en jeu sans triché, reportez le s'il-vous-plaît comme un bogue."
 
 #: map/item_specs.lua:2997
 msgid "Small Tutorial Axe"
@@ -2002,7 +2003,7 @@ msgstr ""
 
 #: map/item_specs.lua:3021
 msgid "Bottled Tutorial Ice"
-msgstr ""
+msgstr "Glace en Bouteille du Tutorial"
 
 #: map/item_specs.lua:3026
 msgid ""
@@ -2095,7 +2096,7 @@ msgstr "Mer du Bout du Monde"
 
 #: map/levels.dat:23884
 msgid "DEBUG LEVEL 24 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
-msgstr ""
+msgstr "DEBUG LEVEL 24 -- Ce niveau a été crée pour rendre les tests de FreedroidRPG un peu plus facile et n'est PAS censé être accessible sans tricher."
 
 #: map/levels.dat:24463
 msgid "Broken Glass Path"
@@ -2190,15 +2191,15 @@ msgstr "Centre de Recherche"
 
 #: map/levels.dat:56494
 msgid "Machine Deck Upper Catacombs"
-msgstr ""
+msgstr "Catacombes Hautes du Pont des Machines"
 
 #: map/levels.dat:56608
 msgid "Machine Deck Lower Catacombs"
-msgstr ""
+msgstr "Catacombes Basses du Pont des Machines"
 
 #: map/levels.dat:56722
 msgid "Freight Station"
-msgstr ""
+msgstr "Gare de Fret"
 
 #: map/levels.dat:58210
 msgid "Old Server Room"
@@ -2218,11 +2219,11 @@ msgstr "Piste d'Atterrissage "
 
 #: map/levels.dat:65612
 msgid "Shelter"
-msgstr ""
+msgstr "Abri"
 
 #: map/levels.dat:65729
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT ment to be accessible without cheating."
-msgstr ""
+msgstr "DEBUG LEVEL 70 -- Ce niveau a été crée pour rendre les tests de FreedroidRPG un peu plus facile et n'est PAS censé être accessible sans tricher."
 
 #: map/levels.dat:66664
 msgid "Empty Sea"
@@ -2230,7 +2231,7 @@ msgstr "Mer asséchée "
 
 #: map/levels.dat:66826
 msgid "Omega Island"
-msgstr ""
+msgstr "Îles Omega"
 
 #: map/npc_specs.lua:6
 msgid "Will Gapes - MegaSys CSA"
@@ -2686,19 +2687,19 @@ msgstr "Adminisrtateur *nix"
 
 #: map/ReturnOfTux.droids:20 map/ReturnOfTux.droids:21
 msgid "614 - Patrolling Guard Bot"
-msgstr ""
+msgstr "614 - Robot gardien patrouillant"
 
 #: map/ReturnOfTux.droids:22
 msgid "614 - East Gate Guard Bot"
-msgstr ""
+msgstr "614 - Robot gardien de la porte est"
 
 #: map/ReturnOfTux.droids:23 map/ReturnOfTux.droids:24
 msgid "614 - South Gate Guard Bot"
-msgstr ""
+msgstr "614 - Robot gardien de la porte sud"
 
 #: map/ReturnOfTux.droids:25
 msgid "614 - North Gate Guard Bot"
-msgstr ""
+msgstr "614 - Robot gardien de la porte nord"
 
 #: map/ReturnOfTux.droids:26
 msgid "COBAL Programmer"
@@ -2817,7 +2818,7 @@ msgstr ""
 
 #: map/ReturnOfTux.droids:207
 msgid "543"
-msgstr ""
+msgstr "543"
 
 #: map/ReturnOfTux.droids:208
 msgid "BAR"
