@@ -1713,14 +1713,14 @@ Silent=0
 	end
 
 	local waves
-	if (arena_current_level == 1) then
+	if (arena_current_level == "novice") then
 		-- Waves for novice event
 		waves = {
 			{123, nil, nil, 123, 123, nil, nil, 123, nil},
 			{123, 123, nil, 139, 123, 123, nil, 139, nil},
 			{nil, nil, nil, 123, nil, nil, nil, 123, 302}
 		}
-	elseif (arena_current_level == 2) then
+	elseif (arena_current_level == "elite") then
 		-- Waves for elite event
 		waves = {
 			{123, 123, 139, 139, 123, 123, 139, 139, nil},
@@ -1729,7 +1729,7 @@ Silent=0
 			{247, 247, 247, 476, 249, 249, 249, 476, nil},
 			{nil, 249, nil, 476, nil, 249, nil, 476, 883}
 		}
-	elseif (arena_current_level == 3) then
+	elseif (arena_current_level == "champion") then
 		-- Waves for champion event
 		waves = {
 			{302, 302, 476, 476, 302, 302, 476, 476, nil},
