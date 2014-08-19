@@ -238,8 +238,6 @@ return {
 	},
 	{
 		id = "node15",
-		text = "BUG, REPORT ME! Kevin node15",
-		echo_text = false,
 		topic = "Kevin's Reward",
 		code = function()
 			Kevin_reward_given = true -- Tux received a reward for completing the quest "And there was light..."
@@ -327,8 +325,6 @@ return {
 	},
 	{
 		id = "node40",
-		text = "BUG, REPORT ME! Kevin node40",
-		echo_text = false,
 		code = function()
 			Tux:says_random(_"Hold on, I don't seem to have that much money right now.",
 				_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
@@ -341,8 +337,6 @@ return {
 	},
 	{
 		id = "node41",
-		text = "BUG, REPORT ME! Kevin node41",
-		echo_text = false,
 		code = function()
 			Tux:says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
 			Npc:says_random(
@@ -420,8 +414,6 @@ return {
 	},
 	{
 		id = "node93",
-		text = "BUG, REPORT ME! Kevin node93",
-		echo_text = false,
 		topic = "Backdoor",
 		code = function()
 			-- open KevinGuard door

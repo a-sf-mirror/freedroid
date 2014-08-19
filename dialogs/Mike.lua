@@ -188,7 +188,6 @@ return {
 	{
 		id = "arena_start",
 		topic = "arena",
-		text = "BUG, REPORT ME! Mike node 'arena_start'",
 		code = function()
 
 			-- TODO: Display information about arena wave.

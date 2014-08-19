@@ -306,8 +306,6 @@ return {
 	},
 	{
 		id = "node35",
-		text = "BUG, REPORT ME! ewald node35 -- Choose the Bet",
-		echo_text = false,
 		topic = "Gambling",
 		code = function()
 			-- Ewald forces you to gamble semi-responsibly ;-)
@@ -365,8 +363,6 @@ return {
 	},
 	{
 		id = "node40",
-		text = "BUG, REPORT ME! ewald node40 -- Dice - Initial roll",
-		echo_text = false,
 		code = function()
 			Npc:says(_"Dice it is. Roll your first die.")
 			tux1=math.random(1,6)
@@ -404,8 +400,6 @@ return {
 	{
 		-- finish game here
 		id = "node44",
-		text = "BUG, REPORT ME! ewald node43 -- Dice - finish game",
-		echo_text = false,
 		code = function()
 			Npc:says(_"You've bet %d valuable circuits.", bet)
 			ewd1,ewd2,ewd3 = math.random(1,6),math.random(1,6),math.random(1,6)
@@ -440,8 +434,6 @@ return {
 	},
 	{
 		id = "node50",
-		text = "BUG, REPORT ME! ewald node50 -- Coin-flipping game",
-		echo_text = false,
 		code = function()
 			-- Constant for the coin-flipping game
 			coin_str = {_"heads", _"tails"}
@@ -481,8 +473,6 @@ return {
 	},
 	{
 		id = "node53",
-		text = "BUG, REPORT ME! ewald node53 -- Coin-flipping game - first flip",
-		echo_text = false,
 		topic = "Gambling",
 		code = function()
 			Npc:says(_"Here goes nothing.")
@@ -540,8 +530,6 @@ return {
 	},
 	{
 		id = "node56",
-		text = "BUG, REPORT ME! ewald node56 -- Coin-flipping game - last four flips",
-		echo_text = false,
 		topic = "Gambling",
 		code = function()
 			local function flip_coin()
@@ -618,8 +606,6 @@ return {
 	},
 	{
 		id = "node60",
-		text = "BUG, REPORT ME! ewald node56 -- Reinitialize variable",
-		echo_text = false,
 		code = function()
 			-- Re Initialize variables here
 			tux1, tux2, tux3 = 0, 0, 0

@@ -1111,8 +1111,6 @@ return {
 	{
 		--hidden
 		id = "node66",
-		text = "BUG, REPORT ME! tutorial node66 -- LAST BITS ABOUT SHOPS",
-		echo_text = false,
 		code = function()
 			Npc:says(_"You will occasionally run into items that can't be sold.")
 			Npc:says(_"This generally means that the shopkeeper can't give you a reasonable deal on it.")

@@ -174,8 +174,6 @@ return {
 	},
 	{
 		id = "node20",
-		text = "BUG! REPORT ME! BRUCE NODE 20",
-		echo_text = false,
 		topic = "Bruce wants Dixon's helmet",
 		code = function()
 			Npc:says(_"What do you have there?")
@@ -196,8 +194,6 @@ return {
 	},
 	{
 		id = "node30",
-		text = "BUG! REPORT ME! BRUCE NODE 30",
-		echo_text = false,
 		topic = "Bruce wants Dixon's helmet",
 		code = function()
 			Npc:says(_"So, what about the helmet now?")

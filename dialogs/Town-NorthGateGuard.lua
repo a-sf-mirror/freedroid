@@ -150,8 +150,6 @@ return {
 	},
 	{
 		id = "node15",
-		text = "BUG, REPORT ME! Town-NorthGateGuard node15 -- Guard Escort",
-		echo_text = false,
 		code = function()
 			Npc:says(_"In any case...")
 			Npc:says(_"We've changed our security policy. Our leader, Spencer, wants to interrogate any strangers we let in.")
@@ -277,8 +275,6 @@ return {
 	},
 	{
 		id = "node40",
-		text = _"BUG, REPORT ME! Town-NorthGateGuard node40",
-		echo_text = false,
 		code = function()
 			for var in ipairs(Town_NorthGateGuard_doors) do
 				change_obstacle_state(Town_NorthGateGuard_doors[var], "opened")

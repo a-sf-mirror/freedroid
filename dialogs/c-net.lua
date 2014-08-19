@@ -140,8 +140,6 @@ return {
 	},
 	{
 		id = "node9",
-		text = "BUG, REPORT ME! cnet node9",
-		echo_text = false,
 		code = function()
 			Npc:says(_"Login incorrect", "NO_WAIT")
 			Npc:says(_"Connection to c-net terminated.")
@@ -535,8 +533,6 @@ return {
 	},
 	{
 		id = "node87",
-		text = "BUG c-net node 87 -- ROLL STATS",
-		echo_text = false,
 		code = function()
 			local str = math.random(0,6) + math.random(0,6) + math.random(0,6)
 			local con = math.random(0,6) + math.random(0,6) + math.random(0,6)
