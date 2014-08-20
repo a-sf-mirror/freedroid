@@ -144,26 +144,26 @@ static void print_enemy_info(char *str, int en_idx)
 static void print_item_info(char *str, int item_idx)
 {
 	struct itemspec *item = &ItemMap[item_idx];
-	if (item->item_gun_ammo_clip_size) { //Mostly Guns
+	if (item->weapon_ammo_type) { // Weapons with ammunition: mostly guns, or melee weapons needing a power pack
 		sprintf(str, 	_("%s (%s)\n\
-			Damage: %d-%d, Recharge: %.2f, Reload: %.2f, Ammo: (%d/%s)\n\
+			Damage: %d-%d, Attack Time: %.2fs, Reload Time: %.2fs, Ammo: (%d/%s)\n\
 			STR: >%d\n%s"),
 				item_specs_get_name(item_idx), item->id,
-				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
-				item->item_gun_recharging_time, item->item_gun_reloading_time,
-				item->item_gun_ammo_clip_size, item->ammo_id,
+				item->weapon_base_damage, item->weapon_base_damage + item->weapon_damage_modifier,
+				item->weapon_attack_time, item->weapon_reloading_time,
+				item->weapon_ammo_clip_size, item->weapon_ammo_type,
 				item->item_require_strength,
-				item->item_gun_requires_both_hands ? _("Requires two hands\n") : "" );
+				item->weapon_needs_two_hands ? _("Requires two hands\n") : "" );
 
-	} else if (item->slot == WEAPON_SLOT) { //Most Melee Weapons
+	} else if (item->slot == WEAPON_SLOT) { // Other weapons
 		sprintf(str, 	_("%s (%s)\n\
-			Damage: %d-%d, Recharge: %.2f,\n\
+			Damage: %d-%d, Attack Time: %.2fs,\n\
 			STR: >%d, DEX: >%d, COOL: >%d\n%s"),
 				item_specs_get_name(item_idx), item->id,
-				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
-				item->item_gun_recharging_time,
+				item->weapon_base_damage, item->weapon_base_damage + item->weapon_damage_modifier,
+				item->weapon_attack_time,
 				item->item_require_strength, item->item_require_dexterity, item->item_require_cooling,
-				item->item_gun_requires_both_hands ? _("Requires two hands\n") : "" );
+				item->weapon_needs_two_hands ? _("Requires two hands\n") : "" );
 
 	} else if (item->slot & (SHIELD_SLOT | HELM_SLOT | ARMOR_SLOT | BOOT_SLOT)) {
 		sprintf(str, 	_("%s (%s)\n\

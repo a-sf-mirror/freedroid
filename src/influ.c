@@ -98,7 +98,7 @@ static void limit_tux_speed()
 												  &Me.current_enemy_target_addr);
 
 	if (Me.weapon_item.type >= 0) {
-		int has_melee = ItemMap[Me.weapon_item.type].item_weapon_is_melee;
+		int has_melee = ItemMap[Me.weapon_item.type].weapon_is_melee;
 		if (Me.weapon_swing_time != -1 && (!has_melee
 		   || (has_melee && (previous_target != current_target || current_target == NULL))))
 		{
@@ -138,7 +138,7 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 	// we have to check for enough ammunition first...
 	//
 	if (Me.weapon_item.type >= 0) {
-		if (ItemMap[Me.weapon_item.type].ammo_id) {
+		if (ItemMap[Me.weapon_item.type].weapon_ammo_type) {
 			if (Me.weapon_item.ammo_clip <= 0) {
 				No_Ammo_Sound();
 
@@ -161,7 +161,7 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 
 	//Weapon uses ammo? remove one bullet !
 	if (Me.weapon_item.type >= 0) {
-		if (ItemMap[Me.weapon_item.type].ammo_id) {
+		if (ItemMap[Me.weapon_item.type].weapon_ammo_type) {
 			Me.weapon_item.ammo_clip--;
 		}
 	}
@@ -391,7 +391,7 @@ void tux_get_move_target_and_attack(gps * movetgt)
 	// enemy in question.  We just try to fire a shot, and return.
 	//
 	if (Me.weapon_item.type != (-1)) {
-		if (!ItemMap[Me.weapon_item.type].item_weapon_is_melee) {	//ranged weapon
+		if (!ItemMap[Me.weapon_item.type].weapon_is_melee) {	//ranged weapon
 			if (!is_friendly(t->faction, FACTION_SELF))
 				tux_wants_to_attack_now(FALSE);
 			movetgt->x = -1;
@@ -1112,7 +1112,7 @@ enemy *GetLivingDroidBelowMouseCursor()
 void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, bullet * bullet_parameters,
                             moderately_finepoint target_location)
 {
-	float BulletSpeed = ItemMap[weapon_item_type].item_gun_speed;
+	float BulletSpeed = ItemMap[weapon_item_type].weapon_bullet_speed;
 	double speed_norm;
 	moderately_finepoint speed;
 	float OffsetFactor = 0.5;
@@ -1135,7 +1135,7 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	// Now we can set up recharging time for the Tux...
 	// The firewait time is now modified by the ranged weapon skill
 	// 
-	Me.busy_time = ItemMap[weapon_item_type].item_gun_recharging_time;
+	Me.busy_time = ItemMap[weapon_item_type].weapon_attack_time;
 	Me.busy_time *= RangedRechargeMultiplierTable[Me.ranged_weapon_skill];
 	Me.busy_type = WEAPON_FIREWAIT;
 
@@ -1237,7 +1237,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 {
 	int guntype;
 	if (Me.weapon_item.type > 0)
-		guntype = ItemMap[Me.weapon_item.type].item_gun_bullet_image_type;
+		guntype = ItemMap[Me.weapon_item.type].weapon_bullet_type;
 	else
 		guntype = -1;
 
@@ -1328,7 +1328,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 	do_melee_strike = FALSE;
 	if (Me.weapon_item.type == (-1))
 		do_melee_strike = TRUE;
-	else if (ItemMap[Me.weapon_item.type].item_weapon_is_melee != 0)
+	else if (ItemMap[Me.weapon_item.type].weapon_is_melee != 0)
 		do_melee_strike = TRUE;
 	if (do_melee_strike) {
 		// Since a melee weapon is swung, which may be only influencers fists,
@@ -1399,7 +1399,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 		// isn't required in our case here.
 		//
 		if (Me.weapon_item.type != (-1))
-			Me.busy_time = ItemMap[Me.weapon_item.type].item_gun_recharging_time;
+			Me.busy_time = ItemMap[Me.weapon_item.type].weapon_attack_time;
 		else
 			Me.busy_time = 0.5;
 
@@ -1438,14 +1438,14 @@ void TuxReloadWeapon()
 	if (Me.paralyze_duration)
 		return;		// Do not reload when paralyzed.
 
-	if (ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size == Me.weapon_item.ammo_clip)
+	if (ItemMap[Me.weapon_item.type].weapon_ammo_clip_size == Me.weapon_item.ammo_clip)
 		return;		// Clip full, return without reloading.
 
-	int ammo_type = get_item_type_by_id(ItemMap[Me.weapon_item.type].ammo_id);
+	int ammo_type = get_item_type_by_id(ItemMap[Me.weapon_item.type].weapon_ammo_type);
 
 	int count = CountItemtypeInInventory(ammo_type);
-	if (count > ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size - Me.weapon_item.ammo_clip)
-		count = ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size - Me.weapon_item.ammo_clip;
+	if (count > ItemMap[Me.weapon_item.type].weapon_ammo_clip_size - Me.weapon_item.ammo_clip)
+		count = ItemMap[Me.weapon_item.type].weapon_ammo_clip_size - Me.weapon_item.ammo_clip;
 
 	if (!count)		//no ammo found, tell the player that he "has it in the baba"
 	{
@@ -1459,7 +1459,7 @@ void TuxReloadWeapon()
 	for (i = 0; i < count; i++)
 		DeleteOneInventoryItemsOfType(ammo_type);
 	Me.weapon_item.ammo_clip += count;
-	Me.busy_time = ItemMap[Me.weapon_item.type].item_gun_reloading_time;
+	Me.busy_time = ItemMap[Me.weapon_item.type].weapon_reloading_time;
 	Me.busy_time *= RangedRechargeMultiplierTable[Me.ranged_weapon_skill];
 	Me.busy_type = WEAPON_RELOAD;
 }
@@ -1520,7 +1520,7 @@ void check_for_droids_to_attack_or_talk_with()
 		}
 
 		if (Me.weapon_item.type >= 0) {
-			if ((ItemMap[Me.weapon_item.type].item_weapon_is_melee) &&
+			if ((ItemMap[Me.weapon_item.type].weapon_is_melee) &&
 			    (calc_distance(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->virt_pos.x, droid_below_mouse_cursor->virt_pos.y)
 			     > BEST_MELEE_DISTANCE + 0.1)) {
 

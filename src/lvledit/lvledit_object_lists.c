@@ -428,7 +428,7 @@ static void build_item_lists(void)
 	all_items_list     = MyMalloc((Number_Of_Item_Types + 1) * sizeof(int));
 
 	for (i = 1; i < Number_Of_Item_Types; i++) { //Start at 1 to skip the CTD item
-		if (ItemMap[i].item_weapon_is_melee) {
+		if (ItemMap[i].weapon_is_melee) {
 			melee_items_list[melee] = i;
 			melee++;
 		} else if (ItemMap[i].slot == WEAPON_SLOT) {

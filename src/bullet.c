@@ -606,8 +606,8 @@ static void _bullet_init(struct bullet *bullet, int bullet_type, gps *from_pos, 
 	bullet->height = height;
 
 	// Bullet characteristics defined by the weapon used to fire the bullet.
-	bullet->bullet_lifetime = ItemMap[weapon_item_type].item_gun_bullet_lifetime;
-	bullet->pass_through_hit_bodies = ItemMap[weapon_item_type].item_gun_bullet_pass_through_hit_bodies;
+	bullet->bullet_lifetime = ItemMap[weapon_item_type].weapon_bullet_lifetime;
+	bullet->pass_through_hit_bodies = ItemMap[weapon_item_type].weapon_bullet_pass_through_hit_bodies;
 }
 
 
@@ -650,8 +650,8 @@ void bullet_init_for_enemy(struct bullet *bullet, int bullet_type, short int wea
 	_bullet_init(bullet, bullet_type, &(bot->virt_pos), Droidmap[bot->type].gun_muzzle_height, weapon_item_type);
 
 	// The damage depends on the weapon's type only.
-	bullet->damage = ItemMap[weapon_item_type].base_item_gun_damage +
-	                 MyRandom(ItemMap[weapon_item_type].item_gun_damage_modifier);
+	bullet->damage = ItemMap[weapon_item_type].weapon_base_damage +
+	                 MyRandom(ItemMap[weapon_item_type].weapon_damage_modifier);
 
 	// Remember that the bullet was shot by this bot.
 	bullet->owner = bot->id;

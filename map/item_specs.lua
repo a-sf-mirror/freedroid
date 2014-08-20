@@ -26,9 +26,6 @@
 ----    Macros or common values                                 ----
 --------------------------------------------------------------------
 
--- Melee Bullet.
-melee_bullet = {type = "NO BULLET IMAGE - melee", speed = 0.100000, lifetime = 0.200000, angle = -60.000000}
-
 ----------------------------------------------------------------------
 
 --[[ item specs description
@@ -88,7 +85,7 @@ melee_bullet = {type = "NO BULLET IMAGE - melee", speed = 0.100000, lifetime = 0
 	weapon.bullet.type (string)
 	--  The type of bullet throw by the weapon.
 	--  Bullet is specified in bullet_archetype.dat
-	--  For melee weapon, use "none"
+	--  NOTE: For melee weapon, do not set any bullet data
 
 	weapon.bullet.speed (float)
 	--  The speed of bullet.
@@ -97,10 +94,11 @@ melee_bullet = {type = "NO BULLET IMAGE - melee", speed = 0.100000, lifetime = 0
 	--  Time before the bullet is wasted.
 
 	weapon.ammunition.type (string)
-	--  Type of the ammunition
+	--  Type of the ammunition (an ammunition can be a bullet, a battery, anything
+	    that needs to be loaded in the weapon to have it working...)
 
 	weapon.ammunition.clip (integer)
-	--  Number of munition that can be loaded in the weapon.
+	--  Number of ammunition that can be loaded in the weapon.
 
 	weapon.melee (boolean)
 	--  The weapon is a melee weapon.
@@ -141,7 +139,6 @@ item_list{
 		attack_time = 0.500000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:15",
@@ -163,7 +160,6 @@ item_list{
 		attack_time = 0.550000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	requirements = {dexterity = 20},
@@ -186,7 +182,6 @@ item_list{
 		attack_time = 1.000000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		two_hand = true,
 		motion_class = "1hmelee",
 	},
@@ -210,7 +205,6 @@ item_list{
 		attack_time = 0.150000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		two_hand = true,
 		motion_class = "2h_heavy_melee",
 	},
@@ -234,7 +228,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "30:40",
@@ -256,7 +249,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	requirements = {strength = 14, dexterity = 15},
@@ -279,7 +271,6 @@ item_list{
 		attack_time = 1.200000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		two_hand = true,
 		motion_class = "1hmelee",
 	},
@@ -303,7 +294,6 @@ item_list{
 		attack_time = 0.400000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "6:10",
@@ -325,7 +315,6 @@ item_list{
 		attack_time = 0.750000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "35:55",
@@ -347,7 +336,6 @@ item_list{
 		attack_time = 0.750000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "30:50",
@@ -369,7 +357,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	requirements = {strength = 15},
@@ -392,7 +379,6 @@ item_list{
 		attack_time = 0.250000,
 		reloading_time = 2.000000,
 		melee = true,
-		bullet = melee_bullet,
 		ammunition = {id = "Laser power pack", clip = 60},
 		motion_class = "1hranged",
 	},
@@ -415,7 +401,6 @@ item_list{
 		attack_time = 0.800000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	requirements = {strength = 25, dexterity = 15},
@@ -438,7 +423,6 @@ item_list{
 		attack_time = 0.700000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		two_hand = true,
 		motion_class = "1hmelee",
 	},
@@ -462,7 +446,6 @@ item_list{
 		attack_time = 1.000000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		two_hand = true,
 		motion_class = "2h_heavy_melee",
 	},
@@ -486,7 +469,6 @@ item_list{
 		attack_time = 1.500000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		two_hand = true,
 		motion_class = "2h_heavy_melee",
 	},
@@ -510,7 +492,6 @@ item_list{
 		attack_time = 0.500000,
 		reloading_time = 2.000000,
 		melee = true,
-		bullet = melee_bullet,
 		ammunition = {id = "Laser power pack", clip = 20},
 		two_hand = true,
 		motion_class = "1hmelee",
@@ -535,7 +516,6 @@ item_list{
 		attack_time = 0.400000,
 		reloading_time = 2.000000,
 		melee = true,
-		bullet = melee_bullet,
 		ammunition = {id = "Laser power pack", clip = 20},
 		motion_class = "1hmelee",
 	},
@@ -559,7 +539,6 @@ item_list{
 		attack_time = 0.500000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	base_price = 0,
@@ -580,7 +559,6 @@ item_list{
 		attack_time = 0.500000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	base_price = 50,
@@ -601,7 +579,6 @@ item_list{
 		attack_time = 0.500000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	base_price = 0,
@@ -622,7 +599,6 @@ item_list{
 		attack_time = 0.500000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	base_price = 0,
@@ -656,7 +632,7 @@ item_list{
 	weapon = {
 		damage = "1:3",
 		attack_time = 0.300000,
-		reloading_time = 3.000000,
+		reloading_time = 2.700000,
 		melee = false,
 		bullet = {type = "half_pulse", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = ".22 LR Ammunition", clip = 11},
@@ -679,7 +655,7 @@ item_list{
 	weapon = {
 		damage = "2:8",
 		attack_time = 0.750000,
-		reloading_time = 6.000000,
+		reloading_time = 5.250000,
 		melee = false,
 		bullet = {type = "half_pulse", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = ".22 LR Ammunition", clip = 11},
@@ -714,7 +690,7 @@ item_list{
 	weapon = {
 		damage = "2:10",
 		attack_time = 0.200000,
-		reloading_time = 3.000000,
+		reloading_time = 2.800000,
 		melee = false,
 		bullet = {type = "shotgun", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = "Shotgun shells", clip = 2},
@@ -737,7 +713,7 @@ item_list{
 	weapon = {
 		damage = "2:18",
 		attack_time = 0.200000,
-		reloading_time = 4.000000,
+		reloading_time = 3.800000,
 		melee = false,
 		bullet = {type = "shotgun", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = "Shotgun shells", clip = 2},
@@ -761,7 +737,7 @@ item_list{
 	weapon = {
 		damage = "2:14",
 		attack_time = 0.750000,
-		reloading_time = 4.000000,
+		reloading_time = 3.2500000,
 		melee = false,
 		bullet = {type = "shotgun", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = "Shotgun shells", clip = 8},
@@ -796,7 +772,7 @@ item_list{
 	weapon = {
 		damage = "4:10",
 		attack_time = 0.500000,
-		reloading_time = 3.000000,
+		reloading_time = 2.500000,
 		melee = false,
 		bullet = {type = "half_pulse", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = "9x19mm Ammunition", clip = 19},
@@ -819,7 +795,7 @@ item_list{
 	weapon = {
 		damage = "3:8",
 		attack_time = 0.200000,
-		reloading_time = 3.000000,
+		reloading_time = 2.800000,
 		melee = false,
 		bullet = {type = "half_pulse", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = "9x19mm Ammunition", clip = 30},
@@ -854,7 +830,7 @@ item_list{
 	weapon = {
 		damage = "10:16",
 		attack_time = 0.800000,
-		reloading_time = 5.000000,
+		reloading_time = 4.200000,
 		melee = false,
 		bullet = {type = "half_pulse", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = "7.62x39mm Ammunition", clip = 5},
@@ -878,7 +854,7 @@ item_list{
 	weapon = {
 		damage = "6:12",
 		attack_time = 0.200000,
-		reloading_time = 3.000000,
+		reloading_time = 2.800000,
 		melee = false,
 		bullet = {type = "half_pulse", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = "7.62x39mm Ammunition", clip = 30},
@@ -913,7 +889,7 @@ item_list{
 	weapon = {
 		damage = "40:240",
 		attack_time = 1.200000,
-		reloading_time = 4.000000,
+		reloading_time = 2.800000,
 		melee = false,
 		bullet = {type = "single", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = ".50 BMG (12.7x99mm) Ammunition", clip = 10},
@@ -949,7 +925,7 @@ item_list{
 	weapon = {
 		damage = "4:10",
 		attack_time = 0.400000,
-		reloading_time = 3.000000,
+		reloading_time = 2.600000,
 		melee = false,
 		bullet = {type = "laser_rifle", speed = 90.000000, lifetime = -1.000000},
 		ammunition = {id = "Laser power pack", clip = 20},
@@ -972,7 +948,7 @@ item_list{
 	weapon = {
 		damage = "8:16",
 		attack_time = 0.600000,
-		reloading_time = 4.000000,
+		reloading_time = 3.400000,
 		melee = false,
 		bullet = {type = "laser_rifle", speed = 90.000000, lifetime = -1.000000},
 		ammunition = {id = "Laser power pack", clip = 40},
@@ -996,7 +972,7 @@ item_list{
 	weapon = {
 		damage = "3:8",
 		attack_time = 0.150000,
-		reloading_time = 3.000000,
+		reloading_time = 2.8500000,
 		melee = false,
 		bullet = {type = "laser_rifle", speed = 90.000000, lifetime = -1.000000},
 		ammunition = {id = "Laser power pack", clip = 60},
@@ -1020,7 +996,7 @@ item_list{
 	weapon = {
 		damage = "6:14",
 		attack_time = 0.150000,
-		reloading_time = 4.000000,
+		reloading_time = 3.8500000,
 		melee = false,
 		bullet = {type = "military", speed = 90.000000, lifetime = -1.000000},
 		ammunition = {id = "Laser power pack", clip = 80},
@@ -1056,7 +1032,7 @@ item_list{
 	weapon = {
 		damage = "12:18",
 		attack_time = 0.750000,
-		reloading_time = 3.000000,
+		reloading_time = 2.2500000,
 		melee = false,
 		bullet = {type = "plasma_white", speed = 15.000000, lifetime = -1.000000},
 		ammunition = {id = "Plasma energy container", clip = 6},
@@ -1079,7 +1055,7 @@ item_list{
 	weapon = {
 		damage = "24:30",
 		attack_time = 1.000000,
-		reloading_time = 5.000000,
+		reloading_time = 4.000000,
 		melee = false,
 		bullet = {type = "plasma_white", speed = 15.000000, lifetime = -1.000000},
 		ammunition = {id = "Plasma energy container", clip = 12},
@@ -1114,7 +1090,7 @@ item_list{
 	weapon = {
 		damage = "8:48",
 		attack_time = 0.5000000,
-		reloading_time = 5.000000,
+		reloading_time = 4.500000,
 		melee = false,
 		bullet = {type = "exterminator", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = "2 mm Exterminator Ammunition", clip = 2},
@@ -1138,7 +1114,7 @@ item_list{
 	weapon = {
 		damage = "90:140",
 		attack_time = 0.500000,
-		reloading_time = 5.000000,
+		reloading_time = 4.500000,
 		melee = false,
 		bullet = {type = "exterminator", speed = 30.000000, lifetime = -1.000000},
 		ammunition = {id = "2 mm Exterminator Ammunition", clip = 2},
@@ -1162,7 +1138,7 @@ item_list{
 	weapon = {
 		damage = "80:110",
 		attack_time = 1.500000,
-		reloading_time = 5.000000,
+		reloading_time = 3.500000,
 		melee = false,
 		bullet = {type = "exterminator", speed = 70.000000, lifetime = -1.000000},
 		ammunition = {id = "Laser power pack", clip = 8},
@@ -2171,7 +2147,6 @@ item_list{
 		attack_time = 0.100000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "1:1",
@@ -2521,7 +2496,6 @@ item_list{
 		attack_time = 0.450000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "35:45",
@@ -2543,7 +2517,6 @@ item_list{
 		attack_time = 0.950000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "20:30",
@@ -2563,7 +2536,7 @@ item_list{
 	weapon = {
 		damage = "2:4",
 		attack_time = 0.350000,
-		reloading_time = 7.000000,
+		reloading_time = 6.6500000,
 		melee = false,
 		bullet = {type = "plasma_white", speed = 12.000000, lifetime = 2.000000},
 		ammunition = {id = "Plasma energy container", clip = 3},
@@ -2589,7 +2562,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:20",
@@ -2609,7 +2581,7 @@ item_list{
 	weapon = {
 		damage = "1:1",
 		attack_time = 0.150000,
-		reloading_time = 5.000000,
+		reloading_time = 4.8500000,
 		melee = false,
 		bullet = {type = "half_pulse", speed = 60.000000, lifetime = 2.00000},
 		ammunition = {id = "Laser power pack", clip = 15},
@@ -2635,7 +2607,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:20",
@@ -2657,7 +2628,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:20",
@@ -2679,7 +2649,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:20",
@@ -2701,7 +2670,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:20",
@@ -2721,7 +2689,7 @@ item_list{
 	weapon = {
 		damage = "3:6",
 		attack_time = 1.200000,
-		reloading_time = 2.400000,
+		reloading_time = 1.200000,
 		melee = false,
 		bullet = {type = "single", speed = 52.000000, lifetime = -1.000000},
 		ammunition = {id = "Laser power pack", clip = 5},
@@ -2747,7 +2715,6 @@ item_list{
 		attack_time = 6.00000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:20",
@@ -2769,7 +2736,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:20",
@@ -2791,7 +2757,6 @@ item_list{
 		attack_time = 0.100000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:20",
@@ -2813,7 +2778,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:20",
@@ -2835,7 +2799,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	durability = "10:20",
@@ -2855,7 +2818,7 @@ item_list{
 	weapon = {
 		damage = "6:24",
 		attack_time = 1.200000,
-		reloading_time = 2.000000,
+		reloading_time = 0.800000,
 		melee = false,
 		bullet = {type = "single", speed = 16.000000, lifetime = -1.000000},
 		ammunition = {id = "Laser power pack", clip = 30},
@@ -2879,7 +2842,7 @@ item_list{
 	weapon = {
 		damage = "10:22",
 		attack_time = 1.400000,
-		reloading_time = 3,
+		reloading_time = 2.600000,
 		melee = false,
 		bullet = {type = "military", speed = 60.000000, lifetime = -1.000000},
 		ammunition = {id = "Laser power pack", clip = 30},
@@ -2904,7 +2867,7 @@ item_list{
 	weapon = {
 		damage = "4:8",
 		attack_time = 1.00000,
-		reloading_time = 4.000000,
+		reloading_time = 3.000000,
 		melee = false,
 		bullet = {type = "exterminator", speed = 35.000000, lifetime = -1.000000},
 		ammunition = {id = "2 mm Exterminator Ammunition", clip = 2},
@@ -2998,7 +2961,6 @@ item_list{
 		attack_time = 0.600000,
 		reloading_time = 0.000000,
 		melee = true,
-		bullet = melee_bullet,
 		motion_class = "1hmelee",
 	},
 	requirements = {strength = 14, dexterity = 15},

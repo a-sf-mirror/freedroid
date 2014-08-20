@@ -323,18 +323,18 @@ static void fill_item_description(struct widget_text *desc, item *show_item, int
 	}
 
 	/* If the item is a weapon, then we print out some weapon stats. */
-	if (info->item_gun_recharging_time > 0)
-		autostr_append(desc->text, _("Recharge time: %3.2f\n"),
-					   info->item_gun_recharging_time);
+	if (info->weapon_attack_time > 0)
+		autostr_append(desc->text, _("Time between two attacks: %3.2fs\n"),
+					   info->weapon_attack_time);
 
-	if (info->item_gun_reloading_time > 0)
-		autostr_append(desc->text, _("Time to reload ammo clip: %3.2f\n"),
-					   info->item_gun_reloading_time);
+	if (info->weapon_reloading_time > 0)
+		autostr_append(desc->text, _("Time to reload ammo clip: %3.2fs\n"),
+					   info->weapon_reloading_time);
 
 	autostr_append(desc->text, _("Notes: %s"), D_(info->item_description));
 
-	if (info->ammo_id) {
-		const char *ammo = _(item_specs_get_name(get_item_type_by_id(info->ammo_id)));
+	if (info->weapon_ammo_type) {
+		const char *ammo = _(item_specs_get_name(get_item_type_by_id(info->weapon_ammo_type)));
 		autostr_append(desc->text, _("\nThis weapon requires %s."), ammo);
 	}
 }

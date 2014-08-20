@@ -114,10 +114,10 @@ static int addon_is_compatible_with_item(struct addon_spec *addonspec, item *it)
 		itemspec* spec = &ItemMap[it->type];
 		if (!strcmp(str, "melee weapon")) {
 			ret = (spec->slot == WEAPON_SLOT) &&
-			      spec->item_weapon_is_melee;
+			      spec->weapon_is_melee;
 		} else if (!strcmp(str, "ranged weapon")) {
 			ret = (spec->slot == WEAPON_SLOT) &&
-			      !spec->item_weapon_is_melee;
+			      !spec->weapon_is_melee;
 		} else if (!strcmp(str, "armor")) {
 			ret = (spec->slot & (SHIELD_SLOT | HELM_SLOT | ARMOR_SLOT | BOOT_SLOT));
 		} else if (!strcmp(str, "boots")) {
@@ -447,8 +447,8 @@ void calculate_item_bonuses(item *it)
 	it->bonus_to_light_radius = 0;
 	it->bonus_to_experience_gain = 0;
 	if (it->type > 0) {
-		it->damage = ItemMap[it->type].base_item_gun_damage;
-		it->damage_modifier = ItemMap[it->type].item_gun_damage_modifier;
+		it->damage = ItemMap[it->type].weapon_base_damage;
+		it->damage_modifier = ItemMap[it->type].weapon_damage_modifier;
 	} else {
 		it->damage = 0;
 		it->damage_modifier = 0;

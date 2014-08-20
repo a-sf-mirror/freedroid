@@ -95,7 +95,7 @@ static void current_ammo_update(struct widget *w)
 
 	if (Me.weapon_item.type == -1 || &Me.weapon_item == item_held_in_hand)
 		return;
-	if (!ItemMap[Me.weapon_item.type].ammo_id)
+	if (!ItemMap[Me.weapon_item.type].weapon_ammo_type)
 		return;
 
 	if (Me.busy_type == WEAPON_RELOAD)
@@ -103,7 +103,7 @@ static void current_ammo_update(struct widget *w)
 	else if (!Me.weapon_item.ammo_clip)
 		autostr_printf(text, _("[r]EMPTY"));
 	else
-		autostr_printf(text, "%5d / %2d", Me.weapon_item.ammo_clip, ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size);
+		autostr_printf(text, "%5d / %2d", Me.weapon_item.ammo_clip, ItemMap[Me.weapon_item.type].weapon_ammo_clip_size);
 }
 
 /** Toggle inventory screen on/off. */

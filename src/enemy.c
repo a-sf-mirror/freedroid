@@ -273,7 +273,7 @@ void enemy_reset(enemy *this_enemy)
 	this_enemy->paralysation_duration_left = 0.0;
 	this_enemy->pure_wait = 0.0;
 	this_enemy->firewait = 0.0;
-	this_enemy->ammo_left = ItemMap[Droidmap[this_enemy->type].weapon_item.type].item_gun_ammo_clip_size;
+	this_enemy->ammo_left = ItemMap[Droidmap[this_enemy->type].weapon_item.type].weapon_ammo_clip_size;
 	this_enemy->attack_target_type = ATTACK_TARGET_IS_NOTHING;
 	enemy_set_reference(&this_enemy->bot_target_n, &this_enemy->bot_target_addr, NULL);
 	this_enemy->previous_angle = 0.0;
@@ -1668,7 +1668,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	} move_type = NO_MOVE;
 
 	int shoot_target = FALSE;
-	int melee_weapon = ItemMap[Droidmap[ThisRobot->type].weapon_item.type].item_weapon_is_melee;
+	int melee_weapon = ItemMap[Droidmap[ThisRobot->type].weapon_item.type].weapon_is_melee;
 
 	if (melee_weapon) {
 		// The bot and its target are on different levels.
@@ -1739,7 +1739,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 		}
 		// Check if outside of bullet range
 		itemspec *bot_weapon = &ItemMap[Droidmap[ThisRobot->type].weapon_item.type];
-		float shot_range = bot_weapon->item_gun_bullet_lifetime * bot_weapon->item_gun_speed;
+		float shot_range = bot_weapon->weapon_bullet_lifetime * bot_weapon->weapon_bullet_speed;
 		float squared_shot_range = shot_range * shot_range;
 
 		if (dist2 >= squared_shot_range) {
@@ -2169,18 +2169,18 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 	/* First of all, check what kind of weapon the bot has : ranged or melee */
 	struct itemspec weapon_spec = ItemMap[Droidmap[ThisRobot->type].weapon_item.type];
 
-	if (!weapon_spec.item_weapon_is_melee) {	/* ranged */
+	if (!weapon_spec.weapon_is_melee) {	/* ranged */
 
 		// find a bullet entry, that isn't currently used...
 		//
 		int bullet_index = find_free_bullet_index();
 		bullet *new_bullet = &(AllBullets[bullet_index]);
 
-		bullet_init_for_enemy(new_bullet, weapon_spec.item_gun_bullet_image_type,
+		bullet_init_for_enemy(new_bullet, weapon_spec.weapon_bullet_type,
 		                      Droidmap[ThisRobot->type].weapon_item.type, ThisRobot);
 
 		// We send the bullet onto it's way towards the given target
-		float bullet_speed = (float)weapon_spec.item_gun_speed;
+		float bullet_speed = (float)weapon_spec.weapon_bullet_speed;
 		set_bullet_speed_to_target_direction(new_bullet, bullet_speed, xdist, ydist);
 
 		// Enemies also have to respect the angle modifier in their weapons...
@@ -2210,22 +2210,21 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		}
 
 		NewShot->to_hit = Droidmap[ThisRobot->type].to_hit;
-		NewShot->damage = weapon_spec.base_item_gun_damage + MyRandom(weapon_spec.item_gun_damage_modifier);
+		NewShot->damage = weapon_spec.weapon_base_damage + MyRandom(weapon_spec.weapon_damage_modifier);
 		NewShot->owner = ThisRobot->id;
 	}
 
 	ThisRobot->ammo_left--;
-
 	if (ThisRobot->ammo_left > 0) {
-		ThisRobot->firewait += weapon_spec.item_gun_recharging_time;
+		ThisRobot->firewait += weapon_spec.weapon_attack_time;
 	} else {
-		ThisRobot->ammo_left = weapon_spec.item_gun_ammo_clip_size;
-		if (ThisRobot->firewait < weapon_spec.item_gun_reloading_time)
-			ThisRobot->firewait = weapon_spec.item_gun_reloading_time;
+		ThisRobot->ammo_left = weapon_spec.weapon_ammo_clip_size;
+		if (ThisRobot->firewait < weapon_spec.weapon_reloading_time)
+			ThisRobot->firewait = weapon_spec.weapon_reloading_time;
 	}
 
-	if (ThisRobot->firewait < weapon_spec.item_gun_recharging_time)
-		ThisRobot->firewait = weapon_spec.item_gun_recharging_time;
+	if (ThisRobot->firewait < weapon_spec.weapon_attack_time)
+		ThisRobot->firewait = weapon_spec.weapon_attack_time;
 
 	if (last_attack_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] - first_attack_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] > 1) {
 		ThisRobot->animation_phase = ((float)first_attack_animation_image[Droidmap[ThisRobot->type].individual_shape_nr]) + 0.1;
@@ -2233,7 +2232,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		ThisRobot->current_angle = -(-90 + 180 * atan2(ydist, xdist) / M_PI);
 	}
 
-	fire_bullet_sound(weapon_spec.item_gun_bullet_image_type, &ThisRobot->pos);
+	fire_bullet_sound(weapon_spec.weapon_bullet_type, &ThisRobot->pos);
 };				// void RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 
 /**
@@ -2749,7 +2748,7 @@ static int is_potential_target(enemy * this_robot, gps * target_pos, float *squa
 		}
 	}
 	// For a range weapon, check if the target can be directly shot
-	int melee_weapon = ItemMap[Droidmap[this_robot->type].weapon_item.type].item_weapon_is_melee;
+	int melee_weapon = ItemMap[Droidmap[this_robot->type].weapon_item.type].weapon_is_melee;
 
 	if (!melee_weapon) {
 		if (DirectLineColldet(this_robot->pos.x, this_robot->pos.y,

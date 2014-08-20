@@ -264,22 +264,22 @@ typedef struct itemspec {
 
 	char item_group_together_in_inventory;
 
-	// How good is the item as weapon???
-	float item_gun_recharging_time;	// time until the next shot can be made, measures in seconds
-	float item_gun_reloading_time;	// time needed to put a new charger
-	short item_gun_bullet_image_type;	// which type of image to use for displaying this bullet
-	float item_gun_speed;	// how fast should a bullet move straightforward?
-	int base_item_gun_damage;	//   damage done by this bullettype
-	int item_gun_damage_modifier;	// modifier to the damage done by this bullettype
-	float item_gun_bullet_lifetime;	// how long does a 'bullet' from this gun type live?
-	char item_gun_bullet_pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword)
-	short item_gun_ammo_clip_size;	//max. number of bullets in the charger
+	// General characteristics of a weapon item (ranged or melee)
+	char weapon_is_melee;                           // 1: melee weapon - 0: ranged weapon
+	char weapon_needs_two_hands;	                // 1: this a (strictly) 2-handed weapon
+	short int weapon_motion_class;                  // Tux's motion class to use
+	float weapon_attack_time;                       // duration of an attack: time until the next attack can be made, measured in seconds
+	float weapon_reloading_time;                    // time needed to put a new charger (if needed), added to attack_time on last ammunition
+	int weapon_base_damage;                         // damage done by this weapon
+	int weapon_damage_modifier;                     // modifier to the damage done by this weapon
+	char *weapon_ammo_type;                         // ammunition needed by the weapon (it can be anything that needs to be loaded in the weapon)
+	short weapon_ammo_clip_size;                    // max. number of ammunition in the charger
 
-	// the following values have only relevance in case of a melee weapon
-	char item_weapon_is_melee;
-	char *ammo_id;							// which ammunition does this weapon use?
-	char item_gun_requires_both_hands;	// is this a (strictly) 2-handed weapon?
-	short int motion_class;				// Tux's motion class to use
+	// Characteristics of a weapon using bullets (ranged weapon)
+	short weapon_bullet_type;                       // bullet's type used by this weapon (index into bullet_specs), to get bullet's image and sound
+	float weapon_bullet_speed;                      // how fast should a bullet move straightforward?
+	float weapon_bullet_lifetime;	                // how long does a 'bullet' from this gun type live?
+	char weapon_bullet_pass_through_hit_bodies;     // does this bullet go through hit bodies (e.g. like a laser sword)
 
 	// how good is the item as armour or shield or other protection???
 	int base_armor_class;
