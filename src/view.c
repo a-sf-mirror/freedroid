@@ -2571,7 +2571,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
  */
 void PutEnemy(enemy * e, int x, int y, int mask, int highlight)
 {
-	SDL_Rect TargetRectangle;
+	SDL_Rect TargetRectangle = { 0, 0, 0, 0 };
 
 	// We check for things like visibility and distance and the like,
 	// so that we know whether to consider this enemy for blitting to
