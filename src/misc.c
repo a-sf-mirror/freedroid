@@ -393,7 +393,7 @@ void print_trace(int signum)
 	//
 	backtrace_size = backtrace(backtrace_array, MAX_CALLS_IN_BACKTRACE);
 
-	fprintf(stderr, "print_trace:  Obtained %zd stack frames.\n", backtrace_size);
+	fprintf(stderr, "print_trace:  Obtained %zu stack frames.\n", backtrace_size);
 
 	// Now we attempt to translate the trace information we've got to the
 	// symbol names that might still reside in the binary.

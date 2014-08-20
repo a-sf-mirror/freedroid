@@ -124,7 +124,7 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
  * \brief Get the experience required for next level.
  * \param level Current level.
  */
-int get_experience_required(int level)
+unsigned int get_experience_required(int level)
 {
 	if (level < 0)
 		return 0;
@@ -136,7 +136,7 @@ int get_experience_required(int level)
  */
 static void check_for_new_experience_level_reached()
 {
-	int exp_required = get_experience_required(Me.exp_level);
+	unsigned int exp_required = get_experience_required(Me.exp_level);
 
 	if (Me.Experience >= exp_required) {
 		Me.exp_level++;
@@ -461,7 +461,7 @@ void ShowCharacterScreen()
 	SetCurrentFont(Messagestat_BFont);
 	display_text(_("Circuits"), RIGHT_TXT_X + CharacterRect.x, 71 + CharacterRect.y, &CharacterRect);
 	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%6d", Me.Gold);
+	sprintf(CharText, "%6u", Me.Gold);
 	display_text(CharText, 240 + CharacterRect.x, 71 + CharacterRect.y, &CharacterRect);
 
 	SetCurrentFont(Messagestat_BFont);

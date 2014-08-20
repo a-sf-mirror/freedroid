@@ -186,8 +186,8 @@ static void experience_bar_display(struct widget *w)
 {
 	static Uint32 fill_color = 0;
 	static Uint32 empty_color = 0;
-	int exp_required = get_experience_required(Me.exp_level);
-	int exp_required_previously = get_experience_required(Me.exp_level - 1);
+	int exp_required = (int)get_experience_required(Me.exp_level);
+	int exp_required_previously = (int)get_experience_required(Me.exp_level - 1);
 	int exp_range = exp_required - exp_required_previously;
 	int exp_achieved = Me.Experience - exp_required_previously;
 
@@ -213,7 +213,7 @@ static char *get_experience_bar_tooltip(struct widget *w)
 	if (!buffer)
 		buffer = alloc_autostr(64);
 
-	autostr_printf(buffer, "%s\n%d/%d\n", _("XP"), Me.Experience, get_experience_required(Me.exp_level));
+	autostr_printf(buffer, "%s\n%u/%u\n", _("XP"), Me.Experience, get_experience_required(Me.exp_level));
 
 	return buffer->value;
 }

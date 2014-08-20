@@ -455,7 +455,7 @@ int count_used_sockets(item *);
 int item_upgrade_ui_visible(void);
 
 // character.c
-int get_experience_required(int);
+unsigned int get_experience_required(int);
 void UpdateAllCharacterStats(void);
 void ShowCharacterScreen(void);
 void HandleCharacterScreen(void);
