@@ -1041,7 +1041,6 @@ static void get_one_item(lua_State *L, void *data)
 		{"weapon.bullet.type", 		"NO BULLET IMAGE",	STRING_TYPE, 	&item_bullet_type			},
 		{"weapon.bullet.speed",	 	"0",		FLOAT_TYPE,	 &item->item_gun_speed					},
 		{"weapon.bullet.lifetime",	"0",		FLOAT_TYPE,	 &item->item_gun_bullet_lifetime		},
-		{"weapon.bullet.angle",	 	"0",		FLOAT_TYPE,	 &item->item_gun_start_angle_modifier	},
 		{"weapon.ammunition.id", 	NULL, 		STRING_TYPE, &item->ammo_id							},
 		{"weapon.ammunition.clip",	"0",		INT_TYPE, 	 &item->item_gun_ammo_clip_size			},
 		{"weapon.melee",			"false",	BOOL_TYPE,	 &item->item_weapon_is_melee			},

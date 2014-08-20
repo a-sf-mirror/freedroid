@@ -277,7 +277,6 @@ typedef struct itemspec {
 
 	// the following values have only relevance in case of a melee weapon
 	char item_weapon_is_melee;
-	float item_gun_start_angle_modifier;	// where to start with a melee weapon swing
 	char *ammo_id;							// which ammunition does this weapon use?
 	char item_gun_requires_both_hands;	// is this a (strictly) 2-handed weapon?
 	short int motion_class;				// Tux's motion class to use

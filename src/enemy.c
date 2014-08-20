@@ -2184,7 +2184,6 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		set_bullet_speed_to_target_direction(new_bullet, bullet_speed, xdist, ydist);
 
 		// Enemies also have to respect the angle modifier in their weapons...
-		RotateVectorByAngle(&(new_bullet->speed), weapon_spec.item_gun_start_angle_modifier);
 		new_bullet->angle = -(90 + 45 + 180 * atan2(new_bullet->speed.y, new_bullet->speed.x) / M_PI);
 
 		// At this point we mention, that when not moving anywhere, the robot should also
