@@ -450,6 +450,7 @@ void play_sound_at_position(const char *filename, struct gps *listener, struct g
 {
 	float angle;
 	float distance;
+	float squared_distance;
 	int emitter_x;
 	int emitter_y;
 	int listener_x;
@@ -462,7 +463,7 @@ void play_sound_at_position(const char *filename, struct gps *listener, struct g
 
 	// need to get the emitters coordinates as if it were on the same level as the listener.
 	if (emitter->z == -1 || listener->z == -1) {
-		play_sound(filename);
+		play_sound_cached(filename);
 		return;
 	} else {
 		update_virtual_position(&emitter_virt_coords, emitter, listener->z);
@@ -476,30 +477,28 @@ void play_sound_at_position(const char *filename, struct gps *listener, struct g
 	difference_x = listener_x - emitter_x;
 	difference_y = listener_y - emitter_y;
 
-	// calculate the distance
-	distance = sqrt((difference_x * difference_x) + (difference_y * difference_y));
+	// first check if the distance between the emitter and the listener is worth
+	// playing a positional sound.
+	squared_distance = (difference_x * difference_x) + (difference_y * difference_y);
+	if (squared_distance < (1*1)) {
+		play_sound_cached(filename);
+		return;
+	}
 
-	// and angle [-pi, pi] radians
-	angle = atan2(difference_y, difference_x);
-
+	distance = sqrt(squared_distance);
 	// prevent overflow
 	distance_value = (unsigned int)((distance / MAX_HEARING_DISTANCE) * 255);
-
 	// we don't want distance_value to wrap around.
 	distance_value = (distance_value >= 255) ? 255 : distance_value;
 
+	// and angle [-pi, pi] radians
+	angle = atan2(difference_y, difference_x);
 	// adjust the angle so that it is aligned with the game / screen coordinates properly.
 	angle_value = (unsigned short)((angle * DEGREE_PER_RADIAN - 90));
-
 	// just to prevent the angle from wrapping.
 	angle_value = angle_value % 360;
 
-	// if the emitter->listener vector is really small, use non-positional play.
-	if (distance < 1) {
-		play_sound_cached(filename);
-	} else { 
-		play_sound_cached_pos(filename, angle_value, (unsigned char)distance_value);
-	}
+	play_sound_cached_pos(filename, angle_value, (unsigned char)distance_value);
 }
 
 //----------------------------------------------------------------------
