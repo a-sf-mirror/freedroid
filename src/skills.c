@@ -417,7 +417,7 @@ int DoSkill(int skill_index, int SpellCost)
 		else
 			bul_parms.hit_type = ATTACK_HIT_BOTS;
 
-		FireTuxRangedWeaponRaw(get_item_type_by_id("Laser pistol"), -1, &bul_parms, target_location);
+		perform_tux_ranged_attack(get_item_type_by_id("Laser pistol"), &bul_parms, target_location);
 
 		return 1;	//no extra effects
 

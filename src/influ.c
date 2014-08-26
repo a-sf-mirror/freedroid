@@ -127,46 +127,42 @@ static void limit_tux_speed()
  */
 void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 {
-
 	// Maybe the player requested an attack before the reload/retract
 	// phase is completed.  In that case, we don't attack.
-	//
+
 	if (Me.busy_time > 0) {
 		return;
 	}
+
 	// If the Tux has a weapon and this weapon requires some ammunition, then
 	// we have to check for enough ammunition first...
-	//
-	if (Me.weapon_item.type >= 0) {
-		if (ItemMap[Me.weapon_item.type].weapon_ammo_type) {
-			if (Me.weapon_item.ammo_clip <= 0) {
-				No_Ammo_Sound();
 
-				// So no ammunition... We should say so and reload...
-				// TRANSLATORS: Console msg when a weapon is empty
-				append_new_game_message(_("%s empty, reloading..."), D_(item_specs_get_name(Me.weapon_item.type)));
-				TuxReloadWeapon();
-				return;
+	if (Me.weapon_item.type >= 0 && ItemMap[Me.weapon_item.type].weapon_ammo_type) {
+		if (Me.weapon_item.ammo_clip <= 0) {
+			// So no ammunition... We should say so and reload...
+			No_Ammo_Sound();
+			// TRANSLATORS: Console msg when a weapon is empty
+			append_new_game_message(_("%s empty, reloading..."), D_(item_specs_get_name(Me.weapon_item.type)));
+			TuxReloadWeapon();
 
-			}
+			return;
 		}
 	}
 
-	if (PerformTuxAttackRaw(use_mouse_cursor_for_targeting)) {	// If attack has failed
+	if (perform_tux_attack(use_mouse_cursor_for_targeting)) {	// If attack has failed
 		return;
 	}
-	// The weapon was used and therefore looses some of it's durability
-	if (Me.weapon_item.type >= 0)
-		DamageWeapon(&(Me.weapon_item));
 
-	//Weapon uses ammo? remove one bullet !
+	// The weapon was used and therefore looses some of it's durability
+	// Also if it uses ammunition, one charge is to be removed
+
 	if (Me.weapon_item.type >= 0) {
+		DamageWeapon(&(Me.weapon_item));
 		if (ItemMap[Me.weapon_item.type].weapon_ammo_type) {
 			Me.weapon_item.ammo_clip--;
 		}
 	}
-
-};				// void tux_wants_to_attack_now ( ) 
+}
 
 /**
  * The Tux might have cross a level's boundary. In that case, we 
@@ -1109,89 +1105,87 @@ enemy *GetLivingDroidBelowMouseCursor()
  * no matter whether this is 'allowed' or not, not questioning anything
  * and SILENTLY TRUSTING THAT THIS TUX HAS A RANGED WEAPON EQUIPPED.
  */
-void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, bullet * bullet_parameters,
-                            moderately_finepoint target_location)
+void perform_tux_ranged_attack(short int weapon_type, bullet *bullet_parameters,
+		                       moderately_finepoint target_location)
 {
-	float BulletSpeed = ItemMap[weapon_item_type].weapon_bullet_speed;
-	double speed_norm;
-	moderately_finepoint speed;
-	float OffsetFactor = 0.5;
-	moderately_finepoint offset;
-#	define FIRE_TUX_RANGED_WEAPON_RAW_DEBUG 1
-
-	DebugPrintf(1, "\n%s(): target location: x=%f, y=%f.", __FUNCTION__, target_location.x, target_location.y);
-
-	// We search for the first free bullet entry in the
-	// bullet list...
+	// Standard ranged attack process is to fire a bullet in the direction
+	// of the target, and have it advance step by step until it reaches 'something'.
+	// The starting position of the bullet is the gun's muzzle (note that we do not
+	// know exactly the length of a gun, so we will use an 'average' constant value of
+	// 'muzzle_offset_factor').
 	//
+	// But, sometime the targeted object can be so near Tux that it is actually
+	// between Tux and the gun's muzzle. In "real life", this should not even
+	// create a ranged attack, but for simplicity we will fire a bullet in that case.
+	// The bullet being already at its target position, we immediately call the code
+	// that detects bullet collisions and create bullet's explosion and damages.
+	// And only if no collision is detected do we fire the bullet.
+
+	float muzzle_offset_factor = 0.5;
+
+	// Search for the first free bullet entry in the bullet list and initialize
+	// with default values
+
 	int bullet_index = find_free_bullet_index();
 	struct bullet *new_bullet = &(AllBullets[bullet_index]);
-
 	if (bullet_parameters)
 		memcpy(new_bullet, bullet_parameters, sizeof(struct bullet));
 	else
-		bullet_init_for_player(new_bullet, bullet_image_type, weapon_item_type);
+		bullet_init_for_player(new_bullet, ItemMap[weapon_type].weapon_bullet_type, weapon_type);
 
-	// Now we can set up recharging time for the Tux...
-	// The firewait time is now modified by the ranged weapon skill
-	// 
-	Me.busy_time = ItemMap[weapon_item_type].weapon_attack_time;
+	// Set up recharging time for the Tux...
+	// The firewait time is modified by the ranged weapon skill
+
+	Me.busy_time = ItemMap[weapon_type].weapon_attack_time;
 	Me.busy_time *= RangedRechargeMultiplierTable[Me.ranged_weapon_skill];
 	Me.busy_type = WEAPON_FIREWAIT;
+	Me.weapon_swing_time = 0; // restart swing animation
 
-	// Use the map location to
-	// pixel translation and vice versa to compute firing direction...
-	//
-	// But this is ONLY A FIRST ESTIMATE!  It will be fixed shortly!
-	//
-	// speed . x = translate_pixel_to_map_location ( input_axis.x , input_axis.y , TRUE ) - Me . pos . x ;
-	// speed . y = translate_pixel_to_map_location ( input_axis.x , input_axis.y , FALSE ) - Me . pos . y ;
-	speed.x = target_location.x - Me.pos.x;
-	speed.y = target_location.y - Me.pos.y;
-	speed_norm = sqrt(speed.x * speed.x + speed.y * speed.y);
-	if (!speed_norm)
-		fprintf(stderr, "Bullet speed is zero\n");
-	new_bullet->speed.x = (speed.x / speed_norm);
-	new_bullet->speed.y = (speed.y / speed_norm);
-	new_bullet->speed.x *= BulletSpeed;
-	new_bullet->speed.y *= BulletSpeed;
+	// First case: The target is too near for an actual shot.
+	// We try an immediate hit. If nothing is hurt, or if the bullet traversed
+	// the target, then we will fire a bullet using the 'second case'.
 
-	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG, "\nFireTuxRangedWeaponRaw(...) : speed_norm = %f.", speed_norm);
+	float const dist_epsilon = 0.05;
 
-	// Now the above vector would generate a fine bullet, but it will
-	// be modified later to come directly from the Tux weapon muzzle.
-	// Therefore it might often miss a target standing very close.
-	// As a reaction, we will shift the target point by a similar vector
-	// and then re-compute the bullet vector.
-	//
-	offset.x = OffsetFactor * (new_bullet->speed.x / BulletSpeed);
-	offset.y = OffsetFactor * (new_bullet->speed.y / BulletSpeed);
+	if ( (fabs(target_location.x - Me.pos.x) <= muzzle_offset_factor + dist_epsilon) &&
+	     (fabs(target_location.y - Me.pos.y) <= muzzle_offset_factor + dist_epsilon) ) {
 
-	// And now we re-do it all!  But this time with the extra offset
-	// applied to the SHOT TARGET POINT!
-	//
-	speed.x = target_location.x - Me.pos.x - offset.x;
-	speed.y = target_location.y - Me.pos.y - offset.y;
-	speed_norm = sqrt(speed.x * speed.x + speed.y * speed.y);
-	new_bullet->speed.x = (speed.x / speed_norm);
-	new_bullet->speed.y = (speed.y / speed_norm);
-	new_bullet->speed.x *= BulletSpeed;
-	new_bullet->speed.y *= BulletSpeed;
+		new_bullet->pos.x = target_location.x;
+		new_bullet->pos.y = target_location.y;
+		CheckBulletCollisions(bullet_index);
 
-	// Now we determine the angle of rotation to be used for
-	// the picture of the bullet itself
-	//
+		/* If the bullet exploded, we're done */
+		if (new_bullet->type == INFOUT)
+			return;
+	}
 
-	new_bullet->angle = -(atan2(speed.y, speed.x) * 180 / M_PI + 90 + 45);
+	// Second case: The target is not near Tux (or a first-case bullet traversed
+	// the target)
+	// We fire a bullet into the direction of the target.
 
-	// To prevent influ from hitting himself with his own bullets,
-	// move them a bit..
-	//
-	offset.x = OffsetFactor * (new_bullet->speed.x / BulletSpeed);
-	offset.y = OffsetFactor * (new_bullet->speed.y / BulletSpeed);
+	// Compute bullet's attack vector.
+	// This is a vector from Tux's position to the target's position.
 
-	new_bullet->pos.x += offset.x;
-	new_bullet->pos.y += offset.y;
+	moderately_finepoint attack_vector = { target_location.x - Me.pos.x,
+	                                       target_location.y - Me.pos.y };
+	double attack_norm = sqrt(attack_vector.x * attack_vector.x + attack_vector.y *attack_vector.y);
+	attack_vector.x /= attack_norm;
+	attack_vector.y /= attack_norm;
+
+	// The bullet starts from the muzzle's position.
+	// As said in the heading comment, we do not have enough informations to
+	// compute it, so we just use a small offset in the attack direction.
+
+	moderately_finepoint muzzle_position = { Me.pos.x + muzzle_offset_factor * attack_vector.x,
+	                                         Me.pos.y + muzzle_offset_factor * attack_vector.y };
+
+	// Set the bullet parameters
+
+	new_bullet->pos.x = muzzle_position.x;
+	new_bullet->pos.y = muzzle_position.y;
+	new_bullet->speed.x = attack_vector.x * ItemMap[weapon_type].weapon_bullet_speed;
+	new_bullet->speed.y = attack_vector.y * ItemMap[weapon_type].weapon_bullet_speed;
+	new_bullet->angle = -(atan2(attack_vector.y, attack_vector.x) * 180 / M_PI + 90 + 45);
 }
 
 /**
@@ -1232,197 +1226,143 @@ int ButtonPressWasNotMeantAsFire()
  * certain, that a fireing/weapon swing was meant with the click.  Once
  * this is knows, this function can be called to do the mechanics of the
  * weapon use.
+ *
+ * Return 0 if attack failed.
  */
-int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
+int perform_tux_attack(int use_mouse_cursor_for_targeting)
 {
-	int guntype;
-	if (Me.weapon_item.type > 0)
-		guntype = ItemMap[Me.weapon_item.type].weapon_bullet_type;
-	else
-		guntype = -1;
-
-	float angle;
-	moderately_finepoint Weapon_Target_Vector;
 	moderately_finepoint target_location;
-	enemy *droid_under_melee_attack_cursor = NULL;
-	int melee_weapon_hit_something = FALSE;
-	int do_melee_strike;
-	finepoint MapPositionOfMouse;
+	float target_angle;
 
-#define PERFORM_TUX_ATTACK_RAW_DEBUG 1
-
-	// We should always make the sound of a fired bullet (or weapon swing)
-	// and then of course also subtract a certain fee from the remaining weapon
-	// duration in the course of the swing/hit
-	//
-	DebugPrintf(PERFORM_TUX_ATTACK_RAW_DEBUG, "\nWeapon_item: %d guntype: %d . ", Me.weapon_item.type, guntype);
-
-	// We always start the weapon application cycle, i.e. change of Tux
-	// motion phases
-	//
-	Me.weapon_swing_time = 0;
-
-	// Now that an attack is being made, the Tux must turn towards the direction
-	// of the attack, no matter what.
-	//
-	// Note:  This is just some default value.  The real fine-tuning of the direction
-	//        is done further below...
-	//
-	if (use_mouse_cursor_for_targeting) {
-		Me.angle = -(atan2(input_axis.y, input_axis.x) * 180 / M_PI + 90);
-	}
+	// The attack target location can be the targeted enemy (if one was set), or an
+	// enemy below the mouse cursor, or by default the current mouse position.
+	// In case of an 'un-targeted' attack (A-pressed), the mouse position defines the
+	// target location.
 
 	if (!APressed()) {
-		// By default, we set an attack target according to the mouse 
-		// cursor.  If there is something else going on, this will simply
-		// be overwritten.  But it's a good default this way.
-		//
-		MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
-		MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
-		target_location.x = MapPositionOfMouse.x;
-		target_location.y = MapPositionOfMouse.y;
 
-		//
-		if (enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr) != NULL) {
-			droid_under_melee_attack_cursor = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
-			DebugPrintf(1, "\n%s(): using MOUSE MOVE TARGET at X=%d Y=%d for attack direction of tux.", __FUNCTION__,
-				    (int)Me.mouse_move_target.x, (int)Me.mouse_move_target.y);
+		enemy *targeted_enemy = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
+		if (!targeted_enemy) {
+			targeted_enemy = GetLivingDroidBelowMouseCursor();
+		}
+		if (targeted_enemy) {
+			// Use enemy's position to compute target location
+			update_virtual_position(&targeted_enemy->virt_pos, &targeted_enemy->pos, Me.pos.z);
+			target_location.x = targeted_enemy->virt_pos.x;
+			target_location.y = targeted_enemy->virt_pos.y;
 		} else {
-			droid_under_melee_attack_cursor = GetLivingDroidBelowMouseCursor();
-			DebugPrintf(1, "\n%s(): Using droid under mouse cursor for attack positioning...", __FUNCTION__);
+			// Use cursor position to compute target location
+			target_location.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
+			target_location.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 		}
 
-		if (droid_under_melee_attack_cursor != NULL) {
-			update_virtual_position(&droid_under_melee_attack_cursor->virt_pos, &droid_under_melee_attack_cursor->pos, Me.pos.z);
-			angle = -(atan2(Me.pos.y -
-					droid_under_melee_attack_cursor->virt_pos.y,
-					Me.pos.x - droid_under_melee_attack_cursor->virt_pos.x) * 180 / M_PI - 90 + 22.5);
-			target_location.x = droid_under_melee_attack_cursor->virt_pos.x;
-			target_location.y = droid_under_melee_attack_cursor->virt_pos.y;
-		} else {
-			// We leave the angle at the current value...
-			// (this is because later angle is written over Me[..].angle
-			//
-			angle = Me.angle;
-			DebugPrintf(1, "\n%s(): defaulting to PREVIOUS ANGLE!", __FUNCTION__);
-		}
 	} else {
-		MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
-		MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
-		angle = -(atan2(Me.pos.y - MapPositionOfMouse.y, Me.pos.x - MapPositionOfMouse.x) * 180 / M_PI - 90 + 22.5);
-		target_location.x = MapPositionOfMouse.x;
-		target_location.y = MapPositionOfMouse.y;
-		// DebugPrintf ( -4 , "\n%s(): target location: x=%f, y=%f." , __FUNCTION__ , 
-		// target_location . x , target_location . y ); 
+
+		// Un-targeted attack. Target location defined by the mouse position.
+		target_location.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
+		target_location.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 	}
 
-	// We need to write this back into the Tux struct, because the
-	// value from there is used in the blitting code.
-	//
-	Me.angle = angle;
+	// Turn Tux to face its target
 
-	// But if the currently used weapon is a melee weapon, the tux no longer
-	// generates a bullet, but rather does his weapon swinging motion and
-	// only the damage is done to the robots in the area of effect
-	//
-	do_melee_strike = FALSE;
-	if (Me.weapon_item.type == (-1))
-		do_melee_strike = TRUE;
-	else if (ItemMap[Me.weapon_item.type].weapon_is_melee != 0)
-		do_melee_strike = TRUE;
-	if (do_melee_strike) {
-		// Since a melee weapon is swung, which may be only influencers fists,
-		// we calculate where the point
-		// of the weapon should be finally hitting and do some damage
-		// to all the enemies in that area.
-		//
-		// However, simply using the pixel-to-map-location code with the current
-		// mouse pointer is not the way, since the droid (e.g. 302) might be high
-		// above the floor and the click right on it might point to a floor spot
-		// right behind the Tux actual position, so care is advised in that case...
-		// 
+	target_angle = -(atan2(Me.pos.y - target_location.y, Me.pos.x - target_location.x) * 180/M_PI - 90 + 22.5);
+	Me.angle = target_angle;
 
-		DebugPrintf(PERFORM_TUX_ATTACK_RAW_DEBUG, "\n===> Fire Bullet: angle=%f. ", angle);
-		DebugPrintf(PERFORM_TUX_ATTACK_RAW_DEBUG, "\n===> Fire Bullet: InpAxis: X=%d Y=%d . ", input_axis.x, input_axis.y);
-		Weapon_Target_Vector.x = 0;
-		Weapon_Target_Vector.y = -0.8;
-		RotateVectorByAngle(&Weapon_Target_Vector, angle);
-		Weapon_Target_Vector.x += Me.pos.x;
-		Weapon_Target_Vector.y += Me.pos.y;
-		DebugPrintf(PERFORM_TUX_ATTACK_RAW_DEBUG, "\n===> Fire Bullet target: x=%f, y=%f. ", Weapon_Target_Vector.x,
-			    Weapon_Target_Vector.y);
+	/**
+	 * First case: Attack with a melee weapon (or with fists).
+	 */
+
+	if (Me.weapon_item.type == -1 || ItemMap[Me.weapon_item.type].weapon_is_melee) {
+
+		int hit_something = FALSE;
+
+		// A melee attack is a swing gesture, the impact point is thus a bit in front of
+		// Tux. We have no idea of the size of the weapon, so we use an 'average' constant
+		// value of 0.8 (impact_offset_y).
+
+		const float impact_offset_y = 0.8;
+
+		moderately_finepoint impact_point = { 0, -impact_offset_y };
+		RotateVectorByAngle(&impact_point, Me.angle);
+		impact_point.x += Me.pos.x;
+		impact_point.y += Me.pos.y;
+
+		// Find all enemies which are in a small area around the impact point
+		// and setup up a melee shot.
+		// TODO: also look for enemies on neighbor levels.
+
+		const float impact_area_size = 0.5;
 
 		enemy *erot, *nerot;
 		BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z) {
-			if ((fabsf(erot->pos.x - Weapon_Target_Vector.x) > 0.5) ||
-			    (fabsf(erot->pos.y - Weapon_Target_Vector.y) > 0.5) ||
-			    !DirectLineColldet(Me.pos.x, Me.pos.y, erot->pos.x, erot->pos.y, Me.pos.z, NULL)
-			    )
+			if ( (fabsf(erot->pos.x - impact_point.x) > impact_area_size) ||
+			     (fabsf(erot->pos.y - impact_point.y) > impact_area_size) ||
+			     !DirectLineColldet(Me.pos.x, Me.pos.y, erot->pos.x, erot->pos.y, Me.pos.z, NULL)
+			   )
 				continue;
 
-			/* Set up a melee attack */
+			// Set up a melee attack
 			int shot_index = find_free_melee_shot_index();
-			melee_shot *NewShot = &(AllMeleeShots[shot_index]);
+			melee_shot *new_shot = &(AllMeleeShots[shot_index]);
 
-			NewShot->attack_target_type = ATTACK_TARGET_IS_ENEMY;
-			NewShot->mine = TRUE;
-
-			NewShot->bot_target_n = erot->id;
-			NewShot->bot_target_addr = erot;
-
-			NewShot->to_hit = Me.to_hit;
-			NewShot->damage = Me.base_damage + MyRandom(Me.damage_modifier);
-			NewShot->owner = -1;	//no "bot class number" owner
-			NewShot->time_to_hit = tux_anim.attack.duration / 2;
-
-			melee_weapon_hit_something = TRUE;
+			new_shot->attack_target_type = ATTACK_TARGET_IS_ENEMY;
+			new_shot->mine = TRUE;
+			new_shot->bot_target_n = erot->id;
+			new_shot->bot_target_addr = erot;
+			new_shot->to_hit = Me.to_hit;
+			new_shot->damage = Me.base_damage + MyRandom(Me.damage_modifier);
+			new_shot->owner = -1;	//no "bot class number" owner
+			new_shot->time_to_hit = tux_anim.attack.duration / 2;
 
 			// Slow or paralyze enemies if the player has bonuses with those effects.
 			erot->frozen += Me.slowing_melee_targets;
 			erot->paralysation_duration_left += Me.paralyzing_melee_targets;
 
+			hit_something = TRUE;
 		}
 
 		// Also, we should check if there was perhaps a chest or box
 		// or something that can be smashed up, cause in this case, we
 		// must open Pandora's box now.
-		//
-		// SmashBox ( Weapon_Target_Vector.x , Weapon_Target_Vector.y );
-		if (smash_obstacle(Weapon_Target_Vector.x, Weapon_Target_Vector.y, Me.pos.z))
-			melee_weapon_hit_something = TRUE;
 
-		// Finally we add a new wait-counter, so that bullets or swings
-		// cannot be started in too rapid succession.  
-		// 
-		// And then we can return, for real bullet generation in the sense that
-		// we would have to enter something into the AllBullets array or that
-		// isn't required in our case here.
-		//
-		if (Me.weapon_item.type != (-1))
-			Me.busy_time = ItemMap[Me.weapon_item.type].weapon_attack_time;
-		else
-			Me.busy_time = 0.5;
+		if (smash_obstacle(impact_point.x, impact_point.y, Me.pos.z))
+			hit_something = TRUE;
 
-		// Now we modify for melee weapon skill...
-		Me.busy_time *= MeleeRechargeMultiplierTable[Me.melee_weapon_skill];
+		// Finally we add a new wait-counter, so that swings cannot be started
+		// in too rapid succession. Adjust that delay to take player's skill
+		// into account.
+
 		Me.busy_type = WEAPON_FIREWAIT;
+		Me.busy_time = 0.5; // default value
+		if (Me.weapon_item.type != -1)
+			Me.busy_time = ItemMap[Me.weapon_item.type].weapon_attack_time;
+		Me.busy_time *= MeleeRechargeMultiplierTable[Me.melee_weapon_skill];
+		Me.weapon_swing_time = 0; // restart swing animation
 
-		if (melee_weapon_hit_something)
+		// Play a sound feedback
+
+		if (hit_something)
 			play_melee_weapon_hit_something_sound();
 		else
 			play_melee_weapon_missed_sound(&Me.pos);
 
-		return 0;
+		return hit_something;
 	}
-	//
-	if (Me.weapon_item.type != (-1))
-		fire_bullet_sound(guntype, &Me.pos);
-	else
-		fire_bullet_sound(GetBulletByName("laser_sword"), &Me.pos);
 
-	FireTuxRangedWeaponRaw(Me.weapon_item.type, guntype, NULL, target_location);
-	return 0;
-};				// void PerformTuxAttackRaw ( ) ;
+	/**
+	 * Second case: Attack with a ranged weapon.
+	 * Note: we know that weapon_item.type != -1
+	 */
+
+	perform_tux_ranged_attack(Me.weapon_item.type, NULL, target_location);
+
+	fire_bullet_sound(ItemMap[Me.weapon_item.type].weapon_bullet_type, &Me.pos);
+
+	// We do not know if the bullet will hit something, but the bullet was fired,
+	// so that's a success...
+
+	return TRUE;
+}
 
 /**
  * Reload the ammo clip

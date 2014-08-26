@@ -1135,15 +1135,11 @@ static void get_one_item(lua_State *L, void *data)
 	// Currently, no bullet pass through bodies.
 	item->weapon_bullet_pass_through_hit_bodies = FALSE;
 	
+	item->weapon_bullet_type = 0;
 	if (item->slot == WEAPON_SLOT && !item->weapon_is_melee) {
 		item->weapon_bullet_type = GetBulletByName(item_bullet_type);
-	} else {
-		// TODO: This is needed due to some parts of the attack code not
-		// using it correctly... See use of 'guntype' in PerformTuxAttackRaw()
-		// for instance.
-		// To be remove when all that code is rewritten (<fluzz>)
-		item->weapon_bullet_type = 0;
 	}
+
 	free(item_bullet_type);
 }
 

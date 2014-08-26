@@ -632,7 +632,7 @@ void bullet_init_for_player(struct bullet *bullet, int bullet_type, short int we
 	bullet->mine = TRUE;
 	bullet->owner = -1;
 	bullet->faction = FACTION_SELF;
-	bullet->time_to_hide_still = 0.3;
+	bullet->time_to_hide_still = 0.0;
 }
 
 /**
