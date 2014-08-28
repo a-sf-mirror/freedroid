@@ -340,6 +340,8 @@ static int load_saved_game(int use_backup)
 		return (OK);
 	}
 
+	clean_error_msg_store();
+
 	put_string_centered(Menu_BFont, 10, _("Loading"));
 	our_SDL_flip_wrapper();
 
@@ -392,10 +394,7 @@ static int load_saved_game(int use_backup)
 		VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
 
 	if (strcmp(Me.savegame_version_string, version_check_string) != 0) {
-		alert_window(_("Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."));
-		our_SDL_flip_wrapper();
-		while (!MouseLeftPressed())
-			SDL_Delay(1);
+		alert_once_window(ONCE_PER_GAME, _("Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."));
 	}
 
 	/* post-loading: Some transient states have to be adapted */

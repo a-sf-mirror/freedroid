@@ -28,6 +28,12 @@
 #include "struct.h"
 #include "lua.h"
 
+#ifdef __GNUC__
+#define PRINTF_FMT_ATTRIBUTE(fmt,firstarg) __attribute__ ((format(printf,fmt,firstarg)));
+#else
+#define PRINTF_FMT_ATTRIBUTE(fmt,firstarg)
+#endif
+
 // main.c 
 void Game(void);
 
@@ -537,12 +543,6 @@ int load_named_game(const char *name);
 #define CURLEVEL() (curShip.AllLevels[Me.pos.z])
 void print_trace(int signum);
 void adapt_button_positions_to_screen_resolution(void);
-#ifdef __GNUC__
-#define PRINTF_FMT_ATTRIBUTE(fmt,firstarg) __attribute__ ((format(printf,fmt,firstarg)));
-#else
-#define PRINTF_FMT_ATTRIBUTE(fmt,firstarg)
-#endif
-void error_message(const char *, const char *, int, ...) PRINTF_FMT_ATTRIBUTE(2,4);
 void ShowGenericButtonFromList(int ButtonIndex);
 int mouse_cursor_is_on_that_image(float pos_x, float pos_y, struct image *our_iso_image);
 int MouseCursorIsInRect(const SDL_Rect *, int, int);
@@ -608,7 +608,6 @@ int get_lines_needed(const char *text, SDL_Rect t_rect, float line_height_factor
 void show_backgrounded_label_at_map_position(char *LabelText, float fill_status, float pos_x, float pos_y, int zoom_is_on);
 char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, const char *DefaultString);
 int show_backgrounded_text_rectangle(const char *, struct BFont_Info *, int, int, int, int);
-void alert_window(const char *text, ...) PRINTF_FMT_ATTRIBUTE(1,2);
 int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels);
 void SetNewBigScreenMessage(const char *ScreenMessageText);
 void DisplayBigScreenMessage(void);
@@ -638,6 +637,11 @@ int get_range_from_string(const char *str, int *min, int *max, int default_value
 char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_String);
 char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer);
 void DebugPrintf(int db_level, const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(2,3);
+void clean_error_msg_store();
+void error_message(const char *, const char *, int, ...) PRINTF_FMT_ATTRIBUTE(2,4);
+void error_once_message(int, const char *, const char *, int, ...) PRINTF_FMT_ATTRIBUTE(3,5);
+void alert_window(const char *text, ...) PRINTF_FMT_ATTRIBUTE(1,2);
+void alert_once_window(int, const char *text, ...) PRINTF_FMT_ATTRIBUTE(2,3);
 void *MyMalloc(long);
 int FS_filelength(FILE * f);
 int inflate_stream(FILE *, unsigned char **, int *);

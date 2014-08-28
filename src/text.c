@@ -138,63 +138,6 @@ int show_backgrounded_text_rectangle(const char *text, struct BFont_Info *font, 
 }
 
 /**
- * In some cases it will be necessary to inform the user of something in
- * a big important style.  Then a popup window is suitable, with a mouse
- * click to confirm and make it go away again.
- */
-void alert_window(const char *text, ...)
-{
-	if (!SDL_WasInit(SDL_INIT_VIDEO))
-		return;
-
-	va_list args;
-	struct auto_string *buffer = alloc_autostr(256);
-	int w = 440;   // arbitrary
-	int h = 60;    // arbitrary
-	int x = (GameConfig.screen_width  - w) / 2;	// center of screen
-	int y = (GameConfig.screen_height - h) / 5 * 2; // 2/5 of screen from top
-	va_start(args, text);
-	autostr_vappend(buffer, text, args);
-	va_end(args);
-
-	Activate_Conservative_Frame_Computation();
-	StoreMenuBackground(1);
-
-	SDL_Event e;
-	while (1) {
-		SDL_Delay(1);
-		RestoreMenuBackground(1);
-
-		int r_height = show_backgrounded_text_rectangle(buffer->value, FPS_Display_BFont, x, y, w, h);
-		show_backgrounded_text_rectangle(_("Click to continue..."), Red_BFont, x, y + r_height, w, 10);
-
-		blit_mouse_cursor();
-		our_SDL_flip_wrapper();
-		save_mouse_state();
-		
-		SDL_WaitEvent(&e);
-		
-		switch (e.type) {
-		case SDL_QUIT:
-			Terminate(EXIT_SUCCESS);
-			break;
-		case SDL_KEYDOWN:
-			if (e.key.keysym.sym == SDLK_SPACE || e.key.keysym.sym == SDLK_RETURN || e.key.keysym.sym == SDLK_ESCAPE)
-				goto wait_click_and_out;
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			if (e.button.button == 1)
-				goto wait_click_and_out;
-			break;
-		}
-	}
-
-wait_click_and_out:
-	while (SpacePressed() || EnterPressed() || EscapePressed() || MouseLeftPressed());
-	free_autostr(buffer);
-}
-
-/**
  * 
  */
 int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels)

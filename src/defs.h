@@ -61,6 +61,12 @@ enum {
 	SILENT        = 1 << 3    // Special flag, used with find_file() to disable any output
 };
 
+// Define how alert_once_window() has to remember for past alerts
+enum {
+	ONCE_PER_RUN  = 0,  // Never redisplay the alert.
+	ONCE_PER_GAME = 1   // Redisplay the alert if a new savegame was loaded since last time.
+};
+
 enum {
 	COLLISION_TYPE_NONE = 1,
 	COLLISION_TYPE_RECTANGLE = 2,
