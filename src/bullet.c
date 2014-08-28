@@ -201,9 +201,6 @@ void MoveBullets(void)
 		if (CurBullet->type == INFOUT)
 			continue;
 
-		if (CurBullet->time_to_hide_still > 0)
-			continue;
-
 		move_this_bullet_and_check_its_collisions(i);
 
 		// WARNING!  The bullet collision check might have deleted the bullet, so 
@@ -632,7 +629,6 @@ void bullet_init_for_player(struct bullet *bullet, int bullet_type, short int we
 	bullet->mine = TRUE;
 	bullet->owner = -1;
 	bullet->faction = FACTION_SELF;
-	bullet->time_to_hide_still = 0.0;
 }
 
 /**

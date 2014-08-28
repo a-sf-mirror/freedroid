@@ -2650,9 +2650,6 @@ void PutBullet(int bullet_index, int mask)
 	int PhaseOfBullet;
 	int direction_index;
 
-	if (CurBullet->time_to_hide_still > 0)
-		return;
-
 	// DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
 	if ((CurBullet->type >= bullet_specs.size) || (CurBullet->type < 0)) {
 		fprintf(stderr, "\nPutBullet:  bullet type received: %d.", CurBullet->type);

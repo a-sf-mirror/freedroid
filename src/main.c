@@ -290,14 +290,6 @@ void UpdateCountersForThisFrame()
 			timeout_from_item_drop = 0;
 	}
 
-	for (i = 0; i < MAXBULLETS; i++) {
-		if (AllBullets[i].time_to_hide_still > 0) {
-			AllBullets[i].time_to_hide_still -= latest_frame_time;
-			if (AllBullets[i].time_to_hide_still < 0)
-				AllBullets[i].time_to_hide_still = 0;
-		}
-	}
-
 	// Maybe some items are just thrown in the air and still in the air.
 	// We need to keep track of the time the item has spent in the air so far.
 	//

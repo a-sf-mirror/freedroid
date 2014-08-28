@@ -659,7 +659,6 @@ typedef struct bullet {
 	short int damage;	// damage done by this particular bullet
 	float time_in_seconds;	// how long does the bullet exist in seconds
 	float bullet_lifetime;	// how long can this bullet exist at most
-	float time_to_hide_still;	// countdown to when the bullet will actually appear
 	short int owner;
 	float angle;
 
