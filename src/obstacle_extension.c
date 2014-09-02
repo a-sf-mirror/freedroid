@@ -184,6 +184,7 @@ void free_obstacle_extensions(level *lvl)
 				// no break
 			case OBSTACLE_EXTENSION_LABEL:
 			case OBSTACLE_EXTENSION_DIALOGFILE:
+			case OBSTACLE_EXTENSION_SIGNMESSAGE:
 				free(ext->data);
 				ext->data = NULL;
 				break;
