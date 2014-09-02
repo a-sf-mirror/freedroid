@@ -2232,7 +2232,10 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		ThisRobot->current_angle = -(-90 + 180 * atan2(ydist, xdist) / M_PI);
 	}
 
-	fire_bullet_sound(weapon_spec.weapon_bullet_type, &ThisRobot->pos);
+	if (!weapon_spec.weapon_is_melee)
+		fire_bullet_sound(weapon_spec.weapon_bullet_type, &ThisRobot->pos);
+	else
+		play_melee_weapon_missed_sound(&ThisRobot->pos);
 };				// void RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 
 /**
