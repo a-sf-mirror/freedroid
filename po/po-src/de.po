@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-09-04 18:16+0000\n"
-"PO-Revision-Date: 2014-08-06 20:49+0000\n"
+"POT-Creation-Date: 2014-09-04 20:51+0000\n"
+"PO-Revision-Date: 2014-09-04 21:17+0000\n"
 "Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/freedroid-rpg/language/de/)\n"
 "Language: de\n"
@@ -305,35 +305,35 @@ msgid "Day %d  %02d:%02d"
 msgstr "Tag %d  %02d:%02d"
 
 #. TRANSLATORS: Console msg when a weapon is empty
-#: src/influ.c:147
+#: src/influ.c:145
 #, c-format
 msgid "%s empty, reloading..."
 msgstr "%s leer, lade nach…"
 
-#: src/influ.c:971 src/menu.c:999
+#: src/influ.c:967 src/menu.c:999
 msgid "Load Latest"
 msgstr "Letzten Spielstand laden"
 
-#: src/influ.c:972 src/menu.c:1000
+#: src/influ.c:968 src/menu.c:1000
 msgid "Load Backup"
 msgstr "Sicherungskopie laden"
 
-#: src/influ.c:973 src/menu.c:1002 src/lvledit/lvledit_menu.c:1003
+#: src/influ.c:969 src/menu.c:1002 src/lvledit/lvledit_menu.c:1003
 msgid "Quit to Main Menu"
 msgstr "Zurück zum Hauptmenü"
 
-#: src/influ.c:974 src/menu.c:851 src/menu.c:1005
+#: src/influ.c:970 src/menu.c:851 src/menu.c:1005
 #: src/lvledit/lvledit_menu.c:1004
 msgid "Exit FreedroidRPG"
 msgstr "FreedroidRPG beenden"
 
 #. TRANSLATORS: Out of <ammo type>
-#: src/influ.c:1502
+#: src/influ.c:1395
 #, c-format
 msgid "Out of [s]%s[v]!"
 msgstr "Kein(e) [s]%s[v] mehr!"
 
-#: src/init.c:711 src/saveloadgame.c:443
+#: src/init.c:711 src/saveloadgame.c:442
 msgid "--- Message Log ---"
 msgstr "--- Nachrichteneintrag ---"
 
@@ -575,95 +575,95 @@ msgstr "Kosten: %d"
 msgid "Bonuses"
 msgstr "Boni"
 
-#: src/items.c:387
+#: src/items.c:385
 msgid "Good quality"
 msgstr "Gute Qualität"
 
-#: src/items.c:390
+#: src/items.c:388
 msgid "Bad quality"
 msgstr "Schlechte Qualität"
 
-#: src/items.c:720
+#: src/items.c:718
 msgid "I can't use this item here."
 msgstr "Diesen Gegenstand kann ich hier nicht nutzen."
 
-#: src/items.c:726
+#: src/items.c:724
 msgid "You can not use any items while paralyzed."
 msgstr "Du bist paralysiert und kannst keine Gegenstände benutzen!"
 
-#: src/items.c:734
+#: src/items.c:732
 msgid "You are drinking a potion!"
 msgstr "Du trinkst einen Trank."
 
-#: src/items.c:737
+#: src/items.c:735
 msgid "Your are waiting for your weapon to fire again!"
 msgstr "Du wartest darauf, dass deine Waffe wieder schießen kann!"
 
-#: src/items.c:740
+#: src/items.c:738
 msgid "You are reloading your weapon!"
 msgstr "Du lädst deine Waffe nach!"
 
-#: src/items.c:743
+#: src/items.c:741
 msgid "You are throwing a grenade!"
 msgstr "Du wirfst eine Granate!"
 
-#: src/items.c:746
+#: src/items.c:744
 msgid "You are running a program!"
 msgstr "Du benutzt ein Programm!"
 
-#: src/items.c:749
+#: src/items.c:747
 msgid "You are taking a pill!"
 msgstr "Du schluckst eine Pille!"
 
-#: src/items.c:752
+#: src/items.c:750
 msgid "You are doing something so weird the game does not understand what it is"
 msgstr "Du machst etwas so merkwürdiges, sodass das Spiel nicht versteht, was du machst."
 
 #. TRANSLATORS: the trailing %s is what the player is currently already doing (drinking, running a program, ...)
-#: src/items.c:755
+#: src/items.c:753
 #, c-format
 msgid "How do you expect to do two things at a time? %s"
 msgstr "Wie kannst du erwarten 2 Dinge auf einmal zu tun? %s"
 
-#: src/items.c:806
+#: src/items.c:804
 msgid "The doctor warned you. You are now weak and sickly."
 msgstr "Der Dok hat dich gewarnt. Jetzt bist du schwach und krank."
 
 #. TRANSLATORS: the trailing %s is a program name
-#: src/items.c:820
+#: src/items.c:818
 #, c-format
 msgid "You have reached the maximum skill level for %s"
 msgstr "Du hast die maximale Fähigkeitsstufe für %s erreicht"
 
-#: src/items.c:1573
+#: src/items.c:1571
 msgid "You can not use the inventory while paralyzed."
 msgstr "Du kannst das Inventar nicht benutzen, wenn du paralysiert bist."
 
-#: src/items.c:1653
+#: src/items.c:1651
 msgid "You cannot fight with this!"
 msgstr "Damit kannst du nicht kämpfen!"
 
-#: src/items.c:1659
+#: src/items.c:1657
 msgid "You cannot yet fight with this!"
 msgstr "Du kannst im Moment nicht damit kämpfen!"
 
-#: src/items.c:1698
+#: src/items.c:1696
 msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
 msgstr "Anforderung für Zwei-Hand-Waffe nicht erfüllt: Schildbonus zählt nicht."
 
-#: src/items.c:1711
+#: src/items.c:1709
 msgid "You cannot equip this!"
 msgstr "Das kannst du nicht anlegen!"
 
-#: src/items.c:1717
+#: src/items.c:1715
 msgid "You cannot equip this yet!"
 msgstr "Das kannst du im Moment nicht anlegen!"
 
-#: src/items.c:1749
+#: src/items.c:1747
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr "Anforderungen für Schild nicht erfüllt: Bonus für Zwei-Hand-Waffe zählt nicht."
 
-#: src/items.c:1891 src/items.c:2069
+#: src/items.c:1889 src/items.c:2067
 msgid "I can't carry any more."
 msgstr "Ich kann nichts mehr tragen."
 
@@ -1101,20 +1101,20 @@ msgstr "Du hast %d Schaltkreise erhalten!"
 msgid "Lost %d valuable circuits!"
 msgstr "Du hast %d Schaltkreise verloren!"
 
-#: src/main.c:369
+#: src/main.c:361
 msgid "Overheating!"
 msgstr "Überhitzung!"
 
 #. TRANSLATORS: Screen message, displayed below 'Automatically shutting down'
-#: src/main.c:374
+#: src/main.c:366
 msgid "due to near lethal overheating"
 msgstr "infolge fast tödlicher Überhitzung"
 
-#: src/main.c:375
+#: src/main.c:367
 msgid "Automatically shutting down"
 msgstr "Automatisches Herunterfahren"
 
-#: src/main.c:397
+#: src/main.c:389
 msgid "Weapon reloaded"
 msgstr "Waffe geladen"
 
@@ -1390,7 +1390,7 @@ msgstr "Zeige KP der Gegner: %s"
 #: src/menu.c:1468
 #, c-format
 msgid "Show effect countdowns: %s"
-msgstr ""
+msgstr "Zeige Effekt-Countdown: %s"
 
 #: src/menu.c:1469
 #, c-format
@@ -1639,11 +1639,11 @@ msgstr "Speichern"
 msgid "Game saved."
 msgstr "Spiel gespeichert."
 
-#: src/saveloadgame.c:343
+#: src/saveloadgame.c:345
 msgid "Loading"
 msgstr "Laden"
 
-#: src/saveloadgame.c:360
+#: src/saveloadgame.c:362
 msgid ""
 "W A R N I N G !\n"
 "\n"
@@ -1657,19 +1657,19 @@ msgstr ""
 "Es könnte sein, dass er wirklich nicht da ist, weil er nie angelegt wurde.\n"
 "Anderseits könnte es ein schwerwiegender Fehler in FreedroidRPG sein. Sollte dies der Fall sein, bitte die Entwickler dieses Spiels darüber informieren."
 
-#: src/saveloadgame.c:361
+#: src/saveloadgame.c:363
 msgid "Failed to load old game."
 msgstr "Konnte alten Spielstand nicht laden."
 
-#: src/saveloadgame.c:395
+#: src/saveloadgame.c:397
 msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
 msgstr "Version oder Struktur passt nicht! Der Spielstand passt nicht zu dieser Version von FreedroidRPG… er könnte fehlerhaft sein."
 
-#: src/saveloadgame.c:439
+#: src/saveloadgame.c:438
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Tux Bilder aktualisieren (könnte eine Weile dauern…)"
 
-#: src/saveloadgame.c:444
+#: src/saveloadgame.c:443
 msgid "Game loaded."
 msgstr "Spiel geladen."
 
@@ -1730,13 +1730,13 @@ msgstr "Unverkäuflich\n"
 
 #: src/shop.c:327
 #, c-format
-msgid "Recharge time: %3.2f\n"
-msgstr "Nachladezeit: %3.2f\n"
+msgid "Time between two attacks: %3.2fs\n"
+msgstr ""
 
 #: src/shop.c:331
 #, c-format
-msgid "Time to reload ammo clip: %3.2f\n"
-msgstr "Zeit zum Nachladen der Munition: %3.2f\n"
+msgid "Time to reload ammo clip: %3.2fs\n"
+msgstr ""
 
 #: src/shop.c:334
 #, c-format
@@ -1937,25 +1937,25 @@ msgstr "Abgelehnt"
 msgid "Deadlock"
 msgstr "Verklemmt"
 
-#: src/text.c:169
+#: src/text.c:360
+msgid "slowed"
+msgstr "verlangsamt"
+
+#: src/text.c:366
+msgid "paralyzed"
+msgstr "gelähmt"
+
+#: src/text.c:372
+msgid "invisible"
+msgstr "unsichtbar"
+
+#: src/text.c:378
+msgid "scanning"
+msgstr "scannen"
+
+#: src/text_public.c:266
 msgid "Click to continue..."
 msgstr "Klicken zum Fortfahren…"
-
-#: src/text.c:417
-msgid "slowed"
-msgstr ""
-
-#: src/text.c:423
-msgid "paralyzed"
-msgstr ""
-
-#: src/text.c:429
-msgid "invisible"
-msgstr ""
-
-#: src/text.c:435
-msgid "scanning"
-msgstr ""
 
 #: src/vars.h:39
 msgid "untrained"
@@ -2499,14 +2499,10 @@ msgstr ""
 #, c-format
 msgid ""
 "%s (%s)\n"
-"\t\t\tDamage: %d-%d, Recharge: %.2f, Reload: %.2f, Ammo: (%d/%s)\n"
+"\t\t\tDamage: %d-%d, Attack Time: %.2fs, Reload Time: %.2fs, Ammo: (%d/%s)\n"
 "\t\t\tSTR: >%d\n"
 "%s"
 msgstr ""
-"%s (%s)\n"
-"\t\t\tSchaden: %d-%d, L.-Zeit: %.2f, L.-Menge: %.2f, Muni: (%d/%s)\n"
-"\t\t\tSTR: >%d\n"
-"%s"
 
 #: src/lvledit/lvledit_widget_toolbar.c:156
 #: src/lvledit/lvledit_widget_toolbar.c:166
@@ -2517,14 +2513,10 @@ msgstr "Benötigt 2 Hände\n"
 #, c-format
 msgid ""
 "%s (%s)\n"
-"\t\t\tDamage: %d-%d, Recharge: %.2f,\n"
+"\t\t\tDamage: %d-%d, Attack Time: %.2fs,\n"
 "\t\t\tSTR: >%d, DEX: >%d, COOL: >%d\n"
 "%s"
 msgstr ""
-"%s (%s)\n"
-"\t\t\tSchaden: %d-%d, L.-Zeit: %.2f,\n"
-"\t\t\tSTR: >%d, GEW: >%d, Kühlung: >%d\n"
-"%s"
 
 #: src/lvledit/lvledit_widget_toolbar.c:169
 #, c-format
@@ -2878,6 +2870,9 @@ msgstr "Wegpunkt"
 #: src/lvledit/lvledit_widgets.c:490
 msgid "Label"
 msgstr "Beschriftung"
+
+#~ msgid "Recharge time: %3.2f\n"
+#~ msgstr "Nachladezeit: %3.2f\n"
 
 #, fuzzy
 #~ msgid "Could not find a droid with name \"%s\""
