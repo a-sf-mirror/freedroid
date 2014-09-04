@@ -88,6 +88,13 @@ static int autostr_vprintf(struct auto_string *str, unsigned long offset,
 
   retry:
 	size = autostr_remaining(str, offset);
+	if (size <= 1) { // Not enough room to write anything, resizing
+		err = autostr_resize(str, str->capacity * 2);
+		if (err)
+			goto out;
+		goto retry;
+
+	}
 	va_copy(tmp_args, args);
 	nr = vsnprintf(str->value + offset, size, fmt, tmp_args);
 	va_end(tmp_args);
