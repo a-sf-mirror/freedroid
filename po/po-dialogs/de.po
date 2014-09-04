@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-08-06 20:51+0000\n"
+"POT-Creation-Date: 2014-09-04 18:16+0000\n"
 "PO-Revision-Date: 2014-06-20 14:00+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/freedroid-rpg/language/de/)\n"
@@ -751,7 +751,8 @@ msgid "Running hcf.py..."
 msgstr "Starte hff.py…"
 
 #: dialogs/AfterTakeover.lua:562
-msgid "BUG OCCURED Aftertakeover node 53"
+#, fuzzy
+msgid "BUG OCCURRED Aftertakeover node 53"
 msgstr "FEHLER AUFGETRETEN Nach-Übernahme Knoten 53"
 
 #: dialogs/AfterTakeover.lua:566

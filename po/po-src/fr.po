@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-08-06 20:51+0000\n"
+"POT-Creation-Date: 2014-09-04 18:16+0000\n"
 "PO-Revision-Date: 2014-08-06 21:30+0000\n"
 "Last-Translator: Xenux <xenux@freedroid.org>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
@@ -335,19 +335,19 @@ msgstr "Quitter FreedroidRPG"
 msgid "Out of [s]%s[v]!"
 msgstr "Plus de [s]%s[v] !"
 
-#: src/init.c:756 src/saveloadgame.c:443
+#: src/init.c:711 src/saveloadgame.c:443
 msgid "--- Message Log ---"
 msgstr "--- Historique des messages ---"
 
-#: src/init.c:758
+#: src/init.c:713
 msgid "Starting tutorial."
 msgstr "Commencer le Tutoriel."
 
-#: src/init.c:760
+#: src/init.c:715
 msgid "Starting new game."
 msgstr "Commencer une nouvelle partie."
 
-#: src/init.c:1058
+#: src/init.c:1013
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -363,11 +363,11 @@ msgstr ""
 "\n"
 "Bonne chance !\n"
 
-#: src/init.c:1075 src/init.c:1076
+#: src/init.c:1030 src/init.c:1031
 msgid "Game over.\n"
 msgstr "Fin de la partie.\n"
 
-#: src/init.c:1142 src/init.c:1143
+#: src/init.c:1097 src/init.c:1098
 msgid "Game won.\n"
 msgstr "Tu as gagné la partie.\n"
 
