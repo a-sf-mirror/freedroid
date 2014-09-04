@@ -95,8 +95,6 @@ return {
 	},
 	{
 		id = "node41",
-		text = "BUG, REPORT ME! Richard node41",
-		echo_text = false,
 		code = function()
 			Tux:says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
 			Npc:says_random(_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
@@ -148,8 +146,6 @@ return {
 	},
 	{
 		id = "node52",
-		text = "BUG, REPORT ME! Richard node52",
-		echo_text = false,
 		code = function()
 			Tux:says_random(_"Hold on, I don't seem to have enough money right now.",
 							_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")

@@ -168,8 +168,8 @@ static int animate_autogun(level* autogun_lvl, void *scenery_piece)
 	
 	if (!static_initialized) {
 		weapon_item_type = get_item_type_by_id("Laser pistol");
-		bullet_image_type = ItemMap[weapon_item_type].item_gun_bullet_image_type;	// which gun do we have ? 
-		BulletSpeed = ItemMap[weapon_item_type].item_gun_speed;
+		bullet_image_type = ItemMap[weapon_item_type].weapon_bullet_type;	// which gun do we have ?
+		BulletSpeed = ItemMap[weapon_item_type].weapon_bullet_speed;
 		static_initialized = TRUE;
 	}
 	
@@ -201,9 +201,9 @@ static int animate_autogun(level* autogun_lvl, void *scenery_piece)
 	CurBullet->damage = 5;
 	CurBullet->faction = FACTION_BOTS;
 	CurBullet->owner = -3;
-	CurBullet->bullet_lifetime = ItemMap[weapon_item_type].item_gun_bullet_lifetime;
+	CurBullet->bullet_lifetime = ItemMap[weapon_item_type].weapon_bullet_lifetime;
 	CurBullet->time_in_seconds = 0;
-	CurBullet->pass_through_hit_bodies = ItemMap[weapon_item_type].item_gun_bullet_pass_through_hit_bodies;
+	CurBullet->pass_through_hit_bodies = ItemMap[weapon_item_type].weapon_bullet_pass_through_hit_bodies;
 	CurBullet->freezing_level = 0;
 	CurBullet->poison_duration = 0;
 	CurBullet->poison_damage_per_sec = 0;

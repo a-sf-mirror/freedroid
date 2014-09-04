@@ -95,7 +95,7 @@ static void current_ammo_update(struct widget *w)
 
 	if (Me.weapon_item.type == -1 || &Me.weapon_item == item_held_in_hand)
 		return;
-	if (!ItemMap[Me.weapon_item.type].ammo_id)
+	if (!ItemMap[Me.weapon_item.type].weapon_ammo_type)
 		return;
 
 	if (Me.busy_type == WEAPON_RELOAD)
@@ -103,7 +103,7 @@ static void current_ammo_update(struct widget *w)
 	else if (!Me.weapon_item.ammo_clip)
 		autostr_printf(text, _("[r]EMPTY"));
 	else
-		autostr_printf(text, "%5d / %2d", Me.weapon_item.ammo_clip, ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size);
+		autostr_printf(text, "%5d / %2d", Me.weapon_item.ammo_clip, ItemMap[Me.weapon_item.type].weapon_ammo_clip_size);
 }
 
 /** Toggle inventory screen on/off. */
@@ -186,8 +186,8 @@ static void experience_bar_display(struct widget *w)
 {
 	static Uint32 fill_color = 0;
 	static Uint32 empty_color = 0;
-	int exp_required = get_experience_required(Me.exp_level);
-	int exp_required_previously = get_experience_required(Me.exp_level - 1);
+	int exp_required = (int)get_experience_required(Me.exp_level);
+	int exp_required_previously = (int)get_experience_required(Me.exp_level - 1);
 	int exp_range = exp_required - exp_required_previously;
 	int exp_achieved = Me.Experience - exp_required_previously;
 
@@ -213,7 +213,7 @@ static char *get_experience_bar_tooltip(struct widget *w)
 	if (!buffer)
 		buffer = alloc_autostr(64);
 
-	autostr_printf(buffer, "%s\n%d/%d\n", _("XP"), Me.Experience, get_experience_required(Me.exp_level));
+	autostr_printf(buffer, "%s\n%u/%u\n", _("XP"), Me.Experience, get_experience_required(Me.exp_level));
 
 	return buffer->value;
 }

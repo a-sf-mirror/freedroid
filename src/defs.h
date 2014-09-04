@@ -61,6 +61,12 @@ enum {
 	SILENT        = 1 << 3    // Special flag, used with find_file() to disable any output
 };
 
+// Define how alert_once_window() has to remember for past alerts
+enum {
+	ONCE_PER_RUN  = 0,  // Never redisplay the alert.
+	ONCE_PER_GAME = 1   // Redisplay the alert if a new savegame was loaded since last time.
+};
+
 enum {
 	COLLISION_TYPE_NONE = 1,
 	COLLISION_TYPE_RECTANGLE = 2,
@@ -1521,10 +1527,10 @@ enum faction_state {
 #define ACCESS_MAP_LABEL(X,Y) ((struct map_label *)(X.arr))[Y]
 
 enum obstacle_extension_type {
-	OBSTACLE_EXTENSION_LABEL = 30, // This extension indicates an obstacle label. The associated data is a const char * containing the label.
+	OBSTACLE_EXTENSION_LABEL = 30,  // This extension indicates an obstacle label. The associated data is a const char * containing the label.
 	OBSTACLE_EXTENSION_CHEST_ITEMS, // This extension indicates an item list. The associated data is a struct dynarray containing struct item.
-	OBSTACLE_EXTENSION_DIALOGFILE, // This extension indicates the dialog filename associated to an interactive obstacle. Contains the dialog basename.
-	OBSTACLE_EXTENSION_SIGNMESSAGE = OBSTACLE_EXTENSION_DIALOGFILE, // This extension contains the message written on a signpost. It is exclusive with a dialogfile specification
+	OBSTACLE_EXTENSION_DIALOGFILE,  // This extension indicates the dialog filename associated to an interactive obstacle. Contains the dialog basename.
+	OBSTACLE_EXTENSION_SIGNMESSAGE  // This extension contains the message written on a signpost.
 };
 
 enum lua_target {

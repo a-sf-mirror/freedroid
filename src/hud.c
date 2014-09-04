@@ -154,9 +154,9 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM | IS_FATAL);
 		autostr_append(str, _("Indestructible\n"));
 	}
 	// Ranged weapon ammunition
-	if (ItemMap[item->type].item_gun_ammo_clip_size) {
+	if (ItemMap[item->type].weapon_ammo_type && ItemMap[item->type].weapon_ammo_clip_size) {
 		// TRANSLATORS: On item description: 'current' of 'maximum' amount of ammo
-		autostr_append(str, _("Ammo: %d of %d\n"), item->ammo_clip, ItemMap[item->type].item_gun_ammo_clip_size);
+		autostr_append(str, _("Ammo: %d of %d\n"), item->ammo_clip, ItemMap[item->type].weapon_ammo_clip_size);
 	}
 	// Strength, dexterity or cooling requirements
 	if ((ItemMap[item->type].item_require_strength != (-1)) || (ItemMap[item->type].item_require_dexterity != (-1))) {
@@ -337,7 +337,7 @@ static void prepare_text_window_content(struct auto_string *str)
 				best_banner_pos_x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
 				best_banner_pos_y = SHIELD_RECT_Y - 30;
 			} else if (Me.weapon_item.type > 0) {
-				if (ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
+				if (ItemMap[Me.weapon_item.type].weapon_needs_two_hands) {
 					append_item_description(str, &(Me.weapon_item));
 					best_banner_pos_x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
 					best_banner_pos_y = SHIELD_RECT_Y - 30;

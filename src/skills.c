@@ -401,9 +401,9 @@ int DoSkill(int skill_index, int SpellCost)
 		bullet bul_parms;
 		/*XXX hardcoded laser pistol type */
 		if (SpellSkillMap[skill_index].graphics_code != -1)
-			FillInDefaultBulletStruct(&bul_parms, SpellSkillMap[skill_index].graphics_code, get_item_type_by_id("Laser pistol"));
+			bullet_init_for_player(&bul_parms, SpellSkillMap[skill_index].graphics_code, get_item_type_by_id("Laser pistol"));
 		else
-			FillInDefaultBulletStruct(&bul_parms, GetBulletByName("half_magenta"), get_item_type_by_id("Laser pistol"));
+			bullet_init_for_player(&bul_parms, GetBulletByName("half_magenta"), get_item_type_by_id("Laser pistol"));
 
 		bul_parms.freezing_level = strcmp(SpellSkillMap[skill_index].effect, "slowdown") ? 0 : effdur;
 		bul_parms.poison_duration = strcmp(SpellSkillMap[skill_index].effect, "poison") ? 0 : effdur;
@@ -417,7 +417,7 @@ int DoSkill(int skill_index, int SpellCost)
 		else
 			bul_parms.hit_type = ATTACK_HIT_BOTS;
 
-		FireTuxRangedWeaponRaw(get_item_type_by_id("Laser pistol"), -1, &bul_parms, target_location);
+		perform_tux_ranged_attack(get_item_type_by_id("Laser pistol"), &bul_parms, target_location);
 
 		return 1;	//no extra effects
 

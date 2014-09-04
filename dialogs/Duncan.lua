@@ -154,8 +154,6 @@ return {
 	},
 	{
 		id = "node50",
-		text = "BUG, REPORT ME! duncan node50 -- starting koan quest",
-		echo_text = false,
 		code = function()
 			Npc:says(_"Ah. Welcome again Linarian.")
 			Npc:says(_"I have a little request for you.")
@@ -224,8 +222,6 @@ return {
 	},
 	{
 		id = "node60",
-		text = "BUG, REPORT ME! duncan node60 -- MURDERING DONE OR SAVED HIM",
-		echo_text = false,
 		code = function()
 			if (Tux:has_item_backpack("Pandora's Cube")) then
 				if (Duncan_Koan_quest_done) then
@@ -337,8 +333,6 @@ return {
 	},
 	{
 		id = "node69",
-		text = "BUG, REPORT ME! duncan node69",
-		echo_text = false,
 		code = function()
 			Tux:add_xp(3000)
 			Tux:del_item_backpack("Pandora's Cube", 1)
@@ -383,8 +377,6 @@ return {
 	},
 	{
 		id = "node97",
-		text = "BUG, REPORT ME! duncan node97",
-		echo_text = false,
 		code = function()
 			Npc:says(_"I wish you cold winds.")
 			Tux:says(_"Huh? How do you know the Linarian farewell? No one around here knows it.")

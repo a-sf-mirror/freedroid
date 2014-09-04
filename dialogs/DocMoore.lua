@@ -322,8 +322,6 @@ return {
 	},
 	{
 		id = "node53",
-		text = "BUG REPORT ME! Francis node 53!",
-		echo_text = false,
 		code = function()
 			Npc:says(_"Those pills are only one variant of a fantastic scientific breakthrough that happened shortly before the Great Assault.")
 			Npc:says(_"Three kinds of enhancement pills were developed. One for strength, one for dexterity and one for programming abilities.")

@@ -615,12 +615,27 @@ static char *decode_extension_chest(char *ext, void **data)
 
 static char *decode_extension_label(char *ext, void **data)
 {
-	char *end = ext;
-	while (*end != '\n')
-		end++;
+	char *begin = NULL;
+	char *end = NULL;
+
+	if (*ext != '\"') {
+		// For compatibility with old levels.dat and savegames, parse an
+		// unquoted string.
+		// TODO: to be removed in the future, when unquoted strings are no
+		// more used by anybody...
+		begin = ext;
+		end = begin;
+		while (*end != '\n')
+			end++;
+	} else {
+		begin = ext + 1;
+		end = begin;
+		while (*end != '\"' && *end != '\n')
+			end++;
+	}
 
 	*end = '\0';
-	*data = strdup(ext);
+	*data = strdup(begin);
 	*end = '\n';
 
 	while (*end != '}')
@@ -631,8 +646,42 @@ static char *decode_extension_label(char *ext, void **data)
 
 static char *decode_extension_dialog(char *ext, void **data)
 {
-	// dialog and label extensions are both a string
+	// Same format than label extension.
 	return decode_extension_label(ext, data);
+}
+
+static char *decode_extension_signmessage(char *ext, void **data)
+{
+	char *begin = NULL;
+	char *end = NULL;
+
+	if (*ext != '_' && *ext != '\"') {
+		// For compatibility with old levels.dat and savegames, parse an
+		// unquoted string.
+		// TODO: to be removed in the future, when unquoted strings are no
+		// more used by anybody...
+		begin = ext;
+		end = begin;
+		while (*end != '\n')
+			end++;
+	} else {
+		if (*ext == '\"')
+			begin = ext + 1;
+		else
+			begin = ext + 2;
+		end = begin;
+		while (*end != '\"' && *end != '\n')
+			end++;
+	}
+
+	*end = '\0';
+	*data = strdup(begin);
+	*end = '\n';
+
+	while (*end != '}')
+		end++;
+
+	return end;
 }
 
 static char *decode_obstacle_extensions(level *loadlevel, char *data)
@@ -674,7 +723,32 @@ static char *decode_obstacle_extensions(level *loadlevel, char *data)
 				ext_begin = decode_extension_label(ext_begin, &ext_data);
 				break;
 			case OBSTACLE_EXTENSION_DIALOGFILE:
-				ext_begin = decode_extension_dialog(ext_begin, &ext_data);
+			{
+				// Old levels.dat and savegames use this type for
+				// dialog extensions as well as for sign messages extensions.
+				// New 'format' uses two different values.
+				// For compatibility, at least during some time, we accept
+				// to read sign message extension here, but we convert it to
+				// its actual type.
+				// The actual use of an obstacle extension, and thus its actual type,
+				// is defined by the 'action' set to the obstacle (see action.c).
+				// TODO: To be removed in the future
+				obstacle *obs = &(loadlevel->obstacle_list[index]);
+				obstacle_spec *spec = get_obstacle_spec(obs->type);
+
+				if (spec->action && strcmp(spec->action, "sign")) {
+					// This is really a dialog extension
+					ext_begin = decode_extension_dialog(ext_begin, &ext_data);
+					break;
+				}
+				// This is a sign message extension
+				// We change the extension's type, and continue within the next
+				// switch case
+				type = OBSTACLE_EXTENSION_SIGNMESSAGE;
+			}
+			/* no break */
+			case OBSTACLE_EXTENSION_SIGNMESSAGE:
+				ext_begin = decode_extension_signmessage(ext_begin, &ext_data);
 				break;
 		}
 
@@ -1340,13 +1414,22 @@ static void encode_extension_label(struct auto_string *shipstr, struct obstacle_
 {
 	const char *label = ext->data;
 
-	autostr_append(shipstr, "\t%s\n", label);
+	autostr_append(shipstr, "\t\"%s\"\n", label);
 }
 
 static void encode_extension_dialog(struct auto_string *shipstr, struct obstacle_extension *ext)
 {
-	// dialog and label extensions are both a string
-	encode_extension_label(shipstr, ext);
+	const char *label = ext->data;
+
+	autostr_append(shipstr, "\t\"%s\"\n", label);
+}
+
+static void encode_extension_signmessage(struct auto_string *shipstr, struct obstacle_extension *ext)
+{
+	const char *label = ext->data;
+
+	// Sign messages can be localized. Use gettext marker.
+	autostr_append(shipstr, "\t_\"%s\"\n", label);
 }
 
 static void encode_obstacle_extensions(struct auto_string *shipstr, level *l)
@@ -1370,6 +1453,9 @@ static void encode_obstacle_extensions(struct auto_string *shipstr, level *l)
 				break;
 			case OBSTACLE_EXTENSION_DIALOGFILE:
 				encode_extension_dialog(shipstr, ext);
+				break;
+			case OBSTACLE_EXTENSION_SIGNMESSAGE:
+				encode_extension_signmessage(shipstr, ext);
 				break;
 		}
 

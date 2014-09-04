@@ -139,6 +139,9 @@ function FDdialog.Node.get_text(self)
 		return self.text
 	elseif (type(self.text) == "function") then
 		return self.text()
+	else
+		print("ERROR: use get_text on the node '".. self.id .."' without text")
+		return nil
 	end
 end
 
@@ -196,8 +199,12 @@ function FDdialog.Dialog.get_options(self)
 	local options = {}
 	for i,node in ipairs(self.nodes) do
 		if (node.enabled and node.topic == current_topic) then
-			options[#options + 1] = i
-			options[#options + 1] = node:get_text()
+			local text = node:get_text()
+
+			if (text) then
+				options[#options + 1] = i
+				options[#options + 1] = text
+			end
 		end
 	end
 	return options
@@ -248,7 +255,12 @@ end
 --! \memberof Lua::FDdialog::Dialog
 
 function FDdialog.Dialog.enable_nodes(self, nodes)
-	self:foreach_node(nodes, function(node) node.enabled = true end)
+	self:foreach_node(nodes, function(node)
+		node.enabled = true
+		if (not node.text) then
+			print("ERROR: enable the node '".. node.id .."' without text")
+		end
+	end)
 end
 
 --! \fn void disable_nodes(string{} nodes)
@@ -486,7 +498,11 @@ function FDdialog.run_node(node_idx)
 	end
 	if (node.enabled and node.echo_text) then
 		local Tux = FDrpg.get_tux()
-		Tux:says(node:get_text(), "NO_WAIT")
+		local text = node:get_text()
+
+		if (text) then
+			Tux:says(text, "NO_WAIT")
+		end
 	end
 	node:code(current_dialog)
 	return current_dialog.next_node and FDdialog.run_node(current_dialog.next_node)

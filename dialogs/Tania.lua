@@ -389,8 +389,6 @@ return {
 	},
 	{
 		id = "node48",
-		text = "BUG, REPORT ME! Tania node48 -- TANIA'S THIRST FOR WATER",
-		echo_text = false,
 		code = function()
 			number_of_liquid_items = 0
 			if (Tux:has_item_backpack("Bottled ice")) then
@@ -481,8 +479,6 @@ return {
 	},
 	{
 		id = "node54",
-		text = "BUG, REPORT ME! Tania node54 -- NO LIQUID ITEMS",
-		echo_text = false,
 		code = function()
 			number_of_liquid_items = number_of_liquid_items - 1
 			if (number_of_liquid_items < 1) then
@@ -497,8 +493,6 @@ return {
 	},
 	{
 		id = "node55",
-		text = "BUG, REPORT ME! Tania node55 -- HANDLE INJURIES",
-		echo_text = false,
 		code = function()
 			injured_level = 0
 			if (Npc:get_damage() > 10) then
@@ -632,8 +626,6 @@ return {
 	},
 	{
 		id = "node99",
-		text = "BUG, REPORT ME! Tania node99 -- EXIT DIALOG",
-		echo_text = false,
 		code = function()
 			if (Tux:has_quest("Tania's Escape")) then
 				hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node10", "node11", "node12", "node13", "node14", "node18", "node19")

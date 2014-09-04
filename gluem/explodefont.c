@@ -121,7 +121,7 @@ static void InitFont(BFont_Info *font)
 		// Read this line of characters
 		while (x < font_surf->w - 1 && i < MAX_CHARS_IN_FONT) {
 			if (FdGetPixel(font_surf, x, y) != sentry_horiz) {
-				printf("Reading character at %d %d...", x, y);
+				printf("Reading character at %u %u...", x, y);
 				// Found a character
 				rect = &char_rect[i];
 				rect->x = x;
@@ -163,7 +163,7 @@ static void InitFont(BFont_Info *font)
 				SDL_SetColorKey(font->char_image[i].surface, 0, 0);
 
 				char name[4096];
-				sprintf(name, "%s/%s_%03d.png", output_path, basename(font_name), i);
+				sprintf(name, "%s/%s_%03u.png", output_path, basename(font_name), i);
 				printf("Saving %s\n", name);
 				png_save_surface(name, font->char_image[i].surface);
 

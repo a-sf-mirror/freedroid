@@ -1032,42 +1032,41 @@ static void get_one_item(lua_State *L, void *data)
 	char *item_bullet_type;
 
 	struct data_spec data_specs[] = {
-		{"id", 						NULL,		STRING_TYPE, &item->id								},
-		{"name", 					NULL,		STRING_TYPE, &item->name							},
-		{"slot",					"none",		STRING_TYPE, &item_slot								},
-		{"weapon.damage",			NULL,		STRING_TYPE, &item_damage							},
-		{"weapon.attack_time",		"0",		FLOAT_TYPE,	 &item->item_gun_recharging_time		},
-		{"weapon.reloading_time",	"0",		FLOAT_TYPE,	 &item->item_gun_reloading_time			},
-		{"weapon.bullet.type", 		"NO BULLET IMAGE",	STRING_TYPE, 	&item_bullet_type			},
-		{"weapon.bullet.speed",	 	"0",		FLOAT_TYPE,	 &item->item_gun_speed					},
-		{"weapon.bullet.lifetime",	"0",		FLOAT_TYPE,	 &item->item_gun_bullet_lifetime		},
-		{"weapon.bullet.angle",	 	"0",		FLOAT_TYPE,	 &item->item_gun_start_angle_modifier	},
-		{"weapon.ammunition.id", 	NULL, 		STRING_TYPE, &item->ammo_id							},
-		{"weapon.ammunition.clip",	"0",		INT_TYPE, 	 &item->item_gun_ammo_clip_size			},
-		{"weapon.melee",			"false",	BOOL_TYPE,	 &item->item_weapon_is_melee			},
-		{"weapon.two_hand",	 		"false",	BOOL_TYPE,	 &item->item_gun_requires_both_hands	},
-		{"weapon.motion_class",		NULL,		STRING_TYPE, &item_motion_class						},
-		{"armor_class",				NULL,		STRING_TYPE, &item_armor_class						},
-		{"right_use.tooltip",		NULL,		STRING_TYPE, &item->right_use.tooltip				},
-		{"right_use.skill",			NULL,		STRING_TYPE, &item->right_use.skill					},
-		{"right_use.add_skill",		NULL,		STRING_TYPE, &item->right_use.add_skill				},
-		{"right_use.busy.type",		NULL,		STRING_TYPE, &item_right_use_busy_type				},
-		{"right_use.busy.duration",	"0",		INT_TYPE,	 &item->right_use.busy_time				},
-		{"requirements.strength", 	"-1",		SHORT_TYPE,  &item->item_require_strength			},
-		{"requirements.dexterity",	"-1",		SHORT_TYPE,	 &item->item_require_dexterity			},
-		{"requirements.cooling",	"-1",		SHORT_TYPE,	 &item->item_require_cooling			},
-		{"inventory.x",	 			"1",		INT_TYPE, 	 &item->inv_size.x						},
-		{"inventory.y",				"1",		INT_TYPE,	 &item->inv_size.y						},
-		{"inventory.stackable",		"false",	BOOL_TYPE,	 &item->item_group_together_in_inventory},
-		{"inventory.image",			NULL,		STRING_TYPE, &item->item_inv_file_name				},
-		{"base_price",				"-1",		INT_TYPE,	 &item->base_list_price					},
-		{"drop.class", 				NULL,   	STRING_TYPE, &item_drop_class						},
-		{"drop.number",				NULL,		STRING_TYPE, &item_dropped							},
-		{"drop.sound",				NULL, 		STRING_TYPE, &item->item_drop_sound_file_name		},
-		{"durability",				NULL, 		STRING_TYPE, &item_durability						},
-		{"description",				"", 		STRING_TYPE, &item->item_description				},
-		{"tux_part",				NULL, 		STRING_TYPE, &item->tux_part_instance				},
-		{"rotation_series",			NULL, 		STRING_TYPE, &item->item_rotation_series_prefix		},
+		{"id",                      NULL,    STRING_TYPE, &item->id                               },
+		{"name",                    NULL,    STRING_TYPE, &item->name                             },
+		{"slot",                    "none",  STRING_TYPE, &item_slot                              },
+		{"weapon.damage",           NULL,    STRING_TYPE, &item_damage                            },
+		{"weapon.attack_time",      "0",     FLOAT_TYPE,  &item->weapon_attack_time               },
+		{"weapon.reloading_time",   "0",     FLOAT_TYPE,  &item->weapon_reloading_time            },
+		{"weapon.bullet.type",      NULL,    STRING_TYPE, &item_bullet_type                       },
+		{"weapon.bullet.speed",     "0",     FLOAT_TYPE,  &item->weapon_bullet_speed              },
+		{"weapon.bullet.lifetime",  "0",     FLOAT_TYPE,  &item->weapon_bullet_lifetime           },
+		{"weapon.ammunition.id",    NULL,    STRING_TYPE, &item->weapon_ammo_type                 },
+		{"weapon.ammunition.clip",  "0",     INT_TYPE,    &item->weapon_ammo_clip_size            },
+		{"weapon.melee",            "false", BOOL_TYPE,   &item->weapon_is_melee                  },
+		{"weapon.two_hand",         "false", BOOL_TYPE,   &item->weapon_needs_two_hands           },
+		{"weapon.motion_class",     NULL,    STRING_TYPE, &item_motion_class                      },
+		{"armor_class",             NULL,    STRING_TYPE, &item_armor_class                       },
+		{"right_use.tooltip",       NULL,    STRING_TYPE, &item->right_use.tooltip                },
+		{"right_use.skill",         NULL,    STRING_TYPE, &item->right_use.skill                  },
+		{"right_use.add_skill",     NULL,    STRING_TYPE, &item->right_use.add_skill              },
+		{"right_use.busy.type",     NULL,    STRING_TYPE, &item_right_use_busy_type               },
+		{"right_use.busy.duration", "0",     INT_TYPE,    &item->right_use.busy_time              },
+		{"requirements.strength",   "-1",    SHORT_TYPE,  &item->item_require_strength            },
+		{"requirements.dexterity",  "-1",    SHORT_TYPE,  &item->item_require_dexterity           },
+		{"requirements.cooling",    "-1",    SHORT_TYPE,  &item->item_require_cooling             },
+		{"inventory.x",             "1",     INT_TYPE,    &item->inv_size.x                       },
+		{"inventory.y",             "1",     INT_TYPE,    &item->inv_size.y                       },
+		{"inventory.stackable",     "false", BOOL_TYPE,   &item->item_group_together_in_inventory },
+		{"inventory.image",         NULL,    STRING_TYPE, &item->item_inv_file_name               },
+		{"base_price",              "-1",    INT_TYPE,    &item->base_list_price                  },
+		{"drop.class",              NULL,    STRING_TYPE, &item_drop_class                        },
+		{"drop.number",             NULL,    STRING_TYPE, &item_dropped                           },
+		{"drop.sound",              NULL,    STRING_TYPE, &item->item_drop_sound_file_name        },
+		{"durability",              NULL,    STRING_TYPE, &item_durability                        },
+		{"description",             "",      STRING_TYPE, &item->item_description                 },
+		{"tux_part",                NULL,    STRING_TYPE, &item->tux_part_instance                },
+		{"rotation_series",         NULL,    STRING_TYPE, &item->item_rotation_series_prefix      },
 		{ NULL, NULL, 0, 0 }
 	};
 
@@ -1125,20 +1124,22 @@ static void get_one_item(lua_State *L, void *data)
 	free(item_dropped);
 	
 	// Set damage
-	get_range_from_string(item_damage, (int *)&item->base_item_gun_damage, (int *)&item->item_gun_damage_modifier, 0);
-	item->item_gun_damage_modifier -= item->base_item_gun_damage;
+	get_range_from_string(item_damage, (int *)&item->weapon_base_damage, (int *)&item->weapon_damage_modifier, 0);
+	item->weapon_damage_modifier -= item->weapon_base_damage;
 	free(item_damage);
 			
 	// Set motion class
-	item->motion_class = get_motion_class_id_by_name(item_motion_class);
+	item->weapon_motion_class = get_motion_class_id_by_name(item_motion_class);
 	free(item_motion_class);
 
-	item->item_gun_bullet_pass_through_hit_bodies = FALSE;
+	// Currently, no bullet pass through bodies.
+	item->weapon_bullet_pass_through_hit_bodies = FALSE;
 	
-	if (item->slot == WEAPON_SLOT) {
-		// Set bullet image type
-		item->item_gun_bullet_image_type = GetBulletByName(item_bullet_type);
+	item->weapon_bullet_type = 0;
+	if (item->slot == WEAPON_SLOT && !item->weapon_is_melee) {
+		item->weapon_bullet_type = GetBulletByName(item_bullet_type);
 	}
+
 	free(item_bullet_type);
 }
 

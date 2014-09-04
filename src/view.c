@@ -2156,7 +2156,7 @@ int get_motion_class_id()
 	// It Tux has a weapon in hand, return its motion class.
 	// Otherwise, return the first motion_class.
 	if (Me.weapon_item.type != -1)
-		motion_class = ItemMap[Me.weapon_item.type].motion_class;
+		motion_class = ItemMap[Me.weapon_item.type].weapon_motion_class;
 
 	return motion_class;
 }
@@ -2571,7 +2571,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
  */
 void PutEnemy(enemy * e, int x, int y, int mask, int highlight)
 {
-	SDL_Rect TargetRectangle;
+	SDL_Rect TargetRectangle = { 0, 0, 0, 0 };
 
 	// We check for things like visibility and distance and the like,
 	// so that we know whether to consider this enemy for blitting to
@@ -2649,9 +2649,6 @@ void PutBullet(int bullet_index, int mask)
 	bullet *CurBullet = &(AllBullets[bullet_index]);
 	int PhaseOfBullet;
 	int direction_index;
-
-	if (CurBullet->time_to_hide_still > 0)
-		return;
 
 	// DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
 	if ((CurBullet->type >= bullet_specs.size) || (CurBullet->type < 0)) {
@@ -2971,7 +2968,7 @@ void show_inventory_screen(void)
 		// visibly reflect the fact, that the shield hand is required too for this
 		// weapon.
 		//
-		if (ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
+		if (ItemMap[Me.weapon_item.type].weapon_needs_two_hands) {
 			// Display the weapon again
 			TargetRect.x = InventoryRect.x + SHIELD_RECT_X;
 			TargetRect.y = InventoryRect.y + SHIELD_RECT_Y;

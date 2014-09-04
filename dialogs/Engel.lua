@@ -208,8 +208,6 @@ return {
 	},
 	{
 		id = "node17",
-		text = "BUG, REPORT ME! Engel node17 -- checks",
-		echo_text = false,
 		topic = "Extract bot parts",
 		code = function()
 			local rev = Tux:get_program_revision("Extract bot parts")
@@ -258,9 +256,7 @@ return {
 		end,
 	},
 	{
-		id = "node20",
-		text = "BUG, REPORT ME! Engel node20 -- 1st LESSON",
-		echo_text = false,
+		id = "node20", -- 1st LESSON
 		topic = "Extract bot parts",
 		code = function()
 			Npc:says(_"Let us start with Entropy Inverters. This is quite simple.")
@@ -278,9 +274,7 @@ return {
 		end,
 	},
 	{
-		id = "node30",
-		text = "BUG, REPORT ME! Engel node30 -- 2nd LESSON",
-		echo_text = false,
+		id = "node30", -- 2nd LESSON
 		topic = "Extract bot parts",
 		code = function()
 			Npc:says(_"How about... Plasma Transistors? Trivial.")
@@ -297,9 +291,7 @@ return {
 		end,
 	},
 	{
-		id = "node40",
-		text = "BUG, REPORT ME! Engel node40 -- 3rd LESSON",
-		echo_text = false,
+		id = "node40",  -- 3rd LESSON
 		topic = "Extract bot parts",
 		code = function()
 			Npc:says(_"Hmmm... Ah, gut. Superconductors.")
@@ -317,9 +309,7 @@ return {
 		end,
 	},
 	{
-		id = "node50",
-		text = "BUG, REPORT ME! Engel node50 -- 4th LESSON",
-		echo_text = false,
+		id = "node50", -- 4th LESSON
 		topic = "Extract bot parts",
 		code = function()
 			Npc:says(_"I will tell you everything about Antimatter-Matter Converters.")
@@ -338,9 +328,7 @@ return {
 		end,
 	},
 	{
-		id = "node60",
-		text = "BUG, REPORT ME! Engel node60 -- 5th LESSON",
-		echo_text = false,
+		id = "node60", -- 5th LESSON",
 		topic = "Extract bot parts",
 		code = function()
 			Npc:says(_"I will teach you about Tachyon Condensators.")
@@ -351,9 +339,7 @@ return {
 		end,
 	},
 	{
-		id = "node70",
-		text = "BUG, REPORT ME! Engel node70 -- NO MORE LESSONS",
-		echo_text = false,
+		id = "node70", -- NO MORE LESSONS
 		topic = "Extract bot parts",
 		code = function()
 			-- ; TRANSLATORS: nein = no , ja = yes, in this case it can be understood as "did you understand?"

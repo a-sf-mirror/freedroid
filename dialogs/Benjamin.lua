@@ -219,8 +219,6 @@ return {
 	},
 	{
 		id = "node27",
-		text = "BUG, REPORT ME! node27 Benjamin",
-		echo_text = false,
 		code = function()
 			Npc:says_random(_"You need more circuits.",
 							_"Please don't bother me if you can't pay me.",
@@ -233,8 +231,6 @@ return {
 	},
 	{
 		id = "node28",
-		text = "BUG, REPORT ME! node28 Benjamin",
-		echo_text = false,
 		code = function()
 			Npc:says_random(_"You are not ready. Go kill some bots and come back.",
 							_"Come back when you are mentally prepared to learn.",

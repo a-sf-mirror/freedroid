@@ -33,9 +33,10 @@
 #include "lvledit/lvledit_validator.h"
 #include "lang.h"
 
-#define IS_CHEST(t)  ( get_obstacle_spec(t)->action && !strncmp(get_obstacle_spec(t)->action, "chest", 5) )
-#define IS_BARREL(t) ( (t) >= ISO_BARREL_1       && (t) <= ISO_BARREL_4     )
-#define IS_SIGN(t)   ( ( (t) >= ISO_SIGN_1         && (t) <= ISO_SIGN_3     ) || (     (t) >= ISO_SIGN_1_FLASH  &&  (t) <= ISO_SIGN_3_FLASH ) )
+#define IS_CHEST(t)    ( get_obstacle_spec(t)->action && !strncmp(get_obstacle_spec(t)->action, "chest", 5) )
+#define IS_BARREL(t)   ( (t) >= ISO_BARREL_1       && (t) <= ISO_BARREL_4     )
+#define IS_TERMINAL(t) ( get_obstacle_spec(t)->action && !strncmp(get_obstacle_spec(t)->action, "terminal", 8) )
+#define IS_SIGN(t)     ( get_obstacle_spec(t)->action && !strncmp(get_obstacle_spec(t)->action, "sign", 4) )
 
 static char *bigline = "====================================================================";
 static char *line = "--------------------------------------------------------------------";
@@ -1277,6 +1278,7 @@ struct extension_excpt_data {
 	char subtest;
 	gps obs_pos;
 	int obs_index;
+	int obs_type;
 	int ext_type;
 };
 
@@ -1299,9 +1301,25 @@ static void *lvlval_extensions_parse_excpt(char *string)
 		ReadValueFromString(string, "Y=", "%f", &(data->obs_pos.y), NULL);
 		ReadValueFromString(string, "L=", "%d", &(data->obs_pos.z), NULL);
 		ReadValueFromString(string, "ObsIdx=", "%d", &(data->obs_index), NULL);
+		ReadValueFromString(string, "ObsType=", "%d", &(data->obs_type), NULL);
+		data->ext_type = -1;
+		break;
+	case 'V':
+		ReadValueFromString(string, "X=", "%f", &(data->obs_pos.x), NULL);
+		ReadValueFromString(string, "Y=", "%f", &(data->obs_pos.y), NULL);
+		ReadValueFromString(string, "L=", "%d", &(data->obs_pos.z), NULL);
+		ReadValueFromString(string, "ObsIdx=", "%d", &(data->obs_index), NULL);
+		ReadValueFromString(string, "ObsType=", "%d", &(data->obs_type), NULL);
 		ReadValueFromString(string, "ExtType=", "%d", &(data->ext_type), NULL);
 		break;
-
+	case 'T':
+		ReadValueFromString(string, "X=", "%f", &(data->obs_pos.x), NULL);
+		ReadValueFromString(string, "Y=", "%f", &(data->obs_pos.y), NULL);
+		ReadValueFromString(string, "L=", "%d", &(data->obs_pos.z), NULL);
+		ReadValueFromString(string, "ObsIdx=", "%d", &(data->obs_index), NULL);
+		ReadValueFromString(string, "ObsType=", "%d", &(data->obs_type), NULL);
+		ReadValueFromString(string, "ExtType=", "%d", &(data->ext_type), NULL);
+		break;
 	default:
 		error_message(__FUNCTION__, "The Subtest name of an exception is invalid!", PLEASE_INFORM | IS_FATAL);
 		free(data);
@@ -1327,6 +1345,9 @@ static int lvlval_extensions_cmp_data(void *opaque_data1, void *opaque_data2)
 	if (data1->obs_index != data2->obs_index)
 		return FALSE;
 
+	if (data1->obs_type != data2->obs_type)
+		return FALSE;
+
 	if (data1->ext_type != data2->ext_type)
 		return FALSE;
 
@@ -1345,15 +1366,34 @@ static int lvlval_extensions_cmp_data(void *opaque_data1, void *opaque_data2)
 
 static void lvlval_extensions_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
 {
-	struct lvlval_error extension_error = {
+	struct lvlval_error empty_error = {
 		.title = "Invalid obstacle extension",
 		.comment = "The extension data of an obstacle is missing, or the data is wrong",
+		.format = "[Type=\"ES\"] X=%f:Y=%f:L=%d ObsIdx=%d ObsType=%d (Obstacle image: %s) -> SIGNMESSAGE missing or empty (warning)",
 		.caught = FALSE,
 		.code = VALIDATION_WARNING
 	};
 
+	struct lvlval_error passive_error = {
+		.title = "Invalid obstacle extension",
+		.comment = "The extension is associated to a non-interactive obstacle",
+		.format = "[Type=\"EV\"] X=%f:Y=%f:L=%d ObsIdx=%d ObsType=%d (Obstacle image: %s) ExtType=%d (data: \"%s\") - (warning)",
+		.caught = FALSE,
+		.code = VALIDATION_WARNING
+	};
+
+	struct lvlval_error action_error = {
+		.title = "Invalid obstacle extension",
+		.comment = "The extension type is incoherent with the obstacle's action",
+		.format = "[Type=\"ET\"] X=%f:Y=%f:L=%d ObsIdx=%d ObsType=%d (Obstacle image: %s) ExtType=%d (data: \"%s\") -> Not compatible with the obstacle's action \"%s\"",
+		.caught = FALSE,
+		.code = VALIDATION_ERROR
+	};
+
 	int i;
 	level *l = validator_ctx->this_level;
+
+	// Check that all signs have an extension
 
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
 		obstacle *o = &l->obstacle_list[i];
@@ -1363,18 +1403,78 @@ static void lvlval_extensions_execute(struct level_validator *this, struct lvlva
 
 		if (IS_SIGN(o->type)) {
 			struct extension_excpt_data to_check =
-				{ 'S', {o->pos.x, o->pos.y, l->levelnum}, get_obstacle_index(l, o), o->type };
+				{ 'S', {o->pos.x, o->pos.y, l->levelnum}, get_obstacle_index(l, o), o->type, -1 };
 
 			if (!lookup_exception(this, &to_check)) {
-				if (!get_obstacle_extension(l, o, OBSTACLE_EXTENSION_SIGNMESSAGE)) {
-					extension_error.format = "[Type=\"ES\"] X=%f:Y=%f:L=%d ObsIdx=%d ExtType=%d -> SIGNMESSAGE missing (warning)";
-					validator_print_error(validator_ctx, &extension_error, o->pos.x, o->pos.y, l->levelnum, get_obstacle_index(l, o), o->type);
+				const char *msg = (const char *)get_obstacle_extension(l, o, OBSTACLE_EXTENSION_SIGNMESSAGE);
+				if (!msg || *msg == '\0') {
+					const char *img = ((char **)get_obstacle_spec(o->type)->filenames.arr)[0];
+					validator_print_error(validator_ctx, &empty_error, o->pos.x, o->pos.y, l->levelnum, get_obstacle_index(l, o), o->type, img);
 				}
 			}
 		}
 	}
 
 	validator_print_separator(validator_ctx);
+
+	// Check that all dialog/sign extensions are associated to an interactive obstacle
+
+	for (i = 0; i < l->obstacle_extensions.size; i++) {
+		struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(l->obstacle_extensions, i);
+
+		if (ext->type != OBSTACLE_EXTENSION_DIALOGFILE && ext->type != OBSTACLE_EXTENSION_SIGNMESSAGE)
+			continue;
+
+		struct obstacle *o = ext->obs;
+		struct extension_excpt_data to_check =
+			{ 'V', {o->pos.x, o->pos.y, l->levelnum}, get_obstacle_index(l, o), o->type, ext->type };
+
+		if (lookup_exception(this, &to_check))
+			continue;
+
+		char *action = get_obstacle_spec(o->type)->action;
+		if (!action || *action == '\0') {
+			const char *img = ((char **)get_obstacle_spec(o->type)->filenames.arr)[0];
+			validator_print_error(validator_ctx, &passive_error, o->pos.x, o->pos.y, l->levelnum, get_obstacle_index(l, o), o->type, img, ext->type, (char *)ext->data );
+		}
+	}
+
+	validator_print_separator(validator_ctx);
+
+	// Check that all dialog/sign extensions are associated with the right interactive obstacle
+
+	for (i = 0; i < l->obstacle_extensions.size; i++) {
+		struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(l->obstacle_extensions, i);
+
+		if (ext->type != OBSTACLE_EXTENSION_DIALOGFILE && ext->type != OBSTACLE_EXTENSION_SIGNMESSAGE)
+			continue;
+
+		struct obstacle *o = ext->obs;
+		struct extension_excpt_data to_check =
+			{ 'T', {o->pos.x, o->pos.y, l->levelnum}, get_obstacle_index(l, o), o->type, ext->type };
+
+		if (lookup_exception(this, &to_check))
+			continue;
+
+		char *action = get_obstacle_spec(o->type)->action;
+		if (!action || *action == '\0') {
+			continue; // Handled by previous check
+		}
+
+		const char *img = ((char **)get_obstacle_spec(o->type)->filenames.arr)[0];
+
+		if (ext->type == OBSTACLE_EXTENSION_DIALOGFILE && !IS_TERMINAL(o->type)) {
+			validator_print_error(validator_ctx, &action_error, o->pos.x, o->pos.y, l->levelnum,
+					              get_obstacle_index(l, o), o->type, img, get_obstacle_spec(o->type)->action, (char *)ext->data);
+		}
+		if (ext->type == OBSTACLE_EXTENSION_SIGNMESSAGE && !IS_SIGN(o->type)) {
+			validator_print_error(validator_ctx, &action_error, o->pos.x, o->pos.y, l->levelnum,
+					              get_obstacle_index(l, o), o->type, img, get_obstacle_spec(o->type)->action, (char *)ext->data);
+		}
+	}
+
+	validator_print_separator(validator_ctx);
+
 }
 
 //===========================================================

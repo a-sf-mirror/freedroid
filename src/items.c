@@ -100,13 +100,13 @@ void equip_item(item *new_item)
 
 	// If we're equipping a two-handed weapon, we need to unequip the shield
 	// as well. We drop the shield to the inventory or to the floor.
-	if (new_itemspec->item_gun_requires_both_hands && Me.shield_item.type != -1) {
+	if (new_itemspec->weapon_needs_two_hands && Me.shield_item.type != -1) {
 		give_item(&Me.shield_item);
 	}
 
 	// Before equipping a shield, if a two-handed weapon is equipped, you need to drop it.
 	if (new_itemspec->slot == SHIELD_SLOT && Me.weapon_item.type != -1 
-			&& ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
+			&& ItemMap[Me.weapon_item.type].weapon_needs_two_hands) {
 		give_item(&Me.weapon_item);
 	}
 
@@ -324,17 +324,15 @@ void FillInItemProperties(item *it, int full_durability, int multiplicity)
 		return;
 	}
 
-
 	it->quality = random_item_quality();
 
 	// Add random bullets to the clip if the item is a gun.
-	if (spec->item_gun_ammo_clip_size) {
-		it->ammo_clip = MyRandom(spec->item_gun_ammo_clip_size);
+	if (spec->weapon_ammo_type && spec->weapon_ammo_clip_size) {
+		it->ammo_clip = MyRandom(spec->weapon_ammo_clip_size);
 	}
 
 	// Set the base damage reduction by using the item spec and a random multiplier.
 	it->armor_class = spec->base_armor_class + MyRandom(spec->armor_class_modifier);
-
 
 	// Set the maximum and current durabilities of the item.
 	if (spec->base_item_durability != -1) {
@@ -1664,7 +1662,7 @@ void HandleInventoryScreen(void)
 			// the stat requirements for usage are met.  But maybe this is a 2-handed weapon.
 			// In this case we need to do some extra check.  If it isn't a 2-handed weapon,
 			// then we can just go ahead and equip the item
-			if (!ItemMap[item_held_in_hand->type].item_gun_requires_both_hands) {
+			if (!ItemMap[item_held_in_hand->type].weapon_needs_two_hands) {
 				DropHeldItemToSlot(&(Me.weapon_item));
 				return;
 			}
@@ -1728,7 +1726,7 @@ void HandleInventoryScreen(void)
 			// A shield, when equipped, will push out any 2-handed weapon currently
 			// equipped from it's weapon slot.... So first check if a 2-handed
 			// weapon is equipped.
-			if (!ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
+			if (!ItemMap[Me.weapon_item.type].weapon_needs_two_hands) {
 				DropHeldItemToSlot(&(Me.shield_item));
 				return;
 			}
@@ -1957,7 +1955,7 @@ int try_give_item(item *ItemPointer)
 			// So now we know that some shield item is equipped.  Let's be careful:  2-handed
 			// weapons will be rejected from direct addition to the slot.
 			//
-			if (!ItemMap[ItemPointer->type].item_gun_requires_both_hands) {
+			if (!ItemMap[ItemPointer->type].weapon_needs_two_hands) {
 				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.weapon_item), Inv_Loc);
 				return 1;
 			}
@@ -1976,7 +1974,7 @@ int try_give_item(item *ItemPointer)
 			// But now we know, that there is some weapon present.  We need to be careful:
 			// it might be a 2-handed weapon.
 			// 
-			if (!ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
+			if (!ItemMap[Me.weapon_item.type].weapon_needs_two_hands) {
 				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.shield_item), Inv_Loc);
 				return 1;
 			}

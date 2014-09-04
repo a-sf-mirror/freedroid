@@ -41,6 +41,17 @@
 
 extern int debug_level;
 
+// A store for alert window or console error messages.
+// Used in alert_once_window() and error_once_window() to avoid to display
+// several the same message.
+
+struct msg_store_item {
+	int when;                 // ONCE_PER_RUN / ONCE_PER_GAME - see defs.h
+	struct auto_string *msg;  // The message already displayed.
+};
+
+static struct dynarray *msg_store = NULL;
+
 /** 
  * This function works a malloc, except that it also checks for
  * success and terminates in case of "out of memory", so we don't
@@ -80,6 +91,73 @@ void DebugPrintf(int db_level, const char *fmt, ...)
 
 	va_end(args);
 };				// void DebugPrintf ( int db_level, char *fmt, ...)
+
+/*
+ * Check if a msg is already in the error msg store. If not, register it.
+ * Return TRUE if the msg was not yet in the store, FALSE otherwise.
+ */
+static int _first_use_of_msg(int when, struct auto_string *msg)
+{
+	// A dynarray is used to store past alerts/errors, to remember which message was
+	// already displayed.
+
+	// On first use, initialize the msg store.
+
+	if (!msg_store)
+		msg_store = dynarray_alloc(10, sizeof(struct msg_store_item));
+
+	// If the message is already in the store, immediately return FALSE
+
+	int i;
+	for (i = 0; i < msg_store->size; i++) {
+		struct msg_store_item *stored_item = (struct msg_store_item *)dynarray_member(msg_store, i, sizeof(struct msg_store_item));
+		if (!strcmp(msg->value, stored_item->msg->value)) {
+			return FALSE;
+		}
+	}
+
+	// The message was not yet registered. Store it and return TRUE
+
+	struct msg_store_item *stored_item = (struct msg_store_item *)MyMalloc(sizeof(struct msg_store_item));
+	stored_item->when = when;
+	stored_item->msg = msg;
+	dynarray_add(msg_store, stored_item, sizeof(struct msg_store_item));
+
+	return TRUE;
+}
+
+/**
+ * Clean the alert/error message store, removing messages which are flagged as ONCE_PER_GAME
+ * so that they can be redisplayed
+ */
+void clean_error_msg_store()
+{
+	if (!msg_store) // msg store not yet used
+		return;
+
+	// We have to remove the item flagged as ONCE_PER_GAME, but we have to keep
+	// the others. We can not delete a dynarray member inside a loop over the
+	// dynarray. We thus create a new dynarray to replace the current one,
+	// containing the kept items.
+
+	struct dynarray *new_store = dynarray_alloc(10, sizeof(struct msg_store_item));
+
+	int i;
+	for (i = 0; i < msg_store->size; i++) {
+		struct msg_store_item *stored_item = (struct msg_store_item *)dynarray_member(msg_store, i, sizeof(struct msg_store_item));
+		if (stored_item->when == ONCE_PER_GAME) {
+			// free memory
+			free_autostr(stored_item->msg);
+			stored_item->msg = NULL;
+		} else {
+			// copy the item in the new store
+			dynarray_add(new_store, stored_item, sizeof(struct msg_store_item));
+		}
+	}
+	dynarray_free(msg_store);
+	free(msg_store);
+	msg_store = new_store;
+}
 
 /**
  * This function should help to simplify and standardize the many error
@@ -122,6 +200,130 @@ void error_message(const char *fn, const char *fmt, int error_type, ...)
 
 	if (error_type & IS_FATAL)
 		Terminate(EXIT_FAILURE);
+}
+
+/**
+ * Wrapper on error_message() that avoids to redisplay several times the same error.
+ * The first parameter defines if an error should never be redisplayed at
+ * all (ONCE_PER_RUN), or if it has to be redisplayed once if a new savegame was
+ * loaded (ONCE_PER_GAME).
+ */
+void error_once_message(int when, const char *fn, const char *fmt, int error_type, ...)
+{
+	if (error_type & SILENT)
+		return;
+
+	// Compute the error message
+
+	va_list args;
+	struct auto_string *buffer = alloc_autostr(256);
+	va_start(args, error_type);
+	autostr_vappend(buffer, fmt, args);
+	va_end(args);
+
+	// If the message is already in the store, immediately return
+
+	if (!_first_use_of_msg(when, buffer)) {
+		free_autostr(buffer);
+		return;
+	}
+
+	// This error was not yet displayed.
+
+	error_message(fn, buffer->value, error_type);
+}
+
+/**
+ * In some cases it will be necessary to inform the user of something in
+ * a big important style.  Then a popup window is suitable, with a mouse
+ * click to confirm and make it go away again.
+ */
+void alert_window(const char *text, ...)
+{
+	if (!SDL_WasInit(SDL_INIT_VIDEO))
+		return;
+
+	va_list args;
+	struct auto_string *buffer = alloc_autostr(256);
+	va_start(args, text);
+	autostr_vappend(buffer, text, args);
+	va_end(args);
+
+	Activate_Conservative_Frame_Computation();
+	StoreMenuBackground(1);
+
+	int w = 440;   // arbitrary
+	int h = 60;    // arbitrary
+	int x = (GameConfig.screen_width  - w) / 2;	// center of screen
+	int y = (GameConfig.screen_height - h) / 5 * 2; // 2/5 of screen from top
+
+	SDL_Event e;
+	while (1) {
+		SDL_Delay(1);
+		RestoreMenuBackground(1);
+
+		int r_height = show_backgrounded_text_rectangle(buffer->value, FPS_Display_BFont, x, y, w, h);
+		show_backgrounded_text_rectangle(_("Click to continue..."), Red_BFont, x, y + r_height, w, 10);
+
+		blit_mouse_cursor();
+		our_SDL_flip_wrapper();
+		save_mouse_state();
+
+		SDL_WaitEvent(&e);
+
+		switch (e.type) {
+		case SDL_QUIT:
+			Terminate(EXIT_SUCCESS);
+			break;
+		case SDL_KEYDOWN:
+			if (e.key.keysym.sym == SDLK_SPACE || e.key.keysym.sym == SDLK_RETURN || e.key.keysym.sym == SDLK_ESCAPE)
+				goto wait_click_and_out;
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			if (e.button.button == 1)
+				goto wait_click_and_out;
+			break;
+		}
+	}
+
+wait_click_and_out:
+	while (SpacePressed() || EnterPressed() || EscapePressed() || MouseLeftPressed());
+
+	our_SDL_flip_wrapper();
+	RestoreMenuBackground(1);
+
+	free_autostr(buffer);
+}
+
+/**
+ * Wrapper on alert_window() that avoids to redisplay several times the same alert.
+ * The first parameter defines if an alert should never be redisplayed at
+ * all (ONCE_PER_RUN), or if it has to be redisplayed once if a new savegame was
+ * loaded (ONCE_PER_GAME).
+ */
+void alert_once_window(int when, const char *text, ...)
+{
+	if (!SDL_WasInit(SDL_INIT_VIDEO))
+		return;
+
+	// Compute the alert message
+
+	va_list args;
+	struct auto_string *buffer = alloc_autostr(256);
+	va_start(args, text);
+	autostr_vappend(buffer, text, args);
+	va_end(args);
+
+	// If the message is already in the store, immediately return
+
+	if (!_first_use_of_msg(when, buffer)) {
+		free_autostr(buffer);
+		return;
+	}
+
+	// This alert was not yet displayed.
+
+	alert_window(buffer->value);
 }
 
 /**

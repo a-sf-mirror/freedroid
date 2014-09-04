@@ -82,8 +82,6 @@ return {
 	},
 	{
 		id = "node2",
-		text = _"BUG, REPORT ME! Aftertakeover node2",
-		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
 			--; TRANSLATORS: first %s = Tux:get_player_name() ; second %s : Npc:get_type()
@@ -351,8 +349,6 @@ return {
 	},
 	{
 		id = "node38",
-		text = "BUG, REPORT ME! Aftertakeover node38",
-		echo_text = false,
 		topic = "settings.plx",
 		code = function()
 			Tux:says(_"./settings.plx", "NO_WAIT")
@@ -418,8 +414,6 @@ return {
 	},
 	{
 		id = "node43",
-		text = "BUG, REPORT ME! Aftertakeover node43",
-		echo_text = false,
 		topic = "repair_and_settings",
 		code = function()
 			Tux:says(new_name,"NO_WAIT")
@@ -559,8 +553,6 @@ return {
 	},
 	{
 		id = "node53",
-		text = _"BUG OCCURRED Aftertakeover node 53",
-		echo_text = false,
 		code = function()
 			if (Aftertakeover_hcfnow) then
 				Npc:says(_"Executing: Halt and Catch Fire.", "NO_WAIT")
