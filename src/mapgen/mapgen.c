@@ -466,7 +466,7 @@ void mapgen_convert(struct dungeon_info *di, int w, int h, unsigned char *tiles)
 	qsort(idx, di->num_rooms, sizeof(int), cmp_room_surface);
 
 	i = 0;
-	while(tries && n) {
+	while(tries && n && (i < di->num_rooms)) {
 		if (idx[i] != di->enter && idx[i] != di->exit) {
 			if (make_corridor(idx[i]))
 				n--;
