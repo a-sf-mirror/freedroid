@@ -56,6 +56,20 @@ LIST_HEAD(alive_bots_head);
 LIST_HEAD(dead_bots_head);
 list_head_t level_bots_head[MAX_LEVELS];	//THIS IS NOT STATICALLY PROPERLY INITIALIZED, done in init functions
 
+/* Definition of the sensors. The flag_set values must be exclusive,
+ * so that given a flag_set we can get a unique associated name. */
+
+struct {
+	char *name;
+	int flag_set;
+} enemy_sensors[] = {
+		{ "infrared", SENSOR_DETECT_INVISIBLE                        },
+		{ "xray",     SENSOR_THROUGH_WALLS                           },
+		{ "radar",    SENSOR_DETECT_INVISIBLE | SENSOR_THROUGH_WALLS },
+		{ "spectral", SENSOR_FEATURELESS                             }
+};
+
+
 static void teleport_to_waypoint(enemy *robot, level *lvl, int wp_idx)
 {
 	waypoint *wpts = lvl->waypoints.arr;
@@ -2678,27 +2692,40 @@ void enemy_set_reference(short int *enemy_number, enemy ** enemy_addr, enemy * a
 	}
 }
 
- /* This function converts a sensor string human-readable to a sensor ID, computer-readable. */
-int get_sensor_id_by_name(const char *sensor) {
-        // Using a extensive if-loop, check if the string matches, and assign a numeric sensor.
-
-	if (!strcmp(sensor, "infrared")) {
-        	return SENSOR_DETECT_INVISIBLE;
-	} else if (!strcmp(sensor, "xray")) {
-		return SENSOR_THROUGH_WALLS;
-	} else if (!strcmp(sensor, "radar")) {
-		return SENSOR_DETECT_INVISIBLE | SENSOR_THROUGH_WALLS;
-	} else if (!strcmp(sensor, "spectral")) {
-		return SENSOR_FEATURELESS;
-	} else {
-		error_message(__FUNCTION__, "\
-		    FreedroidRPG was requested to process sensor \"%s\".\n\
-		    But there is no such sensor! We are now setting the sensor to \"spectral\" (without any feature).\n\
-		    Accepted sensors are: \n\
-		    infrared, ultrasonic, radar and spectral. The default is spectral.\n\
-		    Please note that it is case-sensitive.", PLEASE_INFORM, sensor);
-		return SENSOR_FEATURELESS;
+/**
+ * This function converts a sensor string human-readable to a sensor ID, computer-readable
+ */
+int get_sensor_id_by_name(const char *sensor_name)
+{
+	int i = 0;
+	for (i = 0; i < sizeof(enemy_sensors)/sizeof(enemy_sensors[0]); i++) {
+		if (!strcmp(sensor_name, enemy_sensors[i].name))
+			return enemy_sensors[i].flag_set;
 	}
+
+	error_message(__FUNCTION__,
+	              "FreedroidRPG was requested to process sensor \"%s\".\n"
+	              "But there is no such sensor! We are now setting the sensor to \"spectral\" (without any feature).",
+	              PLEASE_INFORM, sensor_name);
+	return SENSOR_FEATURELESS;
+}
+
+ /**
+  * This function is the get_sensor_id_by_name but in reverse
+  */
+const char *get_sensor_name_by_id(int sensor_flags)
+{
+	int i = 0;
+	for (i = 0; i < sizeof(enemy_sensors)/sizeof(enemy_sensors[0]); i++) {
+		if (sensor_flags == enemy_sensors[i].flag_set)
+			return enemy_sensors[i].name;
+	}
+
+	error_message(__FUNCTION__,
+	              "FreedroidRPG was requested to process sensor with ID \"%d\".\n"
+	              "But there is no name for that sensor! We are now setting the sensor to \"spectral\" (without any feature).",
+	              PLEASE_INFORM, sensor_flags);
+	return "spectral";
 }
 
  /* This helper function checks if a robot can see tux even when invisible. */

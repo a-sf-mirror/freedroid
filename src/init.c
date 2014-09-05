@@ -222,7 +222,7 @@ static void Get_Robot_Data(void *DataPointer)
 #define CLASS_BEGIN_STRING "Class of this droid: "
 #define MAXENERGY_BEGIN_STRING "Maximum energy of this droid: "
 #define BASE_HEALING_BEGIN_STRING "Rate of healing: "
-#define SENSOR_ID_BEGIN_STRING "Sensor ID: "
+#define SENSOR_ID_BEGIN_STRING "Sensor ID=\""
 #define EXPERIENCE_REWARD_BEGIN_STRING "Experience_Reward gained for destroying one of this type: "
 #define WEAPON_ITEM_BEGIN_STRING "Weapon item=\""
 #define GREETING_SOUND_STRING "Greeting Sound number="
@@ -305,16 +305,12 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 		ReadValueFromString(RobotPointer, BASE_HEALING_BEGIN_STRING, "%f", &Droidmap[RobotIndex].healing_friendly, EndOfDataPointer);
 		Droidmap[RobotIndex].healing_hostile = Droidmap[RobotIndex].healing_friendly;
 
-		// Now we read what sensor this robot use. It works in two steps:
-		// Copy the string to a suitable variable...
-		char *tmp_sensor_ID = ReadAndMallocStringFromDataOptional(RobotPointer, SENSOR_ID_BEGIN_STRING, "\n");
-		// And then, use this variable in get_sensor_id_by_name(), because C engine will read only numbers.
+		// Now we read what sensor this robot use.
+		char *tmp_sensor_ID = ReadAndMallocStringFromDataOptional(RobotPointer, SENSOR_ID_BEGIN_STRING, "\"");
 		if (!tmp_sensor_ID)
-			tmp_sensor_ID = strdup("spectral"); // Not before checking if we really supplied one.
-
+			tmp_sensor_ID = strdup("spectral"); // Default value if no sensor defined.
 		Droidmap[RobotIndex].sensor_id = get_sensor_id_by_name(tmp_sensor_ID);
-
-		free(tmp_sensor_ID);	// Free the temporary sensor.
+		free(tmp_sensor_ID);
 
 		// Now we read in range of vision of this droid
 		ReadValueFromString(RobotPointer, "Aggression distance of this droid=", "%f",

@@ -557,7 +557,7 @@ Class of this droid: 7
 Drops item class=7
 Maximum energy of this droid: 180
 Rate of healing: 4
-Sensor ID: xray
+Sensor ID="xray"
 Experience_Reward gained for destroying one of this type: 650
 Aggression distance of this droid=16.12
 Time spent eyeing Tux=1.0
@@ -720,7 +720,7 @@ Class of this droid: 9
 Drops item class=9
 Maximum energy of this droid: 300
 Rate of healing: 15
-Sensor ID: infrared
+Sensor ID="infrared"
 Experience_Reward gained for destroying one of this type: 2000
 Aggression distance of this droid=16.116
 Time spent eyeing Tux=0.25
@@ -1079,7 +1079,7 @@ Class of this droid: 7
 Drops item class=9
 Maximum energy of this droid: 150
 Rate of healing: 4
-Sensor ID: infrared
+Sensor ID="infrared"
 Experience_Reward gained for destroying one of this type: 360
 Aggression distance of this droid=16
 Time spent eyeing Tux=2

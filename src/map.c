@@ -1686,14 +1686,17 @@ int save_special_forces(const char *filename)
 			autostr_append(s_forces_str, "Fixed=%hi ", en->CompletelyFixed);
 			autostr_append(s_forces_str, "DropItemId=\"%s\" ",
 						(en->on_death_drop_item_code == -1) ? "none" : ItemMap[en->on_death_drop_item_code].id);
-			autostr_append(s_forces_str, "MaxDistanceToHome=%hd\n", en->max_distance_to_home);
+			autostr_append(s_forces_str, "MaxDistanceToHome=%hd", en->max_distance_to_home);
+			if (en->sensor_id != Droidmap[en->type].sensor_id) // Only save sensor if it's not the default.
+				autostr_append(s_forces_str, " UseSensor=\"%s\"", get_sensor_name_by_id(en->sensor_id));
+			autostr_append(s_forces_str, "\n");
 		}
 
 		autostr_append(s_forces_str, "** End of this levels Special Forces data **\n");
 		autostr_append(s_forces_str, "---------------------------------------------------------\n");
 	}
 
-	autostr_append(s_forces_str, "*** End of Droid Data ***");
+	autostr_append(s_forces_str, "*** End of Droid Data ***\n");
 
 	if (fwrite((unsigned char *)s_forces_str->value, s_forces_str->length, 1, s_forces_file) != 1) {
 		error_message(__FUNCTION__, "Error writing SpecialForces file %s.", PLEASE_INFORM, filename);
@@ -1815,12 +1818,10 @@ static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_numbe
 
 
 		char *tmp_sensor_ID = ReadAndMallocStringFromDataOptional(special_droid, "UseSensor=\"","\"");
-
 		if (!tmp_sensor_ID)
 			newen->sensor_id=Droidmap[newen->type].sensor_id;	//Not declared? In this case, use default.
 		else
 			newen->sensor_id=get_sensor_id_by_name(tmp_sensor_ID);	// Otherwise, use the specified sensor!
-
 		free(tmp_sensor_ID);
 
 		ReadValueFromStringWithDefault(special_droid, "Fixed=", "%hd", "0", &(newen->CompletelyFixed), special_droid_end);
