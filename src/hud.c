@@ -40,8 +40,6 @@
 
 #define TEXT_BANNER_DEFAULT_FONT FPS_Display_BFont
 
-int best_banner_pos_x, best_banner_pos_y;
-
 /**
  * The HUD contains several status graphs.  These graphs appear as 
  * vertical columns, that are more or less filled, like liquid in a tube.
@@ -273,7 +271,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
  * rectangle, possibly next to the mouse cursor, e.g. when the mouse is
  * hovering over an item or barrel or crate or teleporter.
  */
-static void prepare_text_window_content(struct auto_string *str)
+static void prepare_text_window_content(struct auto_string *str, SDL_Rect *rect)
 {
 	point CurPos;
 	point inv_square;
@@ -284,8 +282,8 @@ static void prepare_text_window_content(struct auto_string *str)
 	CurPos.x = GetMousePos_x();
 	CurPos.y = GetMousePos_y();
 
-	best_banner_pos_x = CurPos.x + 20;
-	best_banner_pos_y = CurPos.y;
+	rect->x = CurPos.x + 20;
+	rect->y = CurPos.y;
 
 	autostr_printf(str, "");
 
@@ -314,46 +312,46 @@ static void prepare_text_window_content(struct auto_string *str)
 			InvIndex = GetInventoryItemAt(inv_square.x, inv_square.y);
 			if (InvIndex != (-1)) {
 				append_item_description(str, &(Me.Inventory[InvIndex]));
-				best_banner_pos_x =
+				rect->x =
 				    (Me.Inventory[InvIndex].inventory_position.x +
 				     ItemMap[Me.Inventory[InvIndex].type].inv_size.x) * 30 + 16;
-				best_banner_pos_y = 300;
+				rect->y = 300;
 			}
 		} else if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.weapon_item.type > 0) {
 				append_item_description(str, &(Me.weapon_item));
-				best_banner_pos_x = WEAPON_RECT_X + 30 + WEAPON_RECT_WIDTH;
-				best_banner_pos_y = WEAPON_RECT_Y - 30;
+				rect->x = WEAPON_RECT_X + 30 + WEAPON_RECT_WIDTH;
+				rect->y = WEAPON_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(DRIVE_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.drive_item.type > 0) {
 				append_item_description(str, &(Me.drive_item));
-				best_banner_pos_x = DRIVE_RECT_X + 30 + DRIVE_RECT_WIDTH;
-				best_banner_pos_y = DRIVE_RECT_Y - 30;
+				rect->x = DRIVE_RECT_X + 30 + DRIVE_RECT_WIDTH;
+				rect->y = DRIVE_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.shield_item.type > 0) {
 				append_item_description(str, &(Me.shield_item));
-				best_banner_pos_x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
-				best_banner_pos_y = SHIELD_RECT_Y - 30;
+				rect->x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
+				rect->y = SHIELD_RECT_Y - 30;
 			} else if (Me.weapon_item.type > 0) {
 				if (ItemMap[Me.weapon_item.type].weapon_needs_two_hands) {
 					append_item_description(str, &(Me.weapon_item));
-					best_banner_pos_x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
-					best_banner_pos_y = SHIELD_RECT_Y - 30;
+					rect->x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
+					rect->y = SHIELD_RECT_Y - 30;
 				}
 			}
 		} else if (MouseCursorIsOnButton(ARMOUR_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.armour_item.type > 0) {
 				append_item_description(str, &(Me.armour_item));
-				best_banner_pos_x = ARMOUR_RECT_X + 30 + ARMOUR_RECT_WIDTH;
-				best_banner_pos_y = ARMOUR_RECT_Y - 30;
+				rect->x = ARMOUR_RECT_X + 30 + ARMOUR_RECT_WIDTH;
+				rect->y = ARMOUR_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(HELMET_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.special_item.type > 0) {
 				append_item_description(str, &(Me.special_item));
-				best_banner_pos_x = HELMET_RECT_X + 30 + HELMET_RECT_WIDTH;
-				best_banner_pos_y = HELMET_RECT_Y - 30;
+				rect->x = HELMET_RECT_X + 30 + HELMET_RECT_WIDTH;
+				rect->y = HELMET_RECT_Y - 30;
 			}
 		}
 	}			// if nothing is 'held in hand' && inventory-screen visible
@@ -386,8 +384,8 @@ static void prepare_text_window_content(struct auto_string *str)
 			update_virtual_position(&item_vpos, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor].pos), Me.pos.z);
 			if (item_vpos.x != -1) {
 				append_item_description(str, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor]));
-				best_banner_pos_x =	translate_map_point_to_screen_pixel_x(item_vpos.x, item_vpos.y) + 80;
-				best_banner_pos_y =	translate_map_point_to_screen_pixel_y(item_vpos.x, item_vpos.y) - 30;
+				rect->x =	translate_map_point_to_screen_pixel_x(item_vpos.x, item_vpos.y) + 80;
+				rect->y =	translate_map_point_to_screen_pixel_y(item_vpos.x, item_vpos.y) - 30;
 			}
 		}
 
@@ -406,8 +404,8 @@ static void prepare_text_window_content(struct auto_string *str)
 				}
 
 				autostr_printf(str, label);
-				best_banner_pos_x = translate_map_point_to_screen_pixel_x(obst_vpos.x, obst_vpos.y) + 50;
-				best_banner_pos_y = translate_map_point_to_screen_pixel_y(obst_vpos.x, obst_vpos.y) - 20;
+				rect->x = translate_map_point_to_screen_pixel_x(obst_vpos.x, obst_vpos.y) + 50;
+				rect->y = translate_map_point_to_screen_pixel_y(obst_vpos.x, obst_vpos.y) - 20;
 			}
 		}
 
@@ -445,13 +443,8 @@ void show_current_text_banner(void)
 		txt = alloc_autostr(200);
 
 	// Prepare the string, that is to be displayed inside the text rectangle
-	prepare_text_window_content(txt);
-
-	SDL_Rect rect;
-	rect.x = best_banner_pos_x;
-	rect.y = best_banner_pos_y;
-	rect.w = 0;
-	rect.h = 0;
+	SDL_Rect rect = { 0, 0, 0 };
+	prepare_text_window_content(txt, &rect);
 
 	display_tooltip(txt->value, 1, rect);
 }
