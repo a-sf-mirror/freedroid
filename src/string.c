@@ -51,12 +51,7 @@ static int autostr_resize(struct auto_string *str, unsigned long capacity)
 struct auto_string *alloc_autostr(int capacity)
 {
 	int err;
-	struct auto_string *str = malloc(sizeof *str);
-
-	if (!str)
-		return NULL;
-
-	memset(str, 0, sizeof *str);
+	struct auto_string *str = (struct auto_string *)MyMalloc(sizeof(struct auto_string));
 
 	err = autostr_resize(str, capacity);
 	if (err) {
