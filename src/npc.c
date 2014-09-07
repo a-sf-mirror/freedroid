@@ -214,13 +214,18 @@ static const char *npc_pick_item(struct npc *n)
 	int pick;
 
 	total_weight = npc_shoplist_weight(n);
-	pick = MyRandom(total_weight);
+	 // Get a random value in [1:total_weight]
+	pick = 1.0 + MyRandom(total_weight - 1);
 
 	for (i = 0; i < MAX_ITEMS_IN_NPC_SHOPLIST; i++) {
 		pick -= n->shoplistweight[i];
 		if (pick <= 0)
 			break;
 	}
+
+	// Safe guard to avoid out-of-bound access (this should however never happen)
+	if (i >= MAX_ITEMS_IN_NPC_SHOPLIST)
+		i = MAX_ITEMS_IN_NPC_SHOPLIST - 1;
 
 	return n->shoplist[i];
 }
