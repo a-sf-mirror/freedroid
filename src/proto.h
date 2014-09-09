@@ -518,6 +518,7 @@ int ShiftPressed(void);
 int APressed(void);
 int QPressed(void);
 int XPressed(void);
+void WaitNoEvent(void);
 
 int input_key_press(SDL_Event *);
 void keychart(void);

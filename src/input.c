@@ -252,4 +252,32 @@ int MouseLeftClicked()
 	return (!(mouse_state_last_frame & SDL_BUTTON(1)) && (mouse_state_this_frame & SDL_BUTTON(1)));
 }
 
+/**
+ * \brief Wait until there is no more interaction event pending.
+ *
+ * \details Some UI screens (the dialog screen, for instance) have their own
+ * interaction loop, and do not use the main input_handle() function.
+ * When such a UI screen is closed, the state of the input devices (pressed
+ * keys, cursor position and so on) can be incoherent with the interaction
+ * state internally computed and stored by input_handle().
+ * This function waits for a 'neutral' interaction state, and is to be used
+ * before to return to the main game screen.
+ */
+void WaitNoEvent()
+{
+	SDL_Event event;
+	int mouse_x, mouse_y;
+
+	// Because we are still using a mix of event-based and state-based
+	// interaction, it is not easy to define what a 'neutral' state is.
+	// We at least wait for the release of the 'common' used keys, and
+	// set the cursor position to the current mouse position.
+
+	while ( (SDL_PumpEvents(), SDL_GetMouseState(&mouse_x, &mouse_y) & (SDL_BUTTON(1) | SDL_BUTTON(3))) ||
+			EnterPressed() || EscapePressed() || SDL_PollEvent(&event))
+		SDL_Delay(1);
+	input_axis.x = mouse_x - UserCenter_x;
+	input_axis.y = mouse_y - UserCenter_y;
+}
+
 #undef _input_c
