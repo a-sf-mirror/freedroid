@@ -41,14 +41,14 @@
 #define SDL_BUTTON_WHEELDOWN 5
 #endif
 
-Uint8 *key_state_array;		/* SDL keyboard state internal arrey */
-int key_state_array_size;
+static Uint8 *key_state_array;		/* SDL keyboard state internal array */
+static int key_state_array_size;
 
-Uint8 mouse_state_last_frame;	/* mouse states reference */
-Uint8 mouse_state_this_frame;	/* current mouse state */
+static Uint8 mouse_state_last_frame;	/* mouse states reference */
+static Uint8 mouse_state_this_frame;	/* current mouse state */
 
-int MouseWheelUpMovesRecorded;
-int MouseWheelDownMovesRecorded;
+static int MouseWheelUpMovesRecorded;
+static int MouseWheelDownMovesRecorded;
 
 void init_keyboard_input_array()
 {

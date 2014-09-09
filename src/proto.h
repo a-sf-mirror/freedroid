@@ -493,8 +493,6 @@ void load_skill_icon_if_needed(spell_skill_spec *spec);
 int TeleportHome(void);
 
 // input.c 
-Uint8 *key_state_array;
-Uint8 mouse_state_last_frame;
 int input_handle(void);
 void save_mouse_state(void);
 void init_keyboard_input_array(void);
