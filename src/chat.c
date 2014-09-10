@@ -703,7 +703,7 @@ void chat_run()
 
 end_current_dialog:
 		// Pump all remaining SDL events
-		while (SDL_PollEvent(&event));
+		WaitNoEvent();
 
 		// The dialog has ended. Mark the npc as already initialized, to avoid
 		// its initialization script to be run again the next time the dialog
