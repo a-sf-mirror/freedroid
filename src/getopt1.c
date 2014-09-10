@@ -90,4 +90,3 @@ int *opt_index;
 }
 
 #endif				/* Not ELIDE_CODE.  */
-
