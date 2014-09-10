@@ -223,7 +223,7 @@ return {
 
 ---------------------------------------------------------- OBSTACLES
 
-			change_obstacle_message("24_guy_sign", "Guy signmessage B")
+			change_obstacle_message("24_guy_sign", _"Guy signmessage B")
 			display_big_message("Sign message changed from")
 			display_big_message("Guy signmessage A' to 'Guy signmessage B'")
 
