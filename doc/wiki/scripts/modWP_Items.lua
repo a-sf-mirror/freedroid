@@ -27,8 +27,6 @@ modWP_Items.modcommon = {}
 --------------------
 --	variables populated by item_spec need to be declared above functions
 --------------------
---	container for all melee_bullet elements parsed
-modWP_Items.meleebullet = {}
 --	container for all item_list elements parsed
 modWP_Items.itemlist = {}
 
@@ -43,17 +41,6 @@ end
 modWP_Items.files = {
 	items = ""
 }
-
---------------------
---	Function has to be in "global" space and is called "automagically" when
---	dofile(item_specs.lua) is called. Function used for parsing melee_bullet
---	data items. Variable meleebullet populated by this function.
---	[in] b	item from file.
-function melee_bullet( b )
-	if (type(b) == "table") then
-		modWP_Items.meleebullet = b
-	end
-end
 
 --	Function has to be in "global" space and is called "automagically" when
 --	dofile(item_specs.lua) is called. Function used for parsing item_list
@@ -106,7 +93,6 @@ modWP_Items.textItem = {
 	{ id = "type",            parentId = {"weapon", "bullet"},     label = "Weapon.Bullet.Type",       },
 	{ id = "speed",           parentId = {"weapon", "bullet"},     label = "Weapon.Bullet.Speed",      },
 	{ id = "lifetime",        parentId = {"weapon", "bullet"},     label = "Weapon.Bullet.Lifetime",   },
-	{ id = "angle",           parentId = {"weapon", "bullet"},     label = "Weapon.Bullet.Angle",      },
 	{ id = "id",              parentId = {"weapon", "ammunition"}, label = "Ammunition",               },
 	{ id = "clip",            parentId = {"weapon", "ammunition"}, label = "Ammunition Clip Size",     },
 	{ id = "strength",        parentId = {"requirements"},         label = "Requirements - Strength",  },
