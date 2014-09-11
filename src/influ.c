@@ -149,7 +149,7 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 		}
 	}
 
-	if (perform_tux_attack(use_mouse_cursor_for_targeting)) {	// If attack has failed
+	if (!perform_tux_attack(use_mouse_cursor_for_targeting)) {	// If attack has failed
 		return;
 	}
 
