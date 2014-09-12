@@ -61,7 +61,8 @@ modWP_Droid.droidDataItem = {
 	          src = "",     --    source file path for image (system dependent)
 	          dest = "",    --    destination folder for image link
 	          name = "",    --    text to use for link to image
-	}
+	},
+	sensor = ""				--	="*"		one of {spectral (default), infrared, xray, radar, subsonic}
 }
 -- names of required modules - "modWP_Items"
 modWP_Droid.wikirequiredModules = { moduleNames[3].id }
@@ -78,38 +79,39 @@ modWP_Droid.files = {
 	droid = ""
 }
 --	text items for Droid parsing and presentation
---	id) key, label) text to display loop) can use in loop when search for text
+--	id) key, label) text to display testInLoop) when searching, test for this id in loop?
 --	srchPatn) text/patter to use to find data
 --	extrctPatn) how to extract found data
 modWP_Droid.textDroid = {
-	{ id = "spec_item_start",   label = "end_of_level",                loop = true,  srchPatn = "Start of new Robot:",                                  extrctPatn = "[TEXT]" },
-	{ id = "name",              label = "Name",                        loop = true,  srchPatn = "Droidname:%s*([%w]+)",                                 extrctPatn = "[MATCH]" },
-	{ id = "desc",              label = "Description",                 loop = true,  srchPatn = "Default description:",                                 extrctPatn = "[EOL]" },
-	{ id = "is_human",          label = "Is Human",                    loop = true,  srchPatn = "Is this \'droid\' a human%s*:%s*[%d]+",                extrctPatn = "[%d]+" },
-	{ id = "graphics_prefix",   label = "Graphics Prefix",             loop = true,  srchPatn = "Filename prefix for graphics=",                        extrctPatn = "[EOL]" },
-	{ id = "portrait_prefix",   label = "Portrait_Prefix",             loop = true,  srchPatn = "Droid uses portrait rotation series with prefix=",     extrctPatn = "[EOL]" },
-	{ id = "speed_max",         label = "Max Speed",                   loop = true,  srchPatn = "Maximum speed of this droid:%s*[%d]+",                 extrctPatn = "%d+" },
-	{ id = "energy_max",        label = "Max Energy",                  loop = true,  srchPatn = "Maximum energy of this droid:%s*[%d]+",                extrctPatn = "%d+" },
-	{ id = "droid_class",       label = "Class",                       loop = true,  srchPatn = "Class of this droid:%s*[%d]+",                         extrctPatn = "%d+" },
-	{ id = "drop_item_class",   label = "Drop Item Class",             loop = true,  srchPatn = "Drops item class=%s*[%d]+",                            extrctPatn = "%d+" },
-	{ id = "heal_rate",         label = "Heal Rate",                   loop = true,  srchPatn = "Rate of healing:%s*[%d]+[.%d+]*",                      extrctPatn = "[%d]+[.%d+]*" },
-	{ id = "destroy_xp",        label = "Destroy XP Gain",             loop = true,  srchPatn = "Experience_Reward gained for destroying one of this type:%s*[%d]+", extrctPatn = "[%d]+" },
-	{ id = "aggr_dist",         label = "Aggression Distance",         loop = true,  srchPatn = "Aggression distance of this droid=%s*[%d]+",           extrctPatn = "[%d]+" },
-	{ id = "time_eye_Tux",      label = "Time Spent Eyeing Tux",       loop = true,  srchPatn = "Time spent eyeing Tux=[%d]+[.%d+]*",                   extrctPatn = "[%d]+[.%d+]*" },
-	{ id = "weapon",            label = "Weapon",                      loop = true,  srchPatn = "Weapon item=",                                         extrctPatn = "[EOL]" },
-	{ id = "droppct",           label = "Drop Percentages",            loop = false, srchPatn = "" },
-	{ id = "pct_EntropyInvrtr", label = "Entropy Inverter",            loop = true,  srchPatn = "Percent to drop Entropy Inverter=%s*[%d]+",            extrctPatn = "[%d]+" },
-	{ id = "pct_PlasmaTrans",   label = "Plasma Transistor",           loop = true,  srchPatn = "Percent to drop Plasma Transistor=%s*[%d]+",           extrctPatn = "[%d]+" },
-	{ id = "pct_SprCondRelay",  label = "Superconducting Relay Unit",  loop = true,  srchPatn = "Percent to drop Superconducting Relay Unit=%s*[%d]+",  extrctPatn = "[%d]+" },
-	{ id = "pct_AMConverter",   label = "Antimatter-Matter Converter", loop = true,  srchPatn = "Percent to drop Antimatter-Matter Converter=%s*[%d]+", extrctPatn = "[%d]+" },
-	{ id = "pct_TachyonCond",   label = "Tachyon Condensator",         loop = true,  srchPatn = "Percent to drop Tachyon Condensator=%s*[%d]+",         extrctPatn = "[%d]+" },
-	{ id = "sound_num_greet",   label = "Greeting Sound Number",       loop = true,  srchPatn = "Greeting Sound number=%s*[%d]+",                       extrctPatn = "[%d]+" },
-	{ id = "sound_death",       label = "Death Sound File Name",       loop = true,  srchPatn = "Death sound file name=",                               extrctPatn = "[EOL]" },
-	{ id = "sound_attack",      label = "Attack Sound File Name",      loop = true,  srchPatn = "Attack animation sound file name=",                    extrctPatn = "[EOL]" },
-	{ id = "pct_hit",           label = "Hit Percentage",              loop = true,  srchPatn = "Chance of this robot scoring a hit=%s*[%d]+",          extrctPatn = "[%d]+" },
-	{ id = "time_hit_recover",  label = "Hit Recovery Time",           loop = true,  srchPatn = "Time to recover after getting hit=[%d]+[.%d+]*",       extrctPatn = "[%d]+[.%d+]*" },
-	{ id = "droid_notes",       label = "Notes concerning this droid", loop = true,  srchPatn = "Notes concerning this droid=",                         extrctPatn = "[EOL]" },
-	{ id = "spec_file_end",     label = "end_of_level",                loop = true,  srchPatn = "End of Robot Data Section",                            extrctPatn = "[TEXT]" },
+	{ id = "spec_item_start",   label = "end_of_level",                testInLoop = true,  srchPatn = "Start of new Robot:",                                  extrctPatn = "[TEXT]" },
+	{ id = "name",              label = "Name",                        testInLoop = true,  srchPatn = "Droidname:%s*([%w]+)",                                 extrctPatn = "[MATCH]" },
+	{ id = "desc",              label = "Description",                 testInLoop = true,  srchPatn = "Default description:",                                 extrctPatn = "[EOL]" },
+	{ id = "is_human",          label = "Is Human",                    testInLoop = true,  srchPatn = "Is this \'droid\' a human%s*:%s*[%d]+",                extrctPatn = "[%d]+" },
+	{ id = "graphics_prefix",   label = "Graphics Prefix",             testInLoop = true,  srchPatn = "Filename prefix for graphics=",                        extrctPatn = "[EOL]" },
+	{ id = "portrait_prefix",   label = "Portrait_Prefix",             testInLoop = true,  srchPatn = "Droid uses portrait rotation series with prefix=",     extrctPatn = "[EOL]" },
+	{ id = "speed_max",         label = "Max Speed",                   testInLoop = true,  srchPatn = "Maximum speed of this droid:%s*[%d]+",                 extrctPatn = "%d+" },
+	{ id = "energy_max",        label = "Max Energy",                  testInLoop = true,  srchPatn = "Maximum energy of this droid:%s*[%d]+",                extrctPatn = "%d+" },
+	{ id = "droid_class",       label = "Class",                       testInLoop = true,  srchPatn = "Class of this droid:%s*[%d]+",                         extrctPatn = "%d+" },
+	{ id = "drop_item_class",   label = "Drop Item Class",             testInLoop = true,  srchPatn = "Drops item class=%s*[%d]+",                            extrctPatn = "%d+" },
+	{ id = "heal_rate",         label = "Heal Rate",                   testInLoop = true,  srchPatn = "Rate of healing:%s*[%d]+[.%d+]*",                      extrctPatn = "[%d]+[.%d+]*" },
+	{ id = "destroy_xp",        label = "Destroy XP Gain",             testInLoop = true,  srchPatn = "Experience_Reward gained for destroying one of this type:%s*[%d]+", extrctPatn = "[%d]+" },
+	{ id = "aggr_dist",         label = "Aggression Distance",         testInLoop = true,  srchPatn = "Aggression distance of this droid=%s*[%d]+",           extrctPatn = "[%d]+" },
+	{ id = "time_eye_Tux",      label = "Time Spent Eyeing Tux",       testInLoop = true,  srchPatn = "Time spent eyeing Tux=[%d]+[.%d+]*",                   extrctPatn = "[%d]+[.%d+]*" },
+	{ id = "weapon",            label = "Weapon",                      testInLoop = true,  srchPatn = "Weapon item=",                                         extrctPatn = "[EOL]" },
+	{ id = "droppct",           label = "Drop Percentages",            testInLoop = false, srchPatn = "" },
+	{ id = "pct_EntropyInvrtr", label = "Entropy Inverter",            testInLoop = true,  srchPatn = "Percent to drop Entropy Inverter=%s*[%d]+",            extrctPatn = "[%d]+" },
+	{ id = "pct_PlasmaTrans",   label = "Plasma Transistor",           testInLoop = true,  srchPatn = "Percent to drop Plasma Transistor=%s*[%d]+",           extrctPatn = "[%d]+" },
+	{ id = "pct_SprCondRelay",  label = "Superconducting Relay Unit",  testInLoop = true,  srchPatn = "Percent to drop Superconducting Relay Unit=%s*[%d]+",  extrctPatn = "[%d]+" },
+	{ id = "pct_AMConverter",   label = "Antimatter-Matter Converter", testInLoop = true,  srchPatn = "Percent to drop Antimatter-Matter Converter=%s*[%d]+", extrctPatn = "[%d]+" },
+	{ id = "pct_TachyonCond",   label = "Tachyon Condensator",         testInLoop = true,  srchPatn = "Percent to drop Tachyon Condensator=%s*[%d]+",         extrctPatn = "[%d]+" },
+	{ id = "sound_num_greet",   label = "Greeting Sound Number",       testInLoop = true,  srchPatn = "Greeting Sound number=%s*[%d]+",                       extrctPatn = "[%d]+" },
+	{ id = "sound_death",       label = "Death Sound File Name",       testInLoop = true,  srchPatn = "Death sound file name=",                               extrctPatn = "[EOL]" },
+	{ id = "sound_attack",      label = "Attack Sound File Name",      testInLoop = true,  srchPatn = "Attack animation sound file name=",                    extrctPatn = "[EOL]" },
+	{ id = "pct_hit",           label = "Hit Percentage",              testInLoop = true,  srchPatn = "Chance of this robot scoring a hit=%s*[%d]+",          extrctPatn = "[%d]+" },
+	{ id = "time_hit_recover",  label = "Hit Recovery Time",           testInLoop = true,  srchPatn = "Time to recover after getting hit=[%d]+[.%d+]*",       extrctPatn = "[%d]+[.%d+]*" },
+	{ id = "droid_notes",       label = "Notes concerning this droid", testInLoop = true,  srchPatn = "Notes concerning this droid=",                         extrctPatn = "[EOL]" },
+	{ id = "sensor",			label = "Sensor",					   testInLoop = true,  srchPatn = "Sensor ID=",                         					extrctPatn = "[EOL]" },
+	{ id = "spec_file_end",     label = "end_of_level",                testInLoop = true,  srchPatn = "End of Robot Data Section",                            extrctPatn = "[TEXT]" },
 }
 
 -- retrieve the anchortext associated with this id value
@@ -151,29 +153,67 @@ end
 --	Populates DroidFileData variable
 function modWP_Droid.ParseDroidSpec()
 	local tempdroidspecitem = {}
+	--	firstpass - are we passing through the file for the first time?
+	--	prevents "saving" droid data when first start-of-section is read
 	local firstpass = true
+	--	foundsensor - was a sensor value found when reading droid data?
+	local foundsensor = false
+	-- loop through droid data file line-by-line
 	for key,line in pairs(modWP_Droid.DroidFileData)do
+		-- for each line - compare to each item in textDroid array
 		for subkey, textitem in pairs(modWP_Droid.textDroid)do
-			if ( not textitem.loop ) then goto PARSE_DROID_NEXT_SRCH_PATTERN end
+
+			-- should we test for this item? N0 - start next iteration
+			if ( not textitem.testInLoop ) then goto PARSE_DROID_NEXT_SRCH_PATTERN end
+			-- for test item - extract value based on search pattern
 			local value = modWP_Droid.modcommon.Extract.SearchText( line, textitem.srchPatn, textitem.extrctPatn )
+			-- value not found - start next iteration
 			if ( not value ) then goto PARSE_DROID_NEXT_SRCH_PATTERN end
+			-- value found - what was found?
 			if	( textitem.id == "spec_item_start" ) then
-				--	process begin|end of droid data section
+				--	found start-of-droid data section
 				if (firstpass) then
+					-- found first start-of-droid data section in file
+					-- no previous data to save
 					firstpass = false
 				else
+					--	save previous and setup for next pass
+					if ( foundsensor == false) then
+						-- no sensor data found - set to default
+						tempdroidspecitem.sensor = "spectral"
+					end
+					-- reset sensor flag for next droid data section
+					foundsensor = false
+					-- save found droid data to array
 					table.insert(modWP_Droid.AllDroidData, tempdroidspecitem)
 				end
+				-- reset temp droid data holder for next droid data section
 				tempdroidspecitem = modWP_Droid.modcommon.Extract.TblDeepCopy(modWP_Droid.droidDataItem)
+				
 			elseif ( textitem.id == "spec_file_end" ) then
 				--	reached the end of droid specs data in file
+				--	save previous before exit
+				if ( foundsensor == false) then
+					-- no sensor data found - set to default
+					tempdroidspecitem.sensor = "spectral"
+				end
+				-- save found droid data to array
 				table.insert(modWP_Droid.AllDroidData, tempdroidspecitem)
+				-- reset sensor flag for next iteration
+				foundsensor = false
+				-- will exit nested loops after this point
+				
 			elseif ( textitem.id == "is_human" ) then
+				-- element data forced to boolean - saved in droid data file as integer
 				tempdroidspecitem[textitem.id] = ( value ~= 0 )
 			else
+				-- have extracted value to be saved to current tempdroidspecitem
+				if (textitem.id == "sensor" ) then
+					-- sensor data found - set flag to prevent using default
+					foundsensor = true
+				end
 				tempdroidspecitem[textitem.id] = value
-			end	--	data processed
-			break	--	next line of data
+			end		--	process extracted value read from file
 ::PARSE_DROID_NEXT_SRCH_PATTERN::
 		end	--	pattern/value found
 	end	--	loop through text file data
@@ -246,6 +286,7 @@ function modWP_Droid.WikiWrite()
 		--	image wiki presentation
 		wikitext[#wikitext + 1] = modWIKI.ImageText( modWIKI.URL_ImgDroid .. portraitname, droiditem.graphics_prefix, "margin-right=\'1.0em\'")
 		--	display droid description
+		wikitext[#wikitext + 1] = modWIKI.FrameStartLeft("border=\'0px\' width=70pct")
 		local data = select(2,modWP_Droid.GetDroidStringsPair(droiditem,"desc"))
 		data = modWIKI.TextEmbed(data,"emphasis")
 		data = modWIKI.TextEmbed(data,"textlarge")
@@ -253,7 +294,7 @@ function modWP_Droid.WikiWrite()
 		--	display droid notes
 		wikitext[#wikitext + 1] = select(2,modWP_Droid.GetDroidStringsPair(droiditem,"droid_notes")) .. "\n\n"
 		--	display basic droid information
-		local DataSequence = { "weapon", "sound_num_greet", "sound_death", "sound_attack" }
+		local DataSequence = { "weapon", "sensor", "sound_num_greet", "sound_death", "sound_attack" }
 		for key, idval in pairs(DataSequence) do
 			local appending = ""
 			if (key == #DataSequence) then
@@ -274,7 +315,7 @@ function modWP_Droid.WikiWrite()
 		--	display droid table data
 		DataSequence = { "droid_class", "speed_max", "energy_max", "drop_item_class", "heal_rate",
 		                 "destroy_xp", "aggr_dist", "time_eye_Tux", "pct_hit", "time_hit_recover" }
-		local tblstyle = "border=0 width=20% align=left cellspacing=0 cellpadding=4"
+		local tblstyle = "border=0 width=25% align=left cellspacing=0 cellpadding=4"
 		local droidlabel = {}
 		local droiddata = {}
 		local textdata = {}
@@ -296,6 +337,7 @@ function modWP_Droid.WikiWrite()
 		end
 		textdata = modWIKI.TableGen( tblstyle, tblheader, droidlabel, droiddata, "width=\'86%\'", "align=center" )
 		wikitext = modWIKI.PageAppend( wikitext, textdata )
+		wikitext[#wikitext + 1] = modWIKI.FrameEnd
 		wikitext[#wikitext + 1] = modWIKI.ForceBreak
 		wikitext[#wikitext + 1] = " "
 		wikitext[#wikitext + 1] = modWIKI.LineSep
