@@ -955,10 +955,15 @@ void InitFreedroid(int argc, char **argv)
 	LoadGameConfig();
 
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
-		error_message(__FUNCTION__, "Couldn't initialize SDL: %s", PLEASE_INFORM | IS_FATAL,  SDL_GetError());
+		error_message(__FUNCTION__, "Couldn't initialize SDL: %s", PLEASE_INFORM | IS_FATAL, SDL_GetError());
+
 	// So the video library could be initialized.  So it should also be
 	// cleaned up and closed once we're done and quit FreedroidRPG.
 	atexit(SDL_Quit);
+
+	// Enable to compute the unicode value of a pressed key.
+	// Needed to use the numkeys which are on top of the alphakeys on keyboards.
+	SDL_EnableUNICODE(1);
 
 	detect_available_resolutions();
 

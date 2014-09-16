@@ -163,6 +163,25 @@ const keybind_t default_keybinds[] = {
 	{ NULL }
 };
 
+/*
+ * On some keyboards (AZERTY is an example), the shift modifier is needed to
+ * access the numeric keys, which are at the top of the alphanumeric keyboard.
+ * In this case, the standard 'toupper()' method used to get the actual value of
+ * the pressed key does not work.
+ * To circumvent the problem, we use the unicode value of the key, and transform
+ * it into a keypad sym value.
+ *
+ * TRUE is returned if the pressed key is a numkey.
+ */
+static int get_numkey(SDL_keysym *keysym, int *numkey)
+{
+	if (!ISKEYPAD((int)keysym->sym) && keysym->unicode >= '0' && keysym->unicode <= '9') {
+		*numkey = SDLK_0 + (keysym->unicode - '0');
+		return TRUE;
+	}
+	return FALSE;
+}
+
 /**
  * @fn void input_keyboard_init (void)
  *
@@ -788,9 +807,18 @@ static int input_key_event(SDLKey key, SDLMod mod, int value)
 	return noteaten;
 }
 
-int input_key_press(SDL_Event * event)
+int input_key_press(SDL_Event *event)
 {
-	input_key_event(event->key.keysym.sym, event->key.keysym.mod, KEY_PRESS);
+	SDLKey sym = event->key.keysym.sym;
+	SDLMod mod = event->key.keysym.mod;
+
+	int numkey;
+	if (get_numkey(&event->key.keysym, &numkey)) {
+		sym = numkey;
+		mod = 0;
+	}
+
+	input_key_event(sym, mod, KEY_PRESS);
 
 	return 0;
 }
@@ -830,6 +858,12 @@ int getchar_raw(int *mod)
 		}
 
 		if (event.type == SDL_KEYDOWN) {
+			if (get_numkey(&event.key.keysym, &Returnkey)) {
+				if (mod)
+					*mod = 0;
+				break;
+			}
+
 			Returnkey = (int)event.key.keysym.sym;
 			if (!mod && (event.key.keysym.mod & KMOD_SHIFT))
 				Returnkey = toupper((int)event.key.keysym.sym);
@@ -838,7 +872,7 @@ int getchar_raw(int *mod)
 				/* If we have a modifier, we assign it */
 				*mod = event.key.keysym.mod;
 
-				/* And we also discard the keypress if the sym is e.g. CTRL because we explicitely
+				/* And we also discard the keypress if the sym is e.g. CTRL because we explicitly
 				 * asked to get a modifier, which makes sense only if we ignore CTRL as a key.
 				 */
 				if (event.key.keysym.sym >= SDLK_NUMLOCK && event.key.keysym.sym <= SDLK_COMPOSE) {
