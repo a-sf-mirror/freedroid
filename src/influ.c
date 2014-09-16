@@ -158,6 +158,10 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 
 	if (Me.weapon_item.type >= 0) {
 		DamageWeapon(&(Me.weapon_item));
+	}
+	// The weapon can have been destroyed by the call to DamageWeapon(),
+	// so the weapon's type is to be checked again.
+	if (Me.weapon_item.type >= 0) {
 		if (ItemMap[Me.weapon_item.type].weapon_ammo_type) {
 			Me.weapon_item.ammo_clip--;
 		}
