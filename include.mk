@@ -1,40 +1,24 @@
-cppcheckflags = -I..                                                                   \
+cppcheckflags = -I${top_srcdir} -I${top_srcdir}/src \
+				--language=c \
 				--enable=warning,performance,portability,unusedFunction,missingInclude,style \
 				--suppressions-list=.cppcheck_suppressions                             \
 				--library=sdl.cfg                                                      \
 				--inline-suppr                                                         \
 				--inconclusive
 
+cppcheckdefs = -DHAVE_ICONV -DWITH_RTPROF -D__GNUC__ -DHAVE_CONFIG_H -D_GNU_SOURCE=1 -D_REENTRANT
+
 cppcheck:
 	@echo "`cppcheck --version`"
-	cppcheck croppy gluem src $(cppcheckflags)
-
-cppcheck-full:
-	@echo "`cppcheck --version`"
-	cppcheck croppy gluem src $(cppcheckflags) --force
-
-cppcheck-fast:
-	@echo "`cppcheck --version`"
-	cppcheck croppy gluem src $(cppcheckflags) --max-configs=1
-
+	cppcheck $(cppcheckflags) $(cppcheckdefs) croppy gluem src
 
 cppcheck-report:
 	@echo "`cppcheck --version`"
 	mkdir -p cppcheck-report
-	cppcheck croppy gluem src $(cppcheckflags) --xml-version=2 --xml 2> cppcheck-report/cppcheck.xml
-	cppcheck-htmlreport --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
+	cppcheck $(cppcheckflags) $(cppcheckdefs) --xml-version=2 --xml  croppy gluem src 2> cppcheck-report/cppcheck.xml
+	cppcheck-htmlreport --file=cppcheck-report/cppcheck.xml --title="FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir=cppcheck-report --source-dir=$(top_srcdir)
 
-cppcheck-report-full:
-	@echo "`cppcheck --version`"
-	mkdir -p cppcheck-report
-	cppcheck croppy gluem src $(cppcheckflags) --xml-version=2 --force --xml 2> cppcheck-report/cppcheck.xml
-	cppcheck-htmlreport --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
-
-cppcheck-report-fast:
-	@echo "`cppcheck --version`"
-	mkdir -p cppcheck-report
-	cppcheck croppy gluem src $(cppcheckflags) --xml-version=2 --max-configs=1 --xml 2> cppcheck-report/cppcheck.xml
-	cppcheck-htmlreport --file cppcheck-report/cppcheck.xml --title "FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir cppcheck-report --source-dir .
+.PHONY: cppcheck cppcheck-report
 
 gourceflags =	-c 0.8                           \
 				--seconds-per-day 0.001          \
