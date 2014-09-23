@@ -101,24 +101,24 @@
 #include <setjmp.h>
 
 #ifdef HAVE_DIRENT_H
-#include "dirent.h"
+#include <dirent.h>
 #endif
 
-#include "SDL.h"
-#include "SDL_image.h"
+#include <SDL.h>
+#include <SDL_image.h>
 
 #ifdef HAVE_LIBSDL_GFX
-#include "SDL_rotozoom.h"
-#include "SDL_framerate.h"
-#include "SDL_gfxPrimitives.h"
+#include <SDL_rotozoom.h>
+#include <SDL_framerate.h>
+#include <SDL_gfxPrimitives.h>
 #endif
 
 #ifdef HAVE_LIBSDL_MIXER
-#include "SDL_mixer.h"
+#include <SDL_mixer.h>
 #endif
 
 #ifdef HAVE_LIBGL
-#include "SDL_opengl.h"
+#include <SDL_opengl.h>
 #endif				/* HAVE_LIBGL */
 
 #include "lang.h"

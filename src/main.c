@@ -39,9 +39,9 @@
 #include "widgets/widgets.h"
 
 #ifdef __OpenBSD__
-#include "ieeefp.h"
+#include <ieeefp.h>
 #else
-#include "fenv.h"
+#include <fenv.h>
 #endif
 
 float LastGotIntoBlastSound = 2;

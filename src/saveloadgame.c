@@ -34,7 +34,7 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
-#include "sys/stat.h"
+#include <sys/stat.h>
 #include "widgets/widgets.h"
 #include "savestruct.h"
 
