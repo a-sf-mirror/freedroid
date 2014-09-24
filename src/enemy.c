@@ -832,11 +832,14 @@ void DropEnemyTreasure(Enemy ThisRobot)
 	// First of all: Update virtual position, avoiding bugs.
 	update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, ThisRobot->pos.z);
 
+	int extract_skill_level = Me.skill_level[get_program_index_with_name("Extract bot parts")];
+	if (extract_skill_level > 5)
+		extract_skill_level = 5;
+
 	// If the Tux has the skill to extract certain components from dead bots,
 	// these components will be thrown out automatically, when the bot is killed.
 	//
-	switch (Me.skill_level[get_program_index_with_name("Extract bot parts")]) {
-	case 6:
+	switch (extract_skill_level) {
 	case 5:
 		if (Droidmap[ThisRobot->type].amount_of_tachyon_condensators
 		    && Droidmap[ThisRobot->type].amount_of_tachyon_condensators > MyRandom(100))
