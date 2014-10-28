@@ -444,7 +444,7 @@ static struct widget_group *create_hud_bar()
 		void (*display)(struct widget *);
 		void (*activate_button)(struct widget_button *);
 		char *(*get_tooltip_text)();
-		void (*update)(struct widget *);
+		void (WIDGET_ANONYMOUS_MARKER update)(struct widget *);
 	} b[] = {
 		// Current skill button
 		{
@@ -453,16 +453,20 @@ static struct widget_group *create_hud_bar()
 			NULL,
 			current_skill_button_click,
 			get_current_skill_button_tooltip,
-			current_skill_button_update
+			WIDGET_ANONYMOUS(struct widget *w, {
+				current_skill_button_update(w);
+			})
 		},
 		// Current weapon button
 		{
 			{{NULL}},
 			{left_panel_x + 40, WIDGET(panel)->rect.y + 25, 56, 56},
 			NULL,
-			(void *)TuxReloadWeapon,
+			(void(*)(struct widget_button *))TuxReloadWeapon,
 			get_current_weapon_button_tooltip,
-			current_weapon_button_update
+			WIDGET_ANONYMOUS(struct widget *w, {
+				current_weapon_button_update(w);
+			})
 		},
 		// Log button
 		{
@@ -470,9 +474,11 @@ static struct widget_group *create_hud_bar()
 			{"mouse_buttons/log_button_red.png","mouse_buttons/log_button_yellow.png", NULL}},
 			{center_panel_x + 55, WIDGET(panel)->rect.y + 49, 32, 19},
 			NULL,
-			(void *)toggle_quest_browser,
+			(void(*)(struct widget_button *))toggle_quest_browser,
 			NULL,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, Me.quest_browser_changed)
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = Me.quest_browser_changed;
+			})
 		},
 		// Inventory button
 		{
@@ -492,7 +498,9 @@ static struct widget_group *create_hud_bar()
 			NULL,
 			toggle_character_screen,
 			NULL,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active,(Me.points_to_distribute > 0))
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = (Me.points_to_distribute > 0);
+			})
 		},
 		// Skill button
 		{
@@ -537,13 +545,14 @@ static struct widget_group *create_hud_bar()
 			{right_panel_x + 169, WIDGET(panel)->rect.y + 11, 6, 50},
 			heat_bar_display,
 			NULL,
-			get_heat_bar_tooltip, NULL
+			get_heat_bar_tooltip,
+			NULL
 		},
 	};
 
 	int i, j, k;
 	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
-		struct widget_button * wb = widget_button_create();
+		struct widget_button *wb = widget_button_create();
 
 		// Load button images
 		for (j = 0; j < 2; j++)
@@ -572,7 +581,7 @@ static struct widget_group *create_hud_bar()
 	struct widget_text *ammo = widget_text_create();
 	widget_set_rect(WIDGET(ammo), left_panel_x + 36, WIDGET(panel)->rect.y + 77, 100, 22);
 	ammo->font = FPS_Display_BFont;
-	WIDGET(ammo)->update = current_ammo_update;
+	WIDGET(ammo)->update = WIDGET_ANONYMOUS(struct widget *w, { current_ammo_update(w); });
 
 	// Message log.
 	init_message_log();
@@ -612,39 +621,51 @@ struct widget_group *get_game_ui()
 	struct {
 		SDL_Rect rect;
 		void (*display)(struct widget *w);
-		void (*update)(struct widget *w);
+		void (WIDGET_ANONYMOUS_MARKER update)(struct widget *w);
 	} panels[] = {
 		{
 			{0, 0, 320, 480},
 			NULL,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.skill_explanation_screen_visible)
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = GameConfig.skill_explanation_screen_visible;
+			})
 		},
 		{
 			{GameConfig.screen_width - 320, 0, 320, 480},
 			(void *)ShowCharacterScreen,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.CharacterScreen_Visible)
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = GameConfig.CharacterScreen_Visible;
+			})
 		},
 		{
 			{GameConfig.screen_width - 320, 0, 320, 480},
 			(void *)ShowSkillsScreen,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.SkillScreen_Visible)
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = GameConfig.SkillScreen_Visible;
+			})
 		},
 		// This widget, covering the whole screen, avoid mouse event propagation to the other widgets
 		// when the addon crafting or item upgrade panels are opened.
 		{
 			{0, 0, GameConfig.screen_width, GameConfig.screen_height},
 			NULL,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, (addon_crafting_ui_visible() || item_upgrade_ui_visible()))
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = (addon_crafting_ui_visible() || item_upgrade_ui_visible());
+			})
 		},
 		{
 			{0, 0, 320, 480},
 			(void *)show_addon_crafting_ui,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, addon_crafting_ui_visible())
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = addon_crafting_ui_visible();
+			})
 		},
 		{
 			{320, 0, 320, 480},
 			(void *)show_item_upgrade_ui,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, item_upgrade_ui_visible())
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = item_upgrade_ui_visible();
+			})
 		},
 		// The item held in hand is displayed by show_inventory_screen().
 		// In order to have this item displayed in front of all widgets,
@@ -652,7 +673,9 @@ struct widget_group *get_game_ui()
 		{
 			{0, 0, 320, 480},
 			(void *)show_inventory_screen,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.Inventory_Visible)
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = GameConfig.Inventory_Visible;
+			})
 		}
 	};
 
@@ -667,7 +690,9 @@ struct widget_group *get_game_ui()
 
 	// Create the quest browser.
 	struct widget_group *quest_browser = create_quest_browser();
-	WIDGET(quest_browser)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, quest_browser_activated);
+	WIDGET(quest_browser)->update = WIDGET_ANONYMOUS(struct widget *w, {
+		w->enabled = quest_browser_activated;
+	});
 	widget_group_add(game_widget_group, WIDGET(quest_browser));
 
 	// Create the chat dialog.

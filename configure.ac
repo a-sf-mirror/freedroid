@@ -21,20 +21,60 @@ AM_GNU_GETTEXT([external])
 
 AC_HEADER_STDC
 
-AC_MSG_CHECKING(for -fnested-functions)
+dnl We need anonymous lambda-like functions.
+dnl With GCC, it needs -fnested-functions while with CLANG it needs -fblocks
+AC_MSG_CHECKING([if compiling with clang])
 AC_COMPILE_IFELSE(
-        [
-                AC_LANG_PROGRAM([], [void foo(void) {}; foo();])
-        ],
-        [
-                AC_MSG_RESULT(no)
-                []
-        ],
-        [
-                AC_MSG_RESULT(required)
-                [CFLAGS="$CFLAGS -fnested-functions"]
-        ]
+  [
+    AC_LANG_PROGRAM([], [[
+#ifndef __clang__
+       not clang
+#endif
+    ]])
+  ],
+  [
+    CLANG=yes
+  ],
+  [
+    CLANG=no
+  ]
 )
+AC_MSG_RESULT([$CLANG])
+
+if test "x$GCC" = xyes -a "x$CLANG" = xno ; then
+  AC_MSG_CHECKING(for -fnested-functions)
+  AC_COMPILE_IFELSE(
+    [
+      AC_LANG_PROGRAM([], [void foo(void) {}; foo();])
+    ],
+    [
+      AC_MSG_RESULT(no)
+      []
+    ],
+    [
+      AC_MSG_RESULT(required)
+      [CFLAGS="$CFLAGS -fnested-functions"]
+    ]
+  )
+fi
+
+if test "x$CLANG" = xyes ; then
+  AC_MSG_CHECKING(for -fblocks)
+  AC_COMPILE_IFELSE(
+    [
+      AC_LANG_PROGRAM([], [void (^foo)(void) = ^(void) {}; foo();])
+    ],
+    [
+      AC_MSG_RESULT(no)
+      []
+    ],
+    [
+      AC_MSG_RESULT(required)
+      [CFLAGS="$CFLAGS -fblocks"]
+      [LIBS="$LIBS -lBlocksRuntime"]
+    ]
+  )
+fi
 
 # Checks for libraries.
 AC_CHECK_LIB([m], [sin],, 
@@ -291,6 +331,7 @@ AC_OUTPUT
 echo "
 Summary:
 
+	compiler:                                    $CC
 	use embedded Lua library (not system-wide):  $embedded_lua
 	compile with OpenGL support:                 $summary_have_gl
 	compile with sound support:                  $summary_sound

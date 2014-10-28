@@ -127,8 +127,8 @@ struct widget_button {
 	/// \name Behavior callbacks
 	///       Functions to call when the button is \e activated (on a left or right mouse click)
 	/// @{
-	void (*activate_button) (struct widget_button *);           /**< Left click callback. */
-	void (*activate_button_secondary) (struct widget_button *); /**< Right click callback. */
+	void (*activate_button)(struct widget_button *);           /**< Left click callback. */
+	void (*activate_button_secondary)(struct widget_button *); /**< Right click callback. */
 	/// @}
 };
 

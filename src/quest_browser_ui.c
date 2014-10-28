@@ -604,34 +604,40 @@ struct widget_group *create_quest_browser()
 		char *image[3];
 		SDL_Rect rect;
 		void (*activate_button)(struct widget_button *);
-		void (*update)(struct widget *);
+		void (WIDGET_ANONYMOUS_MARKER update) (struct widget *);
 	} b[] = {
 		// Open quests
 		{
 			{"widgets/quest_open_off.png", NULL, "widgets/quest_open.png"},
 			{right_side_buttons_x, quest_browser_y + 37, 126, 29},
 			toggle_open_quests,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, current_quest_browser_mode == QUEST_BROWSER_SHOW_OPEN_MISSIONS)
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = current_quest_browser_mode == QUEST_BROWSER_SHOW_OPEN_MISSIONS;
+			})
 		},
 		// Done quests
 		{
 			{"widgets/quest_done_off.png", NULL, "widgets/quest_done.png"},
 			{right_side_buttons_x, quest_browser_y + 76, 126, 29},
 			toggle_done_quests,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, current_quest_browser_mode == QUEST_BROWSER_SHOW_DONE_MISSIONS)
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = current_quest_browser_mode == QUEST_BROWSER_SHOW_DONE_MISSIONS;
+			})
 		},
 		// Notes
 		{
 			{"widgets/quest_notes_off.png", NULL, "widgets/quest_notes.png"},
 			{right_side_buttons_x, quest_browser_y + 115, 126, 29},
 			toggle_notes,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, current_quest_browser_mode == QUEST_BROWSER_SHOW_NOTES)
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = current_quest_browser_mode == QUEST_BROWSER_SHOW_NOTES;
+			})
 		},
 		// Exit button
 		{
 			{"widgets/exit_button_default.png", "widgets/exit_button_pressed.png", NULL},
 			{WIDGET(exit_button)->rect.x + 16, WIDGET(exit_button)->rect.y + 54, 54, 55},
-			(void *)toggle_quest_browser,
+			(void(*)(struct widget_button *))toggle_quest_browser,
 			NULL
 		},
 		// Scroll up
@@ -639,14 +645,18 @@ struct widget_group *create_quest_browser()
 			{"widgets/scroll_up_off.png", NULL, "widgets/scroll_up.png"},
 			{quest_browser_x + quest_browser_w / 2 - 59, quest_browser_y - 14, 118, 17},
 			scroll_up,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, can_scroll_up())
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = can_scroll_up();
+			})
 		},
 		// Scroll down
 		{
 			{"widgets/scroll_down_off.png", NULL, "widgets/scroll_down.png"},
 			{quest_browser_x + quest_browser_w / 2 - 59, quest_browser_y + quest_browser_h, 118, 17}, 
 			scroll_down,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, can_scroll_down())
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = can_scroll_down();
+			})
 		}
 	};
 

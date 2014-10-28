@@ -256,114 +256,6 @@ static void zoom_in_button_right_click(struct widget_button *wb)
 	VanishingMessageEndDate = SDL_GetTicks() + 1000;
 }
 
-// Level editor buttons' update callbacks
-static void toggle_enemies_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = GameConfig.omit_enemies_in_level_editor;
-}
-
-static void toggle_tooltips_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = !GameConfig.show_lvledit_tooltips;
-}
-
-static void toggle_collisions_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = !draw_collision_rectangles;
-}
-
-static void toggle_waypoints_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = !GameConfig.show_wp_connections;
-}
-
-static void zoom_in_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = !GameConfig.zoom_is_on;
-}
-
-static void toggle_obstacles_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = GameConfig.omit_obstacles_in_level_editor;
-}
-
-static void toggle_map_labels_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = GameConfig.omit_map_labels_in_level_editor;
-}
-
-static void toggle_grid_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = GameConfig.show_grid;
-}
-
-static void next_object_button_update(struct widget *w)
-{
-	w->enabled = level_editor_can_cycle_marked_object();
-}
-
-static void delete_obstacle_button_update(struct widget *w)
-{
-	w->enabled = !selection_empty();
-}
-
-static void edit_chest_button_update(struct widget *w)
-{
-	w->enabled = 0;
-
-	obstacle *o = single_tile_selection(OBJECT_OBSTACLE);
-	if (o) {
-		struct obstacle_spec *obs_spec = get_obstacle_spec(o->type);
-		if (obs_spec->action && !strncmp(obs_spec->action, "chest", 5))
-			w->enabled = 1;
-	}
-}
-
-static void new_obstacle_label_button_update(struct widget *w)
-{
-	w->enabled = single_tile_selection(OBJECT_OBSTACLE) ? 1 : 0;
-}
-
-static void undo_button_update(struct widget *w)
-{
-	w->enabled = !list_empty(&to_undo);
-}
-
-static void redo_button_update(struct widget *w)
-{
-	w->enabled = !list_empty(&to_redo);
-}
-
-static void typeselect_obstacle_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_OBSTACLE);
-}
-
-static void typeselect_floor_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_FLOOR);
-}
-
-static void typeselect_item_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_ITEM);
-}
-
-static void typeselect_enemy_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_ENEMY);
-}
-
-static void typeselect_waypoint_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_WAYPOINT);
-}
-
-static void typeselect_map_label_button_update(struct widget *w)
-{
-	WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_MAP_LABEL);
-}
-
 // Leveleditor floor layers button callbacks
 static void floor_layers_button_click(struct widget_button *wb)
 {
@@ -376,12 +268,6 @@ static void floor_layers_button_right_click(struct widget_button *wb)
 	if (next_layer >= EditLevel()->floor_layers)
 		next_layer = 0;
 	action_change_floor_layer(EditLevel(), next_layer);
-}
-
-static void floor_layers_button_update(struct widget *w)
-{
-	w->enabled = selection_type() == OBJECT_FLOOR && EditLevel()->floor_layers > 1;
-	WIDGET_BUTTON(w)->active = !GameConfig.show_all_floor_layers;
 }
 
 /**
@@ -414,81 +300,243 @@ struct widget_group *get_lvledit_ui()
 		char *text;
 		string tooltip_text;
 		int  number_of_toggle_states;
-		void (*activate_button) (struct widget_button *);
-		void (*activate_button_secondary) (struct widget_button *);
-		void (*update) (struct widget *);
+		void (*activate_button)(struct widget_button *);
+		void (*activate_button_secondary)(struct widget_button *);
+		void (WIDGET_ANONYMOUS_MARKER update)(struct widget *);
 	} b[] = {
 		{LEVEL_EDITOR_UNDO_BUTTON, NULL,
 			_("Undo\n\nUse this button to undo your last actions."),
-			1, undo_button_click, NULL, undo_button_update},
+			1,
+			undo_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = !list_empty(&to_undo);
+			})
+		},
 		{LEVEL_EDITOR_REDO_BUTTON, NULL,
 			_("Redo\n\nUse this button to redo an action."),
-			1, redo_button_click, NULL, redo_button_update},
+			1,
+			redo_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = !list_empty(&to_redo);
+			})
+		},
 		{LEVEL_EDITOR_SAVE_SHIP_BUTTON, NULL,
 			_("Save Map\n\nThis button will save your current map over the file '../map/levels.dat' from your current working directory."),
-			2, save_ship_button_click, NULL, NULL},
+			2,
+			save_ship_button_click,
+			NULL,
+			NULL
+		},
 		{LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON, NULL,
 			_("Beautify grass button\n\nUse this button to automatically 'beautify' rough edges of the grass-sand tiles. It will apply to the selected floor or, if not applicable, to the entire level.\n\nYou can also use Ctrl-b for this."),
-			1, beautify_grass_button_click, NULL, NULL},
+			1,
+			beautify_grass_button_click,
+			NULL,
+			NULL
+		},
 		{LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON, NULL,
 			_("Delete selected obstacle\n\nUse this button to delete the currently marked obstacle.\n\nYou can also use Ctrl-X for this."),
-			1, delete_obstacle_button_click, NULL, delete_obstacle_button_update},
+			1,
+			delete_obstacle_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = !selection_empty();
+			})
+		},
 		{LEVEL_EDITOR_NEXT_OBJECT_BUTTON, NULL,
 			_("Next object on currently selected tile\n\nUse this button to cycle the currently marked object on this tile.\n\nYou can also use the N key for this."),
-			1, next_object_button_click, NULL, next_object_button_update},
+			1,
+			next_object_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = level_editor_can_cycle_marked_object();
+			})
+		},
 		{LEVEL_EDITOR_TOGGLE_WAYPOINT_CONNECTIONS_BUTTON, NULL,
 			_("Toggle display waypoint connections\n\nUse this button to toggle between waypoint connections displayed on and off."),
-			2, toggle_waypoints_button_click, NULL, toggle_waypoints_button_update},
+			2,
+			toggle_waypoints_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = !GameConfig.show_wp_connections;
+			})
+		},
 		{LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON, NULL,
 			_("New obstacle label\n\nUse this button to attach a label to the currently marked obstacle.  These obstacle labels can be used to define obstacles to be modified by events.\n"),
-			1, new_obstacle_label_button_click, NULL, new_obstacle_label_button_update},
+			1,
+			new_obstacle_label_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = single_tile_selection(OBJECT_OBSTACLE) ? 1 : 0;
+			})
+		},
 		{LEVEL_EDITOR_EDIT_CHEST_BUTTON, NULL,
 			_("Edit chests contents\n\nUse this button to change the contents of the chest. If it is empty the game may generate random items at run time."),
-			1, edit_chest_button_click, NULL, edit_chest_button_update},
+			1,
+			edit_chest_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = 0;
+
+				obstacle *o = single_tile_selection(OBJECT_OBSTACLE);
+				if (o) {
+					struct obstacle_spec *obs_spec = get_obstacle_spec(o->type);
+					if (obs_spec->action && !strncmp(obs_spec->action, "chest", 5))
+						w->enabled = 1;
+				}
+			})
+		},
 		{LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON, NULL,
 			_("Toggle display enemies\n\nUse this button to toggle between enemies displayed in level editor or enemies hidden in level editor."),
-			2, toggle_enemies_button_click, NULL, toggle_enemies_button_update},
+			2,
+			toggle_enemies_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = GameConfig.omit_enemies_in_level_editor;
+			})
+		},
 		{LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON, NULL,
 			_("Toggle display tooltips\n\nUse this button to toggle these annoying help windows on and off."),
-			2, toggle_tooltips_button_click, NULL, toggle_tooltips_button_update},
+			2,
+			toggle_tooltips_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = !GameConfig.show_lvledit_tooltips;
+			})
+		},
 		{LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON, NULL,
 			_("Toggle display collision rectangles\n\nUse this button to toggle the visible collision rectangles on and off."),
-			2, toggle_collisions_button_click, NULL, toggle_collisions_button_update},
+			2,
+			toggle_collisions_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = !draw_collision_rectangles;
+			})
+		},
 		{LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF, NULL,
 			_("Toggle grid mode.\n\nUse this button to toggle grid displaying on and off.\n\nUse right click to change the grid mode."),
-			2, toggle_grid_button_click, toggle_grid_button_right_click, toggle_grid_button_update},
+			2,
+			toggle_grid_button_click,
+			toggle_grid_button_right_click,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = GameConfig.show_grid;
+			})
+		},
 		{LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON, NULL,
 			_("Toggle display obstacles\n\nUse this button to toggle between obstacles displayed in level editor or obstacles hidden in level editor."),
-			2, toggle_obstacles_button_click, NULL, toggle_obstacles_button_update},
-                {LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON, NULL,
+			2,
+			toggle_obstacles_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = GameConfig.omit_obstacles_in_level_editor;
+			})
+		},
+		{LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON, NULL,
 			_("Toggle display map labels name\n\nUse this button to toggle between map labels name displayed in level editor or map labels name hidden in level editor."),
-			2, toggle_map_labels_button_click, NULL, toggle_map_labels_button_update},
+			2,
+			toggle_map_labels_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = GameConfig.omit_map_labels_in_level_editor;
+			})
+		},
 		{LEVEL_EDITOR_ZOOM_IN_BUTTON, NULL,
 			_("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nUse right click to change the zoom ratio.\n"),
-			2, zoom_in_button_click, zoom_in_button_right_click, zoom_in_button_update},
+			2,
+			zoom_in_button_click,
+			zoom_in_button_right_click,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = !GameConfig.zoom_is_on;
+			})
+		},
 		{LEVEL_EDITOR_ALL_FLOOR_LAYERS_BUTTON, NULL,
 			_("Toggle floor layers\n\nUse this button to toggle between all floor layers displayed or single floor layer displayed.\n\nUse right click to change the current floor layer.\n"),
-			2, floor_layers_button_click, floor_layers_button_right_click, floor_layers_button_update},
+			2,
+			floor_layers_button_click,
+			floor_layers_button_right_click,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				w->enabled = selection_type() == OBJECT_FLOOR && EditLevel()->floor_layers > 1;
+				WIDGET_BUTTON(w)->active = !GameConfig.show_all_floor_layers;
+			})
+		},
 		{LEVEL_EDITOR_QUIT_BUTTON, NULL,
 			_("Test Map\n\nThis will save your map and reload it after you finish testing, avoiding saving an unclean world state."),
-			1, quit_button_click, NULL, NULL},
-		{RIGHT_LEVEL_EDITOR_BUTTON, NULL, NULL,
-			1, editor_right_button_click, NULL},
-		{LEFT_LEVEL_EDITOR_BUTTON, NULL, NULL,
-			1, editor_left_button_click, NULL, NULL},
-		{LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON, _("Obstacle"), NULL,
-			2, typeselect_obstacle_button_click, NULL, typeselect_obstacle_button_update},
-		{LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON, _("Floor"), NULL,
-			2, typeselect_floor_button_click, NULL, typeselect_floor_button_update},
-		{LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON, _("Item"), NULL,
-			2, typeselect_item_button_click, NULL, typeselect_item_button_update},
-		{LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON, _("Enemy"), NULL,
-			2, typeselect_enemy_button_click, NULL, typeselect_enemy_button_update},
-			//; TRANSLATORS: Waypoint
-		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, _("Wayp."), NULL,
-			2, typeselect_waypoint_button_click, NULL, typeselect_waypoint_button_update},
-		{LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON, _("Label"), NULL,
-			2, typeselect_map_label_button_click, NULL, typeselect_map_label_button_update}
+			1,
+			quit_button_click,
+			NULL,
+			NULL
+		},
+		{RIGHT_LEVEL_EDITOR_BUTTON, NULL,
+			NULL,
+			1,
+			editor_right_button_click,
+			NULL,
+			NULL
+		},
+		{LEFT_LEVEL_EDITOR_BUTTON, NULL,
+			NULL,
+			1,
+			editor_left_button_click,
+			NULL,
+			NULL
+		},
+		{LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON, _("Obstacle"),
+			NULL,
+			2,
+			typeselect_obstacle_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_OBSTACLE);
+			})
+		},
+		{LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON, _("Floor"),
+			NULL,
+			2,
+			typeselect_floor_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_FLOOR);
+			})
+		},
+		{LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON, _("Item"),
+			NULL,
+			2,
+			typeselect_item_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_ITEM);
+			})
+		},
+		{LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON, _("Enemy"),
+			NULL,
+			2,
+			typeselect_enemy_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_ENEMY);
+			})
+		},
+		//; TRANSLATORS: Waypoint
+		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, _("Wayp."),
+			NULL,
+			2,
+			typeselect_waypoint_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_WAYPOINT);
+			})
+		},
+		{LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON, _("Label"),
+			NULL,
+			2,
+			typeselect_map_label_button_click,
+			NULL,
+			WIDGET_ANONYMOUS(struct widget *w, {
+				WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_MAP_LABEL);
+			})
+		}
 	};
 
 	int i, j;

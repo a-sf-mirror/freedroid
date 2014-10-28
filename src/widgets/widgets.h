@@ -1,7 +1,7 @@
 /* 
  *
  *   Copyright (c) 2009-2010 Arthur Huillet
- *
+ *   Copyright (c) 2014 Samuel Degrande
  *
  *  This file is part of Freedroid
  *
@@ -73,11 +73,11 @@
 ///   - A base widget pseudo-class is defined as a C-struct:\n
 ///     \code
 /// struct widget {
-///   SDL_Rect rect;                                     // Bounding box
+///   SDL_Rect rect;                                          // Bounding box
 ///   ...
-///   void (*display)(struct widget *);                  // Pseudo-virtual display function
-///   void (*update)(struct widget *);                   // Pseudo_virtual update callback
-///   int (*handle_event)(struct widget *, SDL_Event *); // Pseudo-virtual event handler
+///   void (*display)(struct widget *);                       // Pseudo-virtual display function
+///   void (WIDGET_ANONYMOUS_MARKER update)(struct widget *); // Pseudo_virtual update callback
+///   int (*handle_event)(struct widget *, SDL_Event *);      // Pseudo-virtual event handler
 ///   ...
 /// };
 ///     \endcode
@@ -154,7 +154,8 @@
 ///   means that it is not the responsibility of the game code to change a widget's
 ///   attribute. To update itself, a widget shall overload the \e update()
 ///   pseudo-virtual function. That function is called when needed by the gui
-///   subsystem engine.
+///   subsystem engine.\n
+///   Note: An \e update() function \b has to be an anonymous function (see below).
 ///   \code
 /// void my_button_update(struct widget *this_widget)
 /// {
@@ -166,23 +167,38 @@
 /// }
 ///
 /// struct widget_button *my_button = widget_button_create();
-/// WIDGET(my_button)->update = my_button_update;
+/// WIDGET(my_button)->update = WIDGET_ANONYMOUS(struct widget *w, { my_button_update(w); });
 ///   \endcode
 ///   \n
-///   Most of the time, a widget only needs to update one attribute value, so we
-///   introduced a WIDGET_UPDATE_FLAG_ON_DATA macro to avoid writing a specific
-///   function. The former example can be rewritten to use that macro:
+///   Most of the time, an \update() function is a single line of code, such as
+///   setting one widget's attribute depending of an other value. Sometime, a
+///   more complex code is to be called. We would thus like to be able to set
+///   an \e update() function as a pointer to an actual named function or to an
+///   anonymous function.\n
+///   To simulate an anonymous function definition, a WIDGET_ANONYMOUS
+///   macro has been defined (see http://en.wikipedia.org/wiki/Anonymous_function#C_.28non-standard_extension.29).
+///   The code inside an anonymous function can be as complex as wanted, but
+///   for readability large code should be avoided.
+///   \n
+///   Note: Due to the way WIDGET_ANONYMOUS is implemented with some compilers
+///   (clang, especially), \b all \e update() functions have to be defined using
+///   WIDGET_ANONYMOUS, even if a simple function's pointer would usually be enough
+///   (see above example).
+///   \n
+///   The former example can, for instance be rewritten:
 ///   \code
-/// WIDGET(my_button)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, image,
-///                               (some_global_variable == some_value) ? img1 : img2);
+/// WIDGET(my_button)->update = WIDGET_ANONYMOUS(struct widget *w, {
+///                               WIDGET_BUTTON(w)->image = (some_global_variable == some_value) ? img1 : img2;
+///                                });
 ///   \endcode
 ///   \n
-///   The last parameter of the macro can be a function call, if some more complex
-///   evaluation is needed. That function needs to return a value that can be
-///   stored in the widget's attribute:
+///   To call of function returning a value that can be stored in the widget's
+///   attribute, one will write:
 ///   \code
 /// struct image *get_img() { ... }
-/// WIDGET(my_button)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, image, get_img());
+/// WIDGET(my_button)->update = WIDGET_ANONYMOUS(struct widget *w, {
+///                               WIDGET_BUTTON(w)->image = get_img();
+///                             });
 ///   \endcode
 ///
 /// \par Creating a GUI
@@ -260,7 +276,7 @@
 /// // create the invisible panel and add it to the root node
 /// panel = widget_group_create();
 /// WIDGET(panel)->enabled = FALSE;
-/// WIDGET(panel)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, Game.panel_opened);
+/// WIDGET(panel)->update = WIDGET_ANONYMOUS(struct widget *w, { w->enabled = Game.panel_opened; });
 /// ...
 /// widget_group_add(my_gui_root, WIDGET(panel));
 ///   \endcode
@@ -306,6 +322,12 @@
 #define EXTERN extern
 #else
 #define EXTERN
+#endif
+
+#ifdef __clang__
+#define WIDGET_ANONYMOUS_MARKER ^
+#else
+#define WIDGET_ANONYMOUS_MARKER *
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -369,9 +391,9 @@ struct widget {
 	///       The basic implementation provided by the base widget can be overridden
 	///       by inheriting widgets.
 	/// @{
-	void (*display) (struct widget *);                  /**< Display the widget. */
-	void (*update) (struct widget *);                   /**< Update the widget's attributes. */
-	int (*handle_event) (struct widget *, SDL_Event *);	/**< General event handler. */
+	void (*display) (struct widget *);                        /**< Display the widget. */
+	void (WIDGET_ANONYMOUS_MARKER update) (struct widget *);  /**< Update the widget's attributes. */
+	int (*handle_event) (struct widget *, SDL_Event *);	      /**< General event handler. */
 	/// @}
 
 	/// \name Private internal functions and attributes
@@ -392,86 +414,60 @@ struct widget {
 #define WIDGET(x) ((struct widget *)x)
 
 /**
- * \brief Macro used to create a widget update callback acting on a single attribute.
+ * \brief Macro used to create an anonymous function.
  *
- * The update behavior of most widgets is simply to change the value of one
- * attribute according to some game data.\n
- * This macro can be used in such a case to avoid to write a specific function.\n
+ * Currenly only used to define \e update() functions.
  * \n
  * Usage examples:\n
  * - Set the \e enabled attribute to the value of one game data
  *   \code
- * the_widget->update = WIDGET_UPDATE_FLAG_ON_DATA(widget_type, enabled, boolean_game_data);
+ * the_widget->update = WIDGET_ANONYMOUS(struct widget *w, {
+ *                          widget_type(w)->enabled = boolean_game_data;
+ *                      });
  *   \endcode
  * - Set the \e enabled attribute depending on the value of one game data
  *   \code
- * the_widget->update = WIDGET_UPDATE_FLAG_ON_DATA(widget_type, enabled,
- *                        (int_game_data >= 0.5) ? TRUE : FALSE);
+ * the_widget->update = WIDGET_ANONYMOUS(struct widget *w, {
+ *                          widget_type(w)->enabled = (int_game_data >= 0.5) ? TRUE : FALSE;
+ *                      });
  *   \endcode
  * - Set the \e enabled attribute to be the result of a function call
  *   \code
- * the_widget->update = WIDGET_UPDATE_FLAG_ON_DATA(widget_type, enabled,
- *                        compute_value(some_game_data...));
+ * the_widget->update = WIDGET_ANONYMOUS(struct widget *w, {
+ *                          widget_type(w)->enabled = compute_value(some_game_data...);
+ *                      });
  *   \endcode
- *
- * \param widget_type the type of the widget for which the callback is set.
- * \param attr        the widget attribute to be updated.
- * \param data        the external data, or statement, used to update the widget attribute.
- */
-/*
- * Implementation note.
- * The goal of the macro is to create an anonymous function and to return a
- * pointer to this function. This is done with the use of a compound statement
- * expression and a function declared inside the compound block.
- * (compound statement expression is a gcc specific extension)
- */
-#define WIDGET_UPDATE_FLAG_ON_DATA(widget_type, attr, data) \
-({ \
-  void anonymous_func(struct widget *w) \
-  { \
-    widget_type(w)->attr = data; \
-  } \
-  anonymous_func; \
-})
-
-/**
- * \brief Macro used to create a widget generic callback function.
- *
- * Some widgets call functions when they are 'activated' (for example:
- * widget_button::activate_button() or widget_text_list::process_entry()).
- * Those callback functions can be single line of code, and this macro will
- * avoid to have to write such one-liners in extension.\n
- * \n
- * Usage examples:\n
- * - Increment the value of one game data
+ * - Call a function
  *   \code
- * the_button->activate_button = WIDGET_EXECUTE(struct widget_button *wb, game_data++);
- *   \endcode
- * - Call an other function, with the widget as a parameter
- *   \code
- * the_text_list->process_entry = WIDGET_EXECUTE(struct widget_text_list *wl,
- *                                               the_function_to_call(wl);
+ * the_widget->update = WIDGET_ANONYMOUS(struct widget *w, {
+ *                          some_function(w, ...);
+ *                      });
  *   \endcode
  *
  * \param param       'signature' of the callback function
- * \param code        the code to execute
+ * \param code        the code to execute (has to be enclosed into curly brackets)
  */
 /*
  * Implementation note.
  * The goal of the macro is to create an anonymous function and to return a
- * pointer to this function. This is done with the use of a compound statement
- * expression and a function declared inside the compound block.
- * (compound statement expression is a gcc specific extension)
+ * pointer to this function.
+ * On gcc, this is done with the use of a compound statement expression and a
+ * nested function declared inside the compound block (gcc extensions).
+ * On clang, which does not implement nested functions, this is done with the
+ * use of the clang 'block' extension.
  */
-#define WIDGET_EXECUTE(param, code) \
-({ \
-  void anonymous_func(param) \
-  { \
-    code; \
-  } \
-  anonymous_func; \
-})
-
+#ifdef __clang__
+#define WIDGET_ANONYMOUS(param, code) \
+  ^void(param) \
+    code
+#else
+#define WIDGET_ANONYMOUS(param, code) \
+  ({ \
+    void anonymous_func(param) \
+      code \
+    anonymous_func; \
+  })
+#endif
 
 struct widget *widget_create(void);
 void widget_init(struct widget *);
