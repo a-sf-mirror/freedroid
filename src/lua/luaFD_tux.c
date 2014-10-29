@@ -663,23 +663,23 @@ static int _add_item(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
 
-	const char *item = luaL_checkstring(L, 2);
+	const char *item_name = luaL_checkstring(L, 2);
 	int number = luaL_optinteger(L, 3, 1);
 
 	if (number == 0) {
 		return luaL_error(L, "%s() %s", __FUNCTION__, "Tried to give item with 0 multiplicity");
 	}
 
-	struct item new_item = create_item_with_id(item, TRUE, number);
+	struct item new_item = create_item_with_id(item_name, TRUE, number);
 
 	// Either we put the new item directly into inventory or we issue a warning
 	// that there is no room and then drop the item to the floor directly under
 	// the current Tux position.  That can't fail, right?
 	char msg[1000];
 	if (!give_item(&new_item)) {
-		sprintf(msg, _("Received Item: %s (on floor)"), item);
+		sprintf(msg, _("Received Item: %s (on floor)"), item_name);
 	} else {
-		sprintf(msg, _("Received Item: %s"), item);
+		sprintf(msg, _("Received Item: %s"), item_name);
 	}
 	SetNewBigScreenMessage(msg);
 
@@ -701,9 +701,9 @@ static int _del_item_backpack(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
 
-	const char *item = luaL_checkstring(L, 2);
+	const char *item_name = luaL_checkstring(L, 2);
 	int number = luaL_optinteger(L, 3, 1);
-	DeleteInventoryItemsOfType(get_item_type_by_id(item), number);
+	DeleteInventoryItemsOfType(get_item_type_by_id(item_name), number);
 
 	return 0;
 }
@@ -724,9 +724,9 @@ static int _count_item_backpack(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
 
-	const char *item = luaL_checkstring(L, 2);
+	const char *item_name = luaL_checkstring(L, 2);
 
-	lua_pushinteger(L, CountItemtypeInInventory(get_item_type_by_id(item)));
+	lua_pushinteger(L, CountItemtypeInInventory(get_item_type_by_id(item_name)));
 
 	return 1;
 }
@@ -773,8 +773,8 @@ static int _has_item_equipped(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
 
-	const char *item = luaL_checkstring(L, 2);
-	int item_type = get_item_type_by_id(item);
+	const char *item_name = luaL_checkstring(L, 2);
+	int item_type = get_item_type_by_id(item_name);
 	if (((*self)->weapon_item.type == item_type) || ((*self)->drive_item.type == item_type) ||
 	    ((*self)->armour_item.type == item_type) || ((*self)->shield_item.type == item_type) ||
 	    ((*self)->special_item.type == item_type)) {

@@ -366,10 +366,10 @@ static int lua_event_count_item_backpack(lua_State * L)
 static int lua_event_has_item_equipped(lua_State * L)
 {
 	const char *item_id = luaL_checkstring(L, 1);
-	int item = get_item_type_by_id(item_id);
-	if ((item != -1) && ((Me.weapon_item.type == item) || (Me.drive_item.type == item)
-		|| (Me.armour_item.type == item) || (Me.shield_item.type == item)
-		|| (Me.special_item.type == item))) {
+	int item_idx = get_item_type_by_id(item_id);
+	if ((item_idx != -1) && ((Me.weapon_item.type == item_idx) || (Me.drive_item.type == item_idx)
+		|| (Me.armour_item.type == item_idx) || (Me.shield_item.type == item_idx)
+		|| (Me.special_item.type == item_idx))) {
 		lua_pushboolean(L, TRUE);
 	} else {
 		lua_pushboolean(L, FALSE);
