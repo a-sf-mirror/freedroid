@@ -811,8 +811,7 @@ static void set_signal_handlers(void)
 static void detect_available_resolutions(void)
 {
 	SDL_Rect **modes;
-	screen_resolution resolution_holder;
-	int i, j, size;
+	int size = 0;
 
 	// Get available fullscreen/hardware modes (reported by SDL)
 	modes = SDL_ListModes(NULL, SDL_FULLSCREEN|SDL_HWSURFACE);
@@ -821,16 +820,22 @@ static void detect_available_resolutions(void)
 			"SDL reports all resolutions are supported in fullscreen mode.\n"
 			"Please use -r WIDTHxHEIGHT to specify any one you like.\n"
 			"Defaulting to a sane one for now", NO_REPORT);
-			screen_resolutions[0] =	(screen_resolution) {DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, "", TRUE};
-			i = 1;
 	} else {
 		// Add resolutions to the screen_resolutions array
-		for (i = 0; i < MAX_RESOLUTIONS && modes[i]; ++i)
-			screen_resolutions[i] = (screen_resolution) {modes[i]->w, modes[i]->h, "", TRUE};
+		for (size = 0; size < MAX_RESOLUTIONS && modes[size]; ++size)
+			screen_resolutions[size] = (screen_resolution) {modes[size]->w, modes[size]->h, "", TRUE};
+	}
+
+	if (size == 0) {
+		screen_resolutions[0] =	(screen_resolution) {DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, "", TRUE};
+		screen_resolutions[1] = (screen_resolution) {-1, -1, "", FALSE};
+		return;
 	}
 
 	// Sort
-	size = i;
+	int i, j;
+	screen_resolution resolution_holder;
+
 	for (i = 0; i < size; i++) {
 		for (j = 0; j < size - 1; j++) {
 			// Sort in descending order of xres, then yres
@@ -845,7 +850,7 @@ static void detect_available_resolutions(void)
 	}
 
 	// Add our terminator on the end, just in case
-	screen_resolutions[i - 1] = (screen_resolution) {-1, -1, "", FALSE};
+	screen_resolutions[size] = (screen_resolution) {-1, -1, "", FALSE};
 }
 
 /* -----------------------------------------------------------------
