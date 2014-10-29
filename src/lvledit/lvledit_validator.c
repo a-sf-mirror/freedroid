@@ -428,7 +428,7 @@ struct chest_excpt_data {
 
 static void *lvlval_chest_parse_excpt(char *str)
 {
-	struct chest_excpt_data *data = (struct chest_excpt_data *)malloc(sizeof(struct chest_excpt_data));
+	struct chest_excpt_data *data = (struct chest_excpt_data *)MyMalloc(sizeof(struct chest_excpt_data));
 
 	ReadValueFromString(str, "Idx=", "%d", &(data->obj_id), NULL);
 	ReadValueFromString(str, "X=", "%f", &(data->obj_pos.x), NULL);
@@ -531,7 +531,7 @@ static void *lvlval_waypoint_parse_excpt(char *str)
 		return NULL;
 	}
 
-	struct waypoint_excpt_data *data = (struct waypoint_excpt_data *)malloc(sizeof(struct waypoint_excpt_data));
+	struct waypoint_excpt_data *data = (struct waypoint_excpt_data *)MyMalloc(sizeof(struct waypoint_excpt_data));
 
 	data->subtest = validator_type[1];
 	free(validator_type);
@@ -915,7 +915,7 @@ struct neighborhood_excpt_data {
 
 static void *lvlval_neighborhood_parse_excpt(char *str)
 {
-	struct neighborhood_excpt_data *data = (struct neighborhood_excpt_data *)malloc(sizeof(struct neighborhood_excpt_data));
+	struct neighborhood_excpt_data *data = (struct neighborhood_excpt_data *)MyMalloc(sizeof(struct neighborhood_excpt_data));
 
 	char *direction_name = ReadAndMallocStringFromData(str, "Interface:", " ");
 	if (!direction_name) {
@@ -1126,7 +1126,7 @@ static void *lvlval_obstacles_parse_excpt(char *str)
 		return NULL;
 	}
 
-	struct obstacle_excpt_data *data = (struct obstacle_excpt_data *)malloc(sizeof(struct obstacle_excpt_data));
+	struct obstacle_excpt_data *data = (struct obstacle_excpt_data *)MyMalloc(sizeof(struct obstacle_excpt_data));
 
 	data->subtest = validator_type[1];
 	free(validator_type);
@@ -1290,7 +1290,7 @@ static void *lvlval_extensions_parse_excpt(char *str)
 		return NULL;
 	}
 
-	struct extension_excpt_data *data = (struct extension_excpt_data *)malloc(sizeof(struct extension_excpt_data));
+	struct extension_excpt_data *data = (struct extension_excpt_data *)MyMalloc(sizeof(struct extension_excpt_data));
 
 	data->subtest = validator_type[1];
 	free(validator_type);
