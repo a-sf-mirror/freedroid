@@ -525,7 +525,7 @@ void update_light_list()
 	int obs_index;
 	int map_x, map_y;	
 	obstacle *emitter;
-	int blast;
+	int blast_idx;
 	gps me_vpos;
 
 	dynarray_init(&light_sources, 10, sizeof(struct light_source));
@@ -544,21 +544,21 @@ void update_light_list()
 	// Now we can fill in any explosions, that are currently going on.
 	// These will typically emanate a lot of light.
 	//
-	for (blast = 0; blast < MAXBLASTS; blast++) {
-		if (!(AllBlasts[blast].type == DROIDBLAST))
+	for (blast_idx = 0; blast_idx < MAXBLASTS; blast_idx++) {
+		if (!(AllBlasts[blast_idx].type == DROIDBLAST))
 			continue;
 
 		// We add some light strength according to the phase of the blast
 		//
-		int light_strength = 10 + AllBlasts[blast].phase / 2;
+		int light_strength = 10 + AllBlasts[blast_idx].phase / 2;
 		if (light_strength < 0) continue;
 
 		gps vpos;
-		update_virtual_position(&vpos, &AllBlasts[blast].pos, Me.pos.z);
+		update_virtual_position(&vpos, &AllBlasts[blast_idx].pos, Me.pos.z);
 		if (vpos.x == -1)
 			continue;
 
-		add_light_source(AllBlasts[blast].pos, vpos, light_strength);
+		add_light_source(AllBlasts[blast_idx].pos, vpos, light_strength);
 	}
 
 	// Now we can fill in the remaining light sources of this level.
