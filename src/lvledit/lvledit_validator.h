@@ -75,7 +75,7 @@ struct level_validator {
 	char initial;
 	struct list_head excpt_list;
 	void (*execute) (struct level_validator * this, struct lvlval_ctx * validator_ctx);
-	void *(*parse_excpt) (char *string);
+	void *(*parse_excpt) (char *str);
 	int (*cmp) (void *opaque_data1, void *opaque_data2);
 };
 

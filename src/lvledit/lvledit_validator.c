@@ -43,23 +43,23 @@ static char *line = "-----------------------------------------------------------
 static char *sepline = "+------------------------------";
 
 static void lvlval_chest_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
-static void *lvlval_chest_parse_excpt(char *string);
+static void *lvlval_chest_parse_excpt(char *str);
 static int lvlval_chest_cmp_data(void *opaque_data1, void *opaque_data2);
 
 static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
-static void *lvlval_waypoint_parse_excpt(char *string);
+static void *lvlval_waypoint_parse_excpt(char *str);
 static int lvlval_waypoint_cmp_data(void *opaque_data1, void *opaque_data2);
 
 static void lvlval_neighborhood_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
-static void *lvlval_neighborhood_parse_excpt(char *string);
+static void *lvlval_neighborhood_parse_excpt(char *str);
 static int lvlval_neighborhood_cmp_data(void *opaque_data1, void *opaque_data2);
 
 static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
-static void *lvlval_obstacles_parse_excpt(char *string);
+static void *lvlval_obstacles_parse_excpt(char *str);
 static int lvlval_obstacles_cmp_data(void *opaque_data1, void *opaque_data2);
 
 static void lvlval_extensions_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
-static void *lvlval_extensions_parse_excpt(char *string);
+static void *lvlval_extensions_parse_excpt(char *str);
 static int lvlval_extensions_cmp_data(void *opaque_data1, void *opaque_data2);
 
 static void lvlval_map_labels_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
@@ -426,14 +426,14 @@ struct chest_excpt_data {
  * Parse "chest" exception
  */
 
-static void *lvlval_chest_parse_excpt(char *string)
+static void *lvlval_chest_parse_excpt(char *str)
 {
 	struct chest_excpt_data *data = (struct chest_excpt_data *)malloc(sizeof(struct chest_excpt_data));
 
-	ReadValueFromString(string, "Idx=", "%d", &(data->obj_id), NULL);
-	ReadValueFromString(string, "X=", "%f", &(data->obj_pos.x), NULL);
-	ReadValueFromString(string, "Y=", "%f", &(data->obj_pos.y), NULL);
-	ReadValueFromString(string, "L=", "%d", &(data->obj_pos.z), NULL);
+	ReadValueFromString(str, "Idx=", "%d", &(data->obj_id), NULL);
+	ReadValueFromString(str, "X=", "%f", &(data->obj_pos.x), NULL);
+	ReadValueFromString(str, "Y=", "%f", &(data->obj_pos.y), NULL);
+	ReadValueFromString(str, "L=", "%d", &(data->obj_pos.z), NULL);
 
 	return (data);
 }
@@ -523,9 +523,9 @@ struct waypoint_excpt_data {
  * Parse a 'waypoint' exception
  */
 
-static void *lvlval_waypoint_parse_excpt(char *string)
+static void *lvlval_waypoint_parse_excpt(char *str)
 {
-	char *validator_type = ReadAndMallocStringFromData(string, "Type=\"", "\"");
+	char *validator_type = ReadAndMallocStringFromData(str, "Type=\"", "\"");
 	if (!validator_type || strlen(validator_type) != 2) {
 		error_message(__FUNCTION__, "The Subtest name of an exception is not valid!", PLEASE_INFORM | IS_FATAL);
 		return NULL;
@@ -540,9 +540,9 @@ static void *lvlval_waypoint_parse_excpt(char *string)
 	case 'P':
 	case 'O':
 	case 'S':
-		ReadValueFromString(string, "X=", "%f", &(data->wp_pos[0].x), NULL);
-		ReadValueFromString(string, "Y=", "%f", &(data->wp_pos[0].y), NULL);
-		ReadValueFromString(string, "L=", "%d", &(data->wp_pos[0].z), NULL);
+		ReadValueFromString(str, "X=", "%f", &(data->wp_pos[0].x), NULL);
+		ReadValueFromString(str, "Y=", "%f", &(data->wp_pos[0].y), NULL);
+		ReadValueFromString(str, "L=", "%d", &(data->wp_pos[0].z), NULL);
 		data->wp_pos[1].x = data->wp_pos[1].y = 0.0;
 		data->wp_pos[1].z = 0;
 		break;
@@ -550,12 +550,12 @@ static void *lvlval_waypoint_parse_excpt(char *string)
 	case 'D':
 	case 'W':
 	case 'Q':
-		ReadValueFromString(string, "X1=", "%f", &(data->wp_pos[0].x), NULL);
-		ReadValueFromString(string, "Y1=", "%f", &(data->wp_pos[0].y), NULL);
-		ReadValueFromString(string, "L1=", "%d", &(data->wp_pos[0].z), NULL);
-		ReadValueFromString(string, "X2=", "%f", &(data->wp_pos[1].x), NULL);
-		ReadValueFromString(string, "Y2=", "%f", &(data->wp_pos[1].y), NULL);
-		ReadValueFromString(string, "L2=", "%d", &(data->wp_pos[1].z), NULL);
+		ReadValueFromString(str, "X1=", "%f", &(data->wp_pos[0].x), NULL);
+		ReadValueFromString(str, "Y1=", "%f", &(data->wp_pos[0].y), NULL);
+		ReadValueFromString(str, "L1=", "%d", &(data->wp_pos[0].z), NULL);
+		ReadValueFromString(str, "X2=", "%f", &(data->wp_pos[1].x), NULL);
+		ReadValueFromString(str, "Y2=", "%f", &(data->wp_pos[1].y), NULL);
+		ReadValueFromString(str, "L2=", "%d", &(data->wp_pos[1].z), NULL);
 		break;
 
 	default:
@@ -913,11 +913,11 @@ struct neighborhood_excpt_data {
  * Parse a 'neighborhood' exception
  */
 
-static void *lvlval_neighborhood_parse_excpt(char *string)
+static void *lvlval_neighborhood_parse_excpt(char *str)
 {
 	struct neighborhood_excpt_data *data = (struct neighborhood_excpt_data *)malloc(sizeof(struct neighborhood_excpt_data));
 
-	char *direction_name = ReadAndMallocStringFromData(string, "Interface:", " ");
+	char *direction_name = ReadAndMallocStringFromData(str, "Interface:", " ");
 	if (!direction_name) {
 		error_message(__FUNCTION__, "The Direction of an exception was not found!", PLEASE_INFORM | IS_FATAL);
 		free(data);
@@ -926,8 +926,8 @@ static void *lvlval_neighborhood_parse_excpt(char *string)
 	data->jumptarget = direction_name[0];
 	free(direction_name);
 
-	ReadValueFromString(string, "of Level:", "%d", &(data->from_level), NULL);
-	ReadValueFromString(string, "to Level:", "%d", &(data->to_level), NULL);
+	ReadValueFromString(str, "of Level:", "%d", &(data->from_level), NULL);
+	ReadValueFromString(str, "to Level:", "%d", &(data->to_level), NULL);
 
 	return (data);
 }
@@ -1118,9 +1118,9 @@ struct obstacle_excpt_data {
 	float border;
 };
 
-static void *lvlval_obstacles_parse_excpt(char *string)
+static void *lvlval_obstacles_parse_excpt(char *str)
 {
-	char *validator_type = ReadAndMallocStringFromData(string, "Type=\"", "\"");
+	char *validator_type = ReadAndMallocStringFromData(str, "Type=\"", "\"");
 	if (!validator_type || strlen(validator_type) != 2) {
 		error_message(__FUNCTION__, "The Subtest name of an exception is not valid!", PLEASE_INFORM | IS_FATAL);
 		return NULL;
@@ -1136,11 +1136,11 @@ static void *lvlval_obstacles_parse_excpt(char *string)
 	case 'S':
 	case 'W':
 	case 'E':
-		ReadValueFromString(string, "X=", "%f", &(data->obs_pos.x), NULL);
-		ReadValueFromString(string, "Y=", "%f", &(data->obs_pos.y), NULL);
-		ReadValueFromString(string, "L=", "%d", &(data->obs_pos.z), NULL);
-		ReadValueFromString(string, "T=", "%d", &(data->type), NULL);
-		ReadValueFromString(string, "border=", "%f", &(data->border), NULL);
+		ReadValueFromString(str, "X=", "%f", &(data->obs_pos.x), NULL);
+		ReadValueFromString(str, "Y=", "%f", &(data->obs_pos.y), NULL);
+		ReadValueFromString(str, "L=", "%d", &(data->obs_pos.z), NULL);
+		ReadValueFromString(str, "T=", "%d", &(data->type), NULL);
+		ReadValueFromString(str, "border=", "%f", &(data->border), NULL);
 		break;
 
 	default:
@@ -1282,9 +1282,9 @@ struct extension_excpt_data {
 	int ext_type;
 };
 
-static void *lvlval_extensions_parse_excpt(char *string)
+static void *lvlval_extensions_parse_excpt(char *str)
 {
-	char *validator_type = ReadAndMallocStringFromData(string, "Type=\"", "\"");
+	char *validator_type = ReadAndMallocStringFromData(str, "Type=\"", "\"");
 	if (!validator_type || strlen(validator_type) != 2) {
 		error_message(__FUNCTION__, "The Subtest name of an exception is not valid!", PLEASE_INFORM | IS_FATAL);
 		return NULL;
@@ -1297,28 +1297,28 @@ static void *lvlval_extensions_parse_excpt(char *string)
 
 	switch (data->subtest) {
 	case 'S':
-		ReadValueFromString(string, "X=", "%f", &(data->obs_pos.x), NULL);
-		ReadValueFromString(string, "Y=", "%f", &(data->obs_pos.y), NULL);
-		ReadValueFromString(string, "L=", "%d", &(data->obs_pos.z), NULL);
-		ReadValueFromString(string, "ObsIdx=", "%d", &(data->obs_index), NULL);
-		ReadValueFromString(string, "ObsType=", "%d", &(data->obs_type), NULL);
+		ReadValueFromString(str, "X=", "%f", &(data->obs_pos.x), NULL);
+		ReadValueFromString(str, "Y=", "%f", &(data->obs_pos.y), NULL);
+		ReadValueFromString(str, "L=", "%d", &(data->obs_pos.z), NULL);
+		ReadValueFromString(str, "ObsIdx=", "%d", &(data->obs_index), NULL);
+		ReadValueFromString(str, "ObsType=", "%d", &(data->obs_type), NULL);
 		data->ext_type = -1;
 		break;
 	case 'V':
-		ReadValueFromString(string, "X=", "%f", &(data->obs_pos.x), NULL);
-		ReadValueFromString(string, "Y=", "%f", &(data->obs_pos.y), NULL);
-		ReadValueFromString(string, "L=", "%d", &(data->obs_pos.z), NULL);
-		ReadValueFromString(string, "ObsIdx=", "%d", &(data->obs_index), NULL);
-		ReadValueFromString(string, "ObsType=", "%d", &(data->obs_type), NULL);
-		ReadValueFromString(string, "ExtType=", "%d", &(data->ext_type), NULL);
+		ReadValueFromString(str, "X=", "%f", &(data->obs_pos.x), NULL);
+		ReadValueFromString(str, "Y=", "%f", &(data->obs_pos.y), NULL);
+		ReadValueFromString(str, "L=", "%d", &(data->obs_pos.z), NULL);
+		ReadValueFromString(str, "ObsIdx=", "%d", &(data->obs_index), NULL);
+		ReadValueFromString(str, "ObsType=", "%d", &(data->obs_type), NULL);
+		ReadValueFromString(str, "ExtType=", "%d", &(data->ext_type), NULL);
 		break;
 	case 'T':
-		ReadValueFromString(string, "X=", "%f", &(data->obs_pos.x), NULL);
-		ReadValueFromString(string, "Y=", "%f", &(data->obs_pos.y), NULL);
-		ReadValueFromString(string, "L=", "%d", &(data->obs_pos.z), NULL);
-		ReadValueFromString(string, "ObsIdx=", "%d", &(data->obs_index), NULL);
-		ReadValueFromString(string, "ObsType=", "%d", &(data->obs_type), NULL);
-		ReadValueFromString(string, "ExtType=", "%d", &(data->ext_type), NULL);
+		ReadValueFromString(str, "X=", "%f", &(data->obs_pos.x), NULL);
+		ReadValueFromString(str, "Y=", "%f", &(data->obs_pos.y), NULL);
+		ReadValueFromString(str, "L=", "%d", &(data->obs_pos.z), NULL);
+		ReadValueFromString(str, "ObsIdx=", "%d", &(data->obs_index), NULL);
+		ReadValueFromString(str, "ObsType=", "%d", &(data->obs_type), NULL);
+		ReadValueFromString(str, "ExtType=", "%d", &(data->ext_type), NULL);
 		break;
 	default:
 		error_message(__FUNCTION__, "The Subtest name of an exception is invalid!", PLEASE_INFORM | IS_FATAL);
