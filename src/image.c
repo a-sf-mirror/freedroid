@@ -80,7 +80,7 @@ static void gl_emit_quads(void)
 		glColor4fv(requested_color);
 
 		glVertexPointer(2, GL_FLOAT, 4*sizeof(float), vtx->arr);
-		glTexCoordPointer(2, GL_FLOAT, 4*sizeof(float), vtx->arr+8);
+		glTexCoordPointer(2, GL_FLOAT, 4*sizeof(float), (void*)((float*)(vtx->arr)+2));
 		glDrawArrays(GL_QUADS, 0, vtx->size * 4);
 
 #if DEBUG_QUAD_BORDER
