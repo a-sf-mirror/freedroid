@@ -1019,7 +1019,7 @@ static int get_chest_contents(level *l, obstacle *o, item *items[MAX_ITEMS_IN_IN
 {
 	struct dynarray *itemlist = get_obstacle_extension(l, o, OBSTACLE_EXTENSION_CHEST_ITEMS);
 
-	memset(items, 0, MAX_ITEMS_IN_INVENTORY);
+	memset(items, 0, MAX_ITEMS_IN_INVENTORY*sizeof(item *));
 
 	if (!itemlist) {
 		return 0;
@@ -1027,10 +1027,8 @@ static int get_chest_contents(level *l, obstacle *o, item *items[MAX_ITEMS_IN_IN
 
 	int i;
 	int curitem = 0;
-	for (i = 0; i < itemlist->size; i++) {
+	for (i = 0; i < itemlist->size && i < MAX_ITEMS_IN_INVENTORY; i++) {
 		items[curitem++] = &((item *)itemlist->arr)[i];
-		if (curitem == MAX_ITEMS_IN_INVENTORY - 1)
-			break;
 	}
 
 	return curitem;
