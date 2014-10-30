@@ -15,66 +15,25 @@ AC_PROG_CC
 AC_PROG_RANLIB
 AM_PROG_CC_C_O
 AC_PROG_MAKE_SET
+XIPH_C_COMPILER_IS_CLANG
 AM_PATH_PYTHON([2.6])
 AM_GNU_GETTEXT_VERSION([0.18])
 AM_GNU_GETTEXT([external])
 
 AC_HEADER_STDC
 
-dnl We need anonymous lambda-like functions.
-dnl With GCC, it needs -fnested-functions while with CLANG it needs -fblocks
-AC_MSG_CHECKING([if compiling with clang])
-AC_COMPILE_IFELSE(
-  [
-    AC_LANG_PROGRAM([], [[
-#ifndef __clang__
-       not clang
-#endif
-    ]])
-  ],
-  [
-    CLANG=yes
-  ],
-  [
-    CLANG=no
-  ]
-)
-AC_MSG_RESULT([$CLANG])
+dnl Commandline options
 
-if test "x$GCC" = xyes -a "x$CLANG" = xno ; then
-  AC_MSG_CHECKING(for -fnested-functions)
-  AC_COMPILE_IFELSE(
-    [
-      AC_LANG_PROGRAM([], [void foo(void) {}; foo();])
-    ],
-    [
-      AC_MSG_RESULT(no)
-      []
-    ],
-    [
-      AC_MSG_RESULT(required)
-      [CFLAGS="$CFLAGS -fnested-functions"]
-    ]
-  )
-fi
-
-if test "x$CLANG" = xyes ; then
-  AC_MSG_CHECKING(for -fblocks)
-  AC_COMPILE_IFELSE(
-    [
-      AC_LANG_PROGRAM([], [void (^foo)(void) = ^(void) {}; foo();])
-    ],
-    [
-      AC_MSG_RESULT(no)
-      []
-    ],
-    [
-      AC_MSG_RESULT(required)
-      [CFLAGS="$CFLAGS -fblocks"]
-      [LIBS="$LIBS -lBlocksRuntime"]
-    ]
-  )
-fi
+AC_ARG_ENABLE(opengl,            [  --disable-opengl            Do not build the OpenGL support (not recommended!) [[default=auto]]], want_gl="$enableval", want_gl=yes)
+AC_ARG_ENABLE(vorbis,            [  --disable-vorbis            Do not include support for OGG/Vorbis audio files (no music) [[default=auto]]], want_vorbis="$enableval", want_vorbis=yes)
+AC_ARG_ENABLE(fastmath,          [  --enable-fastmath           Compile with -ffast-math [[default=yes]]], fast_math="$enableval", fast_math=yes)
+AC_ARG_ENABLE(debug,             [  --enable-debug              Compile with debugging support [[default=no]]], use_debug="$enableval", use_debug=no)
+AC_ARG_ENABLE(native-arch,       [  --enable-native-arch        Compile with -march=native and -mtune=native [[default=no]]], arch_native="$enableval",arch_native=no)
+AC_ARG_ENABLE(sanitize-address,  [  --enable-sanitize-address   Compile with -fsanitize=address [[default=no]]], sanitize_address="$enableval",sanitize_address=no)
+AC_ARG_WITH(extra-warnings,      [  --with-extra-warnings       Generate more warning messages when compiling [[default=no]]], more_warn="$withval", more_warn=no)
+AC_ARG_ENABLE(backtrace,         [  --disable-backtrace         Disable the use of backtrace() to generate nice bug reports [[default=enabled]]], want_backtrace="$enableval", want_backtrace=yes)
+AC_ARG_WITH(embedded-lua,        [  --with-embedded-lua         Uses the Lua libraries bundled with FreedroidRPG instead of system libraries [[default=system lua]]], embedded_lua="$withval", embedded_lua=no)
+AC_ARG_ENABLE(rtprof,            [  --enable-rtprof             Enable the integration of the ingame real-time profiler [[default=no]]], want_rtprof="$enableval", want_rtprof=no)
 
 # Checks for libraries.
 AC_CHECK_LIB([m], [sin],, 
@@ -117,55 +76,7 @@ case "$target" in
 	;;
 esac
 
-dnl Commandline options
-
-AC_ARG_ENABLE(opengl,            [  --disable-opengl            Do not build the OpenGL support (not recommended!) [[default=auto]]], want_gl="$enableval", want_gl=yes)
-AC_ARG_ENABLE(vorbis,            [  --disable-vorbis            Do not include support for OGG/Vorbis audio files (no music) [[default=auto]]], want_vorbis="$enableval", want_vorbis=yes)
-AC_ARG_ENABLE(fastmath,          [  --enable-fastmath           Compile with -ffast-math [[default=yes]]], fast_math="$enableval", fast_math=yes)
-AC_ARG_ENABLE(debug,             [  --enable-debug              Compile with debugging support [[default=no]]], use_debug="$enableval", use_debug=no)
-AC_ARG_ENABLE(native-arch,       [  --enable-native-arch        Compile with -march=native and -mtune=native [[default=no]]], arch_native="$enableval",arch_native=no)
-AC_ARG_ENABLE(sanitize-address,  [  --enable-sanitize-address   Compile with -fsanitize=address [[default=no]]], sanitize_address="$enableval",sanitize_address=no)
-AC_ARG_WITH(extra-warnings,      [  --with-extra-warnings       Generate more warning messages when compiling [[default=no]]], more_warn="$withval", more_warn=no)
-AC_ARG_ENABLE(backtrace,         [  --disable-backtrace         Disable the use of backtrace() to generate nice bug reports [[default=enabled]]], want_backtrace="$enableval", want_backtrace=yes)
-AC_ARG_WITH(embedded-lua,        [  --with-embedded-lua         Uses the Lua libraries bundled with FreedroidRPG instead of system libraries [[default=system lua]]], embedded_lua="$withval", embedded_lua=no)
-AC_ARG_ENABLE(rtprof,            [  --enable-rtprof             Enable the integration of the ingame real-time profiler [[default=no]]], want_rtprof="$enableval", want_rtprof=no)
-
-if test x$arch_native = xyes; then
-	CFLAGS="$CFLAGS -O3 -march=native -mtune=native"
-fi
-
-if test x$sanitize_address = xyes; then
-	AC_MSG_NOTICE([Building with -fsanitize=address -fno-omit-frame-pointer. Also using embedded Lua!])
-	embedded_lua=yes;
-	CFLAGS="$CFLAGS -fsanitize=address -fno-omit-frame-pointer"
-fi
-
-if test x$use_debug = xyes; then
-	CFLAGS="$CFLAGS -g3 -ggdb -Og"
-fi
-
-if test x$more_warn = xyes; then
-	CFLAGS="$CFLAGS -Wextra -Wstrict-prototypes -Wshadow -Wpointer-arith -Wcast-align -Wnested-externs -Wunreachable-code"
-fi
-
-if test x$fast_math = xyes; then
-	CFLAGS="$CFLAGS -ffast-math"
-fi
-
-if test x$embedded_lua = xno; then
-	KYUA_LUA()
-	if test x$lua_found = xno; then
-		AC_MSG_NOTICE([No system-wide Lua library found! Using embedded Lua instead])
-		embedded_lua=yes;
-	else
-		CFLAGS="$CFLAGS $LUA_CFLAGS"
-		LIBS="$LIBS $LUA_LIBS"
-	fi
-fi
-
-dnl Check for SDL
 AC_MSG_NOTICE([[Checking for compulsory SDL libraries:]])
-
 SDL_VERSION=1.2.3
 AM_PATH_SDL($SDL_VERSION,
             :,
@@ -305,6 +216,63 @@ AC_CHECK_FUNCS([alarm getcwd gettimeofday memset sqrt strstr strtok alphasort sc
 
 if test x$want_backtrace = xyes; then
    AC_CHECK_FUNCS([backtrace])
+fi
+
+dnl Set build flags accordingly with asked options
+
+if test x$arch_native = xyes; then
+	CFLAGS="$CFLAGS -O3 -march=native -mtune=native"
+fi
+
+if test x$sanitize_address = xyes; then
+	AC_MSG_NOTICE([Building with -fsanitize=address -fno-omit-frame-pointer. Also using embedded Lua!])
+	embedded_lua=yes;
+	CFLAGS="$CFLAGS -fsanitize=address -fno-omit-frame-pointer"
+fi
+
+if test x$use_debug = xyes; then
+	CFLAGS="$CFLAGS -g3 -ggdb -Og"
+fi
+
+if test x$more_warn = xyes; then
+	CFLAGS="$CFLAGS -Wextra -Wstrict-prototypes -Wshadow -Wpointer-arith -Wcast-align -Wnested-externs -Wunreachable-code"
+fi
+
+if test x$fast_math = xyes; then
+	CFLAGS="$CFLAGS -ffast-math"
+fi
+
+if test x$embedded_lua = xno; then
+	KYUA_LUA()
+	if test x$lua_found = xno; then
+		AC_MSG_NOTICE([No system-wide Lua library found! Using embedded Lua instead])
+		embedded_lua=yes;
+	else
+		CFLAGS="$CFLAGS $LUA_CFLAGS"
+		LIBS="$LIBS $LUA_LIBS"
+	fi
+fi
+
+dnl We need anonymous lambda-like functions.
+dnl With GCC, it needs -fnested-functions while with CLANG it needs -fblocks
+AM_CONDITIONAL(HAVE_CBLOCKS, false)
+if test "x$GCC" = xyes -a "x${xiph_cv_c_compiler_clang}" = xno ; then
+  AC_MSG_CHECKING(for -fnested-functions)
+  AC_COMPILE_IFELSE(
+    [
+      AC_LANG_PROGRAM([], [void foo(void) {}; foo();])
+    ],
+    [
+      AC_MSG_RESULT(no)
+      []
+    ],
+    [
+      AC_MSG_RESULT(required)
+      [CFLAGS="$CFLAGS -fnested-functions"]
+    ]
+  )
+elif test "x${xiph_cv_c_compiler_clang}" = xyes ; then
+  DISPATCH_C_BLOCKS
 fi
 
 dnl send a signal to automake if we're compiling for win32
