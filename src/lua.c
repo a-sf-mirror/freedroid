@@ -1614,13 +1614,13 @@ static void pretty_print_lua_error(lua_State* L, const char* error_msg, const ch
 
 	// Break up lua code by newlines then insert line numbers & error notification.
 	// Note: strtok() can not be used to split display_code, because a sequence
-	// of two or more contiguous delimiter bytes in the parsed string is considered
-	// to be a single delimiter.
+	// of two or more contiguous delimiter bytes ('\n' in our case) in the parsed
+	// string is considered to be a single delimiter. So, we would miss all
+	// blank lines.
 	char *display_code = strdup(code);
 	char *ptr = display_code;
 
 	for (;;) {
-		int done = FALSE;
 		char *line = ptr;
 
 		if (*line == '\0')
@@ -1629,8 +1629,6 @@ static void pretty_print_lua_error(lua_State* L, const char* error_msg, const ch
 		ptr = strchr(line, '\n');
 		if (ptr)
 			*ptr = '\0';
-		else
-			done = TRUE;
 
 		if (err_line != cur_line) {
 			autostr_append(erronous_code, "%d  %s\n", cur_line, line);
@@ -1640,9 +1638,12 @@ static void pretty_print_lua_error(lua_State* L, const char* error_msg, const ch
 			autostr_append(erronous_code, ">%d %s\n", cur_line, line);
 		}
 
-		if (done)
+		if (!ptr) {
+			// We just inserted the last line
 			break;
+		}
 
+		// Prepare for next line output
 		*ptr = '\n';
 		ptr++;
 		cur_line++;
