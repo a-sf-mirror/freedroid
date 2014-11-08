@@ -85,30 +85,30 @@ static int set_generic_wall(int x, int y, int wall, int theme)
 	// A value '1' of 'processed' means that data was processed, otherwise
 	// the caller should process them itself.
 	int processed = 1;
-	int obstacle;
+	int obs_type;
 	int room = mapgen_get_room(x, y);
 	int period = room != -1 ? rooms[room].period : 0;
 	if (wall & WALL_PART) {
 		if (wall & WALL_N) {
-			obstacle = theme_data[theme].wall_n;
+			obs_type = theme_data[theme].wall_n;
 			if (period && !(x % period))
-				obstacle = theme_data[theme].window_wall_h;
-			mapgen_add_obstacle(x + 0.5, y, obstacle);
+				obs_type = theme_data[theme].window_wall_h;
+			mapgen_add_obstacle(x + 0.5, y, obs_type);
 		} else if (wall & WALL_S) {
-			obstacle = theme_data[theme].wall_n;
+			obs_type = theme_data[theme].wall_n;
 			if (period && !(x % period))
-				obstacle = theme_data[theme].window_wall_h;
-			mapgen_add_obstacle(x + 0.5, y + 1, obstacle);
+				obs_type = theme_data[theme].window_wall_h;
+			mapgen_add_obstacle(x + 0.5, y + 1, obs_type);
 		} else if (wall & WALL_W) {
-			obstacle = theme_data[theme].wall_w;
+			obs_type = theme_data[theme].wall_w;
 			if (period && !(y % period))
-				obstacle = theme_data[theme].window_wall_v;
-			mapgen_add_obstacle(x, y + 0.5, obstacle);
+				obs_type = theme_data[theme].window_wall_v;
+			mapgen_add_obstacle(x, y + 0.5, obs_type);
 		} else if (wall & WALL_E) {
-			obstacle = theme_data[theme].wall_w;
+			obs_type = theme_data[theme].wall_w;
 			if (period && !(y % period))
-				obstacle = theme_data[theme].window_wall_v;
-			mapgen_add_obstacle(x + 1, y + 0.5, obstacle);
+				obs_type = theme_data[theme].window_wall_v;
+			mapgen_add_obstacle(x + 1, y + 0.5, obs_type);
 		} else {
 			processed = 0;
 		}

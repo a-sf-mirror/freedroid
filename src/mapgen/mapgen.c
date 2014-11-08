@@ -492,7 +492,7 @@ static void add_teleport(int telnum, int x, int y, int tpair)
 
 	char *warp, *fromwarp;
 	char tmp[500];
-	int obstacle, helper;
+	int obs_type, helper;
 
 	sprintf(tmp, "%dtoX%d", target_level->levelnum, telnum);
 	warp = strdup(tmp);
@@ -507,11 +507,11 @@ static void add_teleport(int telnum, int x, int y, int tpair)
 	// That 0.5 translation is added to the other obstacles around the labels
 	// to have a coherent position.
 
-	obstacle = telnum ? teleport_pairs[tpair].exit : teleport_pairs[tpair].enter;
-	mapgen_add_obstacle(x + 0.5, y + 0.5, obstacle);
+	obs_type = telnum ? teleport_pairs[tpair].exit : teleport_pairs[tpair].enter;
+	mapgen_add_obstacle(x + 0.5, y + 0.5, obs_type);
 
 	// Decorate room with teleport if the obstacle is the cloud
-	if (obstacle == ISO_TELEPORTER_1) {
+	if (obs_type == ISO_TELEPORTER_1) {
 		helper = MyRandom(1);
 		mapgen_add_obstacle(x + 1 + 0.5, y - 1 + 0.5, helpers[helper][0]);
 		mapgen_add_obstacle(x - 1 + 0.5, y - 1 + 0.5, helpers[helper][1]);
