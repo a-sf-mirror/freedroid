@@ -1022,7 +1022,6 @@ void probe_graph1D_display(struct probe *probe_base, int x, int y)
 	probe_display_htribargraph(x, y, bar_width,  bar_size,
 	                           probe->stats.min_value, probe_accum_get_mean(&probe->accum), probe->stats.max_value,
 	                           probe->stats.scale, probe->divider);
-	y += bar_size;
 
 	// Prepare the probe for the next frame's report
 	probe_base->triggered = FALSE;
