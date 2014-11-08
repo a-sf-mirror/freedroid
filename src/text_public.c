@@ -871,7 +871,10 @@ int deflate_to_stream(unsigned char *source_buffer, int size, FILE *dest)
 	do {
 		strm.avail_out = CHUNK;
 		strm.next_out = out;
-		ret = deflate(&strm, Z_FINISH);    /* no bad return value */
+		ret = deflate(&strm, Z_FINISH);
+		if (ret == Z_STREAM_ERROR) {
+			error_message(__FUNCTION__, "Stream error while deflating a buffer", IS_FATAL | PLEASE_INFORM);
+		}
 		have = CHUNK - strm.avail_out;
 		if (fwrite(out, 1, have, dest) != have || ferror(dest)) {
 			(void)deflateEnd(&strm);
