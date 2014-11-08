@@ -47,7 +47,7 @@ static void new_level(int w, int h)
 		}
 	}
 
-	rooms = malloc(100 * sizeof(struct roominfo));
+	rooms = MyMalloc(100 * sizeof(struct roominfo));
 	max_rooms = 100;
 	total_rooms = 0;
 }
@@ -567,8 +567,14 @@ int mapgen_add_room(int x, int y, int w, int h)
 	int newid = total_rooms;
 
 	if (total_rooms == max_rooms) {
-		max_rooms++;
-		rooms = realloc(rooms, max_rooms * sizeof(struct roominfo));
+		// Add 10 more slots
+		max_rooms += 10;
+		struct roominfo *buffer = realloc(rooms, max_rooms * sizeof(struct roominfo));
+		if (!buffer) {
+			error_message(__FUNCTION__, "Not enough memory to reallocate the 'rooms' datastruct (requested size: %lu).", IS_FATAL, max_rooms * sizeof(struct roominfo));
+			return -1;
+		}
+		rooms = buffer;
 	}
 
 	total_rooms++;
@@ -580,7 +586,7 @@ int mapgen_add_room(int x, int y, int w, int h)
 	rooms[newid].h = h;
 	rooms[newid].num_neighbors = 0;
 	rooms[newid].max_neighbors = 8;
-	rooms[newid].neighbors = malloc(rooms[newid].max_neighbors * sizeof(int));
+	rooms[newid].neighbors = MyMalloc(rooms[newid].max_neighbors * sizeof(int));
 	rooms[newid].num_doors = 0;
 
 	return newid;

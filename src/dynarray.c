@@ -63,7 +63,11 @@ struct dynarray *dynarray_alloc(int membernum, size_t membersize)
  */
 void dynarray_resize(struct dynarray *array, int membernum, size_t membersize)
 {
-	array->arr = realloc(array->arr, membernum * membersize);
+	void *buffer = realloc(array->arr, membernum * membersize);
+	if (!buffer) {
+		error_message(__FUNCTION__, "Not enough memory to realloc a dynarray (requested size: %lu)", IS_FATAL, membernum * membersize);
+	}
+	array->arr = buffer;
 	array->capacity = membernum;
 }
 
