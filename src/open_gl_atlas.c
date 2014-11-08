@@ -51,30 +51,33 @@ static char *get_texture_atlas(const char *path)
 	return NULL;
 }
 
-static int read_atlas_header(const char *buf, char *path)
-{
-	int width, height;
-	if (!sscanf(buf, "* %s size %d %d", path, &width, &height))
-		return 1;
-
-	return 0;
-}
-
 int load_texture_atlas(const char *atlas_name, const char *directory, struct image *(*get_storage_for_key)(const char *key))
 {
 	int loaded_any_subimage = FALSE;
+
+	// Ensure that 'directory' length is not too large, to have enough room to
+	// read the image names
+	char atlas_path[2048];
+	int directory_len = strlen(directory);
+	if (directory_len > 1023) {
+		error_message(__FUNCTION__, "The path of atlas files is too large (>1023): %s", NO_REPORT, directory);
+		return 1;
+	}
+	strcpy(atlas_path, directory);
+
 	// Open atlas file
 	char *dat = get_texture_atlas(atlas_name);
 	char *atlas_data = dat;
 
 	while (*dat) {
 		// Read data from each atlas described in the file
-		char atlas_path[2048];
-		strcpy(atlas_path, directory);
-		if (read_atlas_header(dat, &atlas_path[strlen(directory)])) {
+		int width, height;
+		char filename[1024];
+		if (!sscanf(dat, "* %1023s size %d %d", filename, &width, &height)) {
 			// Done reading atlas
 			break;
 		}
+		strcpy(&atlas_path[directory_len], filename);
 
 		while (*dat != '\n')
 			dat++;
@@ -87,10 +90,10 @@ int load_texture_atlas(const char *atlas_name, const char *directory, struct ima
 		while (*dat && *dat != '*') {
 			// Read each element in the atlas
 			SDL_Rect dest_rect;
-			char element_key[2048];
+			char element_key[1024];
 			int x, y, w, h;
 			int xoff, yoff;
-			if (!sscanf(dat, "%s %d %d %d %d off %d %d", &element_key[0], &x, &y, &w, &h, &xoff, &yoff)) {
+			if (!sscanf(dat, "%1023s %d %d %d %d off %d %d", &element_key[0], &x, &y, &w, &h, &xoff, &yoff)) {
 				break;
 			}
 

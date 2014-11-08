@@ -44,6 +44,10 @@ static void explode_atlas_image(char **atlas_data_ptr, const char *image_filenam
 {
 	char *dptr = *atlas_data_ptr;
 
+	char element_filename[PATH_MAX];
+	int output_dir_len = strlen(output_directory);
+	strcpy(element_filename, output_directory);
+
 	SDL_Surface *atlas_image = IMG_Load(image_filename);
 	if (!atlas_image) {
 		fprintf(stderr, "Could not load atlas image: %s\n", image_filename);
@@ -54,12 +58,10 @@ static void explode_atlas_image(char **atlas_data_ptr, const char *image_filenam
 
 	while (*dptr && *dptr != '*') {
 		SDL_Rect dest_rect;
-		char element_filename[4096];
-		strcpy(element_filename, output_directory);
 
 		int x, y, w, h;
 		int x_offset, y_offset;
-		if (!sscanf(dptr, "%s %d %d %d %d off %d %d", &element_filename[strlen(output_directory)], &x, &y, &w, &h, &x_offset, &y_offset))
+		if (!sscanf(dptr, "%1023s %d %d %d %d off %d %d", &element_filename[output_dir_len], &x, &y, &w, &h, &x_offset, &y_offset))
 			break;
 
 		dest_rect.x = x;
@@ -106,8 +108,9 @@ char *read_file(const char *fpath)
 int main(int argc, char **argv)
 {
 	char *atlas_filename;
-	char atlas_directory[4096];
-	char output_directory[4096];
+	char atlas_directory[PATH_MAX];
+	char atlas_path[PATH_MAX];
+	char output_directory[PATH_MAX];
 
 	if (argc < 4) {
 		fprintf(stderr, "Usage: %s <atlas_text_file> <atlas_image_directory> <output_directory>\n", argv[0]);
@@ -115,17 +118,29 @@ int main(int argc, char **argv)
 	}
 
 	atlas_filename = argv[1];
+
+	int atlas_directory_len = strlen(argv[2]);
+	if (atlas_directory_len > 1022) {
+		fprintf(stderr, "The path of 'atlas_image_directory' is too large (>1022): %s\n", argv[2]);
+		return 1;
+		}
 	sprintf(atlas_directory, "%s/", argv[2]);
+	atlas_directory_len++;
+	strcpy(atlas_path, atlas_directory);
+
+	int output_directory_len = strlen(argv[3]);
+	if (output_directory_len > 1023) {
+		fprintf(stderr, "The path of 'output_directory' is too large (>1023): %s\n", argv[3]);
+		return 1;
+		}
 	sprintf(output_directory, "%s/", argv[3]);
 
 	char *atlas_data = read_file(atlas_filename);
 
 	char *dptr = atlas_data;
 	while (*dptr) {
-		char atlas_path[4096];
-		strcpy(atlas_path, atlas_directory);
 
-		if (!sscanf(dptr, "* %s size %*d %*d", &atlas_path[strlen(atlas_directory)]))
+		if (!sscanf(dptr, "* %1023s size %*d %*d", &atlas_path[atlas_directory_len]))
 			break;
 
 		while (*dptr && *dptr != '\n')
