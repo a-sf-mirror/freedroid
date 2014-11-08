@@ -60,6 +60,6 @@ struct theme_info {
 	int floor[2];
 }; 
 
-void	mapgen_place_obstacles(struct dungeon_info *, int, int, unsigned char *);
+void mapgen_place_obstacles(struct dungeon_info *, int, int, unsigned char *, int *);
 
 #endif

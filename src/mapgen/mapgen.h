@@ -58,7 +58,6 @@ struct dungeon_info {
 
 	int num_rooms;
 	int *distance;
-	int *sorted_square;
 };
 
 extern struct roominfo *rooms;

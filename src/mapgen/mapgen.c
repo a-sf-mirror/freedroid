@@ -479,8 +479,8 @@ void mapgen_convert(struct dungeon_info *di, int w, int h, unsigned char *tiles)
 	place_doors();
 
 	qsort(idx, di->num_rooms, sizeof(int), cmp_room_surface);
-	di->sorted_square = idx;
-	mapgen_place_obstacles(di, w, h, tiles);
+
+	mapgen_place_obstacles(di, w, h, tiles, idx);
 }
 
 static void add_teleport(int telnum, int x, int y, int tpair)

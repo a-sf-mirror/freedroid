@@ -525,7 +525,7 @@ static int set_living_theme_recursive(int room, int depth, int *vis)
 	return count;
 }
 
-void mapgen_place_obstacles(struct dungeon_info *di, int w, int h, unsigned char *tiles)
+void mapgen_place_obstacles(struct dungeon_info *di, int w, int h, unsigned char *tiles, int *sorted_square)
 {
 #define MIN_LIVING_ROOMS	6
 
@@ -553,9 +553,9 @@ void mapgen_place_obstacles(struct dungeon_info *di, int w, int h, unsigned char
 	vis[di->exit] = SPECIAL_ROOM;
 	// Place main room to the biggest among visited
 	for (i = 0; i < total_rooms; i++)
-		if (vis[di->sorted_square[i]] == 1) {
-			place_main_room(di->sorted_square[i]);
-			vis[di->sorted_square[i]] = MAIN_ROOM;
+		if (vis[sorted_square[i]] == 1) {
+			place_main_room(sorted_square[i]);
+			vis[sorted_square[i]] = MAIN_ROOM;
 			break;
 		}
 
