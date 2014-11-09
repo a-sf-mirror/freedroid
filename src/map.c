@@ -324,6 +324,7 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 		loadlevel->dungeon_generated = atoi(fp);
 		fp[off] = '\n';
 		fp += off + 1;
+		off = 0;
 	} else {
 		loadlevel->dungeon_generated = 0;
 	}
@@ -336,6 +337,7 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 		loadlevel->flags = atoi(fp);
 		fp[off] = '\n';
 		fp += off + 1;
+		off = 0;
 	} else {
 		loadlevel->flags = 0;
 	}
@@ -347,10 +349,15 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 		fp[off] = 0;
 		loadlevel->drop_class = atoi(fp);
 		fp[off] = '\n';
-		fp += off + 1;
+		// Note: to be commented out if an other decoding part is added after this one
+		// fp += off + 1;
+		// off = 0;
 	} else {
 		loadlevel->drop_class = -1;
 	}
+
+	// Note: if an other decoding part is added, do not forget to comment out the 2 lines
+	// above...
 
 	if (loadlevel->ylen >= MAX_MAP_LINES) {
 		error_message(__FUNCTION__, "\
