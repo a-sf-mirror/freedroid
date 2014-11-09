@@ -955,9 +955,9 @@ static char *decode_waypoints(level *loadlevel, char *data)
  * must be supplied so as to be able to suppress hits through walls or
  * the like.
  */
-static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, int map_y)
+static int smash_obstacles_only_on_tile(float x, float y, int lvl, int map_x, int map_y)
 {
-	Level BoxLevel = curShip.AllLevels[level];
+	Level BoxLevel = curShip.AllLevels[lvl];
 	int i;
 	int target_idx;
 	obstacle *target_obstacle;
@@ -993,7 +993,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 
 		colldet_filter filter = FlyableExceptIdPassFilter;
 		filter.data = &target_idx;
-		gps smash_pos = { x, y, level };
+		gps smash_pos = { x, y, lvl };
 		gps vsmash_pos;
 		update_virtual_position(&vsmash_pos, &smash_pos, Me.pos.z);
 		if (vsmash_pos.x == -1)
@@ -1021,7 +1021,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 			= obstacle_spec->flags & DROPS_RANDOM_TREASURE;
 
 		// Let the automap know that we've updated things
-		update_obstacle_automap(level, target_obstacle);
+		update_obstacle_automap(lvl, target_obstacle);
 
 		// Now we really smash the obstacle, i.e. we can set it's type to the debris that has
 		// been configured for this obstacle type.  In if there is nothing configured (i.e. -1 set)
@@ -1036,13 +1036,13 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 
 		// Drop items after destroying the obstacle, in order to avoid collisions
 		if (obstacle_drops_treasure)
-			DropRandomItem(level, target_obstacle->pos.x, target_obstacle->pos.y, BoxLevel->drop_class, FALSE);
+			DropRandomItem(lvl, target_obstacle->pos.x, target_obstacle->pos.y, BoxLevel->drop_class, FALSE);
 
 		// Now that the obstacle is removed AND ONLY NOW that the obstacle is
 		// removed, we may start a blast at this position.  Otherwise we would
 		// run into trouble, see the warning further above.
 		StartBlast(blast_start_pos.x, blast_start_pos.y, 
-				level, obstacle_spec->blast_type, 0.0, FACTION_SELF, obstacle_spec->smashed_sound);
+				lvl, obstacle_spec->blast_type, 0.0, FACTION_SELF, obstacle_spec->smashed_sound);
 	}
 
 	return smashed_something;
@@ -1055,7 +1055,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
  * leaving some treasure behind.
  *
  */
-int smash_obstacle(float x, float y, int level)
+int smash_obstacle(float x, float y, int lvl)
 {
 	int map_x, map_y;
 	int smash_x, smash_y;
@@ -1066,7 +1066,7 @@ int smash_obstacle(float x, float y, int level)
 
 	for (smash_y = map_y - 1; smash_y < map_y + 2; smash_y++) {
 		for (smash_x = map_x - 1; smash_x < map_x + 2; smash_x++) {
-			if (smash_obstacles_only_on_tile(x, y, level, smash_x, smash_y))
+			if (smash_obstacles_only_on_tile(x, y, lvl, smash_x, smash_y))
 				smashed_something = TRUE;
 		}
 	}

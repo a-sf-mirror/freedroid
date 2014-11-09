@@ -264,14 +264,14 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
  * StartBlast will either use sound_name if passed, or if NULL will use
  * the default sound for the blast. 
  */
-void StartBlast(float x, float y, int level, int type, int dmg, int faction, char *sound_name)
+void StartBlast(float x, float y, int lvl, int type, int dmg, int faction, char *sound_name)
 {
 	int i;
 	blast *NewBlast;
 
 	// Resolve blast real position, if possible
 	//
-	gps blast_vpos = { x, y, level };
+	gps blast_vpos = { x, y, lvl };
 	gps blast_pos;
 
 	if (!resolve_virtual_position(&blast_pos, &blast_vpos)) {
@@ -729,12 +729,12 @@ void check_bullet_player_collisions(bullet * CurBullet, int num)
 void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 {
 	double xdist, ydist;
-	int level = CurBullet->pos.z;
+	int lvl = CurBullet->pos.z;
 
 	// Check for collision with enemys
 	//
 	enemy *ThisRobot, *nerot;
-	BROWSE_LEVEL_BOTS_SAFE(ThisRobot, nerot, level) {
+	BROWSE_LEVEL_BOTS_SAFE(ThisRobot, nerot, lvl) {
 		// Check several hitting conditions
 		//
 		xdist = CurBullet->pos.x - ThisRobot->pos.x;

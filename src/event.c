@@ -55,7 +55,7 @@ struct event_trigger {
 
 	union {
 		struct {
-			int level;
+			int lvl;
 			int x;
 			int y;
 			int teleported;
@@ -65,13 +65,13 @@ struct event_trigger {
 			int enter_level;
 		} change_level;
 		struct {
-			int level;
+			int lvl;
 			int faction;
 			char *dialog_name;
 			int marker;
 		} enemy_death;
 		struct {
-			int level;
+			int lvl;
 			int type;
 			char *label;
 		} obstacle_action;
@@ -164,7 +164,7 @@ static void load_events(char *EventSectionPointer)
 			pos = get_map_label_center(TempMapLabelName);
 			temp.trigger.position.x = (int)pos.x;
 			temp.trigger.position.y = (int)pos.y;
-			temp.trigger.position.level = pos.z;
+			temp.trigger.position.lvl = pos.z;
 			free(TempMapLabelName);
 			ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
 						&temp.silent, EndOfEvent);
@@ -179,7 +179,7 @@ static void load_events(char *EventSectionPointer)
 		} else if (strstr(EventPointer, ENEMY_DEATH_TRIGGER)) {
 			temp.trigger_type = ENEMY_DEATH;
 			ReadValueFromStringWithDefault(EventPointer, ENEMY_DEATH_LVLNUM, "%d", "-1",
-						&temp.trigger.enemy_death.level, EndOfEvent);
+						&temp.trigger.enemy_death.lvl, EndOfEvent);
 			if (strstr(EventPointer, ENEMY_DEATH_FACTION)) {
 				TempEnemyFaction = ReadAndMallocStringFromData(EventPointer, ENEMY_DEATH_FACTION, "\"");
 				temp.trigger.enemy_death.faction = get_faction_id(TempEnemyFaction);
@@ -197,7 +197,7 @@ static void load_events(char *EventSectionPointer)
 		} else if (strstr(EventPointer, OBSTACLE_ACTION_TRIGGER)) {
 			temp.trigger_type = OBSTACLE_ACTION;
 			ReadValueFromStringWithDefault(EventPointer, OBSTACLE_ACTION_LVLNUM, "%d", "-1",
-						&temp.trigger.obstacle_action.level, EndOfEvent);
+						&temp.trigger.obstacle_action.lvl, EndOfEvent);
 			temp_str = ReadAndMallocStringFromDataOptional(EventPointer, OBSTACLE_ACTION_TYPE, "\"");
 			if (temp_str) {
 				temp.trigger.obstacle_action.type = get_obstacle_type_by_name(temp_str);
@@ -265,7 +265,7 @@ void event_position_changed(gps pos, int teleported)
 		if (!arr[i].enabled)
 			continue;
 
-		if (arr[i].trigger.position.level != pos.z)
+		if (arr[i].trigger.position.lvl != pos.z)
  			continue;
 
 		if (arr[i].trigger.position.teleported != -1)
@@ -322,8 +322,8 @@ void event_enemy_died(enemy *dead)
 		if (!arr[i].enabled)
 			continue;
 
-		if (arr[i].trigger.enemy_death.level != -1)
-			if (arr[i].trigger.enemy_death.level != dead->pos.z)
+		if (arr[i].trigger.enemy_death.lvl != -1)
+			if (arr[i].trigger.enemy_death.lvl != dead->pos.z)
 				continue;
 
 		if (arr[i].trigger.enemy_death.faction != -1)
@@ -357,8 +357,8 @@ void event_obstacle_action(obstacle *o)
 		if (!arr[i].enabled)
 			continue;
 
-		if (arr[i].trigger.obstacle_action.level != -1)
-			if (arr[i].trigger.obstacle_action.level != o->pos.z)
+		if (arr[i].trigger.obstacle_action.lvl != -1)
+			if (arr[i].trigger.obstacle_action.lvl != o->pos.z)
 				continue;
 
 		if (arr[i].trigger.obstacle_action.type != -1)
@@ -409,7 +409,7 @@ struct event_trigger * visible_event_at_location(int x, int y, int z)
 		if (arr[i].trigger_type != POSITION)
 			continue;
 
-		if (z != arr[i].trigger.position.level)
+		if (z != arr[i].trigger.position.lvl)
  			continue;
 
 		if (x != arr[i].trigger.position.x)

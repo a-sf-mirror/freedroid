@@ -124,11 +124,11 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
  * \brief Get the experience required for next level.
  * \param level Current level.
  */
-unsigned int get_experience_required(int level)
+unsigned int get_experience_required(int lvl)
 {
-	if (level < 0)
+	if (lvl < 0)
 		return 0;
-	return BASE_EXP_REQUIRED * (level * level) + BASE_EXP_REQUIRED;
+	return BASE_EXP_REQUIRED * (lvl * lvl) + BASE_EXP_REQUIRED;
 }
 
 /**

@@ -120,7 +120,7 @@ void CollectAutomapData(void)
 	Level automap_level = curShip.AllLevels[Me.pos.z];
 	int i;
 	obstacle *our_obstacle;
-	int level = Me.pos.z;
+	int lvl = Me.pos.z;
 
 	// Checking the whole map for passability will surely take a lot
 	// of computation.  Therefore we only do this once every second of
@@ -164,10 +164,10 @@ void CollectAutomapData(void)
 	//
 	for (y = start_y; y < end_y; y++) {
 		for (x = start_x; x < end_x; x++) {
-			if (Me.Automap[level][y][x] & UPDATE_SQUARE_BIT)
-				update_automap_square(level, x, y);
+			if (Me.Automap[lvl][y][x] & UPDATE_SQUARE_BIT)
+				update_automap_square(lvl, x, y);
 					
-			if (Me.Automap[level][y][x] & SQUARE_SEEN_AT_ALL_BIT)
+			if (Me.Automap[lvl][y][x] & SQUARE_SEEN_AT_ALL_BIT)
 				continue;
 
 			for (i = 0; i < automap_level->map[y][x].glued_obstacles.size; i++) {
@@ -226,19 +226,19 @@ void CollectAutomapData(void)
 						if (obstacle_spec->block_area_type == COLLISION_TYPE_RECTANGLE) {
 
 							if (obstacle_spec->block_area_parm_1 > 0.80) {
-									Me.Automap[level][b][a] |= EW_WALL_BIT;
+									Me.Automap[lvl][b][a] |= EW_WALL_BIT;
 							}
 							if (obstacle_spec->block_area_parm_2 > 0.80) {
-								Me.Automap[level][b][a] |= NS_WALL_BIT;
+								Me.Automap[lvl][b][a] |= NS_WALL_BIT;
 							}
 						}
 					}
 				}
 			}
-			if (visible_event_at_location(x, y, level))
-				Me.Automap[level][y][x] |= VISIBLE_EVENT_BIT;
+			if (visible_event_at_location(x, y, lvl))
+				Me.Automap[lvl][y][x] |= VISIBLE_EVENT_BIT;
 
-			Me.Automap[level][y][x] = Me.Automap[level][y][x] | SQUARE_SEEN_AT_ALL_BIT;
+			Me.Automap[lvl][y][x] = Me.Automap[lvl][y][x] | SQUARE_SEEN_AT_ALL_BIT;
 		}
 	}
 
@@ -343,7 +343,7 @@ void display_automap(void)
 {
 	int x, y, i, j;
 	Level automap_level = curShip.AllLevels[Me.pos.z];
-	int level = Me.pos.z;
+	int lvl = Me.pos.z;
 
 	// Of course we only display the automap on demand of the user...
 	//
@@ -371,7 +371,7 @@ void display_automap(void)
 	// obstacles on this level.
 	for (y = 0; y < automap_level->ylen; y++) {
 		for (x = 0; x < automap_level->xlen; x++) {
-			if (Me.Automap[level][y][x] & EW_WALL_BIT) {
+			if (Me.Automap[lvl][y][x] & EW_WALL_BIT) {
 				PutPixel_automap_wrapper(Screen,
 							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - y),
 							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
@@ -380,7 +380,7 @@ void display_automap(void)
 							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
 			}
 
-			if (Me.Automap[level][y][x] & NS_WALL_BIT) {
+			if (Me.Automap[lvl][y][x] & NS_WALL_BIT) {
 				PutPixel_automap_wrapper(Screen,
 							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - y),
 							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
@@ -390,7 +390,7 @@ void display_automap(void)
 			}
 
 			//Now we blit known event triggers
-			if (Me.Automap[level][y][x] & VISIBLE_EVENT_BIT) {
+			if (Me.Automap[lvl][y][x] & VISIBLE_EVENT_BIT) {
 				for (i = 0; i < AUTOMAP_SQUARE_SIZE; i++) {
 					for (j = 0; j < AUTOMAP_SQUARE_SIZE; j++) {
 						PutPixel_automap_wrapper(Screen,

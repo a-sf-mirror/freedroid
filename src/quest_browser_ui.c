@@ -118,10 +118,10 @@ static float calculate_total_explored_percentage(void)
 {
 	int num_squares_seen = 0;
 	int num_squares_exist = 0;
-	int level;
+	int lvl;
 
-	for (level = 0; level < curShip.num_levels; level++) {
-		calculate_level_explored(level, &num_squares_seen, &num_squares_exist);
+	for (lvl = 0; lvl < curShip.num_levels; lvl++) {
+		calculate_level_explored(lvl, &num_squares_seen, &num_squares_exist);
 	}
 	return ((float) num_squares_seen)/((float) num_squares_exist);
 }
