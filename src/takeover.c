@@ -1064,6 +1064,7 @@ void ClearPlayground(void)
 		for (layer = 0; layer < NUM_LAYERS; layer++)
 			for (row = 0; row < NUM_LINES; row++) {
 				ActivationMap[color][layer][row] = INACTIVE;
+				// cppcheck-suppress duplicateBranch
 				if (layer < TO_COLORS - 1)
 					ToPlayground[color][layer][row] = CABLE;
 				else

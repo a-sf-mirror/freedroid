@@ -96,6 +96,7 @@ void dynarray_add(struct dynarray *array, void *data, size_t membersize)
 		dynarray_resize(array, array->size * 2, membersize);
 	}
 
+	// cppcheck-suppress arithOperationsOnVoidPointer
 	memcpy(array->arr + membersize * (array->size - 1), data, membersize);
 }
 
@@ -113,7 +114,9 @@ void dynarray_del(struct dynarray *array, int index, size_t membersize)
 		array->size--;
 		return;
 	} else {
+		// cppcheck-suppress arithOperationsOnVoidPointer
 		void *addr = array->arr + membersize * index;
+		// cppcheck-suppress arithOperationsOnVoidPointer
 		void *next = addr + membersize;
 		int nb = membersize * (array->size - index - 1);
 
@@ -130,5 +133,6 @@ void dynarray_del(struct dynarray *array, int index, size_t membersize)
  */
 void *dynarray_member(struct dynarray *array, int index, size_t membersize)
 {
+	// cppcheck-suppress arithOperationsOnVoidPointer
 	return array->arr + membersize * index;
 }
