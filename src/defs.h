@@ -115,6 +115,7 @@ enum {
 #define NUMBER_OF_MOUSE_CURSOR_PICTURES 2
 
 // Balancing of loot and items.
+#define MAX_DROP_CLASS 9
 #define MONEY_PER_BOT_CLASS 12
 #define ITEM_DROP_PERCENTAGE 10
 #define GOLD_DROP_PERCENTAGE 40

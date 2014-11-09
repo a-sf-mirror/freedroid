@@ -424,11 +424,6 @@ Received item type %d that is outside the range of allowed item types.",
 
 static int get_random_item_type(int class)
 {
-
-	if (class > 9) {
-		error_message(__FUNCTION__, "Random item class %d exceeds 9.", class, PLEASE_INFORM | IS_FATAL);
-	}
-
 	int a = MyRandom(item_count_per_class[class] - 1) + 1;
 
 	//printf("Choosing in class %d among %d items, taking item %d\n", class, item_count_per_class[class], a);
@@ -464,6 +459,15 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 	int DropDecision;
 	int drop_item_type = 1;
 	int drop_item_multiplicity = 1;
+
+	if (class == -1) 
+		return; // -1 is the value to not drop item.
+
+	// Drop item only if the class is between 0 and MAX_DROP_CLASS.
+	if (class < 0 || class > MAX_DROP_CLASS) {
+		error_message(__FUNCTION__, "The drop class %d is invalid (out of 0 to MAX_DROP_CLASS: %d).\n", PLEASE_INFORM, class, MAX_DROP_CLASS);
+		return;
+	}
 
 	// First we determine if there is something dropped at all or not,
 	// cause in the later case, we can return immediately.  If a drop is

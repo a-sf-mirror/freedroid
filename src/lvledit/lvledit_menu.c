@@ -501,12 +501,15 @@ static void LevelOptions(void)
 {
 	char *MenuTexts[100];
 	char Options[20][1000];
+	char class[16];
 	int proceed_now = FALSE;
 	int MenuPosition = 1;
 	int tgt = -1;
 	int i, j;
 	int l = 0;
 	int *droid_types;
+
+	class[15] = 0; // null-character to null terminated strncpy
 
 	enum {
 		CHANGE_LEVEL_POSITION = 1,
@@ -587,7 +590,12 @@ static void LevelOptions(void)
 		MenuTexts[i] = Options[i];
 		i++;
 
-		sprintf(Options[i], _("Item drop class for obstacles: %d.  (<-/->)"), EditLevel()->drop_class);
+		if (EditLevel()->drop_class >= 0 && EditLevel()->drop_class <= MAX_DROP_CLASS)
+			snprintf(class, 16, "%d", EditLevel()->drop_class);
+		else
+			strncpy(class, _("None"), 15);
+
+		sprintf(Options[i], _("Item drop class for obstacles: %s.  (<-/->)"), class);
 		MenuTexts[i] = Options[i];
 		i++;
 
@@ -681,11 +689,16 @@ static void LevelOptions(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup(_("\n Please enter new drop class: \n\n"), "");
-			if (tgt < 0)
-				EditLevel()->drop_class = 0;
-			else if (tgt > 9)
-				EditLevel()->drop_class = 9;
+			if (EditLevel()->drop_class >= 0 && EditLevel()->drop_class <= MAX_DROP_CLASS)
+				snprintf(class, 16, "%d", EditLevel()->drop_class);
+			else
+				strcpy(class, "");
+
+			tgt = get_number_popup(_("\n Please enter new drop class: \n\n"), class);
+			if (tgt < -1)
+				EditLevel()->drop_class = -1;
+			else if (tgt > MAX_DROP_CLASS)
+				EditLevel()->drop_class = MAX_DROP_CLASS;
 			else
 				EditLevel()->drop_class = tgt;
 				
@@ -841,14 +854,14 @@ static void LevelOptions(void)
 			case SET_DROP_CLASS:
 				if (LeftPressed()) {
 					EditLevel()->drop_class--;
-					if (EditLevel()->drop_class < 0)
-						EditLevel()->drop_class = 0;
+					if (EditLevel()->drop_class < -1)
+						EditLevel()->drop_class = -1;
 					while (LeftPressed());
 				}
 				if (RightPressed()) {
 					EditLevel()->drop_class++;
-					if (EditLevel()->drop_class > 9)
-						EditLevel()->drop_class = 9;
+					if (EditLevel()->drop_class > MAX_DROP_CLASS)
+						EditLevel()->drop_class = MAX_DROP_CLASS;
 					while (RightPressed());
 				}
 				break;

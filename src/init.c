@@ -325,7 +325,8 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 				    &Droidmap[RobotIndex].experience_reward, EndOfDataPointer);
 
 		// Now we read in the monster level = maximum treasure chest to pick from
-		ReadValueFromString(RobotPointer, "Drops item class=", "%hd", &Droidmap[RobotIndex].drop_class, EndOfDataPointer);
+		ReadValueFromStringWithDefault(RobotPointer, "Drops item class=", "%hd", "-1", 
+					       &Droidmap[RobotIndex].drop_class, EndOfDataPointer);
 
 		char *tmp_item_id = ReadAndMallocStringFromData(RobotPointer, WEAPON_ITEM_BEGIN_STRING, "\"");
 		Droidmap[RobotIndex].weapon_item.type = get_item_type_by_id(tmp_item_id);

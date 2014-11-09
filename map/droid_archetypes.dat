@@ -1076,7 +1076,6 @@ Default description:_"Autogun"
 Droid uses portrait rotation series with prefix="autogun"
 Maximum speed of this droid: 0
 Class of this droid: 7
-Drops item class=9
 Maximum energy of this droid: 150
 Rate of healing: 4
 Sensor ID="infrared"

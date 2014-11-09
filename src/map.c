@@ -349,7 +349,7 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 		fp[off] = '\n';
 		fp += off + 1;
 	} else {
-		loadlevel->drop_class = 0;
+		loadlevel->drop_class = -1;
 	}
 
 	if (loadlevel->ylen >= MAX_MAP_LINES) {
