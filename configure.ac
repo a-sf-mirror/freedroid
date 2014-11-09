@@ -306,6 +306,7 @@ Summary:
 
 	CFLAGS:   $CFLAGS
 	LDFLAGS: $LDFLAGS
+	LIBS:     $LIBS
 
 	compiler:                                    $actual_compiler
 	use embedded Lua library (not system-wide):  $embedded_lua
