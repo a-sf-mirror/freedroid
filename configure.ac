@@ -218,41 +218,6 @@ if test x$want_backtrace = xyes; then
    AC_CHECK_FUNCS([backtrace])
 fi
 
-dnl Set build flags accordingly with asked options
-
-if test x$arch_native = xyes; then
-	CFLAGS="$CFLAGS -O3 -march=native -mtune=native"
-fi
-
-if test x$sanitize_address = xyes; then
-	AC_MSG_NOTICE([Building with -fsanitize=address -fno-omit-frame-pointer. Also using embedded Lua!])
-	embedded_lua=yes;
-	CFLAGS="$CFLAGS -fsanitize=address -fno-omit-frame-pointer"
-fi
-
-if test x$use_debug = xyes; then
-	CFLAGS="$CFLAGS -g3 -ggdb -Og"
-fi
-
-if test x$more_warn = xyes; then
-	CFLAGS="$CFLAGS -Wextra -Wstrict-prototypes -Wshadow -Wpointer-arith -Wcast-align -Wnested-externs -Wunreachable-code"
-fi
-
-if test x$fast_math = xyes; then
-	CFLAGS="$CFLAGS -ffast-math"
-fi
-
-if test x$embedded_lua = xno; then
-	KYUA_LUA()
-	if test x$lua_found = xno; then
-		AC_MSG_NOTICE([No system-wide Lua library found! Using embedded Lua instead])
-		embedded_lua=yes;
-	else
-		CFLAGS="$CFLAGS $LUA_CFLAGS"
-		LIBS="$LIBS $LUA_LIBS"
-	fi
-fi
-
 dnl We need anonymous lambda-like functions.
 dnl With GCC, it needs -fnested-functions while with CLANG it needs -fblocks
 AM_CONDITIONAL(HAVE_CBLOCKS, false)
@@ -273,6 +238,41 @@ if test "x$GCC" = xyes -a "x${xiph_cv_c_compiler_clang}" = xno ; then
   )
 elif test "x${xiph_cv_c_compiler_clang}" = xyes ; then
   DISPATCH_C_BLOCKS
+fi
+
+dnl Set build flags accordingly with asked options
+
+if test x$arch_native = xyes; then
+	CFLAGS="$CFLAGS -O3 -march=native -mtune=native"
+fi
+
+if test x$sanitize_address = xyes; then
+	AC_MSG_NOTICE([Building with -fsanitize=address -fno-omit-frame-pointer. Also using embedded Lua!])
+	embedded_lua=yes;
+	CFLAGS="$CFLAGS -fsanitize=address -fno-omit-frame-pointer"
+fi
+
+if test x$use_debug = xyes; then
+	CFLAGS="$CFLAGS -g3 -ggdb -O0"
+fi
+
+if test x$more_warn = xyes; then
+	CFLAGS="$CFLAGS -Wextra -Wstrict-prototypes -Wshadow -Wpointer-arith -Wcast-align -Wnested-externs -Wunreachable-code"
+fi
+
+if test x$fast_math = xyes; then
+	CFLAGS="$CFLAGS -ffast-math"
+fi
+
+if test x$embedded_lua = xno; then
+	KYUA_LUA()
+	if test x$lua_found = xno; then
+		AC_MSG_NOTICE([No system-wide Lua library found! Using embedded Lua instead])
+		embedded_lua=yes;
+	else
+		CFLAGS="$CFLAGS $LUA_CFLAGS"
+		LIBS="$LIBS $LUA_LIBS"
+	fi
 fi
 
 dnl send a signal to automake if we're compiling for win32

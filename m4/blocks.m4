@@ -27,8 +27,6 @@ AC_CACHE_CHECK([for C Blocks support], [dispatch_cv_cblocks], [
 ])
 
 AS_IF([test "x$dispatch_cv_cblocks" != "xno"], [
-    CBLOCKS_FLAGS="$dispatch_cv_cblocks"
-
     #
     # It may be necessary to directly link the Blocks runtime on some
     # systems, so give it a try if we can't link a C program that uses
@@ -43,7 +41,6 @@ AS_IF([test "x$dispatch_cv_cblocks" != "xno"], [
     ], [
 	AC_MSG_RESULT([no]);
     ], [
-      saveLIBS="$LIBS"
       LIBS="$LIBS -lBlocksRuntime"
       AC_TRY_LINK([], [
 	^{ int k; k=0; }();
@@ -55,10 +52,9 @@ AS_IF([test "x$dispatch_cv_cblocks" != "xno"], [
     ])
     CFLAGS="$saveCFLAGS"
     have_cblocks=true
+    CFLAGS="$CFLAGS $dispatch_cv_cblocks"
 ], [
-    CBLOCKS_FLAGS=""
     have_cblocks=false
 ])
 AM_CONDITIONAL(HAVE_CBLOCKS, $have_cblocks)
-AC_SUBST([CBLOCKS_FLAGS])
 ])
