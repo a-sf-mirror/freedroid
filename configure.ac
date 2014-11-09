@@ -304,6 +304,9 @@ fi
 echo "
 Summary:
 
+	CFLAGS:   $CFLAGS
+	LDFLAGS: $LDFLAGS
+
 	compiler:                                    $actual_compiler
 	use embedded Lua library (not system-wide):  $embedded_lua
 	compile with OpenGL support:                 $summary_have_gl
