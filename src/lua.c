@@ -896,12 +896,12 @@ static int lua_set_faction_state(lua_State *L)
 
 static int lua_create_droid(lua_State *L)
 {
-	const char *map_label = luaL_checkstring(L, 1);
+	const char *label = luaL_checkstring(L, 1);
 	const char *type_name = luaL_checkstring(L, 2);
 	const char *fact_name = luaL_optstring(L, 3, "ms");
 	const char *dialog    = luaL_optstring(L, 4, "AfterTakeover");
 	const char *Sensor_ID = luaL_optstring(L, 5, NULL);
-	gps pos = get_map_label_center(map_label);
+	gps pos = get_map_label_center(label);
 	int type;
 
 	type = get_droid_type(type_name);

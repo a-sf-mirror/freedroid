@@ -168,7 +168,7 @@ void respawn_level(int level_num)
  * \param map_label The name of map label to resolve.
  * \return The gps center of the map label.
  */
-gps get_map_label_center(const char *map_label)
+gps get_map_label_center(const char *label)
 {
 	struct map_label *m;
 	gps position = {0., 0., -1};
@@ -178,7 +178,7 @@ gps get_map_label_center(const char *map_label)
 		if (!level_exists(i))
 			continue;
 
-		m = get_map_label(curShip.AllLevels[i], map_label);
+		m = get_map_label(curShip.AllLevels[i], label);
 		if (m) {
 			position.x = m->pos.x + 0.5;
 			position.y = m->pos.y + 0.5;
@@ -189,7 +189,7 @@ gps get_map_label_center(const char *map_label)
 
 	error_message(__FUNCTION__, "\
 Resolving map label   \"%s\"   failed on the entire world!\n\
-This is a severe error in the game data of FreedroidRPG.", PLEASE_INFORM, map_label);
+This is a severe error in the game data of FreedroidRPG.", PLEASE_INFORM, label);
 
 	return position;
 };
