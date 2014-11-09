@@ -296,10 +296,15 @@ AC_CONFIG_FILES([
 
 AC_OUTPUT
 
+actual_compiler=$CC
+if test x${xiph_cv_c_compiler_clang} = xyes ; then
+       actual_compiler=clang
+fi
+
 echo "
 Summary:
 
-	compiler:                                    $CC
+	compiler:                                    $actual_compiler
 	use embedded Lua library (not system-wide):  $embedded_lua
 	compile with OpenGL support:                 $summary_have_gl
 	compile with sound support:                  $summary_sound
