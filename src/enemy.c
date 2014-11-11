@@ -1433,7 +1433,7 @@ void update_vector_to_shot_target_for_enemy(enemy * this_robot)
 	squared_best_dist = squared_aggression_distance;
 
 	// First check if Tux is a potential target
-	if ((Me.invisible_duration <= 0) || (this_robot->sensor_id & SENSOR_DETECT_INVISIBLE)) {
+	if (can_see_tux(this_robot)) {
 		if (is_potential_target(this_robot, &Me.pos, &squared_best_dist)) {
 			this_robot->attack_target_type = ATTACK_TARGET_IS_PLAYER;
 		}
