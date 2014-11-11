@@ -32,6 +32,7 @@ autom4te.cache
 depcomp
 compile
 src/version.c
+src/build_flags.h
 src/savestruct.h
 src/savestruct.c
 src/.dirstamp

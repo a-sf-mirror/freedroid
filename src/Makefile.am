@@ -80,8 +80,8 @@ freedroidRPG_SOURCES = version.c \
 	mapgen/themes.c mapgen/themes.h \
 	lua/luaFD.c lua/luaFD_bindings.h lua/luaFD_tux.c lua/luaFD_npc.c
 
-nodist_freedroidRPG_SOURCES = savestruct.c savestruct.h
-BUILT_SOURCES = savestruct.h
+nodist_freedroidRPG_SOURCES = savestruct.c savestruct.h build_flags.h
+BUILT_SOURCES = savestruct.h build_flags.h
 
 savestruct.h: struct.h savestruct_internal.h gen_savestruct.py
 	$(PYTHON) $(srcdir)/gen_savestruct.py $(srcdir)/struct.h savestruct
@@ -90,8 +90,12 @@ version.c: dummy
 	version_string=`echo "char *freedroid_version = \"$$(git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@")$$(git diff --exit-code >& /dev/null || echo "_mod")\";"` \
 	&& (echo $$version_string | cmp -s - $@) || echo $$version_string > $@
 
+build_flags.h: Makefile
+	@echo '#define BUILD_CFLAGS "$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)"' >$@
+	@echo '#define BUILD_LDFLAGS "$(AM_LDFLAGS) $(LDFLAGS) $(freedroidRPG_LDADD) $(LIBS)"' >>$@
+
 dummy:
 
-CLEANFILES = savestruct.c savestruct.h version.c
+CLEANFILES = savestruct.c savestruct.h build_flags.h version.c
 
 .PHONY: dummy

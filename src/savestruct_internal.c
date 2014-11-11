@@ -30,6 +30,8 @@
 #include "savestruct_internal.h"
 #include "lauxlib.h"
 
+#include "build_flags.h"
+
 /**
  * Macro used to define the write function of a numeric data type.
  * \ingroup simplerw
@@ -475,6 +477,12 @@ void save_game_data(struct auto_string *strout)
 	enemy *erot;
 	npc *n;
 	int i;
+
+	autostr_append(strout, "--[[\n");
+	autostr_append(strout, "BUILD_CFLAGS: %s\n", BUILD_CFLAGS);
+	autostr_append(strout, "BUILD_LDFLAGS: %s\n", BUILD_LDFLAGS);
+	autostr_append(strout, "VERSION: %s\n", freedroid_version);
+	autostr_append(strout, "--]]\n");
 
 	write_lua_variables(strout);
 
