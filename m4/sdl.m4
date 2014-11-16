@@ -96,8 +96,10 @@ int main (int argc, char *argv[])
   tmp_version = my_strdup("$min_sdl_version");
   if (sscanf(tmp_version, "%d.%d.%d", &major, &minor, &micro) != 3) {
      printf("%s, bad version string\n", "$min_sdl_version");
+     free(tmp_version);
      exit(1);
    }
+   free(tmp_version);
 
    if (($sdl_major_version > major) ||
       (($sdl_major_version == major) && ($sdl_minor_version > minor)) ||
