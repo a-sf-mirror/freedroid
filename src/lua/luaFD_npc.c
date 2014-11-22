@@ -73,7 +73,7 @@ static struct chat_context *__get_current_chat_context(const char *funcname)
 #define GET_CURRENT_CHAT_CONTEXT() __get_current_chat_context(__FUNCTION__)
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \defgroup FDnpc Lua NPC binding
+/// \defgroup FDnpc FDnpc: Lua NPC binding
 /// \ingroup luaFD_bindings
 ///
 /// Some doc on FDnpc - TO BE WRITTEN
@@ -190,7 +190,7 @@ static int _get_class(lua_State *L)
  * \brief Set npc's state (enemy's state)
  *
  * \param self [\p FDnpc] FDnpc instance
- * \param name [\p string] New state
+ * \param state [\p string] New state
  *
  * \bindtype cfun
  */
@@ -209,11 +209,11 @@ static int _set_state(lua_State *L)
  * \brief Set npc's faction
  *
  * \param self [\p FDnpc] FDnpc instance
- * \param name [\p string] New faction
+ * \param faction [\p string] New faction
  *
  * \bindtype cfun
  */
-LUAFD_DOC(void set_state(self, state))
+LUAFD_DOC(void set_state(self, faction))
 
 static int _set_faction(lua_State *L)
 {
@@ -228,7 +228,7 @@ static int _set_faction(lua_State *L)
  * \brief Set npc's new destination (map label)
  *
  * \param self [\p FDnpc] FDnpc instance
- * \param name [\p string] Map label to set as the new destination
+ * \param label [\p string] Map label to set as the new destination
  *
  * \bindtype cfun
  */
@@ -247,7 +247,7 @@ static int _set_destination(lua_State *L)
  * \brief Set npc to rush Tux or not
  *
  * \param self [\p FDnpc]  FDnpc instance
- * \param name [\p boolean] true/false: If 'true', the npc will rush Tux
+ * \param flag [\p boolean] true/false: If 'true', the npc will rush Tux
  *
  * \bindtype cfun
  */
@@ -326,7 +326,7 @@ static int _get_max_health(lua_State *L)
  * \brief Set the item dropped when the npc dies.
  *
  * \param self [\p FDnpc] FDnpc instance
- * \param name [\p string] Item's name (or "NONE")
+ * \param item [\p string] Item's name (or "NONE")
  *
  * \bindtype cfun
  */
