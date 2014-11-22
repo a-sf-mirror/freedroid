@@ -36,8 +36,29 @@
 
 #include "luaFD.h"
 
+/*
+ * From a Lua script point of view, the Tux entity is entirely defined by
+ * the 'tux' C struct.
+ * The Lua binding holds a reference to that datastructure.
+ */
+
+struct luaFD_tux {
+	struct tux* me;
+};
+
+/**
+ * Called when Lua garbagecollects the Tux.
+ */
+static int _garbage_collect(lua_State *L)
+{
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
+	// Nothing to do, currently
+	return 0;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////
-/// \defgroup FDtux Lua Tux binding
+/// \defgroup FDtux FDtux: Lua Tux binding
 /// \ingroup luaFD_bindings
 ///
 /// Some doc on FDtux - TO BE WRITTEN
@@ -59,10 +80,10 @@ LUAFD_DOC(string get_player_name(self))
 
 static int _get_player_name(lua_State *L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	if ((*self)->character_name)
-		lua_pushstring(L, (*self)->character_name);
+	if (self->me->character_name)
+		lua_pushstring(L, self->me->character_name);
 	else
 		lua_pushstring(L, "");
 
@@ -82,9 +103,9 @@ LUAFD_DOC(integer get_hp(self))
 
 static int _get_hp(lua_State *L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, (int)(*self)->energy);
+	lua_pushinteger(L, (int)self->me->energy);
 	return 1;
 }
 
@@ -101,9 +122,9 @@ LUAFD_DOC(integer get_max_hp(self))
 
 static int _get_max_hp(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, (int)(*self)->maxenergy);
+	lua_pushinteger(L, (int)self->me->maxenergy);
 
 	return 1;
 }
@@ -123,9 +144,9 @@ LUAFD_DOC(integer get_cool(self))
 
 static int _get_cool(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, (int)(*self)->max_temperature - (int)(*self)->temperature);
+	lua_pushinteger(L, (int)self->me->max_temperature - (int)self->me->temperature);
 
 	return 1;
 }
@@ -143,9 +164,9 @@ LUAFD_DOC(integer get_meters_traveled(self))
 
 static int _get_meters_traveled(lua_State *L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, (float)(*self)->meters_traveled);
+	lua_pushinteger(L, (float)self->me->meters_traveled);
 
 	return 1;
 }
@@ -163,9 +184,9 @@ LUAFD_DOC(void kill(self))
 
 static int _kill(lua_State *L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	(*self)->energy = -100;
+	self->me->energy = -100;
 
 	return 0;
 }
@@ -183,9 +204,9 @@ LUAFD_DOC(void heal(self))
 
 static int _heal(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	(*self)->energy = (*self)->maxenergy;
+	self->me->energy = self->me->maxenergy;
 	play_sound_cached("effects/new_healing_sound.ogg");
 
 	return 0;
@@ -208,7 +229,7 @@ LUAFD_DOC(void hurt(self, amount))
 
 static int _hurt(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	int amount = luaL_checkinteger(L, 2);
 
@@ -235,10 +256,10 @@ LUAFD_DOC(void heat(self, amount))
 
 static int _heat(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	int amount = luaL_checkinteger(L, 2);
-	(*self)->temperature += amount;
+	self->me->temperature += amount;
 
 	return 0;
 }
@@ -255,10 +276,10 @@ LUAFD_DOC(void freeze(self, duration))
 
 static int _freeze(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	float duration = luaL_checknumber(L, 2);
-	(*self)->paralyze_duration = duration;
+	self->me->paralyze_duration = duration;
 	return 0;
 }
 
@@ -274,10 +295,10 @@ LUAFD_DOC(void add_xp(self, points))
 
 static int _add_xp(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	int points = luaL_checkinteger(L, 2) * (*self)->experience_factor;
-	(*self)->Experience += points;
+	int points = luaL_checkinteger(L, 2) * self->me->experience_factor;
+	self->me->Experience += points;
 
 	char tmpstr[150];
 	sprintf(tmpstr, _("+%d Experience Points"), points);
@@ -302,16 +323,16 @@ LUAFD_DOC(void add_gold(self, amount))
 
 static int _add_gold(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	int amount = luaL_checkinteger(L, 2);
 	char tmpstr[150];
 
-	if (amount < 0 && -amount > (*self)->Gold) {
-		return luaL_error(L, "%s() tried to remove %d gold from the player that only has %d!", __FUNCTION__, -amount, (*self)->Gold);
+	if (amount < 0 && -amount > self->me->Gold) {
+		return luaL_error(L, "%s() tried to remove %d gold from the player that only has %d!", __FUNCTION__, -amount, self->me->Gold);
 	}
 
-	(*self)->Gold += amount;
+	self->me->Gold += amount;
 
 	if (amount > 0)
 		sprintf(tmpstr, _("Gained %d valuable circuits!"), amount);
@@ -336,9 +357,9 @@ LUAFD_DOC(integer get_gold(self))
 
 static int _get_gold(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, (*self)->Gold);
+	lua_pushinteger(L, self->me->Gold);
 
 	return 1;
 }
@@ -355,10 +376,10 @@ LUAFD_DOC(void del_training_points(self, points))
 
 static int _del_training_points(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	int points = luaL_checkinteger(L, 2);
-	(*self)->points_to_distribute -= points;
+	self->me->points_to_distribute -= points;
 
 	return 0;
 }
@@ -376,9 +397,9 @@ LUAFD_DOC(integer get_training_points(self))
 
 static int _get_training_points(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, (*self)->points_to_distribute);
+	lua_pushinteger(L, self->me->points_to_distribute);
 
 	return 1;
 }
@@ -395,18 +416,18 @@ LUAFD_DOC(void improve_skill(self, skill))
 
 static int _improve_skill(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *skill = luaL_checkstring(L, 2);
 	int *skillptr = NULL;
 	if (!strcmp(skill, "melee")) {
-		skillptr = &((*self)->melee_weapon_skill);
+		skillptr = &(self->me->melee_weapon_skill);
 		SetNewBigScreenMessage(_("Melee fighting ability improved!"));
 	} else if (!strcmp(skill, "ranged")) {
-		skillptr = &((*self)->ranged_weapon_skill);
+		skillptr = &(self->me->ranged_weapon_skill);
 		SetNewBigScreenMessage(_("Ranged combat ability improved!"));
 	} else if (!strcmp(skill, "programming")) {
-		skillptr = &((*self)->spellcasting_skill);
+		skillptr = &(self->me->spellcasting_skill);
 		SetNewBigScreenMessage(_("Programming ability improved!"));
 	} else {
 		return luaL_error(L, "%s() %s", __FUNCTION__, "with an incorrect parameter. Accepted values are \"melee\", \"ranged\", and \"programming\".");
@@ -433,16 +454,16 @@ LUAFD_DOC(integer get_skill(self, skill))
 
 static int _get_skill(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *skill = luaL_checkstring(L, 2);
 	int *skillptr = NULL;
 	if (!strcmp(skill, "melee")) {
-		skillptr = &((*self)->melee_weapon_skill);
+		skillptr = &(self->me->melee_weapon_skill);
 	} else if (!strcmp(skill, "ranged")) {
-		skillptr = &((*self)->ranged_weapon_skill);
+		skillptr = &(self->me->ranged_weapon_skill);
 	} else if (!strcmp(skill, "programming")) {
-		skillptr = &((*self)->spellcasting_skill);
+		skillptr = &(self->me->spellcasting_skill);
 	} else {
 		return luaL_error(L, "%s() %s", __FUNCTION__, "with an incorrect parameter. Accepted values are \"melee\", \"ranged\", and \"programming\".");
 	}
@@ -467,7 +488,7 @@ LUAFD_DOC(void improve_program(self, program))
 
 static int _improve_program(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *program = luaL_checkstring(L, 2);
 	improve_program(get_program_index_with_name(program));
@@ -487,7 +508,7 @@ LUAFD_DOC(void downgrade_program(self, program))
 
 static int _downgrade_program(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *program = luaL_checkstring(L, 2);
 	downgrade_program(get_program_index_with_name(program));
@@ -509,10 +530,10 @@ LUAFD_DOC(integer get_program_revision(self, program))
 
 static int _get_program_revision(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *program = luaL_checkstring(L, 2);
-	lua_pushinteger(L, (*self)->skill_level[get_program_index_with_name(program)]);
+	lua_pushinteger(L, self->me->skill_level[get_program_index_with_name(program)]);
 
 	return 1;
 }
@@ -529,20 +550,20 @@ LUAFD_DOC(void change_stat(self, characteristic))
 
 static int _change_stat(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *characteristic = luaL_checkstring(L, 2);
 	int nb = luaL_checkinteger(L, 3);
 	int *statptr = NULL;
 
 	if (!strcmp(characteristic, "strength")) {
-		statptr = &((*self)->base_strength);
+		statptr = &(self->me->base_strength);
 	} else if (!strcmp(characteristic, "dexterity")) {
-		statptr = &((*self)->base_dexterity);
+		statptr = &(self->me->base_dexterity);
 	} else if (!strcmp(characteristic, "CPU")) {
-		statptr = &((*self)->base_cooling);
+		statptr = &(self->me->base_cooling);
 	} else if (!strcmp(characteristic, "vitality")) {
-		statptr = &((*self)->base_physique);
+		statptr = &(self->me->base_physique);
 	} else {
 		return luaL_error(L, "%s() was called with characteristic name %s - accepted values are \"strength\", \"dexterity\", \"CPU\", and \"vitality\".",
 		                     __FUNCTION__, characteristic);
@@ -565,7 +586,7 @@ LUAFD_DOC(void assign_quest(self, quest, text))
 
 static int _assign_quest(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *quest = luaL_checkstring(L, 2);
 	const char *text = luaL_optstring(L, 3, NULL);
@@ -591,11 +612,11 @@ LUAFD_DOC(bool has_quest(self, quest))
 
 static int _has_quest(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *quest = luaL_checkstring(L, 2);
 
-	lua_pushboolean(L, (*self)->AllMissions[GetMissionIndexByName(quest)].MissionWasAssigned);
+	lua_pushboolean(L, self->me->AllMissions[GetMissionIndexByName(quest)].MissionWasAssigned);
 
 	return 1;
 }
@@ -613,7 +634,7 @@ LUAFD_DOC(void complete_quest(self, quest, text))
 
 static int _complete_quest(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *quest = luaL_checkstring(L, 2);
 	const char *text = luaL_optstring(L, 3, NULL);
@@ -639,11 +660,11 @@ LUAFD_DOC(bool done_quest(self, quest))
 
 static int _done_quest(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *quest = luaL_checkstring(L, 2);
 
-	lua_pushboolean(L, (*self)->AllMissions[GetMissionIndexByName(quest)].MissionIsComplete);
+	lua_pushboolean(L, self->me->AllMissions[GetMissionIndexByName(quest)].MissionIsComplete);
 
 	return 1;
 }
@@ -661,7 +682,7 @@ LUAFD_DOC(void add_item(self, item, number))
 
 static int _add_item(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *item_name = luaL_checkstring(L, 2);
 	int number = luaL_optinteger(L, 3, 1);
@@ -699,7 +720,7 @@ LUAFD_DOC(void del_item_backpack(self, item, number))
 
 static int _del_item_backpack(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *item_name = luaL_checkstring(L, 2);
 	int number = luaL_optinteger(L, 3, 1);
@@ -722,7 +743,7 @@ LUAFD_DOC(integer count_item_backpack(self, item))
 
 static int _count_item_backpack(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *item_name = luaL_checkstring(L, 2);
 
@@ -743,7 +764,7 @@ LUAFD_DOC(void equip_item(self, item))
 
 static int _equip_item(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *item_name = luaL_checkstring(L, 2);
 	if (!item_name) {
@@ -771,13 +792,13 @@ LUAFD_DOC(bool has_item_equipped(self, item))
 
 static int _has_item_equipped(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *item_name = luaL_checkstring(L, 2);
 	int item_type = get_item_type_by_id(item_name);
-	if (((*self)->weapon_item.type == item_type) || ((*self)->drive_item.type == item_type) ||
-	    ((*self)->armour_item.type == item_type) || ((*self)->shield_item.type == item_type) ||
-	    ((*self)->special_item.type == item_type)) {
+	if ((self->me->weapon_item.type == item_type) || (self->me->drive_item.type == item_type) ||
+	    (self->me->armour_item.type == item_type) || (self->me->shield_item.type == item_type) ||
+	    (self->me->special_item.type == item_type)) {
 		lua_pushboolean(L, TRUE);
 	} else {
 		lua_pushboolean(L, FALSE);
@@ -800,7 +821,7 @@ LUAFD_DOC(bool has_met(self, npc))
 
 static int _has_met(lua_State *L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *npc_name = luaL_checkstring(L, 2);
 	struct npc *npc = npc_get(npc_name);
@@ -821,7 +842,7 @@ LUAFD_DOC(void teleport(self, label))
 
 static int _teleport(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	gps stop_pos = { -1, -1, -1 };
 	const char *label = luaL_checkstring(L, 2);
@@ -834,9 +855,9 @@ static int _teleport(lua_State * L)
 		reset_visible_levels();
 
 		Teleport(teleport_pos.z, teleport_pos.x, teleport_pos.y, TRUE, TRUE);
-		(*self)->speed.x = 0.0;
-		(*self)->speed.y = 0.0;
-		clear_out_intermediate_points(&stop_pos, (*self)->next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
+		self->me->speed.x = 0.0;
+		self->me->speed.y = 0.0;
+		clear_out_intermediate_points(&stop_pos, self->me->next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
 
 		clear_active_bullets();
 	}
@@ -857,7 +878,7 @@ LUAFD_DOC(bool has_teleport_anchor(self))
 
 static int _has_teleport_anchor(lua_State * L)
 {
-	GET_SELF_INSTANCE_OF(struct tux*, L, "FDtux");
+	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	/* Check that 'self' is of the right type */
 	//struct tux** self = (struct tux**)luaL_testudata(L, 1, "FDtux");
@@ -865,7 +886,7 @@ static int _has_teleport_anchor(lua_State * L)
 	//	return luaL_error(L, "%s() called with a userdata of wrong type (FDtux expected)", __FUNCTION__);
 	//}
 
-	if ((*self)->teleport_anchor.z != -1)
+	if (self->me->teleport_anchor.z != -1)
 		lua_pushboolean(L, TRUE);
 	else
 		lua_pushboolean(L, FALSE);
@@ -881,6 +902,7 @@ static int _has_teleport_anchor(lua_State * L)
  * FDtux cfuns list
  */
 static const luaL_Reg tux_cfuns[] = {
+		{ "__gc", _garbage_collect },
 		LUAFD_CFUN(get_player_name),
 		LUAFD_CFUN(get_hp),
 		LUAFD_CFUN(get_max_hp),
@@ -1020,8 +1042,8 @@ int luaFD_tux_get_instance(lua_State *L)
 		lua_pop(L, 1);                                                                     // empty stack
 
 		/* Create a userdata which is a pointer to the 'Me' C struct, and make it be a FDtux instance */
-		struct tux** userdata = (struct tux **)lua_newuserdata(L, sizeof(struct tux*));    // stack: (-1) userdata (1)
-		*userdata = &Me;
+		struct luaFD_tux* userdata = (struct luaFD_tux *)lua_newuserdata(L, sizeof(struct luaFD_tux));    // stack: (-1) userdata (1)
+		userdata->me = &Me;
 		luaL_setmetatable(L, "FDtux");                                                     // stack: (-1) userdata (1)
 
 		/* Register the userdata, using the value of the pointer to create a lightuserdata key */
