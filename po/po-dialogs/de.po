@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-09-04 20:51+0000\n"
-"PO-Revision-Date: 2014-06-20 14:00+0000\n"
+"POT-Creation-Date: 2014-11-25 23:15+0000\n"
+"PO-Revision-Date: 2014-09-04 21:31+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/freedroid-rpg/language/de/)\n"
 "Language: de\n"
@@ -9221,6 +9221,10 @@ msgstr "Ich wünschte ich wüsste, worüber sie sprechen."
 msgid "I need to go now."
 msgstr "Ich muss gehen jetzt."
 
+#: dialogs/Guy.lua:226
+msgid "Guy signmessage B"
+msgstr ""
+
 #: dialogs/HF-EntranceBot.lua:29
 msgid "Welcome to the MegaSys Factory complex."
 msgstr "Willkommen zum MegaSys-Fabrikkomplex."
@@ -12129,39 +12133,39 @@ msgstr "Michelangelo, der Koch, hat mich beauftragt 3 Diliziumkristalle zu holen
 
 #: dialogs/Mike.lua:29
 msgid "Novice"
-msgstr ""
+msgstr "Anfänger"
 
 #: dialogs/Mike.lua:30
 msgid "Elite"
-msgstr ""
+msgstr "Elite"
 
 #: dialogs/Mike.lua:31
 msgid "Champion"
-msgstr ""
+msgstr "Champion"
 
 #: dialogs/Mike.lua:44
 msgid "Euh...hello?"
-msgstr ""
+msgstr "Ähm… Hallo?"
 
 #: dialogs/Mike.lua:45
 msgid "Salutation: Welcome to the arena."
-msgstr ""
+msgstr "Begrüßung: Willkommen in der Arena."
 
 #: dialogs/Mike.lua:46
 msgid "Presentation: The robot is M.I.K.E."
-msgstr ""
+msgstr "Präsentation: Dieser Roboter heißt M.I.K.E."
 
 #: dialogs/Mike.lua:47
 msgid "Modern Interactive Kombat Executive."
-msgstr ""
+msgstr "Moderner Interaktiver Kampf-Entertainer."
 
 #: dialogs/Mike.lua:48
 msgid "Tasks: Multiple assignments have been programmed."
-msgstr ""
+msgstr "Funktion: Verschiedene Aufgaben wurden programmiert."
 
 #: dialogs/Mike.lua:49
 msgid "Suggestion: The arena enrollment program is open."
-msgstr ""
+msgstr "Vorschlag: Das Programm \"Arena-Einschreibung\" ist geöffnet."
 
 #: dialogs/Mike.lua:54
 msgid "You have won the arena."
@@ -12189,117 +12193,117 @@ msgstr "Der Arenakampf läuft bereits."
 
 #: dialogs/Mike.lua:75
 msgid "Hi."
-msgstr ""
+msgstr "Hi."
 
 #: dialogs/Mike.lua:78
 msgid "Salutations: Welcome to the arena."
-msgstr ""
+msgstr "Begrüßungen: Willkommen in der Arena."
 
 #: dialogs/Mike.lua:79
 msgid "Salutations: M.I.K.E. says hello."
-msgstr ""
+msgstr "Begrüßungen: M.I.K.E. sagt Hallo."
 
 #: dialogs/Mike.lua:82
 msgid "Salutations: Greeting, Fighter."
-msgstr ""
+msgstr "Begrüßung: Grüß dich, Kämpfer."
 
 #: dialogs/Mike.lua:94
 msgid "I want to fight."
-msgstr ""
+msgstr "Ich möchte kämpfen."
 
 #: dialogs/Mike.lua:97
 msgid "Excellent: New challengers are greatly appreciated."
-msgstr ""
+msgstr "Ausgezeichnet: Neue Herausforderer werden gern gesehen."
 
 #: dialogs/Mike.lua:98
 msgid "Registration: Patience, it will take a litte moment."
-msgstr ""
+msgstr "Registrierung: Bitte warten, es wird einige Zeit dauern."
 
 #: dialogs/Mike.lua:99
 msgid "[b]...Analysis of the bio-signature.[/b]"
-msgstr ""
+msgstr "[b]…Analyse der Bio-Signatur.[/b]"
 
 #: dialogs/Mike.lua:100
 msgid "[b]...Processing the ranking value.[/b]"
-msgstr ""
+msgstr "[b]…Berechne Rang.[/b]"
 
 #: dialogs/Mike.lua:101
 msgid "[b]...Saving personal characteristics.[/b]"
-msgstr ""
+msgstr "[b]…Speichere persönliche Charakteristik.[/b]"
 
 #: dialogs/Mike.lua:103
 msgid "[b]...Fighter registered.[/b]"
-msgstr ""
+msgstr "[b]…Kämpfer registriert.[/b]"
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Mike.lua:105
 #, c-format
 msgid "Compliment: %s is the new challenger."
-msgstr ""
+msgstr "Kompliment: %s ist neuer Herausforderer."
 
 #. TRANSLATORS: %s is the ranking of Tux in the arena.
 #: dialogs/Mike.lua:109
 #, c-format
 msgid "Information: Your ranking has been established to be '%s'."
-msgstr ""
+msgstr "Information: Ihr aktueller Rang ist: '%s'."
 
 #: dialogs/Mike.lua:110
 msgid "Planning: Arena matches are freely scheduled."
-msgstr ""
+msgstr "Planung: Arenakämpfe können beliebig eingeteilt werden."
 
 #: dialogs/Mike.lua:111
 msgid "Advice: Begin fighting when you are ready."
-msgstr ""
+msgstr "Hinweis: Kämpfen Sie, wenn Sie bereit sind."
 
 #: dialogs/Mike.lua:117
 msgid "I'm ready to fight."
-msgstr ""
+msgstr "Her mit dem Kampf."
 
 #. TRANSLATORS: %s is the ranking of Tux in the arena.
 #: dialogs/Mike.lua:124
 #, c-format
 msgid "Information: Your rankings has been etablished to be '%s'."
-msgstr ""
+msgstr "Information: Ihr aktueller Rang ist nun: '%s'."
 
 #: dialogs/Mike.lua:127
 msgid "Explanation: The arena is divided into three rank levels."
-msgstr ""
+msgstr "Erklärung: Die Arena ist in 3 Ränge aufgeteilt."
 
 #: dialogs/Mike.lua:128
 msgid "First: Novice - new to the arena and bot-fighting."
-msgstr ""
+msgstr "Erstens: Anfänger - für absolute Grünschnäbel im Kampf."
 
 #: dialogs/Mike.lua:129
 msgid "Second: Elite - you are a good fighter who already knows the routine."
-msgstr ""
+msgstr "Zweitens: Elite - für gute Kämpfer mit Grundlagenwissen."
 
 #: dialogs/Mike.lua:130
 msgid "Third: Champion - nothing can stop you, you seek the harder challenges."
-msgstr ""
+msgstr "Drittens: Champion - nichts hält Sie auf, denn Sie suchen größere Herausforderungen."
 
 #: dialogs/Mike.lua:131
 msgid "Every time you win, you are raised to the next rank."
-msgstr ""
+msgstr "Mit jedem Sieg steigen Sie einen Rang auf."
 
 #: dialogs/Mike.lua:132
 msgid "Advice: Last rank has the most difficult challenge."
-msgstr ""
+msgstr "Hinweis: Letzter Rang ist am schwierigsten."
 
 #: dialogs/Mike.lua:137
 msgid "Choice: You can fight at the 'Novice', 'Elite' and 'Champion' rank."
-msgstr ""
+msgstr "Wahl: Sie können in den Rängen 'Anfänger', 'Elite' und 'Champion' antreten."
 
 #: dialogs/Mike.lua:140
 msgid "Choice: You can fight at the 'Novice' and 'Elite' rank."
-msgstr ""
+msgstr "Wahl: Sie können in den Rängen 'Anfänger' und 'Elite' antreten."
 
 #: dialogs/Mike.lua:143
 msgid "Beginning: You can only fight at the 'Novice' rank."
-msgstr ""
+msgstr "Beginn: Sie können nur im Rang 'Anfänger' antreten."
 
 #: dialogs/Mike.lua:153
 msgid "Let's go at 'Novice'."
-msgstr ""
+msgstr "Ich nehme den Rang 'Anfänger'."
 
 #: dialogs/Mike.lua:155
 msgid "Start Novice Arena"
@@ -12307,7 +12311,7 @@ msgstr "Starte Anfänger-Arena"
 
 #: dialogs/Mike.lua:162
 msgid "Let's go at 'Elite'."
-msgstr ""
+msgstr "Ich nehme den Rang 'Elite'."
 
 #: dialogs/Mike.lua:164
 msgid "Start Elite Arena"
@@ -12315,7 +12319,7 @@ msgstr "Starte Elite-Arena"
 
 #: dialogs/Mike.lua:171
 msgid "Let's go at 'Champion'."
-msgstr ""
+msgstr "Ich nehme den Rang 'Champion'."
 
 #: dialogs/Mike.lua:173
 msgid "Start Champion Arena"
@@ -12323,51 +12327,51 @@ msgstr "Starte Champion-Arena"
 
 #: dialogs/Mike.lua:180
 msgid "None at this moment."
-msgstr ""
+msgstr "Keinen davon."
 
 #: dialogs/Mike.lua:183
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: dialogs/Mike.lua:206
 msgid "What are your tasks?"
-msgstr ""
+msgstr "Was sind deine Aufgaben?"
 
 #: dialogs/Mike.lua:208
 msgid "First: Control of incoming droid."
-msgstr ""
+msgstr "Erstens: Kontrolle auf eindringende Droiden."
 
 #: dialogs/Mike.lua:209
 msgid "Second: Prepare the arena installation."
-msgstr ""
+msgstr "Zweitens: Die Arena instandhalten."
 
 #: dialogs/Mike.lua:210
 msgid "Third: Save and analyse combat data."
-msgstr ""
+msgstr "Drittens: Kampfdaten speichern und analysieren."
 
 #: dialogs/Mike.lua:211
 msgid "Important: Make sandwiches."
-msgstr ""
+msgstr "Wichtig: Sandwiches machen."
 
 #: dialogs/Mike.lua:217
 msgid "Make me a sandwich."
-msgstr ""
+msgstr "Mach mir ein Sandwich."
 
 #: dialogs/Mike.lua:221
 msgid "Problem: Ingredients are not available."
-msgstr ""
+msgstr "Problem: Zutaten nicht verfügbar."
 
 #: dialogs/Mike.lua:223
 msgid "Refusal: Only authorized personal can give orders."
-msgstr ""
+msgstr "Ablehnung: Nur autorisiertes Personal kann Befehle geben."
 
 #: dialogs/Mike.lua:231
 msgid "sudo make me a sandwich"
-msgstr ""
+msgstr "sudo mach mir ein Sandwich"
 
 #: dialogs/Mike.lua:233
 msgid "Annoyance: The droid is not a terminal."
-msgstr ""
+msgstr "Ärger: Dieser Droide ist kein Terminal."
 
 #: dialogs/MiniFactory-Terminal.lua:26
 msgid "dixon@autofactory: ~ # "

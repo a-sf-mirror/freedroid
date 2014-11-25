@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-09-04 20:51+0000\n"
-"PO-Revision-Date: 2014-06-14 09:11+0000\n"
+"POT-Creation-Date: 2014-11-25 23:15+0000\n"
+"PO-Revision-Date: 2014-09-04 21:31+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
@@ -4863,23 +4863,23 @@ msgstr ""
 
 #: dialogs/Chandra.lua:376
 msgid "But..."
-msgstr ""
+msgstr "Mais… "
 
 #: dialogs/Chandra.lua:377
 msgid "And I am more than happy to help them!"
-msgstr ""
+msgstr "Et je suis plus qu'heureux de pouvoir les aider !"
 
 #: dialogs/Chandra.lua:385
 msgid "How come no one seems freaked out by a big fracking penguin?"
-msgstr ""
+msgstr "Comment se fait-il que personne ne soit effrayé de voir un pingouin de deux mettre ? "
 
 #: dialogs/Chandra.lua:388
 msgid "[b]<chuckles>[/b] This is not the first time the people of Earth have seen one of your kind."
-msgstr ""
+msgstr "[b]<chuckles>[/b] Vous n'êtes pas le premier de votre espèce que les terriens ont vu. "
 
 #: dialogs/Chandra.lua:389
 msgid "Of course, its been almost one hundred years since Linarians first came to this planet. As you might imagine most of the people who were alive then are long gone."
-msgstr ""
+msgstr "Bien sur, ça fait un siècle que les premiers Linariens sont venu sur cette planète. Et comme vous pouvez l'imaginer, la plupart de ceux qui les ont rencontrés sont mort depuis longtemps.  "
 
 #: dialogs/Chandra.lua:390
 msgid "But the townspeople were made aware of your existence upon your discovery. Everyone was quickly informed of the legends performed by the Linarians of the past."
@@ -9224,6 +9224,10 @@ msgstr "J'aimerais tellement comprendre ce que vous me dite. "
 msgid "I need to go now."
 msgstr "Je dois y aller"
 
+#: dialogs/Guy.lua:226
+msgid "Guy signmessage B"
+msgstr ""
+
 #: dialogs/HF-EntranceBot.lua:29
 msgid "Welcome to the MegaSys Factory complex."
 msgstr "Bienvenu au Complexe industriel de MégaSys."
@@ -12134,39 +12138,39 @@ msgstr "Je suis supposé obtenir trois cristaux de dilithium pour ce cuisinier, 
 
 #: dialogs/Mike.lua:29
 msgid "Novice"
-msgstr ""
+msgstr "Novice"
 
 #: dialogs/Mike.lua:30
 msgid "Elite"
-msgstr ""
+msgstr "Élite"
 
 #: dialogs/Mike.lua:31
 msgid "Champion"
-msgstr ""
+msgstr "Champion"
 
 #: dialogs/Mike.lua:44
 msgid "Euh...hello?"
-msgstr ""
+msgstr "Euh... bonjour ?"
 
 #: dialogs/Mike.lua:45
 msgid "Salutation: Welcome to the arena."
-msgstr ""
+msgstr "Salutation : Bienvenue dans l'arène"
 
 #: dialogs/Mike.lua:46
 msgid "Presentation: The robot is M.I.K.E."
-msgstr ""
+msgstr "Présentation : Ce robot est M.I.K.E."
 
 #: dialogs/Mike.lua:47
 msgid "Modern Interactive Kombat Executive."
-msgstr ""
+msgstr "Moderne Interactif Kombat Exécutif."
 
 #: dialogs/Mike.lua:48
 msgid "Tasks: Multiple assignments have been programmed."
-msgstr ""
+msgstr "Tâches : Plusieurs mission ont été programmé."
 
 #: dialogs/Mike.lua:49
 msgid "Suggestion: The arena enrollment program is open."
-msgstr ""
+msgstr "Suggestion : Le programme de recrutement de l'arène est ouvert."
 
 #: dialogs/Mike.lua:54
 msgid "You have won the arena."
@@ -12194,15 +12198,15 @@ msgstr "Cette arène a déjà débuté. "
 
 #: dialogs/Mike.lua:75
 msgid "Hi."
-msgstr ""
+msgstr "Salut."
 
 #: dialogs/Mike.lua:78
 msgid "Salutations: Welcome to the arena."
-msgstr ""
+msgstr "Salutations : Bienvenue dans l'arène."
 
 #: dialogs/Mike.lua:79
 msgid "Salutations: M.I.K.E. says hello."
-msgstr ""
+msgstr "Salutations : M.I.K.E. dit bonjour."
 
 #: dialogs/Mike.lua:82
 msgid "Salutations: Greeting, Fighter."
@@ -12210,51 +12214,51 @@ msgstr ""
 
 #: dialogs/Mike.lua:94
 msgid "I want to fight."
-msgstr ""
+msgstr "Je veux combattre."
 
 #: dialogs/Mike.lua:97
 msgid "Excellent: New challengers are greatly appreciated."
-msgstr ""
+msgstr "Excellent : Les nouveaux challenger sont grandement appréciés."
 
 #: dialogs/Mike.lua:98
 msgid "Registration: Patience, it will take a litte moment."
-msgstr ""
+msgstr "Enregistrement: Patience, cela va prendre un petit moment."
 
 #: dialogs/Mike.lua:99
 msgid "[b]...Analysis of the bio-signature.[/b]"
-msgstr ""
+msgstr "[b]...Analyse de la bio-signature.[/b]"
 
 #: dialogs/Mike.lua:100
 msgid "[b]...Processing the ranking value.[/b]"
-msgstr ""
+msgstr "[b]...Calcul de la place dans le classement.[/b]"
 
 #: dialogs/Mike.lua:101
 msgid "[b]...Saving personal characteristics.[/b]"
-msgstr ""
+msgstr "[b]...Sauvegarde des caractéristiques personnels.[b]"
 
 #: dialogs/Mike.lua:103
 msgid "[b]...Fighter registered.[/b]"
-msgstr ""
+msgstr "[b]...Combattant enregistré.[/b]"
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Mike.lua:105
 #, c-format
 msgid "Compliment: %s is the new challenger."
-msgstr ""
+msgstr "Compliment : %s est le nouveau challenger."
 
 #. TRANSLATORS: %s is the ranking of Tux in the arena.
 #: dialogs/Mike.lua:109
 #, c-format
 msgid "Information: Your ranking has been established to be '%s'."
-msgstr ""
+msgstr "Information : Votre classement a été établi à la valeur '%s'."
 
 #: dialogs/Mike.lua:110
 msgid "Planning: Arena matches are freely scheduled."
-msgstr ""
+msgstr "Planification : Les matches de l'Arène sont librement programmés."
 
 #: dialogs/Mike.lua:111
 msgid "Advice: Begin fighting when you are ready."
-msgstr ""
+msgstr "Conseil : Commence à combattre quand tu es prêt."
 
 #: dialogs/Mike.lua:117
 msgid "I'm ready to fight."
