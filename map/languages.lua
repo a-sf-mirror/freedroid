@@ -26,4 +26,5 @@ languages{
 	{ name = "Deutsch",  locale = "de_DE" },
 	{ name = "English (US)",  locale = "en_US" },
 	{ name = "Francais", locale = "fr_FR" },
+	{ name = "Svenska", locale = "sv_SV" },
 }
