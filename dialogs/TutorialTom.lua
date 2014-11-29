@@ -87,7 +87,6 @@ return {
 	end,
 
 	EveryTime = function()
-		show("node58")
 		if (TutorialTom_start_chat) then --initiated by TutorialTerminal.dialog
 			Npc:says(_"Well done.")
 			Npc:says(_"Now follow me to the next section. You will learn how to hack bots.")
