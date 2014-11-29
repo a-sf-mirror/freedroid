@@ -189,9 +189,9 @@ void chat_delete_context(struct chat_context *chat_context)
 }
 
 /**
- * Fill the chat selector widget with the currently selected options
+ * Fill the chat selector widget with the selected options of the current dialog
  */
-static void fill_chat_selector(struct chat_context *context)
+static void fill_chat_selector()
 {
 	char *empty_entries[] = { NULL };
 	int i;
@@ -586,7 +586,7 @@ void chat_run()
 	// yield/resume features of Lua. When a lua script is run, we thus have to
 	// loop on its execution (i.e. resume it) until it ends.
 	//
-	// For calls to open a dialog inside a dialog (lua start_dialog()), the
+	// For calls to open a dialog inside a dialog (lua start_chat()), the
 	// current lua script also has to be interrupted, the context of the new
 	// dialog has to be extracted from the stack to run the new dialog flow, and
 	// once the new dialog is ended the previous dialog script has to be resumed.
@@ -666,6 +666,7 @@ void chat_run()
 				{
 					widget_text_init(chat_log, _("[n]--- Start of Dialog ---\n"));
 					current_chat_context->script_coroutine = prepare_lua_coroutine(LUA_DIALOG, "FDdialog", "run_init", NULL);
+					current_chat_context->end_dialog = 0;
 					// next step
 					current_chat_context->state = RUN_INIT_SCRIPT;
 					break;
@@ -675,6 +676,7 @@ void chat_run()
 					if (current_chat_context->npc->chat_character_initialized)
 						widget_text_init(chat_log, _("[n]--- Start of Dialog ---\n"));
 					current_chat_context->script_coroutine = prepare_lua_coroutine(LUA_DIALOG, "FDdialog", "run_startup", NULL);
+					current_chat_context->end_dialog = 0;
 					// next step
 					current_chat_context->state = RUN_STARTUP_SCRIPT;
 					break;
@@ -721,7 +723,18 @@ void chat_run()
 
 					// The script can have changed the list of active dialog options,
 					// so we have to refresh the chat_selector content.
-					fill_chat_selector(current_chat_context);
+					// But, a new dialog could have been started by the script.
+					// In that case, the chat_selector has to be emptied.
+					// Note: the chat_selector could be filled at the beginning
+					// of the while-loop, just before to display the chat UI.
+					// However, calling Lua to get the list of selected options
+					// is a bit costly, so we want to avoid to do it at each frame.
+					struct chat_context *top_chat_context = chat_get_current_context();
+					if (top_chat_context == current_chat_context) {
+						fill_chat_selector();
+					} else {
+						widget_text_list_init(chat_selector, empty_entries, NULL);
+					}
 					break;
 				}
 				default:
