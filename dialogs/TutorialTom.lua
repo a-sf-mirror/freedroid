@@ -63,6 +63,8 @@ local function tutorial_ranged_combat()
 	tut_tux_glass_entered = true
 end
 
+local items_up = {"Entropy Inverter", "Tachyon Condensator", "Antimatter-Matter Converter", "Superconducting Relay Unit", "Plasma Transistor"}
+
 -- actual dialog
 
 return {
@@ -70,7 +72,6 @@ return {
 		-- initialize
 		TutorialTom_doors = {"TutorialEntry", "TutorialZigzag1", "TutorialZigzag2", "TutorialZigzag3", "TutorialZigzag4"}
 		TutorialTom_doors2 = {TutorialTom_doors[1], TutorialTom_doors[2], TutorialTom_doors[3], TutorialTom_doors[4], TutorialTom_doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialDoor", "TutorialGlasswallDoor", "TutorialStorage", "TutorialTakeover", "TutorialExit1"}
-		items_up = {"Entropy Inverter", "Tachyon Condensator", "Antimatter-Matter Converter", "Superconducting Relay Unit", "Plasma Transistor"}
 		ranged_combat = {"Normal Jacket", "Big kitchen knife", "Shoes", "Standard Shield", "Worker Helmet"}
 		-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
 		for var in ipairs(TutorialTom_doors2) do
@@ -86,6 +87,7 @@ return {
 	end,
 
 	EveryTime = function()
+		show("node58")
 		if (TutorialTom_start_chat) then --initiated by TutorialTerminal.dialog
 			Npc:says(_"Well done.")
 			Npc:says(_"Now follow me to the next section. You will learn how to hack bots.")
@@ -979,15 +981,9 @@ return {
 			Npc:says(_"Pay attention to the type of socket the add-on needs.")
 			Tux:update_quest("Tutorial Upgrading Items", _"Before crafting an add-on I have to get some materials. The best way is to extract them from the bots, using Extract Bot Parts skill. Each add-on requires a socket in the item. When the add-on is ready, I have to create a socket in the item and plug the add-on. Only technicians can craft add-ons or plug them.")
 			-- TODO decide on what type of upgrade should player make?
-			--[[ for var in ipairs(items_up) do
-			Tux:add_item(items_up[var], 20)
-			end ]]-- FOR SOME REASON this was not working... add items one by one
-
-			Tux:add_item("Entropy Inverter", 20)
-			Tux:add_item("Tachyon Condensator", 20)
-			Tux:add_item("Antimatter-Matter Converter", 20)
-			Tux:add_item("Superconducting Relay Unit", 20)
-			Tux:add_item("Plasma Transistor", 20)
+			for i,v in ipairs(items_up) do
+				Tux:add_item(v, 20)
+			end
 
 			craft_addons()
 			Npc:says(_"Now you'll need to pay some more money in order to make a socket and plug in the add-on. Here, take some.")
@@ -1004,15 +1000,9 @@ return {
 		code = function()
 			Npc:says(_"Yes, but only this time. I'll give you some money too. Just be more careful in the future and make wise choices.")
 			Npc:says(_"Reality is not as generous as I am.")
-			--[[ for var in ipairs(items_up) do
-			Tux:add_item(items_up[var], 20)
-			end ]]--FOR SOME REASON this was not working... add items one by one
-
-			Tux:add_item("Entropy Inverter", 20)
-			Tux:add_item("Tachyon Condensator", 20)
-			Tux:add_item("Antimatter-Matter Converter", 20)
-			Tux:add_item("Superconducting Relay Unit", 20)
-			Tux:add_item("Plasma Transistor", 20)
+			for i,v in ipairs(items_up) do
+				Tux:add_item(v, 20)
+			end
 
 			Tux:add_gold(1200)
 			Tux:says(_"Thank you.")
