@@ -1735,70 +1735,69 @@ int resume_lua_coroutine(struct lua_coroutine *coroutine)
 			coroutine->nargs = 0;
 			return FALSE;
 		default:
-		{
 			// Any other return code is an error.
-			// Use the lua debug API to get informations about the code of the current script
-			char *error_msg = strdup(lua_tostring(coroutine->thread, -1));
-
-			lua_Debug ar;
-			lua_getstack(coroutine->thread, 0, &ar);
-			lua_getinfo(coroutine->thread, "nS", &ar);
-
-			if (ar.what[0] == 'C') {
-				// Error caught in a C function.
-				// Try to get the lua calling code from the call stack.
-				if (!lua_getstack(coroutine->thread, 1, &ar)) {
-					// Nothing in the call stack. Display an error msg and exit.
-					error_message(__FUNCTION__, "Error in a lua API call in function '%s()': %s.",
-							PLEASE_INFORM, ar.name, error_msg);
-					goto EXIT;
-				}
-				// Get the info of the lua calling code, and continue to display it
-				lua_getinfo(coroutine->thread, "nS", &ar);
-			}
-
-			if (ar.source[0] != '@') {
-				// ar.source contains the script code
-				pretty_print_lua_error(coroutine->thread, error_msg, ar.source, 2, __FUNCTION__);
-			} else {
-				// The script code is in an external file
-				// Extract the erroneous function's code from the source file
-				FILE *src = fopen(ar.short_src, "r");
-				struct auto_string *code = alloc_autostr(256);
-				char buffer[256] = "";
-				char *ptr = buffer;
-				int lc = 1;
-				for (;;) {
-					if (*ptr == '\0') {
-						if (feof(src)) break;
-						size_t nbc = fread(buffer, 1, 255, src);
-						buffer[nbc] = '\0';
-						ptr = buffer;
-					}
-					if (lc > ar.lastlinedefined) break;
-					if (lc >= ar.linedefined) {
-						// The use of autostr_append to add a single character is
-						// not efficient, but this code is used only in case of a
-						// script error, so we do not really care of efficiency
-						autostr_append(code, "%c", *ptr);
-					}
-					if (*ptr == '\n') lc++;
-					ptr++;
-				}
-
-				pretty_print_lua_error(coroutine->thread, error_msg, code->value, ar.linedefined, __FUNCTION__);
-				free_autostr(code);
-			}
-
-EXIT:
-			free(error_msg);
-			lua_pop(coroutine->thread, 1);
-
-			return TRUE; // Pretend the lua script has ended
-		}
+			break;
 	}
 
-	return TRUE;
+	// On error:
+	// Use the lua debug API to get informations about the code of the current script
+	char *error_msg = strdup(lua_tostring(coroutine->thread, -1));
+
+	lua_Debug ar;
+	lua_getstack(coroutine->thread, 0, &ar);
+	lua_getinfo(coroutine->thread, "nS", &ar);
+
+	if (ar.what[0] == 'C') {
+		// Error caught in a C function.
+		// Try to get the lua calling code from the call stack.
+		if (!lua_getstack(coroutine->thread, 1, &ar)) {
+			// Nothing in the call stack. Display an error msg and exit.
+			error_message(__FUNCTION__, "Error in a lua API call in function '%s()': %s.",
+					PLEASE_INFORM, ar.name, error_msg);
+			goto EXIT;
+		}
+		// Get the info of the lua calling code, and continue to display it
+		lua_getinfo(coroutine->thread, "nS", &ar);
+	}
+
+	if (ar.source[0] != '@') {
+		// ar.source contains the script code
+		pretty_print_lua_error(coroutine->thread, error_msg, ar.source, 2, __FUNCTION__);
+	} else {
+		// The script code is in an external file
+		// Extract the erroneous function's code from the source file
+		FILE *src = fopen(ar.short_src, "r");
+		struct auto_string *code = alloc_autostr(256);
+		char buffer[256] = "";
+		char *ptr = buffer;
+		int lc = 1;
+		for (;;) {
+			if (*ptr == '\0') {
+				if (feof(src)) break;
+				size_t nbc = fread(buffer, 1, 255, src);
+				buffer[nbc] = '\0';
+				ptr = buffer;
+			}
+			if (lc > ar.lastlinedefined) break;
+			if (lc >= ar.linedefined) {
+				// The use of autostr_append to add a single character is
+				// not efficient, but this code is used only in case of a
+				// script error, so we do not really care of efficiency
+				autostr_append(code, "%c", *ptr);
+			}
+			if (*ptr == '\n') lc++;
+			ptr++;
+		}
+
+		pretty_print_lua_error(coroutine->thread, error_msg, code->value, ar.linedefined, __FUNCTION__);
+		free_autostr(code);
+	}
+
+EXIT:
+	free(error_msg);
+	lua_pop(coroutine->thread, 1);
+
+	return TRUE; // Pretend the lua script has ended
 }
 
 void run_lua(enum lua_target target, const char *code)
