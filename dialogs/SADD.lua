@@ -334,7 +334,7 @@ return {
 			hide("node51") show("node54")
 		end,
 	},
-	{
+--[[	{   -- maybe reimplement this node somehow...
 		id = "node52",
 		text = _"You tricked me.",
 		code = function()
@@ -342,7 +342,7 @@ return {
 			Npc:says(_"It was necessary to ensure primary objectives.")
 			hide("node52")
 		end,
-	},
+	}, ]]--
 	{
 		id = "node53",
 		text = _"Where can I get proper authorization?",
