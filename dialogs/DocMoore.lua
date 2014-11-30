@@ -54,6 +54,7 @@ return {
 		if (Tux:has_item_backpack("Dexterity Pill")) then show("node51") end
 		if (Tux:has_item_backpack("Code Pill")) then show("node52") end
 
+		if (Tux:has_item_backpack("Brain Enlargement Pill")) then show("node54") end
 		if (Tux:has_item_backpack("Diet supplement")) then show("node55") end
 		if (Tux:has_item_backpack("Antibiotic")) then show("node56") end
 		if (Tux:has_item_backpack("Doc-in-a-can")) then show("node57") end
