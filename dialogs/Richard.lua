@@ -134,7 +134,7 @@ return {
 				Npc:says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 				Npc:says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 				Npc:says(_"Now I see the feature set of your hacking program has already improved a lot.")
-				hide("node31") show("node30")
+				hide("node51") show("node50")
 			else
 				if (Tux:get_gold() < 300 ) then
 					next("node52")
