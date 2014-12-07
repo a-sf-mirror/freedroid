@@ -179,10 +179,10 @@ end
 
 FDdialog.Dialog = {
 	--! \privatesection
-	name = "",              --!< \brief Dialog's name                                                   \memberof Lua::FDdialog::Dialog
-	nodes = nil,		--!< \brief List of dialog's nodes                                          \memberof Lua::FDdialog::Dialog
-	topics = nil,		--!< \brief Stack of topics (see Node)                                      \memberof Lua::FDdialog::Dialog
-	next_node = nil		--!< \brief Next node to run after the end of the current node's script     \memberof Lua::FDdialog::Dialog
+	name = "",         --!< \brief Dialog's name                                                   \memberof Lua::FDdialog::Dialog
+	nodes = nil,       --!< \brief List of dialog's nodes                                          \memberof Lua::FDdialog::Dialog
+	topics = nil,      --!< \brief Stack of topics (see Node)                                      \memberof Lua::FDdialog::Dialog
+	next_node = nil    --!< \brief Next node to run after the end of the current node's script     \memberof Lua::FDdialog::Dialog
 	--! \publicsection
 }
 
@@ -242,6 +242,8 @@ function FDdialog.Dialog.foreach_node(self, nodes, func)
 		local node,i  = self:find_node(nodeid)
 		if (node) then
 			func(node)
+		else
+			error("Reference to an unknown node ('".. nodeid .. "')", 0)
 		end
 	end
 end
@@ -377,17 +379,88 @@ function FDdialog.Dialog.validate(self)
 		return true
 	end
 
+	local function _static_check(node, script)
+
+		local function _node_names_checker(buffer)
+
+			local function _check_node_list(node_list)
+				-- The 'node_list' is the parameter list of the show/hide functions.
+				-- We want to extract 'static' node names from that list, i.e.
+				-- substrings such as ", \"some_alphanums\" ,"
+				-- A parameter can be any Lua expression, and so it can possibly
+				-- contain a function call such as f("string1", "string2", "string3").
+				-- Those strings are not node names. To avoid to catch them, we
+				-- first remove all function calls.
+				local cleaned_node_list = node_list:gsub("(%b())", "")
+
+				-- Then, to more easily match static node names only, we add a
+				-- comma at the beginning and at the end of the whole string, and
+				-- we double the commas
+				local prepared_node_list = "," .. cleaned_node_list:gsub(",", ",,") .. ","
+
+				local ok = true
+
+				for nodeid in prepared_node_list:gmatch(",%s*\"([%w]+)\"%s*,") do
+					local node,i  = self:find_node(nodeid)
+					if (not node) then
+						if (ok) then
+							io.write("\n")
+							valid = 0
+							ok = false
+						end
+						print(FDutils.text.red("Unknown node name: " .. nodeid))
+					end
+				end
+
+				return ok
+			end
+
+			local ok = true
+
+			for i,fn in pairs({"show", "hide", "show_if"}) do
+				regex = "%f[%w]" .. fn .. "%s*(%b())"
+				for node_list in buffer:gmatch(regex) do
+					local rtn = _check_node_list(node_list:sub(2,-2))
+					ok = ok and rtn
+				end
+			end
+
+			return ok
+		end
+
+		-- Get the script source code
+		local info = debug.getinfo(script,"S")
+		local script_file = io.open(info.short_src)
+		local buffer = ""
+		local line_number = 1
+		for line in script_file:lines() do
+			if (line_number >= info.lastlinedefined) then
+				break
+			end
+			if (line_number > info.linedefined) then
+				buffer = buffer .. line
+			end
+			line_number = line_number + 1
+		end
+		script_file:close()
+
+		-- Run the static checkers
+		return _node_names_checker(buffer)
+	end
+
 	--
 	-- Check specific nodes
 	--
 	if (self.FirstTime and self.FirstTime.code) then
 		io.write("  FirstTime")
 		_try(self.FirstTime, self.FirstTime.code)
+		_static_check(self.FirstTime, self.FirstTime.code)
 	end
 
 	if (self.EveryTime and self.EveryTime.code) then
 		io.write("  EveryTime")
 		_try(self.EveryTime, self.EveryTime.code)
+		_static_check(self.EveryTime, self.EveryTime.code)
 	end
 
 	--
@@ -400,15 +473,13 @@ function FDdialog.Dialog.validate(self)
 			count = 0;
 		end
 		io.write("  |\"" .. node.id .. "\"|");
-		if (not _try(node, node.code)) then
-			count = 0
-		else
-			count = count + 1
-		end
+		local ok = _try(node, node.code) and
+		           _static_check(node, node.code)
+		count = ok and (count + 1) or 0
 	end
 
 	io.write("\n")
-	
+
 	return valid
 end
 
