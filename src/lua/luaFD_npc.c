@@ -373,6 +373,25 @@ static int _is_dead(lua_State *L)
 }
 
 /**
+ * \brief Get the name of the npc's sensor
+ *
+ * \param self [\p FDnpc] FDnpc instance
+ *
+ * \return [\p string] NPC sensor's name
+ *
+ * \bindtype cfun
+ */
+LUAFD_DOC(number get_sensor(self))
+
+static int _get_sensor(lua_State *L)
+{
+	GET_SELF_INSTANCE_OF(struct luaFD_npc, L, "FDnpc");
+
+	lua_pushstring(L, get_sensor_name_by_id(self->enemy_ref->sensor_id));
+	return 1;
+}
+
+/**
  * \brief Teleport the npc to a given map label
  *
  * \param self  [\p FDnpc] FDnpc instance
@@ -474,6 +493,7 @@ static const luaL_Reg npc_cfuns[] = {
 		LUAFD_CFUN(get_max_health),
 		LUAFD_CFUN(set_death_item),
 		LUAFD_CFUN(is_dead),
+		LUAFD_CFUN(get_sensor),
 		LUAFD_CFUN(teleport),
 		LUAFD_CFUN(heal),
 		LUAFD_CFUN(freeze),

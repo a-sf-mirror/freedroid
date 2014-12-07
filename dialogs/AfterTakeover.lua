@@ -354,6 +354,8 @@ return {
 			Tux:says(_"./settings.plx", "NO_WAIT")
 			Npc:says(_"Welcome to the settings menu.", "NO_WAIT")
 			Npc:says(_"Version: 1.82c", "NO_WAIT")
+			--; TRANSLATORS: %s = sensor name
+			Npc:says(_"Installed sensor: %s", Npc:get_sensor(), "NO_WAIT")
 			Npc:says(_"No upgrades found.", "NO_WAIT")
 			if (Npc:get_damage_ratio() > 0.5) then
 				Npc:says(_"UNIT TOO DAMAGED TO BROADCAST COMMANDS.", "NO_WAIT")
