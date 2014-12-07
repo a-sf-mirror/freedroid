@@ -121,7 +121,7 @@ return {
 			arena_left = nil
 
 			--; TRANSLATORS: %s is the ranking of Tux in the arena.
-			Npc:says(_"Information: Your rankings has been etablished to be '%s'.", tr_rankings[arena_ranking])
+			Npc:says(_"Information: Your ranking has been established to be '%s'.", tr_rankings[arena_ranking])
 
 			if (not arena_info_rank) then
 				Npc:says(_"Explanation: The arena is divided into three rank levels.")
