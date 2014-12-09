@@ -111,7 +111,7 @@ void chest_open_action(level *chest_lvl, int chest_index);
 void barrel_action(level *barrel_lvl, int barrel_index);
 void terminal_connect_action(level *, int);
 void sign_read_action(level *sign_lvl, int sign_index);
-int clickable_obstacle_below_mouse_cursor(level **obst_lvl);
+int clickable_obstacle_below_mouse_cursor(level **, int);
 int check_for_items_to_pickup(level *item_lvl, int item_index);
 action_fptr get_action_by_name(const char *action_name);
 

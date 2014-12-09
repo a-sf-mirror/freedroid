@@ -1771,7 +1771,7 @@ void draw_grid_on_the_floor(int mask)
 void AssembleCombatPicture(int mask)
 {
 	clear_screen();
-	clickable_obstacle_under_cursor =  clickable_obstacle_below_mouse_cursor(NULL);
+	clickable_obstacle_under_cursor =  clickable_obstacle_below_mouse_cursor(NULL, TRUE);
 	if ((!GameConfig.skip_light_radius) && (!(mask & SKIP_LIGHT_RADIUS))) {
 		// We generate a list of obstacles (and other stuff) that might
 		// emit some light.  It should be sufficient to establish this

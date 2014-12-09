@@ -1247,7 +1247,7 @@ int ButtonPressWasNotMeantAsFire()
  */
 int perform_tux_attack(int use_mouse_cursor_for_targeting)
 {
-	moderately_finepoint target_location;
+	moderately_finepoint target_location = { -1, -1 };
 	float target_angle;
 
 	// The attack target location can be the targeted enemy (if one was set), or an
@@ -1256,7 +1256,6 @@ int perform_tux_attack(int use_mouse_cursor_for_targeting)
 	// target location.
 
 	if (!APressed() && !use_mouse_cursor_for_targeting) {
-
 		enemy *targeted_enemy = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
 		if (!targeted_enemy) {
 			targeted_enemy = GetLivingDroidBelowMouseCursor();
@@ -1267,16 +1266,42 @@ int perform_tux_attack(int use_mouse_cursor_for_targeting)
 			target_location.x = targeted_enemy->virt_pos.x;
 			target_location.y = targeted_enemy->virt_pos.y;
 		} else {
-			// Use cursor position to compute target location
-			target_location.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
-			target_location.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
+			// Use mouse position to compute target location
+			use_mouse_cursor_for_targeting = TRUE;
 		}
-
 	} else {
+		use_mouse_cursor_for_targeting = TRUE;
+	}
 
-		// Un-targeted attack. Target location defined by the mouse position.
+	// If target location is defined by the mouse position, check if there is
+	// an obstacle or an enemy under the mouse, otherwise use the mouse location
+	if (use_mouse_cursor_for_targeting) {
+
+		// By default, use mouse location
 		target_location.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
 		target_location.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
+
+		// If there is an obstacle under the mouse cursor, use it as target
+		level *obs_lvl = NULL;
+		gps targeted_obstacle_vpos = { -1, -1, -1 };
+		int targeted_obstacle_index = clickable_obstacle_below_mouse_cursor(&obs_lvl, FALSE);
+		if (targeted_obstacle_index != -1) {
+			update_virtual_position(&targeted_obstacle_vpos, &obs_lvl->obstacle_list[targeted_obstacle_index].pos, Me.pos.z);
+			target_location.x = targeted_obstacle_vpos.x;
+			target_location.y = targeted_obstacle_vpos.y;
+		}
+
+		// If there is an enemy under the mouse cursor, use it as target if the enemy is nearest (using iso-norm)
+		enemy *targeted_enemy = GetLivingDroidBelowMouseCursor();
+		if (targeted_enemy != NULL) {
+			update_virtual_position(&targeted_enemy->virt_pos, &targeted_enemy->pos, Me.pos.z);
+			if ((targeted_obstacle_index == -1) ||
+				((targeted_enemy->virt_pos.x + targeted_enemy->virt_pos.y) >= (targeted_obstacle_vpos.x + targeted_obstacle_vpos.y))) {
+				target_location.x = targeted_enemy->virt_pos.x;
+				target_location.y = targeted_enemy->virt_pos.y;
+			}
+		}
+
 	}
 
 	// Turn Tux to face its target
@@ -1526,7 +1551,7 @@ static void AnalyzePlayersMouseClick()
 
 		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 
-		if ((tmp = clickable_obstacle_below_mouse_cursor(&obj_lvl)) != -1) {
+		if ((tmp = clickable_obstacle_below_mouse_cursor(&obj_lvl, TRUE)) != -1) {
 			get_obstacle_spec(obj_lvl->obstacle_list[tmp].type)->action_fn(obj_lvl, tmp);
 			if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
 				wait_mouseleft_release = TRUE;

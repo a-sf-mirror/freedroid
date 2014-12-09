@@ -397,7 +397,7 @@ static void prepare_text_window_content(struct auto_string *str, SDL_Rect *rect)
 		// Display Clickable Obstacle label  in the top status banner.
 		//
 		obj_lvl = NULL;
-		index_of_obst_below_mouse_cursor = clickable_obstacle_below_mouse_cursor(&obj_lvl);
+		index_of_obst_below_mouse_cursor = clickable_obstacle_below_mouse_cursor(&obj_lvl, TRUE);
 		if (index_of_obst_below_mouse_cursor != (-1)) {
 			gps obst_vpos;
 			update_virtual_position(&obst_vpos, &(obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].pos), Me.pos.z);
