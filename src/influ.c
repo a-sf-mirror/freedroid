@@ -1243,7 +1243,7 @@ int perform_tux_attack(int use_mouse_cursor_for_targeting)
 	// In case of an 'un-targeted' attack (A-pressed), the mouse position defines the
 	// target location.
 
-	if (!APressed()) {
+	if (!APressed() && !use_mouse_cursor_for_targeting) {
 
 		enemy *targeted_enemy = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
 		if (!targeted_enemy) {
