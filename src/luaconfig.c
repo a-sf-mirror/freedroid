@@ -1262,6 +1262,7 @@ static void get_one_skill(lua_State *L, void *data)
 	}
 	free(skill_target);
 
+	skill->form = PROGRAM_FORM_INSTANT;
 	if (skill_form) {
 		if (!strcmp(skill_form, "instant"))
 			skill->form = PROGRAM_FORM_INSTANT;
@@ -1271,8 +1272,8 @@ static void get_one_skill(lua_State *L, void *data)
 			skill->form = PROGRAM_FORM_RADIAL;
 		if (!strcmp(skill_form, "self"))
 			skill->form = PROGRAM_FORM_SELF;
-	} else {
-		skill->form = PROGRAM_FORM_INSTANT;
+		if (!strcmp(skill_form, "special"))
+			skill->form = PROGRAM_FORM_SPECIAL;
 	}
 	free(skill_form);
 
