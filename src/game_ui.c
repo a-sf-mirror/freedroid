@@ -585,7 +585,7 @@ static struct widget_group *create_hud_bar()
 
 	// Message log.
 	init_message_log();
-	widget_set_rect(WIDGET(message_log), 120,  WIDGET(panel)->rect.y + 7, 415, 46);
+	widget_set_rect(WIDGET(message_log), left_scaling_panel_x - 51,  WIDGET(panel)->rect.y + 7, right_panel_x - left_scaling_panel_x + 102, 46);
 	message_log->font = Messagevar_BFont;
 	widget_group_add(hud_bar, WIDGET(message_log));
 
