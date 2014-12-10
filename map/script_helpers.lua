@@ -265,10 +265,10 @@ function add_quest(quest, text) -- FDtux:add_quest
 	assign_quest(quest, text)
 	play_sound("effects/Mission_Status_Change_Sound_0.ogg")
 	if (run_from_dialog()) then
-		cli_says("   "..S_"New Quest assigned: " .. quest,"NO_WAIT")
+		cli_says("   "..S_"New Quest assigned: " .. D_(quest),"NO_WAIT")
 		npc_says("")
 	else
-		display_big_message("   "..S_"New Quest assigned: " .. quest)
+		display_big_message("   "..S_"New Quest assigned: " .. D_(quest))
 	end
 end
 
@@ -277,10 +277,10 @@ function update_quest(quest, text) -- FDtux:update_quest
 		add_diary_entry(quest, text)
 		play_sound("effects/Mission_Status_Change_Sound_0.ogg")
 		if (run_from_dialog()) then
-			cli_says("   ".._"Quest log updated: " .. quest, "NO_WAIT")
+			cli_says("   ".._"Quest log updated: " .. D_(quest), "NO_WAIT")
 			npc_says("")
 		else
-			display_big_message("   "..S_"Quest log updated: " .. quest)
+			display_big_message("   "..S_"Quest log updated: " .. D_(quest))
 		end
 	else -- we don't have the quest, wtf?
 		if (not running_benchmark()) then -- don't spam the validator
@@ -310,10 +310,10 @@ function end_quest(quest, text) -- FDtux:end_quest
 	complete_quest(quest, text)
 	play_sound("effects/Mission_Status_Change_Sound_0.ogg")
 	if (run_from_dialog()) then
-		cli_says("   "..S_"Quest completed: " .. quest,"NO_WAIT")
+		cli_says("   "..S_"Quest completed: " .. D_(quest),"NO_WAIT")
 		npc_says("")
 	else
-		display_big_message("   "..S_"Quest completed: " .. quest)
+		display_big_message("   "..S_"Quest completed: " .. D_(quest))
 	end
 end
 

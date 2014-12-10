@@ -236,7 +236,7 @@ function FDtux.add_quest(self, quest, text)
 	end
 	self:assign_quest(quest, text)
 	play_sound("effects/Mission_Status_Change_Sound_0.ogg")
-	output_msg("   " .. S_"New Quest assigned: " .. quest)
+	output_msg("   " .. S_"New Quest assigned: " .. D_(quest))
 end
 
 --! \fn void update_quest(self, quest, text)
@@ -256,7 +256,7 @@ function FDtux.update_quest(self, quest, text)
 	if (self:has_quest(quest)) then
 		add_diary_entry(quest, text)
 		play_sound("effects/Mission_Status_Change_Sound_0.ogg")
-		output_msg("   " .. S_"Quest log updated: " .. quest)
+		output_msg("   " .. S_"Quest log updated: " .. D_(quest))
 	else -- we don't have the quest, how so ?
 		if (not running_benchmark()) then -- don't spam the validator
 			print(FDutils.text.red("\n\tSEVERE ERROR"))
@@ -298,7 +298,7 @@ function FDtux.end_quest(self, quest, text)
 
 	self:complete_quest(quest, text)
 	play_sound("effects/Mission_Status_Change_Sound_0.ogg")
-	output_msg("   " .. S_"Quest completed: " .. quest)
+	output_msg("   " .. S_"Quest completed: " .. D_(quest))
 end
 
 --! \fn integer count_item(self, item)

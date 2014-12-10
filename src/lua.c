@@ -1936,7 +1936,8 @@ void reset_lua_state(void)
 	// Add context specific lua gettexts
 	luaL_Reg lua_gettext[] = {
 			{ "_",  lua_dialogs_gettext },
-			{ "S_", lua_src_gettext },
+			{ "S_", lua_src_gettext     },
+			{ "D_", lua_data_gettext    },
 			{ NULL, NULL }
 	};
 	for (i = 0; lua_gettext[i].name != NULL; i++) {
