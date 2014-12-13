@@ -2340,7 +2340,6 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 	// work out the percentage health
 	//
 	Percentage = (e->energy) / Droidmap[e->type].maxenergy;
-
 	if (use_open_gl) {
 
 #ifdef HAVE_LIBGL
@@ -2349,6 +2348,7 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 		myColor c2 = { 0, 0, 0, 255 };
 		float PercentageDone = 0;
 		int barnum = 0;
+		// If Percentage > 100%, several bars are drawn (one bar == 100% of maxenergy)
 		for (; Percentage > 0; Percentage -= PercentageDone, barnum++) {
 			if (Percentage >= 1)
 				PercentageDone = 1;
@@ -2556,9 +2556,10 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 		int screen_x, screen_y;
 		translate_map_point_to_screen_pixel(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, &screen_x, &screen_y);
 
-		TargetRectangle.x = screen_x - (enemy_images[RotationModel][RotationIndex][0].w * zf) / 2;
+		int bar_width = min(enemy_images[RotationModel][RotationIndex][0].w, ENERGYBAR_MAXWIDTH);
+		TargetRectangle.x = screen_x - (bar_width * zf) / 2;
 		TargetRectangle.y = screen_y - (enemy_images[RotationModel][RotationIndex][0].h * zf) / 1;
-		TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].w * zf;
+		TargetRectangle.w = bar_width * zf;
 		TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].h * zf;
 		PutEnemyEnergyBar(ThisRobot, TargetRectangle);
 	}
