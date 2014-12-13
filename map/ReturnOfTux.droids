@@ -505,6 +505,7 @@ Level=58
 ** Beginning of new Level **
 Level=59
 
+T=999: PosX=53 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard" Marker=1059 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
