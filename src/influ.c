@@ -594,6 +594,11 @@ static void move_tux_towards_intermediate_point(void)
 		Me.speed.x = 0;
 		Me.speed.y = 0;
 
+		if (Me.mouse_move_target.z == -1) {
+			// Nothing was targeted
+			return;
+		}
+
 		/* We might have a combo_action, that can occur on the end of any
 		 * course, like e.g. open a chest or pick up some item. */
 		level *lvl = curShip.AllLevels[Me.mouse_move_target.z];
