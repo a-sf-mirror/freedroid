@@ -326,19 +326,19 @@ static int _add_gold(lua_State * L)
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	int amount = luaL_checkinteger(L, 2);
-	char tmpstr[150];
+	int new_gold = (int)(self->me->Gold) + amount;
 
-	if (amount < 0 && -amount > self->me->Gold) {
+	if (new_gold < 0) {
 		return luaL_error(L, "%s() tried to remove %d gold from the player that only has %d!", __FUNCTION__, -amount, self->me->Gold);
 	}
 
-	self->me->Gold += amount;
+	self->me->Gold = (unsigned int)new_gold;
 
+	char tmpstr[150];
 	if (amount > 0)
 		sprintf(tmpstr, _("Gained %d valuable circuits!"), amount);
 	else
 		sprintf(tmpstr, _("Lost %d valuable circuits!"), amount);
-
 	SetNewBigScreenMessage(tmpstr);
 
 	return 0;
