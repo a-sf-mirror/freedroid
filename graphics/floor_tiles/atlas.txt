@@ -68,7 +68,7 @@ iso_miscellaneous_floor_0023.png 828 328 137 71 off -68 -34
 iso_sand_edge_0001.png 966 328 141 71 off -71 -36
 iso_sand_edge_0002.png 1108 328 141 71 off -71 -36
 iso_sand_edge_0003.png 1250 328 141 71 off -71 -36
-iso_sand_edge_0004.png 1392 328 141 71 off -71 -36
+iso_sand_edge_0004.png 1392 328 141 71 off -70 -35
 iso_sand_edge_0005.png 1534 328 141 71 off -71 -36
 iso_sand_edge_0006.png 1676 328 141 71 off -71 -36
 iso_sand_edge_0007.png 1818 328 141 71 off -71 -36
