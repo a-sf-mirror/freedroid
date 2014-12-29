@@ -76,6 +76,26 @@ void *MyMalloc(long Mamount)
 };				// void* MyMalloc ( long Mamount )
 
 /**
+ * This function works as strdup, except that it also checks for
+ * success and terminates in case of "out of memory", so we don't
+ * need to do this always in the code.
+ */
+char *my_strdup(char *src)
+{
+	if (src == NULL)
+		return NULL;
+
+	char *dst = strdup(src);
+	if (dst == NULL) {
+		fprintf(stderr, " my_strdup() did not succeed!\n");
+		fflush(stderr);
+		Terminate(EXIT_FAILURE);
+	}
+
+	return dst;
+}
+
+/**
  * This function is used for debugging purposes.  It writes the
  * given string on the screen, or simply does
  * nothing according to currently set debug level.
