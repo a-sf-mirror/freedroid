@@ -547,7 +547,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 
 	while (SpacePressed() || MouseLeftPressed()) ;	// make sure space is release before proceed 
 
-	SwitchBackgroundMusicTo("Bleostrada.ogg");
+	switch_background_music("Bleostrada.ogg");
 
 	while (!menu_finished) {
 		show_droid_info(target->type);
@@ -628,7 +628,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 
 	clear_screen();
 
-	SwitchBackgroundMusicTo(CURLEVEL()->Background_Song_Name);
+	switch_background_music(CURLEVEL()->Background_Song_Name);
 
 	if (LeaderColor == YourColor) {
 		// set the ratio of needed capsules out of all (player) capsules

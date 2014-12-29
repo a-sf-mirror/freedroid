@@ -1569,6 +1569,7 @@ enum chat_context_state {
 enum data_dir_handle {
 	GRAPHICS_DIR = 0,
 	SOUND_DIR,
+	MUSIC_DIR,
 	MAP_DIR,
 	TITLES_DIR,
 	DIALOG_DIR,

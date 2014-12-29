@@ -765,7 +765,7 @@ static void RunMenu(int is_startup)
 	Activate_Conservative_Frame_Computation();
 	if (is_startup) {
 		// Can the music be disabled by a submenu ?
-		SwitchBackgroundMusicTo("menu.ogg");
+		switch_background_music("menu.ogg");
 		SDL_SetClipRect(Screen, NULL);
 
 		if (skip_initial_menus && Single_Player_Menu())
@@ -1240,7 +1240,7 @@ static int Sound_handle(int n)
 			GameConfig.Current_BG_Music_Volume += 0.05;
 			if (GameConfig.Current_BG_Music_Volume > 1.0)
 				GameConfig.Current_BG_Music_Volume = 1.0;
-			SetBGMusicVolume(GameConfig.Current_BG_Music_Volume);
+			set_music_volume(GameConfig.Current_BG_Music_Volume);
 		}
 
 		if (LeftPressed()) {
@@ -1248,7 +1248,7 @@ static int Sound_handle(int n)
 			GameConfig.Current_BG_Music_Volume -= 0.05;
 			if (GameConfig.Current_BG_Music_Volume < 0.0)
 				GameConfig.Current_BG_Music_Volume = 0.0;
-			SetBGMusicVolume(GameConfig.Current_BG_Music_Volume);
+			set_music_volume(GameConfig.Current_BG_Music_Volume);
 		}
 
 		break;
@@ -1259,7 +1259,7 @@ static int Sound_handle(int n)
 			GameConfig.Current_Sound_FX_Volume += 0.05;
 			if (GameConfig.Current_Sound_FX_Volume > 1.0)
 				GameConfig.Current_Sound_FX_Volume = 1.0;
-			SetSoundFXVolume(GameConfig.Current_Sound_FX_Volume);
+			set_SFX_volume(GameConfig.Current_Sound_FX_Volume);
 		}
 
 		if (LeftPressed()) {
@@ -1267,7 +1267,7 @@ static int Sound_handle(int n)
 			GameConfig.Current_Sound_FX_Volume -= 0.05;
 			if (GameConfig.Current_Sound_FX_Volume < 0.0)
 				GameConfig.Current_Sound_FX_Volume = 0.0;
-			SetSoundFXVolume(GameConfig.Current_Sound_FX_Volume);
+			set_SFX_volume(GameConfig.Current_Sound_FX_Volume);
 		}
 		break;
 

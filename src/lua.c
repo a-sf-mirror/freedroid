@@ -193,7 +193,7 @@ static int lua_event_heal_tux(lua_State * L)
 {
 	if (Me.energy > 0) {
 		Me.energy = Me.maxenergy;
-		play_sound_cached("effects/new_healing_sound.ogg");
+		play_sound("effects/new_healing_sound.ogg");
 	}
 	return 0;
 }
@@ -209,7 +209,7 @@ static int lua_event_hurt_tux(lua_State * L)
 	int hp = luaL_checkinteger(L, 1);
 
 	if (hp < 0)
-		play_sound_cached("effects/new_healing_sound.ogg");
+		play_sound("effects/new_healing_sound.ogg");
 
 	hit_tux(hp);
 	return 0;
@@ -938,7 +938,7 @@ static int lua_play_sound(lua_State *L)
 {
 	const char *filename = luaL_checkstring(L, 1);
 
-	play_sound_cached(filename);
+	play_sound(filename);
 	return 0;
 }
 
@@ -999,7 +999,7 @@ return 0;
 static int lua_switch_background_music_to(lua_State *L)
 {
 	char *filename = (char *)luaL_checkstring(L, 1);
-	SwitchBackgroundMusicTo(filename);
+	switch_background_music(filename);
 	return 0;
 }
 

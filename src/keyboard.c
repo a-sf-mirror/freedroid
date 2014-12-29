@@ -775,7 +775,7 @@ static int input_key(int keynum, int value)
 
 		SDL_WM_GrabInput(mode);
 	} else if (KEYPRESS("take_screenshot")) {
-		play_sound_cached("effects/CameraTakesPicture.ogg");
+		play_sound("effects/CameraTakesPicture.ogg");
 		char filename[1000];
 		char relative_filename[100];
 		sprintf(relative_filename, "%s.screenshot-%d.png", Me.character_name, SDL_GetTicks()/1000);

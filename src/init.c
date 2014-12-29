@@ -183,7 +183,7 @@ void PlayATitleFile(char *Filename)
 		char *ptr = screen.text + strlen(screen.text) - 1;
 		while (*ptr != '\0' && (*ptr == ' ' || *ptr == '\t' || *ptr == '\n')) *(ptr--) = '\0';
 
-		SwitchBackgroundMusicTo(screen.song);
+		switch_background_music(screen.song);
 
 		SDL_SetClipRect(Screen, NULL);
 		SetCurrentFont(Para_BFont);
@@ -696,7 +696,7 @@ void PrepareStartOfNewCharacter(char *start_label)
 	//
 	GetQuestList("quests.dat");
 
-	SwitchBackgroundMusicTo(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
+	switch_background_music(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
 
 	// Now we know that right after starting a new game, the Tux might have
 	// to 'change clothes' i.e. a lot of tux images need to be updated which can
@@ -995,15 +995,7 @@ void InitFreedroid(int argc, char **argv)
 	init_message_log();
 	init_luaconfig();
 
-	InitAudio();
-
-	// Now that the music files have been loaded successfully, it's time to set
-	// the music and sound volumes accordingly, i.e. as specifies by the users
-	// configuration.
-	//
-	// THIS MUST NOT BE DONE BEFORE THE SOUND SAMPLES HAVE BEEN LOADED!!
-	//
-	SetSoundFXVolume(GameConfig.Current_Sound_FX_Volume);
+	init_audio();
 
 	Init_Game_Data();
 

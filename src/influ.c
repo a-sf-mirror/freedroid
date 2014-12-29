@@ -811,8 +811,8 @@ void hit_tux(float damage)
  */
 void animate_tux()
 {
-#define STEP_TIME (0.28)
-	static float step_countdown = 0;
+	static int play_step_sound = 0;
+	int tux_is_running = FALSE;
 
 	// If Tux is paralyzed, show him as standing still.
 	if (Me.paralyze_duration) {
@@ -887,13 +887,10 @@ void animate_tux()
 
 	if (my_speed <= (TUX_WALKING_SPEED + TUX_RUNNING_SPEED) * 0.5) {
 		anim_spec = &(tux_anim.walk);
+		tux_is_running = FALSE;
 	} else {
 		anim_spec = &(tux_anim.run);
-		step_countdown += Frame_Time();
-		if (step_countdown > STEP_TIME) {
-			play_sound_cached_v("effects/tux_footstep.ogg", 0.2);
-			step_countdown -= STEP_TIME;
-		}
+		tux_is_running = TRUE;
 	}
 
 	if (anim_spec->nb_keyframes != 0) {
@@ -901,8 +898,18 @@ void animate_tux()
 		Me.walk_cycle_phase += (Frame_Time() * my_speed) / anim_spec->distance;
 
 		/* Loop of progress cursor */
+		if (tux_is_running) {
+			if (play_step_sound == 0 && Me.walk_cycle_phase >= 0.3) {
+				play_sound_v("effects/tux_footstep.ogg", 0.125);
+				play_step_sound = 1;
+			} else if (play_step_sound == 1 && Me.walk_cycle_phase >= 0.8) {
+				play_sound_v("effects/tux_footstep.ogg", 0.125);
+				play_step_sound = 2;
+			}
+		}
 		while (Me.walk_cycle_phase > 1.0) {
 			Me.walk_cycle_phase -= 1.0;
+			play_step_sound = 0;
 		}
 
 		/* Set current animation keyframe */

@@ -363,11 +363,14 @@ int DirectLineColldet(float x1, float y1, float x2, float y2, int z, colldet_fil
 int normalize_vect(float, float, float *, float *);
 
 // sound.c
-void play_sound(const char *);
-void InitAudio(void);
-void SetBGMusicVolume(float);
-void SetSoundFXVolume(float);
-void SwitchBackgroundMusicTo(char *filename_raw);
+void init_audio(void);
+void close_audio(void);
+void set_music_volume(float);
+void set_SFX_volume(float);
+void switch_background_music(char *);
+int play_sound(const char *);
+void play_sound_v(const char *, float);
+void play_sound_at_position(const char *, struct gps *, struct gps *);
 
 // sound_effects.c
 void tux_scream_sound(void);
@@ -395,9 +398,6 @@ void Play_Spell_ForceToEnergy_Sound(void);
 void play_melee_weapon_hit_something_sound(void);
 void play_melee_weapon_missed_sound(struct gps *attacker_pos);
 void play_open_chest_sound(void);
-void play_sound_cached(const char *SoundSampleFileName);
-void play_sound_cached_v(const char *SoundSampleFileName, double volume);
-void play_sound_at_position(const char *filename, struct gps *listener, struct gps *emitter);
 
 // items.c
 void init_item(item *);

@@ -61,6 +61,7 @@ int term_has_color_cap = FALSE;
 struct data_dir data_dirs[] = {
 	[GRAPHICS_DIR]={ "graphics",    "" },
 	[SOUND_DIR]=   { "sound",       "" },
+	[MUSIC_DIR]=   { "sound/music", "" },
 	[MAP_DIR]=     { "map",         "" },
 	[TITLES_DIR]=  { "map/titles",  "" },
 	[DIALOG_DIR]=  { "dialogs",     "" },
@@ -1104,7 +1105,7 @@ This indicates an error in the map system of FreedroidRPG.", PLEASE_INFORM | IS_
 		Me.HaveBeenToLevel[Me.pos.z] = TRUE;
 	}
 
-	SwitchBackgroundMusicTo(CURLEVEL()->Background_Song_Name);
+	switch_background_music(CURLEVEL()->Background_Song_Name);
 
 	// Since we've mightily changed position now, we should clear the
 	// position history, so that no one gets confused...
@@ -1330,6 +1331,8 @@ void Terminate(int exit_code)
 	// Close active lua states, to force a call to garbage collector, in order
 	// to call Lua binding 'destructors'.
 	close_lua();
+
+	close_audio();
 
 	if (!do_benchmark) {
 		printf("Thank you for playing freedroidRPG.\n\n");

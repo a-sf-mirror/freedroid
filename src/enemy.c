@@ -1655,7 +1655,7 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_move_target, pathfinder_context * pf_ctx)
 {
 	// Not yet time to computer a new bot's move, or to start a new shoot
-	if (ThisRobot->firewait && ThisRobot->last_combat_step < ATTACK_MOVE_RATE)
+	if (ThisRobot->firewait > 0.0 && ThisRobot->last_combat_step < ATTACK_MOVE_RATE)
 		return;
 
 	// Get old target's position
@@ -1803,7 +1803,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	// Execute the bot's shoot
 
 	/* Great suggestion of Sarayan : we do not care about friendly fire, and make bullets go through people of the same side. */
-	if (shoot_target && !ThisRobot->firewait)
+	if (shoot_target && ThisRobot->firewait <= 0)
 		RawStartEnemysShot(ThisRobot, move_pos.x - ThisRobot->virt_pos.x, move_pos.y - ThisRobot->virt_pos.y);
 
 }

@@ -207,7 +207,7 @@ static int _heal(lua_State * L)
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	self->me->energy = self->me->maxenergy;
-	play_sound_cached("effects/new_healing_sound.ogg");
+	play_sound("effects/new_healing_sound.ogg");
 
 	return 0;
 }
@@ -234,7 +234,7 @@ static int _hurt(lua_State * L)
 	int amount = luaL_checkinteger(L, 2);
 
 	if (amount < 0)
-		play_sound_cached("effects/new_healing_sound.ogg");
+		play_sound("effects/new_healing_sound.ogg");
 
 	hit_tux(amount);
 

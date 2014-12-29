@@ -420,7 +420,7 @@ static int load_saved_game(int use_backup)
 	//
 	CountNumberOfDroidsOnShip();
 
-	SwitchBackgroundMusicTo(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
+	switch_background_music(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
 
 	// Maybe someone just lost in the game and has then pressed the load
 	// button.  Then a new game is loaded and the game-over status has

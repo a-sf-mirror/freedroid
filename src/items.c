@@ -767,13 +767,13 @@ void ApplyItem(item * CurItem)
 		Me.running_power += 15;
 	} else if (item_spec_eq_id(CurItem->type, "Diet supplement")) {
 		Me.energy += 25;
-		play_sound_cached("effects/new_healing_sound.ogg");
+		play_sound("effects/new_healing_sound.ogg");
 	} else if (item_spec_eq_id(CurItem->type, "Antibiotic")) {
 		Me.energy += 50;
-		play_sound_cached("effects/new_healing_sound.ogg");
+		play_sound("effects/new_healing_sound.ogg");
 	} else if (item_spec_eq_id(CurItem->type, "Doc-in-a-can")) {
 		Me.energy += Me.maxenergy;
-		play_sound_cached("effects/new_healing_sound.ogg");
+		play_sound("effects/new_healing_sound.ogg");
 	} else if (item_spec_eq_id(CurItem->type, "Bottled ice")) {
 		Me.temperature -= 50;
 	} else if (item_spec_eq_id(CurItem->type, "Industrial coolant")) {

@@ -1,7 +1,7 @@
 /*
- *
+ *   Copyright (c) 2014 Samuel Degrande
  *   Copyright (c) 2006 Arvid Picciani
- *   Copyright (c) 2004-2010 Arthur Huillet 
+ *   Copyright (c) 2004-2010 Arthur Huillet
  *   Copyright (c) 1994, 2002 Reinhard Prix
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *
@@ -38,639 +38,665 @@
 #include "global.h"
 #include "proto.h"
 
-#define MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE 100
-#define ALL_MOD_MUSICS 1
-#define MAX_SOUND_CHANNELS 5000
+// Number of slots in the SFX cache
+#define MAX_SOUNDS_IN_SFX_CACHE 100
+// Number of SDL channels allocated to play sounds
+// TODO: Does it really make sense to mix so much samples ? This should be
+// analyzed (with the RTProfiler) to tweak it.
+#define ALLOCATED_AUDIO_CHANNELS 100
+// FadeIn and FadeOut time in ms
+#define MUSIC_FADE_INOUT 1000
+// Max number of times a same sound is played
+#define MAX_SOUND_OVERLAPPING 6
 
-static int allocated_sound_channels;
-
-static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned short angle, unsigned char distance);
-static int allocate_sample_cache_entry(void);
-static void remove_all_samples_from_WAV_cache(void);
-static void LoadAndFadeInBackgroundMusic(void);
-
-/** ============================================  DUMMYS  ============================================  */
-/*
-these functions are defined if there is no sound. they do nothing
-*/
+static char *music_filename = NULL;      // The background music to play (once the current one is stopped)
+static Mix_Music *loaded_music = NULL;   // Keep reference to previously loaded background music
 
 #ifndef HAVE_LIBSDL_MIXER
-	/**system*/
-void InitAudio(void)
-{
+
+////////////////////////////////////////////////////////////////////
+// These functions are defined if there is no sound. they do nothing
+////////////////////////////////////////////////////////////////////
+
+void init_audio(void) {}
+void close_audio(void) {}
+void set_music_volume(float volume) {}
+void set_SFX_volume(float volume) {}
+void switch_background_music(char *filename) {}
+int play_sound(const char *filename) {}
+void play_sound_v(const char *filename, double volume) {}
+void play_sound_at_position(const char *filename, struct gps *listener, struct gps *emitter) {}
+
+#else
+
+
+////////////////////////////////////////////////////////////////////
+// SFX cache
+////////////////////////////////////////////////////////////////////
+
+struct sound_cache {
+	struct sound_cache_slot {
+		Mix_Chunk *chunk;              // Pointer to the cached sound chunk
+		int play_counter;              // Number of simultaneous play of the chunk
+		uint32_t last_used;            // Last time the chunk was played
+		char *sound_name;              // Filename of the sound chunk (allocated)
+	} slots[MAX_SOUNDS_IN_SFX_CACHE];
+	int next_free_slot;                // Index of the first free slot (when all slots are not filled)
 };
 
-void SetBGMusicVolume(float NewVolume)
+static struct sound_cache SFX_cache;
+
+/*
+ * Initialize the SFX cache, all fields are set to 0.
+ */
+static void _SFX_cache_init(void)
 {
+	int i;
+	for (i = 0; i < sizeof(SFX_cache.slots) / sizeof(SFX_cache.slots[0]); i++) {
+		struct sound_cache_slot *slot = &SFX_cache.slots[i];
+		slot->chunk = NULL;
+		slot->last_used = 0;
+		slot->play_counter = 0;
+		slot->sound_name = NULL;
+	}
+	SFX_cache.next_free_slot = 0;
 }
 
-void SetSoundFXVolume(float NewVolume)
+/*
+ * Free and clear a given SFX cache slot.
+ * Must not be called as long as the sound chunk is still playing.
+ */
+static void _SFX_cache_free_slot(int index)
 {
+	struct sound_cache_slot *slot = &SFX_cache.slots[index];
+
+	slot->last_used = 0;
+	slot->play_counter = 0;
+	free(slot->sound_name);
+	slot->sound_name = NULL;
+	Mix_FreeChunk(slot->chunk);
+	slot->chunk = NULL;
 }
 
-	/**music*/
-static void LoadAndFadeInBackgroundMusic(void)
+/*
+ * Free and clear all slots of the SFX cache.
+ * Call _SFX_cache_free_slot() to clear each slot.
+ */
+static void _SFX_cache_clear(void)
 {
+	int i;
+	for (i = 0; i < SFX_cache.next_free_slot; i++) {
+		_SFX_cache_free_slot(i);
+	}
+	SFX_cache.next_free_slot = 0;
 }
 
-void SwitchBackgroundMusicTo(char *filename_raw_parameter)
+/*
+ * Find an unused SFX cache slot, and return its index.
+ * When the cache is full, find the least recently used inactive slot and
+ * free it ("inactive" means that the stored chunk is not currently played).
+ * If no slot is found, warn and return -1.
+ */
+static int _SFX_cache_allocate_slot(void)
 {
-}
-
-	/**sample functions*/
-void play_sound_cached(const char *filename)
-{
-}
-
-void play_sound_cached_v(const char *filename, double volume)
-{
-}
-
-static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned short angle, unsigned char distance)
-{
-}
-
-void play_sound_at_position(const char *filename, struct gps *listener, struct gps *emitter)
-{
-}
-
-static void remove_all_samples_from_WAV_cache(void)
-{
-}
-
-void play_sound(const char *filename)
-{
-}
-
-#endif
-
-#ifdef HAVE_LIBSDL_MIXER
-
-/** ============================================ GLOBALS ============================================  */
-
-static Mix_Chunk *dynamic_WAV_cache[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
-static Uint32 dynamic_WAV_cache_last_use[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
-static char *sound_names_in_dynamic_wav_chache[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
-static char channel_must_be_freed[MAX_SOUND_CHANNELS];
-
-static Mix_Chunk *wav_files_to_free[MAX_SOUND_CHANNELS];
-static Mix_Music *Loaded_MOD_Files[ALL_MOD_MUSICS] = {
-	NULL
-};
-
-enum {
-	NOTHING_PLAYING_AT_ALL = 3,
-	FADING_IN = 4,
-	FADING_OUT = 5
-};
-
-static int BackgroundMusicStateMachineState = NOTHING_PLAYING_AT_ALL;
-static char NewMusicTargetFileName[5000];
-
-// This variable refers to the next free position inside the WAV file cache.
-static int next_free_position_in_cache = 0;
-
-/** ============================================ SYSTEM ============================================ */
-// ----------------------------------------------------------------------
-// This function shall initialize the SDL Audio subsystem.  It is called
-// as soon as FreedroidRPG is started.  It does ONLY work with SDL and no
-// longer with any form of sound engine like the YIFF.
-// ----------------------------------------------------------------------
-void InitAudio(void)
-{
-	int audio_rate = 44100;
-	Uint16 audio_format = AUDIO_S16;
-	int audio_channels = 2;
-	int audio_buffers = 4096;
-
-	DebugPrintf(1, "\nInitializing SDL Audio Systems....\n");
-
-	if (!sound_on)
-		return;
-	
-	if (GameConfig.Current_Sound_Output_Fmt == SOUND_OUTPUT_FMT_SURROUND40) {
-		audio_channels = 4;
-	} else if (GameConfig.Current_Sound_Output_Fmt == SOUND_OUTPUT_FMT_SURROUND51) {
-		audio_channels = 6;
-	} 
-
-	// Now SDL_AUDIO is initialized here:
-
-	if (SDL_InitSubSystem(SDL_INIT_AUDIO) == -1) {
-		fprintf(stderr, " \n\nSDL just reported a problem.\n"
-			"The error string from SDL_GetError\nwas: %s \n"
-			"The error string from the SDL mixer subsystem was: %s \n", SDL_GetError(), Mix_GetError());
-		error_message(__FUNCTION__, "\n"
-					"The SDL AUDIO SUBSYSTEM COULD NOT BE INITIALIZED.\n\n"
-					"Please check that your sound card is properly configured,\n"
-					"i.e. if other applications are able to play sounds.\n\n"
-					"If you for some reason cannot get your sound card ready, \n"
-					"you can choose to play without sound.\n\n"
-					"If you want this, use the appropriate command line option and FreedroidRPG will\n"
-					"not complain any more.", NO_REPORT);
-		sound_on = FALSE;
-		return;
-	} else {
-		DebugPrintf(1, "\nSDL Audio initialisation successful.\n");
+	if (SFX_cache.next_free_slot < MAX_SOUNDS_IN_SFX_CACHE) {
+		return SFX_cache.next_free_slot++;
 	}
 
-	// Now that we have initialized the audio SubSystem, we must open
-	// an audio channel.  This will be done here (see code from Mixer-Tutorial):
-	//
-	if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) < 0) {
-		fprintf(stderr, "\n\nSDL just reported a problem.\n"
-			"The error string from SDL_GetError\nwas: %s \n"
-			"The error string from the SDL mixer subsystem was: %s \n" 
-			"using audio output format: %d \n", 
-			SDL_GetError(), Mix_GetError(), GameConfig.Current_Sound_Output_Fmt);
+	// When the wav file cache is full, free the least recently used inactive entry
+	int i;
+	uint32_t least_recently_used = UINT_MAX;
+	int least_recently_used_index = -1;
 
-		error_message(__FUNCTION__, "\n"
-			"\nA Problem occurred while trying to open the audio device.\n"
-			"Reverting to default settings.", NO_REPORT);
-
-		// revert to stereo if we fail to open the audio device
-		GameConfig.Current_Sound_Output_Fmt = SOUND_OUTPUT_FMT_STEREO;
-
-		if (Mix_OpenAudio(audio_rate, audio_format, 2, audio_buffers) < 0) {
-			fprintf(stderr, "\n\nSDL just reported a problem.\n"
-			"The error string from SDL_GetError\nwas: %s \n"
-			"The error string from the SDL mixer subsystem was: %s \n", SDL_GetError(), Mix_GetError());
-			error_message(__FUNCTION__, "\n"
-						"The SDL AUDIO CHANNEL COULD NOT BE OPENED.\n\n"
-						"Please check that your sound card is properly configured,\n"
-						"i.e. if other applications are able to play sounds.\n\n"
-						"If you for some reason cannot get your sound card ready,\n"
-						"you can choose to play without sound.\n\n"
-						"If you want this, use the appropriate command line option and FreedroidRPG will\n"
-						"not complain any more.", NO_REPORT);
-			sound_on = FALSE;
-			return;
+	for (i = 0; i < SFX_cache.next_free_slot; i++) {
+		if (SFX_cache.slots[i].play_counter == 0 && SFX_cache.slots[i].last_used < least_recently_used) {
+			least_recently_used = SFX_cache.slots[i].last_used;
+			least_recently_used_index = i;
 		}
-	} else {
-		DebugPrintf(1, "\nSuccessfully opened SDL audio channel.");
 	}
 
-	// Since we don't want some sounds to be omitted due to lack of mixing
-	// channels, we select to have some at our disposal.  The SDL will do this
-	// for a small increase in memory appetite as the price.  Whether this will
-	// really resolve the problem however is unsure.
-	//
-	allocated_sound_channels = Mix_AllocateChannels(200);
-}
-
-void SetBGMusicVolume(float NewVolume)
-{
-	if (!sound_on)
-		return;
-	Mix_VolumeMusic((int)rintf(NewVolume * MIX_MAX_VOLUME));
-	// SwitchBackgroundMusicTo ( COMBAT_BACKGROUND_MUSIC_SOUND );
-}
-
-void SetSoundFXVolume(float NewVolume)
-{
-	if (!sound_on)
-		return;
-	remove_all_samples_from_WAV_cache();
-}
-
-
-/**
- * Finds a free channel to play a sample on
- *
- * Returns channel number if successful otherwise returns -1 if free channel isn't found
- **/
-static int find_free_channel()
-{
-	int i = 0;
-
-	// iterate through all of the channels
-	for (i = 0; i < allocated_sound_channels; i++) {
-
-		// if the channel is no longer playing, we can use it.
-		if (!Mix_Playing(i))
-			return i; 
+	// No inactive slot found
+	if (least_recently_used == -1) {
+		error_once_message(ONCE_PER_GAME, __FUNCTION__,
+			"Could not find an inactive slot to remove from SFX cache.\n",
+			PLEASE_INFORM);
+		return -1;
 	}
 
-	// allocate more sound channels
-	int requested_sound_channels = allocated_sound_channels + 100;
-	if (requested_sound_channels <= MAX_SOUND_CHANNELS) {
-		int old_allocated_sound_channels = allocated_sound_channels;
-		allocated_sound_channels = Mix_AllocateChannels(allocated_sound_channels + 100);
-		if (allocated_sound_channels > old_allocated_sound_channels)
-			return old_allocated_sound_channels + 1;
-	}
+	// Clean the found slot
+	_SFX_cache_free_slot(least_recently_used_index);
 
-	// we couldn't find a free channel. 
+	return least_recently_used_index;
+}
+
+/*
+ * Fill a cache slot with the sound filename and sound chunk to cache.
+ */
+static void _SFX_cache_fill_slot(int index, const char *filename, Mix_Chunk *wav_chunk)
+{
+	struct sound_cache_slot *slot = &SFX_cache.slots[index];
+
+	slot->last_used = 0;
+	slot->play_counter = 0;
+	slot->sound_name = my_strdup((char *)filename);
+	slot->chunk = wav_chunk;
+}
+
+/*
+ * Mark a cache slot as being currently played.
+ * Current time is stored (used by the LRU algorithm in _SFX_cache_allocate_slot().
+ * The play_counter is incremented, so we know that the slot is active.
+ */
+static void _SFX_cache_touch_slot(int index)
+{
+	struct sound_cache_slot *slot = &SFX_cache.slots[index];
+
+	slot->last_used = SDL_GetTicks();
+	slot->play_counter++;
+}
+
+/*
+ * Mark a cache slot as being no more played.
+ * The play_counter is decremented. Once it comes to zero, it means that
+ * the sound chunk is no more played, and so the slot can be reused.
+ */
+static void _SFX_cache_release_slot(int index)
+{
+	struct sound_cache_slot *slot = &SFX_cache.slots[index];
+	slot->play_counter--;
+	// Postcondition. Avoid potential bug.
+	if (slot->play_counter < 0)
+		slot->play_counter = 0;
+}
+
+/*
+ * Find a cache slot given a sound filename, and return its index.
+ * Return -1 if the slot is not found.
+ */
+static int _SFX_cache_find_filename(const char *filename)
+{
+	int i;
+	for (i = 0; i < SFX_cache.next_free_slot; i++) {
+		if (!strcmp(SFX_cache.slots[i].sound_name, filename)) {
+			return i;
+		}
+	}
 	return -1;
 }
 
-/** ================================= FUNCTIONS FOR THREADING ======================================== */
-
-/**
- * When play_sound() has been called, we want to free the memory once it is done
- * playing.  This is done by setting this as the SDL callback function with
- * Mix_ChannelFinished().
- *
- * When this function is called, it frees the sound as needed.
+/*
+ * Find a cache slot given a pointer to a sound chunk, and return its index.
+ * Return -1 if the slot is not found.
  */
-void channel_done(int channel)
+static int _SFX_cache_find_chunk(Mix_Chunk *chunk)
 {
-	if (channel_must_be_freed[channel])
-		Mix_FreeChunk(wav_files_to_free[channel]);
-
-	// Now we can safely mark the channel as unused again
-	channel_must_be_freed[channel] = 0;
-}
-
-/** ============================================ MUSIC ============================================ */
-/**
- * This function is intended to provide a convenient way of switching
- * between different background sounds in FreedroidRPG.
- * If no background sound was yet running, the function should start playing
- * the given background music.
- * If some background sound was already playing, the function should shut down
- * the old background music and start playing the new one.
- *
- */
-static void LoadAndFadeInBackgroundMusic(void)
-{
-	char fpath[PATH_MAX];
-	char filename_raw[PATH_MAX];
-
-	if (!sound_on)
-		return;
-
-	if (filename_raw == SILENCE)	// SILENCE is defined as -1 I think
-	{
-		//printf("\nOld Background music channel has been halted.");
-		// fflush(stdout);
-		Mix_HaltMusic();	// this REALLY is a VOID-argument function!!
-		return;
-	}
-	// Now we LOAD the music file from disk into memory!!
-	// But before we free the old music.  This is not a danger, cause the music
-	// is first initialized in InitAudio with some dummy mod files, so that there
-	// is always something allocated, that we can free here.
-	//
-	// The loading of music and sound files is
-	// something that was previously done only in the initialization function
-	// of the audio thing.  But now we want to allow for dynamic specification of
-	// music files via the mission files and that.  So we load the music now.
-	//
-
-	if (Loaded_MOD_Files[0] != NULL) {
-		Mix_FreeMusic(Loaded_MOD_Files[0]);
-		Loaded_MOD_Files[0] = NULL;
-	}
-
-	strcpy(filename_raw, "music/");
-	strcat(filename_raw, NewMusicTargetFileName);
-	if (find_file(filename_raw, SOUND_DIR, fpath, PLEASE_INFORM)) {
-		Loaded_MOD_Files[0] = Mix_LoadMUS(fpath);
-		if (Loaded_MOD_Files[0] == NULL) {
-			error_message(__FUNCTION__, "The music file %s could not be loaded!", PLEASE_INFORM, NewMusicTargetFileName);
-			return;
-		}
-		Mix_PlayMusic(Loaded_MOD_Files[0], -1);
-	}
-
-	Mix_VolumeMusic((int)rintf(GameConfig.Current_BG_Music_Volume * MIX_MAX_VOLUME));
-}
-
-void SwitchBackgroundMusicTo(char *filename_raw_parameter)
-{
-	static char PreviousFileParameter[5000] = "NONE_AT_ALL";
-	if (!sound_on)
-		return;
-
-	// Maybe the background music switch command given instructs us to initiate
-	// the same background music that has been playing all the while anyway in
-	// an endless loop.  So in this case, we need not touch anything at all and
-	// just return.
-	//
-	if (!strcmp(PreviousFileParameter, filename_raw_parameter)) {
-		return;
-	} else {
-		strcpy(PreviousFileParameter, filename_raw_parameter);
-	}
-
-	strcpy(NewMusicTargetFileName, filename_raw_parameter);
-
-	// Now we can start to get some new music going, either directly or
-	// by issuing a fade out instruction, that will then launch a callback
-	// to get the new music going...
-	//
-
-	if (BackgroundMusicStateMachineState == NOTHING_PLAYING_AT_ALL) {
-		LoadAndFadeInBackgroundMusic();
-		BackgroundMusicStateMachineState = FADING_IN;
-	} else {
-		Mix_FadeOutMusic(2000);
-		BackgroundMusicStateMachineState = FADING_OUT;
-
-		// We set up a function to be invoked by the SDL automatically as
-		// soon as the fading out effect is completed (and the new music
-		// can start to get going that is...)
-		//
-		Mix_HookMusicFinished(LoadAndFadeInBackgroundMusic);
-	}
-}
-
-/** ============================================ SAMPLE FUNCTIONS ========================================= */
-
-/**
- * This function plays a sound sample, that is NOT needed within the action part of the game but
- * only in menus or dialogs and can therefore be loaded and dumped on demand while the other sound
- * samples for the action parts of the game will be kept in memory all the time.
- **/
-void play_sound(const char *filename)
-{
-	int Newest_Sound_Channel = 0;
-	Mix_Chunk *One_Shot_WAV_File = NULL;
-	char fpath[2048] = "no_fpath_has_been_set";
-
-	// Return immediately if sound is disabled
-	if (!sound_on)
-		return;
-
-	// Now we set a callback function, that should be called by SDL
-	// as soon as ANY other sound channel finishes playing...
-	Mix_ChannelFinished(channel_done);
-
-	// Try to load the requested sound file into memory.
-	if (!find_file(filename, SOUND_DIR, fpath, PLEASE_INFORM)) {
-		return;
-	}
-	One_Shot_WAV_File = Mix_LoadWAV(fpath);
-	if (One_Shot_WAV_File == NULL) {
-		error_message(__FUNCTION__, "Corrupt sound file encountered: %s.",
-					 PLEASE_INFORM, fpath);
-		return;
-	}
-
-	// Hoping, that this will not take up too much processor speed, we'll
-	// now change the volume of the sound sample in question to what is normal
-	// for sound effects right now...
-	Mix_VolumeChunk(One_Shot_WAV_File, (int)rintf(GameConfig.Current_Sound_FX_Volume * MIX_MAX_VOLUME));
-
-	// Now we try to play the sound file that has just been successfully
-	// loaded into memory...
-	Newest_Sound_Channel = Mix_PlayChannel(-1, One_Shot_WAV_File, 0);
-	if (Newest_Sound_Channel <= -1) {
-		fprintf(stderr, "\n\nfilename: '%s' Mix_GetError(): %s \n", filename, Mix_GetError());
-		error_message(__FUNCTION__, "\n"
-					"The SDL MIXER WAS UNABLE TO PLAY A CERTAIN FILE LOADED INTO MEMORY FOR PLAYING ONCE.", PLEASE_INFORM);
-
-		// If we receive an error playing a sound file here, we must see to it that the callback
-		// code and allocation there and all that doesn't get touched.
-		Mix_FreeChunk(One_Shot_WAV_File);
-		return;
-	}
-
-	// We do nothing here, cause we can't halt the channel and
-	// we also can't free the channel, that is still playing.
-	channel_must_be_freed[Newest_Sound_Channel] = 1;
-	wav_files_to_free[Newest_Sound_Channel] = One_Shot_WAV_File;
-}
-
-//aep: wrapper for the play_sound_cached_v
-void play_sound_cached(const char *filename)
-{
-	play_sound_cached_v(filename, 1.0);
-}
-
-#define MAX_HEARING_DISTANCE 620
-#define DEGREE_PER_RADIAN (180/M_PI)
-
-/**
- * Plays a sound relative to the listener where listener is the position of the listener, and emitter is the position
- * of the emitter of the sound.
- **/
-void play_sound_at_position(const char *filename, struct gps *listener, struct gps *emitter)
-{
-	float angle;
-	float distance;
-	float squared_distance;
-	int emitter_x;
-	int emitter_y;
-	int listener_x;
-	int listener_y;
-	int difference_x;
-	int difference_y;
-	gps emitter_virt_coords;
-	unsigned int distance_value;
-	unsigned short angle_value;
-
-	// need to get the emitters coordinates as if it were on the same level as the listener.
-	if (emitter->z == -1 || listener->z == -1) {
-		play_sound_cached(filename);
-		return;
-	} else {
-		update_virtual_position(&emitter_virt_coords, emitter, listener->z);
-	}
-
-	// translate the emitter and listener coordinates to screen coordinates.
-	translate_map_point_to_screen_pixel(emitter_virt_coords.x, emitter_virt_coords.y, &emitter_x, &emitter_y);
-	translate_map_point_to_screen_pixel(listener->x, listener->y, &listener_x, &listener_y);
-
-	// d[x,y] = [x1,y1] - [x2,y2]
-	difference_x = listener_x - emitter_x;
-	difference_y = listener_y - emitter_y;
-
-	// first check if the distance between the emitter and the listener is worth
-	// playing a positional sound.
-	squared_distance = (difference_x * difference_x) + (difference_y * difference_y);
-	if (squared_distance < (1*1)) {
-		play_sound_cached(filename);
-		return;
-	}
-
-	distance = sqrt(squared_distance);
-	// prevent overflow
-	distance_value = (unsigned int)((distance / MAX_HEARING_DISTANCE) * 255);
-	// we don't want distance_value to wrap around.
-	distance_value = (distance_value >= 255) ? 255 : distance_value;
-
-	// and angle [-pi, pi] radians
-	angle = atan2(difference_y, difference_x);
-	// adjust the angle so that it is aligned with the game / screen coordinates properly.
-	angle_value = (unsigned short)((angle * DEGREE_PER_RADIAN - 90));
-	// just to prevent the angle from wrapping.
-	angle_value = angle_value % 360;
-
-	play_sound_cached_pos(filename, angle_value, (unsigned char)distance_value);
-}
-
-//----------------------------------------------------------------------
-// This function should play a sound sample, that is NOT needed within
-// the action part of the game but only in menus or dialogs and can
-// therefore be loaded and dumped on demand while the other sound samples
-// for the action parts of the game will be kept in memory all the time.
-// ----------------------------------------------------------------------
-
-//aep: implements volume now volume must be a double from 0 to 1. thats not my idea! go to JP, kill him!
-void play_sound_cached_v(const char *SoundSampleFileName, double volume)
-{
-	// use volume to scale the distance for the effect
-	// Range for volume - distance translation: 0 ( loud ) to 255 ( soft )
-	play_sound_cached_pos(SoundSampleFileName, 0, (unsigned char)(255 - (volume * 255)));
-}
-
-// Plays a sound at relative distance and angle
-static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned short angle, unsigned char distance)
-{
-	int channel_to_play_sample_on = 0;
-	char fpath[PATH_MAX];
-	int index_of_sample_to_be_played = 0;
-	int sound_must_be_loaded = TRUE;
 	int i;
+	for (i = 0; i < SFX_cache.next_free_slot; i++) {
+		if (SFX_cache.slots[i].chunk == chunk) {
+			return i;
+		}
+	}
+	return -1;
+}
 
-	// In case sound has been disabled, we don't do anything here...
-	//
+/*
+ * Return the chunk of a cached sound
+ */
+static Mix_Chunk *_SFX_cache_get_chunk(int index)
+{
+	return SFX_cache.slots[index].chunk;
+}
+
+/*
+ * Return the play_counter of a cached sound
+ */
+static int _SFX_cache_get_counter(int index)
+{
+	return SFX_cache.slots[index].play_counter;
+}
+
+////////////////////////////////////////////////////////////////////
+// SDL mixer callbacks
+////////////////////////////////////////////////////////////////////
+
+/*
+ * Called by SDL when a channel finishes to play a sound.
+ *
+ * Releases the related SFX cache slot.
+ */
+static void _channel_done(int channel)
+{
+	Mix_Chunk *chunk = Mix_GetChunk(channel);
+	if (chunk == NULL) {
+		error_once_message(ONCE_PER_GAME, __FUNCTION__,
+			"The associated sound chunk can not be found. This should never happen.\n"
+			"Channel index: %d\n",
+			PLEASE_INFORM, channel);
+		return;
+	}
+
+	int cache_index = _SFX_cache_find_chunk(chunk);
+	if (cache_index == -1) {
+		error_once_message(ONCE_PER_GAME, __FUNCTION__,
+			"The associated SFX cache slot can not be found. This should never happen.\n"
+			"Channel index: %d\n",
+			PLEASE_INFORM, channel);
+		return;
+	}
+
+	_SFX_cache_release_slot(cache_index);
+}
+
+/*
+ * Called by SDL when the fadeout of the current background music is finished.
+ *
+ * Free the memory used by the previous music, and loads the new one, those
+ * filename was stored in new_music_filename by the call to switch_background_music().
+ */
+
+static void _load_background_music(void)
+{
+	char fpath[PATH_MAX];
+
 	if (!sound_on)
 		return;
 
-	// First we go take a look if maybe the sound sample file name in question
-	// has been given to this function (at least) once before.  Then we can
-	// assume, that the corresponding sound sample is already loaded and still
-	// in the cache and just need to play it and then we can safely return
-	// immediately, without setting up any callbacks or the like, like the
-	// play_sound() function has to.
-	//
-	for (i = 0; i < MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE; i++) {
-		if (i >= next_free_position_in_cache) {
-			sound_must_be_loaded = TRUE;
-			break;
-		}
+	// Free the previous music's memory
+	if (loaded_music) {
+		// Note: Mix_FreeMusic() is called when the current music has already
+		// been faded out, so it should not block waiting for the music to stop
+		Mix_FreeMusic(loaded_music);
+		loaded_music = NULL;
+	}
 
-		if (!strcmp(sound_names_in_dynamic_wav_chache[i], SoundSampleFileName)) {
-			sound_must_be_loaded = FALSE;
-			index_of_sample_to_be_played = i;
-			break;
+	// Load a new background music, if one is set to be played
+	if (music_filename) {
+		if (find_file(music_filename, MUSIC_DIR, fpath, PLEASE_INFORM)) {
+			loaded_music = Mix_LoadMUS(fpath);
+			if (!loaded_music) {
+				error_message(__FUNCTION__, "The music file %s could not be loaded: %s", PLEASE_INFORM, music_filename, Mix_GetError());
+				return;
+			}
+			// No music is currently playing, so this call should not block
+			Mix_FadeInMusic(loaded_music, -1, MUSIC_FADE_INOUT);
+			Mix_VolumeMusic((int)rintf(GameConfig.Current_BG_Music_Volume * MIX_MAX_VOLUME));
+		} else {
+			// No music is currently played, remove the reference to its filename
+			free(music_filename);
+			music_filename = NULL;
+		}
+	}
+}
+
+////////////////////////////////////////////////////////////////////
+// Public API
+////////////////////////////////////////////////////////////////////
+
+/**
+ * \brief Initialize the SDL audio subsystem.
+ *
+ * \details This function initializes all the audio related stuff.
+ * It tries to open the audio device using the configured number of channels,
+ * falling back to opening it in stereo if a requested surround mode is not
+ * available.
+ * Some audio channels are allocated, and the SFX cache is initialized.
+ */
+void init_audio(void)
+{
+	const int audio_rate = 44100;
+	const Uint16 audio_format = AUDIO_S16;
+	const int audio_buffers = 4096;
+	int audio_channels;
+
+	if (!sound_on)
+		return;
+	
+	switch (GameConfig.Current_Sound_Output_Fmt) {
+	case SOUND_OUTPUT_FMT_SURROUND40:
+		audio_channels = 4;
+		break;
+	case SOUND_OUTPUT_FMT_SURROUND51:
+		audio_channels = 6;
+		break;
+	default:
+		audio_channels = 2;
+	}
+
+	// Initialize the SDL audio subsystem
+	if (SDL_InitSubSystem(SDL_INIT_AUDIO) == -1) {
+		error_message(__FUNCTION__,
+				"The SDL AUDIO SUBSYSTEM COULD NOT BE INITIALIZED.\n"
+				"Please check that your sound card is properly configured.\n"
+				"If you for some reason cannot get your sound card ready, "
+				"you can choose to play without sound: 'freedroid -q'.\n"
+				"SDL error: %s\n",
+				NO_REPORT, SDL_GetError());
+		sound_on = FALSE;
+		return;
+	}
+
+	// Open the audio device, using the configured number of audio channels (surround or stereo)
+	if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) < 0) {
+		error_message(__FUNCTION__,
+				"A Problem occurred while trying to open the audio device with %d channels.\n"
+				"Reverting to default settings (stereo).\n"
+				"SDL mixer error: %s\n",
+				NO_REPORT, audio_channels, Mix_GetError());
+
+		// Revert to stereo if we fail to open the audio device in surround mode
+		GameConfig.Current_Sound_Output_Fmt = SOUND_OUTPUT_FMT_STEREO;
+		audio_channels = 2;
+
+		if (Mix_OpenAudio(audio_rate, audio_format, 2, audio_buffers) < 0) {
+			error_message(__FUNCTION__,
+					"We were not even able to open the audio device in stereo mode.\n"
+					"Please check that your sound card is properly configured.\n"
+					"SDL mixer error: %s\n",
+					NO_REPORT, Mix_GetError());
+			sound_on = FALSE;
+			return;
 		}
 	}
 
-	// So if the sound sample isn't in the cache and therefore must still be loaded,
-	// we do so here before any playing takes place...
-	//
-	if (sound_must_be_loaded) {
-		// So now we know, that the sound sample in question has not yet ever been
-		// used before.  We must load it, play it and keep it in cache memory.
+	// Allocate a bunch of mixing channels.
+	Mix_AllocateChannels(ALLOCATED_AUDIO_CHANNELS);
 
-		// Now we try to load the requested sound file into memory...
-		//
-		if (!find_file(SoundSampleFileName, SOUND_DIR, fpath, PLEASE_INFORM)) {
-			return;
+	// Initialize the SFX cache
+	_SFX_cache_init();
+
+	// Add callback functions, called when a sound or a music is finished
+	Mix_ChannelFinished(_channel_done);
+	Mix_HookMusicFinished(_load_background_music);
+}
+
+/**
+ * \brief Close the audio subsystem.
+ *
+ * \details Free all audio stuff and close the audio device.
+ */
+void close_audio(void)
+{
+	if (!sound_on)
+		return;
+
+	Mix_ChannelFinished(NULL); // Avoid Mix_HaltChannel to call the ChannelFinished callback
+	Mix_HaltChannel(-1); // Ensure that all channels are halted before to free the sound chunks
+	_SFX_cache_clear();
+
+	Mix_HookMusicFinished(NULL); // Prevent to call the MusicFinished callback
+	if (loaded_music) {
+		Mix_HaltMusic();
+		Mix_FreeMusic(loaded_music);
+		loaded_music = NULL;
+	}
+
+	if (music_filename) {
+		free(music_filename);
+		music_filename = NULL;
+	}
+
+	Mix_CloseAudio();
+}
+
+/**
+ * \brief Set the volume of the currently played background music.
+ *
+ * \param volume The new volume (between 0.0 and 1.0)
+ */
+void set_music_volume(float volume)
+{
+	if (!sound_on)
+		return;
+	Mix_VolumeMusic((int)rintf(volume * MIX_MAX_VOLUME));
+}
+
+/**
+ * \brief Set the volume of all SFX sounds.
+ *
+ * \details This changes the sound of all currently played sound.
+ * Note that this will also change the sounds started with play_sound_v()...
+ *
+ * \param volume The new volume (between 0.0 and 1.0)
+ */
+void set_SFX_volume(float volume)
+{
+	if (!sound_on)
+		return;
+	Mix_Volume(-1, (int)rintf(volume * MIX_MAX_VOLUME));
+}
+
+/**
+ * \brief Play a new background music in loop
+ *
+ * \details FadeOut the current background a music and prepare the loading of a new one by
+ * setting 'new_music_filename'. The new background music will be started when the previous
+ * one will been faded out (i.e. when SDL will call the MusicFinished callback).
+ *
+ * \param filename New background music to play (relative to MUSIC_DIR). If NULL, stops the current music.
+ */
+void switch_background_music(char *filename)
+{
+	if (!sound_on)
+		return;
+
+	// No music to play and no music currently playing: nothing to do
+	if (!filename && !music_filename) {
+		return;
+	}
+
+	// If the new background music is already the one being played: nothing to do
+	if (filename && music_filename && !strcmp(music_filename, filename)) {
+		return;
+	}
+
+	// Keep reference to the new music to play
+	if (music_filename) {
+		free(music_filename);
+		music_filename = NULL;
+	}
+	music_filename = my_strdup(filename);
+
+	// And play it
+	if (!loaded_music) {
+		// No music is currently played: immediately play the new music
+		_load_background_music();
+	} else {
+		// First fade out the current music, and play the new one once done
+		// (through a callback).
+		// Note: if 'filename' is NULL, the callback will not start to play
+		// any music.
+		Mix_FadeOutMusic(2000);
+		Mix_HookMusicFinished(_load_background_music);
+	}
+}
+
+/**
+ * \brief Play an SFX sound
+ *
+ * \details A sound cannot be played (and the funtion returns -1) when:
+ * no unused slot is found in the SFX cache, or no audio channel is available,
+ * or the sound is already played too much times.
+ *
+ * \param filename Filename of the SFX sound (relative to SOUND_DIR)
+ *
+ * \return The audio channel used to play the sound, or -1 on error or if the sound can not be played
+ */
+int play_sound(const char *filename)
+{
+	// In case sound has been disabled, or not sound file name is given,
+	// do nothing
+
+	if (!sound_on || filename == NULL || filename[0] == '\0')
+		return -1;
+
+	// First we go take a look if maybe the sound sample is already in the
+	// SFX cache. If not, the sample is loaded and put in cache.
+
+	int cache_index = _SFX_cache_find_filename(filename);
+
+	if (cache_index == -1) {
+		char fpath[PATH_MAX];
+
+		// Try to load the requested sound file into memory
+		if (!find_file(filename, SOUND_DIR, fpath, PLEASE_INFORM)) {
+			return -1;
 		}
-		Mix_Chunk *loaded_wav_chunk = Mix_LoadWAV(fpath);
-		if (!loaded_wav_chunk) {
+		Mix_Chunk *wav_chunk = Mix_LoadWAV(fpath);
+		if (!wav_chunk) {
 			error_message(__FUNCTION__, "Could not load sound file \"%s\": %s", PLEASE_INFORM, fpath, Mix_GetError());
-			// If the sample couldn't be loaded, we just quit, not marking anything
-			// as loaded and inside the cache and also not trying to play anything...
-			//
-			return;
+			return -1;
 		}
 
 		// Allocate a cache entry for the loaded WAV sample
-		int sample_cache_index = allocate_sample_cache_entry();
-		dynamic_WAV_cache[sample_cache_index] = loaded_wav_chunk;
-		sound_names_in_dynamic_wav_chache[sample_cache_index] = MyMalloc(strlen(SoundSampleFileName) + 1);
-		strcpy(sound_names_in_dynamic_wav_chache[sample_cache_index], SoundSampleFileName);
-
-		// Hoping, that this will not take up too much processor speed, we'll
-		// now change the volume of the sound sample in question to what is normal
-		// for sound effects right now...
-		//
-		Mix_VolumeChunk(dynamic_WAV_cache[sample_cache_index], (int)rintf(MIX_MAX_VOLUME * GameConfig.Current_Sound_FX_Volume));
-
-		// We note the position of the sound file to be played
-		//
-		index_of_sample_to_be_played = sample_cache_index;
-	}
-	// Now we try to play the sound file that has just been successfully
-	// loaded into memory or has resided in memory already for some time...
-	//
-	// In case of an error, we will of course print an error message
-	// and quit...
-	//
-	
-	// First let's find a free channel
-	channel_to_play_sample_on = find_free_channel();
-
-	// Now we try to play the sound file that has just been successfully
-	// loaded into memory or has resided in memory already for some time...
-	dynamic_WAV_cache_last_use[index_of_sample_to_be_played] = SDL_GetTicks();
-	if (Mix_PlayChannel(channel_to_play_sample_on, dynamic_WAV_cache[index_of_sample_to_be_played], 0) <= -1) {
-		error_message(__FUNCTION__,
-				"The SDL mixer was unable to play a certain sound sample file, that was supposed to be cached for later.\n"
-				"SoundSampleFileName: '%s' Mix_GetError(): %s",
-				NO_REPORT, SoundSampleFileName, Mix_GetError());
-	}
-
-	// if we found a free channel, let's apply an effect to it.
-	if (channel_to_play_sample_on != -1) {
-		if (!Mix_SetPosition(channel_to_play_sample_on, angle, distance)){
-			error_message(__FUNCTION__,
-					"The SDL mixer was unable to register an effect on given channel.\n"
-					"SoundSampleFileName: '%s' channel: '%d' Mix_GetError(): %s",
-					NO_REPORT, SoundSampleFileName, channel_to_play_sample_on, Mix_GetError());
+		cache_index = _SFX_cache_allocate_slot();
+		if (cache_index == -1) {
+			Mix_FreeChunk(wav_chunk);
+			return -1;
 		}
+		_SFX_cache_fill_slot(cache_index, filename, wav_chunk);
+	}
+
+	// Mixing a same sound too many times can possibly lead to sound clipping.
+	// Since the independent samples will not really be distinguishable, we
+	// 'artificially' limit the overlap.
+	// This mainly happens when several bots fire a burst with a delay between
+	// 2 bullets that is shorter than the duration of the bullet sound.
+
+	if (_SFX_cache_get_counter(cache_index) >= MAX_SOUND_OVERLAPPING)
+		return -1;
+
+	// Now we try to play the sound file
+
+	int mix_channel = Mix_PlayChannel(-1, _SFX_cache_get_chunk(cache_index), 0);
+	if (mix_channel <= -1) {
+		error_once_message(ONCE_PER_GAME, __FUNCTION__,
+				"The SDL mixer was unable to play a certain sound sample file,"
+				"probably due to no audio channel being available.\n"
+				"Mix_GetError(): %s",
+				NO_REPORT, Mix_GetError());
+		return -1;
+	}
+
+	Mix_Volume(mix_channel, GameConfig.Current_Sound_FX_Volume * MIX_MAX_VOLUME);
+	_SFX_cache_touch_slot(cache_index);
+
+	return mix_channel;
+}
+
+/**
+ * \brief Play an SFX sound at a given ratio of the global sound volume
+ *
+ * \brief The function first calls play_sound() and then sets the volume.
+ *
+ * \param filename Filename of the SFX sound (relative to SOUND_DIR)
+ * \param ratio    Multiplied by the global sound volume (game configuration) (between 0.0 and 1.0)
+ */
+void play_sound_v(const char *filename, float ratio)
+{
+	if (!sound_on)
+		return;
+
+	int sound_channel = play_sound(filename);
+	if (sound_channel != -1) {
+		Mix_Volume(sound_channel, (int)rintf(ratio * GameConfig.Current_Sound_FX_Volume * MIX_MAX_VOLUME));
 	}
 }
 
 /**
- * When the sound sample volume is changed via the in-game controls, we 
- * need to re-sample everything, which is done only upon loading of the
- * sound samples.  Instead of RE-MIXING SOUND SAMPLES AGAIN AND AGAIN to
- * adapt the sound sample volume to the users needs, we will just clear
- * out the current wav file cache, so that when needed again, the sound
- * files will be loaded again and then automatically re-sampled to proper
- * volume from the play/load function itself.  Perfect solution.
+ * \brief Play an SFX sound, with a spatialization effect.
+ *
+ * \details Simulate a 3D sound, based on the position of the sound source
+ * and the position of the listener (Tux).
+ * The function first calls play_sound() and then adds a positional effect.
+ *
+ * \param filename      Filename of the SFX sound (relative to SOUND_DIR)
+ * \param listener_gps  GPS position of the listener
+ * \param emitter_gps   GPS position of the sound source
  */
-static void remove_all_samples_from_WAV_cache(void)
+void play_sound_at_position(const char *filename, struct gps *listener_gps, struct gps *emitter_gps)
 {
-	int i;
-	for (i = 0; i < next_free_position_in_cache; i++) {
-		// We free the allocated memory for the file name.  This is overly 'clean'
-		// code.  The amount of memory in question would be neglectable...
-		//
-		free(sound_names_in_dynamic_wav_chache[i]);
+	struct gps emitter_virt_gps;
+	struct point emitter;
+	struct point listener;
+	struct point delta;
+	float squared_distance;
+	float distance;
+	float angle;
+	Uint8 sound_distance;
+	Sint16 sound_angle;
+	int sound_channel;
 
-		// We free the allocated music chunk.  This is more important since the
-		// music chunks in question can consume more memory...
-		//
-		Mix_FreeChunk(dynamic_WAV_cache[i]);
+	if (!sound_on)
+		return;
+
+	// Check some preconditions. If should not happen, so it's just a
+	// fall-back to prevent any bug in the following code
+	if (emitter_gps->z == -1 || listener_gps->z == -1) {
+		// Un-positioned sound
+		play_sound(filename);
+		return;
 	}
 
-	// Now that the cache has been emptied, it must be marked as such, or
-	// the next play function will search it and produce a segfault.
-	//
-	next_free_position_in_cache = 0;
-}
+	// The positional sound parameters (distance and angle) are defined
+	// relatively to screen coordinates.
+	// So, we get the emitter's coordinates as if it were on the same level as
+	// the listener, and we translate the emitter and listener coordinates to
+	// screen coordinates.
+	update_virtual_position(&emitter_virt_gps, emitter_gps, listener_gps->z);
+	translate_map_point_to_screen_pixel(emitter_virt_gps.x, emitter_virt_gps.y, &emitter.x, &emitter.y);
+	translate_map_point_to_screen_pixel(listener_gps->x, listener_gps->y, &listener.x, &listener.y);
 
-static int allocate_sample_cache_entry(void)
-{
-	// When the wav file cache is full, free the least recently used entry.
-	if (next_free_position_in_cache >= MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE) {
-		int i;
-		Uint32 least_recently_used = dynamic_WAV_cache_last_use[0];
-		int least_recently_used_index = 0;
+	// d[x,y] = [x2,y2] - [x1,y1]
+	delta.x = emitter.x - listener.x;
+	delta.y = emitter.y - listener.y;
+	squared_distance = (delta.x * delta.x) + (delta.y * delta.y);
 
-		for (i = 1; i < MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE; i++) {
-			if (dynamic_WAV_cache_last_use[i] < least_recently_used) {
-				least_recently_used = dynamic_WAV_cache_last_use[i];
-				least_recently_used_index = i;
-			}
+	// If the sound source is very near the listener, play un-positioned
+	// '10' (pixels) is just a 'small value'.
+	if (squared_distance < 10*10) {
+		play_sound(filename);
+		return;
+	}
+
+	// Compute the 3D sound distance, which is to be between 0 (closest)
+	// and 255 (farthest).
+	// The computed value is capped:
+	// - if the distance is less than 20% of the screen width, we cap to 0
+	// - we also cap to 0.9 * 255, so that a sound is always audible
+	// Note: if the emitter is on the left (or right) border of the screen,
+	// this leads to a value of 3/4 * 255
+	distance = sqrt(squared_distance) / ((float)GameConfig.screen_width / 1.5);
+	if (distance < 0.2)
+		sound_distance = 0;
+	else if (distance > 0.9)
+		sound_distance = (Uint8)(0.9 * 255.0);
+	else
+		sound_distance = (Uint8)(distance * 255.0);
+
+	// Compute the 3D sound angle, which is clockwise, with 0 pointing north
+	// (the 'angle' value is anti-clockwise, with 0 pointing east, hence the '90 - angle')
+	angle = atan2(-delta.y, delta.x); // Y screen axis points down, so we revert the sign
+	sound_angle = (Sint16)(90.0 - angle * (180.0/M_PI)) % 360;
+	if (sound_angle < 0) sound_angle = 360 + sound_angle;
+
+	// Try to play the sound
+	sound_channel = play_sound(filename);
+
+	// If sound is played, add positional effect.
+	if (sound_channel != -1) {
+		// TODO: MIX_SetPosition() does not preserve the audio power (referring
+		// to linear pan rule or constant power pan rule).
+		// We should compute ourself the volume to apply to each speaker (at least
+		// in stereo) and use Mix_SetPanning().
+		if (!Mix_SetPosition(sound_channel, sound_angle, sound_distance)){
+			error_message(__FUNCTION__,
+					"The SDL mixer was unable to register an effect on given channel.\n"
+					"FileName: '%s' channel: '%d' Mix_GetError(): %s",
+					NO_REPORT, filename, sound_channel, Mix_GetError());
 		}
-
-		free(sound_names_in_dynamic_wav_chache[least_recently_used_index]);
-		Mix_FreeChunk(dynamic_WAV_cache[least_recently_used_index]);
-		return least_recently_used_index;
 	}
-
-	return next_free_position_in_cache++;
 }
 
-#endif				// HAVE_LIBSDL_MIXER
+#endif // HAVE_LIBSDL_MIXER
 
 #undef _sound_c

@@ -36,7 +36,7 @@ void play_open_chest_sound(void)
 
 void Play_Spell_ForceToEnergy_Sound()
 {
-	play_sound_cached("effects/Spell_ForceToEnergy_Sound_0.ogg");
+	play_sound("effects/Spell_ForceToEnergy_Sound_0.ogg");
 }
 
 /**
@@ -54,7 +54,7 @@ void No_Ammo_Sound(void)
 
 	now = SDL_GetTicks();
 	if (SDL_GetTicks() - PreviousSound >= 0.25 * 1000) {
-		play_sound_cached("effects/No_Ammo_Sound_0.ogg");
+		play_sound("effects/No_Ammo_Sound_0.ogg");
 		PreviousSound = now;
 	}
 }
@@ -74,7 +74,7 @@ void Not_Enough_Power_Sound(void)
 
 	now = SDL_GetTicks();
 	if (SDL_GetTicks() - PreviousSound >= 1.15 * 1000) {
-		play_sound_cached("effects/tux_ingame_comments/Not_Enough_Power_Sound_0.ogg");
+		play_sound("effects/tux_ingame_comments/Not_Enough_Power_Sound_0.ogg");
 		PreviousSound = now;
 	}
 }
@@ -94,7 +94,7 @@ void Not_Enough_Dist_Sound(void)
 
 	now = SDL_GetTicks();
 	if (SDL_GetTicks() - PreviousSound >= 1.15 * 1000) {
-		play_sound_cached("effects/tux_ingame_comments/Not_Enough_Dist_Sound_0.ogg");
+		play_sound("effects/tux_ingame_comments/Not_Enough_Dist_Sound_0.ogg");
 		PreviousSound = now;
 	}
 }
@@ -252,13 +252,13 @@ void CantCarrySound(void)
 		CurrentTicks = SDL_GetTicks();
 		switch (MyRandom(2)) {
 		case 0:
-			play_sound_cached("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_0.ogg");
+			play_sound("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_0.ogg");
 			break;
 		case 1:
-			play_sound_cached("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_1.ogg");
+			play_sound("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_1.ogg");
 			break;
 		case 2:
-			play_sound_cached("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_2.ogg");
+			play_sound("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_2.ogg");
 			break;
 		default:
 			break;
@@ -272,8 +272,7 @@ void CantCarrySound(void)
  */
 void teleport_arrival_sound(void)
 {
-	// play_sound_cached("effects/LeaveElevator_Sound_0.ogg");
-	play_sound_cached("effects/new_teleporter_sound.ogg");
+	play_sound("effects/new_teleporter_sound.ogg");
 }
 
 /**
@@ -286,19 +285,19 @@ void tux_scream_sound(void)
 {
 	switch (MyRandom(4)) {
 	case 0:
-		play_sound_cached("effects/Influencer_Scream_Sound_0.ogg");
+		play_sound("effects/Influencer_Scream_Sound_0.ogg");
 		break;
 	case 1:
-		play_sound_cached("effects/Influencer_Scream_Sound_1.ogg");
+		play_sound("effects/Influencer_Scream_Sound_1.ogg");
 		break;
 	case 2:
-		play_sound_cached("effects/Influencer_Scream_Sound_2.ogg");
+		play_sound("effects/Influencer_Scream_Sound_2.ogg");
 		break;
 	case 3:
-		play_sound_cached("effects/Influencer_Scream_Sound_3.ogg");
+		play_sound("effects/Influencer_Scream_Sound_3.ogg");
 		break;
 	case 4:
-		play_sound_cached("effects/Influencer_Scream_Sound_4.ogg");
+		play_sound("effects/Influencer_Scream_Sound_4.ogg");
 		break;
 	default:
 		break;
@@ -311,17 +310,17 @@ void tux_scream_sound(void)
  */
 void MenuItemSelectedSound(void)
 {
-	play_sound_cached("effects/Menu_Item_Selected_Sound_1.ogg");
+	play_sound_v("effects/Menu_Item_Selected_Sound_1.ogg", 0.5);
 }
 
 void MenuItemDeselectedSound(void)
 {
-	play_sound_cached("effects/Menu_Item_Deselected_Sound_0.ogg");
+	play_sound_v("effects/Menu_Item_Deselected_Sound_0.ogg", 0.5);
 }
 
 void MoveMenuPositionSound(void)
 {
-	play_sound_cached("effects/Move_Menu_Position_Sound_0.ogg");
+	play_sound_v("effects/Move_Menu_Position_Sound_0.ogg", 0.5);
 }
 
 void ThouArtDefeatedSound(void)
@@ -349,7 +348,7 @@ void play_melee_weapon_hit_something_sound(void)
 
 	// The target of the attack is very near Tux, so no need to play
 	// a positional sound.
-	play_sound_cached(sounds[sound_index]);
+	play_sound(sounds[sound_index]);
 }
 
 void play_melee_weapon_missed_sound(struct gps *attacker_pos)
@@ -398,22 +397,22 @@ void fire_bullet_sound(int BulletType, struct gps *shooter_pos)
  */
 void Takeover_Set_Capsule_Sound(void)
 {
-	play_sound_cached("effects/TakeoverSetCapsule_Sound_0.ogg");
+	play_sound("effects/TakeoverSetCapsule_Sound_0.ogg");
 }
 
 void Takeover_Game_Won_Sound(void)
 {
-	play_sound_cached("effects/Takeover_Game_Won_Sound_0.ogg");
+	play_sound("effects/Takeover_Game_Won_Sound_0.ogg");
 }
 
 void Takeover_Game_Deadlock_Sound(void)
 {
-	play_sound_cached("effects/Takeover_Game_Deadlock_Sound_0.ogg");
+	play_sound("effects/Takeover_Game_Deadlock_Sound_0.ogg");
 }
 
 void Takeover_Game_Lost_Sound(void)
 {
-	play_sound_cached("effects/Takeover_Game_Lost_Sound_0.ogg");
+	play_sound("effects/Takeover_Game_Lost_Sound_0.ogg");
 }
 
 void play_blast_sound(char *blast_sound, struct gps *blast_pos)
@@ -434,5 +433,5 @@ void play_blast_sound(char *blast_sound, struct gps *blast_pos)
  */
 void BulletReflectedSound(void)
 {
-	play_sound_cached("effects/Bullet_Reflected_Sound_0.ogg");
+	play_sound("effects/Bullet_Reflected_Sound_0.ogg");
 }
