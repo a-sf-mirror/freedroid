@@ -1287,7 +1287,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 				gps vpos;
 				update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
 				struct image *shadow_img = get_obstacle_shadow_image(our_obstacle->type, our_obstacle->frame_index);
-				display_image_on_map(shadow_img, vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(mask & ZOOM_OUT ? lvledit_zoomfact_inv() : 1.0));
+				display_image_on_map(shadow_img, vpos.x, vpos.y, IMAGE_SCALE_TRANSFO((mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0));
 			}
 			
 			// If the obstacle in question does have a collision rectangle, then we

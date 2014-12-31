@@ -586,7 +586,7 @@ static void LevelOptions(void)
 		i++;
 
 		sprintf(Options[i], "%s: %s", _("Respawn"),
-			EditLevel()->flags & NO_RESPAWN ? _("no") : _("yes"));
+			(EditLevel()->flags & NO_RESPAWN) ? _("no") : _("yes"));
 		MenuTexts[i] = Options[i];
 		i++;
 
@@ -600,7 +600,7 @@ static void LevelOptions(void)
 		i++;
 
 		sprintf(Options[i], "%s: %s", _("Teleport blockade"),
-			EditLevel()->flags & TELEPORT_BLOCKED ? _("yes") : _("no"));
+			(EditLevel()->flags & TELEPORT_BLOCKED) ? _("yes") : _("no"));
 		MenuTexts[i] = Options[i];
 		i++;
 
