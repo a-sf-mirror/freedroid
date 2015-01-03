@@ -159,9 +159,11 @@ static void print_statistics(void)
 	// Grab information out of the statistics arrays
 	for (model = 0; model < Number_Of_Droid_Types; model++) {
 		total_takeover_success += Me.TakeoverSuccesses[model];
-	        total_destroyed += Me.destroyed_bots[model];
-	        total_damage_dealt += Me.damage_dealt[model];
-		if (Me.destroyed_bots[model] > Me.destroyed_bots[fav_destroyed])
+		total_destroyed += Me.destroyed_bots[model];
+		total_damage_dealt += Me.damage_dealt[model];
+		if (fav_destroyed == -1 && Me.destroyed_bots[model] > 0)
+			fav_destroyed = model;
+		else if (fav_destroyed != -1 && (Me.destroyed_bots[model] > Me.destroyed_bots[fav_destroyed]))
 			fav_destroyed = model;
 		if (Me.TakeoverSuccesses[model] + Me.TakeoverFailures[model]) {
 			rate = (100 * Me.TakeoverSuccesses[model])/ (Me.TakeoverSuccesses[model] + Me.TakeoverFailures[model]);
