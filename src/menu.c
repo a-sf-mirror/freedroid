@@ -417,6 +417,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 
 		// If the selected option has changed, halt eventual current autoscrolling
 		if (MenuPosition != old_menu_position || VertScrollOffset != old_scroll_offset) {
+			MoveMenuPositionSound();
 			auto_scroll_run = TRUE;
 			auto_scroll_start = 0.0f;
 		}
