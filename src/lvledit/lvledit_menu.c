@@ -992,6 +992,8 @@ int DoLevelEditorMainMenu()
 		QUIT_POSITION,
 	};
 
+	MenuItemSelectedSound();
+
 	while (!proceed_now) {
 
 		InitiateMenu("--EDITOR_BACKGROUND--");

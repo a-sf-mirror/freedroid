@@ -784,6 +784,7 @@ void StartupMenu(void)
 
 void EscapeMenu(void)
 {
+	MenuItemSelectedSound();
 	RunMenu(0);
 }
 
