@@ -54,10 +54,15 @@ void blit_vertical_status_bar(float max_value, float current_value, Uint32 fille
 	SDL_Rect un_running_power_rect;
 	uint8_t r, g, b, a;
 
-	if (!max_value) {
-		max_value = 1;
-		current_value = 1;
+	// Preconditions. Can happen when Tux dies, for instance.
+	if (max_value < 0 || current_value < 0)
+		return;
+
+	if (max_value == 0.0) {
+		max_value = 1.0;
+		current_value = 1.0;
 	}
+
 	// Now we might get the case of current value exceeding the max value by far.  This 
 	// does happen when we set ridiculously high energy values for invincible Tux in the
 	// course of testing and convenient debugging.  To prevent arithmetic exceptions, we
