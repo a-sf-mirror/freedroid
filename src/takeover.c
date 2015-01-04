@@ -921,44 +921,36 @@ static void ShowPlayground(enemy * target)
 	int i, j;
 	int color, player;
 	int block;
-	int xoffs, yoffs;
 	SDL_Rect Target_Rect;
-	int phase, dheight;
-	xoffs = User_Rect.x + (User_Rect.w - 2 * 290) / 2;
-	yoffs = User_Rect.y + (User_Rect.h - 2 * 140) / 2 + 30;
-
-	phase = (int) Me.phase;
+	int xoffs = User_Rect.x + (User_Rect.w - 2 * 290) / 2;
+	int yoffs = User_Rect.y + (User_Rect.h - 2 * 140) / 2 + 40;
 
 	blit_background("console_bg1.jpg");
     
-    static struct image bg;
-    if (!image_loaded(&bg)) {
-      load_image(&bg, "backgrounds/takeover_console.png", FALSE);
-    }
+	static struct image bg;
+	if (!image_loaded(&bg)) {
+		load_image(&bg, "backgrounds/takeover_console.png", FALSE);
+	}
 
-    display_image_on_screen(&bg, GameConfig.screen_width / 2 - 340, GameConfig.screen_height / 2 - 294, IMAGE_NO_TRANSFO);
-    
-    
+	display_image_on_screen(&bg, GameConfig.screen_width / 2 - 340, GameConfig.screen_height / 2 - 294, IMAGE_NO_TRANSFO);
 
 	if (target) {
-		// Find the difference of the droid's height and Tux's height.
-		// Tux's height is measured from the top of his head to the bottom of his feet
-		// This also accounts for the droid's blitting offset
-		struct tux_motion_class_images *current_motion_class_images = &tux_images[get_motion_class_id()];
-		dheight = current_motion_class_images->part_images[PART_GROUP_FEET][0][phase].offset_y +
-			current_motion_class_images->part_images[PART_GROUP_FEET][0][phase].h -
-			current_motion_class_images->part_images[PART_GROUP_HEAD][0][phase].offset_y -
-			enemy_images[target->type][0][0].h -
-			enemy_images[target->type][0][0].offset_y;
-
-		// Offset the droid's drawing rectangle by dheight minus 30 units.
-		Set_Rect(Target_Rect, xoffs + DroidStart[!YourColor].x + 50, yoffs + dheight - 80, User_Rect.w, User_Rect.h);
+		int rotation_model = set_rotation_model_for_this_robot(target);
+		int offsetx = -enemy_images[rotation_model][0][0].offset_x;
+		int offsety = -enemy_images[rotation_model][0][0].offset_y;
+		Set_Rect(Target_Rect, xoffs + DroidStart[!YourColor].x + 20 + offsetx, (yoffs - 80) + offsety, User_Rect.w, User_Rect.h);
 		PutIndividuallyShapedDroidBody(target, Target_Rect, FALSE, FALSE);
 	}
 	//  SDL_SetColorKey (Screen, 0, 0);
 	SDL_SetClipRect(Screen, &User_Rect);
 
-	blit_tux(xoffs + DroidStart[YourColor].x + 20, yoffs - 25);
+	struct tux_motion_class_images *current_motion_class_images = &tux_images[get_motion_class_id()];
+	int phase = tux_anim.standing_keyframe;
+	struct image *tux_feet_image = &current_motion_class_images->part_images[PART_GROUP_FEET][phase][0];
+	struct image *tux_head_image = &current_motion_class_images->part_images[PART_GROUP_HEAD][phase][0];
+	int tux_height = (tux_feet_image->offset_y + tux_feet_image->h) - (tux_head_image->offset_y);
+
+	blit_tux(xoffs + DroidStart[YourColor].x + 20, (yoffs - 80) + (tux_height / 2) + tux_feet_image->offset_y);
 
 	Set_Rect(Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y, User_Rect.w, User_Rect.h);
 

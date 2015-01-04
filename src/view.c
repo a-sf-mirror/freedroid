@@ -2176,10 +2176,13 @@ void iso_put_tux(int x, int y)
 	// from motion_class.
 
 	int motion_class = get_motion_class_id();
-	int our_phase = (int)Me.phase; // Tux current animation keyframe
+	int our_phase = tux_anim.standing_keyframe;
 	int rotation_index = 0; // Facing front
 
 	if (x == -1) {
+
+		our_phase = (int)Me.phase;
+
 		// Compute the rotation angle
 		// If Tux is walking/running, compute its angle from the direction of movement,
 		// else reuse the last computed angle.

@@ -94,7 +94,7 @@ void to_show_banner(const char *left, const char *right);
 /* Positions of Droid-pictures */
 #define YELLOW_DROID_X		2*40
 #define YELLOW_DROID_Y		0
-#define PURPLE_DROID_X		2*220
+#define PURPLE_DROID_X		2*225
 #define PURPLE_DROID_Y		YELLOW_DROID_Y
 
 /* Left-Capsules positions */
