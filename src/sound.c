@@ -637,6 +637,13 @@ void play_sound_at_position(const char *filename, struct gps *listener_gps, stru
 		return;
 	}
 
+	// If listener and emitter are identical (such as for Tux attack sounds),
+	// play un-positioned sound
+	if (listener_gps == emitter_gps) {
+		play_sound(filename);
+		return;
+	}
+
 	// The positional sound parameters (distance and angle) are defined
 	// relatively to screen coordinates.
 	// So, we get the emitter's coordinates as if it were on the same level as
