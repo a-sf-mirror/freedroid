@@ -7,7 +7,7 @@ SUBDIRS = po-src po-dialogs po-data l10n-others
 # Inspired by http://lackof.org/taggart/hacking/make-example/
 
 # disables -j , hack to fix some race condition
-.NOTPARALLEL: update-po update-gmo
+.NOTPARALLEL:
 
 UPDATEPODIRS = $(SUBDIRS:%=updatepo-%)
 

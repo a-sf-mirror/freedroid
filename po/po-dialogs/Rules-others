@@ -1,5 +1,7 @@
 # Additional make targets
 
+.NOTPARALLEL:
+
 #== Regenerate POTFILES.in if the list of source files changed
 #== (executed before the main update-po rule)
 
