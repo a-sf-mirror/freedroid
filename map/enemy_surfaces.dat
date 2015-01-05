@@ -144,11 +144,11 @@ droid_stand_animation_speed_factor=5
 
 ** Start of new surface specification subsection **
 PrefixToFilename="614"
-droid_walk_animation_speed_factor=18
-droid_attack_animation_speed_factor=5
-droid_gethit_animation_speed_factor=5
-droid_death_animation_speed_factor=13
-droid_stand_animation_speed_factor=3
+droid_walk_animation_speed_factor=25
+droid_attack_animation_speed_factor=23
+droid_gethit_animation_speed_factor=18
+droid_death_animation_speed_factor=18
+droid_stand_animation_speed_factor=18
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
