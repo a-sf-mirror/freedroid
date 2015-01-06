@@ -385,7 +385,6 @@ void init_audio(void)
 
 		// Revert to stereo if we fail to open the audio device in surround mode
 		GameConfig.Current_Sound_Output_Fmt = SOUND_OUTPUT_FMT_STEREO;
-		audio_channels = 2;
 
 		if (Mix_OpenAudio(audio_rate, audio_format, 2, audio_buffers) < 0) {
 			error_message(__FUNCTION__,
