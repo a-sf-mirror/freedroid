@@ -345,12 +345,15 @@ static void add_wall(float x, float y, int type, enum _level_editor_directions d
 	// Create the new wall on the map
 	wall->address = add_obstacle(EditLevel(), x, y, type);
 
-	// Add the new wall in the linked list
-	list_add_tail(&(wall->list), &(state.l_elements_head));
-
-	// Define the new direction of the line of walls
-	state.l_direction = direction;
-	// cppcheck-suppress memleak
+	if (wall->address) {
+		// Add the new wall in the linked list
+		list_add_tail(&(wall->list), &(state.l_elements_head));
+		// Define the new direction of the line of walls
+		state.l_direction = direction;
+		// cppcheck-suppress memleak
+	} else {
+		free(wall);
+	}
 }
 
 /**

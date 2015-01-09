@@ -1008,9 +1008,11 @@ void level_editor_paste_selection()
 			}
 			
 			// Add and select
-			add_object_to_list(&selected_elements, action_create_obstacle_user(EditLevel(), o->pos.x, o->pos.y, o->type), OBJECT_OBSTACLE);
-			
-			nbact++;
+			struct obstacle *newo = action_create_obstacle_user(EditLevel(), o->pos.x, o->pos.y, o->type);
+			if (newo) {
+				add_object_to_list(&selected_elements, newo, OBJECT_OBSTACLE);
+				nbact++;
+			}
 			break;
 		case OBJECT_FLOOR:
 			t = e->data;
