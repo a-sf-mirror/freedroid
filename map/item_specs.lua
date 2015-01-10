@@ -2276,7 +2276,7 @@ item_list{
 	base_price = 0,
 	inventory = {x = 1, y = 1, image = "stock_certificate/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
-	description =_[[This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer. Must be redeemed in a stock trading terminal.]],
+	description =_[[This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer.]],
 	rotation_series = "stock_certificate",
 },
 ----------------------------------------------------------------------
