@@ -350,10 +350,10 @@ static void add_wall(float x, float y, int type, enum _level_editor_directions d
 		list_add_tail(&(wall->list), &(state.l_elements_head));
 		// Define the new direction of the line of walls
 		state.l_direction = direction;
-		// cppcheck-suppress memleak
 	} else {
 		free(wall);
 	}
+	// cppcheck-suppress memleak
 }
 
 /**
