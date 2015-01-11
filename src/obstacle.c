@@ -105,6 +105,30 @@ obstacle *add_obstacle(level *lvl, float x, float y, int type)
 {
 	int i;
 
+	// Pre-condition
+	if (!pos_inside_level(x, y, lvl)) {
+		if (game_root_mode == ROOT_IS_LVLEDIT) {
+			if (game_status == INSIDE_LVLEDITOR) {
+				// 1- Add an invalid obstacle while in the level editor: Warn
+				error_message(__FUNCTION__,
+						"Invalid obstacle (%s) position on level %d: t%d x%3.2f y%3.2f\n",
+						NO_REPORT, ((char **)get_obstacle_spec(type)->filenames.arr)[0], lvl->levelnum, type, x, y);
+				alert_once_window(ONCE_PER_GAME,
+						"-- WARNING --\n"
+						"An obstacle with invalid coords is added to a map.\n"
+						"We accept to add it, for further inspection of the bug.\n"
+						"See the report in your terminal console.");
+			} else {
+				// 2- Called when loading after playtesting: Silently load
+				// the invalid obstacle so that it can be saved to levels.dat
+				// for further inspection of the bug
+			}
+		} else {
+			// 3- Called when loading a game: Silently ignore the invalid obstacle
+			return NULL;
+		}
+	}
+
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
 		if (lvl->obstacle_list[i].type != -1)
 			continue;
@@ -147,8 +171,17 @@ void move_obstacle(obstacle *o, float newx, float newy)
 {
 	level *lvl = curShip.AllLevels[o->pos.z];
 
-	if (!pos_inside_level(newx, newy, lvl))
+	// Pre-condition
+	if (!pos_inside_level(newx, newy, lvl)) {
+		alert_once_window(ONCE_PER_GAME,
+				"An obstacle was tried to be moved to an invalid position.\n"
+				"Not moving it.\n"
+				"See the report in your terminal console.");
+		error_message(__FUNCTION__,
+				"Invalid obstacle new position (%f, %f) on level %d - Old position: (%f, %f).",
+				NO_REPORT, newx, newy, o->pos.z, o->pos.x, o->pos.y);
 		return;
+	}
 
 	unglue_obstacle(lvl, o);
 

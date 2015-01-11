@@ -1308,20 +1308,44 @@ int LoadShip(char *filename, int compressed)
  * This should write the obstacle information in human-readable form into
  * a buffer.
  */
-static void encode_obstacles_of_this_level(struct auto_string *shipstr, level *Lev)
+static void encode_obstacles_of_this_level(struct auto_string *shipstr, struct level *lvl)
 {
 	int i;
 	autostr_append(shipstr, "%s\n", OBSTACLE_DATA_BEGIN_STRING);
 
-	defrag_obstacle_array(Lev);
+	defrag_obstacle_array(lvl);
 
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		if (Lev->obstacle_list[i].type == (-1))
+		if (lvl->obstacle_list[i].type == (-1))
 			continue;
 
-		autostr_append(shipstr, "%s%d %s%3.2f %s%3.2f\n", OBSTACLE_TYPE_STRING, Lev->obstacle_list[i].type,
-				OBSTACLE_X_POSITION_STRING, Lev->obstacle_list[i].pos.x, OBSTACLE_Y_POSITION_STRING,
-				Lev->obstacle_list[i].pos.y);
+		if (!pos_inside_level(lvl->obstacle_list[i].pos.x, lvl->obstacle_list[i].pos.y, lvl)) {
+			if (game_root_mode == ROOT_IS_LVLEDIT) {
+				if (game_status == INSIDE_LVLEDITOR) {
+					// 1- Called when saving from inside the level editor: Warn
+					error_message(__FUNCTION__,
+							"Invalid obstacle (%s) position on level %d: t%d x%3.2f y%3.2f\n",
+							NO_REPORT, ((char **)get_obstacle_spec(lvl->obstacle_list[i].type)->filenames.arr)[0], lvl->levelnum,
+							lvl->obstacle_list[i].type, lvl->obstacle_list[i].pos.x, lvl->obstacle_list[i].pos.y);
+					alert_once_window(ONCE_PER_GAME,
+							"-- WARNING --\n"
+							"An obstacle with invalid coords is saved to a map.\n"
+							"We accept to save it, for further inspection of the bug.\n"
+							"See the report in your terminal console.");
+				} else {
+					// 2- Called when saving before to playtest: silently save
+					// the invalid obstacle so that it is still there when
+					// returning to the lvleditor
+				}
+			} else {
+				// 3- Called when saving a running game: do not save the invalid
+				// obstacle, silently
+				continue;
+			}
+		}
+		autostr_append(shipstr, "%s%d %s%3.2f %s%3.2f\n", OBSTACLE_TYPE_STRING, lvl->obstacle_list[i].type,
+				OBSTACLE_X_POSITION_STRING, lvl->obstacle_list[i].pos.x, OBSTACLE_Y_POSITION_STRING,
+				lvl->obstacle_list[i].pos.y);
 	}
 
 	autostr_append(shipstr, "%s\n", OBSTACLE_DATA_END_STRING);
