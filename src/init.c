@@ -715,7 +715,6 @@ void PrepareStartOfNewCharacter(char *start_label)
 void prepare_level_editor()
 {
 	game_root_mode = ROOT_IS_LVLEDIT;
-	game_status = INSIDE_LVLEDITOR;
 	skip_initial_menus = 1;
 	char fp[PATH_MAX];
 	find_file("levels.dat", MAP_DIR, fp, PLEASE_INFORM | IS_FATAL);
