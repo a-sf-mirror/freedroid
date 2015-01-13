@@ -490,13 +490,13 @@ void save_game_data(struct auto_string *strout)
 	write_tux_t(strout, &Me);
 	autostr_append(strout, "\n");
 
-	list_for_each_entry(erot, &dead_bots_head, global_list) {
+	list_for_each_entry_reverse(erot, &dead_bots_head, global_list) {
 		autostr_append(strout, "dead_enemy");
 		write_enemy(strout, erot);
 		autostr_append(strout, "\n");
 	}
 
-	list_for_each_entry(erot, &alive_bots_head, global_list) {
+	list_for_each_entry_reverse(erot, &alive_bots_head, global_list) {
 		autostr_append(strout, "alive_enemy");
 		write_enemy(strout, erot);
 		autostr_append(strout, "\n");
