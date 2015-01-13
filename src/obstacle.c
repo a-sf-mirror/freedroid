@@ -99,9 +99,20 @@ void unglue_obstacle(level *lvl, obstacle *o)
 }
 
 /**
- * \brief Add a new obstacle and glue it on the map.
+ * \brief Add a new obstacle and glue it on a map, even on invalid position
+ *
+ * \details Used when loading a map, this function adds the obstacle even if
+ * the position is invalid. The loading function is responsible for checking
+ * the validity of the obstacle.
+ *
+ * \param lvl    Pointer to the level where to load the obstacle
+ * \param x      X position
+ * \param y      Y position
+ * \param type   Obstacle's type
+ *
+ * \return Pointer to the added obstacle or NULL on error
  */
-obstacle *add_obstacle(level *lvl, float x, float y, int type)
+struct obstacle *add_obstacle_nocheck(struct level *lvl, float x, float y, int type)
 {
 	int i;
 
@@ -120,10 +131,44 @@ obstacle *add_obstacle(level *lvl, float x, float y, int type)
 		return &lvl->obstacle_list[i];
 	}
 
-	error_message(__FUNCTION__, "\
-	    Ran out of obstacle positions (%d) in level %d !", PLEASE_INFORM | IS_FATAL, MAX_OBSTACLES_ON_MAP, lvl->levelnum);
+	error_message(__FUNCTION__,
+			"Ran out of obstacle positions (%d) in level %d !",
+			PLEASE_INFORM | IS_FATAL, MAX_OBSTACLES_ON_MAP, lvl->levelnum);
 
 	return NULL;
+}
+
+/**
+ * \brief Add a new obstacle and glue it on a map.
+ *
+ * \details This function checks the position of the obstacle to be added.
+ * If the position is invalid, a warning message is displayed, and the obstacle
+ * is not added.
+ *
+ * \param lvl    Pointer to the level where to add the obstacle
+ * \param x      X position
+ * \param y      Y position
+ * \param type   Obstacle's type
+ *
+ * \return Pointer to the added obstacle or NULL on invalid position or error
+ */
+struct obstacle *add_obstacle(struct level *lvl, float x, float y, int type)
+{
+	// Pre-condition - check if the obstacle's position is valid
+	if (!pos_inside_level(x, y, lvl)) {
+		error_message(__FUNCTION__,
+			"Invalid obstacle (%s) position on level %d: t%d x%3.2f y%3.2f",
+			PLEASE_INFORM, ((char **)get_obstacle_spec(type)->filenames.arr)[0], lvl->levelnum, type, x, y);
+		if (game_root_mode == ROOT_IS_LVLEDIT && game_status == INSIDE_LVLEDITOR) {
+			alert_once_window(ONCE_PER_GAME,
+				_("-- WARNING --\n"
+				  "An obstacle with invalid coords was tried to be added to a map.\n"
+				  "See the report in your terminal console."));
+		}
+		return NULL;
+	}
+
+	return add_obstacle_nocheck(lvl, x, y, type);
 }
 
 /**
@@ -147,8 +192,19 @@ void move_obstacle(obstacle *o, float newx, float newy)
 {
 	level *lvl = curShip.AllLevels[o->pos.z];
 
-	if (!pos_inside_level(newx, newy, lvl))
+	// Do not move an obstacle to an invalid position
+	if (!pos_inside_level(newx, newy, lvl)) {
+		error_message(__FUNCTION__,
+				"Invalid obstacle new position (%f, %f) on level %d - Old position: (%f, %f)",
+				NO_REPORT, newx, newy, o->pos.z, o->pos.x, o->pos.y);
+		if (game_root_mode == ROOT_IS_LVLEDIT && game_status == INSIDE_LVLEDITOR) {
+			alert_once_window(ONCE_PER_GAME,
+					_("An obstacle was tried to be moved to an invalid position.\n"
+					  "Not moving it.\n"
+					  "See the report in your terminal console."));
+		}
 		return;
+	}
 
 	unglue_obstacle(lvl, o);
 

@@ -829,7 +829,8 @@ int image_loaded(struct image *);
 struct image_transformation set_image_transformation(float scale_x, float scale_y, float r, float g, float b, float a, int highlight);
 
 // obstacle.c
-obstacle *add_obstacle(level *lvl, float x, float y, int type);
+struct obstacle *add_obstacle(struct level *, float , float, int);
+struct obstacle *add_obstacle_nocheck(struct level *, float , float, int);
 void del_obstacle(obstacle *o);
 obstacle_spec *get_obstacle_spec(int index);
 void glue_obstacle(level *lvl, obstacle *o);

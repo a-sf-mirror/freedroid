@@ -500,7 +500,10 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 			curfield++;
 		curfield++;
 
-		add_obstacle(loadlevel, x, y, type);
+		// Even invalid obstacles are loaded. They can not be removed at this
+		// point, or else obstacle extensions will point to the wrong obstacles.
+		// decode_level(), our callee, will take care of them.
+		add_obstacle_nocheck(loadlevel, x, y, type);
 	}
 
 	return curfield;
@@ -1143,6 +1146,45 @@ static level *decode_level(char **buffer)
 	data = decode_obstacle_extensions(loadlevel, data);
 	data = decode_waypoints(loadlevel, data);
 
+	// Due to currently unknown bugs, some obstacles can be located on invalid
+	// positions. If we are starting the lvleditor, we will warn the user but
+	// keep those obstacles to help investigating the bugs. Otherwise, those
+	// obstacles and their associated extension are silently removed.
+	int i;
+	int need_defrag = FALSE;
+	struct auto_string *error_msg = alloc_autostr(256);
+
+	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
+		struct obstacle *obs = &loadlevel->obstacle_list[i];
+		if (obs->type == -1)
+			continue;
+		if (!pos_inside_level(obs->pos.x, obs->pos.y, loadlevel)) {
+			if (game_root_mode == ROOT_IS_LVLEDIT && game_status == INSIDE_LVLEDITOR) {
+				autostr_append(error_msg, "Invalid obstacle (%s) position on level %d: t%d x%3.2f y%3.2f\n",
+						((char **)get_obstacle_spec(obs->type)->filenames.arr)[0],
+						loadlevel->levelnum, obs->type, obs->pos.x, obs->pos.y);
+				alert_once_window(ONCE_PER_GAME,
+						_("-- WARNING --\n"
+						  "An obstacle with invalid coords was loaded onto a map.\n"
+						  "We keep it to help finding the bug.\n"
+						  "See the report in your terminal console."));
+			} else if (game_root_mode != ROOT_IS_LVLEDIT) {
+				unglue_obstacle(loadlevel, obs);
+				obs->type = -1;
+				del_obstacle_extensions(loadlevel, obs);
+				need_defrag = TRUE;
+			}
+		}
+	}
+	if (error_msg->length != 0) {
+		// Remove the last carriage return
+		error_msg->value[error_msg->length - 1] = '\0';
+		error_message(__FUNCTION__,	"%s", NO_REPORT, error_msg->value);
+	}
+	free_autostr(error_msg);
+	if (need_defrag)
+		defrag_obstacle_array(loadlevel);
+
 	// Point the buffer to the end of this level, so the next level can be read
 	*buffer = data;
 	return loadlevel;
@@ -1324,23 +1366,55 @@ int LoadShip(char *filename, int compressed)
  * This should write the obstacle information in human-readable form into
  * a buffer.
  */
-static void encode_obstacles_of_this_level(struct auto_string *shipstr, level *Lev)
+static void encode_obstacles_of_this_level(struct auto_string *shipstr, struct level *lvl)
 {
 	int i;
+	struct auto_string *error_msg = alloc_autostr(256);
+
+	defrag_obstacle_array(lvl);
+
 	autostr_append(shipstr, "%s\n", OBSTACLE_DATA_BEGIN_STRING);
 
-	defrag_obstacle_array(Lev);
-
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		if (Lev->obstacle_list[i].type == (-1))
+		if (lvl->obstacle_list[i].type == (-1))
 			continue;
 
-		autostr_append(shipstr, "%s%d %s%3.2f %s%3.2f\n", OBSTACLE_TYPE_STRING, Lev->obstacle_list[i].type,
-				OBSTACLE_X_POSITION_STRING, Lev->obstacle_list[i].pos.x, OBSTACLE_Y_POSITION_STRING,
-				Lev->obstacle_list[i].pos.y);
+		// Invalid obstacles are saved, but with a warning message unless we
+		// are playtesting, to enable further inspection of the bug.
+		// Anyhow, invalid obstacles are not loaded.
+		if (!pos_inside_level(lvl->obstacle_list[i].pos.x, lvl->obstacle_list[i].pos.y, lvl)) {
+			if (game_root_mode != ROOT_IS_LVLEDIT) {
+				error_once_message(ONCE_PER_GAME, __FUNCTION__,
+					"Some obstacles with an invalid position were found"
+					" while saving them. See the individual reports below.", PLEASE_INFORM);
+			}
+			if (game_root_mode != ROOT_IS_LVLEDIT || game_status == INSIDE_LVLEDITOR) {
+				autostr_append(error_msg, "Invalid obstacle (%s) position on level %d: t%d x%3.2f y%3.2f\n",
+						((char **)get_obstacle_spec(lvl->obstacle_list[i].type)->filenames.arr)[0],
+						lvl->levelnum, lvl->obstacle_list[i].type, lvl->obstacle_list[i].pos.x, lvl->obstacle_list[i].pos.y);
+			}
+			// If we are inside the lvleditor, also display an alert
+			if (game_root_mode == ROOT_IS_LVLEDIT && game_status == INSIDE_LVLEDITOR) {
+				alert_once_window(ONCE_PER_GAME,
+						_("-- WARNING --\n"
+						  "An obstacle with invalid coords is saved to a map.\n"
+						  "We accept to save it, for further inspection of the bug.\n"
+						  "See the report in your terminal console."));
+			}
+		}
+		autostr_append(shipstr, "%s%d %s%3.2f %s%3.2f\n", OBSTACLE_TYPE_STRING, lvl->obstacle_list[i].type,
+				OBSTACLE_X_POSITION_STRING, lvl->obstacle_list[i].pos.x, OBSTACLE_Y_POSITION_STRING,
+				lvl->obstacle_list[i].pos.y);
 	}
 
 	autostr_append(shipstr, "%s\n", OBSTACLE_DATA_END_STRING);
+
+	if (error_msg->length != 0) {
+		// Remove the last carriage return
+		error_msg->value[error_msg->length - 1] = '\0';
+		error_message(__FUNCTION__,	"%s", NO_REPORT, error_msg->value);
+	}
+	free_autostr(error_msg);
 }
 
 static void encode_map_labels(struct auto_string *shipstr, level *lvl)
