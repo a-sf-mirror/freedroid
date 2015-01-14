@@ -214,8 +214,7 @@ void error_message(const char *fn, const char *fmt, int error_type, ...)
 		                "not resolve. We are sorry if that interrupts a major game of yours.\n"
 		                "---------------------------------------------------------------------------------\n");
 	} else {
-		fprintf(stderr, "\nThe problem mentioned above is not fatal, we continue the execution.\n"
-		                "---------------------------------------------------------------------------------\n");
+		fprintf(stderr, "---------------------------------------------------------------------------------\n");
 	}
 
 	if (error_type & IS_FATAL)
