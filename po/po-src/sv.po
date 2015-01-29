@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Alexander Forsberg <alexf@openmailbox.org>, 2014
+# Alexander Forsberg <alexf@openmailbox.org>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-11-25 23:15+0000\n"
-"PO-Revision-Date: 2014-11-26 21:47+0000\n"
+"POT-Creation-Date: 2015-01-29 17:10+0000\n"
+"PO-Revision-Date: 2015-01-29 16:31+0000\n"
 "Last-Translator: Alexander Forsberg <alexf@openmailbox.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/freedroid-rpg/language/sv/)\n"
 "Language: sv\n"
@@ -75,7 +75,7 @@ msgstr "Strid"
 
 #: src/character.c:389
 msgid "Ranged"
-msgstr "Skjutvapen"
+msgstr "Skytte"
 
 #: src/character.c:403
 msgid "Programming"
@@ -141,7 +141,7 @@ msgstr "Skada"
 msgid "Armor"
 msgstr "Sköld"
 
-#: src/chat.c:667 src/chat.c:676
+#: src/chat.c:667 src/chat.c:677
 msgid "[n]--- Start of Dialog ---\n"
 msgstr "[n]--- Samtalets början ---\n"
 
@@ -210,87 +210,87 @@ msgid "%d price\n"
 msgstr "%d pris\n"
 
 #. TRANSLATORS: On item description: range
-#: src/hud.c:130
+#: src/hud.c:135
 #, c-format
 msgid "Damage: %d to %d\n"
 msgstr "Skada: %d av %d\n"
 
 #. TRANSLATORS: On item description
-#: src/hud.c:133
+#: src/hud.c:138
 #, c-format
 msgid "Damage: %d\n"
 msgstr "Skada: %d\n"
 
 #. TRANSLATORS: On item description
-#: src/hud.c:139
+#: src/hud.c:144
 #, c-format
 msgid "Multiplicity: %d\n"
 msgstr "Antal: %d\n"
 
 #. TRANSLATORS: On item description: Armor bonus
-#: src/hud.c:144
+#: src/hud.c:149
 #, c-format
 msgid "Armor: %d\n"
 msgstr "Skydd: %d\n"
 
 #. TRANSLATORS: On item description: 'current' of 'maximum'
-#: src/hud.c:149
+#: src/hud.c:154
 #, c-format
 msgid "Durability: %d of %d\n"
 msgstr "Hållbarhet: %d av %d\n"
 
 #. TRANSLATORS: On item description : durability
-#: src/hud.c:152 src/shop.c:317
+#: src/hud.c:157 src/shop.c:317
 msgid "Indestructible\n"
 msgstr "Oförstörbar\n"
 
 #. TRANSLATORS: On item description: 'current' of 'maximum' amount of ammo
-#: src/hud.c:157
+#: src/hud.c:162
 #, c-format
 msgid "Ammo: %d of %d\n"
-msgstr "Laddning: %d av %d\n"
+msgstr "Ammo: %d av %d\n"
 
 #. TRANSLATORS: On item description
-#: src/hud.c:163
+#: src/hud.c:168
 #, c-format
 msgid "Required strength: %d\n"
 msgstr "Styrka som krävs: %d\n"
 
 #. TRANSLATORS: On item description
-#: src/hud.c:167
+#: src/hud.c:172
 #, c-format
 msgid "Required dexterity: %d\n"
 msgstr "Smidighet som krävs: %d\n"
 
-#: src/hud.c:179
+#: src/hud.c:184
 msgid "Right click to use\n"
 msgstr "Högerklicka för att använda\n"
 
-#: src/hud.c:182
+#: src/hud.c:187
 #, c-format
 msgid "Item use: %s\n"
 msgstr "Användningar: %s\n"
 
 #. TRANSLATORS: On item description: 'used sockets' / 'number of sockets'
-#: src/hud.c:189
+#: src/hud.c:194
 #, c-format
 msgid "Sockets: used %d/%d\n"
 msgstr "Socklar: %d av %d använda\n"
 
-#: src/hud.c:297
+#: src/hud.c:302
 msgid "REQUIREMENTS NOT MET"
 msgstr "KRAVEN UPPFYLLS INTE"
 
-#: src/hud.c:403
+#: src/hud.c:408
 msgid "No label for this obstacle"
 msgstr "Hindret saknar beskrivning."
 
-#: src/hud.c:610
+#: src/hud.c:615
 #, c-format
 msgid "FPS: %d\n"
 msgstr "FPS: %d\n"
 
-#: src/hud.c:626
+#: src/hud.c:631
 #, c-format
 msgid "Bots remaining on level: %d\n"
 msgstr ""
@@ -298,7 +298,7 @@ msgstr ""
 "\n"
 
 #. TRANSLATORS: In-game date: Day <day number> <hour>:<minute>
-#: src/hud.c:655 src/hud.c:662
+#: src/hud.c:660 src/hud.c:667
 #, c-format
 msgid "Day %d  %02d:%02d"
 msgstr "Dag %d %02d:%02d"
@@ -309,25 +309,25 @@ msgstr "Dag %d %02d:%02d"
 msgid "%s empty, reloading..."
 msgstr "%s tom, laddar om..."
 
-#: src/influ.c:971 src/menu.c:999
+#: src/influ.c:983 src/menu.c:999
 msgid "Load Latest"
 msgstr "Ladda Senaste"
 
-#: src/influ.c:972 src/menu.c:1000
+#: src/influ.c:984 src/menu.c:1000
 msgid "Load Backup"
 msgstr "Ladda Säkerhetskopia"
 
-#: src/influ.c:973 src/menu.c:1002 src/lvledit/lvledit_menu.c:1016
+#: src/influ.c:985 src/menu.c:1002 src/lvledit/lvledit_menu.c:1018
 msgid "Quit to Main Menu"
 msgstr "Avsluta till Huvudmenyn"
 
-#: src/influ.c:974 src/menu.c:851 src/menu.c:1005
-#: src/lvledit/lvledit_menu.c:1017
+#: src/influ.c:986 src/menu.c:851 src/menu.c:1005
+#: src/lvledit/lvledit_menu.c:1019
 msgid "Exit FreedroidRPG"
 msgstr "Avsluta FreedroidRPG"
 
 #. TRANSLATORS: Out of <ammo type>
-#: src/influ.c:1399
+#: src/influ.c:1436
 #, c-format
 msgid "Out of [s]%s[v]!"
 msgstr "Slut på [s]%s[v]!"
@@ -344,7 +344,7 @@ msgstr "Handledning inleds."
 msgid "Starting new game."
 msgstr "Nytt spel."
 
-#: src/init.c:1020
+#: src/init.c:1012
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -360,11 +360,11 @@ msgstr ""
 "\n"
 "Lycka till!\n"
 
-#: src/init.c:1037 src/init.c:1038
+#: src/init.c:1029 src/init.c:1030
 msgid "Game over.\n"
 msgstr "Game over.\n"
 
-#: src/init.c:1104 src/init.c:1105
+#: src/init.c:1096 src/init.c:1097
 msgid "Game won.\n"
 msgstr "Du har vunnit spelet.\n"
 
@@ -1038,11 +1038,11 @@ msgstr "fusk_reparera_minska"
 
 #: src/keyboard.c:159
 msgid "rtprof_switch_activation"
-msgstr "rtprof_alterner_activation"
+msgstr "rtprof_ändra_aktivering"
 
 #: src/keyboard.c:160
 msgid "rtprof_clear_probes"
-msgstr "rtprof_vider_sondes"
+msgstr "rtprof_töm_undersökningar"
 
 #: src/keyboard.c:303
 msgid "Key chart"
@@ -1092,12 +1092,12 @@ msgstr "1 föremål togs emot!"
 msgid "+%d experience points"
 msgstr "+%d i erfarenhet"
 
-#: src/lua.c:501 src/lua/luaFD_tux.c:338
+#: src/lua.c:501 src/lua/luaFD_tux.c:339
 #, c-format
 msgid "Gained %d valuable circuits!"
 msgstr "Tog emot %d värdefulla kretsar!"
 
-#: src/lua.c:503 src/lua/luaFD_tux.c:340
+#: src/lua.c:503 src/lua/luaFD_tux.c:341
 #, c-format
 msgid "Lost %d valuable circuits!"
 msgstr "Förlorade %d värdefulla kretsar!"
@@ -1463,15 +1463,15 @@ msgstr "Ladda befintlig Hjälte"
 msgid "Delete existing Hero"
 msgstr "Ta bort Hjälte"
 
-#: src/misc.c:821
+#: src/misc.c:822
 msgid "GAME PAUSED"
 msgstr "SPELET PAUSAT"
 
-#: src/misc.c:822
+#: src/misc.c:823
 msgid "press p to resume"
 msgstr "tryck p för att återuppta"
 
-#: src/misc.c:1115
+#: src/misc.c:1116
 #, c-format
 msgid "Arrived at %s."
 msgstr "Kom till %s."
@@ -1509,113 +1509,113 @@ msgstr "Detaljer:"
 msgid "Day"
 msgstr "Dag"
 
-#: src/quest_browser_ui.c:181
+#: src/quest_browser_ui.c:183
 msgid "[r]Parafunken Statistics[w]\n"
 msgstr "[r]Statistik[w]\n"
 
-#: src/quest_browser_ui.c:184
+#: src/quest_browser_ui.c:186
 msgid "[r]Overview[w]\n"
 msgstr "[r]Översikt[w]\n"
 
 #. TRANSLATORS: h in %dh is for hours, m in %dm is for minutes, please also translate this :)
-#: src/quest_browser_ui.c:188
+#: src/quest_browser_ui.c:190
 #, c-format
 msgid "Time Played: [n]%dh%dm[w]\n"
 msgstr "Spelad tid: [n]%dt%dm[w]\n"
 
 #. TRANSLATORS: m in %.1fm is for meters, please also translate this :)
-#: src/quest_browser_ui.c:192
+#: src/quest_browser_ui.c:194
 #, c-format
 msgid "Distance Traveled: [n]%.1fm[w]\n"
 msgstr "Avstånd rest: [n]%.1fm[w]\n"
 
-#: src/quest_browser_ui.c:194
+#: src/quest_browser_ui.c:196
 #, c-format
 msgid "Percentage explored: [n]%.1f%%[w]\n"
 msgstr "Procent utforskat: [n]%.1f%%[w]\n"
 
-#: src/quest_browser_ui.c:195
+#: src/quest_browser_ui.c:197
 #, c-format
 msgid "Destroyed Enemies: [n]%i[w]\n"
 msgstr "Fiender förstörda: [n]%i[w]\n"
 
-#: src/quest_browser_ui.c:196
+#: src/quest_browser_ui.c:198
 #, c-format
 msgid "Captured Enemies: [n]%i[w]\n"
 msgstr "Fiender övertagna: [n]%i[w]\n"
 
-#: src/quest_browser_ui.c:197
+#: src/quest_browser_ui.c:199
 #, c-format
 msgid "Damage Dealt: [n]%i[w]\n"
 msgstr "Skada tagen: [n]%i[w]\n"
 
-#: src/quest_browser_ui.c:205
+#: src/quest_browser_ui.c:207
 msgid "[r]Preferences[w]\n"
 msgstr "[r]Vanligast[w]\n"
 
-#: src/quest_browser_ui.c:210
+#: src/quest_browser_ui.c:212
 #, c-format
 msgid "Attacking: [n]%s[w] ([n]%i[w] killed, [n]%i[w] DP)\n"
 msgstr "Attack: [n]%s[w] ([n]%i[w] dödade, [n]%i[w] SP)\n"
 
-#: src/quest_browser_ui.c:215
+#: src/quest_browser_ui.c:217
 #, c-format
 msgid "Attacking: [n]%s[w] ([n]%i[w] destroyed, [n]%i[w] DP)\n"
 msgstr "Attack: [n]%s[w] ([n]%i[w] förstörda, [n]%i[w] DP)\n"
 
-#: src/quest_browser_ui.c:220
+#: src/quest_browser_ui.c:222
 msgid "Attacking: no droids destroyed\n"
 msgstr ""
 "Attack: inga droider förstörda\n"
 "\n"
 
-#: src/quest_browser_ui.c:223
+#: src/quest_browser_ui.c:225
 #, c-format
 msgid "Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"
 msgstr "Övertagning: [n]%s[w] ([n]%i%%[w] lyckade, [n]%i[w] försök)\n"
 
-#: src/quest_browser_ui.c:227
+#: src/quest_browser_ui.c:229
 msgid "Takeover: none successful\n"
 msgstr "Övetagning: inga lyckade\n"
 
-#: src/quest_browser_ui.c:231
+#: src/quest_browser_ui.c:233
 #, c-format
 msgid "Failed Takeover: [n]%s[w] ([n]%i%%[w] rate, [n]%i[w] attempts)\n"
 msgstr "Misslyckade övertagningar: [n]%s[w] ([n]%i%%[w] lyckade, [n]%i[w] försök)\n"
 
-#: src/quest_browser_ui.c:235
+#: src/quest_browser_ui.c:237
 msgid "Failed Takeover: no failures\n"
 msgstr "Misslyckade övertagningar: inga misslyckade\n"
 
-#: src/quest_browser_ui.c:255
+#: src/quest_browser_ui.c:257
 #, c-format
 msgid "Killed: [n]%d[w]\n"
 msgstr "Dödade: [n]%d[w]\n"
 
-#: src/quest_browser_ui.c:257
+#: src/quest_browser_ui.c:259
 #, c-format
 msgid "Destroyed: [n]%d[w]\n"
 msgstr "Förstörda: [n]%d[w]\n"
 
-#: src/quest_browser_ui.c:258
+#: src/quest_browser_ui.c:260
 #, c-format
 msgid "Takeovers: [n]%d[w]/[n]%d[w]/[n]"
 msgstr "Övertagningar: [n]%d[w]/[n]%d[w]/[n]"
 
-#: src/quest_browser_ui.c:264
+#: src/quest_browser_ui.c:266
 msgid " (success/fail/ratio)\n"
 msgstr "(lyckade/misslyckade/förhållande)\n"
 
-#: src/quest_browser_ui.c:266
+#: src/quest_browser_ui.c:268
 #, c-format
 msgid "Damage: [n]%d[w] (dealt)\n"
 msgstr "Skada: [n]%d[w] (utdelad)\n"
 
-#: src/quest_browser_ui.c:425
+#: src/quest_browser_ui.c:427
 msgid "[n]No open quests yet.[w]"
 msgstr "[n]Inga aktiva uppdrag än.[w]"
 
-#: src/quest_browser_ui.c:428
+#: src/quest_browser_ui.c:430
 msgid "[n]No completed quests yet.[w]"
 msgstr "[n]Inga avklarade uppdrag än.[w]"
 
@@ -1954,7 +1954,7 @@ msgstr "osynlig"
 msgid "scanning"
 msgstr "skannar"
 
-#: src/text_public.c:266
+#: src/text_public.c:285
 msgid "Click to continue..."
 msgstr "Klicka för att fortsätta..."
 
@@ -2259,7 +2259,7 @@ msgstr "Grannområde Väster: %d.  (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:271 src/lvledit/lvledit_menu.c:286
 #: src/lvledit/lvledit_menu.c:301 src/lvledit/lvledit_menu.c:316
-#: src/lvledit/lvledit_menu.c:665 src/lvledit/lvledit_menu.c:1044
+#: src/lvledit/lvledit_menu.c:665 src/lvledit/lvledit_menu.c:1046
 msgid ""
 "\n"
 " Please enter new level number: \n"
@@ -2332,17 +2332,17 @@ msgstr "V: %d"
 #: src/lvledit/lvledit_menu.c:569
 #, c-format
 msgid "Random dungeon: 2 connections"
-msgstr "Slumpad fängelsehåla: 2 förbindelser"
+msgstr "Slumpad labyrint: 2 förbindelser"
 
 #: src/lvledit/lvledit_menu.c:571
 #, c-format
 msgid "Random dungeon: 1 connection"
-msgstr "Slumpad fängelsehåla: 1 förbindelse"
+msgstr "Slumpad labyrint: 1 förbindelse"
 
 #: src/lvledit/lvledit_menu.c:573
 #, c-format
 msgid "Random dungeon: no"
-msgstr "Slumpad fängelsehåla: nej"
+msgstr "Slumpad labyrint: nej"
 
 #: src/lvledit/lvledit_menu.c:579
 #, c-format
@@ -2432,46 +2432,46 @@ msgstr ""
 
 #: src/lvledit/lvledit_menu.c:926
 msgid "Run Map Level Validator"
-msgstr "Gör Validering av Kartan"
+msgstr "Kör Kartkontroll"
 
-#: src/lvledit/lvledit_menu.c:1000
+#: src/lvledit/lvledit_menu.c:1002
 #, c-format
 msgid "Level name (untranslated): %d - %s"
 msgstr "Områdets namn (ej översatt): %d - %s"
 
-#: src/lvledit/lvledit_menu.c:1003
+#: src/lvledit/lvledit_menu.c:1005
 msgid "Level Options"
 msgstr "Områdesegenskaper"
 
-#: src/lvledit/lvledit_menu.c:1004
+#: src/lvledit/lvledit_menu.c:1006
 msgid "Advanced Options"
 msgstr "Avancerade Inställningar"
 
-#: src/lvledit/lvledit_menu.c:1006
+#: src/lvledit/lvledit_menu.c:1008
 msgid "Playtest Mapfile"
 msgstr "Testspela Kartan"
 
-#: src/lvledit/lvledit_menu.c:1007
+#: src/lvledit/lvledit_menu.c:1009
 msgid "Save Mapfile"
 msgstr "Spara Kartan"
 
-#: src/lvledit/lvledit_menu.c:1010
+#: src/lvledit/lvledit_menu.c:1012
 msgid "Return to Game"
 msgstr "Återgå till Spelet"
 
-#: src/lvledit/lvledit_menu.c:1011
+#: src/lvledit/lvledit_menu.c:1013
 msgid "Saving disabled"
 msgstr "Sparning inaktiverat"
 
-#: src/lvledit/lvledit_menu.c:1014
+#: src/lvledit/lvledit_menu.c:1016
 msgid "Continue Editing"
 msgstr "Fortsätt Redigera"
 
-#: src/lvledit/lvledit_menu.c:1015
+#: src/lvledit/lvledit_menu.c:1017
 msgid "Show Help"
 msgstr "Visa Hjälp"
 
-#: src/lvledit/lvledit_tool_place.c:686
+#: src/lvledit/lvledit_tool_place.c:689
 msgid "Place tool does not support this type of object."
 msgstr "Placeringsverktyget stödjer inte detta objekt."
 
@@ -2504,7 +2504,7 @@ msgid ""
 msgstr ""
 "%s (%s)\n"
 "\t\t\tSkada: %d-%d, Attacktid: %.2fs, Omladdningstid: %.2fs\n"
-"\t\t\tAmmunition: (%d/%s), STRK: >%d\n"
+"\t\t\tAmmo: (%d/%s), STRK: >%d\n"
 "%s"
 
 #: src/lvledit/lvledit_widget_toolbar.c:156

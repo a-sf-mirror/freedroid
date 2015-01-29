@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2014-11-25 23:15+0000\n"
+"POT-Creation-Date: 2015-01-29 17:17+0000\n"
 "PO-Revision-Date: 2014-08-13 18:32+0000\n"
 "Last-Translator: Jonatas L. Nogueira <cpntb1@ymail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/freedroid-rpg/language/pt_BR/)\n"
@@ -33,7 +33,7 @@ msgstr "139 Templário"
 
 #: map/droid_archetypes.dat:116
 msgid "Created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop is used to collect rubbish. It is then crushed internally."
-msgstr ""
+msgstr "Criado pelo Dr. Masternak para limpar grandes montões de lixo. Sua larga pá é usada para coletar o lixo, que então é esmagado internamente."
 
 #: map/droid_archetypes.dat:120 map/ReturnOfTux.droids:273
 msgid "247 Banshee"
@@ -58,7 +58,7 @@ msgstr "296 Serraria"
 
 #: map/droid_archetypes.dat:198
 msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carring drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
-msgstr ""
+msgstr "Originalmente designado pelas empresas Pomar e Labirinto de Marte, esse robô é usado em bares. Uma plataforma é montada na cabeça para carregar bebidas e uma grande roda evita derrames. AVISO: Você vai perder algo se tentar roubar uma bebida!"
 
 #: map/droid_archetypes.dat:202 map/ReturnOfTux.droids:103
 #: map/ReturnOfTux.droids:104 map/ReturnOfTux.droids:111
@@ -71,7 +71,7 @@ msgid "Common device for moving small packages. Clamp is mounted on the lower bo
 msgstr "Dispositivo comum para mover pacotes pequenos. Um gancho  é montado no corpo inferior."
 
 #: map/droid_archetypes.dat:229 map/ReturnOfTux.droids:110
-#: map/ReturnOfTux.droids:277 map/ReturnOfTux.droids:583
+#: map/ReturnOfTux.droids:277 map/ReturnOfTux.droids:584
 msgid "329 Sparkie"
 msgstr "329 Faísca"
 
@@ -93,7 +93,7 @@ msgstr "476 Covarde"
 
 #: map/droid_archetypes.dat:306
 msgid "Ship maintenance robot. Fitted with multiple arms to carry out repairs to the ship efficiently. All craft built after the Jupiter-incident are supplied with a team of these."
-msgstr ""
+msgstr "Robô de manutenção de naves. Possui múltiplos braços para realizar os reparos eficientemente. Todas as naves construidas após o incidente de Jupiter possuem um time desses."
 
 #: map/droid_archetypes.dat:310 map/ReturnOfTux.droids:280
 msgid "493 Spinster"
@@ -101,7 +101,7 @@ msgstr "493 Solteiro"
 
 #: map/droid_archetypes.dat:333
 msgid "Slave maintenance droid. Standard version will carry its own toolbox."
-msgstr ""
+msgstr "Robô de manutenção escravo. A versão padrão carrega sua própria caixa de ferramentas."
 
 #: map/droid_archetypes.dat:337 map/ReturnOfTux.droids:281
 msgid "516 Ghoul"
@@ -109,7 +109,7 @@ msgstr "516 Vampiro"
 
 #: map/droid_archetypes.dat:360
 msgid "Early crew droid. Able to carry out simple flight checks only. No longer supplied."
-msgstr ""
+msgstr "Protótipo de robô de tripulação. Capaz de carregar apenas simples controles de voo. Não é mais fornecido."
 
 #: map/droid_archetypes.dat:364 map/ReturnOfTux.droids:282
 msgid "543 Forest Harvester"
@@ -125,7 +125,7 @@ msgstr "571 Apolo"
 
 #: map/droid_archetypes.dat:414
 msgid "A standard crew droid. Supplied with the ship."
-msgstr ""
+msgstr "Um robô de tripulação normal. Fornecido com o navio."
 
 #: map/droid_archetypes.dat:418 map/ReturnOfTux.droids:284
 msgid "598 Minister"
@@ -133,11 +133,11 @@ msgstr "598 Ministro"
 
 #: map/droid_archetypes.dat:441
 msgid "A highly sophisticated device. Able to control the Robo-Freighter on its own."
-msgstr ""
+msgstr "Um dispositivo altamente sofisticado. Capaz de controlar o cargueiro de robôs sozinho."
 
-#: map/droid_archetypes.dat:445 map/ReturnOfTux.droids:513
-#: map/ReturnOfTux.droids:514 map/ReturnOfTux.droids:515
-#: map/ReturnOfTux.droids:516 map/ReturnOfTux.droids:517
+#: map/droid_archetypes.dat:445 map/ReturnOfTux.droids:514
+#: map/ReturnOfTux.droids:515 map/ReturnOfTux.droids:516
+#: map/ReturnOfTux.droids:517 map/ReturnOfTux.droids:518
 msgid "603 Lawnmower"
 msgstr "603 Cortador de Grama"
 
@@ -151,7 +151,7 @@ msgstr "614 Robô de Segurança"
 
 #: map/droid_archetypes.dat:495
 msgid "A low security sentinel droid. Used to protect areas of the ship from intruders. A slow but sure device."
-msgstr ""
+msgstr "Um robô sentinela de segurança baixo. Usado para proteger áreas da nave de intrusos. Um dispositivo lento mas confiavel."
 
 #: map/droid_archetypes.dat:499 map/ReturnOfTux.droids:286
 msgid "615 Firedevil"
@@ -159,7 +159,7 @@ msgstr "615 Diabo de Chamas"
 
 #: map/droid_archetypes.dat:522
 msgid "Sophisticated sentinel droid. Only 2000 built by the Nicholson Company. These are now very rare."
-msgstr ""
+msgstr "Robô sentinela sofisticado. Apenas 2000 construídos pela Companhia Nicholson. Esses agora são muito raros."
 
 #: map/droid_archetypes.dat:526 map/ReturnOfTux.droids:287
 msgid "629 Spitfire"
@@ -167,7 +167,7 @@ msgstr "629 Cospe-Fogo"
 
 #: map/droid_archetypes.dat:549
 msgid "A low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Grillen version."
-msgstr ""
+msgstr "Um robô sentinela pequeno. Lasers são construídos na torre. São montados em um pequeno tanque. Pode possuir um canhão automático na verão Grillen."
 
 #: map/droid_archetypes.dat:553 map/ReturnOfTux.droids:150
 #: map/ReturnOfTux.droids:288
@@ -185,7 +185,7 @@ msgstr "742 Zeus"
 
 #: map/droid_archetypes.dat:604
 msgid "This version is the one mainly used by the military."
-msgstr ""
+msgstr "Essa versão é a mais usada no serviço militar."
 
 #: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:225
 #: map/ReturnOfTux.droids:290
@@ -228,7 +228,7 @@ msgstr "999 Cérebro"
 
 #: map/droid_archetypes.dat:740
 msgid "Experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience."
-msgstr ""
+msgstr "Ciborgue de comando experimental. Possui um novo tipo de cérebro. Montado em uma unidade antigravitacional de robô de segurança por conveniência."
 
 #: map/droid_archetypes.dat:744 map/droid_archetypes.dat:766
 msgid "Older Man"
@@ -1733,8 +1733,8 @@ msgid "MS Stock Certificate"
 msgstr "Certificado de Crédito MS"
 
 #: map/item_specs.lua:2279
-msgid "This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer. Must be redeemed in a stock trading terminal."
-msgstr "Esse é um Certificado de Crédito que transfere a posse de quinhentos sessenta e sete milhões de ações da MegaSistemas de William Gapes para o portador. Necessita ser reclamado em um terminal de troca de crédito."
+msgid "This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer."
+msgstr ""
 
 #: map/item_specs.lua:2286
 msgid "Elbow Grease Can"
@@ -2045,436 +2045,436 @@ msgstr "Teletransportador. Vai a algum lugar?"
 msgid "Warehouse Level 1"
 msgstr "Primeiro Piso do Armazém"
 
-#: map/levels.dat:5019
+#: map/levels.dat:5016
 msgid "Warehouse Level 2"
 msgstr "Segundo Piso do Armazém"
 
-#: map/levels.dat:5675
+#: map/levels.dat:5672
 msgid "Kevins Underground Station"
 msgstr "Estação Subterrânea do Kevin"
 
-#: map/levels.dat:6147
+#: map/levels.dat:6144
 msgid "Machine Deck Control Room"
 msgstr "Sala de Controle do Convés de Máquinas"
 
-#: map/levels.dat:6890 map/levels.dat:9172
+#: map/levels.dat:6887 map/levels.dat:9169
 msgid "Disruptor Shield Control"
 msgstr "Controle do Escudo de Interferência"
 
-#: map/levels.dat:8409
+#: map/levels.dat:8406
 msgid "Maintenance Tunnels"
 msgstr "Túneis de Manutenção"
 
-#: map/levels.dat:9838
+#: map/levels.dat:9835
 msgid "Temple Wood"
 msgstr "Templo da Madeira"
 
-#: map/levels.dat:11368
+#: map/levels.dat:11365
 msgid "House for sale."
 msgstr "Casa à venda."
 
-#: map/levels.dat:11374
+#: map/levels.dat:11371
 msgid "This sign blocks the path so you cannot walk out of the Matrix. If you did, the Matrix would crash and Mr Smith would be very angry at you!"
-msgstr "Este aviso bloqueia o caminho para que você não possa sair da Matrix. Se você fizesse isso a Matriz quebraria, e o Sr. Smith ficaria muito bravo!"
+msgstr "Este aviso bloqueia o caminho para que você não possa sair da Matrix. Se você fizesse isso, a Matriz quebraria, e o Sr. Smith ficaria muito bravo!"
 
-#: map/levels.dat:11589
+#: map/levels.dat:11586
 msgid "Crystal Fields"
 msgstr "Campos de Cristal"
 
-#: map/levels.dat:12650 map/levels.dat:39091 map/levels.dat:39445
-#: map/levels.dat:39845
+#: map/levels.dat:12647 map/levels.dat:39087 map/levels.dat:39441
+#: map/levels.dat:39841
 msgid "Desert Valley"
 msgstr "Vale Deserto"
 
-#: map/levels.dat:13133
+#: map/levels.dat:13129
 msgid "Slasher Mountains"
 msgstr "Montanhas do Terror"
 
-#: map/levels.dat:14317
+#: map/levels.dat:14313
 msgid "Cryo Stasis Lab"
 msgstr "Laboratório Criogênico"
 
-#: map/levels.dat:16711
+#: map/levels.dat:16707
 msgid "Three Fermis Land"
 msgstr "Terra de Três Fermis"
 
-#: map/levels.dat:17321
+#: map/levels.dat:17317
 msgid "In case of panic: run!"
 msgstr "Em caso de pânico: corra!"
 
-#: map/levels.dat:17446
+#: map/levels.dat:17442
 msgid "Scientists quarters and Telemetry"
 msgstr "Dormitórios e Telemetria"
 
-#: map/levels.dat:18928
+#: map/levels.dat:18924
 msgid "Disruptor Base Access Tunnel"
 msgstr "Túnel de Acesso da Base do Interferidor"
 
-#: map/levels.dat:20020
+#: map/levels.dat:20016
 msgid "Terminal Shore"
 msgstr "Praia Terminal"
 
-#: map/levels.dat:20907
+#: map/levels.dat:20903
 msgid "Ethereal Meadows"
 msgstr "Prados Voláteis"
 
-#: map/levels.dat:22124
+#: map/levels.dat:22120
 msgid "Kevins Main Energy Source"
 msgstr "Fonte de Energia Central do Kevin"
 
-#: map/levels.dat:22377 map/levels.dat:22897
+#: map/levels.dat:22373 map/levels.dat:22893
 msgid "Northern Shoreline"
 msgstr "Costa Norte"
 
-#: map/levels.dat:23521 map/levels.dat:23646 map/levels.dat:23771
-#: map/levels.dat:40310
+#: map/levels.dat:23517 map/levels.dat:23642 map/levels.dat:23767
+#: map/levels.dat:40306
 msgid "World Edge Sea"
 msgstr "Oceano do Fim do Mundo"
 
-#: map/levels.dat:23896
+#: map/levels.dat:23892
 msgid "DEBUG LEVEL 24 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
 msgstr "NÍVEL DEBUG 24 -- Nível criado para testes, NÃO deve ser acessível sem trapacear."
 
-#: map/levels.dat:24275
+#: map/levels.dat:24271
 msgid "Guy signmessage A"
 msgstr "Moço poste de mensagem A"
 
-#: map/levels.dat:24475
+#: map/levels.dat:24471
 msgid "Broken Glass Path"
 msgstr "Caminho do Vidro Quebrado"
 
-#: map/levels.dat:25566
+#: map/levels.dat:25562
 msgid "Swamp"
 msgstr "Pântano"
 
-#: map/levels.dat:26945
+#: map/levels.dat:26941
 msgid "Mushroom Forest"
 msgstr "Floresta de Cogumelos"
 
-#: map/levels.dat:28428
+#: map/levels.dat:28424
 msgid "Some sanctuary"
 msgstr "Um santuário"
 
-#: map/levels.dat:29302
+#: map/levels.dat:29298
 msgid "Storage room"
 msgstr "Armazém"
 
-#: map/levels.dat:29305
+#: map/levels.dat:29301
 msgid "Warning: Hot steam is hot!"
 msgstr "Aviso: O vapor quente está quente!"
 
-#: map/levels.dat:29308
+#: map/levels.dat:29304
 msgid "Danger: High voltage!"
 msgstr "Perigo: Alta voltagem!"
 
-#: map/levels.dat:29458
+#: map/levels.dat:29454
 msgid "Arena"
 msgstr "Arena"
 
-#: map/levels.dat:30088
+#: map/levels.dat:30084
 msgid "Master Arena"
 msgstr "Arena Mestre"
 
-#: map/levels.dat:30306
+#: map/levels.dat:30302
 msgid "Hell Fortress Entrance"
 msgstr "Entrada da Fortaleza Maligna"
 
-#: map/levels.dat:33242
+#: map/levels.dat:33238
 msgid "Upgrade distribution server room. Access restricted to authorized personnel - trespassers will be fired."
 msgstr "Sala de distribuição de atualizações do servidor. Acesso restrito a pessoal autorizado - invasores serão demitidos."
 
-#: map/levels.dat:33245
+#: map/levels.dat:33241
 msgid "Please close the door behind you."
 msgstr "Por favor feche a porta atrás de você."
 
-#: map/levels.dat:33248
+#: map/levels.dat:33244
 msgid "Beware of hydroxyl acid!"
 msgstr "Cuidado com o ácido hidróxido!"
 
-#: map/levels.dat:33251
+#: map/levels.dat:33247
 msgid "Beware of the guns."
 msgstr "Cuidado com as armas."
 
-#: map/levels.dat:33254 map/levels.dat:33314 map/levels.dat:33320
+#: map/levels.dat:33250 map/levels.dat:33310 map/levels.dat:33316
 msgid "Please read the other sign first."
 msgstr "Por favor leia o outro aviso primeiro."
 
-#: map/levels.dat:33257
+#: map/levels.dat:33253
 msgid "To main office."
 msgstr "Para o escritório principal."
 
-#: map/levels.dat:33260
+#: map/levels.dat:33256
 msgid "Workers office."
 msgstr "Escritório dos trabalhadores."
 
-#: map/levels.dat:33263
+#: map/levels.dat:33259
 msgid "First MS operating system - printed version"
 msgstr "Primeiro sistema operacional MS - versão impressa"
 
-#: map/levels.dat:33266
+#: map/levels.dat:33262
 msgid "Beatings will continue until morale improves."
 msgstr "Surras irão continuar até a moral melhorar."
 
-#: map/levels.dat:33269 map/levels.dat:66629
+#: map/levels.dat:33265 map/levels.dat:66621
 msgid "!"
 msgstr "!"
 
-#: map/levels.dat:33272
+#: map/levels.dat:33268
 msgid "Don't waste your time reading signs. Work!"
 msgstr "Não perca tempo lendo avisos. Trabalhe!"
 
-#: map/levels.dat:33275
+#: map/levels.dat:33271
 msgid "Server room"
 msgstr "Sala de servidores"
 
-#: map/levels.dat:33278
+#: map/levels.dat:33274
 msgid "Offices  - this way"
 msgstr "Escritórios - nessa direção."
 
-#: map/levels.dat:33281
+#: map/levels.dat:33277
 msgid "Slalom"
-msgstr ""
+msgstr "Slalom"
 
-#: map/levels.dat:33284
+#: map/levels.dat:33280
 msgid "Outdoor track"
-msgstr ""
+msgstr "Pista ao ar livre"
 
-#: map/levels.dat:33287
+#: map/levels.dat:33283
 msgid "Accessing computers"
 msgstr "Acessando computadores"
 
-#: map/levels.dat:33290
+#: map/levels.dat:33286
 msgid "Passing doors I"
-msgstr ""
+msgstr "Portas de Passagem I"
 
-#: map/levels.dat:33293
+#: map/levels.dat:33289
 msgid "Passing doors II"
-msgstr ""
+msgstr "Portas de Passagem II"
 
-#: map/levels.dat:33296
+#: map/levels.dat:33292
 msgid "To MegaSys office"
 msgstr "Para o escritório da MegaSys"
 
-#: map/levels.dat:33299
+#: map/levels.dat:33295
 msgid "For service: wait"
 msgstr "Para serviço: espere"
 
-#: map/levels.dat:33302
+#: map/levels.dat:33298
 msgid "Today's special: Foobar"
-msgstr ""
+msgstr "Especial de Hoje: Assim Assado"
 
-#: map/levels.dat:33305
+#: map/levels.dat:33301
 msgid "We recommend: Quxbaz"
-msgstr ""
+msgstr "Nós recomendamos: Quxbaz"
 
-#: map/levels.dat:33308 map/levels.dat:33311
+#: map/levels.dat:33304 map/levels.dat:33307
 msgid "In case of boredom turn gun on."
 msgstr "No caso de tédio ligue a arma."
 
-#: map/levels.dat:33317
+#: map/levels.dat:33313
 msgid "Authorized personnel only!"
 msgstr "Pessoal autorizado somente!"
 
-#: map/levels.dat:33335
+#: map/levels.dat:33331
 msgid "If the gate is closed, please ask the office for access."
 msgstr "Se a porta estiver fechada, por favor solicite no escritório por acesso."
 
-#: map/levels.dat:33597
+#: map/levels.dat:33593
 msgid "Johns Riddle"
 msgstr "Charada de John"
 
-#: map/levels.dat:33737
+#: map/levels.dat:33733
 msgid "Looking from above, hostiles may appear as salvation."
 msgstr "Olhando por cima, hostilidades podem aparecer como salvação."
 
-#: map/levels.dat:33779
+#: map/levels.dat:33775
 msgid "Crystal Caves"
 msgstr "Minas de Cristais"
 
-#: map/levels.dat:36233
+#: map/levels.dat:36229
 msgid "Forgotten bunker"
 msgstr "Bunker esquecido"
 
-#: map/levels.dat:36434
+#: map/levels.dat:36430
 msgid "Secret research center"
 msgstr "Centro de Pesquisas Secreto"
 
-#: map/levels.dat:37700
+#: map/levels.dat:37696
 msgid "Stop!"
 msgstr "Pare!"
 
-#: map/levels.dat:37703
+#: map/levels.dat:37699
 msgid "I warned you...  You should consider turning back and running away screaming."
 msgstr "Eu te avisei... Você deveria considerar dar meia volta e fugir gritando."
 
-#: map/levels.dat:37805
+#: map/levels.dat:37801
 msgid "Secret area service tunnels"
 msgstr "Túneis de Serviço da Área Secreta"
 
-#: map/levels.dat:38045
+#: map/levels.dat:38041
 msgid "Tutorial"
 msgstr "Tutorial"
 
-#: map/levels.dat:38965
+#: map/levels.dat:38961
 msgid "Welcome to FreedroidRPG!"
 msgstr "Bem-vindo ao FreedroidRPG!"
 
-#: map/levels.dat:40435 map/levels.dat:40785 map/levels.dat:40939
-#: map/levels.dat:56342 map/levels.dat:63188 map/levels.dat:63843
-#: map/levels.dat:64058 map/levels.dat:64183 map/levels.dat:64744
-#: map/levels.dat:65094 map/levels.dat:65422
+#: map/levels.dat:40431 map/levels.dat:40781 map/levels.dat:40935
+#: map/levels.dat:56336 map/levels.dat:63180 map/levels.dat:63835
+#: map/levels.dat:64050 map/levels.dat:64175 map/levels.dat:64736
+#: map/levels.dat:65086 map/levels.dat:65414
 msgid "World Edge"
 msgstr "Fim do Mundo"
 
-#: map/levels.dat:40671
+#: map/levels.dat:40667
 msgid "Old abandoned complex"
 msgstr "Antigo Complexo Abandonado"
 
-#: map/levels.dat:41184
+#: map/levels.dat:41180
 msgid "Worker Mines Entrance"
 msgstr "Entrada das Minas dos Trabalhadores"
 
-#: map/levels.dat:41920 map/levels.dat:42275
+#: map/levels.dat:41916 map/levels.dat:42271
 msgid "Southern Shorline"
 msgstr "Costa Sul"
 
-#: map/levels.dat:42860
+#: map/levels.dat:42856
 msgid "HF North Perimeter Defense Structure"
 msgstr "Estrutura de Defesa do Perímetro Norte da FM"
 
-#: map/levels.dat:43620
+#: map/levels.dat:43616
 msgid "Factory Entrance"
 msgstr "Entrada da Fábrica"
 
-#: map/levels.dat:46735
+#: map/levels.dat:46731
 msgid "Power Station and Worker District"
 msgstr "Estação de Energia e Distrito dos Trabalhadores"
 
-#: map/levels.dat:49110 map/levels.dat:49113
+#: map/levels.dat:49105 map/levels.dat:49108
 msgid "Power generator, don't change settings!"
 msgstr "Gerador de energia, não modifique as preferências!"
 
-#: map/levels.dat:49116
+#: map/levels.dat:49111
 msgid "Insert coin!!!!"
 msgstr "Insira uma moeda!!!!"
 
-#: map/levels.dat:49119
+#: map/levels.dat:49114
 msgid "You always loose? Play again, I am sure you'll win next time!"
-msgstr ""
+msgstr "Você sempre perde? Jogue novamente, tenho certeza que vai ganhar na próxima vez!"
 
-#: map/levels.dat:49122
+#: map/levels.dat:49117
 msgid "This is only decoration for good atmosphere. Don't cut plastic lawn!"
 msgstr "Isto é apenas decoração para uma boa atmosfera. Não corte o gramado de plástico!"
 
-#: map/levels.dat:49125
+#: map/levels.dat:49120
 msgid "Plastic leaves, do not eat!"
 msgstr "Folhas plásticas, não coma!"
 
-#: map/levels.dat:49128
+#: map/levels.dat:49123
 msgid "Caution: nothing. - There is absolutely nothing dangerous in the area!"
 msgstr "Cuidado: nada. - Não há absolutamente nada perigoso na área!"
 
-#: map/levels.dat:49131
+#: map/levels.dat:49126
 msgid "Stepping on this pad will affect absolutely nothing. LOL!"
 msgstr "Pisar neste bloco não vai afetar em absolutamente nada. LOL!"
 
-#: map/levels.dat:49417
+#: map/levels.dat:49412
 msgid "Factory Core"
 msgstr "Núcleo da Fábrica"
 
-#: map/levels.dat:52859
+#: map/levels.dat:52854
 msgid "Research Centre"
 msgstr "Centro de Pesquisas"
 
-#: map/levels.dat:56043
+#: map/levels.dat:56037
 msgid "Worker 1"
 msgstr "Trabalhador 1"
 
-#: map/levels.dat:56046
+#: map/levels.dat:56040
 msgid "Worker 2"
 msgstr "Trabalhador 2"
 
-#: map/levels.dat:56049
+#: map/levels.dat:56043
 msgid "Worker 3"
 msgstr "Trabalhador 3"
 
-#: map/levels.dat:56052
+#: map/levels.dat:56046
 msgid "Worker 4"
 msgstr "Trabalhador 4"
 
-#: map/levels.dat:56055
+#: map/levels.dat:56049
 msgid "Please don't talk, sing, take any drugs or write on walls in there!"
 msgstr "Por favor não fale, cante, ingira qualquer droga ou escreva nas paredes aqui!"
 
-#: map/levels.dat:56058
+#: map/levels.dat:56052
 msgid "Don't touch the fence, there are more efficient ways to waste energy here."
 msgstr "Não toque na cerca, há jeitos mais eficientes de se desperdiçar energia por aqui."
 
-#: map/levels.dat:56061
+#: map/levels.dat:56055
 msgid "I have no idea what this red thing is, but it looks pretty cool."
 msgstr "Eu não faço ideia do que essa coisa vermelha é, mas parece bem legal."
 
-#: map/levels.dat:56497
+#: map/levels.dat:56491
 msgid "Machine Deck Upper Catacombs"
 msgstr "Catacumba Superior do Convés de Máquinas"
 
-#: map/levels.dat:56611
+#: map/levels.dat:56605
 msgid "Machine Deck Lower Catacombs"
 msgstr "Catacumba Inferior do Convés de Máquinas"
 
-#: map/levels.dat:56725
+#: map/levels.dat:56719
 msgid "Freight Station"
 msgstr "Estação de Carga/Descarga"
 
-#: map/levels.dat:58213
+#: map/levels.dat:58207
 msgid "Old Server Room"
 msgstr "Sala de Servidores Antiga"
 
-#: map/levels.dat:59129
+#: map/levels.dat:59123
 msgid "Factory Office"
 msgstr "Escritório da Fábrica"
 
-#: map/levels.dat:62897
+#: map/levels.dat:62889
 msgid "Strange Dungeon"
 msgstr "Labirinto Estranho"
 
-#: map/levels.dat:63521
+#: map/levels.dat:63513
 msgid "Landing Zone"
 msgstr "Zona de Pouso"
 
-#: map/levels.dat:65615
+#: map/levels.dat:65607
 msgid "Shelter"
 msgstr "Abrigo"
 
-#: map/levels.dat:65732
+#: map/levels.dat:65724
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT ment to be accessible without cheating."
 msgstr "NÍVEL DEBUG 70 -- Nível criado para testes, NÃO deve ser acessível sem trapacear."
 
-#: map/levels.dat:66626
+#: map/levels.dat:66618
 msgid "?"
 msgstr "?"
 
-#: map/levels.dat:66632
+#: map/levels.dat:66624
 msgid "<"
 msgstr "<"
 
-#: map/levels.dat:66635
+#: map/levels.dat:66627
 msgid "? (flashing)"
 msgstr "? (piscando)"
 
-#: map/levels.dat:66638
+#: map/levels.dat:66630
 msgid "! (flashing)"
 msgstr "! (piscando)"
 
-#: map/levels.dat:66641
+#: map/levels.dat:66633
 msgid "< (flashing)"
 msgstr "< (piscando)"
 
-#: map/levels.dat:66667
+#: map/levels.dat:66659
 msgid "Empty Sea"
 msgstr "Oceano Vazio"
 
-#: map/levels.dat:66829
+#: map/levels.dat:66821
 msgid "Omega Island"
 msgstr "Ilha Ômega"
 
@@ -2606,8 +2606,8 @@ msgstr "Dr. Moore - Médico"
 msgid "Dixon - Mechanic"
 msgstr "Dixon - Mecânico"
 
-#: map/npc_specs.lua:69 map/ReturnOfTux.droids:579 map/ReturnOfTux.droids:580
-#: map/ReturnOfTux.droids:581 map/ReturnOfTux.droids:582
+#: map/npc_specs.lua:69 map/ReturnOfTux.droids:580 map/ReturnOfTux.droids:581
+#: map/ReturnOfTux.droids:582 map/ReturnOfTux.droids:583
 msgid "Cult Member"
 msgstr "Membro Cultista"
 
@@ -3259,7 +3259,7 @@ msgstr "RDMS - Robô de Defesa da MegaSys"
 msgid "TD"
 msgstr "RT"
 
-#: map/ReturnOfTux.droids:321
+#: map/ReturnOfTux.droids:321 map/ReturnOfTux.droids:508
 msgid "Update Server Guard"
 msgstr "Guarda do Servidor de Atualização"
 
@@ -3341,7 +3341,7 @@ msgstr "Robô Recepcionista"
 msgid "Worker"
 msgstr "Trabalhador"
 
-#: map/ReturnOfTux.droids:563
+#: map/ReturnOfTux.droids:564
 msgid "Corporate Guy"
 msgstr "Moço Corporativo"
 
