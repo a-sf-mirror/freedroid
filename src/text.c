@@ -102,9 +102,9 @@ void show_backgrounded_label_at_map_position(char *LabelText, float fill_status,
  * minimum value, and it will be expanded vertically to fit the given text.
  * @return The height of the rectangle
  */
-int show_backgrounded_text_rectangle(const char *text, struct BFont_Info *font, int x, int y, int w, int h)
+int show_backgrounded_text_rectangle(const char *text, struct font *font, int x, int y, int w, int h)
 {
-	BFont_Info *old_font = GetCurrentFont();
+	struct font *old_font = GetCurrentFont();
 	SetCurrentFont(font);
 
 	SDL_Rect t_rect;
@@ -821,7 +821,7 @@ void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...)
 
 	if (tmp[strlen(tmp) - 1] == '\n') {
 		MyCursorX = x;
-		MyCursorY = y + 1.1 * (GetCurrentFont()->h);
+		MyCursorY = y + 1.1 * (FontHeight(GetCurrentFont()));
 	} else {
 		for (i = 0; i < ((int)strlen(tmp)); i++)
 			MyCursorX += CharWidth(GetCurrentFont(), tmp[i]);

@@ -110,7 +110,7 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 	if (MenuFont == NULL)
 		SetCurrentFont(Menu_BFont);
 	else
-		SetCurrentFont((BFont_Info *) MenuFont);
+		SetCurrentFont((struct font *) MenuFont);
 
 };				// void print_menu_text ( ... )
 

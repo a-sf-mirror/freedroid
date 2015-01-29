@@ -217,7 +217,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	int bar_y;
 	int bar_x;
 	SDL_Rect rect;
-	BFont_Info *BFont_to_use = Blue_BFont;
+	struct font *BFont_to_use = Blue_BFont;
 	Uint8 r, g, b;
 
 	text_length = text_width(BFont_to_use, D_(cur_enemy->short_description_text));

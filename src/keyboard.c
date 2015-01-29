@@ -345,7 +345,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 static int get_nb_commands_per_page()
 {
 	int ypos = KEYCHART_RECT_Y;
-	BFont_Info *our_font = FPS_Display_BFont;
+	struct font *our_font = FPS_Display_BFont;
 	int i = 0;
 
 	while (1) {

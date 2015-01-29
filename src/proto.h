@@ -609,7 +609,7 @@ const char *get_sensor_name_by_id(int);
 int get_lines_needed(const char *text, SDL_Rect t_rect, float line_height_factor);
 void show_backgrounded_label_at_map_position(char *LabelText, float fill_status, float pos_x, float pos_y, int zoom_is_on);
 char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, const char *DefaultString);
-int show_backgrounded_text_rectangle(const char *, struct BFont_Info *, int, int, int, int);
+int show_backgrounded_text_rectangle(const char *, struct font *, int, int, int, int);
 int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels);
 void SetNewBigScreenMessage(const char *ScreenMessageText);
 void DisplayBigScreenMessage(void);
@@ -849,12 +849,12 @@ void lang_init();
 
 // font.c
 void InitOurBFonts(void);
-void SetCurrentFont(BFont_Info * Font);
-BFont_Info *GetCurrentFont(void);
-int get_letter_spacing(BFont_Info *font);
+void SetCurrentFont(struct font * Font);
+struct font *GetCurrentFont(void);
+int get_letter_spacing(struct font *font);
 int handle_switch_font_char(char **ptr);
-void put_string_left(BFont_Info *font, int y, const char *text);
-void put_string_centered(BFont_Info *font, int y, const char *text);
-void put_string_right(BFont_Info *font, int y, const char *text);
+void put_string_left(struct font *font, int y, const char *text);
+void put_string_centered(struct font *font, int y, const char *text);
+void put_string_right(struct font *font, int y, const char *text);
 
 #endif

@@ -102,7 +102,7 @@ struct widget_text {
 	/// \name Public attributes
 	/// @{
 	struct auto_string *text;  /**< Text to be displayed. */
-	struct BFont_Info *font;   /**< Font to be used when displaying text. */
+	struct font *font;         /**< Font to be used when displaying text. */
 	float line_height_factor;  /**< Scale factor applied to line spacing. */
 	int scroll_offset;         /**< Offset for the text being displayed. 0 means bottom, negative means above bottom. */
 

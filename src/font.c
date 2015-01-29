@@ -42,21 +42,22 @@
 #include "BFont.h"
 
 static struct {
-	BFont_Info **font_ref;
+	struct font **font_ref;
+	char *filename;
 	struct font font;
 } fonts_def[] = {
-	{ &Para_BFont,        { "parafont.png",     NULL } },
-	{ &Menu_BFont,        { "cpuFont.png",      NULL } },
-	{ &Messagevar_BFont,  { "small_white.png",  NULL } },
-	{ &Messagestat_BFont, { "small_blue.png",   NULL } },
-	{ &Red_BFont,         { "font05_red.png",   NULL } },
-	{ &Blue_BFont,        { "font05_white.png", NULL } },
-	{ &FPS_Display_BFont, { "font05.png",       NULL } },
-	{ &Messagered_BFont,  { "small_red.png",    NULL } }
+	{ &Para_BFont,        "parafont.png",     { NULL } },
+	{ &Menu_BFont,        "cpuFont.png",      { NULL } },
+	{ &Messagevar_BFont,  "small_white.png",  { NULL } },
+	{ &Messagestat_BFont, "small_blue.png",   { NULL } },
+	{ &Red_BFont,         "font05_red.png",   { NULL } },
+	{ &Blue_BFont,        "font05_white.png", { NULL } },
+	{ &FPS_Display_BFont, "font05.png",       { NULL } },
+	{ &Messagered_BFont,  "small_red.png",    { NULL } }
 };
 
 /* Current font */
-static BFont_Info *CurrentFont;
+static struct font *CurrentFont;
 
 /**
  * This function should load all the fonts we'll be using via the SDL
@@ -69,15 +70,14 @@ void InitOurBFonts(void)
 
 	for (i = 0; i < sizeof(fonts_def)/sizeof(fonts_def[0]); i++) {
 		char constructed_fname[PATH_MAX];
-		sprintf(constructed_fname, "font/%s", fonts_def[i].font.filename);
+		sprintf(constructed_fname, "font/%s", fonts_def[i].filename);
 		find_file(constructed_fname, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
-
 		if ((fonts_def[i].font.bfont = LoadFont(constructed_fname)) == NULL) {
 			error_message(__FUNCTION__, "A font file for the BFont library could not be loaded (%s).",
-					PLEASE_INFORM | IS_FATAL, fonts_def[i].font.filename);
+					PLEASE_INFORM | IS_FATAL, fonts_def[i].filename);
 		}
 
-		*fonts_def[i].font_ref = fonts_def[i].font.bfont;
+		*fonts_def[i].font_ref = &fonts_def[i].font;
 	}
 
 }
@@ -85,15 +85,15 @@ void InitOurBFonts(void)
 /**
  * Set the current font
  */
-void SetCurrentFont(BFont_Info * Font)
+void SetCurrentFont(struct font* font)
 {
-	CurrentFont = Font;
+	CurrentFont = font;
 };				// void SetCurrentFont (BFont_Info * Font)
 
 /**
  * Returns the pointer to the current font strucure in use
  */
-BFont_Info *GetCurrentFont(void)
+struct font *GetCurrentFont(void)
 {
 	return CurrentFont;
 };				// BFont_Info * GetCurrentFont (void)
@@ -104,7 +104,7 @@ BFont_Info *GetCurrentFont(void)
  * Letter-spacing refers to the overall spacing of a word or block of text
  * affecting its overall density and texture.
  */
-int get_letter_spacing(BFont_Info *font) {
+int get_letter_spacing(struct font *font) {
 	if (font == FPS_Display_BFont || font == Blue_BFont || font == Red_BFont)
 		return -2;
 	else if (font == Menu_BFont)
@@ -156,17 +156,17 @@ int handle_switch_font_char(char **ptr)
 	return FALSE;
 }
 
-void put_string_centered(BFont_Info *font, int y, const char *text)
+void put_string_centered(struct font *font, int y, const char *text)
 {
 	put_string(font, Screen->w / 2 - text_width(font, text) / 2, y, text);
 }
 
-void put_string_right(BFont_Info *font, int y, const char *text)
+void put_string_right(struct font *font, int y, const char *text)
 {
 	put_string(font, Screen->w - text_width(font, text) - 13, y, text);
 }
 
-void put_string_left(BFont_Info *font, int y, const char *text)
+void put_string_left(struct font *font, int y, const char *text)
 {
 	put_string(font, 13, y, text);
 }

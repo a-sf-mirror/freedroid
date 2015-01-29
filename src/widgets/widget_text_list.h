@@ -146,7 +146,7 @@ struct widget_text_list {
 
 	/// \name Public attributes
 	/// @{
-	BFont_Info *font;         /**< The font used for displaying text. */
+	struct font *font;        /**< The font used for displaying text. */
 	struct dynarray entries;  /**< Dynarray used for text and position info for each entry. */
 	int selected_entry;       /**< The index of the currently highlighted entry. */
 	void *user_data;          /**< General purpose data. */

@@ -64,11 +64,7 @@ typedef struct upgrade_socket_dynarray {
 	int capacity;
 } upgrade_socket_dynarray;
 
-/* prototype for BFont_Info from BFont.h */
-struct BFont_Info;
-
 struct font {
-	char *filename;
 	struct BFont_Info *bfont;
 };
 

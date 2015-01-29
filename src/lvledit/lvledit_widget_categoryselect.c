@@ -53,7 +53,7 @@ static void categoryselect_display(struct widget *w)
 
 	draw_rectangle(&w->rect, 70, 100, 100, 150);
 
-	BFont_Info *PreviousFont;
+	struct font *PreviousFont;
 	PreviousFont = GetCurrentFont();
 	SetCurrentFont(Messagevar_BFont);
 

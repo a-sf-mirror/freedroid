@@ -1539,7 +1539,7 @@ int level_validation()
 	SDL_Rect background_rect = { UNIVERSAL_COORD_W(20), UNIVERSAL_COORD_H(20), UNIVERSAL_COORD_W(600), UNIVERSAL_COORD_H(440) };
 	SDL_Rect report_rect = { UNIVERSAL_COORD_W(30), UNIVERSAL_COORD_H(30), UNIVERSAL_COORD_W(600), UNIVERSAL_COORD_H(430) };
 
-	BFont_Info *current_font = GetCurrentFont();
+	struct font *current_font = GetCurrentFont();
 	int row_height = FontHeight(current_font);
 	int max_rows = (report_rect.h / row_height) - 4;	// 4 lines are reserved for header and footer
 	int column_width = text_width(GetCurrentFont(), "000: empty");

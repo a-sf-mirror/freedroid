@@ -8,6 +8,7 @@
 #define _BFont_h
 
 #include "system.h"
+#include "struct.h"
 
 #define MAX_CHARS_IN_FONT 256
 
@@ -24,21 +25,21 @@ typedef struct BFont_Info {
 BFont_Info *LoadFont(const char *filename);
 
 /* Returns the font height */
-int FontHeight(BFont_Info * Font);
+int FontHeight(struct font *font);
 
 /* Returns the character width of the specified font */
-int CharWidth(BFont_Info * Font, unsigned char c);
+int CharWidth(struct font *font, unsigned char c);
 
 /* Write a single character on the screen with the specified font */
-int put_char(BFont_Info *font, int x, int y, unsigned char c);
+int put_char(struct font *font, int x, int y, unsigned char c);
 
 /* Returns the width, in pixels, of the text calculated with the specified font*/
-int text_width(BFont_Info * Font, const char *text);
+int text_width(struct font *font, const char *text);
 
 /* Returns the index of the last character than is inside the width limit, with the specified font */
-int limit_text_width(BFont_Info *font, const char *text, int limit);
+int limit_text_width(struct font *font, const char *text, int limit);
 
 /* Write a string on the screen with the specified font */
-void put_string(BFont_Info *font, int x, int y, const char *text);
+void put_string(struct font *font, int x, int y, const char *text);
 
 #endif // _BFont_h

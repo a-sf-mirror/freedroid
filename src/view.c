@@ -1599,7 +1599,7 @@ int item_slot_position_blocked(item * given_item, int item_slot)
 void update_item_text_slot_positions(void)
 {
 	int i;
-	BFont_Info *BFont_to_use = FPS_Display_BFont;
+	struct font *BFont_to_use = FPS_Display_BFont;
 	item *cur_item;
 	struct visible_level *vis_lvl, *n;
 	
@@ -1725,7 +1725,7 @@ void draw_grid_on_the_floor(int mask)
 	draw_line_on_map(0, our_level->ylen, our_level->xlen, our_level->ylen, 0xFF, 0x00, 0x00, 3);
 
 	// display numbers, corresponding to the numpad keys for quick placing 
-	BFont_Info *PreviousFont;
+	struct font *PreviousFont;
 	PreviousFont = GetCurrentFont();
 	SetCurrentFont(Messagevar_BFont);
 	char *numbers[2][2] = { {"3", "9"}, {"1", "7"} };

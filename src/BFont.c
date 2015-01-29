@@ -150,25 +150,25 @@ BFont_Info *LoadFont(const char *filename)
 /**
  * Return the font height 
  */
-int FontHeight(BFont_Info * Font)
+int FontHeight(struct font *font)
 {
-	return (Font->h);
-};				// int FontHeight (BFont_Info * Font)
+	return (font->bfont->h);
+}
 
 /**
  * Return the width of specified character
  */
-int CharWidth(BFont_Info * Font, unsigned char c)
+int CharWidth(struct font *font, unsigned char c)
 {
-	if (c < ' ' || c > Font->number_of_chars - 1)
+	if (c < ' ' || c > font->bfont->number_of_chars - 1)
 		c = '.';
-	return Font->char_image[c].w;
+	return font->bfont->char_image[c].w;
 }
 
 /**
  * Puts a single char on the surface with the specified font 
  */
-int put_char(BFont_Info *font, int x, int y, unsigned char c)
+int put_char(struct font *font, int x, int y, unsigned char c)
 {
 	SDL_Rect dest;
 	SDL_Rect clipping_rect;
@@ -179,10 +179,10 @@ int put_char(BFont_Info *font, int x, int y, unsigned char c)
 	dest.x = x;
 	dest.y = y;
 
-	if (c < ' ' || c > font->number_of_chars - 1)
+	if (c < ' ' || c > font->bfont->number_of_chars - 1)
 		c = '.';
 
-	img = &font->char_image[c];
+	img = &font->bfont->char_image[c];
 
 	if ((c != ' ') && (c != '\n')) {
 		if (use_open_gl) {
@@ -197,14 +197,13 @@ int put_char(BFont_Info *font, int x, int y, unsigned char c)
 	}
 
 	return CharWidth(font, c);
-
 }
 
 /**
  * Write a string on a surface using specified font, taking letter-spacing
  * into account.
  */
-void put_string(BFont_Info *font, int x, int y, const char *text)
+void put_string(struct font *font, int x, int y, const char *text)
 {
 	char *ptr = (char *)text;
 
@@ -244,7 +243,7 @@ void put_string(BFont_Info *font, int x, int y, const char *text)
  * Calculate the width of a string using a certain font, taking letter-spacing
  * into account.
  */
-int text_width(BFont_Info *font, const char *text)
+int text_width(struct font *font, const char *text)
 {
 	char *ptr = (char *)text;
 	int width = 0;
@@ -265,7 +264,7 @@ int text_width(BFont_Info *font, const char *text)
  *
  *
  */
-int limit_text_width(BFont_Info *font, const char *text, int limit)
+int limit_text_width(struct font *font, const char *text, int limit)
 {
 	char *ptr = (char *)text;
 	int width = 0;
