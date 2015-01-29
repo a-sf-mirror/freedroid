@@ -115,14 +115,6 @@ EXTERN struct image MouseCursorImageList[NUMBER_OF_MOUSE_CURSOR_PICTURES];
 
 EXTERN int Number_Of_Droids_On_Ship;
 EXTERN configuration_for_freedroid GameConfig;
-EXTERN BFont_Info *Menu_BFont;
-EXTERN BFont_Info *Messagevar_BFont;
-EXTERN BFont_Info *Messagestat_BFont;
-EXTERN BFont_Info *Para_BFont;
-EXTERN BFont_Info *FPS_Display_BFont;
-EXTERN BFont_Info *Blue_BFont;
-EXTERN BFont_Info *Red_BFont;
-EXTERN BFont_Info *Messagered_BFont;
 EXTERN float Overall_Average;
 EXTERN int SkipAFewFrames;
 EXTERN struct data_dir data_dirs[];
@@ -403,4 +395,20 @@ EXTERN struct dynarray lang_specs;
 
 EXTERN struct dynarray difficulties;
 
+#undef EXTERN
+#ifdef _font_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+EXTERN BFont_Info *Menu_BFont;
+EXTERN BFont_Info *Messagevar_BFont;
+EXTERN BFont_Info *Messagestat_BFont;
+EXTERN BFont_Info *Para_BFont;
+EXTERN BFont_Info *FPS_Display_BFont;
+EXTERN BFont_Info *Blue_BFont;
+EXTERN BFont_Info *Red_BFont;
+EXTERN BFont_Info *Messagered_BFont;
+
+#undef EXTERN
 #endif				// _global_h

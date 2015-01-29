@@ -41,6 +41,20 @@
 #include "proto.h"
 #include "BFont.h"
 
+static struct {
+	BFont_Info **font_ref;
+	struct font font;
+} fonts_def[] = {
+	{ &Para_BFont,        { "parafont.png",     NULL } },
+	{ &Menu_BFont,        { "cpuFont.png",      NULL } },
+	{ &Messagevar_BFont,  { "small_white.png",  NULL } },
+	{ &Messagestat_BFont, { "small_blue.png",   NULL } },
+	{ &Red_BFont,         { "font05_red.png",   NULL } },
+	{ &Blue_BFont,        { "font05_white.png", NULL } },
+	{ &FPS_Display_BFont, { "font05.png",       NULL } },
+	{ &Messagered_BFont,  { "small_red.png",    NULL } }
+};
+
 /* Current font */
 static BFont_Info *CurrentFont;
 
@@ -50,50 +64,22 @@ static BFont_Info *CurrentFont;
  */
 void InitOurBFonts(void)
 {
-#define ALL_BFONTS_WE_LOAD 8
-
-#define PARA_FONT_FILE 		"font/parafont"
-#define MENU_FONT_FILE 		"font/cpuFont"
-#define MESSAGEVAR_FONT_FILE 	"font/small_white"
-#define MESSAGESTAT_FONT_FILE 	"font/small_blue"
-#define RED_FONT_FILE 		"font/font05_red"
-#define BLUE_FONT_FILE 		"font/font05_white"
-#define FPS_FONT_FILE 		"font/font05"
-#define MESSAGERED_FONT_FILE 	"font/small_red"
-
-	char fpath[PATH_MAX];
 	int i;
-	const char *MenuFontFiles[ALL_BFONTS_WE_LOAD] = {
-		MENU_FONT_FILE,
-		MESSAGEVAR_FONT_FILE,
-		MESSAGESTAT_FONT_FILE,
-		PARA_FONT_FILE,
-		FPS_FONT_FILE,
-		RED_FONT_FILE,
-		BLUE_FONT_FILE,
-		MESSAGERED_FONT_FILE,
-	};
-	BFont_Info **MenuFontPointers[ALL_BFONTS_WE_LOAD] = {
-		&Menu_BFont,
-		&Messagevar_BFont,
-		&Messagestat_BFont,
-		&Para_BFont,
-		&FPS_Display_BFont,
-		&Red_BFont,
-		&Blue_BFont,
-		&Messagered_BFont
-	};
+	char fpath[PATH_MAX];
 
-	for (i = 0; i < ALL_BFONTS_WE_LOAD; i++) {
+	for (i = 0; i < sizeof(fonts_def)/sizeof(fonts_def[0]); i++) {
 		char constructed_fname[PATH_MAX];
-		sprintf(constructed_fname, "%s.png", MenuFontFiles[i]);
+		sprintf(constructed_fname, "font/%s", fonts_def[i].font.filename);
 		find_file(constructed_fname, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 
-		if ((*MenuFontPointers[i] = LoadFont(constructed_fname)) == NULL) {
+		if ((fonts_def[i].font.bfont = LoadFont(constructed_fname)) == NULL) {
 			error_message(__FUNCTION__, "A font file for the BFont library could not be loaded (%s).",
-					PLEASE_INFORM | IS_FATAL, MenuFontFiles[i]);
+					PLEASE_INFORM | IS_FATAL, fonts_def[i].font.filename);
 		}
+
+		*fonts_def[i].font_ref = fonts_def[i].font.bfont;
 	}
+
 }
 
 /**

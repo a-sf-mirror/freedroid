@@ -67,6 +67,12 @@ typedef struct upgrade_socket_dynarray {
 /* prototype for BFont_Info from BFont.h */
 struct BFont_Info;
 
+struct font {
+	char *filename;
+	struct BFont_Info *bfont;
+};
+
+
 enum image_transformation_mode {
 	HIGHLIGHTED = 1 << 1,
 	REPEATED    = 1 << 2
