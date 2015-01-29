@@ -27,6 +27,7 @@
 
 #include "struct.h"
 #include "lua.h"
+#include "BFont.h"
 
 #ifdef __GNUC__
 #define PRINTF_FMT_ATTRIBUTE(fmt,firstarg) __attribute__ ((format(printf,fmt,firstarg)));
@@ -276,7 +277,6 @@ void fade_in_screen(void);
 void InitPictures(void);
 void init_timer(void);
 void InitVideo(void);
-void InitOurBFonts(void);
 void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area);
 void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area);
 int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value, int unit_price);
@@ -846,5 +846,15 @@ void rtprof_display();
 void lang_set(const char *);
 char *lang_get();
 void lang_init();
+
+// font.c
+void InitOurBFonts(void);
+void SetCurrentFont(BFont_Info * Font);
+BFont_Info *GetCurrentFont(void);
+int get_letter_spacing(BFont_Info *font);
+int handle_switch_font_char(char **ptr);
+void put_string_left(BFont_Info *font, int y, const char *text);
+void put_string_centered(BFont_Info *font, int y, const char *text);
+void put_string_right(BFont_Info *font, int y, const char *text);
 
 #endif

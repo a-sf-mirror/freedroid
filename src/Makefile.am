@@ -34,7 +34,7 @@ freedroidRPG_SOURCES = version.c \
 	graphics.c map.c colldet.c init.c \
 	image.c \
 	takeover.c bullet.c influ.c action.c misc.c text.c text_public.c sound.c \
-	enemy.c input.c keyboard.c main.c hud.c view.c automap.c BFont.c \
+	enemy.c input.c keyboard.c main.c hud.c view.c automap.c BFont.c font.c \
 	defs.h map.h vars.h takeover.h global.h \
 	proto.h struct.h system.h BFont.h \
 	open_gl.c open_gl_atlas.c open_gl_debug.c mission.c chat.c light.c \

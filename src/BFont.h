@@ -4,6 +4,9 @@
 /*                                                          */
 /************************************************************/
 
+#ifndef _BFont_h
+#define _BFont_h
+
 #include "system.h"
 
 #define MAX_CHARS_IN_FONT 256
@@ -20,23 +23,11 @@ typedef struct BFont_Info {
 /* Load and store le font in the BFont_Info structure */
 BFont_Info *LoadFont(const char *filename);
 
-/* Returns a pointer to the current font structure */
-BFont_Info *GetCurrentFont(void);
-
-/* Set the current font */
-void SetCurrentFont(BFont_Info * Font);
-
 /* Returns the font height */
 int FontHeight(BFont_Info * Font);
 
 /* Returns the character width of the specified font */
 int CharWidth(BFont_Info * Font, unsigned char c);
-
-/* Get letter-spacing for specified font. */
-int get_letter_spacing(BFont_Info *font);
-
-/* Handle font switching on special characters. */
-int handle_switch_font_char(char **ptr);
 
 /* Write a single character on the screen with the specified font */
 int put_char(BFont_Info *font, int x, int y, unsigned char c);
@@ -50,11 +41,4 @@ int limit_text_width(BFont_Info *font, const char *text, int limit);
 /* Write a string on the screen with the specified font */
 void put_string(BFont_Info *font, int x, int y, const char *text);
 
-/* Write a left-aligned string on the screen with the specified font */
-void put_string_left(BFont_Info *font, int y, const char *text);
-
-/* Write a center-aligned string on the screen with the specified font */
-void put_string_centered(BFont_Info *font, int y, const char *text);
-
-/* Write a right-aligned string on the screen with the specified font */
-void put_string_right(BFont_Info *font, int y, const char *text);
+#endif // _BFont_h

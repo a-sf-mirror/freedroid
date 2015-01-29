@@ -13,9 +13,6 @@
 #include "proto.h"
 #include "global.h"
 
-/* Current font */
-static BFont_Info *CurrentFont;
-
 #define FIRST_FONT_CHAR '!'
 
 /**
@@ -151,22 +148,6 @@ BFont_Info *LoadFont(const char *filename)
 }
 
 /**
- * Set the current font 
- */
-void SetCurrentFont(BFont_Info * Font)
-{
-	CurrentFont = Font;
-};				// void SetCurrentFont (BFont_Info * Font)
-
-/**
- * Returns the pointer to the current font strucure in use 
- */
-BFont_Info *GetCurrentFont(void)
-{
-	return CurrentFont;
-};				// BFont_Info * GetCurrentFont (void)
-
-/**
  * Return the font height 
  */
 int FontHeight(BFont_Info * Font)
@@ -182,64 +163,6 @@ int CharWidth(BFont_Info * Font, unsigned char c)
 	if (c < ' ' || c > Font->number_of_chars - 1)
 		c = '.';
 	return Font->char_image[c].w;
-}
-
-/**
- * Get letter-spacing for specified font.
- *
- * Letter-spacing refers to the overall spacing of a word or block of text
- * affecting its overall density and texture.
- */
-int get_letter_spacing(BFont_Info *font) {
-	if (font == FPS_Display_BFont || font == Blue_BFont || font == Red_BFont)
-		return -2;
-	else if (font == Menu_BFont)
-		return -4;
-	else
-		return 0;
-}
-
-/**
- * Handle font switching on special characters (\x) or formatting tags (aka bbcodes).
- * Returns 1 if the font was changed and 0 if it was not.
- */
-int handle_switch_font_char(char **ptr)
-{
-	if (**ptr == '[' && *(*ptr+2) != ']')
-		return FALSE;
-
-	int index = 0;
-	int incr = 1;
-
-	if (**ptr == '[') {
-		(*ptr)++;
-		index = 2;
-		incr = 2;
-	}
-
-	if (**ptr == font_switchto_red[index]) {
-		SetCurrentFont(Red_BFont);
-		(*ptr) += incr;
-		return TRUE;
-	} else if (**ptr == font_switchto_blue[index]) {
-		SetCurrentFont(Blue_BFont);
-		(*ptr) += incr;
-		return TRUE;
-	} else if (**ptr == font_switchto_neon[index]) {
-		SetCurrentFont(FPS_Display_BFont);
-		(*ptr) += incr;
-		return TRUE;
-	} else if (**ptr == font_switchto_msgstat[index]) {
-		SetCurrentFont(Messagestat_BFont);
-		(*ptr) += incr;
-		return TRUE;
-	} else if (**ptr == font_switchto_msgvar[index]) {
-		SetCurrentFont(Messagevar_BFont);
-		(*ptr) += incr;
-		return TRUE;
-	}
-
-	return FALSE;
 }
 
 /**
@@ -359,21 +282,6 @@ int limit_text_width(BFont_Info *font, const char *text, int limit)
 			return (ptr - text);
 	}
 	return -1;
-}
-
-void put_string_centered(BFont_Info *font, int y, const char *text)
-{
-	put_string(font, Screen->w / 2 - text_width(font, text) / 2, y, text);
-}
-
-void put_string_right(BFont_Info *font, int y, const char *text)
-{
-	put_string(font, Screen->w - text_width(font, text) - 13, y, text);
-}
-
-void put_string_left(BFont_Info *font, int y, const char *text)
-{
-	put_string(font, 13, y, text);
 }
 
 #undef _bfont_c

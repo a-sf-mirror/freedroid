@@ -24,11 +24,7 @@
  */
 /**
  * This file contains graphics primitives, such as initialisation of SDL
- * and video modes and fonts.
- */
-/*
- * This file has been checked for remains of german comments in the code
- * I you still find some, please just kill it mercilessly.
+ * and video modes.
  */
 #define _graphics_c
 
@@ -521,58 +517,6 @@ void InitPictures(void)
 	iso_load_bullet_surfaces();
 
 	next_startup_percentage(3);
-}
-
-/**
- * This function should load all the fonts we'll be using via the SDL
- * BFont library in FreedroidRPG.
- */
-void InitOurBFonts(void)
-{
-#define ALL_BFONTS_WE_LOAD 8
-
-#define PARA_FONT_FILE 		"font/parafont"
-#define MENU_FONT_FILE 		"font/cpuFont"
-#define MESSAGEVAR_FONT_FILE 	"font/small_white"
-#define MESSAGESTAT_FONT_FILE 	"font/small_blue"
-#define RED_FONT_FILE 		"font/font05_red"
-#define BLUE_FONT_FILE 		"font/font05_white"
-#define FPS_FONT_FILE 		"font/font05"
-#define MESSAGERED_FONT_FILE 	"font/small_red"
-
-	char fpath[PATH_MAX];
-	int i;
-	const char *MenuFontFiles[ALL_BFONTS_WE_LOAD] = {
-		MENU_FONT_FILE,
-		MESSAGEVAR_FONT_FILE,
-		MESSAGESTAT_FONT_FILE,
-		PARA_FONT_FILE,
-		FPS_FONT_FILE,
-		RED_FONT_FILE,
-		BLUE_FONT_FILE,
-		MESSAGERED_FONT_FILE,
-	};
-	BFont_Info **MenuFontPointers[ALL_BFONTS_WE_LOAD] = {
-		&Menu_BFont,
-		&Messagevar_BFont,
-		&Messagestat_BFont,
-		&Para_BFont,
-		&FPS_Display_BFont,
-		&Red_BFont,
-		&Blue_BFont,
-		&Messagered_BFont
-	};
-
-	for (i = 0; i < ALL_BFONTS_WE_LOAD; i++) {
-		char constructed_fname[PATH_MAX];
-		sprintf(constructed_fname, "%s.png", MenuFontFiles[i]);
-		find_file(constructed_fname, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
-
-		if ((*MenuFontPointers[i] = LoadFont(constructed_fname)) == NULL) {
-			error_message(__FUNCTION__, "A font file for the BFont library could not be loaded (%s).",
-					PLEASE_INFORM | IS_FATAL, MenuFontFiles[i]);
-		}
-	}
 }
 
 /**
