@@ -22,7 +22,7 @@ typedef struct BFont_Info {
 } BFont_Info;
 
 /* Load and store le font in the BFont_Info structure */
-BFont_Info *LoadFont(const char *filename);
+int LoadFont(const char *filename, struct font *font);
 
 /* Returns the font height */
 int FontHeight(struct font *font);

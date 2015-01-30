@@ -65,9 +65,10 @@ typedef struct upgrade_socket_dynarray {
 } upgrade_socket_dynarray;
 
 struct font {
+	int height;
+	int letter_spacing;
 	struct BFont_Info *bfont;
 };
-
 
 enum image_transformation_mode {
 	HIGHLIGHTED = 1 << 1,

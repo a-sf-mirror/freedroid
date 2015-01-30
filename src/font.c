@@ -46,14 +46,14 @@ static struct {
 	char *filename;
 	struct font font;
 } fonts_def[] = {
-	{ &Para_BFont,        "parafont.png",     { NULL } },
-	{ &Menu_BFont,        "cpuFont.png",      { NULL } },
-	{ &Messagevar_BFont,  "small_white.png",  { NULL } },
-	{ &Messagestat_BFont, "small_blue.png",   { NULL } },
-	{ &Red_BFont,         "font05_red.png",   { NULL } },
-	{ &Blue_BFont,        "font05_white.png", { NULL } },
-	{ &FPS_Display_BFont, "font05.png",       { NULL } },
-	{ &Messagered_BFont,  "small_red.png",    { NULL } }
+		{ &Para_BFont,        "parafont.png",     { 0,  0, NULL } },
+		{ &Menu_BFont,        "cpuFont.png",      { 0, -4, NULL } },
+		{ &Messagevar_BFont,  "small_white.png",  { 0,  0, NULL } },
+		{ &Messagestat_BFont, "small_blue.png",   { 0,  0, NULL } },
+		{ &Red_BFont,         "font05_red.png",   { 0, -2, NULL } },
+		{ &Blue_BFont,        "font05_white.png", { 0, -2, NULL } },
+		{ &FPS_Display_BFont, "font05.png",       { 0, -2, NULL } },
+		{ &Messagered_BFont,  "small_red.png",    { 0,  0, NULL } }
 };
 
 /* Current font */
@@ -72,7 +72,9 @@ void InitOurBFonts(void)
 		char constructed_fname[PATH_MAX];
 		sprintf(constructed_fname, "font/%s", fonts_def[i].filename);
 		find_file(constructed_fname, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
-		if ((fonts_def[i].font.bfont = LoadFont(constructed_fname)) == NULL) {
+
+		int rtn = LoadFont(constructed_fname, &fonts_def[i].font);
+		if (rtn == FALSE) {
 			error_message(__FUNCTION__, "A font file for the BFont library could not be loaded (%s).",
 					PLEASE_INFORM | IS_FATAL, fonts_def[i].filename);
 		}
@@ -104,13 +106,17 @@ struct font *GetCurrentFont(void)
  * Letter-spacing refers to the overall spacing of a word or block of text
  * affecting its overall density and texture.
  */
-int get_letter_spacing(struct font *font) {
-	if (font == FPS_Display_BFont || font == Blue_BFont || font == Red_BFont)
-		return -2;
-	else if (font == Menu_BFont)
-		return -4;
-	else
-		return 0;
+int get_letter_spacing(struct font *font)
+{
+	return font->letter_spacing;
+}
+
+/**
+ * Return the font height
+ */
+int FontHeight(struct font *font)
+{
+	return font->height;
 }
 
 /**

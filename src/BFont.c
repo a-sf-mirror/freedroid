@@ -129,30 +129,25 @@ static void prepare_font(BFont_Info *font, SDL_Rect char_rect[MAX_CHARS_IN_FONT]
 /**
  * Load the font and stores it in the BFont_Info structure 
  */
-BFont_Info *LoadFont(const char *filename)
+int LoadFont(const char *filename, struct font *font)
 {
-	BFont_Info *font = MyMalloc(sizeof(BFont_Info));
+	BFont_Info *bfont = MyMalloc(sizeof(BFont_Info));
 
 	// Load the font image
-	load_image_surface(&font->font_image, filename, FALSE);
+	load_image_surface(&bfont->font_image, filename, FALSE);
 
 	// Find character coordinates in the image
 	SDL_Rect char_rect[MAX_CHARS_IN_FONT];
 	memset(char_rect, 0, sizeof(char_rect));
-	find_character_positions(font, char_rect);
+	find_character_positions(bfont, char_rect);
 
 	// Prepare the data structures according to the rendering mode
-	prepare_font(font, char_rect);	
-	
-	return font;
-}
+	prepare_font(bfont, char_rect);
 
-/**
- * Return the font height 
- */
-int FontHeight(struct font *font)
-{
-	return (font->bfont->h);
+	font->bfont = bfont;
+	font->height = bfont->h;
+
+	return TRUE;
 }
 
 /**
