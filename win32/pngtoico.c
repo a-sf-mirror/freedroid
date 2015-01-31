@@ -65,7 +65,7 @@ write_le32(uint8_t *ptr, uint32_t v)
 #endif
 }
 
-struct ico_common {
+struct ico_common { // cppcheck-suppress unusedStructMember
   uint8_t resv[2];
   uint8_t type[2];		/* == 1 */
   uint8_t count[2];		/* Number of icons */
