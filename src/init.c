@@ -391,6 +391,22 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 		Droidmap[i].healing_hostile *= diff->droid_hostile_healing;
 	}
 };				// int Get_Robot_Data ( void )
+
+/**
+ * Load the configuration of the fdrpg "engine", that is the game independent data
+ */
+static void load_fdrpg_config()
+{
+	char fpath[PATH_MAX];
+
+	// Load the languages specs
+	dynarray_free(&lang_specs);
+	dynarray_free(&lang_codesets);
+	if (find_file("languages.lua", MAP_DIR, fpath, PLEASE_INFORM)) {
+		run_lua_file(LUA_CONFIG, fpath);
+	}
+}
+
 /**
  * This function loads all the constant variables of the game from
  * a data file, using mainly subroutines which do the main work.
@@ -399,12 +415,6 @@ void Init_Game_Data()
 {
 	char fpath[PATH_MAX];
 	char *Data;
-
-	// Load the languages specs
-	dynarray_free(&lang_specs);
-	if (find_file("languages.lua", MAP_DIR, fpath, PLEASE_INFORM)) {
-		run_lua_file(LUA_CONFIG, fpath);
-	}
 
 	// Load difficulties.
 	find_file("difficulties.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
@@ -957,6 +967,9 @@ void InitFreedroid(int argc, char **argv)
 
 	input_keyboard_init();
 	init_lua();
+	init_luaconfig();
+
+	load_fdrpg_config();
 
 	LoadGameConfig();
 
@@ -993,7 +1006,6 @@ void InitFreedroid(int argc, char **argv)
 
 	init_keyboard_input_array();
 	init_message_log();
-	init_luaconfig();
 
 	init_audio();
 
