@@ -273,7 +273,7 @@ static void print_statistics(void)
 	}
 
 	//Print all to screen
-	float mission_list_offset = (FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR)
+	float mission_list_offset = (get_font_height(get_current_font()) * LINE_HEIGHT_FACTOR)
 	    * mission_list_scroll_override_from_user;
 	display_text_using_line_height(quest_browser_text->value, mission_description_rect.x,
                                        mission_description_rect.y - mission_list_offset, &mission_description_rect, 1.0);
@@ -294,7 +294,7 @@ static void print_statistics(void)
 		// anyway.
 		rect_short->y =
 		    mission_description_rect.y - mission_list_offset +
-		    (FontHeight(GetCurrentFont()) * 1.0) * (statistics_browser_lines_needed[display] -1) - 2;
+		    (get_font_height(get_current_font()) * 1.0) * (statistics_browser_lines_needed[display] -1) - 2;
 		rect_short->x = mission_description_rect.x - 26;
 		rect_long->y = rect_short->y;
 		rect_long->x = rect_short->x;
@@ -306,7 +306,7 @@ static void print_statistics(void)
 		//
 		if (rect_short->y <= mission_description_rect.y - 4)
 			continue;
-		if (rect_short->y >= mission_description_rect.y + mission_description_rect.h - FontHeight(GetCurrentFont()))
+		if (rect_short->y >= mission_description_rect.y + mission_description_rect.h - get_font_height(get_current_font()))
 			continue;
 
 		if (stats_display[display])
@@ -367,7 +367,7 @@ static void quest_browser_display_mission_list(int list_type)
 	}
 
 	if (something_was_displayed) {
-		float mission_list_offset = FontHeight(GetCurrentFont()) * mission_list_scroll_override_from_user;
+		float mission_list_offset = get_font_height(get_current_font()) * mission_list_scroll_override_from_user;
 		display_text_using_line_height(quest_browser_text->value, mission_description_rect.x,
 			    mission_description_rect.y - mission_list_offset, &mission_description_rect, 1.0);
 
@@ -391,7 +391,7 @@ static void quest_browser_display_mission_list(int list_type)
 			if (quest_browser_mission_lines_needed[mis_num] != -1) {
 				rect_short->y =
 				    mission_description_rect.y - mission_list_offset +
-				    (FontHeight(GetCurrentFont())) * (quest_browser_mission_lines_needed[mis_num]) - 2;
+				    (get_font_height(get_current_font())) * (quest_browser_mission_lines_needed[mis_num]) - 2;
 				rect_short->x = mission_description_rect.x - 26;
 				rect_long->y = rect_short->y;
 				rect_long->x = rect_short->x;
@@ -403,7 +403,7 @@ static void quest_browser_display_mission_list(int list_type)
 			//
 			if (rect_short->y <= mission_description_rect.y - 4)
 				continue;
-			if (rect_short->y >= mission_description_rect.y + mission_description_rect.h - FontHeight(GetCurrentFont()) / 2)
+			if (rect_short->y >= mission_description_rect.y + mission_description_rect.h - get_font_height(get_current_font()) / 2)
 				continue;
 
 			if (Me.AllMissions[mis_num].expanded_display_for_this_mission)
@@ -523,7 +523,7 @@ static void scroll_up(struct widget_button *wb)
 static int can_scroll_down()
 {
 	int lines_needed = get_lines_needed(quest_browser_text->value, mission_description_rect, 1.0);
-	int visible_lines = mission_description_rect.h / (float) FontHeight(GetCurrentFont());
+	int visible_lines = mission_description_rect.h / (float) get_font_height(get_current_font());
 
 	return (lines_needed > visible_lines) && (mission_list_scroll_override_from_user < lines_needed - visible_lines);
 }

@@ -376,7 +376,7 @@ void save_map(void)
 
 	if (find_file("levels.dat", MAP_DIR, levels_fn, PLEASE_INFORM) && find_file("ReturnOfTux.droids", MAP_DIR, forces_fn, PLEASE_INFORM)) {
 		if ((SaveShip(levels_fn, TRUE, 0) == OK) && (save_special_forces(forces_fn) == OK)) {
-			put_string_centered(FPS_Display_BFont, 11 * FontHeight(Menu_BFont), _("Your ship was saved..."));
+			put_string_centered(FPS_Display_Font, 11 * get_font_height(Menu_Font), _("Your ship was saved..."));
 			our_SDL_flip_wrapper();
 			return;
 		}
@@ -390,12 +390,12 @@ void save_map(void)
 	sprintf(levels_fn, "%s/levels.dat", our_config_dir);
 	sprintf(forces_fn, "%s/ReturnOfTux.droids", our_config_dir);
 	if ((SaveShip(levels_fn, TRUE, 0) == OK) && (save_special_forces(forces_fn) == OK)) {
-		put_string_centered(FPS_Display_BFont, 11 * FontHeight(Menu_BFont), _("Your ship was saved..."));
+		put_string_centered(FPS_Display_Font, 11 * get_font_height(Menu_Font), _("Your ship was saved..."));
 		our_SDL_flip_wrapper();
 		return;
 	}
 
 	error_message(__FUNCTION__, "Wasn't able to save even to %s.", PLEASE_INFORM, our_config_dir);
-	put_string_centered(FPS_Display_BFont, 11 * FontHeight(Menu_BFont), _("Your ship can not be saved !!! See the console output..."));
+	put_string_centered(FPS_Display_Font, 11 * get_font_height(Menu_Font), _("Your ship can not be saved !!! See the console output..."));
 	our_SDL_flip_wrapper();
 }

@@ -1505,7 +1505,7 @@ static void blit_all_item_slots(int mask)
 			// use the item name, but currently font color is not adapted for
 			// special item properties...
 			//
-			put_string(FPS_Display_BFont, item_level->ItemList[i].text_slot_rectangle.x,
+			put_string(FPS_Display_Font, item_level->ItemList[i].text_slot_rectangle.x,
 					  item_level->ItemList[i].text_slot_rectangle.y, D_(item_specs_get_name(item_level->ItemList[i].type)));
 	
 		}
@@ -1551,7 +1551,7 @@ int item_slot_position_blocked(item * given_item, int item_slot)
 			}
 			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
 						given_item->text_slot_rectangle.x,
-						given_item->text_slot_rectangle.y + FontHeight(FPS_Display_BFont))) {
+						given_item->text_slot_rectangle.y + get_font_height(FPS_Display_Font))) {
 				return (TRUE);
 			}
 			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
@@ -1562,7 +1562,7 @@ int item_slot_position_blocked(item * given_item, int item_slot)
 			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
 						given_item->text_slot_rectangle.x +
 						given_item->text_slot_rectangle.w,
-						given_item->text_slot_rectangle.y + FontHeight(FPS_Display_BFont))) {
+						given_item->text_slot_rectangle.y + get_font_height(FPS_Display_Font))) {
 				return (TRUE);
 			}
 			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
@@ -1573,7 +1573,7 @@ int item_slot_position_blocked(item * given_item, int item_slot)
 			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
 						given_item->text_slot_rectangle.x +
 						given_item->text_slot_rectangle.w / 2,
-						given_item->text_slot_rectangle.y + FontHeight(FPS_Display_BFont))) {
+						given_item->text_slot_rectangle.y + get_font_height(FPS_Display_Font))) {
 				return (TRUE);
 			}
 		}
@@ -1599,7 +1599,7 @@ int item_slot_position_blocked(item * given_item, int item_slot)
 void update_item_text_slot_positions(void)
 {
 	int i;
-	struct font *BFont_to_use = FPS_Display_BFont;
+	struct font *BFont_to_use = FPS_Display_Font;
 	item *cur_item;
 	struct visible_level *vis_lvl, *n;
 	
@@ -1617,7 +1617,7 @@ void update_item_text_slot_positions(void)
 			// actual item...
 			//
 			update_virtual_position(&cur_item->virt_pos, &cur_item->pos, Me.pos.z);
-			cur_item->text_slot_rectangle.h = FontHeight(BFont_to_use);
+			cur_item->text_slot_rectangle.h = get_font_height(BFont_to_use);
 			cur_item->text_slot_rectangle.w = text_width(BFont_to_use, D_(item_specs_get_name(cur_item->type)));
 			cur_item->text_slot_rectangle.x =
 				translate_map_point_to_screen_pixel_x(cur_item->virt_pos.x, cur_item->virt_pos.y) - cur_item->text_slot_rectangle.w / 2;
@@ -1726,8 +1726,8 @@ void draw_grid_on_the_floor(int mask)
 
 	// display numbers, corresponding to the numpad keys for quick placing 
 	struct font *PreviousFont;
-	PreviousFont = GetCurrentFont();
-	SetCurrentFont(Messagevar_BFont);
+	PreviousFont = get_current_font();
+	set_current_font(Messagevar_Font);
 	char *numbers[2][2] = { {"3", "9"}, {"1", "7"} };
 	int ii, jj;
 	for (ii = 0; ii <= 1; ii++)
@@ -1746,7 +1746,7 @@ void draw_grid_on_the_floor(int mask)
 			draw_rectangle(&tr, 0, 0, 0, 255);
 			display_text(numbers[ii][jj], r - 5, c - 5, &tr);
 		}
-	SetCurrentFont(PreviousFont);
+	set_current_font(PreviousFont);
 }
 
 /* -----------------------------------------------------------------
@@ -2252,7 +2252,7 @@ void blit_tux(int x, int y)
 	// so let him say it..
 	if ((x == -1) && Me.TextToBeDisplayed && (Me.TextVisibleTime < GameConfig.WantedTextVisibleTime) &&
 		GameConfig.All_Texts_Switch) {
-		SetCurrentFont(FPS_Display_BFont);
+		set_current_font(FPS_Display_Font);
 		display_text(Me.TextToBeDisplayed, Text_Rect.x, Text_Rect.y, &Text_Rect);
 	}
 }
@@ -2290,9 +2290,9 @@ void PrintCommentOfThisEnemy(enemy * e)
 #	if 0
 		char txt[256];
 		sprintf(txt, "%d - %s", e->id, e->TextToBeDisplayed);
-		put_string(FPS_Display_BFont, x_pos, y_pos, txt);
+		put_string(FPS_Display_Font, x_pos, y_pos, txt);
 #	else
-		put_string(FPS_Display_BFont, x_pos, y_pos, e->TextToBeDisplayed);
+		put_string(FPS_Display_Font, x_pos, y_pos, e->TextToBeDisplayed);
 #	endif
 	}
 
@@ -3057,7 +3057,7 @@ void show_inventory_screen(void)
 
 		// Show amount
 		if (ItemMap[Me.Inventory[SlotNum].type].item_group_together_in_inventory) {
-			SetCurrentFont(Messagevar_BFont);
+			set_current_font(Messagevar_Font);
 			// Only 3 characters fit in one inventory square.
 			char amount[4];
 			if (Me.Inventory[SlotNum].multiplicity < 999)
@@ -3066,8 +3066,8 @@ void show_inventory_screen(void)
 				strcpy(amount, "+++");
 			TargetRect.w = INV_SUBSQUARE_WIDTH * ItemMap[Me.Inventory[SlotNum].type].inv_size.x;
 			TargetRect.h = INV_SUBSQUARE_HEIGHT * ItemMap[Me.Inventory[SlotNum].type].inv_size.y;
-			int xpos = TargetRect.x + TargetRect.w - text_width(GetCurrentFont(), amount) - 2;
-			int ypos = TargetRect.y + TargetRect.h - FontHeight(Messagevar_BFont);
+			int xpos = TargetRect.x + TargetRect.w - text_width(get_current_font(), amount) - 2;
+			int ypos = TargetRect.y + TargetRect.h - get_font_height(Messagevar_Font);
 			display_text_using_line_height(amount, xpos, ypos, &TargetRect, 1.0);
 		}
 	}

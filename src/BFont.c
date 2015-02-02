@@ -108,9 +108,11 @@ static void prepare_font(BFont_Info *font, SDL_Rect char_rect[MAX_CHARS_IN_FONT]
 {
 	int i;
 
+#ifdef HAVE_LIBGL
 	if (use_open_gl) {
 		make_texture_out_of_surface(&font->font_image);
 	}
+#endif
 
 	// Create each char_image
 	for (i = FIRST_FONT_CHAR; i < font->number_of_chars; i++) {
@@ -122,14 +124,14 @@ static void prepare_font(BFont_Info *font, SDL_Rect char_rect[MAX_CHARS_IN_FONT]
 	// Space is a special case	
 	create_subimage(&font->font_image, &font->char_image[' '], &char_rect[' ']);
 	
-	// Delete font_image SDL surface
+	// Delete the now unneeded global bitmap
 	free_image_surface(&font->font_image);
 }
 
 /**
  * Load the font and stores it in the BFont_Info structure 
  */
-int LoadFont(const char *filename, struct font *font)
+int load_bfont(const char *filename, struct font *font)
 {
 	BFont_Info *bfont = MyMalloc(sizeof(BFont_Info));
 
@@ -144,6 +146,7 @@ int LoadFont(const char *filename, struct font *font)
 	// Prepare the data structures according to the rendering mode
 	prepare_font(bfont, char_rect);
 
+	// References the bfont data into the struct font
 	font->bfont = bfont;
 	font->height = bfont->h;
 
@@ -153,7 +156,7 @@ int LoadFont(const char *filename, struct font *font)
 /**
  * Return the width of specified character
  */
-int CharWidth(struct font *font, unsigned char c)
+int font_char_width(struct font *font, unsigned char c)
 {
 	if (c < ' ' || c > font->bfont->number_of_chars - 1)
 		c = '.';
@@ -165,33 +168,26 @@ int CharWidth(struct font *font, unsigned char c)
  */
 int put_char(struct font *font, int x, int y, unsigned char c)
 {
-	SDL_Rect dest;
-	SDL_Rect clipping_rect;
-	struct image *img;
-
-	dest.w = CharWidth(font, ' ');
-	dest.h = FontHeight(font);
-	dest.x = x;
-	dest.y = y;
+	SDL_Rect dest = {
+		.w = font->bfont->char_image[' '].w,
+		.h = font->bfont->h,
+		.x = x,
+		.y = y
+	};
 
 	if (c < ' ' || c > font->bfont->number_of_chars - 1)
 		c = '.';
 
-	img = &font->bfont->char_image[c];
-
 	if ((c != ' ') && (c != '\n')) {
-		if (use_open_gl) {
-			SDL_GetClipRect(Screen, &clipping_rect);
-
-			if ((dest.x < clipping_rect.x + clipping_rect.w) && (dest.x >= clipping_rect.x)) {
-				display_image_on_screen(img, dest.x, dest.y, IMAGE_NO_TRANSFO);
-			}
-		} else {
+		struct image *img = &font->bfont->char_image[c];
+		SDL_Rect clipping_rect;
+		SDL_GetClipRect(Screen, &clipping_rect);
+		if ((dest.x >= clipping_rect.x) && (dest.x < clipping_rect.x + clipping_rect.w)) {
 			display_image_on_screen(img, dest.x, dest.y, IMAGE_NO_TRANSFO);
 		}
 	}
 
-	return CharWidth(font, c);
+	return font->bfont->char_image[c].w;
 }
 
 /**
@@ -202,26 +198,28 @@ void put_string(struct font *font, int x, int y, const char *text)
 {
 	char *ptr = (char *)text;
 
-	SetCurrentFont(font);
+	set_current_font(font);
 
+#ifdef HAVE_LIBGL
 	if (use_open_gl) {
-		// Set up clipping
 		SDL_Rect clip_rect;
 		SDL_GetClipRect(Screen, &clip_rect);
-
 		set_gl_clip_rect(&clip_rect);
 	}
+#endif
 
 	start_image_batch();
 
-	int letter_spacing = get_letter_spacing(GetCurrentFont());
+	int letter_spacing = get_letter_spacing(get_current_font());
 
 	while (*ptr != '\0') {
+		// handle_switch_font_char() can change the current font, so we need
+		// to call get_current_font() at each step
 		if (handle_switch_font_char(&ptr)) {
-			letter_spacing = get_letter_spacing(GetCurrentFont());
+			letter_spacing = get_letter_spacing(get_current_font());
 			continue;
 		}
-		x += put_char(GetCurrentFont(), x, y, *ptr) + letter_spacing;
+		x += put_char(get_current_font(), x, y, *ptr) + letter_spacing;
 		ptr++;
 	}
 
@@ -249,7 +247,7 @@ int text_width(struct font *font, const char *text)
 			letter_spacing = get_letter_spacing(font);
 			continue;
 		}
-		width += CharWidth(font, *ptr) + letter_spacing;
+		width += font_char_width(font, *ptr) + letter_spacing;
 		ptr++;
 	}
 	return width;
@@ -270,7 +268,7 @@ int limit_text_width(struct font *font, const char *text, int limit)
 			letter_spacing = get_letter_spacing(font);
 			continue;
 		}
-		width += CharWidth(font, *ptr) + letter_spacing;
+		width += font_char_width(font, *ptr) + letter_spacing;
 		ptr++;
 		if (width >= limit)
 			return (ptr - text);

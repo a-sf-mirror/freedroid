@@ -848,13 +848,14 @@ char *lang_get();
 void lang_init();
 
 // font.c
-void InitOurBFonts(void);
-void SetCurrentFont(struct font * Font);
-struct font *GetCurrentFont(void);
-int get_letter_spacing(struct font *font);
-int handle_switch_font_char(char **ptr);
-void put_string_left(struct font *font, int y, const char *text);
-void put_string_centered(struct font *font, int y, const char *text);
-void put_string_right(struct font *font, int y, const char *text);
+void init_fonts(void);
+void set_current_font(struct font *);
+struct font *get_current_font(void);
+int get_letter_spacing(struct font *);
+int get_font_height(struct font *);
+int handle_switch_font_char(char **);
+void put_string_left(struct font *, int, const char *);
+void put_string_centered(struct font *, int, const char *);
+void put_string_right(struct font *, int, const char *);
 
 #endif

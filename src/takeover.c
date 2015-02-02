@@ -199,7 +199,7 @@ static void show_droid_info(int droidtype)
 	show_droid_picture(UNIVERSAL_COORD_W(45), UNIVERSAL_COORD_H(213), droidtype);
 
 	// Show the droid name
-	SetCurrentFont(Menu_BFont);
+	set_current_font(Menu_Font);
 	clip.x = UNIVERSAL_COORD_W(330);
 	clip.y = UNIVERSAL_COORD_H(57);
 	clip.w = UNIVERSAL_COORD_W(200);
@@ -530,7 +530,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 	widget_text_init(&droid_info, "");
 	init_droid_description(&droid_info, target->type);
 	widget_set_rect(WIDGET(&droid_info), UNIVERSAL_COORD_W(258), UNIVERSAL_COORD_H(107), UNIVERSAL_COORD_W(346), UNIVERSAL_COORD_H(282));
-	droid_info.font = FPS_Display_BFont;
+	droid_info.font = FPS_Display_Font;
 	droid_info.content_above_func = show_info_up_button;
 	droid_info.content_below_func = show_info_down_button;
 
@@ -553,8 +553,8 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 		show_droid_info(target->type);
 		widget_text_display(WIDGET(&droid_info));
 		ShowGenericButtonFromList(TAKEOVER_HELP_BUTTON);
-		SetCurrentFont(Para_BFont);
-		put_string_centered(Para_BFont, GameConfig.screen_height - 30, _("For more information, click the help button."));
+		set_current_font(Para_Font);
+		put_string_centered(Para_Font, GameConfig.screen_height - 30, _("For more information, click the help button."));
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
@@ -1733,7 +1733,7 @@ void to_show_banner(const char *left, const char *right)
 	// Now the text should be ready and its
 	// time to display it...
 	DebugPrintf(2, "Takeover said: %s -- %s\n", left_box, right_box);
-	SetCurrentFont(Para_BFont);
+	set_current_font(Para_Font);
 	display_text(left_box, LEFT_INFO_X, LEFT_INFO_Y, NULL);
 	display_text(right_box, RIGHT_INFO_X, RIGHT_INFO_Y, NULL);
 

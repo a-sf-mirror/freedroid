@@ -51,14 +51,14 @@ static int text_bench()
     char *str = "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz";
 
 	// Make sure all glyphs are loaded
-	put_string(GetCurrentFont(), 0, 0, str);
+	put_string(get_current_font(), 0, 0, str);
 
 	// Display the string many times	
 	int nb = 10000;
 
 	timer_start();
 	while (nb--) {
-		put_string(GetCurrentFont(), 0, 0, str);
+		put_string(get_current_font(), 0, 0, str);
 	}
 		
 	our_SDL_flip_wrapper();
@@ -240,7 +240,7 @@ int benchmark()
 
 	clear_screen();
 	sprintf(str, "Testing \"%s\"...", do_benchmark);
-	put_string(GetCurrentFont(), 10, 100, str);
+	put_string(get_current_font(), 10, 100, str);
 	our_SDL_flip_wrapper();
 
 

@@ -164,8 +164,8 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", NO_REPORT);
 	LocalTimeSplitup = localtime(&(FileInfoBuffer.st_mtime));
 	strftime(InfoString, sizeof(InfoString), nl_langinfo(D_T_FMT), LocalTimeSplitup);
 
-	put_string(GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 3 * FontHeight(GetCurrentFont()), _("Last Modified:"));
-	put_string(GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), InfoString);
+	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 3 * get_font_height(get_current_font()), _("Last Modified:"));
+	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * get_font_height(get_current_font()), InfoString);
 
 	// Now that the modification time has been set up, we can start to compute
 	// the overall disk space of all files in question.
@@ -194,7 +194,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", IS_FATAL);
 
 	sprintf(InfoString, _("File Size: %2.3f MB"), ((float)FileSize) / (1024.0 * 1024.0));
 
-	put_string(GetCurrentFont(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), InfoString);
+	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 1 * get_font_height(get_current_font()), InfoString);
 
 };				// void LoadAndShowStats ( char* filename );
 
@@ -257,7 +257,7 @@ int SaveGame(void)
 		error_message(__FUNCTION__, "Unable to create the shipfile backup", PLEASE_INFORM);
 	}
 
-	put_string_centered(Menu_BFont, 10, _("Saving"));
+	put_string_centered(Menu_Font, 10, _("Saving"));
 	our_SDL_flip_wrapper();
 
 	if (SaveShip(filename, FALSE, 1) != OK) {
@@ -342,7 +342,7 @@ static int load_saved_game(int use_backup)
 
 	clean_error_msg_store();
 
-	put_string_centered(Menu_BFont, 10, _("Loading"));
+	put_string_centered(Menu_Font, 10, _("Loading"));
 	our_SDL_flip_wrapper();
 
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): function call confirmed....", __FUNCTION__);
@@ -435,7 +435,7 @@ static int load_saved_game(int use_backup)
 	// take a little time.  Therefore we print some message so the user will not
 	// panic and push the reset button :)
 	//
-	put_string(FPS_Display_BFont, 75, 150, _("Updating Tux images (this may take a little while...)"));
+	put_string(FPS_Display_Font, 75, 150, _("Updating Tux images (this may take a little while...)"));
 	our_SDL_flip_wrapper();
 
 	animation_timeline_reset();

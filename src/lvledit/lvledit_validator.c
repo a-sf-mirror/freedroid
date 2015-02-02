@@ -1539,20 +1539,20 @@ int level_validation()
 	SDL_Rect background_rect = { UNIVERSAL_COORD_W(20), UNIVERSAL_COORD_H(20), UNIVERSAL_COORD_W(600), UNIVERSAL_COORD_H(440) };
 	SDL_Rect report_rect = { UNIVERSAL_COORD_W(30), UNIVERSAL_COORD_H(30), UNIVERSAL_COORD_W(600), UNIVERSAL_COORD_H(430) };
 
-	struct font *current_font = GetCurrentFont();
-	int row_height = FontHeight(current_font);
+	struct font *current_font = get_current_font();
+	int row_height = get_font_height(current_font);
 	int max_rows = (report_rect.h / row_height) - 4;	// 4 lines are reserved for header and footer
-	int column_width = text_width(GetCurrentFont(), "000: empty");
+	int column_width = text_width(get_current_font(), "000: empty");
 	AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor *
 				OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | OMIT_BLASTS | SKIP_LIGHT_RADIUS |
 				NO_CURSOR | OMIT_ITEMS_LABEL);
-	SetCurrentFont(current_font);	// Reset font, in case it was modified by AssembleCombatPicture()
+	set_current_font(current_font);	// Reset font, in case it was modified by AssembleCombatPicture()
 
 	ShadowingRectangle(Screen, background_rect);
 
 	// Title
 
-	put_string_centered(FPS_Display_BFont, report_rect.y, "Level Validation tests - Summary\n");
+	put_string_centered(FPS_Display_Font, report_rect.y, "Level Validation tests - Summary\n");
 
 	// Load exceptions rules
 
@@ -1582,7 +1582,7 @@ int level_validation()
 			sprintf(txt, "%03d: [w]empty", l);
  			int lines = display_text_using_line_height(txt, col_pos, row_pos, &report_rect, 1.0);
  			row_pos += lines * row_height;
-			SetCurrentFont(current_font);	// Reset font
+			set_current_font(current_font);	// Reset font
 		} else {
 			// Loop on each validation function
 			int v = 0;
@@ -1607,7 +1607,7 @@ int level_validation()
 			}
 			int lines = display_text_using_line_height(txt, col_pos, row_pos, &report_rect, 1.0);
 			row_pos += lines * row_height;
-			SetCurrentFont(current_font);	// Reset font in case of the red "fail" was displayed
+			set_current_font(current_font);	// Reset font in case of the red "fail" was displayed
 
 			// Set final return code
 			compose_return_code(&final_rc, validator_ctx.return_code);
@@ -1627,16 +1627,16 @@ int level_validation()
 
 	int posy = report_rect.y + report_rect.h - row_height;
 
-	put_string_centered(FPS_Display_BFont, posy, "--- End of List --- Press Space to return to leveleditor ---");
+	put_string_centered(FPS_Display_Font, posy, "--- End of List --- Press Space to return to leveleditor ---");
 
 	if (final_rc != VALIDATION_PASS) {
 		posy -= row_height;
-		put_string_centered(FPS_Display_BFont, posy, "[r]Some tests were invalid. See the report in the console[n]");
+		put_string_centered(FPS_Display_Font, posy, "[r]Some tests were invalid. See the report in the console[n]");
 	}
 
 	if (uncaught_excpt) {
 		posy -= row_height;
-		put_string_centered(FPS_Display_BFont, posy, "[r]Some exceptions were not caught. See the report in the console[n]");
+		put_string_centered(FPS_Display_Font, posy, "[r]Some exceptions were not caught. See the report in the console[n]");
 	}
 
 	our_SDL_flip_wrapper();

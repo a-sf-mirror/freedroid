@@ -46,24 +46,24 @@ static struct {
 	char *filename;
 	struct font font;
 } fonts_def[] = {
-		{ &Para_BFont,        "parafont.png",     { 0,  0, NULL } },
-		{ &Menu_BFont,        "cpuFont.png",      { 0, -4, NULL } },
-		{ &Messagevar_BFont,  "small_white.png",  { 0,  0, NULL } },
-		{ &Messagestat_BFont, "small_blue.png",   { 0,  0, NULL } },
-		{ &Red_BFont,         "font05_red.png",   { 0, -2, NULL } },
-		{ &Blue_BFont,        "font05_white.png", { 0, -2, NULL } },
-		{ &FPS_Display_BFont, "font05.png",       { 0, -2, NULL } },
-		{ &Messagered_BFont,  "small_red.png",    { 0,  0, NULL } }
+		{ &Para_Font,        "parafont.png",     { 0,  0, NULL } },
+		{ &Menu_Font,        "cpuFont.png",      { 0, -4, NULL } },
+		{ &Messagevar_Font,  "small_white.png",  { 0,  0, NULL } },
+		{ &Messagestat_Font, "small_blue.png",   { 0,  0, NULL } },
+		{ &Red_Font,         "font05_red.png",   { 0, -2, NULL } },
+		{ &Blue_Font,        "font05_white.png", { 0, -2, NULL } },
+		{ &FPS_Display_Font, "font05.png",       { 0, -2, NULL } },
+		{ &Messagered_Font,  "small_red.png",    { 0,  0, NULL } }
 };
 
 /* Current font */
-static struct font *CurrentFont;
+static struct font *_current_font;
 
 /**
  * This function should load all the fonts we'll be using via the SDL
  * BFont library in FreedroidRPG.
  */
-void InitOurBFonts(void)
+void init_fonts(void)
 {
 	int i;
 	char fpath[PATH_MAX];
@@ -73,7 +73,7 @@ void InitOurBFonts(void)
 		sprintf(constructed_fname, "font/%s", fonts_def[i].filename);
 		find_file(constructed_fname, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 
-		int rtn = LoadFont(constructed_fname, &fonts_def[i].font);
+		int rtn = load_bfont(constructed_fname, &fonts_def[i].font);
 		if (rtn == FALSE) {
 			error_message(__FUNCTION__, "A font file for the BFont library could not be loaded (%s).",
 					PLEASE_INFORM | IS_FATAL, fonts_def[i].filename);
@@ -87,18 +87,18 @@ void InitOurBFonts(void)
 /**
  * Set the current font
  */
-void SetCurrentFont(struct font* font)
+void set_current_font(struct font* font)
 {
-	CurrentFont = font;
-};				// void SetCurrentFont (BFont_Info * Font)
+	_current_font = font;
+}
 
 /**
- * Returns the pointer to the current font strucure in use
+ * Returns the pointer to the current font structure in use
  */
-struct font *GetCurrentFont(void)
+struct font *get_current_font(void)
 {
-	return CurrentFont;
-};				// BFont_Info * GetCurrentFont (void)
+	return _current_font;
+}
 
 /**
  * Get letter-spacing for specified font.
@@ -114,7 +114,7 @@ int get_letter_spacing(struct font *font)
 /**
  * Return the font height
  */
-int FontHeight(struct font *font)
+int get_font_height(struct font *font)
 {
 	return font->height;
 }
@@ -138,23 +138,23 @@ int handle_switch_font_char(char **ptr)
 	}
 
 	if (**ptr == font_switchto_red[index]) {
-		SetCurrentFont(Red_BFont);
+		set_current_font(Red_Font);
 		(*ptr) += incr;
 		return TRUE;
 	} else if (**ptr == font_switchto_blue[index]) {
-		SetCurrentFont(Blue_BFont);
+		set_current_font(Blue_Font);
 		(*ptr) += incr;
 		return TRUE;
 	} else if (**ptr == font_switchto_neon[index]) {
-		SetCurrentFont(FPS_Display_BFont);
+		set_current_font(FPS_Display_Font);
 		(*ptr) += incr;
 		return TRUE;
 	} else if (**ptr == font_switchto_msgstat[index]) {
-		SetCurrentFont(Messagestat_BFont);
+		set_current_font(Messagestat_Font);
 		(*ptr) += incr;
 		return TRUE;
 	} else if (**ptr == font_switchto_msgvar[index]) {
-		SetCurrentFont(Messagevar_BFont);
+		set_current_font(Messagevar_Font);
 		(*ptr) += incr;
 		return TRUE;
 	}

@@ -72,13 +72,13 @@ void show_backgrounded_label_at_pixel_position(char *LabelText, int pos_x, int p
 
 	background_rect.x = pos_x - 1;
 	background_rect.y = pos_y;
-	background_rect.w = text_width(GetCurrentFont(), LabelText) + 2;
+	background_rect.w = text_width(get_current_font(), LabelText) + 2;
 	background_rect.h = 20;
 
 	draw_rectangle(&background_rect, 0, 0, 0, 255);
 
-	SetCurrentFont(FPS_Display_BFont);
-	put_string(GetCurrentFont(), pos_x, pos_y, LabelText);
+	set_current_font(FPS_Display_Font);
+	put_string(get_current_font(), pos_x, pos_y, LabelText);
 
 };				// void show_backgrounded_label_at_pixel_position ( char* LabelText , float fill_status , int pos_x , int pos_y )
 
@@ -104,8 +104,8 @@ void show_backgrounded_label_at_map_position(char *LabelText, float fill_status,
  */
 int show_backgrounded_text_rectangle(const char *text, struct font *font, int x, int y, int w, int h)
 {
-	struct font *old_font = GetCurrentFont();
-	SetCurrentFont(font);
+	struct font *old_font = get_current_font();
+	set_current_font(font);
 
 	SDL_Rect t_rect;
 	t_rect.x = x;
@@ -118,7 +118,7 @@ int show_backgrounded_text_rectangle(const char *text, struct font *font, int x,
 	int lines = get_lines_needed(text, t_rect, 1.0);
 
 	// Calculate the rectangle height
-	int f_height = FontHeight(GetCurrentFont());
+	int f_height = get_font_height(get_current_font());
 	int r_height = (lines * f_height) + (IN_WINDOW_TEXT_OFFSET * 2);
 
 	// Set up and fill the rectangle.
@@ -133,7 +133,7 @@ int show_backgrounded_text_rectangle(const char *text, struct font *font, int x,
 	t_rect.y += IN_WINDOW_TEXT_OFFSET;
 	display_text_using_line_height(text, t_rect.x, t_rect.y, &t_rect, 1.0);
 
-	SetCurrentFont(old_font);
+	set_current_font(old_font);
 	return r_height;
 }
 
@@ -145,10 +145,10 @@ int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels)
 	int StringIndex = 0;
 	int i;
 
-	if (text_width(GetCurrentFont(), StringToCut) <= LengthInPixels)
+	if (text_width(get_current_font(), StringToCut) <= LengthInPixels)
 		return FALSE;
 
-	StringIndex = limit_text_width(GetCurrentFont(), StringToCut, LengthInPixels);
+	StringIndex = limit_text_width(get_current_font(), StringToCut, LengthInPixels);
 	if (StringIndex < 1)
 		return FALSE;
 
@@ -181,7 +181,7 @@ int ScrollText(char *Text, const char *background_name)
 	Activate_Conservative_Frame_Computation();
 
 	SDL_Rect ScrollRect = { User_Rect.x + 10, User_Rect.y, User_Rect.w - 20, User_Rect.h };
-	SetCurrentFont(Para_BFont);
+	set_current_font(Para_Font);
 	StartInsertLine = ScrollRect.y + ScrollRect.h;
 	InsertLine = StartInsertLine;
 
@@ -254,9 +254,9 @@ int ScrollText(char *Text, const char *background_name)
 			InsertLine = StartInsertLine;
 			speed = 0;
 		}
-		if (InsertLine + (Number_Of_Line_Feeds + 1) * (int)(FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR) < ScrollRect.y
+		if (InsertLine + (Number_Of_Line_Feeds + 1) * (int)(get_font_height(get_current_font()) * LINE_HEIGHT_FACTOR) < ScrollRect.y
 		    && (speed > 0)) {
-			InsertLine = ScrollRect.y - (Number_Of_Line_Feeds + 1) * (int)(FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
+			InsertLine = ScrollRect.y - (Number_Of_Line_Feeds + 1) * (int)(get_font_height(get_current_font()) * LINE_HEIGHT_FACTOR);
 			speed = 0;
 		}
 
@@ -314,14 +314,14 @@ void DisplayBigScreenMessage(void)
 		if (Me.BigScreenMessageDuration[i] < GameConfig.delay_for_big_screen_messages) {
 			SDL_SetClipRect(Screen, NULL);
 
-			SetCurrentFont(Menu_BFont);
-			int x_pos = GameConfig.screen_width/2 - text_width(GetCurrentFont(), text)/2;
+			set_current_font(Menu_Font);
+			int x_pos = GameConfig.screen_width/2 - text_width(get_current_font(), text)/2;
 			display_text_using_line_height(text, x_pos, y_pos, NULL /* clip */, 1.0);
 
 			if (!GameConfig.Inventory_Visible && !GameConfig.SkillScreen_Visible && !GameConfig.CharacterScreen_Visible)
 				Me.BigScreenMessageDuration[i] += Frame_Time();
 
-			y_pos += FontHeight(Menu_BFont);
+			y_pos += get_font_height(Menu_Font);
 		}
 	}
 
@@ -341,7 +341,7 @@ static void display_countdown(int pixel_x, int pixel_y, const char* message, flo
 		sprintf(text, "%s %.1fs", message, duration);
 	}
 
-	pixel_x -= text_width(GetCurrentFont(), text) / 2;
+	pixel_x -= text_width(get_current_font(), text) / 2;
 
 	display_text_using_line_height(text, pixel_x, pixel_y, NULL /* clip */, 1.0);
 }
@@ -356,25 +356,25 @@ void display_effect_countdowns(void)
 	pixel_y -= 128; /* tux height... */
 
 	if (Me.slowdown_duration > 0.0) {
-		SetCurrentFont(Blue_BFont);
+		set_current_font(Blue_Font);
 		display_countdown(pixel_x, pixel_y, _("slowed"), Me.slowdown_duration);
-		pixel_y -= FontHeight(Blue_BFont);
+		pixel_y -= get_font_height(Blue_Font);
 	}
 
 	if (Me.paralyze_duration > 0.0) {
-		SetCurrentFont(Red_BFont);
+		set_current_font(Red_Font);
 		display_countdown(pixel_x, pixel_y, _("paralyzed"), Me.paralyze_duration);
-		pixel_y -= FontHeight(Red_BFont);
+		pixel_y -= get_font_height(Red_Font);
 	}
 
 	if (Me.invisible_duration > 0.0) {
-		SetCurrentFont(FPS_Display_BFont);
+		set_current_font(FPS_Display_Font);
 		display_countdown(pixel_x, pixel_y, _("invisible"), Me.invisible_duration);
-		pixel_y -= FontHeight(FPS_Display_BFont);
+		pixel_y -= get_font_height(FPS_Display_Font);
 	}
 
 	if (Me.nmap_duration > 0.0) {
-		SetCurrentFont(FPS_Display_BFont);
+		set_current_font(FPS_Display_Font);
 		display_countdown(pixel_x, pixel_y, _("scanning"), Me.nmap_duration);
 	}
 };		// void display_effect_countdowns( void )
@@ -391,8 +391,8 @@ static int display_text_using_line_height_with_cursor(const char *text, int star
 	if (text == NULL)
 		return 0;
 
-	int letter_spacing = get_letter_spacing(GetCurrentFont());
-	int tab_width = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + letter_spacing);
+	int letter_spacing = get_letter_spacing(get_current_font());
+	int tab_width = TABWIDTH * (font_char_width(get_current_font(), TABCHAR) + letter_spacing);
 
 	if (text[0]=='\0')
 		nblines = 0;
@@ -455,28 +455,28 @@ static int display_text_using_line_height_with_cursor(const char *text, int star
 		}
 
 		// carriage return in the middle of a word if it is too big to fit on one line
-		if (isgraph(*tmp) && (MyCursorX + CharWidth(GetCurrentFont(), *tmp) + letter_spacing) > (clip->x + clip->w)) {
+		if (isgraph(*tmp) && (MyCursorX + font_char_width(get_current_font(), *tmp) + letter_spacing) > (clip->x + clip->w)) {
 			MyCursorX = clip->x;
-			MyCursorY += (int)(FontHeight(GetCurrentFont()) * line_height_factor);
+			MyCursorY += (int)(get_font_height(get_current_font()) * line_height_factor);
 			empty_lines_started++;
 		}
 
 		switch (*tmp) {
 		case '\n':
 			MyCursorX = clip->x;
-			MyCursorY += (int)(FontHeight(GetCurrentFont()) * line_height_factor);
+			MyCursorY += (int)(get_font_height(get_current_font()) * line_height_factor);
 			empty_lines_started++;
 			break;
 		case '\t':
 			MyCursorX = (int)ceilf((float)MyCursorX / (float)(tab_width)) * (tab_width);
 			break;
 		default:
-			if (MyCursorY > clip->y - (int)(FontHeight(GetCurrentFont()) * line_height_factor)
+			if (MyCursorY > clip->y - (int)(get_font_height(get_current_font()) * line_height_factor)
 				&& !display_char_disabled)
-				put_char(GetCurrentFont(), MyCursorX, MyCursorY, *tmp);
+				put_char(get_current_font(), MyCursorX, MyCursorY, *tmp);
 
-			MyCursorX += CharWidth(GetCurrentFont(), *tmp)
-				+ get_letter_spacing(GetCurrentFont());
+			MyCursorX += font_char_width(get_current_font(), *tmp)
+				+ get_letter_spacing(get_current_font());
 
 			// At least one visible character must follow a line break or else
 			// the line is a trailing empty line not visible to the user. Such
@@ -503,7 +503,7 @@ static int display_text_using_line_height_with_cursor(const char *text, int star
 		SDL_Rect cursor_rect;
 		cursor_rect.x = cursor_x;
 		cursor_rect.y = cursor_y;
-		cursor_rect.h = FontHeight(GetCurrentFont());
+		cursor_rect.h = get_font_height(get_current_font());
 		cursor_rect.w = 8;
 		HighlightRectangle(Screen, cursor_rect);
 	}
@@ -549,22 +549,22 @@ int ImprovedCheckLineBreak(char *Resttext, const SDL_Rect * clip, float line_hei
 {
 	int NeededSpace = 0;
 
-	int letter_spacing = get_letter_spacing(GetCurrentFont());
+	int letter_spacing = get_letter_spacing(get_current_font());
 
 	if (*Resttext == ' ')
-		NeededSpace = CharWidth(GetCurrentFont(), ' ') + letter_spacing;
+		NeededSpace = font_char_width(get_current_font(), ' ') + letter_spacing;
 	else if (*Resttext == '\t')
-		NeededSpace = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + letter_spacing);
+		NeededSpace = TABWIDTH * (font_char_width(get_current_font(), TABCHAR) + letter_spacing);
 
 	Resttext++;
 	while ((*Resttext != ' ') && (*Resttext != '\t') && (*Resttext != '\n') && (*Resttext != 0)) {
-		NeededSpace += CharWidth(GetCurrentFont(), *Resttext) + letter_spacing;
+		NeededSpace += font_char_width(get_current_font(), *Resttext) + letter_spacing;
 		Resttext++;
 	}
 
 	if ((MyCursorX + NeededSpace) > (clip->x + clip->w)) {
 		MyCursorX = clip->x;
-		MyCursorY += (int)(FontHeight(GetCurrentFont()) * line_height_factor);
+		MyCursorY += (int)(get_font_height(get_current_font()) * line_height_factor);
 		return 1;
 	}
 
@@ -600,7 +600,7 @@ char *get_string(int MaxLen, const char *background_name, const char *text_for_o
 		x0 = MyCursorX;
 		y0 = MyCursorY;
 
-		put_string(GetCurrentFont(), x0, y0, input);
+		put_string(get_current_font(), x0, y0, input);
 		our_SDL_flip_wrapper();
 
 		key = getchar_raw(NULL);
@@ -613,7 +613,7 @@ char *get_string(int MaxLen, const char *background_name, const char *text_for_o
 				display_text(text_for_overhead_promt, 50, 50, NULL);
 				x0 = MyCursorX;
 				y0 = MyCursorY;
-				put_string(GetCurrentFont(), x0, y0, input);
+				put_string(get_current_font(), x0, y0, input);
 				our_SDL_flip_wrapper();
 			}
 			input[curpos] = 0;
@@ -700,7 +700,7 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 		TargetRect.x += EDIT_WINDOW_TEXT_OFFSET;
 		TargetRect.y += EDIT_WINDOW_TEXT_OFFSET;
 
-		SetCurrentFont(FPS_Display_BFont);
+		set_current_font(FPS_Display_Font);
 
 		display_text(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect);
 
@@ -815,16 +815,16 @@ void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...)
 
 	tmp = (char *)MyMalloc(10000 + 1);
 	vsprintf(tmp, fmt, args);
-	put_string(GetCurrentFont(), x, y, tmp);
+	put_string(get_current_font(), x, y, tmp);
 
 	// our_SDL_flip_wrapper (screen);
 
 	if (tmp[strlen(tmp) - 1] == '\n') {
 		MyCursorX = x;
-		MyCursorY = y + 1.1 * (FontHeight(GetCurrentFont()));
+		MyCursorY = y + 1.1 * (get_font_height(get_current_font()));
 	} else {
 		for (i = 0; i < ((int)strlen(tmp)); i++)
-			MyCursorX += CharWidth(GetCurrentFont(), tmp[i]);
+			MyCursorX += font_char_width(get_current_font(), tmp[i]);
 		MyCursorY = y;
 	}
 
@@ -851,7 +851,7 @@ int longest_line_width(char *text)
 		// Get the width of the current line.
 		char tmp = *text;
 		*text = '\0';
-		int line_width = text_width(GetCurrentFont(), line_start);
+		int line_width = text_width(get_current_font(), line_start);
 		*text = tmp;
 
 		// Update the width of the longest line.

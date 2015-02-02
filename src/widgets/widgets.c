@@ -212,7 +212,7 @@ static void display_tooltips()
 	}
 	
 	// Set the correct font before computing text width.
-	SetCurrentFont(FPS_Display_BFont);
+	set_current_font(FPS_Display_Font);
 
 	// Temporary copy required due to longest_line_width() altering the string.
 	char buffer[strlen(tooltip_text) + 1];
@@ -226,7 +226,7 @@ static void display_tooltips()
 
 	// Compute height
 	int lines_in_text = get_lines_needed(tooltip_text, tooltip_rect, LINE_HEIGHT_FACTOR);
-	tooltip_rect.h = lines_in_text * FontHeight(FPS_Display_BFont);
+	tooltip_rect.h = lines_in_text * get_font_height(FPS_Display_Font);
 
 	int center_x = tooltip_info.widget_rect.x + tooltip_info.widget_rect.w / 2;	
 	int center_y = tooltip_info.widget_rect.y + tooltip_info.widget_rect.h / 2;	

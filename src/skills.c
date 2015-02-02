@@ -612,7 +612,7 @@ static void ShowSkillsExplanationScreen(void)
 	TargetSkillRect.x = TEXT_OFFSET_X;
 	TargetSkillRect.w = 320 - 2 * TEXT_OFFSET_X;
 	TargetSkillRect.h = 480 - 15;
-	SetCurrentFont(FPS_Display_BFont);
+	set_current_font(FPS_Display_Font);
 	display_text(D_(spec->description), 16, 16 + 64 + 16, &TargetSkillRect);
 }
 
@@ -780,7 +780,7 @@ void ShowSkillsScreen(void)
 	// We will use the FPS display font, cause the small one isn't 
 	// very well readable on the silver background
 	//
-	SetCurrentFont(FPS_Display_BFont);
+	set_current_font(FPS_Display_Font);
 
 	load_skill_level_images_if_needed();
 
@@ -831,7 +831,7 @@ void ShowSkillsScreen(void)
 
 		display_image_on_screen(&SpellSkillMap[SkillOfThisSlot].icon_surface, ButtonRect.x, ButtonRect.y, IMAGE_NO_TRANSFO);
 
-		SetCurrentFont(FPS_Display_BFont);
+		set_current_font(FPS_Display_Font);
 
 		// Program shortcut
 		int sci;
@@ -844,7 +844,7 @@ void ShowSkillsScreen(void)
 			// print the quick key number
 			char str[10];
 			sprintf(str, "F%d\n", 5 + sci);
-			display_text(str, ButtonRect.x + ButtonRect.w - 2 - text_width(GetCurrentFont(), str), ButtonRect.y, &SkillScreenRect);
+			display_text(str, ButtonRect.x + ButtonRect.w - 2 - text_width(get_current_font(), str), ButtonRect.y, &SkillScreenRect);
 		}
 		// Name of the skill
 
@@ -852,16 +852,16 @@ void ShowSkillsScreen(void)
 			    16 + 64 + 16 + SkillScreenRect.x,
 			    FIRST_SKILLRECT_Y - 6 + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y, &SkillScreenRect);
 
-		SetCurrentFont(Messagestat_BFont);
+		set_current_font(Messagestat_Font);
 		int tmp, tmp2;
 		int nextypos =
-		    FIRST_SKILLRECT_Y - 8 + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y + 2 * FontHeight(GetCurrentFont());
+		    FIRST_SKILLRECT_Y - 8 + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y + 2 * get_font_height(get_current_font());
 
 		// Program revision
 		sprintf(CharText, _("Program revision: %c%d%c "), font_switchto_msgvar[0], Me.skill_level[SkillOfThisSlot],
 			font_switchto_msgstat[0]);
 		display_text(CharText, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect);
-		nextypos += FontHeight(GetCurrentFont());
+		nextypos += get_font_height(get_current_font());
 
 		// Heat cost/cooling
 		tmp = calculate_program_heat_cost(SkillOfThisSlot);
@@ -871,7 +871,7 @@ void ShowSkillsScreen(void)
 			else
 				sprintf(CharText, _("Cooling: %c%d%c "), font_switchto_msgvar[0], -tmp, font_switchto_msgstat[0]);
 			display_text(CharText, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect);
-			nextypos += FontHeight(GetCurrentFont());
+			nextypos += get_font_height(get_current_font());
 		}
 		// Damage/healing
 		tmp = calculate_program_hit_damage_low(SkillOfThisSlot);
@@ -891,7 +891,7 @@ void ShowSkillsScreen(void)
 						font_switchto_msgstat[0]);
 			}
 			display_text(CharText, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect);
-			nextypos += FontHeight(GetCurrentFont());
+			nextypos += get_font_height(get_current_font());
 		}
 		// Special effect and duration
 		if (strcmp(SpellSkillMap[SkillOfThisSlot].effect, "none")) {
@@ -929,7 +929,7 @@ void ShowSkillsScreen(void)
 					font_switchto_msgstat[0]);
 
 			display_text(CharText, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect);
-			nextypos += FontHeight(GetCurrentFont());
+			nextypos += get_font_height(get_current_font());
 		}
 	}
 

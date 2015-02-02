@@ -281,8 +281,8 @@ void alert_window(const char *text, ...)
 		SDL_Delay(1);
 		RestoreMenuBackground(1);
 
-		int r_height = show_backgrounded_text_rectangle(buffer->value, FPS_Display_BFont, x, y, w, h);
-		show_backgrounded_text_rectangle(_("Click to continue..."), Red_BFont, x, y + r_height, w, 10);
+		int r_height = show_backgrounded_text_rectangle(buffer->value, FPS_Display_Font, x, y, w, h);
+		show_backgrounded_text_rectangle(_("Click to continue..."), Red_Font, x, y + r_height, w, 10);
 
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();

@@ -100,13 +100,13 @@ void widget_text_display(struct widget *w)
 		return;
 
 	// Set font before computing number of lines required.
-	SetCurrentFont(wt->font);
+	set_current_font(wt->font);
 
 	// Compute the number of lines required.
 	lines_needed = get_lines_needed(wt->text->value, w->rect, wt->line_height_factor);
 
 	// Get number of visible lines.
-	font_size = FontHeight(wt->font) * wt->line_height_factor;
+	font_size = get_font_height(wt->font) * wt->line_height_factor;
 	visible_lines = (float) w->rect.h / (float) font_size;
 
 	/* Disallow scrolling too far up or down. */
@@ -324,9 +324,9 @@ void widget_text_init(struct widget_text *w, const char *start_text)
  */
 int widget_text_can_scroll_up(struct widget_text *w)
 {
-	SetCurrentFont(w->font);
+	set_current_font(w->font);
 	int lines_needed = get_lines_needed(w->text->value, WIDGET(w)->rect, w->line_height_factor);
-	const int font_size = FontHeight(w->font) * w->line_height_factor;
+	const int font_size = get_font_height(w->font) * w->line_height_factor;
 	float visible_lines = (float) WIDGET(w)->rect.h / (float) font_size;
 
 	return lines_needed > visible_lines &&

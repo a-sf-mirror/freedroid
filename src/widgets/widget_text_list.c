@@ -66,10 +66,10 @@ static void compute_visible_lines(struct widget_text_list *wl)
 	struct text_list_entry *list_entries = wl->entries.arr;
 
 	// Compute the number of lines that can be displayed.
-	SetCurrentFont(wl->font);
+	set_current_font(wl->font);
 
 	// Compute the number of lines that can be displayed.
-	int font_height = FontHeight(wl->font);
+	int font_height = get_font_height(wl->font);
 	int visible_lines = WIDGET(wl)->rect.h / font_height;
 
 	SDL_Rect rect = WIDGET(wl)->rect;
@@ -150,7 +150,7 @@ static void text_list_display(struct widget *w)
 	struct text_list_entry *list_entries = wl->entries.arr;
 
 	compute_visible_lines(wl);
-	SetCurrentFont(wl->font);
+	set_current_font(wl->font);
 
 	int i;
 	for (i = wl->first_visible_entry; i <= wl->last_visible_entry; i++) {
@@ -278,7 +278,7 @@ struct widget_text_list *widget_text_list_create()
 	WIDGET(wl)->display = text_list_display;
 	WIDGET(wl)->handle_event = text_list_handle_event;
 
-	wl->font = FPS_Display_BFont;
+	wl->font = FPS_Display_Font;
 	wl->user_data = NULL;
 
 	dynarray_init(&wl->entries, 5, sizeof(struct text_list_entry));

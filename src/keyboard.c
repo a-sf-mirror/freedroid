@@ -300,7 +300,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 	ShadowingRectangle(Screen, keychart_rect);
 
-	put_string_centered(Para_BFont, FontHeight(Para_BFont), _("Key chart"));
+	put_string_centered(Para_Font, get_font_height(Para_Font), _("Key chart"));
 
 	if (startidx >= sizeof(default_keybinds) / sizeof(default_keybinds[0]))
 		return -1;
@@ -317,11 +317,11 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 		sprintf(txt, "%s%s%s: %s", font_str, (i == cursor) ? "> " : "   ",
 			_(GameConfig.input_keybinds[i].name), keystr);
-		put_string(GetCurrentFont(), xpos, ypos, txt);
+		put_string(get_current_font(), xpos, ypos, txt);
 
-		ypos += FontHeight(GetCurrentFont());
+		ypos += get_font_height(get_current_font());
 
-		if (ypos > keychart_rect.y + keychart_rect.h - FontHeight(GetCurrentFont())) {
+		if (ypos > keychart_rect.y + keychart_rect.h - get_font_height(get_current_font())) {
 			if (xpos > keychart_rect.x)
 				break;
 			else {
@@ -331,7 +331,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 		}
 	}
 
-	put_string(FPS_Display_BFont, 100, GameConfig.screen_height - FontHeight(FPS_Display_BFont),
+	put_string(FPS_Display_Font, 100, GameConfig.screen_height - get_font_height(FPS_Display_Font),
 		      _("ARROWS to select, ENTER to remap, ESCAPE to exit"));
 	our_SDL_flip_wrapper();
 
@@ -345,13 +345,13 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 static int get_nb_commands_per_page()
 {
 	int ypos = KEYCHART_RECT_Y;
-	struct font *our_font = FPS_Display_BFont;
+	struct font *our_font = FPS_Display_Font;
 	int i = 0;
 
 	while (1) {
-		ypos += FontHeight(our_font);
+		ypos += get_font_height(our_font);
 		i++;
-		if (ypos > KEYCHART_RECT_Y + KEYCHART_RECT_H - FontHeight(our_font)) {
+		if (ypos > KEYCHART_RECT_Y + KEYCHART_RECT_H - get_font_height(our_font)) {
 			break;
 		}
 	}

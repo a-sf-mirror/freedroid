@@ -405,7 +405,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	/* Initialize the text widget. */
 	widget_text_init(&item_description, "");
 	widget_set_rect(WIDGET(&item_description), UNIVERSAL_COORD_W(258), UNIVERSAL_COORD_H(108), UNIVERSAL_COORD_W(346), UNIVERSAL_COORD_H(255));
-	item_description.font = FPS_Display_BFont;
+	item_description.font = FPS_Display_Font;
 	item_description.line_height_factor = LINE_HEIGHT_FACTOR;
 	item_description.scroll_offset = scroll_to_top;
 
@@ -490,7 +490,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 
 		/* Show the amount of 'Valuable Circuits' Tux has. */
 		sprintf(GoldString, "%6d", (int)Me.Gold);
-		put_string(FPS_Display_BFont, 40 * GameConfig.screen_width / 640 - 15,
+		put_string(FPS_Display_Font, 40 * GameConfig.screen_width / 640 - 15,
 			      370 * GameConfig.screen_height / 480, GoldString);
 
 		blit_mouse_cursor();

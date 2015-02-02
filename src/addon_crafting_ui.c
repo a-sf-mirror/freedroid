@@ -255,15 +255,15 @@ void show_addon_crafting_ui()
 	blit_background("item_upgrade_crafting.png");
 
 	// Draw the title.
-	SetCurrentFont(Menu_BFont);
+	set_current_font(Menu_Font);
 	display_text(_("Craft Addons"), rects.title_text.x, rects.title_text.y, NULL);
 
 	// Draw the details string.
-	SetCurrentFont(Blue_BFont);
+	set_current_font(Blue_Font);
 	display_text(_("Details"), rects.details_text.x, rects.details_text.y, NULL);
 
 	// Draw the parts text
-	SetCurrentFont(Blue_BFont);
+	set_current_font(Blue_Font);
 	display_text(_("Parts"), rects.materials_list.x, rects.materials_list.y, NULL);
 
 	// Draw the apply and close buttons.
@@ -285,9 +285,9 @@ void show_addon_crafting_ui()
 			HighlightRectangle(Screen, rect);
 		}
 		if (arr[i].available) {
-			SetCurrentFont(Blue_BFont);
+			set_current_font(Blue_Font);
 		} else {
-			SetCurrentFont(Red_BFont);
+			set_current_font(Red_Font);
 		}
 		int type = arr[i].item_type;
 		display_text(D_(item_specs_get_name(type)), rect.x + rect.h, rect.y + 4, NULL);
@@ -334,14 +334,14 @@ void show_addon_crafting_ui()
 
 		//first the divisor  (11 part in the diagram)
 		sprintf( text ,"%s%02d", font_switchto_neon, ui.materials_for_selected[i].required);
-		int w_text = text_width(GetCurrentFont(), text);
+		int w_text = text_width(get_current_font(), text);
 		x = rect.x + rect.w  // the right border
 			 - WIDTH_BORDER // the blue border
 			 - w_text; // right justified
 		display_text(text, x, y, NULL);
 
 		//then the '/' center
-		w_text = text_width(GetCurrentFont(), "/");
+		w_text = text_width(get_current_font(), "/");
 		int half = w_text / 2;
 		x = rect.x + (rect.w / 2) // center of the column
 			 - half; // center placed
@@ -356,7 +356,7 @@ void show_addon_crafting_ui()
 			else
 				sprintf( text ,"%s%02d", font_switchto_neon, ui.materials_for_selected[i].available);
 		}
-		w_text = text_width(GetCurrentFont(), text);
+		w_text = text_width(get_current_font(), text);
 		x = rect.x + (rect.w / 2) // center of the column
 			 - half // the part used by /
 			 - w_text; // right justified
@@ -465,7 +465,7 @@ void addon_crafting_ui()
 	// Clear the struct and build the recipe list.
 	memset(&ui, 0, sizeof(ui));
 	widget_text_init(&ui.description, "");
-	ui.description.font = Messagevar_BFont;
+	ui.description.font = Messagevar_Font;
 	WIDGET(&ui.description)->rect = rects.recipe_desc;
 	ui.description.content_above_func = draw_scroll_desc_up_button;
 	ui.description.content_below_func = draw_scroll_desc_down_button;

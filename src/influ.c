@@ -962,54 +962,53 @@ void start_tux_death_explosions(void)
  */
 void do_death_menu()
 {
-        char *MenuTexts[100];
-        int done = FALSE;
-        int MenuPosition = 1;
-        int i;
+	char *MenuTexts[100];
+	int done = FALSE;
+	int MenuPosition = 1;
+	int i;
 
-        game_status = INSIDE_MENU;
+	game_status = INSIDE_MENU;
 
-        input_handle();
+	input_handle();
 
-        enum {
-                LOAD_LATEST_POSITION = 1,
-                LOAD_BACKUP_POSITION,
-                QUIT_TO_MAIN_POSITION,
-                QUIT_POSITION
-        };
+	enum {
+		LOAD_LATEST_POSITION = 1,
+		LOAD_BACKUP_POSITION,
+		QUIT_TO_MAIN_POSITION,
+		QUIT_POSITION
+	};
 
-        while (!done) {
-                i = 0;
-                MenuTexts[i++] = _("Load Latest");
-                MenuTexts[i++] = _("Load Backup");
-                MenuTexts[i++] = _("Quit to Main Menu");
-                MenuTexts[i++] = _("Exit FreedroidRPG");
-                MenuTexts[i++] = "";
+	while (!done) {
+		i = 0;
+		MenuTexts[i++] = _("Load Latest");
+		MenuTexts[i++] = _("Load Backup");
+		MenuTexts[i++] = _("Quit to Main Menu");
+		MenuTexts[i++] = _("Exit FreedroidRPG");
+		MenuTexts[i++] = "";
 
-                MenuPosition = DoMenuSelection("", MenuTexts, 1, "--GAME_BACKGROUND--", Menu_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, 1, "--GAME_BACKGROUND--", Menu_Font);
 
-                switch (MenuPosition) {
-
-                case LOAD_LATEST_POSITION:
-                        LoadGame();
-                        done = !done;
-                        break;
-                case LOAD_BACKUP_POSITION:
-                        LoadBackupGame();
-                        done = !done;
-                        break;
-                case QUIT_TO_MAIN_POSITION:
-                        if (game_root_mode == ROOT_IS_GAME) {
-                                GameOver = TRUE;
-                        }
-                        done = !done;
-                        break;
-                case QUIT_POSITION:
-                        Terminate(EXIT_SUCCESS);
-                        break;
-                default:
-                        break;
-                }
+		switch (MenuPosition) {
+		case LOAD_LATEST_POSITION:
+			LoadGame();
+			done = !done;
+			break;
+		case LOAD_BACKUP_POSITION:
+			LoadBackupGame();
+			done = !done;
+			break;
+		case QUIT_TO_MAIN_POSITION:
+			if (game_root_mode == ROOT_IS_GAME) {
+				GameOver = TRUE;
+			}
+			done = !done;
+			break;
+		case QUIT_POSITION:
+			Terminate(EXIT_SUCCESS);
+			break;
+		default:
+			break;
+		}
 	}
 }
 

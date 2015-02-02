@@ -54,8 +54,8 @@ static void categoryselect_display(struct widget *w)
 	draw_rectangle(&w->rect, 70, 100, 100, 150);
 
 	struct font *PreviousFont;
-	PreviousFont = GetCurrentFont();
-	SetCurrentFont(Messagevar_BFont);
+	PreviousFont = get_current_font();
+	set_current_font(Messagevar_Font);
 
 	tr.y = w->rect.y;
 	tr.w = 2;
@@ -72,7 +72,7 @@ static void categoryselect_display(struct widget *w)
 	display_text(cs->title, hr.x + 2, hr.y, &hr);
 	tr.x = hr.x + tab_width - 2;
 	draw_rectangle(&tr, 0, 0, 0, 136);
-	SetCurrentFont(PreviousFont);
+	set_current_font(PreviousFont);
 }
 
 struct widget_lvledit_categoryselect *get_current_object_type()

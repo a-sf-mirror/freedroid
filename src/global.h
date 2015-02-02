@@ -401,14 +401,14 @@ EXTERN struct dynarray difficulties;
 #else
 #define EXTERN extern
 #endif
-EXTERN struct font *Menu_BFont;
-EXTERN struct font *Messagevar_BFont;
-EXTERN struct font *Messagestat_BFont;
-EXTERN struct font *Para_BFont;
-EXTERN struct font *FPS_Display_BFont;
-EXTERN struct font *Blue_BFont;
-EXTERN struct font *Red_BFont;
-EXTERN struct font *Messagered_BFont;
+EXTERN struct font *Menu_Font;
+EXTERN struct font *Messagevar_Font;
+EXTERN struct font *Messagestat_Font;
+EXTERN struct font *Para_Font;
+EXTERN struct font *FPS_Display_Font;
+EXTERN struct font *Blue_Font;
+EXTERN struct font *Red_Font;
+EXTERN struct font *Messagered_Font;
 
 #undef EXTERN
 #endif				// _global_h

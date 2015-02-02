@@ -166,7 +166,7 @@ static void stamina_bar_display(struct widget *w)
 	blit_vertical_status_bar(max_value, current_value, filled_color, empty_color, w->rect.x, w->rect.y, w->rect.w, w->rect.h);
 
 	if (GameConfig.cheat_running_stamina)
-		put_string(Messagestat_BFont, w->rect.x, w->rect.y, "C");
+		put_string(Messagestat_Font, w->rect.x, w->rect.y, "C");
 }
 
 /** Computes the tooltip text displayed when hovering the stamina bar. */
@@ -233,7 +233,7 @@ static void health_bar_display(struct widget *w)
 	blit_vertical_status_bar(Me.maxenergy, Me.energy, fill_color, empty_color, w->rect.x, w->rect.y, w->rect.w, w->rect.h);
 
 	if (Me.god_mode)
-		put_string(Messagestat_BFont,  w->rect.x, w->rect.y, "C");
+		put_string(Messagestat_Font,  w->rect.x, w->rect.y, "C");
 }
 
 /** Computes the tooltip text displayed when hovering the health bar. */
@@ -334,7 +334,7 @@ static void quick_inventory_display(struct widget *w)
 
 	for (i = 0; i < 10; i++) {
 		sprintf(text, "%d", i < 9 ? i + 1: 0);
-		put_string(Messagestat_BFont, w->rect.x + i * step, w->rect.y + 16, text);
+		put_string(Messagestat_Font, w->rect.x + i * step, w->rect.y + 16, text);
 		if (((index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1)) != -1)
 			&& (Me.Inventory[index].inventory_position.x == i)
 			&& (Me.Inventory[index].inventory_position.y == INVENTORY_GRID_HEIGHT - 1))
@@ -580,13 +580,13 @@ static struct widget_group *create_hud_bar()
 	// Ammo indicator
 	struct widget_text *ammo = widget_text_create();
 	widget_set_rect(WIDGET(ammo), left_panel_x + 36, WIDGET(panel)->rect.y + 77, 100, 22);
-	ammo->font = FPS_Display_BFont;
+	ammo->font = FPS_Display_Font;
 	WIDGET(ammo)->update = WIDGET_ANONYMOUS(struct widget *w, { current_ammo_update(w); });
 
 	// Message log.
 	init_message_log();
 	widget_set_rect(WIDGET(message_log), left_scaling_panel_x - 51,  WIDGET(panel)->rect.y + 7, right_panel_x - left_scaling_panel_x + 102, 46);
-	message_log->font = Messagevar_BFont;
+	message_log->font = Messagevar_Font;
 	widget_group_add(hud_bar, WIDGET(message_log));
 
 	widget_group_add(hud_bar, WIDGET(ammo));

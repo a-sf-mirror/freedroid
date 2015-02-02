@@ -38,7 +38,7 @@
 #include "global.h"
 #include "widgets/widgets.h"
 
-#define TEXT_BANNER_DEFAULT_FONT FPS_Display_BFont
+#define TEXT_BANNER_DEFAULT_FONT FPS_Display_Font
 
 /**
  * The HUD contains several status graphs.  These graphs appear as 
@@ -217,12 +217,12 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	int bar_y;
 	int bar_x;
 	SDL_Rect rect;
-	struct font *BFont_to_use = Blue_BFont;
+	struct font *BFont_to_use = Blue_Font;
 	Uint8 r, g, b;
 
 	text_length = text_width(BFont_to_use, D_(cur_enemy->short_description_text));
 
-	rect.h = FontHeight(BFont_to_use);
+	rect.h = get_font_height(BFont_to_use);
 
 	// Hostile droids' bars are shown in red, friendly in green.
 	if (!is_friendly(cur_enemy->faction, FACTION_SELF)) {
@@ -240,7 +240,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	bar_y =
 	    translate_map_point_to_screen_pixel_y(description_pos->x,
 	    		description_pos->y) + enemy_images[Droidmap[cur_enemy->type].individual_shape_nr][0][0].offset_y -
-	    2.5 * FontHeight(BFont_to_use);
+	    2.5 * get_font_height(BFont_to_use);
 
 	// Calculates the width of the remaining health bar. Rounds the
 	// width up to the nearest integer to ensure that at least one
@@ -470,7 +470,7 @@ void display_tooltip(const char *text, int centered, SDL_Rect rect)
 	strcpy(buffer, text);
 
 	// Set font before making any font specific calculations.
-	SetCurrentFont(TEXT_BANNER_DEFAULT_FONT);
+	set_current_font(TEXT_BANNER_DEFAULT_FONT);
 
 	// If the width is not specified, expand the rectangle to fit
 	// the longest line width.
@@ -479,7 +479,7 @@ void display_tooltip(const char *text, int centered, SDL_Rect rect)
 
 	// Compute the required height.
 	int lines_in_text = get_lines_needed(buffer, rect, LINE_HEIGHT_FACTOR);
-	rect.h = lines_in_text * FontHeight(GetCurrentFont());
+	rect.h = lines_in_text * get_font_height(get_current_font());
 	
 	// Add extra correction to ensure the banner rectangle stays inside
 	// the visible screen.
@@ -508,7 +508,7 @@ void display_tooltip(const char *text, int centered, SDL_Rect rect)
 	}
 
 	// Print the text centered.
-	int line_spacing = (text_rect.h - lines_in_text * FontHeight(GetCurrentFont())) / (lines_in_text + 1);
+	int line_spacing = (text_rect.h - lines_in_text * get_font_height(get_current_font())) / (lines_in_text + 1);
 	char *ptr = buffer;
 	int i;
 	for (i = 0; i < lines_in_text; i++) {
@@ -519,10 +519,10 @@ void display_tooltip(const char *text, int centered, SDL_Rect rect)
 			this_line[pos] = '\0';
 			ptr += pos + 1;
 		}
-		int offset = (text_rect.w - text_width(GetCurrentFont(), this_line)) / 2;
-		put_string(GetCurrentFont(),
+		int offset = (text_rect.w - text_width(get_current_font(), this_line)) / 2;
+		put_string(get_current_font(),
 			      text_rect.x + offset,
-			      text_rect.y + line_spacing + i * (line_spacing + FontHeight(GetCurrentFont())), this_line);
+			      text_rect.y + line_spacing + i * (line_spacing + get_font_height(get_current_font())), this_line);
 	}
 }
 
@@ -637,7 +637,7 @@ static void show_top_left_text(void)
 	clip.w = GameConfig.screen_width;
 	clip.h = GameConfig.screen_height;
 
-	SetCurrentFont(FPS_Display_BFont);
+	set_current_font(FPS_Display_Font);
 	display_text_using_line_height(txt->value, clip.x, clip.y, &clip, 1.0);
 }
 
@@ -670,7 +670,7 @@ static void show_top_right_text(void)
 			strcat(level_name_and_time, temp_text);
 			strcat(level_name_and_time, " ");
 		}
-		put_string_right(FPS_Display_BFont, 0.3 * FontHeight(GetCurrentFont()), level_name_and_time);
+		put_string_right(FPS_Display_Font, 0.3 * get_font_height(get_current_font()), level_name_and_time);
 	}
 }
 

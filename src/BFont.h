@@ -22,13 +22,10 @@ typedef struct BFont_Info {
 } BFont_Info;
 
 /* Load and store le font in the BFont_Info structure */
-int LoadFont(const char *filename, struct font *font);
-
-/* Returns the font height */
-int FontHeight(struct font *font);
+int load_bfont(const char *filename, struct font *font);
 
 /* Returns the character width of the specified font */
-int CharWidth(struct font *font, unsigned char c);
+int font_char_width(struct font *font, unsigned char c);
 
 /* Write a single character on the screen with the specified font */
 int put_char(struct font *font, int x, int y, unsigned char c);

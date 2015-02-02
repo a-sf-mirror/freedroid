@@ -89,28 +89,28 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 	// ON THE MENU SCREEN...
 	//
 	if (!strcmp(MenuTexts[0], SINGLE_PLAYER_STRING)) {
-		put_string_right(FPS_Display_BFont, GameConfig.screen_height - 0.7 * FontHeight(GetCurrentFont()), freedroid_version);
+		put_string_right(FPS_Display_Font, GameConfig.screen_height - 0.7 * get_font_height(get_current_font()), freedroid_version);
 		// printf ("\n%s %s  \n", PACKAGE, VERSION);
 #ifdef HAVE_LIBGL
 		sprintf(open_gl_string, _("OpenGL support compiled: YES"));
 #else
 		sprintf(open_gl_string, _("OpenGL support compiled: NO"));
 #endif
-		put_string_left(FPS_Display_BFont, GameConfig.screen_height - 2.4 * FontHeight(GetCurrentFont()), open_gl_string);
+		put_string_left(FPS_Display_Font, GameConfig.screen_height - 2.4 * get_font_height(get_current_font()), open_gl_string);
 		sprintf(open_gl_string, _("OpenGL output active: "));
 		if (use_open_gl)
 			sprintf(open_gl_string, _("OpenGL output active: YES"));
 		else
 			sprintf(open_gl_string, _("OpenGL output active: NO"));
-		put_string_left(FPS_Display_BFont, GameConfig.screen_height - 1.4 * FontHeight(GetCurrentFont()), open_gl_string);
+		put_string_left(FPS_Display_Font, GameConfig.screen_height - 1.4 * get_font_height(get_current_font()), open_gl_string);
 	}
 	// Now that the possible font-changing small info printing is
 	// done, we can finally set the right font for the menu itself.
 	//
 	if (MenuFont == NULL)
-		SetCurrentFont(Menu_BFont);
+		set_current_font(Menu_Font);
 	else
-		SetCurrentFont((struct font *) MenuFont);
+		set_current_font((struct font *) MenuFont);
 
 };				// void print_menu_text ( ... )
 
@@ -146,8 +146,8 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 	// We set the given font, if appropriate, and set the font height variable...
 	//
 	if (MenuFont != NULL)
-		SetCurrentFont(MenuFont);
-	h = FontHeight(GetCurrentFont());
+		set_current_font(MenuFont);
+	h = get_font_height(get_current_font());
 
 	// Some menus are intended to start with the default setting of the
 	// first menu option selected.  However this is not always desired.
@@ -173,7 +173,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 
 	LongestOption = 0;
 	for (i = 0; i < NumberOfOptionsGiven; ++i) {
-		MenuTextWidths[i] = text_width(GetCurrentFont(), MenuTexts[i]);
+		MenuTextWidths[i] = text_width(get_current_font(), MenuTexts[i]);
 		if (MenuTextWidths[i] > LongestOption)
 			LongestOption = MenuTextWidths[i];
 	}
@@ -281,7 +281,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 				}
 			}
 			// Draw the option's text
-			put_string_centered(GetCurrentFont(), first_menu_item_pos_y + i * h, str);
+			put_string_centered(get_current_font(), first_menu_item_pos_y + i * h, str);
 
 			free(str);
 		}
@@ -483,7 +483,7 @@ void Cheatmenu(void)
 	// Some small font is needed, such that we can get a lot of lines on
 	// one single cheat menu page...
 	//
-	SetCurrentFont(FPS_Display_BFont);
+	set_current_font(FPS_Display_Font);
 
 	x0 = 50;
 	y0 = 20;
@@ -739,9 +739,9 @@ static void RunSubMenu(int startup, int menu_id)
 		menus[menu_id].FillText(texts);
 
 		if (startup)
-			pos = DoMenuSelection("", texts, -1, "title.jpg", Menu_BFont);
+			pos = DoMenuSelection("", texts, -1, "title.jpg", Menu_Font);
 		else
-			pos = DoMenuSelection("", texts, pos, "--GAME_BACKGROUND--", Menu_BFont);
+			pos = DoMenuSelection("", texts, pos, "--GAME_BACKGROUND--", Menu_Font);
 
 		int ret = menus[menu_id].HandleSelection(pos);
 
@@ -760,7 +760,7 @@ static void RunSubMenu(int startup, int menu_id)
 static void RunMenu(int is_startup)
 {
 	int start_menu = is_startup ? MENU_STARTUP : MENU_ESCAPE;
-	SetCurrentFont(Menu_BFont);
+	set_current_font(Menu_Font);
 	Activate_Conservative_Frame_Computation();
 	if (is_startup) {
 		// Can the music be disabled by a submenu ?
@@ -1738,7 +1738,7 @@ int Single_Player_Menu(void)
 	while (!can_continue) {
 
 		if (!skip_initial_menus)
-			MenuPosition = DoMenuSelection("", MenuTexts, 1, "title.jpg", Menu_BFont);
+			MenuPosition = DoMenuSelection("", MenuTexts, 1, "title.jpg", Menu_Font);
 		else
 			MenuPosition = NEW_HERO_POSITION;
 

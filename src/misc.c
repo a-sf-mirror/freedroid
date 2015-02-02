@@ -819,8 +819,8 @@ void Pause(void)
 
 		AssembleCombatPicture(SHOW_ITEMS);
 		if (!cheese) {
-			put_string_centered(Menu_BFont, 200, _("GAME PAUSED"));
-			put_string_centered(Menu_BFont, 230, _("press p to resume"));
+			put_string_centered(Menu_Font, 200, _("GAME PAUSED"));
+			put_string_centered(Menu_Font, 230, _("press p to resume"));
 		}
 		our_SDL_flip_wrapper();
 

@@ -349,7 +349,7 @@ struct widget_group *create_chat_dialog()
 	chat_selector = widget_text_list_create();
 
 	/* Adjust padding of the text area, to adapt the vertically padding to the available height */
-	font_height = FontHeight(chat_selector->font);
+	font_height = get_font_height(chat_selector->font);
 	nb_lines = floor((float)inner_height / (float)font_height);
 	actual_inner_height = nb_lines * font_height;
 	top_padding += (inner_height - actual_inner_height) / 2;
@@ -426,11 +426,11 @@ struct widget_group *create_chat_dialog()
 	widget_group_add(chat_menu, WIDGET(chat_log_bkg));
 
 	chat_log = widget_text_create();
-	chat_log->font = FPS_Display_BFont;
+	chat_log->font = FPS_Display_Font;
 	chat_log->line_height_factor = LINE_HEIGHT_FACTOR;
 
 	/* Adjust padding of the text area, to adapt the vertically padding to the available height */
-	font_height = FontHeight(chat_log->font);
+	font_height = get_font_height(chat_log->font);
 	nb_lines = floor((float)inner_height / (float)font_height);
 	actual_inner_height = nb_lines * font_height;
 	top_padding += (inner_height - actual_inner_height) / 2;
@@ -517,7 +517,7 @@ struct widget_group *create_chat_dialog()
 	struct widget_text* wait_text = widget_text_create();
 	widget_set_rect(WIDGET(wait_text), chat_selector_inner_rect.x, chat_selector_inner_rect.y,
 	                chat_selector_inner_rect.w, chat_selector_inner_rect.h);
-	wait_text->font = FPS_Display_BFont;
+	wait_text->font = FPS_Display_Font;
 	widget_text_init(wait_text, "Click anywhere to continue...");
 	widget_group_add(chat_wait, WIDGET(wait_text));
 

@@ -126,7 +126,7 @@ void EditLevelDimensions(void)
 		MenuTexts[i++] = _("Back");
 		MenuTexts[i++] = "";
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -241,7 +241,7 @@ static void SetLevelInterfaces(void)
 		MenuTexts[i++] = _("Back");
 		MenuTexts[i++] = "";
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -418,7 +418,7 @@ static void AddRemLevel(void)
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -645,7 +645,7 @@ static void LevelOptions(void)
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -931,7 +931,7 @@ static void AdvancedOptions(void)
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -1022,7 +1022,7 @@ int DoLevelEditorMainMenu()
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);

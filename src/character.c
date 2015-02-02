@@ -371,9 +371,9 @@ static void show_character_screen_skills()
 		error_message(__FUNCTION__, "\
 Error: melee weapon skill seems out of bounds.", PLEASE_INFORM | IS_FATAL);
 	}
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Melee"), RIGHT_TXT_X + CharacterRect.x, MELEE_SKILL_Y + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	display_text(_(AllSkillTexts[Me.melee_weapon_skill]),
 		    SKILLS_VALUE_X + CharacterRect.x, MELEE_SKILL_Y + 17 + CharacterRect.y, &CharacterRect);
 
@@ -385,9 +385,9 @@ Error: melee weapon skill seems out of bounds.", PLEASE_INFORM | IS_FATAL);
 		error_message(__FUNCTION__, "\
 Error: ranged weapon skill seems out of bounds.", PLEASE_INFORM | IS_FATAL);
 	}
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Ranged"), RIGHT_TXT_X + CharacterRect.x, RANGED_SKILL_Y + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	display_text(_(AllSkillTexts[Me.ranged_weapon_skill]),
 		    SKILLS_VALUE_X + CharacterRect.x, RANGED_SKILL_Y + 17 + CharacterRect.y, &CharacterRect);
 
@@ -399,9 +399,9 @@ Error: ranged weapon skill seems out of bounds.", PLEASE_INFORM | IS_FATAL);
 		error_message(__FUNCTION__, "\
 Error: Programming_Skill skill seems out of bounds.", PLEASE_INFORM | IS_FATAL);
 	}
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Programming"), RIGHT_TXT_X + CharacterRect.x, SPELLCASTING_SKILL_Y + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	display_text(_(AllSkillTexts[Me.spellcasting_skill]),
 		    SKILLS_VALUE_X + CharacterRect.x, SPELLCASTING_SKILL_Y + 17 + CharacterRect.y, &CharacterRect);
 
@@ -423,7 +423,7 @@ void ShowCharacterScreen()
 	if (GameConfig.CharacterScreen_Visible == FALSE)
 		return;
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	
 	// We define the right side of the user screen as the rectangle
 	// for our inventory screen.
@@ -435,101 +435,101 @@ void ShowCharacterScreen()
 
 	blit_background("character.png");
 
-	SetCurrentFont(Blue_BFont);
+	set_current_font(Blue_Font);
 
-	SetCurrentFont(Menu_BFont);
+	set_current_font(Menu_Font);
 	display_text(Me.character_name, 20 + CharacterRect.x, 12 + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Level"), LEFT_TXT_X + CharacterRect.x, 73 + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d", Me.exp_level);
 	display_text(CharText, LEVEL_NR_X + CharacterRect.x, 73 + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Experience"), LEFT_TXT_X + CharacterRect.x, 89 + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%u", Me.Experience);
 	display_text(CharText, LEVEL_NR_X + CharacterRect.x, 89 + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Next level"), LEFT_TXT_X + CharacterRect.x, 107 + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%u", get_experience_required(Me.exp_level));
 	display_text(CharText, LEVEL_NR_X + CharacterRect.x, 107 + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Circuits"), RIGHT_TXT_X + CharacterRect.x, 71 + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%6u", Me.Gold);
 	display_text(CharText, 240 + CharacterRect.x, 71 + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Strength"), LEFT_TXT_X + CharacterRect.x, STR_Y + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d", Me.strength);
 	if (Me.strength != Me.base_strength)
 		sprintf(CharText + strlen(CharText), " (%+d)", Me.strength - Me.base_strength);
 	display_text(CharText, STR_X + CharacterRect.x, STR_Y + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Dexterity"), LEFT_TXT_X + CharacterRect.x, DEX_Y + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d", Me.dexterity);
 	if (Me.dexterity != Me.base_dexterity)
 		sprintf(CharText + strlen(CharText), " (%+d)", Me.dexterity - Me.base_dexterity);
 	display_text(CharText, STR_X + CharacterRect.x, DEX_Y + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Physique"), LEFT_TXT_X + CharacterRect.x, VIT_Y + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d", Me.physique);
 	if (Me.physique != Me.base_physique)
 		sprintf(CharText + strlen(CharText), " (%+d)", Me.physique - Me.base_physique);
 	display_text(CharText, STR_X + CharacterRect.x, VIT_Y + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Cooling"), LEFT_TXT_X + CharacterRect.x, MAG_Y + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d", Me.cooling);
 	if (Me.cooling != Me.base_cooling)
 		sprintf(CharText + strlen(CharText), " (%+d)", Me.cooling - Me.base_cooling);
 	display_text(CharText, STR_X + CharacterRect.x, MAG_Y + CharacterRect.y, &CharacterRect);
 
 	SDL_Rect tmprect = CharacterRect;
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Training points"), LEFT_TXT_X + CharacterRect.x, POINTS_Y + CharacterRect.y, &tmprect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d", Me.points_to_distribute);
 	display_text(CharText, 155 + CharacterRect.x, POINTS_Y + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Health"), LEFT_TXT_X + CharacterRect.x, HEALTH_STAT_Y + CharacterRect.y, &tmprect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d/%d", (int)Me.energy, (int)Me.maxenergy);
 	display_text(CharText, HEALTH_NR_X + CharacterRect.x, HEALTH_STAT_Y + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Temperature"), LEFT_TXT_X + CharacterRect.x, TEMP_STAT_Y + CharacterRect.y, &tmprect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d/%d", (int)Me.temperature, (int)Me.max_temperature);
 	display_text(CharText, HEALTH_NR_X + CharacterRect.x, TEMP_STAT_Y + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Stamina"), LEFT_TXT_X + CharacterRect.x, STAMINA_STAT_Y + CharacterRect.y, &tmprect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d/%d", (int)Me.running_power, (int)Me.max_running_power);
 	display_text(CharText, HEALTH_NR_X + CharacterRect.x, STAMINA_STAT_Y + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Attack"), RIGHT_TXT_X + CharacterRect.x, TOHIT_Y + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d%%", (int)Me.to_hit);
 	display_text(CharText, ARMOR_NR_X + CharacterRect.x, TOHIT_Y + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Damage"), RIGHT_TXT_X + CharacterRect.x, DAMAGE_Y + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 
 	// Display range of damage, or a single value if there is no range
 	if (Me.damage_modifier)
@@ -539,9 +539,9 @@ void ShowCharacterScreen()
 
 	display_text(CharText, ARMOR_NR_X + CharacterRect.x, DAMAGE_Y + CharacterRect.y, &CharacterRect);
 
-	SetCurrentFont(Messagestat_BFont);
+	set_current_font(Messagestat_Font);
 	display_text(_("Armor"), RIGHT_TXT_X + CharacterRect.x, DAMRED_Y + CharacterRect.y, &CharacterRect);
-	SetCurrentFont(Messagevar_BFont);
+	set_current_font(Messagevar_Font);
 	sprintf(CharText, "%d", (int)Me.armor_class);
 	display_text(CharText, ARMOR_NR_X + CharacterRect.x, DAMRED_Y + CharacterRect.y, &CharacterRect);
 
