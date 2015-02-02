@@ -80,7 +80,7 @@ void *MyMalloc(long Mamount)
  * success and terminates in case of "out of memory", so we don't
  * need to do this always in the code.
  */
-char *my_strdup(char *src)
+char *my_strdup(const char *src)
 {
 	if (src == NULL)
 		return NULL;

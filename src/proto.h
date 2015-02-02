@@ -645,7 +645,7 @@ void error_once_message(int, const char *, const char *, int, ...) PRINTF_FMT_AT
 void alert_window(const char *text, ...) PRINTF_FMT_ATTRIBUTE(1,2);
 void alert_once_window(int, const char *text, ...) PRINTF_FMT_ATTRIBUTE(2,3);
 void *MyMalloc(long);
-char *my_strdup(char *);
+char *my_strdup(const char *);
 int FS_filelength(FILE * f);
 int inflate_stream(FILE *, unsigned char **, int *);
 int deflate_to_stream(unsigned char *, int, FILE *);
