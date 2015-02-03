@@ -392,6 +392,14 @@ EXTERN struct dynarray bullet_specs;
 #endif
 
 EXTERN struct dynarray lang_specs;
+EXTERN struct dynarray lang_codesets;
+
+#undef EXTERN
+#ifdef _init_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
 
 EXTERN struct dynarray difficulties;
 

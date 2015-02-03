@@ -13,8 +13,6 @@
 #include "proto.h"
 #include "global.h"
 
-#define FIRST_FONT_CHAR '!'
-
 /**
  * Initialize a font.
  */

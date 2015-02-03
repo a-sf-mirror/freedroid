@@ -1175,6 +1175,26 @@ static int lua_languages_ctor(lua_State *L)
 	return 0;
 }
 
+static void get_one_codeset(lua_State *L, void *data)
+{
+	struct codeset *cs = (struct codeset *)data;
+
+	struct data_spec data_specs[] = {
+		{ "language", NULL, STRING_TYPE, &(cs->language) },
+		{ "encoding", NULL, STRING_TYPE, &(cs->encoding) },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	fill_structure_from_table(L, data_specs);
+}
+
+static int lua_codesets_ctor(lua_State *L)
+{
+	fill_dynarray_from_table(L, &lang_codesets, sizeof(struct codeset), get_one_codeset);
+
+	return 0;
+}
+
 static void get_one_difficulty(lua_State *L, void *data)
 {
 	struct difficulty *diff = (struct difficulty *)data;
@@ -1329,6 +1349,7 @@ void init_luaconfig()
 		{ "npc_shop",                      lua_npc_shop_ctor                      },
 		{ "item_list",                     lua_item_list_ctor                     },
 		{ "languages",                     lua_languages_ctor                     },
+		{ "codesets",                      lua_codesets_ctor                      },
 		{ "difficulties",                  lua_difficulties_ctor                  },
 		{ "skill_list",                    lua_skill_list_ctor                    },
 		{NULL, NULL}

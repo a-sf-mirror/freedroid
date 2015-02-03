@@ -10,6 +10,7 @@
 #include "system.h"
 #include "struct.h"
 
+#define FIRST_FONT_CHAR '!'
 #define MAX_CHARS_IN_FONT 256
 
 typedef struct BFont_Info {

@@ -1048,6 +1048,11 @@ struct langspec {
 	char *locale;
 };
 
+struct codeset {
+	char *language;
+	char *encoding;
+};
+
 struct title_screen {
 	char *background;
 	char *song;

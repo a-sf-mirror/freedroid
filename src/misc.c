@@ -59,16 +59,17 @@ char *our_config_dir = NULL;
 int term_has_color_cap = FALSE;
 
 struct data_dir data_dirs[] = {
-	[GRAPHICS_DIR]={ "graphics",    "" },
-	[SOUND_DIR]=   { "sound",       "" },
-	[MUSIC_DIR]=   { "sound/music", "" },
-	[MAP_DIR]=     { "map",         "" },
-	[TITLES_DIR]=  { "map/titles",  "" },
-	[DIALOG_DIR]=  { "dialogs",     "" },
+	[GRAPHICS_DIR]= { "graphics",      "" },
+	[FONT_DIR]=     { "graphics/font", "" },
+	[SOUND_DIR]=    { "sound",         "" },
+	[MUSIC_DIR]=    { "sound/music",   "" },
+	[MAP_DIR]=      { "map",           "" },
+	[TITLES_DIR]=   { "map/titles",    "" },
+	[DIALOG_DIR]=   { "dialogs",       "" },
 #ifdef ENABLE_NLS
-	[LOCALE_DIR]=  { "locale",      "" },
+	[LOCALE_DIR]=   { "locale",        "" },
 #endif
-	[LUA_MOD_DIR]= { "lua_modules", "" }
+	[LUA_MOD_DIR]=  { "lua_modules",   "" }
 };
 #define WELL_KNOWN_DATA_FILE "lua_modules/FDdialog.lua"
 
@@ -787,6 +788,36 @@ int find_localized_file(const char *fname, int subdir_handle, char *file_path, i
 #endif
 
 	// Localized version not found. Use untranslated version.
+	return find_file(fname, subdir_handle, file_path, error_report);
+}
+
+int find_encoded_file(const char *fname, int subdir_handle, char *file_path, int error_report)
+{
+#ifdef ENABLE_NLS
+	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
+		error_message(__FUNCTION__, "Called with a wrong subdir handle (%d)",
+		              error_report | PLEASE_INFORM, subdir_handle);
+		return 0;
+	}
+
+	char *used_encoding = lang_get_encoding();
+
+	if (!used_encoding || !strlen(used_encoding) || !strcmp(used_encoding, "ASCII")) {
+		return find_file(fname, subdir_handle, file_path, error_report);
+	}
+
+	char encoded_dir[PATH_MAX];
+	int nb = snprintf(encoded_dir, PATH_MAX, "%s/%s", data_dirs[subdir_handle].path, used_encoding);
+	if (nb >= PATH_MAX) {
+		error_message(__FUNCTION__, "Dirname too long (max is %d): %s/%s - Using default encoding version of %s",
+		             error_report, PATH_MAX, data_dirs[subdir_handle].path, used_encoding, fname);
+		return find_file(fname, subdir_handle, file_path, error_report);
+	}
+	if (_file_exists(fname, encoded_dir, file_path))
+		return TRUE;
+#endif
+
+	// Encoded version not found. Use default encoding version.
 	return find_file(fname, subdir_handle, file_path, error_report);
 }
 

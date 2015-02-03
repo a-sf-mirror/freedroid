@@ -552,6 +552,7 @@ void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlele
 int init_data_dirs_path();
 int find_file(const char *, int, char *, int);
 int find_localized_file(const char *, int, char *, int);
+int find_encoded_file(const char *, int, char *, int);
 void Pause(void);
 void ComputeFPSForThisFrame(void);
 void StartTakingTimeForFPSCalculation(void);
@@ -845,6 +846,7 @@ void rtprof_display();
 // lang.c
 void lang_set(const char *);
 char *lang_get();
+char *lang_get_encoding();
 void lang_init();
 
 // font.c

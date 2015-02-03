@@ -22,9 +22,27 @@
 ]]--
 
 languages{
-	{ name = "Brasileiro", locale = "pt_BR" },
-	{ name = "Deutsch",  locale = "de_DE" },
-	{ name = "English (US)",  locale = "en_US" },
-	{ name = "Francais", locale = "fr_FR" },
-	{ name = "Svenska", locale = "sv_SV" },
+	-- name: Language name, as displayed in the Languages Menu
+	-- locale: Locale name, of the form language_territory
+	--         (language is an ISO 639 language code, territory is an
+	--         ISO 3166 country code)
+	{ name = "Brasileiro",   locale = "pt_BR" },
+	{ name = "Deutsch",      locale = "de_DE" },
+	{ name = "English (US)", locale = "en_US" },
+	{ name = "Francais",     locale = "fr_FR" },
+	{ name = "Svenska",      locale = "sv_SV" },
+}
+
+codesets{
+	-- language: can be a simple 'language code', to define a default
+	--           encoding for all the locales of that language group,
+	--           or can be 'language_territory' to define a specific encoding.
+	-- encoding: one of the font bitmap encoding provided by the game (see
+	--           graphics/font).
+	-- Note: default encoding is ASCII
+	{ language = "de", encoding = "ISO-8859-15" },
+	{ language = "en", encoding = "ISO-8859-15" },
+	{ language = "fr", encoding = "ISO-8859-15" },
+	{ language = "pt", encoding = "ISO-8859-15" },
+	{ language = "sv", encoding = "ISO-8859-15" },
 }

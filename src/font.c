@@ -69,14 +69,17 @@ void init_fonts(void)
 	char fpath[PATH_MAX];
 
 	for (i = 0; i < sizeof(fonts_def)/sizeof(fonts_def[0]); i++) {
-		char constructed_fname[PATH_MAX];
-		sprintf(constructed_fname, "font/%s", fonts_def[i].filename);
-		find_file(constructed_fname, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+		if (!find_encoded_file(fonts_def[i].filename, FONT_DIR, fpath, PLEASE_INFORM | IS_FATAL)) {
+			error_message(__FUNCTION__, "A Bfont file was not found (filename: %s - encoding: %s).",
+					PLEASE_INFORM, fonts_def[i].filename, lang_get_encoding());
+			continue;
+		}
 
 		int rtn = load_bfont(fpath, &fonts_def[i].font);
 		if (rtn == FALSE) {
-			error_message(__FUNCTION__, "A font file for the BFont library could not be loaded (%s).",
-					PLEASE_INFORM | IS_FATAL, fonts_def[i].filename);
+			error_message(__FUNCTION__, "A Bfont file could not be loaded (filename: %s - encoding: %s).",
+					PLEASE_INFORM | IS_FATAL, fonts_def[i].filename, lang_get_encoding());
+			return;
 		}
 
 		*fonts_def[i].font_ref = &fonts_def[i].font;
