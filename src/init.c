@@ -401,7 +401,6 @@ static void load_fdrpg_config()
 
 	// Load the languages specs
 	dynarray_free(&lang_specs);
-	dynarray_free(&lang_codesets);
 	if (find_file("languages.lua", MAP_DIR, fpath, PLEASE_INFORM)) {
 		run_lua_file(LUA_CONFIG, fpath);
 	}

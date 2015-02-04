@@ -131,12 +131,12 @@ static void prepare_font(BFont_Info *font, SDL_Rect char_rect[MAX_CHARS_IN_FONT]
 /**
  * Load the font and stores it in the BFont_Info structure 
  */
-int load_bfont(const char *filename, struct font *font)
+int load_bfont(const char *filepath, struct font *font)
 {
 	BFont_Info *bfont = MyMalloc(sizeof(BFont_Info));
 
 	// Load the font image
-	load_image_surface(&bfont->font_image, filename, FALSE);
+	load_image_surface(&bfont->font_image, filepath, FALSE);
 
 	// Find character coordinates in the image
 	SDL_Rect char_rect[MAX_CHARS_IN_FONT];

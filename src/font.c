@@ -73,7 +73,7 @@ void init_fonts(void)
 		sprintf(constructed_fname, "font/%s", fonts_def[i].filename);
 		find_file(constructed_fname, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 
-		int rtn = load_bfont(constructed_fname, &fonts_def[i].font);
+		int rtn = load_bfont(fpath, &fonts_def[i].font);
 		if (rtn == FALSE) {
 			error_message(__FUNCTION__, "A font file for the BFont library could not be loaded (%s).",
 					PLEASE_INFORM | IS_FATAL, fonts_def[i].filename);

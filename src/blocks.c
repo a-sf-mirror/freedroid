@@ -365,7 +365,7 @@ void iso_load_bullet_surfaces(void)
  *
  *
  */
-void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image)
+void get_offset_for_iso_image_from_file_and_path(const char *fpath, struct image * our_iso_image)
 {
 	char offset_file_name[10000];
 	FILE *OffsetFile;

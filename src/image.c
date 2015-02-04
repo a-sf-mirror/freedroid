@@ -493,25 +493,17 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
  * correctly placed in an isometric image.
  * This function loads an image SDL surface, as well as its offset.
  */
-void load_image_surface(struct image *img, const char *filename, int use_offset_file)
+void load_image_surface(struct image *img, const char *filepath, int use_offset_file)
 {
-	char fpath[PATH_MAX];
-
 	if (image_loaded(img)) {
 		error_message(__FUNCTION__,
-				"The image has already been loaded: %s.", PLEASE_INFORM, filename);
+				"The image has already been loaded: %s.", PLEASE_INFORM, filepath);
 		return;
 	}
 
-	if (!find_file(filename, GRAPHICS_DIR, fpath, PLEASE_INFORM)) {
-		struct image empty = EMPTY_IMAGE;
-		*img = empty;
-		return;
-	}
-
-	SDL_Surface *surface = IMG_Load(fpath);
+	SDL_Surface *surface = IMG_Load(filepath);
 	if (surface == NULL) {
-		error_message(__FUNCTION__, "Could not load image.\n File name: %s. IMG_GetError(): %s.", PLEASE_INFORM, fpath, IMG_GetError());
+		error_message(__FUNCTION__, "Could not load image.\n File name: %s. IMG_GetError(): %s.", PLEASE_INFORM, filepath, IMG_GetError());
 		struct image empty = EMPTY_IMAGE;
 		*img = empty;
 		return;
@@ -525,7 +517,7 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 	SDL_FreeSurface(surface);
 
 	if (use_offset_file)
-		get_offset_for_iso_image_from_file_and_path(fpath, img);
+		get_offset_for_iso_image_from_file_and_path(filepath, img);
 	else {
 		img->offset_x = 0;
 		img->offset_y = 0;
@@ -543,10 +535,19 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
  */
 void load_image(struct image *img, const char *filename, int use_offset_file)
 {
-	load_image_surface(img, filename, use_offset_file);
+	char fpath[PATH_MAX];
+
+	if (!find_file(filename, GRAPHICS_DIR, fpath, PLEASE_INFORM)) {
+		struct image empty = EMPTY_IMAGE;
+		*img = empty;
+		return;
+	}
+
+	load_image_surface(img, fpath, use_offset_file);
 
 	if (use_open_gl && (img->w > gl_max_texture_size || img->h > gl_max_texture_size)) {
-		error_message(__FUNCTION__, "Your system only supports %dx%d textures. Image %s is %dx%d and therefore cannot be used as an OpenGL texture.", NO_REPORT, gl_max_texture_size, gl_max_texture_size, filename, img->w, img->h);
+		error_message(__FUNCTION__, "Your system only supports %dx%d textures. Image %s is %dx%d and therefore cannot be used as an OpenGL texture.",
+				NO_REPORT, gl_max_texture_size, gl_max_texture_size, filename, img->w, img->h);
 		return;
 	}
 

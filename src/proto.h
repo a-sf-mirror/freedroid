@@ -268,7 +268,7 @@ void load_all_items(void);
 void free_item_graphics(void);
 void load_tux_graphics(int motion_class, int tux_part_group, const char *part_string);
 void reload_tux_graphics(void);
-void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image);
+void get_offset_for_iso_image_from_file_and_path(const char *fpath, struct image * our_iso_image);
 
 // graphics.c 
 void blit_mouse_cursor(void);
@@ -814,7 +814,7 @@ void display_image_on_screen(struct image *img, int x, int y, struct image_trans
 void display_image_on_map(struct image *img, float X, float Y, struct image_transformation t);
 void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect);
 void load_image(struct image *, const char *, int);
-void load_image_surface(struct image *img, const char *filename, int use_offset_file);
+void load_image_surface(struct image *img, const char *filepath, int use_offset_file);
 void free_image_surface(struct image *img);
 void delete_image(struct image *img);
 int image_loaded(struct image *);
