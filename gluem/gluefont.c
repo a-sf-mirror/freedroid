@@ -1,6 +1,7 @@
 /* 
  *
  *  Copyright (c) 2010 Arthur Huillet
+ *                2015 Samuel Degrande
  *
  *  This file is part of Freedroid
  *
@@ -29,8 +30,14 @@
 #include "../src/proto.h"
 #include "../src/BFont.h"
 
+#include <math.h>
+#include "codeset.h"
+
 char *font_name;
+char *codeset;
 char *input_path;
+int	sentry_horiz = 0;
+int	sentry_vert = 0;
 
 #if SDL_BYTEORDER == SDL_LIL_ENDIAN
 static int rmask = 0x00FF0000;
@@ -100,14 +107,12 @@ void PutPixel(SDL_Surface * surface, int x, int y, Uint32 pixel)
 
 static void next_destination(SDL_Surface *font, int w, int *next_x, int *next_y, int *max_h)
 {
-	int	sentry_vert = SDL_MapRGBA(font->format, 0, 255, 0, 255);
-
 	*next_x += w + 1;
 	if (*next_x >= font->w) {
 		// Reached limit on the right, start another line
 		*next_x = 0;
 		*next_y += *max_h;
-		*max_h = 0;
+		*max_h = 3; // Minimum height
 
 		int a;
 		for (a = 0; a < font->w; a++) {
@@ -118,72 +123,94 @@ static void next_destination(SDL_Surface *font, int w, int *next_x, int *next_y,
 	}
 }
 
+static int pot(int v)
+{
+	float l2_v = log2f(v);
+	return (int)pow(2, ceilf(l2_v));
+}
+
 void create_font()
 {
-	SDL_Surface *font = SDL_CreateRGBSurface(0, 1024, 512, 32, rmask, gmask, bmask, amask);
+	SDL_Surface *font = SDL_CreateRGBSurface(0, 512, 512, 32, rmask, gmask, bmask, amask);
 	SDL_Surface *character;
+	SDL_Surface empty_char = { .w = 1, .h = 1 };
 	SDL_Rect target;
 	int next_x = 0;
 	int next_y = 0;
 	int max_h = 0;
-	int	sentry_horiz = SDL_MapRGBA(font->format, 255, 0, 255, 255);
-
-	char i = '!'; //start character for FreedroidRPG fonts
+	unsigned int i = FIRST_FONT_CHAR;
 			
 	SDL_SetAlpha(font, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
 	SDL_SetColorKey(font, 0, 0);
 
+	sentry_horiz = SDL_MapRGBA(font->format, 255, 0, 255, 255);
+	sentry_vert = SDL_MapRGBA(font->format, 0, 255, 0, 255);
+
 	while (1) {
+		int is_empty = 0;
+
+		if (cs_code_is_empty(i, codeset)) {
+			// 'empty' character size
+			character = &empty_char;
+			is_empty = 1;
+		} else {
 			// Open character PNG file
-			char name[4096];
-			sprintf(name, "%s/%s_%03d.png", input_path, basename(font_name), i);
-			//printf("Reading %s\n", name);
+			char *file_name = cs_font_char_name(font_name, codeset, i, input_path);
 
-			character = (SDL_Surface *)IMG_Load(name);
+			character = (SDL_Surface *)IMG_Load(file_name);
 			if (!character) {
-				fprintf(stderr, "Could not load %s: %s\n", name, IMG_GetError());
-				break;
+				fprintf(stderr, "Could not load %s: %s. Adding an empty char.\n", file_name, IMG_GetError());
+				character = &empty_char;
+				is_empty = 1;
 			}
-			
-			SDL_SetAlpha(character, 0, 255);;
+		}
+
+		// Copy onto font surface
+		int dummy = max_h;
+		if (next_x + character->w >= font->w) {
+			int a;
+			for (a = next_x; a < font->w; a++) {
+				PutPixel(font, a, next_y, sentry_horiz);
+			}
+			next_destination(font, character->w, &next_x, &next_y, &dummy);
+		}
+
+		target.x = next_x;
+		target.y = next_y;
+
+		if (!is_empty) {
+			SDL_SetAlpha(character, 0, 255);
 			SDL_SetColorKey(character, 0, 0);
-
-			// Copy onto font surface
-			int dummy = max_h;
-			if (next_x + character->w >= font->w) {
-				int a;
-				for (a = next_x; a < font->w; a++) {
-					PutPixel(font, a, next_y, sentry_horiz);
-				}
-				next_destination(font, character->w, &next_x, &next_y, &dummy);
-			}
-			
-			target.x = next_x;
-			target.y = next_y;
-			if (SDL_BlitSurface(character, NULL, font, &target)) {
+			if (SDL_BlitSurface(character, NULL, font, &target))
 				fprintf(stderr, "Error blitting character %c\n", i);
-			}
+		}
 
-			// Write sentry at the right and at the bottom
-			PutPixel(font, target.x + character->w, target.y, sentry_horiz);
-			PutPixel(font, target.x, target.y + character->h, sentry_horiz);
+		// Write sentry at the right
+		PutPixel(font, target.x + character->w, target.y, sentry_horiz);
 
-			// Update max h for this line
-			if (max_h < character->h)
-				max_h = character->h;
+		// Update max h for this line
+		if (max_h < character->h)
+			max_h = character->h;
 
-			// Compute next destination
-			next_destination(font, character->w, &next_x, &next_y, &max_h);
+		i++;
+		if (i > 255)
+			break;
 
-			i++;
-
-			if (i >= 255)
-				break;
+		// Compute next destination
+		next_destination(font, character->w, &next_x, &next_y, &max_h);
 	}
 
 	if (i != '!') {
+		int a;
+		for (a = 0; a < font->w; a++) {
+			PutPixel(font, a, next_y + max_h, sentry_vert);
+		}
 		printf("Glued %d characters\n", i - '!' - 1);
+		// Hack - change the SDL_Surface's height attribute to save only
+		// the useful part of the image
+		font->h = pot(next_y + max_h + 1);
 		png_save_surface(font_name, font);
+		font->h = 512;
 	} else {
 		printf("No characters were glued, therefore no output was produced.\n");
 	}
@@ -194,18 +221,26 @@ void create_font()
 
 int main(int argc, char **argv)
 {
-	if (argc != 3) {
-		fprintf(stderr, "Usage: %s <font_file> <input_path>\n", argv[0]);
+	if (argc != 4) {
+		fprintf(stderr, "Usage: %s <font_file> <codeset> <input_path>\n"
+		                "\t<font_file>:   path of the bitmap file to create, relative to current directory.\n"
+		                "\t<codeset>:     codeset of the bitmap file to create (see list below)\n"
+		                "\t<output_path>: path of the directory from where to read the individuals bitmaps, relative to current directory\n"
+		                "\n"
+		                "Example, from fdrpg top src dir: %s graphics/font/ISO-8859-15/cpuFont.png ISO-8859-15 graphics/font/chars\n"
+		                "\n"
+		                "Available codesets: %s\n", argv[0], argv[0], cs_available_codesets());
 		exit(1);
 	}
 
 	font_name = argv[1];
-	input_path = argv[2];
-	
+	codeset = argv[2];
+	cs_check_codeset(codeset);
+	input_path = argv[3];
 
 	init_sdl();
 
-	printf("Gluing characters in %s to create font %s\n", input_path, font_name);
+	printf("Gluing characters in %s to create font %s. ", input_path, font_name);
 
 	create_font();
 	return 0;

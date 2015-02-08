@@ -1,6 +1,7 @@
 /* 
  *
  *  Copyright (c) 2010 Arthur Huillet
+ *                2015 Samuel Degrande
  *
  *  This file is part of Freedroid
  *
@@ -28,8 +29,10 @@
 #include "../src/struct.h"
 #include "../src/proto.h"
 #include "../src/BFont.h"
+#include "codeset.h"
 
 char *font_name;
+char *codeset;
 const char *output_path;
 
 #if SDL_BYTEORDER == SDL_LIL_ENDIAN
@@ -43,7 +46,6 @@ static int gmask = 0x00FF0000;
 static int bmask = 0xFF000000;
 static int amask = 0x000000FF;
 #endif
-
 
 static void init_sdl(void)
 {
@@ -95,19 +97,17 @@ Uint32 FdGetPixel(SDL_Surface * Surface, Sint32 X, Sint32 Y)
 	return -1;
 }
 
-#define FIRST_FONT_CHAR '!'
-
 static void InitFont(BFont_Info *font)
 {
 	SDL_Rect char_rect[MAX_CHARS_IN_FONT];
 	memset(char_rect, 0, sizeof(char_rect));
 	SDL_Surface *tmp_char1;
 
-	unsigned int x = 0, i = 0, y = 0, max_h = 1;
+	unsigned int x = 0, y = 0, max_h = 1;
 	SDL_Rect *rect;
 	SDL_Surface *font_surf = font->font_image.surface;
 
-	i = FIRST_FONT_CHAR;
+	unsigned int i = FIRST_FONT_CHAR;
 	int sentry_horiz = SDL_MapRGB(font_surf->format, 255, 0, 255);
 	int sentry_vert = SDL_MapRGB(font_surf->format, 0, 255, 0);
 
@@ -121,7 +121,7 @@ static void InitFont(BFont_Info *font)
 		// Read this line of characters
 		while (x < font_surf->w - 1 && i < MAX_CHARS_IN_FONT) {
 			if (FdGetPixel(font_surf, x, y) != sentry_horiz) {
-				printf("Reading character at %u %u...", x, y);
+				printf("Reading character %3d at %4u %4u... ", i, x, y);
 				// Found a character
 				rect = &char_rect[i];
 				rect->x = x;
@@ -136,7 +136,7 @@ static void InitFont(BFont_Info *font)
 				}
 				rect->w = x2 - x;
 
-				printf("width %d\n", x2-x);
+				printf("\twidth %2d ", x2-x);
 				if (x2 == font_surf->w)
 					break;
 
@@ -155,19 +155,22 @@ static void InitFont(BFont_Info *font)
 					max_h = y2 - y;
 
 				// Create character surface
-				tmp_char1 = SDL_CreateRGBSurface(0, char_rect[i].w, char_rect[i].h, 32, rmask, gmask, bmask, amask);
-				font->char_image[i].surface = tmp_char1;
+				if (!cs_code_is_empty(i, codeset)) {
+					tmp_char1 = SDL_CreateRGBSurface(0, char_rect[i].w, char_rect[i].h, 32, rmask, gmask, bmask, amask);
+					font->char_image[i].surface = tmp_char1;
 
-				SDL_BlitSurface(font_surf, &(char_rect[i]), font->char_image[i].surface, NULL);
-				SDL_SetAlpha(font->char_image[i].surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-				SDL_SetColorKey(font->char_image[i].surface, 0, 0);
+					SDL_BlitSurface(font_surf, &(char_rect[i]), font->char_image[i].surface, NULL);
+					SDL_SetAlpha(font->char_image[i].surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
+					SDL_SetColorKey(font->char_image[i].surface, 0, 0);
 
-				char name[4096];
-				sprintf(name, "%s/%s_%03u.png", output_path, basename(font_name), i);
-				printf("Saving %s\n", name);
-				png_save_surface(name, font->char_image[i].surface);
+					char *file_name = cs_font_char_name(font_name, codeset, i, output_path);
+					printf("\tsaving %s\n", file_name);
+					png_save_surface(file_name, font->char_image[i].surface);
 
-				SDL_FreeSurface(tmp_char1);
+					SDL_FreeSurface(tmp_char1);
+				} else {
+					printf("\tempty char, not saving\n");
+				}
 				font->number_of_chars = i + 1;
 				i++;
 				x = x2;
@@ -175,6 +178,9 @@ static void InitFont(BFont_Info *font)
 				// On a sentry? Move right.
 				x++;
 			}
+
+			if (!strcmp(codeset, "ASCII") && i >= 160)
+				goto DONE;
 		}
 
 		// Find the next line of characters
@@ -186,6 +192,8 @@ static void InitFont(BFont_Info *font)
 			break;	
 
 	}
+
+DONE:
 	if (SDL_MUSTLOCK(font_surf))
 		SDL_UnlockSurface(font_surf);
 
@@ -208,7 +216,6 @@ static void explode_font()
 		SDL_SetColorKey(Font->font_image.surface, 0, 0);
 		/* Init the font */
 		InitFont(Font);
-
 	} else {
 		fprintf(stderr, "Loading font \"%s\":%s\n", font_name, IMG_GetError());
 		free(Font);
@@ -220,15 +227,24 @@ static void explode_font()
 
 int main(int argc, char **argv)
 {
-	if (argc != 3) {
-		fprintf(stderr, "Usage: %s <font_file> <output_path>\n", argv[0]);
+	if (argc != 4) {
+		fprintf(stderr, "Usage: %s <font_file> <codeset> <output_path>\n"
+		                "\t<font_file>:   path of the bitmap file to explode, relative to current directory.\n"
+		                "\t<codeset>:     codeset of the bitmap file to explode (see list below)\n"
+		                "\t<output_path>: path of the directory where to write the individuals bitmaps, relative to current directory\n"
+		                "\t               (must pre-exist)\n"
+		                "\n"
+		                "Example, from fdrpg top src dir: %s graphics/font/ISO-8859-15/cpuFont.png ISO-8859-15 graphics/font/chars\n"
+		                "\n"
+		                "Available codesets: %s\n", argv[0], argv[0], cs_available_codesets());
 		exit(1);
 	}
 
 	font_name = argv[1];
-	output_path = argv[2];
+	codeset = argv[2];
+	cs_check_codeset(codeset);
+	output_path = argv[3];
 	
-
 	init_sdl();
 
 	printf("Exploding font %s into %s\n", font_name, output_path);

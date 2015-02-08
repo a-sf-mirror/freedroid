@@ -4,7 +4,7 @@ AUTOMAKE_OPTIONS = subdir-objects
 # Initialize automake variables
 AM_CPPFLAGS =
 explodefont_LDADD =
-gluefont_LDADD =
+gluefont_LDADD = -lm
 make_atlas_LDADD =
 explode_atlas_LDADD =
 
@@ -21,9 +21,9 @@ endif
 
 bin_PROGRAMS = explodefont gluefont make_atlas explode_atlas
 
-explodefont_SOURCES = explodefont.c ../src/pngfuncs.c ../src/pngfuncs.h
+explodefont_SOURCES = explodefont.c codeset.c codeset.h ../src/pngfuncs.c ../src/pngfuncs.h
 
-gluefont_SOURCES = gluefont.c ../src/pngfuncs.c ../src/pngfuncs.h
+gluefont_SOURCES = gluefont.c codeset.c codeset.h ../src/pngfuncs.c ../src/pngfuncs.h
 
 make_atlas_SOURCES = make_atlas.c ../src/pngfuncs.c ../src/pngfuncs.h
 
