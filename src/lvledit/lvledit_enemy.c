@@ -114,7 +114,7 @@ void get_random_droids_from_user()
 
 	// Get the droid types
 	while (1) {
-		user_input = GetEditableStringInPopupWindow(suggested_val->length, displayed_text->value, suggested_val->value);
+		user_input = GetEditableStringInPopupWindow(suggested_val->capacity, displayed_text->value, suggested_val->value);
 		if (!user_input)
 			goto out;
 
