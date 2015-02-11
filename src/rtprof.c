@@ -289,7 +289,7 @@ static void probe_display_container(int x, int y, int width, int height, char *t
 
 	char text[200];
 	sprintf(text, "%s%s", font_switchto_msgstat, title);
-	put_string(GetCurrentFont(), x + report_padding, y + report_padding, text);
+	put_string(get_current_font(), x + report_padding, y + report_padding, text);
 }
 
 /**
@@ -329,7 +329,7 @@ static void probe_display_bargraph(int x, int y, int width, int height, int val,
 	// Textual representation at the right of the bar
 	char text[16];
 	sprintf(text, "%g", (float)val / divider);
-	put_string(GetCurrentFont(), x + bar_width, y, text);
+	put_string(get_current_font(), x + bar_width, y, text);
 }
 
 /**
@@ -390,13 +390,13 @@ static void probe_display_htribargraph(int x, int y, int width, int height, int 
 	// Textual representations
 	char text[16];
 	sprintf(text, "%g", (float)min_val / divider);
-	put_string(GetCurrentFont(), x + bar_min - text_width(GetCurrentFont(), text), y, text);
+	put_string(get_current_font(), x + bar_min - text_width(get_current_font(), text), y, text);
 
 	sprintf(text, "%g", (float)mean_val / divider);
-	put_string(GetCurrentFont(), x + bar_mean - text_width(GetCurrentFont(), text)/2, y, text);
+	put_string(get_current_font(), x + bar_mean - text_width(get_current_font(), text)/2, y, text);
 
 	sprintf(text, "%g", (float)max_val / divider);
-	put_string(GetCurrentFont(), x + bar_max, y, text);
+	put_string(get_current_font(), x + bar_max, y, text);
 }
 
 /**
@@ -457,13 +457,13 @@ static void probe_display_vtribargraph(int x, int y, int width, int height, int 
 	// Textual representations
 	char text[16];
 	sprintf(text, "%g", (float)min_val / divider);
-	put_string(GetCurrentFont(), x - text_width(GetCurrentFont(), text), y + height - bar_min, text);
+	put_string(get_current_font(), x - text_width(get_current_font(), text), y + height - bar_min, text);
 
 	sprintf(text, "%g", (float)mean_val / divider);
-	put_string(GetCurrentFont(), x - text_width(GetCurrentFont(), text), y + height - bar_mean, text);
+	put_string(get_current_font(), x - text_width(get_current_font(), text), y + height - bar_mean, text);
 
 	sprintf(text, "%g", (float)max_val / divider);
-	put_string(GetCurrentFont(), x - text_width(GetCurrentFont(), text), y + height - bar_max, text);
+	put_string(get_current_font(), x - text_width(get_current_font(), text), y + height - bar_max, text);
 }
 
 /**
