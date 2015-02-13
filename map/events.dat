@@ -6594,6 +6594,8 @@ Enemy dialog name="Spencer"
 <LuaCode>
 	if (not Spencer_can_die) then
 		display_big_message(_"Spencer still needed alive to win game.")
+	else
+		display_big_message(_"Ooops, you killed Spencer. That was probably not a good idea.")
 	end
 </LuaCode>
 * End of trigger *
