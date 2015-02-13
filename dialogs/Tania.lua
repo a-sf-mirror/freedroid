@@ -87,8 +87,10 @@ return {
 									_"How much longer?")
 				end
 				show("node92")
-			elseif (not Spencer_Tania_sent_to_DocMoore) and
-			       (not Tania_set_free) then --at the Town Entrance, waiting for Spencer's OK
+			elseif (not Spencer_Tania_sent_to_DocMoore) and -- Spencer_Tania_sent_to_DocMoore = We talked to Spencer about Tania
+			       (not Tania_set_free) and --at the Town Entrance, waiting for Spencer's OK
+			       (not Spence:is_dead()) then
+			-- @TODO; what happens if Spencer is dead? this needs to be handled properly 
 				hide("node45", "node46", "node47", "node49", "node50", "node51", "node52", "node53", "node56", "node57", "node58", "node59", "node92")
 				if (Tania_stopped_by_Pendragon) then
 					Tania_stopped_by_Pendragon = false
@@ -97,7 +99,8 @@ return {
 					end_dialog()
 				end
 				show("node93")
-			elseif (not Tux:done_quest("Tania's Escape")) then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar)
+			elseif (not Tux:done_quest("Tania's Escape")) and
+				   (not Spencer:is_dead()) then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar) // Spencer alive version
 				Npc:says(_"What is the news?")
 				Tux:says(_"I talked to Spencer, and he said you were welcome to enter the town.")
 				Npc:says(_"That is great news!")
@@ -117,6 +120,27 @@ return {
 					Tania_mapper_given = true
 				end
 				branch_to_pendragon = true
+			elseif (not Tux:done_quest("Tania's Escape")) and -- /* hack alert
+				   (Spencer:is_dead()) then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar) // Spence dead version
+				Npc:says(_"What is the news?")
+				Tux:says(_"Spencer is no more, so I guess you can just enter.")
+				Npc:says(_"Ok...")
+				if (Spencer_Tania_sent_to_DocMoore) then
+					Tux:says(_"I guess first thing for you is to get checked out by Doc Moore though.")
+					Npc:set_destination("DocPatient-Enter")
+				else --DocMoore is Dead!
+					Tux:says(_"I guess you are free to go where you like.")
+					Npc:set_destination("BarPatron-Enter")
+					Tania_at_Ewalds_Bar = true
+				end
+				Tux:end_quest("Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
+				if (difficulty("hard")) and
+				   (not Tania_mapper_given == true) then
+					Npc:says(_"I'm so glad that I am finally here, take this.")
+					Tux:add_item("Source Book of Network Mapper")
+					Tania_mapper_given = true
+				end
+				branch_to_pendragon = true -- */ hack alert
 			else --"Tania's Escape" was a success!
 				if (not Tania_DocMoore_cleared) and
 				   (not Tania_set_free) then --send to Bar
