@@ -448,7 +448,7 @@ void cs_check_codeset(const char *cs)
 int cs_code_is_empty(unsigned int code, const char *cs)
 {
 	if (code > 255) {
-		fprintf(stderr, "%s: Wrong code %d\n", __FUNCTION__, code);
+		fprintf(stderr, "%s: Wrong code %u\n", __FUNCTION__, code);
 		exit(1);
 	}
 
@@ -472,7 +472,7 @@ int cs_code_is_empty(unsigned int code, const char *cs)
 char *cs_code_to_name(unsigned int code, const char *cs)
 {
 	if (code > 255) {
-		fprintf(stderr, "%s: Wrong code %d\n", __FUNCTION__, code);
+		fprintf(stderr, "%s: Wrong code %u\n", __FUNCTION__, code);
 		exit(1);
 	}
 

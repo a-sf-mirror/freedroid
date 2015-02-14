@@ -121,7 +121,7 @@ static void InitFont(BFont_Info *font)
 		// Read this line of characters
 		while (x < font_surf->w - 1 && i < MAX_CHARS_IN_FONT) {
 			if (FdGetPixel(font_surf, x, y) != sentry_horiz) {
-				printf("Reading character %3d at %4u %4u... ", i, x, y);
+				printf("Reading character %3u at %4u %4u... ", i, x, y);
 				// Found a character
 				rect = &char_rect[i];
 				rect->x = x;
