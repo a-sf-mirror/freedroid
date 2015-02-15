@@ -97,6 +97,7 @@ char *lang_extract_next_subform(const char *locale, char **next_tokens)
 
 void lang_set(const char *locale)
 {
+	DebugPrintf(-1, "switch to <%s>\n", (locale) ? (locale) : "NULL");
 #ifdef ENABLE_NLS
 	// Usually setlocale() is called to define the locale to use for
 	// localization. However, when called with a locale name, setlocale()
@@ -116,6 +117,7 @@ void lang_set(const char *locale)
 	if (locale && strlen(locale)) {
 		if (fd_setenv("LANGUAGE", locale, TRUE) != 0)
 			return;
+		setlocale(LC_MESSAGES, ""); // gettext() will use LANGUAGE
 		applied_locale = (char *)locale;
 	}
 
@@ -124,7 +126,7 @@ void lang_set(const char *locale)
 	if (!locale || strlen(locale) == 0) {
 		if (fd_unsetenv("LANGUAGE") != 0)
 			return;
-		applied_locale = setlocale(LC_MESSAGES, "");
+		applied_locale = setlocale(LC_MESSAGES, ""); // gettext() will use envvars
 		if (!applied_locale) {
 			error_message(__FUNCTION__,
 					"You asked to use the system default local, defined by the LC_MESSAGES envvar.\n"
@@ -150,7 +152,7 @@ void lang_set(const char *locale)
 	// Search for the charset encoding to use, unless we default to "C" locale
 	// in which case we will use the default encoding.
 	char *new_encoding = NULL;
-	if (applied_locale && strlen(applied_locale)) {
+	if (applied_locale && strlen(applied_locale) != 0) {
 		char *tok = NULL;
 		while (!new_encoding) {
 			// Remove trailing parts of the locale, to get all the subforms of
