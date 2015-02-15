@@ -27,6 +27,7 @@ languages{
 	--         (language is an ISO 639 language code, territory is an
 	--         ISO 3166 country code)
 	{ name = "Brasileiro",   locale = "pt_BR" },
+	{ name = "Cestina",      locale = "cs_CZ" },
 	{ name = "Deutsch",      locale = "de_DE" },
 	{ name = "English (US)", locale = "en_US" },
 	{ name = "Francais",     locale = "fr_FR" },
@@ -40,6 +41,7 @@ codesets{
 	-- encoding: one of the font bitmap encoding provided by the game (see
 	--           graphics/font).
 	-- Note: default encoding is ASCII
+	{ language = "cs", encoding = "ISO-8859-2"  },
 	{ language = "de", encoding = "ISO-8859-15" },
 	{ language = "en", encoding = "ISO-8859-15" },
 	{ language = "fr", encoding = "ISO-8859-15" },
