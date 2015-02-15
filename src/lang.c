@@ -97,7 +97,6 @@ char *lang_extract_next_subform(const char *locale, char **next_tokens)
 
 void lang_set(const char *locale)
 {
-	DebugPrintf(-1, "switch to <%s>\n", (locale) ? (locale) : "NULL");
 #ifdef ENABLE_NLS
 	// Usually setlocale() is called to define the locale to use for
 	// localization. However, when called with a locale name, setlocale()
