@@ -473,26 +473,26 @@ You may redistribute copies of FreedroidRPG\n\
 under the terms of the GNU General Public License.\n\
 For more information about these matters, see the file named COPYING.\n";
 
-char usage_string[] = "\
-Usage: freedroidRPG [-h | --help] \n\
-                    [-v | --version] \n\
-                    [-e | --editor] \n\
-                    [-s | --sound]        [-q | --nosound] \n\
-                    [-o | --open_gl]      [-n | --no_open_gl] \n\
-                    [-f | --fullscreen]   [-w | --window] \n\
-                    [-d X | --debug=X]      X = 0-5; default 1 \n\
-                    [-l character-name    | --load=character-name] \n\
-                    [-r Y | --resolution=Y]  Y = 99 lists hardcoded resolutions. \n\
-                        Y may also be of the form 'WxH' e.g. '800x600'\n\
-\n\
-Please report bugs either by entering them into the bug tracker\n\
-on our website at:\n\n\
-http://bugs.freedroid.org\n\n\
-or by sending an e-mail to:\n\n\
-freedroid-discussion AT lists.sourceforge.net\n\n\
-For more information and known issues please see README.\n\
-Thanks a lot in advance.\n\
-                          / The FreedroidRPG dev team.\n\n";
+char usage_string[] = ""
+"Usage: freedroidRPG [-h | --help]\n"
+"                    [-v | --version]\n"
+"                    [-e | --editor]\n"
+"                    [-s | --sound]        [-q | --nosound]\n"
+"                    [-o | --open_gl]      [-n | --no_open_gl]\n"
+"                    [-f | --fullscreen]   [-w | --window]\n"
+"                    [-t | --system_lang]\n"
+"                    [-l character-name | --load=character-name]\n"
+"                    [-r Y | --resolution=Y]  Y = 99 lists hardcoded resolutions.\n"
+"                                             Y may also be of the form 'WxH' e.g. '800x600'\n"
+"                    [-d X | --debug=X]       X = 0-5; default 1\n"
+"\n"
+"Please report bugs either by entering them into the bug tracker on our website at:\n\n"
+"http://bugs.freedroid.org\n\n"
+"or by sending an e-mail to:\n\n"
+"freedroid-discussion AT lists.sourceforge.net\n\n"
+"For more information and known issues please see README.\n"
+"Thanks a lot in advance.\n"
+"                          / The FreedroidRPG dev team.\n\n";
 
 #define MAX_RESOLUTIONS 32
 screen_resolution screen_resolutions[MAX_RESOLUTIONS];
@@ -516,24 +516,25 @@ void ParseCommandLine(int argc, char *const argv[])
 	int resolution_code = 1;
 
 	static struct option long_options[] = {
-		{"version", 0, 0, 'v'},
-		{"help", 0, 0, 'h'},
-		{"editor", 0, 0, 'e'},
-		{"load", 1, 0, 'l'},
-		{"open_gl", 0, 0, 'o'},
-		{"no_open_gl", 0, 0, 'n'},
-		{"nosound", 0, 0, 'q'},
-		{"sound", 0, 0, 's'},
-		{"debug", 1, 0, 'd'},
-		{"window", 0, 0, 'w'},
-		{"fullscreen", 0, 0, 'f'},
-		{"resolution", 1, 0, 'r'},
-		{"benchmark", 1, 0, 'b'},
+		{"version",     0, 0, 'v'},
+		{"help",        0, 0, 'h'},
+		{"editor",      0, 0, 'e'},
+		{"load",        1, 0, 'l'},
+		{"open_gl",     0, 0, 'o'},
+		{"no_open_gl",  0, 0, 'n'},
+		{"nosound",     0, 0, 'q'},
+		{"sound",       0, 0, 's'},
+		{"debug",       1, 0, 'd'},
+		{"window",      0, 0, 'w'},
+		{"fullscreen",  0, 0, 'f'},
+		{"resolution",  1, 0, 'r'},
+		{"system_lang", 0, 0, 't'},
+		{"benchmark",   1, 0, 'b'},
 		{0, 0, 0, 0}
 	};
 
 	while (1) {
-		c = getopt_long(argc, argv, "vel:onqsb:h?d::r:wf", long_options, NULL);
+		c = getopt_long(argc, argv, "vel:onqsb:h?d::r:wft", long_options, NULL);
 		if (c == -1)
 			break;
 
@@ -651,6 +652,10 @@ void ParseCommandLine(int argc, char *const argv[])
 
 		case 'w':
 			GameConfig.fullscreen_on = FALSE;
+			break;
+
+		case 't':
+			lang_set("");
 			break;
 
 		default:
