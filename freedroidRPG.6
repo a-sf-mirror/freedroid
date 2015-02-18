@@ -51,9 +51,10 @@
 .Op Fl s | -sound | q | -nosound
 .Op Fl n | -no_open_gl | o | -open_gl
 .Op Fl f | -fullscreen | w | -window
-.Op Fl d | -debug
+.Op Fl t | -system_lang
 .Op Fl l | -load
 .Op Fl r | -resolution
+.Op Fl d | -debug
 
 .\"
 .\"
@@ -115,6 +116,9 @@ Skips the main menu and opens up the level editor.
 .\"
 .It Fl l Ar character-name | Fl -load Ar character-name
 Skip the main menu and load the saved game. The parameter character-name should be saved game name.
+.\"
+.It Fl t | Fl -system_lang
+Starts the game in systems default language.
 .\"
 .It Fl d Ar X | Fl -debug Ar X
 Shows mostly useless debug output. Debug level (X) maybe 0-5, default is 1.
