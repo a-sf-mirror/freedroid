@@ -9,6 +9,7 @@ lua/lua*.exe
 lua/lua*.dll
 src/*.exe
 gluem/*font
+gluem/make_bmchars
 gluem/make_atlas
 gluem/explode_atlas
 

@@ -80,7 +80,7 @@ AC_MSG_NOTICE([[Checking for compulsory SDL libraries:]])
 SDL_VERSION=1.2.3
 AM_PATH_SDL($SDL_VERSION,
             :,
-	    AC_MSG_ERROR([*** SDL version $SDL_VERSION not found! You need to install SDL to build and play FreedroidRPG. This includes the -dev packages on distributions that have them. Please refer to the INSTALL file.])
+	    AC_MSG_ERROR([*** SDL version $SDL_VERSION not found! You need to install SDL to build and play FreedroidRPG. This includes the -dev packages on distributions that have them. Please refer to the INSTALL.freedroidRPG file.])
 )
 CFLAGS="$CFLAGS $SDL_CFLAGS"
 LIBS="$LIBS $SDL_LIBS"
@@ -103,7 +103,7 @@ see http://www.libsdl.org/]))
 
 AC_CHECK_LIB([SDL_gfx], [zoomSurface],,
 	AC_MSG_ERROR([SDL_gfx library needed for FreedroidRPG!
-Please refer to the INSTALL file]))
+Please refer to the INSTALL.freedroidRPG file]))
 
 AC_MSG_NOTICE([[Checking for optional SDL libraries:]])
 summary_sound="yes"
@@ -115,6 +115,16 @@ You need the SDL_mixer library (version >= 1.2.1) if you want sound!
 --> compiling without sound support
 --------------------------------------------------])
 summary_sound="SDL_mixer not found")
+
+summary_all_gluem="yes"
+AC_CHECK_LIB([SDL_ttf], [TTF_RenderUNICODE_Blended],, AC_MSG_WARN([
+--------------------------------------------------
+libSDL_ttf not found!
+You need the SDL_ttf library to compile all gluem tools.
+Please refer to the INSTALL.freedroidRPG file.
+--> compiling with some gluem tools disabled.
+--------------------------------------------------])
+summary_all_gluem="make_bmchars not built (optional)")
 
 if test x$want_vorbis = xyes; then
 AC_CHECK_LIB([ogg], [oggpack_read],, AC_MSG_WARN([
@@ -286,6 +296,8 @@ AM_CONDITIONAL(BUILD_LUA, test x$embedded_lua = xyes)
 
 AM_CONDITIONAL(USE_NLS, test x$USE_NLS = xyes)
 
+AM_CONDITIONAL(BUILD_ALL_GLUEM, test x$summary_all_gluem = xyes)
+
 AC_CONFIG_FILES([
 	Makefile lua/Makefile src/Makefile
 	gluem/Makefile croppy/Makefile
@@ -312,6 +324,7 @@ Summary:
 	use embedded Lua library (not system-wide):  $embedded_lua
 	compile with OpenGL support:                 $summary_have_gl
 	compile with sound support:                  $summary_sound
+	compile all gluem tools:                     $summary_all_gluem
 	embed the real-time profiler:                $summary_rtprof
 	localization enabled:                        $USE_NLS"
 

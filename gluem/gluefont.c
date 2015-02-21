@@ -225,7 +225,7 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Usage: %s <font_file> <codeset> <input_path>\n"
 		                "\t<font_file>:   path of the bitmap file to create, relative to current directory.\n"
 		                "\t<codeset>:     codeset of the bitmap file to create (see list below)\n"
-		                "\t<output_path>: path of the directory from where to read the individuals bitmaps, relative to current directory\n"
+		                "\t<input_path>:  path of the directory from where to read the individuals bitmaps, relative to current directory\n"
 		                "\n"
 		                "Example, from fdrpg top src dir: %s graphics/font/ISO-8859-15/cpuFont.png ISO-8859-15 graphics/font/chars\n"
 		                "\n"

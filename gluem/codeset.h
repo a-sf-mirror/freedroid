@@ -24,8 +24,11 @@
 #ifndef _codeset_h
 #define _codeset_h
 
+#include <stdint.h>
+
 struct codeset_element {
 	int empty;
+	uint16_t code;
 	char *name;
 };
 
@@ -34,5 +37,7 @@ void cs_check_codeset(const char*);
 int cs_code_is_empty(unsigned int, const char *);
 char *cs_font_char_name(char *, char *, unsigned int, const char *);
 unsigned int cs_name_to_code(const char *, const char *);
+uint16_t cs_code_to_unicode(unsigned int, const char *);
+char *cs_code_to_name(unsigned int, const char *);
 
 #endif
