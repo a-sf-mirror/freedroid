@@ -46,6 +46,10 @@
 #include <shlobj.h>
 #endif
 
+#ifdef ENABLE_NLS
+#include <iconv.h>
+#endif
+
 void Init_Game_Data(void);
 void UpdateCountersForThisFrame();
 void DoAllMovementAndAnimations(void);
@@ -178,6 +182,50 @@ void PlayATitleFile(char *Filename)
 	if (find_localized_file(Filename, TITLES_DIR, fpath, PLEASE_INFORM)) {
 		set_lua_ctor_upvalue(LUA_CONFIG, "title_screen", &screen);
 		run_lua_file(LUA_CONFIG, fpath);
+
+#ifdef ENABLE_NLS
+		// Convert the title_screen(s text to selected charset encoding
+		iconv_t converter = iconv_open(lang_get_encoding(), "UTF-8");
+		if (converter == (iconv_t)-1) {
+			error_once_message(ONCE_PER_GAME, __FUNCTION__,
+			                   "Error on iconv_open() (encoding: %s): %s",
+			                   NO_REPORT, lang_get_encoding(), strerror(errno));
+		} else {
+			char *in_ptr = screen.text;
+			size_t in_len = strlen(screen.text);
+			// We currently only have 8 bits encodings, so we should not need
+			// an output buffer larger than the input one.
+			char *converted_text = MyMalloc(in_len);
+			char *out_ptr = converted_text;
+			size_t out_len = in_len;
+
+			size_t nb = iconv(converter, &in_ptr, &in_len, &out_ptr, &out_len);
+
+			// In case of error, use the un-converted text
+			if (nb == (size_t)-1) {
+				locale_t c_locale = newlocale(LC_MESSAGES, "C", (locale_t)0);
+				if (errno == EILSEQ || errno == EINVAL) {
+					char invalid_text[23];
+					strncpy(invalid_text, in_ptr, 20);
+					strcat(invalid_text, "...");
+					error_once_message(ONCE_PER_GAME, __FUNCTION__,
+				                       "Error during Title text conversion (title: %s - encoding: %s): %s\n"
+					                   "Invalid sequence:\n--->%s<---",
+									   PLEASE_INFORM, Filename, lang_get_encoding(), strerror_l(errno, c_locale), invalid_text);
+				} else {
+					error_once_message(ONCE_PER_GAME, __FUNCTION__,
+				                       "Error during Title text conversion (title: %s - encoding: %s): %s",
+									   NO_REPORT, Filename, lang_get_encoding(), strerror_l(errno, c_locale));
+				}
+				freelocale(c_locale);
+				free(converted_text);
+			} else {
+				// Replace the title's text by the converted one
+				free(screen.text);
+				screen.text = converted_text;
+			}
+		}
+#endif
 
 		// Remove trailing whitespaces and carriage returns.
 		char *ptr = screen.text + strlen(screen.text) - 1;
