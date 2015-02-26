@@ -23,11 +23,6 @@
  */
 
 #include "../src/pngfuncs.h"
-#include "../src/system.h"
-#include "../src/defs.h"
-#include "../src/getopt.h"
-#include "../src/struct.h"
-#include "../src/proto.h"
 #include "../src/BFont.h"
 #include "codeset.h"
 
