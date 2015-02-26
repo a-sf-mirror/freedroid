@@ -20,28 +20,28 @@
 title_screen{
 song = "HellFortressTwo.ogg",
 text = [[
-            Spiel verloren
+            Fim de Jogo
 
-Versuch es nochmal. Falls du es tust, dann kaufe auch etwas von unseren Sponsoren:
+Por favor tente novamente, e quando tentar, certifique-se de comprar de nossos patrocinadores:
 
-Dr. Wie - "Mächtige, praktische Technologie!"
+Dr. Como - "Poderosa tecnologia conveniente!"
 
-Kan4dische 4p0th3k3 - "Erstaunlicher Durchbruch der Naturmedizin! 100% super zufriedene Kunden!!!"
+Can4dian ph4rm4cy - "Amazing breakthrough herbal r3medies! 100% satisfaction guarant3ed!!!"
 
-Cryonic Solutions - "Nimm den schnellen Weg in die Zukunft mit Cryonic Solutions!"
+Soluções em Criogênicos - "Faça uma viagem rápida para o futuro com Soluções em Criogênicos!"
 
-Future Ballistics - "Jenseits der Ballistik. Future Ballistics."
+Futura Balística - "Além de balistica. Futura Balística."
 
-MegaSystems - "Was wollen sie heute NICHT tun?"
+MegaSystems - "O que você não quer fazer hoje?"
 
-Masternak Abfallbeseitigung - "Wir ZERSTAMPFEN Ihren MÜLL."
+Masternak Rubbish Removal - "We CRUSH your RUBBISH."
 
-Nicholson AG - "Sicherheit mit aller Macht."
+Companhia Nicholson - "Segurança com uma vingança."
 
-Rote Sonne - "Die Nacht ist vorbei: Probier die Morgendämmerung!"
+Sol Vermelho - "A noite acabou: experimente o amanhecer!"
 
 
 
-Versuch es nochmal. Klicken zum Fortfahren.
+Por favor tente novamente. Clique para continuar.
 ]]
 }

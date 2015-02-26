@@ -28,11 +28,11 @@ text = [[
 
 BEWEGUNG:
 
-Das Spiel wird überwiegend mit der Maus gesteuert. Klicke mit der linken Maustaste aus die Stelle, zu der du dich bewegen willst. Halte die linke Maustaste, um weiter in die gezeigte Richtung zu laufen. Halte beim Laufen die Steuerungstaste (STRG/CTRL) gedrückt, um zu Rennen. 
+Das Spiel wird überwiegend mit der Maus gesteuert. Klicke mit der linken Maustaste auf die Stelle, zu der du dich bewegen willst. Halte die linke Maustaste, um weiter in die gezeigte Richtung zu laufen. Halte beim Laufen die Steuerungstaste (STRG/CTRL) gedrückt, um zu Rennen. 
 
 ANGRIFF:
 
-Klicke mit der linken Maustaste auf einen Gegner, damit Tux ihn mit seiner aktuell ausgerüsteten waffe angreift. Trägt Tux eine Feuerwaffe bei sich, wird er den Gegner aus sicherem Abstand beschießen. Sollte der Gegner nicht in Reichweite sein, bewegt sich Tux automatisch auf ihn zu, bis er erledigt ist.
+Klicke mit der linken Maustaste auf einen Gegner, damit Tux ihn mit seiner aktuell ausgerüsteten Waffe angreift. Trägt Tux eine Feuerwaffe bei sich, wird er den Gegner aus sicherem Abstand beschießen. Sollte der Gegner nicht in Reichweite sein, bewegt sich Tux automatisch auf ihn zu, bis er erledigt ist.
 
 SPEZIELLE FUNKTIONEN:
 

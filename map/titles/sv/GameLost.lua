@@ -20,28 +20,28 @@
 title_screen{
 song = "HellFortressTwo.ogg",
 text = [[
-            Spiel verloren
+            Spelet Förlorat
 
-Versuch es nochmal. Falls du es tust, dann kaufe auch etwas von unseren Sponsoren:
+Var vänlig försök igen, och när du gör det, se till att köpa något av våra sponsorer:
 
-Dr. Wie - "Mächtige, praktische Technologie!"
+Dr. Hur - "Mäkta bekväm teknologi!"
 
-Kan4dische 4p0th3k3 - "Erstaunlicher Durchbruch der Naturmedizin! 100% super zufriedene Kunden!!!"
+Det Kan4d3ns1ska 4p0t3ket - "Fantastiska genombrott inom örtläkem3del! Garanterar 100% belåtenh3t!!!"
 
-Cryonic Solutions - "Nimm den schnellen Weg in die Zukunft mit Cryonic Solutions!"
+Kryo-Hjälpen - "Ta en snabb resa in i framtiden med Kryo-Hjälpen!"
 
-Future Ballistics - "Jenseits der Ballistik. Future Ballistics."
+Framtida Sprängmedel AB - "Bortom sprängmedel. Framtida Sprängmedel."
 
-MegaSystems - "Was wollen sie heute NICHT tun?"
+MegaSystems - "Vad vill du inte göra idag?"
 
-Masternak Abfallbeseitigung - "Wir ZERSTAMPFEN Ihren MÜLL."
+Masternaks Skäpborttagning - "Vi KROSSAR ditt SKRÄP"
 
-Nicholson AG - "Sicherheit mit aller Macht."
+Nicholson AB - "Säkerhet med hämd"
 
-Rote Sonne - "Die Nacht ist vorbei: Probier die Morgendämmerung!"
+Röda Solen - "Natten är över: smaka på gryningen!"
 
 
 
-Versuch es nochmal. Klicken zum Fortfahren.
+Var vänlig försök igen. Klicka för att fortsätta.
 ]]
 }

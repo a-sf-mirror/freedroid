@@ -18,30 +18,22 @@
 ----------------------------------------------------------------------
 
 title_screen{
-song = "HellFortressTwo.ogg",
+song = "Bleostrada.ogg",
 text = [[
-            Spiel verloren
+Que ótimo dia.
+Sim, estou sendo sarcástico de novo.
+O planeta inteiro está em chamas.
+Milhares de pessoas estão bem mortas.
+Qwerty e Arensito não estão respondendo.
 
-Versuch es nochmal. Falls du es tust, dann kaufe auch etwas von unseren Sponsoren:
+Ah, sim, eu quase esqueci.
+Os malditos robôs estão prestes a me encontrar, também.
+Não estou muito contente com isso. Nem um pouquinho.
+Acho que vou ter de fingir mais uma vez que sou apenas uma pedra interessante.
+Não acha que seria uma ótima hora pra você acordar?
+Levante-se. Venha até aqui. Salve a minha pele.
+Por favor.
 
-Dr. Wie - "Mächtige, praktische Technologie!"
-
-Kan4dische 4p0th3k3 - "Erstaunlicher Durchbruch der Naturmedizin! 100% super zufriedene Kunden!!!"
-
-Cryonic Solutions - "Nimm den schnellen Weg in die Zukunft mit Cryonic Solutions!"
-
-Future Ballistics - "Jenseits der Ballistik. Future Ballistics."
-
-MegaSystems - "Was wollen sie heute NICHT tun?"
-
-Masternak Abfallbeseitigung - "Wir ZERSTAMPFEN Ihren MÜLL."
-
-Nicholson AG - "Sicherheit mit aller Macht."
-
-Rote Sonne - "Die Nacht ist vorbei: Probier die Morgendämmerung!"
-
-
-
-Versuch es nochmal. Klicken zum Fortfahren.
+            Dvorak, Primeiro IA
 ]]
 }

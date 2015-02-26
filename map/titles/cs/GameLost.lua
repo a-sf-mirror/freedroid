@@ -20,28 +20,28 @@
 title_screen{
 song = "HellFortressTwo.ogg",
 text = [[
-            Spiel verloren
+            Hra byla ztracena
 
-Versuch es nochmal. Falls du es tust, dann kaufe auch etwas von unseren Sponsoren:
+Zkus to prosím znovu, a pokud tak učiníš, ujisti se, že od našich sponzorů koupíš:
 
-Dr. Wie - "Mächtige, praktische Technologie!"
+Dr. Jak - "Mocná pohodlná technologie!"
 
-Kan4dische 4p0th3k3 - "Erstaunlicher Durchbruch der Naturmedizin! 100% super zufriedene Kunden!!!"
+Kan4dská l3kárna - "Úžasný průlom bylinných přípr4vků! Garantování 100% spokoj3nosti!!!"
 
-Cryonic Solutions - "Nimm den schnellen Weg in die Zukunft mit Cryonic Solutions!"
+KryoniK Řešení - "Vemte to rychlou cestu do budoucnosti s KryoniK Řešením!"
 
-Future Ballistics - "Jenseits der Ballistik. Future Ballistics."
+Budoucí Balistiky - "Za hranice balistiky. Budoucí Balistiky."
 
-MegaSystems - "Was wollen sie heute NICHT tun?"
+MegaSystémy - "Co dnes  nechceš dělat?"
 
-Masternak Abfallbeseitigung - "Wir ZERSTAMPFEN Ihren MÜLL."
+Odstraňování odpadků Masternak - "ODSTRAŇUJEM tvé ODPADKY."
 
-Nicholson AG - "Sicherheit mit aller Macht."
+Nicholsonovy závody - "Bezpečnost v plné síle."
 
-Rote Sonne - "Die Nacht ist vorbei: Probier die Morgendämmerung!"
+Rudé Slunce - "Noc je u konce: ochutnejte úsvit!"
 
 
 
-Versuch es nochmal. Klicken zum Fortfahren.
+Zkus to prosím znovu. Pro pokračování klikni.
 ]]
 }

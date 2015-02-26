@@ -23,24 +23,24 @@ song = "TheBeginning.ogg",
 text = [[
             COMMENT CONTRIBUER
 
-FreedroidRPG is entirely free software and free artwork.
+FreedroidRPG est entièrement libre, le logiciel et les illustrations.
 Il est exclusivement développé par des bénévoles sur leur temps de loisir.
 
 L'amélioration de FreedroidRPG dépend de ces contributions.
-Si vous aimeriez contribuer, mais n'êtes pas certain de savoir comment, voici une liste de choses à faire :
+Si vous désirez contribuer, mais n'êtes pas certain de savoir comment, voici une liste de choses à faire :
 
-TESTING AND BUG REPORTING:
+TEST ET RAPPORT DE BUG :
 
-We need people to try out the game and report anything that does not work correctly or seems to be unstable. This includes minor things, such as spelling mistakes and the like. The task of testing is growing with the size of FreedroidRPG. We need your help.
-Don't hesitate to send patches!
+Nous avons besoin de personnes pour tester le jeu et rapporter tout ce qui ne fonctionne pas correctement ou qui semble instable. Cela inclus des choses mineures telles que des erreurs d'orthographe ou autre. Cette tâche augmente avec la taille de FreedroidRPG. Nous avons besoin de votre aide. 
+N'hésitez pas à envoyer des patchs.
 
 CRÉATION DE CARTES :
 
-We are looking for people who would make maps for us. There is a map editor built into the game. Try it, and if you make something interesting make sure to get back to us.
+Nous recherchons des personnes pour créer les cartes. Un éditeur de carte est intégré au jeu. Essayez-le, et si vous créez quelque chose d'intéressant, pensez à nous l'envoyer.
 
 DOCUMENTATION :
 
-Nous manquons actuellement de documentation. Nous aurions besoin d'une documentation décrivant le jeu et son éditeur de niveau, aussi bien destinée à l’utilisateur final qu'au développeur. Un bon niveau d'écriture est requis.
+Nous manquons actuellement de documentation. Nous aurions besoin d'une documentation décrivant le jeu et son éditeur de niveau, aussi bien destinée à l'utilisateur final qu'au développeur. Un bon niveau d'écriture est requis.
 
 BRUITAGES :
 

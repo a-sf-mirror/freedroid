@@ -141,7 +141,7 @@
    * Pulseaudio: Wer SDL-pulseaudio benutzt könnte keinen Ton hören. Dies hat nichts mit 
 	 dem Spiel selbst zu tun, sondern mit Pulseaudio und seinen Plugins, welche allgemein unfertig sind. Wir empfehlen daher 
 	 z.B. SDL-esd oder SDL-alsa bis diese Probleme behoben sind.
-   * Intel 915/945/IDG Grafikkarten (EEE PCs, Netbooks, etc.): Mesa 7.9-devel enthält einen Fehler, das Spiel 
+   * Intel 915/945/IDG Grafikkarten (EEE PCs, Netbooks, etc.): Mesa 7.9-devel enthält einen Fehler, der das Spiel 
    	 verlangsamt und viel Speicher verbraucht. Dies behebt man, indem man "driconf" installiert und startet und die Einstellung  
 	 "Enable texture tiling" auf "No" setzt.   
    * Wegen einiger Hardware- und Softwaretreiber kann die "Gammakorrektur"-Option nichts bewirken.
@@ -298,7 +298,7 @@ Level-Editor- & Entwickler-FAQ:
 	   sodass alle Entwickler an einem Strang ziehen können und wissen
 	   was vor sich geht und wer woran arbeitet.
 	   Wer bei Sourceforge noch neu ist, sollte sich einen kleinen Überblick auf
-	   unsere Projektseite verschaffen. Die Hauptseite befindet sich hier:
+	   unserer Projektseite verschaffen. Die Hauptseite befindet sich hier:
 	   http://sourceforge.net/projects/freedroid
 	   und andere relevante Seiten sollten von dort aus erreichbar sein.
 

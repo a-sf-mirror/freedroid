@@ -18,30 +18,22 @@
 ----------------------------------------------------------------------
 
 title_screen{
-song = "HellFortressTwo.ogg",
+song = "Bleostrada.ogg",
 text = [[
-            Spiel verloren
+Jaký toť skvělý den.
+Ano, jsem opět sarkastický.
+Celá planeta je v plamenech.
+Tisíce lidí jsou velmi mrtví.
+Qwerty a Arensito nereagují.
 
-Versuch es nochmal. Falls du es tust, dann kaufe auch etwas von unseren Sponsoren:
+Ah ano, málem jsem zapomněl.
+Ty prokletý boti mě každou chvíli najdou.
+Nejsem s tím moc spokojený. Nejsem vůbec šťastný.
+Evidentně budu muset zase předstírat, že jsem jen pěkný kus skály.
+Nemyslíš si, že by to byl skvělý čas na probuzení?
+Vstávat. Okamžitě sem. Zachraň mi mou prdel.
+Prosím.
 
-Dr. Wie - "Mächtige, praktische Technologie!"
-
-Kan4dische 4p0th3k3 - "Erstaunlicher Durchbruch der Naturmedizin! 100% super zufriedene Kunden!!!"
-
-Cryonic Solutions - "Nimm den schnellen Weg in die Zukunft mit Cryonic Solutions!"
-
-Future Ballistics - "Jenseits der Ballistik. Future Ballistics."
-
-MegaSystems - "Was wollen sie heute NICHT tun?"
-
-Masternak Abfallbeseitigung - "Wir ZERSTAMPFEN Ihren MÜLL."
-
-Nicholson AG - "Sicherheit mit aller Macht."
-
-Rote Sonne - "Die Nacht ist vorbei: Probier die Morgendämmerung!"
-
-
-
-Versuch es nochmal. Klicken zum Fortfahren.
+            Dvořák, První umělá inteligence.
 ]]
 }
