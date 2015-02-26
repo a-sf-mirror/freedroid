@@ -1515,8 +1515,8 @@ static char *get_new_character_name(void)
 			str = get_string(MAX_CHARACTER_NAME_LENGTH - 1, "title.jpg", _("\n\
      Please enter a name\n\
      for the new hero: \n\n\
-     ---ENTER to accept.\n\
-     ---ESCAPE to cancel.\n\n\
+        ENTER to accept.\n\
+        ESCAPE to cancel.\n\n\
      > "));
 		else
 			str = strdup("MapEd");
