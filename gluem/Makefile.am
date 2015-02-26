@@ -8,6 +8,10 @@ gluefont_LDADD = -lm
 make_atlas_LDADD =
 explode_atlas_LDADD =
 
+if BUILD_LUA
+AM_CPPFLAGS += -I$(top_srcdir)/lua
+endif
+
 bin_PROGRAMS = explodefont gluefont make_atlas explode_atlas
 
 if BUILD_ALL_GLUEM
