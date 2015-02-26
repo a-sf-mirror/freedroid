@@ -46,7 +46,7 @@ static struct {
 	char *filename;
 	struct font font;
 } fonts_def[] = {
-		{ &Para_Font,        "parafont.png",     { 0,  0, NULL } },
+		{ &Para_Font,        "parafont.png",     { 0, -2, NULL } },
 		{ &Menu_Font,        "cpuFont.png",      { 0, -4, NULL } },
 		{ &Messagevar_Font,  "small_white.png",  { 0,  0, NULL } },
 		{ &Messagestat_Font, "small_blue.png",   { 0,  0, NULL } },
