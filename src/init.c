@@ -183,6 +183,7 @@ void PlayATitleFile(char *Filename)
 		set_lua_ctor_upvalue(LUA_CONFIG, "title_screen", &screen);
 		run_lua_file(LUA_CONFIG, fpath);
 
+#if 0 // Fluzz: Need some fixing (MacOS needs -liconv, asan crash on strlen()...)
 #ifdef ENABLE_NLS
 		// Convert the title_screen(s text to selected charset encoding
 		iconv_t converter = iconv_open(lang_get_encoding(), "UTF-8");
@@ -225,6 +226,7 @@ void PlayATitleFile(char *Filename)
 				screen.text = converted_text;
 			}
 		}
+#endif
 #endif
 
 		// Remove trailing whitespaces and carriage returns.
