@@ -16,7 +16,7 @@ freedroidRPG_LDADD += $(top_builddir)/win32/freedroidRPG.coff
 endif
 
 if USE_NLS
-freedroidRPG_LDADD += @LIBINTL@
+freedroidRPG_LDADD += @LIBINTL@ @LIBICONV@
 AM_CPPFLAGS += -DLOCALEDIR=\"$(localedir)\"
 endif
 

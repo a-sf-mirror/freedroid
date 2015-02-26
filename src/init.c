@@ -183,7 +183,6 @@ void PlayATitleFile(char *Filename)
 		set_lua_ctor_upvalue(LUA_CONFIG, "title_screen", &screen);
 		run_lua_file(LUA_CONFIG, fpath);
 
-#if 0 // Fluzz: Need some fixing (MacOS needs -liconv, asan crash on strlen()...)
 #ifdef ENABLE_NLS
 		// Convert the title_screen(s text to selected charset encoding
 		iconv_t converter = iconv_open(lang_get_encoding(), "UTF-8");
@@ -196,7 +195,7 @@ void PlayATitleFile(char *Filename)
 			size_t in_len = strlen(screen.text);
 			// We currently only have 8 bits encodings, so we should not need
 			// an output buffer larger than the input one.
-			char *converted_text = MyMalloc(in_len);
+			char *converted_text = MyMalloc(in_len+1);
 			char *out_ptr = converted_text;
 			size_t out_len = in_len;
 
@@ -204,7 +203,6 @@ void PlayATitleFile(char *Filename)
 
 			// In case of error, use the un-converted text
 			if (nb == (size_t)-1) {
-				locale_t c_locale = newlocale(LC_MESSAGES, "C", (locale_t)0);
 				if (errno == EILSEQ || errno == EINVAL) {
 					char invalid_text[23];
 					strncpy(invalid_text, in_ptr, 20);
@@ -212,13 +210,12 @@ void PlayATitleFile(char *Filename)
 					error_once_message(ONCE_PER_GAME, __FUNCTION__,
 				                       "Error during Title text conversion (title: %s - encoding: %s): %s\n"
 					                   "Invalid sequence:\n--->%s<---",
-									   PLEASE_INFORM, Filename, lang_get_encoding(), strerror_l(errno, c_locale), invalid_text);
+									   PLEASE_INFORM, Filename, lang_get_encoding(), strerror(errno), invalid_text);
 				} else {
 					error_once_message(ONCE_PER_GAME, __FUNCTION__,
 				                       "Error during Title text conversion (title: %s - encoding: %s): %s",
-									   NO_REPORT, Filename, lang_get_encoding(), strerror_l(errno, c_locale));
+									   NO_REPORT, Filename, lang_get_encoding(), strerror(errno));
 				}
-				freelocale(c_locale);
 				free(converted_text);
 			} else {
 				// Replace the title's text by the converted one
@@ -226,7 +223,7 @@ void PlayATitleFile(char *Filename)
 				screen.text = converted_text;
 			}
 		}
-#endif
+		iconv_close(converter);
 #endif
 
 		// Remove trailing whitespaces and carriage returns.
