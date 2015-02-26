@@ -478,7 +478,7 @@ void display_tooltip(const char *text, int centered, SDL_Rect rect)
 		rect.w = longest_line_width(buffer) + 2 * TEXT_BANNER_HORIZONTAL_MARGIN;
 
 	// Compute the required height.
-	int lines_in_text = get_lines_needed(buffer, rect, LINE_HEIGHT_FACTOR);
+	int lines_in_text = get_lines_needed(buffer, rect, 1.0);
 	rect.h = lines_in_text * get_font_height(get_current_font());
 	
 	// Add extra correction to ensure the banner rectangle stays inside
@@ -503,7 +503,7 @@ void display_tooltip(const char *text, int centered, SDL_Rect rect)
 	
 	// Print the text.
 	if (!centered) {
-		display_text_using_line_height(buffer, text_rect.x, text_rect.y, &text_rect, 1.0);
+		display_text(buffer, text_rect.x, text_rect.y, &text_rect, 1.0);
 		return;
 	}
 
@@ -638,7 +638,7 @@ static void show_top_left_text(void)
 	clip.h = GameConfig.screen_height;
 
 	set_current_font(FPS_Display_Font);
-	display_text_using_line_height(txt->value, clip.x, clip.y, &clip, 1.0);
+	display_text(txt->value, clip.x, clip.y, &clip, 1.0);
 }
 
 /**

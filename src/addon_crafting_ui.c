@@ -256,15 +256,15 @@ void show_addon_crafting_ui()
 
 	// Draw the title.
 	set_current_font(Menu_Font);
-	display_text(_("Craft Addons"), rects.title_text.x, rects.title_text.y, NULL);
+	display_text(_("Craft Addons"), rects.title_text.x, rects.title_text.y, NULL, 1.0);
 
 	// Draw the details string.
 	set_current_font(Blue_Font);
-	display_text(_("Details"), rects.details_text.x, rects.details_text.y, NULL);
+	display_text(_("Details"), rects.details_text.x, rects.details_text.y, NULL, 1.0);
 
 	// Draw the parts text
 	set_current_font(Blue_Font);
-	display_text(_("Parts"), rects.materials_list.x, rects.materials_list.y, NULL);
+	display_text(_("Parts"), rects.materials_list.x, rects.materials_list.y, NULL, 1.0);
 
 	// Draw the apply and close buttons.
 	if (arr[ui.selection].available) {
@@ -290,7 +290,7 @@ void show_addon_crafting_ui()
 			set_current_font(Red_Font);
 		}
 		int type = arr[i].item_type;
-		display_text(D_(item_specs_get_name(type)), rect.x + rect.h, rect.y + 4, NULL);
+		display_text(D_(item_specs_get_name(type)), rect.x + rect.h, rect.y + 4, NULL, 1.0);
 		struct image *img = get_item_inventory_image(type);
 		if (img) {
 			float scale = (float)(RECIPE_LIST_IMG_WIDTH + RECIPE_LIST_IMG_HEIGHT) / (img->w + img->h);
@@ -338,14 +338,14 @@ void show_addon_crafting_ui()
 		x = rect.x + rect.w  // the right border
 			 - WIDTH_BORDER // the blue border
 			 - w_text; // right justified
-		display_text(text, x, y, NULL);
+		display_text(text, x, y, NULL, 1.0);
 
 		//then the '/' center
 		w_text = text_width(get_current_font(), "/");
 		int half = w_text / 2;
 		x = rect.x + (rect.w / 2) // center of the column
 			 - half; // center placed
-		display_text("/", x, y, NULL);
+		display_text("/", x, y, NULL, 1.0);
 
 		//last dividend (00 part in the diagram)
 		if (ui.materials_for_selected[i].available < ui.materials_for_selected[i].required) {
@@ -360,7 +360,7 @@ void show_addon_crafting_ui()
 		x = rect.x + (rect.w / 2) // center of the column
 			 - half // the part used by /
 			 - w_text; // right justified
-		display_text(text, x , y , NULL);
+		display_text(text, x , y , NULL, 1.0);
 
 		rect.y += MARGIN_SPACE + img->h + 20;
 	}

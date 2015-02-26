@@ -196,7 +196,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 	widget_text_init(&item_description, "");
 	widget_set_rect(WIDGET(&item_description), UNIVERSAL_COORD_W(310), UNIVERSAL_COORD_H(180), UNIVERSAL_COORD_W(75), UNIVERSAL_COORD_H(45));
 	item_description.font = FPS_Display_Font;
-	item_description.line_height_factor = LINE_HEIGHT_FACTOR;
+	item_description.line_height_factor = 1.0;
 
 	int old_game_status = game_status;
 

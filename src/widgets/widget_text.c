@@ -127,7 +127,7 @@ void widget_text_display(struct widget *w)
 		offset = 0;
 
 	SDL_SetClipRect(Screen, NULL);
-	display_text_using_line_height(wt->text->value, w->rect.x, w->rect.y - offset,
+	display_text(wt->text->value, w->rect.x, w->rect.y - offset,
                                        &w->rect, wt->line_height_factor);
 
 	/* If we have more content above or below the currently visible text, we call the

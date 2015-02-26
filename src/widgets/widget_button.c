@@ -156,7 +156,7 @@ static void button_display(struct widget *wb)
 		rect.y = rect.y + 8;
 
 		// Draw the text on the button
-		display_text(b->text, rect.x, rect.y, &rect);
+		display_text(b->text, rect.x, rect.y, &rect, 1.0);
 	}
 }
 

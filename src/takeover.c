@@ -204,7 +204,7 @@ static void show_droid_info(int droidtype)
 	clip.y = UNIVERSAL_COORD_H(57);
 	clip.w = UNIVERSAL_COORD_W(200);
 	clip.h = UNIVERSAL_COORD_H(30);
-	display_text_using_line_height(D_(Droidmap[droidtype].default_short_description), clip.x, clip.y, &clip, 1.0);
+	display_text(D_(Droidmap[droidtype].default_short_description), clip.x, clip.y, &clip, 1.0);
 }
 
 /**
@@ -1734,8 +1734,8 @@ void to_show_banner(const char *left, const char *right)
 	// time to display it...
 	DebugPrintf(2, "Takeover said: %s -- %s\n", left_box, right_box);
 	set_current_font(Para_Font);
-	display_text(left_box, LEFT_INFO_X, LEFT_INFO_Y, NULL);
-	display_text(right_box, RIGHT_INFO_X, RIGHT_INFO_Y, NULL);
+	display_text(left_box, LEFT_INFO_X, LEFT_INFO_Y, NULL, 1.0);
+	display_text(right_box, RIGHT_INFO_X, RIGHT_INFO_Y, NULL, 1.0);
 
 };				// void to_show_banner (const char* left, const char* right)
 

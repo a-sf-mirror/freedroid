@@ -160,7 +160,7 @@ static void text_list_display(struct widget *w)
 		if (wl->selected_entry == i)
 			HighlightRectangle(Screen, elt->rect);
 
-		display_text_using_line_height(elt->text, elt->text_rect.x, elt->text_rect.y, &elt->text_rect, 1.0);
+		display_text(elt->text, elt->text_rect.x, elt->text_rect.y, &elt->text_rect, 1.0);
 	}
 }
 

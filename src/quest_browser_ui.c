@@ -273,9 +273,8 @@ static void print_statistics(void)
 	}
 
 	//Print all to screen
-	float mission_list_offset = (get_font_height(get_current_font()) * LINE_HEIGHT_FACTOR)
-	    * mission_list_scroll_override_from_user;
-	display_text_using_line_height(quest_browser_text->value, mission_description_rect.x,
+	float mission_list_offset = get_font_height(get_current_font()) * mission_list_scroll_override_from_user;
+	display_text(quest_browser_text->value, mission_description_rect.x,
                                        mission_description_rect.y - mission_list_offset, &mission_description_rect, 1.0);
 
 	// Now it's time to display some short/long symbols in front
@@ -350,7 +349,7 @@ static void quest_browser_display_mission_list(int list_type)
 		// user can then select to see the full/short information on this quest.
 		//
 		quest_browser_mission_lines_needed[mis_num] =
-			get_lines_needed(quest_browser_text->value, mission_description_rect, LINE_HEIGHT_FACTOR);
+			get_lines_needed(quest_browser_text->value, mission_description_rect, 1.0);
 
 		if ((list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete == FALSE)) {
 			quest_browser_append_mission_info(Me.AllMissions[mis_num].mission_name,
@@ -368,7 +367,7 @@ static void quest_browser_display_mission_list(int list_type)
 
 	if (something_was_displayed) {
 		float mission_list_offset = get_font_height(get_current_font()) * mission_list_scroll_override_from_user;
-		display_text_using_line_height(quest_browser_text->value, mission_description_rect.x,
+		display_text(quest_browser_text->value, mission_description_rect.x,
 			    mission_description_rect.y - mission_list_offset, &mission_description_rect, 1.0);
 
 		// Now it's time to display some short/long symbols in front
@@ -431,7 +430,7 @@ static void quest_browser_display_mission_list(int list_type)
 				break;
 		}
 
-		display_text(txt, mission_description_rect.x, mission_description_rect.y, &mission_description_rect);
+		display_text(txt, mission_description_rect.x, mission_description_rect.y, &mission_description_rect, 1.0);
 	}
 }
 

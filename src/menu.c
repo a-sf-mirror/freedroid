@@ -286,7 +286,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 			free(str);
 		}
 		if (strlen(InitialText) > 0)
-			display_text(InitialText, 50, 50, NULL);
+			display_text(InitialText, 50, 50, NULL, 1.0);
 
 		// Now the mouse cursor must be brought to the screen
 		blit_mouse_cursor();

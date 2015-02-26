@@ -158,7 +158,7 @@ void next_startup_percentage(int done)
 	set_current_font(Blue_Font);
 	char percent[10];
 	sprintf(percent, "%d%%", startup_percent);
-	display_text(percent, UNIVERSAL_COORD_W(310) - 9, UNIVERSAL_COORD_H(301) - 7, NULL);
+	display_text(percent, UNIVERSAL_COORD_W(310) - 9, UNIVERSAL_COORD_H(301) - 7, NULL, 1.0);
 
 	our_SDL_update_rect_wrapper(Screen, 0, 0, Screen->w, Screen->h);
 

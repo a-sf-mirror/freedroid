@@ -1744,7 +1744,7 @@ void draw_grid_on_the_floor(int mask)
 			tr.h = 14;
 
 			draw_rectangle(&tr, 0, 0, 0, 255);
-			display_text(numbers[ii][jj], r - 5, c - 5, &tr);
+			display_text(numbers[ii][jj], r - 5, c - 5, &tr, 1.0);
 		}
 	set_current_font(PreviousFont);
 }
@@ -2253,7 +2253,7 @@ void blit_tux(int x, int y)
 	if ((x == -1) && Me.TextToBeDisplayed && (Me.TextVisibleTime < GameConfig.WantedTextVisibleTime) &&
 		GameConfig.All_Texts_Switch) {
 		set_current_font(FPS_Display_Font);
-		display_text(Me.TextToBeDisplayed, Text_Rect.x, Text_Rect.y, &Text_Rect);
+		display_text(Me.TextToBeDisplayed, Text_Rect.x, Text_Rect.y, &Text_Rect, 1.0);
 	}
 }
 
@@ -3068,7 +3068,7 @@ void show_inventory_screen(void)
 			TargetRect.h = INV_SUBSQUARE_HEIGHT * ItemMap[Me.Inventory[SlotNum].type].inv_size.y;
 			int xpos = TargetRect.x + TargetRect.w - text_width(get_current_font(), amount) - 2;
 			int ypos = TargetRect.y + TargetRect.h - get_font_height(Messagevar_Font);
-			display_text_using_line_height(amount, xpos, ypos, &TargetRect, 1.0);
+			display_text(amount, xpos, ypos, &TargetRect, 1.0);
 		}
 	}
 

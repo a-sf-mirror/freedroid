@@ -185,10 +185,10 @@ static void show_socket_creation_menu()
 
 	// Draw the menu title and the column headers.
 	set_current_font(Blue_Font);
-	display_text(_("Add socket"), rects.prompt.x, rects.prompt.y, NULL);
+	display_text(_("Add socket"), rects.prompt.x, rects.prompt.y, NULL, 1.0);
 	set_current_font(Messagestat_Font);
-	display_text(_("Type"), rects.table[0][0].x, rects.table[0][0].y, NULL);
-	display_text(_("Cost"), rects.table[1][0].x, rects.table[1][0].y, NULL);
+	display_text(_("Type"), rects.table[0][0].x, rects.table[0][0].y, NULL, 1.0);
+	display_text(_("Cost"), rects.table[1][0].x, rects.table[1][0].y, NULL, 1.0);
 	set_current_font(Messagevar_Font);
 
 	// Draw the selectable rows whose contents were given as parameters.
@@ -199,12 +199,12 @@ static void show_socket_creation_menu()
 		}
 
 		// Draw the name column.
-		display_text(names[i], rects.table[0][i + 1].x, rects.table[0][i + 1].y, NULL);
+		display_text(names[i], rects.table[0][i + 1].x, rects.table[0][i + 1].y, NULL, 1.0);
 
 		// Draw the cost column if the row has a cost assigned to it.
 		if (costs[i] != -1) {
 			sprintf(buffer, "%d", costs[i]);
-			display_text(buffer, rects.table[1][i + 1].x, rects.table[1][i + 1].y, NULL);
+			display_text(buffer, rects.table[1][i + 1].x, rects.table[1][i + 1].y, NULL, 1.0);
 		}
 	}
 }
@@ -256,31 +256,31 @@ void show_item_upgrade_ui()
 	} else {
 		set_current_font(Messagestat_Font);
 		display_text(_("Place an item here"), rects.custom_slot.x,
-		            rects.custom_slot.y + rects.custom_slot.h / 2, NULL);
+		            rects.custom_slot.y + rects.custom_slot.h / 2, NULL, 1.0);
 	}
 
 	// Draw the title.
 	set_current_font(Menu_Font);
-	display_text(_("Upgrade Items"), rects.title_text.x, rects.title_text.y, NULL);
+	display_text(_("Upgrade Items"), rects.title_text.x, rects.title_text.y, NULL, 1.0);
 
 	// Draw the text labels.
 	set_current_font(Messagevar_Font);
 	sprintf(buffer, _("Circuits: %d"), Me.Gold);
-	display_text(buffer, rects.money_text.x, rects.money_text.y, NULL);
+	display_text(buffer, rects.money_text.x, rects.money_text.y, NULL, 1.0);
 	if (ui.cost > Me.Gold) {
 		set_current_font(Messagered_Font);
 	} else {
 		set_current_font(Messagevar_Font);
 	}
 	sprintf(buffer, _("Cost: %d"), ui.cost);
-	display_text(buffer, rects.cost_text.x, rects.cost_text.y, NULL);
+	display_text(buffer, rects.cost_text.x, rects.cost_text.y, NULL, 1.0);
 	set_current_font(Blue_Font);
-	display_text(_("Bonuses"), rects.bonus_text.x, rects.bonus_text.y, NULL);
+	display_text(_("Bonuses"), rects.bonus_text.x, rects.bonus_text.y, NULL, 1.0);
 
 	// Draw the item bonus string.
 	set_current_font(Messagevar_Font);
 	display_text(ui.bonus_text->value, rects.bonus_list.x, rects.bonus_list.y,
-	            &rects.bonus_list);
+	            &rects.bonus_list, 1.0);
 
 	if (ui.create_socket_active) {
 

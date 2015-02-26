@@ -427,7 +427,6 @@ struct widget_group *create_chat_dialog()
 
 	chat_log = widget_text_create();
 	chat_log->font = FPS_Display_Font;
-	chat_log->line_height_factor = LINE_HEIGHT_FACTOR;
 
 	/* Adjust padding of the text area, to adapt the vertically padding to the available height */
 	font_height = get_font_height(chat_log->font);

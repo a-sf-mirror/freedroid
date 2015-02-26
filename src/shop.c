@@ -406,7 +406,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	widget_text_init(&item_description, "");
 	widget_set_rect(WIDGET(&item_description), UNIVERSAL_COORD_W(258), UNIVERSAL_COORD_H(108), UNIVERSAL_COORD_W(346), UNIVERSAL_COORD_H(255));
 	item_description.font = FPS_Display_Font;
-	item_description.line_height_factor = LINE_HEIGHT_FACTOR;
+	item_description.line_height_factor = 1.0;
 	item_description.scroll_offset = scroll_to_top;
 
 	if (ItemIndex >= 0) {

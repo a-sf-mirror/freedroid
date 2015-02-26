@@ -139,7 +139,7 @@ static void minimap_display(struct widget *w)
 			tr.h = 90.0;
 			tr.x = r - text_width(get_current_font(), text) / 2;
 			tr.y = c - get_font_height(get_current_font()) / 2;
-			display_text(text, tr.x, tr.y, &tr);
+			display_text(text, tr.x, tr.y, &tr, 1.0);
 		}
 	}
 

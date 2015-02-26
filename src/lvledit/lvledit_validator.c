@@ -1580,7 +1580,7 @@ int level_validation()
 			// Empty level
 			char txt[40];
 			sprintf(txt, "%03d: [w]empty", l);
- 			int lines = display_text_using_line_height(txt, col_pos, row_pos, &report_rect, 1.0);
+			int lines = display_text(txt, col_pos, row_pos, &report_rect, 1.0);
  			row_pos += lines * row_height;
 			set_current_font(current_font);	// Reset font
 		} else {
@@ -1605,7 +1605,7 @@ int level_validation()
 				sprintf(txt, "[w]%03d: [w]pass", l);
 				break;
 			}
-			int lines = display_text_using_line_height(txt, col_pos, row_pos, &report_rect, 1.0);
+			int lines = display_text(txt, col_pos, row_pos, &report_rect, 1.0);
 			row_pos += lines * row_height;
 			set_current_font(current_font);	// Reset font in case of the red "fail" was displayed
 

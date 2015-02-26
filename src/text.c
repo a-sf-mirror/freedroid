@@ -57,7 +57,7 @@ int get_lines_needed(const char *text, SDL_Rect t_rect, float line_height_factor
 {
 	t_rect.h = 32767; // arbitrary large number
 	display_char_disabled = TRUE;
-	int lines = display_text_using_line_height(text, t_rect.x, t_rect.y, &t_rect, line_height_factor);
+	int lines = display_text(text, t_rect.x, t_rect.y, &t_rect, line_height_factor);
 	display_char_disabled = FALSE;
 	return lines;
 }
@@ -131,7 +131,7 @@ int show_backgrounded_text_rectangle(const char *text, struct font *font, int x,
 	t_rect.h -= IN_WINDOW_TEXT_OFFSET;
 	t_rect.x += IN_WINDOW_TEXT_OFFSET;
 	t_rect.y += IN_WINDOW_TEXT_OFFSET;
-	display_text_using_line_height(text, t_rect.x, t_rect.y, &t_rect, 1.0);
+	display_text(text, t_rect.x, t_rect.y, &t_rect, 1.0);
 
 	set_current_font(old_font);
 	return r_height;
@@ -189,7 +189,7 @@ int ScrollText(char *Text, const char *background_name)
 		
 		if (background_name)
 			blit_background(background_name);
-		Number_Of_Line_Feeds = display_text(Text, ScrollRect.x, InsertLine, &ScrollRect);
+		Number_Of_Line_Feeds = display_text(Text, ScrollRect.x, InsertLine, &ScrollRect, 1.0);
 		// We might add some buttons to be displayed here, so that, if you don't have
 		// a mouse wheel and don't know about cursor keys, you can still click on these
 		// buttons to control the scrolling speed of the text.
@@ -254,9 +254,9 @@ int ScrollText(char *Text, const char *background_name)
 			InsertLine = StartInsertLine;
 			speed = 0;
 		}
-		if (InsertLine + (Number_Of_Line_Feeds + 1) * (int)(get_font_height(get_current_font()) * LINE_HEIGHT_FACTOR) < ScrollRect.y
+		if (InsertLine + (Number_Of_Line_Feeds + 1) * get_font_height(get_current_font()) < ScrollRect.y
 		    && (speed > 0)) {
-			InsertLine = ScrollRect.y - (Number_Of_Line_Feeds + 1) * (int)(get_font_height(get_current_font()) * LINE_HEIGHT_FACTOR);
+			InsertLine = ScrollRect.y - (Number_Of_Line_Feeds + 1) * get_font_height(get_current_font());
 			speed = 0;
 		}
 
@@ -316,7 +316,7 @@ void DisplayBigScreenMessage(void)
 
 			set_current_font(Menu_Font);
 			int x_pos = GameConfig.screen_width/2 - text_width(get_current_font(), text)/2;
-			display_text_using_line_height(text, x_pos, y_pos, NULL /* clip */, 1.0);
+			display_text(text, x_pos, y_pos, NULL /* clip */, 1.0);
 
 			if (!GameConfig.Inventory_Visible && !GameConfig.SkillScreen_Visible && !GameConfig.CharacterScreen_Visible)
 				Me.BigScreenMessageDuration[i] += Frame_Time();
@@ -343,7 +343,7 @@ static void display_countdown(int pixel_x, int pixel_y, const char* message, flo
 
 	pixel_x -= text_width(get_current_font(), text) / 2;
 
-	display_text_using_line_height(text, pixel_x, pixel_y, NULL /* clip */, 1.0);
+	display_text(text, pixel_x, pixel_y, NULL /* clip */, 1.0);
 }
 
 /**
@@ -379,7 +379,7 @@ void display_effect_countdowns(void)
 	}
 };		// void display_effect_countdowns( void )
 
-static int display_text_using_line_height_with_cursor(const char *text, int startx, int starty, const SDL_Rect *clip, float line_height_factor, int curpos)
+static int display_text_with_cursor(const char *text, int startx, int starty, const SDL_Rect *clip, float line_height_factor, int curpos)
 {
 	char *tmp;		// mobile pointer to the current position in the string to be printed
 	SDL_Rect Temp_Clipping_Rect;	// adding this to prevent segfault in case of NULL as parameter
@@ -521,17 +521,9 @@ static int display_text_using_line_height_with_cursor(const char *text, int star
  * @return number of lines written (from the first text line up to the
  *         last displayed line)
  */
-int display_text_using_line_height(const char *text, int startx, int starty, const SDL_Rect *clip, float line_height_factor)
+int display_text(const char *text, int startx, int starty, const SDL_Rect *clip, float line_height_factor)
 {
-	return display_text_using_line_height_with_cursor(text, startx, starty, clip, line_height_factor, -1);
-}
-
-/**
- * Display text using the default line height.
- */
-int display_text(const char *text, int x, int y, const SDL_Rect* clip_rect)
-{
-	return display_text_using_line_height(text, x, y, clip_rect, LINE_HEIGHT_FACTOR);
+	return display_text_with_cursor(text, startx, starty, clip, line_height_factor, -1);
 }
 
 /**
@@ -582,7 +574,7 @@ char *get_string(int MaxLen, const char *background_name, const char *text_for_o
 	int finished;
 	int x0, y0;
 
-	display_text(text_for_overhead_promt, 50, 50, NULL);
+	display_text(text_for_overhead_promt, 50, 50, NULL, 1.0);
 
 	// allocate memory for the users input
 	input = MyMalloc(MaxLen + 5);
@@ -595,7 +587,7 @@ char *get_string(int MaxLen, const char *background_name, const char *text_for_o
 
 	while (!finished) {
 		blit_background(background_name);
-		display_text(text_for_overhead_promt, 50, 50, NULL);
+		display_text(text_for_overhead_promt, 50, 50, NULL, 1.0);
 
 		x0 = MyCursorX;
 		y0 = MyCursorY;
@@ -610,7 +602,7 @@ char *get_string(int MaxLen, const char *background_name, const char *text_for_o
 			// useful for GL drivers that do true pageflipping (win32, nvidia 173.x, ...)
 			if (use_open_gl) {
 				blit_background(background_name);
-				display_text(text_for_overhead_promt, 50, 50, NULL);
+				display_text(text_for_overhead_promt, 50, 50, NULL, 1.0);
 				x0 = MyCursorX;
 				y0 = MyCursorY;
 				put_string(get_current_font(), x0, y0, input);
@@ -679,7 +671,7 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 	// Now we find the right position for the new string to start by writing
 	// out the title text once, just to get the cursor positioned right...
 	//
-	display_text(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect);
+	display_text(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect, 1.0);
 	x0 = MyCursorX;
 	y0 = MyCursorY;
 
@@ -702,14 +694,14 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 
 		set_current_font(FPS_Display_Font);
 
-		display_text(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect);
+		display_text(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect, 1.0);
 
 		if (PopupWindowTitle[strlen(PopupWindowTitle) - 1] != '\n')
-			display_text("\n\n", x0, y0, &TargetRect);
+			display_text("\n\n", x0, y0, &TargetRect, 1.0);
 
 		TargetRect.x = MyCursorX;
 		TargetRect.y = MyCursorY;
-		display_text_using_line_height_with_cursor(input, TargetRect.x, TargetRect.y, &TargetRect, LINE_HEIGHT_FACTOR, curpos);
+		display_text_with_cursor(input, TargetRect.x, TargetRect.y, &TargetRect, 1.0, curpos);
 
 		our_SDL_flip_wrapper();
 

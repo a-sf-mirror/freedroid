@@ -69,7 +69,7 @@ static void categoryselect_display(struct widget *w)
 	if (cs == currently_selected_category)
 		draw_rectangle(&hr, 90, 220, 220, 350);
 
-	display_text(cs->title, hr.x + 2, hr.y, &hr);
+	display_text(cs->title, hr.x + 2, hr.y, &hr, 1.0);
 	tr.x = hr.x + tab_width - 2;
 	draw_rectangle(&tr, 0, 0, 0, 136);
 	set_current_font(PreviousFont);

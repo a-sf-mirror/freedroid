@@ -617,8 +617,7 @@ void DisplayBigScreenMessage(void);
 void display_effect_countdowns(void);
 int chat_with_droid(Enemy ChatDroid);
 
-int display_text_using_line_height(const char *, int, int, const SDL_Rect*, float);
-int display_text(const char *, int, int, const SDL_Rect*);
+int display_text(const char *, int, int, const SDL_Rect*, float);
 
 int ScrollText(char *text, const char *background_name);
 

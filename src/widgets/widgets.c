@@ -225,7 +225,7 @@ static void display_tooltips()
 		tooltip_rect.w = 400;	
 
 	// Compute height
-	int lines_in_text = get_lines_needed(tooltip_text, tooltip_rect, LINE_HEIGHT_FACTOR);
+	int lines_in_text = get_lines_needed(tooltip_text, tooltip_rect, 1.0);
 	tooltip_rect.h = lines_in_text * get_font_height(FPS_Display_Font);
 
 	int center_x = tooltip_info.widget_rect.x + tooltip_info.widget_rect.w / 2;	

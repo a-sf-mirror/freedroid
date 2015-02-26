@@ -66,7 +66,7 @@ static void gps_show() {
 	static char gps_text[200];
 	// TRANSLATORS: Used to display a GPS position (X=10.5 Y=34.3 L=12 layer=1)
 	snprintf(gps_text, sizeof(gps_text) - 1, _(" X=%3.1f Y=%3.1f L=%d layer=%d\n"), Me.pos.x, Me.pos.y, Me.pos.z, current_floor_layer);
-	display_text_using_line_height(gps_text, User_Rect.x + 1, GameConfig.screen_height - 1 * get_font_height(get_current_font()), NULL /*&User_Rect */ , 1.0);
+	display_text(gps_text, User_Rect.x + 1, GameConfig.screen_height - 1 * get_font_height(get_current_font()), NULL /*&User_Rect */ , 1.0);
 }
 
 /**
@@ -76,7 +76,7 @@ void lvledit_display_fps(void) {
 	static char fps_text[200];
 	sprintf(fps_text, _(" FPS=%d\n"), get_current_fps());
 	display_text(fps_text, User_Rect.x + 1,	
-		GameConfig.screen_height - 2 * get_font_height(get_current_font()), NULL);
+		GameConfig.screen_height - 2 * get_font_height(get_current_font()), NULL, 1.0);
 }
 
 /**
@@ -94,7 +94,7 @@ static void print_label_information(level *EditLevel)
 		sprintf(PanelText, _("\n Map label information: \n label_name=\"%s\"."), m->label_name);
 
 		// Display the map label information on the screen
-		display_text_using_line_height(PanelText, User_Rect.x, GameConfig.screen_height - 5 * get_font_height(get_current_font()), NULL, 1.0);
+		display_text(PanelText, User_Rect.x, GameConfig.screen_height - 5 * get_font_height(get_current_font()), NULL, 1.0);
 
 		return;
 	}
@@ -323,7 +323,7 @@ void leveleditor_display()
 	// Now we print out the latest connection operation success or failure...
 	//
 	if (VanishingMessageEndDate > SDL_GetTicks()) {
-		display_text_using_line_height(VanishingMessage, 1, GameConfig.screen_height - 8 * get_font_height(get_current_font()), NULL, 1.0);
+		display_text(VanishingMessage, 1, GameConfig.screen_height - 8 * get_font_height(get_current_font()), NULL, 1.0);
 	}
 
 	// Construct the linked list of visible levels.
