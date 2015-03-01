@@ -77,6 +77,9 @@ case "$target" in
 	;;
 esac
 
+# Check of lua2dox
+AC_PATH_PROG(LUADOXPATH,lua2dox,"",[$PATH])
+
 AC_MSG_NOTICE([[Checking for compulsory SDL libraries:]])
 SDL_VERSION=1.2.3
 AM_PATH_SDL($SDL_VERSION,
