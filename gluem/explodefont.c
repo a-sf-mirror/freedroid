@@ -22,8 +22,8 @@
  *
  */
 
-#include "../src/system.h"
 #include "../src/pngfuncs.h"
+#include "../src/system.h"
 #include "../src/BFont.h"
 #include "codeset.h"
 
