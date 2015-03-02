@@ -320,7 +320,7 @@ void MenuItemDeselectedSound(void)
 
 void MoveMenuPositionSound(void)
 {
-	play_sound_v("effects/CameraTakesPicture.ogg", 0.5);
+	play_sound_v("effects/MenuClick.ogg", 0.5);
 }
 
 void ThouArtDefeatedSound(void)
