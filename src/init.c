@@ -204,7 +204,7 @@ void PlayATitleFile(char *Filename)
 			// In case of error, use the un-converted text
 			if (nb == (size_t)-1) {
 				if (errno == EILSEQ || errno == EINVAL) {
-					char invalid_text[23];
+					char invalid_text[24];
 					strncpy(invalid_text, in_ptr, 20);
 					strcat(invalid_text, "...");
 					error_once_message(ONCE_PER_GAME, __FUNCTION__,
