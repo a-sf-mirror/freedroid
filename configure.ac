@@ -35,6 +35,7 @@ AC_ARG_WITH(extra-warnings,      [  --with-extra-warnings       Generate more wa
 AC_ARG_ENABLE(backtrace,         [  --disable-backtrace         Disable the use of backtrace() to generate nice bug reports [[default=enabled]]], want_backtrace="$enableval", want_backtrace=yes)
 AC_ARG_WITH(embedded-lua,        [  --with-embedded-lua         Uses the Lua libraries bundled with FreedroidRPG instead of system libraries [[default=system lua]]], embedded_lua="$withval", embedded_lua=no)
 AC_ARG_ENABLE(rtprof,            [  --enable-rtprof             Enable the integration of the ingame real-time profiler [[default=no]]], want_rtprof="$enableval", want_rtprof=no)
+AC_ARG_ENABLE(dev-tools,         [  --enable-dev-tools          Compile the additional dev tools [[default=no]]], dev_tools="$enableval", dev_tools=no)
 
 # Checks for libraries.
 AC_CHECK_LIB([m], [sin],, 
@@ -120,15 +121,17 @@ You need the SDL_mixer library (version >= 1.2.1) if you want sound!
 --------------------------------------------------])
 summary_sound="SDL_mixer not found")
 
-summary_all_gluem="yes"
+if test x$dev_tools = xyes; then
+summary_SDLttf="yes"
 AC_CHECK_LIB([SDL_ttf], [TTF_RenderUNICODE_Blended],, AC_MSG_WARN([
 --------------------------------------------------
 libSDL_ttf not found!
-You need the SDL_ttf library to compile all gluem tools.
+You need the SDL_ttf library to compile all font tools.
 Please refer to the INSTALL.freedroidRPG file.
---> compiling with some gluem tools disabled.
+--> compiling with some font tools disabled.
 --------------------------------------------------])
-summary_all_gluem="make_bmchars not built (optional)")
+summary_SDLttf="make_bmchars not built due to SDL_ttf lib missing -optional-")
+fi
 
 if test x$want_vorbis = xyes; then
 AC_CHECK_LIB([ogg], [oggpack_read],, AC_MSG_WARN([
@@ -300,15 +303,22 @@ AM_CONDITIONAL(BUILD_LUA, test x$embedded_lua = xyes)
 
 AM_CONDITIONAL(USE_NLS, test x$USE_NLS = xyes)
 
-AM_CONDITIONAL(BUILD_ALL_GLUEM, test x$summary_all_gluem = xyes)
+AM_CONDITIONAL(HAS_SDL_TTF, test x$summary_SDLttf = xyes)
+
+AM_CONDITIONAL(BUILD_DEV_TOOLS, test x$dev_tools = xyes)
 
 AC_CONFIG_FILES([
 	Makefile lua/Makefile src/Makefile
-	gluem/Makefile croppy/Makefile
+	tools/Makefile tools/atlas/Makefile
+	croppy/Makefile
 	graphics/obstacles/Makefile graphics/floor_tiles/Makefile
 	win32/Makefile
 	doc/Doxyfile doc/Makefile doc/manual/Doxyfile doc/manual/Makefile
 	po/Makefile po/po-src/Makefile.in po/po-dialogs/Makefile.in po/po-data/Makefile.in po/l10n-others/Makefile])
+
+if test x$dev_tools = xyes; then
+AC_CONFIG_FILES([tools/font/Makefile])
+fi
 
 AC_OUTPUT
 
@@ -320,15 +330,15 @@ fi
 echo "
 Summary:
 
-	CFLAGS:   $CFLAGS
+	CFLAGS:  $CFLAGS
 	LDFLAGS: $LDFLAGS
-	LIBS:     $LIBS
+	LIBS:    $LIBS
 
 	compiler:                                    $actual_compiler
 	use embedded Lua library (not system-wide):  $embedded_lua
 	compile with OpenGL support:                 $summary_have_gl
 	compile with sound support:                  $summary_sound
-	compile all gluem tools:                     $summary_all_gluem
+	compile dev tools:                           $dev_tools
 	embed the real-time profiler:                $summary_rtprof
 	localization enabled:                        $USE_NLS"
 

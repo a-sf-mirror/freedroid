@@ -21,7 +21,7 @@
  *
  */
 
-#include "../src/pngfuncs.h"
+#include "../../src/pngfuncs.h"
 #include <SDL/SDL_ttf.h>
 #include "codeset.h"
 

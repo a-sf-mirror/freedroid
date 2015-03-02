@@ -17,9 +17,9 @@ MAYBE_EMBEDDED_LUA = lua
 endif
 
 if CROSS_COMPILING
-SUBDIRS = $(MAYBE_EMBEDDED_LUA) src gluem doc po $(extradirs)
+SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po $(extradirs)
 else
-SUBDIRS = $(MAYBE_EMBEDDED_LUA) src gluem doc po graphics/floor_tiles graphics/obstacles $(extradirs)
+SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po graphics/floor_tiles graphics/obstacles $(extradirs)
 endif
 
 man_MANS = freedroidRPG.6

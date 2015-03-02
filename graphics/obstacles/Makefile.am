@@ -1,13 +1,15 @@
 ## Process this file with automake to produce Makefile.in
 noinst_DATA = atlas.txt shadow_atlas.txt
 
+ATLASTOOLDIR = $(top_srcdir)/tools/atlas
+
 atlas.txt: iso_*.png iso_*.offset */iso_*.png */iso_*.offset
-		$(MAKE) --directory=../../gluem/
-		./../../gluem/make_atlas obstacles_atlas 2048 2048 atlas.txt iso_*.png */iso_*.png
+		$(MAKE) --directory=$(ATLASTOOLDIR)
+		$(ATLASTOOLDIR)/make_atlas obstacles_atlas 2048 2048 atlas.txt iso_*.png */iso_*.png
 
 shadow_atlas.txt: shadow_*.png shadow_*.offset # */shadow_*.png */shadow_*.offset
-		$(MAKE) --directory=../../gluem/
-		./../../gluem/make_atlas obstacles_shadows_atlas 2048 2048 shadow_atlas.txt shadow_*.png # */shadow_*.png
+		$(MAKE) --directory=$(ATLASTOOLDIR)
+		$(ATLASTOOLDIR)/make_atlas obstacles_shadows_atlas 2048 2048 shadow_atlas.txt shadow_*.png
 
 clean:
 	rm -f atlas.txt

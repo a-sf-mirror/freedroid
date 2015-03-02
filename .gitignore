@@ -2,16 +2,14 @@
 *.o
 src/freedroidRPG
 croppy/croppy
-gluem/*gluem
 win32/pngtoico
 lua/liblua.a
 lua/lua*.exe
 lua/lua*.dll
 src/*.exe
-gluem/*font
-gluem/make_bmchars
-gluem/make_atlas
-gluem/explode_atlas
+tools/font/*font
+tools/font/make_bmchars
+tools/atlas/*_atlas
 
 # Patches
 *.orig

@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-#include "../src/pngfuncs.h"
-#include "../src/system.h"
-#include "../src/proto.h"
+#include "../../src/pngfuncs.h"
+#include "../../src/system.h"
+#include "../../src/proto.h"
 
 static void write_offset_file(const char *basename, int x_offset, int y_offset)
 {
