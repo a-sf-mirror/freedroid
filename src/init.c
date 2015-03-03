@@ -185,7 +185,10 @@ void PlayATitleFile(char *Filename)
 
 #ifdef ENABLE_NLS
 		// Convert the title_screen(s text to selected charset encoding
-		iconv_t converter = iconv_open(lang_get_encoding(), "UTF-8");
+		struct auto_string *tocode = alloc_autostr(64);
+		autostr_printf(tocode, "%s//TRANSLIT", lang_get_encoding());
+		iconv_t converter = iconv_open(tocode->value, "UTF-8");
+		free_autostr(tocode);
 		if (converter == (iconv_t)-1) {
 			error_once_message(ONCE_PER_GAME, __FUNCTION__,
 			                   "Error on iconv_open() (encoding: %s): %s",
