@@ -11,8 +11,7 @@ Directory structure:
 ./sound/            : The in-game sound files
 ./graphics/         : The in-game graphics files
 ./win32/            : Windows .exe icons
-./croppy            : A helper tool for graphics, that automatically crops images
-./gluem             : A helper tool for graphics, used to build tux_image_archive files
+./tools             : Set of tools used by devs (used to manipulate images, fonts, atlases...)
 
 
 Text files containing descriptions:
