@@ -207,13 +207,10 @@ void PlayATitleFile(char *Filename)
 			// In case of error, use the un-converted text
 			if (nb == (size_t)-1) {
 				if (errno == EILSEQ || errno == EINVAL) {
-					char invalid_text[24];
-					strncpy(invalid_text, in_ptr, 20);
-					strcat(invalid_text, "...");
 					error_once_message(ONCE_PER_GAME, __FUNCTION__,
 				                       "Error during Title text conversion (title: %s - encoding: %s): %s\n"
-					                   "Invalid sequence:\n--->%s<---",
-									   PLEASE_INFORM, Filename, lang_get_encoding(), strerror(errno), invalid_text);
+					                   "Invalid sequence:\n--->%.20s...<---",
+									   PLEASE_INFORM, Filename, lang_get_encoding(), strerror(errno), in_ptr);
 				} else {
 					error_once_message(ONCE_PER_GAME, __FUNCTION__,
 				                       "Error during Title text conversion (title: %s - encoding: %s): %s",
