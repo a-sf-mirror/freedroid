@@ -9,7 +9,7 @@ ACLOCAL_AMFLAGS = -I m4
 if NONLINUX
 extradirs = 
 else
-extradirs = win32 croppy 
+extradirs = win32
 endif 
 
 if BUILD_LUA

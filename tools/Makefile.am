@@ -2,7 +2,7 @@
 AUTOMAKE_OPTIONS = subdir-objects
 
 if BUILD_DEV_TOOLS
-SUBDIRS = atlas font
+SUBDIRS = atlas font image
 else
 SUBDIRS = atlas
 endif

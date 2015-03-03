@@ -21,10 +21,10 @@
  *
  */
 
-#include "../src/pngfuncs.h"
-#include "../src/system.h"
-#include "../src/defs.h"
-#include "../src/getopt.h"
+#include "../../src/pngfuncs.h"
+#include "../../src/system.h"
+#include "../../src/defs.h"
+#include "../../src/getopt.h"
 #include <stdlib.h>
 
 #define SCREEN_WIDTH 640

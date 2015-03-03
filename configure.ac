@@ -310,14 +310,13 @@ AM_CONDITIONAL(BUILD_DEV_TOOLS, test x$dev_tools = xyes)
 AC_CONFIG_FILES([
 	Makefile lua/Makefile src/Makefile
 	tools/Makefile tools/atlas/Makefile
-	croppy/Makefile
 	graphics/obstacles/Makefile graphics/floor_tiles/Makefile
 	win32/Makefile
 	doc/Doxyfile doc/Makefile doc/manual/Doxyfile doc/manual/Makefile
 	po/Makefile po/po-src/Makefile.in po/po-dialogs/Makefile.in po/po-data/Makefile.in po/l10n-others/Makefile])
 
 if test x$dev_tools = xyes; then
-AC_CONFIG_FILES([tools/font/Makefile])
+AC_CONFIG_FILES([tools/font/Makefile tools/image/Makefile])
 fi
 
 AC_OUTPUT

@@ -1,7 +1,6 @@
 # Object files
 *.o
 src/freedroidRPG
-croppy/croppy
 win32/pngtoico
 lua/liblua.a
 lua/lua*.exe
@@ -10,6 +9,7 @@ src/*.exe
 tools/font/*font
 tools/font/make_bmchars
 tools/atlas/*_atlas
+tools/image/croppy
 
 # Patches
 *.orig
