@@ -8,14 +8,16 @@ cppcheckflags = -I${top_srcdir} -I${top_srcdir}/src \
 
 cppcheckdefs = -DHAVE_ICONV -DWITH_RTPROF -D__GNUC__ -DHAVE_CONFIG_H -D_GNU_SOURCE=1 -D_REENTRANT
 
+cppcheckdirs = tools/atlas tools/font tools/image win32 src
+
 cppcheck:
 	@echo "`cppcheck --version`"
-	cppcheck $(cppcheckflags) $(cppcheckdefs) croppy gluem win32 src
+	cppcheck $(cppcheckflags) $(cppcheckdefs) $(cppcheckdirs)
 
 cppcheck-report:
 	@echo "`cppcheck --version`"
 	mkdir -p cppcheck-report
-	cppcheck $(cppcheckflags) $(cppcheckdefs) --xml-version=2 --xml  croppy gluem win32 src 2> cppcheck-report/cppcheck.xml
+	cppcheck $(cppcheckflags) $(cppcheckdefs) --xml-version=2 --xml $(cppcheckdirs) 2> cppcheck-report/cppcheck.xml
 	cppcheck-htmlreport --file=cppcheck-report/cppcheck.xml --title="FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir=cppcheck-report --source-dir=$(top_srcdir)
 
 .PHONY: cppcheck cppcheck-report
