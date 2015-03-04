@@ -41,6 +41,7 @@ src/widgets/.dirstamp
 src/lua/.dirstamp
 doc/Doxyfile
 doc/manual/Doxyfile
+doc/tools/Doxyfile
 INSTALL
 
 # Helpers
