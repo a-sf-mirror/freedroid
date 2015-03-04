@@ -101,9 +101,9 @@ static int animate_door(level* door_lvl, void *scenery_piece)
 			// say 2 squares in each direction.  Anything beyond that distance
 			// can be safely ignored for this door.
 			//
-			xdist = abs(erot->pos.x - obs->pos.x);
+			xdist = fabsf(erot->pos.x - obs->pos.x);
 			if (xdist < 2.0) {
-				ydist = abs(erot->pos.y - obs->pos.y);
+				ydist = fabsf(erot->pos.y - obs->pos.y);
 				if (ydist < 2.0) {
 	
 					// Now that we know, that there is some droid at least halfway

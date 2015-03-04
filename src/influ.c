@@ -456,7 +456,7 @@ static void move_tux_according_to_his_speed()
 	// to be applied to move the Tux out of the offending obstacle (i.e. 
 	// simply away from the offending obstacles center)
 	//
-	if ((fabsf(Me.speed.x) < 0.1) && (fabsf(Me.speed.y) < 0.1)) {
+	if ((fabs(Me.speed.x) < 0.1) && (fabs(Me.speed.y) < 0.1)) {
 		// So there is no speed, so we check for passability...
 		//
 		if (!SinglePointColldet(Me.pos.x, Me.pos.y, Me.pos.z, &WalkablePassFilter)) {
@@ -864,7 +864,7 @@ void animate_tux()
 	// Currently, there is no such animation, so we only display Tux at its
 	// standing position.
 
-	if (fabsf(Me.speed.x) + fabsf(Me.speed.y) < 0.3) {
+	if (fabs(Me.speed.x) + fabs(Me.speed.y) < 0.3) {
 		Me.walk_cycle_phase = 0.0;
 		Me.phase = tux_anim.standing_keyframe;
 
@@ -1031,10 +1031,10 @@ void check_tux_enemy_collision(void)
 		// is still one whole square distance or even more...
 		//
 		xdist = Me.pos.x - erot->pos.x;
-		if (abs(xdist) > 1)
+		if (fabs(xdist) > 1)
 			continue;
 		ydist = Me.pos.y - erot->pos.y;
-		if (abs(ydist) > 1)
+		if (fabs(ydist) > 1)
 			continue;
 
 		// Now at this point we know, that we are pretty close.  It is time
@@ -1601,8 +1601,8 @@ void set_movement_with_keys(int move_x, int move_y)
 	}
 
 	//Restricts moving target to within 2 units from current position
-	if (abs(Me.pos.x - (Me.mouse_move_target.x + move_x * move_amplitude)) <= 2 &&
-			abs(Me.pos.y - (Me.mouse_move_target.y + move_y * move_amplitude)) <= 2) {
+	if (fabs(Me.pos.x - (Me.mouse_move_target.x + move_x * move_amplitude)) <= 2 &&
+			fabs(Me.pos.y - (Me.mouse_move_target.y + move_y * move_amplitude)) <= 2) {
 		// Determine move amount
 		Me.mouse_move_target.x += move_x * move_amplitude;
 		Me.mouse_move_target.y += move_y * move_amplitude;

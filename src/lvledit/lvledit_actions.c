@@ -594,8 +594,8 @@ void level_editor_action_change_map_label_user(level *EditLevel, float x, float 
 	for (i = 0; i < EditLevel->map_labels.size; i++) {
 		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
-		if ((fabsf(map_label->pos.x + 0.5 - x) < 0.5) &&
-			 (fabsf(map_label->pos.y + 0.5 - y) < 0.5)) {
+		if ((fabs(map_label->pos.x + 0.5 - x) < 0.5) &&
+			 (fabs(map_label->pos.y + 0.5 - y) < 0.5)) {
 			
 			// Use the old label as a suggestion
 			old_name = map_label->label_name;

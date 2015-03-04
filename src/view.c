@@ -2189,7 +2189,7 @@ void iso_put_tux(int x, int y)
 		float angle = Me.angle;
 
 		if ((Me.phase < tux_anim.attack.first_keyframe) || (Me.phase > tux_anim.attack.last_keyframe)) {
-			if (fabsf(Me.speed.x) + fabsf(Me.speed.y) > 0.1) {
+			if (fabs(Me.speed.x) + fabs(Me.speed.y) > 0.1) {
 				angle = -(atan2(Me.speed.y, Me.speed.x) * 180 / M_PI - 45 - 180);
 				angle += 360 / (2 * MAX_TUX_DIRECTIONS);
 				while (angle < 0)

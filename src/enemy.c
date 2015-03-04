@@ -518,7 +518,7 @@ static void DetermineAngleOfFacing(enemy * e)
 	// We calculate the angle of the vector, but only if the robot has at least
 	// some minimal speed.  If not, simply the previous angle will be used again.
 	//
-	if ((fabsf(e->speed.y) > 0.03) || (fabsf(e->speed.x) > 0.03)) {
+	if ((fabs(e->speed.y) > 0.03) || (fabs(e->speed.x) > 0.03)) {
 		e->current_angle = 180 - (atan2(e->speed.y, e->speed.x) * 180 / M_PI + 90);
 		e->previous_angle = e->current_angle;
 	} else {
@@ -575,9 +575,9 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
 
 			ThisRobot->speed.x = maxspeed * remaining_way.x / length;
 			ThisRobot->speed.y = maxspeed * remaining_way.y / length;
-			if (fabsf(ThisRobot->speed.x * Frame_Time()) >= fabsf(remaining_way.x))
+			if (fabs(ThisRobot->speed.x * Frame_Time()) >= fabsf(remaining_way.x))
 				ThisRobot->speed.x = remaining_way.x / Frame_Time();
-			if (fabsf(ThisRobot->speed.y * Frame_Time()) >= fabsf(remaining_way.y))
+			if (fabs(ThisRobot->speed.y * Frame_Time()) >= fabsf(remaining_way.y))
 				ThisRobot->speed.y = remaining_way.y / Frame_Time();
 			newpos.x = ThisRobot->pos.x + ThisRobot->speed.x * Frame_Time();
 			newpos.y = ThisRobot->pos.y + ThisRobot->speed.y * Frame_Time();
@@ -2601,7 +2601,7 @@ void animate_enemy(enemy *our_enemy)
 		// But as soon as the walk stops and the 'bot' is standing still, we switch
 		// to the standing cycle...
 		//
-		if ((fabsf(our_enemy->speed.x) < 0.1) && (fabsf(our_enemy->speed.y) < 0.1)) {
+		if ((fabs(our_enemy->speed.x) < 0.1) && (fabs(our_enemy->speed.y) < 0.1)) {
 			our_enemy->animation_phase = first_stand_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1;
 			our_enemy->animation_type = STAND_ANIMATION;
 		}
