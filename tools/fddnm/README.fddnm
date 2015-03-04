@@ -1,0 +1,263 @@
+ * ----------------------------------------------------------------------
+ *	Copyright (c) 2015 Scott Furry
+ *
+ *	This file is part of Freedroid
+ *
+ *	Freedroid is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 2 of the License, or
+ *	(at your option) any later version.
+ *
+ *	Freedroid is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with Freedroid; see the file COPYING. If not, write to the
+ *	Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *	MA  02111-1307  USA
+ *
+ * ----------------------------------------------------------------------
+Freedroid RPG Dialog Node Mapping README
+
+See Freedroid Doxygen page (tools->FDDNM) for more details.
+
+------------
+Definitions:
+------------
+dialog file - FDRPG source file written in lua that is used to guide
+			player conversations and interactions in game. These files are
+			usually located within [FDRPG root]/dialogs folder.
+
+return block - a section of the dialog file delimited by "return {...}"
+
+dialog node - are sections of lua code within a return block of a dialog file.
+			Each dialog node is delimited by "EveryTime =...end,",
+			"FirstTime = ...end," or an anonymous array entries delimited by
+			"{...},"
+
+------------
+Description:
+------------
+#-----
+Note to Freedroid RPG developers/maintainers
+changes to dialog structure or variables will require that
+source for this tool be reviewed and if necessary updated.
+#-----
+
+classes
+fddnm:			parses cmd line params
+				governs dialogs to be parsed
+				maintains dialog_file and dialog_dot listing for each file
+				converts resultant dot data to user requested graphic format
+
+dialog_file:	parses dialog file as a whole
+				maintains dialog node listing
+
+dialog_node:	parses dialog file node details
+
+dialog_dot:		converts dialog data from dialog[_file|_dot] into dot language
+
+-------------
+Requirements:
+-------------
+- c++ compliant compiler (gcc series 4.9.x or later) with regex capability.
+- boost filesystem, algorithms and program_options (boost >= 1.5.5)
+- graphviz library
+
+---------
+Building:
+---------
+For *BSD and MacOS X users, you must use "gmake" to build the FDDNM tool.
+Any reference below to "make" should be replaced with "gmake" command.
+The gmake tool is available for your platform from ports\packages repository.
+
+Execute the sequence below to configure and build the FDDNM tool.\n
+
+	cd [FDRPG root]/tools/fddnm
+	./autogen_fddnm.sh
+	./configure
+	make
+
+The tool is not meant to be installed on the users system, but remain resident
+in the FDRPG root directory.
+
+A gitignore file has been established that will exclude the tool, object files
+and any program output (dot, png, svg, et al) from being accidentally included
+into the FDRPG git tree.
+
+
+-------------
+Command Line:
+-------------
+Usage:
+	fddnm	[-h|--help] Show help message for fddnm
+
+	fddnm	[-q]  [-P | --verboseprint] [-D | --verbosedot] [-I | --individual]
+			[[-s | --dirsearch=]arg] [[-o | --diroutput=]arg] [[-F | --fileprefix=]arg]
+			[[-L | --layout=]arg] [[-T | --format=]arg] [[-d | --dialog=]arg]
+
+	[-q]
+	Quiet - no output to stdout
+
+	[-P | \-\-verboseprint]
+	Print parsed dialog data to text file. Text file placed in output directory.
+	Note - output file will be named "[PREFIX][Dialog Name]_VPARSE.txt"
+
+	[-D | \-\-verbosedot]
+	Print analyzed dialog data used to create graphic to text file. Text file placed in output directory.
+	Note - output file will be named "[PREFIX][Dialog Name]_VDOT.txt"
+
+	[-I | \-\-individual]
+	Program is to parse and process all dialog files individually.
+	Any references to \"include\" another dialog file will not be processed. (e.g. 614-cryo.lua)
+
+	[-s | \-\-dirsearch=] *arg*
+	Directory *arg* will be searched for dialog files (DEFAULT: [FDRPG root]/dialogs)
+
+	[-o | \-\-diroutput=] *arg*
+	Directory *arg* will be used to store program output (graphic or text) (DEFAULT: current directory)
+
+	[-F | \-\-fileprefix=] *arg*
+	*arg* will be the validated text used as a prefix for output file names.
+	Note - see the second entry "portable_name" in the [Boost Filesystem Portability Guide](http://www.boost.org/doc/libs/1_55_0/libs/filesystem/doc/portability_guide.htm#recommendations) for limitations
+
+	[-L | \-\-layout=] *arg*
+	*arg* is the direction of graph layout. One of [ TB (DEFAULT) | LR | RL | BT ]
+	Note: see [Graphviz rankdir attribute](http://www.graphviz.org/content/attrs#drankdir) for details
+
+	[-T | \-\-format=] *arg*
+	*arg* is the graphic format of output. One of [ none | dot | jpg | png | svg (DEFAULT) ]
+
+	[ | -d | \-\-dialog=] *arg*
+	*arg* is the file name of dialog to be parsed without its *lua* file extension.
+	No supplied dialog names implies all dialogs in search directory are to be parsed.
+	More than one dialog name can be used without the switch as the use of the switch is optional.
+
+
+---------
+Examples:
+---------
+Usage Examples:
+(all examples assume current directory is [FDRPG root]/tools/fddnm)
+
+Convert all found dialogs to png graphics\n
+
+	./fddnm -Tpng
+
+
+Parse dialog file *Tania.lua* and convert to DOT Language file\n
+
+	./fddnm -Tdot Tania
+
+Output file *Tania.dot* would be produced and stored in the output directory.
+
+Convert Doc Moore dialog to svg using Left to Right layout.
+Output to user's home directory and set prefix to "TESTING_".
+
+	./fddnm -Tsvg -FTESTING_ -o/home/user -LLR DocMoore
+
+
+A special condition can exist were no graphic output is produced but
+the text-only parse data can be made available for examination.\n
+
+	./fddnm -Tnone -P -D
+
+would produce text file dumps of all parsed and analyzed data stored in the default output directory.
+
+--------------------
+Ouput Interpretaton:
+--------------------
+Current implementation uses the following colour scheme:
+	blue		parent node calls "show" command on child node
+	green		parent node calls "next" command on child node
+	orange		parent node calls "show_if" command on child node
+	red(dashed)	parent node calls "hide" command on child node
+	purple		parent node is calling end_dialog
+
+Dialog nodes that are apart of a dialog topic are grouped inside a black line box.
+
+Black lines are drawn from the dialog start to any "FirstTime" and "EveryTime" dialog nodes.
+
+During parsing or review of verbose output, the user may notice the following:
+
+	Tania	Detected 48 nodes	Parsed 49 nodes
+
+This output indicates that the dialog contains within code a call to *end_dialog*.
+To allow lines (or edges) to be drawn from the calling node to "end_dialog", an
+"artificial" end node is appended to the dialog node data. As a result of the
+addition of an end_dialog node, the Parsed node count will be set to
+(Detected Node Count + 1).
+
+-------------
+Known Issues:
+-------------
+Current implementation has issues with some node parsing that involve programmatically
+determining the node value to be used. The dialogs involved include Engel
+(bot parts topic) and Ewald (gamble topic). This problem will be corrected in a
+future release.
+
+There are known issues when running address sanitizer or valgrind against the fddnm sources.
+These issues stem from code within graphviz and do not appear to be related to fddnm. This is
+an ongoing issue that is being monitored.
+
+----------------------
+- Troubleshoot Build -
+----------------------
+If you receive an error during config that the boost libraries could not be found,
+do the following:
+	Verify boost is installed on your system by locating libboost_system.so and
+	boost/system header.
+
+	If not found, install boost to your system (check distribution) and re-attempt
+	configure.
+
+	If boost is present on the system and error is persistent, manually add these
+	paths to the configure conmmand	as follows:
+	./configure CPPFLAGS="-I/folder/path_boost_folder" \
+				LDFLAGS="-L/folder/path_libboost_system"
+
+If you receive an error during configure that the graphviz libraries could not
+be found, attempt the following:
+	Verify graphviz is installed by typing 'dot -V'
+	( should report "dot - graphviz version 2.x.y")
+
+	If this step fails - install the graphviz library and retry configure
+
+	If graphviz and pkg-config are installed, use the following:
+	- locate libgvc.pc file
+	(or similar pkg-config for graphviz - check distribution)
+	- add the path of the graphviz libraries to LDFLAGS variable.
+	(note quotation/backtick marks below)
+
+	./configure CPPFLAGS="`pkg-config libgvc --cflags`" \
+				LDFLAGS="`pkg-config libgvc --libs-only-L`"
+
+	If graphviz is installed but pkg-config is not present on your platform,
+	manually locate gvc.h and libgvc.so and use the following:
+
+	./configure CPPFLAGS="-I/folder/path_gvc_h" LDFLAGS="-L/folder/path_gvc_so/"
+
+
+If during linking (MacOS X) you receive the error:
+
+	Undefined symbols for architecture x86_64:
+	boost::...
+
+there is a difference in compiler used to build boost library and FDDNM.
+( http://stackoverflow.com/a/20015083 )
+This can be verified by executing the following command:
+
+	otool -L /opt/local/lib/libboost_system-mt.dylib
+
+The command should report back libboost_system library linkage to either libc++ (clang)
+or libstdc++ (gcc). The solution is to either use the same compiler for FDDNM or
+rebuild boost libraries with prefered compiler. To compiler FDDNM and match compiler
+used to build boost library, use the following during configure:
+
+	./configure ... CXX="[ g++ | clang++ ]"
+
+
+Should these steps not work for you, please contact freedroidRPG on IRC for help.
+---------------------------------------------------

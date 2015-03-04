@@ -1,0 +1,15 @@
+# git file ignores for tools/fddnm only
+*.txt
+*.dot
+*.jpg
+*.png
+*.svg
+*.o
+fddnm
+AUTHORS
+COPYING
+ChangeLog
+NEWS
+README
+INSTALL
+Makefile.in
