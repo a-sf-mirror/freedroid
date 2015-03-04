@@ -314,6 +314,13 @@ static int handle_event(struct widget *w, SDL_Event *event)
 	return 0;
 }
 
+void widget_free(struct widget *w)
+{
+	if (w->ext) {
+		free(w->ext);
+	}
+}
+
 /**
  * \brief update_tree() implementation for a base widget
  * \relates widget
@@ -339,6 +346,7 @@ void widget_init(struct widget *w)
 	widget_set_rect(w, 0, 0, 0, 0);
 	w->display = NULL;
 	w->update = NULL;
+	w->free = widget_free;
 	w->handle_event = handle_event;
 	w->enabled = 1;
 	w->update_tree = leaf_update;

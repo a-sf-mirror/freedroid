@@ -44,6 +44,8 @@ struct tile {
 	enum image_transformation_mode mode;
 };
 
+static void widget_background_free(struct widget *w);
+
 //////////////////////////////////////////////////////////////////////
 // Overloads of Base widget functions
 //////////////////////////////////////////////////////////////////////
@@ -91,9 +93,19 @@ struct widget_background *widget_background_create()
 	struct widget_background *wb = MyMalloc(sizeof(struct widget_background));
 	widget_init(WIDGET(wb));
 	WIDGET(wb)->display = background_display;
-	
+	WIDGET(wb)->free = widget_background_free;
+
 	dynarray_init(&wb->tiles, 2, sizeof(struct tile));
 	return wb;
+}
+
+static void widget_background_free(struct widget *w)
+{
+	struct widget_background *wb = WIDGET_BACKGROUND(w);
+
+	dynarray_free(&wb->tiles);
+
+	widget_free(w);
 }
 
 /**

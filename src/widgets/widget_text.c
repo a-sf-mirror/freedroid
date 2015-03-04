@@ -34,6 +34,8 @@
 #include "global.h"
 #include "widgets/widgets.h"
 
+static void widget_text_free(struct widget *w);
+
 /**
  * \brief Handles mouse button events received by a text widget.
  *
@@ -280,9 +282,10 @@ struct widget_text *widget_text_create()
 	widget_init(WIDGET(wt));
 	WIDGET(wt)->display = widget_text_display;
 	WIDGET(wt)->handle_event = text_handle_event;
-	
+	WIDGET(wt)->free = widget_text_free;
+
 	widget_text_init(wt, "");
-	
+
 	return wt;
 }
 
@@ -309,6 +312,17 @@ void widget_text_init(struct widget_text *w, const char *start_text)
 	w->line_height_factor = 1.0;
 	w->content_above_func = NULL;
 	w->content_below_func = NULL;
+}
+
+static void widget_text_free(struct widget *w)
+{
+	struct widget_text *wt = WIDGET_TEXT(w);
+
+	if (wt->text) {
+		free_autostr(wt->text);
+	}
+
+	widget_free(w);
 }
 
 /**

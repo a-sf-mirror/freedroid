@@ -78,6 +78,7 @@
 ///   void (*display)(struct widget *);                       // Pseudo-virtual display function
 ///   void (WIDGET_ANONYMOUS_MARKER update)(struct widget *); // Pseudo_virtual update callback
 ///   int (*handle_event)(struct widget *, SDL_Event *);      // Pseudo-virtual event handler
+///   void (*free)(struct widget *);                          // Pseudo-virtual 'release' function
 ///   ...
 /// };
 ///     \endcode
@@ -144,6 +145,19 @@
 ///   If that function returns 0, then the event is propagated to the next widget
 ///   in the tree.\n
 ///   To indicate that the widget consumed the event, \e handle_event() must return 1.
+///
+/// \par Release function
+///   \n
+///   This function is called when a widget instance is deleted. All the memory
+///   allocated during instance creation has to be freed in this function.
+///   The main widget_free() has to be called before returning to the caller:
+///   \code
+/// void my_widget_free(struct widget *w)
+/// {
+///   ... free memory allocated during widget creation ...
+///   widget_free(w);
+/// }
+/// \endcode
 ///
 /// \par Dynamic update of widget attributes
 ///   \n
@@ -393,7 +407,8 @@ struct widget {
 	/// @{
 	void (*display) (struct widget *);                        /**< Display the widget. */
 	void (WIDGET_ANONYMOUS_MARKER update) (struct widget *);  /**< Update the widget's attributes. */
-	int (*handle_event) (struct widget *, SDL_Event *);	      /**< General event handler. */
+	int (*handle_event) (struct widget *, SDL_Event *);       /**< General event handler. */
+	void (*free) (struct widget *);                           /**< Free the widget. */
 	/// @}
 
 	/// \name Private internal functions and attributes
@@ -472,6 +487,7 @@ struct widget {
 struct widget *widget_create(void);
 void widget_init(struct widget *);
 void widget_set_rect(struct widget *, int, int, int, int);
+void widget_free(struct widget *w);
 
 // end gui2d_widget submodule
 ///@}

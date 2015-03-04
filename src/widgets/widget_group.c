@@ -37,6 +37,8 @@
 #include "proto.h"
 #include "widgets/widgets.h"
 
+static void widget_group_free(struct widget *w);
+
 //////////////////////////////////////////////////////////////////////
 // Specific event handlers
 //////////////////////////////////////////////////////////////////////
@@ -242,6 +244,7 @@ void widget_group_init(struct widget_group *wg)
 	widget_init(WIDGET(wg));
 	WIDGET(wg)->display = group_display;
 	WIDGET(wg)->handle_event = widget_group_handle_event;
+	WIDGET(wg)->free = widget_group_free;
 	wg->list = (struct list_head)LIST_HEAD_INIT(wg->list);
 	wg->last_focused = NULL;
 	WIDGET(wg)->update_tree = group_update;
@@ -258,6 +261,22 @@ struct widget_group *widget_group_create()
 	struct widget_group *wb = (struct widget_group *)MyMalloc(sizeof(struct widget_group));
 	widget_group_init(wb);
 	return wb;
+}
+
+static void widget_group_free(struct widget *w)
+{
+	struct widget_group *wg = WIDGET_GROUP(w);
+	struct widget *entry, *next;
+
+	list_for_each_entry_safe(entry, next, &wg->list, node) {
+		list_del(&entry->node);
+
+		entry->free(entry);
+
+		free(entry);
+	}
+
+	widget_free(w);
 }
 
 /**

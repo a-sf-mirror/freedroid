@@ -50,6 +50,7 @@ struct text_list_entry {
 
 static void text_list_selected_up(struct widget_text_list *);
 static void text_list_selected_down(struct widget_text_list *);
+static void widget_text_list_free(struct widget *w);
 
 #define WTL_TEXT_PADDING 5
 
@@ -277,9 +278,9 @@ struct widget_text_list *widget_text_list_create()
 	widget_init(WIDGET(wl));
 	WIDGET(wl)->display = text_list_display;
 	WIDGET(wl)->handle_event = text_list_handle_event;
+	WIDGET(wl)->free = widget_text_list_free;
 
 	wl->font = FPS_Display_Font;
-	wl->user_data = NULL;
 
 	dynarray_init(&wl->entries, 5, sizeof(struct text_list_entry));
 	widget_text_list_init(wl, empty_list, NULL);
@@ -342,6 +343,15 @@ void widget_text_list_init(struct widget_text_list *wl, string text_arr[], int *
 	wl->first_visible_entry = 0;
 	wl->last_visible_entry = -1;
 	wl->all_entries_visible = TRUE;
+}
+
+static void widget_text_list_free(struct widget *w)
+{
+	struct widget_text_list *wtl = WIDGET_TEXT_LIST(w);
+
+	dynarray_free(&wtl->entries);
+
+	widget_free(w);
 }
 
 /**
