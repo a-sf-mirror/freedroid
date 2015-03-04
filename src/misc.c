@@ -36,6 +36,9 @@
 #include "proto.h"
 #include "savestruct.h"
 
+#include "widgets/widgets.h"
+#include "lvledit/lvledit.h"
+
 #include <stdlib.h>
 #if HAVE_EXECINFO_H
 #  include <execinfo.h>
@@ -1344,6 +1347,30 @@ int SaveGameConfig(void)
 
 };				// int SaveGameConfig ( void )
 
+static void free_memory_before_exit(void)
+{
+	// free the entities
+	clear_enemies();
+	clear_npcs();
+	free_tux();
+
+	// free the widgets
+	free_game_ui();
+	free_lvledit_ui();
+	free_chat_widgets();
+	widget_free_image_resources();
+
+	// free animations lists and visible levels
+	reset_visible_levels();
+	clear_animated_floor_tile_list();
+
+	delete_events();
+	free_current_ship();
+
+	// free level editor memory
+	leveleditor_cleanup();
+}
+
 /**
  * This function is used for terminating freedroid.  It will close
  * the SDL submodules and exit.
@@ -1364,6 +1391,8 @@ void Terminate(int exit_code)
 	close_lua();
 
 	close_audio();
+
+	free_memory_before_exit();
 
 	if (!do_benchmark) {
 		printf("Thank you for playing freedroidRPG.\n\n");
