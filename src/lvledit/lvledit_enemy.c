@@ -210,8 +210,8 @@ static void edit_special_force_info(enemy *en)
 	free(en->short_description_text);
 	en->short_description_text = strdup(user_input);
 
-	autostr_append(displayed_text, _("%s\n Completely fixed: "), user_input);
-	sprintf(suggested_val, "%s", en->CompletelyFixed ? _("yes") : _("no"));
+	autostr_append(displayed_text, _("%s\n Can move: "), user_input);
+	sprintf(suggested_val, "%s", en->CompletelyFixed ? _("no") : _("yes"));
 	free(user_input);
 
 	// Completely fixed
@@ -220,16 +220,17 @@ static void edit_special_force_info(enemy *en)
 		if (!user_input)
 			goto out;
 
-		if (!strcmp(user_input, _("yes"))) {
+		if (!strcmp(user_input, _("no"))) {
 			en->CompletelyFixed = 1;
 			break;
 
-		} else if (!strcmp(user_input, _("no"))) {
+		} else if (!strcmp(user_input, _("yes"))) {
 			en->CompletelyFixed = 0;
 			break;
 		}
 	}
 
+	// TRANSLATORS: the max. distance the bot can move away from its spawn position
 	autostr_append(displayed_text, _("%s\n Max distance from home: "), en->CompletelyFixed ? _("yes") : _("no"));
 	sprintf(suggested_val, "%d", en->max_distance_to_home);
 	free(user_input);
@@ -250,7 +251,8 @@ static void edit_special_force_info(enemy *en)
 
 	en->max_distance_to_home = numb;
 
-	autostr_append(displayed_text, _("%d\n Item dropped on death: "), numb);
+	// TRANSLATORS: Item that is dropped on ground if the bot dies
+	autostr_append(displayed_text, _("%d\n Item to drop on death: "), numb);
 	sprintf(suggested_val, "%s", (en->on_death_drop_item_code == -1) ? _("none") : ItemMap[en->on_death_drop_item_code].id);
 
 	// Change the item dropped on death
@@ -273,7 +275,8 @@ static void edit_special_force_info(enemy *en)
 		sprintf(suggested_val, "%s", user_input);
 	}
 
-	autostr_append(displayed_text, _("%s\n Rushes Tux: "),
+	// TRANSLATORS: Will the bot walk towards tux as soon as he seems tux?
+	autostr_append(displayed_text, _("%s\n Approaches Tux: "),
 				(en->on_death_drop_item_code == -1) ? _("none") : ItemMap[en->on_death_drop_item_code].id);
 	sprintf(suggested_val, "%s", en->will_rush_tux ? _("yes") : _("no"));
 
