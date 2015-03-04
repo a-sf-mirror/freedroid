@@ -86,6 +86,17 @@ static struct dynarray event_triggers;
 static void clear_out_events(void)
 {
 	// Remove existing triggers
+	delete_events();
+
+	dynarray_init(&event_triggers, 16, sizeof(struct event_trigger));
+}
+
+/**
+ * Delete all events and event triggers
+ */
+void delete_events(void)
+{
+	// Remove existing triggers
 	int i;
 	struct event_trigger *arr = event_triggers.arr;
 	for (i = 0; i < event_triggers.size; i++) {
@@ -94,11 +105,15 @@ static void clear_out_events(void)
 
 		if (arr[i].lua_code)
 			free(arr[i].lua_code);
+
+		if (arr[i].trigger_type == OBSTACLE_ACTION) {
+			free(arr[i].trigger.obstacle_action.label);
+		} else if (arr[i].trigger_type == ENEMY_DEATH) {
+			free(arr[i].trigger.enemy_death.dialog_name);
+		}
 	}
 
 	dynarray_free(&event_triggers);
-	
-	dynarray_init(&event_triggers, 16, sizeof(struct event_trigger));
 }
 
 #define EVENT_TRIGGER_BEGIN_STRING "* New event trigger *"

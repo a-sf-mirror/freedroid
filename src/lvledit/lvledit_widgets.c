@@ -617,6 +617,20 @@ struct widget_group *get_lvledit_ui()
 	return level_editor_widget_group;
 }
 
+void free_lvledit_ui()
+{
+	if (level_editor_widget_group)
+	{
+		struct widget *w = WIDGET(level_editor_widget_group);
+		w->free(w);
+		free(level_editor_widget_group);
+	}
+
+	if (all_obstacles_list) {
+		free(all_obstacles_list);
+	}
+}
+
 struct widget *get_active_widget(int x, int y)
 {
 	struct widget *w;

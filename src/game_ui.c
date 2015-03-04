@@ -701,3 +701,13 @@ struct widget_group *get_game_ui()
 
 	return game_widget_group;
 }
+
+void free_game_ui()
+{
+	if (game_widget_group)
+	{
+		struct widget *w = WIDGET(game_widget_group);
+		w->free(w);
+		free(game_widget_group);
+	}
+}

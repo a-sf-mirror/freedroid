@@ -84,6 +84,26 @@ struct image *widget_load_image_resource(char *name, int use_offset_file)
 	return &res->img;
 }
 
+void widget_free_image_resources()
+{
+	struct image_resource *res, *next;
+
+	// Free loaeded images.
+	list_for_each_entry_safe(res, next, &image_resource_list, node) {
+		list_del(&res->node);
+
+		if (res->name) {
+			free(res->name);
+		}
+
+		delete_image(&res->img);
+
+		free(res);
+	}
+
+	INIT_LIST_HEAD(&image_resource_list);
+}
+
 ////////////////////////////////////////////////////////////////////:
 // Tooltips handling
 ////////////////////////////////////////////////////////////////////:

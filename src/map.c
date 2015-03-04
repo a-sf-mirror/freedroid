@@ -1167,6 +1167,74 @@ static void generate_dungeon_if_needed(level *l)
 	l->dungeon_generated = 1;
 }
 
+void free_ship_level(level *lvl)
+{
+	int row = 0;
+	int col = 0;
+
+	// Map tiles
+	for (row = 0; row < lvl->ylen; row++) {
+		if (lvl->map[row]) {
+			for (col = 0; col < lvl->xlen; col++) {
+				dynarray_free(&lvl->map[row][col].glued_obstacles);
+			}
+
+			free(lvl->map[row]);
+			lvl->map[row] = NULL;
+		}
+	}
+
+	// Level strings
+	if (lvl->Levelname) {
+		free(lvl->Levelname);
+		lvl->Levelname = NULL;
+	}
+
+	if (lvl->Background_Song_Name) {
+		free(lvl->Background_Song_Name);
+		lvl->Background_Song_Name = NULL;
+	}
+
+	// Waypoints
+	int w;
+	for (w = 0; w < lvl->waypoints.size; w++) {
+		struct waypoint *wpts = lvl->waypoints.arr;
+		dynarray_free(&wpts[w].connections);
+	}
+
+	dynarray_free(&lvl->waypoints);
+
+	// Obstacle extensions
+	free_obstacle_extensions(lvl);
+
+	// Map labels
+	free_map_labels(lvl);
+
+	// Random droids
+	lvl->random_droids.types_size = 0;
+
+	// Items
+	for (w = 0; w < MAX_ITEMS_PER_LEVEL; w++) {
+		if (lvl->ItemList[w].type != -1) {
+			delete_upgrade_sockets(&(lvl->ItemList[w]));
+		}
+	}
+
+	free(lvl);
+}
+
+void free_current_ship()
+{
+	int i;
+
+	for (i = 0; i < MAX_LEVELS; i++) {
+		if (level_exists(i)) {
+			free_ship_level(curShip.AllLevels[i]);
+			curShip.AllLevels[i] = NULL;
+		}
+	}
+}
+
 /**
  * This function loads the data for a whole ship
  * Possible return values are : OK and ERR
@@ -1175,63 +1243,11 @@ int LoadShip(char *filename, int compressed)
 {
 	char *ShipData = NULL;
 	FILE *ShipFile;
-	int i;
 
 #define END_OF_SHIP_DATA_STRING "*** End of Ship Data ***"
 
 	// Free existing level data
-	for (i = 0; i < MAX_LEVELS; i++) {
-		if (level_exists(i)) {
-			level *lvl = curShip.AllLevels[i];
-			int row = 0;
-			int col = 0;
-
-			// Map tiles
-			for (row = 0; row < lvl->ylen; row++) {
-				if (lvl->map[row]) {
-					for (col = 0; col < lvl->xlen; col++) {
-						dynarray_free(&lvl->map[row][col].glued_obstacles);
-					}
-
-					free(curShip.AllLevels[i]->map[row]);
-					curShip.AllLevels[i]->map[row] = NULL;
-				}	
-			}
-
-			// Level strings
-			if (lvl->Levelname) {
-				free(lvl->Levelname);
-				lvl->Levelname = NULL;
-			}
-
-			if (lvl->Background_Song_Name) {
-				free(lvl->Background_Song_Name);
-				lvl->Background_Song_Name = NULL;
-			}
-
-			// Waypoints
-			int w;
-			for (w = 0; w < lvl->waypoints.size; w++) {
-				struct waypoint *wpts = lvl->waypoints.arr;
-				dynarray_free(&wpts[w].connections);
-			}
-
-			dynarray_free(&lvl->waypoints);
-
-			// Obstacle extensions
-			free_obstacle_extensions(lvl);
-	
-			// Map labels
-			free_map_labels(lvl);
-
-			// Random droids
-			lvl->random_droids.types_size = 0;
-
-			free(lvl);
-			curShip.AllLevels[i] = NULL;
-
-		}
-	}
+	free_current_ship();
 
 	// Read the whole ship-data to memory 
 	//

@@ -43,6 +43,7 @@ void level_editor_cut_selection(void);
 void level_editor_copy_selection(void);
 void level_editor_paste_selection(void);
 
+void clear_clipboard(int);
 void clear_selection(int);
 
 void level_editor_switch_selection_type(int direction);

@@ -65,6 +65,7 @@ void event_enemy_died(enemy *dead);
 void event_obstacle_action(obstacle *o);
 const char *teleporter_square_below_mouse_cursor(void);
 struct event_trigger * visible_event_at_location(int x, int y, int z);
+void delete_events(void);
 
 // lua.c
 void init_lua(void);
@@ -106,6 +107,7 @@ void start_tux_death_explosions(void);
 void init_tux(void);
 void set_movement_with_keys(int move_x, int move_y);
 void do_death_menu(void);
+void free_tux();
 
 // action.c
 void chest_open_action(level *chest_lvl, int chest_index);
@@ -321,6 +323,8 @@ gps get_map_label_center(const char *);
 int smash_obstacle(float, float, int);
 Uint16 get_map_brick(level *, float, float, int);
 void CountNumberOfDroidsOnShip(void);
+void free_current_ship();
+void free_ship_level(level*);
 int LoadShip(char *filename, int);
 int SaveShip(const char *filename, int reset_random_levels, int);
 int save_special_forces(const char *filename);
@@ -665,6 +669,7 @@ void blit_vertical_status_bar(float, float, Uint32, Uint32, int, int, int, int);
 
 // game_ui.c
 struct widget_group *get_game_ui(void);
+void free_game_ui();
 
 // item_upgrades_ui.c
 int append_item_upgrade_ui_tooltip(const point *, struct auto_string *str);
@@ -723,6 +728,7 @@ void chat_add_response(const char *);
 int validate_dialogs(void);
 struct chat_context *chat_get_current_context();
 void chat_run();
+void free_chat_widgets();
 
 // leveleditor_input.c
 void leveleditor_process_input(void);
@@ -753,6 +759,7 @@ void *dynarray_member(struct dynarray *, int, size_t);
 void dirty_animated_obstacle_list(int lvl_num);
 void clear_animated_obstacle_list(struct visible_level *vis_lvl);
 void dirty_animated_floor_tile_list(void);
+void clear_animated_floor_tile_list();
 animation_fptr get_animation_by_name(const char *animation_name);
 void animation_timeline_reset(void);
 void animation_timeline_advance(void);
@@ -800,6 +807,7 @@ float lvledit_zoomfact_inv(void);
 
 // lvledit_widgets.c
 struct widget_group *get_lvledit_ui(void);
+void free_lvledit_ui();
 
 // waypoint.c
 int add_waypoint(level *, int, int, int);

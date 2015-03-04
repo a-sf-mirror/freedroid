@@ -1609,7 +1609,7 @@ void set_movement_with_keys(int move_x, int move_y)
 	}
 }
 
-static void free_tux()
+void free_tux()
 {
 	int i;
 

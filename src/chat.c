@@ -900,4 +900,13 @@ int validate_dialogs()
 	return error_caught;
 }
 
+void free_chat_widgets()
+{
+	if (chat_menu) {
+		struct widget *w = WIDGET(chat_menu);
+		w->free(w);
+		free(chat_menu);
+	}
+}
+
 #undef _chat_c

@@ -388,7 +388,7 @@ static void generate_animated_floor_tile_list(void)
 /**
  * This function clean the animated floor tiles list
  */
-static void clear_animated_floor_tile_list()
+void clear_animated_floor_tile_list()
 {
 	struct animated_scenery_piece *a, *next;
 

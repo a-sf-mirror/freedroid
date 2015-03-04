@@ -172,6 +172,7 @@ enum {
 EXTERN void LevelEditor(void);
 EXTERN item *ItemDropFromLevelEditor(void);
 EXTERN void TestMap(void);
+EXTERN void leveleditor_cleanup();
 
 enum lvledit_object_type {
 	OBJECT_OBSTACLE,

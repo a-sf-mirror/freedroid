@@ -584,6 +584,7 @@ void widget_set_tooltip(struct tooltip *, SDL_Rect *);
 #define MOUSE_BUTTON_3 3
 
 struct image *widget_load_image_resource(char *, int);
+void widget_free_image_resources();
 
 // end gui2d_misc submodule
 ///@}

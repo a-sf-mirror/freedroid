@@ -231,11 +231,12 @@ static void leveleditor_init()
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 }
 
-static void leveleditor_cleanup()
+void leveleditor_cleanup()
 {
 	Activate_Conservative_Frame_Computation();
 	action_freestack();
 	clear_selection(-1);
+	clear_clipboard(-1);
 
 	SDL_EnableKeyRepeat(0, SDL_DEFAULT_REPEAT_INTERVAL);
 	Me.mouse_move_target = Me.pos;
