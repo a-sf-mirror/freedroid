@@ -39,9 +39,7 @@ local Tux = FDrpg.get_tux()
 
 return {
 	EveryTime = function()
-		if (Tania_surface) and
-		   (not Tux:done_quest("Tania's Escape")) and
-		   (not Tania_stopped_by_Pendragon) then --Tania is following you
+		if (Tania_position == "bunker") then --Tania is following you
 			tania_is_here = true
 			Tania:heal()
 		else

@@ -44,7 +44,7 @@ return {
 			show("node2")
 		end
 
-		if (Spencer_Tania_sent_to_DocMoore) and
+		if (Spencer_Tania_decision == "doc_moore") and
 		(not DocMoore_Tania_OK) then
 			DocMoore_Tania_OK = true
 			show("node25")

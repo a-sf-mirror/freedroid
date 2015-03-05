@@ -46,8 +46,7 @@ return {
 	end,
 
 	EveryTime = function()
-		branch_to_pendragon = false
-		show("node90")
+		show("end_default")
 		if (Koan_murdered) then
 			Npc:says(_"You just killed him!")
 			Npc:says(_"How could you?")
@@ -57,11 +56,11 @@ return {
 		end
 
 		if (Tux:has_quest("Tania's Escape")) then
-			hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node10", "node11", "node12", "node13", "node14", "node17", "node18", "node19", "node90")
-			if (not Tania_follow_tux) then
+			hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node10", "node11", "node12", "node13", "node14", "node17", "node18", "node19", "end_default")
+			if (not Tania_position) then -- Tania hasn't moved yet - she isn't following Tux.
 				Npc:says_random(_"I long to see the surface.",
 								_"You are the most interesting hallucination yet.")
-				show("node90")
+				show("end_default")
 				if (not SACD_gunsoff) then --Guns are still on
 					hide("node27")
 					show("node28")
@@ -72,10 +71,10 @@ return {
 					hide("node27", "node28")
 					show("node40", "node41")
 				end
-			elseif (not Tania_surface) then --Tania is following you, but still Underground
+			elseif (Tania_position == "underground") then --Tania is following you, but still Underground
 				Npc:says(_"I can't wait to leave this place.")
-				show("node91")
-			elseif (not Tania_stopped_by_Pendragon) then --in the Western Desert
+				show("end_underground")
+			elseif (Tania_position == "desert") then --in the Western Desert
 				if (not Tania_discussed_surface) then
 					Tania_discussed_surface = true
 					Npc:says(_"It is so very bright and hot out here.") --thirsty dialog
@@ -86,29 +85,30 @@ return {
 					Npc:says_random(_"Are we there yet?",
 									_"How much longer?")
 				end
-				show("node92")
-			elseif (not Spencer_Tania_sent_to_DocMoore) and
-			       (not Tania_set_free) then --at the Town Entrance, waiting for Spencer's OK
-				hide("node45", "node46", "node47", "node49", "node50", "node51", "node52", "node53", "node56", "node57", "node58", "node59", "node92")
-				if (Tania_stopped_by_Pendragon) then
-					Tania_stopped_by_Pendragon = false
+				show("end_desert")
+			elseif (Tania_position == "bunker") then --in the Western Desert
+				show("end_desert") --TODO: Tania talks about the bunker and Koan
+			elseif (Tania_position == "town_gate") and (not Spencer_Tania_decision) then --at the Town Entrance, waiting for Spencer's OK
+				hide("node45", "node46", "node47", "node49", "node50", "node51", "node52", "node53", "node56", "node57", "node58", "node59", "end_desert")
+				if (not Tania_met_Pendragon) then
+					Tania_met_Pendragon = true
 					Tux:update_quest("Tania's Escape", _"Pendragon just stopped Tania and I at the town gate. Apparently he won't let her in, unless Spencer gives the go-ahead.")
 					Npc:says(_"It is OK. I'll wait here at the gate.")
 					end_dialog()
 				end
-				show("node93")
-			elseif (not Tux:done_quest("Tania's Escape")) then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar)
+				show("end_towngate")
+			elseif (Tania_position == "town_gate") then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar)
 				Npc:says(_"What is the news?")
 				Tux:says(_"I talked to Spencer, and he said you were welcome to enter the town.")
 				Npc:says(_"That is great news!")
-				if (Spencer_Tania_sent_to_DocMoore) then
+				if (Spencer_Tania_decision == "doc_moore") then
 					Tux:says(_"He said you must first get checked out by Doc Moore though.")
 					Npc:set_destination("DocPatient-Enter")
-				else --DocMoore is Dead!
+				else -- (Spencer_Tania_decision == "free") -- DocMoore is Dead!
 					Tux:says(_"He said you are free to go where you like.")
 					Npc:set_destination("BarPatron-Enter")
-					Tania_at_Ewalds_Bar = true
 				end
+				Tania_position = "town"
 				Tux:end_quest("Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
 				if (difficulty("hard")) and
 				   (not Tania_mapper_given == true) then
@@ -116,11 +116,11 @@ return {
 					Tux:add_item("Source Book of Network Mapper")
 					Tania_mapper_given = true
 				end
-				branch_to_pendragon = true
-			else --"Tania's Escape" was a success!
-				if (not Tania_DocMoore_cleared) and
-				   (not Tania_set_free) then --send to Bar
-					Tania_DocMoore_cleared = true
+				start_chat("Pendragon")
+				end_dialog()
+			elseif (Tania_position == "town") then --"Tania's Escape" was a success!
+				if (Spencer_Tania_decision == "doc_moore") then --send to Bar
+					Spencer_Tania_decision = "doc_moore_free"
 					Npc:heal()
 					Npc:says(_"I have good news: the doctor says I'm healthy!")
 					Npc:says(_"Where should I go?")
@@ -130,16 +130,12 @@ return {
 						show("node71")
 					end
 				end
-				show("node94")
+				show("end_town")
 			end
 		end
 
 		if (Tania_heal_node8) then
 			show("node8")
-		end
-
-		if (branch_to_pendragon) then
-			start_chat("Pendragon")
 		end
 	end,
 
@@ -351,17 +347,17 @@ return {
 		id = "node40",
 		text = _"I'm not ready to escort you to the town.",
 		code = function()
-			next("node99")
+			next("end_default")
 		end,
 	},
 	{
 		id = "node41",
 		text = _"I'm ready to escort you to the town.",
 		code = function()
-			Tania_follow_tux = true
+			Tania_position = "underground"
 			Tux:update_quest("Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
 			Npc:set_state("follow_tux")
-			hide("node8", "node40", "node41") next("node91")
+			hide("node8", "node40", "node41") next("end_underground")
 		end,
 	},
 	{
@@ -581,75 +577,50 @@ return {
 	},
 	{
 		--Pre-"Tania's Escape" Quest
-		id = "node90",
+		id = "end_default",
 		text = _"I think I have to go.",
-		echo_text = false,
 		code = function()
-			hide("node90") next("node99")
+			Npc:says_random(_"That's OK. But please, please, come back. I'm so lonely.",
+							_"Please come back again and get me out of here.")
+			hide("end_default") end_dialog()
 		end,
 	},
 	{
 		--"Tania's Escape" Quest (Underground)
-		id = "node91",
+		id = "end_underground",
 		text = _"Follow me to the Surface!",
-		echo_text = false,
 		code = function()
-			hide("node91") next("node99")
+			Npc:says(_"Lead on, my little penguin.")
+			hide("end_underground") end_dialog()
 		end,
 	},
 	{
 		--"Tania's Escape" Quest (Western Desert)
-		id = "node92",
+		id = "end_desert",
 		text = _"Follow me to the Town!",
-		echo_text = false,
 		code = function()
-			hide("node92") next("node99")
+			Npc:says(_"Lead on, my little penguin.")
+			hide("end_desert") end_dialog()
 		end,
 	},
 	{
 		--"Tania's Escape" Quest (Western Town Gate)
-		id = "node93",
+		id = "end_towngate",
 		text = _"Wait here.",
-		echo_text = false,
 		code = function()
-			hide("node93") next("node99")
+			Npc:says(_"OK. But please, come back soon.")
+			hide("end_towngate") end_dialog()
 		end,
 	},
 	{
 		--"Tania's Escape" Quest (Western Town Gate to Doctor's Office)
-		id = "node94",
+		id = "end_town",
 		text = _"See you later.",
-		echo_text = false,
 		code = function()
-			hide("node94") next("node99")
-		end,
-	},
-	{
-		id = "node99",
-		code = function()
-			if (Tux:has_quest("Tania's Escape")) then
-				hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node10", "node11", "node12", "node13", "node14", "node18", "node19")
-				if (not SACD_gunsoff) then --still underground, guns on
-					Tux:says(_"I think I have to go.")
-				elseif (not Tania_surface) then --still underground
-					Tux:says(_"Follow me to the Surface!")
-				elseif (not Tania_stopped_by_Pendragon) then --"Tania's Escape" Quest (Western Desert)
-					Tux:says(_"Follow me to the Town!")
-					Npc:says(_"Lead on, my little penguin.")
-				elseif (not Spencer_Tania_sent_to_DocMoore) then --"Tania's Escape" Quest (Western Town Gate)
-					Tux:says(_"Wait here.")
-					Npc:says(_"OK. But please, come back soon.")
-				elseif (Spencer_Tania_sent_to_DocMoore) then --"Tania's Escape" Quest (Tania free in the town somewhere)
-					Tux:says(_"See you later.")
-					Npc:says_random(_"Please be safe!",
-									_"Thanks again.",
-									_"Please come back again, my little penguin.")
-				end
-			else
-				Npc:says_random(_"That's OK. But please, please, come back. I'm so lonely.",
-								_"Please come back again and get me out of here.")
-			end
-			end_dialog()
+			Npc:says_random(_"Please be safe!",
+							_"Thanks again.",
+							_"Please come back again, my little penguin.")
+			hide("end_town") end_dialog()
 		end,
 	},
 }

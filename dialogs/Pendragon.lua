@@ -32,11 +32,19 @@ return {
 	end,
 
 	EveryTime = function()
-		branch_to_tania = false
-		if (Tania_stopped_by_Pendragon) and
-		   (not Pendragon_OK_w_Tania) and --Tania Escape Quest stuff
-		   (Spencer_Tania_sent_to_DocMoore) or
-		   (Tania_set_free) then
+
+		if (Tania_position == "town_gate") and (not Tania_met_Pendragon) then
+			Npc:says(_"Halt! Who goes there?")
+			Tux:says(_"Someone I found in the desert, Tania.")
+			--; TRANSLATORS: %s = Tux:get_player_name()
+			Npc:says(_"%s, you may enter.", Tux:get_player_name())
+			Npc:says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the town.")
+			change_obstacle_state("DesertGate-Inner", "opened")
+			Tania:teleport("W-enter-2") --Ensure that Tania is on Level 0!
+			Tania:set_state("patrol")
+			start_chat("Tania")
+			end_dialog()
+		elseif (not Pendragon_OK_w_Tania) and (Spencer_Tania_decision) then --Tania Escape Quest stuff
 			if (not Tux:done_quest("Tania's Escape")) then
 				Npc:says(_"Tania has been waiting to talk to you.")
 			else
@@ -45,22 +53,6 @@ return {
 				Npc:says(_"She may enter.")
 				Pendragon_OK_w_Tania = true
 				end_dialog()
-			end
-		elseif (Tania_stopped_by_Pendragon) then
-			if (not Tania_met_Pendragon) then
-				Npc:says(_"Halt! Who goes there?")
-				Tux:says(_"Someone I found in the desert, Tania.")
-			end
-			--; TRANSLATORS: %s = Tux:get_player_name()
-			Npc:says(_"%s, you may enter.", Tux:get_player_name())
-			Npc:says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the town.")
-			if (not Tania_met_Pendragon) then
-				change_obstacle_state("DesertGate-Inner", "opened")
-				Tania:teleport("W-enter-2") --Ensure that Tania is on Level 0!
-				Tania:set_state("patrol")
-				Tania_met_Pendragon = true
-				Tania_stopped_by_Pendragon = true
-				branch_to_tania = true
 			end
 		end
 
@@ -81,10 +73,6 @@ return {
 		if (cmp_obstacle_state("DesertGate", "opened")) or
 		(Tux:has_met("Tania")) then
 			hide("node40", "node45")
-		end
-
-		if (branch_to_tania) then
-			start_chat("Tania")
 		end
 	end,
 

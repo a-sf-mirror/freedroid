@@ -298,10 +298,8 @@ Name="Tania Escort W-1"
 Trigger at label="W-enter-1"
 Silent=1
 <LuaCode>
-	if (Tania_surface) and
-	   (not done_quest("Tania's Escape")) and
-	   (not Tania_stopped_by_Pendragon) then
-		Tania_stopped_by_Pendragon = true
+	if (Tania_position == "desert") then
+		Tania_position = "town_gate"
 		start_chat("Pendragon")
 	end
 </LuaCode>
@@ -312,10 +310,8 @@ Name="Tania Escort W-2"
 Trigger at label="W-enter-2"
 Silent=1
 <LuaCode>
-	if (Tania_surface) and
-	   (not done_quest("Tania's Escape")) and
-	   (not Tania_stopped_by_Pendragon) then
-		Tania_stopped_by_Pendragon = true
+	if (Tania_position == "desert") then
+		Tania_position = "town_gate"
 		start_chat("Pendragon")
 	end
 </LuaCode>
@@ -326,10 +322,8 @@ Name="Tania Escort W-3"
 Trigger at label="W-enter-3"
 Silent=1
 <LuaCode>
-	if (Tania_surface) and
-	   (not done_quest("Tania's Escape")) and
-	   (not Tania_stopped_by_Pendragon) then
-		Tania_stopped_by_Pendragon = true
+	if (Tania_position == "desert") then
+		Tania_position = "town_gate"
 		start_chat("Pendragon")
 	end
 </LuaCode>
@@ -2011,10 +2005,8 @@ Name=_"Back to the Desert"
 Trigger at label="34to38"
 Silent=0
 <LuaCode>
-	if (Tania_surface) and
-	   (not done_quest("Tania's Escape")) and
-	   (Tania_follow_tux) and
-	   (not Tania_stopped_by_Pendragon) then
+	if (Tania_position == "bunker") then
+		Tania_position = "desert"
 		teleport_npc("38to34", "Tania")
 	end
 	teleport("38from34");
@@ -2045,12 +2037,8 @@ Name=_"Back to the Desert"
 Trigger at label="35to40"
 Silent=0
 <LuaCode>
-	if (has_quest("Tania's Escape")) and
-	   (not done_quest("Tania's Escape")) and
-	   (SACD_gunsoff) and
-	   (Tania_follow_tux) and
-	   (not Tania_surface) then
-		Tania_surface = true
+	if (SACD_gunsoff) and (Tania_position == "underground") then
+		Tania_position = "desert"
 		teleport_npc("40from35", "Tania")
 		change_obstacle_state("DesertGate-Inner", "closed")
 		update_quest("Tania's Escape", _"Tania has made it to the surface for the first time in a very long time.")
@@ -2308,9 +2296,8 @@ Name=_"To a Forgotten Bunker"
 Trigger at label="38to34"
 Silent=0
 <LuaCode>
-	if (Tania_surface) and
-	   (not done_quest("Tania's Escape")) and
-	   (not Tania_stopped_by_Pendragon) then
+	if (Tania_position == "desert") then
+		Tania_position = "bunker"
 		teleport_npc("34to38", "Tania")
 	end
 	teleport("34from38")

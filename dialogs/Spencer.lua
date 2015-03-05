@@ -71,9 +71,7 @@ return {
 			hide("node2", "node12")
 		end
 
-		if (Tania_met_Pendragon) and
-		   (not Spencer_Tania_sent_to_DocMoore) and
-		   (not Tania_set_free) then
+		if (Tania_met_Pendragon) and (not Spencer_Tania_decision) then
 			show("node50")
 		end
 
@@ -506,7 +504,7 @@ return {
 				show("node52", "node54")
 			else
 				Npc:says(_"You must take her straight away to Doc Moore. We can't have a disease breaking out.")
-				Spencer_Tania_sent_to_DocMoore = true
+				Spencer_Tania_decision = "doc_moore"
 				Tux:update_quest("Tania's Escape", _"Spencer said it was okay for Tania to enter the town, as long as she goes to see Doc Moore first thing. Now all I have to do is tell her and Pendragon.")
 			end
 			hide("node51")
@@ -519,7 +517,7 @@ return {
 			Npc:says(_"Good.")
 			Npc:says(_"I didn't think it was you, but you never know.")
 			Npc:says(_"About your friend, she can come in provided that she pulls her weight around here.")
-			Tania_set_free = true
+			Spencer_Tania_decision = "free"
 			if (killed_docmoore) then
 				Tux:update_quest("Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I denied everything and he bought it! He says it is OK for Tania to enter the town: I should tell her and Pendragon.")
 			else
@@ -538,7 +536,7 @@ return {
 				tux_has_joined_guard = false
 				change_obstacle_state("Main Gate Guardhouse", "closed")
 				Npc:says(_"Your friend can come in, but we will be watching the two of you closely.")
-				Tania_set_free = true
+				Spencer_Tania_decision = "free"
 				Tux:update_quest("Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I told him the truth, and he kicked me out of the Red Guard. But he let Tania in, Now all I have to do is tell her and Pendragon.")
 			else
 				Npc:says(_"As the law, I pronounce you GUILTY of MURDER.")
