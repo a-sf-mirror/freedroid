@@ -89,7 +89,7 @@ return {
 				show("node92")
 			elseif (not Spencer_Tania_sent_to_DocMoore) and -- Spencer_Tania_sent_to_DocMoore = We talked to Spencer about Tania
 			       (not Tania_set_free) and --at the Town Entrance, waiting for Spencer's OK
-			       (not Spencer:is_dead()) then
+			       (not Spence:is_dead()) then
 			-- @TODO; what happens if Spencer is dead? this needs to be handled properly 
 				hide("node45", "node46", "node47", "node49", "node50", "node51", "node52", "node53", "node56", "node57", "node58", "node59", "node92")
 				if (Tania_stopped_by_Pendragon) then
