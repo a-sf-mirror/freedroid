@@ -1,6 +1,6 @@
 cppcheckflags = -I${top_srcdir} -I${top_srcdir}/src \
 				--language=c \
-				--enable=warning,performance,portability,unusedFunction,missingInclude,style \
+				--enable=warning,performance,portability,unusedFunction,missingInclude,style,information \
 				--suppressions-list=.cppcheck_suppressions                             \
 				--library=sdl.cfg,posix.cfg                                                      \
 				--inline-suppr                                                         \
