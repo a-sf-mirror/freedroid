@@ -77,7 +77,7 @@ define_read_xxx(uint8_t);
   * \param strout The auto_string to be filled
   * \param data   Pointer to the data to write
   */
-define_write_xxx(uint8_t, "%hu");
+define_write_xxx(uint8_t, "%hhu");
 
 /**
  * \fn void read_uint16_t(lua_State *L, int index, uint16_t *data)
