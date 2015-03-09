@@ -249,7 +249,7 @@ void error_once_message(int when, const char *fn, const char *fmt, int error_typ
 
 	// This error was not yet displayed.
 
-	error_message(fn, buffer->value, error_type);
+	error_message(fn, "%s", error_type, buffer->value);
 }
 
 /**
@@ -342,7 +342,7 @@ void alert_once_window(int when, const char *text, ...)
 
 	// This alert was not yet displayed.
 
-	alert_window(buffer->value);
+	alert_window("%s", buffer->value);
 }
 
 /**

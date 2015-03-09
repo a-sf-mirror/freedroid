@@ -408,7 +408,7 @@ static void prepare_text_window_content(struct auto_string *str, SDL_Rect *rect)
 					label = _("No label for this obstacle");
 				}
 
-				autostr_printf(str, label);
+				autostr_printf(str, "%s", label);
 				rect->x = translate_map_point_to_screen_pixel_x(obst_vpos.x, obst_vpos.y) + 50;
 				rect->y = translate_map_point_to_screen_pixel_y(obst_vpos.x, obst_vpos.y) - 20;
 			}
