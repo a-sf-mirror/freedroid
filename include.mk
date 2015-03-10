@@ -20,7 +20,15 @@ cppcheck-report:
 	cppcheck $(cppcheckflags) $(cppcheckdefs) --xml-version=2 --xml $(cppcheckdirs) 2> cppcheck-report/cppcheck.xml
 	cppcheck-htmlreport --file=cppcheck-report/cppcheck.xml --title="FreedroidRPG `git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@"`" --report-dir=cppcheck-report --source-dir=$(top_srcdir)
 
-.PHONY: cppcheck cppcheck-report
+scanbuildflags =  --use-cc=clang -enable-checker alpha.core.BoolAssignment,alpha.core.CastSize,alpha.core.FixedAddr,alpha.core.IdenticalExpr,alpha.core.PointerArithm,alpha.core.SizeofPtr,alpha.cplusplus.NewDeleteLeaks,alpha.cplusplus.VirtualCall,alpha.security.ArrayBoundV2,alpha.security.MallocOverflow,alpha.security.ReturnPtrRange,alpha.unix.Chroot,alpha.unix.PthreadLock,alpha.unix.SimpleStream,alpha.unix.Stream,alpha.unix.cstring.BufferOverlap,alpha.unix.cstring.NotNullTerminated,alpha.unix.cstring.OutOfBounds,security.FloatLoopCounter,security.insecureAPI.rand
+
+scan-build:
+	make clean
+	scan-build $(scanbuildflags)  ./configure --enable-dev-tools CC=clang
+	scan-build $(scanbuildflags) make
+
+
+.PHONY: cppcheck cppcheck-report scan-build
 
 gourceflags =	-c 0.8                           \
 				--seconds-per-day 0.001          \
