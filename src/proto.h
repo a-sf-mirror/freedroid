@@ -62,6 +62,7 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename);
 void event_position_changed(gps pos, int teleport);
 void event_level_changed(int past_lvl, int cur_lvl);
 void event_enemy_died(enemy *dead);
+void event_enemy_hacked(enemy *hacked);
 void event_obstacle_action(obstacle *o);
 const char *teleporter_square_below_mouse_cursor(void);
 struct event_trigger * visible_event_at_location(int x, int y, int z);

@@ -595,6 +595,8 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 		Me.Experience += reward;
 		append_new_game_message(_("For taking control of your enemy, [s]%s[v], you receive %d experience."), D_(target->short_description_text), reward);
 
+		event_enemy_hacked(target);
+
 		// Maybe the enemy in question was a kind of 'boss monster' or it had
 		// some special item, that is relevant to a mission or quest.  In that
 		// case (like also when the bot is finally destroyed, the quest item
@@ -620,7 +622,8 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 		// same marker) is attacked by the Tux.
 		//
 		target->marker = 0;
-                Me.TakeoverSuccesses[target->type]++;
+		Me.TakeoverSuccesses[target->type]++;
+
 	} else {
 		Me.energy *= 0.5;
                 Me.TakeoverFailures[target->type]++;

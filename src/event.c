@@ -50,6 +50,7 @@ struct event_trigger {
 		POSITION,
 		CHANGE_LEVEL,
 		ENEMY_DEATH,
+		ENEMY_HACK,
 		OBSTACLE_ACTION,
 	} trigger_type;
 
@@ -69,7 +70,7 @@ struct event_trigger {
 			int faction;
 			char *dialog_name;
 			int marker;
-		} enemy_death;
+		} enemy_event;
 		struct {
 			int lvl;
 			int type;
@@ -108,8 +109,8 @@ void delete_events(void)
 
 		if (arr[i].trigger_type == OBSTACLE_ACTION) {
 			free(arr[i].trigger.obstacle_action.label);
-		} else if (arr[i].trigger_type == ENEMY_DEATH) {
-			free(arr[i].trigger.enemy_death.dialog_name);
+		} else if (arr[i].trigger_type == ENEMY_DEATH || arr[i].trigger_type == ENEMY_HACK) {
+			free(arr[i].trigger.enemy_event.dialog_name);
 		}
 	}
 
@@ -136,10 +137,16 @@ void delete_events(void)
 
 // For enemy-death events
 #define ENEMY_DEATH_TRIGGER "Trigger on enemy death"
-#define ENEMY_DEATH_LVLNUM "Enemy level="
-#define ENEMY_DEATH_FACTION "Enemy faction=\""
-#define ENEMY_DEATH_DIALOG_NAME "Enemy dialog name=\""
-#define ENEMY_DEATH_MARKER "Enemy marker="
+
+// For enemy-hacked events
+#define ENEMY_HACK_TRIGGER "Trigger on enemy hack"
+
+// For all enemy events
+#define ENEMY_TRIGGER "Trigger on enemy"
+#define ENEMY_LVLNUM "Enemy level="
+#define ENEMY_FACTION "Enemy faction=\""
+#define ENEMY_DIALOG_NAME "Enemy dialog name=\""
+#define ENEMY_MARKER "Enemy marker="
 
 // For obstacle events
 #define OBSTACLE_ACTION_TRIGGER "Trigger on obstacle"
@@ -191,24 +198,28 @@ static void load_events(char *EventSectionPointer)
 						&temp.trigger.change_level.enter_level, EndOfEvent);
 			ReadValueFromStringWithDefault(EventPointer, LEVEL_CHANGE_EXITING, "%d", "-1",
 						&temp.trigger.change_level.exit_level, EndOfEvent);
-		} else if (strstr(EventPointer, ENEMY_DEATH_TRIGGER)) {
-			temp.trigger_type = ENEMY_DEATH;
-			ReadValueFromStringWithDefault(EventPointer, ENEMY_DEATH_LVLNUM, "%d", "-1",
-						&temp.trigger.enemy_death.lvl, EndOfEvent);
-			if (strstr(EventPointer, ENEMY_DEATH_FACTION)) {
-				TempEnemyFaction = ReadAndMallocStringFromData(EventPointer, ENEMY_DEATH_FACTION, "\"");
-				temp.trigger.enemy_death.faction = get_faction_id(TempEnemyFaction);
+		} else if (strstr(EventPointer, ENEMY_TRIGGER)) {
+			if (strstr(EventPointer, ENEMY_DEATH_TRIGGER)) {
+				temp.trigger_type = ENEMY_DEATH;
+			} else  {
+				temp.trigger_type = ENEMY_HACK;
+			}
+			ReadValueFromStringWithDefault(EventPointer, ENEMY_LVLNUM, "%d", "-1",
+						&temp.trigger.enemy_event.lvl, EndOfEvent);
+			if (strstr(EventPointer, ENEMY_FACTION)) {
+				TempEnemyFaction = ReadAndMallocStringFromData(EventPointer, ENEMY_FACTION, "\"");
+				temp.trigger.enemy_event.faction = get_faction_id(TempEnemyFaction);
 				free(TempEnemyFaction);
 			} else {
-				temp.trigger.enemy_death.faction = -1;
+				temp.trigger.enemy_event.faction = -1;
 			}
-			if (strstr(EventPointer, ENEMY_DEATH_DIALOG_NAME)) {
-				temp.trigger.enemy_death.dialog_name = ReadAndMallocStringFromData(EventPointer, ENEMY_DEATH_DIALOG_NAME, "\"");
+			if (strstr(EventPointer, ENEMY_DIALOG_NAME)) {
+				temp.trigger.enemy_event.dialog_name = ReadAndMallocStringFromData(EventPointer, ENEMY_DIALOG_NAME, "\"");
 			} else {
-				temp.trigger.enemy_death.dialog_name = NULL;
+				temp.trigger.enemy_event.dialog_name = NULL;
 			}
-			ReadValueFromStringWithDefault(EventPointer, ENEMY_DEATH_MARKER, "%d", "-1",
-						&temp.trigger.enemy_death.marker, EndOfEvent);
+			ReadValueFromStringWithDefault(EventPointer, ENEMY_MARKER, "%d", "-1",
+						&temp.trigger.enemy_event.marker, EndOfEvent);
 		} else if (strstr(EventPointer, OBSTACLE_ACTION_TRIGGER)) {
 			temp.trigger_type = OBSTACLE_ACTION;
 			ReadValueFromStringWithDefault(EventPointer, OBSTACLE_ACTION_LVLNUM, "%d", "-1",
@@ -323,38 +334,48 @@ void event_level_changed(int past_lvl, int cur_lvl)
 }
 
 /**
- * Trigger level-enter events for the given level
+ * Trigger on enemy events (ENEMY_DEATH or ENEMY_HACK).
  */
-void event_enemy_died(enemy *dead)
+static void event_enemy(enemy *target, int event)
 {
 	int i;
 	struct event_trigger *arr = event_triggers.arr;
 
 	for (i = 0; i < event_triggers.size; i++) {
-		if (arr[i].trigger_type != ENEMY_DEATH)
+		if (arr[i].trigger_type != event)
 			continue;
 
 		if (!arr[i].enabled)
 			continue;
 
-		if (arr[i].trigger.enemy_death.lvl != -1)
-			if (arr[i].trigger.enemy_death.lvl != dead->pos.z)
+		if (arr[i].trigger.enemy_event.lvl != -1)
+			if (arr[i].trigger.enemy_event.lvl != target->pos.z)
 				continue;
 
-		if (arr[i].trigger.enemy_death.faction != -1)
-			if (arr[i].trigger.enemy_death.faction != dead->faction)
+		if (arr[i].trigger.enemy_event.faction != -1)
+			if (arr[i].trigger.enemy_event.faction != target->faction)
 				continue;
 
-		if (arr[i].trigger.enemy_death.dialog_name != NULL)
-			if (strcmp(arr[i].trigger.enemy_death.dialog_name, dead->dialog_section_name))
+		if (arr[i].trigger.enemy_event.dialog_name != NULL)
+			if (strcmp(arr[i].trigger.enemy_event.dialog_name, target->dialog_section_name))
 				continue;
 
-		if (arr[i].trigger.enemy_death.marker != -1)
-			if (arr[i].trigger.enemy_death.marker != dead->marker)
+		if (arr[i].trigger.enemy_event.marker != -1)
+			if (arr[i].trigger.enemy_event.marker != target->marker)
 				continue;
 
 		run_lua(LUA_DIALOG, arr[i].lua_code);
 	}
+}
+
+void event_enemy_died(enemy *dead)
+{
+	event_enemy(dead, ENEMY_DEATH);
+}
+
+void event_enemy_hacked(enemy *hacked)
+{
+	event_enemy(hacked, ENEMY_HACK);
 }
 
 /**
