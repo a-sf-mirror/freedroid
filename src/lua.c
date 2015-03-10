@@ -500,7 +500,7 @@ static int lua_event_add_gold(lua_State * L)
 	if (nb > 0)
 		sprintf(tmpstr, _("Gained %d valuable circuits!"), nb);
 	else
-		sprintf(tmpstr, _("Lost %d valuable circuits!"), nb);
+		sprintf(tmpstr, _("Lost %d valuable circuits!"), -nb);
 
 	SetNewBigScreenMessage(tmpstr);
 	return 0;
