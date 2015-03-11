@@ -194,7 +194,13 @@ void PlayATitleFile(char *Filename)
 			                   "Error on iconv_open() (encoding: %s): %s",
 			                   NO_REPORT, lang_get_encoding(), strerror(errno));
 		} else {
+#if __FreeBSD__
+			// FreeBSD changed to its own iconv starting with 10-CURRENT
+			// Future ref: check for OS version < 10-CURRENT would allow non-const
+			const char *in_ptr = screen.text;
+#else
 			char *in_ptr = screen.text;
+#endif	//__FreeBSD__
 			size_t in_len = strlen(screen.text);
 			// We currently only have 8 bits encodings, so we should not need
 			// an output buffer larger than the input one.
