@@ -117,23 +117,22 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[LEVEL_EDITOR_NEXT_OBJECT_BUTTON_PUSHED] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNextObstacleButtonPushed.png", {-241, -31, 0, 0}, FALSE},
 
-
 /* upper right are directly under the object selector*/
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButton.png", {-60, 80, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButton.png", {-60, 70, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonPushed.png", {-59, 79, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonPushed.png", {-59, 69, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOff.png", {-60, 80, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOff.png", {-60, 70, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOffPushed.png", {-59, 79, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOffPushed.png", {-59, 69, 0, 0}, FALSE},
 	[LEVEL_EDITOR_QUIT_BUTTON] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorQuitButton.png", {-30, 80, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorQuitButton.png", {-30, 70, 0, 0}, FALSE},
 	[LEVEL_EDITOR_QUIT_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorQuitButtonPushed.png", {-29, 79, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorQuitButtonPushed.png", {-29, 69, 0, 0}, FALSE},
 
 
-/* above the upper row, the very upper row :P */
+/* above the upper row, the very upper row */
 	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButton.png", {-30, -380, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_PUSHED] =
