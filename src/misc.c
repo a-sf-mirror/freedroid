@@ -117,116 +117,117 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[LEVEL_EDITOR_NEXT_OBJECT_BUTTON_PUSHED] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNextObstacleButtonPushed.png", {-241, -31, 0, 0}, FALSE},
 
+
 /* upper right are directly under the object selector*/
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButton.png", {-60, 70, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButton.png", {-60, 80, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonPushed.png", {-59, 69, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonPushed.png", {-59, 79, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOff.png", {-60, 70, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOff.png", {-60, 80, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOffPushed.png", {-59, 69, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOffPushed.png", {-59, 79, 0, 0}, FALSE},
 	[LEVEL_EDITOR_QUIT_BUTTON] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorQuitButton.png", {-30, 70, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorQuitButton.png", {-30, 80, 0, 0}, FALSE},
 	[LEVEL_EDITOR_QUIT_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorQuitButtonPushed.png", {-29, 69, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorQuitButtonPushed.png", {-29, 79, 0, 0}, FALSE},
 
 
 /* above the upper row, the very upper row */
 	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButton.png", {-30, -380, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButton.png", {-30, -340, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonPushed.png", {-29, -379, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonPushed.png", {-29, -339, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_OFF] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonOff.png", {-30, -380, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonOff.png", {-30, -340, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_MAP_LABELS_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonOffPushed.png", {-29, -379, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleMapLabelsButtonOffPushed.png", {-29, -339, 0, 0}, FALSE},
 
 
 /* above the obstacle selectors, upper row */
 	[LEVEL_EDITOR_EDIT_CHEST_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorEditChestButton.png", {-150, -350, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorEditChestButton.png", {-150, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_EDIT_CHEST_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorEditChestButtonPushed.png", {-149, -349, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorEditChestButtonPushed.png", {-149, -309, 0, 0}, FALSE},
 	[LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNewObstacleLabelButton.png", {-120, -350, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNewObstacleLabelButton.png", {-120, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNewObstacleLabelButtonPushed.png", {-119, -349, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNewObstacleLabelButtonPushed.png", {-119, -309, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_WAYPOINT_CONNECTIONS_BUTTON] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleWaypointConnectionsButton.png", {-90, -350, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleWaypointConnectionsButton.png", {-90, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_WAYPOINT_CONNECTIONS_BUTTON_PUSHED] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleWaypointConnectionsButtonPushed.png", {-90, -350, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleWaypointConnectionsButtonPushed.png", {-90, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_WAYPOINT_CONNECTIONS_BUTTON_OFF] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleWaypointConnectionsButtonOff.png", {-90, -350, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleWaypointConnectionsButtonOff.png", {-90, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_WAYPOINT_CONNECTIONS_BUTTON_OFF_PUSHED] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleWaypointConnectionsButtonOffPushed.png", {-90, -350, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleWaypointConnectionsButtonOffPushed.png", {-90, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_ZOOM_IN_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorZoomInButton.png", {-60, -350, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorZoomInButton.png", {-60, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_ZOOM_IN_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorZoomInButtonPushed.png", {-59, -349, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorZoomInButtonPushed.png", {-59, -309, 0, 0}, FALSE},
 	[LEVEL_EDITOR_ZOOM_OUT_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorZoomOutButton.png", {-60, -350, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorZoomOutButton.png", {-60, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_ZOOM_OUT_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorZoomOutButtonPushed.png", {-59, -349, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorZoomOutButtonPushed.png", {-59, -309, 0, 0}, FALSE},
 	[LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButton.png", {-30, -350, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButton.png", {-30, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButtonPushed.png", {-29, -349, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButtonPushed.png", {-29, -309, 0, 0}, FALSE},
 	[LEVEL_EDITOR_ALL_FLOOR_LAYERS_BUTTON] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorAllFloorLayersButton.png", {-120, -350, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorAllFloorLayersButton.png", {-120, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_ALL_FLOOR_LAYERS_BUTTON_PUSHED] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorAllFloorLayersButtonPushed.png", {-120, -350, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorAllFloorLayersButtonPushed.png", {-120, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SINGLE_FLOOR_LAYER_BUTTON] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorSingleFloorLayerButton.png", {-120, -350, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorSingleFloorLayerButton.png", {-120, -310, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SINGLE_FLOOR_LAYER_BUTTON_PUSHED] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorSingleFloorLayerButtonPushed.png", {-120, -350, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorSingleFloorLayerButtonPushed.png", {-120, -310, 0, 0}, FALSE},
 
 
 /* above the obstacle selector, lower row*/
 	[LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButtonOff.png", {-150, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButtonOff.png", {-150, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButtonOffPushed.png", {-149, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButtonOffPushed.png", {-149, -279, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_GRID_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButton.png", {-150, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButton.png", {-150, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_GRID_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButtonPushed.png", {-149, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButtonPushed.png", {-149, -279, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButtonFull.png", {-150, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButtonFull.png", {-150, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButtonFullPushed.png", {-149, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleGridButtonFullPushed.png", {-149, -279, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleEnemiesButton.png", {-120, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleEnemiesButton.png", {-120, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleEnemiesButtonPushed.png", {-119, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleEnemiesButtonPushed.png", {-119, -279, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_OFF] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleEnemiesButtonOff.png", {-120, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleEnemiesButtonOff.png", {-120, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleEnemiesButtonOffPushed.png", {-119, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleEnemiesButtonOffPushed.png", {-119, -279, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleObstaclesButton.png", {-90, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleObstaclesButton.png", {-90, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleObstaclesButtonPushed.png", {-89, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleObstaclesButtonPushed.png", {-89, -279, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleObstaclesButtonOff.png", {-90, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleObstaclesButtonOff.png", {-90, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleObstaclesButtonOffPushed.png", {-89, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleObstaclesButtonOffPushed.png", {-89, -279, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleTooltipsButton.png", {-60, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleTooltipsButton.png", {-60, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleTooltipsButtonPushed.png", {-59, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleTooltipsButtonPushed.png", {-59, -279, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_OFF] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleTooltipsButtonOff.png", {-60, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleTooltipsButtonOff.png", {-60, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleTooltipsButtonOffPushed.png", {-59, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleTooltipsButtonOffPushed.png", {-59, -279, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleCollisionRectsButton.png", {-30, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleCollisionRectsButton.png", {-30, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleCollisionRectsButtonPushed.png", {-29, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleCollisionRectsButtonPushed.png", {-29, -279, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleCollisionRectsButtonOff.png", {-30, -320, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleCollisionRectsButtonOff.png", {-30, -280, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleCollisionRectsButtonOffPushed.png", {-29, -319, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleCollisionRectsButtonOffPushed.png", {-29, -279, 0, 0}, FALSE},
 
 
 	[LEVEL_EDITOR_NEXT_ITEM_GROUP_BUTTON] =
@@ -247,58 +248,58 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorRedoButtonPushed.png", {-301, -31, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -290, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -250, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonPushed.png", {-152, -290, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonPushed.png", {-152, -250, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON_OFF] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOff.png", {-152, -290, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOff.png", {-152, -250, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -290, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -250, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3.png", {-90, -214, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3.png", {-90, -174, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON_PUSHED] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3Pushed.png", {-90, -214, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3Pushed.png", {-90, -174, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON_OFF] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3Off.png", {-90, -214, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3Off.png", {-90, -174, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON_OFF_PUSHED] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3OffPushed.png", {-90, -214, 0, 0}, FALSE},
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3OffPushed.png", {-90, -174, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -252, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -212, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonPushed.png", {-152, -252, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonPushed.png", {-152, -212, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON_OFF] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOff.png", {-152, -252, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOff.png", {-152, -212, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -252, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -212, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2.png", {-152, -214, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2.png", {-152, -174, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2Pushed.png", {-152, -214, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2Pushed.png", {-152, -174, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON_OFF] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2Off.png", {-152, -214, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2Off.png", {-152, -174, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2OffPushed.png", {-152, -214, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2OffPushed.png", {-152, -174, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2.png", {-152, -176, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2.png", {-152, -136, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2Pushed.png", {-152, -176, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2Pushed.png", {-152, -136, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON_OFF] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2Off.png", {-152, -176, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2Off.png", {-152, -136, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2OffPushed.png", {-152, -176, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2OffPushed.png", {-152, -136, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3.png", {-90, -176, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3.png", {-90, -136, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3Pushed.png", {-90, -176, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3Pushed.png", {-90, -136, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON_OFF] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3Off.png", {-90, -176, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3Off.png", {-90, -136, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3OffPushed.png", {-90, -176, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3OffPushed.png", {-90, -136, 0, 0}, FALSE},
 
 
 	[WEAPON_RECT_BUTTON] =

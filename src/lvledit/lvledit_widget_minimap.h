@@ -22,8 +22,8 @@
  *
  */
 
-#define WIDGET_MINIMAP_WIDTH 210
-#define WIDGET_MINIMAP_HEIGHT 140
+#define WIDGET_MINIMAP_WIDTH 152
+#define WIDGET_MINIMAP_HEIGHT 100
 
 struct widget_lvledit_minimap {
 };

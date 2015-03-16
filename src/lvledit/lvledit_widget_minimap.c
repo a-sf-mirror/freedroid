@@ -38,11 +38,11 @@
  * current level.
 */
 
-static float minimap_scale = 175.0;
+static float minimap_scale = 240.0;
 
 // The center position of the minimap on the screen
 #define MINIMAP_CENTER_X (GameConfig.screen_width - (WIDGET_MINIMAP_WIDTH / 2))
-#define MINIMAP_CENTER_Y (GameConfig.screen_height - (WIDGET_MINIMAP_HEIGHT -70))
+#define MINIMAP_CENTER_Y (GameConfig.screen_height - (WIDGET_MINIMAP_HEIGHT / 2))
 	
 /**
  * Translate coordinates screen space (relative to the minimap) to map space.
