@@ -237,7 +237,6 @@ void drawIsoEnergyBar(int x, int y, int z, int w, int d, int length, float fill,
 SDL_Surface *our_IMG_load_wrapper(const char *file);
 void flip_image_vertically(SDL_Surface * tmp1);
 void make_texture_out_of_surface(struct image *our_image);
-void make_texture_out_of_prepadded_image(struct image *our_image);
 void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y);
 void gl_draw_rectangle(SDL_Rect *, int, int, int, int);
 int safely_initialize_our_default_open_gl_parameters(void);
