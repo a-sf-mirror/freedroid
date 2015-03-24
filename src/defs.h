@@ -1587,6 +1587,12 @@ enum sensor_features {
     SENSOR_THROUGH_WALLS = 1 << 2	// Sensor that allows the droid to see through walls.
 };
 
+// Flags defining the type of the 'hardware' texture in a struct image
+enum texture_type {
+	NO_TEXTURE = 0,
+	TEXTURE_CREATED = 1 << 1,
+	IS_SUBTEXTURE = 1 << 2
+};
 
 // Draw quads borders (OpenGL only)
 #define DEBUG_QUAD_BORDER 0

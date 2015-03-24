@@ -259,7 +259,7 @@ static void do_make_texture_out_of_surface(struct image * our_image, int txw, in
 		glGenTextures(1, &our_image->texture);
 	}
 
-	our_image->texture_has_been_created = TRUE;
+	our_image->texture_type = TEXTURE_CREATED;
 	DebugPrintf(1, "Using texture %d\n", our_image->texture);
 
 	glBindTexture(GL_TEXTURE_2D, (our_image->texture));
@@ -610,7 +610,7 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 	local_iso_image.tex_h = LightRadiusConfig.texture_h;
 	local_iso_image.w = LightRadiusConfig.texture_w;
 	local_iso_image.h = LightRadiusConfig.texture_h;
-	local_iso_image.texture_has_been_created = TRUE;
+	local_iso_image.texture_type = TEXTURE_CREATED | IS_SUBTEXTURE;
 	local_iso_image.offset_x = 0;
 	local_iso_image.offset_y = 0;
 	local_iso_image.tex_x0 = 0.0;

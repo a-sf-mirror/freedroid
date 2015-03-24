@@ -93,7 +93,7 @@ struct image {
 	short offset_y;
 	short w;
 	short h;
-	int texture_has_been_created;
+	int texture_type;
 #ifdef HAVE_LIBGL
 	GLuint texture;
 #else
@@ -108,7 +108,7 @@ struct image {
 
 	struct image_transformation cached_transformation;
 };
-#define EMPTY_IMAGE { .surface = NULL , .offset_x = 0 , .offset_y = 0 , .texture_has_been_created = 0 , .cached_transformation = { NULL, 0.0, 0.0, { 0.0, 0.0, 0.0, 0.0}, 0 } }
+#define EMPTY_IMAGE { .surface = NULL , .offset_x = 0 , .offset_y = 0 , .texture_type = NO_TEXTURE , .cached_transformation = { NULL, 0.0, 0.0, { 0.0, 0.0, 0.0, 0.0}, 0 } }
 
 typedef struct mouse_press_button {
 	struct image button_image;

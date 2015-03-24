@@ -455,7 +455,7 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 		// e.g. OpenGL implementation doesn't support big enough textures.
 		// In this case, FreedroidRPG will try to create a separate texture
 		// for each subimage.
-		if (!source->texture_has_been_created) {
+		if (source->texture_type == NO_TEXTURE) {
 			new_img->surface = copy_subsurface(source->surface, rect);
 			make_texture_out_of_surface(new_img);
 			return;
@@ -465,7 +465,7 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 		new_img->tex_w = source->tex_w;
 		new_img->tex_h = source->tex_h;
 		new_img->texture = source->texture;
-		new_img->texture_has_been_created = TRUE;
+		new_img->texture_type = TEXTURE_CREATED | IS_SUBTEXTURE;
 
 		// Compute texture coordinates for subimage
 		new_img->tex_y0 = (float)(source->tex_h - source->h) / source->tex_h;
@@ -483,6 +483,7 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 		}
 
 		new_img->surface = copy_subsurface(source->surface, rect);
+		new_img->texture_type = NO_TEXTURE;
 	}
 
 }
@@ -512,7 +513,7 @@ void load_image_surface(struct image *img, const char *filepath, int use_offset_
 	SDL_SetAlpha(surface, 0, SDL_ALPHA_OPAQUE);
 
 	img->surface = SDL_DisplayFormatAlpha(surface);
-	img->texture_has_been_created = FALSE;
+	img->texture_type = NO_TEXTURE;
 
 	SDL_FreeSurface(surface);
 
@@ -581,11 +582,12 @@ void delete_image(struct image *img)
 {
 	free_image_surface(img);
 
-	if (img->texture_has_been_created) {
+	// Only delete 'master' texture (i.e. no sub-texture)
+	if (img->texture_type == TEXTURE_CREATED) {
 #ifdef HAVE_LIBGL
 		glDeleteTextures(1, &img->texture);
 #endif
-		img->texture = 0;
+		img->texture =  0;
 	}
 
 	struct image empty = EMPTY_IMAGE;
@@ -599,7 +601,7 @@ void delete_image(struct image *img)
  */
 int image_loaded(struct image *img)
 {
-	if ((img->surface == NULL) && (!img->texture_has_been_created)) {
+	if ((img->surface == NULL) && (img->texture_type == NO_TEXTURE)) {
 		return FALSE;
 	}
 
