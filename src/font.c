@@ -84,7 +84,16 @@ void init_fonts(void)
 
 		*fonts_def[i].font_ref = &fonts_def[i].font;
 	}
+}
 
+void free_fonts(void)
+{
+	int i;
+
+	for (i = 0; i < sizeof(fonts_def)/sizeof(fonts_def[0]); i++) {
+		free_bfont(&fonts_def[i].font);
+		*fonts_def[i].font_ref = NULL;
+	}
 }
 
 /**

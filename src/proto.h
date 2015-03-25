@@ -859,6 +859,7 @@ void lang_init();
 
 // font.c
 void init_fonts(void);
+void free_fonts(void);
 void set_current_font(struct font *);
 struct font *get_current_font(void);
 int get_letter_spacing(struct font *);

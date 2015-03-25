@@ -582,13 +582,16 @@ void delete_image(struct image *img)
 {
 	free_image_surface(img);
 
+#ifdef HAVE_LIBGL
 	// Only delete 'master' texture (i.e. no sub-texture)
 	if (img->texture_type == TEXTURE_CREATED) {
-#ifdef HAVE_LIBGL
 		glDeleteTextures(1, &img->texture);
-#endif
-		img->texture =  0;
 	}
+#endif
+
+	img->texture =  0;
+	img->texture_type = NO_TEXTURE;
+
 
 	struct image empty = EMPTY_IMAGE;
 	memcpy(img, &empty, sizeof(struct image));

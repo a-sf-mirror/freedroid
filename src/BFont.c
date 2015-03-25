@@ -133,7 +133,7 @@ int load_bfont(const char *filepath, struct font *font)
 {
 	BFont_Info *bfont = MyMalloc(sizeof(BFont_Info));
 
-	// Load the font image
+	// Load the font_image->surface
 	load_image_surface(&bfont->font_image, filepath, FALSE);
 
 	// Find character coordinates in the image
@@ -149,6 +149,24 @@ int load_bfont(const char *filepath, struct font *font)
 	font->height = bfont->h;
 
 	return TRUE;
+}
+
+void free_bfont( struct font *font)
+{
+	int i;
+
+	if (!font->bfont)
+		return;
+
+	for (i = FIRST_FONT_CHAR; i < font->bfont->number_of_chars; i++) {
+		delete_image(&font->bfont->char_image[i]);
+	}
+	delete_image(&font->bfont->char_image[' ']);
+
+	delete_image(&font->bfont->font_image);
+
+	free(font->bfont);
+	font->bfont = NULL;
 }
 
 /**
