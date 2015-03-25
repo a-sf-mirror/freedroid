@@ -1029,6 +1029,11 @@ static int Language_handle(int n)
 		lang_set(lang->locale, &encoding_changed);
 	}
 
+	if (encoding_changed) {
+		free_fonts();
+		init_fonts();
+	}
+
 	return CONTINUE_MENU;
 }
 #endif
