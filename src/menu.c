@@ -1018,13 +1018,15 @@ static int Language_handle(int n)
 	if (n >= lang_specs.size)
 		return EXIT_MENU;
 
+	int encoding_changed = FALSE;
+
 	if (n == -1) {
 		// 'System default' was selected
-		lang_set("");
+		lang_set("", &encoding_changed);
 	}  else {
 		// Else, use the selected language
 		struct langspec *lang = dynarray_member(&lang_specs, n, sizeof(struct langspec));
-		lang_set(lang->locale);
+		lang_set(lang->locale, &encoding_changed);
 	}
 
 	return CONTINUE_MENU;

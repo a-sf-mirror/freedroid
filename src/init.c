@@ -708,7 +708,7 @@ void ParseCommandLine(int argc, char *const argv[])
 			break;
 
 		case 't':
-			lang_set("");
+			lang_set("", NULL);
 			break;
 
 		default:

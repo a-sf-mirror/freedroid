@@ -852,7 +852,7 @@ void rtprof_display();
 #endif
 
 // lang.c
-void lang_set(const char *);
+void lang_set(const char *, int *);
 char *lang_get();
 char *lang_get_encoding();
 void lang_init();

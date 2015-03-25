@@ -92,11 +92,16 @@ char *lang_extract_next_subform(const char *locale, char **next_tokens)
  * Note: GameConfig.locale is set to "" to denote the use of the system
  * default locale.
  *
- * \param locale Pointer to the locale name, or "" to use system default.
+ * \param locale            Pointer to the locale name, or "" to use system default.
+ * \param encoding_changed  Pointer to an int that be be set to TRUE if the charset encoding
+ *                          is changed. If NULL, no information is returned.
  */
 
-void lang_set(const char *locale)
+void lang_set(const char *locale, int *encoding_changed)
 {
+	if (encoding_changed)
+		*encoding_changed = FALSE;
+
 #ifdef ENABLE_NLS
 	// Usually setlocale() is called to define the locale to use for
 	// localization. However, when called with a locale name, setlocale()
@@ -186,7 +191,8 @@ void lang_set(const char *locale)
 		bind_textdomain_codeset("freedroidrpg", _current_encoding);
 		bind_textdomain_codeset("freedroidrpg-dialogs", _current_encoding);
 		bind_textdomain_codeset("freedroidrpg-data", _current_encoding);
-		// TODO: reload font bitmaps - Currently, the game needs to be restarted
+		if (encoding_changed)
+			*encoding_changed = TRUE;
 	}
 #endif
 }

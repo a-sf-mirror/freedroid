@@ -1235,7 +1235,7 @@ int LoadGameConfig(void)
 	}
 
 	load_freedroid_configuration(stuff);
-	lang_set(GameConfig.locale);
+	lang_set(GameConfig.locale, NULL);
 
 	configfile = NULL;
 	free(stuff);
