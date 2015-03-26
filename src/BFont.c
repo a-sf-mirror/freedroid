@@ -13,6 +13,8 @@
 #include "proto.h"
 #include "global.h"
 
+extern int gl_max_texture_size;	//defined in open_gl.c
+
 /**
  * Initialize a font.
  */
@@ -108,7 +110,14 @@ static void prepare_font(BFont_Info *font, SDL_Rect char_rect[MAX_CHARS_IN_FONT]
 
 #ifdef HAVE_LIBGL
 	if (use_open_gl) {
-		make_texture_out_of_surface(&font->font_image);
+		if (font->font_image.w > gl_max_texture_size || font->font_image.h > gl_max_texture_size) {
+			error_message(__FUNCTION__,
+			              "Your system only supports %dx%d textures. "
+			              "A font image is %dx%d and therefore cannot be used as an OpenGL texture.",
+			              NO_REPORT, gl_max_texture_size, gl_max_texture_size, font->font_image.w, font->font_image.h);
+		} else {
+			make_texture_out_of_surface(&font->font_image);
+		}
 	}
 #endif
 
