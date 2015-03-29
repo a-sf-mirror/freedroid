@@ -5,7 +5,7 @@ DOMAIN = freedroidrpg
 
 # These two variables depend on the location of this directory.
 subdir = po/po-src
-top_builddir = ${top_srcdir}
+top_builddir = ../..
 
 # These options get passed to xgettext.
 SYS_XGETTEXT:=${XGETTEXT}

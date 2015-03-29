@@ -1,11 +1,14 @@
 ## Process this file with automake to produce Makefile.in
-noinst_DATA = atlas.txt
+noinst_DATA = $(srcdir)/atlas.txt
 
-ATLASTOOLDIR = $(top_srcdir)/tools/atlas
+ATLASTOOLDIR = $(top_builddir)/tools/atlas
 
-atlas.txt: iso_*.png iso_*.offset */iso_*.png */iso_*.offset
+PNGS = $(shell find $(srcdir) -name "iso_*.png")
+OFFSETS = $(shell find $(srcdir) -name "iso_*.offset")
+
+$(srcdir)/atlas.txt: $(PNGS) $(OFFSETS)
 	$(MAKE) --directory=$(ATLASTOOLDIR)
-	$(ATLASTOOLDIR)/make_atlas floor_tiles_atlas 2048 1024 atlas.txt iso_*.png */iso_*.png
+	$(ATLASTOOLDIR)/make_atlas $(srcdir)/floor_tiles_atlas 2048 1024 $(srcdir)/atlas.txt $(PNGS)
 
 clean:
-	rm -f atlas.txt
+	rm -f $(srcdir)/atlas.txt

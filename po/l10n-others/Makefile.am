@@ -18,7 +18,7 @@ TXPROJ   = freedroid-rpg
 TXPROPS  = '{"category":"other"}'
 TXCREDS  = $(shell $(top_srcdir)/po/tx-credentials)
 
-LANGS = $(shell tail -n +2 LINGUAS)
+LANGS = $(shell tail -n +2 $(srcdir)/LINGUAS)
 
 #-- Update tx rsrc
 # $(1) = rsrc name

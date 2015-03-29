@@ -1,16 +1,21 @@
 ## Process this file with automake to produce Makefile.in
-noinst_DATA = atlas.txt shadow_atlas.txt
+noinst_DATA = $(srcdir)/atlas.txt $(srcdir)/shadow_atlas.txt
 
-ATLASTOOLDIR = $(top_srcdir)/tools/atlas
+ATLASTOOLDIR = $(top_builddir)/tools/atlas
 
-atlas.txt: iso_*.png iso_*.offset */iso_*.png */iso_*.offset
+PNGS = $(shell find $(srcdir) -name "iso_*.png")
+OFFSETS = $(shell find $(srcdir) -name "iso_*.offset")
+
+$(srcdir)/atlas.txt: $(PNGS) $(OFFSETS)
+	$(MAKE) --directory=$(ATLASTOOLDIR)
+	$(ATLASTOOLDIR)/make_atlas $(srcdir)/obstacles_atlas 2048 2048 $(srcdir)/atlas.txt $(PNGS)
+
+SHADOW_PNGS = $(shell find $(srcdir) -name "shadow_*.png")
+
+$(srcdir)/shadow_atlas.txt: $(SHADOW_PNGS)
 		$(MAKE) --directory=$(ATLASTOOLDIR)
-		$(ATLASTOOLDIR)/make_atlas obstacles_atlas 2048 2048 atlas.txt iso_*.png */iso_*.png
-
-shadow_atlas.txt: shadow_*.png shadow_*.offset # */shadow_*.png */shadow_*.offset
-		$(MAKE) --directory=$(ATLASTOOLDIR)
-		$(ATLASTOOLDIR)/make_atlas obstacles_shadows_atlas 2048 2048 shadow_atlas.txt shadow_*.png
+		$(ATLASTOOLDIR)/make_atlas $(srcdir)/obstacles_shadows_atlas 2048 2048 $(srcdir)/shadow_atlas.txt $(SHADOW_PNGS)
 
 clean:
-	rm -f atlas.txt
-	rm -f shadow_atlas.txt
+	rm -f $(srcdir)/atlas.txt
+	rm -f $(srcdir)/shadow_atlas.txt
