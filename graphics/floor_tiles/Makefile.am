@@ -3,8 +3,8 @@ noinst_DATA = $(srcdir)/atlas.txt
 
 ATLASTOOLDIR = $(top_builddir)/tools/atlas
 
-PNGS = $(shell find $(srcdir) -name "iso_*.png")
-OFFSETS = $(shell find $(srcdir) -name "iso_*.offset")
+PNGS = $(shell find $(srcdir) -name "iso_*.png" -printf "%P\n")
+OFFSETS = $(shell find $(srcdir) -name "iso_*.offset" -printf "%P\n")
 
 $(srcdir)/atlas.txt: $(PNGS) $(OFFSETS)
 	$(MAKE) --directory=$(ATLASTOOLDIR)

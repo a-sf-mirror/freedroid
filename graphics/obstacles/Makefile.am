@@ -3,14 +3,14 @@ noinst_DATA = $(srcdir)/atlas.txt $(srcdir)/shadow_atlas.txt
 
 ATLASTOOLDIR = $(top_builddir)/tools/atlas
 
-PNGS = $(shell find $(srcdir) -name "iso_*.png")
-OFFSETS = $(shell find $(srcdir) -name "iso_*.offset")
+PNGS = $(shell find $(srcdir) -name "iso_*.png" -printf "%P\n")
+OFFSETS = $(shell find $(srcdir) -name "iso_*.offset" -printf "%P\n")
 
 $(srcdir)/atlas.txt: $(PNGS) $(OFFSETS)
 	$(MAKE) --directory=$(ATLASTOOLDIR)
 	$(ATLASTOOLDIR)/make_atlas $(srcdir)/obstacles_atlas 2048 2048 $(srcdir)/atlas.txt $(PNGS)
 
-SHADOW_PNGS = $(shell find $(srcdir) -name "shadow_*.png")
+SHADOW_PNGS = $(shell find $(srcdir) -name "shadow_*.png" -printf "%P\n")
 
 $(srcdir)/shadow_atlas.txt: $(SHADOW_PNGS)
 		$(MAKE) --directory=$(ATLASTOOLDIR)
