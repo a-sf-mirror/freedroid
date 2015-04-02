@@ -905,60 +905,6 @@ static void LevelOptions(void)
 	return;
 };				// void LevelOptions ( void );
 
-static void AdvancedOptions(void)
-{
-	char *MenuTexts[100];
-	int proceed_now = FALSE;
-	int MenuPosition = 1;
-	int i;
-
-	enum {
-		RUN_MAP_VALIDATION = 1,
-//		RUN_LUA_VALIDATION,
-		LEAVE_OPTIONS_MENU,
-	};
-
-	while (!proceed_now) {
-
-		InitiateMenu("--EDITOR_BACKGROUND--");
-
-		i = 0;
-		MenuTexts[i++] = _("Run Map Level Validator");
-//		MenuTexts[i++] = _("Run Dialog Lua Validator");
-		MenuTexts[i++] = _("Back");
-		MenuTexts[i++] = "";
-
-		while (EscapePressed())
-			SDL_Delay(1);
-
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
-
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
-			SDL_Delay(1);
-
-		switch (MenuPosition) {
-		case (-1):
-			while (EscapePressed()) ;
-			proceed_now = !proceed_now;
-			break;
-		case RUN_MAP_VALIDATION:
-			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
-				SDL_Delay(1);
-			level_validation();
-			break;
-		case LEAVE_OPTIONS_MENU:
-			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
-				SDL_Delay(1);
-			proceed_now = !proceed_now;
-			break;
-		default:
-			break;
-
-		}		// switch
-	}
-
-	return;
-};				// void AdvancedOptions ( void );
 
 /**
  *
@@ -982,7 +928,7 @@ int DoLevelEditorMainMenu()
 	enum {
 		ENTER_LEVEL_POSITION = 1,
 		LEVEL_OPTIONS_POSITION,
-		ADVANCED_OPTIONS_POSITION,
+		RUN_MAP_VALIDATION,
 		TEST_MAP_POSITION,
 		SAVE_LEVEL_POSITION,
 //              MANAGE_LEVEL_POSITION,
@@ -1003,7 +949,7 @@ int DoLevelEditorMainMenu()
 		MenuTexts[i] = Options[i];
 		i++;
 		MenuTexts[i++] = _("Level Options");
-		MenuTexts[i++] = _("Advanced Options");
+		MenuTexts[i++] = _("Run Map Level Validator");
 		if (game_root_mode == ROOT_IS_LVLEDIT) {
 			MenuTexts[i++] = _("Playtest Mapfile");
 			MenuTexts[i++] = _("Save Mapfile");
@@ -1058,10 +1004,10 @@ int DoLevelEditorMainMenu()
 				SDL_Delay(1);
 			LevelOptions();
 			break;
-		case ADVANCED_OPTIONS_POSITION:
+		case RUN_MAP_VALIDATION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			AdvancedOptions();
+			level_validation();
 			break;
 		case TEST_MAP_POSITION:
 			TestMap();
