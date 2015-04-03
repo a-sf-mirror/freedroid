@@ -1145,12 +1145,12 @@ void ThouArtDefeated(void)
 
 		ComputeFPSForThisFrame();
 	}
-	if (!skip_initial_menus)
+	input_handle();
+	if (!skip_initial_menus && (game_root_mode == ROOT_IS_GAME))
 		PlayATitleFile("GameLost.lua");
 
-        do_death_menu();
+	do_death_menu();
 
-	input_handle();
 };				// void ThouArtDefeated(void)
 
 /**
