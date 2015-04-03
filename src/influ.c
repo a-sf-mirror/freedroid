@@ -977,12 +977,15 @@ void do_death_menu()
 		QUIT_TO_MAIN_POSITION,
 		QUIT_POSITION
 	};
-
 	while (!done) {
 		i = 0;
 		MenuTexts[i++] = _("Load Latest");
 		MenuTexts[i++] = _("Load Backup");
-		MenuTexts[i++] = _("Quit to Main Menu");
+		if (game_root_mode == ROOT_IS_GAME) {
+			MenuTexts[i++] = _("Quit to Main Menu");
+		} else { // if (game_root_mode == ROOT_IS_LVLEDIT) {
+			MenuTexts[i++] = _("Return to Editor");
+		}
 		MenuTexts[i++] = _("Exit FreedroidRPG");
 		MenuTexts[i++] = "";
 
@@ -1007,6 +1010,7 @@ void do_death_menu()
 			Terminate(EXIT_SUCCESS);
 			break;
 		default:
+			done = !done;
 			break;
 		}
 	}
