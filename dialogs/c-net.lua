@@ -25,7 +25,7 @@ return {
 		play_sound("effects/Menu_Item_Deselected_Sound_0.ogg")
 		-- name = Tux:get_player_name() -- We need to generate the option text of option 0 to use this properly
 		if (c_net_terminals_disabled) then
-			Npc:says(_" . ")
+			Npc:says(" . ")
 			end_dialog()
 		else
 			Npc:says(_"Welcome to the Community Network.", "NO_WAIT")
