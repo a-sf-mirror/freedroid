@@ -21,7 +21,6 @@
 ###########################################################################
 cp -v ../../AUTHORS .
 cp -v ../../COPYING .
-touch ChangeLog
 touch NEWS
 touch README
 

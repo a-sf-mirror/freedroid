@@ -23,7 +23,7 @@
 	Purpose:	defintions of regex strings used in parsing FDRPG dialogs
 	Author:		Scott Furry
 	Date:		2014 Nov 29
-	Update:		2015 Feb 25
+	Update:		2015 Mar 27
 */
 
 #include <iostream>
@@ -48,17 +48,23 @@ CONST_STR REGEX_STR_BLK_COMMENT_END("\\]\\]--$");
 
 CONST_STR REGEX_STR_DLG_RETURN_DEFN("return[\\s]*\\{([\\S|\\s]*)\\}");
 CONST_STR REGEX_STR_FN("function\\([\\S|\\s]*?\\)");
-CONST_STR REGEX_STR_NODE_FIRSTTIME("FirstTime[\\s]*=[\\s]*" + REGEX_STR_FN + "([\\S|\\s]*?)end,");
-CONST_STR REGEX_STR_NODE_EVERYTIME("EveryTime[\\s]*=[\\s]*" + REGEX_STR_FN + "([\\S|\\s]*?)end,");
+CONST_STR REGEX_STR_FN_END("\\send,");
+CONST_STR REGEX_STR_NODE_FIRSTTIME
+	("FirstTime[\\s]*=[\\s]*" + REGEX_STR_FN + "([\\S|\\s]*?)" + REGEX_STR_FN_END);
+CONST_STR REGEX_STR_NODE_EVERYTIME
+	("EveryTime[\\s]*=[\\s]*" + REGEX_STR_FN + "([\\S|\\s]*?)" + REGEX_STR_FN_END);
 CONST_STR REGEX_STR_NODE_DELIMITER("\\{([\\S|\\s]*?)\\},");
 
 
 CONST_STR REGEX_STR_NODE_ID("id[\\s]*?=[\\s]*?\"([\\S|\\s]*?)\",");
 CONST_STR REGEX_STR_NODE_TOPIC("topic[\\s]*?=[\\s]*?\"([\\S|\\s]*?)\",");
 CONST_STR REGEX_STR_NODE_TEXT("text[\\s]*?=[\\s]*?[_]*?\"([\\S|\\s]*?)\",");
-CONST_STR REGEX_STR_NODE_GEN("generator[\\s]*=[\\s]*" + REGEX_STR_FN + "([\\S|\\s]*)end[,]*");
-CONST_STR REGEX_STR_NODE_GENINCLD("generator[\\s]*?=[\\s]*?include\\(\"([\\S|\\s]*?)\"\\)[,]+?");
-CONST_STR REGEX_STR_NODE_CODE("code[\\s]*=[\\s]*" + REGEX_STR_FN + "([\\S|\\s]*?)end,");
+CONST_STR REGEX_STR_NODE_GEN
+	("generator[\\s]*=[\\s]*" + REGEX_STR_FN + "([\\S|\\s]*)end[,]*");
+CONST_STR REGEX_STR_NODE_GENINCLD
+	("generator[\\s]*?=[\\s]*?include\\(\"([\\S|\\s]*?)\"\\)[,]+?");
+CONST_STR REGEX_STR_NODE_CODE
+	("code[\\s]*=[\\s]*" + REGEX_STR_FN + "([\\S|\\s]*?)" + REGEX_STR_FN_END);
 
 CONST_STR REGEX_STR_CMD_NODE_LIST("[,]?[\\s]*?\"([\\S\\s]+?)\"");
 CONST_STR REGEX_STR_CMD_NEXT("next\\(([\\S\\s]+?)\\)");
@@ -101,9 +107,15 @@ CONST_REGEX REGEX_CMD_DLG_END(REGEX_STR_CMD_DLG_END,std::regex::ECMAScript);
 // replace these for the nodeID
 CONST_REGEX REGEX_HYPHEN("(\\-)",std::regex::ECMAScript);
 CONST_REGEX REGEX_PERIOD("(\\.)",std::regex::ECMAScript);
-CONST_REGEX REGEX_APOSTROPHE("(\\')",std::regex::ECMAScript);
+CONST_REGEX REGEX_APOSTROPHE("(\\\')",std::regex::ECMAScript);
 CONST_REGEX REGEX_SPACE("( )",std::regex::ECMAScript);
 CONST_REGEX REGEX_FWD_SLASH("(/)",std::regex::ECMAScript);
+CONST_REGEX REGEX_NEWLINE("(\\n)",std::regex::ECMAScript);
+CONST_REGEX REGEX_AMP("(\\&)",std::regex::ECMAScript);
+CONST_REGEX REGEX_LT("(\\<)",std::regex::ECMAScript);
+CONST_REGEX REGEX_GT("(\\>)",std::regex::ECMAScript);
+CONST_REGEX REGEX_QUOTE("(\\\")",std::regex::ECMAScript);
+
 
 
 #endif	// DIALOG_REGEX_H

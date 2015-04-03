@@ -1,0 +1,58 @@
+//
+//	Copyright (c) 2015 Scott Furry
+//	This file is part of Freedroid and subproject FDDNM
+//
+//	This file is used as the basis for the image file
+//	example.png in the wiki. Graphviz must be installed.
+//	It is converted using the command-line tool
+//	$> dot -Tpng -oexample.png example.dot
+//
+digraph interpretation {
+	//GRAPH DEFINITIONS
+	rankdir="LR";
+//	rankdir="TB";
+	pad="0.25";
+	nodesep="0.25";
+	ranksep="0.25";
+	packMode="graph";
+	ordering="in";
+	remincross=true;
+	fontsize=12;
+
+	node[style=rounded shape=box margin="0" pad="0" fontsize=10];
+	a1 [label="Dialog Name" width=2.5];
+	a1FirstTime[label="FirstTime"];
+	a1EveryTime[label="EveryTime"];
+	a1node0[label="node0"];
+	a1node1[label="node1"];
+	a1node2[label="node2"];
+	a1node3[label="node3"];
+	a1node4[label="node4"];
+	a1end_dialog[label="end_dialog"];
+
+	edge[style=solid penwidth=0.65 minlen="1.75"];
+	a1 -> a1FirstTime [];
+	a1FirstTime -> a1node0 [color="blue"];
+	a1node4 -> a1end_dialog [color="purple"];
+	a1 -> a1EveryTime [];
+	a1EveryTime -> a1node1 [color="blue"];
+	a1EveryTime -> a1node2 [color="orange"];
+	a1node0 -> a1node3 [color="blue"];
+	a1node1 -> a1node2 [color="#2fcc2f"];
+	a1node2 -> a1end_dialog [color="purple"];
+	a1node3 -> a1node4 [color="orange"];
+	a1node0 -> a1node0 [style=dashed penwidth=0.50 color="red"];
+	a1node1 -> a1node1 [style=dashed penwidth=0.50 color="red"];
+	a1node2 -> a1node1 [style=dashed penwidth=0.50 color="red"];
+	a1node3 -> a1node0 [style=dashed penwidth=0.50 color="red"];
+	{ rank=same; a1FirstTime; a1EveryTime; }
+	subgraph cluster_subtopic {
+		label ="Dialog Subtopic";
+		a1node0
+		a1node1
+		a1node2
+		a1node3
+	}
+
+}
+

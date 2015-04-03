@@ -23,7 +23,7 @@
 	Purpose:	class definition for fddnm control
 	Author:		Scott Furry
 	Date:		2014 Dec 09
-	Update:		2015 Feb 25
+	Update:		2015 Mar 27
 */
 
 #ifndef FDDNM_H
@@ -62,6 +62,11 @@ private:
 	bool									quiet_output;
 	bool									verbose_parse;
 	bool									verbose_dot;
+	// enable detailed output
+	bool									detailed;
+	// enable group flag for nodes connected to "end_dialog"
+	bool									grouping;
+	// no not imported other dialogs (e.g. 614 dialogs)
 	bool									individual_files;
 	// where to look for dialog files
 	std::string								dirSearch;

@@ -64,7 +64,8 @@ Requirements:
 -------------
 - c++ compliant compiler (gcc series 4.9.x or later) with regex capability.
 - boost filesystem, algorithms and program_options (boost >= 1.5.5)
-- graphviz library
+- graphviz version >= 2.30.1 ( at or after git commit dated 07Mar2013
+   id:a97e1306c43b2ead2f45c6bb93a9fc62f98fad1a)
 
 ---------
 Building:
@@ -94,9 +95,12 @@ Command Line:
 Usage:
 	fddnm	[-h|--help] Show help message for fddnm
 
-	fddnm	[-q]  [-P | --verboseprint] [-D | --verbosedot] [-I | --individual]
-			[[-s | --dirsearch=]arg] [[-o | --diroutput=]arg] [[-F | --fileprefix=]arg]
-			[[-L | --layout=]arg] [[-T | --format=]arg] [[-d | --dialog=]arg]
+	fddnm	[-q]  [-P | --verboseprint]
+			[-D | --verbosedot] [-G | --group]
+			[-H | --extrainfo] [-I | --individual]
+			[[-s | --dirsearch=]arg] [[-o | --diroutput=]arg]
+			[[-F | --fileprefix=]arg] [[-L | --layout=]arg]
+			[[-T | --format=]arg] [[-d | --dialog=]arg]
 
 	[-q]
 	Quiet - no output to stdout
@@ -108,6 +112,15 @@ Usage:
 	[-D | \-\-verbosedot]
 	Print analyzed dialog data used to create graphic to text file. Text file placed in output directory.
 	Note - output file will be named "[PREFIX][Dialog Name]_VDOT.txt"
+
+	[-G | --grouping]
+	Grouping is used as a layout hint to graphviz.
+	Enables nodes connected to "end_dialog" to be grouped closer to "end_dialog" node.
+	(E.g. Dixon or Tania graphs produce better output with this setting enabled).\n
+
+	[-H | --extrainfo]
+	enable HTML-like dot output - includeds presentation of extra node information.
+	See wiki pages for example for this kind of output.
 
 	[-I | \-\-individual]
 	Program is to parse and process all dialog files individually.
@@ -238,6 +251,23 @@ be found, attempt the following:
 	manually locate gvc.h and libgvc.so and use the following:
 
 	./configure CPPFLAGS="-I/folder/path_gvc_h" LDFLAGS="-L/folder/path_gvc_so/"
+
+
+During compile you receive the error...
+
+	fddnm.cpp: In member function ‘void fddnm::graphivOutput(const string&, const string&)’:
+	fddnm.cpp:653:38: error: invalid conversion from ‘const char*’ to ‘char*’ [-fpermissive]
+	   Agraph_t* G = agmemread(userDotData);
+										  ^
+	In file included from /usr/include/graphviz/types.h:717:0,
+					 from /usr/include/graphviz/gvc.h:20,
+					 from fddnm.cpp:39:
+	/usr/include/graphviz/graph.h:165:22: note: initializing argument 1 of ‘Agraph_t* agmemread(char*)’
+		 extern Agraph_t *agmemread(char *);
+						  ^
+
+This indicates that the graphviz library requirement has not been met. See requirements above and follow
+the instructions for your distribution to update graphviz.
 
 
 If during linking (MacOS X) you receive the error:

@@ -23,7 +23,7 @@
 	Purpose:	class implementation for fddnm control
 	Author:		Scott Furry
 	Date:		2014 Dec 09
-	Update:		2015 Feb 25
+	Update:		2015 Mar 27
 */
 
 #include "fddnm.h"
@@ -44,11 +44,17 @@
 
 namespace bfs = boost::filesystem;
 namespace bpo = boost::program_options;
+namespace ba = boost::algorithm;
+
 
 const std::string DESC_VERBOSE_PRINT
 	("print parsed dialog data to text file\ntext file placed in output directory\n");
 const std::string DESC_VERBOSE_DOT
 	("print analyzed dialog data used to create graphic to text file\ntext file placed in output directory\n");
+const std::string DESC_GROUPING
+	("enable \"end_dialog\" group hint in dot output\n");
+const std::string DESC_DETAILED
+	("enable HTML-like dot output - includeds extra node information\n");
 const std::string DESC_INDIVIDUAL
 	("program is to parse and process all dialog files individually\n");
 const std::string DESC_DIR_SEARCH
@@ -80,6 +86,8 @@ fddnm::fddnm() :
 quiet_output(false),
 verbose_parse(false),
 verbose_dot(false),
+detailed(false),
+grouping(false),
 individual_files(false),
 dirSearch("../../dialogs"),
 dirDisplaySearch(),
@@ -100,6 +108,8 @@ fddnm::fddnm(const fddnm& rhs)
 		this->quiet_output		= rhs.quiet_output;
 		this->verbose_parse		= rhs.verbose_parse;
 		this->verbose_dot		= rhs.verbose_dot;
+		this->detailed			= rhs.detailed;
+		this->grouping			= rhs.grouping;
 		this->individual_files	= rhs.individual_files;
 		this->dirSearch			= rhs.dirSearch;
 		this->dirDisplaySearch	= rhs.dirDisplaySearch;
@@ -127,6 +137,8 @@ fddnm::fddnm (fddnm&& rhs) noexcept :
 quiet_output(rhs.quiet_output),
 verbose_parse(rhs.verbose_parse),
 verbose_dot(rhs.verbose_dot),
+detailed(rhs.detailed),
+grouping(rhs.grouping),
 individual_files(rhs.individual_files),
 dirSearch(rhs.dirSearch),
 dirDisplaySearch(rhs.dirDisplaySearch),
@@ -159,6 +171,8 @@ fddnm& fddnm::operator=(const fddnm& rhs)
 		this->quiet_output		= rhs.quiet_output;
 		this->verbose_parse		= rhs.verbose_parse;
 		this->verbose_dot		= rhs.verbose_dot;
+		this->detailed			= rhs.detailed;
+		this->grouping			= rhs.grouping;
 		this->individual_files	= rhs.individual_files;
 		this->dirSearch			= rhs.dirSearch;
 		this->dirDisplaySearch	= rhs.dirDisplaySearch;
@@ -188,6 +202,8 @@ fddnm& fddnm::operator=(fddnm&& rhs) noexcept
 	this->quiet_output		= std::move(rhs.quiet_output);
 	this->verbose_parse		= std::move(rhs.verbose_parse);
 	this->verbose_dot		= std::move(rhs.verbose_dot);
+	this->detailed			= std::move(rhs.detailed);
+	this->grouping			= std::move(rhs.grouping);
 	this->individual_files	= std::move(rhs.individual_files);
 	this->dirSearch			= std::move(rhs.dirSearch);
 	this->dirDisplaySearch	= std::move(rhs.dirDisplaySearch);
@@ -229,6 +245,8 @@ void fddnm::setProgramOptions(int argc, char** argv)
 				DESC_DIALOG.c_str())
 			("verboseprint,P", DESC_VERBOSE_PRINT.c_str())
 			("verbosedot,D", DESC_VERBOSE_DOT.c_str())
+			("group,G", DESC_GROUPING.c_str())
+			("extrainfo,H", DESC_DETAILED.c_str())
 			("individual,I", DESC_INDIVIDUAL.c_str())
 
 		;
@@ -249,12 +267,14 @@ void fddnm::setProgramOptions(int argc, char** argv)
 		if (vm.count("-q"))				quiet_output		= true;
 		if (vm.count("verboseprint"))	verbose_parse		= true;
 		if (vm.count("verbosedot"))		verbose_dot			= true;
+		if (vm.count("group"))			grouping			= true;
+		if (vm.count("extrainfo"))		detailed			= true;
 		if (vm.count("individual"))		individual_files	= true;
 
 		// validate layout requested
 		bool goodLayout = false;
 		std::string drawLayoutOrig(drawLayout);
-		boost::algorithm::to_upper(drawLayout);
+		ba::to_upper(drawLayout);
 		for (auto& layout: LAYOUTS)
 		{
 			if (layout.compare(drawLayout) != 0) continue;
@@ -268,7 +288,7 @@ void fddnm::setProgramOptions(int argc, char** argv)
 		// validate format requested
 		bool goodFormat = false;
 		std::string drawFormatOrig(drawFormat);
-		boost::algorithm::to_lower(drawFormat);
+		ba::to_lower(drawFormat);
 		for (auto& format: FORMATS)
 		{
 			if (format.compare(drawFormat) != 0) continue;
@@ -555,7 +575,7 @@ void fddnm::processDialogs()
 			{
 				std::cout << "Rendering to file: " << outFileName.string() << std::endl;
 			}
-			graphivOutput(outFilePath.string(), item.dotData.getDotContent());
+			graphivOutput(outFilePath.string(), item.dotData.getDotContent(this->detailed, this->grouping));
 		}
 	}
 }

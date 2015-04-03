@@ -23,7 +23,7 @@
 	Purpose:	class defintion for producing dot diagram of FDRPG dialog nodes
 	Author:		Scott Furry
 	Date:		2014 Nov 26
-	Update:		2015 Feb 25
+	Update:		2015 Mar 27
 */
 
 #ifndef DIALOG_DOT_H
@@ -32,14 +32,6 @@
 #include "dialog_regex.h"
 #include "dialog_dot_struct.h"
 #include "dialog_file.h"
-
-CONST_STR STR_STYLE_END("color=\"purple\"");
-CONST_STR STR_STYLE_SHOW("color=\"blue\"");
-CONST_STR STR_STYLE_SHOWIF("color=\"orange\"");
-CONST_STR STR_STYLE_NEXT("color=\"#2fcc2f\"");	// dark green;
-CONST_STR STR_STYLE_HIDE("style=dashed, penwidth=1, color=\"red\"");
-//CONST_STR STR_STYLE_PUSH("color=\"#4f4fff\"");
-//CONST_STR STR_STYLE_POP("color=\"#ffff4f\"");
 
 class dialog_dot
 {
@@ -57,10 +49,13 @@ public:
 	std::string setFile(const dialog_file& dlgFile);
 	void		setDrawDirection(CONST_STR& DrawDir)	{ drawDirection = DrawDir; }
 	void		setNodePrefix(CONST_STR& prefix)		{ nodePrefix = prefix; }
-	std::string	getDotContent() const;
+	std::string	getDotContent(bool withDetail = false, bool withGrouping = false) const;
 	std::string printDotData() const;
 
 	static std::string toDotStr(CONST_STR& text);
+	static std::string toHTMLStr(CONST_STR& text);
+	static std::string toReplace(CONST_STR& text, CONST_STR& search, CONST_STR& replace);
+	static std::string textWrap(CONST_STR& input, const int& nWidth);
 private:
 	void		buildNodes(const dialog_file& dlgFile);
 	std::string	buildRelationships(const dialog_file& dlgFile);

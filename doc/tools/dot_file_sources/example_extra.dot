@@ -1,0 +1,125 @@
+//
+//	Copyright (c) 2015 Scott Furry
+//	This file is part of Freedroid and subproject FDDNM
+//
+//	This file is used as the basis for the image file
+//	example_extra.png in the wiki. Graphviz must be installed.
+//	It is converted using the command-line tool
+//	$> dot -Tpng -oexample_extra.png example_extra.dot
+//
+digraph interpretation {
+	//GRAPH DEFINITIONS
+	rankdir="LR";
+//	rankdir="TB";
+	pad="0.25";
+	nodesep="0.25";
+	ranksep="0.25";
+	packMode="graph";
+	ordering="in";
+	remincross=true;
+	fontsize=12;
+
+	//NODE DEFINITIONS
+	node[shape=none margin="0" pad="0" fontsize=10];
+	a1 [label=<<FONT><B>Dialog Name</B></FONT>> shape=box style=rounded width=2.5 fontsize=14];
+	a1FirstTime[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>FirstTime</B></TD></TR>
+		<TR><TD ALIGN="LEFT">FirstTime</TD></TR>
+		</TABLE>
+		>
+	];
+	a1EveryTime[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>EveryTime</B></TD></TR>
+		<TR><TD ALIGN="LEFT">EveryTime</TD></TR>
+		</TABLE>
+		>
+	];
+	a1node0[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>node0</B></TD></TR>
+		<TR><TD ALIGN="LEFT">Lorem ipsum dolor sit amet,<BR/>consectetur adipiscing elit,<BR/>sed do eiusmod tempor<BR/>incididunt ut labore et<BR/>dolore magna aliqua.</TD></TR>
+		</TABLE>
+		>
+	];
+	a1node1[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>node1</B></TD></TR>
+		<TR><TD ALIGN="LEFT"></TD></TR>
+		</TABLE>
+		>
+	];
+	a1node2[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>node2</B></TD></TR>
+		<TR><TD ALIGN="LEFT">Ut enim ad minim veniam, quis<BR/>nostrud exercitation ullamco<BR/>laboris nisi ut aliquip<BR/>ex ea commodo consequat.</TD></TR>
+		</TABLE>
+		>
+	];
+	a1node3[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>node3</B></TD></TR>
+		<TR><TD ALIGN="LEFT"></TD></TR>
+		</TABLE>
+		>
+	];
+	a1node4[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD><B>node4</B></TD></TR>
+		<TR><TD ALIGN="LEFT">"The Quick Brown Fox Jumped<BR/>over the lazy dog..."</TD></TR>
+		</TABLE>
+		>
+	];
+	a1end_dialog[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD><B>end_dialog</B></TD></TR>
+		<TR><TD ALIGN="LEFT">end_dialog</TD></TR>
+		</TABLE>
+		>
+	];
+
+	//NODE-EDGE DEFINTIONS
+	edge[style=solid penwidth=0.65 minlen="1.5"];
+	a1 -> a1FirstTime
+	a1 -> a1EveryTime
+
+	edge[color="blue"];
+	a1FirstTime -> a1node0
+	a1EveryTime -> a1node1
+	a1node0 -> a1node3
+
+	edge[color="#2fcc2f"];
+	a1node1 -> a1node2 
+
+	edge[color="orange"];
+	a1EveryTime -> a1node2 
+	a1node3 -> a1node4
+
+	edge [color="purple"];
+	a1node4 -> a1end_dialog
+	a1node2 -> a1end_dialog
+
+	edge[style=dashed penwidth=0.50 color="red"];
+	a1node0 -> a1node0 
+	a1node1 -> a1node1
+	a1node2 -> a1node1
+	a1node3 -> a1node0
+
+	//SUBGRAPH DEFINTIONS
+	subgraph cluster_subtopic {
+		label =<<FONT><B>Dialog Subtopic</B></FONT>>;
+		a1node0;
+		a1node1;
+		a1node2;
+		a1node3;
+	}
+}

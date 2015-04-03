@@ -23,7 +23,7 @@ Requirements	{#requirements}
 
 - compiler with C++ 11 capability (gcc >= 4.9.x series or clang >= 3.4.x series w/ c++ option enabled)
 - boost C++ libraries (boost >= 1.5.5 - need filesystem, algorithms and program_options)
-- graphviz
+- graphviz version >= 2.30.1 ( at or after git commit dated 07Mar2013 id:a97e1306c43b2ead2f45c6bb93a9fc62f98fad1a)
 
 
 Building	{#building}
@@ -60,9 +60,12 @@ Usage:
 Show help message for fddnm\n
 \n
 
-	fddnm	[-q]  [-P | --verboseprint] [-D | --verbosedot] [-I | --individual]
-			[[-s | --dirsearch=]arg] [[-o | --diroutput=]arg] [[-F | --fileprefix=]arg]
-			[[-L | --layout=]arg] [[-T | --format=]arg] [[-d | --dialog=]arg]
+	fddnm	[-q]  [-P | --verboseprint]
+			[-D | --verbosedot] [-G | --group]
+			[-H | --extrainfo] [-I | --individual]
+			[[-s | --dirsearch=]arg] [[-o | --diroutput=]arg]
+			[[-F | --fileprefix=]arg] [[-L | --layout=]arg]
+			[[-T | --format=]arg] [[-d | --dialog=]arg]
 
 \n
 	[-q]\n
@@ -75,6 +78,15 @@ Show help message for fddnm\n
 	[-D | \-\-verbosedot]\n
 	Print analyzed dialog data used to create graphic to text file. Text file placed in output directory.\n
 	Note - output file will be named "[PREFIX][Dialog Name]_VDOT.txt"\n
+\n
+	[-G | --group]
+	Grouping is used as a layout hint to graphviz.\n
+	Enables nodes connected to "end_dialog" to be grouped closer to "end_dialog" node.\n
+	(E.g. Dixon or Tania graphs produce better output with this setting enabled).\n
+\n
+	[-H | --extrainfo]
+	enable HTML-like dot output - includeds presentation of extra node information.\n
+	(See below for an example of the output produced.)\n
 \n
 	[-I | \-\-individual]\n
 	Program is to parse and process all dialog files individually.\n
@@ -131,15 +143,20 @@ the text-only parse data can be made available for examination.\n
 Command below would create text file dumps of all parsed/analyzed data
 and store these files in the default output directory.\n
 
-
 	./fddnm -Tnone -P -D
+
+- Parse all dialog files and produce PNG images with "extra detail".\n
+(See below for an example of output with this output enabled.)\n
+
+	./fddnm -Tpng -H
+
 
 \n
 Ouput Interpretaton		{#output}
 ===================
 
 Current implementation uses the following colour scheme:\n
-![Example Dialog Conversion Output](@ref example.png)
+![Example - Dialog Conversion Output (no detail)](@ref example.png)
 
 	blue		parent node calls "show" child node
 	green		parent node calls "next" on child node
@@ -159,6 +176,26 @@ This output indicates that the dialog contains within code a call to *end_dialog
 to be drawn from the calling node, an "artificial" end node is appended to the dialog node data. As a result of
 the addition of an end_dialog node, the Parsed node count will be set to (Detected Node Count + 1).\n
 \n
+
+![Example Dialog Conversion Output (with detail)](@ref example_extra.png)
+Using the command line switch *[-H | --extrainfo]* will result in diagrams similar to above.
+The only change is the inclusion of text ( *text="..."* for each node in the dialog file).
+Currently, the line wrap value is set for 30 characters.
+
+![Example Error Indication](@ref example_error.png)
+Diagram above shows *node99* as having no *show*, *next* or *show_if* connections leading to this node.
+The node is not a child of any other nodes. Although the node has a *hide* command (red arrow), this is
+in fact a dangling node.\n
+\n
+There are two possible interpretations: a) FDDNM has a bug (not unlikely considering the tool is
+parsing fluid lua language without interpretation) or b) the node in question is unreferenced in code.
+Which situation is occurring can be verified by doing a search of the file similar to...
+
+	grep -n "nodeXX" dialogfile.lua
+
+or similar code tools. If after the search no references can be found to *show*, *next* or *show_if* of
+"nodeXX" then the node is unreferenced (or not called) in the dialog. A developer or dialog writer should
+view this kind of output as an error in the dialog file. This is a type of error FDDNM tool is trying to highlight.
 
 Known Issues			{#known}
 ============
@@ -204,6 +241,23 @@ Use the pkg-config output to populate configure variables as follows: (note quot
 
 	./configure CPPFLAGS="-I/folder/path_gvc_h" LDFLAGS="-L/folder/path_gvc_so/"
 
+\n
+During compile you receive the error...
+
+	fddnm.cpp: In member function ‘void fddnm::graphivOutput(const string&, const string&)’:
+	fddnm.cpp:653:38: error: invalid conversion from ‘const char*’ to ‘char*’ [-fpermissive]
+	   Agraph_t* G = agmemread(userDotData);
+										  ^
+	In file included from /usr/include/graphviz/types.h:717:0,
+					 from /usr/include/graphviz/gvc.h:20,
+					 from fddnm.cpp:39:
+	/usr/include/graphviz/graph.h:165:22: note: initializing argument 1 of ‘Agraph_t* agmemread(char*)’
+		 extern Agraph_t *agmemread(char *);
+						  ^
+
+This indicates that the graphviz library requirement has not been met. See requirements above and follow
+the instructions for your distribution to update graphviz.\n
+\n
 
 [MacOS X] If during linking you receive the error:\n
 

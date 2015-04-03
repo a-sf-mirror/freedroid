@@ -61,6 +61,7 @@ For these instructions, the fddnm sources are located under
 4) If ./configure finishes without errors or warnings, then proceed with
    building the tool with:
    make
+   (note: BSD/MacOSX users - use gmake)
 
 5) Installation - fddnm is not expected to be installed "system-wide" but
    remain resident within fddnm sources.

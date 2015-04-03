@@ -23,7 +23,7 @@
 	Purpose:	class implementation for producing dot diagram of FDRPG dialog nodes
 	Author:		Scott Furry
 	Date:		2014 Nov 26
-	Update:		2015 Feb 25
+	Update:		2015 Mar 27
 */
 
 #include "dialog_dot.h"
@@ -31,6 +31,35 @@
 #include <sstream>
 #include <algorithm>
 #include <utility>
+#include <boost/algorithm/string.hpp>	// boost - string manip/upper/lower
+#include <boost/tokenizer.hpp>			// boost - char_separator
+
+#ifndef BOOST_FILESYSTEM_NO_DEPRECATED
+#define BOOST_FILESYSTEM_NO_DEPRECATED
+#endif	//BOOST_FILESYSTEM_NO_DEPRECATED
+
+namespace ba = boost::algorithm;
+
+const int WORD_WRAP_SIZE = 25;
+CONST_STR STR_STYLE_END("color=\"purple\"");
+CONST_STR STR_STYLE_SHOW("color=\"blue\"");
+CONST_STR STR_STYLE_SHOWIF("color=\"orange\"");
+CONST_STR STR_STYLE_NEXT("color=\"#2fcc2f\"");	// green;
+CONST_STR STR_STYLE_HIDE("style=dashed penwidth=\"0.50\" color=\"red\"");
+
+CONST_STR STR_NODE_REPLACE_LABEL("$$$LABEL$$$");
+CONST_STR STR_NODE_REPLACE_TEXT("$$$TEXT$$$");
+
+CONST_STR STR_HEAD_DETAIL("<<FONT><B>" + STR_NODE_REPLACE_LABEL + "</B></FONT>>");
+CONST_STR STR_NODE_DETAIL("\t<<FONT>\
+		\t\t<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"1\">\
+		\t\t<TR><TD ALIGN=\"TEXT\"><B>" + STR_NODE_REPLACE_LABEL + "</B></TD></TR>\
+		\t\t<TR><TD ALIGN=\"TEXT\">" + STR_NODE_REPLACE_TEXT + "</TD></TR>\
+		\t\t</TABLE>\
+		\t</FONT>>");
+//CONST_STR STR_STYLE_PUSH("color=\"#4f4fff\"");
+//CONST_STR STR_STYLE_POP("color=\"#ffff4f\"");
+
 
 //constructor
 dialog_dot::dialog_dot() :
@@ -131,19 +160,47 @@ std::string dialog_dot::setFile(const dialog_file& dlgFile)
 	return strRet;
 }
 
-std::string dialog_dot::getDotContent() const
+std::string dialog_dot::getDotContent(bool withDetail /*= false*/, bool withGrouping /*= false*/) const
 {
 	std::stringstream dotOut;
 	dotOut	<< "digraph fddnm_" << this->characterName << " {" << std::endl
 			<< "\trankdir=\"" << drawDirection << "\";" << std::endl
-			<< "\tresolution=72;" << std::endl
-			<< "\tfontsize=12;" << std::endl
-			<< "\tedge[style=solid, penwidth=1.25];" << std::endl
-			<< "\tsep=\"+50,50\";" << std::endl
-			<< "\toverlap=scalexy;" << std::endl
-			<< "\t" << this->nodePrefix << " [label=\"" << this->characterLabel
-					<< "\", shape=Mrecord, width=2.5];" << std::endl;
+			<< "\tpad=\"0.25\";" << std::endl
+			<< "\tnodesep=\"0.25\";" << std::endl
+			<< "\tranksep=\"0.25\";" << std::endl
+			<< "\tpackMode=\"graph\";" << std::endl
+			<< "\tordering=\"in\";" << std::endl
+			<< "\tremincross=\"true\";" << std::endl
+			<< "\tfontsize=\"12\";" << std::endl
+			<< std::endl;
 
+	if (withDetail)
+	{
+		dotOut << "\tnode[shape=none margin=\"0\"  pad=\"0\" fontsize=\"10\"];" << std::endl;
+	}
+	else
+	{
+		dotOut << "\tnode[style=rounded shape=box margin=\"0\" pad=\"0\" fontsize=\"10\"];" << std::endl;
+	}
+
+	dotOut	<< "\tedge[style=solid penwidth=\"0.65\" minlen=\"1.5\"];" << std::endl
+			<< std::endl;
+
+
+	dotOut << "\t" << this->nodePrefix << " [label=";
+	if (withDetail)
+	{
+		// insert this->characterLabel into STR_HEAD_DETAIL
+		std::string newText(STR_HEAD_DETAIL);
+		std::string newLabel(toHTMLStr(this->characterLabel));
+		newText = toReplace(newText,STR_NODE_REPLACE_LABEL,newLabel);
+		dotOut << newText;
+	}
+	else
+	{
+		dotOut  << "\"" << this->characterLabel << "\"";
+	}
+	 dotOut << " shape=box style=rounded width=\"2.5\" fontsize=\"14\"];" << std::endl;
 	// cluster names
 	std::vector<std::string> clusternames;
 	for (auto& node: nodes)
@@ -163,56 +220,82 @@ std::string dialog_dot::getDotContent() const
 		}
 	}
 
+	// output node definitions
+	std::string strGroupEnd(" group=\"END\"");
 	for (auto& node: nodes)
 	{
-		if (node.dotCluster.empty())
+		if ( node.dotID.empty() ) continue;
+		dotOut	<< "\t" << node.dotID << "[";
+		if (withDetail)
 		{
-			dotOut	<< "\t" << node.dotID
-					<< "[label=\"" << node.dotLabel << "\", style=rounded, shape=box];"
-					<< std::endl;
+			// replace label marker with label node.dotLabel
+			// replace text marker with text
+			// insert this->characterLabel into STR_HEAD_DETAIL
+			std::string newText(STR_NODE_DETAIL);
+			std::string newLabel(node.dotLabel);
+			std::string textdata(node.nodeText);
+
+			newLabel = toHTMLStr(newLabel);
+			textdata = textWrap(textdata,WORD_WRAP_SIZE);
+			textdata = toHTMLStr(textdata);
+
+			newText = toReplace(newText,STR_NODE_REPLACE_LABEL,newLabel);
+			newText = toReplace(newText,STR_NODE_REPLACE_TEXT,textdata);
+			dotOut	<< "label=" << newText;
 		}
+		else
+		{
+			dotOut	<< "label=\"" << node.dotLabel << "\"";
+		}
+
+		if(withGrouping)
+		{
+
+			if (node.dotID.compare(dotNodeEnd) == 0)
+			{
+				// add to "end of dialog" group
+				// hint to dot to keep these items close to bottom
+				dotOut << strGroupEnd;
+			}
+			else
+			{
+				for (auto& edgeitem: relationship)
+				{
+					if (edgeitem.parentnode.compare(this->nodePrefix) == 0) continue;
+					if (edgeitem.parentnode.compare(dotNodeFirst) == 0) continue;
+					if (edgeitem.parentnode.compare(dotNodeEvery) == 0) continue;
+					if (node.dotID.compare(edgeitem.parentnode) != 0) continue;
+					if (edgeitem.childnode.compare(dotNodeEnd) == 0)
+					{
+						// add to "end of dialog" group
+						// hint to dot to keep these items close to bottom
+						dotOut << strGroupEnd;
+					}
+				}
+			}
+		}
+		dotOut << "];" << std::endl;
 	}
 
-	if(!dotNodeFirst.empty() && !dotNodeEvery.empty())
+	// dot language to force [First|Every]Time to be same rank
+	if ((!dotNodeFirst.empty()) && (!dotNodeEvery.empty()))
 	{
-		dotOut	<< "{ rank=\"same\" "
-				<< dotNodeFirst << " "
-				<< dotNodeEvery << " }"
-				<< std::endl;
+		dotOut	<< "\t{ rank=\"same\" "
+				<< dotNodeFirst
+				<< ", "
+				<< dotNodeEvery
+				<< " }" << std::endl;
 	}
 
-	if(!dotNodeEnd.empty())
+	// dot language to force end_dialog to be lower
+	if (!dotNodeEnd.empty())
 	{
-		dotOut	<< "{ rank=\"sink\" "
+		dotOut	<< "\t{ rank=\"max\" "
 				<< dotNodeEnd << " }"
 				<< std::endl;
 	}
 
-	if(!clusternames.empty())
-	{
-		for (auto& checkcluster: clusternames)
-		{
-			std::string label;
-			dotOut << "\tsubgraph cluster_" << checkcluster << " {" << std::endl;
-			for (auto& node: nodes)
-			{
-				if (checkcluster.compare(node.dotCluster) == 0)
-				{
-					if (label.empty())
-					{
-						label = node.dotClusterLabel;
-						dotOut << "\t\tlabel =\"" << label << "\";" << std::endl;
-					}
-
-					dotOut	<< "\t\t" << node.dotID
-							<< "[label=\"" << node.dotLabel
-							<< "\", style=rounded, shape=box];"
-							<< std::endl;
-				}
-			}
-			dotOut << "\t}" << std::endl;
-		}
-	}
+	// output node relationships -> edges -> lines between
 	for (auto& edgeitem: relationship)
 	{
 		dotOut	<< "\t" << edgeitem.parentnode
@@ -227,6 +310,44 @@ std::string dialog_dot::getDotContent() const
 		}
 		dotOut	<< edgeitem.style
 				<< "];" << std::endl;
+	}
+
+	// output node clusters ( in dialogs - subtopics)
+	if(!clusternames.empty())
+	{
+		for (auto& checkcluster: clusternames)
+		{
+			bool haveLabel = false;
+			dotOut	<< "\tsubgraph cluster_" << checkcluster << " {" << std::endl;
+			for (auto& node: nodes)
+			{
+				if (checkcluster.compare(node.dotCluster) == 0)
+				{
+					if (!haveLabel)
+					{
+						dotOut	<< "\t\tlabel =";
+						if (withDetail)
+						{
+							// insert this->characterLabel into STR_HEAD_DETAIL
+							std::string newText(STR_HEAD_DETAIL);
+							std::string newLabel(toHTMLStr(node.dotClusterLabel));
+							newText = toReplace(newText,STR_NODE_REPLACE_LABEL,newLabel);
+							dotOut << newText;
+						}
+						else
+						{
+							dotOut << "\"" << node.dotClusterLabel << "\"";
+						}
+						dotOut << ";" << std::endl;
+						haveLabel=true;
+					}
+					dotOut	<< "\t\t"
+							<< node.dotID
+							<< std::endl;
+				}
+			}
+			dotOut << "\t}" << std::endl;
+		}
 	}
 	dotOut << "}" << std::endl;
 	return dotOut.str();
@@ -272,6 +393,27 @@ std::string dialog_dot::toDotStr(CONST_STR& text)
 	return retText;
 }
 
+std::string dialog_dot::toHTMLStr(CONST_STR& text)
+{
+	std::string retText;
+	retText = std::regex_replace (text,REGEX_AMP,"&amp;");
+	retText = std::regex_replace (retText,REGEX_LT,"&lt;");
+	retText = std::regex_replace (retText,REGEX_GT,"&gt;");
+	retText = std::regex_replace (retText,REGEX_NEWLINE,"<BR/>");
+	retText = std::regex_replace (retText,REGEX_QUOTE,"&quote;");
+	retText = std::regex_replace (retText,REGEX_APOSTROPHE,"&#39;");
+	retText = std::regex_replace (retText,REGEX_SPACE,"&nbsp;");
+
+	return retText;
+}
+
+std::string dialog_dot::toReplace(CONST_STR& text, CONST_STR& search, CONST_STR& replace)
+{
+	std::string retText(text);
+	ba::replace_first(retText,search,replace);
+	return retText;
+}
+
 void dialog_dot::buildNodes(const dialog_file& dlgFile)
 {
 	this->characterLabel = dlgFile.getCharName();
@@ -283,10 +425,12 @@ void dialog_dot::buildNodes(const dialog_file& dlgFile)
 		std::string clustername = toDotStr(clusterlabel);
 		std::string nodelabel = theNode.getNodeID();
 		std::string nodeDotID = nodePrefix + toDotStr(nodelabel);
+		std::string nodeText = theNode.getNodeText();
 		node dotnode(	clustername,
 						clusterlabel,
 						nodeDotID,
-						nodelabel);
+						nodelabel,
+						nodeText);
 		nodes.push_back(dotnode);
 		if (nodelabel.find("FirstTime") != std::string::npos)
 		{
@@ -513,6 +657,34 @@ std::string dialog_dot::nodeListParse(	CONST_STR& ParentNode,
 	}
 	strMsg = errMsg.str();
 	return testText;
+}
+
+std::string dialog_dot::textWrap(CONST_STR& input, const int& nWidth)
+{
+	std::stringstream ss;
+	int line_len = 0;
+	bool first_word = true;
+	typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
+	boost::char_separator<char> sep(" ");
+	tokenizer tokens(input, sep);
+	for (tokenizer::iterator tok_iter = tokens.begin();tok_iter != tokens.end(); ++tok_iter)
+	{
+		std::string word(*tok_iter);
+		if ((line_len + word.size() + 1) <= nWidth)
+		{
+			line_len += word.size() + 1;
+			if (first_word) first_word = false;
+			else ss << ' ';
+		}
+		else
+		{
+			ss << std::endl;
+			line_len = word.size();
+		}
+		ss << word;
+	}
+	ss << std::endl;
+	return ss.str();
 }
 
 // parsing for "push_topics()" commands

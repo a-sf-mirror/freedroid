@@ -1,0 +1,89 @@
+//
+//	Copyright (c) 2015 Scott Furry
+//	This file is part of Freedroid and subproject FDDNM
+//
+//	This file is used as the basis for the image file
+//	example_extra.png in the wiki. Graphviz must be installed.
+//	It is converted using the command-line tool
+//	$> dot -Tpng -oexample_error.png example_error.dot
+//
+digraph error {
+	//GRAPH DEFINITIONS
+	rankdir="TB";
+	pad="0.25";
+	nodesep="0.25";
+	ranksep="0.25";
+	packMode="graph";
+	ordering="in";
+	remincross=true;
+	fontsize=12;
+
+	//NODE DEFINITIONS
+	node[shape=none margin="0" pad="0" fontsize=10];
+	a1 [label=<<FONT><B>Dialog Name</B></FONT>> shape=box style=rounded width=2.5 fontsize=14];
+	a1FirstTime[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>FirstTime</B></TD></TR>
+		<TR><TD ALIGN="LEFT">FirstTime</TD></TR>
+		</TABLE>
+		>
+	];
+	a1EveryTime[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>EveryTime</B></TD></TR>
+		<TR><TD ALIGN="LEFT">EveryTime</TD></TR>
+		</TABLE>
+		>
+	];
+	a1node0[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>node0</B></TD></TR>
+		<TR><TD ALIGN="LEFT">Hi!!!!!!</TD></TR>
+		</TABLE>
+		>
+	];
+	a1node1[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>node1</B></TD></TR>
+		<TR><TD ALIGN="LEFT">Other Action</TD></TR>
+		</TABLE>
+		>
+	];
+	a1node99[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD ALIGN="CENTER"><B>node99</B></TD></TR>
+		<TR><TD ALIGN="LEFT">Logout</TD></TR>
+		</TABLE>
+		>
+	];
+	a1end_dialog[label=
+		<
+		<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+		<TR><TD><B>end_dialog</B></TD></TR>
+		<TR><TD ALIGN="LEFT">end_dialog</TD></TR>
+		</TABLE>
+		>
+	];
+
+	//NODE-EDGE DEFINTIONS
+	edge[style=solid penwidth=0.65 minlen="1.5"];
+	a1 -> a1FirstTime
+	a1 -> a1EveryTime
+
+	edge [color="blue"];
+	a1FirstTime-> a1node0
+	a1EveryTime -> a1node1
+
+	edge [color="purple"];
+	a1EveryTime->a1end_dialog
+	a1node1 -> a1end_dialog
+
+	edge[style=dashed penwidth=0.50 color="red"];
+	a1node0 -> a1node0
+	a1node99 -> a1node1
+}

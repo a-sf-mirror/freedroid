@@ -23,7 +23,7 @@
 	Purpose:	defintions supporting FDRPG dialog nodes parsing
 	Author:		Scott Furry
 	Date:		2014 Dec 12
-	Update:		2015 Feb 25
+	Update:		2015 Mar 27
 */
 
 #ifndef DIALOG_DOT_STRUCT_H
@@ -36,15 +36,17 @@
 #include <iomanip>
 
 struct node {
-	node(CONST_STR& a, CONST_STR& b, CONST_STR& c, CONST_STR& d) :
-	dotCluster(a), dotClusterLabel(b), dotID(c), dotLabel(d)	{}
+	node(CONST_STR& a, CONST_STR& b, CONST_STR& c, CONST_STR& d, CONST_STR& e) :
+	dotCluster(a), dotClusterLabel(b), dotID(c), dotLabel(d), nodeText(e)
+	{}
 
 	bool operator==(const node& rhs) const
 	{
 		return ((dotCluster.compare(rhs.dotCluster) == 0) &&
 				(dotClusterLabel.compare(rhs.dotClusterLabel) == 0) &&
 				(dotID.compare(rhs.dotID) == 0) &&
-				(dotLabel.compare(rhs.dotLabel) == 0));
+				(dotLabel.compare(rhs.dotLabel) == 0) &&
+				(nodeText.compare(rhs.nodeText) == 0));
 	}
 
 	bool operator!=(const node& rhs) const
@@ -58,7 +60,8 @@ struct node {
 		outText	<< "dotID: " << std::setw(26) << this->dotID
 				<< "\tdotLabel: " << std::setw(26) << this->dotLabel
 				<< "\tdotCluster: " << std::setw(40) << this->dotCluster
-				<< "\tdotClusterLabel: " << this->dotClusterLabel;
+				<< "\tdotClusterLabel: " << this->dotClusterLabel
+				<< "\tText: " << this->nodeText;
 		return outText.str();
 	}
 
@@ -66,6 +69,7 @@ struct node {
 	std::string dotClusterLabel;
 	std::string dotID;
 	std::string dotLabel;
+	std::string nodeText;
 };
 
 typedef std::vector<node>					dotNodes;
