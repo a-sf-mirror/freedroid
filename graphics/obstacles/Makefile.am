@@ -6,16 +6,16 @@ ATLASTOOLDIR = $(top_builddir)/tools/atlas
 $(ATLASTOOLDIR)/make_atlas:
 	$(MAKE) --directory=$(ATLASTOOLDIR)
 	
-PNGS = $(shell find $(srcdir) -name "iso_*.png" -printf "%P\n" | sort)
+PNGS = $(shell find $(srcdir) -name "iso_*.png" | sort)
 OFFSETS = $(shell find $(srcdir) -name "iso_*.offset")
 
 $(srcdir)/atlas.txt: $(ATLASTOOLDIR)/make_atlas $(PNGS) $(OFFSETS)
-	@$(ATLASTOOLDIR)/make_atlas $(srcdir)/obstacles_atlas 2048 2048 $(srcdir)/atlas.txt $(PNGS)
+	@$(ATLASTOOLDIR)/make_atlas -D $(srcdir) $(srcdir)/obstacles_atlas 2048 2048 $(srcdir)/atlas.txt $(PNGS)
 
-SHADOW_PNGS = $(shell find $(srcdir) -name "shadow_*.png" -printf "%P\n" | sort)
+SHADOW_PNGS = $(shell find $(srcdir) -name "shadow_*.png" | sort)
 
 $(srcdir)/shadow_atlas.txt: $(ATLASTOOLDIR)/make_atlas $(SHADOW_PNGS)
-	@$(ATLASTOOLDIR)/make_atlas $(srcdir)/obstacles_shadows_atlas 2048 2048 $(srcdir)/shadow_atlas.txt $(SHADOW_PNGS)
+	@$(ATLASTOOLDIR)/make_atlas -D $(srcdir) $(srcdir)/obstacles_shadows_atlas 2048 2048 $(srcdir)/shadow_atlas.txt $(SHADOW_PNGS)
 
 clean:
 	rm -f $(srcdir)/atlas.txt
