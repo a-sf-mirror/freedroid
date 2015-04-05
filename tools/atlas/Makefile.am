@@ -19,7 +19,10 @@ make_atlas_LDADD += @LIBINTL@
 explode_atlas_LDADD += @LIBINTL@
 endif
 
-PNGDEPS = ../../src/pngfuncs.c ../../src/pngfuncs.h
+vpath %.h $(top_srcdir)/src
+vpath %.c $(top_srcdir)/src
+
+PNGDEPS = pngfuncs.c pngfuncs.h
 
 make_atlas_SOURCES = make_atlas.c $(PNGDEPS)
 

@@ -3,6 +3,9 @@ AUTOMAKE_OPTIONS = subdir-objects
 
 bin_PROGRAMS = croppy
 
-croppy_SOURCES = ../../src/pngfuncs.c croppy.c
+vpath %.c $(top_srcdir)/src
+vpath %.h $(top_srcdir)/src
+
+croppy_SOURCES = pngfuncs.c pngfuncs.h croppy.c
 
 EXTRA_DIST = croppy_background_fill.png

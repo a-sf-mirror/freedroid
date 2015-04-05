@@ -21,8 +21,11 @@ gluefont_LDADD += @LIBINTL@
 make_bmchars_LDADD += @LIBINTL@
 endif
 
+vpath %.c $(top_srcdir)/src
+vpath %.h $(top_srcdir)/src
+
 CSDEPS = codeset.c codeset.h
-PNGDEPS = ../../src/pngfuncs.c ../../src/pnfuncs.h
+PNGDEPS = pngfuncs.c pngfuncs.h
 
 explodefont_SOURCES = explodefont.c $(CSDEPS) $(PNGDEPS)
 
