@@ -44,6 +44,7 @@ struct img {
 
 struct img *images;
 
+const char *img_dir = NULL;
 const char *image_out_path;
 SDL_Surface *atlas_surf;
 const char *output_path;
@@ -90,7 +91,14 @@ static void init_output(int atlas_num)
 	}
 	
 	char path[2048];
-	sprintf(path, "%s%d.png", image_out_path, atlas_num);
+	if (img_dir) {
+		int img_dir_len = strlen(img_dir);
+		if (!strncmp(image_out_path, img_dir, img_dir_len)) {
+			sprintf(path, "./%s%d.png", image_out_path + img_dir_len + 1, atlas_num);
+		} else {
+			sprintf(path, "%s%d.png", image_out_path, atlas_num);
+		}
+	}
 	fprintf(atlas_file, "* %s size %d %d\n", path, atlas_width, atlas_height);
 
 	total_image_area = 0;
@@ -225,18 +233,23 @@ static void create_atlas()
 
 static void get_offset_for_image(struct img *img)
 {
-	char offset_file_name[10000];
+	char offset_file_name[10000] = "";
 	FILE *OffsetFile;
 	char *dat;
 	char *p;
 	
-	strcpy(offset_file_name, img->f);
+	if (img_dir) {
+		strcat(offset_file_name, img_dir);
+		strcat(offset_file_name, "/");
+	}
+	strcat(offset_file_name, img->f);
 	offset_file_name[strlen(offset_file_name) - 4] = 0;
 	strcat(offset_file_name, ".offset");
 
 	if ((OffsetFile = fopen(offset_file_name, "rb")) == NULL) {
 		img->xoff = 0;
 		img->yoff = 0;
+		fprintf(stderr, "No offset for %s\n", offset_file_name);
 		return;
 	}
 
@@ -270,10 +283,23 @@ void load_images()
 	int i;
 
 	for (i = 0; i < image_count; i++) {
-		images[i].f = input_files[i];
-		images[i].s = IMG_Load(input_files[i]);
+		char fn[1024] = "";
+		if (img_dir) {
+			int img_dir_len = strlen(img_dir);
+			if (!strncmp(input_files[i], img_dir, img_dir_len)) {
+				images[i].f = input_files[i] + img_dir_len + 1;
+			} else {
+				images[i].f = input_files[i];
+			}
+			strcat(fn, img_dir);
+			strcat(fn, "/");
+		} else {
+			images[i].f = input_files[i];
+		}
+		strcat(fn, images[i].f);
+		images[i].s = IMG_Load(fn);
 		if (!images[i].s) {
-			fprintf(stderr, "Unable to load image %s: %s\n", input_files[i], IMG_GetError());
+			fprintf(stderr, "Unable to load image %s: %s\n", fn, IMG_GetError());
 			exit(1);
 		}
 		SDL_SetAlpha(images[i].s, 0, 255);
@@ -314,25 +340,51 @@ int main(int argc, char **argv)
 {
 	// Read commandline
 	if (argc < 6) {
-		fprintf(stderr, "Usage: %s <image_output_basename> <atlas_width> <atlas_height> <output_file> <image1.png> <image2.png>...\n", argv[0]);
+		fprintf(stderr, "Usage:\n"
+		                "  old syntax: %s <image_output_basename> <atlas_width> <atlas_height> <output_file> <image1.png> <image2.png>...\n"
+		                "    Using this syntax, the command has to be run in the directory\n"
+		                "    containing the images, and the image filenames must not have any\n"
+		                "    directory prefix (such as ./).\n"
+		                "\n"
+		                "  new syntax: %s -D <image_src_dir> <image_output_basename> <atlas_width> <atlas_height> <output_file> <image1.png> <image2.png>...\n"
+		                "    Using this syntax, the command can be run from any directory,\n"
+		                "    all imageX.png filenames being relatives to <image_src_dir>.\n"
+		                "    If the image filenames are prefixed by <image_src_dir>, that prefix\n"
+		                "    is removed when storing the image filenames in the atlas.txt file\n.", argv[0], argv[0]);
 		exit(1);
 	}
 
-	image_out_path = argv[1];
-	atlas_width = atoi(argv[2]);
-	atlas_height = atoi(argv[3]);
-	output_path = argv[4];
+	int input_files_nb = 0;
+	int input_files_start = 0;
 
-	int input_files_nb = argc - 5;
+	if (!strcmp(argv[1], "-D")) {
+		// New syntax
+		img_dir = argv[2];
+		image_out_path = argv[3];
+		atlas_width = atoi(argv[4]);
+		atlas_height = atoi(argv[5]);
+		output_path = argv[6];
+		input_files_nb = argc - 7;
+		input_files_start = 7;
+	} else {
+		// Old syntax
+		image_out_path = argv[1];
+		atlas_width = atoi(argv[2]);
+		atlas_height = atoi(argv[3]);
+		output_path = argv[4];
+		input_files_nb = argc - 5;
+		input_files_start = 5;
+	}
+
 	input_files = (const char **)calloc(input_files_nb, sizeof(const char *));
 	images = (struct img *)calloc(input_files_nb, sizeof(struct img));
 	int i;
 	for (i = 0; i < input_files_nb; i++) {
-		if (check_output_name(argv[i + 5])) {
-			fprintf(stderr, "Warning: not putting %s in the atlas as it seems to be an output file.\n", argv[i + 5]);
+		if (check_output_name(argv[i + input_files_start])) {
+			fprintf(stderr, "Warning: not putting %s in the atlas as it seems to be an output file.\n", argv[i + input_files_start]);
 			continue;
 		}
-		input_files[image_count++] = argv[i + 5];
+		input_files[image_count++] = argv[i + input_files_start];
 	}
 
 	init_sdl();
