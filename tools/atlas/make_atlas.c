@@ -98,6 +98,8 @@ static void init_output(int atlas_num)
 		} else {
 			sprintf(path, "%s%d.png", image_out_path, atlas_num);
 		}
+	} else {
+		sprintf(path, "%s%d.png", image_out_path, atlas_num);
 	}
 	fprintf(atlas_file, "* %s size %d %d\n", path, atlas_width, atlas_height);
 
