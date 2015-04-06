@@ -350,7 +350,7 @@ int main(int argc, char **argv)
 		                "    Using this syntax, the command can be run from any directory,\n"
 		                "    all imageX.png filenames being relatives to <image_src_dir>.\n"
 		                "    If the image filenames are prefixed by <image_src_dir>, that prefix\n"
-		                "    is removed when storing the image filenames in the atlas.txt file\n.", argv[0], argv[0]);
+		                "    is removed when storing the image filenames in the atlas.txt file.\n", argv[0], argv[0]);
 		exit(1);
 	}
 
