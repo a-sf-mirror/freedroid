@@ -1,8 +1,8 @@
-/* 
+/*
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
- *   Copyright (c) 2004-2010 Arthur Huillet 
+ *   Copyright (c) 2004-2010 Arthur Huillet
  *
  *
  *  This file is part of Freedroid
@@ -18,8 +18,8 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  along with Freedroid; see the file COPYING. If not, write to the
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  *  MA  02111-1307  USA
  *
  */
@@ -121,7 +121,7 @@ static void limit_tux_speed()
 }
 
 /**
- * When the player has requested an attack motion, we start the 
+ * When the player has requested an attack motion, we start the
  * corresponding code, that should try to attack, if that's currently
  * possible.
  */
@@ -169,7 +169,7 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 }
 
 /**
- * The Tux might have cross a level's boundary. In that case, we 
+ * The Tux might have cross a level's boundary. In that case, we
  * must move the Tux silently to the corresponding other level.
  */
 void correct_tux_position_according_to_jump()
@@ -287,7 +287,7 @@ float GetInfluPositionHistoryX(int HowLongPast)
 
 	RingPosition += MAX_INFLU_POSITION_HISTORY;	// We don't want any negative values, for safety
 
-	RingPosition %= MAX_INFLU_POSITION_HISTORY;	// We do MODULO for the Ring buffer length 
+	RingPosition %= MAX_INFLU_POSITION_HISTORY;	// We do MODULO for the Ring buffer length
 
 	return Me.Position_History_Ring_Buffer[RingPosition].x;
 }
@@ -301,7 +301,7 @@ float GetInfluPositionHistoryY(int HowLongPast)
 
 	RingPosition += MAX_INFLU_POSITION_HISTORY;	// We don't want any negative values, for safety
 
-	RingPosition %= MAX_INFLU_POSITION_HISTORY;	// We do MODULO for the Ring buffer length 
+	RingPosition %= MAX_INFLU_POSITION_HISTORY;	// We do MODULO for the Ring buffer length
 
 	return Me.Position_History_Ring_Buffer[RingPosition].y;
 }
@@ -315,7 +315,7 @@ float GetInfluPositionHistoryZ(int HowLongPast)
 
 	RingPosition += MAX_INFLU_POSITION_HISTORY;	// We don't want any negative values, for safety
 
-	RingPosition %= MAX_INFLU_POSITION_HISTORY;	// We do MODULO for the Ring buffer length 
+	RingPosition %= MAX_INFLU_POSITION_HISTORY;	// We do MODULO for the Ring buffer length
 
 	return Me.Position_History_Ring_Buffer[RingPosition].z;
 }
@@ -428,7 +428,7 @@ void tux_get_move_target_and_attack(gps * movetgt)
  */
 static void move_tux_according_to_his_speed()
 {
-	
+
 	float planned_step_x;
 	float planned_step_y;
 
@@ -451,9 +451,9 @@ static void move_tux_according_to_his_speed()
 		event_position_changed(Me.pos, FALSE);
 	}
 
-	// If the Tux got stuck, i.e. if he got no speed at all and still is 
+	// If the Tux got stuck, i.e. if he got no speed at all and still is
 	// currently not in a 'passable' position, the fallback handling needs
-	// to be applied to move the Tux out of the offending obstacle (i.e. 
+	// to be applied to move the Tux out of the offending obstacle (i.e.
 	// simply away from the offending obstacles center)
 	//
 	if ((fabs(Me.speed.x) < 0.1) && (fabs(Me.speed.y) < 0.1)) {
@@ -669,7 +669,7 @@ static void move_tux_towards_intermediate_point(void)
 
 /**
  * This function moves the influencer, adjusts his speed according to
- * keys pressed and also adjusts his status and current "phase" of his 
+ * keys pressed and also adjusts his status and current "phase" of his
  * rotation.
  */
 void move_tux()
@@ -925,7 +925,7 @@ void animate_tux()
 
 /**
  * This function creates several explosions around the location where the
- * influencer is (was) positioned.  It is used after the influencers 
+ * influencer is (was) positioned.  It is used after the influencers
  * death to make his death more spectacular.
  */
 void start_tux_death_explosions(void)
@@ -955,9 +955,9 @@ void start_tux_death_explosions(void)
 
 };				// void start_tux_death_explosions ( void )
 
-/** 
+/**
  * This function opens a menu when tux dies, asking the
- * player if he/she wants to load latest or backup game, 
+ * player if he/she wants to load latest or backup game,
  * quit to main menu or quit the game.
  */
 void do_death_menu()
@@ -1062,7 +1062,7 @@ void check_tux_enemy_collision(void)
 /**
  * This function checks if there is some living droid below the current
  * mouse cursor and returns the index number of this droid in the array.
- * 
+ *
  * Earlier we did this by computing the map location the mouse was pointing
  * to and using that for the computation of the distance to droid coordinates.
  * The problem with this method is, that some droids are very 'high' in
@@ -1223,7 +1223,7 @@ int ButtonPressWasNotMeantAsFire()
 		return (TRUE);
 
 	// Maybe the player just pressed the mouse button but INSIDE one of the character/skills/inventory
-	// screens.  Then of course we will not interpret the intention to fire the weapon but rather 
+	// screens.  Then of course we will not interpret the intention to fire the weapon but rather
 	// return from here immediately.
 	//
 	if (MouseLeftPressed() &&
@@ -1241,7 +1241,7 @@ int ButtonPressWasNotMeantAsFire()
 };				// int ButtonPressWasNotMeantAsFire ( )
 
 /**
- * At some point in the analysis of the users mouse click, we'll be 
+ * At some point in the analysis of the users mouse click, we'll be
  * certain, that a fireing/weapon swing was meant with the click.  Once
  * this is knows, this function can be called to do the mechanics of the
  * weapon use.
@@ -1443,6 +1443,7 @@ void TuxReloadWeapon()
 	for (i = 0; i < count; i++)
 		DeleteOneInventoryItemsOfType(ammo_type);
 	Me.weapon_item.ammo_clip += count;
+	play_sound(ItemMap[Me.weapon_item.type].weapon_reloading_sound);
 	Me.busy_time = ItemMap[Me.weapon_item.type].weapon_reloading_time;
 	Me.busy_time *= RangedRechargeMultiplierTable[Me.ranged_weapon_skill];
 	Me.busy_type = WEAPON_RELOAD;
@@ -1451,8 +1452,8 @@ void TuxReloadWeapon()
 /**
  * When the player has left-clicked into the game area (i.e. the isometric
  * display of the game world), we need to check if maybe the click was
- * targeted on a droid.  
- * In case that was so, we need to start a dialog or maybe launch an 
+ * targeted on a droid.
+ * In case that was so, we need to start a dialog or maybe launch an
  * attack movement.
  */
 void check_for_droids_to_attack_or_talk_with()
@@ -1520,13 +1521,13 @@ void check_for_droids_to_attack_or_talk_with()
 		//
 		tux_wants_to_attack_now(TRUE);
 	}
-};				// void check_for_droids_to_attack ( ) 
+};				// void check_for_droids_to_attack ( )
 
 /**
- * If the user clicked his mouse, this might have several reasons.  It 
+ * If the user clicked his mouse, this might have several reasons.  It
  * might happen to open some windows, pick up some stuff, smash a box,
  * move somewhere or fire a shot or make a weapon swing.
- * 
+ *
  * Therefore it is not so easy to decide what to do upon a users mouse
  * click and so this function analyzes the situation and decides what to
  * do.
@@ -1625,7 +1626,7 @@ void free_tux()
 	clear_tux_mission_info();
 
 	// We mark all the big screen messages for this character
-	// as out of date, so they can be overwritten with new 
+	// as out of date, so they can be overwritten with new
 	// messages...
 	//
 	Me.BigScreenMessageIndex = 0;
@@ -1659,29 +1660,29 @@ void init_tux()
 	Me.pos.x = 0;
 	Me.pos.y = 0;
 	Me.pos.z = -1;
-	
+
 	Me.mouse_move_target.x = -1;
 	Me.mouse_move_target.y = -1;
 	Me.mouse_move_target.z = -1;
-	
+
 	Me.teleport_anchor.x = 0;
 	Me.teleport_anchor.y = 0;
 	Me.teleport_anchor.z = -1;
-	
+
 	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
-	
+
 	Me.god_mode = FALSE;
-	
+
 	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 	Me.mouse_move_target_combo_action_parameter = -1;
-	
+
 	Me.map_maker_is_present = FALSE;
 
 	Me.temperature = 0.0;
 
 	Me.health_recovery_rate = 0.2;
 	Me.cooling_rate = 0.2;
-	
+
 	Me.busy_time = 0;
 	Me.busy_type = NONE;
 
@@ -1693,8 +1694,8 @@ void init_tux()
 	Me.got_hit_time = -1;
 
 	Me.points_to_distribute = 0;
-	
-	// reset statistics	
+
+	// reset statistics
 	Me.meters_traveled = 0;
 	for (i = 0; i < Number_Of_Droid_Types + 1; i++) {
 		Me.destroyed_bots[i]    = 0;
@@ -1711,7 +1712,7 @@ void init_tux()
 	Me.Experience = 0;
 	Me.exp_level = 0;
 	Me.Gold = 0;
-	
+
 	Me.readied_skill = 0;
 	for (i = 0; i < number_of_skills; i++) {
 		Me.skill_level[i] = SpellSkillMap[i].present_at_startup;
@@ -1750,7 +1751,7 @@ void init_tux()
 	clear_out_intermediate_points(&Me.pos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
 	Me.next_intermediate_point[0].x = -1;
 	Me.next_intermediate_point[0].y = -1;
-	
+
 	Me.TextToBeDisplayed = "";
 	Me.TextVisibleTime = 0;
 
@@ -1758,9 +1759,9 @@ void init_tux()
 	Me.base_strength = 10;
 	Me.base_dexterity = 15;
 	Me.base_cooling = 25;
-	
+
 	UpdateAllCharacterStats();
-	
+
 	Me.energy = Me.maxenergy;
 	Me.running_power = Me.max_running_power;
 }

@@ -514,11 +514,11 @@ void switch_background_music(char *filename)
  *
  * \details A sound cannot be played (and the funtion returns -1) when:
  * no unused slot is found in the SFX cache, or no audio channel is available,
- * or the sound is already played too much times.
+ * or the sound is already played too many times.
  *
  * \param filename Filename of the SFX sound (relative to SOUND_DIR)
  *
- * \return The audio channel used to play the sound, or -1 on error or if the sound can not be played
+ * \return Either the audio channel used to play the sound or -1 if error or the sound can not be played.
  */
 int play_sound(const char *filename)
 {

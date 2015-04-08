@@ -273,6 +273,7 @@ typedef struct itemspec {
 	short int weapon_motion_class;                  // Tux's motion class to use
 	float weapon_attack_time;                       // duration of an attack: time until the next attack can be made, measured in seconds
 	float weapon_reloading_time;                    // time needed to put a new charger (if needed), added to attack_time on last ammunition
+	char* weapon_reloading_sound;                   // sound to play when reloading weapon
 	int weapon_base_damage;                         // damage done by this weapon
 	int weapon_damage_modifier;                     // modifier to the damage done by this weapon
 	char *weapon_ammo_type;                         // ammunition needed by the weapon (it can be anything that needs to be loaded in the weapon)

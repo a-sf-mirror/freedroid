@@ -72,7 +72,7 @@ struct data_spec {
  *
  * The path separator is '.'.
  * Example: "foo.bar" => foo = {bar = "X"}
- * 
+ *
  * The function mimics the lua_getfield() behavior.
  *
  * \param L    Lua state
@@ -123,7 +123,7 @@ static void lua_getfield_by_path(lua_State *L, const char *path)
 	// Remove all the intermediate tables that were pushed on the stack, and
 	// only keep to last pushed, so that only the field corresponding to the
 	// whole search path is kept.
-	
+
 	if (stack_counter > 1) {
 		// Replace the first pushed field with the last one.
 		lua_replace(L, -stack_counter);
@@ -148,7 +148,7 @@ static int get_value_from_stack(lua_State *L, enum data_type type, void *result)
 {
 	int found_and_valid = FALSE;
 	int ltype;
-	
+
 	ltype = lua_type(L, -1);
 
 	if (ltype == LUA_TNIL)
@@ -754,7 +754,7 @@ static int lua_obstacle_ctor(lua_State *L)
 	dynarray_free(&flags);
 
 	obstacle.transparent = transparency;
-	
+
 	// Parse action
 	obstacle.action_fn = get_action_by_name(obstacle.action);
 
@@ -1015,7 +1015,7 @@ static int lua_npc_shop_ctor(lua_State *L)
 }
 
 /**
- * \brief 
+ * \brief
  * \param L Lua state.
  */
 static void get_one_item(lua_State *L, void *data)
@@ -1038,6 +1038,7 @@ static void get_one_item(lua_State *L, void *data)
 		{"weapon.damage",           NULL,    STRING_TYPE, &item_damage                            },
 		{"weapon.attack_time",      "0",     FLOAT_TYPE,  &item->weapon_attack_time               },
 		{"weapon.reloading_time",   "0",     FLOAT_TYPE,  &item->weapon_reloading_time            },
+		{"weapon.reloading_sound",  NULL,    STRING_TYPE, &item->weapon_reloading_sound           },
 		{"weapon.bullet.type",      NULL,    STRING_TYPE, &item_bullet_type                       },
 		{"weapon.bullet.speed",     "0",     FLOAT_TYPE,  &item->weapon_bullet_speed              },
 		{"weapon.bullet.lifetime",  "0",     FLOAT_TYPE,  &item->weapon_bullet_lifetime           },
@@ -1084,7 +1085,7 @@ static void get_one_item(lua_State *L, void *data)
 	get_range_from_string(item_durability, &item->base_item_durability, &item->item_durability_modifier, -1);
 	item->item_durability_modifier -= item->base_item_durability;
 	free(item_durability);
-	
+
 	// Set armor class
 	get_range_from_string(item_armor_class, (int *)&item->base_armor_class, &item->armor_class_modifier, 0);
 	item->armor_class_modifier -= item->base_armor_class;
@@ -1105,32 +1106,32 @@ static void get_one_item(lua_State *L, void *data)
 	} else {
 		item->min_drop_class = item->max_drop_class = -1;
 	}
-	
+
 	if (item->min_drop_class != -1) {
 		// Increment the item count per drop class
 		int cc;
 		for (cc = item->min_drop_class; cc < item->max_drop_class; cc++) {
-			if (cc >= 0 && cc <= MAX_DROP_CLASS) 
+			if (cc >= 0 && cc <= MAX_DROP_CLASS)
 				item_count_per_class[cc]++;
 		}
-		
+
 		// Set the number of dropped item
 		get_range_from_string(item_dropped, &item->drop_amount, &item->drop_amount_max, 1);
 	}
 	free(item_dropped);
-	
+
 	// Set damage
 	get_range_from_string(item_damage, (int *)&item->weapon_base_damage, (int *)&item->weapon_damage_modifier, 0);
 	item->weapon_damage_modifier -= item->weapon_base_damage;
 	free(item_damage);
-			
+
 	// Set motion class
 	item->weapon_motion_class = get_motion_class_id_by_name(item_motion_class);
 	free(item_motion_class);
 
 	// Currently, no bullet pass through bodies.
 	item->weapon_bullet_pass_through_hit_bodies = FALSE;
-	
+
 	item->weapon_bullet_type = 0;
 	if (item->slot == WEAPON_SLOT && !item->weapon_is_melee) {
 		item->weapon_bullet_type = GetBulletByName(item_bullet_type);
