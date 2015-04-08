@@ -189,7 +189,7 @@ function modWP_Droid.ParseDroidSpec()
 				end
 				-- reset temp droid data holder for next droid data section
 				tempdroidspecitem = modWP_Droid.modcommon.Extract.TblDeepCopy(modWP_Droid.droidDataItem)
-				
+
 			elseif ( textitem.id == "spec_file_end" ) then
 				--	reached the end of droid specs data in file
 				--	save previous before exit
@@ -202,7 +202,7 @@ function modWP_Droid.ParseDroidSpec()
 				-- reset sensor flag for next iteration
 				foundsensor = false
 				-- will exit nested loops after this point
-				
+
 			elseif ( textitem.id == "is_human" ) then
 				-- element data forced to boolean - saved in droid data file as integer
 				tempdroidspecitem[textitem.id] = ( value ~= 0 )

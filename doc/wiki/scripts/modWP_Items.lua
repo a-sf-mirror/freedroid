@@ -82,14 +82,15 @@ modWP_Items.textItem = {
 	{ id = "size",            parentId = {"inventory"},            label = "Inventory.Size(x,y)",      },
 	{ id = "stackable",       parentId = {"inventory"},            label = "Inventory.Is_Stackable",   },
 	{ id = "image",           parentId = {"inventory"},            label = "Inventory Image",          },
-	{ id = "class",           parentId = {"drop"},                 label = "Drop.Class",               },
-	{ id = "number",          parentId = {"drop"},                 label = "Drop.Number",              },
-	{ id = "sound",           parentId = {"drop"},                 label = "Drop.Sound",               },
+	{ id = "class",           parentId = {"drop"},                 label = "Drop Class",               },
+	{ id = "number",          parentId = {"drop"},                 label = "Drop Number",              },
+	{ id = "sound",           parentId = {"drop"},                 label = "Drop Sound",               },
 	{ id = "damage",          parentId = {"weapon"},               label = "Damage",                   },
 	{ id = "melee",           parentId = {"weapon"},               label = "Weapon.Melee",             },
 	{ id = "motion_class",    parentId = {"weapon"},               label = "Weapon.Motion_Class",      },
 	{ id = "attack_time",     parentId = {"weapon"},               label = "Weapon.Attack_Time",       },
 	{ id = "reloading_time",  parentId = {"weapon"},               label = "Reloading Time",           },
+	{ id = "reloading_sound", parentId = {"weapon"},               label = "Reloading Sound",          },
 	{ id = "type",            parentId = {"weapon", "bullet"},     label = "Weapon.Bullet.Type",       },
 	{ id = "speed",           parentId = {"weapon", "bullet"},     label = "Weapon.Bullet.Speed",      },
 	{ id = "lifetime",        parentId = {"weapon", "bullet"},     label = "Weapon.Bullet.Lifetime",   },
@@ -235,7 +236,7 @@ function modWP_Items.WikiWrite()
 	local filepath = tostring(modWP_Items.modcommon.paths.destRootFile .. filename)
 	local wikitext = {}
 	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG Items")
-	wikitext = modWIKI.WarnAutoGen( wikitext )	
+	wikitext = modWIKI.WarnAutoGen( wikitext )
 	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
 	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid Items Types"
 	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "allItems","Items")
@@ -294,9 +295,28 @@ function modWP_Items.WikiWrite()
 				end
 				textitem = modWP_Items.WikiPrintParentChildData( subkey, { "base_price", "durability", "armor_class" } )
 				wikitext = modWIKI.PageAppend(wikitext,textitem)
-				if ( is_weapon ) then
-					textitem = modWP_Items.WikiPrintParentChildData( subkey, { "weapon" }, { "damage", "reloading_time" } )
+
+				if (item.drop.sound ~= nil) then
+					local sfsndfile = modWIKI.URL_SF .. "sound/effects/item_sounds/" .. item.drop.sound
+					local sndfilelink = modWIKI.LinkText( sfsndfile, item.drop.sound )
+					item.drop.sound = sndfilelink
+					textitem = modWP_Items.WikiPrintParentChildData( subkey, { "drop" }, { "sound"} )
 					wikitext = modWIKI.PageAppend(wikitext,textitem)
+				end
+
+				if ( is_weapon ) then
+					textitem = modWP_Items.WikiPrintParentChildData( subkey, { "weapon" }, { "damage", "reloading_time"} )
+					wikitext = modWIKI.PageAppend(wikitext,textitem)
+
+					if (item.weapon.reloading_sound ~= nil) then
+						local ret = modWP_Items.modcommon.Extract.Split(item.weapon.reloading_sound, "/", false )
+						local size = table.maxn(ret)
+						local sfsndfile = modWIKI.URL_SF .. "effects/item_sounds/" .. item.weapon.reloading_sound
+						local sndfilelink = modWIKI.LinkText( sfsndfile, ret[size] )
+						item.weapon.reloading_sound = sndfilelink
+						textitem = modWP_Items.WikiPrintParentChildData( subkey, { "weapon" }, { "reloading_sound"} )
+						wikitext = modWIKI.PageAppend(wikitext,textitem)
+					end
 
 					textitem = modWP_Items.WikiPrintParentChildData( subkey, {"weapon", "ammunition"}, { "id" }, nil, true )
 					wikitext = modWIKI.PageAppend(wikitext,textitem)
@@ -304,6 +324,7 @@ function modWP_Items.WikiWrite()
 					textitem = modWP_Items.WikiPrintParentChildData( subkey, {"weapon", "ammunition"}, { "clip" } )
 					wikitext = modWIKI.PageAppend(wikitext,textitem)
 				end	-- have weapon
+
 				textitem = modWP_Items.WikiPrintParentChildData( subkey, {"right_use"}, { "tooltip", "add_skill" } )
 				wikitext = modWIKI.PageAppend(wikitext,textitem)
 				wikitext[#wikitext + 1] = " "

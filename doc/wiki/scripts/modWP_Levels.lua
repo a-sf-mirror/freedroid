@@ -737,7 +737,7 @@ function modWP_Levels.WikiWrite()
 
 	local wikitext = {}
 	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG Level Maps")
-	wikitext = modWIKI.WarnAutoGen( wikitext )	
+	wikitext = modWIKI.WarnAutoGen( wikitext )
 	--	make menu for levels
 	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
 	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid RPG Levels"
@@ -945,7 +945,7 @@ function modWP_Levels.WikiEntryLevelText( levelnumber, label, withURL )
 	else
 		useURL = true
 	end
-	
+
 	levelnumber = assert(tonumber(levelnumber), "WikiEntryLevelText: unable to convert " .. levelnumber)
 	local levelindex = modWP_Levels.GetIndexByValue( modWP_Levels.AllLevelData, levelnumber, "levelnumber" )
 	local levelname = modWP_Levels.AllLevelData[levelindex].levelname
