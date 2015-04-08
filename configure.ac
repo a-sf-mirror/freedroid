@@ -310,7 +310,6 @@ AM_CONDITIONAL(BUILD_DEV_TOOLS, test x$dev_tools = xyes)
 AC_CONFIG_FILES([
 	Makefile lua/Makefile src/Makefile
 	tools/Makefile tools/atlas/Makefile
-	graphics/obstacles/Makefile graphics/floor_tiles/Makefile
 	win32/Makefile
 	doc/Doxyfile doc/Makefile doc/manual/Doxyfile doc/manual/Makefile doc/tools/Doxyfile doc/tools/Makefile
 	po/Makefile po/po-src/Makefile.in po/po-dialogs/Makefile.in po/po-data/Makefile.in po/l10n-others/Makefile])
