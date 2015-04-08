@@ -16,11 +16,7 @@ if BUILD_LUA
 MAYBE_EMBEDDED_LUA = lua
 endif
 
-if CROSS_COMPILING
 SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po $(extradirs)
-else
-SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po graphics/floor_tiles graphics/obstacles $(extradirs)
-endif
 
 man_MANS = freedroidRPG.6
 
