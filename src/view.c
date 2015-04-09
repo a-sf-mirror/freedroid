@@ -951,6 +951,9 @@ void update_virtual_position(gps * target_pos, gps * source_pos, int level_num)
  * Transform a virtual position, defined in the 'lvl' coordinate system, into
  * its real level and position
  * 
+ * The function is safe to be called with the same actual parameter, i.e.
+ * resolve_virtual_pos(&my_pos, &my_pos)
+ *
  * Note: this function only works if the real position is one of the 8 neighbors of 'lvl'.
  * If not, the function returns FALSE. 
  * (a recursive call could be used to remove this limitation)
@@ -959,6 +962,7 @@ int resolve_virtual_position(gps *rpos, gps *vpos)
 {
 	int valid = FALSE;
 	level *lvl;
+	struct gps tmp_pos = { vpos->x, vpos->y, vpos->z };
 
 	// Check pre-conditions
 
@@ -1001,9 +1005,9 @@ int resolve_virtual_position(gps *rpos, gps *vpos)
 	}
 
 	if (!valid) {
-		rpos->x = vpos->x;
-		rpos->y = vpos->y;
-		rpos->z = vpos->z;
+		rpos->x = tmp_pos.x;
+		rpos->y = tmp_pos.y;
+		rpos->z = tmp_pos.z;
 		return FALSE;
 	}
 
