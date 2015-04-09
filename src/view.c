@@ -960,33 +960,29 @@ void update_virtual_position(gps * target_pos, gps * source_pos, int level_num)
  */
 int resolve_virtual_position(gps *rpos, gps *vpos)
 {
-	int valid = FALSE;
-	level *lvl;
-	struct gps tmp_pos = { vpos->x, vpos->y, vpos->z };
+	// By default, rpos is set to vpos
+
+	rpos->x = vpos->x;
+	rpos->y = vpos->y;
+	rpos->z = vpos->z;
 
 	// Check pre-conditions
 
 	if (vpos->z == -1) {
 		error_message(__FUNCTION__, "Resolve virtual position was called with an invalid virtual position (%f:%f:%d).", PLEASE_INFORM, vpos->x, vpos->y, vpos->z);
 		print_trace(0);
-		rpos->x = vpos->x;
-		rpos->y = vpos->y;
-		rpos->z = vpos->z;
 		return FALSE;
 	}
 
 	// Get the gps transformation data cell, according to virtual position value
 
-	lvl = curShip.AllLevels[vpos->z];
+	struct level *lvl = curShip.AllLevels[vpos->z];
 	int idX = NEIGHBOR_IDX(vpos->x, lvl->xlen);
 	int idY = NEIGHBOR_IDX(vpos->y, lvl->ylen);
 
 	// If we don't have to transform the position, return immediately
 
 	if (idX == 1 && idY == 1) {
-		rpos->x = vpos->x;
-		rpos->y = vpos->y;
-		rpos->z = vpos->z;
 		return TRUE;
 	}
 
@@ -995,23 +991,23 @@ int resolve_virtual_position(gps *rpos, gps *vpos)
 	struct neighbor_data_cell *ngb_data = level_neighbors_map[vpos->z][idY][idX];
 
 	if (ngb_data && ngb_data->valid) {
-		rpos->x = vpos->x + ngb_data->delta_x;
-		rpos->y = vpos->y + ngb_data->delta_y;
-		rpos->z = ngb_data->lvl_idx;
+		struct gps tmp_pos = {
+				vpos->x + ngb_data->delta_x,
+				vpos->y + ngb_data->delta_y,
+				ngb_data->lvl_idx
+		};
 
 		// Check that the transformed position is valid (i.e. inside level boundaries)
-		level *rlvl = curShip.AllLevels[rpos->z];
-		valid = pos_inside_level(rpos->x, rpos->y, rlvl);
+		level *rlvl = curShip.AllLevels[tmp_pos.z];
+		if (pos_inside_level(tmp_pos.x, tmp_pos.y, rlvl)) {
+			rpos->x = tmp_pos.x;
+			rpos->y = tmp_pos.y;
+			rpos->z = tmp_pos.z;
+			return TRUE;
+		}
 	}
 
-	if (!valid) {
-		rpos->x = tmp_pos.x;
-		rpos->y = tmp_pos.y;
-		rpos->z = tmp_pos.z;
-		return FALSE;
-	}
-
-	return TRUE;
+	return FALSE;
 }
 
 /**
