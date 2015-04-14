@@ -25,7 +25,7 @@ msgstr "123 Přisluhovač"
 
 #: map/droid_archetypes.dat:89 map/droid_archetypes.dat:1125
 msgid "A simple rubbish disposal robot. Common device in most factories to maintain a clean yard."
-msgstr "Jednoduchý robot určen k likvidaci odpadků. Bežné zařízení udržující čisté prostranství ve většině továrnách."
+msgstr "Jednoduchý robot určený k likvidaci odpadků. Běžné zařízení udržující čistá prostranství ve většině továren."
 
 #: map/droid_archetypes.dat:93 map/ReturnOfTux.droids:272
 msgid "139 Templar"
@@ -41,7 +41,7 @@ msgstr "247 Víla"
 
 #: map/droid_archetypes.dat:143
 msgid "A light duty servant robot. One of the first to use the anti-grav system."
-msgstr "Lehký užitkový služební robot. Jeden z prvních využívající antigravitační systém."
+msgstr "Lehký robotický služebník. Jeden z prvních využívajících antigravitační systém."
 
 #: map/droid_archetypes.dat:147 map/ReturnOfTux.droids:112
 #: map/ReturnOfTux.droids:274
@@ -50,7 +50,7 @@ msgstr "249 Chicago"
 
 #: map/droid_archetypes.dat:171
 msgid "Cheaper version of the anti-grav servant robot. This one is armed with rapid fire weaponry."
-msgstr "Levnější verze antigravitačního služebního robota. Tento je vyzbrojen rychlopalnou zbraní."
+msgstr "Levnější verze antigravitačního robotického služebníka. Tento je vyzbrojen rychlopalnou zbraní."
 
 #: map/droid_archetypes.dat:175 map/ReturnOfTux.droids:275
 msgid "296 Sawmill"
