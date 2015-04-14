@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-01-29 17:17+0000\n"
+"POT-Creation-Date: 2015-04-14 01:11+0000\n"
 "PO-Revision-Date: 2014-10-20 19:50+0000\n"
 "Last-Translator: Alexander Forsberg <alexf@openmailbox.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/freedroid-rpg/language/sv/)\n"
@@ -375,1624 +375,1628 @@ msgstr "Till Nybörjararenan"
 msgid "To Master Arena"
 msgstr "Till Mästararenan"
 
-#: map/events.dat:668
+#: map/events.dat:662
 msgid "Exit Warehouse"
 msgstr "Ut ur Varuhuset"
 
-#: map/events.dat:675
+#: map/events.dat:669
 msgid "To Warehouse Level 2"
 msgstr "Till Varuhuset Plan 2"
 
-#: map/events.dat:685
+#: map/events.dat:679
 msgid "To Warehouse Level 1"
 msgstr "Till Varuhuset Plan 1"
 
-#: map/events.dat:695
+#: map/events.dat:689
 msgid "Back to Kevin's Garden"
 msgstr "Tillbaka till Kevins Trädgård"
 
-#: map/events.dat:702
+#: map/events.dat:696
 msgid "To Energy Station"
 msgstr "Till Energistationen"
 
-#: map/events.dat:712
+#: map/events.dat:706
 msgid "Back to Lower Catacombs"
 msgstr "Tillbaka till de Nedre Katakomberna"
 
-#: map/events.dat:722
+#: map/events.dat:716
 msgid "Way to Disruptor Machine Deck"
 msgstr "Vägen till Disruptor-sköldens Maskindäck"
 
-#: map/events.dat:732
+#: map/events.dat:726
 msgid "Back to Town"
 msgstr "Tillbaka till Stan"
 
-#: map/events.dat:739
+#: map/events.dat:733
 msgid "To Old Server Room"
 msgstr "Till det Gamla Serverrummet"
 
-#: map/events.dat:746
+#: map/events.dat:740
 msgid "Singularity Attacked"
 msgstr "Singulariteten Attackerad"
 
-#: map/events.dat:757
+#: map/events.dat:751
 msgid "Singularity Death"
 msgstr "Singulariteten Död"
 
-#: map/events.dat:763
+#: map/events.dat:757
 msgid "The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it..."
 msgstr "Huvudbotten i Singulariteten är död. De övriga attackerar mig! Kanske jag skulle lyssnat bättre på den..."
 
-#: map/events.dat:769
+#: map/events.dat:763
 msgid "Automated Factory Mechanism"
 msgstr "Den Automatiserade Fabrikens Maskineri"
 
-#: map/events.dat:777
+#: map/events.dat:771
 msgid "Elbow grease has been applied to the Automated Factory."
 msgstr "Den Automatiserade Fabriken har fått ordentligt med Smör."
 
-#: map/events.dat:790
+#: map/events.dat:784
 msgid "Enter Warehouse"
 msgstr "Gå in i Varuhuset"
 
-#: map/events.dat:834
+#: map/events.dat:828
 msgid "Down into Crystal Caves"
 msgstr "Ner i Kristallgrottorna"
 
-#: map/events.dat:879
+#: map/events.dat:873
 msgid "Get me out of here!"
 msgstr "Ta mig härifrån!"
 
-#: map/events.dat:886
+#: map/events.dat:880
 msgid "296 Teleport Point"
 msgstr "296 Teleportplats"
 
-#: map/events.dat:895
+#: map/events.dat:889
 msgid "I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened."
 msgstr "Jag hörde just en explosion - Ewalds 296:a måste ha sprängt reaktorn. Kanske jag skulle gå till Ewald och berätta vad som hänt."
 
-#: map/events.dat:911
+#: map/events.dat:905
 msgid "To Omega Island"
 msgstr "Till Omega-ön"
 
-#: map/events.dat:952
+#: map/events.dat:946
 msgid "To Kevin's Underground Station"
 msgstr "Till Kevins Underjordiska Station"
 
-#: map/events.dat:998
+#: map/events.dat:992
 msgid "To Underground Station"
 msgstr "Till den Underjordiska Stationen"
 
-#: map/events.dat:1250
+#: map/events.dat:1244
 msgid "It's a trap!"
 msgstr "Det är en fälla!"
 
-#: map/events.dat:1645
+#: map/events.dat:1639
 msgid "Hatch with broken ladder"
 msgstr "Lucka med trasig stege"
 
-#: map/events.dat:1700
+#: map/events.dat:1694
 msgid "Exit Novice Arena"
 msgstr "Ut ur Nybörjararenan"
 
-#: map/events.dat:1707
+#: map/events.dat:1701
 msgid "Start New Wave"
 msgstr "Starta Ny Våg"
 
-#: map/events.dat:1770
+#: map/events.dat:1764
 msgid "Wave "
 msgstr "Våg"
 
-#: map/events.dat:1772
+#: map/events.dat:1766
 msgid "Final Wave - Take care!"
 msgstr "Sista Vågen - Var rädd om dig!"
 
-#: map/events.dat:1795
+#: map/events.dat:1789
 msgid "All bots are killed! Go to center for next wave."
 msgstr "Alla bottar är döda! Gå till mitten för nästa våg."
 
-#: map/events.dat:1798
+#: map/events.dat:1792
 msgid "All bots are killed! You won."
 msgstr "Alla bottar är döda! Du vann."
 
-#: map/events.dat:1827
+#: map/events.dat:1821
 msgid "Respawn Master Arena"
 msgstr "Gör om Mästararenan"
 
-#: map/events.dat:1834
+#: map/events.dat:1828
 msgid "Exit Master Arena"
 msgstr "Ut ur Mästararenan"
 
-#: map/events.dat:2000
+#: map/events.dat:1994
 msgid "Exit Crystal Caves"
 msgstr "Ut ur Kristallgrottorna"
 
-#: map/events.dat:2010 map/events.dat:2044
+#: map/events.dat:2004 map/events.dat:2036
 msgid "Back to the Desert"
 msgstr "Tillbaka till öknen"
 
-#: map/events.dat:2056
+#: map/events.dat:2044
 msgid "Tania has made it to the surface for the first time in a very long time."
 msgstr "Tania har tagit sig upp till ytan för första gången på väldigt länge."
 
-#: map/events.dat:2063 map/events.dat:2070
+#: map/events.dat:2051 map/events.dat:2058
 msgid "To the Secret Area Service Tunnels"
 msgstr "Till det Hemliga Områdets Underhållstunnlar"
 
-#: map/events.dat:2080 map/events.dat:2087
+#: map/events.dat:2068 map/events.dat:2075
 msgid "Back to the Secret Area"
 msgstr "Tillbaka till det Hemliga Området"
 
-#: map/events.dat:2105
+#: map/events.dat:2093
 msgid "Good, now move to the black grating to the East."
 msgstr "Bra, gå nu till det svarta gallret till öster."
 
-#: map/events.dat:2118
+#: map/events.dat:2106
 msgid "Good, now talk to Tutorial Tom again."
 msgstr "Bra, prata nu med Handledar-Hans igen."
 
-#: map/events.dat:2307
+#: map/events.dat:2295
 msgid "To a Forgotten Bunker"
 msgstr "Till en Bortglömd Bunker"
 
-#: map/events.dat:2328
+#: map/events.dat:2315
 msgid "Unknown place"
 msgstr "Okänd plats"
 
-#: map/events.dat:2346
+#: map/events.dat:2333
 msgid "Hidden way out"
 msgstr "Gömd utväg"
 
-#: map/events.dat:2400
+#: map/events.dat:2387
 msgid "Back to Disruptor Shield Control"
 msgstr "Tillbaka till Disruptor-sköldens Kontrollrum"
 
-#: map/events.dat:2407
+#: map/events.dat:2394
 msgid "To Machine Deck Lower Catacombs"
 msgstr "Till Maskindäckets Undre Katakomber"
 
-#: map/events.dat:2417
+#: map/events.dat:2404
 msgid "Back to Machine Deck Upper Catacombs"
 msgstr "Tillbaka till Maskindäckets Övre Katakomber"
 
-#: map/events.dat:2424
+#: map/events.dat:2411
 msgid "To Disruptor Machine Deck"
 msgstr "Till Disruptorns Maskindäck"
 
-#: map/events.dat:2438
+#: map/events.dat:2425
 msgid "Back To Maintenance Tunnel"
 msgstr "Tillbaka till Underhållstunnlarna"
 
-#: map/events.dat:2445
+#: map/events.dat:2432
 msgid "We need to go deeper..."
 msgstr "Vi måste gå djupare..."
 
-#: map/events.dat:6567
+#: map/events.dat:6554
 msgid "Back to mainland"
 msgstr "Tillbaka till fastlandet"
 
-#: map/events.dat:6583
+#: map/events.dat:6570
 msgid "Security failure at Hell's Fortress reception desk."
 msgstr "Säkerhetsfel vid Helvetesfortets reception."
 
-#: map/events.dat:6596
+#: map/events.dat:6583
 msgid "Spencer still needed alive to win game."
 msgstr "Spencer måste leva för att spelet ska gå att vinna."
 
-#: map/item_specs.lua:116
+#: map/events.dat:6585
+msgid "Ooops, you killed Spencer. That was probably not a good idea."
+msgstr "Ooops, du dödade Spencer. Det var nog ingen bra idé."
+
+#: map/item_specs.lua:121
 msgid "The first item is VERY buggy ingame, so don't use it."
 msgstr "Det första föremålet är väldigt buggitgt, använd det inte."
 
-#: map/item_specs.lua:119
+#: map/item_specs.lua:124
 msgid "Dummy item. If you see this, please report it as bug."
 msgstr "Låtsasföremål. Om du ser det här, rapportera det som en bugg."
 
-#: map/item_specs.lua:123
+#: map/item_specs.lua:128
 msgid "Dummy item. If you see this, report it as bug."
 msgstr "Låtsasföremål. Om du ser det här, rapportera det som en bugg."
 
-#: map/item_specs.lua:135
+#: map/item_specs.lua:140
 msgid "Big Kitchen Knife"
 msgstr "Stor Kökskniv"
 
-#: map/item_specs.lua:148
+#: map/item_specs.lua:153
 msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
 msgstr "Lätt och smidig i strid, men oturligt nog är den inte särskilt effektiv på att skära i stål och inte speciellt hållbar om du försöker. Dock är det klart bättre än att slå på metall med bara händerna."
 
-#: map/item_specs.lua:156
+#: map/item_specs.lua:161
 msgid "Cutlass"
 msgstr "Sabel"
 
-#: map/item_specs.lua:170
+#: map/item_specs.lua:175
 msgid "Long reach while remaining maneuverable enough in combat to find the weak spots in droid armor are the advantages that partially makes up for the inability of a cutting blade to incur lots of damage on a heavily protected target. Repeatedly striking at metal quickly damages the blade though."
 msgstr "Stor räckvidd men ändå smidig nog för att hitta de ömma punkterna i droidarnas sköld. De fördelarna väger upp det att ett knivblad gör lite skada på något så bepansrat. Att slå på metall om och om igen skadar bladet."
 
-#: map/item_specs.lua:178
+#: map/item_specs.lua:183
 msgid "Antique Greatsword"
 msgstr "Antikt Långsvärd"
 
-#: map/item_specs.lua:193
+#: map/item_specs.lua:198
 msgid "Very maneuverable for it's size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
 msgstr "Väldigt smidig trots storleken, och tung nog att slå igenom klenare bott-sköldar på bara 1 slag. Den enda nackdelen med det här gamla vapnet är den samma som för andra svärd: det håller inte länge när man skär i metalldelar."
 
-#: map/item_specs.lua:201
+#: map/item_specs.lua:206
 msgid "Chainsaw"
 msgstr "Motorsåg"
 
-#: map/item_specs.lua:216
+#: map/item_specs.lua:221
 msgid "Quite efficient at separating limbs from even a droid body, or digging through weaker armored parts to cause massive damage on internal electronics. But, the chain wears out very quickly when used on materials harder than wood, and supply shortages of new chains and other parts makes it expensive to maintain."
 msgstr "Rätt så effektiv på att lemlästa även droider eller gräva sig igenom tunnare delar av skölden och skada elektroniken på insidan rejält. Men kedjan nöts ut snabbt när den används på saker hårdare än trä, och brist på nya kedjor och andra reservdelar gör den dyr att underhålla."
 
-#: map/item_specs.lua:224
+#: map/item_specs.lua:229
 msgid "Meat Cleaver"
 msgstr "Köttyxa"
 
-#: map/item_specs.lua:237
+#: map/item_specs.lua:242
 msgid "Designed to chop through meat and bones, it's not as fragile as cutting blades when used against metal enemies. However, it is a bit slower and clumsier to use than more graceful weapons."
 msgstr "Skapad för att skära genom kött och ben, och därför är den inte lika ömtålig som andra knivar när den används på fiender av metall. Däremot är den lite långsammare och klumpigare än andra mer graciösa vapen."
 
-#: map/item_specs.lua:245
+#: map/item_specs.lua:250
 msgid "Small Axe"
 msgstr "Handyxa"
 
-#: map/item_specs.lua:259
+#: map/item_specs.lua:264
 msgid "While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well."
 msgstr "Trots att den här yxan från början gjordes för att klyva trä så kan den med med lite tur även skada vitala delar i en droid."
 
-#: map/item_specs.lua:267
+#: map/item_specs.lua:272
 msgid "Large Axe"
 msgstr "Yxa"
 
-#: map/item_specs.lua:282
+#: map/item_specs.lua:287
 msgid "While this weapon is somewhat slow and cumbersome to use, it is as good at leaving big dents in droids as it is at felling trees. A good hit is often capable of taking out lesser droids in a single hit."
 msgstr "Trots att det här vapnet är långsamt och otympligt är det lika bra på att lämna stora jack i en droid som att fälla träd. Ett bra slag kan oftast göra slut på mindre droidar på en gång."
 
-#: map/item_specs.lua:290
+#: map/item_specs.lua:295
 msgid "Hunting Knife"
 msgstr "Jaktkniv"
 
-#: map/item_specs.lua:303
+#: map/item_specs.lua:308
 msgid "A short stabbing dagger doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas, so it's still better than trying to take the machines on with bare hands."
 msgstr "En kort dolk har liten effekt på en droids metallkropp. Men med lite tur kan du skada några oskyddade kablar eller slangar, så den är ändå bättre än att slåss mot maskinerna med bara händerna."
 
-#: map/item_specs.lua:311
+#: map/item_specs.lua:316
 msgid "Iron Pipe"
 msgstr "Järnrör"
 
-#: map/item_specs.lua:324
+#: map/item_specs.lua:329
 msgid "A medium sized water pipe of iron can turn into an effective weapon even versus a metal opponent. While not likely to penetrate the armor of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
 msgstr "Ett mellanstort vattenrör i järn kan bli ett effektivt vapen, till och med mot en metallisk motståndare. Trots att det troligtvis inte går igenom skölden på en bott kan slaget i sig ändå göra skada och skaka loss lösa kretskort och lödningar under metallhöljet."
 
-#: map/item_specs.lua:332
+#: map/item_specs.lua:337
 msgid "Big Wrench"
 msgstr "Stor Skiftnyckel"
 
-#: map/item_specs.lua:345
+#: map/item_specs.lua:350
 msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands on, brutal way if needed."
 msgstr "En stor tung skiftnyckel kan vara förvånansvärt bra på att förvandla bottar till reservdelar - på ett brutalt sätt om det så behövs."
 
-#: map/item_specs.lua:353
+#: map/item_specs.lua:358
 msgid "Crowbar"
 msgstr "Kofot"
 
-#: map/item_specs.lua:367
+#: map/item_specs.lua:372
 msgid "Something originally intended for breaking up doors or pulling out nails can also be used to break open droid skulls or give enough leverage to pull off their extremities."
 msgstr "Något som ursprungligen skapats för att bryta upp dörrar eller dra ut spik kan också användas för att bryta upp droidskallar eller bända loss deras armar."
 
-#: map/item_specs.lua:375
+#: map/item_specs.lua:380
 msgid "Power Hammer"
 msgstr "Maskinhammare"
 
-#: map/item_specs.lua:389
+#: map/item_specs.lua:395
 msgid "The POWER NAIL DRIVER 3000 will, according to the advertisement, 'build your house for you'. While it's unclear how many nails your igloo will actually need, it sure can be handy nonetheless for bashing bot skulls. As long as the battery lasts, anyway."
 msgstr "KRAFTSPIKAREN 3000 kommer - enligt annonsen - \"bygga ditt hus åt dig\". Medan det är oklart hur många spikar din iglo faktiskt behöver, kan den ändå användas till att banka bottskallar. Så länge batteriet räcker, i alla fall."
 
-#: map/item_specs.lua:397
+#: map/item_specs.lua:403
 msgid "Mace"
 msgstr "Spikklubba"
 
-#: map/item_specs.lua:411
+#: map/item_specs.lua:417
 msgid "The mace already proved on the medieval battlefield that it was good at crushing even heavily armored skulls. Unfortunately for the droids, this old knowledge still holds true."
 msgstr "Redan på det medeltida slagfältet visade sig spikklubban bra på att krossa även kraftigt rustade skallar. Oturligt nog för droiderna gäller det än idag."
 
-#: map/item_specs.lua:419
+#: map/item_specs.lua:425
 msgid "Baseball Bat"
 msgstr "Slagträ"
 
-#: map/item_specs.lua:434
+#: map/item_specs.lua:440
 msgid "With 1-2 good two handed swings, a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon, because wooden bats have a predilection for splitting in two after too many hard hits."
 msgstr "Med 1-2 bra slag kan ett droidhuvud flyga slå långt att du gör en varvning. Se bara till att ta med ett andra vapen eftersom slagträn har en tendens att gå av efter för många hårda slag."
 
-#: map/item_specs.lua:442
+#: map/item_specs.lua:448
 msgid "Iron Bar"
 msgstr "Järnstång"
 
-#: map/item_specs.lua:457
+#: map/item_specs.lua:463
 msgid "A bit slow and cumbersome to use, and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But if you do hit, you are sure to do more damage than just a scratch."
 msgstr "Att det är långsamt, otympligt och förhindrar dig från att använda en sköld gör det här vapnet till ett mindre bra alternativ. Men om du får in ett ordentligt slag kommer du göra mer skada än att bara repa lacken."
 
-#: map/item_specs.lua:465
+#: map/item_specs.lua:471
 msgid "Sledgehammer"
 msgstr "Slägga"
 
-#: map/item_specs.lua:480
+#: map/item_specs.lua:486
 msgid "Very slow and only for the strongest wielder, but only the tougher droids can survive more than 1-2 direct hits."
 msgstr "Mycket långsam och enbart till för de starkaste brukarna, men bara de tåligaste droiderna överlever mer än 1-2 slag."
 
-#: map/item_specs.lua:488
+#: map/item_specs.lua:494
 msgid "Light Saber"
 msgstr "Lasersvärd"
 
-#: map/item_specs.lua:504
+#: map/item_specs.lua:511
 msgid "In the hands of a true master, this excellent technological craftsmanship is as deadly as it is beautiful. It requires laser crystals to work properly."
 msgstr "I händerna på en riktig mästare är detta bevis på teknisk fulländning lika dödligt som vackert. Det kräver energikristaller för att fungera."
 
-#: map/item_specs.lua:512
+#: map/item_specs.lua:519
 msgid "Laser Staff"
 msgstr "Laserstav"
 
-#: map/item_specs.lua:527
+#: map/item_specs.lua:535
 msgid "A close combat master with this weapon in his hands is a pure whirling dervish of death. It requires laser crystals to work properly."
 msgstr "En närstridsmästare med det här vapnet i händerna är som en dödlig dansande dervisch. Vapnet kräver energikristaller för att fungera."
 
-#: map/item_specs.lua:535
+#: map/item_specs.lua:543
 msgid "Nobody's Edge"
 msgstr "Ingen-mans-egg"
 
-#: map/item_specs.lua:547
+#: map/item_specs.lua:555
 msgid "This blade pulses with evil. That power. That energy. Nothing can stop you now."
 msgstr "Det här svärdet pulserar av ondska. Den energin. Den styrkan. Inget kan stoppa dig nu."
 
-#: map/item_specs.lua:555
+#: map/item_specs.lua:563
 msgid "Laser Scalpel"
 msgstr "Laserskalpell"
 
-#: map/item_specs.lua:567
+#: map/item_specs.lua:575
 msgid "I murdered the only person within a thousand miles who can heal me, and all I got was this lousy scalpel."
 msgstr "Jag mördade den enda personen på tusentals kilometer som kan läka mig, och allt jag fick var den här förbaskade skalpellen."
 
-#: map/item_specs.lua:575
+#: map/item_specs.lua:583
 msgid "Shock Knife"
 msgstr "Elpistol"
 
-#: map/item_specs.lua:587 map/item_specs.lua:607
+#: map/item_specs.lua:595 map/item_specs.lua:615
 msgid "FIXME and all values"
 msgstr "FIXAMIG och alla värden"
 
-#: map/item_specs.lua:595
+#: map/item_specs.lua:603
 msgid "Energy Whip"
 msgstr "Energipiska"
 
-#: map/item_specs.lua:619
+#: map/item_specs.lua:627
 msgid ".22 LR Ammunition"
 msgstr "Ammunition Till .22LR"
 
-#: map/item_specs.lua:623
+#: map/item_specs.lua:631
 msgid ".22 Long Rifle ammunition used to be a very common ammo for target practice, mainly because it was cheap and gave little recoil. It's just too weak to penetrate any real droid armor though."
 msgstr "Ammunition för .22 Long Rifle var tidigare mycket vanlig inom träningsskytte, mestadels för att den var billig och gav svag rekyl. Den är helt enkelt för svag för att penetrera en riktig droidsköld."
 
-#: map/item_specs.lua:630
+#: map/item_specs.lua:638
 msgid ".22 Automatic"
 msgstr ".22 Automat"
 
-#: map/item_specs.lua:645
+#: map/item_specs.lua:654
 msgid "With .22 ammo, it's mostly dumb luck if you actually damage a bot with this pistol. On the bright side, you will get a LOT of target practice out of each bot before a bullet or two manages to find a weak enough spot to take the bot out."
 msgstr "Med en sådan här pistol i kaliber .22 har du bara tur om du lyckas skada en bott. Å andra sidan kommer du få MYCKET skjutövning innan en och en annan kula lyckas träffa precis rätt för att ta ihjäl botten."
 
-#: map/item_specs.lua:653
+#: map/item_specs.lua:662
 msgid ".22 Hunting Rifle"
 msgstr ".22 Jaktgevär"
 
-#: map/item_specs.lua:669
+#: map/item_specs.lua:679
 msgid "A .22 hunting rifle was mainly used for sports shooting and for cheap training. As a hunting weapon its main use was to kill small vermin such as rats and squirrels. It was also highly effective against rabbits. Unfortunately, you won't be hunting 'wabbits'..."
 msgstr "Ett .22 jaktgevär var vanligt för sportskytte och billig träning. Som jaktvapen används den mest till jakt på t.ex. råttor och ekorrar. Den går också bra att jaga harar med. Synd för dig att du inte får jaga efter \"påskägg\"..."
 
-#: map/item_specs.lua:677
+#: map/item_specs.lua:687
 msgid "Shotgun Shells"
 msgstr "Hagelpatroner"
 
-#: map/item_specs.lua:681
+#: map/item_specs.lua:691
 msgid "Shotgun shells come in a range of gauges but mixing and matching shotgun ammo sizes can cause your gun to explode, taking your hand along with it. Lucky for you, all of your ammo is the same size, and fits your shotgun(s) perfectly. An additional bonus is that it all seems to be buckshot."
 msgstr "Hagelpatroner finns i en uppsjö olika kaliber. Att testa sig fram för att se vilken patron som matchar geväret kan sluta med att geväret exploderar och tar din hand med sig. Tursamt nog är all din ammunition likadan och passar ditt/dina hagelgevär utmärkt. Och som en bonus är alltihop grovhagel."
 
-#: map/item_specs.lua:688
+#: map/item_specs.lua:698
 msgid "Two Barrel Sawn Off Shotgun"
 msgstr "Avsågad Hagelbössa"
 
-#: map/item_specs.lua:703
+#: map/item_specs.lua:714
 msgid "Often wielded in the past by thugs or convenience store owners, this little baby is less powerful than the two-handed model, but makes up for it by letting you use a shield in conjunction with it."
 msgstr "Den här lilla älsklingen - tidigare populär bland skurkar eller närbutiksägare - är inte lika kraftfull som tvåhands-modellen, men att du kan ha sköld i den andra handen väger upp det hela."
 
-#: map/item_specs.lua:711
+#: map/item_specs.lua:722
 msgid "Two Barrel Shotgun"
 msgstr "Hagelbössa"
 
-#: map/item_specs.lua:727
+#: map/item_specs.lua:739
 msgid "An old standby of farmers and bird hunters. While capable of causing a fair amount of damage to droid armor, the limited rounds capacity and fairly slow reloading time make this weapon preferable to melee weapons, but only just. Requires two hands to wield."
 msgstr "Användes som reserv av bönder och fågeljägare. Den kan göra ganska stor skada på en droidsköld men det lilla magasinet och den långsamma omladdningen gör det här vapnet marginellt bättre än ett handvapen. Måste hållas i båda händerna."
 
-#: map/item_specs.lua:735
+#: map/item_specs.lua:747
 msgid "Pump Action Shotgun"
 msgstr "Pumphagel"
 
-#: map/item_specs.lua:751
+#: map/item_specs.lua:764
 msgid "The pump action shotgun isn't quite as powerful as the double barrel equivalent, but it does hold more ammo per clip. Requires two hands to wield."
 msgstr "Det här hagelgeväret är inte lika kraftfullt som hagelbössan men det har ett större magasin. Måste hållas i båda händerna."
 
-#: map/item_specs.lua:759
+#: map/item_specs.lua:772
 msgid "9x19mm Ammunition"
 msgstr "9x19mm Ammunition"
 
-#: map/item_specs.lua:763
+#: map/item_specs.lua:776
 msgid "Plasma crystal load. This is the most common way of loading a plasma weapon."
 msgstr "Plasma-energi-behållare. Det här är det vanligaste sättet att ladda ett plasmavapen."
 
-#: map/item_specs.lua:770
+#: map/item_specs.lua:783
 msgid "9mm Automatic"
 msgstr "9mm Automat"
 
-#: map/item_specs.lua:785
+#: map/item_specs.lua:799
 msgid "Nine millimeter ammo is a common caliber. While not very powerful, it allows for more rounds per clip than bigger ammunition."
 msgstr "Nio millimeter är en vanlig kaliber. Den är inte så kraftfull men det går fler skott per laddning jämfört med grövre ammunition."
 
-#: map/item_specs.lua:793
+#: map/item_specs.lua:807
 msgid "9mm Sub Machine Gun"
 msgstr "9mm K-pist"
 
-#: map/item_specs.lua:809
+#: map/item_specs.lua:824
 msgid "These are commonly referred to as bullet hoses."
 msgstr "De här brukar kallas kulsprutor."
 
-#: map/item_specs.lua:817
+#: map/item_specs.lua:832
 msgid "7.62x39mm Ammunition"
 msgstr "7.62x39mm Ammunition"
 
-#: map/item_specs.lua:821
+#: map/item_specs.lua:836
 msgid "7.62mm ammo."
 msgstr "7.62mm ammunition."
 
-#: map/item_specs.lua:828
+#: map/item_specs.lua:843
 msgid "7.62mm Hunting Rifle"
 msgstr "7.62mm Jaktgevär"
 
-#: map/item_specs.lua:844
+#: map/item_specs.lua:860
 msgid "7.62 millimeter ammo is commonly used in assault rifles. This is a more civilian take on that concept."
 msgstr "7.62 millimeters ammunition används vanligtvis i automatkarbiner. Det här är privatpersonernas version."
 
-#: map/item_specs.lua:852
+#: map/item_specs.lua:868
 msgid "7.62mm AK-47"
 msgstr "7.62mm AK-47"
 
-#: map/item_specs.lua:868
+#: map/item_specs.lua:885
 msgid "The favorite weapon of third-world countries everywhere, this is a mass-produced, fairly reliable automatic weapon."
 msgstr "Tredje världens favoritvapen. Det här är ett massproducerat, beprövat automatvapen."
 
-#: map/item_specs.lua:876
+#: map/item_specs.lua:893
 msgid ".50 BMG (12.7x99mm) Ammunition"
 msgstr ".50 BMG (12.7x99mm) Ammunition"
 
-#: map/item_specs.lua:880
+#: map/item_specs.lua:897
 msgid "Browning Machine Gun ammo."
 msgstr "Ammunition till Browning-maskingevär."
 
-#: map/item_specs.lua:887
+#: map/item_specs.lua:904
 msgid "Barrett M82 Sniper Rifle"
 msgstr "Barrett M82 Krypskyttegevär"
 
-#: map/item_specs.lua:904
+#: map/item_specs.lua:922
 msgid "Powerful enough to stop a truck, literally, the likelihood of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesn't even matter if the pesky droid is cowering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in no time."
 msgstr "Kraftfull nog att stoppa en lastbil, bokstavligen talat. Chansen att ens en stridsdroid skulle överleva mer än 2 träffar av det här vapnet är liten. Det spelar ingen roll om den förargliga droiden gömmer sig bakom en vägg, kulorna kommer gå rakt igenom och göra i ordning botten för skrothögen på nolltid."
 
-#: map/item_specs.lua:912
+#: map/item_specs.lua:930
 msgid "Laser Power Pack"
 msgstr "Energikristall - Laser"
 
-#: map/item_specs.lua:916
+#: map/item_specs.lua:934
 msgid "Energy crystal load for laser weapons and other power tools. Each round fired consumes a load within the crystal."
 msgstr "Energikristall för vapen och andra motordrivna verktyg. Varje laddning skott motsvarar en kristall."
 
-#: map/item_specs.lua:923
+#: map/item_specs.lua:941
 msgid "Laser Pistol"
 msgstr "Laserpistol"
 
-#: map/item_specs.lua:938
+#: map/item_specs.lua:957
 msgid "A basic laser, but it has good uses in certain situations. No warranty of any kind, though."
 msgstr "En enkel laser, men den kan vara bra att ha i vissa situationer. Ingen garanti dock."
 
-#: map/item_specs.lua:946
+#: map/item_specs.lua:965
 msgid "Laser Rifle"
 msgstr "Lasergevär"
 
-#: map/item_specs.lua:962
+#: map/item_specs.lua:982
 msgid "This rifle is a high-end laser weapon. There is only one problem with it: Shooting it is too much fun. People often end up with no ammunition in the middle of a battle."
 msgstr "Det här geväret är ett förädlat laservapen. Det är bara ett problem med det: Att skjuta med det är för kul. Det brukar leda till att ammunitionen tar slut mitt i striden."
 
-#: map/item_specs.lua:970
+#: map/item_specs.lua:990
 msgid "Laser Pulse Rifle"
 msgstr "Pulslasergevär"
 
-#: map/item_specs.lua:986
+#: map/item_specs.lua:1007
 msgid "The pulse laser technology, allowing for many repeated short bursts without the weapon overheating, makes this quite a useful weapon. The damage from each shot is noticeably less than from a Laser rifle, but the firing rate more than makes up for it."
 msgstr "Pulslasertekniken tillåter upprepade korta blixtar utan att vapnet överhettas, vilket gör det till ett ganska användbart vapen. Skotten gör mindre skada än från ett lasergevär men hastigheten tar igen det."
 
-#: map/item_specs.lua:994
+#: map/item_specs.lua:1015
 msgid "Laser Pulse Cannon"
 msgstr "Pulslaserkanon"
 
-#: map/item_specs.lua:1011
+#: map/item_specs.lua:1033
 msgid "The pulse laser technology, allowing for many repeated short bursts without the weapon overheating, combined with a military design makes this weapon the preferred choice for most soldiers. Its quick no-recoil firing, large magazine, and awesome killing power makes it the ideal weapon for cleansing large droid infestations in mere minutes."
 msgstr "Pulslasertekniken tillåter upprepade korta blixtar utan att vapnet överhettas. Kombinera det med militär design och du får det vapen som de flesta soldater föredrar. Det är snabbt, rekylfritt, har stort magasin och är fantastiskt dödligt - det perfekta vapnet för att städa upp ett droidangrepp på bara några minuter."
 
-#: map/item_specs.lua:1019
+#: map/item_specs.lua:1041
 msgid "Plasma Energy Container"
 msgstr "Energikristall - Plasma"
 
-#: map/item_specs.lua:1023
+#: map/item_specs.lua:1045
 msgid "A container filled with all materials and energy required to make plasma weapons work in one handy and relatively safe package. This is the most common way of loading a plasma weapon."
 msgstr "Ett behändigt och relativt litet paket fyllt med allt material och all energi som krävs för att ett plasmavapen ska fungera. Det här är det vanligaste sättet att ladda ett plasmavapen."
 
-#: map/item_specs.lua:1030
+#: map/item_specs.lua:1052
 msgid "Plasma Pistol"
 msgstr "Plasmapistol"
 
-#: map/item_specs.lua:1045
+#: map/item_specs.lua:1068
 msgid "The basic plasma weapon in a conveniently small package."
 msgstr "Ett grundläggande plasmavapen i en behändig litet förpackning."
 
-#: map/item_specs.lua:1053
+#: map/item_specs.lua:1076
 msgid "Plasma Gun"
 msgstr "Plasmagevär"
 
-#: map/item_specs.lua:1069
+#: map/item_specs.lua:1093
 msgid "A somewhat slow weapon, but once you do hit plenty a bot will just down on the spot. A good alternative to a pulse laser for the skilled marksman."
 msgstr "Ett aningen långsamt vapen, men den skjuter ner botten på stället, när du väl träffar. Ett bra alternativ till pulslaser, för den vane prickskytten."
 
-#: map/item_specs.lua:1077
+#: map/item_specs.lua:1101
 msgid "2mm Exterminator Ammunition"
 msgstr "2mm Ammunition Till Utrotare"
 
-#: map/item_specs.lua:1081
+#: map/item_specs.lua:1105
 msgid "Exterminators need this kind of ammunition. It can cause skin irritations due to leaking extermination radiation when carried close to the body for long time."
 msgstr "Utrotare kräver denna ammunition. När den bärs nära kroppen en lägre tid kan den orsaka hudirritationer på grund av läckande utrotningsstrålning."
 
-#: map/item_specs.lua:1088
+#: map/item_specs.lua:1112
 msgid "Exterminator"
 msgstr "Utrotare"
 
-#: map/item_specs.lua:1104
+#: map/item_specs.lua:1129
 msgid "While this weapon is capable of firing really powerful shots, beware of the exceptionally long reloading times. (Don't get swarmed by enemies with this weapon unless you have powerful armor!)"
 msgstr "Det här vapnet kan skjuta riktigt kraftfulla skott, men var uppmärksam på den ovanligt långa omladdingstiden. (Bli inte överfallen av ett gäng fiender såvida du inte har ett massivt pansar!)"
 
-#: map/item_specs.lua:1112
+#: map/item_specs.lua:1137
 msgid "The Super Exterminator!!!"
 msgstr "Superutrotaren!!!"
 
-#: map/item_specs.lua:1128
+#: map/item_specs.lua:1154
 msgid "This bad boy is known to blow away most enemies with a single blast. A dangerous weapon that you don't want to be on the receiving end of."
 msgstr "Den här styggingen kan spränga bort nästan varenda fiende i ett skott. Ett farligt vapen som du inte vill vara på fel ände om."
 
-#: map/item_specs.lua:1136
+#: map/item_specs.lua:1162
 msgid "Electro Laser Rifle"
 msgstr "Elektro-lasergevär"
 
-#: map/item_specs.lua:1152
+#: map/item_specs.lua:1179
 msgid "A specialized beam of laser momentarily ionizes the air between the target and the gun, turning it into highly conductive plasma. Milliseconds later, a powerful electric shock is delivered through the air and hits the target. This weapon is effective against people as it is against bots, and indeed few are the droid classes that can withstand more than a few hits from it before going down. The one downside is the enormous power consumption that makes this weapon expensive to maintain."
 msgstr "En specialiserad laserstråle joniserar luften mellan målet och pistolen, vilket förvandlar den till elektriskt ledande plasma. Några millisekunder senare skickas en kraftig elchock genom luften och träffar målet. Det här vapnet är lika verkningsfullt på människor som på bottar, och det är faktiskt inte många droidklasser som kan klara av mer än några få träffar. Den enda nackdelen är den enorma energiåtgången som gör vapnet dyrt att använda."
 
-#: map/item_specs.lua:1160
+#: map/item_specs.lua:1187
 msgid "VMX Gas Grenade"
 msgstr "VMX Gasgranat"
 
-#: map/item_specs.lua:1161
+#: map/item_specs.lua:1188
 msgid "Gas attack"
 msgstr "Gasattack"
 
-#: map/item_specs.lua:1165
+#: map/item_specs.lua:1192
 msgid "The gas does not look terrifying. It even smells somewhat nice. And then you die. You die a most horrible death, never knowing what killed you."
 msgstr "Gasen ser inte så hemsk ut. Den luktar till och med lite gott. Och sedan dör du. Du dör en mycket fruktansvärd död, ovetandes om vad som dödat dig."
 
-#: map/item_specs.lua:1172
+#: map/item_specs.lua:1199
 msgid "Small EMP Shockwave Generator"
 msgstr "Liten EMP-chockvågsgenerator"
 
-#: map/item_specs.lua:1173
+#: map/item_specs.lua:1200
 msgid "Small Electromagnetic pulse"
 msgstr "Liten elektromagnetisk puls"
 
-#: map/item_specs.lua:1177
+#: map/item_specs.lua:1204
 msgid "This sphere contains a few strange bits of technology invented by Nikola Tesla in the early 20th century. The magnetic pulse that it generates can damage most electronic devices in just one blast."
 msgstr "Det här klotet innehåller egendomlig gammal teknik som uppfanns av Nikola Tesla tidigt på 1900-talet. Den magnetiska pulsen som skapas kan skada de flesta elektroniska apparater i bara en smäll."
 
-#: map/item_specs.lua:1184
+#: map/item_specs.lua:1211
 msgid "EMP Shockwave Generator"
 msgstr "EMP-chockvågsgenerator"
 
-#: map/item_specs.lua:1185
+#: map/item_specs.lua:1212
 msgid "Electromagnetic pulse"
 msgstr "Elektromagnetisk puls"
 
-#: map/item_specs.lua:1189
+#: map/item_specs.lua:1216
 msgid "This sphere contains a few strange bits of technology invented by Nikola Tesla in the early 20th century. The magnetic pulse that it generates can destroy most electronic devices in just one blast."
 msgstr "Det här klotet innehåller egendomlig gammal teknik som uppfanns av Nikola Tesla tidigt på 1900-talet. Den magnetiska pulsen som skapas kan skada de flesta elektroniska apparater i bara en smäll."
 
-#: map/item_specs.lua:1196
+#: map/item_specs.lua:1223
 msgid "Electronic Noise Generator"
 msgstr "Elektronisk Störningsgenerator"
 
-#: map/item_specs.lua:1197
+#: map/item_specs.lua:1224
 msgid "Disable Electronics"
 msgstr "Slå ut elektronik"
 
-#: map/item_specs.lua:1201
+#: map/item_specs.lua:1228
 msgid "This sphere creates a short blast of electronic noise that temporarily disables most electronics."
 msgstr "Det här klotet skapar en kort explosion av elektroniska störningar som slår nästan all elektronik, tillfälligt."
 
-#: map/item_specs.lua:1208
+#: map/item_specs.lua:1235
 msgid "Small Plasma Shockwave Emitter"
 msgstr "Liten Utsändare Av Plasmastötvåg"
 
-#: map/item_specs.lua:1209
+#: map/item_specs.lua:1236
 msgid "Explosion"
 msgstr "Explosion"
 
-#: map/item_specs.lua:1213
+#: map/item_specs.lua:1240
 msgid "Said to be an upscaled version of a traditional high temperature explosive."
 msgstr "Sägs vara en lyxversion av ett traditionellt sprängämne."
 
-#: map/item_specs.lua:1220
+#: map/item_specs.lua:1247
 msgid "Plasma Shockwave Emitter"
 msgstr "Utsändare Av Plasmastötvåg"
 
-#: map/item_specs.lua:1221
+#: map/item_specs.lua:1248
 msgid "Huge explosion"
 msgstr "Enorm explosion"
 
-#: map/item_specs.lua:1225
+#: map/item_specs.lua:1252
 msgid "Said to be the downscaled version of the original Pandora's Sphere, this device extinguishes life with superheated plasma."
 msgstr "Sägs vara en mindre version av Pandoras Sfär. Den här lilla prylen utrotar liv med superhet plasma."
 
-#: map/item_specs.lua:1238
+#: map/item_specs.lua:1265
 msgid "Normal Jacket"
 msgstr "Vanlig Jacka"
 
-#: map/item_specs.lua:1245
+#: map/item_specs.lua:1272
 msgid "This piece of clothing made out of Synthex(TM) does a decent job of protection. I guess. Maybe. I'm not sure."
 msgstr "Det här klädesplagget, gjort i Syntex(TM) ger ett hyfsat skydd. Tror jag. Kanske. Inte helt säkert."
 
-#: map/item_specs.lua:1253
+#: map/item_specs.lua:1280
 msgid "Reinforced Jacket"
 msgstr "Förstärkt Jacka"
 
-#: map/item_specs.lua:1261
+#: map/item_specs.lua:1288
 msgid "One step up from a normal jacket."
 msgstr "En aning bättre än en vanlig jacka."
 
-#: map/item_specs.lua:1269
+#: map/item_specs.lua:1296
 msgid "Protective Jacket"
 msgstr "Skyddande Jacka"
 
-#: map/item_specs.lua:1277
+#: map/item_specs.lua:1304
 msgid "Very strong for its size, this jacket made out of Shootex(TM) does a good job of absorbing basic blows. It is suitable for all kinds of extreme sports, such as climbing, rafting, bungee-jumping, fencing and even racing."
 msgstr "Väldigt stark för sin storlek. Den här jackan, gjord av Skjutex(TM), är bra på att ta emot små smällar. Den passar för alla extremsporter så som klättring, flottning, bungeejump, fäktning och till och med racing."
 
-#: map/item_specs.lua:1285
+#: map/item_specs.lua:1312
 msgid "Red Guard's Light Robe"
 msgstr "Röda Väktarnas Lätta Skyddsdräkt"
 
-#: map/item_specs.lua:1293
+#: map/item_specs.lua:1320
 msgid "The universal riot gear of the Red Guard. Tough as nails and able to withstand most blows."
 msgstr "Röda Väktarnas universella kravall-utrustning. Hård som sten kan den ta emot de flesta smällar."
 
-#: map/item_specs.lua:1301
+#: map/item_specs.lua:1328
 msgid "Red Guard's Heavy Robe"
 msgstr "Röda Väktarnas Tunga Skyddsdräkt"
 
-#: map/item_specs.lua:1309
+#: map/item_specs.lua:1336
 msgid "Defense is acquired at a high level with this durable piece of armor."
 msgstr "Den här hållbara pansardräkten ger ett förstaklassigt skydd."
 
-#: map/item_specs.lua:1322
+#: map/item_specs.lua:1349
 msgid "Improvised Buckler"
 msgstr "Improviserad Sköld"
 
-#: map/item_specs.lua:1329
+#: map/item_specs.lua:1356
 msgid "This shield is a compilation of various objects which happened to be around. It has tubes, bolts and parts of metal, all slapped together to provide a small bit of protection from enemies. It's very simple and rough, but some sensors and lights have been added to let the wielder know when the item is getting hit, and how long it will remain operational and other cool stuff like that."
 msgstr "Den här skölden är tillverkad av lite olika saker som låg i närheten. Rör, bultar och metallbitar är hopklumpade, allt för att ge lite skydd mot fiender. Den är enkel och oslipad, men den har några sensorer och lampor som visar när den träffas, hur länge den kommer hålla och lite andra häftiga saker."
 
-#: map/item_specs.lua:1337
+#: map/item_specs.lua:1364
 msgid "Bot Carapace"
 msgstr "Bottskal"
 
-#: map/item_specs.lua:1344
+#: map/item_specs.lua:1371
 msgid "A small, lightweight and pretty straightforward shield. Provides decent protection."
 msgstr "En liten, lätt och enkel sköld. Ger ett hyfsat skydd."
 
-#: map/item_specs.lua:1352
+#: map/item_specs.lua:1379
 msgid "Standard Shield"
 msgstr "Vanlig Sköld"
 
-#: map/item_specs.lua:1359
+#: map/item_specs.lua:1386
 msgid "Better than a buckler, and a lot more effective."
 msgstr "Bättre än de små runda sköldarna, och mycket effektivare."
 
-#: map/item_specs.lua:1367
+#: map/item_specs.lua:1394
 msgid "Heavy Shield"
 msgstr "Tung Sköld"
 
-#: map/item_specs.lua:1375
+#: map/item_specs.lua:1402
 msgid "A medium sized, reinforced shield. Heavier than a standard shield, but should last longer. Provides decent protection."
 msgstr "En mellanstor, förstärkt sköld. Tyngre än en vanlig sköld, men den håller längre. Ger ett hyfsat skydd."
 
-#: map/item_specs.lua:1383
+#: map/item_specs.lua:1410
 msgid "Riot Shield"
 msgstr "Kravallsköld"
 
-#: map/item_specs.lua:1391
+#: map/item_specs.lua:1418
 msgid "A powerful shield, as useful to protect from bots as it is to control big crowds of angry protesters."
 msgstr "En stark sköld, lika effektiv mot attackerande bottar som mot en stor mobb av arga, protesterande människor."
 
-#: map/item_specs.lua:1403
+#: map/item_specs.lua:1430
 msgid "Pot Helmet"
 msgstr "Burkhjälm"
 
-#: map/item_specs.lua:1410
+#: map/item_specs.lua:1437
 msgid "Top of the line head gear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
 msgstr "Den första klassens huvudbonad för bottar. Men om du sliter av deras metallhals och tar bort kretskorten blir den ett hyfsat skydd för levande varelser mot attacker långt bortifrån eller nära."
 
-#: map/item_specs.lua:1418
+#: map/item_specs.lua:1445
 msgid "Worker Helmet"
 msgstr "Arbetarhjälm"
 
-#: map/item_specs.lua:1425
+#: map/item_specs.lua:1452
 msgid "A simple cover to protect your head. Don't expect to be incognito, your flippers and penguin like body are hard to miss."
 msgstr "Ett enkelt skydd för ditt huvud. Tro inte att du kan vara anonym - dina simfötter och din pingvinlika kropp går inte ta miste på."
 
-#: map/item_specs.lua:1433
+#: map/item_specs.lua:1460
 msgid "Miner Helmet"
 msgstr "Gruvarbetarhjälm"
 
-#: map/item_specs.lua:1440
+#: map/item_specs.lua:1467
 msgid "It might look a bit silly, but it will save your life many times."
 msgstr "Den kanske ser löjlig ut men kan många gånger rädda ditt liv."
 
-#: map/item_specs.lua:1448
+#: map/item_specs.lua:1475
 msgid "Light Battle Helmet"
 msgstr "Lätt Stridshjälm"
 
-#: map/item_specs.lua:1456
+#: map/item_specs.lua:1483
 msgid "A rather useful helmet, has a few defense issues here and there but mainly is worth the wear."
 msgstr "En ganska användbar hjälm. Den skyddar inte helt bra överallt men är ändå värd att använda."
 
-#: map/item_specs.lua:1464
+#: map/item_specs.lua:1491
 msgid "Battle Helmet"
 msgstr "Stridshjälm"
 
-#: map/item_specs.lua:1472
+#: map/item_specs.lua:1499
 msgid "Now this is head protection. Feel safe with sturdy Resosteel(TM) protecting your head. Not as comfortable as other hats but the precious content stays safe."
 msgstr "Det här är vad jag kallar huvudskydd. Känn dig trygg och lugn när Resostål(TM) skyddar ditt huvud. Inte lika bekväm som andra hattar men det värdefulla innehållet är i tryggt förvar."
 
-#: map/item_specs.lua:1480
+#: map/item_specs.lua:1507
 msgid "Dixon's Helmet"
 msgstr "Dixons Hjälm"
 
-#: map/item_specs.lua:1487
+#: map/item_specs.lua:1514
 msgid "A gift from Dixon. It looks like it is about to turn into dust."
 msgstr "En gåva från Dixon. Det ser ut som om den snart bara är damm."
 
-#: map/item_specs.lua:1500
+#: map/item_specs.lua:1527
 msgid "Shoes"
 msgstr "Skor"
 
-#: map/item_specs.lua:1507
+#: map/item_specs.lua:1534
 msgid "These simple boots are designed for comfort of the wearer more than to give actual protection."
 msgstr "De här enkla kängorna är mer gjorda för att vara bekväma än för att ge faktiskt skydd."
 
-#: map/item_specs.lua:1515
+#: map/item_specs.lua:1542
 msgid "Worker Shoes"
 msgstr "Arbetsskor"
 
-#: map/item_specs.lua:1522
+#: map/item_specs.lua:1549
 msgid "These footwear are steel tipped, and generally quite sturdy, giving a bit extra protection."
 msgstr "De här skorna har stålhätta och är ganska stadiga, vilket ger lite extra skydd."
 
-#: map/item_specs.lua:1530
+#: map/item_specs.lua:1557
 msgid "Battle Shoes"
 msgstr "Stridsskor"
 
-#: map/item_specs.lua:1537
+#: map/item_specs.lua:1564
 msgid "These boots are similar to the simple shoes, but the material they are made of is hardened for extra protection."
 msgstr "De här kängorna liknar vanliga skor, men materialet är härdat för att ge extra skydd."
 
-#: map/item_specs.lua:1549
+#: map/item_specs.lua:1576
 msgid "Source Book of Emergency Shutdown"
 msgstr "Boken om \"Nödavstägning\""
 
-#: map/item_specs.lua:1550 map/item_specs.lua:1562 map/item_specs.lua:1574
-#: map/item_specs.lua:1586 map/item_specs.lua:1598 map/item_specs.lua:1610
-#: map/item_specs.lua:1622 map/item_specs.lua:1634 map/item_specs.lua:1646
-#: map/item_specs.lua:1658 map/item_specs.lua:1670 map/item_specs.lua:1682
-#: map/item_specs.lua:1706 map/item_specs.lua:1718 map/item_specs.lua:1730
-#: map/item_specs.lua:1742 map/item_specs.lua:1754 map/item_specs.lua:1766
+#: map/item_specs.lua:1577 map/item_specs.lua:1589 map/item_specs.lua:1601
+#: map/item_specs.lua:1613 map/item_specs.lua:1625 map/item_specs.lua:1637
+#: map/item_specs.lua:1649 map/item_specs.lua:1661 map/item_specs.lua:1673
+#: map/item_specs.lua:1685 map/item_specs.lua:1697 map/item_specs.lua:1709
+#: map/item_specs.lua:1733 map/item_specs.lua:1745 map/item_specs.lua:1757
+#: map/item_specs.lua:1769 map/item_specs.lua:1781 map/item_specs.lua:1793
 msgid "Permanently acquire/enhance this program"
 msgstr "Få/förbättra den här förmågan permanent."
 
-#: map/item_specs.lua:1554
+#: map/item_specs.lua:1581
 msgid "Everyone needs to blow off some steam every now and then."
 msgstr "Alla behöver coola ner lite då och då."
 
-#: map/item_specs.lua:1561
+#: map/item_specs.lua:1588
 msgid "Source Book of Check System Integrity"
 msgstr "Boken om \"Verifiera Systemintegritet\""
 
-#: map/item_specs.lua:1566
+#: map/item_specs.lua:1593
 msgid "An incredible healing program, probably the only one you will ever need."
 msgstr "Ett fantastiskt program för läkning, troligtvis det enda du kommer behöva."
 
-#: map/item_specs.lua:1573
+#: map/item_specs.lua:1600
 msgid "Source Book of Sanctuary"
 msgstr "Boken om \"Fristad\""
 
-#: map/item_specs.lua:1578
+#: map/item_specs.lua:1605
 msgid "The art of rapidly moving away from danger is very useful. Even when used in reverse, it has its uses."
 msgstr "Konsten att snabbt ta sig ur fara är bra att kunna. Till och med i andra riktningen kan den vara praktisk."
 
-#: map/item_specs.lua:1585
+#: map/item_specs.lua:1612
 msgid "Source Book of Malformed Packet"
 msgstr "Boken om \"Felformaterat Paket\""
 
-#: map/item_specs.lua:1590
+#: map/item_specs.lua:1617
 msgid "When computers are presented with the unexpected, they can damage themselves."
 msgstr "När datorer är presenterade oväntade saker kan de skada sig själva."
 
-#: map/item_specs.lua:1597
+#: map/item_specs.lua:1624
 msgid "Source Book of Calculate Pi"
 msgstr "Boken om \"Räkna ut Pi\""
 
-#: map/item_specs.lua:1602 map/skill_specs.lua:102
+#: map/item_specs.lua:1629 map/skill_specs.lua:102
 msgid "It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
 msgstr "Det är inget stort problem att få ett dåligt designat system att gå på jakt för det omöjliga, vilket orsakar en prestandaverkan."
 
-#: map/item_specs.lua:1609
+#: map/item_specs.lua:1636
 msgid "Source Book of Blue Screen"
 msgstr "Boken om \"Blåskärm\""
 
-#: map/item_specs.lua:1614 map/item_specs.lua:1626
+#: map/item_specs.lua:1641 map/item_specs.lua:1653
 msgid "With a little touch a war machine comes crashing to a halt. For a while."
 msgstr "Med en liten touch kan en krigsmaskin krascha ihop och stanna. En stund."
 
-#: map/item_specs.lua:1621
+#: map/item_specs.lua:1648
 msgid "Source Book of Broadcast Blue Screen"
 msgstr "Boken om \"Sänd ut Blåskärm\""
 
-#: map/item_specs.lua:1633
+#: map/item_specs.lua:1660
 msgid "Source Book of Invisibility"
 msgstr "Boken om \"Osynlighet\""
 
-#: map/item_specs.lua:1638 map/skill_specs.lua:80
+#: map/item_specs.lua:1665 map/skill_specs.lua:80
 msgid "I am not the Linarian you are looking for."
 msgstr "Jag är inte Linärianen du letar efter."
 
-#: map/item_specs.lua:1645
+#: map/item_specs.lua:1672
 msgid "Source Book of Virus"
 msgstr "Boken om \"Virus\""
 
-#: map/item_specs.lua:1650 map/skill_specs.lua:137
+#: map/item_specs.lua:1677 map/skill_specs.lua:137
 msgid "This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
 msgstr "Det här är inte bara en mjukvaru-uppdatering, min käre bott. Snart får du reda på vad jag verkligen vill ge dig."
 
-#: map/item_specs.lua:1657
+#: map/item_specs.lua:1684
 msgid "Source Book of Broadcast Virus"
 msgstr "Boken om \"Sänd ut Virus\""
 
-#: map/item_specs.lua:1662
+#: map/item_specs.lua:1689
 msgid "The network is wide and dangerous. Many traps await the weak and unprepared."
 msgstr "Nätverket är stort och farligt. Många fällor väntar den som är svag och oföreberedd."
 
-#: map/item_specs.lua:1669
+#: map/item_specs.lua:1696
 msgid "Source Book of Dispel Smoke"
-msgstr "Boken om \"Avge Rök\""
+msgstr "Boken om \"Frigör Rök\""
 
-#: map/item_specs.lua:1674
+#: map/item_specs.lua:1701
 msgid "By heating up the chips with a malformed program, you can cause them to release the magic smoke which keeps the bot running."
-msgstr "Genom att hetta upp chipen med ett trasigt program, kan du skapa den magiska röken som skadar bottarna."
+msgstr "Genom att hetta upp chippen med ett trasigt program, kan du släppa ut den magiska röken som håller igång bottarna."
 
-#: map/item_specs.lua:1681
+#: map/item_specs.lua:1708
 msgid "Source Book of Killer Poke"
 msgstr "Boken om \"Skada Minneskretsar\""
 
-#: map/item_specs.lua:1686
+#: map/item_specs.lua:1713
 msgid "Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
 msgstr "Att röra om i bottens minne kan få den att skada sig själv, men skadan kan variera mycket."
 
-#: map/item_specs.lua:1693
+#: map/item_specs.lua:1720
 msgid "Source Book of Repair Equipment"
 msgstr "Boken om \"Reparera Utrustning\""
 
-#: map/item_specs.lua:1694
+#: map/item_specs.lua:1721
 msgid "Learn about repairing items"
 msgstr "Lär dig reparera föremål"
 
-#: map/item_specs.lua:1698
+#: map/item_specs.lua:1725
 msgid "This manual will help you fix a broken dishwasher, a car, or a gun. The covers does not mention anything about breaking robots however."
 msgstr "Den här manualen hjälper dig laga en trasig diskmaskin, bil eller pistol. Omslaget nämner dock inget om robotar."
 
-#: map/item_specs.lua:1705
+#: map/item_specs.lua:1732
 msgid "Source Book of Plasma Discharge"
 msgstr "Boken om \"Plasmaurladdning\""
 
-#: map/item_specs.lua:1710
+#: map/item_specs.lua:1737
 msgid "The overload setting exists for emergencies. Plasma does not discriminate between bots and humans. Everything is the same to it."
 msgstr "Inställningen för överbelastning är till för nödfall. Plasma gör ingen skillnad på bottar och människor, allt är det samma."
 
-#: map/item_specs.lua:1717
+#: map/item_specs.lua:1744
 msgid "Source Book of Nethack"
 msgstr "Boken om \"Nethack\""
 
-#: map/item_specs.lua:1722
+#: map/item_specs.lua:1749
 msgid "The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
 msgstr "Open-source-spelet Nethack är ett av världens största slöseri med tid. Maskiner bryr sig inte om det, men människor kan fastna ganska djupt i det."
 
-#: map/item_specs.lua:1729
+#: map/item_specs.lua:1756
 msgid "Source Book of Ricer CFLAGS"
 msgstr "Boken om \"Ricer CFLAGS\""
 
-#: map/item_specs.lua:1734
+#: map/item_specs.lua:1761
 msgid "Optimization is the root of all evil. You can gain some temporary improvements to your system, but in the end you are only likely to cause permanent damage."
 msgstr "Optimering är roten till all ondska. Du kan tillfälligt förbättra ditt system, men i slutändan kommer det troligtvis att det orsakar permanenta skador."
 
-#: map/item_specs.lua:1741
+#: map/item_specs.lua:1768
 msgid "Source Book of Reverse-engineer"
 msgstr "Boken om \"Reverse-engineer\""
 
-#: map/item_specs.lua:1746
+#: map/item_specs.lua:1773
 msgid "There is some dark magic in the art of turning bots inside-out to learn all their secrets."
 msgstr "Det ligger mörk magi i konsten att vända robotar ut och in för att lära sig alla deras hemligheter."
 
-#: map/item_specs.lua:1753
+#: map/item_specs.lua:1780
 msgid "Source Book of Light"
 msgstr "Boken om \"Ljus\""
 
-#: map/item_specs.lua:1758 map/skill_specs.lua:215
+#: map/item_specs.lua:1785 map/skill_specs.lua:215
 msgid "Let there be light..."
 msgstr "Varde ljus..."
 
-#: map/item_specs.lua:1765
+#: map/item_specs.lua:1792
 msgid "Source Book of Network Mapper"
 msgstr "Boken om \"Nätverksmappning\""
 
-#: map/item_specs.lua:1770 map/skill_specs.lua:205
+#: map/item_specs.lua:1797 map/skill_specs.lua:205
 msgid "Knowing what your enemies are up to is easy with a little signal intelligence. Displays enemy locations on your automap."
 msgstr "Att veta vad dina fiender håller på med är enkelt med hjälp av lite \"signal-intelligens\". Visar fiendernas position på autokartan."
 
-#: map/item_specs.lua:1777
+#: map/item_specs.lua:1804
 msgid "Subatomic and Nuclear Science for Dummies, Volume IV"
 msgstr "Subatomär fysik och kärnfysik för Dumskallar, Volym IV"
 
-#: map/item_specs.lua:1781
+#: map/item_specs.lua:1808
 msgid "From the back of the cover: 'Subatomic and Nuclear Science for Dummies, Volume IV is the most popular handbook series for learning nuclear science: Learn to generate enough power to keep you town lit up for a decade! Discover how to really scare neighboring countries! Find out how to make your very own mutant pet!' This obviously important tome of knowledge from before the great assault comes with no warranty whatsoever."
 msgstr "Från omslaget: \"Subatomär fysik och kärnfysik för Dumskallar, Volym IV är den populäraste serien handböcker om kärnfysik: Lär dig att generera tillräckligt med ström för att lysa upp din stad i ett helt decennium! Upptäck hur man verkligen skrämmer sina grannländer! Ta reda på hur du gör ditt eget mutant-husdjur!\" Den här boken - som skrevs innan det Stora Angreppet - innehåller uppenbart viktig information, men ger ingen som helst garanti."
 
-#: map/item_specs.lua:1788
+#: map/item_specs.lua:1815
 msgid "Manual of the Automated Factory"
 msgstr "Manual till den Automatiserade Fabriken"
 
-#: map/item_specs.lua:1792
+#: map/item_specs.lua:1819
 msgid "This book describes the operation and repair of automated factories. Included are common error codes and how to fix them. However, most repairs simply call for liberal application of 'Elbow Grease'."
 msgstr "Den här boken beskriver skötsel och reparation av automatiserade fabriker. Även hur man åtgärdar vanliga felkoder. Det verkar dock som de flesta fel kan lagas med riklig mängd \"Smörj\"."
 
-#: map/item_specs.lua:1799
+#: map/item_specs.lua:1826
 msgid "Manual of the Extract Bot Parts"
 msgstr "Manual om att Extrahera Bottdelar"
 
-#: map/item_specs.lua:1800 map/item_specs.lua:1804
+#: map/item_specs.lua:1827 map/item_specs.lua:1831
 msgid "USE FOR CHEATING ONLY. If you see this online, please report the bug."
 msgstr "ENDAST TILL FÖR FUSK. Om du ser det här online, var vänlig rapportera buggen."
 
-#: map/item_specs.lua:1815
+#: map/item_specs.lua:1842
 msgid "Strength Pill"
 msgstr "Styrkepiller"
 
-#: map/item_specs.lua:1816
+#: map/item_specs.lua:1843
 msgid "Permanently gain +1 strength"
 msgstr "Ökar styrkan med +1, permanent"
 
-#: map/item_specs.lua:1820
+#: map/item_specs.lua:1847
 msgid "These pills permanently raise strength within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
 msgstr "De här pillren gör en person permanent starkare. De arbetar på ett nanotekniskt plan. Rådfråga din läkare, receptet eller en läkemedelsexpert för att få mer detaljer kring läkemedlets effekter och eventuella biverkningar."
 
-#: map/item_specs.lua:1827
+#: map/item_specs.lua:1854
 msgid "Dexterity Pill"
 msgstr "Smidighetspiller"
 
-#: map/item_specs.lua:1828
+#: map/item_specs.lua:1855
 msgid "Permanently gain +1 dexterity"
 msgstr "Ökar smidigheten med +1, permanent"
 
-#: map/item_specs.lua:1832
+#: map/item_specs.lua:1859
 msgid "These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
 msgstr "De här pillren gör en person permanent smidigare. De arbetar på ett nanotekniskt plan. Rådfråga din läkare, receptet eller en läkemedelsexpert för att få mer detaljer kring läkemedlets effekter och eventuella biverkningar."
 
-#: map/item_specs.lua:1839
+#: map/item_specs.lua:1866
 msgid "Code Pill"
 msgstr "Kodarpiller"
 
-#: map/item_specs.lua:1840
+#: map/item_specs.lua:1867
 msgid "Permanently gain +1 cooling"
 msgstr "Ökar kylningen med +1, permanent"
 
-#: map/item_specs.lua:1844
+#: map/item_specs.lua:1871
 msgid "Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf these down to *see* the code."
 msgstr "Asså, den här maten är sjukt najs och kommer typ göra dina kodarskills asbra. Tryck i dig nå'ra så *ser* du koden liksom."
 
-#: map/item_specs.lua:1851
+#: map/item_specs.lua:1878
 msgid "Brain Enlargement Pills Antidote"
 msgstr "Motgift Mot Hjärnförstoringspiller"
 
-#: map/item_specs.lua:1855
+#: map/item_specs.lua:1882
 msgid "These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the Internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
 msgstr "De här pillren kan reparera skadan som skapas av de \"hjärnförstorningspiller\" som säljs offentligt via internet. Det världsvida läkemedelsförbundet har rekommenderat att ignorera alla sådana annonser fullständigt, medan försök att helt förbjuda sådana piller aldrig lyckats."
 
-#: map/item_specs.lua:1862
+#: map/item_specs.lua:1889
 msgid "Brain Enlargement Pill"
 msgstr "Hjärnförstoringspiller"
 
-#: map/item_specs.lua:1863
+#: map/item_specs.lua:1890
 msgid "Gain fast acting cancer"
 msgstr "Få snabbväxande cancer"
 
-#: map/item_specs.lua:1867
+#: map/item_specs.lua:1894
 #, c-format
 msgid "Doctors all over the planet have tried to suppress the amazing breakthrough which has brought increased alertness and concentration that comes with a larger brain. They are synthesized using cutting edge technology and 100% natural herbal ingredients from a secret five thousand-year-old traditional holistic recipe. Get yours direct from our online Canadian ph4rm4cy!!! 100% satisfaction guaranteed!!!"
 msgstr "Doktorer över hela världen har försökt förhindra det fantastiska genombrott som gjort människor piggare och gett dem en större koncentrationsförmåga, tack vare en större hjärna hjärna. Dessa piller är tillverkade med hjälp av den senaste teknologin och 100% naturliga ingredienser enligt ett femtusen år gammalt folkrecept. Beställ dina direkt från vårt kanadensiska online-4p0t3k!!! Vi garanterar att du blir 100% supernöjd!!!"
 
-#: map/item_specs.lua:1874
+#: map/item_specs.lua:1901
 msgid "Diet Supplement"
 msgstr "Kosttillskott"
 
-#: map/item_specs.lua:1875 map/item_specs.lua:1887 map/item_specs.lua:1899
+#: map/item_specs.lua:1902 map/item_specs.lua:1914 map/item_specs.lua:1926
 msgid "Recover Health"
 msgstr "Förbättra Hälsan"
 
-#: map/item_specs.lua:1879
+#: map/item_specs.lua:1906
 msgid "Only proper vitamin and mineral intake can keep you healthy during the apocalypse. This can cure a cold."
 msgstr "Endast ett rikligt vitamin- och mineralintag kan hålla dig frisk under apokalypsen. Det här kan bota en förkylning."
 
-#: map/item_specs.lua:1886
+#: map/item_specs.lua:1913
 msgid "Antibiotic"
 msgstr "Antibiotika"
 
-#: map/item_specs.lua:1891
+#: map/item_specs.lua:1918
 msgid "Truly wonderful things can be extracted from molds. This can cure lethal food poisoning. Wish you had that in your last Nethack game, eh?"
 msgstr "Helt underbara sker utvinnas från mögel. Det här kan bota dödlig matförgiftning. Du önskar att du haft det här i den senaste omgången Nethack va?"
 
-#: map/item_specs.lua:1898
+#: map/item_specs.lua:1925
 msgid "Doc-in-a-can"
 msgstr "Doktor-på-burk"
 
-#: map/item_specs.lua:1903
+#: map/item_specs.lua:1930
 msgid "This is a drink filled with nanobots designed to heal any damage that they notice inside you. It can cure decapitation. Most of the time."
 msgstr "Den här drycken är fylld med nanobottar gjorda för att läka alla skador de upptäcker i dig. Den kan bota en halshuggning. Oftast."
 
-#: map/item_specs.lua:1910
+#: map/item_specs.lua:1937
 msgid "Bottled Ice"
 msgstr "Is På Flaska"
 
-#: map/item_specs.lua:1911 map/item_specs.lua:1923 map/item_specs.lua:2981
+#: map/item_specs.lua:1938 map/item_specs.lua:1950 map/item_specs.lua:3009
 msgid "Cooling aid"
 msgstr "Kylande"
 
-#: map/item_specs.lua:1915
+#: map/item_specs.lua:1942
 msgid "This bottle is filled with ice. It can keep you cool during a warm summer day."
 msgstr "Den här flaskan är fylld med is. Den kan svalka dig en varm sommardag."
 
-#: map/item_specs.lua:1922
+#: map/item_specs.lua:1949
 msgid "Industrial Coolant"
 msgstr "Industriellt Kylmedel"
 
-#: map/item_specs.lua:1927
+#: map/item_specs.lua:1954
 msgid "Bartenders around the world add this to drinks to get them cold very fast. Plus, the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
 msgstr "Bartenders i hela världen blandar i det här i drinkarna för att kyla ned dem väldigt snabbt. Dessutom är det billigt. Det här kan hålla dig kall inne i en kärnreaktor."
 
-#: map/item_specs.lua:1934
+#: map/item_specs.lua:1961
 msgid "Liquid Nitrogen"
 msgstr "Flytande Kväve"
 
-#: map/item_specs.lua:1935
+#: map/item_specs.lua:1962
 msgid "Extreme Cooling aid"
 msgstr "Extremt kylande"
 
-#: map/item_specs.lua:1939
+#: map/item_specs.lua:1966
 msgid "When you want something frozen solid, this is what you need. It can keep you cool even inside a class M star."
 msgstr "När du vill att något ska bli genomfruset, är det här vad du behöver. Det kan hålla dig kall i en klass M-stjärna."
 
-#: map/item_specs.lua:1946
+#: map/item_specs.lua:1973
 msgid "Barf's Energy Drink"
 msgstr "Barf's Energidryck"
 
-#: map/item_specs.lua:1947
+#: map/item_specs.lua:1974
 msgid "Cool down, cure minor wounds."
 msgstr "Svalka dig och läk skråmor."
 
-#: map/item_specs.lua:1951
+#: map/item_specs.lua:1978
 msgid "Warning! These energy drinks contain high doses of caffeine! The average person drops dead after consuming 12 grams of caffeine. One of these bottles contains over double that amount."
 msgstr "Varning! De här energidryckerna innehåller höga doser av koffein! En normal person avlider efter att ha konsumerat 12 gram koffein. En av de här flaskorna innehåller mer än dubbelt så mycket."
 
-#: map/item_specs.lua:1958
+#: map/item_specs.lua:1985
 msgid "Running Power Capsule"
 msgstr "Spurtkapsel"
 
-#: map/item_specs.lua:1959
+#: map/item_specs.lua:1986
 msgid "Recover Running Power"
 msgstr "Kraft att springa"
 
-#: map/item_specs.lua:1963
+#: map/item_specs.lua:1990
 msgid "These small containers hold purified running strength. Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 msgstr "De här små behållarna innehåller ren löpstyrka. Varje kapsel kan bara användas en gång, men flera stycken kan samlas ihop som ett föremål i ditt förråd."
 
-#: map/item_specs.lua:1970
+#: map/item_specs.lua:1997
 msgid "Strength Capsule"
 msgstr "Styrkekapsel"
 
-#: map/item_specs.lua:1971
+#: map/item_specs.lua:1998
 msgid "Temporary Boost to Strength"
 msgstr "Tillfälligt ökad styrka"
 
-#: map/item_specs.lua:1975
+#: map/item_specs.lua:2002
 msgid "These small containers hold purified strength. This item will give a temporary boost to strength. Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 msgstr "De här små behållarna innehåller ren styrka. Det här föremålet gör dig tillfälligt starkare. Varje kapsel kan bara användas en gång, men flera stycken kan samlas ihop som ett föremål i ditt förråd."
 
-#: map/item_specs.lua:1982
+#: map/item_specs.lua:2009
 msgid "Dexterity Capsule"
 msgstr "Smidighetskapsel"
 
-#: map/item_specs.lua:1983
+#: map/item_specs.lua:2010
 msgid "Temporary Boost to Dexterity"
 msgstr "Tillfälligt ökad smidighet"
 
-#: map/item_specs.lua:1987
+#: map/item_specs.lua:2014
 msgid "These small containers hold purified dexterity. This item will give a temporary bonus to dexterity. Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 msgstr "De här små behållarna innehåller ren styrka. Det här föremålet gör dig tillfälligt smidigare. Varje kapsel kan bara användas en gång, men flera stycken kan grupperas ihop till ett föremål i ditt förråd."
 
-#: map/item_specs.lua:1998
+#: map/item_specs.lua:2025
 msgid "Valuable Circuits"
 msgstr "Värdefulla Kretsar"
 
-#: map/item_specs.lua:2002
+#: map/item_specs.lua:2029
 msgid "The new monetary standard of the world. With the collapse of the banking system, the precious metals in bot circuitry has literally become hard cash. A bit hard to come by though, as the bots are not likely to just hand it over..."
 msgstr "Den nya världsvalutan. I och med banksystemets kollaps har de dyrbara metallerna i bottarnas kretskort gjort dem till \"kontantkort\". Dock lite svåra att få tag i eftersom bottarna knappast ger bort dem frivilligt..."
 
-#: map/item_specs.lua:2009
+#: map/item_specs.lua:2036
 msgid "Anti-grav Pod for Droids"
 msgstr "Anti-grav-kapsel För Droider"
 
-#: map/item_specs.lua:2013
+#: map/item_specs.lua:2040
 msgid "The bots use this to hover around."
 msgstr "Bottar använder den här för att sväva runt."
 
-#: map/item_specs.lua:2020
+#: map/item_specs.lua:2047
 msgid "Dixon's Toolbox"
 msgstr "Dixons Verktygslåda"
 
-#: map/item_specs.lua:2024
+#: map/item_specs.lua:2051
 msgid "This is a teleporter service toolbox. It's complete and orderly, though a few dents on the outside give proof of frequent use. 'C. Dixon' is carved into the outside with fine print."
 msgstr "Det här är en verktygslåda för teleport-service. Den är komplett och välordnad, men har några bucklor på utsidan vilket tyder på att den används ofta. Ett finstilt \"C. Dixon\" är ristat på utsidan."
 
-#: map/item_specs.lua:2031
+#: map/item_specs.lua:2058
 msgid "Toolbox"
 msgstr "Verktygslåda"
 
-#: map/item_specs.lua:2035
+#: map/item_specs.lua:2062
 msgid "This is a regular toolbox. It's complete and orderly, though a few dents on the outside give proof of frequent use."
 msgstr "Det här är en vanlig verktygslåda. Den är komplett och välordnad, men har några bucklor på utsidan vilket tyder på att den använts ofta."
 
-#: map/item_specs.lua:2042
+#: map/item_specs.lua:2069
 msgid "Entropy Inverter"
 msgstr "Entropi-inverterare"
 
-#: map/item_specs.lua:2046 map/item_specs.lua:2057 map/item_specs.lua:2068
-#: map/item_specs.lua:2079 map/item_specs.lua:2090
+#: map/item_specs.lua:2073 map/item_specs.lua:2084 map/item_specs.lua:2095
+#: map/item_specs.lua:2106 map/item_specs.lua:2117
 msgid "This is an standard part within many robot types."
 msgstr "Det här är en vanlig del i många robotar."
 
-#: map/item_specs.lua:2053
+#: map/item_specs.lua:2080
 msgid "Plasma Transistor"
 msgstr "Plasmatransistor"
 
-#: map/item_specs.lua:2064
+#: map/item_specs.lua:2091
 msgid "Superconducting Relay Unit"
 msgstr "Superledande Relä"
 
-#: map/item_specs.lua:2075
+#: map/item_specs.lua:2102
 msgid "Antimatter-Matter Converter"
 msgstr "Antimateria-omvandlare"
 
-#: map/item_specs.lua:2086
+#: map/item_specs.lua:2113
 msgid "Tachyon Condensator"
 msgstr "Takyon-kondensator"
 
-#: map/item_specs.lua:2097
+#: map/item_specs.lua:2124
 msgid "Desk Lamp"
 msgstr "Bordslampa"
 
-#: map/item_specs.lua:2101
+#: map/item_specs.lua:2128
 msgid "What would modern science be without this important item?"
 msgstr "Vad skulle modern forskning vara utan detta viktiga föremål?"
 
-#: map/item_specs.lua:2108
+#: map/item_specs.lua:2135
 msgid "Red Dilithium Crystal"
 msgstr "Röda Dilitiumkristaller"
 
-#: map/item_specs.lua:2112
+#: map/item_specs.lua:2139
 msgid "These dilithium crystals are used as an energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the ordering of the crystal molecules. This principle has allowed us to build devices that consume a lot of energy, but do not need to be connected to a power line."
 msgstr "De här dilitiumkristallerna används som energikällor i många moderna el- och värmedrivna apparater. Energin kan utvinnas tack vare de ordnade molekylerna. Det här gör att man kan bygga apparater som kräver mycket energi men som inte behöver kopplas till elnätet."
 
-#: map/item_specs.lua:2119
+#: map/item_specs.lua:2146
 msgid "Map Maker"
 msgstr "Kartskapare"
 
-#: map/item_specs.lua:2120
+#: map/item_specs.lua:2147
 msgid "To implant the automap device"
 msgstr "Implanterar enheten för autokarta"
 
-#: map/item_specs.lua:2124
+#: map/item_specs.lua:2151
 msgid "This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of its very tiny display, it needs to be held closely to the eye, and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
 msgstr "Den här lilla enheten samlar automatiskt in data från en omkrets på 7 meter och ritar en liten karta över omgivningen. Eftersom den är mycket liten behöver den hållas nära ögat, och då projekterar den en bild direkt in i användarens öga. Kartan delas upp i flera områden för bekvämlighetens skull."
 
-#: map/item_specs.lua:2131
+#: map/item_specs.lua:2158
 msgid "Light Enhancer? to be included in the future..."
 msgstr "Ljusförstärkare? kommer läggas in i framtiden..."
 
-#: map/item_specs.lua:2132 map/item_specs.lua:2136
+#: map/item_specs.lua:2159 map/item_specs.lua:2163
 msgid "See better in the dark."
 msgstr "Se bättre i mörker."
 
-#: map/item_specs.lua:2143
+#: map/item_specs.lua:2170
 msgid "Fork"
 msgstr "Gaffel"
 
-#: map/item_specs.lua:2156 map/item_specs.lua:2168 map/item_specs.lua:2179
-#: map/item_specs.lua:2190
+#: map/item_specs.lua:2183 map/item_specs.lua:2195 map/item_specs.lua:2206
+#: map/item_specs.lua:2217
 msgid "This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault. All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time. It comes with its own power supply, and has a supposed duration of 200 years."
 msgstr "Det här föremålet var en del av projektet \"Självrengörande Köket\" (SrK) innan det Stora Angreppet. Den har en inbyggd rengöringsmekanism som startas automatiskt om den lämnas i en viss tid. Den har även sin egen kraftförsörjning som ska räcka i 200 år."
 
-#: map/item_specs.lua:2164
+#: map/item_specs.lua:2191
 msgid "Plate"
 msgstr "Tallrik"
 
-#: map/item_specs.lua:2175
+#: map/item_specs.lua:2202
 msgid "Mug"
 msgstr "Mugg"
 
-#: map/item_specs.lua:2186
+#: map/item_specs.lua:2213
 msgid "Cup"
 msgstr "Kopp"
 
-#: map/item_specs.lua:2197
+#: map/item_specs.lua:2224
 msgid "Teleporter Homing Beacon"
 msgstr "Teleporter-spårare"
 
-#: map/item_specs.lua:2198
+#: map/item_specs.lua:2225
 msgid "Teleports you elsewhere"
 msgstr "Teleporterar dig någonstans"
 
-#: map/item_specs.lua:2202
+#: map/item_specs.lua:2229
 msgid "This device sends a signal to a nearby teleporter requesting a transport, and then helps with locking on and boosting the signal to ensure the teleportation attempt is successful. The battery inside is sufficient for one use *only* and the device becomes useless afterwards. At least, most people don't try to use them twice... and those few who do usually end up with parts of their body missing or attached in the wrong place. Note: Multiple of these may be grouped together in the inventory."
 msgstr "Den här enheten sänder en signal till närmaste teleporter och ber om transport. Den hjälper sedan till att säkra och förstärka signalen så teleporteringen går smärtfritt. Batteriet i den räcker bara *en* gång och sedan är den värdelös. De flesta försöker inte använden den två gånger... och de som gör det förlorar ofta olika kroppsdelar, eller får tillbaks dem på fel ställen. OBS: Flera sådana här kan grupperas ihop som ett föremål i förrådet."
 
-#: map/item_specs.lua:2209
+#: map/item_specs.lua:2236
 msgid "Data Cube"
 msgstr "Datakub"
 
-#: map/item_specs.lua:2213
+#: map/item_specs.lua:2240
 msgid "This was the most common form of portable information storage used on Earth until the Great Assault, its three-dimensional memory capable of storing up to 2 terabytes and compatible with most of the hardware on the planet."
 msgstr "Det här var den vanligaste formen av portabel datalagring på jorden fram tills det Stora Angreppet. Det tredimensionella minnet kan lagra upp till 2 terabyte och är kompatibelt med nästan all hårdvara."
 
-#: map/item_specs.lua:2220
+#: map/item_specs.lua:2247
 msgid "Kevin's Data Cube"
 msgstr "Kevins Datakub"
 
-#: map/item_specs.lua:2224
+#: map/item_specs.lua:2251
 msgid "This data cube contains confidential government data on the installations around the town. Kevin hopes that when the data is evaluated properly, a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store an infrastructure suitable to this purpose."
 msgstr "Den här datakuben innehåller hemligstämplad information från ledningen om datorinstallationerna i stan. Kevin hoppas hitta ett sätt att lösa den nuvarande krisen genom att utvärdera den på rätt sätt. Men mängden data är så enorm att den bara kan utvärderas rätt med hjälp av ett stort kluster av datorer. Röda Väktarna sägs ha de resurser som krävs i sin bas."
 
-#: map/item_specs.lua:2231
+#: map/item_specs.lua:2258
 msgid "Pandora's Cube"
 msgstr "Pandoras Kub"
 
-#: map/item_specs.lua:2235
+#: map/item_specs.lua:2262
 msgid "This is heavy. Cannot the end of the world come in a smaller package? It would be a great time for Duncan to explain a few things..."
 msgstr "Det här är tungt. Kan inte världens undergång komma i ett mindre paket? Det börjar vara dags för Duncan att förklara några saker..."
 
-#: map/item_specs.lua:2242
+#: map/item_specs.lua:2269
 msgid "Rubber Duck"
 msgstr "Gummianka"
 
-#: map/item_specs.lua:2246
+#: map/item_specs.lua:2273
 msgid "It appears that humans enjoy bathing with squeaky little pieces of plastic shaped like waterfowl. As a penguinoid, you should probably be disturbed, but you have to admit this thing is actually quite adorable."
 msgstr "Vet verkar som människor tycker om att bada med små plastsaker formade som sjöfåglar. Det här borde störa dig som pingvinoid, men du måste faktiskt erkänna att den är rätt så gullig."
 
-#: map/item_specs.lua:2253
+#: map/item_specs.lua:2280
 msgid "Empty Picnic Basket"
 msgstr "Tom Picknickkorg"
 
-#: map/item_specs.lua:2257
+#: map/item_specs.lua:2284
 msgid "This is the latest in 'Dr. How?'-brand picnic basket technology! With patented food-preserving time-dilation, space-bending miniaturization, and anti-gravity, your food stays fresh and your drinks stay cold in a small light-as-a-feather package! Now you can picnic the old fashioned way! Batteries sold separately."
 msgstr "Det här är den senaste picknickkorgs-tekniken från \"Dr. Hur?\"! Med patenterad mat-bevarande tidsutvidgning, miniatyriserad rymd-böjning och anti-gravitation håller sig din man fräsch och dina drycker kalla i ett litet, fjäderlätt paket! Nu kan du äntligen ha picknick på det gamla goda viset! Batterier medföljer ej."
 
-#: map/item_specs.lua:2264
+#: map/item_specs.lua:2291
 msgid "Lunch in a Picnic Basket"
 msgstr "Lunch I En Picknickkorg"
 
-#: map/item_specs.lua:2268
+#: map/item_specs.lua:2295
 msgid "This is a 'Dr. How?'-brand picnic basket stuffed full of enough food and drinks to feed a dozen people. With 'Dr. How?'-time dilation, the food keeps oven-fresh, and the drinks stay ice-cold."
 msgstr "Det här är en picknickkorg av märket \"Dr. Hur?\" med tillräckligt mat och dryck för ett dussin personer. Med \"Dr. Hur?\"-tidsutvidgning håller sig maten ungsfärsk och drycken iskall."
 
-#: map/item_specs.lua:2275
+#: map/item_specs.lua:2302
 msgid "MS Stock Certificate"
 msgstr "MS Aktiebrev"
 
-#: map/item_specs.lua:2279
+#: map/item_specs.lua:2306
 msgid "This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer."
-msgstr ""
+msgstr "Det här är ett aktiebrev som överför äganderätten till femhundrasextiosju miljoner andelar i MegaSystems från William Gapes till innehavaren."
 
-#: map/item_specs.lua:2286
+#: map/item_specs.lua:2313
 msgid "Elbow Grease Can"
 msgstr "Smörj"
 
-#: map/item_specs.lua:2290
+#: map/item_specs.lua:2317
 msgid "A can filled with elbow grease. Hard to make it if you are not a strong man."
 msgstr "En flaska fylld med smörj. Den är svår att använda på ett varsamt sätt."
 
-#: map/item_specs.lua:2301
+#: map/item_specs.lua:2328
 msgid "Linarian Power Crank"
 msgstr "Vevparti För Linärianer"
 
-#: map/item_specs.lua:2305
+#: map/item_specs.lua:2332
 msgid "This mechanical crank, product of the highly advanced and sophisticated technological genius of the Linarian race, performs elaborate operations on energy and directs it towards a biochemical structure. For short, it buffs up your muscles. That's good."
 msgstr "Den här mekaniska veven, en produkt av det mycket avancerade, sofistikerade, genialiska och tekniska sinnet hos Linärianerna, använder en detaljerad procedur för att skicka energi till en biokemisk struktur. Den biffar upp dina muskler, helt enkelt. Det är ju bra."
 
-#: map/item_specs.lua:2312
+#: map/item_specs.lua:2339
 msgid "Tungsten Spikes"
 msgstr "Volframtaggar"
 
-#: map/item_specs.lua:2316
+#: map/item_specs.lua:2343
 msgid "This polycarbonate surface is lined with hard tungsten spikes, and can be installed into a mechanical socket on most melee weapons, offering a simple and affordable solution to increasing damage dealt. Handle only with gloves. Do not attempt to use as footwear. Do not attempt to eat."
 msgstr "Den här skivan av polykarbonat är täckt med taggar av volfram och kan installeras i ett mekanisk sockel på de flesta handvapen - ett enkelt och billigt sätt att göra vapnet farligare. Måste hanteras med skyddshandskar. Får ej användas som skor. Får ej ätas."
 
-#: map/item_specs.lua:2323
+#: map/item_specs.lua:2350
 msgid "Tinfoil Patch"
 msgstr "Aluminiumfolie"
 
-#: map/item_specs.lua:2327
+#: map/item_specs.lua:2354
 msgid "When attached to your armor, this patch of tinfoil allows you to stay cooler by reducing the amount of electromagnetic radiation that your body absorbs."
 msgstr "När den sitter på din sköld hjälper den dig att hålla dig kall genom att minska mängden elektromagnetisk strålning som absorberas av din kropp."
 
-#: map/item_specs.lua:2334
+#: map/item_specs.lua:2361
 msgid "Laser Sight"
 msgstr "Lasersikte"
 
-#: map/item_specs.lua:2338
+#: map/item_specs.lua:2365
 msgid "A miniaturized laser powered by a nuclear battery. When attached parallel to the barrel of a gun, it makes a little red dot on the target and helps with aiming."
 msgstr "En förminskad laser, driven av ett kärnkraftbatteri. När den fästs på gevärspipan skapar den en liten röd prick på målet, vilket hjälper en att sikta."
 
-#: map/item_specs.lua:2345
+#: map/item_specs.lua:2372
 msgid "Exoskeletal Joint"
 msgstr "Exoskelett-led"
 
-#: map/item_specs.lua:2349
+#: map/item_specs.lua:2376
 msgid "This electromechanical joint helps you to perform physically demanding tasks more easily by amplifying the movements of your body."
 msgstr "Den här elektromekaniska leden hjälper dig att utföra fysiskt krävande arbeten genom att förstärka dina kroppsrörelser."
 
-#: map/item_specs.lua:2356
+#: map/item_specs.lua:2383
 msgid "Heatsink"
 msgstr "Kylfläns"
 
-#: map/item_specs.lua:2360
+#: map/item_specs.lua:2387
 msgid "A simple heatsink add-on that keeps you cooler by dissipating heat from your armor."
 msgstr "En enkel kylfläns som håller dig kall genom att leda bort värmen från din sköld."
 
-#: map/item_specs.lua:2367
+#: map/item_specs.lua:2394
 msgid "Peltier Element"
 msgstr "Peliter-element"
 
-#: map/item_specs.lua:2371
+#: map/item_specs.lua:2398
 msgid "A thermoelectric device that increases your cooling rate."
 msgstr "En termoelektrisk manick som höjer avkylningshastigheten."
 
-#: map/item_specs.lua:2378
+#: map/item_specs.lua:2405
 msgid "Steel Mesh"
 msgstr "Stålnät"
 
-#: map/item_specs.lua:2382
+#: map/item_specs.lua:2409
 msgid "A sturdy metal mesh that provides an extra protective layer to your armor."
 msgstr "Ett stadigt metallnät som ger din sköld ett extra skyddslager."
 
-#: map/item_specs.lua:2389
+#: map/item_specs.lua:2416
 msgid "Shock Discharger"
 msgstr "Chockurladdare"
 
-#: map/item_specs.lua:2393
+#: map/item_specs.lua:2420
 msgid "When installed to a melee weapon, this nifty device gives a small electric shock to enemies you hit."
 msgstr "När den installeras på ett handvapen ger den dina fiender en elektrisk chock varje gång de träffas."
 
-#: map/item_specs.lua:2400
+#: map/item_specs.lua:2427
 msgid "Silencer"
 msgstr "Ljuddämpare"
 
-#: map/item_specs.lua:2404
+#: map/item_specs.lua:2431
 msgid "Allowing you to catch yours enemies by surprise, this silencer helps you to do more damage in ranged combat."
 msgstr "Tack vare att den hjälper dig överraska dina fiender kan dina skjutvapen göra större skada."
 
-#: map/item_specs.lua:2411
+#: map/item_specs.lua:2438
 msgid "Coprocessor"
 msgstr "Biprocessor"
 
-#: map/item_specs.lua:2415
+#: map/item_specs.lua:2442
 msgid "By speeding up your computations, this chip helps you to excel in many activities."
 msgstr "Genom att snabba upp beräkningarna gör det här chippet dig bättre på många områden."
 
-#: map/item_specs.lua:2422
+#: map/item_specs.lua:2449
 msgid "Pedometer"
 msgstr "Stegräknare"
 
-#: map/item_specs.lua:2426
+#: map/item_specs.lua:2453
 msgid "A device that helps you to move dexterously by giving feedback on your foot movement."
 msgstr "En pryl som gör att du kan röra dig smidigare genom att analysera ditt fotarbete och ge dig respons."
 
-#: map/item_specs.lua:2433
+#: map/item_specs.lua:2460
 msgid "Foot Warmers"
 msgstr "Fotvärmare"
 
-#: map/item_specs.lua:2437
+#: map/item_specs.lua:2464
 msgid "This pair of electric fuzzy foot warmers would make even a penguin warm and comfortable in any shoes, and help maintain a healthy body temperature, thus preventing colds and making you look cool. At least, that's what the advertisement says. And ads don't lie, do they?"
 msgstr "Det här elektriska, fluffiga fotvärmarna kan få, till och med en pingvins, fötter varma och sköna i vilka skor som helst, och de hjälper dig även hålla en hälsosam kroppstemeratur, vilket förhindrar förkylningar. Och dessutom ser du häftig ut. Åtminstone enligt annonsen. Och annonser ljuger aldirg, eller?"
 
-#: map/item_specs.lua:2444
+#: map/item_specs.lua:2471
 msgid "Circuit Jammer"
 msgstr "Krets-kraschare"
 
-#: map/item_specs.lua:2448
+#: map/item_specs.lua:2475
 msgid "This item improves your melee weapon by blasting the enemies you hit with an electromagnetic pulse. The pulse is powerful enough to temporarily shut down the circuits of the attacked bot."
 msgstr "Det här gör dina handvapen bättre genom att ge fienden en elektromagnetisk puls varje gång du träffar. Pulsen är kraftfull nog att tillfälligt slå ut kretsarna i en bott."
 
-#: map/item_specs.lua:2455
+#: map/item_specs.lua:2482
 msgid "Sensor Disruptor"
 msgstr "Störningssändare"
 
-#: map/item_specs.lua:2459
+#: map/item_specs.lua:2486
 msgid "When attached to a melee weapon, this item induces errors to the sensors of the bots you attack, causing them to slow down momentarily."
 msgstr "När den sitter på ett handvapen skapar den fel i sensorerna hos de bottar du anfaller, vilket får dem att sakta ner."
 
-#: map/item_specs.lua:2466
+#: map/item_specs.lua:2493
 msgid "Headlamp"
 msgstr "Pannlampa"
 
-#: map/item_specs.lua:2470
+#: map/item_specs.lua:2497
 msgid "When fastened to your helmet, this lamp allows you to see better in dark environments."
 msgstr "När den här lampan sitter på din hjälm hjälper den dig att se bättre i mörker."
 
-#: map/item_specs.lua:2477
+#: map/item_specs.lua:2504
 msgid "Brain Stimulator"
 msgstr "Hjärnsimulator"
 
-#: map/item_specs.lua:2481
+#: map/item_specs.lua:2508
 msgid "A chip that allows faster learning by connecting directly to the brain via a neural interface (colloquially referred to as a 'weird swim cap with little thingies on it') and providing additional feedback on various actions."
 msgstr "Ett chipp som gör det möjligt att lära sig snabbare, genom att det ansluts direkt till hjärnan via ett nervgränssnitt (till vardags kallat \"den där badmössan med konstiga små mojänger i) och ger extra respons vid olika rörelser."
 
-#: map/item_specs.lua:2492
+#: map/item_specs.lua:2519
 msgid "NPC Hand to Hand Weapon"
 msgstr "NPC Handvapen"
 
-#: map/item_specs.lua:2505
+#: map/item_specs.lua:2532
 msgid "Bot use only"
 msgstr "Endast för bottar"
 
-#: map/item_specs.lua:2513
+#: map/item_specs.lua:2540
 msgid "Droid 123 Weak Robotic Arm"
 msgstr "Droid 123 Svag Robotarm"
 
-#: map/item_specs.lua:2526 map/item_specs.lua:2550 map/item_specs.lua:2571
-#: map/item_specs.lua:2595 map/item_specs.lua:2616 map/item_specs.lua:2637
-#: map/item_specs.lua:2658 map/item_specs.lua:2679 map/item_specs.lua:2703
-#: map/item_specs.lua:2724 map/item_specs.lua:2745 map/item_specs.lua:2766
-#: map/item_specs.lua:2787 map/item_specs.lua:2808 map/item_specs.lua:2832
-#: map/item_specs.lua:2857 map/item_specs.lua:2882
+#: map/item_specs.lua:2553 map/item_specs.lua:2577 map/item_specs.lua:2598
+#: map/item_specs.lua:2622 map/item_specs.lua:2643 map/item_specs.lua:2664
+#: map/item_specs.lua:2685 map/item_specs.lua:2706 map/item_specs.lua:2730
+#: map/item_specs.lua:2751 map/item_specs.lua:2772 map/item_specs.lua:2793
+#: map/item_specs.lua:2814 map/item_specs.lua:2835 map/item_specs.lua:2859
+#: map/item_specs.lua:2884 map/item_specs.lua:2909
 msgid "Droid weaponry"
 msgstr "Droidvapen"
 
-#: map/item_specs.lua:2534
+#: map/item_specs.lua:2561
 msgid "Droid 139 Plasma Trash Vaporiser"
 msgstr "Droid 139 Plasmaavfallsbrännare"
 
-#: map/item_specs.lua:2558
+#: map/item_specs.lua:2585
 msgid "Droid 247 Robotic Arm"
 msgstr "Droid 247 Robotarm"
 
-#: map/item_specs.lua:2579
+#: map/item_specs.lua:2606
 msgid "Droid 249 Pulse Laser Welder"
 msgstr "Droid 249 Pulslasersvets"
 
-#: map/item_specs.lua:2603
+#: map/item_specs.lua:2630
 msgid "Droid 296 Plasmabeam Cutter"
 msgstr "Droid 296 Plasmaskärare"
 
-#: map/item_specs.lua:2624
+#: map/item_specs.lua:2651
 msgid "Droid 302 Overcharged Barcode Reader"
 msgstr "Droid 302 Överbelastad Streckkodsläsare"
 
-#: map/item_specs.lua:2645
+#: map/item_specs.lua:2672
 msgid "Droid 329 Dual Overcharged Barcode Reader"
 msgstr "Droid 329 Överbelastad Dubbel Streckkodsläsare"
 
-#: map/item_specs.lua:2666
+#: map/item_specs.lua:2693
 msgid "Droid 420 Laser Scalpel"
 msgstr "Droid 420 Laserskalpell"
 
-#: map/item_specs.lua:2687
+#: map/item_specs.lua:2714
 msgid "Droid 476 Small Laser"
 msgstr "Droid 476 Liten Laser"
 
-#: map/item_specs.lua:2711
+#: map/item_specs.lua:2738
 msgid "Droid 493 Power Hammer"
 msgstr "Droid 493 Maskinhammare"
 
-#: map/item_specs.lua:2732
+#: map/item_specs.lua:2759
 msgid "Droid 516 Robotic Fist"
 msgstr "Droid 516 Robotnäve"
 
-#: map/item_specs.lua:2753
+#: map/item_specs.lua:2780
 msgid "Droid 543 Tree Harvester"
 msgstr "Droid 543 Trädskördare"
 
-#: map/item_specs.lua:2774
+#: map/item_specs.lua:2801
 msgid "Droid 571 Robotic Fist"
 msgstr "Droid 571 Robotnäve"
 
-#: map/item_specs.lua:2795
+#: map/item_specs.lua:2822
 msgid "Droid 598 Robotic Fist"
 msgstr "Droid 598 Robotnäve"
 
-#: map/item_specs.lua:2816
+#: map/item_specs.lua:2843
 msgid "Droid 7xx Tux Seeking Missiles"
 msgstr "Droid 7xx Tuxsökande Missiler"
 
-#: map/item_specs.lua:2840
+#: map/item_specs.lua:2867
 msgid "Droid Advanced Twin Laser"
 msgstr "Avancerad Dubbellaser Från Droid"
 
-#: map/item_specs.lua:2865
+#: map/item_specs.lua:2892
 msgid "Droid 883 Exterminator"
 msgstr "Droid 883 Utrotare"
 
-#: map/item_specs.lua:2890
+#: map/item_specs.lua:2917
 msgid "Autogun Laser Pistol"
 msgstr "Laserpistol Från Autogevär"
 
-#: map/item_specs.lua:2905
+#: map/item_specs.lua:2933
 msgid "This is the laser weapon of the autogun. If you see this item whilst normal gameplay, please make a bugreport."
 msgstr "Det här är lasern från ett autogevär. Om du ser det här i spelet, var snäll och rapportera det som en bugg."
 
-#: map/item_specs.lua:2917
+#: map/item_specs.lua:2945
 msgid "PC LOAD LETTER"
 msgstr "PC LADDNINGSBOKSTAV"
 
-#: map/item_specs.lua:2921
+#: map/item_specs.lua:2949
 msgid "An envelop saying 'PC LOAD LETTERS'. I have no idea what that means..."
 msgstr "Ett omslag med texten \"PC LADDNINGSBOKSTÄVER\". Jag har ingen aning vad det ska betyda..."
 
-#: map/item_specs.lua:2928
+#: map/item_specs.lua:2956
 msgid "Cheat Gun"
 msgstr "Fuskgevär"
 
-#: map/item_specs.lua:2943
+#: map/item_specs.lua:2971
 msgid "This item is used by testers. If you find it ingame without using a cheat, please report it as a bug."
 msgstr "Det här används av testare. Om du hittar det i spelet utan fusk, var snäll och rappoertera det som en bugg."
 
-#: map/item_specs.lua:2957
+#: map/item_specs.lua:2985
 msgid "Small Tutorial Axe"
 msgstr "Handledning - Liten Yxa"
 
-#: map/item_specs.lua:2971
+#: map/item_specs.lua:2999
 msgid ""
 "While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well.\n"
 "Sell me!\n"
@@ -2002,11 +2006,11 @@ msgstr ""
 "Sälj mig!\n"
 "Klicka på den röda knappen med ett kryss när du är färdig."
 
-#: map/item_specs.lua:2980
+#: map/item_specs.lua:3008
 msgid "Bottled Tutorial Ice"
 msgstr "Handlednings - Is På Flaska"
 
-#: map/item_specs.lua:2985
+#: map/item_specs.lua:3013
 msgid ""
 "This bottle is filled with ice. It can keep you cool during a warm summer day.\n"
 "Buy me!\n"
@@ -2030,7 +2034,7 @@ msgstr "Bonjour - behöver du något botemedel?"
 
 #: map/levels.dat:3723
 msgid "Office - this way."
-msgstr "Kontor - hitåt."
+msgstr "Kontor - ditåt."
 
 #: map/levels.dat:3726
 msgid "Unauthorized access is strictly forbidden!"
@@ -2038,7 +2042,7 @@ msgstr "Otillåtet tillträde är strikt förbjudet!"
 
 #: map/levels.dat:3732
 msgid "Teleporter. Go anywhere?"
-msgstr "Teleporter. Far varsomhelst?"
+msgstr "Teleporter. Åk var som helst?"
 
 #: map/levels.dat:4054
 msgid "Warehouse Level 1"
@@ -2080,8 +2084,8 @@ msgstr "Den här skylten blockerar vägen så du inte kan gå utanför Matrix. O
 msgid "Crystal Fields"
 msgstr "Kristallfälten"
 
-#: map/levels.dat:12647 map/levels.dat:39087 map/levels.dat:39441
-#: map/levels.dat:39841
+#: map/levels.dat:12647 map/levels.dat:39091 map/levels.dat:39445
+#: map/levels.dat:39845
 msgid "Desert Valley"
 msgstr "Ökendalen"
 
@@ -2126,7 +2130,7 @@ msgid "Northern Shoreline"
 msgstr "Norra strandlinjen"
 
 #: map/levels.dat:23517 map/levels.dat:23642 map/levels.dat:23767
-#: map/levels.dat:40306
+#: map/levels.dat:40310
 msgid "World Edge Sea"
 msgstr "Havet vid världens utkant"
 
@@ -2170,310 +2174,310 @@ msgstr "Fara: Högspänning!"
 msgid "Arena"
 msgstr "Arena"
 
-#: map/levels.dat:30084
+#: map/levels.dat:30088
 msgid "Master Arena"
 msgstr "Mästararena"
 
-#: map/levels.dat:30302
+#: map/levels.dat:30306
 msgid "Hell Fortress Entrance"
 msgstr "Ingång till Helvetesfortet"
 
-#: map/levels.dat:33238
+#: map/levels.dat:33242
 msgid "Upgrade distribution server room. Access restricted to authorized personnel - trespassers will be fired."
 msgstr "Serverrum för uppdateringsutskick. Endast för behörig personal - alla inkräktare kommer avskedas."
 
-#: map/levels.dat:33241
+#: map/levels.dat:33245
 msgid "Please close the door behind you."
 msgstr "Var snäll och stäng dörren efter dig."
 
-#: map/levels.dat:33244
+#: map/levels.dat:33248
 msgid "Beware of hydroxyl acid!"
 msgstr "Varning för diväteoxid!"
 
-#: map/levels.dat:33247
+#: map/levels.dat:33251
 msgid "Beware of the guns."
 msgstr "Akta dig för gevären."
 
-#: map/levels.dat:33250 map/levels.dat:33310 map/levels.dat:33316
+#: map/levels.dat:33254 map/levels.dat:33314 map/levels.dat:33320
 msgid "Please read the other sign first."
 msgstr "Var vänlig läs den andra skylten först."
 
-#: map/levels.dat:33253
+#: map/levels.dat:33257
 msgid "To main office."
 msgstr "Till huvudkontoret."
 
-#: map/levels.dat:33256
+#: map/levels.dat:33260
 msgid "Workers office."
 msgstr "Arbetarkontoret."
 
-#: map/levels.dat:33259
+#: map/levels.dat:33263
 msgid "First MS operating system - printed version"
 msgstr "Första MS-operativsystemet - i tryckt format"
 
-#: map/levels.dat:33262
+#: map/levels.dat:33266
 msgid "Beatings will continue until morale improves."
 msgstr "Smisk kommer fortsätta ges tills moralen blir bättre."
 
-#: map/levels.dat:33265 map/levels.dat:66621
+#: map/levels.dat:33269 map/levels.dat:66642
 msgid "!"
 msgstr "!"
 
-#: map/levels.dat:33268
+#: map/levels.dat:33272
 msgid "Don't waste your time reading signs. Work!"
 msgstr "Slösa inte tid på att läsa skyltar. Arbeta!"
 
-#: map/levels.dat:33271
+#: map/levels.dat:33275
 msgid "Server room"
 msgstr "Serverrum"
 
-#: map/levels.dat:33274
+#: map/levels.dat:33278
 msgid "Offices  - this way"
-msgstr "Kontor - hitåt"
+msgstr "Kontor - ditåt"
 
-#: map/levels.dat:33277
+#: map/levels.dat:33281
 msgid "Slalom"
 msgstr "Slalom"
 
-#: map/levels.dat:33280
+#: map/levels.dat:33284
 msgid "Outdoor track"
 msgstr "Utomhusbana"
 
-#: map/levels.dat:33283
+#: map/levels.dat:33287
 msgid "Accessing computers"
 msgstr "Hämtar information från datorer"
 
-#: map/levels.dat:33286
+#: map/levels.dat:33290
 msgid "Passing doors I"
 msgstr "Passerar dörrar I"
 
-#: map/levels.dat:33289
+#: map/levels.dat:33293
 msgid "Passing doors II"
 msgstr "Passerar dörrar II"
 
-#: map/levels.dat:33292
+#: map/levels.dat:33296
 msgid "To MegaSys office"
 msgstr "Till MegaSys-kontoret"
 
-#: map/levels.dat:33295
+#: map/levels.dat:33299
 msgid "For service: wait"
 msgstr "För betjäning: vänta"
 
-#: map/levels.dat:33298
+#: map/levels.dat:33302
 msgid "Today's special: Foobar"
 msgstr "Dagens special: Foobar"
 
-#: map/levels.dat:33301
+#: map/levels.dat:33305
 msgid "We recommend: Quxbaz"
 msgstr "Vi rekommenderar Quxbaz"
 
-#: map/levels.dat:33304 map/levels.dat:33307
+#: map/levels.dat:33308 map/levels.dat:33311
 msgid "In case of boredom turn gun on."
 msgstr "Om du är uttråkad, slå igång geväret."
 
-#: map/levels.dat:33313
+#: map/levels.dat:33317
 msgid "Authorized personnel only!"
 msgstr "Endast behörig personal!"
 
-#: map/levels.dat:33331
+#: map/levels.dat:33335
 msgid "If the gate is closed, please ask the office for access."
 msgstr "Om porten är stängd, fråga kontoret om tillstånd att passera."
 
-#: map/levels.dat:33593
+#: map/levels.dat:33597
 msgid "Johns Riddle"
 msgstr "Johns gåta"
 
-#: map/levels.dat:33733
+#: map/levels.dat:33737
 msgid "Looking from above, hostiles may appear as salvation."
 msgstr "Sett från ovan kan fienderna bli räddningen."
 
-#: map/levels.dat:33775
+#: map/levels.dat:33779
 msgid "Crystal Caves"
 msgstr "Kristallgrottorna"
 
-#: map/levels.dat:36229
+#: map/levels.dat:36233
 msgid "Forgotten bunker"
 msgstr "Bortglömd bunker"
 
-#: map/levels.dat:36430
+#: map/levels.dat:36434
 msgid "Secret research center"
 msgstr "Hemlig forskningsanläggning"
 
-#: map/levels.dat:37696
+#: map/levels.dat:37700
 msgid "Stop!"
 msgstr "Stopp!"
 
-#: map/levels.dat:37699
+#: map/levels.dat:37703
 msgid "I warned you...  You should consider turning back and running away screaming."
 msgstr "Jag varnade dig... Du borde vända om och springa iväg skrikande."
 
-#: map/levels.dat:37801
+#: map/levels.dat:37805
 msgid "Secret area service tunnels"
 msgstr "Det hemliga områdets underhållstunnlar"
 
-#: map/levels.dat:38041
+#: map/levels.dat:38045
 msgid "Tutorial"
 msgstr "Handledning"
 
-#: map/levels.dat:38961
+#: map/levels.dat:38965
 msgid "Welcome to FreedroidRPG!"
 msgstr "Välkommen till FreedroidRPG!"
 
-#: map/levels.dat:40431 map/levels.dat:40781 map/levels.dat:40935
-#: map/levels.dat:56336 map/levels.dat:63180 map/levels.dat:63835
-#: map/levels.dat:64050 map/levels.dat:64175 map/levels.dat:64736
-#: map/levels.dat:65086 map/levels.dat:65414
+#: map/levels.dat:40435 map/levels.dat:40785 map/levels.dat:40939
+#: map/levels.dat:56340 map/levels.dat:63184 map/levels.dat:63839
+#: map/levels.dat:64054 map/levels.dat:64179 map/levels.dat:64740
+#: map/levels.dat:65090 map/levels.dat:65418
 msgid "World Edge"
 msgstr "Världens ände"
 
-#: map/levels.dat:40667
+#: map/levels.dat:40671
 msgid "Old abandoned complex"
 msgstr "Gammal övergiven anläggning"
 
-#: map/levels.dat:41180
+#: map/levels.dat:41184
 msgid "Worker Mines Entrance"
 msgstr "Ingång till gruvorna"
 
-#: map/levels.dat:41916 map/levels.dat:42271
+#: map/levels.dat:41920 map/levels.dat:42275
 msgid "Southern Shorline"
 msgstr "Södra strandlinjen"
 
-#: map/levels.dat:42856
+#: map/levels.dat:42860
 msgid "HF North Perimeter Defense Structure"
 msgstr "Norra försvarsbyggnaden intill HF"
 
-#: map/levels.dat:43616
+#: map/levels.dat:43620
 msgid "Factory Entrance"
 msgstr "Ingång till fabriken"
 
-#: map/levels.dat:46731
+#: map/levels.dat:46735
 msgid "Power Station and Worker District"
 msgstr "Kraftverks- och arbetarområde"
 
-#: map/levels.dat:49105 map/levels.dat:49108
+#: map/levels.dat:49109 map/levels.dat:49112
 msgid "Power generator, don't change settings!"
 msgstr "Generator, ändra inte på inställningarna!"
 
-#: map/levels.dat:49111
+#: map/levels.dat:49115
 msgid "Insert coin!!!!"
 msgstr "Lägg i mynt!!!"
 
-#: map/levels.dat:49114
+#: map/levels.dat:49118
 msgid "You always loose? Play again, I am sure you'll win next time!"
 msgstr "Förlorar du alltid? Kör igen, du kommer säkert vinna näst gång!"
 
-#: map/levels.dat:49117
+#: map/levels.dat:49121
 msgid "This is only decoration for good atmosphere. Don't cut plastic lawn!"
 msgstr "Detta är endast dekoration för trevlig miljö. Klipp inte konstgräs!"
 
-#: map/levels.dat:49120
+#: map/levels.dat:49124
 msgid "Plastic leaves, do not eat!"
 msgstr "Plastlöv, ät inte!"
 
-#: map/levels.dat:49123
+#: map/levels.dat:49127
 msgid "Caution: nothing. - There is absolutely nothing dangerous in the area!"
 msgstr "Varning: ingenting - det är absolut ingenting farligt här i området!"
 
-#: map/levels.dat:49126
+#: map/levels.dat:49130
 msgid "Stepping on this pad will affect absolutely nothing. LOL!"
 msgstr "Att kliva på den här plattan kommer inte resultera i något alls. LOL!"
 
-#: map/levels.dat:49412
+#: map/levels.dat:49416
 msgid "Factory Core"
 msgstr "Fabrikens innersta del"
 
-#: map/levels.dat:52854
+#: map/levels.dat:52858
 msgid "Research Centre"
 msgstr "Forskningscenter"
 
-#: map/levels.dat:56037
+#: map/levels.dat:56041
 msgid "Worker 1"
 msgstr "Arbetare 1"
 
-#: map/levels.dat:56040
+#: map/levels.dat:56044
 msgid "Worker 2"
 msgstr "Arbetare 2"
 
-#: map/levels.dat:56043
+#: map/levels.dat:56047
 msgid "Worker 3"
 msgstr "Arbetare 3"
 
-#: map/levels.dat:56046
+#: map/levels.dat:56050
 msgid "Worker 4"
 msgstr "Arbetare 4"
 
-#: map/levels.dat:56049
+#: map/levels.dat:56053
 msgid "Please don't talk, sing, take any drugs or write on walls in there!"
 msgstr "Var vänlig varken dansa, sjunga, prata, ta droger eller skriva på väggarna där inne!"
 
-#: map/levels.dat:56052
+#: map/levels.dat:56056
 msgid "Don't touch the fence, there are more efficient ways to waste energy here."
 msgstr "Ta inte i stängslet, det finns bättre sätt att slösa sin energi på här."
 
-#: map/levels.dat:56055
+#: map/levels.dat:56059
 msgid "I have no idea what this red thing is, but it looks pretty cool."
 msgstr "Jag har ingen aning vad den här röda saken är men den ser rätt frän ut."
 
-#: map/levels.dat:56491
+#: map/levels.dat:56495
 msgid "Machine Deck Upper Catacombs"
 msgstr "Maskindäckets övre katakomber"
 
-#: map/levels.dat:56605
+#: map/levels.dat:56609
 msgid "Machine Deck Lower Catacombs"
 msgstr "Maskindäckets under katakomber"
 
-#: map/levels.dat:56719
+#: map/levels.dat:56723
 msgid "Freight Station"
 msgstr "Fraktstation"
 
-#: map/levels.dat:58207
+#: map/levels.dat:58211
 msgid "Old Server Room"
 msgstr "Gammalt severrum"
 
-#: map/levels.dat:59123
+#: map/levels.dat:59127
 msgid "Factory Office"
 msgstr "Fabrikens kontor"
 
-#: map/levels.dat:62889
+#: map/levels.dat:62893
 msgid "Strange Dungeon"
 msgstr "Konstig fängelsehåla"
 
-#: map/levels.dat:63513
+#: map/levels.dat:63517
 msgid "Landing Zone"
 msgstr "Landningsplats"
 
-#: map/levels.dat:65607
+#: map/levels.dat:65611
 msgid "Shelter"
 msgstr "Skyddsrum"
 
-#: map/levels.dat:65724
+#: map/levels.dat:65728
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT ment to be accessible without cheating."
 msgstr "DEBUG-BANA 70 -- Den här banan skapades för att göra testande av FreedroidRPG lite enklare och ska INTE vara åtkomlig utan fusk."
 
-#: map/levels.dat:66618
+#: map/levels.dat:66639
 msgid "?"
 msgstr "?"
 
-#: map/levels.dat:66624
+#: map/levels.dat:66645
 msgid "<"
 msgstr "<"
 
-#: map/levels.dat:66627
+#: map/levels.dat:66648
 msgid "? (flashing)"
 msgstr "? (blinkande)"
 
-#: map/levels.dat:66630
+#: map/levels.dat:66651
 msgid "! (flashing)"
 msgstr "! (blinkande)"
 
-#: map/levels.dat:66633
+#: map/levels.dat:66654
 msgid "< (flashing)"
 msgstr "< (blinkande)"
 
-#: map/levels.dat:66659
+#: map/levels.dat:66680
 msgid "Empty Sea"
 msgstr "Tomt hav"
 
-#: map/levels.dat:66821
+#: map/levels.dat:66842
 msgid "Omega Island"
 msgstr "Omega-ön"
 

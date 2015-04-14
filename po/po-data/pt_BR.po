@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-01-29 17:17+0000\n"
+"POT-Creation-Date: 2015-04-14 01:11+0000\n"
 "PO-Revision-Date: 2014-08-13 18:32+0000\n"
 "Last-Translator: Jonatas L. Nogueira <cpntb1@ymail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/freedroid-rpg/language/pt_BR/)\n"
@@ -376,1624 +376,1628 @@ msgstr "Para a Arena de Novatos"
 msgid "To Master Arena"
 msgstr "Para a Arena Mestre"
 
-#: map/events.dat:668
+#: map/events.dat:662
 msgid "Exit Warehouse"
 msgstr "Sair do Armazém"
 
-#: map/events.dat:675
+#: map/events.dat:669
 msgid "To Warehouse Level 2"
 msgstr "Para o Segundo Piso do Armazém"
 
-#: map/events.dat:685
+#: map/events.dat:679
 msgid "To Warehouse Level 1"
 msgstr "Para o Primeiro Piso do Armazém"
 
-#: map/events.dat:695
+#: map/events.dat:689
 msgid "Back to Kevin's Garden"
 msgstr "Voltar ao Jardim do Kevin"
 
-#: map/events.dat:702
+#: map/events.dat:696
 msgid "To Energy Station"
 msgstr "Para a Estação de Energia"
 
-#: map/events.dat:712
+#: map/events.dat:706
 msgid "Back to Lower Catacombs"
 msgstr "Voltar às Catacumbas Baixas"
 
-#: map/events.dat:722
+#: map/events.dat:716
 msgid "Way to Disruptor Machine Deck"
 msgstr "Caminho para o Convés de Máquinas do Interferidor"
 
-#: map/events.dat:732
+#: map/events.dat:726
 msgid "Back to Town"
 msgstr "Voltar à Cidade"
 
-#: map/events.dat:739
+#: map/events.dat:733
 msgid "To Old Server Room"
 msgstr "Para à Sala de Servidores Antiga"
 
-#: map/events.dat:746
+#: map/events.dat:740
 msgid "Singularity Attacked"
 msgstr "Singularidade Atacada"
 
-#: map/events.dat:757
+#: map/events.dat:751
 msgid "Singularity Death"
 msgstr "Morte da Singularidade"
 
-#: map/events.dat:763
+#: map/events.dat:757
 msgid "The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it..."
 msgstr "O robô principal da Singularidade está morto. Agora o resto está me atacando! Talvez eu devesse ter prestado mais atenção a isso..."
 
-#: map/events.dat:769
+#: map/events.dat:763
 msgid "Automated Factory Mechanism"
 msgstr "Mecanismo da Fábrica Automatizada"
 
-#: map/events.dat:777
+#: map/events.dat:771
 msgid "Elbow grease has been applied to the Automated Factory."
 msgstr "Graxa de Cotovelo foi aplicada à Fábrica Automatizada."
 
-#: map/events.dat:790
+#: map/events.dat:784
 msgid "Enter Warehouse"
 msgstr "Entrar no Armazém"
 
-#: map/events.dat:834
+#: map/events.dat:828
 msgid "Down into Crystal Caves"
 msgstr "Descer para as Minas de Cristal"
 
-#: map/events.dat:879
+#: map/events.dat:873
 msgid "Get me out of here!"
 msgstr "Me tire daqui!"
 
-#: map/events.dat:886
+#: map/events.dat:880
 msgid "296 Teleport Point"
 msgstr "Ponto de Teleporte do 296"
 
-#: map/events.dat:895
+#: map/events.dat:889
 msgid "I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened."
 msgstr "Eu acabei de ouvir uma explosão - O 296 de Ewald deve ter explodido o reator. Talvez eu deva contar ao Ewald o que aconteceu."
 
-#: map/events.dat:911
+#: map/events.dat:905
 msgid "To Omega Island"
 msgstr "Para Ilha Ômega"
 
-#: map/events.dat:952
+#: map/events.dat:946
 msgid "To Kevin's Underground Station"
 msgstr "Para a Estação Subterrânea do Kevin"
 
-#: map/events.dat:998
+#: map/events.dat:992
 msgid "To Underground Station"
 msgstr "Para a Estação Subterrânea"
 
-#: map/events.dat:1250
+#: map/events.dat:1244
 msgid "It's a trap!"
 msgstr "É uma armadilha!"
 
-#: map/events.dat:1645
+#: map/events.dat:1639
 msgid "Hatch with broken ladder"
 msgstr "Escotilha com escada quebrada"
 
-#: map/events.dat:1700
+#: map/events.dat:1694
 msgid "Exit Novice Arena"
 msgstr "Sair da Arena de Novatos"
 
-#: map/events.dat:1707
+#: map/events.dat:1701
 msgid "Start New Wave"
 msgstr "Iniciar Nova Onda"
 
-#: map/events.dat:1770
+#: map/events.dat:1764
 msgid "Wave "
 msgstr "Onda"
 
-#: map/events.dat:1772
+#: map/events.dat:1766
 msgid "Final Wave - Take care!"
 msgstr "Última onda - Tome cuidado!"
 
-#: map/events.dat:1795
+#: map/events.dat:1789
 msgid "All bots are killed! Go to center for next wave."
 msgstr "Todos os robôs mortos! Dirija-se ao centro para a próxima onda."
 
-#: map/events.dat:1798
+#: map/events.dat:1792
 msgid "All bots are killed! You won."
 msgstr "Todos os robôs mortos! Você venceu!"
 
-#: map/events.dat:1827
+#: map/events.dat:1821
 msgid "Respawn Master Arena"
 msgstr "Reiniciar Arena de Mestres"
 
-#: map/events.dat:1834
+#: map/events.dat:1828
 msgid "Exit Master Arena"
 msgstr "Sair da Arena Mestre"
 
-#: map/events.dat:2000
+#: map/events.dat:1994
 msgid "Exit Crystal Caves"
 msgstr "Sair da Minas de Cristal"
 
-#: map/events.dat:2010 map/events.dat:2044
+#: map/events.dat:2004 map/events.dat:2036
 msgid "Back to the Desert"
 msgstr "Voltar ao Deserto"
 
-#: map/events.dat:2056
+#: map/events.dat:2044
 msgid "Tania has made it to the surface for the first time in a very long time."
 msgstr "Tania chegou à superfície pela primeira vez após um longo tempo."
 
-#: map/events.dat:2063 map/events.dat:2070
+#: map/events.dat:2051 map/events.dat:2058
 msgid "To the Secret Area Service Tunnels"
 msgstr "Para os Túneis de Serviço da Área Secreta"
 
-#: map/events.dat:2080 map/events.dat:2087
+#: map/events.dat:2068 map/events.dat:2075
 msgid "Back to the Secret Area"
 msgstr "Voltar à Área Secreta"
 
-#: map/events.dat:2105
+#: map/events.dat:2093
 msgid "Good, now move to the black grating to the East."
 msgstr "Bom, agora mova para o xadrez preto ao Leste."
 
-#: map/events.dat:2118
+#: map/events.dat:2106
 msgid "Good, now talk to Tutorial Tom again."
 msgstr "Ótimo, agora fale com Tutorial Tom novamente."
 
-#: map/events.dat:2307
+#: map/events.dat:2295
 msgid "To a Forgotten Bunker"
 msgstr "Para um Bunker Esquecido"
 
-#: map/events.dat:2328
+#: map/events.dat:2315
 msgid "Unknown place"
 msgstr "Lugar Desconhecido"
 
-#: map/events.dat:2346
+#: map/events.dat:2333
 msgid "Hidden way out"
 msgstr "Saída Oculta"
 
-#: map/events.dat:2400
+#: map/events.dat:2387
 msgid "Back to Disruptor Shield Control"
 msgstr "Voltar ao Controle do Escudo de Interferência"
 
-#: map/events.dat:2407
+#: map/events.dat:2394
 msgid "To Machine Deck Lower Catacombs"
 msgstr "Para a Catacumba Inferior do Convés de Máquinas"
 
-#: map/events.dat:2417
+#: map/events.dat:2404
 msgid "Back to Machine Deck Upper Catacombs"
 msgstr "Voltar à Catacumba Superior do Convés de Máquinas"
 
-#: map/events.dat:2424
+#: map/events.dat:2411
 msgid "To Disruptor Machine Deck"
 msgstr "Para o Convés de Máquinas do Interferidor"
 
-#: map/events.dat:2438
+#: map/events.dat:2425
 msgid "Back To Maintenance Tunnel"
 msgstr "Voltar aos Túneis de Manutenção"
 
-#: map/events.dat:2445
+#: map/events.dat:2432
 msgid "We need to go deeper..."
 msgstr "Precisamos ir mais fundo..."
 
-#: map/events.dat:6567
+#: map/events.dat:6554
 msgid "Back to mainland"
 msgstr "Voltar ao Continente"
 
-#: map/events.dat:6583
+#: map/events.dat:6570
 msgid "Security failure at Hell's Fortress reception desk."
 msgstr "Falha de Segurança na mesa de recepção da Fortaleza Maligna."
 
-#: map/events.dat:6596
+#: map/events.dat:6583
 msgid "Spencer still needed alive to win game."
 msgstr "Spencer deve estar vivo para vencer o jogo."
 
-#: map/item_specs.lua:116
+#: map/events.dat:6585
+msgid "Ooops, you killed Spencer. That was probably not a good idea."
+msgstr "Ooops, você matou Spencer. Isso provavelmente não foi uma boa ideia."
+
+#: map/item_specs.lua:121
 msgid "The first item is VERY buggy ingame, so don't use it."
 msgstr "O Primeiro item é MUITO bugado dentro do jogo, então não o use."
 
-#: map/item_specs.lua:119
+#: map/item_specs.lua:124
 msgid "Dummy item. If you see this, please report it as bug."
 msgstr "Manequim de Item. Se você ver isso, por favor reporte isso como um bug."
 
-#: map/item_specs.lua:123
+#: map/item_specs.lua:128
 msgid "Dummy item. If you see this, report it as bug."
 msgstr "Item-Manequim. Se você ver isso, reporte isso como um bug."
 
-#: map/item_specs.lua:135
+#: map/item_specs.lua:140
 msgid "Big Kitchen Knife"
 msgstr "Faca de Cozinha Grande"
 
-#: map/item_specs.lua:148
+#: map/item_specs.lua:153
 msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
 msgstr "Leve e manobrável em combate,  mas infelizmente não muito efetiva em cortar aço como em quase quebrar se você tentar. Embora certamente é melhor do que bater em metal com suas próprias mãos."
 
-#: map/item_specs.lua:156
+#: map/item_specs.lua:161
 msgid "Cutlass"
 msgstr "Cutelo"
 
-#: map/item_specs.lua:170
+#: map/item_specs.lua:175
 msgid "Long reach while remaining maneuverable enough in combat to find the weak spots in droid armor are the advantages that partially makes up for the inability of a cutting blade to incur lots of damage on a heavily protected target. Repeatedly striking at metal quickly damages the blade though."
-msgstr ""
+msgstr "Longo alcance enquanto se mantém manobrável o bastante em combate para encontrar pontos fracos na armadura do robô são as vantagens que parcialmente compensam a inabilidade de uma lâmina de corte infligir dano em um alvo fortemente protegido. Cuidado, repetidamente bater em metal rapidamente danifica a lâmina."
 
-#: map/item_specs.lua:178
+#: map/item_specs.lua:183
 msgid "Antique Greatsword"
 msgstr "Espada Larga Antiga"
 
-#: map/item_specs.lua:193
+#: map/item_specs.lua:198
 msgid "Very maneuverable for it's size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
 msgstr ""
 
-#: map/item_specs.lua:201
+#: map/item_specs.lua:206
 msgid "Chainsaw"
 msgstr "Motosserra"
 
-#: map/item_specs.lua:216
+#: map/item_specs.lua:221
 msgid "Quite efficient at separating limbs from even a droid body, or digging through weaker armored parts to cause massive damage on internal electronics. But, the chain wears out very quickly when used on materials harder than wood, and supply shortages of new chains and other parts makes it expensive to maintain."
 msgstr ""
 
-#: map/item_specs.lua:224
+#: map/item_specs.lua:229
 msgid "Meat Cleaver"
 msgstr "Cutelo de Carne"
 
-#: map/item_specs.lua:237
+#: map/item_specs.lua:242
 msgid "Designed to chop through meat and bones, it's not as fragile as cutting blades when used against metal enemies. However, it is a bit slower and clumsier to use than more graceful weapons."
 msgstr ""
 
-#: map/item_specs.lua:245
+#: map/item_specs.lua:250
 msgid "Small Axe"
 msgstr "Machado Pequeno"
 
-#: map/item_specs.lua:259
+#: map/item_specs.lua:264
 msgid "While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well."
 msgstr "Enquanto este machado foi feito para cortar madeira, com sorte você pode também danificar partes vitais de um robô."
 
-#: map/item_specs.lua:267
+#: map/item_specs.lua:272
 msgid "Large Axe"
 msgstr "Machado Grande"
 
-#: map/item_specs.lua:282
+#: map/item_specs.lua:287
 msgid "While this weapon is somewhat slow and cumbersome to use, it is as good at leaving big dents in droids as it is at felling trees. A good hit is often capable of taking out lesser droids in a single hit."
 msgstr ""
 
-#: map/item_specs.lua:290
+#: map/item_specs.lua:295
 msgid "Hunting Knife"
 msgstr "Faca de Caça"
 
-#: map/item_specs.lua:303
+#: map/item_specs.lua:308
 msgid "A short stabbing dagger doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas, so it's still better than trying to take the machines on with bare hands."
 msgstr ""
 
-#: map/item_specs.lua:311
+#: map/item_specs.lua:316
 msgid "Iron Pipe"
 msgstr "Cano de Ferro"
 
-#: map/item_specs.lua:324
+#: map/item_specs.lua:329
 msgid "A medium sized water pipe of iron can turn into an effective weapon even versus a metal opponent. While not likely to penetrate the armor of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
 msgstr ""
 
-#: map/item_specs.lua:332
+#: map/item_specs.lua:337
 msgid "Big Wrench"
 msgstr "Grande Chave Inglesa"
 
-#: map/item_specs.lua:345
+#: map/item_specs.lua:350
 msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands on, brutal way if needed."
 msgstr "Um grande e pesada chave inglesa pode ser surpreendentemente efetiva em tornar o robô em peças avulsas, força bruta se necessário."
 
-#: map/item_specs.lua:353
+#: map/item_specs.lua:358
 msgid "Crowbar"
 msgstr "Alavanca"
 
-#: map/item_specs.lua:367
+#: map/item_specs.lua:372
 msgid "Something originally intended for breaking up doors or pulling out nails can also be used to break open droid skulls or give enough leverage to pull off their extremities."
 msgstr ""
 
-#: map/item_specs.lua:375
+#: map/item_specs.lua:380
 msgid "Power Hammer"
 msgstr "Martelo de Força"
 
-#: map/item_specs.lua:389
+#: map/item_specs.lua:395
 msgid "The POWER NAIL DRIVER 3000 will, according to the advertisement, 'build your house for you'. While it's unclear how many nails your igloo will actually need, it sure can be handy nonetheless for bashing bot skulls. As long as the battery lasts, anyway."
 msgstr ""
 
-#: map/item_specs.lua:397
+#: map/item_specs.lua:403
 msgid "Mace"
 msgstr "Maça"
 
-#: map/item_specs.lua:411
+#: map/item_specs.lua:417
 msgid "The mace already proved on the medieval battlefield that it was good at crushing even heavily armored skulls. Unfortunately for the droids, this old knowledge still holds true."
 msgstr "A maça já provou no campo de batalha medieval ser boa em quebrar até crânios fortemente blindados. Infelizmente para os robôs, esse conhecimento continua verdadeiro."
 
-#: map/item_specs.lua:419
+#: map/item_specs.lua:425
 msgid "Baseball Bat"
 msgstr "Bastão de Beisebol"
 
-#: map/item_specs.lua:434
+#: map/item_specs.lua:440
 msgid "With 1-2 good two handed swings, a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon, because wooden bats have a predilection for splitting in two after too many hard hits."
 msgstr ""
 
-#: map/item_specs.lua:442
+#: map/item_specs.lua:448
 msgid "Iron Bar"
 msgstr "Barra de Ferro"
 
-#: map/item_specs.lua:457
+#: map/item_specs.lua:463
 msgid "A bit slow and cumbersome to use, and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But if you do hit, you are sure to do more damage than just a scratch."
 msgstr "Um pouco lenta e difícil de usar, além de proibir a segurança de um escudo, esta arma nem sempre é a melhor opção. Mas, se vocÊ acertar, tens a certeza de fazer muito mais do que um mero arranhão."
 
-#: map/item_specs.lua:465
+#: map/item_specs.lua:471
 msgid "Sledgehammer"
 msgstr "Marreta"
 
-#: map/item_specs.lua:480
+#: map/item_specs.lua:486
 msgid "Very slow and only for the strongest wielder, but only the tougher droids can survive more than 1-2 direct hits."
 msgstr ""
 
-#: map/item_specs.lua:488
+#: map/item_specs.lua:494
 msgid "Light Saber"
 msgstr "Sabre de Luz"
 
-#: map/item_specs.lua:504
+#: map/item_specs.lua:511
 msgid "In the hands of a true master, this excellent technological craftsmanship is as deadly as it is beautiful. It requires laser crystals to work properly."
 msgstr ""
 
-#: map/item_specs.lua:512
+#: map/item_specs.lua:519
 msgid "Laser Staff"
 msgstr "Bastão Laser"
 
-#: map/item_specs.lua:527
+#: map/item_specs.lua:535
 msgid "A close combat master with this weapon in his hands is a pure whirling dervish of death. It requires laser crystals to work properly."
 msgstr ""
 
-#: map/item_specs.lua:535
+#: map/item_specs.lua:543
 msgid "Nobody's Edge"
 msgstr "Fim de Ninguém"
 
-#: map/item_specs.lua:547
+#: map/item_specs.lua:555
 msgid "This blade pulses with evil. That power. That energy. Nothing can stop you now."
 msgstr "Esta lâmina pulsa com o mal. Esse poder. Essa energia. Nada pode te deter agora."
 
-#: map/item_specs.lua:555
+#: map/item_specs.lua:563
 msgid "Laser Scalpel"
 msgstr "Bisturi a Laser"
 
-#: map/item_specs.lua:567
+#: map/item_specs.lua:575
 msgid "I murdered the only person within a thousand miles who can heal me, and all I got was this lousy scalpel."
 msgstr "Eu assassinei a unica pessoa que poderia me curar em milhares de metros, e tudo que consegui foi este bisturi barulhento."
 
-#: map/item_specs.lua:575
+#: map/item_specs.lua:583
 msgid "Shock Knife"
 msgstr "Faca de Choque"
 
-#: map/item_specs.lua:587 map/item_specs.lua:607
+#: map/item_specs.lua:595 map/item_specs.lua:615
 msgid "FIXME and all values"
 msgstr ""
 
-#: map/item_specs.lua:595
+#: map/item_specs.lua:603
 msgid "Energy Whip"
 msgstr "Chicote de Energia"
 
-#: map/item_specs.lua:619
+#: map/item_specs.lua:627
 msgid ".22 LR Ammunition"
 msgstr "Munição .22 LR"
 
-#: map/item_specs.lua:623
+#: map/item_specs.lua:631
 msgid ".22 Long Rifle ammunition used to be a very common ammo for target practice, mainly because it was cheap and gave little recoil. It's just too weak to penetrate any real droid armor though."
 msgstr ""
 
-#: map/item_specs.lua:630
+#: map/item_specs.lua:638
 msgid ".22 Automatic"
 msgstr ".22 Automática"
 
-#: map/item_specs.lua:645
+#: map/item_specs.lua:654
 msgid "With .22 ammo, it's mostly dumb luck if you actually damage a bot with this pistol. On the bright side, you will get a LOT of target practice out of each bot before a bullet or two manages to find a weak enough spot to take the bot out."
 msgstr "Com munição .22, você conseguirá ganhar na loteria se fizer um arranhão no robô com esta pistola. mas veja pelo lado bom: Você vai ganhar MUITO treino em cada robô antes de um tiro ou dois achem um ponto fraco o bastante para derrubar o robô."
 
-#: map/item_specs.lua:653
+#: map/item_specs.lua:662
 msgid ".22 Hunting Rifle"
 msgstr "Rifle de Caça .22"
 
-#: map/item_specs.lua:669
+#: map/item_specs.lua:679
 msgid "A .22 hunting rifle was mainly used for sports shooting and for cheap training. As a hunting weapon its main use was to kill small vermin such as rats and squirrels. It was also highly effective against rabbits. Unfortunately, you won't be hunting 'wabbits'..."
 msgstr ""
 
-#: map/item_specs.lua:677
+#: map/item_specs.lua:687
 msgid "Shotgun Shells"
 msgstr "Cartucho de Espingarda"
 
-#: map/item_specs.lua:681
+#: map/item_specs.lua:691
 msgid "Shotgun shells come in a range of gauges but mixing and matching shotgun ammo sizes can cause your gun to explode, taking your hand along with it. Lucky for you, all of your ammo is the same size, and fits your shotgun(s) perfectly. An additional bonus is that it all seems to be buckshot."
 msgstr ""
 
-#: map/item_specs.lua:688
+#: map/item_specs.lua:698
 msgid "Two Barrel Sawn Off Shotgun"
 msgstr "Espingarda de Dois Barris Serrada"
 
-#: map/item_specs.lua:703
+#: map/item_specs.lua:714
 msgid "Often wielded in the past by thugs or convenience store owners, this little baby is less powerful than the two-handed model, but makes up for it by letting you use a shield in conjunction with it."
 msgstr ""
 
-#: map/item_specs.lua:711
+#: map/item_specs.lua:722
 msgid "Two Barrel Shotgun"
 msgstr "Espingarda de Dois Barris"
 
-#: map/item_specs.lua:727
+#: map/item_specs.lua:739
 msgid "An old standby of farmers and bird hunters. While capable of causing a fair amount of damage to droid armor, the limited rounds capacity and fairly slow reloading time make this weapon preferable to melee weapons, but only just. Requires two hands to wield."
 msgstr ""
 
-#: map/item_specs.lua:735
+#: map/item_specs.lua:747
 msgid "Pump Action Shotgun"
 msgstr "Espingarda à Ação de Bomba"
 
-#: map/item_specs.lua:751
+#: map/item_specs.lua:764
 msgid "The pump action shotgun isn't quite as powerful as the double barrel equivalent, but it does hold more ammo per clip. Requires two hands to wield."
 msgstr ""
 
-#: map/item_specs.lua:759
+#: map/item_specs.lua:772
 msgid "9x19mm Ammunition"
 msgstr "Munição 9x19mm"
 
-#: map/item_specs.lua:763
+#: map/item_specs.lua:776
 msgid "Plasma crystal load. This is the most common way of loading a plasma weapon."
 msgstr ""
 
-#: map/item_specs.lua:770
+#: map/item_specs.lua:783
 msgid "9mm Automatic"
 msgstr "9mm Automática"
 
-#: map/item_specs.lua:785
+#: map/item_specs.lua:799
 msgid "Nine millimeter ammo is a common caliber. While not very powerful, it allows for more rounds per clip than bigger ammunition."
 msgstr ""
 
-#: map/item_specs.lua:793
+#: map/item_specs.lua:807
 msgid "9mm Sub Machine Gun"
 msgstr "Metralhadora 9mm"
 
-#: map/item_specs.lua:809
+#: map/item_specs.lua:824
 msgid "These are commonly referred to as bullet hoses."
 msgstr "Também é conhecida como mangueira de bala."
 
-#: map/item_specs.lua:817
+#: map/item_specs.lua:832
 msgid "7.62x39mm Ammunition"
 msgstr "Munição 7.62x39mm"
 
-#: map/item_specs.lua:821
+#: map/item_specs.lua:836
 msgid "7.62mm ammo."
 msgstr "Munição 7.62mm."
 
-#: map/item_specs.lua:828
+#: map/item_specs.lua:843
 msgid "7.62mm Hunting Rifle"
 msgstr "Rifle de Caça 7.62mm"
 
-#: map/item_specs.lua:844
+#: map/item_specs.lua:860
 msgid "7.62 millimeter ammo is commonly used in assault rifles. This is a more civilian take on that concept."
 msgstr ""
 
-#: map/item_specs.lua:852
+#: map/item_specs.lua:868
 msgid "7.62mm AK-47"
 msgstr "7.62mm AK-47"
 
-#: map/item_specs.lua:868
+#: map/item_specs.lua:885
 msgid "The favorite weapon of third-world countries everywhere, this is a mass-produced, fairly reliable automatic weapon."
 msgstr "A arma favorita nos países de segundo mundo, é produzida em massa, uma arma automática razoavelmente confiável."
 
-#: map/item_specs.lua:876
+#: map/item_specs.lua:893
 msgid ".50 BMG (12.7x99mm) Ammunition"
 msgstr "Munição .50BMG (12.7x99mm)"
 
-#: map/item_specs.lua:880
+#: map/item_specs.lua:897
 msgid "Browning Machine Gun ammo."
 msgstr ""
 
-#: map/item_specs.lua:887
+#: map/item_specs.lua:904
 msgid "Barrett M82 Sniper Rifle"
 msgstr ""
 
-#: map/item_specs.lua:904
+#: map/item_specs.lua:922
 msgid "Powerful enough to stop a truck, literally, the likelihood of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesn't even matter if the pesky droid is cowering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in no time."
 msgstr ""
 
-#: map/item_specs.lua:912
+#: map/item_specs.lua:930
 msgid "Laser Power Pack"
 msgstr "Pacote de Energia Laser"
 
-#: map/item_specs.lua:916
+#: map/item_specs.lua:934
 msgid "Energy crystal load for laser weapons and other power tools. Each round fired consumes a load within the crystal."
 msgstr "Carga de cristal para armas laser e outras ferramentas. Cada tiro consome um pacote destes."
 
-#: map/item_specs.lua:923
+#: map/item_specs.lua:941
 msgid "Laser Pistol"
 msgstr "Pistola Laser"
 
-#: map/item_specs.lua:938
+#: map/item_specs.lua:957
 msgid "A basic laser, but it has good uses in certain situations. No warranty of any kind, though."
 msgstr "Um laser básico, mas tem bom uso em certas situações. Nenhuma garantia."
 
-#: map/item_specs.lua:946
+#: map/item_specs.lua:965
 msgid "Laser Rifle"
 msgstr "Rifle de Laser"
 
-#: map/item_specs.lua:962
+#: map/item_specs.lua:982
 msgid "This rifle is a high-end laser weapon. There is only one problem with it: Shooting it is too much fun. People often end up with no ammunition in the middle of a battle."
 msgstr ""
 
-#: map/item_specs.lua:970
+#: map/item_specs.lua:990
 msgid "Laser Pulse Rifle"
 msgstr "Rifle de Pulso de Laser"
 
-#: map/item_specs.lua:986
+#: map/item_specs.lua:1007
 msgid "The pulse laser technology, allowing for many repeated short bursts without the weapon overheating, makes this quite a useful weapon. The damage from each shot is noticeably less than from a Laser rifle, but the firing rate more than makes up for it."
 msgstr ""
 
-#: map/item_specs.lua:994
+#: map/item_specs.lua:1015
 msgid "Laser Pulse Cannon"
 msgstr "Canhão de Pulso de Laser"
 
-#: map/item_specs.lua:1011
+#: map/item_specs.lua:1033
 msgid "The pulse laser technology, allowing for many repeated short bursts without the weapon overheating, combined with a military design makes this weapon the preferred choice for most soldiers. Its quick no-recoil firing, large magazine, and awesome killing power makes it the ideal weapon for cleansing large droid infestations in mere minutes."
 msgstr ""
 
-#: map/item_specs.lua:1019
+#: map/item_specs.lua:1041
 msgid "Plasma Energy Container"
 msgstr "Pacote de Plasma"
 
-#: map/item_specs.lua:1023
+#: map/item_specs.lua:1045
 msgid "A container filled with all materials and energy required to make plasma weapons work in one handy and relatively safe package. This is the most common way of loading a plasma weapon."
 msgstr "Um pacote recheado com todos os materiais e energia requeridos para fazer armas de plasma funcionarem de maneira prática e razoavelmente segura. Esta é a forma mais comum de recarregar uma arma de plasma."
 
-#: map/item_specs.lua:1030
+#: map/item_specs.lua:1052
 msgid "Plasma Pistol"
 msgstr "Pistola de Plasma"
 
-#: map/item_specs.lua:1045
+#: map/item_specs.lua:1068
 msgid "The basic plasma weapon in a conveniently small package."
 msgstr "A arma básica de plasma vem em um pacote convenientemente pequeno."
 
-#: map/item_specs.lua:1053
+#: map/item_specs.lua:1076
 msgid "Plasma Gun"
 msgstr "Arma de Plasma"
 
-#: map/item_specs.lua:1069
+#: map/item_specs.lua:1093
 msgid "A somewhat slow weapon, but once you do hit plenty a bot will just down on the spot. A good alternative to a pulse laser for the skilled marksman."
 msgstr ""
 
-#: map/item_specs.lua:1077
+#: map/item_specs.lua:1101
 msgid "2mm Exterminator Ammunition"
 msgstr "Munição de Exterminador 2mm"
 
-#: map/item_specs.lua:1081
+#: map/item_specs.lua:1105
 msgid "Exterminators need this kind of ammunition. It can cause skin irritations due to leaking extermination radiation when carried close to the body for long time."
 msgstr ""
 
-#: map/item_specs.lua:1088
+#: map/item_specs.lua:1112
 msgid "Exterminator"
 msgstr "Exterminador"
 
-#: map/item_specs.lua:1104
+#: map/item_specs.lua:1129
 msgid "While this weapon is capable of firing really powerful shots, beware of the exceptionally long reloading times. (Don't get swarmed by enemies with this weapon unless you have powerful armor!)"
 msgstr ""
 
-#: map/item_specs.lua:1112
+#: map/item_specs.lua:1137
 msgid "The Super Exterminator!!!"
 msgstr "O Super Exterminador!!!"
 
-#: map/item_specs.lua:1128
+#: map/item_specs.lua:1154
 msgid "This bad boy is known to blow away most enemies with a single blast. A dangerous weapon that you don't want to be on the receiving end of."
 msgstr ""
 
-#: map/item_specs.lua:1136
+#: map/item_specs.lua:1162
 msgid "Electro Laser Rifle"
 msgstr "Rifle de Laser Elétrico"
 
-#: map/item_specs.lua:1152
+#: map/item_specs.lua:1179
 msgid "A specialized beam of laser momentarily ionizes the air between the target and the gun, turning it into highly conductive plasma. Milliseconds later, a powerful electric shock is delivered through the air and hits the target. This weapon is effective against people as it is against bots, and indeed few are the droid classes that can withstand more than a few hits from it before going down. The one downside is the enormous power consumption that makes this weapon expensive to maintain."
 msgstr ""
 
-#: map/item_specs.lua:1160
+#: map/item_specs.lua:1187
 msgid "VMX Gas Grenade"
 msgstr "Granada de Gás VMX"
 
-#: map/item_specs.lua:1161
+#: map/item_specs.lua:1188
 msgid "Gas attack"
 msgstr "Ataque de Gás"
 
-#: map/item_specs.lua:1165
+#: map/item_specs.lua:1192
 msgid "The gas does not look terrifying. It even smells somewhat nice. And then you die. You die a most horrible death, never knowing what killed you."
 msgstr "O gás não parece aterrorizante. Ele até cheira bem. E então você morre. A morte mais terrível, nunca sabendo o que te matou."
 
-#: map/item_specs.lua:1172
+#: map/item_specs.lua:1199
 msgid "Small EMP Shockwave Generator"
 msgstr "Pequeno Gerador de Ondas PEM"
 
-#: map/item_specs.lua:1173
+#: map/item_specs.lua:1200
 msgid "Small Electromagnetic pulse"
 msgstr "Pequeno Pulso Eletromagnético"
 
-#: map/item_specs.lua:1177
+#: map/item_specs.lua:1204
 msgid "This sphere contains a few strange bits of technology invented by Nikola Tesla in the early 20th century. The magnetic pulse that it generates can damage most electronic devices in just one blast."
 msgstr ""
 
-#: map/item_specs.lua:1184
+#: map/item_specs.lua:1211
 msgid "EMP Shockwave Generator"
 msgstr "Gerador de Ondas PEM"
 
-#: map/item_specs.lua:1185
+#: map/item_specs.lua:1212
 msgid "Electromagnetic pulse"
 msgstr "Pulso Eletromagnético (PEM)"
 
-#: map/item_specs.lua:1189
+#: map/item_specs.lua:1216
 msgid "This sphere contains a few strange bits of technology invented by Nikola Tesla in the early 20th century. The magnetic pulse that it generates can destroy most electronic devices in just one blast."
 msgstr ""
 
-#: map/item_specs.lua:1196
+#: map/item_specs.lua:1223
 msgid "Electronic Noise Generator"
 msgstr "Gerador de Ruído Eletrônico"
 
-#: map/item_specs.lua:1197
+#: map/item_specs.lua:1224
 msgid "Disable Electronics"
 msgstr "Desabilita Eletrônicos"
 
-#: map/item_specs.lua:1201
+#: map/item_specs.lua:1228
 msgid "This sphere creates a short blast of electronic noise that temporarily disables most electronics."
 msgstr ""
 
-#: map/item_specs.lua:1208
+#: map/item_specs.lua:1235
 msgid "Small Plasma Shockwave Emitter"
 msgstr "Pequeno Emitidor de Ondas de Plasma"
 
-#: map/item_specs.lua:1209
+#: map/item_specs.lua:1236
 msgid "Explosion"
 msgstr "Explosão"
 
-#: map/item_specs.lua:1213
+#: map/item_specs.lua:1240
 msgid "Said to be an upscaled version of a traditional high temperature explosive."
 msgstr ""
 
-#: map/item_specs.lua:1220
+#: map/item_specs.lua:1247
 msgid "Plasma Shockwave Emitter"
 msgstr "Emissor de Ondas de Plasma"
 
-#: map/item_specs.lua:1221
+#: map/item_specs.lua:1248
 msgid "Huge explosion"
 msgstr "Grande Explosão"
 
-#: map/item_specs.lua:1225
+#: map/item_specs.lua:1252
 msgid "Said to be the downscaled version of the original Pandora's Sphere, this device extinguishes life with superheated plasma."
 msgstr ""
 
-#: map/item_specs.lua:1238
+#: map/item_specs.lua:1265
 msgid "Normal Jacket"
 msgstr "Jaqueta Normal"
 
-#: map/item_specs.lua:1245
+#: map/item_specs.lua:1272
 msgid "This piece of clothing made out of Synthex(TM) does a decent job of protection. I guess. Maybe. I'm not sure."
 msgstr "Esta roupa feita de Sintético(TM) faz um trabalho decente de proteção. Eu acho. Talvez. Não tenho certeza."
 
-#: map/item_specs.lua:1253
+#: map/item_specs.lua:1280
 msgid "Reinforced Jacket"
 msgstr "Jaqueta Reforçada"
 
-#: map/item_specs.lua:1261
+#: map/item_specs.lua:1288
 msgid "One step up from a normal jacket."
 msgstr "Um passo acima da jaqueta normal."
 
-#: map/item_specs.lua:1269
+#: map/item_specs.lua:1296
 msgid "Protective Jacket"
 msgstr "Jaqueta Protetiva"
 
-#: map/item_specs.lua:1277
+#: map/item_specs.lua:1304
 msgid "Very strong for its size, this jacket made out of Shootex(TM) does a good job of absorbing basic blows. It is suitable for all kinds of extreme sports, such as climbing, rafting, bungee-jumping, fencing and even racing."
 msgstr ""
 
-#: map/item_specs.lua:1285
+#: map/item_specs.lua:1312
 msgid "Red Guard's Light Robe"
 msgstr "Roupa Leve da Guarda Vermelha"
 
-#: map/item_specs.lua:1293
+#: map/item_specs.lua:1320
 msgid "The universal riot gear of the Red Guard. Tough as nails and able to withstand most blows."
 msgstr "O uniforme universal da Guarda Vermelha. Duro como prego e aguenta a maioria dos tiros básicos."
 
-#: map/item_specs.lua:1301
+#: map/item_specs.lua:1328
 msgid "Red Guard's Heavy Robe"
 msgstr "Roupa Pesada da Guarda Vermelha"
 
-#: map/item_specs.lua:1309
+#: map/item_specs.lua:1336
 msgid "Defense is acquired at a high level with this durable piece of armor."
 msgstr "Defesa é adquirida a um alto nível com esta armadura durável."
 
-#: map/item_specs.lua:1322
+#: map/item_specs.lua:1349
 msgid "Improvised Buckler"
 msgstr "Broquel Improvisado"
 
-#: map/item_specs.lua:1329
+#: map/item_specs.lua:1356
 msgid "This shield is a compilation of various objects which happened to be around. It has tubes, bolts and parts of metal, all slapped together to provide a small bit of protection from enemies. It's very simple and rough, but some sensors and lights have been added to let the wielder know when the item is getting hit, and how long it will remain operational and other cool stuff like that."
 msgstr ""
 
-#: map/item_specs.lua:1337
+#: map/item_specs.lua:1364
 msgid "Bot Carapace"
 msgstr "Carcaça de Robô"
 
-#: map/item_specs.lua:1344
+#: map/item_specs.lua:1371
 msgid "A small, lightweight and pretty straightforward shield. Provides decent protection."
 msgstr "Um escudo pequeno, leve e bem franco. Provê proteção decente."
 
-#: map/item_specs.lua:1352
+#: map/item_specs.lua:1379
 msgid "Standard Shield"
 msgstr "Escudo Padrão"
 
-#: map/item_specs.lua:1359
+#: map/item_specs.lua:1386
 msgid "Better than a buckler, and a lot more effective."
 msgstr "Melhor que um broquel, e bem mais efetivo."
 
-#: map/item_specs.lua:1367
+#: map/item_specs.lua:1394
 msgid "Heavy Shield"
 msgstr "Escudo Pesado"
 
-#: map/item_specs.lua:1375
+#: map/item_specs.lua:1402
 msgid "A medium sized, reinforced shield. Heavier than a standard shield, but should last longer. Provides decent protection."
 msgstr ""
 
-#: map/item_specs.lua:1383
+#: map/item_specs.lua:1410
 msgid "Riot Shield"
 msgstr "Escudo Anti-Motim"
 
-#: map/item_specs.lua:1391
+#: map/item_specs.lua:1418
 msgid "A powerful shield, as useful to protect from bots as it is to control big crowds of angry protesters."
 msgstr "Um escudo poderoso, útil para proteger de robôs e controlar multidões de protestantes furiosos."
 
-#: map/item_specs.lua:1403
+#: map/item_specs.lua:1430
 msgid "Pot Helmet"
 msgstr "Capacete de Panela"
 
-#: map/item_specs.lua:1410
+#: map/item_specs.lua:1437
 msgid "Top of the line head gear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
 msgstr ""
 
-#: map/item_specs.lua:1418
+#: map/item_specs.lua:1445
 msgid "Worker Helmet"
 msgstr "Capacete de Trabalhador"
 
-#: map/item_specs.lua:1425
+#: map/item_specs.lua:1452
 msgid "A simple cover to protect your head. Don't expect to be incognito, your flippers and penguin like body are hard to miss."
 msgstr ""
 
-#: map/item_specs.lua:1433
+#: map/item_specs.lua:1460
 msgid "Miner Helmet"
 msgstr "Capacete de Mineirador"
 
-#: map/item_specs.lua:1440
+#: map/item_specs.lua:1467
 msgid "It might look a bit silly, but it will save your life many times."
 msgstr "Pode parecer um pouco bobo, mas vai salvar sua vida várias vezes."
 
-#: map/item_specs.lua:1448
+#: map/item_specs.lua:1475
 msgid "Light Battle Helmet"
 msgstr "Capacete de Batalha Leve"
 
-#: map/item_specs.lua:1456
+#: map/item_specs.lua:1483
 msgid "A rather useful helmet, has a few defense issues here and there but mainly is worth the wear."
 msgstr "Um capacete bem útil, tem alguns problemas defensivo aqui e ali, mas majoritariamente é digno de se usar."
 
-#: map/item_specs.lua:1464
+#: map/item_specs.lua:1491
 msgid "Battle Helmet"
 msgstr "Capacete de Batalha"
 
-#: map/item_specs.lua:1472
+#: map/item_specs.lua:1499
 msgid "Now this is head protection. Feel safe with sturdy Resosteel(TM) protecting your head. Not as comfortable as other hats but the precious content stays safe."
 msgstr ""
 
-#: map/item_specs.lua:1480
+#: map/item_specs.lua:1507
 msgid "Dixon's Helmet"
 msgstr "Capacete do Dixon"
 
-#: map/item_specs.lua:1487
+#: map/item_specs.lua:1514
 msgid "A gift from Dixon. It looks like it is about to turn into dust."
 msgstr "Um presente de Dixon. Esta prestes a virar poeira."
 
-#: map/item_specs.lua:1500
+#: map/item_specs.lua:1527
 msgid "Shoes"
 msgstr "Sapatos"
 
-#: map/item_specs.lua:1507
+#: map/item_specs.lua:1534
 msgid "These simple boots are designed for comfort of the wearer more than to give actual protection."
 msgstr "Essas botas simples foram designadas para serem confortáveis, não para proteger."
 
-#: map/item_specs.lua:1515
+#: map/item_specs.lua:1542
 msgid "Worker Shoes"
 msgstr "Botas de Trabalho"
 
-#: map/item_specs.lua:1522
+#: map/item_specs.lua:1549
 msgid "These footwear are steel tipped, and generally quite sturdy, giving a bit extra protection."
 msgstr ""
 
-#: map/item_specs.lua:1530
+#: map/item_specs.lua:1557
 msgid "Battle Shoes"
 msgstr "Botas Militares"
 
-#: map/item_specs.lua:1537
+#: map/item_specs.lua:1564
 msgid "These boots are similar to the simple shoes, but the material they are made of is hardened for extra protection."
 msgstr ""
 
-#: map/item_specs.lua:1549
+#: map/item_specs.lua:1576
 msgid "Source Book of Emergency Shutdown"
 msgstr "Livro Fonte de Desligamento de Emergência"
 
-#: map/item_specs.lua:1550 map/item_specs.lua:1562 map/item_specs.lua:1574
-#: map/item_specs.lua:1586 map/item_specs.lua:1598 map/item_specs.lua:1610
-#: map/item_specs.lua:1622 map/item_specs.lua:1634 map/item_specs.lua:1646
-#: map/item_specs.lua:1658 map/item_specs.lua:1670 map/item_specs.lua:1682
-#: map/item_specs.lua:1706 map/item_specs.lua:1718 map/item_specs.lua:1730
-#: map/item_specs.lua:1742 map/item_specs.lua:1754 map/item_specs.lua:1766
+#: map/item_specs.lua:1577 map/item_specs.lua:1589 map/item_specs.lua:1601
+#: map/item_specs.lua:1613 map/item_specs.lua:1625 map/item_specs.lua:1637
+#: map/item_specs.lua:1649 map/item_specs.lua:1661 map/item_specs.lua:1673
+#: map/item_specs.lua:1685 map/item_specs.lua:1697 map/item_specs.lua:1709
+#: map/item_specs.lua:1733 map/item_specs.lua:1745 map/item_specs.lua:1757
+#: map/item_specs.lua:1769 map/item_specs.lua:1781 map/item_specs.lua:1793
 msgid "Permanently acquire/enhance this program"
 msgstr "Permanentemente adquire/melhora este programa"
 
-#: map/item_specs.lua:1554
+#: map/item_specs.lua:1581
 msgid "Everyone needs to blow off some steam every now and then."
 msgstr ""
 
-#: map/item_specs.lua:1561
+#: map/item_specs.lua:1588
 msgid "Source Book of Check System Integrity"
 msgstr "Livro Fonte de Checar a Integridade do Sistema"
 
-#: map/item_specs.lua:1566
+#: map/item_specs.lua:1593
 msgid "An incredible healing program, probably the only one you will ever need."
 msgstr ""
 
-#: map/item_specs.lua:1573
+#: map/item_specs.lua:1600
 msgid "Source Book of Sanctuary"
 msgstr "Livro Fonte de Santuário"
 
-#: map/item_specs.lua:1578
+#: map/item_specs.lua:1605
 msgid "The art of rapidly moving away from danger is very useful. Even when used in reverse, it has its uses."
 msgstr "A arte de rapidamente fugir do perigo é muito útil. Mesmo quando usado ao contrário, tem seus usos."
 
-#: map/item_specs.lua:1585
+#: map/item_specs.lua:1612
 msgid "Source Book of Malformed Packet"
 msgstr "Livro Fonte do Pacote Malformado"
 
-#: map/item_specs.lua:1590
+#: map/item_specs.lua:1617
 msgid "When computers are presented with the unexpected, they can damage themselves."
 msgstr "Quando os computadores são presenteados com o inesperado, eles podem se machucarem."
 
-#: map/item_specs.lua:1597
+#: map/item_specs.lua:1624
 msgid "Source Book of Calculate Pi"
 msgstr "Livro Fonte de Calcular Pi"
 
-#: map/item_specs.lua:1602 map/skill_specs.lua:102
+#: map/item_specs.lua:1629 map/skill_specs.lua:102
 msgid "It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
 msgstr "Não é um grande problema fazer sistemas mal designados caçarem o impossível, causando um impacto de performance."
 
-#: map/item_specs.lua:1609
+#: map/item_specs.lua:1636
 msgid "Source Book of Blue Screen"
 msgstr "Livro Fonte da Tela Azul"
 
-#: map/item_specs.lua:1614 map/item_specs.lua:1626
+#: map/item_specs.lua:1641 map/item_specs.lua:1653
 msgid "With a little touch a war machine comes crashing to a halt. For a while."
 msgstr "Com um pequeno toque uma máquina de guerra cai ao desligamento. Por um momento."
 
-#: map/item_specs.lua:1621
+#: map/item_specs.lua:1648
 msgid "Source Book of Broadcast Blue Screen"
 msgstr "Livro Fonte de Espalhar Tela Azul"
 
-#: map/item_specs.lua:1633
+#: map/item_specs.lua:1660
 msgid "Source Book of Invisibility"
 msgstr "Livro Fonte da Invisibilidade"
 
-#: map/item_specs.lua:1638 map/skill_specs.lua:80
+#: map/item_specs.lua:1665 map/skill_specs.lua:80
 msgid "I am not the Linarian you are looking for."
 msgstr "Eu não sou o Linariano que você está procurando."
 
-#: map/item_specs.lua:1645
+#: map/item_specs.lua:1672
 msgid "Source Book of Virus"
 msgstr "Livro Fonte do Virus"
 
-#: map/item_specs.lua:1650 map/skill_specs.lua:137
+#: map/item_specs.lua:1677 map/skill_specs.lua:137
 msgid "This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
 msgstr "Isso não é só um upgrade de firmware, meu caro robô. Você está prestes a descobrir exatamente o que eu quero te dar."
 
-#: map/item_specs.lua:1657
+#: map/item_specs.lua:1684
 msgid "Source Book of Broadcast Virus"
 msgstr "Livro Fonte de Espalhar Virus"
 
-#: map/item_specs.lua:1662
+#: map/item_specs.lua:1689
 msgid "The network is wide and dangerous. Many traps await the weak and unprepared."
 msgstr "A rede é larga e perigosa. Muitas armadilhas aguardam os fracos e despreparados."
 
-#: map/item_specs.lua:1669
+#: map/item_specs.lua:1696
 msgid "Source Book of Dispel Smoke"
 msgstr ""
 
-#: map/item_specs.lua:1674
+#: map/item_specs.lua:1701
 msgid "By heating up the chips with a malformed program, you can cause them to release the magic smoke which keeps the bot running."
 msgstr ""
 
-#: map/item_specs.lua:1681
+#: map/item_specs.lua:1708
 msgid "Source Book of Killer Poke"
 msgstr ""
 
-#: map/item_specs.lua:1686
+#: map/item_specs.lua:1713
 msgid "Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
 msgstr ""
 
-#: map/item_specs.lua:1693
+#: map/item_specs.lua:1720
 msgid "Source Book of Repair Equipment"
 msgstr "Livro Fonte de Reparar Equipamento"
 
-#: map/item_specs.lua:1694
+#: map/item_specs.lua:1721
 msgid "Learn about repairing items"
 msgstr "Aprende a reparar itens"
 
-#: map/item_specs.lua:1698
+#: map/item_specs.lua:1725
 msgid "This manual will help you fix a broken dishwasher, a car, or a gun. The covers does not mention anything about breaking robots however."
 msgstr ""
 
-#: map/item_specs.lua:1705
+#: map/item_specs.lua:1732
 msgid "Source Book of Plasma Discharge"
 msgstr "Livro Fonte da Descarga de Plasma"
 
-#: map/item_specs.lua:1710
+#: map/item_specs.lua:1737
 msgid "The overload setting exists for emergencies. Plasma does not discriminate between bots and humans. Everything is the same to it."
 msgstr ""
 
-#: map/item_specs.lua:1717
+#: map/item_specs.lua:1744
 msgid "Source Book of Nethack"
 msgstr ""
 
-#: map/item_specs.lua:1722
+#: map/item_specs.lua:1749
 msgid "The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
 msgstr ""
 
-#: map/item_specs.lua:1729
+#: map/item_specs.lua:1756
 msgid "Source Book of Ricer CFLAGS"
 msgstr ""
 
-#: map/item_specs.lua:1734
+#: map/item_specs.lua:1761
 msgid "Optimization is the root of all evil. You can gain some temporary improvements to your system, but in the end you are only likely to cause permanent damage."
 msgstr ""
 
-#: map/item_specs.lua:1741
+#: map/item_specs.lua:1768
 msgid "Source Book of Reverse-engineer"
 msgstr "Livro Fonte da Engenharia Reversa"
 
-#: map/item_specs.lua:1746
+#: map/item_specs.lua:1773
 msgid "There is some dark magic in the art of turning bots inside-out to learn all their secrets."
 msgstr ""
 
-#: map/item_specs.lua:1753
+#: map/item_specs.lua:1780
 msgid "Source Book of Light"
 msgstr "Livro Fonte da Luz"
 
-#: map/item_specs.lua:1758 map/skill_specs.lua:215
+#: map/item_specs.lua:1785 map/skill_specs.lua:215
 msgid "Let there be light..."
 msgstr "Que haja luz..."
 
-#: map/item_specs.lua:1765
+#: map/item_specs.lua:1792
 msgid "Source Book of Network Mapper"
 msgstr ""
 
-#: map/item_specs.lua:1770 map/skill_specs.lua:205
+#: map/item_specs.lua:1797 map/skill_specs.lua:205
 msgid "Knowing what your enemies are up to is easy with a little signal intelligence. Displays enemy locations on your automap."
 msgstr "Conhecer o que seus inimigos irão fazer é fácil com um pequeno sinal de inteligência. Exibe localização de inimigos no seu automapa."
 
-#: map/item_specs.lua:1777
+#: map/item_specs.lua:1804
 msgid "Subatomic and Nuclear Science for Dummies, Volume IV"
 msgstr ""
 
-#: map/item_specs.lua:1781
+#: map/item_specs.lua:1808
 msgid "From the back of the cover: 'Subatomic and Nuclear Science for Dummies, Volume IV is the most popular handbook series for learning nuclear science: Learn to generate enough power to keep you town lit up for a decade! Discover how to really scare neighboring countries! Find out how to make your very own mutant pet!' This obviously important tome of knowledge from before the great assault comes with no warranty whatsoever."
 msgstr ""
 
-#: map/item_specs.lua:1788
+#: map/item_specs.lua:1815
 msgid "Manual of the Automated Factory"
 msgstr "Manual da Fábrica Automatizada"
 
-#: map/item_specs.lua:1792
+#: map/item_specs.lua:1819
 msgid "This book describes the operation and repair of automated factories. Included are common error codes and how to fix them. However, most repairs simply call for liberal application of 'Elbow Grease'."
 msgstr ""
 
-#: map/item_specs.lua:1799
+#: map/item_specs.lua:1826
 msgid "Manual of the Extract Bot Parts"
 msgstr "Manual de Extrair Partes de Robôs"
 
-#: map/item_specs.lua:1800 map/item_specs.lua:1804
+#: map/item_specs.lua:1827 map/item_specs.lua:1831
 msgid "USE FOR CHEATING ONLY. If you see this online, please report the bug."
 msgstr "USE APENAS PARA TRAPACEAR. Se você ver isso sem trapacear, reporte este bug."
 
-#: map/item_specs.lua:1815
+#: map/item_specs.lua:1842
 msgid "Strength Pill"
 msgstr "Pílula de Força"
 
-#: map/item_specs.lua:1816
+#: map/item_specs.lua:1843
 msgid "Permanently gain +1 strength"
 msgstr "Permanentemente ganha +1 força"
 
-#: map/item_specs.lua:1820
+#: map/item_specs.lua:1847
 msgid "These pills permanently raise strength within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
 msgstr ""
 
-#: map/item_specs.lua:1827
+#: map/item_specs.lua:1854
 msgid "Dexterity Pill"
 msgstr "Pílula de Habilidade"
 
-#: map/item_specs.lua:1828
+#: map/item_specs.lua:1855
 msgid "Permanently gain +1 dexterity"
 msgstr "Permanentemente ganha +1 habilidade"
 
-#: map/item_specs.lua:1832
+#: map/item_specs.lua:1859
 msgid "These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
 msgstr ""
 
-#: map/item_specs.lua:1839
+#: map/item_specs.lua:1866
 msgid "Code Pill"
 msgstr "Pílula de Código"
 
-#: map/item_specs.lua:1840
+#: map/item_specs.lua:1867
 msgid "Permanently gain +1 cooling"
 msgstr "Permanentemente ganha +1 resfriamento"
 
-#: map/item_specs.lua:1844
+#: map/item_specs.lua:1871
 msgid "Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf these down to *see* the code."
 msgstr "Cara! Esta pilula sensacional vai fazer suas habilidades de código decolarem! Fantástico. Engula depressa para *ver* o código."
 
-#: map/item_specs.lua:1851
+#: map/item_specs.lua:1878
 msgid "Brain Enlargement Pills Antidote"
 msgstr "Antídoto da Pílula de Enlargamento Cerebral"
 
-#: map/item_specs.lua:1855
+#: map/item_specs.lua:1882
 msgid "These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the Internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
 msgstr ""
 
-#: map/item_specs.lua:1862
+#: map/item_specs.lua:1889
 msgid "Brain Enlargement Pill"
 msgstr "Pílula de Enlargamento Cerebral"
 
-#: map/item_specs.lua:1863
+#: map/item_specs.lua:1890
 msgid "Gain fast acting cancer"
 msgstr "Ganhe um câncer rapidamente"
 
-#: map/item_specs.lua:1867
+#: map/item_specs.lua:1894
 #, c-format
 msgid "Doctors all over the planet have tried to suppress the amazing breakthrough which has brought increased alertness and concentration that comes with a larger brain. They are synthesized using cutting edge technology and 100% natural herbal ingredients from a secret five thousand-year-old traditional holistic recipe. Get yours direct from our online Canadian ph4rm4cy!!! 100% satisfaction guaranteed!!!"
 msgstr ""
 
-#: map/item_specs.lua:1874
+#: map/item_specs.lua:1901
 msgid "Diet Supplement"
 msgstr "Suplemento Diet"
 
-#: map/item_specs.lua:1875 map/item_specs.lua:1887 map/item_specs.lua:1899
+#: map/item_specs.lua:1902 map/item_specs.lua:1914 map/item_specs.lua:1926
 msgid "Recover Health"
 msgstr "Recupera Vida"
 
-#: map/item_specs.lua:1879
+#: map/item_specs.lua:1906
 msgid "Only proper vitamin and mineral intake can keep you healthy during the apocalypse. This can cure a cold."
 msgstr "Apenas vitaminas e minerais adequados podem te manter saudável durante o apocalipse. Pode curar um resfriado."
 
-#: map/item_specs.lua:1886
+#: map/item_specs.lua:1913
 msgid "Antibiotic"
 msgstr "Antibiótico"
 
-#: map/item_specs.lua:1891
+#: map/item_specs.lua:1918
 msgid "Truly wonderful things can be extracted from molds. This can cure lethal food poisoning. Wish you had that in your last Nethack game, eh?"
 msgstr ""
 
-#: map/item_specs.lua:1898
+#: map/item_specs.lua:1925
 msgid "Doc-in-a-can"
 msgstr "Doutor Enlatado"
 
-#: map/item_specs.lua:1903
+#: map/item_specs.lua:1930
 msgid "This is a drink filled with nanobots designed to heal any damage that they notice inside you. It can cure decapitation. Most of the time."
 msgstr "Esta bebida está cheia de nano-robôs  designados para curar qualquer dano que eles notem dentro de você. Pode curar decapitação. Na maioria das vezes."
 
-#: map/item_specs.lua:1910
+#: map/item_specs.lua:1937
 msgid "Bottled Ice"
 msgstr "Gelo Engarrafado"
 
-#: map/item_specs.lua:1911 map/item_specs.lua:1923 map/item_specs.lua:2981
+#: map/item_specs.lua:1938 map/item_specs.lua:1950 map/item_specs.lua:3009
 msgid "Cooling aid"
 msgstr "Ajuda na Refrigeração"
 
-#: map/item_specs.lua:1915
+#: map/item_specs.lua:1942
 msgid "This bottle is filled with ice. It can keep you cool during a warm summer day."
 msgstr "Esta garrafa está cheia de gelo. Pode te manter fresco em um dia de verão."
 
-#: map/item_specs.lua:1922
+#: map/item_specs.lua:1949
 msgid "Industrial Coolant"
 msgstr "Refrigerador Industrial"
 
-#: map/item_specs.lua:1927
+#: map/item_specs.lua:1954
 msgid "Bartenders around the world add this to drinks to get them cold very fast. Plus, the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
 msgstr ""
 
-#: map/item_specs.lua:1934
+#: map/item_specs.lua:1961
 msgid "Liquid Nitrogen"
 msgstr "Nitrogênio Líquido"
 
-#: map/item_specs.lua:1935
+#: map/item_specs.lua:1962
 msgid "Extreme Cooling aid"
 msgstr "Ajuda de Refrigeração Extrema"
 
-#: map/item_specs.lua:1939
+#: map/item_specs.lua:1966
 msgid "When you want something frozen solid, this is what you need. It can keep you cool even inside a class M star."
 msgstr "Quando você precisa de algo congelado e sólido, é disso que você precisa. Pode te manter fresco mesmo dentro de uma estrela classe M."
 
-#: map/item_specs.lua:1946
+#: map/item_specs.lua:1973
 msgid "Barf's Energy Drink"
 msgstr ""
 
-#: map/item_specs.lua:1947
+#: map/item_specs.lua:1974
 msgid "Cool down, cure minor wounds."
 msgstr "Refrigera e Cura um pouquinho."
 
-#: map/item_specs.lua:1951
+#: map/item_specs.lua:1978
 msgid "Warning! These energy drinks contain high doses of caffeine! The average person drops dead after consuming 12 grams of caffeine. One of these bottles contains over double that amount."
 msgstr ""
 
-#: map/item_specs.lua:1958
+#: map/item_specs.lua:1985
 msgid "Running Power Capsule"
 msgstr ""
 
-#: map/item_specs.lua:1959
+#: map/item_specs.lua:1986
 msgid "Recover Running Power"
 msgstr ""
 
-#: map/item_specs.lua:1963
+#: map/item_specs.lua:1990
 msgid "These small containers hold purified running strength. Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 msgstr ""
 
-#: map/item_specs.lua:1970
+#: map/item_specs.lua:1997
 msgid "Strength Capsule"
 msgstr "Capsula de Força"
 
-#: map/item_specs.lua:1971
+#: map/item_specs.lua:1998
 msgid "Temporary Boost to Strength"
 msgstr "Temporariamente Aumenta a Força"
 
-#: map/item_specs.lua:1975
+#: map/item_specs.lua:2002
 msgid "These small containers hold purified strength. This item will give a temporary boost to strength. Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 msgstr ""
 
-#: map/item_specs.lua:1982
+#: map/item_specs.lua:2009
 msgid "Dexterity Capsule"
 msgstr "Capsula de Habilidade"
 
-#: map/item_specs.lua:1983
+#: map/item_specs.lua:2010
 msgid "Temporary Boost to Dexterity"
 msgstr "Temporariamente Aumenta a Habilidade"
 
-#: map/item_specs.lua:1987
+#: map/item_specs.lua:2014
 msgid "These small containers hold purified dexterity. This item will give a temporary bonus to dexterity. Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 msgstr ""
 
-#: map/item_specs.lua:1998
+#: map/item_specs.lua:2025
 msgid "Valuable Circuits"
 msgstr "Circuitos"
 
-#: map/item_specs.lua:2002
+#: map/item_specs.lua:2029
 msgid "The new monetary standard of the world. With the collapse of the banking system, the precious metals in bot circuitry has literally become hard cash. A bit hard to come by though, as the bots are not likely to just hand it over..."
 msgstr ""
 
-#: map/item_specs.lua:2009
+#: map/item_specs.lua:2036
 msgid "Anti-grav Pod for Droids"
 msgstr "Módulo Anti-Gravitacional para Robôs"
 
-#: map/item_specs.lua:2013
+#: map/item_specs.lua:2040
 msgid "The bots use this to hover around."
 msgstr "Os robôs usam isso para flutuar por aí."
 
-#: map/item_specs.lua:2020
+#: map/item_specs.lua:2047
 msgid "Dixon's Toolbox"
 msgstr "Caixa de Ferramentas do Dixon"
 
-#: map/item_specs.lua:2024
+#: map/item_specs.lua:2051
 msgid "This is a teleporter service toolbox. It's complete and orderly, though a few dents on the outside give proof of frequent use. 'C. Dixon' is carved into the outside with fine print."
 msgstr ""
 
-#: map/item_specs.lua:2031
+#: map/item_specs.lua:2058
 msgid "Toolbox"
 msgstr "Caixa de Ferramentas"
 
-#: map/item_specs.lua:2035
+#: map/item_specs.lua:2062
 msgid "This is a regular toolbox. It's complete and orderly, though a few dents on the outside give proof of frequent use."
 msgstr ""
 
-#: map/item_specs.lua:2042
+#: map/item_specs.lua:2069
 msgid "Entropy Inverter"
 msgstr "Inversor Entrópico"
 
-#: map/item_specs.lua:2046 map/item_specs.lua:2057 map/item_specs.lua:2068
-#: map/item_specs.lua:2079 map/item_specs.lua:2090
+#: map/item_specs.lua:2073 map/item_specs.lua:2084 map/item_specs.lua:2095
+#: map/item_specs.lua:2106 map/item_specs.lua:2117
 msgid "This is an standard part within many robot types."
 msgstr "Esta é uma parte comum em vários robôs."
 
-#: map/item_specs.lua:2053
+#: map/item_specs.lua:2080
 msgid "Plasma Transistor"
 msgstr "Transistor de Plasma"
 
-#: map/item_specs.lua:2064
+#: map/item_specs.lua:2091
 msgid "Superconducting Relay Unit"
 msgstr "Supercondutor"
 
-#: map/item_specs.lua:2075
+#: map/item_specs.lua:2102
 msgid "Antimatter-Matter Converter"
 msgstr "Conversor Anti-Matéria"
 
-#: map/item_specs.lua:2086
+#: map/item_specs.lua:2113
 msgid "Tachyon Condensator"
 msgstr "Condensador Tachyon"
 
-#: map/item_specs.lua:2097
+#: map/item_specs.lua:2124
 msgid "Desk Lamp"
 msgstr "Lampada de Mesa"
 
-#: map/item_specs.lua:2101
+#: map/item_specs.lua:2128
 msgid "What would modern science be without this important item?"
 msgstr "O que seria da ciência moderna sem este importante item?"
 
-#: map/item_specs.lua:2108
+#: map/item_specs.lua:2135
 msgid "Red Dilithium Crystal"
 msgstr "Cristal de Dilítio Vermelho"
 
-#: map/item_specs.lua:2112
+#: map/item_specs.lua:2139
 msgid "These dilithium crystals are used as an energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the ordering of the crystal molecules. This principle has allowed us to build devices that consume a lot of energy, but do not need to be connected to a power line."
 msgstr ""
 
-#: map/item_specs.lua:2119
+#: map/item_specs.lua:2146
 msgid "Map Maker"
 msgstr "Gerador de Mapas"
 
-#: map/item_specs.lua:2120
+#: map/item_specs.lua:2147
 msgid "To implant the automap device"
 msgstr "Para implantar o dispositivo de automapa"
 
-#: map/item_specs.lua:2124
+#: map/item_specs.lua:2151
 msgid "This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of its very tiny display, it needs to be held closely to the eye, and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
 msgstr ""
 
-#: map/item_specs.lua:2131
+#: map/item_specs.lua:2158
 msgid "Light Enhancer? to be included in the future..."
 msgstr ""
 
-#: map/item_specs.lua:2132 map/item_specs.lua:2136
+#: map/item_specs.lua:2159 map/item_specs.lua:2163
 msgid "See better in the dark."
 msgstr "Veja melhor no escuro."
 
-#: map/item_specs.lua:2143
+#: map/item_specs.lua:2170
 msgid "Fork"
 msgstr "Garfo"
 
-#: map/item_specs.lua:2156 map/item_specs.lua:2168 map/item_specs.lua:2179
-#: map/item_specs.lua:2190
+#: map/item_specs.lua:2183 map/item_specs.lua:2195 map/item_specs.lua:2206
+#: map/item_specs.lua:2217
 msgid "This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault. All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time. It comes with its own power supply, and has a supposed duration of 200 years."
 msgstr ""
 
-#: map/item_specs.lua:2164
+#: map/item_specs.lua:2191
 msgid "Plate"
 msgstr "Prato"
 
-#: map/item_specs.lua:2175
+#: map/item_specs.lua:2202
 msgid "Mug"
 msgstr "Caneca"
 
-#: map/item_specs.lua:2186
+#: map/item_specs.lua:2213
 msgid "Cup"
 msgstr "Copo"
 
-#: map/item_specs.lua:2197
+#: map/item_specs.lua:2224
 msgid "Teleporter Homing Beacon"
 msgstr ""
 
-#: map/item_specs.lua:2198
+#: map/item_specs.lua:2225
 msgid "Teleports you elsewhere"
 msgstr ""
 
-#: map/item_specs.lua:2202
+#: map/item_specs.lua:2229
 msgid "This device sends a signal to a nearby teleporter requesting a transport, and then helps with locking on and boosting the signal to ensure the teleportation attempt is successful. The battery inside is sufficient for one use *only* and the device becomes useless afterwards. At least, most people don't try to use them twice... and those few who do usually end up with parts of their body missing or attached in the wrong place. Note: Multiple of these may be grouped together in the inventory."
 msgstr ""
 
-#: map/item_specs.lua:2209
+#: map/item_specs.lua:2236
 msgid "Data Cube"
 msgstr "Cubo de Dados"
 
-#: map/item_specs.lua:2213
+#: map/item_specs.lua:2240
 msgid "This was the most common form of portable information storage used on Earth until the Great Assault, its three-dimensional memory capable of storing up to 2 terabytes and compatible with most of the hardware on the planet."
 msgstr ""
 
-#: map/item_specs.lua:2220
+#: map/item_specs.lua:2247
 msgid "Kevin's Data Cube"
 msgstr "Cubo de Dados do Kevin"
 
-#: map/item_specs.lua:2224
+#: map/item_specs.lua:2251
 msgid "This data cube contains confidential government data on the installations around the town. Kevin hopes that when the data is evaluated properly, a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store an infrastructure suitable to this purpose."
 msgstr ""
 
-#: map/item_specs.lua:2231
+#: map/item_specs.lua:2258
 msgid "Pandora's Cube"
 msgstr "Caixa de Pandora"
 
-#: map/item_specs.lua:2235
+#: map/item_specs.lua:2262
 msgid "This is heavy. Cannot the end of the world come in a smaller package? It would be a great time for Duncan to explain a few things..."
 msgstr "Isso é pesado. Será que o fim do mundo não poderia vir em pacotes menores? Seria uma boa hora para Duncan explicar algumas coisinhas..."
 
-#: map/item_specs.lua:2242
+#: map/item_specs.lua:2269
 msgid "Rubber Duck"
 msgstr "Pato de Borracha"
 
-#: map/item_specs.lua:2246
+#: map/item_specs.lua:2273
 msgid "It appears that humans enjoy bathing with squeaky little pieces of plastic shaped like waterfowl. As a penguinoid, you should probably be disturbed, but you have to admit this thing is actually quite adorable."
 msgstr ""
 
-#: map/item_specs.lua:2253
+#: map/item_specs.lua:2280
 msgid "Empty Picnic Basket"
 msgstr "Cesta de Piquenique Vazia"
 
-#: map/item_specs.lua:2257
+#: map/item_specs.lua:2284
 msgid "This is the latest in 'Dr. How?'-brand picnic basket technology! With patented food-preserving time-dilation, space-bending miniaturization, and anti-gravity, your food stays fresh and your drinks stay cold in a small light-as-a-feather package! Now you can picnic the old fashioned way! Batteries sold separately."
 msgstr ""
 
-#: map/item_specs.lua:2264
+#: map/item_specs.lua:2291
 msgid "Lunch in a Picnic Basket"
 msgstr "Almoço em uma Cesta de Piquenique"
 
-#: map/item_specs.lua:2268
+#: map/item_specs.lua:2295
 msgid "This is a 'Dr. How?'-brand picnic basket stuffed full of enough food and drinks to feed a dozen people. With 'Dr. How?'-time dilation, the food keeps oven-fresh, and the drinks stay ice-cold."
 msgstr ""
 
-#: map/item_specs.lua:2275
+#: map/item_specs.lua:2302
 msgid "MS Stock Certificate"
 msgstr "Certificado de Crédito MS"
 
-#: map/item_specs.lua:2279
+#: map/item_specs.lua:2306
 msgid "This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer."
 msgstr ""
 
-#: map/item_specs.lua:2286
+#: map/item_specs.lua:2313
 msgid "Elbow Grease Can"
 msgstr "Lata de Graxa de Cotovelo"
 
-#: map/item_specs.lua:2290
+#: map/item_specs.lua:2317
 msgid "A can filled with elbow grease. Hard to make it if you are not a strong man."
 msgstr "Uma lata cheia de graxa de cotovelo. Difícil de fazer se você não for forte."
 
-#: map/item_specs.lua:2301
+#: map/item_specs.lua:2328
 msgid "Linarian Power Crank"
 msgstr ""
 
-#: map/item_specs.lua:2305
+#: map/item_specs.lua:2332
 msgid "This mechanical crank, product of the highly advanced and sophisticated technological genius of the Linarian race, performs elaborate operations on energy and directs it towards a biochemical structure. For short, it buffs up your muscles. That's good."
 msgstr ""
 
-#: map/item_specs.lua:2312
+#: map/item_specs.lua:2339
 msgid "Tungsten Spikes"
 msgstr "Espinhos de Tungstênio"
 
-#: map/item_specs.lua:2316
+#: map/item_specs.lua:2343
 msgid "This polycarbonate surface is lined with hard tungsten spikes, and can be installed into a mechanical socket on most melee weapons, offering a simple and affordable solution to increasing damage dealt. Handle only with gloves. Do not attempt to use as footwear. Do not attempt to eat."
 msgstr ""
 
-#: map/item_specs.lua:2323
+#: map/item_specs.lua:2350
 msgid "Tinfoil Patch"
 msgstr ""
 
-#: map/item_specs.lua:2327
+#: map/item_specs.lua:2354
 msgid "When attached to your armor, this patch of tinfoil allows you to stay cooler by reducing the amount of electromagnetic radiation that your body absorbs."
 msgstr ""
 
-#: map/item_specs.lua:2334
+#: map/item_specs.lua:2361
 msgid "Laser Sight"
 msgstr ""
 
-#: map/item_specs.lua:2338
+#: map/item_specs.lua:2365
 msgid "A miniaturized laser powered by a nuclear battery. When attached parallel to the barrel of a gun, it makes a little red dot on the target and helps with aiming."
 msgstr ""
 
-#: map/item_specs.lua:2345
+#: map/item_specs.lua:2372
 msgid "Exoskeletal Joint"
 msgstr ""
 
-#: map/item_specs.lua:2349
+#: map/item_specs.lua:2376
 msgid "This electromechanical joint helps you to perform physically demanding tasks more easily by amplifying the movements of your body."
 msgstr ""
 
-#: map/item_specs.lua:2356
+#: map/item_specs.lua:2383
 msgid "Heatsink"
 msgstr ""
 
-#: map/item_specs.lua:2360
+#: map/item_specs.lua:2387
 msgid "A simple heatsink add-on that keeps you cooler by dissipating heat from your armor."
 msgstr ""
 
-#: map/item_specs.lua:2367
+#: map/item_specs.lua:2394
 msgid "Peltier Element"
 msgstr ""
 
-#: map/item_specs.lua:2371
+#: map/item_specs.lua:2398
 msgid "A thermoelectric device that increases your cooling rate."
 msgstr ""
 
-#: map/item_specs.lua:2378
+#: map/item_specs.lua:2405
 msgid "Steel Mesh"
 msgstr ""
 
-#: map/item_specs.lua:2382
+#: map/item_specs.lua:2409
 msgid "A sturdy metal mesh that provides an extra protective layer to your armor."
 msgstr ""
 
-#: map/item_specs.lua:2389
+#: map/item_specs.lua:2416
 msgid "Shock Discharger"
 msgstr ""
 
-#: map/item_specs.lua:2393
+#: map/item_specs.lua:2420
 msgid "When installed to a melee weapon, this nifty device gives a small electric shock to enemies you hit."
 msgstr ""
 
-#: map/item_specs.lua:2400
+#: map/item_specs.lua:2427
 msgid "Silencer"
 msgstr "Silenciador"
 
-#: map/item_specs.lua:2404
+#: map/item_specs.lua:2431
 msgid "Allowing you to catch yours enemies by surprise, this silencer helps you to do more damage in ranged combat."
 msgstr ""
 
-#: map/item_specs.lua:2411
+#: map/item_specs.lua:2438
 msgid "Coprocessor"
 msgstr "Coprocessador"
 
-#: map/item_specs.lua:2415
+#: map/item_specs.lua:2442
 msgid "By speeding up your computations, this chip helps you to excel in many activities."
 msgstr "Agilizando suas computações, este chip te permite sobressair em várias atividades."
 
-#: map/item_specs.lua:2422
+#: map/item_specs.lua:2449
 msgid "Pedometer"
 msgstr "Pedometro"
 
-#: map/item_specs.lua:2426
+#: map/item_specs.lua:2453
 msgid "A device that helps you to move dexterously by giving feedback on your foot movement."
 msgstr ""
 
-#: map/item_specs.lua:2433
+#: map/item_specs.lua:2460
 msgid "Foot Warmers"
 msgstr "Aquecedor de Pé"
 
-#: map/item_specs.lua:2437
+#: map/item_specs.lua:2464
 msgid "This pair of electric fuzzy foot warmers would make even a penguin warm and comfortable in any shoes, and help maintain a healthy body temperature, thus preventing colds and making you look cool. At least, that's what the advertisement says. And ads don't lie, do they?"
 msgstr ""
 
-#: map/item_specs.lua:2444
+#: map/item_specs.lua:2471
 msgid "Circuit Jammer"
 msgstr ""
 
-#: map/item_specs.lua:2448
+#: map/item_specs.lua:2475
 msgid "This item improves your melee weapon by blasting the enemies you hit with an electromagnetic pulse. The pulse is powerful enough to temporarily shut down the circuits of the attacked bot."
 msgstr ""
 
-#: map/item_specs.lua:2455
+#: map/item_specs.lua:2482
 msgid "Sensor Disruptor"
 msgstr ""
 
-#: map/item_specs.lua:2459
+#: map/item_specs.lua:2486
 msgid "When attached to a melee weapon, this item induces errors to the sensors of the bots you attack, causing them to slow down momentarily."
 msgstr ""
 
-#: map/item_specs.lua:2466
+#: map/item_specs.lua:2493
 msgid "Headlamp"
 msgstr ""
 
-#: map/item_specs.lua:2470
+#: map/item_specs.lua:2497
 msgid "When fastened to your helmet, this lamp allows you to see better in dark environments."
 msgstr ""
 
-#: map/item_specs.lua:2477
+#: map/item_specs.lua:2504
 msgid "Brain Stimulator"
 msgstr "Estimulador Cerebral"
 
-#: map/item_specs.lua:2481
+#: map/item_specs.lua:2508
 msgid "A chip that allows faster learning by connecting directly to the brain via a neural interface (colloquially referred to as a 'weird swim cap with little thingies on it') and providing additional feedback on various actions."
 msgstr ""
 
-#: map/item_specs.lua:2492
+#: map/item_specs.lua:2519
 msgid "NPC Hand to Hand Weapon"
 msgstr "Arma Mão-a-Mão de NPC"
 
-#: map/item_specs.lua:2505
+#: map/item_specs.lua:2532
 msgid "Bot use only"
 msgstr "Uso restrito à robôs"
 
-#: map/item_specs.lua:2513
+#: map/item_specs.lua:2540
 msgid "Droid 123 Weak Robotic Arm"
 msgstr "Braço Mecânico Fraco de Robô 123"
 
-#: map/item_specs.lua:2526 map/item_specs.lua:2550 map/item_specs.lua:2571
-#: map/item_specs.lua:2595 map/item_specs.lua:2616 map/item_specs.lua:2637
-#: map/item_specs.lua:2658 map/item_specs.lua:2679 map/item_specs.lua:2703
-#: map/item_specs.lua:2724 map/item_specs.lua:2745 map/item_specs.lua:2766
-#: map/item_specs.lua:2787 map/item_specs.lua:2808 map/item_specs.lua:2832
-#: map/item_specs.lua:2857 map/item_specs.lua:2882
+#: map/item_specs.lua:2553 map/item_specs.lua:2577 map/item_specs.lua:2598
+#: map/item_specs.lua:2622 map/item_specs.lua:2643 map/item_specs.lua:2664
+#: map/item_specs.lua:2685 map/item_specs.lua:2706 map/item_specs.lua:2730
+#: map/item_specs.lua:2751 map/item_specs.lua:2772 map/item_specs.lua:2793
+#: map/item_specs.lua:2814 map/item_specs.lua:2835 map/item_specs.lua:2859
+#: map/item_specs.lua:2884 map/item_specs.lua:2909
 msgid "Droid weaponry"
 msgstr "Armamento robótico"
 
-#: map/item_specs.lua:2534
+#: map/item_specs.lua:2561
 msgid "Droid 139 Plasma Trash Vaporiser"
 msgstr "Vaporizador de Lixo a Laser para Robôs 139"
 
-#: map/item_specs.lua:2558
+#: map/item_specs.lua:2585
 msgid "Droid 247 Robotic Arm"
 msgstr "Braço Robótico de Robô 247"
 
-#: map/item_specs.lua:2579
+#: map/item_specs.lua:2606
 msgid "Droid 249 Pulse Laser Welder"
 msgstr "Soldador de Pulso Laser de Robô 249"
 
-#: map/item_specs.lua:2603
+#: map/item_specs.lua:2630
 msgid "Droid 296 Plasmabeam Cutter"
 msgstr "Cortador de Raio de Plasma para Robô 296"
 
-#: map/item_specs.lua:2624
+#: map/item_specs.lua:2651
 msgid "Droid 302 Overcharged Barcode Reader"
 msgstr "Leitor de Código de Barras Sobrecarregado do Robô 302"
 
-#: map/item_specs.lua:2645
+#: map/item_specs.lua:2672
 msgid "Droid 329 Dual Overcharged Barcode Reader"
 msgstr "Leitor Duplo de Código de Barras Sobrecarregado do Robô 329"
 
-#: map/item_specs.lua:2666
+#: map/item_specs.lua:2693
 msgid "Droid 420 Laser Scalpel"
 msgstr "Bisturi a Laser de Robô 420"
 
-#: map/item_specs.lua:2687
+#: map/item_specs.lua:2714
 msgid "Droid 476 Small Laser"
 msgstr "Laser Pequeno de Robô 476"
 
-#: map/item_specs.lua:2711
+#: map/item_specs.lua:2738
 msgid "Droid 493 Power Hammer"
 msgstr "Martelo de Força de Robô 493"
 
-#: map/item_specs.lua:2732
+#: map/item_specs.lua:2759
 msgid "Droid 516 Robotic Fist"
 msgstr "Braço Mecânico de Robô 516"
 
-#: map/item_specs.lua:2753
+#: map/item_specs.lua:2780
 msgid "Droid 543 Tree Harvester"
 msgstr "Cortador de Árvores para Robô 543"
 
-#: map/item_specs.lua:2774
+#: map/item_specs.lua:2801
 msgid "Droid 571 Robotic Fist"
 msgstr "Braço Mecânico de Robô 571"
 
-#: map/item_specs.lua:2795
+#: map/item_specs.lua:2822
 msgid "Droid 598 Robotic Fist"
 msgstr "Braço Mecânico de Robô 598"
 
-#: map/item_specs.lua:2816
+#: map/item_specs.lua:2843
 msgid "Droid 7xx Tux Seeking Missiles"
 msgstr "Misseis Teleguiados para Robôs 7xx"
 
-#: map/item_specs.lua:2840
+#: map/item_specs.lua:2867
 msgid "Droid Advanced Twin Laser"
 msgstr "Laser Duplo Avançado para Robôs"
 
-#: map/item_specs.lua:2865
+#: map/item_specs.lua:2892
 msgid "Droid 883 Exterminator"
 msgstr "Exterminador de Robô 883"
 
-#: map/item_specs.lua:2890
+#: map/item_specs.lua:2917
 msgid "Autogun Laser Pistol"
 msgstr "Pistola Laser de Armas Automáticas"
 
-#: map/item_specs.lua:2905
+#: map/item_specs.lua:2933
 msgid "This is the laser weapon of the autogun. If you see this item whilst normal gameplay, please make a bugreport."
 msgstr ""
 
-#: map/item_specs.lua:2917
+#: map/item_specs.lua:2945
 msgid "PC LOAD LETTER"
 msgstr "CARTA DE CARREGAMENTO DE PC"
 
-#: map/item_specs.lua:2921
+#: map/item_specs.lua:2949
 msgid "An envelop saying 'PC LOAD LETTERS'. I have no idea what that means..."
 msgstr "Um envelope com os dizeres: 'INSTRUÇÕES DE CARREGAMENTO DE PC'. Não tenho ideia do que isso possa significar..."
 
-#: map/item_specs.lua:2928
+#: map/item_specs.lua:2956
 msgid "Cheat Gun"
 msgstr "Arma de Trapaça"
 
-#: map/item_specs.lua:2943
+#: map/item_specs.lua:2971
 msgid "This item is used by testers. If you find it ingame without using a cheat, please report it as a bug."
 msgstr "Este item é utilizado por testadores do jogo. Se você achar este item sem trapacear, por favor reporte como um bug."
 
-#: map/item_specs.lua:2957
+#: map/item_specs.lua:2985
 msgid "Small Tutorial Axe"
 msgstr "Pequeno Machado do Tutorial"
 
-#: map/item_specs.lua:2971
+#: map/item_specs.lua:2999
 msgid ""
 "While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well.\n"
 "Sell me!\n"
@@ -2003,11 +2007,11 @@ msgstr ""
 "Venda-me!\n"
 "Clique na cruz vermelha quando terminar."
 
-#: map/item_specs.lua:2980
+#: map/item_specs.lua:3008
 msgid "Bottled Tutorial Ice"
 msgstr "Gelo Engarrafado do Tutorial"
 
-#: map/item_specs.lua:2985
+#: map/item_specs.lua:3013
 msgid ""
 "This bottle is filled with ice. It can keep you cool during a warm summer day.\n"
 "Buy me!\n"
@@ -2081,8 +2085,8 @@ msgstr "Este aviso bloqueia o caminho para que você não possa sair da Matrix. 
 msgid "Crystal Fields"
 msgstr "Campos de Cristal"
 
-#: map/levels.dat:12647 map/levels.dat:39087 map/levels.dat:39441
-#: map/levels.dat:39841
+#: map/levels.dat:12647 map/levels.dat:39091 map/levels.dat:39445
+#: map/levels.dat:39845
 msgid "Desert Valley"
 msgstr "Vale Deserto"
 
@@ -2127,7 +2131,7 @@ msgid "Northern Shoreline"
 msgstr "Costa Norte"
 
 #: map/levels.dat:23517 map/levels.dat:23642 map/levels.dat:23767
-#: map/levels.dat:40306
+#: map/levels.dat:40310
 msgid "World Edge Sea"
 msgstr "Oceano do Fim do Mundo"
 
@@ -2171,310 +2175,310 @@ msgstr "Perigo: Alta voltagem!"
 msgid "Arena"
 msgstr "Arena"
 
-#: map/levels.dat:30084
+#: map/levels.dat:30088
 msgid "Master Arena"
 msgstr "Arena Mestre"
 
-#: map/levels.dat:30302
+#: map/levels.dat:30306
 msgid "Hell Fortress Entrance"
 msgstr "Entrada da Fortaleza Maligna"
 
-#: map/levels.dat:33238
+#: map/levels.dat:33242
 msgid "Upgrade distribution server room. Access restricted to authorized personnel - trespassers will be fired."
 msgstr "Sala de distribuição de atualizações do servidor. Acesso restrito a pessoal autorizado - invasores serão demitidos."
 
-#: map/levels.dat:33241
+#: map/levels.dat:33245
 msgid "Please close the door behind you."
 msgstr "Por favor feche a porta atrás de você."
 
-#: map/levels.dat:33244
+#: map/levels.dat:33248
 msgid "Beware of hydroxyl acid!"
 msgstr "Cuidado com o ácido hidróxido!"
 
-#: map/levels.dat:33247
+#: map/levels.dat:33251
 msgid "Beware of the guns."
 msgstr "Cuidado com as armas."
 
-#: map/levels.dat:33250 map/levels.dat:33310 map/levels.dat:33316
+#: map/levels.dat:33254 map/levels.dat:33314 map/levels.dat:33320
 msgid "Please read the other sign first."
 msgstr "Por favor leia o outro aviso primeiro."
 
-#: map/levels.dat:33253
+#: map/levels.dat:33257
 msgid "To main office."
 msgstr "Para o escritório principal."
 
-#: map/levels.dat:33256
+#: map/levels.dat:33260
 msgid "Workers office."
 msgstr "Escritório dos trabalhadores."
 
-#: map/levels.dat:33259
+#: map/levels.dat:33263
 msgid "First MS operating system - printed version"
 msgstr "Primeiro sistema operacional MS - versão impressa"
 
-#: map/levels.dat:33262
+#: map/levels.dat:33266
 msgid "Beatings will continue until morale improves."
 msgstr "Surras irão continuar até a moral melhorar."
 
-#: map/levels.dat:33265 map/levels.dat:66621
+#: map/levels.dat:33269 map/levels.dat:66642
 msgid "!"
 msgstr "!"
 
-#: map/levels.dat:33268
+#: map/levels.dat:33272
 msgid "Don't waste your time reading signs. Work!"
 msgstr "Não perca tempo lendo avisos. Trabalhe!"
 
-#: map/levels.dat:33271
+#: map/levels.dat:33275
 msgid "Server room"
 msgstr "Sala de servidores"
 
-#: map/levels.dat:33274
+#: map/levels.dat:33278
 msgid "Offices  - this way"
 msgstr "Escritórios - nessa direção."
 
-#: map/levels.dat:33277
+#: map/levels.dat:33281
 msgid "Slalom"
 msgstr "Slalom"
 
-#: map/levels.dat:33280
+#: map/levels.dat:33284
 msgid "Outdoor track"
 msgstr "Pista ao ar livre"
 
-#: map/levels.dat:33283
+#: map/levels.dat:33287
 msgid "Accessing computers"
 msgstr "Acessando computadores"
 
-#: map/levels.dat:33286
+#: map/levels.dat:33290
 msgid "Passing doors I"
 msgstr "Portas de Passagem I"
 
-#: map/levels.dat:33289
+#: map/levels.dat:33293
 msgid "Passing doors II"
 msgstr "Portas de Passagem II"
 
-#: map/levels.dat:33292
+#: map/levels.dat:33296
 msgid "To MegaSys office"
 msgstr "Para o escritório da MegaSys"
 
-#: map/levels.dat:33295
+#: map/levels.dat:33299
 msgid "For service: wait"
 msgstr "Para serviço: espere"
 
-#: map/levels.dat:33298
+#: map/levels.dat:33302
 msgid "Today's special: Foobar"
 msgstr "Especial de Hoje: Assim Assado"
 
-#: map/levels.dat:33301
+#: map/levels.dat:33305
 msgid "We recommend: Quxbaz"
 msgstr "Nós recomendamos: Quxbaz"
 
-#: map/levels.dat:33304 map/levels.dat:33307
+#: map/levels.dat:33308 map/levels.dat:33311
 msgid "In case of boredom turn gun on."
 msgstr "No caso de tédio ligue a arma."
 
-#: map/levels.dat:33313
+#: map/levels.dat:33317
 msgid "Authorized personnel only!"
 msgstr "Pessoal autorizado somente!"
 
-#: map/levels.dat:33331
+#: map/levels.dat:33335
 msgid "If the gate is closed, please ask the office for access."
 msgstr "Se a porta estiver fechada, por favor solicite no escritório por acesso."
 
-#: map/levels.dat:33593
+#: map/levels.dat:33597
 msgid "Johns Riddle"
 msgstr "Charada de John"
 
-#: map/levels.dat:33733
+#: map/levels.dat:33737
 msgid "Looking from above, hostiles may appear as salvation."
 msgstr "Olhando por cima, hostilidades podem aparecer como salvação."
 
-#: map/levels.dat:33775
+#: map/levels.dat:33779
 msgid "Crystal Caves"
 msgstr "Minas de Cristais"
 
-#: map/levels.dat:36229
+#: map/levels.dat:36233
 msgid "Forgotten bunker"
 msgstr "Bunker esquecido"
 
-#: map/levels.dat:36430
+#: map/levels.dat:36434
 msgid "Secret research center"
 msgstr "Centro de Pesquisas Secreto"
 
-#: map/levels.dat:37696
+#: map/levels.dat:37700
 msgid "Stop!"
 msgstr "Pare!"
 
-#: map/levels.dat:37699
+#: map/levels.dat:37703
 msgid "I warned you...  You should consider turning back and running away screaming."
 msgstr "Eu te avisei... Você deveria considerar dar meia volta e fugir gritando."
 
-#: map/levels.dat:37801
+#: map/levels.dat:37805
 msgid "Secret area service tunnels"
 msgstr "Túneis de Serviço da Área Secreta"
 
-#: map/levels.dat:38041
+#: map/levels.dat:38045
 msgid "Tutorial"
 msgstr "Tutorial"
 
-#: map/levels.dat:38961
+#: map/levels.dat:38965
 msgid "Welcome to FreedroidRPG!"
 msgstr "Bem-vindo ao FreedroidRPG!"
 
-#: map/levels.dat:40431 map/levels.dat:40781 map/levels.dat:40935
-#: map/levels.dat:56336 map/levels.dat:63180 map/levels.dat:63835
-#: map/levels.dat:64050 map/levels.dat:64175 map/levels.dat:64736
-#: map/levels.dat:65086 map/levels.dat:65414
+#: map/levels.dat:40435 map/levels.dat:40785 map/levels.dat:40939
+#: map/levels.dat:56340 map/levels.dat:63184 map/levels.dat:63839
+#: map/levels.dat:64054 map/levels.dat:64179 map/levels.dat:64740
+#: map/levels.dat:65090 map/levels.dat:65418
 msgid "World Edge"
 msgstr "Fim do Mundo"
 
-#: map/levels.dat:40667
+#: map/levels.dat:40671
 msgid "Old abandoned complex"
 msgstr "Antigo Complexo Abandonado"
 
-#: map/levels.dat:41180
+#: map/levels.dat:41184
 msgid "Worker Mines Entrance"
 msgstr "Entrada das Minas dos Trabalhadores"
 
-#: map/levels.dat:41916 map/levels.dat:42271
+#: map/levels.dat:41920 map/levels.dat:42275
 msgid "Southern Shorline"
 msgstr "Costa Sul"
 
-#: map/levels.dat:42856
+#: map/levels.dat:42860
 msgid "HF North Perimeter Defense Structure"
 msgstr "Estrutura de Defesa do Perímetro Norte da FM"
 
-#: map/levels.dat:43616
+#: map/levels.dat:43620
 msgid "Factory Entrance"
 msgstr "Entrada da Fábrica"
 
-#: map/levels.dat:46731
+#: map/levels.dat:46735
 msgid "Power Station and Worker District"
 msgstr "Estação de Energia e Distrito dos Trabalhadores"
 
-#: map/levels.dat:49105 map/levels.dat:49108
+#: map/levels.dat:49109 map/levels.dat:49112
 msgid "Power generator, don't change settings!"
 msgstr "Gerador de energia, não modifique as preferências!"
 
-#: map/levels.dat:49111
+#: map/levels.dat:49115
 msgid "Insert coin!!!!"
 msgstr "Insira uma moeda!!!!"
 
-#: map/levels.dat:49114
+#: map/levels.dat:49118
 msgid "You always loose? Play again, I am sure you'll win next time!"
 msgstr "Você sempre perde? Jogue novamente, tenho certeza que vai ganhar na próxima vez!"
 
-#: map/levels.dat:49117
+#: map/levels.dat:49121
 msgid "This is only decoration for good atmosphere. Don't cut plastic lawn!"
 msgstr "Isto é apenas decoração para uma boa atmosfera. Não corte o gramado de plástico!"
 
-#: map/levels.dat:49120
+#: map/levels.dat:49124
 msgid "Plastic leaves, do not eat!"
 msgstr "Folhas plásticas, não coma!"
 
-#: map/levels.dat:49123
+#: map/levels.dat:49127
 msgid "Caution: nothing. - There is absolutely nothing dangerous in the area!"
 msgstr "Cuidado: nada. - Não há absolutamente nada perigoso na área!"
 
-#: map/levels.dat:49126
+#: map/levels.dat:49130
 msgid "Stepping on this pad will affect absolutely nothing. LOL!"
 msgstr "Pisar neste bloco não vai afetar em absolutamente nada. LOL!"
 
-#: map/levels.dat:49412
+#: map/levels.dat:49416
 msgid "Factory Core"
 msgstr "Núcleo da Fábrica"
 
-#: map/levels.dat:52854
+#: map/levels.dat:52858
 msgid "Research Centre"
 msgstr "Centro de Pesquisas"
 
-#: map/levels.dat:56037
+#: map/levels.dat:56041
 msgid "Worker 1"
 msgstr "Trabalhador 1"
 
-#: map/levels.dat:56040
+#: map/levels.dat:56044
 msgid "Worker 2"
 msgstr "Trabalhador 2"
 
-#: map/levels.dat:56043
+#: map/levels.dat:56047
 msgid "Worker 3"
 msgstr "Trabalhador 3"
 
-#: map/levels.dat:56046
+#: map/levels.dat:56050
 msgid "Worker 4"
 msgstr "Trabalhador 4"
 
-#: map/levels.dat:56049
+#: map/levels.dat:56053
 msgid "Please don't talk, sing, take any drugs or write on walls in there!"
 msgstr "Por favor não fale, cante, ingira qualquer droga ou escreva nas paredes aqui!"
 
-#: map/levels.dat:56052
+#: map/levels.dat:56056
 msgid "Don't touch the fence, there are more efficient ways to waste energy here."
 msgstr "Não toque na cerca, há jeitos mais eficientes de se desperdiçar energia por aqui."
 
-#: map/levels.dat:56055
+#: map/levels.dat:56059
 msgid "I have no idea what this red thing is, but it looks pretty cool."
 msgstr "Eu não faço ideia do que essa coisa vermelha é, mas parece bem legal."
 
-#: map/levels.dat:56491
+#: map/levels.dat:56495
 msgid "Machine Deck Upper Catacombs"
 msgstr "Catacumba Superior do Convés de Máquinas"
 
-#: map/levels.dat:56605
+#: map/levels.dat:56609
 msgid "Machine Deck Lower Catacombs"
 msgstr "Catacumba Inferior do Convés de Máquinas"
 
-#: map/levels.dat:56719
+#: map/levels.dat:56723
 msgid "Freight Station"
 msgstr "Estação de Carga/Descarga"
 
-#: map/levels.dat:58207
+#: map/levels.dat:58211
 msgid "Old Server Room"
 msgstr "Sala de Servidores Antiga"
 
-#: map/levels.dat:59123
+#: map/levels.dat:59127
 msgid "Factory Office"
 msgstr "Escritório da Fábrica"
 
-#: map/levels.dat:62889
+#: map/levels.dat:62893
 msgid "Strange Dungeon"
 msgstr "Labirinto Estranho"
 
-#: map/levels.dat:63513
+#: map/levels.dat:63517
 msgid "Landing Zone"
 msgstr "Zona de Pouso"
 
-#: map/levels.dat:65607
+#: map/levels.dat:65611
 msgid "Shelter"
 msgstr "Abrigo"
 
-#: map/levels.dat:65724
+#: map/levels.dat:65728
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT ment to be accessible without cheating."
 msgstr "NÍVEL DEBUG 70 -- Nível criado para testes, NÃO deve ser acessível sem trapacear."
 
-#: map/levels.dat:66618
+#: map/levels.dat:66639
 msgid "?"
 msgstr "?"
 
-#: map/levels.dat:66624
+#: map/levels.dat:66645
 msgid "<"
 msgstr "<"
 
-#: map/levels.dat:66627
+#: map/levels.dat:66648
 msgid "? (flashing)"
 msgstr "? (piscando)"
 
-#: map/levels.dat:66630
+#: map/levels.dat:66651
 msgid "! (flashing)"
 msgstr "! (piscando)"
 
-#: map/levels.dat:66633
+#: map/levels.dat:66654
 msgid "< (flashing)"
 msgstr "< (piscando)"
 
-#: map/levels.dat:66659
+#: map/levels.dat:66680
 msgid "Empty Sea"
 msgstr "Oceano Vazio"
 
-#: map/levels.dat:66821
+#: map/levels.dat:66842
 msgid "Omega Island"
 msgstr "Ilha Ômega"
 
