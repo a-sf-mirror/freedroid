@@ -305,7 +305,9 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 
 	// Maybe the children friendly version is desired.  Then the blood on the floor
 	// will not be blitted to the screen.
-	if ((!GameConfig.show_blood) && (o->type >= ISO_BLOOD_1) && (o->type <= ISO_BLOOD_8))
+	if ((!GameConfig.show_blood) && (
+			((o->type >= ISO_BLOOD_1) && (o->type <= ISO_BLOOD_8)) ||
+			((o->type >= ISO_OIL_STAINS_1) && (o->type <= ISO_OIL_STAINS_8)) ))
 		return;
 
 	update_virtual_position(&pos, &o->pos, lvl->levelnum);
@@ -1267,7 +1269,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 	obstacle_spec *obstacle_spec = NULL;
 	int item_under_cursor = -1;
 	level *item_under_cursor_lvl = NULL;
-	
+
 	start_image_batch();
 
 	int i;
