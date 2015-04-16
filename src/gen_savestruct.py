@@ -32,6 +32,7 @@ import sys, re
 dump_structs = [
                  "gps", "point", "moderately_finepoint", "finepoint",
                  "tux_t", "item", "enemy", "bullet", "blast",
+                 "obstacle", "volatile_obstacle",
                  "spell_active", "melee_shot", "mission", "npc",
                  "upgrade_socket", "keybind_t", "configuration_for_freedroid"
                ]

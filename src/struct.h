@@ -754,9 +754,16 @@ typedef struct obstacle {
 	int frame_index;
 } obstacle;
 
+typedef struct volatile_obstacle {
+	obstacle obstacle;
+	float vanish_timeout;
+	list_head_t volatile_list;
+} volatile_obstacle;
+
 typedef struct map_tile {
 	Uint16 floor_values[MAX_FLOOR_LAYERS];
 	struct dynarray glued_obstacles;
+	list_head_t volatile_obstacles;
 	int timestamp;
 } map_tile;
 
@@ -861,6 +868,10 @@ typedef struct obstacle_spec {
 	// a given obstacle
 	unsigned int blast_type;
 	char *smashed_sound;
+
+	//-----------------------
+	// Some obstacles are volatiles, and vanishes after some seconds
+	float vanish_delay;
 } obstacle_spec;
 
 struct obstacle_group {

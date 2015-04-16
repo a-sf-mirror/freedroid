@@ -76,6 +76,7 @@ void clear_out_arrays_for_fresh_game(void)
 	clear_active_spells();
 
 	clear_enemies();
+	clear_volatile_obstacles();
 	ClearAutomapData();
 
 	clear_npcs();

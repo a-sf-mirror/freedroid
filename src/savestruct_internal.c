@@ -528,6 +528,23 @@ void save_game_data(struct auto_string *strout)
 	for (i = 0; i < FACTION_NUMBER_OF_FACTIONS; i++)
 		write_faction(strout, &i);
 	autostr_append(strout, "}\n");
+
+	for (i = 0; i < MAX_LEVELS; i++) {
+		if (level_exists(i)) {
+			struct level *lvl = curShip.AllLevels[i];
+			int x, y;
+			for (y = 0; y < lvl->ylen; y++) {
+				for (x = 0; x < lvl->xlen; x++) {
+					struct volatile_obstacle *volatile_obs;
+					list_for_each_entry(volatile_obs, &lvl->map[y][x].volatile_obstacles, volatile_list) {
+						autostr_append(strout, "volatile_obstacle");
+						write_volatile_obstacle(strout, volatile_obs);
+						autostr_append(strout, "\n");
+					}
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -628,6 +645,21 @@ static int factions_ctor(lua_State *L)
 	return 0;
 }
 
+static int volatile_obstacle_ctor(lua_State *L)
+{
+	struct volatile_obstacle *volatile_obs = (struct volatile_obstacle *)MyMalloc(sizeof(struct volatile_obstacle));
+	read_volatile_obstacle(L, -1, volatile_obs);
+	if (!level_exists(volatile_obs->obstacle.pos.z)) {
+		error_message(__FUNCTION__, "Can not add the obstacle: unknown level %d.",
+				PLEASE_INFORM, volatile_obs->obstacle.pos.z);
+	}
+	struct level *lvl = curShip.AllLevels[volatile_obs->obstacle.pos.z];
+	add_volatile_obstacle(lvl, volatile_obs->obstacle.pos.x, volatile_obs->obstacle.pos.y,
+	                      volatile_obs->obstacle.type, volatile_obs->vanish_timeout);
+	free(volatile_obs);
+	return 0;
+}
+
 /**
  * Load game data.
  * \ingroup toprw
@@ -650,6 +682,7 @@ void load_game_data(char *strin)
 		{"spell_active_array", spell_active_array_ctor},
 		{"melee_shot_array", melee_shot_array_ctor},
 		{"factions", factions_ctor},
+		{"volatile_obstacle", volatile_obstacle_ctor},
 		{NULL, NULL}
 	};
 

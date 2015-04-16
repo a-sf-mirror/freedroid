@@ -872,6 +872,9 @@ void add_obstacle_to_group(const char *group_name, int type);
 struct obstacle_group *find_obstacle_group(int type);
 int change_obstacle_type(const char *obslabel, int type);
 int get_obstacle_type_by_name(char *name);
+struct volatile_obstacle *add_volatile_obstacle(struct level *, float, float, int, float);
+void remove_volatile_obstacles(int);
+void clear_volatile_obstacles(void);
 
 int luaFD_init(lua_State *);
 

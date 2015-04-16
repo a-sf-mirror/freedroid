@@ -349,6 +349,36 @@ static void insert_new_element_into_blitting_list(float new_element_norm, int ne
 	dynarray_add(blitting_list, &elt, sizeof(struct blitting_list_element));
 }
 
+static void insert_one_obstacle_into_blitting_list(int col, int line, int z, struct obstacle *the_obstacle, int idx, int tstamp)
+{
+	gps virtpos, reference;
+
+	if (the_obstacle->timestamp == tstamp) {
+		return;
+	}
+
+	reference.x = the_obstacle->pos.x;
+	reference.y = the_obstacle->pos.y;
+	reference.z = z;
+
+	update_virtual_position(&virtpos, &reference, Me.pos.z);
+
+	// Could not find virtual position? Give up drawing.
+	if (virtpos.z == -1)
+		return;
+
+	if (rintf(virtpos.x - 0.5) != col)
+		return;
+
+	if (rintf(virtpos.y - 0.5) != line)
+		return;
+
+	the_obstacle->timestamp = tstamp;
+
+	insert_new_element_into_blitting_list(virtpos.x + virtpos.y, BLITTING_TYPE_OBSTACLE,
+			the_obstacle, idx);
+}
+
 /**
  * In order for the obstacles to be blitted, they must first be inserted
  * into the correctly ordered list of objects to be blitted this frame.
@@ -363,7 +393,6 @@ void insert_obstacles_into_blitting_list(int mask)
 
 	obstacle *OurObstacle;
 	gps tile_vpos, tile_rpos;
-	gps virtpos, reference;
 
 	get_floor_boundaries(mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
 
@@ -387,31 +416,20 @@ void insert_obstacles_into_blitting_list(int mask)
 					int idx = ((int *)obstacle_level->map[py][px].glued_obstacles.arr)[i];
 					OurObstacle = &obstacle_level->obstacle_list[idx];
 
-					if (OurObstacle->timestamp == tstamp) {
-						continue;
-					}
+					insert_one_obstacle_into_blitting_list(col, line, tile_rpos.z, OurObstacle, idx, tstamp);
+			}
 
-					reference.x = OurObstacle->pos.x;
-					reference.y = OurObstacle->pos.y;
-					reference.z = tile_rpos.z;
-
-					update_virtual_position(&virtpos, &reference, Me.pos.z);
-
-					// Could not find virtual position? Give up drawing.
-					if (virtpos.z == -1)
-						continue;
-
-					if (floorf(virtpos.x) != col)
-						continue;
-
-					if (floorf(virtpos.y) != line)
-						continue;
-
-					OurObstacle->timestamp = tstamp;
-
-					insert_new_element_into_blitting_list(virtpos.x + virtpos.y, BLITTING_TYPE_OBSTACLE,
-									      OurObstacle,
-									      idx);
+			struct volatile_obstacle *volatile_obs, *next;
+			list_for_each_entry_safe(volatile_obs, next, &obstacle_level->map[py][px].volatile_obstacles, volatile_list) {
+				if (volatile_obs->obstacle.timestamp == tstamp)
+					continue;
+				volatile_obs->vanish_timeout -= Frame_Time();
+				if (volatile_obs->vanish_timeout <= 0) {
+					list_del(&volatile_obs->volatile_list);
+					free(volatile_obs);
+					continue;
+				}
+				insert_one_obstacle_into_blitting_list(col, line, tile_rpos.z, &volatile_obs->obstacle, -1, tstamp);
 			}
 		}
 	}
@@ -1195,7 +1213,6 @@ void set_up_ordered_blitting_list(int mask)
 
 	// Now we can start to fill in the obstacles around the
 	// tux...
-	//
 	insert_obstacles_into_blitting_list(mask);
 
 	insert_tux_into_blitting_list();

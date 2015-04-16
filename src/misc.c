@@ -1350,6 +1350,7 @@ int SaveGameConfig(void)
 static void free_memory_before_exit(void)
 {
 	// free the entities
+	clear_volatile_obstacles();
 	clear_enemies();
 	clear_npcs();
 	free_tux();

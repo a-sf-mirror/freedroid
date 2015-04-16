@@ -18,7 +18,7 @@
 	GROUND_LEVEL			 Obstacle does not block bullets
 	IS_WALKABLE				 Obstacle can be walked through although it has a collision rectangle ("closed"-frames of animated doors etc)
 	IS_CLICKABLE   			 Obstacle can be clicked on
-	IS_VOLATILE 			 Obstacle vanishes when level respawns (blood/oil...)
+	IS_VOLATILE 			 Obstacle vanishes after vanish_delay and when level respawns (blood/oil...)
 ]]--
 
 function borders(left, right, upper, lower)

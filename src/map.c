@@ -58,31 +58,8 @@ void init_map_tile(struct map_tile* tile)
 	for (i = 1; i < MAX_FLOOR_LAYERS; i++)
 		tile->floor_values[i] = ISO_FLOOR_EMPTY;
 	dynarray_init(&tile->glued_obstacles, 0, sizeof(int));
+	INIT_LIST_HEAD(&tile->volatile_obstacles);
 	tile->timestamp = 0;
-}
-
-/**
- * This function removes all volatile obstacles from a given level.
- * An example of a volatile obstacle is the blood.
- * If the blood doesn't vanish, then there will be more and more blood,
- * especially after the bots on the level have respawned a few times.
- * Therefore we need this function, which will remove all traces of blood
- * from a given level.
- */
-static void remove_volatile_obstacles(int level_num)
-{
-	int i;
-
-	// We pass through all the obstacles, deleting those
-	// that are 'blood'.
-	//
-	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		int obstacle_type = curShip.AllLevels[level_num]->obstacle_list[i].type;
-		if (obstacle_type == -1)
-			continue;
-		if (get_obstacle_spec(obstacle_type)->flags & IS_VOLATILE)
-			del_obstacle(&curShip.AllLevels[level_num]->obstacle_list[i]);
-	}
 }
 
 /**

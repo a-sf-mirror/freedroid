@@ -706,6 +706,7 @@ static int lua_obstacle_ctor(lua_State *L)
 		{ "blast_type", "1", INT_TYPE, &obstacle.blast_type },
 		{ "smashed_sound", NULL, STRING_TYPE, &obstacle.smashed_sound },
 		{ "groups", NULL, STRING_ARRAY, &groups },
+		{ "vanish_delay", "10", FLOAT_TYPE, &obstacle.vanish_delay },
 		{ NULL, NULL, 0, 0 }
 	};
 

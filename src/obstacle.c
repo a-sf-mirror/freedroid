@@ -312,4 +312,72 @@ int get_obstacle_type_by_name(char *name) {
 	return -1;
 }
 
+//===============================================================================================
+
+struct volatile_obstacle *add_volatile_obstacle(struct level *lvl, float x, float y, int type, float delay)
+{
+	struct obstacle_spec *obs_spec = get_obstacle_spec(type);
+
+	if (!(obs_spec->flags & IS_VOLATILE)) {
+		error_message(__FUNCTION__, "Can not add the obstacle: it is not marked as IS_VOLATILE (obs type: %d).",
+				PLEASE_INFORM, type);
+		return NULL;
+	}
+
+	if (!pos_inside_level(x, y, lvl)) {
+		error_message(__FUNCTION__, "Can not add the obstacle: it is outside the level boundary (type: %d - gps: %f/%f/%d).",
+				PLEASE_INFORM, type, x, y, lvl->levelnum);
+		return NULL;
+	}
+
+	struct volatile_obstacle *volatile_obs = (struct volatile_obstacle *)MyMalloc(sizeof(struct volatile_obstacle));
+
+	volatile_obs->obstacle.pos.x = x;
+	volatile_obs->obstacle.pos.y = y;
+	volatile_obs->obstacle.pos.z = lvl->levelnum;
+	volatile_obs->obstacle.type = type;
+	volatile_obs->vanish_timeout = delay;
+
+	int cell_x = (int)floorf(x);
+	int cell_y = (int)floorf(y);
+
+	list_add(&(volatile_obs->volatile_list), &(lvl->map[cell_y][cell_x].volatile_obstacles));
+
+	return volatile_obs;
+}
+
+/**
+ * This function removes all volatile obstacles from a given level.
+ * An example of a volatile obstacle is the blood.
+ * If the blood doesn't vanish, then there will be more and more blood,
+ * especially after the bots on the level have respawned a few times.
+ * Therefore we need this function, which will remove all traces of blood
+ * from a given level.
+ */
+void remove_volatile_obstacles(int lvl_num)
+{
+	struct level *lvl = curShip.AllLevels[lvl_num];
+	int x, y;
+	for (y = 0; y < lvl->ylen; y++) {
+		for (x = 0; x < lvl->xlen; x++) {
+			struct volatile_obstacle *volatile_obs, *next;
+			list_for_each_entry_safe(volatile_obs, next, &lvl->map[y][x].volatile_obstacles, volatile_list) {
+				free(volatile_obs);
+			}
+			INIT_LIST_HEAD(&lvl->map[y][x].volatile_obstacles);
+		}
+	}
+}
+
+void clear_volatile_obstacles(void)
+{
+	int i;
+	for (i = 0; i < MAX_LEVELS; i++) {
+		if (level_exists(i)) {
+			remove_volatile_obstacles(i);
+		}
+	}
+}
+
+
 #undef _obstacle_c
