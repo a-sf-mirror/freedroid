@@ -826,12 +826,8 @@ static void set_new_waypointless_walk_target(enemy * ThisRobot, moderately_finep
  * robot in question was a 'boss monster'.  This function does the 
  * treasure dropping.
  */
-void DropEnemyTreasure(Enemy ThisRobot)
+static void enemy_drop_treasure(struct enemy *this_droid)
 {
-
-	// First of all: Update virtual position, avoiding bugs.
-	update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, ThisRobot->pos.z);
-
 	int extract_skill_level = Me.skill_level[get_program_index_with_name("Extract bot parts")];
 	if (extract_skill_level > 5)
 		extract_skill_level = 5;
@@ -841,77 +837,56 @@ void DropEnemyTreasure(Enemy ThisRobot)
 	//
 	switch (extract_skill_level) {
 	case 5:
-		if (Droidmap[ThisRobot->type].amount_of_tachyon_condensators
-		    && Droidmap[ThisRobot->type].amount_of_tachyon_condensators > MyRandom(100))
-			DropItemAt(get_item_type_by_id("Tachyon Condensator"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
-				   ThisRobot->virt_pos.y, 1);
+		if (Droidmap[this_droid->type].amount_of_tachyon_condensators
+		    && Droidmap[this_droid->type].amount_of_tachyon_condensators > MyRandom(100))
+			DropItemAt(get_item_type_by_id("Tachyon Condensator"), this_droid->pos.z, this_droid->pos.x,
+			           this_droid->pos.y, 1);
 		// no break
 	case 4:
-		if (Droidmap[ThisRobot->type].amount_of_antimatter_converters
-		    && Droidmap[ThisRobot->type].amount_of_antimatter_converters > MyRandom(100))
-			DropItemAt(get_item_type_by_id("Antimatter-Matter Converter"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
-				   ThisRobot->virt_pos.y, 1);
+		if (Droidmap[this_droid->type].amount_of_antimatter_converters
+		    && Droidmap[this_droid->type].amount_of_antimatter_converters > MyRandom(100))
+			DropItemAt(get_item_type_by_id("Antimatter-Matter Converter"), this_droid->pos.z, this_droid->pos.x,
+			           this_droid->pos.y, 1);
 		// no break
 	case 3:
-		if (Droidmap[ThisRobot->type].amount_of_superconductors
-		    && Droidmap[ThisRobot->type].amount_of_superconductors > MyRandom(100))
-			DropItemAt(get_item_type_by_id("Superconducting Relay Unit"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
-				   ThisRobot->virt_pos.y, 1);
+		if (Droidmap[this_droid->type].amount_of_superconductors
+		    && Droidmap[this_droid->type].amount_of_superconductors > MyRandom(100))
+			DropItemAt(get_item_type_by_id("Superconducting Relay Unit"), this_droid->pos.z, this_droid->pos.x,
+			           this_droid->pos.y, 1);
 		// no break
 	case 2:
-		if (Droidmap[ThisRobot->type].amount_of_plasma_transistors
-		    && Droidmap[ThisRobot->type].amount_of_plasma_transistors > MyRandom(100))
-			DropItemAt(get_item_type_by_id("Plasma Transistor"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
-				   ThisRobot->virt_pos.y, 1);
+		if (Droidmap[this_droid->type].amount_of_plasma_transistors
+		    && Droidmap[this_droid->type].amount_of_plasma_transistors > MyRandom(100))
+			DropItemAt(get_item_type_by_id("Plasma Transistor"), this_droid->pos.z, this_droid->pos.x,
+			           this_droid->pos.y, 1);
 		// no break
 	case 1:
-		if (Droidmap[ThisRobot->type].amount_of_entropy_inverters
-		    && Droidmap[ThisRobot->type].amount_of_entropy_inverters > MyRandom(100))
-			DropItemAt(get_item_type_by_id("Entropy Inverter"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
-				   ThisRobot->virt_pos.y, 1);
+		if (Droidmap[this_droid->type].amount_of_entropy_inverters
+		    && Droidmap[this_droid->type].amount_of_entropy_inverters > MyRandom(100))
+			DropItemAt(get_item_type_by_id("Entropy Inverter"), this_droid->pos.z, this_droid->pos.x,
+			           this_droid->pos.y, 1);
 		// no break
 	case 0:
 		break;
 	}
 
-	if (ThisRobot->on_death_drop_item_code != (-1)) {
+	if (this_droid->on_death_drop_item_code != (-1)) {
 		// We make sure the item created is of a reasonable type
 		//
-		if ((ThisRobot->on_death_drop_item_code <= 0) || (ThisRobot->on_death_drop_item_code >= Number_Of_Item_Types)) {
-			error_message(__FUNCTION__, "Bot at %f %f (level %d, dialog %s) is specified to drop an item that doesn't exist (item type %d).", PLEASE_INFORM, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z, ThisRobot->dialog_section_name, ThisRobot->on_death_drop_item_code);
+		if ((this_droid->on_death_drop_item_code <= 0) || (this_droid->on_death_drop_item_code >= Number_Of_Item_Types)) {
+			error_message(__FUNCTION__, "Bot at %f %f (level %d, dialog %s) is specified to drop an item that doesn't exist (item type %d).", PLEASE_INFORM, this_droid->pos.x, this_droid->pos.y, this_droid->pos.z, this_droid->dialog_section_name, this_droid->on_death_drop_item_code);
 			return;
 		}
 
-		DropItemAt(ThisRobot->on_death_drop_item_code, ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, 1);
-		ThisRobot->on_death_drop_item_code = -1;
+		DropItemAt(this_droid->on_death_drop_item_code, this_droid->pos.z, this_droid->pos.x, this_droid->pos.y, 1);
+		this_droid->on_death_drop_item_code = -1;
 	}
 	// Apart from the parts, that the Tux might be able to extract from the bot,
 	// there is still some chance, that the enemy will have (and drop) some other
 	// valuables, that the Tux can then collect afterwards.
 	//
-	DropRandomItem(ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, Droidmap[ThisRobot->type].drop_class, FALSE);
+	DropRandomItem(this_droid->pos.z, this_droid->pos.x, this_droid->pos.y, Droidmap[this_droid->type].drop_class, FALSE);
 }
-
-/**
- *
- *
- */
-int MakeSureEnemyIsInsideHisLevel(Enemy ThisRobot)
-{
-	// If the enemy is outside of the current map, 
-	// that's an error and needs to be corrected.
-	//
-	if (!pos_inside_level(ThisRobot->pos.x, ThisRobot->pos.y, curShip.AllLevels[ThisRobot->pos.z])) {
-		error_message(__FUNCTION__, "\
-There was a droid found outside the bounds of this level (when dying).\n\
-This is an error and should not occur, but most likely it does since\n\
-the bots are allowed some motion without respect to existing waypoints\n\
-in FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
-		return (FALSE);
-	}
-
-	return (TRUE);
-};				// int MakeSureEnemyIsInsideThisLevel ( int Enum )
 
 /**
  * When an enemy is hit, this causes some blood to be sprayed on the floor.
@@ -925,18 +900,47 @@ in FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
  *
  * This function does the blood spraying (adding of these obstacles).
  */
-static void enemy_spray_blood(enemy * CurEnemy)
+static void enemy_spray_blood(struct enemy *droid)
 {
-	moderately_finepoint target_pos = { 1.0, 0 };
+	// Fix virtual position (e.g. from a dying robot)
+	struct gps droid_pos = { -1, -1, -1 };
+	if (!resolve_virtual_position(&droid_pos, &droid->pos)) {
+		return;
+	}
 
-	RotateVectorByAngle(&target_pos, MyRandom(360));
+	// Find a random position that is inside the droid's level
+	// (that's not mandatory, but ease computation), and outside any obstacle
+	struct gps blood_pos = { -1, -1, -1 };
 
-	target_pos.x += CurEnemy->virt_pos.x;
-	target_pos.y += CurEnemy->virt_pos.y;
+	struct level *rlvl = curShip.AllLevels[droid_pos.z];
+	const int tries = 4;
+	int i;
+	for (i = 0; i < tries; i++) {
+		moderately_finepoint tried_pos = { 0.5, 0 };
+		RotateVectorByAngle(&tried_pos, MyRandom(360));
+		tried_pos.x += droid_pos.x;
+		tried_pos.y += droid_pos.y;
+		if (pos_inside_level(tried_pos.x, tried_pos.y, rlvl)) {
+			if (!SinglePointColldet(tried_pos.x, tried_pos.y, droid_pos.z, NULL))
+				continue;
+			blood_pos.x = tried_pos.x;
+			blood_pos.y = tried_pos.y;
+			blood_pos.z = droid_pos.z;
+			break;
+		}
+	}
+	if (i == tries) {
+		// Was not able to find a random position inside the level, use bot's position
+		blood_pos.x = droid_pos.x;
+		blood_pos.y = droid_pos.y;
+		blood_pos.z = droid_pos.z;
+	}
+
+	// Get a random blood print
 
 	struct obstacle_group *blood_group = NULL;
 
-	if (Droidmap[CurEnemy->type].is_human)
+	if (Droidmap[droid->type].is_human)
 		blood_group = get_obstacle_group_by_name("blood");
 	else
 		blood_group = get_obstacle_group_by_name("oil stains");
@@ -947,7 +951,8 @@ static void enemy_spray_blood(enemy * CurEnemy)
 	}
 
 	int *random_blood_type = dynarray_member(&blood_group->members, MyRandom(blood_group->members.size - 1), sizeof(int));
-	add_obstacle(curShip.AllLevels[CurEnemy->pos.z], target_pos.x, target_pos.y, *random_blood_type);
+	struct obstacle_spec *obs_spec = get_obstacle_spec(*random_blood_type);
+	add_volatile_obstacle(curShip.AllLevels[blood_pos.z], blood_pos.x, blood_pos.y, *random_blood_type, obs_spec->vanish_delay);
 }
 
 /**
@@ -993,47 +998,43 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 			Me.destroyed_bots[target->type]++;		
 		}
 
-//	The below section is much more of debug info that something that actually should be "spammed" to the user by default.
-//	Possibly Tux could know about fighting going on in the immediate vicinity, but for sure not on the other side of the world map.
-//	It just confuses beginners while giving little or no valuable info to even an experienced player.
-/*
+		//	The below section is much more of debug info that something that actually should be "spammed" to the user by default.
+		//	Possibly Tux could know about fighting going on in the immediate vicinity, but for sure not on the other side of the world map.
+		//	It just confuses beginners while giving little or no valuable info to even an experienced player.
+		/*
  		else if (killertype && killertype != -1)
 			append_new_game_message(_("[s]%s[v] was killed by %s."), target->short_description_text,
 						Droidmap[killertype].droidname);
 		else
 			append_new_game_message(_("[s]%s[v] died."), target->short_description_text);
-*/
+		 */
 	}
 
-	if (MakeSureEnemyIsInsideHisLevel(target)) {
+	// NOTE:  We reset the animation phase to the first death animation image
+	//        here.  But this may be WRONG!  In the case that the enemy graphics
+	//        hasn't been loaded yet, this will result in '1' for the animation
+	//        phase.  That however is unlikely to happen unless the bot is killed
+	//        right now and hasn't been ever visible in the game yet.  Also it
+	//        will lead only to minor 'prior animation' before the real death
+	//        phase is reached and so serious bugs other than that, so I think it
+	//        will be tolerable this way.
 
-		DropEnemyTreasure(target);
+	target->animation_phase = ((float)first_death_animation_image[Droidmap[target->type].individual_shape_nr]) - 1 + 0.1;
+	target->animation_type = DEATH_ANIMATION;
+	play_death_sound_for_bot(target);
 
-		// NOTE:  We reset the animation phase to the first death animation image
-		//        here.  But this may be WRONG!  In the case that the enemy graphics
-		//        hasn't been loaded yet, this will result in '1' for the animation
-		//        phase.  That however is unlikely to happen unless the bot is killed
-		//        right now and hasn't been ever visible in the game yet.  Also it
-		//        will lead only to minor 'prior animation' before the real death
-		//        phase is reached and so serious bugs other than that, so I think it 
-		//        will be tolerable this way.
-		//
-		target->animation_phase = ((float)first_death_animation_image[Droidmap[target->type].individual_shape_nr]) - 1 + 0.1;
-		target->animation_type = DEATH_ANIMATION;
-		play_death_sound_for_bot(target);
-		DebugPrintf(1, "\n%s(): playing death sound because bot of type %d really died.", __FUNCTION__, Droidmap[target->type].individual_shape_nr);
+	enemy_drop_treasure(target);
 
-		if (MyRandom(15) == 1)
-			enemy_spray_blood(target);
-	}
+	if (MyRandom(15) == 1)
+		enemy_spray_blood(target);
 
-	list_move(&(target->global_list), &dead_bots_head);	// bot is dead? move it to dead list
-	list_del(&(target->level_list));	// bot is dead? remove it from level list
+	list_move(&(target->global_list), &dead_bots_head); // bot is dead. move it to dead list
+	list_del(&(target->level_list));                    // bot is dead. remove it from level list
 
 	event_enemy_died(target);
 
 	return 0;
-};
+}
 
 /**
  *
@@ -1085,10 +1086,6 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 	if (is_friendly(target->faction, FACTION_SELF) && givexp)
 		givexp = 0;
 
-	// spray blood
-	if (hit > 1 && MyRandom(6) == 1)
-		enemy_spray_blood(target);
-
 	// hitstun
 	// a hit that does less than 5% (over max life) damage cannot stun a bot
 	if (hit / Droidmap[target->type].maxenergy >= 0.05) {
@@ -1103,6 +1100,8 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 	target->energy -= hit;
 	if (target->energy <= 0) {
 		kill_enemy(target, givexp, killertype);
+	} else if (hit > 1 && MyRandom(6) == 1) {
+		enemy_spray_blood(target);
 	}
 	if (mine)
 		Me.damage_dealt[target->type] += hit;
