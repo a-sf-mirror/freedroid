@@ -970,6 +970,20 @@ static int lua_add_obstacle(lua_State *L)
 	return 0;
 }
 
+static int lua_add_volatile_obstacle(lua_State *L)
+{
+	int levelnum = luaL_checkinteger(L, 1);
+	struct level *level = curShip.AllLevels[levelnum];
+	float x = luaL_checknumber(L, 2);
+	float y = luaL_checknumber(L, 3);
+	int type = luaL_checknumber(L, 4);
+
+	struct obstacle_spec *obs_spec = get_obstacle_spec(type);
+	add_volatile_obstacle(level, x, y, type, obs_spec->vanish_delay + obs_spec->vanish_duration);
+
+	return 0;
+}
+
 static int lua_meters_traveled(lua_State *L)
 {
 	lua_pushinteger(L, (float)Me.meters_traveled);
@@ -1356,6 +1370,7 @@ luaL_Reg lfuncs[] = {
 	 * is the obstacle ID (see defs.h)
 	 */
 	{"add_obstacle", lua_add_obstacle},
+	{"add_volatile_obstacle", lua_add_volatile_obstacle},
 	// meters_traveled() returns ingame meters tux has traveled
 	{"meters_traveled", lua_meters_traveled}, // -> FDtux:get_meters_traveled
 	// if (run_from_dialog()) then
