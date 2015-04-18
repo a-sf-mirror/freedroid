@@ -234,7 +234,10 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 		float centered_y = rintf(y1 + ordered_moves[i].y + 0.5) - 0.5;
 		gps vpos = { centered_x, centered_y, levelnum };
 		gps rpos;
-		resolve_virtual_position(&rpos, &vpos);
+		if (!resolve_virtual_position(&rpos, &vpos)) {
+			// The vpos is outside of any map, do not use it.
+			continue;
+		}
 		level *lvl = curShip.AllLevels[rpos.z];
 
 		if ((lvl->map[(int)rpos.y][(int)rpos.x].timestamp != ctx->timestamp)
