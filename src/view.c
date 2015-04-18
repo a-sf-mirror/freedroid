@@ -401,10 +401,10 @@ void insert_obstacles_into_blitting_list(int mask)
 					if (virtpos.z == -1)
 						continue;
 
-					if (rintf(virtpos.x - 0.5) != col)
+					if (floorf(virtpos.x) != col)
 						continue;
 
-					if (rintf(virtpos.y - 0.5) != line)
+					if (floorf(virtpos.y) != line)
 						continue;
 
 					OurObstacle->timestamp = tstamp;
