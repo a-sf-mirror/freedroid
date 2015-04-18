@@ -375,10 +375,11 @@ static void insert_one_obstacle_into_blitting_list(int col, int line, int z, str
 	if (virtpos.z == -1)
 		return;
 
-	if (rintf(virtpos.x - 0.5) != col)
+	// Check that the virpos is actually on the tile
+	if (floorf(virtpos.x) != col)
 		return;
 
-	if (rintf(virtpos.y - 0.5) != line)
+	if (floorf(virtpos.y) != line)
 		return;
 
 	the_obstacle->timestamp = tstamp;
