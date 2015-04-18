@@ -871,7 +871,8 @@ typedef struct obstacle_spec {
 
 	//-----------------------
 	// Some obstacles are volatiles, and vanishes after some seconds
-	float vanish_delay;
+	float vanish_delay;     // Start to vanish after 'delay' seconds
+	float vanish_duration;  // Number of seconds needed to disappear (after the 'delay')
 } obstacle_spec;
 
 struct obstacle_group {

@@ -314,7 +314,7 @@ int get_obstacle_type_by_name(char *name) {
 
 //===============================================================================================
 
-struct volatile_obstacle *add_volatile_obstacle(struct level *lvl, float x, float y, int type, float delay)
+struct volatile_obstacle *add_volatile_obstacle(struct level *lvl, float x, float y, int type, float timeout)
 {
 	struct obstacle_spec *obs_spec = get_obstacle_spec(type);
 
@@ -336,7 +336,7 @@ struct volatile_obstacle *add_volatile_obstacle(struct level *lvl, float x, floa
 	volatile_obs->obstacle.pos.y = y;
 	volatile_obs->obstacle.pos.z = lvl->levelnum;
 	volatile_obs->obstacle.type = type;
-	volatile_obs->vanish_timeout = delay;
+	volatile_obs->vanish_timeout = timeout;
 
 	int cell_x = (int)floorf(x);
 	int cell_y = (int)floorf(y);

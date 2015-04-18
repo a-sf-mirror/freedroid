@@ -79,14 +79,15 @@ struct blitting_list_element {
 struct dynarray *blitting_list;
 
 enum {
-	BLITTING_TYPE_NONE = 0,
-	BLITTING_TYPE_OBSTACLE = 1,
-	BLITTING_TYPE_ENEMY = 2,
-	BLITTING_TYPE_TUX = 3,
-	BLITTING_TYPE_BULLET = 4,
-	BLITTING_TYPE_BLAST = 5,
-	BLITTING_TYPE_THROWN_ITEM = 6,
-	BLITTING_TYPE_MOVE_CURSOR = 7
+	BLITTING_TYPE_NONE              = 0,
+	BLITTING_TYPE_OBSTACLE          = 1,
+	BLITTING_TYPE_VOLATILE_OBSTACLE = 2,
+	BLITTING_TYPE_ENEMY             = 3,
+	BLITTING_TYPE_TUX               = 4,
+	BLITTING_TYPE_BULLET            = 5,
+	BLITTING_TYPE_BLAST             = 6,
+	BLITTING_TYPE_THROWN_ITEM       = 7,
+	BLITTING_TYPE_MOVE_CURSOR       = 8
 };
 
 LIST_HEAD(visible_level_list);
@@ -288,14 +289,20 @@ void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 	draw_quad(x, y, 15, 238, 170, 255);
 }
 
-void blit_one_obstacle(obstacle *o, int highlight, int zoom)
+void blit_one_obstacle(obstacle *o, int highlight, int zoom, int opacity)
 {
 #define HIGHLIGHT 1
 #define NOHIGHLIGHT 0
 
+	if (opacity <= 0)
+		return;
+
 	float zf = zoom ? lvledit_zoomfact_inv() : 1.0;
 	level *lvl = curShip.AllLevels[Me.pos.z];
-	float r, g, b, a;
+	float r = 1.0;
+	float g = 1.0;
+	float b = 1.0;
+	float a = min((float)opacity / 255.0, 1.0);
 	gps pos;
 
 	if ((o->type <= -1) || (o->type >= obstacle_map.size)) {
@@ -313,7 +320,6 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 	update_virtual_position(&pos, &o->pos, lvl->levelnum);
 
 	// Compute colorization (in case the obstacle is currently selected in the leveleditor)
-	r = g = b = a = 1.0;
 	if (pos_inside_level(pos.x, pos.y, lvl)) {
 		object_vtx_color(o, &r, &g, &b);
 	}
@@ -322,9 +328,9 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 		if ((pos.x > Me.pos.x - 1.0) && (pos.y > Me.pos.y - 1.0)
 			&& (pos.x < Me.pos.x + 1.5) && (pos.y < Me.pos.y + 1.5)) {
 				if (game_status == INSIDE_LVLEDITOR) {
-					a = 0.5;
+					a *= 0.5;
 				} else if (get_obstacle_spec(o->type)->transparent == TRANSPARENCY_FOR_WALLS) {
-					a = 0.5;
+					a *= 0.5;
 				}
 		}
 	}
@@ -351,7 +357,7 @@ static void insert_new_element_into_blitting_list(float new_element_norm, int ne
 	dynarray_add(blitting_list, &elt, sizeof(struct blitting_list_element));
 }
 
-static void insert_one_obstacle_into_blitting_list(int col, int line, int z, struct obstacle *the_obstacle, int idx, int tstamp)
+static void insert_one_obstacle_into_blitting_list(int col, int line, int z, struct obstacle *the_obstacle, int kind, int idx, int tstamp)
 {
 	gps virtpos, reference;
 
@@ -377,8 +383,7 @@ static void insert_one_obstacle_into_blitting_list(int col, int line, int z, str
 
 	the_obstacle->timestamp = tstamp;
 
-	insert_new_element_into_blitting_list(virtpos.x + virtpos.y, BLITTING_TYPE_OBSTACLE,
-			the_obstacle, idx);
+	insert_new_element_into_blitting_list(virtpos.x + virtpos.y, kind, the_obstacle, idx);
 }
 
 /**
@@ -418,7 +423,7 @@ void insert_obstacles_into_blitting_list(int mask)
 					int idx = ((int *)obstacle_level->map[py][px].glued_obstacles.arr)[i];
 					OurObstacle = &obstacle_level->obstacle_list[idx];
 
-					insert_one_obstacle_into_blitting_list(col, line, tile_rpos.z, OurObstacle, idx, tstamp);
+					insert_one_obstacle_into_blitting_list(col, line, tile_rpos.z, OurObstacle, BLITTING_TYPE_OBSTACLE, idx, tstamp);
 			}
 
 			struct volatile_obstacle *volatile_obs, *next;
@@ -431,7 +436,12 @@ void insert_obstacles_into_blitting_list(int mask)
 					free(volatile_obs);
 					continue;
 				}
-				insert_one_obstacle_into_blitting_list(col, line, tile_rpos.z, &volatile_obs->obstacle, -1, tstamp);
+				float vanish_duration = get_obstacle_spec(volatile_obs->obstacle.type)->vanish_duration;
+				int opacity = 255;
+				if (volatile_obs->vanish_timeout < vanish_duration) {
+					opacity = (int)((volatile_obs->vanish_timeout / vanish_duration) * 255.0);
+				}
+				insert_one_obstacle_into_blitting_list(col, line, tile_rpos.z, &volatile_obs->obstacle, BLITTING_TYPE_VOLATILE_OBSTACLE, opacity, tstamp);
 			}
 		}
 	}
@@ -1232,10 +1242,8 @@ void set_up_ordered_blitting_list(int mask)
 	sort_blitting_list();
 }
 
-static void show_obstacle(int mask, obstacle * o, int code_number)
+static void show_obstacle(int mask, obstacle * o, int code_number, int opacity)
 {
-
-
 	// Safety checks
 	if ((o->type <= -1) || (o->type >= obstacle_map.size)) {
 		error_message(__FUNCTION__, "The blitting list contained an illegal obstacle type %d.", PLEASE_INFORM | IS_FATAL, o->type);
@@ -1243,17 +1251,17 @@ static void show_obstacle(int mask, obstacle * o, int code_number)
 
 	if (!(mask & OMIT_OBSTACLES)) {
 		if (mask & ZOOM_OUT) {
-			blit_one_obstacle(o, NOHIGHLIGHT, ZOOM_OUT);
+			blit_one_obstacle(o, NOHIGHLIGHT, ZOOM_OUT, opacity);
 		} else {
 			if (code_number == clickable_obstacle_under_cursor) {
-				blit_one_obstacle(o, HIGHLIGHT, !ZOOM_OUT);
+				blit_one_obstacle(o, HIGHLIGHT, !ZOOM_OUT, opacity);
 			} else {
 				// Do not blit "transp for water" obstacle when not in leveleditor mode
 				if (game_status != INSIDE_LVLEDITOR && o->type == ISO_TRANSP_FOR_WATER)
 					return;
 
 				// Normal display
-				blit_one_obstacle(o, NOHIGHLIGHT, !ZOOM_OUT);
+				blit_one_obstacle(o, NOHIGHLIGHT, !ZOOM_OUT, opacity);
 			}
 		}
 	}
@@ -1278,6 +1286,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 
 		switch (e->element_type) {
 		case BLITTING_TYPE_OBSTACLE:
+		case BLITTING_TYPE_VOLATILE_OBSTACLE:
 			// We do some sanity checking for illegal obstacle types.
 			// Can't hurt to do that so as to be on the safe side.
 			//
@@ -1311,8 +1320,12 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 
 			// Draw the obstacle by itself if it is a preput obstacle
 			//
-			if (obstacle_spec->flags & NEEDS_PRE_PUT)
-				show_obstacle(mask, ((obstacle *) e->element_pointer), e->code_number);
+			if (obstacle_spec->flags & NEEDS_PRE_PUT) {
+				if (e->element_type == BLITTING_TYPE_VOLATILE_OBSTACLE)
+					show_obstacle(mask, ((obstacle *) e->element_pointer), -2, e->code_number);
+				else
+					show_obstacle(mask, ((obstacle *) e->element_pointer), e->code_number, 255);
+			}
 			break;
 		
 		case BLITTING_TYPE_ENEMY:
@@ -1381,10 +1394,14 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 			break;
 		switch (e->element_type) {
 		case BLITTING_TYPE_OBSTACLE:
+		case BLITTING_TYPE_VOLATILE_OBSTACLE:
 			// Skip preput obstacles
 			if (get_obstacle_spec(((obstacle*)(e->element_pointer))->type)->flags & NEEDS_PRE_PUT)
 				continue;
-			show_obstacle(mask, e->element_pointer, e->code_number);
+			if (e->element_type == BLITTING_TYPE_VOLATILE_OBSTACLE)
+				show_obstacle(mask, ((obstacle *) e->element_pointer), -2, e->code_number);
+			else
+				show_obstacle(mask, ((obstacle *) e->element_pointer), e->code_number, 255);
 			break;
 		case BLITTING_TYPE_TUX:
 			if (!(mask & OMIT_TUX)) {

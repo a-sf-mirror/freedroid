@@ -952,7 +952,7 @@ static void enemy_spray_blood(struct enemy *droid)
 
 	int *random_blood_type = dynarray_member(&blood_group->members, MyRandom(blood_group->members.size - 1), sizeof(int));
 	struct obstacle_spec *obs_spec = get_obstacle_spec(*random_blood_type);
-	add_volatile_obstacle(curShip.AllLevels[blood_pos.z], blood_pos.x, blood_pos.y, *random_blood_type, obs_spec->vanish_delay);
+	add_volatile_obstacle(curShip.AllLevels[blood_pos.z], blood_pos.x, blood_pos.y, *random_blood_type, obs_spec->vanish_delay + obs_spec->vanish_duration);
 }
 
 /**
