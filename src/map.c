@@ -1267,14 +1267,13 @@ void free_ship_level(level *lvl)
 
 void free_current_ship()
 {
-	int i;
-
-	for (i = 0; i < MAX_LEVELS; i++) {
-		if (level_exists(i)) {
-			free_ship_level(curShip.AllLevels[i]);
-			curShip.AllLevels[i] = NULL;
-		}
+	struct level *lvl;
+	BROWSE_LEVELS(lvl) {
+		int lvlnum = lvl->levelnum;
+		free_ship_level(lvl);
+		curShip.AllLevels[lvlnum] = NULL;
 	}
+	curShip.num_levels = 0;
 }
 
 /**

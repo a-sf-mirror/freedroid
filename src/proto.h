@@ -180,24 +180,12 @@ char *get_motion_class_name_by_id(int);
 int get_motion_class_id(void);
 void show_inventory_screen(void);
 
-#define next_valid_visible_level(pos, start) ({ \
-	pos = start; \
-	while (&pos->node != &visible_level_list && !pos->valid) \
-		pos = list_entry(pos->node.next, typeof(*pos), node); \
-	})
-
-#define next_valid_nearby_visible_level(pos, start, d) ({ \
-	pos = start; \
-	while (&pos->node != &visible_level_list && (!pos->valid || pos->boundary_squared_dist>=d)) \
-		pos = list_entry(pos->node.next, typeof(*pos), node); \
-	})
-
-// This macro will loop on each valid visible levels.
+// The BROWSE_VISIBLE_LEVELS macro will loop on each valid visible levels.
 // It is based on the list_for_each_entry_safe() macro.
 // However, some entries in the visible_level_list are marked as not "valid",
 // and such levels have to be ignored during the call to the macro.
 // So, in the 'update part' of the 'for' statement we have to advance the ptr 
-// *until* a valid entry is found. Thus, a loop (that is a compound-statement) is 
+// *until* a valid entry is found. Thus, a loop (i.e. a compound-statement) is
 // needed.
 // However, the 'update part' of a 'for' statement has to be an 'expression'.
 // Thanks to gcc (this is not part of the C99 standard), it is possible to 
@@ -206,20 +194,63 @@ void show_inventory_screen(void);
 // To ease readiness, the loop is defined in a next_valid_visible_level() macro.
 // This loop is also used in the 'initialization part' of the 'for' statement,
 // to reach the first valid entry.
+
+#define next_valid_visible_level(pos, start) ({ \
+	pos = start; \
+	while (&pos->node != &visible_level_list && !pos->valid) \
+		pos = list_entry(pos->node.next, typeof(*pos), node); \
+	})
+
 #define BROWSE_VISIBLE_LEVELS(pos, n) \
 	for (next_valid_visible_level(pos, list_entry(visible_level_list.next, typeof(*pos), node)), \
 		n = list_entry(pos->node.next, typeof(*pos), node) ; \
 		&pos->node != (&visible_level_list) ; \
 		next_valid_visible_level(pos, n), n = list_entry(pos->node.next, typeof(*pos), node))
 
-// This macro will loop on each valid visible levels, if one of their boundary is
-// at a distance less than 'd'.
+// The BROWSE_NEARBY_VISIBLE_LEVELS macro will loop on each valid visible levels,
+// if one of their boundary is at a distance less than 'd'.
 // It uses the same trick than the BROWSE_VISIBLE_LEVELS() macro.
+
+#define next_valid_nearby_visible_level(pos, start, d) ({ \
+	pos = start; \
+	while (&pos->node != &visible_level_list && (!pos->valid || pos->boundary_squared_dist>=d)) \
+		pos = list_entry(pos->node.next, typeof(*pos), node); \
+	})
+
 #define BROWSE_NEARBY_VISIBLE_LEVELS(pos, n, d) \
 	for (next_valid_nearby_visible_level(pos, list_entry(visible_level_list.next, typeof(*pos), node), d), \
 		n = list_entry(pos->node.next, typeof(*pos), node) ; \
 		&pos->node != (&visible_level_list) ; \
 		next_valid_nearby_visible_level(pos, n, d), n = list_entry(pos->node.next, typeof(*pos), node))
+
+// The BROWSE_LEVELS loops on all levels, skipping missing one.
+// Same trick than the two macros just above, plus an other one:
+// An index is needed to loop on the curShip.ALLLevels array.
+// That index (an integer) has to be declared by the macro, but has to be
+// unique for each use of the macro.
+// We use the __COUNTER__ cpp macro to get a unique value, and concatenate it
+// to create '_CRYPTIC_0_NAME_0', '_CRYPTIC_1_NAME_1', '_CRYPTIC_2_NAME_2'...
+// (those cryptic names are used to minimize the chance of a name collision)
+// Due to the way cpp works, this has to be done in 3 steps:
+// BROWSE_LEVELS() creates a COUNTER value, used several times by BROWSE_LEVELS_IMPL()
+// to create a unique name through the call to CRYPTICNAME().
+// CRYPTICNAME() is needed because cpp applies concatenation before to resolves __COUNTER__
+
+#define next_valid_level(i, start) ({ \
+	i = start; \
+	while (i < curShip.num_levels && curShip.AllLevels[i] == NULL) \
+		i++; \
+	})
+
+#define CRYPTICNAME(counter) _CRYPTIC_ ## counter ## _NAME_ ## counter
+
+#define BROWSE_LEVELS_IMPL(lvl, counter) \
+	int CRYPTICNAME(counter); \
+	for (next_valid_level(CRYPTICNAME(counter), 0), lvl = curShip.AllLevels[CRYPTICNAME(counter)] ; \
+	     CRYPTICNAME(counter) < curShip.num_levels ; \
+	     next_valid_level(CRYPTICNAME(counter), CRYPTICNAME(counter)+1), lvl = curShip.AllLevels[CRYPTICNAME(counter)])
+
+#define BROWSE_LEVELS(lvl) BROWSE_LEVELS_IMPL(lvl, __COUNTER__)
 
 // light.c 
 void LightRadiusInit(void);

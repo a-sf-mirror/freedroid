@@ -688,15 +688,14 @@ void reset_visible_levels()
 
 void gps_transform_map_init()
 {
-	int lvl_idx;
 	int x, y;
-	int ngb_idx, diag_idx;
+	int lvl_idx, ngb_idx, diag_idx;
+	struct level *lvl;
 
 	if (!gps_transform_map_dirty_flag)
 		return;
 
 	// Reset maps
-	//
 
 	for (lvl_idx = 0; lvl_idx < MAX_LEVELS; lvl_idx++) {
 		for (ngb_idx = 0; ngb_idx < MAX_LEVELS; ngb_idx++) {
@@ -714,60 +713,56 @@ void gps_transform_map_init()
 	}
 
 	// Scan direct neighbors and fill maps
-	//
 
-	for (lvl_idx = 0; lvl_idx < MAX_LEVELS; lvl_idx++) {
-		// Undefined level -> continue  
-		if (!level_exists(lvl_idx))
-			continue;
-
+	BROWSE_LEVELS(lvl) {
+		int lvlnum = lvl->levelnum;
 		// Self
-		gps_transform_matrix[lvl_idx][lvl_idx].delta_x = 0;
-		gps_transform_matrix[lvl_idx][lvl_idx].delta_y = 0;
-		gps_transform_matrix[lvl_idx][lvl_idx].lvl_idx = lvl_idx;
-		gps_transform_matrix[lvl_idx][lvl_idx].valid = TRUE;
+		gps_transform_matrix[lvlnum][lvlnum].delta_x = 0;
+		gps_transform_matrix[lvlnum][lvlnum].delta_y = 0;
+		gps_transform_matrix[lvlnum][lvlnum].lvl_idx = lvlnum;
+		gps_transform_matrix[lvlnum][lvlnum].valid = TRUE;
 
-		NEIGHBOR_TRANSFORM_SELF(lvl_idx) = &gps_transform_matrix[lvl_idx][lvl_idx];
+		NEIGHBOR_TRANSFORM_SELF(lvlnum) = &gps_transform_matrix[lvlnum][lvlnum];
 
 		// North
-		ngb_idx = curShip.AllLevels[lvl_idx]->jump_target_north;
+		ngb_idx = lvl->jump_target_north;
 		if (ngb_idx != -1) {
-			gps_transform_matrix[lvl_idx][ngb_idx].delta_x = 0;
-			gps_transform_matrix[lvl_idx][ngb_idx].delta_y = +curShip.AllLevels[ngb_idx]->ylen;
-			gps_transform_matrix[lvl_idx][ngb_idx].lvl_idx = ngb_idx;
-			gps_transform_matrix[lvl_idx][ngb_idx].valid = TRUE;
+			gps_transform_matrix[lvlnum][ngb_idx].delta_x = 0;
+			gps_transform_matrix[lvlnum][ngb_idx].delta_y = +curShip.AllLevels[ngb_idx]->ylen;
+			gps_transform_matrix[lvlnum][ngb_idx].lvl_idx = ngb_idx;
+			gps_transform_matrix[lvlnum][ngb_idx].valid = TRUE;
 
-			NEIGHBOR_TRANSFORM_N(lvl_idx) = &gps_transform_matrix[lvl_idx][ngb_idx];
+			NEIGHBOR_TRANSFORM_N(lvlnum) = &gps_transform_matrix[lvlnum][ngb_idx];
 		}
 		// South
-		ngb_idx = curShip.AllLevels[lvl_idx]->jump_target_south;
+		ngb_idx = lvl->jump_target_south;
 		if (ngb_idx != -1) {
-			gps_transform_matrix[lvl_idx][ngb_idx].delta_x = 0;
-			gps_transform_matrix[lvl_idx][ngb_idx].delta_y = -curShip.AllLevels[lvl_idx]->ylen;
-			gps_transform_matrix[lvl_idx][ngb_idx].lvl_idx = ngb_idx;
-			gps_transform_matrix[lvl_idx][ngb_idx].valid = TRUE;
+			gps_transform_matrix[lvlnum][ngb_idx].delta_x = 0;
+			gps_transform_matrix[lvlnum][ngb_idx].delta_y = -lvl->ylen;
+			gps_transform_matrix[lvlnum][ngb_idx].lvl_idx = ngb_idx;
+			gps_transform_matrix[lvlnum][ngb_idx].valid = TRUE;
 
-			NEIGHBOR_TRANSFORM_S(lvl_idx) = &gps_transform_matrix[lvl_idx][ngb_idx];
+			NEIGHBOR_TRANSFORM_S(lvlnum) = &gps_transform_matrix[lvlnum][ngb_idx];
 		}
 		// East
-		ngb_idx = curShip.AllLevels[lvl_idx]->jump_target_east;
+		ngb_idx = lvl->jump_target_east;
 		if (ngb_idx != -1) {
-			gps_transform_matrix[lvl_idx][ngb_idx].delta_x = -curShip.AllLevels[lvl_idx]->xlen;
-			gps_transform_matrix[lvl_idx][ngb_idx].delta_y = 0;
-			gps_transform_matrix[lvl_idx][ngb_idx].lvl_idx = ngb_idx;
-			gps_transform_matrix[lvl_idx][ngb_idx].valid = TRUE;
+			gps_transform_matrix[lvlnum][ngb_idx].delta_x = -lvl->xlen;
+			gps_transform_matrix[lvlnum][ngb_idx].delta_y = 0;
+			gps_transform_matrix[lvlnum][ngb_idx].lvl_idx = ngb_idx;
+			gps_transform_matrix[lvlnum][ngb_idx].valid = TRUE;
 
-			NEIGHBOR_TRANSFORM_E(lvl_idx) = &gps_transform_matrix[lvl_idx][ngb_idx];
+			NEIGHBOR_TRANSFORM_E(lvlnum) = &gps_transform_matrix[lvlnum][ngb_idx];
 		}
 		// West
-		ngb_idx = curShip.AllLevels[lvl_idx]->jump_target_west;
+		ngb_idx = lvl->jump_target_west;
 		if (ngb_idx != -1) {
-			gps_transform_matrix[lvl_idx][ngb_idx].delta_x = +curShip.AllLevels[ngb_idx]->xlen;
-			gps_transform_matrix[lvl_idx][ngb_idx].delta_y = 0;
-			gps_transform_matrix[lvl_idx][ngb_idx].lvl_idx = ngb_idx;
-			gps_transform_matrix[lvl_idx][ngb_idx].valid = TRUE;
+			gps_transform_matrix[lvlnum][ngb_idx].delta_x = +curShip.AllLevels[ngb_idx]->xlen;
+			gps_transform_matrix[lvlnum][ngb_idx].delta_y = 0;
+			gps_transform_matrix[lvlnum][ngb_idx].lvl_idx = ngb_idx;
+			gps_transform_matrix[lvlnum][ngb_idx].valid = TRUE;
 
-			NEIGHBOR_TRANSFORM_W(lvl_idx) = &gps_transform_matrix[lvl_idx][ngb_idx];
+			NEIGHBOR_TRANSFORM_W(lvlnum) = &gps_transform_matrix[lvlnum][ngb_idx];
 		}
 	}
 
