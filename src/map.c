@@ -1340,14 +1340,6 @@ int LoadShip(char *filename, int compressed)
 		} 
 	}
 
-	// Check for consistency of levels
-	int check_level = curShip.num_levels;
-	while (check_level--) {
-		if (!level_exists(check_level)) {
-			error_message(__FUNCTION__, "Level number %d should exist but is NULL.", PLEASE_INFORM | IS_FATAL, check_level);
-		}
-	}
-
 	// Now that all the information has been copied, we can free the loaded data
 	// again.
 	//
