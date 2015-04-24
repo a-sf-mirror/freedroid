@@ -431,16 +431,18 @@ void insert_obstacles_into_blitting_list(int mask)
 			list_for_each_entry_safe(volatile_obs, next, &obstacle_level->map[py][px].volatile_obstacles, volatile_list) {
 				if (volatile_obs->obstacle.timestamp == tstamp)
 					continue;
-				volatile_obs->vanish_timeout -= Frame_Time();
-				if (volatile_obs->vanish_timeout <= 0) {
-					list_del(&volatile_obs->volatile_list);
-					free(volatile_obs);
-					continue;
-				}
-				float vanish_duration = get_obstacle_spec(volatile_obs->obstacle.type)->vanish_duration;
 				int opacity = 255;
-				if (volatile_obs->vanish_timeout < vanish_duration) {
-					opacity = (int)((volatile_obs->vanish_timeout / vanish_duration) * 255.0);
+				if (game_status == INSIDE_GAME) {
+					volatile_obs->vanish_timeout -= Frame_Time();
+					if (volatile_obs->vanish_timeout <= 0) {
+						list_del(&volatile_obs->volatile_list);
+						free(volatile_obs);
+						continue;
+					}
+					float vanish_duration = get_obstacle_spec(volatile_obs->obstacle.type)->vanish_duration;
+					if (volatile_obs->vanish_timeout < vanish_duration) {
+						opacity = (int)((volatile_obs->vanish_timeout / vanish_duration) * 255.0);
+					}
 				}
 				insert_one_obstacle_into_blitting_list(col, line, tile_rpos.z, &volatile_obs->obstacle, BLITTING_TYPE_VOLATILE_OBSTACLE, opacity, tstamp);
 			}
