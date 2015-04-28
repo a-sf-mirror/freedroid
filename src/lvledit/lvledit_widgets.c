@@ -337,7 +337,7 @@ struct widget_group *get_lvledit_ui()
 			NULL
 		},
 		{LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON, NULL,
-			_("Delete selected obstacle\n\nUse this button to delete the currently marked obstacle.\n\nYou can also use Ctrl-X for this."),
+			_("Delete selected objects\n\nUse this button to delete the currently marked objects.\n\nYou can also use Ctrl-X for this."),
 			1,
 			delete_obstacle_button_click,
 			NULL,
