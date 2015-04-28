@@ -137,6 +137,69 @@ int element_in_selection(void *data)
 	return 0;
 }
 
+/**
+ * Remove an element from the selection list.
+ * Return 1 if the element was actually removed (it was in the selection list), or 0 if not.
+ */
+int remove_element_from_selection(void *data)
+{
+	struct selected_element *e, *next;
+	list_for_each_entry_safe(e, next, &selected_elements, node) {
+		switch(e->type) {
+		case OBJECT_FLOOR:
+			{
+				// We must compare the floor tiles in the wrapper structure
+				struct lvledit_map_tile *t = e->data;
+				if (t->tile == data) {
+					free(t->tile);
+					t->tile = NULL;
+					free(e->data);
+					e->data = NULL;
+					list_del(&e->node);
+					free(e);
+					e = NULL;
+					return 1;
+				}
+			}
+			break;
+		case OBJECT_WAYPOINT:
+			// We must compare the coordinates of the two waypoints
+			if (((waypoint *)e->data)->x == ((waypoint *)data)->x &&
+				((waypoint *)e->data)->y == ((waypoint *)data)->y) {
+				free(e->data);
+				e->data = NULL;
+				list_del(&e->node);
+				free(e);
+				e = NULL;
+				return 1;
+			}
+			break;
+		case OBJECT_MAP_LABEL:
+			// We must compare the coordinates of the two map labels
+			if (((map_label *)e->data)->pos.x == ((map_label *)data)->pos.x &&
+				((map_label *)e->data)->pos.y == ((map_label *)data)->pos.y) {
+				free(e->data);
+				e->data = NULL;
+				list_del(&e->node);
+				free(e);
+				e = NULL;
+				return 1;
+			}
+			break;
+		default:
+			if (e->data == data) {
+				list_del(&e->node);
+				free(e);
+				e = NULL;
+				return 1;
+			}
+			break;
+		}
+	}
+
+	return 0;
+}
+
 static void __calc_min_max(float x, float y, moderately_finepoint *cmin, moderately_finepoint *cmax)
 {
 	if (x < cmin->x)

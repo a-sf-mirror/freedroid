@@ -45,5 +45,6 @@ void level_editor_paste_selection(void);
 
 void clear_clipboard(int);
 void clear_selection(int);
+int remove_element_from_selection(void *);
 
 void level_editor_switch_selection_type(int direction);
