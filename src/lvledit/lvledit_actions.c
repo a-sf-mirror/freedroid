@@ -693,7 +693,7 @@ enemy *action_create_enemy(level *lvl, enemy *en)
 	return en;
 }
 
-static void action_remove_enemy(level *lvl, enemy *en)
+void action_remove_enemy(level *lvl, enemy *en)
 {
 	enemy *current_enemy, *nerot;
 

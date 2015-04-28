@@ -947,6 +947,10 @@ void level_editor_delete_selection()
 			action_remove_map_label(EditLevel(), ((map_label *)(e->data))->pos.x, ((map_label *)(e->data))->pos.y);
 			nbelem++;
 			break;
+		case OBJECT_ENEMY:
+			action_remove_enemy(EditLevel(), e->data);
+			nbelem++;
+			break;
 		default:
 			break;
 		}
