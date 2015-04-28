@@ -1023,6 +1023,12 @@ void delete_map_level(int lnum)
 	if (lnum == curShip.num_levels - 1)
 		curShip.num_levels--;
 
+	// Removing a level cannot be undo, so we need to clear everything that could have
+	// a reference to an object of the deleted level.
+	action_freestack();
+	clear_selection(-1);
+	clear_clipboard(-1);
+
 }
 
 static int get_chest_contents(level *l, obstacle *o, item *items[MAX_ITEMS_IN_INVENTORY])
