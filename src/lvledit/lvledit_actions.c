@@ -38,6 +38,7 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_widgets.h"
+#include "lvledit/lvledit_tool_select.h"
 
 /* Undo/redo action lists */
 LIST_HEAD(to_undo);
@@ -285,6 +286,9 @@ void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)
 	posx = our_obstacle->pos.x;
 	posy = our_obstacle->pos.y;
 
+	// The obstacle can be in the selection list
+	remove_element_from_selection(our_obstacle);
+
 	// make an undoable removal
 	del_obstacle(our_obstacle);
 	action_push(ACT_CREATE_OBSTACLE, posx, posy, type);
@@ -336,6 +340,9 @@ void action_remove_item(level *EditLevel, item *it)
 	type = it->type;
 	x = it->pos.x;
 	y = it->pos.y;
+
+	// The item can be in the selection list
+	remove_element_from_selection(it);
 
 	// Remove the item on the map
 	DeleteItem(it);
@@ -412,6 +419,9 @@ void action_remove_waypoint(level *EditLevel, int x, int y)
 
 	// Save waypoint information for the undo action
 	int old_random_spawn = wpts[wpnum].suppress_random_spawn;
+
+	// The waypoint can be in the selection list
+	remove_element_from_selection(&wpts[wpnum]);
 
 	// Remove the waypoint on the map
 	del_waypoint(EditLevel, x, y);
@@ -668,6 +678,8 @@ void action_remove_map_label(level *lvl, int x, int y)
 	if (m) {
 		old_label_name = strdup(m->label_name);
 
+		remove_element_from_selection(m);
+
 		del_map_label(lvl, m->label_name);
 
 		action_push(ACT_CREATE_MAP_LABEL, x, y, old_label_name);
@@ -684,6 +696,8 @@ enemy *action_create_enemy(level *lvl, enemy *en)
 static void action_remove_enemy(level *lvl, enemy *en)
 {
 	enemy *current_enemy, *nerot;
+
+	remove_element_from_selection(en);
 
 	BROWSE_ALIVE_BOTS_SAFE(current_enemy, nerot) {
 		if (current_enemy == en)

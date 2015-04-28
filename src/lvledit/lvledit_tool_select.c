@@ -916,14 +916,14 @@ static int clear_current_floor_layers(level *lvl, int coord_x, int coord_y)
 
 void level_editor_delete_selection()
 {
-	struct selected_element *e;
+	struct selected_element *e, *next;
 	int nbelem = 0;
 	if (mode != FD_RECTDONE) {
 		// We get called from the outside so check mode coherency first
 		return;
 	}
 
-	list_for_each_entry(e, &selected_elements, node) {
+	list_for_each_entry_safe(e, next, &selected_elements, node) {
 		switch (e->type) {
 		case OBJECT_OBSTACLE:
 			action_remove_obstacle_user(EditLevel(), e->data);
