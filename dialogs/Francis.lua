@@ -49,7 +49,7 @@ return {
 
 	EveryTime = function()
 		if (not Francis_bot_attack) then
-			if (InvaderBot:is_dead()) then
+			if (InvaderBot_hacked or InvaderBot:is_dead()) then
 				next("node6")
 			else
 				Npc:says(_"HELP! We're under attack!","NO_WAIT")
@@ -58,7 +58,7 @@ return {
 			end
 			Francis_bot_attack = true
 			Npc:set_rush_tux(false)
-		elseif (not InvaderBot:is_dead()) then
+		elseif (not InvaderBot_hacked and not InvaderBot:is_dead()) then
 			Npc:says(_"Have you neutralized the threat yet?")
 			if (not Francis_tux_liar) then
 				show("node1", "node2")
@@ -99,7 +99,7 @@ return {
 			end
 		end
 		-- in case Francis gets stuck at FrancisSafe:
-		if (InvaderBot:is_dead()) and
+		if (InvaderBot_hacked or InvaderBot:is_dead()) and
 		   (Francis_invaderbot_neutralized) and
 		   (not Francis_movement_free) then -- this way we prevent him from walking to the label whenever we talk to him again which may look strange
 			Npc:set_destination("InvaderBot-Alive-Check-W")

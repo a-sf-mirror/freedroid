@@ -31,7 +31,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 
 <EveryTime LuaCode>
 	if (not Francis_bot_attack) then
-		if (npc_dead("InvaderBot")) then
+		if (InvaderBot_hacked or npc_dead("InvaderBot")) then
 			next(6)
 		else
 			npc_says(_"HELP! We're under attack!","NO_WAIT")
@@ -40,7 +40,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		end
 		Francis_bot_attack = true
 		set_rush_tux(0)
-	elseif (not npc_dead("InvaderBot")) then
+	elseif (not InvaderBot_hacked and not npc_dead("InvaderBot")) then
 		npc_says(_"Have you neutralized the threat yet?")
 		if (not Francis_tux_liar) then
 			show(1, 2)
@@ -79,7 +79,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 		end
 	end
  -- in case Francis gets stuck at FrancisSafe:
-	if (npc_dead("InvaderBot")) and
+	if (InvaderBot_hacked or npc_dead("InvaderBot")) and
 	   (Francis_invaderbot_neutralized) and
 	   (not Francis_movement_free) then -- this way we prevent him from walking to the label whenever we talk to him again which may look strange
 		set_bot_destination("InvaderBot-Alive-Check-W")

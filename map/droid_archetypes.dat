@@ -1098,33 +1098,6 @@ Filename prefix for graphics="autogun"
 Notes concerning this droid=_"Carefully designed by Future Ballistics(R), this autogun will shred you into pieces if you try pass across them."
 
 ** Start of new Robot: ** 
-Droidname: INV
-Default description:_"Invader Bot"
-Droid uses portrait rotation series with prefix="123"
-Maximum speed of this droid: 2
-Class of this droid: 1
-Drops item class=1
-Maximum energy of this droid: 10
-Rate of healing: 2
-Experience_Reward gained for destroying one of this type: 40
-Aggression distance of this droid=11
-Time spent eyeing Tux=1.0
-Weapon item="Droid 123 Weak Robotic Arm"
-Percent to drop Entropy Inverter=10
-Percent to drop Plasma Transistor=5
-Percent to drop Superconducting Relay Unit=5
-Percent to drop Antimatter-Matter Converter=2
-Percent to drop Tachyon Condensator=10
-Greeting Sound number=0
-Death sound file name="death_sound_123.ogg"
-Attack animation sound file name="death_sound_123.ogg"
-Chance of this robot scoring a hit=50
-Time to recover after getting hit=1.00
-Is this 'droid' a human : 1
-Filename prefix for graphics="123"
-Notes concerning this droid=_"A simple rubbish disposal robot. Common device in most factories to maintain a clean yard."
-
-** Start of new Robot: ** 
 Droidname: ARH
 Default description:_"Authority Figure"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"

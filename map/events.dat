@@ -848,7 +848,7 @@ Name="InvaderBot-Alive-Check-N"
 Trigger at label="InvaderBot-Alive-Check-N"
 Silent=1
 <LuaCode>
-	if (not npc_dead("InvaderBot")) then
+	if (not InvaderBot_hacked and not npc_dead("InvaderBot")) then
 		set_rush_tux(1, "InvaderBot")
 	end
 </LuaCode>
@@ -859,9 +859,18 @@ Name="InvaderBot-Alive-Check-W"
 Trigger at label="InvaderBot-Alive-Check-W"
 Silent=1
 <LuaCode>
-	if (not npc_dead("InvaderBot")) then
+	if (not InvaderBot_hacked and not npc_dead("InvaderBot")) then
 		set_rush_tux(1, "InvaderBot")
 	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"InvaderBot-Hacked"
+Trigger on enemy hack
+Enemy dialog name="InvaderBot"
+<LuaCode>
+	InvaderBot_hacked = true
 </LuaCode>
 * End of trigger *
 
