@@ -462,6 +462,10 @@ static int approach(int type)
 			{ ISO_CONSOLE_S, NORTH },
 			{ ISO_CONSOLE_E, WEST },
 			{ ISO_CONSOLE_W, EAST },
+		        { ISO_CONSOLE_SECURE_E, EAST },
+		        { ISO_CONSOLE_SECURE_S, SOUTH },
+		        { ISO_CONSOLE_SECURE_W, WEST },
+        		{ ISO_CONSOLE_SECURE_N, NORTH },
 			{ ISO_WALL_TERMINAL_S, SOUTH},
 			{ ISO_WALL_TERMINAL_E, EAST},
 			{ ISO_WALL_TERMINAL_N, NORTH},
@@ -537,7 +541,11 @@ static void act_terminal(level *l, obstacle *o)
 	}
 
 	enemy dummy_enemy;
-	dummy_enemy.type = get_droid_type("TRM");
+	// There are currently two terminal "droids", with different in-dialog images.
+	if ((o->type >= ISO_CONSOLE_SECURE_E) && (o->type <= ISO_CONSOLE_SECURE_N))
+		dummy_enemy.type = get_droid_type("STM");
+	else
+		dummy_enemy.type = get_droid_type("TRM");
 	enemy_reset(&dummy_enemy);
 	dummy_enemy.dialog_section_name = dialog;
 	dummy_enemy.will_rush_tux = FALSE;

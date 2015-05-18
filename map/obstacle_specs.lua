@@ -3477,6 +3477,46 @@ obstacle {
 	transparency = NO_TRANSPARENCY,
 }
 
+obstacle {
+	image_filenames = { "iso_terminal_secure_e_01.png", "iso_terminal_secure_e_02.png", "iso_terminal_secure_e_03.png", "iso_terminal_secure_e_04.png", "iso_terminal_secure_e_05.png", "iso_terminal_secure_e_06.png", "iso_terminal_secure_e_07.png", "iso_terminal_secure_e_08.png", "iso_terminal_secure_e_09.png", "iso_terminal_secure_e_10.png", "iso_terminal_secure_e_11.png", "iso_terminal_secure_e_12.png", "iso_terminal_secure_e_13.png" },
+        label = _"Secure terminal",
+        borders = borders(0.80, 0.80),
+        flags = { IS_CLICKABLE },
+        transparency = NO_TRANSPARENCY,
+        action = "terminal",
+	animation_fps = 12
+}
+
+obstacle {
+	image_filenames = { "iso_terminal_secure_s_01.png", "iso_terminal_secure_s_02.png", "iso_terminal_secure_s_03.png", "iso_terminal_secure_s_04.png", "iso_terminal_secure_s_05.png", "iso_terminal_secure_s_06.png", "iso_terminal_secure_s_07.png", "iso_terminal_secure_s_08.png", "iso_terminal_secure_s_09.png", "iso_terminal_secure_s_10.png", "iso_terminal_secure_s_11.png", "iso_terminal_secure_s_12.png", "iso_terminal_secure_s_13.png" },
+	label = _"Secure terminal",
+        borders = borders(0.80, 0.80),
+        flags = { IS_CLICKABLE },
+        transparency = NO_TRANSPARENCY,
+        action = "terminal",
+        animation_fps = 12
+}
+
+obstacle {
+	image_filenames = "iso_terminal_secure_w_01.png",
+	label = _"Secure terminal",
+        borders = borders(0.80, 0.80),
+        flags = { IS_CLICKABLE },
+        transparency = NO_TRANSPARENCY,
+        action = "terminal"
+}
+
+obstacle {
+	image_filenames = "iso_terminal_secure_n_01.png",
+	label = _"Secure terminal",
+        borders = borders(0.80, 0.80),
+        flags = { IS_CLICKABLE },
+        transparency = NO_TRANSPARENCY,
+        action = "terminal",
+        animation_fps = 12
+}
+
+
 --[[ IMPORTANT NOTE:
 Before you add a new obstacle to the end of this list, please try to
 replace one of these DUMMY OBSTACLEs.
