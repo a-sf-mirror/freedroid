@@ -47,12 +47,15 @@
 #include <stdint.h>
 #endif
 
-#ifdef HAVE_TIME_H
-#include <time.h>
+#if TIME_WITH_SYS_TIME
+# include <sys/time.h>
+# include <time.h>
 #else
-#ifdef HAVE_SYS_TIME_H
-#include <sys/time.h>
-#endif
+# if HAVE_SYS_TIME_H
+#  include <sys/time.h>
+# else
+#  include <time.h>
+# endif
 #endif
 
 #ifdef HAVE_UNISTD_H
@@ -65,7 +68,9 @@
 #include <sys/stat.h>
 #endif
 
+#ifdef HAVE_SIGNAL_H
 #include <signal.h>
+#endif
 
 #ifdef HAVE_SYS_SOUNDCARD_H
 #ifdef __OpenBSD__
@@ -82,10 +87,6 @@
 #include <fcntl.h>
 #endif
 
-//#ifdef HAVE_LOCALE_H
-//#include <locale.h>
-//#endif
-
 #ifdef HAVE_ICONV
 #include <iconv.h>
 #endif
@@ -100,8 +101,21 @@
 
 #include <setjmp.h>
 
-#ifdef HAVE_DIRENT_H
-#include <dirent.h>
+#if HAVE_DIRENT_H
+# include <dirent.h>
+# define NAMLEN(dirent) strlen((dirent)->d_name)
+#else
+# define dirent direct
+# define NAMLEN(dirent) (dirent)->d_namlen
+# if HAVE_SYS_NDIR_H
+#  include <sys/ndir.h>
+# endif
+# if HAVE_SYS_DIR_H
+#  include <sys/dir.h>
+# endif
+# if HAVE_NDIR_H
+#  include <ndir.h>
+# endif
 #endif
 
 #include <SDL.h>
@@ -113,14 +127,16 @@
 #include <SDL_gfxPrimitives.h>
 #endif
 
+#ifdef WITH_SOUND
 #ifdef HAVE_LIBSDL_MIXER
 #include <SDL_mixer.h>
+#endif
 #endif
 
 #ifdef HAVE_LIBGL
 #include <SDL_opengl.h>
-#endif				/* HAVE_LIBGL */
+#endif
 
 #include "lang.h"
 
-#endif				/* double-inclusion protection */
+#endif

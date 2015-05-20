@@ -40,9 +40,4 @@ AC_DEFUN([KYUA_LUA], [
     if test "${lua_found}" = no; then
         PKG_CHECK_MODULES([LUA], [lua5.2 >= 5.2], [lua_found=yes], [true])
     fi
-
-    if test "${lua_found}" = yes; then
-        AC_MSG_NOTICE([using LUA_CFLAGS = ${LUA_CFLAGS}])
-        AC_MSG_NOTICE([using LUA_LIBS = ${LUA_LIBS}])
-    fi
 ])

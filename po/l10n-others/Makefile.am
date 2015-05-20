@@ -84,7 +84,7 @@ TITLES_L10N = $(foreach lang,$(LANGS),$(TITLES_RSRC:%=$(TITLES_DIR)/$(lang)/%.lu
 define update-po-title =
  tx/title-$(1).txt: $(TITLES_DIR)/$(1).lua
 	@$(mkdir_p) tx; \
-	 gawk "BEGIN { isintext=0; } /^text[[:space:]]*=[[:space:]]*[\[]+/ { isintext=1; next; } /^[\]]+/ { exit; } isintext == 1 { print; }" $$< > $$@
+	 $(AWK) "BEGIN { isintext=0; } /^text[[:space:]]*=[[:space:]]*[\[]+/ { isintext=1; next; } /^[\]]+/ { exit; } isintext == 1 { print; }" $$< > $$@
 endef
 
 $(foreach rsrc,$(TITLES_RSRC),$(eval $(call update-po-title,$(rsrc))))
@@ -100,7 +100,7 @@ define update-gmo-title =
  $(TITLES_DIR)/$(2)/$(1).lua: $(wildcard tx/title-$(1)-$(2).txt)
 	@if test -r tx/title-$(1)-$(2).txt ; then \
 	   $(mkdir_p) $(TITLES_DIR)/$(2); \
-	   gawk "/^text[[:space:]]*=[[:space:]]*[\[]+/ { print; nextfile; } { print; } END { print \"]]\"; print \"}\"; }" \
+	   $(AWK) "/^text[[:space:]]*=[[:space:]]*[\[]+/ { print; nextfile; } { print; } END { print \"]]\"; print \"}\"; }" \
 	        $(TITLES_DIR)/$(1).lua $$< > $$<.tmp; \
 	   $(call copy_on_diff,$$<.tmp,$$@); \
 	 fi

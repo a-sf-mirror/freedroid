@@ -34,7 +34,7 @@ extract_strings()
 	inf=$1
 	outf=$2
 	comment=$3
-	gawk '
+	$(AWK) '
 		/TRANSLATORS:/ {
 			sub("--;", "//")
 			print $0

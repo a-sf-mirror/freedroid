@@ -53,7 +53,7 @@ top=$(git rev-parse --show-toplevel)
 
 # The awk script alphabetically sorts the files list, with files first and then directories
 # ("width first traversal").
-allfiles=$(cd "$top" && git ls-files --no-empty-directory --exclude-standard ${include[@]} | gawk '
+allfiles=$(cd "$top" && git ls-files --no-empty-directory --exclude-standard ${include[@]} | $(AWK)'
 BEGIN { IGNORECASE = 1; lines = 0; }
 {
   match("/" $0, "(/.*/)[^/]+$", result);

@@ -12,3 +12,5 @@ NEWS
 README
 INSTALL
 Makefile.in
+config.*
+config/

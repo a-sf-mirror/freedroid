@@ -1,28 +1,22 @@
 ## Process this file with automake to produce Makefile.in
 AUTOMAKE_OPTIONS = subdir-objects
 
-bin_PROGRAMS = explodefont gluefont
-if HAS_SDL_TTF
-bin_PROGRAMS += make_bmchars
-endif
-
 # Initialize automake variables
-AM_CPPFLAGS =
-if BUILD_LUA
-AM_CPPFLAGS += -I$(top_srcdir)/lua
-endif
-
-explodefont_LDADD =
-gluefont_LDADD = -lm
-make_bmchars_LDADD = -lSDL_ttf
-if USE_NLS
-explodefont_LDADD += @LIBINTL@
-gluefont_LDADD += @LIBINTL@
-make_bmchars_LDADD += @LIBINTL@
-endif
+AM_CFLAGS   = @FD_CFLAGS@
+AM_CPPFLAGS = @FD_CPPFLAGS@
+AM_LDFLAGS  = @FD_LDFLAGS@
+LIBS        = @FD_LIBS@ @LIBS@
 
 vpath %.c $(top_srcdir)/src
 vpath %.h $(top_srcdir)/src
+
+
+bin_PROGRAMS = explodefont gluefont
+if WITH_MAKE_BMCHARS
+bin_PROGRAMS += make_bmchars
+endif
+
+make_bmchars_LDADD = -lSDL_ttf
 
 CSDEPS = codeset.c codeset.h
 PNGDEPS = pngfuncs.c pngfuncs.h

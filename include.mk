@@ -23,9 +23,9 @@ cppcheck-report:
 scanbuildflags =  --use-cc=clang -enable-checker alpha.core.BoolAssignment,alpha.core.CastSize,alpha.core.FixedAddr,alpha.core.IdenticalExpr,alpha.core.PointerArithm,alpha.core.SizeofPtr,alpha.cplusplus.VirtualCall,alpha.security.ArrayBoundV2,alpha.security.MallocOverflow,alpha.security.ReturnPtrRange,alpha.unix.Chroot,alpha.unix.PthreadLock,alpha.unix.SimpleStream,alpha.unix.Stream,alpha.unix.cstring.BufferOverlap,alpha.unix.cstring.NotNullTerminated,alpha.unix.cstring.OutOfBounds,security.FloatLoopCounter,security.insecureAPI.rand
 
 scan-build:
-	make clean
+	$(MAKE) clean
 	scan-build $(scanbuildflags)  ./configure --enable-dev-tools CC=clang
-	scan-build $(scanbuildflags) make
+	scan-build $(scanbuildflags) $(MAKE)
 
 
 .PHONY: cppcheck cppcheck-report scan-build

@@ -7,7 +7,7 @@ AC_ARG_WITH([blocks-runtime],
   [AS_HELP_STRING([--with-blocks-runtime],
     [Specify path to the blocks runtime])],
   [blocks_runtime=${withval}
-    LIBS="$LIBS -L$blocks_runtime"]
+    CBLOCKS_LDFLAGS="-L$blocks_runtime"]
 )
 
 #
@@ -41,18 +41,21 @@ AS_IF([test "x$dispatch_cv_cblocks" != "xno"], [
     ], [
 	AC_MSG_RESULT([no]);
     ], [
+      saveLIBS="$LIBS"
       LIBS="$LIBS -lBlocksRuntime"
       AC_TRY_LINK([], [
 	^{ int k; k=0; }();
       ], [
 	AC_MSG_RESULT([-lBlocksRuntime])
+	CBLOCKS_LIBS="-lBlocksRuntime"
       ], [
 	AC_MSG_ERROR([can't find Blocks runtime])
       ])
+      LIBS="$saveLIBS"
     ])
     CFLAGS="$saveCFLAGS"
     have_cblocks=true
-    CFLAGS="$CFLAGS $dispatch_cv_cblocks"
+    CBLOCKS_CFLAGS="$dispatch_cv_cblocks"
 ], [
     have_cblocks=false
 ])

@@ -1,10 +1,16 @@
 ## Process this file with automake to produce Makefile.in
 AUTOMAKE_OPTIONS = subdir-objects
 
-bin_PROGRAMS = croppy
+# Initialize automake variables
+AM_CFLAGS   = @FD_CFLAGS@
+AM_CPPFLAGS = @FD_CPPFLAGS@
+AM_LDFLAGS  = @FD_LDFLAGS@
+LIBS        = @FD_LIBS@ @LIBS@
 
 vpath %.c $(top_srcdir)/src
 vpath %.h $(top_srcdir)/src
+
+bin_PROGRAMS = croppy
 
 croppy_SOURCES = pngfuncs.c pngfuncs.h croppy.c
 

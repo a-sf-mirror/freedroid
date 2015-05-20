@@ -49,10 +49,7 @@
 // Max number of times a same sound is played
 #define MAX_SOUND_OVERLAPPING 6
 
-static char *music_filename = NULL;      // The background music to play (once the current one is stopped)
-static Mix_Music *loaded_music = NULL;   // Keep reference to previously loaded background music
-
-#ifndef HAVE_LIBSDL_MIXER
+#ifndef WITH_SOUND
 
 ////////////////////////////////////////////////////////////////////
 // These functions are defined if there is no sound. they do nothing
@@ -63,12 +60,14 @@ void close_audio(void) {}
 void set_music_volume(float volume) {}
 void set_SFX_volume(float volume) {}
 void switch_background_music(char *filename) {}
-int play_sound(const char *filename) {}
-void play_sound_v(const char *filename, double volume) {}
+int play_sound(const char *filename) { return 0; }
+void play_sound_v(const char *filename, float volume) {}
 void play_sound_at_position(const char *filename, struct gps *listener, struct gps *emitter) {}
 
 #else
 
+static char *music_filename = NULL;      // The background music to play (once the current one is stopped)
+static Mix_Music *loaded_music = NULL;   // Keep reference to previously loaded background music
 
 ////////////////////////////////////////////////////////////////////
 // SFX cache

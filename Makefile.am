@@ -4,7 +4,13 @@
 ## make sure rebuilding uses the right aclocal-switches
 include include.mk
 
+# Initialize automake variables
 ACLOCAL_AMFLAGS = -I m4
+AM_MAKEFLAGS    = CC=$(CC) RANLIB=$(RANLIB) STRIP=$(STRIP)
+AM_CFLAGS       = @FD_CFLAGS@
+AM_CPPFLAGS     = @FD_CPPFLAGS@
+AM_LDFLAGS      = @FD_LDFLAGS@
+LIBS            = @FD_LIBS@ @LIBS@
 
 if NONLINUX
 extradirs = 
@@ -25,8 +31,6 @@ freedroid_data = map graphics sound dialogs lua_modules
 EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.generic
 
 CHECKFLAGS=env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
-
-AM_MAKEFLAGS = CC=$(CC) RANLIB=$(RANLIB) STRIP=$(STRIP)
 
 check:
 	$(CHECKFLAGS) ./src/freedroidRPG -nb text			|| exit 1
@@ -53,7 +57,6 @@ uninstall-local:
 	rm -rf $(DESTDIR)$(pkgdatadir)
 	@echo "...done."
 
-
 sign:
 	@echo "Generating signatures ..."
 	gpg --digest-algo SHA512  -o freedroidrpg-$(VERSION).tar.bz2.sig --detach-sign freedroidrpg-$(VERSION).tar.bz2
@@ -64,7 +67,7 @@ sign:
 win_txts = COPYING AUTHORS README ChangeLog
 win_dir = freedroidrpg-win32
 dist-win32: src/freedroidRPG.exe
-	@if [ "$(DLL_PATH) " = " " ] ; then \
+	@if [ "x$(DLL_PATH)" = "x" ] ; then \
 	  echo "DLL_PATH not defined. Aborting."; \
 	  exit 1; \
 	 fi

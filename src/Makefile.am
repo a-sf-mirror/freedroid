@@ -3,21 +3,14 @@
 AUTOMAKE_OPTIONS = subdir-objects
 
 # Initialize automake variables
-AM_CPPFLAGS =
+AM_CFLAGS   = @FD_CFLAGS@
+AM_CPPFLAGS = @FD_CPPFLAGS@
+AM_LDFLAGS  = @FD_LDFLAGS@
+LIBS        = @FD_LIBS@ @LIBS@
+
 freedroidRPG_LDADD =
-
-if BUILD_LUA
-freedroidRPG_LDADD += $(top_builddir)/lua/liblua.a
-AM_CPPFLAGS += -I$(top_srcdir)/lua
-endif
-
 if WIN32
 freedroidRPG_LDADD += $(top_builddir)/win32/freedroidRPG.coff
-endif
-
-if USE_NLS
-freedroidRPG_LDADD += @LIBINTL@ @LIBICONV@
-AM_CPPFLAGS += -DLOCALEDIR=\"$(localedir)\"
 endif
 
 bin_PROGRAMS = freedroidRPG

@@ -19,17 +19,14 @@ tools/image/croppy
 
 # Build system files
 configure
-config.*
 Makefile
 Makefile.in
-.deps
-missing
+build-aux/
+config.*
 stamp-h1
-install-sh
 aclocal.m4
 autom4te.cache
-depcomp
-compile
+.deps
 src/version.c
 src/build_flags.h
 src/savestruct.h

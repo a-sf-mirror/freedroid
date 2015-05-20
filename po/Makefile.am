@@ -48,7 +48,7 @@ TXCRED    = $(shell $(top_srcdir)/po/tx-credentials)
 #    - strip leading/trailing whitespaces - $(strip ...)
 #    - add the dirname as a prefix - $(addprefix ...)
 #    - add a .pot suffix - $(addsuffix ...)
-TXPOTS  = $(foreach dir, $(SUBDIRS), $(addsuffix .pot, $(addprefix $(dir)/, $(strip $(shell gawk -F'=' -e '/^DOMAIN/{ print $$2; }' $(dir)/Makevars)))))
+TXPOTS  = $(foreach dir, $(SUBDIRS), $(addsuffix .pot, $(addprefix $(dir)/, $(strip $(shell $(AWK) -F'=' -e '/^DOMAIN/{ print $$2; }' $(dir)/Makevars)))))
 
 $(TXTARGETS):
 	@test " $(TXCRED)" = " " \
@@ -83,7 +83,7 @@ $(TXTARGETS):
 
 .PHONY: $(TXTARGETS)
 
-clean:
+clean-local:
 	rm -f ./po-data/*.gmo
 	rm -f ./po-dialogs/*.gmo
 	rm -f ./po-src/*.gmo
