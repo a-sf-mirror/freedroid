@@ -383,13 +383,6 @@ int WalkablePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_id
 int FlyablePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_idx);
 int VisiblePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_idx);
 int ObstacleByIdPassFilterCallback(colldet_filter * this, obstacle * obs, int obs_idx);
-colldet_filter WalkablePassFilter;
-colldet_filter WalkableWithMarginPassFilter;
-colldet_filter FlyablePassFilter;
-colldet_filter VisiblePassFilter;
-colldet_filter ObstacleByIdPassFilter;
-colldet_filter WalkableExceptIdPassFilter;
-colldet_filter FlyableExceptIdPassFilter;
 int location_free_of_droids(float x, float y, int levelnum, freeway_context *ctx);
 int way_free_of_droids(float x1, float y1, float x2, float y2, int OurLevel, freeway_context * ctx);
 int EscapeFromObstacle(float *posX, float *posY, int posZ, colldet_filter * filter);

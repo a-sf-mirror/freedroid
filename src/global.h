@@ -419,4 +419,18 @@ EXTERN struct font *Red_Font;
 EXTERN struct font *Messagered_Font;
 
 #undef EXTERN
+#ifdef _colldet_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+EXTERN colldet_filter WalkablePassFilter;
+EXTERN colldet_filter WalkableWithMarginPassFilter;
+EXTERN colldet_filter FlyablePassFilter;
+EXTERN colldet_filter VisiblePassFilter;
+EXTERN colldet_filter ObstacleByIdPassFilter;
+EXTERN colldet_filter WalkableExceptIdPassFilter;
+EXTERN colldet_filter FlyableExceptIdPassFilter;
+
+#undef EXTERN
 #endif				// _global_h
