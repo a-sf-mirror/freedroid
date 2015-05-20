@@ -1637,6 +1637,16 @@ void free_tux()
 		}
 	}
 
+	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+		if (Me.Inventory[i].type != -1) {
+			delete_upgrade_sockets(&Me.Inventory[i]);
+		}
+	}
+	delete_upgrade_sockets(&Me.weapon_item);
+	delete_upgrade_sockets(&Me.drive_item);
+	delete_upgrade_sockets(&Me.armour_item);
+	delete_upgrade_sockets(&Me.shield_item);
+	delete_upgrade_sockets(&Me.special_item);
 }
 
 /**

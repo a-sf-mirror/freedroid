@@ -173,7 +173,7 @@ static void edit_special_force_info(enemy *en)
 	// Edit the faction
 	user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
 	if (!user_input)
-		return;
+		goto out;
 
 	en->faction = get_faction_id(user_input);
 
@@ -182,6 +182,7 @@ static void edit_special_force_info(enemy *en)
 	free(user_input);
 
 	// Change the dialog
+	user_input = NULL;
 	while (1) {
 		user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
 		if (!user_input)
@@ -193,6 +194,7 @@ static void edit_special_force_info(enemy *en)
 		alert_window(_("Dialog \"%s\" not found!"), user_input);
 		RestoreMenuBackground(0);
 		sprintf(suggested_val, "%s", user_input);
+		free(user_input);
 	}
 
 	free(en->dialog_section_name);
@@ -228,6 +230,8 @@ static void edit_special_force_info(enemy *en)
 			en->CompletelyFixed = 0;
 			break;
 		}
+
+		free(user_input);
 	}
 
 	// TRANSLATORS: the max. distance the bot can move away from its spawn position
@@ -239,7 +243,7 @@ static void edit_special_force_info(enemy *en)
 	while(1) {
 		numb = get_number_popup(displayed_text->value, suggested_val);
 		if (numb == -2)
-			return;
+			goto out;
 
 		if (numb != -1)
 			break;
@@ -273,12 +277,14 @@ static void edit_special_force_info(enemy *en)
 		alert_window(_("Item \"%s\" not found!"), user_input);
 		RestoreMenuBackground(0);
 		sprintf(suggested_val, "%s", user_input);
+		free(user_input);
 	}
 
 	// TRANSLATORS: Will the bot walk towards tux as soon as he seems tux?
 	autostr_append(displayed_text, _("%s\n Approaches Tux: "),
 				(en->on_death_drop_item_code == -1) ? _("none") : ItemMap[en->on_death_drop_item_code].id);
 	sprintf(suggested_val, "%s", en->will_rush_tux ? _("yes") : _("no"));
+	free(user_input);
 
 	// Rush Tux
 	while (1) {
@@ -294,7 +300,10 @@ static void edit_special_force_info(enemy *en)
 			en->will_rush_tux = 0;
 			break;
 		}
+
+		free(user_input);
 	}
+	free(user_input);
 
 out:
 	free_autostr(displayed_text);

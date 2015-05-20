@@ -134,6 +134,9 @@ void del_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_t
 		if (ext->type != type)
 			continue;
 
+		free(ext->data);
+		ext->data = NULL;
+
 		dynarray_del(&lvl->obstacle_extensions, i, sizeof(struct obstacle_extension));
 	}
 }
@@ -148,6 +151,9 @@ void del_obstacle_extensions(level *lvl, obstacle *obs)
 
 		if (ext->obs != obs)
 			continue;
+
+		free(ext->data);
+		ext->data = NULL;
 
 		dynarray_del(&lvl->obstacle_extensions, i, sizeof(struct obstacle_extension));
 	}
@@ -165,7 +171,6 @@ void add_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_t
 	ext.type = type;
 	ext.obs = obs;
 	ext.data = data;
-
 
 	dynarray_add(&lvl->obstacle_extensions, &ext, sizeof(struct obstacle_extension));
 }

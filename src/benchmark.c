@@ -188,6 +188,7 @@ static int mapgen_bench()
 	timer_start();
 	while (loop--) {
 		CreateNewMapLevel(0);
+		curShip.num_levels = 1;
 		level *l = curShip.AllLevels[0];
 		l->xlen = 90;
 		l->ylen = 90;

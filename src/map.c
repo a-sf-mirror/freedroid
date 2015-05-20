@@ -359,9 +359,9 @@ static void decode_random_droids(level *loadlevel, char *data)
 	if (loadlevel->random_droids.nr <= 0)
 		return;
 
+	// Now we read in the type(s) of random droids for this level
 	data = strstr(data, ALLOWED_TYPE_INDICATION_STRING);
 
-	// Now we read in the type(s) of random droids for this level
 	search_ptr = ReadAndMallocStringFromDataOptional(data, ALLOWED_TYPE_INDICATION_STRING, "\n");
 	if (search_ptr) {
 		char *droid_type_ptr = search_ptr;

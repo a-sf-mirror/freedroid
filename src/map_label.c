@@ -64,6 +64,8 @@ void del_map_label(level *lvl, const char *label_name)
 
 		if (!strcmp(map_label->label_name, label_name)) {
 			// Delete the map label
+			free(map_label->label_name);
+			map_label->label_name = NULL;
 			dynarray_del(&lvl->map_labels, i, sizeof(struct map_label));
 			return;
 		}

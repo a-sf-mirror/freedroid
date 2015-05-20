@@ -320,6 +320,9 @@ static void __clear_selected_list(struct list_head *lst, int nbelem, int is_clip
 				/* Clearing the clipboard requires freeing the wrapped floor tiles */
 				struct lvledit_map_tile *t = e->data;
 				free(t->tile);
+			} else if (e->type == OBJECT_MAP_LABEL && is_clipboard) {
+				struct map_label *m = e->data;
+				free(m->label_name);
 			}
 			free(e->data);
 		}
@@ -1017,7 +1020,7 @@ void level_editor_copy_selection()
 		case OBJECT_MAP_LABEL:
 			m = MyMalloc(sizeof(map_label));
 			memcpy(m, e->data, sizeof(map_label));
-
+			m->label_name = strdup(((map_label*) e->data)->label_name);
 			add_object_to_list(&clipboard_elements, m, OBJECT_MAP_LABEL);
 			break;
 		default:

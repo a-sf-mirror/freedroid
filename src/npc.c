@@ -98,6 +98,15 @@ void clear_npcs()
 			n->shoplistweight[i] = 0;
 		}
 
+		for (i = 0; i < n->enabled_nodes.size; i++) {
+			char **ptr = dynarray_member(&n->enabled_nodes, i, sizeof(char *));
+			free(*ptr);
+			*ptr = NULL;
+		}
+		dynarray_free(&n->enabled_nodes);
+
+		npc_clear_inventory(n);
+
 		free(n);
 	}
 
@@ -127,6 +136,14 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name, int wei
 
 static void npc_clear_inventory(struct npc *n)
 {
+	int i;
+
+	// delete the upgrade sockets of the items
+	for (i = 0; i < n->npc_inventory.size; i++) {
+		item* it = &((item *)(n->npc_inventory.arr))[i];
+		delete_upgrade_sockets(it);
+	}
+
 	dynarray_free(&n->npc_inventory);
 }
 

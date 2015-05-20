@@ -57,6 +57,8 @@ static void clear_action(action * action)
 		free(action->d.change_obstacle_name.new_name);
 	else if (action->type == ACT_SET_MAP_LABEL && action->d.change_label_name.new_name != NULL)
 		free(action->d.change_label_name.new_name);
+	else if (action->type == ACT_CREATE_MAP_LABEL && action->d.create_map_label.label_name != NULL)
+		free(action->d.create_map_label.label_name);
 	else if (action->type == ACT_CREATE_ENEMY && action->d.create_enemy != NULL)
 		enemy_free(action->d.create_enemy);
 
@@ -572,10 +574,10 @@ static void action_change_map_label(level *EditLevel, int i, char *name, int x, 
 		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
 		// Get the old label for undoable actions
-		old_label = map_label->label_name;
+		old_label = strdup(map_label->label_name);
 
 		// Delete the map label
-		del_map_label(EditLevel, old_label);
+		del_map_label(EditLevel, map_label->label_name);
 	}
 
 	action_push(ACT_SET_MAP_LABEL, i, old_label, x, y);
@@ -584,10 +586,10 @@ static void action_change_map_label(level *EditLevel, int i, char *name, int x, 
 	if (!name || !strlen(name))
 		return;
 
-	name = strdup(name);
-
 	// Create a new map label at the position of cursor
-	add_map_label(EditLevel, x, y, name);
+	char *new_label_name = strdup(name);
+	add_map_label(EditLevel, x, y, new_label_name);
+	free(new_label_name);
 }
 
 void level_editor_action_change_map_label_user(level *EditLevel, float x, float y)
@@ -645,6 +647,7 @@ void level_editor_action_change_map_label_user(level *EditLevel, float x, float 
 
 	// Change a map label when the name enter by the user is valid
 	action_change_map_label(EditLevel, i, name, rintf(x - 0.5), rintf(y - 0.5));
+	free(name);
 }
 
 /**
@@ -982,33 +985,9 @@ void CreateNewMapLevel(int level_num)
 
 void delete_map_level(int lnum)
 {
-	int i;
-	level *l = curShip.AllLevels[lnum];
-
-	free(l->Levelname);
-	free(l->Background_Song_Name);
-
-	// Clear out all the existing glue information.
-	free_glued_obstacles(l);
-
-	// Delete floor tiles
-	for (i = 0; i < l->ylen; i++)
-		free(l->map[i]);
-
-	// Free obstacle extensions.
-	dynarray_free(&l->obstacle_extensions);
-
-	// Free map labels.
-	dynarray_free(&l->map_labels);
-
-	// Free waypoints.
-	dynarray_free(&l->waypoints);
-
-	// Free memory
-	free(curShip.AllLevels[lnum]);
-	curShip.AllLevels[lnum] = NULL;
-
 	// Remove references to this level from others
+	level *l = NULL;
+
 	BROWSE_LEVELS(l) {
 		if (l->jump_target_north == lnum)
 			l->jump_target_north = -1;
@@ -1020,6 +999,10 @@ void delete_map_level(int lnum)
 			l->jump_target_east = -1;
 	}
 
+	// Free memory
+	free_ship_level(curShip.AllLevels[lnum]);
+	curShip.AllLevels[lnum] = NULL;
+
 	if (lnum == curShip.num_levels - 1)
 		curShip.num_levels--;
 
@@ -1028,7 +1011,6 @@ void delete_map_level(int lnum)
 	action_freestack();
 	clear_selection(-1);
 	clear_clipboard(-1);
-
 }
 
 static int get_chest_contents(level *l, obstacle *o, item *items[MAX_ITEMS_IN_INVENTORY])

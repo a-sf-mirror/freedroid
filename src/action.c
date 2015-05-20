@@ -149,9 +149,6 @@ static void throw_out_all_chest_content(int obst_index)
 		}
 
 		// Empty the item list
-		for (i = 0; i < drop_count; i++) {
-			dynarray_del(item_list, 0, sizeof(item));
-		}
 		dynarray_free(item_list);
 
 		// Remove the chest items obstacle extension
