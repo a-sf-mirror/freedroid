@@ -13,7 +13,7 @@ dnl
 dnl In order to avoid any issue with configure, we use FD_ prefixed vars to
 dnl store our own flags. Those are added to AM_ vars in the Makefile.am
 
-AC_PREREQ([2.69])
+AC_PREREQ([2.68])
 AC_INIT([freedroidRPG], [0.15+git], [http://bugs.freedroid.org], [freedroidrpg], [http://www.freedroid.org])
 AC_CONFIG_SRCDIR([INSTALL.freedroidRPG])
 AC_CONFIG_AUX_DIR([build-aux])
