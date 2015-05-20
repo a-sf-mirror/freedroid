@@ -217,7 +217,7 @@ void error_message(const char *fn, const char *fmt, int error_type, ...)
 		fprintf(stderr, "---------------------------------------------------------------------------------\n");
 	}
 
-	if (error_type & IS_FATAL)
+	if ((error_type & IS_FATAL) && !(error_type & NO_TERMINATE))
 		Terminate(EXIT_FAILURE);
 }
 

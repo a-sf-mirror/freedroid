@@ -56,9 +56,10 @@
 #define SAVE_LOAD_GAME_DEBUG 1
 enum {
 	NO_REPORT     = 0,
-	PLEASE_INFORM = 1 << 1,
-	IS_FATAL      = 1 << 2,
-	SILENT        = 1 << 3    // Special flag, used with find_file() to disable any output
+	PLEASE_INFORM = 1 << 1,   // Print a message inviting the user to inform us about the error
+	IS_FATAL      = 1 << 2,   // Inform the user that the game will stop, and call Terminate()
+	NO_TERMINATE  = 1 << 3,   // Do not call Terminate() (needed when things have to be cleaned before to call Terminate(), for instance)
+	SILENT        = 1 << 4    // Special flag, used with find_file() to disable any output
 };
 
 // Define how alert_once_window() has to remember for past alerts
