@@ -63,8 +63,10 @@ static void check_chat_context_stack_size()
 	struct chat_context *ctx;
 	int first = TRUE;
 
-	if (chat_context_stack_size < CHAT_CONTEXT_STACK_SIZE)
+	if (chat_context_stack_size < CHAT_CONTEXT_STACK_SIZE) {
+		free_autostr(chat_stack_str);
 		return;
+	}
 
 	list_for_each_entry_reverse(ctx, &chat_context_stack, stack_node) {
 		autostr_append(chat_stack_str, "%s%s", (first) ? "" : " -> ", ctx->npc->dialog_basename);
@@ -74,7 +76,10 @@ static void check_chat_context_stack_size()
 	error_message(__FUNCTION__, "The chat context stack reached its maximum (%d).\n"
 			                   "It could mean that we are under an infinite recursion attack, so our last defense is to stop the game.\n"
 			                   "Current dialog stack (from first to last stacked dialog):\n%s",
-			                   PLEASE_INFORM | IS_FATAL, CHAT_CONTEXT_STACK_SIZE, chat_stack_str->value);
+			                   PLEASE_INFORM | IS_FATAL | NO_TERMINATE, CHAT_CONTEXT_STACK_SIZE, chat_stack_str->value);
+
+	free_autostr(chat_stack_str);
+	Terminate(EXIT_FAILURE);
 }
 
 /**
