@@ -63,12 +63,8 @@ static void widget_group_free(struct widget *w);
 static int group_mouse_event(struct widget *wg, SDL_Event *event)
 {	
 	struct widget *w, *current_widget = NULL;
-	SDL_Event enter_event;
-	enter_event.type = SDL_USEREVENT;
-	enter_event.user.code = EVENT_MOUSE_ENTER;
-	SDL_Event leave_event;
-	leave_event.type = SDL_USEREVENT;
-	leave_event.user.code = EVENT_MOUSE_LEAVE;
+	SDL_Event enter_event = { .user = { .type = SDL_USEREVENT, .code = EVENT_MOUSE_ENTER } };
+	SDL_Event leave_event = { .user = { .type = SDL_USEREVENT, .code = EVENT_MOUSE_LEAVE } };
 
 	// Get the widget under the cursor.
 	// The loop is done in reverse to ensure that widgets covering other widgets catch the event first.
