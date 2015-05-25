@@ -125,6 +125,7 @@ dnl Checks for libraries.
 AS_BOX([Checking compulsory libraries])
 
 dnl Force use of embedded lua in ASAN mode
+summary_lua="embedded"
 AS_VAR_IF([sanitize_address], [yes],
 	[
 		embedded_lua="yes"
@@ -311,7 +312,7 @@ AS_VAR_IF([embedded_lua], [no],
 			],
 			[
 				embedded_lua="yes"
-				summary_lua="embedded"
+				summary_lua="embedded (due to Lua not found system-wide)"
 				AC_MSG_NOTICE([No system-wide Lua library found! Using embedded Lua instead])
 			]
 		)
