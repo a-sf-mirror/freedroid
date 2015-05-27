@@ -103,7 +103,7 @@ static struct {
 	{ OBJECT_ITEM, item_category_list, sizeof(item_category_list) / sizeof(item_category_list[0]) },
 	{ OBJECT_ENEMY, enemy_category_list, sizeof(enemy_category_list) / sizeof(enemy_category_list[0]) },
 	{ OBJECT_WAYPOINT, waypoint_category_list, sizeof(waypoint_category_list) / sizeof(waypoint_category_list[0]) },
-	{ OBJECT_MAP_LABEL, map_label_category_list, sizeof(map_label_category_list) / sizeof(waypoint_category_list[0]) },
+	{ OBJECT_MAP_LABEL, map_label_category_list, sizeof(map_label_category_list) / sizeof(map_label_category_list[0]) },
 };
 
 // Level editor buttons' primary actions
