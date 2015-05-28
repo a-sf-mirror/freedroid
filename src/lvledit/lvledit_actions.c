@@ -587,9 +587,7 @@ static void action_change_map_label(level *EditLevel, int i, char *name, int x, 
 		return;
 
 	// Create a new map label at the position of cursor
-	char *new_label_name = strdup(name);
-	add_map_label(EditLevel, x, y, new_label_name);
-	free(new_label_name);
+	add_map_label(EditLevel, x, y, strdup(name));
 }
 
 void level_editor_action_change_map_label_user(level *EditLevel, float x, float y)
@@ -660,7 +658,7 @@ void level_editor_action_change_map_label_user(level *EditLevel, float x, float 
  */
 void action_create_map_label(level *lvl, int x, int y, char *label_name)
 {
-	add_map_label(lvl, x, y, label_name);
+	add_map_label(lvl, x, y, strdup(label_name));
 
 	action_push(ACT_REMOVE_MAP_LABEL, x, y);
 }

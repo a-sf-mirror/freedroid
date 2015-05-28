@@ -1170,7 +1170,7 @@ void level_editor_paste_selection()
 			}
 
 			// Add and select
-			action_create_map_label(EditLevel(), m->pos.x, m->pos.y, strdup(str->value));
+			action_create_map_label(EditLevel(), m->pos.x, m->pos.y, str->value);
 			select_map_label_on_tile(m->pos.x, m->pos.y);
 
 			free_autostr(str);
