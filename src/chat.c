@@ -306,6 +306,40 @@ static void scroll_down_chat_selector(struct widget_button *wb)
 	widget_text_list_scroll_down(chat_selector);
 }
 
+//
+// Widgets update callbacks
+//
+
+static void _enable_if_waiting_user_click(struct widget *w)
+{
+	w->enabled = chat_get_current_context()->wait_user_click;
+}
+
+static void _enable_if_not_waiting_user_click(struct widget *w)
+{
+	w->enabled = !chat_get_current_context()->wait_user_click;
+}
+
+static void _enable_if_chat_log_can_scroll_up(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = widget_text_can_scroll_up(chat_log);
+}
+
+static void _enable_if_chat_log_can_scroll_down(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = widget_text_can_scroll_down(chat_log);
+}
+
+static void _enable_if_chat_selector_can_scroll_up(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = widget_text_list_can_scroll_up(chat_selector);
+}
+
+static void _enable_if_chat_selector_can_scroll_down(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = widget_text_list_can_scroll_down(chat_selector);
+}
+
 /**
  * This function builds the chat interface if it hasn't already been initialized.
  */
@@ -367,9 +401,7 @@ struct widget_group *create_chat_dialog()
 
 	widget_set_rect(WIDGET(chat_selector), chat_selector_inner_rect.x, chat_selector_inner_rect.y, chat_selector_inner_rect.w, chat_selector_inner_rect.h);
 	chat_selector->process_entry = dialog_option_selected;
-	WIDGET(chat_selector)->update =	WIDGET_ANONYMOUS(struct widget *w, {
-		w->enabled = !chat_get_current_context()->wait_user_click;
-	});
+	WIDGET(chat_selector)->update =	_enable_if_not_waiting_user_click;
 	widget_group_add(chat_menu, WIDGET(chat_selector));
 
 	//
@@ -452,43 +484,35 @@ struct widget_group *create_chat_dialog()
 		char *image[3];
 		SDL_Rect rect;
 		void (*activate_button)(struct widget_button *);
-		void (WIDGET_ANONYMOUS_MARKER update) (struct widget *);
+		void (*update) (struct widget *);
 	} b[] = {
 		// Chat Log scroll up
 		{
 			{"widgets/chat_scroll_up_off.png", NULL, "widgets/chat_scroll_up.png"},
 			{chat_log_x + (chat_log_w - 158) / 2, chat_log_y + 2, 158, 22},
 			scroll_up_chat_log,
-			WIDGET_ANONYMOUS(struct widget *w, {
-				WIDGET_BUTTON(w)->active = widget_text_can_scroll_up(chat_log);
-			})
+			_enable_if_chat_log_can_scroll_up
 		},
 		// Chat Log scroll down
 		{
 			{"widgets/chat_scroll_down_off.png", NULL, "widgets/chat_scroll_down.png"},
 			{chat_log_x + (chat_log_w - 158) / 2, chat_log_y + chat_log_h - 41, 158, 22},
 			scroll_down_chat_log,
-			WIDGET_ANONYMOUS(struct widget *w, {
-				WIDGET_BUTTON(w)->active = widget_text_can_scroll_down(chat_log);
-			})
+			_enable_if_chat_log_can_scroll_down
 		},
 		// Chat Selector Scroll up
 		{
 			{"widgets/chat_scroll_up_off.png", NULL, "widgets/chat_scroll_up.png"},
 			{chat_selector_x + (chat_selector_w - 158) / 2, chat_selector_y - 2, 158, 22},
 			scroll_up_chat_selector,
-			WIDGET_ANONYMOUS(struct widget *w, {
-				WIDGET_BUTTON(w)->active = widget_text_list_can_scroll_up(chat_selector);
-			})
+			_enable_if_chat_selector_can_scroll_up
 		},
 		// Chat Selector Scroll down
 		{
 			{"widgets/chat_scroll_down_off.png", NULL, "widgets/chat_scroll_down.png"},
 			{chat_selector_x + (chat_selector_w - 158) / 2, chat_selector_y + chat_selector_h - 23, 158, 22},
 			scroll_down_chat_selector,
-			WIDGET_ANONYMOUS(struct widget *w, {
-				WIDGET_BUTTON(w)->active = widget_text_list_can_scroll_down(chat_selector);
-			})
+			_enable_if_chat_selector_can_scroll_down
 		}
 	};
 
@@ -514,9 +538,7 @@ struct widget_group *create_chat_dialog()
 	chat_wait = widget_group_create();
 	widget_set_rect(WIDGET(chat_wait), 0, 0, GameConfig.screen_width, GameConfig.screen_height);
 	WIDGET(chat_wait)->enabled = FALSE;
-	WIDGET(chat_wait)->update = WIDGET_ANONYMOUS(struct widget *w, {
-		w->enabled = chat_get_current_context()->wait_user_click;
-	});
+	WIDGET(chat_wait)->update = _enable_if_waiting_user_click;
 
 	struct widget_text* wait_text = widget_text_create();
 	widget_set_rect(WIDGET(wait_text), chat_selector_inner_rect.x, chat_selector_inner_rect.y,

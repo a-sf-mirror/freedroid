@@ -49,7 +49,7 @@
 ///   \n
 ///   The current GUI is drawn from the top of the tree down to the leaves, and
 ///   from left to right for sibling widgets. Thus, the last child of a node
-///   visually will cover its sibling, if drawn at the same position.\n
+///   will visually cover its sibling, if drawn at the same position.\n
 ///   All widgets positions are absolute, expressed in screen coordinates.\n
 ///   \n
 ///   An interaction event is propagated from the top of the current active GUI
@@ -76,7 +76,7 @@
 ///   SDL_Rect rect;                                          // Bounding box
 ///   ...
 ///   void (*display)(struct widget *);                       // Pseudo-virtual display function
-///   void (WIDGET_ANONYMOUS_MARKER update)(struct widget *); // Pseudo_virtual update callback
+///   void (*update)(struct widget *);                        // Pseudo-virtual update callback
 ///   int (*handle_event)(struct widget *, SDL_Event *);      // Pseudo-virtual event handler
 ///   void (*free)(struct widget *);                          // Pseudo-virtual 'release' function
 ///   ...
@@ -169,7 +169,6 @@
 ///   attribute. To update itself, a widget shall overload the \e update()
 ///   pseudo-virtual function. That function is called when needed by the gui
 ///   subsystem engine.\n
-///   Note: An \e update() function \b has to be an anonymous function (see below).
 ///   \code
 /// void my_button_update(struct widget *this_widget)
 /// {
@@ -181,38 +180,7 @@
 /// }
 ///
 /// struct widget_button *my_button = widget_button_create();
-/// WIDGET(my_button)->update = WIDGET_ANONYMOUS(struct widget *w, { my_button_update(w); });
-///   \endcode
-///   \n
-///   Most of the time, an \update() function is a single line of code, such as
-///   setting one widget's attribute depending of an other value. Sometime, a
-///   more complex code is to be called. We would thus like to be able to set
-///   an \e update() function as a pointer to an actual named function or to an
-///   anonymous function.\n
-///   To simulate an anonymous function definition, a WIDGET_ANONYMOUS
-///   macro has been defined (see http://en.wikipedia.org/wiki/Anonymous_function#C_.28non-standard_extension.29).
-///   The code inside an anonymous function can be as complex as wanted, but
-///   for readability large code should be avoided.
-///   \n
-///   Note: Due to the way WIDGET_ANONYMOUS is implemented with some compilers
-///   (clang, especially), \b all \e update() functions have to be defined using
-///   WIDGET_ANONYMOUS, even if a simple function's pointer would usually be enough
-///   (see above example).
-///   \n
-///   The former example can, for instance be rewritten:
-///   \code
-/// WIDGET(my_button)->update = WIDGET_ANONYMOUS(struct widget *w, {
-///                               WIDGET_BUTTON(w)->image = (some_global_variable == some_value) ? img1 : img2;
-///                                });
-///   \endcode
-///   \n
-///   To call of function returning a value that can be stored in the widget's
-///   attribute, one will write:
-///   \code
-/// struct image *get_img() { ... }
-/// WIDGET(my_button)->update = WIDGET_ANONYMOUS(struct widget *w, {
-///                               WIDGET_BUTTON(w)->image = get_img();
-///                             });
+/// WIDGET(my_button)->update = my_button_update;
 ///   \endcode
 ///
 /// \par Creating a GUI
@@ -278,6 +246,9 @@
 ///   \n
 ///   Example:
 ///   \code
+/// static void _enable_if_panel_open(struct widget *) {
+///   w->enabled = Game.panel_open;
+/// }
 /// ...
 /// my_gui_root = widget_group_create();
 /// widget_set_rect(WIDGET(my_gui_root), gui_x, gui_y, gui_width, gui_height);
@@ -290,7 +261,7 @@
 /// // create the invisible panel and add it to the root node
 /// panel = widget_group_create();
 /// WIDGET(panel)->enabled = FALSE;
-/// WIDGET(panel)->update = WIDGET_ANONYMOUS(struct widget *w, { w->enabled = Game.panel_opened; });
+/// WIDGET(panel)->update = _enable_if_panel_open;
 /// ...
 /// widget_group_add(my_gui_root, WIDGET(panel));
 ///   \endcode
@@ -336,12 +307,6 @@
 #define EXTERN extern
 #else
 #define EXTERN
-#endif
-
-#ifdef __clang__
-#define WIDGET_ANONYMOUS_MARKER ^
-#else
-#define WIDGET_ANONYMOUS_MARKER *
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -406,7 +371,7 @@ struct widget {
 	///       by inheriting widgets.
 	/// @{
 	void (*display) (struct widget *);                        /**< Display the widget. */
-	void (WIDGET_ANONYMOUS_MARKER update) (struct widget *);  /**< Update the widget's attributes. */
+	void (*update) (struct widget *);                         /**< Update the widget's attributes. */
 	int (*handle_event) (struct widget *, SDL_Event *);       /**< General event handler. */
 	void (*free) (struct widget *);                           /**< Free the widget. */
 	/// @}
@@ -427,62 +392,6 @@ struct widget {
  * to a \e base \e widget.
  */
 #define WIDGET(x) ((struct widget *)x)
-
-/**
- * \brief Macro used to create an anonymous function.
- *
- * Currenly only used to define \e update() functions.
- * \n
- * Usage examples:\n
- * - Set the \e enabled attribute to the value of one game data
- *   \code
- * the_widget->update = WIDGET_ANONYMOUS(struct widget *w, {
- *                          widget_type(w)->enabled = boolean_game_data;
- *                      });
- *   \endcode
- * - Set the \e enabled attribute depending on the value of one game data
- *   \code
- * the_widget->update = WIDGET_ANONYMOUS(struct widget *w, {
- *                          widget_type(w)->enabled = (int_game_data >= 0.5) ? TRUE : FALSE;
- *                      });
- *   \endcode
- * - Set the \e enabled attribute to be the result of a function call
- *   \code
- * the_widget->update = WIDGET_ANONYMOUS(struct widget *w, {
- *                          widget_type(w)->enabled = compute_value(some_game_data...);
- *                      });
- *   \endcode
- * - Call a function
- *   \code
- * the_widget->update = WIDGET_ANONYMOUS(struct widget *w, {
- *                          some_function(w, ...);
- *                      });
- *   \endcode
- *
- * \param param       'signature' of the callback function
- * \param code        the code to execute (has to be enclosed into curly brackets)
- */
-/*
- * Implementation note.
- * The goal of the macro is to create an anonymous function and to return a
- * pointer to this function.
- * On gcc, this is done with the use of a compound statement expression and a
- * nested function declared inside the compound block (gcc extensions).
- * On clang, which does not implement nested functions, this is done with the
- * use of the clang 'block' extension.
- */
-#ifdef __clang__
-#define WIDGET_ANONYMOUS(param, code) \
-  ^void(param) \
-    code
-#else
-#define WIDGET_ANONYMOUS(param, code) \
-  ({ \
-    void anonymous_func(param) \
-      code \
-    anonymous_func; \
-  })
-#endif
 
 struct widget *widget_create(void);
 void widget_init(struct widget *);

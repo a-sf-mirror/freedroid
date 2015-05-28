@@ -319,39 +319,6 @@ AS_VAR_IF([embedded_lua], [no],
 	]
 )
 
-dnl  We need anonymous lambda-like functions.
-dnl  With GCC, it possibly needs -fnested-functions while with CLANG it needs -fblocks
-
-AS_BOX([Checking how to implement lambda-like functions])
-
-AM_CONDITIONAL([HAVE_CBLOCKS], [false])
-AS_VAR_IF([xiph_cv_c_compiler_clang], [no],
-	[
-		AS_VAR_IF([GCC], [yes],
-			[
-				AC_MSG_CHECKING([for -fnested-functions])
-				AC_COMPILE_IFELSE(
-					[AC_LANG_PROGRAM([], [void foo(void) {}; foo();])],
-					[AC_MSG_RESULT("no")],
-					[
-						AC_MSG_RESULT(required)
-						AS_VAR_APPEND([FD_CFLAGS], [" -fnested-functions"])
-					]
-				)
-			],
-			[
-				AC_MSG_ERROR([We need either GCC or Clang, to create lambda-like functions!])
-			]
-		)
-	],
-	[
-		DISPATCH_C_BLOCKS
-		AS_VAR_APPEND([FD_CFLAGS], [" $CBLOCKS_CFLAGS"])
-		AS_VAR_APPEND([FD_LDFLAGS], [" $CBLOCKS_LDFLAGS"])
-		AS_VAR_APPEND([FD_LIBS], [" $CBLOCKS_LIBS"])
-	]
-)
-
 dnl Checks for header files.
 
 AS_BOX([Checking header files])

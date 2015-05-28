@@ -540,6 +540,35 @@ static void display_dark_background(struct widget *w)
 	draw_rectangle(&w->rect, 0, 0, 0, 150);
 }
 
+//
+// Widgets update callbacks
+//
+
+static void _activate_if_open_missions_shown(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = current_quest_browser_mode == QUEST_BROWSER_SHOW_OPEN_MISSIONS;
+}
+
+static void _activate_if_done_missions_shown(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = current_quest_browser_mode == QUEST_BROWSER_SHOW_DONE_MISSIONS;
+}
+
+static void _activate_if_notes_shown(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = current_quest_browser_mode == QUEST_BROWSER_SHOW_NOTES;
+}
+
+static void _activate_if_can_scroll_up(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = can_scroll_up();
+}
+
+static void _activate_if_can_scroll_down(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = can_scroll_down();
+}
+
 /**
  * This function returns the quest log top level widget and creates it if necessary.
  */
@@ -605,34 +634,28 @@ struct widget_group *create_quest_browser()
 		char *image[3];
 		SDL_Rect rect;
 		void (*activate_button)(struct widget_button *);
-		void (WIDGET_ANONYMOUS_MARKER update) (struct widget *);
+		void (*update) (struct widget *);
 	} b[] = {
 		// Open quests
 		{
 			{"widgets/quest_open_off.png", NULL, "widgets/quest_open.png"},
 			{right_side_buttons_x, quest_browser_y + 37, 126, 29},
 			toggle_open_quests,
-			WIDGET_ANONYMOUS(struct widget *w, {
-				WIDGET_BUTTON(w)->active = current_quest_browser_mode == QUEST_BROWSER_SHOW_OPEN_MISSIONS;
-			})
+			_activate_if_open_missions_shown
 		},
 		// Done quests
 		{
 			{"widgets/quest_done_off.png", NULL, "widgets/quest_done.png"},
 			{right_side_buttons_x, quest_browser_y + 76, 126, 29},
 			toggle_done_quests,
-			WIDGET_ANONYMOUS(struct widget *w, {
-				WIDGET_BUTTON(w)->active = current_quest_browser_mode == QUEST_BROWSER_SHOW_DONE_MISSIONS;
-			})
+			_activate_if_done_missions_shown
 		},
 		// Notes
 		{
 			{"widgets/quest_notes_off.png", NULL, "widgets/quest_notes.png"},
 			{right_side_buttons_x, quest_browser_y + 115, 126, 29},
 			toggle_notes,
-			WIDGET_ANONYMOUS(struct widget *w, {
-				WIDGET_BUTTON(w)->active = current_quest_browser_mode == QUEST_BROWSER_SHOW_NOTES;
-			})
+			_activate_if_notes_shown
 		},
 		// Exit button
 		{
@@ -646,18 +669,14 @@ struct widget_group *create_quest_browser()
 			{"widgets/scroll_up_off.png", NULL, "widgets/scroll_up.png"},
 			{quest_browser_x + quest_browser_w / 2 - 59, quest_browser_y - 14, 118, 17},
 			scroll_up,
-			WIDGET_ANONYMOUS(struct widget *w, {
-				WIDGET_BUTTON(w)->active = can_scroll_up();
-			})
+			_activate_if_can_scroll_up
 		},
 		// Scroll down
 		{
 			{"widgets/scroll_down_off.png", NULL, "widgets/scroll_down.png"},
 			{quest_browser_x + quest_browser_w / 2 - 59, quest_browser_y + quest_browser_h, 118, 17}, 
 			scroll_down,
-			WIDGET_ANONYMOUS(struct widget *w, {
-				WIDGET_BUTTON(w)->active = can_scroll_down();
-			})
+			_activate_if_can_scroll_down
 		}
 	};
 
