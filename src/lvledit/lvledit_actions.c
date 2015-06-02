@@ -240,6 +240,7 @@ static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, ch
 	// If the obstacle already has a label, remove it
 	char *old_label = get_obstacle_extension(EditLevel, obstacle, OBSTACLE_EXTENSION_LABEL);
 	if (old_label) {
+		old_label = strdup(old_label);
 		del_obstacle_extension(EditLevel, obstacle, OBSTACLE_EXTENSION_LABEL);
 	}
 
@@ -247,17 +248,18 @@ static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, ch
 	if (undoable) {
 		action_push(ACT_SET_OBSTACLE_LABEL, obstacle, old_label);
 	} else {
-		free(old_label);
+		if (old_label) {
+			free(old_label);
+			old_label = NULL;
+		}
 	}
 
 	// If the new label is empty, we are done
 	if (!name || !strlen(name))
 		return 0;
 
-	name = strdup(name);
-
 	// Assign the new label
-	add_obstacle_extension(EditLevel, obstacle, OBSTACLE_EXTENSION_LABEL, name);
+	add_obstacle_extension(EditLevel, obstacle, OBSTACLE_EXTENSION_LABEL, strdup(name));
 
 	return undoable;
 }
