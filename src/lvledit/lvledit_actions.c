@@ -598,7 +598,7 @@ void level_editor_action_change_map_label_user(level *EditLevel, float x, float 
 	char suggested_label[200];
 	int i;
 
-	suggested_label[0] = 0;
+	suggested_label[0] = '\0';
 
 	// We check if a map label already exists for this spot
 	for (i = 0; i < EditLevel->map_labels.size; i++) {
@@ -606,15 +606,17 @@ void level_editor_action_change_map_label_user(level *EditLevel, float x, float 
 
 		if ((fabs(map_label->pos.x + 0.5 - x) < 0.5) &&
 			 (fabs(map_label->pos.y + 0.5 - y) < 0.5)) {
-			
+
 			// Use the old label as a suggestion
 			old_name = map_label->label_name;
-			strcpy(suggested_label, old_name);
+			strncpy(suggested_label, old_name, sizeof(suggested_label) - 1);
+			suggested_label[sizeof(suggested_label) - 1] = '\0';
 			break;
 		}
 	}
-		
+
 	// Check if the name entered already exists
+
 	while (1) {
 		// Show popup window to enter a new map label
 		name = GetEditableStringInPopupWindow(sizeof(suggested_label) - 1, _("\nPlease enter map label: \n\n"), suggested_label);
@@ -636,7 +638,8 @@ void level_editor_action_change_map_label_user(level *EditLevel, float x, float 
 		alert_window("%s", _("The new name of the map label already exists, please choose an other name."));
 
 		// Copy the name in order to have it in the input box
-		strcpy(suggested_label, name);
+		strncpy(suggested_label, name, sizeof(suggested_label) - 1);
+		suggested_label[sizeof(suggested_label) - 1] = '\0';
 		free(name);
 
 		// Restore the menu background in order to correctly draw the next popup window
