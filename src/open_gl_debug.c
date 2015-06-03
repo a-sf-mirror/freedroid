@@ -94,20 +94,109 @@ typedef void (APIENTRYP PFNGLGETOBJECTPTRLABELPROC) (const void *ptr, GLsizei bu
 PFNGLDEBUGMESSAGECONTROLPROC glDebugMessageControl;
 PFNGLDEBUGMESSAGECALLBACKPROC glDebugMessageCallback;
 
+#define DBG_FLAG(f) { f, #f }
+struct debug_flag {
+	GLenum flag_value;
+	char *flag_descr;
+} debug_flags[] = {
+	DBG_FLAG(GL_DEBUG_OUTPUT_SYNCHRONOUS),
+	DBG_FLAG(GL_DEBUG_NEXT_LOGGED_MESSAGE_LENGTH),
+	DBG_FLAG(GL_DEBUG_CALLBACK_FUNCTION),
+	DBG_FLAG(GL_DEBUG_CALLBACK_USER_PARAM),
+	DBG_FLAG(GL_DEBUG_SOURCE_API),
+	DBG_FLAG(GL_DEBUG_SOURCE_WINDOW_SYSTEM),
+	DBG_FLAG(GL_DEBUG_SOURCE_SHADER_COMPILER),
+	DBG_FLAG(GL_DEBUG_SOURCE_THIRD_PARTY),
+	DBG_FLAG(GL_DEBUG_SOURCE_APPLICATION),
+	DBG_FLAG(GL_DEBUG_SOURCE_OTHER),
+	DBG_FLAG(GL_DEBUG_TYPE_ERROR),
+	DBG_FLAG(GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR),
+	DBG_FLAG(GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR),
+	DBG_FLAG(GL_DEBUG_TYPE_PORTABILITY),
+	DBG_FLAG(GL_DEBUG_TYPE_PERFORMANCE),
+	DBG_FLAG(GL_DEBUG_TYPE_OTHER),
+	DBG_FLAG(GL_DEBUG_TYPE_MARKER),
+	DBG_FLAG(GL_DEBUG_TYPE_PUSH_GROUP),
+	DBG_FLAG(GL_DEBUG_TYPE_POP_GROUP),
+	DBG_FLAG(GL_DEBUG_SEVERITY_NOTIFICATION),
+	DBG_FLAG(GL_MAX_DEBUG_GROUP_STACK_DEPTH),
+	DBG_FLAG(GL_DEBUG_GROUP_STACK_DEPTH),
+	DBG_FLAG(GL_BUFFER),
+	DBG_FLAG(GL_SHADER),
+	DBG_FLAG(GL_PROGRAM),
+	DBG_FLAG(GL_QUERY),
+	DBG_FLAG(GL_PROGRAM_PIPELINE),
+	DBG_FLAG(GL_SAMPLER),
+	DBG_FLAG(GL_DISPLAY_LIST),
+	DBG_FLAG(GL_MAX_LABEL_LENGTH),
+	DBG_FLAG(GL_MAX_DEBUG_MESSAGE_LENGTH),
+	DBG_FLAG(GL_MAX_DEBUG_LOGGED_MESSAGES),
+	DBG_FLAG(GL_DEBUG_LOGGED_MESSAGES),
+	DBG_FLAG(GL_DEBUG_SEVERITY_HIGH),
+	DBG_FLAG(GL_DEBUG_SEVERITY_MEDIUM),
+	DBG_FLAG(GL_DEBUG_SEVERITY_LOW),
+	DBG_FLAG(GL_DEBUG_OUTPUT),
+	{ 0x0503, "GL_STACK_OVERFLOW" },
+	{ 0x0504, "GL_STACK_UNDERFLOW" }
+};
+#undef DBG_FLAG
+
+static struct debug_flag *find_debug_flag(GLenum value)
+{
+	unsigned int i;
+	for (i=0; i < sizeof(debug_flags)/sizeof(debug_flags[0]); i++) {
+		if (debug_flags[i].flag_value == value)
+			return &debug_flags[i];
+	}
+	return NULL;
+}
 static void gl_debug_callback(GLenum source, GLenum type, GLuint id,
 							GLenum severity, GLsizei length, const GLchar* message,
 							GLvoid* userParam)
 {
 	// Ignore certain message IDs
+
 	if (id == 131204) {
 		// "Waste of memory: Texture 0 has mipmaps, while it's min filter is inconsistent with mipmaps."
 		// Possible nvidia bug in version 313.30, ignore it for now
 		return;
 	}
+	if (severity == GL_DEBUG_SEVERITY_NOTIFICATION) {
+		// Do not display notifications
+		return;
+	}
 
 	// Report a good looking error message
-	error_message(__FUNCTION__, "Source = %x, type = %x, id = %d, severity = %x: %s",
-			NO_REPORT, source, type, id, severity, message);
+
+	struct auto_string *msg = alloc_autostr(256);
+	struct debug_flag *data = NULL;
+
+	data = find_debug_flag(source);
+	if (data) {
+		autostr_append(msg, "Source = %s,", data->flag_descr);
+	} else {
+		autostr_append(msg, "Source = 0x%x,", source);
+	}
+
+	data = find_debug_flag(type);
+	if (data) {
+		autostr_append(msg, " type = %s,", data->flag_descr);
+	} else {
+		autostr_append(msg, " type = 0x%x,", type);
+	}
+
+	autostr_append(msg, " id = %d,", id);
+
+	data = find_debug_flag(severity);
+	if (data) {
+		autostr_append(msg, " severity = %s,", data->flag_descr);
+	} else {
+		autostr_append(msg, " severity = 0x%x,", severity);
+	}
+
+	error_message(__FUNCTION__, "%s: %s", NO_REPORT, msg->value, message);
+
+	free_autostr(msg);
 }
 #endif // HAVE_LIBGL
 
