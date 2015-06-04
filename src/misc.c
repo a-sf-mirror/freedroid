@@ -1365,11 +1365,11 @@ static void free_memory_before_exit(void)
 	reset_visible_levels();
 	clear_animated_floor_tile_list();
 
+	// other stuff
 	delete_events();
 	free_current_ship();
-
-	// free level editor memory
 	leveleditor_cleanup();
+	free_error_msg_store();
 }
 
 /**

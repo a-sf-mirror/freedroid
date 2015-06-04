@@ -142,6 +142,7 @@ static int _first_use_of_msg(int when, struct auto_string *msg)
 	stored_item->when = when;
 	stored_item->msg = msg;
 	dynarray_add(msg_store, stored_item, sizeof(struct msg_store_item));
+	free(stored_item);
 
 	return TRUE;
 }
@@ -177,6 +178,23 @@ void clean_error_msg_store()
 	dynarray_free(msg_store);
 	free(msg_store);
 	msg_store = new_store;
+}
+
+/**
+ * Free all the memory slots used by the msg_store
+ */
+void free_error_msg_store()
+{
+	if (!msg_store) // msg store was not used
+		return;
+
+	int i;
+	for (i = 0; i < msg_store->size; i++) {
+		struct msg_store_item *stored_item = (struct msg_store_item *)dynarray_member(msg_store, i, sizeof(struct msg_store_item));
+		free_autostr(stored_item->msg);
+	}
+	dynarray_free(msg_store);
+	free(msg_store);
 }
 
 /**

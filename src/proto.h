@@ -668,6 +668,7 @@ char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_S
 char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer);
 void DebugPrintf(int db_level, const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(2,3);
 void clean_error_msg_store();
+void free_error_msg_store();
 void error_message(const char *, const char *, int, ...) PRINTF_FMT_ATTRIBUTE(2,4);
 void error_once_message(int, const char *, const char *, int, ...) PRINTF_FMT_ATTRIBUTE(3,5);
 void alert_window(const char *text, ...) PRINTF_FMT_ATTRIBUTE(1,2);
