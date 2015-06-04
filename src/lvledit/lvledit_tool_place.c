@@ -644,6 +644,10 @@ int leveleditor_place_input(SDL_Event *event)
 
 	if (!mouse_in_level) {
 		// We must not place objects outside of the level
+		// And we stop drawing walls if mouse leaved the level
+		if (our_mode == LINE_WALLS) {
+			end_wall_line(1);
+		}
 		return 0;
 	}
 
