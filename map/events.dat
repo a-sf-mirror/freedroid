@@ -1833,7 +1833,6 @@ Enemy faction="ms"
 		if (not arena_final_wave) then
 			arena_next_wave = arena_current_wave + 1
 			display_big_message(_"All bots are killed! Go to center for next wave.")
-			display_big_message(_"All bots are killed! Go to center for next wave.")
 		else 
 			arena_won = true 
 			display_big_message(_"All bots are killed! You won.")
