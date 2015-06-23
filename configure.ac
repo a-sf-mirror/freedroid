@@ -346,9 +346,13 @@ dnl Checks for library functions.
 
 AS_BOX([Checking library functions])
 
-AC_FUNC_MALLOC
+AS_VAR_IF([cross_compiling], [no],
+	[
+		AC_FUNC_MALLOC
+		AC_FUNC_REALLOC
+	]
+)
 AC_FUNC_MKTIME
-AC_FUNC_REALLOC
 AC_FUNC_STRCOLL
 AC_CHECK_FUNCS([alphasort atexit clock_gettime floor getcwd memchr memmove memset mkdir])
 AC_CHECK_FUNCS([nl_langinfo pow putenv rint scandir setenv setlocale sqrt strchr strcspn])
