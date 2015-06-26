@@ -45,7 +45,11 @@
 #endif
 
 #ifndef HAVE_NL_LANGINFO
+#if __WIN32__
+#define nl_langinfo(X) "%a %b %#d %H:%M:%S %Y"
+#else
 #define nl_langinfo(X) "%a %b %e %H:%M:%S %Y"
+#endif
 #endif
 
 #define SAVEDGAME_EXT ".sav.gz"
