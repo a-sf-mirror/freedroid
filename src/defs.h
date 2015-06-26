@@ -39,14 +39,22 @@
 #define FALSE (0)
 #endif
 
-#define ERR 	-1
-#define OK		0
+#define ERR -1
+#define OK 0
 
 #ifndef max
 #define max(x,y) ((x) < (y) ? (y) : (x) )
 #endif
 #ifndef min
 #define min(x,y) ((x) > (y) ? (y) : (x) )
+#endif
+
+// On Linux and MacOS, 'z' is the length modifier to be used in printf() for
+// a size_t data. On Windows, 'I' is to be used.
+#if __WIN32__
+#define SIZE_T_F "%Iu"
+#else
+#define SIZE_T_F "%zu"
 #endif
 
 //--------------------

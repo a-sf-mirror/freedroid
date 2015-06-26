@@ -195,7 +195,7 @@ void input_keyboard_init(void)
 
 	if (sizeof(default_keybinds) / sizeof(default_keybinds[0]) > sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]))
 		error_message(__FUNCTION__,
-			     "There are %zu keyboard commands defined in keyboard.c, but GameConfig structure only supports %zu.",
+			     "There are " SIZE_T_F " keyboard commands defined in keyboard.c, but GameConfig structure only supports " SIZE_T_F ".",
 			     PLEASE_INFORM | IS_FATAL,
 			     sizeof(default_keybinds) / sizeof(default_keybinds[0]),
 			     sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]));

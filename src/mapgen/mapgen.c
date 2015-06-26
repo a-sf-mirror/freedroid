@@ -571,7 +571,7 @@ int mapgen_add_room(int x, int y, int w, int h)
 		max_rooms += 10;
 		struct roominfo *buffer = realloc(rooms, max_rooms * sizeof(struct roominfo));
 		if (!buffer) {
-			error_message(__FUNCTION__, "Not enough memory to reallocate the 'rooms' datastruct (requested size: %lu).", IS_FATAL, max_rooms * sizeof(struct roominfo));
+			error_message(__FUNCTION__, "Not enough memory to reallocate the 'rooms' datastruct (requested size: " SIZE_T_F ").", IS_FATAL, max_rooms * sizeof(struct roominfo));
 			return -1;
 		}
 		rooms = buffer;
