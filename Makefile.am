@@ -48,8 +48,8 @@ dist-hook:
 install-data-local:
 	@echo "Installing the data-files ..."
 	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
-	find $(srcdir)/$(freedroid_data) -type d ! -path "*.git*" -and ! -path "*legacy*" -exec echo $(DESTDIR)$(pkgdatadir)/{} \; | xargs $(mkinstalldirs)
-	find $(srcdir)/$(freedroid_data) -type f ! -path "*.git*" -and ! -path "*legacy*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec $(INSTALL_DATA) {} $(DESTDIR)$(pkgdatadir)/{} \;
+	find $(srcdir)/$(freedroid_data) -type d ! -path "*.git*" -exec echo $(DESTDIR)$(pkgdatadir)/{} \; | xargs $(mkinstalldirs)
+	find $(srcdir)/$(freedroid_data) -type f ! -path "*.git*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec $(INSTALL_DATA) {} $(DESTDIR)$(pkgdatadir)/{} \;
 	@echo "..done."
 
 uninstall-local:
