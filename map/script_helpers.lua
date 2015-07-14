@@ -333,7 +333,7 @@ function chat_says_format(text, ...)
 		no_wait = "NO_WAIT"
 		table.remove(arg)
 	end
-	text = string.format(text, unpack(arg))
+	text = string.format(text, table.unpack(arg))
 	return text, no_wait
 end
 

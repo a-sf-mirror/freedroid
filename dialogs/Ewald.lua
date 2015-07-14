@@ -502,7 +502,7 @@ return {
 				table.insert(random_says, _"Bucking the statistics. I like that.")
 			end
 
-			Npc:says_random(unpack(random_says))
+			Npc:says_random(table.unpack(random_says))
 			hide("node54", "node55") next("node56")
 		end,
 	},
@@ -524,7 +524,7 @@ return {
 				table.insert(random_says, _"Betting against the game. I like that.")
 			end
 
-			Npc:says_random(unpack(random_says))
+			Npc:says_random(table.unpack(random_says))
 			hide("node54", "node55") next("node56")
 		end,
 	},
