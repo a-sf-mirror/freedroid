@@ -1781,7 +1781,7 @@ int resume_lua_coroutine(struct lua_coroutine *coroutine)
 	} else {
 		// The script code is in an external file
 		// Extract the erroneous function's code from the source file
-		FILE *src = fopen(ar.short_src, "r");
+		FILE *src = fopen(&ar.source[1], "r");
 		struct auto_string *code = alloc_autostr(256);
 		char buffer[256] = "";
 		char *ptr = buffer;
