@@ -80,7 +80,7 @@ define_read_xxx(uint8_t);
 #if __WIN32__
 define_write_xxx(uint8_t, "%hu");
 #else
-define_write_xxx(uint8_t, "%hu");
+define_write_xxx(uint8_t, "%hhu");
 #endif
 
 /**
