@@ -1611,7 +1611,8 @@ enum texture_type {
 // ORed flags defining the modifications to apply when loading an image (used by load_image())
 enum load_image_mod_flags {
 	NO_MOD = 0,
-	USE_OFFSET = 1 << 1  // Use the offset file to translate the image
+	USE_OFFSET = 1 << 1,  // Use the offset file to translate the image
+	USE_WIDE   = 1 << 2   // Use the wide version of the file (if it exists)
 };
 
 // Draw quads borders (OpenGL only)
