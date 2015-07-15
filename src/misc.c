@@ -692,7 +692,7 @@ static int _file_exists(const char *fname, const char *subdir, char *file_path)
 	if (nb >= PATH_MAX) {
 		*file_path = 0;
 		error_message(__FUNCTION__, "Pathname too long (max is %d): %s/%s",
-		             NO_REPORT, PATH_MAX, subdir, fname);
+					 NO_REPORT, PATH_MAX, subdir, fname);
 		return 0;
 	}
 
@@ -728,6 +728,42 @@ int find_file(const char *fname, int subdir_handle, char *file_path, int error_r
 	}
 
 	return 1;
+}
+
+/* -----------------------------------------------------------------
+ * Find a suffixed filename in subdir (using a data_dir handle).
+ *
+ * The 'suffix' is added before the filename extension.
+ *
+ * fills in the (ALLOC'd) string and returns 1 if okay, 0 on error.
+ * file_path's length HAS to be PATH_MAX.
+ * ----------------------------------------------------------------- */
+int find_suffixed_file(const char *fname, const char *suffix, int subdir_handle, char *file_path, int error_report)
+{
+	char suffixed_fname[PATH_MAX];
+	char *actual_fname = (char *)fname;
+
+	if (suffix) {
+		int fname_length = strlen(fname);
+		int suffix_length = strlen(suffix);
+		if ((fname_length + suffix_length + 1) >= PATH_MAX) {
+			*file_path = 0;
+			error_message(__FUNCTION__, "Filename + suffix too long (max is %d): %s, with suffix: %s",
+			              PLEASE_INFORM, PATH_MAX, fname, suffix);
+			return 0;
+		}
+
+		int pos = strrchr(fname, '.') - fname;
+
+		memcpy(suffixed_fname, fname, pos);
+		memcpy(suffixed_fname + pos, suffix, suffix_length);
+		memcpy(suffixed_fname + pos + suffix_length, fname + pos, fname_length - pos + 1);
+		suffixed_fname[fname_length + suffix_length] = '\0';
+
+		actual_fname = suffixed_fname;
+	}
+
+	return find_file(actual_fname, subdir_handle, file_path, error_report);
 }
 
 /* -----------------------------------------------------------------

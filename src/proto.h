@@ -579,6 +579,7 @@ int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
 void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen);
 int init_data_dirs_path();
 int find_file(const char *, int, char *, int);
+int find_suffixed_file(const char *, const char *, int, char *, int);
 int find_localized_file(const char *, int, char *, int);
 int find_encoded_file(const char *, int, char *, int);
 void Pause(void);
