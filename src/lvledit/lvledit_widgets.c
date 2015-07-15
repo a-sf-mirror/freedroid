@@ -633,9 +633,9 @@ struct widget_group *get_lvledit_ui()
 		// Buttons use 3 images for each toggle state. Radio buttons have two toggle states.
 		for (j = 0; j < b[i].number_of_toggle_states; j++) {
 			// AllMousePressButtons have only two images: normal and pressed. Hovered state will be ignored.
-			button->image[j][0] = widget_load_image_resource(AllMousePressButtons[b[i].btn_index + j * 2].button_image_file_name, 0);		// Normal state
+			button->image[j][0] = widget_load_image_resource(AllMousePressButtons[b[i].btn_index + j * 2].button_image_file_name, NO_MOD);		// Normal state
 			button->image[j][1] = NULL;												// Hovered state
-			button->image[j][2] = widget_load_image_resource(AllMousePressButtons[b[i].btn_index + j * 2 + 1].button_image_file_name, 0);	// Pressed state
+			button->image[j][2] = widget_load_image_resource(AllMousePressButtons[b[i].btn_index + j * 2 + 1].button_image_file_name, NO_MOD);	// Pressed state
 		}
 		
 		// Set button size.

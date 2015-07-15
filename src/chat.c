@@ -408,9 +408,9 @@ struct widget_group *create_chat_dialog()
 	// Droid portrait
 	//
 
-	struct image *img_frame = widget_load_image_resource("widgets/chat_portrait_frame.png", 0);
-	struct image *img_connector = widget_load_image_resource("widgets/chat_portrait_connector.png", 0);
-	struct image *img_tube = widget_load_image_resource("widgets/chat_portrait_tube.png", 0);
+	struct image *img_frame = widget_load_image_resource("widgets/chat_portrait_frame.png", NO_MOD);
+	struct image *img_connector = widget_load_image_resource("widgets/chat_portrait_connector.png", NO_MOD);
+	struct image *img_tube = widget_load_image_resource("widgets/chat_portrait_tube.png", NO_MOD);
 	int chat_portrait_frame_x = 13;
 	int chat_portrait_frame_y = 4;
 	int chat_portrait_connector_x = chat_selector_x;
@@ -523,9 +523,9 @@ struct widget_group *create_chat_dialog()
 		WIDGET(button)->rect = b[i].rect;
 		WIDGET(button)->update = b[i].update;
 
-		button->image[0][DEFAULT] = widget_load_image_resource(b[i].image[0], 0);
-		button->image[0][PRESSED] = widget_load_image_resource(b[i].image[1], 0);
-		button->image[1][DEFAULT] = widget_load_image_resource(b[i].image[2], 0);
+		button->image[0][DEFAULT] = widget_load_image_resource(b[i].image[0], NO_MOD);
+		button->image[0][PRESSED] = widget_load_image_resource(b[i].image[1], NO_MOD);
+		button->image[1][DEFAULT] = widget_load_image_resource(b[i].image[2], NO_MOD);
 		button->activate_button = b[i].activate_button;
 
 		widget_group_add(chat_menu, WIDGET(button));

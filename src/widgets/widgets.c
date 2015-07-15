@@ -63,7 +63,7 @@ LIST_HEAD(image_resource_list);
  * the image_resource_list, then the already loaded image is returned.
  * Else, the image is loaded from disk, and stored in \e image_resource_list.
  */
-struct image *widget_load_image_resource(char *name, int use_offset_file) 
+struct image *widget_load_image_resource(char *name, int mod_flags)
 {
 	struct image_resource *res;
 
@@ -79,7 +79,7 @@ struct image *widget_load_image_resource(char *name, int use_offset_file)
 	// Image not found, allocate memory and load it from its file.
 	res = MyMalloc(sizeof(struct image_resource));
 	res->name = strdup(name);
-	load_image(&res->img, res->name, use_offset_file);
+	load_image(&res->img, res->name, mod_flags);
 	list_add(&res->node, &image_resource_list);
 	return &res->img;
 }

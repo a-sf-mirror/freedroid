@@ -625,7 +625,7 @@ struct widget_group *create_quest_browser()
 	int exit_button_arm_y = quest_browser_y + quest_browser_h - 183;
 
 	struct widget_background *exit_button = widget_background_create();
-	struct image *img = widget_load_image_resource("widgets/exit_button_background.png", 0);
+	struct image *img = widget_load_image_resource("widgets/exit_button_background.png", NO_MOD);
 	widget_set_rect(WIDGET(exit_button), right_side_buttons_x - 5, exit_button_arm_y, img->w, img->h);
 	widget_background_add(exit_button, img, WIDGET(exit_button)->rect.x, WIDGET(exit_button)->rect.y, img->w, img->h, 0);
 	widget_group_add(quest_browser, WIDGET(exit_button));
@@ -684,9 +684,9 @@ struct widget_group *create_quest_browser()
 	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
 		struct widget_button *button = widget_button_create();
 
-		button->image[0][DEFAULT] = widget_load_image_resource(b[i].image[0], 0);
-		button->image[0][PRESSED] = widget_load_image_resource(b[i].image[1], 0);
-		button->image[1][DEFAULT] = widget_load_image_resource(b[i].image[2], 0);
+		button->image[0][DEFAULT] = widget_load_image_resource(b[i].image[0], NO_MOD);
+		button->image[0][PRESSED] = widget_load_image_resource(b[i].image[1], NO_MOD);
+		button->image[1][DEFAULT] = widget_load_image_resource(b[i].image[2], NO_MOD);
 
 		WIDGET(button)->rect = b[i].rect;
 		button->activate_button = b[i].activate_button;

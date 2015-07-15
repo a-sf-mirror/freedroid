@@ -59,7 +59,7 @@ void blit_mouse_cursor(void)
 	if (!loaded) {
 		for (i = 0; i < 10; i++) {
 			sprintf(constructed_filename, "cursors/mouse_cursor_%04d.png", i);
-			load_image(&mouse_cursors[i], constructed_filename, FALSE);
+			load_image(&mouse_cursors[i], constructed_filename, NO_MOD);
 		}
 		loaded = TRUE;
 	}
@@ -203,7 +203,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 	StoreMenuBackground(1);
 
 	if (!image_loaded(&selection_knob)) {
-		load_image(&selection_knob, "mouse_buttons/number_selector_selection_knob.png", FALSE);
+		load_image(&selection_knob, "mouse_buttons/number_selector_selection_knob.png", NO_MOD);
 	}
 
 	knob_target_rect.w = selection_knob.w;

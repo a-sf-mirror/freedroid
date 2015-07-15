@@ -143,7 +143,7 @@ int load_bfont(const char *filepath, struct font *font)
 	BFont_Info *bfont = MyMalloc(sizeof(BFont_Info));
 
 	// Load the font_image->surface
-	load_image_surface(&bfont->font_image, filepath, FALSE);
+	load_image_surface(&bfont->font_image, filepath, NO_MOD);
 
 	// Find character coordinates in the image
 	SDL_Rect char_rect[MAX_CHARS_IN_FONT];

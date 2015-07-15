@@ -1608,6 +1608,12 @@ enum texture_type {
 	IS_SUBTEXTURE = 1 << 2
 };
 
+// ORed flags defining the modifications to apply when loading an image (used by load_image())
+enum load_image_mod_flags {
+	NO_MOD = 0,
+	USE_OFFSET = 1 << 1  // Use the offset file to translate the image
+};
+
 // Draw quads borders (OpenGL only)
 #define DEBUG_QUAD_BORDER 0
 

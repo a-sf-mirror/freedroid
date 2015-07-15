@@ -494,7 +494,7 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
  * correctly placed in an isometric image.
  * This function loads an image SDL surface, as well as its offset.
  */
-void load_image_surface(struct image *img, const char *filepath, int use_offset_file)
+void load_image_surface(struct image *img, const char *filepath, int mod_flags)
 {
 	if (image_loaded(img)) {
 		error_message(__FUNCTION__,
@@ -517,7 +517,7 @@ void load_image_surface(struct image *img, const char *filepath, int use_offset_
 
 	SDL_FreeSurface(surface);
 
-	if (use_offset_file)
+	if (mod_flags & USE_OFFSET)
 		get_offset_for_iso_image_from_file_and_path(filepath, img);
 	else {
 		img->offset_x = 0;
@@ -532,9 +532,8 @@ void load_image_surface(struct image *img, const char *filepath, int use_offset_
  * Load an image: load the SDL surface, and make a texture from it in OpenGL mode.
  * \param img Pointer towards the iso_image struct to fill in
  * \param filename Filename of the image
- * \param use_offset_file TRUE if the image uses offset information 
- */
-void load_image(struct image *img, const char *filename, int use_offset_file)
+ * \param mod_flags Modifications to apply */
+void load_image(struct image *img, const char *filename, int mod_flags)
 {
 	char fpath[PATH_MAX];
 
@@ -544,7 +543,7 @@ void load_image(struct image *img, const char *filename, int use_offset_file)
 		return;
 	}
 
-	load_image_surface(img, fpath, use_offset_file);
+	load_image_surface(img, fpath, mod_flags);
 
 	if (use_open_gl && (img->w > gl_max_texture_size || img->h > gl_max_texture_size)) {
 		error_message(__FUNCTION__, "Your system only supports %dx%d textures. Image %s is %dx%d and therefore cannot be used as an OpenGL texture.",

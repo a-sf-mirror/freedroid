@@ -163,7 +163,7 @@ void widget_background_load_3x3_tiles(struct widget_background *panel, char *bas
 		for (j = 0; j < 3; j++) {
 			sprintf(file,"%s_%i_%i.png", base_name, i, j);
 
-			tile[i][j].image = widget_load_image_resource(file, 0);
+			tile[i][j].image = widget_load_image_resource(file, NO_MOD);
 		}
 	}
 	int width = tile[0][0].image->w + tile[1][1].image->w + tile[2][2].image->w;

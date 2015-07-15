@@ -161,7 +161,7 @@ static void show_droid_picture(int PosX, int PosY, int type)
 
 			sprintf(filename, "droids/%s/portrait_%04d.jpg", Droidmap[type].droid_portrait_rotation_series_prefix, i + 1);
 
-			load_image(&droid_images[i], filename, FALSE);
+			load_image(&droid_images[i], filename, NO_MOD);
 		}
 			
 		strcpy(LastImageSeriesPrefix, Droidmap[type].droid_portrait_rotation_series_prefix);
@@ -771,7 +771,7 @@ static void GetTakeoverGraphics(void)
 	if (TakeoverGraphicsAreAlreadyLoaded)
 		return;
 
-	load_image(&img, TO_BLOCK_FILE, FALSE);
+	load_image(&img, TO_BLOCK_FILE, NO_MOD);
 
 	// Get the fill-blocks 
 	for (i = 0; i < NUM_FILL_BLOCKS; i++, curx += FILL_BLOCK_LEN + 2) {
@@ -932,7 +932,7 @@ static void ShowPlayground(enemy * target)
     
 	static struct image bg;
 	if (!image_loaded(&bg)) {
-		load_image(&bg, "backgrounds/takeover_console.png", FALSE);
+		load_image(&bg, "backgrounds/takeover_console.png", NO_MOD);
 	}
 
 	display_image_on_screen(&bg, GameConfig.screen_width / 2 - 340, GameConfig.screen_height / 2 - 294, IMAGE_NO_TRANSFO);

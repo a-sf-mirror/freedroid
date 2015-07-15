@@ -970,7 +970,7 @@ void blit_classic_SDL_light_radius(int decay_x, int decay_y)
 
 		for (i = 0; i < NUMBER_OF_SHADOW_IMAGES; i++) {
 			sprintf(constructed_file_name, "light_radius_chunks/iso_light_radius_darkness_%04d.png", i);
-			load_image(&light_radius_chunk[i], constructed_file_name, FALSE);
+			load_image(&light_radius_chunk[i], constructed_file_name, NO_MOD);
 		}
 
 		lrc_nb_columns = (int)ceilf((float)GameConfig.screen_width / (float)(LRC_ISO_WIDTH + LRC_ISO_GAP_X)) + 1;

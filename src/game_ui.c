@@ -445,21 +445,21 @@ static struct widget_group *create_hud_bar()
 	WIDGET(panel)->rect = WIDGET(hud_bar)->rect;
 
 	// Fixed size tiles
-	struct image *img_1 = widget_load_image_resource("widgets/hud_background_1.png", 0);
+	struct image *img_1 = widget_load_image_resource("widgets/hud_background_1.png", NO_MOD);
 	int left_panel_x = WIDGET(panel)->rect.x;
 	widget_background_add(panel, img_1, left_panel_x, WIDGET(panel)->rect.y, img_1->w, img_1->h, 0);
 
-	struct image *img_3 = widget_load_image_resource("widgets/hud_background_3.png", 0);
+	struct image *img_3 = widget_load_image_resource("widgets/hud_background_3.png", NO_MOD);
 	int center_panel_x = WIDGET(panel)->rect.x + (WIDGET(panel)->rect.w - img_3->w) / 2;
 	widget_background_add(panel, img_3, center_panel_x, WIDGET(panel)->rect.y, img_3->w, img_3->h, 0);
 
-	struct image *img_5 = widget_load_image_resource("widgets/hud_background_5.png", 0);
+	struct image *img_5 = widget_load_image_resource("widgets/hud_background_5.png", NO_MOD);
 	int right_panel_x = WIDGET(panel)->rect.x + WIDGET(panel)->rect.w - img_5->w;
 	widget_background_add(panel, img_5, right_panel_x, WIDGET(panel)->rect.y, img_5->w, img_5->h, 0);
 
 	// Scalable tiles.
 	// These tiles will expand to fill the gap between the 3 fixed tiles.
-	struct image *img_2 = widget_load_image_resource("widgets/hud_background_2.png", 0);
+	struct image *img_2 = widget_load_image_resource("widgets/hud_background_2.png", NO_MOD);
 	int left_scaling_panel_x = left_panel_x + img_1->w;
 	int fill = center_panel_x - left_scaling_panel_x;
 	if (fill < 0)
@@ -471,7 +471,7 @@ static struct widget_group *create_hud_bar()
 	if (fill > 0)
 		widget_background_add(panel, img_2, left_scaling_panel_x, WIDGET(panel)->rect.y, fill, img_2->h, 0);
 
-	struct image *img_4 = widget_load_image_resource("widgets/hud_background_4.png", 0);
+	struct image *img_4 = widget_load_image_resource("widgets/hud_background_4.png", NO_MOD);
 	int right_scaling_panel_x = center_panel_x + img_3->w;
 	fill = right_panel_x - right_scaling_panel_x;
 	if (fill < 0)
@@ -604,7 +604,7 @@ static struct widget_group *create_hud_bar()
 		for (j = 0; j < 2; j++)
 			for (k = 0; k < 3; k++)
 				if (b[i].image[j][k])
-					wb->image[j][k] = widget_load_image_resource(b[i].image[j][k], 0);
+					wb->image[j][k] = widget_load_image_resource(b[i].image[j][k], NO_MOD);
 
 		widget_set_rect(WIDGET(wb), b[i].rect.x, b[i].rect.y, b[i].rect.w, b[i].rect.h);
 

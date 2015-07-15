@@ -324,7 +324,7 @@ static void display_automap_compass()
 {
 	//load the compass if necessary
 	if (!image_loaded(&compass)) {
-		load_image(&compass, "compass.png", FALSE);
+		load_image(&compass, "compass.png", NO_MOD);
 	}
 
 	display_image_on_screen(&compass, GameConfig.screen_width - compass.w - 10, 40, IMAGE_NO_TRANSFO);

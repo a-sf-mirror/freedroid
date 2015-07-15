@@ -703,7 +703,7 @@ void load_skill_icon_if_needed(spell_skill_spec *spec)
 	if (!image_loaded(&spec->icon_surface)) {
 		char filename[1000];
 		sprintf(filename, "skill_icons/%s", spec->icon_name);
-		load_image(&spec->icon_surface, filename, FALSE); 
+		load_image(&spec->icon_surface, filename, NO_MOD);
 	}
 }
 
@@ -722,7 +722,7 @@ static void load_skill_level_images_if_needed(void)
 		return;
 
 	// Load the image
-	load_image(&img, SKILL_LEVEL_BUTTON_FILE, FALSE);
+	load_image(&img, SKILL_LEVEL_BUTTON_FILE, NO_MOD);
 
 	// Create the subimages
 	for (i = 0; i < NUMBER_OF_SKILL_PAGES; i++) {

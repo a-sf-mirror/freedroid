@@ -176,7 +176,7 @@ void Load_Blast_Surfaces(void)
 	for (i = 0; i < sizeof(Blastmap) / sizeof(Blastmap[0]); i++) {
 		for (j = 0; j < Blastmap[i].phases; j++) {
 			sprintf(fpath, "blasts/%s_%04d.png", Blastmap[i].name, j + 1);
-			load_image(&Blastmap[i].images[j], fpath, TRUE);
+			load_image(&Blastmap[i].images[j], fpath, USE_OFFSET);
 		}
 	}
 }
@@ -251,7 +251,7 @@ static void load_item_graphics(int item_type)
 	// Load ingame image
 	if (strcmp(spec->item_rotation_series_prefix, "NONE_AVAILABLE_YET")) {
 		sprintf(our_filename, "items/%s/ingame.png", spec->item_rotation_series_prefix);
-		load_image(&spec->ingame_image, our_filename, TRUE);
+		load_image(&spec->ingame_image, our_filename, USE_OFFSET);
 	} else {
 		memcpy(&spec->ingame_image, &spec->inventory_image, sizeof(struct image));
 	}
@@ -330,7 +330,7 @@ void Load_Mouse_Move_Cursor_Surfaces(void)
 
 	for (j = 0; j < NUMBER_OF_MOUSE_CURSOR_PICTURES; j++) {
 		sprintf(our_filename, "cursors/mouse_move_cursor_%d.png", j);
-		load_image(&MouseCursorImageList[j], our_filename, FALSE);
+		load_image(&MouseCursorImageList[j], our_filename, NO_MOD);
 	}
 
 };				// void Load_Mouse_Move_Cursor_Surfaces( void )
@@ -354,7 +354,7 @@ void iso_load_bullet_surfaces(void)
 			for (k = 0; k < BULLET_DIRECTIONS; k++) {
 				sprintf(constructed_filename, "bullets/iso_bullet_%s_%02d_%04d.png", bullet_spec->name, k, j + 1);
 
-				load_image(&bullet_spec->image[k][j], constructed_filename, TRUE);
+				load_image(&bullet_spec->image[k][j], constructed_filename, USE_OFFSET);
 			}
 		}
 	}
@@ -559,7 +559,7 @@ static void load_droid_portrait(int type)
 	strcat(fpath, PrefixToFilename[Droidmap[type].individual_shape_nr]);
 	strcat(fpath, "/portrait.png");
 
-	load_image(&chat_portrait_of_droid[type], fpath, FALSE);
+	load_image(&chat_portrait_of_droid[type], fpath, NO_MOD);
 }
 
 struct image *get_droid_portrait_image(int type)
@@ -607,7 +607,7 @@ struct image *get_map_label_image()
 	static struct image img = EMPTY_IMAGE;
 
 	if (!image_loaded(&img))
-		load_image(&img, "level_editor_map_label_indicator.png", TRUE);
+		load_image(&img, "level_editor_map_label_indicator.png", USE_OFFSET);
 
 	return &img;
 }
