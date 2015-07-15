@@ -29,6 +29,7 @@ man_MANS = freedroidRPG.6
 freedroid_data = map graphics sound dialogs lua_modules
 
 EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.generic
+CLEANFILES =
 
 CHECKFLAGS=env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
 
@@ -61,6 +62,14 @@ sign:
 	@echo "Generating signatures ..."
 	gpg --digest-algo SHA512  -o freedroidrpg-$(VERSION).tar.bz2.sig --detach-sign freedroidrpg-$(VERSION).tar.bz2
 	md5sum freedroidrpg-$(VERSION).tar.bz2 > freedroidrpg-$(VERSION).tar.bz2.md5
+
+# For Freedesktop compliant Software Centers
+
+appstreamdir = $(datarootdir)/appdata
+appstream_in_files = pkgs/freedesktop/freedroidrpg.appdata.xml
+appstream_DATA = $(appstream_in_files)
+EXTRA_DIST += $(appstream_in_files)
+CLEANFILES += $(appstream_DATA)
 
 ## Win32 specific stuff follows here
 

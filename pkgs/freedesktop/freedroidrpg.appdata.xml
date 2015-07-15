@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <id type="desktop">freedroidRPG.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>FreedroidRPG</name>
+  <summary>Isometric 3D RPG similar to game Diablo</summary>
+  <description>
+    <p>
+     FreedroidRPG is an original isometric 3D role playing game 
+     taking place in the future, on Earth. It features action and 
+     dialogs.
+    </p>
+    <p>
+     The game tells the story of a world destroyed by a conflict between
+     robots and their human masters. Play as Tux in a quest to save the 
+     world from the murderous rebel bots who know no mercy. You get to 
+     choose which path you wish to follow, and freedom of choice is 
+     everywhere in the game.
+    </p>
+    <p>
+     FreedroidRPG features a real time combat system with melee and 
+     ranged weapons, fairly similar to the proprietary game Diablo. 
+     There is an innovative system of programs that can be run in order 
+     to take control of enemy robots, alter their behavior, or improve one's
+     characteristics. You can use over 50 different kinds of items and 
+     fight countless enemies on your way to your destiny. An advanced 
+     dialog system provides story background and immersive role 
+     playing situations.
+    </p>
+    <p>
+     The game is complete, fully playable, and can provide about 
+     12 hours of fun. It is still being actively developed, and 
+     help is welcome in many areas. People having - or trying to acquire - 
+     programming, map editing, or writing skills will find FreedroidRPG 
+     to be an exciting, fast-moving project in which they can fully 
+     express their creativity.
+    </p>
+  </description>
+  <icon>http://www.freedroid.org/imgs/logo.png</icon>
+  <categories>
+    <category>Role Playing</category>
+    <category>Games</category>
+  </categories>
+  <keywords>
+    <keyword>RPG</keyword>
+  </keywords>
+  <screenshots>
+    <screenshot type="default">http://www.freedroid.org/imgs/screenshot.jpg</screenshot>
+  </screenshots>
+  <url type="homepage">http://www.freedroid.org/</url>
+</application>
