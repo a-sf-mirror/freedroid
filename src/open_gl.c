@@ -704,7 +704,7 @@ void blit_background(const char *background)
 	if (!image_loaded(&bg->img)) {
 		char path[2048];
 		sprintf(path, "backgrounds/%s", bg->filename);
-		load_image(&bg->img, path, NO_MOD);
+		load_image(&bg->img, path, USE_WIDE);
 	}
 
 
@@ -715,7 +715,7 @@ void blit_background(const char *background)
 	float scalex = 1.0, scaley = 1.0;
 	if (bg->must_scale) {
 		scalex = (float)GameConfig.screen_width / bg->img.w;
-		scaley = (float)GameConfig.screen_height / (bg->img.w * 3 / 4);
+		scaley = (float)GameConfig.screen_height / bg->img.h;
 	}
 
 	x *= scalex;
