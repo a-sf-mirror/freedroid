@@ -68,58 +68,58 @@ Show help message for fddnm\n
 			[[-T | --format=]arg] [[-d | --dialog=]arg]
 
 \n
-	[-q]\n
-	Quiet - no output to stdout\n
+<strong>[-q]</strong>\n
+Quiet - no output to stdout\n
 \n
-	[-P | \-\-verboseprint]\n
-	Print parsed dialog data to text file. Text file placed in output directory.\n
-	Note - output file will be named "[PREFIX][Dialog Name]_VPARSE.txt"\n
+<strong>[-P | \-\-verboseprint]</strong>\n
+Print parsed dialog data to text file. Text file placed in output directory.\n
+Note - output file will be named "[PREFIX][Dialog Name]_VPARSE.txt"\n
 \n
-	[-D | \-\-verbosedot]\n
-	Print analyzed dialog data used to create graphic to text file. Text file placed in output directory.\n
-	Note - output file will be named "[PREFIX][Dialog Name]_VDOT.txt"\n
+<strong>[-D | \-\-verbosedot]</strong>\n
+Print analyzed dialog data used to create graphic to text file. Text file placed in output directory.\n
+Note - output file will be named "[PREFIX][Dialog Name]_VDOT.txt"\n
 \n
-	[-G | --group]
-	Grouping is used as a layout hint to graphviz.\n
-	Enables nodes connected to "end_dialog" to be grouped closer to "end_dialog" node.\n
-	(E.g. Dixon or Tania graphs produce better output with this setting enabled).\n
+<strong>[-G | --group]</strong>\n
+Grouping is used as a layout hint to graphviz.\n
+Enables nodes connected to "end_dialog" to be grouped closer to "end_dialog" node.\n
+(E.g. Dixon or Tania graphs produce better output with this setting enabled).\n
 \n
-	[-H | --extrainfo]
-	enable HTML-like dot output - includeds presentation of extra node information.\n
-	(See below for an example of the output produced.)\n
+<strong>[-H | --extrainfo]</strong>\n
+enable HTML-like dot output - includeds presentation of extra node information.\n
+(See below for an example of the output produced.)\n
 \n
-	[-I | \-\-individual]\n
-	Program is to parse and process all dialog files individually.\n
-	Any references to \"include\" another dialog file will not be processed. (e.g. 614-cryo.lua)\n
+<strong>[-I | \-\-individual]</strong>\n
+Program is to parse and process all dialog files individually.\n
+Any references to \"include\" another dialog file will not be processed. (e.g. 614-cryo.lua)\n
 \n
-	[-s | \-\-dirsearch=] *arg* \n
-	Directory *arg* will be searched for dialog files (DEFAULT: [FDRPG root]/dialogs)\n
+<strong>[-s | \-\-dirsearch=]<em>arg</em></strong>\n
+Directory *arg* will be searched for dialog files (DEFAULT: [FDRPG root]/dialogs)\n
 \n
-	[-o | \-\-diroutput=] *arg* \n
-	Directory *arg* will be used to store program output (graphic or text) (DEFAULT: current directory)\n
+<strong>[-o | \-\-diroutput=]<em>arg</em></strong>\n
+Directory *arg* will be used to store program output (graphic or text) (DEFAULT: current directory)\n
 \n
-	[-F | \-\-fileprefix=] *arg* \n
-	*arg* will be the validated text used as a prefix for output file names.\n
-	Note - see the second entry "portable_name" in the [Boost Filesystem Portability Guide](http://www.boost.org/doc/libs/1_55_0/libs/filesystem/doc/portability_guide.htm#recommendations) for limitations\n
+<strong>[-F | \-\-fileprefix=]<em>arg</em></strong>\n
+*arg* will be the validated text used as a prefix for output file names.\n
+Note - see the second entry "portable_name" in the [Boost Filesystem Portability Guide](http://www.boost.org/doc/libs/1_55_0/libs/filesystem/doc/portability_guide.htm#recommendations) for limitations\n
 \n
-	[-L | \-\-layout=] *arg* \n
-	*arg* is the direction of graph layout. One of [ TB (DEFAULT) | LR | RL | BT ]\n
-	Note: see [Graphviz rankdir attribute](http://www.graphviz.org/content/attrs#drankdir) for details\n
+<strong>[-L | \-\-layout=]<em>arg</em></strong>\n
+*arg* is the direction of graph layout. One of [ TB (DEFAULT) | LR | RL | BT ]\n
+Note: see [Graphviz rankdir attribute](http://www.graphviz.org/content/attrs#drankdir) for details\n
 \n
-	[-T | \-\-format=] *arg* \n
-	*arg* is the graphic format of output. One of [ none | dot | jpg | png | svg (DEFAULT) ]\n
+<strong>[-T | \-\-format=]<em>arg</em></strong>\n
+*arg* is the graphic format of output. One of [ none | dot | jpg | png | svg (DEFAULT) ]\n
 \n
-	[ | -d | \-\-dialog=] *arg* \n
-	*arg* is the file name of dialog to be parsed without its *lua* file extension.\n
-	No supplied dialog names implies all dialogs in search directory are to be parsed.\n
-	More than one dialog name can be used without the switch as the use of the switch is optional.
+<strong>[ | -d | \-\-dialog=]<em>arg</em></strong>\n
+*arg* is the file name of dialog to be parsed without its *lua* file extension.\n
+No supplied dialog names implies all dialogs in search directory are to be parsed.\n
+More than one dialog name can be used without the switch as the use of the switch is optional.
 \n
 
 Examples	{#examples}
 ========
 
 Usage Examples:\n
-(all examples assume current directory is [FDRPG root]/tools/fddnm)\n
+<em>All examples assume current directory is \[FDRPG root\]/tools/fddnm</em>\n
 \n
 - Parse all found dialogs and produce output in the form of png graphic files\n
 
@@ -178,8 +178,8 @@ the addition of an end_dialog node, the Parsed node count will be set to (Detect
 \n
 
 ![Example Dialog Conversion Output (with detail)](@ref example_extra.png)
-Using the command line switch *[-H | --extrainfo]* will result in diagrams similar to above.
-The only change is the inclusion of text ( *text="..."* for each node in the dialog file).
+Using the command line switch <strong>[-H | --extrainfo]</strong> will result in diagrams similar to above.
+The only change is the inclusion of text ( <em>text="..."</em> for each node in the dialog file).
 Currently, the line wrap value is set for 30 characters.
 
 ![Example Error Indication](@ref example_error.png)
