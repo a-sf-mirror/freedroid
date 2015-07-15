@@ -426,7 +426,6 @@ static void fix_isolated_grass_tile(level * EditLevel, int x, int y)
 		west_grass = TRUE;
 
 	if (!north_grass && !south_grass && !east_grass && !west_grass) {
-		DebugPrintf(-4, "\nFixed an isolated grass tile.");
 		our_rand = MyRandom(100);
 		if (our_rand < 33)
 			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_17, ISO_FLOOR_SAND);
@@ -460,8 +459,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 		yend = start.y + len.y;
 	}
 
-	DebugPrintf(-4, "\nlevel_editor_beautify_grass_tiles (...): process started...");
-
 	// Make sure the level has multilayer floor
 	if (EditLevel->floor_layers == 1)
 		EditLevel->floor_layers++;
@@ -474,7 +471,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 
 			if (is_full_grass_tile(this_tile_value)) {
 				fix_corners_in_this_grass_tile(EditLevel, x, y);
-				DebugPrintf(1, "\nlevel_editor_beautify_grass_tiles (...): found a grass tile.");
 			}
 		}
 	}
@@ -487,7 +483,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 
 			if (is_full_grass_tile(this_tile_value)) {
 				fix_anticorners_in_this_grass_tile(EditLevel, x, y);
-				DebugPrintf(1, "\nlevel_editor_beautify_grass_tiles (...): found a grass tile.");
 			}
 		}
 	}
@@ -500,7 +495,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 
 			if (is_full_grass_tile(this_tile_value)) {
 				fix_halfpieces_in_this_grass_tile(EditLevel, x, y);
-				DebugPrintf(1, "\nlevel_editor_beautify_grass_tiles (...): found a grass tile.");
 			}
 		}
 	}
@@ -539,7 +533,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 
 			if (is_full_grass_tile(this_tile_value)) {
 				fix_isolated_grass_tile(EditLevel, x, y);
-				DebugPrintf(1, "\nlevel_editor_beautify_grass_tiles (...): found a grass tile.");
 			}
 		}
 	}
