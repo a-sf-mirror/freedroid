@@ -1533,6 +1533,8 @@ static void lvlval_map_labels_execute(struct level_validator *this, struct lvlva
 
 int level_validation()
 {
+	game_status = INSIDE_MENU;
+
 	enum validator_return_code final_rc = VALIDATION_PASS;
 	int uncaught_excpt = FALSE;
 
@@ -1645,6 +1647,8 @@ int level_validation()
 		SDL_Delay(1);
 	// Hack: eat all pending events.
 	input_handle();
+
+	game_status = INSIDE_LVLEDITOR;
 
 	return (final_rc != VALIDATION_PASS);
 }
