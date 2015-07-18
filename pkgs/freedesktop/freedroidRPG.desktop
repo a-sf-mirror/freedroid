@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Freedroid RPG
+GenericName=Freedroid RPG
+Comment=A futuristic immersive RPG about fighting bots
+TryExec=freedroidRPG
+Exec=freedroidRPG
+Icon=freedroidRPG.png
+Actions=Game;RolePlaying;
+URL=http://www.freedroid.org
