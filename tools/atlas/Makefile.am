@@ -14,6 +14,8 @@ bin_PROGRAMS = make_atlas explode_atlas
 
 PNGDEPS = pngfuncs.c pngfuncs.h
 
-make_atlas_SOURCES = make_atlas.c $(PNGDEPS)
+make_atlas_SOURCES = make_atlas.c
+nodist_make_atlas_SOURCES = $(PNGDEPS)
 
-explode_atlas_SOURCES = explode_atlas.c $(PNGDEPS)
+explode_atlas_SOURCES = explode_atlas.c
+nodist_explode_atlas_SOURCES = $(PNGDEPS)

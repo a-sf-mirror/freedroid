@@ -12,6 +12,7 @@ vpath %.h $(top_srcdir)/src
 
 bin_PROGRAMS = croppy
 
-croppy_SOURCES = pngfuncs.c pngfuncs.h croppy.c
+croppy_SOURCES = croppy.c
+nodist_croppy_SOURCES = pngfuncs.c pngfuncs.h
 
 EXTRA_DIST = croppy_background_fill.png

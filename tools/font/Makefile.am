@@ -21,8 +21,11 @@ make_bmchars_LDADD = -lSDL_ttf
 CSDEPS = codeset.c codeset.h
 PNGDEPS = pngfuncs.c pngfuncs.h
 
-explodefont_SOURCES = explodefont.c $(CSDEPS) $(PNGDEPS)
+explodefont_SOURCES = explodefont.c $(CSDEPS)
+nodist_explodefont_SOURCES = $(PNGDEPS)
 
-gluefont_SOURCES = gluefont.c $(CSDEPS) $(PNGDEPS)
+gluefont_SOURCES = gluefont.c $(CSDEPS)
+nodist_gluefont_SOURCES = $(PNGDEPS)
 
-make_bmchars_SOURCES = make_bmchars.c $(CSDEPS) $(PNGDEPS)
+make_bmchars_SOURCES = make_bmchars.c $(CSDEPS)
+nodist_make_bmchars_SOURCES = $(PNGDEPS)
