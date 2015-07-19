@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (c) 2014 Samuel Degrande
+#  Copyright (c) 2014,2015 Samuel Degrande
 #
 #  This file is part of Freedroid
 #
@@ -53,7 +53,7 @@ top=$(git rev-parse --show-toplevel)
 
 # The awk script alphabetically sorts the files list, with files first and then directories
 # ("width first traversal").
-allfiles=$(cd "$top" && git ls-files --no-empty-directory --exclude-standard ${include[@]} | $(AWK)'
+allfiles=$(cd "$top" && git ls-files --no-empty-directory --exclude-standard ${include[@]} | ${AWK} '
 BEGIN { IGNORECASE = 1; lines = 0; }
 {
   match("/" $0, "(/.*/)[^/]+$", result);

@@ -7,6 +7,9 @@ DOMAIN = freedroidrpg-dialogs
 subdir = po/po-dialogs
 top_builddir = ../..
 
+# Some scripts need to know gawk's path
+export AWK=${shell which gawk}
+
 # These options get passed to xgettext.
 SYS_XGETTEXT:=${XGETTEXT}
 XGETTEXT=${top_srcdir}/po/xgettext-wrapper ${SYS_XGETTEXT}
