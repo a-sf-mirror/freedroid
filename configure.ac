@@ -30,7 +30,7 @@ AC_CANONICAL_TARGET
 
 dnl Set automake options (require AC_CANONICAL_TARGET)
 
-AM_INIT_AUTOMAKE([tar-ustar dist-bzip2 -Wno-portability])
+AM_INIT_AUTOMAKE([tar-ustar -Wno-portability])
 
 dnl Commandline options
 
