@@ -71,7 +71,7 @@ freedroidRPG_SOURCES = version.c \
 	lvledit/lvledit_widgets.c lvledit/lvledit_widgets.h \
 	mapgen/mapgen.c mapgen/mapgen.h mapgen/gram_simple.c animate.c \
 	mapgen/themes.c mapgen/themes.h \
-	lua/luaFD.c lua/luaFD_bindings.h lua/luaFD_tux.c lua/luaFD_npc.c
+	lua/luaFD.c lua/luaFD.h lua/luaFD_bindings.h lua/luaFD_tux.c lua/luaFD_npc.c
 
 nodist_freedroidRPG_SOURCES = savestruct.c savestruct.h build_flags.h
 BUILT_SOURCES = savestruct.h build_flags.h
