@@ -28,7 +28,7 @@ man_MANS = freedroidRPG.6
 
 freedroid_data = map graphics sound dialogs lua_modules
 
-EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.freedroidRPG
+EXTRA_DIST = m4 lua $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.freedroidRPG
 
 CHECKFLAGS=env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
 
