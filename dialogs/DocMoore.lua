@@ -34,7 +34,11 @@ local Tux = FDrpg.get_tux()
 
 return {
 	FirstTime = function()
-		show("node0")
+		if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			show("node0")
+		else
+			show("DocMoore_post_firmware_update_firsttime")
+		end
 	end,
 
 	EveryTime = function()
@@ -58,6 +62,15 @@ return {
 		if (Tux:has_item_backpack("Diet supplement")) then show("node55") end
 		if (Tux:has_item_backpack("Antibiotic")) then show("node56") end
 		if (Tux:has_item_backpack("Doc-in-a-can")) then show("node57") end
+
+		show("node99")
+
+		if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) and
+		   (Tux:has_met("DocMoore")) and
+		   (not DocMoore_post_firmware_update_congrats) then
+			next("DocMoore_post_firmware_update")
+			return -- next() node is executed immediately after EveryTime, would look odd if EveryTime contains Npc:says
+		end
 
 		if (Tux:get_hp_ratio() < 0.1) then
 			Npc:says(_"You look gravely injured.")
@@ -93,7 +106,10 @@ return {
 			show("node42", "node43")
 		end
 
-		show("node99")
+		if (Bender_go_talk_to_doc) and
+		   (not Tux:done_quest("Bender's problem")) then
+			show("DocMoore_post_firmware_update_bender")
+		end
 	end,
 
 	{
@@ -165,7 +181,8 @@ return {
 		text = _"Can you fix me up?",
 		code = function()
 			Npc:says(_"Sure, as the only doctor of this slowly growing community, I take responsibility for everyone's health.")
-			if (not DocMoore_asked_self_damage) then
+			if (not DocMoore_asked_self_damage) and
+			   (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
 				Npc:says(_"However, self-inflicted damage might be exempted from this rule in some cases...")
 				show("node11")
 			end
@@ -383,12 +400,92 @@ return {
 		end,
 	},
 	{
+		id = "DocMoore_post_firmware_update_firsttime",
+		text = _"Hello!",
+		code = function()
+			next("DocMoore_post_firmware_update")
+			hide("DocMoore_post_firmware_update_firsttime")
+			show("node1", "node3")
+		end,
+	},
+	{
+		id = "DocMoore_post_firmware_update",
+		text = "BUG REPORT ME! DocMoore node DocMoore_post_firmware_update",
+		echo_text = false,
+		code = function()
+			Npc:says(_"Sorry, the doctor is out- oh! It's you! How can i help you?")
+			Npc:says(_"Do you need Antibiotics? No, of course not, you look like you're in need of some radiotherapy!")
+			Tux:says(_"No, I'm fine, thank you...")
+			Npc:says(_"Are you sure? Anything for you! You're a hero!")
+			DocMoore_post_firmware_update_congrats = true
+			show("DocMoore_post_firmware_update_humble", "DocMoore_post_firmware_update_bruised")
+			hide("node2", "node11", "node20", "node21", "node22", "node30", "node10") -- hide nodes related to Bender's quest and "fix me up"
+		end,
+	},
+	{	id = "DocMoore_post_firmware_update_bruised",
+		text = _"Well, now that you mentioned it, I am a little bruised.",
+		code = function()
+			Npc:says(_"Well, let's take a look at you...")
+			if (Tux:get_hp_ratio() < 0.3) then
+				Npc:says(_"Yes, I can see - you've been through some harshness.")
+				Npc:says(_"But we can fix that. Under my care, you'll be as good as new! Now take this, put it in your mouth and count to 30.")
+				--; TRANSLATORS: "mrn" = one, "tww" = two, "thow" = three + ow
+				Tux:says(_"Mrn... Tww... ThOW!")
+				Npc:says(_"Just a little shot while you were waiting!")
+				Npc:says(_"Ok, you are fixed now.")
+				Tux:says(_"Oh, thank you!")
+				Tux:heal()
+			else
+				Npc:says(_"Hmm... Yes... And here...")
+				Npc:says(_"I see. Well, a preliminary physical examination doesn't show anything very wrong, but we can't be too sure!")
+				Tux:says(_"What are you doing? Why are you putting on a glove?")
+				Npc:says(_"Calm down, I do this all the time. Now, relax your muscles...")
+				Tux:says(_"Whoa! Whoa- thanks, doc, but I'm feeling much better now! Really!")
+				Npc:says(_"Oh- well, great!")
+				Npc:says(_"Funny, they always say that...")
+			end
+			hide("DocMoore_post_firmware_update_bruised")
+			show("node10")
+		end,
+	},
+	{	id = "DocMoore_post_firmware_update_humble",
+		text = _"I only did what I had to do.",
+		code = function()
+			Npc:says(_"And what no one thought could be done!")
+			--; TRANSLATORS: %s = Tux:get_player_name()
+			Npc:says(_"Listen, %s, you saved everyone's lives here - the least I could do as a doctor is to look out for yours.", Tux:get_player_name())
+			hide("DocMoore_post_firmware_update_humble")
+		end,
+	},
+	{	id = "DocMoore_post_firmware_update_bender",
+		text = _"Have you heard anything from Bender?",
+		code = function()
+			Npc:says(_"Bender?")
+			Npc:says(_"Oh, him! That fool who took the brain growth pills!")
+			Tux:says(_"Yes. I guess they really should be called brain growth pills. He's still very sick. ")
+			Npc:says(_"But I can't just give him the antidote.")
+			Tux:says(_"Why not?")
+			Npc:says(_"Well, that would be unfair. It would also be unwise, and... And...")
+			Npc:says(_"Oh, darn it, why not indeed! The worst is past us! He can have all the antidote he wants. I'm in such a good mood, I haven't felt so cheerful since my first autopsy back in medical school!")
+			Tux:says(". . .")
+			Npc:says(_"Of course, I mean the celebrations that followed the autopsy. Everyone had passed the exam.")
+			Tux:says(_"Yes. Of course.")
+			Tux:end_quest("Bender's problem", _"It is done - I talked to Doc Moore, and he will happily give Bender the antidote.")
+			hide("DocMoore_post_firmware_update_bender")
+		end,
+	},
+	{
 		id = "node99",
 		text = _"See you later.",
 		code = function()
-			Npc:says_random(_"See you later.",
-							_"Keep healthy!")
-				end_dialog()
+			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says_random(_"See you later.",
+								_"Keep healthy!")
+			else
+				Npc:says_random(_"Take good care of yourself - I'm taking a vacation!",
+								_"It's a wonderful day. Thank you.")
+			end
+			end_dialog()
 		end,
 	},
 }

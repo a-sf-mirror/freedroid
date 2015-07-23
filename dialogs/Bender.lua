@@ -38,12 +38,21 @@ local Tux = FDrpg.get_tux()
 
 return {
 	FirstTime = function()
-		Tux:says(_"Hello! I'm new here.")
-		Npc:says(_"Hey, man! I'm Bender, the dead man of this town. And you?")
-		Npc:set_name("Bender")
-		--; TRANSLATORS: %s = Tux:get_player_name()
-		Tux:says(_"I'm %s. I'm fine, thank you.", Tux:get_player_name(), "NO_WAIT")
-		show("node0")
+		if (not HF_Spencer_teleported) then
+			Tux:says(_"Hello! I'm new here.")
+			Npc:says(_"Hey, man! I'm Bender, the dead man of this town. And you?")
+			Npc:set_name("Bender")
+			--; TRANSLATORS: %s = Tux:get_player_name()
+			Tux:says(_"I'm %s. I'm fine, thank you.", Tux:get_player_name(), "NO_WAIT")
+			show("node0")
+		else
+			Tux:says(_"Hello there!")
+			--; TRANSLATORS: %s = Tux:get_player_name()
+			Npc:says(_"Hey, you're the new guy! I mean penguin! Uh, %s, right?", Tux:get_player_name())
+			Tux:says(_"Yes, I-", NO_WAIT)
+			Npc:says(_"Holy wow! Wow, man!")
+			next("node60")
+		end
 	end,
 
 	EveryTime = function()
@@ -53,16 +62,40 @@ return {
 			Tux:says(_"How are you doing?")
 			if (Tux:has_quest("Bender's problem")) then
 				if (not Tux:done_quest("Bender's problem")) then
-					Npc:says(_"Too bad. I have never felt so sick.", "NO_WAIT")
-					Npc:says(_"Let me die, man!")
-
-					if (Tux:has_item_backpack("Brain Enlargement Pills Antidote")) then
-						hide("node11", "node12") show("node9")
+					if (HF_Spencer_teleported) then
+						if (not Bender_go_talk_to_doc) then
+							Npc:says(_"Man, it's the end of the apocalypse... And I feel fine!")
+							Npc:says(_"I mean, I still didn't get the medicine from the doc. I didn't get the chance to really pound him.")
+							Npc:says(_"But right now everyone's so happy that the bots are all down, I think I'll give him a break.")
+							Tux:says(_"Maybe you should talk to him soon. He might be in a good mood and give it to you anyway.")
+							Npc:says(_"Hey, that sounds like a smart idea! Thanks, man, I'll do that!")
+							Tux:update_quest("Bender's problem", _"Since the killer bots around the town got a taste of my firmware, I think the Doc won't mind giving Bender his medicine now... I should talk to him when I see him.")
+							Bender_go_talk_to_doc = true
+							Npc:says(_"Now, I have something I want to say to you...")
+							Tux:says(_"And what's that?")
+							Npc:says(_"Holy wow! Wow, man!")
+							next("node60")
+						else
+							Npc:says(_"I still need to go talk to the doc, but just thinking about feeling less sick makes me feel less sick.")
+							Npc:says(_"It's confusing me a little...")
+							Tux:says(_"Well, hurry up and get it over with!")
+						end
+						hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node8", "node9", "node10", "node50")
 					else
-						hide("node9") show("node12")
-					end
+						Npc:says(_"Too bad. I have never felt so sick.", "NO_WAIT")
+						Npc:says(_"Let me die, man!")
+						if (Tux:has_item_backpack("Brain Enlargement Pills Antidote")) then
+							hide("node11", "node12") show("node9")
+						else
+							hide("node9") show("node12")
+						end
 
-					hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node8", "node10", "node50")
+						hide("node1", "node2", "node3", "node4", "node5", "node6", "node7", "node8", "node10", "node11", "node50")
+					end
+				elseif (Bender_go_talk_to_doc) then
+					Npc:says(_"I still need to go talk to the doc, but just thinking about feeling less sick makes me feel less sick.")
+					Npc:says(_"It's confusing me a little...")
+					Tux:says(_"Well, hurry up and get it over with!")
 				elseif (not tux_has_joined_guard) then
 					Npc:says(_"Much better. I'm cured. You're a good guy, man!", "NO_WAIT")
 					Npc:says(_"What was your name again?")
@@ -74,20 +107,50 @@ return {
 					Npc:says(_"Much better. I'm cured. You're a good guy, man!", "NO_WAIT")
 					Npc:says(_"Congratulations on getting into the Red Guard!", "NO_WAIT")
 					Npc:says(_"I voted for you and that was what got you in!", "NO_WAIT")
-					Npc:says(_"I said we'd be buddies, didn't I? Want to stand guard at the gate with me? It gets boring with just that 614 to talk to.")
-					Npc:says(_"I could tell you all the secrets of the Red Guard.")
+					if (not HF_Spencer_teleported) then
+						Npc:says(_"I said we'd be buddies, didn't I? Want to stand guard at the gate with me? It gets boring with just that 614 to talk to.")
+						Npc:says(_"I could tell you all the secrets of the Red Guard.")
+						show("node30") -- @TODO add another way to get this node post-firmware update
+					else
+						Npc:says(_"Oh, and congratulations on beating all the bots!")
+						Npc:says(_"I mean, wow...")
+						next("node60")
+					end
 					Bender_congrats = true
-					show("node30")
 				else
-					Npc:says(_"Much better. I'm cured. You're a good guy, man!", "NO_WAIT")
+					if (HF_Spencer_teleported) then
+						if (Bender_post_firmware_update) then
+							Npc:says(_"Man, it's the end of the apocalypse... And I feel fine!")
+						else
+							Npc:says(_"Oh man, this is so cool! Wow, man!")
+							next("node60")
+						end
+					else
+						Npc:says(_"Much better. I'm cured. You're a good guy, man!", "NO_WAIT")
+					end
 				end
-			else
+			elseif (not HF_Spencer_teleported) then
 				Npc:says(_"Too bad. I have never felt so sick.", "NO_WAIT")
 				Npc:says(_"Let me die, man!")
 
 				if (refused_to_help_bender) then
 					show("node8")
 				end
+			else
+				if (Bender_post_firmware_update) then
+					Npc:says(_"Man, it's the end of the apocalypse... And I feel fine!")
+				else
+					Npc:says(_"I'm good! Man, a few days ago I was feeling really down... I was really sick.")
+					Npc:says(_"But now I stopped feeling not-awesome! And it's all thanks to you and all the bots being dead!")
+					Npc:says(_"Maybe it's also because I pummeled the doc until he gave me some pills.")
+					Tux:says("...")
+					Npc:says(_"But I'm really sure it's also because all the bots are gone.")
+					Npc:says(_"I mean, look around!")
+					next("node60")
+				end
+				-- we hide any nodes that might lead to the player getting Bender's quest after this
+				hide("node0", "node1", "node2", "node3", "node4", "node5", "node6", "node7", "node8", "node10", "node11", "node50")
+				pop_topic("Sick Bender")
 			end
 		end
 
@@ -347,11 +410,69 @@ return {
 		end,
 	},
 	{
+		id = "node60",
+		text = "BUG, REPORT ME! Bender node60 -- Post Firmware Update",
+		code = function()
+			Npc:says(_"Did you really just totally beat up all the bots in the world at once? Wow!")
+			Tux:says(_"Well, not all the bots in the world... And I didn't actually beat them all up...")
+			Npc:says(_"Oh, come on, man. We need this story. Don't do this.")
+			Tux:says(_"Uh, sorry? Do what?")
+			Npc:says(_"It doesn't matter what you did, dude. It matters what I think you did, and what I can tell others you did. You just beat up all the bots in the world.")
+			Tux:says(_"But it's only the ones that get their updates from this factory...")
+			Npc:says(_"And you did it with one hand tied behind your back! Or your wing, or flipper. You know, man.")
+			Bender_post_firmware_update = true
+			show("node61", "node62", "node63")
+		end,
+	},
+	{
+		id = "node61",
+		text = _"Well, I think I rather like that story.",
+		code = function()
+			Npc:says(_"Yeah, and you can bet everyone in town is gonna go crazy about it!")
+			Npc:says(_"I know I will, as soon as I get back I'll make a bet with Ewald about it.")
+			Npc:says(_"Everyone's been holed up in the town for so long, and I was really starting to run out of good stories to tell.")
+			hide("node61", "node62")
+		end,
+	},
+	{
+		id = "node62",
+		text = _"But that's not what happened!",
+		code = function()
+			Npc:says(_"Sure, not yet, because I didn't tell anyone about it yet.")
+			Tux:says(_"No, that didn't happen at all, and you saying it happened won't make it happen!")
+			Npc:says(_"But that's not what everyone will say after I tell them that's what happened.")
+			Tux:says(_"But... I... Arrrgh!")
+			Tux:heat(10)
+			Npc:says(_"Dude, it's not so hard to understand.")
+			Npc:says(_"Hey, you know, I saw an ad for brain enlargement pills that might do you good.")
+			Tux:says(_"No, I... I just need to cool off a bit...")
+			Npc:says(_"Oh, sure, ok. But I can fix you up with some if you change your mind. It's 100%% satisfaction guaranteed, cheap, AND free.")
+			hide("node62", "node61")
+		end,
+	},
+	{
+		id = "node63",
+		text = _"That was a nice entrance you made there.",
+		code = function()
+			Npc:says(_"Hey, thanks, dude. I'm still not so sure what happened.")
+			Npc:says(_"It all went really fast, Spencer just pulled me out of the pool and said to dry up and meet him at the teleporter.")
+			Npc:says(_"Then he just rushed off. He was really excited, he didn't even tell me off for cannonballing.")
+			Tux:says(_"So I guess that means you teleported in here.")
+			Npc:says(_"I guess we did! Wow, this was my first teleport! This makes it so much more awesome!")
+			hide("node63")
+		end,
+	},
+	{
 		id = "node99",
 		text = _"See you later.",
 		code = function()
-			Npc:says_random(_"Later, man!",
-							_"Stay cool dude.")
+			if (not HF_Spencer_teleported) then
+				Npc:says_random(_"Later, man!",
+								_"Stay cool dude.")
+			else
+				Npc:says_random(_"Oh, ok, go beat up some more bots! Swish! Woosh! Ka-POW!",
+								_"See you, and thanks for the story!")
+			end
 			end_dialog()
 		end,
 	},

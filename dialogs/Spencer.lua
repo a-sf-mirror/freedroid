@@ -66,6 +66,10 @@ return {
 			Tux:add_quest("Open Sesame", "It turns out what we thought was the firmware update server was just a gate access server. Spencer speculates the real firmware server is behind this gate. There should be something on the ground I am supposed to follow.")
 			Spencer_can_die = true
 			end_dialog()
+		elseif (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) and (not HF_FirmwareUpdateServer_Spencer) then
+			next("node60")
+		elseif (HF_Spencer_teleported) then
+			hide("node7")
 		elseif (tux_has_joined_guard) then
 			Npc:says(_"Greetings fellow Red Guard member.")
 			hide("node2", "node12")
@@ -561,10 +565,117 @@ return {
 		end,
 	},
 	{
+		id = "node60",
+		text = "BUG, REPORT ME! Spencer node60 -- Post Firmware Update",
+		code = function()
+			Npc:says(_"*Fizz*")
+			--; TRANSLATORS: can you hear me; %s = Tux:get_player_name()
+			Npc:says(_"*Crackle*n you hear me? Hello? %s?", Tux:get_player_name())
+			Tux:says(_"Spencer? How are you reaching me?")
+			Npc:says(_"You did it! I just can't... I can't believe you actually did it!")
+			Npc:says(_"The bots outside, they all just dropped! They're scrap metal!")
+			Npc:says(_"We're saved!")
+			Tux:says(_"Whew...")
+			Npc:says(_"But wait! It gets more interesting: we can actually have this conversation face to face.")
+			Npc:says(_"Stand by.")
+			add_obstacle(0, 33.5, 51.05, 282) --"Close" Spencer's office door
+			change_obstacle_type("spencer-opendoor", 321) --Make the obstacle standing for an open door invisible (321=pathblocker)
+			end_dialog()
+			show("node61")
+		end,
+	},
+	{
+		id = "node61",
+		text = _"Hey!",
+		code = function()
+			Npc:says(_"This must be the main server room. It's safer than an interstellar bunker.")
+			Npc:says(_"This is the source of all our suffering.")
+			Npc:says(_"You are truly a living legend, Linarian. I don't know how you did it. I don't know how we can thank you.")
+			Npc:says(_"You've given us life, and hope.")
+			hide("node61") show("node62", "node63", "node64")
+		end,
+	},
+	{
+		id = "node62",
+		text = _"What's going on? How did you get in here?",
+		code = function()
+			Npc:says(_"When you uploaded the firmware, every security component for this area just blacked out. Every network in range was suddenly open.")
+			Npc:says(_"Naturally, they were all running on the MegaSys operating system.")
+			if Tux:has_met("Richard") then
+				Npc:says(_"Richard is still back at the citadel; he's happier than a jaybird ever since we uncovered all this networking. He calls it a treasure.")
+			else
+				Npc:says(_"Our computer administrator at the citadel is as happy as he could be since all this secret networking popped up. He calls it a treasure.")
+			end
+			Npc:says(_"The firmware server was one of the things that were hidden in this network, and with all the obfuscations and defenses down, we not only could find it, but had full access.")
+			Npc:says(_"But the most interesting thing we uncovered is a secret teleportation network. It was very well-guarded, we never even knew it existed, but now it's open for us to use.")
+			Npc:says(_"My guess is, the corporate bastards who drove this sweatshop would use it to get in and out of work unnoticed. Grab the money and zap off to some island to relax.")
+			Tux:update_quest("Propagating a faulty firmware update", _"Neutralizing the bot threat in the area wasn't the only thing I'd succeeded in doing: every MegaSys-based security product within range is completely broken now. A new teleportation network was discovered by the Red Guard, which is why Spencer is standing next to me right now.")
+			hide("node62") show("node65")
+		end,
+	},
+	{
+		id = "node63",
+		text = _"I couldn't have done any different.",
+		code = function()
+			Npc:says(_"You are far too modest. I doubt anyone alive right now could have done it.")
+			Npc:says(_"But the work isn't done... Not even close. The entire galaxy is still at war.")
+			Npc:says(_"You saved our little town, and you've proven that we can win this thing.")
+			Npc:says(_"We can't rest now. It's going to be hard and dangerous, but the alternative is death for humanity.")
+			hide("node63", "node64") show("node66")
+		end,
+	},
+	{
+		id = "node64",
+		text = _"I only did it for fun, really.",
+		code = function()
+			Npc:says(_"... Oh, it doesn't matter.")
+			Npc:says(_"I suppose no one's perfect...")
+			Npc:says(_"What matters is that we're alive - those of us left, anyway - we have supplies, and we can take what we need from the Fortress now.")
+			Npc:says(_"And, whether or not you intended to, you've proven that we have a chance against the bots. Something worth fighting for. Worth living for.")
+			Npc:says(_"You'll probably be happy to know that the entire galaxy is pretty much your playground now, Linarian. You'll have all the bots in the world to play with, and lots of opportunities to be a hero.")
+			Tux:says(_"Awesome!")
+			Tux:update_quest("Propagating a faulty firmware update", _"I'm so cool. I saved a bunch of people and bashed a bunch of bots. And there's much more where both of those came from! I'm done here, it's time to go help the next dump.")
+			hide("node63", "node64") show("node66")
+		end,
+	},
+	{
+		id = "node65",
+		text = _"Can I use this teleportation network to return to town?",
+		code = function()
+			if Tux:has_met("Richard") then
+				Npc:says(_"Yes, I think you can. I'll contact Richard and tell him to ready the teleporter and link it back to the one in town.")
+			else
+				Npc:says(_"I believe you can, yes. I'll contact our computer expert and tell him to ready the teleporter and link it back to the one in town.")
+			end
+			Npc:says(_"But the way he explained it, this system is very limited by design: if the two teleporters are linked, using one will always take you to the other. So keep that in mind.")
+			Npc:says(_"We'll stay here for a while longer. This place still needs to be investigated.")
+			change_obstacle_type("59-Teleporter", 21)
+			hide("node65")
+		end,
+	},
+	{
+		id = "node66",
+		text = _"I'm ready. Just tell me what to do.",
+		code = function()
+			Npc:says(_"You've faced countless dangers so far. Are you sure you're willing to face more?")
+			Tux:says(_"Bring it on!")
+			Npc:says(_"That's exactly what I wanted to hear.")
+			Npc:says(_"Now listen carefully, this is the plan...")
+			Tux:end_quest("Propagating a faulty firmware update", _"The town is saved, but there's still a lot to do. I agreed to continue fighting the robot armies with the Red Guard.")
+			hide("node65")
+			win_game()
+			end_dialog()
+		end,
+	},
+	{
 		id = "node99",
 		text = _"I'll be going then.",
 		code = function()
-			Npc:says(_"See you later.")
+			if (not HF_FirmwareUpdateServer_Spencer) then
+				Npc:says(_"See you later.")
+			else
+				Npc:says(_"Come back soon. There's much to be done.")
+			end
 			end_dialog()
 		end,
 	},

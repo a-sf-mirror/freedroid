@@ -64,9 +64,14 @@ return {
 		code = function()
 			Npc:says(_"Order Received. Initiating proximity energy level scan...")
 			Npc:says(_"***** Proximity Scan Results *****", "NO_WAIT")
-			Npc:says(_"Hostile Numeric Presence: [b]HIGH[/b]", "NO_WAIT")
-			Npc:says(_"Enemy Energy Levels: [b]LOW[/b]", "NO_WAIT")
-			Npc:says(_"Threat Degree Analysis: [b]MODERATE[/b]", "NO_WAIT")
+			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says(_"Hostile Numeric Presence: [b]HIGH[/b]", "NO_WAIT")
+				Npc:says(_"Enemy Energy Levels: [b]LOW[/b]", "NO_WAIT")
+				Npc:says(_"Threat Degree Analysis: [b]MODERATE[/b]", "NO_WAIT")
+			else
+				Npc:says(_"Hostile Numeric Presence: [b]NONE[/b]", "NO_WAIT")
+				Npc:says(_"Threat Degree Analysis: [b]NO THREAT DETECTED[/b]", "NO_WAIT")
+			end
 			if (cmp_obstacle_state("CryoOuterGate", "closed")) then
 				Npc:says(_"Cryo Complex Gates Status: [b]CLOSED[/b]")
 			else

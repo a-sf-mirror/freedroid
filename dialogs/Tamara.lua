@@ -105,6 +105,9 @@ return {
 		            (Tamara_about_bots_nodes > 0), "node31")
 
 		show("node99")
+
+		show_if((HF_FirmwareUpdateServer_uploaded_faulty_firmware_update and
+				 not Tamara_post_firmware_update), "Tamara_post_firmware_update_1")
 	end,
 
 	{
@@ -244,6 +247,84 @@ return {
 		code = function()
 			Npc:says(_"Don't hesitate to talk to me again for further questions.")
 			pop_topic()
+		end,
+	},
+	{
+		id = "Tamara_post_firmware_update_1",
+		text = _"Have you heard about the news?",
+		code = function()
+			Npc:says(_"Oh? What news?")
+			Tux:says(_"The world is saved! The apocalypse is over!")
+			Npc:says(_"Oh, yes... Those news. I agree, it's wonderful.")
+			hide("Tamara_post_firmware_update_1")
+			show("Tamara_post_firmware_update_2")
+			Tamara_post_firmware_update = true
+		end,
+	},
+	{
+		id = "Tamara_post_firmware_update_2",
+		text = _"You don't seem very excited.",
+		code = function()
+			Npc:says(_"I am glad, although... Well, it's not like the library was ever in any immediate danger.")
+			Tux:says(_"What? Did you want it to be?")
+			Npc:says(_"No - it's hard to explain. I suppose I had this certain... Idea that it was my job to keep the books safe during the apocalypse. To defend them.")
+			Npc:says(_"It was my little fortress made of electronic paper, that I had to grow and protect from any threats. To save human knowledge.")
+			hide("Tamara_post_firmware_update_2")
+			show("Tamara_post_firmware_update_3")
+		end,
+	},
+	{
+		id = "Tamara_post_firmware_update_3",
+		text = _"But what about all the people that died? They weren't made of E-paper!",
+		code = function()
+			Npc:says(_"I know! Please, don't misunderstand, I think it's fantastic that the Assault is over!")
+			Npc:says(_"I just... Well, I guess I wanted a bigger piece of the action, in my own way.")
+			Npc:says(_"I'll... Go and arrange some books now...")
+			if (tamara_shelf_count) then
+				Npc:says(_"It's rather hard to keep the library in good shape lately. Someone's been ransacking the southern sections. Times like these can bring out the worst in us.")
+				Npc:says(_"But I guess cleaning work is also part of preserving culture.")
+			end
+			hide("Tamara_post_firmware_update_3")
+			show("Tamara_post_firmware_update_interview", "Tamara_post_firmware_update_burn")
+		end,
+	},
+	{
+		id = "Tamara_post_firmware_update_burn",
+		text = _"You know, I can start a fire here if you want me to.",
+		code = function()
+			Npc:says(_"What? No! Absolutely not!")
+			Npc:says(_"Why in the world would I want you to do that?!")
+			Tux:says(_"Because that would put the books in immediate danger, and then you can rush in and save them!")
+			Npc:says(_"That - that's insane!")
+			Npc:says(_"You are a danger to this establishment. Get out of here!")
+			Tux:says(_"You are a very confusing person.")
+			if (Tamara_talked_about_sister) then
+				Tux:says(_"I guess it runs in the family...")
+			end
+			end_dialog()
+			hide("Tamara_post_firmware_update_burn", "Tamara_post_firmware_update_interview")
+		end,
+	},
+	{
+		id = "Tamara_post_firmware_update_interview",
+		text = _"Well, you didn't get to fend off a hoard of bots. But you can interview me personally!",
+		code = function()
+			Npc:says(_"Really? You'd let me interview you?")
+			if (Tamara_bot_apocalypse_book) then
+				--; TRANSLATORS: it = the interview
+				Tux:says(_"Sure! You can put it in the book you're writing.")
+			else
+				Tux:says(_"Sure!")
+			end
+			Npc:says(_"Thank you! This is a wonderful opportunity! I have a first-hand account from a central actor in the biggest event in human history!")
+			Npc:says(_"We must set a time for an interview. And I must read everything in the library about interviewing!")
+			Npc:says(_"There's a lot of ground to cover, but i can already imagine the descriptions - you, in the center of the robot apocalypse...")
+			Npc:says(_"Just like in those old fairy tales they used to tell children, about the brave dashing knight storming alone into a castle to save the princess.")
+			Npc:says(_"With some mild adjustments.")
+			Npc:says(_"I mean, no one in those stories had flippers.")
+			Tux:says(_"That sounds like discrimination.")
+			Npc:says(_"Yes, they don't tell those stories to children anymore. Too much adult content. The effect on the young psyche was poorly studied.") -- might open the subject of Linarian folk tales?
+			hide("Tamara_post_firmware_update_interview", "Tamara_post_firmware_update_burn")
 		end,
 	},
 	{

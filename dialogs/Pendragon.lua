@@ -28,7 +28,12 @@ local Tux = FDrpg.get_tux()
 return {
 	FirstTime = function()
 		desertgate_tax = 0
-		show("node0")
+		if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			show("node0")
+		else
+			show("Pendragon_postfirmwareupdate")
+		end
+
 	end,
 
 	EveryTime = function()
@@ -54,6 +59,10 @@ return {
 				Pendragon_OK_w_Tania = true
 				end_dialog()
 			end
+		end
+
+		if ((HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) and (not Pendragon_post_firmware_update)) then
+			show("Pendragon_postfirmwareupdate")
 		end
 
 		show("node99")
@@ -108,6 +117,10 @@ return {
 			Npc:says(_"And you?")
 			--; TRANSLATORS: %s = Tux:get_player_name()
 			Tux:says(_"%s, because it is my name?", Tux:get_player_name())
+			if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				--; TRANSLATORS: %s = Tux:get_player_name()
+				Npc:says(_"%s. Hah. They won't remember that name the way you think, bird.", Tux:get_player_name())
+			end
 			Npc:set_name("Pendragon - Fighter")
 			hide("node2")
 		end,
@@ -277,12 +290,79 @@ return {
 		end,
 	},
 	{
-		id = "node99",
-		text = _"See you later.",
+		id = "Pendragon_postfirmwareupdate",
+		text = _"Hi!",
 		code = function()
-			Npc:says_random(_"Have courage.",
-							_"Be strong.")
+			Npc:says(_"What do you want?")
+			Pendragon_post_firmware_update = true
+			show("Pendragon_postfirmwareupdate_goodbye", "Pendragon_postfirmwareupdate_cont",
+							"Pendragon_postfirmwareupdate_brag")
+			hide("Pendragon_postfirmwareupdate")
+		end,
+	},
+	{
+		id = "Pendragon_postfirmwareupdate_goodbye",
+		text = _"Nothing...",
+		code = function()
+		      Npc:says(_"Get lost. Don't come back.")
+		      hide("Pendragon_postfirmwareupdate_goodbye","Pendragon_postfirmwareupdate_cont",
+							"Pendragon_postfirmwareupdate_brag")
+		      end_dialog()
+		end,
+	},
+	{
+		id = "Pendragon_postfirmwareupdate_cont",
+		text = _"How's it going?",
+		code = function()
+			Npc:says(_"Listen to me carefully, bird.")
+			Npc:says(_"Maybe it looks like you saved the day, but I know better than that. You're nothing but a duck. You're not a human.")
+			Npc:says(_"As far as I'm concerned, you just landed here and stole our show. The Red Guard had everything under control, and we did not need your stupid flippers waddling in our affairs.")
+			Npc:says(_"And don't think that just because Spencer is excited, he's on your side.")
+			Npc:says(_"He may not share his plans with the rest of us, but I know him well enough to know that he's using you.")
+			Npc:says(_"He's been using you since he did you a favor and defrosted you, and your stupid bird brain can't even comprehend that. So don't get cocky.")
+			Npc:says(_"You'll get what you deserve, soon enough, just like all the other bird aliens.")
+			if (not Pendragon_beaten_up) then
+				  Npc:says(_"HA!")
+				  Tux:del_health(10)
+				  Tux:says(_"Ouch!")
+			end
+			hide("Pendragon_postfirmwareupdate_goodbye", "Pendragon_postfirmwareupdate_cont",
+							"Pendragon_postfirmwareupdate_brag")
 			end_dialog()
 		end,
 	},
+	{
+		id = "Pendragon_postfirmwareupdate_brag",
+		text = _"I want to see a better attitude around here. You'd better be nice to me.",
+		code = function()
+			if (Pendragon_beaten_up) then
+				Tux:says(_"Remember our lesson?")
+				Npc:says(". . .")
+			else
+				Npc:says(_"You impudent little eggspawn.")
+				next("Pendragon_postfirmwareupdate_cont")
+			end
+			hide("Pendragon_postfirmwareupdate_goodbye", "Pendragon_postfirmwareupdate_cont",
+							"Pendragon_postfirmwareupdate_brag")
+			end_dialog()
+		end,
+	},
+	{
+		id = "node99",
+		text = _"See you later.",
+		code = function()
+			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says_random(_"Have courage.",
+								_"Be strong.")
+			else
+				if (Pendragon_beaten_up) then
+					Npc:says(". . .")
+				else
+					Npc:says_random(_"You'll see. Big hero. You'll learn your place soon.",
+								_"I hate birds.")
+				end
+			end
+			end_dialog()
+		end,
+	}
 }

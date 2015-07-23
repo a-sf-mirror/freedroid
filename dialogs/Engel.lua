@@ -36,11 +36,17 @@ local Tux = FDrpg.get_tux()
 
 return {
 	FirstTime = function()
-		show("node0", "node6")
+		if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			show("Engel_postfirmwareupdate_FirstTime")
+		else
+			show("node0", "node6")
+		end
 	end,
 
 	EveryTime = function()
-		if (Tux:get_program_revision("Extract bot parts") > 0) then
+		if ((HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) and (not Engel_post_firmware_update)) then
+			show("Engel_postfirmwareupdate")
+		elseif (Tux:get_program_revision("Extract bot parts") > 0) then
 			show("node18")
 		end
 		show("node99")
@@ -358,11 +364,47 @@ return {
 		end,
 	},
 	{
+		id = "Engel_postfirmwareupdate_FirstTime",
+		text = _"Hi! I'm new here.",
+		echo_text = false,
+		code = function()
+			Tux:says(_"Hi! I'm-")
+			next("Engel_postfirmwareupdate")
+		end,
+	},
+	{
+		id = "Engel_postfirmwareupdate",
+		text = _"How's it going?",
+		code = function()
+			Npc:says(_"RRRRRAAAAAAAARRRGH!")
+			Tux:says(_"... Excuse me?")
+			Npc:says(_"I... Will KILL... Who did this?!")
+			Npc:says(_"All the bots are dead...")
+			Tux:says(_"Yes! Everyone's safe now-")
+			Npc:says(_"But I DID NOT KILL THEM!")
+			Tux:says(_"I...")
+			-- ; TRANSLATORS: nein = no , Mutter = mother
+			Npc:says(_"Nein... Nein, I WILL avenge you, Mutter... Yes, I will find whoever took my vengeance away from me... And CRUSH!!")
+			Tux:says(". . .")
+			Tux:says(_"Well! I had better go now. Good luck!")
+			Engel_post_firmware_update = true
+			hide("Engel_postfirmwareupdate")
+			end_dialog()
+		end,
+
+	},
+	{
 		id = "node99",
 		text = _"I'll be going then.",
 		code = function()
-			--; TRANSLATORS: viel Gluck = good luck (should be "viel Glueck, but the ue character is missing in the font)
-			Npc:says(_"Goodbye and viel Gluck.")
+			if (not Engel_post_firmware_update) then
+				--; TRANSLATORS: viel Gluck = good luck (should be "viel Glueck, but the ue character is missing in the font)
+				Npc:says(_"Goodbye and viel Gluck.")
+			else
+				--; TRANSLATORS: rache = revenge
+				Npc:says_random(_"RACHE!!",
+							". . .")
+			end
 			end_dialog()
 		end,
 	},
