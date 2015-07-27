@@ -429,6 +429,8 @@ AC_CONFIG_FILES([
 		po/po-dialogs/Makefile.in
 		po/po-data/Makefile.in
 		po/l10n-others/Makefile
+	pkgs/Makefile
+		pkgs/freedesktop/Makefile
 ])
 
 AS_VAR_IF([dev_tools], [yes],

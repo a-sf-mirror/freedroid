@@ -22,7 +22,7 @@ if BUILD_LUA
 MAYBE_EMBEDDED_LUA = lua
 endif
 
-SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po $(extradirs)
+SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po pkgs $(extradirs)
 
 man_MANS = freedroidRPG.6
 
@@ -64,19 +64,6 @@ sign:
 	@echo "Generating signatures ..."
 	gpg --digest-algo SHA512  -o freedroidrpg-$(VERSION).tar.bz2.sig --detach-sign freedroidrpg-$(VERSION).tar.bz2
 	md5sum freedroidrpg-$(VERSION).tar.bz2 > freedroidrpg-$(VERSION).tar.bz2.md5
-
-# For Freedesktop compliance
-
-appstreamdir = $(datadir)/appdata
-appstream_in_files = pkgs/freedesktop/freedroidRPG.appdata.xml
-dist_appstream_DATA = $(appstream_in_files)
-
-desktopdir = $(datadir)/applications
-desktop_in_files = pkgs/freedesktop/freedroidRPG.desktop
-dist_desktop_DATA = $(desktop_in_files)
-
-icondir = $(datadir)/icons/hicolor/48x48/apps
-dist_icon_DATA = pkgs/freedesktop/freedroidRPG.png
 
 ## Win32 specific stuff follows here
 
