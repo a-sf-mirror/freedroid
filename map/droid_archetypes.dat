@@ -1071,28 +1071,6 @@ Filename prefix for graphics="terminal"
 Notes concerning this droid=_"This is a terminal."
 
 ** Start of new Robot: **
-Droidname: STM
-Default description:_"ERROR: THIS IS A TERMINAL"
-Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 0
-Class of this droid: 100
-Drops item class=0
-Maximum energy of this droid: 1
-Rate of healing: 1
-Experience_Reward gained for destroying one of this type: 0
-Aggression distance of this droid=0
-Time spent eyeing Tux=0
-Weapon item="NPC Hand to hand weapon"
-Greeting Sound number=-1
-Death sound file name="none"
-Attack animation sound file name="none"
-Chance of this robot scoring a hit=0
-Time to recover after getting hit=0
-Is this 'droid' a human : 0
-Filename prefix for graphics="terminal_secure"
-Notes concerning this droid=_"This is a secure terminal."
-
-** Start of new Robot: **
 Droidname: GUN
 Default description:_"Autogun"
 Droid uses portrait rotation series with prefix="autogun"
@@ -1145,6 +1123,28 @@ Time to recover after getting hit=1.00
 Is this 'droid' a human : 1
 Filename prefix for graphics="arthur"
 Notes concerning this droid=_"It has long since been known that game development is the most important job in the world. Also the coolest. We know that thanks to this guy."
+
+** Start of new Robot: **
+Droidname: STM
+Default description:_"ERROR: THIS IS A TERMINAL"
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 0
+Class of this droid: 100
+Drops item class=0
+Maximum energy of this droid: 1
+Rate of healing: 1
+Experience_Reward gained for destroying one of this type: 0
+Aggression distance of this droid=0
+Time spent eyeing Tux=0
+Weapon item="NPC Hand to hand weapon"
+Greeting Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=0
+Time to recover after getting hit=0
+Is this 'droid' a human : 0
+Filename prefix for graphics="terminal_secure"
+Notes concerning this droid=_"This is a secure terminal."
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------

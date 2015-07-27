@@ -350,15 +350,6 @@ droid_stand_animation_speed_factor=6
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="terminal_secure"
-droid_walk_animation_speed_factor=10
-droid_attack_animation_speed_factor=10
-droid_gethit_animation_speed_factor=10
-droid_death_animation_speed_factor=4
-droid_stand_animation_speed_factor=6
-** End of new surface specification subsection **
-
-** Start of new surface specification subsection **
 PrefixToFilename="lawnmower"
 droid_walk_animation_speed_factor=14
 droid_attack_animation_speed_factor=14
@@ -385,6 +376,14 @@ droid_death_animation_speed_factor=17
 droid_stand_animation_speed_factor=15
 ** End of new surface specification subsection **
 
+** Start of new surface specification subsection **
+PrefixToFilename="terminal_secure"
+droid_walk_animation_speed_factor=10
+droid_attack_animation_speed_factor=10
+droid_gethit_animation_speed_factor=10
+droid_death_animation_speed_factor=4
+droid_stand_animation_speed_factor=6
+** End of new surface specification subsection **
 
 *** End of Enemy Surfaces Section: ***
 
