@@ -232,7 +232,11 @@ enum {
 #define FD_DATADIR ".."		// our local fallback
 #endif
 
-#define ICON_FILE     "paraicon.bmp"
+#if __WIN32__
+#define ICON_FILE "paraicon_32x32.bmp"
+#else
+#define ICON_FILE "paraicon.bmp"
+#endif
 
 //--------------------
 #define SKILL_LEVEL_BUTTON_HEIGHT 32

@@ -1,8 +1,8 @@
 ## Process this file with automake to produce Makefile.in
 
-EXTRA_DIST = freedroidRPG.rc w32icon_64x64.png
+EXTRA_DIST = freedroidRPG.rc paraicon_64x64.ico
 
 WINDRES = $(target)-windres
-freedroidRPG.coff: freedroidRPG.rc w32icon_64x64.ico
+freedroidRPG.coff: freedroidRPG.rc paraicon_64x64.ico
 	$(WINDRES) -i freedroidRPG.rc -o freedroidRPG.coff -O COFF
 
