@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-04-14 01:11+0000\n"
-"PO-Revision-Date: 2015-04-14 01:05+0000\n"
+"POT-Creation-Date: 2015-07-29 20:07+0200\n"
+"PO-Revision-Date: 2015-07-29 18:08+0000\n"
 "Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/freedroid-rpg/language/cs/)\n"
 "Language: cs\n"
@@ -33,11 +33,11 @@ msgstr "Záznam úkolu aktualizován: "
 msgid "Quest completed: "
 msgstr "Úkol dokončen: "
 
-#: src/action.c:535
+#: src/action.c:536
 msgid "Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\"."
 msgstr "Barevné vzory objevující se na obrazovce, ale nevypadají jako jakékoli počítačové rozhraní, které jsi kdy viděl. Možná, že je to to, co nazývají \"spořič\" obrazovky."
 
-#: src/action.c:551
+#: src/action.c:556
 msgid "There is nothing on this sign."
 msgstr "Na této značce není nic."
 
@@ -141,36 +141,40 @@ msgstr "Poškození"
 msgid "Armor"
 msgstr "Brnění"
 
-#: src/chat.c:666 src/chat.c:676
+#: src/chat.c:547
+msgid "Click anywhere to continue..."
+msgstr ""
+
+#: src/chat.c:693 src/chat.c:703
 msgid "[n]--- Start of Dialog ---\n"
 msgstr "[n]--- Začátek dialogu ---\n"
 
 #. TRANSLATORS: Your friend <bot's short description> was killed by <bot's short description>
-#: src/enemy.c:975
+#: src/enemy.c:980
 #, c-format
 msgid "Your friend [s]%s[v] was killed by %s."
 msgstr "Tvůj přítel [s]%s[v] byl zabit %s."
 
 #. TRANSLATORS: You killed <bot's short description>
-#: src/enemy.c:979
+#: src/enemy.c:984
 #, c-format
 msgid "You killed [s]%s[v]."
 msgstr "Zabil jsi [s]%s[v]."
 
 #. TRANSLATORS: <bot's short description> halted and caught fire
-#: src/enemy.c:983
+#: src/enemy.c:988
 #, c-format
 msgid "[s]%s[v] halted and caught fire."
 msgstr "[s]%s[v] zastavil a začal hořet."
 
 #. TRANSLATORS: <bot's short description> is dead
-#: src/enemy.c:986
+#: src/enemy.c:991
 #, c-format
 msgid "[s]%s[v] is dead."
 msgstr "[s]%s[v] je mrtvý."
 
 #. TRANSLATORS: For defeating <bot's short description>, you receive <10> experience
-#: src/enemy.c:991
+#: src/enemy.c:996
 #, c-format
 msgid "For defeating [s]%s[v], you receive %d experience."
 msgstr "Za poražení [s]%s[v] získáváš %d zkušeností."
@@ -321,7 +325,7 @@ msgstr "Odejít do hlavního menu"
 
 #: src/influ.c:987
 msgid "Return to Editor"
-msgstr ""
+msgstr "Návrat do editoru"
 
 #: src/influ.c:989 src/menu.c:851 src/menu.c:1005
 #: src/lvledit/lvledit_menu.c:965
@@ -334,19 +338,19 @@ msgstr "Ukončit FreedroidRPG"
 msgid "Out of [s]%s[v]!"
 msgstr "Dosly náboje [s]%s[v]!"
 
-#: src/init.c:776 src/saveloadgame.c:442
+#: src/init.c:777 src/saveloadgame.c:446
 msgid "--- Message Log ---"
 msgstr "--- Záznam zprávy ---"
 
-#: src/init.c:778
+#: src/init.c:779
 msgid "Starting tutorial."
 msgstr "Spouštění výuky."
 
-#: src/init.c:780
+#: src/init.c:781
 msgid "Starting new game."
 msgstr "Spouštění nové hry."
 
-#: src/init.c:1083
+#: src/init.c:1084
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -362,11 +366,11 @@ msgstr ""
 "\n"
 "Hodně štěstí!\n"
 
-#: src/init.c:1100 src/init.c:1101
+#: src/init.c:1101 src/init.c:1102
 msgid "Game over.\n"
 msgstr "Konec hry.\n"
 
-#: src/init.c:1167 src/init.c:1168
+#: src/init.c:1168 src/init.c:1169
 msgid "Game won.\n"
 msgstr "Hra vyhrána.\n"
 
@@ -1119,21 +1123,29 @@ msgstr "Automatické vypnutí"
 msgid "Weapon reloaded"
 msgstr "Zbraň nabita"
 
-#: src/map.c:1167
+#: src/map.c:1147
 msgid ""
 "-- WARNING --\n"
 "An obstacle with invalid coords was loaded onto a map.\n"
 "We keep it to help finding the bug.\n"
 "See the report in your terminal console."
 msgstr ""
+"-- VAROVÁNÍ --\n"
+"Došlo k nahrání překážky s neplatnými souřadnicemi do mapy.\n"
+"Necháváme ji, abychom pomohli najít chybu.\n"
+"Viz zpráva ve vašem terminálu."
 
-#: src/map.c:1399
+#: src/map.c:1370
 msgid ""
 "-- WARNING --\n"
 "An obstacle with invalid coords is saved to a map.\n"
 "We accept to save it, for further inspection of the bug.\n"
 "See the report in your terminal console."
 msgstr ""
+"-- VAROVÁNÍ --\n"
+"Došlo k uložení překážky s neplatnými souřadnicemi do mapy.\n"
+"Akceptujeme její uložení z důvodu další analýzy chyby.\n"
+"Viz zpráva ve vašem terminálu."
 
 #: src/menu.c:44 src/menu.c:845
 msgid "Play"
@@ -1478,15 +1490,15 @@ msgstr "Nahrát existujícího hrdinu"
 msgid "Delete existing Hero"
 msgstr "Smazat existujícího hrdinu"
 
-#: src/misc.c:856
+#: src/misc.c:892
 msgid "GAME PAUSED"
 msgstr "HRA ZASTAVENA"
 
-#: src/misc.c:857
+#: src/misc.c:893
 msgid "press p to resume"
 msgstr "pro návrat stiskni \"p\""
 
-#: src/misc.c:1150
+#: src/misc.c:1186
 #, c-format
 msgid "Arrived at %s."
 msgstr "Dorazil k %s."
@@ -1497,6 +1509,9 @@ msgid ""
 "An obstacle with invalid coords was tried to be added to a map.\n"
 "See the report in your terminal console."
 msgstr ""
+"-- VAROVÁNÍ --\n"
+"Došlo k pokusu přidat do mapy překážku s neplatnými souřadnicemi.\n"
+"Viz zpráva ve vašem terminálu."
 
 #: src/obstacle.c:202
 msgid ""
@@ -1504,6 +1519,9 @@ msgid ""
 "Not moving it.\n"
 "See the report in your terminal console."
 msgstr ""
+"Došlo k pokusu přemístit překážku na neplatné místo.\n"
+"Přemístění neprovedeno.\n"
+"Viz zpráva ve vašem terminálu."
 
 #: src/quest_browser_ui.c:65
 #, c-format
@@ -1646,32 +1664,32 @@ msgstr "[n]Žádné otevřené úkoly.[w]"
 msgid "[n]No completed quests yet.[w]"
 msgstr "[n]Žádné dokončené úkoly.[w]"
 
-#: src/saveloadgame.c:167
+#: src/saveloadgame.c:171
 msgid "Last Modified:"
 msgstr "Poslední změna:"
 
-#: src/saveloadgame.c:195
+#: src/saveloadgame.c:199
 #, c-format
 msgid "File Size: %2.3f MB"
 msgstr "Velikost souboru: %2.3f MB"
 
-#: src/saveloadgame.c:231
+#: src/saveloadgame.c:235
 msgid "You are dead. Savegame not modified."
 msgstr "Jsi mrtvý. Uložená hra nezměněna."
 
-#: src/saveloadgame.c:260
+#: src/saveloadgame.c:264
 msgid "Saving"
 msgstr "Ukládání"
 
-#: src/saveloadgame.c:293
+#: src/saveloadgame.c:297
 msgid "Game saved."
 msgstr "Hra uložena."
 
-#: src/saveloadgame.c:345
+#: src/saveloadgame.c:349
 msgid "Loading"
 msgstr "Nahrávání"
 
-#: src/saveloadgame.c:362
+#: src/saveloadgame.c:366
 msgid ""
 "W A R N I N G !\n"
 "\n"
@@ -1685,19 +1703,19 @@ msgstr ""
 "To by mohlo znamenat, že tam opravdu není, neboť jste se pokusili nahrát hru, která před tím nikdy nebyla uložena.\n"
 "Jiným vysvětlením této chyby může být závažná chyba ve hře FreedroidRPG. Pokud si myslíte, že se jedná o tento případ, nahlaste to prosím vývojářům."
 
-#: src/saveloadgame.c:363
+#: src/saveloadgame.c:367
 msgid "Failed to load old game."
 msgstr "Nezdařilo se načíst starou hru."
 
-#: src/saveloadgame.c:397
+#: src/saveloadgame.c:401
 msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
 msgstr "Nesoulad ve verzi či velikosti! Uložená hra není ze stejné verze FreedroidRPG... možné poškození."
 
-#: src/saveloadgame.c:438
+#: src/saveloadgame.c:442
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Aktualizace obrázků Tuxe (to může chvíli trvat...)"
 
-#: src/saveloadgame.c:443
+#: src/saveloadgame.c:447
 msgid "Game loaded."
 msgstr "Hra nahrána."
 
@@ -1892,8 +1910,8 @@ msgstr "Typ jednotky %s\n"
 msgid "Entry : %d\n"
 msgstr "Vstup : %d\n"
 
-#: src/takeover.c:224 src/lvledit/lvledit_enemy.c:256
-#: src/lvledit/lvledit_enemy.c:264 src/lvledit/lvledit_enemy.c:280
+#: src/takeover.c:224 src/lvledit/lvledit_enemy.c:260
+#: src/lvledit/lvledit_enemy.c:268 src/lvledit/lvledit_enemy.c:285
 #: src/lvledit/lvledit_menu.c:553
 msgid "none"
 msgstr "nic"
@@ -1981,7 +1999,7 @@ msgstr "neviditelný"
 msgid "scanning"
 msgstr "skenující"
 
-#: src/text_public.c:285
+#: src/text_public.c:303
 msgid "Click to continue..."
 msgstr "Pro pokračování klikni..."
 
@@ -2044,7 +2062,7 @@ msgstr "Získaný předmět: %s"
 msgid "Cancel item drop"
 msgstr "Zrušit upuštění předmětu"
 
-#: src/lvledit/lvledit_actions.c:270
+#: src/lvledit/lvledit_actions.c:275
 msgid ""
 "\n"
 "Please enter obstacle label: \n"
@@ -2053,7 +2071,7 @@ msgstr ""
 "\n"
 "Zadejte štítek překážky:\n"
 
-#: src/lvledit/lvledit_actions.c:610
+#: src/lvledit/lvledit_actions.c:624
 msgid ""
 "\n"
 "Please enter map label: \n"
@@ -2062,7 +2080,7 @@ msgstr ""
 "\n"
 "Zadejte štítek mapy:\n"
 
-#: src/lvledit/lvledit_actions.c:626
+#: src/lvledit/lvledit_actions.c:640
 msgid "The new name of the map label already exists, please choose an other name."
 msgstr "Nové jméno štítku mapy už existuje, vyberte prosím jiný název."
 
@@ -2107,7 +2125,7 @@ msgid "Number of random droids:"
 msgstr "Počet náhodných droidů:"
 
 #: src/lvledit/lvledit_enemy.c:99 src/lvledit/lvledit_enemy.c:165
-#: src/lvledit/lvledit_enemy.c:247
+#: src/lvledit/lvledit_enemy.c:251
 msgid "Invalid number! The number must be natural."
 msgstr "Neplatné číslo! Číslo musí být přirozené."
 
@@ -2151,12 +2169,12 @@ msgstr ""
 "%s\n"
 "Název rozhovoru: "
 
-#: src/lvledit/lvledit_enemy.c:193
+#: src/lvledit/lvledit_enemy.c:194
 #, c-format
 msgid "Dialog \"%s\" not found!"
 msgstr "Rozhovor \"%s\" nenalezen!"
 
-#: src/lvledit/lvledit_enemy.c:201
+#: src/lvledit/lvledit_enemy.c:203
 #, c-format
 msgid ""
 "%s\n"
@@ -2165,7 +2183,7 @@ msgstr ""
 "%s\n"
 "Krátký popis (v angličtině):"
 
-#: src/lvledit/lvledit_enemy.c:213
+#: src/lvledit/lvledit_enemy.c:215
 #, c-format
 msgid ""
 "%s\n"
@@ -2174,22 +2192,22 @@ msgstr ""
 "%s\n"
 "Může pohybovat:"
 
-#: src/lvledit/lvledit_enemy.c:214 src/lvledit/lvledit_enemy.c:223
-#: src/lvledit/lvledit_enemy.c:234 src/lvledit/lvledit_enemy.c:281
-#: src/lvledit/lvledit_enemy.c:293 src/lvledit/lvledit_menu.c:589
+#: src/lvledit/lvledit_enemy.c:216 src/lvledit/lvledit_enemy.c:225
+#: src/lvledit/lvledit_enemy.c:238 src/lvledit/lvledit_enemy.c:286
+#: src/lvledit/lvledit_enemy.c:299 src/lvledit/lvledit_menu.c:589
 #: src/lvledit/lvledit_menu.c:603 src/lvledit/lvledit_menu.c:638
 msgid "no"
 msgstr "ne"
 
-#: src/lvledit/lvledit_enemy.c:214 src/lvledit/lvledit_enemy.c:227
-#: src/lvledit/lvledit_enemy.c:234 src/lvledit/lvledit_enemy.c:281
-#: src/lvledit/lvledit_enemy.c:289 src/lvledit/lvledit_menu.c:589
+#: src/lvledit/lvledit_enemy.c:216 src/lvledit/lvledit_enemy.c:229
+#: src/lvledit/lvledit_enemy.c:238 src/lvledit/lvledit_enemy.c:286
+#: src/lvledit/lvledit_enemy.c:295 src/lvledit/lvledit_menu.c:589
 #: src/lvledit/lvledit_menu.c:603 src/lvledit/lvledit_menu.c:636
 msgid "yes"
 msgstr "ano"
 
 #. TRANSLATORS: the max. distance the bot can move away from its spawn position
-#: src/lvledit/lvledit_enemy.c:234
+#: src/lvledit/lvledit_enemy.c:238
 #, c-format
 msgid ""
 "%s\n"
@@ -2199,7 +2217,7 @@ msgstr ""
 "Max vzdálenost od domova:"
 
 #. TRANSLATORS: Item that is dropped on ground if the bot dies
-#: src/lvledit/lvledit_enemy.c:255
+#: src/lvledit/lvledit_enemy.c:259
 #, c-format
 msgid ""
 "%d\n"
@@ -2208,13 +2226,13 @@ msgstr ""
 "%d\n"
 "Předmět k upuštění v případě smrti:"
 
-#: src/lvledit/lvledit_enemy.c:273
+#: src/lvledit/lvledit_enemy.c:277
 #, c-format
 msgid "Item \"%s\" not found!"
 msgstr "Předmět \"%s\" nenalezen!"
 
 #. TRANSLATORS: Will the bot walk towards tux as soon as he seems tux?
-#: src/lvledit/lvledit_enemy.c:279
+#: src/lvledit/lvledit_enemy.c:284
 #, c-format
 msgid ""
 "%s\n"
@@ -2502,7 +2520,7 @@ msgstr "Pokračovat v editaci"
 msgid "Show Help"
 msgstr "Zobrazit pomoc"
 
-#: src/lvledit/lvledit_tool_place.c:689
+#: src/lvledit/lvledit_tool_place.c:693
 msgid "Place tool does not support this type of object."
 msgstr "Nástroj umístění nepodporuje tento typ objektu."
 
@@ -2670,17 +2688,17 @@ msgstr "droidi"
 msgid "humans"
 msgstr "lidé"
 
-#: src/lvledit/lvledit_widgets.c:252
+#: src/lvledit/lvledit_widgets.c:255
 #, c-format
 msgid "Zoom factor set to %f."
 msgstr "Faktor zvětšení nastaven na %f."
 
-#: src/lvledit/lvledit_widgets.c:254
+#: src/lvledit/lvledit_widgets.c:257
 #, c-format
 msgid "Could not change zoom factor."
 msgstr "Faktor zvětšení nelze změnit."
 
-#: src/lvledit/lvledit_widgets.c:308
+#: src/lvledit/lvledit_widgets.c:432
 msgid ""
 "Undo\n"
 "\n"
@@ -2690,7 +2708,7 @@ msgstr ""
 "\n"
 "Použijte toto tlačítko k vrácení poslední akce."
 
-#: src/lvledit/lvledit_widgets.c:317
+#: src/lvledit/lvledit_widgets.c:439
 msgid ""
 "Redo\n"
 "\n"
@@ -2700,7 +2718,7 @@ msgstr ""
 "\n"
 "Použijte toto tlačítko k obnovení poslední akce."
 
-#: src/lvledit/lvledit_widgets.c:326
+#: src/lvledit/lvledit_widgets.c:446
 msgid ""
 "Save Map\n"
 "\n"
@@ -2710,7 +2728,7 @@ msgstr ""
 "\n"
 "Toto tlačítko uloží vaši současnou mapu do souboru '../map/levels.dat' z vašeho současného pracovního adresáře."
 
-#: src/lvledit/lvledit_widgets.c:333
+#: src/lvledit/lvledit_widgets.c:453
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -2724,21 +2742,16 @@ msgstr ""
 "\n"
 "Lze také použít zkratku Ctrl-b."
 
-#: src/lvledit/lvledit_widgets.c:340
+#: src/lvledit/lvledit_widgets.c:460
 msgid ""
-"Delete selected obstacle\n"
+"Delete selected objects\n"
 "\n"
-"Use this button to delete the currently marked obstacle.\n"
+"Use this button to delete the currently marked objects.\n"
 "\n"
 "You can also use Ctrl-X for this."
 msgstr ""
-"Smazat vybrané překážky\n"
-"\n"
-"Použijte toto tlačítko pro smazání vybrané překážky.\n"
-"\n"
-"Lze také použít zkratku Ctrl-X."
 
-#: src/lvledit/lvledit_widgets.c:349
+#: src/lvledit/lvledit_widgets.c:467
 msgid ""
 "Next object on currently selected tile\n"
 "\n"
@@ -2752,7 +2765,7 @@ msgstr ""
 "\n"
 "Lze také pro to použít klávesu N."
 
-#: src/lvledit/lvledit_widgets.c:358
+#: src/lvledit/lvledit_widgets.c:474
 msgid ""
 "Toggle display waypoint connections\n"
 "\n"
@@ -2762,7 +2775,7 @@ msgstr ""
 "\n"
 "Použijte toto tlačítko pro přepínání zobrazení a vypnutí mezi spojeními navigačních bodů."
 
-#: src/lvledit/lvledit_widgets.c:367
+#: src/lvledit/lvledit_widgets.c:481
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -2772,7 +2785,7 @@ msgstr ""
 "\n"
 "Použijte toto tlačítko pro připojení štítku k aktuálně vybrané překážce. Tyto štítky překážek mohou být použity k definici překážek modifikovaných událostmi.\n"
 
-#: src/lvledit/lvledit_widgets.c:376
+#: src/lvledit/lvledit_widgets.c:488
 msgid ""
 "Edit chests contents\n"
 "\n"
@@ -2782,7 +2795,7 @@ msgstr ""
 "\n"
 "Použijte toto tlačitko pro změnu obsahu truhly. Pokud je prázdná, hra může náhodně vygenerovat předmět v průběhu hry."
 
-#: src/lvledit/lvledit_widgets.c:392
+#: src/lvledit/lvledit_widgets.c:495
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -2792,7 +2805,7 @@ msgstr ""
 "\n"
 "Použijte toto tlačítko k přepínání mezi zobrazením a skrytím nepřátel v editoru úrovní."
 
-#: src/lvledit/lvledit_widgets.c:401
+#: src/lvledit/lvledit_widgets.c:502
 msgid ""
 "Toggle display tooltips\n"
 "\n"
@@ -2802,7 +2815,7 @@ msgstr ""
 "\n"
 "Použijte toto tlačítko k zobrazení či skrytí těchto otravných oken s nápovědou."
 
-#: src/lvledit/lvledit_widgets.c:410
+#: src/lvledit/lvledit_widgets.c:509
 msgid ""
 "Toggle display collision rectangles\n"
 "\n"
@@ -2812,7 +2825,7 @@ msgstr ""
 "\n"
 "Použijte toto tlačítko k zapnutí a vypnutí viditelných kolizních obdélníků."
 
-#: src/lvledit/lvledit_widgets.c:419
+#: src/lvledit/lvledit_widgets.c:516
 msgid ""
 "Toggle grid mode.\n"
 "\n"
@@ -2826,7 +2839,7 @@ msgstr ""
 "\n"
 "Pravým tlačítkem myši změníte mód mřížky."
 
-#: src/lvledit/lvledit_widgets.c:428
+#: src/lvledit/lvledit_widgets.c:523
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -2836,7 +2849,7 @@ msgstr ""
 "\n"
 "Použijte toto tlačítko k zobrazení a skrytí překážek v editoru úrovní."
 
-#: src/lvledit/lvledit_widgets.c:437
+#: src/lvledit/lvledit_widgets.c:530
 msgid ""
 "Toggle display map labels name\n"
 "\n"
@@ -2846,7 +2859,7 @@ msgstr ""
 "\n"
 "Použijte toto tlačítko pro přepínání mezi štítky názvů map zobrazených nebo skrytých v editoru úrovní."
 
-#: src/lvledit/lvledit_widgets.c:446
+#: src/lvledit/lvledit_widgets.c:537
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -2860,7 +2873,7 @@ msgstr ""
 "\n"
 "Použijte pravé tlačítko myši ke změně poměru zvětšení.\n"
 
-#: src/lvledit/lvledit_widgets.c:455
+#: src/lvledit/lvledit_widgets.c:544
 msgid ""
 "Toggle floor layers\n"
 "\n"
@@ -2874,7 +2887,7 @@ msgstr ""
 "\n"
 "Použijte pravé tlačítko myši pro změnu aktuální vrstvy podlahy.\n"
 
-#: src/lvledit/lvledit_widgets.c:465
+#: src/lvledit/lvledit_widgets.c:551
 msgid ""
 "Test Map\n"
 "\n"
@@ -2884,33 +2897,30 @@ msgstr ""
 "\n"
 "Uloží vaši mapu a znovu nahraje po dokončení testování, což zabrání ukládání nečistého stavu světa."
 
-#: src/lvledit/lvledit_widgets.c:485
+#: src/lvledit/lvledit_widgets.c:571
 msgid "Obstacle"
 msgstr "Překážka"
 
-#: src/lvledit/lvledit_widgets.c:494
+#: src/lvledit/lvledit_widgets.c:578
 msgid "Floor"
 msgstr "Podlaha"
 
-#: src/lvledit/lvledit_widgets.c:503
+#: src/lvledit/lvledit_widgets.c:585
 msgid "Item"
 msgstr "Předmět"
 
-#: src/lvledit/lvledit_widgets.c:512
+#: src/lvledit/lvledit_widgets.c:592
 msgid "Enemy"
 msgstr "Nepřítel"
 
 #. TRANSLATORS: Waypoint
-#: src/lvledit/lvledit_widgets.c:522
+#: src/lvledit/lvledit_widgets.c:600
 msgid "Wayp."
 msgstr "Nav. bod"
 
-#: src/lvledit/lvledit_widgets.c:531
+#: src/lvledit/lvledit_widgets.c:607
 msgid "Label"
 msgstr "Štítek"
-
-#~ msgid "Advanced Options"
-#~ msgstr "Pokročilé možnosti"
 
 #~ msgid ""
 #~ "%s\n"
@@ -2918,6 +2928,9 @@ msgstr "Štítek"
 #~ msgstr ""
 #~ "%s\n"
 #~ "Zcela opravený:"
+
+#~ msgid "Advanced Options"
+#~ msgstr "Pokročilé možnosti"
 
 #~ msgid "Recharge time: %3.2f\n"
 #~ msgstr "Temps de rechargement : %3.2f\n"

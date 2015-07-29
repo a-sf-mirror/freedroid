@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-04-14 01:11+0000\n"
-"PO-Revision-Date: 2014-08-11 15:00+0000\n"
-"Last-Translator: sebastienadam <sebastien.adam.be@gmail.com>\n"
+"POT-Creation-Date: 2015-07-29 20:08+0200\n"
+"PO-Revision-Date: 2015-07-29 15:21+0000\n"
+"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -20,15 +20,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: map/droid_archetypes.dat:66 map/ReturnOfTux.droids:271
+#: map/droid_archetypes.dat:66 map/ReturnOfTux.droids:270
 msgid "123 Acolyte"
 msgstr "123 Disciple"
 
-#: map/droid_archetypes.dat:89 map/droid_archetypes.dat:1125
+#: map/droid_archetypes.dat:89
 msgid "A simple rubbish disposal robot. Common device in most factories to maintain a clean yard."
 msgstr "Un simple robot de ramassage d'ordures. Appareil courant dans la plupart des usines pour garder une cour propre."
 
-#: map/droid_archetypes.dat:93 map/ReturnOfTux.droids:272
+#: map/droid_archetypes.dat:93 map/ReturnOfTux.droids:271
 msgid "139 Templar"
 msgstr "139 Templier"
 
@@ -36,7 +36,7 @@ msgstr "139 Templier"
 msgid "Created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop is used to collect rubbish. It is then crushed internally."
 msgstr "Créé par le Docteur Masternak pour éliminer de grandes quantités d'ordures. Sa large écope est utilisée pour collecter les ordures. Elles sont ensuite éliminées à l'intérieur."
 
-#: map/droid_archetypes.dat:120 map/ReturnOfTux.droids:273
+#: map/droid_archetypes.dat:120 map/ReturnOfTux.droids:272
 msgid "247 Banshee"
 msgstr "247 Banshee"
 
@@ -45,7 +45,7 @@ msgid "A light duty servant robot. One of the first to use the anti-grav system.
 msgstr "Un robot serviteur léger. Un des premiers à utiliser le système anti-gravité."
 
 #: map/droid_archetypes.dat:147 map/ReturnOfTux.droids:112
-#: map/ReturnOfTux.droids:274
+#: map/ReturnOfTux.droids:273
 msgid "249 Chicago"
 msgstr "249 Chicago"
 
@@ -53,7 +53,7 @@ msgstr "249 Chicago"
 msgid "Cheaper version of the anti-grav servant robot. This one is armed with rapid fire weaponry."
 msgstr "Version bon marché du robot anti-gravité. Celui-ci est équipé d'un armement à tir rapide."
 
-#: map/droid_archetypes.dat:175 map/ReturnOfTux.droids:275
+#: map/droid_archetypes.dat:175 map/ReturnOfTux.droids:274
 msgid "296 Sawmill"
 msgstr "296 Scierie"
 
@@ -63,7 +63,7 @@ msgstr "A l'origine créé par les entreprises Orchard et Marsden, ce robot a é
 
 #: map/droid_archetypes.dat:202 map/ReturnOfTux.droids:103
 #: map/ReturnOfTux.droids:104 map/ReturnOfTux.droids:111
-#: map/ReturnOfTux.droids:276 map/ReturnOfTux.droids:359
+#: map/ReturnOfTux.droids:275 map/ReturnOfTux.droids:358
 msgid "302 Nemesis"
 msgstr "302 Nemesis"
 
@@ -72,7 +72,7 @@ msgid "Common device for moving small packages. Clamp is mounted on the lower bo
 msgstr "Appareil standard pour le transport de petits paquets. La fixation se trouve sur le bas du corps."
 
 #: map/droid_archetypes.dat:229 map/ReturnOfTux.droids:110
-#: map/ReturnOfTux.droids:277 map/ReturnOfTux.droids:584
+#: map/ReturnOfTux.droids:276 map/ReturnOfTux.droids:583
 msgid "329 Sparkie"
 msgstr "329 Sparkie"
 
@@ -80,7 +80,7 @@ msgstr "329 Sparkie"
 msgid "Early type messenger robot. Large wheels impede motion on small craft."
 msgstr "Un des premiers robots de type messager. Ses larges roues gênent le déplacement dans les petits vaisseaux."
 
-#: map/droid_archetypes.dat:256 map/ReturnOfTux.droids:278
+#: map/droid_archetypes.dat:256 map/ReturnOfTux.droids:277
 msgid "420 Surgeon"
 msgstr "420 Chirurgien"
 
@@ -88,7 +88,7 @@ msgstr "420 Chirurgien"
 msgid "A slow maintenance robot. Confined to drive maintenance during flight."
 msgstr "Un robot de maintenance pas très rapide. Il est exclusivement destiné à la maintenance pendant le vol."
 
-#: map/droid_archetypes.dat:283 map/ReturnOfTux.droids:279
+#: map/droid_archetypes.dat:283 map/ReturnOfTux.droids:278
 msgid "476 Coward"
 msgstr "476 Lâche"
 
@@ -96,7 +96,7 @@ msgstr "476 Lâche"
 msgid "Ship maintenance robot. Fitted with multiple arms to carry out repairs to the ship efficiently. All craft built after the Jupiter-incident are supplied with a team of these."
 msgstr "Robot de maintenance du vaisseau. Il possède de nombreux bras pour réparer le vaisseau efficacement. Tous les bâtiments construits après l'incident Jupiter sont fournis avec une équipe de tels robots."
 
-#: map/droid_archetypes.dat:310 map/ReturnOfTux.droids:280
+#: map/droid_archetypes.dat:310 map/ReturnOfTux.droids:279
 msgid "493 Spinster"
 msgstr "493 Vielle Fille"
 
@@ -104,7 +104,7 @@ msgstr "493 Vielle Fille"
 msgid "Slave maintenance droid. Standard version will carry its own toolbox."
 msgstr "Droïde esclave de maintenance. La version standard transporte sa propre boîte à outils."
 
-#: map/droid_archetypes.dat:337 map/ReturnOfTux.droids:281
+#: map/droid_archetypes.dat:337 map/ReturnOfTux.droids:280
 msgid "516 Ghoul"
 msgstr "516 Vampire"
 
@@ -112,7 +112,7 @@ msgstr "516 Vampire"
 msgid "Early crew droid. Able to carry out simple flight checks only. No longer supplied."
 msgstr "Ancien droïde d'équipage. Capable d'exécuter de simples vérifications de vol. N'est plus fabriqué."
 
-#: map/droid_archetypes.dat:364 map/ReturnOfTux.droids:282
+#: map/droid_archetypes.dat:364 map/ReturnOfTux.droids:281
 msgid "543 Forest Harvester"
 msgstr "543 Moissonneur Forestier"
 
@@ -120,7 +120,7 @@ msgstr "543 Moissonneur Forestier"
 msgid "This bot was designed for logging, but instead of harvesting trees, it's now harvesting people!!! Run away! This bot will kill you!"
 msgstr "Ce robot a été conçu pour l'abattage, mais au lieu de moissonner les arbres, maintenant il récolte les gens !!! Fuyez ! Ce robot est un tueur !"
 
-#: map/droid_archetypes.dat:391 map/ReturnOfTux.droids:283
+#: map/droid_archetypes.dat:391 map/ReturnOfTux.droids:282
 msgid "571 Apollo"
 msgstr "571 Apollo"
 
@@ -128,7 +128,7 @@ msgstr "571 Apollo"
 msgid "A standard crew droid. Supplied with the ship."
 msgstr "Un droïde standard d'équipage. Fourni avec le vaisseau."
 
-#: map/droid_archetypes.dat:418 map/ReturnOfTux.droids:284
+#: map/droid_archetypes.dat:418 map/ReturnOfTux.droids:283
 msgid "598 Minister"
 msgstr "598 Ministre"
 
@@ -136,9 +136,9 @@ msgstr "598 Ministre"
 msgid "A highly sophisticated device. Able to control the Robo-Freighter on its own."
 msgstr "Un appareil hautement sophistiqué. Capable de contrôler le robot-cargo à lui tout seul."
 
-#: map/droid_archetypes.dat:445 map/ReturnOfTux.droids:514
-#: map/ReturnOfTux.droids:515 map/ReturnOfTux.droids:516
-#: map/ReturnOfTux.droids:517 map/ReturnOfTux.droids:518
+#: map/droid_archetypes.dat:445 map/ReturnOfTux.droids:513
+#: map/ReturnOfTux.droids:514 map/ReturnOfTux.droids:515
+#: map/ReturnOfTux.droids:516 map/ReturnOfTux.droids:517
 msgid "603 Lawnmower"
 msgstr "603 Tondeuse"
 
@@ -146,7 +146,7 @@ msgstr "603 Tondeuse"
 msgid "The 603 MowDown is a state-of-the-art lawnmower manufactured by the Nicholson company, and combines the functions of a regular lawnmower, a pet and a vicious guard dog in a single device."
 msgstr "Le faucheur 603 est une tondeuse haut de gamme fabriqué par la Compagnie Nicholson, et combine en un seul appareil les fonctions de tondeuse standard, d'animal de compagnie et de chien de garde."
 
-#: map/droid_archetypes.dat:472 map/ReturnOfTux.droids:285
+#: map/droid_archetypes.dat:472 map/ReturnOfTux.droids:284
 msgid "614 Security Bot"
 msgstr "614 Droïde de sécurité"
 
@@ -154,7 +154,7 @@ msgstr "614 Droïde de sécurité"
 msgid "A low security sentinel droid. Used to protect areas of the ship from intruders. A slow but sure device."
 msgstr "Un droïde sentinelle de sécurité faible. Utilisé pour protéger des zones du vaisseau des intrus. Un appareil lent mais fiable."
 
-#: map/droid_archetypes.dat:499 map/ReturnOfTux.droids:286
+#: map/droid_archetypes.dat:499 map/ReturnOfTux.droids:285
 msgid "615 Firedevil"
 msgstr "615 Tornade de Feu"
 
@@ -162,7 +162,7 @@ msgstr "615 Tornade de Feu"
 msgid "Sophisticated sentinel droid. Only 2000 built by the Nicholson Company. These are now very rare."
 msgstr "Droïde sentinelle sophistiqué. Seulement 2000 ont été construits par la Compagnie Nicholson. Ils sont maintenant très rares."
 
-#: map/droid_archetypes.dat:526 map/ReturnOfTux.droids:287
+#: map/droid_archetypes.dat:526 map/ReturnOfTux.droids:286
 msgid "629 Spitfire"
 msgstr "629 Coléreux"
 
@@ -171,7 +171,7 @@ msgid "A low sentinel droid. Lasers are built into the turret. These are mounted
 msgstr "Un droïde sentinelle de petite taille. Des lasers sont installés dans la tourelle. Ils sont montés sur une petite base de tank. Il peut être assemblé avec un auto-canon dans la version Grillen."
 
 #: map/droid_archetypes.dat:553 map/ReturnOfTux.droids:150
-#: map/ReturnOfTux.droids:288
+#: map/ReturnOfTux.droids:287
 msgid "711 Grillmeister"
 msgstr "711 Chef Grill"
 
@@ -180,7 +180,7 @@ msgid "A heavy duty battle droid. Disruptor is built into the head. One of the f
 msgstr "A droïde lourd de bataille. Un disrupteur est installé dans la tête. Un des premiers robots en service dans l'Armée."
 
 #: map/droid_archetypes.dat:581 map/ReturnOfTux.droids:149
-#: map/ReturnOfTux.droids:289
+#: map/ReturnOfTux.droids:288
 msgid "742 Zeus"
 msgstr "742 Zeus"
 
@@ -188,8 +188,8 @@ msgstr "742 Zeus"
 msgid "This version is the one mainly used by the military."
 msgstr "Cette version est celle principalement utilisée par l'armée."
 
-#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:225
-#: map/ReturnOfTux.droids:290
+#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:224
+#: map/ReturnOfTux.droids:289
 msgid "751 Soviet"
 msgstr "751 Soviet"
 
@@ -198,7 +198,7 @@ msgid "A very heavy duty battle droid. Only a few have so far entered service. T
 msgstr "A droïde très lourd de bataille. Seul un petit nombre est pour l'instant entré en service. Ce sont les unités de bataille les plus puissantes jamais conçues."
 
 #: map/droid_archetypes.dat:635 map/ReturnOfTux.droids:148
-#: map/ReturnOfTux.droids:291
+#: map/ReturnOfTux.droids:290
 msgid "821 Ufo"
 msgstr "821 Ovni"
 
@@ -207,7 +207,7 @@ msgid "A very reliable anti-grav unit is fitted into this droid. It will patrol 
 msgstr "Une unité anti-gravité très fiable est intégrée dans ce droïde. Il patrouillera le vaisseau et éliminera les intrus aussitôt qu'ils seront décelés par ses puissants capteurs."
 
 #: map/droid_archetypes.dat:662 map/ReturnOfTux.droids:147
-#: map/ReturnOfTux.droids:292
+#: map/ReturnOfTux.droids:291
 msgid "834 Wisp"
 msgstr "834 Feu Follet"
 
@@ -215,7 +215,7 @@ msgstr "834 Feu Follet"
 msgid "Early type anti-grav security droid. Fitted with an over-driven anti-grav unit. This droid is very fast but is not reliable."
 msgstr "Un des premiers modèles de droïde anti-gravité de sécurité. Équipé d'une unité anti-gravité suralimentée. Ce droïde est très rapide mais pas très fiable."
 
-#: map/droid_archetypes.dat:689 map/ReturnOfTux.droids:293
+#: map/droid_archetypes.dat:689 map/ReturnOfTux.droids:292
 msgid "883 Dalex"
 msgstr "883 Dalex"
 
@@ -223,7 +223,7 @@ msgstr "883 Dalex"
 msgid "This droid was designed from archive data. For some unknown reason it instills great fear in Human adversaries."
 msgstr "Ce robot a été conçu à partir de données d'archives. Pour une raison inconnue il instille une grande peur dans ces adversaires humains."
 
-#: map/droid_archetypes.dat:716 map/ReturnOfTux.droids:294
+#: map/droid_archetypes.dat:716 map/ReturnOfTux.droids:293
 msgid "999 Cerebrum"
 msgstr "999 Cerebrum"
 
@@ -263,8 +263,8 @@ msgstr "Matrone"
 msgid "This is the hot_mama shopkeeper character model."
 msgstr "C'est le modèle de personnage hot_mama, tenancière de magasin."
 
-#: map/droid_archetypes.dat:854 map/ReturnOfTux.droids:215
-#: map/ReturnOfTux.droids:461
+#: map/droid_archetypes.dat:854 map/ReturnOfTux.droids:214
+#: map/ReturnOfTux.droids:460
 msgid "Female Scientist"
 msgstr "Femme Scientifique"
 
@@ -336,7 +336,7 @@ msgstr "Femme Chasseuse"
 msgid "This hunter has fought with many robots before, and will not be scared by a mere linarian."
 msgstr "Cette chasseuse a combattu de nombreux robots dans le passé, et ce n'est pas un simple linarien qui va lui faire peur."
 
-#: map/droid_archetypes.dat:1053
+#: map/droid_archetypes.dat:1053 map/droid_archetypes.dat:1129
 msgid "ERROR: THIS IS A TERMINAL"
 msgstr "ERREUR : C'EST UN TERMINAL"
 
@@ -344,8 +344,8 @@ msgstr "ERREUR : C'EST UN TERMINAL"
 msgid "This is a terminal."
 msgstr "C'est un terminal."
 
-#: map/droid_archetypes.dat:1075 map/ReturnOfTux.droids:322
-#: map/ReturnOfTux.droids:323
+#: map/droid_archetypes.dat:1075 map/ReturnOfTux.droids:321
+#: map/ReturnOfTux.droids:322
 msgid "Autogun"
 msgstr "Tourelle Automatique"
 
@@ -354,16 +354,16 @@ msgid "Carefully designed by Future Ballistics(R), this autogun will shred you i
 msgstr "Conçue avec minutie par Future Ballistics(R), cette tourelle automatique va te mettre en pièce si tu tentes de l'approcher."
 
 #: map/droid_archetypes.dat:1102
-msgid "Invader Bot"
-msgstr "Robot d'invasion"
-
-#: map/droid_archetypes.dat:1129
 msgid "Authority Figure"
 msgstr "Sommité"
 
-#: map/droid_archetypes.dat:1152
+#: map/droid_archetypes.dat:1125
 msgid "It has long since been known that game development is the most important job in the world. Also the coolest. We know that thanks to this guy."
 msgstr "Il est connu de longue date que la création d'un jeu est le travail le plus important au monde. C'est également le plus cool. Cela nous l'avons appris grâce à ce type."
+
+#: map/droid_archetypes.dat:1147
+msgid "This is a secure terminal."
+msgstr "C'est un terminal sécurisé."
 
 #: map/events.dat:55
 msgid "To Maintenance Tunnels"
@@ -377,213 +377,221 @@ msgstr "Vers l'Arène des Débutants"
 msgid "To Master Arena"
 msgstr "Vers l'Arène des Confirmés"
 
-#: map/events.dat:662
+#: map/events.dat:666
 msgid "Exit Warehouse"
 msgstr "Sortie de l'Entrepôt"
 
-#: map/events.dat:669
+#: map/events.dat:673
 msgid "To Warehouse Level 2"
 msgstr "Vers le niveau 2 de l'Entrepôt"
 
-#: map/events.dat:679
+#: map/events.dat:683
 msgid "To Warehouse Level 1"
 msgstr "Vers le niveau 1 de l'Entrepôt"
 
-#: map/events.dat:689
+#: map/events.dat:693
 msgid "Back to Kevin's Garden"
 msgstr "Retour au jardin de Kevin"
 
-#: map/events.dat:696
+#: map/events.dat:700
 msgid "To Energy Station"
 msgstr "Vers la Station d'Energie"
 
-#: map/events.dat:706
+#: map/events.dat:710
 msgid "Back to Lower Catacombs"
 msgstr "Retour aux Basses Catacombes"
 
-#: map/events.dat:716
+#: map/events.dat:720
 msgid "Way to Disruptor Machine Deck"
 msgstr "Chemin vers la Salle des Machines du Disrupteur"
 
-#: map/events.dat:726
+#: map/events.dat:730
 msgid "Back to Town"
 msgstr "Retour vers la Ville"
 
-#: map/events.dat:733
+#: map/events.dat:737
 msgid "To Old Server Room"
 msgstr "Vers l'ancienne Salle Serveurs"
 
-#: map/events.dat:740
+#: map/events.dat:744
 msgid "Singularity Attacked"
 msgstr "Singularité attaquée"
 
-#: map/events.dat:751
+#: map/events.dat:755
 msgid "Singularity Death"
 msgstr "Singularité morte"
 
-#: map/events.dat:757
+#: map/events.dat:761
 msgid "The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it..."
 msgstr "La Singularité Principale est morte. Les autres sont maintenant en train de m'attaquer ! J'aurais peut-être dû lui prêter plus d'attention..."
 
-#: map/events.dat:763
+#: map/events.dat:767
 msgid "Automated Factory Mechanism"
 msgstr "Mécanisme de l'Usine Automatisée"
 
-#: map/events.dat:771
+#: map/events.dat:775
 msgid "Elbow grease has been applied to the Automated Factory."
 msgstr "De l'huile de coude a été appliquée dans l'Usine Automatisée."
 
-#: map/events.dat:784
+#: map/events.dat:788
 msgid "Enter Warehouse"
 msgstr "Entrer dans l'Entrepôt"
 
-#: map/events.dat:828
+#: map/events.dat:832
 msgid "Down into Crystal Caves"
 msgstr "Descendre dans les Cavernes de Cristal"
 
 #: map/events.dat:873
+msgid "InvaderBot-Hacked"
+msgstr ""
+
+#: map/events.dat:886
 msgid "Get me out of here!"
 msgstr "Sortez moi de là !"
 
-#: map/events.dat:880
+#: map/events.dat:893
 msgid "296 Teleport Point"
 msgstr "Point de téléportation du 296"
 
-#: map/events.dat:889
+#: map/events.dat:902
 msgid "I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened."
 msgstr "Je viens tout juste d'entendre une explosion - Le 296 d'Ewald vient certainement de détruire le réacteur. Peut-être devrais-je aller en parler avec Ewald."
 
-#: map/events.dat:905
+#: map/events.dat:918
 msgid "To Omega Island"
 msgstr "Vers l'Îles Omega"
 
-#: map/events.dat:946
+#: map/events.dat:959
 msgid "To Kevin's Underground Station"
 msgstr "Vers la station souterraine de Kevin"
 
-#: map/events.dat:992
+#: map/events.dat:1005
 msgid "To Underground Station"
 msgstr "Vers la station souterraine"
 
-#: map/events.dat:1244
+#: map/events.dat:1257
 msgid "It's a trap!"
 msgstr "C'est un piège !"
 
-#: map/events.dat:1639
+#: map/events.dat:1656
 msgid "Hatch with broken ladder"
 msgstr "Ecoutille avec une échelle cassée"
 
-#: map/events.dat:1694
+#: map/events.dat:1711
 msgid "Exit Novice Arena"
 msgstr "Quitter l'Arène des Débutants"
 
-#: map/events.dat:1701
+#: map/events.dat:1718
 msgid "Start New Wave"
 msgstr "Lancer une nouvelle vague"
 
-#: map/events.dat:1764
+#: map/events.dat:1781
 msgid "Wave "
 msgstr "Vague "
 
-#: map/events.dat:1766
+#: map/events.dat:1783
 msgid "Final Wave - Take care!"
 msgstr "Vague finale - Attention !"
 
-#: map/events.dat:1789
+#: map/events.dat:1807 map/events.dat:1839
 msgid "All bots are killed! Go to center for next wave."
 msgstr "Tous les robots sont détruits ! Aller au centre pour la prochaine vague."
 
-#: map/events.dat:1792
+#: map/events.dat:1810 map/events.dat:1842
 msgid "All bots are killed! You won."
 msgstr "Tous les robots sont détruits ! Tu as gagné."
 
 #: map/events.dat:1821
+msgid "Arena Bot Hacked"
+msgstr ""
+
+#: map/events.dat:1871
 msgid "Respawn Master Arena"
 msgstr "Régénérer l'Arène des Confirmés"
 
-#: map/events.dat:1828
+#: map/events.dat:1878
 msgid "Exit Master Arena"
 msgstr "Quitter l'Arène des Confirmés"
 
-#: map/events.dat:1994
+#: map/events.dat:2044
 msgid "Exit Crystal Caves"
 msgstr "Quitter les Cavernes de Cristal"
 
-#: map/events.dat:2004 map/events.dat:2036
+#: map/events.dat:2054 map/events.dat:2086
 msgid "Back to the Desert"
 msgstr "Retour au Désert"
 
-#: map/events.dat:2044
+#: map/events.dat:2094
 msgid "Tania has made it to the surface for the first time in a very long time."
 msgstr "Tania est à l'air libre pour la première fois depuis un très long moment."
 
-#: map/events.dat:2051 map/events.dat:2058
+#: map/events.dat:2101 map/events.dat:2108
 msgid "To the Secret Area Service Tunnels"
 msgstr "Vers les tunnels de service de la Zone Secrète"
 
-#: map/events.dat:2068 map/events.dat:2075
+#: map/events.dat:2118 map/events.dat:2125
 msgid "Back to the Secret Area"
 msgstr "Retour vers la Zone Secrète"
 
-#: map/events.dat:2093
+#: map/events.dat:2143
 msgid "Good, now move to the black grating to the East."
 msgstr "Bien, maintenant il faut aller vers la grille noire à l'Est"
 
-#: map/events.dat:2106
+#: map/events.dat:2156
 msgid "Good, now talk to Tutorial Tom again."
 msgstr "Bien, maintenant parle avec Tutorial Tom encore une fois."
 
-#: map/events.dat:2295
+#: map/events.dat:2345
 msgid "To a Forgotten Bunker"
 msgstr "Vers un Bunker Oublié"
 
-#: map/events.dat:2315
+#: map/events.dat:2365
 msgid "Unknown place"
 msgstr "Endroit inconnu"
 
-#: map/events.dat:2333
+#: map/events.dat:2383
 msgid "Hidden way out"
 msgstr "Passage secret vers la sortie"
 
-#: map/events.dat:2387
+#: map/events.dat:2437
 msgid "Back to Disruptor Shield Control"
 msgstr "Retour au Contrôle du Bouclier du Disrupteur"
 
-#: map/events.dat:2394
+#: map/events.dat:2444
 msgid "To Machine Deck Lower Catacombs"
 msgstr "Vers les Catacombes Basses du Pont des Machines"
 
-#: map/events.dat:2404
+#: map/events.dat:2454
 msgid "Back to Machine Deck Upper Catacombs"
 msgstr "Retour vers les Catacombes Hautes du Pont des Machines"
 
-#: map/events.dat:2411
+#: map/events.dat:2461
 msgid "To Disruptor Machine Deck"
 msgstr "Vers le Pont des Machines du Disrupteur"
 
-#: map/events.dat:2425
+#: map/events.dat:2475
 msgid "Back To Maintenance Tunnel"
 msgstr "Retour vers le Tunnel de Maintenance"
 
-#: map/events.dat:2432
+#: map/events.dat:2482
 msgid "We need to go deeper..."
 msgstr "Nous devons nous enfoncer plus profondément..."
 
-#: map/events.dat:6554
+#: map/events.dat:6615
 msgid "Back to mainland"
 msgstr "Vers le Continent"
 
-#: map/events.dat:6570
+#: map/events.dat:6631
 msgid "Security failure at Hell's Fortress reception desk."
 msgstr "Incident de sécurité à la réception de la Forteresse Infernale."
 
-#: map/events.dat:6583
+#: map/events.dat:6644
 msgid "Spencer still needed alive to win game."
 msgstr "Spencer doit être vivant pour pouvoir gagner le jeu."
 
-#: map/events.dat:6585
+#: map/events.dat:6646
 msgid "Ooops, you killed Spencer. That was probably not a good idea."
-msgstr ""
+msgstr "Oups, tu as tué Spencer. Ça n'était probablement pas une bonne idée."
 
 #: map/item_specs.lua:121
 msgid "The first item is VERY buggy ingame, so don't use it."
@@ -2040,440 +2048,440 @@ msgstr "Accès strictement interdit (sauf personnel autorisé) "
 msgid "Teleporter. Go anywhere?"
 msgstr "Téléporteur. Allez n'importe où ?"
 
-#: map/levels.dat:4054
+#: map/levels.dat:4057
 msgid "Warehouse Level 1"
 msgstr "Entrepôt Niveau 1"
 
-#: map/levels.dat:5016
+#: map/levels.dat:5019
 msgid "Warehouse Level 2"
 msgstr "Entrepôt Niveau 2"
 
-#: map/levels.dat:5672
+#: map/levels.dat:5675
 msgid "Kevins Underground Station"
 msgstr "Station souterraine de Kévin"
 
-#: map/levels.dat:6144
+#: map/levels.dat:6147
 msgid "Machine Deck Control Room"
-msgstr "Salle de Contrôle des Machine "
+msgstr "Salle de Contrôle du Pont des Machines"
 
-#: map/levels.dat:6887 map/levels.dat:9169
+#: map/levels.dat:6890 map/levels.dat:9172
 msgid "Disruptor Shield Control"
 msgstr "Contrôle du Bouclier Disrupteur "
 
-#: map/levels.dat:8406
+#: map/levels.dat:8409
 msgid "Maintenance Tunnels"
 msgstr "Conduits de maintenance"
 
-#: map/levels.dat:9835
+#: map/levels.dat:9838
 msgid "Temple Wood"
 msgstr "Temple de bois"
 
-#: map/levels.dat:11365
+#: map/levels.dat:11368
 msgid "House for sale."
 msgstr "Maison à vendre."
 
-#: map/levels.dat:11371
+#: map/levels.dat:11374
 msgid "This sign blocks the path so you cannot walk out of the Matrix. If you did, the Matrix would crash and Mr Smith would be very angry at you!"
-msgstr ""
+msgstr "Ce signe bloque le chemin pour empêcher de sortir de la Matrice. Si tu le faisais, la Matrice s'effondrerait et Mr Smith risque d'être très en colère contre toi !"
 
-#: map/levels.dat:11586
+#: map/levels.dat:11589
 msgid "Crystal Fields"
 msgstr "Champs de cristaux"
 
-#: map/levels.dat:12647 map/levels.dat:39091 map/levels.dat:39445
-#: map/levels.dat:39845
+#: map/levels.dat:12650 map/levels.dat:39094 map/levels.dat:39448
+#: map/levels.dat:39848
 msgid "Desert Valley"
 msgstr "Vallée Déserte  "
 
-#: map/levels.dat:13129
+#: map/levels.dat:13132
 msgid "Slasher Mountains"
 msgstr "Montagne des Taillandiers "
 
-#: map/levels.dat:14313
+#: map/levels.dat:14316
 msgid "Cryo Stasis Lab"
 msgstr "Laboratoire de Cryo-stase"
 
-#: map/levels.dat:16707
+#: map/levels.dat:16710
 msgid "Three Fermis Land"
 msgstr "Tetracastin  "
 
-#: map/levels.dat:17317
+#: map/levels.dat:17320
 msgid "In case of panic: run!"
 msgstr "En cas d'Urgence :  Fuyez "
 
-#: map/levels.dat:17442
+#: map/levels.dat:17445
 msgid "Scientists quarters and Telemetry"
 msgstr "Quartiers des scientifiques et télémétrie"
 
-#: map/levels.dat:18924
+#: map/levels.dat:18927
 msgid "Disruptor Base Access Tunnel"
 msgstr "Tunnel d' Accès à la Base de Disruption"
 
-#: map/levels.dat:20016
+#: map/levels.dat:20019
 msgid "Terminal Shore"
 msgstr "presqu'île "
 
-#: map/levels.dat:20903
+#: map/levels.dat:20906
 msgid "Ethereal Meadows"
 msgstr "Les champs éthérés"
 
-#: map/levels.dat:22120
+#: map/levels.dat:22123
 msgid "Kevins Main Energy Source"
 msgstr "Source d'énergie principale de Kévin"
 
-#: map/levels.dat:22373 map/levels.dat:22893
+#: map/levels.dat:22376 map/levels.dat:22896
 msgid "Northern Shoreline"
 msgstr "Berge Nord"
 
-#: map/levels.dat:23517 map/levels.dat:23642 map/levels.dat:23767
-#: map/levels.dat:40310
+#: map/levels.dat:23520 map/levels.dat:23645 map/levels.dat:23770
+#: map/levels.dat:40313
 msgid "World Edge Sea"
 msgstr "Mer du Bout du Monde"
 
-#: map/levels.dat:23892
+#: map/levels.dat:23895
 msgid "DEBUG LEVEL 24 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
-msgstr "DEBUG LEVEL 24 -- Ce niveau a été crée pour rendre les tests de FreedroidRPG un peu plus facile et n'est PAS censé être accessible sans tricher."
+msgstr "DEBUG LEVEL 24 -- Ce niveau a été créé pour rendre les tests de FreedroidRPG un peu plus facile et n'est PAS censé être accessible sans tricher."
 
-#: map/levels.dat:24271
+#: map/levels.dat:24274
 msgid "Guy signmessage A"
-msgstr ""
+msgstr "Pancarte du mec A"
 
-#: map/levels.dat:24471
+#: map/levels.dat:24474
 msgid "Broken Glass Path"
 msgstr "Le chemin de la vitre brisée"
 
-#: map/levels.dat:25562
+#: map/levels.dat:25565
 msgid "Swamp"
 msgstr "Marais"
 
-#: map/levels.dat:26941
+#: map/levels.dat:26944
 msgid "Mushroom Forest"
 msgstr "Forêt de champignons"
 
-#: map/levels.dat:28424
+#: map/levels.dat:28427
 msgid "Some sanctuary"
 msgstr "Divers Sanctuaires"
 
-#: map/levels.dat:29298
+#: map/levels.dat:29301
 msgid "Storage room"
 msgstr "Débaras "
 
-#: map/levels.dat:29301
-msgid "Warning: Hot steam is hot!"
-msgstr ""
-
 #: map/levels.dat:29304
+msgid "Warning: Hot steam is hot!"
+msgstr "Avertissement : La vapeur chaude est chaude !"
+
+#: map/levels.dat:29307
 msgid "Danger: High voltage!"
 msgstr "Danger ! Haut voltage !"
 
-#: map/levels.dat:29454
+#: map/levels.dat:29457
 msgid "Arena"
 msgstr "Arène "
 
-#: map/levels.dat:30088
+#: map/levels.dat:30091
 msgid "Master Arena"
 msgstr "Arène des experts"
 
-#: map/levels.dat:30306
+#: map/levels.dat:30309
 msgid "Hell Fortress Entrance"
 msgstr "Entrée de la Forteresse de l'Enfer "
 
-#: map/levels.dat:33242
-msgid "Upgrade distribution server room. Access restricted to authorized personnel - trespassers will be fired."
-msgstr ""
-
 #: map/levels.dat:33245
-msgid "Please close the door behind you."
-msgstr ""
+msgid "Upgrade distribution server room. Access restricted to authorized personnel - trespassers will be fired."
+msgstr "Salle serveur de diffusion des mises à jour. Accès restreint au personnel autorisé - toute intrusion sera punie. "
 
 #: map/levels.dat:33248
-msgid "Beware of hydroxyl acid!"
-msgstr ""
+msgid "Please close the door behind you."
+msgstr "Merci de fermer la porte derrière vous."
 
 #: map/levels.dat:33251
+msgid "Beware of hydroxyl acid!"
+msgstr "Attention à l'acide hydroxyle !"
+
+#: map/levels.dat:33254
 msgid "Beware of the guns."
-msgstr ""
+msgstr "Attention aux armes."
 
-#: map/levels.dat:33254 map/levels.dat:33314 map/levels.dat:33320
+#: map/levels.dat:33257 map/levels.dat:33317 map/levels.dat:33323
 msgid "Please read the other sign first."
-msgstr ""
-
-#: map/levels.dat:33257
-msgid "To main office."
-msgstr ""
+msgstr "Veuillez d'abord lire l'autre panneau."
 
 #: map/levels.dat:33260
-msgid "Workers office."
-msgstr ""
+msgid "To main office."
+msgstr "Vers le bureau principal."
 
 #: map/levels.dat:33263
-msgid "First MS operating system - printed version"
-msgstr ""
+msgid "Workers office."
+msgstr "Bureau des ouvriers."
 
 #: map/levels.dat:33266
+msgid "First MS operating system - printed version"
+msgstr "Premier système d'exploitation MS - version papier"
+
+#: map/levels.dat:33269
 msgid "Beatings will continue until morale improves."
 msgstr ""
 
-#: map/levels.dat:33269 map/levels.dat:66642
+#: map/levels.dat:33272 map/levels.dat:66665
 msgid "!"
 msgstr "!"
 
-#: map/levels.dat:33272
-msgid "Don't waste your time reading signs. Work!"
-msgstr ""
-
 #: map/levels.dat:33275
-msgid "Server room"
-msgstr ""
+msgid "Don't waste your time reading signs. Work!"
+msgstr "Ne perdez pas votre temps à lire des panneaux. Au travail !"
 
 #: map/levels.dat:33278
-msgid "Offices  - this way"
-msgstr ""
+msgid "Server room"
+msgstr "Salle Serveur"
 
 #: map/levels.dat:33281
+msgid "Offices  - this way"
+msgstr "Bureaux - Par là"
+
+#: map/levels.dat:33284
 msgid "Slalom"
 msgstr ""
 
-#: map/levels.dat:33284
+#: map/levels.dat:33287
 msgid "Outdoor track"
 msgstr ""
 
-#: map/levels.dat:33287
+#: map/levels.dat:33290
 msgid "Accessing computers"
 msgstr ""
 
-#: map/levels.dat:33290
+#: map/levels.dat:33293
 msgid "Passing doors I"
 msgstr ""
 
-#: map/levels.dat:33293
+#: map/levels.dat:33296
 msgid "Passing doors II"
 msgstr ""
 
-#: map/levels.dat:33296
-msgid "To MegaSys office"
-msgstr ""
-
 #: map/levels.dat:33299
+msgid "To MegaSys office"
+msgstr "Vers le bureau de MegaSys"
+
+#: map/levels.dat:33302
 msgid "For service: wait"
 msgstr ""
 
-#: map/levels.dat:33302
+#: map/levels.dat:33305
 msgid "Today's special: Foobar"
 msgstr ""
 
-#: map/levels.dat:33305
+#: map/levels.dat:33308
 msgid "We recommend: Quxbaz"
 msgstr ""
 
-#: map/levels.dat:33308 map/levels.dat:33311
+#: map/levels.dat:33311 map/levels.dat:33314
 msgid "In case of boredom turn gun on."
 msgstr ""
 
-#: map/levels.dat:33317
+#: map/levels.dat:33320
 msgid "Authorized personnel only!"
-msgstr ""
+msgstr "Personnel autorisé uniquement !"
 
-#: map/levels.dat:33335
+#: map/levels.dat:33338
 msgid "If the gate is closed, please ask the office for access."
-msgstr ""
+msgstr "Si la porte est fermée, demander l'accès au bureau."
 
-#: map/levels.dat:33597
+#: map/levels.dat:33600
 msgid "Johns Riddle"
 msgstr ""
 
-#: map/levels.dat:33737
+#: map/levels.dat:33740
 msgid "Looking from above, hostiles may appear as salvation."
-msgstr ""
+msgstr "Vue d'assez loin, l'hostilité peut ressembler au salut. "
 
-#: map/levels.dat:33779
+#: map/levels.dat:33782
 msgid "Crystal Caves"
 msgstr "Cavernes de Cristal"
 
-#: map/levels.dat:36233
+#: map/levels.dat:36236
 msgid "Forgotten bunker"
 msgstr "Bunker oublié"
 
-#: map/levels.dat:36434
+#: map/levels.dat:36437
 msgid "Secret research center"
 msgstr "Centre de recherche secret"
 
-#: map/levels.dat:37700
+#: map/levels.dat:37703
 msgid "Stop!"
 msgstr "Stop !"
 
-#: map/levels.dat:37703
+#: map/levels.dat:37706
 msgid "I warned you...  You should consider turning back and running away screaming."
-msgstr ""
+msgstr "Je t'aurais prévenu... Tu ferais mieux de faire demi-tour et de t'enfuir en hurlant."
 
-#: map/levels.dat:37805
+#: map/levels.dat:37808
 msgid "Secret area service tunnels"
 msgstr "Tunnels de service de la zone secrète."
 
-#: map/levels.dat:38045
+#: map/levels.dat:38048
 msgid "Tutorial"
 msgstr "Tutoriel "
 
-#: map/levels.dat:38965
+#: map/levels.dat:38968
 msgid "Welcome to FreedroidRPG!"
 msgstr "Bienvenue à FreedroidRPG !"
 
-#: map/levels.dat:40435 map/levels.dat:40785 map/levels.dat:40939
-#: map/levels.dat:56340 map/levels.dat:63184 map/levels.dat:63839
-#: map/levels.dat:64054 map/levels.dat:64179 map/levels.dat:64740
-#: map/levels.dat:65090 map/levels.dat:65418
+#: map/levels.dat:40438 map/levels.dat:40788 map/levels.dat:40942
+#: map/levels.dat:56343 map/levels.dat:63207 map/levels.dat:63862
+#: map/levels.dat:64077 map/levels.dat:64202 map/levels.dat:64763
+#: map/levels.dat:65113 map/levels.dat:65441
 msgid "World Edge"
 msgstr "Rebord du monde"
 
-#: map/levels.dat:40671
+#: map/levels.dat:40674
 msgid "Old abandoned complex"
 msgstr "Vieux complexe à l'abandon"
 
-#: map/levels.dat:41184
+#: map/levels.dat:41187
 msgid "Worker Mines Entrance"
 msgstr "Entrée des mineurs "
 
-#: map/levels.dat:41920 map/levels.dat:42275
+#: map/levels.dat:41923 map/levels.dat:42278
 msgid "Southern Shorline"
 msgstr "Berge Sud"
 
-#: map/levels.dat:42860
+#: map/levels.dat:42863
 msgid "HF North Perimeter Defense Structure"
 msgstr ""
 
-#: map/levels.dat:43620
+#: map/levels.dat:43623
 msgid "Factory Entrance"
 msgstr "Entrée de l'Usine"
 
-#: map/levels.dat:46735
+#: map/levels.dat:46738
 msgid "Power Station and Worker District"
 msgstr "Groupe électrogène et Cité Ouvrière"
 
-#: map/levels.dat:49109 map/levels.dat:49112
+#: map/levels.dat:49112 map/levels.dat:49115
 msgid "Power generator, don't change settings!"
-msgstr ""
-
-#: map/levels.dat:49115
-msgid "Insert coin!!!!"
-msgstr ""
+msgstr "Générateur de puissance, ne pas changer les réglages !"
 
 #: map/levels.dat:49118
-msgid "You always loose? Play again, I am sure you'll win next time!"
-msgstr ""
+msgid "Insert coin!!!!"
+msgstr "Insérer une pièce !!!!"
 
 #: map/levels.dat:49121
-msgid "This is only decoration for good atmosphere. Don't cut plastic lawn!"
-msgstr ""
+msgid "You always loose? Play again, I am sure you'll win next time!"
+msgstr "Tu perds tout le temps ? Essaye encore, je suis sûr que tu gagneras la prochaine fois !"
 
 #: map/levels.dat:49124
-msgid "Plastic leaves, do not eat!"
-msgstr ""
+msgid "This is only decoration for good atmosphere. Don't cut plastic lawn!"
+msgstr "C'est de la décoration pour donner une ambiance agréable. Ne pas tondre la pelouse en plastique !"
 
 #: map/levels.dat:49127
-msgid "Caution: nothing. - There is absolutely nothing dangerous in the area!"
-msgstr ""
+msgid "Plastic leaves, do not eat!"
+msgstr "Feuilles plastiques, ne pas manger !"
 
 #: map/levels.dat:49130
-msgid "Stepping on this pad will affect absolutely nothing. LOL!"
-msgstr ""
+msgid "Caution: nothing. - There is absolutely nothing dangerous in the area!"
+msgstr "Avertissement : aucun - Il n'y a absolument rien de dangereux dans cette zone !"
 
-#: map/levels.dat:49416
+#: map/levels.dat:49133
+msgid "Stepping on this pad will affect absolutely nothing. LOL!"
+msgstr "Marcher sur ce bloc ne produira absolument aucun effet. MDR !"
+
+#: map/levels.dat:49419
 msgid "Factory Core"
 msgstr "Cœur de l'Usine"
 
-#: map/levels.dat:52858
+#: map/levels.dat:52861
 msgid "Research Centre"
 msgstr "Centre de Recherche"
 
-#: map/levels.dat:56041
-msgid "Worker 1"
-msgstr ""
-
 #: map/levels.dat:56044
-msgid "Worker 2"
-msgstr ""
+msgid "Worker 1"
+msgstr "Ouvrier 1"
 
 #: map/levels.dat:56047
-msgid "Worker 3"
-msgstr ""
+msgid "Worker 2"
+msgstr "Ouvrier 2"
 
 #: map/levels.dat:56050
-msgid "Worker 4"
-msgstr ""
+msgid "Worker 3"
+msgstr "Ouvrier 3"
 
 #: map/levels.dat:56053
-msgid "Please don't talk, sing, take any drugs or write on walls in there!"
-msgstr ""
+msgid "Worker 4"
+msgstr "Ouvrier 4"
 
 #: map/levels.dat:56056
-msgid "Don't touch the fence, there are more efficient ways to waste energy here."
-msgstr ""
+msgid "Please don't talk, sing, take any drugs or write on walls in there!"
+msgstr "Merci de ne pas parler, chanter, prendre des drogues ou écrire sur les murs dans cet endroit !"
 
 #: map/levels.dat:56059
-msgid "I have no idea what this red thing is, but it looks pretty cool."
-msgstr ""
+msgid "Don't touch the fence, there are more efficient ways to waste energy here."
+msgstr "Ne pas toucher la clôture, il y a par ici des moyens plus efficaces pour perdre de l'énergie."
 
-#: map/levels.dat:56495
+#: map/levels.dat:56062
+msgid "I have no idea what this red thing is, but it looks pretty cool."
+msgstr "Je n'ai aucune idée de ce que cette chose rouge peut être, mais elle est plutôt charmante."
+
+#: map/levels.dat:56498
 msgid "Machine Deck Upper Catacombs"
 msgstr "Catacombes Hautes du Pont des Machines"
 
-#: map/levels.dat:56609
+#: map/levels.dat:56612
 msgid "Machine Deck Lower Catacombs"
 msgstr "Catacombes Basses du Pont des Machines"
 
-#: map/levels.dat:56723
+#: map/levels.dat:56726
 msgid "Freight Station"
 msgstr "Gare de Fret"
 
-#: map/levels.dat:58211
+#: map/levels.dat:58214
 msgid "Old Server Room"
 msgstr "Vielles Salle des Serveur "
 
-#: map/levels.dat:59127
+#: map/levels.dat:59130
 msgid "Factory Office"
 msgstr "Bureau de l'Usine "
 
-#: map/levels.dat:62893
+#: map/levels.dat:62916
 msgid "Strange Dungeon"
 msgstr "Drôle de Dongeon "
 
-#: map/levels.dat:63517
+#: map/levels.dat:63540
 msgid "Landing Zone"
 msgstr "Piste d'Atterrissage "
 
-#: map/levels.dat:65611
+#: map/levels.dat:65634
 msgid "Shelter"
 msgstr "Abri"
 
-#: map/levels.dat:65728
+#: map/levels.dat:65751
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT ment to be accessible without cheating."
 msgstr "DEBUG LEVEL 70 -- Ce niveau a été crée pour rendre les tests de FreedroidRPG un peu plus facile et n'est PAS censé être accessible sans tricher."
 
-#: map/levels.dat:66639
+#: map/levels.dat:66662
 msgid "?"
 msgstr "?"
 
-#: map/levels.dat:66645
+#: map/levels.dat:66668
 msgid "<"
 msgstr "<"
 
-#: map/levels.dat:66648
+#: map/levels.dat:66671
 msgid "? (flashing)"
-msgstr ""
+msgstr "? (clignotant)"
 
-#: map/levels.dat:66651
+#: map/levels.dat:66674
 msgid "! (flashing)"
-msgstr ""
+msgstr "! (clignotant)"
 
-#: map/levels.dat:66654
+#: map/levels.dat:66677
 msgid "< (flashing)"
-msgstr ""
+msgstr "< (clignotant)"
 
-#: map/levels.dat:66680
+#: map/levels.dat:66703
 msgid "Empty Sea"
 msgstr "Mer asséchée "
 
-#: map/levels.dat:66842
+#: map/levels.dat:66865
 msgid "Omega Island"
 msgstr "Îles Omega"
 
@@ -2545,7 +2553,7 @@ msgstr "Pendragon - Combattant"
 msgid "Michelangelo - Chef"
 msgstr ""
 
-#: map/npc_specs.lua:43 map/ReturnOfTux.droids:339
+#: map/npc_specs.lua:43 map/ReturnOfTux.droids:338
 msgid "Koan"
 msgstr "Koan"
 
@@ -2605,8 +2613,8 @@ msgstr "Doc Moore – Médecin"
 msgid "Dixon - Mechanic"
 msgstr "Dixon – Mécanicien"
 
-#: map/npc_specs.lua:69 map/ReturnOfTux.droids:580 map/ReturnOfTux.droids:581
-#: map/ReturnOfTux.droids:582 map/ReturnOfTux.droids:583
+#: map/npc_specs.lua:69 map/ReturnOfTux.droids:579 map/ReturnOfTux.droids:580
+#: map/ReturnOfTux.droids:581 map/ReturnOfTux.droids:582
 msgid "Cult Member"
 msgstr ""
 
@@ -2698,6 +2706,11 @@ msgstr "Etagère "
 #: map/obstacle_specs.lua:3444 map/obstacle_specs.lua:3453
 msgid "Statue"
 msgstr "Statue "
+
+#: map/obstacle_specs.lua:3482 map/obstacle_specs.lua:3492
+#: map/obstacle_specs.lua:3502 map/obstacle_specs.lua:3511
+msgid "Secure terminal"
+msgstr ""
 
 #: map/quests.dat:36
 msgid "Bender's problem"
@@ -2949,7 +2962,7 @@ msgstr "614 - Robot gardien de la porte nord"
 msgid "COBAL Programmer"
 msgstr "Programmeur COBOL "
 
-#: map/ReturnOfTux.droids:27 map/ReturnOfTux.droids:467
+#: map/ReturnOfTux.droids:27 map/ReturnOfTux.droids:466
 msgid "Shopowner"
 msgstr "Propriétaire de magasin"
 
@@ -2973,7 +2986,7 @@ msgstr "Garde de la porte de l'entrepôt"
 msgid "North Gate Guard"
 msgstr "Garde de la porte nord"
 
-#: map/ReturnOfTux.droids:35 map/ReturnOfTux.droids:390
+#: map/ReturnOfTux.droids:35 map/ReturnOfTux.droids:389
 msgid "???"
 msgstr "???"
 
@@ -3049,298 +3062,294 @@ msgid "Stolen 614"
 msgstr "614 Volé"
 
 #: map/ReturnOfTux.droids:204
-msgid "INV"
-msgstr ""
-
-#: map/ReturnOfTux.droids:205
 msgid "GUN"
 msgstr ""
 
-#: map/ReturnOfTux.droids:206
+#: map/ReturnOfTux.droids:205
 msgid "FEM"
 msgstr ""
 
-#: map/ReturnOfTux.droids:207
+#: map/ReturnOfTux.droids:206
 msgid "543"
 msgstr "543"
 
-#: map/ReturnOfTux.droids:208
+#: map/ReturnOfTux.droids:207
 msgid "BAR"
 msgstr ""
 
-#: map/ReturnOfTux.droids:209
+#: map/ReturnOfTux.droids:208
 msgid "TAN"
 msgstr ""
 
-#: map/ReturnOfTux.droids:210
+#: map/ReturnOfTux.droids:209
 msgid "JAS"
 msgstr ""
 
-#: map/ReturnOfTux.droids:211
+#: map/ReturnOfTux.droids:210
 msgid "KEV"
 msgstr ""
 
-#: map/ReturnOfTux.droids:212
+#: map/ReturnOfTux.droids:211
 msgid "COO"
 msgstr ""
 
-#: map/ReturnOfTux.droids:213
+#: map/ReturnOfTux.droids:212
 msgid "GUB"
 msgstr ""
 
-#: map/ReturnOfTux.droids:214
+#: map/ReturnOfTux.droids:213
 msgid "WOR"
 msgstr ""
 
-#: map/ReturnOfTux.droids:216
+#: map/ReturnOfTux.droids:215
 msgid "MUM"
 msgstr ""
 
-#: map/ReturnOfTux.droids:217
+#: map/ReturnOfTux.droids:216
 msgid "DIX"
 msgstr ""
 
-#: map/ReturnOfTux.droids:218
+#: map/ReturnOfTux.droids:217
 msgid "GUA"
 msgstr ""
 
-#: map/ReturnOfTux.droids:219
+#: map/ReturnOfTux.droids:218
 msgid "DOC"
 msgstr ""
 
-#: map/ReturnOfTux.droids:220
+#: map/ReturnOfTux.droids:219
 msgid "PRO"
 msgstr ""
 
-#: map/ReturnOfTux.droids:221
+#: map/ReturnOfTux.droids:220
 msgid "999"
 msgstr "999"
 
-#: map/ReturnOfTux.droids:222
+#: map/ReturnOfTux.droids:221
 msgid "883"
 msgstr "883"
 
-#: map/ReturnOfTux.droids:223
+#: map/ReturnOfTux.droids:222
 msgid "834"
 msgstr "834"
 
-#: map/ReturnOfTux.droids:224
+#: map/ReturnOfTux.droids:223
 msgid "821"
 msgstr "821"
 
-#: map/ReturnOfTux.droids:226
+#: map/ReturnOfTux.droids:225
 msgid "742"
 msgstr "742"
 
-#: map/ReturnOfTux.droids:227
+#: map/ReturnOfTux.droids:226
 msgid "711"
 msgstr "711"
 
-#: map/ReturnOfTux.droids:228
+#: map/ReturnOfTux.droids:227
 msgid "629"
 msgstr "629"
 
-#: map/ReturnOfTux.droids:229
+#: map/ReturnOfTux.droids:228
 msgid "615"
 msgstr "615"
 
-#: map/ReturnOfTux.droids:230
+#: map/ReturnOfTux.droids:229
 msgid "614"
 msgstr "614"
 
-#: map/ReturnOfTux.droids:231
+#: map/ReturnOfTux.droids:230
 msgid "603"
 msgstr "603"
 
-#: map/ReturnOfTux.droids:232
+#: map/ReturnOfTux.droids:231
 msgid "598"
 msgstr "598"
 
-#: map/ReturnOfTux.droids:233
+#: map/ReturnOfTux.droids:232
 msgid "571"
 msgstr "571"
 
-#: map/ReturnOfTux.droids:234
+#: map/ReturnOfTux.droids:233
 msgid "516"
 msgstr "516"
 
-#: map/ReturnOfTux.droids:235
+#: map/ReturnOfTux.droids:234
 msgid "493"
 msgstr "493"
 
-#: map/ReturnOfTux.droids:236
+#: map/ReturnOfTux.droids:235
 msgid "476"
 msgstr "476"
 
-#: map/ReturnOfTux.droids:237
+#: map/ReturnOfTux.droids:236
 msgid "420"
 msgstr "420"
 
-#: map/ReturnOfTux.droids:238
+#: map/ReturnOfTux.droids:237
 msgid "329"
 msgstr "329"
 
-#: map/ReturnOfTux.droids:239
+#: map/ReturnOfTux.droids:238
 msgid "302"
 msgstr "302"
 
-#: map/ReturnOfTux.droids:240
+#: map/ReturnOfTux.droids:239
 msgid "296"
 msgstr "296"
 
-#: map/ReturnOfTux.droids:241
+#: map/ReturnOfTux.droids:240
 msgid "249"
 msgstr "249"
 
-#: map/ReturnOfTux.droids:242
+#: map/ReturnOfTux.droids:241
 msgid "247"
 msgstr "247"
 
-#: map/ReturnOfTux.droids:243
+#: map/ReturnOfTux.droids:242
 msgid "139"
 msgstr "139"
 
-#: map/ReturnOfTux.droids:244
+#: map/ReturnOfTux.droids:243
 msgid "123"
 msgstr "123"
 
-#: map/ReturnOfTux.droids:245
+#: map/ReturnOfTux.droids:244
 msgid "Dude"
 msgstr "Mec"
 
-#: map/ReturnOfTux.droids:246
+#: map/ReturnOfTux.droids:245
 msgid "Guy"
 msgstr "Gars"
 
-#: map/ReturnOfTux.droids:247
+#: map/ReturnOfTux.droids:246
 msgid "Controllable Bot"
 msgstr ""
 
-#: map/ReturnOfTux.droids:248
+#: map/ReturnOfTux.droids:247
 msgid "DeadGuy"
 msgstr "GarsMort"
 
-#: map/ReturnOfTux.droids:249
+#: map/ReturnOfTux.droids:248
 msgid "FactionDeadBot"
 msgstr ""
 
-#: map/ReturnOfTux.droids:270
+#: map/ReturnOfTux.droids:269
 msgid "John"
 msgstr ""
 
-#: map/ReturnOfTux.droids:300
+#: map/ReturnOfTux.droids:299
 msgid "571 - Arena Manager"
 msgstr "571 - Gérant de l'Arène"
 
-#: map/ReturnOfTux.droids:306
+#: map/ReturnOfTux.droids:305
 msgid "Melissa.I"
 msgstr "Mélissa.I"
 
-#: map/ReturnOfTux.droids:307
+#: map/ReturnOfTux.droids:306
 msgid "ILOVEYOU"
 msgstr "JET'AIME"
 
-#: map/ReturnOfTux.droids:308
+#: map/ReturnOfTux.droids:307
 msgid "Fail-safe"
 msgstr ""
 
-#: map/ReturnOfTux.droids:309
+#: map/ReturnOfTux.droids:308
 msgid "CIH.1103"
 msgstr "CIH.1103"
 
-#: map/ReturnOfTux.droids:315
+#: map/ReturnOfTux.droids:314
 msgid "MSDD - MegaSys Defence Droid"
 msgstr "DDMS - Droïd de Défance de MégaSys "
 
-#: map/ReturnOfTux.droids:316 map/ReturnOfTux.droids:317
-#: map/ReturnOfTux.droids:318 map/ReturnOfTux.droids:319
-#: map/ReturnOfTux.droids:320
+#: map/ReturnOfTux.droids:315 map/ReturnOfTux.droids:316
+#: map/ReturnOfTux.droids:317 map/ReturnOfTux.droids:318
+#: map/ReturnOfTux.droids:319
 msgid "TD"
 msgstr "TD"
 
-#: map/ReturnOfTux.droids:321 map/ReturnOfTux.droids:508
+#: map/ReturnOfTux.droids:320 map/ReturnOfTux.droids:507
 msgid "Update Server Guard"
 msgstr "Mise à jour du serveur de garde"
 
-#: map/ReturnOfTux.droids:345 map/ReturnOfTux.droids:346
-#: map/ReturnOfTux.droids:347 map/ReturnOfTux.droids:355
-#: map/ReturnOfTux.droids:358
+#: map/ReturnOfTux.droids:344 map/ReturnOfTux.droids:345
+#: map/ReturnOfTux.droids:346 map/ReturnOfTux.droids:354
+#: map/ReturnOfTux.droids:357
 msgid "SADD"
 msgstr "DDAS"
 
-#: map/ReturnOfTux.droids:348
+#: map/ReturnOfTux.droids:347
 msgid "Toilet droid"
 msgstr "Toilette robotisé "
 
-#: map/ReturnOfTux.droids:349
+#: map/ReturnOfTux.droids:348
 msgid "Sanitary technician"
 msgstr "Technicien hygieniste "
 
-#: map/ReturnOfTux.droids:350
+#: map/ReturnOfTux.droids:349
 msgid "Criocapsules maintainer"
 msgstr "Mainteneur de Criocapsules "
 
-#: map/ReturnOfTux.droids:351
+#: map/ReturnOfTux.droids:350
 msgid "Servant"
 msgstr "Servant "
 
-#: map/ReturnOfTux.droids:352 map/ReturnOfTux.droids:353
-#: map/ReturnOfTux.droids:354 map/ReturnOfTux.droids:356
+#: map/ReturnOfTux.droids:351 map/ReturnOfTux.droids:352
+#: map/ReturnOfTux.droids:353 map/ReturnOfTux.droids:355
 msgid "Guard"
 msgstr "Garde"
 
-#: map/ReturnOfTux.droids:357
+#: map/ReturnOfTux.droids:356
 msgid "Ashman"
 msgstr "Homme de cendre"
 
-#: map/ReturnOfTux.droids:360
+#: map/ReturnOfTux.droids:359
 msgid "SACD - Defender"
 msgstr ""
 
-#: map/ReturnOfTux.droids:361
+#: map/ReturnOfTux.droids:360
 msgid "Scientist"
 msgstr "Scientifque"
 
-#: map/ReturnOfTux.droids:362
+#: map/ReturnOfTux.droids:361
 msgid "Hostile Droid"
 msgstr "Droïd hostile "
 
-#: map/ReturnOfTux.droids:373 map/ReturnOfTux.droids:374
-#: map/ReturnOfTux.droids:375 map/ReturnOfTux.droids:376
-#: map/ReturnOfTux.droids:377 map/ReturnOfTux.droids:378
-#: map/ReturnOfTux.droids:379 map/ReturnOfTux.droids:380
-#: map/ReturnOfTux.droids:381 map/ReturnOfTux.droids:382
-#: map/ReturnOfTux.droids:383 map/ReturnOfTux.droids:384
-#: map/ReturnOfTux.droids:385 map/ReturnOfTux.droids:386
-#: map/ReturnOfTux.droids:387
+#: map/ReturnOfTux.droids:372 map/ReturnOfTux.droids:373
+#: map/ReturnOfTux.droids:374 map/ReturnOfTux.droids:375
+#: map/ReturnOfTux.droids:376 map/ReturnOfTux.droids:377
+#: map/ReturnOfTux.droids:378 map/ReturnOfTux.droids:379
+#: map/ReturnOfTux.droids:380 map/ReturnOfTux.droids:381
+#: map/ReturnOfTux.droids:382 map/ReturnOfTux.droids:383
+#: map/ReturnOfTux.droids:384 map/ReturnOfTux.droids:385
+#: map/ReturnOfTux.droids:386
 msgid "Target"
 msgstr "Cible"
 
-#: map/ReturnOfTux.droids:388
+#: map/ReturnOfTux.droids:387
 msgid "Kill Me Too"
 msgstr "Tues-moi aussi"
 
-#: map/ReturnOfTux.droids:389
+#: map/ReturnOfTux.droids:388
 msgid "Kill Me"
 msgstr "Tues-moi"
 
-#: map/ReturnOfTux.droids:451
+#: map/ReturnOfTux.droids:450
 msgid "Bot Factory Gate Guard Leader"
 msgstr "Chef des gardiens de la porte de l'usine de robots"
 
-#: map/ReturnOfTux.droids:452
+#: map/ReturnOfTux.droids:451
 msgid "Bot Factory Gate Guard"
 msgstr "Gardien de la porte de l'usine de robots"
 
-#: map/ReturnOfTux.droids:458
+#: map/ReturnOfTux.droids:457
 msgid "Reception Droid"
 msgstr ""
 
-#: map/ReturnOfTux.droids:459 map/ReturnOfTux.droids:460
+#: map/ReturnOfTux.droids:458 map/ReturnOfTux.droids:459
 msgid "Worker"
 msgstr "Ouvrier"
 
-#: map/ReturnOfTux.droids:564
+#: map/ReturnOfTux.droids:563
 msgid "Corporate Guy"
 msgstr ""
 

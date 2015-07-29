@@ -5,7 +5,7 @@
 # Translators:
 # Benjamin Leduc <giby_the_kid@yahoo.fr>, 2014
 # fluzz <fluzz@gmx.com>, 2014
-# fluzz <fluzz@gmx.com>, 2014
+# fluzz <fluzz@gmx.com>, 2014-2015
 # sebastienadam <sebastien.adam.be@gmail.com>, 2014
 # sebastienadam <sebastien.adam.be@gmail.com>, 2014
 # Xenux <xenux@freedroid.org>, 2014
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-04-14 01:11+0000\n"
-"PO-Revision-Date: 2015-04-14 01:05+0000\n"
+"POT-Creation-Date: 2015-07-29 20:07+0200\n"
+"PO-Revision-Date: 2015-07-29 18:08+0000\n"
 "Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
@@ -38,11 +38,11 @@ msgstr "Journal des quêtes mis à jour : "
 msgid "Quest completed: "
 msgstr "Quête accomplie : "
 
-#: src/action.c:535
+#: src/action.c:536
 msgid "Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\"."
 msgstr "Des motifs colorés apparaissent à l'écran, mais ils ne ressemblent à aucune interface graphique que tu connaisses. Peut-être est-ce qu'ils appellent un \"économiseur\" d'écran."
 
-#: src/action.c:551
+#: src/action.c:556
 msgid "There is nothing on this sign."
 msgstr "Il n'y a rien sur ce panneau."
 
@@ -146,36 +146,40 @@ msgstr "Dégâts"
 msgid "Armor"
 msgstr "Armure"
 
-#: src/chat.c:666 src/chat.c:676
+#: src/chat.c:547
+msgid "Click anywhere to continue..."
+msgstr ""
+
+#: src/chat.c:693 src/chat.c:703
 msgid "[n]--- Start of Dialog ---\n"
 msgstr "[n]--- Début de la discussion ---\n"
 
 #. TRANSLATORS: Your friend <bot's short description> was killed by <bot's short description>
-#: src/enemy.c:975
+#: src/enemy.c:980
 #, c-format
 msgid "Your friend [s]%s[v] was killed by %s."
 msgstr "Votre ami [s]%s[v] a été tué par %s."
 
 #. TRANSLATORS: You killed <bot's short description>
-#: src/enemy.c:979
+#: src/enemy.c:984
 #, c-format
 msgid "You killed [s]%s[v]."
 msgstr "Vous avez tué [s]%s[v]."
 
 #. TRANSLATORS: <bot's short description> halted and caught fire
-#: src/enemy.c:983
+#: src/enemy.c:988
 #, c-format
 msgid "[s]%s[v] halted and caught fire."
 msgstr "[s]%s[v] s'est arrêté et a pris feu."
 
 #. TRANSLATORS: <bot's short description> is dead
-#: src/enemy.c:986
+#: src/enemy.c:991
 #, c-format
 msgid "[s]%s[v] is dead."
 msgstr "[s]%s[v] est mort."
 
 #. TRANSLATORS: For defeating <bot's short description>, you receive <10> experience
-#: src/enemy.c:991
+#: src/enemy.c:996
 #, c-format
 msgid "For defeating [s]%s[v], you receive %d experience."
 msgstr "Pour avoir battu [s]%s[v], tu gagnes %d points d'expérience."
@@ -326,7 +330,7 @@ msgstr "Retour au Menu Principal"
 
 #: src/influ.c:987
 msgid "Return to Editor"
-msgstr ""
+msgstr "Retour à l'éditeur"
 
 #: src/influ.c:989 src/menu.c:851 src/menu.c:1005
 #: src/lvledit/lvledit_menu.c:965
@@ -339,19 +343,19 @@ msgstr "Quitter FreedroidRPG"
 msgid "Out of [s]%s[v]!"
 msgstr "Plus de [s]%s[v] !"
 
-#: src/init.c:776 src/saveloadgame.c:442
+#: src/init.c:777 src/saveloadgame.c:446
 msgid "--- Message Log ---"
 msgstr "--- Historique des messages ---"
 
-#: src/init.c:778
+#: src/init.c:779
 msgid "Starting tutorial."
 msgstr "Commencer le Tutoriel."
 
-#: src/init.c:780
+#: src/init.c:781
 msgid "Starting new game."
 msgstr "Commencer une nouvelle partie."
 
-#: src/init.c:1083
+#: src/init.c:1084
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -367,11 +371,11 @@ msgstr ""
 "\n"
 "Bonne chance !\n"
 
-#: src/init.c:1100 src/init.c:1101
+#: src/init.c:1101 src/init.c:1102
 msgid "Game over.\n"
 msgstr "Fin de la partie.\n"
 
-#: src/init.c:1167 src/init.c:1168
+#: src/init.c:1168 src/init.c:1169
 msgid "Game won.\n"
 msgstr "Tu as gagné la partie.\n"
 
@@ -1124,21 +1128,29 @@ msgstr "Extinction Automatique"
 msgid "Weapon reloaded"
 msgstr "Arme rechargée"
 
-#: src/map.c:1167
+#: src/map.c:1147
 msgid ""
 "-- WARNING --\n"
 "An obstacle with invalid coords was loaded onto a map.\n"
 "We keep it to help finding the bug.\n"
 "See the report in your terminal console."
 msgstr ""
+"-- ATTENTION --\n"
+"Un obstacle ayant des coordonnées invalides a été chargé sur une carte.\n"
+"Nous le conservons en mémoire pour aider à trouver l'erreur.\n"
+"Voir le rapport dans la console du terminal."
 
-#: src/map.c:1399
+#: src/map.c:1370
 msgid ""
 "-- WARNING --\n"
 "An obstacle with invalid coords is saved to a map.\n"
 "We accept to save it, for further inspection of the bug.\n"
 "See the report in your terminal console."
 msgstr ""
+"-- ATTENTION --\n"
+"Un obstacle ayant des coordonnées invalides a été sauvegardé sur une carte.\n"
+"Nous effectuons sa sauvegarde, pour permettre de déterminer l'erreur.\n"
+"Voir le rapport dans la console du terminal. "
 
 #: src/menu.c:44 src/menu.c:845
 msgid "Play"
@@ -1434,6 +1446,14 @@ msgid ""
 "\n"
 "     > "
 msgstr ""
+"\n"
+"Entrer un nom\n"
+"pour le nouvel héros :\n"
+"\n"
+"ENTRÉE pour accepter.\n"
+"ÉCHAPPE pour annuler.\n"
+"\n"
+">"
 
 #: src/menu.c:1544
 #, c-format
@@ -1475,15 +1495,15 @@ msgstr "Charger un Héros existant"
 msgid "Delete existing Hero"
 msgstr "Effacer un Héros existant"
 
-#: src/misc.c:856
+#: src/misc.c:892
 msgid "GAME PAUSED"
 msgstr "JEU EN PAUSE"
 
-#: src/misc.c:857
+#: src/misc.c:893
 msgid "press p to resume"
 msgstr "appuyez sur p pour reprendre"
 
-#: src/misc.c:1150
+#: src/misc.c:1186
 #, c-format
 msgid "Arrived at %s."
 msgstr "Arrivé à %s."
@@ -1494,6 +1514,9 @@ msgid ""
 "An obstacle with invalid coords was tried to be added to a map.\n"
 "See the report in your terminal console."
 msgstr ""
+"-- ATTENTION --\n"
+"Tentative d'ajout sur une carte d'un obstacle ayant des coordonnées invalides.\n"
+"Voir le rapport dans la console du terminal."
 
 #: src/obstacle.c:202
 msgid ""
@@ -1501,6 +1524,9 @@ msgid ""
 "Not moving it.\n"
 "See the report in your terminal console."
 msgstr ""
+"Tentative de déplacement d'un obstacle à une position invalide.\n"
+"Déplacement non autorisé.\n"
+"Voir le rapport dans la console du terminal."
 
 #: src/quest_browser_ui.c:65
 #, c-format
@@ -1643,32 +1669,32 @@ msgstr "[n]Aucune quête en cours.[w]"
 msgid "[n]No completed quests yet.[w]"
 msgstr "[n]Aucune quête terminée.[w]"
 
-#: src/saveloadgame.c:167
+#: src/saveloadgame.c:171
 msgid "Last Modified:"
 msgstr "Dernière modification :"
 
-#: src/saveloadgame.c:195
+#: src/saveloadgame.c:199
 #, c-format
 msgid "File Size: %2.3f MB"
 msgstr "Taille fichier : %2.3f MB"
 
-#: src/saveloadgame.c:231
+#: src/saveloadgame.c:235
 msgid "You are dead. Savegame not modified."
 msgstr "Tu es mort. Sauvegarde non modifiée."
 
-#: src/saveloadgame.c:260
+#: src/saveloadgame.c:264
 msgid "Saving"
 msgstr "Sauvegarde"
 
-#: src/saveloadgame.c:293
+#: src/saveloadgame.c:297
 msgid "Game saved."
 msgstr "Partie sauvegardée."
 
-#: src/saveloadgame.c:345
+#: src/saveloadgame.c:349
 msgid "Loading"
 msgstr "Chargement"
 
-#: src/saveloadgame.c:362
+#: src/saveloadgame.c:366
 msgid ""
 "W A R N I N G !\n"
 "\n"
@@ -1682,19 +1708,19 @@ msgstr ""
 "Cela peut signifier qu'elle n'existe réellement pas parce que tu as essayé de charger une partie qui n'a pas encore été sauvegardée.\n"
 "L'autre explication de cette erreur peut être une erreur sévère dans FreedroidRPG. Si tu penses que c'est le cas, merci de l'indiquer aux développeurs."
 
-#: src/saveloadgame.c:363
+#: src/saveloadgame.c:367
 msgid "Failed to load old game."
 msgstr "Impossible de charger l'ancienne sauvegarde."
 
-#: src/saveloadgame.c:397
+#: src/saveloadgame.c:401
 msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
 msgstr "Version ou 'structsize' non conforme ! Cette sauvegarde n'a pas été effectuée avec la même version de FreedroidRPG... Possible dysfonctionnement."
 
-#: src/saveloadgame.c:438
+#: src/saveloadgame.c:442
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Mise à jour des images de Tux (cela peut prendre un peu de temps...)"
 
-#: src/saveloadgame.c:443
+#: src/saveloadgame.c:447
 msgid "Game loaded."
 msgstr "Partie chargée."
 
@@ -1756,12 +1782,12 @@ msgstr "Invendable\n"
 #: src/shop.c:327
 #, c-format
 msgid "Time between two attacks: %3.2fs\n"
-msgstr ""
+msgstr "Délai entre deux attaques : %3.2fs\n"
 
 #: src/shop.c:331
 #, c-format
 msgid "Time to reload ammo clip: %3.2fs\n"
-msgstr ""
+msgstr "Délai de rechargement d'un chargeur : %3.2fs\n"
 
 #: src/shop.c:334
 #, c-format
@@ -1889,8 +1915,8 @@ msgstr "Type unité %s\n"
 msgid "Entry : %d\n"
 msgstr "Numéro : %d\n"
 
-#: src/takeover.c:224 src/lvledit/lvledit_enemy.c:256
-#: src/lvledit/lvledit_enemy.c:264 src/lvledit/lvledit_enemy.c:280
+#: src/takeover.c:224 src/lvledit/lvledit_enemy.c:260
+#: src/lvledit/lvledit_enemy.c:268 src/lvledit/lvledit_enemy.c:285
 #: src/lvledit/lvledit_menu.c:553
 msgid "none"
 msgstr "aucun(e)"
@@ -1976,9 +2002,9 @@ msgstr "invisible"
 
 #: src/text.c:378
 msgid "scanning"
-msgstr ""
+msgstr "scanner"
 
-#: src/text_public.c:285
+#: src/text_public.c:303
 msgid "Click to continue..."
 msgstr "Cliquer pour continuer..."
 
@@ -2041,7 +2067,7 @@ msgstr "Objet reçu : %s"
 msgid "Cancel item drop"
 msgstr "Dépose d'objet annulé"
 
-#: src/lvledit/lvledit_actions.c:270
+#: src/lvledit/lvledit_actions.c:275
 msgid ""
 "\n"
 "Please enter obstacle label: \n"
@@ -2051,7 +2077,7 @@ msgstr ""
 "Saisir le nom de l'obstacle : \n"
 "\n"
 
-#: src/lvledit/lvledit_actions.c:610
+#: src/lvledit/lvledit_actions.c:624
 msgid ""
 "\n"
 "Please enter map label: \n"
@@ -2061,7 +2087,7 @@ msgstr ""
 "Saisir le nom de l'étiquette de carte : \n"
 "\n"
 
-#: src/lvledit/lvledit_actions.c:626
+#: src/lvledit/lvledit_actions.c:640
 msgid "The new name of the map label already exists, please choose an other name."
 msgstr "Le nouveau nom de l'étiquette de carte existe déjà, merci de choisir un autre nom."
 
@@ -2106,7 +2132,7 @@ msgid "Number of random droids:"
 msgstr "Nombre de droïdes aléatoires :"
 
 #: src/lvledit/lvledit_enemy.c:99 src/lvledit/lvledit_enemy.c:165
-#: src/lvledit/lvledit_enemy.c:247
+#: src/lvledit/lvledit_enemy.c:251
 msgid "Invalid number! The number must be natural."
 msgstr "Nombre invalide ! Le nombre doit être entier."
 
@@ -2150,12 +2176,12 @@ msgstr ""
 "%s\n"
 " Nom du dialogue : "
 
-#: src/lvledit/lvledit_enemy.c:193
+#: src/lvledit/lvledit_enemy.c:194
 #, c-format
 msgid "Dialog \"%s\" not found!"
 msgstr "Dialogue \"%s\" non trouvé !"
 
-#: src/lvledit/lvledit_enemy.c:201
+#: src/lvledit/lvledit_enemy.c:203
 #, c-format
 msgid ""
 "%s\n"
@@ -2164,29 +2190,31 @@ msgstr ""
 "%s\n"
 " Description courte (en Anglais) : "
 
-#: src/lvledit/lvledit_enemy.c:213
+#: src/lvledit/lvledit_enemy.c:215
 #, c-format
 msgid ""
 "%s\n"
 " Can move: "
 msgstr ""
+"%s\n"
+"Peut bouger:"
 
-#: src/lvledit/lvledit_enemy.c:214 src/lvledit/lvledit_enemy.c:223
-#: src/lvledit/lvledit_enemy.c:234 src/lvledit/lvledit_enemy.c:281
-#: src/lvledit/lvledit_enemy.c:293 src/lvledit/lvledit_menu.c:589
+#: src/lvledit/lvledit_enemy.c:216 src/lvledit/lvledit_enemy.c:225
+#: src/lvledit/lvledit_enemy.c:238 src/lvledit/lvledit_enemy.c:286
+#: src/lvledit/lvledit_enemy.c:299 src/lvledit/lvledit_menu.c:589
 #: src/lvledit/lvledit_menu.c:603 src/lvledit/lvledit_menu.c:638
 msgid "no"
 msgstr "non"
 
-#: src/lvledit/lvledit_enemy.c:214 src/lvledit/lvledit_enemy.c:227
-#: src/lvledit/lvledit_enemy.c:234 src/lvledit/lvledit_enemy.c:281
-#: src/lvledit/lvledit_enemy.c:289 src/lvledit/lvledit_menu.c:589
+#: src/lvledit/lvledit_enemy.c:216 src/lvledit/lvledit_enemy.c:229
+#: src/lvledit/lvledit_enemy.c:238 src/lvledit/lvledit_enemy.c:286
+#: src/lvledit/lvledit_enemy.c:295 src/lvledit/lvledit_menu.c:589
 #: src/lvledit/lvledit_menu.c:603 src/lvledit/lvledit_menu.c:636
 msgid "yes"
 msgstr "oui"
 
 #. TRANSLATORS: the max. distance the bot can move away from its spawn position
-#: src/lvledit/lvledit_enemy.c:234
+#: src/lvledit/lvledit_enemy.c:238
 #, c-format
 msgid ""
 "%s\n"
@@ -2196,25 +2224,29 @@ msgstr ""
 " Distance maximale au domicile : "
 
 #. TRANSLATORS: Item that is dropped on ground if the bot dies
-#: src/lvledit/lvledit_enemy.c:255
+#: src/lvledit/lvledit_enemy.c:259
 #, c-format
 msgid ""
 "%d\n"
 " Item to drop on death: "
 msgstr ""
+"%d\n"
+"Objet à lâcher en mourant :"
 
-#: src/lvledit/lvledit_enemy.c:273
+#: src/lvledit/lvledit_enemy.c:277
 #, c-format
 msgid "Item \"%s\" not found!"
 msgstr "Objet \"%s\" non trouvé !"
 
 #. TRANSLATORS: Will the bot walk towards tux as soon as he seems tux?
-#: src/lvledit/lvledit_enemy.c:279
+#: src/lvledit/lvledit_enemy.c:284
 #, c-format
 msgid ""
 "%s\n"
 " Approaches Tux: "
 msgstr ""
+"%s\n"
+"S'approche de Tux :"
 
 #: src/lvledit/lvledit_map.c:379 src/lvledit/lvledit_map.c:393
 msgid "Your ship was saved..."
@@ -2383,7 +2415,7 @@ msgstr "Aucune"
 #: src/lvledit/lvledit_menu.c:598
 #, c-format
 msgid "Item drop class for obstacles: %s.  (<-/->)"
-msgstr ""
+msgstr "Classe d'objet lâché pour les obstacles : %s. (<-/->)"
 
 #: src/lvledit/lvledit_menu.c:602
 msgid "Teleport blockade"
@@ -2494,7 +2526,7 @@ msgstr "Continuer l'édition"
 msgid "Show Help"
 msgstr "Montrer l'aide"
 
-#: src/lvledit/lvledit_tool_place.c:689
+#: src/lvledit/lvledit_tool_place.c:693
 msgid "Place tool does not support this type of object."
 msgstr "L'outil de placement ne supporte pas ce type d'objet."
 
@@ -2525,6 +2557,10 @@ msgid ""
 "\t\t\tSTR: >%d\n"
 "%s"
 msgstr ""
+"%s (%s)\n"
+"⇥⇥⇥Dommage : %d-%d, Tps tir : %.2fs, Tps rech : %.2fs, Munitions : (%d/%s)\n"
+"⇥⇥⇥FORCE: >%d\n"
+"%s"
 
 #: src/lvledit/lvledit_widget_toolbar.c:156
 #: src/lvledit/lvledit_widget_toolbar.c:166
@@ -2539,6 +2575,10 @@ msgid ""
 "\t\t\tSTR: >%d, DEX: >%d, COOL: >%d\n"
 "%s"
 msgstr ""
+"%s (%s)\n"
+"⇥⇥⇥Dommage : %d-%d, Tps tir : %.2fs,\n"
+"⇥⇥⇥FORCE : >%d, DEXT : >%d, REFROID : >%d\n"
+"%s"
 
 #: src/lvledit/lvledit_widget_toolbar.c:169
 #, c-format
@@ -2654,17 +2694,17 @@ msgstr "droïdes"
 msgid "humans"
 msgstr "humains"
 
-#: src/lvledit/lvledit_widgets.c:252
+#: src/lvledit/lvledit_widgets.c:255
 #, c-format
 msgid "Zoom factor set to %f."
 msgstr "Facteur zoom à %f."
 
-#: src/lvledit/lvledit_widgets.c:254
+#: src/lvledit/lvledit_widgets.c:257
 #, c-format
 msgid "Could not change zoom factor."
 msgstr "Ne peut changer le facteur de zoom"
 
-#: src/lvledit/lvledit_widgets.c:308
+#: src/lvledit/lvledit_widgets.c:432
 msgid ""
 "Undo\n"
 "\n"
@@ -2674,7 +2714,7 @@ msgstr ""
 "\n"
 "Utiliser ce bouton pour défaire les dernières actions."
 
-#: src/lvledit/lvledit_widgets.c:317
+#: src/lvledit/lvledit_widgets.c:439
 msgid ""
 "Redo\n"
 "\n"
@@ -2684,7 +2724,7 @@ msgstr ""
 "\n"
 "Utiliser ce bouton pour refaire une action."
 
-#: src/lvledit/lvledit_widgets.c:326
+#: src/lvledit/lvledit_widgets.c:446
 msgid ""
 "Save Map\n"
 "\n"
@@ -2694,7 +2734,7 @@ msgstr ""
 "\n"
 "Ce bouton sauvegarde la carte courante dans le fichier '../map/levels.dat' depuis le répertoire de travail courant."
 
-#: src/lvledit/lvledit_widgets.c:333
+#: src/lvledit/lvledit_widgets.c:453
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -2708,21 +2748,21 @@ msgstr ""
 "\n"
 "Tu peux aussi utiliser Ctrl-b pour cela."
 
-#: src/lvledit/lvledit_widgets.c:340
+#: src/lvledit/lvledit_widgets.c:460
 msgid ""
-"Delete selected obstacle\n"
+"Delete selected objects\n"
 "\n"
-"Use this button to delete the currently marked obstacle.\n"
+"Use this button to delete the currently marked objects.\n"
 "\n"
 "You can also use Ctrl-X for this."
 msgstr ""
-"Supprimer l'obstacle sélectionné\n"
+"Supprime l'objet sélectionné\n"
 "\n"
-"Utiliser ce bouton pour supprimer l'obstacle actuellement marqué.\n"
+"Utiliser ce bouton pour supprimer l'objet actuellement marqué.\n"
 "\n"
 "Tu peux aussi utiliser Ctrl-X pour cela."
 
-#: src/lvledit/lvledit_widgets.c:349
+#: src/lvledit/lvledit_widgets.c:467
 msgid ""
 "Next object on currently selected tile\n"
 "\n"
@@ -2736,7 +2776,7 @@ msgstr ""
 "\n"
 "Tu peux aussi utiliser la touch N pour cela."
 
-#: src/lvledit/lvledit_widgets.c:358
+#: src/lvledit/lvledit_widgets.c:474
 msgid ""
 "Toggle display waypoint connections\n"
 "\n"
@@ -2746,7 +2786,7 @@ msgstr ""
 "\n"
 "Utiliser ce bouton pour alterner l'affichage ou non des connexions entre points d'étapes."
 
-#: src/lvledit/lvledit_widgets.c:367
+#: src/lvledit/lvledit_widgets.c:481
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -2756,7 +2796,7 @@ msgstr ""
 "\n"
 "Utiliser ce bouton pour attacher une étiquette à l'obstacle actuellement marqué. Ces étiquettes peuvent être utilisées pour définir des obstacles pouvant être modifiées par des événements.\n"
 
-#: src/lvledit/lvledit_widgets.c:376
+#: src/lvledit/lvledit_widgets.c:488
 msgid ""
 "Edit chests contents\n"
 "\n"
@@ -2766,7 +2806,7 @@ msgstr ""
 "\n"
 "Utiliser ce bouton pour modifier le contenu du coffre. S'il est vide, le jeu peut générer des objets aléatoires durant l'exécution."
 
-#: src/lvledit/lvledit_widgets.c:392
+#: src/lvledit/lvledit_widgets.c:495
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -2776,7 +2816,7 @@ msgstr ""
 "\n"
 "Utiliser ce bouton pour alterner l'affichage ou non des ennemis dans l'éditeur de niveau."
 
-#: src/lvledit/lvledit_widgets.c:401
+#: src/lvledit/lvledit_widgets.c:502
 msgid ""
 "Toggle display tooltips\n"
 "\n"
@@ -2786,7 +2826,7 @@ msgstr ""
 "\n"
 "Utiliser ce bouton pour alterner l'affichage ou non de ces fenêtres d'aide agaçantes."
 
-#: src/lvledit/lvledit_widgets.c:410
+#: src/lvledit/lvledit_widgets.c:509
 msgid ""
 "Toggle display collision rectangles\n"
 "\n"
@@ -2796,7 +2836,7 @@ msgstr ""
 "\n"
 "Utiliser ce bouton pour alterner la visibilité ou non des rectangles de collision."
 
-#: src/lvledit/lvledit_widgets.c:419
+#: src/lvledit/lvledit_widgets.c:516
 msgid ""
 "Toggle grid mode.\n"
 "\n"
@@ -2810,7 +2850,7 @@ msgstr ""
 "\n"
 "Utiliser le clic droit pour modifier le type de grille affichée."
 
-#: src/lvledit/lvledit_widgets.c:428
+#: src/lvledit/lvledit_widgets.c:523
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -2820,7 +2860,7 @@ msgstr ""
 "\n"
 "Utiliser ce bouton pour alterner l'affichage ou non des obstacles dans l'éditeur de niveau."
 
-#: src/lvledit/lvledit_widgets.c:437
+#: src/lvledit/lvledit_widgets.c:530
 msgid ""
 "Toggle display map labels name\n"
 "\n"
@@ -2830,7 +2870,7 @@ msgstr ""
 "\n"
 "Utiliser ce bouton pour alterner l'affichage ou non des étiquettes de carte dans l'éditeur de niveau."
 
-#: src/lvledit/lvledit_widgets.c:446
+#: src/lvledit/lvledit_widgets.c:537
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -2844,7 +2884,7 @@ msgstr ""
 "\n"
 "Utiliser le clic droit pour modifier le niveau de zoom.\n"
 
-#: src/lvledit/lvledit_widgets.c:455
+#: src/lvledit/lvledit_widgets.c:544
 msgid ""
 "Toggle floor layers\n"
 "\n"
@@ -2858,7 +2898,7 @@ msgstr ""
 "\n"
 "Utiliser le clic droit pour changer la couche actuellement affichée.\n"
 
-#: src/lvledit/lvledit_widgets.c:465
+#: src/lvledit/lvledit_widgets.c:551
 msgid ""
 "Test Map\n"
 "\n"
@@ -2868,33 +2908,30 @@ msgstr ""
 "\n"
 "Cela va sauvegarder la carte et la recharger une fois le test terminé, évitant de sauvegarder un état modifié par le test."
 
-#: src/lvledit/lvledit_widgets.c:485
+#: src/lvledit/lvledit_widgets.c:571
 msgid "Obstacle"
 msgstr "Obstacle"
 
-#: src/lvledit/lvledit_widgets.c:494
+#: src/lvledit/lvledit_widgets.c:578
 msgid "Floor"
 msgstr "Sol"
 
-#: src/lvledit/lvledit_widgets.c:503
+#: src/lvledit/lvledit_widgets.c:585
 msgid "Item"
 msgstr "Objet"
 
-#: src/lvledit/lvledit_widgets.c:512
+#: src/lvledit/lvledit_widgets.c:592
 msgid "Enemy"
 msgstr "Ennemi"
 
 #. TRANSLATORS: Waypoint
-#: src/lvledit/lvledit_widgets.c:522
+#: src/lvledit/lvledit_widgets.c:600
 msgid "Wayp."
 msgstr "PtEtp."
 
-#: src/lvledit/lvledit_widgets.c:531
+#: src/lvledit/lvledit_widgets.c:607
 msgid "Label"
 msgstr "Etiquette"
-
-#~ msgid "Advanced Options"
-#~ msgstr "Options avancées"
 
 #~ msgid ""
 #~ "%s\n"
@@ -2902,6 +2939,9 @@ msgstr "Etiquette"
 #~ msgstr ""
 #~ "%s\n"
 #~ " Entièrement fixe : "
+
+#~ msgid "Advanced Options"
+#~ msgstr "Options avancées"
 
 #~ msgid "Recharge time: %3.2f\n"
 #~ msgstr "Temps de rechargement : %3.2f\n"
