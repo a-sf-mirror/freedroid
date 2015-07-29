@@ -6514,7 +6514,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"59_teleporter_to_town"
+Name="59_teleporter_to_town"
 Trigger at label="59-Teleporter-1"
 Silent=1
 <LuaCode>
