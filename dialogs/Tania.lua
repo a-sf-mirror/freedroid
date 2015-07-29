@@ -536,7 +536,7 @@ return {
 	},
 	{
 		id = "node58",
-		text = _"I'm proscribing you some antibiotics.",
+		text = _"I'm prescribing you some antibiotics.",
 		code = function()
 			Npc:says(_"I feel much better.")
 			Tux:del_item_backpack("Antibiotic")
