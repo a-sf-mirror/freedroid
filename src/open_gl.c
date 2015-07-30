@@ -209,10 +209,11 @@ SDL_Surface *our_IMG_load_wrapper(const char *file)
  * the surface, so that the dimensions will reach the next biggest power
  * of two in both directions, width and length.
  */
-static int pad_image_for_texture(SDL_Surface *our_surface, SDL_Surface **padded_surface)
+static SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
 {
 	int x = 1;
 	int y = 1;
+	SDL_Surface *padded_surf;
 	SDL_Rect dest;
 
 	while (x < our_surface->w)
@@ -220,13 +221,7 @@ static int pad_image_for_texture(SDL_Surface *our_surface, SDL_Surface **padded_
 	while (y < our_surface->h)
 		y <<= 1;
 
-	if ((x == our_surface->w) && (y == our_surface->h)) {
-		// This is already a PoT surface, no need to add padding
-		*padded_surface = our_surface;
-		return FALSE;
-	}
-
-	*padded_surface = SDL_CreateRGBSurface(0, x, y, 32, rmask, gmask, bmask, amask);
+	padded_surf = SDL_CreateRGBSurface(0, x, y, 32, rmask, gmask, bmask, amask);
 
 	SDL_SetAlpha(our_surface, SDL_RLEACCEL, 0);
 	dest.x = 0;
@@ -234,17 +229,14 @@ static int pad_image_for_texture(SDL_Surface *our_surface, SDL_Surface **padded_
 	dest.w = our_surface->w;
 	dest.h = our_surface->h;
 
-	SDL_BlitSurface(our_surface, NULL, *padded_surface, &dest);
+	SDL_BlitSurface(our_surface, NULL, padded_surf, &dest);
 
-	return TRUE;
+	return padded_surf;
 }
 
 /**
  * If OpenGL is in use, we need to make textured quads out of our normal
  * SDL surfaces.
- * 
- * make_texture_out_of_surface and make_texture_out_of_prepadded_image are
- * the entry points for this function.
  */
 static void do_make_texture_out_of_surface(struct image * our_image, int txw, int txh, void *data)
 {
@@ -285,16 +277,16 @@ static void do_make_texture_out_of_surface(struct image * our_image, int txw, in
 
 void make_texture_out_of_surface(struct image * our_image)
 {
+
 #ifdef HAVE_LIBGL
 
-	SDL_Surface *right_sized_image = NULL;
-	int padding_was_needed;
+	SDL_Surface *right_sized_image;
 
-	// This fills up, if needed, the image with transparent material, so that
-	// it will have powers of 2 as the dimensions, which is a requirement
+	// This fills up the image with transparent material, and makes
+	// it have powers of 2 as the dimensions, which is a requirement
 	// for textures on most OpenGL capable cards.
-
-	padding_was_needed = pad_image_for_texture(our_image->surface, &right_sized_image);
+	//
+	right_sized_image = pad_image_for_texture(our_image->surface);
 	our_image->tex_w = right_sized_image->w;
 	our_image->tex_h = right_sized_image->h;
 	our_image->w = our_image->surface->w;
@@ -302,17 +294,17 @@ void make_texture_out_of_surface(struct image * our_image)
 
 	// Having prepared the raw image it's now time to create the real
 	// textures.
-
+	//
 	do_make_texture_out_of_surface(our_image, right_sized_image->w, right_sized_image->h, right_sized_image->pixels);
+	SDL_FreeSurface(right_sized_image);
 
 	// Now that the texture has been created, we assume that the image is
 	// not needed any more and can be freed now!  
-	if (padding_was_needed)
-		SDL_FreeSurface(right_sized_image);
 	SDL_FreeSurface(our_image->surface);
 	our_image->surface = NULL;
 
 #endif
+
 }
 
 /**
