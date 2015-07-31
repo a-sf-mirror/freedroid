@@ -481,12 +481,6 @@ source_file = po/po-data/tx/obstacle_specs.pot
 source_lang = en
 type = PO
 
-[freedroid-rpg.data-program_archetypes]
-file_filter = po/po-data/tx/program_archetypes-<lang>.po
-source_file = po/po-data/tx/program_archetypes.pot
-source_lang = en
-type = PO
-
 [freedroid-rpg.data-quests]
 file_filter = po/po-data/tx/quests-<lang>.po
 source_file = po/po-data/tx/quests.pot
@@ -558,4 +552,22 @@ file_filter = po/l10n-others/tx/README-<lang>.txt
 source_file = po/l10n-others/tx/README.txt
 source_lang = en
 type = TXT
+
+[freedroid-rpg.dialog-Cult-Member]
+file_filter = po/po-dialogs/tx/Cult-Member-<lang>.po
+source_file = po/po-dialogs/tx/Cult-Member.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.dialog-Scavenger]
+file_filter = po/po-dialogs/tx/Scavenger-<lang>.po
+source_file = po/po-dialogs/tx/Scavenger.pot
+source_lang = en
+type = PO
+
+[freedroid-rpg.data-skill_specs]
+file_filter = po/po-data/tx/skill_specs-<lang>.po
+source_file = po/po-data/tx/skill_specs.pot
+source_lang = en
+type = PO
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-07-29 20:07+0200\n"
+"POT-Creation-Date: 2015-07-31 19:15+0200\n"
 "PO-Revision-Date: 2015-05-02 19:52+0000\n"
 "Last-Translator: zdenek <chmelarz@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/freedroid-rpg/language/cs/)\n"
@@ -38,7 +38,7 @@ msgstr "***** Výsledek skenu hladin *****"
 
 #: dialogs/614_cryo.lua:68
 msgid "Hostile Numeric Presence: [b]HIGH[/b]"
-msgstr "Nepřátelská číselná přítomnost: [b]VYSOKÁ[/b]"
+msgstr "Počet nepřátel: [b]VYSOKÝ[/b]"
 
 #: dialogs/614_cryo.lua:69
 msgid "Enemy Energy Levels: [b]LOW[/b]"
@@ -50,11 +50,11 @@ msgstr "Analýza stupně ohrožení: [b]STŘEDNÍ[/b]"
 
 #: dialogs/614_cryo.lua:72
 msgid "Hostile Numeric Presence: [b]NONE[/b]"
-msgstr ""
+msgstr "Počet nepřátel: [b]NULA[/b]"
 
 #: dialogs/614_cryo.lua:73
 msgid "Threat Degree Analysis: [b]NO THREAT DETECTED[/b]"
-msgstr ""
+msgstr "Analýza stupně ohrožení: [b]NEDETEKOVÁNA ŽÁDNÁ HROZBA[/b]"
 
 #: dialogs/614_cryo.lua:76
 msgid "Cryo Complex Gates Status: [b]CLOSED[/b]"
@@ -89,11 +89,11 @@ msgstr "Uvidíme se později."
 
 #: dialogs/614_cryo.lua:97
 msgid "Resuming guard program."
-msgstr "Obnovení ochranného programu."
+msgstr "Pokračuji ve strážném programu."
 
 #: dialogs/614_sub.lua:27
 msgid "Entering Interactive Product Information Database"
-msgstr "Vstup do interaktivní databáze informací o produktu"
+msgstr "Otevírám interaktivní databázi informací o produktu"
 
 #: dialogs/614_sub.lua:28
 msgid "I am a 614 security bot, once one of the best-selling products of Nicholson, Inc.."
@@ -109,15 +109,15 @@ msgstr "Patřím ke starší generaci robotů, kteří běží na bezpečnostní
 
 #: dialogs/614_sub.lua:37
 msgid "None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault."
-msgstr "Žádný z robotů této generace nebyl ovlivněn protokoly, které vedly roboty k útoku, obecně známého jako Velký Útok."
+msgstr "Žádný z robotů této generace nebyl ovlivněn děním vedoucím k útoku robotů obecně známém jako Velký útok."
 
 #: dialogs/614_sub.lua:38
 msgid "Even though discontinued by Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series."
-msgstr "Dokonce i když byl chod Nicholsonových závodů už dávno přerušen, převzali někteří lidé tuto práci a dokonce se snaží vylepšit operační systém, který běží na mé sérii."
+msgstr "I když Nicholsonovy závody už dávno ukončily výrobu, někteří lidé na jejich práci navázali a dokonce se i snaží vylepšovat operační systém, který na mé sérii běží."
 
 #: dialogs/614_sub.lua:39
 msgid "Don't forget to buy products from Nicholson, Inc. They are the best."
-msgstr "Nezapomeň si koupit výrobky Nicholsonovy společnosti. Jsou nejlepší."
+msgstr "Nezapomeň kupovat výrobky Nicholsonovy společnosti. Jsou nejlepší."
 
 #: dialogs/614_sub.lua:45
 msgid "What can you tell me about the Nicholson company?"
@@ -141,7 +141,7 @@ msgstr "Ostatní byli varováni, ale nikdo Nicholsonovo prohlášení neposlouch
 
 #: dialogs/614_sub.lua:51
 msgid "He built up a team and developed his own Kernel called 'Nkernel'."
-msgstr "Vybudoval tým a vyvinul jeho vlastní jádro s názvem \"Nkernel\"."
+msgstr "Postavil tým a vyvinul své vlastní jádro pod názvem „Nkernel."
 
 #: dialogs/614_sub.lua:52
 msgid "The Nkernel development team grew fast and technicians started to produce their own droids optimized for the Nkernel."
@@ -153,7 +153,7 @@ msgstr "Z týmu se stala společnost, která vydala svého prvního bezpečnostn
 
 #: dialogs/614_sub.lua:54
 msgid "I am the 5th generation version of their security droid line."
-msgstr "Jsem verzí páté generace jejich bezpečnostního droida."
+msgstr "Jsem pátou generací jejich produktové řady bezpečnostních droidů."
 
 #: dialogs/614_sub.lua:60
 msgid "What can you tell me about the 614 type?"
@@ -177,7 +177,7 @@ msgstr "Takže si nedělej starosti. Jsem stále v dobrém stavu."
 
 #: dialogs/614_sub.lua:66
 msgid "The latest version of the security line is the 615."
-msgstr "Nejnovější verze bezpečnostní linky je 615."
+msgstr "Nejnovější verze bezpečnostní řady je 615."
 
 #: dialogs/614_sub.lua:68
 msgid "Unfortunately its development was not finished when the great assault started."
@@ -189,7 +189,7 @@ msgstr "Nedostatek možností zabezpečení na systému 615 vedl k poruše."
 
 #: dialogs/614_sub.lua:70
 msgid "Circumstances that led to the great assault even made the 615 go crazy and attack people."
-msgstr "Okolnosti, které vedly k Velkému útoku dokonce vedly i k šílenství 615 a jeho útokům na lidi."
+msgstr "Okolnosti vedoucí k Velkému útoku dokonce vedly i k šílenství 615 a jeho útokům na lidi."
 
 #: dialogs/614_sub.lua:71
 msgid "For the sake of your health, you should stay away from the 615 droids."
@@ -201,7 +201,7 @@ msgstr "Byl jsi varován!"
 
 #: dialogs/614_sub.lua:78
 msgid "I think, that was enough product information, thank you."
-msgstr "Myslím, že jsem o tomto produktu dostal dostatek informací, díky."
+msgstr "Myslím, že jsem o tomto produktu obdržel dostatek informací, díky."
 
 #: dialogs/614_sub.lua:80
 msgid "Leaving Interactive Product Information Database"
@@ -7860,15 +7860,15 @@ msgstr "To by mělo být pro teď dost."
 
 #: dialogs/Engel.lua:371
 msgid "Hi! I'm-"
-msgstr ""
+msgstr "Čau! Jsem-"
 
 #: dialogs/Engel.lua:377 dialogs/Pendragon.lua:315
 msgid "How's it going?"
-msgstr ""
+msgstr "Jak se vede?"
 
 #: dialogs/Engel.lua:379
 msgid "RRRRRAAAAAAAARRRGH!"
-msgstr ""
+msgstr "RRRRRAAAAAAAARRRGH!"
 
 #: dialogs/Engel.lua:380
 msgid "... Excuse me?"
@@ -9468,11 +9468,11 @@ msgstr "Jsem rád, že jsem ti mohl pomoct. Ty na sebe dávej tam venku pozor. N
 
 #: dialogs/Francis.lua:294
 msgid "Oh, I almost forgot... Could you take this data cube and give it to Spencer once you get to town?"
-msgstr "Oh, málem jsem zapoměl... Mohl bys vzít tuhle datovou kostku s sebou a dát ji Spencerovi, jakmile se dostaneš do města?"
+msgstr "Oh, málem jsem zapoměl... Mohl bys vzít s sebou tuhle datovou kostku a jakmile dorazíš do města ji dát Spencerovi?"
 
 #: dialogs/Francis.lua:295
 msgid "Spencer?"
-msgstr "Spencer?"
+msgstr "Spencerovi?"
 
 #: dialogs/Francis.lua:296
 msgid "Yes. He's the leader of the Red Guard."
@@ -9496,7 +9496,7 @@ msgstr "Nejsem špatný člověk, ale nemám rád tento typ rozhodnutí. Rozhodn
 
 #: dialogs/Francis.lua:309
 msgid "Bring your questions to Spencer. I'd rather not discuss it anymore, it is too troubling, especially since I'm complicit in whatever happens."
-msgstr "Vem si své otázky k Spencerovi. Raději bych o tom už nediskutoval, je to příliš znepokojující, zejména proto, že jsem spoluviník, ať se stane cokoliv."
+msgstr "Vem si své otázky ke Spencerovi. Raději bych o tom už nediskutoval, je to příliš znepokojující, zejména proto, že už jsem spoluviník, ať se stane cokoliv."
 
 #: dialogs/Francis.lua:315
 msgid "All right, I'll deliver the cube."
@@ -9516,11 +9516,11 @@ msgstr "Doruč si tu kostku sám."
 
 #: dialogs/Francis.lua:332
 msgid "Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there."
-msgstr "Chtěl bych, to mi věř. Jsem stále schopný vyřídit si vlástní záležitosti, dokonce i přes množství robotů tam venku."
+msgstr "Chtěl bych, to mi věř. Jsem stále schopný vyřídit si vlastní záležitosti, dokonce i přes to množství robotů tam venku."
 
 #: dialogs/Francis.lua:333
 msgid "But... The prospect of facing that... That man again... I just can't bear it."
-msgstr "Ale... vyhlídka, že čelím tomu... tomu muži znovu... prostě to nemůžu vydržet."
+msgstr "Ale... vyhlídka, že znovu čelím tomu... tomu muži... to prostě neunesu."
 
 #. TRANSLATORS: %s =Tux:get_player_name()
 #: dialogs/Francis.lua:335
@@ -9550,7 +9550,7 @@ msgstr "V každém případě jsem rád, že jsem ti mohl pomoct. Ty na sebe dá
 
 #: dialogs/Francis.lua:358
 msgid "Oh... I almost forgot... This is a small help but I hope it will make your life a little easier."
-msgstr "Oh... málem jsem zapomněl... Je to jen malá pomoc, ale doufám, že to trochu zjednodušší tvůj život."
+msgstr "Oh... málem jsem zapomněl... Je to jen malá pomoc, ale doufám, že ti to trochu ulehčí život."
 
 #: dialogs/Francis.lua:361 dialogs/Francis.lua:370
 msgid "Remember not to veer too far off the path, or your quest could be over before it begins."

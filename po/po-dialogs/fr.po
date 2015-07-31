@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-07-29 20:07+0200\n"
-"PO-Revision-Date: 2015-07-29 17:39+0000\n"
+"POT-Creation-Date: 2015-07-31 19:15+0200\n"
+"PO-Revision-Date: 2015-07-30 14:03+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
@@ -27,7 +27,7 @@ msgstr "Qui êtes vous? "
 
 #: dialogs/614_cryo.lua:63 dialogs/Town-614.lua:61
 msgid "Have you detected any hostile bot activity?"
-msgstr "Avez-vous détecté une activité robotique hostile ?"
+msgstr "As-tu détecté une activité robotique hostile ?"
 
 #: dialogs/614_cryo.lua:65
 msgid "Order Received. Initiating proximity energy level scan..."
@@ -47,15 +47,15 @@ msgstr "Niveau d'énergie des ennemies  [b]FAIBLE[/b]"
 
 #: dialogs/614_cryo.lua:70
 msgid "Threat Degree Analysis: [b]MODERATE[/b]"
-msgstr "Analyse du degré de la menace : [b]MODERÉ[/b]"
+msgstr "Analyse du degré de menace : [b]MODERÉ[/b]"
 
 #: dialogs/614_cryo.lua:72
 msgid "Hostile Numeric Presence: [b]NONE[/b]"
-msgstr ""
+msgstr "Présence Numérique Hostile : [b]AUCUNE[/b]"
 
 #: dialogs/614_cryo.lua:73
 msgid "Threat Degree Analysis: [b]NO THREAT DETECTED[/b]"
-msgstr ""
+msgstr "Analyse du degré de menace : [b]AUCUNE MENACE DÉTECTÉE[/b]"
 
 #: dialogs/614_cryo.lua:76
 msgid "Cryo Complex Gates Status: [b]CLOSED[/b]"
@@ -67,7 +67,7 @@ msgstr "État de la porte du complexe Cryo : [b]OUVERTE[/b]"
 
 #: dialogs/614_cryo.lua:85 dialogs/Town-614.lua:69
 msgid "What are your orders?"
-msgstr "Quelles sont vos ordres ?"
+msgstr "Quelles sont tes ordres ?"
 
 #: dialogs/614_cryo.lua:87
 msgid "Primary objective: Protect the living beings inside this complex from attacks by hostile bots."
@@ -4569,15 +4569,15 @@ msgstr " Fermeture de la connexion à C-net."
 
 #: dialogs/Chandra.lua:37
 msgid "So the rumors are true - a real live Linarian walks among us!"
-msgstr "Alors, la rumeur est vrai. Il y a vraiment un Linarien parmi nous!"
+msgstr "Alors, la rumeur est vraie. Il y a vraiment un Linarien parmi nous !"
 
 #: dialogs/Chandra.lua:44
 msgid "Good to see you again. How can I help you?"
-msgstr "Ça fait du bien de vous revoir. Que puis-je faire pour toi?  "
+msgstr "Ça fait du bien de te revoir. Que puis-je faire pour toi ? "
 
 #: dialogs/Chandra.lua:67
 msgid "Welcome. I am Chandra. Some would call me the local sage."
-msgstr "Bienvenu. je suis Chandra. Certain m'appelle le sage d'ici-bas. "
+msgstr "Bienvenu. Je suis Chandra. Certain m'appelle le sage d'ici-bas. "
 
 #: dialogs/Chandra.lua:77
 msgid "What can you tell me about this place?"
@@ -4657,7 +4657,7 @@ msgstr "Mais ils ne semblent même pas essayer !"
 
 #: dialogs/Chandra.lua:109
 msgid "This makes no sense at all!"
-msgstr "Ça n'a ni queux ni tête !"
+msgstr "Ça n'a ni queue ni tête !"
 
 #: dialogs/Chandra.lua:115
 msgid "What do you know about the hostile bots?"
@@ -4701,7 +4701,7 @@ msgstr "Il y a beaucoup plus de genres à l'extérieur d'ici. Les robots militai
 
 #: dialogs/Chandra.lua:139
 msgid "I want to leave this place."
-msgstr "Je veut partir d'ici."
+msgstr "Je veux partir d'ici."
 
 #: dialogs/Chandra.lua:141
 msgid "We all do, Linarian, we all do."
@@ -4753,7 +4753,7 @@ msgstr "De plus, si tu as de l'argent et que tu peux trouver un fournisseur, c'e
 
 #: dialogs/Chandra.lua:165
 msgid "My advice is to invest in a ranged weapon. While it can create a huge hole in your wallet, it also creates several in the bots, and is better than a huge hole in you."
-msgstr ""
+msgstr "Mon conseil est d'investir dans une arme à longue portée. Ça va certes faire un trou dans ton porte-monnaie, mais ça va également en faire plusieurs dans les robots, et c'est bien mieux qu'un gros trou dans ta personne. "
 
 #: dialogs/Chandra.lua:166
 msgid "Currently there is a ban on selling such things. The Red Guard wants to be the only ones with good weapons."
@@ -4785,7 +4785,7 @@ msgstr "La garde rouge...? Seulement si tu es aussi fort et courageux qu'eux! Il
 
 #: dialogs/Chandra.lua:181
 msgid "The Red Guard? Unlikely. You'd have to establish a reputation beforehand, and demonstrate that you can make things happen."
-msgstr ""
+msgstr "La Garde Rouge ? Il y a peu de chance. Tu dois tout d'abord t'établir une bonne réputation, et montrer que tu peux faire un certain nombre de choses."
 
 #: dialogs/Chandra.lua:182
 msgid "Also, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here."
@@ -4997,7 +4997,7 @@ msgstr "[b](Il secoue la tête légèrement et vous sentez que ses remords sont 
 
 #: dialogs/Chandra.lua:315
 msgid "[b](Chandra moves his head ever so slightly as he quickly glances around. After noticing the nearby presence of the Red Guard member, his posture and tone changes. Perhaps you should speak with him again once you lose your escort...)[/b]"
-msgstr ""
+msgstr "[b](Chandra secoue la tête très légèrement en jetant un coup d'oeil aux alentours. Après la présence proche d'un membre des Garde Rouges, sa posture et son ton changent. Il vaudrait peut-être mieux d'attendre le départ de l'escorte avant de lui reparler...)[/b]"
 
 #: dialogs/Chandra.lua:316
 msgid "What else would you like to know?"
@@ -5045,11 +5045,11 @@ msgstr "L'humanité n'a pas une très jolie histoire. Nous nous sommes fait beau
 
 #: dialogs/Chandra.lua:349
 msgid "Over time, most people have willingly forgotten our actions and focused on the good deeds the Linarians performed despite our senseless behavior."
-msgstr ""
+msgstr "Avec le temps, la plupart des gens ont de leur plein gré oublié nos actions et se sont focalisés sur les bonnes actions que les Lunariens ont réalisées malgré notre comportement insensé.   "
 
 #: dialogs/Chandra.lua:350
 msgid "Even though we tried to celebrate the grand deeds and heroics of the surviving Linarians, the memories faded. The memories turned into legends and myths as the Linarians slowly withdrew from the world."
-msgstr ""
+msgstr "Bien que nous ayons tenté de commémorer les actes héroïques des Lunariens survivants, les mémoires se sont effacées. La mémoire s'est changée en légendes et en mythes au fur et à mesure que les Lunariens se sont retirés du monde."
 
 #: dialogs/Chandra.lua:352
 msgid "Spencer and the Red Guard would not want you to know these things, as you might not be willing to help our failing community."
@@ -5062,23 +5062,23 @@ msgstr "Quoi qu'il en soit, ne pas vous faire part de cette information serait u
 
 #: dialogs/Chandra.lua:359
 msgid "Chandra, it saddens me to hear this. I will keep what you say in mind, but there is too much suffering for me to ignore."
-msgstr ""
+msgstr "Chandra, je suis attristé d'entendre cela. Je vais conserver en mémoire ce que tu m'as dit, mais il y a en moi une souffrance que je ne peux ignorer."
 
 #: dialogs/Chandra.lua:362
 msgid "Oh! This is great news! I was fearful that the truth would not settle well."
-msgstr ""
+msgstr "Oh ! C'est une bonne nouvelle ! Je craignais que la vérité ne soit pas belle à voir."
 
 #: dialogs/Chandra.lua:363
 msgid "I should have never doubted the nobility and legendary honor of Linarians."
-msgstr ""
+msgstr "Je n'aurais pas dû douter de la noblesse et de la vertu légendaire des Lunariens."
 
 #: dialogs/Chandra.lua:371
 msgid "(Attack)"
-msgstr ""
+msgstr "(Attaque)"
 
 #: dialogs/Chandra.lua:375
 msgid "Stupid humans! How dare you?! Your crimes are unforgivable! You all deserve to be slaughtered by these robots!"
-msgstr ""
+msgstr "Humains stupides ! Comment osez-vous ? Vos crimes sont impardonnables ! Vous méritez d'être massacrés par ces robots !"
 
 #: dialogs/Chandra.lua:376
 msgid "But..."
@@ -5098,19 +5098,19 @@ msgstr "[b]<chuckles>[/b] Vous n'êtes pas le premier de votre espèce que les t
 
 #: dialogs/Chandra.lua:389
 msgid "Of course, its been almost one hundred years since Linarians first came to this planet. As you might imagine most of the people who were alive then are long gone."
-msgstr "Bien sur, ça fait un siècle que les premiers Linariens sont venu sur cette planète. Et comme vous pouvez l'imaginer, la plupart de ceux qui les ont rencontrés sont mort depuis longtemps.  "
+msgstr "Bien sur, ça fait un siècle que les premiers Lunariens sont venu sur cette planète. Et comme vous pouvez l'imaginer, la plupart de ceux qui les ont rencontrés sont morts depuis longtemps.  "
 
 #: dialogs/Chandra.lua:390
 msgid "But the townspeople were made aware of your existence upon your discovery. Everyone was quickly informed of the legends performed by the Linarians of the past."
-msgstr ""
+msgstr "Mais les citadins ont appris ton existence dès que l'on t'a trouvé. Tout le monde a rapidement été informé des légendes concernant les Lunariens du passé."
 
 #: dialogs/Chandra.lua:391
 msgid "While you will find some people helpful because of this, others may be a bit more hostile. The hostility is a matter of xenophobia and pride in one's own species."
-msgstr ""
+msgstr "Si tu pourras trouver certaines personnes reconnaissantes pour cela, d'autres pourraient être un peu plus hostiles. L'hostilité est le résultat de la xénophobie et de la fierté envers sa propre espèce."
 
 #: dialogs/Chandra.lua:393
 msgid "Don't tell anyone else, but I'm surprised the Red Guard ordered you to be thawed. They are human supremacists to the extreme. For them to accept your help does not make much sense. They must be playing at something. Beware the Red Guard, Linarian."
-msgstr ""
+msgstr "N'en parle à personne, mais je suis surpris que les Gardes Rouges aient ordonné ta décongélation. Ce sont des extrémistes de la suprématie humaine. Qu'ils acceptent ton aide n'a pas beaucoup de sens. Ils doivent jouer un double-jeu. Méfies-toi des Gardes Rouges, Lunarien."
 
 #: dialogs/Chandra.lua:400
 msgid "Why did the Linarians come to this world?"
@@ -5126,7 +5126,7 @@ msgstr "Désolé, je ne peux pas vous aider à ce propos."
 
 #: dialogs/Chandra.lua:410
 msgid "That's all I wanted to ask about that."
-msgstr ""
+msgstr "C'est tout ce que je voulais demander à ce propos."
 
 #: dialogs/Chandra.lua:419
 msgid "Thank you for your wise words."
@@ -5138,7 +5138,7 @@ msgstr "Tu es libre de venir ici à chaque fois que tu le souhaites."
 
 #: dialogs/Chandra.lua:422
 msgid "You flatter me."
-msgstr ""
+msgstr "Tu me flattes."
 
 #: dialogs/Cryo-Terminal.lua:27
 msgid "Welcome to [b]Cryonic Solutions[/b]!"
@@ -5390,11 +5390,11 @@ msgstr "Bonjour et bienvenue. Je suis Dixon, l'ingénieur en chef des services t
 #: dialogs/Dixon.lua:69
 #, c-format
 msgid "I'm %s, a Linarian."
-msgstr "Je suis %s, un linarien."
+msgstr "Je suis %s, un Linarien."
 
 #: dialogs/Dixon.lua:75
 msgid "Please take care not to disturb my work, I'm very busy keeping things running."
-msgstr ""
+msgstr "Merci de ne pas me déranger pendant que je travaille, je suis très occupé à faire fonctionner tout ça."
 
 #: dialogs/Dixon.lua:77
 msgid "Linarian, please leave. You are no longer welcome here. You have done me wrong, and I have no desire to talk to you."
@@ -5406,23 +5406,23 @@ msgstr "ENCORE TOI !"
 
 #: dialogs/Dixon.lua:80
 msgid "I."
-msgstr "JE"
+msgstr "JE."
 
 #: dialogs/Dixon.lua:81
 msgid "SAID."
-msgstr "T'AI"
+msgstr "T'AI."
 
 #: dialogs/Dixon.lua:82
 msgid "GET."
-msgstr "DIT"
+msgstr "DIT."
 
 #: dialogs/Dixon.lua:83
 msgid "LOST."
-msgstr "FOUT L'CAMP. "
+msgstr "FOUS L'CAMP. "
 
 #: dialogs/Dixon.lua:84
 msgid "FORGET MY LIFELONG PACIFISM. I WILL KILL YOU!"
-msgstr "OUBLIES MON PACIFISME NATURELLE. JE VAIS TE FAIRE LA PEAU ! "
+msgstr "PEU IMPORTE MON PACIFISME NATUREL. JE VAIS TE FAIRE LA PEAU ! "
 
 #: dialogs/Dixon.lua:85
 msgid "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!"
@@ -5430,7 +5430,7 @@ msgstr "AAAAAAAAAAAAAAAAAAAAAAAAAA !"
 
 #: dialogs/Dixon.lua:86
 msgid "Dixon - Temporarily insane"
-msgstr "Dixon - Tomporairement dément "
+msgstr "Dixon - Temporairement dément "
 
 #: dialogs/Dixon.lua:133
 msgid "Why are you wearing armor? Mechanics do not need it."
@@ -5446,7 +5446,7 @@ msgstr "Un jour, la division militaire nous a demandé de sortir de la ville, po
 
 #: dialogs/Dixon.lua:137
 msgid "All was well until the bots launched a massive attack. They hit us with lasers, plasma mortars, radiation cannons and lots of other weapons."
-msgstr "Tout allait pour le mieux jusqu'à ce que les robots lancent une attaque massive. Ils nous ont touchés avec des lasers, du mortier à plasma, des canons à radiation et beaucoup d'autres armes."
+msgstr "Tout allait pour le mieux jusqu'à ce que les robots lancent une attaque massive. Ils nous ont touché avec des lasers, des mortiers à plasma, des canons à radiation et beaucoup d'autres armes."
 
 #: dialogs/Dixon.lua:138
 msgid "I got hit once in the leg and once in my left hand."
@@ -5454,7 +5454,7 @@ msgstr "J'ai été frappé à la jambe et à la main gauche."
 
 #: dialogs/Dixon.lua:139
 msgid "The hand was not damaged very much, but the leg is a very different story. Doc Moore did all he could, but in the end he could not save my leg. He had to cut it off."
-msgstr "La main n'a pas beaucoup souffert, mais c'était une autre histoire pour la jambe. Doc Moore a fait tout ce qu'il a pu, mais il n'a pas réussi à la sauver. Il m'a amputé."
+msgstr "La main n'a pas beaucoup souffert, mais c'est une autre histoire pour la jambe. Doc Moore a fait tout ce qu'il a pu, mais il n'a pas réussi à la sauver. Il m'a amputé."
 
 #: dialogs/Dixon.lua:140
 msgid "Now, while you cannot see it underneath the armor, my right leg runs NetBSD."
@@ -5478,7 +5478,7 @@ msgstr "Pleurer, crier ou supplier le temps de revenir en arrière et de me donn
 
 #: dialogs/Dixon.lua:151
 msgid "What I can do is to try to have a good life despite the constant threat from the bots outside the town walls."
-msgstr "Ce que je peux faire est d'essayer d'avoir une bonne vie en dépit de la menace incessante des robots à l'extérieur des murs de la ville."
+msgstr "Ce que je peux faire c'est d'essayer d'avoir une bonne vie en dépit de la menace incessante des robots à l'extérieur des murs de la ville."
 
 #: dialogs/Dixon.lua:152
 msgid "And besides, life is not so bad with a robotic leg. The motors inside it can mimic a normal walk very well. Most people do not even notice something is different about me."
@@ -5506,11 +5506,11 @@ msgstr "Nous fournissons les ressources requises aux endroits où elles sont né
 
 #: dialogs/Dixon.lua:169
 msgid "Can you repair my equipment?"
-msgstr " Pouvez vous réparer mon équipement ?"
+msgstr " Peux-tu réparer mon équipement ?"
 
 #: dialogs/Dixon.lua:171
 msgid "While I am quite sure I can repair just about anything that you would want fixed, I cannot help you right now."
-msgstr "Bien que je sois à peu près certain de pouvoir réparer tout ce que vous pourriez me demander, je ne peux pas vous aider pour le moment."
+msgstr "Bien que je sois à peu près certain de pouvoir réparer tout ce que tu pourrais m'amener, je ne peux pas t'aider pour le moment."
 
 #: dialogs/Dixon.lua:172
 msgid "Our security wall is full of holes, and they need to be plugged up."
@@ -5530,19 +5530,19 @@ msgstr "La division technique est cruellement en sous-effectif. En moyenne, chac
 
 #: dialogs/Dixon.lua:176
 msgid "We just cannot afford to do any non-critical jobs right now. "
-msgstr "Nous ne pouvons simplement pas nous permettre d'effectuer un travail non critique maintenant. "
+msgstr "Nous ne pouvons simplement pas nous permettre d'effectuer un travail non essentiel en ce moment. "
 
 #: dialogs/Dixon.lua:185
 msgid "I would like to customize my equipment."
-msgstr "J'aimerai personaliser mon équipement."
+msgstr "J'aimerais personnaliser mon équipement."
 
 #: dialogs/Dixon.lua:187
 msgid "Of course, if I had some time, I could transform your weapon into a deadly gun. Lately, I have built a vorpal nuclear disintegrator Mk 2000 with integrated lethal de-phasor. Nice weapon."
-msgstr ""
+msgstr "Bien sûr, si j'avais un peu de temps, je pourrais transformer ton arme en un flingue mortel. Dernièrement, j'ai construit un désintégrateur nucléaire tranchant Mk 2000 avec déphaseur létal incorporé. Une arme sympa."
 
 #: dialogs/Dixon.lua:188
 msgid "Sadly, we lack a lot of materials, and those we have are needed for town upkeep. The mine doesn't produce a lot of raw materials, and I can't just give them to you - you'll have to provide your own."
-msgstr ""
+msgstr "Malheureusement, nous manquons beaucoup de matériaux, et ceux que nos avons sont nécessaires à l'entretien de la Ville, et je ne peux donc pas te les donner - tu vas devoir te les procurer toi-même. "
 
 #: dialogs/Dixon.lua:189
 msgid "I can give you some advice, though. Recycling is key. You can extract special devices from the bots!"
@@ -5550,7 +5550,7 @@ msgstr "Je peux quand même te donner quelques conseils. Le recyclage, c'est la 
 
 #: dialogs/Dixon.lua:190
 msgid "Amazing, isn't it? Before the great assault, we threw droids out for minor defects. Now, any wreck is a treasure."
-msgstr ""
+msgstr "Amusant, n'est-ce pas ? Avant le Grand Assaut, nous nous débarrassions des robots au moindre petit défaut. Maintenant, toute épave est un trésor."
 
 #: dialogs/Dixon.lua:192
 msgid "A scout troop recently spotted two guys in the north of town."
@@ -5558,27 +5558,27 @@ msgstr "Une troupe d'éclaireur a récemment repéré deux individus au nord de 
 
 #: dialogs/Dixon.lua:193
 msgid "I was told these guys shoot bots and disassemble them, extracting their parts."
-msgstr "On m'a dit que ces gars déscendaient des robots et les demontaient pour récupérer des composants. "
+msgstr "On m'a dit que ces gars descendaient des robots et les démontaient pour récupérer des composants. "
 
 #: dialogs/Dixon.lua:194
 msgid "Maybe they will sell you parts."
-msgstr "Peut-être ils te vendront des pièces de rechange."
+msgstr "Peut-être te vendront-ils des pièces de rechange."
 
 #: dialogs/Dixon.lua:196
 msgid "The salvaged components are used to craft addons. Your equipment has specific sockets to insert them."
-msgstr ""
+msgstr "Les composants récupérés sont utilisés pour confectionner des options. Ton équipement dispose de connecteurs pour les y insérer."
 
 #: dialogs/Dixon.lua:197
 msgid "They can increase the power of items. But items can only have a limited number of addons."
-msgstr ""
+msgstr "Elles peuvent augmenter la puissance des objets. Mais les équipements n'accueillent qu'un nombre limité d'options."
 
 #: dialogs/Dixon.lua:198
 msgid "To produce and assemble them, you may use a small factory in the Maintenance Tunnels."
-msgstr ""
+msgstr "Pour les produire et les assembler, tu peux utiliser une petite usine située dans les Tunnels de Maintenance."
 
 #: dialogs/Dixon.lua:200
 msgid "Currently, the maintenance tunnels are not accessible. We have many problems with bots. You can't go there, access has been limited."
-msgstr ""
+msgstr "Pour l'instant, les tunnels de maintenance ne sont pas accessibles. Nous avons beaucoup de problèmes avecles robots. Tu ne peux t'y rendre, l'accès en a été limité."
 
 #: dialogs/Dixon.lua:208 dialogs/Engel.lua:80
 msgid "Can I help you somehow?"
@@ -5586,11 +5586,11 @@ msgstr "Puis-je vous aider ? "
 
 #: dialogs/Dixon.lua:210
 msgid "We need people badly, so it would be great if you could give us a helping hand even for a few days."
-msgstr "Nous avons rudement besoin de main d'oeuvre, donc il serait vraiment génial que tu puisse nous aider pendant quelques jours."
+msgstr "Nous avons rudement besoin de main d'oeuvre, donc il serait vraiment génial que tu puisses nous donner un coup demain même si ce n'est que pendant quelques jours."
 
 #: dialogs/Dixon.lua:211
 msgid "Now, what are your skills? Where do you think you could be the most useful?"
-msgstr "Maintenant, quelles sont tes compétences ? à quoi penses-tu que tu seras le plus utile ?"
+msgstr "Maintenant, quelles sont tes compétences ? À quoi penses-tu que tu pourrais être le plus utile ?"
 
 #: dialogs/Dixon.lua:212
 msgid "I can handle computers very well. I also know a lot about laboratory equipment."
@@ -5614,19 +5614,19 @@ msgstr "Maintenant… à quel projet vais je t'assigner… Hmm…"
 
 #: dialogs/Dixon.lua:217
 msgid "Ah, I know what you could do for us. We need some autotools to automate a few tasks. There is a set of them in the maintenance tunnels below the town."
-msgstr "Ah, je sais ce que tu pourrais faire pour nous. Nous avons besoin de microbes pour réaliser quelques tâches. Il y en a une boîte dans les tunnels de maintenance qui se trouvent sous la ville."
+msgstr "Ah, je sais ce que tu pourrais faire pour nous. Nous avons besoin de quelques autotools pour automatiser certaines tâches. Il y en a une boite dans les tunnels de maintenance qui se trouvent sous la ville."
 
 #: dialogs/Dixon.lua:218
 msgid "It's yellow and round, and my name is engraved on the lid."
-msgstr "C'est jaune et rond, et mon nom est gravé sur le couvercle."
+msgstr "Elle est jaune et ronde, et mon nom est gravé sur le couvercle."
 
 #: dialogs/Dixon.lua:219
 msgid "The bots under the town took it from me during the Great Assault. I was lucky, they could have killed me with ease."
-msgstr "Les robots sous la ville l'ont prise pendant le Grand Assaut, j'ai eu de la chance, ils auraient pu me tuer facilement."
+msgstr "Les robots sous la ville l'ont prise pendant le Grand Assaut. J'ai eu de la chance, ils auraient pu me tuer facilement."
 
 #: dialogs/Dixon.lua:220
 msgid "Since the toolkit can't be teleported, everyone has been reluctant to go after it."
-msgstr "Comme la boite à outils ne peut pas être téléportée, tout le monde à été réticent à aller la chercher. "
+msgstr "Comme la boite à outils ne peut pas être téléportée, tout le monde a été réticent à aller la chercher. "
 
 #: dialogs/Dixon.lua:221
 msgid "If you could get it back for us, it would help the town very much."
@@ -5638,7 +5638,7 @@ msgstr "Dixon, le chef de la division technique, a perdu sa boîte à outils jau
 
 #: dialogs/Dixon.lua:229
 msgid "Why are there rebel bots under the town?"
-msgstr "Pourquoi y a-t-il des robots rebels sous la ville ?"
+msgstr "Pourquoi y a-t-il des robots rebelles sous la ville ?"
 
 #: dialogs/Dixon.lua:232
 msgid "They were there to keep the underground power grid and our plumbing system working."
@@ -5670,11 +5670,11 @@ msgstr "Comment les robots t'ont ils pris tes outils ?"
 
 #: dialogs/Dixon.lua:247
 msgid "Ah, it is a strange story, I am sure you would not believe me. I will tell you some other time, but now you should hurry to get the toolkit."
-msgstr ""
+msgstr "Ah, c'est une étrange histoire,  je suis sûr que tu ne me croirais pas. Je t'en parlerai une autre fois, mais pour l'instant dépêche toi d'aller chercher la boite à outils."
 
 #: dialogs/Dixon.lua:249
 msgid "Long story. Just before the Great Assault I was installing some cables in the backup power supply system."
-msgstr "C'est une longue histoire. Quelques instants avant le Grand Assaut, j'étais en train d'installer quelques câbles dans le réseau d'alimentation auxiliaire."
+msgstr "C'est une longue histoire. Quelques temps avant le Grand Assaut, j'étais en train d'installer quelques câbles dans le réseau d'alimentation auxiliaire."
 
 #: dialogs/Dixon.lua:250
 msgid "I was approached by a bot. It grabbed me and said 'Dixon, do not be afraid of me.'"
@@ -5698,11 +5698,11 @@ msgstr "« J'ai besoin de ta trousse à outils, Dixon. J'ai besoin de ça pour s
 
 #: dialogs/Dixon.lua:255
 msgid "As soon as I dropped my toolkit, I was able to teleport away. That bot freaked me out, so I locked the door tight behind me."
-msgstr "Aussitôt la boite à outils lâchée, j'ai pus me téléreporter. Le robot m'a foutu les chochottes, alors, j'ai bien vérouillé le porte derrière moi. "
+msgstr "Aussitôt la boite à outils lâchée, j'ai pu me téléporter. Le robot m'a foutu les chochottes, alors, j'ai bien verrouillé la porte derrière moi. "
 
 #: dialogs/Dixon.lua:256
 msgid "Once I got out I learned the bot was telling the truth. The Great Assault had started. The rest is history."
-msgstr ""
+msgstr "Une fois sorti, j'ai appris que le robot m'avait dit la vérité. Le Grand Assaut avait débuté. Le reste, c'est l'histoire."
 
 #: dialogs/Dixon.lua:264
 msgid "Hmm... You know... I think that the bots in the tunnels might be sentient."
@@ -5718,11 +5718,11 @@ msgstr "Vraiment ?"
 
 #: dialogs/Dixon.lua:274
 msgid "You can forget about your toolkit. I am not going to take away something that a life form needs to survive. I would rather die than kill."
-msgstr ""
+msgstr "Tu peux oublier ta boite à outils. Je ne vais pas m’emparer de quelque chose dont une forme de vie à besoin pour survivre. Je préfère mourir que tuer."
 
 #: dialogs/Dixon.lua:278
 msgid "I think I understand. Yes, I do not like violence myself. The bots may need the toolkit, I am sure there must be a second set of autotools kicking around somewhere."
-msgstr ""
+msgstr "Je pense que je comprends. Oui, je n'aime pas la violence non plus. Les robots ont peut-être besoin de cette boite à outil. Je suis sûr qu'il y a un second jeu d'autools quelque part dans le coin."
 
 #: dialogs/Dixon.lua:279
 msgid "After all, it seems like they need them more than I do."
@@ -5730,11 +5730,11 @@ msgstr "Après tout, il semble qu'ils en aient plus besoin que moi."
 
 #: dialogs/Dixon.lua:280
 msgid "We should contact them somehow. Maybe they would help us. It would be great to have an ally against the other bots."
-msgstr ""
+msgstr "On devrait essayer de les contacter. Peut-être voudraient-ils nous aider. Ça serait formidable d'avoir un allié contre les autres robots."
 
 #: dialogs/Dixon.lua:281
 msgid "I think you could go to see the Singularity and speak to it. You are perfectly suited to become an ambassador."
-msgstr ""
+msgstr "Je pense que tu pourrais aller voir la Singularité pour lui parler. Tu es parfaitement approprié pour devenir un ambassadeur."
 
 #: dialogs/Dixon.lua:282
 msgid "You should try to help them and they might want to give back the toolkit."
@@ -5746,27 +5746,27 @@ msgstr "S'il vous plait, %s, m'accorderiez vous une faveur ?"
 
 #: dialogs/Dixon.lua:292
 msgid "Sure, I am proud to become an ambassador!"
-msgstr ""
+msgstr "Bien sûr, je suis fier de devenir ambassadeur !"
 
 #: dialogs/Dixon.lua:295
 msgid "Excellent. The tunnels are open. Come in peace."
-msgstr "Excellent. Les tunnels sont ouverts. Viens en paix."
+msgstr "Excellent. Les tunnels sont ouverts. Va en paix."
 
 #: dialogs/Dixon.lua:296
 msgid "I refused to seize the toolkit from the bots by force because I think they might be sentient. Life is precious and should be preserved. Thus, Dixon send me to talk to them and negotiate with them to get the toolkit."
-msgstr ""
+msgstr "J'ai refusé de m'emparer de la boite à outils par la force, car je pense qu'ils peuvent être doués de conscience. La vie est précieuse et devrait être préservée. Dixon m'a envoyé leur parler et négocier afin de récupérer la boite à outils."
 
 #: dialogs/Dixon.lua:304
 msgid "No, negotiations really aren't my cup of tea."
-msgstr "Non, les négociations sont vraiment pas ma tasse de thé."
+msgstr "Non, les négociations ne sont vraiment pas ma tasse de thé."
 
 #: dialogs/Dixon.lua:307
 msgid "OK, I understand. However, I will try to contact them somehow. We will see, if there is a benefit in this."
-msgstr ""
+msgstr "Ok, je comprends. Cependant, je vais essayer de les contacter d'une façon ou d'une autre. Nous verrons bien, si il y a un avantage à le faire."
 
 #: dialogs/Dixon.lua:308
 msgid "I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved. I also turned down Dixon's request to be his middleman."
-msgstr ""
+msgstr "J'ai refusé de prendre la boite à outils aux robots, car je pense qu'ils peuvent être doués de conscience. La vie est précieuse et devrait être préservée. J'ai également refusé l'offre de Dixon d'être son intermédiaire auprès d'eux."
 
 #: dialogs/Dixon.lua:317
 msgid "Yes, I think so. The robots must be alive. This is why we need to exterminate them as soon as possible before they kill us all."
@@ -5778,7 +5778,7 @@ msgstr "OH MON DIEU ! Linarien, il n'y a pas de temps à perdre !"
 
 #: dialogs/Dixon.lua:321
 msgid "I will call the military division and arrange a sweep of the tunnels at once."
-msgstr "Je vais appeler la division militaire et organiser un balayage des tunnels en une seule fois."
+msgstr "Je vais appeler la division militaire et organiser un nettoyage des tunnels une fois pour toute."
 
 #: dialogs/Dixon.lua:322
 msgid "May the heavens have mercy upon us, but better them than us."
@@ -5802,7 +5802,7 @@ msgstr "DIXON ! Oublie ça ! Nous devons agir MAINTENANT. Un robot amical, ça n
 
 #: dialogs/Dixon.lua:327
 msgid "... *sigh*"
-msgstr "... *vu*"
+msgstr "... *soupir*"
 
 #: dialogs/Dixon.lua:328
 msgid "With heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone."
@@ -5826,7 +5826,7 @@ msgstr "Les robots dans les tunnels pourraient être sensibles. Je ne peux pas a
 
 #: dialogs/Dixon.lua:343
 msgid "Of course I am kidding, Dixon. Lighten up! Now, be a good guy and open the tunnels for me so I can pry your toolbox from the cold, dead hands of the bots down there."
-msgstr ""
+msgstr "Évidemment je plaisante, Dixon. Détend-toi ! Allez, sois un bon gars et ouvre-moi les tunnels, que je puisse soutirer ta boite à outils des mains froides sans vie des robots qui sont là en bas."
 
 #: dialogs/Dixon.lua:347
 msgid "That wasn't very funny. You scared me. Sheesh."
@@ -5858,7 +5858,7 @@ msgstr "Je vais te donner trois petits appareils qui peuvent émettre une impuls
 
 #: dialogs/Dixon.lua:371 dialogs/Dixon.lua:375
 msgid "If you get in trouble just activate one and it emits a shockwave damaging any bot nearby. It should give you some breathing room."
-msgstr ""
+msgstr "En cas de problème, actives-en un et il émettra une onde de choc endommageant tout robot à proximité. Ça devrait te donner un moment de répit.  "
 
 #: dialogs/Dixon.lua:374
 msgid "I will give you two small devices that can emit an Electro Magnetic Pulse."
@@ -5866,15 +5866,15 @@ msgstr "Je te donnerai deux petits appareils pouvant émettre une impulsion éle
 
 #: dialogs/Dixon.lua:378
 msgid "I will give you a small device that can emit an Electro Magnetic Pulse."
-msgstr ""
+msgstr "Je vais te donner un petit dispositif qui peut émettre une impulsion électromagnétique."
 
 #: dialogs/Dixon.lua:379
 msgid "If you get in trouble just activate it and it emits a shockwave damaging any bot nearby. It should give you some breathing room."
-msgstr ""
+msgstr "En cas de problème, active le et il émettra une onde de choc endommageant tout robot à proximité. Ça devrait te donner un moment de répit.  "
 
 #: dialogs/Dixon.lua:382
 msgid "Best of all, it's completely harmless to biologicals. But make sure not to fry the circuits of our own 614 guard bots or computer terminals."
-msgstr ""
+msgstr "Et le mieux, c'est que c'est complètement inoffensif pour les créatures biologiques. Mais fais attention de ne pas griller les circuits de tes propres robots gardiens 614 ou les terminaux d'ordinateurs."
 
 #: dialogs/Dixon.lua:383
 msgid "The entrance to the tunnels is in the courtyard of the citadel. Once you exit this building, go straight and turn to your right once inside the outer citadel gates."
@@ -5918,15 +5918,15 @@ msgstr "Je pense que c'est mieux que rien."
 
 #: dialogs/Dixon.lua:404
 msgid "It is good to see that the way of the pacifist is a successful one!"
-msgstr ""
+msgstr "C'est bon de voir que le chemin pacifiste mène au succès !"
 
 #: dialogs/Dixon.lua:405
 msgid "He was proud to see pacifism works."
-msgstr ""
+msgstr "Il est fier de voir une oeuvre pacifique."
 
 #: dialogs/Dixon.lua:408
 msgid "I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. "
-msgstr ""
+msgstr "J'ai donné la boite à outils à Dixon. Il a été très heureux de revoir ses autotools. J'ai reçu ce casque en récompense."
 
 #: dialogs/Dixon.lua:415
 msgid "I killed that strange bot that robbed you. So, here is your toolkit."
@@ -5938,7 +5938,7 @@ msgstr "*vu* Je déteste voir les choses se terminer comme ça. Robot ou pas rob
 
 #: dialogs/Dixon.lua:419
 msgid "I sent you to bring peace, but you brought destruction. I do not understand how that could happen."
-msgstr ""
+msgstr "Je t'ai envoyé pour amener la paix, mais tu n'as amené que la destruction. Je ne comprends pas comment ça a pu arriver."
 
 #: dialogs/Dixon.lua:421
 msgid "However, what was done cannot be undone and now we all have to live with what we have. I guess I am being too pessimistic, you did the job."
@@ -5946,15 +5946,15 @@ msgstr "Bien, ce qui est fait est fait et maintenant nous devons vivre avec ce q
 
 #: dialogs/Dixon.lua:422
 msgid "I thank you for your help in recovering the autotools."
-msgstr "Je te remercie pour ton aide dans la récupération des microbots."
+msgstr "Je te remercie pour ton aide dans la récupération des autotools."
 
 #: dialogs/Dixon.lua:423
 msgid "Here is some money, you deserve it for getting my toolkit back."
-msgstr "Ici il y a un peu d'argent, tu le mérite pour m'avoir rapporté les microbes."
+msgstr "Voilà un peu d'argent, tu le mérites pour m'avoir rapporté ma boite à outils."
 
 #: dialogs/Dixon.lua:424
 msgid "Finally, I would like to say that the technical division is not interested in further cooperation with you, but I think you would fit very well in the military division. You should talk to them."
-msgstr "Enfin, je préférais dire que la division technique n'est pas intéressée par poursuivre une collaboration avec toi, mais je pense que tu devrais te sentir bien dans la division militaire. Je leur en parlerai."
+msgstr "Enfin, je préfèrerais dire que la division technique n'est pas intéressée pour poursuivre une collaboration avec toi, mais je pense que tu devrais te sentir bien dans la division militaire. Je leur en parlerai."
 
 #: dialogs/Dixon.lua:425
 msgid "I am sorry, but I must go now. My duties call."
@@ -5962,24 +5962,24 @@ msgstr "Je suis désolé, mais je dois y aller maintenant. Le devoir m'appelle."
 
 #: dialogs/Dixon.lua:427
 msgid "Dixon didn't seem too happy about this solution, but I don't care. "
-msgstr "Dixon ne paraissait pas très heureux avec cette solution, mais je m'en moque."
+msgstr "Dixon ne paraissait pas très heureux de cette solution, mais je m'en moque."
 
 #: dialogs/Dixon.lua:430
 msgid "Dixon was very disappointed about this solution, but I don't care. "
-msgstr "Dixon était très déçu avec cette solution, mais je m'en moque."
+msgstr "Dixon était très déçu avec de solution, mais je m'en moque."
 
 #: dialogs/Dixon.lua:434
 #, c-format
 msgid "Finally. I am tired, covered in bruises and oil... But I made sure that the bots are dead. It felt great to break their metal bodies and crush their circuits. %s It was fun killing the bots. Nothing else matters."
-msgstr ""
+msgstr "Finalement, je suis fatigué, couvert de bleus et d'huile... Mais je me suis assuré que les robots soient détruits. C'était agréable de briser leur corps métallique et de concasser leurs circuits. %s C'était amusant de tuer les robots. Rien d'autre ne compte."
 
 #: dialogs/Dixon.lua:440
 msgid "I got your toolkit. You can buy it from me if you want."
-msgstr "J'ai eu ta boîte à outils. Tu peux me l'acheter si tu veux."
+msgstr "J'ai ta boite à outils. Tu peux me l'acheter si tu veux."
 
 #: dialogs/Dixon.lua:446
 msgid "WHAT!?"
-msgstr "QUOI!? "
+msgstr "QUOI !? "
 
 #: dialogs/Dixon.lua:447
 msgid "You got to be kidding me, Linarian."
@@ -6019,7 +6019,7 @@ msgstr "Quatre cents. Nous ne pouvons pas offrir plus."
 
 #: dialogs/Dixon.lua:477
 msgid "Please, we really need the autotools."
-msgstr "S'il vous plaît, nous avons réellement besoin des microbots."
+msgstr "S'il te plait, nous avons réellement besoin des autotools."
 
 #: dialogs/Dixon.lua:478
 msgid "Without them the town is doomed."
@@ -6039,11 +6039,11 @@ msgstr "Est-ce que je peux avoir la boîte à outils maintenant ?"
 
 #: dialogs/Dixon.lua:499 dialogs/Dixon.lua:513 dialogs/Dixon.lua:526
 msgid "Deal. Here is your toolkit. Now cough up the money. Fast."
-msgstr "Marché conclu. Voilà la boîte de microbots. Maintenant envoie la monnaie. Vite."
+msgstr "Marché conclu. Voilà la boite à outils. Maintenant envoie la monnaie. Vite."
 
 #: dialogs/Dixon.lua:501
 msgid "Here. It is all there."
-msgstr "Ici. Tout est là."
+msgstr "Voilà. Tout est là."
 
 #: dialogs/Dixon.lua:502
 msgid "Now get out of here. I am a pacifist, but I am willing to make a special exception just for you."
@@ -6096,23 +6096,23 @@ msgstr "Hé, tu bas ton record !"
 
 #: dialogs/Dixon.lua:543
 msgid "All indicators are in the green, the power and water fill the pipes and even Spencer seems happier now that the town is thriving despite all odds."
-msgstr "Tous les voyants sont au vert, l'energie et l'eau circulent les conduit et même Baptiste semble content maintenant que la ville est redevenue active malgré tous ces problèmes."
+msgstr "Tous les voyants sont au vert, l'énergie et l'eau circulent dans les conduits et même Baptiste semble content maintenant que la ville est redevenue active malgré tous ces problèmes."
 
 #: dialogs/Dixon.lua:544
 msgid "Thanks to the autotools we can start building instead of just trying to repair the damage."
-msgstr "Grâce aux microbots nous pouvons maintenant commencer à construire au lieu de seulement essayer de réparer les dommages."
+msgstr "Grâce aux autotools nous pouvons maintenant commencer à construire au lieu de seulement essayer de réparer les dommages."
 
 #: dialogs/Dixon.lua:545
 msgid "Once this sick war is over, I will make sure you get the 'Key to the City' Linarian."
-msgstr "Une fois que cette stupide guerre sera terminée, je m'assurerai que tu ais les « clés de la ville », Linarien."
+msgstr "Une fois que cette stupide guerre sera terminée, je m'assurerai que tu aies les « clés de la ville », Linarien."
 
 #: dialogs/Dixon.lua:553
 msgid "Nearly. Only my conscience keeps me up at night."
-msgstr "Presque. Seule ma conscience me garde en vie à la nuit."
+msgstr "Presque. Seule ma conscience m'empêche de dormir."
 
 #: dialogs/Dixon.lua:555
 msgid "I'm kind of disenchanted by the failed peace mission."
-msgstr ""
+msgstr "Je suis plutôt déçu par l\"échec de la mission de paix."
 
 #: dialogs/Dixon.lua:556
 msgid "Please leave me alone with my thoughts, I do not want to talk to you right now."
@@ -6120,15 +6120,15 @@ msgstr "S'il te plaît, laisse moi seul avec mes pensées, je n'ai pas envie de 
 
 #: dialogs/Dixon.lua:558
 msgid "Please leave me alone with my thoughts, I do not want to talk to anyone right now."
-msgstr "S'il te plaît, laisse moi seul avec mes pensées, je ne veux, plus parler à qui que ce soit maintenant."
+msgstr "S'il te plaît, laisse moi seul avec mes pensées, je ne veux plus parler à qui que ce soit maintenant."
 
 #: dialogs/Dixon.lua:561
 msgid "But due to your forceful line of action, I am sure Spencer and Butch will be delighted to speak with you."
-msgstr ""
+msgstr "Mais vu ta ligne d'action énergique, je suis sûr que Baptiste et Butch seront ravis de te parler."
 
 #: dialogs/Dixon.lua:570
 msgid "No, I am afraid not."
-msgstr "Non, je ne suis pas effrayé."
+msgstr "Non, je crains que non."
 
 #: dialogs/Dixon.lua:571
 msgid "While I do not regret sparing the bots in the tunnels, the town suffers for it."
@@ -6136,7 +6136,7 @@ msgstr "Bien que je ne regrette pas d'épargner les robots dans les tunnels, la 
 
 #: dialogs/Dixon.lua:572
 msgid "It makes me sad to see everything slowly wasting away. The Megasys bots are doing more damage than we can repair."
-msgstr ""
+msgstr "Ça me rend triste de voir tout disparaitre un peu à la fois. Les robots MegaSys font plus de dommages que nous ne puissions réparer."
 
 #: dialogs/Dixon.lua:573
 msgid "This town has a few weeks left to live. After that we are all dead."
@@ -6168,7 +6168,7 @@ msgstr "J'ai rencontré quelqu'un qui a décidé de se joindre à nous dans le c
 
 #: dialogs/Dixon.lua:594
 msgid "You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean."
-msgstr "Tu as besoin d'un ordinateur haché. Tape 'ssh 10.83.13.230' en tant que superutilisateur et tu comprendras ce que je veux dire."
+msgstr "Tu as besoin d'un ordinateur piraté. Tape 'ssh 10.83.13.230' en tant que superutilisateur et tu comprendras ce que je veux dire."
 
 #: dialogs/Dixon.lua:600
 msgid "Why the secrecy and the hushed voice? Can't you just tell me?"
@@ -6228,23 +6228,23 @@ msgstr "Donc, je devrais le deviner ?"
 
 #: dialogs/Dixon.lua:626
 msgid "Hm... It could be the common error when the autofactory is restarting."
-msgstr "Hmm... ça devrait être l'erreur qui arrive souvent quand l'usine automatisée est en train de redémarrer."
+msgstr "Hmm... ça peut être l'erreur qui arrive souvent quand l'usine automatisée est en train de redémarrer."
 
 #: dialogs/Dixon.lua:627
 msgid "Its code should be 0x6465636c... 0x6465636c6365... C, I think. It means 'decline' in hex."
-msgstr ""
+msgstr "Le code est 0x6465636c... 0x6465636c6365... C, je crois. Ça signifie 'décline' en hexadécimal. "
 
 #: dialogs/Dixon.lua:628
 msgid "There is a really easy way to solve it. It's not in the official instructions, but I expect it to solve your problem."
-msgstr ""
+msgstr "C'est une manière très facile de résoudre le code. Ce n'est pas dans les instructions officielles, mais je pense que ça résoudra ton problème."
 
 #: dialogs/Dixon.lua:629
 msgid "You just have to apply some elbow grease to the mechanism at the end of the line."
-msgstr ""
+msgstr "Tu dois juste appliquer un peu de d'huile de coude sur le mécanisme qui se trouve en fin de chaine."
 
 #: dialogs/Dixon.lua:630
 msgid "You can ask Bender for it. He makes much elbow grease and should be able to give you a small can."
-msgstr ""
+msgstr "Tu peux en demander à Blender. Il produit beaucoup d'huile de coude et devrait pouvoir t'en donner un petite bidon. "
 
 #: dialogs/Dixon.lua:638 dialogs/Tamara.lua:332
 msgid "Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?"
@@ -6276,7 +6276,7 @@ msgstr "Tu ne peux pas."
 
 #: dialogs/Dixon.lua:653
 msgid "I locked it in order to keep us save from these bots down there."
-msgstr ""
+msgstr "Je l'ai fermé afin de ne tenir en sécurité vis-à-vis des robots qui sont là en bas."
 
 #: dialogs/Dixon.lua:654
 msgid "You never know what they're up to..."
@@ -6328,7 +6328,7 @@ msgstr "C'est bon, vous êtes soigné. "
 
 #: dialogs/DocMoore.lua:87
 msgid "Take better care of yourself, Linarian."
-msgstr "Faites plus attention à vous, Lunarien."
+msgstr "Faites plus attention à vous, Linarien."
 
 #: dialogs/DocMoore.lua:92
 msgid "You don't look too good..."
@@ -7045,23 +7045,23 @@ msgstr "Nous espérons que ta journée sera la plus productive."
 
 #: dialogs/Duncan.lua:77
 msgid "Hi... Erm... Who are you?"
-msgstr "Salut... humm.... Qui êtes vous? "
+msgstr "Salut... humm... Qui êtes vous ?"
 
 #: dialogs/Duncan.lua:79
 msgid "Duncan McNamara, The Red Guard's resident bomb maker, at your service."
-msgstr "Duncan McNamara, L'artificier officieux des gardes rouges, à votre service. "
+msgstr "Duncan McNamara, l'artificier officiel des Gardes Rouges, à ton service."
 
 #: dialogs/Duncan.lua:86
 msgid "I would like to buy a bomb."
-msgstr "Voulez-vous m'acheter une bombe? "
+msgstr "Je voudrais acheter une bombe."
 
 #: dialogs/Duncan.lua:88
 msgid "Yes. I am sure we can arrange something. Take a look."
-msgstr "Mmmh. Je pense que ça doit être possible. Jette un coup d'oeil."
+msgstr "Ok. Je pense qu'on doit pouvoir faire affaire. Jette un coup d'oeil."
 
 #: dialogs/Duncan.lua:89
 msgid "Sure. These are my offers today."
-msgstr "Bien sûr. Voici ce que j'ai à votre disposition en ce moment."
+msgstr "Bien sûr. Voici ce que j'ai à ta disposition en ce moment."
 
 #: dialogs/Duncan.lua:98
 msgid "I see only grenades. Do you have something bigger?"
@@ -7081,7 +7081,7 @@ msgstr "La chute de leur règne n'est pas encore advenue, je reste donc loyal."
 
 #: dialogs/Duncan.lua:108
 msgid "The fall of the Red Guard? I am going to report that you are inciting a revolution!"
-msgstr ""
+msgstr "La chute des Gardes Rouges ? Je vais aller signaler que tu incites à la révolution !"
 
 #: dialogs/Duncan.lua:110
 msgid "My word against yours. If you wish to try it, please, be my guest."
@@ -7113,7 +7113,7 @@ msgstr "Ce n'est pas le moment de parler de telles choses. Viens un autre jour e
 
 #: dialogs/Duncan.lua:123
 msgid "The Red Guard can have their great laser beams and plasma cannons... But nothing can save them."
-msgstr "La Garde Rouge a peut être les canons lasers et les canons à plasma les plus puissant… Mais ce n'est pas ça qui les sauvera."
+msgstr "La Garde Rouge a peut être les canons lasers et les canons à plasma les plus puissants… Mais ce n'est pas ça qui les sauvera."
 
 #: dialogs/Duncan.lua:129
 msgid "I want to buy some grenades."
@@ -7129,7 +7129,7 @@ msgstr " Avec plaisir."
 
 #: dialogs/Duncan.lua:139
 msgid "What kind of grenade is the best?"
-msgstr " Quelles sont les meilleures grenades?"
+msgstr " Quelles sont les meilleures grenades ?"
 
 #: dialogs/Duncan.lua:141
 msgid "You get what you pay for."
@@ -7137,7 +7137,7 @@ msgstr "La qualité de la marchandise est fonction du prix que tu y mets."
 
 #: dialogs/Duncan.lua:147
 msgid "How did you get into making explosives?"
-msgstr "Comment es-tu arrivé à l'activité d'artificier ?"
+msgstr "Comment en es-tu arrivé à devenir artificier ?"
 
 #: dialogs/Duncan.lua:149
 msgid "Twenty years ago there was a conflict."
@@ -7145,7 +7145,7 @@ msgstr "Il y a vingt ans, il y a eu une bataille."
 
 #: dialogs/Duncan.lua:150
 msgid "A grenade I threw destroyed a being which killed many of... my people."
-msgstr "Autrefois, j'ai lancé une grenade qui tua un de ces assassins."
+msgstr "Autrefois, j'ai lancé une grenade qui tua un des assassins de... mon peuple."
 
 #: dialogs/Duncan.lua:151
 msgid "Now I make more to smash the destroyers."
@@ -7173,7 +7173,7 @@ msgstr "Ah, excellent."
 
 #: dialogs/Duncan.lua:171
 msgid "A... friend of mine, Koan, stole something of great value to me."
-msgstr "Un… ami à moi, Koan, ma dérobé quelque chose qui a une grande valeur à mes yeux."
+msgstr "Un… ami à moi, Koan, m'a dérobé quelque chose qui a une grande valeur à mes yeux."
 
 #: dialogs/Duncan.lua:172
 msgid "He is hiding somewhere in the desert, I don't know exactly where."
@@ -7193,7 +7193,7 @@ msgstr "Il y a quelque chose que tu dois savoir."
 
 #: dialogs/Duncan.lua:182
 msgid "There are not too many bots in the desert, but they are invincible. It is best to avoid them."
-msgstr "Ils n'y a pas beaucoup de robots dans le désert, mais il sont invincibles. Il est plus prudent de les éviter."
+msgstr "Il n'y a pas beaucoup de robots dans le désert, mais il sont invincibles. Il est plus prudent de les éviter."
 
 #: dialogs/Duncan.lua:183
 msgid "I will be waiting here for your return."
@@ -7209,15 +7209,15 @@ msgstr "Seul l'avenir nous le dira. "
 
 #: dialogs/Duncan.lua:188
 msgid "Here are a couple of circuits to grease open the western gate, if you know what I mean."
-msgstr ""
+msgstr "Tiens, une poignée de circuits, pour que la porte ouest s'ouvre plus vite, si tu vois ce que je veux dire."
 
 #: dialogs/Duncan.lua:191
 msgid "Good luck!"
-msgstr "Bonne chance."
+msgstr "Bonne chance !"
 
 #: dialogs/Duncan.lua:192
 msgid "I have to find Koan in the desert west of town and get Duncan something very precious."
-msgstr ""
+msgstr "Je dois trouver Koan dans le désert à l'ouest de la Ville, et ramener à Duncan quelque chose de très précieux."
 
 #: dialogs/Duncan.lua:198
 msgid "What are those bots?"
@@ -7225,7 +7225,7 @@ msgstr " Que sont ces robots ?"
 
 #: dialogs/Duncan.lua:200
 msgid "We call them 'Harvesters'."
-msgstr ""
+msgstr "On les appelle les « Moissonneurs »."
 
 #: dialogs/Duncan.lua:201
 msgid "They were designed to chop down trees in the mountains."
@@ -7245,11 +7245,11 @@ msgstr " Quelle est cette chose qu'il t'a dérobée ?"
 
 #: dialogs/Duncan.lua:211
 msgid "A cube. Trust me, you can't miss it."
-msgstr "Un cube. Tu ne peux pas lerater. Fais moi confiance."
+msgstr "Un cube. Tu ne peux pas le manquer. Fais moi confiance."
 
 #: dialogs/Duncan.lua:217
 msgid "No, I don't find bloodshed a pleasurable activity."
-msgstr "Non, je ne pense pas que les bains de sang soit un loisir particulièrement attachant."
+msgstr "Non, je ne pense pas que les bains de sang soit un loisir particulièrement attrayant."
 
 #: dialogs/Duncan.lua:219
 msgid "That is fine. I will find someone else."
@@ -7261,27 +7261,27 @@ msgstr "Hé, Je pense que j'ai enfin trouvé votre cube. "
 
 #: dialogs/Duncan.lua:231
 msgid "Oh, great!"
-msgstr ""
+msgstr "Oh, génial !"
 
 #: dialogs/Duncan.lua:233 dialogs/Spencer.lua:589
 msgid "Hey!"
-msgstr ""
+msgstr "Eh !"
 
 #: dialogs/Duncan.lua:234
 msgid "Hmm...?"
-msgstr ""
+msgstr "Humm... ?"
 
 #: dialogs/Duncan.lua:235
 msgid "I think I found Koan after all ... finally."
-msgstr ""
+msgstr "Je crois que j'ai bien trouvé Koan... finalement."
 
 #: dialogs/Duncan.lua:236
 msgid "Oh, nice!"
-msgstr ""
+msgstr "Oh, très bien !"
 
 #: dialogs/Duncan.lua:237
 msgid "Did you also get the cube?"
-msgstr "Avez vous aussi ramené le cube ? "
+msgstr "Tu as aussi ramené le cube ? "
 
 #: dialogs/Duncan.lua:241
 msgid "So... Any news on the Koan matter?"
@@ -7289,35 +7289,35 @@ msgstr "Alors... Des nouvelles de l'affaire Koan ?"
 
 #: dialogs/Duncan.lua:252
 msgid "Did you finally find the cube?"
-msgstr "Avez vous fini par trouver le cube ? "
+msgstr "As tu fini par trouver le cube ? "
 
 #: dialogs/Duncan.lua:253
 msgid "Uhmmm..."
-msgstr ""
+msgstr "Hummm..."
 
 #: dialogs/Duncan.lua:254
 msgid "You better go getting it!"
-msgstr ""
+msgstr "Tu ferais mieux d'aller le chercher !"
 
 #: dialogs/Duncan.lua:256
 msgid "You don't look too well, what did happen?"
-msgstr ""
+msgstr "Tu ne sembles pas en grande forme, qu'est-il arrivé ?"
 
 #: dialogs/Duncan.lua:257
 msgid "He ... he is dead..."
-msgstr ""
+msgstr "Il... il est mort..."
 
 #: dialogs/Duncan.lua:258
 msgid "Koan?"
-msgstr ""
+msgstr "Koan ?"
 
 #: dialogs/Duncan.lua:261
 msgid "I thought you hadn't found him?"
-msgstr ""
+msgstr "Je croyais que tu ne l'avais pas trouvé ?"
 
 #: dialogs/Duncan.lua:262
 msgid "Yes, I didn't find him at first, now I did."
-msgstr ""
+msgstr "Oui, au début je ne l'avais pas trouvé, mais maintenant si."
 
 #: dialogs/Duncan.lua:264 dialogs/Engel.lua:161 dialogs/Engel.lua:191
 #: dialogs/Spencer.lua:51
@@ -7326,19 +7326,19 @@ msgstr "Oui."
 
 #: dialogs/Duncan.lua:266
 msgid "And the cube that he was carrying? Where is it?"
-msgstr "Et le cube qu'il portait, qu'est-il devenu ? "
+msgstr "Et le cube qu'il portait, qu'est-il devenu ?"
 
 #: dialogs/Duncan.lua:267
 msgid "I must have left it somewhere..."
-msgstr ""
+msgstr "Je dois l'avoir laissé quelque part..."
 
 #: dialogs/Duncan.lua:268
 msgid "Fetch it and bring it to me."
-msgstr ""
+msgstr "Retrouve-le et rapporte le moi."
 
 #: dialogs/Duncan.lua:270
 msgid "Unfortunately, I forgot to bring the cube. Duncan was not amused."
-msgstr ""
+msgstr "Hélas, j'ai oublié de prendre le cube. Duncan n'était pas joyeux."
 
 #: dialogs/Duncan.lua:274
 msgid "I could not find him anywhere in the desert. I don't think he is there anymore."
@@ -7350,11 +7350,11 @@ msgstr "Je vois."
 
 #: dialogs/Duncan.lua:276
 msgid "I lied to Duncan about not finding Koan."
-msgstr "J'ai menti à Duncan à propos de mon échec."
+msgstr "J'ai menti à Duncan à propos de mon échec à trouver Koan."
 
 #: dialogs/Duncan.lua:285
 msgid "I think this is your cube."
-msgstr ""
+msgstr "Je pense que c'est ton cube."
 
 #: dialogs/Duncan.lua:287
 msgid "Yes. I appreciate your help."
@@ -7362,15 +7362,15 @@ msgstr "Oui. J'apprécie ton aide."
 
 #: dialogs/Duncan.lua:293
 msgid "Now, what is this big cube that you had me carry all the way here?"
-msgstr ""
+msgstr "Bon alors, c'est quoi ce gros cube que tu m'as fait transporter jusqu'ici ?"
 
 #: dialogs/Duncan.lua:295
 msgid "Just a memento from a friend."
-msgstr "Seulement un souvenir après un ami."
+msgstr "Seulement un carnet de notes d'un ami."
 
 #: dialogs/Duncan.lua:296
 msgid "A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets."
-msgstr "Un peu plus qu'un portable à la fin du monde, lequel je recherche pour le démonter et apprendre ses secrets."
+msgstr "Un peu plus qu'une « fin du monde» portable, que je suis impatient de démonter pour en apprendre les secrets."
 
 #: dialogs/Duncan.lua:297
 msgid "Nothing that important."
@@ -7378,11 +7378,11 @@ msgstr "Rien de très important."
 
 #: dialogs/Duncan.lua:304
 msgid "A 'few' bots? The place was crawling with Harvesters! I nearly got killed!"
-msgstr "« Quelques » robots ? C'était plein de faucheurs ! J'ai failli être tué !"
+msgstr "« Quelques » robots ? C'était plein de moissoneurs ! J'ai failli être tué !"
 
 #: dialogs/Duncan.lua:306
 msgid "There were only one hundred and twenty bots in the entire desert region. This hardly qualifies as many, considering the size of the area."
-msgstr "Il y avait seulement quarante robots dans le désert. Ça peut difficilement être qualifié de « un grand nombre » ."
+msgstr "Il y avait seulement cent-vingt robots dans le désert. Je n'appellerais pas ça « beaucoup », étant donnée la taille de la zone.."
 
 #: dialogs/Duncan.lua:307
 msgid "What? You know exactly how many bots were in the desert? Without being there? I don't like this."
@@ -7406,11 +7406,11 @@ msgstr "Hé, c'est vraiment parfait. Voici ton cube. Amuse toi bien à le démon
 
 #: dialogs/Duncan.lua:319
 msgid "I will."
-msgstr "Je veux."
+msgstr "Aucun doute !"
 
 #: dialogs/Duncan.lua:325
 msgid "WHAT? No way I am giving you a doomsday device! Forget about it."
-msgstr "QUOI ? Pas moyen que je te donne un de ces engins d'apocalypse ! Oublie ça."
+msgstr "QUOI ? Pas question que je te donne un de ces engins d'apocalypse ! Oublie ça."
 
 #: dialogs/Duncan.lua:327
 msgid "I understand. So be it."
@@ -7438,7 +7438,7 @@ msgstr "Oui, c'est vrai. Je ne suis pas ce que je semble être."
 
 #: dialogs/Duncan.lua:351
 msgid "But then again, neither are you, so my thoughts are, we are even."
-msgstr ""
+msgstr "Mais en même temps, toi non plus, alors je dirais que, nous sommes pareils."
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Duncan.lua:353
@@ -7460,7 +7460,7 @@ msgstr " Dis-moi qui tu es. J'ai besoin de savoir."
 
 #: dialogs/Duncan.lua:364
 msgid "Twenty years ago, people were kinder to each other."
-msgstr ""
+msgstr "Il y a vingt ans, les gens étaient plus sympathiques entre eux."
 
 #: dialogs/Duncan.lua:365
 msgid "I suggest you be kind to me as well, and I will be kind to you."
@@ -7476,11 +7476,11 @@ msgstr " Je n'ai pas de secret."
 
 #: dialogs/Duncan.lua:374
 msgid "And neither do I."
-msgstr "Et je fais de même."
+msgstr "Et moi non plus."
 
 #: dialogs/Duncan.lua:381 dialogs/Duncan.lua:390
 msgid "I wish you cold winds."
-msgstr "Je te souhaite des vents froids."
+msgstr "Je te souhaite un vent frais."
 
 #: dialogs/Duncan.lua:382
 msgid "Huh? How do you know the Linarian farewell? No one around here knows it."
@@ -7488,7 +7488,7 @@ msgstr " Hein ? Comment est-ce que connais le salut Linarien ? Personne ici ne l
 
 #: dialogs/Duncan.lua:383
 msgid "I read many books on Linarians. That is all."
-msgstr "Je lis beaucoup de livres, Linarien. C'est tout."
+msgstr "J'ai lu beaucoup de livres à propos des Linariens. C'est tout."
 
 #: dialogs/Duncan.lua:384
 msgid "Nothing more and nothing less."
@@ -7869,7 +7869,7 @@ msgstr ""
 
 #: dialogs/Engel.lua:377 dialogs/Pendragon.lua:315
 msgid "How's it going?"
-msgstr ""
+msgstr "Comment ça va ?"
 
 #: dialogs/Engel.lua:379
 msgid "RRRRRAAAAAAAARRRGH!"
@@ -9267,7 +9267,7 @@ msgstr "[b](Dans l'autre pièce, vous entendez le vrombissement des serveurs. L'
 
 #: dialogs/Francis.lua:149
 msgid "...a monster! You are not a Linarian like the legends spoke of! The cryo-stasis has corrupted your soul! AGGGG!!!"
-msgstr "... un monstre! Vous n'êtes pas un Lunarien comme ceux des légendes! la cryostase a perverti votre âme! Aarrrr!!!! "
+msgstr "... un monstre! Vous n'êtes pas un Linarien comme ceux des légendes! la cryostase a perverti votre âme! Aarrrr!!!! "
 
 #: dialogs/Francis.lua:150
 msgid "[b](The old man grips his chest and collapses in what appears to have been a fatal heart attack.)[/b]"
@@ -9341,7 +9341,7 @@ msgstr "Wow, c'est le pire cas de dommage cryoneural que j'ai jamais vu."
 
 #: dialogs/Francis.lua:208
 msgid "The Red Guard had me thaw you out because you are a Linarian. I don't know much about your kind, but I do know that you have a strange affinity for computers, almost magical powers."
-msgstr "La garde rouge m'a demandé de vous décongeler parce que vous êtes un Lunarien. Je ne sais pas grand chose à propos de votre espèce mise-à-part que vous avez une étrange affinité pour les ordinateurs, c'en est presque magique. "
+msgstr "La garde rouge m'a demandé de vous décongeler parce que vous êtes un Linarien. Je ne sais pas grand chose à propos de votre espèce mise-à-part que vous avez une étrange affinité pour les ordinateurs, c'en est presque magique. "
 
 #: dialogs/Francis.lua:209
 msgid "Chandra in the nearby town center probably has even more information."
@@ -9802,24 +9802,24 @@ msgstr "La  version du firmware actuellement en usage est v. 5.0.8+worldto-nogpl
 #: dialogs/HF-FirmwareUpdateServer.lua:69
 #, c-format
 msgid "Currently deployed firmware is v. 5.0.8+%swashere+gpl"
-msgstr "La  version du firmware actuellement en usage est v. 5.0.8+%sswashere+gpl"
+msgstr "La  version du firmware actuellement en usage est v. 5.0.8+%ssetaitici+gpl"
 
 #. TRANSLATORS: "hello?"
 #: dialogs/HF-FirmwareUpdateServer.lua:72
 msgid "*Bzzt*ello?"
-msgstr ""
+msgstr "*Bzzt*jour ?"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:73
 msgid "What? What is this?"
-msgstr ""
+msgstr "Hein ? Qu'est-ce que c'est ?"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:75
 msgid "Spencer somehow contacted me through the firmware server terminal. From what he told me, it worked - the hostile bots are all deactivated! I am now supposed to stand by for further instructions..."
-msgstr ""
+msgstr "Baptiste a réussi à me contacter au travers du microcode du terminal du serveur. De ce qu'il m'a dit, ça a fonctionné - les robots hostiles sont tous désactivés ! Je suis maintenant supposé attendre d'autres instructions..."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:83
 msgid "Propagate firmware update"
-msgstr "Distribution de la mise à jour du micro-logiciel"
+msgstr "Distribution de la mise à jour du microcode"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:85
 msgid "Compressing image...."
@@ -9827,15 +9827,15 @@ msgstr "Compression de l'image…"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:86
 msgid "Advertising update to clients..."
-msgstr "Avertit les clients de la mise à jour…"
+msgstr "Notification aux clients de la mise à jour…"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:87
 msgid "Waiting for all connections...."
-msgstr "En attente pour toutes les connections…"
+msgstr "En attente de toutes les connections…"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:90
 msgid "Please resolve merge conflicts:"
-msgstr "Veuillez résoudre le conflit de fusion :"
+msgstr "Veuillez résoudre les conflit de fusion :"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:92
 msgid "Conflicts resolved,"
@@ -9843,11 +9843,11 @@ msgstr "Conflits résolus, "
 
 #: dialogs/HF-FirmwareUpdateServer.lua:93
 msgid "Firmware update propagated!"
-msgstr "Mise à jour du micro-logiciel effectuée !"
+msgstr "Mise à jour du microcode effectuée !"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:95
 msgid "I managed to upload the faulty firmware update to all bots within transmission range. Either the siege on the town ends now... Or everything else does."
-msgstr ""
+msgstr "J'ai réussi à télécharger la mise à jour du microcode contaminé à tous les robots à portée de transmission. Soit le siège de la Ville se termine maintenant... ou c'est la fin de toute chose."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:99
 msgid "Merge failed."
@@ -10811,23 +10811,23 @@ msgstr "Intrus détecté."
 
 #: dialogs/Kevin-Lawnmower.lua:40
 msgid "[b]Security mode:[/b] ACTIVATED"
-msgstr "[b]Mode Sécurité :[/b] ACTIVE"
+msgstr "[b]Mode Sécurité :[/b] ACTIVÉ"
 
 #: dialogs/Kevin-Lawnmower.lua:45
 msgid "Welcome to Kevin's personal lawnmower."
-msgstr "Bienvenue dans la tondeuse à gazon personnelle de Kevin."
+msgstr "Bienvenue à la tondeuse à gazon personnelle de Kevin."
 
 #: dialogs/Kevin-Lawnmower.lua:46
 msgid "Your connection with this bot has been logged and reported to Kevin."
-msgstr "Votre connexion avec ce robot a été logué et reporté à Kevin."
+msgstr "Ta connexion avec ce robot a été loguée et reportée à Kevin."
 
 #: dialogs/Kevin-Lawnmower.lua:47
 msgid "Please state your name for identification."
-msgstr "Merci de renseigner votre nom pour identification."
+msgstr "Merci de déclarer ton nom pour identification."
 
 #: dialogs/Kevin-Lawnmower.lua:48
 msgid "WARNING: ANY ABUSE WILL BE PUNISHED!"
-msgstr "ATTENTION: TOUT ABUS SERA PUNIS!"
+msgstr "ATTENTION: TOUT ABUS SERA PUNI !"
 
 #: dialogs/Kevin-Lawnmower.lua:52 dialogs/MiniFactory-Terminal.lua:76
 msgid "WARNING:"
@@ -10844,11 +10844,11 @@ msgstr "Tous les mouvements sont désactivés..."
 
 #: dialogs/Kevin-Lawnmower.lua:55
 msgid "Scanning area for possible compatible energy sources..."
-msgstr "Recherche dans la zone de source d’énergie compatible..."
+msgstr "Recherche dans la zone d'une source d’énergie compatible..."
 
 #: dialogs/Kevin-Lawnmower.lua:58
 msgid "Compatible energy source found!"
-msgstr "Source d'énergie compatible trouvé!"
+msgstr "Source d'énergie compatible trouvée !"
 
 #: dialogs/Kevin-Lawnmower.lua:59
 msgid "[b]Barf's Energy Drink[/b]"
@@ -10868,7 +10868,7 @@ msgstr "Reprise de l'hibernation..."
 
 #: dialogs/Kevin-Lawnmower.lua:82
 msgid "I'll state my name."
-msgstr ""
+msgstr "Je vais donner mon nom."
 
 #: dialogs/Kevin-Lawnmower.lua:86
 #, c-format
@@ -10877,15 +10877,15 @@ msgstr "Identification comme %s"
 
 #: dialogs/Kevin-Lawnmower.lua:88
 msgid "Welcome to Kevin's lawnmower."
-msgstr "Bienvenue dans la tondeuse à gazon de Kevin."
+msgstr "Bienvenue à la tondeuse à gazon de Kevin."
 
 #: dialogs/Kevin-Lawnmower.lua:92
 msgid "Verification failed!"
-msgstr "Vérification échoué !"
+msgstr "Vérification échouée !"
 
 #: dialogs/Kevin-Lawnmower.lua:93
 msgid "WARNING: LOGIN ATTEMPT REPORTED. THERE WILL BE CONSEQUENCES!"
-msgstr ""
+msgstr "AVERTISSEMENT : TENTATIVE DE CONNEXION SIGNALÉE. NE SERA PAS SANS CONSÉQUENCES !"
 
 #: dialogs/Kevin-Lawnmower.lua:102
 msgid "I'll try 'Kevin'."
@@ -10901,27 +10901,27 @@ msgstr "Identification comme Kevin..."
 
 #: dialogs/Kevin-Lawnmower.lua:107
 msgid "Identification failed!"
-msgstr "Identification échoué!"
+msgstr "Identification échouée !"
 
 #: dialogs/Kevin-Lawnmower.lua:108
 msgid "Liar!"
-msgstr "Mensonge!"
+msgstr "Mensonge !"
 
 #: dialogs/Kevin-Lawnmower.lua:109
 msgid "WARNING: ABUSE REPORTED!"
-msgstr "ATTENTION: ABUS REPORTE!"
+msgstr "ATTENTION : ABUS SIGNALÉ !"
 
 #: dialogs/Kevin-Lawnmower.lua:110
 msgid "PUNISHMENT IN 3 SECONDS!"
-msgstr "PUNITION DANS 3 SECONDES!"
+msgstr "PUNITION DANS 3 SECONDES !"
 
 #: dialogs/Kevin-Lawnmower.lua:111
 msgid "IN 2 SECONDS!"
-msgstr "DANS 2 SECONDES!"
+msgstr "DANS 2 SECONDES !"
 
 #: dialogs/Kevin-Lawnmower.lua:112
 msgid "IN 1 SECOND!"
-msgstr "DANS 1 SECONDES!"
+msgstr "DANS 1 SECONDES !"
 
 #. TRANSLATORS: command, user lowercase here
 #: dialogs/Kevin-Lawnmower.lua:121 dialogs/Kevin-Lawnmower.lua:124
@@ -10950,7 +10950,7 @@ msgstr "quitter"
 
 #: dialogs/Kevin-Lawnmower.lua:137
 msgid "printing version..."
-msgstr "Affichage version..."
+msgstr "affichage version..."
 
 #: dialogs/Kevin-Lawnmower.lua:138
 msgid "MowOS 0.4.2"
@@ -10974,11 +10974,11 @@ msgstr "[b]%s[/b]%% restant."
 
 #: dialogs/Kevin-Lawnmower.lua:156
 msgid "Tank completely refilled."
-msgstr "Réservoir complètement remplis."
+msgstr "Réservoir complètement rempli."
 
 #: dialogs/Kevin-Lawnmower.lua:163
 msgid "It can have one drink..."
-msgstr ""
+msgstr "On peut utiliser une boisson..."
 
 #: dialogs/Kevin-Lawnmower.lua:166
 msgid "So, where do I have to put in the drink...?"
@@ -10994,7 +10994,7 @@ msgstr "[b]glou glou glou[/b]"
 
 #: dialogs/Kevin-Lawnmower.lua:169
 msgid "Tank refilled."
-msgstr "Réservoir remplit."
+msgstr "Réservoir rempli."
 
 #: dialogs/Kevin-Lawnmower.lua:170
 msgid "Fuel status:"
@@ -11008,15 +11008,15 @@ msgstr "[b]100[/b]%%!"
 
 #: dialogs/Kevin-Lawnmower.lua:173
 msgid "This will approximately suffice for:"
-msgstr ""
+msgstr "Ça devrait à peu près suffire pour :"
 
 #: dialogs/Kevin-Lawnmower.lua:174
 msgid "1 month and 14 days."
-msgstr "1 mois and 14 jours."
+msgstr "1 mois et 14 jours."
 
 #: dialogs/Kevin-Lawnmower.lua:175
 msgid "Dropping waste product of last fuel filling..."
-msgstr ""
+msgstr "Vidange des rebuts du dernier remplissage..."
 
 #: dialogs/Kevin-Lawnmower.lua:176
 msgid "Done."
@@ -11024,7 +11024,7 @@ msgstr "Terminé."
 
 #: dialogs/Kevin-Lawnmower.lua:186
 msgid "No, I cannot spare any drinks!"
-msgstr ""
+msgstr "Non, je ne peux pas me passer de la moindre boisson !"
 
 #: dialogs/Kevin-Lawnmower.lua:189
 msgid "Sorry, tin can."
@@ -11032,7 +11032,7 @@ msgstr "Désolé, boîte de conserve."
 
 #: dialogs/Kevin-Lawnmower.lua:190
 msgid "Import error: [b]null[/b] fuel received."
-msgstr ""
+msgstr "Erreur d'importation : [b]aucun[/] carburant reçu."
 
 #. TRANSLATORS: '%%' is not a typo
 #: dialogs/Kevin-Lawnmower.lua:192
@@ -11240,7 +11240,7 @@ msgstr "Je ne suis pas aussi confus que tu le penses. Disparais maintenant."
 
 #: dialogs/Kevin.lua:185 dialogs/Pendragon.lua:296
 msgid "What do you want?"
-msgstr "Qu'est-ce que tu veux?"
+msgstr "Qu'est-ce que tu veux ?"
 
 #: dialogs/Kevin.lua:194
 msgid "I want to become a hacker."
@@ -11957,15 +11957,15 @@ msgstr "Un nouvel arrivant ! Super ! Nous avons toujours besoin de bras. Bienven
 
 #: dialogs/Lukas.lua:47
 msgid "Spencer said you'd be able to provide me with better armor and equipment."
-msgstr "Spencer m'a dit que vous seriez capable de me fournir avec une meilleur armure et un meilleur équipement."
+msgstr "Baptiste m'a dit que tu pourrais me fournir une meilleure armure et un meilleur équipement."
 
 #: dialogs/Lukas.lua:49
 msgid "Of course. As a member of our Guard, you're entitled to wear one of our suits of armor."
-msgstr ""
+msgstr "Bien sûr. En tant que membre de notre Garde, tu es autorisé à porter une de nos armures."
 
 #: dialogs/Lukas.lua:50
 msgid "There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing, though we also trade guns and some ammo."
-msgstr ""
+msgstr "Il y a deux types d'armure, la tenue lourde des Gardes Rouges et une version légère de celle-ci, et nous faisons également commerce d'armes et de munitions."
 
 #: dialogs/Lukas.lua:51
 msgid "Now, what will it be?"
@@ -11985,7 +11985,7 @@ msgstr "Il y a toujours quelque chose à faire, ne t'en fais pas. Ranger cet end
 
 #: dialogs/Lukas.lua:67
 msgid "I'd like to buy an exterminator."
-msgstr "J'aimerai acheter un exterminateur."
+msgstr "J'aimerais acheter un exterminateur."
 
 #: dialogs/Lukas.lua:69
 msgid "Haha, good one."
@@ -12001,7 +12001,7 @@ msgstr "Cela signifie-t-il que je vais en avoir un gratuit ?"
 
 #: dialogs/Lukas.lua:72
 msgid "You are the funniest Linarian I've ever seen."
-msgstr "Vous êtes le linarien le plus comique que j'ai jamais rencontré."
+msgstr "Tu es le Lunarien le plus comique que j'ai jamais rencontré."
 
 #: dialogs/Lukas.lua:73
 msgid "If the only one."
@@ -13399,7 +13399,7 @@ msgstr "M$ - C'est quoi la suite ?"
 
 #: dialogs/Pendragon.lua:42
 msgid "Halt! Who goes there?"
-msgstr "Halt! Qui va là? "
+msgstr "Halte ! Qui va là ? "
 
 #: dialogs/Pendragon.lua:43
 msgid "Someone I found in the desert, Tania."
@@ -13413,7 +13413,7 @@ msgstr "%s, tu peux entrer."
 
 #: dialogs/Pendragon.lua:46
 msgid "However, you will have to talk to Spencer before you bring your friend, Tania, into the town."
-msgstr "Quoi que vous devez parler à Spencer avant de ramener votre amie Tania en ville. "
+msgstr "De toute façon, vous devez parler à Baptiste avant de ramener votre amie Tania en ville. "
 
 #: dialogs/Pendragon.lua:54
 msgid "Tania has been waiting to talk to you."
@@ -13421,11 +13421,11 @@ msgstr "Tania a attendu pour te parler. "
 
 #: dialogs/Pendragon.lua:56
 msgid "Spencer says it is OK?"
-msgstr "Spencer est d'accord? "
+msgstr "Baptiste a dit qu'il est d'accord ?"
 
 #: dialogs/Pendragon.lua:57
 msgid "Well that is good enough for me."
-msgstr "bien, ça me conviens.  "
+msgstr "Bien, ça me convient.  "
 
 #: dialogs/Pendragon.lua:58
 msgid "She may enter."
@@ -13433,7 +13433,7 @@ msgstr "Elle peut entrer. "
 
 #: dialogs/Pendragon.lua:76
 msgid "Got the money?"
-msgstr "T'as eu l'argent? "
+msgstr "T'as eu l'argent ?"
 
 #: dialogs/Pendragon.lua:92
 msgid "You don't say. I'm not living here either. I'm just on vacation."
@@ -13461,7 +13461,7 @@ msgstr "Certainement. Je peux t'aider."
 
 #: dialogs/Pendragon.lua:107
 msgid "For a price. Hundred circuits should be enough."
-msgstr "Si tu es pret à en payer le prix. Cent circuits suffisent."
+msgstr "Si tu es prêt à en payer le prix. Cent circuits suffisent."
 
 #: dialogs/Pendragon.lua:114
 msgid "Do you have a name?"
@@ -13485,15 +13485,15 @@ msgstr "%s, car c'est mon nom ?"
 #: dialogs/Pendragon.lua:122
 #, c-format
 msgid "%s. Hah. They won't remember that name the way you think, bird."
-msgstr ""
+msgstr "%s. Ha. Personne ne sera rappellera de ce nom de la façon dont tu l'imagines, gonzesse. "
 
 #: dialogs/Pendragon.lua:130
 msgid "Teach me the basic stuff."
-msgstr " Apprends moi les bases du soldat."
+msgstr " Apprends moi les trucs de base."
 
 #: dialogs/Pendragon.lua:132
 msgid "Are you sure?"
-msgstr "Êtes-vous sûr(e) ?"
+msgstr "C'est sûr ?"
 
 #: dialogs/Pendragon.lua:133
 msgid "I only accept students that already have some experience in fighting bots."
@@ -13501,7 +13501,7 @@ msgstr "J'accepte uniquement des étudiants qui ont déjà de l'expérience dans
 
 #: dialogs/Pendragon.lua:139
 msgid "Yes (costs 100 valuable circuits, 5 training points)"
-msgstr "Oui (coûte 100 circuits et 5 points d'entraînement)."
+msgstr "Oui (coûte 100 circuits et 5 points d’entraînement)"
 
 #: dialogs/Pendragon.lua:144
 msgid "Let us begin then."
@@ -13521,11 +13521,11 @@ msgstr "Aïe ! Mais qu'est-ce que tu  fabriques ?"
 
 #: dialogs/Pendragon.lua:148
 msgid "Lesson number one. Never trust the opponent."
-msgstr "Leçon numéro un. Ne jamais croire un adversaire."
+msgstr "Leçon numéro un. Ne jamais faire confiance à l'adversaire."
 
 #: dialogs/Pendragon.lua:149
 msgid "Just let me get up an -- ouch! Stop it."
-msgstr "Laisse moi seulement me relever Et -- Aïe ! Arrête ça."
+msgstr "Laisse moi seulement me relever sur -- Aïe ! Arrête ça."
 
 #: dialogs/Pendragon.lua:150
 msgid "Lesson number two. The bots have no mercy."
@@ -13577,7 +13577,7 @@ msgstr "Tu n'as pas assez de circuits sur toi. Reviens lorsque tu auras la somme
 
 #: dialogs/Pendragon.lua:169
 msgid "Hey, wake up! I taught you that stuff already. Go practice on the bots, if you really want more training."
-msgstr "Hé, réveille toi ! J'ai déjà pris ce truc. Va t'entraîner contre les robots, si tu veux vraiment plus d'entraînement."
+msgstr "Hé, réveille toi ! Je t'ai déjà appris ce truc. Va t'entraîner contre les robots, si tu veux vraiment plus d'entraînement."
 
 #: dialogs/Pendragon.lua:176
 msgid "Teach me how to smash concrete blocks with my bare hands."
@@ -13629,11 +13629,11 @@ msgstr "Soit très attentif. "
 
 #: dialogs/Pendragon.lua:216
 msgid "TAKE THIS!"
-msgstr "PREND ÇA! "
+msgstr "PREND ÇA !"
 
 #: dialogs/Pendragon.lua:223
 msgid "Now go away."
-msgstr "Maintenant, casses toi! "
+msgstr "Maintenant, casses toi !"
 
 #: dialogs/Pendragon.lua:230
 msgid "Enough for now."
@@ -13641,15 +13641,15 @@ msgstr "Ça suffit pour le moment."
 
 #: dialogs/Pendragon.lua:238
 msgid "I want to pass the gate."
-msgstr "Je veut passer la porte. "
+msgstr "Je veux passer la porte. "
 
 #: dialogs/Pendragon.lua:241
 msgid "Can you open it please?"
-msgstr "Pouvez-vous me l'ouvrir? "
+msgstr "Peux-tu me l'ouvrir ?"
 
 #: dialogs/Pendragon.lua:242
 msgid "Yes, I can."
-msgstr "Oui, je peut. "
+msgstr "Oui, je peux."
 
 #: dialogs/Pendragon.lua:244
 msgid "Uhm..."
@@ -13661,23 +13661,23 @@ msgstr "Va tu le faire ? "
 
 #: dialogs/Pendragon.lua:246
 msgid "Yes. But you have to pay a one-time tax for it first."
-msgstr "Oui, mais vous devez payer un droit de passage d'abord.  "
+msgstr "Oui, mais tu dois payer un droit de passage d'abord.  "
 
 #: dialogs/Pendragon.lua:248
 msgid "Pay 30 circuits and you may pass."
-msgstr "Payes 30 circuits et tu peut passer. "
+msgstr "Payes 30 circuits et tu peux passer. "
 
 #: dialogs/Pendragon.lua:251
 msgid "You can enter the desert, but first you'll have to pay 40 circuits."
-msgstr "Tu peut aller dans le désert, mais d'abbord tu doit me payer 40 circuits. "
+msgstr "Tu peux aller dans le désert, mais d'abord tu dois me payer 40 circuits. "
 
 #: dialogs/Pendragon.lua:262
 msgid "Yes, I've got the money."
-msgstr "Voilà, J'ai l'argent. "
+msgstr "Voilà, j'ai l'argent. "
 
 #: dialogs/Pendragon.lua:268
 msgid "You may pass."
-msgstr "Vous pouvez passer. "
+msgstr "Tu peux passer. "
 
 #: dialogs/Pendragon.lua:270
 msgid "Pendragon opened the gate for me, but I had to pay a little tax."
@@ -13685,19 +13685,19 @@ msgstr "Pendragon m'a ouvert la porte, mais j'ai du payer une petite taxe."
 
 #: dialogs/Pendragon.lua:273
 msgid "At last."
-msgstr "Finalement. "
+msgstr "Finalement."
 
 #: dialogs/Pendragon.lua:274
 msgid "Here, let me pass now."
-msgstr "Voilà! Laisses-moi passer maintenant. "
+msgstr "Voilà ! Laisses-moi passer maintenant. "
 
 #: dialogs/Pendragon.lua:275
 msgid "You may pass, Loon."
-msgstr "Tu peux passer, Loon."
+msgstr "Tu peux passer, Pigeon."
 
 #: dialogs/Pendragon.lua:276
 msgid "But don't expect any help in there."
-msgstr "Mais ne t'attend pas à avoir de l'aide, ici."
+msgstr "Mais ne t'attends pas à avoir de l'aide, ici."
 
 #: dialogs/Pendragon.lua:278
 msgid "Pendragon opened the gate for me, but I had to pay a tax."
@@ -13713,59 +13713,59 @@ msgstr "Reviens quand tu as des tunes ! "
 
 #: dialogs/Pendragon.lua:294
 msgid "Hi!"
-msgstr ""
+msgstr "Salut !"
 
 #: dialogs/Pendragon.lua:305
 msgid "Nothing..."
-msgstr ""
+msgstr "Rien..."
 
 #: dialogs/Pendragon.lua:307
 msgid "Get lost. Don't come back."
-msgstr ""
+msgstr "Casse toi. Ne reviens pas."
 
 #: dialogs/Pendragon.lua:317
 msgid "Listen to me carefully, bird."
-msgstr ""
+msgstr "Écoute moi attentivement, gonzesse."
 
 #: dialogs/Pendragon.lua:318
 msgid "Maybe it looks like you saved the day, but I know better than that. You're nothing but a duck. You're not a human."
-msgstr ""
+msgstr "Tu as peut-être l'impression d'avoir sauvé la mise, mais on ne me la fait pas. Tu n'es rien d'autre qu'un canard. Tu n'es pas un humain."
 
 #: dialogs/Pendragon.lua:319
 msgid "As far as I'm concerned, you just landed here and stole our show. The Red Guard had everything under control, and we did not need your stupid flippers waddling in our affairs."
-msgstr ""
+msgstr "En ce qui me concerne, tu as atterri ici et tu as volé la vedette. Les Gardes Rouges avaient tout sous contrôle, et on n'avait pas besoin de tes stupides nageoires se dandinant dans nos affaires."
 
 #: dialogs/Pendragon.lua:320
 msgid "And don't think that just because Spencer is excited, he's on your side."
-msgstr ""
+msgstr "Et ne pas pense pas ça juste parce que Baptiste est enthousiaste à ton propos, il est de notre côté. "
 
 #: dialogs/Pendragon.lua:321
 msgid "He may not share his plans with the rest of us, but I know him well enough to know that he's using you."
-msgstr ""
+msgstr "Il ne partage peut-être pas tous ses plans avec le reste d'entre nous, mais je le connais suffisamment bien pour savoir qu'il t'utilise."
 
 #: dialogs/Pendragon.lua:322
 msgid "He's been using you since he did you a favor and defrosted you, and your stupid bird brain can't even comprehend that. So don't get cocky."
-msgstr ""
+msgstr "Il t'utilise depuis qu'il t'a fait une faveur et qu'il t'a décongelé, et ton stupide cerveau de moineau ne peut même pas le comprendre. Alors arrête d'être prétentieux."
 
 #: dialogs/Pendragon.lua:323
 msgid "You'll get what you deserve, soon enough, just like all the other bird aliens."
-msgstr ""
+msgstr "Tu obtiendras ce que tu mérites, bien assez tôt, comme tous les autres volatiles extraterrestres. "
 
 #: dialogs/Pendragon.lua:327
 msgid "Ouch!"
-msgstr ""
+msgstr "Ouille !"
 
 #: dialogs/Pendragon.lua:336
 msgid "I want to see a better attitude around here. You'd better be nice to me."
-msgstr ""
+msgstr "Je veux voir un meilleur comportement par ici. Tu ferais mieux d'être gentil avec moi."
 
 #: dialogs/Pendragon.lua:339
 msgid "Remember our lesson?"
-msgstr ""
+msgstr "Tu te souviens de nos leçons ?"
 
 #: dialogs/Pendragon.lua:342
 msgid "You impudent little eggspawn."
-msgstr ""
+msgstr "Espèce de petit pondeur d'oeufs effronté."
 
 #: dialogs/Pendragon.lua:355
 msgid "Have courage."
@@ -13777,11 +13777,11 @@ msgstr "Soit fort."
 
 #: dialogs/Pendragon.lua:361
 msgid "You'll see. Big hero. You'll learn your place soon."
-msgstr ""
+msgstr "Tu verras bien. Grand héros. Tu vas vite apprendre quel est ta place."
 
 #: dialogs/Pendragon.lua:362
 msgid "I hate birds."
-msgstr ""
+msgstr "Je déteste les oiseaux."
 
 #: dialogs/Peter.lua:45
 msgid "Why are you here?"
@@ -17262,7 +17262,7 @@ msgstr "Je me sens mieux, maintenant. "
 
 #: dialogs/Tania.lua:539
 msgid "I'm prescribing you some antibiotics."
-msgstr ""
+msgstr "Je te prescris des antibiotiques."
 
 #: dialogs/Tania.lua:541
 msgid "I feel much better."
@@ -17278,7 +17278,7 @@ msgstr "Je me sens comme neuve !"
 
 #: dialogs/Tania.lua:559
 msgid "I think you would enjoy some of Michelangelo's cooking at the restaurant."
-msgstr ""
+msgstr "Je pense que tu devrais apprécier la cuisine de Michelangelo au restaurant."
 
 #: dialogs/Tania.lua:563
 msgid "It has been so long since I've had a nice meal."
@@ -17286,7 +17286,7 @@ msgstr "Ça fait un bail que je n'ai pas eu un vrai repas. "
 
 #: dialogs/Tania.lua:569
 msgid "You might try the bar. But stay away from the food. It is horrible."
-msgstr ""
+msgstr "Tu devrais essayer le bar. Mais ne touche pas à la nourriture. Elle est horrible."
 
 #: dialogs/Tania.lua:573
 msgid "I really miss good food, especially lemon meringue pie."
@@ -17370,7 +17370,7 @@ msgstr "C'est la priorité la plus élevée. Il n'y a pas d'autre priorité."
 
 #: dialogs/Town-614.lua:80
 msgid "Resuming guard program...."
-msgstr ""
+msgstr "Retour au programme de surveillance."
 
 #: dialogs/Town-GuardhouseGuard.lua:42
 msgid "Ah, a newcomer. I gather you were treated rather harshly by my friend at the gate? My apologies, he lost his little sister in the Great Assault. He never got over it."
@@ -17578,7 +17578,7 @@ msgstr "Je te laisse passer, mais attention : Un pas de travers et on aura tous
 
 #: dialogs/Town-NorthGateGuard.lua:160
 msgid "Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?"
-msgstr "Lunarien, je te laisse entrer. Fait quelque chose de stupide, et ne tu ne ressortira pas. Compris ?"
+msgstr "Linarien, je te laisse entrer. Fait quelque chose de stupide, et ne tu ne ressortira pas. Compris ?"
 
 #: dialogs/Town-NorthGateGuard.lua:166
 msgid "Yes. I understand."
@@ -17716,7 +17716,7 @@ msgstr ""
 #: dialogs/Town-NorthGateGuard.lua:269
 #, c-format
 msgid "I'm a Linarian, not a loon. %s the Linarian."
-msgstr "Je suis linarien, pas un pigeon. %s le linarien."
+msgstr "Je suis un Linarien, pas un pigeon. %s le Linarien."
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Town-NorthGateGuard.lua:271
@@ -18271,11 +18271,11 @@ msgstr "Comment puis-je faire pour m'y retrouver dans ce monde ?"
 
 #: dialogs/TutorialTom.lua:239
 msgid "You Linarians see the world similar to the Heads Up Displays, or [b]HUD[/b], used in computer games."
-msgstr "D'après ce que j'ai compris, vous les Lunariens voyez le monde d'une manière très similaire aux perceptions en réalité augmentée, ou [b]PRA[/b], l'interface de nos anciens jeux vidéo."
+msgstr "D'après ce que j'ai compris, vous les Linariens voyez le monde d'une manière très similaire aux perceptions en réalité augmentée, ou [b]PRA[/b], l'interface de nos anciens jeux vidéo."
 
 #: dialogs/TutorialTom.lua:240
 msgid "Linarians, like all birds, have a remarkable internal sense of direction. Apparently your HUD has a [b]compass[/b], represented by four red arrows in the upper right corner with North marked on it."
-msgstr "Les Lunariens, comme tous les oiseaux, ont un sens de l'orientation exceptionnelle. Apparemment votre PRA possède une [b]boussole[/b], représentée par quatre flèches rouges situées dans le coin en supérieur droit, avec le Nord indiqué dessus. "
+msgstr "Les Linariens, comme tous les oiseaux, ont un sens de l'orientation exceptionnelle. Apparemment votre PRA possède une [b]boussole[/b], représentée par quatre flèches rouges situées dans le coin en supérieur droit, avec le Nord indiqué dessus. "
 
 #: dialogs/TutorialTom.lua:241
 msgid "You can temporarily disable this compass by pressing the 'tab' key."

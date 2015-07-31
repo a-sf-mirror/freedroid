@@ -6,6 +6,6 @@ map/item_specs.lua
 map/levels.dat
 map/npc_specs.lua
 map/obstacle_specs.lua
-map/program_archetypes.dat
 map/quests.dat
 map/ReturnOfTux.droids
+map/skill_specs.lua

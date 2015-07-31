@@ -19,8 +19,10 @@ src/items.c
 src/keyboard.c
 src/lua.c
 src/main.c
+src/map.c
 src/menu.c
 src/misc.c
+src/obstacle.c
 src/quest_browser_ui.c
 src/saveloadgame.c
 src/savestruct_internal.h
@@ -28,6 +30,7 @@ src/shop.c
 src/skills.c
 src/takeover.c
 src/text.c
+src/text_public.c
 src/vars.h
 src/lua/luaFD_npc.c
 src/lua/luaFD_tux.c

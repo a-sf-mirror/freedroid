@@ -3,17 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Link_Mario <Link-Mario@gmx.de>, 2014
-# Link_Mario <Link-Mario@gmx.de>, 2014
-# matthiaskrgr <matthias.krueger@famsik.de>, 2014
-# matthiaskrgr <matthias.krueger@famsik.de>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-07-29 20:08+0200\n"
-"PO-Revision-Date: 2015-07-29 15:21+0000\n"
-"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
+"POT-Creation-Date: 2015-07-31 19:15+0200\n"
+"PO-Revision-Date: 2015-07-31 17:18+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/freedroid-rpg/language/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -3409,11 +3405,12 @@ msgid "Sanctuary"
 msgstr "Schutzzone"
 
 #: map/skill_specs.lua:69
-#, fuzzy
 msgid ""
 "Effect: Teleport to town or back.\n"
 "The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
-msgstr "Effekt: Teleport zur Stadt oder wieder zurück. Es ist nützlich, sich schnell aus dem Staub machen zu können. Wieder umzukehren hat aber auch seine Vorteile."
+msgstr ""
+"Effekt: Teleport zur Stadt oder wieder zurück.\n"
+"Es ist nützlich, sich schnell aus dem Staub machen zu können. Wieder umzukehren hat aber auch seine Vorteile."
 
 #: map/skill_specs.lua:75
 msgid "Invisibility"
@@ -3464,7 +3461,6 @@ msgid "Dispel smoke"
 msgstr "Rauch erzeugen"
 
 #: map/skill_specs.lua:161
-#, fuzzy
 msgid "By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
 msgstr "Indem man die Chips mit einem Schadprogramm erhitzt, kann man ihnen jenen magischen Rauch entlocken, der die Robos am Laufen hält."
 

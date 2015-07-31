@@ -3,16 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Duong Khang NGUYEN <neoneurone@gmail.com>, 2014
-# sebastienadam <sebastien.adam.be@gmail.com>, 2014
-# Xenux <xenux@freedroid.org>, 2014
+# fluzz <fluzz@gmx.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-07-29 20:08+0200\n"
-"PO-Revision-Date: 2015-07-29 15:21+0000\n"
-"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
+"POT-Creation-Date: 2015-07-31 19:15+0200\n"
+"PO-Revision-Date: 2015-07-31 17:23+0000\n"
+"Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -503,7 +501,7 @@ msgstr "Tous les robots sont détruits ! Tu as gagné."
 
 #: map/events.dat:1821
 msgid "Arena Bot Hacked"
-msgstr ""
+msgstr "Arène des robots piratée"
 
 #: map/events.dat:1871
 msgid "Respawn Master Arena"
@@ -595,7 +593,7 @@ msgstr "Oups, tu as tué Spencer. Ça n'était probablement pas une bonne idée.
 
 #: map/item_specs.lua:121
 msgid "The first item is VERY buggy ingame, so don't use it."
-msgstr "Le premier objet est TRES capricieux dans le jeu, ne pas l'utiliser."
+msgstr "Le premier objet est TRÈS capricieux dans le jeu, ne pas l'utiliser."
 
 #: map/item_specs.lua:124
 msgid "Dummy item. If you see this, please report it as bug."
@@ -1264,7 +1262,7 @@ msgstr "Livre Source du Calcul de Pi"
 
 #: map/item_specs.lua:1629 map/skill_specs.lua:102
 msgid "It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
-msgstr "Ce n'est souvent pas un problème de faire un système mal conçu, pour chercher l'impossible, ce qui pose fréquemment un problème de performance."
+msgstr "Ce n'est souvent pas un problème de coder un système mal conçu, à la recherche d'une solution impossible, causant un problème de performance."
 
 #: map/item_specs.lua:1636
 msgid "Source Book of Blue Screen"
@@ -1284,7 +1282,7 @@ msgstr "Livre Source de l'Invisibilité"
 
 #: map/item_specs.lua:1665 map/skill_specs.lua:80
 msgid "I am not the Linarian you are looking for."
-msgstr "Je ne suis pas le Linarien que vous cherchez."
+msgstr "Je ne suis pas le Linarien que tu recherches."
 
 #: map/item_specs.lua:1672
 msgid "Source Book of Virus"
@@ -1292,7 +1290,7 @@ msgstr "Livre Source des Virus"
 
 #: map/item_specs.lua:1677 map/skill_specs.lua:137
 msgid "This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
-msgstr "Ce n'est pas seulement un mise à jour de micrologiciel, mon cher robot. Tu es en train d'apprendre exactement ce que je veux que tu apprennes."
+msgstr "Ce n'est pas seulement un mise à jour de microcode, mon cher robot. Tu es en train d'apprendre exactement ce que je veux que tu apprennes."
 
 #: map/item_specs.lua:1684
 msgid "Source Book of Broadcast Virus"
@@ -1376,7 +1374,7 @@ msgstr ""
 
 #: map/item_specs.lua:1797 map/skill_specs.lua:205
 msgid "Knowing what your enemies are up to is easy with a little signal intelligence. Displays enemy locations on your automap."
-msgstr ""
+msgstr "Savoir où se situent tes ennemis est facile un peu de traitement de signal. Affiche la position des ennemis sur ton auto-carte."
 
 #: map/item_specs.lua:1804
 msgid "Subatomic and Nuclear Science for Dummies, Volume IV"
@@ -2487,7 +2485,7 @@ msgstr "Îles Omega"
 
 #: map/npc_specs.lua:6
 msgid "Will Gapes - MegaSys CSA"
-msgstr ""
+msgstr "Will Gapes - RAL MegaSys"
 
 #: map/npc_specs.lua:8
 msgid "Tybalt - Citadel Gate Guard"
@@ -2523,11 +2521,11 @@ msgstr "Sorenson - Mystérieuse programmeuse"
 
 #: map/npc_specs.lua:23
 msgid "Skippy - Map-Maker Maker"
-msgstr ""
+msgstr "Skippy - Fabricant de générateur de carte"
 
 #: map/npc_specs.lua:27
 msgid "Scavenger Bot"
-msgstr ""
+msgstr "Robot charognard"
 
 #: map/npc_specs.lua:28
 msgid "SADD - Exterminate Mode"
@@ -2551,7 +2549,7 @@ msgstr "Pendragon - Combattant"
 
 #: map/npc_specs.lua:39
 msgid "Michelangelo - Chef"
-msgstr ""
+msgstr "Michelangelo - Chef cuistot"
 
 #: map/npc_specs.lua:43 map/ReturnOfTux.droids:338
 msgid "Koan"
@@ -2587,11 +2585,11 @@ msgstr "Iris - chasseuse de robots "
 
 #: map/npc_specs.lua:55
 msgid "Geist - Hunter"
-msgstr ""
+msgstr "Geist - Chasseur"
 
 #: map/npc_specs.lua:56
 msgid "Dr. Francis - Cryonicist"
-msgstr ""
+msgstr "Dr. Francis - Cryogéniste"
 
 #: map/npc_specs.lua:59
 msgid "Ewald - Barkeeper"
@@ -2599,7 +2597,7 @@ msgstr "Ewald – Tenancier"
 
 #: map/npc_specs.lua:60
 msgid "Engel - Hunter"
-msgstr ""
+msgstr "Engel - Chasseur"
 
 #: map/npc_specs.lua:61
 msgid "Duncan - Bombmaker"
@@ -2616,11 +2614,11 @@ msgstr "Dixon – Mécanicien"
 #: map/npc_specs.lua:69 map/ReturnOfTux.droids:579 map/ReturnOfTux.droids:580
 #: map/ReturnOfTux.droids:581 map/ReturnOfTux.droids:582
 msgid "Cult Member"
-msgstr ""
+msgstr "Member de secte"
 
 #: map/npc_specs.lua:73
 msgid "Butch - Arena Master"
-msgstr "Butch — Le maître de l'arène."
+msgstr "Butch — Maître de l'arène."
 
 #: map/npc_specs.lua:74
 msgid "Bruce - Mine Worker"
@@ -3359,15 +3357,15 @@ msgstr "Piratage"
 
 #: map/skill_specs.lua:15
 msgid "Tux is gifted with the ability to hack any hostile bot in no time. With this program selected, initiate the takeover process by right clicking a hostile machine of your choice."
-msgstr ""
+msgstr "Tux est doué de la capacité à pirater n'importe quel robot hostile en un temps record. Avec ce programme activé, lance le processus de prise de contrôle avec un clic droit sur la machine hostile de ton choix."
 
 #: map/skill_specs.lua:21
 msgid "Repair equipment"
-msgstr "Réparer l'équipement"
+msgstr "Réparation d'équipement"
 
 #: map/skill_specs.lua:25
 msgid "Fully repair any item of your choice. To use this skill, select it, open the inventory screen and then right click on the item you wish to repair. While Tux can repair items without incurring any cost, the item will get reduced maximum durability."
-msgstr ""
+msgstr "Répare entièrement n'importe quel objet de ton choix. Pour l'utiliser, sélectionne ce programme, ouvre l'inventaire et utilise un clic droit sur l'objet que tu désires réparer. Même si Tux peut réparer les objets sans que ça coûte quoi que ce soit, la durabilité maximale de l'objet sera réduite."
 
 #: map/skill_specs.lua:31
 msgid "Use weapon"
@@ -3375,7 +3373,7 @@ msgstr "Utiliser arme"
 
 #: map/skill_specs.lua:36
 msgid "This skill allows you to force an attack on something not normally a target or firing single shots with automatic weapons."
-msgstr ""
+msgstr "Ce programme permet de déclencher une attaque sur quelque chose qui  normalement n'est pas une cible, ou de tirer au coup par coup avec des armes automatiques."
 
 #: map/skill_specs.lua:42
 msgid "Emergency shutdown"
@@ -3383,26 +3381,27 @@ msgstr "Arrêt d'urgence"
 
 #: map/skill_specs.lua:47
 msgid "Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in..."
-msgstr ""
+msgstr "Tout le monde a besoin de s'arrêter et de se refroidir les circuits de temps en temps. Attention cependant à ne pas être encore déconnecté lorsque les ennemis s'approchent..."
 
 #: map/skill_specs.lua:53
 msgid "Check system integrity"
-msgstr "Vérification du système"
+msgstr "Vérification d'Intégrité Système"
 
 #: map/skill_specs.lua:59
 msgid "While repairing damage you must remember that patience is a virtue."
-msgstr ""
+msgstr "Lorsque tu répares les dégâts, n'oublie pas que la patience est une vertu."
 
 #: map/skill_specs.lua:64
 msgid "Sanctuary"
 msgstr "Sanctuaire"
 
 #: map/skill_specs.lua:69
-#, fuzzy
 msgid ""
 "Effect: Teleport to town or back.\n"
 "The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
-msgstr "C'est une façon de fuir face au danger très rapidement. C'est très utile. Ça peut aussi être utilisé en sens inverse."
+msgstr ""
+"Effet : téléportation vers la Ville ou retour.\n"
+"L'art du déplacement rapide loin du danger est très utile. Même utilisé dans l'autre sens, ce programme a son utilité."
 
 #: map/skill_specs.lua:75
 msgid "Invisibility"
@@ -3410,7 +3409,7 @@ msgstr "Invisibilité"
 
 #: map/skill_specs.lua:85
 msgid "Malformed packet"
-msgstr "Paquet malformé"
+msgstr "Paquet mal-formé"
 
 #: map/skill_specs.lua:91
 msgid "When computers are presented with the unexpected they can damage themselves."
@@ -3422,19 +3421,19 @@ msgstr "Calcul de Pi"
 
 #: map/skill_specs.lua:107
 msgid "Blue Screen"
-msgstr "Écran bleu"
+msgstr "Écran Bleu"
 
 #: map/skill_specs.lua:113
 msgid "With a little touch a war machine comes crashing down to a halt. For a while."
-msgstr ""
+msgstr "Avec un simple contact, déclenche un plantage système arrêtant même une machine de guerre. Pendant un certain temps."
 
 #: map/skill_specs.lua:118
 msgid "Broadcast Blue Screen"
-msgstr ""
+msgstr "Diffusion d'Écran Bleu"
 
 #: map/skill_specs.lua:124
 msgid "With a little touch a war machine comes crashing down to a halt. For a while. The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
-msgstr ""
+msgstr "Avec un simple contact, déclenche un plantage système arrêtant même une machine de guerre. Pendant un certain temps. Le réseau radio est une invention formidable pour ceux qui aiment faire exploser tout un tas de chose en une seule fois."
 
 #: map/skill_specs.lua:130
 msgid "Virus"
@@ -3442,28 +3441,27 @@ msgstr "Virus"
 
 #: map/skill_specs.lua:142
 msgid "Broadcast virus"
-msgstr ""
+msgstr "Diffusion de virus."
 
 #: map/skill_specs.lua:149
 msgid "The network is wide and dangerous. Many traps await for the weak and unprepared."
-msgstr "Le réseau est large et dangereux. Beaucoup de pièges attendent les faibles et les gens non préparés."
+msgstr "Le réseau est large et dangereux. Beaucoup de pièges attendent les faibles et ceux qui ne sont pas préparés."
 
 #: map/skill_specs.lua:155
 msgid "Dispel smoke"
-msgstr "Dissiper la fumée"
+msgstr "Dissipation fumigène"
 
 #: map/skill_specs.lua:161
-#, fuzzy
 msgid "By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
-msgstr "En surchauffant la puce avec un mauvais programme, vous pouvez lui faire lâcher une fumée magique qui gardera le robot en marche."
+msgstr "En surchauffant les puces avec un programme mal-formé, tu peux leur faire relâcher le fumigène qui maintient les robots en état de marche.."
 
 #: map/skill_specs.lua:166
 msgid "Killer poke"
-msgstr "Coup fatal"
+msgstr "Poke fatal"
 
 #: map/skill_specs.lua:172 map/skill_specs.lua:184
 msgid "Messing around with the bot's memory can cause it to severely damage itself, but the damage is greatly variable."
-msgstr "Mettre la pagaille dans la mémoire d'un robot peut lui faire causer des dommages à lui-même, mais l'importance des dommages est grandement variable."
+msgstr "Mettre la pagaille dans la mémoire d'un robot peut le faire s'auto-endommager, mais l'importance des dommages est grandement variable."
 
 #: map/skill_specs.lua:178
 msgid "Plasma discharge"
@@ -3471,15 +3469,15 @@ msgstr "Décharge de plasma"
 
 #: map/skill_specs.lua:190
 msgid "Extract bot parts"
-msgstr "Extraction de pièces"
+msgstr "Extraction de pièces de robots"
 
 #: map/skill_specs.lua:195
 msgid "With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out. This skill is always active even when not selected."
-msgstr "Avec un peu de connaissance, vous pouvez extraire des pièces utiles des robots que vous tuez. À chaque robot que vous tuez il y a une chance que des pièces tombent. Cette compétence est toujours active même quand elle n'est pas sélectionnée."
+msgstr "Avec un peu de connaissance, tu peux extraire des pièces utiles des robots que tu détruits. Avec chaque robot il y a une certaine probabilité que des pièces tombent. Ce programme est toujours actif même quand il n'est pas sélectionné."
 
 #: map/skill_specs.lua:200
 msgid "Network Mapper"
-msgstr ""
+msgstr "Générateur "
 
 #: map/skill_specs.lua:210
 msgid "Light"
@@ -3491,23 +3489,23 @@ msgstr "Nethack"
 
 #: map/skill_specs.lua:235
 msgid "NOT IMPLEMENTED YET The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
-msgstr ""
+msgstr "NON ENCORE IMPLEMENTÉ. Le jeu open source appelé Nethack est un des plus grands gaspilleurs de temps au monde. Il n'a pas d'influence sur les robots, mais les êtres humains peuvent se faire vraiment embobiner assez profondément."
 
 #: map/skill_specs.lua:246
 msgid "Reverse-engineer"
-msgstr "Rétroingénierie"
+msgstr "Rétro-ingénierie"
 
 #: map/skill_specs.lua:250
 msgid "NOT IMPLEMENTED YET There is some dark magic in the art of turning devices or programs inside-out, picking them apart to learn all their secrets and putting them back again."
-msgstr ""
+msgstr "NON ENCORE IMPLEMENTÉ. Il y a comme de la magie noire dans l'art d'ouvrir et d'examiner l'intérieur des appareils et des programmes pour apprendre leurs secrets puis les remettre en marche.."
 
 #: map/skill_specs.lua:261
 msgid "Ricer CFLAGS"
-msgstr "Meilleurs CFLAGS"
+msgstr "Jacky-Tuning des CFLAGS"
 
 #: map/skill_specs.lua:266
 msgid "NOT IMPLEMENTED YET Optimization is the root of all evil. You can gain some temporary speed improvements to your system, but in the end you will likely overheat and cause permanent damage if you are not careful."
-msgstr ""
+msgstr "NON ENCORE IMPLEMENTÉ. L'optimisation est la racine du mal. Tu peux obtenir quelques gains de performances dans ton système pendant un temps, mais à la fin, il est plus probable que cela cause des surchauffes et des dommages permanents, si tu ne fais pas assez attention."
 
 #: map/skill_specs.lua:274
 msgid "Small Plasma grenade"
@@ -3516,7 +3514,7 @@ msgstr "Petite grenade Plasma"
 #: map/skill_specs.lua:281 map/skill_specs.lua:293 map/skill_specs.lua:305
 #: map/skill_specs.lua:318 map/skill_specs.lua:330 map/skill_specs.lua:342
 msgid "If you see this in game it is a bug. Please report this to the developers, unless you cheated, in which case you deserve to see this silly nonsense description."
-msgstr ""
+msgstr "Si tu lis ça, c'est qu'il y a un bogue dans le jeu. Reporte-le s'il te plaît aux développeurs, sauf si tu as triché, auquel cas tu mérites de lire cette description absurde et stupide."
 
 #: map/skill_specs.lua:287
 msgid "Plasma grenade"

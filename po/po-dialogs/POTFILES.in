@@ -12,6 +12,7 @@ dialogs/c-net-nethack_sub.lua
 dialogs/c-net.lua
 dialogs/Chandra.lua
 dialogs/Cryo-Terminal.lua
+dialogs/Cult-Member.lua
 dialogs/DeadGuy.lua
 dialogs/Dixon.lua
 dialogs/DocMoore.lua
@@ -25,6 +26,7 @@ dialogs/Ewalds_296.lua
 dialogs/FactionDeadBot.lua
 dialogs/Francis.lua
 dialogs/Geist.lua
+dialogs/Guy.lua
 dialogs/HF-EntranceBot.lua
 dialogs/HF-FirmwareUpdateServer.lua
 dialogs/InvaderBot.lua
@@ -51,6 +53,7 @@ dialogs/Peter.lua
 dialogs/Richard.lua
 dialogs/SACD.lua
 dialogs/SADD.lua
+dialogs/Scavenger.lua
 dialogs/Singularity-Drone.lua
 dialogs/Singularity.lua
 dialogs/Skippy.lua

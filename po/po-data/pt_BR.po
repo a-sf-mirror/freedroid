@@ -3,15 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Jonatas L. Nogueira <cpntb1@ymail.com>, 2014
-# Jonatas L. Nogueira <cpntb1@ymail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-07-29 20:08+0200\n"
-"PO-Revision-Date: 2015-07-29 15:21+0000\n"
-"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
+"POT-Creation-Date: 2015-07-31 19:15+0200\n"
+"PO-Revision-Date: 2015-07-31 17:18+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/freedroid-rpg/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -3359,212 +3357,187 @@ msgid "Corporate Guy"
 msgstr "Moço Corporativo"
 
 #: map/skill_specs.lua:9
-#, fuzzy
 msgid "Hacking"
-msgstr "Tutorial de Hackear"
+msgstr "Hackear"
 
 #: map/skill_specs.lua:15
 msgid "Tux is gifted with the ability to hack any hostile bot in no time. With this program selected, initiate the takeover process by right clicking a hostile machine of your choice."
-msgstr ""
+msgstr "Tux foi presenteado com a habilidade de invadir qualquer robô hostil em pouco tempo. Com esse programa selecionado, inicie o 'takeover' clicando com o botão DIREITO em uma máquina hostil a sua escolha."
 
 #: map/skill_specs.lua:21
-#, fuzzy
 msgid "Repair equipment"
-msgstr "Livro Fonte de Reparar Equipamento"
+msgstr "Reparar equipamento"
 
 #: map/skill_specs.lua:25
 msgid "Fully repair any item of your choice. To use this skill, select it, open the inventory screen and then right click on the item you wish to repair. While Tux can repair items without incurring any cost, the item will get reduced maximum durability."
-msgstr ""
+msgstr "Repara completamente qualquer item de sua escolha. Para usar essa habilidade, selecione-a, abra o inventário e clique com o botão direito no item que desejas reparar. Enquanto o Tux pode reparar itens sem quaisquer custos, a durabilidade máxima do item será reduzida."
 
 #: map/skill_specs.lua:31
 msgid "Use weapon"
-msgstr ""
+msgstr "Usar arma"
 
 #: map/skill_specs.lua:36
 msgid "This skill allows you to force an attack on something not normally a target or firing single shots with automatic weapons."
-msgstr ""
+msgstr "Essa habilidade permite você forçar um ataque em algo que normalmente não é um alvo ou atirar tiros únicos com armas automáticas."
 
 #: map/skill_specs.lua:42
-#, fuzzy
 msgid "Emergency shutdown"
-msgstr "Livro Fonte de Desligamento de Emergência"
+msgstr "Desligamento de Emergência"
 
 #: map/skill_specs.lua:47
 msgid "Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in..."
-msgstr ""
+msgstr "Todo mundo precisa desligar e esfriar um pouco uma hora ou outra. Apenas tenha o cuidado de que não estás offline enquanto os robôs hostis estão próximos..."
 
 #: map/skill_specs.lua:53
-#, fuzzy
 msgid "Check system integrity"
-msgstr "Livro Fonte de Checar a Integridade do Sistema"
+msgstr "Checar a integridade do sistema"
 
 #: map/skill_specs.lua:59
 msgid "While repairing damage you must remember that patience is a virtue."
-msgstr ""
+msgstr "Enquanto reparando danos lembre-se que paciência é uma virtude."
 
 #: map/skill_specs.lua:64
-#, fuzzy
 msgid "Sanctuary"
-msgstr "Um santuário"
+msgstr "Santuário"
 
 #: map/skill_specs.lua:69
-#, fuzzy
 msgid ""
 "Effect: Teleport to town or back.\n"
 "The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
-msgstr "A arte de rapidamente fugir do perigo é muito útil. Mesmo quando usado ao contrário, tem seus usos."
+msgstr ""
 
 #: map/skill_specs.lua:75
-#, fuzzy
 msgid "Invisibility"
-msgstr "Livro Fonte da Invisibilidade"
+msgstr "Invisibilidade"
 
 #: map/skill_specs.lua:85
-#, fuzzy
 msgid "Malformed packet"
-msgstr "Jaqueta Reforçada"
+msgstr "Pacote Malformado"
 
 #: map/skill_specs.lua:91
-#, fuzzy
 msgid "When computers are presented with the unexpected they can damage themselves."
-msgstr "Quando os computadores são presenteados com o inesperado, eles podem se machucarem."
+msgstr "Quando os computadores são presenteados com o inesperado eles podem se machucarem."
 
 #: map/skill_specs.lua:96
-#, fuzzy
 msgid "Calculate Pi"
-msgstr "Livro Fonte de Calcular Pi"
+msgstr "Calcular Pi"
 
 #: map/skill_specs.lua:107
-#, fuzzy
 msgid "Blue Screen"
-msgstr "Irmão Azul"
+msgstr "Tela Azul"
 
 #: map/skill_specs.lua:113
-#, fuzzy
 msgid "With a little touch a war machine comes crashing down to a halt. For a while."
-msgstr "Com um pequeno toque uma máquina de guerra cai ao desligamento. Por um momento."
+msgstr "Com um pequeno toque uma máquina de guerra vem desabando para o desligamento. Por um momento."
 
 #: map/skill_specs.lua:118
-#, fuzzy
 msgid "Broadcast Blue Screen"
-msgstr "Livro Fonte de Espalhar Tela Azul"
+msgstr "Espalhar Tela Azul"
 
 #: map/skill_specs.lua:124
 msgid "With a little touch a war machine comes crashing down to a halt. For a while. The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
-msgstr ""
+msgstr "Com um pequeno toque uma máquina de guerra vem desabando para o desligamento. Por um momento. A rede de radio é uma invenção maravilhosa para pessoas que gostam de explodir um monte de coisas ao mesmo tempo."
 
 #: map/skill_specs.lua:130
 msgid "Virus"
-msgstr ""
+msgstr "Virus"
 
 #: map/skill_specs.lua:142
-#, fuzzy
 msgid "Broadcast virus"
-msgstr "Livro Fonte de Espalhar Virus"
+msgstr "Espalhar virus"
 
 #: map/skill_specs.lua:149
-#, fuzzy
 msgid "The network is wide and dangerous. Many traps await for the weak and unprepared."
 msgstr "A rede é larga e perigosa. Muitas armadilhas aguardam os fracos e despreparados."
 
 #: map/skill_specs.lua:155
 msgid "Dispel smoke"
-msgstr ""
+msgstr "Dissipar fumaça"
 
 #: map/skill_specs.lua:161
 msgid "By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
 msgstr ""
 
 #: map/skill_specs.lua:166
-#, fuzzy
 msgid "Killer poke"
-msgstr "Me Mate"
+msgstr "Empurrão assassino"
 
 #: map/skill_specs.lua:172 map/skill_specs.lua:184
 msgid "Messing around with the bot's memory can cause it to severely damage itself, but the damage is greatly variable."
-msgstr ""
+msgstr "Mexer na memória do robô pode causar dano severo ao robô, mas o dano é altamente variável."
 
 #: map/skill_specs.lua:178
-#, fuzzy
 msgid "Plasma discharge"
-msgstr "Livro Fonte da Descarga de Plasma"
+msgstr "Descarga de Plasma"
 
 #: map/skill_specs.lua:190
-#, fuzzy
 msgid "Extract bot parts"
-msgstr "Manual de Extrair Partes de Robôs"
+msgstr "Extrair partes de robôs"
 
 #: map/skill_specs.lua:195
 msgid "With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out. This skill is always active even when not selected."
-msgstr ""
+msgstr "Com um pouco de conhecimento, você pode extrair algumas partes úteis dos robôs que você destrói. A cada robô, há uma chance de cair uma parte. Essa habilidade sempre está ativa, mesmo quando não selecionada."
 
 #: map/skill_specs.lua:200
 msgid "Network Mapper"
-msgstr ""
+msgstr "Mapeador de Rede"
 
 #: map/skill_specs.lua:210
-#, fuzzy
 msgid "Light"
-msgstr "Lutador"
+msgstr "Luz"
 
 #: map/skill_specs.lua:229
 msgid "Nethack"
-msgstr ""
+msgstr "Nethack"
 
 #: map/skill_specs.lua:235
 msgid "NOT IMPLEMENTED YET The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
-msgstr ""
+msgstr "AINDA NÃO IMPLEMENTADO O jogo de código aberto chamado Nethack é uma das maiores perdas de tempo do mundo. Máquinas não se importam com isso, mas humanos podem ser sugados bem profundamente com isso."
 
 #: map/skill_specs.lua:246
-#, fuzzy
 msgid "Reverse-engineer"
-msgstr "Livro Fonte da Engenharia Reversa"
+msgstr "Engenharia Reversa"
 
 #: map/skill_specs.lua:250
 msgid "NOT IMPLEMENTED YET There is some dark magic in the art of turning devices or programs inside-out, picking them apart to learn all their secrets and putting them back again."
-msgstr ""
+msgstr "AINDA NÃO IMPLEMENTADO Há uma magia negra na arte de transformar dispositivos ou programas de dentro para fora, separando-os para aprender todos seus segredos e colocando-os de volta novamente."
 
 #: map/skill_specs.lua:261
 msgid "Ricer CFLAGS"
-msgstr ""
+msgstr "Expremedor de CFLAGS"
 
 #: map/skill_specs.lua:266
 msgid "NOT IMPLEMENTED YET Optimization is the root of all evil. You can gain some temporary speed improvements to your system, but in the end you will likely overheat and cause permanent damage if you are not careful."
-msgstr ""
+msgstr "AINDA NÃO IMPLEMENTADO Otimização é a raiz de todo mal. Você pode ganhar melhorias de velocidade temporárias para o seu sistema, mas no final você vai acabar se sobreaquecendo e causar dano permanente se não for cuidadoso."
 
 #: map/skill_specs.lua:274
-#, fuzzy
 msgid "Small Plasma grenade"
-msgstr "Pequeno Emitidor de Ondas de Plasma"
+msgstr "Pequena Granada de Plasma"
 
 #: map/skill_specs.lua:281 map/skill_specs.lua:293 map/skill_specs.lua:305
 #: map/skill_specs.lua:318 map/skill_specs.lua:330 map/skill_specs.lua:342
 msgid "If you see this in game it is a bug. Please report this to the developers, unless you cheated, in which case you deserve to see this silly nonsense description."
-msgstr ""
+msgstr "Se você está vendo isso no jogo é um bug. Por favor reporte isto aos desenvolvedores, a não ser se você trapaceou, nesse caso você merece ver está descrição boba e sem sentido."
 
 #: map/skill_specs.lua:287
-#, fuzzy
 msgid "Plasma grenade"
-msgstr "Arma de Plasma"
+msgstr "Granada de Plasma"
 
 #: map/skill_specs.lua:299
-#, fuzzy
 msgid "Gas grenade"
-msgstr "Granada de Gás VMX"
+msgstr "Granada de Gás"
 
 #: map/skill_specs.lua:311
 msgid "Small EMP grenade"
-msgstr ""
+msgstr "Pequena granada de PEM"
 
 #: map/skill_specs.lua:324
-#, fuzzy
 msgid "EMP grenade"
-msgstr "Granada de Gás VMX"
+msgstr "granada de PEM"
 
 #: map/skill_specs.lua:336
-#, fuzzy
 msgid "Electronic Noise"
-msgstr "Gerador de Ruído Eletrônico"
+msgstr "Ruído Eletrônico"
 
 #~ msgid "INV"
 #~ msgstr "INV"

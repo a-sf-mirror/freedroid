@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Alexander Forsberg <alexf@openmailbox.org>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-07-29 20:08+0200\n"
-"PO-Revision-Date: 2015-07-29 15:21+0000\n"
-"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
+"POT-Creation-Date: 2015-07-31 19:15+0200\n"
+"PO-Revision-Date: 2015-07-31 17:18+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/freedroid-rpg/language/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -1262,7 +1261,7 @@ msgstr "Boken om \"Räkna ut Pi\""
 
 #: map/item_specs.lua:1629 map/skill_specs.lua:102
 msgid "It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
-msgstr "Det är inget stort problem att få ett dåligt designat system att gå på jakt för det omöjliga, vilket orsakar en prestandaverkan."
+msgstr "Det är inget problem att få ett dåligt designat system att gå på jakt efter det omöjliga, vilket sänker prestandan."
 
 #: map/item_specs.lua:1636
 msgid "Source Book of Blue Screen"
@@ -3402,11 +3401,10 @@ msgid "Sanctuary"
 msgstr "Fristad"
 
 #: map/skill_specs.lua:69
-#, fuzzy
 msgid ""
 "Effect: Teleport to town or back.\n"
 "The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
-msgstr "C'est une façon de fuir face au danger très rapidement. C'est très utile. Ça peut aussi être utilisé en sens inverse."
+msgstr ""
 
 #: map/skill_specs.lua:75
 msgid "Invisibility"
@@ -3454,12 +3452,11 @@ msgstr "Nätverket är stort och farligt. Många fällor väntar den svage och o
 
 #: map/skill_specs.lua:155
 msgid "Dispel smoke"
-msgstr "Avge rök"
+msgstr "Frigör rök"
 
 #: map/skill_specs.lua:161
-#, fuzzy
 msgid "By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
-msgstr "En surchauffant la puce avec un mauvais programme, vous pouvez lui faire lâcher une fumée magique qui gardera le robot en marche."
+msgstr ""
 
 #: map/skill_specs.lua:166
 msgid "Killer poke"

@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-07-29 20:07+0200\n"
-"PO-Revision-Date: 2015-07-29 18:08+0000\n"
-"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
+"POT-Creation-Date: 2015-07-31 19:15+0200\n"
+"PO-Revision-Date: 2015-07-30 10:56+0000\n"
+"Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -148,7 +148,7 @@ msgstr "Armure"
 
 #: src/chat.c:547
 msgid "Click anywhere to continue..."
-msgstr ""
+msgstr "Cliquer n'importe où pour continuer..."
 
 #: src/chat.c:693 src/chat.c:703
 msgid "[n]--- Start of Dialog ---\n"
