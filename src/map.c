@@ -1919,7 +1919,10 @@ static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_numbe
 		if (newen->short_description_text)
 			free(newen->short_description_text);
 
-		newen->short_description_text = ReadAndMallocStringFromData(special_droid, "ShortLabel=_\"", "\"");;
+		newen->short_description_text = ReadAndMallocStringFromDataOptional(special_droid, "ShortLabel=_\"", "\"");
+		if (!newen->short_description_text) {
+			newen->short_description_text = ReadAndMallocStringFromData(special_droid, "ShortLabel=\"", "\"");
+		}
 
 		char *death_drop;
 		death_drop = ReadAndMallocStringFromData(special_droid, "DropItemId=\"", "\"");
