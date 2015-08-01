@@ -870,7 +870,7 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
-Name=_"InvaderBot-Hacked"
+Name="InvaderBot-Hacked"
 Trigger on enemy hack
 Enemy dialog name="InvaderBot"
 <LuaCode>
@@ -890,7 +890,7 @@ Silent=0
 * End of trigger *
 
 * New event trigger *
-Name=_"296 Teleport Point"
+Name="296 Teleport Point"
 Trigger changing level
 Exiting level=13
 <LuaCode>
@@ -1818,7 +1818,7 @@ Enemy faction="ms"
 * End of trigger *
 
 * New event trigger *
-Name=_"Arena Bot Hacked"
+Name="Arena Bot Hacked"
 Trigger on enemy hack
 Enemy level=29
 Enemy faction="ms"
@@ -1868,7 +1868,7 @@ Silent=1
 ## Level 30 ##
 ##############
 * New event trigger *
-Name=_"Respawn Master Arena"
+Name="Respawn Master Arena"
 Trigger changing level
 Entering level=30
 <LuaCode> respawn_level(30) </LuaCode>
