@@ -150,7 +150,7 @@
 =====================
  Det finns några gömda inställningar för upplösning, som man bara kommer åt via kommandoraden. De är dåligt testade
  och är därför generellt buggiga och stöds inte. Dock kan de vara ganska användbara för
- många, särskiljt bredbilds-LCD-skärmar i helskärmsläge.
+ många, särskilt bredbilds-LCD-skärmar i helskärmsläge.
 
  För att få en aktuell lista på upplösningar använd "freedroidRPG -r99". 
 

@@ -103,8 +103,8 @@ HUDBA:
 
 OSTATNÍ:
 
-        Mbrola - text-to-speech
-        eSpeak - text-to-speech
+        Mbrola - text-na-řeč
+        eSpeak - text-na-řeč
         Ryan 'simcop2387' Voots
         Andrew A. Gill
         Zombie Ryushu

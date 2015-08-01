@@ -40,39 +40,39 @@ Prozatím můžeš pouze poslouchat.
     Náš vůdce si usmažil svůj mozek.
       To znamená, že to tu teď přebírám já.
         Mám toho docela plné zuby.
-      Nesnáším tento svět.
+      Nesnáším tenhle svět.
     Vypadneme odtud.
 
   Našel jsem Qwerty, ale to nic neznamená.
-Jeho teplota jádra je nad bodem mrazu.
+Teplota jeho jádra je nad bodem mrazu.
   Jinými slovy, je po něm.
     Nebude mi chybět.
 
-Nemůžu najít Arensito.
+Nemůžu najít Arensitu.
   Doufám, že se má dobře.
     ?Bojím? se o ní.
     Opravdu Qwerty nepotřebujeme.
-  Ale potřebujem Arensito.
+  Ale potřebujem Arensitu.
     Nepřestanu po ní pátrat.
 
     V tvé oblasti je umělá inteligence.
   Říká si "Singularita".
-Nebo něco podobného.
+Nebo tak nějak.
   Nechápu, co to chce.
     Budu tě informovat.
 
   Oh a mimochodem...
-Boti zabíjej všechny v tom malém městě poblíž v okolí.
-  Opravdu, je to fakt pohled. Všchno pálí.
+V tom malém městě nedaleko boti všechny zabíjejí.
+  Opravdu, drsnej pohled. Všechno pálí.
     Citadela Rudé stráže stále odolává.
       Prozatím.
     Asi se budeš chtít skrýt, zatímco oni budou to místo ničit.
-  Za pár hodin by mělo být bezpečné se tam vrátit.
+  Za pár hodin by měl být návrat bezpečný.
 
-  Myslím, že jsem tím už řekl všechno.
+  Myslím, že jsem tím řekl už všechno.
     Teď se jdu chystat na odchod.
   Ty bys měl taky.
-Musíme najít Arensito.
+Musíme najít Arensitu.
   Dostane nás odsud.
 
             Dvořák, První umělá inteligence.
@@ -89,11 +89,11 @@ Doufáme, že se vám naše hra líbila.
 
 Chcete-li něco do hry přidat, bude to úžasné. Existuje spousta možností, jak tak učinit. Zejména potřebujeme více obsahu, tj .:
 
-* Další zkrášlování designu úrovní
+* další zkrášlování designu úrovní
 * nové nápady do úrovní
 * cokoli dalšího, s čím můžete přijít
 
-Viz také část "Přispění".
+Viz také část "Přispět" v hlavním menu.
 
 Vývojový tým Freedroid.
 

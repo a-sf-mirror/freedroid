@@ -21,9 +21,9 @@ title_screen{
 song = "TheBeginning.ogg",
 text = [[
 Se snažíš do někoho nabourat, co?
-Nepamatuješ si, jak na to?
-Hloupáku. Neusmaž si mozek a pak zkus hackovat.
-Zde je rychlokurz pro osvěžení si paměti.
+Nepamatuješ si jak na to?
+Hlupáku. Neusmaž si mozek a pak zkus hackovat.
+Zde je rychlokurz pro osvěžení tvé paměti.
 
 Za prvé, nesnaž se hackovat, když máš málo života.
 Pokud selžeš, dostaneš pěknej elektrickej šok.
@@ -41,7 +41,7 @@ V druhé fázi provádíš propojení logických uzlů.
 Pro případ, že si teď lámeš hlavu, jsou to ty věci uprostřed.
 
 Vzhledem k tomu, že mají boti chyby, jsou některé uzly na tvé straně.
-Můžeš provést jen několik útoků, tak je spočítej.
+Můžeš provést jen několik útoků, tak si je dobře spočítej.
 Vyber si drát, který chceš použít k útoku na uzel.
 Toho docílíš opakovaným stisknutím klávesy pro pohyb nahoru a dolů.
 Můžeš také použít kolečko myši, pokud ji máš.
@@ -52,12 +52,12 @@ Pokusí se o znovu nabytí kontroly a i on bude vytvářet spojení.
 
 Po krátké době bude po všem.
 Pokud v tom okamžiku budeš mít kontrolu nad větším počtem uzlů, bot ti bude patřit.
-Pokud ne, dostaneš zdarma elektrickým proudem ve stylu MegaSysu.
+Pokud ne, dostaneš zadarmo elektrickým proudem ve stylu MegaSysu.
 
 Občas je zapojení uvnitř botů docela šílené.
 Detaily se budeš muset naučit sám.
 Pro tvé pohodlí nebudu riskovat svou bezpečnost.
-Příliš mnoho robotů udržuje přenosu příliš dlouho.
+Je zde příliš mnoho robotů na to, abych udržoval přenos aktivní příliš dlouho.
 
 Oh, a prosba.
 Až se zase příště rozhodneš usmažit si mozek...

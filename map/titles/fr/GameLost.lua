@@ -22,19 +22,19 @@ song = "HellFortressTwo.ogg",
 text = [[
             Partie Perdu
 
-Réessayez encore, et alors, soyez sûre d'acheter à nos sponsors :
+Réessaie encore, et en le faisant, n'oublie pas de passer commande auprès de nos sponsors :
 
-Dr. How - "Mighty convenient technology!"
+Dr. How - "Puissante technologie pratique"
 
-Can4dian ph4rm4cy - "Amazing breakthrough herbal r3medies! 100% satisfaction guarant3ed!!!"
+Ph4rm4cie Can4dienne - "Extraordinaires r3mèdes phytothérapiqu3s innov4nts ! Satisfaction 100% g4ranti3 !!!"  
 
-Solution Cryonic - "Prenez un allez simple et rapide pour le future avec Solutions Cryonic !"  
+Solution Cryonic - "Prenez un allez simple et rapide pour le futur avec Solutions Cryonic !"  
 
-Future Ballistics - "Beyond ballistics. Future Ballistics."
+Future Ballistics - "Bien mieux que Ballictics. Future Ballistics, la nouvelle génération." 
 
 MegaSystems - "De quoi n'avez-vous pas envie aujourd'hui ?"
 
-Masternak Rubbish Removal - "We CRUSH your RUBBISH."
+Masternak Tri et Collecte - "Nous CONCASSONS vos DÉTRITUS."
 
 Compagnie Nicholson - "La sécurité avec un poil de vengeance." 
 

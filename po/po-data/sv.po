@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-07-31 19:15+0200\n"
+"POT-Creation-Date: 2015-08-01 21:59+0200\n"
 "PO-Revision-Date: 2015-07-31 17:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/freedroid-rpg/language/sv/)\n"
@@ -185,8 +185,7 @@ msgstr "742 Zeus"
 msgid "This version is the one mainly used by the military."
 msgstr "Den här versionen är den som militären huvudsakligen använder."
 
-#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:224
-#: map/ReturnOfTux.droids:289
+#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:289
 msgid "751 Soviet"
 msgstr "751 Sovjet"
 
@@ -438,17 +437,9 @@ msgstr "Gå in i Varuhuset"
 msgid "Down into Crystal Caves"
 msgstr "Ner i Kristallgrottorna"
 
-#: map/events.dat:873
-msgid "InvaderBot-Hacked"
-msgstr ""
-
 #: map/events.dat:886
 msgid "Get me out of here!"
 msgstr "Ta mig härifrån!"
-
-#: map/events.dat:893
-msgid "296 Teleport Point"
-msgstr "296 Teleportplats"
 
 #: map/events.dat:902
 msgid "I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened."
@@ -497,14 +488,6 @@ msgstr "Alla bottar är döda! Gå till mitten för nästa våg."
 #: map/events.dat:1810 map/events.dat:1842
 msgid "All bots are killed! You won."
 msgstr "Alla bottar är döda! Du vann."
-
-#: map/events.dat:1821
-msgid "Arena Bot Hacked"
-msgstr ""
-
-#: map/events.dat:1871
-msgid "Respawn Master Arena"
-msgstr "Gör om Mästararenan"
 
 #: map/events.dat:1878
 msgid "Exit Master Arena"
@@ -3064,158 +3047,6 @@ msgstr "Kevin"
 msgid "Stolen 614"
 msgstr "Stulen 614"
 
-#: map/ReturnOfTux.droids:204
-msgid "GUN"
-msgstr "GUN"
-
-#: map/ReturnOfTux.droids:205
-msgid "FEM"
-msgstr "FEM"
-
-#: map/ReturnOfTux.droids:206
-msgid "543"
-msgstr "543"
-
-#: map/ReturnOfTux.droids:207
-msgid "BAR"
-msgstr "BAR"
-
-#: map/ReturnOfTux.droids:208
-msgid "TAN"
-msgstr "TAN"
-
-#: map/ReturnOfTux.droids:209
-msgid "JAS"
-msgstr "JAS"
-
-#: map/ReturnOfTux.droids:210
-msgid "KEV"
-msgstr "KEV"
-
-#: map/ReturnOfTux.droids:211
-msgid "COO"
-msgstr "COO"
-
-#: map/ReturnOfTux.droids:212
-msgid "GUB"
-msgstr "GUB"
-
-#: map/ReturnOfTux.droids:213
-msgid "WOR"
-msgstr "WOR"
-
-#: map/ReturnOfTux.droids:215
-msgid "MUM"
-msgstr "MUM"
-
-#: map/ReturnOfTux.droids:216
-msgid "DIX"
-msgstr "DIX"
-
-#: map/ReturnOfTux.droids:217
-msgid "GUA"
-msgstr "GUA"
-
-#: map/ReturnOfTux.droids:218
-msgid "DOC"
-msgstr "DOC"
-
-#: map/ReturnOfTux.droids:219
-msgid "PRO"
-msgstr "PRO"
-
-#: map/ReturnOfTux.droids:220
-msgid "999"
-msgstr "999"
-
-#: map/ReturnOfTux.droids:221
-msgid "883"
-msgstr "883"
-
-#: map/ReturnOfTux.droids:222
-msgid "834"
-msgstr "834"
-
-#: map/ReturnOfTux.droids:223
-msgid "821"
-msgstr "821"
-
-#: map/ReturnOfTux.droids:225
-msgid "742"
-msgstr "742"
-
-#: map/ReturnOfTux.droids:226
-msgid "711"
-msgstr "711"
-
-#: map/ReturnOfTux.droids:227
-msgid "629"
-msgstr "629"
-
-#: map/ReturnOfTux.droids:228
-msgid "615"
-msgstr "615"
-
-#: map/ReturnOfTux.droids:229
-msgid "614"
-msgstr "614"
-
-#: map/ReturnOfTux.droids:230
-msgid "603"
-msgstr "603"
-
-#: map/ReturnOfTux.droids:231
-msgid "598"
-msgstr "598"
-
-#: map/ReturnOfTux.droids:232
-msgid "571"
-msgstr "571"
-
-#: map/ReturnOfTux.droids:233
-msgid "516"
-msgstr "516"
-
-#: map/ReturnOfTux.droids:234
-msgid "493"
-msgstr "493"
-
-#: map/ReturnOfTux.droids:235
-msgid "476"
-msgstr "476"
-
-#: map/ReturnOfTux.droids:236
-msgid "420"
-msgstr "420"
-
-#: map/ReturnOfTux.droids:237
-msgid "329"
-msgstr "329"
-
-#: map/ReturnOfTux.droids:238
-msgid "302"
-msgstr "302"
-
-#: map/ReturnOfTux.droids:239
-msgid "296"
-msgstr "296"
-
-#: map/ReturnOfTux.droids:240
-msgid "249"
-msgstr "249"
-
-#: map/ReturnOfTux.droids:241
-msgid "247"
-msgstr "247"
-
-#: map/ReturnOfTux.droids:242
-msgid "139"
-msgstr "139"
-
-#: map/ReturnOfTux.droids:243
-msgid "123"
-msgstr "123"
-
 #: map/ReturnOfTux.droids:244
 msgid "Dude"
 msgstr "Snubbe"
@@ -3538,6 +3369,126 @@ msgstr "EMP-Granat"
 #: map/skill_specs.lua:336
 msgid "Electronic Noise"
 msgstr "Elektronisk Störning"
+
+#~ msgid "296 Teleport Point"
+#~ msgstr "296 Teleportplats"
+
+#~ msgid "Respawn Master Arena"
+#~ msgstr "Gör om Mästararenan"
+
+#~ msgid "GUN"
+#~ msgstr "GUN"
+
+#~ msgid "FEM"
+#~ msgstr "FEM"
+
+#~ msgid "543"
+#~ msgstr "543"
+
+#~ msgid "BAR"
+#~ msgstr "BAR"
+
+#~ msgid "TAN"
+#~ msgstr "TAN"
+
+#~ msgid "JAS"
+#~ msgstr "JAS"
+
+#~ msgid "KEV"
+#~ msgstr "KEV"
+
+#~ msgid "COO"
+#~ msgstr "COO"
+
+#~ msgid "GUB"
+#~ msgstr "GUB"
+
+#~ msgid "WOR"
+#~ msgstr "WOR"
+
+#~ msgid "MUM"
+#~ msgstr "MUM"
+
+#~ msgid "DIX"
+#~ msgstr "DIX"
+
+#~ msgid "GUA"
+#~ msgstr "GUA"
+
+#~ msgid "DOC"
+#~ msgstr "DOC"
+
+#~ msgid "PRO"
+#~ msgstr "PRO"
+
+#~ msgid "999"
+#~ msgstr "999"
+
+#~ msgid "883"
+#~ msgstr "883"
+
+#~ msgid "834"
+#~ msgstr "834"
+
+#~ msgid "821"
+#~ msgstr "821"
+
+#~ msgid "742"
+#~ msgstr "742"
+
+#~ msgid "711"
+#~ msgstr "711"
+
+#~ msgid "629"
+#~ msgstr "629"
+
+#~ msgid "615"
+#~ msgstr "615"
+
+#~ msgid "614"
+#~ msgstr "614"
+
+#~ msgid "603"
+#~ msgstr "603"
+
+#~ msgid "598"
+#~ msgstr "598"
+
+#~ msgid "571"
+#~ msgstr "571"
+
+#~ msgid "516"
+#~ msgstr "516"
+
+#~ msgid "493"
+#~ msgstr "493"
+
+#~ msgid "476"
+#~ msgstr "476"
+
+#~ msgid "420"
+#~ msgstr "420"
+
+#~ msgid "329"
+#~ msgstr "329"
+
+#~ msgid "302"
+#~ msgstr "302"
+
+#~ msgid "296"
+#~ msgstr "296"
+
+#~ msgid "249"
+#~ msgstr "249"
+
+#~ msgid "247"
+#~ msgstr "247"
+
+#~ msgid "139"
+#~ msgstr "139"
+
+#~ msgid "123"
+#~ msgstr "123"
 
 #~ msgid "INV"
 #~ msgstr "INV"

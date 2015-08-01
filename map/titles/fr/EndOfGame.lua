@@ -30,74 +30,74 @@ text = [[
 Les robots semblent vraiment énervés par quelquechose.
   Je suppose qu'ils sont en colère contre toi.
     Au moins, ils ne me cherchent plus. 
-      Quite a ?relief?
+      C'est comme une ?relève?
 
-    Je suis sur que que tu meures d'envie de me parler. 
-  Je pense à quelque-chose. 
-Pour maintenant vous ne pouvez plus qu'écouter. 
-  Désormais, vous devrez vivre avec ça. 
+    Je suis sûr que tu meures d'envie de me parler. 
+  Je pense à quelque-chose.
+Pour l'instant tu ne peux qu'écouter. 
+  Désormais, tu devras vivre avec ça. 
 
-    Notre chef a eu son cerveau grillé.
-      Ça veut dire que j'ai pris le dessus. 
-        J'en ai un peu raz le cul. 
-      J'en ai mare de ce monde. 
-    On va partir d'ici. 
+    Notre chef a eu le cerveau grillé.
+      Ça veut dire que je prends les commandes.
+        J'en ai un peu marre.
+      Je déteste ce monde.
+    On va partir d'ici.
 
-  I have found Qwerty, but this means nothing.
-His core temperature is above the freezing point.
-  en d'autre mots, il est mort. 
+  J'ai trouvé Azerty, mais ça ne veut rien dire.
+Sa température interne est au dessus du point de congélation.
+  Autrement dit, il est mort. 
     Il ne me manquera pas. 
 
-Je ne peut pas trouver Arensito. 
-  J'espère qu'elle va bien. 
-    Moi ? Inquiet ? à son sujet ? 
-    Nous n'avons pas besoin d'Azerty
-  Mais nous avons besoin d'Arensito. 
-    Je la cherche encore. 
+Je n'arrive pas à trouver Arensito. 
+  J'espère qu'elle va bien.
+    Je suis ?inquiet? à son sujet.
+    Nous n'avons pas besoin d'Azerty.
+  Mais nous avons besoin d'Arensito.
+    Je vais continuer à la chercher.
 
-    Il y a une I.A. dans la région. 
-  Ça s'appelle la “Singularité”.  
-Ou quelque-chose comme ça. 
-  Je ne comprends pas ce que ça veut. 
-    Je vous dirais quoi. 
+    Il y a une I.A. dans ta région.
+  Elle s'appelle elle-même la “Singularité”.  
+Ou quelque-chose comme ça.
+  Je ne comprends pas ce qu'elle veut. 
+    Je te tiendrais au courant..
 
-  Ah, et au passage… 
-Les robots sont en train de tuer tout le monde dans la petite ville là bas. 
-  Really, quite a sight. They are burning everything.
+  Ah, et au fait...
+Les robots sont en train de tuer tout le monde dans la petite ville d'à côté.
+  Vraiment, une vision d'horreur. Ils brulent tout.
     La Garde Rouge de la citadelle tient encore bon. 
       Pour l'instant. 
-    You might want to hide while they wreck the place.
-  In a few hours it should be safe to go there again.
+    Tu ferais mieux de te cacher pendant qu'ils démolissent l'endroit.
+  D'ici quelques heures, il devrait être possible d'y retourner.
 
-  I think that covers everything.
-    I'm going to start preparing for departure now.
-  So should you.
-We need to find Arensito.
-  She will get us out from here.
+  Je pense que j'ai tout dit.
+    Je vais aller préparer mon départ maintenant.
+  Tu devrais faire pareil.
+Nous devons trouver Arensito.
+  Elle nous sortira de là.
 
             Dvorak, Première IA.
 
 
 
- To be continued...
+ À suivre...
 
 
 
-A word from the FreedroidRPG development team:
+Quelques mots de l'équipe de développement de FreedroidRPG :
 
-We hope that you liked our game.
+Nous espérons que tu as apprécié notre jeu.
 
-If you want to add something to the game, that would be wonderful. There are plenty of opportunities to do so. We especially need more content, i.e.:
+Si tu à envie d'y ajouter quelque chose, tu seras le bienvenu. Il y a plein de possibilités. Nous recherchons en particulier du contenu supplémentaire, c'est-à-dire :
 
-* additional level design beautification
-* new level ideas
-* anything else you can come up with
+* de nouveaux embellissements des cartes
+* des idées de nouvelles cartes
+* toute autre chose auquel tu pourrais penser
 
-See also the 'Contribute' section.
+Voir également la section 'Contribution'.
 
-The freedroid development team.
+L'équipe de développement de FreedroidRPG.
 
 
-Press Fire to continue
+Presser Feu pour continuer.
 ]]
 }

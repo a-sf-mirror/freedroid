@@ -21,19 +21,19 @@ title_screen{
 song = "Bleostrada.ogg",
 text = [[
 Quelle belle journée.
-Yes, I'm being sarcastic again.
+Oui, je suis un peu sarcastique. 
 La planète entière est en feu.
 Des milliers de personnes sont très mortes.
-Qwerty and Arensito are not responding.
+Azerty et Arensito ne répondent plus. 
 
-Ah, yes, I almost forgot.
-The bloody bots are about to find me, too.
-Ça ne me rend pas vraiment heureux. Pas heureux du tout
-I guess I have to pretend I'm just a nice rock, yet again.
-Don't you think it would be a great time to wake up?
-Get up. Get here. Save my ass.
-S'il vous plait.
+Ah oui, j'avais presque oublié. 
+Les satanés robots sont sur le point de me trouver, moi aussi. 
+Je n'en suis pas ravi. Pas ravi du tout. 
+Je pense que je dois essayer de me faire passer pour un rocher, une fois de plus. 
+Tu ne penses pas que ça serait un bon moment pour se réveiller? 
+Debout là dedans! il faut me sauver les fesses! 
+S'il te plait.
 
-            Dvorak, First AI
+            Dvorak, Première IA
 ]]
 }

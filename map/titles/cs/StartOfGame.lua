@@ -23,15 +23,15 @@ text = [[
 Jaký toť skvělý den.
 Ano, jsem opět sarkastický.
 Celá planeta je v plamenech.
-Tisíce lidí jsou velmi mrtví.
+Tisíce lidí jsou velmi mrtvý.
 Qwerty a Arensito nereagují.
 
 Ah ano, málem jsem zapomněl.
-Ty prokletý boti mě každou chvíli najdou.
+Ty prokletí boti mě každou chvíli najdou.
 Nejsem s tím moc spokojený. Nejsem vůbec šťastný.
 Evidentně budu muset zase předstírat, že jsem jen pěkný kus skály.
 Nemyslíš si, že by to byl skvělý čas na probuzení?
-Vstávat. Okamžitě sem. Zachraň mi mou prdel.
+Vstávat. Okamžitě sem. Zachraň mi můj zadek.
 Prosím.
 
             Dvořák, První umělá inteligence.

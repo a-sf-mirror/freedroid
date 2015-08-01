@@ -19,26 +19,26 @@
 
 1. Introduction
 ================
- Le jeu raconte l'histoire d'un monde ravagés par un conflit entre les 
+ Le jeu raconte l'histoire d'un monde ravagé par un conflit entre les 
  robots et leurs maîtres humains. Joue Tux dans une quête pour sauver
- le monde de robots rebellés et mortelle ; ils ne connaissent aucune pitié. 
+ le monde de robots rebelles mortels ; ils ne connaissent aucune pitié. 
  Tu as à choisir quel chemin tu veux emprunter, la liberté de choix
  est partout dans le jeu.
 
- FreedroidRPG features a real time combat system with melee and ranged
- weapons, fairly similar to the proprietary game Diablo. There is an
- innovative system of programs that can be run in order to take
- control of enemy robots, alter their behavior, or improve one's
- characteristics. You can use over 150 different kinds of items and
- fight countless enemies on your way to your destiny. An advanced
- dialog system provides story background and immersive role playing
- situations.
+ FreedroidRPG dispose d'un système de combat temps réel avec des armes
+ distantes et de corps-à-corps, assez semblable au jeu propriétaire Diablo. Il propose un
+ système innovant de programmes pouvant être utilisés pour prendre
+ le contrôle des robots ennemis, modifier leur comportement, ou améliorer les
+ caractéristiques personnelles. Tu peux utiliser plus de 150 objets divers, et
+ combattre d'innombrables ennemis sur le chemin vers ta destinée. Un système 
+ avancé de dialogues sert de base à l'histoire et à une réelle immersion dans ce
+ jeu de rôle.
 
- The game is complete, fully playable, and can provide about 10 hours
- of fun. It is still being actively developed, and help is welcome in
- many areas. People having - or trying to acquire - programming, map
- editing, or writing skills will find FreedroidRPG to be an exciting,
- fast-moving project in which they can fully express their creativity.
+ Le jeu est complet, totalement jouable, et permet plus de 10 heures
+ de plaisir. Il est toujours activement développé, et toute aide est bienvenue, 
+ dans divers domaines. Les personnes ayant - ou désirant acquérir - des compétences en
+ programmation, création de cartes ou de dialogues trouveront en FreedroidRPG un
+ projet très actif dans lequel exprimer leur créativité.
 
 2. Installer & Jouer
 ===========
@@ -58,8 +58,8 @@
 
  Attaque 
 
-  Left clicking an enemy will cause Tux to come close to the droid and to start attacking it with the
-  current weapon. If the current weapon is a gun then Tux will stand still and shoot the droid.
+  Un clic gauche sur un ennemi amène Tux à s'approcher du robot et déclenche une attaque avec
+  l'arme courante. Si c'est une arme à feu, Tux reste sur place et tire sur le robot.
 
  Fonctions spéciales
 
@@ -84,7 +84,7 @@
   P ... Pause
   Enfoncer A ... Attaquer tout en restant à la même position
   Enfoncer Majuscule ... Garder la cible courante sélectionnée pendant les déplacements
-  Tab        ... Toggle automap (if available)
+  Tab ... Basculer l'affichage de l'auto-carte (si disponible)
 
   R ... Recharger
   Enfoncer Ctrl ... Courir
@@ -92,7 +92,7 @@
 
   Enfoncer X ... Afficher la description des items au sol
   Z ... Basculer l'affichage de la description des items au sol
-  T          ... Toggle walls becoming transparent when Tux approaches
+  T ... Basculer l'affichage transparent des murs proches de Tux
   Ctrl + Q ... Quitte le jeu
   Ctrl + G   ... Toggle grab input (prevent cursor from escaping the game window)
   Print      ... Take screenshot (saved into ./.freedroid_rpg/ folder of your home directory)

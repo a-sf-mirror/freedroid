@@ -23,7 +23,7 @@ song = "TheBeginning.ogg",
 text = [[
             JAK PŘISPĚT
 
-FreedroidRPG je zcela svobodný software a svobodná grafika.
+FreedroidRPG je zcela svobodný software a svobodné dílo.
 Je vyvinut výhradně dobrovolníky v jejich volném čase.
 
 Aby se FreedroidRPG stal lepší hrou, závisí na těchto příspěvcích.
@@ -32,26 +32,26 @@ Pokud byste chtěli něčím přispět, ale nejste si zcela jisti jak, tady je s
 TESTOVÁNÍ A REPORTOVÁNÍ CHYB:
 
 Potřebujeme lidi, kteří hru vyzkouší a nahlásí cokoli, co nefunguje správně nebo se nezdá být stabilní. To zahrnuje drobné věci jako je kontrola překlepů, chyb v textu a podobně. Úloha testování roste s velikostí hry FreedroidRPG. Potřebujeme vaši pomoc.
-Neváhejte a pošlete záplaty (patche)!
+Neváhejte a pošlete nám opravy (patche)!
 
 TVORBA MAP:
 
-Hledáme lidi, kteří by pro nás dělali mapy. K dispozici je editor map vestavěný ve hře. Zkuste to, a když uděláte něco zajímavého, ujistěte se, že se to dostane zpátky k nám.
+Hledáme lidi, kteří by pro nás dělali mapy. K dispozici je editor map vestavěný ve hře. Zkuste ho a když uděláte něco zajímavého, ujistěte se, že se to dostane zpátky k nám.
 
 DOKUMENTACE:
 
-V současné době se potýkáme s nedostatkem dokumentace. Potřebovali bychom uživatelskou dokumentaci vztahující se ke hře a jeho editoru úrovní stejně tak, jako dokumentaci cílenou vývojářům. Předpokladem je schopnost dobrého psaní.
+V současné době se potýkáme s nedostatkem dokumentace. Potřebovali bychom uživatelskou dokumentaci vztahující se ke hře a jejímu editoru úrovní stejně tak, jako dokumentaci cílenou na vývojáře. Předpokladem je schopnost dobrého psaní.
 
 ZVUKOVÉ EFEKTY:
 
-Zajisté bychom mohli použít nějaké zvukové efekty. Chcete-li nějakým přispět na dobrou věc, nebudeme říkat ne. :)
+Z cela určitě bychom mohli použít zvukové efekty. Chcete-li nějakým přispět, nebudeme říkat ne. :)
 
 KONTAKT:
 
 Pokud byste rádi něčím přispěli nebo poskytli zpětnou vazbu ohledně hry, můžete se jednoduše spojit s vývojáři. Stačí poslat e-mail na následující adresu:
 freedroid-discussion@lists.sourceforge.net
 
-Nebo, pokud to upřednostňujete, mohli byste chtít zaskočit do našeho IRC kanálu (#freedroid on irc.freenode.net).  Všichni jsou vítáni. Přiveďte své přátele!
+Nebo se můžete zastavit na našem IRC kanálu (#freedroid na irc.freenode.net).  Všichni jsou vítáni. Přiveďte i své přátele!
 
 Díky,
 

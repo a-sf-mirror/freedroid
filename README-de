@@ -21,7 +21,7 @@
 ================
  Dieses Spiel erzählt die Geschichte einer Welt, die im Konflikt zwischen
  Robotern und ihren menschlichen Meistern zerstört wurde. Spiele als Tux,
- um die Welt von ihren mordenden Robotern zu befreien, die keine Gande kennen.
+ um die Welt von ihren mordenden Robotern zu befreien, die keine Gnade kennen.
  Wähle den Pfad, den du gehen willst, denn im gesamten Spiel
  hast du immer die freie Wahl.
 
@@ -53,12 +53,12 @@
 ============
  Bewegung
  
-  Das Spiel wird überwiegend mit der Maus gesteuert. Klicke mit der linken Maustaste aus die Stelle, zu der du dich bewegen willst.
+  Das Spiel wird überwiegend mit der Maus gesteuert. Klicke mit der linken Maustaste auf die Stelle, zu der du dich bewegen willst.
   Halte die linke Maustaste, um weiter in die gezeigte Richtung zu laufen. Halte beim Laufen die Steuerungstaste (STRG/CTRL) gedrückt, um zu Rennen.
 
  Angriff
 
-  Klicke mit der linken Maustaste auf einen Gegner, damit Tux ihn mit seiner aktuell ausgerüsteten waffe angreift.
+  Klicke mit der linken Maustaste auf einen Gegner, damit Tux ihn mit seiner aktuell ausgerüsteten Waffe angreift.
   Trägt Tux eine Feuerwaffe bei sich, wird er den Gegner aus sicherem Abstand beschießen. Sollte der Gegner nicht in Reichweite sein, bewegt sich Tux automatisch auf ihn zu, bis er erledigt ist.
 
  Spezielle Funktionen
@@ -95,7 +95,7 @@
   T … Wände durchsichtig machen, wenn Tux dahinter steht (nur OpenGL-Modus)
   Strg/Ctrl + Q … Spiel beenden
   Strg/Ctrl + G … Mauszeiger einfangen (verhindert, dass der Zeiger das Spielfenster verlässt)
-  Druck … Schanppschuss machen (wird gespeichert unter ./.freedroid_rpg/ in deinem Heimatverzeichnis)
+  Druck … Schnappschuss machen (wird gespeichert unter ./.freedroid_rpg/ in deinem Heimatverzeichnis)
 
   Pfeiltasten … Bewegen
      Hoch … Norden
@@ -235,7 +235,7 @@ Sound-FAQ:
 		    Prüfe ebenfalls, ob libogg und libvorbis installiert sind.
 	   3.)  Wenn das Spiel aus dem Quelltext installiert wurde, prüfe nochmal, ob das
 		    ./configure-Skript die SDL_Mixer-Bibliothek erkannt hat. Schau dir einfach
-		    die Ausgabe des Befehls an. Dort etwas stehen wie:
+		    die Ausgabe des Befehls an. Dort sollte etwas stehen wie:
 
 		      checking for Mix_ChannelFinished in -lSDL_mixer... yes
 
