@@ -53,11 +53,17 @@ install-data-local:
 		find $${dir} -type d ! -path "*.git*" -exec echo $(DESTDIR)$(pkgdatadir)/{} \; | xargs $(mkinstalldirs) ; \
 		find $${dir} -type f ! -path "*.git*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec $(INSTALL_DATA) {} $(DESTDIR)$(pkgdatadir)/{} \; ; \
 	done
+	$(mkinstalldirs) $(DESTDIR)$(docdir)
+	cd $(topsrcdir)
+	for R in README README-* ; do \
+		$(INSTALL_DATA) $${R} $(DESTDIR)$(docdir); \
+	done
 	@echo "..done."
 
 uninstall-local:
 	@echo "Removing data-files ..."
 	rm -rf $(DESTDIR)$(pkgdatadir)
+	rm -rf $(DESTDIR)$(docdir)
 	@echo "...done."
 
 sign:
