@@ -559,7 +559,7 @@ function modWP_NPC.WikiWrite()
 		end
 		--	process presentation
 		local dialogname = npc.dialog .. ".lua"
-		local sfdialog = modWIKI.URL_SF .. "dialogs/" .. dialogname
+		local sfdialog = modWIKI.URL_Git .. "dialogs/" .. dialogname
 		local dialoglink = modWIKI.LinkText( sfdialog, dialogname )
 		wikitext[#wikitext + 1] = modWIKI.LinkText(npc.urlAnchor)
 		wikitext[#wikitext + 1] = modWIKI.HeaderLevel(2) .. npc.name

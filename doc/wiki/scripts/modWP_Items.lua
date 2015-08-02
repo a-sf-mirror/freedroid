@@ -297,7 +297,7 @@ function modWP_Items.WikiWrite()
 				wikitext = modWIKI.PageAppend(wikitext,textitem)
 
 				if (item.drop.sound ~= nil) then
-					local sfsndfile = modWIKI.URL_SF .. "sound/effects/item_sounds/" .. item.drop.sound
+					local sfsndfile = modWIKI.URL_Git .. "sound/effects/item_sounds/" .. item.drop.sound
 					local sndfilelink = modWIKI.LinkText( sfsndfile, item.drop.sound )
 					item.drop.sound = sndfilelink
 					textitem = modWP_Items.WikiPrintParentChildData( subkey, { "drop" }, { "sound"} )
@@ -311,7 +311,7 @@ function modWP_Items.WikiWrite()
 					if (item.weapon.reloading_sound ~= nil) then
 						local ret = modWP_Items.modcommon.Extract.Split(item.weapon.reloading_sound, "/", false )
 						local size = table.maxn(ret)
-						local sfsndfile = modWIKI.URL_SF .. "effects/item_sounds/" .. item.weapon.reloading_sound
+						local sfsndfile = modWIKI.URL_Git .. "effects/item_sounds/" .. item.weapon.reloading_sound
 						local sndfilelink = modWIKI.LinkText( sfsndfile, ret[size] )
 						item.weapon.reloading_sound = sndfilelink
 						textitem = modWP_Items.WikiPrintParentChildData( subkey, { "weapon" }, { "reloading_sound"} )
