@@ -25,6 +25,7 @@ endif
 SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po pkgs $(extradirs)
 
 man_MANS = freedroidRPG.6
+dist_doc_DATA = README README-*
 
 freedroid_data = map graphics sound dialogs lua_modules
 
@@ -52,11 +53,6 @@ install-data-local:
 	for dir in $(freedroid_data) ; do \
 		find $${dir} -type d ! -path "*.git*" -exec echo $(DESTDIR)$(pkgdatadir)/{} \; | xargs $(mkinstalldirs) ; \
 		find $${dir} -type f ! -path "*.git*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec $(INSTALL_DATA) {} $(DESTDIR)$(pkgdatadir)/{} \; ; \
-	done
-	$(mkinstalldirs) $(DESTDIR)$(docdir)
-	cd $(topsrcdir)
-	for R in README README-* ; do \
-		$(INSTALL_DATA) $${R} $(DESTDIR)$(docdir); \
 	done
 	@echo "..done."
 
