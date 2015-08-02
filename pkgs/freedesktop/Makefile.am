@@ -15,3 +15,6 @@ install-data-local:
 	cd $(srcdir); \
 	find icons -type d -exec echo $(DESTDIR)$(datadir)/{} \; | xargs $(mkinstalldirs) ; \
 	find icons -type f -exec $(INSTALL_DATA) {} $(DESTDIR)$(datadir)/{} \;
+
+uninstall-local:
+	@find $(DESTDIR)$(datadir)/ -name freedroidRPG.png -exec rm -f {} \;
