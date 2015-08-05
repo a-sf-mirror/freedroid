@@ -493,7 +493,7 @@ return {
 	},
 	{
 		id = "node50",
-		text = _"PLEASE REPORT, BUG AFTERTAKEOVER NODE 50",
+		text = "PLEASE REPORT, BUG AFTERTAKEOVER NODE 50",
 		echo_text = false,
 		code = function()
 			Aftertakeover_freezetime = (Npc:get_class() * 0.8)

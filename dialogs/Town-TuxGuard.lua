@@ -69,7 +69,7 @@ return {
 	},
 	{
 		id = "node30",
-		text = _"BUG, REPORT ME! Town-TuxGuard node30 -- Post Firmware Update",
+		text = "BUG, REPORT ME! Town-TuxGuard node30 -- Post Firmware Update",
 		code = function()
 			Tux:says(_"Hello again.")
 			Npc:says(_"Well hey, it's you.")

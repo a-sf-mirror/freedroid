@@ -126,7 +126,7 @@ return {
 				Npc:says(_"Cryo Complex Gates status: OPEN", "NO_WAIT")
 				show("node80")
 		--	else -- when the door was half-opened or closed and we tried to access it, we hit this code
-		--		Npc:says(_"GAME BUG. PLEASE REPORT, Cryo-Terminal node 60")
+		--		Npc:says("GAME BUG. PLEASE REPORT, Cryo-Terminal node 60")
 			end
 			cli_says(Cryo_Terminal_prompt, "NO_WAIT")
 		end,
