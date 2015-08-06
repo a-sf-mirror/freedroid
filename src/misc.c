@@ -1242,7 +1242,7 @@ int LoadGameConfig(void)
 	FILE *configfile;
 
 	if (!our_config_dir) {
-		DebugPrintf(1, "No useable config-dir. No config-loading possible\n");
+		DebugPrintf(1, "No useble config-dir. No config-loading possible\n");
 		return (OK);
 	}
 

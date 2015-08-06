@@ -74,7 +74,7 @@ static object_category item_category_list[] = {
 	{ N_("melee"), &melee_items_list },
 	{ N_("gun"), &gun_items_list },
 	{ N_("defensive"), &defense_items_list },
-	{ N_("useable"), &spell_items_list },
+	{ N_("usable"), &spell_items_list },
 	{ N_("other"), &other_items_list },
 	{ N_("all"), &all_items_list }
 };
