@@ -561,7 +561,7 @@ modWPCommon.Wiki.URL_ImgDroid = "Attach:Droids./"
 --	url to FDRPG Droid wiki images
 modWPCommon.Wiki.URL_ImgItems = "Attach:Items./"
 --	url to FDRPG git repo on sourceforge
-modWPCommon.Wiki.URL_Git = "https://gitlab.com/freedroid/freedroid-src/tree/master"
+modWPCommon.Wiki.URL_Git = "https://gitlab.com/freedroid/freedroid-src/tree/master/"
 
 -- page setup
 ----------------------------------------
