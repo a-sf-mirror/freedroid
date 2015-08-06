@@ -10,6 +10,8 @@ desktopdir = $(datadir)/applications
 desktop_in_files = freedroidRPG.desktop
 dist_desktop_DATA = $(desktop_in_files)
 
+EXTRA_DIST = icons
+
 install-data-local:
 	@$(mkinstalldirs) $(DESTDIR)$(datadir)
 	cd $(srcdir); \
