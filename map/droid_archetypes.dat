@@ -195,7 +195,7 @@ Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.80
 Is this 'droid' a human : 0
 Filename prefix for graphics="296"
-Notes concerning this droid=_"Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carring drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!" 
+Notes concerning this droid=_"Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carrying drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!" 
 
 ** Start of new Robot: ** 
 Droidname: 302
@@ -709,7 +709,7 @@ Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Filename prefix for graphics="883"
-Notes concerning this droid=_"This droid was designed from archive data. For some unknown reason it instills great fear in Human adversaries." 
+Notes concerning this droid=_"This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries." 
 
 ** Start of new Robot: ** 
 Droidname: 999
@@ -1122,7 +1122,7 @@ Chance of this robot scoring a hit=100
 Time to recover after getting hit=1.00
 Is this 'droid' a human : 1
 Filename prefix for graphics="arthur"
-Notes concerning this droid=_"It has long since been known that game development is the most important job in the world. Also the coolest. We know that thanks to this guy."
+Notes concerning this droid=_"It has long since been known that game development is the most important job in the world. Also, the coolest. We know that thanks to this guy."
 
 ** Start of new Robot: **
 Droidname: STM

@@ -56,7 +56,7 @@ skill_list {
 	damage = {base = "-30"},
 	effect = {type = "paralyze", duration = {base = 4.5, per_level = -0.5}},
 	cost = {base = 30, per_level = 0},
-	description =_[[While repairing damage you must remember that patience is a virtue.]],
+	description =_[[While repairing damage, you must remember that patience is a virtue.]],
 },
 --------------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ The art of rapidly moving away from danger is very useful. Even when used in rev
 	form = "instant",
 	damage = {base = "5:7", per_level = 2},
 	cost = {base = 10, per_level = 3},
-	description =_[[When computers are presented with the unexpected they can damage themselves.]],
+	description =_[[When computers are presented with the unexpected, they can damage themselves.]],
 },
 --------------------------------------------------------------------------------
 
