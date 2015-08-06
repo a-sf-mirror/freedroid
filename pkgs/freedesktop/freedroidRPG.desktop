@@ -8,4 +8,5 @@ TryExec=freedroidRPG
 Exec=freedroidRPG
 Icon=freedroidRPG.png
 Actions=Game;RolePlaying;
+Categories=Game
 URL=http://www.freedroid.org
