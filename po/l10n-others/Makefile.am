@@ -8,6 +8,8 @@
 update-pot:
 tx-push:
 
+EXTRA_DIST = LINGUAS
+
 .PHONY: update-pot update-po update-gmo 
 .PHONY: tx-update tx-pull tx-push
 
