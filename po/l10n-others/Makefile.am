@@ -76,7 +76,7 @@ endef
 #== l10n of fdrpg title files
 
 TITLES_DIR  = $(top_srcdir)/map/titles
-TITLES_RSRC = $(basename $(notdir $(shell git ls-files --no-empty-directory --exclude-standard $(TITLES_DIR)/*.lua)))
+TITLES_RSRC = $(basename $(notdir $(wildcard $(TITLES_DIR)/*.lua)))
 TITLES_TX   = $(TITLES_RSRC:%=tx/title-%.txt)
 TITLES_L10N = $(foreach lang,$(LANGS),$(TITLES_RSRC:%=$(TITLES_DIR)/$(lang)/%.lua))
 
