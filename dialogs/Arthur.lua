@@ -51,7 +51,7 @@ return {
 		code = function()
 			Npc:says(_"I'm programming.")
 			Tux:says(_"Oh, interesting.")
-			Tux:says(_"And, mmh, what are working on?")
+			Tux:says(_"And, hmm, what are working on?")
 			Npc:says(_"My current project is a role playing game.")
 			Npc:says(_"The main character will be a penguin which, well, has to save the world basically.")
 			Tux:says(_"Oh, interesting! Tell me when you have it ready, I'd love to take a look at it.")
@@ -76,7 +76,7 @@ return {
 	},
 	{
 		id = "node3",
-		text = _"Hey, is the your game finished already?",
+		text = _"Hey, is your game finished already?",
 		code = function()
 			Npc:says(_"I'm doing the final polishing right now.")
 			Tux:says(_"Ah ok.")

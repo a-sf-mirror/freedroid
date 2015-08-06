@@ -290,7 +290,7 @@ return {
 	},
 	{
 		id = "node39",
-		text = _"I need a refresh of my knowledge about Superconductors.",
+		text = _"I need a refreshing of my knowledge about Superconductors.",
 		topic = "Extract bot parts",
 		code = function()
 			hide("node39") next("node40")

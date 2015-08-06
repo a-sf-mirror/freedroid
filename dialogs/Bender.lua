@@ -142,7 +142,7 @@ return {
 				else
 					Npc:says(_"I'm good! Man, a few days ago I was feeling really down... I was really sick.")
 					Npc:says(_"But now I stopped feeling not-awesome! And it's all thanks to you and all the bots being dead!")
-					Npc:says(_"Maybe it's also because I pummeled the doc until he gave me some pills.")
+					Npc:says(_"Maybe it's also because I pummelled the doc until he gave me some pills.")
 					Tux:says("...")
 					Npc:says(_"But I'm really sure it's also because all the bots are gone.")
 					Npc:says(_"I mean, look around!")
@@ -237,7 +237,7 @@ return {
 		code = function()
 			Npc:says(_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left.")
 			if (not tux_has_joined_guard) then
-				Npc:says(_"Also I could vote for you if you seek to join the guard of the town.")
+				Npc:says(_"Also, I could vote for you if you seek to join the guard of the town.")
 			end
 			Npc:says(_"Just get me a cure, and I'll be forever grateful!")
 			Tux:add_quest("Bender's problem", _"I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The town doctor will not give him the antidote, so it is up to me to save him.")

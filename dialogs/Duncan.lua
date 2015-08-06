@@ -325,7 +325,7 @@ return {
 		text = _"WHAT? No way I am giving you a doomsday device! Forget about it.",
 		code = function()
 			Npc:says(_"I understand. So be it.")
-			Tux:end_quest("Doing Duncan a favor", _"No way am I giving Duncan that cube thingie. Who knows what he would do with it.")
+			Tux:end_quest("Doing Duncan a favor", _"No way am I giving Duncan that cube thingie, who knows what he would do with it.")
 			Duncan_not_given_cube = true
 			end_dialog()
 			hide("node67", "node68")

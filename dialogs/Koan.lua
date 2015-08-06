@@ -119,7 +119,7 @@ return {
 			Npc:set_name("Koan")
 			Npc:says(_"I am Koan.")
 			Npc:says(_"Duncan is one obsessed with destroying things, while I create.")
-			Npc:says(_"Therefore he desires my destruction.")
+			Npc:says(_"Therefore, he desires my destruction.")
 			hide("node3", "node4", "node5") show("node20", "node99")
 		end,
 	},

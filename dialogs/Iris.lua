@@ -119,7 +119,7 @@ return {
 				Npc:says(_"Yes, sure.")
 				Npc:says(_"The Red Guard is very polite and keeps us safe from bots.")
 				Npc:says(_"And the overall design of the town is quite clever.")
-				Npc:says(_"Nevertheless this room is quite dark.")
+				Npc:says(_"Nevertheless, this room is quite dark.")
 				Npc:says(_"It could use some light.")
 			else
 				Npc:says(_"Not really.")

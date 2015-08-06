@@ -82,7 +82,7 @@ return {
 				ControllableBot_try_again = false
 				end_dialog()
 			else
-				Npc:says("WARNING, '%s' not a vaild map label.", ControllableBot_response)
+				Npc:says("WARNING, '%s' not a valid map label.", ControllableBot_response)
 				Npc:says("Please retry.")
 			end
 		end

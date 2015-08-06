@@ -561,7 +561,7 @@ return {
 									--; TRANSLATORS: %s = enemy name
 									string.format(_"You walk like a duck, quack like a duck and swim like a duck. The %s figures you must be a duck.", n_emname),
 									_"You pretend to be a mime.",
-									_"You pull a rabbit from your tophat.", "NO_WAIT")
+									_"You pull a rabbit from your top hat.", "NO_WAIT")
 					next("c-net-nethack_sub.node61")
 				else
 									--; TRANSLATORS:  %s = enemy name
@@ -727,7 +727,7 @@ return {
 										_"You find a shank.",
 										_"You find a kevlar vest.",
 										_"You find a Hawaiian t-shirt.",
-										_"You find an credit card.",
+										_"You find a credit card.",
 										_"You find a sharpened pencil.",
 										_"You find a broken glass bottle.",
 										_"You find a 'weapon'.", "NO_WAIT")
@@ -748,7 +748,7 @@ return {
 										_"Your acne clears up.",
 										_"You stop hemorrhaging blood.", "NO_WAIT")
 					elseif (random_var == 2) then --Get a trick!
-						Npc:says_random(_"You find a tophat with a rabbit.",
+						Npc:says_random(_"You find a top hat with a rabbit.",
 										_"You find a deck of cards.",
 										_"You find a coin with two heads.",
 										_"You find a stick with two snakes wrapped around it.",
@@ -825,7 +825,7 @@ return {
 					Npc:says_random(_"You died.",
 									_"A Valkyrie carries you off to Valhalla.",
 									_"Hermes, with Death and Sleep, asks if you've seen his Caduceus anywhere, and then brings you to the river Leith.",
-									_"Your soul finds itself traveling along the path of the moon, far away from your broken body.",
+									_"Your soul finds itself travelling along the path of the moon, far away from your broken body.",
 									_"You are fully one with everything. Your battered body no longer concerns you.",
 									_"You failed to enlist the Random Number God to your side. You died.", "NO_WAIT")
 					Npc:says(_"Game over.", "NO_WAIT")

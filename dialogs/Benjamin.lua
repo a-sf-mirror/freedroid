@@ -102,7 +102,7 @@ return {
 				show("node22")
 			elseif (Tux:get_skill("ranged") == 2) then
 				Npc:says(_"I see you have taken a liking to guns.", "NO_WAIT")
-				Npc:says(_"But the next step will cost even more money and require the mental focus equaling all your previous training.")
+				Npc:says(_"But the next step will cost even more money and require the mental focus equalling all your previous training.")
 				Npc:says(_"Interested?")
 				show("node23")
 			elseif (Tux:get_skill("ranged") == 3) then
@@ -135,7 +135,7 @@ return {
 				Npc:says(_"The next important thing is to remember how to properly fire a shot.", "NO_WAIT")
 				Npc:says(_"Watch your target closely. Pretend you're moving with it. Aim for the head.")
 				Npc:says(_"When you feel completely in sync with your target, then you pull the trigger.", "NO_WAIT")
-				Npc:says(_"Good. You are learning fast. Try it a few more times.")
+				Npc:says(_"Good. You are learning quickly. Try it a few more times.")
 				Npc:says(_"Okay, I think that it is enough for today.")
 				hide("node21") show("node20")
 			else
@@ -148,7 +148,7 @@ return {
 		text = _"Yes, I want even more training. (costs 200 circuits, 6 training points)",
 		echo_text = false,
 		code = function()
-			Tux:says(_"So lets start the second course?")
+			Tux:says(_"So let''s start the second course?")
 			cost = 200
 			if Tux:train_skill(cost, 6, "ranged") then
 				Npc:says(_"Very well.")
@@ -191,7 +191,7 @@ return {
 				Npc:says(_"Firing on the move is difficult, but can make survival much more likely!")
 				Npc:says(_"The secret is to keep your weapon steadily but loosely, so that it isn't jarred.")
 				Npc:says(_"Oh yes, and be careful of your footing. You should be looking where you are firing, not where you are stepping.")
-				Npc:says(_"Keep practicing and you will get the hang of it eventually.")
+				Npc:says(_"Keep practising and you will get the hang of it eventually.")
 				hide("node24") show("node20")
 			else
 				if (Tux:get_gold() < cost ) then next("node27") else next("node28") end
@@ -207,9 +207,9 @@ return {
 			cost = 500
 			if Tux:train_skill(cost, 15, "ranged") then
 				Npc:says(_"The ultimate secret to becoming a god in ranged combat is something you should value.")
-				Npc:says(_"I don't tell everyone this, so keep it to yourself, alright?")
+				Npc:says(_"I don't tell everyone this, so keep it to yourself, all right?")
 				Npc:says(_"To become a god in ranged combat you need to...")
-				Npc:says(_"...practice. A lot.")
+				Npc:says(_"...practise. A lot.")
 				Npc:says(_"Go ahead and use my firing range as much as you need.")
 				hide("node25") show("node20")
 			else
@@ -271,7 +271,7 @@ return {
 		code = function()
 			Npc:says(_"Laser is an acronym for Light Amplification by Stimulated Emission of Radiation.")
 			Npc:says(_"Laser is the technology employed in most of our weaponry. It uses a focused light beam to cause damage.")
-			Npc:says(_"Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say. Also it is not affected by gravity or wind, which makes aiming easier.")
+			Npc:says(_"Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say.It is also not affected by gravity or wind, which makes aiming easier.")
 			Npc:says(_"However, other than being a good training tool for newbies, that design just fails to deliver.")
 			Npc:says(_"The shots tend to be underpowered, the gun takes a long while to power up for a shot, and it can overheat during intense combat.")
 			Npc:says(_"This is why I am trying to improve it, but so far I have had no success. I'm feeling pretty discouraged about it.")
@@ -302,7 +302,7 @@ return {
 		code = function()
 			if (Tux:del_gold(50)) then
 				Npc:says(_"It might come as a surprise to you, but we don't have many. A little over twenty, last time I checked.", "NO_WAIT")
-				Npc:says(_"Thankfully, as you can clearly see, it's more than enough to keep all of the cursed bots away.")
+				Npc:says(_"Thankfully, as you can clearly see, it's more than enough to keep all the cursed bots away.")
 				hide("node41") show("node44")
 			else
 				next("node43")

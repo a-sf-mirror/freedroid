@@ -311,7 +311,7 @@ return {
 		text = _"I have the dilithium you wanted.",
 		code = function()
 			Npc:says(_"Really? I thought you were dead, but not only did you come back alive, you also brought some power crystals for my trusty oven.")
-			Npc:says(_"However I need at least three crystals. Can you come back with all the crystals I need?")
+			Npc:says(_"However, I need at least three crystals. Can you come back with all the crystals I need?")
 			hide("node30")
 		end,
 	},

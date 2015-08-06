@@ -118,7 +118,7 @@ return {
 				Tux:add_quest("A strange guy stealing from town", _"Ooops, the guard must be talking about Kevin. I'd better not mention I know him and where he lives, or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
 				Tux:add_xp(100)
 				-- We should perhaps not end quest here but later when talking again to Kevin and asking about the comps
-				Tux:end_quest("A strange guy stealing from town", _"Though I probably should ask Kevin some day what he was doing with the town computers.")
+				Tux:end_quest("A strange guy stealing from town", _"Though, I probably should ask Kevin some day what he was doing with the town computers.")
 			end
 			if (not Tux:has_met("Kevin")) and
 			   (not Kevin:is_dead()) then
@@ -133,9 +133,9 @@ return {
 		code = function()
 			Npc:says(_"Oh, definitely, and I'm sure all the bots out there will be glad to give you directions, too.")
 			Npc:says(_"But if you're insanely lucky and you do find him, you come back straight to me, understand?")
-			Npc:says(_"I'd like to wring his head off... Though it's not my call. But who knows, if the Boss feels generous we might both get rewarded.")
+			Npc:says(_"I'd like to wring his head off... Though, it's not my call. But who knows, if the Boss feels generous we might both get rewarded.")
 			Npc:says(_"Be careful anyway, this creep is a sneaky one if he got past us.")
-			Tux:update_quest("A strange guy stealing from town", _"I offered to find out who the stange guy is. The guard I talked to was pretty skeptical, though; I should get some experience and better equipment before traveling far outside of town.")
+			Tux:update_quest("A strange guy stealing from town", _"I offered to find out who the strange guy is. The guard I talked to was pretty sceptical, though; I should get some experience and better equipment before travelling far outside of town.")
 			next("node15")
 		end,
 	},
@@ -247,7 +247,7 @@ return {
 		id = "node31",
 		text = _"I want to talk to your manager, moron.",
 		code = function()
-			Npc:says(_"I'll be happy to send you his way, I already told you you have to talk to him anyway. But I need your name before I let you in.")
+			Npc:says(_"I'll be happy to send you his way, I already told you, you have to talk to him anyway. But I need your name before I let you in.")
 			Tux:says("%s.", Tux:get_player_name())
 			Npc:says(_"Talk to Spencer. His office is in the citadel, straight ahead, the first one on your left. You can't miss it.")
 			Npc:says(_"Now stop bothering me! You crazy loon.")

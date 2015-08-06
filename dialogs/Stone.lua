@@ -226,7 +226,7 @@ return {
 				else -- not joined guard + not enough money
 					Npc:says(_"Hold on a minute, you are still a bit short on money.", "NO_WAIT")
 					Npc:says(_"Please return with the full amount if you want to help.", "NO_WAIT")
-					Npc:says(_"Otherwise you're throwing good money after bad, and I couldn't let you do that.")
+					Npc:says(_"Otherwise, you're throwing good money after bad, and I couldn't let you do that.")
 				end
 			end
 			hide("node23")
@@ -241,7 +241,7 @@ return {
 			Npc:says(_"And here you are.")
 			Npc:says(_"I hope your arrival changes the tide of this war...", "NO_WAIT")
 			Npc:says(_"I have something here for you. I managed to hide this Shotgun from the Red Guard.")
-			Npc:says(_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all.")
+			Npc:says(_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have liked you to have it on your journey to save us all.")
 			--; TRANSLATORS: %s = Tux:get_player_name()
 			Npc:says(_"%s, if you ever find out who started the Great Assault... GIVE THEM A SWIFT KICK FROM LILY STONE!!!", Tux:get_player_name())
 			Npc:set_name("Lily Stone - Shop owner")

@@ -279,7 +279,7 @@ return {
 		code = function()
 			Npc:says(_"Ah, yes.", "NO_WAIT")
 			Npc:says(_"Linarians seem to [b]detect items[/b] - even through walls - in an augmented reality.")
-			Npc:says(_"The [b]z key[/b] will toggles this augmentation, while the [b]x key[/b] momentarily flashes it.")
+			Npc:says(_"The [b]z key[/b] will toggle this augmentation, while the [b]x key[/b] momentarily flashes it.")
 			Npc:says(_"Moving your pointer over an item will tell you more about that item.")
 			Npc:says(_"On our way to the next stopping point, we'll pass some items on the floor.")
 			Npc:says(_"Feel free to stop and examine them to get practice.")
@@ -566,7 +566,7 @@ return {
 			Npc:says(_"Lucky for you, there's another dimension to melee combat.")
 			Npc:says(_"Fighting bots with your fists is fine, but there are a number of items you can use for melee.")
 			Npc:says(_"There are several traditional weapons in the world such as swords or light sabers that can be used against the bots.")
-			Npc:says(_"However, more common items you encounter everyday can often be used to bash or pry at droid armor.")
+			Npc:says(_"However, more common items you encounter every day can often be used to bash or pry at droid armor.")
 			Npc:says(_"For example, that wrench I just gave you will increase the damage you do, and should let you best the next bot.")
 			hide("node26") show("node27")
 		end,
@@ -798,7 +798,7 @@ return {
 			Npc:says(_"You'll also be given 5 points to spend however you choose in three different areas. Characteristics, Skills and Programs.")
 			Npc:says(_"[b]Strength[/b] governs the amount of damage you do with each hit in melee combat.")
 			Npc:says(_"[b]Dexterity[/b] controls your hit rate, or how likely you are to hit the enemy. It also determines how likely you are to dodge a hit from them.")
-			Npc:says(_"[b]Cooling[/b] is your processors cooling. or heat resilience, and determines how much you can process before your system starts overheating.")
+			Npc:says(_"[b]Cooling[/b] is your processors cooling, or heat resilience, and determines how much you can process before your system starts overheating.")
 			Npc:says(_"Finally, among your main characteristics, [b]Physique[/b] determines how much health you have.")
 			Npc:says(_"There are general [b]Melee[/b] and [b]Ranged[/b] fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them.")
 			Npc:says(_"You also have the [b]Programming[/b] skill, which essentially is about programming in an energy-efficient manner so programs cause less heat.")
@@ -1156,7 +1156,7 @@ return {
 			if (Tux:has_item("Source Book of Calculate Pi")) and
 			   (Tux:has_item("Source Book of Malformed packet")) then
 				--plural
-				Npc:says(_"But I have to take this sourcebooks from you to prevent you from cheating in the next section of the tutorial.")
+				Npc:says(_"But I have to take these sourcebooks from you to prevent you from cheating in the next section of the tutorial.")
 				Npc:says(_"Sorry about that...")
 				Tux:says(_"Ok...")
 			elseif (Tux:has_item("Source Book of Calculate Pi")) or
@@ -1269,7 +1269,7 @@ return {
 		id = "node87",
 		text = _"Hacking Bots",
 		code = function()
-			Npc:says(_"OK, I'll take us to the hacking area. Also I'll give you some XP so you can improve your cooling.")
+			Npc:says(_"OK, I'll take us to the hacking area. Also, I'll give you some XP so you can improve your cooling.")
 			Tux:add_xp(2000)
 			Npc:teleport("TutorialTom-Takeover")
 			Tux:teleport("TutorialTom-Takeover")

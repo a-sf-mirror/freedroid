@@ -104,7 +104,7 @@ return {
 				Npc:says(_"NO! NO! Er... I mean, not right now. I am busy. Come again later.")
 			else
 				Npc:says(_"Sure. I can help you.", "NO_WAIT")
-				Npc:says(_"For a price. Hundred circuits should be enough.")
+				Npc:says(_"For a price. A hundred circuits should be enough.")
 				hide("node1", "node99") show("node11", "node19")
 			end
 		end,
@@ -238,7 +238,7 @@ return {
 		text = _"I want to pass the gate.",
 		code = function()
 			Npc:says(_"Fine.")
-			Tux:says(_"Can you open it please?")
+			Tux:says(_"Can you open it, please?")
 			Npc:says(_"Yes, I can.")
 			Tux:says(_"Thanks.")
 			Tux:says(_"Uhm...")

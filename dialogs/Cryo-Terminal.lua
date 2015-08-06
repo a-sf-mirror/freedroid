@@ -60,7 +60,7 @@ return {
 		text = _"Appointments and visiting hours",
 		code = function()
 			Npc:says(_"Cryonic Solutions operates 24 hours a day every day of the year.")
-			Npc:says(_"However for the safety of our clients, visiting hours are restricted.", "NO_WAIT")
+			Npc:says(_"However, for the safety of our clients, visiting hours are restricted.", "NO_WAIT")
 			Npc:says(_"Visiting hours for family and friends are by appointment only [b]Monday-Thursday 10:00-14:00[/b].")
 			Npc:says(_"Prospective clients are welcome to make appointments from [b]15:00-17:00 Fridays[/b].", "NO_WAIT")
 			cli_says(Cryo_Terminal_prompt, "NO_WAIT")

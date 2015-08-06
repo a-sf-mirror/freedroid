@@ -199,7 +199,7 @@ return {
 			Npc:says(_"Wow, err, I mean, thanks.")
 			Npc:says(_"You are a Red Guard now.")
 			Npc:says(_"Oh, wait, you cheated, didn't you?")
-			Npc:says(_"There is now way we can have lame cheaters in the the Red Guard, forget about it!")
+			Npc:says(_"There is now way we can have lame cheaters in the Red Guard, forget about it!")
 			Npc:says(_"However, if you did in fact NOT cheat, please tell the developers how you got so much money so they can fix it. :)")
 			Npc:says(_"Contact information can be found at http://www.freedroid.org/Contact")
 			hide("node9")
@@ -411,7 +411,7 @@ return {
 			Npc:says(_"If the information is true, then you can defeat the control droid and disable the shield permanently via some console or terminal.")
 			Npc:says(_"Then we should be able to get in.")
 			Npc:says(_"We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield.")
-			Npc:says(_"This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though..")
+			Npc:says(_"This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though...")
 			hide("node37") show("node38")
 		end,
 	},
@@ -443,7 +443,7 @@ return {
 		text = _"I don't feel like doing it now. I'd rather prepare some more.",
 		code = function()
 			Npc:says(_"Good. You should be well prepared if you intend to go.")
-			Npc:says(_"Also there is no need to hurry with this. After all, the installation is not running away, so it's best to take a cautious approach.")
+			Npc:says(_"Also, there is no need to hurry with this. After all, the installation is not running away, so it's best to take a cautious approach.")
 			hide("node40")
 		end,
 	},

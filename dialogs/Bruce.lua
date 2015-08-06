@@ -275,7 +275,7 @@ return {
 		code = function()
 			Tux:says(_"I changed my mind.")
 			Tux:says(_"You can have it. For free.")
-			Npc:says(_"Oh... Oh my! thanks!")
+			Npc:says(_"Oh... Oh my! Thanks!")
 			Npc:says(_"Wait, let me go get something first.")
 			Tux:says(_"Sure.")
 			Bruce_helmet_sell = 0

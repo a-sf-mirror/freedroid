@@ -396,7 +396,7 @@ return {
 		topic = "Backdoor",
 		code = function()
 			Npc:says(_"You are really careful with the security of your mission.")
-			Npc:says(_"However don't destroy my equipment, I can support you to be stealthy.")
+			Npc:says(_"However, don't destroy my equipment, I can support you to be stealthy.")
 			Npc:says(_"But later, maybe... I don't have time now.")
 			next("node93")
 		end,

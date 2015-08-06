@@ -374,7 +374,7 @@ return {
 				Npc:says(_"Not if you can avoid it.")
 			end
 			Npc:says(_"Well, unlike the army snacks, the Diet Supplements actually have a slight nutritional benefit.")
-			Npc:says(_"After taking one your health should improve slightly.")
+			Npc:says(_"After taking one, your health should improve slightly.")
 			hide("node55")
 		end,
 	},

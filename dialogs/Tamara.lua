@@ -120,7 +120,7 @@ return {
 			Npc:says(_"We used to. Even ran this library together.")
 			Npc:says(_"Then she started reading more and more books and sitting in front of the computer day and night, never sleeping.")
 			Npc:says(_"In the end she completely lost her marbles, sadly.")
-			Npc:says(_"Now all she does is sit locked in her house staring into the computer.")
+			Npc:says(_"Now all she does is sitting locked in her house staring into the computer.")
 			Tamara_talked_about_sister = true
 			hide("node1")
 		end,
@@ -148,7 +148,7 @@ return {
 			Npc:says(_"This is a library, not a book shop.")
 			Npc:says(_"However, valuable books have a tendency to simply vanish and never get returned by some people...")
 			Npc:says(_"Especially strangers just passing by...")
-			Npc:says(_"Thus I'm forced to take a deposit for each book.")
+			Npc:says(_"Thus, I'm forced to take a deposit for each book.")
 			hide("node10") show("node11")
 		end,
 	},
@@ -174,7 +174,7 @@ return {
 	},
 	{
 		id = "node21",
-		text = _"Have you been progressing on your book about the bots apocalypse?",
+		text = _"Have you been progressing on your book about the bot apocalypse?",
 		code = function()
 			Npc:says_random(_"I need more time to finish it.",
 							_"Page-by-page, my book is growing up.",
@@ -255,7 +255,7 @@ return {
 		code = function()
 			Npc:says(_"Oh? What news?")
 			Tux:says(_"The world is saved! The apocalypse is over!")
-			Npc:says(_"Oh, yes... Those news. I agree, it's wonderful.")
+			Npc:says(_"Oh, yes... This news. I agree, it's wonderful.")
 			hide("Tamara_post_firmware_update_1")
 			show("Tamara_post_firmware_update_2")
 			Tamara_post_firmware_update = true

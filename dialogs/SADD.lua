@@ -130,7 +130,7 @@ return {
 		code = function()
 			Npc:says(_"You are not. You have secret information, so I won't let you out.")
 			Tux:says(_"Why not kill me immediately?")
-			Npc:says(_"And stand here alone until I die? While you are here I can speak with you. Oh, I haven't spoken to anybody for a looong time!")
+			Npc:says(_"And stand here alone until I die? While you are here, I can speak with you. Oh, I haven't spoken to anybody for a looong time!")
 			hide("node8") show("node10", "node11")
 		end,
 	},

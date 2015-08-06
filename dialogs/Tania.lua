@@ -355,7 +355,7 @@ return {
 		text = _"I'm ready to escort you to the town.",
 		code = function()
 			Tania_position = "underground"
-			Tux:update_quest("Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
+			Tux:update_quest("Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there, I'll introduce her to Spencer.")
 			Npc:set_state("follow_tux")
 			hide("node8", "node40", "node41") next("end_underground")
 		end,

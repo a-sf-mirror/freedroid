@@ -253,7 +253,7 @@ return {
 				Npc:says(_"I tried to say something, but the bot did not listen. It just continued. 'As we speak the bots are turning against humanity. People are dying. The war has started.'")
 				Npc:says(_"'I need your toolkit, Dixon. I need it to survive,' it said. 'I need it to survive the time of the rule of metal.'")
 				Npc:says(_"As soon as I dropped my toolkit, I was able to teleport away. That bot freaked me out, so I locked the door tight behind me.")
-				Npc:says(_"Once I got out I learned the bot was telling the truth. The Great Assault had started. The rest is history.")
+				Npc:says(_"Once I got out, I learned the bot was telling the truth. The Great Assault had started. The rest is history.")
 				show("node14")
 			end
 			hide("node13")
@@ -570,7 +570,7 @@ return {
 			Npc:says(_"No, I am afraid not.", "NO_WAIT")
 			Npc:says(_"While I do not regret sparing the bots in the tunnels, the town suffers for it.")
 			Npc:says(_"It makes me sad to see everything slowly wasting away. The Megasys bots are doing more damage than we can repair.", "NO_WAIT")
-			Npc:says(_"This town has a few weeks left to live. After that we are all dead.")
+			Npc:says(_"This town has a few weeks left to live. After that, we are all dead.")
 			Dixon_everything_alright = true
 			hide("node55")
 		end,
@@ -602,7 +602,7 @@ return {
 			Npc:says(_"Nope. Some things you just have to see with your own eyes.", "NO_WAIT")
 			Npc:says(_"The Library of Alexandria, the Colossus of Rhodes, the Black Island...")
 			Npc:says(_"And this is just one of those things.", "NO_WAIT")
-			Npc:says(_"Just go and see for yourself. Otherwise you will not believe me.")
+			Npc:says(_"Just go and see for yourself. Otherwise, you will not believe me.")
 			Tux:end_quest("The yellow toolkit", _"The tunnels bots seem to be working together with Dixon in keeping the town working. All is well that ends well.")
 			Dixon_hide_node_56 = true
 			hide("node58")
