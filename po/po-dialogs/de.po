@@ -13328,7 +13328,7 @@ msgstr "Geh weg!"
 #: dialogs/MO-RGGateGuardLeader.lua:89
 msgid "Calm down. This is not an attack. I've disabled the shield and I'm going to disable all the bots around! Didn't Spencer inform you?"
 msgstr ""
-"Beruhig dich. Das ist kein Angriff. Ich habe das Schild deaktiviert und ich werde auch all die Roboter da deaktivieren.\r\n"
+"Beruhig dich. Das ist kein Angriff. Ich habe das Schild deaktiviert und ich werde auch all die Roboter da deaktivieren."
 "Hat dich Spencer nicht informiert?"
 
 #: dialogs/MO-RGGateGuardLeader.lua:91
