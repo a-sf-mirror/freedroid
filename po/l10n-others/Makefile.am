@@ -127,7 +127,7 @@ tx-update:: $(TITLES_TX)
 
 #-- Pull all l10n versions of the titles' text from TX
 
-tx-pull::
+tx-pull:: $(TITLES_TX)
 	@if [ " $(TXCREDS)" = " " ] ; then \
 		echo "You do not have a Transifex account"; \
 		exit 1; \
@@ -185,7 +185,7 @@ tx-update:: $(README_TX)
 
 #-- Pull all l10n versions of the README from TX
 
-tx-pull::
+tx-pull:: $(README_TX)
 	@if [ " $(TXCREDS)" = " " ] ; then \
 		echo "You do not have a Transifex account"; \
 		exit 1; \
