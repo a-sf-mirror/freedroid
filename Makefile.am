@@ -25,11 +25,11 @@ endif
 SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po pkgs $(extradirs)
 
 man_MANS = freedroidRPG.6
-dist_doc_DATA = README README-*
+dist_doc_DATA = README README-* HELP_WANTED
 
 freedroid_data = map graphics sound dialogs lua_modules
 
-EXTRA_DIST = m4 lua $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.freedroidRPG
+EXTRA_DIST = m4 lua $(man_MANS) $(freedroid_data) ChangeLog INSTALL.freedroidRPG
 
 CHECKFLAGS=env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
 
