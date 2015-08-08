@@ -62,6 +62,9 @@ uninstall-local:
 	rm -rf $(DESTDIR)$(docdir)
 	@echo "...done."
 
+changelog:
+	@git log --pretty=tformat:"------------------------------------------------------------------------%n%h | %an | %ai%n%n%w(72)%s"
+
 sign:
 	@echo "Generating signatures ..."
 	gpg --digest-algo SHA512  -o freedroidrpg-$(VERSION).tar.bz2.sig --detach-sign freedroidrpg-$(VERSION).tar.bz2
@@ -138,5 +141,5 @@ help:
 	@echo " * gource_ffmpeg         - Generate gource video from git log and record using ffmpeg (requires git repository, ffmpeg and x264)"
 	@echo " * help                  - This output"
 
-.PHONY: sign doc help
+.PHONY: sign doc changelog help
 .PHONY: update-po-no update-po-yes update-gmo-no update-gmo-yes local-install-no local-install-yes
