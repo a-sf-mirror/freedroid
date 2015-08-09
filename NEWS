@@ -1,1 +1,63 @@
-Another file that is required by autotools.
+FreedroirRPG 0.16
+=================
+
+The FreedroidRPG team is proud to announce the first release candidate for
+version 0.16!
+
+This version has been in the making for several years and contains many changes
+and improvements, representing the work of many contributors.
+
+Here is a quick list of some major changes from 0.15.1 you're likely to notice:
+
+- Translations are back! The game can now be read in a selection of languages,
+  and the following languages are bundled with the game by default:
+  Brazilian Portuguese, Czech, German, French, and Swedish.
+  More languages are being worked on by volunteers, and translators (and
+  proofreaders!) are always welcome to join us on Transifex:
+  http://www.transifex.com/projects/p/freedroid-rpg/
+
+- The various interfaces of the game have been refactored and are now
+  widget-based, allowing them to be displayed better in larger resolutions.
+
+- Higher-level bots will now see through the Invisibility program.
+
+- The arena in town has been redesigned entirely. Bots are now fought in waves
+  and in several difficulty levels.
+
+- The game ends a little less abruptly, and the player has the opportunity to
+  enjoy compliments (and other words) from several characters.
+
+- Background images have been added and remastered, including widescreen
+  versions.
+
+- A new, rhythmical music track has been added, and can be encountered near the
+  Hell Fortress.
+
+- For the modders among you, the game's dialog engine has been restructured,
+  and now uses pure Lua and employs bindings for NPCs and the player. 
+  Many new Lua functions have been added and can be called via dialogs and
+  events. The remainder of the game's data is now also specified in Lua, for
+  many of the same advantages.
+
+- An effect timer can be shown in the Heads-Up Display by enabling it in the
+  game's settings. No more waiting blindly for Emergency Shutdown to wear off!
+
+- A new terminal model has been announced, advertized to be more hardened and
+  robust than the classic model. Many of those with security in mind have
+  already switched to using this new model, and if you have the right
+  clearance, you can already see secure terminals in various sensitive
+  locations, silently guarding their secrets.
+
+- Water runs. From who? To where? Only the water knows.
+
+- Countless annoying bugs were squished and shiny tweaks were squeaked.
+
+
+Note that this version breaks compatibility with older savegames.
+Specifically, new or modified map elements will not be available when playing
+with savegames from 0.15.1, and this may cause a crash when the game goes
+looking for them.
+To make the most of the current state of the game, please start a new
+character.
+
+  - The FreedroidRPG Team 

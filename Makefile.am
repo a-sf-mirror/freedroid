@@ -25,7 +25,7 @@ endif
 SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po pkgs $(extradirs)
 
 man_MANS = freedroidRPG.6
-dist_doc_DATA = README README-* HELP_WANTED
+dist_doc_DATA = README README-* HELP_WANTED NEWS
 
 freedroid_data = map graphics sound dialogs lua_modules
 
