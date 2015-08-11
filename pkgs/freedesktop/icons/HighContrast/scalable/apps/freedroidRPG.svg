@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg4255"
+   inkscape:version="0.91 r13725"
+   width="256.1669"
+   height="256.1669"
+   viewBox="0 0 256.1669 256.1669"
+   sodipodi:docname="freedroidRPG.svg">
+  <metadata
+     id="metadata4261">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4259" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="954"
+     inkscape:document-units="px"
+     id="namedview4257"
+     showgrid="false"
+     inkscape:zoom="0.5"
+     inkscape:cx="773.30851"
+     inkscape:cy="306.63718"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2"
+     inkscape:snap-global="false"
+     showborder="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     style="display:inline;opacity:1"
+     transform="translate(-49.557091,-1127.3054)">
+    <g
+       id="g5267"
+       inkscape:export-filename="/home/sam/Projects/freedroidRPG/freedroid/pkgs/freedesktop/icons/HighContrast/48x48/apps/freedroidRPG.png"
+       inkscape:export-xdpi="16.864008"
+       inkscape:export-ydpi="16.864008">
+      <rect
+         inkscape:export-ydpi="47.700001"
+         inkscape:export-xdpi="47.700001"
+         inkscape:export-filename="/home/basse/lataukset/text51542.png"
+         ry="128.08345"
+         rx="128.08345"
+         y="1127.3054"
+         x="49.557091"
+         height="256.1669"
+         width="256.1669"
+         id="rect9176"
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.8603034;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccccsccccccccccccccccccccccccccc"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.47651339;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         d="m 151.0892,1200.3638 c -14.74807,4.7524 -33.11155,15.3541 -43.56096,26.691 -9.140781,6.7771 -7.53946,5.8456 -20.52248,-2.7076 0.151017,-0.9012 0.228291,-1.8165 0.230825,-2.7341 1.43e-4,-8.1774 -5.809193,-14.8067 -12.9755,-14.8068 -7.166476,-10e-5 -12.976077,6.6292 -12.975934,14.8068 5.1e-5,8.1775 5.809594,14.8065 12.975934,14.8064 2.6845,-0.01 5.301094,-0.9634 7.489161,-2.7381 l -0.134553,0.2665 c 16.584244,8.1937 14.855716,7.2294 15.379973,15.2782 -1.573112,7.7939 -3.578306,26.0738 -3.235035,33.9646 0.326663,6.0205 0.622095,12.1261 2.574956,17.8865 1.992465,6.2718 5.748713,12.473 11.882513,15.3959 8.265,4.2516 17.84812,3.8902 26.87777,3.8929 1.45781,-0.01 2.91517,-0.021 4.37282,-0.037 11.61752,5.8807 21.41753,12.8929 33.31586,17.9387 2.19954,0.8657 5.00657,1.0454 7.06898,-0.1431 13.01456,-5.9102 21.80458,-12.848 33.61658,-18.9443 7.57806,-0.038 15.15403,-0.1723 22.71035,-0.7388 6.17667,-0.7511 12.84328,-3.0145 16.42687,-8.4502 3.96714,-6.0688 4.41321,-13.5706 5.30053,-20.5587 0.8643,-9.6714 -0.67366,-28.6384 -1.65212,-38.3212 -2.36557,-7.6415 11.38759,-14.3238 15.52988,-17.1632 l -0.135,-0.2669 c 2.18819,1.7748 4.80496,2.7315 7.48961,2.7381 7.16634,10e-5 12.97589,-6.6289 12.97594,-14.8064 1.4e-4,-8.1776 -5.80946,-14.8069 -12.97594,-14.8068 -7.1663,2e-4 -12.97561,6.6294 -12.97547,14.8068 0.003,0.9176 0.0798,1.8329 0.2308,2.7341 -10.85871,12.7562 -17.29626,13.1514 -20.72258,8.238 -11.38289,-12.0837 -32.67073,-28.2881 -48.58163,-33.0796 -13.13899,-3.005 -34.48744,-3.4656 -46.00215,0.8583 z"
+         id="path9178" />
+      <path
+         inkscape:export-ydpi="40.613487"
+         inkscape:export-xdpi="40.613487"
+         inkscape:export-filename="/home/basse/lataukset/text51542.png"
+         sodipodi:nodetypes="zzccz"
+         inkscape:connector-curvature="0"
+         id="path9180"
+         d="m 209.99622,1241.7852 c 16.60698,0.9385 16.91745,12.1846 17.79327,21.5186 0.87585,9.3341 0.84699,24.2822 -12.91888,25.7684 -7.49516,0.9624 -20.69224,1.8733 -20.9971,-9.6363 -1.58374,-23.7431 -0.4843,-38.5892 16.12271,-37.6507 z"
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:3.47651339;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:3.47651339;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         d="m 145.11712,1241.7852 c -16.60698,0.9385 -16.91745,12.1846 -17.79327,21.5186 -0.87585,9.3341 -0.84699,24.2822 12.91887,25.7684 7.49517,0.9624 20.69225,1.8733 20.9971,-9.6363 1.58375,-23.7431 0.48431,-38.5892 -16.1227,-37.6507 z"
+         id="path9182"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="zzccz"
+         inkscape:export-filename="/home/basse/lataukset/text51542.png"
+         inkscape:export-xdpi="40.613487"
+         inkscape:export-ydpi="40.613487" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path9207"
+         d="m 177.27059,1293.8091 c -10.53861,0.3674 -31.60017,15.9214 -34.77892,17.2526 -3.33862,1.3981 -4.27176,11.3481 -3.80751,16.5741 12.73579,9.1738 22.7469,17.3151 35.64828,20.6207 2.19954,0.8658 5.00658,1.0456 7.06899,-0.1429 8.10635,-3.0338 21.39293,-10.3882 34.9175,-20.9771 0.8679,-7.2309 1.49126,-15.3617 -3.25788,-17.4238 -11.91324,-5.1728 -25.25186,-16.271 -35.79046,-15.9036 z"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:8.15100002;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:export-filename="/home/basse/lataukset/text51542.png"
+         inkscape:export-xdpi="47.700001"
+         inkscape:export-ydpi="47.700001"
+         sodipodi:nodetypes="zsccccsz" />
+      <ellipse
+         transform="matrix(0.94539892,0.32591546,-0.32591546,0.94539892,0,0)"
+         ry="6.0104074"
+         rx="3.7123106"
+         cy="1182.5491"
+         cx="586.99017"
+         id="path9457"
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:23.99436951;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <ellipse
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:23.99436951;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="ellipse9459"
+         cx="250.51669"
+         cy="1298.9185"
+         rx="3.7123106"
+         ry="6.0104074"
+         transform="matrix(-0.94539892,0.32591546,0.32591546,0.94539892,0,0)" />
+    </g>
+  </g>
+</svg>
