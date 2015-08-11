@@ -701,7 +701,7 @@ void save_output_surface()
  * This function is the heart of the game.  It contains the main
  * game loop.
  * ----------------------------------------------------------------- */
-int main(int argc, char *const argv[])
+int main(int argc, char *argv[])
 {
 	SDL_Rect fill_rect;
 	int default_center_x, default_center_y;
