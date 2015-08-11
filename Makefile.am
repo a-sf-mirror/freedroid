@@ -11,6 +11,7 @@ AM_CFLAGS       = @FD_CFLAGS@
 AM_CPPFLAGS     = @FD_CPPFLAGS@
 AM_LDFLAGS      = @FD_LDFLAGS@
 LIBS            = @FD_LIBS@ @LIBS@
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-dev-tools
 
 if NONLINUX
 extradirs = 
@@ -25,12 +26,12 @@ endif
 SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po pkgs $(extradirs)
 
 man_MANS = freedroidRPG.6
-dist_doc_DATA = README README-* HELP_WANTED NEWS
+README_l10n = $(basename $(notdir $(wildcard $(top_srcdir)/README-*)))
+dist_doc_DATA = README $(README_l10n) HELP_WANTED NEWS
 
 freedroid_data = map graphics sound dialogs lua_modules
 
 EXTRA_DIST = m4 lua $(man_MANS) $(freedroid_data) ChangeLog INSTALL.freedroidRPG
-
 CHECKFLAGS=env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
 
 check:

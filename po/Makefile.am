@@ -1,13 +1,14 @@
 SUBDIRS = po-src po-dialogs po-data l10n-others
+EXTRA_DIST = update-potfiles  xgettext-wrapper
+
+# disables -j , hack to fix some race condition
+.NOTPARALLEL:
 
 # Special constructs to enable recursive call of
 # update-po and update-gmo.
 # Should be replaced by AM_EXTRA_RECURSIVE_TARGETS in
 # top configure.ac, but this needs automake 1.13
 # Inspired by http://lackof.org/taggart/hacking/make-example/
-
-# disables -j , hack to fix some race condition
-.NOTPARALLEL:
 
 UPDATEPODIRS = $(SUBDIRS:%=updatepo-%)
 
