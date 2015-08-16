@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-01 21:59+0200\n"
-"PO-Revision-Date: 2015-07-31 17:23+0000\n"
+"POT-Creation-Date: 2015-08-16 16:23+0200\n"
+"PO-Revision-Date: 2015-08-16 14:27+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/freedroid-rpg/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/arctic-games/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,8 +56,8 @@ msgid "296 Sawmill"
 msgstr "296 Scierie"
 
 #: map/droid_archetypes.dat:198
-msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carring drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
-msgstr "A l'origine créé par les entreprises Orchard et Marsden, ce robot a été utilisé comme droïde serviteur dans les établissements de boisson. Un plateau est monté sur la tête pour porter les boissons et une large base roulante fournit une bonne stabilité pour éviter de les renverser. ATTENTION : Tu vas perdre quelque chose si tu essaies de voler une boisson !"
+msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carrying drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
+msgstr ""
 
 #: map/droid_archetypes.dat:202 map/ReturnOfTux.droids:103
 #: map/ReturnOfTux.droids:104 map/ReturnOfTux.droids:111
@@ -217,8 +217,8 @@ msgid "883 Dalex"
 msgstr "883 Dalex"
 
 #: map/droid_archetypes.dat:712
-msgid "This droid was designed from archive data. For some unknown reason it instills great fear in Human adversaries."
-msgstr "Ce robot a été conçu à partir de données d'archives. Pour une raison inconnue il instille une grande peur dans ces adversaires humains."
+msgid "This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries."
+msgstr ""
 
 #: map/droid_archetypes.dat:716 map/ReturnOfTux.droids:293
 msgid "999 Cerebrum"
@@ -355,8 +355,8 @@ msgid "Authority Figure"
 msgstr "Sommité"
 
 #: map/droid_archetypes.dat:1125
-msgid "It has long since been known that game development is the most important job in the world. Also the coolest. We know that thanks to this guy."
-msgstr "Il est connu de longue date que la création d'un jeu est le travail le plus important au monde. C'est également le plus cool. Cela nous l'avons appris grâce à ce type."
+msgid "It has long since been known that game development is the most important job in the world. Also, the coolest. We know that thanks to this guy."
+msgstr ""
 
 #: map/droid_archetypes.dat:1147
 msgid "This is a secure terminal."
@@ -591,8 +591,8 @@ msgid "Big Kitchen Knife"
 msgstr "Gros Couteau de Cuisine"
 
 #: map/item_specs.lua:153
-msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
-msgstr "Léger et facile à manoeuvrer en combat, ce n'est malheureusement pas très efficace lorsqu'il s'agit de couper de l'acier, si bien que vous risquez de rompre la lame. C'est tout de même mieux que de frapper le métal à mains nues."
+msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though, for sure better than hitting at metal with your bare fists."
+msgstr ""
 
 #: map/item_specs.lua:161
 msgid "Cutlass"
@@ -607,8 +607,8 @@ msgid "Antique Greatsword"
 msgstr "Épée médiévale"
 
 #: map/item_specs.lua:198
-msgid "Very maneuverable for it's size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
-msgstr "Très manoeuvrable, malgré sa taille, elle est suffisamment lourde pour pénétrer en un coup les armures des droïdes peu protégés. Le seul réel désavantage de cette veille arme est le même que celui des autres épées. Elle ne dure pas très longtemps lorsqu'elle est utilisée pour couper du métal."
+msgid "Very maneuverable for its size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
+msgstr ""
 
 #: map/item_specs.lua:206
 msgid "Chainsaw"
@@ -663,8 +663,8 @@ msgid "Big Wrench"
 msgstr "Grosse clé anglaise"
 
 #: map/item_specs.lua:350
-msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands on, brutal way if needed."
-msgstr "Une grosse clé anglaise peut être étonnamment efficace pour transformer un robot en pièces d'occasion, d'une façon brutale si nécessaire."
+msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands-on, brutal way if needed."
+msgstr ""
 
 #: map/item_specs.lua:358
 msgid "Crowbar"
@@ -1016,7 +1016,7 @@ msgstr ""
 
 #: map/item_specs.lua:1224
 msgid "Disable Electronics"
-msgstr ""
+msgstr "Désactiver les appareils éléctroniques "
 
 #: map/item_specs.lua:1228
 msgid "This sphere creates a short blast of electronic noise that temporarily disables most electronics."
@@ -1131,8 +1131,8 @@ msgid "Pot Helmet"
 msgstr "Heaume casserole"
 
 #: map/item_specs.lua:1437
-msgid "Top of the line head gear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
-msgstr "Le haut de gamme. Tout en déchirant les nuques de métal, et en arrachant les circuits, cela permet également de vous protéger contre toutes les attaques longues et courte portée."
+msgid "Top of the line headgear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
+msgstr ""
 
 #: map/item_specs.lua:1445
 msgid "Worker Helmet"
@@ -1187,8 +1187,8 @@ msgid "Worker Shoes"
 msgstr "Chaussures de chantier"
 
 #: map/item_specs.lua:1549
-msgid "These footwear are steel tipped, and generally quite sturdy, giving a bit extra protection."
-msgstr "Ces chaussures ont l'extrémité en acier, et sont d'habitude vraiment solides, te donnant ainsi un peu de protection supplémentaire."
+msgid "These footwears are steel tipped, and generally quite sturdy, giving a bit extra protection."
+msgstr ""
 
 #: map/item_specs.lua:1557
 msgid "Battle Shoes"
@@ -1209,7 +1209,7 @@ msgstr "Livre Source d'Arrêt d'Urgence"
 #: map/item_specs.lua:1733 map/item_specs.lua:1745 map/item_specs.lua:1757
 #: map/item_specs.lua:1769 map/item_specs.lua:1781 map/item_specs.lua:1793
 msgid "Permanently acquire/enhance this program"
-msgstr ""
+msgstr "Obtenir/améliorer ce programme de façon permanante"
 
 #: map/item_specs.lua:1581
 msgid "Everyone needs to blow off some steam every now and then."
@@ -1235,7 +1235,7 @@ msgstr "C'est une façon de fuir face au danger très rapidement. C'est très ut
 msgid "Source Book of Malformed Packet"
 msgstr "Livre Source de Paquet Malformé"
 
-#: map/item_specs.lua:1617
+#: map/item_specs.lua:1617 map/skill_specs.lua:91
 msgid "When computers are presented with the unexpected, they can damage themselves."
 msgstr "Un ordinateur dans une situation non prévue peut s'auto-endommager."
 
@@ -1277,7 +1277,7 @@ msgstr "Ce n'est pas seulement un mise à jour de microcode, mon cher robot. Tu 
 
 #: map/item_specs.lua:1684
 msgid "Source Book of Broadcast Virus"
-msgstr ""
+msgstr "Code Source de la Propagation de Virus "
 
 #: map/item_specs.lua:1689
 msgid "The network is wide and dangerous. Many traps await the weak and unprepared."
@@ -1285,7 +1285,7 @@ msgstr "Le réseau est vaste et dangereux. Beaucoup de pièges attendent les êt
 
 #: map/item_specs.lua:1696
 msgid "Source Book of Dispel Smoke"
-msgstr ""
+msgstr "Code Source de la dissipation de fumé "
 
 #: map/item_specs.lua:1701
 msgid "By heating up the chips with a malformed program, you can cause them to release the magic smoke which keeps the bot running."
@@ -1293,7 +1293,7 @@ msgstr "En surchauffant la puce avec un mauvais programme, vous pouvez lâcher u
 
 #: map/item_specs.lua:1708
 msgid "Source Book of Killer Poke"
-msgstr ""
+msgstr "Code Source du Baisé de la Mort"
 
 #: map/item_specs.lua:1713
 msgid "Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
@@ -1309,7 +1309,7 @@ msgstr "Apprends comment réparer des objets"
 
 #: map/item_specs.lua:1725
 msgid "This manual will help you fix a broken dishwasher, a car, or a gun. The covers does not mention anything about breaking robots however."
-msgstr ""
+msgstr "Ce manuel vous apprendra à réparer une machine à laver, une voiture ou une arme. La couverture ne mentionne rien au sujet de l'éradication des robots. "
 
 #: map/item_specs.lua:1732
 msgid "Source Book of Plasma Discharge"
@@ -1353,7 +1353,7 @@ msgstr "Que la lumière soit..."
 
 #: map/item_specs.lua:1792
 msgid "Source Book of Network Mapper"
-msgstr ""
+msgstr "Code Source de la Cartographie des résaux "
 
 #: map/item_specs.lua:1797 map/skill_specs.lua:205
 msgid "Knowing what your enemies are up to is easy with a little signal intelligence. Displays enemy locations on your automap."
@@ -1377,7 +1377,7 @@ msgstr ""
 
 #: map/item_specs.lua:1826
 msgid "Manual of the Extract Bot Parts"
-msgstr ""
+msgstr "Manuel des pièces détachées de robots "
 
 #: map/item_specs.lua:1827 map/item_specs.lua:1831
 msgid "USE FOR CHEATING ONLY. If you see this online, please report the bug."
@@ -1446,7 +1446,7 @@ msgstr "Supplément diététique"
 
 #: map/item_specs.lua:1902 map/item_specs.lua:1914 map/item_specs.lua:1926
 msgid "Recover Health"
-msgstr ""
+msgstr "Retrouver la santé"
 
 #: map/item_specs.lua:1906
 msgid "Only proper vitamin and mineral intake can keep you healthy during the apocalypse. This can cure a cold."
@@ -1474,7 +1474,7 @@ msgstr "Glace en Bouteille"
 
 #: map/item_specs.lua:1938 map/item_specs.lua:1950 map/item_specs.lua:3009
 msgid "Cooling aid"
-msgstr ""
+msgstr "Assistance au refroidissement "
 
 #: map/item_specs.lua:1942
 msgid "This bottle is filled with ice. It can keep you cool during a warm summer day."
@@ -1494,7 +1494,7 @@ msgstr "Nitrogène Liquide"
 
 #: map/item_specs.lua:1962
 msgid "Extreme Cooling aid"
-msgstr ""
+msgstr "Assistance au refroidissement intense "
 
 #: map/item_specs.lua:1966
 msgid "When you want something frozen solid, this is what you need. It can keep you cool even inside a class M star."
@@ -1708,7 +1708,7 @@ msgstr ""
 
 #: map/item_specs.lua:2280
 msgid "Empty Picnic Basket"
-msgstr ""
+msgstr "Panier Picnic Vide "
 
 #: map/item_specs.lua:2284
 msgid "This is the latest in 'Dr. How?'-brand picnic basket technology! With patented food-preserving time-dilation, space-bending miniaturization, and anti-gravity, your food stays fresh and your drinks stay cold in a small light-as-a-feather package! Now you can picnic the old fashioned way! Batteries sold separately."
@@ -1716,7 +1716,7 @@ msgstr ""
 
 #: map/item_specs.lua:2291
 msgid "Lunch in a Picnic Basket"
-msgstr ""
+msgstr "Panier Picnic contenant un repas "
 
 #: map/item_specs.lua:2295
 msgid "This is a 'Dr. How?'-brand picnic basket stuffed full of enough food and drinks to feed a dozen people. With 'Dr. How?'-time dilation, the food keeps oven-fresh, and the drinks stay ice-cold."
@@ -1868,11 +1868,11 @@ msgstr ""
 
 #: map/item_specs.lua:2504
 msgid "Brain Stimulator"
-msgstr ""
+msgstr "Stimulateur cérébrale "
 
 #: map/item_specs.lua:2508
 msgid "A chip that allows faster learning by connecting directly to the brain via a neural interface (colloquially referred to as a 'weird swim cap with little thingies on it') and providing additional feedback on various actions."
-msgstr ""
+msgstr "Une puce qui vous permet d'apprendre plus vite n se connectant directement au cerveau via une interface neurale (trivialement appelé \"machin flottant avec des petits bitonios dessus)  et qui apporte plus de retours sur des actions diverses. "
 
 #: map/item_specs.lua:2519
 msgid "NPC Hand to Hand Weapon"
@@ -1929,7 +1929,7 @@ msgstr "Armement droïde - 476 Petit Laser"
 
 #: map/item_specs.lua:2738
 msgid "Droid 493 Power Hammer"
-msgstr ""
+msgstr "Droïde 493 Marteau puissant"
 
 #: map/item_specs.lua:2759
 msgid "Droid 516 Robotic Fist"
@@ -1937,7 +1937,7 @@ msgstr "Armement droïde 516 - Poing robotique"
 
 #: map/item_specs.lua:2780
 msgid "Droid 543 Tree Harvester"
-msgstr ""
+msgstr "Droïde 543 Moissonneur Forestier"
 
 #: map/item_specs.lua:2801
 msgid "Droid 571 Robotic Fist"
@@ -1977,7 +1977,7 @@ msgstr "Une enveloppe disant 'PC LOAD LETTERS'. Je n'ai aucune idée de ce que c
 
 #: map/item_specs.lua:2956
 msgid "Cheat Gun"
-msgstr ""
+msgstr "Arme truquée  "
 
 #: map/item_specs.lua:2971
 msgid "This item is used by testers. If you find it ingame without using a cheat, please report it as a bug."
@@ -2216,8 +2216,8 @@ msgid "Server room"
 msgstr "Salle Serveur"
 
 #: map/levels.dat:33281
-msgid "Offices  - this way"
-msgstr "Bureaux - Par là"
+msgid "Offices - this way"
+msgstr ""
 
 #: map/levels.dat:33284
 msgid "Slalom"
@@ -2292,8 +2292,8 @@ msgid "Stop!"
 msgstr "Stop !"
 
 #: map/levels.dat:37706
-msgid "I warned you...  You should consider turning back and running away screaming."
-msgstr "Je t'aurais prévenu... Tu ferais mieux de faire demi-tour et de t'enfuir en hurlant."
+msgid "I warned you... You should consider turning back and running away screaming."
+msgstr ""
 
 #: map/levels.dat:37808
 msgid "Secret area service tunnels"
@@ -2435,8 +2435,8 @@ msgid "Shelter"
 msgstr "Abri"
 
 #: map/levels.dat:65751
-msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT ment to be accessible without cheating."
-msgstr "DEBUG LEVEL 70 -- Ce niveau a été crée pour rendre les tests de FreedroidRPG un peu plus facile et n'est PAS censé être accessible sans tricher."
+msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
+msgstr ""
 
 #: map/levels.dat:66662
 msgid "?"
@@ -2691,7 +2691,7 @@ msgstr "Statue "
 #: map/obstacle_specs.lua:3482 map/obstacle_specs.lua:3492
 #: map/obstacle_specs.lua:3502 map/obstacle_specs.lua:3511
 msgid "Secure terminal"
-msgstr ""
+msgstr "Terminal sécurisé"
 
 #: map/quests.dat:36
 msgid "Bender's problem"
@@ -2887,7 +2887,7 @@ msgstr "Chaudasse "
 
 #: map/ReturnOfTux.droids:5
 msgid "Peter - Imprisoned Rebel"
-msgstr ""
+msgstr "Pierre - Rebelle emprisoné"
 
 #: map/ReturnOfTux.droids:6
 msgid "Librarian"
@@ -2895,7 +2895,7 @@ msgstr "Bibliothécaire"
 
 #: map/ReturnOfTux.droids:7
 msgid "Barkeeper"
-msgstr "Tenancier"
+msgstr "Tenancier de bar"
 
 #: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
 #: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
@@ -2905,7 +2905,7 @@ msgstr "Membre de la Garde Rouge"
 
 #: map/ReturnOfTux.droids:9
 msgid "Lukas - Head of the Armory"
-msgstr ""
+msgstr "Lucas - Responsable de l'armurerie"
 
 #: map/ReturnOfTux.droids:10
 msgid "Spencer - Leader of the Red Guard"
@@ -2949,11 +2949,11 @@ msgstr "Propriétaire de magasin"
 
 #: map/ReturnOfTux.droids:28
 msgid "Medic"
-msgstr "Médecin"
+msgstr "Toubib"
 
 #: map/ReturnOfTux.droids:29
 msgid "Chandra - Town Sage"
-msgstr ""
+msgstr "Chandra - Sage de la ville"
 
 #: map/ReturnOfTux.droids:31
 msgid "Town Teleporter Guard"
@@ -2981,7 +2981,7 @@ msgstr ""
 
 #: map/ReturnOfTux.droids:68
 msgid "MS Emissary"
-msgstr "Ambassadeur de MicroSoft©"
+msgstr "Ambassadeur de MS"
 
 #: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70
 #: map/ReturnOfTux.droids:71 map/ReturnOfTux.droids:72
@@ -2995,7 +2995,7 @@ msgstr "Ambassadeur de MicroSoft©"
 #: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88
 #: map/ReturnOfTux.droids:89
 msgid "Singularity Drone"
-msgstr ""
+msgstr "Drone de Singularité"
 
 #: map/ReturnOfTux.droids:90
 msgid "The Singularity"
@@ -3007,7 +3007,7 @@ msgstr "Mec déprimé"
 
 #: map/ReturnOfTux.droids:128
 msgid "Invading Robot"
-msgstr ""
+msgstr "Robot envahisseur"
 
 #: map/ReturnOfTux.droids:129
 msgid "614 - Friendly Robot"
@@ -3019,7 +3019,7 @@ msgstr "Vieux mec "
 
 #: map/ReturnOfTux.droids:136
 msgid "Friendly 296"
-msgstr ""
+msgstr "296 Amical"
 
 #: map/ReturnOfTux.droids:161 map/ReturnOfTux.droids:162
 #: map/ReturnOfTux.droids:163 map/ReturnOfTux.droids:164
@@ -3028,7 +3028,7 @@ msgstr "Prisonier"
 
 #: map/ReturnOfTux.droids:165
 msgid "Lawn Mower"
-msgstr ""
+msgstr "Tondeuse"
 
 #: map/ReturnOfTux.droids:166
 msgid "Cute Girl"
@@ -3052,7 +3052,7 @@ msgstr "Gars"
 
 #: map/ReturnOfTux.droids:246
 msgid "Controllable Bot"
-msgstr ""
+msgstr "Robot controllable"
 
 #: map/ReturnOfTux.droids:247
 msgid "DeadGuy"
@@ -3064,7 +3064,7 @@ msgstr ""
 
 #: map/ReturnOfTux.droids:269
 msgid "John"
-msgstr ""
+msgstr "Jean"
 
 #: map/ReturnOfTux.droids:299
 msgid "571 - Arena Manager"
@@ -3080,7 +3080,7 @@ msgstr "JET'AIME"
 
 #: map/ReturnOfTux.droids:307
 msgid "Fail-safe"
-msgstr ""
+msgstr "Mode Sans Echec "
 
 #: map/ReturnOfTux.droids:308
 msgid "CIH.1103"
@@ -3133,7 +3133,7 @@ msgstr "Homme de cendre"
 
 #: map/ReturnOfTux.droids:359
 msgid "SACD - Defender"
-msgstr ""
+msgstr "CCAS - Défenseur"
 
 #: map/ReturnOfTux.droids:360
 msgid "Scientist"
@@ -3172,7 +3172,7 @@ msgstr "Gardien de la porte de l'usine de robots"
 
 #: map/ReturnOfTux.droids:457
 msgid "Reception Droid"
-msgstr ""
+msgstr "Droid d'Accueil"
 
 #: map/ReturnOfTux.droids:458 map/ReturnOfTux.droids:459
 msgid "Worker"
@@ -3180,7 +3180,7 @@ msgstr "Ouvrier"
 
 #: map/ReturnOfTux.droids:563
 msgid "Corporate Guy"
-msgstr ""
+msgstr "Personnel d'entreprise"
 
 #: map/skill_specs.lua:9
 msgid "Hacking"
@@ -3219,8 +3219,8 @@ msgid "Check system integrity"
 msgstr "Vérification d'Intégrité Système"
 
 #: map/skill_specs.lua:59
-msgid "While repairing damage you must remember that patience is a virtue."
-msgstr "Lorsque tu répares les dégâts, n'oublie pas que la patience est une vertu."
+msgid "While repairing damage, you must remember that patience is a virtue."
+msgstr ""
 
 #: map/skill_specs.lua:64
 msgid "Sanctuary"
@@ -3241,10 +3241,6 @@ msgstr "Invisibilité"
 #: map/skill_specs.lua:85
 msgid "Malformed packet"
 msgstr "Paquet mal-formé"
-
-#: map/skill_specs.lua:91
-msgid "When computers are presented with the unexpected they can damage themselves."
-msgstr "Présenter de l'inattendu aux ordinateurs peut les endommager."
 
 #: map/skill_specs.lua:96
 msgid "Calculate Pi"
@@ -3366,6 +3362,9 @@ msgstr "Grenade IEM"
 #: map/skill_specs.lua:336
 msgid "Electronic Noise"
 msgstr "Bruit Électronique"
+
+#~ msgid "When computers are presented with the unexpected they can damage themselves."
+#~ msgstr "Présenter de l'inattendu aux ordinateurs peut les endommager."
 
 #~ msgid "296 Teleport Point"
 #~ msgstr "Point de téléportation du 296"

@@ -21,7 +21,7 @@ title_screen{
 background = "credits.jpg",
 song = "HellFortressTwo.ogg",
 text = [[
-            FreedroidRPG 0.15
+            FreedroidRPG 0.16
 
 PROGRAMAÇÃO: 
 

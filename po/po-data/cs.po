@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-01 21:59+0200\n"
+"POT-Creation-Date: 2015-08-16 16:23+0200\n"
 "PO-Revision-Date: 2015-07-31 17:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/freedroid-rpg/language/cs/)\n"
+"Language-Team: Czech (http://www.transifex.com/arctic-games/freedroid-rpg/language/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,8 +55,8 @@ msgid "296 Sawmill"
 msgstr "296 Pila"
 
 #: map/droid_archetypes.dat:198
-msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carring drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
-msgstr "Původně navržen Závody Orchard a Marsden. Tento robot byl využíván jako služební droid v provozovnách nápojů. Zásobník pro přepravu nápojů je upevněn na hlavě a široký rozvor poskytuje dostatečnou stabilitu, aby nedošlo k rozlití. VAROVÁNÍ: Pokud se pokusíte ukrást něco k pití, rozhodně o něco přijdete!"
+msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carrying drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
+msgstr ""
 
 #: map/droid_archetypes.dat:202 map/ReturnOfTux.droids:103
 #: map/ReturnOfTux.droids:104 map/ReturnOfTux.droids:111
@@ -216,8 +216,8 @@ msgid "883 Dalex"
 msgstr "883 Dalex"
 
 #: map/droid_archetypes.dat:712
-msgid "This droid was designed from archive data. For some unknown reason it instills great fear in Human adversaries."
-msgstr "Tento droid byl navržen z archivních dat. Z nějakého neznámého důvodu vzbuzuje velký strach mezi lidskými protivníky."
+msgid "This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries."
+msgstr ""
 
 #: map/droid_archetypes.dat:716 map/ReturnOfTux.droids:293
 msgid "999 Cerebrum"
@@ -354,8 +354,8 @@ msgid "Authority Figure"
 msgstr "Autoritativní postava"
 
 #: map/droid_archetypes.dat:1125
-msgid "It has long since been known that game development is the most important job in the world. Also the coolest. We know that thanks to this guy."
-msgstr "Je již dlouho známo, že vývoj her je nejdůležitější práce na světě. Také nejsuprovější. Víme to díky tomuto chlápkovi."
+msgid "It has long since been known that game development is the most important job in the world. Also, the coolest. We know that thanks to this guy."
+msgstr ""
 
 #: map/droid_archetypes.dat:1147
 msgid "This is a secure terminal."
@@ -590,8 +590,8 @@ msgid "Big Kitchen Knife"
 msgstr "Velký kuchyňský nůž"
 
 #: map/item_specs.lua:153
-msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
-msgstr "Lehký a obratný v boji, bohužel ale neefektivní v řezání skrz ocel stejně jako lehce zlomitelný, pokud se o to pokusíte. Nicméně jistě lepší než bušit do plechu holou pěstí."
+msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though, for sure better than hitting at metal with your bare fists."
+msgstr ""
 
 #: map/item_specs.lua:161
 msgid "Cutlass"
@@ -606,8 +606,8 @@ msgid "Antique Greatsword"
 msgstr "Starožitný obouruční meč"
 
 #: map/item_specs.lua:198
-msgid "Very maneuverable for it's size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
-msgstr "Na svou velikost velmi obratný a dostatečně těžký k proražení slabšího brnění robotů 1 úderem. Jediná nevýhoda tohoto meče je ta samá jako u ostatních mečů - prostě nevydrží dlouho při sekání kovových částí."
+msgid "Very maneuverable for its size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
+msgstr ""
 
 #: map/item_specs.lua:206
 msgid "Chainsaw"
@@ -662,8 +662,8 @@ msgid "Big Wrench"
 msgstr "Velký hasák"
 
 #: map/item_specs.lua:350
-msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands on, brutal way if needed."
-msgstr "Pokud je třeba, může být velký těžký hasák překvapivě účinný při pokusu předělat bota brutálním způsobem na shluk dílů druhotných surovin."
+msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands-on, brutal way if needed."
+msgstr ""
 
 #: map/item_specs.lua:358
 msgid "Crowbar"
@@ -1130,8 +1130,8 @@ msgid "Pot Helmet"
 msgstr "Robotí helma"
 
 #: map/item_specs.lua:1437
-msgid "Top of the line head gear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
-msgstr "Poslední model ochrany hlavy robotů. Ale urvěte ji z jejich plechováho krku, vyházejte všechny elektrické obvody a dráty a máte slušnou ochranu pro lidi, která je odolná bezpočtu útoků z blízkosti i z dálky."
+msgid "Top of the line headgear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
+msgstr ""
 
 #: map/item_specs.lua:1445
 msgid "Worker Helmet"
@@ -1186,8 +1186,8 @@ msgid "Worker Shoes"
 msgstr "Pracovní boty"
 
 #: map/item_specs.lua:1549
-msgid "These footwear are steel tipped, and generally quite sturdy, giving a bit extra protection."
-msgstr "Tyto boty mají ocelovou špičku, jsou vcelku solidní a poskytují něco navíc ochrany."
+msgid "These footwears are steel tipped, and generally quite sturdy, giving a bit extra protection."
+msgstr ""
 
 #: map/item_specs.lua:1557
 msgid "Battle Shoes"
@@ -1234,7 +1234,7 @@ msgstr "Umění rychle zmizet od nebezpečí je velmi užitečné. Dokonce i jeh
 msgid "Source Book of Malformed Packet"
 msgstr "Zdrojová kniha Poškozeného paketu"
 
-#: map/item_specs.lua:1617
+#: map/item_specs.lua:1617 map/skill_specs.lua:91
 msgid "When computers are presented with the unexpected, they can damage themselves."
 msgstr "Pokud se počítače setkají s neočekávaným, mohou se sami poškodit."
 
@@ -2221,8 +2221,8 @@ msgid "Server room"
 msgstr "Serverovna"
 
 #: map/levels.dat:33281
-msgid "Offices  - this way"
-msgstr "Kanceláře - tímto směrem"
+msgid "Offices - this way"
+msgstr ""
 
 #: map/levels.dat:33284
 msgid "Slalom"
@@ -2297,8 +2297,8 @@ msgid "Stop!"
 msgstr "Stop!"
 
 #: map/levels.dat:37706
-msgid "I warned you...  You should consider turning back and running away screaming."
-msgstr "Varoval jsem tě... Měl bys zvážit možnost se otočit a utíkat s křikem pryč."
+msgid "I warned you... You should consider turning back and running away screaming."
+msgstr ""
 
 #: map/levels.dat:37808
 msgid "Secret area service tunnels"
@@ -2440,8 +2440,8 @@ msgid "Shelter"
 msgstr "Přístřeší"
 
 #: map/levels.dat:65751
-msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT ment to be accessible without cheating."
-msgstr "ÚROVEŇ LADĚNÍ 70 - Tato úroveň byla vytvořena pro jednodušší testování hry FreedroidRPG a NENÍ určena k přístupu ve hře bez podvádění."
+msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
+msgstr ""
 
 #: map/levels.dat:66662
 msgid "?"
@@ -3224,8 +3224,8 @@ msgid "Check system integrity"
 msgstr "Kontrola systému"
 
 #: map/skill_specs.lua:59
-msgid "While repairing damage you must remember that patience is a virtue."
-msgstr "Při opravě poškození je nutné si uvědomit, že trpělivost je ctnost."
+msgid "While repairing damage, you must remember that patience is a virtue."
+msgstr ""
 
 #: map/skill_specs.lua:64
 msgid "Sanctuary"
@@ -3246,10 +3246,6 @@ msgstr "Neviditelnost"
 #: map/skill_specs.lua:85
 msgid "Malformed packet"
 msgstr "Poškozený paket"
-
-#: map/skill_specs.lua:91
-msgid "When computers are presented with the unexpected they can damage themselves."
-msgstr "Pokud se počítače setkají s neočekávaným, mohou se sami poškodit."
 
 #: map/skill_specs.lua:96
 msgid "Calculate Pi"
@@ -3371,6 +3367,9 @@ msgstr "EMP granát"
 #: map/skill_specs.lua:336
 msgid "Electronic Noise"
 msgstr "Elektronický šum"
+
+#~ msgid "When computers are presented with the unexpected they can damage themselves."
+#~ msgstr "Pokud se počítače setkají s neočekávaným, mohou se sami poškodit."
 
 #~ msgid "296 Teleport Point"
 #~ msgstr "Teleportovací bod 296ky"

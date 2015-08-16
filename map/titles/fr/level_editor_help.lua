@@ -26,7 +26,7 @@ text = [[
 
 FreedroidRPG s'accompagne d'un éditeur de niveau intégré. Cette éditeur de niveau permet de contrôler tous les aspects d'une carte de FreedroidRPG et de la sauvegarder.
 
-You can access it from the main menu (click "Level Editor") or executing 'freedroidRPG -e'.
+Vous pouvez y accéder depuis le menu principale (choisissez "Editeur de Niveau") ou en executant la commande "freedroidRPG -e".
 
     --- Tooltips ---
 To toggle descriptions of the interface while the mouse hovers, click the white speech bubble icon located near the right window border (lower button row).
@@ -79,9 +79,9 @@ These items will be displayed in the upper shop bar.
 In order to remove one of these items, simply select it and click on 'buy'.
 The red cross gets you out of the screen.
 
-            Adding Text to a Sign
+            Ajouter du Texte à un panneau 
 
-Select the sign and add an obstacle label with the sign text. Save the map and exit.
+Sélectionnez le panneau et ajoutez une indication d'obstacle avec panneau.  enregistrez la carte et sortez. 
 Open the level file (map/levels.dat) and find the new obstacle label. Change the line above the text from 'type=30' to 'type=32' and save.
 Now when you click on the sign in the game your short message will appear.
 

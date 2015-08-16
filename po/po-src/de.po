@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-07-31 19:15+0200\n"
-"PO-Revision-Date: 2015-07-29 18:08+0000\n"
-"Last-Translator: Benjamin Leduc <giby_the_kid@yahoo.fr>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/freedroid-rpg/language/de/)\n"
+"POT-Creation-Date: 2015-08-16 16:23+0200\n"
+"PO-Revision-Date: 2015-08-16 14:24+0000\n"
+"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"Language-Team: German (http://www.transifex.com/arctic-games/freedroid-rpg/language/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -146,7 +146,7 @@ msgstr "Rüstung"
 
 #: src/chat.c:547
 msgid "Click anywhere to continue..."
-msgstr ""
+msgstr "Klicke irgendwo zum Fortfahren…"
 
 #: src/chat.c:693 src/chat.c:703
 msgid "[n]--- Start of Dialog ---\n"
@@ -2684,8 +2684,8 @@ msgid "defensive"
 msgstr "Defensiv"
 
 #: src/lvledit/lvledit_widgets.c:77
-msgid "useable"
-msgstr "benutzbar"
+msgid "usable"
+msgstr ""
 
 #: src/lvledit/lvledit_widgets.c:91
 msgid "droids"
@@ -2757,6 +2757,11 @@ msgid ""
 "\n"
 "You can also use Ctrl-X for this."
 msgstr ""
+"Lösche gewählte Objekte\n"
+"\n"
+"Benutze diesen Button, um die markierten Objekte zu löschen.\n"
+"\n"
+"Kann auch mittels Strg+x verwendet werden."
 
 #: src/lvledit/lvledit_widgets.c:467
 msgid ""

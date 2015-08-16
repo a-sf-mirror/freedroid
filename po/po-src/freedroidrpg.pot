@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-07-31 19:15+0200\n"
+"POT-Creation-Date: 2015-08-16 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2547,7 +2547,7 @@ msgid "defensive"
 msgstr ""
 
 #: src/lvledit/lvledit_widgets.c:77
-msgid "useable"
+msgid "usable"
 msgstr ""
 
 #: src/lvledit/lvledit_widgets.c:91

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.15+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-01 21:59+0200\n"
+"POT-Creation-Date: 2015-08-16 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgid "296 Sawmill"
 msgstr ""
 
 #: map/droid_archetypes.dat:198
-msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carring drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
+msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carrying drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
 msgstr ""
 
 #: map/droid_archetypes.dat:202 map/ReturnOfTux.droids:103
@@ -216,7 +216,7 @@ msgid "883 Dalex"
 msgstr ""
 
 #: map/droid_archetypes.dat:712
-msgid "This droid was designed from archive data. For some unknown reason it instills great fear in Human adversaries."
+msgid "This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries."
 msgstr ""
 
 #: map/droid_archetypes.dat:716 map/ReturnOfTux.droids:293
@@ -354,7 +354,7 @@ msgid "Authority Figure"
 msgstr ""
 
 #: map/droid_archetypes.dat:1125
-msgid "It has long since been known that game development is the most important job in the world. Also the coolest. We know that thanks to this guy."
+msgid "It has long since been known that game development is the most important job in the world. Also, the coolest. We know that thanks to this guy."
 msgstr ""
 
 #: map/droid_archetypes.dat:1147
@@ -590,7 +590,7 @@ msgid "Big Kitchen Knife"
 msgstr ""
 
 #: map/item_specs.lua:153
-msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
+msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though, for sure better than hitting at metal with your bare fists."
 msgstr ""
 
 #: map/item_specs.lua:161
@@ -606,7 +606,7 @@ msgid "Antique Greatsword"
 msgstr ""
 
 #: map/item_specs.lua:198
-msgid "Very maneuverable for it's size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
+msgid "Very maneuverable for its size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
 msgstr ""
 
 #: map/item_specs.lua:206
@@ -662,7 +662,7 @@ msgid "Big Wrench"
 msgstr ""
 
 #: map/item_specs.lua:350
-msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands on, brutal way if needed."
+msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands-on, brutal way if needed."
 msgstr ""
 
 #: map/item_specs.lua:358
@@ -1130,7 +1130,7 @@ msgid "Pot Helmet"
 msgstr ""
 
 #: map/item_specs.lua:1437
-msgid "Top of the line head gear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
+msgid "Top of the line headgear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
 msgstr ""
 
 #: map/item_specs.lua:1445
@@ -1186,7 +1186,7 @@ msgid "Worker Shoes"
 msgstr ""
 
 #: map/item_specs.lua:1549
-msgid "These footwear are steel tipped, and generally quite sturdy, giving a bit extra protection."
+msgid "These footwears are steel tipped, and generally quite sturdy, giving a bit extra protection."
 msgstr ""
 
 #: map/item_specs.lua:1557
@@ -1234,7 +1234,7 @@ msgstr ""
 msgid "Source Book of Malformed Packet"
 msgstr ""
 
-#: map/item_specs.lua:1617
+#: map/item_specs.lua:1617 map/skill_specs.lua:91
 msgid "When computers are presented with the unexpected, they can damage themselves."
 msgstr ""
 
@@ -2215,7 +2215,7 @@ msgid "Server room"
 msgstr ""
 
 #: map/levels.dat:33281
-msgid "Offices  - this way"
+msgid "Offices - this way"
 msgstr ""
 
 #: map/levels.dat:33284
@@ -2291,7 +2291,7 @@ msgid "Stop!"
 msgstr ""
 
 #: map/levels.dat:37706
-msgid "I warned you...  You should consider turning back and running away screaming."
+msgid "I warned you... You should consider turning back and running away screaming."
 msgstr ""
 
 #: map/levels.dat:37808
@@ -2434,7 +2434,7 @@ msgid "Shelter"
 msgstr ""
 
 #: map/levels.dat:65751
-msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT ment to be accessible without cheating."
+msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
 msgstr ""
 
 #: map/levels.dat:66662
@@ -3218,7 +3218,7 @@ msgid "Check system integrity"
 msgstr ""
 
 #: map/skill_specs.lua:59
-msgid "While repairing damage you must remember that patience is a virtue."
+msgid "While repairing damage, you must remember that patience is a virtue."
 msgstr ""
 
 #: map/skill_specs.lua:64
@@ -3237,10 +3237,6 @@ msgstr ""
 
 #: map/skill_specs.lua:85
 msgid "Malformed packet"
-msgstr ""
-
-#: map/skill_specs.lua:91
-msgid "When computers are presented with the unexpected they can damage themselves."
 msgstr ""
 
 #: map/skill_specs.lua:96

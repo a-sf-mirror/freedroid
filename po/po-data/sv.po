@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-01 21:59+0200\n"
-"PO-Revision-Date: 2015-07-31 17:18+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/freedroid-rpg/language/sv/)\n"
+"POT-Creation-Date: 2015-08-16 16:23+0200\n"
+"PO-Revision-Date: 2015-08-16 14:27+0000\n"
+"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,8 +55,8 @@ msgid "296 Sawmill"
 msgstr "296 Sågverk"
 
 #: map/droid_archetypes.dat:198
-msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carring drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
-msgstr "Skapad av Orchard and Marsden Enterprices. Ursprungligen användes den här roboten som en droidkypare i barer. På huvudet sitter en bricka för att bära drinkar och det breda avståndet mellan hjulen gör den stabil så inget spills ut. VARNING: Om du försöker stjäla en drink kommer du förlora något!"
+msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carrying drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
+msgstr ""
 
 #: map/droid_archetypes.dat:202 map/ReturnOfTux.droids:103
 #: map/ReturnOfTux.droids:104 map/ReturnOfTux.droids:111
@@ -216,8 +216,8 @@ msgid "883 Dalex"
 msgstr "883 Dalex"
 
 #: map/droid_archetypes.dat:712
-msgid "This droid was designed from archive data. For some unknown reason it instills great fear in Human adversaries."
-msgstr "Den här droiden designades enligt arkiverade data. Av någon okänd anledning inger den skräck i mänskliga motståndare."
+msgid "This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries."
+msgstr ""
 
 #: map/droid_archetypes.dat:716 map/ReturnOfTux.droids:293
 msgid "999 Cerebrum"
@@ -354,8 +354,8 @@ msgid "Authority Figure"
 msgstr "Auktoritet"
 
 #: map/droid_archetypes.dat:1125
-msgid "It has long since been known that game development is the most important job in the world. Also the coolest. We know that thanks to this guy."
-msgstr "Det har länge varit känt att spelutveckling är det viktigaste jobbet i världen. Och det coolaste. Det vet vi tack vare den här killen."
+msgid "It has long since been known that game development is the most important job in the world. Also, the coolest. We know that thanks to this guy."
+msgstr ""
 
 #: map/droid_archetypes.dat:1147
 msgid "This is a secure terminal."
@@ -590,8 +590,8 @@ msgid "Big Kitchen Knife"
 msgstr "Stor Kökskniv"
 
 #: map/item_specs.lua:153
-msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
-msgstr "Lätt och smidig i strid, men oturligt nog är den inte särskilt effektiv på att skära i stål och inte speciellt hållbar om du försöker. Dock är det klart bättre än att slå på metall med bara händerna."
+msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though, for sure better than hitting at metal with your bare fists."
+msgstr ""
 
 #: map/item_specs.lua:161
 msgid "Cutlass"
@@ -606,8 +606,8 @@ msgid "Antique Greatsword"
 msgstr "Antikt Långsvärd"
 
 #: map/item_specs.lua:198
-msgid "Very maneuverable for it's size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
-msgstr "Väldigt smidig trots storleken, och tung nog att slå igenom klenare bott-sköldar på bara 1 slag. Den enda nackdelen med det här gamla vapnet är den samma som för andra svärd: det håller inte länge när man skär i metalldelar."
+msgid "Very maneuverable for its size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
+msgstr ""
 
 #: map/item_specs.lua:206
 msgid "Chainsaw"
@@ -662,8 +662,8 @@ msgid "Big Wrench"
 msgstr "Stor Skiftnyckel"
 
 #: map/item_specs.lua:350
-msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands on, brutal way if needed."
-msgstr "En stor tung skiftnyckel kan vara förvånansvärt bra på att förvandla bottar till reservdelar - på ett brutalt sätt om det så behövs."
+msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands-on, brutal way if needed."
+msgstr ""
 
 #: map/item_specs.lua:358
 msgid "Crowbar"
@@ -1130,8 +1130,8 @@ msgid "Pot Helmet"
 msgstr "Burkhjälm"
 
 #: map/item_specs.lua:1437
-msgid "Top of the line head gear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
-msgstr "Den första klassens huvudbonad för bottar. Men om du sliter av deras metallhals och tar bort kretskorten blir den ett hyfsat skydd för levande varelser mot attacker långt bortifrån eller nära."
+msgid "Top of the line headgear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
+msgstr ""
 
 #: map/item_specs.lua:1445
 msgid "Worker Helmet"
@@ -1186,8 +1186,8 @@ msgid "Worker Shoes"
 msgstr "Arbetsskor"
 
 #: map/item_specs.lua:1549
-msgid "These footwear are steel tipped, and generally quite sturdy, giving a bit extra protection."
-msgstr "De här skorna har stålhätta och är ganska stadiga, vilket ger lite extra skydd."
+msgid "These footwears are steel tipped, and generally quite sturdy, giving a bit extra protection."
+msgstr ""
 
 #: map/item_specs.lua:1557
 msgid "Battle Shoes"
@@ -1234,7 +1234,7 @@ msgstr "Konsten att snabbt ta sig ur fara är bra att kunna. Till och med i andr
 msgid "Source Book of Malformed Packet"
 msgstr "Boken om \"Felformaterat Paket\""
 
-#: map/item_specs.lua:1617
+#: map/item_specs.lua:1617 map/skill_specs.lua:91
 msgid "When computers are presented with the unexpected, they can damage themselves."
 msgstr "När datorer är presenterade oväntade saker kan de skada sig själva."
 
@@ -2221,8 +2221,8 @@ msgid "Server room"
 msgstr "Serverrum"
 
 #: map/levels.dat:33281
-msgid "Offices  - this way"
-msgstr "Kontor - ditåt"
+msgid "Offices - this way"
+msgstr ""
 
 #: map/levels.dat:33284
 msgid "Slalom"
@@ -2297,8 +2297,8 @@ msgid "Stop!"
 msgstr "Stopp!"
 
 #: map/levels.dat:37706
-msgid "I warned you...  You should consider turning back and running away screaming."
-msgstr "Jag varnade dig... Du borde vända om och springa iväg skrikande."
+msgid "I warned you... You should consider turning back and running away screaming."
+msgstr ""
 
 #: map/levels.dat:37808
 msgid "Secret area service tunnels"
@@ -2440,8 +2440,8 @@ msgid "Shelter"
 msgstr "Skyddsrum"
 
 #: map/levels.dat:65751
-msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT ment to be accessible without cheating."
-msgstr "DEBUG-BANA 70 -- Den här banan skapades för att göra testande av FreedroidRPG lite enklare och ska INTE vara åtkomlig utan fusk."
+msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
+msgstr ""
 
 #: map/levels.dat:66662
 msgid "?"
@@ -3224,8 +3224,8 @@ msgid "Check system integrity"
 msgstr "Verifiera systemintegriteten"
 
 #: map/skill_specs.lua:59
-msgid "While repairing damage you must remember that patience is a virtue."
-msgstr "När du reparerar skador måste du komma ihåg att tålamod är en dygd."
+msgid "While repairing damage, you must remember that patience is a virtue."
+msgstr ""
 
 #: map/skill_specs.lua:64
 msgid "Sanctuary"
@@ -3244,10 +3244,6 @@ msgstr "Osynlighet"
 #: map/skill_specs.lua:85
 msgid "Malformed packet"
 msgstr "Felformaterat paket"
-
-#: map/skill_specs.lua:91
-msgid "When computers are presented with the unexpected they can damage themselves."
-msgstr "När datorer är presenterade med oväntade saker kan de skada sig själva."
 
 #: map/skill_specs.lua:96
 msgid "Calculate Pi"
@@ -3369,6 +3365,9 @@ msgstr "EMP-Granat"
 #: map/skill_specs.lua:336
 msgid "Electronic Noise"
 msgstr "Elektronisk Störning"
+
+#~ msgid "When computers are presented with the unexpected they can damage themselves."
+#~ msgstr "När datorer är presenterade med oväntade saker kan de skada sig själva."
 
 #~ msgid "296 Teleport Point"
 #~ msgstr "296 Teleportplats"
