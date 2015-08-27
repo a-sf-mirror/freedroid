@@ -46,6 +46,9 @@ dist-hook:
 	find $(distdir) -name ".git"              | xargs rm -rf
 	find $(distdir) -name "*~"                | xargs rm -f
 	find $(distdir) -name ".#*"               | xargs rm -f
+	find $(distdir)/lua -name "*.o"           | xargs rm -f
+	find $(distdir)/lua -name "*.a"           | xargs rm -f
+	find $(distdir)/lua -name "Makefile"      | xargs rm -f
 
 install-data-local:
 	@echo "Installing the data-files ..."
