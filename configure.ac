@@ -312,8 +312,8 @@ AS_VAR_IF([embedded_lua], [no],
 			],
 			[
 				embedded_lua="yes"
-				summary_lua="embedded (due to Lua 5.2 not found system-wide)"
-				AC_MSG_NOTICE([No system-wide Lua 5.2 library found. Using embedded Lua instead])
+				summary_lua="embedded (due to Lua 5.3 not found system-wide)"
+				AC_MSG_NOTICE([No system-wide Lua 5.3 library found. Using embedded Lua instead])
 			]
 		)
 	]
