@@ -71,6 +71,8 @@ void delete_events(void);
 // lua.c
 void init_lua(void);
 void close_lua(void);
+int lua_to_int(lua_Integer);
+short lua_to_short(lua_Integer);
 lua_State *get_lua_state(enum lua_target);
 struct lua_coroutine *prepare_lua_coroutine(enum lua_target, const char *, const char *, const char *, ...);
 struct lua_coroutine *load_lua_coroutine(enum lua_target, const char *);

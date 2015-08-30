@@ -56,6 +56,30 @@ lua_State *get_lua_state(enum lua_target target)
 	return dialog_lua_state;
 }
 
+int lua_to_int(lua_Integer value)
+{
+	if (sizeof(lua_Integer) > sizeof(int)) {
+		if (value > (lua_Integer)INT_MAX)
+			return INT_MAX;
+		if (value < (lua_Integer)INT_MIN)
+			return INT_MIN;
+		return (int)value;
+	}
+	return (int)value;
+}
+
+short lua_to_short(lua_Integer value)
+{
+	if (sizeof(lua_Integer) > sizeof(short)) {
+		if (value > (lua_Integer)SHRT_MAX)
+			return SHRT_MAX;
+		if (value < (lua_Integer)SHRT_MIN)
+			return SHRT_MIN;
+		return (short)value;
+	}
+	return (short)value;
+}
+
 /**
  * Retrieve current chat context, and fail with error if there is no dialog
  * currently running.
