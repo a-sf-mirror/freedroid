@@ -163,13 +163,13 @@ static int get_value_from_stack(lua_State *L, enum data_type type, void *result)
 		break;
 	case SHORT_TYPE:
 		if (ltype == LUA_TNUMBER) {
-			*((short *)result) = (short)lua_tointeger(L, -1);
+			*((short *)result) = lua_to_short(lua_tointeger(L, -1));
 			found_and_valid = TRUE;
 		}
 		break;
 	case INT_TYPE:
 		if (ltype == LUA_TNUMBER) {
-			*((int *)result) = lua_tointeger(L, -1);
+			*((int *)result) = lua_to_int(lua_tointeger(L, -1));
 			found_and_valid = TRUE;
 		}
 		break;
@@ -208,7 +208,7 @@ static int get_value_from_stack(lua_State *L, enum data_type type, void *result)
 		} else {
 			// The data is not in a lua table: try with a single value
 			if (ltype == LUA_TNUMBER) {
-				int value = lua_tointeger(L, -1);
+				int value = lua_to_int(lua_tointeger(L, -1));
 				dynarray_init((struct dynarray *)result, 1, sizeof(int));
 				dynarray_add((struct dynarray *)result, &value, sizeof(int));
 				found_and_valid = TRUE;
@@ -940,7 +940,7 @@ static void init_obstacle_flags(void)
 
 	int i;
 	for (i = 0; i < sizeof(flags) / sizeof(flags[0]); i++) {
-		lua_pushinteger(config_lua_state, flags[i].value);
+		lua_pushinteger(config_lua_state, (lua_Integer)flags[i].value);
 		lua_setglobal(config_lua_state, flags[i].name);
 	}
 }
@@ -999,7 +999,7 @@ static int lua_npc_shop_ctor(lua_State *L)
 				// get the weight of item
 				lua_rawgeti(L, -1, 2);
 				if (lua_type(L, -1) == LUA_TNUMBER)
-					item_weight = lua_tointeger(L, -1);
+					item_weight = lua_to_int(lua_tointeger(L, -1));
 				else
 					item_weight = 1;
 				lua_pop(L, 1);

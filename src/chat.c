@@ -226,7 +226,7 @@ static void fill_chat_selector()
 
 	for (i = 1; i <= lua_rawlen(L, -1);) {
 		lua_rawgeti(L, -1, i);
-		int index = lua_tointeger(L, -1);
+		int index = lua_to_int(lua_tointeger(L, -1));
 		lua_pop(L, 1);
 		i++;
 		lua_rawgeti(L, -1, i);

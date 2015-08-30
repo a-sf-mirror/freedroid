@@ -182,7 +182,7 @@ static int _get_class(lua_State *L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_npc, L, "FDnpc");
 
-	lua_pushinteger(L, Droidmap[self->enemy_ref->type].class);
+	lua_pushinteger(L, (lua_Integer)Droidmap[self->enemy_ref->type].class);
 	return 1;
 }
 

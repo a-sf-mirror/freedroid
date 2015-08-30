@@ -175,7 +175,7 @@ static int lua_event_display_console_message(lua_State * L)
 static int lua_event_change_obstacle(lua_State * L)
 {
 	const char *obslabel = luaL_checkstring(L, 1);
-	int type = luaL_checkinteger(L, 2);
+	int type = lua_to_int(luaL_checkinteger(L, 2));
 	change_obstacle_type(obslabel, type);
 	return 0;
 }
@@ -186,7 +186,7 @@ static int lua_event_get_obstacle_type(lua_State * L)
 
 	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel, NULL);
 
-	lua_pushinteger(L, our_obstacle->type);
+	lua_pushinteger(L, (lua_Integer)our_obstacle->type);
 	return 1;
 }
 
@@ -230,7 +230,7 @@ static int lua_event_kill_tux(lua_State * L)
 
 static int lua_event_hurt_tux(lua_State * L)
 {
-	int hp = luaL_checkinteger(L, 1);
+	int hp = lua_to_int(luaL_checkinteger(L, 1));
 
 	if (hp < 0)
 		play_sound("effects/new_healing_sound.ogg");
@@ -241,26 +241,26 @@ static int lua_event_hurt_tux(lua_State * L)
 
 static int lua_event_get_tux_hp(lua_State * L)
 {
-	lua_pushinteger(L, (int)Me.energy);
+	lua_pushinteger(L, (lua_Integer)Me.energy);
 	return 1;
 }
 
 static int lua_event_get_tux_max_hp(lua_State * L)
 {
-	lua_pushinteger(L, (int)Me.maxenergy);
+	lua_pushinteger(L, (lua_Integer)Me.maxenergy);
 	return 1;
 }
 
 static int lua_event_heat_tux(lua_State * L)
 {
-	int temp = luaL_checkinteger(L, 1);
+	int temp = lua_to_int(luaL_checkinteger(L, 1));
 	Me.temperature += temp;
 	return 0;
 }
 
 static int lua_event_get_tux_cool(lua_State * L)
 {
-	lua_pushinteger(L, (int)Me.max_temperature - (int)Me.temperature);
+	lua_pushinteger(L, (lua_Integer)(Me.max_temperature - Me.temperature));
 	return 1;
 }
 
@@ -306,9 +306,9 @@ static int lua_event_get_skill(lua_State * L)
 	}
 
 	if (skillptr) {
-		lua_pushinteger(L, *skillptr);
+		lua_pushinteger(L, (lua_Integer)*skillptr);
 	} else
-		lua_pushinteger(L, 0);
+		lua_pushinteger(L, (lua_Integer)0);
 
 	return 1;
 }
@@ -330,14 +330,14 @@ static int lua_event_downgrade_program(lua_State * L)
 static int lua_event_get_program_revision(lua_State * L)
 {
 	const char *pname = luaL_checkstring(L, 1);
-	lua_pushinteger(L, Me.skill_level[get_program_index_with_name(pname)]);
+	lua_pushinteger(L, (lua_Integer)Me.skill_level[get_program_index_with_name(pname)]);
 	return 1;
 }
 
 static int lua_event_delete_item(lua_State * L)
 {
 	const char *item_id = luaL_checkstring(L, 1);
-	int mult = luaL_optinteger(L, 2, 1);
+	int mult = lua_to_int(luaL_optinteger(L, 2, 1));
 	DeleteInventoryItemsOfType(get_item_type_by_id(item_id), mult);
 	return 0;
 }
@@ -345,7 +345,7 @@ static int lua_event_delete_item(lua_State * L)
 static int lua_event_give_item(lua_State * L)
 {
 	const char *itemname = luaL_checkstring(L, 1);
-	int mult = luaL_optinteger(L, 2, 1);
+	int mult = lua_to_int(luaL_optinteger(L, 2, 1));
 
 	if (!mult) { error_message(__FUNCTION__, "Tried to give %s with multiplicity 0.", PLEASE_INFORM, itemname); return 0; }
 
@@ -370,7 +370,7 @@ static int lua_event_sell_item(lua_State *L)
 	struct chat_context *current_chat_context = GET_CURRENT_CHAT_CONTEXT();
 
 	const char *itemname = luaL_checkstring(L, 1);
-	int weight = luaL_optint(L, 2, 1);
+	int weight = lua_to_int(luaL_optinteger(L, 2, 1));
 	const char *charname = luaL_optstring(L, 3, current_chat_context->partner->dialog_section_name);
 
 	npc_add_shoplist(charname, itemname, weight);
@@ -382,7 +382,7 @@ static int lua_event_count_item_backpack(lua_State * L)
 {
 	const char *item_id = luaL_checkstring(L, 1);
 
-	lua_pushinteger(L, CountItemtypeInInventory(get_item_type_by_id(item_id)));
+	lua_pushinteger(L, (lua_Integer)CountItemtypeInInventory(get_item_type_by_id(item_id)));
 
 	return 1;
 }
@@ -487,7 +487,7 @@ static int lua_event_is_mission_complete(lua_State * L)
 
 static int lua_event_give_xp(lua_State * L)
 {
-	int xp = luaL_checkinteger(L, 1) * Me.experience_factor;
+	int xp = lua_to_int(luaL_checkinteger(L, 1)) * Me.experience_factor;
 	char tmpstr[150];
 	Me.Experience += xp;
 	sprintf(tmpstr, _("+%d experience points"), xp);
@@ -497,20 +497,20 @@ static int lua_event_give_xp(lua_State * L)
 
 static int lua_event_eat_training_points(lua_State * L)
 {
-	int nb = luaL_checkinteger(L, 1);
+	int nb = lua_to_int(luaL_checkinteger(L, 1));
 	Me.points_to_distribute -= nb;
 	return 0;
 }
 
 static int lua_event_get_training_points(lua_State * L)
 {
-	lua_pushinteger(L, Me.points_to_distribute);
+	lua_pushinteger(L, (lua_Integer)Me.points_to_distribute);
 	return 1;
 }
 
 static int lua_event_add_gold(lua_State * L)
 {
-	int nb = luaL_checkinteger(L, 1);
+	int nb = lua_to_int(luaL_checkinteger(L, 1));
 	char tmpstr[150];
 
 	if (nb < 0 && -nb > Me.Gold) {
@@ -532,14 +532,14 @@ static int lua_event_add_gold(lua_State * L)
 
 static int lua_event_get_gold(lua_State * L)
 {
-	lua_pushinteger(L, Me.Gold);
+	lua_pushinteger(L, (lua_Integer)Me.Gold);
 	return 1;
 }
 
 static int lua_event_change_stat(lua_State * L)
 {
 	const char *characteristic = luaL_checkstring(L, 1);
-	int nb = luaL_checkinteger(L, 2);
+	int nb = lua_to_int(luaL_checkinteger(L, 2));
 	int *statptr = NULL;
 
 	if (!strcmp(characteristic, "strength")) {
@@ -563,7 +563,7 @@ static int lua_event_change_stat(lua_State * L)
 
 static int lua_event_respawn_level(lua_State * L)
 {
-	int lnb = luaL_checkinteger(L, 1);
+	int lnb = lua_to_int(luaL_checkinteger(L, 1));
 
 	respawn_level(lnb);
 
@@ -604,14 +604,14 @@ static int lua_event_heal_npc(lua_State * L)
 static int lua_get_npc_damage_amount(lua_State * L)
 {
 	enemy *en = get_enemy_arg(L, 1);
-	lua_pushinteger(L, (int)(Droidmap[en->type].maxenergy - en->energy));
+	lua_pushinteger(L, (lua_Integer)(Droidmap[en->type].maxenergy - en->energy));
 	return 1;
 }
 
 static int lua_get_npc_max_health(lua_State * L)
 {
 	enemy *en = get_enemy_arg(L, 1);
-	lua_pushinteger(L, (int)(Droidmap[en->type].maxenergy));
+	lua_pushinteger(L, (lua_Integer)(Droidmap[en->type].maxenergy));
 	return 1;
 }
 
@@ -775,7 +775,7 @@ static int lua_set_bot_destination(lua_State * L)
 
 static int lua_set_rush_tux(lua_State * L)
 {
-	const uint8_t cmd = (uint8_t)luaL_checkinteger(L, 1);
+	const uint8_t cmd = (luaL_checkinteger(L, 1) != FALSE);
 	enemy *en = get_enemy_arg(L, 2);
 	en->will_rush_tux = cmd;
 	return 0;
@@ -790,9 +790,9 @@ static int lua_will_rush_tux(lua_State * L)
 
 static int lua_chat_takeover(lua_State * L)
 {
-	int opponent_capsules = luaL_checkinteger(L, 1);
+	int opponent_capsules = lua_to_int(luaL_checkinteger(L, 1));
 	int player_capsules = 2 + Me.skill_level[get_program_index_with_name("Hacking")];
-	int game_length = luaL_optint(L, 2, 100);
+	int game_length = lua_to_int(luaL_optinteger(L, 2, (lua_Integer)100));
 
 	int won = do_takeover(player_capsules, opponent_capsules, game_length, NULL);
 
@@ -818,7 +818,7 @@ static int lua_chat_get_bot_type(lua_State * L)
 static int lua_event_bot_class(lua_State * L)
 {
        enemy *en = get_enemy_arg(L, 1);
-       lua_pushinteger(L, Droidmap[en->type].class);
+       lua_pushinteger(L, (lua_Integer)Droidmap[en->type].class);
        return 1;
 }
 
@@ -946,7 +946,7 @@ static int lua_create_droid(lua_State *L)
 
 static int lua_get_game_time(lua_State *L)
 {
-	lua_pushinteger(L, (int)(Me.current_game_date));
+	lua_pushinteger(L, (lua_Integer)(Me.current_game_date));
 
 	return 1;
 }
@@ -983,7 +983,7 @@ static int lua_event_freeze_npc(lua_State * L)
 
 static int lua_add_obstacle(lua_State *L)
 {
-	int levelnum = luaL_checkinteger(L, 1);
+	int levelnum = lua_to_int(luaL_checkinteger(L, 1));
 	struct level *level = curShip.AllLevels[levelnum];
 	float x = luaL_checknumber(L, 2);
 	float y = luaL_checknumber(L, 3);
@@ -996,7 +996,7 @@ static int lua_add_obstacle(lua_State *L)
 
 static int lua_add_volatile_obstacle(lua_State *L)
 {
-	int levelnum = luaL_checkinteger(L, 1);
+	int levelnum = lua_to_int(luaL_checkinteger(L, 1));
 	struct level *level = curShip.AllLevels[levelnum];
 	float x = luaL_checknumber(L, 2);
 	float y = luaL_checknumber(L, 3);
@@ -1010,7 +1010,7 @@ static int lua_add_volatile_obstacle(lua_State *L)
 
 static int lua_meters_traveled(lua_State *L)
 {
-	lua_pushinteger(L, (float)Me.meters_traveled);
+	lua_pushinteger(L, (lua_Integer)Me.meters_traveled);
 	return 1;
 }
 
@@ -1028,10 +1028,10 @@ static int lua_running_benchmark(lua_State *L)
 
 static int lua_reprogramm_bots_after_takeover(lua_State *L)
 {
-int rvat = luaL_checkinteger(L, 1);
-GameConfig.talk_to_bots_after_takeover = rvat;
+	int rvat = lua_to_int(luaL_checkinteger(L, 1));
+	GameConfig.talk_to_bots_after_takeover = rvat;
 
-return 0;
+	return 0;
 }
 
 static int lua_switch_background_music_to(lua_State *L)
@@ -1043,7 +1043,7 @@ static int lua_switch_background_music_to(lua_State *L)
 
 static int lua_exit_game(lua_State *L)
 {
-	int exit_status = luaL_checkinteger(L, 1);
+	lua_Integer exit_status = luaL_checkinteger(L, 1);
 
 	if (exit_status == 1) {
 		Terminate(EXIT_FAILURE);
@@ -1058,7 +1058,7 @@ static int lua_find_file(lua_State *L)
 {
 	char fpath[PATH_MAX];
 	const char *filename = (char *)luaL_checkstring(L, 1);
-	int subdir_handle    = luaL_checkinteger(L, 2);
+	int subdir_handle    = lua_to_int(luaL_checkinteger(L, 2));
 
 	if (subdir_handle >= 0 && subdir_handle < LAST_DATA_DIR) {
 		if (find_file(filename, subdir_handle, fpath, PLEASE_INFORM)) {
@@ -1084,7 +1084,7 @@ static int lua_dir(lua_State *L)
 	DIR *dir = NULL;
 	struct dirent *entry = NULL;
 	int i;
-	int subdir_handle = luaL_checkinteger(L, 1);
+	int subdir_handle = lua_to_int(luaL_checkinteger(L, 1));
 
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
 		lua_pushnil(L); /* return nil on error */
@@ -1448,7 +1448,7 @@ static int push_func_and_args(lua_State *L, const char *module, const char *func
 			lua_pushnumber(L, va_arg(*vl, double));
 			break;
 		case 'd': /* int argument */
-			lua_pushinteger(L, va_arg(*vl, int));
+			lua_pushinteger(L, (lua_Integer)va_arg(*vl, int));
 			break;
 		case 's': /* string argument */
 			lua_pushstring(L, va_arg(*vl, char *));
@@ -1504,7 +1504,7 @@ static int pop_results(lua_State *L, const char *sig, va_list *vl)
 				DebugPrintf(-1, "call_lua_func: wrong result type for #%d returned value (number expected)", index);
 				goto pop_and_return;
 			}
-			*va_arg(*vl, int *) = lua_tointeger(L, index);
+			*va_arg(*vl, int *) = lua_to_int(lua_tointeger(L, index));
 			break;
 		case 's': /* string result */
 			if (ltype != LUA_TSTRING) {

@@ -105,7 +105,7 @@ static int _get_hp(lua_State *L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, (int)self->me->energy);
+	lua_pushinteger(L, (lua_Integer)self->me->energy);
 	return 1;
 }
 
@@ -124,7 +124,7 @@ static int _get_max_hp(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, (int)self->me->maxenergy);
+	lua_pushinteger(L, (lua_Integer)self->me->maxenergy);
 
 	return 1;
 }
@@ -146,7 +146,7 @@ static int _get_cool(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, (int)self->me->max_temperature - (int)self->me->temperature);
+	lua_pushinteger(L, (lua_Integer)(self->me->max_temperature - self->me->temperature));
 
 	return 1;
 }
@@ -166,7 +166,7 @@ static int _get_meters_traveled(lua_State *L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, (float)self->me->meters_traveled);
+	lua_pushinteger(L, (lua_Integer)self->me->meters_traveled);
 
 	return 1;
 }
@@ -231,7 +231,7 @@ static int _hurt(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	int amount = luaL_checkinteger(L, 2);
+	int amount = lua_to_int(luaL_checkinteger(L, 2));
 
 	if (amount < 0)
 		play_sound("effects/new_healing_sound.ogg");
@@ -258,7 +258,7 @@ static int _heat(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	int amount = luaL_checkinteger(L, 2);
+	int amount = lua_to_int(luaL_checkinteger(L, 2));
 	self->me->temperature += amount;
 
 	return 0;
@@ -297,7 +297,7 @@ static int _add_xp(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	int points = luaL_checkinteger(L, 2) * self->me->experience_factor;
+	int points = lua_to_int(luaL_checkinteger(L, 2)) * self->me->experience_factor;
 	self->me->Experience += points;
 
 	char tmpstr[150];
@@ -325,7 +325,7 @@ static int _add_gold(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	int amount = luaL_checkinteger(L, 2);
+	int amount = lua_to_int(luaL_checkinteger(L, 2));
 	int new_gold = (int)(self->me->Gold) + amount;
 
 	if (new_gold < 0) {
@@ -359,7 +359,7 @@ static int _get_gold(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, self->me->Gold);
+	lua_pushinteger(L, (lua_Integer)self->me->Gold);
 
 	return 1;
 }
@@ -378,7 +378,7 @@ static int _del_training_points(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	int points = luaL_checkinteger(L, 2);
+	int points = lua_to_int(luaL_checkinteger(L, 2));
 	self->me->points_to_distribute -= points;
 
 	return 0;
@@ -399,7 +399,7 @@ static int _get_training_points(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	lua_pushinteger(L, self->me->points_to_distribute);
+	lua_pushinteger(L, (lua_Integer)self->me->points_to_distribute);
 
 	return 1;
 }
@@ -469,7 +469,7 @@ static int _get_skill(lua_State * L)
 	}
 
 	if (skillptr) {
-		lua_pushinteger(L, *skillptr);
+		lua_pushinteger(L, (lua_Integer)*skillptr);
 	} else
 		lua_pushinteger(L, 0);
 
@@ -533,7 +533,7 @@ static int _get_program_revision(lua_State * L)
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *program = luaL_checkstring(L, 2);
-	lua_pushinteger(L, self->me->skill_level[get_program_index_with_name(program)]);
+	lua_pushinteger(L, (lua_Integer)self->me->skill_level[get_program_index_with_name(program)]);
 
 	return 1;
 }
@@ -553,7 +553,7 @@ static int _change_stat(lua_State * L)
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *characteristic = luaL_checkstring(L, 2);
-	int nb = luaL_checkinteger(L, 3);
+	int nb = lua_to_int(luaL_checkinteger(L, 3));
 	int *statptr = NULL;
 
 	if (!strcmp(characteristic, "strength")) {
@@ -685,7 +685,7 @@ static int _add_item(lua_State * L)
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *item_name = luaL_checkstring(L, 2);
-	int number = luaL_optinteger(L, 3, 1);
+	int number = lua_to_int(luaL_optinteger(L, 3, 1));
 
 	if (number == 0) {
 		return luaL_error(L, "%s() %s", __FUNCTION__, "Tried to give item with 0 multiplicity");
@@ -723,7 +723,7 @@ static int _del_item_backpack(lua_State * L)
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
 	const char *item_name = luaL_checkstring(L, 2);
-	int number = luaL_optinteger(L, 3, 1);
+	int number = lua_to_int(luaL_optinteger(L, 3, 1));
 	DeleteInventoryItemsOfType(get_item_type_by_id(item_name), number);
 
 	return 0;
@@ -747,7 +747,7 @@ static int _count_item_backpack(lua_State * L)
 
 	const char *item_name = luaL_checkstring(L, 2);
 
-	lua_pushinteger(L, CountItemtypeInInventory(get_item_type_by_id(item_name)));
+	lua_pushinteger(L, (lua_Integer)CountItemtypeInInventory(get_item_type_by_id(item_name)));
 
 	return 1;
 }
