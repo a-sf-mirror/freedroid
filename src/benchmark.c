@@ -79,6 +79,18 @@ static int dialog_test()
 	return failed;
 }
 
+/* Event's lua code validator (not an actual benchmark) */
+static int event_test()
+{
+	int failed;
+
+	timer_start();
+	failed = validate_events();
+	timer_stop();
+
+	return failed;
+}
+
 /* LoadShip (level loading) performance test */
 static int loadship_bench()
 {
@@ -228,6 +240,7 @@ int benchmark()
 	} benchs[] = {
 			{ "text", text_bench },
 			{ "dialog", dialog_test },
+			{ "event", event_test },
 			{ "loadship", loadship_bench },
 			{ "loadgame", loadgame_bench },
 			{ "savegame", savegame_bench },

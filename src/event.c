@@ -464,3 +464,86 @@ struct event_trigger * visible_event_at_location(int x, int y, int z)
 	}
 	return NULL;
 }
+
+/**
+ * Validate Lua code of events
+ * This validator loads the events, and checks for the syntax of their lua code.
+ * It tries to compile each Lua code snippet, checking them for syntax as well.
+ * It then proceeds to executing each Lua code snippet, which makes it possible to check for some errors
+ * such as typos in function calls (calls to non existing functions). However, this runtime check does not cover 100% of
+ * the Lua code because of branches (when it encounters a if, it will not test both the "then" and "else" branches).
+ *
+ * As a result, the fact that the validator finds no error does not imply there are no errors in dialogs.
+ * Syntax is checked fully, but runtime validation cannot check all of the code.
+ */
+int validate_events()
+{
+	int error_caught = FALSE;
+
+	skip_initial_menus = 1;
+
+	/* Disable sound to speed up validation. */
+	int old_sound_on = sound_on;
+	sound_on = FALSE;
+
+	char fpath[PATH_MAX];
+	find_file("levels.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	LoadShip(fpath, 0);
+	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
+
+	/* Temporarily disable screen fadings to speed up validation. */
+	GameConfig.do_fadings = FALSE;
+
+	/* _says functions are not run by the validator, as they display
+	   text on screen and wait for clicks */
+	run_lua(LUA_DIALOG, "function chat_says(a)\nend\n");
+	run_lua(LUA_DIALOG, "function cli_says(a)\nend\n");
+
+	/* Subdialogs currently call run_chat and we cannot do that when validating dialogs */
+	run_lua(LUA_DIALOG, "function start_chat(a)\nend\n");
+
+	/* Shops must not be run (display + wait for clicks) */
+	run_lua(LUA_DIALOG, "function trade_with(a)\nend\n");
+
+	run_lua(LUA_DIALOG, "function user_input_string(a)\nreturn \"dummy\";\nend\n");
+
+	run_lua(LUA_DIALOG, "function upgrade_items(a)\nend\n");
+	run_lua(LUA_DIALOG, "function craft_addons(a)\nend\n");
+
+	/* takeover requires user input - hardcode it to win */
+	run_lua(LUA_DIALOG, "function takeover(a)\nreturn true\nend\n");
+
+	/* set_mouse_move_target() breaks validator */
+	run_lua(LUA_DIALOG, "function set_mouse_move_target(a)\nend\n");
+
+	/* win_game() causes silly animations and delays the process. */
+	run_lua(LUA_DIALOG, "function win_game(a)\nend\n");
+
+	/* We do not want to actually exit the game. */
+	run_lua(LUA_DIALOG, "function exit_game(a)\nend\n");
+
+	// Loop on all events
+	int i;
+
+	GetEventTriggers("events.dat");
+	struct event_trigger *arr = event_triggers.arr;
+
+	for (i = 0; i < event_triggers.size; i++) {
+		printf("Testing event \"%s\"...\n", arr[i].name);
+		int rtn = run_lua(LUA_DIALOG, arr[i].lua_code);
+		if (rtn)
+			error_caught = TRUE;
+		if (term_has_color_cap)
+			printf("Result: %s\n", !rtn ? "\033[32msuccess\033[0m" : "\033[31mfailed\033[0m");
+		else
+			printf("Result: %s\n", !rtn ? "success" : "failed");
+	}
+
+	/* Re-enable sound as needed. */
+	sound_on = old_sound_on;
+
+	/* Re-enable screen fadings. */
+	GameConfig.do_fadings = TRUE;
+
+	return error_caught;
+}

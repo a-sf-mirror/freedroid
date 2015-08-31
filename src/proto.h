@@ -67,6 +67,7 @@ void event_obstacle_action(obstacle *o);
 const char *teleporter_square_below_mouse_cursor(void);
 struct event_trigger * visible_event_at_location(int x, int y, int z);
 void delete_events(void);
+int validate_events(void);
 
 // lua.c
 void init_lua(void);
@@ -77,7 +78,7 @@ lua_State *get_lua_state(enum lua_target);
 struct lua_coroutine *prepare_lua_coroutine(enum lua_target, const char *, const char *, const char *, ...);
 struct lua_coroutine *load_lua_coroutine(enum lua_target, const char *);
 int resume_lua_coroutine(struct lua_coroutine *);
-void run_lua(enum lua_target, const char *);
+int run_lua(enum lua_target, const char *);
 void run_lua_file(enum lua_target, const char *);
 void set_lua_ctor_upvalue(enum lua_target, const char *, void *);
 int call_lua_func(enum lua_target, const char *, const char *, const char *, const char *, ...);

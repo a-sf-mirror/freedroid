@@ -1839,14 +1839,17 @@ EXIT:
 	return TRUE; // Pretend the lua script has ended
 }
 
-void run_lua(enum lua_target target, const char *code)
+int run_lua(enum lua_target target, const char *code)
 {
 	lua_State *L = get_lua_state(target);
 
-	if (luaL_dostring(L, code)) {
+	int rtn = luaL_dostring(L, code);
+	if (rtn) {
 		pretty_print_lua_error(L, lua_tostring(L, -1), code, 2, __FUNCTION__);
 		lua_pop(L, -1);
 	}
+
+	return rtn;
 }
 
 void run_lua_file(enum lua_target target, const char *path)

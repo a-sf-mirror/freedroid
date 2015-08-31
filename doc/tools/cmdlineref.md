@@ -92,7 +92,7 @@ For all tests listed below, Freedroid RPG will start, initialize, execute the de
 Indication will be given of testing success/fail and elapsed testing time.\n
 \n
 
-	freedroidRPG    [-b | --benchmark {text | dialog | loadship | loadgame | savegame | dynarray | mapgen | leveltest} ]
+	freedroidRPG    [-b | --benchmark {text | dialog | event | loadship | loadgame | savegame | dynarray | mapgen | leveltest} ]
 
 \n
 <strong>freedroidRPG -b text</strong>\n
@@ -104,6 +104,11 @@ Files are each parsed for "node" values to ensure dialog continuity and no broke
 During parsing of each dialog file, the name of the file as well as each node name found are printed to the console.
 On completion of file parsing a success/fail status is returned. Parsing continues with the next dialog file.
 See [Dialog Designer Manual](../manual/dialog.html) for details on dialog file structure.\n
+\n
+<strong>freedroidRPG -b event</strong>\n
+The lua code of all event are parsed and validated.\n
+During parsing of the the lua code of an event, the name of the event is printed to the console.
+On completion of the parsing a success/fail status is returned. Parsing continues with the next event.
 \n
 <strong>freedroidRPG -b loadship</strong>\n
 Instructs game logic to load the "levels.dat" file. Benchmarking involves 10 file load cycles\n
