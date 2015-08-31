@@ -1995,7 +1995,7 @@ Trigger at label="32to28falseA"
 Silent=1
 <LuaCode>
 	teleport("28from32")
-	JohnPuzzlefalseA = JohnPuzzlefalseA + 1
+	JohnPuzzlefalseA = (JohnPuzzlefalseA or 0) + 1
 	set_rush_tux(1, "John")
 	set_bot_destination("JohnLockedLabel", "John")
 </LuaCode>
@@ -2007,7 +2007,7 @@ Trigger at label="32to28falseB"
 Silent=1
 <LuaCode>
 	teleport("28from32")
-	JohnPuzzlefalseB = JohnPuzzlefalseB + 1
+	JohnPuzzlefalseB = (JohnPuzzlefalseB or 0) + 1
 	set_rush_tux(1, "John")
 	set_bot_destination("JohnLockedLabel", "John")
 </LuaCode>
@@ -2019,7 +2019,7 @@ Trigger at label="32to28falseC"
 Silent=1
 <LuaCode>
 	teleport("28from32")
-	JohnPuzzlefalseC = JohnPuzzlefalseC + 1
+	JohnPuzzlefalseC = (JohnPuzzlefalseC or 0) + 1
 	set_rush_tux(1, "John")
 	set_bot_destination("JohnLockedLabel", "John")
 </LuaCode>
@@ -6509,7 +6509,6 @@ Silent=1
 <LuaCode>
 	create_droid("59_trap_362", get_random_bot_59())
 	create_droid("59_trap_364", get_random_bot_59())
-	create_droid("59_trap_365", get_random_bot_59())
 </LuaCode>
 * End of trigger *
 
