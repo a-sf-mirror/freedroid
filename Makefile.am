@@ -41,6 +41,8 @@ check:
 	$(CHECKFLAGS) ./src/freedroidRPG -nb dynarray		|| exit 4
 	$(CHECKFLAGS) ./src/freedroidRPG -nb mapgen			|| exit 5
 	$(CHECKFLAGS) ./src/freedroidRPG -nb leveltest		|| exit 6
+	$(CHECKFLAGS) ./src/freedroidRPG -nb event			|| exit 7
+
 
 dist-hook:
 	find $(distdir) -name ".git"              | xargs rm -rf
