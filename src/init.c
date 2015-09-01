@@ -845,10 +845,10 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.next_time_height_of_screen = GameConfig.screen_height;
 	GameConfig.fullscreen_on = FALSE;
 	GameConfig.difficulty_level = DIFFICULTY_NORMAL;
-	if (GameConfig.locale && strlen(GameConfig.locale)) {
+	if (GameConfig.locale) {
 		free(GameConfig.locale);
-		GameConfig.locale = strdup("");
 	}
+	GameConfig.locale = my_strdup("");
 }
 
 /** 
