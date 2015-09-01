@@ -1080,11 +1080,14 @@ void InitFreedroid(int argc, char **argv)
 	InitPictures(); //requires game data loaded in Init_Game_Data()
 
 	next_startup_percentage(100);
-	if (strstr(VERSION, "rc") && !do_benchmark)
-		alert_window(_("You are playing a Release Candidate.\nStrange bugs may still be present in the game.\nPlease report any issues you find to our bugtracker at http://bugs.freedroid.org/\nThank you for helping us test the game.\n\nGood luck!\n"));
-
-};				// void InitFreedroid ( void ) 
-
+	if (strstr(VERSION, "rc") && !do_benchmark) {
+		blit_background("startup1.jpg");
+		alert_window(_("You are playing a Release Candidate.\n"
+		               "Strange bugs may still be present in the game.\n"
+		               "Please report any issues you find to our bugtracker at http://bugs.freedroid.org/\n"
+		               "Thank you for helping us test the game.\n\nGood luck!\n"));
+	}
+}
 /**
  * This function displayes the last seconds of the game when the influencer
  * has actually been killed.  It generates some explosions and waits for
