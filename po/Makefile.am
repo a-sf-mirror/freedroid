@@ -1,5 +1,5 @@
 SUBDIRS = po-src po-dialogs po-data l10n-others
-EXTRA_DIST = update-potfiles  xgettext-wrapper
+EXTRA_DIST = xgettext-wrapper
 
 # disables -j , hack to fix some race condition
 .NOTPARALLEL:

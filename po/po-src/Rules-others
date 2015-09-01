@@ -7,12 +7,14 @@
 
 update-po: update-pot
 update-pot:
-	@$(top_srcdir)/po/update-potfiles -i src -i lua_modules -i map/script_helpers.lua > POTFILES.inT ; \
-	 if ! cmp -s POTFILES.inT POTFILES.in ; then \
-	   rm POTFILES.in && mv POTFILES.inT POTFILES.in; \
-	   echo "POTFILES.in updated"; \
-	 else \
-	   rm POTFILES.inT; \
+	@if [ -x $(top_srcdir)/po/update-potfiles ] ; then \
+	   $(top_srcdir)/po/update-potfiles -i src -i lua_modules -i map/script_helpers.lua > POTFILES.inT ; \
+	   if ! cmp -s POTFILES.inT POTFILES.in ; then \
+	     rm POTFILES.in && mv POTFILES.inT POTFILES.in; \
+	     echo "POTFILES.in updated"; \
+	   else \
+	     rm POTFILES.inT; \
+	   fi; \
 	 fi
 
 #== Auto-install catalogs locally
