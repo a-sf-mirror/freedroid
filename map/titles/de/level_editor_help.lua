@@ -89,7 +89,7 @@ Wenn du im Spiel nun auf dieses Schild klickst, wird der Text, den du eingegeben
 
 Wähle das Terminal und füge eine Objektbezeichnung mit dem Dialognamen, den du benutzen willst, hinzu. Speichere die Karte und beende das Programm.
 Öffne die Leveldatei (zu finden unter map/levels.dat) mit einem beliebigen Texteditor und suche nach der Objektbezeichnung, die du vergeben hast.
- Ändere die Zeile über dem Text von "type=30" in "type=32" und speichere. Wenn du im Spiel nun auf dieses Terminal klickst, wird der Dialog, den du gewählt hast, erscheinen.
+Ändere die Zeile über dem Text von "type=30" in "type=32" und speichere. Wenn du im Spiel nun auf dieses Terminal klickst, wird der Dialog, den du gewählt hast, erscheinen.
 
         Boden-Bearbeitungsmodus:
 

@@ -25,44 +25,71 @@ text = [[
 
 PROGRAMMERING:
 
-        Maria Grazia Alastra
-        Pedro Arana
-        Catalin Badea
-        Bryan C
+        Bob
         Samuel Degrande
+        Mike Fleischmann
+        Scott Furry
         Arthur Huillet
-        Stefan Kangas
-        Jozef Kucia
-        Pavaluca Matei
+        Jann Horn
+        Józef Kucia
+        Gregory Lozet
         Michael Mendelson
-        Esa-Matti Mourujarvi
-        Nicolas Pepin-Perreault
+        Miles McCammon
+        Michael Parks
         Samuel Pitoiset
-        Alexander Solovets
-        Philippe Tetar
+        v4hn
+        Xenux
 
 SPELINNEHÅLL:
 
+        Amy de Buitléir
+        Infrared
+        Raymond Jennings
+        Jonatas L. Nogueira
         Matthias Krüger
         Miles McCammon
-        Sebastian Offermann
-        Kurtis Parramore
-        Niklas Spille
-        JK Wood
-        James
-        Starminn
-        Thor
-        rudi_s
-        Infrared
 
 GRAFIK:
 
         Infrared
+        Bastian Salmela
 
-"RELEASE MANAGEMENT":
+MUSIK:
 
-        Arthur Huillet
-        Miles McCammon
+        Nick Hagman
+
+TRANSLATIONS:
+
+        cs:
+          Jan Tojnar
+          Zdenek
+
+        de_DE:
+          JM Franz
+          Matthias Krüger
+          Link Mario
+
+        fr_FR:
+          Sebastian Adam
+          Alérion
+          Samuel Degrande
+          Nicolas Fargier
+          Benjamin Leduc
+          Duong Khang Nguyen
+          Xenux
+
+        pt_BR:
+          Anelise D. J.
+          Luiz Phelipe Ferreira da Silva
+          Jonatas L. Nogueira
+
+        sv_SV:
+          Alexander Forsberg
+
+BLANDAT:
+
+        Eino Keskitalo
+        Duong Khang Nguyen
 
 
 
@@ -70,25 +97,37 @@ GRAFIK:
 
 PROGRAMMERING:
 
+        Maria Grazia Alastra
+        Pedro Arana
+        Catalin Badea
+        Pierre Bourdon
+        Bryan C
+        Simon Castellan
+        jcoral
+        Stefan Kangas
+        Pavaluca Matei
+        Michael Mendelson
+        Esa-Matti Mourujarvi
+        Ari Mustonen
+        Nicolas Pepin-Perreault
+        Quentin Pradet
         Johannes Prix
         Reinhard Prix
-        Quentin Pradet
-        jcoral
-        Pierre Bourdon
-        Simon Castellan
-        Ari Mustonen
+        Alexander Solovets
+        Philippe Tetar
 
 SPELINNEHÅLL:
 
         Stefan Huszics
-
-GRAFIK:
-
-        Bastian Salmela
-
-DIALOGER
-
+        James
+        Sebastian Offermann
+        Kurtis Parramore
+        Niklas Spille
+        Starminn
         Karol Swietlicki
+        rudi_s
+        Thor
+        JK Wood
 
 MUSIK:
 

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: freedroidrpg 0.15+git\n"
+"Project-Id-Version: freedroidrpg 0.16rc1\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-16 16:23+0200\n"
+"POT-Creation-Date: 2015-09-07 15:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -346,7 +346,7 @@ msgstr ""
 msgid "Starting new game."
 msgstr ""
 
-#: src/init.c:1084
+#: src/init.c:1085
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -356,11 +356,11 @@ msgid ""
 "Good luck!\n"
 msgstr ""
 
-#: src/init.c:1101 src/init.c:1102
+#: src/init.c:1104 src/init.c:1105
 msgid "Game over.\n"
 msgstr ""
 
-#: src/init.c:1168 src/init.c:1169
+#: src/init.c:1171 src/init.c:1172
 msgid "Game won.\n"
 msgstr ""
 
@@ -1051,47 +1051,47 @@ msgstr ""
 msgid "Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."
 msgstr ""
 
-#: src/lua.c:67 src/lua/luaFD_npc.c:69
+#: src/lua.c:91 src/lua/luaFD_npc.c:69
 msgid "No chat context available on the context stack."
 msgstr ""
 
-#: src/lua.c:249 src/lua/luaFD_tux.c:425
+#: src/lua.c:273 src/lua/luaFD_tux.c:425
 msgid "Melee fighting ability improved!"
 msgstr ""
 
-#: src/lua.c:252 src/lua/luaFD_tux.c:428
+#: src/lua.c:276 src/lua/luaFD_tux.c:428
 msgid "Ranged combat ability improved!"
 msgstr ""
 
-#: src/lua.c:255 src/lua/luaFD_tux.c:431
+#: src/lua.c:279 src/lua/luaFD_tux.c:431
 msgid "Programming ability improved!"
 msgstr ""
 
-#: src/lua.c:336
+#: src/lua.c:360
 #, c-format
 msgid "Received item: %s (on floor)"
 msgstr ""
 
-#: src/lua.c:338
+#: src/lua.c:362
 #, c-format
 msgid "Received item: %s"
 msgstr ""
 
-#: src/lua.c:390 src/lua/luaFD_tux.c:776
+#: src/lua.c:414 src/lua/luaFD_tux.c:776
 msgid "1 item received!"
 msgstr ""
 
-#: src/lua.c:469
+#: src/lua.c:493
 #, c-format
 msgid "+%d experience points"
 msgstr ""
 
-#: src/lua.c:501 src/lua/luaFD_tux.c:339
+#: src/lua.c:525 src/lua/luaFD_tux.c:339
 #, c-format
 msgid "Gained %d valuable circuits!"
 msgstr ""
 
-#: src/lua.c:503 src/lua/luaFD_tux.c:341
+#: src/lua.c:527 src/lua/luaFD_tux.c:341
 #, c-format
 msgid "Lost %d valuable circuits!"
 msgstr ""

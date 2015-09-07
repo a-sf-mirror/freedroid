@@ -65,7 +65,7 @@ O símbolo com pegadas cruzadas nao é realmente um objeto, porém uma area pura
 
 Mantendo pressionado o botão esquerdo do mouse você pode selecionar um retangulo de obstáculos. Após soltar o botão do mouse, os obstáculos selecionados irão trocar para uma cor diferente, indicando que eles estão selecionados. Para selecionar obstaculos que não estão no alcance do retângulo de seleção, segure pressionado 'Ctrl' e clique no obstáculo ou selecione outro retângulo para eles.
 Você pode ter selecionado automaticamente muitos obstáculos com um clique. Você pode trocar entre os obstáculos clicando no icone com a cadeira e a prateleira sobre ele, ou pressionando 'n'.
-The icon with the trash can delete the selected obstacle.
+O ícone com o lixo pode apagar um obstâculo selecionado.
 You can also cut (Ctrl+x, can also be used to delete obstacles by just not pasting them again ;) ), copy (Ctrl+c) and paste (Ctrl+v) cut or copied obstacles.
 You can move selected obstacles holding down the left shift key while dragging the obstacle around. However, this may be quite imprecise.
 

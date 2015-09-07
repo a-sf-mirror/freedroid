@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-16 16:23+0200\n"
-"PO-Revision-Date: 2015-08-16 14:24+0000\n"
-"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"POT-Creation-Date: 2015-09-07 15:45+0200\n"
+"PO-Revision-Date: 2015-08-16 15:46+0000\n"
+"Last-Translator: zdenek <chmelarz@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/arctic-games/freedroid-rpg/language/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -350,7 +350,7 @@ msgstr "Spouštění výuky."
 msgid "Starting new game."
 msgstr "Spouštění nové hry."
 
-#: src/init.c:1084
+#: src/init.c:1085
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -366,11 +366,11 @@ msgstr ""
 "\n"
 "Hodně štěstí!\n"
 
-#: src/init.c:1101 src/init.c:1102
+#: src/init.c:1104 src/init.c:1105
 msgid "Game over.\n"
 msgstr "Konec hry.\n"
 
-#: src/init.c:1168 src/init.c:1169
+#: src/init.c:1171 src/init.c:1172
 msgid "Game won.\n"
 msgstr "Hra vyhrána.\n"
 
@@ -1061,47 +1061,47 @@ msgstr "ŠIPKY - výběr, ENTER - přemapovat, ESCAPE - ukončit"
 msgid "Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."
 msgstr "Snímek obrazovky uložen do \"%s\" ve vašem adresáři .freedroid_rpg/."
 
-#: src/lua.c:67 src/lua/luaFD_npc.c:69
+#: src/lua.c:91 src/lua/luaFD_npc.c:69
 msgid "No chat context available on the context stack."
 msgstr "V kotextové frontě není k dispozici zádná kontextová konverzace."
 
-#: src/lua.c:249 src/lua/luaFD_tux.c:425
+#: src/lua.c:273 src/lua/luaFD_tux.c:425
 msgid "Melee fighting ability improved!"
 msgstr "Schopnost boje z blízka vylepšena!"
 
-#: src/lua.c:252 src/lua/luaFD_tux.c:428
+#: src/lua.c:276 src/lua/luaFD_tux.c:428
 msgid "Ranged combat ability improved!"
 msgstr "Schopnost boje na dálku vylepšena!"
 
-#: src/lua.c:255 src/lua/luaFD_tux.c:431
+#: src/lua.c:279 src/lua/luaFD_tux.c:431
 msgid "Programming ability improved!"
 msgstr "Schopnost programování vylepšena!"
 
-#: src/lua.c:336
+#: src/lua.c:360
 #, c-format
 msgid "Received item: %s (on floor)"
 msgstr "Získaný předmět: %s (na podlaze)"
 
-#: src/lua.c:338
+#: src/lua.c:362
 #, c-format
 msgid "Received item: %s"
 msgstr "Získaný předmět: %s"
 
-#: src/lua.c:390 src/lua/luaFD_tux.c:776
+#: src/lua.c:414 src/lua/luaFD_tux.c:776
 msgid "1 item received!"
 msgstr "1 získaný předmět!"
 
-#: src/lua.c:469
+#: src/lua.c:493
 #, c-format
 msgid "+%d experience points"
 msgstr "+%d bodů zkušenosti"
 
-#: src/lua.c:501 src/lua/luaFD_tux.c:339
+#: src/lua.c:525 src/lua/luaFD_tux.c:339
 #, c-format
 msgid "Gained %d valuable circuits!"
 msgstr "Získáno %d cenných obvodů!"
 
-#: src/lua.c:503 src/lua/luaFD_tux.c:341
+#: src/lua.c:527 src/lua/luaFD_tux.c:341
 #, c-format
 msgid "Lost %d valuable circuits!"
 msgstr "Ztraceno %d cenných obvodů!"
@@ -2678,7 +2678,7 @@ msgstr "obranný"
 
 #: src/lvledit/lvledit_widgets.c:77
 msgid "usable"
-msgstr ""
+msgstr "použitelný"
 
 #: src/lvledit/lvledit_widgets.c:91
 msgid "droids"

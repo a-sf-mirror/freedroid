@@ -42,11 +42,11 @@
 
 2. Installer & Jouer
 ===========
- Pour une aide plus général avec l'installation, référez-vous au fichier INSTALL situé dans le même dossier que celui-ci.
+ Pour une aide plus général avec l'installation, se référer au fichier INSTALL situé dans le même dossier que celui-ci.
  Instructions spécifique pour Ubuntu : http://ubuntuforums.org/showthread.php?p=6127097#post6127097
 
- Pour démarrer le jeu, vous avez juste normalement à lancer l’exécutable.
- Pour les options avancées, exécutez "freedroidRPG --help" (dans un terminal) pour récupérer une liste des options disponible en ligne de commande.
+ Pour démarrer le jeu, il suffit normalement de lancer l’exécutable.
+ Pour les options avancées, exécuter "freedroidRPG --help" (dans un terminal) pour récupérer une liste des options disponible en ligne de commande.
 
 
 3. Contrôles de base
@@ -94,22 +94,22 @@
   Z ... Basculer l'affichage de la description des items au sol
   T ... Basculer l'affichage transparent des murs proches de Tux
   Ctrl + Q ... Quitte le jeu
-  Ctrl + G   ... Toggle grab input (prevent cursor from escaping the game window)
-  Print      ... Take screenshot (saved into ./.freedroid_rpg/ folder of your home directory)
+  Ctrl + G ... Basculer l'acquisition pointeur (empêche le curseur de sortir de la fenêtre du jeu)
+  Impr ... Copie d'écran (enregistré dans le répertoire .freedroid_rpg du répertoire utilisateur)
 
-  Arrow keys ... Move
-     Up      ...     North
-     Down    ...     South
-     Right   ...     East
-     Left    ...     West
+  Flèches ... Déplacement
+     Haut ... Nord
+     Bas ... Sud
+     Droite ... Est
+     Gauche ... Ouest
 
 
 4. Problèmes connus
 ================
  Général
-   * Some melee and ranged weapons still have placeholder laserswords/rifles for their Tux holding
-	 and attack animations. If you are skilled with 3D modeling, please help us out to fix this.
-   * When you start the game in OpenGL mode and something overlays the FreedroidRPG window while starting
+   * Quelques armes ont encore une représentation par défaut (sabre laser / fusil) quand elles sont tenues par Tux
+	 ou durant les animations d'attaques. Si tu es doué en modélisation 3D, tu peux nous aider à améliorer ce point.
+   * Lorsque le jeu est démarré en mode OpenGL, et qu'une fenêtre est placé devant celle du jeu durant le démarrage, il est possible que l'image de fond soit bizarre. En cliquant sur une des entrés du menu, elle devrait se ré-afficher normalement. 
 	 up, the background images looks very strange. If you click on one of the menu items, it should return to
 	 looking as intended.
    * Alt tab in/out of the game in OpenGL while a static popup is displayed makes the screen completely black.

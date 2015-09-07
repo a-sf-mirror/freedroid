@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-16 16:23+0200\n"
+"POT-Creation-Date: 2015-09-07 15:45+0200\n"
 "PO-Revision-Date: 2015-08-16 14:27+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
@@ -557,19 +557,19 @@ msgstr "Tillbaka till Underhållstunnlarna"
 msgid "We need to go deeper..."
 msgstr "Vi måste gå djupare..."
 
-#: map/events.dat:6615
+#: map/events.dat:6614
 msgid "Back to mainland"
 msgstr "Tillbaka till fastlandet"
 
-#: map/events.dat:6631
+#: map/events.dat:6630
 msgid "Security failure at Hell's Fortress reception desk."
 msgstr "Säkerhetsfel vid Helvetesfortets reception."
 
-#: map/events.dat:6644
+#: map/events.dat:6643
 msgid "Spencer still needed alive to win game."
 msgstr "Spencer måste leva för att spelet ska gå att vinna."
 
-#: map/events.dat:6646
+#: map/events.dat:6645
 msgid "Ooops, you killed Spencer. That was probably not a good idea."
 msgstr "Ooops, du dödade Spencer. Det var nog ingen bra idé."
 

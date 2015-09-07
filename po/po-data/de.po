@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Link_Mario <Link-Mario@gmx.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-16 16:23+0200\n"
-"PO-Revision-Date: 2015-08-16 14:27+0000\n"
-"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"POT-Creation-Date: 2015-09-07 15:45+0200\n"
+"PO-Revision-Date: 2015-08-16 15:03+0000\n"
+"Last-Translator: Link_Mario <Link-Mario@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/arctic-games/freedroid-rpg/language/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +57,7 @@ msgstr "296 Sägewerk"
 
 #: map/droid_archetypes.dat:198
 msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carrying drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
-msgstr ""
+msgstr "Ursprünglich entwickelt von \"Orchard and Marsden Enterprises\", wurde dieser Dienstroboter hauptsächlich zum Servieren von Getränken verwendet. Auf dem Kopf befindet sich ein Tablett zum Tragen von Getränken, während das breite Rad genügend Stabilität bietet, um nichts zu verschütten. WARNUNG: Wer versucht Getränke zu stehlen wird selbst etwas verlieren!"
 
 #: map/droid_archetypes.dat:202 map/ReturnOfTux.droids:103
 #: map/ReturnOfTux.droids:104 map/ReturnOfTux.droids:111
@@ -217,7 +218,7 @@ msgstr "883 Dalex"
 
 #: map/droid_archetypes.dat:712
 msgid "This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries."
-msgstr ""
+msgstr "Dieser Droide wurde für Datenarchivierung entworfen. Es ist unklar, warum er große Angst in menschlichen Kontrahenten erweckt."
 
 #: map/droid_archetypes.dat:716 map/ReturnOfTux.droids:293
 msgid "999 Cerebrum"
@@ -355,7 +356,7 @@ msgstr "Autoritäre Figur"
 
 #: map/droid_archetypes.dat:1125
 msgid "It has long since been known that game development is the most important job in the world. Also, the coolest. We know that thanks to this guy."
-msgstr ""
+msgstr "Es ist seit langem bekannt, dass die Spieleentwicklung der wichtigste Job der Welt ist. Und der coolste. Das wissen wir, dank diesem Typ hier."
 
 #: map/droid_archetypes.dat:1147
 msgid "This is a secure terminal."
@@ -559,19 +560,19 @@ msgstr "Zurück zum Wartungsschacht"
 msgid "We need to go deeper..."
 msgstr "Wir müssen noch tiefer…"
 
-#: map/events.dat:6615
+#: map/events.dat:6614
 msgid "Back to mainland"
 msgstr "Zurück zum Festland"
 
-#: map/events.dat:6631
+#: map/events.dat:6630
 msgid "Security failure at Hell's Fortress reception desk."
 msgstr "Sicherheitsversagen am Empfangsschalter der Höllenfestung."
 
-#: map/events.dat:6644
+#: map/events.dat:6643
 msgid "Spencer still needed alive to win game."
 msgstr "Spencer muss am Leben bleiben, um das Spiel zu gewinnen."
 
-#: map/events.dat:6646
+#: map/events.dat:6645
 msgid "Ooops, you killed Spencer. That was probably not a good idea."
 msgstr "Ups, du hast Spencer umgelegt. Das war wohl keine so gute Idee."
 
@@ -593,7 +594,7 @@ msgstr "Großes Küchenmesser"
 
 #: map/item_specs.lua:153
 msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though, for sure better than hitting at metal with your bare fists."
-msgstr ""
+msgstr "Leicht und handlich im Kampf, aber unglücklicherweise nicht dafür geeignet, Stahl zu durchschneiden; erreicht außerdem schnell den Punkt, an dem es bricht, wenn man es doch versucht. Allerdings immer noch besser, als mit den blanken Fäusten auf Metall einzudreschen."
 
 #: map/item_specs.lua:161
 msgid "Cutlass"
@@ -609,7 +610,7 @@ msgstr "Antikes Schwert"
 
 #: map/item_specs.lua:198
 msgid "Very maneuverable for its size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
-msgstr ""
+msgstr "Trotz der Größe sehr manövrierfähig und schwer genug, um mit 1 Schlag durch Roboterpanzerung zu dringen. Der einzige Nachteil dieser alten Waffe ist der gleiche wie für andere Schwerter: Es hält einfach nicht lange, wenn man damit in Metallteile schneidet."
 
 #: map/item_specs.lua:206
 msgid "Chainsaw"
@@ -665,7 +666,7 @@ msgstr "Großer Schraubenschlüssel"
 
 #: map/item_specs.lua:350
 msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands-on, brutal way if needed."
-msgstr ""
+msgstr "Ein großer, schwerer Schraubenschlüssel in der Hand kann sich als überraschend effizient erweisen, wenn es darum geht, einen Roboter in Ersatzteile zu verwandeln - wenn nötig auf die brutale Art."
 
 #: map/item_specs.lua:358
 msgid "Crowbar"
@@ -1133,7 +1134,7 @@ msgstr "Carbonstahl-Topfhelm"
 
 #: map/item_specs.lua:1437
 msgid "Top of the line headgear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
-msgstr ""
+msgstr "Kopfschutz der Oberklasse - für Roboter. Wenn man es ihnen aber von ihren Metallnacken reißt und die Schaltkreise entfernt kann es auch menschliche Wesen gegen unzählige Nahkampf-, und auch  Fernkampfangriffe schützen."
 
 #: map/item_specs.lua:1445
 msgid "Worker Helmet"
@@ -1189,7 +1190,7 @@ msgstr "Arbeiterschuhe"
 
 #: map/item_specs.lua:1549
 msgid "These footwears are steel tipped, and generally quite sturdy, giving a bit extra protection."
-msgstr ""
+msgstr "Diese Schuhe haben Stahlkappen vorne dran und sind auch sonst sehr stabil. Sie geben ein wenig zusätzlichen Schutz."
 
 #: map/item_specs.lua:1557
 msgid "Battle Shoes"
@@ -2226,7 +2227,7 @@ msgstr "Serverraum"
 
 #: map/levels.dat:33281
 msgid "Offices - this way"
-msgstr ""
+msgstr "Büros - hier entlang"
 
 #: map/levels.dat:33284
 msgid "Slalom"
@@ -2302,7 +2303,7 @@ msgstr "Stop!"
 
 #: map/levels.dat:37706
 msgid "I warned you... You should consider turning back and running away screaming."
-msgstr ""
+msgstr "Ich habe Sie gewarnt…  Sie sollten jetzt umdrehen und schreiend davon rennen."
 
 #: map/levels.dat:37808
 msgid "Secret area service tunnels"
@@ -2445,7 +2446,7 @@ msgstr "Schuppen"
 
 #: map/levels.dat:65751
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
-msgstr ""
+msgstr "DEBUG LEVEL 70 -- Diese Ebene wurde zum einfachen Testen von FreedroidRPG erstellt und ist daher NICHT dafür gedacht, betreten zu werden, ohne zu Schummeln."
 
 #: map/levels.dat:66662
 msgid "?"
@@ -3229,7 +3230,7 @@ msgstr "Prüfe Systemintegrität"
 
 #: map/skill_specs.lua:59
 msgid "While repairing damage, you must remember that patience is a virtue."
-msgstr ""
+msgstr "Denken Sie beim Reparieren von Schäden stets daran, dass Geduld eine Tugend ist."
 
 #: map/skill_specs.lua:64
 msgid "Sanctuary"

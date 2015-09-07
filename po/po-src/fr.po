@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-16 16:23+0200\n"
-"PO-Revision-Date: 2015-08-16 14:24+0000\n"
+"POT-Creation-Date: 2015-09-07 15:45+0200\n"
+"PO-Revision-Date: 2015-08-19 21:19+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/arctic-games/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
@@ -355,7 +355,7 @@ msgstr "Commencer le Tutoriel."
 msgid "Starting new game."
 msgstr "Commencer une nouvelle partie."
 
-#: src/init.c:1084
+#: src/init.c:1085
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -371,11 +371,11 @@ msgstr ""
 "\n"
 "Bonne chance !\n"
 
-#: src/init.c:1101 src/init.c:1102
+#: src/init.c:1104 src/init.c:1105
 msgid "Game over.\n"
 msgstr "Fin de la partie.\n"
 
-#: src/init.c:1168 src/init.c:1169
+#: src/init.c:1171 src/init.c:1172
 msgid "Game won.\n"
 msgstr "Tu as gagné la partie.\n"
 
@@ -1066,47 +1066,47 @@ msgstr "FLECHES pour sélectionner, ENTREE pour modifier, ECHAPPE pour fermer"
 msgid "Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."
 msgstr "Capture écran sauvegardée dans \"%s\" dans le répertoire .freedroid_rpg/."
 
-#: src/lua.c:67 src/lua/luaFD_npc.c:69
+#: src/lua.c:91 src/lua/luaFD_npc.c:69
 msgid "No chat context available on the context stack."
 msgstr "Aucun contexte de dialogue disponible dans la pile de contexte."
 
-#: src/lua.c:249 src/lua/luaFD_tux.c:425
+#: src/lua.c:273 src/lua/luaFD_tux.c:425
 msgid "Melee fighting ability improved!"
 msgstr "Capacité de combat rapproché améliorée !"
 
-#: src/lua.c:252 src/lua/luaFD_tux.c:428
+#: src/lua.c:276 src/lua/luaFD_tux.c:428
 msgid "Ranged combat ability improved!"
 msgstr "Capacité de combat à distance améliorée !"
 
-#: src/lua.c:255 src/lua/luaFD_tux.c:431
+#: src/lua.c:279 src/lua/luaFD_tux.c:431
 msgid "Programming ability improved!"
 msgstr "Capacité de programmation améliorée !"
 
-#: src/lua.c:336
+#: src/lua.c:360
 #, c-format
 msgid "Received item: %s (on floor)"
 msgstr "Objet reçu : %s (sur le sol)"
 
-#: src/lua.c:338
+#: src/lua.c:362
 #, c-format
 msgid "Received item: %s"
 msgstr "Objet reçu : %s"
 
-#: src/lua.c:390 src/lua/luaFD_tux.c:776
+#: src/lua.c:414 src/lua/luaFD_tux.c:776
 msgid "1 item received!"
 msgstr "1 objet reçu !"
 
-#: src/lua.c:469
+#: src/lua.c:493
 #, c-format
 msgid "+%d experience points"
 msgstr "+%d points d'expérience"
 
-#: src/lua.c:501 src/lua/luaFD_tux.c:339
+#: src/lua.c:525 src/lua/luaFD_tux.c:339
 #, c-format
 msgid "Gained %d valuable circuits!"
 msgstr "Gagné %d circuits de valeur !"
 
-#: src/lua.c:503 src/lua/luaFD_tux.c:341
+#: src/lua.c:527 src/lua/luaFD_tux.c:341
 #, c-format
 msgid "Lost %d valuable circuits!"
 msgstr "Perdu %d circuits de valeur !"
@@ -2684,7 +2684,7 @@ msgstr "défensif"
 
 #: src/lvledit/lvledit_widgets.c:77
 msgid "usable"
-msgstr ""
+msgstr "ustensile"
 
 #: src/lvledit/lvledit_widgets.c:91
 msgid "droids"

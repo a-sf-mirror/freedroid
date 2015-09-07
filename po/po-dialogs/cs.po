@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-16 16:23+0200\n"
+"POT-Creation-Date: 2015-09-07 15:45+0200\n"
 "PO-Revision-Date: 2015-05-02 19:52+0000\n"
 "Last-Translator: zdenek <chmelarz@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/arctic-games/freedroid-rpg/language/cs/)\n"
@@ -906,7 +906,7 @@ msgstr "Ah, zajímavý."
 
 #: dialogs/Arthur.lua:54
 msgid "And, hmm, what are working on?"
-msgstr ""
+msgstr "A, hmm, na čem děláš?"
 
 #: dialogs/Arthur.lua:55
 msgid "My current project is a role playing game."
@@ -950,7 +950,7 @@ msgstr "Jasně! To zní fantasticky!"
 
 #: dialogs/Arthur.lua:79
 msgid "Hey, is your game finished already?"
-msgstr ""
+msgstr "Hej, je už tvá hra dokončena?"
 
 #: dialogs/Arthur.lua:81
 msgid "I'm doing the final polishing right now."
@@ -985,21 +985,21 @@ msgstr "Jsem %s. Jsem v pohodě, díky."
 
 #: dialogs/Bender.lua:49
 msgid "Hello there!"
-msgstr ""
+msgstr "Zdravím!"
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Bender.lua:51
 #, c-format
 msgid "Hey, you're the new guy! I mean penguin! Uh, %s, right?"
-msgstr ""
+msgstr "Čau, ty jsi ten nový chlápek! Mám na mysli tučňák! Eh, %s, správně?"
 
 #: dialogs/Bender.lua:52
 msgid "Yes, I-"
-msgstr ""
+msgstr "Ano, já-"
 
 #: dialogs/Bender.lua:53 dialogs/Bender.lua:76
 msgid "Holy wow! Wow, man!"
-msgstr ""
+msgstr "U svatýho... páni! Páni, člověče!"
 
 #: dialogs/Bender.lua:61
 msgid "Hey, man!"
@@ -1011,23 +1011,23 @@ msgstr "Jak se vede?"
 
 #: dialogs/Bender.lua:67 dialogs/Bender.lua:123 dialogs/Bender.lua:141
 msgid "Man, it's the end of the apocalypse... And I feel fine!"
-msgstr ""
+msgstr "Člověče, to je konec apokalypsy... A já se cítím v pohodě!"
 
 #: dialogs/Bender.lua:68
 msgid "I mean, I still didn't get the medicine from the doc. I didn't get the chance to really pound him."
-msgstr ""
+msgstr "Chci říct, že jsem stále ještě nedostal od doktora lék. Neměl jsem šanci ho opravdu praštit."
 
 #: dialogs/Bender.lua:69
 msgid "But right now everyone's so happy that the bots are all down, I think I'll give him a break."
-msgstr ""
+msgstr "Ale teď jsou všichni tak šťastní, že jsou všichni roboti dole, takže myslím, že mu dám pokoj."
 
 #: dialogs/Bender.lua:70
 msgid "Maybe you should talk to him soon. He might be in a good mood and give it to you anyway."
-msgstr ""
+msgstr "Možná by sis s ním mohl brzy promluvit. Mohl by být v dobré náladě a dát to tebe tak jako tak."
 
 #: dialogs/Bender.lua:71
 msgid "Hey, that sounds like a smart idea! Thanks, man, I'll do that!"
-msgstr ""
+msgstr "Hej, to zní jako chytrý nápad! Díky, kámo, udělám to!"
 
 #: dialogs/Bender.lua:72
 msgid "Since the killer bots around the town got a taste of my firmware, I think the Doc won't mind giving Bender his medicine now... I should talk to him when I see him."
@@ -1035,11 +1035,11 @@ msgstr ""
 
 #: dialogs/Bender.lua:74
 msgid "Now, I have something I want to say to you..."
-msgstr ""
+msgstr "Teď, mám něco, co ti chci říci..."
 
 #: dialogs/Bender.lua:75
 msgid "And what's that?"
-msgstr ""
+msgstr "A co to je?"
 
 #: dialogs/Bender.lua:79 dialogs/Bender.lua:96
 msgid "I still need to go talk to the doc, but just thinking about feeling less sick makes me feel less sick."
@@ -1047,11 +1047,11 @@ msgstr ""
 
 #: dialogs/Bender.lua:80 dialogs/Bender.lua:97
 msgid "It's confusing me a little..."
-msgstr ""
+msgstr "To mě trochu mate..."
 
 #: dialogs/Bender.lua:81 dialogs/Bender.lua:98
 msgid "Well, hurry up and get it over with!"
-msgstr ""
+msgstr "No, rychle do toho, ať to máš za sebou!"
 
 #: dialogs/Bender.lua:85 dialogs/Bender.lua:133
 msgid "Too bad. I have never felt so sick."
@@ -1097,19 +1097,19 @@ msgstr "Mohl bych ti říct všechna tajemství Rudé stráže."
 
 #: dialogs/Bender.lua:115
 msgid "Oh, and congratulations on beating all the bots!"
-msgstr ""
+msgstr "Oh, gratuluji k pobití všech botů!"
 
 #: dialogs/Bender.lua:116
 msgid "I mean, wow..."
-msgstr ""
+msgstr "Myslím, páni..."
 
 #: dialogs/Bender.lua:125
 msgid "Oh man, this is so cool! Wow, man!"
-msgstr ""
+msgstr "Oh člověče, to je tak super! Páni!"
 
 #: dialogs/Bender.lua:143
 msgid "I'm good! Man, a few days ago I was feeling really down... I was really sick."
-msgstr ""
+msgstr "Mám se dobře. Člověče, před pár dny jsem se cítil vážně mizerně... Fakt jsem byl nemocný."
 
 #: dialogs/Bender.lua:144
 msgid "But now I stopped feeling not-awesome! And it's all thanks to you and all the bots being dead!"
@@ -1213,7 +1213,7 @@ msgstr "Chlape, pokud bys mohl, dal bych ti vše. Stále mi zbývají nějaké p
 
 #: dialogs/Bender.lua:240
 msgid "Also, I could vote for you if you seek to join the guard of the town."
-msgstr ""
+msgstr "Taky bych pro tebe mohl volit, pokud se snažíš připojit k městské stráži."
 
 #: dialogs/Bender.lua:242
 msgid "Just get me a cure, and I'll be forever grateful!"
@@ -1537,11 +1537,11 @@ msgstr ""
 
 #: dialogs/Bender.lua:444
 msgid "But... I... Arrrgh!"
-msgstr ""
+msgstr "Ale... já... Arrrgh!"
 
 #: dialogs/Bender.lua:446
 msgid "Dude, it's not so hard to understand."
-msgstr ""
+msgstr "Kámo, to není tak těžké pochopit."
 
 #: dialogs/Bender.lua:447
 msgid "Hey, you know, I saw an ad for brain enlargement pills that might do you good."
@@ -1549,7 +1549,7 @@ msgstr ""
 
 #: dialogs/Bender.lua:448
 msgid "No, I... I just need to cool off a bit..."
-msgstr ""
+msgstr "Ne, já... já jen potřebuju trochu zchladnout..."
 
 #: dialogs/Bender.lua:449
 #, c-format
@@ -1707,7 +1707,7 @@ msgstr "Vidím, že sis oblíbil zbraně."
 
 #: dialogs/Benjamin.lua:105
 msgid "But the next step will cost even more money and require the mental focus equalling all your previous training."
-msgstr ""
+msgstr "Ale další krok bude stát ještě víc peněz a vyžaduje mentální soustředění rovnající se všem tvým předchozím vzděláním."
 
 #: dialogs/Benjamin.lua:109
 msgid "Oh, you want to become a real master with shooters?"
@@ -1763,7 +1763,7 @@ msgstr "Když jsi plně sesynchronizován se svým cílem, pak stiskni spoušť.
 
 #: dialogs/Benjamin.lua:138
 msgid "Good. You are learning quickly. Try it a few more times."
-msgstr ""
+msgstr "Dobře. Učíš se rychle. Zkus to ještě párkrát."
 
 #: dialogs/Benjamin.lua:139
 msgid "Okay, I think that it is enough for today."
@@ -1775,7 +1775,7 @@ msgstr "Ano, chci ještě více školení. (stojí 200 obvodů, 6 výcvikových 
 
 #: dialogs/Benjamin.lua:151
 msgid "So let''s start the second course?"
-msgstr ""
+msgstr "Takže začneme s druhým kurzem?"
 
 #: dialogs/Benjamin.lua:154
 msgid "Very well."
@@ -1843,7 +1843,7 @@ msgstr "Ach ano, a dávej pozor kam stoupáš. Potřebuješ se koukat, kam stř�
 
 #: dialogs/Benjamin.lua:194
 msgid "Keep practising and you will get the hang of it eventually."
-msgstr ""
+msgstr "Pokračuj v cvičení a nakonec tomu přijdeš na kloub."
 
 #: dialogs/Benjamin.lua:203
 msgid "I want to become a god in ranged combat. (costs 500 circuits, 15 training points)"
@@ -1859,7 +1859,7 @@ msgstr "Konečným tajemstvím, jak se stát bohem útoku na dálku je něco, co
 
 #: dialogs/Benjamin.lua:210
 msgid "I don't tell everyone this, so keep it to yourself, all right?"
-msgstr ""
+msgstr "Toto neříkám každému, tak si to nech pro sebe, jasný?"
 
 #: dialogs/Benjamin.lua:211
 msgid "To become a god in ranged combat you need to..."
@@ -1867,7 +1867,7 @@ msgstr "Aby ses stal bohem dálkového útoku, budeš muset ..."
 
 #: dialogs/Benjamin.lua:212
 msgid "...practise. A lot."
-msgstr ""
+msgstr "...cvičit. Hrozně moc."
 
 #: dialogs/Benjamin.lua:213
 msgid "Go ahead and use my firing range as much as you need."
@@ -1991,7 +1991,7 @@ msgstr "Laser je technologie využitá ve většině našich zbraní. Používá
 
 #: dialogs/Benjamin.lua:274
 msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say.It is also not affected by gravity or wind, which makes aiming easier."
-msgstr ""
+msgstr "Jelikož se paprsek skládá ze světla, cestuje VELMI rychle, rychlostí světla, dalo by se říct. Také není ovlivněn gravitací nebo větrem, což usnadňuje míření."
 
 #: dialogs/Benjamin.lua:275
 msgid "However, other than being a good training tool for newbies, that design just fails to deliver."
@@ -2039,7 +2039,7 @@ msgstr "Asi tě to překvapí, ale nemáme jich mnoho. Když jsem je naposledy p
 
 #: dialogs/Benjamin.lua:305
 msgid "Thankfully, as you can clearly see, it's more than enough to keep all the cursed bots away."
-msgstr ""
+msgstr "Naštěstí, jak je vidět, je jich víc než dost na to, aby všechny zatracený roboty udžovaly dostatečně daleko."
 
 #: dialogs/Benjamin.lua:314
 msgid "Well, I am a bit short on circuits right now..."
@@ -2498,7 +2498,7 @@ msgstr "Může být tvá. Zadara."
 
 #: dialogs/Bruce.lua:278
 msgid "Oh... Oh my! Thanks!"
-msgstr ""
+msgstr "Oh... Ach moje! Díky!"
 
 #: dialogs/Bruce.lua:279
 msgid "Wait, let me go get something first."
@@ -2519,7 +2519,7 @@ msgstr "Okej."
 
 #: dialogs/Bruce.lua:293
 msgid "Let me quickly go get the money."
-msgstr "Nech mě dojít rychle pro peníze."
+msgstr "Nech mě rychle dojít pro peníze."
 
 #: dialogs/Bruce.lua:294
 msgid "Talk to me again in a moment."
@@ -3617,7 +3617,7 @@ msgstr "Předstíráš, že jsi mim."
 
 #: dialogs/c-net-nethack_sub.lua:564
 msgid "You pull a rabbit from your top hat."
-msgstr ""
+msgstr "Vytáhneš králíka z cylindru."
 
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:568
@@ -3912,7 +3912,7 @@ msgstr "Nacházíš havajské tricko."
 
 #: dialogs/c-net-nethack_sub.lua:730
 msgid "You find a credit card."
-msgstr ""
+msgstr "Nacházíš kreditní kartu."
 
 #: dialogs/c-net-nethack_sub.lua:731
 msgid "You find a sharpened pencil."
@@ -3978,7 +3978,7 @@ msgstr "Zastavuješ krvácení."
 
 #: dialogs/c-net-nethack_sub.lua:751
 msgid "You find a top hat with a rabbit."
-msgstr ""
+msgstr "Nacházíš cylindr s králíkem."
 
 #: dialogs/c-net-nethack_sub.lua:752
 msgid "You find a deck of cards."
@@ -4151,7 +4151,7 @@ msgstr "Hermes, spolu se Smrtí a Spánkem, se ptá, jestli jsi někde neviděl 
 
 #: dialogs/c-net-nethack_sub.lua:828
 msgid "Your soul finds itself travelling along the path of the moon, far away from your broken body."
-msgstr ""
+msgstr "Tvá  duše se ocitá na cestách podél dráhy Měsíce, daleko od dobitého těla."
 
 #: dialogs/c-net-nethack_sub.lua:829
 msgid "You are fully one with everything. Your battered body no longer concerns you."
@@ -5179,7 +5179,7 @@ msgstr "Kryo Řešení funguje 24 hodin denně každý den v roce."
 
 #: dialogs/Cryo-Terminal.lua:63
 msgid "However, for the safety of our clients, visiting hours are restricted."
-msgstr ""
+msgstr "Nicméně pro bezpečnost našich klientů, návštěvní hodiny jsou omezené."
 
 #: dialogs/Cryo-Terminal.lua:64
 msgid "Visiting hours for family and friends are by appointment only [b]Monday-Thursday 10:00-14:00[/b]."
@@ -5689,7 +5689,7 @@ msgstr "Jakmile jsem pustil sadu, byl jsem schopen se teleportovat. Ten bot mě 
 
 #: dialogs/Dixon.lua:256
 msgid "Once I got out, I learned the bot was telling the truth. The Great Assault had started. The rest is history."
-msgstr ""
+msgstr "Jakmile jsem byl venku, pochopil jsem, že ten bot říkal pravdu. Začal Velký útok. Zbytek je historie."
 
 #: dialogs/Dixon.lua:264
 msgid "Hmm... You know... I think that the bots in the tunnels might be sentient."
@@ -6127,7 +6127,7 @@ msgstr "Je mi smutno, když vidím, jak všechno pomalu chřadne. Boti Megasysu 
 
 #: dialogs/Dixon.lua:573
 msgid "This town has a few weeks left to live. After that, we are all dead."
-msgstr ""
+msgstr "Tomuto městu zbývá několik týdnů života. Potom budem všichni mrtví."
 
 #: dialogs/Dixon.lua:582
 msgid "Ha! Never better!"
@@ -6175,7 +6175,7 @@ msgstr "A tohle je jedna z takovýchto věcí."
 
 #: dialogs/Dixon.lua:605
 msgid "Just go and see for yourself. Otherwise, you will not believe me."
-msgstr ""
+msgstr "Jen jdi a přesvědč se sám. Jinak mi neuvěříš."
 
 #: dialogs/Dixon.lua:606
 msgid "The tunnels bots seem to be working together with Dixon in keeping the town working. All is well that ends well."
@@ -6719,7 +6719,7 @@ msgstr "No, na rozdíl od armádního občerstvení, doplňky stravy mají ve sk
 
 #: dialogs/DocMoore.lua:377
 msgid "After taking one, your health should improve slightly."
-msgstr ""
+msgstr "Po užití jednoho z nich by mělo dojít k mírnému zlepšení tvého zdraví."
 
 #: dialogs/DocMoore.lua:383
 msgid "What can you tell me about Antibiotics?"
@@ -6767,19 +6767,19 @@ msgstr ""
 
 #: dialogs/DocMoore.lua:418
 msgid "No, I'm fine, thank you..."
-msgstr ""
+msgstr "Ne, jsem v pohodě, díky..."
 
 #: dialogs/DocMoore.lua:419
 msgid "Are you sure? Anything for you! You're a hero!"
-msgstr ""
+msgstr "Jsi si jistý? Pro tebe cokoli! Jsi hrdina!"
 
 #: dialogs/DocMoore.lua:426
 msgid "Well, now that you mentioned it, I am a little bruised."
-msgstr ""
+msgstr "No, teď, když jsi to zmínil, jsem trochu pohmožděný."
 
 #: dialogs/DocMoore.lua:428
 msgid "Well, let's take a look at you..."
-msgstr ""
+msgstr "Dobře, pojďme se na tebe podívat..."
 
 #: dialogs/DocMoore.lua:430
 msgid "Yes, I can see - you've been through some harshness."
@@ -6820,11 +6820,11 @@ msgstr ""
 
 #: dialogs/DocMoore.lua:444
 msgid "Oh- well, great!"
-msgstr ""
+msgstr "Oh dobře, skvělé!"
 
 #: dialogs/DocMoore.lua:445
 msgid "Funny, they always say that..."
-msgstr ""
+msgstr "Legrační, vždycky to říkají..."
 
 #: dialogs/DocMoore.lua:452
 msgid "I only did what I had to do."
@@ -6842,11 +6842,11 @@ msgstr ""
 
 #: dialogs/DocMoore.lua:461
 msgid "Have you heard anything from Bender?"
-msgstr ""
+msgstr "Slyšel jsi něco o Benderovi?"
 
 #: dialogs/DocMoore.lua:463
 msgid "Bender?"
-msgstr ""
+msgstr "O Benderovi?"
 
 #: dialogs/DocMoore.lua:464
 msgid "Oh, him! That fool who took the brain growth pills!"
@@ -6862,7 +6862,7 @@ msgstr ""
 
 #: dialogs/DocMoore.lua:467
 msgid "Why not?"
-msgstr ""
+msgstr "Proč ne?"
 
 #: dialogs/DocMoore.lua:468
 msgid "Well, that would be unfair. It would also be unwise, and... And..."
@@ -6878,7 +6878,7 @@ msgstr ""
 
 #: dialogs/DocMoore.lua:472
 msgid "Yes. Of course."
-msgstr ""
+msgstr "Ano. Samozřejmě."
 
 #: dialogs/DocMoore.lua:473
 msgid "It is done - I talked to Doc Moore, and he will happily give Bender the antidote."
@@ -6890,11 +6890,11 @@ msgstr "Buď zdráv!"
 
 #: dialogs/DocMoore.lua:485
 msgid "Take good care of yourself - I'm taking a vacation!"
-msgstr ""
+msgstr "Dobře se o sebe starej. Beru si dovolenou!"
 
 #: dialogs/DocMoore.lua:486
 msgid "It's a wonderful day. Thank you."
-msgstr ""
+msgstr "Je to nádherný den. Díky."
 
 #: dialogs/DSB-MachineDeckControl.lua:27 dialogs/DSB-PowerControl.lua:29
 #: dialogs/DSB-PowerControlGate1.lua:31 dialogs/SACD.lua:37
@@ -7236,7 +7236,7 @@ msgstr "Kostka. Věř mi, nemůžeš ji minout."
 
 #: dialogs/Duncan.lua:217
 msgid "No, I don't find bloodshed a pleasurable activity."
-msgstr "Ne, nepovažuju krveprolití za příjemnou aktivitu."
+msgstr "Ne, krveprolití nepovažuju za příjemnou aktivitu."
 
 #: dialogs/Duncan.lua:219
 msgid "That is fine. I will find someone else."
@@ -7405,7 +7405,7 @@ msgstr "Chápu. Budiž."
 
 #: dialogs/Duncan.lua:328
 msgid "No way am I giving Duncan that cube thingie, who knows what he would do with it."
-msgstr ""
+msgstr "V žádném případě nedám Duncanovi tu krychlovou věcičku. Kdo ví, co by s ní udělal."
 
 #: dialogs/Duncan.lua:340
 msgid "I gave Duncan the cube thingie. It feels nice to help people."
@@ -7776,7 +7776,7 @@ msgstr "Plazmové tranzistory jsou ve tvaru písmene Y. Jen je vytrhni ven, je t
 
 #: dialogs/Engel.lua:293
 msgid "I need a refreshing of my knowledge about Superconductors."
-msgstr ""
+msgstr "Potřebuji osvěžit své znalosti ohledně Supravodičů."
 
 #: dialogs/Engel.lua:303
 msgid "Hmmm... Ah, gut. Superconductors."
@@ -9962,7 +9962,7 @@ msgstr "A celkový design města je docela chytrý."
 
 #: dialogs/Iris.lua:122
 msgid "Nevertheless, this room is quite dark."
-msgstr ""
+msgstr "Nicméně tato místnost je docela tmavá."
 
 #: dialogs/Iris.lua:123
 msgid "It could use some light."
@@ -10143,7 +10143,7 @@ msgstr ""
 
 #: dialogs/Iris.lua:240
 msgid "I... I'm not sure."
-msgstr ""
+msgstr "Já... Nejsem si jistý."
 
 #: dialogs/Iris.lua:241
 msgid "It could be just background noise. Maybe it's not even that. But there's still something a little weird about it."
@@ -10155,11 +10155,11 @@ msgstr ""
 
 #: dialogs/Iris.lua:243
 msgid "What are you talking about?"
-msgstr ""
+msgstr "O čem to mluvíš?"
 
 #: dialogs/Iris.lua:244
 msgid "... I hope trusting you with this isn't a mistake."
-msgstr ""
+msgstr "...Doufám, že věřit ti to není chyba."
 
 #. TRANSLATORS: comm = communication
 #: dialogs/Iris.lua:246
@@ -10180,7 +10180,7 @@ msgstr ""
 
 #: dialogs/Iris.lua:250
 msgid "But how do you know?"
-msgstr ""
+msgstr "Ale jak to víš?"
 
 #: dialogs/Iris.lua:251
 msgid "Because just before you arrived, everything did go crazy. At first I thought we were being nuked and the EMP was causing it."
@@ -10196,11 +10196,11 @@ msgstr ""
 
 #: dialogs/Iris.lua:254
 msgid "One of them was you."
-msgstr ""
+msgstr "Jedno z nich bylo tvé."
 
 #: dialogs/Iris.lua:261
 msgid "My name? What does this mean?"
-msgstr ""
+msgstr "Mé jméno? Co to znamená?"
 
 #: dialogs/Iris.lua:264
 msgid "It means someone knew about you before the Red Guard did, and it means whoever it was broadcast it far and wide."
@@ -10229,15 +10229,15 @@ msgstr ""
 
 #: dialogs/Iris.lua:295
 msgid "Take care."
-msgstr ""
+msgstr "Opatruj se."
 
 #: dialogs/Iris.lua:296
 msgid "Be careful out there."
-msgstr ""
+msgstr "Buď tam opatrný."
 
 #: dialogs/Iris.lua:297
 msgid "Keep an eye out for anything weird."
-msgstr ""
+msgstr "Dávejte pozor na cokoliv divného."
 
 #: dialogs/Iris.lua:298
 msgid "Remember the saying, 'Speak softly and carry a big stick.' I think you'll need that stick soon."
@@ -11530,7 +11530,7 @@ msgstr "Se zabezpečením své mise jsi opravdu opatrný."
 
 #: dialogs/Kevin.lua:399
 msgid "However, don't destroy my equipment, I can support you to be stealthy."
-msgstr ""
+msgstr "Nicméně neznič mé vybavení, mohu tě podpořit v utajení."
 
 #: dialogs/Kevin.lua:400
 msgid "But later, maybe... I don't have time now."
@@ -11842,7 +11842,7 @@ msgstr "Duncan je posedlý ničením věcí, zatímco já je tvořím."
 
 #: dialogs/Koan.lua:122
 msgid "Therefore, he desires my destruction."
-msgstr ""
+msgstr "Proto si přeje mou zkázu."
 
 #: dialogs/Koan.lua:132
 msgid "Beyond that I am a creator."
@@ -12495,7 +12495,7 @@ msgstr "Dal jsem kuchaři Michelangelovi dostatek dilithia, které mu vydrží d
 
 #: dialogs/Michelangelo.lua:314
 msgid "However, I need at least three crystals. Can you come back with all the crystals I need?"
-msgstr ""
+msgstr "Ale potřebuju alespoň tři krystaly. Můžeš se vrátit se všemi krystaly, které potřebuju?"
 
 #: dialogs/Michelangelo.lua:320
 msgid "What was I supposed to do again?"
@@ -13446,7 +13446,7 @@ msgstr "Určitě. Můžu ti pomoct."
 
 #: dialogs/Pendragon.lua:107
 msgid "For a price. A hundred circuits should be enough."
-msgstr ""
+msgstr "Za cenu. Sto obvodů by mělo stačit."
 
 #: dialogs/Pendragon.lua:114
 msgid "Do you have a name?"
@@ -13630,7 +13630,7 @@ msgstr "Chci projít bránou."
 
 #: dialogs/Pendragon.lua:241
 msgid "Can you open it, please?"
-msgstr ""
+msgstr "Můžeš ji otevřít, prosím?"
 
 #: dialogs/Pendragon.lua:242
 msgid "Yes, I can."
@@ -14085,7 +14085,7 @@ msgstr "Proč mě okamžitě nezabiješ?"
 
 #: dialogs/SADD.lua:133
 msgid "And stand here alone until I die? While you are here, I can speak with you. Oh, I haven't spoken to anybody for a looong time!"
-msgstr ""
+msgstr "A zůstat tu sám dokud nezemřu? Dokud jsi tu, můžu si s tebou povídat. Oh, s nikým jsem si nepromluvil už hóóódně dlouho!"
 
 #: dialogs/SADD.lua:139
 msgid "I'm thirsty and hungry. I will die within days, and you will not have an interlocutor any more!"
@@ -15306,7 +15306,7 @@ msgstr "Oh, počkej, ty's podváděl, že?"
 
 #: dialogs/Spencer.lua:202
 msgid "There is now way we can have lame cheaters in the Red Guard, forget about it!"
-msgstr ""
+msgstr "Nepřichází v úvahu, abychom měli v Rudé stráži zoufalé podvodníky, zapomeň na to!"
 
 #: dialogs/Spencer.lua:203
 msgid "However, if you did in fact NOT cheat, please tell the developers how you got so much money so they can fix it. :)"
@@ -15598,7 +15598,7 @@ msgstr "Víme, že MS měl systém pro aktualizaci firmwaru, který by mohl být
 
 #: dialogs/Spencer.lua:414
 msgid "This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though..."
-msgstr ""
+msgstr "Toto se jeví jako dar seslaný z nebes. Ačkoliv vyčištění Pekelné pevnosti nebude jednoduché..."
 
 #: dialogs/Spencer.lua:420
 msgid "I'd like to participate in this operation."
@@ -15650,7 +15650,7 @@ msgstr "Dobře. Měl bys být dobře připraven, pokud máš v úmyslu jít."
 
 #: dialogs/Spencer.lua:446
 msgid "Also, there is no need to hurry with this. After all, the installation is not running away, so it's best to take a cautious approach."
-msgstr ""
+msgstr "Navíc není důvod pospíchat. Koneckonců, instalace nikam neuteče, takže je nejlepší mít k tomu opatrný přístup."
 
 #: dialogs/Spencer.lua:452
 msgid "It's done. Your soldiers were killed, but I managed to reach a computer terminal that controls the shield. Access to the bot factory is now open, after I changed the password on the terminal so as to prevent the bots from enabling the shield again."
@@ -15888,119 +15888,119 @@ msgstr "Náš správce počítačů v citadele je šťastný jak jen může být
 
 #: dialogs/Spencer.lua:609
 msgid "The firmware server was one of the things that were hidden in this network, and with all the obfuscations and defenses down, we not only could find it, but had full access."
-msgstr ""
+msgstr "Firmware server byl jednou z věcí skrytých v této síti a se vším tím znejištěním a vypnutím obrany se nám ho nejenom podařilo najít, ale dostat i plný přístup."
 
 #: dialogs/Spencer.lua:610
 msgid "But the most interesting thing we uncovered is a secret teleportation network. It was very well-guarded, we never even knew it existed, but now it's open for us to use."
-msgstr ""
+msgstr "Ale nejzajímavější věc, kterou jsme odhalili, je tajná teleportační síť. Byla velmi dobře hlídaná, dokonce jsme nikdy věděli, že existuje, ale teď je pro nás otevřená k použití."
 
 #: dialogs/Spencer.lua:611
 msgid "My guess is, the corporate bastards who drove this sweatshop would use it to get in and out of work unnoticed. Grab the money and zap off to some island to relax."
-msgstr ""
+msgstr "Hádám, že firemní parchanti, kteří řídili tuto drsnou dílnu, ji používali k přístupu dovnitř a ven z práce bez povšimnutí. Vem peníze a odsvišť pryč na nějaký ostrov relaxovat."
 
 #: dialogs/Spencer.lua:612
 msgid "Neutralizing the bot threat in the area wasn't the only thing I'd succeeded in doing: every MegaSys-based security product within range is completely broken now. A new teleportation network was discovered by the Red Guard, which is why Spencer is standing next to me right now."
-msgstr ""
+msgstr "Neutralizace robotí hrozby v oblasti nebyla jedinou věcí, která by se podaříla: každý bezpečnostní produkt na bázi MegaSys v dosahu je nyní kompletně rozbitý. Nová teleportační síť byla objevena Rudou stráží, což je důvod, proč je Spencer právě teď vedle mě."
 
 #: dialogs/Spencer.lua:618
 msgid "I couldn't have done any different."
-msgstr ""
+msgstr "Nemohl jsem dělat nic jiného."
 
 #: dialogs/Spencer.lua:620
 msgid "You are far too modest. I doubt anyone alive right now could have done it."
-msgstr ""
+msgstr "Jsi příliš skromný. Pochybuji, že kdokoli živý by to mohl udělat."
 
 #: dialogs/Spencer.lua:621
 msgid "But the work isn't done... Not even close. The entire galaxy is still at war."
-msgstr ""
+msgstr "Ale práce není hotová... Ani náhodou. Celá galaxie je stále ve válečném stavu."
 
 #: dialogs/Spencer.lua:622
 msgid "You saved our little town, and you've proven that we can win this thing."
-msgstr ""
+msgstr "Zachránil jsi naše městečko a dokázal jsi, že tuto záležitost můžeme vyhrát."
 
 #: dialogs/Spencer.lua:623
 msgid "We can't rest now. It's going to be hard and dangerous, but the alternative is death for humanity."
-msgstr ""
+msgstr "Teď nemůžeme odpočívat. Bude to těžké a nebezpečné, ale alternativou je smrt pro lidstvo."
 
 #: dialogs/Spencer.lua:629
 msgid "I only did it for fun, really."
-msgstr ""
+msgstr "Udělal jsem to jen pro zábavu, opravdu."
 
 #: dialogs/Spencer.lua:631
 msgid "... Oh, it doesn't matter."
-msgstr ""
+msgstr "... Ach, to je jedno."
 
 #: dialogs/Spencer.lua:632
 msgid "I suppose no one's perfect..."
-msgstr ""
+msgstr "Myslím, že nikdo není dokonalý..."
 
 #: dialogs/Spencer.lua:633
 msgid "What matters is that we're alive - those of us left, anyway - we have supplies, and we can take what we need from the Fortress now."
-msgstr ""
+msgstr "Důležité je, že jsme naživu - těch, kdo zbyli - máme zásoby a můžeme vzít to, co teď potřebujeme z Pevnosti."
 
 #: dialogs/Spencer.lua:634
 msgid "And, whether or not you intended to, you've proven that we have a chance against the bots. Something worth fighting for. Worth living for."
-msgstr ""
+msgstr "A ať už jsi to zamýšlel nebo ne, dokázal jsi, že máme proti botům šanci. Něco, za co stojí bojovat. Za co stojí žít."
 
 #: dialogs/Spencer.lua:635
 msgid "You'll probably be happy to know that the entire galaxy is pretty much your playground now, Linarian. You'll have all the bots in the world to play with, and lots of opportunities to be a hero."
-msgstr ""
+msgstr "Pravděpodobně budeš rád vědět, že je nyní celá galaxie do značné míry tvým hřištěm, Linariane. Budeš mít všechny roboty na světě na hraní a spoustu příležitostí být hrdina."
 
 #: dialogs/Spencer.lua:636
 msgid "Awesome!"
-msgstr ""
+msgstr "Skvělý!"
 
 #: dialogs/Spencer.lua:637
 msgid "I'm so cool. I saved a bunch of people and bashed a bunch of bots. And there's much more where both of those came from! I'm done here, it's time to go help the next dump."
-msgstr ""
+msgstr "Jsem tak hustej. Zachránil jsem spoustu lidí a zmlátil spoustu robotů. A je toho mnohem víc, kde obojí z těchto pochází! Tady jsem skončil, je čas jít pomáhat na další skládku."
 
 #: dialogs/Spencer.lua:643
 msgid "Can I use this teleportation network to return to town?"
-msgstr ""
+msgstr "Mohu k návratu do města použít tuto teleportační síť?"
 
 #: dialogs/Spencer.lua:646
 msgid "Yes, I think you can. I'll contact Richard and tell him to ready the teleporter and link it back to the one in town."
-msgstr ""
+msgstr "Ano, myslím, že můžeš. Dám vědět Richardovi a řeknu mu, aby připravil teleport a propojil ho s tím ve městě."
 
 #: dialogs/Spencer.lua:648
 msgid "I believe you can, yes. I'll contact our computer expert and tell him to ready the teleporter and link it back to the one in town."
-msgstr ""
+msgstr "Věřím, že je to možné, ano. Kontaktuju našeho počítačového experta a řeknu mu, aby připravil teleport a připojil jej na ten ve městě."
 
 #: dialogs/Spencer.lua:650
 msgid "But the way he explained it, this system is very limited by design: if the two teleporters are linked, using one will always take you to the other. So keep that in mind."
-msgstr ""
+msgstr "Ale způsob, jakým to vysvětlil, je tento systém velice omezený svým designem: pokud jsou dva teleporty propojeny, použití jednoho tě vždy dostanete do druhého. Takže to měj na paměti."
 
 #: dialogs/Spencer.lua:651
 msgid "We'll stay here for a while longer. This place still needs to be investigated."
-msgstr ""
+msgstr "Zůstaneme tady ještě chvíli. Toto místo je ještě nutno vyšetřit."
 
 #: dialogs/Spencer.lua:658
 msgid "I'm ready. Just tell me what to do."
-msgstr ""
+msgstr "Jsem připraven. Jen mi řekni, co mám dělat."
 
 #: dialogs/Spencer.lua:660
 msgid "You've faced countless dangers so far. Are you sure you're willing to face more?"
-msgstr ""
+msgstr "Doteď jsi čelil nespočet nebezpečí. Jsi si jistý, že jsi ochoten čelit dalšímu?"
 
 #: dialogs/Spencer.lua:661
 msgid "Bring it on!"
-msgstr ""
+msgstr "Sem s tím!"
 
 #: dialogs/Spencer.lua:662
 msgid "That's exactly what I wanted to hear."
-msgstr ""
+msgstr "To je přesně to, co jsem chtěl slyšet."
 
 #: dialogs/Spencer.lua:663
 msgid "Now listen carefully, this is the plan..."
-msgstr ""
+msgstr "Teď poslouchej pozorně, toto je plán..."
 
 #: dialogs/Spencer.lua:664
 msgid "The town is saved, but there's still a lot to do. I agreed to continue fighting the robot armies with the Red Guard."
-msgstr ""
+msgstr "Město je zachráněno, ale stále je tu co dělat. Souhlasil jsem s Rudou stráží pokračovat v boji proti armádě botů."
 
 #: dialogs/Spencer.lua:677
 msgid "Come back soon. There's much to be done."
-msgstr ""
+msgstr "Vrať se brzy. Je tu hodně práce."
 
 #: dialogs/Stone.lua:60
 msgid "Welcome to our town! I'm Ms. Stone. I run this shop."
@@ -16278,7 +16278,7 @@ msgstr "Vrať se prosím s celou částkou, pokud chceš pomoct."
 
 #: dialogs/Stone.lua:229
 msgid "Otherwise, you're throwing good money after bad, and I couldn't let you do that."
-msgstr ""
+msgstr "V opačném případě to bude jen zbytečné plýtvání penězi a to bych nemohla dopustit."
 
 #: dialogs/Stone.lua:237
 msgid "Yes, it's me."
@@ -16302,7 +16302,7 @@ msgstr "Něco tu pro tebe mám. Podařilo se mi schovat tuhle brokovnici před R
 
 #: dialogs/Stone.lua:244
 msgid "It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have liked you to have it on your journey to save us all."
-msgstr ""
+msgstr "Patřívala mému dědečkovi, takže je mi velmi drahá, ale jsem si jistá, že by byl býval rád, abys ji měl na své cestě k naší záchraně u sebe."
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Stone.lua:246
@@ -16430,7 +16430,7 @@ msgstr "Na konec se úplně pomátla, bohužel."
 
 #: dialogs/Tamara.lua:123
 msgid "Now all she does is sitting locked in her house staring into the computer."
-msgstr ""
+msgstr "Nyní vše, co dělá je, že sedí zavřená ve svém domě a zírá do počítače."
 
 #: dialogs/Tamara.lua:130
 msgid "I would like to learn how to hack."
@@ -16470,7 +16470,7 @@ msgstr "Zejména právě kolemjdoucími cizinci..."
 
 #: dialogs/Tamara.lua:151
 msgid "Thus, I'm forced to take a deposit for each book."
-msgstr ""
+msgstr "Proto jsem nucena brát si za každou knihu zálohu."
 
 #: dialogs/Tamara.lua:157
 msgid "So what interesting books do you have available right now?"
@@ -16494,7 +16494,7 @@ msgstr "Jednu teď píšu, ale není kompletní a nezůstali tady žádní vydav
 
 #: dialogs/Tamara.lua:177
 msgid "Have you been progressing on your book about the bot apocalypse?"
-msgstr ""
+msgstr "Pokročila si se svou knihou o robotí apokalypse?"
 
 #: dialogs/Tamara.lua:179
 msgid "I need more time to finish it."
@@ -16618,7 +16618,7 @@ msgstr "Svět je zachráněn! Apokalypsa je u konce!"
 
 #: dialogs/Tamara.lua:258
 msgid "Oh, yes... This news. I agree, it's wonderful."
-msgstr ""
+msgstr "Ah, ano... Tyhle zprávy. Souhlasím, je to úžasné."
 
 #: dialogs/Tamara.lua:266
 msgid "You don't seem very excited."
@@ -16670,7 +16670,7 @@ msgstr ""
 
 #: dialogs/Tamara.lua:295
 msgid "What? No! Absolutely not!"
-msgstr ""
+msgstr "Cože? Ne! Absolutně ne!"
 
 #: dialogs/Tamara.lua:296
 msgid "Why in the world would I want you to do that?!"
@@ -16682,7 +16682,7 @@ msgstr ""
 
 #: dialogs/Tamara.lua:298
 msgid "That - that's insane!"
-msgstr ""
+msgstr "To - to je šílené!"
 
 #: dialogs/Tamara.lua:299
 msgid "You are a danger to this establishment. Get out of here!"
@@ -16690,11 +16690,11 @@ msgstr ""
 
 #: dialogs/Tamara.lua:300
 msgid "You are a very confusing person."
-msgstr ""
+msgstr "Jsi velmi matoucí člověk."
 
 #: dialogs/Tamara.lua:302
 msgid "I guess it runs in the family..."
-msgstr ""
+msgstr "Myslím, že je to v rodině..."
 
 #: dialogs/Tamara.lua:310
 msgid "Well, you didn't get to fend off a hoard of bots. But you can interview me personally!"
@@ -17119,7 +17119,7 @@ msgstr "Jsem připraven tě doprovodit do města."
 
 #: dialogs/Tania.lua:358
 msgid "I have agreed to escort Tania to the town. Once I'm there, I'll introduce her to Spencer."
-msgstr ""
+msgstr "Souhlasil jsem s doprovodem Tanii do města. Jakmile tam budu, představím ji Spencerovi."
 
 #: dialogs/Tania.lua:365
 msgid "It isn't all like this, the town is very nice."
@@ -17499,7 +17499,7 @@ msgstr "Ooops, strážný musí mluvit o Kevinovi. Bude lepší, když se nezmí
 
 #: dialogs/Town-NorthGateGuard.lua:121
 msgid "Though, I probably should ask Kevin some day what he was doing with the town computers."
-msgstr ""
+msgstr "Nicméně se asi někdy Kevina zeptám, co dělal ve měste s počítači."
 
 #: dialogs/Town-NorthGateGuard.lua:132
 msgid "Somewhere to the east? I should look for him."
@@ -17515,7 +17515,7 @@ msgstr "Ale pokud budeš mít nějaké šílené štěstí a najdeš ho, přijde
 
 #: dialogs/Town-NorthGateGuard.lua:136
 msgid "I'd like to wring his head off... Though, it's not my call. But who knows, if the Boss feels generous we might both get rewarded."
-msgstr ""
+msgstr "Rád bych mu zakroutil krkem... I když to není moje věc. Ale kdo ví, v případě, že bude šéf velkorysý, mohli bychom být oba odměněni."
 
 #: dialogs/Town-NorthGateGuard.lua:137
 msgid "Be careful anyway, this creep is a sneaky one if he got past us."
@@ -17523,7 +17523,7 @@ msgstr "Každopádně buď opatrný. Tenle patolízal je záludný, když se kol
 
 #: dialogs/Town-NorthGateGuard.lua:138
 msgid "I offered to find out who the strange guy is. The guard I talked to was pretty sceptical, though; I should get some experience and better equipment before travelling far outside of town."
-msgstr ""
+msgstr "Nabídl jsem se, že zjistím, kdo ten podivný chlap je. Ačkoli byl strážce, s nímž jsem mluvil, pěkně skeptický, měl bych si sehnat nějaké lepší vybavení ještě předtím, než se vydám ven z města."
 
 #: dialogs/Town-NorthGateGuard.lua:144
 msgid "Surely he'll never come back here."
@@ -17671,7 +17671,7 @@ msgstr "Chci mluvit s tvým nadřízeným, blbče."
 
 #: dialogs/Town-NorthGateGuard.lua:250
 msgid "I'll be happy to send you his way, I already told you, you have to talk to him anyway. But I need your name before I let you in."
-msgstr ""
+msgstr "Bude mi potěšením poslat tě jeho směrem. Už jsem ti řekl, že si s ním budeš muset tak jako tak promluvit. Ale ještě před tím, než tě pustím dovnitř, budu potřebovat tvé jméno."
 
 #: dialogs/Town-NorthGateGuard.lua:252
 msgid "Talk to Spencer. His office is in the citadel, straight ahead, the first one on your left. You can't miss it."
@@ -18009,7 +18009,7 @@ msgstr ""
 
 #: dialogs/Town-TuxGuard.lua:94
 msgid "... But...?"
-msgstr ""
+msgstr "... Ale...?"
 
 #: dialogs/Town-TuxGuard.lua:95
 msgid "Well, you see, it's just that I've been around, and I've seen and heard some things in my time."
@@ -18344,7 +18344,7 @@ msgstr "Zdá se, že jsou Linariani schopni [b]detekovat předměty[/b] - dokonc
 
 #: dialogs/TutorialTom.lua:282
 msgid "The [b]z key[/b] will toggle this augmentation, while the [b]x key[/b] momentarily flashes it."
-msgstr ""
+msgstr "[b]Klávesa z[/b] tuto rozšířenost přepíná, zatímco [b]klávesa x[/b] jí na okamžik problikne."
 
 #: dialogs/TutorialTom.lua:283
 msgid "Moving your pointer over an item will tell you more about that item."
@@ -18840,7 +18840,7 @@ msgstr "Máme ve světě několik tradičních zbraní jako jsou meče nebo svě
 
 #: dialogs/TutorialTom.lua:569
 msgid "However, more common items you encounter every day can often be used to bash or pry at droid armor."
-msgstr ""
+msgstr "Nicméně mnohem běžnější předměty, které potkáváme na denní bázi, lze použít k praštění nebo páčení droidí výzbroje."
 
 #: dialogs/TutorialTom.lua:570
 msgid "For example, that wrench I just gave you will increase the damage you do, and should let you best the next bot."
@@ -19212,7 +19212,7 @@ msgstr "[b]Obratnost[/b] ovládá tvou úspěšnost zásahu nebo s jakou pravdě
 
 #: dialogs/TutorialTom.lua:801
 msgid "[b]Cooling[/b] is your processors cooling, or heat resilience, and determines how much you can process before your system starts overheating."
-msgstr ""
+msgstr "[b]Chlazení[/b] vypovídá o schopnosti chlazení svých procesorů či odolnosti vůči teplu a určuje, kolik toho můžeš zpracovat před tím, než se tvůj systém začne přehřívat."
 
 #: dialogs/TutorialTom.lua:802
 msgid "Finally, among your main characteristics, [b]Physique[/b] determines how much health you have."
@@ -19788,7 +19788,7 @@ msgstr "Za odměnu přijmi tuto .22 automatickou pistoli."
 
 #: dialogs/TutorialTom.lua:1159
 msgid "But I have to take these sourcebooks from you to prevent you from cheating in the next section of the tutorial."
-msgstr ""
+msgstr "Ale musím ti odebrat tyto knihy zdrojového kódu, abych zabránil tvému podvádění v další části výuky."
 
 #: dialogs/TutorialTom.lua:1160 dialogs/TutorialTom.lua:1166
 msgid "Sorry about that..."
@@ -19860,7 +19860,7 @@ msgstr "Nabourávání se do botů"
 
 #: dialogs/TutorialTom.lua:1272
 msgid "OK, I'll take us to the hacking area. Also, I'll give you some XP so you can improve your cooling."
-msgstr ""
+msgstr "Dobře, vezmu nás do arény pro nabourávání se do botů. Také ti dám nějaké zkušenosti tak, abys mohl zlepšit své chlazení."
 
 #: dialogs/TutorialTom.lua:1284
 msgid "Ranged Combat"

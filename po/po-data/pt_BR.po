@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-08-16 16:23+0200\n"
+"POT-Creation-Date: 2015-09-07 15:45+0200\n"
 "PO-Revision-Date: 2015-08-16 14:27+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/arctic-games/freedroid-rpg/language/pt_BR/)\n"
@@ -557,19 +557,19 @@ msgstr "Voltar aos Túneis de Manutenção"
 msgid "We need to go deeper..."
 msgstr "Precisamos ir mais fundo..."
 
-#: map/events.dat:6615
+#: map/events.dat:6614
 msgid "Back to mainland"
 msgstr "Voltar ao Continente"
 
-#: map/events.dat:6631
+#: map/events.dat:6630
 msgid "Security failure at Hell's Fortress reception desk."
 msgstr "Falha de Segurança na mesa de recepção da Fortaleza Maligna."
 
-#: map/events.dat:6644
+#: map/events.dat:6643
 msgid "Spencer still needed alive to win game."
 msgstr "Spencer deve estar vivo para vencer o jogo."
 
-#: map/events.dat:6646
+#: map/events.dat:6645
 msgid "Ooops, you killed Spencer. That was probably not a good idea."
 msgstr "Ooops, você matou Spencer. Isso provavelmente não foi uma boa ideia."
 
