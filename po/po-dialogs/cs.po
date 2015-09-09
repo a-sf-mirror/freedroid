@@ -541,8 +541,8 @@ msgid "Welcome to the hostname menu."
 msgstr "Vítáme Vás v menu hostname."
 
 #: dialogs/AfterTakeover.lua:377
-msgid "Version: 0.15.01"
-msgstr "Verze: 0.15.01"
+msgid "Version: %s"
+msgstr "Verze: %s"
 
 #: dialogs/AfterTakeover.lua:378
 #, c-format

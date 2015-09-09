@@ -374,7 +374,7 @@ return {
 		code = function()
 			Tux:says(_"./hostname", "NO_WAIT")
 			Npc:says(_"Welcome to the hostname menu.", "NO_WAIT")
-			Npc:says(_"Version: 0.15.01", "NO_WAIT")
+			Npc:says(_"Version: %s", get_game_version(),  "NO_WAIT")
 			Npc:says(_"Current botname: [b]%s[/b]", Npc:get_translated_name(), "NO_WAIT")
 			Npc:says(_"Select new name? [Y/N]", "NO_WAIT")
 			cli_says("> ", "NO_WAIT")

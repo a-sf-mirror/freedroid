@@ -1143,6 +1143,12 @@ static int lua_dialogs_gettext(lua_State *L)
 	return 1;
 }
 
+static int lua_get_game_version(lua_State *L)
+{
+	lua_pushstring(L, freedroid_version);
+	return 1;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label)
 	 * Teleports the player to the given map label.
@@ -1424,6 +1430,7 @@ luaL_Reg lfuncs[] = {
 	 */
 	{"set_mouse_move_target", lua_set_mouse_move_target},
 
+	{"get_game_version", lua_get_game_version},
 	{NULL, NULL}
 };
 
