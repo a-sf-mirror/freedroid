@@ -56,6 +56,9 @@ void DoAllMovementAndAnimations(void);
 
 struct dynarray difficulties;
 
+int term_has_color_cap = FALSE;
+int run_from_term = FALSE;
+
 /**
  *
  *
@@ -923,26 +926,25 @@ static void detect_available_resolutions(void)
 	screen_resolutions[size] = (screen_resolution) {-1, -1, "", FALSE};
 }
 
-/* -----------------------------------------------------------------
- * This function initializes the whole FreedroidRPG game.
- * 
- * THIS MUST NOT BE CONFUSED WITH INITNEWGAME, WHICH
- * ONLY INITIALIZES A NEW MISSION FOR THE GAME.
- *  
- * ----------------------------------------------------------------- */
-void InitFreedroid(int argc, char **argv)
+void prepare_execution(int argc, char *argv[])
 {
+#if defined HAVE_UNISTD_H && defined HAVE_DIRNAME
+	// change working directory to the executable's directory
+	if (chdir(dirname(argv[0])))
+		fprintf(stderr, "Couldn't change working directory to %s.\n", dirname(argv[0]));
+#endif
+
 	// Get color capability of current output stream.
 	// Real code to get such a capability has to use setupterm() and
 	// tigetnum() from the ncurses lib.
 	// In order to avoid a dependency to ncurses, we use here a simple trick.
+	run_from_term = FALSE;
 	term_has_color_cap = FALSE;
 #ifndef __WIN32__
-	if (isatty(STDOUT_FILENO) && !strncmp(getenv("TERM"), "xterm", 5))
+	run_from_term = isatty(STDOUT_FILENO);
+	if (run_from_term && !strncmp(getenv("TERM"), "xterm", 5))
 		term_has_color_cap = TRUE;
 #endif
-
-	struct stat statbuf;
 
 	// Get the homedir, and define the directory where the config file and
 	// the savegames will be stored
@@ -969,37 +971,12 @@ void InitFreedroid(int argc, char **argv)
 
 #endif
 
+	struct stat statbuf;
+
 #if __WIN32__
 	if (stat(our_config_dir, &statbuf) == -1) {
 		_mkdir(our_config_dir);
 	}
-
-	// On Windows, in SDL_WinMain(), stdout and stderr are redirected to files,
-	// before to call our main().
-	// Those files are automatically created in the directory of the current process.
-	// We reopen them in the user's config directory.
-	// (Note: the files opened by SDL are removed when the process ends, because they
-	//  are empty.)
-	char *filename = MyMalloc(strlen(our_config_dir) + 15);
-	sprintf(filename, "%s/stdout.txt", our_config_dir);
-	freopen(filename, "w", stdout);
-	sprintf(filename, "%s/stderr.txt", our_config_dir);
-	freopen(filename, "w", stderr);
-	free(filename);
-
-	fprintf(stderr, "Hello!  This window contains the DEBUG OUTPUT of FreedroidRPG.\n"
-	                "\n"
-	                "Normally you would not see this message or this window, but apparently\n"
-	                "FreedroidRPG has terminated because of an error of some sort.\n"
-	                "\n"
-	                "You might wish to inspect the debug output below.  Maybe sending the\n"
-	                "debug output (or at least the lower end of the debug output) to the\n"
-	                "FreedroidRPG developers could help them to track down the problem.\n"
-	                "\n"
-	                "Well, it's no guarantee that we can solve any bug, but it's certainly\n"
-	                "better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n"
-	                "\n\n"
-	                "--start of real debug log--\n\n");
 #else
 	if (stat(our_config_dir, &statbuf) == -1) {
 		if (mkdir(our_config_dir, S_IREAD | S_IWRITE | S_IEXEC) == -1) {
@@ -1009,11 +986,50 @@ void InitFreedroid(int argc, char **argv)
 	}
 #endif
 
+	// If not run from a terminal, stdout and stderr are redirect to text files
+	// written in the config dir.
+	// Note: On Windows, in SDL_WinMain(), stdout and stderr are redirected to
+	// files, before to call our main(). Those files are automatically created
+	// in the directory of the current process. They will be removed when the process
+	// ends, because they are empty.
+	if (!run_from_term) {
+		char *filename = MyMalloc(strlen(our_config_dir) + 15);
+		sprintf(filename, "%s/stdout.txt", our_config_dir);
+		freopen(filename, "w", stdout);
+		sprintf(filename, "%s/stderr.txt", our_config_dir);
+		freopen(filename, "w", stderr);
+		free(filename);
+
+		fprintf(stderr, "Hello!  This window contains the DEBUG OUTPUT of FreedroidRPG.\n"
+		                "\n"
+		                "Normally you would not see this message or this window, but apparently\n"
+		                "FreedroidRPG has terminated because of an error of some sort.\n"
+		                "\n"
+		                "You might wish to inspect the debug output below.  Maybe sending the\n"
+		                "debug output (or at least the lower end of the debug output) to the\n"
+		                "FreedroidRPG developers could help them to track down the problem.\n"
+		                "\n"
+		                "Well, it's no guarantee that we can solve any bug, but it's certainly\n"
+		                "better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n"
+		                "\n\n"
+		                "--start of real debug log--\n\n");
+	}
+
 	// We mention the version of FreedroidRPG, so that debug reports
 	// are easier to assign to the different versions of the game.
-	//
-	DebugPrintf(-4, "\nHello, this is FreedroidRPG, version %s.\n", freedroid_version);
 
+	DebugPrintf(-4, "\nHello, this is FreedroidRPG, version %s.\n", freedroid_version);
+}
+
+/* -----------------------------------------------------------------
+ * This function initializes the whole FreedroidRPG game.
+ *
+ * THIS MUST NOT BE CONFUSED WITH INITNEWGAME, WHICH
+ * ONLY INITIALIZES A NEW MISSION FOR THE GAME.
+ *
+ * ----------------------------------------------------------------- */
+void InitFreedroid(int argc, char **argv)
+{
 	set_signal_handlers();
 
 	clear_out_arrays_for_fresh_game();

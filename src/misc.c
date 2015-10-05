@@ -59,7 +59,6 @@ long Overall_Frames_Displayed = 0;
 
 char *our_homedir = NULL;
 char *our_config_dir = NULL;
-int term_has_color_cap = FALSE;
 
 struct data_dir data_dirs[] = {
 	[GRAPHICS_DIR]= { "graphics",      "" },
@@ -387,7 +386,7 @@ size_t backtrace_counter;
 void print_trace(int signum)
 {
 
-#if (!defined __WIN32__) && (!defined __APPLE_CC__) && (defined HAVE_BACKTRACE)
+#if (!defined __WIN32__) && (!defined __APPLE__) && (defined HAVE_BACKTRACE)
 
 	// fprintf ( stderr , "print_trace:  Now attempting backtrace from within the code!\n" );
 	// fprintf ( stderr , "print_trace:  Allowing a maximum of %d function calls on the stack!\n" , MAX_CALLS_IN_BACKTRACE );
@@ -1440,19 +1439,18 @@ void Terminate(int exit_code)
 	// Finally, especially on win32 systems, we should open an editor with
 	// the last debug output, since people in general won't know how and where
 	// to find the material for proper reporting of bugs.
-
-#if __WIN32__
-	if (exit_code == EXIT_FAILURE) {
-		fflush(stdout);
-		fflush(stderr);
-		char *cmd = MyMalloc(strlen(our_config_dir) + 20);
-		sprintf(cmd, "notepad %s/stderr.txt", our_config_dir);
-		system(cmd);
-		sprintf(cmd, "notepad %s/stdout.txt", our_config_dir);
-		system(cmd);
-		free(cmd);
+	if (!run_from_term) {
+		if (exit_code == EXIT_FAILURE) {
+			fflush(stdout);
+			fflush(stderr);
+			char *cmd = MyMalloc(strlen(our_config_dir) + strlen(OPENTXT_CMD) + 20);
+			sprintf(cmd, "%s %s/stdout.txt", OPENTXT_CMD, our_config_dir);
+			system(cmd);
+			sprintf(cmd, "%s %s/stderr.txt", OPENTXT_CMD, our_config_dir);
+			system(cmd);
+			free(cmd);
+		}
 	}
-#endif
 
 	// Now we drop control back to the operating system.  The FreedroidRPG
 	// program has finished.

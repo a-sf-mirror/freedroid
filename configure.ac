@@ -67,6 +67,9 @@ AC_ARG_ENABLE([rtprof],
 AC_ARG_ENABLE([dev-tools],
 				[AC_HELP_STRING([--enable-dev-tools], [compile the additional dev tools [default=no]])],
 				[dev_tools="$enableval"], [dev_tools=no])
+AC_ARG_WITH(  [open-cmd],
+				[AC_HELP_STRING([--with-open-cmd=CMD], [command used to open and display a text file on screen [default='notepad' on Windows, 'open' on MacOSX, 'xdg-open' otherwise]])],
+				[open_cmd="$withval"], [open_cmd=""])
 
 dnl Checks for programs.
 
@@ -97,6 +100,7 @@ AS_CASE([$target],
 	[*-*-cygwin* | *-*-mingw32*],
 		[
 			AS_VAR_APPEND([FD_CPPFLAGS], [" -DFD_DATADIR='\".\"'"])
+			default_open_cmd="notepad"
 			win32="true"
 		],
 	[*darwin*],
@@ -104,21 +108,27 @@ AS_CASE([$target],
 			AS_VAR_APPEND([FD_CPPFLAGS], [" -DFD_DATADIR='\"\$(pkgdatadir)\"'"])
 			dnl Darwin has single-precision math-functions in here
 			AS_VAR_APPEND([FD_LDFLAGS], [" -lmx"])
+			default_open_cmd="open"
 			macosx="true"
 		],
 	[*bsd*],
 		[
 			AS_VAR_APPEND([FD_CPPFLAGS], [" -DFD_DATADIR='\"\$(pkgdatadir)\"'"])
 			AS_VAR_APPEND([FD_LDFLAGS], [" -rdynamic"])
+			default_open_cmd="xdg-open"
 			bsd="true"
 		],
 	[
 		AS_VAR_APPEND([FD_CPPFLAGS], [" -DFD_DATADIR='\"\$(pkgdatadir)\"'"])
 		AS_VAR_APPEND([FD_LDFLAGS], [" -rdynamic -Wl,--as-needed"])
+		default_open_cmd="xdg-open"
 	]
 )
 AM_CONDITIONAL([WIN32],    [test "x$win32" = "xtrue"])
 AM_CONDITIONAL([NONLINUX], [test "x$macosx" = "xtrue" -o "x$win32" = "xtrue"])
+
+AS_VAR_IF([open_cmd], [], [open_cmd=$default_open_cmd])
+AC_DEFINE_UNQUOTED([OPENTXT_CMD], ["$open_cmd"], [Set to the command to use to display a text file])
 
 dnl Checks for libraries.
 
