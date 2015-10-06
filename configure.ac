@@ -364,7 +364,7 @@ AS_VAR_IF([cross_compiling], [no],
 )
 AC_FUNC_MKTIME
 AC_FUNC_STRCOLL
-AC_CHECK_FUNCS([alphasort atexit clock_gettime floor getcwd memchr memmove memset mkdir])
+AC_CHECK_FUNCS([alphasort atexit clock_gettime dirname floor getcwd memchr memmove memset mkdir])
 AC_CHECK_FUNCS([nl_langinfo pow putenv rint scandir setenv setlocale sqrt strchr strcspn])
 AC_CHECK_FUNCS([strdup strerror strpbrk strrchr strspn strstr strtol])
 AS_VAR_IF([want_backtrace], [yes], [AC_CHECK_FUNCS([backtrace])])
