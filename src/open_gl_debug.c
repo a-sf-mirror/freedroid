@@ -206,7 +206,10 @@ static void gl_debug_callback(GLenum source, GLenum type, GLuint id,
  */
 int init_opengl_debug(void)
 {
-#ifdef HAVE_LIBGL
+	// For a not yet known reason, the following code crashes on some Win10
+	// computers (observed on 64b systems with NVidia GPU).
+	// Further test is needed to solve that issue.
+#if defined(HAVE_LIBGL) && (!defined __WIN32__)
 	/* Check if KHR_debug is available */
 	const char *extensions = (const char*)glGetString(GL_EXTENSIONS);
 	if (!strstr(extensions, "GL_KHR_debug")) {
