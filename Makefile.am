@@ -13,17 +13,15 @@ AM_LDFLAGS      = @FD_LDFLAGS@
 LIBS            = @FD_LIBS@ @LIBS@
 AM_DISTCHECK_CONFIGURE_FLAGS = --enable-dev-tools
 
-if NONLINUX
-extradirs = 
-else
-extradirs = win32
-endif 
+if WIN32
+WIN32_PREBUILD = win32
+endif
 
 if BUILD_LUA
 MAYBE_EMBEDDED_LUA = lua
 endif
 
-SUBDIRS = $(MAYBE_EMBEDDED_LUA) src tools doc po pkgs $(extradirs)
+SUBDIRS = $(MAYBE_EMBEDDED_LUA) $(WIN32_PREBUILD) src tools doc po pkgs
 
 man_MANS = freedroidRPG.6
 README_l10n = $(basename $(notdir $(wildcard $(top_srcdir)/README-*)))

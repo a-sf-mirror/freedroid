@@ -1,15 +1,15 @@
 # Object files
 *.o
 src/freedroidRPG
-win32/pngtoico
+src/*.exe
 lua/liblua.a
 lua/lua*.exe
 lua/lua*.dll
-src/*.exe
 tools/font/*font
 tools/font/make_bmchars
 tools/atlas/*_atlas
 tools/image/croppy
+win32/freedroidRPG.coff
 
 # Patches
 *.orig
