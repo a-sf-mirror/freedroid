@@ -25,6 +25,7 @@
 #define _codeset_h
 
 #include <stdint.h>
+#include <libgen.h>
 
 struct codeset_element {
 	int empty;
