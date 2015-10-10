@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
 "POT-Creation-Date: 2015-09-07 15:45+0200\n"
-"PO-Revision-Date: 2015-08-19 21:19+0000\n"
+"PO-Revision-Date: 2015-10-10 08:45+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/arctic-games/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
@@ -48,7 +48,7 @@ msgstr "Il n'y a rien sur ce panneau."
 
 #: src/addon_crafting_ui.c:100
 msgid "Features:"
-msgstr "Caractéristiques : "
+msgstr "Caractéristiques :"
 
 #: src/addon_crafting_ui.c:259
 msgid "Craft Addons"
@@ -136,7 +136,7 @@ msgstr "Endurance"
 
 #: src/character.c:525
 msgid "Attack"
-msgstr "Attaque "
+msgstr "Attaque"
 
 #: src/character.c:531
 msgid "Damage"
@@ -198,7 +198,7 @@ msgstr ""
 
 #: src/game_ui.c:102
 msgid "reloading"
-msgstr "rechargement "
+msgstr "rechargement"
 
 #: src/game_ui.c:104
 msgid "[r]EMPTY"
@@ -1150,7 +1150,7 @@ msgstr ""
 "-- ATTENTION --\n"
 "Un obstacle ayant des coordonnées invalides a été sauvegardé sur une carte.\n"
 "Nous effectuons sa sauvegarde, pour permettre de déterminer l'erreur.\n"
-"Voir le rapport dans la console du terminal. "
+"Voir le rapport dans la console du terminal."
 
 #: src/menu.c:44 src/menu.c:845
 msgid "Play"
@@ -1191,11 +1191,11 @@ msgstr "Activation d'OpenGL : NON"
 
 #: src/menu.c:226 src/menu.c:1625
 msgid "[down]"
-msgstr "[bas] "
+msgstr "[bas]"
 
 #: src/menu.c:227 src/menu.c:1614
 msgid "[up]"
-msgstr "[haut] "
+msgstr "[haut]"
 
 #: src/menu.c:846
 msgid "Tutorial"
@@ -1563,7 +1563,7 @@ msgstr "Jour"
 
 #: src/quest_browser_ui.c:183
 msgid "[r]Parafunken Statistics[w]\n"
-msgstr "[r]Statistiques Parafunken[w] \n"
+msgstr "[r]Statistiques Parafunken[w]\n"
 
 #: src/quest_browser_ui.c:186
 msgid "[r]Overview[w]\n"
@@ -2116,7 +2116,7 @@ msgstr ""
 #: src/lvledit/lvledit_display.c:320
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
-msgstr "Point étape source sélectionné : X=%d Y=%d. "
+msgstr " Point étape source sélectionné : X=%d Y=%d. "
 
 #: src/lvledit/lvledit_display.c:335
 #, c-format
@@ -2325,7 +2325,7 @@ msgstr ""
 
 #: src/lvledit/lvledit_menu.c:413
 msgid "Add New Level"
-msgstr "Ajouter un nouveau niveau "
+msgstr "Ajouter un nouveau niveau"
 
 #: src/lvledit/lvledit_menu.c:414
 msgid "Remove Current Level"
@@ -2387,17 +2387,17 @@ msgstr " O : %d"
 #: src/lvledit/lvledit_menu.c:569
 #, c-format
 msgid "Random dungeon: 2 connections"
-msgstr " Donjon aléatoire : 2 connexions"
+msgstr "Donjon aléatoire : 2 connexions"
 
 #: src/lvledit/lvledit_menu.c:571
 #, c-format
 msgid "Random dungeon: 1 connection"
-msgstr " Donjon aléatoire : 1 connexion"
+msgstr "Donjon aléatoire : 1 connexion"
 
 #: src/lvledit/lvledit_menu.c:573
 #, c-format
 msgid "Random dungeon: no"
-msgstr " Donjon aléatoire : non"
+msgstr "Donjon aléatoire : non"
 
 #: src/lvledit/lvledit_menu.c:579
 #, c-format

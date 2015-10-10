@@ -1016,7 +1016,7 @@ msgstr "Générateur de Bruit Electronique"
 
 #: map/item_specs.lua:1224
 msgid "Disable Electronics"
-msgstr "Désactive les appareils électroniques "
+msgstr "Désactive les appareils électroniques"
 
 #: map/item_specs.lua:1228
 msgid "This sphere creates a short blast of electronic noise that temporarily disables most electronics."
@@ -1052,7 +1052,7 @@ msgstr "Veste de base"
 
 #: map/item_specs.lua:1272
 msgid "This piece of clothing made out of Synthex(TM) does a decent job of protection. I guess. Maybe. I'm not sure."
-msgstr "Cette pièce d'habillement fabriqué à partir de Synthex(TM) protège de manière correct. Sûrement. Peut-être. Ce n'est pas sûr. "
+msgstr "Cette pièce d'habillement fabriqué à partir de Synthex(TM) protège de manière correct. Sûrement. Peut-être. Ce n'est pas sûr."
 
 #: map/item_specs.lua:1280
 msgid "Reinforced Jacket"
@@ -1068,7 +1068,7 @@ msgstr "Veste de protection"
 
 #: map/item_specs.lua:1304
 msgid "Very strong for its size, this jacket made out of Shootex(TM) does a good job of absorbing basic blows. It is suitable for all kinds of extreme sports, such as climbing, rafting, bungee-jumping, fencing and even racing."
-msgstr "Très résistante pour sa taille, cette veste réalisée en Shootex(TM) est bien efficace pour absorber des chocs de base. Elle convient à tous les genres de sports extrêmes, comme l'escalade, le rafting, le saut à l'élastique, l'escrime et même la course. "
+msgstr "Très résistante pour sa taille, cette veste réalisée en Shootex(TM) est bien efficace pour absorber des chocs de base. Elle convient à tous les genres de sports extrêmes, comme l'escalade, le rafting, le saut à l'élastique, l'escrime et même la course."
 
 #: map/item_specs.lua:1312
 msgid "Red Guard's Light Robe"
@@ -1132,7 +1132,7 @@ msgstr "Casque de cavalerie"
 
 #: map/item_specs.lua:1437
 msgid "Top of the line headgear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
-msgstr "Couvre-chef haut de gamme, pour les robots. Une fois arraché de leur cou métallique, et nettoyé de ses circuits internes, il permet aussi de protéger assez convenablement les êtres humains contre tout un ensemble d'attaques à courtes ou longues portées. "
+msgstr "Couvre-chef haut de gamme, pour les robots. Une fois arraché de leur cou métallique, et nettoyé de ses circuits internes, il permet aussi de protéger assez convenablement les êtres humains contre tout un ensemble d'attaques à courtes ou longues portées."
 
 #: map/item_specs.lua:1445
 msgid "Worker Helmet"
@@ -1168,7 +1168,7 @@ msgstr "Voilà réellement ce qu'on peut considérer comme une protection de tê
 
 #: map/item_specs.lua:1507
 msgid "Dixon's Helmet"
-msgstr "Casque de Dixon "
+msgstr "Casque de Dixon"
 
 #: map/item_specs.lua:1514
 msgid "A gift from Dixon. It looks like it is about to turn into dust."
@@ -1277,7 +1277,7 @@ msgstr "Ce n'est pas seulement un mise à jour de microcode, mon cher robot. Tu 
 
 #: map/item_specs.lua:1684
 msgid "Source Book of Broadcast Virus"
-msgstr "Listing Source de Diffusion de Virus "
+msgstr "Listing Source de Diffusion de Virus"
 
 #: map/item_specs.lua:1689
 msgid "The network is wide and dangerous. Many traps await the weak and unprepared."
@@ -1353,7 +1353,7 @@ msgstr "Que la lumière soit..."
 
 #: map/item_specs.lua:1792
 msgid "Source Book of Network Mapper"
-msgstr "Listing Source de la Cartographie des Réseaux "
+msgstr "Listing Source de la Cartographie des Réseaux"
 
 #: map/item_specs.lua:1797 map/skill_specs.lua:205
 msgid "Knowing what your enemies are up to is easy with a little signal intelligence. Displays enemy locations on your automap."
@@ -1377,7 +1377,7 @@ msgstr "Ce livre décrit le mode de fonctionnement et les opérations de répara
 
 #: map/item_specs.lua:1826
 msgid "Manual of the Extract Bot Parts"
-msgstr "Manuel des pièces détachées de robots "
+msgstr "Manuel des pièces détachées de robots"
 
 #: map/item_specs.lua:1827 map/item_specs.lua:1831
 msgid "USE FOR CHEATING ONLY. If you see this online, please report the bug."
@@ -1474,7 +1474,7 @@ msgstr "Glace en Bouteille"
 
 #: map/item_specs.lua:1938 map/item_specs.lua:1950 map/item_specs.lua:3009
 msgid "Cooling aid"
-msgstr "Assistance au refroidissement "
+msgstr "Assistance au refroidissement"
 
 #: map/item_specs.lua:1942
 msgid "This bottle is filled with ice. It can keep you cool during a warm summer day."
@@ -1494,7 +1494,7 @@ msgstr "Nitrogène Liquide"
 
 #: map/item_specs.lua:1962
 msgid "Extreme Cooling aid"
-msgstr "Assistance au refroidissement intense "
+msgstr "Assistance au refroidissement intense"
 
 #: map/item_specs.lua:1966
 msgid "When you want something frozen solid, this is what you need. It can keep you cool even inside a class M star."
@@ -1704,11 +1704,11 @@ msgstr "Canard en plastique"
 
 #: map/item_specs.lua:2273
 msgid "It appears that humans enjoy bathing with squeaky little pieces of plastic shaped like waterfowl. As a penguinoid, you should probably be disturbed, but you have to admit this thing is actually quite adorable."
-msgstr "Il semble que les humains aiment à se baigner avec de petits morceaux de plastiques grinçant en forme d'oiseau aquatique. En tant que pingouinoïde, tu dois trouver cette pratique inquiétante, mais tu peux quand même avouer que cette chose est vraiment adorable.  "
+msgstr "Il semble que les humains aiment à se baigner avec de petits morceaux de plastiques grinçant en forme d'oiseau aquatique. En tant que pingouinoïde, tu dois trouver cette pratique inquiétante, mais tu peux quand même avouer que cette chose est vraiment adorable."
 
 #: map/item_specs.lua:2280
 msgid "Empty Picnic Basket"
-msgstr "Panier Pique-nique Vide "
+msgstr "Panier Pique-nique Vide"
 
 #: map/item_specs.lua:2284
 msgid "This is the latest in 'Dr. How?'-brand picnic basket technology! With patented food-preserving time-dilation, space-bending miniaturization, and anti-gravity, your food stays fresh and your drinks stay cold in a small light-as-a-feather package! Now you can picnic the old fashioned way! Batteries sold separately."
@@ -1716,11 +1716,11 @@ msgstr "Voici le tout dernier panier pique-nique de la marque 'Dr. How ?' ! Avec
 
 #: map/item_specs.lua:2291
 msgid "Lunch in a Picnic Basket"
-msgstr "Panier Pique-nique contenant un repas "
+msgstr "Panier Pique-nique contenant un repas"
 
 #: map/item_specs.lua:2295
 msgid "This is a 'Dr. How?'-brand picnic basket stuffed full of enough food and drinks to feed a dozen people. With 'Dr. How?'-time dilation, the food keeps oven-fresh, and the drinks stay ice-cold."
-msgstr "Un panier pique-nique de la marque 'Dr. How ?' rempli de suffisamment de nourriture et de boisson pour une douzaine de personnes. Avec la technologie de dilatation temporelle du 'Dr. How ?', la nourriture reste fraîche et les boissons glacées. "
+msgstr "Un panier pique-nique de la marque 'Dr. How ?' rempli de suffisamment de nourriture et de boisson pour une douzaine de personnes. Avec la technologie de dilatation temporelle du 'Dr. How ?', la nourriture reste fraîche et les boissons glacées."
 
 #: map/item_specs.lua:2302
 msgid "MS Stock Certificate"
@@ -1752,7 +1752,7 @@ msgstr "Pointes de Tungsten"
 
 #: map/item_specs.lua:2343
 msgid "This polycarbonate surface is lined with hard tungsten spikes, and can be installed into a mechanical socket on most melee weapons, offering a simple and affordable solution to increasing damage dealt. Handle only with gloves. Do not attempt to use as footwear. Do not attempt to eat."
-msgstr "Cette surface de polycarbonate est truffée de dures pointes de tungstène, et peut être montée dans un connecteur mécanique de la plupart des armes, solution simple et abordable pour augmenter les dégâts causés. À ne manipuler qu'avec des gants. Ne pas tenter de les chausser aux pieds. Ne pas tenter de l'ingérer. "
+msgstr "Cette surface de polycarbonate est truffée de dures pointes de tungstène, et peut être montée dans un connecteur mécanique de la plupart des armes, solution simple et abordable pour augmenter les dégâts causés. À ne manipuler qu'avec des gants. Ne pas tenter de les chausser aux pieds. Ne pas tenter de l'ingérer."
 
 #: map/item_specs.lua:2350
 msgid "Tinfoil Patch"
@@ -1812,7 +1812,7 @@ msgstr "Installé sur une arme de mêlée, ce génial dispositif envoie un petit
 
 #: map/item_specs.lua:2427
 msgid "Silencer"
-msgstr "Silencieux "
+msgstr "Silencieux"
 
 #: map/item_specs.lua:2431
 msgid "Allowing you to catch yours enemies by surprise, this silencer helps you to do more damage in ranged combat."
@@ -1820,7 +1820,7 @@ msgstr "Vous permettant de prendre vos ennemis par surprise, ce silencieux augme
 
 #: map/item_specs.lua:2438
 msgid "Coprocessor"
-msgstr "Coprocesseur "
+msgstr "Coprocesseur"
 
 #: map/item_specs.lua:2442
 msgid "By speeding up your computations, this chip helps you to excel in many activities."
@@ -1836,7 +1836,7 @@ msgstr "Un appareil améliorant votre dextérité de déplacement en ajoutant un
 
 #: map/item_specs.lua:2460
 msgid "Foot Warmers"
-msgstr "Chaufferette de pieds "
+msgstr "Chaufferette de pieds"
 
 #: map/item_specs.lua:2464
 msgid "This pair of electric fuzzy foot warmers would make even a penguin warm and comfortable in any shoes, and help maintain a healthy body temperature, thus preventing colds and making you look cool. At least, that's what the advertisement says. And ads don't lie, do they?"
@@ -1868,11 +1868,11 @@ msgstr "Attachée à votre casque, cette lampe vous permet de mieux voir dans le
 
 #: map/item_specs.lua:2504
 msgid "Brain Stimulator"
-msgstr "Stimulateur cérébrale "
+msgstr "Stimulateur cérébrale"
 
 #: map/item_specs.lua:2508
 msgid "A chip that allows faster learning by connecting directly to the brain via a neural interface (colloquially referred to as a 'weird swim cap with little thingies on it') and providing additional feedback on various actions."
-msgstr "Une puce qui vous permet d'apprendre plus vite n se connectant directement au cerveau via une interface neurale (trivialement appelé \"machin flottant avec des petits bitonios dessus)  et qui apporte plus de retours sur des actions diverses. "
+msgstr "Une puce qui vous permet d'apprendre plus vite n se connectant directement au cerveau via une interface neurale (trivialement appelé \"machin flottant avec des petits bitonios dessus)  et qui apporte plus de retours sur des actions diverses."
 
 #: map/item_specs.lua:2519
 msgid "NPC Hand to Hand Weapon"
@@ -1977,7 +1977,7 @@ msgstr "Une enveloppe disant 'PC LOAD LETTERS'. Je n'ai aucune idée de ce que c
 
 #: map/item_specs.lua:2956
 msgid "Cheat Gun"
-msgstr "Arme truquée  "
+msgstr "Arme truquée"
 
 #: map/item_specs.lua:2971
 msgid "This item is used by testers. If you find it ingame without using a cheat, please report it as a bug."
@@ -2017,7 +2017,7 @@ msgstr "La ville"
 
 #: map/levels.dat:3717
 msgid "Armory of the Red Guard."
-msgstr "Armerie de la Garde Rouge "
+msgstr "Armerie de la Garde Rouge"
 
 #: map/levels.dat:3720
 msgid "Bonjour - need some cure?"
@@ -2025,11 +2025,11 @@ msgstr "Hello - Besoin d'être soigné ?"
 
 #: map/levels.dat:3723
 msgid "Office - this way."
-msgstr "Bureau - Par là "
+msgstr "Bureau - Par là"
 
 #: map/levels.dat:3726
 msgid "Unauthorized access is strictly forbidden!"
-msgstr "Accès strictement interdit (sauf personnel autorisé) "
+msgstr "Accès strictement interdit (sauf personnel autorisé)"
 
 #: map/levels.dat:3732
 msgid "Teleporter. Go anywhere?"
@@ -2053,7 +2053,7 @@ msgstr "Salle de Contrôle du Pont des Machines"
 
 #: map/levels.dat:6890 map/levels.dat:9172
 msgid "Disruptor Shield Control"
-msgstr "Contrôle du Bouclier Disrupteur "
+msgstr "Contrôle du Bouclier Disrupteur"
 
 #: map/levels.dat:8409
 msgid "Maintenance Tunnels"
@@ -2078,11 +2078,11 @@ msgstr "Champs de cristaux"
 #: map/levels.dat:12650 map/levels.dat:39094 map/levels.dat:39448
 #: map/levels.dat:39848
 msgid "Desert Valley"
-msgstr "Vallée Déserte  "
+msgstr "Vallée Déserte"
 
 #: map/levels.dat:13132
 msgid "Slasher Mountains"
-msgstr "Montagne des Taillandiers "
+msgstr "Montagne des Taillandiers"
 
 #: map/levels.dat:14316
 msgid "Cryo Stasis Lab"
@@ -2090,11 +2090,11 @@ msgstr "Laboratoire de Cryo-stase"
 
 #: map/levels.dat:16710
 msgid "Three Fermis Land"
-msgstr "Tetracastin  "
+msgstr "Tetracastin"
 
 #: map/levels.dat:17320
 msgid "In case of panic: run!"
-msgstr "En cas d'Urgence :  Fuyez "
+msgstr "En cas d'Urgence :  Fuyez"
 
 #: map/levels.dat:17445
 msgid "Scientists quarters and Telemetry"
@@ -2106,7 +2106,7 @@ msgstr "Tunnel d' Accès à la Base de Disruption"
 
 #: map/levels.dat:20019
 msgid "Terminal Shore"
-msgstr "presqu'île "
+msgstr "presqu'île"
 
 #: map/levels.dat:20906
 msgid "Ethereal Meadows"
@@ -2151,7 +2151,7 @@ msgstr "Divers Sanctuaires"
 
 #: map/levels.dat:29301
 msgid "Storage room"
-msgstr "Débaras "
+msgstr "Débaras"
 
 #: map/levels.dat:29304
 msgid "Warning: Hot steam is hot!"
@@ -2163,7 +2163,7 @@ msgstr "Danger ! Haut voltage !"
 
 #: map/levels.dat:29457
 msgid "Arena"
-msgstr "Arène "
+msgstr "Arène"
 
 #: map/levels.dat:30091
 msgid "Master Arena"
@@ -2171,11 +2171,11 @@ msgstr "Arène des experts"
 
 #: map/levels.dat:30309
 msgid "Hell Fortress Entrance"
-msgstr "Entrée de la Forteresse de l'Enfer "
+msgstr "Entrée de la Forteresse de l'Enfer"
 
 #: map/levels.dat:33245
 msgid "Upgrade distribution server room. Access restricted to authorized personnel - trespassers will be fired."
-msgstr "Salle serveur de diffusion des mises à jour. Accès restreint au personnel autorisé - toute intrusion sera punie. "
+msgstr "Salle serveur de diffusion des mises à jour. Accès restreint au personnel autorisé - toute intrusion sera punie."
 
 #: map/levels.dat:33248
 msgid "Please close the door behind you."
@@ -2279,7 +2279,7 @@ msgstr "Johns Riddle"
 
 #: map/levels.dat:33740
 msgid "Looking from above, hostiles may appear as salvation."
-msgstr "Vue d'assez loin, l'hostilité peut ressembler au salut. "
+msgstr "Vue d'assez loin, l'hostilité peut ressembler au salut."
 
 #: map/levels.dat:33782
 msgid "Crystal Caves"
@@ -2307,7 +2307,7 @@ msgstr "Tunnels de service de la zone secrète."
 
 #: map/levels.dat:38048
 msgid "Tutorial"
-msgstr "Tutoriel "
+msgstr "Tutoriel"
 
 #: map/levels.dat:38968
 msgid "Welcome to FreedroidRPG!"
@@ -2326,7 +2326,7 @@ msgstr "Vieux complexe à l'abandon"
 
 #: map/levels.dat:41187
 msgid "Worker Mines Entrance"
-msgstr "Entrée des mineurs "
+msgstr "Entrée des mineurs"
 
 #: map/levels.dat:41923 map/levels.dat:42278
 msgid "Southern Shorline"
@@ -2422,19 +2422,19 @@ msgstr "Gare de Fret"
 
 #: map/levels.dat:58214
 msgid "Old Server Room"
-msgstr "Vielles Salle des Serveur "
+msgstr "Vielles Salle des Serveur"
 
 #: map/levels.dat:59130
 msgid "Factory Office"
-msgstr "Bureau de l'Usine "
+msgstr "Bureau de l'Usine"
 
 #: map/levels.dat:62916
 msgid "Strange Dungeon"
-msgstr "Drôle de Dongeon "
+msgstr "Drôle de Dongeon"
 
 #: map/levels.dat:63540
 msgid "Landing Zone"
-msgstr "Piste d'Atterrissage "
+msgstr "Piste d'Atterrissage"
 
 #: map/levels.dat:65634
 msgid "Shelter"
@@ -2466,7 +2466,7 @@ msgstr "< (clignotant)"
 
 #: map/levels.dat:66703
 msgid "Empty Sea"
-msgstr "Mer asséchée "
+msgstr "Mer asséchée"
 
 #: map/levels.dat:66865
 msgid "Omega Island"
@@ -2554,7 +2554,7 @@ msgstr "Kevin - Hackeur"
 
 #: map/npc_specs.lua:47
 msgid "Karol - Shop owner"
-msgstr "Carole - Comercente "
+msgstr "Carole - Comercente"
 
 #: map/npc_specs.lua:50
 msgid "Jasmine"
@@ -2570,7 +2570,7 @@ msgstr "Iris"
 
 #: map/npc_specs.lua:51
 msgid "Iris - bot hunter"
-msgstr "Iris - chasseuse de robots "
+msgstr "Iris - chasseuse de robots"
 
 #: map/npc_specs.lua:55
 msgid "Geist - Hunter"
@@ -2631,17 +2631,17 @@ msgstr "Arthur"
 
 #: map/npc_specs.lua:78
 msgid "Arthur - Game developer"
-msgstr "Arthur - Concepteur de Jeux  "
+msgstr "Arthur - Concepteur de Jeux"
 
 #: map/npc_specs.lua:80
 msgid "614 - Cryo Lab Guard Bot"
-msgstr "614 - Robot gardien du labo de cryogennie "
+msgstr "614 - Robot gardien du labo de cryogennie"
 
 #: map/obstacle_specs.lua:233 map/obstacle_specs.lua:243
 #: map/obstacle_specs.lua:2597 map/obstacle_specs.lua:2607
 #: map/obstacle_specs.lua:2631 map/obstacle_specs.lua:2641
 msgid "Chest"
-msgstr "Coffre "
+msgstr "Coffre"
 
 #: map/obstacle_specs.lua:350 map/obstacle_specs.lua:359
 #: map/obstacle_specs.lua:368 map/obstacle_specs.lua:377
@@ -2652,7 +2652,7 @@ msgstr "Terminal"
 
 #: map/obstacle_specs.lua:404 map/obstacle_specs.lua:413
 msgid "Barrel"
-msgstr "Tonnau "
+msgstr "Tonnau"
 
 #: map/obstacle_specs.lua:422 map/obstacle_specs.lua:431
 #: map/obstacle_specs.lua:2837
@@ -2680,19 +2680,19 @@ msgstr "Caisse d'Armement"
 #: map/obstacle_specs.lua:3210 map/obstacle_specs.lua:3220
 #: map/obstacle_specs.lua:3230 map/obstacle_specs.lua:3240
 msgid "Vending Machine"
-msgstr "Distributeur Automatique "
+msgstr "Distributeur Automatique"
 
 #: map/obstacle_specs.lua:3275 map/obstacle_specs.lua:3292
 #: map/obstacle_specs.lua:3309 map/obstacle_specs.lua:3326
 #: map/obstacle_specs.lua:3343 map/obstacle_specs.lua:3360
 #: map/obstacle_specs.lua:3377 map/obstacle_specs.lua:3394
 msgid "Bookshelf"
-msgstr "Etagère "
+msgstr "Etagère"
 
 #: map/obstacle_specs.lua:3426 map/obstacle_specs.lua:3435
 #: map/obstacle_specs.lua:3444 map/obstacle_specs.lua:3453
 msgid "Statue"
-msgstr "Statue "
+msgstr "Statue"
 
 #: map/obstacle_specs.lua:3482 map/obstacle_specs.lua:3492
 #: map/obstacle_specs.lua:3502 map/obstacle_specs.lua:3511
@@ -2705,7 +2705,7 @@ msgstr "Le problème de Bender"
 
 #: map/quests.dat:43
 msgid "The yellow toolkit"
-msgstr "La boite à outil jaune. "
+msgstr "La boite à outil jaune."
 
 #: map/quests.dat:60
 msgid "Anything but the army snacks, please!"
@@ -2745,7 +2745,7 @@ msgstr "Et la lumière fût…"
 
 #: map/quests.dat:100
 msgid "Hope everything is back to normal now. I better go check with Kevin."
-msgstr "J'espère que tout es revenu à la normale maintenant. Je ferais mieux d'aller voir avec Kevin. "
+msgstr "J'espère que tout es revenu à la normale maintenant. Je ferais mieux d'aller voir avec Kevin."
 
 #: map/quests.dat:101
 msgid "All hostiles on level disabled."
@@ -2837,11 +2837,11 @@ msgstr "Un étrange voleur en ville."
 
 #: map/quests.dat:225
 msgid "Deliverance"
-msgstr "Livraison "
+msgstr "Livraison"
 
 #: map/quests.dat:232
 msgid "Gapes Gluttony"
-msgstr "Aboies Goulument "
+msgstr "Aboies Goulument"
 
 #: map/quests.dat:239
 msgid "Tutorial Upgrading Items"
@@ -2869,7 +2869,7 @@ msgstr "Non seulement la ville est sauve, mais apparemment le droid 296 d' Ewald
 
 #: map/quests.dat:264
 msgid "Open Sesame"
-msgstr "Sésame ouvres-toi "
+msgstr "Sésame ouvres-toi"
 
 #: map/quests.dat:271
 msgid "Jennifer's Toolbox"
@@ -2889,7 +2889,7 @@ msgstr "24_guy_death_quest"
 
 #: map/ReturnOfTux.droids:4
 msgid "Hot Girl"
-msgstr "Chaudasse "
+msgstr "Chaudasse"
 
 #: map/ReturnOfTux.droids:5
 msgid "Peter - Imprisoned Rebel"
@@ -2903,9 +2903,10 @@ msgstr "Bibliothécaire"
 msgid "Barkeeper"
 msgstr "Tenancier de bar"
 
-#: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
-#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
-#: map/ReturnOfTux.droids:30 map/ReturnOfTux.droids:32
+#: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11
+#: map/ReturnOfTux.droids:13 map/ReturnOfTux.droids:17
+#: map/ReturnOfTux.droids:18 map/ReturnOfTux.droids:30
+#: map/ReturnOfTux.droids:32
 msgid "Red Guard Member"
 msgstr "Membre de la Garde Rouge"
 
@@ -2919,7 +2920,7 @@ msgstr "Baptiste - Chef de la Garde Rouge"
 
 #: map/ReturnOfTux.droids:14
 msgid "Sketchy Guy"
-msgstr "Mec banal "
+msgstr "Mec banal"
 
 #: map/ReturnOfTux.droids:15
 msgid "Guy with Hat"
@@ -2947,7 +2948,7 @@ msgstr "614 - Robot gardien de la porte nord"
 
 #: map/ReturnOfTux.droids:26
 msgid "COBAL Programmer"
-msgstr "Programmeur COBOL "
+msgstr "Programmeur COBOL"
 
 #: map/ReturnOfTux.droids:27 map/ReturnOfTux.droids:466
 msgid "Shopowner"
@@ -3021,7 +3022,7 @@ msgstr "614 -- Robot amical"
 
 #: map/ReturnOfTux.droids:130
 msgid "Old Guy"
-msgstr "Vieux mec "
+msgstr "Vieux mec"
 
 #: map/ReturnOfTux.droids:136
 msgid "Friendly 296"
@@ -3038,7 +3039,7 @@ msgstr "Tondeuse"
 
 #: map/ReturnOfTux.droids:166
 msgid "Cute Girl"
-msgstr "Mignonette "
+msgstr "Mignonette"
 
 #: map/ReturnOfTux.droids:167
 msgid "Kevin"
@@ -3086,7 +3087,7 @@ msgstr "JET'AIME"
 
 #: map/ReturnOfTux.droids:307
 msgid "Fail-safe"
-msgstr "Mode Sans Echec "
+msgstr "Mode Sans Echec"
 
 #: map/ReturnOfTux.droids:308
 msgid "CIH.1103"
@@ -3094,7 +3095,7 @@ msgstr "CIH.1103"
 
 #: map/ReturnOfTux.droids:314
 msgid "MSDD - MegaSys Defence Droid"
-msgstr "DDMS - Droïd de Défance de MégaSys "
+msgstr "DDMS - Droïd de Défance de MégaSys"
 
 #: map/ReturnOfTux.droids:315 map/ReturnOfTux.droids:316
 #: map/ReturnOfTux.droids:317 map/ReturnOfTux.droids:318
@@ -3114,19 +3115,19 @@ msgstr "DDAS"
 
 #: map/ReturnOfTux.droids:347
 msgid "Toilet droid"
-msgstr "Toilette robotisé "
+msgstr "Toilette robotisé"
 
 #: map/ReturnOfTux.droids:348
 msgid "Sanitary technician"
-msgstr "Technicien hygieniste "
+msgstr "Technicien hygieniste"
 
 #: map/ReturnOfTux.droids:349
 msgid "Criocapsules maintainer"
-msgstr "Mainteneur de Criocapsules "
+msgstr "Mainteneur de Criocapsules"
 
 #: map/ReturnOfTux.droids:350
 msgid "Servant"
-msgstr "Servant "
+msgstr "Servant"
 
 #: map/ReturnOfTux.droids:351 map/ReturnOfTux.droids:352
 #: map/ReturnOfTux.droids:353 map/ReturnOfTux.droids:355
@@ -3147,7 +3148,7 @@ msgstr "Scientifque"
 
 #: map/ReturnOfTux.droids:361
 msgid "Hostile Droid"
-msgstr "Droïd hostile "
+msgstr "Droïd hostile"
 
 #: map/ReturnOfTux.droids:372 map/ReturnOfTux.droids:373
 #: map/ReturnOfTux.droids:374 map/ReturnOfTux.droids:375
@@ -3310,7 +3311,7 @@ msgstr "Avec un peu de connaissance, tu peux extraire des pièces utiles des rob
 
 #: map/skill_specs.lua:200
 msgid "Network Mapper"
-msgstr "Générateur "
+msgstr "Générateur"
 
 #: map/skill_specs.lua:210
 msgid "Light"
