@@ -1,0 +1,56 @@
+Generating an ICO file using gimp
+=================================
+
+Ref: http://stackoverflow.com/questions/4354617/how-to-make-get-a-multi-size-ico-file/10819673#10819673
+
+Windows ICO files can be generated using GIMP following the steps
+given. Basic outline is to create an image file in gimp using
+successive layers. When exported to file, each layer of the image
+represents ICO size in windows.
+
+Prerequisites:
+- ensure you are starting from an image that can be scaled from
+256px^2 to 16px^2. A square SVG format image would be best.
+
+- A square source image makes this process painless. If not, you
+will be forced to spend extra time cropping each successive added
+layer.
+
+Steps to follow...
+- start gimp
+- create new file in gimp setting the canvas size to 256px X 256px
+
+- select file->open as layer...
+- navigate to image file (if SVG, enter 256px for image size)
+--> This becomes the "Very Large icon in Windows"
+- rename the layer - 256px
+- select Layer->Layer Boundry Size...
+--> Set Layer BOundry Size dialog opens
+- In dialog, enter the pixel value you want (256px). Select "Center"
+button. Adjust "Offset" to suit (but square images makes this
+unnecessary). Select "Resize"
+--> dialog closes and adjust layer presented.
+
+- repeat the last five steps until you have the following layers:
+256px
+128px
+64px ( qty 2)
+48px ( qty 2)
+32px ( qty 3)
+16px ( qty 3)
+
+- select file->Export...
+- Navigate to where file is to be placed
+- ensure filename has ".ico" extension <-- !IMPORTANT
+- click "Okay"
+-> gimp will open an "Export .ico" dialog. You can then
+adjust the bpp and image compression for each layer in the file.
+
+NOTE: For icon file attached to RR..
+compression and 32bpp selected for 256px/128px
+24bpp selected for first layer of other sizes (64,48,32 and 16px)
+(it just looks better than 32bpp)
+8bpp selected for second layer of other sizes (32 and 16px)
+4bpp selected for third layer of other sizes (32 and 16px)
+
+AND YOU HAVE SHINEY NEW .ICO FILE!!!!
