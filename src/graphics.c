@@ -578,9 +578,9 @@ static void check_open_gl_libraries_present(void)
  * and that seem to be occurring so frequently are not coming from this 
  * chunk of code.
  */
+#ifdef HAVE_LIBGL
 static void show_open_gl_driver_info(void)
 {
-#ifdef HAVE_LIBGL
 	// Since we want to use openGl, it might be good to check the OpenGL vendor string
 	// provided by the graphics driver.  Let's see...
 	//
@@ -594,19 +594,17 @@ static void show_open_gl_driver_info(void)
 	fprintf(stderr, "\nExtensions : %s", glGetString(GL_EXTENSIONS));
 	open_gl_check_error_status(__FUNCTION__);
 	fprintf(stderr, "\n\n");
+}
 #endif
-};				// void safely_show_open_gl_driver_info ( void )
 
 /**
  * This function sets the OpenGL double buffering attribute.  We do this
  * in a separate function, so that eventual errors (and bug reports) from
  * the OpenGL error checking can be attributed to a source more easily.
  */
+#ifdef HAVE_LIBGL
 static void set_double_buffering_attribute(void)
 {
-
-#ifdef HAVE_LIBGL
-
 	if (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1)) {
 		error_message(__FUNCTION__, "\
 Unable to set SDL_GL_DOUBLEBUFFER attribute!", PLEASE_INFORM | IS_FATAL);
@@ -616,10 +614,8 @@ Unable to set SDL_GL_DOUBLEBUFFER attribute!", PLEASE_INFORM | IS_FATAL);
 	// check.  So better refrain from OpenGL error checking here...
 	//
 	// open_gl_check_error_status ( __FUNCTION__ );
-
+}
 #endif
-
-};				// void safely_set_double_buffering_attribute ( void )
 
 /**
  * This function is supposed to set the video mode in the case that 
@@ -632,6 +628,7 @@ Unable to set SDL_GL_DOUBLEBUFFER attribute!", PLEASE_INFORM | IS_FATAL);
 static void set_video_mode_for_open_gl(void)
 {
 #ifdef HAVE_LIBGL
+
 	Uint32 video_flags = 0;	// flags for SDL video mode 
 	int video_mode_ok_check_result;
 	int buffer_size, depth_size, red_size, green_size, blue_size, alpha_size;
@@ -742,10 +739,8 @@ static void set_video_mode_for_open_gl(void)
 	our_SDL_flip_wrapper();
 	clear_screen();
 	our_SDL_flip_wrapper();
-
-#endif				// HAVE_LIBGL
-
-};				// void set_video_mode_for_open_gl ( void )
+#endif
+}
 
 /**
  * This function initialises the video display and opens up a 

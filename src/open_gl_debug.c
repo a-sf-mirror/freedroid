@@ -34,7 +34,12 @@
 #include "global.h"
 #include "proto.h"
 
-#ifdef HAVE_LIBGL
+// For a not yet known reason, init_opengl_debug() crashes on some Win10
+// computers (observed on 64b systems with NVidia GPU).
+// Further test is needed to solve that issue.
+
+#if defined(HAVE_LIBGL) && (!defined __WIN32__)
+
 // Copy-paste of glext.h because SDL's is outdated
 #ifndef GL_KHR_debug
 #define GL_DEBUG_OUTPUT_SYNCHRONOUS       0x8242
@@ -150,6 +155,7 @@ static struct debug_flag *find_debug_flag(GLenum value)
 	}
 	return NULL;
 }
+
 static void gl_debug_callback(GLenum source, GLenum type, GLuint id,
 							GLenum severity, GLsizei length, const GLchar* message,
 							GLvoid* userParam)
@@ -198,7 +204,6 @@ static void gl_debug_callback(GLenum source, GLenum type, GLuint id,
 
 	free_autostr(msg);
 }
-#endif // HAVE_LIBGL
 
 /**
  * Initialize and enabled the OpenGL debug features.
@@ -206,10 +211,6 @@ static void gl_debug_callback(GLenum source, GLenum type, GLuint id,
  */
 int init_opengl_debug(void)
 {
-	// For a not yet known reason, the following code crashes on some Win10
-	// computers (observed on 64b systems with NVidia GPU).
-	// Further test is needed to solve that issue.
-#if defined(HAVE_LIBGL) && (!defined __WIN32__)
 	/* Check if KHR_debug is available */
 	const char *extensions = (const char*)glGetString(GL_EXTENSIONS);
 	if (!strstr(extensions, "GL_KHR_debug")) {
@@ -232,10 +233,16 @@ int init_opengl_debug(void)
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
 
 	return 0;
-#else
-	return 1;
-#endif
 }
+
+#else // defined(HAVE_LIBGL) && (!defined __WIN32__)
+
+int init_opengl_debug(void)
+{
+	return 1;
+}
+
+#endif // defined(HAVE_LIBGL) && (!defined __WIN32__)
 
 /**
  * This function checks the error status of the OpenGL driver.  An error

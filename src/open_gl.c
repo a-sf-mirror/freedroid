@@ -209,6 +209,7 @@ SDL_Surface *our_IMG_load_wrapper(const char *file)
  * the surface, so that the dimensions will reach the next biggest power
  * of two in both directions, width and length.
  */
+#ifdef HAVE_LIBGL
 static SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
 {
 	int x = 1;
@@ -233,15 +234,15 @@ static SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
 
 	return padded_surf;
 }
+#endif
 
 /**
  * If OpenGL is in use, we need to make textured quads out of our normal
  * SDL surfaces.
  */
+#ifdef HAVE_LIBGL
 static void do_make_texture_out_of_surface(struct image * our_image, int txw, int txh, void *data)
 {
-
-#ifdef HAVE_LIBGL
 	// Stop any image batch being constructed, if relevant
 	end_image_batch();
 
@@ -270,14 +271,12 @@ static void do_make_texture_out_of_surface(struct image * our_image, int txw, in
 	our_image->tex_y1 = 1.0;
 
 	open_gl_check_error_status(__FUNCTION__);
-
+}
 #endif
 
-}
 
 void make_texture_out_of_surface(struct image * our_image)
 {
-
 #ifdef HAVE_LIBGL
 
 	SDL_Surface *right_sized_image;
@@ -304,7 +303,6 @@ void make_texture_out_of_surface(struct image * our_image)
 	our_image->surface = NULL;
 
 #endif
-
 }
 
 /**
@@ -315,7 +313,6 @@ void make_texture_out_of_surface(struct image * our_image)
  */
 void safely_set_open_gl_viewport_and_matrix_mode(void)
 {
-
 #ifdef HAVE_LIBGL
 
 	glViewport(0, 0, GameConfig.screen_width, GameConfig.screen_height);
@@ -327,8 +324,7 @@ void safely_set_open_gl_viewport_and_matrix_mode(void)
 	open_gl_check_error_status(__FUNCTION__);
 
 #endif
-
-};				// void safely_set_open_gl_viewport_and_matrix_mode ( void )
+}
 
 /**
  * This function does the second part of the OpenGL parameter 
@@ -338,7 +334,6 @@ void safely_set_open_gl_viewport_and_matrix_mode(void)
  */
 void safely_set_some_open_gl_flags_and_shade_model(void)
 {
-
 #ifdef HAVE_LIBGL
 
 	glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -358,8 +353,7 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 	open_gl_check_error_status(__FUNCTION__);
 
 #endif
-
-};				// void safely_set_some_open_gl_flags_and_shade_model ( void )
+}
 
 /**
  * Initialize the OpenGL interface.

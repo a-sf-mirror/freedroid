@@ -48,7 +48,9 @@ static float requested_color[4];
 // Do we want to draw as a batch? (ie. not emit glBegin/glEnd pairs every time)
 static int batch_draw = FALSE;
 
+#ifdef HAVE_LIBGL
 static struct dynarray *vtx;
+#endif
 
 /**
  * Start rendering images as a batch.
@@ -225,6 +227,8 @@ static inline void gl_repeat_quad(int x0, int y0, int w, int h, float tx0, float
  */
 static void gl_display_image(struct image *img, int x0, int y0, struct image_transformation *t)
 {
+#ifdef HAVE_LIBGL
+
 	// If the image is empty, don't do anything
 	if (!img->texture)
 		return;
@@ -236,7 +240,6 @@ static void gl_display_image(struct image *img, int x0, int y0, struct image_tra
 	int xmax = x + img->w * t->scale_x;
 	int ymax = y + img->h * t->scale_y;
 
-#ifdef HAVE_LIBGL
 	// Bind the texture if required
 	if (img->texture != active_tex) {
 		gl_emit_quads();
