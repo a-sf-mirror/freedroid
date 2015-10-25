@@ -109,7 +109,7 @@ dist-macosx: src/freedroidRPG
 	mkdir -p $(macosx_dir)/Contents/MacOS
 	mkdir -p $(macosx_dir)/Contents/Resources
 	mkdir -p $(macosx_dir)/Contents/Frameworks
-	cp macosx/app.icns $(macosx_dir)/Contents/Resources/Icon.icns
+	cp macosx/Icon.icns $(macosx_dir)/Contents/Resources/Icon.icns
 	cp src/freedroidRPG $(macosx_dir)/Contents/MacOS
 	sed -e "s/__#PROGNAME#__/$(PACKAGE_NAME)/" -e "s/__#VERSION#__/$(PACKAGE_VERSION)/" macosx/Info.plist.in > $(macosx_dir)/Contents/Info.plist
 	echo "APPL????" > $(macosx_dir)/Contents/PkgInfo
