@@ -91,7 +91,39 @@ static int autostr_vprintf(struct auto_string *str, unsigned long offset,
 
 	}
 	va_copy(tmp_args, args);
+
+	// We expect a C99 compliant implementation on vsnprintf. When built with
+	// NLS, we also need an implementation that understands the '$' in the
+	// format string.
+	// The gnulib implementation has all of this.
+	//
+	// Issue arises on win32:
+	//
+	// On non-gnulib-based system, libintl is used, redefining vsnprintf() to
+	// libintl_vsnprintf(), which provides its own code to handle the '$' in
+	// format string. If no '$' is found, libintl_vsnprintf() calls the libc's
+	// vsnprintf().
+	//
+	// With mingw, depending on how the libintl was built, the vsnprintf() used
+	// in libintl_vsnprintf() will be replaced by mingw's own implementation
+	// (if build with -D_POSIX_C_SOURCE) or by the MS implementation (which is
+	// not C99 compliant).
+	//
+	// As a result, on Linux or MacOS, vsnprintf() can be used without issues.
+	// With mingw, well, it depends... To ensure that it works no matter how
+	// mingw was built, we call internal implementations by hand. Hack !!!!
+	//
+	// Note: with mingw, we *have* to build with _POSIX_C_SOURCE=1
+
+#if defined(ENABLE_NLS) && defined(USE_LIBINTL) && __MINGW32__
+	if (strchr(fmt, '$') == NULL)
+		nr = __mingw_vsnprintf(str->value + offset, size, fmt, tmp_args);
+	else
+		nr = libintl_vsnprintf(str->value + offset, size, fmt, tmp_args);
+#else
 	nr = vsnprintf(str->value + offset, size, fmt, tmp_args);
+#endif
+
 	va_end(tmp_args);
 
 	if (nr < 0) {

@@ -97,11 +97,12 @@ dnl 	[CFLAGS="$CFLAGS $X_CFLAGS"]
 dnl )
 
 AS_CASE([$target],
-	[*-*-cygwin* | *-*-mingw32*],
+	[*-*-mingw32*],
 		[
-			AS_VAR_APPEND([FD_CPPFLAGS], [" -DFD_DATADIR='\".\"'"])
+			AS_VAR_APPEND([FD_CPPFLAGS], [" -DFD_DATADIR='\".\"' -D_POSIX_C_SOURCE=1"])
 			default_open_cmd="notepad"
 			win32="true"
+			libintl_checked="yes"
 		],
 	[*darwin*],
 		[
@@ -129,6 +130,11 @@ AM_CONDITIONAL([NONLINUX], [test "x$macosx" = "xtrue" -o "x$win32" = "xtrue"])
 
 AS_VAR_IF([open_cmd], [], [open_cmd=$default_open_cmd])
 AC_DEFINE_UNQUOTED([OPENTXT_CMD], ["$open_cmd"], [Set to the command to use to display a text file])
+
+AS_VAR_IF([LIBINTL], [],
+	[],
+	[AC_DEFINE([USE_LIBINTL], [1], [GNU gettext is in libintl (instead of libc)])]
+)
 
 dnl Checks for libraries.
 
@@ -483,6 +489,22 @@ AS_ECHO(["
 
 AS_VAR_IF([cross_compiling], [yes],
 	[AS_ECHO(["	cross-compiling detected, so will not build some subdirs"])]
+)
+
+AS_IF([test "x$LIBINTL" != x -a "x$libintl_checked" != "xyes"],
+	[
+		AS_ECHO([])
+		AS_ECHO([])
+		AS_BOX([!!! WARNING!!!])
+		AS_ECHO(["
+	On your system, gettext is defined in an external libintl library.
+	We can not ensure that it behaves as we expect.
+	You could encounter some issues when saving and loading savegames.
+	Please contact us (see README), and tell us if it works or not on your system.
+	If it works, we will remove this warning for your system.
+	It if does not work, we will try to provide a workaround."
+		])
+	]
 )
 
 AS_ECHO([])
