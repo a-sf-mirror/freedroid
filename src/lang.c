@@ -32,8 +32,11 @@
 #include "proto.h"
 
 static struct codeset _default_codeset = { "_default_", "ASCII" };
+#ifdef ENABLE_NLS
 static char *_current_encoding = NULL;
+#endif
 
+#ifdef ENABLE_NLS
 /**
  * Extract the subforms of a locale, by removing the trailing codes one at a time.
  *
@@ -56,7 +59,7 @@ static char *_current_encoding = NULL;
  * \return A pointer to the current subform of the locale. On first call, returns the whole locale.
  *         When no more parts have to be extracted, returns NULL.
  */
-char *lang_extract_next_subform(const char *locale, char **next_tokens)
+static char *lang_extract_next_subform(const char *locale, char **next_tokens)
 {
 	static char *tokens = "@._";
 	static char *extract = NULL;
@@ -83,6 +86,7 @@ char *lang_extract_next_subform(const char *locale, char **next_tokens)
 	free(extract);
 	return NULL;
 }
+#endif
 
 /**
  * Set the locale used by the game for text translation.
