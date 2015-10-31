@@ -60,7 +60,9 @@ void start_image_batch()
 	batch_draw = TRUE;
 }
 
+#ifdef HAVE_LIBGL
 static void gl_emit_quads(void);
+#endif
 
 /**
  * End the image batch.
@@ -70,14 +72,16 @@ void end_image_batch()
 	batch_draw = FALSE;
 	active_tex = -1;
 
+#ifdef HAVE_LIBGL
 	gl_emit_quads();
+#endif
 
 	requested_color[0] = -1;
 }
 
+#ifdef HAVE_LIBGL
 static void gl_emit_quads(void)
 {
-#ifdef HAVE_LIBGL
 	if (vtx && vtx->size) {
 		glColor4fv(requested_color);
 
@@ -120,13 +124,12 @@ static void gl_emit_quads(void)
 
 		vtx->size = 0;
 	}
-#endif
 }
+#endif
 
+#ifdef HAVE_LIBGL
 static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, float ty0, float tx1, float ty1)
 {
-#ifdef HAVE_LIBGL
-
 	if (!vtx)
 		vtx = dynarray_alloc(16, 16 * sizeof(float));
 	
@@ -146,9 +149,10 @@ static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, floa
 	if (vtx->size >= MAX_QUADS) {
 		gl_emit_quads();
 	}
-#endif
 }
+#endif
 
+#ifdef HAVE_LIBGL
 static inline void gl_repeat_quad(int x0, int y0, int w, int h, float tx0, float ty0, float tx1, float ty1, float rx, float ry)
 {
 	int i, j;
@@ -216,7 +220,9 @@ static inline void gl_repeat_quad(int x0, int y0, int w, int h, float tx0, float
 			current_y1 += h;
 		}
 }
+#endif
 
+#ifdef HAVE_LIBGL
 /**
  * Draw an image in OpenGL mode.
  *
@@ -227,8 +233,6 @@ static inline void gl_repeat_quad(int x0, int y0, int w, int h, float tx0, float
  */
 static void gl_display_image(struct image *img, int x0, int y0, struct image_transformation *t)
 {
-#ifdef HAVE_LIBGL
-
 	// If the image is empty, don't do anything
 	if (!img->texture)
 		return;
@@ -281,9 +285,8 @@ static void gl_display_image(struct image *img, int x0, int y0, struct image_tra
 		gl_emit_quads();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
-
-#endif
 }
+#endif
 
 static struct SDL_Surface *repeatSurface(struct image *img, float rx, float ry)
 {
@@ -412,9 +415,12 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
  */
 void display_image_on_screen(struct image *img, int x, int y, struct image_transformation t)
 {
+#ifdef HAVE_LIBGL
 	if (use_open_gl)
 		gl_display_image(img, x, y, &t);
-	else sdl_display_image(img, x, y, &t);
+	else
+#endif
+		sdl_display_image(img, x, y, &t);
 }
 
 /**
@@ -560,6 +566,7 @@ IMAGE_FILE_FOUND:
 
 	load_image_surface(img, fpath, mod_flags);
 
+#ifdef HAVE_LIBGL
 	if (use_open_gl && (img->w > gl_max_texture_size || img->h > gl_max_texture_size)) {
 		error_message(__FUNCTION__, "Your system only supports %dx%d textures. Image %s is %dx%d and therefore cannot be used as an OpenGL texture.",
 				NO_REPORT, gl_max_texture_size, gl_max_texture_size, filename, img->w, img->h);
@@ -570,6 +577,7 @@ IMAGE_FILE_FOUND:
 		// Create the texture
 		make_texture_out_of_surface(img);
 	}
+#endif
 }
 
 /**
