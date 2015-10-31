@@ -19,6 +19,23 @@ AC_CONFIG_SRCDIR([INSTALL.freedroidRPG])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
+
+dnl Redefine some macros, to follow silent mode
+
+AC_DEFUN([SILENT_ECHO],
+	[AS_VAR_IF([silent], [yes],
+		[],
+		[AS_ECHO([$1])]
+	)]
+)
+
+AC_DEFUN([SILENT_BOX],
+	[AS_VAR_IF([silent], [yes],
+		[],
+		[AS_BOX([$1])]
+	)]
+)
+
 dnl Write #define config statements into 'config.h'
 
 AC_CONFIG_HEADERS([config.h])
@@ -73,7 +90,7 @@ AC_ARG_WITH(  [open-cmd],
 
 dnl Checks for programs.
 
-AS_BOX([Checking compulsory programs])
+SILENT_BOX([Checking compulsory programs])
 
 AC_PROG_CC
 XIPH_C_COMPILER_IS_CLANG
@@ -138,7 +155,7 @@ AS_VAR_IF([LIBINTL], [],
 
 dnl Checks for libraries.
 
-AS_BOX([Checking compulsory libraries])
+SILENT_BOX([Checking compulsory libraries])
 
 dnl Force use of embedded lua in ASAN mode
 summary_lua="embedded"
@@ -191,7 +208,7 @@ AC_CHECK_LIB([SDL_gfx], [zoomSurface],
 
 dnl Checking for optional libraries
 
-AS_BOX([Checking optional libraries])
+SILENT_BOX([Checking optional libraries])
 
 dnl the 'new way' to check for openGL (sets 'no_gl=yes' if not found)
 ACX_PTHREAD
@@ -337,7 +354,7 @@ AS_VAR_IF([embedded_lua], [no],
 
 dnl Checks for header files.
 
-AS_BOX([Checking header files])
+SILENT_BOX([Checking header files])
 
 AC_CHECK_HEADERS([execinfo.h fcntl.h fenv.h float.h inttypes.h langinfo.h libgen.h])
 AC_CHECK_HEADERS([libintl.h limits.h locale.h signal.h soundcard.h stddef.h stdint.h stdlib.h])
@@ -345,7 +362,7 @@ AC_CHECK_HEADERS([string.h strings.h sys/ioctl.h sys/soundcard.h unistd.h])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 
-AS_BOX([Checking types])
+SILENT_BOX([Checking types])
 
 AC_HEADER_DIRENT
 AC_HEADER_STDC
@@ -360,7 +377,7 @@ AC_CHECK_TYPES([ptrdiff_t])
 
 dnl Checks for library functions.
 
-AS_BOX([Checking library functions])
+SILENT_BOX([Checking library functions])
 
 AS_VAR_IF([cross_compiling], [no],
 	[
@@ -428,7 +445,7 @@ AM_CONDITIONAL([BUILD_DEV_TOOLS], [test "x$dev_tools" = "xyes"])
 
 dnl Files to generate
 
-AS_BOX([Creating output files])
+SILENT_BOX([Creating output files])
 
 AC_CONFIG_FILES([
 	Makefile
@@ -469,9 +486,9 @@ AS_VAR_IF([xiph_cv_c_compiler_clang], [yes],
 	[summary_compiler=$CC]
 )
 
-AS_ECHO([])
-AS_BOX([Summary])
-AS_ECHO(["
+SILENT_ECHO([])
+SILENT_BOX([Summary])
+SILENT_ECHO(["
 
 	CPPFLAGS:    $FD_CPPFLAGS $CPPFLAGS
 	CFLAGS:      $FD_CFLAGS $CFLAGS
@@ -488,15 +505,15 @@ AS_ECHO(["
 ])
 
 AS_VAR_IF([cross_compiling], [yes],
-	[AS_ECHO(["	cross-compiling detected, so will not build some subdirs"])]
+	[SILENT_ECHO(["	cross-compiling detected, so will not build some subdirs"])]
 )
 
 AS_IF([test "x$LIBINTL" != x -a "x$libintl_checked" != "xyes"],
 	[
-		AS_ECHO([])
-		AS_ECHO([])
-		AS_BOX([!!! WARNING!!!])
-		AS_ECHO(["
+		SILENT_ECHO([])
+		SILENT_ECHO([])
+		SILENT_BOX([!!! WARNING!!!])
+		SILENT_ECHO(["
 	On your system, gettext is defined in an external libintl library.
 	We can not ensure that it behaves as we expect.
 	You could encounter some issues when saving and loading savegames.
@@ -507,4 +524,4 @@ AS_IF([test "x$LIBINTL" != x -a "x$libintl_checked" != "xyes"],
 	]
 )
 
-AS_ECHO([])
+SILENT_ECHO([])
