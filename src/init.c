@@ -41,8 +41,13 @@
 #include "getopt.h"
 
 #ifdef __WIN32__
-// Needed to call SHGetSpecialFolderPath
+// For _mkdir()
+#include <direct.h>
+// For SHGetSpecialFolderPath()
+#ifndef _WIN32_IE
+// From MSDN: The Microsoft Internet Explorer 4.0 Desktop Update must be installed for this function to be available.
 #define _WIN32_IE 0x0400
+#endif
 #include <shlobj.h>
 #endif
 
