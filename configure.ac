@@ -510,10 +510,10 @@ AS_VAR_IF([cross_compiling], [yes],
 
 AS_IF([test "x$LIBINTL" != x -a "x$libintl_checked" != "xyes"],
 	[
-		SILENT_ECHO([])
-		SILENT_ECHO([])
-		SILENT_BOX([!!! WARNING!!!])
-		SILENT_ECHO(["
+		AS_ECHO([])
+		AS_ECHO([])
+		AS_BOX([!!! WARNING!!!])
+		AS_ECHO(["
 	On your system, gettext is defined in an external libintl library.
 	We can not ensure that it behaves as we expect.
 	You could encounter some issues when saving and loading savegames.
