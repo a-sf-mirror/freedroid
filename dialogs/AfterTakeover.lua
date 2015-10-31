@@ -508,7 +508,7 @@ return {
 
 			Npc:says(_"Draining this %s unit will get you %d HP but kill it and take %d %s.",
 				Npc:get_type(),
-				((Npc:get_max_health() - Npc:get_damage())/(difficulty_level()+1)),
+				math.ceil(((Npc:get_max_health() - Npc:get_damage())/(difficulty_level()+1))),
 				math.ceil(Aftertakeover_freezetime),
 				freezetime_seconds)
 
