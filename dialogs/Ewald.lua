@@ -414,11 +414,11 @@ return {
 								_"You won! Man you are lucky!",
 								_"You won!")
 				local bet_gain = {easy = 0.95, normal = 0.85, hard = 0.8}
-				bet = bet * bet_gain[difficulty()]
+				bet = math.floor(bet * bet_gain[difficulty()])
 				Tux:add_gold(bet)
 				total_bet = total_bet + bet
 				--; TRANSLATORS: %d = amount of valuable circuits
-				display_console_message(string.format(_"You won %d valuable circuits by gambling dice with Ewald.", math.floor(bet)))
+				display_console_message(string.format(_"You won %d valuable circuits by gambling dice with Ewald.", bet))
 			else -- House Wins!
 				Npc:says_random(_"You lost. Bad luck.",
 								_"You lost. Better luck next time.",
@@ -579,9 +579,9 @@ return {
 								_"Close only counts in hand grenades and horseshoes. But some money back.")
 
 				local bet_loss = {easy = 1, normal = 0.75, hard = 0.5} -- easy: 100% back normal: 75% back, hard: 50% back
-				bet = bet*bet_loss[difficulty()]
+				bet = math.floor(bet * bet_loss[difficulty()])
 
-				display_console_message(string.format(_"You lost %d valuable circuits in the coin-flip game with Ewald.", math.floor(bet)))
+				display_console_message(string.format(_"You lost %d valuable circuits in the coin-flip game with Ewald.", bet))
 			elseif (win == 0.5) then -- COMPLETE LOSS (0% back)
 				Npc:says_random(_"You lost. You were half right, but half wrong. Pick one and stay with it.",
 								_"You lost. You were all messed up. Better luck next time.",
