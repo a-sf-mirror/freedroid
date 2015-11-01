@@ -1000,9 +1000,13 @@ void prepare_execution(int argc, char *argv[])
 	if (!run_from_term) {
 		char *filename = MyMalloc(strlen(our_config_dir) + 15);
 		sprintf(filename, "%s/stdout.txt", our_config_dir);
-		freopen(filename, "w", stdout);
+		if (!freopen(filename, "w", stdout)) {
+			DebugPrintf(-1, "Was not able to reopen stdout to a file");
+		}
 		sprintf(filename, "%s/stderr.txt", our_config_dir);
-		freopen(filename, "w", stderr);
+		if (!freopen(filename, "w", stderr)) {
+			DebugPrintf(-1, "Was not able to reopen stderr to a file");
+		}
 		free(filename);
 
 		fprintf(stderr, "Hello!  This window contains the DEBUG OUTPUT of FreedroidRPG.\n"

@@ -1441,13 +1441,18 @@ void Terminate(int exit_code)
 	// to find the material for proper reporting of bugs.
 	if (!run_from_term) {
 		if (exit_code == EXIT_FAILURE) {
+			int rtn;
 			fflush(stdout);
 			fflush(stderr);
 			char *cmd = MyMalloc(strlen(our_config_dir) + strlen(OPENTXT_CMD) + 20);
 			sprintf(cmd, "%s %s/stdout.txt", OPENTXT_CMD, our_config_dir);
-			system(cmd);
+			rtn = system(cmd);
+			if (rtn == -1) // We use the return value mainly to avoid a compilation warning
+				DebugPrintf(-1, "system call failed: \"%s\" returned %d", cmd, rtn);
 			sprintf(cmd, "%s %s/stderr.txt", OPENTXT_CMD, our_config_dir);
-			system(cmd);
+			rtn = system(cmd);
+			if (rtn == -1) // We use the return value mainly to avoid a compilation warning
+				DebugPrintf(-1, "system call failed: \"%s\" returned %d", cmd, rtn);
 			free(cmd);
 		}
 	}
