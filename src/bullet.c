@@ -111,9 +111,9 @@ int find_free_melee_shot_index(void)
 	}
 
 	// TODO use a dynarray rather than a static array, to avoid amount limitation
-	error_message(__FUNCTION__,
-	              "I seem to have run out of free melee shot entries.",
-				  PLEASE_INFORM);
+	error_once_message(ONCE_PER_GAME, __FUNCTION__,
+	                   "I seem to have run out of free melee shot entries.",
+	                   PLEASE_INFORM);
 
 	return -1;
 }
@@ -570,10 +570,10 @@ int find_free_bullet_index(void)
 	}
 
 	// TODO use a dynarray rather than a static array, to avoid amount limitation
-	error_message(__FUNCTION__,
-	              "I seem to have run out of free bullet entries. "
-	              "This can't normally happen.  --> some bug in here, oh no...",
-				  PLEASE_INFORM);
+	error_once_message(ONCE_PER_GAME, __FUNCTION__,
+	                   "I seem to have run out of free bullet entries. "
+	                   "This can't normally happen.  --> some bug in here, oh no...",
+	                   PLEASE_INFORM);
 
 	return -1;
 }
