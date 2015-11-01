@@ -140,6 +140,9 @@ static void fade(int fade_delay, int direction)
 		our_SDL_flip_wrapper();
 		now = SDL_GetTicks();
 	}
+
+	if (!use_open_gl && bg)
+		SDL_FreeSurface(bg);
 }
 
 /**
