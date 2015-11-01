@@ -1146,6 +1146,12 @@ void perform_tux_ranged_attack(short int weapon_type, bullet *bullet_parameters,
 	// with default values
 
 	int bullet_index = find_free_bullet_index();
+	if (bullet_index == -1) {
+		// We are out of free bullet slots.
+		// This should not happen, an error message was displayed,
+		return;
+	}
+
 	struct bullet *new_bullet = &(AllBullets[bullet_index]);
 	if (bullet_parameters)
 		memcpy(new_bullet, bullet_parameters, sizeof(struct bullet));
@@ -1347,6 +1353,12 @@ int perform_tux_attack(int use_mouse_cursor_for_targeting)
 
 			// Set up a melee attack
 			int shot_index = find_free_melee_shot_index();
+			if (shot_index == -1) {
+				// We are out of free melee shot slots.
+				// This should not happen, an error message was displayed,
+				return 0;
+			}
+
 			melee_shot *new_shot = &(AllMeleeShots[shot_index]);
 
 			new_shot->attack_target_type = ATTACK_TARGET_IS_ENEMY;

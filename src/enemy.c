@@ -2190,6 +2190,12 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		// find a bullet entry, that isn't currently used...
 		//
 		int bullet_index = find_free_bullet_index();
+		if (bullet_index == -1) {
+			// We are out of free bullet slots.
+			// This should not happen, an error message was displayed,
+			return;
+		}
+
 		bullet *new_bullet = &(AllBullets[bullet_index]);
 
 		bullet_init_for_enemy(new_bullet, weapon_spec.weapon_bullet_type,
@@ -2213,6 +2219,12 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 	} else {		/* melee weapon */
 
 		int shot_index = find_free_melee_shot_index();
+		if (shot_index == -1) {
+			// We are out of free melee shot slots.
+			// This should not happen, an error message was displayed,
+			return;
+		}
+
 		melee_shot *NewShot = &(AllMeleeShots[shot_index]);
 
 		NewShot->attack_target_type = ThisRobot->attack_target_type;

@@ -98,9 +98,7 @@ static void move_this_bullet_and_check_its_collisions(int num)
 
 /**
  * Whenever a new bullet is generated, we need to find a free index in 
- * the array of bullets.  This function automates the process and 
- * also is secure against too many bullets in the game (with a rather
- * ungraceful exit, but that event shouldn't ever occur in a normal game.
+ * the array of bullets.  This function automates the process.
  */
 int find_free_melee_shot_index(void)
 {
@@ -112,12 +110,13 @@ int find_free_melee_shot_index(void)
 		}
 	}
 
-	error_message(__FUNCTION__, "\
-I seem to have run out of free melee shot entries.", PLEASE_INFORM);
+	// TODO use a dynarray rather than a static array, to avoid amount limitation
+	error_message(__FUNCTION__,
+	              "I seem to have run out of free melee shot entries.",
+				  PLEASE_INFORM);
 
-	return (0);
-
-};				// void find_free_bullet_entry_pointer ( void )
+	return -1;
+}
 
 void delete_melee_shot(melee_shot * t)
 {
@@ -558,9 +557,7 @@ void clear_active_bullets()
 
 /**
  * Whenever a new bullet is generated, we need to find a free index in 
- * the array of bullets.  This function automates the process and 
- * also is secure against too many bullets in the game (with a rather
- * ungraceful exit, but that event shouldn't ever occur in a normal game.
+ * the array of bullets.  This function automates the process.
  */
 int find_free_bullet_index(void)
 {
@@ -572,14 +569,14 @@ int find_free_bullet_index(void)
 		}
 	}
 
-	// If this point is ever reached, there's a severe bug in here...
-	//
-	error_message(__FUNCTION__, "\
-I seem to have run out of free bullet entries.  This can't normally happen.  --> some bug in here, oh no...", PLEASE_INFORM | IS_FATAL);
+	// TODO use a dynarray rather than a static array, to avoid amount limitation
+	error_message(__FUNCTION__,
+	              "I seem to have run out of free bullet entries. "
+	              "This can't normally happen.  --> some bug in here, oh no...",
+				  PLEASE_INFORM);
 
-	return (-1);		// can't happen.  just to make compilers happy (no warnings)
-
-};				// void find_free_bullet_entry_pointer ( void )
+	return -1;
+}
 
 /**
  * \brief Initialize a bullet - Common part
