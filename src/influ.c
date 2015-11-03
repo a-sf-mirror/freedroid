@@ -136,8 +136,9 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 
 	// If the Tux has a weapon and this weapon requires some ammunition, then
 	// we have to check for enough ammunition first...
+	int weapon_with_ammo = (Me.weapon_item.type >= 0) && (ItemMap[Me.weapon_item.type].weapon_ammo_type);
 
-	if (Me.weapon_item.type >= 0 && ItemMap[Me.weapon_item.type].weapon_ammo_type) {
+	if (weapon_with_ammo) {
 		if (Me.weapon_item.ammo_clip <= 0) {
 			// So no ammunition... We should say so and reload...
 			No_Ammo_Sound();
@@ -149,23 +150,30 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 		}
 	}
 
-	if (!perform_tux_attack(use_mouse_cursor_for_targeting)) {	// If attack has failed
+	// Try to attack
+
+	int hit_something = perform_tux_attack(use_mouse_cursor_for_targeting);
+
+	// If the attack failed, and the attack did not use ammunition, nothing
+	// else is to be done. Same if the attack was done with bare fist.
+
+	if ((!hit_something && !weapon_with_ammo) || (Me.weapon_item.type < 0)) {
 		return;
 	}
 
-	// The weapon was used and therefore looses some of it's durability
-	// Also if it uses ammunition, one charge is to be removed
+	// The weapon was used (i.e. a bullet was fired by a ranged weapon, or a
+	// melee shot actually touched an enemy) and therefore the weapon looses
+	// some of it's durability
 
-	if (Me.weapon_item.type >= 0) {
+	if (weapon_with_ammo || hit_something)
 		DamageWeapon(&(Me.weapon_item));
-	}
-	// The weapon can have been destroyed by the call to DamageWeapon(),
+
+	// Also if it uses ammunition, one charge is to be removed
+	// But, the weapon can have been destroyed by the call to DamageWeapon(),
 	// so the weapon's type is to be checked again.
-	if (Me.weapon_item.type >= 0) {
-		if (ItemMap[Me.weapon_item.type].weapon_ammo_type) {
-			Me.weapon_item.ammo_clip--;
-		}
-	}
+
+	if (weapon_with_ammo)
+		Me.weapon_item.ammo_clip--;
 }
 
 /**
