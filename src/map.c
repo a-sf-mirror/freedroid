@@ -1548,8 +1548,15 @@ static void encode_waypoints(struct auto_string *shipstr, level *lvl)
 		connections = wpts[i].connections.arr;
 
 		for (j = 0; j < wpts[i].connections.size; j++) {
+			// Check connected waypoint validity
+			int connected_waypoint = connections[j];
+			if (connected_waypoint < 0 || connected_waypoint >= lvl->waypoints.size) {
+				error_message(__FUNCTION__, "A connection to an invalid waypoint (#%d) was found while encoding level #%d\n."
+				              "We discard it.", PLEASE_INFORM, connected_waypoint, lvl->levelnum);
+				continue;
+			}
 			// Encode the connection of the waypoint
-			autostr_append(shipstr, " %3d", connections[j]);
+			autostr_append(shipstr, " %3d", connected_waypoint);
 		}
 
 		autostr_append(shipstr, "\n");

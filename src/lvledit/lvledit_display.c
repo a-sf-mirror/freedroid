@@ -217,7 +217,12 @@ static void show_waypoints(int mask)
 		int *connections = wpts[i].connections.arr;
 
 		for (j = 0; j < wpts[i].connections.size; j++) {
-			waypoint *to_wp = &wpts[connections[j]];
+			// Check validity of the connected waypoint
+			int connected_waypoint = connections[j];
+			if (connected_waypoint < 0 || connected_waypoint >= EditLevel()->waypoints.size)
+				continue;
+
+			waypoint *to_wp = &wpts[connected_waypoint];
 
 			if (((EditX() == wpts[i].x) && (EditY() == wpts[i].y)) || GameConfig.show_wp_connections) {
 				draw_connection_between_tiles(x, y, to_wp->x + 0.5, to_wp->y + 0.5, mask, wpts[i].suppress_random_spawn);
