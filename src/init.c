@@ -991,23 +991,22 @@ void prepare_execution(int argc, char *argv[])
 	}
 #endif
 
-	// If not run from a terminal, stdout and stderr are redirect to text files
-	// written in the config dir.
+	// If not run from a terminal, stdout and stderr are redirect to a text file
+	// written in the config dir (fdrpg_out.txt).
 	// Note: On Windows, in SDL_WinMain(), stdout and stderr are redirected to
 	// files, before to call our main(). Those files are automatically created
 	// in the directory of the current process. They will be removed when the process
 	// ends, because they are empty.
 	if (!run_from_term) {
 		char *filename = MyMalloc(strlen(our_config_dir) + 15);
-		sprintf(filename, "%s/stdout.txt", our_config_dir);
+		sprintf(filename, "%s/fdrpg_out.txt", our_config_dir);
 		if (!freopen(filename, "w", stdout)) {
-			DebugPrintf(-1, "Was not able to reopen stdout to a file");
-		}
-		sprintf(filename, "%s/stderr.txt", our_config_dir);
-		if (!freopen(filename, "w", stderr)) {
-			DebugPrintf(-1, "Was not able to reopen stderr to a file");
+			DebugPrintf(-4, "Was not able to redirect stdout to %s/fdrpg_out.txt", our_config_dir);
 		}
 		free(filename);
+		if (dup2(fileno(stdout), fileno(stderr)) == -1) {
+			DebugPrintf(-4, "Was not able to redirect stderr to stdout. Errno: %d", errno);
+		}
 
 		fprintf(stderr, "Hello!  This window contains the DEBUG OUTPUT of FreedroidRPG.\n"
 		                "\n"

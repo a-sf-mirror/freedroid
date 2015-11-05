@@ -1445,11 +1445,7 @@ void Terminate(int exit_code)
 			fflush(stdout);
 			fflush(stderr);
 			char *cmd = MyMalloc(strlen(our_config_dir) + strlen(OPENTXT_CMD) + 20);
-			sprintf(cmd, "%s %s/stdout.txt", OPENTXT_CMD, our_config_dir);
-			rtn = system(cmd);
-			if (rtn == -1) // We use the return value mainly to avoid a compilation warning
-				DebugPrintf(-1, "system call failed: \"%s\" returned %d", cmd, rtn);
-			sprintf(cmd, "%s %s/stderr.txt", OPENTXT_CMD, our_config_dir);
+			sprintf(cmd, "%s %s/fdrpg_out.txt", OPENTXT_CMD, our_config_dir);
 			rtn = system(cmd);
 			if (rtn == -1) // We use the return value mainly to avoid a compilation warning
 				DebugPrintf(-1, "system call failed: \"%s\" returned %d", cmd, rtn);
