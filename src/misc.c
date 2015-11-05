@@ -1302,7 +1302,7 @@ settings file will be generated.", NO_REPORT);
 
 /*----------------------------------------------------------------------
  * SaveGameConfig: do just that
- *
+ * Return: -1 on error, -2 if immediate exit is needed, 0 otherwise
  *----------------------------------------------------------------------*/
 int SaveGameConfig(void)
 {
@@ -1315,34 +1315,22 @@ int SaveGameConfig(void)
 	// was complete at all (like e.g. some illegal command line parameter).
 	// Then the config dir is not initialized.  We catch this case and return
 	// control to the operating system immediately if that happens...
-	//
-	if (our_config_dir == NULL) {
-		printf("It seems that the game couldn't start up at all... therefore we need not save any configuration information.\n\n");
-		SDL_Quit();
-#if __WIN32__
-		fflush(stdout);
-		fflush(stderr);
-		char *cmd = MyMalloc(strlen(our_config_dir) + 20);
-		sprintf(cmd, "notepad %s/stderr.txt", our_config_dir);
-		system(cmd);
-		sprintf(cmd, "notepad %s/stdout.txt", our_config_dir);
-		system(cmd);
-		free(cmd);
-#endif
-		exit(ERR);
+
+	if (our_config_dir == NULL || our_config_dir[0] == '\0') {
+		DebugPrintf(-4, "It seems that the game couldn't start up at all... therefore we need not save any configuration information.\n");
+		return -2;
 	}
+
 	// Now we know, that the config dir has been initialized already.
 	// That indicates, that the game did start up already.
 	// Therefore we can do the normal save config stuff...
-	//
-	if (our_config_dir[0] == '\0')
-		return (ERR);
 
 	sprintf(fname, "%s/fdrpg.cfg", our_config_dir);
 	if ((config_file = fopen(fname, "wb")) == NULL) {
-		fprintf(stderr, "Unable to open configuration file %s for writing\n", fname);
-		return (ERR);
+		DebugPrintf(-4, "Unable to open configuration file %s for writing\n", fname);
+		return -1;
 	}
+
 	// We put the current version number of FreedroidRPG into the 
 	// version number string.  This will be useful so that later
 	// versions of FreedroidRPG can identify old config files and decide
@@ -1369,7 +1357,7 @@ int SaveGameConfig(void)
 		error_message(__FUNCTION__, "Failed to write configuration file: %s", NO_REPORT, fname);
 		free_autostr(savestruct_autostr);
 		fclose(config_file);
-		return ERR;
+		return -1;
 	}
 
 	free_autostr(savestruct_autostr);
@@ -1378,9 +1366,8 @@ int SaveGameConfig(void)
 	GameConfig.screen_height = current_height;
 	fclose(config_file);
 
-	return (OK);
-
-};				// int SaveGameConfig ( void )
+	return 0;
+}
 
 static void free_memory_before_exit(void)
 {
@@ -1419,26 +1406,34 @@ void Terminate(int exit_code)
 	}
 
 	// Save the config file only in case of success.
-	if (exit_code == EXIT_SUCCESS)
-		SaveGameConfig();
+
+	if (exit_code == EXIT_SUCCESS) {
+		if (SaveGameConfig() == -2) {
+			exit_code = -1;
+			goto IMMEDIATE_EXIT;
+		}
+	}
 
 	// Close active lua states, to force a call to garbage collector, in order
-	// to call Lua binding 'destructors'.
+	// to call Lua binding 'destructors', and clean all the stuff
+
 	close_lua();
-
 	close_audio();
-
 	free_memory_before_exit();
 
 	if (!do_benchmark) {
 		printf("Thank you for playing freedroidRPG.\n\n");
 	}
-	SDL_Quit();
 
+IMMEDIATE_EXIT:
 
-	// Finally, especially on win32 systems, we should open an editor with
+	if (SDL_WasInit(SDL_INIT_EVERYTHING))
+		SDL_Quit();
+
+	// If the game was not run from the command line, we should open an editor with
 	// the last debug output, since people in general won't know how and where
 	// to find the material for proper reporting of bugs.
+
 	if (!run_from_term) {
 		if (exit_code == EXIT_FAILURE) {
 			int rtn;
