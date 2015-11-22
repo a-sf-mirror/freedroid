@@ -1112,7 +1112,7 @@ static void get_one_item(lua_State *L, void *data)
 	if (item->min_drop_class != -1) {
 		// Increment the item count per drop class
 		int cc;
-		for (cc = item->min_drop_class; cc < item->max_drop_class; cc++) {
+		for (cc = item->min_drop_class; cc <= item->max_drop_class; cc++) {
 			if (cc >= 0 && cc <= MAX_DROP_CLASS)
 				item_count_per_class[cc]++;
 		}
