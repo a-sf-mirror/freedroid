@@ -201,46 +201,46 @@ Level=23
 ** Beginning of new Level **
 Level=24
 
-T=GUN: PosX=66 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel="GUN" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=FEM: PosX=63 PosY=49 Faction="ms" UseDialog="AfterTakeover" ShortLabel="FEM" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=543: PosX=63 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel="543" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=BAR: PosX=63 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel="BAR" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=TAN: PosX=63 PosY=43 Faction="ms" UseDialog="AfterTakeover" ShortLabel="TAN" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=JAS: PosX=63 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="JAS" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=KEV: PosX=63 PosY=39 Faction="ms" UseDialog="AfterTakeover" ShortLabel="KEV" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=COO: PosX=63 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel="COO" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=GUB: PosX=63 PosY=35 Faction="ms" UseDialog="AfterTakeover" ShortLabel="GUB" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=WOR: PosX=63 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel="WOR" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=GUN: PosX=66 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"GUN" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=FEM: PosX=63 PosY=49 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"FEM" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=543: PosX=63 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"543" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=BAR: PosX=63 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"BAR" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=TAN: PosX=63 PosY=43 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"TAN" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=JAS: PosX=63 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"JAS" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=KEV: PosX=63 PosY=39 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"KEV" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=COO: PosX=63 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"COO" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=GUB: PosX=63 PosY=35 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"GUB" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=WOR: PosX=63 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"WOR" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=FSC: PosX=63 PosY=31 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Female Scientist" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=MUM: PosX=63 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel="MUM" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=DIX: PosX=63 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel="DIX" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=GUA: PosX=63 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel="GUA" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=DOC: PosX=60 PosY=49 Faction="ms" UseDialog="AfterTakeover" ShortLabel="DOC" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=PRO: PosX=60 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel="PRO" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=999: PosX=60 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel="999" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=883: PosX=60 PosY=43 Faction="ms" UseDialog="AfterTakeover" ShortLabel="883" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=834: PosX=60 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="834" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=821: PosX=60 PosY=39 Faction="ms" UseDialog="AfterTakeover" ShortLabel="821" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=751: PosX=60 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel="751 Soviet" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=742: PosX=60 PosY=35 Faction="ms" UseDialog="AfterTakeover" ShortLabel="742" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=711: PosX=60 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel="711" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=629: PosX=60 PosY=31 Faction="ms" UseDialog="AfterTakeover" ShortLabel="629" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=615: PosX=60 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel="615" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=614: PosX=60 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel="614" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=603: PosX=60 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=598: PosX=57 PosY=49 Faction="ms" UseDialog="AfterTakeover" ShortLabel="598" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=571: PosX=57 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel="571" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=516: PosX=57 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel="516" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=493: PosX=57 PosY=43 Faction="ms" UseDialog="AfterTakeover" ShortLabel="493" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=476: PosX=57 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="476" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=420: PosX=57 PosY=39 Faction="ms" UseDialog="AfterTakeover" ShortLabel="420" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=329: PosX=57 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel="329" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=302: PosX=57 PosY=35 Faction="ms" UseDialog="AfterTakeover" ShortLabel="302" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=296: PosX=57 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel="296" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=249: PosX=57 PosY=31 Faction="ms" UseDialog="AfterTakeover" ShortLabel="249" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=247: PosX=57 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel="247" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=139: PosX=57 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel="139" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=123: PosX=57 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel="123" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=MUM: PosX=63 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"MUM" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=DIX: PosX=63 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"DIX" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=GUA: PosX=63 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"GUA" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=DOC: PosX=60 PosY=49 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"DOC" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=PRO: PosX=60 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"PRO" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=999: PosX=60 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"999" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=883: PosX=60 PosY=43 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"883" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=834: PosX=60 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"834" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=821: PosX=60 PosY=39 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"821" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=751: PosX=60 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"751 Soviet" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=742: PosX=60 PosY=35 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"742" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=711: PosX=60 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"711" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=629: PosX=60 PosY=31 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"629" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=615: PosX=60 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"615" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=614: PosX=60 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"614" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=603: PosX=60 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"603" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=598: PosX=57 PosY=49 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"598" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=571: PosX=57 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"571" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=516: PosX=57 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"516" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=493: PosX=57 PosY=43 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"493" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=476: PosX=57 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"476" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=420: PosX=57 PosY=39 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"420" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=329: PosX=57 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"329" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=302: PosX=57 PosY=35 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"302" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=296: PosX=57 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"296" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=249: PosX=57 PosY=31 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"249" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=247: PosX=57 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"247" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=139: PosX=57 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"139" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=123: PosX=57 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"123" Marker=1024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=WOR: PosX=40 PosY=20 Faction="civilian" UseDialog="Dude" ShortLabel=_"Dude" Marker=2024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=BAR: PosX=42 PosY=20 Faction="civilian" UseDialog="Guy" ShortLabel=_"Guy" Marker=2024 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=302: PosX=40 PosY=66 Faction="civilian" UseDialog="24-Controllable-Bot" ShortLabel=_"Controllable Bot" Marker=2024 RushTux=0 Fixed=1 DropItemId="none" MaxDistanceToHome=0
@@ -504,7 +504,7 @@ Level=58
 ** Beginning of new Level **
 Level=59
 
-T=999: PosX=53 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard" Marker=1059 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=999: PosX=54 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard" Marker=1059 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
