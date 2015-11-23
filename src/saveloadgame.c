@@ -347,7 +347,9 @@ static int load_saved_game(int use_backup)
 	clean_error_msg_store();
 
 	put_string_centered(Menu_Font, 10, _("Loading"));
+	StoreMenuBackground(1);
 	our_SDL_flip_wrapper();
+	RestoreMenuBackground(1);
 
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): function call confirmed....", __FUNCTION__);
 
