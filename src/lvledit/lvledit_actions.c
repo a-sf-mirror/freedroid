@@ -39,6 +39,7 @@
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_widgets.h"
 #include "lvledit/lvledit_tool_select.h"
+#include "lvledit/lvledit_tool_place.h"
 
 /* Undo/redo action lists */
 LIST_HEAD(to_undo);
@@ -429,6 +430,9 @@ void action_remove_waypoint(level *EditLevel, int x, int y)
 
 	// Remove the waypoint on the map
 	del_waypoint(EditLevel, x, y);
+
+	// If a route was being traced from this waypoint, remove it
+	leveleditor_place_reset_waypoint_route(wpnum);
 
 	// Make an undoable action
 	action_push(ACT_CREATE_WAYPOINT, x, y, old_random_spawn);

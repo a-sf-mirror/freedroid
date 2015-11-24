@@ -745,3 +745,11 @@ void leveleditor_place_reset()
 	}
 	OriginWaypoint = -1;
 }
+
+void leveleditor_place_reset_waypoint_route(int wpnum)
+{
+	if (our_mode == CONNECT_WAYPOINT && state.startwp == wpnum) {
+		end_waypoint_route();
+	}
+	OriginWaypoint = -1;
+}

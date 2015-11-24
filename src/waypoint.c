@@ -69,23 +69,20 @@ int add_waypoint(level *lvl, int x, int y, int suppress_random_spawn)
  */
 void del_waypoint(level *lvl, int x, int y)
 {
-	waypoint *wpts = lvl->waypoints.arr;
-	int *connections;
-	int wpnum;
-	int i, j;
-
-	// Delete the waypoint on the map and find its index
-	for (wpnum = 0; wpnum < lvl->waypoints.size; wpnum++) {
-		if (wpts[wpnum].x == x && wpts[wpnum].y == y) {
-			// Delete the waypoint
-			dynarray_del(&lvl->waypoints, wpnum, sizeof(struct waypoint));
-			break;
-		}
+	// Delete the waypoint on the map
+	int wpnum = get_waypoint(lvl, x, y);
+	if (wpnum < 0) {
+		// When the waypoint doesn't exist on the map, we are done
+		return;
 	}
+	dynarray_del(&lvl->waypoints, wpnum, sizeof(struct waypoint));
 
 	// Delete the connections of the waypoint
+	waypoint *wpts = lvl->waypoints.arr;
+	int i, j;
+
 	for (i = 0; i < lvl->waypoints.size; i++) {
-		connections = wpts[i].connections.arr;
+		int *connections = wpts[i].connections.arr;
  
 		for (j = 0; j < wpts[i].connections.size; j++) {
 			if (connections[j] == wpnum) {
