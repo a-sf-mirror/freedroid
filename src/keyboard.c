@@ -377,7 +377,7 @@ void keychart()
 
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 	while (!done) {
-		while (SDL_PollEvent(&event)) {
+		if (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
 				Terminate(EXIT_SUCCESS);
@@ -452,6 +452,8 @@ void keychart()
 
 				}
 			}
+		} else {
+			SDL_Delay(1);
 		}
 	}
 	SDL_EnableKeyRepeat(0, SDL_DEFAULT_REPEAT_INTERVAL);
