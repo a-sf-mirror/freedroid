@@ -10,8 +10,14 @@ tx-push:
 
 EXTRA_DIST = LINGUAS
 
-.PHONY: update-pot update-po update-gmo 
+.PHONY: update-pot update-po update-gmo
+.PHONY: l10n-stats
 .PHONY: tx-update tx-pull tx-push
+
+#== Output statistics
+
+l10n-stats:
+	@echo "    Not yet implemented."
 
 #== Transifex synchronization - Shared functions definition
 

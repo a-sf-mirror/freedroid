@@ -4,6 +4,19 @@ EXTRA_DIST = xgettext-wrapper
 # disables -j , hack to fix some race condition
 .NOTPARALLEL:
 
+L10NSTATSDIRS = $(SUBDIRS:%=l10nstats-%)
+
+l10n-stats: l10n-stats-@USE_NLS@
+l10n-stats-no:
+	@echo "NLS is disabled. Nothing to do."
+l10n-stats-yes: $(L10NSTATSDIRS)
+
+$(L10NSTATSDIRS):
+	echo "$(@:l10nstats-%=%):"
+	$(MAKE) -C $(@:l10nstats-%=%) $(AM_MAKEFLAGS) l10n-stats
+
+.PHONY: l10n-stats-no l10n-stats-yes $(L10NSTATSDIRS)
+
 # Special constructs to enable recursive call of
 # update-po and update-gmo.
 # Should be replaced by AM_EXTRA_RECURSIVE_TARGETS in

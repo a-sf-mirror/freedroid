@@ -2,6 +2,16 @@
 
 .NOTPARALLEL:
 
+#== Output statistics
+
+l10n-stats:
+	@catalogs='$(CATALOGS)'; \
+	for cat in $$catalogs; do \
+	  lang=`basename $$cat .gmo;`; \
+	  stats=`msgfmt --statistics -o /dev/null $$lang.po 2>&1`; \
+	  echo "    $$lang: $$stats"; \
+	done
+
 #== Regenerate POTFILES.in if the list of source files changed
 #== (executed before the main update-po rule)
 
