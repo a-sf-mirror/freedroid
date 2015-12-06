@@ -138,9 +138,9 @@
 	Using SDL compiled from source instead of from MacPorts will work as well.
 
  Linux
-   * Pulseaudio: Using SDL-pulseaudio you are currently likely not to get sound. This has nothing to do
-	 with FreedroidRPG but with Pulseaudio and its plugins still in general being immature. We recommend using
-	 e.g. SDL-esd or SDL-alsa until these problems has been fixed upstream.
+   * Pulseaudio: En utilisant SDL-pulseaudio, vous n'aurez probablement aucun son. Cela n'a rien à voir
+	 avec FreedroidRPG mais avec Pulseaudio et ces plugins toujours en général immature. Nous recommandons
+	 d'utiliser e.g. SDL-esd ou SDL-alsa jusqu'à ce que ces problèmes soit régler en amont.
    * Intel 915/945/IDG graphics cards (EEE PCs, netbooks, etc): Mesa 7.9-devel has an issue which makes the game
    	 run slowly and consume a lot of memory. It is fixed by installing and launching 'driconf' and setting 
 	 'Enable texture tiling' to 'No'.   

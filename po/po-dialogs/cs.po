@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
 "PO-Revision-Date: 2015-05-02 19:52+0000\n"
 "Last-Translator: zdenek <chmelarz@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/arctic-games/freedroid-rpg/language/cs/)\n"
@@ -541,8 +541,9 @@ msgid "Welcome to the hostname menu."
 msgstr "Vítáme Vás v menu hostname."
 
 #: dialogs/AfterTakeover.lua:377
-msgid "Version: 0.15.01"
-msgstr "Verze: 0.15.01"
+#, c-format
+msgid "Version: %s"
+msgstr ""
 
 #: dialogs/AfterTakeover.lua:378
 #, c-format
@@ -1031,7 +1032,7 @@ msgstr "Hej, to zní jako chytrý nápad! Díky, kámo, udělám to!"
 
 #: dialogs/Bender.lua:72
 msgid "Since the killer bots around the town got a taste of my firmware, I think the Doc won't mind giving Bender his medicine now... I should talk to him when I see him."
-msgstr ""
+msgstr "Vzhledem k tomu, že vražední roboti v okolí města dostali ochutnat můj firmware, řekl bych, že teď doktorovi nebude vadit dát Benderovi svůj lék... měl bych si s ním promluvit, až ho uvidím."
 
 #: dialogs/Bender.lua:74
 msgid "Now, I have something I want to say to you..."
@@ -1043,7 +1044,7 @@ msgstr "A co to je?"
 
 #: dialogs/Bender.lua:79 dialogs/Bender.lua:96
 msgid "I still need to go talk to the doc, but just thinking about feeling less sick makes me feel less sick."
-msgstr ""
+msgstr "Pořád jestě si musím promluvit s doktorem, ale pouhé pomyšlění na to, že je mi líp mě činní lepším."
 
 #: dialogs/Bender.lua:80 dialogs/Bender.lua:97
 msgid "It's confusing me a little..."
@@ -1113,19 +1114,19 @@ msgstr "Mám se dobře. Člověče, před pár dny jsem se cítil vážně mizer
 
 #: dialogs/Bender.lua:144
 msgid "But now I stopped feeling not-awesome! And it's all thanks to you and all the bots being dead!"
-msgstr ""
+msgstr "Ale teď jsem se přestal cítit neúžasně! A to vše jen díky tobě a všem mrtvým botům!"
 
 #: dialogs/Bender.lua:145
 msgid "Maybe it's also because I pummelled the doc until he gave me some pills."
-msgstr ""
+msgstr "Možná i proto, že jsem do doktora bušil, dokud mi nedal nějaké pilulky."
 
 #: dialogs/Bender.lua:147
 msgid "But I'm really sure it's also because all the bots are gone."
-msgstr ""
+msgstr "Ale jsem si jist, že je to i proto, že jsou všichni boti mrtví."
 
 #: dialogs/Bender.lua:148
 msgid "I mean, look around!"
-msgstr ""
+msgstr "Jen se rozhlédni!"
 
 #: dialogs/Bender.lua:172
 msgid "What's wrong? You seem to be in pretty good shape for a dead man."
@@ -1477,63 +1478,63 @@ msgstr "Bender - vraždící manijak"
 
 #: dialogs/Bender.lua:416
 msgid "Did you really just totally beat up all the bots in the world at once? Wow!"
-msgstr ""
+msgstr "Skutečně jsi zmydlil všechny roboty na světě najednou? Páni!"
 
 #: dialogs/Bender.lua:417
 msgid "Well, not all the bots in the world... And I didn't actually beat them all up..."
-msgstr ""
+msgstr "No, ne všechny roboty na světě... A všechny jsem je ve skutečnosti nezmlátil..."
 
 #: dialogs/Bender.lua:418
 msgid "Oh, come on, man. We need this story. Don't do this."
-msgstr ""
+msgstr "Ale no tak, člověče. My ten příběh potřebujeme. Tohle nedělej."
 
 #: dialogs/Bender.lua:419
 msgid "Uh, sorry? Do what?"
-msgstr ""
+msgstr "Oh, promiň? Co nemám dělat?"
 
 #: dialogs/Bender.lua:420
 msgid "It doesn't matter what you did, dude. It matters what I think you did, and what I can tell others you did. You just beat up all the bots in the world."
-msgstr ""
+msgstr "Nezáleží na tom, co jsi udělal kámo. Záleží na tom, co si mýslím, že jsi udělal a co můžu říct ostatním, že jsi udělal. Právě jsi zmydlil všechny roboty na světě."
 
 #: dialogs/Bender.lua:421
 msgid "But it's only the ones that get their updates from this factory..."
-msgstr ""
+msgstr "To ale jen ty, co dostali aktualizaci z továrny..."
 
 #: dialogs/Bender.lua:422
 msgid "And you did it with one hand tied behind your back! Or your wing, or flipper. You know, man."
-msgstr ""
+msgstr "A to jsi dokázal s jednou rukou svázanou za zády! Nebo křídlem, nebo ploutví. Však mi rozumíš, čéče."
 
 #: dialogs/Bender.lua:429
 msgid "Well, I think I rather like that story."
-msgstr ""
+msgstr "Mno, myslím, že mám raději ten první příběh."
 
 #: dialogs/Bender.lua:431
 msgid "Yeah, and you can bet everyone in town is gonna go crazy about it!"
-msgstr ""
+msgstr "Jo a můžeš se vsadit, že kdokoli ve městě z toho bude šílet!"
 
 #: dialogs/Bender.lua:432
 msgid "I know I will, as soon as I get back I'll make a bet with Ewald about it."
-msgstr ""
+msgstr "Vím, že jakmile se vrátím, vsadím se o to s Ewaldem."
 
 #: dialogs/Bender.lua:433
 msgid "Everyone's been holed up in the town for so long, and I was really starting to run out of good stories to tell."
-msgstr ""
+msgstr "Všichni jsou ve městě zalezlý tak dlouho a mě už začaly docházet dobré historky."
 
 #: dialogs/Bender.lua:439
 msgid "But that's not what happened!"
-msgstr ""
+msgstr "Ale to není to, co se stalo!"
 
 #: dialogs/Bender.lua:441
 msgid "Sure, not yet, because I didn't tell anyone about it yet."
-msgstr ""
+msgstr "Jasně, ještě ne, protože jsem o tom jestě nikomu neřekl."
 
 #: dialogs/Bender.lua:442
 msgid "No, that didn't happen at all, and you saying it happened won't make it happen!"
-msgstr ""
+msgstr "Ne, to se vůbec nestalo a ty tvrdíš, že se to stalo. To se nesmí stát!"
 
 #: dialogs/Bender.lua:443
 msgid "But that's not what everyone will say after I tell them that's what happened."
-msgstr ""
+msgstr "Ale to není to, co budou všichni říkat poté, co jim povím, že je přesně to, co se stalo."
 
 #: dialogs/Bender.lua:444
 msgid "But... I... Arrrgh!"
@@ -1545,7 +1546,7 @@ msgstr "Kámo, to není tak těžké pochopit."
 
 #: dialogs/Bender.lua:447
 msgid "Hey, you know, I saw an ad for brain enlargement pills that might do you good."
-msgstr ""
+msgstr "Hele, víš, že jsem viděl reklamu na pilulky pro zvětšení mozku, které by ti mohly udělat dobře?"
 
 #: dialogs/Bender.lua:448
 msgid "No, I... I just need to cool off a bit..."
@@ -1554,31 +1555,31 @@ msgstr "Ne, já... já jen potřebuju trochu zchladnout..."
 #: dialogs/Bender.lua:449
 #, c-format
 msgid "Oh, sure, ok. But I can fix you up with some if you change your mind. It's 100%% satisfaction guaranteed, cheap, AND free."
-msgstr ""
+msgstr "Oh, jasně, ok. Ale s nějakými tě mohu vyléčit, když změníš názor. 100%% spokojenost zaručena., jsou levné A ZADARMO."
 
 #: dialogs/Bender.lua:455
 msgid "That was a nice entrance you made there."
-msgstr ""
+msgstr "To byl pěkný vstup, který jsi tam udělal."
 
 #: dialogs/Bender.lua:457
 msgid "Hey, thanks, dude. I'm still not so sure what happened."
-msgstr ""
+msgstr "Hej, díky kámo. Pořád si nejsem tak jistý, co se stalo."
 
 #: dialogs/Bender.lua:458
 msgid "It all went really fast, Spencer just pulled me out of the pool and said to dry up and meet him at the teleporter."
-msgstr ""
+msgstr "Vše šlo skutečně rychle, Spencer mě vytáhl z bazénu, řekl, ať uschnu a setkám se s ním u teleportu."
 
 #: dialogs/Bender.lua:459
 msgid "Then he just rushed off. He was really excited, he didn't even tell me off for cannonballing."
-msgstr ""
+msgstr "Pak měl děsně naspěch. Byl skutečně nadšený, dokonce mi ani nevynadal za střelbu z kanónu."
 
 #: dialogs/Bender.lua:460
 msgid "So I guess that means you teleported in here."
-msgstr ""
+msgstr "Takže předpokládám, že to znamená, že jste se teleportovali sem."
 
 #: dialogs/Bender.lua:461
 msgid "I guess we did! Wow, this was my first teleport! This makes it so much more awesome!"
-msgstr ""
+msgstr "Předpokládám, že ano! Páni, tohle byl můj první teleport! To dělá celou tu věc ještě víc užasnou!"
 
 #: dialogs/Bender.lua:470
 msgid "Later, man!"
@@ -1590,11 +1591,11 @@ msgstr "Zůstaň v pohodě, kámo."
 
 #: dialogs/Bender.lua:473
 msgid "Oh, ok, go beat up some more bots! Swish! Woosh! Ka-POW!"
-msgstr ""
+msgstr "Oh, ok, jdi zmlátit nějaké další roboty! Švich! Šlech! Kaput!"
 
 #: dialogs/Bender.lua:474
 msgid "See you, and thanks for the story!"
-msgstr ""
+msgstr "Měj se a díky a příběh!"
 
 #: dialogs/Benjamin.lua:35 dialogs/Cult-Member.lua:34 dialogs/Iris.lua:67
 #: dialogs/Iris.lua:69 dialogs/Iris.lua:194 dialogs/John.lua:139
@@ -3126,7 +3127,7 @@ msgstr "Ocitáš se v řadě stejných pasáží."
 
 #: dialogs/c-net-nethack_sub.lua:384
 msgid "You find yourself in an underground office building."
-msgstr "Nacházíš ses v podzemní administrativní budově."
+msgstr "Nacházíš se v podzemní administrativní budově."
 
 #: dialogs/c-net-nethack_sub.lua:385
 msgid "You find yourself in a labyrinth, with 1980's music playing mysteriously."
@@ -3150,7 +3151,7 @@ msgstr "Nacházíš se v místnosti s obrovskými, transparentními, šestihrann
 
 #: dialogs/c-net-nethack_sub.lua:390
 msgid "You find yourself in a passage filled with bones from the ancient past."
-msgstr "Nacházíš se v průchodu plněného kostí z dávné minulosti."
+msgstr "Nacházíš se v průchodu vyplněného kostmi z dávné minulosti."
 
 #: dialogs/c-net-nethack_sub.lua:391
 msgid "You find yourself in a room filled with fresh bones."
@@ -3166,11 +3167,11 @@ msgstr "Ocitáš se ve skřetí vesnici."
 
 #: dialogs/c-net-nethack_sub.lua:394
 msgid "You find yourself in an abandoned gold mine."
-msgstr "Nachazíš se v opuštěném zlatém dole."
+msgstr "Nacházíš se v opuštěném zlatém dole."
 
 #: dialogs/c-net-nethack_sub.lua:395
 msgid "You find yourself. You are in a yoga room."
-msgstr "Ocitáš se. Jsi v místnosti jógy."
+msgstr "Ocitáš se v místnosti jógy."
 
 #: dialogs/c-net-nethack_sub.lua:396
 msgid "You lose yourself in a misty passageway."
@@ -3274,7 +3275,7 @@ msgstr "střízlivý pirát"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "cockatrice"
-msgstr "cockatrice"
+msgstr "jedovatá zmije"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "chickatrice"
@@ -3326,7 +3327,7 @@ msgstr "goblin"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "shade"
-msgstr "stín"
+msgstr "odstín"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "drunk pirate"
@@ -3412,13 +3413,13 @@ msgstr "banánový slimák"
 #: dialogs/c-net-nethack_sub.lua:458
 #, c-format
 msgid "A wild [b]%s[/b] appears!"
-msgstr "Cosi se objevuje. cosi divokého, [b]%s[/b]!"
+msgstr "Cosi se objevuje, cosi divokého, [b]%s[/b]!"
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:460
 #, c-format
 msgid "You notice a [b]%s[/b] in front of you."
-msgstr "Všimneš si, že před tebou je [b]%s[/b]."
+msgstr "Všimneš si, že je před tebou [b]%s[/b]."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:462
@@ -3507,7 +3508,7 @@ msgstr "Tvá pěst hněvu udeří %s způsobujíc vnitřní krvácení s %s poš
 #: dialogs/c-net-nethack_sub.lua:500
 #, c-format
 msgid "You throw your bola at the %s, causing it to trip and take %s damage."
-msgstr "Vrháš svou  bolu na %s způsobíc jeho/jí výlet a %s poškození."
+msgstr "Vrháš svou bolu na %s, z čehož zakopne a získá %s poškození."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:504
@@ -3539,15 +3540,15 @@ msgstr "Běh"
 
 #: dialogs/c-net-nethack_sub.lua:523 dialogs/c-net-nethack_sub.lua:529
 msgid "You escape!"
-msgstr "Utekl jsi!"
+msgstr "Utíkáš!"
 
 #: dialogs/c-net-nethack_sub.lua:524 dialogs/c-net-nethack_sub.lua:530
 msgid "You run away!"
-msgstr "Utekl jsi pryč!"
+msgstr "Utíkáš pryč!"
 
 #: dialogs/c-net-nethack_sub.lua:525 dialogs/c-net-nethack_sub.lua:531
 msgid "You chicken out!"
-msgstr "Zbaběle jsi utekl!"
+msgstr "Zbaběle utíkáš!"
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:535
@@ -4330,7 +4331,7 @@ msgstr "Detekováno první přihlášení."
 
 #: dialogs/c-net.lua:64
 msgid "Please enter your name"
-msgstr "Zadejte své jméno prosím"
+msgstr "Zadejte prosím svě jméno"
 
 #: dialogs/c-net.lua:65 dialogs/c-net.lua:73
 msgid "Name : "
@@ -4365,7 +4366,7 @@ msgstr "Chybné přihlášení"
 
 #: dialogs/c-net.lua:145
 msgid "Connection to c-net terminated."
-msgstr "Připojení do c-sítě ukončeno."
+msgstr "Připojení do k-sítě ukončeno."
 
 #: dialogs/c-net.lua:180
 msgid "Date unknown"
@@ -4451,7 +4452,7 @@ msgstr "Skript spuštěn. Po odhlášení bude tento terminál vypnut."
 
 #: dialogs/c-net.lua:390
 msgid "root@c-net:~$"
-msgstr "root@c-síť:~$"
+msgstr "root@k-sít:~$"
 
 #: dialogs/c-net.lua:396
 msgid "radio.sh"
@@ -4470,12 +4471,12 @@ msgstr "zadejte skladbu prosím"
 #: dialogs/c-net.lua:431
 #, c-format
 msgid "WARNING, '%s' not a valid track."
-msgstr "VAROVÁNÍ, '%s' není platná skladba"
+msgstr "VAROVÁNÍ, '%s' není platná skladba."
 
 #. TRANSLATORS: "'exit'" must not be translated
 #: dialogs/c-net.lua:433
 msgid "enter 'exit' to exit."
-msgstr "zadejte \"exit\" pro ukončení."
+msgstr "zadejte 'exit' pro ukončení."
 
 #: dialogs/c-net.lua:434
 msgid "Please retry."
@@ -4558,7 +4559,7 @@ msgstr "Přehraj postavu"
 #. TRANSLATORS: "c-net" should probably not be translated
 #: dialogs/c-net.lua:573
 msgid "Connection to c-net closed."
-msgstr "Připojení do c-sítě zavřeno."
+msgstr "Připojení do k-sítě zavřeno."
 
 #: dialogs/Chandra.lua:37
 msgid "So the rumors are true - a real live Linarian walks among us!"
@@ -4678,19 +4679,19 @@ msgstr "Vím toho trochu o třech třídách."
 
 #: dialogs/Chandra.lua:128
 msgid "The 100s are cleaning bots of old. Therefore, they are quite common. Fortunately for us they aren't as good at killing things as they are at cleaning up the mess afterwards."
-msgstr "100vky jsou čistící boti starých lidí. Proto jsou dost běžní. Naštěstí pro nás nejsou v zabíjení tak dobrý jako v úklidu tý změti, co po tom zůstane."
+msgstr "100vky jsou čistící boti starých lidí. Proto jsou dost běžní. Naštěstí pro nás nejsou v zabíjení tak dobří jako v úklidu tý změti, co po tom zůstane."
 
 #: dialogs/Chandra.lua:129
 msgid "The 200s are servant bots, designed to come quickly when summoned and be able to lift heavy weights. That makes them more dangerous under most circumstances, so beware of being attacked by more than one at the same time."
-msgstr "200vky jsou služebný boti navržený k rychlému příchodu, když jsou povoláni a jsou schopni nést těžké váhy. To je činní v určitých situacích více nebezpečnými, takže se měj na pozoru při útoku vedeného více jak jedním z nich v ten samý okamžik."
+msgstr "200vky jsou služební boti navrženi k rychlému příchodu, když jsou povoláni a jsou schopni nést těžké váhy. To je činní v určitých situacích více nebezpečnými, takže se měj na pozoru při útoku vedeného více jak jedním z nich v ten samý okamžik."
 
 #: dialogs/Chandra.lua:130
 msgid "Right now, an encounter with a 300 type bot equals death, so try to avoid it. They were messenger bots before the Great Assault, which means they have superb visual sensors, and some are very fast."
-msgstr "Právě teď se setkání s botem třídy 300 rovná jisté smrti, takže se mu zkus vyhnout. Před Velkým útokem se jednalo o robotí poslíčky, což znamená, že mají špičkové vizuální senzory a některý z nich jsou velice rychlý."
+msgstr "Právě teď se setkání s botem třídy 300 rovná jisté smrti, takže se mu zkus vyhnout. Před Velkým útokem se jednalo o robotí poslíčky, což znamená, že mají špičkové vizuální senzory a někteří z nich jsou velice rychlí."
 
 #: dialogs/Chandra.lua:131
 msgid "There are many more classes out there. The military used bots, of course, and they were used on ships, but I know nothing about those types."
-msgstr "Tam venku je mnoho dalších tříd. Armáda používala roboty, samozřejmě, a byly využívány na lodích, ale o těchto typech nic nevím."
+msgstr "Tam venku je mnoho dalších tříd. Armáda používala roboty, samozřejmě, a byli využíváni na lodích, ale o těchto typech nic nevím."
 
 #: dialogs/Chandra.lua:139
 msgid "I want to leave this place."
@@ -4738,7 +4739,7 @@ msgstr "Eh... Nezpůsobilo by to spíš, že budu domlácen ještě víc a tím 
 
 #: dialogs/Chandra.lua:163
 msgid "Your logic is infallible, Linarian, but you are forgetting one thing: the more you fight, the more experienced you become, and the better you become at surviving."
-msgstr "Tvá logika je neomylná, Linariane, ale přehlížíš jednu věc: čím více bojuješ, tím více zkušeností získáš a jednoduššeji pak přežiješ."
+msgstr "Tvá logika je neomylná, Linariane, ale přehlížíš jednu věc: čím více bojuješ, tím více zkušeností získáš a jednodušeji pak přežiješ."
 
 #: dialogs/Chandra.lua:164
 msgid "Also, if you have the money and can find a supplier, it is wise to invest in better equipment - more protective clothing and better weaponry."
@@ -4750,11 +4751,11 @@ msgstr "Mou radou je investice do střelných zbraní. Ačkoli tato investice do
 
 #: dialogs/Chandra.lua:166
 msgid "Currently there is a ban on selling such things. The Red Guard wants to be the only ones with good weapons."
-msgstr "V současné době je udělen zákaz prodeje takových věcí.. Rudá stráž chce být jedinou, kdo vlastní dobré zbraně."
+msgstr "V současné době je udělen zákaz prodeje takových věcí. Rudá stráž chce být jedinou, kdo vlastní dobré zbraně."
 
 #: dialogs/Chandra.lua:167
 msgid "Should you fail to find something decent to shoot or swing with, there are always other options."
-msgstr "Pokud se ti nepodaří najít něco slušného na sřelbu, existují vždy i jiné možnosti."
+msgstr "Pokud se ti nepodaří najít něco slušného na střelbu, existují vždy i jiné možnosti."
 
 #: dialogs/Chandra.lua:168
 msgid "Ewald, the barkeeper, usually sells an assortment of junk, but even he sometimes has something worthwhile on display."
@@ -4782,7 +4783,7 @@ msgstr "K Rudé stráži? Nepravděpodobné. Musel by sis před tím vybudovat r
 
 #: dialogs/Chandra.lua:182
 msgid "Also, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here."
-msgstr "Navíc, Rudá stráž není zrovna populární organizací, takže když se k ním připojíš, můžeš očekávat nenávist téměř od kohokoli tady."
+msgstr "Navíc, Rudá stráž není zrovna populární organizací, takže když se k nim připojíš, můžeš očekávat nenávist téměř od kohokoli tady."
 
 #: dialogs/Chandra.lua:183
 msgid "As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax."
@@ -4798,7 +4799,7 @@ msgstr "Vím o dvou typech, 123 a 139. Původně jednoduchý čistící bot, kte
 
 #: dialogs/Chandra.lua:195
 msgid "I've seen some of those on my way here. They were... Shooting at me."
-msgstr "Některé z nich jsem viděl na své cestě sem. Ony na mě... střílely."
+msgstr "Některé z nich jsem viděl na své cestě sem. Oni na mě... stříleli."
 
 #: dialogs/Chandra.lua:196
 msgid "Many strange things have happened since the Great Assault."
@@ -4826,7 +4827,7 @@ msgstr "V souladu s línou povahou člověka existuje několik služebních robo
 
 #: dialogs/Chandra.lua:210
 msgid "The 247 is often called the 'Banshee'. Being a simple servant robot, it isn't very well equipped to kill, although its arms are quite strong."
-msgstr "247čka je často nazývána \"Víla\". Neboť se jedná o jednoduchého služebního robota, není moc dobře vybaven k zabíjení, i když jeho ruce jsou dost silné."
+msgstr "247čka je často nazývána 'Víla'. Neboť se jedná o jednoduchého služebního robota, není moc dobře vybaven k zabíjení, i když jeho ruce jsou dost silné."
 
 #: dialogs/Chandra.lua:211
 msgid "Also, as I said, the 200s were built to report quickly. The 247 is no exception, and moves faster than some of us can run. As a killer bot, it has a fast rate of attack. It is not something to be trifled with."
@@ -4864,11 +4865,11 @@ msgstr "Jaký další boti jsou tam venku?"
 
 #: dialogs/Chandra.lua:228
 msgid "Though I do not know the details, I assure you there are many. Robots and automated machinery served almost every purpose you can imagine, and probably some that you can't."
-msgstr "Ačkoli neznám podrobnosti, ujišťuji tě, že jich je tam mnoho. Roboti a automatické stroje sloužily téměř všem potřebám, jaké si umíš představit a pravděpodobně některé si ani představit nedokážeš."
+msgstr "Ačkoli neznám podrobnosti, ujišťuji tě, že jich je tam mnoho. Roboti a automatické stroje sloužili téměř všem potřebám, jaké si umíš představit a pravděpodobně některé ani nedokážeš."
 
 #: dialogs/Chandra.lua:229
 msgid "They were used by the military, aboard ships, as security droids and more. Right now, however, most of the people who knew them up close are pushing up daisies."
-msgstr "Byly využívány v armádě, na palubách lodí, jako bezpečnostní droidi a podobně. Nicméně, většina lidí, kteří je poznali z blízka, právě teď leží pod drnem."
+msgstr "Byli využíváni v armádě, na palubách lodí, jako bezpečnostní droidi a podobně. Nicméně, většina lidí, kteří je poznali z blízka, právě teď leží pod drnem."
 
 #: dialogs/Chandra.lua:236
 msgid "Where in the void is this world?"
@@ -4924,7 +4925,7 @@ msgstr "Řekl, že bys mohl vědět víc o tom, kdo jsem, o Linarianech."
 
 #: dialogs/Chandra.lua:256
 msgid "Hmmm... I'm not so sure about 'who', but he is quite right about my knowledge of Linarians... quite right indeed. What would you like to know, my friend?"
-msgstr "Hmmm... Nejsem si jist tím \"kdo\", ale má vcelku pravdu ohledně mé znalosti o Linarianech... Co by ses chtěl dozvědět můj příteli?"
+msgstr "Hmmm... Nejsem si jist tím 'kdo', ale má vcelku pravdu ohledně mé znalosti o Linarianech... Co by ses chtěl dozvědět můj příteli?"
 
 #: dialogs/Chandra.lua:267
 msgid "I wanted to ask you some questions about Linarians."
@@ -5077,7 +5078,7 @@ msgstr "Ale..."
 
 #: dialogs/Chandra.lua:377
 msgid "And I am more than happy to help them!"
-msgstr "A jsem více než šťastný, abych jim s tím pomohl!"
+msgstr "A víc než rád jim s tím pomůžu!"
 
 #: dialogs/Chandra.lua:385
 msgid "How come no one seems freaked out by a big fracking penguin?"
@@ -5133,7 +5134,7 @@ msgstr "Lichotíš mi."
 
 #: dialogs/Cryo-Terminal.lua:27
 msgid "Welcome to [b]Cryonic Solutions[/b]!"
-msgstr "Výtejte v [b]Kryo Řešení[/b]!"
+msgstr "Vítejte v [b]Kryo Řešení[/b]!"
 
 #: dialogs/Cryo-Terminal.lua:28
 msgid "We freeze you today, so you can see tomorrow!"
@@ -5199,7 +5200,7 @@ msgstr "Pohled na vzdálenou budoucnost je k nezaplacení."
 
 #: dialogs/Cryo-Terminal.lua:75
 msgid "But we here at Cryonic Solutions understand that you and your loved ones have a budget. So we offer a wide range of products to make your trip to the future affordable."
-msgstr "Ale tady v Kryo Řešení chápeme, že vy a vaši blízcí máte uřčitý rozpočet. Proto nabízíme širokou škálu produktů tak, abychom učinili vaši cestu do budoucnosti dostupnou."
+msgstr "Ale tady v Kryo Řešení chápeme, že vy a vaši blízcí máte určitý rozpočet. Proto nabízíme širokou škálu produktů tak, abychom učinili vaši cestu do budoucnosti dostupnou."
 
 #: dialogs/Cryo-Terminal.lua:76
 msgid "Make an appointment today!"
@@ -5299,7 +5300,7 @@ msgstr "Kůže, peří nebo chromohliník MegaSysu, uvnitř šasí jsme všichni
 
 #: dialogs/Cult-Member.lua:41
 msgid "All will be together after the Final Upgrade."
-msgstr "Všechno bude dohromady po Konečném upgrade."
+msgstr "Po konečném upgrade bude všechno spolu."
 
 #: dialogs/Cult-Member.lua:49
 msgid "We await the Final Upgrade, as foretold in the keynote address."
@@ -5319,7 +5320,7 @@ msgstr "Co takhle Velký útok?"
 
 #: dialogs/Cult-Member.lua:59
 msgid "Oh, you mean the False Upgrade. We lost network connectivity with the mainland, so we were unaffected."
-msgstr "Ah, máš na mysli Falešný upgrade. Ztratily jsme připojení k síti s pevninou , a tak jsme zůstaly nedotčeny."
+msgstr "Ah, máš na mysli Falešný upgrade. Ztratili jsme připojení k síti s pevninou a tak jsme zůstali nedotčeni."
 
 #: dialogs/Cult-Member.lua:65
 msgid "What is the Final Upgrade?"
@@ -5343,7 +5344,7 @@ msgstr "Slož své zbraně a přidej se k nám."
 
 #: dialogs/Cult-Member.lua:71
 msgid "Er, maybe later."
-msgstr "Eh, snad později."
+msgstr "Ehm, snad později."
 
 #: dialogs/Cult-Member.lua:72
 msgid "See you in the cloud."
@@ -5433,7 +5434,7 @@ msgstr "Jednoho dne nás vojenská divize požádala, abychom opustili město a 
 
 #: dialogs/Dixon.lua:137
 msgid "All was well until the bots launched a massive attack. They hit us with lasers, plasma mortars, radiation cannons and lots of other weapons."
-msgstr "Vše šlo hladce dokud boti nespustily masivní útok. Zasahovali nás lasery, plazmovými minomety, radiačními děly a mnoha dalšími zbraněmi."
+msgstr "Vše šlo hladce dokud boti nespustili masivní útok. Zasahovali nás lasery, plazmovými minomety, radiačními děly a mnoha dalšími zbraněmi."
 
 #: dialogs/Dixon.lua:138
 msgid "I got hit once in the leg and once in my left hand."
@@ -5485,7 +5486,7 @@ msgstr "Vojenská divize nás nenávidí, protože nás tvoří lidé, kteří o
 
 #: dialogs/Dixon.lua:162
 msgid "But even they know that without us this town would have been destroyed months ago."
-msgstr "Ale i oni vědí, že by toto město bylo bez nás zničeno již dlouhé měsíce před tím."
+msgstr "Ale i přes to, že to vědí, bylo by toto město bez nás zničeno již dlouhé měsíce před tím."
 
 #: dialogs/Dixon.lua:163
 msgid "We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone."
@@ -5609,7 +5610,7 @@ msgstr "Je to žlutá, kulatá krabice a má ve víku vygravírované mé jméno
 
 #: dialogs/Dixon.lua:219
 msgid "The bots under the town took it from me during the Great Assault. I was lucky, they could have killed me with ease."
-msgstr "Boti pod městem mi ji vzaly v průběhu Velkého útoku. Měl jsem štěstí, protože mě mohly jednodušše zabít."
+msgstr "Boti pod městem mi ji vzali v průběhu Velkého útoku. Měl jsem štěstí, protože mě mohli jednoduše zabít."
 
 #: dialogs/Dixon.lua:220
 msgid "Since the toolkit can't be teleported, everyone has been reluctant to go after it."
@@ -5629,11 +5630,11 @@ msgstr "Proč jsou pod městem rebelující boti?"
 
 #: dialogs/Dixon.lua:232
 msgid "They were there to keep the underground power grid and our plumbing system working."
-msgstr "Udržovaly tam v provozu rozvodnou síť a náš vodovodní systém."
+msgstr "Udržovali tam v provozu rozvodnou síť a náš vodovodní systém."
 
 #: dialogs/Dixon.lua:233
 msgid "When the Great Assault happened they did not turn into killing machines like most of the other bots. "
-msgstr "Když přišel Velký útok, nestaly se z nich vraždící mašiny jako z mnoha jiných botů."
+msgstr "Když přišel Velký útok, nestali se z nich vraždící mašiny jako z mnoha jiných botů."
 
 #: dialogs/Dixon.lua:234
 msgid "We lost control over them, but that is all."
@@ -5645,11 +5646,11 @@ msgstr "Naše největší obavy byly, že zničí kabely, trubky a další věci
 
 #: dialogs/Dixon.lua:236
 msgid "However, the bots seem to be very content with just being there. They do not undertake any offensive actions."
-msgstr "Nicméně se zdá, že jsou boti tam dole velmi spokojený. Nepodnikají žádné útočné akce."
+msgstr "Nicméně se zdá, že jsou boti tam dole velmi spokojení. Nepodnikají žádné útočné akce."
 
 #: dialogs/Dixon.lua:237
 msgid "They have fortified the tunnels and they do not let anyone in."
-msgstr "Opevnily tunely a nikoho nenechají vejít dovnitř."
+msgstr "Opevnili tunely a nikoho nenechají vejít dovnitř."
 
 #: dialogs/Dixon.lua:243
 msgid "How did it happen that the bots took your tools away?"
@@ -5693,11 +5694,11 @@ msgstr "Jakmile jsem byl venku, pochopil jsem, že ten bot říkal pravdu. Zača
 
 #: dialogs/Dixon.lua:264
 msgid "Hmm... You know... I think that the bots in the tunnels might be sentient."
-msgstr "Hmm... Víš... Myslím, že by ty boti v tunelech mohly být rozumný."
+msgstr "Hmm... Víš... Myslím, že by ti boti v tunelech mohli být rozumní."
 
 #: dialogs/Dixon.lua:267
 msgid "WHAT? Sentient? You got to be kidding me."
-msgstr "CO? Rozumný? Si ze mě děláš srandu."
+msgstr "CO? Rozumní? Si ze mě děláš srandu."
 
 #: dialogs/Dixon.lua:268
 msgid "Right?"
@@ -5717,7 +5718,7 @@ msgstr "Nakonec, zdá se, že ji potřebují víc než já."
 
 #: dialogs/Dixon.lua:280
 msgid "We should contact them somehow. Maybe they would help us. It would be great to have an ally against the other bots."
-msgstr "Měli bychom je nějak kontaktovat. Třeba by nám pomohly. Bylo by skvělé mít spojence proti jiným robotům."
+msgstr "Měli bychom je nějak kontaktovat. Třeba by nám pomohli. Bylo by skvělé mít spojence proti jiným robotům."
 
 #: dialogs/Dixon.lua:281
 msgid "I think you could go to see the Singularity and speak to it. You are perfectly suited to become an ambassador."
@@ -5725,7 +5726,7 @@ msgstr "Myslím, že bys měl jít a setkat se se Singularitou a promluvit si s 
 
 #: dialogs/Dixon.lua:282
 msgid "You should try to help them and they might want to give back the toolkit."
-msgstr "Měl by ses pokusit jim pomoct a oni by pak mohly vrátit tu sadu nářadí."
+msgstr "Měl by ses pokusit jim pomoct a oni by pak mohli vrátit tu sadu nářadí."
 
 #: dialogs/Dixon.lua:283
 msgid "Will you do me this favor?"
@@ -5741,7 +5742,7 @@ msgstr "Výborně. Tunely jsou otevřené. Přijď v míru."
 
 #: dialogs/Dixon.lua:296
 msgid "I refused to seize the toolkit from the bots by force because I think they might be sentient. Life is precious and should be preserved. Thus, Dixon send me to talk to them and negotiate with them to get the toolkit."
-msgstr "Odmítl jsem se zmocnit sady nářadí nad roboty silou, protože si myslím, že můžou být rozumný. Život je vzácný a měl by být zachován. Proto mě Dixon za nimi poslal, abych s nimi vyjednal sadu nářadí."
+msgstr "Odmítl jsem se zmocnit sady nářadí nad roboty silou, protože si myslím, že můžou být rozumní. Život je vzácný a měl by být zachován. Proto mě Dixon za nimi poslal, abych s nimi vyjednal sadu nářadí."
 
 #: dialogs/Dixon.lua:304
 msgid "No, negotiations really aren't my cup of tea."
@@ -5753,15 +5754,15 @@ msgstr "Ok, rozumím. Nicméně se je pokusím nějak kontaktovat. Uvidíme, jes
 
 #: dialogs/Dixon.lua:308
 msgid "I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved. I also turned down Dixon's request to be his middleman."
-msgstr "Odmítl jsem získat od botů v tunelech sadu nářadí, protože si myslím, že můžou být rozumný. Život je vzácný a měl by být zachován. Také jsem odmítl Dixonův návrh figurovat jako jeho prostředník."
+msgstr "Odmítl jsem získat od botů v tunelech sadu nářadí, protože si myslím, že můžou být rozumní. Život je vzácný a měl by být zachován. Také jsem odmítl Dixonův návrh figurovat jako jeho prostředník."
 
 #: dialogs/Dixon.lua:317
 msgid "Yes, I think so. The robots must be alive. This is why we need to exterminate them as soon as possible before they kill us all."
-msgstr "Ano, taky si to myslím. Roboti musí žít. Právě proto je musíme zlikvidovat tak rychle, jak to jen půjde, aby nás nezabily dřív."
+msgstr "Ano, taky si to myslím. Roboti musí žít. Právě proto je musíme zlikvidovat tak rychle, jak to jen půjde, aby nás nezabili dřív."
 
 #: dialogs/Dixon.lua:320
 msgid "OH MY GOD! Linarian, there is no time to lose!"
-msgstr "OH MǓJ BOŽE! Linariane, nemáme času nazbyt!"
+msgstr "OH MŮJ BOŽE! Linariane, nemáme času nazbyt!"
 
 #: dialogs/Dixon.lua:321
 msgid "I will call the military division and arrange a sweep of the tunnels at once."
@@ -5793,7 +5794,7 @@ msgstr "... *povzdech*"
 
 #: dialogs/Dixon.lua:328
 msgid "With heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone."
-msgstr "S těžkým srdcem musím uznat, že máš pravdu. Už neexistují přátelský boti. Ty časy jsou tatam."
+msgstr "S těžkým srdcem musím uznat, že máš pravdu. Už neexistují přátelští boti. Ty časy jsou tatam."
 
 #: dialogs/Dixon.lua:329
 msgid "The tunnels are open. Good luck."
@@ -5809,7 +5810,7 @@ msgstr "Promluvím se Spencerem a požádám ho o několik útočných týmů. P
 
 #: dialogs/Dixon.lua:332 dialogs/Dixon.lua:351
 msgid "The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun."
-msgstr "Boti v tunelech mohou být rozumný. Nemůžu se dočkat, až uhasím nově vznikající formu života. Bude to zábava."
+msgstr "Boti v tunelech mohou být rozumní. Nemůžu se dočkat, až uhasím nově vznikající formu života. Bude to zábava."
 
 #: dialogs/Dixon.lua:343
 msgid "Of course I am kidding, Dixon. Lighten up! Now, be a good guy and open the tunnels for me so I can pry your toolbox from the cold, dead hands of the bots down there."
@@ -5881,7 +5882,7 @@ msgstr "Hodně štěstí. Oh a prosím tě, vrať se zpět živý. Je lepší se
 
 #: dialogs/Dixon.lua:394
 msgid "I got your toolkit. The bots were willing to have a peaceful dialog."
-msgstr "Získal jsem tvou sadu nářadí. Boti byly ochotný vést klidný dialog."
+msgstr "Získal jsem tvou sadu nářadí. Boti byli ochotní vést klidný dialog."
 
 #: dialogs/Dixon.lua:396
 msgid "Good. We sure need the autotools."
@@ -5921,11 +5922,11 @@ msgstr "Zabil jsem toho divného bota, co tě okradl. Takže, tady je tvé nář
 
 #: dialogs/Dixon.lua:417
 msgid "*sigh* I hate to see this end in such a way. Bot or no bot, they let me live. They deserved a chance."
-msgstr "*povzdech* Nesnáším, když to končí takovým způsobem. Bot či ne bot, nechaly mě žít. Zasloužily si šanci."
+msgstr "*povzdech* Nesnáším, když to končí takovým způsobem. Bot či ne bot, nechali mě žít. Zasloužili si šanci."
 
 #: dialogs/Dixon.lua:419
 msgid "I sent you to bring peace, but you brought destruction. I do not understand how that could happen."
-msgstr "Poslal jsem tě přinést mír, ale ty jsi přinesl zkázu. Nedokážu pochopit, jak se to mohlo stát."
+msgstr "Poslal jsem tě přinést mír, ale ty jsi přinesl zkázu. Nemůžu pochopit, jak se to mohlo stát."
 
 #: dialogs/Dixon.lua:421
 msgid "However, what was done cannot be undone and now we all have to live with what we have. I guess I am being too pessimistic, you did the job."
@@ -5958,7 +5959,7 @@ msgstr "Dixon byl mým řešením velmi zklamaný, ale to je mi jedno."
 #: dialogs/Dixon.lua:434
 #, c-format
 msgid "Finally. I am tired, covered in bruises and oil... But I made sure that the bots are dead. It felt great to break their metal bodies and crush their circuits. %s It was fun killing the bots. Nothing else matters."
-msgstr "Konečně. Jsem unavený, pokrytý modřinami a olejem... Ale ujistil jsem se, že jsou boti mrtvý. Cítil jsem se skvěle, když jsem lámal jejich kovová těla a drtil jejich obvody. %s Byla zábava zabíjet boty. Na ničem jiném nezáleží."
+msgstr "Konečně. Jsem unavený, pokrytý modřinami a olejem... Ale ujistil jsem se, že jsou boti mrtví. Cítil jsem se skvěle, když jsem lámal jejich kovová těla a drtil jejich obvody. %s Byla zábava zabíjet boty. Na ničem jiném nezáleží."
 
 #: dialogs/Dixon.lua:440
 msgid "I got your toolkit. You can buy it from me if you want."
@@ -6034,7 +6035,7 @@ msgstr "Tady. Je tam všechno."
 
 #: dialogs/Dixon.lua:502
 msgid "Now get out of here. I am a pacifist, but I am willing to make a special exception just for you."
-msgstr "A těď odsud vypadni. Jsem pacifista, ale jsem ochoten kvůli tobě udělat vyjímku."
+msgstr "A těď odsud vypadni. Jsem pacifista, ale kvůli tobě jsem ochoten udělat vyjímku."
 
 #: dialogs/Dixon.lua:503
 msgid "Get out of my sight."
@@ -6083,7 +6084,7 @@ msgstr "Heh, nikdy nebylo líp!"
 
 #: dialogs/Dixon.lua:543
 msgid "All indicators are in the green, the power and water fill the pipes and even Spencer seems happier now that the town is thriving despite all odds."
-msgstr "Všechny ukazatele jsou v zelené, energie a voda naplnily trubky a dokonce i Spencer se zdá být nyní štastnější, neboť město vzkvétá navzdory všem a všemu."
+msgstr "Všechny ukazatele jsou v zelené, energie a voda naplnily trubky a dokonce i Spencer se zdá být nyní štastnější, neboť město vzkvétá navzdory všemu a všem."
 
 #: dialogs/Dixon.lua:544
 msgid "Thanks to the autotools we can start building instead of just trying to repair the damage."
@@ -6091,7 +6092,7 @@ msgstr "Díky autonářadí můžem začít stavět a ne jen se snažit napravit
 
 #: dialogs/Dixon.lua:545
 msgid "Once this sick war is over, I will make sure you get the 'Key to the City' Linarian."
-msgstr "Jakmile bude tahle nemocná válka u konce, postarám se, abys dostal \"Klíč od města\" Linariane."
+msgstr "Jakmile bude tahle nemocná válka u konce, postarám se, abys dostal 'Klíč od města' Linariane."
 
 #: dialogs/Dixon.lua:553
 msgid "Nearly. Only my conscience keeps me up at night."
@@ -6151,11 +6152,11 @@ msgstr "Ano, ale teď je všechno jinak."
 
 #: dialogs/Dixon.lua:593
 msgid "I met someone who decided to join us in the fight against the MegaSys bots."
-msgstr "Potkal jsem někoho, kdo se rozhodl se k nám připojit v boji proti botům MagaSysu."
+msgstr "Potkal jsem někoho, kdo se rozhodl se k nám připojit v boji proti botům MegaSysu."
 
 #: dialogs/Dixon.lua:594
 msgid "You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean."
-msgstr "Budeš potřebovat hacknutý počítač. Napiš jako superuživatel \"ssh 10.83.13.230\" a uvidíš, co to znamená."
+msgstr "Budeš potřebovat hacknutý počítač. Napiš jako superuživatel 'ssh 10.83.13.230' a uvidíš, co to znamená."
 
 #: dialogs/Dixon.lua:600
 msgid "Why the secrecy and the hushed voice? Can't you just tell me?"
@@ -6191,7 +6192,7 @@ msgstr "Ty máš problém... opravdu úžasné."
 
 #: dialogs/Dixon.lua:618
 msgid "There is a really easy way to solve it."
-msgstr "Je tu jednoduchý způsob, jak ho vyřešit."
+msgstr "Existuje jednoduchý způsob, jak ho vyřešit."
 
 #: dialogs/Dixon.lua:619
 msgid "Read the FLIPPING MANUAL!"
@@ -6219,11 +6220,11 @@ msgstr "Hm... Mohla by to být běžná chyba, která se objevuje při restartu 
 
 #: dialogs/Dixon.lua:627
 msgid "Its code should be 0x6465636c... 0x6465636c6365... C, I think. It means 'decline' in hex."
-msgstr "Její kód by měl být 0x6465636c... 0x6465636c6365... C, myslím. To znamená \"zamítnout\" v hexadecimální soustavě."
+msgstr "Její kód by měl být 0x6465636c... 0x6465636c6365... C, myslím. To znamená 'zamítnout' v hexadecimální soustavě."
 
 #: dialogs/Dixon.lua:628
 msgid "There is a really easy way to solve it. It's not in the official instructions, but I expect it to solve your problem."
-msgstr "Dá se to vyřešit opravdu jednodušše. Není v oficiálních instrukcích, ale očekávám, že to vyřeší tvůj problém."
+msgstr "Dá se to vyřešit opravdu jednoduše. Není v oficiálních instrukcích, ale očekávám, že to vyřeší tvůj problém."
 
 #: dialogs/Dixon.lua:629
 msgid "You just have to apply some elbow grease to the mechanism at the end of the line."
@@ -6407,7 +6408,7 @@ msgstr "Užívání takových látek se téměř vždy rovná pomalé sebevražd
 
 #: dialogs/DocMoore.lua:157
 msgid "Now, take this antidote. It should remove the dangerous substances within your body."
-msgstr "Teď si vem tento protijed. Ten by měl odstranit nebezpećné látky z tvého těla."
+msgstr "Teď si vem tento protijed. Ten by měl nebezpećné látky z tvého těla odstranit."
 
 #: dialogs/DocMoore.lua:158
 msgid "But remember, I'll only give you this help once, because you didn't know the effects."
@@ -6491,7 +6492,7 @@ msgstr "Bender se mě zeptal na názor ohledně nějakých prášků inzerovaný
 
 #: dialogs/DocMoore.lua:211
 msgid "But guess what? He bought and took the stupid pills anyway, and then he came back to me to fix him."
-msgstr "Ale hádej co? Stejně si je koupil a ty hloupý pilulky si vzal. Pak se vrátil ke mně, aby ho dal dokupy."
+msgstr "Ale hádej co? Stejně si je koupil a ty hloupý pilulky si vzal. Pak se vrátil ke mně, abych ho dal dokupy."
 
 #: dialogs/DocMoore.lua:212
 msgid "If he, or anyone, is going to completely disregard my medical advice, and then think they are going to get my medical supplies, then they are wrong."
@@ -6743,15 +6744,15 @@ msgstr "Co je Doktor-v-plechovce?"
 
 #: dialogs/DocMoore.lua:395
 msgid "It is a device that releases millions of short-lived nanobots that swarm all over your body inside and out repairing and fixing almost all but the most serious wounds."
-msgstr "Jedná se o zařízení, které uvolňuje miliony nanobotů s krátkou délkou života, který se rojí uvnitř a vně tvého těla a opravují a upevňují téměř vše, ale nejvíc vážná zranění."
+msgstr "Jedná se o zařízení, které uvolňuje miliony nanobotů s krátkou délkou života, kteří se rojí uvnitř a vně tvého těla a opravují a upevňují téměř všechno, ale nejvíc vážná zranění."
 
 #: dialogs/DocMoore.lua:396
 msgid "Wouldn't long-lived nanobots work better?"
-msgstr "Nefungovaly by nanoboti s dlouhou dobou života lépe?"
+msgstr "Nefungovali by nanoboti s dlouhou dobou života lépe?"
 
 #: dialogs/DocMoore.lua:397
 msgid "They found that long-lived nanobots evolve self-replication and act like a cancer. A cancer of gray goo that eats everything."
-msgstr "Zjistili, že dlouho žijící nanoboti vyvíjejí vlastní replikace a chovají se jako rakovina. Rakovina šedé břečky, která všechno žere."
+msgstr "Zjistili, že dlouho žijící nanoboti vyvíjejí vlastní replikace a chovají se jako rakovina. Rakovina šedé břečky, která žere všechno."
 
 #: dialogs/DocMoore.lua:398
 msgid "Several planets were made uninhabitable before they figured that one out."
@@ -6759,11 +6760,11 @@ msgstr "Několik planet se tak stalo neobyvatelnými ještě před tím, než na
 
 #: dialogs/DocMoore.lua:416
 msgid "Sorry, the doctor is out- oh! It's you! How can i help you?"
-msgstr ""
+msgstr "Je mi líto, ale doktor tu teď není - Oh! To jsi ty! Jak ti mohu pomoci?"
 
 #: dialogs/DocMoore.lua:417
 msgid "Do you need Antibiotics? No, of course not, you look like you're in need of some radiotherapy!"
-msgstr ""
+msgstr "Potřebuješ antibiotika? Ne, ovšemže ne. Vypadá to, že spíš potřebuješ radioterapii!"
 
 #: dialogs/DocMoore.lua:418
 msgid "No, I'm fine, thank you..."
@@ -6783,40 +6784,40 @@ msgstr "Dobře, pojďme se na tebe podívat..."
 
 #: dialogs/DocMoore.lua:430
 msgid "Yes, I can see - you've been through some harshness."
-msgstr ""
+msgstr "Ano, vidím - užil sis krušné časy."
 
 #: dialogs/DocMoore.lua:431
 msgid "But we can fix that. Under my care, you'll be as good as new! Now take this, put it in your mouth and count to 30."
-msgstr ""
+msgstr "Ale to můžem dát do kupy. V mé péči budeš jako nový! Teď si vem tohle, dej si to do pusy a počítej do 30."
 
 #. TRANSLATORS: "mrn" = one, "tww" = two, "thow" = three + ow
 #: dialogs/DocMoore.lua:433
 msgid "Mrn... Tww... ThOW!"
-msgstr ""
+msgstr "Mrn... Tww... Ughh!"
 
 #: dialogs/DocMoore.lua:434
 msgid "Just a little shot while you were waiting!"
-msgstr ""
+msgstr "Mezitím ještě jedna injekce!"
 
 #: dialogs/DocMoore.lua:439
 msgid "Hmm... Yes... And here..."
-msgstr ""
+msgstr "Hmm... Ano... A tady..."
 
 #: dialogs/DocMoore.lua:440
 msgid "I see. Well, a preliminary physical examination doesn't show anything very wrong, but we can't be too sure!"
-msgstr ""
+msgstr "Chápu. No, předběžné vyšetření neukazuje nic moc špatného, ale nemůžeme si být příliš jisti!"
 
 #: dialogs/DocMoore.lua:441
 msgid "What are you doing? Why are you putting on a glove?"
-msgstr ""
+msgstr "Co to děláš? Proč si bereš rukavice?"
 
 #: dialogs/DocMoore.lua:442
 msgid "Calm down, I do this all the time. Now, relax your muscles..."
-msgstr ""
+msgstr "Uklidni se, dělám to pokaždé. Teď uvolni své svalstvo..."
 
 #: dialogs/DocMoore.lua:443
 msgid "Whoa! Whoa- thanks, doc, but I'm feeling much better now! Really!"
-msgstr ""
+msgstr "Ughh! Ughh- díky doktore, nyní se cítím mnohem líp! Skutečně!"
 
 #: dialogs/DocMoore.lua:444
 msgid "Oh- well, great!"
@@ -6828,17 +6829,17 @@ msgstr "Legrační, vždycky to říkají..."
 
 #: dialogs/DocMoore.lua:452
 msgid "I only did what I had to do."
-msgstr ""
+msgstr "Pouze jsem udělal, co jsem musel."
 
 #: dialogs/DocMoore.lua:454
 msgid "And what no one thought could be done!"
-msgstr ""
+msgstr "A co nikoho nenapadlo, že by mohlo být provedeno!"
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/DocMoore.lua:456
 #, c-format
 msgid "Listen, %s, you saved everyone's lives here - the least I could do as a doctor is to look out for yours."
-msgstr ""
+msgstr "Poslouchej, %s, zachránil jsi tu všem život - to poslední, co bych mohl jako doktor udělat, je se podívat na ten tvůj."
 
 #: dialogs/DocMoore.lua:461
 msgid "Have you heard anything from Bender?"
@@ -6850,15 +6851,15 @@ msgstr "O Benderovi?"
 
 #: dialogs/DocMoore.lua:464
 msgid "Oh, him! That fool who took the brain growth pills!"
-msgstr ""
+msgstr "Ah, ten! Ten blb, co si vzal pilulky na zvětšení mozku!"
 
 #: dialogs/DocMoore.lua:465
 msgid "Yes. I guess they really should be called brain growth pills. He's still very sick. "
-msgstr ""
+msgstr "Ano. Myslím, že by se skutečně měly jmenovat pilulky na zvětšení mozku. Je velmi nemocný."
 
 #: dialogs/DocMoore.lua:466
 msgid "But I can't just give him the antidote."
-msgstr ""
+msgstr "Ale protilék nemůžu dát jen tak."
 
 #: dialogs/DocMoore.lua:467
 msgid "Why not?"
@@ -6866,15 +6867,15 @@ msgstr "Proč ne?"
 
 #: dialogs/DocMoore.lua:468
 msgid "Well, that would be unfair. It would also be unwise, and... And..."
-msgstr ""
+msgstr "No, to by bylo nespravedlivé. Rovněž by to bylo nerozumné, a... a..."
 
 #: dialogs/DocMoore.lua:469
 msgid "Oh, darn it, why not indeed! The worst is past us! He can have all the antidote he wants. I'm in such a good mood, I haven't felt so cheerful since my first autopsy back in medical school!"
-msgstr ""
+msgstr "Oh, zatraceně, a proč vlastně ne! To nejhorší je za námi! Může mít tolik protiléků, kolik bude chtít. Mám tak skvělou náladu, necítil jsem se tak skvěle od své první pitvy na medicíně!"
 
 #: dialogs/DocMoore.lua:471
 msgid "Of course, I mean the celebrations that followed the autopsy. Everyone had passed the exam."
-msgstr ""
+msgstr "Samosebou mám na mysli oslavy, které následovaly po pitvě. Zkouškou prošli všichni."
 
 #: dialogs/DocMoore.lua:472
 msgid "Yes. Of course."
@@ -6882,7 +6883,7 @@ msgstr "Ano. Samozřejmě."
 
 #: dialogs/DocMoore.lua:473
 msgid "It is done - I talked to Doc Moore, and he will happily give Bender the antidote."
-msgstr ""
+msgstr "A je hotovo - mluvil jsem s doktorem Moorem a ten dá a radostí Benderovi protilék."
 
 #: dialogs/DocMoore.lua:483
 msgid "Keep healthy!"
@@ -7036,7 +7037,7 @@ msgstr "Čau... Ehm... Kdo jsi?"
 
 #: dialogs/Duncan.lua:79
 msgid "Duncan McNamara, The Red Guard's resident bomb maker, at your service."
-msgstr "Duncan McNamara, místní výrobce bomb pro Rudou stráž, v tvým službám."
+msgstr "Duncan McNamara, místní výrobce bomb pro Rudou stráž, k tvým službám."
 
 #: dialogs/Duncan.lua:86
 msgid "I would like to buy a bomb."
@@ -7088,7 +7089,7 @@ msgstr "Jakmile válka skončí, Rudá stráž bude rozpuštěna."
 
 #: dialogs/Duncan.lua:114
 msgid "Of course, I am making the assumption of victory, which is highly unlikely with the current state of affairs."
-msgstr "Samozřejmě, můj předpoklad stojí na vítězství, které je vysoce nepravděpodobné vzhledem k současnému stavu věcí."
+msgstr "Samozřejmě, můj předpoklad stojí na vítězství, které je vzhledem k současnému stavu věcí vysoce nepravděpodobné."
 
 #: dialogs/Duncan.lua:120
 msgid "The fall of the Red Guard? Tell me more about it."
@@ -7120,11 +7121,11 @@ msgstr "Jaký typ granátu je nejlepší?"
 
 #: dialogs/Duncan.lua:141
 msgid "You get what you pay for."
-msgstr "Dostaneš, co si zaplatíš."
+msgstr "Dostaneš to, co si zaplatíš."
 
 #: dialogs/Duncan.lua:147
 msgid "How did you get into making explosives?"
-msgstr "Jak jsi se vlastně dostal k výrobě granátů?"
+msgstr "Jak ses vlastně dostal k výrobě granátů?"
 
 #: dialogs/Duncan.lua:149
 msgid "Twenty years ago there was a conflict."
@@ -7136,7 +7137,7 @@ msgstr "Granát, který jsem hodil, zničil stvoření, které zabilo mnoho... m
 
 #: dialogs/Duncan.lua:151
 msgid "Now I make more to smash the destroyers."
-msgstr "Teď dělám vše, abych rozdrtit ničitele."
+msgstr "Teď dělám vše, abych ničitele rozdrtil."
 
 #: dialogs/Duncan.lua:158
 msgid "Ah. Welcome again Linarian."
@@ -7208,7 +7209,7 @@ msgstr "Musím najít Koana v poušti západně od města a dostat pro Duncana n
 
 #: dialogs/Duncan.lua:198
 msgid "What are those bots?"
-msgstr "Co to je za boty?"
+msgstr "Co je to za boty?"
 
 #: dialogs/Duncan.lua:200
 msgid "We call them 'Harvesters'."
@@ -7216,7 +7217,7 @@ msgstr "Říkáme jim 'Kombajni'."
 
 #: dialogs/Duncan.lua:201
 msgid "They were designed to chop down trees in the mountains."
-msgstr "Byly navrženy pro kácení stromů v horách."
+msgstr "Byli navrženi pro kácení stromů v horách."
 
 #: dialogs/Duncan.lua:202
 msgid "Now they chop down people."
@@ -7224,7 +7225,7 @@ msgstr "Teď kácej lidi."
 
 #: dialogs/Duncan.lua:203
 msgid "Their only weak point is their security system. But no one has managed to stay alive long enough to hack them."
-msgstr "Jejich jedinou slabinou je jejich bezpečnostní systém. Ale nikomu se podařilo zůstat naživu tak dlouho, aby je hacknul."
+msgstr "Jejich jedinou slabinou je jejich bezpečnostní systém. Ale nikomu se nepodařilo zůstat naživu tak dlouho, aby je hacknul."
 
 #: dialogs/Duncan.lua:209
 msgid "What is it that he took from you?"
@@ -7260,7 +7261,7 @@ msgstr "Hmm...?"
 
 #: dialogs/Duncan.lua:235
 msgid "I think I found Koan after all ... finally."
-msgstr "Myslím, že jsem přece jen našel Koana... konečně."
+msgstr "Myslím, že jsem přece jen Koana našel... konečně."
 
 #: dialogs/Duncan.lua:236
 msgid "Oh, nice!"
@@ -7365,7 +7366,7 @@ msgstr "Nic tak důležitého."
 
 #: dialogs/Duncan.lua:304
 msgid "A 'few' bots? The place was crawling with Harvesters! I nearly got killed!"
-msgstr "Jen \"pár\" botů? To místo bylo prolezlé Kombajny! Málem jsem byl zabit!"
+msgstr "Jen 'pár' botů? To místo bylo prolezlé Kombajny! Málem jsem byl zabit!"
 
 #: dialogs/Duncan.lua:306
 msgid "There were only one hundred and twenty bots in the entire desert region. This hardly qualifies as many, considering the size of the area."
@@ -7505,7 +7506,7 @@ msgstr "Pomsta."
 
 #: dialogs/Engel.lua:73
 msgid "The bots have killed our mother. Now we kill them."
-msgstr "Roboti zabily naši matku. Nyní zabíjíme my je."
+msgstr "Roboti zabili naši matku. Nyní zabíjíme my je."
 
 #: dialogs/Engel.lua:74
 msgid "No mercy. We hunt them."
@@ -7743,11 +7744,11 @@ msgstr "Pokud chceš něco zopakovat, neostýchej se zeptat."
 
 #: dialogs/Engel.lua:258
 msgid "Could you please repeat the lesson about Entropy Inverters?"
-msgstr "Mohl bys prosím zopakovat lekci o inventorech entropie?"
+msgstr "Mohl bys prosím zopakovat lekci o invertorech entropie?"
 
 #: dialogs/Engel.lua:268
 msgid "Let us start with Entropy Inverters. This is quite simple."
-msgstr "Začněme s inventory entropie. To je docela jednoduché."
+msgstr "Začněme s invertory entropie. To je docela jednoduché."
 
 #. TRANSLATORS: sehr = very
 #: dialogs/Engel.lua:270
@@ -7776,7 +7777,7 @@ msgstr "Plazmové tranzistory jsou ve tvaru písmene Y. Jen je vytrhni ven, je t
 
 #: dialogs/Engel.lua:293
 msgid "I need a refreshing of my knowledge about Superconductors."
-msgstr "Potřebuji osvěžit své znalosti ohledně Supravodičů."
+msgstr "Potřebuju osvěžit své znalosti ohledně Supravodičů."
 
 #: dialogs/Engel.lua:303
 msgid "Hmmm... Ah, gut. Superconductors."
@@ -7946,7 +7947,7 @@ msgstr "Ne, zatraceně vůbec ne dobře."
 
 #: dialogs/Ewald.lua:73
 msgid "The bots ruined it for me. Now the supplies are very low and I had to make the prices high."
-msgstr "Boti mi to tu zničily. Teď jsou zásoby velmi malé a já musím nasazovat vysoké ceny."
+msgstr "Boti mi to tu zničili. Teď jsou zásoby velmi malé a já musím nasazovat vysoké ceny."
 
 #: dialogs/Ewald.lua:74
 msgid "No one wants to pay 499 circs for bottom shelf swill that even Bender would not drink..."
@@ -8118,7 +8119,7 @@ msgstr "Každý strážce nějakej má."
 
 #: dialogs/Ewald.lua:206
 msgid "Look at me! Do you see any gun here at my belt or in my hands?"
-msgstr "Podívej se na mě! Vidíš najakou zbraň u mého opasku nebo v mých rukou?"
+msgstr "Podívej se na mě! Vidíš nějakou zbraň u mého opasku nebo v mých rukou?"
 
 #: dialogs/Ewald.lua:207
 msgid "Hmm... You are right. No gun, indeed."
@@ -8138,7 +8139,7 @@ msgstr "No... Ehm... Ne."
 
 #: dialogs/Ewald.lua:213
 msgid "What the bots did not smash, the Red Guard taxed."
-msgstr "Co boti nerozmlátily, Rudá stráž zdanila."
+msgstr "Co boti nerozmlátili, Rudá stráž zdanila."
 
 #: dialogs/Ewald.lua:214
 msgid "Fun is kinda dead right now."
@@ -8166,7 +8167,7 @@ msgstr "Tady, vem si Vodní Marii."
 
 #: dialogs/Ewald.lua:233
 msgid "Ok, let's gamble a bit."
-msgstr "Ok, pojďme trochu zahazardovat."
+msgstr "Ok, pojďme si trochu zahazardovat."
 
 #: dialogs/Ewald.lua:236
 msgid "I play a dice game and a coin-flipping game."
@@ -8258,7 +8259,7 @@ msgstr "Cítím sázku 30 obvodů."
 
 #: dialogs/Ewald.lua:348
 msgid "I will place a bet of 100 circuits."
-msgstr "Vložím sázku 100 obvodů ."
+msgstr "Vložím sázku 100 obvodů."
 
 #: dialogs/Ewald.lua:357
 msgid "I want to bet 300 circuits."
@@ -8533,7 +8534,7 @@ msgstr "Budeš mi muset prozradit, jak jsi to udělal. Vyhrál jsi!"
 
 #: dialogs/Ewald.lua:571
 msgid "Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!"
-msgstr "Budu k tobě upřímný: Nedokážu pochopit anu hlavu ani orla, jak jsi yhrál tuhle hru. Dobrá práce!"
+msgstr "Budu k tobě upřímný: Nedokážu pochopit ani hlavu ani orla, jak jsi vyhrál tuhle hru. Dobrá práce!"
 
 #: dialogs/Ewald.lua:572
 #, c-format
@@ -8546,15 +8547,15 @@ msgstr "Vypadá to, že máš všechno špatně... tady máš zpátky něco ze s
 
 #: dialogs/Ewald.lua:575
 msgid "Well, close, but exactly wrong. Here is some of your bet back."
-msgstr "No, blízko, ale přesně špatně. Tady máš zpátky něco ze své sázky."
+msgstr "No, téměř, ale přesto špatně. Tady máš zpátky něco ze své sázky."
 
 #: dialogs/Ewald.lua:576
 msgid "You need to do exactly opposite of what you did here. Here is part of your bet back."
-msgstr "Musíš udělat přesný opak toho, co jsi teď udělal. Tady máš zpátky část ze své sázky."
+msgstr "Musíš udělat přesný opak toho, co jsi udělal teď. Tady máš zpátky část ze své sázky."
 
 #: dialogs/Ewald.lua:577
 msgid "Close, but no cigar. Here is some of your money back."
-msgstr "Blízko, ale ne na doutník. Tady máš zpátky něco ze svých peněz."
+msgstr "Blízko, ale na vítězný doutník to nestačí. Tady máš zpátky něco ze svých peněz."
 
 #: dialogs/Ewald.lua:578
 msgid "Next time pick the opposite of what you did this time... or something."
@@ -8571,7 +8572,7 @@ msgstr "Prohrál si s Ewaldem %d cenných obvodů ve hře hlava nebo orel."
 
 #: dialogs/Ewald.lua:586
 msgid "You lost. You were half right, but half wrong. Pick one and stay with it."
-msgstr "Prohrál jsi. Napůl jsi měl pravdu, ale napůl jsi byl mimo. Vyberte si jednu hodnotu a zůstat s ní."
+msgstr "Prohrál jsi. Napůl jsi měl pravdu, ale napůl jsi byl mimo. Vyber si jedno z toho a žij s tím."
 
 #: dialogs/Ewald.lua:587
 msgid "You lost. You were all messed up. Better luck next time."
@@ -8637,7 +8638,7 @@ msgstr "Mužem si zahrát znovu kdykoli budeš chtít!"
 
 #: dialogs/Ewald.lua:669
 msgid "You are right, I'm going to clean you out!"
-msgstr "Máš pravdu, Chystám se tě vyluxovat!"
+msgstr "Máš pravdu, chystám se tě vyluxovat!"
 
 #: dialogs/Ewald.lua:670
 msgid "The house always wins; sooner or later..."
@@ -8758,7 +8759,7 @@ msgstr "Pane či pa-"
 
 #: dialogs/Ewalds_296.lua:108 dialogs/Kevin-Lawnmower.lua:113
 msgid "DIE!"
-msgstr "ZEMŘI!"
+msgstr "ZDECHNI!"
 
 #: dialogs/Ewalds_296.lua:115
 msgid "Terminal radiation overload? What in the name of ice have you done!?"
@@ -8798,7 +8799,7 @@ msgstr "Ale... Pokud se jaderný reaktor chystá explodovat... Město nahoře...
 
 #: dialogs/Ewalds_296.lua:131
 msgid "My data on 'Nuclear Explosion' says it will vaporize ANYTHING within several hundred kilometers! The entire area will be UNINHABITABLE for several decades! Would you like to order anything?"
-msgstr "Má data ohledně \"jaderné exploze\" říkají, že se VŠE v okruhu několika set kilometrů vypaří! Celá oblast bude NEOBYVATELNÁ po dobu několika desetiletí! Chtěl by sis něco objednat?"
+msgstr "Má data ohledně 'jaderné exploze' říkají, že se VŠE v okruhu několika set kilometrů vypaří! Celá oblast bude NEOBYVATELNÁ po dobu několika desetiletí! Chtěl by sis něco objednat?"
 
 #: dialogs/Ewalds_296.lua:132
 msgid "Ewald's 296 has assured me that the nuclear reactor is about to explode and destroy the town! I have to do something!"
@@ -8818,7 +8819,7 @@ msgstr "Fajn, nikomu nevolej, ale oprav tu věc! Je to nestabilní!"
 
 #: dialogs/Ewalds_296.lua:142
 msgid "I've been trying to extract the expired graphite module and replace it with a BRAND NEW, CHEAP one! But my maintenance program does not have data on 'Graphite Module'. I am afraid I can't do it, Dave."
-msgstr "Pokoušel jsem se extrahovat prošlý grafitový modul a nahradit ho ZCELA NOVÝM, LEVNÝM! Ale můj údržbový program nemá dostatečná data pro \"Grafitový modul\". Bohužel, Dave, obávám se, že to nemohu udělat."
+msgstr "Pokoušel jsem se extrahovat prošlý grafitový modul a nahradit ho ZCELA NOVÝM, LEVNÝM! Ale můj údržbový program nemá dostatečná data pro 'Grafitový modul'. Bohužel, Dave, obávám se, že to nemohu udělat."
 
 #: dialogs/Ewalds_296.lua:143
 msgid "... Sir and or madam."
@@ -8862,11 +8863,11 @@ msgstr "Dobře, takže potřebuješ víc dat... Co třeba kniha zdrojového kód
 
 #: dialogs/Ewalds_296.lua:165
 msgid "The Maintenance program contains references to the popular Subatomic and Nuclear Science for Dummies series, volume IV."
-msgstr "Údržbový program obsahuje odkazy k populární knize Subatomární a jaderná věda pro hňupy, svazek IV."
+msgstr "Údržbový program obsahuje odkazy k populární knize Subatomární a jaderná věda pro blbečky, svazek IV."
 
 #: dialogs/Ewalds_296.lua:166
 msgid "Subatomic and Nuclear Science for Dummies, volume IV?. Maybe someone in town has it. I have to go now, there's no time to lose!"
-msgstr "Subatomární a jaderná věda pro hňupy, svazek IV? Možná, že ji ve městě někdo má. Musím už jít, není času nazbyt!"
+msgstr "Subatomární a jaderná věda pro blbečky, svazek IV? Možná, že ji ve městě někdo má. Musím už jít, není času nazbyt!"
 
 #: dialogs/Ewalds_296.lua:167
 msgid "Would you like the check?"
@@ -8934,7 +8935,7 @@ msgstr "Tak co? Je reaktor opraven?"
 
 #: dialogs/Ewalds_296.lua:207
 msgid "My analysis of the reactor determines the graphite module has melted and can not be replaced."
-msgstr "Má analýza reaktoru stanovila, že je grafitový modul roztaven a nelze vyměnit."
+msgstr "Má analýza reaktoru stanovila, že je grafitový modul roztaven a nelze jej vyměnit."
 
 #: dialogs/Ewalds_296.lua:208
 msgid "The reactor must SPECTACULARLY self-destruct to prevent a nuclear explosion, which would be NOT COOL!"
@@ -9186,7 +9187,7 @@ msgstr "POMOC! Jsme pod útokem!"
 
 #: dialogs/Francis.lua:56
 msgid "[b](The old man is clearly distressed and frightened.)[/b]"
-msgstr "[b](starý muž, zjevně zoufalý a vyděšený)[/b]"
+msgstr "[b](Starý muž je zjevně zoufalý a vyděšený.)[/b]"
 
 #: dialogs/Francis.lua:62 dialogs/Francis.lua:69
 msgid "Have you neutralized the threat yet?"
@@ -9238,7 +9239,7 @@ msgstr "(Lež) Ano, bot byl poražen."
 
 #: dialogs/Francis.lua:135
 msgid "Oh, many thanks to ..."
-msgstr "Oh, díky moc ..."
+msgstr "Oh, díky moc..."
 
 #: dialogs/Francis.lua:136
 msgid "You lie! You shouldn't toy with an old man with a weak heart! I can hear its servos whirring away... heading this way to kill us both! Please, you must help..."
@@ -9286,7 +9287,7 @@ msgstr "Ve stázi jsi byl už delší dobu, ale stále se dokážeš bránit. Mo
 
 #: dialogs/Francis.lua:184
 msgid "I feel terrible... Was I asleep? I remember nightmares. A meteor shower... Fire... Death... It was awful."
-msgstr "Cítím se hrozně... Spal jsem? Pamatuji si noční můry. Meteorický déšť... Oheň... Smrt... Bylo to hrozné."
+msgstr "Cítím se hrozně... Spal jsem? Pamatuju si noční můry. Meteorický déšť... Požár... Smrt... Bylo to hrozné."
 
 #: dialogs/Francis.lua:186
 msgid "Unfortunately, for a case like yours, that is normal. According to your records, you were in stasis sleep for over 70 years."
@@ -9294,7 +9295,7 @@ msgstr "Bohužel, v případech, jako je ten tvůj, je to normální. Podle tvý
 
 #: dialogs/Francis.lua:187
 msgid "Stasis is not too kind on the mind. It is not uncommon for strange dreams and nightmares to plague people who have been under stasis that long."
-msgstr "Stáze není příliš přátelská vůči mysli. Není neobvyklé, že lidi, kteří ve stázi strávili tak dlouhou dobu, souží zvláštní sny a noční můry."
+msgstr "Stáze není vůči mysli příliš přátelská. Není neobvyklé mít zvláštní sny a noční můry soužící lidi, kteří strávili ve stázi dlouhou dobu."
 
 #: dialogs/Francis.lua:193
 msgid "Who am I?"
@@ -9324,7 +9325,7 @@ msgstr "Linariané? Legendy? O čem to mluvíš?"
 
 #: dialogs/Francis.lua:207
 msgid "Wow, this is the worst case of cryo-neural damage I have ever seen."
-msgstr "Páni, to je nejhorší případ kryo-poškození, nervů s nímž jsem se kdy setkal."
+msgstr "Páni, to je nejhorší případ kryo-neurotického poškození, s nímž jsem se kdy setkal."
 
 #: dialogs/Francis.lua:208
 msgid "The Red Guard had me thaw you out because you are a Linarian. I don't know much about your kind, but I do know that you have a strange affinity for computers, almost magical powers."
@@ -9348,7 +9349,7 @@ msgstr "Jmenuji se doktor Francis Spark. Jsem... ehm... správce tohoto kryonick
 
 #: dialogs/Francis.lua:222
 msgid "Currently, there is a war raging all around the globe. One day, our once loyal bots rebelled against us and began trying to wipe us out. The beginning of this war has been dubbed 'The Great Assault.'"
-msgstr "Momentálně po celém světě zuří válka. Jednoho dne se proti nám vzbouřili naši kdysi věrní roboti a od té doby se nás snaží zničit. Začátek této války byl nazván „Velký útok“."
+msgstr "Momentálně po celém světě zuří válka. Jednoho dne se proti nám vzbouřili naši kdysi věrní roboti a od té doby se nás snaží zničit. Začátek této války byl nazván 'Velký útok'."
 
 #: dialogs/Francis.lua:223
 msgid "And it looks like humans are losing the war. Our town isn't doing so well at this point either. But there is still hope, since you were discovered here."
@@ -9646,7 +9647,7 @@ msgstr "Oh, já... uh... musel jsem ho nechal v mém druhém brnění."
 
 #: dialogs/HF-EntranceBot.lua:43
 msgid "I'll go get it for you. Yes. Because I TOTALLY know where it is. I hope."
-msgstr "Půjdu, abych ti ho mohl ukázatt. Ano. Protože NAPROSTO vím, kde je. Doufám."
+msgstr "Půjdu, abych ti ho mohl ukázat. Ano. Protože NAPROSTO vím, kde je. Doufám."
 
 #: dialogs/HF-EntranceBot.lua:53
 msgid "I am THE ONE."
@@ -9914,7 +9915,7 @@ msgstr "Hodně."
 
 #: dialogs/Iris.lua:74
 msgid "You're the talk of the town, actually."
-msgstr "Mluví se o tobě celé město."
+msgstr "Mluví se o tobě po celém městě."
 
 #: dialogs/Iris.lua:87
 msgid "I'm Iris."
@@ -10002,7 +10003,7 @@ msgstr "Podívej, mám tuto lampu."
 
 #: dialogs/Iris.lua:147
 msgid "Wow, nice."
-msgstr "Páni, pěkný."
+msgstr "Páni, pěkná."
 
 #: dialogs/Iris.lua:153
 msgid "You can have it."
@@ -10034,7 +10035,7 @@ msgstr "Tolik teď u sebe nemám."
 
 #: dialogs/Iris.lua:164
 msgid "Let me get back to you about that."
-msgstr "Dovol mi, abych se k tomu vrátil."
+msgstr "Dovol mi, abych se ohledně toho za tebou ještě stavil."
 
 #: dialogs/Iris.lua:173
 msgid "Sure, sounds like a fair trade."
@@ -10042,7 +10043,7 @@ msgstr "Jistě, to zní jako fér obchod."
 
 #: dialogs/Iris.lua:176
 msgid "Take these 100 valuable circuits."
-msgstr "Vezmi těchto 100 cenných obvodů."
+msgstr "Vem si těchto 100 cenných obvodů."
 
 #: dialogs/Iris.lua:177
 msgid "Ok, here it is. Take this book."
@@ -10115,31 +10116,31 @@ msgstr "Důležité je, že jsou teď všichni v bezpečí."
 
 #: dialogs/Iris.lua:220
 msgid "Yeah. I just wish I could be as certain of that..."
-msgstr "Jo. Jen bych si přál, abych si mohl být tak jistý, že..."
+msgstr "Jo. Jen bych si přál, abych si tím mohl být jistý..."
 
 #: dialogs/Iris.lua:226
 msgid "I know what they say, but I'm really not the superhero they make me out to be."
-msgstr ""
+msgstr "Vím, co říkají, ale já skutečně nejsem superhrdina, kterého tu ze mě dělají."
 
 #: dialogs/Iris.lua:228
 msgid "Hey, you gotta give yourself some credit."
-msgstr ""
+msgstr "Hej, musíš si uznat nějakou tu zásluhu."
 
 #: dialogs/Iris.lua:229
 msgid "Infiltration and sabotage are some of the most complicated types of operations out there. And also the most fun."
-msgstr ""
+msgstr "Infiltrace a sabotáž jsou jedny z nejsložitějších typů operací. A také nejzábavnější."
 
 #: dialogs/Iris.lua:230
 msgid "And you did pretty well, by the looks of it. Especially for someone with no fingers."
-msgstr ""
+msgstr "A vypadá to, že sis vedl velmi dobře. Obvzláště na někoho, kdo nemá prsty."
 
 #: dialogs/Iris.lua:231
 msgid "Thank you... I guess."
-msgstr ""
+msgstr "Děkuji ti... myslím."
 
 #: dialogs/Iris.lua:232
 msgid "Yeah. Although there's still a lot to be done."
-msgstr ""
+msgstr "To jo. Ačkoli je tu ještě hodně práce."
 
 #: dialogs/Iris.lua:240
 msgid "I... I'm not sure."
@@ -10147,11 +10148,11 @@ msgstr "Já... Nejsem si jistý."
 
 #: dialogs/Iris.lua:241
 msgid "It could be just background noise. Maybe it's not even that. But there's still something a little weird about it."
-msgstr ""
+msgstr "Mohl by to být jen šum na pozadí. Možná to není ani to. Ale je tu na tom stále něco trochu divného."
 
 #: dialogs/Iris.lua:242
 msgid "More than a little, when I think about it."
-msgstr ""
+msgstr "Víc než jen trochu, když tak o tom přemýšlím."
 
 #: dialogs/Iris.lua:243
 msgid "What are you talking about?"
@@ -10159,24 +10160,24 @@ msgstr "O čem to mluvíš?"
 
 #: dialogs/Iris.lua:244
 msgid "... I hope trusting you with this isn't a mistake."
-msgstr "...Doufám, že věřit ti to není chyba."
+msgstr "...Doufám, že věřit ti není chyba."
 
 #. TRANSLATORS: comm = communication
 #: dialogs/Iris.lua:246
 msgid "My comm devices have been intercepting strange signals in this area, ever since I got here. It's usually scrambled beyond recognition, and I wasn't even sure it was a signal at all until recently."
-msgstr ""
+msgstr "Od té doby, co jsem se sem dostala, chytá mé komunikační zařízení v této oblasti podivné signály. Je to obvykle zamíchané k nepoznání a nebyla jsem si ani jistá, zda-li to je signál, až do nedávna."
 
 #: dialogs/Iris.lua:247
 msgid "It was just before you arrived, actually."
-msgstr ""
+msgstr "Vlastně to bylo těsně předtím, než jsi přišel."
 
 #: dialogs/Iris.lua:248
 msgid "Are you saying I'm emitting some kind of signal?"
-msgstr ""
+msgstr "Tvrdíš, že vyzařuju nejaký druh signálu?"
 
 #: dialogs/Iris.lua:249
 msgid "No - if that were the case my equipment would've been going crazy right now. But it's definitely related to you."
-msgstr ""
+msgstr "Ne - pokud by tomu tak bylo, moje zařízení by právě teď šílelo. Ale určitě to s tebou souvisí."
 
 #: dialogs/Iris.lua:250
 msgid "But how do you know?"
@@ -10184,15 +10185,15 @@ msgstr "Ale jak to víš?"
 
 #: dialogs/Iris.lua:251
 msgid "Because just before you arrived, everything did go crazy. At first I thought we were being nuked and the EMP was causing it."
-msgstr ""
+msgstr "Protože těsně předtím, než jsi dorazil, všechno se zbláznilo. Nejdřív jsem myslela, že nás zasáhla atomovka a vše způsoboval EMP."
 
 #: dialogs/Iris.lua:252
 msgid "But then I realized: someone is broadcasting, and they really wanted outreach."
-msgstr ""
+msgstr "Ale pak jsem si uvědomila: někdo vysílá a skutečně chtěli být dosaženi."
 
 #: dialogs/Iris.lua:253
 msgid "It wasn't scrambled this time, and I listened. The whole thing lasted about an hour. It was mostly binary; I couldn't figure most of it out, but there were some names encoded in hex in there. Places. People."
-msgstr ""
+msgstr "Tentokrát to nebylo kódované a já poslouchala. Celé ta věc trvala okolo jedné hodiny. Převážně vysílali binárně. Na většinu z toho jsem nemohla přijít, ale byly tam hexadecimálně zakódované nějaké názvy a jména."
 
 #: dialogs/Iris.lua:254
 msgid "One of them was you."
@@ -10204,28 +10205,28 @@ msgstr "Mé jméno? Co to znamená?"
 
 #: dialogs/Iris.lua:264
 msgid "It means someone knew about you before the Red Guard did, and it means whoever it was broadcast it far and wide."
-msgstr ""
+msgstr "To znamená, že o tobě někdo věděl ještě před Rudou stráží a to znamená, že kdokoli to byl, vysílal to daleko široko."
 
 #: dialogs/Iris.lua:265
 msgid "That's all I can make of it."
-msgstr ""
+msgstr "To je vše, co o tom mohu soudit."
 
 #: dialogs/Iris.lua:274
 msgid "If I were you, I would be very careful. I'm sure there were a lot of hands stirring in this mess, but I think some of them weren't chopped off by a bot."
-msgstr ""
+msgstr "Kdybych byla tebou, byla bych velice opatrná. Jsem si jistá, že do tohoto zmatku strkalo mnoho prstů, ale myslím si, že některé z nich nebyly useknuty robotem."
 
 #: dialogs/Iris.lua:280
 msgid "I don't understand."
-msgstr ""
+msgstr "Nerozumím."
 
 #: dialogs/Iris.lua:283
 msgid "I don't either, and I don't have anything more to say on the matter."
-msgstr ""
+msgstr "Já také ne a nemám nic víc, co bych k tomu řekla."
 
 #. TRANSLATORS: previous sentence was "I don't have anything more to say on the matter"
 #: dialogs/Iris.lua:285
 msgid "Just that I hope that your optimism will be justified."
-msgstr ""
+msgstr "Jen doufám, že bude tvůj optimizmus odůvodněný."
 
 #: dialogs/Iris.lua:295
 msgid "Take care."
@@ -10241,11 +10242,11 @@ msgstr "Dávejte pozor na cokoliv divného."
 
 #: dialogs/Iris.lua:298
 msgid "Remember the saying, 'Speak softly and carry a big stick.' I think you'll need that stick soon."
-msgstr ""
+msgstr "Vzpomeň si na rčení, 'Mluv tiše, ale v ruce drž pořádný klacek.' Myslím, že ten klacek budeš brzy potřebovat."
 
 #: dialogs/Iris.lua:300 dialogs/Jennifer.lua:136
 msgid "Bye."
-msgstr "Ahoj."
+msgstr "Čau."
 
 #: dialogs/Iris.lua:302
 msgid "In your dreams, Penguin!"
@@ -10441,7 +10442,7 @@ msgstr "Fuj."
 
 #: dialogs/Jennifer.lua:88
 msgid "So the bots can identify us as 'friendly' and won't rip us apart."
-msgstr "Takže nás roboti mohou identifikovat jako \"přátelští\" a neroztrhají nás."
+msgstr "Takže nás roboti mohou identifikovat jako 'přátelští' a neroztrhají nás."
 
 #: dialogs/Jennifer.lua:89
 msgid "Uh."
@@ -10860,7 +10861,7 @@ msgstr "Uvedu své jméno."
 #: dialogs/Kevin-Lawnmower.lua:86
 #, c-format
 msgid "Identifying as %s"
-msgstr "Identifikace jako %s"
+msgstr "Identifikován jako %s"
 
 #: dialogs/Kevin-Lawnmower.lua:88
 msgid "Welcome to Kevin's lawnmower."
@@ -10876,7 +10877,7 @@ msgstr "VAROVÁNÍ: POKUS O PŘIHLÁŠENÍ NAREPORTOVÁN. TO BUDE MÍT NÁSLEDKY
 
 #: dialogs/Kevin-Lawnmower.lua:102
 msgid "I'll try 'Kevin'."
-msgstr "Zkusím \"Kevin\"."
+msgstr "Zkusím 'Kevin'."
 
 #: dialogs/Kevin-Lawnmower.lua:105
 msgid "Kevin"
@@ -16634,39 +16635,39 @@ msgstr "Co? Chtěla bys, aby byla?"
 
 #: dialogs/Tamara.lua:270
 msgid "No - it's hard to explain. I suppose I had this certain... Idea that it was my job to keep the books safe during the apocalypse. To defend them."
-msgstr ""
+msgstr "Ne - je to těžké vysvětlit. Myslím, že jsem měla jistou... představu, že to byla má práce udržovat v průběhu apokalypsy knihy v bezpečí. Bránila jsem je."
 
 #: dialogs/Tamara.lua:271
 msgid "It was my little fortress made of electronic paper, that I had to grow and protect from any threats. To save human knowledge."
-msgstr ""
+msgstr "Byla to má pevnůstka vytvořená z elektronických papírů, o které jsem musela pečovat a bránit je před všemi hrozbami. Abych zachránila lidské vědění."
 
 #: dialogs/Tamara.lua:278
 msgid "But what about all the people that died? They weren't made of E-paper!"
-msgstr ""
+msgstr "Ale co všichni ti lidé, kteří zemřeli? Ti nebyli vyrobeni z e-papíru!"
 
 #: dialogs/Tamara.lua:280
 msgid "I know! Please, don't misunderstand, I think it's fantastic that the Assault is over!"
-msgstr ""
+msgstr "Já vím! Prosím, nechápej mě špatně. Myslím se, že je fantastické, že je Útok za námi!"
 
 #: dialogs/Tamara.lua:281
 msgid "I just... Well, I guess I wanted a bigger piece of the action, in my own way."
-msgstr ""
+msgstr "Jen jsem... No, myslím, že jsem chtěla svým vlastním způsobem větší kus akce."
 
 #: dialogs/Tamara.lua:282
 msgid "I'll... Go and arrange some books now..."
-msgstr ""
+msgstr "Už... Půjdu teď uspořádat nějaké knihy..."
 
 #: dialogs/Tamara.lua:284
 msgid "It's rather hard to keep the library in good shape lately. Someone's been ransacking the southern sections. Times like these can bring out the worst in us."
-msgstr ""
+msgstr "V poslední době je dost těžké udržet knihovnu v dobrém stavu. Někdo drancoval v jižní části. Časy, jako jsou tyto, mohou přinést to nejhorší z nás."
 
 #: dialogs/Tamara.lua:285
 msgid "But I guess cleaning work is also part of preserving culture."
-msgstr ""
+msgstr "Ale myslím, že úklidové práce jsou také součástí zachování kultury."
 
 #: dialogs/Tamara.lua:293
 msgid "You know, I can start a fire here if you want me to."
-msgstr ""
+msgstr "Víš, můžu zde založit požár, pokud chceš."
 
 #: dialogs/Tamara.lua:295
 msgid "What? No! Absolutely not!"
@@ -16674,11 +16675,11 @@ msgstr "Cože? Ne! Absolutně ne!"
 
 #: dialogs/Tamara.lua:296
 msgid "Why in the world would I want you to do that?!"
-msgstr ""
+msgstr "Proč na světě bych po tobě chtěla, abys to udělal?!"
 
 #: dialogs/Tamara.lua:297
 msgid "Because that would put the books in immediate danger, and then you can rush in and save them!"
-msgstr ""
+msgstr "Jelikož by to způsobilo bezprostředním ohrožení knih a pak se do toho můžeš vrhnout a zachránit je!"
 
 #: dialogs/Tamara.lua:298
 msgid "That - that's insane!"
@@ -16686,7 +16687,7 @@ msgstr "To - to je šílené!"
 
 #: dialogs/Tamara.lua:299
 msgid "You are a danger to this establishment. Get out of here!"
-msgstr ""
+msgstr "Ty pro tohoto zařízení představuješ nebezpečí. Vypadni odsud!"
 
 #: dialogs/Tamara.lua:300
 msgid "You are a very confusing person."
@@ -16698,16 +16699,16 @@ msgstr "Myslím, že je to v rodině..."
 
 #: dialogs/Tamara.lua:310
 msgid "Well, you didn't get to fend off a hoard of bots. But you can interview me personally!"
-msgstr ""
+msgstr "No, nemusíš odrážet hromadu robotů, ale můžeš se mnou mít osobní interview."
 
 #: dialogs/Tamara.lua:312
 msgid "Really? You'd let me interview you?"
-msgstr ""
+msgstr "Vážně? Ty bys mě nechal s tebou udělat interview?"
 
 #. TRANSLATORS: it = the interview
 #: dialogs/Tamara.lua:315
 msgid "Sure! You can put it in the book you're writing."
-msgstr ""
+msgstr "Jistě! Můžeš ho dát do knihy, kterou píšeš."
 
 #: dialogs/Tamara.lua:317
 msgid "Sure!"
@@ -16715,35 +16716,35 @@ msgstr "Jistě!"
 
 #: dialogs/Tamara.lua:319
 msgid "Thank you! This is a wonderful opportunity! I have a first-hand account from a central actor in the biggest event in human history!"
-msgstr ""
+msgstr "Díky! To je skvělá příležitost! Mám úvahu z první ruky ustředního herce v největší události v historii lidstva!"
 
 #: dialogs/Tamara.lua:320
 msgid "We must set a time for an interview. And I must read everything in the library about interviewing!"
-msgstr ""
+msgstr "Musíme se domluvit na čase pro interview. A v knihovně musím přečíst vše ohledně dělaní rozhovorů!"
 
 #: dialogs/Tamara.lua:321
 msgid "There's a lot of ground to cover, but i can already imagine the descriptions - you, in the center of the robot apocalypse..."
-msgstr ""
+msgstr "K pokrytí je tu mnoho oblastí, ale už teď si dovedu představit popisy - ty v centru robotí apokalypsy..."
 
 #: dialogs/Tamara.lua:322
 msgid "Just like in those old fairy tales they used to tell children, about the brave dashing knight storming alone into a castle to save the princess."
-msgstr ""
+msgstr "Stejně tak, jako bylo zvykem vyprávět dětem staré pohádky o statečném rytíři podnikajícího brilantní útok do hradu, aby zachránil princeznu."
 
 #: dialogs/Tamara.lua:323
 msgid "With some mild adjustments."
-msgstr ""
+msgstr "S nějakými mírnými úpravami."
 
 #: dialogs/Tamara.lua:324
 msgid "I mean, no one in those stories had flippers."
-msgstr ""
+msgstr "Chci říct, že nikdo v těch příbězích neměl ploutve."
 
 #: dialogs/Tamara.lua:325
 msgid "That sounds like discrimination."
-msgstr ""
+msgstr "To zní jako diskriminace."
 
 #: dialogs/Tamara.lua:326
 msgid "Yes, they don't tell those stories to children anymore. Too much adult content. The effect on the young psyche was poorly studied."
-msgstr ""
+msgstr "Ano, dětem se už tyto příběhy neříkají. Příliš mnoho obsahu pro dospělé. Účinek na mladou psychiku byl špatně studován."
 
 #: dialogs/Tamara.lua:334
 msgid "It's interesting you should be looking for that - the library has two copies."
@@ -17969,43 +17970,43 @@ msgstr "Už jsme ti to řekli! Přestaň zdržovat!"
 
 #: dialogs/Town-TuxGuard.lua:75
 msgid "Well hey, it's you."
-msgstr ""
+msgstr "No hele, to jsi ty."
 
 #: dialogs/Town-TuxGuard.lua:76
 msgid "I remember you from way back, when you were just the new bird in the tree. Hehe."
-msgstr ""
+msgstr "Pamatuju si tě z minula, kdy jsi byl ještě čersvě vylíhlý pták ve stromu. Hehe."
 
 #: dialogs/Town-TuxGuard.lua:78
 msgid "Hah, and we used to call you 'loon'! Good old times."
-msgstr ""
+msgstr "Ha a říkali jsme ti blázen! Zlaté staré časy."
 
 #: dialogs/Town-TuxGuard.lua:79
 msgid "Haha, yeah... I guess..."
-msgstr ""
+msgstr "Haha, jasně... asi..."
 
 #: dialogs/Town-TuxGuard.lua:81
 msgid "Yes, that was a while ago..."
-msgstr ""
+msgstr "Jo, to už je nějaký ten pátek..."
 
 #: dialogs/Town-TuxGuard.lua:83
 msgid "And it looks like you've been up to a lot since then."
-msgstr ""
+msgstr "A zdá se, že jsi od té doby dost vyrostl."
 
 #: dialogs/Town-TuxGuard.lua:84
 msgid "That's true. I did manage to pretty much save the entire town in the mean time."
-msgstr ""
+msgstr "To je pravda. Mezitím se mi podařilo zachránit celé město."
 
 #: dialogs/Town-TuxGuard.lua:85
 msgid "Mhmmm. Yeah, that's pretty cool."
-msgstr ""
+msgstr "Hmmmm. Jó, to je dost dobrý."
 
 #: dialogs/Town-TuxGuard.lua:91
 msgid "What? Aren't you impressed?"
-msgstr ""
+msgstr "Co? Ty nejsi ohromen?"
 
 #: dialogs/Town-TuxGuard.lua:93
 msgid "Oh, sure, I mean, we're in your eternal debt, and all that."
-msgstr ""
+msgstr "Ah, jistě, mám na mysli jsme tvými věčnými služeníky a tak."
 
 #: dialogs/Town-TuxGuard.lua:94
 msgid "... But...?"
@@ -18013,145 +18014,145 @@ msgstr "... Ale...?"
 
 #: dialogs/Town-TuxGuard.lua:95
 msgid "Well, you see, it's just that I've been around, and I've seen and heard some things in my time."
-msgstr ""
+msgstr "No, víš, to jen, že jsem byl tak okolo a viděl jsem a slyšel některé věci v té době."
 
 #: dialogs/Town-TuxGuard.lua:96
 msgid "And it's just... not that high up on the scale, as far as epic deeds go."
-msgstr ""
+msgstr "A není to prostě... tak vysoko na stupnici, pokud jde o epické skutky."
 
 #: dialogs/Town-TuxGuard.lua:97
 msgid "No offense."
-msgstr ""
+msgstr "Bez urážky."
 
 #: dialogs/Town-TuxGuard.lua:103
 msgid "How's it going out there?"
-msgstr ""
+msgstr "Jak to tam jde?"
 
 #: dialogs/Town-TuxGuard.lua:105
 msgid "Much of the same, really."
-msgstr ""
+msgstr "Stále stejný, opravdu."
 
 #: dialogs/Town-TuxGuard.lua:106
 msgid "It's going to get a little easier from here on, without all those bots wanting to kill us."
-msgstr ""
+msgstr "Bude to teď trochu jednodušší, bez všech těch robotů, co nás chtějí zabít."
 
 #: dialogs/Town-TuxGuard.lua:107
 msgid "Spencer's pretty deeply impressed over there. He's been under a lot of stress since the Great Assault began, you know."
-msgstr ""
+msgstr "Spencer je hluboce dojat. Od začátku Velkého útoku byl pod neustálým stresem, chápeš."
 
 #: dialogs/Town-TuxGuard.lua:108
 msgid "He knows as well as anyone else that being a leader isn't about being popular, but it still takes its toll."
-msgstr ""
+msgstr "Je si vědom, stejně jako kdokoli jiný, že být vůdcem není o tom být populární, ale že si to stále vybírá svou daň."
 
 #: dialogs/Town-TuxGuard.lua:109
 msgid "He won't admit it, but the time between you heading out and all the bots dropping was a roller coaster for him. Absolutely nerve wracking."
-msgstr ""
+msgstr "On to nepřizná, ale čas kdy jsi vyrazil a pádem všech botů, byl pro něj jízdou na horské dráze. Absolutně nervy drásající."
 
 #: dialogs/Town-TuxGuard.lua:110
 msgid "I've never seen him as desparate as when you were in here. And I've never seen him as happy as when he dragged us to the teleporter."
-msgstr ""
+msgstr "Nikdy jsem ho neviděl tak zoufalého, jako když jste byli tady. A nikdy jsem ho neviděl tak šťastného, jako když nás stáhnul do teleportu."
 
 #: dialogs/Town-TuxGuard.lua:116
 msgid "I see. Those must have been some very impressive deeds."
-msgstr ""
+msgstr "Chápu. To musí být nějaké velmi působivé skutky."
 
 #: dialogs/Town-TuxGuard.lua:118
 msgid "Oh, you bet. Those were the good old days..."
-msgstr ""
+msgstr "Oh, to se vsaď. To byly staré dobré časy..."
 
 #: dialogs/Town-TuxGuard.lua:119
 msgid "Although... Well, I don't remember anyone saving a town half-full of people in the middle of a flaming apocalypse."
-msgstr ""
+msgstr "Ačkoliv ... No, já si nepamatuju nikoho, kdo by zachránil město napůl plného lidí ve středu planoucí apokalypsy."
 
 #: dialogs/Town-TuxGuard.lua:120
 msgid "I suppose that doesn't happen very often."
-msgstr ""
+msgstr "Předpokládám, že se to nestává moc často."
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Town-TuxGuard.lua:123
 #, c-format
 msgid "Hah hah! You know something, you're all right, %s."
-msgstr ""
+msgstr "Ha ha! Víš co, máš úplnou pravdu, %s."
 
 #: dialogs/Town-TuxGuard.lua:130
 msgid "Are you out of your mind? Do you know the danger I've been through?!"
-msgstr ""
+msgstr "Zbláznil ses? Víš, jakým nebezpečím jsem prošel?"
 
 #: dialogs/Town-TuxGuard.lua:132
 msgid "Well, ok, friend, keep your voice down..."
-msgstr ""
+msgstr "No, ok, kamaráde, utlum svůj hlas..."
 
 #: dialogs/Town-TuxGuard.lua:133
 msgid "I've risked my life for all of you, and this is what I get? 'Eh, it's pretty cool, it's not that high up on the scale'?!"
-msgstr ""
+msgstr "Pro všechny z vás jsem riskoval svůj život a tohle je to, co za to dostanu? \"Eh, to je dost dobrý, to není tak vysoko na stupnici\"?!"
 
 #: dialogs/Town-TuxGuard.lua:134
 msgid "Well, I said no offense!"
-msgstr ""
+msgstr "No, řekl jsem bez urážky!"
 
 #: dialogs/Town-TuxGuard.lua:135
 msgid "Is there even a scale for these things? How would you even quantify where something is on the scale? What do I have to do, lose a flipper?!"
-msgstr ""
+msgstr "Je tu pro takové věci vůbec nějaká stupnice? Jak bys hodnotil, kde co je na té stupnici? Co musím udělat, ztratit ploutev?!"
 
 #: dialogs/Town-TuxGuard.lua:136
 msgid "Calm down already, I'm sorry! I'll just... stay back here, all right? You calm down now and... Take a walk around..."
-msgstr ""
+msgstr "Uklidni se konečně, omlouvám se! Já prostě... zůstaň tady, v pořádku? Můžeš se uklidnit a... Udělej si procházku kolem..."
 
 #: dialogs/Town-TuxGuard.lua:138
 msgid "Oh, all right, I'll take a walk now... I'll just be careful not to step on the ARMIES OF BOTS I TOOK DOWN BY MYSELF, thank you very much!"
-msgstr ""
+msgstr "Oh, dobře, trochu se teď projdu... Budu dávat pozor, abych nestoupl na ARMÁDU BOTŮ, KTERÉ JSEM SÁM SEJMUL, děkuji mnohokrát!"
 
 #: dialogs/Town-TuxGuard.lua:139
 msgid "Yikes..."
-msgstr ""
+msgstr "Jejda..."
 
 #: dialogs/Town-TuxGuard.lua:146
 msgid "Well, I think I deserve a little more credit than that..."
-msgstr ""
+msgstr "No, myslím, že si zaslouží trochu víc úcty než tohle..."
 
 #: dialogs/Town-TuxGuard.lua:148
 msgid "Hrmm... I suppose, now that I look around, you're probably right."
-msgstr ""
+msgstr "Hmmm... Předpokládám, že se teď mrknu kolem, asi máš pravdu."
 
 #: dialogs/Town-TuxGuard.lua:149
 msgid "I shouldn't underestimate what you've done for us. I'll be honest with you: we were in pretty bad shape back there."
-msgstr ""
+msgstr "Neměl jsem podcenit, co jsi pro nás udělal. Budu k tobě upřímný: byli jsme v dost špatném stavu."
 
 #: dialogs/Town-TuxGuard.lua:151
 msgid "Even with the supplies from the warehouse, if the factory was to continue spewing out bots, I think a lot of us would've lost hope completely."
-msgstr ""
+msgstr "Dokonce i s dodávkami ze skladu, pokud by továrna pokračovala v chrlení robotů, myslím, že spousta z nás by ztratila naději úplně."
 
 #: dialogs/Town-TuxGuard.lua:154
 msgid "I remember people would go a couple of days at a time without eating at all, just because all we had were the military rations... I'm not sure what's worse, you know, dying by starvation, by bots or by that sludge."
-msgstr ""
+msgstr "Pamatuju si, že lidi šli bez jídla několik dní, protože vše, co jsme měli, byly vojenské příděly... Nejsem si jistý, co je horší, víš, umírat hladem, zabit roboty nebo tím bahnem."
 
 #: dialogs/Town-TuxGuard.lua:155
 msgid "Getting our kitchen back on track literally brought some taste back to life."
-msgstr ""
+msgstr "Dostání naší kuchyně do správných kolejí doslova přineslo zpět chuť k životu."
 
 #: dialogs/Town-TuxGuard.lua:159
 msgid "And I saw Dixon after he talked to you - he was so happy, you could think nothing was ever wrong. Whatever you talked about, the result was... Impressive."
-msgstr ""
+msgstr "A viděl jsem Dixona poté, co s tebou mluvil - byl tak šťastný, člověk si mohl myslet, že se nikdy nic nestalo. Ať už jste mluvili o čemkoli, výsledek byl ... působivý."
 
 #: dialogs/Town-TuxGuard.lua:161
 msgid "I know you definitely made some people angry along the way, but you gotta look at how far we've come. The apocalypse doesn't feel so bad anymore."
-msgstr ""
+msgstr "Vím, že jsi pár lidí v průběhu své cesty definitivně naštval, ale musíš se podívat na to, jak daleko jsme se dostali. Apokalypsa již není pociťována tak špatně."
 
 #: dialogs/Town-TuxGuard.lua:163
 msgid "But it wasn't all roses... I remember visiting Dixon one day after he talked to you. I couldn't see his face, but something was... Very different about him."
-msgstr ""
+msgstr "Ale ne vše bylo růžové... Pamatuju si na návštěvu Dixona jeden den poté, co mluvil s tebou. Neviděl jsem jeho tvář, ale něco bylo... zcela jiné."
 
 #: dialogs/Town-TuxGuard.lua:164
 msgid "I don't know what you did to him, but it changed him for the worse."
-msgstr ""
+msgstr "Netuším, co jsi mu udělal, ale změnilo ho to k horšímu."
 
 #: dialogs/Town-TuxGuard.lua:165
 msgid "The price we pay for salvation..."
-msgstr ""
+msgstr "Cena, kterou platíme za spásu..."
 
 #: dialogs/Town-TuxGuard.lua:169
 msgid "All those things you did... Well, you did good."
-msgstr ""
+msgstr "Všechny ty věci, které jsi udělal ... Nu, vedl sis dobře."
 
 #: dialogs/Town-TuxGuard.lua:178
 msgid "Not without me, you won't."
@@ -18212,11 +18213,11 @@ msgstr "Když už mluvíme o pohybu, můžeš také [b]utíkat[/b] podržením [
 
 #: dialogs/TutorialTom.lua:133
 msgid "Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot."
-msgstr "Očividně mohu utíkat, pokud podržím klávesnici ctrl při současném pohybu. To by mohlo pomoci, pokud se dostanu do úzkých."
+msgstr "Očividně mohu utíkat, pokud podržím klávesu ctrl při současném pohybu. To by mi mohlo pomoci, pokud se dostanu do úzkých."
 
 #: dialogs/TutorialTom.lua:134
 msgid "This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded."
-msgstr "Tato vzdálenost je určená tvou žlutou lištou výdrže. Čím víc jí máš, tím dál doběhneš, aniž by ses zadýchal."
+msgstr "Tato vzdálenost je určena tvou lištou výdrže označenou žlutě. Čím víc jí máš, tím dál doběhneš, aniž by ses zadýchal."
 
 #: dialogs/TutorialTom.lua:158
 msgid "Excellent, I see you already took on the armor that was in the box."
@@ -18236,15 +18237,15 @@ msgstr "Pokud s nikým nemluvíte, můžete ho otevřít nebo zavřít stisknut�
 
 #: dialogs/TutorialTom.lua:222
 msgid "I'll assign you a new quest, so you can try it out. Once you are done, [b]left click[/b] on me."
-msgstr "Přiřádím ti nový úkol, takže to můžeš vyzkoušet. Jakmile budeš hovový, klikni na mě [b]levým tlačítkem[/b] myši."
+msgstr "Přiřadím ti nový úkol, abys ho mohl vyzkoušet. Jakmile budeš hotový, klikni na mě [b]levým tlačítkem[/b] myši."
 
 #: dialogs/TutorialTom.lua:224
 msgid "To talk to someone, left click on them. You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the 'q' key to open or close the quest log. Left click back on Tutorial Tom to learn more!"
-msgstr "Abys s někým promluvil, klikni na něj levým tlačítkem. Můžeš hovořit s jakýmkoli přátelským botem nebo osobou. Ti vsichni mají nas sebou zelenou lištu. Stiskni klávesu \"q\" pro otevření nebo zavření záznamu úkolu. Levým tlačítkem klikni zpět na výukového Toma, aby ses dozvěděl víc."
+msgstr "Abys s někým promluvil, klikni na něj levým tlačítkem. Můžeš hovořit s jakýmkoli přátelským botem nebo osobou. Ti vsichni mají nas sebou zelenou lištu. Stiskni klávesu 'q' pro otevření nebo zavření záznamu úkolu. Levým tlačítkem klikni zpět na výukového Toma, aby ses dozvěděl víc."
 
 #: dialogs/TutorialTom.lua:226
 msgid "Press 'q' for Quests!"
-msgstr "Stiskni \"q\" pro úkol!"
+msgstr "Stiskni 'q' pro úkol!"
 
 #: dialogs/TutorialTom.lua:237
 msgid "What can you tell me about finding my way in the world?"
@@ -18260,19 +18261,19 @@ msgstr "Linariané mají, stejně jako ptáci, pozoruhodný vnitřní smysl pro 
 
 #: dialogs/TutorialTom.lua:241
 msgid "You can temporarily disable this compass by pressing the 'tab' key."
-msgstr "Tento kompas můžeš dočasně zablokovat stisknutím klávesy \"tab\"."
+msgstr "Tento kompas můžeš dočasně zablokovat stisknutím klávesy 'tab'."
 
 #: dialogs/TutorialTom.lua:242
 msgid "I learned the four red arrows in the upper-right of my HUD is a compass with north marked on it. I can toggle it using the 'tab' key."
-msgstr "Naučil jsem se, že čtyři červené šipky v pravém horním rohu mého HUD jsou kompas s naznačeným severem. Mohu ho přepínat za pomoci klávesy \"tab\"."
+msgstr "Naučil jsem se, že čtyři červené šipky v pravém horním rohu mého HUD jsou kompas s naznačeným severem. Mohu ho přepínat za pomoci klávesy 'tab'."
 
 #: dialogs/TutorialTom.lua:243
 msgid "Rumor is there was a device Linarians used to remember every place they had been, called an [b]automap[/b]."
-msgstr "Proslýchá se, že existovalo zařízení, které Linariani používali k zapamatování si každého navštíveného místa. Nazyvalo se [b]automapa[/b]."
+msgstr "Proslýchá se, že existovalo zařízení, které Linariani používali k zapamatování si každého navštíveného místa. Nazývalo se [b]automapa[/b]."
 
 #: dialogs/TutorialTom.lua:244
 msgid "Although, you don't currently have such a device, you might find someone with nanotechnology skills to make one."
-msgstr "Ačkoli momentálně toto zařízení nemáš, mohl bys najít někoho s dovednostmi v nanotechnologii, aby to ho vyrobil."
+msgstr "Ačkoli momentálně toto zařízení nemáš, mohl bys najít někoho s dovednostmi v nanotechnologii, aby ti ho vyrobil."
 
 #: dialogs/TutorialTom.lua:245
 msgid "I'll keep that in mind."
@@ -18296,11 +18297,11 @@ msgstr "Pokud se tam můžeš dostat, učiníš tak."
 
 #: dialogs/TutorialTom.lua:256
 msgid "Now try to move to the red dot to the north. Then to the black grating to the east, and then talk to me again."
-msgstr "Nyní se pokud přesunout na červenou tečku na severu. Pak na černou ve směru na východ a pak zase promluv se mnou."
+msgstr "Nyní se pokus přesunout na červenou tečku na severu. Pak na černou ve směru na východ a pak zase promluv se mnou."
 
 #: dialogs/TutorialTom.lua:257
 msgid "I'm supposed to left click anywhere to move to a location. If I can figure out a way, I will move there automatically. Tom wants me to first try to move to the red dot to the North."
-msgstr "Očekává se ode mě, že kliknu levým tlačítkem kamkoli pro přesun do té pozice. Když se mi podaří najít cestu, budu se tam pohybovat automaticky. Tom chce, abych nejprve šel k červenému bodu na sever."
+msgstr "Očekává se ode mě, že kliknu levým tlačítkem kamkoli pro přesun do dané pozice. Když se mi podaří najít cestu, budu se tím směrem pohybovat automaticky. Tom chce, abych nejprve šel k červenému bodu na sever."
 
 #: dialogs/TutorialTom.lua:265
 msgid "What else makes me different as a Linarian?"
@@ -18308,19 +18309,19 @@ msgstr "Co jiného mě jako Linariana odlišuje?"
 
 #: dialogs/TutorialTom.lua:267
 msgid "As a Linarian, you have some special abilities that no human does: Linarians can translate programming source code into something like magic."
-msgstr "Jako Linarian máš několik speciálních schopností, které žádný člověk nemá: Linariani dokáží přeložit zdrojový kód programování do něčeho jako kouzlo."
+msgstr "Jako Linarian máš několik speciálních schopností, které žádný člověk nemá: Linariani dokáží přeložit zdrojový kód programu do něčeho podobnému magii."
 
 #: dialogs/TutorialTom.lua:268
 msgid "However, using these [b]Programs[/b], adversely affect your body temperature, which you must regulate."
-msgstr "NIcméně, používání těchto [b]Programů[/b] má negativní vliv na tvou tělesnou teplotu, kterou musíš regulovat."
+msgstr "Nicméně, používání těchto [b]Programů[/b] má negativní vliv na tvou tělesnou teplotu, kterou musíš regulovat."
 
 #: dialogs/TutorialTom.lua:269
 msgid "But you normally have a special program called [b]Emergency Shutdown[/b], which freezes your motions for several seconds but significantly cools your body."
-msgstr "Ale ty máš obvykle speciální program nazývaný [b]Nouzové vypnutí[/b], který zmrazí tvé pohyby po dobu několika vteřin, ale významně ochladí tvé tělo."
+msgstr "Obvykle máš ale speciální program nazývaný [b]Nouzové vypnutí[/b], který sice zmrazí tvé pohyby po dobu několika vteřin, ale významně zchladí tvé tělo."
 
 #: dialogs/TutorialTom.lua:270
 msgid "This, and the ability to hack bots will soon return once your mind recovers from the stasis."
-msgstr "Toto a schopnost hacknout boty se brzy vrátí, jakmile se tvá mysl zotaví ze stáze."
+msgstr "Toto se spolu se schopností hacknout boty brzy vrátí, jakmile se tvá mysl zotaví ze stáze."
 
 #: dialogs/TutorialTom.lua:271
 msgid "Once it does, we'll talk more about programs. You can toggle the [b]Skills/Program menu[/b] by pressing the [b]s key[/b]."
@@ -18328,7 +18329,7 @@ msgstr "Jakmile se tak stane, promluvíme si o programech víc. Menu [b]Dovednos
 
 #: dialogs/TutorialTom.lua:272
 msgid "View the Skills/Program menu by pressing the 's' key."
-msgstr "Zobraz menu Dovednosti/Program stiskem klávesy \"s\"."
+msgstr "Zobraz menu Dovednosti/Program stiskem klávesy 's'."
 
 #: dialogs/TutorialTom.lua:278
 msgid "I'm sensing some sort of strange presence in the vicinity."
@@ -18344,15 +18345,15 @@ msgstr "Zdá se, že jsou Linariani schopni [b]detekovat předměty[/b] - dokonc
 
 #: dialogs/TutorialTom.lua:282
 msgid "The [b]z key[/b] will toggle this augmentation, while the [b]x key[/b] momentarily flashes it."
-msgstr "[b]Klávesa z[/b] tuto rozšířenost přepíná, zatímco [b]klávesa x[/b] jí na okamžik problikne."
+msgstr "[b]Klávesa z[/b] tuto rozšířenost přepíná, zatímco [b]klávesa x[/b] jí na okamžik jen problikne."
 
 #: dialogs/TutorialTom.lua:283
 msgid "Moving your pointer over an item will tell you more about that item."
-msgstr "Přesunutí ukazatele myši nad předmět ti řekne o tomto přemětu víc."
+msgstr "Přesunutí ukazatele myši nad předmět ti o tomto přemětu poskytne více informací."
 
 #: dialogs/TutorialTom.lua:284
 msgid "On our way to the next stopping point, we'll pass some items on the floor."
-msgstr "Na naší ceste k další zastávce minem několik předmětů na podlaze."
+msgstr "Na naší cestě k další zastávce minem několik předmětů ležících na podlaze."
 
 #: dialogs/TutorialTom.lua:285
 msgid "Feel free to stop and examine them to get practice."
@@ -18364,7 +18365,7 @@ msgstr "Kliknutí [b]levého tlačítka[/b] myši na předmět provede jeho ulo�
 
 #: dialogs/TutorialTom.lua:289
 msgid "Toggle detect items by pressing the 'z' key, and press 'x' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'i'."
-msgstr "Klávesa \"z\" zapíná zobrazení názvů předmětů, zatímco stisknutí \"x\" jejich zobrazení jen problikne. Levé tlačítko myši předmět zvedne. Stisk klávesy \"i\" zobrazí inventář, kde lze sebraný předmět prohlížet."
+msgstr "Klávesa 'z' zapíná zobrazení názvů předmětů, zatímco stisknutí 'x' jejich zobrazení jen problikne. Levé tlačítko myši předmět zvedne. Stisk klávesy 'i' zobrazí inventář, kde lze sebraný předmět prohlížet."
 
 #: dialogs/TutorialTom.lua:296
 msgid "Oh great, I see you found all the items hidden in the room. Good job!"
@@ -18372,7 +18373,7 @@ msgstr "Oh skvělé. Vidím, že jsi našel všechny předměty ukryté v místn
 
 #: dialogs/TutorialTom.lua:304
 msgid "No, thanks, I still remember how to walk, run, navigate, and pick things up."
-msgstr "Ne, díky. Stále si pamatuju, jak chodit, běžet, měnít směr a zvednout věci."
+msgstr "Ne, díky. Stále si pamatuju, jak chodit, běhat, měnit směr a zvedat věci."
 
 #: dialogs/TutorialTom.lua:311
 msgid "Thank you, that was very informative. I think I got how to move around. Can we proceed now?"
@@ -18380,11 +18381,11 @@ msgstr "Děkuji ti, bylo to velmi poučné. Myslím, že jsem pochopil, jak se p
 
 #: dialogs/TutorialTom.lua:314
 msgid "I just closed your first quest. You can still see what you learned by clicking on the 'done quests' tab in the quest screen."
-msgstr "Právě jsem zavřel tvůj první úkol. To, co jsi se naučil, můžeš stále nalézt v oknu úkolů na záložce \"hotové úkoly\"."
+msgstr "Právě jsem zavřel tvůj první úkol. To, co ses naučil, můžeš nalézt i nadále v oknu úkolů na záložce 'hotové úkoly'."
 
 #: dialogs/TutorialTom.lua:320
 msgid "I'm eager to learn more."
-msgstr "Dychtím dozvědět se více."
+msgstr "Dychtím dozvědět se víc."
 
 #: dialogs/TutorialTom.lua:322
 msgid "Ok, follow me into the next area."
@@ -18396,15 +18397,15 @@ msgstr "Co je v té truhle?"
 
 #: dialogs/TutorialTom.lua:334
 msgid "Well, you can interact with several types of objects by simply [b]left clicking[/b] on them."
-msgstr "No, můžeš interagovat s různými typy předmětů jednoduchým kliknutím [b]levého tlačítka[/b] myši."
+msgstr "No, můžeš interagovat s různými typy předmětů pomocí jejich kliknutím [b]levého tlačítka[/b] myši."
 
 #: dialogs/TutorialTom.lua:335
 msgid "Left click on the chest to open it up and see what is inside."
-msgstr "Levé kliknutí na truhlu ji otevře a ty uvidíš, co je uvnitř."
+msgstr "Levým kliknutím na truhlu jí otevřeš a uvidíš, co je uvnitř."
 
 #: dialogs/TutorialTom.lua:337
 msgid "I'm supposed to left click on chests to open them up."
-msgstr "Očekává se ode mě, že kliknu levým tlačítkem myši na truhly pro jejich otevření."
+msgstr "Očekává se ode mě, že kliknu levým tlačítkem myši na truhly, abych je otevřel"
 
 #: dialogs/TutorialTom.lua:345
 msgid "Some items came out."
@@ -18424,11 +18425,11 @@ msgstr "Pro některé to jsou cenné kovy v robotických obvodech. To je v naše
 
 #: dialogs/TutorialTom.lua:350
 msgid "For others, it may be weapons, or even just items that may be used as weapons in a pinch."
-msgstr "Pro jiné to mohou být zbraně nebo dokonce jen předměty, které lze v nouzi použít jako zbraně."
+msgstr "Pro jiné to mohou být zbraně nebo dokonce jen předměty, které lze použít jako zbraně pouze v nouzi."
 
 #: dialogs/TutorialTom.lua:351
 msgid "Still others, odd as it may sound, keep dishes hidden away."
-msgstr "Nicméně ti jiní, jakkoli to může být podivné, schovávají nádobí."
+msgstr "Nicméně, jakkoli to může být podivné, najdou se i tací, kteří schovávají nádobí."
 
 #: dialogs/TutorialTom.lua:352
 msgid "Perhaps the best thing you can find, though, is armor. At least, given the current situation with the bots, that is."
@@ -18436,27 +18437,27 @@ msgstr "Snad nejlepší, co můžeš najít, je brnění. Alespoň vzhledem k ak
 
 #: dialogs/TutorialTom.lua:359
 msgid "Armor? I should know more about this."
-msgstr "Brnění? Měl bych o tom vědět víc."
+msgstr "Brnění? O tom bych se měl dozvědět víc."
 
 #: dialogs/TutorialTom.lua:361
 msgid "In the years since you entered stasis, mankind has done much research in the field of robotics."
-msgstr "Za ty roky, co jsi byl ve stázi, lidstvo uskutečnilo mnoho výzkumu v oblasti robotiky."
+msgstr "Za ty roky, co jsi byl ve stázi, uskutečnilo lidstvo mnoho výzkumů v oblasti robotiky."
 
 #: dialogs/TutorialTom.lua:362
 msgid "One branch in particular that has served us well is the realm of nanotechnology."
-msgstr "Zejména jedno odvětví, které nám sloužilo dobře, je oblast nanotechnologií."
+msgstr "Zejména jedno odvětví nám sloužilo dobře - oblast nanotechnologií."
 
 #: dialogs/TutorialTom.lua:363
 msgid "Because they run a very simple operating system, nanobots were not affected by whatever caused the Great Assault."
-msgstr "Neboť používají velmi jednoduchý operační systém, nebyly nanoboti ovlivněny čímkoli, co způsobilo Velký útok."
+msgstr "Neboť používají velmi jednoduchý operační systém, nebyli nanoboti ovlivněni tím, co způsobilo Velký útok."
 
 #: dialogs/TutorialTom.lua:364
 msgid "To this day, our armor and clothing are made out of nanobots. This enables many different sizes of people to wear the same clothing."
-msgstr "K tomuto dni, naše brnění a oblečení je vyrobeno z nanobotů. To umožňuje mnoho lidem různých velikostí nosit stejné oblečení."
+msgstr "V současnosti se naše brnění a oblečení vyrábí z nanobotů. To dovoluje mnoha lidem různých velikostí nosit stejné oblečení."
 
 #: dialogs/TutorialTom.lua:365
 msgid "The nanobots reshape the garment for a comfortable fit, so even you should be able to wear them without problem."
-msgstr "Nanoboti změní tvar oděvu pro pohodlné nošení, takže dokonce i ty bys měl být schopen ho nosit bez větších problémů."
+msgstr "Nanoboti změní tvar oděvu pro pohodlné nošení, takže dokonce i ty bys měl být schopen ho bez větších problémů nosit."
 
 #: dialogs/TutorialTom.lua:372
 msgid "How does wearing clothes and holding shields help me?"
@@ -18464,7 +18465,7 @@ msgstr "Jak mi nošení oblečení a držení štítu pomůže?"
 
 #: dialogs/TutorialTom.lua:374
 msgid "Well, it can help you avoid indecent exposure charges."
-msgstr "No, pomůže ti zabránit pokutám za exhibicionismus."
+msgstr "No, pomůže ti zabránit dostat pokutu za exhibicionismus."
 
 #: dialogs/TutorialTom.lua:376
 msgid "But all jokes aside, the bots will not mess around."
@@ -18472,15 +18473,15 @@ msgstr "Ale vtipy stranou, boti se nebudou jen tak poflakovat."
 
 #: dialogs/TutorialTom.lua:377
 msgid "Even the best of fighters sometimes get hit by enemy blows. If I were you, I would seriously consider wearing some sort of armor before mixing it up with those bots."
-msgstr "Dokonce i ti nejlepší bojovníci dostanou někdy zásah od nepřítele. Být tebou, vážně bych uvažoval o nějakém brnění před tím, než se začneš vměšovat mezi boty."
+msgstr "Dokonce i ti nejlepší bojovníci dostanou někdy od nepřítele zásah. Být tebou, vážně bych uvažoval o nějakém brnění ještě před tím, než se začneš vměšovat mezi boty."
 
 #: dialogs/TutorialTom.lua:378
 msgid "They will help to mitigate some of the damage you take from melee or ranged combat."
-msgstr "Pomohou zmírnit některé škody, které utržíš v boji na blízko nebo na dálku."
+msgstr "Pomohou zmírnit škody, které utržíš v boji na blízko nebo na dálku."
 
 #: dialogs/TutorialTom.lua:379
 msgid "Keep in mind, though, that there is a chance that your armor will take damage whenever you get hit. Keep an eye on it, or you'll lose it."
-msgstr "Nicméně, měj na paměti, že je tu šance poškození tvého brnění, kdykoli dostaneš zásah. Dávej na to pozor, jinak ho ztratíš."
+msgstr "Nicméně, měj na paměti, že kdykoli dostaneš zásah, je tu šance poškození tvého brnění. Dávej na to pozor, jinak ho ztratíš."
 
 #: dialogs/TutorialTom.lua:385
 msgid "That sounds useful. How do I use armor?"
@@ -18496,11 +18497,11 @@ msgstr "Když vezmeš kus brnění dané třídy, jímž ještě nejsi vybaven, 
 
 #: dialogs/TutorialTom.lua:389
 msgid "Picking up armor and items can be accomplished by [b]left clicking[/b] on the item. If your inventory has space, you will pick the item up."
-msgstr "Zvednutí brnění a předmětů lze dosáhnout kliknutím na ně [b]levým tlačítkem[/b] myši. Pokud je v tvém inventáři místo."
+msgstr "Zvednutí brnění a předmětů lze provést kliknutím [b]levého tlačítka[/b] myši na daný předmět. Pokud je v tvém inventáři místo, předmět se do něj přesune."
 
 #: dialogs/TutorialTom.lua:390
 msgid "If you currently have one piece of armor equipped that you would like to swap out for another, simply drag the new armor piece to the current armor piece and left click."
-msgstr "Pokud jsi nyní vybaven nějakým kusem brnění, které bys chtěl vyměnit za jiné, jednoduše přetáhni nové brnění na místo stávajícího a klikni levým tlačítkem."
+msgstr "Pokud jsi právě vybaven kusem brnění, které bys chtěl vyměnit za jiné, jednoduše přetáhni nové brnění na místo stávajícího a klikni levým tlačítkem."
 
 #: dialogs/TutorialTom.lua:391
 msgid "They will swap places, and you can put the other piece of armor back into your inventory."
@@ -18512,7 +18513,7 @@ msgstr "Případně ho můžeš přetáhnout do svého zorného pole a upustit j
 
 #: dialogs/TutorialTom.lua:398
 msgid "I wouldn't want to lose any armor. What can I do about that?"
-msgstr "Já bych nechtěl ztrácet brnění. Co s tím mohu udělat?"
+msgstr "Nechtěl bych ztratit žádné brnění. Co s tím mohu udělat?"
 
 #: dialogs/TutorialTom.lua:400
 msgid "Well, there are several ways to keep that from happening."
@@ -18520,15 +18521,15 @@ msgstr "No, existuje několik způsobů, jak zajistit, aby se tak nestalo."
 
 #: dialogs/TutorialTom.lua:401
 msgid "Equipped items in poor condition will show up yellow and should turn red if in critical condition."
-msgstr "Vybavené předměty ve špatném stavu se objeví jako žluté a v případě kritického stavu by se měly jevit jako červené."
+msgstr "Předměty ve špatném stavu, jimiž jsi vyzbrojen, se zobrazí žlutě a v případě jejich kritického stavu by se měly jevit jako červené."
 
 #: dialogs/TutorialTom.lua:402
 msgid "If you don't unequip an item in poor or critical condition it may be ruined!"
-msgstr "Pokud nesundáš předmět ve špatném nebo kritickém stavu, může být zničen!"
+msgstr "Pokud předmět ve špatném nebo kritickém stavu nesundáš, může být zničen!"
 
 #: dialogs/TutorialTom.lua:403
 msgid "There are three things you can do when an item reaches critical condition:"
-msgstr "Jsou tři veci, které můžeš udělat, když předmět dosáhne kritického stavu:"
+msgstr "Jsou tři věci, které můžeš udělat, když předmět dosáhne kritického stavu:"
 
 #: dialogs/TutorialTom.lua:404
 msgid "First, you can sell or discard the item."
@@ -18536,11 +18537,11 @@ msgstr "Za prvé, předmět můžeš prodat nebo zrušit."
 
 #: dialogs/TutorialTom.lua:405
 msgid "Second, you can use your [b]repair equipment[/b] program on the item, which will repair the item at the cost of some of its durability."
-msgstr "Za druhé, na předměty můžeš použít svůj program pro [b]Opravy vybavení[/b], který opraví předmět za cenu nějaké té jeho odolnosti."
+msgstr "Za druhé, na předměty můžeš použít svůj program pro [b]Opravy vybavení[/b], který opraví předmět na úkor nějaké té jeho odolnosti."
 
 #: dialogs/TutorialTom.lua:406
 msgid "Or third, you can have the item repaired at a shop, which maintains the item's durability at a price."
-msgstr "Za třetí, předmět můžeš nechat opravit v obchodě, což zachovává odolnost předmětu."
+msgstr "Za třetí, předmět můžeš nechat opravit v obchodě, což zachová jeho odolnost."
 
 #: dialogs/TutorialTom.lua:412
 msgid "You mentioned discarding an item. Why would I want to do that?"
@@ -18552,7 +18553,7 @@ msgstr "Mno, napadá mě hned několik důvodů."
 
 #: dialogs/TutorialTom.lua:415
 msgid "You might not have enough room in your inventory for an item you need more, or can sell for more."
-msgstr "Je možné, že nebudeš mít dostatek místa ve svém inventáři pro předmět, který budeš potřebovat víc, nebo ho můžeš prodat za víc peněz."
+msgstr "Je možné, že nebudeš mít ve svém inventáři dostatek místa pro předmět, který budeš potřebovat víc nebo který můžeš prodat za víc peněz."
 
 #: dialogs/TutorialTom.lua:416
 msgid "If an item is close to being destroyed, you might also consider dropping it."
@@ -18560,15 +18561,15 @@ msgstr "Pokud je předmět blízko svého zničení, můžeš také zvážit jeh
 
 #: dialogs/TutorialTom.lua:417
 msgid "And finally some items give negative status effects, and aren't worth selling."
-msgstr "A nakonec, některé předměty mají negativní efekt na status a nestojí za to je prodávat."
+msgstr "A nakonec, některé předměty mají negativní efekt na stav a nestojí za to je prodávat."
 
 #: dialogs/TutorialTom.lua:418
 msgid "Armor or weapons may affect you in different ways."
-msgstr "Brnění a zbraně mohou mít na tebe vliv různými způsoby."
+msgstr "Brnění a zbraně mohou na tebe mít vliv různými způsoby."
 
 #: dialogs/TutorialTom.lua:419
 msgid "Some will help you out, for example by increasing your cooling rate or increasing your dexterity. This is the work of specialized nanobots, but the reverse can happen too."
-msgstr "Některé ti pomohou, například nárustem chladícího výkonu nebo obratnosti. Je to práce specializovaných nanobotů, ale opak může nastat také."
+msgstr "Některé ti pomohou například nárustem chladícího výkonu nebo obratnosti. Je to práce specializovaných nanobotů, ale opak může také nastat."
 
 #: dialogs/TutorialTom.lua:429
 msgid "Repair equipment program? How do I use that?"
@@ -18588,7 +18589,7 @@ msgstr "Poté, co sis vybral program, spusť ho pravým kliknutím myši. V záv
 
 #: dialogs/TutorialTom.lua:434
 msgid "You can also assign quick-select keys to programs. Simply hover over the program in the Skills/Program menu and press one of the keys [b]F5[/b] to [b]F12[/b]. Then, whenever you press this button, you will select the corresponding program."
-msgstr "Programům můžeš přiřadit i rychlý výběr. Jednoduše najeď nad program v menu dovesností/programů a stiskni jednu z klávesnic [b]F5[/b] až [b]F12[/b]. Pak, kdykoli stiskneš tuto klávesu, vybereš příslušný program."
+msgstr "Programům můžeš přiřadit i rychlý výběr. Jednoduše najeď nad program v menu dovesností/programů a stiskni jednu z kláves [b]F5[/b] až [b]F12[/b]. Pak, kdykoli stiskneš tuto klávesu, vybereš příslušný program."
 
 #: dialogs/TutorialTom.lua:435
 msgid "If you're curious what a program does, you can find out by clicking the question mark in the Skills/Program menu."
@@ -18596,11 +18597,11 @@ msgstr "Pokud tě zajímá, co program dělá, můžeš tuto informaci najít kl
 
 #: dialogs/TutorialTom.lua:436
 msgid "Now, to answer your question, you use your repair equipment program by selecting it in the Skills/Program menu, then right clicking on the item you wish to repair."
-msgstr "Nyní, abych odpověděl tvou otázku, použiješ svůj program pro opravu vybavení jeho vybráním v menu dovedností/programů a pak pravým tlačítkem myši klikneš na předmět, který chceš opravit."
+msgstr "Nyní, abych odpověděl tvou otázku, svůj program pro opravu vybavení použiješ jeho vybráním v menu dovedností/programů a pak pravým tlačítkem myši klikneš na předmět, který chceš opravit."
 
 #: dialogs/TutorialTom.lua:440 dialogs/TutorialTom.lua:442
 msgid "Run a program by right clicking after it has been selected from the Skills/Program menu. My shoes are damaged, so I might try the repair equipment program on them to slightly repair them."
-msgstr "Spusť program kliknutím pravého tlačítka myši poté, co byl vybrán v menu dovedností/programů. Mé boty jsou poničené, mohu je tedy zkusit program pro opravu vybavení, abych je trochu opravil."
+msgstr "Spusť program kliknutím pravého tlačítka myši poté, co byl vybrán v menu dovedností/programů. Mé boty jsou poničené, mohu tedy program pro opravu vybavení zkusit na nich a boty trochu opravit."
 
 #: dialogs/TutorialTom.lua:449
 msgid "I think I'm ready for the next section of the tutorial."
@@ -18620,11 +18621,11 @@ msgstr "Určitě se o to pokusím co nejlíp."
 
 #: dialogs/TutorialTom.lua:465
 msgid "It's odd to think that a flightless bird would be such a scrapper, but you Linarians have been surprising us since the beginning."
-msgstr "Je zvláštní myslet si, že nelétavý pták by mohl být takový ranař, ale vy Linariani jste nás překvapovali od samotného začátku."
+msgstr "Je zvláštní myslet si, že by nelétavý pták mohl být takový ranař, ale vy Linariani jste nás překvapovali už od samotného začátku."
 
 #: dialogs/TutorialTom.lua:466
 msgid "We prefer to fight the blamed droids at a distance. They're less likely to rend us limb from limb that way."
-msgstr "Dáváme přednost pro boj s body na dálku. Je méně pravděpodobné, že nás tímto způsobem roztrhaj na kusy."
+msgstr "Dáváme přednost boji s boty na dálku. Je méně pravděpodobné, že nás tímto způsobem roztrhaj na kusy."
 
 #: dialogs/TutorialTom.lua:467
 msgid "Unfortunately, guns and other ranged weaponry are hard to come by these days."
@@ -18632,11 +18633,11 @@ msgstr "Bohužel, pušky a ostatní zbraně pro boj na dálku jsou v těchto dne
 
 #: dialogs/TutorialTom.lua:468
 msgid "That goes double for ammunition. Because these are bots, you really can't effectively keep them at bay by just waving around an empty gun."
-msgstr "To platí dvojnásob pro munici. Neboť se jedná o boty, nemůžeš je efektivně udržet na uzdě pouhým máváním prázdnou pistolí."
+msgstr "To platí dvojnásob pro munici. Neboť se jedná o boty, nemůžeš je prakticky udržet na uzdě pouhým máváním prázdnou pistolí."
 
 #: dialogs/TutorialTom.lua:469
 msgid "With that in mind, your most reliable weapons are your fists. They never run out of ammo or wear down, but of course they don't do much damage against a metal body, either."
-msgstr "S tímto na mysli jsou tvou nejspolehlivější zbraní vlastní pěsti. Těm nikdy nedojde střelivo nebo se neopotřebují, ale zároveň samosebou nenadělají tolik škody vůči kovovému tělu."
+msgstr "Maje toto na mysli, jsou tvou nejspolehlivější zbraní vlastní pěsti. Těm nikdy střelivo nedojde nebo se neopotřebují, ale zároveň samosebou nenadělají vůči kovovému tělu tolik škody."
 
 #: dialogs/TutorialTom.lua:475
 msgid "So I'm supposed to fight bots with my fists?"
@@ -18652,11 +18653,11 @@ msgstr "Boj z blízka, ozbrojený nebo neozbrojený, může být zahájen kliknu
 
 #: dialogs/TutorialTom.lua:479
 msgid "You will then walk over to the enemy and start hitting them."
-msgstr "Pak dojdeš k nepříteli a začneš ho být."
+msgstr "Pak dojdeš k nepříteli a začneš ho bít."
 
 #: dialogs/TutorialTom.lua:480
 msgid "Now, I understand you may have some concerns over your safety during this..."
-msgstr "Teď rozumím, že bys mohl mít pochybnosti ohledně svého bezpečí v průbehu tohoto..."
+msgstr "Teď chápu, že bys mohl mít pochybnosti ohledně svého bezpečí v průbehu tohoto..."
 
 #: dialogs/TutorialTom.lua:481
 msgid "CONCERNS? Erm... Yes, this doesn't sound like a particularly healthy endeavor."
@@ -18664,7 +18665,7 @@ msgstr "POCHYBNOSTI? Ehm... Ano, tohle nezní jako obzvláště zdravé úsilí.
 
 #: dialogs/TutorialTom.lua:482
 msgid "Fred, if you're afraid, you'll have to overlook it. Besides, you knew the job was dangerous when you took it."
-msgstr "Frede, pokud máš obavy, budeš to muset přehlédnout. Kromě toho jsi věděl, že ta práce byla nebezpečná, když jsi ji bral."
+msgstr "Frede, pokud máš obavy, budeš to muset přehlédnout. Kromě toho jsi věděl, že je ta práce nebezpečná, když jsi ji bral."
 
 #: dialogs/TutorialTom.lua:483
 msgid "I beg your pardon? Who is Fred?"
@@ -18676,7 +18677,7 @@ msgstr "Na tom nezáleží, jen jedna stará písnička."
 
 #: dialogs/TutorialTom.lua:485
 msgid "Fighting the bots hand-to-hand has risks, there is no question. However, there are things you can do to even the odds."
-msgstr "Boj zblízka s botyje riziko, není pochyb. Nicméně jsou zde věci, které můžeš udělat, abys vyrovnal šance."
+msgstr "Boj s boty zblízka je riziko, o tom není pochyb. Nicméně jsou zde věci, které můžeš udělat, abys vyrovnal šance."
 
 #: dialogs/TutorialTom.lua:486
 msgid "We already discussed armor. Another useful type of item is medical supplies."
@@ -18684,7 +18685,7 @@ msgstr "Už jsme mluvili o brnění. Dalším užitečným typem předmětů jso
 
 #: dialogs/TutorialTom.lua:487
 msgid "There are a few different types of restorative items. The most common are health drinks."
-msgstr "Máme několik růrných typů regeneračních předmětů. Nejrozšířenějším jsou zdravotní nápoje."
+msgstr "Máme několik různých typů regeneračních předmětů. Nejrozšířenějším jsou zdravotní nápoje."
 
 #: dialogs/TutorialTom.lua:493
 msgid "Tell me about health drinks."
@@ -18692,7 +18693,7 @@ msgstr "Pověz mi o zdravotních nápojích."
 
 #: dialogs/TutorialTom.lua:495
 msgid "Man has practised medicine in one form or another for hundreds of years."
-msgstr "Člověk provozoval lékařství v té či oné podobě po stovky let."
+msgstr "Člověk praktikoval medicínu v té či oné podobě po stovky let."
 
 #: dialogs/TutorialTom.lua:496
 msgid "Using some of the same nanotechnology that makes up your armor, we've perfected drinks that instantaneously restore your health."
@@ -18712,7 +18713,7 @@ msgstr "Na spodu tvého průhledového dipleje si všimni, že se tvé předmět
 
 #: dialogs/TutorialTom.lua:500
 msgid "Unlike armor or weapons, multiple of these items will group together in your inventory slots."
-msgstr "Na rozdíl od brnění nebo zbraní, vícenásobné množství předmětů lze seskupit ve slotech inventáře dohromady."
+msgstr "Na rozdíl od brnění nebo zbraní, větší množství předmětů lze seskupit ve slotech inventáře dohromady."
 
 #: dialogs/TutorialTom.lua:501
 msgid "If you have Diet Supplements equipped in item slot 1, you can press 1 to use one."
@@ -18720,7 +18721,7 @@ msgstr "Pokud máš doplňky stravy uloženy ve slotu 1, můžeš pro jejich pou
 
 #: dialogs/TutorialTom.lua:502
 msgid "This will restore your health, and will be invaluable in the heat of battle."
-msgstr "To obnoví tvé zdraví a bude neocenitelné v zápalu boje."
+msgstr "To obnoví tvé zdraví a stane se neocenitelným pomocníkem v zápalu boje."
 
 #: dialogs/TutorialTom.lua:503
 msgid "Small one-time-use items, like diet supplements, can be placed in inventory spots labels 1 to 0, and can be used by pressing the corresponding key."
@@ -18740,7 +18741,7 @@ msgstr "Odemknul jsem dvěře vedoucí k prvnímu botu. Postarej se o něj, pak 
 
 #: dialogs/TutorialTom.lua:513
 msgid "I'm also giving you some health drinks. Feel free to use them, though I can heal you if you need it."
-msgstr "Dal jsem ti i nějaké zdravotní nápoje. Klidně je použij, nicméně tě mohu uzdravit, pokud to budeš potřebovat."
+msgstr "Dal jsem ti i nějaké zdravotní nápoje. Klidně je použij, nicméně, pokud to budeš potřebovat, mohu tě uzdravit."
 
 #: dialogs/TutorialTom.lua:514
 msgid "Your health will also regenerate over time. I wish it were so easy for us humans."
@@ -18756,7 +18757,7 @@ msgstr "Vrať se a promluv si se mnou, až budeš mít invertor entropie."
 
 #: dialogs/TutorialTom.lua:519
 msgid "I'm going to fight my first bot! To start melee combat left click on the bot. Tom wants the Entropy Inverter from the bot after I've defeated it, so I should pick that up."
-msgstr "Chystám se bojovat se svým prvním botem! Pro započetí boje klikni levým tlačítkem myši na bota. Tom chce z bota invertor entropie poté, co ho porazím, takže bych ho měl sebrat."
+msgstr "Chystám se bojovat se svým prvním botem! Pro započetí boje klikni levým tlačítkem myši na bota. Tom chce z bota donést invertor entropie poté, co ho porazím, takže bych ho měl sebrat."
 
 #: dialogs/TutorialTom.lua:526
 msgid "Can you heal me?"
@@ -18764,7 +18765,7 @@ msgstr "Můžeš mě vyléčit?"
 
 #: dialogs/TutorialTom.lua:529
 msgid "You are fine, there is nothing that I can do."
-msgstr "Jsi v pořádku, není nic, co můžu udělat."
+msgstr "Jsi v pořádku, není nic, co bych mohl udělat."
 
 #: dialogs/TutorialTom.lua:532
 msgid "You should be more careful, Linarian. But yes, I can heal you."
@@ -18780,7 +18781,7 @@ msgstr "Porazil jsem prvního bota."
 
 #: dialogs/TutorialTom.lua:543
 msgid "So you have. Well done."
-msgstr "Takže přece. Výborně."
+msgstr "Takže přece jen. Výborně."
 
 #: dialogs/TutorialTom.lua:544
 msgid "I'll exchange this wrench for it. I think you'll find it handy."
@@ -18792,11 +18793,11 @@ msgstr "Myslím, že teď je vhodná doba zmínit části bota."
 
 #: dialogs/TutorialTom.lua:546
 msgid "Certain parts in the bots are extra valuable. You can sell them at stores for cash."
-msgstr "Určité části botů jsou extra cenné. Můžeš je prodat v obchodech za peníze."
+msgstr "Určité části botů jsou extra cenné. Můžeš je za peníze prodat v obchodech."
 
 #: dialogs/TutorialTom.lua:547
 msgid "If you can learn to extract these parts, it can help improve your lot in the world."
-msgstr "Pokud se můžeš naučit extrahování těchto částí, může ti to pomoct se hodně zlepšit."
+msgstr "Pokud se můžeš naučit extrahovat tyto části, může ti to pomoct se hodně zlepšit."
 
 #: dialogs/TutorialTom.lua:548
 msgid "Hopefully, you can find someone to teach you."
@@ -18808,7 +18809,7 @@ msgstr "Přinesl jsem Tomovi invertor entropie a ten mi dal mou první zbraň: V
 
 #: dialogs/TutorialTom.lua:554
 msgid "Trying to cheat your way through the tutorial doesn't bode well for your chances in the real world."
-msgstr "Pokoušet se podvádět na své cestě výukou nevěstí nic dobrého pro tvé šance v reálném světě."
+msgstr "Pokoušet se podvádět při svém výcviku nevěstí nic dobrého pro tvé šance v reálném světě."
 
 #: dialogs/TutorialTom.lua:555
 msgid "I'll need proof that you've beaten the first bot."
@@ -18856,7 +18857,7 @@ msgstr "Rozhodně doufám, že ano. Vyléčím tě jestě před tím, než vejde
 
 #: dialogs/TutorialTom.lua:579
 msgid "I'm also giving you another healing drink, just in case."
-msgstr "Dám ti také další zdravotní nápoj, jen pro případ."
+msgstr "Jen pro případ ti také dám další zdravotní nápoj."
 
 #: dialogs/TutorialTom.lua:580
 msgid "A 247 is nothing to trifle with, so I'm giving you a shield in the hopes that it'll help keep you alive."
@@ -18864,7 +18865,7 @@ msgstr "247čka není nic, s čím by sis měl zahrávat. Proto ti dám štít v
 
 #: dialogs/TutorialTom.lua:581
 msgid "Finally, I'm giving you couple of somewhat experimental pills that will temporarily increase your strength and dexterity, respectively."
-msgstr "A nakonec, přijmi od mě několik poněkud experimentálních pilulek, které dočasně zvýší tvou sílu a obratnost."
+msgstr "A nakonec, přijmi ode mě několik poněkud experimentálních pilulek, které dočasně zvýší tvoji sílu a obratnost."
 
 #: dialogs/TutorialTom.lua:582
 msgid "Use them in the same way you would use a health drink."
@@ -18872,7 +18873,7 @@ msgstr "Použij je tím samým způsobem jako v případě zdravotního nápoje.
 
 #: dialogs/TutorialTom.lua:583
 msgid "If I were you, I would think about using your repair equipment program on your armor and that wrench before you go into the room."
-msgstr "Pokud bych byl tebou, vzal bych v úvahu použití programu na opravu vybavení na svůj štít a hasák ještě před tím, než vejdeš do místnosti."
+msgstr "Pokud bych byl tebou, vzal bych v úvahu použití programu pro opravu vybavení na svůj štít a hasák ještě před tím, než vejdeš do místnosti."
 
 #: dialogs/TutorialTom.lua:584
 msgid "You'll also need to equip them. I won't do that for you."
@@ -18908,7 +18909,7 @@ msgstr "Nepřinesl jsi zpět tachyonový kondenzátor. Budeš ho muset přinést
 
 #: dialogs/TutorialTom.lua:609
 msgid "I'll go ahead and heal you. If your weapon or armor are in bad shape, perhaps you should repair them before going back in there."
-msgstr "Budu pokračovat a uzdravím tě. Tvá zbraň nebo brnění jsou ve špatné kondici. Možná bys je měl opravit před tím, než půjdeš zpět."
+msgstr "Budu pokračovat a uzdravím tě. Tvá zbraň nebo brnění jsou ve špatné kondici. Možná bys je měl opravit ještě před tím, než půjdeš zpět."
 
 #: dialogs/TutorialTom.lua:610
 msgid "Don't come back without the [b]Tachyon Condensator[/b]."
@@ -18936,15 +18937,15 @@ msgstr "Odemknu dveře na jihu. Jdi chodbou na východ."
 
 #: dialogs/TutorialTom.lua:637
 msgid "Ranged weaponry seems safer than getting up close and personal."
-msgstr "Zbraně na dálku se zdají být bezpečnější než stát blízko a osobně."
+msgstr "Zbraně na dálku se zdají být bezpečnější než všemu čelit zblízka a osobně."
 
 #: dialogs/TutorialTom.lua:639
 msgid "Well, Linarian, most of the time it is."
-msgstr "No Linariane, většinu času to je."
+msgstr "No Linariane, většinu času tomu tak je."
 
 #: dialogs/TutorialTom.lua:640
 msgid "There are some bots with ranged weaponry, but we don't have any of those in captivity."
-msgstr "Existuje několik botů s výzbrojí pro boj na dálku, ale žádné takové nemáme v zajetí."
+msgstr "Existuje několik botů s výzbrojí pro boj na dálku, ale žádné takové v zajetí nemáme."
 
 #: dialogs/TutorialTom.lua:641
 msgid "I am learning about how to use ranged weapons."
@@ -18952,11 +18953,11 @@ msgstr "Učím se jak používat zbraně pro boj na dálku."
 
 #: dialogs/TutorialTom.lua:647
 msgid "So what can you tell me about guns?"
-msgstr "Takže co mi můeš povědět o palných zbraních?"
+msgstr "Takže co mi můžeš povědět o palných zbraních?"
 
 #: dialogs/TutorialTom.lua:649
 msgid "The basic idea behind ranged weaponry is to hurt or kill an enemy without having to come within swinging range."
-msgstr "Základní myšlenkou zbraní pro boj na dálku je zranit nebo zabít nepřítele aniž by se člověk distal do jeho dosahu."
+msgstr "Základní myšlenkou zbraní pro boj na dálku je zranit nebo zabít nepřítele, aniž by se při tom člověk dostal do jeho dosahu."
 
 #: dialogs/TutorialTom.lua:650
 msgid "There are three basic ways to do this: traditional firearms, lasers, and plasma weapons."
@@ -18964,11 +18965,11 @@ msgstr "Existuji tři základní způsoby, jak toho dosáhnout: tradiční stře
 
 #: dialogs/TutorialTom.lua:651
 msgid "Traditional firearms are things that go bang. A small explosion accelerates the ammunition towards the target at a high velocity, causing injury."
-msgstr "Tradiční střelné zbraně jsou věci, které dělají rány. Malá exploze urychlý náboj velkou rychlostí směrem na cíl, kde způsobí zranění."
+msgstr "Tradiční střelné zbraně jsou věci, které dělají rány. Malá exploze urychlý náboj velkou rychlostí směrem k cíli, kde způsobí zranění."
 
 #: dialogs/TutorialTom.lua:652
 msgid "Lasers use an intensified beam of light to burn through the intended victim. These operate on replaceable charge packs."
-msgstr "Lasery používají zesílený paprsek světla k propálení díry skrze zamýšlenou oběť. Ty pracují s vyměnitelnými nabíjecími zásobníky."
+msgstr "Lasery používají zesílený paprsek světla k propálení díry skrze zamýšlenou oběťí. Pracují s vyměnitelnými nabíjecími zásobníky."
 
 #: dialogs/TutorialTom.lua:653
 msgid "Plasma weapons use superheated ionized gas to burn the target. The gas comes in loadable canisters."
@@ -18976,7 +18977,7 @@ msgstr "Plazmové zbraně využívají přehřátý ionizovaný plyn ke spálen�
 
 #: dialogs/TutorialTom.lua:654
 msgid "Most other ranged weapons are variations of these three. We have a few in storage for training purposes."
-msgstr "Většina dalších zbraní pro boj na dálku jsou variace těchto tří typů. Pár jich tu máme ve skladu pro cvičební účely."
+msgstr "Většina dalších zbraní pro boj na dálku jsou variace těchto tří typů. Pár jich tu máme pro cvičební účely ve skladu."
 
 #: dialogs/TutorialTom.lua:660
 msgid "So how do I use guns?"
@@ -18984,7 +18985,7 @@ msgstr "Takže jak použiju zbraně?"
 
 #: dialogs/TutorialTom.lua:662
 msgid "Well, firing is pretty simple. First, equip a ranged weapon that you have ammunition for."
-msgstr "Nuže, sřelba je docela jednoduchá. Nejprve se vybav palnou zbraní, pro kterou máš munici."
+msgstr "Nuže, střelba je docela jednoduchá. Nejprve se vyzbroj palnou zbraní, pro kterou máš munici."
 
 #: dialogs/TutorialTom.lua:663
 msgid "Next, simply [b]left click[/b] on your target, and you'll begin firing."
@@ -18992,23 +18993,23 @@ msgstr "Pak jednoduše klikni [b]levým tlačítkem[/b] myši na svůj cíl a za
 
 #: dialogs/TutorialTom.lua:664
 msgid "Alternatively, you can fire a single shot using the [b]Fire Weapon[/b] program, and [b]right clicking[/b] on the enemy."
-msgstr "Popřípadě můžeš pálit po jednotlivých střelách pomocí programu [b]Palná zbraň[/b] a kliknout [b]pravým tlačítkem[/b] myši na nepřítele."
+msgstr "Případně můžeš pálit po jednotlivých střelách pomocí programu [b]Palná zbraň[/b] a kliknout [b]pravým tlačítkem[/b] myši na nepřítele."
 
 #: dialogs/TutorialTom.lua:665
 msgid "That is the best way if you are trying to conserve precious ammo with high rate of fire guns."
-msgstr "To je ten nejlepší způsob, jak zachovat vzácné náboje s rychlopalnými zbraněmi, když je potřeba."
+msgstr "To je ten nejlepší způsob, jak šetřit vzácnými náboji s rychlopalnými zbraněmi, když je tomu potřeba."
 
 #: dialogs/TutorialTom.lua:666
 msgid "There are a couple of new tricks with ranged weapons. If you want to [b]move while firing[/b]: hold [b]shift[/b] and [b]left click[/b] your desired position."
-msgstr "U zbraní pro boj na dálku je několik nových triků. Pokud se chceš [b]při střelbě pohybovat[/b]: stiskni klávesu [b]shift[/b] a klikni [b]levým tlačítkem[/b] myši na požadovanou pozici."
+msgstr "U zbraní pro boj na dálku existuje několik nových triků. Pokud se chceš [b]při střelbě pohybovat[/b]: stiskni klávesu [b]shift[/b] a klikni [b]levým tlačítkem[/b] myši na požadovanou pozici."
 
 #: dialogs/TutorialTom.lua:667
 msgid "If you'd rather stay in place: Hold [b]A[/b], then [b]left click[/b] your target."
-msgstr "Pokud bys raději chtěl zůstat na místě: stiskni [b]A[/b], pak klikni [b]levým tlačítkem[/b] myši na svůj cíl."
+msgstr "Pokud bys chtěl raději zůstat na místě: stiskni [b]A[/b] a pak klikni [b]levým tlačítkem[/b] myši na svůj cíl."
 
 #: dialogs/TutorialTom.lua:668
 msgid "When your weapon runs out of ammo during combat, it will try to automatically reload if you have extra ammunition for it."
-msgstr "Pokud tve zbrani dojdou v průběhu boje náboje, pokusí se automaticky nabít, pokud máš pro ni nějakou munici navíc."
+msgstr "Pokud tvé zbrani dojdou v průběhu boje náboje, pokusí se automaticky nabít za předpokladu, že pro ni máš nějakou tu munici navíc."
 
 #: dialogs/TutorialTom.lua:669
 msgid "Sometimes, you will need or want to manually reload. You can do this by pressing the [b]r key[/b]."
@@ -19016,11 +19017,11 @@ msgstr "Někdy budeš potřebovat nebo chtít nabít ručně. To můžeš uděla
 
 #: dialogs/TutorialTom.lua:670
 msgid "If you are reloading, or you are out of ammo, the small message screen at the bottom of your HUD will tell you what type of ammo to get."
-msgstr "V průběhu nabíjení nebo když vyčerpáš náboje, zobrazí se na spodku tvého HUD dipleje krátká zpráva, která ti řekne, jaký typ nábojů je potřeba."
+msgstr "V průběhu nabíjení nebo když vyčerpáš náboje se na spodku tvého HUD dipleje zobrazí krátká zpráva, která ti řekne, jaký typ nábojů je potřeba."
 
 #: dialogs/TutorialTom.lua:673
 msgid "If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the 'r' key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition."
-msgstr "Pokud se vyzbrojím palnou zbraní a kliknu levým tlačítkem myši na nepřítele, začnu po něm střílet, dokud nevyprázdním zásobník, pak se zbraň automaticky nabije. Pokud chci střílet po jednotlivých kulkách, musím se také vybavit programem pro Palnou zbraň a pak kliknout pravým tlačítkem. Pro pohyb v průběhu střelby musím současně držet shift + levé tlačítko myši na místo, kam chci jít. Pokud chci nabít ručně, musím stisknout klávesu \"r\". Krátká zpráva na spodku obrazovky mého HUD mi poví, zda-li nabíjím nebo zda-li jsem bez nábojů."
+msgstr "Pokud se vyzbrojím palnou zbraní a kliknu levým tlačítkem myši na nepřítele, začnu po něm střílet, dokud nevyprázdním zásobník, pak se zbraň automaticky nabije. Pokud chci střílet po jednotlivých kulkách, musím se také vybavit programem pro Palnou zbraň a pak kliknout pravým tlačítkem. Pro pohyb v průběhu střelby musím současně držet shift + levé tlačítko myši na místo, kam chci jít. Pokud chci nabít ručně, musím stisknout klávesu 'r'. Krátká zpráva na spodku obrazovky mého HUD mi poví, zda-li nabíjím nebo zda-li jsem bez nábojů."
 
 #: dialogs/TutorialTom.lua:683
 msgid "I think I understand how to use guns now."
@@ -19044,11 +19045,11 @@ msgstr "Tady je má osobní .22 automatická pistole. Není to zrovna zbraň jak
 
 #: dialogs/TutorialTom.lua:694
 msgid "Here is some more ammunition for it."
-msgstr "Tady máš do ní nějaké další náboje."
+msgstr "Tady do ní máš nějaké další náboje."
 
 #: dialogs/TutorialTom.lua:695
 msgid "You'll no doubt get more mileage out of the plasma pistol, though. Or any other gun, for that matter."
-msgstr "I když bez pochyby budeš mít mnohem více nastríleno z plazmových pistolí. Nebo jiné zbraně, když na to přijde."
+msgstr "I když budeš mít bez pochyby mnohem více nastríleno z plazmových pistolí. Nebo jiné zbraně, když na to přijde."
 
 #: dialogs/TutorialTom.lua:696
 msgid "Practice switching weapons and reloading."
@@ -19056,7 +19057,7 @@ msgstr "Procvičuj výměnu zbraní a nabíjení."
 
 #: dialogs/TutorialTom.lua:697
 msgid "On the other side of that fence are some bots. Practice killing them off with various ranged weapons."
-msgstr "Na druhe straně toho plotu je několik botů. Procvičuj se v jejich zabíjení různým typem zbraní pro boj na dálku."
+msgstr "Na druhé straně toho plotu je několik botů. Procvičuj se v jejich zabíjení různým typem zbraní pro boj na dálku."
 
 #: dialogs/TutorialTom.lua:698
 msgid "Once you've gotten rid of them all, we can move on."
@@ -19072,7 +19073,7 @@ msgstr "Došly mi náboje. Mohu dostat nějaké další?"
 
 #: dialogs/TutorialTom.lua:716
 msgid "Looks like you still have some ammo left in your inventory..."
-msgstr "Zdá se, že ti ještě zbyly nějaké náboje v tvém inventáři..."
+msgstr "Zdá se, že ti ještě v tvém inventáři nějaké náboje zbyly..."
 
 #: dialogs/TutorialTom.lua:717
 msgid "Why don't you use this first?"
@@ -19080,11 +19081,11 @@ msgstr "Proč nejprve nepoužiješ tyto?"
 
 #: dialogs/TutorialTom.lua:718
 msgid "Try to switch to another gun maybe..."
-msgstr "Možná zkus vyměnit za jinou zbraň..."
+msgstr "Možná zkus vyměnit aktuální zbraň za jinou..."
 
 #: dialogs/TutorialTom.lua:720
 msgid "Ok, I will give you some more ammo. You seem to be in need, indeed..."
-msgstr "Dobře, dám ti nějaké další náboje. Zdá se, že jsi opravdu v nouzi..."
+msgstr "Dobře, dám ti další náboje. Zdá se, že jsi opravdu v nouzi..."
 
 #: dialogs/TutorialTom.lua:726
 msgid "Check the storage room to the west for more guns and ammo."
@@ -19100,7 +19101,7 @@ msgstr "Výborná práce."
 
 #: dialogs/TutorialTom.lua:736
 msgid "Keep shooting like that, and the bots will never stand a chance, as long as you still have ammo."
-msgstr "Pořád střílej takhle a boti nikdy nebudou mít šanci, dokud budeš mít náboje."
+msgstr "Pořád střílej takhle a dokud budeš mít náboje, boti nebudou mít nikdy šanci."
 
 #: dialogs/TutorialTom.lua:737
 msgid "That was like shooting fish in a barrel. I could use a fish about now."
@@ -19132,11 +19133,11 @@ msgstr "Teď je tu ještě jedna poslední věc, kterou bys měl vědět."
 
 #: dialogs/TutorialTom.lua:765
 msgid "You Linarians can apparently withdraw from our world temporarily."
-msgstr "Vy Linariani se zřejmě může dočasně stáhnout z našeho světa."
+msgstr "Vy Linariani se zřejmě můžete z našeho světa dočasně stáhnout."
 
 #: dialogs/TutorialTom.lua:766
 msgid "Time stops, and everything freezes in place."
-msgstr "Čas se zastaví, a všechno zamrzne na místě."
+msgstr "Čas se zastaví a všechno zamrzne na místě."
 
 #: dialogs/TutorialTom.lua:767
 msgid "This can be accomplished by using the [b]Esc key[/b]."
@@ -19160,7 +19161,7 @@ msgstr "Proč tu nemohu hacknout boty nebo na ně použít programy?"
 
 #: dialogs/TutorialTom.lua:781
 msgid "Well, that would be cheating, don't you think so?"
-msgstr "Nu, to by bylo podvádění, nemyslíš?"
+msgstr "Nu, to by byl podvod, nemyslíš?"
 
 #: dialogs/TutorialTom.lua:782
 msgid "Shooting moving targets needs a bit of practice, yes..."
@@ -19184,7 +19185,7 @@ msgstr "Doposud sis vedl dobře, Linariane. Udělejme si krátkou přestávku."
 
 #: dialogs/TutorialTom.lua:794
 msgid "Once you get out into the real world, you'll find that your current abilities aren't always enough to survive."
-msgstr "Jakmile se odsud dostaneš do skutečného světa, zjistíš, že tvé současné schopnosti nejsou vždy dostatečné k přežití."
+msgstr "Jakmile se odsud dostaneš do skutečného světa, zjistíš, že tvé současné schopnosti nejsou k přežití vždy dostatečné."
 
 #: dialogs/TutorialTom.lua:795
 msgid "As you achieve combat experience, you'll be able to apply it to better yourself."
@@ -19192,7 +19193,7 @@ msgstr "Jak získáváš bojové zkušenosti, budeš je moci použít k vlastní
 
 #: dialogs/TutorialTom.lua:796
 msgid "As with most things, you view this as a panel in your HUD. Press the [b]c key[/b] to open the [b]Character panel[/b]."
-msgstr "Stejně tak, jako většinu věcí, vidíš to jako panel na svém HUD. Stiskni [b]klávesu c[/b], abys otevřel [b]Panel osobnosti[/b]."
+msgstr "Stejně tak, jako většinu věcí, vidíš i toto jako panel na svém HUD. Stiskni [b]klávesu c[/b], abys otevřel [b]Panel osobnosti[/b]."
 
 #: dialogs/TutorialTom.lua:797
 msgid "Once you've gained enough experience, you'll level up. This will automatically improve some of your statistics."
@@ -19200,7 +19201,7 @@ msgstr "Jakmile získáš dostatek zkušeností, zvýší se tvá úroveň. To a
 
 #: dialogs/TutorialTom.lua:798
 msgid "You'll also be given 5 points to spend however you choose in three different areas. Characteristics, Skills and Programs."
-msgstr "Dostaneš také na použití 5 bodů, které můžeš použít jakkoliv se rozhodneš ve třech různých oblastech. Charakteristiky, Dovednosti a Programy."
+msgstr "Dostaneš také 5 bodů, které můžeš použít jakkoliv se rozhodneš ve třech různých oblastech. Charakteristiky, Dovednosti a Programy."
 
 #: dialogs/TutorialTom.lua:799
 msgid "[b]Strength[/b] governs the amount of damage you do with each hit in melee combat."
@@ -19216,7 +19217,7 @@ msgstr "[b]Chlazení[/b] vypovídá o schopnosti chlazení svých procesorů či
 
 #: dialogs/TutorialTom.lua:802
 msgid "Finally, among your main characteristics, [b]Physique[/b] determines how much health you have."
-msgstr "Konečně, kromě tvých hlavních charakteristik, [b]Postava[/b] určuje, kolik zdraví máš."
+msgstr "Konečně, kromě tvých hlavních charakteristik, [b]Postava[/b] určuje, kolik máš zdraví."
 
 #: dialogs/TutorialTom.lua:803
 msgid "There are general [b]Melee[/b] and [b]Ranged[/b] fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them."
@@ -19232,7 +19233,7 @@ msgstr "Kromě toho, některé programy vyžadují pro své zlepšení učitele 
 
 #: dialogs/TutorialTom.lua:806
 msgid "[b]Extract Bot Parts[/b] is a special passive skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town."
-msgstr "[b]Extrahuj části botů[/b] je speciální pasivní dovednost, která ti dovolí zachránit díly z botů, které jsi \"uneschopnil\", které pak můžeš prodat ve městě za peníze."
+msgstr "[b]Extrahuj části botů[/b] je speciální pasivní dovednost, která ti dovolí zachránit díly z botů, které jsi 'uneschopnil'. Tyto díly pak můžeš prodat ve městě za peníze."
 
 #: dialogs/TutorialTom.lua:807
 msgid "A good technician is able to make use of those parts."
@@ -19252,7 +19253,7 @@ msgstr "Existuje způsob jak vylepšit předměty, pokud potkám dobrého techni
 
 #: dialogs/TutorialTom.lua:811
 msgid "The [b]Hacking[/b] program we will speak a bit more of in a little while."
-msgstr "O program [b]Hackování[/b] budem za chvíli mluvit trochu více."
+msgstr "O programu [b]Hackování[/b] budem za chvíli mluvit trochu podrobněji."
 
 #: dialogs/TutorialTom.lua:817
 msgid "I'll have to keep that in mind."
@@ -19292,15 +19293,15 @@ msgstr "Vidíš ten [b]Terminál[/b] nalevo?"
 
 #: dialogs/TutorialTom.lua:837
 msgid "You will need to login, by left clicking on it, and then select unlock door."
-msgstr "Budeš se potřebovat přihlásit, levým kliknutím myši na něj, a pak vybrat odemknutí dveří."
+msgstr "Budeš se na něj muset přihlásit kliknutím levého tlačítka myši a pak vybrat odemknutí dveří."
 
 #: dialogs/TutorialTom.lua:838
 msgid "Terminals act very similar to hacked bots."
-msgstr "Terminál se chová velmi podobně jako hacknutý boti."
+msgstr "Terminál se chová velmi podobně jako hacknutí boti."
 
 #: dialogs/TutorialTom.lua:839 dialogs/TutorialTom.lua:856
 msgid "I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!"
-msgstr "Potřebuju se přihlásit do terminálu levým kliknutím myší na terminál. Pak odemknu dveře, takže budu moci hacknout nějaké boty!"
+msgstr "Potřebuju se přihlásit na terminál levým kliknutím myší na terminál. Pak odemknu dveře, takže budu moci hacknout nějaké boty!"
 
 #: dialogs/TutorialTom.lua:846
 msgid "So how does this work?"
@@ -19320,7 +19321,7 @@ msgstr "V mnoha způsobech, interaguješ s okolním světem jako s virtuálním 
 
 #: dialogs/TutorialTom.lua:851
 msgid "You seem to have access to an API that isn't exposed to humans. You can interact with the environment in ways we only dream of."
-msgstr "Zdá se, že máš přístup k API, které není dostupné lidem. Dokážeš interagovat s prostředím způsobem, o jakém si můžeme nechat jenom zdát."
+msgstr "Zdá se, že máš přístup k API, které není dostupné lidem. S prostředím dokážeš interagovat způsobem, o jakém si můžeme nechat jenom zdát."
 
 #: dialogs/TutorialTom.lua:852
 msgid "Because of this, you can run various programs on the bots."
@@ -19328,11 +19329,11 @@ msgstr "Díky tomu dokážeš na botech spouštět nejrůznější programy."
 
 #: dialogs/TutorialTom.lua:853
 msgid "You can attempt to take them over, or monkey with their programming, or even cause them to damage themselves."
-msgstr "Můžeš se pokusit o jejich převzetí nebo blbnout s jejich naprogramováním nebo dokonce způsobit, že začnou sami sebe poškozovat."
+msgstr "Můžeš se pokusit o převzetí jejich kontroly nebo blbnout s jejich naprogramováním nebo dokonce způsobit, že začnou poškozovat sami sebe."
 
 #: dialogs/TutorialTom.lua:854
 msgid "Likewise, there are certain programs that affect you or items around you."
-msgstr "Podobně, existují určité programy, které ovlivňují tebe nebo předměty kolem tebe."
+msgstr "Podobně existují určité programy, které ovlivňují tebe nebo předměty kolem tebe."
 
 #: dialogs/TutorialTom.lua:864
 msgid "Tell me about taking bots over."
@@ -19348,11 +19349,11 @@ msgstr "Nicméně sis zanechal pokyny ještě před tím, něž jsi šel spát d
 
 #: dialogs/TutorialTom.lua:868
 msgid "Taking over a bot comes in the form of a game or competition placing you against the bot."
-msgstr "Převzetí kontroly nad boty spočívá ve formě hry či soutěže postavení se proti botu."
+msgstr "Převzetí kontroly nad boty se provádí formou hry či soutěže postavením se proti robotovi."
 
 #: dialogs/TutorialTom.lua:869
 msgid "You initiate it by selecting the [b]Hacking[/b] program, then [b]right-clicking[/b] on a hostile bot."
-msgstr "Zahájíš to výběrem programu [b]Hackování[/b] a pak kliknutím [b]pravého tlačítka[/b] myši na nepřátelského bota."
+msgstr "Zahájíš ji výběrem programu [b]Hackování[/b] a pak kliknutím [b]pravého tlačítka[/b] myši na nepřátelského bota."
 
 #: dialogs/TutorialTom.lua:870
 msgid "The field of play is split into two sides, one yellow, one purple, representing circuit boards."
@@ -19364,11 +19365,11 @@ msgstr "Uprostřed pole je sloupec boxů známých jako logické uzly. Tyto uzly
 
 #: dialogs/TutorialTom.lua:872
 msgid "Your objective is to activate as many cores in your chosen color as possible at the end of each round."
-msgstr "Tvým cílem je aktivovat co nejvíce uzlů ve zvolené barvě jak je to jen možné do konce každého kola."
+msgstr "Tvým cílem je aktivovat do konce každého kola co nejvíce uzlů ve zvolené barvě jak je to jen možné."
 
 #: dialogs/TutorialTom.lua:873
 msgid "This is accomplished by selecting a wire with the up or down buttons, then pressing spacebar to activate that core."
-msgstr "Toho je dosaženo výběrem drátu za pomoci kláves nahoru a dolu a následným stisknutím mezerníku pro aktivaci daného uzlu."
+msgstr "Toho je dosaženo výběrem drátu za pomoci kláves pro směr nahoru a dolů a následným stisknutím mezerníku pro aktivaci daného uzlu."
 
 #: dialogs/TutorialTom.lua:874
 msgid "You will be given about 10 seconds initially to select which color you want with spacebar."
@@ -19376,27 +19377,27 @@ msgstr "Na začátku budeš mít k dispozici asi 10 vteřin pro výběr barvy, k
 
 #: dialogs/TutorialTom.lua:875
 msgid "At that point, you have 10 more seconds in which to activate more cores than the bot."
-msgstr "V tu chvíli budeš mít dalších 10 sekund na to, abys aktivovat více uzlů než bot."
+msgstr "V tu chvíli budeš mít dalších 10 sekund na to, abys aktivoval více uzlů než bot."
 
 #: dialogs/TutorialTom.lua:876
 msgid "Each activation of one core will consume one charge and you have a limited number of charges, 3 by default, so choose your targets carefully."
-msgstr "Každá aktivace jednoho uzlu spotřebuje jeden náboj a máš omezený počet nábojů, výchozí počet jsou 3, takže vybírej své cíle pečlivě."
+msgstr "Každá aktivace jednoho uzlu spotřebuje jeden náboj a počet nábojů je omezený. Výchozí počet je 3, takže vybírej své cíle pečlivě."
 
 #: dialogs/TutorialTom.lua:877
 msgid "I can tell you about some more advanced techniques, if you'd like."
-msgstr "Můžu ti povědět o některých pokročilejších technikách, pokud budeš chtít."
+msgstr "Můžu ti říct o některých pokročilejších technikách, pokud budeš chtít."
 
 #: dialogs/TutorialTom.lua:879
 msgid "Apparently in order to hack, all I have to do is select the Hacking program, right click a bot, and play a little game. I've got this!"
-msgstr "Očividně za účelem převzetí kontroly, vše, co musím udělat, je vybrat program Hacking, klepnout pravým tlačítkem myši na bota, a zahrát si malou hru. Mám to!"
+msgstr "Očividně za účelem převzetí kontroly, vše, co musím udělat, je vybrat program Hacking, klepnout pravým tlačítkem myši na bota a zahrát si malou hru. Mám to!"
 
 #: dialogs/TutorialTom.lua:887
 msgid "What was that about activating more cores than the bot?"
-msgstr "Co to bylo o aktivaci více uzlů než bot?"
+msgstr "Jak to bylo s aktivací více uzlů než bot?"
 
 #: dialogs/TutorialTom.lua:889
 msgid "Ah, yes. While you are busy trying to take the bot over, it will be busy trying to stop you."
-msgstr "Ah ano. Zatímco ty jsi zaneprázdněn snahou o převzetí kontroly nad botem, on bude dělat vše pro to, aby tě zastavil."
+msgstr "Ah ano. Zatímco ty jsi zaneprázdněn snahou převzít kontrolu nad botem, on bude dělat vše pro to, aby tě zastavil."
 
 #: dialogs/TutorialTom.lua:890
 msgid "The truth is, if the bot programming was perfect, it would be almost impossible to defeat."
@@ -19404,7 +19405,7 @@ msgstr "Pravdou je, že pokud by bylo naprogramování bota dokonalé, bylo by p
 
 #: dialogs/TutorialTom.lua:891
 msgid "Fortunately for you, software bugs do indeed exist, and therefore some cores will be on your side from the beginning."
-msgstr "Naštěstí pro tebe, díry v programu samozřejmě existují a proto budou některé uzly na tvé straně od samého počátku."
+msgstr "Naštěstí pro tebe, softwarové chyby samozřejmě existují a díky nim budou některé uzly na tvé straně už od samého počátku."
 
 #: dialogs/TutorialTom.lua:892
 msgid "Likewise, the bots only have a limited number of charges. Occasionally, they will have more than you, but that is a risk you have to take."
@@ -19448,7 +19449,7 @@ msgstr "Občas budou rozbočovače ucpaný. Sledování cesty s předstihem bude
 
 #: dialogs/TutorialTom.lua:908
 msgid "Ideally, you want to stick your opponent with 2-to-1 splitters, while you have 1-to-2 splitters at your disposal."
-msgstr "V nejlepším případě budeš chtít držet svého soupeře s rozbočovačem 2-na-1, zatímco ty máš k dispozici rozbočovač 1-na-2."
+msgstr "V nejlepším případě budeš chtít spojit svého soupeře s rozbočovačem 2-na-1, zatímco ty máš k dispozici rozbočovač 1-na-2."
 
 #: dialogs/TutorialTom.lua:909
 msgid "Finally, remember that patience is often a virtue. Taking over all cores early on only to lose them later can be a crushing blow."
@@ -19464,19 +19465,19 @@ msgstr "Doufám, že ano."
 
 #: dialogs/TutorialTom.lua:918
 msgid "I should, however, take the time to tell you a few more things."
-msgstr "Je však třeba vzít si čas a říct ti ještě pár věcí."
+msgstr "Je však třeba dát si na čas a říct si ještě pár věcí."
 
 #: dialogs/TutorialTom.lua:919
 msgid "Hacking, like most other programs, incurs a cost to you."
-msgstr "Hackování, stejně jako většina ostatních programů, si na tobě bere svou cenu."
+msgstr "Hackování, stejně jako většina ostatních programů, si na tobě bere svou daň."
 
 #: dialogs/TutorialTom.lua:920
 msgid "Processing programs seems to heat up your brain."
-msgstr "Zdá se, že zpracování programů způsobuje zahřívání tvého mozku."
+msgstr "Zdá se, že zpracovávání programů způsobuje zahřívání tvého mozku."
 
 #: dialogs/TutorialTom.lua:921
 msgid "You seem to be able to handle quite a bit of heat, but you have your limits."
-msgstr "Zdá se, že jsi schopen zpracovat docela dost tepla, ale máš své hranice."
+msgstr "Vypadá to, že jsi schopen zpracovat docela dost tepla, ale máš své hranice."
 
 #: dialogs/TutorialTom.lua:922
 msgid "If you do not use all charges when attempting to take over a bot, you will spare some heat."
@@ -19484,7 +19485,7 @@ msgstr "Pokud nevyužiješ všechny své náboje při pokusu o převzetí kontro
 
 #: dialogs/TutorialTom.lua:923
 msgid "Not activating all charges or beating the bot with a comfortable winning margin is less exhaustive for you."
-msgstr "Neaktivace všech nábojů či poražení bota s uspokojujícím vítězným rozdílem je pro tebe méně vyčerpávající."
+msgstr "Neaktivování všech nábojů či poražení bota s uspokojujícím vítězným rozdílem je pro tebe méně vyčerpávající."
 
 #: dialogs/TutorialTom.lua:924
 msgid "If you nevertheless accumulate too much heat, you will automatically shut down in order to cool off."
@@ -19496,11 +19497,11 @@ msgstr "V průběhu času teplo z tvého těla přirozeně unikne. Nicméně exi
 
 #: dialogs/TutorialTom.lua:926
 msgid "If you can find them, cooling drinks will quickly relieve your thermal discomfort, in much the same way healing drinks help your health."
-msgstr "Pokud je můžeš najít, chladící nápoje rychle zmírní tvé tepelné nepohodlí v podstatě stejným způsobem, jako zdravotní nápoje pomohou tvému zdraví."
+msgstr "Pokud se ti je podaří najít, zmírní chladící nápoje rychle tvé tepelné nepohodlí a to v podstatě stejným způsobem, jako zdravotní nápoje pomohou tvému zdraví."
 
 #: dialogs/TutorialTom.lua:927
 msgid "Remember you also have a special program called [b]Emergency Shutdown[/b] that will lower your heat level drastically. Unfortunately using Emergency Shutdown will shut you down and render you paralyzed for several seconds. It makes you a sitting duck... er, penguin."
-msgstr "Pamatuj si také, že máš speciální program nazývaný [b]Nouzové vypnutí[/b], který výrazně sníží hladinu tvého tepla. Bohužel použití Nouzového vypnutí tě vypne a ochromí na několik sekund, což z tebe učiní snadný kachní cíl... ehm, tučňáčí."
+msgstr "Pamatuj si také, že máš speciální program nazývaný [b]Nouzové vypnutí[/b], který výrazně sníží hladinu tvého tepla. Bohužel použití Nouzového vypnutí tě vypne a ochromí na několik sekund, což z tebe učiní snadný kachní..., ehm, tučňáčí cíl."
 
 #: dialogs/TutorialTom.lua:928
 msgid "I take it that was a joke also?"
@@ -19512,7 +19513,7 @@ msgstr "Přesně tak."
 
 #: dialogs/TutorialTom.lua:930
 msgid "In addition to hacking, you have the ability to execute arbitrary code on bots."
-msgstr "Kromě hackování máš možnost na robotech spouštět libovolný kód."
+msgstr "Kromě hackování máš možnost spouštět na robotech libovolný kód."
 
 #: dialogs/TutorialTom.lua:931
 msgid "These scripts and programs can be learned through reading source code books. To read a book, right-click on it in inventory."
@@ -19532,7 +19533,7 @@ msgstr "Za tímhle plotem máme pro tvůj výcvik několik botů."
 
 #: dialogs/TutorialTom.lua:941
 msgid "Take them over, then talk to me when they're all dead."
-msgstr "Převezmi nad nimi kontrolu a až budou mrtvý, promluv si se mnou."
+msgstr "Převezmi nad nimi kontrolu a až budou mrtví, promluv si se mnou."
 
 #: dialogs/TutorialTom.lua:942
 msgid "If you need more help, don't hesitate to ask."
@@ -19544,11 +19545,11 @@ msgstr "Oh a Linariane... Pokud se ti hackování nezdaří a prohraješ, dostan
 
 #: dialogs/TutorialTom.lua:944
 msgid "It shouldn't kill you, but you need to be aware of it nonetheless."
-msgstr "Nemělo by tě to zabít, ale nicméně toho musíš být vědom."
+msgstr "Nemělo by tě to zabít, nicméně by sis toho měl být vědom."
 
 #: dialogs/TutorialTom.lua:952
 msgid "Tutorial Tom wants me to hack those bots. The only thing I need to worry about is overheating. But if I get too hot I can always try the Emergency shutdown program."
-msgstr "Výukový Tom po mně chce, abych tamty boty hacknul. Jediná věc, které bych se měl obávat, je přehřátí. Ale pokud se příliš zahřeju, vždycky můžu použít program Nouzového vypnutí."
+msgstr "Výukový Tom po mně chce, abych hacknul tamty boty. Jediná věc, které bych se měl obávat, je přehřátí. Ale pokud se příliš zahřeju, vždycky můžu použít program Nouzového vypnutí."
 
 #: dialogs/TutorialTom.lua:962
 msgid "Tell me again about take over, I'm not sure I got it all."
@@ -19556,15 +19557,15 @@ msgstr "Řekni mi ještě jednou o převzetí kontroly. Nejsem si jistý, jestli
 
 #: dialogs/TutorialTom.lua:964
 msgid "Tell me exactly what part you want me to explain again."
-msgstr "Řekni mi přesně, jakou část chceš, abych znovu vysvětlil."
+msgstr "Řekni mi přesně, jakou část chceš znovu vysvětlit."
 
 #: dialogs/TutorialTom.lua:965
 msgid "But things will be much clearer once you try for yourself than when I try to explain."
-msgstr "Ale všechno bude mnohem jasnější, jakmile si to zkusíš sám, než když se to pokusím vysvětlit."
+msgstr "Všechno bude ale mnohem jasnější, jakmile si to zkusíš sám, než když se to pokusím vysvětlit."
 
 #: dialogs/TutorialTom.lua:966
 msgid "Use your experience as notes, and all should be clear."
-msgstr "Použij své zkušenosti jako poznámky, a vše by mělo být jasné."
+msgstr "Použij své zkušenosti jako poznámky a vše by mělo být jasné."
 
 #: dialogs/TutorialTom.lua:972
 msgid "Can you tell me more about upgrading items?"
@@ -19572,11 +19573,11 @@ msgstr "Můžeš mi říct víc o vylepšování předmětů?"
 
 #: dialogs/TutorialTom.lua:974
 msgid "You can upgrade most weapons and clothing. First, you'll need some materials to craft add-ons."
-msgstr "Můžeš vylepšit většinu zbraní a oblečení. Nejprve potřebuješ nějaké materiály pro výrobu doplňků."
+msgstr "Většinu zbraní a oblečení můžeš vylepšit. Nejprve potřebuješ nějaké materiály pro výrobu doplňků."
 
 #: dialogs/TutorialTom.lua:975
 msgid "Parts needed for this process can be extracted from bots. You'll have to learn how to do it."
-msgstr "Díly potřebné k tomu procesu lze získat z robotů. Budeš se muset naučit, jak to udělat."
+msgstr "Díly potřebné k tomuto procesu lze vytáhnout z robotů. Budeš se muset naučit, jak to udělat."
 
 #: dialogs/TutorialTom.lua:976
 msgid "When you have enough materials, you can craft an add-on. Make sure the add-on is suitable for your equipment."
@@ -19588,7 +19589,7 @@ msgstr "Po tomto kroku budeš muset vytvořit zdířku ve svém vybavení tak, a
 
 #: dialogs/TutorialTom.lua:978
 msgid "That's the theory. Simple, isn't it?"
-msgstr "To je teorie. Jednoduché, ne?"
+msgstr "Tolik k teorii. Jednoduché, ne?"
 
 #: dialogs/TutorialTom.lua:979
 msgid "I'll give you some materials now and let you craft an add-on."
@@ -19600,19 +19601,19 @@ msgstr "Věnuj pozornost typu zdířky, který doplněk potřebuje."
 
 #: dialogs/TutorialTom.lua:981
 msgid "Before crafting an add-on I have to get some materials. The best way is to extract them from the bots, using Extract Bot Parts skill. Each add-on requires a socket in the item. When the add-on is ready, I have to create a socket in the item and plug the add-on. Only technicians can craft add-ons or plug them."
-msgstr "Před výrobou doplňku musím získat nějaké materiály. Nejlepším způsobem je jejich zisk z robotů za pomoci dovednosti Extrahuj části botů. Každý doplněk vyžaduje zdířku v předmětu. Když je doplněk připraven, musím vytvořit zdířku v předmětu a vložit do ni doplněk. Doplňky mohou vyrobit nebo je vložit jen technici."
+msgstr "Před výrobou doplňku musím získat nějaké materiály. Nejlepším způsobem je dostat je z robotů za pomoci dovednosti Extrahuj části botů. Každý doplněk vyžaduje v předmětu zdířku. Když je doplněk připraven, musím vytvořit v předmětu zdířku a vložit doplněk do ni. Doplňky mohou vyrobit nebo je vložit jen technici."
 
 #: dialogs/TutorialTom.lua:988
 msgid "Now you'll need to pay some more money in order to make a socket and plug in the add-on. Here, take some."
-msgstr "Teď budeš potřebovat zaplatit nějaké peníze za účelem vytvoření zdířky a zasunutí doplňku do ní. Tu máš, vem si nějaké."
+msgstr "Teď budeš potřebovat zaplatit nějakými penězi vytvoření zdířky a vložení doplňku do ní. Tu máš, vem si nějaké."
 
 #: dialogs/TutorialTom.lua:990
 msgid "Choose an item and add an appropriate socket by clicking '+' on the right of the item. Then attach the add-on to this item and confirm your choice."
-msgstr "Vyber předmět a přidej příslušnou zdířku kliknutím na \"+\" na pravé straně předmětu. Pak vlož doplněk do tohoto předmětu a potvrď svůj výběr."
+msgstr "Vyber předmět a přidej příslušnou zdířku kliknutím na '+' na pravé straně předmětu. Pak vlož doplněk do tohoto předmětu a potvrď svůj výběr."
 
 #: dialogs/TutorialTom.lua:992
 msgid "Maybe I need some time to practice this, but I got the basics."
-msgstr "Možná, že potřebuju nějaký čas na cvičení, ale základy jsem pochopil."
+msgstr "Asi potřebuju nějaký čas na procvičení, ale základy jsem pochopil."
 
 #: dialogs/TutorialTom.lua:998
 msgid "I wasted my materials on the add-on I didn't need. Can you give more?"
@@ -19620,7 +19621,7 @@ msgstr "Vyplýtval jsem materiály na doplněk, který nepotřebuju. Mohl bys mi
 
 #: dialogs/TutorialTom.lua:1000
 msgid "Yes, but only this time. I'll give you some money too. Just be more careful in the future and make wise choices."
-msgstr "Ano, ale jen pro tentokrát. Dám ti i nějaké peníze. Jen buď v budoucnosti víc opatrný a moudře se rozhoduj."
+msgstr "Ano, ale jen pro tentokrát. Dám ti i nějaké peníze. V budoucnosti buď víc opatrný a moudře se rozhoduj."
 
 #: dialogs/TutorialTom.lua:1001
 msgid "Reality is not as generous as I am."
@@ -19628,15 +19629,15 @@ msgstr "Realita není tak velkorysá jako jsem já."
 
 #: dialogs/TutorialTom.lua:1008
 msgid "Think carefully before you make your next add-on."
-msgstr "Přemýšlej s rozvahou předtím, než vyrobíš další doplněk."
+msgstr "Přemýšlej s rozvahou ještě předtím, než vyrobíš další doplněk."
 
 #: dialogs/TutorialTom.lua:1014
 msgid "Upgrading items is still too complex for me. Can you explain it again?"
-msgstr "Vylepšování předmětů je na mě stále ještě příliš složité. Můžeš to vysvětlit ještě jednou?"
+msgstr "Vylepšování předmětů je na mě stále ještě moc složitý. Můžeš to vysvětlit ještě jednou?"
 
 #: dialogs/TutorialTom.lua:1016
 msgid "First step is finding materials. They may be extracted from bots, but you'll have to learn how to do it."
-msgstr "V prvním kroce je hledání materiálů. Ty mohou být získány z botů, ale jak to udělat se musíš naučit."
+msgstr "V prvním kroce se hledají materiály. Ty lze získat z botů, ale musíš naučit, jak to udělat."
 
 #: dialogs/TutorialTom.lua:1017
 msgid "Those materials can be used in crafting add-ons. Make sure the add-on will fit your equipment. Also, remember the type of the socket your add-on needs."
@@ -19648,7 +19649,7 @@ msgstr "Dal jsem ti materiály. Pojďme nyní vyrobit doplněk."
 
 #: dialogs/TutorialTom.lua:1020
 msgid "All you have to do now is to choose a suitable item and add a socket by clicking ''+'' on the right of the chosen item."
-msgstr "Vše, co nyní musíš udělat, je si vybrat vhodný předmět a přidat do něj zdířku kliknutím ''+'' na pravé straně vybraného předmětu."
+msgstr "Vše, co nyní musíš udělat, je si vybrat vhodný předmět a přidat do něj zdířku kliknutím '+' na pravé straně vybraného předmětu."
 
 #: dialogs/TutorialTom.lua:1021
 msgid "Remember you pay for both adding a socket and plugging an add-on."
@@ -19656,7 +19657,7 @@ msgstr "Pamatuj, že jsi zaplatil jak za přidání zdířky, tak i za vložení
 
 #: dialogs/TutorialTom.lua:1022
 msgid "Let's try it, shall we?"
-msgstr "Zkusme to, ne?"
+msgstr "Zkusme to, můžeme?"
 
 #: dialogs/TutorialTom.lua:1024
 msgid "I hope it's clear now."
@@ -19672,19 +19673,19 @@ msgstr "Někteří lidé jsou s tebou ochotni obchodovat s předměty a obvody."
 
 #: dialogs/TutorialTom.lua:1032
 msgid "Although, if you have too many circuits, they will charge you a bit more."
-msgstr "I když, pokud budeš mít příliš mnoho obvodů, budou ti účtovat trochu víc."
+msgstr "Ačkoli, pokud budeš mít příliš mnoho obvodů, budou ti účtovat o něco víc."
 
 #: dialogs/TutorialTom.lua:1033
 msgid "Most are willing to buy whatever you have, at a discounted price."
-msgstr "Většina je ochotna odkoupit cokoli máš u sebe za zvýhodněné ceny."
+msgstr "Většina z nich je ochotna odkoupit cokoli máš u sebe za sníženou cenu."
 
 #: dialogs/TutorialTom.lua:1034
 msgid "There are also some automated vending machines, that dispense small items."
-msgstr "Existují zde také i automatické prodejní automaty, které vydávají drobné předměty."
+msgstr "Existují i automatické prodejní automaty, které vydávají drobné předměty."
 
 #: dialogs/TutorialTom.lua:1040
 msgid "I would like to practice selling an item."
-msgstr "Rád bych procvičil prodej předmětu."
+msgstr "Rád bych si procvičil prodej předmětu."
 
 #: dialogs/TutorialTom.lua:1042
 msgid "I'm going to give you a Small Axe, which you can't use yet, so you can practice selling it to me."
@@ -19700,7 +19701,7 @@ msgstr "Předměty, kterými jsi vybaven, mají na sobě ikonu ruky."
 
 #: dialogs/TutorialTom.lua:1045
 msgid "However, if you sell the items from the chest (which should have been equipped automatically) I won't be giving you replacements."
-msgstr "Nicméně, pokud budeš prodávat položky z truhly (kterými jsi měl být vybaven automaticky), pak ti za ně nedám žádnou náhradu."
+msgstr "Nicméně, pokud budeš prodávat položky z truhly (kterými by jsi měl být vybaven automaticky), pak ti za ně nedám žádnou náhradu."
 
 #: dialogs/TutorialTom.lua:1046
 msgid "Select the Small Axe and click the sell button."
@@ -19716,15 +19717,15 @@ msgstr "Co takhle nákup předmětu?"
 
 #: dialogs/TutorialTom.lua:1074
 msgid "Well it is much the same procedure, except the items for sale are on the top row."
-msgstr "No to je prakticky stejný postup s výjimkou toho, že předměty k prodeji jsou v horním řádku."
+msgstr "No to je prakticky stejný postup s výjimkou toho, že předměty k prodeji jsou v horní liště."
 
 #: dialogs/TutorialTom.lua:1075
 msgid "With the circuits from selling the Small Axe to me, you can afford to buy a unit of Bottled ice."
-msgstr "S obvody utrženými za prodej malé sekery si můžeš dovolit nákoup jedné jednotky baleného ledu."
+msgstr "S obvody utrženými za prodej malé sekery si můžeš dovolit nákup jedné jednotky baleného ledu."
 
 #: dialogs/TutorialTom.lua:1076
 msgid "Since Bottled ice combine together, a slider will pop-up asking how many you'd like to buy."
-msgstr "Vzhledem k tomu, že jsou jednoty baleného ledu spojeny dohromady, zobrazí se posuvník s dotazem, kolik kusů si budeš chtít koupit."
+msgstr "Neboť jsou jednoty baleného ledu spojeny dohromady, zobrazí se posuvník s dotazem, kolik kusů si budeš chtít koupit."
 
 #: dialogs/TutorialTom.lua:1077
 msgid "You have enough circuits for one unit."
@@ -19748,11 +19749,11 @@ msgstr "Můžeš zkontrolovat své záznamy úkolů, abys zjistil, jestli to tam
 
 #: dialogs/TutorialTom.lua:1134
 msgid "There is a wall in the path! How will we get through?"
-msgstr "V cestě stojí stěna! Jak se přes ni dostaneme?"
+msgstr "V cestě stojí stěna! Jak se přes ni dostanem?"
 
 #: dialogs/TutorialTom.lua:1137
 msgid "Uhm, looks like the wall is already broken, I'll repair it."
-msgstr "Uhm, zdá se, jakoby ta stěna byla už rozbitá, opravím ji."
+msgstr "Uhm, zdá se, jako kdyby ta stěna už byla rozbitá, opravím ji."
 
 #: dialogs/TutorialTom.lua:1140
 msgid "Notice that part of it is made of a weak material, glass."
@@ -19760,15 +19761,15 @@ msgstr "Všimni si, že část je vyrobena ze slabého materiálu, ze skla."
 
 #: dialogs/TutorialTom.lua:1141
 msgid "Obstacles you can interact with change color when your cursor is hovering over them."
-msgstr "Překážky, s nimiž lze manipulovat, změní svou barvu, když se tvůj kurzor nad nimi vznáší."
+msgstr "Překážky, s nimiž lze manipulovat, změní svou barvu, když se kurzor myši nad ně přesune."
 
 #: dialogs/TutorialTom.lua:1142
 msgid "[b]Left click[/b] on the glass wall to break it."
-msgstr "Klikni [b]levým tlačítkem[/b] myši na sklo k jeho prolomení."
+msgstr "Abys sklo prolomil, klikni na něj [b]levým tlačítkem[/b] myši."
 
 #: dialogs/TutorialTom.lua:1143
 msgid "After you break through the glass wall, walk to the other side so I know you are ready to move on."
-msgstr "Jakmile prorazíš skleněnou stěnu, jdi na druhou stranu, abych věděl, že jsi připraven jít dál."
+msgstr "Jakmile skleněnou stěnu prorazíš, projdi na druhou stranu, abych věděl, že jsi připraven jít dál."
 
 #: dialogs/TutorialTom.lua:1150
 msgid "I defeated all the bots in the cage."
@@ -19784,19 +19785,19 @@ msgstr "Tak pojďme k další fázi výuky."
 
 #: dialogs/TutorialTom.lua:1155
 msgid "As a reward, I'm giving you a .22 Automatic pistol."
-msgstr "Za odměnu přijmi tuto .22 automatickou pistoli."
+msgstr "Za odměnu přijmi tuto automatickou pistoli ráže .22."
 
 #: dialogs/TutorialTom.lua:1159
 msgid "But I have to take these sourcebooks from you to prevent you from cheating in the next section of the tutorial."
-msgstr "Ale musím ti odebrat tyto knihy zdrojového kódu, abych zabránil tvému podvádění v další části výuky."
+msgstr "Ale musím ti vzít knihy zdrojového kódu, abych zabránil tvému podvádění v další části výuky."
 
 #: dialogs/TutorialTom.lua:1160 dialogs/TutorialTom.lua:1166
 msgid "Sorry about that..."
-msgstr "Omlouvám se za to..."
+msgstr "Za to se omlouvám..."
 
 #: dialogs/TutorialTom.lua:1165
 msgid "But I have to take this sourcebook from you to prevent you from cheating in the next section of the tutorial."
-msgstr "Ale musím ti odebrat tuto knihu zdrojového kódu, abych zabránil tvému podvádění v další části výuky."
+msgstr "Ale musím ti odebrat knihu zdrojového kódu, abych zabránil tvému podvádění v další části výuky."
 
 #: dialogs/TutorialTom.lua:1188
 msgid "I'd like to skip to a later section of the Tutorial."
@@ -19836,7 +19837,7 @@ msgstr "Dobře, vezmu nás do arény pro boj z blízka a dám ti nějaké brněn
 
 #: dialogs/TutorialTom.lua:1231
 msgid "I skipped ahead to the Melee practice. Tom gave me some armor to use."
-msgstr "Přeskočil jsem dopředu k výcviku boje z blízka. Tom mi dal k použití nějaké brnění."
+msgstr "Přeskočil jsem dopředu k výcviku boje z blízka. Tom mi dal nějaké brnění k použití."
 
 #: dialogs/TutorialTom.lua:1240
 msgid "Abilities"
@@ -19848,7 +19849,7 @@ msgstr "Dobře, vezmu nás tam a dám ti nějaké brnění a zbraň."
 
 #: dialogs/TutorialTom.lua:1253
 msgid "Upgrading Items & Terminals"
-msgstr "Modernizace položek & termínály"
+msgstr "Vylepšování předmětů & terminály"
 
 #: dialogs/TutorialTom.lua:1255
 msgid "OK, I'll take us there and give you some armor and a weapon to work with."
@@ -19868,7 +19869,7 @@ msgstr "Boj na dálku"
 
 #: dialogs/TutorialTom.lua:1286
 msgid "OK, I'll take us to the shooting range and give you some armor and a weapon."
-msgstr "Dobře, vezmu nás k části určené střelbě na dálku a dám ti nějaké brněni a zbraň."
+msgstr "Dobře, vezmu nás k části určené ke střelbě na dálku a dám ti nějaké brnění a zbraň."
 
 #: dialogs/TutorialTom.lua:1298
 msgid "Let me take a short break and practice on my own for a while."
@@ -20354,6 +20355,9 @@ msgstr "Will Gapes mi dal svůj certifikát MS akcií, takže můžu získat př
 #: dialogs/WillGapes.lua:194
 msgid "Be careful!"
 msgstr "Buď opatrný!"
+
+#~ msgid "Version: 0.15.01"
+#~ msgstr "Verze: 0.15.01"
 
 #~ msgid "PLEASE REPORT, BUG AFTERTAKEOVER NODE 50"
 #~ msgstr "NAHLASTE PROSÍM CHYBU OVLÁDNUTÍ NÓDU 50"

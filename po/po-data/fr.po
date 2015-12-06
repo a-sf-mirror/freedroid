@@ -4,12 +4,13 @@
 #
 # Translators:
 # fluzz <fluzz@gmx.com>, 2015
+# fluzz <fluzz@gmx.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
-"PO-Revision-Date: 2015-08-24 20:42+0000\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
+"PO-Revision-Date: 2015-10-10 09:03+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/arctic-games/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
@@ -186,7 +187,8 @@ msgstr "742 Zeus"
 msgid "This version is the one mainly used by the military."
 msgstr "Cette version est celle principalement utilisée par l'armée."
 
-#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:289
+#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:224
+#: map/ReturnOfTux.droids:289
 msgid "751 Soviet"
 msgstr "751 Soviet"
 
@@ -2903,10 +2905,9 @@ msgstr "Bibliothécaire"
 msgid "Barkeeper"
 msgstr "Tenancier de bar"
 
-#: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11
-#: map/ReturnOfTux.droids:13 map/ReturnOfTux.droids:17
-#: map/ReturnOfTux.droids:18 map/ReturnOfTux.droids:30
-#: map/ReturnOfTux.droids:32
+#: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
+#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
+#: map/ReturnOfTux.droids:30 map/ReturnOfTux.droids:32
 msgid "Red Guard Member"
 msgstr "Membre de la Garde Rouge"
 
@@ -3048,6 +3049,158 @@ msgstr "Kevin"
 #: map/ReturnOfTux.droids:168
 msgid "Stolen 614"
 msgstr "614 Volé"
+
+#: map/ReturnOfTux.droids:204
+msgid "GUN"
+msgstr ""
+
+#: map/ReturnOfTux.droids:205
+msgid "FEM"
+msgstr ""
+
+#: map/ReturnOfTux.droids:206
+msgid "543"
+msgstr "543"
+
+#: map/ReturnOfTux.droids:207
+msgid "BAR"
+msgstr ""
+
+#: map/ReturnOfTux.droids:208
+msgid "TAN"
+msgstr ""
+
+#: map/ReturnOfTux.droids:209
+msgid "JAS"
+msgstr ""
+
+#: map/ReturnOfTux.droids:210
+msgid "KEV"
+msgstr ""
+
+#: map/ReturnOfTux.droids:211
+msgid "COO"
+msgstr ""
+
+#: map/ReturnOfTux.droids:212
+msgid "GUB"
+msgstr ""
+
+#: map/ReturnOfTux.droids:213
+msgid "WOR"
+msgstr ""
+
+#: map/ReturnOfTux.droids:215
+msgid "MUM"
+msgstr ""
+
+#: map/ReturnOfTux.droids:216
+msgid "DIX"
+msgstr ""
+
+#: map/ReturnOfTux.droids:217
+msgid "GUA"
+msgstr ""
+
+#: map/ReturnOfTux.droids:218
+msgid "DOC"
+msgstr ""
+
+#: map/ReturnOfTux.droids:219
+msgid "PRO"
+msgstr ""
+
+#: map/ReturnOfTux.droids:220
+msgid "999"
+msgstr "999"
+
+#: map/ReturnOfTux.droids:221
+msgid "883"
+msgstr "883"
+
+#: map/ReturnOfTux.droids:222
+msgid "834"
+msgstr "834"
+
+#: map/ReturnOfTux.droids:223
+msgid "821"
+msgstr "821"
+
+#: map/ReturnOfTux.droids:225
+msgid "742"
+msgstr "742"
+
+#: map/ReturnOfTux.droids:226
+msgid "711"
+msgstr "711"
+
+#: map/ReturnOfTux.droids:227
+msgid "629"
+msgstr "629"
+
+#: map/ReturnOfTux.droids:228
+msgid "615"
+msgstr "615"
+
+#: map/ReturnOfTux.droids:229
+msgid "614"
+msgstr "614"
+
+#: map/ReturnOfTux.droids:230
+msgid "603"
+msgstr "603"
+
+#: map/ReturnOfTux.droids:231
+msgid "598"
+msgstr "598"
+
+#: map/ReturnOfTux.droids:232
+msgid "571"
+msgstr "571"
+
+#: map/ReturnOfTux.droids:233
+msgid "516"
+msgstr "516"
+
+#: map/ReturnOfTux.droids:234
+msgid "493"
+msgstr "493"
+
+#: map/ReturnOfTux.droids:235
+msgid "476"
+msgstr "476"
+
+#: map/ReturnOfTux.droids:236
+msgid "420"
+msgstr "420"
+
+#: map/ReturnOfTux.droids:237
+msgid "329"
+msgstr "329"
+
+#: map/ReturnOfTux.droids:238
+msgid "302"
+msgstr "302"
+
+#: map/ReturnOfTux.droids:239
+msgid "296"
+msgstr "296"
+
+#: map/ReturnOfTux.droids:240
+msgid "249"
+msgstr "249"
+
+#: map/ReturnOfTux.droids:241
+msgid "247"
+msgstr "247"
+
+#: map/ReturnOfTux.droids:242
+msgid "139"
+msgstr "139"
+
+#: map/ReturnOfTux.droids:243
+msgid "123"
+msgstr "123"
 
 #: map/ReturnOfTux.droids:244
 msgid "Dude"
@@ -3381,78 +3534,6 @@ msgstr "Bruit Électronique"
 
 #~ msgid "Respawn Master Arena"
 #~ msgstr "Régénérer l'Arène des Confirmés"
-
-#~ msgid "543"
-#~ msgstr "543"
-
-#~ msgid "999"
-#~ msgstr "999"
-
-#~ msgid "883"
-#~ msgstr "883"
-
-#~ msgid "834"
-#~ msgstr "834"
-
-#~ msgid "821"
-#~ msgstr "821"
-
-#~ msgid "742"
-#~ msgstr "742"
-
-#~ msgid "711"
-#~ msgstr "711"
-
-#~ msgid "629"
-#~ msgstr "629"
-
-#~ msgid "615"
-#~ msgstr "615"
-
-#~ msgid "614"
-#~ msgstr "614"
-
-#~ msgid "603"
-#~ msgstr "603"
-
-#~ msgid "598"
-#~ msgstr "598"
-
-#~ msgid "571"
-#~ msgstr "571"
-
-#~ msgid "516"
-#~ msgstr "516"
-
-#~ msgid "493"
-#~ msgstr "493"
-
-#~ msgid "476"
-#~ msgstr "476"
-
-#~ msgid "420"
-#~ msgstr "420"
-
-#~ msgid "329"
-#~ msgstr "329"
-
-#~ msgid "302"
-#~ msgstr "302"
-
-#~ msgid "296"
-#~ msgstr "296"
-
-#~ msgid "249"
-#~ msgstr "249"
-
-#~ msgid "247"
-#~ msgstr "247"
-
-#~ msgid "139"
-#~ msgstr "139"
-
-#~ msgid "123"
-#~ msgstr "123"
 
 #~ msgid "The overload setting exists for emergencies. The plasma does not discriminate between bots and humans."
 #~ msgstr "La configuration de surcharge est utilisée pour les urgences. Le plasma ne fait pas de différence entre les robots et les humains."

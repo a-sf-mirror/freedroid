@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
 "PO-Revision-Date: 2015-04-18 00:21+0000\n"
 "Last-Translator: Jonatas L. Nogueira <cpntb1@ymail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/arctic-games/freedroid-rpg/language/pt_BR/)\n"
@@ -542,8 +542,9 @@ msgid "Welcome to the hostname menu."
 msgstr "Bem-vindo ao menu do nome da máquina."
 
 #: dialogs/AfterTakeover.lua:377
-msgid "Version: 0.15.01"
-msgstr "Versão: 0.15.01"
+#, c-format
+msgid "Version: %s"
+msgstr ""
 
 #: dialogs/AfterTakeover.lua:378
 #, c-format
@@ -20355,6 +20356,9 @@ msgstr "Will Gapes me deu seu Certificado de Crédito MS para eu poder acessar a
 #: dialogs/WillGapes.lua:194
 msgid "Be careful!"
 msgstr "Tenha cuidado!"
+
+#~ msgid "Version: 0.15.01"
+#~ msgstr "Versão: 0.15.01"
 
 #~ msgid "PLEASE REPORT, BUG AFTERTAKEOVER NODE 50"
 #~ msgstr "POR FAVOR REPORTE, BUG AFTERTAKEOVER NODE 50"

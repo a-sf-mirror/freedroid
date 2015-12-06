@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
-"PO-Revision-Date: 2015-08-16 15:46+0000\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
+"PO-Revision-Date: 2015-11-20 18:16+0000\n"
 "Last-Translator: zdenek <chmelarz@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/arctic-games/freedroid-rpg/language/cs/)\n"
 "Language: cs\n"
@@ -208,7 +208,7 @@ msgid "XP"
 msgstr "XP"
 
 #. TRANSLATORS: Used on object selector's widget to display unit price * number of objects
-#: src/graphics.c:227
+#: src/graphics.c:230
 #, c-format
 msgid "%d price\n"
 msgstr "%d cena\n"
@@ -306,51 +306,51 @@ msgid "Day %d  %02d:%02d"
 msgstr "Dnů %d %02d:%02d"
 
 #. TRANSLATORS: Console msg when a weapon is empty
-#: src/influ.c:145
+#: src/influ.c:146
 #, c-format
 msgid "%s empty, reloading..."
 msgstr "%s je prázdá, nabíjím..."
 
-#: src/influ.c:982 src/menu.c:999
+#: src/influ.c:990 src/menu.c:999
 msgid "Load Latest"
 msgstr "Nahrát poslední"
 
-#: src/influ.c:983 src/menu.c:1000
+#: src/influ.c:991 src/menu.c:1000
 msgid "Load Backup"
 msgstr "Nahrát zálohu"
 
-#: src/influ.c:985 src/menu.c:1002 src/lvledit/lvledit_menu.c:964
+#: src/influ.c:993 src/menu.c:1002 src/lvledit/lvledit_menu.c:964
 msgid "Quit to Main Menu"
 msgstr "Odejít do hlavního menu"
 
-#: src/influ.c:987
+#: src/influ.c:995
 msgid "Return to Editor"
 msgstr "Návrat do editoru"
 
-#: src/influ.c:989 src/menu.c:851 src/menu.c:1005
+#: src/influ.c:997 src/menu.c:851 src/menu.c:1005
 #: src/lvledit/lvledit_menu.c:965
 msgid "Exit FreedroidRPG"
 msgstr "Ukončit FreedroidRPG"
 
 #. TRANSLATORS: Out of <ammo type>
-#: src/influ.c:1439
+#: src/influ.c:1459
 #, c-format
 msgid "Out of [s]%s[v]!"
 msgstr "Dosly náboje [s]%s[v]!"
 
-#: src/init.c:777 src/saveloadgame.c:446
+#: src/init.c:785 src/saveloadgame.c:448
 msgid "--- Message Log ---"
 msgstr "--- Záznam zprávy ---"
 
-#: src/init.c:779
+#: src/init.c:787
 msgid "Starting tutorial."
 msgstr "Spouštění výuky."
 
-#: src/init.c:781
+#: src/init.c:789
 msgid "Starting new game."
 msgstr "Spouštění nové hry."
 
-#: src/init.c:1085
+#: src/init.c:1109
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -366,11 +366,11 @@ msgstr ""
 "\n"
 "Hodně štěstí!\n"
 
-#: src/init.c:1104 src/init.c:1105
+#: src/init.c:1128 src/init.c:1129
 msgid "Game over.\n"
 msgstr "Konec hry.\n"
 
-#: src/init.c:1171 src/init.c:1172
+#: src/init.c:1195 src/init.c:1196
 msgid "Game won.\n"
 msgstr "Hra vyhrána.\n"
 
@@ -1056,7 +1056,7 @@ msgstr "Klávesové zkratky"
 msgid "ARROWS to select, ENTER to remap, ESCAPE to exit"
 msgstr "ŠIPKY - výběr, ENTER - přemapovat, ESCAPE - ukončit"
 
-#: src/keyboard.c:784
+#: src/keyboard.c:786
 #, c-format
 msgid "Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."
 msgstr "Snímek obrazovky uložen do \"%s\" ve vašem adresáři .freedroid_rpg/."
@@ -1106,20 +1106,20 @@ msgstr "Získáno %d cenných obvodů!"
 msgid "Lost %d valuable circuits!"
 msgstr "Ztraceno %d cenných obvodů!"
 
-#: src/main.c:361
+#: src/main.c:356
 msgid "Overheating!"
 msgstr "Přehřívání!"
 
 #. TRANSLATORS: Screen message, displayed below 'Automatically shutting down'
-#: src/main.c:366
+#: src/main.c:361
 msgid "due to near lethal overheating"
 msgstr "v důsledku blízkého smrtelného přehřátí"
 
-#: src/main.c:367
+#: src/main.c:362
 msgid "Automatically shutting down"
 msgstr "Automatické vypnutí"
 
-#: src/main.c:389
+#: src/main.c:384
 msgid "Weapon reloaded"
 msgstr "Zbraň nabita"
 
@@ -1490,15 +1490,15 @@ msgstr "Nahrát existujícího hrdinu"
 msgid "Delete existing Hero"
 msgstr "Smazat existujícího hrdinu"
 
-#: src/misc.c:892
+#: src/misc.c:891
 msgid "GAME PAUSED"
 msgstr "HRA ZASTAVENA"
 
-#: src/misc.c:893
+#: src/misc.c:892
 msgid "press p to resume"
 msgstr "pro návrat stiskni \"p\""
 
-#: src/misc.c:1186
+#: src/misc.c:1185
 #, c-format
 msgid "Arrived at %s."
 msgstr "Dorazil k %s."
@@ -1689,7 +1689,7 @@ msgstr "Hra uložena."
 msgid "Loading"
 msgstr "Nahrávání"
 
-#: src/saveloadgame.c:366
+#: src/saveloadgame.c:368
 msgid ""
 "W A R N I N G !\n"
 "\n"
@@ -1703,19 +1703,19 @@ msgstr ""
 "To by mohlo znamenat, že tam opravdu není, neboť jste se pokusili nahrát hru, která před tím nikdy nebyla uložena.\n"
 "Jiným vysvětlením této chyby může být závažná chyba ve hře FreedroidRPG. Pokud si myslíte, že se jedná o tento případ, nahlaste to prosím vývojářům."
 
-#: src/saveloadgame.c:367
+#: src/saveloadgame.c:369
 msgid "Failed to load old game."
 msgstr "Nezdařilo se načíst starou hru."
 
-#: src/saveloadgame.c:401
+#: src/saveloadgame.c:403
 msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
 msgstr "Nesoulad ve verzi či velikosti! Uložená hra není ze stejné verze FreedroidRPG... možné poškození."
 
-#: src/saveloadgame.c:442
+#: src/saveloadgame.c:444
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Aktualizace obrázků Tuxe (to může chvíli trvat...)"
 
-#: src/saveloadgame.c:447
+#: src/saveloadgame.c:449
 msgid "Game loaded."
 msgstr "Hra nahrána."
 
@@ -2062,7 +2062,7 @@ msgstr "Získaný předmět: %s"
 msgid "Cancel item drop"
 msgstr "Zrušit upuštění předmětu"
 
-#: src/lvledit/lvledit_actions.c:275
+#: src/lvledit/lvledit_actions.c:276
 msgid ""
 "\n"
 "Please enter obstacle label: \n"
@@ -2071,7 +2071,7 @@ msgstr ""
 "\n"
 "Zadejte štítek překážky:\n"
 
-#: src/lvledit/lvledit_actions.c:624
+#: src/lvledit/lvledit_actions.c:628
 msgid ""
 "\n"
 "Please enter map label: \n"
@@ -2080,7 +2080,7 @@ msgstr ""
 "\n"
 "Zadejte štítek mapy:\n"
 
-#: src/lvledit/lvledit_actions.c:640
+#: src/lvledit/lvledit_actions.c:644
 msgid "The new name of the map label already exists, please choose an other name."
 msgstr "Nové jméno štítku mapy už existuje, vyberte prosím jiný název."
 
@@ -2106,12 +2106,12 @@ msgstr ""
 "Informace o štítku mapy:\n"
 "název_štítku=\"%s\"."
 
-#: src/lvledit/lvledit_display.c:320
+#: src/lvledit/lvledit_display.c:325
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr "Vybrán zdrojový navigační bod : X=%d Y=%d."
 
-#: src/lvledit/lvledit_display.c:335
+#: src/lvledit/lvledit_display.c:340
 #, c-format
 msgid ""
 " This level is automatically generated. \n"

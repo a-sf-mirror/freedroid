@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Alexander Forsberg <alexf@openmailbox.org>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
-"PO-Revision-Date: 2015-08-16 14:27+0000\n"
-"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
+"PO-Revision-Date: 2015-10-20 15:37+0000\n"
+"Last-Translator: Alexander Forsberg <alexf@openmailbox.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +57,7 @@ msgstr "296 Sågverk"
 
 #: map/droid_archetypes.dat:198
 msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carrying drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
-msgstr ""
+msgstr "Den här roboten - ursprungligen skapad av Orchard and Marsden Enterprices - användes som en droidkypare i barer. På huvudet har den en bricka för att bära drinkar, och det breda hjulavståndet gör den stabil så inget spills ut. VARNING: Om du försöker stjäla en drink kommer du förlora något!"
 
 #: map/droid_archetypes.dat:202 map/ReturnOfTux.droids:103
 #: map/ReturnOfTux.droids:104 map/ReturnOfTux.droids:111
@@ -185,7 +186,8 @@ msgstr "742 Zeus"
 msgid "This version is the one mainly used by the military."
 msgstr "Den här versionen är den som militären huvudsakligen använder."
 
-#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:289
+#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:224
+#: map/ReturnOfTux.droids:289
 msgid "751 Soviet"
 msgstr "751 Sovjet"
 
@@ -217,7 +219,7 @@ msgstr "883 Dalex"
 
 #: map/droid_archetypes.dat:712
 msgid "This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries."
-msgstr ""
+msgstr "Den här droiden designades efter arkiverade data. Av någon okänd anledning gör den mänskliga motståndare skräckslagna."
 
 #: map/droid_archetypes.dat:716 map/ReturnOfTux.droids:293
 msgid "999 Cerebrum"
@@ -355,11 +357,11 @@ msgstr "Auktoritet"
 
 #: map/droid_archetypes.dat:1125
 msgid "It has long since been known that game development is the most important job in the world. Also, the coolest. We know that thanks to this guy."
-msgstr ""
+msgstr "Det har länge varit känt att spelutveckling är det viktigaste jobbet i världen. Och det coolaste. Det vet vi tack vare den här killen."
 
 #: map/droid_archetypes.dat:1147
 msgid "This is a secure terminal."
-msgstr ""
+msgstr "Detta är en säker terminal."
 
 #: map/events.dat:55
 msgid "To Maintenance Tunnels"
@@ -591,7 +593,7 @@ msgstr "Stor Kökskniv"
 
 #: map/item_specs.lua:153
 msgid "Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though, for sure better than hitting at metal with your bare fists."
-msgstr ""
+msgstr "Lätt och smidig i strid, men oturligt nog inte särskilt bra på att skära genom stål, och kommer gå sönder ganska snabbt om du försöker. Fast funkar betydligt bättre än att bara slå metallen med knytnävarna."
 
 #: map/item_specs.lua:161
 msgid "Cutlass"
@@ -607,7 +609,7 @@ msgstr "Antikt Långsvärd"
 
 #: map/item_specs.lua:198
 msgid "Very maneuverable for its size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
-msgstr ""
+msgstr "Väldigt smidig trots storleken, och tung nog att slå igenom klenare bott-sköldar med bara 1 slag. Den enda nackdelen med det här gamla vapnet är den samma som för andra svärd: det håller inte för att skära i metalldelar särskilt länge."
 
 #: map/item_specs.lua:206
 msgid "Chainsaw"
@@ -663,7 +665,7 @@ msgstr "Stor Skiftnyckel"
 
 #: map/item_specs.lua:350
 msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands-on, brutal way if needed."
-msgstr ""
+msgstr "En stor tung skiftnyckel kan vara förvånansvärt bra till att göra bottar till reservdelar - på ett brutalt vis, om det så behövs."
 
 #: map/item_specs.lua:358
 msgid "Crowbar"
@@ -1131,7 +1133,7 @@ msgstr "Burkhjälm"
 
 #: map/item_specs.lua:1437
 msgid "Top of the line headgear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
-msgstr ""
+msgstr "Första klassens huvudbonad för bottar. Men om du sliter bort deras metallhals och tar bort kretskorten skyddar den även levande varelser mot en mängd attacker, både på avstånd och nära."
 
 #: map/item_specs.lua:1445
 msgid "Worker Helmet"
@@ -1187,7 +1189,7 @@ msgstr "Arbetsskor"
 
 #: map/item_specs.lua:1549
 msgid "These footwears are steel tipped, and generally quite sturdy, giving a bit extra protection."
-msgstr ""
+msgstr "De här skorna har stålhätta och är ganska stadiga, vilket ger lite extra skydd."
 
 #: map/item_specs.lua:1557
 msgid "Battle Shoes"
@@ -2222,7 +2224,7 @@ msgstr "Serverrum"
 
 #: map/levels.dat:33281
 msgid "Offices - this way"
-msgstr ""
+msgstr "Kontor - ditåt"
 
 #: map/levels.dat:33284
 msgid "Slalom"
@@ -2298,7 +2300,7 @@ msgstr "Stopp!"
 
 #: map/levels.dat:37706
 msgid "I warned you... You should consider turning back and running away screaming."
-msgstr ""
+msgstr "Jag varnade dig... Du borde vända om och springa iväg skrikande."
 
 #: map/levels.dat:37808
 msgid "Secret area service tunnels"
@@ -2441,7 +2443,7 @@ msgstr "Skyddsrum"
 
 #: map/levels.dat:65751
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
-msgstr ""
+msgstr "DEBUG-BANA 70 -- Den här banan skapades för att göra testande av FreedroidRPG lite enklare och ska INTE vara åtkomlig utan fusk."
 
 #: map/levels.dat:66662
 msgid "?"
@@ -2696,7 +2698,7 @@ msgstr "Staty"
 #: map/obstacle_specs.lua:3482 map/obstacle_specs.lua:3492
 #: map/obstacle_specs.lua:3502 map/obstacle_specs.lua:3511
 msgid "Secure terminal"
-msgstr ""
+msgstr "Säker terminal"
 
 #: map/quests.dat:36
 msgid "Bender's problem"
@@ -3047,6 +3049,158 @@ msgstr "Kevin"
 msgid "Stolen 614"
 msgstr "Stulen 614"
 
+#: map/ReturnOfTux.droids:204
+msgid "GUN"
+msgstr "GUN"
+
+#: map/ReturnOfTux.droids:205
+msgid "FEM"
+msgstr "FEM"
+
+#: map/ReturnOfTux.droids:206
+msgid "543"
+msgstr "543"
+
+#: map/ReturnOfTux.droids:207
+msgid "BAR"
+msgstr "BAR"
+
+#: map/ReturnOfTux.droids:208
+msgid "TAN"
+msgstr "TAN"
+
+#: map/ReturnOfTux.droids:209
+msgid "JAS"
+msgstr "JAS"
+
+#: map/ReturnOfTux.droids:210
+msgid "KEV"
+msgstr "KEV"
+
+#: map/ReturnOfTux.droids:211
+msgid "COO"
+msgstr "COO"
+
+#: map/ReturnOfTux.droids:212
+msgid "GUB"
+msgstr "GUB"
+
+#: map/ReturnOfTux.droids:213
+msgid "WOR"
+msgstr "WOR"
+
+#: map/ReturnOfTux.droids:215
+msgid "MUM"
+msgstr "MUM"
+
+#: map/ReturnOfTux.droids:216
+msgid "DIX"
+msgstr "DIX"
+
+#: map/ReturnOfTux.droids:217
+msgid "GUA"
+msgstr "GUA"
+
+#: map/ReturnOfTux.droids:218
+msgid "DOC"
+msgstr "DOC"
+
+#: map/ReturnOfTux.droids:219
+msgid "PRO"
+msgstr "PRO"
+
+#: map/ReturnOfTux.droids:220
+msgid "999"
+msgstr "999"
+
+#: map/ReturnOfTux.droids:221
+msgid "883"
+msgstr "883"
+
+#: map/ReturnOfTux.droids:222
+msgid "834"
+msgstr "834"
+
+#: map/ReturnOfTux.droids:223
+msgid "821"
+msgstr "821"
+
+#: map/ReturnOfTux.droids:225
+msgid "742"
+msgstr "742"
+
+#: map/ReturnOfTux.droids:226
+msgid "711"
+msgstr "711"
+
+#: map/ReturnOfTux.droids:227
+msgid "629"
+msgstr "629"
+
+#: map/ReturnOfTux.droids:228
+msgid "615"
+msgstr "615"
+
+#: map/ReturnOfTux.droids:229
+msgid "614"
+msgstr "614"
+
+#: map/ReturnOfTux.droids:230
+msgid "603"
+msgstr "603"
+
+#: map/ReturnOfTux.droids:231
+msgid "598"
+msgstr "598"
+
+#: map/ReturnOfTux.droids:232
+msgid "571"
+msgstr "571"
+
+#: map/ReturnOfTux.droids:233
+msgid "516"
+msgstr "516"
+
+#: map/ReturnOfTux.droids:234
+msgid "493"
+msgstr "493"
+
+#: map/ReturnOfTux.droids:235
+msgid "476"
+msgstr "476"
+
+#: map/ReturnOfTux.droids:236
+msgid "420"
+msgstr "420"
+
+#: map/ReturnOfTux.droids:237
+msgid "329"
+msgstr "329"
+
+#: map/ReturnOfTux.droids:238
+msgid "302"
+msgstr "302"
+
+#: map/ReturnOfTux.droids:239
+msgid "296"
+msgstr "296"
+
+#: map/ReturnOfTux.droids:240
+msgid "249"
+msgstr "249"
+
+#: map/ReturnOfTux.droids:241
+msgid "247"
+msgstr "247"
+
+#: map/ReturnOfTux.droids:242
+msgid "139"
+msgstr "139"
+
+#: map/ReturnOfTux.droids:243
+msgid "123"
+msgstr "123"
+
 #: map/ReturnOfTux.droids:244
 msgid "Dude"
 msgstr "Snubbe"
@@ -3225,7 +3379,7 @@ msgstr "Verifiera systemintegriteten"
 
 #: map/skill_specs.lua:59
 msgid "While repairing damage, you must remember that patience is a virtue."
-msgstr ""
+msgstr "När du reparerar skador måste du komma ihåg att tålamod är en dygd."
 
 #: map/skill_specs.lua:64
 msgid "Sanctuary"
@@ -3236,6 +3390,8 @@ msgid ""
 "Effect: Teleport to town or back.\n"
 "The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
 msgstr ""
+"Effekt: Teleportera till stan eller tillbaka.\n"
+"Konsten att snabbt ta sig ur fara är bra att kunna. Till och med i andra riktningen kan den vara praktisk."
 
 #: map/skill_specs.lua:75
 msgid "Invisibility"
@@ -3283,7 +3439,7 @@ msgstr "Frigör rök"
 
 #: map/skill_specs.lua:161
 msgid "By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
-msgstr ""
+msgstr "Genom att hetta upp chippen med ett trasigt program kan du få dem att släppa ut den magiska röken som håller liv i bottarna."
 
 #: map/skill_specs.lua:166
 msgid "Killer poke"
@@ -3374,120 +3530,6 @@ msgstr "Elektronisk Störning"
 
 #~ msgid "Respawn Master Arena"
 #~ msgstr "Gör om Mästararenan"
-
-#~ msgid "GUN"
-#~ msgstr "GUN"
-
-#~ msgid "FEM"
-#~ msgstr "FEM"
-
-#~ msgid "543"
-#~ msgstr "543"
-
-#~ msgid "BAR"
-#~ msgstr "BAR"
-
-#~ msgid "TAN"
-#~ msgstr "TAN"
-
-#~ msgid "JAS"
-#~ msgstr "JAS"
-
-#~ msgid "KEV"
-#~ msgstr "KEV"
-
-#~ msgid "COO"
-#~ msgstr "COO"
-
-#~ msgid "GUB"
-#~ msgstr "GUB"
-
-#~ msgid "WOR"
-#~ msgstr "WOR"
-
-#~ msgid "MUM"
-#~ msgstr "MUM"
-
-#~ msgid "DIX"
-#~ msgstr "DIX"
-
-#~ msgid "GUA"
-#~ msgstr "GUA"
-
-#~ msgid "DOC"
-#~ msgstr "DOC"
-
-#~ msgid "PRO"
-#~ msgstr "PRO"
-
-#~ msgid "999"
-#~ msgstr "999"
-
-#~ msgid "883"
-#~ msgstr "883"
-
-#~ msgid "834"
-#~ msgstr "834"
-
-#~ msgid "821"
-#~ msgstr "821"
-
-#~ msgid "742"
-#~ msgstr "742"
-
-#~ msgid "711"
-#~ msgstr "711"
-
-#~ msgid "629"
-#~ msgstr "629"
-
-#~ msgid "615"
-#~ msgstr "615"
-
-#~ msgid "614"
-#~ msgstr "614"
-
-#~ msgid "603"
-#~ msgstr "603"
-
-#~ msgid "598"
-#~ msgstr "598"
-
-#~ msgid "571"
-#~ msgstr "571"
-
-#~ msgid "516"
-#~ msgstr "516"
-
-#~ msgid "493"
-#~ msgstr "493"
-
-#~ msgid "476"
-#~ msgstr "476"
-
-#~ msgid "420"
-#~ msgstr "420"
-
-#~ msgid "329"
-#~ msgstr "329"
-
-#~ msgid "302"
-#~ msgstr "302"
-
-#~ msgid "296"
-#~ msgstr "296"
-
-#~ msgid "249"
-#~ msgstr "249"
-
-#~ msgid "247"
-#~ msgstr "247"
-
-#~ msgid "139"
-#~ msgstr "139"
-
-#~ msgid "123"
-#~ msgstr "123"
 
 #~ msgid "INV"
 #~ msgstr "INV"

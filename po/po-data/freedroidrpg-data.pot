@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: freedroidrpg 0.16rc1\n"
+"Project-Id-Version: freedroidrpg 0.16rc2\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -185,7 +185,8 @@ msgstr ""
 msgid "This version is the one mainly used by the military."
 msgstr ""
 
-#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:289
+#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:224
+#: map/ReturnOfTux.droids:289
 msgid "751 Soviet"
 msgstr ""
 
@@ -3039,6 +3040,158 @@ msgstr ""
 
 #: map/ReturnOfTux.droids:168
 msgid "Stolen 614"
+msgstr ""
+
+#: map/ReturnOfTux.droids:204
+msgid "GUN"
+msgstr ""
+
+#: map/ReturnOfTux.droids:205
+msgid "FEM"
+msgstr ""
+
+#: map/ReturnOfTux.droids:206
+msgid "543"
+msgstr ""
+
+#: map/ReturnOfTux.droids:207
+msgid "BAR"
+msgstr ""
+
+#: map/ReturnOfTux.droids:208
+msgid "TAN"
+msgstr ""
+
+#: map/ReturnOfTux.droids:209
+msgid "JAS"
+msgstr ""
+
+#: map/ReturnOfTux.droids:210
+msgid "KEV"
+msgstr ""
+
+#: map/ReturnOfTux.droids:211
+msgid "COO"
+msgstr ""
+
+#: map/ReturnOfTux.droids:212
+msgid "GUB"
+msgstr ""
+
+#: map/ReturnOfTux.droids:213
+msgid "WOR"
+msgstr ""
+
+#: map/ReturnOfTux.droids:215
+msgid "MUM"
+msgstr ""
+
+#: map/ReturnOfTux.droids:216
+msgid "DIX"
+msgstr ""
+
+#: map/ReturnOfTux.droids:217
+msgid "GUA"
+msgstr ""
+
+#: map/ReturnOfTux.droids:218
+msgid "DOC"
+msgstr ""
+
+#: map/ReturnOfTux.droids:219
+msgid "PRO"
+msgstr ""
+
+#: map/ReturnOfTux.droids:220
+msgid "999"
+msgstr ""
+
+#: map/ReturnOfTux.droids:221
+msgid "883"
+msgstr ""
+
+#: map/ReturnOfTux.droids:222
+msgid "834"
+msgstr ""
+
+#: map/ReturnOfTux.droids:223
+msgid "821"
+msgstr ""
+
+#: map/ReturnOfTux.droids:225
+msgid "742"
+msgstr ""
+
+#: map/ReturnOfTux.droids:226
+msgid "711"
+msgstr ""
+
+#: map/ReturnOfTux.droids:227
+msgid "629"
+msgstr ""
+
+#: map/ReturnOfTux.droids:228
+msgid "615"
+msgstr ""
+
+#: map/ReturnOfTux.droids:229
+msgid "614"
+msgstr ""
+
+#: map/ReturnOfTux.droids:230
+msgid "603"
+msgstr ""
+
+#: map/ReturnOfTux.droids:231
+msgid "598"
+msgstr ""
+
+#: map/ReturnOfTux.droids:232
+msgid "571"
+msgstr ""
+
+#: map/ReturnOfTux.droids:233
+msgid "516"
+msgstr ""
+
+#: map/ReturnOfTux.droids:234
+msgid "493"
+msgstr ""
+
+#: map/ReturnOfTux.droids:235
+msgid "476"
+msgstr ""
+
+#: map/ReturnOfTux.droids:236
+msgid "420"
+msgstr ""
+
+#: map/ReturnOfTux.droids:237
+msgid "329"
+msgstr ""
+
+#: map/ReturnOfTux.droids:238
+msgid "302"
+msgstr ""
+
+#: map/ReturnOfTux.droids:239
+msgid "296"
+msgstr ""
+
+#: map/ReturnOfTux.droids:240
+msgid "249"
+msgstr ""
+
+#: map/ReturnOfTux.droids:241
+msgid "247"
+msgstr ""
+
+#: map/ReturnOfTux.droids:242
+msgid "139"
+msgstr ""
+
+#: map/ReturnOfTux.droids:243
+msgid "123"
 msgstr ""
 
 #: map/ReturnOfTux.droids:244

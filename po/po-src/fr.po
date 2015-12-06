@@ -9,12 +9,13 @@
 # sebastienadam <sebastien.adam.be@gmail.com>, 2014
 # sebastienadam <sebastien.adam.be@gmail.com>, 2014
 # Xenux <xenux@freedroid.org>, 2014
+# Xenux <xenux@freedroid.org>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
-"PO-Revision-Date: 2015-10-10 08:45+0000\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
+"PO-Revision-Date: 2015-10-10 09:02+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/arctic-games/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
@@ -213,7 +214,7 @@ msgid "XP"
 msgstr "XP"
 
 #. TRANSLATORS: Used on object selector's widget to display unit price * number of objects
-#: src/graphics.c:227
+#: src/graphics.c:230
 #, c-format
 msgid "%d price\n"
 msgstr "prix %d\n"
@@ -311,51 +312,51 @@ msgid "Day %d  %02d:%02d"
 msgstr "Jour %d  %02d:%02d"
 
 #. TRANSLATORS: Console msg when a weapon is empty
-#: src/influ.c:145
+#: src/influ.c:146
 #, c-format
 msgid "%s empty, reloading..."
 msgstr "%s vide, rechargement..."
 
-#: src/influ.c:982 src/menu.c:999
+#: src/influ.c:990 src/menu.c:999
 msgid "Load Latest"
 msgstr "Recharger la partie"
 
-#: src/influ.c:983 src/menu.c:1000
+#: src/influ.c:991 src/menu.c:1000
 msgid "Load Backup"
 msgstr "Charger la sauvegarde précédente"
 
-#: src/influ.c:985 src/menu.c:1002 src/lvledit/lvledit_menu.c:964
+#: src/influ.c:993 src/menu.c:1002 src/lvledit/lvledit_menu.c:964
 msgid "Quit to Main Menu"
 msgstr "Retour au Menu Principal"
 
-#: src/influ.c:987
+#: src/influ.c:995
 msgid "Return to Editor"
 msgstr "Retour à l'éditeur"
 
-#: src/influ.c:989 src/menu.c:851 src/menu.c:1005
+#: src/influ.c:997 src/menu.c:851 src/menu.c:1005
 #: src/lvledit/lvledit_menu.c:965
 msgid "Exit FreedroidRPG"
 msgstr "Quitter FreedroidRPG"
 
 #. TRANSLATORS: Out of <ammo type>
-#: src/influ.c:1439
+#: src/influ.c:1459
 #, c-format
 msgid "Out of [s]%s[v]!"
 msgstr "Plus de [s]%s[v] !"
 
-#: src/init.c:777 src/saveloadgame.c:446
+#: src/init.c:785 src/saveloadgame.c:448
 msgid "--- Message Log ---"
 msgstr "--- Historique des messages ---"
 
-#: src/init.c:779
+#: src/init.c:787
 msgid "Starting tutorial."
 msgstr "Commencer le Tutoriel."
 
-#: src/init.c:781
+#: src/init.c:789
 msgid "Starting new game."
 msgstr "Commencer une nouvelle partie."
 
-#: src/init.c:1085
+#: src/init.c:1109
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -371,11 +372,11 @@ msgstr ""
 "\n"
 "Bonne chance !\n"
 
-#: src/init.c:1104 src/init.c:1105
+#: src/init.c:1128 src/init.c:1129
 msgid "Game over.\n"
 msgstr "Fin de la partie.\n"
 
-#: src/init.c:1171 src/init.c:1172
+#: src/init.c:1195 src/init.c:1196
 msgid "Game won.\n"
 msgstr "Tu as gagné la partie.\n"
 
@@ -1061,7 +1062,7 @@ msgstr "Configuration touches"
 msgid "ARROWS to select, ENTER to remap, ESCAPE to exit"
 msgstr "FLECHES pour sélectionner, ENTREE pour modifier, ECHAPPE pour fermer"
 
-#: src/keyboard.c:784
+#: src/keyboard.c:786
 #, c-format
 msgid "Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."
 msgstr "Capture écran sauvegardée dans \"%s\" dans le répertoire .freedroid_rpg/."
@@ -1111,20 +1112,20 @@ msgstr "Gagné %d circuits de valeur !"
 msgid "Lost %d valuable circuits!"
 msgstr "Perdu %d circuits de valeur !"
 
-#: src/main.c:361
+#: src/main.c:356
 msgid "Overheating!"
 msgstr "Surchauffe !"
 
 #. TRANSLATORS: Screen message, displayed below 'Automatically shutting down'
-#: src/main.c:366
+#: src/main.c:361
 msgid "due to near lethal overheating"
 msgstr "en raison d'une surchauffe presque mortelle"
 
-#: src/main.c:367
+#: src/main.c:362
 msgid "Automatically shutting down"
 msgstr "Extinction Automatique"
 
-#: src/main.c:389
+#: src/main.c:384
 msgid "Weapon reloaded"
 msgstr "Arme rechargée"
 
@@ -1495,15 +1496,15 @@ msgstr "Charger un Héros existant"
 msgid "Delete existing Hero"
 msgstr "Effacer un Héros existant"
 
-#: src/misc.c:892
+#: src/misc.c:891
 msgid "GAME PAUSED"
 msgstr "JEU EN PAUSE"
 
-#: src/misc.c:893
+#: src/misc.c:892
 msgid "press p to resume"
 msgstr "appuyez sur p pour reprendre"
 
-#: src/misc.c:1186
+#: src/misc.c:1185
 #, c-format
 msgid "Arrived at %s."
 msgstr "Arrivé à %s."
@@ -1694,7 +1695,7 @@ msgstr "Partie sauvegardée."
 msgid "Loading"
 msgstr "Chargement"
 
-#: src/saveloadgame.c:366
+#: src/saveloadgame.c:368
 msgid ""
 "W A R N I N G !\n"
 "\n"
@@ -1708,19 +1709,19 @@ msgstr ""
 "Cela peut signifier qu'elle n'existe réellement pas parce que tu as essayé de charger une partie qui n'a pas encore été sauvegardée.\n"
 "L'autre explication de cette erreur peut être une erreur sévère dans FreedroidRPG. Si tu penses que c'est le cas, merci de l'indiquer aux développeurs."
 
-#: src/saveloadgame.c:367
+#: src/saveloadgame.c:369
 msgid "Failed to load old game."
 msgstr "Impossible de charger l'ancienne sauvegarde."
 
-#: src/saveloadgame.c:401
+#: src/saveloadgame.c:403
 msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
 msgstr "Version ou 'structsize' non conforme ! Cette sauvegarde n'a pas été effectuée avec la même version de FreedroidRPG... Possible dysfonctionnement."
 
-#: src/saveloadgame.c:442
+#: src/saveloadgame.c:444
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Mise à jour des images de Tux (cela peut prendre un peu de temps...)"
 
-#: src/saveloadgame.c:447
+#: src/saveloadgame.c:449
 msgid "Game loaded."
 msgstr "Partie chargée."
 
@@ -2067,7 +2068,7 @@ msgstr "Objet reçu : %s"
 msgid "Cancel item drop"
 msgstr "Dépose d'objet annulé"
 
-#: src/lvledit/lvledit_actions.c:275
+#: src/lvledit/lvledit_actions.c:276
 msgid ""
 "\n"
 "Please enter obstacle label: \n"
@@ -2077,7 +2078,7 @@ msgstr ""
 "Saisir le nom de l'obstacle : \n"
 "\n"
 
-#: src/lvledit/lvledit_actions.c:624
+#: src/lvledit/lvledit_actions.c:628
 msgid ""
 "\n"
 "Please enter map label: \n"
@@ -2087,7 +2088,7 @@ msgstr ""
 "Saisir le nom de l'étiquette de carte : \n"
 "\n"
 
-#: src/lvledit/lvledit_actions.c:640
+#: src/lvledit/lvledit_actions.c:644
 msgid "The new name of the map label already exists, please choose an other name."
 msgstr "Le nouveau nom de l'étiquette de carte existe déjà, merci de choisir un autre nom."
 
@@ -2113,12 +2114,12 @@ msgstr ""
 " Information Etiquette de carte : \n"
 " nom_etiquette=\"%s\"."
 
-#: src/lvledit/lvledit_display.c:320
+#: src/lvledit/lvledit_display.c:325
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr " Point étape source sélectionné : X=%d Y=%d. "
 
-#: src/lvledit/lvledit_display.c:335
+#: src/lvledit/lvledit_display.c:340
 #, c-format
 msgid ""
 " This level is automatically generated. \n"

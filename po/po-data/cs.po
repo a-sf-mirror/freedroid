@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
 "PO-Revision-Date: 2015-08-16 15:58+0000\n"
 "Last-Translator: zdenek <chmelarz@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/arctic-games/freedroid-rpg/language/cs/)\n"
@@ -186,7 +186,8 @@ msgstr "742 Zeus"
 msgid "This version is the one mainly used by the military."
 msgstr "Tato verze je používaná hlavně armádou."
 
-#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:289
+#: map/droid_archetypes.dat:608 map/ReturnOfTux.droids:224
+#: map/ReturnOfTux.droids:289
 msgid "751 Soviet"
 msgstr "751 Sovět"
 
@@ -3048,6 +3049,158 @@ msgstr "Kevin"
 msgid "Stolen 614"
 msgstr "Ukradený 614"
 
+#: map/ReturnOfTux.droids:204
+msgid "GUN"
+msgstr "ZBR"
+
+#: map/ReturnOfTux.droids:205
+msgid "FEM"
+msgstr "ŽEN"
+
+#: map/ReturnOfTux.droids:206
+msgid "543"
+msgstr "543"
+
+#: map/ReturnOfTux.droids:207
+msgid "BAR"
+msgstr "BAR"
+
+#: map/ReturnOfTux.droids:208
+msgid "TAN"
+msgstr "TAN"
+
+#: map/ReturnOfTux.droids:209
+msgid "JAS"
+msgstr "JAS"
+
+#: map/ReturnOfTux.droids:210
+msgid "KEV"
+msgstr "KEV"
+
+#: map/ReturnOfTux.droids:211
+msgid "COO"
+msgstr "KUC"
+
+#: map/ReturnOfTux.droids:212
+msgid "GUB"
+msgstr "GUB"
+
+#: map/ReturnOfTux.droids:213
+msgid "WOR"
+msgstr "DĚL"
+
+#: map/ReturnOfTux.droids:215
+msgid "MUM"
+msgstr "MÁM"
+
+#: map/ReturnOfTux.droids:216
+msgid "DIX"
+msgstr "DIX"
+
+#: map/ReturnOfTux.droids:217
+msgid "GUA"
+msgstr "GUA"
+
+#: map/ReturnOfTux.droids:218
+msgid "DOC"
+msgstr "DOK"
+
+#: map/ReturnOfTux.droids:219
+msgid "PRO"
+msgstr "PRO"
+
+#: map/ReturnOfTux.droids:220
+msgid "999"
+msgstr "999"
+
+#: map/ReturnOfTux.droids:221
+msgid "883"
+msgstr "883"
+
+#: map/ReturnOfTux.droids:222
+msgid "834"
+msgstr "834"
+
+#: map/ReturnOfTux.droids:223
+msgid "821"
+msgstr "821"
+
+#: map/ReturnOfTux.droids:225
+msgid "742"
+msgstr "742"
+
+#: map/ReturnOfTux.droids:226
+msgid "711"
+msgstr "711"
+
+#: map/ReturnOfTux.droids:227
+msgid "629"
+msgstr "629"
+
+#: map/ReturnOfTux.droids:228
+msgid "615"
+msgstr "615"
+
+#: map/ReturnOfTux.droids:229
+msgid "614"
+msgstr "614"
+
+#: map/ReturnOfTux.droids:230
+msgid "603"
+msgstr "603"
+
+#: map/ReturnOfTux.droids:231
+msgid "598"
+msgstr "598"
+
+#: map/ReturnOfTux.droids:232
+msgid "571"
+msgstr "571"
+
+#: map/ReturnOfTux.droids:233
+msgid "516"
+msgstr "516"
+
+#: map/ReturnOfTux.droids:234
+msgid "493"
+msgstr "493"
+
+#: map/ReturnOfTux.droids:235
+msgid "476"
+msgstr "476"
+
+#: map/ReturnOfTux.droids:236
+msgid "420"
+msgstr "420"
+
+#: map/ReturnOfTux.droids:237
+msgid "329"
+msgstr "329"
+
+#: map/ReturnOfTux.droids:238
+msgid "302"
+msgstr "302"
+
+#: map/ReturnOfTux.droids:239
+msgid "296"
+msgstr "296"
+
+#: map/ReturnOfTux.droids:240
+msgid "249"
+msgstr "249"
+
+#: map/ReturnOfTux.droids:241
+msgid "247"
+msgstr "247"
+
+#: map/ReturnOfTux.droids:242
+msgid "139"
+msgstr "139"
+
+#: map/ReturnOfTux.droids:243
+msgid "123"
+msgstr "123"
+
 #: map/ReturnOfTux.droids:244
 msgid "Dude"
 msgstr "Chlápek"
@@ -3377,120 +3530,6 @@ msgstr "Elektronický šum"
 
 #~ msgid "Respawn Master Arena"
 #~ msgstr "Znovuzhmotnění arény mistrů"
-
-#~ msgid "GUN"
-#~ msgstr "ZBR"
-
-#~ msgid "FEM"
-#~ msgstr "ŽEN"
-
-#~ msgid "543"
-#~ msgstr "543"
-
-#~ msgid "BAR"
-#~ msgstr "BAR"
-
-#~ msgid "TAN"
-#~ msgstr "TAN"
-
-#~ msgid "JAS"
-#~ msgstr "JAS"
-
-#~ msgid "KEV"
-#~ msgstr "KEV"
-
-#~ msgid "COO"
-#~ msgstr "KUC"
-
-#~ msgid "GUB"
-#~ msgstr "GUB"
-
-#~ msgid "WOR"
-#~ msgstr "DĚL"
-
-#~ msgid "MUM"
-#~ msgstr "MÁM"
-
-#~ msgid "DIX"
-#~ msgstr "DIX"
-
-#~ msgid "GUA"
-#~ msgstr "GUA"
-
-#~ msgid "DOC"
-#~ msgstr "DOK"
-
-#~ msgid "PRO"
-#~ msgstr "PRO"
-
-#~ msgid "999"
-#~ msgstr "999"
-
-#~ msgid "883"
-#~ msgstr "883"
-
-#~ msgid "834"
-#~ msgstr "834"
-
-#~ msgid "821"
-#~ msgstr "821"
-
-#~ msgid "742"
-#~ msgstr "742"
-
-#~ msgid "711"
-#~ msgstr "711"
-
-#~ msgid "629"
-#~ msgstr "629"
-
-#~ msgid "615"
-#~ msgstr "615"
-
-#~ msgid "614"
-#~ msgstr "614"
-
-#~ msgid "603"
-#~ msgstr "603"
-
-#~ msgid "598"
-#~ msgstr "598"
-
-#~ msgid "571"
-#~ msgstr "571"
-
-#~ msgid "516"
-#~ msgstr "516"
-
-#~ msgid "493"
-#~ msgstr "493"
-
-#~ msgid "476"
-#~ msgstr "476"
-
-#~ msgid "420"
-#~ msgstr "420"
-
-#~ msgid "329"
-#~ msgstr "329"
-
-#~ msgid "302"
-#~ msgstr "302"
-
-#~ msgid "296"
-#~ msgstr "296"
-
-#~ msgid "249"
-#~ msgstr "249"
-
-#~ msgid "247"
-#~ msgstr "247"
-
-#~ msgid "139"
-#~ msgstr "139"
-
-#~ msgid "123"
-#~ msgstr "123"
 
 #~ msgid "INV"
 #~ msgstr "INV"

@@ -29,9 +29,9 @@ Azerty et Arensito ne répondent plus.
 Ah oui, j'avais presque oublié. 
 Les satanés robots sont sur le point de me trouver, moi aussi. 
 Je n'en suis pas ravi. Pas ravi du tout. 
-Je pense que je dois essayer de me faire passer pour un rocher, une fois de plus. 
+Je suppose que je dois juste me faire passer pour un joli rocher, une fois encore. 
 Tu ne penses pas que ça serait un bon moment pour se réveiller? 
-Debout là dedans! il faut me sauver les fesses! 
+Debout là-dedans ! Sauve-moi les fesses ! 
 S'il te plait.
 
             Dvorak, Première IA

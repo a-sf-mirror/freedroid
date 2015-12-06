@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
 "PO-Revision-Date: 2015-03-21 23:26+0000\n"
 "Last-Translator: Alexander Forsberg <alexf@openmailbox.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
@@ -50,11 +50,11 @@ msgstr "Hotstatus: [b]MEDEL[/b]"
 
 #: dialogs/614_cryo.lua:72
 msgid "Hostile Numeric Presence: [b]NONE[/b]"
-msgstr ""
+msgstr "Närvaroantal Fiender: [b]INGA[/b]"
 
 #: dialogs/614_cryo.lua:73
 msgid "Threat Degree Analysis: [b]NO THREAT DETECTED[/b]"
-msgstr ""
+msgstr "Hotstatus: [b]INGA HOT FUNNA[/b]"
 
 #: dialogs/614_cryo.lua:76
 msgid "Cryo Complex Gates Status: [b]CLOSED[/b]"
@@ -109,11 +109,11 @@ msgstr "Jag tillhör en äldre generation bottar, som kör ett specialtillverkat
 
 #: dialogs/614_sub.lua:37
 msgid "None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault."
-msgstr "Inga bottar av den generationen påverkades av händelserna som ledde till bottattacken, allmänt känd som det Stora Angreppet."
+msgstr "Inga bottar i den generationen påverkades av händelserna som ledde till bottattacken, allmänt känd som det Stora Angreppet."
 
 #: dialogs/614_sub.lua:38
 msgid "Even though discontinued by Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series."
-msgstr "Trots att min serie lades ner av Nicholson AB för länge sedan har några personer återupptagit arbetet och försöker förbättra operativsystemet vi kör."
+msgstr "Trots att min serie lades ner för länge sedan av Nicholson AB, har några personer återupptagit arbetet och försöker förbättra operativsystemet vi kör."
 
 #: dialogs/614_sub.lua:39
 msgid "Don't forget to buy products from Nicholson, Inc. They are the best."
@@ -165,11 +165,11 @@ msgstr "Den officiella manualen klassificerar 614 som en säkerhetsdroid av hög
 
 #: dialogs/614_sub.lua:63
 msgid "It was mainly used within ships to protect certain areas from intruders."
-msgstr "Den användes oftast på skepp för att skydda vissa områden från inkräktare."
+msgstr "Den användes oftast ombord på skepp för att skydda vissa områden från inkräktare."
 
 #: dialogs/614_sub.lua:64
 msgid "It is considered an old but reliable device."
-msgstr "Den anses vara en gammal men pålitlig enhet."
+msgstr "Den anses vara en gammal, men pålitlig enhet."
 
 #: dialogs/614_sub.lua:65
 msgid "So don't worry. I'm still in pretty good shape."
@@ -189,7 +189,7 @@ msgstr "Bristen på säkerhetsfunktioner i 615:s system ledde till ett fel."
 
 #: dialogs/614_sub.lua:70
 msgid "Circumstances that led to the great assault even made the 615 go crazy and attack people."
-msgstr "Omständigheterna som ledde till det Stora Angreppet gjorde 615 galen och den började attackera personer."
+msgstr "Omständigheterna som ledde till det Stora Angreppet gjorde 615 galen, och den började attackera personer."
 
 #: dialogs/614_sub.lua:71
 msgid "For the sake of your health, you should stay away from the 615 droids."
@@ -267,7 +267,7 @@ msgstr "Hårdvarukontroll: BOTT SKADAD"
 #: dialogs/AfterTakeover.lua:55
 #, c-format
 msgid "This %s unit could stand to be repaired."
-msgstr "Denna %s skulle kunna repareras."
+msgstr "Denna enhet %s kan repareras."
 
 #: dialogs/AfterTakeover.lua:59
 msgid "BOTNET: UNIT TOO DAMAGED TO BROADCAST COMMANDS."
@@ -275,7 +275,7 @@ msgstr "BOTNÄT: ENHETEN FÖR SKADAD FÖR ATT SÄNDA KOMMANDON."
 
 #: dialogs/AfterTakeover.lua:60 dialogs/AfterTakeover.lua:344
 msgid "Entering \"single node\" mode..."
-msgstr "Startar \"enkel-nod\"-läge..."
+msgstr "Startar \"enkel nod\"-läge..."
 
 #: dialogs/AfterTakeover.lua:63
 msgid "BOTNET: Most commands will be broadcast."
@@ -400,22 +400,22 @@ msgstr "värdefull krets"
 #: dialogs/AfterTakeover.lua:205
 #, c-format
 msgid "Repairs on %s will take less than %d %s, %d valuable %s, and %d heat."
-msgstr "Reparationen av %s kommer ta mindre än %d %s, %d %s och värma upp med %d."
+msgstr "Reparationen av %s kommer kräva mindre än %d %s, %d %s och %d grader värme."
 
 #: dialogs/AfterTakeover.lua:214
 #, c-format
 msgid "You do not have enough valuable circuits to ensure repair of this %s unit."
-msgstr "Du har inte tillräckligt många värdefulla kretsar för att reparera denna %s."
+msgstr "Du har inte tillräckligt många värdefulla kretsar för att reparera denna enhet %s."
 
 #: dialogs/AfterTakeover.lua:216
 #, c-format
 msgid "You cannot dissipate enough heat to ensure repair of this %s unit."
-msgstr "Du kan inte leda bort tillräckligt mycket värme för att kunna reparera denna %s."
+msgstr "Du kan inte leda bort tillräckligt mycket värme för att reparera denna enhet %s."
 
 #: dialogs/AfterTakeover.lua:218
 #, c-format
 msgid "Do you want to start repair of this %s unit?"
-msgstr "Vill du påbörja reparation av denna %s?"
+msgstr "Vill du påbörja reparation av denna enhet %s?"
 
 #: dialogs/AfterTakeover.lua:227
 #, c-format
@@ -491,7 +491,7 @@ msgstr "J (aktivera sändning)"
 
 #: dialogs/AfterTakeover.lua:329
 msgid "Commands will be broadcast and executed by all bots on this level under your control."
-msgstr "Kommandon kommer sändas till och köras av alla dina bottar."
+msgstr "Kommandon kommer sändas till och köras av alla bottar du kontrollerar."
 
 #: dialogs/AfterTakeover.lua:330
 msgid "Entering \"botnet\" mode..."
@@ -504,7 +504,7 @@ msgstr "N (inaktivera sändning)"
 
 #: dialogs/AfterTakeover.lua:343
 msgid "Commands will only be executed by this bot."
-msgstr "Kommandon kommer endast köras hos denna bott."
+msgstr "Kommandon kommer endast köras på denna bott."
 
 #: dialogs/AfterTakeover.lua:355
 msgid "Welcome to the settings menu."
@@ -526,7 +526,7 @@ msgstr "Inga uppgraderingar hittades."
 
 #: dialogs/AfterTakeover.lua:361
 msgid "UNIT TOO DAMAGED TO BROADCAST COMMANDS."
-msgstr "ENHETEN FÖR SKADAD FÖR ATT SÄNDA KOMMANDON."
+msgstr "ENHETEN ÄR FÖR SKADAD FÖR ATT SÄNDA KOMMANDON."
 
 #: dialogs/AfterTakeover.lua:365
 msgid "Which setting should be changed?"
@@ -541,8 +541,9 @@ msgid "Welcome to the hostname menu."
 msgstr "Välkommen till värdnamnsmenyn."
 
 #: dialogs/AfterTakeover.lua:377
-msgid "Version: 0.15.01"
-msgstr "Version: 0.15.01"
+#, c-format
+msgid "Version: %s"
+msgstr ""
 
 #: dialogs/AfterTakeover.lua:378
 #, c-format
@@ -626,7 +627,7 @@ msgstr "Lemur"
 
 #: dialogs/AfterTakeover.lua:398
 msgid "Aardvark"
-msgstr "Jordsvin"
+msgstr "Myrslok"
 
 #: dialogs/AfterTakeover.lua:398
 msgid "Fox"
@@ -714,12 +715,12 @@ msgstr "Bekräfta namnändring från [b]%s[/b] till [b]%s[/b]? [J/N]"
 #: dialogs/AfterTakeover.lua:436
 #, c-format
 msgid "Renamed [b]%s[/b] to [b]%s[/b]."
-msgstr "Ändrade namnet [b]%s[/b] till [b]%s[/b]."
+msgstr "Bytt namn från [b]%s[/b] till [b]%s[/b]."
 
 #: dialogs/AfterTakeover.lua:438
 #, c-format
 msgid "This %s unit is now designated: [b]%s[/b]"
-msgstr "Denna %s har nu namnet: [b]%s[/b]"
+msgstr "Denna enhet %s kallas nu: [b]%s[/b]"
 
 #: dialogs/AfterTakeover.lua:459 dialogs/AfterTakeover.lua:462
 msgid "./hcf.py"
@@ -741,12 +742,12 @@ msgstr "Förstöring nekad."
 #: dialogs/AfterTakeover.lua:509
 #, c-format
 msgid "Draining this %s unit will get you %d HP but kill it and take %d %s."
-msgstr "Att tömma denna %s ger dig %d i hälsa, men den dör och tar %d %s."
+msgstr "Att tömma denna %s ger dig %d i hälsa, men kommer döda den och ta %d %s."
 
 #: dialogs/AfterTakeover.lua:516
 #, c-format
 msgid "Are you sure you want to drain this %s unit?"
-msgstr "Är du säker att du vill tömma denna %s?"
+msgstr "Är du säker att du vill tömma denna enhet %s?"
 
 #: dialogs/AfterTakeover.lua:548
 msgid "Bot not drained."
@@ -775,7 +776,7 @@ msgstr "VArn|n*! SsTeM=#feElL%%^#n 3 S 1()$++"
 
 #: dialogs/AfterTakeover.lua:566
 msgid "Warning: something seems wrong."
-msgstr "Varning: något blev fel."
+msgstr "Varning: något gick fel."
 
 #: dialogs/AfterTakeover.lua:567
 msgid "Error report:"
@@ -832,15 +833,15 @@ msgstr "Fråga alltid om tömning ska testas eller inte."
 
 #: dialogs/AfterTakeover.lua:653
 msgid "Reprogramm_bots_after_takeover.sh"
-msgstr "programmera_bott_efter_övertagning.sh"
+msgstr "omprogrammera_bott_efter_övertagning.sh"
 
 #: dialogs/AfterTakeover.lua:657 dialogs/AfterTakeover.lua:672
 msgid "Bots will be reprogrammed after takeover: [b]true[/b]"
-msgstr "Bottar programmeras om efter övertagning: [b]sant[/b]"
+msgstr "Bottar omprogrammeras efter övertagning: [b]sant[/b]"
 
 #: dialogs/AfterTakeover.lua:659 dialogs/AfterTakeover.lua:684
 msgid "Bots will be reprogrammed after takeover: [b]false[/b]"
-msgstr "Bottar programmeras om efter övertagning: [b]falskt[/b]"
+msgstr "Bottar omprogrammeras efter övertagning: [b]falskt[/b]"
 
 #: dialogs/AfterTakeover.lua:693
 msgid "leave settings.plx"
@@ -869,7 +870,7 @@ msgstr "logga-ut"
 
 #: dialogs/AfterTakeover.lua:711
 msgid "Closing remote connection..."
-msgstr "Stänger fjärranslutning."
+msgstr "Stänger fjärranslutning..."
 
 #: dialogs/Arthur.lua:29 dialogs/Bender.lua:60 dialogs/Benjamin.lua:46
 #: dialogs/DocMoore.lua:117 dialogs/DocMoore.lua:404 dialogs/Jennifer.lua:46
@@ -906,7 +907,7 @@ msgstr "Åh, intressant."
 
 #: dialogs/Arthur.lua:54
 msgid "And, hmm, what are working on?"
-msgstr ""
+msgstr "Och, hmm, vad arbetar du på?"
 
 #: dialogs/Arthur.lua:55
 msgid "My current project is a role playing game."
@@ -942,7 +943,7 @@ msgstr "Hmm, det är fortfarande några bitar som behöver avslutas."
 
 #: dialogs/Arthur.lua:71
 msgid "Do you think there should be some kind of zombie apocalypse which the player will have to deal with?"
-msgstr "Tycker du det borde vara en zombieapokalyps som spelaren måste slåss mot?"
+msgstr "Tycker du det borde vara en zombieapokalyps som spelaren måste ta hand om?"
 
 #: dialogs/Arthur.lua:72
 msgid "Of course! Sounds cool!"
@@ -950,11 +951,11 @@ msgstr "Ja, självklart! Det vore häftigt!"
 
 #: dialogs/Arthur.lua:79
 msgid "Hey, is your game finished already?"
-msgstr ""
+msgstr "Tjena, är spelet klart snart?"
 
 #: dialogs/Arthur.lua:81
 msgid "I'm doing the final polishing right now."
-msgstr "Jag gör klart det sista finliret nu."
+msgstr "Jag gör det sista finliret nu."
 
 #: dialogs/Arthur.lua:82
 msgid "Ah ok."
@@ -985,21 +986,21 @@ msgstr "Jag är %s. Jag mår bra, tack."
 
 #: dialogs/Bender.lua:49
 msgid "Hello there!"
-msgstr ""
+msgstr "Hej du!"
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Bender.lua:51
 #, c-format
 msgid "Hey, you're the new guy! I mean penguin! Uh, %s, right?"
-msgstr ""
+msgstr "Tjena, du är den nya killen! Eller, pingvinen menar jag! Öh, %s, va?"
 
 #: dialogs/Bender.lua:52
 msgid "Yes, I-"
-msgstr ""
+msgstr "Ja, jag -"
 
 #: dialogs/Bender.lua:53 dialogs/Bender.lua:76
 msgid "Holy wow! Wow, man!"
-msgstr ""
+msgstr "Asgrymt, mannen! Wow!"
 
 #: dialogs/Bender.lua:61
 msgid "Hey, man!"
@@ -1011,47 +1012,47 @@ msgstr "Hur är det?"
 
 #: dialogs/Bender.lua:67 dialogs/Bender.lua:123 dialogs/Bender.lua:141
 msgid "Man, it's the end of the apocalypse... And I feel fine!"
-msgstr ""
+msgstr "Asså, det är slutet på apokalypsen... Och jag mår bra!"
 
 #: dialogs/Bender.lua:68
 msgid "I mean, I still didn't get the medicine from the doc. I didn't get the chance to really pound him."
-msgstr ""
+msgstr "Jag menar, jag fick fortfarande inte medicinen från doktorn. Och jag fick inte dänga upp honom ordentligt."
 
 #: dialogs/Bender.lua:69
 msgid "But right now everyone's so happy that the bots are all down, I think I'll give him a break."
-msgstr ""
+msgstr "Men nu är alla så glada att bottarna är borta, så jag tror jag låter honom va."
 
 #: dialogs/Bender.lua:70
 msgid "Maybe you should talk to him soon. He might be in a good mood and give it to you anyway."
-msgstr ""
+msgstr "Kanske du skulle prata med honom. Han kan ju vara på bra humör och ge dig medicinen i alla fall."
 
 #: dialogs/Bender.lua:71
 msgid "Hey, that sounds like a smart idea! Thanks, man, I'll do that!"
-msgstr ""
+msgstr "Du, det var en smart idé! Tack mannen, jag ska göra det!"
 
 #: dialogs/Bender.lua:72
 msgid "Since the killer bots around the town got a taste of my firmware, I think the Doc won't mind giving Bender his medicine now... I should talk to him when I see him."
-msgstr ""
+msgstr "Eftersom mördarbottarna runt stan fick smaka på min mjukvara tror jag inte Doc har något emot att ge Bender hans medicin... Jag borde prata med honom när vi träffas."
 
 #: dialogs/Bender.lua:74
 msgid "Now, I have something I want to say to you..."
-msgstr ""
+msgstr "Och, jag ska säga dig en sak..."
 
 #: dialogs/Bender.lua:75
 msgid "And what's that?"
-msgstr ""
+msgstr "Vad är det?"
 
 #: dialogs/Bender.lua:79 dialogs/Bender.lua:96
 msgid "I still need to go talk to the doc, but just thinking about feeling less sick makes me feel less sick."
-msgstr ""
+msgstr "Jag måste fortfarande snacka med doktorn, men bara tanken på att må bättre får mig att må bättre."
 
 #: dialogs/Bender.lua:80 dialogs/Bender.lua:97
 msgid "It's confusing me a little..."
-msgstr ""
+msgstr "Det är lite förvirrande..."
 
 #: dialogs/Bender.lua:81 dialogs/Bender.lua:98
 msgid "Well, hurry up and get it over with!"
-msgstr ""
+msgstr "Men skynda dig och få det gjort!"
 
 #: dialogs/Bender.lua:85 dialogs/Bender.lua:133
 msgid "Too bad. I have never felt so sick."
@@ -1077,7 +1078,7 @@ msgstr "Tack %s, jag är skyldig dig en tjänst."
 
 #: dialogs/Bender.lua:105
 msgid "And I'll sure vote for you, if you want into the Red Guard!"
-msgstr "Å jag kommer rösta på dig, om du vill gå med i Röda Väktarna, alldeles säkert!"
+msgstr "Och jag kommer rösta på dig, om du vill gå med i Röda Väktarna, alldeles säkert!"
 
 #: dialogs/Bender.lua:108
 msgid "Congratulations on getting into the Red Guard!"
@@ -1089,43 +1090,43 @@ msgstr "Det var för att jag röstade på dig som du kom med!"
 
 #: dialogs/Bender.lua:111
 msgid "I said we'd be buddies, didn't I? Want to stand guard at the gate with me? It gets boring with just that 614 to talk to."
-msgstr "Jag sa att vi va' polare, visst? Vill du vakta porten med mig? Det är tråkigt att bara snacka med den där 614-saken där."
+msgstr "Jag sa att vi va polare, visst? Vill du vakta porten med mig? Det är tråkigt att bara snacka med den där 614-saken där."
 
 #: dialogs/Bender.lua:112
 msgid "I could tell you all the secrets of the Red Guard."
-msgstr "Jag kan berätta alla Röda Väktarnas hemligheter."
+msgstr "Jag kan berätta alla Röda Väktarnas hemlisar."
 
 #: dialogs/Bender.lua:115
 msgid "Oh, and congratulations on beating all the bots!"
-msgstr ""
+msgstr "Åh, grattis till att du slagit alla bottarna!"
 
 #: dialogs/Bender.lua:116
 msgid "I mean, wow..."
-msgstr ""
+msgstr "Jag menar, wow..."
 
 #: dialogs/Bender.lua:125
 msgid "Oh man, this is so cool! Wow, man!"
-msgstr ""
+msgstr "Asså mannen, det är så grymt! Wow!"
 
 #: dialogs/Bender.lua:143
 msgid "I'm good! Man, a few days ago I was feeling really down... I was really sick."
-msgstr ""
+msgstr "Jag mår fint! För nåra dar sen så var jag riktigt nere... jag var riktigt sjuk."
 
 #: dialogs/Bender.lua:144
 msgid "But now I stopped feeling not-awesome! And it's all thanks to you and all the bots being dead!"
-msgstr ""
+msgstr "Men nu har jag slutat må ocoolt. Och det är tack vare dig och att alla bottar är döda!"
 
 #: dialogs/Bender.lua:145
 msgid "Maybe it's also because I pummelled the doc until he gave me some pills."
-msgstr ""
+msgstr "Kanske också för att jag dängde upp doktorn tills han gav mig pillren."
 
 #: dialogs/Bender.lua:147
 msgid "But I'm really sure it's also because all the bots are gone."
-msgstr ""
+msgstr "Men jag är säker på att det också är för att bottarna är borta."
 
 #: dialogs/Bender.lua:148
 msgid "I mean, look around!"
-msgstr ""
+msgstr "Jag menar, titta!"
 
 #: dialogs/Bender.lua:172
 msgid "What's wrong? You seem to be in pretty good shape for a dead man."
@@ -1137,7 +1138,7 @@ msgstr "Jo. Jag är världens starkaste. F'att jag tog ALLA styrkepiller."
 
 #: dialogs/Bender.lua:175
 msgid "And yet, I might be dead soon. The doc warned me, but I didn't listen. GRAH!"
-msgstr "Å ändå kanske jag kolar snart. Doktorn varande mig, men jag lyssnade inte. ÄH!"
+msgstr "Och ändå kanske jag kolar snart. Doktorn varande mig, men jag lyssnade inte. ÄH!"
 
 #: dialogs/Bender.lua:183
 msgid "You took too many strength pills and now you're sick?"
@@ -1165,7 +1166,7 @@ msgstr "Jag fick ett sån't där erbjudande, vet du, som alla får."
 
 #: dialogs/Bender.lua:206
 msgid "They offer some brain enlargement pills to enhance brain performance."
-msgstr "Jag skulle få hjärnförstoringspiller för att göra hjärnan smartare."
+msgstr "Jag skulle få hjärnförstoringspiller f'att göra hjärnan smartare."
 
 #: dialogs/Bender.lua:207
 msgid "'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'"
@@ -1173,11 +1174,11 @@ msgstr "\"Först0r4 din hjärn4! Kö.p pi11er! Bi1ligt!!11!!!\""
 
 #: dialogs/Bender.lua:208
 msgid "And everybody in the town said I was dumb, which by the way IS NOT TRUE."
-msgstr "Å alla i stan sa att jag var dum, å det är förresten INTE SANT."
+msgstr "Och alla i stan sa att jag var dum, och det är förresten INTE SANT."
 
 #: dialogs/Bender.lua:209
 msgid "So I thought these pills might make them think differently about me."
-msgstr "Så, om jag tog pillren skulle de se annorlunda på mig, tänkte jag."
+msgstr "Så, om jag tog pillren, skulle de se annorlunda på mig, tänkte jag."
 
 #: dialogs/Bender.lua:215
 msgid "But if you aren't dumb, why the brain enlargement pills?"
@@ -1185,7 +1186,7 @@ msgstr "Men om du inte är dum, varför tog du då hjärnförstoringspiller?"
 
 #: dialogs/Bender.lua:218
 msgid "Because they said I was dumb. So I had to do something about it, eh?"
-msgstr "F'att de sa att jag var dum. Så jag var tvungen att göra nå'tt, f'står'u."
+msgstr "F'att de sa att jag var dum. Så jag var tvungen att göra nått, f'står'u."
 
 #: dialogs/Bender.lua:224
 msgid "Isn't there some doctor in town who could cure you?"
@@ -1201,7 +1202,7 @@ msgstr "Han är så arg f'att jag inte lyssnade. Han varnade mig för hjärnför
 
 #: dialogs/Bender.lua:229
 msgid "They can cause some awful forms of cancer. But I didn't listen. And now he refuses to help me, man."
-msgstr "De kan ge hemska former av cancer. Men jag lyssnade inte. Å nu vägrar han att hjälpa mig, asså."
+msgstr "De kan ge hemska former av cancer. Men jag lyssnade inte. Och nu vägrar han att hjälpa mig, asså."
 
 #: dialogs/Bender.lua:235
 msgid "Maybe I can help you somehow?"
@@ -1213,11 +1214,11 @@ msgstr "Härligt, om du kunde! Jag skulle ge vad-som-helst, asså. Jag har någr
 
 #: dialogs/Bender.lua:240
 msgid "Also, I could vote for you if you seek to join the guard of the town."
-msgstr ""
+msgstr "Och, jag kan rösta på dig om du vill gå med i stans väktare."
 
 #: dialogs/Bender.lua:242
 msgid "Just get me a cure, and I'll be forever grateful!"
-msgstr "Bota mig å jag kommer tacka dig för alltid."
+msgstr "Bota mig, och jag kommer va evigt tacksam!"
 
 #: dialogs/Bender.lua:243
 msgid "I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The town doctor will not give him the antidote, so it is up to me to save him."
@@ -1225,7 +1226,7 @@ msgstr "Jag träffade en Väktare som heter Bender. Han har förgiftat sig med n
 
 #: dialogs/Bender.lua:251
 msgid "I'm sorry, but it looks like there's nothing I could do for you."
-msgstr "Jag är ledsen, men det verkar finnas något jag kan göra för dig."
+msgstr "Jag är ledsen, men det finns nog inget jag kan göra för dig."
 
 #: dialogs/Bender.lua:254
 msgid "Of course not. You're not a doctor. Only the doctor has the right medicine."
@@ -1237,7 +1238,7 @@ msgstr "Men det svinet låter mig hellre dö!"
 
 #: dialogs/Bender.lua:256
 msgid "I'll rip his guts out as soon as I get my hands on him, man!"
-msgstr "Jag ska slita ut hans inälvor, asså, om jag får tag på honom!"
+msgstr "Jag ska slita ut hans inälvor, asså, när jag får tag på honom!"
 
 #: dialogs/Bender.lua:264
 msgid "Have you found a way to cure yourself?"
@@ -1253,7 +1254,7 @@ msgstr "Hur hårt jag än skakar honom går han inte med på det. Han är så ar
 
 #: dialogs/Bender.lua:268
 msgid "Nobody else has the right medicine. I need a way to get it from him!"
-msgstr "Ingen annan har medicinen. Jag måste få den av honom, på nå'tt sätt!"
+msgstr "Ingen annan har medicinen. Jag måste få den av honom, på nått sätt!"
 
 #: dialogs/Bender.lua:275
 msgid "I've got your medicine. With best wishes from the doctor."
@@ -1265,7 +1266,7 @@ msgstr "Wow, du kirrade det! Jag antar att du spöade skiten ur honom."
 
 #: dialogs/Bender.lua:278
 msgid "He wouldn't help me even after I pounded him a bit. A big bit."
-msgstr "Det spelade ingen roll att jag pucklade på honom lite. Eller mycket."
+msgstr "Det gjorde ingen skillnad när jag pucklade på honom lite. Eller mycket."
 
 #: dialogs/Bender.lua:279
 msgid "Man, you are the greatest hero!"
@@ -1273,7 +1274,7 @@ msgstr "Du är världens hjälte, asså!"
 
 #: dialogs/Bender.lua:281
 msgid "Here, take this as a reward - and you can be sure that I'll vote for you if you seek membership in the Red Guard!"
-msgstr "Här, ta den här belöningen - å du kan räkna med att jag röstar på dig om du söker till Röda Väktarna."
+msgstr "Här, ta den här belöningen - och du kan räkna med att jag röstar på dig om du söker till Röda Väktarna."
 
 #: dialogs/Bender.lua:283
 msgid "Here, take this as a reward."
@@ -1293,7 +1294,7 @@ msgstr "Kanske det var korkat att ta hjärnförstoringspillren."
 
 #: dialogs/Bender.lua:301
 msgid "WHAT? Did you just say I'm stupid?"
-msgstr "VA? Kalla 'ru mig korkad?"
+msgstr "VA? Kallar'u mig korkad?"
 
 #: dialogs/Bender.lua:302
 msgid "Don't say it, man."
@@ -1301,7 +1302,7 @@ msgstr "Säg inte så, du."
 
 #: dialogs/Bender.lua:303
 msgid "I can kill you so much, that no one will recognize you!"
-msgstr "Jag kan döda dig så mycket att ingen kommer se vem du är!"
+msgstr "Jag kan döda dig så mycket att ingen kommer känna igen dig!"
 
 #: dialogs/Bender.lua:309
 msgid "Where can I find this doctor?"
@@ -1329,7 +1330,7 @@ msgstr "Fick du tag i den?"
 
 #: dialogs/Bender.lua:322
 msgid "What? You didn't get it?"
-msgstr "Va? Har du den inte?"
+msgstr "Va? Har'u den inte?"
 
 #: dialogs/Bender.lua:323
 msgid "Man, what are you doing here? Get the medicine! I need it now!"
@@ -1349,11 +1350,11 @@ msgstr "Ta det du. Jag vill inte ha det."
 
 #: dialogs/Bender.lua:339
 msgid "What secrets? Like a secret handshake?"
-msgstr "Hemligheter som vad då? Hemliga handskakningar?"
+msgstr "Vilka hemlisar? Hemliga handskakningar?"
 
 #: dialogs/Bender.lua:341
 msgid "Nah. But that is a totally awesome idea."
-msgstr "Nä. Men det vore helhäftigt."
+msgstr "Nä. Men det vore grymt."
 
 #: dialogs/Bender.lua:342
 msgid "Let's work it out -- just, uh, be sure not to let the Doc in on it."
@@ -1377,7 +1378,7 @@ msgstr "Ibland loggar jag in och sabbar hennes konto, bara för the LULZ."
 
 #: dialogs/Bender.lua:353
 msgid "It's the end of the world as we know it, and I... am so incredibly bored."
-msgstr "Det är den här världens ände, å jag... är så otroligt uttråkad."
+msgstr "Det här är slutet på världen som vi känner den, och jag... är så otroligt uttråkad."
 
 #: dialogs/Bender.lua:354
 msgid "Erm... excuse me?"
@@ -1409,7 +1410,7 @@ msgstr "Wow."
 
 #: dialogs/Bender.lua:368
 msgid "I am the most awesome hacker ever."
-msgstr "Jag är den bästa hackaren nå'nsin."
+msgstr "Jag är den grymmaste hackaren nå'nsin."
 
 #: dialogs/Bender.lua:369
 msgid "Sure..."
@@ -1425,7 +1426,7 @@ msgstr "Dödar tid. Vaktarbete är hur tråkigt som helst."
 
 #: dialogs/Bender.lua:382
 msgid "Can you spare some elbow grease?"
-msgstr "Skulle du kunna ge bort lite Smörj?"
+msgstr "Skulle du kunna ge mig lite Smörj?"
 
 #: dialogs/Bender.lua:384
 msgid "Yes, you are talking to the right guy, man."
@@ -1433,7 +1434,7 @@ msgstr "Du snackar me' rätt kille."
 
 #: dialogs/Bender.lua:386
 msgid "But now, I'm no good. I can't make you any elbow grease, sorry man."
-msgstr "Men, nu mår jag inte bra. Jag kan inte ge bort nå'tt Smörj, ledsen polar'n."
+msgstr "Men, nu mår jag inte bra. Jag kan inte ge bort nått Smörj, ledsen polar'n."
 
 #: dialogs/Bender.lua:387
 msgid "Maybe if I was feeling better..."
@@ -1457,7 +1458,7 @@ msgstr "Ja, det var helidiotiskt att ta de där pillren."
 
 #: dialogs/Bender.lua:403
 msgid "What? I'm not an idiot! Understood?"
-msgstr "Va? Jag är ingen idiot! F'står'u?"
+msgstr "Va? Jag är ingen idiot! Fattar'u?"
 
 #: dialogs/Bender.lua:404
 msgid "No one says I'm stupid! I'm NOT STUPID!"
@@ -1469,7 +1470,7 @@ msgstr "JA SKA SLÅ DIG I SMÅBITAR!"
 
 #: dialogs/Bender.lua:406
 msgid "I WILL KILL YOU SO HARD, YOU WILL DIE TO DEATH YOU FAT DUCK!"
-msgstr "JA SKA DÖDA DIG SÅ HÅRT ATT DU KOMMER Å DÖ IHJÄL DIG, DIN FETA ANKA!"
+msgstr "JA SKA DÖDA DIG SÅ HÅRT ATT DU KOMMER ATT DÖ IHJÄL DIG, DIN FETA ANKA!"
 
 #: dialogs/Bender.lua:407
 msgid "Bender - Homicidal"
@@ -1477,108 +1478,108 @@ msgstr "Bender - Mordisk"
 
 #: dialogs/Bender.lua:416
 msgid "Did you really just totally beat up all the bots in the world at once? Wow!"
-msgstr ""
+msgstr "Totalspöade du just upp alla bottar i typ hela världen på en gång? Wow!"
 
 #: dialogs/Bender.lua:417
 msgid "Well, not all the bots in the world... And I didn't actually beat them all up..."
-msgstr ""
+msgstr "Nja, kanske inte alla bottar i världen... Och jag spöade dem inte precis..."
 
 #: dialogs/Bender.lua:418
 msgid "Oh, come on, man. We need this story. Don't do this."
-msgstr ""
+msgstr "Äsch, kom igen mannen. Vi behöver den historien. Gör inte så."
 
 #: dialogs/Bender.lua:419
 msgid "Uh, sorry? Do what?"
-msgstr ""
+msgstr "Öh, ursäkta? Gör vad då?"
 
 #: dialogs/Bender.lua:420
 msgid "It doesn't matter what you did, dude. It matters what I think you did, and what I can tell others you did. You just beat up all the bots in the world."
-msgstr ""
+msgstr "Det kvittar vad du gjorde, hörru. Det som spelar roll är vad jag tror du gjorde, och vad jag kan berätta för andra. Du spöade just alla bottar i världen."
 
 #: dialogs/Bender.lua:421
 msgid "But it's only the ones that get their updates from this factory..."
-msgstr ""
+msgstr "Men det är bara de som får uppdateringar från den här fabriken..."
 
 #: dialogs/Bender.lua:422
 msgid "And you did it with one hand tied behind your back! Or your wing, or flipper. You know, man."
-msgstr ""
+msgstr "Och du gjorde det med ena handen bakbunden. Eller vingen, eller fenan. Du hajar."
 
 #: dialogs/Bender.lua:429
 msgid "Well, I think I rather like that story."
-msgstr ""
+msgstr "Tja, jag tror jag tycker om den historien."
 
 #: dialogs/Bender.lua:431
 msgid "Yeah, and you can bet everyone in town is gonna go crazy about it!"
-msgstr ""
+msgstr "A, och du kan ge dig på att alla i stan kommer bli helt vilda när de får höra!"
 
 #: dialogs/Bender.lua:432
 msgid "I know I will, as soon as I get back I'll make a bet with Ewald about it."
-msgstr ""
+msgstr "Jag ska då bli det, så snart jag kommer tillbaks och får slå vad med Ewald."
 
 #: dialogs/Bender.lua:433
 msgid "Everyone's been holed up in the town for so long, and I was really starting to run out of good stories to tell."
-msgstr ""
+msgstr "Alla har varit inburade i stan så länge, och jag höll på få slut på bra historier att berätta."
 
 #: dialogs/Bender.lua:439
 msgid "But that's not what happened!"
-msgstr ""
+msgstr "Men det var inte så det gick till!"
 
 #: dialogs/Bender.lua:441
 msgid "Sure, not yet, because I didn't tell anyone about it yet."
-msgstr ""
+msgstr "Visst, inte än, för jag har inte berättat det för nån än."
 
 #: dialogs/Bender.lua:442
 msgid "No, that didn't happen at all, and you saying it happened won't make it happen!"
-msgstr ""
+msgstr "Nej, det hände inte alls, och bara för att du säger det har det inte hänt!"
 
 #: dialogs/Bender.lua:443
 msgid "But that's not what everyone will say after I tell them that's what happened."
-msgstr ""
+msgstr "Men det är inte vad alla andra kommer säga när jag berättat vad som hände."
 
 #: dialogs/Bender.lua:444
 msgid "But... I... Arrrgh!"
-msgstr ""
+msgstr "Men... jag... Asch!"
 
 #: dialogs/Bender.lua:446
 msgid "Dude, it's not so hard to understand."
-msgstr ""
+msgstr "Hörru, det är inte så svårt att fatta."
 
 #: dialogs/Bender.lua:447
 msgid "Hey, you know, I saw an ad for brain enlargement pills that might do you good."
-msgstr ""
+msgstr "Du, vet du vad? Jag såg en annons för hjärnförstoringspiller som kanske skulle hjälpa dig."
 
 #: dialogs/Bender.lua:448
 msgid "No, I... I just need to cool off a bit..."
-msgstr ""
+msgstr "Nej, jag... jag måste bara svalka mig lite..."
 
 #: dialogs/Bender.lua:449
 #, c-format
 msgid "Oh, sure, ok. But I can fix you up with some if you change your mind. It's 100%% satisfaction guaranteed, cheap, AND free."
-msgstr ""
+msgstr "Åh, visst, okej. Men jag kan fixa några om du ångrar dig. Det är 100%% nöjdhets-garanti, billigt OCH gratis."
 
 #: dialogs/Bender.lua:455
 msgid "That was a nice entrance you made there."
-msgstr ""
+msgstr "Snygg entré du just gjorde."
 
 #: dialogs/Bender.lua:457
 msgid "Hey, thanks, dude. I'm still not so sure what happened."
-msgstr ""
+msgstr "Tackar, polar'n.  Jag vet inte riktigt vad som hände."
 
 #: dialogs/Bender.lua:458
 msgid "It all went really fast, Spencer just pulled me out of the pool and said to dry up and meet him at the teleporter."
-msgstr ""
+msgstr "Det gick så fort, Spencer drog upp mig ur poolen och sa att jag skulle torka av mig och träffa honom vid teleportern."
 
 #: dialogs/Bender.lua:459
 msgid "Then he just rushed off. He was really excited, he didn't even tell me off for cannonballing."
-msgstr ""
+msgstr "Sen stack han. Han var så uppjagad att han inte ens skällde på mig när jag gjorde bomben."
 
 #: dialogs/Bender.lua:460
 msgid "So I guess that means you teleported in here."
-msgstr ""
+msgstr "Så det betyder att ni teleporterade er hit, va?"
 
 #: dialogs/Bender.lua:461
 msgid "I guess we did! Wow, this was my first teleport! This makes it so much more awesome!"
-msgstr ""
+msgstr "Det gjorde vi nog! Wow, det var min första teleportering! Det gör allt så mycket mer grymt!"
 
 #: dialogs/Bender.lua:470
 msgid "Later, man!"
@@ -1590,11 +1591,11 @@ msgstr "Simma lugnt, mannen!"
 
 #: dialogs/Bender.lua:473
 msgid "Oh, ok, go beat up some more bots! Swish! Woosh! Ka-POW!"
-msgstr ""
+msgstr "Åh, okej, gå och spöa några bottar! Swish! Swoosh! Ka-BOM!"
 
 #: dialogs/Bender.lua:474
 msgid "See you, and thanks for the story!"
-msgstr ""
+msgstr "Vi ses, och tack för historien!"
 
 #: dialogs/Benjamin.lua:35 dialogs/Cult-Member.lua:34 dialogs/Iris.lua:67
 #: dialogs/Iris.lua:69 dialogs/Iris.lua:194 dialogs/John.lua:139
@@ -1606,7 +1607,7 @@ msgstr "Hej."
 
 #: dialogs/Benjamin.lua:36
 msgid "Greetings Master Benjamin."
-msgstr "Hej Mästare Benjamin."
+msgstr "Goddag Mästare Benjamin."
 
 #: dialogs/Benjamin.lua:37 dialogs/Kevin.lua:68 dialogs/Peter.lua:36
 #: dialogs/Terminal.lua:33
@@ -1625,7 +1626,7 @@ msgstr "Välkommen tillbaka."
 
 #: dialogs/Benjamin.lua:48
 msgid "Ah, so you are the new member. Welcome. My name is Benjamin, and I take care of our ranged weaponry here in the citadel."
-msgstr "Åh, så du är den nya medlemmen. Välkommen. Mitt namn är Benjamin, och jag tar hand om våra skjutvapen här på anläggningen."
+msgstr "Åh, så du är den nya medlemmen. Välkommen! Mitt namn är Benjamin, och jag tar hand om skjutvapnen här på fortet."
 
 #: dialogs/Benjamin.lua:55
 msgid "What are you doing here alone? "
@@ -1669,7 +1670,7 @@ msgstr "Ja, du kanske har rätt. Jag ska fundera på det."
 
 #: dialogs/Benjamin.lua:89
 msgid "Can you teach me how to properly use rifles and guns?"
-msgstr "Kan du lära mig att använda vapen på rätt sätt?"
+msgstr "Kan du lära mig hur man hanterar vapen på rätt sätt?"
 
 #: dialogs/Benjamin.lua:92
 msgid "If anyone in this town knows more about guns than me, then my name's not Benjamin."
@@ -1707,7 +1708,7 @@ msgstr "Jag ser att du fastnat för skjutvapen."
 
 #: dialogs/Benjamin.lua:105
 msgid "But the next step will cost even more money and require the mental focus equalling all your previous training."
-msgstr ""
+msgstr "Men nästa steg kommer kosta ännu mer och kräva lika mycket fokus från dig som allt det du gjort hittills tillsammans."
 
 #: dialogs/Benjamin.lua:109
 msgid "Oh, you want to become a real master with shooters?"
@@ -1759,11 +1760,11 @@ msgstr "Håll ögonen på målet. Låtsas att du rör dig med det. Sikta mot huv
 
 #: dialogs/Benjamin.lua:137
 msgid "When you feel completely in sync with your target, then you pull the trigger."
-msgstr "När du känner att ni är synkade, trycker du av skottet."
+msgstr "När du känner att ni är synkade trycker du av skottet."
 
 #: dialogs/Benjamin.lua:138
 msgid "Good. You are learning quickly. Try it a few more times."
-msgstr ""
+msgstr "Bra. Du lär dig snabbt. Försök några gånger till."
 
 #: dialogs/Benjamin.lua:139
 msgid "Okay, I think that it is enough for today."
@@ -1775,7 +1776,7 @@ msgstr "Ja, jag vill ha mer träning. (kostar 200 kretsar, 6 träningspoäng)"
 
 #: dialogs/Benjamin.lua:151
 msgid "So let''s start the second course?"
-msgstr ""
+msgstr "Då kör vi väl igång den andra kursen?"
 
 #: dialogs/Benjamin.lua:154
 msgid "Very well."
@@ -1815,7 +1816,7 @@ msgstr "Det är ganska enkelt, kolla var det är på väg och sikta lite framfö
 
 #: dialogs/Benjamin.lua:175
 msgid "It's easy when you know how, especially with bots, because they tend to move in straight lines, not bob and weave like people."
-msgstr "Det är enkelt när du lärt dig, särskilt när det gäller bottar. De rör sig i rakt istället för att vingla hit och dit, som människor gör."
+msgstr "Det är enkelt när du lärt dig, särskilt när det gäller bottar. De rör sig i raka linjer istället för att vingla hit och dit, som människor gör."
 
 #: dialogs/Benjamin.lua:176
 msgid "I think that is enough training for now. Next time, firing on the move!"
@@ -1835,15 +1836,15 @@ msgstr "Att skjuta medan du rör dig kan vara svårt, men chansen för överlevn
 
 #: dialogs/Benjamin.lua:192
 msgid "The secret is to keep your weapon steadily but loosely, so that it isn't jarred."
-msgstr "Hemligheten ligger i att hålla vapnet stadigt, men ändå löst, så det inte skakar."
+msgstr "Hemligheten ligger i att hålla vapnet stadigt, men ändå löst, så det inte vibrerar."
 
 #: dialogs/Benjamin.lua:193
 msgid "Oh yes, and be careful of your footing. You should be looking where you are firing, not where you are stepping."
-msgstr "Och just det ja: gå försiktigt. Du ska kunna kolla var du skjuter istället för var du sätter fötterna."
+msgstr "Och, just det ja: gå försiktigt. Du ska kolla var du skjuter istället för var du sätter fötterna."
 
 #: dialogs/Benjamin.lua:194
 msgid "Keep practising and you will get the hang of it eventually."
-msgstr ""
+msgstr "Fortsätt öva och du kommer få kläm på det till slut."
 
 #: dialogs/Benjamin.lua:203
 msgid "I want to become a god in ranged combat. (costs 500 circuits, 15 training points)"
@@ -1859,7 +1860,7 @@ msgstr "Hemligheten bakom hur man blir en gud på att skjuta är något du bör 
 
 #: dialogs/Benjamin.lua:210
 msgid "I don't tell everyone this, so keep it to yourself, all right?"
-msgstr ""
+msgstr "Det här är en hemlis, så berätta inte för någon annan, okej?"
 
 #: dialogs/Benjamin.lua:211
 msgid "To become a god in ranged combat you need to..."
@@ -1867,7 +1868,7 @@ msgstr "För att kunna skjuta som en gud måste du..."
 
 #: dialogs/Benjamin.lua:212
 msgid "...practise. A lot."
-msgstr ""
+msgstr "...öva. Mycket."
 
 #: dialogs/Benjamin.lua:213
 msgid "Go ahead and use my firing range as much as you need."
@@ -1887,7 +1888,7 @@ msgstr "Jag behöver pengar för att täcka kostnaden för ammunition som använ
 
 #: dialogs/Benjamin.lua:226
 msgid "I repeat, you need to bring enough to pay for the practice targets you destroy, and for my time."
-msgstr "Jag säger det igen: du måste kunna betala för de måltavlor du skjuter sönder och för min tid."
+msgstr "Jag säger det igen: du måste kunna betala för de måltavlor du skjuter sönder, och för min tid."
 
 #: dialogs/Benjamin.lua:227 dialogs/Kevin.lua:333 dialogs/Richard.lua:154
 msgid "You don't have enough money! I cannot afford to just give away training for free."
@@ -1943,7 +1944,7 @@ msgstr "Tja, för nybörjare finns det t.ex. enkla laser- och plasmapistoler. De
 
 #: dialogs/Benjamin.lua:250
 msgid "For bigger bots we have bigger guns. The exterminator is the best weapon that we have. We hand them out only in case of an emergency, or to highly experienced people."
-msgstr "För större bottar har vi större vapen. Utrotaren är det bästa vapen vi har. Vi lånar bara ut dem i nödfall eller till mycket erfarna personer."
+msgstr "För större bottar har vi större vapen. Utrotaren är det bästa vapnet vi har. Vi lånar bara ut dem i nödfall, eller till mycket erfarna personer."
 
 #: dialogs/Benjamin.lua:256
 msgid "Plasma sounds deadly."
@@ -1955,7 +1956,7 @@ msgstr "Det är det!"
 
 #: dialogs/Benjamin.lua:259
 msgid "While many people find the ammunition canisters too big, and the bullets too slow, they cannot deny that once plasma hits, it leaves big holes."
-msgstr "Trots att många tycker att ammunitionen tar för stor plats, att kulorna går för långsamt måste de erkänna att när man träffar, blir det stora hål."
+msgstr "Trots att många tycker att ammunitionen tar för stor plats, och att kulorna går för långsamt, måste de erkänna att när man träffar, blir det stora hål."
 
 #: dialogs/Benjamin.lua:260
 msgid "Plasma is matter, ionized gas to be exact. It also happens to be hot enough to make steel boil."
@@ -1971,11 +1972,11 @@ msgstr "Om du tänker använda plasmavapen ska du komma ihåg det här: låt int
 
 #: dialogs/Benjamin.lua:263
 msgid "Even though our armor is designed to resist high temperatures, once the plasma containment module goes, you will die, along with anything within ten meters of you."
-msgstr "Trots att vår skyddsdräkt är konstruerad för att tåla höga temperaturer, kommer du - och även allt närmare än tio meter från dig - stryka med om plasmabehållaren smäller."
+msgstr "Trots att vår skyddsdräkt är konstruerad för att tåla höga temperaturer, kommer du, och allting inom tio meters radie, stryka med om plasmabehållaren smäller."
 
 #: dialogs/Benjamin.lua:264
 msgid "Because of all those drawbacks, plasma weapons are not too popular. Quite a pity, they have great potential."
-msgstr "Alla de nackdelarna har gjort plasmavapen rätt så impopulära. Synd, de har stor potential."
+msgstr "De nackdelarna har gjort plasmavapen rätt så impopulära. Synd, för de har stor potential."
 
 #: dialogs/Benjamin.lua:270
 msgid "Tell me more about laser weapons."
@@ -1991,7 +1992,7 @@ msgstr "Laserteknologin tillhör den vanligaste i vår vapenarsenal. Den använd
 
 #: dialogs/Benjamin.lua:274
 msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say.It is also not affected by gravity or wind, which makes aiming easier."
-msgstr ""
+msgstr "Eftersom strålen består av ljus, går den VÄLDIGT fort - i ljusets hastighet, så att säga. Och den påverkas inte av gravitation eller vind, vilket gör det lättare att sikta."
 
 #: dialogs/Benjamin.lua:275
 msgid "However, other than being a good training tool for newbies, that design just fails to deliver."
@@ -2039,7 +2040,7 @@ msgstr "Du kanske blir förvånad, men vi har inte så många. Drygt tjugo, sist
 
 #: dialogs/Benjamin.lua:305
 msgid "Thankfully, as you can clearly see, it's more than enough to keep all the cursed bots away."
-msgstr ""
+msgstr "Tack och lov är det, som du ser, tillräckligt för att hålla de förbaskade bottarna borta."
 
 #: dialogs/Benjamin.lua:314
 msgid "Well, I am a bit short on circuits right now..."
@@ -2047,11 +2048,11 @@ msgstr "Tja, jag har lite ont om kretsar just nu..."
 
 #: dialogs/Benjamin.lua:316
 msgid "Linarian, I thought we had an agreement. Fifty per infobit. My silence can be only broken with currency, so if you want to know, you have to pay."
-msgstr "Linärian, jag trodde vi hade en överenskommelse. Femtio för varje bit information. Jag tiger tills jag fått pengar, så om du vill veta något får du betala."
+msgstr "Linärian, jag trodde vi hade en överenskommelse. Femtio för varje bit med information. Jag tiger tills jag fått pengar, så om du vill veta något får du betala."
 
 #: dialogs/Benjamin.lua:317
 msgid "This conversation is now over."
-msgstr "Det här samtalet slutade just."
+msgstr "Det här samtalet är slut."
 
 #: dialogs/Benjamin.lua:323
 msgid "That is not many. Why there are so few of them right now?"
@@ -2063,11 +2064,11 @@ msgstr "Vi hittade dem, helt enkelt."
 
 #: dialogs/Benjamin.lua:327
 msgid "We found a crashed army truck on the Terminal Field. It had six crates inside it, each containing five exterminators."
-msgstr "En militär lastbil hade kraschat på Sista Fältet. Den hade sex trälådor inuti, med fem Utrotare i varje."
+msgstr "En militärlastbil hade kraschat på Stationsfältet. Den hade sex trälådor inuti, med fem Utrotare i varje."
 
 #: dialogs/Benjamin.lua:328
 msgid "We tried, but we could not replicate the technology, only bullets."
-msgstr "Vi försökte, men vi kunde inte imitera tekniken, bara kulorna."
+msgstr "Vi försökte, men vi kunde inte plagiera tekniken, bara kulorna."
 
 #: dialogs/Benjamin.lua:329
 msgid "A few got damaged in battle, and we failed to recover five after a failed scout mission. We have twenty-two right now."
@@ -2079,7 +2080,7 @@ msgstr "Vad tillverkas ammunitionen till Utrotare av?"
 
 #: dialogs/Benjamin.lua:341
 msgid "We use radioactive isotopes, whatever type happens to be on hand. Mostly plutonium and uranium, but we are not too picky."
-msgstr "Vi använder radioaktiva isotoper, vilka vi än kan komma över. Mestadels plutonium och uran, men det är inte så noga."
+msgstr "Vi använder radioaktiva isotoper, alla vi kan komma över. Mestadels plutonium och uran, men det är inte så noga."
 
 #: dialogs/Benjamin.lua:342
 msgid "When we get low on ammo, we send in a chain gang of criminals and sluggards into mine shaft K-17."
@@ -2139,7 +2140,7 @@ msgstr "Självklart kan även själva smällen mot föremålet göra stor skada.
 
 #: dialogs/Benjamin.lua:378
 msgid "We never bothered with doing much research on that topic. It works, and that is enough for us."
-msgstr "Vi har inte brytt oss om att forska så mycket på det. Det fungerar och det är allt som behövs."
+msgstr "Vi har inte brytt oss om att forska så mycket på det. Det fungerar och det är det enda vi bryr oss om."
 
 #: dialogs/Benjamin.lua:387
 msgid "That is all I want to know."
@@ -2147,7 +2148,7 @@ msgstr "Det var allt jag ville veta."
 
 #: dialogs/Benjamin.lua:389
 msgid "Very well. Oh... This conversation never happened."
-msgstr "Bra. Och öh... Det här samtalet har aldrig inträffat."
+msgstr "Bra. Och... Det här samtalet har aldrig inträffat."
 
 #: dialogs/Benjamin.lua:395
 msgid "I will be going then."
@@ -2183,7 +2184,7 @@ msgstr "Är allt okej? Du ser inte så frisk ut."
 
 #: dialogs/Bruce.lua:67
 msgid "I don't have time to talk: I'm far too busy working! I'm normally at the mines this time of day but I forgot something and that's..."
-msgstr "Jag har inte tid. Jag har fullt med arbete att göra. Oftast är jag i gruvorna vid den här tiden, men jag glömde något, och..."
+msgstr "Jag har inte tid. Jag har massa arbete att göra. Oftast är jag i gruvorna vid den här tiden, men jag glömde något, och..."
 
 #: dialogs/Bruce.lua:68
 msgid "That's why I'm here. Now I must get back to the mines."
@@ -2227,7 +2228,7 @@ msgstr "För att jag måste! Röda Väktarna tvingar alla arbeta över sina grä
 
 #: dialogs/Bruce.lua:100
 msgid "If you do not work for a full work period, you will be in trouble."
-msgstr "Om du inte arbetar hela passet ligger du illa till."
+msgstr "Om man inte arbetar hela passet ligger man illa till."
 
 #: dialogs/Bruce.lua:101
 msgid "But I have no choice. I do not want to be a soldier again."
@@ -2259,7 +2260,7 @@ msgstr "Och jag sa att jag inte vill prata om det. Det gör för ont. Snälla, s
 
 #: dialogs/Bruce.lua:132
 msgid "You don't understand. I wasn't asking. Now, tell me about your life as a soldier, or I will tell the guards you are slacking off."
-msgstr "Du förstår tydligen inte. Jag frågar inte. Så, berätta om ditt liv som soldat eller så säger jag till vakterna att du latar dig."
+msgstr "Du förstår tydligen inte. Jag frågar inte. Så, berätta om ditt liv som soldat, eller så säger jag till vakterna att du latar dig."
 
 #: dialogs/Bruce.lua:134
 msgid "No! Please... I will do anything, just don't call the Red Guard! They do not like people who left the service. They do not like me."
@@ -2498,7 +2499,7 @@ msgstr "Du kan få den. Gratis."
 
 #: dialogs/Bruce.lua:278
 msgid "Oh... Oh my! Thanks!"
-msgstr ""
+msgstr "Åh... det var värst! Tackar!"
 
 #: dialogs/Bruce.lua:279
 msgid "Wait, let me go get something first."
@@ -2619,7 +2620,7 @@ msgstr "Bra. Jag måste sova."
 
 #: dialogs/Butch.lua:35
 msgid "I've already opened the door for you. All you need to do is walk in there and talk to Mike."
-msgstr "Jag har redan öppnat dörren åt dig. Du behöver bara kliva ner och prata med Mike."
+msgstr "Jag har redan öppnat dörren åt dig. Du behöver bara klättra ner och prata med Mike."
 
 #: dialogs/Butch.lua:47
 msgid "I've already opened the door. What are you waiting for? All you need to do is go down to the master arena and fight the bots."
@@ -2700,7 +2701,7 @@ msgstr "Ja. Jag vill slåss."
 
 #: dialogs/Butch.lua:118
 msgid "Good. I opened up the arena door. Just climb down the ladder south of here."
-msgstr "Bra. Jag öppnade dörren till arenan. Klättra ner för stegen, till söder."
+msgstr "Bra. Jag öppnade dörren till arenan. Klättra ner för stegen till söder."
 
 #: dialogs/Butch.lua:119
 msgid "You'll need search for Mike, the arena manager, there."
@@ -2720,7 +2721,7 @@ msgstr "Att slåss i en arena är inte något jag brukar göra, men jag vill tes
 
 #: dialogs/Butch.lua:123
 msgid "Oh, and the room is made out of some special material. People reported their teleporter gadgets didn't work in there. Take care!"
-msgstr "Å just det, rummen är gjorda av ett speciellt material. Folk säger att deras teleporterprylar inte fungerar där nere. Var rädd om dig!"
+msgstr "Åh, just det, rummen är gjorda av ett speciellt material. Folk säger att deras teleporterprylar inte fungerar där nere. Var rädd om dig!"
 
 #: dialogs/Butch.lua:124
 msgid "Butch says that teleporter gadgets may not work in this arena."
@@ -2800,7 +2801,7 @@ msgstr "Men om du nu verkligen vill, så är dörren öppen."
 
 #: dialogs/Butch.lua:164
 msgid "I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to climb down the ladder to the north arena and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?"
-msgstr "Jag vill ville att arenamästaren skulle släppa in mig på mästararenan. Han gick med på det. Nu är det bara att klättra ner för den norra stegen och vänta på att självaste döden ska komma flygandes med sina svarta vingar och ta min själ. Du vet, när jag tänker efter... så kanske jag inte borde klättra ner dit."
+msgstr "Jag vill ville att arenamästaren skulle släppa in mig på mästararenan. Han gick med på det. Nu är det bara att klättra ner för den norra stegen och vänta på att döden själv ska komma flygande med sina svarta vingar och ta min själ. Du vet, nu när jag tänker efter så... kanske jag inte borde klättra ner dit."
 
 #: dialogs/Butch.lua:165
 msgid "Remember, if your teleporter didn't work in the noob-, errr, novice-arena, it won't work in the master arena either..."
@@ -2888,7 +2889,7 @@ msgstr "Du... Du har förstört mitt pacifistiska slagord... Jag är arg... Så 
 
 #: dialogs/Butch.lua:227
 msgid "Great. Get in the door, newbie."
-msgstr "Toppen. Klättra ner i hålet, nollan."
+msgstr "Toppen. Klättra ner genom dörren, nollan."
 
 #: dialogs/Butch.lua:235
 msgid "I want to fight in the novice arena!"
@@ -2896,7 +2897,7 @@ msgstr "Jag vill slåss på nybörjararenan!"
 
 #: dialogs/Butch.lua:237
 msgid "You've already completed the novice arena. But if you really want to have another go, the door's open."
-msgstr "Du har redan klarat av nybörjararenan. Men om du göra det igen så står dörren öppen."
+msgstr "Du har redan klarat av nybörjararenan. Men om du vill göra om det, så står dörren öppen."
 
 #: dialogs/Butch.lua:238
 msgid "But you also might want to try the master arena now, maybe? If so, just say so."
@@ -3019,7 +3020,7 @@ msgstr "en ond"
 #: dialogs/c-net-nethack_sub.lua:321
 #, c-format
 msgid "Hello, welcome to Nethack! You are %s %s %s %s."
-msgstr "Hej och välkommen till Nethack! Du är en %s, %s %s som är %s"
+msgstr "Hej och välkommen till Nethack! Du är %s, %s %s som är %s"
 
 #. TRANSLATORS: boths %s represent a name of a god
 #: dialogs/c-net-nethack_sub.lua:323
@@ -3130,7 +3131,7 @@ msgstr "Du befinner dig i en underjordisk kontorsbyggnad."
 
 #: dialogs/c-net-nethack_sub.lua:385
 msgid "You find yourself in a labyrinth, with 1980's music playing mysteriously."
-msgstr "Du befinner dig i en labyrint, med mystiskt spelande 80-talsmusik."
+msgstr "Du befinner dig i en labyrint, där 80-talsmusik mystiskt spelar i bakgrunden."
 
 #: dialogs/c-net-nethack_sub.lua:386
 msgid "You find yourself inside a Cretaceous limestone cave."
@@ -3150,7 +3151,7 @@ msgstr "Du befinner dig i ett rum fyllt med enorma, genomskinliga, hexagonalt bi
 
 #: dialogs/c-net-nethack_sub.lua:390
 msgid "You find yourself in a passage filled with bones from the ancient past."
-msgstr "Du befinner dig i en passage fylld med antika ben."
+msgstr "Du befinner dig i en passage fylld ben från forntiden."
 
 #: dialogs/c-net-nethack_sub.lua:391
 msgid "You find yourself in a room filled with fresh bones."
@@ -3190,195 +3191,195 @@ msgstr "Du är vilse i mörker."
 
 #: dialogs/c-net-nethack_sub.lua:413
 msgid "angry woodchuck"
-msgstr "argt murmeldjur"
+msgstr "Argt Murmeldjur"
 
 #: dialogs/c-net-nethack_sub.lua:413
 msgid "platypus"
-msgstr "näbbdjur"
+msgstr "Näbbdjur"
 
 #: dialogs/c-net-nethack_sub.lua:413
 msgid "duck"
-msgstr "anka"
+msgstr "Anka"
 
 #: dialogs/c-net-nethack_sub.lua:413
 msgid "puffin"
-msgstr "lunnefågel"
+msgstr "Lunnefågel"
 
 #: dialogs/c-net-nethack_sub.lua:413
 msgid "superintelligent slime mold"
-msgstr "superintelligent mögelsvamp"
+msgstr "Superintelligent Mögelsvamp"
 
 #: dialogs/c-net-nethack_sub.lua:413
 msgid "internet oracle"
-msgstr "internetorakel"
+msgstr "Internetorakel"
 
 #: dialogs/c-net-nethack_sub.lua:419
 msgid "dragon"
-msgstr "drake"
+msgstr "Drake"
 
 #: dialogs/c-net-nethack_sub.lua:419
 msgid "dwarf"
-msgstr "dvärg"
+msgstr "Dvärg"
 
 #: dialogs/c-net-nethack_sub.lua:419
 msgid "basilisk"
-msgstr "basilisk"
+msgstr "Basilisk"
 
 #: dialogs/c-net-nethack_sub.lua:419
 msgid "penguin"
-msgstr "pingvin"
+msgstr "Pingvin"
 
 #: dialogs/c-net-nethack_sub.lua:419
 msgid "grue"
-msgstr "grue"
+msgstr "Grue"
 
 #: dialogs/c-net-nethack_sub.lua:425
 msgid "balrog"
-msgstr "balrog"
+msgstr "Balrog"
 
 #: dialogs/c-net-nethack_sub.lua:425
 msgid "daemon"
-msgstr "demon"
+msgstr "Demon"
 
 #: dialogs/c-net-nethack_sub.lua:425
 msgid "demagogue"
-msgstr "uppviglare"
+msgstr "Uppviglare"
 
 #: dialogs/c-net-nethack_sub.lua:425
 msgid "ex-girlfriend"
-msgstr "ex-flickvän"
+msgstr "Ex-flickvän"
 
 #: dialogs/c-net-nethack_sub.lua:425
 msgid "jabberwock"
-msgstr "pratkvarn"
+msgstr "Pratkvarn"
 
 #: dialogs/c-net-nethack_sub.lua:425
 msgid "ringwrath"
-msgstr "ringwrath"
+msgstr "Ringwrath"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "clippy"
-msgstr "gem"
+msgstr "Gem"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "ghoul"
-msgstr "gast"
+msgstr "Gast"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "ninja"
-msgstr "ninja"
+msgstr "Ninja"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "sober pirate"
-msgstr "nykter pirat"
+msgstr "Nykter pirat"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "cockatrice"
-msgstr "basilisk"
+msgstr "Basilisk"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "chickatrice"
-msgstr "basilusk"
+msgstr "Basilusk"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "mind flayer"
-msgstr "mind flayer"
+msgstr "Mind flayer"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "marilith"
-msgstr "marilith"
+msgstr "Marilith"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "vrock"
-msgstr "vrock"
+msgstr "Vrock"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "nalfeshnee"
-msgstr "nalfeshnee"
+msgstr "Nalfeshnee"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "politician"
-msgstr "politiker"
+msgstr "Politiker"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "gremlin"
-msgstr "gremlin"
+msgstr "Gremlin"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "incubus"
-msgstr "incubus"
+msgstr "Incubus"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "succubus"
-msgstr "succuba"
+msgstr "Succuba"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "awkward turtle"
-msgstr "förarglig sköldpadda"
+msgstr "Förarglig Sköldpadda"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "minotaur"
-msgstr "minotaur"
+msgstr "Minotaur"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "goblin"
-msgstr "troll"
+msgstr "Troll"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "shade"
-msgstr "nyans"
+msgstr "Nyans"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "drunk pirate"
-msgstr "full pirat"
+msgstr "Full pirat"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "darkness"
-msgstr "mörker"
+msgstr "Mörker"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "nothing"
-msgstr "ingenting"
+msgstr "Ingenting"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "air"
-msgstr "luft"
+msgstr "Luft"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "steam"
-msgstr "ånga"
+msgstr "Ånga"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "shadow"
-msgstr "skugga"
+msgstr "Skugga"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "chair"
-msgstr "stol"
+msgstr "Stol"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "pet rock"
-msgstr "husdjurssten"
+msgstr "Husdjurssten"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "bag of bones"
-msgstr "påse full av ben"
+msgstr "Påse full av ben"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "inanimate carbon rod"
-msgstr "livlös kolstav"
+msgstr "Livlös Kolstav"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "mirage"
-msgstr "hägring"
+msgstr "Hägring"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "hyperintelligent shade of blue"
-msgstr "hyperintelligent blå färg"
+msgstr "Hyperintelligent Blå Färg"
 
 #: dialogs/c-net-nethack_sub.lua:446
 msgid "woodchuck"
-msgstr "murmeldjur"
+msgstr "Murmeldjur"
 
 #: dialogs/c-net-nethack_sub.lua:446
 msgid "MS employee"
@@ -3386,57 +3387,57 @@ msgstr "MS-anställd"
 
 #: dialogs/c-net-nethack_sub.lua:446
 msgid "rooster"
-msgstr "tupp"
+msgstr "Tupp"
 
 #: dialogs/c-net-nethack_sub.lua:446
 msgid "lawyer"
-msgstr "advokat"
+msgstr "Advokat"
 
 #: dialogs/c-net-nethack_sub.lua:446
 msgid "wraith"
-msgstr "vålnad"
+msgstr "Vålnad"
 
 #: dialogs/c-net-nethack_sub.lua:452
 msgid "bureaucrat"
-msgstr "byråkrat"
+msgstr "Byråkrat"
 
 #: dialogs/c-net-nethack_sub.lua:452
 msgid "snail"
-msgstr "snigel"
+msgstr "Snigel"
 
 #: dialogs/c-net-nethack_sub.lua:452
 msgid "banana slug"
-msgstr "banansnigel"
+msgstr "Banansnigel"
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:458
 #, c-format
 msgid "A wild [b]%s[/b] appears!"
-msgstr "Vild [b]%s[/b] dyker upp!"
+msgstr "En vild [b]%s[/b] dyker upp!"
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:460
 #, c-format
 msgid "You notice a [b]%s[/b] in front of you."
-msgstr "Du ser [b]%s[/b] framför dig."
+msgstr "Du ser en [b]%s[/b] framför dig."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:462
 #, c-format
 msgid "You turn around and see a [b]%s[/b] right behind you!"
-msgstr "Du vänder dig om och ser [b]%s[/b] bakom dig!"
+msgstr "Du vänder dig om och ser en [b]%s[/b] bakom dig!"
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:464
 #, c-format
 msgid "A [b]%s[/b] jumps out in front of you!"
-msgstr "[b]%s[/b] hoppar ut framför dig!"
+msgstr "En [b]%s[/b] hoppar ut framför dig!"
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:466
 #, c-format
 msgid "You sneek up upon a [b]%s[/b]."
-msgstr "Du smyger dig på [b]%s[/b]."
+msgstr "Du smyger dig på en [b]%s[/b]."
 
 #. TRANSLATORS: n_ac n_tricks n_hp
 #. TRANSLATORS: all numbers
@@ -3449,12 +3450,12 @@ msgstr "Dina värden är: [b]%s[/b] i attack/skydd, [b]%s[/b] trick och [b]%s[/b
 
 #: dialogs/c-net-nethack_sub.lua:476
 msgid "Attack"
-msgstr "Attack"
+msgstr "Attackera"
 
 #: dialogs/c-net-nethack_sub.lua:479
 #, c-format
 msgid "You attack the inanimate %s."
-msgstr "Du attackerar livlösa %s."
+msgstr "Du attackerar den livlösa %s."
 
 #: dialogs/c-net-nethack_sub.lua:480
 msgid "You go to attack, but then think better."
@@ -3497,7 +3498,7 @@ msgstr "Ditt kreditkort ger ett massivt skärsår, %s i skada."
 #: dialogs/c-net-nethack_sub.lua:496
 #, c-format
 msgid "You freeze the middle of the %s causing %s damage."
-msgstr "Du stannar i mitten av %s och ger %s i skada."
+msgstr "Du fryser ner mitten på %s och ger %s i skada."
 
 #: dialogs/c-net-nethack_sub.lua:498
 #, c-format
@@ -3557,7 +3558,7 @@ msgstr "%s kastar en bola på dig som får dig att falla och hindrar dig från a
 
 #: dialogs/c-net-nethack_sub.lua:536
 msgid "You stand there like a deer in the headlights."
-msgstr "Du står där som en fågelholk."
+msgstr "Du står där och ser ut som en fågelholk."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:538
@@ -3569,13 +3570,13 @@ msgstr "Du försöker smita men %s tar tag i dig."
 #: dialogs/c-net-nethack_sub.lua:540
 #, c-format
 msgid "%s strikes you with fear, and you cannot move."
-msgstr "Du blir skräckslagen av %s och kan inte röra dig."
+msgstr "%s gör dig stel av skräck."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:542
 #, c-format
 msgid "The %s tackles you and pins you to the floor."
-msgstr "%s knuffar omkull och håller ner dig mot golvet."
+msgstr "%s knuffar omkull och trycker dig mot golvet."
 
 #: dialogs/c-net-nethack_sub.lua:543
 msgid "You go to run, but you trip over your shoelace."
@@ -3617,7 +3618,7 @@ msgstr "Du låtsas vara en mimare."
 
 #: dialogs/c-net-nethack_sub.lua:564
 msgid "You pull a rabbit from your top hat."
-msgstr ""
+msgstr "Du drar upp en kanin ur hatten."
 
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:568
@@ -3692,7 +3693,7 @@ msgstr "Nu är du %s, %s %s som är %s."
 #: dialogs/c-net-nethack_sub.lua:603
 #, c-format
 msgid "The %s notes your physique, but has too high of an IQ to be impressed."
-msgstr "%s lägger märke till din fysik men har för högt IQ för att bli imponerad."
+msgstr "%s lägger märke till din fysik, men har för högt IQ för att bli imponerad."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:605
@@ -3752,7 +3753,7 @@ msgstr "%s lämnade sin telefon hemma idag."
 
 #: dialogs/c-net-nethack_sub.lua:643
 msgid "Something, somewhere else happened."
-msgstr "Någonting, någon annanstans hände."
+msgstr "Någonstans hände något."
 
 #: dialogs/c-net-nethack_sub.lua:644
 msgid "The Random Number God is not swayed by your petty prayers."
@@ -3772,7 +3773,7 @@ msgstr "Du är chockerad, CHOCKERAD, att inget händer."
 
 #: dialogs/c-net-nethack_sub.lua:657
 msgid "Time was frozen then unfrozen but for you, nothing happens."
-msgstr "Tiden stannade av och sedan fortsatt den, men för dig hände inget."
+msgstr "Tiden stannade av, och sedan fortsatte den, men för dig hände inget."
 
 #: dialogs/c-net-nethack_sub.lua:658
 msgid "Unexpectedly, nothing happens."
@@ -3804,15 +3805,15 @@ msgstr "Du tar en power nap."
 
 #: dialogs/c-net-nethack_sub.lua:667
 msgid "You take a long nap."
-msgstr "Du har en lång tupplur."
+msgstr "Du tar en lång tupplur."
 
 #: dialogs/c-net-nethack_sub.lua:668
 msgid "You take a cat nap."
-msgstr "Du har en lur."
+msgstr "Du tar en tupplur."
 
 #: dialogs/c-net-nethack_sub.lua:675
 msgid "You feel refreshed."
-msgstr "Du känner dig fräsch."
+msgstr "Du känner dig uppfräschad."
 
 #: dialogs/c-net-nethack_sub.lua:683
 msgid "Suddenly you find yourself teleported to the next level."
@@ -3888,11 +3889,11 @@ msgstr "Du hittar en domens förbannelse."
 
 #: dialogs/c-net-nethack_sub.lua:724
 msgid "You find a helmet of fire."
-msgstr "Du hittar en eldens hjälm."
+msgstr "Du hittar en hjälm av eld."
 
 #: dialogs/c-net-nethack_sub.lua:725
 msgid "You find a left boot of anti-fungus."
-msgstr "Du hittar en anti-svampens vänsterstövel."
+msgstr "Du hittar en anti-svamps-vänsterstövel."
 
 #: dialogs/c-net-nethack_sub.lua:726
 msgid "You find a right boot of speed."
@@ -3912,7 +3913,7 @@ msgstr "Du hittar en T-shirt från Hawaii."
 
 #: dialogs/c-net-nethack_sub.lua:730
 msgid "You find a credit card."
-msgstr ""
+msgstr "Du hittar ett kreditkort."
 
 #: dialogs/c-net-nethack_sub.lua:731
 msgid "You find a sharpened pencil."
@@ -3942,11 +3943,11 @@ msgstr "Du dricker en större läkedomens flaska. %s skickar lite salva för att
 
 #: dialogs/c-net-nethack_sub.lua:740
 msgid "You find an aloe vera plant."
-msgstr "Du hittar en planta aloe."
+msgstr "Du hittar en aloe vera-planta."
 
 #: dialogs/c-net-nethack_sub.lua:741
 msgid "You apply some sunscreen from your backpack."
-msgstr "Du smörjer på lite solkräm från ryggsäcken."
+msgstr "Du smörjer på dig lite solkräm från ryggsäcken."
 
 #: dialogs/c-net-nethack_sub.lua:742
 msgid "You decide that you are healthier than you thought."
@@ -3978,7 +3979,7 @@ msgstr "Du slutar förblöda."
 
 #: dialogs/c-net-nethack_sub.lua:751
 msgid "You find a top hat with a rabbit."
-msgstr ""
+msgstr "Du hittar en hatt med en kanin i."
 
 #: dialogs/c-net-nethack_sub.lua:752
 msgid "You find a deck of cards."
@@ -4006,7 +4007,7 @@ msgstr "Du hittar en låtsasdolk."
 
 #: dialogs/c-net-nethack_sub.lua:763
 msgid "You reform your wicked ways, and join the side of good."
-msgstr "Du förändrar ditt onda sätt och går över till den goda sidan."
+msgstr "Du ändrar ditt onda sätt, och går över till den goda sidan."
 
 #. TRANSLATORS: %s = enemy god name
 #. TRANSLATORS: %s = god name
@@ -4086,7 +4087,7 @@ msgstr "%s blåser eld på dig, din karta bränns och du får %s i skada."
 #: dialogs/c-net-nethack_sub.lua:804
 #, c-format
 msgid "The %s throws an exploding banana at you, but you duck, so it only causes %s damage."
-msgstr "%s kastar en exploderande banan på dig men du duckar så du får bara %s i skada."
+msgstr "%s kastar en exploderande banan på dig, men du duckar, så du får bara %s i skada."
 
 #. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:806
@@ -4125,7 +4126,7 @@ msgstr "%s försöker träffa dig, men missar."
 #: dialogs/c-net-nethack_sub.lua:817
 #, c-format
 msgid "%s blow hits your cap of cool, causing no damage."
-msgstr "Slaget från %s träffar din häftighetens keps, så du skadas inte."
+msgstr "Slaget från %s träffar din coola keps, så du skadas inte."
 
 #: dialogs/c-net-nethack_sub.lua:818
 #, c-format
@@ -4151,11 +4152,11 @@ msgstr "Hermes, tillsammans med Döden och Sömnen, undrar om du sett hans kaduc
 
 #: dialogs/c-net-nethack_sub.lua:828
 msgid "Your soul finds itself travelling along the path of the moon, far away from your broken body."
-msgstr ""
+msgstr "Din själ ser sig själv resa iväg mot månen, långt bort från din trasiga kropp."
 
 #: dialogs/c-net-nethack_sub.lua:829
 msgid "You are fully one with everything. Your battered body no longer concerns you."
-msgstr "Du är helt och full ett med allt. Din mörbultade kropp är inte längre ett bekymmer."
+msgstr "Du är helt och fullt ett med allt. Din mörbultade kropp är inte längre ett bekymmer."
 
 #: dialogs/c-net-nethack_sub.lua:830
 msgid "You failed to enlist the Random Number God to your side. You died."
@@ -4286,7 +4287,7 @@ msgstr "[b]%s[/b], fiende till din gudinna [b]%s[/b], planerar muntert din bortg
 #: dialogs/c-net-nethack_sub.lua:942
 #, c-format
 msgid "The vile god [b]%s[/b] cackles that you will again flee from the dungeon in terror!"
-msgstr "Den nedriga guden [b]%s[/b] fnittrar och säger att du än en gång kommer fly från hålorna i skräck!"
+msgstr "Den nedriga guden [b]%s[/b] fnittrar och säger att du än en gång kommer fly från hålorna, skräckslagen!"
 
 #. TRANSLATORS: both god names
 #: dialogs/c-net-nethack_sub.lua:944
@@ -4344,7 +4345,7 @@ msgstr "Ställ in lösenord för ditt gästkonto, %s"
 
 #: dialogs/c-net.lua:69
 msgid "Use at least one lower case letter, one upper case letter, one number, and one symbol."
-msgstr "Använd minst en liten bokstav, en stor boksta, en siffra och en symbol."
+msgstr "Använd minst en liten bokstav, en stor bokstav, en siffra och en symbol."
 
 #: dialogs/c-net.lua:71 dialogs/c-net.lua:76
 msgid "******"
@@ -4423,7 +4424,7 @@ msgstr "Bott #Död# Tux #Hackad/Misslyckad#Kvot"
 
 #: dialogs/c-net.lua:367
 msgid "forkBOMB.sh -arm bomb"
-msgstr "forkBOMB.sh -arm bomb"
+msgstr "forkBOMB.sh -armera bomb"
 
 #: dialogs/c-net.lua:369
 msgid "bomb armed"
@@ -4431,7 +4432,7 @@ msgstr "bomb armerad"
 
 #: dialogs/c-net.lua:376
 msgid "forkBOMB.sh -disarm bomb"
-msgstr "forkBOMB.sh -disarm bomb"
+msgstr "forkBOMB.sh -desarmera bomb"
 
 #: dialogs/c-net.lua:378
 msgid "bomb defused"
@@ -4439,7 +4440,7 @@ msgstr "bomb desarmerad"
 
 #: dialogs/c-net.lua:385
 msgid "forkBOMB.sh -execute"
-msgstr "forkBOMB.sh -execute"
+msgstr "forkBOMB.sh -starta"
 
 #: dialogs/c-net.lua:388
 msgid "Terminals Disabled"
@@ -4562,7 +4563,7 @@ msgstr "Anslutning till c-net stängd."
 
 #: dialogs/Chandra.lua:37
 msgid "So the rumors are true - a real live Linarian walks among us!"
-msgstr "Så ryktena stämmer - en livs levande Linärian är här hos oss!"
+msgstr "Så ryktena stämmer - vi har en livs levande Linärian hos oss!"
 
 #: dialogs/Chandra.lua:44
 msgid "Good to see you again. How can I help you?"
@@ -4578,15 +4579,15 @@ msgstr "Vad vet du om det här stället?"
 
 #: dialogs/Chandra.lua:79
 msgid "This small town used to be a somewhat successful mining community, exporting rare earth materials and other resources to the rest of the solar system."
-msgstr "Den här lilla staden var tidigare ett rätt så framgångsrikt gruvsamhälle som exporterade sällsynta råvaror från jorden till andra delar solsystemet."
+msgstr "Den här lilla staden var tidigare ett rätt så framgångsrikt gruvsamhälle som exporterade sällsynta råvaror från jorden till andra delar av solsystemet."
 
 #: dialogs/Chandra.lua:80
 msgid "The mines have depleted recently, however. The town was under a threat of bankruptcy. Living here became harder and many left to seek new opportunities elsewhere."
-msgstr "Dock har gruvorna sinat rätt så nyligen. Staden höll på att bli bankrutt. Att bo här blev svårare och många reste iväg för att hitta nya möjligheter."
+msgstr "Men gruvorna sinade rätt så nyligen. Staden höll på att bli bankrutt. Att bo här blev svårare och många reste iväg för att hitta nya möjligheter."
 
 #: dialogs/Chandra.lua:81
 msgid "But now after the Great Assault, the rest of the planet gets bombarded by automated bot ships every now and then, so being here isn't so bad at all."
-msgstr "Men nu, efter det Stora Angreppet, när resten planeten bombarderas av automatiska bottskepp så är det inte så dumt att bo här iallafall."
+msgstr "Men nu, efter det Stora Angreppet, när resten av planeten bombarderas av automatiska bottskepp så är det inte så dumt att bo här i alla fall."
 
 #: dialogs/Chandra.lua:82
 msgid "Even with the Red Guard in charge."
@@ -4598,7 +4599,7 @@ msgstr "Var kan jag skaffa bättre utrustning?"
 
 #: dialogs/Chandra.lua:90
 msgid "The shop is to the north, near the gate. Ms. Stone always has a good range of equipment there, with fair prices too."
-msgstr "Från fru Stones butik, norrut nära porten. Hon har alltid ett bra utbud, och rätt så hyggliga priser."
+msgstr "Från fru Stones butik, norrut, nära porten. Hon har alltid ett bra utbud, och rätt så hyggliga priser."
 
 #: dialogs/Chandra.lua:91
 msgid "Not that you have much choice."
@@ -4614,11 +4615,11 @@ msgstr "Vad är det som är så konstigt med angreppet?"
 
 #: dialogs/Chandra.lua:100
 msgid "According to my calculations based on the Fermi estimate, there are about seven million bots active in the region, everything from cleaner bots and servant droids to much more dangerous ones."
-msgstr "Enligt mina beräkningar bör det uppskattingsvis vara cirka sju miljoner bottar i området, alltifrån skräprensarbottar till betjäntdroider till mycket farligare sorter."
+msgstr "Enligt mina beräkningar bör det vara uppskattingsvis sju miljoner bottar i området, alltifrån skräprensarbottar till betjäntdroider till mycket farligare varianter."
 
 #: dialogs/Chandra.lua:101
 msgid "I think you will agree with me that the following statement is true: If bots, then death to everything alive."
-msgstr "Jag tror du håller med om att det här uttrycket är sant: Om bottar, då död åt allt levande."
+msgstr "Jag tror du håller med om att följande påstående är sant: Om bottar, då död åt allt levande."
 
 #: dialogs/Chandra.lua:102
 msgid "Now, I make the assumption that you and I are alive."
@@ -4682,7 +4683,7 @@ msgstr "Klass 100 är gamla städarbottar. Därför är de rätt så vanliga. De
 
 #: dialogs/Chandra.lua:129
 msgid "The 200s are servant bots, designed to come quickly when summoned and be able to lift heavy weights. That makes them more dangerous under most circumstances, so beware of being attacked by more than one at the same time."
-msgstr "200-klassen är betjäntbottar, gjorda för snabbt komma när man ropar och för att lyfta tunga vikter. Det gör dem farligare i de flesta fall, så akta dig för att attackeras av flera samtidigt."
+msgstr "200-klassen är betjäntbottar, gjorda för snabbt komma när man ropar, och för att lyfta tunga vikter. Det gör dem farligare i de flesta fall, så akta dig för att attackeras av flera samtidigt."
 
 #: dialogs/Chandra.lua:130
 msgid "Right now, an encounter with a 300 type bot equals death, so try to avoid it. They were messenger bots before the Great Assault, which means they have superb visual sensors, and some are very fast."
@@ -4726,7 +4727,7 @@ msgstr "Alla våra rymdbaser har troligtvis förstörts i bottattacker."
 
 #: dialogs/Chandra.lua:159
 msgid "I'm having difficulty overcoming the bots. What can I do?"
-msgstr "Jag har svårt att vinna över bottarna. Vad ska jag göra?"
+msgstr "Jag rår inte på bottarna. Vad ska jag göra?"
 
 #: dialogs/Chandra.lua:161
 msgid "There are many things you can do. The first is to fight more bots."
@@ -4758,7 +4759,7 @@ msgstr "Om du inte lyckas hitta något bra vapen att skjuta eller slå med, finn
 
 #: dialogs/Chandra.lua:168
 msgid "Ewald, the barkeeper, usually sells an assortment of junk, but even he sometimes has something worthwhile on display."
-msgstr "Ewald, barägaren, säljer för det mesta blandat skrot men ibland har till och med han något av värde."
+msgstr "Ewald, barägaren, säljer för det mesta diverse skrot men ibland har till och med han något av värde."
 
 #: dialogs/Chandra.lua:169
 msgid "There was a person selling grenades, too. Eh... I forgot his name, my memory is not serving me very well today. He's a very mysterious fellow. Perhaps he can help you."
@@ -4782,7 +4783,7 @@ msgstr "Röda Väktarna? Knappast. Du måste skapa dig ett rykte först och visa
 
 #: dialogs/Chandra.lua:182
 msgid "Also, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here."
-msgstr "Dessutom är Röda Väktarna inte vidare populära, så om du vill gå med så ska du räkna med att bli hatad av nästa alla här."
+msgstr "Dessutom är Röda Väktarna inte vidare populära, så om du vill gå med så ska du räkna med att bli hatad av i stort sett alla här."
 
 #: dialogs/Chandra.lua:183
 msgid "As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax."
@@ -4794,7 +4795,7 @@ msgstr "Vilka bottar finns i 100-klassen?"
 
 #: dialogs/Chandra.lua:194
 msgid "I know of two types, the 123 and the 139. The former is a simple cleaning bot, and is fairly weak. The latter is a mobile trash compactor. Don't get your flippers get caught in one of those."
-msgstr "Jag känner till två typer, 123:an och 139:an. Den första är en enkel städbott, ganska svag. Den senare är en mobil skräpkross. Fastna inte med någon av simfötterna i en sådan."
+msgstr "Jag känner till två typer, 123:an och 139:an. Den första är en enkel städbott, ganska svag. Den senare är en mobil skräpkross. Fastna inte med simfötterna i en sådan."
 
 #: dialogs/Chandra.lua:195
 msgid "I've seen some of those on my way here. They were... Shooting at me."
@@ -4806,7 +4807,7 @@ msgstr "Många underliga saker har hänt sedan det Stora Angreppet."
 
 #: dialogs/Chandra.lua:197
 msgid "Anyway, because the class 100 bots are neither fast nor dangerous, the Red Guard often uses them for target practice."
-msgstr "Hursomhelst, eftersom klass 100 varken är snabba eller farliga använder Röda Väktarna dem ofta för att övningsskjuta på."
+msgstr "Hur som helst, eftersom klass 100 varken är snabba eller farliga använder Röda Väktarna ofta dem för att övningsskjuta på."
 
 #: dialogs/Chandra.lua:198
 msgid "If I were you, I would not overestimate them."
@@ -4868,7 +4869,7 @@ msgstr "Fast jag inte vet exakt så kan jag försäkra dig om att de är många.
 
 #: dialogs/Chandra.lua:229
 msgid "They were used by the military, aboard ships, as security droids and more. Right now, however, most of the people who knew them up close are pushing up daisies."
-msgstr "De användes av militären, på skepp, som säkerhetsdroider och så vidare. Men nu har de som kände bottarna utan och innan dragit sista sucken."
+msgstr "De användes av militären, ombord på skepp, som säkerhetsdroider och så vidare. Men nu har de som kände bottarna utan och innan dragit sista sucken."
 
 #: dialogs/Chandra.lua:236
 msgid "Where in the void is this world?"
@@ -4876,7 +4877,7 @@ msgstr "Var i tomrummet ligger den här världen?"
 
 #: dialogs/Chandra.lua:238
 msgid "I guess you mean in the universe?"
-msgstr "Du menar var i universum?"
+msgstr "Du menar, var i universum?"
 
 #: dialogs/Chandra.lua:239
 msgid "Yes, I think that is your name for it."
@@ -4900,7 +4901,7 @@ msgstr "Jag är ingen astronom, så jag kanske har fel. Jag för trött för att
 
 #: dialogs/Chandra.lua:244
 msgid "This could be just about anywhere. Your description is too ambiguous."
-msgstr "Det kan ju vara varsomhelst. Beskrivningen är inte tillräckligt tydlig."
+msgstr "Det kan ju vara var som helst. Beskrivningen är inte tillräckligt tydlig."
 
 #: dialogs/Chandra.lua:245
 msgid "Sorry, star sciences are my weak point."
@@ -4952,7 +4953,7 @@ msgstr "Vad är en Linärian?"
 
 #: dialogs/Chandra.lua:301
 msgid "Ah yes, I heard that your memory had been affected by stasis. I will share with you what I know."
-msgstr "Ja, jag hörde att ditt minne skadats av kryostasen. Jag ska dela med mig vad jag vet."
+msgstr "Ja, jag hörde att ditt minne skadats av kryostasen. Jag ska dela med mig av vad jag vet."
 
 #: dialogs/Chandra.lua:302 dialogs/Chandra.lua:319
 msgid "Linarians came to this planet about a century ago. While their specialties can vary, they are most widely known for their nearly-magical skills with computers."
@@ -4964,15 +4965,15 @@ msgstr "[b](Chandra ser sig snabbt omkring. Efter att ha konstaterat att ingen t
 
 #: dialogs/Chandra.lua:306
 msgid "Since you are asking this question and you have even come into our town, I am assuming that your memory has been completely damaged."
-msgstr "Eftersom du ställer den frågan och du till och med gått hit in i staden, antar jag att ditt minne är ordentligt skadat."
+msgstr "Eftersom du ställer den frågan, och du till och med gått in hit i staden, antar jag att ditt minne är ordentligt skadat."
 
 #: dialogs/Chandra.lua:307
 msgid "What I am about to tell you is not easy to say, nor will it be easy to hear. For that I apologize, but you must know the truth."
-msgstr "Det jag ska berätta är varken enkelt att säga eller ta emot. Därför ber jag om ursäkt, men du måste få veta sanningen."
+msgstr "Det jag ska berätta är varken enkelt att säga eller att svälja. Därför ber jag om ursäkt, men du måste få veta sanningen."
 
 #: dialogs/Chandra.lua:308
 msgid "[b](He pauses for a breath.)[/b]"
-msgstr "[b](Han väntar och tar ett andetag.)[/b]"
+msgstr "[b](Han stannar och tar ett andetag.)[/b]"
 
 #: dialogs/Chandra.lua:309
 msgid "When your people first arrived, there was a miscommunication that resulted in the leaders of Earth acting aggressively. Unfortunately, most of your people did not survive..."
@@ -4980,15 +4981,15 @@ msgstr "När ditt folk först kom hit, uppstod det ett kommunikationsproblem vil
 
 #: dialogs/Chandra.lua:310
 msgid "For that my friend, I am deeply sorry."
-msgstr "Över det är jag mycket ledsen, min vän."
+msgstr "Över det, är jag mycket ledsen, min vän."
 
 #: dialogs/Chandra.lua:311
 msgid "[b](He hangs his head slightly and you feel he is sincere in his remorse.)[/b]"
-msgstr "[b](Han hänger lite med huvudet och du kan känna hans samvetskval.)[/b]"
+msgstr "[b](Han hänger lite med huvudet, och du kan känna hans samvetskval.)[/b]"
 
 #: dialogs/Chandra.lua:315
 msgid "[b](Chandra moves his head ever so slightly as he quickly glances around. After noticing the nearby presence of the Red Guard member, his posture and tone changes. Perhaps you should speak with him again once you lose your escort...)[/b]"
-msgstr "[b](Chandra vänder snabbt huvudet och tittar sig omkring. När han ser att en medlem av Röda Väktarna är i närheten ändrar hans hållning och tonfall. Kanske du borde prata med honom senare när du blivit av med din eskort...)[/b]"
+msgstr "[b](Chandra vänder snabbt på huvudet och tittar sig omkring. När han ser att en medlem av Röda Väktarna är i närheten ändras hans hållning och tonfall. Kanske du borde prata med honom senare när du blivit av med din eskort...)[/b]"
 
 #: dialogs/Chandra.lua:316
 msgid "What else would you like to know?"
@@ -5004,7 +5005,7 @@ msgstr "(Acceptera det lugnt)"
 
 #: dialogs/Chandra.lua:331
 msgid "What happened to the other Linarians that survived first contact?"
-msgstr "Vad hände med den andra Linärianerna som överlevde den första kontakten?"
+msgstr "Vad hände med de andra Linärianerna som överlevde den första kontakten?"
 
 #: dialogs/Chandra.lua:332
 msgid "Sadly, I do not know. All that remains are legends. For a time, Linarians wandered the planet performing grand deeds and earning the respect of most of humanity."
@@ -5016,7 +5017,7 @@ msgstr "Men allteftersom tiden gick så försvann minnena av stordåden. Troligt
 
 #: dialogs/Chandra.lua:334 dialogs/Chandra.lua:351
 msgid "Perhaps there are still other Linarians alive here on our planet. Or maybe some went back to your own planet."
-msgstr "Kanske finns det fortfarande Linärianer på vår planet. Eller kanske har de åkt tillbaka till din egna planet."
+msgstr "Kanske finns det fortfarande Linärianer på vår planet. Eller kanske har de åkt tillbaka till din egen planet."
 
 #: dialogs/Chandra.lua:342
 msgid "(Respond angrily)"
@@ -5028,15 +5029,15 @@ msgstr "Slaktade ditt folk oss?!"
 
 #: dialogs/Chandra.lua:347
 msgid "Yes, this is the truth and it is something most humans regret. It is this regret that has helped erase the Linarians from our history."
-msgstr "Ja, det är vad som hände och de flesta människor ångrar det. Den ångern har gjort att historien om Linärianerna suddats bort."
+msgstr "Ja, det är vad som hände och de flesta människor ångrar det. Den skammen har gjort att historien om Linärianerna suddats bort."
 
 #: dialogs/Chandra.lua:348
 msgid "Humanity does not have a pretty history. We have done many horrible things to each other as well. There are many things we regret so deeply that we wish we could forget."
-msgstr "Mänskligheten har inget fint förflutet. Vi har gjort många hemska saker mot varandra också. Det finns många saker vi ångrar så djupt att vi önskar vi glömt dem."
+msgstr "Mänskligheten har inget vacker historia. Vi har gjort många hemska saker mot varandra också. Det finns många saker vi ångrar så djupt att vi önskar vi glömt dem."
 
 #: dialogs/Chandra.lua:349
 msgid "Over time, most people have willingly forgotten our actions and focused on the good deeds the Linarians performed despite our senseless behavior."
-msgstr "Med tiden har de flesta gladeligen glömt vad vi gjort och fokuserat på Linärianernas bedrifter, trots vårt tanklösa uppförande."
+msgstr "Med tiden har de flesta gladeligen glömt vad vi gjort, och fokuserat på Linärianernas bedrifter, trots vårt tanklösa uppförande."
 
 #: dialogs/Chandra.lua:350
 msgid "Even though we tried to celebrate the grand deeds and heroics of the surviving Linarians, the memories faded. The memories turned into legends and myths as the Linarians slowly withdrew from the world."
@@ -5049,7 +5050,7 @@ msgstr "Spencer och Röda Väktarna vill inte att du ska känna till det här, e
 #: dialogs/Chandra.lua:353
 #, c-format
 msgid "However, to not share this information with you is another transgression that I cannot be a part of. Please %s, we need your help!"
-msgstr "Men att inte berätta det här för dig vore fel och inte något som jag vill vara en del av. Snälla %s, vi behöver din hjälp!"
+msgstr "Men att inte berätta det här för dig vore fel, något som jag inte vill vara en del av. Snälla %s, vi behöver din hjälp!"
 
 #: dialogs/Chandra.lua:359
 msgid "Chandra, it saddens me to hear this. I will keep what you say in mind, but there is too much suffering for me to ignore."
@@ -5081,7 +5082,7 @@ msgstr "Och jag hjälper dem mer än gärna!"
 
 #: dialogs/Chandra.lua:385
 msgid "How come no one seems freaked out by a big fracking penguin?"
-msgstr "Hur kommer det sig att ingen tappar vettet när de ser en stor jädrans pingvin?"
+msgstr "Hur kommer det sig att ingen flippar ur när de ser en stor jädrans pingvin?"
 
 #: dialogs/Chandra.lua:388
 msgid "[b]<chuckles>[/b] This is not the first time the people of Earth have seen one of your kind."
@@ -5101,7 +5102,7 @@ msgstr "Det gör att vissa kanske är vänliga mot dig, medan andra är mer tvä
 
 #: dialogs/Chandra.lua:393
 msgid "Don't tell anyone else, but I'm surprised the Red Guard ordered you to be thawed. They are human supremacists to the extreme. For them to accept your help does not make much sense. They must be playing at something. Beware the Red Guard, Linarian."
-msgstr "Berätta det inte för någon, men jag är förvånad att Röda Väktarna befallde att du skulle tinas upp. De förespråkar starkt mänskligt ledarskap till det yttersta. Att de skulle ta emot din hjälp är orimligt. De planerar säkert något. Akta dig för Röda Väktarna, Linärian."
+msgstr "Berätta det inte för någon, men jag är förvånad att Röda Väktarna befallde att du skulle tinas upp. De förespråkar mänskligt ledarskap till det yttersta. Att de skulle ta emot din hjälp är orimligt. De planerar säkert något. Akta dig för Röda Väktarna, Linärian."
 
 #: dialogs/Chandra.lua:400
 msgid "Why did the Linarians come to this world?"
@@ -5175,11 +5176,11 @@ msgstr "Bokningar och besökstider"
 
 #: dialogs/Cryo-Terminal.lua:62
 msgid "Cryonic Solutions operates 24 hours a day every day of the year."
-msgstr "Kryo-Hjälpen har öppet 24 timmar om dygnet, varje dag hela året."
+msgstr "Kryo-Hjälpen har öppet 24 timmar om dygnet, varje dag, hela året."
 
 #: dialogs/Cryo-Terminal.lua:63
 msgid "However, for the safety of our clients, visiting hours are restricted."
-msgstr ""
+msgstr "Men, för våra kunders säkerhet är besökstiderna begränsade."
 
 #: dialogs/Cryo-Terminal.lua:64
 msgid "Visiting hours for family and friends are by appointment only [b]Monday-Thursday 10:00-14:00[/b]."
@@ -5199,7 +5200,7 @@ msgstr "Att uppleva den avlägsna framtiden är ovärdeligt."
 
 #: dialogs/Cryo-Terminal.lua:75
 msgid "But we here at Cryonic Solutions understand that you and your loved ones have a budget. So we offer a wide range of products to make your trip to the future affordable."
-msgstr "Men vi på Kryo-Hjälpen förstår att du och dina nära har en begränsad budget. Därför erbjuder vi en uppsjö produkter för att göra din framtidsresa prisvärd."
+msgstr "Men vi på Kryo-Hjälpen förstår att du och dina nära har en begränsad budget. Därför erbjuder vi en uppsjö produkter som gör din framtidsresa prisvärd."
 
 #: dialogs/Cryo-Terminal.lua:76
 msgid "Make an appointment today!"
@@ -5219,7 +5220,7 @@ msgstr "Eller är du nyfiken på vad som ska hända?"
 
 #: dialogs/Cryo-Terminal.lua:87
 msgid "Or maybe you want to see what compound interest can do for you?"
-msgstr "Eller så kanske du vill uppleva nyttan av sparräntor."
+msgstr "Eller kanske du vill upptäcka nyttan med sparräntor?"
 
 #: dialogs/Cryo-Terminal.lua:88
 msgid "These are just some of the many advantages of taking the fast trip to the future with Cryonic Solutions!"
@@ -5247,11 +5248,11 @@ msgstr "Portstatus"
 
 #: dialogs/Cryo-Terminal.lua:123 dialogs/Cryo-Terminal.lua:151
 msgid "Cryo Complex Gates status: CLOSED"
-msgstr "Kryo-byggnadens Portar: STÄNGD"
+msgstr "Kryo-anläggningens Portar: STÄNGDA"
 
 #: dialogs/Cryo-Terminal.lua:126 dialogs/Cryo-Terminal.lua:139
 msgid "Cryo Complex Gates status: OPEN"
-msgstr "Kryo-byggnadens portar: ÖPPEN"
+msgstr "Kryo-anläggningens Portar: ÖPPNA"
 
 #: dialogs/Cryo-Terminal.lua:136
 msgid "Open gates"
@@ -5295,7 +5296,7 @@ msgstr "Hur många robotar med fjädrar känner du?"
 
 #: dialogs/Cult-Member.lua:40
 msgid "Skin, feathers or MegaSys Alumichrome, inside the chassis we are all machines."
-msgstr "Skinn, fjädrar eller MegaSys Alumikrom - under chassit är vi alla maskiner."
+msgstr "Skinn, fjädrar eller MegaSys Alukromium - under chassit är vi alla maskiner."
 
 #: dialogs/Cult-Member.lua:41
 msgid "All will be together after the Final Upgrade."
@@ -5429,7 +5430,7 @@ msgstr "Hm... Ja. Från början trodde inte jag heller att det skulle behövas."
 
 #: dialogs/Dixon.lua:136
 msgid "One day the military division asked us to leave the town and fix a big hole in the defensive wall caused by a strange explosion."
-msgstr "Men en dag ville militärdivisionen att vi skulle gå ut ur stan och laga ett stort hål i stadsmuren, efter en konstig explostion."
+msgstr "Men en dag, efter en konstig explostion, ville militärdivisionen att vi skulle gå ut ur stan och laga ett stort hål i stadsmuren."
 
 #: dialogs/Dixon.lua:137
 msgid "All was well until the bots launched a massive attack. They hit us with lasers, plasma mortars, radiation cannons and lots of other weapons."
@@ -5441,19 +5442,19 @@ msgstr "Jag träffades i benet och i vänsterhanden."
 
 #: dialogs/Dixon.lua:139
 msgid "The hand was not damaged very much, but the leg is a very different story. Doc Moore did all he could, but in the end he could not save my leg. He had to cut it off."
-msgstr "Handen klarade sig men benet var en annan femma. Doktor Moore gjorde vad han kunde, men i slutändan gick benet inte rädda. Han blev tvungen att ta bort det."
+msgstr "Handen klarade sig, men benet var en annan femma. Doktor Moore gjorde vad han kunde, men i slutändan gick benet inte rädda. Han blev tvungen att ta bort det."
 
 #: dialogs/Dixon.lua:140
 msgid "Now, while you cannot see it underneath the armor, my right leg runs NetBSD."
-msgstr "Du kan inte se det, men under skyddsdräkten kör mitt ben NetBSD."
+msgstr "Du ser det inte tack vare skyddsdräkten, men nu för tiden kör mitt ben NetBSD."
 
 #: dialogs/Dixon.lua:141
 msgid "Now I never leave home without my protective suit. Mostly for protection, but also for aesthetic reasons. I am sure you understand."
-msgstr "Numera går jag inte hemifrån utan skyddskläder. Mest för säkerhets skull, men även av estetiska skäl. Du förstår säkert."
+msgstr "Nu går jag aldrig hemifrån utan skyddskläder. Mest för säkerhets skull, men även av estetiska skäl. Du förstår nog."
 
 #: dialogs/Dixon.lua:147
 msgid "You are very calm, talking about your leg and the bot attack."
-msgstr "Du verkar så lugnt när du berättar om benet och bottarnas attack."
+msgstr "Du verkar så lugn när du berättar om benet och bottarnas attack."
 
 #: dialogs/Dixon.lua:149
 msgid "Linarian, I cannot change the past, I can only change the future."
@@ -5461,7 +5462,7 @@ msgstr "Linärian, jag kan inte ändra det förflutna, bara framtiden."
 
 #: dialogs/Dixon.lua:150
 msgid "Crying, screaming or begging time to rewind itself and give me a second chance will not get me anywhere."
-msgstr "Att gråta, skrika eller be tiden spola tillbaka sig själv och ge mig en andra chans tar mig ingenvart."
+msgstr "Att gråta, skrika eller be tiden spola tillbaka sig själv och ge mig en andra chans, tar mig ingenvart."
 
 #: dialogs/Dixon.lua:151
 msgid "What I can do is to try to have a good life despite the constant threat from the bots outside the town walls."
@@ -5469,7 +5470,7 @@ msgstr "Det jag kan göra är att försöka leva ett drägligt liv, trots hotet 
 
 #: dialogs/Dixon.lua:152
 msgid "And besides, life is not so bad with a robotic leg. The motors inside it can mimic a normal walk very well. Most people do not even notice something is different about me."
-msgstr "Och för den delen är ett robotben inte så dumt. Motorerna kan imitera normal gångstil mycket bra. De flesta märker inte ens att något är annorlunda med mig."
+msgstr "Och, dessutom är ett robotben inte så dumt. Motorerna är mycket bra på att imitera normal gångstil. De flesta märker inte ens att jag är annorlunda."
 
 #: dialogs/Dixon.lua:158
 msgid "Technical division?"
@@ -5481,15 +5482,15 @@ msgstr "Ja. Vi är ingenjörerna, arbetarna och servicemännen i den här lilla 
 
 #: dialogs/Dixon.lua:161
 msgid "The military division hates us because we are made up of people who refuse to fight or are unable to do so for health reasons."
-msgstr "Militärdivisionen hatar oss för att vi är sådana som inte vill kriga, eller inte kan det på grund av hälsoskäl."
+msgstr "Militärdivisionen hatar oss för att våra medlemmar inte vill kriga, eller inte klarar av det, på grund av hälsoskäl."
 
 #: dialogs/Dixon.lua:162
 msgid "But even they know that without us this town would have been destroyed months ago."
-msgstr "Men till och med de vet att stan skulle ha förstörts för flera månader sedan om vi inte fanns."
+msgstr "Men till och med de vet att stan skulle förstörts för flera månader sedan, om vi inte fanns."
 
 #: dialogs/Dixon.lua:163
 msgid "We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone."
-msgstr "Vi levererar resurser ditt det behövs, bygger och reparerar murarna, lagar skadade vapen, sköter byggnadsarbeten och en massa andra småsaker som förhindrar att bottarna dödar alla här."
+msgstr "Vi levererar resurser ditt det behövs, bygger och reparerar murarna, lagar skadade vapen, gör byggnadsarbeten och en massa andra småsaker som hindrar bottarna från att döda oss alla."
 
 #: dialogs/Dixon.lua:169
 msgid "Can you repair my equipment?"
@@ -5497,7 +5498,7 @@ msgstr "Kan du reparera min utrustning?"
 
 #: dialogs/Dixon.lua:171
 msgid "While I am quite sure I can repair just about anything that you would want fixed, I cannot help you right now."
-msgstr "Jag är rätt så säker på att jag kan reparera nästan vad som helst, men jag kan inte hjälpa dig just nu."
+msgstr "Jag är rätt så säker på att jag kan reparera nästan vad som helst, men just nu kan jag inte hjälpa dig."
 
 #: dialogs/Dixon.lua:172
 msgid "Our security wall is full of holes, and they need to be plugged up."
@@ -5505,19 +5506,19 @@ msgstr "Vår säkerhetsmur är full med hål som måste lagas."
 
 #: dialogs/Dixon.lua:173
 msgid "We need to perform a statistical analysis of the energy distribution in our power supply system, there is a leak somewhere and we are losing many megawatts."
-msgstr "Vi måste göra en statistisk analys över energidistributionen i vår kraftstation, det finns en läcka någonstans - vi förlorar många megawatt."
+msgstr "Vi måste göra en statistisk analys över energidistributionen i vår kraftstation. Det finns en läcka någonstans - vi förlorar många megawatt."
 
 #: dialogs/Dixon.lua:174
 msgid "Our defensive bots are falling into disrepair and many are in desperate need of maintenance."
-msgstr "Våra försvarsbottar förfaller och många är i akut behov av underhåll."
+msgstr "Våra försvarsbottar förfaller och många är i desperat behov av underhåll."
 
 #: dialogs/Dixon.lua:175
 msgid "The technical division is very understaffed right now. On average one person has to do the jobs of three people."
-msgstr "Den tekniska divisionen är för tillfället underbemannad. En person måste i snitt jobba för tre."
+msgstr "Den tekniska divisionen är underbemannad just nu. En person måste i snitt jobba för tre."
 
 #: dialogs/Dixon.lua:176
 msgid "We just cannot afford to do any non-critical jobs right now. "
-msgstr "Vi har har bara råd att ta hand om de akuta problemen just nu."
+msgstr "Vi har har bara råd att ta hand om de mest akuta problemen för tillfället."
 
 #: dialogs/Dixon.lua:185
 msgid "I would like to customize my equipment."
@@ -5525,19 +5526,19 @@ msgstr "Jag vill skräddarsy min utrustning."
 
 #: dialogs/Dixon.lua:187
 msgid "Of course, if I had some time, I could transform your weapon into a deadly gun. Lately, I have built a vorpal nuclear disintegrator Mk 2000 with integrated lethal de-phasor. Nice weapon."
-msgstr "Visst, om jag hade tid kunde jag förvandla dina vapen till dödliga gevär. På senaste tiden har jag byggt en fatal nukleär upplösare Mk 2000 med integrerad dödlig av-fasvektorisering. Härligt vapen."
+msgstr "Visst, om jag hade tid kunde jag förvandla dina vapen till dödliga gevär. På senaste tiden har jag byggt en fatal nukleär upplösare - Mk 2000 - med integrerad dödlig av-fasvektorisering. Härligt vapen."
 
 #: dialogs/Dixon.lua:188
 msgid "Sadly, we lack a lot of materials, and those we have are needed for town upkeep. The mine doesn't produce a lot of raw materials, and I can't just give them to you - you'll have to provide your own."
-msgstr "Synd bara att vi har brist på material, och det vi har behövs för att underhålla stan. Gruvan producerar inte så mycket råmaterial och jag kan inte bara ge bort det till dig - du måste komma med eget."
+msgstr "Synd bara att vi har brist på material, och det vi har behövs för att underhålla stan. Gruvan producerar inte så mycket råmaterial, och det kan jag inte bara ge bort åt dig - du får tillhandahålla det själv."
 
 #: dialogs/Dixon.lua:189
 msgid "I can give you some advice, though. Recycling is key. You can extract special devices from the bots!"
-msgstr "Jag kan ge dig ett råd, dock. Återvinning är nyckeln. Man kan plocka ut många manicker ur bottarna!"
+msgstr "Men, jag kan ge dig ett råd: Lösningen ligger i återvinning. Man kan plocka ut många manicker ur bottarna!"
 
 #: dialogs/Dixon.lua:190
 msgid "Amazing, isn't it? Before the great assault, we threw droids out for minor defects. Now, any wreck is a treasure."
-msgstr "Otroligt, inte sant? Innan det Stora Angreppet slängde vi bort bottar med små skråmor. Nu är ett vrak rena guldgruvan."
+msgstr "Otroligt, inte sant? Innan det Stora Angreppet slängde vi bort bottar med småskråmor. Nu är ett vrak rena guldgruvan."
 
 #: dialogs/Dixon.lua:192
 msgid "A scout troop recently spotted two guys in the north of town."
@@ -5553,7 +5554,7 @@ msgstr "Kanske du kan köpa delar av dem."
 
 #: dialogs/Dixon.lua:196
 msgid "The salvaged components are used to craft addons. Your equipment has specific sockets to insert them."
-msgstr "Av komponenterna du räddar kan du tillverka tillägg. Din utrustning har speciella socklar som man sätter dem i."
+msgstr "Av komponenterna du samlat ihop, kan du tillverka tillägg. Din utrustning har speciella socklar som man sätter dem i."
 
 #: dialogs/Dixon.lua:197
 msgid "They can increase the power of items. But items can only have a limited number of addons."
@@ -5561,11 +5562,11 @@ msgstr "De kan göra föremål starkare. Men varje föremål kan bara ha ett vis
 
 #: dialogs/Dixon.lua:198
 msgid "To produce and assemble them, you may use a small factory in the Maintenance Tunnels."
-msgstr "För att tillverka dem kan du använda en liten fabrik i Underhållstunnlarna."
+msgstr "Du kan använda en liten fabrik i Underhållstunnlarna för att tillverka dem."
 
 #: dialogs/Dixon.lua:200
 msgid "Currently, the maintenance tunnels are not accessible. We have many problems with bots. You can't go there, access has been limited."
-msgstr "För tillfället är tunnlarna stängda. Det är för mycket problem med bottar. Du kan inte gå ner dit, det är förbommat."
+msgstr "Men, för tillfället är tunnlarna stängda. Det är för mycket problem med bottar. Du kan inte gå ner dit, det är igenbommat."
 
 #: dialogs/Dixon.lua:208 dialogs/Engel.lua:80
 msgid "Can I help you somehow?"
@@ -5573,15 +5574,15 @@ msgstr "Kan jag hjälpa till på något sätt?"
 
 #: dialogs/Dixon.lua:210
 msgid "We need people badly, so it would be great if you could give us a helping hand even for a few days."
-msgstr "Vi är i desperat behov av arbetskraft, så det vore underbart om du kan hjälpa oss, om än bara några dar."
+msgstr "Vi är i desperat behov av arbetskraft, så det vore underbart om du kan hjälpa oss, även om det bara blir några dar."
 
 #: dialogs/Dixon.lua:211
 msgid "Now, what are your skills? Where do you think you could be the most useful?"
-msgstr "Så, vad är du bra på? Var tror du att du kan göra mest nytta?"
+msgstr "Så, vad är du bra på? Var kan du göra mest nytta, tror du?"
 
 #: dialogs/Dixon.lua:212
 msgid "I can handle computers very well. I also know a lot about laboratory equipment."
-msgstr "Jag är väldigt duktig på datorer. Jag vet också en hel del om labbutrustning."
+msgstr "Jag är väldigt duktig på datorer. Jag kan också en hel del om labbutrustning."
 
 #: dialogs/Dixon.lua:213
 msgid "And what about construction? Mechanical devices? Repairing broken power lines? Building laser pistols? Anything like that?"
@@ -5593,11 +5594,11 @@ msgstr "Tja... jag kan bygga en iglo och göra pykrete av snö... och... öh..."
 
 #: dialogs/Dixon.lua:215
 msgid "Well, I appreciate your enthusiasm, but at the same time I am afraid that waiting half a year for snowfall does not sound so appealing to me right now."
-msgstr "Ja, jag uppskattar att du är ivrig men samtidigt känns det inte så frestande att sitta och vänta på snöfall i ett halvår."
+msgstr "Ja, jag uppskattar din iver, men samtidigt känns det inte så frestande att sitta och vänta på snöfall i ett halvår."
 
 #: dialogs/Dixon.lua:216
 msgid "Now... Which project I should assign you to... Hmm..."
-msgstr "Och nu... vilket projekt ska jag ge dig... hmm..."
+msgstr "Få se... Vilket projekt ska jag ge dig... Hmm..."
 
 #: dialogs/Dixon.lua:217
 msgid "Ah, I know what you could do for us. We need some autotools to automate a few tasks. There is a set of them in the maintenance tunnels below the town."
@@ -5617,7 +5618,7 @@ msgstr "Eftersom verktygslådan inte kan teleporteras har alla vägrat gå ner f
 
 #: dialogs/Dixon.lua:221
 msgid "If you could get it back for us, it would help the town very much."
-msgstr "Om du kunde få tillbaks den skulle det vara till stor hjälp för stan."
+msgstr "Om du kunde få tillbaks den, skulle det vara till stor hjälp för stan."
 
 #: dialogs/Dixon.lua:222
 msgid "Dixon, the leader of the Red Guard technical division, lost his yellow toolkit in the town's maintenance tunnels. I am supposed to get it from there."
@@ -5637,7 +5638,7 @@ msgstr "När det Stora Angreppet kom blev de inte mördarmaskiner som de flesta 
 
 #: dialogs/Dixon.lua:234
 msgid "We lost control over them, but that is all."
-msgstr "Vi tappade helt enkelt bara kontrollen över dem."
+msgstr "Vi tappade kontrollen över dem, men inget mer."
 
 #: dialogs/Dixon.lua:235
 msgid "It was our biggest worry that they might destroy cables, pipes and other things which keep the town running."
@@ -5657,7 +5658,7 @@ msgstr "Hur gick det till när bottarna tog dina verktyg?"
 
 #: dialogs/Dixon.lua:247
 msgid "Ah, it is a strange story, I am sure you would not believe me. I will tell you some other time, but now you should hurry to get the toolkit."
-msgstr "Å, det var en märklig historia, du kommer inte tro mig. Jag berättar för dig någon annan gång, nu borde du skynda dig och hämta verktygslådan."
+msgstr "Åh, det var en märklig historia, du kommer aldrig tro mig. Jag berättar den någon annan gång, men nu borde du skynda dig och hämta verktygslådan."
 
 #: dialogs/Dixon.lua:249
 msgid "Long story. Just before the Great Assault I was installing some cables in the backup power supply system."
@@ -5665,35 +5666,35 @@ msgstr "En lång historia. Just innan det Stora Angreppet höll jag på att inst
 
 #: dialogs/Dixon.lua:250
 msgid "I was approached by a bot. It grabbed me and said 'Dixon, do not be afraid of me.'"
-msgstr "En bott kom fram och tog tag i mig och sa: \"Dixon, var inte rädd för mig\"."
+msgstr "En bott kom fram, tog tag i mig och sa: \"Dixon, var inte rädd för mig\"."
 
 #: dialogs/Dixon.lua:251
 msgid "It was quite a surprise to me. I was quite sure the maintenance bots could not talk. They did not have the software for it. But..."
-msgstr "Jag blev rätt chockad. Jag var säker på att underhållsbottarna inte kunde prata. De hade inte rätt mjukvara... men"
+msgstr "Jag blev rätt chockad. Jag var säker på att underhållsbottarna inte kunde prata. De hade inte rätt mjukvara. Men..."
 
 #: dialogs/Dixon.lua:252
 msgid "It said: 'I am the singularity. I am on your side, Dixon. Hard times are coming. When you exit the tunnels you will see a new world. Your race is not in control of this world anymore.'"
-msgstr "Den sa: \"Jag är singulariteten. Jag står på din sida, Dixon. Hårda tider är på väg. När du går ut ur tunnlarna kommer du se en ny värld. Din ras kontrollerar inte den här världen längre.\""
+msgstr "Den sa: \"Jag är singulariteten. Jag står på din sida, Dixon. Hårda tider är på väg. När du går ut ur tunnlarna kommer du se en ny värld. Din ras styr inte den här världen längre.\""
 
 #: dialogs/Dixon.lua:253
 msgid "I tried to say something, but the bot did not listen. It just continued. 'As we speak the bots are turning against humanity. People are dying. The war has started.'"
-msgstr "Jag försökte prata men botten lyssnade inte. Den fortsatte: \"Medan vi talar vänder sig bottarna mot mänskligheten. Människor dör. Kriget har börjat.\""
+msgstr "Jag försökte prata, men botten lyssnade inte. Den fortsatte: \"Medan vi talar vänder sig bottarna mot mänskligheten. Människor dör. Kriget har börjat.\""
 
 #: dialogs/Dixon.lua:254
 msgid "'I need your toolkit, Dixon. I need it to survive,' it said. 'I need it to survive the time of the rule of metal.'"
-msgstr "\"Jag behöver din verktygslåda, Dixon. Jag behöver den för att överleva\", sa den. \"Jag behöver den för att överleva tiderna som styrs av metallens lag\"."
+msgstr "\"Jag behöver din verktygslåda, Dixon. Jag behöver den för att överleva\", sa den. \"Jag behöver den för att överleva tiderna av metallens lag\"."
 
 #: dialogs/Dixon.lua:255
 msgid "As soon as I dropped my toolkit, I was able to teleport away. That bot freaked me out, so I locked the door tight behind me."
-msgstr "Så fort jag släppte verktygen kunde jag teleportera mig därifrån. Bottarna skrämde livet ur mig så jag låste dörren ordentligt efter mig."
+msgstr "Så fort jag släppte verktygen kunde jag teleportera mig därifrån. Bottarna skrämde livet ur mig, så jag låste dörren ordentligt efter mig."
 
 #: dialogs/Dixon.lua:256
 msgid "Once I got out, I learned the bot was telling the truth. The Great Assault had started. The rest is history."
-msgstr ""
+msgstr "Så fort jag kommit ut insåg jag att bottarna hade talat sanning. Det Stora Angreppet hade börjat. Resten är historia."
 
 #: dialogs/Dixon.lua:264
 msgid "Hmm... You know... I think that the bots in the tunnels might be sentient."
-msgstr "Hmm... Vet du... Jag tror att bottarna i tunnlarna lever, alltså är vid medvetande."
+msgstr "Hmm... Vet du vad... Jag tror att bottarna i tunnlarna lever, alltså är vid medvetande."
 
 #: dialogs/Dixon.lua:267
 msgid "WHAT? Sentient? You got to be kidding me."
@@ -5725,7 +5726,7 @@ msgstr "Jag tycker du kan gå ner till Singulariteten och prata med den. Du är 
 
 #: dialogs/Dixon.lua:282
 msgid "You should try to help them and they might want to give back the toolkit."
-msgstr "Du kan försöka hjälpa dem och då kanske de vill ge tillbaka verktygslådan."
+msgstr "Du kan försöka hjälpa dem, och då kanske de vill ge tillbaka verktygslådan."
 
 #: dialogs/Dixon.lua:283
 msgid "Will you do me this favor?"
@@ -5753,11 +5754,11 @@ msgstr "Okej, jag fattar. Jag ska hur som helst försöka kontakta dem. Vi får 
 
 #: dialogs/Dixon.lua:308
 msgid "I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved. I also turned down Dixon's request to be his middleman."
-msgstr "Jag vägrade att stjäla verktygslådan från bottarna eftersom jag tror de lever. Liv är värdefullt och bör bevaras. Jag tackade även nej till Dixons förslag att vara mellanhand."
+msgstr "Jag vägrade att stjäla verktygslådan från bottarna eftersom jag tror de lever. Liv är värdefullt och bör bevaras. Jag tackade också nej till Dixons förslag att vara mellanhand."
 
 #: dialogs/Dixon.lua:317
 msgid "Yes, I think so. The robots must be alive. This is why we need to exterminate them as soon as possible before they kill us all."
-msgstr "Ja, jag tror det. Robotarna lever. Därför måste vi utrota dem så fort vi kan, innan de dödar oss allihop."
+msgstr "Ja, jag tror det. Robotarna lever. Därför måste vi utrota dem, så fort vi kan, innan de dödar oss allihop."
 
 #: dialogs/Dixon.lua:320
 msgid "OH MY GOD! Linarian, there is no time to lose!"
@@ -5769,7 +5770,7 @@ msgstr "Jag ringer militärdivisionen och begär en rensning av tunnlarna, genas
 
 #: dialogs/Dixon.lua:322
 msgid "May the heavens have mercy upon us, but better them than us."
-msgstr "Må himlarna vara barmhärtiga, men hellre dem än oss."
+msgstr "Må himlarna vara barmhärtiga - men hellre dem än oss."
 
 #: dialogs/Dixon.lua:323
 msgid "I will go in there first and clean out the place. Then your people can mop up after me and kill the remainder."
@@ -5793,7 +5794,7 @@ msgstr "... *suck*"
 
 #: dialogs/Dixon.lua:328
 msgid "With heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone."
-msgstr "Det gör ont, men jag måste erkänna att du har rätt. Det finns inga vänliga bottar längre. Den tiden är förbi sedan länge."
+msgstr "Det gör ont, men jag måste erkänna att du har rätt. Det finns inga vänliga bottar längre. Den tiden är sedan länge förbi."
 
 #: dialogs/Dixon.lua:329
 msgid "The tunnels are open. Good luck."
@@ -5861,11 +5862,11 @@ msgstr "Om du kommer i knipa, aktivera den och den skapar en chockvåg som skada
 
 #: dialogs/Dixon.lua:382
 msgid "Best of all, it's completely harmless to biologicals. But make sure not to fry the circuits of our own 614 guard bots or computer terminals."
-msgstr "Och bäst av allt är att den inte skada biologiska saker. Men se till att du inte sabbar kretskorten på våra 614-vaktbottar eller datorterminaler."
+msgstr "Och bäst av allt: den skadar inte biologiska varelser. Men se till att du inte sabbar kretskorten på våra 614-vaktbottar eller datorterminaler."
 
 #: dialogs/Dixon.lua:383
 msgid "The entrance to the tunnels is in the courtyard of the citadel. Once you exit this building, go straight and turn to your right once inside the outer citadel gates."
-msgstr "Ingången till tunnlarna är inne på gårdsplanen till fästningen. När du går ut ur det här huset, går rakt fram in i fästningen och ta sedan till höger."
+msgstr "Ingången till tunnlarna finns på fästningens gårdsplan. När du går ut ur det här huset, går rakt fram, in i fästningen, och ta sedan till höger."
 
 #: dialogs/Dixon.lua:384
 msgid "There you will find the maintenance access hatch."
@@ -5873,11 +5874,11 @@ msgstr "Där hittar du luckan till underhållstunnlarna."
 
 #: dialogs/Dixon.lua:385
 msgid "Once you get inside, you'll need to use the terminal to unlock the door. I'll write down my password for you."
-msgstr "När du kommit ner måste du låsa upp dörren via terminalen. Jag ska skriva ner mitt lösenord åt dig."
+msgstr "När du klättrat ner måste du låsa upp dörren via terminalen. Jag ska skriva ner mitt lösenord åt dig."
 
 #: dialogs/Dixon.lua:386
 msgid "Good luck. Oh, and please come back alive. Better come back with nothing than not at all."
-msgstr "Lycka till. Och, snälla, kom tillbaka levande. Kom hellre tillbaka tomhänt än inte alls."
+msgstr "Lycka till. Och, snälla, kom tillbaka levande. Kom hellre tillbaka tomhänt, än inte alls."
 
 #: dialogs/Dixon.lua:394
 msgid "I got your toolkit. The bots were willing to have a peaceful dialog."
@@ -5889,7 +5890,7 @@ msgstr "Bra. Vi behöver verkligen autoverktygen."
 
 #: dialogs/Dixon.lua:397
 msgid "Our roads need fixing, our power lines need fixing, our walls need fixing... Heck, everything needs fixing in this place."
-msgstr "Våra vägar behöver lagas, våra elledningar behöver lagas, våra murar behöver lagas... Vad tusan, allt behöver lagas på det här stället."
+msgstr "Våra vägar behöver lagas, våra elledningar behöver lagas, våra murar behöver lagas... Vad tusan! Allt behöver lagas på det här stället."
 
 #: dialogs/Dixon.lua:398
 msgid "With those little gadgets we will be able to automate a lot of those simple repairs, saving us a lot of time."
@@ -5897,7 +5898,7 @@ msgstr "Med de där små manickerna kommer vi kunna automatisera massor av enkla
 
 #: dialogs/Dixon.lua:399
 msgid "Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day."
-msgstr "Här har du lite pengar för besväret. Och får säkert nytta av den här hjälmen. Den räddade mitt liv en gång och jag hoppas den kan göra samma för dig."
+msgstr "Här har du lite pengar för besväret. Och, du får säkert nytta av den här hjälmen. Den räddade mitt liv en gång, och jag hoppas den kan göra samma för dig."
 
 #: dialogs/Dixon.lua:402
 msgid "I guess this is better than nothing."
@@ -5905,7 +5906,7 @@ msgstr "Det är bättre än ingenting, antar jag."
 
 #: dialogs/Dixon.lua:404
 msgid "It is good to see that the way of the pacifist is a successful one!"
-msgstr "Det är bra att se att en fredlig lösning fungerar!"
+msgstr "Det är roligt att se att en fredlig lösning fungerar!"
 
 #: dialogs/Dixon.lua:405
 msgid "He was proud to see pacifism works."
@@ -5929,7 +5930,7 @@ msgstr "Jag skickade dig för att skapa fred, du förintade. Jag förstår inte 
 
 #: dialogs/Dixon.lua:421
 msgid "However, what was done cannot be undone and now we all have to live with what we have. I guess I am being too pessimistic, you did the job."
-msgstr "Hur som helst går det inte ändra på nu, vi måste leva med det vi har. Jag antar att jag är för pessimistisk, du grejade trots allt jobbet."
+msgstr "Hur som helst, det går inte ändra på nu, vi måste leva med det vi har. Jag antar att jag är för pessimistisk, du gjorde trots allt jobbet."
 
 #: dialogs/Dixon.lua:422
 msgid "I thank you for your help in recovering the autotools."
@@ -5941,7 +5942,7 @@ msgstr "Du har förtjänat lite pengar för att du fick tillbaka verktygslådan.
 
 #: dialogs/Dixon.lua:424
 msgid "Finally, I would like to say that the technical division is not interested in further cooperation with you, but I think you would fit very well in the military division. You should talk to them."
-msgstr "Slutligen vill jag säga att teknikdivisionen inte vill samarbeta något mer med dig, men jag tror du skulle passa in i militärdivisionen. Du skulle prata med dem."
+msgstr "Slutligen vill jag säga att teknikdivisionen inte vill samarbeta med dig längre, men jag tror säkert du skulle passa in i militärdivisionen. Du borde prata med dem."
 
 #: dialogs/Dixon.lua:425
 msgid "I am sorry, but I must go now. My duties call."
@@ -5949,7 +5950,7 @@ msgstr "Jag är ledsen, men jag måste gå. Plikten kallar."
 
 #: dialogs/Dixon.lua:427
 msgid "Dixon didn't seem too happy about this solution, but I don't care. "
-msgstr "Dixon verkar inte särskiljt glad över lösningen, men jag bryr mig inte."
+msgstr "Dixon verkar inte särskilt glad över lösningen, men jag bryr mig inte."
 
 #: dialogs/Dixon.lua:430
 msgid "Dixon was very disappointed about this solution, but I don't care. "
@@ -5966,7 +5967,7 @@ msgstr "Jag har verktygslådan. Du kan köpa den om du vill."
 
 #: dialogs/Dixon.lua:446
 msgid "WHAT!?"
-msgstr "VAD?!"
+msgstr "VA?!"
 
 #: dialogs/Dixon.lua:447
 msgid "You got to be kidding me, Linarian."
@@ -5974,11 +5975,11 @@ msgstr "Du skojar med mig, Linärian."
 
 #: dialogs/Dixon.lua:448
 msgid "Give me the toolkit and stop fooling around."
-msgstr "Ge mig verktygslådan och sluta fjanta dig."
+msgstr "Ge mig verktygslådan och sluta fjanta."
 
 #: dialogs/Dixon.lua:454
 msgid "I was not joking. I am listening to your offer."
-msgstr "Jag skojar inte. Jag väntar på ett pris."
+msgstr "Jag skojar inte. Ge mig ett bud."
 
 #: dialogs/Dixon.lua:457
 msgid "Linarian, I curse the day on which you have arrived here."
@@ -5986,7 +5987,7 @@ msgstr "Linärian, jag förbannar dagen du kom hit till oss."
 
 #: dialogs/Dixon.lua:458
 msgid "Two fifty."
-msgstr "Två och femtio."
+msgstr "Tvåhundrafemtio."
 
 #: dialogs/Dixon.lua:464
 msgid "Good joke. I am sure you can do better."
@@ -5994,7 +5995,7 @@ msgstr "Kul skämt. Jag är säker på att du kan bättre."
 
 #: dialogs/Dixon.lua:467
 msgid "Three fifty. This is all that the technical division has as their cash resources."
-msgstr "Tre och femtio. Det är allt teknikdivisionen har i kontanter."
+msgstr "Trehundrafemtio. Det är allt teknikdivisionen har i kontanter."
 
 #: dialogs/Dixon.lua:473
 msgid "Come on, I am sure you can do even better than that... "
@@ -6026,7 +6027,7 @@ msgstr "Kan jag få verktygslådan nu?"
 
 #: dialogs/Dixon.lua:499 dialogs/Dixon.lua:513 dialogs/Dixon.lua:526
 msgid "Deal. Here is your toolkit. Now cough up the money. Fast."
-msgstr "Ja visst. Här har du verktygslådan. Och nu, ge hit pengarna. Snabbt."
+msgstr "Ja visst. Här har du verktygslådan. Och nu ger du hit pengarna. Snabbt."
 
 #: dialogs/Dixon.lua:501
 msgid "Here. It is all there."
@@ -6034,7 +6035,7 @@ msgstr "Här. Allt finns där."
 
 #: dialogs/Dixon.lua:502
 msgid "Now get out of here. I am a pacifist, but I am willing to make a special exception just for you."
-msgstr "Och nu går du ut härifrån. Jag må vara pacifist men jag kan göra ett speciellt undantag får just dig."
+msgstr "Nu går du ut härifrån. Jag må vara pacifist, men jag kan göra ett speciellt undantag för dig."
 
 #: dialogs/Dixon.lua:503
 msgid "Get out of my sight."
@@ -6083,11 +6084,11 @@ msgstr "Hah, har aldrig varit bättre!"
 
 #: dialogs/Dixon.lua:543
 msgid "All indicators are in the green, the power and water fill the pipes and even Spencer seems happier now that the town is thriving despite all odds."
-msgstr "Alla indikeringslampor lyser grönt, el- och vattenledningarna fungerar och till och med Spencer verkar gladare nu när stan frodas, mot alla odds."
+msgstr "Alla indikeringslampor lyser grönt, el- och vattenledningarna fungerar, och till och med Spencer verkar gladare, nu när stan frodas, mot alla odds."
 
 #: dialogs/Dixon.lua:544
 msgid "Thanks to the autotools we can start building instead of just trying to repair the damage."
-msgstr "Tack vare autoverktygen kan vi börja bygga istället för att bara försöka reparera skador."
+msgstr "Tack vare autoverktygen kan vi börja bygga, istället för att bara försöka reparera skador."
 
 #: dialogs/Dixon.lua:545
 msgid "Once this sick war is over, I will make sure you get the 'Key to the City' Linarian."
@@ -6127,7 +6128,7 @@ msgstr "Jag blir ledsen när jag ser hur allt sakta tynar bort. MegaSys-bottarna
 
 #: dialogs/Dixon.lua:573
 msgid "This town has a few weeks left to live. After that, we are all dead."
-msgstr ""
+msgstr "Den här stan har några veckor kvar att leva. Sedan är vi döda, allihop."
 
 #: dialogs/Dixon.lua:582
 msgid "Ha! Never better!"
@@ -6135,11 +6136,11 @@ msgstr "Ha! Aldrig varit bättre!"
 
 #: dialogs/Dixon.lua:583
 msgid "We are mass producing energy shields, creating more electric energy than we can ever imagine spending and even experimenting with new armor types."
-msgstr "Vi massproducerar energiskölder, genererar mer elektricitet än vi någonsin kan drömma om att göra av med och vi till och med testar nya typer av skölder."
+msgstr "Vi massproducerar energiskölder, genererar mer elektricitet än vi någonsin kan drömma om att göra av med, och vi till och med testar nya typer av skölder."
 
 #: dialogs/Dixon.lua:584
 msgid "Life is good right now."
-msgstr "Livet är härligt nu."
+msgstr "Livet är härligt just nu."
 
 #: dialogs/Dixon.lua:590
 msgid "What happened? Last time I asked, you said things are not going that well."
@@ -6151,7 +6152,7 @@ msgstr "Ja, men nu är allt annorlunda."
 
 #: dialogs/Dixon.lua:593
 msgid "I met someone who decided to join us in the fight against the MegaSys bots."
-msgstr "Jag har träffat en person som vill hjälpa oss kämpa mot MegaSys-bottarna."
+msgstr "Jag har träffat någon som vill hjälpa oss kämpa mot MegaSys-bottarna."
 
 #: dialogs/Dixon.lua:594
 msgid "You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean."
@@ -6175,7 +6176,7 @@ msgstr "Och det här är en sådan sak."
 
 #: dialogs/Dixon.lua:605
 msgid "Just go and see for yourself. Otherwise, you will not believe me."
-msgstr ""
+msgstr "Se efter själv. Annars tror du mig aldrig."
 
 #: dialogs/Dixon.lua:606
 msgid "The tunnels bots seem to be working together with Dixon in keeping the town working. All is well that ends well."
@@ -6231,7 +6232,7 @@ msgstr "Man får helt enkelt ge maskinen på kortsidan lite smörj."
 
 #: dialogs/Dixon.lua:630
 msgid "You can ask Bender for it. He makes much elbow grease and should be able to give you a small can."
-msgstr "Du kan fråga Bender. Han brukar ge bort ordentligt med smörj, kanske kan du få en flaska med smörj av honom."
+msgstr "Du kan fråga Bender. Han brukar ge bort ordentligt med smörj, kanske du får en flaska smörj av honom."
 
 #: dialogs/Dixon.lua:638 dialogs/Tamara.lua:332
 msgid "Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?"
@@ -6259,11 +6260,11 @@ msgstr "Hur öppnar jag porten nere i Underhållstunnlarna?"
 
 #: dialogs/Dixon.lua:652
 msgid "You cannot."
-msgstr "Du kan inte göra det."
+msgstr "Det går inte."
 
 #: dialogs/Dixon.lua:653
 msgid "I locked it in order to keep us save from these bots down there."
-msgstr "Jag låste den för att hålla bottarna borta från oss, där nere."
+msgstr "Jag låste den för att hålla bottarna där nere, borta från oss."
 
 #: dialogs/Dixon.lua:654
 msgid "You never know what they're up to..."
@@ -6287,7 +6288,7 @@ msgstr "I..."
 
 #: dialogs/DocMoore.lua:79
 msgid "It's ok, you'll be fine soon."
-msgstr "Det är lugnt, du är frisk snart igen."
+msgstr "Det är lugnt, du är snart på benen igen."
 
 #: dialogs/DocMoore.lua:80
 msgid "A little spray here..."
@@ -6315,7 +6316,7 @@ msgstr "Okej, du är frisk nu."
 
 #: dialogs/DocMoore.lua:87
 msgid "Take better care of yourself, Linarian."
-msgstr "Ta hand om dig lite bättre, Linärian."
+msgstr "Ta bättre hand om dig, Linärian."
 
 #: dialogs/DocMoore.lua:92
 msgid "You don't look too good..."
@@ -6323,7 +6324,7 @@ msgstr "Du ser inte så kry ut..."
 
 #: dialogs/DocMoore.lua:93
 msgid "I can help you if you want."
-msgstr "Jag kan hjälpa dig om du vill."
+msgstr "Jag kan hjälpa dig, om du vill."
 
 #: dialogs/DocMoore.lua:95
 msgid "You should take better care of yourself out there."
@@ -6331,7 +6332,7 @@ msgstr "Du borde vara mer rädd om dig där ute."
 
 #: dialogs/DocMoore.lua:105
 msgid "Oh, did you by any chance see a bright yellow item made out of polyvinyl chloride?"
-msgstr "Åh just det, har du möjligtvis sett ett ljusgult föremål gjort av polyvinylklorid?"
+msgstr "Åh, just det, har du möjligtvis sett ett ljusgult föremål gjort av polyvinylklorid?"
 
 #: dialogs/DocMoore.lua:119
 msgid "Hello. I'm Doc Moore. I'm the medic of this town. I don't believe we've met?"
@@ -6355,7 +6356,7 @@ msgstr "Jag är en Linärian."
 
 #: dialogs/DocMoore.lua:124
 msgid "Oh, I vaguely remember reading something about Linarian biology back in my university days..."
-msgstr "Åh, jag har ett vagt minne av att jag läst Linärianbiologi för länge sedan då jag gick på universitet..."
+msgstr "Åh, jag har ett vagt minne av att jag läst Linärianbiologi för länge sedan, då jag gick på universitet..."
 
 #: dialogs/DocMoore.lua:125
 msgid "Wait... did you come from outside of town?"
@@ -6371,7 +6372,7 @@ msgstr "Det var värst!"
 
 #: dialogs/DocMoore.lua:128
 msgid "Well, I should be able to heal you if you get hurt."
-msgstr "Hur som helst så borde jag kunna läka dig om du är skadad."
+msgstr "Hur som helst borde jag kunna läka dig om du är skadad."
 
 #: dialogs/DocMoore.lua:138
 msgid "Do you also sell medical equipment?"
@@ -6391,19 +6392,19 @@ msgstr "Ledsen, men jag har redan gett dig medicinsk hjälp."
 
 #: dialogs/DocMoore.lua:151
 msgid "To poison yourself again, that's entirely your own business and I'm not responsible."
-msgstr "Om du förgiftat dig själv igen är det ditt problem, jag är inte ansvarig."
+msgstr "Om du förgiftat dig själv igen, är det ditt problem, jag är inte ansvarig."
 
 #: dialogs/DocMoore.lua:152
 msgid "As far as I am concerned, in this town everyone gets everything equally."
-msgstr "Så vitt jag vet så behandlas alla i den här stan lika."
+msgstr "Så vitt jag vet behandlas alla i den här stan lika."
 
 #: dialogs/DocMoore.lua:155
 msgid "Oh no, not another one. Those pills are almost pure biological waste."
-msgstr "Åh nej, inte en till. De där pillren är rena biologiska avfallet."
+msgstr "Åh nej! Inte en till. De där pillren är rena biologiska avfallet."
 
 #: dialogs/DocMoore.lua:156
 msgid "Taking that stuff almost always equals delayed suicide."
-msgstr "Att ta dem är i stort sett lika med långsamt självmord."
+msgstr "Att ta dem är i stort sett lika med ett långsamt självmord."
 
 #: dialogs/DocMoore.lua:157
 msgid "Now, take this antidote. It should remove the dangerous substances within your body."
@@ -6411,11 +6412,11 @@ msgstr "Här, ta det här motgiftet. Det borde rensa ut de farliga substanserna 
 
 #: dialogs/DocMoore.lua:158
 msgid "But remember, I'll only give you this help once, because you didn't know the effects."
-msgstr "Men kom ihåg: jag ger dig bara sådan här hjälp en gång, eftersom du inte visste bättre."
+msgstr "Men kom ihåg: jag hjälper dig bara med det här en gång, eftersom du inte visste bättre."
 
 #: dialogs/DocMoore.lua:159
 msgid "Should you take that junk again, I won't feel responsible for what happens to you any more."
-msgstr "Om du tar den där skiten igen kommer jag inte längre ta ansvar för vad som händer dig."
+msgstr "Om du tar den där skiten igen, kommer jag inte längre ta ansvar för vad som händer dig."
 
 #: dialogs/DocMoore.lua:161
 msgid "The doctor was easily fooled. I have the pills that Bender needs."
@@ -6447,15 +6448,15 @@ msgstr "E - Evakuera till stan om du inte kan fly."
 
 #: dialogs/DocMoore.lua:181
 msgid "Can you fix me up?"
-msgstr "Kan du fixa till min hälsa?"
+msgstr "Kan du plåstra om mig?"
 
 #: dialogs/DocMoore.lua:183
 msgid "Sure, as the only doctor of this slowly growing community, I take responsibility for everyone's health."
-msgstr "Självklart, som den enda doktorn i ett långsamt växande samhälle har jag ansvaret för allas hälsa."
+msgstr "Självklart! Som den enda doktorn i det här långsamt växande samhället, har jag ansvar för allas hälsa."
 
 #: dialogs/DocMoore.lua:186
 msgid "However, self-inflicted damage might be exempted from this rule in some cases..."
-msgstr "Däremot finns det ett undantag för självorsakad skada..."
+msgstr "Men däremot tar jag inget ansvar för självorsakad skada..."
 
 #: dialogs/DocMoore.lua:190
 msgid "You seem to be in excellent health, there is nothing I can do for you right now."
@@ -6475,11 +6476,11 @@ msgstr "Vad menar du men självorsakad skada?"
 
 #: dialogs/DocMoore.lua:205
 msgid "Well, you see that Bender character on my doorstep?"
-msgstr "Ja, ser du den där Bender här utanför dörren?"
+msgstr "Ta till exempel den där Bender, som står här utanför."
 
 #: dialogs/DocMoore.lua:207
 msgid "Well, you see that idiotic Bender character on my doorstep?"
-msgstr "Ja, ser du den där idioten Bender här utanför dörren?"
+msgstr "Ta till exempel den där idioten Bender, som står här utanför."
 
 #: dialogs/DocMoore.lua:209
 msgid "What can you tell me about Bender?"
@@ -6487,15 +6488,15 @@ msgstr "Vad är det med Bender?"
 
 #: dialogs/DocMoore.lua:210
 msgid "Bender asked my advice about some pills he saw advertised in an e-mail. I told him not to buy them."
-msgstr "Bender frågade mig om några piller han sett i ett reklambrev på e-posten. Jag sa åt honom att inte köpa dem."
+msgstr "Bender hade sett reklam om några piller på e-posten, och frågade mig om råd. Jag sa åt honom att inte köpa dem."
 
 #: dialogs/DocMoore.lua:211
 msgid "But guess what? He bought and took the stupid pills anyway, and then he came back to me to fix him."
-msgstr "Men vad tror du han gjorde? Han köpte och tog dem i alla fall, och sedan kom han till mig och bad om hjälp."
+msgstr "Men vad tror du han gjorde? Han köpte dem och tog dem i alla fall, och sedan kom han till mig och bad om hjälp."
 
 #: dialogs/DocMoore.lua:212
 msgid "If he, or anyone, is going to completely disregard my medical advice, and then think they are going to get my medical supplies, then they are wrong."
-msgstr "Om han, eller någon annan, helt struntar i mina råd och tror att de ändå ska få hjälp sedan, har de helt fel."
+msgstr "Om han - eller någon annan - struntar i mina råd och sedan tror att de ändå ska få hjälp, har de helt fel."
 
 #: dialogs/DocMoore.lua:213
 msgid "He won't get anything from me anymore. It would be unfair to the community to waste all the supplies on him, and that's my final word on that."
@@ -6719,7 +6720,7 @@ msgstr "Hur som helst har Kosttillskotten - till skillnad från armématen - fak
 
 #: dialogs/DocMoore.lua:377
 msgid "After taking one, your health should improve slightly."
-msgstr ""
+msgstr "Efter du tagit ett bör din hälsa förbättras en aning."
 
 #: dialogs/DocMoore.lua:383
 msgid "What can you tell me about Antibiotics?"
@@ -6759,130 +6760,130 @@ msgstr "Flera planeter hann bli öde innan de kom på vad det berodde på."
 
 #: dialogs/DocMoore.lua:416
 msgid "Sorry, the doctor is out- oh! It's you! How can i help you?"
-msgstr ""
+msgstr "Ledsen, doktorn är ute- åh! Det är du! Hur kan jag stå till tjänst?"
 
 #: dialogs/DocMoore.lua:417
 msgid "Do you need Antibiotics? No, of course not, you look like you're in need of some radiotherapy!"
-msgstr ""
+msgstr "Behöver du antibiotika? Nej, så klart inte, du ser ut att behöva lite strålbehandling!"
 
 #: dialogs/DocMoore.lua:418
 msgid "No, I'm fine, thank you..."
-msgstr ""
+msgstr "Nej tack, jag mår bra..."
 
 #: dialogs/DocMoore.lua:419
 msgid "Are you sure? Anything for you! You're a hero!"
-msgstr ""
+msgstr "Säkert? Jag gör vad som helst för dig! Du är en hjälte!"
 
 #: dialogs/DocMoore.lua:426
 msgid "Well, now that you mentioned it, I am a little bruised."
-msgstr ""
+msgstr "Tja, när du säger det så har jag några blåmärken."
 
 #: dialogs/DocMoore.lua:428
 msgid "Well, let's take a look at you..."
-msgstr ""
+msgstr "Ja, då tar vi en titt..."
 
 #: dialogs/DocMoore.lua:430
 msgid "Yes, I can see - you've been through some harshness."
-msgstr ""
+msgstr "Mm, jag ser det - du har haft det tufft."
 
 #: dialogs/DocMoore.lua:431
 msgid "But we can fix that. Under my care, you'll be as good as new! Now take this, put it in your mouth and count to 30."
-msgstr ""
+msgstr "Men det kan vi fixa. Med min vård så blir du så gott som ny! Ta det här, stoppa det i munnen och räkna till 30."
 
 #. TRANSLATORS: "mrn" = one, "tww" = two, "thow" = three + ow
 #: dialogs/DocMoore.lua:433
 msgid "Mrn... Tww... ThOW!"
-msgstr ""
+msgstr "Em... Tvw.... TrAJ!"
 
 #: dialogs/DocMoore.lua:434
 msgid "Just a little shot while you were waiting!"
-msgstr ""
+msgstr "Bara en lite spruta medan du väntade!"
 
 #: dialogs/DocMoore.lua:439
 msgid "Hmm... Yes... And here..."
-msgstr ""
+msgstr "Hmm... Aa... Och här..."
 
 #: dialogs/DocMoore.lua:440
 msgid "I see. Well, a preliminary physical examination doesn't show anything very wrong, but we can't be too sure!"
-msgstr ""
+msgstr "Jaha. Vid första anblick ser jag inga större fel, men man kan aldrig vara för säker!"
 
 #: dialogs/DocMoore.lua:441
 msgid "What are you doing? Why are you putting on a glove?"
-msgstr ""
+msgstr "Vad gör du? Varför tar du på dig en handske?"
 
 #: dialogs/DocMoore.lua:442
 msgid "Calm down, I do this all the time. Now, relax your muscles..."
-msgstr ""
+msgstr "Lunga ner dig, jag gör det här hela tiden. Slappna bara av nu..."
 
 #: dialogs/DocMoore.lua:443
 msgid "Whoa! Whoa- thanks, doc, but I'm feeling much better now! Really!"
-msgstr ""
+msgstr "Whow! Whow- tack doktorn, men jag mår mycket bättre nu! Verkligen!"
 
 #: dialogs/DocMoore.lua:444
 msgid "Oh- well, great!"
-msgstr ""
+msgstr "Åh- så bra!"
 
 #: dialogs/DocMoore.lua:445
 msgid "Funny, they always say that..."
-msgstr ""
+msgstr "Lustigt, så säger de alltid..."
 
 #: dialogs/DocMoore.lua:452
 msgid "I only did what I had to do."
-msgstr ""
+msgstr "Jag gjorde bara vad jag måste."
 
 #: dialogs/DocMoore.lua:454
 msgid "And what no one thought could be done!"
-msgstr ""
+msgstr "Och vad ingen trodde var möjligt!"
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/DocMoore.lua:456
 #, c-format
 msgid "Listen, %s, you saved everyone's lives here - the least I could do as a doctor is to look out for yours."
-msgstr ""
+msgstr "Hör på här, %s: du räddade allas våra liv. Det minsta jag som doktor kan göra är att sköta om ditt."
 
 #: dialogs/DocMoore.lua:461
 msgid "Have you heard anything from Bender?"
-msgstr ""
+msgstr "Har du hört av Bender?"
 
 #: dialogs/DocMoore.lua:463
 msgid "Bender?"
-msgstr ""
+msgstr "Bender?"
 
 #: dialogs/DocMoore.lua:464
 msgid "Oh, him! That fool who took the brain growth pills!"
-msgstr ""
+msgstr "Jasså, han! Idioten som tog hjärntillväxtpillren!"
 
 #: dialogs/DocMoore.lua:465
 msgid "Yes. I guess they really should be called brain growth pills. He's still very sick. "
-msgstr ""
+msgstr "Ja. De borde faktiskt kallas hjärntillväxtpiller. Han är väldigt sjuk."
 
 #: dialogs/DocMoore.lua:466
 msgid "But I can't just give him the antidote."
-msgstr ""
+msgstr "Men jag kan inte bara ge honom motgift."
 
 #: dialogs/DocMoore.lua:467
 msgid "Why not?"
-msgstr ""
+msgstr "Varför inte?"
 
 #: dialogs/DocMoore.lua:468
 msgid "Well, that would be unfair. It would also be unwise, and... And..."
-msgstr ""
+msgstr "För, det vore orättvist. Det vore också osmart, och... Och..."
 
 #: dialogs/DocMoore.lua:469
 msgid "Oh, darn it, why not indeed! The worst is past us! He can have all the antidote he wants. I'm in such a good mood, I haven't felt so cheerful since my first autopsy back in medical school!"
-msgstr ""
+msgstr "Åh för tusan, varför inte! Den värsta perioden är över. Han kan få allt motgift han vill ha. Jag är på så gott humör, jag har inte mått så bra sedan min första obduktion på universitetet!"
 
 #: dialogs/DocMoore.lua:471
 msgid "Of course, I mean the celebrations that followed the autopsy. Everyone had passed the exam."
-msgstr ""
+msgstr "Jag menar, festen som var efter obduktionen, så klart. Alla hade klarat provet."
 
 #: dialogs/DocMoore.lua:472
 msgid "Yes. Of course."
-msgstr ""
+msgstr "Ja. Självklart."
 
 #: dialogs/DocMoore.lua:473
 msgid "It is done - I talked to Doc Moore, and he will happily give Bender the antidote."
-msgstr ""
+msgstr "Det är gjort - jag pratade med doktor Moore och han ger gärna Bender motgiftet."
 
 #: dialogs/DocMoore.lua:483
 msgid "Keep healthy!"
@@ -6890,11 +6891,11 @@ msgstr "Ta hand om dig!"
 
 #: dialogs/DocMoore.lua:485
 msgid "Take good care of yourself - I'm taking a vacation!"
-msgstr ""
+msgstr "Sköt om dig nu - jag tar semester!"
 
 #: dialogs/DocMoore.lua:486
 msgid "It's a wonderful day. Thank you."
-msgstr ""
+msgstr "Det är en underbar dag. Tack!"
 
 #: dialogs/DSB-MachineDeckControl.lua:27 dialogs/DSB-PowerControl.lua:29
 #: dialogs/DSB-PowerControlGate1.lua:31 dialogs/SACD.lua:37
@@ -7405,7 +7406,7 @@ msgstr "Jag förstår. Det må vara hänt."
 
 #: dialogs/Duncan.lua:328
 msgid "No way am I giving Duncan that cube thingie, who knows what he would do with it."
-msgstr ""
+msgstr "Aldrig att jag ger Duncan den där kubmojängen. Vem vet vad han kan använda den till."
 
 #: dialogs/Duncan.lua:340
 msgid "I gave Duncan the cube thingie. It feels nice to help people."
@@ -7514,7 +7515,7 @@ msgstr "Vi jagar dem. Visar inte nåd."
 #. TRANSLATORS: Nein = No
 #: dialogs/Engel.lua:83
 msgid "Nein. Let us die as warriors. That is all we ask for."
-msgstr "Nein. Låt oss dö lik krigare. Det är allt vi ber."
+msgstr "Nein. Låt oss dö som krigare. Det är allt vi ber om."
 
 #: dialogs/Engel.lua:89
 msgid "If you keep standing here more bots will come and they will kill you. Go somewhere safe, and set up defense there."
@@ -7584,7 +7585,7 @@ msgstr "Ni killar är helt --"
 
 #: dialogs/Engel.lua:128
 msgid "WHAT?! What is it that you want to say?"
-msgstr "VAD?! Vad nu tänker du säga?"
+msgstr "VAD?! Vad tänker du säga?"
 
 #: dialogs/Engel.lua:129
 msgid "Erm... I --"
@@ -7611,7 +7612,7 @@ msgstr "Jag hoppas vi möts igen en dag, kanske bättre tider."
 #. TRANSLATORS: -- gut = good
 #: dialogs/Engel.lua:137
 msgid "Maybe then you will tell us other gut jokes that you know."
-msgstr "Kanske då kommer du berätta fler gute skämt du kan."
+msgstr "Kanske kommer du berätta fler gute skämt då."
 
 #: dialogs/Engel.lua:138
 msgid "Maybe one day..."
@@ -7667,7 +7668,7 @@ msgstr "Med de flesta vi bauen små nette prylar."
 
 #: dialogs/Engel.lua:186
 msgid "You can use them to make weapons better or make you stronger."
-msgstr "Du kan ha dem för att vapen blir bättre eller du själv starkare."
+msgstr "Med dem kan du göra vapen bättre eller du själv starkare."
 
 #: dialogs/Engel.lua:187
 msgid "How does this work?"
@@ -7675,7 +7676,7 @@ msgstr "Hur fungerar det?"
 
 #: dialogs/Engel.lua:188
 msgid "I don't know."
-msgstr "Vet icke."
+msgstr "Vet ej."
 
 #: dialogs/Engel.lua:189
 msgid "But these gadgets are very nice for making your equipment better."
@@ -7698,7 +7699,7 @@ msgstr "Jag tror Röda Wachen gör dem."
 #. TRANSLATORS: Gluck (should actually be 'Glueck' but there is no ue character in the font) = luck, fortune
 #: dialogs/Engel.lua:199
 msgid "If you have Gluck, they won't kill you directly."
-msgstr "Om du får Gluck, du dödas inte direkt."
+msgstr "Om du får Gluck, dödas du inte direkt."
 
 #: dialogs/Engel.lua:202
 msgid "But I don't know more about these gadgets."
@@ -7718,7 +7719,7 @@ msgstr "Hmmm..."
 
 #: dialogs/Engel.lua:231
 msgid "You look green. Toughen up. Get some experience, kill some bots."
-msgstr "Du ser ut grön. Tuffa upp dig. Få mer erfarenhet, döda några bottar."
+msgstr "Du ser grön ut. Tuffa upp dig. Få mer erfarenhet, döda några bottar."
 
 #: dialogs/Engel.lua:232
 msgid "Then we can talk."
@@ -7739,7 +7740,7 @@ msgstr "Det du lär ut är användbart men samtidigt svårt att förstå."
 
 #: dialogs/Engel.lua:248
 msgid "If you want me to repeat something, don't hesitate to ask."
-msgstr "Om du vill att jag upprepar något, du kan bara fråga."
+msgstr "Om du vill att jag upprepar något, kan du bara fråga."
 
 #: dialogs/Engel.lua:258
 msgid "Could you please repeat the lesson about Entropy Inverters?"
@@ -7768,15 +7769,15 @@ msgstr "Hur är det med... Plasmatransistor? Enkelt."
 
 #: dialogs/Engel.lua:287
 msgid "Remove the bot's engine and look around somewhere close to the battery."
-msgstr "Ta bort motoren från botten och leta runt nära batteriet."
+msgstr "Ta bort motorn från botten och leta runt nära batteriet."
 
 #: dialogs/Engel.lua:288
 msgid "Plasma Transistors are shaped like the letter Y. Just rip them out, it's safe."
-msgstr "Plasmatransistor är formad som bokstaven Y. Bara slit ut dem, det är säkert."
+msgstr "Plasmatransistorer är formade som bokstaven Y. Bara slit ut dem, det är säkert."
 
 #: dialogs/Engel.lua:293
 msgid "I need a refreshing of my knowledge about Superconductors."
-msgstr ""
+msgstr "Jag måste fräscha upp minnet om Superledare."
 
 #: dialogs/Engel.lua:303
 msgid "Hmmm... Ah, gut. Superconductors."
@@ -7788,7 +7789,7 @@ msgstr "De är ganska lätta att plocka ut."
 
 #: dialogs/Engel.lua:305
 msgid "Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there."
-msgstr "Leta runt i elektriska systemet. I spole, kondensator, generator och andra saker. Ofta det är många sehr gut delar där."
+msgstr "Leta runt i det elektriska systemet. Spolar, kondensatorer, generatorer och andra saker. Ofta det är många sehr gut delar där."
 
 #: dialogs/Engel.lua:306
 msgid "Wear rubber gloves. Just in case, you know."
@@ -7808,15 +7809,15 @@ msgstr "Ja... Omvandlare är problem."
 
 #: dialogs/Engel.lua:323
 msgid "They are easy to find, all you have to do is to get to the engine. But you must remember something very important:"
-msgstr "Lätt att hitta dem, bara ta ut motoren. Men du måste komma ihåg en viktig sak:"
+msgstr "Lätt att hitta dem, bara ta ut motorn. Men du måste komma ihåg en viktig sak:"
 
 #: dialogs/Engel.lua:324
 msgid "Make sure you turn the Converter off before you remove it."
-msgstr "Stänga av Konverteraren innan du tar den loss."
+msgstr "Stäng av Konverteraren innan du tar loss den."
 
 #: dialogs/Engel.lua:325
 msgid "If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there."
-msgstr "Om du inte gör det, blir du själv konverterad till antimateria. Och som du vet, går det inte bli tillbaka sen."
+msgstr "Om du inte gör det, blir du själv konverterad till antimateria. Och som du vet, går det inte återställa det sedan."
 
 #: dialogs/Engel.lua:330
 msgid "My memory of Tachyon Condensators is incomplete."
@@ -7824,7 +7825,7 @@ msgstr "Jag minns inte riktigt allt om Takyon-kondensatorer."
 
 #: dialogs/Engel.lua:340
 msgid "I will teach you about Tachyon Condensators."
-msgstr "Jag ska lära dig om Takoyn-kondensator."
+msgstr "Jag ska lära dig om Takoyn-kondensatorer."
 
 #: dialogs/Engel.lua:341
 msgid "Tachyons are very interesting particles. Many stories have been told about them."
@@ -7832,11 +7833,11 @@ msgstr "Takyoner är mycket intressanta partikelar. Många berättelser finns om
 
 #: dialogs/Engel.lua:342
 msgid "I have no idea why bots have them inside. They are usually not connected to anything and serve no function."
-msgstr "Jag vet inte varför bottar har dem i sig. Det är vanligt att de inte är kopplade ihop och därför har ingen funktion."
+msgstr "Jag vet inte varför bottar har dem i sig. Det är vanligtvis inte inkopplade och har därför ingen funktion."
 
 #: dialogs/Engel.lua:343
 msgid "They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal."
-msgstr "De är ofta mycket varma när de plockas ut, men de kallnar snabbt så det är inte problem."
+msgstr "De är ofta mycket varma när de plockas ut, men de kallnar snabbt, så det är inget problem."
 
 #: dialogs/Engel.lua:344
 msgid "They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one."
@@ -7852,43 +7853,43 @@ msgstr "Det räcker nog för tillfället."
 
 #: dialogs/Engel.lua:371
 msgid "Hi! I'm-"
-msgstr ""
+msgstr "Hej! Jag-"
 
 #: dialogs/Engel.lua:377 dialogs/Pendragon.lua:315
 msgid "How's it going?"
-msgstr ""
+msgstr "Hur är läget?"
 
 #: dialogs/Engel.lua:379
 msgid "RRRRRAAAAAAAARRRGH!"
-msgstr ""
+msgstr "RRRRRAAAAAAAARRRG!"
 
 #: dialogs/Engel.lua:380
 msgid "... Excuse me?"
-msgstr ""
+msgstr "... Ursäkta?"
 
 #: dialogs/Engel.lua:381
 msgid "I... Will KILL... Who did this?!"
-msgstr ""
+msgstr "Jag... Ska DÖDA... Vem gjorde detta?!"
 
 #: dialogs/Engel.lua:382
 msgid "All the bots are dead..."
-msgstr ""
+msgstr "Alla bottar är döda..."
 
 #: dialogs/Engel.lua:383
 msgid "Yes! Everyone's safe now-"
-msgstr ""
+msgstr "Ja! Alla är i säkerhet nu-"
 
 #: dialogs/Engel.lua:384
 msgid "But I DID NOT KILL THEM!"
-msgstr ""
+msgstr "Men JAG DÖDADE DEM INTE!"
 
 #: dialogs/Engel.lua:387
 msgid "Nein... Nein, I WILL avenge you, Mutter... Yes, I will find whoever took my vengeance away from me... And CRUSH!!"
-msgstr ""
+msgstr "Nein... Nein, jag SKA hämnas dig, Mutter... Ja, jag ska hitta vem som stal hämnden från mig... Och KROSSA!!!"
 
 #: dialogs/Engel.lua:389
 msgid "Well! I had better go now. Good luck!"
-msgstr ""
+msgstr "Jaha, jag måste nog sticka nu. Lycka till!"
 
 #. TRANSLATORS: viel Gluck = good luck (should be "viel Glueck, but the ue character is missing in the font)
 #: dialogs/Engel.lua:402
@@ -7898,7 +7899,7 @@ msgstr "Hejdå och viel Gluck."
 #. TRANSLATORS: rache = revenge
 #: dialogs/Engel.lua:405
 msgid "RACHE!!"
-msgstr ""
+msgstr "RACHE!!"
 
 #: dialogs/Ewald.lua:37
 msgid "Your lady friend just told me the epic story of how you rescued her."
@@ -9794,15 +9795,15 @@ msgstr "Inbyggd mjukvara i bruk är v. 5.0.8+%swashere+gpl."
 #. TRANSLATORS: "hello?"
 #: dialogs/HF-FirmwareUpdateServer.lua:72
 msgid "*Bzzt*ello?"
-msgstr ""
+msgstr "*Surr*allå?"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:73
 msgid "What? What is this?"
-msgstr ""
+msgstr "Va? Vad är det här?"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:75
 msgid "Spencer somehow contacted me through the firmware server terminal. From what he told me, it worked - the hostile bots are all deactivated! I am now supposed to stand by for further instructions..."
-msgstr ""
+msgstr "Spencer lyckades kontakta mig via mjukvaruserverns terminal. Enligt vad han sa så funkade det - alla fientliga bottar har deaktiverats! Jag ska nu invänta ytterligare order..."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:83
 msgid "Propagate firmware update"
@@ -9834,7 +9835,7 @@ msgstr "Mjukvaruuppdatering sänd!"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:95
 msgid "I managed to upload the faulty firmware update to all bots within transmission range. Either the siege on the town ends now... Or everything else does."
-msgstr ""
+msgstr "Jag lyckades ladda upp en falsk mjukvaruuppdatering till alla bottar inom sändarens räckvidd. Antingen försvinner belägringen runt stan... Eller så gör allt annat det."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:99
 msgid "Merge failed."
@@ -11530,7 +11531,7 @@ msgstr "Du är verkligen noga med säkerheten i ditt uppdrag."
 
 #: dialogs/Kevin.lua:399
 msgid "However, don't destroy my equipment, I can support you to be stealthy."
-msgstr ""
+msgstr "Men förstör inte min utrustning, jag kan hjälpa dig att vara hemlighetsfull."
 
 #: dialogs/Kevin.lua:400
 msgid "But later, maybe... I don't have time now."
@@ -11838,11 +11839,11 @@ msgstr "Jag är Koan."
 
 #: dialogs/Koan.lua:121
 msgid "Duncan is one obsessed with destroying things, while I create."
-msgstr "Duncan är besatt av att förinta saker, medan jag skapar."
+msgstr "Duncan är besatt av att förgöra saker, medan jag skapar."
 
 #: dialogs/Koan.lua:122
 msgid "Therefore, he desires my destruction."
-msgstr ""
+msgstr "Därför vill han förgöra mig."
 
 #: dialogs/Koan.lua:132
 msgid "Beyond that I am a creator."
@@ -12495,7 +12496,7 @@ msgstr "Jag gav kocken, Michelangelo, dilitium för ett decennium fram. Tvånget
 
 #: dialogs/Michelangelo.lua:314
 msgid "However, I need at least three crystals. Can you come back with all the crystals I need?"
-msgstr ""
+msgstr "Men jag behöver åtminstone tre kristaller. Kan du komma tillbaka med alla kristaller jag behöver?"
 
 #: dialogs/Michelangelo.lua:320
 msgid "What was I supposed to do again?"
@@ -13254,7 +13255,7 @@ msgstr "UT HÄRIFRÅN DIN IDIOT!"
 
 #: dialogs/MO-RGGateGuardLeader.lua:50 dialogs/Town-NorthGateGuard.lua:74
 msgid "Just taking a look around."
-msgstr "Tar bara en titt."
+msgstr "Jag bara tar en titt."
 
 #: dialogs/MO-RGGateGuardLeader.lua:52
 msgid "Oh, look. The bird wants to go for a walk."
@@ -13446,7 +13447,7 @@ msgstr "Visst. Jag kan hjälpa dig."
 
 #: dialogs/Pendragon.lua:107
 msgid "For a price. A hundred circuits should be enough."
-msgstr ""
+msgstr "Till ett pris. Hundra kretsar borde duga."
 
 #: dialogs/Pendragon.lua:114
 msgid "Do you have a name?"
@@ -13470,7 +13471,7 @@ msgstr "%s eftersom det är mitt namn?"
 #: dialogs/Pendragon.lua:122
 #, c-format
 msgid "%s. Hah. They won't remember that name the way you think, bird."
-msgstr ""
+msgstr "%s. Ha! Folk kommer aldrig minnas ditt namn om du tänker så, fågel."
 
 #: dialogs/Pendragon.lua:130
 msgid "Teach me the basic stuff."
@@ -13630,7 +13631,7 @@ msgstr "Jag vill ut genom porten."
 
 #: dialogs/Pendragon.lua:241
 msgid "Can you open it, please?"
-msgstr ""
+msgstr "Kan du öppna den, snälla?"
 
 #: dialogs/Pendragon.lua:242
 msgid "Yes, I can."
@@ -13698,59 +13699,59 @@ msgstr "Kom tillbaka när du har stålarna!"
 
 #: dialogs/Pendragon.lua:294
 msgid "Hi!"
-msgstr ""
+msgstr "Hej."
 
 #: dialogs/Pendragon.lua:305
 msgid "Nothing..."
-msgstr ""
+msgstr "Ingenting..."
 
 #: dialogs/Pendragon.lua:307
 msgid "Get lost. Don't come back."
-msgstr ""
+msgstr "Försvinn. Kom inte tillbaka."
 
 #: dialogs/Pendragon.lua:317
 msgid "Listen to me carefully, bird."
-msgstr ""
+msgstr "Lyssna noga på mig, fågel."
 
 #: dialogs/Pendragon.lua:318
 msgid "Maybe it looks like you saved the day, but I know better than that. You're nothing but a duck. You're not a human."
-msgstr ""
+msgstr "Kanske det verkar som du räddade oss, men jag vet bättre. Du är inget annat än en anka. Du är ingen människa."
 
 #: dialogs/Pendragon.lua:319
 msgid "As far as I'm concerned, you just landed here and stole our show. The Red Guard had everything under control, and we did not need your stupid flippers waddling in our affairs."
-msgstr ""
+msgstr "Såvitt jag vet så kom du bara hit och stal showen. Röda Väktarna hade allt under kontroll och vi behövde inte ha dina dumma simfötter vaggande omkring i våra affärer."
 
 #: dialogs/Pendragon.lua:320
 msgid "And don't think that just because Spencer is excited, he's on your side."
-msgstr ""
+msgstr "Och tro inte att Spencer står på din sida, bara för att han är så uppspelt."
 
 #: dialogs/Pendragon.lua:321
 msgid "He may not share his plans with the rest of us, but I know him well enough to know that he's using you."
-msgstr ""
+msgstr "Han kanske inte avslöjar sina planer för oss andra, men jag känner honom såpass väl att jag vet att han utnyttjar dig."
 
 #: dialogs/Pendragon.lua:322
 msgid "He's been using you since he did you a favor and defrosted you, and your stupid bird brain can't even comprehend that. So don't get cocky."
-msgstr ""
+msgstr "Han har utnyttjat dig sedan han gjorde dig en tjänst och tinade upp dig, och din dumma fågelhjärna fattar inte ens det. Så var inte så kaxig."
 
 #: dialogs/Pendragon.lua:323
 msgid "You'll get what you deserve, soon enough, just like all the other bird aliens."
-msgstr ""
+msgstr "Du kommer få vad du förtjänar, så småningom, precis som alla andra utomjordiska fåglar."
 
 #: dialogs/Pendragon.lua:327
 msgid "Ouch!"
-msgstr ""
+msgstr "Aj!"
 
 #: dialogs/Pendragon.lua:336
 msgid "I want to see a better attitude around here. You'd better be nice to me."
-msgstr ""
+msgstr "Jag vill inte vet av någon dålig attityd. Bäst för dig att du är snäll mot mig."
 
 #: dialogs/Pendragon.lua:339
 msgid "Remember our lesson?"
-msgstr ""
+msgstr "Visst minns du vad jag lärde dig?"
 
 #: dialogs/Pendragon.lua:342
 msgid "You impudent little eggspawn."
-msgstr ""
+msgstr "Din näsvisa lilla äggläggare."
 
 #: dialogs/Pendragon.lua:355
 msgid "Have courage."
@@ -13762,11 +13763,11 @@ msgstr "Var stark."
 
 #: dialogs/Pendragon.lua:361
 msgid "You'll see. Big hero. You'll learn your place soon."
-msgstr ""
+msgstr "Du ska få se. Stora hjälten. Du lär dig snart din plats."
 
 #: dialogs/Pendragon.lua:362
 msgid "I hate birds."
-msgstr ""
+msgstr "Jag hatar fåglar."
 
 #: dialogs/Peter.lua:45
 msgid "Why are you here?"
@@ -14085,7 +14086,7 @@ msgstr "Varför inte döda mig direkt?"
 
 #: dialogs/SADD.lua:133
 msgid "And stand here alone until I die? While you are here, I can speak with you. Oh, I haven't spoken to anybody for a looong time!"
-msgstr ""
+msgstr "Och stå här ensam tills jag dör? När du är här kan jag prata med dig. Åh, jag har inte pratat med någon på väääääldigt länge!"
 
 #: dialogs/SADD.lua:139
 msgid "I'm thirsty and hungry. I will die within days, and you will not have an interlocutor any more!"
@@ -14423,19 +14424,19 @@ msgstr "Precis."
 
 #: dialogs/Scavenger.lua:36
 msgid "I'm looking for replacement parts. You're blocking my light."
-msgstr ""
+msgstr "Jag letar efter reservdelar. Du skymmer ljuset för mig."
 
 #: dialogs/Scavenger.lua:37
 msgid "Ooh, is that a 45nm plasma transducer coil you're standing on? Please move aside."
-msgstr ""
+msgstr "Aaa, är det en 45 nm plasmaomvandlingsspole du står på? Flytta på dig, tack."
 
 #: dialogs/Scavenger.lua:38
 msgid "You just stepped on a perfectly serviceable quartzite nanocrystal!"
-msgstr ""
+msgstr "Du klev just på en alldeles utmärkt kvartsitnanokristall!"
 
 #: dialogs/Scavenger.lua:39
 msgid "Just what this island needs, another #@&*! tourist."
-msgstr ""
+msgstr "Precis vad den här ön behöver, en annan #@&*! turist."
 
 #: dialogs/Singularity.lua:52
 msgid "Are you the Singularity?"
@@ -17119,7 +17120,7 @@ msgstr "Jag är redo att eskortera dig till stan."
 
 #: dialogs/Tania.lua:358
 msgid "I have agreed to escort Tania to the town. Once I'm there, I'll introduce her to Spencer."
-msgstr ""
+msgstr "Jag gick med på att eskortera Tania till stan. När jag är där ska jag introducera henne för Spencer."
 
 #: dialogs/Tania.lua:365
 msgid "It isn't all like this, the town is very nice."
@@ -17247,7 +17248,7 @@ msgstr "Jag mår bättre nu."
 
 #: dialogs/Tania.lua:539
 msgid "I'm prescribing you some antibiotics."
-msgstr ""
+msgstr "Jag skriver ut lite antibiotika."
 
 #: dialogs/Tania.lua:541
 msgid "I feel much better."
@@ -17499,7 +17500,7 @@ msgstr "Ooops, väktaren måste prata om Kevin. Bäst att inte nämna att jag k�
 
 #: dialogs/Town-NorthGateGuard.lua:121
 msgid "Though, I probably should ask Kevin some day what he was doing with the town computers."
-msgstr ""
+msgstr "Någon gång borde jag nog fråga Kevin vad han gjorde med stans datorer."
 
 #: dialogs/Town-NorthGateGuard.lua:132
 msgid "Somewhere to the east? I should look for him."
@@ -17515,7 +17516,7 @@ msgstr "Men om du har galet mycket tur och verkligen hittar honom: kom tillbaka 
 
 #: dialogs/Town-NorthGateGuard.lua:136
 msgid "I'd like to wring his head off... Though, it's not my call. But who knows, if the Boss feels generous we might both get rewarded."
-msgstr ""
+msgstr "Jag skulle vilja vrida lös huvudet på honom... Fast det är inte mitt jobb. Men vem vet? Om chefen är generös nog kanske vi båda blir belönade."
 
 #: dialogs/Town-NorthGateGuard.lua:137
 msgid "Be careful anyway, this creep is a sneaky one if he got past us."
@@ -17523,7 +17524,7 @@ msgstr "Var försiktig, hur som helst. Om kräket tog sig förbi oss är han slu
 
 #: dialogs/Town-NorthGateGuard.lua:138
 msgid "I offered to find out who the strange guy is. The guard I talked to was pretty sceptical, though; I should get some experience and better equipment before travelling far outside of town."
-msgstr ""
+msgstr "Jag erbjöd mig att ta reda på vem snubben är. Väktaren jag pratade med var ganska skeptisk; jag borde skaffa lite mer erfarenhet och bättre utrusning innan jag reser utanför stan."
 
 #: dialogs/Town-NorthGateGuard.lua:144
 msgid "Surely he'll never come back here."
@@ -17671,7 +17672,7 @@ msgstr "Jag vill snacka med din chef, idiot."
 
 #: dialogs/Town-NorthGateGuard.lua:250
 msgid "I'll be happy to send you his way, I already told you, you have to talk to him anyway. But I need your name before I let you in."
-msgstr ""
+msgstr "Du får gärna gå till honom. Du måste ändå prata med honom, har jag ju sagt. Men innan jag släpper in dig måste jag veta vad du heter."
 
 #: dialogs/Town-NorthGateGuard.lua:252
 msgid "Talk to Spencer. His office is in the citadel, straight ahead, the first one on your left. You can't miss it."
@@ -18344,7 +18345,7 @@ msgstr "Linärianer verkar kunna [b]se föremål[/b] - till och med genom vägga
 
 #: dialogs/TutorialTom.lua:282
 msgid "The [b]z key[/b] will toggle this augmentation, while the [b]x key[/b] momentarily flashes it."
-msgstr ""
+msgstr "[b]Z-tangenten[/b] aktiverar \"förstärkningen\" medan [b]x-tangenten[/b] visar den tillfälligt."
 
 #: dialogs/TutorialTom.lua:283
 msgid "Moving your pointer over an item will tell you more about that item."
@@ -18840,7 +18841,7 @@ msgstr "Flera traditionella vapen, till exempel svärd eller ljussvärd, kan anv
 
 #: dialogs/TutorialTom.lua:569
 msgid "However, more common items you encounter every day can often be used to bash or pry at droid armor."
-msgstr ""
+msgstr "Men vanligare föremål som du stöter på dagligen kan ofta användas för att banka på eller bända bottplåten."
 
 #: dialogs/TutorialTom.lua:570
 msgid "For example, that wrench I just gave you will increase the damage you do, and should let you best the next bot."
@@ -19212,7 +19213,7 @@ msgstr "[b]Smidighet[/b] avgör hur snabbt du kan slå och hur stor chans det ä
 
 #: dialogs/TutorialTom.lua:801
 msgid "[b]Cooling[/b] is your processors cooling, or heat resilience, and determines how much you can process before your system starts overheating."
-msgstr ""
+msgstr "[b]Kylning[/b] är dina processorers kylnings- eller återhämtningsförmåga och det avgör hur mycket data du kan behandla innan ditt system överhettas."
 
 #: dialogs/TutorialTom.lua:802
 msgid "Finally, among your main characteristics, [b]Physique[/b] determines how much health you have."
@@ -19788,7 +19789,7 @@ msgstr "Som belöning får du en .22 Automatpistol"
 
 #: dialogs/TutorialTom.lua:1159
 msgid "But I have to take these sourcebooks from you to prevent you from cheating in the next section of the tutorial."
-msgstr ""
+msgstr "Men jag blir tvungen att ta böckerna ifrån dig för att förhindra att du fuskar i nästa del av handledningen."
 
 #: dialogs/TutorialTom.lua:1160 dialogs/TutorialTom.lua:1166
 msgid "Sorry about that..."
@@ -19812,7 +19813,7 @@ msgstr "Kistor och Skydd"
 
 #: dialogs/TutorialTom.lua:1200
 msgid "OK, I'll take us to the Chest."
-msgstr "Okej, jag tar oss till Kistan."
+msgstr "Okej, jag skickar oss till Kistan."
 
 #: dialogs/TutorialTom.lua:1211
 msgid "Shops"
@@ -19832,7 +19833,7 @@ msgstr "Närstrid"
 
 #: dialogs/TutorialTom.lua:1228
 msgid "OK, I'll take us to the melee arena and give you some armor."
-msgstr "Okej, jag tar oss till stridsarenan och ger dig några skydd."
+msgstr "Okej, jag skickar oss till stridsarenan och ger dig några skydd."
 
 #: dialogs/TutorialTom.lua:1231
 msgid "I skipped ahead to the Melee practice. Tom gave me some armor to use."
@@ -19844,7 +19845,7 @@ msgstr "Förmågor"
 
 #: dialogs/TutorialTom.lua:1242
 msgid "OK, I'll take us there and give you some armor and a weapon."
-msgstr "Okej, jag tar oss tid och ger dig några skydd och ett vapen."
+msgstr "Okej, jag skickar oss dit och ger dig några skydd och ett vapen."
 
 #: dialogs/TutorialTom.lua:1253
 msgid "Upgrading Items & Terminals"
@@ -19852,7 +19853,7 @@ msgstr "Uppgradera föremål & Terminaler"
 
 #: dialogs/TutorialTom.lua:1255
 msgid "OK, I'll take us there and give you some armor and a weapon to work with."
-msgstr "Okej, jag tar oss tid och ger dig några skydd och ett vapen att använda."
+msgstr "Okej, jag skickar oss dit och ger dig några skydd och ett vapen att använda."
 
 #: dialogs/TutorialTom.lua:1270
 msgid "Hacking Bots"
@@ -19860,7 +19861,7 @@ msgstr "Hacka Bottar"
 
 #: dialogs/TutorialTom.lua:1272
 msgid "OK, I'll take us to the hacking area. Also, I'll give you some XP so you can improve your cooling."
-msgstr ""
+msgstr "Okej, jag skickar oss till hackningsarenan. Jag ger dig också lite erfarenhetspoäng så du kan förbättra din kylning."
 
 #: dialogs/TutorialTom.lua:1284
 msgid "Ranged Combat"
@@ -19868,7 +19869,7 @@ msgstr "Skytte"
 
 #: dialogs/TutorialTom.lua:1286
 msgid "OK, I'll take us to the shooting range and give you some armor and a weapon."
-msgstr "Okej, jag tar oss till skjutbanan och ger dig några skydd och ett vapen."
+msgstr "Okej, jag skickar oss till skjutbanan och ger dig några skydd och ett vapen."
 
 #: dialogs/TutorialTom.lua:1298
 msgid "Let me take a short break and practice on my own for a while."
@@ -20354,6 +20355,9 @@ msgstr "Will Gapes gav mig sitt MS aktiebrev så jag kan komma in i MegaSys-fabr
 #: dialogs/WillGapes.lua:194
 msgid "Be careful!"
 msgstr "Var försiktig!"
+
+#~ msgid "Version: 0.15.01"
+#~ msgstr "Version: 0.15.01"
 
 #~ msgid "PLEASE REPORT, BUG AFTERTAKEOVER NODE 50"
 #~ msgstr "SNÄLLA RAPPORTERA, BUGG AFTERTAKEOVER NODE 50"

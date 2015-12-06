@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
-"PO-Revision-Date: 2015-08-16 14:24+0000\n"
-"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
+"PO-Revision-Date: 2015-10-25 18:35+0000\n"
+"Last-Translator: Alexander Forsberg <alexf@openmailbox.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -143,7 +143,7 @@ msgstr "Sköld"
 
 #: src/chat.c:547
 msgid "Click anywhere to continue..."
-msgstr ""
+msgstr "Klicka någonstans för att fortsätta..."
 
 #: src/chat.c:693 src/chat.c:703
 msgid "[n]--- Start of Dialog ---\n"
@@ -208,7 +208,7 @@ msgid "XP"
 msgstr "ERF."
 
 #. TRANSLATORS: Used on object selector's widget to display unit price * number of objects
-#: src/graphics.c:227
+#: src/graphics.c:230
 #, c-format
 msgid "%d price\n"
 msgstr "%d pris\n"
@@ -308,51 +308,51 @@ msgid "Day %d  %02d:%02d"
 msgstr "Dag %d %02d:%02d"
 
 #. TRANSLATORS: Console msg when a weapon is empty
-#: src/influ.c:145
+#: src/influ.c:146
 #, c-format
 msgid "%s empty, reloading..."
 msgstr "%s tom, laddar om..."
 
-#: src/influ.c:982 src/menu.c:999
+#: src/influ.c:990 src/menu.c:999
 msgid "Load Latest"
 msgstr "Ladda Senaste"
 
-#: src/influ.c:983 src/menu.c:1000
+#: src/influ.c:991 src/menu.c:1000
 msgid "Load Backup"
 msgstr "Ladda Säkerhetskopia"
 
-#: src/influ.c:985 src/menu.c:1002 src/lvledit/lvledit_menu.c:964
+#: src/influ.c:993 src/menu.c:1002 src/lvledit/lvledit_menu.c:964
 msgid "Quit to Main Menu"
 msgstr "Avsluta till Huvudmenyn"
 
-#: src/influ.c:987
+#: src/influ.c:995
 msgid "Return to Editor"
 msgstr "Återgå till Redigeraren"
 
-#: src/influ.c:989 src/menu.c:851 src/menu.c:1005
+#: src/influ.c:997 src/menu.c:851 src/menu.c:1005
 #: src/lvledit/lvledit_menu.c:965
 msgid "Exit FreedroidRPG"
 msgstr "Avsluta FreedroidRPG"
 
 #. TRANSLATORS: Out of <ammo type>
-#: src/influ.c:1439
+#: src/influ.c:1459
 #, c-format
 msgid "Out of [s]%s[v]!"
 msgstr "Slut på [s]%s[v]!"
 
-#: src/init.c:777 src/saveloadgame.c:446
+#: src/init.c:785 src/saveloadgame.c:448
 msgid "--- Message Log ---"
 msgstr "--- Meddelandelogg ---"
 
-#: src/init.c:779
+#: src/init.c:787
 msgid "Starting tutorial."
 msgstr "Handledning inleds."
 
-#: src/init.c:781
+#: src/init.c:789
 msgid "Starting new game."
 msgstr "Nytt spel."
 
-#: src/init.c:1085
+#: src/init.c:1109
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -368,11 +368,11 @@ msgstr ""
 "\n"
 "Lycka till!\n"
 
-#: src/init.c:1104 src/init.c:1105
+#: src/init.c:1128 src/init.c:1129
 msgid "Game over.\n"
 msgstr "Game over.\n"
 
-#: src/init.c:1171 src/init.c:1172
+#: src/init.c:1195 src/init.c:1196
 msgid "Game won.\n"
 msgstr "Du har vunnit spelet.\n"
 
@@ -1060,7 +1060,7 @@ msgstr "Kontroller"
 msgid "ARROWS to select, ENTER to remap, ESCAPE to exit"
 msgstr "PILTANGENTER för att markera, RETUR för att ändra, ESC för att avsluta"
 
-#: src/keyboard.c:784
+#: src/keyboard.c:786
 #, c-format
 msgid "Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."
 msgstr "Skärmdump sparad som \"%s\" i din \".freedroid_rpg/\"-katalog."
@@ -1110,20 +1110,20 @@ msgstr "Tog emot %d värdefulla kretsar!"
 msgid "Lost %d valuable circuits!"
 msgstr "Förlorade %d värdefulla kretsar!"
 
-#: src/main.c:361
+#: src/main.c:356
 msgid "Overheating!"
 msgstr "Överhettning!"
 
 #. TRANSLATORS: Screen message, displayed below 'Automatically shutting down'
-#: src/main.c:366
+#: src/main.c:361
 msgid "due to near lethal overheating"
 msgstr "p.g.a. dödlig överhettning"
 
-#: src/main.c:367
+#: src/main.c:362
 msgid "Automatically shutting down"
 msgstr "Stänger av automatiskt"
 
-#: src/main.c:389
+#: src/main.c:384
 msgid "Weapon reloaded"
 msgstr "Vapnet omladdat"
 
@@ -1494,15 +1494,15 @@ msgstr "Ladda befintlig Hjälte"
 msgid "Delete existing Hero"
 msgstr "Ta bort Hjälte"
 
-#: src/misc.c:892
+#: src/misc.c:891
 msgid "GAME PAUSED"
 msgstr "SPELET PAUSAT"
 
-#: src/misc.c:893
+#: src/misc.c:892
 msgid "press p to resume"
 msgstr "tryck p för att återuppta"
 
-#: src/misc.c:1186
+#: src/misc.c:1185
 #, c-format
 msgid "Arrived at %s."
 msgstr "Kom till %s."
@@ -1695,7 +1695,7 @@ msgstr "Spelet sparat."
 msgid "Loading"
 msgstr "Laddar"
 
-#: src/saveloadgame.c:366
+#: src/saveloadgame.c:368
 msgid ""
 "W A R N I N G !\n"
 "\n"
@@ -1709,19 +1709,19 @@ msgstr ""
 "Det här kan betyda att den inte finns eftersom du försökte ladda ett spel som aldrig faktiskt sparats.\n"
 "Den andra alternativet är att det är en allvarligt fel i FreedroidRPG. Om du tror att det är så det ligger till, snälla, rapportera det till utvecklarna."
 
-#: src/saveloadgame.c:367
+#: src/saveloadgame.c:369
 msgid "Failed to load old game."
 msgstr "Misslyckades att ladda gammalt spel."
 
-#: src/saveloadgame.c:401
+#: src/saveloadgame.c:403
 msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
 msgstr "Versionsnummer eller \"structsize\" matchar inte. Det sparade spelet är inte från samma version av FreedroidRPG... möjligtvis skadat."
 
-#: src/saveloadgame.c:442
+#: src/saveloadgame.c:444
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Uppdaterar Tux-bilder (det här kan ta en stund...)"
 
-#: src/saveloadgame.c:447
+#: src/saveloadgame.c:449
 msgid "Game loaded."
 msgstr "Spelet laddat."
 
@@ -2068,7 +2068,7 @@ msgstr "Tog emot föremål: %s"
 msgid "Cancel item drop"
 msgstr "Släpp inget föremål"
 
-#: src/lvledit/lvledit_actions.c:275
+#: src/lvledit/lvledit_actions.c:276
 msgid ""
 "\n"
 "Please enter obstacle label: \n"
@@ -2077,7 +2077,7 @@ msgstr ""
 "\n"
 "Ange etikett till hinder:\n"
 
-#: src/lvledit/lvledit_actions.c:624
+#: src/lvledit/lvledit_actions.c:628
 msgid ""
 "\n"
 "Please enter map label: \n"
@@ -2087,7 +2087,7 @@ msgstr ""
 "Ange etikett till karta:\n"
 "\n"
 
-#: src/lvledit/lvledit_actions.c:640
+#: src/lvledit/lvledit_actions.c:644
 msgid "The new name of the map label already exists, please choose an other name."
 msgstr "Det nya namnet på etiketten finns redan, var vänlig ange ett annat."
 
@@ -2113,12 +2113,12 @@ msgstr ""
 " Information om kartetikett: \n"
 " etikett_namn=\"%s\"."
 
-#: src/lvledit/lvledit_display.c:320
+#: src/lvledit/lvledit_display.c:325
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr "Waypoint-källa markerad: X=%d Y=%d."
 
-#: src/lvledit/lvledit_display.c:335
+#: src/lvledit/lvledit_display.c:340
 #, c-format
 msgid ""
 " This level is automatically generated. \n"
@@ -2679,7 +2679,7 @@ msgstr "försvar"
 
 #: src/lvledit/lvledit_widgets.c:77
 msgid "usable"
-msgstr ""
+msgstr "användbar"
 
 #: src/lvledit/lvledit_widgets.c:91
 msgid "droids"
@@ -2751,6 +2751,11 @@ msgid ""
 "\n"
 "You can also use Ctrl-X for this."
 msgstr ""
+"Ta bort markerade objekt\n"
+"\n"
+"Tryck på knappen för att radera de markerade objekten.\n"
+"\n"
+"Du kan även använda Ctrl-X."
 
 #: src/lvledit/lvledit_widgets.c:467
 msgid ""

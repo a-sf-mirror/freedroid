@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
 "PO-Revision-Date: 2015-08-16 16:31+0000\n"
 "Last-Translator: Link_Mario <Link-Mario@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/arctic-games/freedroid-rpg/language/de/)\n"
@@ -541,8 +541,9 @@ msgid "Welcome to the hostname menu."
 msgstr "Willkommen im hostname-Menü."
 
 #: dialogs/AfterTakeover.lua:377
-msgid "Version: 0.15.01"
-msgstr "Version: 0.15.01"
+#, c-format
+msgid "Version: %s"
+msgstr ""
 
 #: dialogs/AfterTakeover.lua:378
 #, c-format
@@ -20356,6 +20357,9 @@ msgstr "Will Gapes gab mir sein MS Wertpapier damit ich in die MegaSys Fabrik re
 #: dialogs/WillGapes.lua:194
 msgid "Be careful!"
 msgstr "Sei vorsichtig!"
+
+#~ msgid "Version: 0.15.01"
+#~ msgstr "Version: 0.15.01"
 
 #~ msgid "PLEASE REPORT, BUG AFTERTAKEOVER NODE 50"
 #~ msgstr "BITTE MELDEN, FEHLER NACH-ÜBERNAHME KNOTEN 50"

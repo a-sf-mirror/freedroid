@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: freedroidrpg 0.16rc1\n"
+"Project-Id-Version: freedroidrpg 0.16rc2\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-09-07 15:45+0200\n"
+"POT-Creation-Date: 2015-12-06 15:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -540,6 +540,7 @@ msgid "Welcome to the hostname menu."
 msgstr ""
 
 #: dialogs/AfterTakeover.lua:377
+#, c-format
 msgid "Version: %s"
 msgstr ""
 
