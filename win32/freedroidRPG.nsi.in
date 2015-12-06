@@ -14,12 +14,12 @@
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 !define PRODUCT_NAME "FreedroidRPG"
-;!define PRODUCT_VERSION "0.15rc2"
+;!define PRODUCT_VERSION ... defined when calling makensis
 !define PRODUCT_PUBLISHER "Freedroid Team"
 !define PRODUCT_WEB_SITE "http://www.freedroid.org"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
-;!define SRC_DIR "freedroidrpg-win32"
+;!define SRC_DIR ... defined when calling makensis
 
 ; MUI 1.67 compatible ------
 !include "MUI.nsh"

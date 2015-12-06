@@ -1,5 +1,168 @@
 ------------------------------------------------------------------------
-0f28159 | fluzz | 2015-09-07 16:29:30 +0200
+109dc06 | fluzz | 2015-12-06 16:36:56 +0100
+
+This is FreedroidRPG 0.16rc3
+------------------------------------------------------------------------
+e65af97 | fluzz | 2015-12-06 16:31:25 +0100
+
+Update translations.
+------------------------------------------------------------------------
+eb6e94c | fluzz | 2015-12-06 16:29:38 +0100
+
+Add 'l10n-stats' make target, to output localization statistics
+------------------------------------------------------------------------
+f7cf2df | fluzz | 2015-11-24 18:39:08 +0100
+
+When removing a waypoint, also remove the attached dandling waypoint
+route (if any). Fix issue815.
+------------------------------------------------------------------------
+a24b662 | fluzz | 2015-11-04 19:32:39 +0100
+
+Avoid using connection to invalid waypoint
+------------------------------------------------------------------------
+9964911 | fluzz | 2015-11-25 19:46:26 +0100
+
+Avoid to hog the CPU when displaying the keychart.
+------------------------------------------------------------------------
+5e8df1d | Matthias Krüger | 2015-11-23 22:02:56 +0100
+
+map: load and save ReturnOfTux.droids, adding gettext markers
+------------------------------------------------------------------------
+eed61bd | fluzz | 2015-11-23 19:47:13 +0100
+
+Fix the display of a (possibly) unitialized background when an alert
+window is open during the loading of a savegame.
+------------------------------------------------------------------------
+f93d3a6 | fluzz | 2015-11-03 19:04:16 +0100
+
+Fix infinite ammo for melee clip weapons (issue803).
+------------------------------------------------------------------------
+90fc975 | apten | 2015-11-22 20:34:16 +0100
+
+Fix parsing of drop.class in item_specs.lua
+------------------------------------------------------------------------
+5c67f3e | fluzz | 2015-11-05 09:53:55 +0100
+
+Rewrite a bit the termination code, to avoid to duplicate the code
+opening the output file.
+------------------------------------------------------------------------
+9f372c6 | fluzz | 2015-11-05 09:52:52 +0100
+
+Write game output (stdout and stderr) into on single file, called
+fdrpg_out.txt
+------------------------------------------------------------------------
+9409e4b | fluzz | 2015-11-01 19:19:13 +0100
+
+Followup to 836d6b24: display the warning only once per game.
+------------------------------------------------------------------------
+b63824d | fluzz | 2015-11-01 19:03:26 +0100
+
+Use the return value of calls to freopen() and system(), to avoid a
+compilation warning.
+------------------------------------------------------------------------
+ccdb3bc | Gregory Lozet | 2015-11-01 18:43:28 +0100
+
+A surface allocated with SDL_DisplayFormat is not freed once no more
+used.
+------------------------------------------------------------------------
+836d6b2 | fluzz | 2015-11-01 18:31:30 +0100
+
+Do not stop the game if too many bullets or melee shots are started.
+Once the amount of available slots is reached, additional shots are just
+ignored. That's not a proper fix. The static arrays currently used
+should be replaced by dynarrays.
+------------------------------------------------------------------------
+d7aeb94 | fluzz | 2015-10-31 23:33:39 +0100
+
+Disable some more definitions of unused functions (rather than their
+content only) when building with opengl disabled.
+------------------------------------------------------------------------
+0451310 | fluzz | 2015-10-31 23:05:21 +0100
+
+configure silent mode: The warning about an untested libintl must be
+printed even in silent mode.
+------------------------------------------------------------------------
+9c0f88f | fluzz | 2015-10-31 22:53:32 +0100
+
+Add two m4 macros in configure.ac, to define printing macros that honor
+the silent flag.
+------------------------------------------------------------------------
+c3f81ec | Gregory Lozet | 2015-10-31 18:44:24 +0100
+
+dialog: Ewald: fix freezing after bet. Fixes #842.
+------------------------------------------------------------------------
+cc521ad | Matthias Krüger | 2015-10-31 18:36:49 +0100
+
+dialog: Aftertakeover: fix incompatible types, force float to int. Fixes
+#844
+------------------------------------------------------------------------
+6fa6d86 | fluzz | 2015-10-31 18:16:16 +0100
+
+Win32 build: Fix 2 compilation warnings.
+------------------------------------------------------------------------
+39f9f25 | fluzz | 2015-10-07 19:35:05 +0200
+
+Win32 build: Compile the coff file
+------------------------------------------------------------------------
+045299a | fluzz | 2015-10-29 11:23:17 +0100
+
+Avoid a compilation warning about an unused variable, when building with
+NLS disabled.
+------------------------------------------------------------------------
+bd1b4ed | fluzz | 2015-10-27 18:55:41 +0100
+
+[win32] Fix issue with non C99 implementation of vsnprintf()
+------------------------------------------------------------------------
+eb59f05 | fluzz | 2015-10-25 18:06:38 +0100
+
+Disable the definition of some unused functions (rather than their
+content only) when building with opengl disabled. This avoid compilation
+warnings.
+------------------------------------------------------------------------
+243e5a5 | fluzz | 2015-10-25 13:31:37 +0100
+
+Use the new icon for MacOS application.
+------------------------------------------------------------------------
+6f8f51f | Scott Furry | 2015-10-14 20:18:28 +0200
+
+Update FDRPG Windows desktop icon
+------------------------------------------------------------------------
+eddeeca | fluzz | 2015-10-10 11:10:28 +0200
+
+[dev tools/font] Add missing inclusion of libgen.h
+------------------------------------------------------------------------
+e7680ce | fluzz | 2015-10-10 10:51:32 +0200
+
+Remove leading and trailing whitespaces from French translations
+------------------------------------------------------------------------
+43f8628 | fluzz | 2015-10-06 11:52:30 +0200
+
+Do not enable gl_debug callbacks on Win32
+------------------------------------------------------------------------
+bb54e4b | fluzz | 2015-10-06 19:02:40 +0200
+
+Check for function dirname in configure.ac.
+------------------------------------------------------------------------
+1b14981 | fluzz | 2015-10-05 19:30:37 +0200
+
+Redirect stderr and stdout to files on all OS, when not run from a
+terminal.
+------------------------------------------------------------------------
+72d74df | Matthias Krüger | 2015-10-05 02:39:02 +0200
+
+cppcheck: suppressions: removed suppression of invalidscanf_libc, the
+check has been removed from upstream cppcheck.
+------------------------------------------------------------------------
+a3e4f3d | Matthias Krüger | 2015-09-11 12:57:06 +0200
+
+revert changes on translations done in previous commit
+------------------------------------------------------------------------
+0cda038 | Matthias Krüger | 2015-09-09 23:36:07 +0200
+
+dialog: AfterTakeover / lua: add function that gets the current game
+version and use it instead of static string in AfterTakeover.
+------------------------------------------------------------------------
+3f012f6 | fluzz | 2015-09-07 16:29:30 +0200
 
 This is FreedroidRPG 0.16rc2
 ------------------------------------------------------------------------
