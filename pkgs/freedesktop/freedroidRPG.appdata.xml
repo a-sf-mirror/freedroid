@@ -37,7 +37,6 @@
      express their creativity.
     </p>
   </description>
-  <icon>http://www.freedroid.org/imgs/logo.png</icon>
   <categories>
     <category>Role Playing</category>
     <category>Games</category>
@@ -49,4 +48,5 @@
     <screenshot type="default">http://www.freedroid.org/imgs/screenshot.jpg</screenshot>
   </screenshots>
   <url type="homepage">http://www.freedroid.org/</url>
+  <updatecontact>fluzz@freedroid.org</updatecontact>
 </application>
