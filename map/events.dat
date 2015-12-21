@@ -6640,10 +6640,23 @@ Enemy level=0
 Enemy dialog name="Spencer"
 <LuaCode>
 	if (not Spencer_can_die) then
+		display_big_message(_"Better reload your last save and try again.") -- reverse order
 		display_big_message(_"Spencer still needed alive to win game.")
 	else
-		display_big_message(_"Ooops, you killed Spencer. That was probably not a good idea.")
+		display_big_message(_"You should still be able to finish the game but some storylines might be broken.") -- reverse order because the new message is put on top of the prev message
+		display_big_message(_"Ooops, you killed Spencer.")
 	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name="Pendragon Dies"
+Trigger on enemy death
+Enemy level=0
+Enemy dialog name="Pendragon"
+<LuaCode>
+	display_big_message(_"You should still be able to finish the game but some storylines might be broken.")-- reverse order because the new message is put on top of the prev message
+	display_big_message(_"Ooops, you killed Pendragon")
 </LuaCode>
 * End of trigger *
 
