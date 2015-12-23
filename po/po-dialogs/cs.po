@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-06 15:12+0100\n"
+"POT-Creation-Date: 2015-12-23 11:29+0100\n"
 "PO-Revision-Date: 2015-05-02 19:52+0000\n"
 "Last-Translator: zdenek <chmelarz@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/arctic-games/freedroid-rpg/language/cs/)\n"
@@ -5360,9 +5360,8 @@ msgstr "Mír a pravidelnou údržbu, dokud se nesetkáme v cloudu."
 
 #: dialogs/DeadGuy.lua:33 dialogs/Ewalds_296.lua:324
 #: dialogs/FactionDeadBot.lua:33 dialogs/Francis.lua:98
-#: dialogs/HF-FirmwareUpdateServer.lua:88
-#: dialogs/HF-FirmwareUpdateServer.lua:89 dialogs/Jasmine.lua:115
-#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
+#: dialogs/HF-FirmwareUpdateServer.lua:88 dialogs/HF-FirmwareUpdateServer.lua:89
+#: dialogs/Jasmine.lua:115 dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
 #: dialogs/Maintenance-Terminal.lua:58 dialogs/Michelangelo.lua:156
 #: dialogs/Mike.lua:239 dialogs/Singularity-Drone.lua:34
 #: dialogs/Singularity.lua:156 dialogs/Town-TuxGuard.lua:121
@@ -6948,7 +6947,7 @@ msgid "Disruptor shield is active."
 msgstr "Štít rušení je aktivní."
 
 #: dialogs/DSB-MachineDeckControl.lua:79 dialogs/DSB-PowerControl.lua:46
-#: dialogs/HF-FirmwareUpdateServer.lua:100 dialogs/TutorialTerminal.lua:95
+#: dialogs/HF-FirmwareUpdateServer.lua:103 dialogs/TutorialTerminal.lua:95
 msgid "Exiting..."
 msgstr "Ukončení..."
 
@@ -7014,8 +7013,7 @@ msgid "Access granted. Closing gate ..."
 msgstr "Přístup povolen. Zavírání brány ..."
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106
-#: dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Ukončení"
 
@@ -9833,15 +9831,23 @@ msgstr "Konflikty vyřešeny,"
 msgid "Firmware update propagated!"
 msgstr "Aktualizace firmwaru rozšířena!"
 
+#: dialogs/HF-FirmwareUpdateServer.lua:94
+msgid "ALL: SECURITY: could not find 'evil.conf': No such file or directory."
+msgstr ""
+
 #: dialogs/HF-FirmwareUpdateServer.lua:95
+msgid "\tExiting with state 1."
+msgstr ""
+
+#: dialogs/HF-FirmwareUpdateServer.lua:98
 msgid "I managed to upload the faulty firmware update to all bots within transmission range. Either the siege on the town ends now... Or everything else does."
 msgstr "Podařilo se mi nahrát vadnou aktualizaci firmwaru do všech robotů v rozsahu přenosu. Buď teď končí obléhání města... nebo končí vše ostatní."
 
-#: dialogs/HF-FirmwareUpdateServer.lua:99
+#: dialogs/HF-FirmwareUpdateServer.lua:102
 msgid "Merge failed."
 msgstr "Sloučení se nezdařilo."
 
-#: dialogs/HF-FirmwareUpdateServer.lua:108
+#: dialogs/HF-FirmwareUpdateServer.lua:111
 msgid "Logout"
 msgstr "Odhlášení"
 

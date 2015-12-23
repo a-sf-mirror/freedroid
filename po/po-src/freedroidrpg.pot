@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: freedroidrpg 0.16rc2\n"
+"Project-Id-Version: freedroidrpg 0.16rc3\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-06 15:12+0100\n"
+"POT-Creation-Date: 2015-12-23 11:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -323,8 +323,7 @@ msgstr ""
 msgid "Return to Editor"
 msgstr ""
 
-#: src/influ.c:997 src/menu.c:851 src/menu.c:1005
-#: src/lvledit/lvledit_menu.c:965
+#: src/influ.c:997 src/menu.c:851 src/menu.c:1005 src/lvledit/lvledit_menu.c:965
 msgid "Exit FreedroidRPG"
 msgstr ""
 
@@ -1218,9 +1217,9 @@ msgstr ""
 msgid "Difficulty: %s"
 msgstr ""
 
-#: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144
-#: src/menu.c:1229 src/menu.c:1340 src/menu.c:1405 src/menu.c:1478
-#: src/menu.c:1629 src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
+#: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144 src/menu.c:1229
+#: src/menu.c:1340 src/menu.c:1405 src/menu.c:1478 src/menu.c:1629
+#: src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
 #: src/lvledit/lvledit_menu.c:126 src/lvledit/lvledit_menu.c:241
 #: src/lvledit/lvledit_menu.c:415 src/lvledit/lvledit_menu.c:642
 msgid "Back"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-06 15:12+0100\n"
+"POT-Creation-Date: 2015-12-23 11:29+0100\n"
 "PO-Revision-Date: 2015-10-25 18:35+0000\n"
 "Last-Translator: Alexander Forsberg <alexf@openmailbox.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
@@ -329,8 +329,7 @@ msgstr "Avsluta till Huvudmenyn"
 msgid "Return to Editor"
 msgstr "Återgå till Redigeraren"
 
-#: src/influ.c:997 src/menu.c:851 src/menu.c:1005
-#: src/lvledit/lvledit_menu.c:965
+#: src/influ.c:997 src/menu.c:851 src/menu.c:1005 src/lvledit/lvledit_menu.c:965
 msgid "Exit FreedroidRPG"
 msgstr "Avsluta FreedroidRPG"
 
@@ -1243,9 +1242,9 @@ msgstr "svår"
 msgid "Difficulty: %s"
 msgstr "Svårighetsgrad: %s"
 
-#: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144
-#: src/menu.c:1229 src/menu.c:1340 src/menu.c:1405 src/menu.c:1478
-#: src/menu.c:1629 src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
+#: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144 src/menu.c:1229
+#: src/menu.c:1340 src/menu.c:1405 src/menu.c:1478 src/menu.c:1629
+#: src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
 #: src/lvledit/lvledit_menu.c:126 src/lvledit/lvledit_menu.c:241
 #: src/lvledit/lvledit_menu.c:415 src/lvledit/lvledit_menu.c:642
 msgid "Back"

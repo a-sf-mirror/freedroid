@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: freedroidrpg 0.16rc2\n"
+"Project-Id-Version: freedroidrpg 0.16rc3\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-06 15:12+0100\n"
+"POT-Creation-Date: 2015-12-23 11:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -567,11 +567,23 @@ msgid "Security failure at Hell's Fortress reception desk."
 msgstr ""
 
 #: map/events.dat:6643
+msgid "Better reload your last save and try again."
+msgstr ""
+
+#: map/events.dat:6644
 msgid "Spencer still needed alive to win game."
 msgstr ""
 
-#: map/events.dat:6645
-msgid "Ooops, you killed Spencer. That was probably not a good idea."
+#: map/events.dat:6646 map/events.dat:6658
+msgid "You should still be able to finish the game but some storylines might be broken."
+msgstr ""
+
+#: map/events.dat:6647
+msgid "Ooops, you killed Spencer."
+msgstr ""
+
+#: map/events.dat:6659
+msgid "Ooops, you killed Pendragon"
 msgstr ""
 
 #: map/item_specs.lua:121
@@ -2203,7 +2215,7 @@ msgstr ""
 msgid "Beatings will continue until morale improves."
 msgstr ""
 
-#: map/levels.dat:33272 map/levels.dat:66665
+#: map/levels.dat:33272 map/levels.dat:66668
 msgid "!"
 msgstr ""
 
@@ -2308,9 +2320,9 @@ msgid "Welcome to FreedroidRPG!"
 msgstr ""
 
 #: map/levels.dat:40438 map/levels.dat:40788 map/levels.dat:40942
-#: map/levels.dat:56343 map/levels.dat:63207 map/levels.dat:63862
-#: map/levels.dat:64077 map/levels.dat:64202 map/levels.dat:64763
-#: map/levels.dat:65113 map/levels.dat:65441
+#: map/levels.dat:56343 map/levels.dat:63210 map/levels.dat:63865
+#: map/levels.dat:64080 map/levels.dat:64205 map/levels.dat:64766
+#: map/levels.dat:65116 map/levels.dat:65444
 msgid "World Edge"
 msgstr ""
 
@@ -2422,47 +2434,47 @@ msgstr ""
 msgid "Factory Office"
 msgstr ""
 
-#: map/levels.dat:62916
+#: map/levels.dat:62919
 msgid "Strange Dungeon"
 msgstr ""
 
-#: map/levels.dat:63540
+#: map/levels.dat:63543
 msgid "Landing Zone"
 msgstr ""
 
-#: map/levels.dat:65634
+#: map/levels.dat:65637
 msgid "Shelter"
 msgstr ""
 
-#: map/levels.dat:65751
+#: map/levels.dat:65754
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
 msgstr ""
 
-#: map/levels.dat:66662
+#: map/levels.dat:66665
 msgid "?"
 msgstr ""
 
-#: map/levels.dat:66668
+#: map/levels.dat:66671
 msgid "<"
 msgstr ""
 
-#: map/levels.dat:66671
+#: map/levels.dat:66674
 msgid "? (flashing)"
 msgstr ""
 
-#: map/levels.dat:66674
+#: map/levels.dat:66677
 msgid "! (flashing)"
 msgstr ""
 
-#: map/levels.dat:66677
+#: map/levels.dat:66680
 msgid "< (flashing)"
 msgstr ""
 
-#: map/levels.dat:66703
+#: map/levels.dat:66706
 msgid "Empty Sea"
 msgstr ""
 
-#: map/levels.dat:66865
+#: map/levels.dat:66868
 msgid "Omega Island"
 msgstr ""
 
@@ -2898,8 +2910,8 @@ msgid "Barkeeper"
 msgstr ""
 
 #: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
-#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
-#: map/ReturnOfTux.droids:30 map/ReturnOfTux.droids:32
+#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18 map/ReturnOfTux.droids:30
+#: map/ReturnOfTux.droids:32
 msgid "Red Guard Member"
 msgstr ""
 
@@ -2983,17 +2995,13 @@ msgstr ""
 msgid "MS Emissary"
 msgstr ""
 
-#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70
-#: map/ReturnOfTux.droids:71 map/ReturnOfTux.droids:72
-#: map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
-#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76
-#: map/ReturnOfTux.droids:77 map/ReturnOfTux.droids:78
-#: map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
-#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82
-#: map/ReturnOfTux.droids:83 map/ReturnOfTux.droids:84
-#: map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
-#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88
-#: map/ReturnOfTux.droids:89
+#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70 map/ReturnOfTux.droids:71
+#: map/ReturnOfTux.droids:72 map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
+#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76 map/ReturnOfTux.droids:77
+#: map/ReturnOfTux.droids:78 map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
+#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82 map/ReturnOfTux.droids:83
+#: map/ReturnOfTux.droids:84 map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
+#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88 map/ReturnOfTux.droids:89
 msgid "Singularity Drone"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-06 15:12+0100\n"
+"POT-Creation-Date: 2015-12-23 11:30+0100\n"
 "PO-Revision-Date: 2015-10-20 15:37+0000\n"
 "Last-Translator: Alexander Forsberg <alexf@openmailbox.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
@@ -568,12 +568,24 @@ msgid "Security failure at Hell's Fortress reception desk."
 msgstr "Säkerhetsfel vid Helvetesfortets reception."
 
 #: map/events.dat:6643
+msgid "Better reload your last save and try again."
+msgstr ""
+
+#: map/events.dat:6644
 msgid "Spencer still needed alive to win game."
 msgstr "Spencer måste leva för att spelet ska gå att vinna."
 
-#: map/events.dat:6645
-msgid "Ooops, you killed Spencer. That was probably not a good idea."
-msgstr "Ooops, du dödade Spencer. Det var nog ingen bra idé."
+#: map/events.dat:6646 map/events.dat:6658
+msgid "You should still be able to finish the game but some storylines might be broken."
+msgstr ""
+
+#: map/events.dat:6647
+msgid "Ooops, you killed Spencer."
+msgstr ""
+
+#: map/events.dat:6659
+msgid "Ooops, you killed Pendragon"
+msgstr ""
 
 #: map/item_specs.lua:121
 msgid "The first item is VERY buggy ingame, so don't use it."
@@ -2210,7 +2222,7 @@ msgstr "Första MS-operativsystemet - i tryckt format"
 msgid "Beatings will continue until morale improves."
 msgstr "Smisk kommer fortsätta ges tills moralen blir bättre."
 
-#: map/levels.dat:33272 map/levels.dat:66665
+#: map/levels.dat:33272 map/levels.dat:66668
 msgid "!"
 msgstr "!"
 
@@ -2315,9 +2327,9 @@ msgid "Welcome to FreedroidRPG!"
 msgstr "Välkommen till FreedroidRPG!"
 
 #: map/levels.dat:40438 map/levels.dat:40788 map/levels.dat:40942
-#: map/levels.dat:56343 map/levels.dat:63207 map/levels.dat:63862
-#: map/levels.dat:64077 map/levels.dat:64202 map/levels.dat:64763
-#: map/levels.dat:65113 map/levels.dat:65441
+#: map/levels.dat:56343 map/levels.dat:63210 map/levels.dat:63865
+#: map/levels.dat:64080 map/levels.dat:64205 map/levels.dat:64766
+#: map/levels.dat:65116 map/levels.dat:65444
 msgid "World Edge"
 msgstr "Världens ände"
 
@@ -2429,47 +2441,47 @@ msgstr "Gammalt severrum"
 msgid "Factory Office"
 msgstr "Fabrikens kontor"
 
-#: map/levels.dat:62916
+#: map/levels.dat:62919
 msgid "Strange Dungeon"
 msgstr "Konstig fängelsehåla"
 
-#: map/levels.dat:63540
+#: map/levels.dat:63543
 msgid "Landing Zone"
 msgstr "Landningsplats"
 
-#: map/levels.dat:65634
+#: map/levels.dat:65637
 msgid "Shelter"
 msgstr "Skyddsrum"
 
-#: map/levels.dat:65751
+#: map/levels.dat:65754
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
 msgstr "DEBUG-BANA 70 -- Den här banan skapades för att göra testande av FreedroidRPG lite enklare och ska INTE vara åtkomlig utan fusk."
 
-#: map/levels.dat:66662
+#: map/levels.dat:66665
 msgid "?"
 msgstr "?"
 
-#: map/levels.dat:66668
+#: map/levels.dat:66671
 msgid "<"
 msgstr "<"
 
-#: map/levels.dat:66671
+#: map/levels.dat:66674
 msgid "? (flashing)"
 msgstr "? (blinkande)"
 
-#: map/levels.dat:66674
+#: map/levels.dat:66677
 msgid "! (flashing)"
 msgstr "! (blinkande)"
 
-#: map/levels.dat:66677
+#: map/levels.dat:66680
 msgid "< (flashing)"
 msgstr "< (blinkande)"
 
-#: map/levels.dat:66703
+#: map/levels.dat:66706
 msgid "Empty Sea"
 msgstr "Tomt hav"
 
-#: map/levels.dat:66865
+#: map/levels.dat:66868
 msgid "Omega Island"
 msgstr "Omega-ön"
 
@@ -2905,8 +2917,8 @@ msgid "Barkeeper"
 msgstr "Barägare"
 
 #: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
-#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
-#: map/ReturnOfTux.droids:30 map/ReturnOfTux.droids:32
+#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18 map/ReturnOfTux.droids:30
+#: map/ReturnOfTux.droids:32
 msgid "Red Guard Member"
 msgstr "Medlem av Röda Väktarna"
 
@@ -2990,17 +3002,13 @@ msgstr "Vakt över DSB Kontrollterminal"
 msgid "MS Emissary"
 msgstr "MS Agent"
 
-#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70
-#: map/ReturnOfTux.droids:71 map/ReturnOfTux.droids:72
-#: map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
-#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76
-#: map/ReturnOfTux.droids:77 map/ReturnOfTux.droids:78
-#: map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
-#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82
-#: map/ReturnOfTux.droids:83 map/ReturnOfTux.droids:84
-#: map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
-#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88
-#: map/ReturnOfTux.droids:89
+#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70 map/ReturnOfTux.droids:71
+#: map/ReturnOfTux.droids:72 map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
+#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76 map/ReturnOfTux.droids:77
+#: map/ReturnOfTux.droids:78 map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
+#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82 map/ReturnOfTux.droids:83
+#: map/ReturnOfTux.droids:84 map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
+#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88 map/ReturnOfTux.droids:89
 msgid "Singularity Drone"
 msgstr "Singularitetens Drönare"
 
@@ -3521,6 +3529,9 @@ msgstr "EMP-Granat"
 #: map/skill_specs.lua:336
 msgid "Electronic Noise"
 msgstr "Elektronisk Störning"
+
+#~ msgid "Ooops, you killed Spencer. That was probably not a good idea."
+#~ msgstr "Ooops, du dödade Spencer. Det var nog ingen bra idé."
 
 #~ msgid "When computers are presented with the unexpected they can damage themselves."
 #~ msgstr "När datorer är presenterade med oväntade saker kan de skada sig själva."
