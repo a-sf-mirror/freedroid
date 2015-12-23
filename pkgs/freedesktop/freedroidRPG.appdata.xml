@@ -48,5 +48,5 @@
     <screenshot type="default">http://www.freedroid.org/imgs/screenshot.jpg</screenshot>
   </screenshots>
   <url type="homepage">http://www.freedroid.org/</url>
-  <updatecontact>fluzz_at_freedroid.org</updatecontact>
+  <updatecontact>contact_at_freedroid.org</updatecontact>
 </application>
