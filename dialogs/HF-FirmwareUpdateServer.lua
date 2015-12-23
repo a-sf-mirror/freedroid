@@ -91,7 +91,10 @@ return {
 			if (takeover(get_program("Hacking")+4)) then
 				Npc:says(_"Conflicts resolved,")
 				Npc:says(_"Firmware update propagated!")
+				Npc:says(_"ALL: SECURITY: could not find 'evil.conf': No such file or directory.", "NO_WAIT")
+				Npc:says(_"	Exiting with state 1.")
 				HF_FirmwareUpdateServer_uploaded_faulty_firmware_update = true
+				change_obstacle_state("ServerRoomDoor", "closed")
 				Tux:update_quest("Propagating a faulty firmware update", _"I managed to upload the faulty firmware update to all bots within transmission range. Either the siege on the town ends now... Or everything else does.")
 				kill_faction("ms", "no_respawn")
 				hide("node3")
