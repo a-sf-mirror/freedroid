@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # Alexander Forsberg <alexf@openmailbox.org>, 2014-2015
@@ -6275,7 +6275,7 @@ msgstr "Jag måste gå nu."
 
 #: dialogs/DocMoore.lua:76
 msgid "You look gravely injured."
-msgstr "Du ser ut att vara allvarligt skadad."
+msgstr "Du verkar allvarligt skadad."
 
 #: dialogs/DocMoore.lua:77
 msgid "I will help you."
@@ -6303,7 +6303,7 @@ msgstr "AJ!"
 
 #: dialogs/DocMoore.lua:83
 msgid "Now, swallow this pill."
-msgstr "Svälj nu den här tabletten."
+msgstr "Svälj den här tabletten."
 
 #: dialogs/DocMoore.lua:84
 msgid "*glup*"
@@ -6359,7 +6359,7 @@ msgstr "Åh, jag har ett vagt minne av att jag läst Linärianbiologi för läng
 
 #: dialogs/DocMoore.lua:125
 msgid "Wait... did you come from outside of town?"
-msgstr "Vänta lite... kom du utifrån stan?"
+msgstr "Vänta lite... kom du till stan utifrån?"
 
 #: dialogs/DocMoore.lua:126
 msgid "Yes, I had to fight my way here through a bunch of bots."
@@ -6371,7 +6371,7 @@ msgstr "Det var värst!"
 
 #: dialogs/DocMoore.lua:128
 msgid "Well, I should be able to heal you if you get hurt."
-msgstr "Hur som helst borde jag kunna läka dig om du är skadad."
+msgstr "Men, jag kan nog läka dig om du blivit skadad."
 
 #: dialogs/DocMoore.lua:138
 msgid "Do you also sell medical equipment?"
@@ -6387,7 +6387,7 @@ msgstr "Doktorn, jag tog några sådana där hjärnförstoringspiller..."
 
 #: dialogs/DocMoore.lua:150
 msgid "Sorry, but I already gave you some medical help."
-msgstr "Ledsen, men jag har redan gett dig medicinsk hjälp."
+msgstr "Ledsen, men jag har redan gett dig en behandling."
 
 #: dialogs/DocMoore.lua:151
 msgid "To poison yourself again, that's entirely your own business and I'm not responsible."
@@ -6395,11 +6395,11 @@ msgstr "Om du förgiftat dig själv igen, är det ditt problem, jag är inte ans
 
 #: dialogs/DocMoore.lua:152
 msgid "As far as I am concerned, in this town everyone gets everything equally."
-msgstr "Så vitt jag vet behandlas alla i den här stan lika."
+msgstr "Så vitt jag vet så särbehandlas ingen här i stan."
 
 #: dialogs/DocMoore.lua:155
 msgid "Oh no, not another one. Those pills are almost pure biological waste."
-msgstr "Åh nej! Inte en till. De där pillren är rena biologiska avfallet."
+msgstr "Åh nej! Inte en till! De där pillren är rena biologiska avfallet."
 
 #: dialogs/DocMoore.lua:156
 msgid "Taking that stuff almost always equals delayed suicide."
@@ -6407,7 +6407,7 @@ msgstr "Att ta dem är i stort sett lika med ett långsamt självmord."
 
 #: dialogs/DocMoore.lua:157
 msgid "Now, take this antidote. It should remove the dangerous substances within your body."
-msgstr "Här, ta det här motgiftet. Det borde rensa ut de farliga substanserna ut din kropp."
+msgstr "Här, ta det här motgiftet. Det borde rensa bort de farliga substanserna ur din kropp."
 
 #: dialogs/DocMoore.lua:158
 msgid "But remember, I'll only give you this help once, because you didn't know the effects."
@@ -6415,7 +6415,7 @@ msgstr "Men kom ihåg: jag hjälper dig bara med det här en gång, eftersom du 
 
 #: dialogs/DocMoore.lua:159
 msgid "Should you take that junk again, I won't feel responsible for what happens to you any more."
-msgstr "Om du tar den där skiten igen, kommer jag inte längre ta ansvar för vad som händer dig."
+msgstr "Om du tar den där skiten igen kommer jag inte ta ansvar för vad som händer med dig."
 
 #: dialogs/DocMoore.lua:161
 msgid "The doctor was easily fooled. I have the pills that Bender needs."
@@ -6451,7 +6451,7 @@ msgstr "Kan du plåstra om mig?"
 
 #: dialogs/DocMoore.lua:183
 msgid "Sure, as the only doctor of this slowly growing community, I take responsibility for everyone's health."
-msgstr "Självklart! Som den enda doktorn i det här långsamt växande samhället, har jag ansvar för allas hälsa."
+msgstr "Självklart! Som den enda doktorn i det här långsamt växande samhället, tar jag ansvar för allas hälsa."
 
 #: dialogs/DocMoore.lua:186
 msgid "However, self-inflicted damage might be exempted from this rule in some cases..."
@@ -6463,11 +6463,11 @@ msgstr "Du verkar må utmärkt. Jag kan inte hjälpa dig på något sätt just n
 
 #: dialogs/DocMoore.lua:192
 msgid "There, it's done. You're completely fixed. You can go now."
-msgstr "Så där, det är klart. Du är frisk. Nu kan du gå."
+msgstr "Så ja, nu är det klart. Du är frisk. Nu får du gå."
 
 #: dialogs/DocMoore.lua:193
 msgid "You need to keep better care of yourself. You're completely fixed. You can go now."
-msgstr "Du måste ta bättre hand om dig. Nu är du frisk. Du kan gå."
+msgstr "Du måste ta bättre hand om dig. Nu är du frisk. Du får gå."
 
 #: dialogs/DocMoore.lua:201
 msgid "What do you mean, self-inflicted damage?"
@@ -6475,11 +6475,11 @@ msgstr "Vad menar du men självorsakad skada?"
 
 #: dialogs/DocMoore.lua:205
 msgid "Well, you see that Bender character on my doorstep?"
-msgstr "Ta till exempel den där Bender, som står här utanför."
+msgstr "Ta den där Bender till exempel - han som står här utanför."
 
 #: dialogs/DocMoore.lua:207
 msgid "Well, you see that idiotic Bender character on my doorstep?"
-msgstr "Ta till exempel den där idioten Bender, som står här utanför."
+msgstr "Ta den där idioten Bender till exempel - han som står här utanför."
 
 #: dialogs/DocMoore.lua:209
 msgid "What can you tell me about Bender?"
@@ -6487,7 +6487,7 @@ msgstr "Vad är det med Bender?"
 
 #: dialogs/DocMoore.lua:210
 msgid "Bender asked my advice about some pills he saw advertised in an e-mail. I told him not to buy them."
-msgstr "Bender hade sett reklam om några piller på e-posten, och frågade mig om råd. Jag sa åt honom att inte köpa dem."
+msgstr "Bender hade sett reklam om några piller på e-posten, och frågade mig om råd. Jag sa att han inte skulle köpa dem."
 
 #: dialogs/DocMoore.lua:211
 msgid "But guess what? He bought and took the stupid pills anyway, and then he came back to me to fix him."
@@ -6499,7 +6499,7 @@ msgstr "Om han - eller någon annan - struntar i mina råd och sedan tror att de
 
 #: dialogs/DocMoore.lua:213
 msgid "He won't get anything from me anymore. It would be unfair to the community to waste all the supplies on him, and that's my final word on that."
-msgstr "Han kommer inte få något från mig mer. Det vore orättvist mot samhället att slösa bort alla medicinska resurser på honom, punkt slut."
+msgstr "Han får aldrig någon hjälp från mig mer. Det vore orättvist mot samhället att slösa alla resurser på honom, punkt slut."
 
 #: dialogs/DocMoore.lua:220
 msgid "Doc... I really want the antidote."
@@ -6515,11 +6515,11 @@ msgstr "Mitt tålamod håller på ta slut. Ge hit motgiftet. Nu."
 
 #: dialogs/DocMoore.lua:230
 msgid "No! Over my dead body."
-msgstr "Nej! Över min döda kropp."
+msgstr "Nej! Över min döda kropp!"
 
 #: dialogs/DocMoore.lua:236
 msgid "Your wish is my command!"
-msgstr "Din önskan är min lag!"
+msgstr "Din önskan, är min lag!"
 
 #: dialogs/DocMoore.lua:238
 msgid "Huh? What?"
@@ -15313,7 +15313,7 @@ msgstr "Nej, vänta lite. Du fuskade, eller hur?"
 
 #: dialogs/Spencer.lua:202
 msgid "There is now way we can have lame cheaters in the Red Guard, forget about it!"
-msgstr ""
+msgstr "Inte en chans att vi släpper in slappa fuskare i Röda Väktarna, glöm det!"
 
 #: dialogs/Spencer.lua:203
 msgid "However, if you did in fact NOT cheat, please tell the developers how you got so much money so they can fix it. :)"
@@ -15605,7 +15605,7 @@ msgstr "Vi vet att MS hade ett uppdateringssystem för mjukvara, vilket skulle k
 
 #: dialogs/Spencer.lua:414
 msgid "This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though..."
-msgstr ""
+msgstr "Det här kanske känns som en gudagåva. Men att rensa ut Helvetesfortet kommer inte bli en enkel match..."
 
 #: dialogs/Spencer.lua:420
 msgid "I'd like to participate in this operation."
@@ -15657,7 +15657,7 @@ msgstr "Bra. Du måste vara väl förberedd om du tänker gå."
 
 #: dialogs/Spencer.lua:446
 msgid "Also, there is no need to hurry with this. After all, the installation is not running away, so it's best to take a cautious approach."
-msgstr ""
+msgstr "Och det är ingen brådska. Trots allt är inte anläggningen igång, så det är bäst att ta det lungt och metodiskt."
 
 #: dialogs/Spencer.lua:452
 msgid "It's done. Your soldiers were killed, but I managed to reach a computer terminal that controls the shield. Access to the bot factory is now open, after I changed the password on the terminal so as to prevent the bots from enabling the shield again."
@@ -16285,7 +16285,7 @@ msgstr "Snälla kom med hela beloppet om du vill hjälpa."
 
 #: dialogs/Stone.lua:229
 msgid "Otherwise, you're throwing good money after bad, and I couldn't let you do that."
-msgstr ""
+msgstr "Annars kastar du goda pengar efter dåliga och det låter jag dig inte göra."
 
 #: dialogs/Stone.lua:237
 msgid "Yes, it's me."
@@ -16309,7 +16309,7 @@ msgstr "Jag har något åt dig. Jag lyckades gömma det här hagelgeväret från
 
 #: dialogs/Stone.lua:244
 msgid "It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have liked you to have it on your journey to save us all."
-msgstr ""
+msgstr "Det tillhörde min farfar, så det är dyrbart för mig, men jag är säker att han skulle ha velat att du fick det i din kamp för att rädda oss alla."
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Stone.lua:246

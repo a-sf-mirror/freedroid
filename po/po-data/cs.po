@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # zdenek <chmelarz@gmail.com>, 2015
@@ -569,7 +569,7 @@ msgstr "Selhání zabezpečení na recepci Pekelné pevnosti."
 
 #: map/events.dat:6643
 msgid "Better reload your last save and try again."
-msgstr ""
+msgstr "Bude lepší, když nahraješ poslední uloženou pozici a začneš znovu."
 
 #: map/events.dat:6644
 msgid "Spencer still needed alive to win game."
@@ -577,15 +577,15 @@ msgstr "Pro dokončení hry je stále potřeba nechat Spencera naživu."
 
 #: map/events.dat:6646 map/events.dat:6658
 msgid "You should still be able to finish the game but some storylines might be broken."
-msgstr ""
+msgstr "Hru by mělo jít stále dohrát, ale některé dějové příběhy už nemusejí fungovat."
 
 #: map/events.dat:6647
 msgid "Ooops, you killed Spencer."
-msgstr ""
+msgstr "Ajajaj, zabil jsi Spencera."
 
 #: map/events.dat:6659
 msgid "Ooops, you killed Pendragon"
-msgstr ""
+msgstr "Ajajaj, zabil jsi Pendragona."
 
 #: map/item_specs.lua:121
 msgid "The first item is VERY buggy ingame, so don't use it."

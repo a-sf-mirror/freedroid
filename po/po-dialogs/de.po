@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # Link_Mario <Link-Mario@gmx.de>, 2015
@@ -543,7 +543,7 @@ msgstr "Willkommen im hostname-Menü."
 #: dialogs/AfterTakeover.lua:377
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Version: %s"
 
 #: dialogs/AfterTakeover.lua:378
 #, c-format

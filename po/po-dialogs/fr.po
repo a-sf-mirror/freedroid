@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # Duong Khang NGUYEN <neoneurone@gmail.com>, 2014
@@ -545,7 +545,7 @@ msgstr "Bienvenue au menu hostname."
 #: dialogs/AfterTakeover.lua:377
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Version : %s"
 
 #: dialogs/AfterTakeover.lua:378
 #, c-format
@@ -2947,7 +2947,7 @@ msgstr "non"
 
 #: dialogs/c-net-nethack_sub.lua:85
 msgid "Choose your job."
-msgstr "Choisir un travail."
+msgstr "Choisissez votre travail."
 
 #: dialogs/c-net-nethack_sub.lua:92 dialogs/c-net-nethack_sub.lua:142
 msgid "Archaeologist"
@@ -2955,13 +2955,11 @@ msgstr "Archéologue"
 
 #: dialogs/c-net-nethack_sub.lua:100 dialogs/c-net-nethack_sub.lua:146
 msgid "Rogue"
-msgstr ""
-"\t\n"
-"fripouille"
+msgstr "Rebelle"
 
 #: dialogs/c-net-nethack_sub.lua:108 dialogs/c-net-nethack_sub.lua:150
 msgid "Ranger"
-msgstr "Ranger"
+msgstr "Garde"
 
 #: dialogs/c-net-nethack_sub.lua:116 dialogs/c-net-nethack_sub.lua:154
 msgid "Tourist"
@@ -2990,7 +2988,7 @@ msgstr "gnome"
 
 #: dialogs/c-net-nethack_sub.lua:200 dialogs/c-net-nethack_sub.lua:232
 msgid "orc"
-msgstr "Orcque"
+msgstr "orque"
 
 #: dialogs/c-net-nethack_sub.lua:240
 msgid "Choose your gender."
@@ -3030,11 +3028,11 @@ msgstr "Bonjour et Bienvenu sur Nethack ! Vous êtes %s %s %s %s."
 #: dialogs/c-net-nethack_sub.lua:323
 #, c-format
 msgid "Your goddess, [b]%s[/b] desires the Amulet of Yendor, which the evil god [b]%s[/b] has hidden at the bottom of this dungeon."
-msgstr "Votre déesse, [b]%s[/b], souhaite l'Amulette de Yendor, que le Démon maléfique   [b]%s[/b] à caché à la base de ce dongeon."
+msgstr "Votre déesse, [b]%s[/b], souhaite l'Amulette de Yendor, que le Démon maléfique   [b]%s[/b] a caché en bas de ce donjon."
 
 #: dialogs/c-net-nethack_sub.lua:324
 msgid "Return with the [b]Amulet of Yendor[/b], and you shall be rewarded!"
-msgstr "Revenez avec l'[b] Amulette de Yendor[/b], et vous serez récompensé!"
+msgstr "Revenez avec l'[b] Amulette de Yendor[/b], et vous serez récompensé !"
 
 #: dialogs/c-net-nethack_sub.lua:325
 msgid "You are all alone on the surface. There is a stairway down."
@@ -3046,7 +3044,7 @@ msgstr "La porte se ferme derrière vous."
 
 #: dialogs/c-net-nethack_sub.lua:339
 msgid "You find the [b]Amulet of Yendor[/b], and take it and suddenly feel a compulsion to go down, into the depths."
-msgstr "Vous trouvez l'[b]Amulette de Yendor[/b], la prenez, et avez soudain envie d'aller vers le bas, dans les profondeurs."
+msgstr "Vous trouvez l'[b]Amulette de Yendor[/b], vous la prenez et vous avez soudain envie d'aller vers le bas, dans les profondeurs."
 
 #: dialogs/c-net-nethack_sub.lua:340
 #, c-format
@@ -3063,7 +3061,7 @@ msgstr "Vous ne trouvez rien ici."
 
 #: dialogs/c-net-nethack_sub.lua:346
 msgid "You find a Fake Amulet of Yendor."
-msgstr "Vous trouvez une Fausse amulette de Yendor."
+msgstr "Vous trouvez une Fausse Amulette de Yendor."
 
 #: dialogs/c-net-nethack_sub.lua:347
 msgid "You find emptiness."
@@ -3085,19 +3083,19 @@ msgstr "Vous faites un rapide passage à l'hôpital"
 #: dialogs/c-net-nethack_sub.lua:359
 #, c-format
 msgid "%s looks at you with impatience and points you back to the entrance of the dungeon."
-msgstr "%s vous recherche avec impatience et vous renvoie à l'entré de donjon."
+msgstr "%s vous regarde avec impatience et vous renvoie à l'entrée du donjon."
 
 #. TRANSLATORS:  %s = a god
 #: dialogs/c-net-nethack_sub.lua:361
 #, c-format
 msgid "You find your goddess, %s, at lunch. She points back the way you came."
-msgstr "Vous avez trouvé votre déesse, %s, en train de se faire un en-cas. Elle vous renvois de là où vous venez."
+msgstr "Vous avez trouvé votre déesse, %s, en plein repas. Elle vous renvoie de là où vous venez."
 
 #. TRANSLATORS:  %s = a god
 #: dialogs/c-net-nethack_sub.lua:363
 #, c-format
 msgid "You come up and nearly catch %s bathing. You quickly head back the way you came."
-msgstr "Vous remontez et surprenez %s qui prends sont bain. Vous retournez vite fait de là où vous venez."
+msgstr "Vous vous approchez et surprenez %s prenant un bain. Vous retournez vite fait de là où vous venez."
 
 #. TRANSLATORS:  %s = a god
 #: dialogs/c-net-nethack_sub.lua:368
@@ -3107,17 +3105,17 @@ msgstr "Vous montrez [b]l'Amulette de Yendor[/b] à  [b]%s[/b]  qui vous gratifi
 
 #: dialogs/c-net-nethack_sub.lua:369
 msgid "You win!"
-msgstr "Vous avez gagné!"
+msgstr "Vous avez gagné !"
 
 #. TRANSLATORS: you ascended a $alignment, $sex, $race, $role in nethack
 #: dialogs/c-net-nethack_sub.lua:371
 #, c-format
 msgid "You ascended a %s %s %s %s in Nethack!"
-msgstr "Vous avez monté un(e) %s %s %s %s dans Nethack!"
+msgstr "Vous avez obtenu un succès avec un %s %s %s %s dans Nethack !"
 
 #: dialogs/c-net-nethack_sub.lua:375
 msgid "By ascending in Nethack, you have improved your Hacking ability!"
-msgstr "En escaladant le Nethack, vous avez amélioré votre capacité de randonné !"
+msgstr "En obtenant un succés dans Nethack, vous avez amélioré votre capacité de Pirate !"
 
 #. TRANSLATORS: %s = n_level
 #: dialogs/c-net-nethack_sub.lua:381
@@ -3151,7 +3149,7 @@ msgstr "Vous vous trouvez dans une salle inondée."
 
 #: dialogs/c-net-nethack_sub.lua:389
 msgid "You find yourself in a room filled with huge, transparent, hexagonal dipyramidal crystals."
-msgstr "Vous vous trouvez dans une chambre remplie d'un immense crystal hexagonal dipyramidal transparent."
+msgstr "Vous vous trouvez dans une chambre remplie d'un immense cristal hexagonal pyramidal transparent."
 
 #: dialogs/c-net-nethack_sub.lua:390
 msgid "You find yourself in a passage filled with bones from the ancient past."
@@ -3159,7 +3157,7 @@ msgstr "Vous vous retrouvez dans un passage, rempli d'os des temps anciens."
 
 #: dialogs/c-net-nethack_sub.lua:391
 msgid "You find yourself in a room filled with fresh bones."
-msgstr "Vous vous trouvez dans une chambre remplie d'ossements frais."
+msgstr "Vous vous trouvez dans une chambre remplie d'ossements récents."
 
 #: dialogs/c-net-nethack_sub.lua:392
 msgid "You find yourself in a room filled with rotting corpses."
@@ -3175,7 +3173,7 @@ msgstr "Vous vous trouvez dans une mine d'or abandonnée."
 
 #: dialogs/c-net-nethack_sub.lua:395
 msgid "You find yourself. You are in a yoga room."
-msgstr "Vous vous trouvez dans une salle de yoga."
+msgstr "Vous vous trouvez vous-mêmes. Vous êtes dans une salle de yoga."
 
 #: dialogs/c-net-nethack_sub.lua:396
 msgid "You lose yourself in a misty passageway."
@@ -3183,7 +3181,7 @@ msgstr "Vous vous perdez dans un passage brumeux."
 
 #: dialogs/c-net-nethack_sub.lua:397
 msgid "You find yourself in a room filled with blinking lights."
-msgstr "Vous vous trouvez dans une chambre remplie de lumières aveuglantes."
+msgstr "Vous vous trouvez dans une chambre remplie de lumières clignotantes."
 
 #: dialogs/c-net-nethack_sub.lua:398
 msgid "You find yourself in a lava tube."
@@ -3195,7 +3193,7 @@ msgstr "Vous êtes perdus dans les ténèbres."
 
 #: dialogs/c-net-nethack_sub.lua:413
 msgid "angry woodchuck"
-msgstr "Marmotte enragée"
+msgstr "marmotte enragée"
 
 #: dialogs/c-net-nethack_sub.lua:413
 msgid "platypus"
@@ -3211,7 +3209,7 @@ msgstr "macareux"
 
 #: dialogs/c-net-nethack_sub.lua:413
 msgid "superintelligent slime mold"
-msgstr ""
+msgstr "moisissure gluante super intelligente"
 
 #: dialogs/c-net-nethack_sub.lua:413
 msgid "internet oracle"
@@ -3251,19 +3249,19 @@ msgstr "démagogue"
 
 #: dialogs/c-net-nethack_sub.lua:425
 msgid "ex-girlfriend"
-msgstr "ex"
+msgstr "ex petite amie"
 
 #: dialogs/c-net-nethack_sub.lua:425
 msgid "jabberwock"
-msgstr "drakkon"
+msgstr "jabberwock"
 
 #: dialogs/c-net-nethack_sub.lua:425
 msgid "ringwrath"
-msgstr "cavalier des ténebres"
+msgstr "cavalier des ténèbres"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "clippy"
-msgstr "trombone de l'aide microsoft office"
+msgstr "assistant trombone"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "ghoul"
@@ -3287,19 +3285,19 @@ msgstr "poulatrix"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "mind flayer"
-msgstr ""
+msgstr "flagelleur mental"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "marilith"
-msgstr ""
+msgstr "marilith"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "vrock"
-msgstr ""
+msgstr "vrock"
 
 #: dialogs/c-net-nethack_sub.lua:431
 msgid "nalfeshnee"
-msgstr ""
+msgstr "nalfeshnie"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "politician"
@@ -3307,7 +3305,7 @@ msgstr "politicien"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "gremlin"
-msgstr "grémline"
+msgstr "gremlin"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "incubus"
@@ -3319,7 +3317,7 @@ msgstr "succube"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "awkward turtle"
-msgstr "tortue géniale"
+msgstr "tortue maladroite"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "minotaur"
@@ -3335,7 +3333,7 @@ msgstr "ombre"
 
 #: dialogs/c-net-nethack_sub.lua:437
 msgid "drunk pirate"
-msgstr "pirate bourré"
+msgstr "pirate ivre"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "darkness"
@@ -3363,7 +3361,7 @@ msgstr "chaise"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "pet rock"
-msgstr "rocher de compagnie"
+msgstr "roche de compagnie"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "bag of bones"
@@ -3371,7 +3369,7 @@ msgstr "sac d'os"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "inanimate carbon rod"
-msgstr ""
+msgstr "baguette de carbone inanimée"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "mirage"
@@ -3379,19 +3377,19 @@ msgstr "mirage"
 
 #: dialogs/c-net-nethack_sub.lua:442
 msgid "hyperintelligent shade of blue"
-msgstr "nuance de bleu hyperintelligente"
+msgstr "nuance de bleu hyper intelligente"
 
 #: dialogs/c-net-nethack_sub.lua:446
 msgid "woodchuck"
-msgstr "Marmotte"
+msgstr "marmotte"
 
 #: dialogs/c-net-nethack_sub.lua:446
 msgid "MS employee"
-msgstr "employé de chez MicroSoft"
+msgstr "employé de MicroSoft"
 
 #: dialogs/c-net-nethack_sub.lua:446
 msgid "rooster"
-msgstr "Dindon"
+msgstr "dindon"
 
 #: dialogs/c-net-nethack_sub.lua:446
 msgid "lawyer"
@@ -3399,7 +3397,7 @@ msgstr "avocat"
 
 #: dialogs/c-net-nethack_sub.lua:446
 msgid "wraith"
-msgstr ""
+msgstr "spectre"
 
 #: dialogs/c-net-nethack_sub.lua:452
 msgid "bureaucrat"
@@ -3411,19 +3409,19 @@ msgstr "escargot"
 
 #: dialogs/c-net-nethack_sub.lua:452
 msgid "banana slug"
-msgstr ""
+msgstr "limace-banane"
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:458
 #, c-format
 msgid "A wild [b]%s[/b] appears!"
-msgstr "Un  [b]%s[/b] Sauvage apparait !"
+msgstr "Un  [b]%s[/b] sauvage apparaît !"
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:460
 #, c-format
 msgid "You notice a [b]%s[/b] in front of you."
-msgstr "Vous vous apercevez un [b]%s[/b] devant vous."
+msgstr "Vous apercevez un [b]%s[/b] devant vous."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:462
@@ -3435,13 +3433,13 @@ msgstr "Vous vous retournez et voyez un [b]%s[/b] juste derrière vous !"
 #: dialogs/c-net-nethack_sub.lua:464
 #, c-format
 msgid "A [b]%s[/b] jumps out in front of you!"
-msgstr "Un(e) [b]%s[/b] saute devant vous!"
+msgstr "Un(e) [b]%s[/b] saute devant vous !"
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:466
 #, c-format
 msgid "You sneek up upon a [b]%s[/b]."
-msgstr ""
+msgstr "Vous vous faufilez jusqu'à un(e) [b]%s[/b]."
 
 #. TRANSLATORS: n_ac n_tricks n_hp
 #. TRANSLATORS: all numbers
@@ -3450,7 +3448,7 @@ msgstr ""
 #: dialogs/c-net-nethack_sub.lua:677 dialogs/c-net-nethack_sub.lua:835
 #, c-format
 msgid "Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health."
-msgstr ""
+msgstr "Statistiques : [b]%s[/b] attaque/armure, [b]%s[/b] astuces, et [b]%s[/b] santé."
 
 #: dialogs/c-net-nethack_sub.lua:476
 msgid "Attack"
@@ -3459,7 +3457,7 @@ msgstr "Attaque"
 #: dialogs/c-net-nethack_sub.lua:479
 #, c-format
 msgid "You attack the inanimate %s."
-msgstr ""
+msgstr "Vous attaquez le(la) %s inanimé(e)."
 
 #: dialogs/c-net-nethack_sub.lua:480
 msgid "You go to attack, but then think better."
@@ -3468,16 +3466,16 @@ msgstr "Vous allez au combat, mais réfléchissez d'avantage."
 #: dialogs/c-net-nethack_sub.lua:481
 #, c-format
 msgid "You charge the %s and strike a mighty blow..."
-msgstr ""
+msgstr "Vous chargez le(la) %s et vous frappez d'un coup puissant..."
 
 #: dialogs/c-net-nethack_sub.lua:482
 msgid "You are puzzled as to what you plan to attack."
-msgstr ""
+msgstr "Vous êtes hésitant sur l'attaque à mener."
 
 #: dialogs/c-net-nethack_sub.lua:483
 #, c-format
 msgid "You throw a fireball at the %s. It is super effective!"
-msgstr ""
+msgstr "Vous lancez une boule de feu sur %s. C'est super efficace !"
 
 #: dialogs/c-net-nethack_sub.lua:484
 #, c-format
@@ -3487,56 +3485,56 @@ msgstr "Vous attaquez %s."
 #: dialogs/c-net-nethack_sub.lua:490
 #, c-format
 msgid "Your fireball hits the %s causing %s damage."
-msgstr ""
+msgstr "Votre boule de feu atteint le(la) %s causant %s dommages."
 
 #: dialogs/c-net-nethack_sub.lua:492
 #, c-format
 msgid "A bolt from your crossbow hits the %s causing %s damage."
-msgstr ""
+msgstr "Un carreau de votre arbalète atteint le(la) %s causant %s dommages."
 
 #: dialogs/c-net-nethack_sub.lua:494
 #, c-format
 msgid "Your credit card causes a massive papercut of %s damage."
-msgstr ""
+msgstr "Votre carte de crédit crée une grosse coupure causant %s dommages."
 
 #: dialogs/c-net-nethack_sub.lua:496
 #, c-format
 msgid "You freeze the middle of the %s causing %s damage."
-msgstr ""
+msgstr "Vous gelez par le milieu le(la) %s causant %s dommages."
 
 #: dialogs/c-net-nethack_sub.lua:498
 #, c-format
 msgid "Your fist of wrath smites the %s causing internal bleeding and %s damage."
-msgstr ""
+msgstr "Votre poing de colère frappe le(la) %s causant une hémorragie interne et %s dommages."
 
 #: dialogs/c-net-nethack_sub.lua:500
 #, c-format
 msgid "You throw your bola at the %s, causing it to trip and take %s damage."
-msgstr ""
+msgstr "Vous jetez votre bolo vers le(la) %s, le faisant trébucher et causant %s damage."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:504
 #, c-format
 msgid "Your arrow misses the %s."
-msgstr ""
+msgstr "Votre flèche rate le(la) %s."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:506
 #, c-format
 msgid "Blow after blow is rained down upon the %s but they all miss."
-msgstr ""
+msgstr "Les coups pleuvent sur le(la) %s mais ils ratent tous."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:508
 #, c-format
 msgid "Your sword glances off the magical aura of the %s."
-msgstr ""
+msgstr "Votre épée ricoche sur l'aura magique du(de la) %s."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:510
 #, c-format
 msgid "Your really awesome attack took too long to power up, and the %s moved."
-msgstr ""
+msgstr "Votre attaque impressionnante prend trop de temps à se mettre en place, et le(la) %s s'échappe."
 
 #: dialogs/c-net-nethack_sub.lua:518
 msgid "Run"
@@ -3552,39 +3550,39 @@ msgstr "Vous décampez !"
 
 #: dialogs/c-net-nethack_sub.lua:525 dialogs/c-net-nethack_sub.lua:531
 msgid "You chicken out!"
-msgstr "Vous avez les chocottes"
+msgstr "Vous avez les chocottes !"
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:535
 #, c-format
 msgid "The %s throws a bola at you, tripping you and stopping your escape"
-msgstr ""
+msgstr "Le(la) %s vous jette un bolo, vous faisant trébucher, stoppant votre fuite"
 
 #: dialogs/c-net-nethack_sub.lua:536
 msgid "You stand there like a deer in the headlights."
-msgstr ""
+msgstr "Vous restez sur place comme une biche devant des phares."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:538
 #, c-format
 msgid "You try to go, but the %s grabs you."
-msgstr ""
+msgstr "Vous essayez de partir, mais le(la) %s vous retient."
 
 #. TRANSLATORS: %s = enemy god name
 #: dialogs/c-net-nethack_sub.lua:540
 #, c-format
 msgid "%s strikes you with fear, and you cannot move."
-msgstr ""
+msgstr "%s vous frappe de peur, et vous ne pouvez plus bouger."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:542
 #, c-format
 msgid "The %s tackles you and pins you to the floor."
-msgstr ""
+msgstr "Le(la) %s vous plaque et vous maintient au sol."
 
 #: dialogs/c-net-nethack_sub.lua:543
 msgid "You go to run, but you trip over your shoelace."
-msgstr ""
+msgstr "Vous vous préparez à courir, mais vous marchez sur vos lacets et vous trébuchez."
 
 #: dialogs/c-net-nethack_sub.lua:550
 msgid "Trick"
@@ -3594,27 +3592,27 @@ msgstr "Astuce"
 #: dialogs/c-net-nethack_sub.lua:556
 #, c-format
 msgid "You toss a rock. The sound distracts the %s"
-msgstr ""
+msgstr "Vous jetez une pierre. Le bruit distrait le(la) %s."
 
 #: dialogs/c-net-nethack_sub.lua:557
 msgid "You toss a smoke-bomb and escape."
-msgstr ""
+msgstr "Vous lancez un fumigène et vous vous échappez."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:559
 #, c-format
 msgid "You stumble over a rock, creating a chain of reactions, ending in the tunnel collapsing on the %s."
-msgstr ""
+msgstr "Vous trébuchez sur une pierre, créant une réaction en chaîne, qui se termine par un effondrement du tunnel sur le(la) %s."
 
 #: dialogs/c-net-nethack_sub.lua:560
 msgid "You stab yourself with a fake dagger and pretend to be dead."
-msgstr ""
+msgstr "Vous vous poignardez avec une fausse dague et faîtes semblant d'être mort."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:562
 #, c-format
 msgid "You walk like a duck, quack like a duck and swim like a duck. The %s figures you must be a duck."
-msgstr ""
+msgstr "Vous marchez comme un canard, cancanez comme un canard et nagez comme un canard. Le(la) %s pense que vous devez être un canard."
 
 #: dialogs/c-net-nethack_sub.lua:563
 msgid "You pretend to be a mime."
@@ -3622,48 +3620,48 @@ msgstr "Vous prétendez être un mime."
 
 #: dialogs/c-net-nethack_sub.lua:564
 msgid "You pull a rabbit from your top hat."
-msgstr ""
+msgstr "Vous sortez un lapin de votre chapeau."
 
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:568
 #, c-format
 msgid "The %s is not impressed by your tricks."
-msgstr ""
+msgstr "Le(la) %s n'est pas impressionné(e) par vos tours."
 
 #. TRANSLATORS:  %s = enemy name
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:572
 #, c-format
 msgid "You try to act like a duck, but %s has an elephant and a lighter, and you don't want to be the punchline."
-msgstr ""
+msgstr "Vous essayez de vous comporter comme un canard, mais %s a un éléphant et vous ne voulez pas être la chute de la blague."
 
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:574
 #, c-format
 msgid "%s sees your trick, and shows you an even better one."
-msgstr ""
+msgstr "%s voit vos tours, et vous en montre de meilleurs."
 
 #: dialogs/c-net-nethack_sub.lua:578
 msgid "Not having any tricks left, you resort to you trying your feminine wiles."
-msgstr ""
+msgstr "N'ayant plus de tours à montrer, vus avez recours à quelques ruses de femme."
 
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:582
 #, c-format
 msgid "You succeed getting past the %s."
-msgstr ""
+msgstr "Vous réussissez à fuir le(la) %s."
 
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:584
 #, c-format
 msgid "You distract the %s long enough to escape."
-msgstr ""
+msgstr "Vous distrayez le(la) %s suffisamment longtemps pour vous échapper."
 
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:586
 #, c-format
 msgid "Your plight is noticed by a hero, who valiantly rescues you from the dastardly %s."
-msgstr ""
+msgstr "Votre détresse est remarquée par un héros qui vous secourt avec vaillance du(de la) %s."
 
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:590
@@ -3675,35 +3673,35 @@ msgstr ""
 #: dialogs/c-net-nethack_sub.lua:592
 #, c-format
 msgid "The %s curses you."
-msgstr ""
+msgstr "Le(la) %s vous jette un sort."
 
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:594
 #, c-format
 msgid "The %s casts a polymorph spell."
-msgstr ""
+msgstr "Le(la) %s lance un sort polymorphe."
 
 #: dialogs/c-net-nethack_sub.lua:595
 msgid "The Random Number God strikes you, changing your gender."
-msgstr ""
+msgstr "Le dieu Nombre Aléatoire vous frappe, changeant votre genre."
 
 #. TRANSLATORS: you ascended a $alignment, $sex, $race, $role in nethack
 #: dialogs/c-net-nethack_sub.lua:598 dialogs/c-net-nethack_sub.lua:791
 #, c-format
 msgid "You are now %s %s %s %s."
-msgstr "Maintenant, vous êtes %s %s %s %s."
+msgstr "Vous êtes maintenant %s %s %s %s."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:603
 #, c-format
 msgid "The %s notes your physique, but has too high of an IQ to be impressed."
-msgstr ""
+msgstr "Le(la) %s remarque votre force physique, mais à un QI trop élevé pour être impressioné(e)."
 
 #. TRANSLATORS: %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:605
 #, c-format
 msgid "%s might be more malleable if you were in better health."
-msgstr ""
+msgstr "%s serait plus malléable si vous étiez en meilleure santé."
 
 #: dialogs/c-net-nethack_sub.lua:615
 msgid "Pray"
@@ -3712,56 +3710,56 @@ msgstr "Prier"
 #: dialogs/c-net-nethack_sub.lua:619
 #, c-format
 msgid "Your goddess %s comes to your aid and gives you strength."
-msgstr ""
+msgstr "Votre déesse %s vous vient en aide et vous donne de la force."
 
 #: dialogs/c-net-nethack_sub.lua:624
 #, c-format
 msgid "Your goddess %s comes to your aid and teaches you a new trick."
-msgstr ""
+msgstr "Votre déesse %s vous vient en aide et vous apprend un nouveau tour."
 
 #: dialogs/c-net-nethack_sub.lua:629
 #, c-format
 msgid "Your enemy %s bestows some burdens upon you."
-msgstr ""
+msgstr "Votre ennemi(e) %s vous octroie plusieurs fardeaux."
 
 #: dialogs/c-net-nethack_sub.lua:630
 #, c-format
 msgid "%s overhears your prayers and curses you."
-msgstr ""
+msgstr "%s entend par hasard vos prières et vous lance un sort."
 
 #: dialogs/c-net-nethack_sub.lua:631
 msgid "While you were praying a leprechaun stole your sword."
-msgstr ""
+msgstr "Pendant que vous étiez en train de prier un farfadet a volé votre épée."
 
 #: dialogs/c-net-nethack_sub.lua:632
 msgid "While you were praying a hermit crab moved into your helmet. It's his now."
-msgstr ""
+msgstr "Pendant que vous étiez en train de prier un bernard-l’hermite est entré dans votre casque. C'est le sien maintenant. "
 
 #: dialogs/c-net-nethack_sub.lua:639 dialogs/c-net-nethack_sub.lua:654
 msgid "Nothing happens."
-msgstr "Il ne se passe strictement rien."
+msgstr "Il ne se passe rien."
 
 #: dialogs/c-net-nethack_sub.lua:640
 #, c-format
 msgid "%s can't take your prayers right now, please leave a message..."
-msgstr ""
+msgstr "%s ne peut répondre à vos prières maintenant, merci de laisser un message..."
 
 #: dialogs/c-net-nethack_sub.lua:641 dialogs/c-net-nethack_sub.lua:660
 msgid "Twice nothing happens."
-msgstr "Encore une fois, il ne se passe strictement rien."
+msgstr "Il ne se passe deux fois rien."
 
 #: dialogs/c-net-nethack_sub.lua:642
 #, c-format
 msgid "%s left her cellphone at home today."
-msgstr ""
+msgstr "%s a laissé son téléphone portable à la maison aujourd'hui."
 
 #: dialogs/c-net-nethack_sub.lua:643
 msgid "Something, somewhere else happened."
-msgstr ""
+msgstr "Quelque chose s'est passé, autre part."
 
 #: dialogs/c-net-nethack_sub.lua:644
 msgid "The Random Number God is not swayed by your petty prayers."
-msgstr ""
+msgstr "Le dieu Nombre Aléatoire ne se laisse pas influencer par vos mesquines prières."
 
 #: dialogs/c-net-nethack_sub.lua:651
 msgid "Xyzzy"
@@ -3769,23 +3767,23 @@ msgstr "Xyzzy"
 
 #: dialogs/c-net-nethack_sub.lua:655
 msgid "Surprisingly, nothing happens."
-msgstr "Bizarement, il ne se passe strictement rien."
+msgstr "Bizarrement, il ne se passe rien."
 
 #: dialogs/c-net-nethack_sub.lua:656
 msgid "You are shocked, SHOCKED, to find nothing happens."
-msgstr ""
+msgstr "Vous êtes stupéfait, STUPÉFAIT, par le fait que rien ne se passe."
 
 #: dialogs/c-net-nethack_sub.lua:657
 msgid "Time was frozen then unfrozen but for you, nothing happens."
-msgstr ""
+msgstr "Le temps s'est arrêté puis à repris mais pour vous, rien ne s'est passé. "
 
 #: dialogs/c-net-nethack_sub.lua:658
 msgid "Unexpectedly, nothing happens."
-msgstr ""
+msgstr "Contre toute attente, il ne se passe rien."
 
 #: dialogs/c-net-nethack_sub.lua:659
 msgid "You wait for a moment, then, suddenly, nothing happens."
-msgstr ""
+msgstr "Vous attendez un moment, et, soudainement, rien ne se passe."
 
 #: dialogs/c-net-nethack_sub.lua:662
 msgid "You take a short nap."
@@ -4275,11 +4273,11 @@ msgstr "Afficher les statistiques"
 #: dialogs/c-net-nethack_sub.lua:930
 #, c-format
 msgid "[b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health"
-msgstr ""
+msgstr "[b]%d[/b] attaque/armure, [b]%d[/b] astuces, et [b]%d[/b] santé."
 
 #: dialogs/c-net-nethack_sub.lua:937
 msgid "Load Character"
-msgstr "Charger Personnage"
+msgstr "Charger personnage"
 
 #. TRANSLATORS: both god names
 #: dialogs/c-net-nethack_sub.lua:940
@@ -4301,13 +4299,13 @@ msgstr ""
 
 #: dialogs/c-net-nethack_sub.lua:957
 msgid "New Game"
-msgstr "Nouvelle Partie"
+msgstr "Nouvelle partie"
 
 #. TRANSLATORS: n_ac, n_tricks, n_hp
 #: dialogs/c-net-nethack_sub.lua:967
 #, c-format
 msgid "Your stats are: [b]%d[/b] attack/armor, [b]%d[/b] tricks, and [b]%d[/b] health."
-msgstr ""
+msgstr "Statistiques : [b]%d[/b] attaque/armure, [b]%d[/b] astuces, et [b]%d[/b] santé."
 
 #. TRANSLATORS: n_emname
 #: dialogs/c-net-nethack_sub.lua:969
@@ -4317,7 +4315,7 @@ msgstr ""
 
 #: dialogs/c-net-nethack_sub.lua:977
 msgid "End Game"
-msgstr "Fin du jeu."
+msgstr "Fin de la partie"
 
 #: dialogs/c-net.lua:31
 msgid "Welcome to the Community Network."
@@ -8666,43 +8664,43 @@ msgstr "Rappelle toi, tu peux toujours revenir ici pour te relaxer et rejouer."
 
 #: dialogs/Ewalds_296.lua:37
 msgid "HI THERE! I'll be your humble servant for the duration of your stay at Ewald's bar! We hope you enjoy your stay here and come again! Don't forget to tell ALL your friends about us! I LOVE YOU!"
-msgstr "SALUT TOI ! Je vais être ton humble serviteur pour la durée de votre séjour au bar d'Ewald ! Nous espèrons que vous aprécierez votre séjour et que vous reviendrez ! N'oublies pas de dire à TOUT tes amis de venir ici ! JE T'AIME !"
+msgstr "BONJOUR ! Je vais être votre humble serviteur pour la durée de votre séjour au bar d'Ewald ! Nous espérons que vous apprécierez votre séjour et que vous reviendrez ! N'oubliez pas de dire à TOUS vos amis de venir ici ! AMOUR SUR VOUS !"
 
 #: dialogs/Ewalds_296.lua:43
 msgid "HI THERE! I'll be your humble servant!"
-msgstr "SALUT TOI ! Je vais être ton humble serviteur !"
+msgstr "BONJOUR ! Je vais être votre humble serviteur !"
 
 #: dialogs/Ewalds_296.lua:44
 msgid "Uhh, yes, thank you, I know."
-msgstr "Oh oui, Merci. Je suis au courrent."
+msgstr "Ah, oui, merci, je sais."
 
 #: dialogs/Ewalds_296.lua:67
 msgid "Who are you? And why do you talk so... Friendly-like-ish?"
-msgstr "Qui êtes vous? et pourquoi parlez vous de façon si.... comme... amitueuse?"
+msgstr "Qui es tu ? et pourquoi parles-tu de façon si... amicale ?"
 
 #: dialogs/Ewalds_296.lua:69
 msgid "I am a 296 Customer Service Droid, designed to make your day memorable!"
-msgstr "Je suis un droïde au service des consommateurs, modèle 296. Je suis programmé pour vous faire passé une journée inoubliable !"
+msgstr "Je suis un robot de service aux clients, modèle 296, programmé pour vous faire passer une journée inoubliable !"
 
 #: dialogs/Ewalds_296.lua:70
 msgid "Uh huh. I just-"
-msgstr "Oh hum. je prendrais juste-"
+msgstr "Oh hum. Je me sens -"
 
 #: dialogs/Ewalds_296.lua:71
 msgid "I have installed on me the Service with a Smile software package, copyrighted by MEGASYS CORPORATION, to make sure I'm REALLY happy and appealing to customers!"
-msgstr "Je me suis installer le logiciel « Service avec le sourire »  copyright MEGASYS©, pour m'assurer que je sois VRAIMENT heureux et aimable avec le consomateur !"
+msgstr "Je me suis installé le logiciel « Service avec le sourire »  copyright MEGASYS, pour m'assurer que je sois VRAIMENT heureux et aimable avec les clients !"
 
 #: dialogs/Ewalds_296.lua:72
 msgid "May I interest you in reading the license to you? Perhaps the terms of usage? The privacy policy?"
-msgstr "Seriez vous intéressé si je vous lisais la licence d'utilisation ? ou peut-être les termes d'utilisation? Les donnés personnelles selon la loi informatique et liberté ?"
+msgstr "Vous seriez intéressé par la lecture de la licence d'utilisation ? Ou peut-être les termes d'utilisation ? La politique de protection de la vie privée ?"
 
 #: dialogs/Ewalds_296.lua:73
 msgid "Uh, no, I'm fine."
-msgstr "heu, non, ça va aller…"
+msgstr "Heu, non, ça va aller…"
 
 #: dialogs/Ewalds_296.lua:74
 msgid "Oh, that's a real shame, sir and or madam! We have a special Chef's Surprise today! Would you be interested in-"
-msgstr "Oh, mais quelle honte, monsieur et/ou madame ! Aujourd'hui, nous avons la surprise de chef ! Serriez vous intéressé-"
+msgstr "Oh, mais quel dommage, monsieur et ou madame ! Aujourd'hui, nous avons la surprise spéciale du chef ! Seriez-vous intéressé par -"
 
 #: dialogs/Ewalds_296.lua:75
 msgid "No, I'm fine, really!"
@@ -8710,11 +8708,11 @@ msgstr "Non merci, vraiment !"
 
 #: dialogs/Ewalds_296.lua:81
 msgid "What is this place? What are you doing with that funny-looking tool? WHAT VILE PLOTS HAVE YOU BEEN BREWING HERE?!"
-msgstr ""
+msgstr "C'est quoi cet endroit ? Qu'est ce que tu fais avec ce drôle d'outil ? QUELS VILS PLANS AVEZ-VOUS ÉLABORÉ ICI ?! "
 
 #: dialogs/Ewalds_296.lua:83
 msgid "Our GREAT and SUPER AWESOME barman EWALD has been brewing fantastic drinks for your enjoyment-"
-msgstr "Notre barman GRAND et SUPER GÉNIAL, EWALD a brassé des boissons fantastiques pour votre amusement-"
+msgstr "Notre FORMIDABLE et SUPER GÉNIAL barman EWALD a élaboré des boissons fantastiques pour votre plaisir -"
 
 #: dialogs/Ewalds_296.lua:84
 msgid "That's NOT what I meant!"
@@ -8722,15 +8720,15 @@ msgstr "Ce n'est PAS ce que je voulais dire !"
 
 #: dialogs/Ewalds_296.lua:90
 msgid "I'm giving you one chance to explain yourself, bot. You'd better make it quick."
-msgstr "Je te donne une chance de t'expliquer robot. Alors fait vite."
+msgstr "Je te donne une chance de t'expliquer, robot. Alors fais vite."
 
 #: dialogs/Ewalds_296.lua:92
 msgid "My Advanced Nuclear Maintenance Program v0.93 tells me that this is a standard Parafunken Triple-Core X41Z5 Nuclear Reactor Backup Power supply. Would you be interested in it?"
-msgstr "Mon Programme Avancée de Maintenance du Noyau  V0.93 me dit qu'il s'agis d'une alimentation standard de Réacteur Nucléaire Parafunken Triple-Core X41Z5. seriez-vous intéressé ?"
+msgstr "Mon Programme de Maintenance Nucléaire Niveau 2 v0.93 me dit qu'il s'agit d'une alimentation de secours standard de Réacteur Nucléaire Parafunken Triple-Coeur X41Z5. Seriez-vous intéressé ?"
 
 #: dialogs/Ewalds_296.lua:93
 msgid "Your... what? Did Ewald actually install that on you?"
-msgstr "Votre … votre quoi ? Ewald vous a vraiment installé ça ?"
+msgstr "Ton … quoi ? Ewald t'a vraiment installé ça ?"
 
 #: dialogs/Ewalds_296.lua:94
 msgid "Absolutely!"
@@ -8738,28 +8736,28 @@ msgstr "Absolument !"
 
 #: dialogs/Ewalds_296.lua:95
 msgid "The tool I am holding is a SUPER AWESOME standard-issue Parafunken Geiger Counter. May I suggest a sample?"
-msgstr "l'outil que je porte est un compteur Geiger standart Parafunken qui est SUPER GÉNIAL. Puis-je vous demander un échantillon ?"
+msgstr "L'outil que je porte est un SUPER GÉNIAL compteur Geiger Parafunken standard. Puis-je vous proposer un échantillon ?"
 
 #: dialogs/Ewalds_296.lua:96
 msgid "A super awesome- I mean, a Geiger counter? To measure radiation? Interesting. It's making all those funny clicking sounds... What is it saying?"
-msgstr "Un super gé- Je veut dire un compteur Geiger ? Pour détecter la radioactivité ? Intéressant. Ça fait tous ces cliquetis délirant… Qu'est-ce qu'il raconte ?"
+msgstr "Un super gén- je veux dire, un compteur Geiger ? Pour détecter la radioactivité ? Intéressant. Ça fait tous ces cliquetis délirants… Qu'est-ce qu'il raconte ?"
 
 #: dialogs/Ewalds_296.lua:97
 msgid "It is saying the reactor is nearing terminal radiation overload! AWESOME!"
-msgstr "Il dit que le réacteur est proche de la surcharge de radiation, à un stade critique ! GÉNIAL !"
+msgstr "Il dit que le réacteur est proche de la surcharge critique de radiation ! SUPER !"
 
 #: dialogs/Ewalds_296.lua:98
 msgid "I found a 296 belonging to Ewald in the maintenance tunnels underneath the town. It claims to be monitoring a damaged nuclear reactor."
-msgstr ""
+msgstr "J'ai trouvé un 296 appartenant à Ewald dans les tunnels de maintenance sous la ville. Il affirme être en train de contrôler un réacteur nucléaire endommagé."
 
 #: dialogs/Ewalds_296.lua:104
 msgid "DIE, YOU EVIL PIECE OF SCRAP METAL!"
-msgstr ""
+msgstr "MEURS, ESPECE DE BOUT DE FERAILLE !"
 
 #. TRANSLATORS: sir or madam
 #: dialogs/Ewalds_296.lua:107
 msgid "Sir or ma-"
-msgstr "Monsieur et/ou ma-"
+msgstr "Madame, ou monsi -"
 
 #: dialogs/Ewalds_296.lua:108 dialogs/Kevin-Lawnmower.lua:113
 msgid "DIE!"
@@ -8767,7 +8765,7 @@ msgstr "CRÈVE !"
 
 #: dialogs/Ewalds_296.lua:115
 msgid "Terminal radiation overload? What in the name of ice have you done!?"
-msgstr ""
+msgstr "Surcharge critique de radiation ? Au nom de la glace, qu'as-tu fait !?"
 
 #: dialogs/Ewalds_296.lua:117
 msgid "I've been trying to extract the expired-"
@@ -8775,79 +8773,79 @@ msgstr "J'ai essayé d'extraire le -"
 
 #: dialogs/Ewalds_296.lua:118
 msgid "You... You've been sitting down here, plotting to kill everyone!"
-msgstr "Vous… vous êtes resté assis ici, près à tuer tout le monde !"
+msgstr "Tu… Tu es resté assis ici, planifiant de tuer tout le monde !"
 
 #: dialogs/Ewalds_296.lua:124
 msgid "Terminal radiation overload? Isn't that a bit... Dangerous?"
-msgstr ""
+msgstr "Surcharge critique de radiation ? Ne serait-ce pas un peu... dangereux ?"
 
 #: dialogs/Ewalds_296.lua:126
 msgid "My Maintenance Program v0.93 Glossary tells me the condition of 'Terminal Radiation Overload' can cause a nuclear explosion and EXTREME DEATH!"
-msgstr "Le glossaire de mon programme de maintenance v0.93 me décrit que les conditions de « la surcharge de radiation, à un stade critique » peuvent induire une explosion nucléaire et une MORT EXTRÊME !"
+msgstr "Le glossaire de mon programme de maintenance v0.93 m'indique que la « surcharge critique de radiation » peut causer une explosion nucléaire et une MORT EXTRÊME !"
 
 #: dialogs/Ewalds_296.lua:127
 msgid "Oh. Nice. Does it actually say 'extreme death' in there?"
-msgstr "Ah, c'est bien. Est ce que le glossaire définie « Mort extrême » ?"
+msgstr "Ah. Bien. Est ce qu'il est vraiment écrit « Mort Extrême » ?"
 
 #: dialogs/Ewalds_296.lua:128
 msgid "It most certainly does! This program is the BEST! We have it in 5 different flavors! Care to try some?"
-msgstr "Certainement ! Ce programme est le meilleur ! Nous avons 5 goût différents ! Vous voullez essayer ?"
+msgstr "Sans aucun doute ! Ce programme est le MEILLEUR ! Nous l'avons en 5 versions ! Vous voulez en essayer une ?"
 
 #: dialogs/Ewalds_296.lua:129
 msgid "... Thanks, I think I'll pass."
-msgstr "… No Merci."
+msgstr "… Merci, mais je vais passer mon tour."
 
 #: dialogs/Ewalds_296.lua:130
 msgid "But... If this nuclear reactor is about to explode... The town up there..."
-msgstr "Mais… si ce réacteur nucléaire est sur le point d'exploser… la ville va être anéantie…"
+msgstr "Mais… Si ce réacteur nucléaire est sur le point d'exploser… La ville juste au dessus…"
 
 #: dialogs/Ewalds_296.lua:131
 msgid "My data on 'Nuclear Explosion' says it will vaporize ANYTHING within several hundred kilometers! The entire area will be UNINHABITABLE for several decades! Would you like to order anything?"
-msgstr "Mes donnés concernant les « Explosion Nucléaire » disent que cela va TOUT vaporiser dans un rayon de plusieurs centaines que kilomètres ! La Zone sera inhabitable pendant plusieurs décennies ! Souhaitez vous commander quelque chose ?"
+msgstr "Mes donnés concernant les « Explosions Nucléaires » disent que ça va TOUT vaporiser dans un rayon de plusieurs centaines que kilomètres ! La zone entière sera INHABITABLE pendant plusieurs décennies ! Souhaitez vous commander quelque chose ?"
 
 #: dialogs/Ewalds_296.lua:132
 msgid "Ewald's 296 has assured me that the nuclear reactor is about to explode and destroy the town! I have to do something!"
-msgstr "Ewald 296 m'a dit que le réacteur nucléaire Va bientot exploser et détruire toute la ville ! Il faut que je fasse quelque chose !"
+msgstr "Ewald 296 m'a assuré que le réacteur nucléaire va bientôt exploser et détruire la ville ! Il faut que je fasse quelque chose !"
 
 #: dialogs/Ewalds_296.lua:138
 msgid "Why aren't you calling someone? Why aren't you trying to fix this? You have a maintenance program!"
-msgstr ""
+msgstr "Pourquoi n'appelle-tu personne ? Pourquoi n'essaye-tu pas de résoudre le problème ? Tu as un programme de maintenance !"
 
 #: dialogs/Ewalds_296.lua:140
 msgid "You would like to see my manager? I don't think that would be necessary, Dave. I mean, sir and or madam."
-msgstr "Voulez-vous parler à mon supérieur ? Je ne pense pas que cela soit nécessaire, mon cher. Enfin, je veut dire Monsieur et/ou Madame."
+msgstr "Voulez-vous voir mon supérieur ? Je ne pense pas que ça soit nécessaire, mon cher. Enfin, je veux dire, Monsieur et ou Madame."
 
 #: dialogs/Ewalds_296.lua:141
 msgid "Fine, don't call anyone, but fix this thing! It's unstable!"
-msgstr "Très bien, n'appelez personnes, mais arranger ça ! C'est instable !"
+msgstr "Très bien, n'appelle personne, mais arrange ça ! C'est instable !"
 
 #: dialogs/Ewalds_296.lua:142
 msgid "I've been trying to extract the expired graphite module and replace it with a BRAND NEW, CHEAP one! But my maintenance program does not have data on 'Graphite Module'. I am afraid I can't do it, Dave."
-msgstr ""
+msgstr "J'ai essayé d'extraire le module de graphite usagé et de le remplacer par un TOUT NOUVEAU, BON MARCHÉ ! Mais mon programme de maintenance n'a aucune donnée concernant le « Module de Graphite ». Je crains de ne rien pouvoir y faire, mon cher."
 
 #: dialogs/Ewalds_296.lua:143
 msgid "... Sir and or madam."
-msgstr "…Monsieur et/ou madame."
+msgstr "…Monsieur et ou madame."
 
 #: dialogs/Ewalds_296.lua:149
 msgid "I suppose I might as well order something while I'm here. Give me the menu, please."
-msgstr ""
+msgstr "J'imagine que je devrais en profiter pour commander quelque chose pendant que je suis là. Donne moi la carte, s'il te plaît."
 
 #: dialogs/Ewalds_296.lua:151
 msgid "I'm sorry, sir and or madam, we have no menu at the moment."
-msgstr "Je suis désolé, monsieur et/ou madame, nous n'avons pas de carte pour le moment."
+msgstr "Je suis désolé, monsieur et ou madame, nous n'avons pas de carte pour le moment."
 
 #: dialogs/Ewalds_296.lua:152
 msgid "All right, then give me some cold water."
-msgstr "Très bien, donnes-moi donc de l'eau froide."
+msgstr "Très bien, donne-moi donc de l'eau froide alors."
 
 #: dialogs/Ewalds_296.lua:153
 msgid "I'm sorry, sir and or madam, we're fresh out of water."
-msgstr "Je suis désolé, Monsieur et/ou Madame, d'eau fraîche notre stock est épuisé."
+msgstr "Je suis désolé, Monsieur et ou Madame, notre stock d'eau fraîche est épuisé."
 
 #: dialogs/Ewalds_296.lua:154
 msgid "But you just offered me..."
-msgstr "Mais, vous venez de m'en offrir…"
+msgstr "Mais, tu viens de me proposer…"
 
 #: dialogs/Ewalds_296.lua:155
 msgid "Sorry!"
@@ -8855,55 +8853,55 @@ msgstr "Désolé !"
 
 #: dialogs/Ewalds_296.lua:161
 msgid "We need to do something. We can't just sit here and wait for it to blow up!"
-msgstr "Nous devons faire quelque chose. On ne peux pas s'asseoir ici et attendre que ça explose."
+msgstr "Nous devons faire quelque chose. On ne peut pas juste s'asseoir ici et attendre que ça explose !"
 
 #: dialogs/Ewalds_296.lua:163
 msgid "My DELICIOUS database is insufficient to repair the radiation leak and replace the module!"
-msgstr "Ma Merveilleuse base de donné est insuffisante pour réparer la fuite de radiation et remplacer le module !"
+msgstr "Ma MERVEILLEUSE base de données est insuffisante pour réparer la fuite de radiation et remplacer le module !"
 
 #: dialogs/Ewalds_296.lua:164
 msgid "All right, so you need more data... How about a sourcebook? Would that help?"
-msgstr ""
+msgstr "Très bien, donc tu as besoin de plus de données... Que penses-tu d'un listing source ? Ça pourrait t'aider ?"
 
 #: dialogs/Ewalds_296.lua:165
 msgid "The Maintenance program contains references to the popular Subatomic and Nuclear Science for Dummies series, volume IV."
-msgstr "Le programme de maintenance contiens des références au fameux livre : « Les sciences nucléaires et subatomiques pour les nuls, volume IV »"
+msgstr "Le programme de maintenance contient des références au fameux « Les sciences nucléaires et subatomiques pour les nuls, volume IV »"
 
 #: dialogs/Ewalds_296.lua:166
 msgid "Subatomic and Nuclear Science for Dummies, volume IV?. Maybe someone in town has it. I have to go now, there's no time to lose!"
-msgstr "« Les sciences nucléaires et subatomiques pour les nuls, volume IV » ? Peut être qu'il y en a un exemplaire en ville. Je dois y aller, il n'y a pas de temps à perdre !"
+msgstr "« Les sciences nucléaires et subatomiques pour les nuls, volume IV » ? Peut être quelqu'un en ville en a-t-il un exemplaire. Je dois y aller, il n'y a pas de temps à perdre !"
 
 #: dialogs/Ewalds_296.lua:167
 msgid "Would you like the check?"
-msgstr "Pourriez-vous vérifier ?"
+msgstr "Vous voudriez bien vérifier ?"
 
 #: dialogs/Ewalds_296.lua:169
 msgid "If I can get a copy of Subatomic and Nuclear Science for Dummies, Volume IV, the 296 may be able to stop the explosion. I hope someone in town has it!"
-msgstr ""
+msgstr "Si je peux récupérer une copie de « Les sciences nucléaires et subatomiques pour les nuls, volume IV »; le 296 pourrait être capable d'arrêter l'explosion. J'espère que quelqu'un en ville le possède !"
 
 #: dialogs/Ewalds_296.lua:176
 msgid "How on Earth did you get here?"
-msgstr ""
+msgstr "Comment as-tu réussi à arriver ici ?"
 
 #: dialogs/Ewalds_296.lua:178
 msgid "While our SUPER AWESOME barman EWALD was restoring his biological energy supply, I went down to the basement to refill the bar taps and get some more soft and tender napkins for our WONDERFUL customers!"
-msgstr ""
+msgstr "Pendant que notre SUPER GÉNIAL barman Ewald remettait en état son alimentation en énergie biologique, je suis descendu à la cave pour recharger les robinets à bière et prendre quelques serviettes pour nos FORMIDABLES clients !"
 
 #: dialogs/Ewalds_296.lua:179
 msgid "My balance mechanism suddenly went WILD. The ground started SHAKING and the next thing I knew, I was FALLING!"
-msgstr ""
+msgstr "Mon mécanisme d'équilibre est soudainement devenu FOU. Le sol a commencé à SECOUER et la dernière chose dont je me souvienne, c'est que je suis TOMBÉ !"
 
 #: dialogs/Ewalds_296.lua:180
 msgid "The floor must have given way. From what I've seen, the whole tunnel system isn't very stable."
-msgstr ""
+msgstr "Le sol doit avoir cédé. De ce que je vois, tout le système de tunnel n'est pas très stable."
 
 #: dialogs/Ewalds_296.lua:181
 msgid "I was looking for LOVELY customers to serve and care for. Then I found this BEAUTIFUL chamber, with this EXPLOSIVE reactor!"
-msgstr ""
+msgstr "J'étais à la recherche de SYMPATHIQUES clients à servir et dont m'occuper. Puis j'ai trouvé cette JOLIE chambre, avec ce réacteur EXPLOSIF !"
 
 #: dialogs/Ewalds_296.lua:187
 msgid "I have the sourcebook here. Look up whatever you need."
-msgstr ""
+msgstr "J'ai le listing source avec moi. Cherche ce dont tu as besoin."
 
 #: dialogs/Ewalds_296.lua:189
 msgid "[b]Processing data, please wait... Updating database, this may take a while...[/b]"
@@ -8915,47 +8913,47 @@ msgstr "[b]Afin de prendre en compte les modifications, le système doit redéma
 
 #: dialogs/Ewalds_296.lua:191
 msgid "[b]BEEP![/b]"
-msgstr "[b]BIP![/b]"
+msgstr "[b]BIP ![/b]"
 
 #: dialogs/Ewalds_296.lua:193
 msgid "... HI THERE! I'll be your humble servant for the duration of your stay in-"
-msgstr ""
+msgstr "... BONJOUR ! Je vais être votre humble serviteur pour la durée de votre séjour au -"
 
 #: dialogs/Ewalds_296.lua:194
 msgid "THE REACTOR! What about the reactor? Can you replace the module now?"
-msgstr ""
+msgstr "LE RÉACTEUR ! À propos du réacteur, tu peux remplacer le module maintenant ?"
 
 #: dialogs/Ewalds_296.lua:195
 msgid "Yes, the reactor! Your order has been processed, sir and or madam! Please wait patiently!"
-msgstr ""
+msgstr "Oui, le réacteur ! Votre commande a été enregistrée, monsieur et ou madame ! Merci de patienter !"
 
 #: dialogs/Ewalds_296.lua:197
 msgid "I gave the book to Ewald's 296. Now all I can do is wait while it attempts to repair the reactor."
-msgstr ""
+msgstr "J'ai donné le listing source au 296 d'Ewald. Maintenant tout ce que je peux faire, c'est d'attendre pendant qu'il essaye de réparer le réacteur."
 
 #: dialogs/Ewalds_296.lua:205
 msgid "Well? Is the reactor fixed?"
-msgstr ""
+msgstr "Alors ? Le réacteur est réparé ?"
 
 #: dialogs/Ewalds_296.lua:207
 msgid "My analysis of the reactor determines the graphite module has melted and can not be replaced."
-msgstr ""
+msgstr "Mon analyse du réacteur indique que le module de graphite a fondu et qu'il ne peut pas être remplacé."
 
 #: dialogs/Ewalds_296.lua:208
 msgid "The reactor must SPECTACULARLY self-destruct to prevent a nuclear explosion, which would be NOT COOL!"
-msgstr ""
+msgstr "Le réacteur doit s'auto-détruire de façon SPECTACULAIRE pour empêcher une explosion nucléaire, ce qui ne sera pas TRÈS COOL !"
 
 #: dialogs/Ewalds_296.lua:209
 msgid "Oh, so all we had to do all this time was to blow up the reactor. Great. Well, set the timer and let's get out of here!"
-msgstr ""
+msgstr "Oh, alors tout ce que nous avions à faire pendant tout ce temps c'était de détruire le réacteur. Bien. Ok, lance le décompte et allons nous-en d'ici !"
 
 #: dialogs/Ewalds_296.lua:210
 msgid "The self-destruct mechanism is flawed, and the countdown can not function properly. The mechanism must be operated manually."
-msgstr ""
+msgstr "Le mécanisme d'auto-destruction a des défauts, et le décompte ne peut fonctionner correctement. Le mécanisme doit être déclenché manuellement."
 
 #: dialogs/Ewalds_296.lua:211
 msgid "Manually? You mean someone has to stay here and make sure it blows up?"
-msgstr ""
+msgstr "Manuellement ? Tu veux dire que quelqu'un doit rester ici et s'assurer qu'il explose ?"
 
 #: dialogs/Ewalds_296.lua:212
 msgid "Affirmative."
@@ -8963,43 +8961,43 @@ msgstr "Affirmatif."
 
 #: dialogs/Ewalds_296.lua:213
 msgid "... My maintenance program contains the required data for the procedure."
-msgstr ""
+msgstr "... Mon programme de maintenance contient les données appropriées pour la procédure."
 
 #: dialogs/Ewalds_296.lua:214
 msgid "You're... Volunteering to do it? But... You'll-"
-msgstr ""
+msgstr "Tu es... volontaire ? Mais... Tu vas -"
 
 #: dialogs/Ewalds_296.lua:215
 msgid "Unit 296 will be terminated."
-msgstr ""
+msgstr "L'unité 296 cessera de fonctionner."
 
 #: dialogs/Ewalds_296.lua:221
 msgid "OK then, have fun. See you!"
-msgstr "OK, amuse-toi bien. Au revoir !"
+msgstr "Ok, amuse-toi bien alors. Au revoir !"
 
 #: dialogs/Ewalds_296.lua:223
 msgid "Of course... Have a nice day."
-msgstr "Bien sur… passe une bonne journée."
+msgstr "Bien sûr… Passez une bonne journée."
 
 #: dialogs/Ewalds_296.lua:224
 msgid "Yeah, sure. Crazy bot."
-msgstr "Oui, bien sur. Vieux tas de ferraile."
+msgstr "Ouais, c'est sûr. Vieux fou de robot."
 
 #: dialogs/Ewalds_296.lua:225
 msgid "The 296 has volunteered to sacrifice itself in order to safely destroy the reactor. It might be admirable, if it weren't a (particularly annoying) bot."
-msgstr ""
+msgstr "Le 296 s'est porté volontaire pour se sacrifier afin d'assurer la destruction du réacteur. Ce serait admirable, si il n'était pas un robot (particulièrement ennuyeux)."
 
 #: dialogs/Ewalds_296.lua:233
 msgid "No. No, I won't let you do it! I can't let you die!"
-msgstr ""
+msgstr "Non. Non, je ne vais pas te laisser faire ça ! Je ne peux pas te laisser mourir !"
 
 #: dialogs/Ewalds_296.lua:235
 msgid "Only this version of the program-"
-msgstr "Seulement cette version du programme-"
+msgstr "Seulement cette version du programme -"
 
 #: dialogs/Ewalds_296.lua:236
 msgid "I don't care! You're willing to sacrifice yourself to save the people up there. That qualifies as a bot worth saving in my eyes."
-msgstr ""
+msgstr "Peu m'importe ! Tu exprimes le désir de te sacrifier pour sauver les gens qui sont là-haut. Ça fait de toi un robot qui vaut la peine d'être sauvé, à mes yeux."
 
 #: dialogs/Ewalds_296.lua:237
 msgid "I am not letting you die."
@@ -9007,43 +9005,43 @@ msgstr "Je ne vais pas te laisser mourir."
 
 #: dialogs/Ewalds_296.lua:238
 msgid "You must not try to stop me, sir and or madam."
-msgstr "Vous ne devez pas essayer de m'arrêter, Monsieur et/ou Madame."
+msgstr "Vous ne devez pas essayer de m'arrêter, Monsieur et ou Madame."
 
 #: dialogs/Ewalds_296.lua:244
 msgid "I am going to save you, even if... Even if I have to hack you and drag you all the way up!"
-msgstr ""
+msgstr "Je vais te sauver, même si... Même si je dois te pirater et te traîner jusqu'à la sortie !"
 
 #: dialogs/Ewalds_296.lua:246
 msgid "You wish to fight, sir and or madam?"
-msgstr "Voulez-vous vous battre, Monsieur et/ou Madame ?"
+msgstr "Voulez-vous vous battre, Monsieur et ou Madame ?"
 
 #: dialogs/Ewalds_296.lua:247
 msgid "I don't want to hurt you. Follow me, and we can think of a better way to do this."
-msgstr ""
+msgstr "Je ne veux pas te faire de mal. Suis moi, et nous réfléchir à un meilleur moyen de le faire."
 
 #: dialogs/Ewalds_296.lua:248
 msgid "Negative. The reactor can only be safely destroyed using the manual self-destruction mechanism."
-msgstr ""
+msgstr "Négatif. Le réacteur ne peut être détruit avec certitude qu'en utilisant le mécanisme manuel d'auto-destruction."
 
 #: dialogs/Ewalds_296.lua:249
 msgid "All right then. I guess I'll just have to force you to come."
-msgstr ""
+msgstr "Très bien alors. Je suppose que je vais devoir te forcer à venir."
 
 #: dialogs/Ewalds_296.lua:250
 msgid "I cannot allow sir and or madam to come to harm."
-msgstr ""
+msgstr "Je ne peux autoriser Monsieur et ou Madame à risquer de se blesser."
 
 #: dialogs/Ewalds_296.lua:251
 msgid "The 296 bravely volunteered to sacrifice itself in order to blow the reactor up safely. I wasn't about to let it throw its life away like that, but as I prepared to hack it and force it to follow me, I was suddenly teleported into town! Wait... Was that an explosion? Oh no..."
-msgstr ""
+msgstr "Le 296 s'est bravement porté volontaire pour se sacrifier afin d'assurer que le réacteur soit détruit. Je n'allais pas le laisser perdre la vie comme cela, mais comme je me préparais à le pirater pour le forcer à me suivre, j'ai soudainement été téléporté en ville ! Attends... Est-ce que c'était une explosion ? Oh non..."
 
 #: dialogs/Ewalds_296.lua:262
 msgid "... You're sure you want to do this?"
-msgstr "... Vous êtes sûr de vouloir le faire ?"
+msgstr "... Tu es sûr de vouloir le faire ?"
 
 #: dialogs/Ewalds_296.lua:264
 msgid "There is no other way, sir and or madam."
-msgstr "Il n'y a pas d'autre moyen, Monsieur et/ou Madame."
+msgstr "Il n'y a pas d'autre moyen, Monsieur et ou Madame."
 
 #: dialogs/Ewalds_296.lua:265 dialogs/Iris.lua:271
 msgid "I understand."
@@ -9051,39 +9049,39 @@ msgstr "Je comprends."
 
 #: dialogs/Ewalds_296.lua:266
 msgid "Good luck, 296. You won't be forgotten."
-msgstr ""
+msgstr "Bonne chance, 296. On ne t'oubliera pas."
 
 #: dialogs/Ewalds_296.lua:267
 msgid "Thank you, sir and or madam."
-msgstr "Merci, Monsieur et/ou Madame."
+msgstr "Merci, Monsieur et ou Madame."
 
 #: dialogs/Ewalds_296.lua:268
 msgid "I must go now. Goodbye."
-msgstr "Je dois partir maintenant. Au revoir"
+msgstr "Je dois partir maintenant. Au revoir."
 
 #: dialogs/Ewalds_296.lua:269
 msgid "The 296 has bravely volunteered to sacrifice itself in order to blow the reactor up safely. A very courageous droid - I'm sorry to see it go."
-msgstr ""
+msgstr "Le 296 s'est bravement porté volontaire pour se sacrifier afin s'assurer que le réacteur explose. Un robot vraiment très courageux - Je suis triste de le voir disparaître."
 
 #: dialogs/Ewalds_296.lua:277
 msgid "What's that smashed droid there?"
-msgstr ""
+msgstr "C'est quoi ce robot écrabouillé là ?"
 
 #: dialogs/Ewalds_296.lua:279
 msgid "That is a REALLY FLAT 476 Maintenance droid! I found it when I first came here!"
-msgstr ""
+msgstr "C'était un robot de maintenance 476 VRAIMENT PLAT ! Je l'ai trouvé quand je suis venu ici la première fois !"
 
 #: dialogs/Ewalds_296.lua:280
 msgid "According to the reactor's BORING repair log, the 476 was supposed to make a monthly system check FIVE DAYS AGO!"
-msgstr ""
+msgstr "Selon l'ENNUYEUX rapport de log du réacteur, le 476 était supposé faire une vérification mensuelle il y a CINQ JOURS !"
 
 #: dialogs/Ewalds_296.lua:281
 msgid "Oh, great. The one droid that was keeping the reactor in check is now a metallic pancake."
-msgstr ""
+msgstr "Oh, bien. Le seul robot qui faisait les vérifications du réacteur et maintenant une galette métallique."
 
 #: dialogs/Ewalds_296.lua:282
 msgid "We offer DELICIOUS pancakes-"
-msgstr ""
+msgstr "Nous proposons de DÉLICIEUSES galettes -"
 
 #: dialogs/Ewalds_296.lua:283
 msgid "I'm not interested!"
@@ -9091,35 +9089,35 @@ msgstr "Ça ne m'intéresse pas !"
 
 #: dialogs/Ewalds_296.lua:289
 msgid "Erm... But didn't you... Uh..."
-msgstr ""
+msgstr "Heu... Mais tu n'es pas... Euh..."
 
 #: dialogs/Ewalds_296.lua:291
 msgid "Allow me to clear up your confusion, sir and or madam!"
-msgstr ""
+msgstr "Laissez moi éclaircir ce point, Monsieur et ou Madame !"
 
 #: dialogs/Ewalds_296.lua:292
 msgid "My Nick of Time software package allowed me to tap into the town's teleportation network."
-msgstr ""
+msgstr "Mon logiciel d'ajustement temporel m'a permis de me brancher sur le réseau de téléportation de la ville."
 
 #: dialogs/Ewalds_296.lua:293
 msgid "This COMPLETELY AWESOME set of subroutines let me teleport in an iron bar to take my place at the last possible moment!"
-msgstr ""
+msgstr "Ce jeu ABSOLUMENT INCROYABLE de sous-routines m'a téléporté au tout dernier moment !"
 
 #: dialogs/Ewalds_296.lua:294
 msgid "And now you're-"
-msgstr "Et maintenant vous êtes-"
+msgstr "Et maintenant tu es -"
 
 #: dialogs/Ewalds_296.lua:295
 msgid "Back in the employ of the GREAT and SUPER AWESOME Ewald!"
-msgstr ""
+msgstr "De retour au service du GRAND et SUPER GÉNIAL Ewald !"
 
 #: dialogs/Ewalds_296.lua:296
 msgid "Well, I'm glad to see you're not destroyed."
-msgstr ""
+msgstr "Eh bien, je suis content que tu n'aies pas été détruit."
 
 #: dialogs/Ewalds_296.lua:297
 msgid "I found Ewald's 296 alive and well in Ewald's bar! I was sure it was destroyed in that explosion I heard, but it's safe and sound. Well, I guess all's well that ends well."
-msgstr ""
+msgstr "J'ai trouvé le 296 d'Ewald en vie et en bonne état dans le bar d'Ewald ! J'étais persuadé qu'il avait été détruit dans l'explosion que j'ai entendu, mais il est sain et sauf. Tout est bien qui finit bien."
 
 #: dialogs/Ewalds_296.lua:304
 msgid "So, 296, how's it going?"
@@ -9127,11 +9125,11 @@ msgstr "Alors, 296, comment ça va ?"
 
 #: dialogs/Ewalds_296.lua:306
 msgid "Great, sir and or madam! The business is flourishing and everything is AMAZINGLY back to normal!"
-msgstr ""
+msgstr "Bien, Monsieur et ou Madame ! Les affaires sont florissantes et tout est FORMIDABLEMENT de retour à la normale !"
 
 #: dialogs/Ewalds_296.lua:307
 msgid "Would sir and or madam be interested in a refreshing drink, ON THE HOUSE?"
-msgstr ""
+msgstr "Monsieur et ou Madame serait-il intéressé par une boisson rafraîchissante, offert PAR LA MAISON ?"
 
 #: dialogs/Ewalds_296.lua:308
 msgid "Why, thank you!"
@@ -9139,15 +9137,15 @@ msgstr "Pourquoi, merci !"
 
 #: dialogs/Ewalds_296.lua:310
 msgid "Would sir and or madam want any other service?"
-msgstr ""
+msgstr "Monsieur et ou Madame aurait-il besoin d'autre chose ?"
 
 #: dialogs/Ewalds_296.lua:319
 msgid "Hmm... How about... Ewald's password?"
-msgstr ""
+msgstr "Humm... Pourquoi pas... le mot de passe d'Ewald ?"
 
 #: dialogs/Ewalds_296.lua:321
 msgid "Our MAGNIFICENT bartender EWALD has an UNBREAKABLE password! His account is the most secure EVER! NO ONE except for him can get on it!"
-msgstr ""
+msgstr "Notre MAGNIFIQUE barman Ewald a un mot de passe INCASSABLE ! Son compte est le plus sécurisé AU MONDE ! PERSONNE excepté lui ne peut y accéder !"
 
 #: dialogs/Ewalds_296.lua:322
 msgid "What's the password?"
@@ -9155,19 +9153,19 @@ msgstr "Quel est le mot de passe ?"
 
 #: dialogs/Ewalds_296.lua:323
 msgid "Five asterisks!"
-msgstr "Cinq astérisques"
+msgstr "Cinq astérisques !"
 
 #: dialogs/Ewalds_296.lua:325
 msgid "... Maybe I shouldn't have said that."
-msgstr ""
+msgstr "... Je n'aurais peut-être pas dû le dire."
 
 #: dialogs/Ewalds_296.lua:332
 msgid "I'd like another drink, please."
-msgstr "Je voudrais un autre verre, s'il vous plaît."
+msgstr "Je voudrais un autre verre, s'il te plaît."
 
 #: dialogs/Ewalds_296.lua:334
 msgid "Certainly! This one's on the house!"
-msgstr ""
+msgstr "Certainement ! Celui-ci est offert par la maison !"
 
 #: dialogs/Ewalds_296.lua:340
 msgid "Well, I should really be going now."
@@ -9179,11 +9177,11 @@ msgstr "Merci, au plaisir de vous revoir !"
 
 #: dialogs/Ewalds_296.lua:343
 msgid "Tell your friends about us!"
-msgstr "Parlez à vous amis de nous !"
+msgstr "Parlez de nous à vous amis !"
 
 #: dialogs/Ewalds_296.lua:344
 msgid "We hope you've enjoyed our service!"
-msgstr "Nous espérons que vous avez appréciez notre service !"
+msgstr "Nous espérons que vous avez apprécié notre service !"
 
 #: dialogs/Francis.lua:55
 msgid "HELP! We're under attack!"
@@ -9839,11 +9837,11 @@ msgstr "Mise à jour du microcode effectuée !"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:94
 msgid "ALL: SECURITY: could not find 'evil.conf': No such file or directory."
-msgstr ""
+msgstr "TOUS : SÉCURITÉ : 'evil.conf' introuvable : Aucun fichier ou dossier de ce type "
 
 #: dialogs/HF-FirmwareUpdateServer.lua:95
 msgid "\tExiting with state 1."
-msgstr ""
+msgstr "⇥Sortie avec valeur de retour 1"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:98
 msgid "I managed to upload the faulty firmware update to all bots within transmission range. Either the siege on the town ends now... Or everything else does."
@@ -15179,7 +15177,7 @@ msgstr "Salutations camarade de la Garde rouge."
 
 #: dialogs/Spencer.lua:104
 msgid "I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?"
-msgstr "Je suis Baptiste. Je suis le chef de la Garde rouge. Que puis-je faire pour toi ?"
+msgstr "Je suis Baptiste. Je suis le chef de la Garde Rouge. Que puis-je faire pour toi ?"
 
 #: dialogs/Spencer.lua:115
 msgid "I want to join the Red Guard."
@@ -15263,11 +15261,11 @@ msgstr "Grâce à toi, nous avons été capables de transporter toutes les fourn
 
 #: dialogs/Spencer.lua:174
 msgid "Rest assured that we will never forget your brave activity for our community."
-msgstr "Soit assuré que nous n'oublierons jamais tes courageuses prouesses réalisées en faveur de notre communauté."
+msgstr "Soit assuré que nous n'oublierons jamais tes courageuses prouesses pour notre communauté."
 
 #: dialogs/Spencer.lua:176
 msgid "Man, you really did it! I can hardly believe it, but all the bots are gone!"
-msgstr "Eh mec, t'as vraiment réussi ! J'ai du mal à y croire, mais tous les robots sont H.S. !"
+msgstr "Eh mec, tu l'as vraiment fait ! J'ai du mal à y croire, mais tous les robots sont H.S. !"
 
 #: dialogs/Spencer.lua:177
 msgid "Take these 500 circuits as a reward. And be assured that you've earned my deepest respect, Linarian."
@@ -15275,7 +15273,7 @@ msgstr "Tiens, prends ces 500 circuits en guise de récompense. Crois bien que t
 
 #: dialogs/Spencer.lua:178
 msgid "Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots."
-msgstr "Nos hommes transportent les fournitures en ce moment même. Ça ne sera pas long avant que des robots venants des vaisseaux en orbite n'atterrissent pour remplacer les robots morts."
+msgstr "Nos hommes transportent les fournitures en ce moment même. D'ici peu de temps, des robots venants des vaisseaux en orbite atteriront pour remplacer les robots morts."
 
 #: dialogs/Spencer.lua:181
 msgid "Ouch. It wasn't. At least I am alive, and the warehouse is clear. *Whew*."
@@ -15901,119 +15899,119 @@ msgstr "Notre administrateur système de la citadelle est le plus heureux des ho
 
 #: dialogs/Spencer.lua:609
 msgid "The firmware server was one of the things that were hidden in this network, and with all the obfuscations and defenses down, we not only could find it, but had full access."
-msgstr ""
+msgstr "Le serveur de microcode était une des choses cachées dans ce réseau, et avec la suppression de toutes les protections et défenses, non seulement nous avons pu le découvrir, mais nous y avons également complètement accès. "
 
 #: dialogs/Spencer.lua:610
 msgid "But the most interesting thing we uncovered is a secret teleportation network. It was very well-guarded, we never even knew it existed, but now it's open for us to use."
-msgstr ""
+msgstr "Mais la chose la plus intéressante que nous avons découverte est un réseau secret de téléportation. Il était très bien gardé, nous ne savions même pas qu'il existait, mais maintenant nous pouvons librement l'utiliser."
 
 #: dialogs/Spencer.lua:611
 msgid "My guess is, the corporate bastards who drove this sweatshop would use it to get in and out of work unnoticed. Grab the money and zap off to some island to relax."
-msgstr ""
+msgstr "Je suppose que les employés exploités par cette entreprise l'utilisaient pour entrer et sortir de leurs bureaux sans être vus. Prendre l'argent et disparaître sur une île quelconque pour se détendre. "
 
 #: dialogs/Spencer.lua:612
 msgid "Neutralizing the bot threat in the area wasn't the only thing I'd succeeded in doing: every MegaSys-based security product within range is completely broken now. A new teleportation network was discovered by the Red Guard, which is why Spencer is standing next to me right now."
-msgstr ""
+msgstr "La neutralisation de la menace des robots à cet endroit n'a pas été la seule chose que j'ai réussie à faire : tous les produits de sécurité de MegaSys à proximité sont complétement hors service maintenant. Un nouveau réseau de téléportation a été découvert par les Gardes Rouges, ce qui a permis à Baptiste de me rejoindre."
 
 #: dialogs/Spencer.lua:618
 msgid "I couldn't have done any different."
-msgstr ""
+msgstr "Je n'aurais pas pu faire autrement."
 
 #: dialogs/Spencer.lua:620
 msgid "You are far too modest. I doubt anyone alive right now could have done it."
-msgstr ""
+msgstr "Tu es bien trop modeste. Je doute que qui ce soit d'actuellement vivant aurait pu le faire."
 
 #: dialogs/Spencer.lua:621
 msgid "But the work isn't done... Not even close. The entire galaxy is still at war."
-msgstr ""
+msgstr "Mais le travail n'est pas terminé... on en est loin. La galaxie entière est toujours en guerre."
 
 #: dialogs/Spencer.lua:622
 msgid "You saved our little town, and you've proven that we can win this thing."
-msgstr ""
+msgstr "Tu as sauvé notre petite ville, et tu nous as prouvé que nous pouvons obtenir la victoire."
 
 #: dialogs/Spencer.lua:623
 msgid "We can't rest now. It's going to be hard and dangerous, but the alternative is death for humanity."
-msgstr ""
+msgstr "Nous ne pouvons pas encore nous reposer. Ça va être difficile et dangereux, mais l'alternative c'est la mort de l'humanité."
 
 #: dialogs/Spencer.lua:629
 msgid "I only did it for fun, really."
-msgstr ""
+msgstr "Je ne l'ai fait que par amusement, vraiment."
 
 #: dialogs/Spencer.lua:631
 msgid "... Oh, it doesn't matter."
-msgstr ""
+msgstr "... Oh, ça ne change rien."
 
 #: dialogs/Spencer.lua:632
 msgid "I suppose no one's perfect..."
-msgstr ""
+msgstr "Je suppose que personne n'est parfait..."
 
 #: dialogs/Spencer.lua:633
 msgid "What matters is that we're alive - those of us left, anyway - we have supplies, and we can take what we need from the Fortress now."
-msgstr ""
+msgstr "Ce qui importe c'est que nous soyons en vie - ce qui sont encore là, en tout cas - nous avons des fournitures, et nous pouvons récupérer ce dont nous avons besoin dans la Forteresse maintenant."
 
 #: dialogs/Spencer.lua:634
 msgid "And, whether or not you intended to, you've proven that we have a chance against the bots. Something worth fighting for. Worth living for."
-msgstr ""
+msgstr "Et, que ce soit intentionnellement ou pas, tu as prouvé que nous avons une chance contre les robots. Quelque chose pour laquelle ça vaut la peine de se battre. De vivre pour cela."
 
 #: dialogs/Spencer.lua:635
 msgid "You'll probably be happy to know that the entire galaxy is pretty much your playground now, Linarian. You'll have all the bots in the world to play with, and lots of opportunities to be a hero."
-msgstr ""
+msgstr "Tu seras surement content d'apprendre que toute la galaxie est ton terrain de jeu maintenant, Linarien. Tu vas pouvoir jouer avec tous les robots du monde, et trouver plein d'opportunité d'être un héros."
 
 #: dialogs/Spencer.lua:636
 msgid "Awesome!"
-msgstr ""
+msgstr "Impressionnant !"
 
 #: dialogs/Spencer.lua:637
 msgid "I'm so cool. I saved a bunch of people and bashed a bunch of bots. And there's much more where both of those came from! I'm done here, it's time to go help the next dump."
-msgstr ""
+msgstr "Je suis si cool. J'ai sauvé plein de gens et j'ai cogné un tas de robots. Et il y en a encore bien plus de là où ils viennent ! J'ai fini ici, il est temps que j'aille aider la prochaine vague."
 
 #: dialogs/Spencer.lua:643
 msgid "Can I use this teleportation network to return to town?"
-msgstr ""
+msgstr "Est-ce que je peux utiliser le réseau de téléportation pour retourner en ville ?"
 
 #: dialogs/Spencer.lua:646
 msgid "Yes, I think you can. I'll contact Richard and tell him to ready the teleporter and link it back to the one in town."
-msgstr ""
+msgstr "Oui, je pense que oui. Je vais contacter Richard et lui demander de préparer le téléporteur et de le connecter à celui qui est en ville."
 
 #: dialogs/Spencer.lua:648
 msgid "I believe you can, yes. I'll contact our computer expert and tell him to ready the teleporter and link it back to the one in town."
-msgstr ""
+msgstr "Je crois que tu peux, oui. Je vais contacter notre expert en informatique et lui demander de préparer le téléporteur et de le connecter à celui qui est en ville."
 
 #: dialogs/Spencer.lua:650
 msgid "But the way he explained it, this system is very limited by design: if the two teleporters are linked, using one will always take you to the other. So keep that in mind."
-msgstr ""
+msgstr "Mais d'après ce qu'il a expliqué, ce système est très limité par conception : si les deux téléporteurs sont reliés, en utiliser un te ramènera toujours à l'autre. Garde ça en tête."
 
 #: dialogs/Spencer.lua:651
 msgid "We'll stay here for a while longer. This place still needs to be investigated."
-msgstr ""
+msgstr "Nous allons rester ici encore un peu de temps. Cette zone doit encore être explorée."
 
 #: dialogs/Spencer.lua:658
 msgid "I'm ready. Just tell me what to do."
-msgstr ""
+msgstr "Je suis prêt. Dis moi ce que je dois faire."
 
 #: dialogs/Spencer.lua:660
 msgid "You've faced countless dangers so far. Are you sure you're willing to face more?"
-msgstr ""
+msgstr "Tu as déjà fait face à d'innombrables dangers jusqu'à présent. Tu es sûr de vouloir encore continuer ?"
 
 #: dialogs/Spencer.lua:661
 msgid "Bring it on!"
-msgstr ""
+msgstr "On y va !"
 
 #: dialogs/Spencer.lua:662
 msgid "That's exactly what I wanted to hear."
-msgstr ""
+msgstr "C'est exactement ce que je voulais entendre."
 
 #: dialogs/Spencer.lua:663
 msgid "Now listen carefully, this is the plan..."
-msgstr ""
+msgstr "Maintenant écoute avec attention, voilà le plan..."
 
 #: dialogs/Spencer.lua:664
 msgid "The town is saved, but there's still a lot to do. I agreed to continue fighting the robot armies with the Red Guard."
-msgstr ""
+msgstr "La ville est sauvée, mais il y a encore beaucoup à faire. J'ai accepté de continuer à combattre les armées de robots avec la Garde Rouge."
 
 #: dialogs/Spencer.lua:677
 msgid "Come back soon. There's much to be done."
-msgstr ""
+msgstr "Reviens vite. Il y a encore beaucoup à faire."
 
 #: dialogs/Stone.lua:60
 msgid "Welcome to our town! I'm Ms. Stone. I run this shop."

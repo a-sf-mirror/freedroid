@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # Anelise D. J., 2014
@@ -18628,7 +18628,7 @@ msgstr "Certamente farei meu melhor."
 
 #: dialogs/TutorialTom.lua:465
 msgid "It's odd to think that a flightless bird would be such a scrapper, but you Linarians have been surprising us since the beginning."
-msgstr ""
+msgstr "É estranho pensar que uma ave que não voa conseguiria ser tão destrutiva assim, as vocês Linarianos nos surpreenderam desde o começo."
 
 #: dialogs/TutorialTom.lua:466
 msgid "We prefer to fight the blamed droids at a distance. They're less likely to rend us limb from limb that way."

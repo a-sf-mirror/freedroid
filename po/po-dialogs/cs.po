@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # zdenek <chmelarz@gmail.com>, 2014-2015
@@ -543,7 +543,7 @@ msgstr "Vítáme Vás v menu hostname."
 #: dialogs/AfterTakeover.lua:377
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Verze: %s"
 
 #: dialogs/AfterTakeover.lua:378
 #, c-format
@@ -9833,11 +9833,11 @@ msgstr "Aktualizace firmwaru rozšířena!"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:94
 msgid "ALL: SECURITY: could not find 'evil.conf': No such file or directory."
-msgstr ""
+msgstr "VŠE: BEZPEČNOST: nelze najít \"zlo.conf\": Nenalezen žádný takový soubor nebo adresář."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:95
 msgid "\tExiting with state 1."
-msgstr ""
+msgstr "     Ukončení se stavem 1."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:98
 msgid "I managed to upload the faulty firmware update to all bots within transmission range. Either the siege on the town ends now... Or everything else does."

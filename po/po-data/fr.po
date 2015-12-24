@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # fluzz <fluzz@gmx.com>, 2015
@@ -570,7 +570,7 @@ msgstr "Incident de sécurité à la réception de la Forteresse Infernale."
 
 #: map/events.dat:6643
 msgid "Better reload your last save and try again."
-msgstr ""
+msgstr "Tu ferais mieux de recharger ta dernière sauvegarde et essayer de nouveau."
 
 #: map/events.dat:6644
 msgid "Spencer still needed alive to win game."
@@ -578,15 +578,15 @@ msgstr "Spencer doit être vivant pour pouvoir gagner le jeu."
 
 #: map/events.dat:6646 map/events.dat:6658
 msgid "You should still be able to finish the game but some storylines might be broken."
-msgstr ""
+msgstr "Tu devrais pouvoir réussir à finir le jeu mais des intrigues des dialogues peuvent être cassés. "
 
 #: map/events.dat:6647
 msgid "Ooops, you killed Spencer."
-msgstr ""
+msgstr "Oups, tu as tué Baptiste."
 
 #: map/events.dat:6659
 msgid "Ooops, you killed Pendragon"
-msgstr ""
+msgstr "Oups, tu as tué Pendragon"
 
 #: map/item_specs.lua:121
 msgid "The first item is VERY buggy ingame, so don't use it."
@@ -3060,11 +3060,11 @@ msgstr "614 Volé"
 
 #: map/ReturnOfTux.droids:204
 msgid "GUN"
-msgstr ""
+msgstr "GUN"
 
 #: map/ReturnOfTux.droids:205
 msgid "FEM"
-msgstr ""
+msgstr "FEM"
 
 #: map/ReturnOfTux.droids:206
 msgid "543"
@@ -3072,51 +3072,51 @@ msgstr "543"
 
 #: map/ReturnOfTux.droids:207
 msgid "BAR"
-msgstr ""
+msgstr "BAR"
 
 #: map/ReturnOfTux.droids:208
 msgid "TAN"
-msgstr ""
+msgstr "TAN"
 
 #: map/ReturnOfTux.droids:209
 msgid "JAS"
-msgstr ""
+msgstr "JAS"
 
 #: map/ReturnOfTux.droids:210
 msgid "KEV"
-msgstr ""
+msgstr "KEV"
 
 #: map/ReturnOfTux.droids:211
 msgid "COO"
-msgstr ""
+msgstr "COO"
 
 #: map/ReturnOfTux.droids:212
 msgid "GUB"
-msgstr ""
+msgstr "GUB"
 
 #: map/ReturnOfTux.droids:213
 msgid "WOR"
-msgstr ""
+msgstr "WOR"
 
 #: map/ReturnOfTux.droids:215
 msgid "MUM"
-msgstr ""
+msgstr "MUM"
 
 #: map/ReturnOfTux.droids:216
 msgid "DIX"
-msgstr ""
+msgstr "DIX"
 
 #: map/ReturnOfTux.droids:217
 msgid "GUA"
-msgstr ""
+msgstr "GUA"
 
 #: map/ReturnOfTux.droids:218
 msgid "DOC"
-msgstr ""
+msgstr "DOC"
 
 #: map/ReturnOfTux.droids:219
 msgid "PRO"
-msgstr ""
+msgstr "PRO"
 
 #: map/ReturnOfTux.droids:220
 msgid "999"
