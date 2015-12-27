@@ -148,7 +148,7 @@ return {
 		text = _"Yes, I want even more training. (costs 200 circuits, 6 training points)",
 		echo_text = false,
 		code = function()
-			Tux:says(_"So let''s start the second course?")
+			Tux:says(_"So let's start the second course?")
 			cost = 200
 			if Tux:train_skill(cost, 6, "ranged") then
 				Npc:says(_"Very well.")
@@ -271,7 +271,7 @@ return {
 		code = function()
 			Npc:says(_"Laser is an acronym for Light Amplification by Stimulated Emission of Radiation.")
 			Npc:says(_"Laser is the technology employed in most of our weaponry. It uses a focused light beam to cause damage.")
-			Npc:says(_"Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say.It is also not affected by gravity or wind, which makes aiming easier.")
+			Npc:says(_"Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say. It is also not affected by gravity or wind, which makes aiming easier.")
 			Npc:says(_"However, other than being a good training tool for newbies, that design just fails to deliver.")
 			Npc:says(_"The shots tend to be underpowered, the gun takes a long while to power up for a shot, and it can overheat during intense combat.")
 			Npc:says(_"This is why I am trying to improve it, but so far I have had no success. I'm feeling pretty discouraged about it.")

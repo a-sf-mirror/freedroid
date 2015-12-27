@@ -378,12 +378,12 @@ return {
 		code = function()
 			Npc:says(_"RRRRRAAAAAAAARRRGH!")
 			Tux:says(_"... Excuse me?")
-			Npc:says(_"I... Will KILL... Who did this?!")
+			Npc:says(_"I... WILL KILL... Who did this?!")
 			Npc:says(_"All the bots are dead...")
 			Tux:says(_"Yes! Everyone's safe now-")
 			Npc:says(_"But I DID NOT KILL THEM!")
 			Tux:says(_"I...")
-			-- ; TRANSLATORS: nein = no , Mutter = mother
+			--; TRANSLATORS: nein = no , Mutter = mother
 			Npc:says(_"Nein... Nein, I WILL avenge you, Mutter... Yes, I will find whoever took my vengeance away from me... And CRUSH!!")
 			Tux:says(". . .")
 			Tux:says(_"Well! I had better go now. Good luck!")

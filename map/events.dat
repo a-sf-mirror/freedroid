@@ -6656,7 +6656,7 @@ Enemy level=0
 Enemy dialog name="Pendragon"
 <LuaCode>
 	display_big_message(_"You should still be able to finish the game but some storylines might be broken.")-- reverse order because the new message is put on top of the prev message
-	display_big_message(_"Ooops, you killed Pendragon")
+	display_big_message(_"Ooops, you killed Pendragon.")
 </LuaCode>
 * End of trigger *
 
