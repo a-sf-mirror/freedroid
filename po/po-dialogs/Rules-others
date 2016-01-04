@@ -1,6 +1,7 @@
 # Additional make targets
 
 .NOTPARALLEL:
+DISTFILES.extra2 = Rules-others
 
 #== Output statistics
 
