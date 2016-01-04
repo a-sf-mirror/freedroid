@@ -56,7 +56,7 @@ end
 --	1) local key, 2) Display Text 3) id value in item_specs.lua
 modWP_Items.slots = {
 	{ "weapons", "Weapons", "weapon" },
-	{ "sheilds", "Shields", "shield" },
+	{ "shields", "Shields", "shield" },
 	{ "armour", "Armour", "armour" },
 	{ "drive", "Drive", "drive" },
 	{ "special", "Special", "special" },
@@ -105,12 +105,13 @@ modWP_Items.textItem = {
 -- retrieve the anchortext associated with this id value
 function modWP_Items.GetItemUrlText( idvalue )
 	local retText = ""
+	local modWIKI = modWP_Items.modcommon.Wiki
 	if ( not idvalue ) then
 		return retText
 	end
 	local item = select(1,modWP_Items.modcommon.Extract.GetTableItem(modWP_Items.itemlist, "id", idvalue))
 	if ( item ~= nil ) then
-		retText = modWP_Items.modcommon.outputfilenames.items .. item.urlAnchor
+		retText = modWP_Items.modcommon.outputfilenames.items .. modWIKI.HLink .. modWIKI.WikifyLink(item.name)
 	end
 	return retText
 end
@@ -231,30 +232,23 @@ end
 --	Write FDRPG droid information to file in a wiki format
 function modWP_Items.WikiWrite()
 	local modWIKI = modWP_Items.modcommon.Wiki
-	local LI = modWIKI.LI
-	local filename = modWP_Items.modcommon.outputfilenames.items
+	local filename = modWP_Items.modcommon.outputfilenames.items .. ".html.md.eco"
 	local filepath = tostring(modWP_Items.modcommon.paths.destRootFile .. filename)
 	local wikitext = {}
-	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG Items")
-	wikitext = modWIKI.WarnAutoGen( wikitext )
-	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid Items Types"
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "allItems","Items")
-	for key, slotvalue in pairs(modWP_Items.slots) do
-		wikitext[#wikitext + 1] = LI .. modWIKI.LinkText(modWIKI.HLink .. slotvalue[1], slotvalue[2])
-	end	--	make menu for item types (slots)
-	wikitext[#wikitext + 1] = modWIKI.FrameEnd
-	--	end menu
-	--	auto-generated text warning - spoilers
-	wikitext = modWIKI.WarnSpoil( wikitext )
-	--	page contents start here
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(1) .. "Items"
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "allItems")
-	wikitext[#wikitext + 1] = modWIKI.LineSep
+
+	wikitext[#wikitext + 1] = "---"
+	wikitext[#wikitext + 1] = "layout: 'page'"
+	wikitext[#wikitext + 1] = "title: 'Items Guide'"
+	wikitext[#wikitext + 1] = "comment: 'Characteristics of the items (weapons, ammunition, shield, armor) available in game.'"
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = "categories:"
+
 	-- loop to produce items wiki presentation
-	for key, slotvalue in pairs(modWP_Items.slots)do
-		wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. slotvalue[1])
-		wikitext[#wikitext + 1] = modWIKI.HeaderLevel(2) .. slotvalue[2]
+	for key, slotvalue in pairs(modWP_Items.slots) do
+		modWIKI.StartMapping()
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('id', slotvalue[1])
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('name', slotvalue[2])
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('items', nil)
 		for subkey, item in pairs(modWP_Items.itemlist) do
 			-- test item slot against selected modWP_Items.slots
 			if ((item.slot == slotvalue[3])
@@ -268,76 +262,176 @@ function modWP_Items.WikiWrite()
 					portraitname = portaititem.destfile
 				end
 				-- process presentation
-				wikitext[#wikitext + 1] = modWIKI.LinkText(item["urlAnchor"])
-				wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. item.name
-				wikitext[#wikitext + 1] = modWIKI.ImageText(modWIKI.URL_ImgItems .. portraitname,item.id, "margin-right=\'1.0em\'")
+				modWIKI.StartMapping()
+				wikitext[#wikitext + 1] = modWIKI.AddAttr('id', modWIKI.WikifyLink(item.name))
+				wikitext[#wikitext + 1] = modWIKI.AddAttr('name', item.name)
+				wikitext[#wikitext + 1] = modWIKI.AddAttr('image', portraitname)
 				-- item data wiki presentation
-				wikitext[#wikitext + 1] = modWIKI.FrameStartLeft("border=\'0px\' width=70pct")
-				wikitext[#wikitext + 1] = select(2,modWP_Items.GetItemStringsPair( item, "description" ))
-				wikitext[#wikitext + 1] = " "
+				wikitext[#wikitext + 1] = modWIKI.AddAttr('description', item.description) --select(2,modWP_Items.GetItemStringsPair( item, "description" )))
 				-- create item details
-				textitem = modWP_Items.WikiPrintParentChildData(subkey, {"requirements"}, { "strength", "dexterity" }, modWIKI.ColourCaution )
-				wikitext = modWIKI.PageAppend(wikitext,textitem)
-				if ( is_weapon ) then
-					local weapontext = ""
-					local weaponcolour = nil
-					if (item.weapon.two_hand) then
-						weapontext = "Two Handed"
-						weaponcolour = modWIKI.ColourCaution
+				if item.requirements or (is_weapon and item.weapon.two_hand) then
+					wikitext[#wikitext + 1] = modWIKI.AddAttr('requirements', nil)
+					modWIKI.StartSequence()
+					if item.requirements then
+						if item.requirements.strength then
+							wikitext[#wikitext + 1] = modWIKI.AddAttr('strength', item.requirements.strength)
+						end
+						if item.requirements.dexterity then
+							wikitext[#wikitext + 1] = modWIKI.AddAttr('dexterity', item.requirements.dexterity)
+						end
 					end
-					if (item.weapon.melee) then
-						weapontext = weapontext .. " Melee"
+					if ( is_weapon ) then
+						local weapontext = ""
+						if (item.weapon.two_hand) then
+							weapontext = "Two Handed"
+							weaponcolour = modWIKI.ColourCaution
+							if (item.weapon.melee) then
+								weapontext = weapontext .. " Melee"
+							end
+							weapontext = weapontext .. " Weapon"
+							wikitext[#wikitext + 1] = modWIKI.AddAttr('two_hands', weapontext)
+						end
 					end
-					if (#weapontext > 1) then
-						weapontext = weapontext .. " Weapon"
-						wikitext[#wikitext + 1] = modWIKI.TextEntry( weapontext, nil, nil, weaponcolour )
-					end
+					modWIKI.EndSequence()
 				end
-				textitem = modWP_Items.WikiPrintParentChildData( subkey, { "base_price", "durability", "armor_class" } )
-				wikitext = modWIKI.PageAppend(wikitext,textitem)
+				if item.base_price then
+					wikitext[#wikitext + 1] = modWIKI.AddAttr('base_price', item.base_price)
+				end
+				if item.durability then
+					wikitext[#wikitext + 1] = modWIKI.AddAttr('durability', item.durability)
+				end
+				if item.armor_class then
+					wikitext[#wikitext + 1] = modWIKI.AddAttr('armor_class', item.armor_class)
+				end
 
-				if (item.drop.sound ~= nil) then
-					local sfsndfile = modWIKI.URL_Git .. "sound/effects/item_sounds/" .. item.drop.sound
-					local sndfilelink = modWIKI.LinkText( sfsndfile, item.drop.sound )
-					item.drop.sound = sndfilelink
-					textitem = modWP_Items.WikiPrintParentChildData( subkey, { "drop" }, { "sound"} )
-					wikitext = modWIKI.PageAppend(wikitext,textitem)
+				if item.drop then
+					wikitext[#wikitext + 1] = modWIKI.AddAttr('drop', nil)
+					modWIKI.StartSequence()
+					if item.drop.class then
+						wikitext[#wikitext + 1] = modWIKI.AddAttr('class', item.drop.class)
+					end
+					if item.drop.number then
+						wikitext[#wikitext + 1] = modWIKI.AddAttr('number', item.drop.number)
+					end
+					if item.drop.sound then
+						local sfsndfile = modWIKI.URL_Git .. "sound/effects/item_sounds/" .. item.drop.sound
+						local sndfilelink = modWIKI.LinkText( sfsndfile, item.drop.sound )
+						item.drop.sound = sndfilelink
+						wikitext[#wikitext + 1] = modWIKI.AddAttr('sound', item.drop.sound)
+					end
+					modWIKI.EndSequence()
 				end
 
 				if ( is_weapon ) then
-					textitem = modWP_Items.WikiPrintParentChildData( subkey, { "weapon" }, { "damage", "reloading_time"} )
-					wikitext = modWIKI.PageAppend(wikitext,textitem)
-
-					if (item.weapon.reloading_sound ~= nil) then
+					wikitext[#wikitext + 1] = modWIKI.AddAttr('weapon', nil)
+					modWIKI.StartSequence()
+					if item.weapon.damage then
+						wikitext[#wikitext + 1] = modWIKI.AddAttr('damage', item.weapon.damage)
+					end
+					if item.weapon.reloading_time then
+						wikitext[#wikitext + 1] = modWIKI.AddAttr('reloading_time', item.weapon.reloading_time)
+					end
+					if item.weapon.reloading_sound then
 						local ret = modWP_Items.modcommon.Extract.Split(item.weapon.reloading_sound, "/", false )
 						local size = table.maxn(ret)
-						local sfsndfile = modWIKI.URL_Git .. "effects/item_sounds/" .. item.weapon.reloading_sound
-						local sndfilelink = modWIKI.LinkText( sfsndfile, ret[size] )
+						local sfsndfile = modWIKI.URL_Git .. "sound/" .. item.weapon.reloading_sound
+						local sndfilelink = modWIKI.LinkText( sfsndfile, ret[size])
 						item.weapon.reloading_sound = sndfilelink
-						textitem = modWP_Items.WikiPrintParentChildData( subkey, { "weapon" }, { "reloading_sound"} )
-						wikitext = modWIKI.PageAppend(wikitext,textitem)
+						wikitext[#wikitext + 1] = modWIKI.AddAttr('reloading_sound', item.weapon.reloading_sound)
+					end
+					if item.weapon.ammunition then
+						wikitext[#wikitext + 1] = modWIKI.AddAttr('ammunition', nil)
+						modWIKI.StartSequence()
+						if item.weapon.ammunition.id then
+							local amm_link = modWIKI.LinkText(modWP_Items.GetItemUrlText(item.weapon.ammunition.id), item.weapon.ammunition.id)
+							wikitext[#wikitext + 1] = modWIKI.AddAttr('id', amm_link)
+						end
+						if item.weapon.ammunition.clip then
+							wikitext[#wikitext + 1] = modWIKI.AddAttr('clip', item.weapon.ammunition.clip)
+						end
+						modWIKI.EndSequence()
 					end
 
-					textitem = modWP_Items.WikiPrintParentChildData( subkey, {"weapon", "ammunition"}, { "id" }, nil, true )
-					wikitext = modWIKI.PageAppend(wikitext,textitem)
-
-					textitem = modWP_Items.WikiPrintParentChildData( subkey, {"weapon", "ammunition"}, { "clip" } )
-					wikitext = modWIKI.PageAppend(wikitext,textitem)
+					modWIKI.EndSequence()
 				end	-- have weapon
 
-				textitem = modWP_Items.WikiPrintParentChildData( subkey, {"right_use"}, { "tooltip", "add_skill" } )
-				wikitext = modWIKI.PageAppend(wikitext,textitem)
-				wikitext[#wikitext + 1] = " "
-				wikitext[#wikitext + 1] = modWIKI.FrameEnd
-				wikitext[#wikitext + 1] = modWIKI.ForceBreak
+				if item.right_use then
+					wikitext[#wikitext + 1] = modWIKI.AddAttr('right_use', nil)
+					modWIKI.StartSequence()
+					if item.right_use.tooltip then
+						wikitext[#wikitext + 1] = modWIKI.AddAttr('tooltip', item.right_use.tooltip)
+					end
+					if item.right_use.add_skill then
+						wikitext[#wikitext + 1] = modWIKI.AddAttr('add_skill', item.right_use.add_skill)
+					end
+					modWIKI.EndSequence()
+				end
+
+				modWIKI.EndMapping()
 			end	-- test item slot value
+
 		end	-- loop through item list
-		wikitext[#wikitext + 1] = modWIKI.LineSep
+		modWIKI.EndMapping()
 	end	-- loop through slots
-	-- write wiki data object to string
-	local writedata = modWIKI.PageProcess( filename, wikitext )
-	-- write string to file
-	modWP_Items.modcommon.Process.DataToFile(filepath, writedata)
+
+	wikitext[#wikitext + 1] = "---"
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = [[
+# Items Guide
+
+<div class="row">
+ <div class="toc col-md-2 pull-right">
+  <span><b>Categories</b></span>
+  <ul>
+  <% for cat in @document.categories: %>
+   <li><a href="#<%- cat.id %>"><%- cat.name %></a></li>
+  <% end %>
+  </ul>
+ </div>
+
+ <div class="col-md-10">
+ <% for cat in @document.categories: %>
+  <h1 id="<%- cat.id %>"><%- cat.name %></h1>
+  <% for item in cat.items: %>
+   <div class="row">
+    <h2 id="<%- item.id %>"><%- item.name %></h2>
+    <div class="obj-portrait col-md-2 text-center">
+     <img src="/images/items/<%- item.image %>">
+    </div>
+    <div class="obj-sheet col-md-8">
+     <p><%- item.description %></p>
+     <% if item.requirements: %>
+      <% if item.requirements.strength: %><span class="require"><b>Requirements - Strength:</b> <%- item.requirements.strength %></span><br/><% end %>
+      <% if item.requirements.dexterity: %><span class="require"><b>Requirements - Dexterity:</b> <%- item.requirements.dexterity %></span><br/><% end %>
+      <% if item.requirements.two_hands: %><span class="require"><b><%- item.requirements.two_hands %></b></span><br/><% end %>
+     <% end %>
+     <% if item.base_price: %><b>Base Price:</b> <%- item.base_price %><br/><% end %>
+     <% if item.durability: %><b>Durability:</b> <%- item.durability %><br/><% end %>
+     <% if item.armor_class: %><b>Armor Class:</b> <%- item.armor_class %><br/><% end %>
+     <% if item.drop: %>
+      <% if item.drop.sound: %><b>Drop Sound:</b> <%- item.drop.sound %><br/><% end %>
+     <% end %>
+     <% if item.weapon: %>
+      <% if item.weapon.damage: %><b>Damage:</b> <%- item.weapon.damage %><br/><% end %>
+      <% if item.weapon.reloading_time: %><b>Reloading Time:</b> <%- item.weapon.reloading_time %><br/><% end %>
+      <% if item.weapon.reloading_sound: %><b>Reloading Sound:</b> <%- item.weapon.reloading_sound %><br/><% end %>
+      <% if item.weapon.ammunition: %>
+       <% if item.weapon.ammunition.id: %><b>Ammunition:</b> <%- item.weapon.ammunition.id %><br/><% end %>
+       <% if item.weapon.ammunition.clip: %><b>Ammunition Clip Size:</b> <%- item.weapon.ammunition.clip %><br/><% end %>
+      <% end %>
+     <% end %>
+     <% if item.right_use: %>
+      <% if item.right_use.tooltip: %><b>Use - Tip:</b> <%- item.right_use.tooltip %><br/><% end %>
+      <% if item.right_use.add_skill: %><b>Use - Skill:</b> <%- item.right_use.add_skill %><br/><% end %>
+     <% end %>
+    </div>
+  </div>
+  <% end %>
+ <% end %>
+ </div>
+</div>
+]]
+	modWP_Items.modcommon.Process.DataToFile(filepath, table.concat(wikitext, "\n"))
 end
 
 --	wiki format parent/child item data

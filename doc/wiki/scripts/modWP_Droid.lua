@@ -241,35 +241,21 @@ function modWP_Droid.ProcessData()
 	end
 end
 
---	Write FDRPG droid information to file in a wiki format.
+--	Write FDRPG droid information to file in the format needed by the website.
 function modWP_Droid.WikiWrite()
 	local modItems = assert(require(modWP_Droid.wikirequiredModules[1]))
 	local modWIKI = modWP_Droid.modcommon.Wiki
-	local LI = modWIKI.LI
-	local SEP = modWIKI.Separator
-	local filename = modWP_Droid.modcommon.outputfilenames.droids
+	local filename = modWP_Droid.modcommon.outputfilenames.droids .. ".html.md.eco"
 	local filepath = tostring(modWP_Droid.modcommon.paths.destRootFile .. filename)
 	local wikitext = {}
-	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG Droid Types")
-	wikitext = modWIKI.WarnAutoGen( wikitext )
-	--	make menu for droid types
-	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid Droid Types"
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "alldroids","Droids")
-	for key, droiditem in pairs(modWP_Droid.AllDroidData) do
-		if (not droiditem.is_human) then
-			local linktext = modWIKI.HLink .. modWIKI.WikifyLink("droid" .. droiditem.name)
-			wikitext[#wikitext + 1] = LI .. modWIKI.LinkText(linktext, droiditem.name)
-		end
-	end	--	loop to produce menu items
-	wikitext[#wikitext + 1] = modWIKI.FrameEnd
-	--	end menu
 
-	wikitext = modWIKI.WarnSpoil( wikitext )
-	--	page contents start here
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "alldroids")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(1) .. "Droids"
-	wikitext[#wikitext + 1] = modWIKI.LineSep
+	wikitext[#wikitext + 1] = "---"
+	wikitext[#wikitext + 1] = "layout: 'page'"
+	wikitext[#wikitext + 1] = "title: 'Droid Guide'"
+	wikitext[#wikitext + 1] = "comment: 'Characteristics of the droids that can be met in the game.'"
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = "droids:"
+
 	--	loop to produce droid items
 	for key, droiditem in pairs(modWP_Droid.AllDroidData) do
 		if ( droiditem.is_human ) then
@@ -280,73 +266,151 @@ function modWP_Droid.WikiWrite()
 		if ( portaititem ~= nil ) then
 			portraitname = portaititem.destfile
 		end
-		--	process presentation
-		wikitext[#wikitext + 1] = modWIKI.LinkText(droiditem.urlAnchor)
-		wikitext[#wikitext + 1] = modWIKI.HeaderLevel(2) .. droiditem.name
-		--	image wiki presentation
-		wikitext[#wikitext + 1] = modWIKI.ImageText( modWIKI.URL_ImgDroid .. portraitname, droiditem.graphics_prefix, "margin-right=\'1.0em\'")
-		--	display droid description
-		wikitext[#wikitext + 1] = modWIKI.FrameStartLeft("border=\'0px\' width=70pct")
-		local data = select(2,modWP_Droid.GetDroidStringsPair(droiditem,"desc"))
-		data = modWIKI.TextEmbed(data,"emphasis")
-		data = modWIKI.TextEmbed(data,"textlarge")
-		wikitext[#wikitext + 1] =	data .. modWIKI.LineBreakEnd
-		--	display droid notes
-		wikitext[#wikitext + 1] = select(2,modWP_Droid.GetDroidStringsPair(droiditem,"droid_notes")) .. "\n\n"
-		--	display basic droid information
-		local DataSequence = { "weapon", "sensor", "sound_num_greet", "sound_death", "sound_attack" }
-		for key, idval in pairs(DataSequence) do
-			local appending = ""
-			if (key == #DataSequence) then
-				appending = string.rep("\n",2)
-			else
-				appending = modWIKI.LineBreakEnd
-			end
-			droidlabel, droiddata = modWP_Droid.GetDroidStringsPair(droiditem, idval)
-			droidlabel = modWIKI.TextEmbed(droidlabel,"emphasis")
-			if ( idval == "weapon" ) then
-				local weaponlink = modItems.GetItemUrlText(droiddata)
-				if ( weaponlink ) then
-					droiddata = modWIKI.LinkText(weaponlink, droiddata)
-				end
-			end
-			wikitext[#wikitext + 1] =	droidlabel .. SEP .. droiddata .. appending
-		end
-		--	display droid table data
-		DataSequence = { "droid_class", "speed_max", "energy_max", "drop_item_class", "heal_rate",
-		                 "destroy_xp", "aggr_dist", "time_eye_Tux", "pct_hit", "time_hit_recover" }
-		local tblstyle = "border=0 width=25% align=left cellspacing=0 cellpadding=4"
-		local droidlabel = {}
-		local droiddata = {}
-		local textdata = {}
-		for key, part in pairs(DataSequence) do
-			droidlabel[#droidlabel + 1],droiddata[#droiddata + 1] = modWP_Droid.GetDroidStringsPair(droiditem, part)
-		end
-		textdata = modWIKI.TableGen( tblstyle, nil, droidlabel, droiddata, "width=\'80%\'", "align=center" )
-		wikitext = modWIKI.PageAppend( wikitext, textdata )
-		--	table seperator
-		wikitext[#wikitext + 1] = modWIKI.TableSeparator
-		wikitext[#wikitext + 1] = modWIKI.TableSeparator
-		--	display drop percentages
-		DataSequence = { "pct_EntropyInvrtr", "pct_PlasmaTrans", "pct_SprCondRelay", "pct_AMConverter", "pct_TachyonCond" }
-		local tblheader = select(1, modWP_Droid.GetDroidStringsPair( droiditem, "droppct" ))
-		droidlabel = {}
-		droiddata = {}
-		for key, part in pairs(DataSequence) do
-			droidlabel[#droidlabel + 1],droiddata[#droiddata + 1] = modWP_Droid.GetDroidStringsPair(droiditem, part)
-		end
-		textdata = modWIKI.TableGen( tblstyle, tblheader, droidlabel, droiddata, "width=\'86%\'", "align=center" )
-		wikitext = modWIKI.PageAppend( wikitext, textdata )
-		wikitext[#wikitext + 1] = modWIKI.FrameEnd
-		wikitext[#wikitext + 1] = modWIKI.ForceBreak
-		wikitext[#wikitext + 1] = " "
-		wikitext[#wikitext + 1] = modWIKI.LineSep
+		--	process data
+		modWIKI.StartMapping()
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('id', modWIKI.WikifyLink("droid" .. droiditem.name))
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('name', droiditem.name)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('time_hit_recover', droiditem.time_hit_recover)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('pct_TachyonCond', droiditem.pct_TachyonCond)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('droid_class', droiditem.droid_class)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('graphics_prefix', droiditem.graphics_prefix)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('weapon', droiditem.weapon)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('speed_max', droiditem.speed_max)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('time_eye_Tux', droiditem.time_eye_Tux)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('urlAnchor', droiditem.urlAnchor)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('sound_num_greet', droiditem.sound_num_greet)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('aggr_dist', droiditem.aggr_dist)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('sensor', droiditem.sensor)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('pct_SprCondRelay', droiditem.pct_SprCondRelay)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('energy_max', droiditem.energy_max)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('destroy_xp', droiditem.destroy_xp)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('desc', droiditem.desc)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('drop_item_class', droiditem.drop_item_class)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('droid_notes', droiditem.droid_notes)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('image', droiditem.image.name .. droiditem.image.ext)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('is_human', droiditem.is_human)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('heal_rate', droiditem.heal_rate)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('pct_EntropyInvrtr', droiditem.pct_EntropyInvrtr)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('pct_PlasmaTrans', droiditem.pct_PlasmaTrans)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('portrait_prefix', droiditem.portrait_prefix)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('sound_death', droiditem.sound_death)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('pct_AMConverter', droiditem.pct_AMConverter)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('sound_attack', droiditem.sound_attack)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('pct_hit', droiditem.pct_hit)
+		modWIKI.EndMapping()
 ::WIKI_PROCESS_NEXT_DROID::
 	end
-	--	write wiki data object to string
-	local writedata = modWIKI.PageProcess( filename, wikitext )
+	wikitext[#wikitext + 1] = "---"
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = [[
+# Droids Guide
+
+<div class="row">
+ <div class="toc col-md-2 pull-right">
+  <span><b>Droid Types</b></span>
+  <ul>
+  <% for droid in @document.droids: %>
+   <li><a href="#<%- droid.id %>"><%- droid.name %></a></li>
+  <% end %>
+  </ul>
+ </div>
+
+ <div class="col-md-10">
+ <% for droid in @document.droids: %>
+  <div class="row">
+   <h1 id="<%- droid.id %>"><%- droid.name %></h1>
+   <div class="obj-portrait col-md-2 text-center">
+    <img src="/images/droids/<%- droid.image %>">
+   </div>
+   <div class="col-md-8">
+    <h3><%- droid.desc %></h3>
+    <p><%- droid.droid_notes %></p>
+    <p><strong>Weapon</strong>: <%- droid.weapon %><br/>
+       <strong>Sensor</strong>: <%- droid.sensor %><br/>
+       <strong>Greeting Sound Number</strong>: <%- droid.sound_num_greet %><br/>
+       <strong>Death Sound File Name</strong>: <%- droid.sound_death %><br/>
+       <strong>Attack Sound File Name</strong>: <%- droid.sound_attack %></p>
+    <div class="row">
+     <div class="col-md-6 bordered-table">
+      <table width="100%"><tbody>
+       <tr>
+        <td align="left" width="80%" valign="top">Class</td>
+        <td align="center" valign="top"><%- droid.droid_class %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Max Speed</td>
+        <td align="center" valign="top"><%- droid.speed_max %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Max Energy</td>
+        <td align="center" valign="top"><%- droid.energy_max %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Drop Item Class</td>
+        <td align="center" valign="top"><%- droid.drop_item_class %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Heal Rate</td>
+        <td align="center" valign="top"><%- droid.heal_rate %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Destroy XP Gain</td>
+        <td align="center" valign="top"><%- droid.destroy_xp %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Aggression Distance</td>
+        <td align="center" valign="top"><%- droid.aggr_dist %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Time Spent Eyeing Tux</td>
+        <td align="center" valign="top"><%- droid.time_eye_Tux %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Hit Percentage</td>
+        <td align="center" valign="top"><%- droid.pct_hit %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Hit Recovery Time</td>
+        <td align="center" valign="top"><%- droid.time_hit_recover %></td>
+       </tr>
+      </tbody></table>
+     </div>
+     <div class="col-md-6 bordered-table">
+      <table width="100%"><tbody>
+       <tr>
+        <td colspan=2 align="center">Drop Percentages</td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Entropy Inverter</td>
+        <td align="center" valign="top"><%- droid.pct_EntropyInvrtr %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Plasma Transistor</td>
+        <td align="center" valign="top"><%- droid.pct_PlasmaTrans %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Superconducting Relay Unit</td>
+        <td align="center" valign="top"><%- droid.pct_SprCondRelay %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Antimatter-Matter Converter</td>
+        <td align="center" valign="top"><%- droid.pct_AMConverter %></td>
+       </tr>
+       <tr>
+        <td align="left" width="80%" valign="top">Tachyon Condensator</td>
+        <td align="center" valign="top"><%- droid.pct_TachyonCond %></td>
+       </tr>
+      </tbody></table>
+     </div>
+    </div>
+   </div>
+  </div>
+  <% end %>
+ </div>
+</div>
+]]
 	--	write string to file
-	modWP_Droid.modcommon.Process.DataToFile(filepath, writedata)
+	modWP_Droid.modcommon.Process.DataToFile(filepath, table.concat(wikitext, "\n"))
 end
 
 --	Print out droid information based on selected verbosity.

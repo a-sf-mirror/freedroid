@@ -514,7 +514,7 @@ end
 --	to be loaded directly into FDRPG site.
 function modWP_NPC.WikiWrite()
 	-- NOTE: Load Modules BEFORE ATTEMPTING TO PROCESS MARKERS
-		for key, value in pairs(modWP_NPC.wikirequiredModules) do
+	for key, value in pairs(modWP_NPC.wikirequiredModules) do
 		modWP_NPC.modules[value] = assert(require(value))
 	end
 	-- some preprocessing is required before wiki presentation
@@ -522,9 +522,7 @@ function modWP_NPC.WikiWrite()
 	modWP_NPC.WikiPreProcessQuests()
 	-- now make the page
 	local modWIKI = modWP_NPC.modcommon.Wiki
-	local LI = modWIKI.LI
-	local SEP = modWIKI.Separator
-	local filename = modWP_NPC.modcommon.outputfilenames.npc
+	local filename = modWP_NPC.modcommon.outputfilenames.npc .. ".html.md.eco"
 	local filepath = tostring(modWP_NPC.modcommon.paths.destRootFile .. filename)
 	local wikitext = {}
 
@@ -533,22 +531,13 @@ function modWP_NPC.WikiWrite()
 	local modDroid = modWP_NPC.modules[modWP_NPC.wikirequiredModules[3]]
 	local modQuests = modWP_NPC.modules[modWP_NPC.wikirequiredModules[4]]
 
-	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG NPC\'s")
-	wikitext = modWIKI.WarnAutoGen( wikitext )
-	--	make menu for npc types
-	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid NPC\'s"
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "allNPC","NPC\'s")
-	for key, npc in pairs(modWP_NPC.AllNPCData) do
-		wikitext[#wikitext + 1] = LI .. modWIKI.LinkText(npc.urlAnchor, npc.name)
-	end	--	loop to produce menu items
-	wikitext[#wikitext + 1] = modWIKI.FrameEnd
-	--	end menu
+	wikitext[#wikitext + 1] = "---"
+	wikitext[#wikitext + 1] = "layout: 'page'"
+	wikitext[#wikitext + 1] = "title: 'NPC Guide'"
+	wikitext[#wikitext + 1] = "comment: 'Characteristics of all the Non Player Character that could be met.'"
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = "npcs:"
 
-	wikitext = modWIKI.WarnSpoil( wikitext )
-	--	page contents start here
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "allNPC")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(1) .. "NPC\'s"
 	--	loop to produce individual npc entries
 	for key, npc in pairs(modWP_NPC.AllNPCData) do
 		--	image portrait
@@ -561,11 +550,12 @@ function modWP_NPC.WikiWrite()
 		local dialogname = npc.dialog .. ".lua"
 		local sfdialog = modWIKI.URL_Git .. "dialogs/" .. dialogname
 		local dialoglink = modWIKI.LinkText( sfdialog, dialogname )
-		wikitext[#wikitext + 1] = modWIKI.LinkText(npc.urlAnchor)
-		wikitext[#wikitext + 1] = modWIKI.HeaderLevel(2) .. npc.name
-		wikitext[#wikitext + 1] = modWIKI.ImageText( modWIKI.URL_ImgDroid .. portraitname, npc.graphics_prefix, "margin-right=\'1.0em\'")
-		wikitext[#wikitext + 1] = modWIKI.FrameStartLeft("border=\'0px\' width=65pct")
-		wikitext[#wikitext + 1] = modLevel.WikiEntryLevelText( npc.level, "Location", true ) .. modWIKI.ForceBreak
+
+		modWIKI.StartMapping()
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('id', modWIKI.WikifyLink("npc" .. npc.name))
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('name', npc.name)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('image', portraitname)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('location', modLevel.WikiEntryLevelText(npc.level, "", true))
 		--	preprocess link to droid type if not human
 		local modeltext = npc.ROTDType
 		if ( not npc.is_human ) then
@@ -574,40 +564,125 @@ function modWP_NPC.WikiWrite()
 				modeltext = modWIKI.LinkText(namelink, modeltext)
 			end
 		end
-		wikitext[#wikitext + 1]	= modWIKI.TextEntry( "Model Type", modeltext, SEP )
-		wikitext[#wikitext + 1]	= modWIKI.TextEntry( "Dialog File", dialoglink, SEP )
-		wikitext[#wikitext + 1]	= modWIKI.TextEntry( "Faction", npc.faction, SEP, nil, false )
-		wikitext[#wikitext + 1] = " "	--	<--keep to force line break between faction and next element
+		wikitext[#wikitext + 1]	= modWIKI.AddAttr('model_type', modeltext)
+		wikitext[#wikitext + 1]	= modWIKI.AddAttr('dialog_file', dialoglink)
+		wikitext[#wikitext + 1]	= modWIKI.AddAttr('faction', npc.faction)
 		for key, item in pairs(modWP_NPC.itemTablesWikiPresentation) do
 			if ( item[1] == "wikihead" ) then
 				local wikiheaddata = npc[item[1]]
-				if (( item[2] == "PERSONALITY" ) and (wikiheaddata[item[2]] ~= nil )) then
-					local traittext = modWP_NPC.modcommon.Extract.OneDTableToString(wikiheaddata[item[2]],nil,", ")
-					wikitext[#wikitext + 1]	= modWIKI.TableToWiki( {traittext}, item[3], SEP )
-				elseif ((( item[2] == "PURPOSE" ) or ( item[2] == "BACKSTORY" ))
-				and ( wikiheaddata[item[2]] ~= nil )) then
-					wikitext[#wikitext + 1]	= modWIKI.TableToWiki( {wikiheaddata[item[2]]}, item[3], SEP )
-				elseif (( item[2] == "RELATIONSHIP" ) and ( wikiheaddata[item[2]] ~= nil )) then
-					local wikirelations = wikiheaddata[item[2]]
-					wikitext[#wikitext + 1]	= modWIKI.TextEntry( item[3], nil, SEP )
-					for subkey, relations in pairs(wikirelations) do
-						wikitext[#wikitext + 1]	= modWIKI.TableToWiki( {relations.text}, relations.actor, SEP )
+				if ( item[2] == "PERSONALITY" ) then
+					if ( wikiheaddata[item[2]] ~= nil ) then
+						wikitext[#wikitext + 1]	= modWIKI.AddAttr(item[2], wikiheaddata[item[2]])
 					end
-				else
-					wikitext[#wikitext + 1]	= modWIKI.TableToWiki( wikiheaddata[item[2]], item[3], SEP )
+				elseif (( item[2] == "PURPOSE" ) or ( item[2] == "BACKSTORY" )) then
+					if ( wikiheaddata[item[2]] ~= nil ) then
+						wikitext[#wikitext + 1]	= modWIKI.AddAttr(item[2], wikiheaddata[item[2]])
+					end
+				elseif ( item[2] == "RELATIONSHIP" ) then
+					if ( wikiheaddata[item[2]] ~= nil ) then
+						wikitext[#wikitext + 1] = modWIKI.AddAttr(item[2], nil)
+						local wikirelations = wikiheaddata[item[2]]
+						for subkey, relations in pairs(wikirelations) do
+							modWIKI.StartMapping()
+							wikitext[#wikitext + 1]	= modWIKI.AddAttr('actor', relations.actor)
+							wikitext[#wikitext + 1] = modWIKI.AddAttr('text', relations.text)
+							modWIKI.EndMapping()
+						end
+					end
+				elseif ( wikiheaddata[item[2]] ~= nil ) then
+					wikitext[#wikitext + 1]	= modWIKI.AddAttr(item[2], wikiheaddata[item[2]])
 				end
 			else
-				wikitext[#wikitext + 1]	= modWIKI.TableToWiki( npc[item[1]], item[2], SEP )
+				if npc[item[1]] ~= nil then
+					wikitext[#wikitext + 1]	= modWIKI.AddAttr(item[2], npc[item[1]])
+				end
 			end
 		end
-		wikitext[#wikitext + 1] = modWIKI.FrameEnd
-		wikitext[#wikitext + 1] = modWIKI.ForceBreak
-		wikitext[#wikitext + 1] = modWIKI.LineSep
+		modWIKI.EndMapping()
 	end
-	--	write wiki data object to string
-	local writedata = modWIKI.PageProcess( filename, wikitext )
-	--	write string to file
-	modWP_NPC.modcommon.Process.DataToFile(filepath, writedata)
+	wikitext[#wikitext + 1] = "---"
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = [[
+# NPCs Guide
+
+<div class="row">
+ <div class="toc col-md-3 pull-right">
+  <span><b>NPC Types</b></span>
+  <ul>
+  <% for npc in @document.npcs: %>
+   <li><a href="#<%- npc.id %>"><%- npc.name %></a></li>
+  <% end %>
+  </ul>
+ </div>
+
+ <div class="col-md-9">
+ <% for npc in @document.npcs: %>
+  <div class="row">
+   <h1 id="<%- npc.id %>"><%- npc.name %></h1>
+   <div class="obj-portrait col-md-2 text-center">
+    <img src="/images/droids/<%- npc.image %>">
+   </div>
+   <div class="obj-sheet col-md-10">
+    <p><strong>Location</strong>: <%- npc.location %><br/>
+       <strong>Model Type</strong>: <%- npc.model_type %><br/>
+       <strong>Dialog File</strong>: <%- npc.dialog_file %><br/>
+       <strong>Faction</strong>: <%- npc.faction %></p>
+    <% if npc.personality: %><p><strong>Personality Traits</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;
+     <% for value in npc.personality: %>
+      <%- value %><% if value != npc.personality[npc.personality.length- 1]: %>, <% end %>
+     <% end %>
+     </p>
+    <% end %>
+    <% if npc.other_names: %><p><strong>Other Names</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;
+     <% for value in npc.other_names: %>
+      <%- value %><% if value != npc.other_names[npc.other_names.length- 1]: %>, <% end %>
+     <% end %>
+     </p>
+    <% end %>
+    <% if npc.purpose: %><p><strong>Purpose</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;<%- npc.purpose %></p><% end %>
+    <% if npc.backstory: %><p><strong>Backstory</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;<%- npc.backstory %></p><% end %>
+    <% if npc.relationship: %><p><strong>Relationships</strong><br />
+     <% for relation in npc.relationship: %>
+      &nbsp;&nbsp;&nbsp;&nbsp;<%- relation.actor %>: <%- relation.text %><br />
+     <% end %>
+    <% end %>
+    <% if npc.quests_given: %><p><strong>Quests Given</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;
+     <% for value in npc.quests_given: %>
+      <%- value %><% if value != npc.quests_given[npc.quests_given.length- 1]: %>, <% end %>
+     <% end %>
+     </p>
+    <% end %>
+    <% if npc.updates_quests: %><p><strong>Updates Quests</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;
+     <% for value in npc.updates_quests: %>
+      <%- value %><% if value != npc.updates_quests[npc.updates_quests.length- 1]: %>, <% end %>
+     <% end %>
+     </p>
+    <% end %>
+    <% if npc.completes_quests: %><p><strong>Completes Quests</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;
+     <% for value in npc.completes_quests: %>
+      <%- value %><% if value != npc.completes_quests[npc.completes_quests.length- 1]: %>, <% end %>
+     <% end %>
+     </p>
+    <% end %>
+    <% if npc.teaches_skill: %><p><strong>Teaches Skill</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;
+     <% for value in npc.teaches_skill: %>
+      <%- value %><% if value != npc.teaches_skill[npc.teaches_skill.length- 1]: %>, <% end %>
+     <% end %>
+     </p>
+    <% end %>
+    <% if npc.enhances_programs: %><p><strong>Enhances Programs</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;
+     <% for value in npc.enhances_programs: %>
+      <%- value %><% if value != npc.enhances_programs[npc.enhances_programs.length- 1]: %>, <% end %>
+     <% end %>
+     </p>
+    <% end %>
+   </div>
+  </div>
+  <% end %>
+ </div>
+</div>
+]]
+	modWP_NPC.modcommon.Process.DataToFile(filepath, table.concat(wikitext, "\n"))
 end
 
 --	Print out NPC information based on selected verbosity.

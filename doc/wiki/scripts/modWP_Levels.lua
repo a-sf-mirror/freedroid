@@ -698,35 +698,34 @@ end
 --	This function is used recursively!
 --	[in]	levelnumbertosearch	examine all children of this level
 --	[in]	indent	amount of push in text from left margin
---	[ret]	text string in wiki format of underground levels for this levelnumber
+--	[ret]	underlevels array of underground levels for this levelnumber
 function modWP_Levels.TraverseLevels( levelnumbertosearch, indent )
 	local modWIKI = modWP_Levels.modcommon.Wiki
 	indent = indent or 0
-	local str = ""
+	local underlevels = {}
 	if (levelnumbertosearch >= 0) then
 		local leveltext = modWP_Levels.WikiEntryLevelAnchorText( levelnumbertosearch )
 		local levelindex = modWP_Levels.GetIndexByValue( modWP_Levels.AllLevelData, levelnumbertosearch , "levelnumber" )
 		local strindent = string.rep("&emsp;", indent)
-		str = strindent .. leveltext .. modWIKI.LineBreakEnd .. "\n"
+		underlevels[#underlevels + 1] = strindent .. leveltext
 		if (modWP_Levels.hasChildrenIndex(levelindex)) then
 			for key, value in pairs(modWP_Levels.AllLevelData[levelindex].levelnumber_below) do
-				str =  str .. modWP_Levels.TraverseLevels(value,(indent + 2))
+				local underchildren = modWP_Levels.TraverseLevels(value,(indent + 2))
+				for k,v in pairs(underchildren) do
+					underlevels[#underlevels + 1] = v
+				end
 			end
-		else
-			str = str .. "\n"
 		end
 	end
-	return str
+	return underlevels
 end
 
 --	Write FDRPG level information to file in a wiki format
 function modWP_Levels.WikiWrite()
 	local modWIKI = modWP_Levels.modcommon.Wiki
-	local LI = modWIKI.LI
-	local SEP = modWIKI.Separator
-	local colourCryo = "color=#5f5fff"
+	local colourCryo = "#5f5fff"
 	local colourTown = "green"
-	local filename = modWP_Levels.modcommon.outputfilenames.levels
+	local filename = modWP_Levels.modcommon.outputfilenames.levels .. ".html.md.eco"
 	local filepath = tostring(modWP_Levels.modcommon.paths.destRootFile .. filename)
 
 	local wikitbl = {
@@ -736,86 +735,69 @@ function modWP_Levels.WikiWrite()
 	}
 
 	local wikitext = {}
-	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG Level Maps")
-	wikitext = modWIKI.WarnAutoGen( wikitext )
-	--	make menu for levels
-	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid RPG Levels"
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "mapship", "Ship Map")
-	wikitext[#wikitext + 1] = LI .. modWIKI.LinkText(modWIKI.HLink .. "lvlsmapground", "Map of Ground Levels")
-	wikitext[#wikitext + 1] = LI .. modWIKI.LinkText(modWIKI.HLink .. "lvlsmapunder", "Map of Underground Levels")
-	for key, tbl in pairs(wikitbl) do
-		wikitext[#wikitext + 1] = LI .. modWIKI.LinkText(modWIKI.HLink .. tbl.link, tbl.head)
-	end
-	wikitext[#wikitext + 1] = LI .. modWIKI.LinkText(modWIKI.HLink .. "lvlslistnumber", "List of All FDRPG Levels")
-	wikitext[#wikitext + 1] = modWIKI.FrameEnd
+	wikitext[#wikitext + 1] = "---"
+	wikitext[#wikitext + 1] = "layout: 'page'"
+	wikitext[#wikitext + 1] = "title: 'Map Guide'"
+	wikitext[#wikitext + 1] = "comment: 'Description of the subparts (levels) of the map.'"
+	wikitext[#wikitext + 1] = ""
 
-	wikitext = modWIKI.WarnSpoil( wikitext )
-	--	page contents start here
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "mapship")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(1) .. "Freedroid RPG Levels"
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "lvlsmapground")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(2) .. "Map of Ground Levels"
 	--	convert 'trimmed' grid to table
 	--	structured table
-	wikitext[#wikitext + 1] = modWIKI.TableStart("border=1 cellpadding=1 cellspacing=0 align=center width=70%")
-	local cellpct = math.floor(100 / modWP_Levels.grid_max.x)
+	wikitext[#wikitext + 1] = "map:"
+	modWIKI.StartSequence()
+	wikitext[#wikitext + 1] = modWIKI.AddAttr('nb_columns', modWP_Levels.grid_max.x)
+	wikitext[#wikitext + 1] = modWIKI.AddAttr('nb_rows', modWP_Levels.grid_max.y)
+	wikitext[#wikitext + 1] = modWIKI.AddAttr('rows', nil)
 	for y = 1, modWP_Levels.grid_max.y do
-		local firstcell = true
+		modWIKI.StartMapping()
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('columns', nil)
 		for x = 1, modWP_Levels.grid_max.x do
+			modWIKI.StartMapping()
 			local levelnum = modWP_Levels.GridSquareRead(x,y)
 			local levelindex = modWP_Levels.GetIndexByValue( modWP_Levels.AllLevelData, levelnum , "levelnumber" )
 			local levelname = ""
-			local cellmarker = ""
-			local cellstyle = "width=" .. cellpct .. "% align=center"
-			if (firstcell) then
-				cellmarker = modWIKI.TableRowStart(cellstyle)
-				firstcell = false
-			else
-				cellmarker = modWIKI.TableRowAppend(cellstyle)
-			end
-			if (levelnum == -1) then
-				wikitext[#wikitext + 1] = cellmarker .. string.rep("&nbsp;",6)
-			else
-				local levelcolour = nil
-				if (levelnum == 0) then
-					--	town
-					levelcolour = colourTown
-				elseif (levelnum == 12) then
-					--	cryo facility
-					levelcolour = colourCryo
-				end
+			wikitext[#wikitext + 1] = modWIKI.AddAttr('num', modWP_Levels.LevelShortLinkText(levelnum))
+			if levelnum ~= -1 then
 				levelname = modWP_Levels.AllLevelData[levelindex].levelname
-				local leveltext = modWP_Levels.LevelShortLinkText(levelnum)
-								.. modWIKI.LineBreakEnd	.. "\n"
-								.. modWIKI.TextColour( levelname, levelcolour )
-				wikitext[#wikitext + 1] =	cellmarker .. leveltext
+				wikitext[#wikitext + 1] = modWIKI.AddAttr('name', levelname)
 			end
+			if levelnum == 0 then
+				wikitext[#wikitext + 1] = modWIKI.AddAttr('color', colourTown)
+			elseif levelnum == 12 then
+				wikitext[#wikitext + 1] = modWIKI.AddAttr('color', colourCryo)
+			end
+			modWIKI.EndMapping()
 		end
+		modWIKI.EndMapping()
 	end
-	wikitext[#wikitext + 1] = modWIKI.TableEnd
-	--	map of underground levels
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "lvlsmapunder")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(2) .. "Map of Underground Levels"
-	--	for each level in ground levels - find if level has children
-	for key, levelnumber in pairs(modWP_Levels.LevelsGround)do
+	modWIKI.EndSequence()
+
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = "undergrounds:"
+	for key, levelnumber in pairs(modWP_Levels.LevelsGround) do
 		if (modWP_Levels.hasChildren(levelnumber)) then
-			wikitext[#wikitext + 1] = modWP_Levels.TraverseLevels(levelnumber)
+			modWIKI.StartMapping()
+			wikitext[#wikitext + 1] = modWIKI.AddAttrArray(nil, modWP_Levels.TraverseLevels(levelnumber))
+			modWIKI.EndMapping()
 		end
 	end
 
-	--	debug/tutorial/unreferenced levels
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = "special_categories:"
 	for key, tbl in pairs(wikitbl) do
-		wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. tbl.link)
-		wikitext[#wikitext + 1] = modWIKI.HeaderLevel(2) .. tbl.head
-		wikitext[#wikitext + 1] = tbl.vergabe
+		modWIKI.StartMapping()
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('name', tbl.head)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('descr', tbl.verbage)
+		local lvls = {}
 		for key, levelnumber in pairs(modWP_Levels[tbl.name]) do
-			wikitext[#wikitext + 1] = LI .. modWP_Levels.WikiEntryLevelAnchorText(levelnumber)
+			lvls[#lvls + 1] = modWP_Levels.WikiEntryLevelAnchorText(levelnumber)
 		end
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('levels', lvls)
+		modWIKI.EndMapping()
 	end
-	--	list of all levels in FDRPG (by level number)
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "lvlslistnumber")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(2) .. "List of All FDRPG Levels"
+
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = "levels:"
 	for key, levelitem in pairs(modWP_Levels.AllLevelData)do
 		--	processing for surrounding levels
 		local index_north = modWP_Levels.GetIndexByValue( modWP_Levels.AllLevelData, levelitem.levelnumber_north, "levelnumber" )
@@ -826,104 +808,196 @@ function modWP_Levels.WikiWrite()
 		local level_northwest = -1
 		local level_southeast = -1
 		local level_southwest = -1
-		if (index_north > 0) then
+		if index_north > 0 then
 			level_northeast = modWP_Levels.AllLevelData[index_north].levelnumber_east
 			level_northwest = modWP_Levels.AllLevelData[index_north].levelnumber_west
 		else
-			if (index_east > 0) then
+			if index_east > 0 then
 				level_northeast = modWP_Levels.AllLevelData[index_east].levelnumber_north
 			end
-			if (index_west > 0) then
+			if index_west > 0 then
 				level_northwest = modWP_Levels.AllLevelData[index_west].levelnumber_north
 			end
 		end
-		if (index_south > 0) then
+		if index_south > 0 then
 			level_southeast = modWP_Levels.AllLevelData[index_south].levelnumber_east
 			level_southwest = modWP_Levels.AllLevelData[index_south].levelnumber_west
 		else
-			if (index_east > 0) then
+			if index_east > 0 then
 				level_southeast = modWP_Levels.AllLevelData[index_east].levelnumber_south
 			end
-			if (index_west > 0) then
+			if index_west > 0 then
 				level_southwest = modWP_Levels.AllLevelData[index_west].levelnumber_south
 			end
 		end
 		local levelcolour = nil
-		if (levelitem.levelnumber == 0) then
+		if levelitem.levelnumber == 0 then
 			--	town
 			levelcolour = colourTown
-		elseif (levelitem.levelnumber == 12) then
+		elseif levelitem.levelnumber == 12 then
 			--	cryo facility
 			levelcolour = colourCryo
 		end
-		wikitext[#wikitext + 1] = modWIKI.LinkText(levelitem.urlAnchor)
-		local writedata = modWP_Levels.WikiEntryLevelText(levelitem.levelnumber)
-		wikitext[#wikitext + 1] = modWIKI.HeaderLevel(5) .. modWIKI.TextColour(writedata, levelcolour)
-		--	display surrounding levels
-		wikitext[#wikitext + 1] = modWIKI.TableStart("border=1 cellpadding=0 cellspacing=0 align=\"left\" width=15%")
-		wikitext[#wikitext + 1] = modWIKI.TableRowStart("align=center") .. modWP_Levels.LevelShortLinkText( level_northwest )
-		wikitext[#wikitext + 1] = modWIKI.TableRowAppend("align=center") .. modWP_Levels.LevelShortLinkText( levelitem.levelnumber_north )
-		wikitext[#wikitext + 1] = modWIKI.TableRowAppend("align=center") .. modWP_Levels.LevelShortLinkText( level_northeast )
-		wikitext[#wikitext + 1] = modWIKI.TableRowStart("align=center") .. modWP_Levels.LevelShortLinkText( levelitem.levelnumber_west )
-		local levelnumberdata = string.format("%02d", tostring(levelitem.levelnumber))
-		wikitext[#wikitext + 1] = modWIKI.TableRowAppend("align=center") .. modWIKI.TextEmbed(levelnumberdata,"boldemphasis")
-		wikitext[#wikitext + 1] = modWIKI.TableRowAppend("align=center") .. modWP_Levels.LevelShortLinkText( levelitem.levelnumber_east )
-		wikitext[#wikitext + 1] = modWIKI.TableRowStart("align=center") .. modWP_Levels.LevelShortLinkText( level_southwest )
-		wikitext[#wikitext + 1] = modWIKI.TableRowAppend("align=center") .. modWP_Levels.LevelShortLinkText( levelitem.levelnumber_south )
-		wikitext[#wikitext + 1] = modWIKI.TableRowAppend("align=center") .. modWP_Levels.LevelShortLinkText( level_southeast )
-		wikitext[#wikitext + 1] = modWIKI.TableEnd
-		--	display details about current level
-		wikitext[#wikitext + 1] = modWIKI.FrameStartLeft("border=\'0px\' margin-top=\'0px\' margin-left=\'1.0em\'")
-		local levellabel, leveldata = "", ""
+		--
+		modWIKI.StartMapping()
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('id', modWIKI.WikifyLink( "level" .. levelitem.levelnumber ))
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('name', modWP_Levels.WikiEntryLevelText(levelitem.levelnumber))
+		wikitext[#wikitext + 1] = modWIKI.AddAttrArray('size', { levelitem.xlen, levelitem.ylen })
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('song', levelitem.bgSong)
+		if levelcolour then
+			wikitext[#wikitext + 1] = modWIKI.AddAttr('name_color', levelcolour)
+		end
+		local specials = {}
+		specials[#specials + 1] = modWIKI.AddAttr('specials', nil)
 		if ( not modWP_Levels.hasreference(levelitem.levelnumber) ) then
-			levellabel = select( 1, modWP_Levels.GetLevelItemStringsPair( levelitem, "is_unref" ))
-			wikitext[#wikitext + 1]	= modWIKI.TextEntry(levellabel, nil, nil, modWIKI.ColourWarn)
+			modWIKI.StartMapping()
+			specials[#specials + 1] = modWIKI.AddAttr('text', select(1, modWP_Levels.GetLevelItemStringsPair( levelitem, "is_unref")))
+			specials[#specials + 1] = modWIKI.AddAttr('color', modWIKI.ColourWarn)
+			modWIKI.EndMapping()
 		end --	level is unreferenced
 		if (levelitem.is_random) then
-			levellabel = select( 1, modWP_Levels.GetLevelItemStringsPair( levelitem, "is_random" ))
-			wikitext[#wikitext + 1]	= modWIKI.TextEntry(levellabel, nil, nil, modWIKI.ColourCaution)
+			modWIKI.StartMapping()
+			specials[#specials + 1] = modWIKI.AddAttr('text', select(1, modWP_Levels.GetLevelItemStringsPair( levelitem, "is_random")))
+			specials[#specials + 1] = modWIKI.AddAttr('color', modWIKI.ColourCaution)
+			modWIKI.EndMapping()
 		end --	level is random
 		if (levelitem.is_tutorial) then
-			levellabel = select( 1, modWP_Levels.GetLevelItemStringsPair( levelitem, "is_tutorial" ))
-			wikitext[#wikitext + 1]	= modWIKI.TextEntry(levellabel, nil, nil, modWIKI.ColourCaution)
+			modWIKI.StartMapping()
+			specials[#specials + 1] = modWIKI.AddAttr('text', select(1, modWP_Levels.GetLevelItemStringsPair( levelitem, "is_tutorial")))
+			specials[#specials + 1] = modWIKI.AddAttr('color', modWIKI.ColourCaution)
+			modWIKI.EndMapping()
 		end --	level is tutorial
 		if (levelitem.is_debug) then
-			levellabel = select( 1, modWP_Levels.GetLevelItemStringsPair( levelitem, "is_debug" ))
-			wikitext[#wikitext + 1]	= modWIKI.TextEntry(levellabel, nil, nil, modWIKI.ColourCaution)
+			modWIKI.StartMapping()
+			specials[#specials + 1] = modWIKI.AddAttr('text', select(1, modWP_Levels.GetLevelItemStringsPair( levelitem, "is_debug")))
+			specials[#specials + 1] = modWIKI.AddAttr('color', modWIKI.ColourCaution)
+			modWIKI.EndMapping()
 		end --	level is debug
-		--	level size
-		local levellabel = select(1, modWP_Levels.GetLevelItemStringsPair( levelitem, "levelsize" ))
-		local sizelabelx,sizedatax = modWP_Levels.GetLevelItemStringsPair( levelitem, "xlen" )
-		local sizelabely,sizedatay = modWP_Levels.GetLevelItemStringsPair( levelitem, "ylen" )
-		local sizetext = sizelabelx .. "&nbsp;".. sizedatax	.. "&emsp;"	.. sizelabely .. "&nbsp;" .. sizedatay
-		wikitext[#wikitext + 1] = modWIKI.TextEntry( levellabel, sizetext, SEP )
-		--	level song
-		levellabel, leveldata = modWP_Levels.GetLevelItemStringsPair( levelitem, "bgSong" )
-		wikitext[#wikitext + 1] = modWIKI.TextEntry( levellabel, leveldata, SEP , nil, false)
-		wikitext[#wikitext + 1] = " "	--	<--keep to force line break between bgsound and next element
-		if ( levelitem.levelnumber_above >= 0 ) then
-			local levelsabove = {}
-			levellabel, leveldata = modWP_Levels.GetLevelItemStringsPair( levelitem, "levelnumber_above" )
-			leveldata = tonumber(leveldata)
-			levelsabove[#levelsabove + 1] =  modWP_Levels.WikiEntryLevelAnchorText( leveldata )
-			wikitext[#wikitext + 1] = modWIKI.TableToWiki( levelsabove, levellabel, SEP )
-		end --	level has levels above
-		if ( modWP_Levels.hasChildren(levelitem.levelnumber )) then
+		if #specials > 1 then
+			for k,text in ipairs(specials) do
+				wikitext[#wikitext + 1] = text
+			end
+		end
+
+		wikitext[#wikitext + 1] = modWIKI.AddAttrArray('neighbors',
+		                                               { modWP_Levels.LevelShortLinkText(level_northwest),
+		                                                 modWP_Levels.LevelShortLinkText(levelitem.levelnumber_north),
+		                                                 modWP_Levels.LevelShortLinkText(level_northeast),
+		                                                 modWP_Levels.LevelShortLinkText(levelitem.levelnumber_west),
+		                                                 levelitem.levelnumber,
+		                                                 modWP_Levels.LevelShortLinkText(levelitem.levelnumber_east),
+		                                                 modWP_Levels.LevelShortLinkText(level_southwest),
+		                                                 modWP_Levels.LevelShortLinkText(levelitem.levelnumber_south),
+		                                                 modWP_Levels.LevelShortLinkText(level_southeast) })
+		if levelitem.levelnumber_above >= 0 then
+			wikitext[#wikitext + 1] = modWIKI.AddAttr('level_above', modWP_Levels.WikiEntryLevelAnchorText(levelitem.levelnumber_above))
+		end
+		if modWP_Levels.hasChildren(levelitem.levelnumber) then
 			--	make a table of levels below
 			local levelsbelow = {}
-			levellabel = select(1, modWP_Levels.GetLevelItemStringsPair( levelitem, "levelnumber_below" ))
 			for key, level in pairs(levelitem.levelnumber_below) do
-				levelsbelow[#levelsbelow + 1] =  modWP_Levels.WikiEntryLevelAnchorText( level )
+				levelsbelow[#levelsbelow + 1] =  modWP_Levels.WikiEntryLevelAnchorText(level)
 			end
-			wikitext[#wikitext + 1] = modWIKI.TableToWiki( levelsbelow, levellabel, SEP )
-		end --	level has levels below
-		wikitext[#wikitext + 1] = modWIKI.FrameEnd
-		wikitext[#wikitext + 1] = modWIKI.ForceBreak
+			wikitext[#wikitext + 1] = modWIKI.AddAttrArray('levels_below', levelsbelow)
+		end
+
+		modWIKI.EndMapping()
 	end
-	--	write wiki data object to string
-	local writedata = modWIKI.PageProcess( filename, wikitext )
-	--	write string to file
-	modWP_Levels.modcommon.Process.DataToFile(filepath, writedata)
+	wikitext[#wikitext + 1] = "---"
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = [[
+
+# FreedroidRPG Levels
+
+## Map Guide
+
+<div class="bordered-table">
+<table width="100%">
+ <tbody>
+ <% for row in @document.map.rows: %>
+  <tr>
+  <% for cell in row.columns: %>
+   <td align="center" width="<%- 100/@document.map.nb_columns %>%">
+    <% if cell.num != "-1": %>
+     <%- cell.num %><br/>
+     <% if cell.color: %>
+      <span style="color: <%- cell.color %>;"><%- cell.name %></span>
+     <% else: %>
+      <%- cell.name %>
+     <% end %>
+    <% else: %>
+     &nbsp;
+    <% end %>
+   </td>
+  <% end %>
+  </tr>
+ <% end %>
+ </tbody>
+</table>
+</div>
+
+# Map of Underground Levels
+
+<% for lvl in @document.undergrounds: %>
+ <ul><li>
+ <% for s in lvl: %>
+ <%- s %><br/>
+ <% end %>
+ </li></ul>
+<% end %>
+
+<% for category in @document.special_categories: %>
+# <%- category.name %>
+
+<%- category.descr %>
+<ul><% for lvl in category.levels: %>
+ <li><%- lvl %></li>
+<% end %></ul>
+<% end %>
+
+# List of All FreedroidRPG Levels
+
+<% for lvl in @document.levels: %>
+<h3 id="<%- lvl.id %>" style="color: <% if lvl.name_color: %><%- lvl.name_color %><% else: %>white<% end %>;"><b><%- lvl.name %></b></h3>
+<div class="row">
+ <div class="col-md-3 bordered-table">
+  <table width="100%"><tbody>
+  <% for idx in [0..2]: %>
+   <tr>
+   <% for neighbor in lvl.neighbors[3*idx..3*idx+2]: %>
+    <td align="center" width="30%">
+     <% if neighbor == "-1": %><span class="glyphicon glyphicon-ban-circle"></span><% else: %><%- neighbor %><% end %>
+    </td>
+   <% end %>
+   </tr>
+  <% end %>
+  </tbody></table>
+ </div>
+ <div class="col-md-9">
+  <p>
+   <% if lvl.specials: %>
+    <% for special in lvl.specials: %>
+    <b><span style="color: <%- special.color %>;"><%- special.text %></b><br/>
+    <% end %>
+   <% end %>
+   <b>Level Size:</b> X: <%- lvl.size[0] %> Y: <%- lvl.size[1] %><br/>
+   <b>Background Song:</b> <%- lvl.song %>
+  </p>
+  <% if lvl.level_above: %>
+   <p><b>Level Above:</b><br/>&nbsp;&nbsp;<%- lvl.level_above %></p>
+  <% end %>
+  <% if lvl.levels_below: %>
+   <p><b>Levels Below:</b><br/>
+   <% for lvlb in lvl.levels_below: %>
+    &nbsp;&nbsp;<%- lvlb %><br/>
+   <% end %>
+  </p>
+ <% end %>
+ </div>
+</div>
+<% end %>
+]]
+	modWP_Levels.modcommon.Process.DataToFile(filepath, table.concat(wikitext, "\n"))
 end
 
 --	convert level number and name to text format
@@ -960,8 +1034,7 @@ function modWP_Levels.WikiEntryLevelText( levelnumber, label, withURL )
 		else
 			urltext = modWP_Levels.modcommon.outputfilenames.levels .. modWP_Levels.AllLevelData[levelindex].urlAnchor
 		end
-		local leveltext = modWP_Levels.modcommon.Wiki.LinkText(	urltext, strText )
-		return modWP_Levels.modcommon.Wiki.TextEntry( label, leveltext,	modWP_Levels.modcommon.Wiki.Separator, nil, false )
+		return modWP_Levels.modcommon.Wiki.LinkText( urltext, strText )
 	end
 end
 

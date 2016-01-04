@@ -243,28 +243,18 @@ end
 --	to be loaded directly into FDRPG site.
 function modWP_Quests.WikiWrite()
 	local modWIKI = modWP_Quests.modcommon.Wiki
-	local LI = modWIKI.LI
-	local SEP = modWIKI.Separator
 	local modNPC = assert(require(modWP_Quests.requiredModules[1]))
-	local filename = modWP_Quests.modcommon.outputfilenames.quests
+	local filename = modWP_Quests.modcommon.outputfilenames.quests .. ".html.md.eco"
 	local filepath = tostring(modWP_Quests.modcommon.paths.destRootFile .. filename)
 	local wikitext = {}
-	wikitext[#wikitext + 1] = modWIKI.PageSummary("FreedroidRPG NPC\'s")
-	wikitext = modWIKI.WarnAutoGen( wikitext )
-	--	make menu for npc types
-	wikitext[#wikitext + 1] = modWIKI.FrameStartRight("font-size:smaller")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(3) .. "Freedroid Quests\'s"
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "allquests","Quests\'s")
-	for key, quest in pairs(modWP_Quests.AllQuestsData) do
-		wikitext[#wikitext + 1] = LI .. modWIKI.LinkText(quest.urlAnchor, quest.name)
-	end	--	loop to produce menu items
-	wikitext[#wikitext + 1] = modWIKI.FrameEnd
-	--	end menu
 
-	wikitext = modWIKI.WarnSpoil( wikitext )
-	--	page contents start here
-	wikitext[#wikitext + 1] = modWIKI.LinkText(modWIKI.HLink .. "allquests")
-	wikitext[#wikitext + 1] = modWIKI.HeaderLevel(1) .. "Freedroid Quests"
+	wikitext[#wikitext + 1] = "---"
+	wikitext[#wikitext + 1] = "layout: 'page'"
+	wikitext[#wikitext + 1] = "title: 'Quest Guide'"
+	wikitext[#wikitext + 1] = "comment: 'Description of the quests to fulfill to advance in the game.'"
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = "quests:"
+
 	--	loop to produce individual entries
 	for key, quest in pairs(modWP_Quests.AllQuestsData) do
 		--	preprocess quest tables
@@ -289,21 +279,57 @@ function modWP_Quests.WikiWrite()
 			quest.questActor = questdata
 		end
 		--	process presentation
-		wikitext[#wikitext + 1] = modWIKI.LinkText(quest.urlAnchor)
-		wikitext[#wikitext + 1] = modWIKI.HeaderLevel(2) .. quest.name
-		--	quest data wiki presentation
-		wikitext[#wikitext + 1] = modWIKI.FrameStartLeft("border=\'0px\' width=70pct")
-		wikitext[#wikitext + 1]	= modWIKI.TextEntry( "Description", quest.desc, SEP, nil, true )
-		wikitext[#wikitext + 1] = " "
-		wikitext[#wikitext + 1]	= modWIKI.TableToWiki( quest.questAssign, "Assigns Quest", SEP )
-		wikitext[#wikitext + 1]	= modWIKI.TableToWiki( quest.questActor, "Other Quest Actors", SEP )
-		wikitext[#wikitext + 1] = " "
-		wikitext[#wikitext + 1] = modWIKI.FrameEnd
-		wikitext[#wikitext + 1] = modWIKI.ForceBreak
-		wikitext[#wikitext + 1] = modWIKI.LineSep
+		modWIKI.StartMapping()
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('id', modWIKI.WikifyLink("q" .. quest.name))
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('name', quest.name)
+		wikitext[#wikitext + 1] = modWIKI.AddAttr('description', quest.desc)
+		if quest.questAssign then
+			wikitext[#wikitext + 1] = modWIKI.AddAttr('assigns_quest', quest.questAssign)
+		end
+		if quest.questActor then
+			wikitext[#wikitext + 1]	= modWIKI.AddAttr('other_actors', quest.questActor)
+		end
+		modWIKI.EndMapping()
 	end
-	local writedata = modWIKI.PageProcess( filename, wikitext )
-	modWP_Quests.modcommon.Process.DataToFile(filepath, writedata)
+	wikitext[#wikitext + 1] = "---"
+	wikitext[#wikitext + 1] = ""
+	wikitext[#wikitext + 1] = [[
+# Quests Guide
+
+<div class="row">
+ <div class="toc col-md-3 pull-right">
+  <span><b>Quests Name</b></span>
+  <ul>
+  <% for quest in @document.quests: %>
+   <li><a href="#<%- quest.id %>"><%- quest.name %></a></li>
+  <% end %>
+  </ul>
+ </div>
+
+ <div class="col-md-9">
+ <% for quest in @document.quests: %>
+  <h3 id='<%- quest.id %>'><%- quest.name %></h3>
+  <p>&nbsp;&nbsp;<strong>Description</strong>: <%- quest.description %></p>
+  <% if quest.assigns_quest: %>
+   <p>&nbsp;&nbsp;<strong>Assigns Quest</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <% for value in quest.assigns_quest: %>
+    <%- value %><% if value != quest.assigns_quest[quest.assigns_quest.length- 1]: %>, <% end %>
+   <% end %>
+   </p>
+  <% end %>
+  <% if quest.other_actors: %>
+   <p>&nbsp;&nbsp;<strong>Other Quest Actors</strong>:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <% for value in quest.other_actors: %>
+    <%- value %><% if value != quest.other_actors[quest.other_actors.length- 1]: %>, <% end %>
+   <% end %>
+   </p>
+  <% end %>
+ <% end %>
+ </div>
+</div>
+]]
+	--	write string to file
+	modWP_Quests.modcommon.Process.DataToFile(filepath, table.concat(wikitext, "\n"))
 end
 
 --	Print out NPC information based on selected verbosity.
