@@ -1248,6 +1248,7 @@ int LoadGameConfig(void)
 	sprintf(fname, "%s/fdrpg.cfg", our_config_dir);
 	if ((configfile = fopen(fname, "rb")) == NULL) {
 		fprintf(stderr, "\nUnable to open configuration file %s\n", fname);
+		lang_set(GameConfig.locale, NULL);
 		return (ERR);
 	}
 
