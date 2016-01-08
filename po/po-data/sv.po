@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
+# This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
 # Alexander Forsberg <alexf@openmailbox.org>, 2015
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-24 11:19+0100\n"
+"POT-Creation-Date: 2016-01-08 14:04+0100\n"
 "PO-Revision-Date: 2015-10-20 15:37+0000\n"
 "Last-Translator: Alexander Forsberg <alexf@openmailbox.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
@@ -584,7 +584,7 @@ msgid "Ooops, you killed Spencer."
 msgstr ""
 
 #: map/events.dat:6659
-msgid "Ooops, you killed Pendragon"
+msgid "Ooops, you killed Pendragon."
 msgstr ""
 
 #: map/item_specs.lua:121
@@ -2917,8 +2917,8 @@ msgid "Barkeeper"
 msgstr "Barägare"
 
 #: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
-#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18 map/ReturnOfTux.droids:30
-#: map/ReturnOfTux.droids:32
+#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
+#: map/ReturnOfTux.droids:30 map/ReturnOfTux.droids:32
 msgid "Red Guard Member"
 msgstr "Medlem av Röda Väktarna"
 
@@ -3002,13 +3002,17 @@ msgstr "Vakt över DSB Kontrollterminal"
 msgid "MS Emissary"
 msgstr "MS Agent"
 
-#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70 map/ReturnOfTux.droids:71
-#: map/ReturnOfTux.droids:72 map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
-#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76 map/ReturnOfTux.droids:77
-#: map/ReturnOfTux.droids:78 map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
-#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82 map/ReturnOfTux.droids:83
-#: map/ReturnOfTux.droids:84 map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
-#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88 map/ReturnOfTux.droids:89
+#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70
+#: map/ReturnOfTux.droids:71 map/ReturnOfTux.droids:72
+#: map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
+#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76
+#: map/ReturnOfTux.droids:77 map/ReturnOfTux.droids:78
+#: map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
+#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82
+#: map/ReturnOfTux.droids:83 map/ReturnOfTux.droids:84
+#: map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
+#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88
+#: map/ReturnOfTux.droids:89
 msgid "Singularity Drone"
 msgstr "Singularitetens Drönare"
 

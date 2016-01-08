@@ -1,0 +1,320 @@
+    FreedroidRPG: LÉEME
+   ----------------------
+
+0. Índice
+=========
+  1. Introducción
+  2. Instalar y Jugar
+  3. Controles básicos
+  4. Problemas conocidos
+  5. Resolución de pantalla
+  6. PMF
+     - Miscelánea
+     - Gráficos
+     - Sonido
+     - Editor de Niveles y Desarrollo
+  7. Contáctenos
+  8. Licencia
+
+
+1. Introducción
+================
+ El juego cuenta la historia de un mundo destruido por un conflicto entre
+ robots y sus amos humanos. Juega como Tux en una misión para salvar el
+ mundo de los pérfidos asesinos robots rebeldes que no conocen compasión. Tú
+ escoges  cuál camino deseas seguir, y la libertad de elección está
+ en todas partes en el juego.
+
+ FreedroidRPG presenta un sistema de combate en tiempo real con armas melée y
+ y a distancia, bastante parecido al juego privativo Diablo. Hay un
+ innovador sistema de programas que pueden ser lanzados para tomar
+ control de robots enemigos, alterar su comportamiento, o mejorar las propias
+ características. Puedes usar más de 150 distintos tipos de objetos y
+ luchar contra incontables enemigos camino hacia tu destino. Un avanzado
+ sistema de diálogos provee transfondo de historia e
+ inmersivas situaciones de rol.
+
+ El juego es completo, totalmente jugable, y puede proveer unas 10 horas
+ de diversión. Aún está siendo activamente desarrollado, y la ayuda es bienvenida en
+ muchas áreas. Gente con - o intentando adquirir - habilidades de programación,
+ edición de mapas o escritura hallará en FreedroidRPG un trepidante y
+ dinámico proyecto en el cual puedan expresar su creatividad.
+
+2. Instalar y Jugar
+===========
+ Para ayuda general con la instalación, por favor refiérase al documento INSTALL localizado en el mismo directorio que este.
+ Instrucciones específicas para Ubuntu: http://ubuntuforums.org/showthread.php?p=6127097#post6127097
+
+ Para ejecutar el juego normalmente sólo tiene que lanzar el ejecutable.
+ Para opciones avanzadas ejecute "freedroidRPG --help" (en un terminal) para obtener una lista completa de opciones de línea de comandos.
+
+
+3. Controles
+============
+ Movimiento
+ 
+  El juego es controlado usando el mouse. Haga click izquierdo en las posiciones a las que desee moverse.
+  Mantenga presionado el botón para continuar moviéndose en esa dirección. Mantener CTRL le hará correr.
+
+ Ataque
+
+  Click izquierdo en un enemigo causará que Tux se aproxime al droide y comience a atacarlo con el
+  arma actual. Si el arma actual es una pistola entonces Tux se mantendrá quieto y disparará al droide.
+
+ Funciones especiales
+
+  Use el click derecho para activar la habilidad o programa seleccionado.
+
+ Teclas por defecto (la mayor parte puede ser reasignada con la configuración de teclas accesible en juego - F1)
+
+  Escape ... Mostrar menú principal
+  F1 ... Mostrar configuración de teclas
+  F2 ... Cambiar a pantalla completa (sólo Linux)
+  F3 ... Salvado rápido
+  F4 ... Carga rápida
+  F5 a F12 ... Selección rápida de programas 1 a 8
+
+  I ... Panel de inventario
+  C ... Panel de personaje
+  S ... Panel de Habilidades/Programas
+  Espacio ... Cerrar todos los paneles abiertos
+  Q ... Registro de misiones
+  0 a 9 ... Usar objetos de inventario rápido 0 a 9
+
+  P... Pausa
+  Mantener A ... Atacar manteniando la posición
+  Mantener Shift ... Mantener el objetivo actual seleccionado moviéndose
+  Tabulador ... Conmutar automapa (si disponible)
+
+  R ... Recargar arma
+  Mantener Ctrl ... Correr
+  U ... Conmutar correr siempre.
+
+  Mantener X ... Mostrar etiquetas de objetos en el suelo
+  Z ... Conmutar mostrar etiquetas de objetos en el suelo
+  T ... Conmutar transparencia de muros cuando Tux se aproxima
+  Ctrl + Q ... Cerrar el juego
+  Ctrl + G ... Conmutar bloquear entrada (prevenir que el cursor escape la ventana del juego)
+  Imprimir ... Tomar captura de pantalla (guardada en el subdirectorio ./.freedroid_rpg/ de su directorio personal)
+
+  Flechas ... Mover
+     Arriba ... Norte
+     Abajo ... Sur
+     Derecha ... Este
+     Izquierda... Oeste
+
+
+4. Problemas Conocidos
+================
+ General
+   * Algunas armas Meleé y a distancia aún tienen espadas/rifles láser de relleno para sus animaciones de sujección y disparo.
+	 Si tiene usted habilidad con el modelado 3D, por favor ayúdenos a solventar esto.
+   * Cuando inicias el juego en modo OpenGL y algo se sobrepone a la ventana del juego mientras este se inicia,
+	 la imagen del fondo se ve muy extraña. Si hace click en alguno de las entradas del menú, debería
+	 retornar al aspecto planeado.
+   * Usar alt tab para cambiar hacia/desde el juego en OpenGL mientras una ventana emergente estática es mostrada vuelve la pantalla completamente negra.
+	 Hacer click o presionar la tecla requerida para cerrar la ventana emergente redibujará/traerá de vuelta la pantalla.
+
+ Mac
+   * Documentos Abiertos: OSX limita el número máximo de documentos abiertos (256 en 10.6). Esto puede llevar a errores
+	 en la carga de imágenes: "En Función: get_iso_image_from_file_and_path. No se pudo cargar imaen
+	 /usr/local/share/freedroidrpg/graphics/obstacles/<nombre>.png"
+	 Solución:
+		1) Comprobar el valor de máximos documentos abiertos con $ ulimit -n
+		2) Establecer nuevo valor de límite de documentos abiertos con $ ulimit -n 2048
+	(Problema #2913487)
+   * Font rendering: If you get no fonts in the main menu with SDL or if in openGL mode, the game dies
+	with the error message "In Function: PutCharFont. Surface for character 46 was NULL pointer!",
+	check your display configuration and set the color profile to sRGB.
+	(issues #2913485 and #2913484)
+   * SDL installed via MacPorts: SDL installed via MacPorts will give freedroidRPG wrong information
+	about the byteorder if you have a big-endian (PowerPC) CPU, so the colors may be wrong and you
+	probably couldn't start a new game because FreedroidRPG crashes.
+	To fix it, with root privileges edit the /opt/include/SDL/SDL_config.h file so the line
+		#define SDL_BYTEORDER=1234
+	says
+		#define SDL_BYTEORDER=4321
+	After editing and saving the file recompile freedroidRPG and it should work correctly.
+	Using SDL compiled from source instead of from MacPorts will work as well.
+
+ Linux
+   * Pulseaudio: Using SDL-pulseaudio you are currently likely not to get sound. This has nothing to do
+	 with FreedroidRPG but with Pulseaudio and its plugins still in general being immature. We recommend using
+	 e.g. SDL-esd or SDL-alsa until these problems has been fixed upstream.
+   * Intel 915/945/IDG graphics cards (EEE PCs, netbooks, etc): Mesa 7.9-devel has an issue which makes the game
+   	 run slowly and consume a lot of memory. It is fixed by installing and launching 'driconf' and setting 
+	 'Enable texture tiling' to 'No'.   
+   * Due to hardware and software drivers, the "Gamma Correction" option may affect nothing.
+
+5. Resolución de pantalla
+=====================
+ There are a few hidden high resolution settings only accessible from command line. They are badly tested
+ and thus generally considered to be buggy and are unsupported. They however can still be quite useful for
+ many, especially for widescreen LCDs in fullscreen mode.
+
+ To get an up-to-date list of available resolutions use "freedroidRPG -r99".
+
+ Some known issues for the unsupported resolutions:
+	- Portrait image in dialogs overflows its borders
+	- Off center light radius
+	- Incorrect text scrolling when talking to NPCs at times
+
+
+6. PMF
+============
+Miscellaneous FAQ:
+
+	Q: Do I have to have Linux to try out FreedroidRPG?
+	A: While using Linux is greatly recommended for the sanity of the system
+	   administrator, FreedroidRPG has MS-Windows executables available.
+	   Note that since the FreedroidRPG development team doesn't use 
+	   MS-Windows, it gets much less testing. Help with testing and feedback 
+	   from Windows users thus is greatly appreciated.
+
+	Q: How can I subscribe/unsubscribe to the mailing list?
+	A: FreedroidRPG has two mailing lists. One is for discussing stuff related to
+	   FreedroidRPG, the other one is a list with auto-generated change logs from our 
+	   developer server and therefore usually only interesting for developers themselves.
+	   In any case, you can subscribe, unsubscribe or change your membership options
+			from the following web page:
+	   http://sourceforge.net/mail/?group_id=54521
+
+
+Graphics FAQ:
+
+	Q: The game is *extremely* slow on my system running Windows and using OpenGL output.
+	A: It might be that you're using the OpenGL drivers that came with your
+	   operating system from Microsoft. These drivers don't use hardware acceleration
+	   and are therefore extremely slow. You'll have to download and install a real
+	   OpenGL capable driver for you graphics card. Usually these can be downloaded 
+	   from the home page of the graphics chip manufacturer, typically Nvidia, AMD/ATI,
+	   etc. Note, that if you do absolutely cannot get OpenGL working reliably on your
+	   system, you can still run the game in pure SDL output mode. For this, you
+	   must either use a 'MS-DOS command line prompt' and type
+
+	   freedroidRPG -n 
+
+	   inside this command line, or you can also make a link to freedroidRPG.exe
+	   and then edit the link properties and add the -n after freedroidRPG.exe in
+	   the link properties dialog box.
+
+	Q: The game is *extremely* slow on my Linux machine with OpenGL enabled.
+	A: The reason for this might be that you're not using hardware accelerated OpenGL.
+	   Software OpenGL should be avoided.  If you don't have hardware-accelerated
+	   OpenGL on your system (because e.g. your graphics card manufacturer doesn't
+	   make suitable Linux drivers), you might be much better off when disabling
+	   OpenGL support altogether.  For this, you can use command line switch -n,
+	   i.e type
+
+	   freedroidRPG -n
+
+	   to start the game with OpenGL output disabled.  Graphics will revert to
+	   pure SDL mode.
+	Q: I run Linux with multiple monitors in TwinView (Xinerama) mode, however fullscreen
+	   mode is centered over the break between the two monitors. I would rather it be
+	   centered on one of the screens.
+	A: To have the game use only one monitor for fullscreen mode, do the following:
+	   1)  Make certain you use SDL version >=1.2.14.
+	   2)  Set the environmental variable "SDL_VIDEO_FULLSCREEN_DISPLAY" to the number corresponding to
+			the monitor you wish to use: 0 is your first display, 1 is your second, etc.
+
+	   If that does not work you may have to add single-monitor metamodes to your xorg.conf file.
+	   Modifications to xorg.conf require a restart of the X server before they take effect.
+
+Sound FAQ:
+
+	Q: My sound isn't working with FreedroidRPG. I don't hear anything.
+	A: 1.)  Make sure your sound is working with other applications. If you
+		    don't hear anything when trying to play simple mp3 files or ogg files,
+		    then the sound system on your machine is not properly set up and it's
+		    not a freedroidRPG related problem. In that case, you must install your
+		    sound card properly first.
+	   2.)  See if you have the SDL_mixer libraries installed. You might want
+		    to use "locate SDL_mixer" and see if you get a lot of results.  If
+		    not, then the missing SDL_mixer library is the problem.
+		    Also check if you have libogg and libvorbis installed.
+	   3.)  If you're compiling from source, make sure the ./configure script has
+		    properly detected the SDL_mixer library. Just look at the ./configure
+		    output. There should be a line like:
+
+		      checking for Mix_ChannelFinished in -lSDL_mixer... yes
+
+		    If you get instead something like
+
+		      checking for Mix_ChannelFinished in -lSDL_mixer... no
+
+		    then the ./configure script didn't detect your SDL_mixer
+		    installation. You might want to make sure you've got SDL_mixer and
+		    SDL_mixer_devel packages installed or install SDL_mixer from source.
+		    You can download everything from here:
+
+		      http://www.libsdl.org/projects/SDL_mixer/
+
+		    If you compiled from source, you'll have to recompile now, because the
+		    previous compile didn't include the sound module of FreedroidRPG. If
+		    the SDL_mixer stuff is installed properly, it should work after the
+		    recompile.
+
+	Q: My sound is lagging behind. Every sound seems to be somewhat out of sync.
+	A: There might be a sound daemon running on your system.  Many window managers
+	   like e.g. KDE start a sound daemon by default upon start up. To get rid of
+	   the most common sound daemons, you can try (best as root)
+
+	   killall -9 artsd
+	   killall -9 esd
+	   killall -9 yiff
+	   killall -9 pulseaudio
+
+	   After that, you might want to try freedroidRPG again. The sound lag should
+	   not be present anymore.
+
+Level Editor & Developer FAQ:
+
+	Q: Is there a Level editor?
+	A: Yes, we have a level editor integrated into FreedroidRPG. It can be accessed
+       from the main menu or executing
+
+		  freedroidRPG -e
+
+       It has tooltips on every button to help you find your
+       way. Play around with it a bit by yourself and don't hesitate to ask for
+       assistance on IRC or the mailing list.
+
+	Q: How can I get the latest development version of the game?
+	A: This is very simple when using Linux. You can find the details here:
+	   https://sourceforge.net/svn/?group_id=54521
+	   If you are using Windows we recommend using a tool like 
+	   http://tortoisesvn.tigris.org/
+	   If you still run into problems, best again discuss it with the people on
+	   the freedroid-discussion mailing list.
+
+	Q: I want to help out with FreedroidRPG development. What should I do first?
+	A: First, we recommend to read http://www.freedroid.org/developer-area/contribute/
+	   Second thing is to contact us. This can be done via IRC (see 'Contact' beneath)
+	   or using the freedroid-discussion mailing list.
+	   Then the next thing to do is to get the latest development version of the game
+	   from git, then to either make a small patch right away or to discuss anything
+	   bigger you have in mind with the people on the discussion mailing list or IRC, so
+	   it can be assured that all the developers are pulling in the same direction and
+	   know what's going on and who is working on what.
+	   If you are new to the Sourceforge, you should also take at least a brief look
+	   at our Sourceforge project pages. You can find the main page here
+	   http://sourceforge.net/projects/freedroid
+	   and other relevant pages should be reachable from there.
+
+
+
+7. Contact
+===========
+ Website       ................ http://www.freedroid.org
+ IRC channel   ................ #freedroid on irc.freenode.net or
+								http://webchat.freenode.net/?channels=freedroid (requires Javascript)
+ Mailing list  ................ freedroid-discussion@lists.sourceforge.net
+ Sourceforge project page   ... http://sourceforge.net/projects/freedroid/
+ Bug tracker   ................ http://bugs.freedroid.org/
+
+
+8. Licencia
+===========
+ The game itself is licensed under GPL. Some other tools use a more permissive license, 
+ please refer to the FILES file located in the same folder as this file.

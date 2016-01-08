@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
+# This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
 # Duong Khang NGUYEN <neoneurone@gmail.com>, 2014
@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-24 11:19+0100\n"
+"POT-Creation-Date: 2016-01-08 14:04+0100\n"
 "PO-Revision-Date: 2015-10-10 08:48+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/arctic-games/freedroid-rpg/language/fr/)\n"
@@ -1777,8 +1777,8 @@ msgid "Yes, I want even more training. (costs 200 circuits, 6 training points)"
 msgstr "Oui, je veux m'entraîner davantage. (coûte 200 circuits, 6 points d'entraînement)"
 
 #: dialogs/Benjamin.lua:151
-msgid "So let''s start the second course?"
-msgstr "Donc, on y va pour le deuxième cours ?"
+msgid "So let's start the second course?"
+msgstr ""
 
 #: dialogs/Benjamin.lua:154
 msgid "Very well."
@@ -1993,8 +1993,8 @@ msgid "Laser is the technology employed in most of our weaponry. It uses a focus
 msgstr "Le laser est la technologie employée dans la plus grande partie de l'arsenal. Les dommages qu'il cause proviennent d'un faisceau de lumière focalisé."
 
 #: dialogs/Benjamin.lua:274
-msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say.It is also not affected by gravity or wind, which makes aiming easier."
-msgstr "Parce que le faisceau est fait de lumière, il se propage TRÈS rapidement, à la vitesse de la lumière pour ainsi dire. De même, il n'est pas affecté par la gravité ou le vent, ce qui permet de viser plus facilement."
+msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say. It is also not affected by gravity or wind, which makes aiming easier."
+msgstr ""
 
 #: dialogs/Benjamin.lua:275
 msgid "However, other than being a good training tool for newbies, that design just fails to deliver."
@@ -3683,7 +3683,7 @@ msgstr "Le(la) %s lance un sort polymorphe."
 
 #: dialogs/c-net-nethack_sub.lua:595
 msgid "The Random Number God strikes you, changing your gender."
-msgstr "Le dieu Nombre Aléatoire vous frappe, changeant votre genre."
+msgstr "Le Génie Nombre Aléatoire vous frappe, changeant votre genre."
 
 #. TRANSLATORS: you ascended a $alignment, $sex, $race, $role in nethack
 #: dialogs/c-net-nethack_sub.lua:598 dialogs/c-net-nethack_sub.lua:791
@@ -3759,7 +3759,7 @@ msgstr "Quelque chose s'est passé, autre part."
 
 #: dialogs/c-net-nethack_sub.lua:644
 msgid "The Random Number God is not swayed by your petty prayers."
-msgstr "Le dieu Nombre Aléatoire ne se laisse pas influencer par vos mesquines prières."
+msgstr "Le Génie Nombre Aléatoire ne se laisse pas influencer par vos mesquines prières."
 
 #: dialogs/c-net-nethack_sub.lua:651
 msgid "Xyzzy"
@@ -3799,15 +3799,15 @@ msgstr "Vous verifiez votre boite mail."
 
 #: dialogs/c-net-nethack_sub.lua:665
 msgid "You sip a cup of late-afternoon tea in quiet retrospection."
-msgstr ""
+msgstr "Vous sirotez une coupe de thé du soir durant un moment de calme introspection."
 
 #: dialogs/c-net-nethack_sub.lua:666
 msgid "You take a power nap."
-msgstr ""
+msgstr "Vous faîtes une sieste éclair."
 
 #: dialogs/c-net-nethack_sub.lua:667
 msgid "You take a long nap."
-msgstr "Vous faites une grosse sièste."
+msgstr "Vous faites une grosse sieste."
 
 #: dialogs/c-net-nethack_sub.lua:668
 msgid "You take a cat nap."
@@ -3815,7 +3815,7 @@ msgstr "Vous faites un petit somme."
 
 #: dialogs/c-net-nethack_sub.lua:675
 msgid "You feel refreshed."
-msgstr "Vous vous sentez désaltérée !"
+msgstr "Vous vous sentez désaltéré."
 
 #: dialogs/c-net-nethack_sub.lua:683
 msgid "Suddenly you find yourself teleported to the next level."
@@ -3843,43 +3843,43 @@ msgstr "Tout devient froid et sombre."
 
 #: dialogs/c-net-nethack_sub.lua:689
 msgid "You feel a sharp pain in your neck, and everything goes blue."
-msgstr ""
+msgstr "Vous ressentez une vive douleur dans le cou, et tout devient bleu."
 
 #: dialogs/c-net-nethack_sub.lua:708
 #, c-format
 msgid "The %s passed out."
-msgstr ""
+msgstr "Le(la) %s s'évanouit."
 
 #: dialogs/c-net-nethack_sub.lua:710
 #, c-format
 msgid "The %s suddenly is gone."
-msgstr ""
+msgstr "Le(la) %s s'en va soudainement."
 
 #: dialogs/c-net-nethack_sub.lua:712
 #, c-format
 msgid "The %s ran away."
-msgstr ""
+msgstr "Le(la) %s s'enfuit en courant."
 
 #: dialogs/c-net-nethack_sub.lua:714
 #, c-format
 msgid "You push the %s off a convenient cliff."
-msgstr ""
+msgstr "Vous poussez le(la) %s du haut d'une falaise bien opportune."
 
 #: dialogs/c-net-nethack_sub.lua:718
 msgid "You find prayer beads invoking the goodwill of the Random Number God."
-msgstr ""
+msgstr "Vous trouverez des perles de prière invoquant la bonne volonté du Dieu Nombre Aléatoire."
 
 #: dialogs/c-net-nethack_sub.lua:719
 msgid "You find a lightning rod."
-msgstr ""
+msgstr "Vous trouvez un paratonnerre."
 
 #: dialogs/c-net-nethack_sub.lua:720
 msgid "You find a sword of greater death."
-msgstr ""
+msgstr "Vous trouvez une épée encore plus mortelle."
 
 #: dialogs/c-net-nethack_sub.lua:721
 msgid "You find a vorpal dagger."
-msgstr ""
+msgstr "Vous trouvez une dague Epée vorpale."
 
 #: dialogs/c-net-nethack_sub.lua:722
 msgid "You find a breast plate of awesome."
@@ -3895,15 +3895,15 @@ msgstr "Vous trouvez un casque de feu."
 
 #: dialogs/c-net-nethack_sub.lua:725
 msgid "You find a left boot of anti-fungus."
-msgstr ""
+msgstr "Vous trouverez une botte gauche anti-champignon."
 
 #: dialogs/c-net-nethack_sub.lua:726
 msgid "You find a right boot of speed."
-msgstr ""
+msgstr "Vous trouverez une botte droite de vitesse."
 
 #: dialogs/c-net-nethack_sub.lua:727
 msgid "You find a shank."
-msgstr ""
+msgstr "Vous trouvez une tige."
 
 #: dialogs/c-net-nethack_sub.lua:728
 msgid "You find a kevlar vest."
@@ -3915,7 +3915,7 @@ msgstr "Vous trouvez un T-shirt Hawaïen."
 
 #: dialogs/c-net-nethack_sub.lua:730
 msgid "You find a credit card."
-msgstr ""
+msgstr "Vous trouvez une carte bleue."
 
 #: dialogs/c-net-nethack_sub.lua:731
 msgid "You find a sharpened pencil."
@@ -3931,17 +3931,17 @@ msgstr "Vous trouvez une \"arme\"."
 
 #: dialogs/c-net-nethack_sub.lua:736
 msgid "You find a bandage and put it on."
-msgstr ""
+msgstr "Vous trouvez un bandage et vous le mettez."
 
 #: dialogs/c-net-nethack_sub.lua:737
 msgid "A nurse patches some of your wounds."
-msgstr ""
+msgstr "Une infirmière soigne certaines de tes plaies."
 
 #. TRANSLATORS: %s = god name
 #: dialogs/c-net-nethack_sub.lua:739
 #, c-format
 msgid "You drink a bottle of greater healing. %s sends some salve to sooth your wounds."
-msgstr ""
+msgstr "Vous buvez une bouteille de potion guérissante. %s envoie un peu de pommade pour apaiser vos blessures."
 
 #: dialogs/c-net-nethack_sub.lua:740
 msgid "You find an aloe vera plant."
@@ -3949,39 +3949,39 @@ msgstr "Vous trouvez un plant d'aloé vera."
 
 #: dialogs/c-net-nethack_sub.lua:741
 msgid "You apply some sunscreen from your backpack."
-msgstr ""
+msgstr "Vous appliquez une crème solaire de votre sac à dos."
 
 #: dialogs/c-net-nethack_sub.lua:742
 msgid "You decide that you are healthier than you thought."
-msgstr ""
+msgstr "Vous décidez que vous êtes meilleur santé que vous le pensiez."
 
 #: dialogs/c-net-nethack_sub.lua:744
 msgid "Your health improves."
-msgstr ""
+msgstr "Votre santé s'améliore."
 
 #: dialogs/c-net-nethack_sub.lua:745
 msgid "You feel more vigorous."
-msgstr ""
+msgstr "Vous vous sentez plus vigoureux."
 
 #: dialogs/c-net-nethack_sub.lua:746
 msgid "Your arm spontaneously regenerates."
-msgstr ""
+msgstr "Votre bras se régénère spontanément."
 
 #: dialogs/c-net-nethack_sub.lua:747
 msgid "Your leg grows back."
-msgstr ""
+msgstr "Votre jambe repousse."
 
 #: dialogs/c-net-nethack_sub.lua:748
 msgid "Your acne clears up."
-msgstr ""
+msgstr "Votre acné s'éclaircit."
 
 #: dialogs/c-net-nethack_sub.lua:749
 msgid "You stop hemorrhaging blood."
-msgstr ""
+msgstr "Vous arrêtez une hémorragie artérielle."
 
 #: dialogs/c-net-nethack_sub.lua:751
 msgid "You find a top hat with a rabbit."
-msgstr ""
+msgstr "Vous trouverez un chapeau haut de forme avec un lapin."
 
 #: dialogs/c-net-nethack_sub.lua:752
 msgid "You find a deck of cards."
@@ -3989,15 +3989,15 @@ msgstr "Vous trouvez un jeu de carte."
 
 #: dialogs/c-net-nethack_sub.lua:753
 msgid "You find a coin with two heads."
-msgstr ""
+msgstr "Vous trouverez une pièce avec deux têtes."
 
 #: dialogs/c-net-nethack_sub.lua:754
 msgid "You find a stick with two snakes wrapped around it."
-msgstr ""
+msgstr "Vous trouverez un bâton avec deux serpents enroulées autour."
 
 #: dialogs/c-net-nethack_sub.lua:755
 msgid "You find a magic wand."
-msgstr ""
+msgstr "Vous trouvez une baguette magique."
 
 #: dialogs/c-net-nethack_sub.lua:756
 msgid "You find a skipping stone."
@@ -4005,18 +4005,18 @@ msgstr ""
 
 #: dialogs/c-net-nethack_sub.lua:757
 msgid "You find a trick dagger."
-msgstr ""
+msgstr "Vous trouvez une dague truc."
 
 #: dialogs/c-net-nethack_sub.lua:763
 msgid "You reform your wicked ways, and join the side of good."
-msgstr ""
+msgstr "Vous réprimez vos mauvaises pensées, et rejoignez le camp du bien."
 
 #. TRANSLATORS: %s = enemy god name
 #. TRANSLATORS: %s = god name
 #: dialogs/c-net-nethack_sub.lua:765 dialogs/c-net-nethack_sub.lua:774
 #, c-format
 msgid "%s is unhappy about this."
-msgstr ""
+msgstr "%s n'en sont pas contents."
 
 #. TRANSLATORS: %s = god name
 #: dialogs/c-net-nethack_sub.lua:767
@@ -4026,16 +4026,16 @@ msgstr "%s aime ça."
 
 #: dialogs/c-net-nethack_sub.lua:770
 msgid "The urge to sin fills you, you now are evil!"
-msgstr ""
+msgstr "L'envie de péchés vous comble, vous êtes maintenant Le Mal !"
 
 #: dialogs/c-net-nethack_sub.lua:772
 #, c-format
 msgid "%s is happy about this."
-msgstr ""
+msgstr "%s en sont contents."
 
 #: dialogs/c-net-nethack_sub.lua:777
 msgid "You decide good and evil are too two sides of the same coin, so you take the coin."
-msgstr ""
+msgstr "Vous décidez que le bien et le mal sont deux faces de la même pièce, donc vous prenez la pièce."
 
 #: dialogs/c-net-nethack_sub.lua:778
 msgid "a neutral"
@@ -4045,11 +4045,11 @@ msgstr "un neutre"
 #: dialogs/c-net-nethack_sub.lua:780
 #, c-format
 msgid "Both %s and %s don't know how to feel about this."
-msgstr ""
+msgstr "%s et %s ne savent pas quoi en penser."
 
 #: dialogs/c-net-nethack_sub.lua:782
 msgid "You put on a tarnished belt, and you feel something strange happen."
-msgstr ""
+msgstr "Vous mettez une ceinture ternie, et vous sentez quelque chose d'étrange se produit."
 
 #: dialogs/c-net-nethack_sub.lua:783
 msgid "You have been cursed."
@@ -4061,79 +4061,79 @@ msgstr "Vous avez été bénni."
 
 #: dialogs/c-net-nethack_sub.lua:785
 msgid "You drink from a sparkling well, and something weird happens."
-msgstr ""
+msgstr "Vous buvez un bon mousseux, et quelque chose de bizarre se passe."
 
 #: dialogs/c-net-nethack_sub.lua:786
 msgid "You try on the shiny necklace you find."
-msgstr ""
+msgstr "Vous essayez sur le collier brillant que vous trouvez."
 
 #. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:798
 #, c-format
 msgid "The devious %s stabs you, causing %s damage."
-msgstr ""
+msgstr "Le sournois %s vous poignarde, causant des dommages de %s."
 
 #. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:800
 #, c-format
 msgid "You suffer %s damage as the %s tosses you up into the air like a ragdoll."
-msgstr ""
+msgstr "Vous souffrez de %s dommage, que %s vous jette en l'air comme un ragdoll."
 
 #. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:802
 #, c-format
 msgid "The %s breathes fire at you, burning your map and causing %s damage."
-msgstr ""
+msgstr "Le %s crache du feu sur vous, brûlant votre carte et causant des dégâts de %s."
 
 #. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:804
 #, c-format
 msgid "The %s throws an exploding banana at you, but you duck, so it only causes %s damage."
-msgstr ""
+msgstr "Le %s vous jette une banane explosive près de vous, mais vous esquivez, donc elle cause seulement des dégâts de %s."
 
 #. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:806
 #, c-format
 msgid "The %s hits you with its best shot, causing %s damage."
-msgstr ""
+msgstr "Le %s vous frappe avec son meilleur coup, causant des dommages de %s."
 
 #. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:808
 #, c-format
 msgid "The %s hits you against the wall, causing %s of hurt."
-msgstr ""
+msgstr "Le %s vous frappe contre le mur, provoquant %s de dégâts."
 
 #. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:810
 #, c-format
 msgid "The %s snipes you with an arrow causing %s damage."
-msgstr ""
+msgstr "Le %s vous touche avec une flèche, causant des dommages de %s."
 
 #. TRANSLATORS: enemy name, damage (digit)
 #: dialogs/c-net-nethack_sub.lua:812
 #, c-format
 msgid "The %s bites you causing %s damage."
-msgstr ""
+msgstr "Le %s vous mord, vous causant %s de dégâts."
 
 #: dialogs/c-net-nethack_sub.lua:815
 #, c-format
 msgid "You dodge a blow from the %s."
-msgstr ""
+msgstr "Vous esquiver un coup de %s."
 
 #: dialogs/c-net-nethack_sub.lua:816
 #, c-format
 msgid "%s tries to hit you, but misses."
-msgstr ""
+msgstr "%s tente de vous frapper, mais rate."
 
 #: dialogs/c-net-nethack_sub.lua:817
 #, c-format
 msgid "%s blow hits your cap of cool, causing no damage."
-msgstr ""
+msgstr "%s coup frappe votre casquette, ne causant aucun dommage."
 
 #: dialogs/c-net-nethack_sub.lua:818
 #, c-format
 msgid "%s pokes you really hard. You are annoyed."
-msgstr ""
+msgstr "%s vous pousse vraiment fort. Vous êtes agacé."
 
 #: dialogs/c-net-nethack_sub.lua:819
 #, c-format
@@ -4146,23 +4146,23 @@ msgstr "Vous êtes mort."
 
 #: dialogs/c-net-nethack_sub.lua:826
 msgid "A Valkyrie carries you off to Valhalla."
-msgstr ""
+msgstr "Une Valkyrie vous emmène au Valhalla."
 
 #: dialogs/c-net-nethack_sub.lua:827
 msgid "Hermes, with Death and Sleep, asks if you've seen his Caduceus anywhere, and then brings you to the river Leith."
-msgstr ""
+msgstr "Hermès, avec la mort et le sommeil, demande si vous avez vu son caducée quelque part, puis vous amène à la rivière Leith."
 
 #: dialogs/c-net-nethack_sub.lua:828
 msgid "Your soul finds itself travelling along the path of the moon, far away from your broken body."
-msgstr ""
+msgstr "Votre âme se retrouve elle-même parcourant le chemin de la lune, loin de votre corps brisé."
 
 #: dialogs/c-net-nethack_sub.lua:829
 msgid "You are fully one with everything. Your battered body no longer concerns you."
-msgstr ""
+msgstr "Vous êtes complètement un avec tout. Votre corps abattu ne vous concernent plus."
 
 #: dialogs/c-net-nethack_sub.lua:830
 msgid "You failed to enlist the Random Number God to your side. You died."
-msgstr ""
+msgstr "Vous n'avez pas à inscrire le Dieu a la Grande Loterie. Vous êtes mort."
 
 #: dialogs/c-net-nethack_sub.lua:831
 msgid "Game over."
@@ -4172,13 +4172,13 @@ msgstr "Fin de la partie."
 #: dialogs/c-net-nethack_sub.lua:861
 #, c-format
 msgid "You come to the end of level %s and the [b]Amulet of Yendor[/b] compels you down, deeper into the depths."
-msgstr ""
+msgstr "Vous arrivez à la fin du niveau %s et [/ b] l'Amulette de Yendor [b] vous pousse vers le bas, plus loin dans les profondeurs."
 
 #. TRANSLATORS: digit
 #: dialogs/c-net-nethack_sub.lua:865
 #, c-format
 msgid "You come to the end of level %s and see a way up and a way down. Which do you choose?"
-msgstr ""
+msgstr "Vous arrivez à la fin du niveau %s. Vous pouvez aller vers le haut ou vers le bas. Lequel choisissez-vous ?"
 
 #: dialogs/c-net-nethack_sub.lua:874
 msgid "Go Up"
@@ -4186,31 +4186,31 @@ msgstr "Aller en haut"
 
 #: dialogs/c-net-nethack_sub.lua:876
 msgid "You climb up the ladder with care."
-msgstr ""
+msgstr "Vous montez à l'échelle avec précaution."
 
 #: dialogs/c-net-nethack_sub.lua:877
 msgid "You shimmy up the crevasse."
-msgstr ""
+msgstr "Vous remontez la crevasse."
 
 #: dialogs/c-net-nethack_sub.lua:878
 msgid "You ascend the Gothic staircase."
-msgstr ""
+msgstr "Vous montez l'escalier gothique."
 
 #: dialogs/c-net-nethack_sub.lua:879
 msgid "You untie the balloon."
-msgstr ""
+msgstr "Vous détachez le ballon."
 
 #: dialogs/c-net-nethack_sub.lua:880
 msgid "You wave your arms vigorously and slowly levitate up."
-msgstr ""
+msgstr "Vous agitez vos bras vigoureusement et lévitez lentement vers le haut."
 
 #: dialogs/c-net-nethack_sub.lua:881
 msgid "You grab a nice rope someone left, and climb up it."
-msgstr ""
+msgstr "Vous prenez une bonne corde que quelqu'un a laissée, et grimpez vers le haut."
 
 #: dialogs/c-net-nethack_sub.lua:882
 msgid "Using magic, you cut foot and handholds into the rock, and use them."
-msgstr ""
+msgstr "A l'aide de magie, vous coupez les pieds et les poignées dans la roche et les utilisez."
 
 #: dialogs/c-net-nethack_sub.lua:883
 msgid "Reaching a state of total ONE-ness with the world, you break your earthly bonds, and rise upwards."
@@ -4218,11 +4218,11 @@ msgstr ""
 
 #: dialogs/c-net-nethack_sub.lua:884
 msgid "You climb the cliff-face."
-msgstr ""
+msgstr "Vous grimpez la falaise."
 
 #: dialogs/c-net-nethack_sub.lua:885
 msgid "You jump up, and pull yourself up to the next level."
-msgstr ""
+msgstr "Vous sautez vers le haut et vous vous tirez jusqu'au prochain niveau."
 
 #: dialogs/c-net-nethack_sub.lua:892
 msgid "Go Down"
@@ -4230,40 +4230,40 @@ msgstr "Aller en bas"
 
 #: dialogs/c-net-nethack_sub.lua:894
 msgid "You rappel down the pit to the level below."
-msgstr ""
+msgstr "Vous descendez en rappel vers le bas de la fosse jusqu'au niveau inférieur."
 
 #: dialogs/c-net-nethack_sub.lua:895
 msgid "You lower yourself using footholds cut long ago into the living earth."
-msgstr ""
+msgstr "Vous vous abaissez à l'aide de points d'ancrage coupés depuis longtemps et laissé en terre."
 
 #: dialogs/c-net-nethack_sub.lua:896
 msgid "You take the staircase down to the lower level."
-msgstr ""
+msgstr "Vous prenez l'escalier et descendez jusqu'au niveau inférieur."
 
 #: dialogs/c-net-nethack_sub.lua:897
 msgid "By playing with the levers before you, you teleport into the depths below."
-msgstr ""
+msgstr "En jouant avec les leviers devant vous, vous vous téléportez dans les profondeurs d'en-dessous."
 
 #: dialogs/c-net-nethack_sub.lua:898
 msgid "You take out a shovel and start digging. Eventually you hit rock bottom."
-msgstr ""
+msgstr "Vous sortez une pelle et commencez à creuser. Finalement vous touchez le fond."
 
 #: dialogs/c-net-nethack_sub.lua:899
 msgid "You carefully climb down the ladder."
-msgstr ""
+msgstr "Vous descendez soigneusement vers le bas de l'échelle."
 
 #: dialogs/c-net-nethack_sub.lua:900
 msgid "You jump into the darkness and land in the depths."
-msgstr ""
+msgstr "Vous plongez dans l'obscurité et atterrissez dans les profondeurs."
 
 #: dialogs/c-net-nethack_sub.lua:917
 #, c-format
 msgid "Save game detected: %s %s %s %s in service to [b]%s[/b] on level [b]%d[/b]."
-msgstr ""
+msgstr "Sauvegarde de jeu détectée: %s %s %s %s en service dans [b]%s[/b] au niveau [b]%d[/b]."
 
 #: dialogs/c-net-nethack_sub.lua:919
 msgid "Save game has the [b]Amulet of Yendor[/b]!"
-msgstr ""
+msgstr "Sauvegarde de jeu [/ b] l'Amulette de Yendor [b]!"
 
 #: dialogs/c-net-nethack_sub.lua:927
 msgid "Show stats"
@@ -4283,19 +4283,19 @@ msgstr "Charger personnage"
 #: dialogs/c-net-nethack_sub.lua:940
 #, c-format
 msgid "[b]%s[/b], the enemy of your goddess [b]%s[/b], plans your demise with glee."
-msgstr ""
+msgstr "[b]%s[/b], l'ennemi de votre déesse [b]%s[/b], planifie votre disparition avec allégresse."
 
 #. TRANSLATORS: god name
 #: dialogs/c-net-nethack_sub.lua:942
 #, c-format
 msgid "The vile god [b]%s[/b] cackles that you will again flee from the dungeon in terror!"
-msgstr ""
+msgstr "Le Dieu vil [b]%s[/b] caquette que vous vous enfuirez à nouveau du cachot dans la terreur !"
 
 #. TRANSLATORS: both god names
 #: dialogs/c-net-nethack_sub.lua:944
 #, c-format
 msgid "[b]%s[/b] blesses your return to the dungeon."
-msgstr ""
+msgstr "[b]%s[/b] bénit votre retour au donjon."
 
 #: dialogs/c-net-nethack_sub.lua:957
 msgid "New Game"
@@ -4311,7 +4311,7 @@ msgstr "Statistiques : [b]%d[/b] attaque/armure, [b]%d[/b] astuces, et [b]%d[/b]
 #: dialogs/c-net-nethack_sub.lua:969
 #, c-format
 msgid "A [b]%s[/b] is before you. What do you do?"
-msgstr ""
+msgstr "Un [b]%s[/b] est devant vous. Que faites vous?"
 
 #: dialogs/c-net-nethack_sub.lua:977
 msgid "End Game"
@@ -5364,8 +5364,9 @@ msgstr "Paix et maintenance régulière sur toi, jusqu'à ce que nous nous retro
 
 #: dialogs/DeadGuy.lua:33 dialogs/Ewalds_296.lua:324
 #: dialogs/FactionDeadBot.lua:33 dialogs/Francis.lua:98
-#: dialogs/HF-FirmwareUpdateServer.lua:88 dialogs/HF-FirmwareUpdateServer.lua:89
-#: dialogs/Jasmine.lua:115 dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
+#: dialogs/HF-FirmwareUpdateServer.lua:88
+#: dialogs/HF-FirmwareUpdateServer.lua:89 dialogs/Jasmine.lua:115
+#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
 #: dialogs/Maintenance-Terminal.lua:58 dialogs/Michelangelo.lua:156
 #: dialogs/Mike.lua:239 dialogs/Singularity-Drone.lua:34
 #: dialogs/Singularity.lua:156 dialogs/Town-TuxGuard.lua:121
@@ -6939,8 +6940,8 @@ msgid "Shield disabled."
 msgstr "bouclier désactivé."
 
 #: dialogs/DSB-MachineDeckControl.lua:64
-msgid "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
-msgstr "J'ai pris le contrôle du droïde et désactivé le champ disrupteur. Maintenant, je devrais aller à la Forteresse Infernale et pirater le système de mise à jour des firmwares MS."
+msgid "I've taken over the control terminal and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
+msgstr ""
 
 #: dialogs/DSB-MachineDeckControl.lua:69
 msgid "WARNING: Another user is using this computer."
@@ -7017,7 +7018,8 @@ msgid "Access granted. Closing gate ..."
 msgstr "Accès accordé. Fermeture de la porte…"
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:106
+#: dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Quitter"
 
@@ -7870,8 +7872,8 @@ msgid "... Excuse me?"
 msgstr "... Pardon ?"
 
 #: dialogs/Engel.lua:381
-msgid "I... Will KILL... Who did this?!"
-msgstr "Je ... vais TUER... Qui a fait ça ?"
+msgid "I... WILL KILL... Who did this?!"
+msgstr ""
 
 #: dialogs/Engel.lua:382
 msgid "All the bots are dead..."
@@ -7885,6 +7887,7 @@ msgstr "Ou ! Tout le monde est en sécurité maintenant -"
 msgid "But I DID NOT KILL THEM!"
 msgstr "Mais JE NE LES AI PAS TUÉ !"
 
+#. TRANSLATORS: nein = no , Mutter = mother
 #: dialogs/Engel.lua:387
 msgid "Nein... Nein, I WILL avenge you, Mutter... Yes, I will find whoever took my vengeance away from me... And CRUSH!!"
 msgstr "Nein... Nein, je VAIS te venger, Mutter... Oui, je vais trouver celui qui à éloigner de moi ma vengeance... et l'ÉCRASER !!"

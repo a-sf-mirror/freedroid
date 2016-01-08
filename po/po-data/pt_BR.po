@@ -1,15 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
+# This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Jonatas L. Nogueira <cpntb1@ymail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-24 11:19+0100\n"
-"PO-Revision-Date: 2015-08-16 14:27+0000\n"
-"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"POT-Creation-Date: 2016-01-08 14:04+0100\n"
+"PO-Revision-Date: 2015-12-26 22:53+0000\n"
+"Last-Translator: Jonatas L. Nogueira <cpntb1@ymail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/arctic-games/freedroid-rpg/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +57,7 @@ msgstr "296 Serraria"
 
 #: map/droid_archetypes.dat:198
 msgid "Originally designed by Orchard and Marsden Enterprises, this robot was used as a servant droid in drinking establishments. A tray is mounted on the head for carrying drinks and a wide wheel base provided droid stability to prevent spillage. WARNING: You will lose something if you try to steal a drink!"
-msgstr ""
+msgstr "Originalmente designado pelas empresas Pomar e Labirinto de Marte, esse robô é usado em bares. Uma plataforma é montada na cabeça para carregar bebidas e uma grande roda evita derrames. AVISO: Você vai perder algo se tentar roubar uma bebida!"
 
 #: map/droid_archetypes.dat:202 map/ReturnOfTux.droids:103
 #: map/ReturnOfTux.droids:104 map/ReturnOfTux.droids:111
@@ -141,7 +142,7 @@ msgstr "603 Cortador de Grama"
 
 #: map/droid_archetypes.dat:468
 msgid "The 603 MowDown is a state-of-the-art lawnmower manufactured by the Nicholson company, and combines the functions of a regular lawnmower, a pet and a vicious guard dog in a single device."
-msgstr ""
+msgstr "O 603 GramaZero é uma obra prima manufaturada pela Companhia Nicholson, e combina a função de um cortador de gramas comum, um animal de estimação e um cão de guarda vicioso em um único dispositivo."
 
 #: map/droid_archetypes.dat:472 map/ReturnOfTux.droids:284
 msgid "614 Security Bot"
@@ -174,7 +175,7 @@ msgstr "711 Mestre da Grade"
 
 #: map/droid_archetypes.dat:577
 msgid "A heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military."
-msgstr ""
+msgstr "Robô de batalha pesado. Interferidor construído na cabeça. Um dos primeiros a entrar em serviço nas Forças Armadas."
 
 #: map/droid_archetypes.dat:581 map/ReturnOfTux.droids:149
 #: map/ReturnOfTux.droids:288
@@ -192,7 +193,7 @@ msgstr "751 Soviético"
 
 #: map/droid_archetypes.dat:631
 msgid "A very heavy duty battle droid. Only a few have so far entered service. These are the most powerful battle units ever built."
-msgstr ""
+msgstr "Um robô de combate muito pesado. Muitos poucos entraram em serviço. São as unidades de batalha mais poderosas já construídas."
 
 #: map/droid_archetypes.dat:635 map/ReturnOfTux.droids:148
 #: map/ReturnOfTux.droids:290
@@ -356,11 +357,11 @@ msgstr "Figura Autoritária"
 
 #: map/droid_archetypes.dat:1125
 msgid "It has long since been known that game development is the most important job in the world. Also, the coolest. We know that thanks to this guy."
-msgstr ""
+msgstr "Já se sabia a muito tempo que o desenvolvimento de jogos é o trabalho mais importante no mundo. E também o mais legal. Nós sabemos disso graças à esse rapaz."
 
 #: map/droid_archetypes.dat:1147
 msgid "This is a secure terminal."
-msgstr ""
+msgstr "Este é um terminal seguro."
 
 #: map/events.dat:55
 msgid "To Maintenance Tunnels"
@@ -568,7 +569,7 @@ msgstr "Falha de Segurança na mesa de recepção da Fortaleza Maligna."
 
 #: map/events.dat:6643
 msgid "Better reload your last save and try again."
-msgstr ""
+msgstr "Melhor recarregar seu ultimo jogo salvo e tentar novamente."
 
 #: map/events.dat:6644
 msgid "Spencer still needed alive to win game."
@@ -576,14 +577,14 @@ msgstr "Spencer deve estar vivo para vencer o jogo."
 
 #: map/events.dat:6646 map/events.dat:6658
 msgid "You should still be able to finish the game but some storylines might be broken."
-msgstr ""
+msgstr "Você ainda deve ser capaz de completar o jogo mas alguns contextos da história podem ficar bagunçados."
 
 #: map/events.dat:6647
 msgid "Ooops, you killed Spencer."
-msgstr ""
+msgstr "Ooops, você matou Spencer."
 
 #: map/events.dat:6659
-msgid "Ooops, you killed Pendragon"
+msgid "Ooops, you killed Pendragon."
 msgstr ""
 
 #: map/item_specs.lua:121
@@ -2235,7 +2236,7 @@ msgstr "Sala de servidores"
 
 #: map/levels.dat:33281
 msgid "Offices - this way"
-msgstr ""
+msgstr "Escritórios - nessa direção"
 
 #: map/levels.dat:33284
 msgid "Slalom"
@@ -2311,7 +2312,7 @@ msgstr "Pare!"
 
 #: map/levels.dat:37706
 msgid "I warned you... You should consider turning back and running away screaming."
-msgstr ""
+msgstr "Eu te avisei... Você deveria considerar dar meia volta e fugir gritando."
 
 #: map/levels.dat:37808
 msgid "Secret area service tunnels"
@@ -2454,7 +2455,7 @@ msgstr "Abrigo"
 
 #: map/levels.dat:65754
 msgid "DEBUG LEVEL 70 -- This level was created to make testing of FreedroidRPG a little easier and is NOT meant to be accessible without cheating."
-msgstr ""
+msgstr "NÍVEL DEBUG 70 -- Nível criado para testes, NÃO deve ser acessível sem trapacear."
 
 #: map/levels.dat:66665
 msgid "?"
@@ -2709,7 +2710,7 @@ msgstr "Estátua"
 #: map/obstacle_specs.lua:3482 map/obstacle_specs.lua:3492
 #: map/obstacle_specs.lua:3502 map/obstacle_specs.lua:3511
 msgid "Secure terminal"
-msgstr ""
+msgstr "Terminal de Segurança"
 
 #: map/quests.dat:36
 msgid "Bender's problem"
@@ -2916,8 +2917,8 @@ msgid "Barkeeper"
 msgstr "Atendente do Bar"
 
 #: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
-#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18 map/ReturnOfTux.droids:30
-#: map/ReturnOfTux.droids:32
+#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
+#: map/ReturnOfTux.droids:30 map/ReturnOfTux.droids:32
 msgid "Red Guard Member"
 msgstr "Membro da Guarda Vermelha"
 
@@ -3001,13 +3002,17 @@ msgstr "Guarda do Terminal de Controle da BEI"
 msgid "MS Emissary"
 msgstr "Emissário da MS"
 
-#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70 map/ReturnOfTux.droids:71
-#: map/ReturnOfTux.droids:72 map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
-#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76 map/ReturnOfTux.droids:77
-#: map/ReturnOfTux.droids:78 map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
-#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82 map/ReturnOfTux.droids:83
-#: map/ReturnOfTux.droids:84 map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
-#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88 map/ReturnOfTux.droids:89
+#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70
+#: map/ReturnOfTux.droids:71 map/ReturnOfTux.droids:72
+#: map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
+#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76
+#: map/ReturnOfTux.droids:77 map/ReturnOfTux.droids:78
+#: map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
+#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82
+#: map/ReturnOfTux.droids:83 map/ReturnOfTux.droids:84
+#: map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
+#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88
+#: map/ReturnOfTux.droids:89
 msgid "Singularity Drone"
 msgstr "Robô da Singularidade"
 
@@ -3386,7 +3391,7 @@ msgstr "Checar a integridade do sistema"
 
 #: map/skill_specs.lua:59
 msgid "While repairing damage, you must remember that patience is a virtue."
-msgstr ""
+msgstr "Enquanto reparando danos lembre-se que paciência é uma virtude."
 
 #: map/skill_specs.lua:64
 msgid "Sanctuary"
@@ -3397,6 +3402,8 @@ msgid ""
 "Effect: Teleport to town or back.\n"
 "The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
 msgstr ""
+"Efeito: Teletransporta para cidade ou ao último lugar visitado.\n"
+"A arte de rapidamente fugir do perigo é muito útil. Mesmo quando usado ao contrário, tem seus usos."
 
 #: map/skill_specs.lua:75
 msgid "Invisibility"
@@ -3444,7 +3451,7 @@ msgstr "Dissipar fumaça"
 
 #: map/skill_specs.lua:161
 msgid "By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
-msgstr ""
+msgstr "Aquecendo os chips com um programa mal formado, você pode levá-los a liberar a fumaça mágica que mantém o robô em funcionamento."
 
 #: map/skill_specs.lua:166
 msgid "Killer poke"
