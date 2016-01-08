@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
+# This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
 # Alexander Forsberg <alexf@openmailbox.org>, 2014-2015
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-24 11:19+0100\n"
+"POT-Creation-Date: 2016-01-08 14:04+0100\n"
 "PO-Revision-Date: 2015-03-21 23:26+0000\n"
 "Last-Translator: Alexander Forsberg <alexf@openmailbox.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
@@ -1775,8 +1775,8 @@ msgid "Yes, I want even more training. (costs 200 circuits, 6 training points)"
 msgstr "Ja, jag vill ha mer träning. (kostar 200 kretsar, 6 träningspoäng)"
 
 #: dialogs/Benjamin.lua:151
-msgid "So let''s start the second course?"
-msgstr "Då kör vi väl igång den andra kursen?"
+msgid "So let's start the second course?"
+msgstr ""
 
 #: dialogs/Benjamin.lua:154
 msgid "Very well."
@@ -1991,8 +1991,8 @@ msgid "Laser is the technology employed in most of our weaponry. It uses a focus
 msgstr "Laserteknologin tillhör den vanligaste i vår vapenarsenal. Den använder en fokuserad ljusstråle för att skada."
 
 #: dialogs/Benjamin.lua:274
-msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say.It is also not affected by gravity or wind, which makes aiming easier."
-msgstr "Eftersom strålen består av ljus, går den VÄLDIGT fort - i ljusets hastighet, så att säga. Och den påverkas inte av gravitation eller vind, vilket gör det lättare att sikta."
+msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say. It is also not affected by gravity or wind, which makes aiming easier."
+msgstr ""
 
 #: dialogs/Benjamin.lua:275
 msgid "However, other than being a good training tool for newbies, that design just fails to deliver."
@@ -5360,8 +5360,9 @@ msgstr "Fred och regelbundet underhåll, tills vi ses i molnet."
 
 #: dialogs/DeadGuy.lua:33 dialogs/Ewalds_296.lua:324
 #: dialogs/FactionDeadBot.lua:33 dialogs/Francis.lua:98
-#: dialogs/HF-FirmwareUpdateServer.lua:88 dialogs/HF-FirmwareUpdateServer.lua:89
-#: dialogs/Jasmine.lua:115 dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
+#: dialogs/HF-FirmwareUpdateServer.lua:88
+#: dialogs/HF-FirmwareUpdateServer.lua:89 dialogs/Jasmine.lua:115
+#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
 #: dialogs/Maintenance-Terminal.lua:58 dialogs/Michelangelo.lua:156
 #: dialogs/Mike.lua:239 dialogs/Singularity-Drone.lua:34
 #: dialogs/Singularity.lua:156 dialogs/Town-TuxGuard.lua:121
@@ -6559,7 +6560,7 @@ msgstr "Jag antar att jag ärver alla dina saker nu. Hoppas du inte har något e
 
 #: dialogs/DocMoore.lua:248
 msgid "Good. I am very glad not to hear a disapproval."
-msgstr "Bra. Jag är glad att höra att du inte säger nej."
+msgstr "Bra. Jag är glad att du inte protesterar."
 
 #: dialogs/DocMoore.lua:266
 msgid "Is Tania OK?"
@@ -6567,7 +6568,7 @@ msgstr "Är Tania okej?"
 
 #: dialogs/DocMoore.lua:268
 msgid "Haven't you heard of doctor-patient confidentiality?"
-msgstr "Har du inte hört talas om tystnadsplikten mellan doktor och patient?"
+msgstr "Vet du inte att doktorer har tystnadsplikt?"
 
 #: dialogs/DocMoore.lua:269
 msgid "Ummm..."
@@ -6583,7 +6584,7 @@ msgstr "Glöm det. Att få motgiftet är inte värt ansträngningen."
 
 #: dialogs/DocMoore.lua:279
 msgid "I am not giving it to you, and that won't change."
-msgstr "Du får det inte, och så kommer det förbli."
+msgstr "Du får det inte, punkt slut."
 
 #: dialogs/DocMoore.lua:285
 msgid "May I buy some medical equipment?"
@@ -6623,7 +6624,7 @@ msgstr "Ååh, du hittade den."
 
 #: dialogs/DocMoore.lua:310
 msgid "Here, take it if it's yours."
-msgstr "Här, ta den om det är din."
+msgstr "Här, ta den om den är din."
 
 #: dialogs/DocMoore.lua:311 dialogs/John.lua:72 dialogs/Pendragon.lua:243
 msgid "Thanks."
@@ -6667,15 +6668,15 @@ msgstr "Pillren arbetar på ett nanoteknologiskt plan, med små maskiner som ans
 
 #: dialogs/DocMoore.lua:347
 msgid "The machines connect together and form some inorganic artificial tissue that has been optimized for certain qualities."
-msgstr "Maskinerna knyts samman och blir en sorts o-organisk artificiell vävnad som är speciallicerad för vissa saker."
+msgstr "Maskinerna knyts samman och bildar en icke-organisk artificiell vävnad som är speciallicerad för vissa saker."
 
 #: dialogs/DocMoore.lua:348
 msgid "Since this invention only came about shortly before the Great Assault, these pills are now very rare."
-msgstr "Eftersom uppfinningen kom just innan det Stora Upproret, är de här pillren mycket sällsynta nuförtiden."
+msgstr "Eftersom uppfinningen kom just innan det Stora Angreppet, är de här pillren mycket sällsynta nuförtiden."
 
 #: dialogs/DocMoore.lua:349
 msgid "But if you should get them, even better, because the effects are permanent, and as far as we can tell, there aren't any side effects!"
-msgstr "Men om du skulle få tag på ett - bara bra. Effekten av dem är permanent och än så länge har vi inte hittat några biverkningar!"
+msgstr "Men om du skulle få tag på ett - bara bra. Effekten av dem är permanent, och än så länge har vi inte hittat några biverkningar!"
 
 #: dialogs/DocMoore.lua:355
 msgid "What can you tell me about Brain Pills?"
@@ -6719,7 +6720,7 @@ msgstr "Hur som helst har Kosttillskotten - till skillnad från armématen - fak
 
 #: dialogs/DocMoore.lua:377
 msgid "After taking one, your health should improve slightly."
-msgstr "Efter du tagit ett bör din hälsa förbättras en aning."
+msgstr "Efter att du tagit ett bör din hälsa förbättras en aning."
 
 #: dialogs/DocMoore.lua:383
 msgid "What can you tell me about Antibiotics?"
@@ -6743,7 +6744,7 @@ msgstr "Vad är Doktor-på-burk?"
 
 #: dialogs/DocMoore.lua:395
 msgid "It is a device that releases millions of short-lived nanobots that swarm all over your body inside and out repairing and fixing almost all but the most serious wounds."
-msgstr "Det är en uppfinning som släpper ut millioner kortlivade nanobottar i din kropp. De läker alla dina skador, utifrån och in, utom de mesta allvarliga."
+msgstr "Det är en uppfinning som släpper ut millioner kortlivade nanobottar i din kropp. De läker alla dina skador, inifrån och ut - alla utom de mesta allvarliga."
 
 #: dialogs/DocMoore.lua:396
 msgid "Wouldn't long-lived nanobots work better?"
@@ -6755,7 +6756,7 @@ msgstr "Det visade sig att långlivade nanobottar utvecklas och förökas ungef�
 
 #: dialogs/DocMoore.lua:398
 msgid "Several planets were made uninhabitable before they figured that one out."
-msgstr "Flera planeter hann bli öde innan de kom på vad det berodde på."
+msgstr "Flera planeter hann bli öde innan man kom på vad det berodde på."
 
 #: dialogs/DocMoore.lua:416
 msgid "Sorry, the doctor is out- oh! It's you! How can i help you?"
@@ -6935,8 +6936,8 @@ msgid "Shield disabled."
 msgstr "Skölden inaktiverad."
 
 #: dialogs/DSB-MachineDeckControl.lua:64
-msgid "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
-msgstr "Jag har tagit över kontrolldroiden och stängt av disruptorskölden. Nu ska jag gå till Helvetesfortet och hacka mig in i MS:s uppdateringssystem."
+msgid "I've taken over the control terminal and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
+msgstr ""
 
 #: dialogs/DSB-MachineDeckControl.lua:69
 msgid "WARNING: Another user is using this computer."
@@ -7013,7 +7014,8 @@ msgid "Access granted. Closing gate ..."
 msgstr "Åtkomst tillåten. Stänger port ..."
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:106
+#: dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Avslutar"
 
@@ -7866,8 +7868,8 @@ msgid "... Excuse me?"
 msgstr "... Ursäkta?"
 
 #: dialogs/Engel.lua:381
-msgid "I... Will KILL... Who did this?!"
-msgstr "Jag... Ska DÖDA... Vem gjorde detta?!"
+msgid "I... WILL KILL... Who did this?!"
+msgstr ""
 
 #: dialogs/Engel.lua:382
 msgid "All the bots are dead..."
@@ -7881,6 +7883,7 @@ msgstr "Ja! Alla är i säkerhet nu-"
 msgid "But I DID NOT KILL THEM!"
 msgstr "Men JAG DÖDADE DEM INTE!"
 
+#. TRANSLATORS: nein = no , Mutter = mother
 #: dialogs/Engel.lua:387
 msgid "Nein... Nein, I WILL avenge you, Mutter... Yes, I will find whoever took my vengeance away from me... And CRUSH!!"
 msgstr "Nein... Nein, jag SKA hämnas dig, Mutter... Ja, jag ska hitta vem som stal hämnden från mig... Och KROSSA!!!"

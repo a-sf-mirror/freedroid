@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: freedroidrpg 0.16\n"
+"Project-Id-Version: freedroidrpg 0.16+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-24 11:19+0100\n"
+"POT-Creation-Date: 2016-01-08 14:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -583,7 +583,7 @@ msgid "Ooops, you killed Spencer."
 msgstr ""
 
 #: map/events.dat:6659
-msgid "Ooops, you killed Pendragon"
+msgid "Ooops, you killed Pendragon."
 msgstr ""
 
 #: map/item_specs.lua:121
@@ -2910,8 +2910,8 @@ msgid "Barkeeper"
 msgstr ""
 
 #: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
-#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18 map/ReturnOfTux.droids:30
-#: map/ReturnOfTux.droids:32
+#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
+#: map/ReturnOfTux.droids:30 map/ReturnOfTux.droids:32
 msgid "Red Guard Member"
 msgstr ""
 
@@ -2995,13 +2995,17 @@ msgstr ""
 msgid "MS Emissary"
 msgstr ""
 
-#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70 map/ReturnOfTux.droids:71
-#: map/ReturnOfTux.droids:72 map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
-#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76 map/ReturnOfTux.droids:77
-#: map/ReturnOfTux.droids:78 map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
-#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82 map/ReturnOfTux.droids:83
-#: map/ReturnOfTux.droids:84 map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
-#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88 map/ReturnOfTux.droids:89
+#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70
+#: map/ReturnOfTux.droids:71 map/ReturnOfTux.droids:72
+#: map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
+#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76
+#: map/ReturnOfTux.droids:77 map/ReturnOfTux.droids:78
+#: map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
+#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82
+#: map/ReturnOfTux.droids:83 map/ReturnOfTux.droids:84
+#: map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
+#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88
+#: map/ReturnOfTux.droids:89
 msgid "Singularity Drone"
 msgstr ""
 

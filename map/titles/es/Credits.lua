@@ -21,9 +21,9 @@ title_screen{
 background = "credits.jpg",
 song = "HellFortressTwo.ogg",
 text = [[
-            FreedroidRPG 0.16
+            FreedroidRPG  0.16
 
-PROGRAMAÇÃO: 
+PROGRAMMING:
 
         Bob
         Samuel Degrande
@@ -40,7 +40,7 @@ PROGRAMAÇÃO:
         v4hn
         Xenux
 
-CONTEÚDO DO JOGO:
+GAME CONTENT:
 
         Amy de Buitléir
         Infrared
@@ -49,27 +49,27 @@ CONTEÚDO DO JOGO:
         Matthias Krüger
         Miles McCammon
 
-GRÁFICOS:
+GRAPHICS:
 
         Infrared
         Bastian Salmela
 
-MÚSICA:
+MUSIC:
 
         Nick Hagman
 
-TRADUÇÕES:
+TRANSLATIONS:
 
-        Tcheco (cs):
+        cs:
           Jan Tojnar
           Zdenek
 
-        Alemão (de_DE):
+        de_DE:
           JM Franz
           Matthias Krüger
           Link Mario
 
-        Francês (fr_FR):
+        fr_FR:
           Sebastian Adam
           Alérion
           Samuel Degrande
@@ -78,24 +78,24 @@ TRADUÇÕES:
           Duong Khang Nguyen
           Xenux
 
-        Português (pt_BR):
+        pt_BR:
           Anelise D. J.
           Luiz Phelipe Ferreira da Silva
           Jonatas L. Nogueira
 
-        Sérvio (sv_SV):
+        sv_SV:
           Alexander Forsberg
 
-MISCELÂNEA:
+MISC:
 
         Eino Keskitalo
         Duong Khang Nguyen
 
 
 
-            TAMBÉM, EM VERSÕES ANTERIORES
+            ALSO, IN PREVIOUS VERSIONS
 
-PROGRAMAÇÃO: 
+PROGRAMMING:
 
         Maria Grazia Alastra
         Pedro Arana
@@ -116,7 +116,7 @@ PROGRAMAÇÃO:
         Alexander Solovets
         Philippe Tetar
 
-CONTEÚDO DO JOGO:
+GAME CONTENT:
 
         Stefan Huszics
         James
@@ -129,21 +129,21 @@ CONTEÚDO DO JOGO:
         Thor
         JK Wood
 
-MÚSICA:
+MUSIC:
 
         Nick "Nario" Hagman
         Arvid Picciani
-        "O Começo"
-            por 4t thieves
+        "The Beginning"
+            by 4t thieves
         "Daybreak"
-            por realsmokers
+            by realsmokers
         "Bleostrada"
-            por stud
+            by stud
 
-MISCELÂNEA:
+MISC:
 
-        Mbrola - texto-para-fala
-        eSpeak - texto-para-fala
+        Mbrola - text-to-speech
+        eSpeak - text-to-speech
         Ryan 'simcop2387' Voots
         Andrew A. Gill
         Zombie Ryushu

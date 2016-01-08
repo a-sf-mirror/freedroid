@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
+# This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
 # Anelise D. J., 2014
@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-24 11:19+0100\n"
+"POT-Creation-Date: 2016-01-08 14:04+0100\n"
 "PO-Revision-Date: 2015-04-18 00:21+0000\n"
 "Last-Translator: Jonatas L. Nogueira <cpntb1@ymail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/arctic-games/freedroid-rpg/language/pt_BR/)\n"
@@ -51,11 +51,11 @@ msgstr "Análise de Perigo: [b]MODERADO[/b]"
 
 #: dialogs/614_cryo.lua:72
 msgid "Hostile Numeric Presence: [b]NONE[/b]"
-msgstr ""
+msgstr "Presença Numérica de unidades hostis: [b]NENHUMA[/b]"
 
 #: dialogs/614_cryo.lua:73
 msgid "Threat Degree Analysis: [b]NO THREAT DETECTED[/b]"
-msgstr ""
+msgstr "Análise de Perigo: [b]NENHUM PERIGO DETECTADO[/b]"
 
 #: dialogs/614_cryo.lua:76
 msgid "Cryo Complex Gates Status: [b]CLOSED[/b]"
@@ -519,7 +519,7 @@ msgstr "Versão: 1.82c"
 #: dialogs/AfterTakeover.lua:358
 #, c-format
 msgid "Installed sensor: %s"
-msgstr ""
+msgstr "Sensor instalado: %s"
 
 #: dialogs/AfterTakeover.lua:359
 msgid "No upgrades found."
@@ -544,7 +544,7 @@ msgstr "Bem-vindo ao menu do nome da máquina."
 #: dialogs/AfterTakeover.lua:377
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Versão: %s"
 
 #: dialogs/AfterTakeover.lua:378
 #, c-format
@@ -908,7 +908,7 @@ msgstr "Oh, interessante."
 
 #: dialogs/Arthur.lua:54
 msgid "And, hmm, what are working on?"
-msgstr ""
+msgstr "E, hmm, em que você está trabalhando?"
 
 #: dialogs/Arthur.lua:55
 msgid "My current project is a role playing game."
@@ -952,7 +952,7 @@ msgstr "Claro! Parece legal!"
 
 #: dialogs/Arthur.lua:79
 msgid "Hey, is your game finished already?"
-msgstr ""
+msgstr "Ei, já terminou o seu jogo?"
 
 #: dialogs/Arthur.lua:81
 msgid "I'm doing the final polishing right now."
@@ -1709,7 +1709,7 @@ msgstr "Eu vejo que você adquiriu um gosto por armas."
 
 #: dialogs/Benjamin.lua:105
 msgid "But the next step will cost even more money and require the mental focus equalling all your previous training."
-msgstr ""
+msgstr "Mas a próxima etapa vai custar ainda mais dinheiro e requer foco mental igual à soma de todos os seus treinos anteriores."
 
 #: dialogs/Benjamin.lua:109
 msgid "Oh, you want to become a real master with shooters?"
@@ -1765,7 +1765,7 @@ msgstr "Quando você sentir que está em completa sincronia com seu alvo, então
 
 #: dialogs/Benjamin.lua:138
 msgid "Good. You are learning quickly. Try it a few more times."
-msgstr ""
+msgstr "Bom. Você está aprendendo rapidamente. Experimente mais algumas vezes."
 
 #: dialogs/Benjamin.lua:139
 msgid "Okay, I think that it is enough for today."
@@ -1776,7 +1776,7 @@ msgid "Yes, I want even more training. (costs 200 circuits, 6 training points)"
 msgstr "Sim, eu quero ainda mais treino. (custa 200 circuitos e 6 pontos de treino)"
 
 #: dialogs/Benjamin.lua:151
-msgid "So let''s start the second course?"
+msgid "So let's start the second course?"
 msgstr ""
 
 #: dialogs/Benjamin.lua:154
@@ -1845,7 +1845,7 @@ msgstr "Oh sim, tome cuidado com seu posicionamento. Você deveria olhar para on
 
 #: dialogs/Benjamin.lua:194
 msgid "Keep practising and you will get the hang of it eventually."
-msgstr ""
+msgstr "Continue praticando e você irá pegar o jeito eventualmente."
 
 #: dialogs/Benjamin.lua:203
 msgid "I want to become a god in ranged combat. (costs 500 circuits, 15 training points)"
@@ -1861,7 +1861,7 @@ msgstr "O maior segredo para se tornar um deus em combate é algo que você deve
 
 #: dialogs/Benjamin.lua:210
 msgid "I don't tell everyone this, so keep it to yourself, all right?"
-msgstr ""
+msgstr "Eu não falo isso pra todo mundo, então mantenha segredo, ok?"
 
 #: dialogs/Benjamin.lua:211
 msgid "To become a god in ranged combat you need to..."
@@ -1869,7 +1869,7 @@ msgstr "Para se tornar um 'deus em armas de fogo' você precisa..."
 
 #: dialogs/Benjamin.lua:212
 msgid "...practise. A lot."
-msgstr ""
+msgstr "...praticar. Bastante."
 
 #: dialogs/Benjamin.lua:213
 msgid "Go ahead and use my firing range as much as you need."
@@ -1992,7 +1992,7 @@ msgid "Laser is the technology employed in most of our weaponry. It uses a focus
 msgstr "Laser é a tecnologia utilizada na maioria de nosso armamento. Ele usa um raio de luz concentrado para causar dano."
 
 #: dialogs/Benjamin.lua:274
-msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say.It is also not affected by gravity or wind, which makes aiming easier."
+msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say. It is also not affected by gravity or wind, which makes aiming easier."
 msgstr ""
 
 #: dialogs/Benjamin.lua:275
@@ -2041,7 +2041,7 @@ msgstr "Isso pode ser uma surpresa para você, mas nós não temos muitos. Um po
 
 #: dialogs/Benjamin.lua:305
 msgid "Thankfully, as you can clearly see, it's more than enough to keep all the cursed bots away."
-msgstr ""
+msgstr "Graças a Deus, como você pode ver, é mais que o suficiente para manter esses malditos robôs longe."
 
 #: dialogs/Benjamin.lua:314
 msgid "Well, I am a bit short on circuits right now..."
@@ -2500,7 +2500,7 @@ msgstr "Você pode ficar com ele. De graça."
 
 #: dialogs/Bruce.lua:278
 msgid "Oh... Oh my! Thanks!"
-msgstr ""
+msgstr "Ah... Minha nossa! Obrigado!"
 
 #: dialogs/Bruce.lua:279
 msgid "Wait, let me go get something first."
@@ -5181,7 +5181,7 @@ msgstr "Soluções Criogênicas opera 24 horas por dia, todos os dias do ano."
 
 #: dialogs/Cryo-Terminal.lua:63
 msgid "However, for the safety of our clients, visiting hours are restricted."
-msgstr ""
+msgstr "Entretanto, para a segurança de nossos clientes, os horários de visita são restritos."
 
 #: dialogs/Cryo-Terminal.lua:64
 msgid "Visiting hours for family and friends are by appointment only [b]Monday-Thursday 10:00-14:00[/b]."
@@ -5361,8 +5361,9 @@ msgstr "Paz e manutenção regular, até nos encontrarmos na nuvem."
 
 #: dialogs/DeadGuy.lua:33 dialogs/Ewalds_296.lua:324
 #: dialogs/FactionDeadBot.lua:33 dialogs/Francis.lua:98
-#: dialogs/HF-FirmwareUpdateServer.lua:88 dialogs/HF-FirmwareUpdateServer.lua:89
-#: dialogs/Jasmine.lua:115 dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
+#: dialogs/HF-FirmwareUpdateServer.lua:88
+#: dialogs/HF-FirmwareUpdateServer.lua:89 dialogs/Jasmine.lua:115
+#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
 #: dialogs/Maintenance-Terminal.lua:58 dialogs/Michelangelo.lua:156
 #: dialogs/Mike.lua:239 dialogs/Singularity-Drone.lua:34
 #: dialogs/Singularity.lua:156 dialogs/Town-TuxGuard.lua:121
@@ -6936,7 +6937,7 @@ msgid "Shield disabled."
 msgstr "Escudo desligado."
 
 #: dialogs/DSB-MachineDeckControl.lua:64
-msgid "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
+msgid "I've taken over the control terminal and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
 msgstr ""
 
 #: dialogs/DSB-MachineDeckControl.lua:69
@@ -7014,7 +7015,8 @@ msgid "Access granted. Closing gate ..."
 msgstr "Acesso permitido. Fechando portão ..."
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:106
+#: dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Saindo"
 
@@ -7405,7 +7407,7 @@ msgstr "Eu entendo. Que seja."
 
 #: dialogs/Duncan.lua:328
 msgid "No way am I giving Duncan that cube thingie, who knows what he would do with it."
-msgstr ""
+msgstr "De jeito nenhum que eu vou dar ao Duncan aquele tal cubo. Quem sabe o que ele faria se o tivesse!"
 
 #: dialogs/Duncan.lua:340
 msgid "I gave Duncan the cube thingie. It feels nice to help people."
@@ -7776,7 +7778,7 @@ msgstr "Transistores de Plasma tem o mesmo formato da letra Y. Apenas os tire, �
 
 #: dialogs/Engel.lua:293
 msgid "I need a refreshing of my knowledge about Superconductors."
-msgstr ""
+msgstr "Eu preciso refrescar meu conhecimento sobre Supercondutores."
 
 #: dialogs/Engel.lua:303
 msgid "Hmmm... Ah, gut. Superconductors."
@@ -7852,43 +7854,44 @@ msgstr "Isso deve ser suficiente por hora."
 
 #: dialogs/Engel.lua:371
 msgid "Hi! I'm-"
-msgstr ""
+msgstr "Olá! Eu-"
 
 #: dialogs/Engel.lua:377 dialogs/Pendragon.lua:315
 msgid "How's it going?"
-msgstr ""
+msgstr "Como está indo?"
 
 #: dialogs/Engel.lua:379
 msgid "RRRRRAAAAAAAARRRGH!"
-msgstr ""
+msgstr "RRRRRAAAAAAAARRRGH!"
 
 #: dialogs/Engel.lua:380
 msgid "... Excuse me?"
-msgstr ""
+msgstr "...Desculpe-me?"
 
 #: dialogs/Engel.lua:381
-msgid "I... Will KILL... Who did this?!"
+msgid "I... WILL KILL... Who did this?!"
 msgstr ""
 
 #: dialogs/Engel.lua:382
 msgid "All the bots are dead..."
-msgstr ""
+msgstr "Todos os robôs estão mortos..."
 
 #: dialogs/Engel.lua:383
 msgid "Yes! Everyone's safe now-"
-msgstr ""
+msgstr "Sim! Todos estão seguros agora-"
 
 #: dialogs/Engel.lua:384
 msgid "But I DID NOT KILL THEM!"
-msgstr ""
+msgstr "Mas EU NÃO OS MATEI!"
 
+#. TRANSLATORS: nein = no , Mutter = mother
 #: dialogs/Engel.lua:387
 msgid "Nein... Nein, I WILL avenge you, Mutter... Yes, I will find whoever took my vengeance away from me... And CRUSH!!"
-msgstr ""
+msgstr "Nein... Nein, EU IREI te vingar, Mutter... Sim, eu vou encontrar quem tomou minha vingança de mim... E vou ESMAGÁ-LO!!"
 
 #: dialogs/Engel.lua:389
 msgid "Well! I had better go now. Good luck!"
-msgstr ""
+msgstr "Bem! Melhor eu ir andando. Boa sorte!"
 
 #. TRANSLATORS: viel Gluck = good luck (should be "viel Glueck, but the ue character is missing in the font)
 #: dialogs/Engel.lua:402
@@ -7898,7 +7901,7 @@ msgstr "Até mais e Viel Gluck."
 #. TRANSLATORS: rache = revenge
 #: dialogs/Engel.lua:405
 msgid "RACHE!!"
-msgstr ""
+msgstr "RACHE!!"
 
 #: dialogs/Ewald.lua:37
 msgid "Your lady friend just told me the epic story of how you rescued her."
@@ -8558,11 +8561,11 @@ msgstr "Perto, mas não. Aqui está parte de seu dinheiro de volta."
 
 #: dialogs/Ewald.lua:578
 msgid "Next time pick the opposite of what you did this time... or something."
-msgstr ""
+msgstr "Da próxima vez escolha o oposto do que você fez dessa vez... ou algo assim."
 
 #: dialogs/Ewald.lua:579
 msgid "Close only counts in hand grenades and horseshoes. But some money back."
-msgstr ""
+msgstr "Perto só conta em granadas de mão e ferraduras. Mas algum dinheiro de volta."
 
 #: dialogs/Ewald.lua:584 dialogs/Ewald.lua:593
 #, c-format
@@ -8571,11 +8574,11 @@ msgstr "Você perdeu %d circuitos apostando no jogo de moedas do Ewald."
 
 #: dialogs/Ewald.lua:586
 msgid "You lost. You were half right, but half wrong. Pick one and stay with it."
-msgstr ""
+msgstr "Você perdeu. Você estava meio certo, mas meio errado. Escolha um e fique com ele."
 
 #: dialogs/Ewald.lua:587
 msgid "You lost. You were all messed up. Better luck next time."
-msgstr ""
+msgstr "Você perdeu. Você estava todo bagunçado. Mais sorte da próxima vez."
 
 #: dialogs/Ewald.lua:588
 msgid "You lost. Maybe you should try something else for a while?"
@@ -8637,7 +8640,7 @@ msgstr "Você pode voltar a jogar quando quiser!"
 
 #: dialogs/Ewald.lua:669
 msgid "You are right, I'm going to clean you out!"
-msgstr ""
+msgstr "Você está certo, eu vou te limpar!"
 
 #: dialogs/Ewald.lua:670
 msgid "The house always wins; sooner or later..."
@@ -9794,15 +9797,15 @@ msgstr "A versão atual é 5.0.8+%sesteveaqui+gpl"
 #. TRANSLATORS: "hello?"
 #: dialogs/HF-FirmwareUpdateServer.lua:72
 msgid "*Bzzt*ello?"
-msgstr ""
+msgstr "*Bzzt*lá?"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:73
 msgid "What? What is this?"
-msgstr ""
+msgstr "O quê? O que é isso?"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:75
 msgid "Spencer somehow contacted me through the firmware server terminal. From what he told me, it worked - the hostile bots are all deactivated! I am now supposed to stand by for further instructions..."
-msgstr ""
+msgstr "Spencer conseguiu entrar em contato comigo de alguma forma através do terminal do servidor de firmware. Pelo que ele me disse, funcionou - todos os robôs hostis foram desativados! Agora eu deveria aguardar mais instruções..."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:83
 msgid "Propagate firmware update"
@@ -9834,15 +9837,15 @@ msgstr "A nova atualização de firmware está disponível!"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:94
 msgid "ALL: SECURITY: could not find 'evil.conf': No such file or directory."
-msgstr ""
+msgstr "GERAL: SEGURANÇA: Não conseguiu encontrar 'maligno.conf': Arquivo ou diretório não encontrado."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:95
 msgid "\tExiting with state 1."
-msgstr ""
+msgstr "\tSaindo com estado 1."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:98
 msgid "I managed to upload the faulty firmware update to all bots within transmission range. Either the siege on the town ends now... Or everything else does."
-msgstr ""
+msgstr "Consegui fazer o upload do firmware defeituoso para todos os robôs dentro do alcance de transmissão. Ou o cerco na cidade acaba agora... Ou todo resto."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:102
 msgid "Merge failed."
@@ -11538,7 +11541,7 @@ msgstr "Você é realmente cuidadoso com a segurança da sua missão."
 
 #: dialogs/Kevin.lua:399
 msgid "However, don't destroy my equipment, I can support you to be stealthy."
-msgstr ""
+msgstr "Mas por favor não destrua meu equipamento, eu posso lhe ajudar a ser cauteloso."
 
 #: dialogs/Kevin.lua:400
 msgid "But later, maybe... I don't have time now."
@@ -11850,7 +11853,7 @@ msgstr "Duncan está obcecado em destruir coisas, enquanto eu, em criar."
 
 #: dialogs/Koan.lua:122
 msgid "Therefore, he desires my destruction."
-msgstr ""
+msgstr "Logo, ele deseja minha destruição."
 
 #: dialogs/Koan.lua:132
 msgid "Beyond that I am a creator."
@@ -12503,7 +12506,7 @@ msgstr "Eu dei ao cozinheiro, Michelangelo, dilítio o suficiente para durar a d
 
 #: dialogs/Michelangelo.lua:314
 msgid "However, I need at least three crystals. Can you come back with all the crystals I need?"
-msgstr ""
+msgstr "Entretanto eu preciso de pelo menos três cristais. Você pode voltar com todos os cristais que eu preciso?"
 
 #: dialogs/Michelangelo.lua:320
 msgid "What was I supposed to do again?"
@@ -14093,7 +14096,7 @@ msgstr "Por que não me matar imediatamente?"
 
 #: dialogs/SADD.lua:133
 msgid "And stand here alone until I die? While you are here, I can speak with you. Oh, I haven't spoken to anybody for a looong time!"
-msgstr ""
+msgstr "E ficar sozinho até a morte? Enquanto estiveres aqui, poderei falar contigo. Oh, eu não falei com ninguém por um bom tempo!"
 
 #: dialogs/SADD.lua:139
 msgid "I'm thirsty and hungry. I will die within days, and you will not have an interlocutor any more!"
@@ -15314,7 +15317,7 @@ msgstr "Oh, espere, você trapaceou, não?"
 
 #: dialogs/Spencer.lua:202
 msgid "There is now way we can have lame cheaters in the Red Guard, forget about it!"
-msgstr ""
+msgstr "Nós não podemos ter vigaristas na Guarda Vermelha, esqueça!"
 
 #: dialogs/Spencer.lua:203
 msgid "However, if you did in fact NOT cheat, please tell the developers how you got so much money so they can fix it. :)"
@@ -15606,7 +15609,7 @@ msgstr "Nós sabemos que a MS possuía um sistema de atualização de firmware, 
 
 #: dialogs/Spencer.lua:414
 msgid "This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though..."
-msgstr ""
+msgstr "Isto parece ser um presente dos céus. Mas, limpar a Fortaleza Maligna não será fácil..."
 
 #: dialogs/Spencer.lua:420
 msgid "I'd like to participate in this operation."
@@ -15658,7 +15661,7 @@ msgstr "Bom. Você deve estar bem preparado se pretende ir."
 
 #: dialogs/Spencer.lua:446
 msgid "Also, there is no need to hurry with this. After all, the installation is not running away, so it's best to take a cautious approach."
-msgstr ""
+msgstr "Além disso, não há pressa. Afinal, a instalação não vai fugir, então é melhor fazer uma aproximação mais cuidadosa."
 
 #: dialogs/Spencer.lua:452
 msgid "It's done. Your soldiers were killed, but I managed to reach a computer terminal that controls the shield. Access to the bot factory is now open, after I changed the password on the terminal so as to prevent the bots from enabling the shield again."
@@ -15822,193 +15825,193 @@ msgstr "Quando eu perguntei se Tania poderia entrar na cidade, Spencer me confro
 
 #: dialogs/Spencer.lua:571
 msgid "*Fizz*"
-msgstr ""
+msgstr "*Fizz*"
 
 #. TRANSLATORS: can you hear me; %s = Tux:get_player_name()
 #: dialogs/Spencer.lua:573
 #, c-format
 msgid "*Crackle*n you hear me? Hello? %s?"
-msgstr ""
+msgstr "*Estalo*segue me ouvir? Olá? %s?"
 
 #: dialogs/Spencer.lua:574
 msgid "Spencer? How are you reaching me?"
-msgstr ""
+msgstr "Spencer? Como você está me alcançando?"
 
 #: dialogs/Spencer.lua:575
 msgid "You did it! I just can't... I can't believe you actually did it!"
-msgstr ""
+msgstr "Você conseguiu! Eu simplesmente não posso... Não posso acreditar que você conseguiu fazer isso!"
 
 #: dialogs/Spencer.lua:576
 msgid "The bots outside, they all just dropped! They're scrap metal!"
-msgstr ""
+msgstr "Os robôs lá fora, eles se desativaram! Eles viraram sucata!"
 
 #: dialogs/Spencer.lua:577
 msgid "We're saved!"
-msgstr ""
+msgstr "Estamos salvos!"
 
 #: dialogs/Spencer.lua:578
 msgid "Whew..."
-msgstr ""
+msgstr "Ufa..."
 
 #: dialogs/Spencer.lua:579
 msgid "But wait! It gets more interesting: we can actually have this conversation face to face."
-msgstr ""
+msgstr "Mas espere! Ainda tem mais: podemos ter essa conversa face a face."
 
 #: dialogs/Spencer.lua:580
 msgid "Stand by."
-msgstr ""
+msgstr "Aguarde."
 
 #: dialogs/Spencer.lua:591
 msgid "This must be the main server room. It's safer than an interstellar bunker."
-msgstr ""
+msgstr "Esta deve ser a sala de servidores principal. É mais segura que um abrigo interestelar."
 
 #: dialogs/Spencer.lua:592
 msgid "This is the source of all our suffering."
-msgstr ""
+msgstr "Essa é a fonte de todo nosso sofrimento."
 
 #: dialogs/Spencer.lua:593
 msgid "You are truly a living legend, Linarian. I don't know how you did it. I don't know how we can thank you."
-msgstr ""
+msgstr "Você é uma lenda viva, Linariano. Não sei como você conseguiu. Nem sei como podemos te agradecer."
 
 #: dialogs/Spencer.lua:594
 msgid "You've given us life, and hope."
-msgstr ""
+msgstr "Você nos deu vida, e esperança."
 
 #: dialogs/Spencer.lua:600
 msgid "What's going on? How did you get in here?"
-msgstr ""
+msgstr "O que está acontecendo? Como você chegou aqui?"
 
 #: dialogs/Spencer.lua:602
 msgid "When you uploaded the firmware, every security component for this area just blacked out. Every network in range was suddenly open."
-msgstr ""
+msgstr "Quando você carregou o firmware, todo componente de segurança desta área simplesmente se desligou. Toda rede no alcance de repente se abriu."
 
 #: dialogs/Spencer.lua:603
 msgid "Naturally, they were all running on the MegaSys operating system."
-msgstr ""
+msgstr "Naturalmente, todas elas estavam rodando no sistema operacional da MegaSys."
 
 #: dialogs/Spencer.lua:605
 msgid "Richard is still back at the citadel; he's happier than a jaybird ever since we uncovered all this networking. He calls it a treasure."
-msgstr ""
+msgstr "Ricardo está na cidadela, ele esta mais feliz que uma hiena desde que descobrimos toda esta rede. Ele diz que é um tesouro."
 
 #: dialogs/Spencer.lua:607
 msgid "Our computer administrator at the citadel is as happy as he could be since all this secret networking popped up. He calls it a treasure."
-msgstr ""
+msgstr "Nosso administrador de computadores na cidadela está tão feliz quanto se pode estar desde que toda essa rede apareceu. Ele diz que é um tesouro."
 
 #: dialogs/Spencer.lua:609
 msgid "The firmware server was one of the things that were hidden in this network, and with all the obfuscations and defenses down, we not only could find it, but had full access."
-msgstr ""
+msgstr "O servidor de firmware era uma das coisas que estavam escondidas nessa rede, e com todas as interferências e defesas desligadas, não apenas conseguimos o encontrar, mas também conseguimos acesso pleno."
 
 #: dialogs/Spencer.lua:610
 msgid "But the most interesting thing we uncovered is a secret teleportation network. It was very well-guarded, we never even knew it existed, but now it's open for us to use."
-msgstr ""
+msgstr "Mas o mais interessante é que descobrimos uma rede de teletransporte secreta. Estava muito bem protegida, nem sabiamos de sua existência, mas agora está aberta para nosso uso."
 
 #: dialogs/Spencer.lua:611
 msgid "My guess is, the corporate bastards who drove this sweatshop would use it to get in and out of work unnoticed. Grab the money and zap off to some island to relax."
-msgstr ""
+msgstr "Minha aposta é que, aqueles gordos da corporação que dirigiam essa loja de suor a usavam para ir e vir do trabalho sem chamar a atenção. Pegavam e o dinheiro e desapareciam para relaxar em alguma ilha."
 
 #: dialogs/Spencer.lua:612
 msgid "Neutralizing the bot threat in the area wasn't the only thing I'd succeeded in doing: every MegaSys-based security product within range is completely broken now. A new teleportation network was discovered by the Red Guard, which is why Spencer is standing next to me right now."
-msgstr ""
+msgstr "Neutralizar a ameaça robô não foi tudo que fiz: Todos os produtos de segurança da MegaSys em alcance estão totalmente quebrados agora. Uma nova rede de teletransporte foi descoberta pela Guarda Vermelha, e por isso Spencer está do meu lado agora."
 
 #: dialogs/Spencer.lua:618
 msgid "I couldn't have done any different."
-msgstr ""
+msgstr "Eu não poderia ter feito de outra forma."
 
 #: dialogs/Spencer.lua:620
 msgid "You are far too modest. I doubt anyone alive right now could have done it."
-msgstr ""
+msgstr "Você é muito modesto. Eu duvido que qualquer um vivo bem agora conseguiria fazer isso."
 
 #: dialogs/Spencer.lua:621
 msgid "But the work isn't done... Not even close. The entire galaxy is still at war."
-msgstr ""
+msgstr "Mas o trabalho ainda não acabou... Não está nem perto. A galáxia inteira ainda está em guerra."
 
 #: dialogs/Spencer.lua:622
 msgid "You saved our little town, and you've proven that we can win this thing."
-msgstr ""
+msgstr "Você salvou nossa pequena cidade e provou que podemos vencer essa guerra."
 
 #: dialogs/Spencer.lua:623
 msgid "We can't rest now. It's going to be hard and dangerous, but the alternative is death for humanity."
-msgstr ""
+msgstr "Nós não podemos descansar agora. Vai ser difícil e perigoso, mas a alternativa é a extinção da humanidade."
 
 #: dialogs/Spencer.lua:629
 msgid "I only did it for fun, really."
-msgstr ""
+msgstr "Eu só fiz por diversão, na verdade."
 
 #: dialogs/Spencer.lua:631
 msgid "... Oh, it doesn't matter."
-msgstr ""
+msgstr "... Oh, isso não importa."
 
 #: dialogs/Spencer.lua:632
 msgid "I suppose no one's perfect..."
-msgstr ""
+msgstr "Eu suponho que ninguém seja perfeito..."
 
 #: dialogs/Spencer.lua:633
 msgid "What matters is that we're alive - those of us left, anyway - we have supplies, and we can take what we need from the Fortress now."
-msgstr ""
+msgstr "O que importa é que estamos vivo - ou aqueles que sobraram, de qualquer forma - nós temos suprimentos, e podemos levar o que precisamos da Fortaleza agora."
 
 #: dialogs/Spencer.lua:634
 msgid "And, whether or not you intended to, you've proven that we have a chance against the bots. Something worth fighting for. Worth living for."
-msgstr ""
+msgstr "E, independente de ser seu objetivo ou não, você provou que temos uma chance de vencer contra os robôs. Algo que vale a pena lutar. Que vale a pena viver."
 
 #: dialogs/Spencer.lua:635
 msgid "You'll probably be happy to know that the entire galaxy is pretty much your playground now, Linarian. You'll have all the bots in the world to play with, and lots of opportunities to be a hero."
-msgstr ""
+msgstr "E você provavelmente ficará contente em saber que toda galáxia é sua caixa de brinquedos, Linariano. Você tem todos os robôs no mundo para brincar, e muitas oportunidades de ser um herói."
 
 #: dialogs/Spencer.lua:636
 msgid "Awesome!"
-msgstr ""
+msgstr "Legal!"
 
 #: dialogs/Spencer.lua:637
 msgid "I'm so cool. I saved a bunch of people and bashed a bunch of bots. And there's much more where both of those came from! I'm done here, it's time to go help the next dump."
-msgstr ""
+msgstr "Eu sou tão legal. Eu salvei um bando de pessoas e esmaguei um bando de robôs. E ainda há muito mais de onde ambos esses vieram! Eu terminei aqui, hora de ir ajudar o próximo depósito."
 
 #: dialogs/Spencer.lua:643
 msgid "Can I use this teleportation network to return to town?"
-msgstr ""
+msgstr "Posso usar essa rede de teletransporte para voltar à cidade?"
 
 #: dialogs/Spencer.lua:646
 msgid "Yes, I think you can. I'll contact Richard and tell him to ready the teleporter and link it back to the one in town."
-msgstr ""
+msgstr "Sim, acho que você pode. Vou entrar em contato com Ricardo na cidadela e falar para ele preparar o teletransportador e conectar com o da cidade."
 
 #: dialogs/Spencer.lua:648
 msgid "I believe you can, yes. I'll contact our computer expert and tell him to ready the teleporter and link it back to the one in town."
-msgstr ""
+msgstr "Eu acredito que sim. Vou contatar nosso expert em computadores e lhe dizer para preparar o teletransportador e conectar com o da cidade."
 
 #: dialogs/Spencer.lua:650
 msgid "But the way he explained it, this system is very limited by design: if the two teleporters are linked, using one will always take you to the other. So keep that in mind."
-msgstr ""
+msgstr "Mas pelo que ele me explicou, o sistema foi desenhado de uma maneira bem limitada: Se dois teletransportadores estão conectados, usar um sempre irá levar ao outro. Então mantenha isso em mente."
 
 #: dialogs/Spencer.lua:651
 msgid "We'll stay here for a while longer. This place still needs to be investigated."
-msgstr ""
+msgstr "Nós vamos ficar aqui um pouco mais. Esse lugar precisa ser investigado."
 
 #: dialogs/Spencer.lua:658
 msgid "I'm ready. Just tell me what to do."
-msgstr ""
+msgstr "Estou pronto. Só me diga o que fazer."
 
 #: dialogs/Spencer.lua:660
 msgid "You've faced countless dangers so far. Are you sure you're willing to face more?"
-msgstr ""
+msgstr "Você encontrou incontáveis perigos até agora. Você tem certeza que quer enfrentar mais?"
 
 #: dialogs/Spencer.lua:661
 msgid "Bring it on!"
-msgstr ""
+msgstr "Pode vir!"
 
 #: dialogs/Spencer.lua:662
 msgid "That's exactly what I wanted to hear."
-msgstr ""
+msgstr "Isso é exatamente o que eu queria ouvir."
 
 #: dialogs/Spencer.lua:663
 msgid "Now listen carefully, this is the plan..."
-msgstr ""
+msgstr "Agora, me escute, esse é o plano..."
 
 #: dialogs/Spencer.lua:664
 msgid "The town is saved, but there's still a lot to do. I agreed to continue fighting the robot armies with the Red Guard."
-msgstr ""
+msgstr "A cidade está salva, mas ainda há muito à se fazer. Eu concordei em continuar lutando contra exércitos de robôs com a Guarda Vermelha."
 
 #: dialogs/Spencer.lua:677
 msgid "Come back soon. There's much to be done."
-msgstr ""
+msgstr "Volte logo. Ainda há muito para se fazer."
 
 #: dialogs/Stone.lua:60
 msgid "Welcome to our town! I'm Ms. Stone. I run this shop."
@@ -16286,7 +16289,7 @@ msgstr "Por favor retorne com toda a quantia se você quer ajudar."
 
 #: dialogs/Stone.lua:229
 msgid "Otherwise, you're throwing good money after bad, and I couldn't let you do that."
-msgstr ""
+msgstr "Ou você estará jogando dinheiro fora, e eu não posso te deixar fazer isso."
 
 #: dialogs/Stone.lua:237
 msgid "Yes, it's me."
@@ -16310,7 +16313,7 @@ msgstr "Eu tenho algo para você. Consegui esconder esta espingarda da Guarda Ve
 
 #: dialogs/Stone.lua:244
 msgid "It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have liked you to have it on your journey to save us all."
-msgstr ""
+msgstr "Ela pertenceu ao meu avô, então é muito querida pra mim, mas tenho certeza de que ele gostaria que você a tivesse na sua jornada para salvar a nós todos."
 
 #. TRANSLATORS: %s = Tux:get_player_name()
 #: dialogs/Stone.lua:246
@@ -17127,7 +17130,7 @@ msgstr "Estou pronto para te escoltar até a cidade."
 
 #: dialogs/Tania.lua:358
 msgid "I have agreed to escort Tania to the town. Once I'm there, I'll introduce her to Spencer."
-msgstr ""
+msgstr "Concordei em escoltar Tania até a cidade. Quando eu chegar lá, irei apresentá-la ao Spencer."
 
 #: dialogs/Tania.lua:365
 msgid "It isn't all like this, the town is very nice."
@@ -17255,7 +17258,7 @@ msgstr "Me sinto melhor agora."
 
 #: dialogs/Tania.lua:539
 msgid "I'm prescribing you some antibiotics."
-msgstr ""
+msgstr "Estou te prescrevendo alguns antibióticos."
 
 #: dialogs/Tania.lua:541
 msgid "I feel much better."
@@ -17507,7 +17510,7 @@ msgstr "Ooops, o guarda deve estar falando sobre o Kevin. É melhor não mencion
 
 #: dialogs/Town-NorthGateGuard.lua:121
 msgid "Though, I probably should ask Kevin some day what he was doing with the town computers."
-msgstr ""
+msgstr "Embora eu provavelmente deveria perguntar ao Kevin algum dia desses o que ele estava fazendo com os computadores da cidade."
 
 #: dialogs/Town-NorthGateGuard.lua:132
 msgid "Somewhere to the east? I should look for him."
@@ -17523,7 +17526,7 @@ msgstr "Mas se você for insanamente sortudo e encontrá-lo, volte direto para m
 
 #: dialogs/Town-NorthGateGuard.lua:136
 msgid "I'd like to wring his head off... Though, it's not my call. But who knows, if the Boss feels generous we might both get rewarded."
-msgstr ""
+msgstr "Eu gostaria de torcer-lhe o pescoço... Apesar da decisão não ser minha. Mas quem sabe, se o Chefe estiver se sentindo generoso nós dois poderemos ser recompensados."
 
 #: dialogs/Town-NorthGateGuard.lua:137
 msgid "Be careful anyway, this creep is a sneaky one if he got past us."
@@ -17531,7 +17534,7 @@ msgstr "Tome cuidado assim mesmo, esse cara é sorrateiro se ele passar por nós
 
 #: dialogs/Town-NorthGateGuard.lua:138
 msgid "I offered to find out who the strange guy is. The guard I talked to was pretty sceptical, though; I should get some experience and better equipment before travelling far outside of town."
-msgstr ""
+msgstr "Eu me ofereci para descobrir quem é o cara estranho, mas o guarda com quem falei parecia bastante cético; Eu deveria conseguir mais experiência e melhor equipamento antes de viajar para tão longe da cidade."
 
 #: dialogs/Town-NorthGateGuard.lua:144
 msgid "Surely he'll never come back here."
@@ -17679,7 +17682,7 @@ msgstr "Quero falar com o seu gerente, seu retardado."
 
 #: dialogs/Town-NorthGateGuard.lua:250
 msgid "I'll be happy to send you his way, I already told you, you have to talk to him anyway. But I need your name before I let you in."
-msgstr ""
+msgstr "Eu ficaria feliz em te enviar para ele, eu até já te disse que você precisa falar com ele. Mas eu preciso do seu nome pra te deixar entrar."
 
 #: dialogs/Town-NorthGateGuard.lua:252
 msgid "Talk to Spencer. His office is in the citadel, straight ahead, the first one on your left. You can't miss it."
@@ -18352,7 +18355,7 @@ msgstr "Linarianos podem [b]detectar itens[/b] - mesmo através das paredes - em
 
 #: dialogs/TutorialTom.lua:282
 msgid "The [b]z key[/b] will toggle this augmentation, while the [b]x key[/b] momentarily flashes it."
-msgstr ""
+msgstr "A [b]tecla z[/b] irá ativar esse aumento, enquanto a [b]tecla x[/b] irá momentaneamente o exibir."
 
 #: dialogs/TutorialTom.lua:283
 msgid "Moving your pointer over an item will tell you more about that item."
@@ -18632,19 +18635,19 @@ msgstr "É estranho pensar que uma ave que não voa conseguiria ser tão destrut
 
 #: dialogs/TutorialTom.lua:466
 msgid "We prefer to fight the blamed droids at a distance. They're less likely to rend us limb from limb that way."
-msgstr ""
+msgstr "Nós preferimos lutar contra esses drones à distância. Assim é menos provável que eles consigam nos acertar."
 
 #: dialogs/TutorialTom.lua:467
 msgid "Unfortunately, guns and other ranged weaponry are hard to come by these days."
-msgstr ""
+msgstr "Infelizmente, armas de fogo e outras que atiram à distância são difíceis de se encontrar hoje em dia."
 
 #: dialogs/TutorialTom.lua:468
 msgid "That goes double for ammunition. Because these are bots, you really can't effectively keep them at bay by just waving around an empty gun."
-msgstr ""
+msgstr "O dobro para a munição. Porque eles são robôs, você não consegue mantê-los afastados apenas mostrando uma arma vazia."
 
 #: dialogs/TutorialTom.lua:469
 msgid "With that in mind, your most reliable weapons are your fists. They never run out of ammo or wear down, but of course they don't do much damage against a metal body, either."
-msgstr ""
+msgstr "Com isso em mente, sua arma mais confiável são os seus punhos. Sua munição nunca acaba e eles nunca se quebram, mas também não causam muito dano contra um corpo metálico."
 
 #: dialogs/TutorialTom.lua:475
 msgid "So I'm supposed to fight bots with my fists?"
@@ -18672,7 +18675,7 @@ msgstr "PREOCUPAÇÕES? Erm... Sim, isso particularmente não parece uma ativida
 
 #: dialogs/TutorialTom.lua:482
 msgid "Fred, if you're afraid, you'll have to overlook it. Besides, you knew the job was dangerous when you took it."
-msgstr ""
+msgstr "Fred, se você está com medo, você terá que fazer vista grossa quanto a isto. Você sabia que o trabalho era perigoso quando você o aceitou."
 
 #: dialogs/TutorialTom.lua:483
 msgid "I beg your pardon? Who is Fred?"
@@ -18704,23 +18707,23 @@ msgstr "O homem tem praticado medicina de uma forma ou de outra há centenas de 
 
 #: dialogs/TutorialTom.lua:496
 msgid "Using some of the same nanotechnology that makes up your armor, we've perfected drinks that instantaneously restore your health."
-msgstr ""
+msgstr "Utilizando a mesma nanotecnologia que compõe sua armadura, nós aperfeiçoamos bebidas que instantaneamente recuperam sua vida."
 
 #: dialogs/TutorialTom.lua:497
 msgid "There are many kinds, but all accomplish the same thing, to varying degrees."
-msgstr ""
+msgstr "Há de muitos tipos, mas todos fazem a mesma coisa, porém em escalas variadas."
 
 #: dialogs/TutorialTom.lua:498
 msgid "Certain items, like health drinks, can be used directly without clicking on them."
-msgstr ""
+msgstr "Alguns itens, como bebidas que curam, podem ser utlizados diretamente sem clicar neles."
 
 #: dialogs/TutorialTom.lua:499
 msgid "At the bottom of your HUD, you'll notice your item access belt. Small items can go here and be used by pressing the numbers [b]0[/b] through [b]9[/b]."
-msgstr ""
+msgstr "Na parte inferior de sua interface, você irá ver seu cinto de itens. Pequenos itens podem ir lá e serem utilizados apertando os números de [b]0[/b] à [b]9[/b]."
 
 #: dialogs/TutorialTom.lua:500
 msgid "Unlike armor or weapons, multiple of these items will group together in your inventory slots."
-msgstr ""
+msgstr "Diferentemente de armas ou armaduras, você pode agrupar vários desses itens no mesmo espaço do inventário."
 
 #: dialogs/TutorialTom.lua:501
 msgid "If you have Diet Supplements equipped in item slot 1, you can press 1 to use one."
@@ -18728,7 +18731,7 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:502
 msgid "This will restore your health, and will be invaluable in the heat of battle."
-msgstr ""
+msgstr "Isso irá recuperar sua vida, e irá se provar de um valor incalculável no calor da batalha."
 
 #: dialogs/TutorialTom.lua:503
 msgid "Small one-time-use items, like diet supplements, can be placed in inventory spots labels 1 to 0, and can be used by pressing the corresponding key."
@@ -18796,27 +18799,27 @@ msgstr "Vou trocá-lo por uma chave inglesa. Você vai achá-la útil."
 
 #: dialogs/TutorialTom.lua:545
 msgid "Now would be an appropriate time to mention bot parts, I guess."
-msgstr ""
+msgstr "Agora seria um bom momento para mencionar parte de robôs, eu acho."
 
 #: dialogs/TutorialTom.lua:546
 msgid "Certain parts in the bots are extra valuable. You can sell them at stores for cash."
-msgstr ""
+msgstr "Algumas partes nos robôs são valiosas e podem ser extraídas e vendidas nas lojas por dinheiro."
 
 #: dialogs/TutorialTom.lua:547
 msgid "If you can learn to extract these parts, it can help improve your lot in the world."
-msgstr ""
+msgstr "Se você conseguir aprender a extrair essas partes, isso poderá lhe ajudar muito."
 
 #: dialogs/TutorialTom.lua:548
 msgid "Hopefully, you can find someone to teach you."
-msgstr ""
+msgstr "Esperançosamente, você poderá encontrar alguém para te ensinar isso."
 
 #: dialogs/TutorialTom.lua:551
 msgid "I brought the entropy inverter to Tom and he gave me my first weapon: a Big wrench. I should equip it."
-msgstr ""
+msgstr "Eu trouxe o inversor entrópico para Tom e ele me deu minha primeira arma: Uma grande chave inglesa. Eu deveria a equipar."
 
 #: dialogs/TutorialTom.lua:554
 msgid "Trying to cheat your way through the tutorial doesn't bode well for your chances in the real world."
-msgstr ""
+msgstr "Tentar trapacear no tutorial para passar de passo não irá lhe ajudar no mundo real."
 
 #: dialogs/TutorialTom.lua:555
 msgid "I'll need proof that you've beaten the first bot."
@@ -18832,27 +18835,27 @@ msgstr "Você mencionou outro robô?"
 
 #: dialogs/TutorialTom.lua:565
 msgid "That's correct. The second bot is a lot more dangerous, and you're not likely to make much headway against it with your fists."
-msgstr ""
+msgstr "Está certo. O segundo robô é bem mais perigoso, e você não vai conseguir lutar contra ele apenas com seus punhos."
 
 #: dialogs/TutorialTom.lua:566
 msgid "Lucky for you, there's another dimension to melee combat."
-msgstr ""
+msgstr "Felizmente para você, existe outra dimensão no combate corpo-a-corpo."
 
 #: dialogs/TutorialTom.lua:567
 msgid "Fighting bots with your fists is fine, but there are a number of items you can use for melee."
-msgstr ""
+msgstr "Lutar contra os robôs com seus punhos é possível, mas existe um número de itens que você pode utilizar para fazer o trabalho."
 
 #: dialogs/TutorialTom.lua:568
 msgid "There are several traditional weapons in the world such as swords or light sabers that can be used against the bots."
-msgstr ""
+msgstr "Há varias armas tradicionais no mundo como espadas ou sabres de luz que podem ser usadas contra os robôs."
 
 #: dialogs/TutorialTom.lua:569
 msgid "However, more common items you encounter every day can often be used to bash or pry at droid armor."
-msgstr ""
+msgstr "Porém muitos itens cotidianos que você encontra podem ser utilizados para esmagar ou rasgar a armadura dos robôs."
 
 #: dialogs/TutorialTom.lua:570
 msgid "For example, that wrench I just gave you will increase the damage you do, and should let you best the next bot."
-msgstr ""
+msgstr "Por exemplo, a chave inglesa que eu te dei irá aumentar o dano que você provoca, e você deverá usar o seu melhor contra o próximo robô."
 
 #: dialogs/TutorialTom.lua:576
 msgid "I'm ready to take the next bot on."
@@ -18860,39 +18863,39 @@ msgstr "Estou pronto pra enfrentar o próximo robô."
 
 #: dialogs/TutorialTom.lua:578
 msgid "I certainly hope so. I will heal you before you go to the next room."
-msgstr ""
+msgstr "Assim espero. Eu irei te curar antes que você vá para a próxima sala."
 
 #: dialogs/TutorialTom.lua:579
 msgid "I'm also giving you another healing drink, just in case."
-msgstr ""
+msgstr "Também estou te dando outra bebida que cura, apenas no caso."
 
 #: dialogs/TutorialTom.lua:580
 msgid "A 247 is nothing to trifle with, so I'm giving you a shield in the hopes that it'll help keep you alive."
-msgstr ""
+msgstr "Um 247 não é brincadeira, então estou te dando um escudo na esperança que ele te mantenha vivo."
 
 #: dialogs/TutorialTom.lua:581
 msgid "Finally, I'm giving you couple of somewhat experimental pills that will temporarily increase your strength and dexterity, respectively."
-msgstr ""
+msgstr "E finalmente, estou te dando duas pilulas experimentais que temporariamente aumentam sua força e destreza, respectivamente."
 
 #: dialogs/TutorialTom.lua:582
 msgid "Use them in the same way you would use a health drink."
-msgstr ""
+msgstr "Use-os da mesma maneira que você usaria uma bebida de cura."
 
 #: dialogs/TutorialTom.lua:583
 msgid "If I were you, I would think about using your repair equipment program on your armor and that wrench before you go into the room."
-msgstr ""
+msgstr "Se eu fosse você, eu pensaria em utilizar o programa de reparar equipamento na armadura e na chave inglesa antes de você ir naquela sala."
 
 #: dialogs/TutorialTom.lua:584
 msgid "You'll also need to equip them. I won't do that for you."
-msgstr ""
+msgstr "Você também precisa os equipar. Eu não vou fazer isso por você."
 
 #: dialogs/TutorialTom.lua:585
 msgid "Like the last bot, this one will be carrying an item. Bring me the [b]Tachyon Condensator[/b] it is carrying to continue."
-msgstr ""
+msgstr "Como o ultimo robô, esse também estará carregando um item. Me traga o [b]Condensador Tachyon[/b] que ele está carregando para continuar."
 
 #: dialogs/TutorialTom.lua:586
 msgid "I've unlocked the door. Good luck, and talk to me when you have the Tachyon Condensator."
-msgstr ""
+msgstr "Eu destravei a porta. Boa sorte, e fale comigo quando você tiver o Condensador Tachyon."
 
 #: dialogs/TutorialTom.lua:599
 msgid "I've beaten the second bot."
@@ -18904,131 +18907,131 @@ msgstr "Muito bom! Você completou o treinamento de combate corpo-a-corpo."
 
 #: dialogs/TutorialTom.lua:603
 msgid "These skills will serve you well in the future."
-msgstr ""
+msgstr "Essas habilidades lhe serão uteis no futuro."
 
 #: dialogs/TutorialTom.lua:604
 msgid "Talk to me when you're ready to move on to the next part of the tutorial."
-msgstr ""
+msgstr "Fale comigo quando estiver pronto para avançar no tutorial."
 
 #: dialogs/TutorialTom.lua:608
 msgid "You didn't bring back the Tachyon Condensator. You'll need to bring it back before we can continue."
-msgstr ""
+msgstr "Você não trouxe de volta o Condensador Tachyon. Você vai precisar me trazer ele antes que possamos continuar."
 
 #: dialogs/TutorialTom.lua:609
 msgid "I'll go ahead and heal you. If your weapon or armor are in bad shape, perhaps you should repair them before going back in there."
-msgstr ""
+msgstr "Eu vou te curar agora. Se sua arma ou armadura estiverem com durabilidade baixa, talvez você deva repará-los antes de voltar."
 
 #: dialogs/TutorialTom.lua:610
 msgid "Don't come back without the [b]Tachyon Condensator[/b]."
-msgstr ""
+msgstr "Não volte sem o [b]Condensador Tachyon[/b]."
 
 #: dialogs/TutorialTom.lua:618
 msgid "I'm ready to move on."
-msgstr ""
+msgstr "Estou pronto para prosseguir."
 
 #: dialogs/TutorialTom.lua:621
 msgid "I decided to move on and go to next unit of the tutorial."
-msgstr ""
+msgstr "Eu decidi pular para próxima unidade do tutorial."
 
 #: dialogs/TutorialTom.lua:624
 msgid "I'll bet you're itching to try that pistol out on some bots."
-msgstr ""
+msgstr "Acho que você está se coçando para tentar aquela pistola em alguns robôs."
 
 #: dialogs/TutorialTom.lua:625
 msgid "Our next destination is the ranged combat training area, so you're in luck."
-msgstr ""
+msgstr "Nosso próximo destino é a área de treinamento de combate a distância, então você está com sorte."
 
 #: dialogs/TutorialTom.lua:627
 msgid "I'll unlock the door to the south. Follow the corridor east."
-msgstr ""
+msgstr "Eu vou destrancar a porta ao sul. Siga o corredor leste."
 
 #: dialogs/TutorialTom.lua:637
 msgid "Ranged weaponry seems safer than getting up close and personal."
-msgstr ""
+msgstr "Armas de fogo parecem ser mais seguras do que uma aproximação direta."
 
 #: dialogs/TutorialTom.lua:639
 msgid "Well, Linarian, most of the time it is."
-msgstr ""
+msgstr "Bem, Linariano, na maior parte do tempo elas são."
 
 #: dialogs/TutorialTom.lua:640
 msgid "There are some bots with ranged weaponry, but we don't have any of those in captivity."
-msgstr ""
+msgstr "Alguns robôs tem armas de fogo, mas não temos nenhum desses em cativeiro."
 
 #: dialogs/TutorialTom.lua:641
 msgid "I am learning about how to use ranged weapons."
-msgstr ""
+msgstr "Estou aprendendo a usar armas de fogo que atiram a distância."
 
 #: dialogs/TutorialTom.lua:647
 msgid "So what can you tell me about guns?"
-msgstr ""
+msgstr "Então o que você pode me falar sobre armas?"
 
 #: dialogs/TutorialTom.lua:649
 msgid "The basic idea behind ranged weaponry is to hurt or kill an enemy without having to come within swinging range."
-msgstr ""
+msgstr "A ideia básica de armas a distância é machucar ou matar um inimigo sem se ferir."
 
 #: dialogs/TutorialTom.lua:650
 msgid "There are three basic ways to do this: traditional firearms, lasers, and plasma weapons."
-msgstr ""
+msgstr "Há três maneiras básicas de fazer isso: Armas de fogo tradicionais, de laser e de plasma."
 
 #: dialogs/TutorialTom.lua:651
 msgid "Traditional firearms are things that go bang. A small explosion accelerates the ammunition towards the target at a high velocity, causing injury."
-msgstr ""
+msgstr "Armas de fogo tradicionais são armas de impacto: Uma pequena explosão acelera um projétil ao alvo em alta velocidade, causando injúria."
 
 #: dialogs/TutorialTom.lua:652
 msgid "Lasers use an intensified beam of light to burn through the intended victim. These operate on replaceable charge packs."
-msgstr ""
+msgstr "Lasers usam um raio de luz intensificado para queimar através da vítima. Eles operam com pacotes de energia substituíveis."
 
 #: dialogs/TutorialTom.lua:653
 msgid "Plasma weapons use superheated ionized gas to burn the target. The gas comes in loadable canisters."
-msgstr ""
+msgstr "Armas de Plasma utilizam um gás ionizado superaquecido. Esse gás vem em pacotes, também."
 
 #: dialogs/TutorialTom.lua:654
 msgid "Most other ranged weapons are variations of these three. We have a few in storage for training purposes."
-msgstr ""
+msgstr "A maioria das outras armas a distância são variações dessas três. Temos algumas no armazém para propósitos de treinamento."
 
 #: dialogs/TutorialTom.lua:660
 msgid "So how do I use guns?"
-msgstr ""
+msgstr "Então como eu uso armas?"
 
 #: dialogs/TutorialTom.lua:662
 msgid "Well, firing is pretty simple. First, equip a ranged weapon that you have ammunition for."
-msgstr ""
+msgstr "Bem, atirar é bem simples. Primeiramente, equipe uma arma de fogo da qual você tenha munição."
 
 #: dialogs/TutorialTom.lua:663
 msgid "Next, simply [b]left click[/b] on your target, and you'll begin firing."
-msgstr ""
+msgstr "Depois, clique com o [b]botão esquerdo[/b] do mouse no seu alvo, e você vai começar a atirar."
 
 #: dialogs/TutorialTom.lua:664
 msgid "Alternatively, you can fire a single shot using the [b]Fire Weapon[/b] program, and [b]right clicking[/b] on the enemy."
-msgstr ""
+msgstr "Alternativamente, você pode dar um único tiro utilizando o programa [b]Disparar Arma[/b], e clicando com o [b]botão direto[/b] do mouse no seu inimigo."
 
 #: dialogs/TutorialTom.lua:665
 msgid "That is the best way if you are trying to conserve precious ammo with high rate of fire guns."
-msgstr ""
+msgstr "Essa é a melhor maneira se você estiver tentando conservar munição preciosa com armas que disparam muito rapidamente."
 
 #: dialogs/TutorialTom.lua:666
 msgid "There are a couple of new tricks with ranged weapons. If you want to [b]move while firing[/b]: hold [b]shift[/b] and [b]left click[/b] your desired position."
-msgstr ""
+msgstr "Há dois truques para armas de fogo. Se você quiser [b]mover enquanto atira[/b]: mantenha [b]shift[/b] pressionado e [b]clique com o botão esquerdo[/b] aonde você quiser ir."
 
 #: dialogs/TutorialTom.lua:667
 msgid "If you'd rather stay in place: Hold [b]A[/b], then [b]left click[/b] your target."
-msgstr ""
+msgstr "Se você prefere ficar no mesmo lugar: Mantenha [b]A[/b] pressionado, e então clique com o [b]botão esquerdo[/b] no seu alvo."
 
 #: dialogs/TutorialTom.lua:668
 msgid "When your weapon runs out of ammo during combat, it will try to automatically reload if you have extra ammunition for it."
-msgstr ""
+msgstr "Quando acabar a munição da sua arma durante um combate, ela vai tentar se recarregar automaticamente, dado que você tenha munição extra para ela."
 
 #: dialogs/TutorialTom.lua:669
 msgid "Sometimes, you will need or want to manually reload. You can do this by pressing the [b]r key[/b]."
-msgstr ""
+msgstr "As vezes você terá ou irá querer recarregar a arma manualmente. Você pode fazer isso pressionando a [b]tecla r[/b]."
 
 #: dialogs/TutorialTom.lua:670
 msgid "If you are reloading, or you are out of ammo, the small message screen at the bottom of your HUD will tell you what type of ammo to get."
-msgstr ""
+msgstr "Se você estiver recarregando, ou estiver sem munição, a pequena tela de mensagens abaixo do seu visor irá lhe dizer que tipo de munição você precisa para aquela arma."
 
 #: dialogs/TutorialTom.lua:673
 msgid "If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the 'r' key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition."
-msgstr ""
+msgstr "Se eu equipar uma arma de fogo e clicar no inimigo, vou atirar até a arma ficar sem munição e se recarregar sozinha. Mas se eu quiser dar um único tiro eu uso o programa Disparar Arma, e clico com o botão direto no inimigo. Para mover atirando eu shift + clico aonde eu quero ir, e para recarregar a arma manualmente eu aperto a tecla 'r'. A pequena tela de mensagens abaixo do meu visor vai me informar se estou recarregando ou sem munição."
 
 #: dialogs/TutorialTom.lua:683
 msgid "I think I understand how to use guns now."
@@ -19036,11 +19039,11 @@ msgstr "Acho que eu entendo como usar armas agora."
 
 #: dialogs/TutorialTom.lua:685
 msgid "In that case, I'll let you in to the armory. There are some crates and chests in there with weapons and ammunition."
-msgstr ""
+msgstr "Nesse caso, vou liberar seu acesso à armaria. Lá tem algumas caixas e baús com armas e munição."
 
 #: dialogs/TutorialTom.lua:686
 msgid "Be careful though, smashing open crates and barrels could hurt you."
-msgstr ""
+msgstr "Mas cuidado, esmagar caixas e barris podem te machucar."
 
 #: dialogs/TutorialTom.lua:688
 msgid "You already got the .22 pistol I gave you earlier? It's not much as guns go, but it can do the trick."
@@ -19060,15 +19063,15 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:696
 msgid "Practice switching weapons and reloading."
-msgstr ""
+msgstr "Pratique trocar e arma e recarregar."
 
 #: dialogs/TutorialTom.lua:697
 msgid "On the other side of that fence are some bots. Practice killing them off with various ranged weapons."
-msgstr ""
+msgstr "Do outro lado da cerca tem alguns robôs. Pratique os matar com várias armas a distância."
 
 #: dialogs/TutorialTom.lua:698
 msgid "Once you've gotten rid of them all, we can move on."
-msgstr ""
+msgstr "Quando se livrar de todos eles, podemos prosseguir."
 
 #: dialogs/TutorialTom.lua:699
 msgid "Tutorial Tom wants me to shoot those bots."
@@ -19084,19 +19087,19 @@ msgstr "Parece que você ainda tem um pouco no inventário..."
 
 #: dialogs/TutorialTom.lua:717
 msgid "Why don't you use this first?"
-msgstr ""
+msgstr "Porque não usar essas primeiro?"
 
 #: dialogs/TutorialTom.lua:718
 msgid "Try to switch to another gun maybe..."
-msgstr ""
+msgstr "Tente mudar para outra arma, talvez..."
 
 #: dialogs/TutorialTom.lua:720
 msgid "Ok, I will give you some more ammo. You seem to be in need, indeed..."
-msgstr ""
+msgstr "Ok, vou te dar mais munição. Você parece estar precisando mesmo..."
 
 #: dialogs/TutorialTom.lua:726
 msgid "Check the storage room to the west for more guns and ammo."
-msgstr ""
+msgstr "Confira o armazém ao oeste para mais armas e munições."
 
 #: dialogs/TutorialTom.lua:732
 msgid "I killed all the bots."
@@ -19112,15 +19115,15 @@ msgstr "Continue atirando assim e os robôs não terão chance. Enquanto você t
 
 #: dialogs/TutorialTom.lua:737
 msgid "That was like shooting fish in a barrel. I could use a fish about now."
-msgstr ""
+msgstr "Foi como atirar um peixe em um barril. Ei! Eu poderia ter um peixe agora."
 
 #: dialogs/TutorialTom.lua:741
 msgid "I don't mind if you don't want to do this, but please don't try to trick me."
-msgstr ""
+msgstr "Eu não me importo se você não quiser fazer isso, mas por favor não tente me enganar."
 
 #: dialogs/TutorialTom.lua:742
 msgid "I don't have verified kills on all those bots."
-msgstr ""
+msgstr "Eu não verifiquei mortes em todos aqueles robôs."
 
 #: dialogs/TutorialTom.lua:748
 msgid "I would like a few more bots to shoot at."
@@ -19172,11 +19175,11 @@ msgstr "Bem, isso seria trapaça, não acha?"
 
 #: dialogs/TutorialTom.lua:782
 msgid "Shooting moving targets needs a bit of practice, yes..."
-msgstr ""
+msgstr "Atirar em alvos em movimento requer um pouco de prática sim..."
 
 #: dialogs/TutorialTom.lua:783
 msgid "...but in the end you will profit a lot from it."
-msgstr ""
+msgstr "...mas no fim, você vai ganhar muito com isso."
 
 #: dialogs/TutorialTom.lua:784
 msgid "Ok, I will try my best."
@@ -19184,7 +19187,7 @@ msgstr "Ok, farei o meu melhor."
 
 #: dialogs/TutorialTom.lua:791
 msgid "Why are we stopping?"
-msgstr ""
+msgstr "Porque estamos parando?"
 
 #: dialogs/TutorialTom.lua:793
 msgid "You've done well so far, Linarian. Let's take a little break."
@@ -19284,11 +19287,11 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:830
 msgid "Alright, I'm ready to go hack some bots."
-msgstr ""
+msgstr "Certo, estou pronto para hackear alguns robôs."
 
 #: dialogs/TutorialTom.lua:833
 msgid "I decided that I don't need to know how to upgrade items."
-msgstr ""
+msgstr "Eu decidi que não preciso saber como melhorar itens."
 
 #: dialogs/TutorialTom.lua:835
 msgid "First, you'll need to unlock the door."
@@ -19300,11 +19303,11 @@ msgstr "Vê aquele [b]Terminal[/b] à esquerda?"
 
 #: dialogs/TutorialTom.lua:837
 msgid "You will need to login, by left clicking on it, and then select unlock door."
-msgstr ""
+msgstr "Você precisará fazer login clicando com o botão esquerdo nele, e então selecionar para destravar a porta."
 
 #: dialogs/TutorialTom.lua:838
 msgid "Terminals act very similar to hacked bots."
-msgstr ""
+msgstr "Terminais agem de maneira muito parecida com robôs hackeados."
 
 #: dialogs/TutorialTom.lua:839 dialogs/TutorialTom.lua:856
 msgid "I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!"
@@ -19396,7 +19399,7 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:879
 msgid "Apparently in order to hack, all I have to do is select the Hacking program, right click a bot, and play a little game. I've got this!"
-msgstr ""
+msgstr "Aparentemente para hackear, tudo que eu preciso fazer é selecionar o programa de hackear, clicar com o botão direito em um robô, e jogar um pequeno jogo. Entendi!"
 
 #: dialogs/TutorialTom.lua:887
 msgid "What was that about activating more cores than the bot?"
@@ -19464,11 +19467,11 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:915
 msgid "I'm ready to try hacking bots."
-msgstr ""
+msgstr "Estou pronto para tentar hackear robôs."
 
 #: dialogs/TutorialTom.lua:917
 msgid "I certainly hope so."
-msgstr ""
+msgstr "Eu certamente espero."
 
 #: dialogs/TutorialTom.lua:918
 msgid "I should, however, take the time to tell you a few more things."
@@ -19496,7 +19499,7 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:924
 msgid "If you nevertheless accumulate too much heat, you will automatically shut down in order to cool off."
-msgstr ""
+msgstr "Se mesmo assim você acumular muito calor, você irá automaticamente se desligar para resfriar."
 
 #: dialogs/TutorialTom.lua:925
 msgid "Over time, the heat will seep away from your body naturally. However, there are ways to speed up the process."
@@ -19552,15 +19555,15 @@ msgstr "Ah, e Linariano... se você falhar em hackear você receberá um choque 
 
 #: dialogs/TutorialTom.lua:944
 msgid "It shouldn't kill you, but you need to be aware of it nonetheless."
-msgstr ""
+msgstr "Ele não deve te matar, mas tenha cuidado mesmo assim."
 
 #: dialogs/TutorialTom.lua:952
 msgid "Tutorial Tom wants me to hack those bots. The only thing I need to worry about is overheating. But if I get too hot I can always try the Emergency shutdown program."
-msgstr ""
+msgstr "Tutorial Tom quer que eu hackeie aqueles robôs. A única coisa que preciso me preocupar é em me sobreaquecer. Mas se eu ficar muito quente eu sempre posso tentar o programa de Desligamento Emergencial."
 
 #: dialogs/TutorialTom.lua:962
 msgid "Tell me again about take over, I'm not sure I got it all."
-msgstr ""
+msgstr "Me diga novamente sobre hackear, acho que não entendi tudo."
 
 #: dialogs/TutorialTom.lua:964
 msgid "Tell me exactly what part you want me to explain again."
@@ -19716,7 +19719,7 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:1058 dialogs/TutorialTom.lua:1085
 msgid "Let me try that again."
-msgstr ""
+msgstr "Me deixe tentar isso de novo."
 
 #: dialogs/TutorialTom.lua:1072
 msgid "How about buying an item?"
@@ -19780,19 +19783,19 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:1150
 msgid "I defeated all the bots in the cage."
-msgstr ""
+msgstr "Eu derrotei todos os robôs na gaiola."
 
 #: dialogs/TutorialTom.lua:1152
 msgid "Well done!"
-msgstr ""
+msgstr "Parabéns, muito bem feito!"
 
 #: dialogs/TutorialTom.lua:1153
 msgid "Then let us move towards the next stage of the Tutorial"
-msgstr ""
+msgstr "Então vamos para o próximo estágio do Tutorial."
 
 #: dialogs/TutorialTom.lua:1155
 msgid "As a reward, I'm giving you a .22 Automatic pistol."
-msgstr ""
+msgstr "Como recompensa, estou te dando uma pistola .22 Automática."
 
 #: dialogs/TutorialTom.lua:1159
 msgid "But I have to take these sourcebooks from you to prevent you from cheating in the next section of the tutorial."
@@ -19800,7 +19803,7 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:1160 dialogs/TutorialTom.lua:1166
 msgid "Sorry about that..."
-msgstr ""
+msgstr "Desculpa quanto a isso..."
 
 #: dialogs/TutorialTom.lua:1165
 msgid "But I have to take this sourcebook from you to prevent you from cheating in the next section of the tutorial."
@@ -19808,7 +19811,7 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:1188
 msgid "I'd like to skip to a later section of the Tutorial."
-msgstr ""
+msgstr "Eu gostaria de ir para uma seção posterior do Tutorial."
 
 #: dialogs/TutorialTom.lua:1190
 msgid "OK, what would you like to learn about?"
@@ -19856,7 +19859,7 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:1253
 msgid "Upgrading Items & Terminals"
-msgstr ""
+msgstr "Melhorar Itens & Terminais"
 
 #: dialogs/TutorialTom.lua:1255
 msgid "OK, I'll take us there and give you some armor and a weapon to work with."
@@ -19880,7 +19883,7 @@ msgstr ""
 
 #: dialogs/TutorialTom.lua:1298
 msgid "Let me take a short break and practice on my own for a while."
-msgstr ""
+msgstr "Me deixe tirar uma pausa rápida e praticar um pouco sozinho."
 
 #: dialogs/TutorialTom.lua:1300
 msgid "Ok, I'll be around if you need any more questions answered. Don't hesitate to ask."

@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: freedroidrpg 0.16\n"
+"Project-Id-Version: freedroidrpg 0.16+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-24 11:19+0100\n"
+"POT-Creation-Date: 2016-01-08 14:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1774,7 +1774,7 @@ msgid "Yes, I want even more training. (costs 200 circuits, 6 training points)"
 msgstr ""
 
 #: dialogs/Benjamin.lua:151
-msgid "So let''s start the second course?"
+msgid "So let's start the second course?"
 msgstr ""
 
 #: dialogs/Benjamin.lua:154
@@ -1990,7 +1990,7 @@ msgid "Laser is the technology employed in most of our weaponry. It uses a focus
 msgstr ""
 
 #: dialogs/Benjamin.lua:274
-msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say.It is also not affected by gravity or wind, which makes aiming easier."
+msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say. It is also not affected by gravity or wind, which makes aiming easier."
 msgstr ""
 
 #: dialogs/Benjamin.lua:275
@@ -5359,8 +5359,9 @@ msgstr ""
 
 #: dialogs/DeadGuy.lua:33 dialogs/Ewalds_296.lua:324
 #: dialogs/FactionDeadBot.lua:33 dialogs/Francis.lua:98
-#: dialogs/HF-FirmwareUpdateServer.lua:88 dialogs/HF-FirmwareUpdateServer.lua:89
-#: dialogs/Jasmine.lua:115 dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
+#: dialogs/HF-FirmwareUpdateServer.lua:88
+#: dialogs/HF-FirmwareUpdateServer.lua:89 dialogs/Jasmine.lua:115
+#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
 #: dialogs/Maintenance-Terminal.lua:58 dialogs/Michelangelo.lua:156
 #: dialogs/Mike.lua:239 dialogs/Singularity-Drone.lua:34
 #: dialogs/Singularity.lua:156 dialogs/Town-TuxGuard.lua:121
@@ -6934,7 +6935,7 @@ msgid "Shield disabled."
 msgstr ""
 
 #: dialogs/DSB-MachineDeckControl.lua:64
-msgid "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
+msgid "I've taken over the control terminal and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
 msgstr ""
 
 #: dialogs/DSB-MachineDeckControl.lua:69
@@ -7012,7 +7013,8 @@ msgid "Access granted. Closing gate ..."
 msgstr ""
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:106
+#: dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr ""
 
@@ -7865,7 +7867,7 @@ msgid "... Excuse me?"
 msgstr ""
 
 #: dialogs/Engel.lua:381
-msgid "I... Will KILL... Who did this?!"
+msgid "I... WILL KILL... Who did this?!"
 msgstr ""
 
 #: dialogs/Engel.lua:382
@@ -7880,6 +7882,7 @@ msgstr ""
 msgid "But I DID NOT KILL THEM!"
 msgstr ""
 
+#. TRANSLATORS: nein = no , Mutter = mother
 #: dialogs/Engel.lua:387
 msgid "Nein... Nein, I WILL avenge you, Mutter... Yes, I will find whoever took my vengeance away from me... And CRUSH!!"
 msgstr ""

@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
+# This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
 # Link_Mario <Link-Mario@gmx.de>, 2015
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-24 11:19+0100\n"
+"POT-Creation-Date: 2016-01-08 14:04+0100\n"
 "PO-Revision-Date: 2015-08-16 16:31+0000\n"
 "Last-Translator: Link_Mario <Link-Mario@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/arctic-games/freedroid-rpg/language/de/)\n"
@@ -1775,8 +1775,8 @@ msgid "Yes, I want even more training. (costs 200 circuits, 6 training points)"
 msgstr "Ja, ich will weiter üben. (Kostet 200 Schalkreise und 6 Trainingspunkte)"
 
 #: dialogs/Benjamin.lua:151
-msgid "So let''s start the second course?"
-msgstr "So. Sollen wir mit der zweiten Einheit beginnen?"
+msgid "So let's start the second course?"
+msgstr ""
 
 #: dialogs/Benjamin.lua:154
 msgid "Very well."
@@ -1991,8 +1991,8 @@ msgid "Laser is the technology employed in most of our weaponry. It uses a focus
 msgstr "Lasertechnik steckt in den meisten unserer Waffen. Dabei ist ein gebündelter Lichtstrahl für die Zerstörungswirkung verantwortlich."
 
 #: dialogs/Benjamin.lua:274
-msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say.It is also not affected by gravity or wind, which makes aiming easier."
-msgstr "Weil der Strahl aus gebündeltem Licht besteht, bewegt er sich sehr schnell, mit Lichtgeschwindigkeit eben. Da er nicht durch Gravitation oder Wind beeinflusst wird, ist das Zielen umso einfacher."
+msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say. It is also not affected by gravity or wind, which makes aiming easier."
+msgstr ""
 
 #: dialogs/Benjamin.lua:275
 msgid "However, other than being a good training tool for newbies, that design just fails to deliver."
@@ -5362,8 +5362,9 @@ msgstr "Ich wünsche dir Frieden und reguläre Wartung bis wir uns in der Cloud 
 
 #: dialogs/DeadGuy.lua:33 dialogs/Ewalds_296.lua:324
 #: dialogs/FactionDeadBot.lua:33 dialogs/Francis.lua:98
-#: dialogs/HF-FirmwareUpdateServer.lua:88 dialogs/HF-FirmwareUpdateServer.lua:89
-#: dialogs/Jasmine.lua:115 dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
+#: dialogs/HF-FirmwareUpdateServer.lua:88
+#: dialogs/HF-FirmwareUpdateServer.lua:89 dialogs/Jasmine.lua:115
+#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
 #: dialogs/Maintenance-Terminal.lua:58 dialogs/Michelangelo.lua:156
 #: dialogs/Mike.lua:239 dialogs/Singularity-Drone.lua:34
 #: dialogs/Singularity.lua:156 dialogs/Town-TuxGuard.lua:121
@@ -6937,8 +6938,8 @@ msgid "Shield disabled."
 msgstr " Disruptorschild deaktiviert."
 
 #: dialogs/DSB-MachineDeckControl.lua:64
-msgid "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
-msgstr "Ich habe den Kontrolldroiden übernommen und das Disruptorschild deaktiviert. Jetzt sollte ich in die Höllenfestung gehen und mich in das MS Firmware-Aktualisierungssystem einhacken."
+msgid "I've taken over the control terminal and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
+msgstr ""
 
 #: dialogs/DSB-MachineDeckControl.lua:69
 msgid "WARNING: Another user is using this computer."
@@ -7015,7 +7016,8 @@ msgid "Access granted. Closing gate ..."
 msgstr "Zugriff gestattet. Schließe Tor…"
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:106
+#: dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Beenden"
 
@@ -7868,8 +7870,8 @@ msgid "... Excuse me?"
 msgstr "… Verzeihung?"
 
 #: dialogs/Engel.lua:381
-msgid "I... Will KILL... Who did this?!"
-msgstr "Ich… töte… Wer hat das getan?"
+msgid "I... WILL KILL... Who did this?!"
+msgstr ""
 
 #: dialogs/Engel.lua:382
 msgid "All the bots are dead..."
@@ -7883,6 +7885,7 @@ msgstr "Ja! Jetzt sind alle wieder sicher-"
 msgid "But I DID NOT KILL THEM!"
 msgstr "Aber ICH HABE SIE NICHT ERLEDIGT!"
 
+#. TRANSLATORS: nein = no , Mutter = mother
 #: dialogs/Engel.lua:387
 msgid "Nein... Nein, I WILL avenge you, Mutter... Yes, I will find whoever took my vengeance away from me... And CRUSH!!"
 msgstr "No… No, Ich werde dich rächen, Mom… Ja, ich werde denjenigen finden, der mir meine Rache gestohlen hat… Und ihn ZERSTÖREN!!"
@@ -9835,11 +9838,11 @@ msgstr "Firmware-Update verbreitet!"
 
 #: dialogs/HF-FirmwareUpdateServer.lua:94
 msgid "ALL: SECURITY: could not find 'evil.conf': No such file or directory."
-msgstr ""
+msgstr "ALLE: SICHERHEIT: Konnte 'evil.conf' nicht öffnen: Befehl oder Datei nicht gefunden."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:95
 msgid "\tExiting with state 1."
-msgstr ""
+msgstr "\tBeende mit Statuscode 1."
 
 #: dialogs/HF-FirmwareUpdateServer.lua:98
 msgid "I managed to upload the faulty firmware update to all bots within transmission range. Either the siege on the town ends now... Or everything else does."

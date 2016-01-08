@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the freedroidrpg package.
+# This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
 # Anelise D. J., 2014
@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2015-12-24 11:19+0100\n"
-"PO-Revision-Date: 2015-12-05 21:12+0000\n"
-"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"POT-Creation-Date: 2016-01-08 14:04+0100\n"
+"PO-Revision-Date: 2015-12-26 22:36+0000\n"
+"Last-Translator: Jonatas L. Nogueira <cpntb1@ymail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/arctic-games/freedroid-rpg/language/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +145,7 @@ msgstr "Armadura"
 
 #: src/chat.c:547
 msgid "Click anywhere to continue..."
-msgstr ""
+msgstr "Clique para continuar..."
 
 #: src/chat.c:693 src/chat.c:703
 msgid "[n]--- Start of Dialog ---\n"
@@ -329,7 +329,8 @@ msgstr "Menu Principal"
 msgid "Return to Editor"
 msgstr "Retornar ao Editor"
 
-#: src/influ.c:997 src/menu.c:851 src/menu.c:1005 src/lvledit/lvledit_menu.c:965
+#: src/influ.c:997 src/menu.c:851 src/menu.c:1005
+#: src/lvledit/lvledit_menu.c:965
 msgid "Exit FreedroidRPG"
 msgstr "Sair do Jogo"
 
@@ -1240,9 +1241,9 @@ msgstr "difícil"
 msgid "Difficulty: %s"
 msgstr "Dificuldade: %s"
 
-#: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144 src/menu.c:1229
-#: src/menu.c:1340 src/menu.c:1405 src/menu.c:1478 src/menu.c:1629
-#: src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
+#: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144
+#: src/menu.c:1229 src/menu.c:1340 src/menu.c:1405 src/menu.c:1478
+#: src/menu.c:1629 src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
 #: src/lvledit/lvledit_menu.c:126 src/lvledit/lvledit_menu.c:241
 #: src/lvledit/lvledit_menu.c:415 src/lvledit/lvledit_menu.c:642
 msgid "Back"
@@ -2679,7 +2680,7 @@ msgstr "defensivo"
 
 #: src/lvledit/lvledit_widgets.c:77
 msgid "usable"
-msgstr ""
+msgstr "utilizável"
 
 #: src/lvledit/lvledit_widgets.c:91
 msgid "droids"
@@ -2751,6 +2752,11 @@ msgid ""
 "\n"
 "You can also use Ctrl-X for this."
 msgstr ""
+"Deletar objetos selecionados\n"
+"\n"
+"Use este botão para deletar os objetos atualmente marcados.\n"
+"\n"
+"Você também pode utilizar Ctrl+X para isso."
 
 #: src/lvledit/lvledit_widgets.c:467
 msgid ""

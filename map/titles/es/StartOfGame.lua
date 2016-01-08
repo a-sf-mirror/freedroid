@@ -18,30 +18,22 @@
 ----------------------------------------------------------------------
 
 title_screen{
-song = "HellFortressTwo.ogg",
+song = "Bleostrada.ogg",
 text = [[
-            Fim de Jogo
+Qué gran día.
+Si, nuevamente estoy siendo sarcástico.
+El planeta entero esta en llamas. 
+Thousands of people are very dead.
+Qwerty and Arensito are not responding.
 
-Por favor tente novamente, e quando tentar, certifique-se de comprar de nossos patrocinadores:
+Ah, yes, I almost forgot.
+The bloody bots are about to find me, too.
+I'm not very happy with that, Not happy at all.
+I guess I have to pretend I'm just a nice rock, yet again.
+Don't you think it would be a great time to wake up?
+Get up. Get here. Save my ass.
+Please.
 
-Dr. Como - "Poderosa tecnologia conveniente!"
-
-F4m4ci4 C4n4dense - "Remédios Herbais 1ncrív3is! 100% satisfação garan7ida!"
-
-Soluções em Criogênicos - "Faça uma viagem rápida para o futuro com Soluções em Criogênicos!"
-
-Futura Balística - "Além de balistica. Futura Balística."
-
-MegaSystems - "O que você não quer fazer hoje?"
-
-Masternak Remoção de Lixo - "Nós ESMAGAMOS seu LIXO."
-
-Companhia Nicholson - "Segurança com uma vingança."
-
-Sol Vermelho - "A noite acabou: experimente o amanhecer!"
-
-
-
-Por favor tente novamente. Clique para continuar.
+            Dvorak, First AI
 ]]
 }

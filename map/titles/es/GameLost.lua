@@ -20,28 +20,28 @@
 title_screen{
 song = "HellFortressTwo.ogg",
 text = [[
-            Fim de Jogo
+            Juego Perdido
 
-Por favor tente novamente, e quando tentar, certifique-se de comprar de nossos patrocinadores:
+Please try again, and when you do, be sure to buy from our sponsors:
 
-Dr. Como - "Poderosa tecnologia conveniente!"
+Dr. How - "Mighty convenient technology!"
 
-F4m4ci4 C4n4dense - "Remédios Herbais 1ncrív3is! 100% satisfação garan7ida!"
+Can4dian ph4rm4cy - "Amazing breakthrough herbal r3medies! 100% satisfaction guarant3ed!!!"
 
-Soluções em Criogênicos - "Faça uma viagem rápida para o futuro com Soluções em Criogênicos!"
+Cryonic Solutions - "Take the fast trip to the future with Cryonic Solutions!"
 
-Futura Balística - "Além de balistica. Futura Balística."
+Future Ballistics - "Beyond ballistics. Future Ballistics."
 
-MegaSystems - "O que você não quer fazer hoje?"
+MegaSystems - "What don't you want to do today?"
 
-Masternak Remoção de Lixo - "Nós ESMAGAMOS seu LIXO."
+Masternak Rubbish Removal - "We CRUSH your RUBBISH."
 
-Companhia Nicholson - "Segurança com uma vingança."
+Nicholson Company - "Security with a vengeance."
 
-Sol Vermelho - "A noite acabou: experimente o amanhecer!"
+Red Sun - "The night is over: taste the dawn!"
 
 
 
-Por favor tente novamente. Clique para continuar.
+Please try again. Click to continue.
 ]]
 }

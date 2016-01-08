@@ -20,75 +20,75 @@
 title_screen{
 song = "Bleostrada.ogg",
 text = [[
-            L’ÉDITEUR DE NIVEAU DE FREEDROIDRPG
+            EL EDITOR DE NIVELES DE FREEDROIDRPG
 
-=== INTRODUCTION ===
+=== INTRODUCCIÓN === 
 
-FreedroidRPG s'accompagne d'un éditeur de niveau intégré. Cette éditeur de niveau permet de contrôler tous les aspects d'une carte de FreedroidRPG et de la sauvegarder.
+FreedroidRPG viene con un editor de niveles integrado. Este editor de niveles te permite controlar todo aspecto de un mapa normal de FreedroidRPG y guardar mapas.
 
-Vous pouvez y accéder depuis le menu principale (choisissez "Editeur de Niveau") ou en executant la commande "freedroidRPG -e".
+Puedes acceder al mismo desde el menú principal (click en "Editor de Niveles") o ejecutando 'freedroidRPG -e'.
 
-    --- Tooltips ---
-Pour activer/désactiver les descriptions de l'interface pendant le survol de la souris, cliquez sur l'icône de bulle de discours blanc situé près du bord de la fenêtre de droite (rangée inférieure de bouton).
+    --- Herramientas ---
+Para conmutar descripciones de la interfaz mientras el puntero señala, haga click al botón de burbuja de conversación localizado cerca del borde derecho de la ventana (fila inferior de botones).
 
-    --- Summary Details ---
-Un détail sommaire sur les obstacles et les objets sera affichés si vous cliquez droit sur eux dans le sélecteur d'objet supérieur.
+    --- Sumarioxdfgdzfs ---
+Sumarios sobre obstáculos y objetos aparecerán si les haces click derecho en el selector de objetos superior.
 
-    --- Navigation ---
-Pour modifier le niveau actuel, cliquez sur le numéro de niveau à proximité de la minicarte dans le coin inférieur droit, ou sélectionner le niveau désiré dans le menu de l'éditeur (décrit plus loin).
+    --- Navegación ---
+Para cambiar el nivel actual, haga click en el número de un nivel cercano en el minimapa de la esquina inferior derecha, o seleccione el nivel deseado desde el menú del editor.
 
-    --- Modifier une carte ---
-Il y a quatre modes de modification : Modification des obstacles, Modification du sol, modification des objets, et modification des trajectoires.
+    --- Edición de mapas ---
+Hay cuatro modos de edición: edición de Obstáculos, edición de Suelo, edición de Objetos, y edición de Puntos de camino.
 
-Le bouton sélectionné en bas à gauche indique les objets que vous pouvez sélectionner ou placer.
-Lorsqu'un bouton est sélectionné, et vous êtes en mode placement, l'objet que vous placerez est indiqué par le ruban en haut de l'écran. La sélection dans le ruban est divisée par onglets immédiatement dessous.
+El botón seleccionada abajo a la derecha indica los objetos que puedes seleccionar o colocar.
+Cuando un botón está seleccionado, y estás en un modo de colocación, el objeto que colocarás es indicado por el selector de la parte superior de la pantalla. La selección en el mismo se halla dividida por las pestañas inmediatamente bajo el mismo.
 
-Vous pouvez sélectionner le type d'obstacle que vous souhaitez placer sur la carte dans le sélecteur d'objet supérieur. Il suffit de cliquer dessus pour le sélectionner. Les Obstacles sont divisés en groupes pour fournir la meilleure vue d'ensemble.
+Puedes seleccionar el tipo de obstáculo que quieras que sea colocado en el mapa en el selector de objeto superior. Simplemente haz click en él para seleccionarlo. Los obstáculos se dividen en grupos para proveer mejor visión general.
 
-En appuyant sur espace, vous entrerez dans le mode de sélection étant indiqué par le curseur changeant. Vous ne pouvez sélectionner que des groupes d'objets représentés par le mode activé.
-Remarque importante : vous ne pourrez sélectionner les choses qui sont inclus dans le mode actuel. Si vous êtes en mode de l'obstacle, vous ne serez pas en mesure de sélectionner des éléments ou des carreaux de sol.
+Presionando espacio, entrarás en el modo de selección siendo indicado por el cursor cambiado. Sólo puedes seleccionar grupos de objetos representados por el modo de objeto activado.
+Nota importante: Sólo serás capaz de seleccionar cosas que se incluyen en el modo seleccionado, si estás en modo obstáculo, no podrás seleccionar objetos o baldosas de suelo.
 
 
-        Obstacle edit mode:
+        Modo de edición de Obstáculo:
 
-In order to select this mode, click on button that says 'Obstacle' of the category selector on the left lower area.
-Having selected an obstacle, just click somewhere on the map to place it at the cursor's position.
-Since clicking is a little imprecise, you can also use your numberpad to place obstacles.
-Click on the leftmost (it shows a small grid) of the five button above category selector to have a grid with numbers displayed. Use left click for switching the grid on and off and right click for changing the grid mode.
-These numbers refer to the numbers of your numberpad if you have one. Pressing '1' will place the obstacle that is highlighted in the object selector at the position of the digit '1' on the purple grid.
-Since placing a line of walls that way is quite inefficient, you can simply hold down the left mouse button and a line of walls is placed as you move the cursor if you have a wall object selected. This works with the most common walls in FreedroidRPG.
-While holding the left mouse button down and placing walls, a click with the right mouse button will remove all the walls you drew after starting to hold down the left mouse button.
-There are some special objects. Glass walls and cracked brick walls, but also barrels and crates can be destroyed with a few strikes, while the latter two may also release items. Chests can be opened and may contain items, too.
-The symbol with the crossed out footsteps is not really an object but pure and invisible blocking area ('collision rectangle'). Collision rectangles are the very core of each object since they prevent you from just walking through them as it possible for waypoints or floor tiles.
+Para seleccionar este modo, haga click en el botón que dice 'Obstáculo' del selector de categoría en el área inferior izquierda.
+Teniendo seleccionado un obstáculo, simplemente haga click en algún lugar del mapa para colocarlo en la posición del cursor.
+Puesto que hacer click es un poco impreciso, también puede usar su teclado numérico para posicionar obstáculos.
+Haga click al más a la izquierda de los cinco botones sobre el selector de categoría para tener una cuadrícula con números. Use el click derecho para activarla y click derecho para cambiar el modo de la misma.
+Estos números se refieren a los números de su teclado numérico si dispone de uno. Presionar '1' colocará el obstáculo seleccionado en el selector en la posición del dígito '1' en la cuadrícula púrpura.
+Puesto que colocar una línea de muros es bastante ineficiente, puedes simplemente mantener el click izquierdo y una línea de muros es colocada mientras mueves el puntero si tienes un objeto muro seleccionado. Esto funciona con los muros más comunes en FreedroidRPG.
+Mientras sujete el botón izquierdo colocando muros, un click derecho eliminará todos los muros que dibujó tras comenzar a presionar el botón izquierdo.
+Hay algunos objetos especiales. Los muros de vidrio y los muros de ladrillos agrietados, pero también barriles y cajas pueden ser destruidos con unos pocos golpes, mientras que los dos últimos podrían expulsar objetos. Los cofres pueden ser abiertos y también pueden contener objetos.
+El símbolo con huellas tachadas no es realmente un objeto sino un área de bloqueo invisible ('rectángulo de colisión'). Los rectángulos de colisión son el núcleo de todo obstáculo puesto que previenen simplemente caminar a través de ellos como puede hacerse con las baldosas de suelo o los puntos de camino.
 
-            Selecting obstacles
+            Selección de obstáculos
 
-Holding down the left mouse button you can select a rectangle of obstacles. After releasing the mouse button, selected obstacles will turn a different color indicating that they are selected. To select obstacles that are not in the range of such a selection rectangle, hold down 'Ctrl' and click the obstacle or select another rectangle of them.
-You may have automatically selected several obstacles with one click. You can switch between the obstacles clicking the icon with the chair and the shelf on it, or pressing 'n'.
-The icon with the trash can delete the selected obstacle.
-You can also cut (Ctrl+x, can also be used to delete obstacles by just not pasting them again ;) ), copy (Ctrl+c) and paste (Ctrl+v) cut or copied obstacles.
-You can move selected obstacles holding down the left shift key while dragging the obstacle around. However, this may be quite imprecise.
+Manteniendo el botón izquierdo del mouse puede seleccionar un rectángulo de obstáculos. Tras soltar el botón, los obstáculos seleccionados se tornarán de un color distinto indicando que se hallan seleccionando. Para seleccionar obstáculos fuera del rectángulo, mantenga 'Ctrl' y haga click en el obstáculo o dibuje otro rectángulo.
+Usted podría haber automáticamente seleccionado varios obstáculos con un click. Puede cambiar entre ellos haciendo click en el icono con la silla y la estantería, o presionando 'n'.
+El icono con el cubo de basura puede borrar el obstáculo seleccionado.
+También puede cortar (Ctrl+x, purede ser usado para borrar mediante no pegarlos ;) ), copiar (Ctrl+c) y pegar (Ctrl+v) obstáculos cortados o copiados.
+Puedes mover obstáculos seleccionados manteniendo shift izquierdo y arrastrando el objeto. Sin embargo, esto puede ser bastante impreciso.
 
-            Placing objects in Chests
+            Colocar objetos en Cofres
 
-Simply select the desired chest and click the most left button in the upper button row.
-You will be forwarded to a screen that looks like the shop screen.
-There will be a knife displayed (which is actually not placed in the chest by the way) select it and click on the 'sell' button.
-Select the items you want to be dropped when the player opens the chest.
-These items will be displayed in the upper shop bar.
-In order to remove one of these items, simply select it and click on 'buy'.
-The red cross gets you out of the screen.
+Simplemente seleccione el cofre deseado y haga click en el botón más a la izquierda en la fila superior de botones.
+Se te pasará a una pantalla similar a la pantalla de tienda.
+Se mostrará un cuchillo (que en realidad no se halla en el cofre por cierto), selecciónelo y haga click en 'vender'.
+Seleccione los objetos que quiere que sean expulsados cuando el jugador abre el cofre.
+Estos objetos se mostrarán en la barra de compra superior.
+Para eliminar uno de estos, simplemente selecciónelo y haga click en 'comprar'.
+La cruz roja le saca de la pantalla.
 
-            Ajouter du Texte à un panneau
+            Añadir texto a un Cartel
 
-Sélectionnez le panneau et ajoutez une indication d'obstacle avec panneau.  enregistrez la carte et sortez.
-Open the level file (map/levels.dat) and find the new obstacle label. Change the line above the text from 'type=30' to 'type=32' and save.
-Now when you click on the sign in the game your short message will appear.
+Seleccione el cartel y añada una etiqueta de obstáculo con el texto del cartel. Guarde el mapa y salga.
+Abra el documento del nivel (map/levels.dat) y halle la nueva etiqueta de obstáculo. Cambie la línea sobre el texto de 'type=30' ' a type=32' y guarde.
+Ahora cuando haga click en el cartel en el juego su mensaje corto aparecerá.
 
-            Adding a Dialog to a Terminal
+            Añadiendo un Diálogo a un Terminal
 
-Select the terminal and add an obstacle label with the dialog name you wish to use. Save the map and exit.
-Open the level file (map/levels.dat) and find the new obstacle label.
+Seleccione el terminal y añada una etiqueta de obstáculo con el nombre de diálogo que desee usar. Guarde el mapa y salga.
+Abra el documento de nivel (map/levels.dat) y halle la nueva etiqueta de obstáculo.
 Change the line above the text from 'type=30' to 'type=32' and save. Now when you click on the terminal in the game it will start the dialog you selected.
 
         Floor edit mode:
@@ -208,25 +208,25 @@ This should ALWAYS be run before calling a map finished.
 "freedroidRPG -b leveltest" does also run this check.
 
 		Playtest mapfile
-Vous permet de tester vos modifications facilement.
+Allows you to playtest your modifications easily.
 If you leave this mode, obstacle changes that were made while playing, destroying crates for example, will be reverted to the time where you started playtesting.
 
 
 
 
-Touches :
-espace					inverse le mode pose/selection
+Keys:
+space					toggle planting/selection mode
 w						plant waypoint
 shift+w					toggle mode for waypoints to 'random bot' or 'NPC'
-echap					accéde au menu
+escape					access menu
 numberpad digits 1-9	used to plant obstacles at the respective positions of the grid
 n						cycle through selected obstacles (next)
-z						annule la dernière action
-y						répète la dernière action annulé
+z						undo last action
+y						redo last undid action
 c						set paths between waypoints
 ctrl+x or backspace		cut selected object(s), can be used to delete objects by not pasting afterwards
-ctrl+c					copie les objets selectionnés
-ctrl+v					colle les objets coupés/copiés
+ctrl+c					copy selected object(s)
+ctrl+v					paste cut/copied object(s)
 alt+shift				drag/move selected object using the mouse
 arrow keys				scroll around the map
 ctrl+arrow keys			scroll around in bigger steps
@@ -242,7 +242,7 @@ f						switch to the next object tab
 shift+f					switch to the previous object tab
 
 
-Si vous rencontrez des problèmes avec l'éditeur de nivaux, merci de nous contacter.
-De même, n'hésitez pas a nous envoyer des cartes si vous en faites quelques unes, on ne mords pas. ;-)
+If you encounter problems with the editor, please contact us.
+Also, don't be afraid to send us maps if you made something cool, we don't bite. :)
 ]]
 }
