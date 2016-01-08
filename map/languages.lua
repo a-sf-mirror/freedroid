@@ -32,6 +32,7 @@ languages{
 	{ name = "English (US)", locale = "en_US" },
 	{ name = "Francais",     locale = "fr_FR" },
 	{ name = "Svenska",      locale = "sv_SV" },
+	{ name = "Spanish",      locale = "es_ES" },
 }
 
 codesets{
@@ -47,4 +48,5 @@ codesets{
 	{ language = "fr", encoding = "ISO-8859-15" },
 	{ language = "pt", encoding = "ISO-8859-15" },
 	{ language = "sv", encoding = "ISO-8859-15" },
+	{ language = "es", encoding = "ISO-8859-15" },
 }
