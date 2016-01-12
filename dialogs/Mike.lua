@@ -60,7 +60,7 @@ return {
 					end
 					if (arena_ranking == "novice") then
 						arena_ranking = "elite"
-					elseif (arena_ranking == "elite") then
+					elseif (arena_ranking == "elite" and arena_current_level == "elite") then
 						arena_ranking = "champion"
 					end
 					show("arena_ready")
