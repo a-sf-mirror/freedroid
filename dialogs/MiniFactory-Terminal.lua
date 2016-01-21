@@ -78,8 +78,9 @@ return {
 				end
 				Minifactory_online = true
 				MiniFactory_init_failed = false
-				hide("node1") show("node10", "node20")
+				show("node10", "node20")
 			end
+			hide("node1")
 			cli_says(terminal, "NO_WAIT")
 		end,
 	},
