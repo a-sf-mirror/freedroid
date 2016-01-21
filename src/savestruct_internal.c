@@ -237,7 +237,7 @@ void read_string(lua_State *L, int index, string *data)
  */
 void write_string(struct auto_string *strout, string *data)
 {
-	autostr_append(strout, "\"%s\"", (*data) ? *data : "");
+	autostr_append(strout, "[=[%s]=]", (*data) ? *data : "");
 }
 
 /**
