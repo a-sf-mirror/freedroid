@@ -5360,9 +5360,8 @@ msgstr "La paz y el mantenimiento regular, hasta que nos encontremos en la nube.
 
 #: dialogs/DeadGuy.lua:33 dialogs/Ewalds_296.lua:324
 #: dialogs/FactionDeadBot.lua:33 dialogs/Francis.lua:98
-#: dialogs/HF-FirmwareUpdateServer.lua:88
-#: dialogs/HF-FirmwareUpdateServer.lua:89 dialogs/Jasmine.lua:115
-#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
+#: dialogs/HF-FirmwareUpdateServer.lua:88 dialogs/HF-FirmwareUpdateServer.lua:89
+#: dialogs/Jasmine.lua:115 dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
 #: dialogs/Maintenance-Terminal.lua:58 dialogs/Michelangelo.lua:156
 #: dialogs/Mike.lua:239 dialogs/Singularity-Drone.lua:34
 #: dialogs/Singularity.lua:156 dialogs/Town-TuxGuard.lua:121
@@ -7014,8 +7013,7 @@ msgid "Access granted. Closing gate ..."
 msgstr "Acceso permitido. Cerrando puerta ..."
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106
-#: dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Apagando"
 
@@ -18202,11 +18200,11 @@ msgstr "Prosigamos."
 
 #: dialogs/TutorialTom.lua:118
 msgid "Hi Linarian, I've been expecting you. My name is Tutorial Tom."
-msgstr "Hola Linariano, He estado esperándote. Mi nombre es Tutorial Tom. "
+msgstr "Hola Linariano, He estado esperándote. Mi nombre es Tutorial Tom."
 
 #: dialogs/TutorialTom.lua:119
 msgid "Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things."
-msgstr "El sueño crioestático desafortunadamente tiene el efecto secundario de pérdida de memoria temporal, a veces incluso para cosas simples de cada día."
+msgstr "El sueño crioestático prolongado desafortunadamente tiene el efecto secundario de pérdida de memoria temporal, a veces incluso de cosas simples de cada día."
 
 #: dialogs/TutorialTom.lua:120
 msgid "So let's start with the basics, shall we?"
@@ -18214,7 +18212,7 @@ msgstr "Así que comencemos con lo básico, ¿sí?"
 
 #: dialogs/TutorialTom.lua:127
 msgid "Glad to see you figured out the quest log!"
-msgstr "¡Me alegra ver que averiguase como ver el registro de misiones!"
+msgstr "¡Me alegra ver que viste cómo ver el registro de misiones!"
 
 #: dialogs/TutorialTom.lua:132
 msgid "Speaking of moment, you can also [b]sprint[/b] by holding the [b]control key[/b]."
@@ -18226,7 +18224,7 @@ msgstr "Al parecer, puedo correr si mantengo la tecla control mientras me muevo.
 
 #: dialogs/TutorialTom.lua:134
 msgid "This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded."
-msgstr "Esta distancia está determinada por tu barra de estamina; a más tengas , más lejos puedes correr sin cansarte."
+msgstr "Esta distancia está determinada por tu barra   de estamina; a más tengas, más lejos puedes correr sin cansarte."
 
 #: dialogs/TutorialTom.lua:158
 msgid "Excellent, I see you already took on the armor that was in the box."
@@ -18266,43 +18264,43 @@ msgstr "Los Linarianos veis el mundo de forma similar a las interfaces [b]HUD[/b
 
 #: dialogs/TutorialTom.lua:240
 msgid "Linarians, like all birds, have a remarkable internal sense of direction. Apparently your HUD has a [b]compass[/b], represented by four red arrows in the upper right corner with North marked on it."
-msgstr ""
+msgstr "Los Linarianos, como todo pájaro, tenéis un remarcable sentido interno de la dirección. Aparentemente vuestro HUD tiene una [b]brújula[/b], representada por cuatro rojas flechas en la esquina superior derecha con el Norte marcado."
 
 #: dialogs/TutorialTom.lua:241
 msgid "You can temporarily disable this compass by pressing the 'tab' key."
-msgstr ""
+msgstr "Puedes desactivar temporalmente esta brújula presionando la tecla 'tabulación'"
 
 #: dialogs/TutorialTom.lua:242
 msgid "I learned the four red arrows in the upper-right of my HUD is a compass with north marked on it. I can toggle it using the 'tab' key."
-msgstr ""
+msgstr "He aprendido que las cuatro flechas en la esquina superior derecha de mi HUD es una brújula con el norte marcado. La puedo conmutar usando la tecla 'tab'."
 
 #: dialogs/TutorialTom.lua:243
 msgid "Rumor is there was a device Linarians used to remember every place they had been, called an [b]automap[/b]."
-msgstr ""
+msgstr "Cuenta el rumor que había un dispositivo usado por los Linarianos para recordar cada lugar en que habían estado, llamado [b]automapa[/b]."
 
 #: dialogs/TutorialTom.lua:244
 msgid "Although, you don't currently have such a device, you might find someone with nanotechnology skills to make one."
-msgstr ""
+msgstr "Sin embargo, no dispones actualmente de tal dispositivo, podrías hallar a alguien con habilidades en nanotecnología que te haga uno."
 
 #: dialogs/TutorialTom.lua:245
 msgid "I'll keep that in mind."
-msgstr ""
+msgstr "Recordaré eso."
 
 #: dialogs/TutorialTom.lua:251
 msgid "My limbs don't seem to want to work properly. Can you help me with that?"
-msgstr ""
+msgstr "Mis extremidades no parecen funcionar apropiadamente. ¿Puede ayudarme con eso?"
 
 #: dialogs/TutorialTom.lua:253
 msgid "Ah yes, movement. It's second nature to us humans, but our research with you in the past showed that your brain seems to work more like a computer."
-msgstr ""
+msgstr "Ah sí, movimiento. Es naturaleza secundaria para nosotros los humanos, mas nuestra investigación pasada con vosotros mostró que vuestro cerebro parece funcionar más como un computador."
 
 #: dialogs/TutorialTom.lua:254
 msgid "To move somewhere, you have to [b]left click[/b] on the destination on your HUD."
-msgstr ""
+msgstr "Para moverte a alguna parte, has de [b]hacer click[/b] en la destinación en tu HUD."
 
 #: dialogs/TutorialTom.lua:255
 msgid "If you can go there, you will do so."
-msgstr ""
+msgstr "Si puedes ir, lo harás."
 
 #: dialogs/TutorialTom.lua:256
 msgid "Now try to move to the red dot to the north. Then to the black grating to the east, and then talk to me again."

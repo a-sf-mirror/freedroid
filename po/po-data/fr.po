@@ -5,13 +5,14 @@
 # Translators:
 # fluzz <fluzz@gmx.com>, 2015
 # fluzz <fluzz@gmx.com>, 2015
+# gino ingras <ginoingras@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
 "POT-Creation-Date: 2016-01-08 14:04+0100\n"
-"PO-Revision-Date: 2015-10-10 09:03+0000\n"
-"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"PO-Revision-Date: 2016-01-16 08:43+0000\n"
+"Last-Translator: gino ingras <ginoingras@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/arctic-games/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -586,7 +587,7 @@ msgstr "Oups, tu as tué Baptiste."
 
 #: map/events.dat:6659
 msgid "Ooops, you killed Pendragon."
-msgstr ""
+msgstr "Oups, tu as tué Pendragon."
 
 #: map/item_specs.lua:121
 msgid "The first item is VERY buggy ingame, so don't use it."
@@ -2795,7 +2796,7 @@ msgstr "Tania est morte avant de pouvoir s'échapper de son bunker souterrain. J
 
 #: map/quests.dat:149
 msgid "Tania died in the desert while trying to make it to the town. I was unable to protect her."
-msgstr "La boîte à outils de Jennifer"
+msgstr "Tania est morte dans le desert, en essayant de revenir en ville. J'ai été incapable de la protéger."
 
 #: map/quests.dat:152
 msgid "Tania died while trying to make it to the town. I was unable to protect her."
@@ -2803,11 +2804,11 @@ msgstr "Tania est morte en essayant de revenir en ville. J'ai été incapable de
 
 #: map/quests.dat:155
 msgid "Tania made it to the town!"
-msgstr "Tania a réussis à arriver en ville !"
+msgstr "Tania a réussi à arriver en ville !"
 
 #: map/quests.dat:156
 msgid "Tania successfully made it to the town!"
-msgstr "Tania a magistralement réussis à arriver en ville !"
+msgstr "Tania a magistralement réussi à arriver en ville !"
 
 #: map/quests.dat:166
 msgid "Saving the shop"
@@ -2918,8 +2919,8 @@ msgid "Barkeeper"
 msgstr "Tenancier de bar"
 
 #: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
-#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
-#: map/ReturnOfTux.droids:30 map/ReturnOfTux.droids:32
+#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18 map/ReturnOfTux.droids:30
+#: map/ReturnOfTux.droids:32
 msgid "Red Guard Member"
 msgstr "Membre de la Garde Rouge"
 
@@ -3003,17 +3004,13 @@ msgstr "Garde du Terminal de Contrôle de la BBD"
 msgid "MS Emissary"
 msgstr "Ambassadeur de MS"
 
-#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70
-#: map/ReturnOfTux.droids:71 map/ReturnOfTux.droids:72
-#: map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
-#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76
-#: map/ReturnOfTux.droids:77 map/ReturnOfTux.droids:78
-#: map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
-#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82
-#: map/ReturnOfTux.droids:83 map/ReturnOfTux.droids:84
-#: map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
-#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88
-#: map/ReturnOfTux.droids:89
+#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70 map/ReturnOfTux.droids:71
+#: map/ReturnOfTux.droids:72 map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
+#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76 map/ReturnOfTux.droids:77
+#: map/ReturnOfTux.droids:78 map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
+#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82 map/ReturnOfTux.droids:83
+#: map/ReturnOfTux.droids:84 map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
+#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88 map/ReturnOfTux.droids:89
 msgid "Singularity Drone"
 msgstr "Drone de Singularité"
 
@@ -3525,7 +3522,7 @@ msgstr "Grenade au gaz"
 
 #: map/skill_specs.lua:311
 msgid "Small EMP grenade"
-msgstr "Petite grenade EMP"
+msgstr "Petite grenade IEM"
 
 #: map/skill_specs.lua:324
 msgid "EMP grenade"

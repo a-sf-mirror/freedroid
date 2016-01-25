@@ -1024,11 +1024,11 @@ msgstr "Ale teď jsou všichni tak šťastní, že jsou všichni roboti dole, ta
 
 #: dialogs/Bender.lua:70
 msgid "Maybe you should talk to him soon. He might be in a good mood and give it to you anyway."
-msgstr "Možná by sis s ním mohl brzy promluvit. Mohl by být v dobré náladě a dát to tebe tak jako tak."
+msgstr "Možná by sis s ním měl brzy promluvit. Mohl by být v dobré náladě a dát ti ho tak jako tak."
 
 #: dialogs/Bender.lua:71
 msgid "Hey, that sounds like a smart idea! Thanks, man, I'll do that!"
-msgstr "Hej, to zní jako chytrý nápad! Díky, kámo, udělám to!"
+msgstr "Hej, to zní jako dobrý nápad! Díky, kámo, udělám to!"
 
 #: dialogs/Bender.lua:72
 msgid "Since the killer bots around the town got a taste of my firmware, I think the Doc won't mind giving Bender his medicine now... I should talk to him when I see him."
@@ -1498,7 +1498,7 @@ msgstr "Nezáleží na tom, co jsi udělal kámo. Záleží na tom, co si mýsl�
 
 #: dialogs/Bender.lua:421
 msgid "But it's only the ones that get their updates from this factory..."
-msgstr "To ale jen ty, co dostali aktualizaci z továrny..."
+msgstr "Ale jen ty, co dostali aktualizaci z továrny..."
 
 #: dialogs/Bender.lua:422
 msgid "And you did it with one hand tied behind your back! Or your wing, or flipper. You know, man."
@@ -1534,7 +1534,7 @@ msgstr "Ne, to se vůbec nestalo a ty tvrdíš, že se to stalo. To se nesmí st
 
 #: dialogs/Bender.lua:443
 msgid "But that's not what everyone will say after I tell them that's what happened."
-msgstr "Ale to není to, co budou všichni říkat poté, co jim povím, že je přesně to, co se stalo."
+msgstr "Ale to není to, co budou všichni říkat poté, co jim povím, že je to přesně to, co se stalo."
 
 #: dialogs/Bender.lua:444
 msgid "But... I... Arrrgh!"
@@ -1555,7 +1555,7 @@ msgstr "Ne, já... já jen potřebuju trochu zchladnout..."
 #: dialogs/Bender.lua:449
 #, c-format
 msgid "Oh, sure, ok. But I can fix you up with some if you change your mind. It's 100%% satisfaction guaranteed, cheap, AND free."
-msgstr "Oh, jasně, ok. Ale s nějakými tě mohu vyléčit, když změníš názor. 100%% spokojenost zaručena., jsou levné A ZADARMO."
+msgstr "Oh, jasně, ok. Ale s nějakými tě mohu vyléčit, když změníš názor. 100%% spokojenost zaručena, jsou levné A ZADARMO."
 
 #: dialogs/Bender.lua:455
 msgid "That was a nice entrance you made there."
@@ -1776,7 +1776,7 @@ msgstr "Ano, chci ještě více školení. (stojí 200 obvodů, 6 výcvikových 
 
 #: dialogs/Benjamin.lua:151
 msgid "So let's start the second course?"
-msgstr ""
+msgstr "Takže začneme s druhým kurzem?"
 
 #: dialogs/Benjamin.lua:154
 msgid "Very well."
@@ -1992,7 +1992,7 @@ msgstr "Laser je technologie využitá ve většině našich zbraní. Používá
 
 #: dialogs/Benjamin.lua:274
 msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say. It is also not affected by gravity or wind, which makes aiming easier."
-msgstr ""
+msgstr "Jelikož se paprsek skládá ze světla, cestuje VELMI rychle, rychlostí světla, dalo by se říct. Také není ovlivněn gravitací nebo větrem, což usnadňuje míření."
 
 #: dialogs/Benjamin.lua:275
 msgid "However, other than being a good training tool for newbies, that design just fails to deliver."
@@ -2463,7 +2463,7 @@ msgstr "Tady, vem si ji."
 
 #: dialogs/Bruce.lua:247
 msgid "Where is it?"
-msgstr "Kde to je?"
+msgstr "Kde je?"
 
 #: dialogs/Bruce.lua:248
 msgid "Did you lose it?"
@@ -5360,9 +5360,8 @@ msgstr "Mír a pravidelnou údržbu, dokud se nesetkáme v cloudu."
 
 #: dialogs/DeadGuy.lua:33 dialogs/Ewalds_296.lua:324
 #: dialogs/FactionDeadBot.lua:33 dialogs/Francis.lua:98
-#: dialogs/HF-FirmwareUpdateServer.lua:88
-#: dialogs/HF-FirmwareUpdateServer.lua:89 dialogs/Jasmine.lua:115
-#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
+#: dialogs/HF-FirmwareUpdateServer.lua:88 dialogs/HF-FirmwareUpdateServer.lua:89
+#: dialogs/Jasmine.lua:115 dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
 #: dialogs/Maintenance-Terminal.lua:58 dialogs/Michelangelo.lua:156
 #: dialogs/Mike.lua:239 dialogs/Singularity-Drone.lua:34
 #: dialogs/Singularity.lua:156 dialogs/Town-TuxGuard.lua:121
@@ -6937,7 +6936,7 @@ msgstr "Štít vypnut."
 
 #: dialogs/DSB-MachineDeckControl.lua:64
 msgid "I've taken over the control terminal and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
-msgstr ""
+msgstr "Převzal jsem kontrolu nad řídícím terminálem a vypnul štít rušení. Teď bych měl jít do Pekelné pevnosti a hacknout aktualizační systém MS firmwaru."
 
 #: dialogs/DSB-MachineDeckControl.lua:69
 msgid "WARNING: Another user is using this computer."
@@ -7014,8 +7013,7 @@ msgid "Access granted. Closing gate ..."
 msgstr "Přístup povolen. Zavírání brány ..."
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106
-#: dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Ukončení"
 
@@ -7869,7 +7867,7 @@ msgstr "... Cože?"
 
 #: dialogs/Engel.lua:381
 msgid "I... WILL KILL... Who did this?!"
-msgstr ""
+msgstr "Já... ZABIJU... Kdo to udělal?!"
 
 #: dialogs/Engel.lua:382
 msgid "All the bots are dead..."
