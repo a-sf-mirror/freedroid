@@ -464,6 +464,9 @@ Trigger at label="0-secret-exit-door-indoor1"
 Teleported=0
 Silent=1
 <LuaCode>
+	if get_obstacle_type("0-secret-exit-door") == 170 then
+		display_big_message(_"You have found the Town's secret exit door.\nUse it only in case of emergency.")
+	end
 	change_obstacle_type("0-secret-exit-door", 6) -- WE blue 1x1 closed door
 </LuaCode>
 * End of trigger *
@@ -474,6 +477,9 @@ Trigger at label="0-secret-exit-door-indoor2"
 Teleported=0
 Silent=1
 <LuaCode>
+	if get_obstacle_type("0-secret-exit-door") == 170 then
+		display_big_message(_"You have found the Town's secret exit door.\nUse it only in case of emergency.")
+	end
 	change_obstacle_type("0-secret-exit-door", 6) -- WE blue 1x1 closed door
 </LuaCode>
 * End of trigger *
