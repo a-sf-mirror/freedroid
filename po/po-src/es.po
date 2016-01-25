@@ -328,8 +328,7 @@ msgstr "Salir al Menú Principal"
 msgid "Return to Editor"
 msgstr "Volver al Editor"
 
-#: src/influ.c:997 src/menu.c:851 src/menu.c:1005
-#: src/lvledit/lvledit_menu.c:965
+#: src/influ.c:997 src/menu.c:851 src/menu.c:1005 src/lvledit/lvledit_menu.c:965
 msgid "Exit FreedroidRPG"
 msgstr "Salir de FreedroidRPG"
 
@@ -1240,9 +1239,9 @@ msgstr "difícil"
 msgid "Difficulty: %s"
 msgstr "Dificultad: %s"
 
-#: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144
-#: src/menu.c:1229 src/menu.c:1340 src/menu.c:1405 src/menu.c:1478
-#: src/menu.c:1629 src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
+#: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144 src/menu.c:1229
+#: src/menu.c:1340 src/menu.c:1405 src/menu.c:1478 src/menu.c:1629
+#: src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
 #: src/lvledit/lvledit_menu.c:126 src/lvledit/lvledit_menu.c:241
 #: src/lvledit/lvledit_menu.c:415 src/lvledit/lvledit_menu.c:642
 msgid "Back"

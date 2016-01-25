@@ -585,11 +585,11 @@ msgstr "Ajajaj, zabil jsi Spencera."
 
 #: map/events.dat:6659
 msgid "Ooops, you killed Pendragon."
-msgstr ""
+msgstr "Ajajaj, zabil jsi Pendragona."
 
 #: map/item_specs.lua:121
 msgid "The first item is VERY buggy ingame, so don't use it."
-msgstr "První předmět je ve hře velmi problematický, nepoužívejte ho."
+msgstr "První předmět je ve hře VELMI problematický, nepoužívejte ho."
 
 #: map/item_specs.lua:124
 msgid "Dummy item. If you see this, please report it as bug."
@@ -621,7 +621,7 @@ msgstr "Starožitný obouruční meč"
 
 #: map/item_specs.lua:198
 msgid "Very maneuverable for its size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
-msgstr "Na svou velikost velmi obratný a dostatečně těžký k proražení slabšího brnění robotů 1 úderem. Jediná nevýhoda tohoto meče je ta samá jako u ostatních mečů - prostě nevydrží dlouho při sekání kovových částí."
+msgstr "Na svou velikost velmi obratný a dostatečně těžký k proražení slabšího brnění robotů 1 úderem. Jediná nevýhoda tohoto meče je ta samá jako u ostatních mečů - prostě nevydrží dlouho při sekání do kovových částí."
 
 #: map/item_specs.lua:206
 msgid "Chainsaw"
@@ -2917,8 +2917,8 @@ msgid "Barkeeper"
 msgstr "Barman"
 
 #: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
-#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
-#: map/ReturnOfTux.droids:30 map/ReturnOfTux.droids:32
+#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18 map/ReturnOfTux.droids:30
+#: map/ReturnOfTux.droids:32
 msgid "Red Guard Member"
 msgstr "Člen Rudé stráže"
 
@@ -3002,17 +3002,13 @@ msgstr "Stráž ovládacího terminálu DSB"
 msgid "MS Emissary"
 msgstr "MS vyslanec"
 
-#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70
-#: map/ReturnOfTux.droids:71 map/ReturnOfTux.droids:72
-#: map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
-#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76
-#: map/ReturnOfTux.droids:77 map/ReturnOfTux.droids:78
-#: map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
-#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82
-#: map/ReturnOfTux.droids:83 map/ReturnOfTux.droids:84
-#: map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
-#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88
-#: map/ReturnOfTux.droids:89
+#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70 map/ReturnOfTux.droids:71
+#: map/ReturnOfTux.droids:72 map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
+#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76 map/ReturnOfTux.droids:77
+#: map/ReturnOfTux.droids:78 map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
+#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82 map/ReturnOfTux.droids:83
+#: map/ReturnOfTux.droids:84 map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
+#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88 map/ReturnOfTux.droids:89
 msgid "Singularity Drone"
 msgstr "Dron singularity"
 

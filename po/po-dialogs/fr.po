@@ -36,7 +36,7 @@ msgstr "Ordre reçu. Début du scan à niveau d'énergie de proximité…"
 
 #: dialogs/614_cryo.lua:66
 msgid "***** Proximity Scan Results *****"
-msgstr "***** Résultats du scan de proximité *****"
+msgstr "***** Résultats du Scan de proximité *****"
 
 #: dialogs/614_cryo.lua:68
 msgid "Hostile Numeric Presence: [b]HIGH[/b]"
@@ -44,11 +44,11 @@ msgstr "Présence Numérique Hostile: [b]ÉLEVÉE[/b]"
 
 #: dialogs/614_cryo.lua:69
 msgid "Enemy Energy Levels: [b]LOW[/b]"
-msgstr "Niveau d'énergie des ennemies  [b]FAIBLE[/b]"
+msgstr "Niveau d'énergie des ennemis  [b]FAIBLE[/b]"
 
 #: dialogs/614_cryo.lua:70
 msgid "Threat Degree Analysis: [b]MODERATE[/b]"
-msgstr "Analyse du degré de menace : [b]MODERÉ[/b]"
+msgstr "Analyse du degré de menace : [b]MODÉRÉE[/b]"
 
 #: dialogs/614_cryo.lua:72
 msgid "Hostile Numeric Presence: [b]NONE[/b]"
@@ -95,7 +95,7 @@ msgstr "Retour au programme de surveillance."
 
 #: dialogs/614_sub.lua:27
 msgid "Entering Interactive Product Information Database"
-msgstr "Entrée dans la Base de données interactive d'information sur les produits"
+msgstr "Entrer dans la Base de données interactive d'informations sur les produits"
 
 #: dialogs/614_sub.lua:28
 msgid "I am a 614 security bot, once one of the best-selling products of Nicholson, Inc.."
@@ -111,7 +111,7 @@ msgstr "J'appartiens à une ancienne génération de robots, avec un système d'
 
 #: dialogs/614_sub.lua:37
 msgid "None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault."
-msgstr "Aucun des robots de cette série n'étaient affectés par les processus qui ont conduit l'attaque des robots, plus connue sous le nom du Grand Assaut."
+msgstr "Aucun des robots de cette série n'étaient affectés par les processus qui ont conduit à l'attaque des robots, plus connue sous le nom du Grand Assaut."
 
 #: dialogs/614_sub.lua:38
 msgid "Even though discontinued by Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series."
@@ -183,15 +183,15 @@ msgstr "Le dernier modèle de droïde de sécurité est la série 615."
 
 #: dialogs/614_sub.lua:68
 msgid "Unfortunately its development was not finished when the great assault started."
-msgstr "Malheureusement, sont développement n'était pas encore terminé lorseque le grand assault à commencé."
+msgstr "Malheureusement, son développement n'était pas encore terminé lorsque le Grand Assaut a commencé."
 
 #: dialogs/614_sub.lua:69
 msgid "The lack of security options on the system of the 615 led to a malfunction."
-msgstr "Le manque de certaine option de sécurité sur le système des 615 à provoqué un dysfonctionnement."
+msgstr "Le manque de certaines options de sécurité sur le système des 615 a provoqué un dysfonctionnement."
 
 #: dialogs/614_sub.lua:70
 msgid "Circumstances that led to the great assault even made the 615 go crazy and attack people."
-msgstr "Les circonstances qui ont conduit au grand assaut lui-même ont rendu les 615 fous et les ont fait s'attaquer au gens."
+msgstr "Les circonstances qui ont conduit au Grand Assaut lui-même ont rendu les 615 fous et les ont fait s'attaquer au gens."
 
 #: dialogs/614_sub.lua:71
 msgid "For the sake of your health, you should stay away from the 615 droids."
@@ -207,7 +207,7 @@ msgstr "Je pense que c'était assez d'informations sur ce produit, merci."
 
 #: dialogs/614_sub.lua:80
 msgid "Leaving Interactive Product Information Database"
-msgstr "Sortie de la Base de données interactive d'information sur les produits"
+msgstr "Sortie de la Base de données interactive d'informations sur les produits"
 
 #: dialogs/AfterTakeover.lua:36
 #, c-format
@@ -1778,7 +1778,7 @@ msgstr "Oui, je veux m'entraîner davantage. (coûte 200 circuits, 6 points d'en
 
 #: dialogs/Benjamin.lua:151
 msgid "So let's start the second course?"
-msgstr ""
+msgstr "Donc, on y va pour un deuxième cours ?"
 
 #: dialogs/Benjamin.lua:154
 msgid "Very well."
@@ -1994,7 +1994,7 @@ msgstr "Le laser est la technologie employée dans la plus grande partie de l'ar
 
 #: dialogs/Benjamin.lua:274
 msgid "Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say. It is also not affected by gravity or wind, which makes aiming easier."
-msgstr ""
+msgstr "Parce que le faisceau est fait de lumière, il se propage TRÈS rapidement, à la vitesse de la lumière pour ainsi dire. De même, il n'est pas affecté par la gravité ou le vent, ce qui permet de viser plus facilement."
 
 #: dialogs/Benjamin.lua:275
 msgid "However, other than being a good training tool for newbies, that design just fails to deliver."
@@ -3667,7 +3667,7 @@ msgstr "Votre détresse est remarquée par un héros qui vous secourt avec vaill
 #: dialogs/c-net-nethack_sub.lua:590
 #, c-format
 msgid "The %s casts change gender on you."
-msgstr ""
+msgstr "Le sort %s change votre genre."
 
 #. TRANSLATORS:  %s = enemy name
 #: dialogs/c-net-nethack_sub.lua:592
@@ -3883,7 +3883,7 @@ msgstr "Vous trouvez une dague Epée vorpale."
 
 #: dialogs/c-net-nethack_sub.lua:722
 msgid "You find a breast plate of awesome."
-msgstr ""
+msgstr "Vous trouvez un imposant plastron."
 
 #: dialogs/c-net-nethack_sub.lua:723
 msgid "You find a spell of doom."
@@ -4001,7 +4001,7 @@ msgstr "Vous trouvez une baguette magique."
 
 #: dialogs/c-net-nethack_sub.lua:756
 msgid "You find a skipping stone."
-msgstr ""
+msgstr "Vous trouvez un galet pour faire des ricochets."
 
 #: dialogs/c-net-nethack_sub.lua:757
 msgid "You find a trick dagger."
@@ -4138,7 +4138,7 @@ msgstr "%s vous pousse vraiment fort. Vous êtes agacé."
 #: dialogs/c-net-nethack_sub.lua:819
 #, c-format
 msgid "%s takes a swing at you, but can't reach you from there."
-msgstr ""
+msgstr "%s vous lance un coup de poing, mais ne peut vous atteindre de là."
 
 #: dialogs/c-net-nethack_sub.lua:825
 msgid "You died."
@@ -4214,7 +4214,7 @@ msgstr "A l'aide de magie, vous coupez les pieds et les poignées dans la roche 
 
 #: dialogs/c-net-nethack_sub.lua:883
 msgid "Reaching a state of total ONE-ness with the world, you break your earthly bonds, and rise upwards."
-msgstr ""
+msgstr "En atteignant l'harmonie avec le monde, vous rompez vos liens terrestres, et vous vous élevez."
 
 #: dialogs/c-net-nethack_sub.lua:884
 msgid "You climb the cliff-face."
@@ -5364,9 +5364,8 @@ msgstr "Paix et maintenance régulière sur toi, jusqu'à ce que nous nous retro
 
 #: dialogs/DeadGuy.lua:33 dialogs/Ewalds_296.lua:324
 #: dialogs/FactionDeadBot.lua:33 dialogs/Francis.lua:98
-#: dialogs/HF-FirmwareUpdateServer.lua:88
-#: dialogs/HF-FirmwareUpdateServer.lua:89 dialogs/Jasmine.lua:115
-#: dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
+#: dialogs/HF-FirmwareUpdateServer.lua:88 dialogs/HF-FirmwareUpdateServer.lua:89
+#: dialogs/Jasmine.lua:115 dialogs/Jennifer.lua:75 dialogs/Kevin.lua:443
 #: dialogs/Maintenance-Terminal.lua:58 dialogs/Michelangelo.lua:156
 #: dialogs/Mike.lua:239 dialogs/Singularity-Drone.lua:34
 #: dialogs/Singularity.lua:156 dialogs/Town-TuxGuard.lua:121
@@ -6941,7 +6940,7 @@ msgstr "bouclier désactivé."
 
 #: dialogs/DSB-MachineDeckControl.lua:64
 msgid "I've taken over the control terminal and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
-msgstr ""
+msgstr "J'ai pris le contrôle du terminal et désactivé le champ disrupteur. Maintenant, je devrais aller à la Forteresse Infernale et pirater le système de mise à jour des firmwares MS."
 
 #: dialogs/DSB-MachineDeckControl.lua:69
 msgid "WARNING: Another user is using this computer."
@@ -7018,8 +7017,7 @@ msgid "Access granted. Closing gate ..."
 msgstr "Accès accordé. Fermeture de la porte…"
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106
-#: dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Quitter"
 
@@ -7873,7 +7871,7 @@ msgstr "... Pardon ?"
 
 #: dialogs/Engel.lua:381
 msgid "I... WILL KILL... Who did this?!"
-msgstr ""
+msgstr "Je ... vais TUER... Qui a fait ça ?"
 
 #: dialogs/Engel.lua:382
 msgid "All the bots are dead..."

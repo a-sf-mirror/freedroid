@@ -2915,8 +2915,8 @@ msgid "Barkeeper"
 msgstr "Tabernero"
 
 #: map/ReturnOfTux.droids:8 map/ReturnOfTux.droids:11 map/ReturnOfTux.droids:13
-#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18
-#: map/ReturnOfTux.droids:30 map/ReturnOfTux.droids:32
+#: map/ReturnOfTux.droids:17 map/ReturnOfTux.droids:18 map/ReturnOfTux.droids:30
+#: map/ReturnOfTux.droids:32
 msgid "Red Guard Member"
 msgstr "Miembro de la guardia roja"
 
@@ -3000,17 +3000,13 @@ msgstr "Guardia de la Terminal de Control de BED"
 msgid "MS Emissary"
 msgstr "Emisario MS"
 
-#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70
-#: map/ReturnOfTux.droids:71 map/ReturnOfTux.droids:72
-#: map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
-#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76
-#: map/ReturnOfTux.droids:77 map/ReturnOfTux.droids:78
-#: map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
-#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82
-#: map/ReturnOfTux.droids:83 map/ReturnOfTux.droids:84
-#: map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
-#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88
-#: map/ReturnOfTux.droids:89
+#: map/ReturnOfTux.droids:69 map/ReturnOfTux.droids:70 map/ReturnOfTux.droids:71
+#: map/ReturnOfTux.droids:72 map/ReturnOfTux.droids:73 map/ReturnOfTux.droids:74
+#: map/ReturnOfTux.droids:75 map/ReturnOfTux.droids:76 map/ReturnOfTux.droids:77
+#: map/ReturnOfTux.droids:78 map/ReturnOfTux.droids:79 map/ReturnOfTux.droids:80
+#: map/ReturnOfTux.droids:81 map/ReturnOfTux.droids:82 map/ReturnOfTux.droids:83
+#: map/ReturnOfTux.droids:84 map/ReturnOfTux.droids:85 map/ReturnOfTux.droids:86
+#: map/ReturnOfTux.droids:87 map/ReturnOfTux.droids:88 map/ReturnOfTux.droids:89
 msgid "Singularity Drone"
 msgstr "Droide Singularidad"
 

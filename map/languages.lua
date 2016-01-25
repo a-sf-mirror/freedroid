@@ -31,8 +31,9 @@ languages{
 	{ name = "Deutsch",      locale = "de_DE" },
 	{ name = "English (US)", locale = "en_US" },
 	{ name = "Francais",     locale = "fr_FR" },
-	{ name = "Svenska",      locale = "sv_SV" },
+	{ name = "Italiano",     locale = "it_IT" },
 	{ name = "Spanish",      locale = "es_ES" },
+	{ name = "Svenska",      locale = "sv_SV" },
 }
 
 codesets{
@@ -45,8 +46,9 @@ codesets{
 	{ language = "cs", encoding = "ISO-8859-2"  },
 	{ language = "de", encoding = "ISO-8859-15" },
 	{ language = "en", encoding = "ISO-8859-15" },
+	{ language = "es", encoding = "ISO-8859-15" },
 	{ language = "fr", encoding = "ISO-8859-15" },
+	{ language = "it", encoding = "ISO-8859-15" },
 	{ language = "pt", encoding = "ISO-8859-15" },
 	{ language = "sv", encoding = "ISO-8859-15" },
-	{ language = "es", encoding = "ISO-8859-15" },
 }
