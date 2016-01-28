@@ -193,6 +193,8 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 	int old_knob_at = 0;
 	SDL_Event event;
 	SDL_Rect knob_target_rect;
+	int wait_before_repeat = 0; // 0: apply once only - 1: apply once and wait before repeat - 2: repeat after delay
+	Uint32 time_before_repeat = 0;
 
 	/* Initialize the text widget. */
 	static struct widget_text item_description;
@@ -245,9 +247,11 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 				switch(event.key.keysym.sym) {
 					case SDLK_LEFT:
 						delta = -1;
+						wait_before_repeat = 0; // apply once only
 						break;
 					case SDLK_RIGHT:
 						delta = 1;
+						wait_before_repeat = 0; // apply once only
 						break;
 					case SDLK_DOWN:
 						knob_at = lower_range;
@@ -285,8 +289,10 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 						ok_button_was_pressed = TRUE;
 					} else if (MouseCursorIsOnButton(NUMBER_SELECTOR_LEFT_BUTTON, event.button.x, event.button.y)) {
 						delta = -1;
+						wait_before_repeat = 1; // apply once and wait before repeat
 					} else if (MouseCursorIsOnButton(NUMBER_SELECTOR_RIGHT_BUTTON, event.button.x, event.button.y)) {
 						delta = 1;
+						wait_before_repeat = 1; // apply once and wait before repeat
 					}
 				}
 			} else if (event.type == SDL_MOUSEBUTTONUP) {
@@ -312,8 +318,17 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 		}
 
 		if (delta != 0) {
-			knob_at = max(lower_range, min(upper_range, knob_at + delta));
-			SDL_Delay(80);
+			if (wait_before_repeat == 0) { // apply once only (when numkeys are used to change the value)
+				knob_at = max(lower_range, min(upper_range, knob_at + delta));
+				delta = 0;
+			} else if (wait_before_repeat == 1) { // apply once and wait before repeat
+				knob_at = max(lower_range, min(upper_range, knob_at + delta));
+				wait_before_repeat = 2; // repeat after delay
+				time_before_repeat = SDL_GetTicks() + 500; // 500ms before starting to repeat
+			} else if ((wait_before_repeat == 2) && (SDL_GetTicks() > time_before_repeat)) { // repeat apply
+				knob_at = max(lower_range, min(upper_range, knob_at + delta));
+				SDL_Delay(50); // 50ms interval between 2 repeats
+			}
 		}
 		
 		knob_offset_x = (knob_at - lower_range) * knob_step_size;
