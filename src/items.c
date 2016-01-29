@@ -668,7 +668,7 @@ void Quick_ApplyItem(int ItemKey)
 	if (FoundItemNr == (-1))
 		return;
 
-	ApplyItem(&(Me.Inventory[FoundItemNr]));
+	apply_item(&(Me.Inventory[FoundItemNr]));
 
 };				// void Quick_ApplyItem( item* CurItem )
 
@@ -709,7 +709,7 @@ int item_spec_eq_id(int type, const char *id)
  * This function applies a given item (to the influencer) and maybe 
  * eliminates the item after that, if it's an item that gets used up.
  */
-void ApplyItem(item * CurItem)
+void apply_item(item * CurItem)
 {
 	int failed_usage = 0; // if an item cannot be applied, to not remove it from inventory
 
@@ -1811,7 +1811,7 @@ void HandleInventoryScreen(void)
 					if (Me.Inventory[Grabbed_InvPos].max_durability != -1)
 						self_repair_item(&(Me.Inventory[Grabbed_InvPos]));
 					else
-						ApplyItem(&(Me.Inventory[Grabbed_InvPos]));
+						apply_item(&(Me.Inventory[Grabbed_InvPos]));
 				}
 			} else {
 				int i;
@@ -1833,10 +1833,9 @@ void HandleInventoryScreen(void)
 
 				Grabbed_InvPos = GetInventoryItemAt(Inv_GrabLoc.x, Inv_GrabLoc.y);
 
-				if (Grabbed_InvPos != -1) {
+				if ((Grabbed_InvPos != -1) && (&(Me.Inventory[Grabbed_InvPos]) != item_held_in_hand)) {
 					// At this point we know, that we have just applied something from the inventory
-					//
-					ApplyItem(&(Me.Inventory[Grabbed_InvPos]));
+					apply_item(&(Me.Inventory[Grabbed_InvPos]));
 				}
 			}
 		}

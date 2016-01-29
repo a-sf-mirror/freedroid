@@ -454,7 +454,7 @@ item *DropItemAt(int, int, float, float, int);
 void Quick_ApplyItem(int ItemKey);
 int item_spec_eq_id(int type, const char *id);
 int get_item_type_by_id(const char *id);
-void ApplyItem(item * CurItem);
+void apply_item(item * CurItem);
 int Inv_Pos_Is_Free(int x, int y);
 int GetInventoryItemAt(int x, int y);
 int ItemUsageRequirementsMet(item * UseItem, int MakeSound);
