@@ -951,6 +951,17 @@ static int lua_get_game_time(lua_State *L)
 	return 1;
 }
 
+static int lua_get_game_date(lua_State *L)
+{
+	// This function retrieves the ingame date, using C functions defined in hud.c
+	// It returns in sequence: days, hours and minutes.
+	lua_pushinteger(L, get_days_of_game_duration(Me.current_game_date));
+	lua_pushinteger(L, get_hours_of_game_duration(Me.current_game_date));
+	lua_pushinteger(L, get_minutes_of_game_duration(Me.current_game_date));
+
+	return 3;
+}
+
 static int lua_win_game(lua_State *L)
 {
 	ThouHastWon();
@@ -1385,6 +1396,7 @@ luaL_Reg lfuncs[] = {
 	// Finish the game.
 
 	{"game_time", lua_get_game_time},
+	{"game_date", lua_get_game_date},
 	/* play_sound("file")
 	 * path has to originate from /sound , e.g.
 	 * play_sound("effects/No_Ammo_Sound_0.ogg")
