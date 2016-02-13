@@ -175,9 +175,10 @@ return {
 		text = "date",
 		echo_text = false,
 		code = function()
-			-- Npc:says(get_date() ,"NO_WAIT")
 			Tux:says("date", "NO_WAIT")
-			Npc:says(_"Date unknown", "NO_WAIT")
+			local day, hour, minute = game_date()
+			--; TRANSLATORS: It shows the ingame date in format: Day day, hour:minute
+			Npc:says(_"Day %d, %02d:%02d", day, hour, minute, "NO_WAIT")
 			cli_says(c_net_prompt, "NO_WAIT")
 		end,
 	},
