@@ -102,6 +102,7 @@ AC_PROG_MAKE_SET
 AC_PATH_PROG([AWK], [gawk], [])   	dnl GNU version of awk awk is needed in some po/ scripts
 AC_PATH_PROG([LUADOX], [lua2dox], [])
 AM_PATH_PYTHON([2.6])
+AC_PATH_TARGET_TOOL([WINDRES], [windres], [windres])
 AM_GNU_GETTEXT_VERSION([0.18])
 AM_GNU_GETTEXT([external])
 AM_ICONV

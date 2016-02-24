@@ -3,8 +3,6 @@
 EXTRA_DIST = freedroidRPG.rc freedroidRPG.ico
 CLEANFILES = freedroidRPG.coff
 
-WINDRES = $(target)-windres
-
 freedroidRPG.coff: freedroidRPG.rc freedroidRPG.ico
 	$(WINDRES) -i freedroidRPG.rc -o freedroidRPG.coff -O COFF
 
