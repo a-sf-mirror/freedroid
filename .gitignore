@@ -27,11 +27,11 @@ stamp-h1
 aclocal.m4
 autom4te.cache
 .deps
+.dirstamp
 src/version.c
 src/build_flags.h
 src/savestruct.h
 src/savestruct.c
-src/.dirstamp
 src/lvledit/.dirstamp
 src/mapgen/.dirstamp
 src/widgets/.dirstamp

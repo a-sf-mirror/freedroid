@@ -483,6 +483,9 @@ void save_game_data(struct auto_string *strout)
 	int i;
 
 	autostr_append(strout, "--[[\n");
+	autostr_append(strout,
+		"SAVEGAME: %s %s %s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d\n",
+		SAVEGAME_VERSION, SAVEGAME_REVISION, VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
 	autostr_append(strout, "BUILD_CFLAGS: %s\n", BUILD_CFLAGS);
 	autostr_append(strout, "BUILD_LDFLAGS: %s\n", BUILD_LDFLAGS);
 	autostr_append(strout, "VERSION: %s\n", freedroid_version);
@@ -699,7 +702,7 @@ void load_game_data(char *strin)
 	}
 
 	// Parse the configuration file, calling table constructors to create the
-        // associated C data structures
+	// associated C data structures
 
 	run_lua(LUA_DIALOG, strin);
 }

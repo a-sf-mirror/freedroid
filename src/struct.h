@@ -554,8 +554,6 @@ typedef struct tux {
 	float MissionTimeElapsed;
 	float got_hit_time;	// how long stunned now since the last time tux got hit
 
-	string savegame_version_string;	// a string to identify games from older FreedroidRPG versions
-
 	int base_cooling;
 	int base_dexterity;
 	int base_physique;

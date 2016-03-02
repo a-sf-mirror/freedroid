@@ -68,6 +68,9 @@ freedroidRPG_SOURCES = \
 	mapgen/mapgen.c mapgen/mapgen.h \
 	mapgen/themes.c mapgen/themes.h \
 	\
+	savegame/convert.c savegame/savegame.h \
+	savegame/filters_0_16.c \
+	\
 	widgets/widgets.c widgets/widgets.h \
 	widgets/widget_background.c widgets/widget_background.h \
 	widgets/widget_button.c widgets/widget_button.h \
