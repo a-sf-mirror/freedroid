@@ -1640,8 +1640,6 @@ void free_tux()
 
 	free(Me.character_name);
 	Me.character_name = NULL;
-	free(Me.savegame_version_string);
-	Me.savegame_version_string = NULL;
 
 	clear_tux_mission_info();
 

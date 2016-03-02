@@ -37,6 +37,7 @@
 #include <sys/stat.h>
 #include "widgets/widgets.h"
 #include "savestruct.h"
+#include "savegame/savegame.h"
 
 #include "scandir.h"
 
@@ -227,7 +228,6 @@ int SaveGame(void)
 {
 	char filename[1000];
 	char filename2[1000];
-	struct auto_string *version_string;
 	int ret;
 	FILE *SaveGameFile;
 
@@ -243,13 +243,6 @@ int SaveGame(void)
 	savestruct_autostr = alloc_autostr(1048576);
 
 	Activate_Conservative_Frame_Computation();
-
-	version_string = alloc_autostr(256);
-	autostr_printf(version_string,
-		"%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d",
-		VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
-	free(Me.savegame_version_string);
-	Me.savegame_version_string = strdup(version_string->value);
 
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, ".shp");
 	sprintf(filename2, "%s/%s%s", our_config_dir, Me.character_name, ".bkp.shp");
@@ -298,7 +291,6 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM |
 
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\nint SaveGame( void ): end of function reached.");
 
-	free_autostr(version_string);
 	free_autostr(savestruct_autostr);
 	savestruct_autostr = NULL;
 	return OK;
@@ -334,8 +326,7 @@ int DeleteGame(void)
 
 static int load_saved_game(int use_backup)
 {
-	char version_check_string[1000];
-	char *LoadGameData = NULL;
+	char *game_data = NULL;
 	char filename[1000], prefix[1000];
 	FILE *DataFile;
 
@@ -373,9 +364,9 @@ static int load_saved_game(int use_backup)
 		DebugPrintf(1, "\nThe saved game file (.shp file) seems to be there at least.....");
 	}
 	if (setjmp(saveload_jmpbuf)) {
-		if (LoadGameData != NULL)
-			free((char *)LoadGameData);
-		LoadGameData = NULL;
+		if (game_data != NULL)
+			free((char *)game_data);
+		game_data = NULL;
 		return (ERR);
 	}
 
@@ -383,7 +374,8 @@ static int load_saved_game(int use_backup)
 
 	sprintf(filename, "%s%s", prefix, SAVEDGAME_EXT);
 	DataFile = fopen(filename, "rb");
-	if (inflate_stream(DataFile, (unsigned char **)&LoadGameData, NULL)) {
+	int loaded_size = 0;
+	if (inflate_stream(DataFile, (unsigned char **)&game_data, &loaded_size)) {
 		fclose(DataFile);
 		alert_window("Unable to decompress saved game - this is probably an old, incompatible game. Sorry.");
 		return ERR;
@@ -391,19 +383,30 @@ static int load_saved_game(int use_backup)
 	fclose(DataFile);
 
 	clear_out_arrays_for_fresh_game();
-	load_game_data(LoadGameData);
-
-	free(LoadGameData);
-	LoadGameData = NULL;
-
-	sprintf(version_check_string, "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d",
-		VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
-
-	if (strcmp(Me.savegame_version_string, version_check_string) != 0) {
-		alert_once_window(ONCE_PER_GAME, _("Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."));
+	int rtc = convert_old_savegame(&game_data, &loaded_size);
+	if (rtc == 1) {
+		// A fix/conversion was needed. Save the new data.
+		DataFile = fopen(filename, "wb");
+		deflate_to_stream((unsigned char *)game_data, loaded_size, DataFile);
+		fclose(DataFile);
+	} else if (rtc == 2) {
+		// Conversion was aborted. How the game_data can have been changed.
+		// We reload the savegame and use it as is.
+		free(game_data);
+		DataFile = fopen(filename, "rb");
+		int loaded_size = 0;
+		inflate_stream(DataFile, (unsigned char **)&game_data, &loaded_size);
+		fclose(DataFile);
 	}
+	load_game_data(game_data);
 
-	/* post-loading: Some transient states have to be adapted */
+	free(game_data);
+	game_data = NULL;
+
+	/*
+	 * Post-loading: Some transient states have to be adapted
+	**/
+
 	reset_visible_levels();
 	get_visible_levels();
 
