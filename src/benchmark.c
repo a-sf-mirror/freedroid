@@ -124,7 +124,7 @@ static int loadgame_bench()
 	// Load it many times
 	timer_start();
 	while (loop--) {
-		if (LoadGame() == ERR) {
+		if (load_game() == ERR) {
 			timer_stop();
 			return ERR;
 		}
@@ -144,7 +144,7 @@ static int savegame_bench()
 	Me.character_name = strdup("MapEd");
 
 	// Load it
-	if (LoadGame() == ERR) {
+	if (load_game() == ERR) {
 		error_message(__FUNCTION__, "Whoops, that failed. Maybe you have to save a game under the name \"MapEd\" to make this work?",
 				NO_REPORT);
 		return -1;

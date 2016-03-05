@@ -333,8 +333,8 @@ void clear_screen(void);
 int find_saved_games(struct dirent ***);
 void LoadAndShowThumbnail(char *CoreFilename);
 int SaveGame(void);
-int LoadBackupGame(void);
-int LoadGame(void);
+int load_backup_game(void);
+int load_game(void);
 int DeleteGame(void);
 void LoadAndShowStats(char *CoreFilename);
 

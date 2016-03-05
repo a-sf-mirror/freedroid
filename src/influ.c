@@ -1001,11 +1001,11 @@ void do_death_menu()
 
 		switch (MenuPosition) {
 		case LOAD_LATEST_POSITION:
-			LoadGame();
+			load_game();
 			done = !done;
 			break;
 		case LOAD_BACKUP_POSITION:
-			LoadBackupGame();
+			load_backup_game();
 			done = !done;
 			break;
 		case QUIT_TO_MAIN_POSITION:
