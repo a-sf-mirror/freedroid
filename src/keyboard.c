@@ -591,7 +591,7 @@ static int input_key(int keynum, int value)
 			SaveGame();
 			return 0;
 		} else if (KEYPRESS("quickload")) {
-			LoadGame();
+			load_game();
 			return 0;
 		} else if (KEYPRESS("pause")) {
 			Pause();

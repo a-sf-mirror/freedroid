@@ -965,10 +965,10 @@ static int Escape_handle(int n)
 	case OPTIONS_POSITION:
 		return MENU_OPTIONS;
 	case LOAD_GAME_POSITION:
-		LoadGame();
+		load_game();
 		return EXIT_MENU;
 	case LOAD_BACKUP_POSITION:
-		LoadBackupGame();
+		load_backup_game();
 		return EXIT_MENU;
 	case NEW_GAME_POSITION:
 		GameOver = TRUE;
@@ -1561,7 +1561,7 @@ int load_named_game(const char *name)
 		Me.character_name = strdup(name);
 	}
 
-	if (LoadGame() != OK)
+	if (load_game() != OK)
 		return ERR;
 
 	GetEventTriggers("events.dat");

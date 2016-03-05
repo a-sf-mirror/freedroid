@@ -264,10 +264,10 @@ int convert_old_savegame(char **sav_buffer, int *sav_buffer_size)
 				int rtc = (*filter_function)(&savegame, report);
 				switch (rtc) {
 					case FILTER_ABORT:
-						conversion_report = 2;
+						conversion_report = FILTER_ABORT;
 						goto CONVERT_END;
 					case FILTER_APPLIED:
-						conversion_report = 1;
+						conversion_report = FILTER_APPLIED;
 						filter_function++;
 						break;
 					case FILTER_NOT_APPLIED:

@@ -250,7 +250,7 @@ void TestMap(void)
 	game_status = INSIDE_GAME;
 	SaveGame();
 	Game();
-	LoadGame();
+	load_game();
 	leveleditor_init();
 	return;
 }				// TestMap ( void )

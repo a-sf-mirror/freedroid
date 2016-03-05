@@ -326,80 +326,81 @@ int DeleteGame(void)
 
 static int load_saved_game(int use_backup)
 {
-	char *game_data = NULL;
 	char filename[1000], prefix[1000];
-	FILE *DataFile;
 
 	if (!our_config_dir) {
 		DebugPrintf(0, "No Configuration-directory, cannot load any games\n");
 		return (OK);
 	}
-
-	clean_error_msg_store();
+	sprintf(prefix, "%s/%s%s", our_config_dir, Me.character_name, (use_backup) ? ".bkp" : "");
 
 	put_string_centered(Menu_Font, 10, _("Loading"));
 	StoreMenuBackground(1);
 	our_SDL_flip_wrapper();
 	RestoreMenuBackground(1);
 
-	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): function call confirmed....", __FUNCTION__);
-
 	Activate_Conservative_Frame_Computation();
-	// Initialize Lua state correctly
-	reset_lua_state();
+	clean_error_msg_store();
 
-	sprintf(prefix, "%s/%s", our_config_dir, Me.character_name);
-	if (use_backup) {
-		strcat(prefix, ".bkp");
-	}
+	/*
+	 * Load maps (still using the legacy format)
+	**/
 
 	sprintf(filename, "%s%s", prefix, ".shp");
+	LoadShip(filename, 1);
 
-	if ((DataFile = fopen(filename, "rb")) == NULL) {
-		alert_window(_("W A R N I N G !\n\nFreedroidRPG was unable to locate the saved game file you requested to load.\nThis might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\nThe other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."));
-		append_new_game_message(_("Failed to load old game."));
-		return (ERR);
-	} else {
-		fclose(DataFile);
-		DebugPrintf(1, "\nThe saved game file (.shp file) seems to be there at least.....");
+	/*
+	 * Load data
+	*/
+
+	int loaded_size = 0;
+	char *game_data = NULL;
+
+	// Read savegame into a buffer
+
+	sprintf(filename, "%s%s", prefix, SAVEDGAME_EXT);
+	FILE *data_file = fopen(filename, "rb");
+
+	if (inflate_stream(data_file, (unsigned char **)&game_data, &loaded_size)) {
+		fclose(data_file);
+		alert_window(_("Unable to decompress saved game - this is probably a very old, incompatible game. Sorry."));
+		return ERR;
 	}
+	fclose(data_file);
+
+	// Try to apply savegame converters
+
+	int rtc = convert_old_savegame(&game_data, &loaded_size);
+	if (rtc == FILTER_APPLIED) {
+		// A fix/conversion was needed. Save the new data.
+		data_file = fopen(filename, "wb");
+		deflate_to_stream((unsigned char *)game_data, loaded_size, data_file);
+		fclose(data_file);
+	} else if (rtc == FILTER_ABORT) {
+		// Conversion was aborted.
+		// However game_data was possibly changed by a filter function.
+		// We reload the savegame and use it as is.
+		free(game_data);
+		data_file = fopen(filename, "rb");
+		int loaded_size = 0;
+		inflate_stream(data_file, (unsigned char **)&game_data, &loaded_size);
+		fclose(data_file);
+	}
+
+	// Load the savegame (lua format)
+
+	clear_out_arrays_for_fresh_game();
+	reset_lua_state();
+
 	if (setjmp(saveload_jmpbuf)) {
+		// We longjump here if load_game_data() detects an error
 		if (game_data != NULL)
 			free((char *)game_data);
 		game_data = NULL;
 		return (ERR);
 	}
 
-	LoadShip(filename, 1);
-
-	sprintf(filename, "%s%s", prefix, SAVEDGAME_EXT);
-	DataFile = fopen(filename, "rb");
-	int loaded_size = 0;
-	if (inflate_stream(DataFile, (unsigned char **)&game_data, &loaded_size)) {
-		fclose(DataFile);
-		alert_window("Unable to decompress saved game - this is probably an old, incompatible game. Sorry.");
-		return ERR;
-	}
-	fclose(DataFile);
-
-	clear_out_arrays_for_fresh_game();
-	int rtc = convert_old_savegame(&game_data, &loaded_size);
-	if (rtc == 1) {
-		// A fix/conversion was needed. Save the new data.
-		DataFile = fopen(filename, "wb");
-		deflate_to_stream((unsigned char *)game_data, loaded_size, DataFile);
-		fclose(DataFile);
-	} else if (rtc == 2) {
-		// Conversion was aborted. How the game_data can have been changed.
-		// We reload the savegame and use it as is.
-		free(game_data);
-		DataFile = fopen(filename, "rb");
-		int loaded_size = 0;
-		inflate_stream(DataFile, (unsigned char **)&game_data, &loaded_size);
-		fclose(DataFile);
-	}
 	load_game_data(game_data);
-
 	free(game_data);
 	game_data = NULL;
 
@@ -409,54 +410,55 @@ static int load_saved_game(int use_backup)
 
 	reset_visible_levels();
 	get_visible_levels();
+	animation_timeline_reset();
+	switch_background_music(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
+
+	// Reset animation of dead bots
 
 	enemy *erot;
 	BROWSE_DEAD_BOTS(erot) {
-		/*
-		 * It is sufficient to set ->animation_type, since ->animation_phase will be set to
-		 * last_death_animation_image[erot->type] inside animate_enemy();
-		 *
-		 * Also, we might not know the correct value of last_death_animation_image[] yet,
-		 * since it's initialized by grab_enemy_images_from_archive(erot->type), and that
-		 * function may not have been called for the current bot type.
-		 */
+		 // It is sufficient to set ->animation_type, since ->animation_phase will be set to
+		 // last_death_animation_image[erot->type] inside animate_enemy();
+		 //
+		 // Also, we might not know the correct value of last_death_animation_image[] yet,
+		 // since it's initialized by grab_enemy_images_from_archive(erot->type), and that
+		 // function may not have been called for the current bot type.
 		if (!level_is_visible(erot->pos.z))
 			erot->animation_type = DEAD_ANIMATION;
 	}
 
-	// Now that we have loaded the game, we must count and initialize the number
-	// of droids used in this ship.  Otherwise we might ignore some robots.
-	//
-	CountNumberOfDroidsOnShip();
+	// Count and initialize the number of droids used in this ship.
+	// Otherwise we might ignore some robots.
 
-	switch_background_music(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
+	CountNumberOfDroidsOnShip();
 
 	// Maybe someone just lost in the game and has then pressed the load
 	// button.  Then a new game is loaded and the game-over status has
 	// to be restored as well of course.
-	//
-	GameOver = FALSE;
 
-	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): end of function reached.", __FUNCTION__);
+	GameOver = FALSE;
 
 	// Now we know that right after loading an old saved game, the Tux might have
 	// to 'change clothes' i.e. a lot of tux images need to be updated which can
 	// take a little time.  Therefore we print some message so the user will not
 	// panic and push the reset button :)
-	//
+
 	put_string(FPS_Display_Font, 75, 150, _("Updating Tux images (this may take a little while...)"));
 	our_SDL_flip_wrapper();
 
-	animation_timeline_reset();
+	/*
+	 * We're now ready to start playing !
+	**/
 	widget_text_init(message_log, _("--- Message Log ---"));
 	append_new_game_message(_("Game loaded."));
+
 	return OK;
 }
 
 /**
  * This function loads an old saved game of FreedroidRPG from a file.
  */
-int LoadGame(void)
+int load_game(void)
 {
 	return load_saved_game(0);
 }
@@ -464,7 +466,7 @@ int LoadGame(void)
 /**
  * This loads the backup for the current player name
  */
-int LoadBackupGame()
+int load_backup_game()
 {
 	return load_saved_game(1);
 }
