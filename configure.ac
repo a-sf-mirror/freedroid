@@ -7,7 +7,7 @@ dnl Note about compilation flags:
 dnl
 dnl CFLAGS/CPPFLAGS/LDFLAGS are used when compiling some configure test
 dnl programs. This can lead to some problems.
-dnl For instance, if "-fsanitaze-adresse" is set before looking for the Lua lib,
+dnl For instance, if "-fsanitize=adress" is set before looking for the Lua lib,
 dnl configure exits with a failure due to a memleak detection.
 dnl
 dnl In order to avoid any issue with configure, we use FD_ prefixed vars to
