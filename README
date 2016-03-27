@@ -45,9 +45,9 @@
 ==================
  Last stable realase and prebuild Windows/MacOsx are at ftp://ftp.osuosl.org/pub/freedroid/
  For general help with installation, please refer to the INSTALL file located in the same folder as this file.
- For more informations, please see also INSTALL.freedroidRPG
- Packages needed to build depends of your distribution. Theses are listed in INSTALL.freedroidRPG
- Basicly, you then just have to
+ For more information, please see also INSTALL.freedroidRPG
+ Packages needed to build depends of your distribution. They are listed in INSTALL.freedroidRPG
+ Basically, you then just have to
 
     ./configure
     make
