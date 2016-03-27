@@ -40,12 +40,21 @@
  editing, or writing skills will find FreedroidRPG to be an exciting,
  fast-moving project in which they can fully express their creativity.
 
-2. Install & Play
-===========
- For general help with installation, please refer to the INSTALL file located in the same folder as this file.
- Specific instructions for Ubuntu:  http://ubuntuforums.org/showthread.php?p=6127097#post6127097
 
- To run the game you normally just have to launch the executable.
+2. Install & Play
+==================
+ Last stable realase and prebuild Windows/MacOsx are at ftp://ftp.osuosl.org/pub/freedroid/
+ For general help with installation, please refer to the INSTALL file located in the same folder as this file.
+ For more informations, please see also INSTALL.freedroidRPG
+ Packages needed to build depends of your distribution. Theses are listed in INSTALL.freedroidRPG
+ Basicly, you then just have to
+
+    ./configure
+    make
+    make install
+
+ If you don't want to install the game, do not issue "make install", simply go to the src/ subdirectory, and run
+    ./freedroidRPG
  For advanced options execute "freedroidRPG --help" (in a terminal) to get a list of command line options.
 
 
@@ -146,6 +155,7 @@
 	 'Enable texture tiling' to 'No'.   
    * Due to hardware and software drivers, the "Gamma Correction" option may affect nothing.
 
+
 5. Screen resolution
 =====================
  There are a few hidden high resolution settings only accessible from command line. They are badly tested
@@ -160,11 +170,11 @@
 	- Incorrect text scrolling when talking to NPCs at times
 
 
-6. FAQ
+6. FAQs
 ============
 Miscellaneous FAQ:
 
-	Q: Do I have to have Linux to try out FreedroidRPG?
+	Q: Do I need to have Linux to try out FreedroidRPG?
 	A: While using Linux is greatly recommended for the sanity of the system
 	   administrator, FreedroidRPG has MS-Windows executables available.
 	   Note that since the FreedroidRPG development team doesn't use 
@@ -281,12 +291,12 @@ Level Editor & Developer FAQ:
        assistance on IRC or the mailing list.
 
 	Q: How can I get the latest development version of the game?
-	A: This is very simple when using Linux. You can find the details here:
-	   https://sourceforge.net/svn/?group_id=54521
+	A: This is very simple when using Linux:
+	      git clone https://gitlab.com/freedroid/freedroid-src.git
 	   If you are using Windows we recommend using a tool like 
-	   http://tortoisesvn.tigris.org/
+	      http://www.collab.net/downloads/giteye?CID=tigris
 	   If you still run into problems, best again discuss it with the people on
-	   the freedroid-discussion mailing list.
+	   the freedroid-discussion mailing list or ask for it on IRC channel as well.
 
 	Q: I want to help out with FreedroidRPG development. What should I do first?
 	A: First, we recommend to read http://www.freedroid.org/developer-area/contribute/
@@ -297,20 +307,16 @@ Level Editor & Developer FAQ:
 	   bigger you have in mind with the people on the discussion mailing list or IRC, so
 	   it can be assured that all the developers are pulling in the same direction and
 	   know what's going on and who is working on what.
-	   If you are new to the Sourceforge, you should also take at least a brief look
-	   at our Sourceforge project pages. You can find the main page here
-	   http://sourceforge.net/projects/freedroid
-	   and other relevant pages should be reachable from there.
-
 
 
 7. Contact
 ===========
  Website       ................ http://www.freedroid.org
+ Wiki   ....................... http://wiki.freedroid.org (or http://www.freedroid.org/wiki/pmwiki.php/)
+ Source project page   ........ https://gitlab.com/groups/freedroid
  IRC channel   ................ #freedroid on irc.freenode.net or
 								http://webchat.freenode.net/?channels=freedroid (requires Javascript)
  Mailing list  ................ freedroid-discussion@lists.sourceforge.net
- Sourceforge project page   ... http://sourceforge.net/projects/freedroid/
  Bug tracker   ................ http://bugs.freedroid.org/
 
 
@@ -318,4 +324,3 @@ Level Editor & Developer FAQ:
 ===========
  The game itself is licensed under GPL. Some other tools use a more permissive license, 
  please refer to the FILES file located in the same folder as this file.
-
