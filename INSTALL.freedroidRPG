@@ -50,7 +50,7 @@ Building with autotools
    b) Via main menu (usually "System" entry).
       Move to the FreedroidRPG source directory using "cd ./XYZ/" command. XYZ = path to the FreedroidRPG source.
    
-2) If you are running an git version of the game, you will first need to generate the 
+2) If you are running a git version of the game, you will first need to generate the
    configure script by running:
    ./autogen.sh
    If you don't know what the git version is, you are not running it and can skip this step.
@@ -97,91 +97,56 @@ easily.
 Building In Windows
 ===================
 
-1) Installation of Python
+Thanks to the mingw64/msys2 projects, it is now quite as easy to build FreedroidRPG
+on Windows than on a Linux based OS.
 
-	Python will be needed during the build of FreedroidRPG, so you frist need to install it.
-	  Download and install ActivePython from http://www.activestate.com/activepython/downloads
+1) Install msys2 (Use the 32b or 64b version, depending on your OS):
+   - Follow the installation guide from http://msys2.github.io/
 
-2) Installation of MinGW
+2) Install some additional user and build tools:
+   - Start a "Msys2 Shell" from the Windows Start Menu and type:
+       pacman -S make autoconf automake tar python2 git wget unzip
 
-	Before trying to build FreedroidRPG under Windows, you need to setup a development environment that will "mimic" a Unix development environment:
-	 Get the lastest version of MinGW from http://sourceforge.net/projects/mingw/files/Automated%20MinGW%20Installer/mingw-get-inst/
-	 Run the downloaded installer, and:
-	  * Choose to 'download latest repository catalogues'
-	  * Choose following destination: C:\MinGW (if you choose an other destination, you'll have to adapt the rest of this How-To)
-	  * On the components selection screen, add 'MinGW Developer Toolkit'
+From now on, when you start a shell, if you want to build a 32b version of
+the game, launch "MinGW-w64 Win32 Shell". If you want to build a 64b version,
+rather launch "MinGW-w64 Win64 Shell"
 
-	Once installed, you'll have a new MinGW entry in your Start Menu, and a MinGW Shell subentry.
-	 Launch MinGW Shell, and in the terminal window just opened, type:
-	  mingw-get install msys-wget
-	  mingw-get install msys-unzip
-	  mingw-get install msys-mintty
+3) Install the mingw64 toolchain (replace 'i686' by 'x86_64' if you want to
+   build a 64b version of the game):
+     pacman -S mingw-w64-i686-gcc mingw-w64-i686-pkg-config
 
-	 If you want a better terminal than the one provided by default, open the properties of the MinGW Shell menu subentry (by right-clicking on it), and change the target to
-	 C:\MinGW\msys\1.0\msys.bat --mintty
-	 and launch a new MinGW Shell.
+4) Install FDRPG dependencies (replace 'i686' by 'x86_64' for 64b version):
+     pacman -S mingw-w64-i686-SDL mingw-w64-i686-SDL_gfx mingw-w64-i686-SDL_image mingw-w64-i686-SDL_ttf mingw-w64-i686-lua
 
-	Nota: When you start a MinGW Shell, the current directory is your HOME directory. This HOME directory can be found in
-	C:\MinGW\msys\1.0\home\<your_username>
+5) On Mar,19 2016, SDL_image (1.2.12-4) uses an old version of libwebp.
+   Until it is rebuilt, just do:
+     cp /mingw32/bin/libwebp-6.dll /mingw32/bin/libwebp-5.dll)
 
-3) Git installation
+6) The SDL_mixer package is not available. You can build the game without
+   it (but sound will be disabled), or you can build it from source
+   (with ogg/vorbis support only, we do not need the other input decoders):
+     pacman -S mingw-w64-i686-libvorbis
+     wget https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.zip
+     unzip SDL_mixer-1.2.12.zip
+     cd SDL_mixer-1.2.12
+     ./autogen.sh && ./configure --prefix=/mingw32 && make && make install
 
-	To retrieve FreedroidRPG source files, you will need to use Git (http://git-scm.com/).
-	There are a few graphical git clients for Windows.
+From now on, you have everything installed and you are ready to build the
+game using the same commands than on Linux:
 
-	You download GitEye from here http://www.collab.net/downloads/giteye
-	Warning, apparently the version is a 30-days-trial warning only. Todo: need to check what happens after these 30 days.
+7) Clone freedroid-src repository:
+     git clone https://gitlab.com/freedroid/freedroid-src.git
 
-	Once GitEye is running, click "Clone Repository" then "URI" and enter git://git.code.sf.net/p/freedroid/code into the "URI" field.
-	You can clone all branches (hit "Next"), for the Directory, you may want to set "freedroidRPG" instead of "code".
-	Hit "Finish" to start cloning, progress can be observed in the lower right corner.
-	When cloning is finished, you can access the cloned repository in the left column.
+8) Build it:
+     ./autogen.sh
+     ./configure
+     make
 
+9) Run the game from the cmdline:
+     ./src/freedroidRPG
 
-4) FreedroidRPG dependencies installation
-
-	In order to compile FreedroidRPG, you have to first install some library dependencies. We provide those libraries in 2 binary packages, so you do not need to compile them yourself
-	In a MinGW Shell, type the following commands:
-		wget http://buildbot.freedroid.org/downloads/win32/freedroidRPG-win32-dev.tar.gz
-		wget http://buildbot.freedroid.org/downloads/win32/freedroidRPG-win32-dependencies.zip
-		cd /
-		tar -xzf ~/freedroidRPG-win32-dev.tar.gz
-		cd /bin
-		unzip ~/freedroidRPG-win32-dependencies.zip
-		cd /c/WINDOWS/system32
-		unzip ~/freedroidRPG-win32-dependencies.zip
-		cd
-
-5) FreedroidRPG compilation
-
-	So, you are now finally ready to download and compile the game!
-
-	In a MinGW Shell, do the following:
-
-	 enter freedroid source directory:
-	 cd git/freedroid
-
-	 compile the game:
-	 ./autogen.sh
-	 CPPFLAGS=-I/include ./configure --without-x --disable-sdltest
-	 make
-
-
-	Nota:, if an error window opens complaining about libgmp-10.dll missing, then you used a bugged version of the MinGW installer
-	(some DLLs are not correctly installed). To fix the problem, just type the following commands:
-	 cp /mingw/bin/libgmp-10.dll /mingw/libexec/gcc/mingw32/4.5.2
-	 cp /mingw/bin/libmpc-2.dll /mingw/libexec/gcc/mingw32/4.5.2
-	 cp /mingw/bin/libmpfr-1.dll /mingw/libexec/gcc/mingw32/4.5.2
-	 cp /mingw/bin/libiconv-2.dll /mingw/mingw32/bin
-	 cp /mingw/bin/libintl-8.dll /mingw/mingw32/bin
-
-	If everything went alright, you will find a freedroidRPG.exe file in the src/ subdirectory. You can launch it from the terminal:
-		cd src
-		./freedroidRPG
-
-	or you can just double-click on the executable's icon from the File Explorer. You will find it in
-	 C:\MinGW\msys\1.0\home\<your_username>\freedroid\src
-
+	or you can just double-click on the executable's icon from the File Explorer.
+	You will find it somewhere inside C:\mingw32\msys\home\<your_username>
 
 Enjoy the game!
 
