@@ -1,15 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
-# zdenek <chmelarz@gmail.com>, 2014-2015
+# zdenek <chmelarz@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-01-08 14:04+0100\n"
-"PO-Revision-Date: 2015-11-20 18:16+0000\n"
+"POT-Creation-Date: 2016-04-02 16:36+0200\n"
+"PO-Revision-Date: 2016-03-07 09:40+0000\n"
 "Last-Translator: zdenek <chmelarz@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/arctic-games/freedroid-rpg/language/cs/)\n"
 "Language: cs\n"
@@ -208,7 +208,7 @@ msgid "XP"
 msgstr "XP"
 
 #. TRANSLATORS: Used on object selector's widget to display unit price * number of objects
-#: src/graphics.c:230
+#: src/graphics.c:232
 #, c-format
 msgid "%d price\n"
 msgstr "%d cena\n"
@@ -337,7 +337,7 @@ msgstr "Ukončit FreedroidRPG"
 msgid "Out of [s]%s[v]!"
 msgstr "Dosly náboje [s]%s[v]!"
 
-#: src/init.c:785 src/saveloadgame.c:448
+#: src/init.c:785 src/saveloadgame.c:452
 msgid "--- Message Log ---"
 msgstr "--- Záznam zprávy ---"
 
@@ -667,7 +667,7 @@ msgstr "Tímto se ještě nemůžeš vybavit!"
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr "Požadavky štítu nesplněny: Bonus obouruční zbraně se nepočítá."
 
-#: src/items.c:1893 src/items.c:2071
+#: src/items.c:1892 src/items.c:2070
 msgid "I can't carry any more."
 msgstr "Víc toho už nepoberu."
 
@@ -1663,11 +1663,11 @@ msgstr "[n]Žádné otevřené úkoly.[w]"
 msgid "[n]No completed quests yet.[w]"
 msgstr "[n]Žádné dokončené úkoly.[w]"
 
-#: src/saveloadgame.c:171
+#: src/saveloadgame.c:172
 msgid "Last Modified:"
 msgstr "Poslední změna:"
 
-#: src/saveloadgame.c:199
+#: src/saveloadgame.c:200
 #, c-format
 msgid "File Size: %2.3f MB"
 msgstr "Velikost souboru: %2.3f MB"
@@ -1676,45 +1676,27 @@ msgstr "Velikost souboru: %2.3f MB"
 msgid "You are dead. Savegame not modified."
 msgstr "Jsi mrtvý. Uložená hra nezměněna."
 
-#: src/saveloadgame.c:264
+#: src/saveloadgame.c:257
 msgid "Saving"
 msgstr "Ukládání"
 
-#: src/saveloadgame.c:297
+#: src/saveloadgame.c:290
 msgid "Game saved."
 msgstr "Hra uložena."
 
-#: src/saveloadgame.c:349
+#: src/saveloadgame.c:337
 msgid "Loading"
 msgstr "Nahrávání"
 
-#: src/saveloadgame.c:368
-msgid ""
-"W A R N I N G !\n"
-"\n"
-"FreedroidRPG was unable to locate the saved game file you requested to load.\n"
-"This might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\n"
-"The other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."
-msgstr ""
-"V A R O V Á N Í !\n"
-"\n"
-"FreedroidRPG nemohl najít soubor s uloženou hrou, o jejíž načtění bylo zažádáno.\n"
-"To by mohlo znamenat, že tam opravdu není, neboť jste se pokusili nahrát hru, která před tím nikdy nebyla uložena.\n"
-"Jiným vysvětlením této chyby může být závažná chyba ve hře FreedroidRPG. Pokud si myslíte, že se jedná o tento případ, nahlaste to prosím vývojářům."
+#: src/saveloadgame.c:366
+msgid "Unable to decompress saved game - this is probably a very old, incompatible game. Sorry."
+msgstr "Nelze rozbalit uloženou hru - jedná se pravděpodobně o velmi starou nekompatibilní hru. Je nám líto."
 
-#: src/saveloadgame.c:369
-msgid "Failed to load old game."
-msgstr "Nezdařilo se načíst starou hru."
-
-#: src/saveloadgame.c:403
-msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
-msgstr "Nesoulad ve verzi či velikosti! Uložená hra není ze stejné verze FreedroidRPG... možné poškození."
-
-#: src/saveloadgame.c:444
+#: src/saveloadgame.c:446
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Aktualizace obrázků Tuxe (to může chvíli trvat...)"
 
-#: src/saveloadgame.c:449
+#: src/saveloadgame.c:453
 msgid "Game loaded."
 msgstr "Hra nahrána."
 
@@ -2925,6 +2907,126 @@ msgstr "Nav. bod"
 #: src/lvledit/lvledit_widgets.c:607
 msgid "Label"
 msgstr "Štítek"
+
+#: src/savegame/convert.c:148
+msgid ""
+"The SAVEGAME info can not be decoded.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+"Informace uložené hry nelze dekódovat.\n"
+"Uložená hra je pravděpodobně poškozená."
+
+#: src/savegame/convert.c:166
+msgid ""
+"Your savegame seems to be a pre-0.16.1 version, but the savegame_version_string can not be found.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+"Zdá se, že uložená hra je starší verze než 0.16.1, ale informaci o verzi uložené hry nelze najít.\n"
+"Uložená hra je pravděpodobně poškozená."
+
+#: src/savegame/convert.c:185
+msgid ""
+"Your savegame seems to be a pre-0.16.1 version, but the savegame_version_string can not be decoded.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+"Zdá se, že uložená hra je starší verze než 0.16.1, ale informaci o verzi uložené hry nelze dekódovat.\n"
+"Uložená hra je pravděpodobně poškozená."
+
+#: src/savegame/convert.c:289
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"Your savegame is from an other game version.\n"
+"If you are using a dev version of the game, this is expected.\n"
+"We load it as is, but expect some errors or even a crash of the game."
+msgstr ""
+"-=* Nahrávání uložené hry *=-\n"
+"\n"
+"Uložená pozice je z jiné verze hry.\n"
+"Pokud používáte vývojovou verzi hry, pak je toto očekáváno.\n"
+"Nahrajeme ji tak, jak je, ale očekávejte možné chyby či dokonce pád hry."
+
+#: src/savegame/convert.c:296
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"An old savegame version has been detected (v%d-r%d).\n"
+"However, no converter was found.\n"
+"We load it as is, but expect some errors or even a crash of the game."
+msgstr ""
+"-=* Nahrávání uložené hry *=-\n"
+"\n"
+"Byla detekována stará verze uložené hry (v%d-r%d).\n"
+"Nicméně nebyl nalezen žádný převaděč.\n"
+"Nahrajeme ji tak, jak je, ale očekávejte možné chyby či dokonce pád hry."
+
+#: src/savegame/convert.c:304
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"Your old savegame has been converted from v%d-r%d to v%d-r%d.\n"
+"Note that we can not guarantee that your savegame is fully playable,\n"
+"Some errors or even a game crash could possibly happen."
+msgstr ""
+"-=* Nahrávání uložené hry *=-\n"
+"\n"
+"Stará verze uložené hry byla převedena z v%d-r%d na v%d-r%d.\n"
+"Uvědomte si, že nemůžeme plně zaručit hratelnost uložené hry.\n"
+"Lze očekávat možné chyby či dokonce pád hry."
+
+#: src/savegame/convert.c:316
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"An old savegame version has been detected (v%d-r%d),\n"
+"An error was caught during conversion. See your console output.\n"
+"We will try to load it unconverted, but expect some errors or even a crash of the game."
+msgstr ""
+"-=* Nahrávání uložené hry *=-\n"
+"\n"
+"Byla detekována stará verze uložené hry (v%d-r%d).\n"
+"Při převodu došlo k chybě. Viz výstup na konzoli.\n"
+"Pokusíme se hru nahrát bez převodu, ale očekávejte možné chyby či dokonce pád hry."
+
+#: src/savegame/filters_0_16.c:60
+#, c-format
+msgid ""
+"Error during savegame filtering (%s:%s): 'mission_diary_texts' data was not found.\n"
+"The savegame seems to be corrupted."
+msgstr ""
+"Chyba při filtrování uložené hry (%s:%s): data 'mission_diary_texts' nebyla nalezena.\n"
+"Zdá se, že je uložená hra poškozená."
+
+#: src/savegame/filters_0_16.c:70
+#, c-format
+msgid ""
+"Error during savegame filtering (%s:%s): End marker of 'mission_diary_texts' was not found.\n"
+"The savegame seems to be corrupted."
+msgstr ""
+"Chyba při filtrování uložené hry (%s:%s): Koncová značka v 'mission_diary_texts' nebyla nalezena.\n"
+" Zdá se, že je uložená hra poškozená."
+
+#~ msgid ""
+#~ "W A R N I N G !\n"
+#~ "\n"
+#~ "FreedroidRPG was unable to locate the saved game file you requested to load.\n"
+#~ "This might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\n"
+#~ "The other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."
+#~ msgstr ""
+#~ "V A R O V Á N Í !\n"
+#~ "\n"
+#~ "FreedroidRPG nemohl najít soubor s uloženou hrou, o jejíž načtění bylo zažádáno.\n"
+#~ "To by mohlo znamenat, že tam opravdu není, neboť jste se pokusili nahrát hru, která před tím nikdy nebyla uložena.\n"
+#~ "Jiným vysvětlením této chyby může být závažná chyba ve hře FreedroidRPG. Pokud si myslíte, že se jedná o tento případ, nahlaste to prosím vývojářům."
+
+#~ msgid "Failed to load old game."
+#~ msgstr "Nezdařilo se načíst starou hru."
+
+#~ msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
+#~ msgstr "Nesoulad ve verzi či velikosti! Uložená hra není ze stejné verze FreedroidRPG... možné poškození."
 
 #~ msgid ""
 #~ "%s\n"

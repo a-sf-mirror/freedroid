@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # Carlos Daniel Landin Montaperto <linkin_yh@hotmail.com>, 2015
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-01-08 14:04+0100\n"
+"POT-Creation-Date: 2016-04-02 16:36+0200\n"
 "PO-Revision-Date: 2016-01-03 13:51+0000\n"
 "Last-Translator: Carlos Daniel Landin Montaperto <linkin_yh@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/arctic-games/freedroid-rpg/language/es/)\n"
@@ -860,7 +860,7 @@ msgstr ""
 #. TRANSLATORS: command,  use lowercase here
 #: dialogs/AfterTakeover.lua:710 dialogs/DSB-MachineDeckControl.lua:77
 #: dialogs/DSB-PowerControl.lua:44 dialogs/DSB-PowerControlGate1.lua:88
-#: dialogs/Maintenance-Terminal.lua:228 dialogs/MiniFactory-Terminal.lua:104
+#: dialogs/Maintenance-Terminal.lua:228 dialogs/MiniFactory-Terminal.lua:105
 #: dialogs/MO-HFGateAccessServer.lua:228 dialogs/MO-HFGateAccessServer.lua:231
 #: dialogs/MS-Factory-Addon-Terminal.lua:71 dialogs/SACD.lua:109
 #: dialogs/Terminal.lua:51 dialogs/TestDroid.lua:47
@@ -4368,196 +4368,198 @@ msgstr "Inicio de sesión incorrecto"
 msgid "Connection to c-net terminated."
 msgstr "Conexión a c-net finalizada."
 
-#: dialogs/c-net.lua:180
-msgid "Date unknown"
-msgstr "Fecha desconocida"
+#. TRANSLATORS: It shows the ingame date in format: Day day, hour:minute
+#: dialogs/c-net.lua:181
+#, c-format
+msgid "Day %d, %02d:%02d"
+msgstr ""
 
 #. TRANSLATORS: this reperesents the head of a table
-#: dialogs/c-net.lua:192
+#: dialogs/c-net.lua:193
 msgid "Login Tty Name"
 msgstr "Nombre de acceso a tty"
 
 #. TRANSLATORS: %s=Tux:get_player_name()
-#: dialogs/c-net.lua:257
+#: dialogs/c-net.lua:258
 msgid "mountdisk.sh"
 msgstr "mountdisk.sh"
 
-#: dialogs/c-net.lua:260
+#: dialogs/c-net.lua:261
 msgid "./mountdisk.sh"
 msgstr "./mountdisk.sh"
 
-#: dialogs/c-net.lua:262
+#: dialogs/c-net.lua:263
 msgid "Mounting volume \"Kevins_Security_File\"..."
 msgstr "Montando volumen \"Archivo_Seguridad_Kevin\""
 
-#: dialogs/c-net.lua:263
+#: dialogs/c-net.lua:264
 msgid "Private memory and/or virtual address space exhausted."
 msgstr "Memoria privada y/o el espacio de direcciones virtuales agotadas."
 
-#: dialogs/c-net.lua:264
+#: dialogs/c-net.lua:265
 msgid "Not enough free memory to load data file."
 msgstr "No hay suficiente memoria libre para cargar el archivo de datos."
 
-#: dialogs/c-net.lua:268
+#: dialogs/c-net.lua:269
 msgid "List for Spencer:"
 msgstr "Listado para Spencer:"
 
-#: dialogs/c-net.lua:315
+#: dialogs/c-net.lua:316
 msgid "I found a terminal in the town which could read the data cube Francis gave me. It looks like there was a list of names on it, but I have no clue what's the deal with these names."
 msgstr "Encontré un terminal en la ciudad que podría leer el cubo de datos que Francis me dio. Parece que había una lista de nombres, pero no tengo ni idea de que hacer con estos nombres."
 
-#: dialogs/c-net.lua:319
+#: dialogs/c-net.lua:320
 msgid "no disk found"
 msgstr "No se encontró ningún disco"
 
-#: dialogs/c-net.lua:326
+#: dialogs/c-net.lua:327
 msgid "statistics.pl"
 msgstr "statistics.pl"
 
-#: dialogs/c-net.lua:330
+#: dialogs/c-net.lua:331
 msgid "Corrupted file."
 msgstr "Archivo corrupto"
 
-#: dialogs/c-net.lua:331
+#: dialogs/c-net.lua:332
 msgid "Bot #Dead# Tux #Hacked/Failed#Ratio"
 msgstr "Bot #Muerto# Tux #Hacked/Fallado#Proporción"
 
-#: dialogs/c-net.lua:367
+#: dialogs/c-net.lua:368
 msgid "forkBOMB.sh -arm bomb"
 msgstr "forkBOMB.sh -arm bomb"
 
-#: dialogs/c-net.lua:369
+#: dialogs/c-net.lua:370
 msgid "bomb armed"
 msgstr "Bomba armada"
 
-#: dialogs/c-net.lua:376
+#: dialogs/c-net.lua:377
 msgid "forkBOMB.sh -disarm bomb"
 msgstr "forkBOMB.sh -disarm bomb"
 
-#: dialogs/c-net.lua:378
+#: dialogs/c-net.lua:379
 msgid "bomb defused"
 msgstr "Bomba desactivada"
 
-#: dialogs/c-net.lua:385
+#: dialogs/c-net.lua:386
 msgid "forkBOMB.sh -execute"
 msgstr "forkBOMB.sh -execute"
 
-#: dialogs/c-net.lua:388
+#: dialogs/c-net.lua:389
 msgid "Terminals Disabled"
 msgstr "Terminales desactivados"
 
-#: dialogs/c-net.lua:389
+#: dialogs/c-net.lua:390
 msgid "Script run. After logout this terminal will be disabled."
 msgstr "Ejecución de secuencias de comandos. Después de cerrar la sesión se desactivará este terminal."
 
-#: dialogs/c-net.lua:390
+#: dialogs/c-net.lua:391
 msgid "root@c-net:~$"
 msgstr "root@c-net:~$"
 
-#: dialogs/c-net.lua:396
+#: dialogs/c-net.lua:397
 msgid "radio.sh"
 msgstr "radio.sh"
 
 #. TRANSLATORS: "tracks" refers to music songs/music
-#: dialogs/c-net.lua:399 dialogs/c-net.lua:435
+#: dialogs/c-net.lua:400 dialogs/c-net.lua:436
 msgid "Valid tracks:"
 msgstr "Pistas válidas:"
 
-#: dialogs/c-net.lua:405
+#: dialogs/c-net.lua:406
 msgid "please enter track"
 msgstr "Por favor ingrese pista"
 
 #. TRANSLATORS: "tracks" refers to music songs/music
-#: dialogs/c-net.lua:431
+#: dialogs/c-net.lua:432
 #, c-format
 msgid "WARNING, '%s' not a valid track."
 msgstr "ADVERTENCIA, '%s' No es una pista válida. "
 
 #. TRANSLATORS: "'exit'" must not be translated
-#: dialogs/c-net.lua:433
+#: dialogs/c-net.lua:434
 msgid "enter 'exit' to exit."
 msgstr "entre en \"salir\" para salir."
 
-#: dialogs/c-net.lua:434
+#: dialogs/c-net.lua:435
 msgid "Please retry."
 msgstr "Por favor reintente."
 
-#: dialogs/c-net.lua:485
+#: dialogs/c-net.lua:486
 msgid "global_thermonuclear_war"
 msgstr "global_thermonuclear_war"
 
-#: dialogs/c-net.lua:488
+#: dialogs/c-net.lua:489
 msgid "./global_thermonuclear_war"
 msgstr "./global_thermonuclear_war"
 
-#: dialogs/c-net.lua:489
+#: dialogs/c-net.lua:490
 msgid "Sorry, only winning move is not to play. New game?"
 msgstr "Lo siento, el único movimiento ganador, es no jugar. Nuevo Juego?"
 
-#: dialogs/c-net.lua:490
+#: dialogs/c-net.lua:491
 msgid "Mankind exterminated. You lost!"
 msgstr "Humanidad exterminada. ¡PERDISTE!"
 
-#: dialogs/c-net.lua:491
+#: dialogs/c-net.lua:492
 msgid "No victory possible. LOSER! Play again?"
 msgstr "Ninguna victoria posible. ¡PERDEDOR! ¿Juegar de nuevo?"
 
-#: dialogs/c-net.lua:492
+#: dialogs/c-net.lua:493
 msgid "Everyone dies, new game?"
 msgstr "Todos murieron, ¿Juego nuevo?"
 
-#: dialogs/c-net.lua:498
+#: dialogs/c-net.lua:499
 msgid "tetris"
 msgstr "tetris"
 
-#: dialogs/c-net.lua:501
+#: dialogs/c-net.lua:502
 msgid "./tetris"
 msgstr "./tetris"
 
-#: dialogs/c-net.lua:521
+#: dialogs/c-net.lua:522
 msgid "Roll your Stats."
 msgstr "Enrolla tus estadísticas."
 
-#: dialogs/c-net.lua:525
+#: dialogs/c-net.lua:526
 msgid "You are already playing Progress Quest:"
 msgstr "Usted ya está jugando el Progreso de la misión:"
 
-#: dialogs/c-net.lua:526
+#: dialogs/c-net.lua:527
 msgid "You are selling an item!"
 msgstr "¡Estás vendiendo un artículo!"
 
-#: dialogs/c-net.lua:527
+#: dialogs/c-net.lua:528
 msgid "You are killing a creature!"
 msgstr "¡Estás matando una criatura!"
 
-#: dialogs/c-net.lua:528
+#: dialogs/c-net.lua:529
 msgid "You are gaining a level!"
 msgstr "¡Subes de nivel!"
 
-#: dialogs/c-net.lua:529
+#: dialogs/c-net.lua:530
 msgid "You are casting a spell!"
 msgstr "¡Estás lanzando un hechizo!"
 
-#: dialogs/c-net.lua:543
+#: dialogs/c-net.lua:544
 #, c-format
 msgid "You rolled Stats of STR: [b]%d[/b], CON: [b]%d[/b], DEX: [b]%d[/b], INT: [b]%d[/b], WIS: [b]%d[/b], CHA: [b]%d[/b]."
 msgstr "Tus estadísticas: Fuerza: [b]%d[/b], Constitución: [b]%d[/b], Destreza: [b]%d[/b], Inteligencia: [b]%d[/b], Magia: [b]%d[/b], Carisma: [b]%d[/b]."
 
-#: dialogs/c-net.lua:549
+#: dialogs/c-net.lua:550
 msgid "Accept Character"
 msgstr "Aceptar personaje"
 
 #. TRANSLATORS: "Progress Quest" should not be translated
-#: dialogs/c-net.lua:553
+#: dialogs/c-net.lua:554
 msgid "Welcome to Progress Quest!"
 msgstr "Bienvenido a Progreso de la misión"
 
-#: dialogs/c-net.lua:560
+#: dialogs/c-net.lua:561
 msgid "Reroll Character"
 msgstr "Volver a tirar personaje"
 
 #. TRANSLATORS: "c-net" should probably not be translated
-#: dialogs/c-net.lua:573
+#: dialogs/c-net.lua:574
 msgid "Connection to c-net closed."
 msgstr "Conexión con c.net cerrada."
 
@@ -7013,7 +7015,7 @@ msgid "Access granted. Closing gate ..."
 msgstr "Acceso permitido. Cerrando puerta ..."
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:107 dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Apagando"
 
@@ -12180,7 +12182,7 @@ msgstr "abrir puerta de la fábrica"
 msgid "Opening Automated Factory Gate ..."
 msgstr "Abriendo puertas de la fábrica automática..."
 
-#: dialogs/Maintenance-Terminal.lua:231 dialogs/MiniFactory-Terminal.lua:107
+#: dialogs/Maintenance-Terminal.lua:231 dialogs/MiniFactory-Terminal.lua:108
 msgid "Goodbye Dave."
 msgstr "Adiós Dave."
 
@@ -13038,11 +13040,11 @@ msgstr "La Fábrica Automatizada ha arrancado y está lista para trabajar."
 msgid "The Automated Factory is unable to make a sandwich."
 msgstr "La Fábrica Automatizada es incapaz de hacer un sándwich."
 
-#: dialogs/MiniFactory-Terminal.lua:88 dialogs/MS-Factory-Addon-Terminal.lua:55
+#: dialogs/MiniFactory-Terminal.lua:89 dialogs/MS-Factory-Addon-Terminal.lua:55
 msgid "craft --addon"
 msgstr "craftear --addon"
 
-#: dialogs/MiniFactory-Terminal.lua:96 dialogs/MS-Factory-Addon-Terminal.lua:63
+#: dialogs/MiniFactory-Terminal.lua:97 dialogs/MS-Factory-Addon-Terminal.lua:63
 msgid "assemble --item --addon"
 msgstr "montar --artículo --addon"
 
@@ -20362,3 +20364,6 @@ msgstr "Will Gapes me dio su Certificado de la MS para que pueda tener acceso a 
 #: dialogs/WillGapes.lua:194
 msgid "Be careful!"
 msgstr "¡Se cuidadoso!"
+
+#~ msgid "Date unknown"
+#~ msgstr "Fecha desconocida"

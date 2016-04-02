@@ -1,18 +1,18 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # fluzz <fluzz@gmx.com>, 2015
 # fluzz <fluzz@gmx.com>, 2015
-# gino ingras <ginoingras@gmail.com>, 2016
+# ginoingras <ginoingras@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-01-08 14:04+0100\n"
+"POT-Creation-Date: 2016-04-02 16:36+0200\n"
 "PO-Revision-Date: 2016-01-16 08:43+0000\n"
-"Last-Translator: gino ingras <ginoingras@gmail.com>\n"
+"Last-Translator: ginoingras <ginoingras@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/arctic-games/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -367,7 +367,7 @@ msgstr "C'est un terminal sécurisé."
 
 #: map/events.dat:55
 msgid "To Maintenance Tunnels"
-msgstr "Vers les Tunnels de Maintenance."
+msgstr "Vers les Tunnels de Maintenance"
 
 #: map/events.dat:66
 msgid "To Novice Arena"
@@ -377,215 +377,223 @@ msgstr "Vers l'Arène des Débutants"
 msgid "To Master Arena"
 msgstr "Vers l'Arène des Confirmés"
 
-#: map/events.dat:666
+#: map/events.dat:468 map/events.dat:481
+msgid ""
+"You have found the Town's secret exit door.\n"
+"Use it only in case of emergency."
+msgstr ""
+"Tu as trouvé la porte de la sortie secrète de la Ville.\n"
+"À n'utiliser qu'en cas d'urgence."
+
+#: map/events.dat:672
 msgid "Exit Warehouse"
 msgstr "Sortie de l'Entrepôt"
 
-#: map/events.dat:673
+#: map/events.dat:679
 msgid "To Warehouse Level 2"
 msgstr "Vers le niveau 2 de l'Entrepôt"
 
-#: map/events.dat:683
+#: map/events.dat:689
 msgid "To Warehouse Level 1"
 msgstr "Vers le niveau 1 de l'Entrepôt"
 
-#: map/events.dat:693
+#: map/events.dat:699
 msgid "Back to Kevin's Garden"
 msgstr "Retour au jardin de Kevin"
 
-#: map/events.dat:700
+#: map/events.dat:706
 msgid "To Energy Station"
-msgstr "Vers la Station d'Energie"
+msgstr "Vers la Station d'Énergie"
 
-#: map/events.dat:710
+#: map/events.dat:716
 msgid "Back to Lower Catacombs"
 msgstr "Retour aux Basses Catacombes"
 
-#: map/events.dat:720
+#: map/events.dat:726
 msgid "Way to Disruptor Machine Deck"
 msgstr "Chemin vers la Salle des Machines du Disrupteur"
 
-#: map/events.dat:730
+#: map/events.dat:736
 msgid "Back to Town"
 msgstr "Retour vers la Ville"
 
-#: map/events.dat:737
+#: map/events.dat:743
 msgid "To Old Server Room"
-msgstr "Vers l'ancienne Salle Serveurs"
+msgstr "Vers l'ancienne Salle des Serveurs"
 
-#: map/events.dat:744
+#: map/events.dat:750
 msgid "Singularity Attacked"
 msgstr "Singularité attaquée"
 
-#: map/events.dat:755
+#: map/events.dat:761
 msgid "Singularity Death"
 msgstr "Singularité morte"
 
-#: map/events.dat:761
+#: map/events.dat:767
 msgid "The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it..."
 msgstr "La Singularité Principale est morte. Les autres sont maintenant en train de m'attaquer ! J'aurais peut-être dû lui prêter plus d'attention..."
 
-#: map/events.dat:767
+#: map/events.dat:773
 msgid "Automated Factory Mechanism"
 msgstr "Mécanisme de l'Usine Automatisée"
 
-#: map/events.dat:775
+#: map/events.dat:781
 msgid "Elbow grease has been applied to the Automated Factory."
 msgstr "De l'huile de coude a été appliquée dans l'Usine Automatisée."
 
-#: map/events.dat:788
+#: map/events.dat:794
 msgid "Enter Warehouse"
 msgstr "Entrer dans l'Entrepôt"
 
-#: map/events.dat:832
+#: map/events.dat:838
 msgid "Down into Crystal Caves"
 msgstr "Descendre dans les Cavernes de Cristal"
 
-#: map/events.dat:886
+#: map/events.dat:892
 msgid "Get me out of here!"
-msgstr "Sortez moi de là !"
+msgstr "Sortez-moi de là !"
 
-#: map/events.dat:902
+#: map/events.dat:908
 msgid "I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened."
 msgstr "Je viens tout juste d'entendre une explosion - Le 296 d'Ewald vient certainement de détruire le réacteur. Peut-être devrais-je aller en parler avec Ewald."
 
-#: map/events.dat:918
+#: map/events.dat:924
 msgid "To Omega Island"
-msgstr "Vers l'Îles Omega"
+msgstr "Vers l'Île Omega"
 
-#: map/events.dat:959
+#: map/events.dat:965
 msgid "To Kevin's Underground Station"
 msgstr "Vers la station souterraine de Kevin"
 
-#: map/events.dat:1005
+#: map/events.dat:1011
 msgid "To Underground Station"
 msgstr "Vers la station souterraine"
 
-#: map/events.dat:1257
+#: map/events.dat:1263
 msgid "It's a trap!"
 msgstr "C'est un piège !"
 
-#: map/events.dat:1656
+#: map/events.dat:1662
 msgid "Hatch with broken ladder"
 msgstr "Ecoutille avec une échelle cassée"
 
-#: map/events.dat:1711
+#: map/events.dat:1717
 msgid "Exit Novice Arena"
 msgstr "Quitter l'Arène des Débutants"
 
-#: map/events.dat:1718
+#: map/events.dat:1724
 msgid "Start New Wave"
 msgstr "Lancer une nouvelle vague"
 
-#: map/events.dat:1781
+#: map/events.dat:1787
 msgid "Wave "
 msgstr "Vague "
 
-#: map/events.dat:1783
+#: map/events.dat:1789
 msgid "Final Wave - Take care!"
 msgstr "Vague finale - Attention !"
 
-#: map/events.dat:1807 map/events.dat:1839
+#: map/events.dat:1813 map/events.dat:1845
 msgid "All bots are killed! Go to center for next wave."
-msgstr "Tous les robots sont détruits ! Aller au centre pour la prochaine vague."
+msgstr "Tous les robots sont détruits ! Vas au centre pour la prochaine vague."
 
-#: map/events.dat:1810 map/events.dat:1842
+#: map/events.dat:1816 map/events.dat:1848
 msgid "All bots are killed! You won."
 msgstr "Tous les robots sont détruits ! Tu as gagné."
 
-#: map/events.dat:1878
+#: map/events.dat:1884
 msgid "Exit Master Arena"
 msgstr "Quitter l'Arène des Confirmés"
 
-#: map/events.dat:2044
+#: map/events.dat:2050
 msgid "Exit Crystal Caves"
 msgstr "Quitter les Cavernes de Cristal"
 
-#: map/events.dat:2054 map/events.dat:2086
+#: map/events.dat:2060 map/events.dat:2092
 msgid "Back to the Desert"
 msgstr "Retour au Désert"
 
-#: map/events.dat:2094
+#: map/events.dat:2100
 msgid "Tania has made it to the surface for the first time in a very long time."
 msgstr "Tania est à l'air libre pour la première fois depuis un très long moment."
 
-#: map/events.dat:2101 map/events.dat:2108
+#: map/events.dat:2107 map/events.dat:2114
 msgid "To the Secret Area Service Tunnels"
 msgstr "Vers les tunnels de service de la Zone Secrète"
 
-#: map/events.dat:2118 map/events.dat:2125
+#: map/events.dat:2124 map/events.dat:2131
 msgid "Back to the Secret Area"
 msgstr "Retour vers la Zone Secrète"
 
-#: map/events.dat:2143
+#: map/events.dat:2149
 msgid "Good, now move to the black grating to the East."
-msgstr "Bien, maintenant il faut aller vers la grille noire à l'Est"
+msgstr "Bien, maintenant il faut aller vers la grille noire à l'Est."
 
-#: map/events.dat:2156
+#: map/events.dat:2162
 msgid "Good, now talk to Tutorial Tom again."
-msgstr "Bien, maintenant parle avec Tutorial Tom encore une fois."
+msgstr "Bien, maintenant parle avec Tom Tutoriel encore une fois."
 
-#: map/events.dat:2345
+#: map/events.dat:2351
 msgid "To a Forgotten Bunker"
 msgstr "Vers un Bunker Oublié"
 
-#: map/events.dat:2365
+#: map/events.dat:2371
 msgid "Unknown place"
 msgstr "Endroit inconnu"
 
-#: map/events.dat:2383
+#: map/events.dat:2389
 msgid "Hidden way out"
 msgstr "Passage secret vers la sortie"
 
-#: map/events.dat:2437
+#: map/events.dat:2443
 msgid "Back to Disruptor Shield Control"
 msgstr "Retour au Contrôle du Bouclier du Disrupteur"
 
-#: map/events.dat:2444
+#: map/events.dat:2450
 msgid "To Machine Deck Lower Catacombs"
 msgstr "Vers les Catacombes Basses du Pont des Machines"
 
-#: map/events.dat:2454
+#: map/events.dat:2460
 msgid "Back to Machine Deck Upper Catacombs"
 msgstr "Retour vers les Catacombes Hautes du Pont des Machines"
 
-#: map/events.dat:2461
+#: map/events.dat:2467
 msgid "To Disruptor Machine Deck"
 msgstr "Vers le Pont des Machines du Disrupteur"
 
-#: map/events.dat:2475
+#: map/events.dat:2481
 msgid "Back To Maintenance Tunnel"
 msgstr "Retour vers le Tunnel de Maintenance"
 
-#: map/events.dat:2482
+#: map/events.dat:2488
 msgid "We need to go deeper..."
 msgstr "Nous devons nous enfoncer plus profondément..."
 
-#: map/events.dat:6614
+#: map/events.dat:6620
 msgid "Back to mainland"
 msgstr "Vers le Continent"
 
-#: map/events.dat:6630
+#: map/events.dat:6636
 msgid "Security failure at Hell's Fortress reception desk."
 msgstr "Incident de sécurité à la réception de la Forteresse Infernale."
 
-#: map/events.dat:6643
+#: map/events.dat:6649
 msgid "Better reload your last save and try again."
-msgstr "Tu ferais mieux de recharger ta dernière sauvegarde et essayer de nouveau."
+msgstr "Tu ferais mieux de recharger ta dernière sauvegarde et d'essayer à nouveau."
 
-#: map/events.dat:6644
+#: map/events.dat:6650
 msgid "Spencer still needed alive to win game."
 msgstr "Spencer doit être vivant pour pouvoir gagner le jeu."
 
-#: map/events.dat:6646 map/events.dat:6658
+#: map/events.dat:6652 map/events.dat:6664
 msgid "You should still be able to finish the game but some storylines might be broken."
 msgstr "Tu devrais pouvoir réussir à finir le jeu mais des intrigues des dialogues peuvent être cassés. "
 
-#: map/events.dat:6647
+#: map/events.dat:6653
 msgid "Ooops, you killed Spencer."
 msgstr "Oups, tu as tué Baptiste."
 
-#: map/events.dat:6659
+#: map/events.dat:6665
 msgid "Ooops, you killed Pendragon."
 msgstr "Oups, tu as tué Pendragon."
 

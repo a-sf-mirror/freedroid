@@ -1,9 +1,9 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
-# Link_Mario <Link-Mario@gmx.de>, 2014-2015
+# Link_Mario <Link-Mario@gmx.de>, 2014-2016
 # Link_Mario <Link-Mario@gmx.de>, 2014
 # matthiaskrgr <matthias.krueger@famsik.de>, 2014
 # matthiaskrgr <matthias.krueger@famsik.de>, 2014
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-01-08 14:04+0100\n"
-"PO-Revision-Date: 2015-11-20 10:37+0000\n"
+"POT-Creation-Date: 2016-04-02 16:36+0200\n"
+"PO-Revision-Date: 2016-03-26 13:38+0000\n"
 "Last-Translator: Link_Mario <Link-Mario@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/arctic-games/freedroid-rpg/language/de/)\n"
 "Language: de\n"
@@ -211,7 +211,7 @@ msgid "XP"
 msgstr "EP"
 
 #. TRANSLATORS: Used on object selector's widget to display unit price * number of objects
-#: src/graphics.c:230
+#: src/graphics.c:232
 #, c-format
 msgid "%d price\n"
 msgstr "Preis: %d\n"
@@ -340,7 +340,7 @@ msgstr "FreedroidRPG beenden"
 msgid "Out of [s]%s[v]!"
 msgstr "Kein(e) [s]%s[v] mehr!"
 
-#: src/init.c:785 src/saveloadgame.c:448
+#: src/init.c:785 src/saveloadgame.c:452
 msgid "--- Message Log ---"
 msgstr "--- Nachrichteneintrag ---"
 
@@ -670,7 +670,7 @@ msgstr "Das kannst du im Moment nicht anlegen!"
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr "Anforderungen für Schild nicht erfüllt: Bonus für Zwei-Hand-Waffe zählt nicht."
 
-#: src/items.c:1893 src/items.c:2071
+#: src/items.c:1892 src/items.c:2070
 msgid "I can't carry any more."
 msgstr "Ich kann nichts mehr tragen."
 
@@ -1669,11 +1669,11 @@ msgstr "[n]Keine Aufgaben offen.[w]"
 msgid "[n]No completed quests yet.[w]"
 msgstr "[n]Keine Aufgaben abgeschlossen.[w]"
 
-#: src/saveloadgame.c:171
+#: src/saveloadgame.c:172
 msgid "Last Modified:"
 msgstr "Zuletzt geändert:"
 
-#: src/saveloadgame.c:199
+#: src/saveloadgame.c:200
 #, c-format
 msgid "File Size: %2.3f MB"
 msgstr "Dateigröße: %2.3f MiB"
@@ -1682,45 +1682,29 @@ msgstr "Dateigröße: %2.3f MiB"
 msgid "You are dead. Savegame not modified."
 msgstr "Du bist tot. Spielstand nicht verändert."
 
-#: src/saveloadgame.c:264
+#: src/saveloadgame.c:257
 msgid "Saving"
 msgstr "Speichern"
 
-#: src/saveloadgame.c:297
+#: src/saveloadgame.c:290
 msgid "Game saved."
 msgstr "Spiel gespeichert."
 
-#: src/saveloadgame.c:349
+#: src/saveloadgame.c:337
 msgid "Loading"
 msgstr "Laden"
 
-#: src/saveloadgame.c:368
-msgid ""
-"W A R N I N G !\n"
-"\n"
-"FreedroidRPG was unable to locate the saved game file you requested to load.\n"
-"This might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\n"
-"The other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."
+#: src/saveloadgame.c:366
+msgid "Unable to decompress saved game - this is probably a very old, incompatible game. Sorry."
 msgstr ""
-"W A R N U N G !\n"
-"\n"
-"FreedroidRPG konnte den Spielstand, der geladen werden sollte, nicht finden.\n"
-"Es könnte sein, dass er wirklich nicht da ist, weil er nie angelegt wurde.\n"
-"Anderseits könnte es ein schwerwiegender Fehler in FreedroidRPG sein. Sollte dies der Fall sein, bitte die Entwickler dieses Spiels darüber informieren."
+"Kann Spielstand nicht entpacken - vermutlich stammt dieser von einer sehr alten,\n"
+"inkompatiblen Version ab. Entschuldigung."
 
-#: src/saveloadgame.c:369
-msgid "Failed to load old game."
-msgstr "Konnte alten Spielstand nicht laden."
-
-#: src/saveloadgame.c:403
-msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
-msgstr "Version oder Struktur passt nicht! Der Spielstand passt nicht zu dieser Version von FreedroidRPG… er könnte fehlerhaft sein."
-
-#: src/saveloadgame.c:444
+#: src/saveloadgame.c:446
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Tux Bilder aktualisieren (könnte eine Weile dauern…)"
 
-#: src/saveloadgame.c:449
+#: src/saveloadgame.c:453
 msgid "Game loaded."
 msgstr "Spiel geladen."
 
@@ -2932,6 +2916,131 @@ msgstr "Wegpunkt"
 #: src/lvledit/lvledit_widgets.c:607
 msgid "Label"
 msgstr "Beschriftung"
+
+#: src/savegame/convert.c:148
+msgid ""
+"The SAVEGAME info can not be decoded.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+"Kann die Infos zum SPIELSTAND nicht lesen.\n"
+"Möglicherweise ist er fehlerhaft."
+
+#: src/savegame/convert.c:166
+msgid ""
+"Your savegame seems to be a pre-0.16.1 version, but the savegame_version_string can not be found.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+"Kann die Versionsangabe zum Spielstand nicht finden.\n"
+"Möglicherweise ist er fehlerhaft."
+
+#: src/savegame/convert.c:185
+msgid ""
+"Your savegame seems to be a pre-0.16.1 version, but the savegame_version_string can not be decoded.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+"Kann die Versionsangabe zum Spielstand nicht dekodieren.\n"
+"Möglicherweise ist er fehlerhaft."
+
+#: src/savegame/convert.c:289
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"Your savegame is from an other game version.\n"
+"If you are using a dev version of the game, this is expected.\n"
+"We load it as is, but expect some errors or even a crash of the game."
+msgstr ""
+"-=* Lade Spielstand *=-\n"
+"\n"
+"Der Spielstand scheint zu einer älteren Version zu gehören.\n"
+"Falls dies eine Entwicklerversion ist, ignoriere diesen Fehler.\n"
+"Der Spielstand wird geladen, doch es können Fehler auftreten,\n"
+"die das Spiel schlimmstenfalls abstürzen lassen."
+
+#: src/savegame/convert.c:296
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"An old savegame version has been detected (v%d-r%d).\n"
+"However, no converter was found.\n"
+"We load it as is, but expect some errors or even a crash of the game."
+msgstr ""
+"-=* Lade Spielstand *=-\n"
+"\n"
+"Spielstand einer älteren Version erkannt (v%d-r%d).\n"
+"Allerdings ist kein Konverter für diese Version vorhanden.\n"
+"Der Spielstand wird geladen, doch es können Fehler auftreten,\n"
+"die das Spiel schlimmstenfalls abstürzen lassen."
+
+#: src/savegame/convert.c:304
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"Your old savegame has been converted from v%d-r%d to v%d-r%d.\n"
+"Note that we can not guarantee that your savegame is fully playable,\n"
+"Some errors or even a game crash could possibly happen."
+msgstr ""
+"-=* Lade Spielstand *=-\n"
+"\n"
+"Dein alter Spielstand aus Version v%d-r%d wird konvertiert zu Version v%d-r%d.\n"
+"Weil nicht garantiert werden kann, dass der Spielstand auch spielbar ist,\n"
+"können Fehler auftreten, die das Spiel schlimmstenfalls abstürzen lassen."
+
+#: src/savegame/convert.c:316
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"An old savegame version has been detected (v%d-r%d),\n"
+"An error was caught during conversion. See your console output.\n"
+"We will try to load it unconverted, but expect some errors or even a crash of the game."
+msgstr ""
+"-=* Lade Spielstand *=-\n"
+"\n"
+"Spielstand einer älteren Version erkannt (v%d-r%d),\n"
+"doch ein Fehler trat bei der Konvertierung auf. Weitere Details sind im\n"
+"Terminal / der Eingabeaufforderung zu lesen.\n"
+"Der Spielstand wird ohne Konvertierung geladen, doch es können Fehler auftreten,\n"
+"die das Spiel schlimmstenfalls abstürzen lassen."
+
+#: src/savegame/filters_0_16.c:60
+#, c-format
+msgid ""
+"Error during savegame filtering (%s:%s): 'mission_diary_texts' data was not found.\n"
+"The savegame seems to be corrupted."
+msgstr ""
+"Fehler beim Filtern des Spielstands (%s:%s): 'mission_diary_texts' Daten nicht gefunden.\n"
+"Möglicherweise ist er fehlerhaft."
+
+#: src/savegame/filters_0_16.c:70
+#, c-format
+msgid ""
+"Error during savegame filtering (%s:%s): End marker of 'mission_diary_texts' was not found.\n"
+"The savegame seems to be corrupted."
+msgstr ""
+"Fehler beim Filtern des Spielstands (%s:%s):\n"
+"Endmarkierung von 'mission_diary_texts' nicht gefunden.\n"
+"Möglicherweise ist er fehlerhaft."
+
+#~ msgid ""
+#~ "W A R N I N G !\n"
+#~ "\n"
+#~ "FreedroidRPG was unable to locate the saved game file you requested to load.\n"
+#~ "This might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\n"
+#~ "The other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."
+#~ msgstr ""
+#~ "W A R N U N G !\n"
+#~ "\n"
+#~ "FreedroidRPG konnte den Spielstand, der geladen werden sollte, nicht finden.\n"
+#~ "Es könnte sein, dass er wirklich nicht da ist, weil er nie angelegt wurde.\n"
+#~ "Anderseits könnte es ein schwerwiegender Fehler in FreedroidRPG sein. Sollte dies der Fall sein, bitte die Entwickler dieses Spiels darüber informieren."
+
+#~ msgid "Failed to load old game."
+#~ msgstr "Konnte alten Spielstand nicht laden."
+
+#~ msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
+#~ msgstr "Version oder Struktur passt nicht! Der Spielstand passt nicht zu dieser Version von FreedroidRPG… er könnte fehlerhaft sein."
 
 #~ msgid ""
 #~ "%s\n"

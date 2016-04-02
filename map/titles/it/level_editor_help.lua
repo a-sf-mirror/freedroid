@@ -69,23 +69,23 @@ The icon with the trash can delete the selected obstacle.
 You can also cut (Ctrl+x, can also be used to delete obstacles by just not pasting them again ;) ), copy (Ctrl+c) and paste (Ctrl+v) cut or copied obstacles.
 You can move selected obstacles holding down the left shift key while dragging the obstacle around. However, this may be quite imprecise.
 
-            Placing objects in Chests
+            Posizionamento di oggetti in Cassapanche
 
-Simply select the desired chest and click the most left button in the upper button row.
-You will be forwarded to a screen that looks like the shop screen.
+Basta selezionare la cassa desiderata e fare clic sul pulsante più a sinistro nella riga superiore.
+Sarai reindirizzato ad una schermata che appare come nella schermata del negozio.
 There will be a knife displayed (which is actually not placed in the chest by the way) select it and click on the 'sell' button.
 Select the items you want to be dropped when the player opens the chest.
 These items will be displayed in the upper shop bar.
 In order to remove one of these items, simply select it and click on 'buy'.
-The red cross gets you out of the screen.
+La croce rossa ti fa fuori dallo schermo.
 
-            Adding Text to a Sign
+            Aggiungere un testo a un segno
 
 Select the sign and add an obstacle label with the sign text. Save the map and exit.
 Open the level file (map/levels.dat) and find the new obstacle label. Change the line above the text from 'type=30' to 'type=32' and save.
 Now when you click on the sign in the game your short message will appear.
 
-            Adding a Dialog to a Terminal
+            Aggiungere un dialogo a un terminale
 
 Select the terminal and add an obstacle label with the dialog name you wish to use. Save the map and exit.
 Open the level file (map/levels.dat) and find the new obstacle label.
@@ -167,22 +167,22 @@ In order to save a map, click the small disk icon in the upper right area of the
 You can also do this via the menu that is opened by pressing the 'Esc' key.
 
 
-General tips:
+Consigli generali:
 
-	Getting overview
+	Vedi una panoramica
 In order to change the zoom factor, press the 'o' key or click the icon with the magnifying glass on it.
 Try left and right clicking in order to access different zoom factors.
 
 
-	The editor menu
+	Il menu dell'editor
 
-You can access this menu by pressing ESC.
+Può accedere a questo menu premendo ESC.
 
 		"Level:"
 Here you can easily navigate to other levels. You can either use the arrow keys having this option selected
 in order to switch to the next or previous (refers to level numbers) level, or, clicking on it, enter the number of the desired level and press enter.
 
-		Level options
+		Opzioni del livello
 				Level:	See above for explanation
 				Name:	The map name displayed at the GPS in the upper right corner of the game screen. You can disable the GPS in-game using the options menu.
 				Size:	You can increase or reduce the size of your level. Select the desired edge where you want to add/remove a line of tiles and click the <- or -> arrow buttons.
@@ -200,7 +200,7 @@ in order to switch to the next or previous (refers to level numbers) level, or, 
 				Infinite running Stamina:	If you have this set to "yes", Tux' stamina will not decrease while running across the map. This should only be used if the level has no hostile NPCs on it, like on level 0, the Town, for example.
 				add/rem level:		Lets you add a new level or remove the current level.
 
-		Advanced options
+		Opzioni avanzate
 Here you can run the map level validator.
 The map level validator checks all the paths between connected waypoints to ensure they are not blocked by obstacles. More detailed output explaining which paths are blocked can be found in the terminal, given the case that the game is run using it, or a global error output file.
 It can also check if you have obstacles near map borders in a critial way.
@@ -214,7 +214,7 @@ If you leave this mode, obstacle changes that were made while playing, destroyin
 
 
 
-Keys:
+Tasti
 space					toggle planting/selection mode
 w						plant waypoint
 shift+w					toggle mode for waypoints to 'random bot' or 'NPC'

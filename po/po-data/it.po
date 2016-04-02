@@ -1,16 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
-# gino ingras <ginoingras@gmail.com>, 2016
+# ginoingras <ginoingras@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-01-08 14:04+0100\n"
-"PO-Revision-Date: 2016-01-23 12:50+0000\n"
-"Last-Translator: gino ingras <ginoingras@gmail.com>\n"
+"POT-Creation-Date: 2016-04-02 16:36+0200\n"
+"PO-Revision-Date: 2016-01-29 14:39+0000\n"
+"Last-Translator: ginoingras <ginoingras@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/arctic-games/freedroid-rpg/language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -207,7 +207,7 @@ msgstr "Un'unità anti-gravità molto affidabile è integrata in questo droide. 
 #: map/droid_archetypes.dat:662 map/ReturnOfTux.droids:147
 #: map/ReturnOfTux.droids:291
 msgid "834 Wisp"
-msgstr ""
+msgstr "834 Wisp"
 
 #: map/droid_archetypes.dat:685
 msgid "Early type anti-grav security droid. Fitted with an over-driven anti-grav unit. This droid is very fast but is not reliable."
@@ -375,215 +375,223 @@ msgstr "Verso Arena Novizio "
 msgid "To Master Arena"
 msgstr "Verso Arena Principale "
 
-#: map/events.dat:666
+#: map/events.dat:468 map/events.dat:481
+msgid ""
+"You have found the Town's secret exit door.\n"
+"Use it only in case of emergency."
+msgstr ""
+"Hai trovato l'uscita segreta della città.\n"
+"Usa solo in caso di emergenza."
+
+#: map/events.dat:672
 msgid "Exit Warehouse"
 msgstr "Uscita Magazzino"
 
-#: map/events.dat:673
+#: map/events.dat:679
 msgid "To Warehouse Level 2"
 msgstr "Verso livello 2 del magazzino"
 
-#: map/events.dat:683
+#: map/events.dat:689
 msgid "To Warehouse Level 1"
 msgstr "Verso livello 1 del magazzino"
 
-#: map/events.dat:693
+#: map/events.dat:699
 msgid "Back to Kevin's Garden"
 msgstr "Torna a giardino di Kevin"
 
-#: map/events.dat:700
+#: map/events.dat:706
 msgid "To Energy Station"
 msgstr "Verso Stazione di energia"
 
-#: map/events.dat:710
+#: map/events.dat:716
 msgid "Back to Lower Catacombs"
 msgstr "Back to Lower Catacombs basse"
 
-#: map/events.dat:720
+#: map/events.dat:726
 msgid "Way to Disruptor Machine Deck"
 msgstr "Verso il Ponte Macchina Disruptore"
 
-#: map/events.dat:730
+#: map/events.dat:736
 msgid "Back to Town"
 msgstr "Torna alla città"
 
-#: map/events.dat:737
+#: map/events.dat:743
 msgid "To Old Server Room"
 msgstr "Verso la vecchia stanza del Server"
 
-#: map/events.dat:744
+#: map/events.dat:750
 msgid "Singularity Attacked"
 msgstr "Singolarità Attaccato"
 
-#: map/events.dat:755
+#: map/events.dat:761
 msgid "Singularity Death"
 msgstr "Singolarità Morte"
 
-#: map/events.dat:761
+#: map/events.dat:767
 msgid "The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it..."
 msgstr "Il robot principale della Singolarità è morto. Il resto mi stano attaccando! Forse dovrei avere fatto più attenzione ad loro..."
 
-#: map/events.dat:767
+#: map/events.dat:773
 msgid "Automated Factory Mechanism"
 msgstr "Meccanismo della Fabbrica Automatizzata"
 
-#: map/events.dat:775
+#: map/events.dat:781
 msgid "Elbow grease has been applied to the Automated Factory."
 msgstr "Olio di gomito è stato applicato alla Fabbrica Automatizzata."
 
-#: map/events.dat:788
+#: map/events.dat:794
 msgid "Enter Warehouse"
 msgstr "Entrata Magazzino"
 
-#: map/events.dat:832
+#: map/events.dat:838
 msgid "Down into Crystal Caves"
 msgstr "Giù nelle Caverne di Cristallo"
 
-#: map/events.dat:886
+#: map/events.dat:892
 msgid "Get me out of here!"
 msgstr "Fammi uscire da qui!"
 
-#: map/events.dat:902
+#: map/events.dat:908
 msgid "I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened."
 msgstr "Ho appena sentito un'esplosione - il 296 di Ewald deve avere appena soffiato il reattore. Forse dovrei andare a dire Ewald cos'è successo."
 
-#: map/events.dat:918
+#: map/events.dat:924
 msgid "To Omega Island"
 msgstr "All'isola di Omega"
 
-#: map/events.dat:959
+#: map/events.dat:965
 msgid "To Kevin's Underground Station"
 msgstr "Alla stazione della metropolitana di Kevin"
 
-#: map/events.dat:1005
+#: map/events.dat:1011
 msgid "To Underground Station"
 msgstr "Alla stazione della metropolitana"
 
-#: map/events.dat:1257
+#: map/events.dat:1263
 msgid "It's a trap!"
 msgstr "E' una trappola!"
 
-#: map/events.dat:1656
+#: map/events.dat:1662
 msgid "Hatch with broken ladder"
 msgstr "Boccaporto con una scaletta rotta"
 
-#: map/events.dat:1711
+#: map/events.dat:1717
 msgid "Exit Novice Arena"
 msgstr "Uscita Arena Novizio."
 
-#: map/events.dat:1718
+#: map/events.dat:1724
 msgid "Start New Wave"
 msgstr "Inizia Nuova Onda"
 
-#: map/events.dat:1781
+#: map/events.dat:1787
 msgid "Wave "
 msgstr "Onda "
 
-#: map/events.dat:1783
+#: map/events.dat:1789
 msgid "Final Wave - Take care!"
 msgstr "Onda finale - Stai attento!"
 
-#: map/events.dat:1807 map/events.dat:1839
+#: map/events.dat:1813 map/events.dat:1845
 msgid "All bots are killed! Go to center for next wave."
 msgstr "Tutti i bot vengono uccisi! Vai al centro per la prossima ondata."
 
-#: map/events.dat:1810 map/events.dat:1842
+#: map/events.dat:1816 map/events.dat:1848
 msgid "All bots are killed! You won."
 msgstr "Tutti i robot vengono uccisi! Hai vinto."
 
-#: map/events.dat:1878
+#: map/events.dat:1884
 msgid "Exit Master Arena"
 msgstr "Uscita Arena Principale"
 
-#: map/events.dat:2044
+#: map/events.dat:2050
 msgid "Exit Crystal Caves"
 msgstr "Uscita Caverne di Cristallo"
 
-#: map/events.dat:2054 map/events.dat:2086
+#: map/events.dat:2060 map/events.dat:2092
 msgid "Back to the Desert"
 msgstr "Torna al deserto"
 
-#: map/events.dat:2094
+#: map/events.dat:2100
 msgid "Tania has made it to the surface for the first time in a very long time."
 msgstr "Tania si ha reso alla superficie per la prima volta da molto lungo tempo."
 
-#: map/events.dat:2101 map/events.dat:2108
+#: map/events.dat:2107 map/events.dat:2114
 msgid "To the Secret Area Service Tunnels"
 msgstr "Per i tunnel di servizio della zona segreta"
 
-#: map/events.dat:2118 map/events.dat:2125
+#: map/events.dat:2124 map/events.dat:2131
 msgid "Back to the Secret Area"
 msgstr "Torna alla zona segreta"
 
-#: map/events.dat:2143
+#: map/events.dat:2149
 msgid "Good, now move to the black grating to the East."
 msgstr "Bene, ora vai alla griglia nera ad est."
 
-#: map/events.dat:2156
+#: map/events.dat:2162
 msgid "Good, now talk to Tutorial Tom again."
 msgstr "Bene, ora parla con Tutorial Tom di nuovo."
 
-#: map/events.dat:2345
+#: map/events.dat:2351
 msgid "To a Forgotten Bunker"
 msgstr "Un bunker dimenticato"
 
-#: map/events.dat:2365
+#: map/events.dat:2371
 msgid "Unknown place"
 msgstr "Luogo sconosciuto"
 
-#: map/events.dat:2383
+#: map/events.dat:2389
 msgid "Hidden way out"
 msgstr "passaggio segreto via l'uscita"
 
-#: map/events.dat:2437
+#: map/events.dat:2443
 msgid "Back to Disruptor Shield Control"
 msgstr "Torna a Controllo Scudo Disruptore"
 
-#: map/events.dat:2444
+#: map/events.dat:2450
 msgid "To Machine Deck Lower Catacombs"
 msgstr "Verso la Macchina del Ponte Inferiore"
 
-#: map/events.dat:2454
+#: map/events.dat:2460
 msgid "Back to Machine Deck Upper Catacombs"
 msgstr "Torna alla Macchina sul Ponte Superiore delle Catacombe"
 
-#: map/events.dat:2461
+#: map/events.dat:2467
 msgid "To Disruptor Machine Deck"
 msgstr "Verso la Macchina Disruptore del Ponte"
 
-#: map/events.dat:2475
+#: map/events.dat:2481
 msgid "Back To Maintenance Tunnel"
 msgstr "Torna a Tunnel di servizio"
 
-#: map/events.dat:2482
+#: map/events.dat:2488
 msgid "We need to go deeper..."
 msgstr "Abbiamo bisogno di andare più in profondità..."
 
-#: map/events.dat:6614
+#: map/events.dat:6620
 msgid "Back to mainland"
 msgstr "Torna alla terraferma"
 
-#: map/events.dat:6630
+#: map/events.dat:6636
 msgid "Security failure at Hell's Fortress reception desk."
 msgstr "Falla nella sicurezza alla reception della Fortezza Infernale."
 
-#: map/events.dat:6643
+#: map/events.dat:6649
 msgid "Better reload your last save and try again."
 msgstr "Meglio ricaricare l'ultimo salvata e riprovare."
 
-#: map/events.dat:6644
+#: map/events.dat:6650
 msgid "Spencer still needed alive to win game."
 msgstr "C'è bisogno che Spencer sia ancora vivo per vincere il gioco."
 
-#: map/events.dat:6646 map/events.dat:6658
+#: map/events.dat:6652 map/events.dat:6664
 msgid "You should still be able to finish the game but some storylines might be broken."
 msgstr "Dovrebbi ancora essere in grado di finire il gioco, ma alcune storie potrebbero essere persi."
 
-#: map/events.dat:6647
+#: map/events.dat:6653
 msgid "Ooops, you killed Spencer."
 msgstr "Ooops, hai ucciso Spencer."
 
-#: map/events.dat:6659
+#: map/events.dat:6665
 msgid "Ooops, you killed Pendragon."
 msgstr "Ooops, hai ucciso Pendragon."
 
@@ -609,7 +617,7 @@ msgstr "Leggero e maneggevole nel combattimento, ma purtroppo non è molto effic
 
 #: map/item_specs.lua:161
 msgid "Cutlass"
-msgstr ""
+msgstr "Spada corta"
 
 #: map/item_specs.lua:175
 msgid "Long reach while remaining maneuverable enough in combat to find the weak spots in droid armor are the advantages that partially makes up for the inability of a cutting blade to incur lots of damage on a heavily protected target. Repeatedly striking at metal quickly damages the blade though."
@@ -737,7 +745,7 @@ msgstr "Nelle mani di un vero maestro, questo eccellente prodotto della tecnolog
 
 #: map/item_specs.lua:519
 msgid "Laser Staff"
-msgstr ""
+msgstr "Bastone Laser"
 
 #: map/item_specs.lua:535
 msgid "A close combat master with this weapon in his hands is a pure whirling dervish of death. It requires laser crystals to work properly."
@@ -2527,7 +2535,7 @@ msgstr "Skippy - produttore Generatore di scheda "
 
 #: map/npc_specs.lua:27
 msgid "Scavenger Bot"
-msgstr ""
+msgstr "Robot Carogne"
 
 #: map/npc_specs.lua:28
 msgid "SADD - Exterminate Mode"
@@ -2890,15 +2898,15 @@ msgstr "Cassetta degli attrezzi di Jennifer"
 
 #: map/quests.dat:278
 msgid "24_label_test_quest"
-msgstr ""
+msgstr "24_label_test_quest"
 
 #: map/quests.dat:285
 msgid "24_dude_test_quest"
-msgstr ""
+msgstr "24_dude_test_quest"
 
 #: map/quests.dat:292
 msgid "24_guy_death_quest"
-msgstr ""
+msgstr "24_guy_death_quest"
 
 #: map/ReturnOfTux.droids:4
 msgid "Hot Girl"
@@ -3247,7 +3255,7 @@ msgstr "TIAMO"
 
 #: map/ReturnOfTux.droids:307
 msgid "Fail-safe"
-msgstr ""
+msgstr "Modo-Sicuro"
 
 #: map/ReturnOfTux.droids:308
 msgid "CIH.1103"
@@ -3451,7 +3459,7 @@ msgstr "Riscaldando i circuiti con un programma non valido può causare farli ri
 
 #: map/skill_specs.lua:166
 msgid "Killer poke"
-msgstr ""
+msgstr "Assassino di poke"
 
 #: map/skill_specs.lua:172 map/skill_specs.lua:184
 msgid "Messing around with the bot's memory can cause it to severely damage itself, but the damage is greatly variable."
@@ -3471,7 +3479,7 @@ msgstr "Con un po' di conoscenza, è possibile estrarre alcune parti utili fuori
 
 #: map/skill_specs.lua:200
 msgid "Network Mapper"
-msgstr ""
+msgstr "Generatore Mappatura Rete"
 
 #: map/skill_specs.lua:210
 msgid "Light"
@@ -3495,7 +3503,7 @@ msgstr "NON ANCORA IMPLEMENTATA. C'è qualche magia oscura nell'arte della torni
 
 #: map/skill_specs.lua:261
 msgid "Ricer CFLAGS"
-msgstr ""
+msgstr "Super CFLAGS"
 
 #: map/skill_specs.lua:266
 msgid "NOT IMPLEMENTED YET Optimization is the root of all evil. You can gain some temporary speed improvements to your system, but in the end you will likely overheat and cause permanent damage if you are not careful."
