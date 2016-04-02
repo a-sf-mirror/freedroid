@@ -43,3 +43,5 @@ src/lvledit/lvledit_menu.c
 src/lvledit/lvledit_tool_place.c
 src/lvledit/lvledit_widget_toolbar.c
 src/lvledit/lvledit_widgets.c
+src/savegame/convert.c
+src/savegame/filters_0_16.c

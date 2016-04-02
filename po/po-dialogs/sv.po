@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # Alexander Forsberg <alexf@openmailbox.org>, 2014-2015
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-01-08 14:04+0100\n"
+"POT-Creation-Date: 2016-04-02 16:36+0200\n"
 "PO-Revision-Date: 2015-03-21 23:26+0000\n"
 "Last-Translator: Alexander Forsberg <alexf@openmailbox.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
@@ -543,7 +543,7 @@ msgstr "Välkommen till värdnamnsmenyn."
 #: dialogs/AfterTakeover.lua:377
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Version: %s"
 
 #: dialogs/AfterTakeover.lua:378
 #, c-format
@@ -860,7 +860,7 @@ msgstr "Lämnar inställningar.plx"
 #. TRANSLATORS: command,  use lowercase here
 #: dialogs/AfterTakeover.lua:710 dialogs/DSB-MachineDeckControl.lua:77
 #: dialogs/DSB-PowerControl.lua:44 dialogs/DSB-PowerControlGate1.lua:88
-#: dialogs/Maintenance-Terminal.lua:228 dialogs/MiniFactory-Terminal.lua:104
+#: dialogs/Maintenance-Terminal.lua:228 dialogs/MiniFactory-Terminal.lua:105
 #: dialogs/MO-HFGateAccessServer.lua:228 dialogs/MO-HFGateAccessServer.lua:231
 #: dialogs/MS-Factory-Addon-Terminal.lua:71 dialogs/SACD.lua:109
 #: dialogs/Terminal.lua:51 dialogs/TestDroid.lua:47
@@ -4368,196 +4368,198 @@ msgstr "Felaktig inloggning"
 msgid "Connection to c-net terminated."
 msgstr "Anslutning till c-net stängd."
 
-#: dialogs/c-net.lua:180
-msgid "Date unknown"
-msgstr "Okänt datum"
+#. TRANSLATORS: It shows the ingame date in format: Day day, hour:minute
+#: dialogs/c-net.lua:181
+#, c-format
+msgid "Day %d, %02d:%02d"
+msgstr "Dag %d, %02d:%02d"
 
 #. TRANSLATORS: this reperesents the head of a table
-#: dialogs/c-net.lua:192
+#: dialogs/c-net.lua:193
 msgid "Login Tty Name"
 msgstr "Inloggning Tty Namn"
 
 #. TRANSLATORS: %s=Tux:get_player_name()
-#: dialogs/c-net.lua:257
+#: dialogs/c-net.lua:258
 msgid "mountdisk.sh"
 msgstr "monteradisk.sh"
 
-#: dialogs/c-net.lua:260
+#: dialogs/c-net.lua:261
 msgid "./mountdisk.sh"
 msgstr "./monteradisk.sh"
 
-#: dialogs/c-net.lua:262
+#: dialogs/c-net.lua:263
 msgid "Mounting volume \"Kevins_Security_File\"..."
 msgstr "Monterar volymen \"Kevins_Säkerhetsfil\"..."
 
-#: dialogs/c-net.lua:263
+#: dialogs/c-net.lua:264
 msgid "Private memory and/or virtual address space exhausted."
 msgstr "Privat minne och/eller virtuellt adressutrymme fullt."
 
-#: dialogs/c-net.lua:264
+#: dialogs/c-net.lua:265
 msgid "Not enough free memory to load data file."
 msgstr "Inte tillräckligt med minne för att ladda datafil."
 
-#: dialogs/c-net.lua:268
+#: dialogs/c-net.lua:269
 msgid "List for Spencer:"
 msgstr "Lista till Spencer:"
 
-#: dialogs/c-net.lua:315
+#: dialogs/c-net.lua:316
 msgid "I found a terminal in the town which could read the data cube Francis gave me. It looks like there was a list of names on it, but I have no clue what's the deal with these names."
 msgstr "Jag hittade en terminal i stan som kunde läsa Francis datakub. Det verkar som den innehåller en lista på namn, men jag har ingen aning vad det handlar om."
 
-#: dialogs/c-net.lua:319
+#: dialogs/c-net.lua:320
 msgid "no disk found"
 msgstr "ingen disk hittades"
 
-#: dialogs/c-net.lua:326
+#: dialogs/c-net.lua:327
 msgid "statistics.pl"
 msgstr "statistik.pl"
 
-#: dialogs/c-net.lua:330
+#: dialogs/c-net.lua:331
 msgid "Corrupted file."
 msgstr "Skadad fil."
 
-#: dialogs/c-net.lua:331
+#: dialogs/c-net.lua:332
 msgid "Bot #Dead# Tux #Hacked/Failed#Ratio"
 msgstr "Bott #Död# Tux #Hackad/Misslyckad#Kvot"
 
-#: dialogs/c-net.lua:367
+#: dialogs/c-net.lua:368
 msgid "forkBOMB.sh -arm bomb"
 msgstr "forkBOMB.sh -armera bomb"
 
-#: dialogs/c-net.lua:369
+#: dialogs/c-net.lua:370
 msgid "bomb armed"
 msgstr "bomb armerad"
 
-#: dialogs/c-net.lua:376
+#: dialogs/c-net.lua:377
 msgid "forkBOMB.sh -disarm bomb"
 msgstr "forkBOMB.sh -desarmera bomb"
 
-#: dialogs/c-net.lua:378
+#: dialogs/c-net.lua:379
 msgid "bomb defused"
 msgstr "bomb desarmerad"
 
-#: dialogs/c-net.lua:385
+#: dialogs/c-net.lua:386
 msgid "forkBOMB.sh -execute"
 msgstr "forkBOMB.sh -starta"
 
-#: dialogs/c-net.lua:388
+#: dialogs/c-net.lua:389
 msgid "Terminals Disabled"
 msgstr "Terminaler Inaktiverade"
 
-#: dialogs/c-net.lua:389
+#: dialogs/c-net.lua:390
 msgid "Script run. After logout this terminal will be disabled."
 msgstr "Skriptet kördes. Efter utloggning kommer den här teminalen vara inaktiverad."
 
-#: dialogs/c-net.lua:390
+#: dialogs/c-net.lua:391
 msgid "root@c-net:~$"
 msgstr "root@c-net:~$"
 
-#: dialogs/c-net.lua:396
+#: dialogs/c-net.lua:397
 msgid "radio.sh"
 msgstr "radio.sh"
 
 #. TRANSLATORS: "tracks" refers to music songs/music
-#: dialogs/c-net.lua:399 dialogs/c-net.lua:435
+#: dialogs/c-net.lua:400 dialogs/c-net.lua:436
 msgid "Valid tracks:"
 msgstr "Tillgängliga spår:"
 
-#: dialogs/c-net.lua:405
+#: dialogs/c-net.lua:406
 msgid "please enter track"
 msgstr "ange ett giltigt spår"
 
 #. TRANSLATORS: "tracks" refers to music songs/music
-#: dialogs/c-net.lua:431
+#: dialogs/c-net.lua:432
 #, c-format
 msgid "WARNING, '%s' not a valid track."
 msgstr "VARNING, \"%s\" är inte ett giltigt spår"
 
 #. TRANSLATORS: "'exit'" must not be translated
-#: dialogs/c-net.lua:433
+#: dialogs/c-net.lua:434
 msgid "enter 'exit' to exit."
 msgstr "skriv \"exit\" för att avsluta."
 
-#: dialogs/c-net.lua:434
+#: dialogs/c-net.lua:435
 msgid "Please retry."
 msgstr "Var god försök igen."
 
-#: dialogs/c-net.lua:485
+#: dialogs/c-net.lua:486
 msgid "global_thermonuclear_war"
 msgstr "globalt_termonukleärt_krig"
 
-#: dialogs/c-net.lua:488
+#: dialogs/c-net.lua:489
 msgid "./global_thermonuclear_war"
 msgstr "./globalt_termonukleärt_krig"
 
-#: dialogs/c-net.lua:489
+#: dialogs/c-net.lua:490
 msgid "Sorry, only winning move is not to play. New game?"
 msgstr "Ledsen, vinnande drag är inte tillåtna. Nytt spel?"
 
-#: dialogs/c-net.lua:490
+#: dialogs/c-net.lua:491
 msgid "Mankind exterminated. You lost!"
 msgstr "Mänskligheten utrotad. Du förlorade!"
 
-#: dialogs/c-net.lua:491
+#: dialogs/c-net.lua:492
 msgid "No victory possible. LOSER! Play again?"
 msgstr "Ingen seger är möjlig. FÖRLORARE! Spela igen?"
 
-#: dialogs/c-net.lua:492
+#: dialogs/c-net.lua:493
 msgid "Everyone dies, new game?"
 msgstr "Alla dör, nytt spel?"
 
-#: dialogs/c-net.lua:498
+#: dialogs/c-net.lua:499
 msgid "tetris"
 msgstr "tetris"
 
-#: dialogs/c-net.lua:501
+#: dialogs/c-net.lua:502
 msgid "./tetris"
 msgstr "./tetris"
 
-#: dialogs/c-net.lua:521
+#: dialogs/c-net.lua:522
 msgid "Roll your Stats."
 msgstr "Slumpa en Karaktär."
 
-#: dialogs/c-net.lua:525
+#: dialogs/c-net.lua:526
 msgid "You are already playing Progress Quest:"
 msgstr "Du spelar redan Progress Quest:"
 
-#: dialogs/c-net.lua:526
+#: dialogs/c-net.lua:527
 msgid "You are selling an item!"
 msgstr "Du säljer ett föremål!"
 
-#: dialogs/c-net.lua:527
+#: dialogs/c-net.lua:528
 msgid "You are killing a creature!"
 msgstr "Du dödar en varelse!"
 
-#: dialogs/c-net.lua:528
+#: dialogs/c-net.lua:529
 msgid "You are gaining a level!"
 msgstr "Du går upp en nivå!"
 
-#: dialogs/c-net.lua:529
+#: dialogs/c-net.lua:530
 msgid "You are casting a spell!"
 msgstr "Du kastar en förtrollning!"
 
-#: dialogs/c-net.lua:543
+#: dialogs/c-net.lua:544
 #, c-format
 msgid "You rolled Stats of STR: [b]%d[/b], CON: [b]%d[/b], DEX: [b]%d[/b], INT: [b]%d[/b], WIS: [b]%d[/b], CHA: [b]%d[/b]."
 msgstr "Du fick värdena STRK: [b]%d[/b], KON: [b]%d[/b], SMD: [b]%d[/b], INT: [b]%d[/b], VIS: [b]%d[/b], KAR: [b]%d[/b]."
 
-#: dialogs/c-net.lua:549
+#: dialogs/c-net.lua:550
 msgid "Accept Character"
 msgstr "Godkänn Karaktär"
 
 #. TRANSLATORS: "Progress Quest" should not be translated
-#: dialogs/c-net.lua:553
+#: dialogs/c-net.lua:554
 msgid "Welcome to Progress Quest!"
 msgstr "Välkommen till \"Progress Quest\"!"
 
-#: dialogs/c-net.lua:560
+#: dialogs/c-net.lua:561
 msgid "Reroll Character"
 msgstr "Slumpa om Karaktär"
 
 #. TRANSLATORS: "c-net" should probably not be translated
-#: dialogs/c-net.lua:573
+#: dialogs/c-net.lua:574
 msgid "Connection to c-net closed."
 msgstr "Anslutning till c-net stängd."
 
@@ -7013,7 +7015,7 @@ msgid "Access granted. Closing gate ..."
 msgstr "Åtkomst tillåten. Stänger port ..."
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:107 dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Avslutar"
 
@@ -7867,7 +7869,7 @@ msgstr "... Ursäkta?"
 
 #: dialogs/Engel.lua:381
 msgid "I... WILL KILL... Who did this?!"
-msgstr ""
+msgstr "Jag... SKA DÖDA... Vem gjorde det här?!"
 
 #: dialogs/Engel.lua:382
 msgid "All the bots are dead..."
@@ -9930,7 +9932,7 @@ msgstr ""
 
 #: dialogs/Iris.lua:89
 msgid "Hello, Iris."
-msgstr ""
+msgstr "Hej, Iris."
 
 #: dialogs/Iris.lua:97
 msgid "I'm here just for vacations."
@@ -9970,7 +9972,7 @@ msgstr "Och stans design är i stora drag rätt så smart."
 
 #: dialogs/Iris.lua:122
 msgid "Nevertheless, this room is quite dark."
-msgstr ""
+msgstr "Men det här rummet är ändå rätt så mörkt."
 
 #: dialogs/Iris.lua:123
 msgid "It could use some light."
@@ -10079,7 +10081,7 @@ msgstr "Tills du skaffat fram pengarna kan du dra åt fanders!"
 #: dialogs/Iris.lua:196 dialogs/Town-TuxGuard.lua:38
 #: dialogs/Town-TuxGuard.lua:74
 msgid "Hello again."
-msgstr ""
+msgstr "Hej igen."
 
 #: dialogs/Iris.lua:197
 msgid "I've been hearing about you all day. You're the talk of the town."
@@ -12180,7 +12182,7 @@ msgstr "öppna autofabrikport"
 msgid "Opening Automated Factory Gate ..."
 msgstr "Öppnar Port till Automatiserad Fabrik"
 
-#: dialogs/Maintenance-Terminal.lua:231 dialogs/MiniFactory-Terminal.lua:107
+#: dialogs/Maintenance-Terminal.lua:231 dialogs/MiniFactory-Terminal.lua:108
 msgid "Goodbye Dave."
 msgstr "Hejdå Dave."
 
@@ -13038,11 +13040,11 @@ msgstr "Den Automatiserade Fabriken har startat upp och är redo att arbeta."
 msgid "The Automated Factory is unable to make a sandwich."
 msgstr "Den Automatiserade Fabriken kan inte göra en macka."
 
-#: dialogs/MiniFactory-Terminal.lua:88 dialogs/MS-Factory-Addon-Terminal.lua:55
+#: dialogs/MiniFactory-Terminal.lua:89 dialogs/MS-Factory-Addon-Terminal.lua:55
 msgid "craft --addon"
 msgstr "tillverka --tillägg"
 
-#: dialogs/MiniFactory-Terminal.lua:96 dialogs/MS-Factory-Addon-Terminal.lua:63
+#: dialogs/MiniFactory-Terminal.lua:97 dialogs/MS-Factory-Addon-Terminal.lua:63
 msgid "assemble --item --addon"
 msgstr "montera --föremål --tillägg"
 
@@ -20362,6 +20364,9 @@ msgstr "Will Gapes gav mig sitt MS aktiebrev så jag kan komma in i MegaSys-fabr
 #: dialogs/WillGapes.lua:194
 msgid "Be careful!"
 msgstr "Var försiktig!"
+
+#~ msgid "Date unknown"
+#~ msgstr "Okänt datum"
 
 #~ msgid "Version: 0.15.01"
 #~ msgstr "Version: 0.15.01"

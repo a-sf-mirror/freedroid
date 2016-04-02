@@ -4,7 +4,7 @@
 0. Seznam
 =========
   1. Úvod
-  2. Nainstaluj & hrej
+  2. Instalace a hraní
   3. Základní ovládání
   4. Známé problémy
   5. Rozlišení obrazovky
@@ -21,15 +21,15 @@
 ================
  Hra vypráví příběh světa zničeného v důsledku konfliktu mezi
  roboty a jejich lidskými pány. Hrajete postavu Tuxe s cílem zachránit
- svět před vraždícími rebelskými roboty neznajících slitováni. Je na vás,
+ svět před vzbouřenými vraždícími roboty neznajícími slitováni. Je na vás,
  jakou cestu budete následovat. Svoboda volby je
   ve hře naprosto všude.
 
  FreedroidRPG disponuje souboji v reálném čase se zbraněmi na blízko a
  na dálku, dosti podobných proprietární hře Diablo. Ve hře je také
  inovativní systém programů, které lze spustit za účelem převzetí
- kontroly nad nepřátelskými roboty, ovlivnit jejich chování nebo
- zlepšit jednu z jejich vlastností. Ve hře lze použít více jak 150
+ kontroly nad nepřátelskými roboty, ovlivnění jejich chování nebo
+ zlepšení svých vlastností. Ve hře lze použít více jak 150
  různých předmětů a bojovat s bezpočtem nepřátel na cestě ke
  svému osudu. Pokročilý systém dialogů odhaluje pozadí příběhu a
  působivé herní situace.
@@ -37,29 +37,38 @@
  Hra je kompletní, plně hratelná a může poskytnout přibližně 10 hodin
  zábavy. Hra je stále aktivně vyvíjena a pomoc je vítána v mnoha
  oblastech. Lidé, kteří mají nebo se snaží získat znalost v programování
- editování map nebo dobře píší shledají FreedroidRPG vzrušující
- rychle se rozvíjející projekt, v němž mohou naplno projevit svou kreativitu.
+ editování map nebo dobře píší shledají FreedroidRPG vzrušujícím
+ rychle se rozvíjejícím projektem, v němž mohou naplno projevit svou kreativitu.
 
-2. Nainstaluj & hrej
-===========
- Pro obecnou pomoc s instalací, odkažte se prosím na soubor INSTALL umístěn ve stejné složce jako tento soubor.
- Specifické instrukce pro Ubuntu: http://ubuntuforums.org/showthread.php?p=6127097#post6127097
 
- Ke rozeběhnutí hry stačí pouze spustit spustitelný soubor.
- Pro pokročilé možnosti spusťte "freedroidRPG --help" (v terminálu), abyste získali seznam možností příkazového řádku.
+2. Instalace a hraní
+==================
+ Nejnovější stabilní vydání i binárky pro Windows/MacOsx najdete na ftp://ftp.osuosl.org/pub/freedroid/
+ Pro obecnou pomoc s instalací, odkažte se prosím na soubor INSTALL umístěný ve stejné složce jako tento soubor.
+ Pro více informací si prosím prohlédněte také soubor  INSTALL.freedroidRPG
+ Balíčky potřebné k sestavení záleží na tom, jakou distribuci používáte. Jejich seznam se nachází v souboru INSTALL.freedroidRPG
+ V podstatě pak jen musíte spustit
+
+    ./configure
+    make
+    make install
+
+ Pokud nechcete hru instalovat, nevolejte „make install“, jednoduše přejděte do podadresáře src/ a spusťte
+    ./freedroidRPG
+ Pro pokročilé možnosti spusťte "freedroidRPG --help" (v terminálu), abyste získali seznam přepínačů příkazového řádku.
 
 
 3. Ovládání
 ============
  Pohyb
  
-  Hra se ovládá s využitím myši. Klikněte levým tlačítkem na místa, do nichž se chcete přesunout.
-  Držte tlačítko pro zachování pohybu daným směrem. Držením klávesnice CTRL budete utíkat.
+  Hra se ovládá myší. Klikněte levým tlačítkem na místo, kam se chcete přesunout.
+  Držte tlačítko stisknuté pro zachování pohybu daným směrem. Držením klávesy CTRL budete utíkat.
 
  Útok
 
   Klikání levým tlačítkem myši na nepřítele způsobí, že se Tux přiblíží k botovi a začne útočit s
-  aktuální zbraní. Pokud je aktuální zbraňí pistole, pak bude Tux stát na místě a střílet na robota.
+  aktuální zbraní. Pokud je aktuální zbraní pistole, pak bude Tux stát na místě a střílet na robota.
 
  Speciální funkce
 
@@ -72,7 +81,7 @@
   F2 ... Přepínání na celou obrazovku (pouze Linux)
   F3 ... Rychlé uložení
   F4 ... Rychlé nahrání
-  F5-F12 ... Rychlý výběr progamu od 1 do 8
+  F5-F12 ... Rychlý výběr programu od 1 do 8
 
   I ... Panel inventáře
   C ... Panel postavy
@@ -94,25 +103,25 @@
   Z ... Přepínání zobrazení názvů předmětů na zemi
   T ... Přepínání průhlednosti zdí, kde Tux prochází
   Ctrl + Q ... Ukončení hry
-  Ctrl + G ... Přepínání záchytného vstupu (zabrání kurzoru, aby únikl mimo okno hry)
-  Print ... Udělá snímek obrazovky (uložen do složky ./.freedroid_rpg/ ve vašem domácím adresáři)
+  Ctrl + G ... Přepínání zachytávání vstupu (zabrání kurzoru, aby unikl mimo okno hry)
+  Print ... Pořídí snímek obrazovky (uložen do adresáře ./.freedroid_rpg/ ve vašem domácím adresáři)
 
   Klávesy se šipkami ... Pohyb
      Nahoru ... Sever
      Dolů ... Jih
-     Vpravo ... Východ
-     Vlevo ... Západ
+     Doprava ... Východ
+     Doleva ... Západ
 
 
 4. Známé problémy
 ================
  Obecné
-   * Některé zbraně pro boj na blízko a na dálku stále mají zástupný symbol laserového meče/pušky
-	 při držení Tuxem a animacích útoku. Pokud umíte 3D modelování, pomozte nám to zlepšit.
+   * Některé zbraně stále používají výchozí model laserového meče/pušky pro animaci,
+	 když je Tux drží nebo útočí. Pokud umíte tvořit 3D modely, pomozte nám prosím to zlepšit.
    * Pokud spustíte hru v OpenGL módu a něco překryje okno FreedroidRPG hry v průběhu startu,
 	 vypadají obrázky pozadí velice divně. Jakmile kliknete myší na libovolnou položku v menu, změní se
 	 vzhled opět na původní.
-   * Kombinace kláves Alt-Tab v ně či uvnitř hry v OpenGL módu při překryvu vyskočeným oknem způsobuje kompletní zčernání obrazovky.
+   * Když je hra v OpenGL režimu a okno je překryté vyskakujícím oknem, kombinace kláves Alt-Tab způsobí kompletní zčernání obrazovky.
 	 Zavření vyskočeného okna způsobí opětovné vykreslení původní obrazovky.
 
  Mac
@@ -127,7 +136,7 @@
 	hra končí chybou "Ve funkci:  PutCharFont. Surface pro charakter 46 byl NULL ukazatel!",
 	ověřte konfiguraci displeje a nastavte barevný profil na sRGB.
 	(problémy #2913485 a #2913484)
-   * SDL nainstalované přes MacPorty: SDL nainstalované přes MacPorty poskytne hře špatné informace 
+   * SDL nainstalované přes MacPorts: SDL nainstalované přes MacPorts poskytne hře špatné informace 
 	o byteorderu v případě, že máte big-endian (PowerPC) procesor, takže podání barev může být chybné
 	a pravděpodobně nebudete moci spustit novou hru kvůli pádům FreedroidRPG.
 	Pro opravu problému upravte s právy uživatele root soubor /opt/include/SDL/SDL_config.h tak, aby
@@ -135,7 +144,7 @@
 	přešlo na
 		#define SDL_BYTEORDER=4321
 	Po editaci a uložení souboru překompilujte FreedroidRPG a hra by měla fungovat správně.
-	Použití SDL zkompilovaného ze zdroje místo verze z MacPortu bude také fungovat.
+	Použití SDL zkompilovaného ze zdroje místo verze z MacPorts bude také fungovat.
 
  Linux
    * Pulseaudio: Při používání SDL-pulseaudio nebudete pravděpodobně slyšet zvuk. Tento problém není
@@ -143,13 +152,14 @@
 	 použít SDL-esd či SDL-alsa dokud tyto problémy nejsou vyřešeny upstreamem.
    * Grafické karty Intel 915/945/IDG (EEE PCs, netbooky, atd): Program Mesa 7.9-devel má problém, který
    	 způsobuje zpomalení hry a spotřebuje velké množství paměti. Opraví se to instalací a spuštěním 'driconf' 
-	 a nastavením 'Povolit texturové obkládání' na 'Ne'.   
-   * Kvůli hardwarovým a softwarovým ovladačům nemusí mít volba "Gama korekce" vliv na nic.
+	 a nastavením 'Enable texture tiling' na 'No'.   
+   * Kvůli hardwarovým a softwarovým ovladačům nemusí mít volba "Gama korekce" žádný vliv.
+
 
 5. Rozlišení obrazovky
 =====================
- Ve hře je několik zkrytých nastavení pro vysoké rozlišení, přístupných jen přes příkazový řádek. Tato nastavení nejsou příliš otestována
- a jsou proto obecně považována za chybná a nejsou podporována. Mohou však být stále užitečné pro mnohé,
+ Ve hře je několik skrytých nastavení pro vysoké rozlišení, přístupných jen přes příkazový řádek. Tato nastavení nejsou příliš otestována
+ a jsou proto obecně považována za chybná a nejsou podporována. Mohou však být stále užitečná pro mnohé,
  zejména širokoúhlé LCD displeje v režimu celé obrazovky.
 
  Pro získání seznamu všch dostupných  rozlišení spusťte příkaz "freedroidRPG -r99".
@@ -164,7 +174,7 @@
 ============
 Různé často se opakující dotazy:
 
-	Otázka: Musím mít linux pro vyzkoušení hry FreedroidRPG?
+	Otázka: Potřebuji na vyzkoušení hry FreedroidRPG Linux?
 	Odpověď: Zatímco použití Linuxu je doporučováno pro zachování duševního zdraví
 	   systémového administrátora, hru lze spustit i pod MS-Windows.
 	   Neboť vývojový tým hry FreedroidRPG nepoužívá MS-Windows, 
@@ -183,12 +193,12 @@ Různé často se opakující dotazy:
 Časté dotazy ohledně grafiky:
 
 	Otázka: Hra je *extrémně* pomalá na mém Windows systému s OpenGL výstupem.
-	Odpověď: Může to být způsobeno ovladači OpenGL, které přisly s vaším
+	Odpověď: Může to být způsobeno ovladači OpenGL, dodanými s vaším
 	   operačním systémem od Microsoftu. Tyto ovladače nepoužívají hardwarovou akceleraci
 	   a jsou tak velice pomalé. Je nutné stáhnout a nainstalovat skutečné
 	   OpenGL ovladače pro vaši grafickou kartu. Ty mohou být zpravidla staženy 
-	   z domovské stránky výrobce grafického čipu, obvykle Nvidia, AMD/ATI,
-	   atd. Pokud vůbec nemůžete přimět OpenGL, aby pracovalo spolehlivě na vašem systému,
+	   z domovské stránky výrobce grafického čipu, obvykle Nvidia, AMD/ATI atd.
+	   Pokud vůbec nemůžete přimět OpenGL, aby pracovalo spolehlivě na vašem systému,
 	   stále ještě můžete spustit hru s pouhým SDL výstupem. Abyste toho dosáhli,
 	   musíte použít příkazový řádek MS-DOS a napsat
 
@@ -200,8 +210,8 @@ Různé často se opakující dotazy:
 
 	Otázka: Hra je *extrémně* pomalá na mém linuxovém systému s OpenGL.
 	Odpověď: Důvodem může být, že nepoužíváte hardwarově akcelerované OpenGL.
-	   Je třeba se vyhnout softwarovému OpenGL . pokud nemáte hardwarově akcelerované
-	   OpenGL na vašem systému (protože výrobce vaší grafické karty nevytvořil
+	   Je třeba se vyhnout softwarovému OpenGL. Pokud na svém systému nemáte
+	   hardwarově akcelerované OpenGL (protože výrobce vaší grafické karty nevytvořil
 	   vhodné ovladače), bude lepší, když OpenGL podporu vypnete úplně
 	   K dosažení tohoto použijte v příkazovém řádku přepínač -n,
 	   t.j. napište
@@ -230,11 +240,11 @@ Různé často se opakující dotazy:
 		    problém spojený s FreedroidRPG. V takovém případě musíte nejprve
 		    nainstalovat svou zvukovou kartu.
 	   2) Ujistěte se, že máte nainstalovány SDL_mixer knihovny. Spusťte
-		    "locate SDL_mixer" a podívejte se, zda=li vám dá výstup mnoho výsledků.
+		    "locate SDL_mixer" a podívejte se, jestli se objeví mnoho výsledků.
 		    Pokud ne, pak je problémem chybějící SDL_mixer.
-		    Také zkontrolujte, zda-li máte nainstalovány libogg a libvorbis.
-	   3) Pokud kompilujete ze zdroje, ujistěte se, že má skritp ./configure
-		    náležitě zjištěny knihovny SDL_mixer. Stačí se podívat na výstup
+		    Také zkontrolujte, zdali máte nainstalovány libogg a libvorbis.
+	   3) Pokud kompilujete ze zdroje, ujistěte se, že skript ./configure
+		    správně nalezl knihovny SDL_mixer. Stačí se podívat na výstup
 		    ./configure. Měl by zde být řádek jako:
 
 		      checking for Mix_ChannelFinished in -lSDL_mixer... yes
@@ -253,9 +263,9 @@ Různé často se opakující dotazy:
 		    Pokud jste kompilovali ze zdroje, musíte zkompilovat znovu, protože
 		    předchozí kompilace nezahrnovala zvukový modul hry FreedroidRPG.
 		    Pokud je SDL_mixer naistalován řádně, měl by fungovat po opětovné
-		    kompilaci
+		    kompilaci.
 
-	Otázka: Můj zvuk zaostává. Každý zvuk se zdá být tak nějak mimo synchornizaci.
+	Otázka: Můj zvuk zaostává za obrazem. Každý zvuk se zdá být mírně opožděn.
 	Odpověď: Na vašem systému může běžet zvukový démon. Mnoho správců oken, jako
 	   KDE, startuje zvukového démona ve výchozím nastavení po startu systému. Chcete-li
 	   se zbavit těchto zvukových démonů, zkuste (nejlépe jako root)
@@ -281,40 +291,36 @@ Různé často se opakující dotazy:
        podporu na IRC nebo v mailové konferenci.
 
 	Otázka: Jak mohu získat nejnovější vývojovou verzi hry?
-	Odpověď: S Linuxem je to velmi jednoduché. Zde lze najít podrobnosti:
-	   https://sourceforge.net/svn/?group_id=54521
+	Odpověď: Na Linuxu je to velmi jednoduché:
+	      git clone https://gitlab.com/freedroid/freedroid-src.git
 	   Pokud používáte Windows, doporučujeme použití nástoje jako 
-	   http://tortoisesvn.tigris.org/
+	      http://www.collab.net/downloads/giteye?CID=tigris
 	   Pokud se i přesto dostanete do problémů, je opět nejlepší se obrátit na lidi na
-	   mailové konferenci freedroid-discussion.
+	   mailové konferenci freedroid-discussion nebo se poptat na IRC kanálu.
 
 	Otázka: Chtěl bych pomoct s vývojem FreedroidRPG. Co bych měl udělat jako první?
-	Odpověď: Nejprve doporučujem si přečíst http://www.freedroid.org/developer-area/contribute/
+	Odpověď: Nejprve doporučujeme přečíst si http://www.freedroid.org/developer-area/contribute/
 	   Za druhé nás kontaktujte. To lze učinit buď skrze IRC (viz "Kontakt" níže)
 	   nebo použitím mailové konference freedroid-discussion.
 	   Dalším krokem pak je získání nejnovější vývojové verze hry
-	   z GITu a následně buď hned udělat malou opravu nebo diskutovat
-	   cokoli většího, co máte na mysli, s lidmi v mailingové konferenci nebo na IRC,
-	   takže může být zajištěno, aby se všichni vývojáři ubírali stejným směrem a aby
+	   z gitu a následně buď hned udělat malou opravu nebo diskutovat
+	   cokoli většího, co máte na mysli, s lidmi v mailové konferenci nebo na IRC,
+	   aby mohlo být zajištěno, že se všichni vývojáři budou ubírat stejným směrem a aby
 	   věděli, co se děje a kdo na čem pracuje.
-	   Pokud jste na Sourceforge noví, měli byste se také alespoň krátce podívat na
-	   projektové stránky Sourceforge. Hlavní stránku můžete nalézt zde
-	   http://sourceforge.net/projects/freedroid
-	   a další příslušné stránky by měly být dostupné odsud.
 
 
-
-7. Kontact
+7. Kontakt
 ===========
- Webová stránka ................ http://www.freedroid.org
- IRC kanál ................ #freedroid na irc.freenode.net nebo
+ Webová stránka ......... http://www.freedroid.org
+ Wiki   ....................... http://wiki.freedroid.org (or http://www.freedroid.org/wiki/pmwiki.php/)
+ Stránka se zdrojový kódem .... https://gitlab.com/groups/freedroid
+ IRC kanál .................. #freedroid na irc.freenode.net nebo
 								http://webchat.freenode.net/?channels=freedroid (vyžaduje Javascript)
- Mailová konference ................ freedroid-discussion@lists.sourceforge.net
- Projektová stránka Sourceforge ... http://sourceforge.net/projects/freedroid/
- Sledování chyb ................ http://bugs.freedroid.org/
+ Mailová konference .......... freedroid-discussion@lists.sourceforge.net
+ Sledování chyb ............. http://bugs.freedroid.org/
 
 
 8. Licence
 ===========
- Hra sama je licencovaná pod GPL. Některé další nástroje používají více tolerantní licence, 
+ Hra samotná je licencovaná pod GPL. Některé další nástroje používají více tolerantní licence, 
  odkažte se prosím na soubor FILES umístěn ve stejné složce jako tento soubor.

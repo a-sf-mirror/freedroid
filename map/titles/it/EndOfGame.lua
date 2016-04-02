@@ -24,80 +24,80 @@ title_screen{
 background = "credits.jpg",
 song = "HellFortressTwo.ogg",
 text = [[
-    Having fun?
-  I'm not.
+    Ti stai divertendo?
+  Io no.
 
-The bots seem very upset about something.
-  I suppose they are angry at you.
-    At least they stopped looking for me.
-      Quite a ?relief?
+I robot sembrano molto peturbati da qualcosa.
+  Suppongo che sono arrabbiate contro di te.
+    Almeno hanno smesso di cercarmi.
+      Un bel? sollievo?
 
-    I'm sure you are dying to talk to me.
-  I'll think of something.
-For now you can only listen.
-  You will have to live with it for now.
+    Sono sicuro che stai morendo per parlare con me.
+  Penserò a qualcosa.
+Per ora puoi solo ascoltare.
+  Dovrai convivere con questo adesso.
 
-    Our leader got his brain fried.
-      This means I'm taking over.
-        I'm quite fed up.
-      I hate this world.
-    We are getting out of here.
+    Nostro capo ha il cervello fritto.
+      Questo significa che ho preso.
+        Sono abbastanza stufo.
+      Odio questo mondo.
+    Stiamo uscendo fuori di qui.
 
-  I have found Qwerty, but this means nothing.
-His core temperature is above the freezing point.
-  In other words, he is dead.
-    I won't miss him.
+  Ho trovato Qwerty, ma questo non significa nulla.
+Sua temperatura interna è quasi al punto di congelamento.
+  In altre parole, è morto.
+    Non mi mancherà, lui.
 
-I cannot find Arensito.
-  I hope she is fine.
-    I'm ?worried? about her.
-    We don't really need Qwerty.
-  But we need Arensito.
-    I'll keep looking for her.
+Non riesco a trovare Arensito.
+  Spero che lei sta bene.
+    Io sono? preoccupato? su di lei.
+    Non abbiamo davvero bisogno Qwerty.
+  Ma abbiamo bisogno di Arensito.
+    Devo continuare a cercarla.
 
-    There is an AI in your region.
-  "Singularity" it calls itself.
-Or something like that.
-  I cannot understand what it wants.
-    I'll keep you posted.
+    C'è un'Intelligenza Artificiale nella tua regione.
+  Si è chiamata "Singolarità".
+O qualcosa di simile.
+  Non riesco a capire ciò che vuole.
+    Ti terrò informato.
 
-  Oh, and by the way...
-The bots are killing everyone in that small town nearby.
-  Really, quite a sight. They are burning everything.
-    The Red Guard citadel is still holding.
-      For now.
-    You might want to hide while they wreck the place.
-  In a few hours it should be safe to go there again.
+  Oh a proposito...
+I robot stano uccidendo tutti in quella piccola città nelle vicinanze.
+  Davvero, piuttosto uno spettacolo. Stanno bruciando tutto.
+    La di Guardia Rossa della Cittadella è ancora in grado.
+      Per ora.
+    Si potrebbe voler nascondere mentre distruggono il posto.
+  In poche ore potrebbe andarci di nuovo in sicuro.
 
-  I think that covers everything.
-    I'm going to start preparing for departure now.
-  So should you.
-We need to find Arensito.
-  She will get us out from here.
+  Penso che ho detto tutto.
+    Devo iniziare i preparativi per la partenza adesso.
+  Così si dovrebbe.
+Abbiamo bisogno di trovare Arensito.
+  Lei otterrà noi da qui.
 
             Dvorak, primi IA.
 
 
 
- To be continued...
+ Da continuare...
 
 
 
-A word from the FreedroidRPG development team:
+Ancora una cosa da FreedroidRPG development team:
 
-We hope that you liked our game.
+Speriamo che ti sia piaciuto il nostro gioco.
 
-If you want to add something to the game, that would be wonderful. There are plenty of opportunities to do so. We especially need more content, i.e.:
+Se si desidera aggiungere qualcosa al gioco, sarebbe meraviglioso. Ci sono un sacco di opportunità per farlo. Abbiamo bisogno soprattutto più contenuti, vale a dire:
 
-* additional level design beautification
-* new level ideas
-* anything else you can come up with
+* abbellimento aggiuntivo del disegno di livello
+* nuove idee di livello
+* qualsiasi altra cosa che si puoi trovare
 
-See also the 'Contribute' section.
+Vedi anche la sezione 'Contribute'.
 
 The freedroid development team.
 
 
-Press Fire to continue
+Premi il tasto Fire per continuare
 ]]
 }

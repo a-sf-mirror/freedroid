@@ -40,12 +40,21 @@
  editing, or writing skills will find FreedroidRPG to be an exciting,
  fast-moving project in which they can fully express their creativity.
 
-2. Instalar & Jogar
-===========
- Para ajuda com a instalação, refira-se ao arquivo INSTALL localizado na mesma pasta que este arquivo.
- Instruções específicas para usuários de Ubuntu:  http://ubuntuforums.org/showthread.php?p=6127097#post6127097
 
- Para rodar o jogo normalmente você só precisa rodar o executável.
+2. Instalar & Jogar
+==================
+ Last stable realase and prebuild Windows/MacOsx are at ftp://ftp.osuosl.org/pub/freedroid/
+ Para ajuda com a instalação, refira-se ao arquivo INSTALL localizado na mesma pasta que este arquivo.
+ For more information, please see also INSTALL.freedroidRPG
+ Packages needed to build depends of your distribution. They are listed in INSTALL.freedroidRPG
+ Basically, you then just have to
+
+    ./configure
+    make
+    make install
+
+ If you don't want to install the game, do not issue "make install", simply go to the src/ subdirectory, and run
+    ./freedroidRPG
  Para opções avançadas execute "freedroidRPG --help" (em um terminal) para obter uma lista dos comandos via texto.
 
 
@@ -146,6 +155,7 @@
 	 'Enable texture tiling' to 'No'.   
    * Due to hardware and software drivers, the "Gamma Correction" option may affect nothing.
 
+
 5. Resolução de Tela
 =====================
  There are a few hidden high resolution settings only accessible from command line. They are badly tested
@@ -160,11 +170,11 @@
 	- Incorrect text scrolling when talking to NPCs at times
 
 
-6. FAQ
+6. FAQs
 ============
 Miscellaneous FAQ:
 
-	Q: Eu tenho que utilizar Linux para jogar FreedroidRPG?
+	Q: Do I need to have Linux to try out FreedroidRPG?
 	R: Enquanto utilizar Linux é altamente recomendável para a sanidade do administrador
 	   do sistema, FreedroidRPG tem executáveis do MS-Windows disponíveis.
 	   Note que, como a equipe de desenvolvimento do FreedroidRPG não usa 
@@ -281,12 +291,12 @@ Level Editor & Developer FAQ:
        assistance on IRC or the mailing list.
 
 	Q: Como eu posso obter a última versão em desenvolvimento do jogo?
-	R: Isso é bem simples usando Linux. Você pode encontrar os detalhes aqui:
-	   https://sourceforge.net/svn/?group_id=54521
+	A: This is very simple when using Linux:
+	      git clone https://gitlab.com/freedroid/freedroid-src.git
 	   Se você estiver usando WIndows nós recomentamos usar uma ferramenta como 
-	   http://tortoisesvn.tigris.org/
+	      http://www.collab.net/downloads/giteye?CID=tigris
 	   If you still run into problems, best again discuss it with the people on
-	   the freedroid-discussion mailing list.
+	   the freedroid-discussion mailing list or ask for it on IRC channel as well.
 
 	Q: I want to help out with FreedroidRPG development. What should I do first?
 	A: First, we recommend to read http://www.freedroid.org/developer-area/contribute/
@@ -297,20 +307,16 @@ Level Editor & Developer FAQ:
 	   bigger you have in mind with the people on the discussion mailing list or IRC, so
 	   it can be assured that all the developers are pulling in the same direction and
 	   know what's going on and who is working on what.
-	   If you are new to the Sourceforge, you should also take at least a brief look
-	   at our Sourceforge project pages. You can find the main page here
-	   http://sourceforge.net/projects/freedroid
-	   and other relevant pages should be reachable from there.
-
 
 
 7. Contato
 ===========
  Site ................ http://www.freedroid.org
+ Wiki   ....................... http://wiki.freedroid.org (or http://www.freedroid.org/wiki/pmwiki.php/)
+ Source project page   ........ https://gitlab.com/groups/freedroid
  Canal IRC ................ #freedroid em irc.freenode.net ou
 								http://webchat.freenode.net/?channels=freedroid (requer Javascript)
  Mailing list  ................ freedroid-discussion@lists.sourceforge.net
- Página do projeto no Sourceforge ... http://sourceforge.net/projects/freedroid/
  Bug tracker  ................ http://bugs.freedroid.org/
 
 

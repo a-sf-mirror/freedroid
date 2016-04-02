@@ -40,12 +40,21 @@
  programmation, création de cartes ou de dialogues trouveront en FreedroidRPG un
  projet très actif dans lequel exprimer leur créativité.
 
-2. Installer & Jouer
-===========
- Pour une aide plus générale avec l'installation, se référer au fichier INSTALL situé dans le même dossier que celui-ci.
- Instructions spécifique pour Ubuntu : http://ubuntuforums.org/showthread.php?p=6127097#post6127097
 
- Pour démarrer le jeu, il suffit normalement de lancer l’exécutable.
+2. Installer & Jouer
+==================
+ La dernière version stable et les binaires pré-compilés pour Windows/MacOsx sont accessibles sur ftp://ftp.osuosl.org/pub/freedroid/
+ Pour une aide plus générale avec l'installation, se référer au fichier INSTALL situé dans le même dossier que celui-ci.
+ Pour plus d'informations, voir également INSTALL.freedroidRPG
+ Les paquets nécessaires à la compilation dépendent de votre distribution. Ils sont listés dans INSTALL.freedroidRPG
+ En gros, il faut juste ensuite faire
+
+    ./configure
+    make
+    make install
+
+ Si vous ne voulez pas installer le jeu, ne faites pas "make install", rendez-vous simplement dans le sous-répertoire src/, et lancez
+    ./freedroidRPG
  Pour les options avancées, exécuter "freedroidRPG --help" (dans un terminal) pour récupérer une liste des options disponibles en ligne de commande.
 
 
@@ -146,6 +155,7 @@
 	 'Enable texture tiling' à 'No'.   
    * Avec certains pilotes logiciels ou matériels, l'option "Correction Gamma" peut ne pas fonctionner. 
 
+
 5. Résolution d'écran
 =====================
  Il y a des options de réglage de haute résolution d'affichage qui ne sont accessibles que par la ligne de commande. Elles n'ont pas été intensivement testées
@@ -160,11 +170,11 @@
 	- Scrolling de texte parfois incorrect dans les dialogues avec les PNJs
 
 
-6. FAQ
+6. FAQs
 ============
 FAQ diverses :
 
-	Q : Dois-je avoir Linux pour essayer FreedroidRPG ?
+	Q: Ai-je besoin de Linux pour jouer à FreedroidRPG ?
 	R : Bien que l'utilisation de Linux soit grandement recommandé pour la santé mentale de
 	   l'administrateur système, des versions d'exécutables de FreedroidRPG pour MS-Windows sont disponibles.
 	   Notez qu'étant donné que l'équipe de développement de FreedroidRPG n'utilise pas 
@@ -281,12 +291,12 @@ FAQ Éditeur de Niveau & Développeur :
        l'assistance sur IRC ou sur la liste de diffusion.
 
 	Q : Comment récupérer la dernière version de développement du jeu ?
-	R : C'est très simple depuis Linux. Vous pouvez trouver les détails ici : 
-	   https://sourceforge.net/svn/?group_id=54521
+	R: C'est très simple en utilisant Linux :
+	      git clone https://gitlab.com/freedroid/freedroid-src.git
 	   Si vous utilisez Windows, nous recommandons l'utilisation d'un outil tel que 
-	   http://tortoisesvn.tigris.org/
+	      http://www.collab.net/downloads/giteye?CID=tigris
 	   Si vous avez des problèmes, le mieux est encore d'en discuter avec les autres sur
-	   la liste de diffusion freedroid-discussion.
+	   la liste de diffusion freedroid-discussion ou posez également la question sur le salon IRC. 
 
 	Q : Je veux aider dans le développement de FreedroidRPG. Qu'est ce que je devrais faire en premier ?
 	A : Premièrement, nous recommandons de lire http://www.freedroid.org/developer-area/contribute/ (en anglais)
@@ -297,20 +307,16 @@ FAQ Éditeur de Niveau & Développeur :
 	   auquel vous pensez venir en discuter avec nous sur la liste de diffusion ou sur IRC, enfin
 	   d'assurer que tous les développeurs travaillent dans la même direction et soient
 	   au courant de ce qui est en cours et de qui fait quoi. 
-	   Si vous êtes nouvel utilisateur de Sourceforge, vous devriez également jeter un coup d'oeil 
-	   aux pages de notre projet Sourceforge. Vous pouvez trouver la page principale ici
-	   http://sourceforge.net/projects/freedroid
-	   et les autres pages seront accessibles depuis celle là.
-
 
 
 7. Contact
 ===========
  Site web ................ http://www.freedroid.org
+ Wiki ....................... http://wiki.freedroid.org (ou http://www.freedroid.org/wiki/pmwiki.php/)
+ Page des sources  ........ https://gitlab.com/groups/freedroid
  Canal IRC ................ #freedroid sur irc.freenode.net ou
 								http://webchat.freenode.net/?channels=freedroid (nécessite Javascript)
  Liste de diffusion ................ freedroid-discussion@lists.sourceforge.net
- Page du projet Sourceforge ... http://sourceforge.net/projects/freedroid/
  Bug tracker ................ http://bugs.freedroid.org/
 
 

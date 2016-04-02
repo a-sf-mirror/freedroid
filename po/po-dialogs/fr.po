@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # Duong Khang NGUYEN <neoneurone@gmail.com>, 2014
@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-01-08 14:04+0100\n"
+"POT-Creation-Date: 2016-04-02 16:36+0200\n"
 "PO-Revision-Date: 2015-10-10 08:48+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: French (http://www.transifex.com/arctic-games/freedroid-rpg/language/fr/)\n"
@@ -95,7 +95,7 @@ msgstr "Retour au programme de surveillance."
 
 #: dialogs/614_sub.lua:27
 msgid "Entering Interactive Product Information Database"
-msgstr "Entrer dans la Base de données interactive d'informations sur les produits"
+msgstr "Entrer dans la base de données interactive d'informations sur les produits"
 
 #: dialogs/614_sub.lua:28
 msgid "I am a 614 security bot, once one of the best-selling products of Nicholson, Inc.."
@@ -127,11 +127,11 @@ msgstr "Qu'est-ce que vous pouvez m'apprendre à propos de la compagnie Nicholso
 
 #: dialogs/614_sub.lua:47
 msgid "Nicholson, Inc. produces security bots."
-msgstr "« Nicholson, Inc » produit des robots de sécurité."
+msgstr "« Nicholson, Inc » fabrique des robots de sécurité."
 
 #: dialogs/614_sub.lua:48
 msgid "It was founded by Karl Nicholson, a former Kernel hacker who was not satisfied with the development of the GPL license."
-msgstr "Elle a été fondé par Karl Nicholson, un ancien Hacker de Kernel qui n'était pas satisfait de l'évolution de la licence GPL."
+msgstr "Elle a été fondé par Karl Nicholson, un ancien hacker de Kernel qui n'était pas satisfait de l'évolution de la licence GPL."
 
 #: dialogs/614_sub.lua:49
 msgid "Nicholson decided to stick to one GPL version because he saw things getting worse."
@@ -139,11 +139,11 @@ msgstr "Nicholson a décidé de rester accroché à une version de la GPL parce 
 
 #: dialogs/614_sub.lua:50
 msgid "Others were warned, but nobody listened to Nicholsons announcements."
-msgstr "Les autres étaient avertis, mais personne n'a écouté les avertissements de Nicholson."
+msgstr "Les autres ont été avertis, mais personne n'a écouté les avertissements de Nicholson."
 
 #: dialogs/614_sub.lua:51
 msgid "He built up a team and developed his own Kernel called 'Nkernel'."
-msgstr "Il a construit une équipe et a développé son propre noyau appelé « Nkernel » ."
+msgstr "Il a construit une équipe et a développé son propre noyau appelé « Nkernel »."
 
 #: dialogs/614_sub.lua:52
 msgid "The Nkernel development team grew fast and technicians started to produce their own droids optimized for the Nkernel."
@@ -151,7 +151,7 @@ msgstr "L'équipe de développement du Nkernel a grandi très vite et des techni
 
 #: dialogs/614_sub.lua:53
 msgid "The team became a company which released their first security droid, called 610."
-msgstr "L'équipe est devenue une entreprise, qui ont produit leur premier droïde de sécurité, appelé 610."
+msgstr "L'équipe est devenue une entreprise, qui a produit son premier droïde de sécurité, appelé 610."
 
 #: dialogs/614_sub.lua:54
 msgid "I am the 5th generation version of their security droid line."
@@ -167,7 +167,7 @@ msgstr "Le manuel officiel classe les robots de la série des 614 comme des dro�
 
 #: dialogs/614_sub.lua:63
 msgid "It was mainly used within ships to protect certain areas from intruders."
-msgstr "Ils étaient principalement utilisé dans les vaisseaux afin de protéger certaines zones des intrus."
+msgstr "Ils étaient principalement utilisés dans les vaisseaux afin de protéger certaines zones des intrus."
 
 #: dialogs/614_sub.lua:64
 msgid "It is considered an old but reliable device."
@@ -199,7 +199,7 @@ msgstr "Par souci de votre santé, vous devriez éviter les droïdes 615."
 
 #: dialogs/614_sub.lua:72
 msgid "You have been warned!"
-msgstr "Vous avez été prévenu !"
+msgstr "Vous aurez été prévenu !"
 
 #: dialogs/614_sub.lua:78
 msgid "I think, that was enough product information, thank you."
@@ -862,7 +862,7 @@ msgstr "Quitte parametres.plx"
 #. TRANSLATORS: command,  use lowercase here
 #: dialogs/AfterTakeover.lua:710 dialogs/DSB-MachineDeckControl.lua:77
 #: dialogs/DSB-PowerControl.lua:44 dialogs/DSB-PowerControlGate1.lua:88
-#: dialogs/Maintenance-Terminal.lua:228 dialogs/MiniFactory-Terminal.lua:104
+#: dialogs/Maintenance-Terminal.lua:228 dialogs/MiniFactory-Terminal.lua:105
 #: dialogs/MO-HFGateAccessServer.lua:228 dialogs/MO-HFGateAccessServer.lua:231
 #: dialogs/MS-Factory-Addon-Terminal.lua:71 dialogs/SACD.lua:109
 #: dialogs/Terminal.lua:51 dialogs/TestDroid.lua:47
@@ -4370,196 +4370,198 @@ msgstr "Identifiant incorect"
 msgid "Connection to c-net terminated."
 msgstr "Fin de la connexion à C-net."
 
-#: dialogs/c-net.lua:180
-msgid "Date unknown"
-msgstr "Date inconnu"
+#. TRANSLATORS: It shows the ingame date in format: Day day, hour:minute
+#: dialogs/c-net.lua:181
+#, c-format
+msgid "Day %d, %02d:%02d"
+msgstr "Jour %d, %02d:%02d"
 
 #. TRANSLATORS: this reperesents the head of a table
-#: dialogs/c-net.lua:192
+#: dialogs/c-net.lua:193
 msgid "Login Tty Name"
 msgstr "Identifiant Tty Nom"
 
 #. TRANSLATORS: %s=Tux:get_player_name()
-#: dialogs/c-net.lua:257
+#: dialogs/c-net.lua:258
 msgid "mountdisk.sh"
 msgstr "mountdisk.sh"
 
-#: dialogs/c-net.lua:260
+#: dialogs/c-net.lua:261
 msgid "./mountdisk.sh"
 msgstr "./mountdisk.sh"
 
-#: dialogs/c-net.lua:262
+#: dialogs/c-net.lua:263
 msgid "Mounting volume \"Kevins_Security_File\"..."
 msgstr "Montage du périphérique \"Fichier_Securite_de_Kevin\"..."
 
-#: dialogs/c-net.lua:263
+#: dialogs/c-net.lua:264
 msgid "Private memory and/or virtual address space exhausted."
 msgstr "Mémoire interne et/ou espace d'adressage virtuel épuisé."
 
-#: dialogs/c-net.lua:264
+#: dialogs/c-net.lua:265
 msgid "Not enough free memory to load data file."
 msgstr "Pas assez de mémoire pour charger le fichier de donnée."
 
-#: dialogs/c-net.lua:268
+#: dialogs/c-net.lua:269
 msgid "List for Spencer:"
 msgstr "Liste pour Spencer:"
 
-#: dialogs/c-net.lua:315
+#: dialogs/c-net.lua:316
 msgid "I found a terminal in the town which could read the data cube Francis gave me. It looks like there was a list of names on it, but I have no clue what's the deal with these names."
 msgstr "J'ai trouvé un terminal en ville qui devrait pouvoir lire le cube de données que Francis m'a donné. Il semble qu'il contienne une liste de noms, mais je n'ai aucune idée de ce à quoi servent ces noms."
 
-#: dialogs/c-net.lua:319
+#: dialogs/c-net.lua:320
 msgid "no disk found"
 msgstr "Volume non trouvé"
 
-#: dialogs/c-net.lua:326
+#: dialogs/c-net.lua:327
 msgid "statistics.pl"
 msgstr "statistiques.pl"
 
-#: dialogs/c-net.lua:330
+#: dialogs/c-net.lua:331
 msgid "Corrupted file."
 msgstr "Fichier corrompu."
 
-#: dialogs/c-net.lua:331
+#: dialogs/c-net.lua:332
 msgid "Bot #Dead# Tux #Hacked/Failed#Ratio"
 msgstr "Robot #Mort# Tux #Piratage/Echec# Ratio"
 
-#: dialogs/c-net.lua:367
+#: dialogs/c-net.lua:368
 msgid "forkBOMB.sh -arm bomb"
 msgstr "forkBOMB.sh -arm bomb"
 
-#: dialogs/c-net.lua:369
+#: dialogs/c-net.lua:370
 msgid "bomb armed"
 msgstr "bombe armée"
 
-#: dialogs/c-net.lua:376
+#: dialogs/c-net.lua:377
 msgid "forkBOMB.sh -disarm bomb"
 msgstr "forkBOMB.sh -disarm bomb"
 
-#: dialogs/c-net.lua:378
+#: dialogs/c-net.lua:379
 msgid "bomb defused"
 msgstr "bombe désamorcée"
 
-#: dialogs/c-net.lua:385
+#: dialogs/c-net.lua:386
 msgid "forkBOMB.sh -execute"
 msgstr "forkBOMB.sh -execute"
 
-#: dialogs/c-net.lua:388
+#: dialogs/c-net.lua:389
 msgid "Terminals Disabled"
 msgstr "Terminale Désactivé"
 
-#: dialogs/c-net.lua:389
+#: dialogs/c-net.lua:390
 msgid "Script run. After logout this terminal will be disabled."
 msgstr "Script exécuté. Une fois déconnecté, ce terminal sera désactivé."
 
-#: dialogs/c-net.lua:390
+#: dialogs/c-net.lua:391
 msgid "root@c-net:~$"
 msgstr "root@c-net:~$"
 
-#: dialogs/c-net.lua:396
+#: dialogs/c-net.lua:397
 msgid "radio.sh"
 msgstr "radio.sh"
 
 #. TRANSLATORS: "tracks" refers to music songs/music
-#: dialogs/c-net.lua:399 dialogs/c-net.lua:435
+#: dialogs/c-net.lua:400 dialogs/c-net.lua:436
 msgid "Valid tracks:"
 msgstr "Pistes valides :"
 
-#: dialogs/c-net.lua:405
+#: dialogs/c-net.lua:406
 msgid "please enter track"
 msgstr "Veuillez entrer une piste"
 
 #. TRANSLATORS: "tracks" refers to music songs/music
-#: dialogs/c-net.lua:431
+#: dialogs/c-net.lua:432
 #, c-format
 msgid "WARNING, '%s' not a valid track."
 msgstr "ATTENTION, '%s' n'est pas une piste valide."
 
 #. TRANSLATORS: "'exit'" must not be translated
-#: dialogs/c-net.lua:433
+#: dialogs/c-net.lua:434
 msgid "enter 'exit' to exit."
 msgstr "entrer « exit » pour quitter"
 
-#: dialogs/c-net.lua:434
+#: dialogs/c-net.lua:435
 msgid "Please retry."
 msgstr "Veuillez reessayer."
 
-#: dialogs/c-net.lua:485
+#: dialogs/c-net.lua:486
 msgid "global_thermonuclear_war"
 msgstr "global_thermonuclear_war"
 
-#: dialogs/c-net.lua:488
+#: dialogs/c-net.lua:489
 msgid "./global_thermonuclear_war"
 msgstr "./global_thermonuclear_war"
 
-#: dialogs/c-net.lua:489
+#: dialogs/c-net.lua:490
 msgid "Sorry, only winning move is not to play. New game?"
 msgstr "Désolé, la seule façon de gagner, c'est de ne pas jouer. Nouvelle partie ?"
 
-#: dialogs/c-net.lua:490
+#: dialogs/c-net.lua:491
 msgid "Mankind exterminated. You lost!"
 msgstr "Humanité exterminé. Tu as perdu !"
 
-#: dialogs/c-net.lua:491
+#: dialogs/c-net.lua:492
 msgid "No victory possible. LOSER! Play again?"
 msgstr "Pas de victoire possible. PERDANT ! On joue encore ?"
 
-#: dialogs/c-net.lua:492
+#: dialogs/c-net.lua:493
 msgid "Everyone dies, new game?"
 msgstr "Tout le monde meurt, nouvelle partie ?"
 
-#: dialogs/c-net.lua:498
+#: dialogs/c-net.lua:499
 msgid "tetris"
 msgstr "tetris"
 
-#: dialogs/c-net.lua:501
+#: dialogs/c-net.lua:502
 msgid "./tetris"
 msgstr "./tetris"
 
-#: dialogs/c-net.lua:521
+#: dialogs/c-net.lua:522
 msgid "Roll your Stats."
 msgstr "Tirage aléatoire des Statistiques."
 
-#: dialogs/c-net.lua:525
+#: dialogs/c-net.lua:526
 msgid "You are already playing Progress Quest:"
 msgstr "Vous jouez déjà à la Quête de l'Amélioration :"
 
-#: dialogs/c-net.lua:526
+#: dialogs/c-net.lua:527
 msgid "You are selling an item!"
 msgstr "Vous vendez un objet !"
 
-#: dialogs/c-net.lua:527
+#: dialogs/c-net.lua:528
 msgid "You are killing a creature!"
 msgstr "Vous tuez une créature !"
 
-#: dialogs/c-net.lua:528
+#: dialogs/c-net.lua:529
 msgid "You are gaining a level!"
 msgstr "Vous gagnez un niveau !"
 
-#: dialogs/c-net.lua:529
+#: dialogs/c-net.lua:530
 msgid "You are casting a spell!"
 msgstr "Vous jetez un sort !"
 
-#: dialogs/c-net.lua:543
+#: dialogs/c-net.lua:544
 #, c-format
 msgid "You rolled Stats of STR: [b]%d[/b], CON: [b]%d[/b], DEX: [b]%d[/b], INT: [b]%d[/b], WIS: [b]%d[/b], CHA: [b]%d[/b]."
 msgstr "Vous avez tiré les Statistiques suivantes : STR: [b]%d[/b], CON: [b]%d[/b], DEX: [b]%d[/b], INT: [b]%d[/b], WIS: [b]%d[/b], CHA: [b]%d[/b]."
 
-#: dialogs/c-net.lua:549
+#: dialogs/c-net.lua:550
 msgid "Accept Character"
 msgstr "Accepter le Personnage"
 
 #. TRANSLATORS: "Progress Quest" should not be translated
-#: dialogs/c-net.lua:553
+#: dialogs/c-net.lua:554
 msgid "Welcome to Progress Quest!"
 msgstr "Bienvenue à la Quête de l'Amélioration !"
 
-#: dialogs/c-net.lua:560
+#: dialogs/c-net.lua:561
 msgid "Reroll Character"
 msgstr "Relancer le Personnage"
 
 #. TRANSLATORS: "c-net" should probably not be translated
-#: dialogs/c-net.lua:573
+#: dialogs/c-net.lua:574
 msgid "Connection to c-net closed."
 msgstr "Fermeture de la connexion à C-net."
 
@@ -7017,7 +7019,7 @@ msgid "Access granted. Closing gate ..."
 msgstr "Accès accordé. Fermeture de la porte…"
 
 #: dialogs/DSB-PowerControlGate1.lua:90 dialogs/Maintenance-Terminal.lua:230
-#: dialogs/MiniFactory-Terminal.lua:106 dialogs/MS-Factory-Addon-Terminal.lua:73
+#: dialogs/MiniFactory-Terminal.lua:107 dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr "Quitter"
 
@@ -9210,11 +9212,11 @@ msgstr "C'est bon de te revoir,  %s."
 
 #: dialogs/Francis.lua:95
 msgid "I joined the Red Guard."
-msgstr "J'ai rejoins la Garde Rouge."
+msgstr "J'ai rejoint la Garde Rouge."
 
 #: dialogs/Francis.lua:96
 msgid "Oh..."
-msgstr "Oh ..."
+msgstr "Oh..."
 
 #: dialogs/Francis.lua:97
 msgid "Well. Congratulations are in order, I suppose."
@@ -9222,11 +9224,11 @@ msgstr "Bien. Les félicitations sont de mise, je suppose."
 
 #: dialogs/Francis.lua:112
 msgid "Uhh... Where... Uh... Who am I? Oh, my head..."
-msgstr "Aie... où... aie... qu... qui suis-je ? Oh, ma tête..."
+msgstr "Aïe... où... aie... qu... qui suis-je ? Oh, ma tête..."
 
 #: dialogs/Francis.lua:114
 msgid "You have been in stasis for quite some time, but you must hurry! There's no time to explain... There's a bot in the next room. You must neutralize it quickly!"
-msgstr "Tu as été en stase pendant un bout de temps, mais tu dois te dépêcher ! Pas le temps d'expliquer... Il y a un robot dans la pièce d'à coté. Tu dois le neutraliser au plus vite !"
+msgstr "Tu as été en stase pendant un bon bout de temps, mais tu dois te dépêcher ! Pas le temps de t'expliquer... Il y a un robot dans la pièce d'à côté. Tu dois le neutraliser au plus vite !"
 
 #: dialogs/Francis.lua:122 dialogs/WillGapes.lua:44
 msgid "No, not yet."
@@ -9238,11 +9240,11 @@ msgstr "Vite ! On n'a pas le temps..."
 
 #: dialogs/Francis.lua:132 dialogs/Francis.lua:145
 msgid "(Lie) Yes, the bot has been defeated."
-msgstr "(mensonge) Oui, le robot a été battu."
+msgstr "(Mensonge) Oui, le robot a été vaincu."
 
 #: dialogs/Francis.lua:135
 msgid "Oh, many thanks to ..."
-msgstr "Oh, grand merci à ..."
+msgstr "Oh, grand merci à..."
 
 #: dialogs/Francis.lua:136
 msgid "You lie! You shouldn't toy with an old man with a weak heart! I can hear its servos whirring away... heading this way to kill us both! Please, you must help..."
@@ -9254,7 +9256,7 @@ msgstr "[b](soupir)[/b] Merci, Linarien. Tu es vraiment..."
 
 #: dialogs/Francis.lua:148
 msgid "[b](In the other room, you hear the faint whirring of servos. The horror in the old man's eyes tell you that he too has heard it.)[/b]"
-msgstr "[b](Dans l'autre pièce, tu entends le vrombissement des serveurs. L'horreur dans les yeux du vielle homme te montre qu'il les as entendu lui aussi.)[/b]"
+msgstr "[b](Dans l'autre pièce, tu entends le vrombissement des serveurs. L'horreur dans les yeux du vieil homme te montre qu'il les a entendu lui aussi.)[/b]"
 
 #: dialogs/Francis.lua:149
 msgid "...a monster! You are not a Linarian like the legends spoke of! The cryo-stasis has corrupted your soul! AGGGG!!!"
@@ -9262,19 +9264,19 @@ msgstr "... un monstre ! Tu n'es pas un Linarien comme ceux des légendes ! La c
 
 #: dialogs/Francis.lua:150
 msgid "[b](The old man grips his chest and collapses in what appears to have been a fatal heart attack.)[/b]"
-msgstr "[b](Le vielle homme s'agrippe à son coffre et s'écroule dans ce qui semble être une crise cardiaque.)[/b]"
+msgstr "[b](Le vieil homme s'agrippe à son coffre et s'écroule dans ce qui semble être une crise cardiaque.)[/b]"
 
 #: dialogs/Francis.lua:153
 msgid "The mysterious old man died from a heart attack caused by fear. He had a small data cube on his body. I wonder what's on it...?"
-msgstr "Le vielle homme mystérieux a fait une crise cardiaque à cause de la peur. Il avait un petit cube de donnée sur le corps. Je me demande ce qu'il y a dessus... ?"
+msgstr "Le mystérieux vieil homme a fait une crise cardiaque à cause de la peur. Il avait un petit cube de données sur le corps. Je me demande ce qu'il y a dessus... ?"
 
 #: dialogs/Francis.lua:162
 msgid "Yes, the bot has been defeated."
-msgstr "Oui, le robot a été battu."
+msgstr "Oui, le robot a été vaincu."
 
 #: dialogs/Francis.lua:164
 msgid "Thank heavens! Perhaps the legends are true after all..."
-msgstr "Dieu merci ! Peut-être que finalement les légendes sont vraies après tout..."
+msgstr "Dieu merci ! Peut-être que les légendes sont vraies après tout..."
 
 #: dialogs/Francis.lua:165 dialogs/Francis.lua:176
 msgid "Now that we are safe, I'd be happy to answer some of your questions. But we cannot take too long, you will need to head to the town as soon as possible."
@@ -9286,7 +9288,7 @@ msgstr "Dieu merci ! Tu nous as protégé de ce robot."
 
 #: dialogs/Francis.lua:175
 msgid "You have been in stasis for quite some time, but you still can defend yourself. Perhaps the legends are true after all..."
-msgstr "Tu as été en stase pendant pas mal de temps, mais tu sais toujours te défendre. Peut-être les légendes sont-elles vraies après tout..."
+msgstr "Tu as été en stase pendant pas mal de temps, mais tu sais toujours te défendre. Peut-être que les légendes sont vraies après tout..."
 
 #: dialogs/Francis.lua:184
 msgid "I feel terrible... Was I asleep? I remember nightmares. A meteor shower... Fire... Death... It was awful."
@@ -9294,7 +9296,7 @@ msgstr "Je me sens mal... Étais-je endormi ? Je me souviens de cauchemars. Une 
 
 #: dialogs/Francis.lua:186
 msgid "Unfortunately, for a case like yours, that is normal. According to your records, you were in stasis sleep for over 70 years."
-msgstr "Malheureusement, pour un cas comme le tien, c'est complètement normal. Selon les archives, tu as été en stase pendant plus de 70 ans."
+msgstr "Malheureusement, pour un cas comme le tien, c'est tout à fait normal. D'après les archives, tu as été en stase pendant plus de 70 ans."
 
 #: dialogs/Francis.lua:187
 msgid "Stasis is not too kind on the mind. It is not uncommon for strange dreams and nightmares to plague people who have been under stasis that long."
@@ -9320,7 +9322,7 @@ msgstr "Si l'ordinateur ne ment pas, ton nom est %s."
 
 #: dialogs/Francis.lua:199
 msgid "I'm just glad that we realized that you were a legendary Linarian and started the thawing process when we did."
-msgstr "Je suis déjà content que nous avons réalisé que tu es un Linarian légendaire et que ta décongélation se soit bien passée."
+msgstr "Je suis déjà content que nous ayons réalisé que tu étais un Linarien légendaire et que ta décongélation se soit bien passée."
 
 #: dialogs/Francis.lua:205
 msgid "Linarians? Legends? What are you talking about?"
@@ -9332,7 +9334,7 @@ msgstr "Wow, c'est le pire cas de dommage cryoneural que j'ai jamais vu."
 
 #: dialogs/Francis.lua:208
 msgid "The Red Guard had me thaw you out because you are a Linarian. I don't know much about your kind, but I do know that you have a strange affinity for computers, almost magical powers."
-msgstr "La garde rouge m'a demandé de te décongeler parce que tu es un Linarien. Je ne sais pas grand chose à propos de ton espèce mise-à-part que tu as une étrange affinité pour les ordinateurs, c'en est presque magique."
+msgstr "La Garde Rouge m'a demandé de te décongeler parce que tu es un Linarien. Je ne sais pas grand chose à propos de ton espèce mise à part que tu as une étrange affinité pour les ordinateurs, c'en est presque magique."
 
 #: dialogs/Francis.lua:209
 msgid "Chandra in the nearby town center probably has even more information."
@@ -9352,11 +9354,11 @@ msgstr "Mon nom est Dr. Francis Spark. Je suis... euh... le gardien de ce comple
 
 #: dialogs/Francis.lua:222
 msgid "Currently, there is a war raging all around the globe. One day, our once loyal bots rebelled against us and began trying to wipe us out. The beginning of this war has been dubbed 'The Great Assault.'"
-msgstr "Actuellement, la guerre fait rage tout autour du globe. Un jour, les robots se sont révoltés contre nous et ont essayé de nous éradiquer. Le début de cette guerre a été nommé \"Le Grand Assaut\"."
+msgstr "Actuellement, la guerre fait rage tout autour du globe. Un jour, les robots se sont révoltés contre nous et ont essayé de nous éradiquer. Le début de cette guerre a été nommé « Le Grand Assaut »."
 
 #: dialogs/Francis.lua:223
 msgid "And it looks like humans are losing the war. Our town isn't doing so well at this point either. But there is still hope, since you were discovered here."
-msgstr "Et on dirait que les humain vont perdre cette guerre. Notre ville ne s'en sort pas trop bien non plus. Mais il y a toujours de l'espoir, surtout depuis que l'on t'a trouvé ici."
+msgstr "Et on dirait que les humain vont perdre cette guerre. Notre ville ne s'en sort pas trop bien non plus. Mais il y a toujours de l'espoir, surtout depuis qu'on t'a trouvé ici."
 
 #: dialogs/Francis.lua:229
 msgid "How did the war start?"
@@ -9364,7 +9366,7 @@ msgstr "Comment la guerre a-t-elle commencé ?"
 
 #: dialogs/Francis.lua:231
 msgid "Unfortunately, I'm not the best source of information for that. All I know is that one day the bots went crazy. Maybe someone else in town knows more."
-msgstr "Malheureusement, je ne suis pas la meilleure source d'informations à ce sujet. Tout ce que je sais c'est qu'un jour les robots sont devenus fou. Peut-être qu'en ville, quelqu'un en sais plus."
+msgstr "Malheureusement, je ne suis pas la meilleure source d'informations à ce sujet. Tout ce que je sais c'est qu'un jour les robots sont devenus fous. Peut-être qu'en ville, quelqu'un en sait plus."
 
 #: dialogs/Francis.lua:237
 msgid "Keeper? You don't sound so sure... What is the deal with this place?"
@@ -9392,11 +9394,11 @@ msgstr "Je crois que ça a été un coup de chance que la ville n'ait pas été 
 
 #: dialogs/Francis.lua:251
 msgid "Oddly enough, the rusty old bots that the town uses for security were not affected by whatever caused the other bots to go crazy."
-msgstr "Etrangement, les vieux robots rouillés utilisés pour sécuriser la ville n'ont pas été affectés par ce qui a causé la folie des autres robots."
+msgstr "Étrangement, les vieux robots rouillés utilisés pour sécuriser la ville n'ont pas été affectés par ce qui a causé la folie des autres robots."
 
 #: dialogs/Francis.lua:252
 msgid "Right now the town is 'protected' by the Red Guard, a bunch of opportunistic roughnecks. It's not exactly a secret that I don't agree with their methods."
-msgstr "Pour l'instant la ville est 'protégée' par la Garde Rouge, un tas de brutes opportunistes. Ce n'est pas vraiment un secret que je ne suis pas d'accord avec leurs méthodes."
+msgstr "Pour l'instant la ville est  « protégée » par la Garde Rouge, un tas de brutes opportunistes. Ce n'est pas vraiment un secret que je ne suis pas d'accord avec leurs méthodes."
 
 #: dialogs/Francis.lua:253
 msgid "However, I must admit that being oppressed is a much better alternative to being eviscerated alive."
@@ -9404,11 +9406,11 @@ msgstr "Cependant, je dois admettre qu'être opprimé est une bien meilleure alt
 
 #: dialogs/Francis.lua:259
 msgid "Can you tell me how to get to town?"
-msgstr "Peux tu me dire comment me rendre en ville ?"
+msgstr "Peux-tu me dire comment me rendre en ville ?"
 
 #: dialogs/Francis.lua:261
 msgid "Sure. You just need to follow the road outside to the east. After the bridge, turn right and continue to follow the road and you will soon be outside of the town main gate."
-msgstr "Bien sûr. Tu as juste besoin de suivre la route à l'extérieur vers l'est. Après le pont, tourne à droite et continue à suivre la route, tu seras bientôt devant les portes principales de la ville."
+msgstr "Bien sûr. Tu as juste besoin de suivre la route à l'extérieur vers l'est. Après le pont, tourne à droite et continue de suivre la route, tu seras bientôt devant les portes principales de la ville."
 
 #: dialogs/Francis.lua:262
 msgid "If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you don't get lost. It's very dangerous out there."
@@ -9416,7 +9418,7 @@ msgstr "Si tu croises trop de robots, tu peux essayer de les contourner. Mais é
 
 #: dialogs/Francis.lua:263
 msgid "Once in town you will be able to purchase or trade a few more items for protection at Ms. Stone's shop just inside the town gate."
-msgstr "Une fois en ville, tu pourras acheter ou de vendre quelques objets de plus pour ta protection, au magasin de Mademoiselle Stone, juste à l'intérieur des portes de la ville."
+msgstr "Une fois en ville, tu pourras acheter ou vendre quelques objets de plus pour ta protection, au magasin de Mademoiselle Stone, juste à l'intérieur des portes de la ville."
 
 #: dialogs/Francis.lua:269
 msgid "How do I get out from here?"
@@ -9460,11 +9462,11 @@ msgstr "Merci pour ton aide. Je vais y aller."
 
 #: dialogs/Francis.lua:293 dialogs/Francis.lua:369
 msgid "I am glad I could help you. You should be careful around here. Best head straight for our town."
-msgstr "Je suis heureux d'avoir pu t'aider. Fais attention dans le secteur. Tu ferais mieux d'aller directement à la ville."
+msgstr "Je suis heureux d'avoir pu t'aider. Fais attention dans le secteur. Tu ferais mieux d'aller directement dans notre ville."
 
 #: dialogs/Francis.lua:294
 msgid "Oh, I almost forgot... Could you take this data cube and give it to Spencer once you get to town?"
-msgstr "Oh, j'allais oublier… Peux-tu prendre ce cube de donnée et le donner à Baptiste une fois en ville ?"
+msgstr "Oh, j'allais oublier… Peux-tu prendre ce cube de données et le donner à Baptiste une fois en ville ?"
 
 #: dialogs/Francis.lua:295
 msgid "Spencer?"
@@ -9472,11 +9474,11 @@ msgstr "Baptiste ?"
 
 #: dialogs/Francis.lua:296
 msgid "Yes. He's the leader of the Red Guard."
-msgstr "Oui. C'est le chef de la garde Rouge."
+msgstr "Oui. C'est le chef de la Garde Rouge."
 
 #: dialogs/Francis.lua:303
 msgid "What is stored in the cube?"
-msgstr "Qu'est ce qui est stocké dans ce cube ?"
+msgstr "Qu'est-ce qui est stocké dans ce cube ?"
 
 #: dialogs/Francis.lua:306
 msgid "It's almost nothing... nothing important... if I know nothing about purposes."
@@ -9504,15 +9506,15 @@ msgstr "Tu peux demander à l'un des gardes en ville, ils savent où trouver Bap
 
 #: dialogs/Francis.lua:321
 msgid "Francis asked me to deliver a data cube for him. When I reach the town, I'm supposed to give it to Spencer, who's in charge of the Red Guard ruling the nearby town. Of course, my first job is to survive the trip there..."
-msgstr "Francis m'a demandé de livrer un cube de données pour lui. Dès que j'ai atteins la ville, je dois le donner à Baptiste qui est en charge de la Garde Rouge qui dirige la ville et ses alentours. Evidemment, mon premier boulot est de survivre à ce voyage..."
+msgstr "Francis m'a demandé de livrer un cube de données pour lui. Dès que j'ai atteint la ville, je dois le donner à Baptiste qui est en charge de la Garde Rouge qui dirige la ville et ses alentours. Évidemment, mon premier boulot est de survivre à ce voyage..."
 
 #: dialogs/Francis.lua:328
 msgid "Deliver that cube yourself."
-msgstr "Donne le lui toi même."
+msgstr "Donne-le-lui toi-même."
 
 #: dialogs/Francis.lua:332
 msgid "Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there."
-msgstr "Oh, je pourrais le faire, crois moi. Je suis capable de faire mes courses moi-même, même avec la foule de robots là dehors."
+msgstr "Oh, je pourrais le faire, crois-moi. Je suis capable de faire mes courses moi-même, même avec la foule de robots là-dehors."
 
 #: dialogs/Francis.lua:333
 msgid "But... The prospect of facing that... That man again... I just can't bear it."
@@ -9522,19 +9524,19 @@ msgstr "Mais... La perspective d'être confronté à ça... Cet homme... Je suis
 #: dialogs/Francis.lua:335
 #, c-format
 msgid "Please, %s, will you do me this favor?"
-msgstr "S'il vous plait, %s, m'accorderiez vous une faveur ?"
+msgstr "S'il te plait, %s, m'accorderais-tu une faveur ?"
 
 #: dialogs/Francis.lua:341
 msgid "No, I don't want to deliver your stupid cube."
-msgstr "Non, Je ne veut pas faire la livraison de ce cube à le con."
+msgstr "Non, je ne veux pas faire la livraison de ce cube à la con."
 
 #: dialogs/Francis.lua:346
 msgid "... All right."
-msgstr "... très bien."
+msgstr "... Très bien."
 
 #: dialogs/Francis.lua:347
 msgid "I can't force you to do it if you don't want to."
-msgstr "Je ne peut pas vous forcer à le faire si vous ne le voulez pas."
+msgstr "Je ne peux pas te forcer à le faire si tu ne le veux pas."
 
 #: dialogs/Francis.lua:348
 msgid "I suppose I'll just have to go to Spencer myself."
@@ -9542,15 +9544,15 @@ msgstr "Je suppose que je devrais aller voir Spencer moi-même."
 
 #: dialogs/Francis.lua:349
 msgid "Anyway, I am glad I could help you. You should be careful around here. Best head straight for our town."
-msgstr "Quoi qu'il en soit, je suis heureux d'avoir pu vous aidez. Faites attention dans le secteur. Vous devriez aller directement à la ville."
+msgstr "Quoi qu'il en soit, je suis heureux d'avoir pu t'aider. Fais attention dans le secteur. Tu devrais aller directement dans notre ville."
 
 #: dialogs/Francis.lua:358
 msgid "Oh... I almost forgot... This is a small help but I hope it will make your life a little easier."
-msgstr "Oh... J'ai failli oublier... Ce n'est pas grand chose mais j'espère que ça rendra ta vie un peu plus facile."
+msgstr "Oh... J'ai failli oublier... Ce n'est pas grand-chose mais j'espère que ça rendra ta vie un peu plus facile."
 
 #: dialogs/Francis.lua:361 dialogs/Francis.lua:370
 msgid "Remember not to veer too far off the path, or your quest could be over before it begins."
-msgstr "Souviens toi de ne pas trop t'éloigner du chemin, ou ta quête pourrait se terminer avant d'avoir commencer."
+msgstr "Souviens-toi de ne pas trop t'éloigner du chemin, ou ta quête pourrait se terminer avant même d'avoir commencé."
 
 #: dialogs/Geist.lua:46
 msgid "Hello. Any idea where I can get some help here?"
@@ -12184,7 +12186,7 @@ msgstr "ouvrir portail usine"
 msgid "Opening Automated Factory Gate ..."
 msgstr "Ouverture du portail d'accès à l'usine automatisée..."
 
-#: dialogs/Maintenance-Terminal.lua:231 dialogs/MiniFactory-Terminal.lua:107
+#: dialogs/Maintenance-Terminal.lua:231 dialogs/MiniFactory-Terminal.lua:108
 msgid "Goodbye Dave."
 msgstr "Au revoir Dave."
 
@@ -13042,11 +13044,11 @@ msgstr "L'Usine Automatisée est démarrée et prête à fonctionner."
 msgid "The Automated Factory is unable to make a sandwich."
 msgstr "L'Usine Automatisée n'est pas apte à préparer un sandwich."
 
-#: dialogs/MiniFactory-Terminal.lua:88 dialogs/MS-Factory-Addon-Terminal.lua:55
+#: dialogs/MiniFactory-Terminal.lua:89 dialogs/MS-Factory-Addon-Terminal.lua:55
 msgid "craft --addon"
 msgstr "créer --extension"
 
-#: dialogs/MiniFactory-Terminal.lua:96 dialogs/MS-Factory-Addon-Terminal.lua:63
+#: dialogs/MiniFactory-Terminal.lua:97 dialogs/MS-Factory-Addon-Terminal.lua:63
 msgid "assemble --item --addon"
 msgstr "assembler --item --extension"
 
@@ -18184,15 +18186,15 @@ msgstr "Connexion comme invité"
 #: dialogs/TutorialTom.lua:86
 #, c-format
 msgid "Met [b]%s[/b]!"
-msgstr "Rencontrer [b]%s[/b]!"
+msgstr "Rencontrer [b]%s[/b] !"
 
 #: dialogs/TutorialTom.lua:91
 msgid "Well done."
-msgstr "Bravo"
+msgstr "Bravo."
 
 #: dialogs/TutorialTom.lua:92
 msgid "Now follow me to the next section. You will learn how to hack bots."
-msgstr "Maintenant suis-moi à la section suivante. Tu vas apprendre comment pirater les robots."
+msgstr "Maintenant suis-moi jusqu'à la section suivante. Tu vas apprendre comment pirater des robots."
 
 #: dialogs/TutorialTom.lua:105
 msgid "Great, you figured out how deal with this obstacle."
@@ -18224,11 +18226,11 @@ msgstr "En parlant de déplacement, tu peux aussi [b]courir[/b] en maintenant la
 
 #: dialogs/TutorialTom.lua:133
 msgid "Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot."
-msgstr "Apparemment, je peux sprinter si je maintiens appuyée la touche \"Control\". Ça pourrait servir si je me retrouve dans une mauvaise situation."
+msgstr "Apparemment, je peux sprinter si je maintiens appuyée la touche « Control ». Ça pourrait servir si je me retrouve dans une mauvaise situation."
 
 #: dialogs/TutorialTom.lua:134
 msgid "This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded."
-msgstr "Cette distance est déterminée par la barre jaune d'endurance ; plus elle est remplie, plus tu peux courir loin avant d'être complétement essoufflé."
+msgstr "Cette distance est déterminée par la barre jaune d'endurance ; plus elle est remplie, plus tu peux courir loin avant d'être complètement essoufflé."
 
 #: dialogs/TutorialTom.lua:158
 msgid "Excellent, I see you already took on the armor that was in the box."
@@ -18240,23 +18242,23 @@ msgstr "Oui, ce serait très gentil de ta part, je ne me souviens de rien."
 
 #: dialogs/TutorialTom.lua:220
 msgid "You Linarians keep a quest [b]Log[/b] where you write down key bits of information."
-msgstr "Vous, les Linariens, avez l'habitude de tenir un [b]journal[/b] de quêtes, où vous gardez les informations importantes."
+msgstr "Vous, les Linariens, avez l'habitude de tenir un [b]Journal[/b] de quêtes, où vous gardez les informations importantes."
 
 #: dialogs/TutorialTom.lua:221
 msgid "When you aren't speaking with someone, you can open it up or close it by pressing the [b]q key[/b]."
-msgstr "Lorsque tu n'es pas en train de parler avec quelqu'un, tu peux l'ouvrir ou le fermer en pressant la [b]touche q[/b]"
+msgstr "Lorsque tu n'es pas en train de parler avec quelqu'un, tu peux l'ouvrir ou le fermer en pressant la [b]touche q[/b]."
 
 #: dialogs/TutorialTom.lua:222
 msgid "I'll assign you a new quest, so you can try it out. Once you are done, [b]left click[/b] on me."
-msgstr "Je vais te donner une nouvelle quête, comme ça tu pourras essayer tout de suite. Une fois que tu auras terminé, fait un [b]clic gauche[/b] sur moi."
+msgstr "Je vais te donner une nouvelle quête, comme ça tu pourras essayer tout de suite. Une fois que tu auras terminé, fais un [b]clic gauche[/b] sur moi."
 
 #: dialogs/TutorialTom.lua:224
 msgid "To talk to someone, left click on them. You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the 'q' key to open or close the quest log. Left click back on Tutorial Tom to learn more!"
-msgstr "Pour parler à quelqu'un, fais un clic gauche sur lui. Tu peux parler à tous les robots et personnes amis. Ces derniers ont une barre verte au dessus d'eux. Presse la touche 'q' pour ouvrir ou fermer le journal de quêtes. Clique à nouveau sur Tom Tutoriel pour apprendre plus !"
+msgstr "Pour parler à quelqu'un, fais un clic gauche sur lui. Tu peux parler à tous les robots et personnes amis. Ces derniers ont une barre verte au dessus d'eux. Presse la touche « q » pour ouvrir ou fermer le journal de quêtes. Clique à nouveau sur Tom Tutoriel pour apprendre plus !"
 
 #: dialogs/TutorialTom.lua:226
 msgid "Press 'q' for Quests!"
-msgstr "Presse 'q' pour le Quêtes !"
+msgstr "Presse « q » pour les Quêtes !"
 
 #: dialogs/TutorialTom.lua:237
 msgid "What can you tell me about finding my way in the world?"
@@ -18284,11 +18286,11 @@ msgstr "Il y a des rumeurs concernant un appareil que les Linariens utilisaient 
 
 #: dialogs/TutorialTom.lua:244
 msgid "Although, you don't currently have such a device, you might find someone with nanotechnology skills to make one."
-msgstr "Même si tu n'en dispose pas pour l'instant, tu pourrais très bien trouver quelqu'un avec les compétences en nano-technologie pour en créer un."
+msgstr "Même si tu n'en disposes pas pour l'instant, tu pourrais très bien trouver quelqu'un avec les compétences en nano-technologie pour en créer un."
 
 #: dialogs/TutorialTom.lua:245
 msgid "I'll keep that in mind."
-msgstr "J'y penserais."
+msgstr "J'y penserai."
 
 #: dialogs/TutorialTom.lua:251
 msgid "My limbs don't seem to want to work properly. Can you help me with that?"
@@ -18340,7 +18342,7 @@ msgstr "Une fois fait, nous parlerons plus en détail des programmes. Tu peux ba
 
 #: dialogs/TutorialTom.lua:272
 msgid "View the Skills/Program menu by pressing the 's' key."
-msgstr "Afficher le menu Compétences/Programmes en appuyant sur la touche 'S'."
+msgstr "Afficher le menu Compétences/Programmes en appuyant sur la touche « s »."
 
 #: dialogs/TutorialTom.lua:278
 msgid "I'm sensing some sort of strange presence in the vicinity."
@@ -18356,7 +18358,7 @@ msgstr "Les Linariens semblent pouvoir [b]détecter les objets[/b] - même à tr
 
 #: dialogs/TutorialTom.lua:282
 msgid "The [b]z key[/b] will toggle this augmentation, while the [b]x key[/b] momentarily flashes it."
-msgstr "La [b]touch z[/b] active ou désactive cette augmentation, et la [b]touche x[/x] l'active temporairement."
+msgstr "La [b]touche z[/b] active ou désactive cette augmentation, et la [b]touche x[/x] l'active temporairement."
 
 #: dialogs/TutorialTom.lua:283
 msgid "Moving your pointer over an item will tell you more about that item."
@@ -18364,7 +18366,7 @@ msgstr "Déplacer le curseur sur un objet te donnera plus d'informations le conc
 
 #: dialogs/TutorialTom.lua:284
 msgid "On our way to the next stopping point, we'll pass some items on the floor."
-msgstr "Sur notre route vers le prochaine point d'arrêt, nous allons passer à coté de plusieurs objets sur le sol."
+msgstr "Sur notre route vers le prochain point d'arrêt, nous allons passer à côté de plusieurs objets sur le sol."
 
 #: dialogs/TutorialTom.lua:285
 msgid "Feel free to stop and examine them to get practice."
@@ -18372,15 +18374,15 @@ msgstr "N'hésite pas à t'arrêter pour t'exercer à les examiner."
 
 #: dialogs/TutorialTom.lua:286
 msgid "[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]i key[/b], where you can examine it further."
-msgstr "Pour ramasser un élément et le mettre dans ton inventaire, fait un [b]clic gauche[/b] dessus. La [b]touche i[/b] permet d'ouvrir ou de fermer l'affichage du contenu de ton inventaire."
+msgstr "Pour ramasser un élément et le mettre dans ton inventaire, fais un [b]clic gauche[/b] dessus. La [b]touche i[/b] permet d'ouvrir ou de fermer l'affichage du contenu de ton inventaire."
 
 #: dialogs/TutorialTom.lua:289
 msgid "Toggle detect items by pressing the 'z' key, and press 'x' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'i'."
-msgstr "La touche 'z' permet d'activer/désactiver la détection des objets, et la touche 'x' active temporairement cette capacité. Pour prendre un objet, utilise un clic gauche. Pour voir l'objet que tu viens de prendre, ouvre l'inventaire à l'aide de la touche 'i'."
+msgstr "La touche « z » permet d'activer/désactiver la détection des objets, et la touche « x » active temporairement cette capacité. Pour prendre un objet, utilise un clic gauche. Pour voir l'objet que tu viens de prendre, ouvre l'inventaire à l'aide de la touche « i »."
 
 #: dialogs/TutorialTom.lua:296
 msgid "Oh great, I see you found all the items hidden in the room. Good job!"
-msgstr "Oh formidable, Je vois que tu as trouvé tous les objets cachés dans la pièce. Bon travail !"
+msgstr "Oh formidable, je vois que tu as trouvé tous les objets cachés dans la pièce. Bon travail !"
 
 #: dialogs/TutorialTom.lua:304
 msgid "No, thanks, I still remember how to walk, run, navigate, and pick things up."
@@ -18412,7 +18414,7 @@ msgstr "Eh bien, tu peux interagir avec de nombreux objets simplement par un [b]
 
 #: dialogs/TutorialTom.lua:335
 msgid "Left click on the chest to open it up and see what is inside."
-msgstr "Fait un clic gauche sur le coffre pour l'ouvrir et voir ce qu'il contient."
+msgstr "Fais un clic gauche sur le coffre pour l'ouvrir et voir ce qu'il contient."
 
 #: dialogs/TutorialTom.lua:337
 msgid "I'm supposed to left click on chests to open them up."
@@ -18428,7 +18430,7 @@ msgstr "Et bien, tu as découvert un grand secret : les coffres peuvent parfois 
 
 #: dialogs/TutorialTom.lua:348
 msgid "We humans have a fascination with hiding our treasures. What comprises a treasure means different things to different people."
-msgstr "Nous, les humains, avons la manie de toujours cacher nos trésors dans des coffres. Le terme \"trésor\" pouvant avoir un sens très différent d'une personne à une autre."
+msgstr "Nous, les humains, avons la manie de toujours cacher nos trésors dans des coffres. Le terme « trésor » pouvant avoir un sens très différent d'une personne à une autre."
 
 #: dialogs/TutorialTom.lua:349
 msgid "For some, it's valuable metals in robotic circuitry. That's the current monetary standard on our world."
@@ -18700,7 +18702,7 @@ msgstr "Il y a peu de types d'articles de restauration différents. Les plus cou
 
 #: dialogs/TutorialTom.lua:493
 msgid "Tell me about health drinks."
-msgstr "Parles moi des boissons de santé."
+msgstr "Parle-moi des boissons de santé."
 
 #: dialogs/TutorialTom.lua:495
 msgid "Man has practised medicine in one form or another for hundreds of years."
@@ -18880,7 +18882,7 @@ msgstr "Et pour finir, je te donne quelques pilules expérimentales qui devraien
 
 #: dialogs/TutorialTom.lua:582
 msgid "Use them in the same way you would use a health drink."
-msgstr "Utilise les de là même façon que tu utiliserais une boisson de soin."
+msgstr "Utilise-les de là même façon que tu utiliserais une boisson de soin."
 
 #: dialogs/TutorialTom.lua:583
 msgid "If I were you, I would think about using your repair equipment program on your armor and that wrench before you go into the room."
@@ -18894,7 +18896,7 @@ msgstr "Tu dois aussi les équiper. Je ne le ferai pas à ta place."
 msgid "Like the last bot, this one will be carrying an item. Bring me the [b]Tachyon Condensator[/b] it is carrying to continue."
 msgstr ""
 "Tout comme le robot précédent, celui là transporte un objet.\n"
-"Ramène moi le [b]Condensateur de Tachyons[/b] qu'il transporte, pour pouvoir continuer."
+"Ramène-moi le [b]Condensateur de Tachyons[/b] qu'il transporte, pour pouvoir continuer."
 
 #: dialogs/TutorialTom.lua:586
 msgid "I've unlocked the door. Good luck, and talk to me when you have the Tachyon Condensator."
@@ -18906,7 +18908,7 @@ msgstr "J'ai battu le second robot."
 
 #: dialogs/TutorialTom.lua:602
 msgid "Very good! You've completed your melee training."
-msgstr "Très bien ! Tu as terminé l'entrainement du combat rapproché."
+msgstr "Très bien ! Tu as terminé l'entrainement au combat rapproché."
 
 #: dialogs/TutorialTom.lua:603
 msgid "These skills will serve you well in the future."
@@ -18938,7 +18940,7 @@ msgstr "J'ai décidé de poursuivre et de passer à la prochaine étape du tutor
 
 #: dialogs/TutorialTom.lua:624
 msgid "I'll bet you're itching to try that pistol out on some bots."
-msgstr "Je suis sur que tu as très envie d'essayer ce pistolet sur quelques robots."
+msgstr "Je suis sûr que tu as très envie d'essayer ce pistolet sur quelques robots."
 
 #: dialogs/TutorialTom.lua:625
 msgid "Our next destination is the ranged combat training area, so you're in luck."
@@ -18994,7 +18996,7 @@ msgstr "La plupart des autres armes de combat à distance sont des variations de
 
 #: dialogs/TutorialTom.lua:660
 msgid "So how do I use guns?"
-msgstr "Donc, comment est ce que j'utilise les armes à feu ?"
+msgstr "Donc, comment est-ce que j'utilise les armes à feu ?"
 
 #: dialogs/TutorialTom.lua:662
 msgid "Well, firing is pretty simple. First, equip a ranged weapon that you have ammunition for."
@@ -19002,7 +19004,7 @@ msgstr "Eh bien, tirer est plutôt simple. D'abord, équipe-toi d'une arme à di
 
 #: dialogs/TutorialTom.lua:663
 msgid "Next, simply [b]left click[/b] on your target, and you'll begin firing."
-msgstr "Ensuite, fait un [b]clic gauche[/b] sur ta cible, et tu vas commencer à tirer."
+msgstr "Ensuite, fais un [b]clic gauche[/b] sur ta cible, et tu vas commencer à tirer."
 
 #: dialogs/TutorialTom.lua:664
 msgid "Alternatively, you can fire a single shot using the [b]Fire Weapon[/b] program, and [b]right clicking[/b] on the enemy."
@@ -19018,7 +19020,7 @@ msgstr "Il y a des combines supplémentaires avec les armes à distance. Si tu v
 
 #: dialogs/TutorialTom.lua:667
 msgid "If you'd rather stay in place: Hold [b]A[/b], then [b]left click[/b] your target."
-msgstr "Si tu préfères rester sur place, maintiens le bouton [b]A[/b] puis fait un [b]clic gauche[/b] sur ta cible."
+msgstr "Si tu préfères rester sur place, maintiens le bouton [b]A[/b] puis fais un [b]clic gauche[/b] sur ta cible."
 
 #: dialogs/TutorialTom.lua:668
 msgid "When your weapon runs out of ammo during combat, it will try to automatically reload if you have extra ammunition for it."
@@ -19026,15 +19028,15 @@ msgstr "Si ton arme est à court de munitions durant le combat, elle se recharge
 
 #: dialogs/TutorialTom.lua:669
 msgid "Sometimes, you will need or want to manually reload. You can do this by pressing the [b]r key[/b]."
-msgstr "Parfois, tu auras besoin ou envie de rechargé toi-même. Tu peux le faire en appuyant sur la [b]touche r[/b]."
+msgstr "Parfois, tu auras besoin ou envie de recharger toi-même. Tu peux le faire en appuyant sur la [b]touche r[/b]."
 
 #: dialogs/TutorialTom.lua:670
 msgid "If you are reloading, or you are out of ammo, the small message screen at the bottom of your HUD will tell you what type of ammo to get."
-msgstr "Si tu recharges, ou que tu n'as plus de munition, un message dans le petit écran en bas de ton ATH te dira quel type de munition il te faut."
+msgstr "Si tu recharges, ou que tu n'as plus de munitions, un message dans le petit écran en bas de ton ATH te dira quel type de munition il te faut."
 
 #: dialogs/TutorialTom.lua:673
 msgid "If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the 'r' key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition."
-msgstr "Si je me suis équipé d'une arme à distance et que je fais un clic gauche sur un ennemi, je vais commencer à tirer jusqu'à ce que mon arme soit vide, et elle se rechargera automatiquement. Mais je veux tirer une seule fois, je dois aussi m'équiper du programme Déclencher Arme, et utiliser un clic droit. Pour me déplacer tout en tirant, je dois utiliser shift+clic gauche sur l'endroit où je veux me rendre. De plus, si je veux recharger manuellement mon arme je dois appuyer sur la touche 'r'. Le petit écran au bas de mon ATH m'indiquera si mon arme se recharge ou si je suis à court de munitions."
+msgstr "Si je me suis équipé d'une arme à distance et que je fais un clic gauche sur un ennemi, je vais commencer à tirer jusqu'à ce que mon arme soit vide, et elle se rechargera automatiquement. Mais je veux tirer une seule fois, je dois aussi m'équiper du programme Déclencher Arme, et utiliser un clic droit. Pour me déplacer tout en tirant, je dois utiliser shift+clic gauche sur l'endroit où je veux me rendre. De plus, si je veux recharger manuellement mon arme je dois appuyer sur la touche « r ». Le petit écran au bas de mon ATH m'indiquera si mon arme se recharge ou si je suis à court de munitions."
 
 #: dialogs/TutorialTom.lua:683
 msgid "I think I understand how to use guns now."
@@ -19090,11 +19092,11 @@ msgstr "Il semble qu'il te reste encore quelques munitions dans ton inventaire."
 
 #: dialogs/TutorialTom.lua:717
 msgid "Why don't you use this first?"
-msgstr "Pourquoi tu ne les utilises pas d'abord?"
+msgstr "Pourquoi tu ne les utilises pas d'abord ?"
 
 #: dialogs/TutorialTom.lua:718
 msgid "Try to switch to another gun maybe..."
-msgstr "Essayes avec une autre arme peut-être..."
+msgstr "Essaye avec une autre arme peut-être..."
 
 #: dialogs/TutorialTom.lua:720
 msgid "Ok, I will give you some more ammo. You seem to be in need, indeed..."
@@ -19102,7 +19104,7 @@ msgstr "Ok, je vais te donner quelques munitions supplémentaires. Tu sembles ef
 
 #: dialogs/TutorialTom.lua:726
 msgid "Check the storage room to the west for more guns and ammo."
-msgstr "Va voir dans la salle de stockage à l'ouest pour récupérer plus d'armes et munitions."
+msgstr "Va voir dans la salle de stockage à l'ouest pour récupérer plus d'armes et de munitions."
 
 #: dialogs/TutorialTom.lua:732
 msgid "I killed all the bots."
@@ -19114,15 +19116,15 @@ msgstr "Bon travail !"
 
 #: dialogs/TutorialTom.lua:736
 msgid "Keep shooting like that, and the bots will never stand a chance, as long as you still have ammo."
-msgstr "Continues à tirer comme ça, et les robots n'auront aucune chance, tant qu'il te reste des munitions."
+msgstr "Continue à tirer comme ça, et les robots n'auront aucune chance, tant qu'il te reste des munitions."
 
 #: dialogs/TutorialTom.lua:737
 msgid "That was like shooting fish in a barrel. I could use a fish about now."
-msgstr "C'était comme de tirer sur une vache dans un couloir."
+msgstr "C'était comme tirer sur une vache dans un couloir."
 
 #: dialogs/TutorialTom.lua:741
 msgid "I don't mind if you don't want to do this, but please don't try to trick me."
-msgstr "Je m'en moque si tu ne veux pas le faire, mais n'essayes pas de me mentir."
+msgstr "Je m'en moque si tu ne veux pas le faire, mais n'essaye pas de me mentir."
 
 #: dialogs/TutorialTom.lua:742
 msgid "I don't have verified kills on all those bots."
@@ -19206,7 +19208,7 @@ msgstr "En acquérant de l'expérience au combat, tu seras capable de l'utiliser
 
 #: dialogs/TutorialTom.lua:796
 msgid "As with most things, you view this as a panel in your HUD. Press the [b]c key[/b] to open the [b]Character panel[/b]."
-msgstr "Comme pour la plupart des choses, tu peux t'en rendre compte dans un panneau de ton ATH. Presse sur la [b]touche c[/b] pour ouvrir le [b]panneau de Personnage[/b]."
+msgstr "Comme pour la plupart des choses, tu peux t'en rendre compte dans un panneau de ton ATH. Presse la [b]touche c[/b] pour ouvrir le [b]panneau de Personnage[/b]."
 
 #: dialogs/TutorialTom.lua:797
 msgid "Once you've gained enough experience, you'll level up. This will automatically improve some of your statistics."
@@ -19246,7 +19248,7 @@ msgstr "A part ça, quelques programmes nécessitent qu'on te les enseigne et qu
 
 #: dialogs/TutorialTom.lua:806
 msgid "[b]Extract Bot Parts[/b] is a special passive skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town."
-msgstr "L'[b]Extraction de Composants Robotiques[b] est une compétence passive particulière qui va te permettre de récupérer des parties de robots que tu mettras 'à la casse', et que tu pourras négocier contre de l'argent en ville."
+msgstr "L'[b]Extraction de Composants Robotiques[b] est une compétence passive particulière qui va te permettre de récupérer des parties de robots que tu mettras « à la casse », et que tu pourras négocier contre de l'argent en ville."
 
 #: dialogs/TutorialTom.lua:807
 msgid "A good technician is able to make use of those parts."
@@ -19314,7 +19316,7 @@ msgstr "Les terminaux se comportent de manière très similaire à des robots pi
 
 #: dialogs/TutorialTom.lua:839 dialogs/TutorialTom.lua:856
 msgid "I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!"
-msgstr "Je dois me connecter sur le Terminal en cliquant à gauche dessus. Ensuite je devrai déverrouiller la porte, pour pouvoir aller pirater quelques robots !"
+msgstr "Je dois d'abord me connecter au Terminal en faisant un clic gauche dessus. Ensuite je devrai déverrouiller la porte, pour pouvoir aller pirater quelques robots !"
 
 #: dialogs/TutorialTom.lua:846
 msgid "So how does this work?"
@@ -19350,7 +19352,7 @@ msgstr "De la même façon, certains programmes peuvent t'affecter ou agir sur l
 
 #: dialogs/TutorialTom.lua:864
 msgid "Tell me about taking bots over."
-msgstr "Dis m'en plus sur la prise de contrôle des robots."
+msgstr "Dis-m'en plus sur la prise de contrôle des robots."
 
 #: dialogs/TutorialTom.lua:866
 msgid "I'm afraid that you will have to experience it for yourself to really understand."
@@ -19514,7 +19516,7 @@ msgstr "Si tu peux en trouver, les boissons de refroidissement peuvent te soulag
 
 #: dialogs/TutorialTom.lua:927
 msgid "Remember you also have a special program called [b]Emergency Shutdown[/b] that will lower your heat level drastically. Unfortunately using Emergency Shutdown will shut you down and render you paralyzed for several seconds. It makes you a sitting duck... er, penguin."
-msgstr "N'oublie pas que tu as également un programme spécial, [b]l'Arrêt d'Urgence[/b], qui va très rapidement faire baisser ton niveau de surchauffe. Malheureusement, l'utilisation de l'Arrêt d'Urgence te déconnecte et te paralyse pendant plusieurs secondes. Tu deviendras une cible de tir aux pigeons... euh, aux pingouins."
+msgstr "N'oublie pas que tu as également un programme spécial, l'[b]Arrêt d'Urgence[/b], qui va très rapidement faire baisser ton niveau de surchauffe. Malheureusement, l'utilisation de l'Arrêt d'Urgence te déconnecte et te paralyse pendant plusieurs secondes. Tu deviendras une cible de tir aux pigeons... euh, aux pingouins."
 
 #: dialogs/TutorialTom.lua:928
 msgid "I take it that was a joke also?"
@@ -19530,7 +19532,7 @@ msgstr "En plus du piratage, tu as la capacité à exécuter du code arbitraire 
 
 #: dialogs/TutorialTom.lua:931
 msgid "These scripts and programs can be learned through reading source code books. To read a book, right-click on it in inventory."
-msgstr "Ces scripts et programmes peuvent être appris en lisant des listings source. Pour en lire un, utilise un clic droit sur un listing de ton inventaire."
+msgstr "Ces scripts et programmes peuvent être appris en lisant des listings source. Pour en lire un, fais un clic droit sur un listing de ton inventaire."
 
 #: dialogs/TutorialTom.lua:932
 msgid "You should have recovered your hacking ability by now, and I'll give you a couple of source code books as well."
@@ -19550,7 +19552,7 @@ msgstr "Prends-en le contrôle, puis reviens me parler lorsqu'ils seront tous mo
 
 #: dialogs/TutorialTom.lua:942
 msgid "If you need more help, don't hesitate to ask."
-msgstr "Si tu as besoin de plus d'aide, n'hésite pas à demander."
+msgstr "Si tu as encore besoin d'aide, n'hésite pas à demander."
 
 #: dialogs/TutorialTom.lua:943
 msgid "Oh, and Linarian... If you fail when hacking, you'll receive an electrical shock."
@@ -19570,7 +19572,7 @@ msgstr "Reparle-moi de la prise de contrôle, je ne suis pas sûr d'avoir tout c
 
 #: dialogs/TutorialTom.lua:964
 msgid "Tell me exactly what part you want me to explain again."
-msgstr "Dis moi exactement quelle partie tu veux que je te réxplique."
+msgstr "Dis-moi exactement quelle partie tu veux que je te réexplique."
 
 #: dialogs/TutorialTom.lua:965
 msgid "But things will be much clearer once you try for yourself than when I try to explain."
@@ -19622,7 +19624,7 @@ msgstr "Maintenant il te faut dépenser un peu d'argent pour créer un connecteu
 
 #: dialogs/TutorialTom.lua:990
 msgid "Choose an item and add an appropriate socket by clicking '+' on the right of the item. Then attach the add-on to this item and confirm your choice."
-msgstr "Choisis un équipement et ajoute le connecteur adéquat en cliquant sur '+' à la droite de l'équipement. Ensuite, attache l'accessoire et confirme ton choix."
+msgstr "Choisis un équipement et ajoute le connecteur adéquat en cliquant sur « + » à la droite de l'équipement. Ensuite, attache l'accessoire et confirme ton choix."
 
 #: dialogs/TutorialTom.lua:992
 msgid "Maybe I need some time to practice this, but I got the basics."
@@ -19646,7 +19648,7 @@ msgstr "Réfléchis-y à deux fois avant de faire ton prochain accessoire."
 
 #: dialogs/TutorialTom.lua:1014
 msgid "Upgrading items is still too complex for me. Can you explain it again?"
-msgstr "L'amélioration des équipements est toujours trop compliqué pour moi. Tu peux me le réexpliquer ?"
+msgstr "L'amélioration des équipements est toujours trop compliquée pour moi. Tu peux me le réexpliquer ?"
 
 #: dialogs/TutorialTom.lua:1016
 msgid "First step is finding materials. They may be extracted from bots, but you'll have to learn how to do it."
@@ -19662,7 +19664,7 @@ msgstr "Je te donne des matériaux. Vas-y et fabrique un accessoire, maintenant.
 
 #: dialogs/TutorialTom.lua:1020
 msgid "All you have to do now is to choose a suitable item and add a socket by clicking ''+'' on the right of the chosen item."
-msgstr "Tout ce que tu as à faire maintenant est de choisir un équipement adéquat et d'ajouter un connecteur en cliquant sur le '+' sur la droite de l'équipement choisi."
+msgstr "Tout ce que tu as à faire maintenant est de choisir un équipement adéquat et d'ajouter un connecteur en cliquant sur le « + » sur la droite de l'équipement choisi."
 
 #: dialogs/TutorialTom.lua:1021
 msgid "Remember you pay for both adding a socket and plugging an add-on."
@@ -19702,7 +19704,7 @@ msgstr "J'aimerais pratiquer la vente d'un objet."
 
 #: dialogs/TutorialTom.lua:1042
 msgid "I'm going to give you a Small Axe, which you can't use yet, so you can practice selling it to me."
-msgstr "Je vais te donner une Petit Hache, que tu ne peux pas utiliser pour l'instant, pour que tu t'entraînes en me la vendant."
+msgstr "Je vais te donner une Petite Hache, que tu ne peux pas utiliser pour l'instant, pour que tu t'entraînes en me la vendant."
 
 #: dialogs/TutorialTom.lua:1043
 msgid "You will see the Small Axe appear in the lower shop bar. You can sell most of these items."
@@ -19718,7 +19720,7 @@ msgstr "Mais attention, si tu vends les objets que tu as récupérés dans le co
 
 #: dialogs/TutorialTom.lua:1046
 msgid "Select the Small Axe and click the sell button."
-msgstr "Choisis la Petite Hache et clique sur le bouton 'Sell'."
+msgstr "Choisis la Petite Hache et clique sur le bouton « Sell »."
 
 #: dialogs/TutorialTom.lua:1058 dialogs/TutorialTom.lua:1085
 msgid "Let me try that again."
@@ -19746,7 +19748,7 @@ msgstr "Tu as assez de circuits pour une unité."
 
 #: dialogs/TutorialTom.lua:1104
 msgid "You will occasionally run into items that can't be sold."
-msgstr "Tu pourras parfois tomber sur des objets qui ne peuvent être vendus."
+msgstr "Tu pourras parfois tomber sur des objets qui ne peuvent pas être vendus."
 
 #: dialogs/TutorialTom.lua:1105
 msgid "This generally means that the shopkeeper can't give you a reasonable deal on it."
@@ -19754,7 +19756,7 @@ msgstr "En général, ça veut dire que le commerçant ne peut pas te faire un b
 
 #: dialogs/TutorialTom.lua:1106
 msgid "Someone else probably wants the item."
-msgstr "Surement quelqu'un d'autre veut-il cet objet."
+msgstr "Sûrement quelqu'un d'autre veut-il cet objet."
 
 #: dialogs/TutorialTom.lua:1107
 msgid "You might check your questbook to see if it is mentioned there."
@@ -19766,7 +19768,7 @@ msgstr "Il y a un mur en travers du passage ! Comment est-ce que je peux passer 
 
 #: dialogs/TutorialTom.lua:1137
 msgid "Uhm, looks like the wall is already broken, I'll repair it."
-msgstr "Hum, il semble que le mur est déjà cassé, je vais le réparer."
+msgstr "Hum, il semble que le mur soit déjà cassé, je vais le réparer."
 
 #: dialogs/TutorialTom.lua:1140
 msgid "Notice that part of it is made of a weak material, glass."
@@ -19834,7 +19836,7 @@ msgstr "Boutiques"
 
 #: dialogs/TutorialTom.lua:1213
 msgid "Remember to pick up the items in the chest."
-msgstr "Penses à récupérer les objets du coffre."
+msgstr "Pense à récupérer les objets du coffre."
 
 #: dialogs/TutorialTom.lua:1214
 msgid "I'll tell you about the shops."
@@ -19842,7 +19844,7 @@ msgstr "Je vais t'expliquer le fonctionnement des boutiques."
 
 #: dialogs/TutorialTom.lua:1226
 msgid "Melee Combat"
-msgstr "Combat rapproché."
+msgstr "Combat rapproché"
 
 #: dialogs/TutorialTom.lua:1228
 msgid "OK, I'll take us to the melee arena and give you some armor."
@@ -19890,7 +19892,7 @@ msgstr "Laisse-moi faire une petite pause et pratiquer par moi-même pendant que
 
 #: dialogs/TutorialTom.lua:1300
 msgid "Ok, I'll be around if you need any more questions answered. Don't hesitate to ask."
-msgstr "Ok, je reste dans les parage au cas où tu aurais d'autres questions. N'hésite pas à demander."
+msgstr "Ok, je reste dans les parages au cas où tu aurais d'autres questions. N'hésite pas à demander."
 
 #: dialogs/Tybalt.lua:37
 msgid "Hi! I'm new h..."
@@ -20368,6 +20370,9 @@ msgstr "Will Gapes m'a donné son certificat d'action MS, afin que je puisse obt
 #: dialogs/WillGapes.lua:194
 msgid "Be careful!"
 msgstr "Faîtes attention à vous!"
+
+#~ msgid "Date unknown"
+#~ msgstr "Date inconnu"
 
 #~ msgid "Version: 0.15.01"
 #~ msgstr "Version : 0.15.01"

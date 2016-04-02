@@ -40,12 +40,21 @@
  kartskapar-, eller skrivkunskaper kommer upptäcka att FreedroidRPG är
  ett spännande, snabbutvecklande projekt där de kan ge uttryck för sin kreativitet.
 
-2. Installera & Spela
-===========
- För allmän hjälp med installationen, se filen INSTALL, som finns i samma katalog som den här filen.
- Särskiljda instruktioner för Ubuntu: http://ubuntuforums.org/showthread.php?p=6127097#post6127097
 
- För att starta spelet som vanligt kör du helt enkelt programfilen.
+2. Installera & Spela
+==================
+ Senaste stabila utgåva och builds för Windows/MacOsx finns på ftp://ftp.osuosl.org/pub/freedroid/
+ För allmän hjälp med installationen, se filen INSTALL, som finns i samma katalog som den här filen.
+ För mer information, se även INSTALL.freedroidRPG
+ Vilka paket som behövs för att bygga, beror på distributionen. En lista på dem finns i INSTALL.freedroidRPG.
+ Sedan behöver du egentligen bara
+
+    ./configure
+    make
+    make install
+
+ Om du inte vill installera spelet, kör inte "make install". Gå bara till katalogen src/ och kör.
+    ./freedroidRPG
  För avancerade alternativ, kör "freedroidRPG --help" (i en terminal) för att få en lista över kommandon.
 
 
@@ -146,6 +155,7 @@
 	 "Enable texture tiling" till "No".   
    * P.g.a. hårdvara och mjukvarudrivrutiner kan "Gammainställningen" sakna effekt.
 
+
 5. Skärmupplösning
 =====================
  Det finns några gömda inställningar för upplösning, som man bara kommer åt via kommandoraden. De är dåligt testade
@@ -160,11 +170,11 @@
 	- Fel i textskrollning under samtal med NPCs, då och då.
 
 
-6. Frågor och svar
+6. Vanliga frågor
 ============
 Blandade Frågor & Svar:
 
-	F: Måste jag ha Linux för att testa FreedroidRPG?
+	F: Behöver jag Linux för att testa FreedroidRPG?
 	S: Trots att Linux starkt rekommenderas för systemadministratörens egen hälsa
 	   finns det körbara filer för FreedroidRPG till MS-Windows.
 	   Tänk på att att utvecklingsteamet för FreedroidRPG inte använder 
@@ -281,12 +291,12 @@ Kartredigerare & Frågor och svar för utvecklare
        hjälp på IRC:n eller sändlistan.
 
 	F: Hur kan jag få tag på den senaste utvecklingsversionen av spelet?
-	S: Det är mycket enkelt med Linux. Du kan läsa mer här:
-	   https://sourceforge.net/svn/?group_id=54521
+	S: Det är väldigt enkelt under Linux:
+	      git clone https://gitlab.com/freedroid/freedroid-src.git
 	   Om du använder Windows rekommenderar vi ett verktyg som 
-	   http://tortoisesvn.tigris.org/
+	      http://www.collab.net/downloads/giteye?CID=tigris
 	   Om du fortfarande har problem, är det bäst att återigen ta det med folket i
-	   "freedroid-discussion"-sändlistan.
+	   maillistan "freedroid-discussion" och kanske ställa en fråga på IRC-kanalen.
 
 	F: Jag vill hjälpa till med utvecklingen av FreedroidRPG. Vad bör jag göra först?
 	S: Först rekommenderar vi att du läser 
@@ -297,20 +307,16 @@ Kartredigerare & Frågor och svar för utvecklare
 	   större ändringar med personerna på sändlistan eller IRC:n , så
 	   alla utvecklare kan dra i samma riktning och
 	   veta vad som är på gång och vem som jobbar på vad.
-	   Om du är obekant med Sourceforge, borde du även ta en snabb titt på
-	   våra projektsidor på Sourceforge. Du kan hitta dem här:
-	   http://sourceforge.net/projects/freedroid
-	   Och annan relevant information bör också finnas där.
-
 
 
 7. Kontakt
 ===========
  Hemsida  .................... http://www.freedroid.org
+ Wiki   ....................... http://wiki.freedroid.org (or http://www.freedroid.org/wiki/pmwiki.php/)
+ Källkod   .................... https://gitlab.com/groups/freedroid
  IRC-kanal  .................. #freedroid på irc.freenode.net eller
 								http://webchat.freenode.net/?channels=freedroid (kräver Javascript)
  Sändlista (mailing list) .... freedroid-discussion@lists.sourceforge.net
- Projektsida på Sorceforge ... http://sourceforge.net/projects/freedroid/
  Buggrapporter ............... http://bugs.freedroid.org/
 
 

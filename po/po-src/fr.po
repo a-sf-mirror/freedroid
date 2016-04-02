@@ -1,22 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 #
 # Translators:
 # Benjamin Leduc <giby_the_kid@yahoo.fr>, 2014
 # fluzz <fluzz@gmx.com>, 2014
-# fluzz <fluzz@gmx.com>, 2014-2015
+# fluzz <fluzz@gmx.com>, 2014-2016
 # sebastienadam <sebastien.adam.be@gmail.com>, 2014
 # sebastienadam <sebastien.adam.be@gmail.com>, 2014
+# Steven D. <splinter.hopkins@gmail.com>, 2016
 # Xenux <xenux@freedroid.org>, 2014
 # Xenux <xenux@freedroid.org>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-01-08 14:04+0100\n"
-"PO-Revision-Date: 2015-12-23 21:04+0000\n"
-"Last-Translator: fluzz <fluzz@gmx.com>\n"
+"POT-Creation-Date: 2016-04-02 16:36+0200\n"
+"PO-Revision-Date: 2016-03-09 08:01+0000\n"
+"Last-Translator: Steven D. <splinter.hopkins@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/arctic-games/freedroid-rpg/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -207,14 +208,14 @@ msgstr "[r]VIDE"
 
 #: src/game_ui.c:179
 msgid "RUN"
-msgstr "COURRIR"
+msgstr "COURIR"
 
 #: src/game_ui.c:216
 msgid "XP"
 msgstr "XP"
 
 #. TRANSLATORS: Used on object selector's widget to display unit price * number of objects
-#: src/graphics.c:230
+#: src/graphics.c:232
 #, c-format
 msgid "%d price\n"
 msgstr "prix %d\n"
@@ -343,7 +344,7 @@ msgstr "Quitter FreedroidRPG"
 msgid "Out of [s]%s[v]!"
 msgstr "Plus de [s]%s[v] !"
 
-#: src/init.c:785 src/saveloadgame.c:448
+#: src/init.c:785 src/saveloadgame.c:452
 msgid "--- Message Log ---"
 msgstr "--- Historique des messages ---"
 
@@ -667,13 +668,13 @@ msgstr "Tu ne peux pas t’équiper avec ça !"
 
 #: src/items.c:1719
 msgid "You cannot equip this yet!"
-msgstr "Tu ne pex pas encore t’équiper avec ça !"
+msgstr "Tu ne peux pas encore t’équiper avec ça !"
 
 #: src/items.c:1751
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr "Conditions d'armure non remplies : le bonus d'arme à deux mains ne compte pas."
 
-#: src/items.c:1893 src/items.c:2071
+#: src/items.c:1892 src/items.c:2070
 msgid "I can't carry any more."
 msgstr "Je ne peux plus rien porter."
 
@@ -1318,7 +1319,7 @@ msgstr ""
 #: src/menu.c:1215
 #, c-format
 msgid "Change screen resolution"
-msgstr "Changer la résolution écran"
+msgstr "Changer la résolution de l'écran"
 
 #: src/menu.c:1217
 #, c-format
@@ -1617,7 +1618,7 @@ msgstr "Attaque : [n]%s[w] ([n]%i[w] détruits, [n]%i[w] dégâts)\n"
 
 #: src/quest_browser_ui.c:222
 msgid "Attacking: no droids destroyed\n"
-msgstr "Attaque : aucun droïde détruits\n"
+msgstr "Attaque : aucun droïde détruit\n"
 
 #: src/quest_browser_ui.c:225
 #, c-format
@@ -1669,11 +1670,11 @@ msgstr "[n]Aucune quête en cours.[w]"
 msgid "[n]No completed quests yet.[w]"
 msgstr "[n]Aucune quête terminée.[w]"
 
-#: src/saveloadgame.c:171
+#: src/saveloadgame.c:172
 msgid "Last Modified:"
 msgstr "Dernière modification :"
 
-#: src/saveloadgame.c:199
+#: src/saveloadgame.c:200
 #, c-format
 msgid "File Size: %2.3f MB"
 msgstr "Taille fichier : %2.3f MB"
@@ -1682,45 +1683,27 @@ msgstr "Taille fichier : %2.3f MB"
 msgid "You are dead. Savegame not modified."
 msgstr "Tu es mort. Sauvegarde non modifiée."
 
-#: src/saveloadgame.c:264
+#: src/saveloadgame.c:257
 msgid "Saving"
 msgstr "Sauvegarde"
 
-#: src/saveloadgame.c:297
+#: src/saveloadgame.c:290
 msgid "Game saved."
 msgstr "Partie sauvegardée."
 
-#: src/saveloadgame.c:349
+#: src/saveloadgame.c:337
 msgid "Loading"
 msgstr "Chargement"
 
-#: src/saveloadgame.c:368
-msgid ""
-"W A R N I N G !\n"
-"\n"
-"FreedroidRPG was unable to locate the saved game file you requested to load.\n"
-"This might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\n"
-"The other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."
-msgstr ""
-"A T T E N T I O N !\n"
-"\n"
-"FreedroidRPG n'a pas été capable de trouver la partie sauvegardée que tu as demandé de charger.\n"
-"Cela peut signifier qu'elle n'existe réellement pas parce que tu as essayé de charger une partie qui n'a pas encore été sauvegardée.\n"
-"L'autre explication de cette erreur peut être une erreur sévère dans FreedroidRPG. Si tu penses que c'est le cas, merci de l'indiquer aux développeurs."
+#: src/saveloadgame.c:366
+msgid "Unable to decompress saved game - this is probably a very old, incompatible game. Sorry."
+msgstr "Décompression de la sauvegarde impossible - il s'agit probablement d'une vieille sauvegarde incompatible. Désolé."
 
-#: src/saveloadgame.c:369
-msgid "Failed to load old game."
-msgstr "Impossible de charger l'ancienne sauvegarde."
-
-#: src/saveloadgame.c:403
-msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
-msgstr "Version ou 'structsize' non conforme ! Cette sauvegarde n'a pas été effectuée avec la même version de FreedroidRPG... Possible dysfonctionnement."
-
-#: src/saveloadgame.c:444
+#: src/saveloadgame.c:446
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Mise à jour des images de Tux (cela peut prendre un peu de temps...)"
 
-#: src/saveloadgame.c:449
+#: src/saveloadgame.c:453
 msgid "Game loaded."
 msgstr "Partie chargée."
 
@@ -1732,8 +1715,8 @@ msgid ""
 "Thanks!"
 msgstr ""
 "Une erreur est survenue durant le chargement de la sauvegarde.\n"
-"Une raison classique à cela est que FreedroidRPG a été mis à jour depuis que la sauvegarde a été effectué, auquel cas la sauvegarde est très certainement incompatible.\n"
-"Si ce message est affiché mais que FreedroidRPG n'a pas été mis à jour, assures-toi de l'indiquer aux développeurs.\n"
+"Une raison classique à cela est que FreedroidRPG a été mis à jour depuis que la sauvegarde a été effectuée, auquel cas la sauvegarde est très certainement incompatible.\n"
+"Si ce message est affiché mais que FreedroidRPG n'a pas été mis à jour, assure-toi de l'indiquer aux développeurs.\n"
 "Merci !"
 
 #: src/savestruct_internal.h:165
@@ -1745,7 +1728,7 @@ msgid ""
 msgstr ""
 "Une erreur est survenue durant le chargement de la sauvegarde.\n"
 "Le type d'une donnée n'est pas compatible avec ce qui est attendu. La sauvegarde est peut-être endommagée, par conséquent le chargement a été interrompu.\n"
-"Si ce message est affiché mais que la sauvegarde n'a pas été modifiée manuellement, assures-toi de l'indiquer aux développeurs.\n"
+"Si ce message est affiché mais que la sauvegarde n'a pas été modifiée manuellement, assure-toi de l'indiquer aux développeurs.\n"
 "Merci !"
 
 #: src/shop.c:275
@@ -2702,7 +2685,7 @@ msgstr "Facteur zoom à %f."
 #: src/lvledit/lvledit_widgets.c:257
 #, c-format
 msgid "Could not change zoom factor."
-msgstr "Ne peut changer le facteur de zoom"
+msgstr "Ne peut changer le facteur de zoom."
 
 #: src/lvledit/lvledit_widgets.c:432
 msgid ""
@@ -2932,6 +2915,126 @@ msgstr "PtEtp."
 #: src/lvledit/lvledit_widgets.c:607
 msgid "Label"
 msgstr "Etiquette"
+
+#: src/savegame/convert.c:148
+msgid ""
+"The SAVEGAME info can not be decoded.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+"La donnée SAVEGAME ne peut pas être décodée.\n"
+"La sauvegarde est probablement corrompue."
+
+#: src/savegame/convert.c:166
+msgid ""
+"Your savegame seems to be a pre-0.16.1 version, but the savegame_version_string can not be found.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+"La sauvegarde semble être une version pré-0.16.1, mais la donnée savegame_version_string ne peut être trouvée.\n"
+"La sauvegarde est probablement corrompue."
+
+#: src/savegame/convert.c:185
+msgid ""
+"Your savegame seems to be a pre-0.16.1 version, but the savegame_version_string can not be decoded.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+"La sauvegarde semble être une version pré-0.16.1, mais la donnée savegame_version_string ne peut être décodée.\n"
+"La sauvegarde est probablement corrompue"
+
+#: src/savegame/convert.c:289
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"Your savegame is from an other game version.\n"
+"If you are using a dev version of the game, this is expected.\n"
+"We load it as is, but expect some errors or even a crash of the game."
+msgstr ""
+"-=* Chargement de sauvegarde *=-\n"
+"\n"
+"La sauvegarde provient d'une autre version du jeu.\n"
+"Si tu utilises une version de développement, c'est une erreur normale.\n"
+"On la charge telle quelle, mais il faut s'attendre à des erreurs ou même à un arrêt brutal du jeu."
+
+#: src/savegame/convert.c:296
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"An old savegame version has been detected (v%d-r%d).\n"
+"However, no converter was found.\n"
+"We load it as is, but expect some errors or even a crash of the game."
+msgstr ""
+"-=* Chargement de sauvegarde *=-\n"
+"\n"
+"Détection de la sauvegarde comme étant d'une ancienne version (v%d-r%d).\n"
+"Cependant, aucun convertisseur n'a été trouvé.\n"
+"On la charge telle quelle, mais il faut s'attendre à des erreurs ou même à un arrêt brutal du jeu."
+
+#: src/savegame/convert.c:304
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"Your old savegame has been converted from v%d-r%d to v%d-r%d.\n"
+"Note that we can not guarantee that your savegame is fully playable,\n"
+"Some errors or even a game crash could possibly happen."
+msgstr ""
+"-=* Chargement de sauvegarde *=-\n"
+"\n"
+"Cette ancienne sauvegarde a été convertie de v%d-r%d à v%d-r%d.\n"
+"À noter que nous ne garantissons pas que la sauvegarde soit complètement utilisable.\n"
+"Certaines erreurs ou même un arrêt brutal du jeu restent possibles."
+
+#: src/savegame/convert.c:316
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"An old savegame version has been detected (v%d-r%d),\n"
+"An error was caught during conversion. See your console output.\n"
+"We will try to load it unconverted, but expect some errors or even a crash of the game."
+msgstr ""
+"-=* Chargement de sauvegarde *=-\n"
+"\n"
+"Détection de la sauvegarde comme étant d'une ancienne version (v%d-r%d).\n"
+"Une erreur s'est produite durant la conversion. Voir la sortie console.\n"
+"On va tenter de la charger sans conversion, mais il faut s'attendre à des erreurs ou même à un arrêt brutal du jeu."
+
+#: src/savegame/filters_0_16.c:60
+#, c-format
+msgid ""
+"Error during savegame filtering (%s:%s): 'mission_diary_texts' data was not found.\n"
+"The savegame seems to be corrupted."
+msgstr ""
+"Erreur durant l'application d'un filtre (%s:%s): la donnée 'mission_diary_texts' n'a pas été trouvée.\n"
+"La sauvegarde semble être corrompue."
+
+#: src/savegame/filters_0_16.c:70
+#, c-format
+msgid ""
+"Error during savegame filtering (%s:%s): End marker of 'mission_diary_texts' was not found.\n"
+"The savegame seems to be corrupted."
+msgstr ""
+"Erreur durant l'application d'un filtre (%s:%s): le marqueur de fin de la donnée 'mission_diary_texts' n'a pas été trouvé.\n"
+"La sauvegarde semble être corrompue."
+
+#~ msgid ""
+#~ "W A R N I N G !\n"
+#~ "\n"
+#~ "FreedroidRPG was unable to locate the saved game file you requested to load.\n"
+#~ "This might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\n"
+#~ "The other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."
+#~ msgstr ""
+#~ "A T T E N T I O N !\n"
+#~ "\n"
+#~ "FreedroidRPG n'a pas été capable de trouver la partie sauvegardée que tu as demandé de charger.\n"
+#~ "Cela peut signifier qu'elle n'existe réellement pas parce que tu as essayé de charger une partie qui n'a pas encore été sauvegardée.\n"
+#~ "L'autre explication de cette erreur peut être une erreur sévère dans FreedroidRPG. Si tu penses que c'est le cas, merci de l'indiquer aux développeurs."
+
+#~ msgid "Failed to load old game."
+#~ msgstr "Impossible de charger l'ancienne sauvegarde."
+
+#~ msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
+#~ msgstr "Version ou 'structsize' non conforme ! Cette sauvegarde n'a pas été effectuée avec la même version de FreedroidRPG... Possible dysfonctionnement."
 
 #~ msgid ""
 #~ "%s\n"

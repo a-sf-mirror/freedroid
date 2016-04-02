@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR FreedroidRPG Project
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the freedroidrpg package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.16+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-01-08 14:04+0100\n"
+"POT-Creation-Date: 2016-04-02 16:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,7 +204,7 @@ msgid "XP"
 msgstr ""
 
 #. TRANSLATORS: Used on object selector's widget to display unit price * number of objects
-#: src/graphics.c:230
+#: src/graphics.c:232
 #, c-format
 msgid "%d price\n"
 msgstr ""
@@ -323,8 +323,7 @@ msgstr ""
 msgid "Return to Editor"
 msgstr ""
 
-#: src/influ.c:997 src/menu.c:851 src/menu.c:1005
-#: src/lvledit/lvledit_menu.c:965
+#: src/influ.c:997 src/menu.c:851 src/menu.c:1005 src/lvledit/lvledit_menu.c:965
 msgid "Exit FreedroidRPG"
 msgstr ""
 
@@ -334,7 +333,7 @@ msgstr ""
 msgid "Out of [s]%s[v]!"
 msgstr ""
 
-#: src/init.c:785 src/saveloadgame.c:448
+#: src/init.c:785 src/saveloadgame.c:452
 msgid "--- Message Log ---"
 msgstr ""
 
@@ -658,7 +657,7 @@ msgstr ""
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr ""
 
-#: src/items.c:1893 src/items.c:2071
+#: src/items.c:1892 src/items.c:2070
 msgid "I can't carry any more."
 msgstr ""
 
@@ -1218,9 +1217,9 @@ msgstr ""
 msgid "Difficulty: %s"
 msgstr ""
 
-#: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144
-#: src/menu.c:1229 src/menu.c:1340 src/menu.c:1405 src/menu.c:1478
-#: src/menu.c:1629 src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
+#: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144 src/menu.c:1229
+#: src/menu.c:1340 src/menu.c:1405 src/menu.c:1478 src/menu.c:1629
+#: src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
 #: src/lvledit/lvledit_menu.c:126 src/lvledit/lvledit_menu.c:241
 #: src/lvledit/lvledit_menu.c:415 src/lvledit/lvledit_menu.c:642
 msgid "Back"
@@ -1617,11 +1616,11 @@ msgstr ""
 msgid "[n]No completed quests yet.[w]"
 msgstr ""
 
-#: src/saveloadgame.c:171
+#: src/saveloadgame.c:172
 msgid "Last Modified:"
 msgstr ""
 
-#: src/saveloadgame.c:199
+#: src/saveloadgame.c:200
 #, c-format
 msgid "File Size: %2.3f MB"
 msgstr ""
@@ -1630,40 +1629,27 @@ msgstr ""
 msgid "You are dead. Savegame not modified."
 msgstr ""
 
-#: src/saveloadgame.c:264
+#: src/saveloadgame.c:257
 msgid "Saving"
 msgstr ""
 
-#: src/saveloadgame.c:297
+#: src/saveloadgame.c:290
 msgid "Game saved."
 msgstr ""
 
-#: src/saveloadgame.c:349
+#: src/saveloadgame.c:337
 msgid "Loading"
 msgstr ""
 
-#: src/saveloadgame.c:368
-msgid ""
-"W A R N I N G !\n"
-"\n"
-"FreedroidRPG was unable to locate the saved game file you requested to load.\n"
-"This might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\n"
-"The other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."
+#: src/saveloadgame.c:366
+msgid "Unable to decompress saved game - this is probably a very old, incompatible game. Sorry."
 msgstr ""
 
-#: src/saveloadgame.c:369
-msgid "Failed to load old game."
-msgstr ""
-
-#: src/saveloadgame.c:403
-msgid "Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."
-msgstr ""
-
-#: src/saveloadgame.c:444
+#: src/saveloadgame.c:446
 msgid "Updating Tux images (this may take a little while...)"
 msgstr ""
 
-#: src/saveloadgame.c:449
+#: src/saveloadgame.c:453
 msgid "Game loaded."
 msgstr ""
 
@@ -2729,4 +2715,75 @@ msgstr ""
 
 #: src/lvledit/lvledit_widgets.c:607
 msgid "Label"
+msgstr ""
+
+#: src/savegame/convert.c:148
+msgid ""
+"The SAVEGAME info can not be decoded.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+
+#: src/savegame/convert.c:166
+msgid ""
+"Your savegame seems to be a pre-0.16.1 version, but the savegame_version_string can not be found.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+
+#: src/savegame/convert.c:185
+msgid ""
+"Your savegame seems to be a pre-0.16.1 version, but the savegame_version_string can not be decoded.\n"
+"Your savegame is probably corrupted."
+msgstr ""
+
+#: src/savegame/convert.c:289
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"Your savegame is from an other game version.\n"
+"If you are using a dev version of the game, this is expected.\n"
+"We load it as is, but expect some errors or even a crash of the game."
+msgstr ""
+
+#: src/savegame/convert.c:296
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"An old savegame version has been detected (v%d-r%d).\n"
+"However, no converter was found.\n"
+"We load it as is, but expect some errors or even a crash of the game."
+msgstr ""
+
+#: src/savegame/convert.c:304
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"Your old savegame has been converted from v%d-r%d to v%d-r%d.\n"
+"Note that we can not guarantee that your savegame is fully playable,\n"
+"Some errors or even a game crash could possibly happen."
+msgstr ""
+
+#: src/savegame/convert.c:316
+#, c-format
+msgid ""
+"-=* Savegame loading *=-\n"
+"\n"
+"An old savegame version has been detected (v%d-r%d),\n"
+"An error was caught during conversion. See your console output.\n"
+"We will try to load it unconverted, but expect some errors or even a crash of the game."
+msgstr ""
+
+#: src/savegame/filters_0_16.c:60
+#, c-format
+msgid ""
+"Error during savegame filtering (%s:%s): 'mission_diary_texts' data was not found.\n"
+"The savegame seems to be corrupted."
+msgstr ""
+
+#: src/savegame/filters_0_16.c:70
+#, c-format
+msgid ""
+"Error during savegame filtering (%s:%s): End marker of 'mission_diary_texts' was not found.\n"
+"The savegame seems to be corrupted."
 msgstr ""

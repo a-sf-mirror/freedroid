@@ -58,7 +58,7 @@ MUSICA:
 
         Nick Hagman
 
-TRANSLATIONS:
+LOCALIZZAZIONE:
 
         cs:
           Jan Tojnar
