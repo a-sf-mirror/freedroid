@@ -14,14 +14,14 @@ dnl In order to avoid any issue with configure, we use FD_ prefixed vars to
 dnl store our own flags. Those are added to AM_ vars in the Makefile.am
 
 AC_PREREQ([2.68])
-AC_INIT([freedroidRPG], [0.16], [http://bugs.freedroid.org], [freedroidrpg], [http://www.freedroid.org])
+AC_INIT([freedroidRPG], [0.16.1], [http://bugs.freedroid.org], [freedroidrpg], [http://www.freedroid.org])
 AC_CONFIG_SRCDIR([INSTALL.freedroidRPG])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
-dnl See src/convert_savegame.c to know how to define those values
-AC_DEFINE([SAVEGAME_VERSION], ["001600"], [Savegame version])
-AC_DEFINE([SAVEGAME_REVISION], ["01"], [Savegame revision])
+dnl See src/savegame/convert.c to know how to define those values
+AC_DEFINE([SAVEGAME_VERSION], ["001601"], [Savegame version])
+AC_DEFINE([SAVEGAME_REVISION], ["00"], [Savegame revision])
 
 dnl Redefine some macros, to follow silent mode
 

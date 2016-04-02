@@ -1,5 +1,101 @@
 ------------------------------------------------------------------------
-5298b57 | fluzz | 2015-12-24 11:21:08 +0100
+c2a990e | fluzz | 2016-04-02 17:04:59 +0200
+
+This is FreedroidRPG 0.16.1
+------------------------------------------------------------------------
+01f6869 | fluzz | 2016-04-02 16:58:47 +0200
+
+Update translations.
+------------------------------------------------------------------------
+a424867 | fluzz | 2016-03-27 14:28:22 +0200
+
+Change the "How to build on Windows" section of INSTALL.freedroidRPG, to
+describe how to use mingw64/msys2.
+------------------------------------------------------------------------
+d17a5e5 | Gino Ingras | 2016-03-27 14:27:43 +0200
+
+Clean up and update the README file.
+------------------------------------------------------------------------
+177e0ce | fluzz | 2016-03-05 10:51:47 +0100
+
+Refactor load_save_game() for better sequence of code.
+------------------------------------------------------------------------
+7680808 | fluzz | 2016-03-02 18:31:49 +0100
+
+Introduction of a framework for savegame converters, and use it to fix a
+savegame bug in the 0.16 version..
+------------------------------------------------------------------------
+d5ae8d4 | fluzz | 2016-02-24 23:52:13 +0100
+
+Multi-platform specification of the windres tool's pathname.
+------------------------------------------------------------------------
+bbc126a | Jesusaves | 2016-02-13 21:45:34 +0100
+
+Lua game_date() implementation. Returns ingame date (duration of play
+for the current hero).
+------------------------------------------------------------------------
+1d3d35b | fluzz | 2016-01-29 10:54:34 +0100
+
+Picking an item from inventory to hold it in hand, and right-clicking
+while not moving the mouse cursor consumes the item as if it were still
+in the inventory. When the item is consumes, the game segfaults.
+------------------------------------------------------------------------
+3e30078 | fluzz | 2016-01-28 09:53:30 +0100
+
+Improve the interaction with the 'number selection in range' widget.
+------------------------------------------------------------------------
+b79cf4e | fluzz | 2016-01-25 19:39:19 +0100
+
+Display a 'big message' when Tux finds the Town's secret exit door.
+------------------------------------------------------------------------
+f60a949 | fluzz | 2016-01-25 18:21:27 +0100
+
+Update translations and add Italian.
+------------------------------------------------------------------------
+fc58a25 | fluzz | 2016-01-24 12:20:25 +0100
+
+Improve Freedesktop compliance:
+------------------------------------------------------------------------
+e9acd26 | Jesusaves | 2016-01-21 17:19:53 +0100
+
+Hide node1 on MiniFactory.
+------------------------------------------------------------------------
+3ca3abf | fluzz | 2016-01-21 13:25:21 +0100
+
+Use Lua long literals when saving strings in a Lua file (savegame, for
+instance).
+------------------------------------------------------------------------
+9125353 | fluzz | 2016-01-08 17:20:38 +0100
+
+Initialize the lang when no config file is found.
+------------------------------------------------------------------------
+f31dc52 | Jesusaves | 2016-01-12 16:47:16 +0100
+
+If you do Novice arena twice, you go straight to Champion.
+------------------------------------------------------------------------
+293f997 | fluzz | 2016-01-08 14:24:11 +0100
+
+Update translations and add Spanish translations.
+------------------------------------------------------------------------
+aceea00 | fluzz | 2016-01-08 14:02:40 +0100
+
+Add Spanish (es) lingua.
+------------------------------------------------------------------------
+0309363 | fluzz | 2016-01-04 19:33:54 +0100
+
+Add gettext Rules-others files into the tarball distribution, to enable
+local installation of translations.
+------------------------------------------------------------------------
+8df4e31 | Jesusaves | 2015-12-27 11:02:47 +0100
+
+Some dialog typo fixes.
+------------------------------------------------------------------------
+cf25767 | fluzz | 2015-12-24 16:19:23 +0100
+
+Refer to libsdl-ttf2 instead of libsdl-ttf1.2 in the list of packages
+needed to compile on Debian (in INSTALL.freedroidRPG).
+------------------------------------------------------------------------
+1e1be3d | fluzz | 2015-12-24 11:21:08 +0100
 
 This is FreedroidRPG 0.16
 ------------------------------------------------------------------------
