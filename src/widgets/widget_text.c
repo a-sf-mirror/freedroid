@@ -105,7 +105,10 @@ void widget_text_display(struct widget *w)
 	set_current_font(wt->font);
 
 	// Compute the number of lines required.
-	lines_needed = get_lines_needed(wt->text->value, w->rect, wt->line_height_factor);
+	if (wt->l10n_at_display)
+		lines_needed = get_lines_needed(_(wt->text->value), w->rect, wt->line_height_factor);
+	else
+		lines_needed = get_lines_needed(wt->text->value, w->rect, wt->line_height_factor);
 
 	// Get number of visible lines.
 	font_size = get_font_height(wt->font) * wt->line_height_factor;
@@ -129,8 +132,10 @@ void widget_text_display(struct widget *w)
 		offset = 0;
 
 	SDL_SetClipRect(Screen, NULL);
-	display_text(wt->text->value, w->rect.x, w->rect.y - offset,
-                                       &w->rect, wt->line_height_factor);
+	if (wt->l10n_at_display)
+		display_text(_(wt->text->value), w->rect.x, w->rect.y - offset, &w->rect, wt->line_height_factor);
+	else
+		display_text(wt->text->value, w->rect.x, w->rect.y - offset, &w->rect, wt->line_height_factor);
 
 	/* If we have more content above or below the currently visible text, we call the
 	 * functions that may have been specified for this event.
@@ -285,6 +290,7 @@ struct widget_text *widget_text_create()
 	WIDGET(wt)->free = widget_text_free;
 
 	widget_text_init(wt, "");
+	wt->l10n_at_display = FALSE;
 
 	return wt;
 }
@@ -314,6 +320,22 @@ void widget_text_init(struct widget_text *w, const char *start_text)
 	w->content_below_func = NULL;
 }
 
+/**
+ * \brief Set localization to be executed during the display of the text.
+ * \ingroup gui2d_text
+ *
+ * \details In some circumstances, the translation of a widget text is to be
+ * recomputed at each display. For instance: any 'static' widget text, such as
+ * a label.
+ *
+ * \param w    Pointer to the widget_text object
+ * \param flag If TRUE, the widget text is translated during display
+ */
+void widget_text_l10n_at_display(struct widget_text *w, int flag)
+{
+	w->l10n_at_display = flag;
+}
+
 static void widget_text_free(struct widget *w)
 {
 	struct widget_text *wt = WIDGET_TEXT(w);
@@ -339,7 +361,11 @@ static void widget_text_free(struct widget *w)
 int widget_text_can_scroll_up(struct widget_text *w)
 {
 	set_current_font(w->font);
-	int lines_needed = get_lines_needed(w->text->value, WIDGET(w)->rect, w->line_height_factor);
+	int lines_needed;
+	if (w->l10n_at_display)
+		lines_needed = get_lines_needed(_(w->text->value), WIDGET(w)->rect, w->line_height_factor);
+	else
+		lines_needed = get_lines_needed(w->text->value, WIDGET(w)->rect, w->line_height_factor);
 	const int font_size = get_font_height(w->font) * w->line_height_factor;
 	float visible_lines = (float) WIDGET(w)->rect.h / (float) font_size;
 

@@ -85,6 +85,11 @@ enum mouse_text_hover {
 ///   /* Add text */
 ///   autostr_append(my_textw->text, "\nA third line.");
 ///   \endcode
+///
+/// \par Localization
+/// The text of the widget is displayed as is. However if the text has to be
+/// translated when it is displayed, i.e. if it was not already translated
+/// when the widget's content was set, use widget_text_l10n_at_display().
 ///@{
 // start gui2d_text submodule
 
@@ -102,6 +107,7 @@ struct widget_text {
 	/// \name Public attributes
 	/// @{
 	struct auto_string *text;  /**< Text to be displayed. */
+	int l10n_at_display;       /**< TRUE is the text is to be translated when displaying it (the text is not already translated). */
 	struct font *font;         /**< Font to be used when displaying text. */
 	float line_height_factor;  /**< Scale factor applied to line spacing. */
 	int scroll_offset;         /**< Offset for the text being displayed. 0 means bottom, negative means above bottom. */
@@ -128,6 +134,7 @@ struct widget_text {
 
 struct widget_text *widget_text_create(void);
 void widget_text_init(struct widget_text *, const char *);
+void widget_text_l10n_at_display(struct widget_text *, int);
 int widget_text_can_scroll_up(struct widget_text *);
 int widget_text_can_scroll_down(struct widget_text *);
 void widget_text_scroll_up(struct widget_text *);
