@@ -544,7 +544,8 @@ struct widget_group *create_chat_dialog()
 	widget_set_rect(WIDGET(wait_text), chat_selector_inner_rect.x, chat_selector_inner_rect.y,
 	                chat_selector_inner_rect.w, chat_selector_inner_rect.h);
 	wait_text->font = FPS_Display_Font;
-	widget_text_init(wait_text, _("Click anywhere to continue..."));
+	widget_text_init(wait_text, N_("Click anywhere to continue..."));
+	widget_text_l10n_at_display(wait_text, TRUE);
 	widget_group_add(chat_wait, WIDGET(wait_text));
 
 	struct widget_button *wait_but = widget_button_create();
