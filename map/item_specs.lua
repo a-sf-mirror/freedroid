@@ -195,7 +195,7 @@ item_list{
 	base_price = 400,
 	inventory = {x = 2, y = 5, image = "weapons/sword/inv_image.png" },
 	drop = {class = "0", sound = "drop_sword_sound.ogg"},
-	description =_[[Very maneuverable for its size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts.]],
+	description =_[[Very maneuverable for its size, and heavy enough to punch though weaker bot armor in one hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts.]],
 	rotation_series = "weapons/sword",
 	tux_part = "iso_antique_greatsword",
 },
