@@ -47,6 +47,7 @@ void update_obstacle_automap(int z, obstacle *our_obstacle);
 // init.c
 void prepare_execution(int, char **);
 void ResetGameConfigToDefaultValues(void);
+void gameconfig_clean(void);
 void clear_out_arrays_for_fresh_game(void);
 void next_startup_percentage(int Percentage);
 void ParseCommandLine(int argc, char *const argv[]);

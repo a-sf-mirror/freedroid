@@ -1270,7 +1270,14 @@ int LoadGameConfig(void)
 		return ERR;
 	}
 
+	// GameConfig.locale is initialized (in ResetGameConfigToDefaultValues())
+	// before the configuration is loaded (so that any error message can be
+	// translated). The memory pointed to by GameConfig.locale will be lost
+	// when loading the configuration. So we have to free it, if needed.
+	char *tmp_ptr = GameConfig.locale;
 	load_freedroid_configuration(stuff);
+	if (tmp_ptr && tmp_ptr != GameConfig.locale)
+		free(tmp_ptr);
 	lang_set(GameConfig.locale, NULL);
 
 	configfile = NULL;
@@ -1393,6 +1400,7 @@ static void free_memory_before_exit(void)
 	free_current_ship();
 	leveleditor_cleanup();
 	free_error_msg_store();
+	gameconfig_clean();
 }
 
 /**

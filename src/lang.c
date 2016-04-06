@@ -249,6 +249,8 @@ void lang_init()
 
 	setlocale(LC_ALL, "C");
 	setlocale(LC_MESSAGES, "");
+	if (GameConfig.locale)
+		free(GameConfig.locale);
 	GameConfig.locale = my_strdup("");
 
 	_current_encoding = _default_codeset.encoding;

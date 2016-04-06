@@ -859,6 +859,16 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.locale = my_strdup("");
 }
 
+/**
+ * Release all allocated memory stored in GameConfig
+ */
+void gameconfig_clean()
+{
+	if (GameConfig.locale) {
+		free(GameConfig.locale);
+	}
+}
+
 /** 
  * Set signal handlers for SIGSEGV and SIGFPE.
  */
