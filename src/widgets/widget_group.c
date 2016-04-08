@@ -220,7 +220,7 @@ static void group_update(struct widget *wg)
 	// Propagate on all children
 	if (wg->enabled) {
 		list_for_each_entry(w, &WIDGET_GROUP(wg)->list, node) {
-			if (w && w->update_tree)
+			if (w->update_tree)
 				w->update_tree(w);
 		}
 	}
