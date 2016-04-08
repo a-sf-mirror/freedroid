@@ -909,25 +909,29 @@ static char *decode_waypoints(level *loadlevel, char *data)
 
 		pos = strstr(this_line, CONNECTION_STRING);
 		if (pos == NULL) {
-			fprintf(stderr, "Unable to find connection string. line is %s, level %i\n", this_line,
-				loadlevel->levelnum);
-		}
-		pos += strlen(CONNECTION_STRING);	// skip connection-string
-		pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace
+			error_message(__FUNCTION__,
+			              "Unable to find connection string, on line %s, level %i.\n"
+			              "The data file seems to be corrupted.\n"
+			              "We continue to load it, but you may encounter some errors while playing.",
+						  PLEASE_INFORM, this_line, loadlevel->levelnum);
+		} else {
+			pos += strlen(CONNECTION_STRING);	// skip connection-string
+			pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace
 
-		while (1) {
-			if (*pos == '\0')
-				break;
-			int connection;
-			int res = sscanf(pos, "%d", &connection);
-			if ((connection == -1) || (res == 0) || (res == EOF))
-				break;
+			while (1) {
+				if (*pos == '\0')
+					break;
+				int connection;
+				int res = sscanf(pos, "%d", &connection);
+				if ((connection == -1) || (res == 0) || (res == EOF))
+					break;
 
-			// Add the connection on this waypoint
-			dynarray_add(&new_wp.connections, &connection, sizeof(int));
+				// Add the connection on this waypoint
+				dynarray_add(&new_wp.connections, &connection, sizeof(int));
 
-			pos += strcspn(pos, WHITE_SPACE);	// skip last token
-			pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace for next one
+				pos += strcspn(pos, WHITE_SPACE);	// skip last token
+				pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace for next one
+			}
 		}
 
 		// Add the waypoint on the level
