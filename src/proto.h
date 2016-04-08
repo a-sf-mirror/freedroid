@@ -30,9 +30,19 @@
 #include "BFont.h"
 
 #ifdef __GNUC__
-#define PRINTF_FMT_ATTRIBUTE(fmt,firstarg) __attribute__ ((format(printf,fmt,firstarg)));
+#	define PRINTF_FMT_ATTRIBUTE(fmt,firstarg) __attribute__ ((format(printf,fmt,firstarg)))
 #else
-#define PRINTF_FMT_ATTRIBUTE(fmt,firstarg)
+#	define PRINTF_FMT_ATTRIBUTE(fmt,firstarg)
+#endif
+
+#ifdef __clang__
+#	if __has_feature(attribute_analyzer_noreturn)
+#		define CLANG_ANALYZER_NORETURN __attribute__((analyzer_noreturn))
+#	else
+#		define CLANG_ANALYZER_NORETURN
+#	endif
+#else
+#	define CLANG_ANALYZER_NORETURN
 #endif
 
 // main.c 
@@ -675,8 +685,8 @@ char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer
 void DebugPrintf(int db_level, const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(2,3);
 void clean_error_msg_store();
 void free_error_msg_store();
-void error_message(const char *, const char *, int, ...) PRINTF_FMT_ATTRIBUTE(2,4);
-void error_once_message(int, const char *, const char *, int, ...) PRINTF_FMT_ATTRIBUTE(3,5);
+void error_message(const char *, const char *, int, ...) PRINTF_FMT_ATTRIBUTE(2,4) CLANG_ANALYZER_NORETURN;
+void error_once_message(int, const char *, const char *, int, ...) PRINTF_FMT_ATTRIBUTE(3,5) CLANG_ANALYZER_NORETURN;
 void alert_window(const char *text, ...) PRINTF_FMT_ATTRIBUTE(1,2);
 void alert_once_window(int, const char *text, ...) PRINTF_FMT_ATTRIBUTE(2,3);
 void *MyMalloc(long);
