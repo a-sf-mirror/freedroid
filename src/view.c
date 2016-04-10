@@ -1722,8 +1722,6 @@ void draw_grid_on_the_floor(int mask)
 	if (y > our_level->ylen)
 		y = our_level->ylen;
 
-	float dd;
-
 	if (GameConfig.grid_mode == 1) {	// large grid
 
 		if (LineStart < 0)
@@ -1736,20 +1734,24 @@ void draw_grid_on_the_floor(int mask)
 			ColEnd = our_level->xlen;
 
 		// Draw horizontal lines.
+		int dd;
 		for (dd = LineStart; dd <= LineEnd; dd++) {
-			draw_line_on_map(ColStart, dd, ColEnd, dd, 0x99, 0xFF, 0xFF, 1);	// light cyan
+			draw_line_on_map((float)ColStart, (float)dd, (float)ColEnd, (float)dd, 0x99, 0xFF, 0xFF, 1);	// light cyan
 		}
 
 		// Draw vertical lines.
 		for (dd = ColStart; dd <= ColEnd; dd++) {
-			draw_line_on_map(dd, LineStart, dd, LineEnd, 0x99, 0xFF, 0xFF, 1);	// light cyan
+			draw_line_on_map((float)dd, (float)LineStart, (float)dd, (float)LineEnd, 0x99, 0xFF, 0xFF, 1);	// light cyan
 		}
 	}
 
-	for (dd = 0; dd <= 1; dd += .5)	// quick-placement grid
-	{
+	// quick-placement grid
+	float dd = 0.0;
+	int i;
+	for (i = 0; i < 3; i++)	{
 		draw_line_on_map(x - 1.5, y - dd, x + 0.5, y - dd, 0xFF, 0x00, 0xFF, 1);	// magenta
 		draw_line_on_map(x - dd, y - 1.5, x - dd, y + 0.5, 0xFF, 0x00, 0xFF, 1);	// magenta
+		dd += 0.5;
 	}
 
 	// Draw the level borders.
