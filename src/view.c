@@ -2386,7 +2386,7 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 		float PercentageDone = 0;
 		int barnum = 0;
 		// If Percentage > 100%, several bars are drawn (one bar == 100% of maxenergy)
-		for (; Percentage > 0; Percentage -= PercentageDone, barnum++) {
+		while (Percentage > 0) {
 			if (Percentage >= 1)
 				PercentageDone = 1;
 			else
@@ -2404,6 +2404,9 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 			// tweak as needed, this alters the transparency
 			c1.a = 140;
 			drawIsoEnergyBar(x, y, 1, 5, 5, w, PercentageDone, &c1, &c2);
+
+			Percentage -= PercentageDone;
+			barnum++;
 		}
 
 #endif
