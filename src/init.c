@@ -988,19 +988,25 @@ void prepare_execution(int argc, char *argv[])
 #endif
 
 	struct stat statbuf;
+	int rtn;
 
-#if __WIN32__
 	if (stat(our_config_dir, &statbuf) == -1) {
-		_mkdir(our_config_dir);
-	}
-#else
-	if (stat(our_config_dir, &statbuf) == -1) {
-		if (mkdir(our_config_dir, S_IREAD | S_IWRITE | S_IEXEC) == -1) {
+#		if __WIN32__
+		rtn = _mkdir(our_config_dir);
+#		else
+		rtn = mkdir(our_config_dir, S_IREAD | S_IWRITE | S_IEXEC);
+#		endif
+		if (rtn == -1) {
 			free(our_config_dir);
 			our_config_dir = NULL;
+			// If not run from term, we currently have no way to inform the
+			// user that we were not able to create the subdir.
+			// TODO: Use SDL2 SDL_ShowSimpleMessageBox()
+			// Until the SDL2 port is done, well, we just abort somehow silently...
+			DebugPrintf(-4, "Was not able to create a subdir to store the configuration and the savegames.\n");
+			Terminate(EXIT_FAILURE);
 		}
 	}
-#endif
 
 	// If not run from a terminal, stdout and stderr are redirect to a text file
 	// written in the config dir (fdrpg_out.txt).
