@@ -1825,6 +1825,16 @@ int resume_lua_coroutine(struct lua_coroutine *coroutine)
 		// The script code is in an external file
 		// Extract the erroneous function's code from the source file
 		FILE *src = fopen(&ar.source[1], "r");
+
+		if (!src) {
+			error_message(__FUNCTION__,
+					"Error detected in a lua script, but we were not able to open its source file (%s).\n"
+					"This should not happen !\n"
+					"Lua error: %s",
+					PLEASE_INFORM, &ar.source[1], error_msg);
+			goto EXIT;
+		}
+
 		struct auto_string *code = alloc_autostr(256);
 		char buffer[256] = "";
 		char *ptr = buffer;
@@ -1849,6 +1859,7 @@ int resume_lua_coroutine(struct lua_coroutine *coroutine)
 
 		pretty_print_lua_error(coroutine->thread, error_msg, code->value, ar.linedefined, __FUNCTION__);
 		free_autostr(code);
+		fclose(src);
 	}
 
 EXIT:
