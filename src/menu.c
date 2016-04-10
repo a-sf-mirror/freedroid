@@ -1727,7 +1727,6 @@ int Single_Player_Menu(void)
 	int can_continue = FALSE;
 	int MenuPosition = 1;
 	char *MenuTexts[MAX_MENU_ITEMS];
-	char *char_name = NULL;
 
 	enum {
 		NEW_HERO_POSITION = 1,
@@ -1752,7 +1751,7 @@ int Single_Player_Menu(void)
 		switch (MenuPosition) {
 		case NEW_HERO_POSITION:
 			while (EnterPressed() || SpacePressed()) ;
-			char_name = get_new_character_name();
+			char *char_name = get_new_character_name();
 			if (char_name && strlen(char_name)) {
 				char fp[PATH_MAX];
 				find_file("levels.dat", MAP_DIR, fp, PLEASE_INFORM | IS_FATAL);
@@ -1761,13 +1760,13 @@ int Single_Player_Menu(void)
 				free(Me.character_name);
 				Me.character_name = strdup(char_name);
 				can_continue = TRUE;
-				free(char_name);
 			}
+			if (char_name)
+				free(char_name);
 			break;
 
 		case LOAD_EXISTING_HERO_POSITION:
 			while (EnterPressed() || SpacePressed()) ;
-
 			if (Load_Existing_Hero_Menu() == TRUE)
 				can_continue = TRUE;
 			break;
@@ -1786,7 +1785,7 @@ int Single_Player_Menu(void)
 			break;
 		}
 	}
-	return (TRUE);
+	return TRUE;
 }
 
 #undef _menu_c
