@@ -211,6 +211,11 @@ void action_push(int type, ...)
 			list_add(&act->node, &to_undo);
 			clear_action_list(&to_redo);
 			break;
+		default:
+			// Should not happen, so this is a protection against a bug in the
+			// calling stack, to avoid a memory leak.
+			free(act);
+			break;
 	}
 
 	va_end(args);
