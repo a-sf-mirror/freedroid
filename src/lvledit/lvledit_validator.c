@@ -38,6 +38,8 @@
 #define IS_TERMINAL(t) ( get_obstacle_spec(t)->action && !strncmp(get_obstacle_spec(t)->action, "terminal", 8) )
 #define IS_SIGN(t)     ( get_obstacle_spec(t)->action && !strncmp(get_obstacle_spec(t)->action, "sign", 4) )
 
+static const float DIST_EPSILON = 0.01f;
+
 static char *bigline = "====================================================================";
 static char *line = "--------------------------------------------------------------------";
 static char *sepline = "+------------------------------";
@@ -444,8 +446,6 @@ static void *lvlval_chest_parse_excpt(char *str)
 
 static int lvlval_chest_cmp_data(void *opaque_data1, void *opaque_data2)
 {
-#	define DIST_EPSILON 0.01f
-
 	struct chest_excpt_data *data1 = opaque_data1;
 	struct chest_excpt_data *data2 = opaque_data2;
 
@@ -459,8 +459,6 @@ static int lvlval_chest_cmp_data(void *opaque_data1, void *opaque_data2)
 		return FALSE;
 
 	return TRUE;
-
-#	undef DIST_EPSILON
 }
 
 /*
@@ -573,7 +571,6 @@ static void *lvlval_waypoint_parse_excpt(char *str)
 
 static int lvlval_waypoint_cmp_data(void *opaque_data1, void *opaque_data2)
 {
-#	define DIST_EPSILON 0.01f
 
 	struct waypoint_excpt_data *data1 = opaque_data1;
 	struct waypoint_excpt_data *data2 = opaque_data2;
@@ -592,8 +589,6 @@ static int lvlval_waypoint_cmp_data(void *opaque_data1, void *opaque_data2)
 	}
 
 	return TRUE;
-
-#	undef DIST_EPSILON
 }
 
 /*
@@ -750,7 +745,7 @@ static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_
 
 			float dist = calc_distance(wp_i.x, wp_i.y, wp_j.x, wp_j.y);
 
-			if (dist < MIN_DIST) {
+			if (dist < MIN_DIST-DIST_EPSILON) {
 				validator_print_error(validator_ctx, &dist_error,
 				     wp_i.x, wp_i.y, validator_ctx->this_level->levelnum, wp_j.x, wp_j.y,
 				     validator_ctx->this_level->levelnum, dist);
@@ -1154,8 +1149,6 @@ static void *lvlval_obstacles_parse_excpt(char *str)
 
 static int lvlval_obstacles_cmp_data(void *opaque_data1, void *opaque_data2)
 {
-#	define DIST_EPSILON 0.01f
-
 	struct obstacle_excpt_data *data1 = opaque_data1;
 	struct obstacle_excpt_data *data2 = opaque_data2;
 
@@ -1176,8 +1169,6 @@ static int lvlval_obstacles_cmp_data(void *opaque_data1, void *opaque_data2)
 		return FALSE;
 
 	return TRUE;
-
-#	undef DIST_EPSILON
 }
 
 /*
@@ -1331,8 +1322,6 @@ static void *lvlval_extensions_parse_excpt(char *str)
 
 static int lvlval_extensions_cmp_data(void *opaque_data1, void *opaque_data2)
 {
-#	define DIST_EPSILON 0.01f
-
 	struct extension_excpt_data *data1 = opaque_data1;
 	struct extension_excpt_data *data2 = opaque_data2;
 
@@ -1356,8 +1345,6 @@ static int lvlval_extensions_cmp_data(void *opaque_data1, void *opaque_data2)
 		return FALSE;
 
 	return TRUE;
-
-#	undef DIST_EPSILON
 }
 
 /*
