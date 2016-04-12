@@ -61,8 +61,8 @@ AC_ARG_ENABLE([sound],
 				[AC_HELP_STRING([--disable-sound], [do not include support for audio playback (no music, no SFX) [default=auto]])],
 				[want_sound="$enableval"], [want_sound=yes])
 AC_ARG_ENABLE([fastmath],
-				[AC_HELP_STRING([--enable-fastmath], [compile with -ffast-math [default=yes]])],
-				[fast_math="$enableval"], [fast_math=yes])
+				[AC_HELP_STRING([--enable-fastmath], [compile with -ffast-math (this can produce strange results due to 'imprecise' math computations) [default=no]])],
+				[fast_math="$enableval"], [fast_math=no])
 AC_ARG_ENABLE([debug],
 				[AC_HELP_STRING([--enable-debug], [compile with debugging support [default=no]])],
 				[use_debug="$enableval"], [use_debug=no])
