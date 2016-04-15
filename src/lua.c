@@ -1976,7 +1976,7 @@ void init_lua()
 	lua_pushcfunction(config_lua_state, lua_gettexts.func);
 	lua_setglobal(config_lua_state, lua_gettexts.name);
 
-	find_file("script_helpers.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("script_helpers.lua", LUA_MOD_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 }
 
@@ -2031,7 +2031,7 @@ void reset_lua_state(void)
 	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "d", NULL, DIALOG_DIR);
 
 	// Finally load the script helpers Lua functions
-	find_file("script_helpers.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("script_helpers.lua", LUA_MOD_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_DIALOG, fpath);
 
 }

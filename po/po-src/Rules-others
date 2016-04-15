@@ -19,7 +19,7 @@ l10n-stats:
 update-po: update-pot
 update-pot:
 	@if [ -x $(top_srcdir)/po/update-potfiles ] ; then \
-	   $(top_srcdir)/po/update-potfiles -i src -i lua_modules -i data/map/script_helpers.lua > POTFILES.inT ; \
+	   $(top_srcdir)/po/update-potfiles -i src -i lua_modules > POTFILES.inT ; \
 	   if ! cmp -s POTFILES.inT POTFILES.in ; then \
 	     rm POTFILES.in && mv POTFILES.inT POTFILES.in; \
 	     echo "POTFILES.in updated"; \
