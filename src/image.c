@@ -542,7 +542,7 @@ void load_image_surface(struct image *img, const char *filepath, int mod_flags)
  * \param img Pointer towards the iso_image struct to fill in
  * \param filename Filename of the image
  * \param mod_flags Modifications to apply */
-void load_image(struct image *img, const char *filename, int mod_flags)
+void load_image(struct image *img, int subdir_handle, const char *filename, int mod_flags)
 {
 	char fpath[PATH_MAX];
 
@@ -550,13 +550,13 @@ void load_image(struct image *img, const char *filename, int mod_flags)
 		int need_wide_version = (GameConfig.screen_width / (float)GameConfig.screen_height) >= ((16/9.0 + 4/3.0) / 2.0);
 		if (need_wide_version) {
 			// Try to load the wide version
-			if (find_suffixed_file(filename, "_wide", GRAPHICS_DIR, fpath, SILENT))
+			if (find_suffixed_file(filename, "_wide", subdir_handle, fpath, SILENT))
 				goto IMAGE_FILE_FOUND;
 		}
 	}
 
 	// Try to load the narrow version
-	if (!find_file(filename, GRAPHICS_DIR, fpath, PLEASE_INFORM)) {
+	if (!find_file(filename, subdir_handle, fpath, PLEASE_INFORM)) {
 		struct image empty = EMPTY_IMAGE;
 		*img = empty;
 		return;

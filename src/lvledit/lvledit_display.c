@@ -110,7 +110,7 @@ static void show_cursor(int must_zoom)
 	// we need to load it.
 	//
 	if (!image_loaded(&level_editor_cursor)) {
-		load_image(&level_editor_cursor, "level_editor_floor_cursor.png", USE_OFFSET);
+		load_image(&level_editor_cursor, GRAPHICS_DIR, "level_editor_floor_cursor.png", USE_OFFSET);
 	}
 
 	float scale = must_zoom ? lvledit_zoomfact_inv() : 1.0;
@@ -137,7 +137,7 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 	// we need to load it.
 	//
 	if (!image_loaded(&level_editor_dot_cursor)) {
-		load_image(&level_editor_dot_cursor, "level_editor_waypoint_dot.png", USE_OFFSET);
+		load_image(&level_editor_dot_cursor, GRAPHICS_DIR, "level_editor_waypoint_dot.png", USE_OFFSET);
 	}
 
 	// So now that the dot cursor has been loaded, we can start to
@@ -189,11 +189,11 @@ static void show_waypoints(int mask)
 	// Maybe, if the level editor floor cursor has not yet been loaded,
 	// we need to load it.
 	if (!image_loaded(&level_editor_waypoint_cursor[0])) {
-		load_image(&level_editor_waypoint_cursor[0], "level_editor_waypoint_cursor.png", USE_OFFSET);
+		load_image(&level_editor_waypoint_cursor[0], GRAPHICS_DIR, "level_editor_waypoint_cursor.png", USE_OFFSET);
 	}
 
 	if (!image_loaded(&level_editor_waypoint_cursor[1])) {
-		load_image(&level_editor_waypoint_cursor[1], "level_editor_norand_waypoint_cursor.png", USE_OFFSET);
+		load_image(&level_editor_waypoint_cursor[1], GRAPHICS_DIR, "level_editor_norand_waypoint_cursor.png", USE_OFFSET);
 	}
 
 	for (i = 0; i < EditLevel()->waypoints.size; i++) {

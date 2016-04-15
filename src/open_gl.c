@@ -690,7 +690,7 @@ void blit_background(const char *background)
 	if (!image_loaded(&bg->img)) {
 		char path[2048];
 		sprintf(path, "backgrounds/%s", bg->filename);
-		load_image(&bg->img, path, USE_WIDE);
+		load_image(&bg->img, GRAPHICS_DIR, path, USE_WIDE);
 	}
 
 

@@ -85,7 +85,7 @@ int load_texture_atlas(const char *atlas_name, const char *directory, struct ima
 
 		// Load the atlas in memory
 		struct image atlas_img = EMPTY_IMAGE;
-		load_image(&atlas_img, atlas_path, NO_MOD);
+		load_image(&atlas_img, GRAPHICS_DIR, atlas_path, NO_MOD);
 
 		while (*dat && *dat != '*') {
 			// Read each element in the atlas

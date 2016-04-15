@@ -79,7 +79,7 @@ struct image *widget_load_image_resource(char *name, int mod_flags)
 	// Image not found, allocate memory and load it from its file.
 	res = MyMalloc(sizeof(struct image_resource));
 	res->name = strdup(name);
-	load_image(&res->img, res->name, mod_flags);
+	load_image(&res->img, GRAPHICS_DIR, res->name, mod_flags);
 	list_add(&res->node, &image_resource_list);
 	return &res->img;
 }

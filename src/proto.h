@@ -862,7 +862,7 @@ void end_image_batch(void);
 void display_image_on_screen(struct image *img, int x, int y, struct image_transformation t);
 void display_image_on_map(struct image *img, float X, float Y, struct image_transformation t);
 void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect);
-void load_image(struct image *, const char *, int);
+void load_image(struct image *, int, const char *, int);
 void load_image_surface(struct image *img, const char *filepath, int use_offset_file);
 void free_image_surface(struct image *img);
 void delete_image(struct image *img);
