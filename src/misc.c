@@ -61,17 +61,17 @@ char *our_homedir = NULL;
 char *our_config_dir = NULL;
 
 struct data_dir data_dirs[] = {
-	[GRAPHICS_DIR]= { "graphics",      "" },
-	[FONT_DIR]=     { "graphics/font", "" },
-	[SOUND_DIR]=    { "sound",         "" },
-	[MUSIC_DIR]=    { "sound/music",   "" },
-	[MAP_DIR]=      { "map",           "" },
-	[TITLES_DIR]=   { "map/titles",    "" },
-	[DIALOG_DIR]=   { "dialogs",       "" },
+	[GRAPHICS_DIR]= { "data/graphics",      "" },
+	[FONT_DIR]=     { "data/graphics/font", "" },
+	[SOUND_DIR]=    { "data/sound",         "" },
+	[MUSIC_DIR]=    { "data/sound/music",   "" },
+	[MAP_DIR]=      { "data/map",           "" },
+	[TITLES_DIR]=   { "data/map/titles",    "" },
+	[DIALOG_DIR]=   { "data/dialogs",       "" },
 #ifdef ENABLE_NLS
-	[LOCALE_DIR]=   { "locale",        "" },
+	[LOCALE_DIR]=   { "locale",             "" },
 #endif
-	[LUA_MOD_DIR]=  { "lua_modules",   "" }
+	[LUA_MOD_DIR]=  { "lua_modules",        "" }
 };
 #define WELL_KNOWN_DATA_FILE "lua_modules/FDdialog.lua"
 
