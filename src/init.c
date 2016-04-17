@@ -464,7 +464,7 @@ static void load_fdrpg_config()
 	// Load the languages specs
 	dynarray_free(&lang_specs);
 	dynarray_free(&lang_codesets);
-	if (find_file("languages.lua", MAP_DIR, fpath, PLEASE_INFORM)) {
+	if (find_file("languages.lua", BASE_DIR, fpath, PLEASE_INFORM)) {
 		run_lua_file(LUA_CONFIG, fpath);
 	}
 }
@@ -479,21 +479,21 @@ void Init_Game_Data()
 	char *Data;
 
 	// Load difficulties.
-	find_file("difficulties.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("difficulties.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load skills and programs (spells) information
-	find_file("skill_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("skill_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load the blast data (required for the bullets to load)
-	find_file("blast_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("blast_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load the bullet data (required for the item archetypes to load)
 	//
 	dynarray_free(&bullet_specs);
-	find_file("bullet_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("bullet_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load Tux animation and rendering specifications.
@@ -504,26 +504,26 @@ void Init_Game_Data()
 	Load_Enemy_Surfaces();
 
 	// Item archetypes must be loaded too
-	find_file("item_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("item_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load add-on specifications.
-	find_file("addon_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("addon_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Time to eat some droid archetypes...
-	find_file("droid_archetypes.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("droid_archetypes.dat", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Robot_Data(Data);
 	free(Data);
 
 	// Load obstacle specifications.
 	dynarray_init(&obstacle_map, 512, sizeof(struct obstacle_spec));
-	find_file("obstacle_specs.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("obstacle_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load floor tile specifications.
-	find_file("floor_tiles.lua", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("floor_tiles.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 	dirty_animated_floor_tile_list();
 

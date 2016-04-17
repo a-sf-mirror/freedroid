@@ -545,7 +545,7 @@ void Load_Enemy_Surfaces(void)
 	char fpath[PATH_MAX];
 	char *Data;
 
-	find_file("enemy_surfaces.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file("enemy_surfaces.dat", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	get_enemy_surfaces_data(Data);
 	free(Data);

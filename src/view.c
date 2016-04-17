@@ -2134,7 +2134,7 @@ void tux_rendering_load_specs(const char *config_filename)
 
 	tux_rendering_init();
 
-	find_file(config_filename, MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(config_filename, BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 	tux_rendering_validate(); // check mandatory specifications/configurations
 

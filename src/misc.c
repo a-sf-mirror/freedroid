@@ -67,6 +67,7 @@ struct data_dir data_dirs[] = {
 	[SOUND_DIR]=    { "data/sound",       "" },
 	[MUSIC_DIR]=    { "data/sound/music", "" },
 	[MAP_DIR]=      { "data/map",         "" },
+	[BASE_DIR]=     { "data/base",        "" },
 	[TITLES_DIR]=   { "data/map/titles",  "" },
 	[DIALOG_DIR]=   { "data/dialogs",     "" },
 #ifdef ENABLE_NLS

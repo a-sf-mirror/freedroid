@@ -1590,6 +1590,7 @@ enum data_dir_handle {
 	SOUND_DIR,
 	MUSIC_DIR,
 	MAP_DIR,
+	BASE_DIR,
 	TITLES_DIR,
 	DIALOG_DIR,
 #ifdef ENABLE_NLS
