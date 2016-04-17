@@ -73,7 +73,7 @@ if [[ $# -lt 2 || $# -gt 3 ]]; then
 	usage 1
 else
 	ROOTFRDRPG="${1}"
-	FDRPGGRAPHICS="${ROOTFRDRPG}/graphics"
+	FDRPGGRAPHICS="${ROOTFRDRPG}/data/graphics"
 	FDRPGWIKIUPLOAD="${ROOTFRDRPG}/doc/wiki/uploads"
 	IMGFILE="${2}/${SRCFILE}"
 	if [[ $# -eq 3 ]]; then

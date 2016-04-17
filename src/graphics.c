@@ -59,7 +59,7 @@ void blit_mouse_cursor(void)
 	if (!loaded) {
 		for (i = 0; i < 10; i++) {
 			sprintf(constructed_filename, "cursors/mouse_cursor_%04d.png", i);
-			load_image(&mouse_cursors[i], GRAPHICS_DIR, constructed_filename, NO_MOD);
+			load_image(&mouse_cursors[i], GUI_DIR, constructed_filename, NO_MOD);
 		}
 		loaded = TRUE;
 	}
@@ -208,7 +208,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 	StoreMenuBackground(1);
 
 	if (!image_loaded(&selection_knob)) {
-		load_image(&selection_knob, GRAPHICS_DIR, "mouse_buttons/number_selector_selection_knob.png", NO_MOD);
+		load_image(&selection_knob, GUI_DIR, "mouse_buttons/number_selector_selection_knob.png", NO_MOD);
 	}
 
 	knob_target_rect.w = selection_knob.w;
@@ -839,7 +839,7 @@ void InitVideo(void)
 		sprintf(window_title_string, "FreedroidRPG %s", VERSION);
 		SDL_WM_SetCaption(window_title_string, "");
 
-		if (find_file(ICON_FILE, GRAPHICS_DIR, fpath, PLEASE_INFORM)) {
+		if (find_file(ICON_FILE, GUI_DIR, fpath, PLEASE_INFORM)) {
 			SDL_Surface *icon = IMG_Load(fpath);
 			SDL_WM_SetIcon(icon, NULL);
 			SDL_FreeSurface(icon);

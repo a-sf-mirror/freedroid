@@ -330,7 +330,7 @@ void Load_Mouse_Move_Cursor_Surfaces(void)
 
 	for (j = 0; j < NUMBER_OF_MOUSE_CURSOR_PICTURES; j++) {
 		sprintf(our_filename, "cursors/mouse_move_cursor_%d.png", j);
-		load_image(&MouseCursorImageList[j], GRAPHICS_DIR, our_filename, NO_MOD);
+		load_image(&MouseCursorImageList[j], GUI_DIR, our_filename, NO_MOD);
 	}
 
 };				// void Load_Mouse_Move_Cursor_Surfaces( void )
@@ -607,7 +607,7 @@ struct image *get_map_label_image()
 	static struct image img = EMPTY_IMAGE;
 
 	if (!image_loaded(&img))
-		load_image(&img, GRAPHICS_DIR, "level_editor_map_label_indicator.png", USE_OFFSET);
+		load_image(&img, GUI_DIR, "level_editor/map_label_indicator.png", USE_OFFSET);
 
 	return &img;
 }

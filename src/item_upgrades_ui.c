@@ -106,7 +106,7 @@ static void load_images()
 
 	for (i = 0; i < IMAGE_MAX; i++) {
 		memset(&images[i], 0, sizeof(struct image));
-		load_image(&images[i], GRAPHICS_DIR, fnames[i], NO_MOD);
+		load_image(&images[i], GUI_DIR, fnames[i], NO_MOD);
 	}
 }
 

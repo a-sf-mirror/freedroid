@@ -722,7 +722,7 @@ static void load_skill_level_images_if_needed(void)
 		return;
 
 	// Load the image
-	load_image(&img, GRAPHICS_DIR, SKILL_LEVEL_BUTTON_FILE, NO_MOD);
+	load_image(&img, GUI_DIR, SKILL_LEVEL_BUTTON_FILE, NO_MOD);
 
 	// Create the subimages
 	for (i = 0; i < NUMBER_OF_SKILL_PAGES; i++) {

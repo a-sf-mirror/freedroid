@@ -1584,7 +1584,8 @@ enum chat_context_state {
 
 // Indexes of known data dirs (used in conjunction with data_dirs[])
 enum data_dir_handle {
-	GRAPHICS_DIR = 0,
+	GUI_DIR = 0,
+	GRAPHICS_DIR,
 	FONT_DIR,
 	SOUND_DIR,
 	MUSIC_DIR,

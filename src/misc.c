@@ -61,6 +61,7 @@ char *our_homedir = NULL;
 char *our_config_dir = NULL;
 
 struct data_dir data_dirs[] = {
+	[GUI_DIR]=      { "data/gui",         "" },
 	[GRAPHICS_DIR]= { "data/graphics",    "" },
 	[FONT_DIR]=     { "data/fonts",       "" },
 	[SOUND_DIR]=    { "data/sound",       "" },
@@ -602,7 +603,7 @@ void ShowGenericButtonFromList(int ButtonIndex)
 	// Load button image if required
 	struct image *img = &btn->button_image;
 	if (!image_loaded(img)) {
-		load_image(img, GRAPHICS_DIR, btn->button_image_file_name, NO_MOD);
+		load_image(img, GUI_DIR, btn->button_image_file_name, NO_MOD);
 
 		// Maybe we had '0' entries for the height or width of this button in the list.
 		// This means that we will take the real width and the real height from the image
