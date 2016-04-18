@@ -1027,7 +1027,7 @@ int DoLevelEditorMainMenu()
                 case SHOW_HELP:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			PlayATitleFile("level_editor_help.lua");
+			play_title_file(BASE_TITLES_DIR, "level_editor_help.lua");
 			break;
 		case QUIT_TO_MAIN_POSITION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())

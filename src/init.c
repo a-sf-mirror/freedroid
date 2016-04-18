@@ -181,14 +181,14 @@ void next_startup_percentage(int done)
  *  3. some text to display in a scrolling fashion
  *
  */
-void PlayATitleFile(char *Filename)
+void play_title_file(int subdir_handle, char *Filename)
 {
 	struct title_screen screen = { NULL, NULL, NULL };
 	char fpath[PATH_MAX];
 
 	while (SpacePressed() || MouseLeftPressed()) ;
 
-	if (find_localized_file(Filename, TITLES_DIR, fpath, PLEASE_INFORM)) {
+	if (find_localized_file(Filename, subdir_handle, fpath, PLEASE_INFORM)) {
 		set_lua_ctor_upvalue(LUA_CONFIG, "title_screen", &screen);
 		run_lua_file(LUA_CONFIG, fpath);
 
@@ -749,7 +749,7 @@ void PrepareStartOfNewCharacter(char *start_label)
 	GetEventTriggers("events.dat");
 
 	if (!skip_initial_menus)
-		PlayATitleFile("StartOfGame.lua");
+		play_title_file(MAP_TITLES_DIR, "StartOfGame.lua");
 
 	init_npcs();
 	init_factions();
@@ -1192,7 +1192,7 @@ void ThouArtDefeated(void)
 	}
 	input_handle();
 	if (!skip_initial_menus && (game_root_mode == ROOT_IS_GAME))
-		PlayATitleFile("GameLost.lua");
+		play_title_file(MAP_TITLES_DIR, "GameLost.lua");
 
 	do_death_menu();
 
@@ -1234,7 +1234,7 @@ void ThouHastWon(void)
 	//
 	//PlayATitleFile("EndOfGame.title");
 	if (!skip_initial_menus)
-		PlayATitleFile("Credits.lua");
+		play_title_file(BASE_TITLES_DIR, "Credits.lua");
 
 	input_handle();
 

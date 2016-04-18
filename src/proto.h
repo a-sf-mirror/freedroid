@@ -67,7 +67,7 @@ void PrepareStartOfNewCharacter(char *startpos);
 void prepare_level_editor(void);
 void ThouArtDefeated(void);
 void ThouHastWon(void);
-void PlayATitleFile(char *Filename);
+void play_title_file(int, char *);
 
 // event.c
 void GetEventTriggers(const char *EventsAndEventTriggersFilename);

@@ -79,23 +79,23 @@ define copy_on_diff =
 	fi
 endef
 
-#== l10n of fdrpg title files
+#== l10n of fdrpg 'base' title files
 
-TITLES_DIR  = $(top_srcdir)/data/map/titles
-TITLES_RSRC = $(basename $(notdir $(wildcard $(TITLES_DIR)/*.lua)))
-TITLES_TX   = $(TITLES_RSRC:%=tx/title-%.txt)
-TITLES_L10N = $(foreach lang,$(LANGS),$(TITLES_RSRC:%=$(TITLES_DIR)/$(lang)/%.lua))
+BASE_TITLES_DIR  = $(top_srcdir)/data/base/titles
+BASE_TITLES_RSRC = $(basename $(notdir $(wildcard $(BASE_TITLES_DIR)/*.lua)))
+BASE_TITLES_TX   = $(BASE_TITLES_RSRC:%=tx/title-%.txt)
+BASE_TITLES_L10N = $(foreach lang,$(LANGS),$(BASE_TITLES_RSRC:%=$(BASE_TITLES_DIR)/$(lang)/%.lua))
 
 #-- Create a TX rsrc by extracting the text part of a title
 # $(1) = title name
 
-define update-po-title =
- tx/title-$(1).txt: $(TITLES_DIR)/$(1).lua
+define update-po-base-title =
+ tx/title-$(1).txt: $(BASE_TITLES_DIR)/$(1).lua
 	@$(mkdir_p) tx; \
 	 $(AWK) "BEGIN { isintext=0; } /^text[[:space:]]*=[[:space:]]*[\[]+/ { isintext=1; next; } /^[\]]+/ { exit; } isintext == 1 { print; }" $$< > $$@
 endef
 
-$(foreach rsrc,$(TITLES_RSRC),$(eval $(call update-po-title,$(rsrc))))
+$(foreach rsrc,$(BASE_TITLES_RSRC),$(eval $(call update-po-base-title,$(rsrc))))
 
 #-- Merge a l10n version of a title's text with the title's header,
 #-- and copy the result to map/titles
@@ -104,51 +104,122 @@ $(foreach rsrc,$(TITLES_RSRC),$(eval $(call update-po-title,$(rsrc))))
 # $(1) = base name
 # $(2) = lang
 
-define update-gmo-title =
- $(TITLES_DIR)/$(2)/$(1).lua: $(wildcard tx/title-$(1)-$(2).txt)
+define update-gmo-base-title =
+ $(BASE_TITLES_DIR)/$(2)/$(1).lua: $(wildcard tx/title-$(1)-$(2).txt)
 	@if test -r tx/title-$(1)-$(2).txt ; then \
-	   $(mkdir_p) $(TITLES_DIR)/$(2); \
+	   $(mkdir_p) $(BASE_TITLES_DIR)/$(2); \
 	   $(AWK) "/^text[[:space:]]*=[[:space:]]*[\[]+/ { print; nextfile; } { print; } END { print \"]]\"; print \"}\"; }" \
-	        $(TITLES_DIR)/$(1).lua $$< > $$<.tmp; \
+	        $(BASE_TITLES_DIR)/$(1).lua $$< > $$<.tmp; \
 	   $(call copy_on_diff,$$<.tmp,$$@); \
 	 fi
 endef
 
 $(foreach lang,$(LANGS),\
-    $(foreach rsrc,$(TITLES_RSRC),\
-        $(eval $(call update-gmo-title,$(rsrc),$(lang)))))
+    $(foreach rsrc,$(BASE_TITLES_RSRC),\
+        $(eval $(call update-gmo-base-title,$(rsrc),$(lang)))))
 
 #-- update-po creates the new tx/title-<title name>.txt files
 
-update-po:: $(TITLES_TX)
+update-po:: $(BASE_TITLES_TX)
 
 #-- Push all title rsrcs to TX
 
-tx-update:: $(TITLES_TX)
+tx-update:: $(BASE_TITLES_TX)
 	@if [ " $(TXCREDS)" = " " ] ; then \
 		echo "You do not have a Transifex account"; \
 		exit 1; \
 	 fi
-	@for rsrc in $(TITLES_RSRC); do \
+	@for rsrc in $(BASE_TITLES_RSRC); do \
 	   $(call rsrc_update,title-$$rsrc,tx/title-$$rsrc.txt); \
 	 done
 
 #-- Pull all l10n versions of the titles' text from TX
 
-tx-pull:: $(TITLES_TX)
+tx-pull:: $(BASE_TITLES_TX)
 	@if [ " $(TXCREDS)" = " " ] ; then \
 		echo "You do not have a Transifex account"; \
 		exit 1; \
 	 fi
 	@for lang in $(LANGS); do \
-	   for rsrc in $(TITLES_RSRC); do \
+	   for rsrc in $(BASE_TITLES_RSRC); do \
 	     $(call rsrc_pull,title-$$rsrc,$$lang); \
 	   done; \
 	 done
 
 #-- update-gmo creates the new l10n version of the titles
 
-update-gmo:: $(TITLES_L10N)
+update-gmo:: $(BASE_TITLES_L10N)
+
+#== l10n of fdrpg 'story' title files
+
+STORY_TITLES_DIR  = $(top_srcdir)/data/map/titles
+STORY_TITLES_RSRC = $(basename $(notdir $(wildcard $(STORY_TITLES_DIR)/*.lua)))
+STORY_TITLES_TX   = $(STORY_TITLES_RSRC:%=tx/title-%.txt)
+STORY_TITLES_L10N = $(foreach lang,$(LANGS),$(STORY_TITLES_RSRC:%=$(STORY_TITLES_DIR)/$(lang)/%.lua))
+
+#-- Create a TX rsrc by extracting the text part of a title
+# $(1) = title name
+
+define update-po-story-title =
+ tx/title-$(1).txt: $(STORY_TITLES_DIR)/$(1).lua
+	@$(mkdir_p) tx; \
+	 $(AWK) "BEGIN { isintext=0; } /^text[[:space:]]*=[[:space:]]*[\[]+/ { isintext=1; next; } /^[\]]+/ { exit; } isintext == 1 { print; }" $$< > $$@
+endef
+
+$(foreach rsrc,$(STORY_TITLES_RSRC),$(eval $(call update-po-story-title,$(rsrc))))
+
+#-- Merge a l10n version of a title's text with the title's header,
+#-- and copy the result to map/titles
+#-- Note: $(wilcard) if used so that an empty prerequisite list is generated if
+#-- the translation file does not exist
+# $(1) = base name
+# $(2) = lang
+
+define update-gmo-story-title =
+ $(STORY_TITLES_DIR)/$(2)/$(1).lua: $(wildcard tx/title-$(1)-$(2).txt)
+	@if test -r tx/title-$(1)-$(2).txt ; then \
+	   $(mkdir_p) $(STORY_TITLES_DIR)/$(2); \
+	   $(AWK) "/^text[[:space:]]*=[[:space:]]*[\[]+/ { print; nextfile; } { print; } END { print \"]]\"; print \"}\"; }" \
+	        $(STORY_TITLES_DIR)/$(1).lua $$< > $$<.tmp; \
+	   $(call copy_on_diff,$$<.tmp,$$@); \
+	 fi
+endef
+
+$(foreach lang,$(LANGS),\
+    $(foreach rsrc,$(STORY_TITLES_RSRC),\
+        $(eval $(call update-gmo-story-title,$(rsrc),$(lang)))))
+
+#-- update-po creates the new tx/title-<title name>.txt files
+
+update-po:: $(STORY_TITLES_TX)
+
+#-- Push all title rsrcs to TX
+
+tx-update:: $(STORY_TITLES_TX)
+	@if [ " $(TXCREDS)" = " " ] ; then \
+		echo "You do not have a Transifex account"; \
+		exit 1; \
+	 fi
+	@for rsrc in $(STORY_TITLES_RSRC); do \
+	   $(call rsrc_update,title-$$rsrc,tx/title-$$rsrc.txt); \
+	 done
+
+#-- Pull all l10n versions of the titles' text from TX
+
+tx-pull:: $(STORY_TITLES_TX)
+	@if [ " $(TXCREDS)" = " " ] ; then \
+		echo "You do not have a Transifex account"; \
+		exit 1; \
+	 fi
+	@for lang in $(LANGS); do \
+	   for rsrc in $(STORY_TITLES_RSRC); do \
+	     $(call rsrc_pull,title-$$rsrc,$$lang); \
+	   done; \
+	 done
+
+#-- update-gmo creates the new l10n version of the titles
+
+update-gmo:: $(STORY_TITLES_L10N)
 
 #== l10n of the main README
 

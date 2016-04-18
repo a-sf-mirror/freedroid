@@ -135,7 +135,7 @@ static void ShowPlayground(enemy *target);
 
 static void display_takeover_help()
 {
-	PlayATitleFile("TakeoverInstructions.lua");
+	play_title_file(BASE_TITLES_DIR, "TakeoverInstructions.lua");
 }
 
 /** 
