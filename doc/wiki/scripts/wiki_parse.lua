@@ -56,10 +56,11 @@ end
 
 ---------- path handling
 --	path assumptions
---	==>	FDRPG_Root/wiki/lua			<== location of code
---	==> FDRPG_Root/wiki/			<== resultant output of wiki parsing
---	==>	FDRPG_Root/dialogs/*.lua	<== npc dialogs
---	==> FDRPG_Root/map/*			<== game data files
+--	==>	FDRPG_Root/wiki/lua              <== location of code
+--	==> FDRPG_Root/wiki/                 <== resultant output of wiki parsing
+--	==>	FDRPG_Root/data/dialogs/*.lua    <== npc dialogs
+--	==>	FDRPG_Root/data/base/*           <== class files
+--	==> FDRPG_Root/data/storyline/act1/* <== storyline data files
 local destRoot = "./doc/wiki/"
 local srcRoot = "./"
 local OrigPath = package.path

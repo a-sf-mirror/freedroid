@@ -184,7 +184,7 @@ end
 --	Process extracted information for npcs.
 function modWP_NPC.ProcessData()
 	modWP_NPC.modcommon = require("modWPCommon")
-	modWP_NPC.files.npcspecs = tostring(modWP_NPC.modcommon.paths.srcMap .. modWP_NPC.modcommon.datafiles["npc"])
+	modWP_NPC.files.npcspecs = tostring(modWP_NPC.modcommon.paths.srcData .. modWP_NPC.modcommon.datafiles["npc"])
 	modWP_NPC.modcommon.Test.Files(modWP_NPC.files)
 	for key, value in pairs(modWP_NPC.requiredModules) do
 		modWP_NPC.modules[value] = assert(require(value))

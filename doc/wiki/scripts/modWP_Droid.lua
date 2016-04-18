@@ -226,7 +226,7 @@ end
 --	All droid information is saved into lua table.
 function modWP_Droid.ProcessData()
 	modWP_Droid.modcommon = require("modWPCommon")
-	modWP_Droid.files.droid = tostring(modWP_Droid.modcommon.paths.srcMap .. modWP_Droid.modcommon.datafiles["droid"])
+	modWP_Droid.files.droid = tostring(modWP_Droid.modcommon.paths.srcData .. modWP_Droid.modcommon.datafiles["droid"])
 	modWP_Droid.modcommon.Test.Files(modWP_Droid.files)
 	--	process data
 	modWP_Droid.DroidFileData = modWP_Droid.modcommon.Process.FileToLines(modWP_Droid.files.droid)

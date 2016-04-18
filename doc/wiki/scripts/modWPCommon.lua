@@ -60,13 +60,13 @@ modWPCommon.paths = {
 
 --	FDRPG data files that are parsed by this script
 modWPCommon.datafiles = {
-	droid	  = "droid_archetypes.dat",
-	events	  = "events.dat",
-	items	  = "item_specs.lua",
-	levels	  = "levels.dat",
-	npc		  = "npc_specs.lua",
-	quests    = "quests.dat",
-	rotd	  = "ReturnOfTux.droids"
+	droid	  = "base/droid_archetypes.dat",
+	items	  = "base/item_specs.lua",
+	npc		  = "base/npc_specs.lua",
+	levels	  = "storyline/act1/levels.dat",
+	events	  = "storyline/act1/events.dat",
+	quests    = "storyline/act1/quests.dat",
+	rotd	  = "storyline/act1/ReturnOfTux.droids"
 }
 
 --	file names of wiki pages resulting from wiki parsing

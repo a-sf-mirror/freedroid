@@ -173,7 +173,7 @@ end
 function modWP_Levels.ProcessData()
 	modWP_Levels.modcommon = require("modWPCommon")
 	--	test for presence of source data files
-	modWP_Levels.files.levels = tostring(modWP_Levels.modcommon.paths.srcMap .. modWP_Levels.modcommon.datafiles["levels"])
+	modWP_Levels.files.levels = tostring(modWP_Levels.modcommon.paths.srcData .. modWP_Levels.modcommon.datafiles["levels"])
 	modWP_Levels.modcommon.Test.Files(modWP_Levels.files)
 	--	read levels.dat and process into table objects
 	modWP_Levels.LevelFileData = modWP_Levels.modcommon.Process.FileToLines(modWP_Levels.files["levels"])

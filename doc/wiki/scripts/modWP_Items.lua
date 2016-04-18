@@ -190,7 +190,7 @@ end
 --	for each item found. All item information is saved into modWP_Items.itemlist
 function modWP_Items.ProcessData()
 	modWP_Items.modcommon = require("modWPCommon")
-	modWP_Items.files.items = tostring(modWP_Items.modcommon.paths.srcMap .. modWP_Items.modcommon.datafiles["items"])
+	modWP_Items.files.items = tostring(modWP_Items.modcommon.paths.srcData .. modWP_Items.modcommon.datafiles["items"])
 	modWP_Items.modcommon.Test.Files(modWP_Items.files)
 	-- process data - parse lua file first to remove gettext markers, load it, execute into global space
 	-- execution calls the global list_item function populating modWP_Items.itemlist

@@ -290,7 +290,7 @@ end
 function modWP_Events.ProcessData()
 	modWP_Events.modcommon = require("modWPCommon")
 	--	test for presence of source data files
-	modWP_Events.files.events = tostring(modWP_Events.modcommon.paths.srcMap .. modWP_Events.modcommon.datafiles["events"])
+	modWP_Events.files.events = tostring(modWP_Events.modcommon.paths.srcData .. modWP_Events.modcommon.datafiles["events"])
 	modWP_Events.modcommon.Test.Files(modWP_Events.files)
 	-- read file and process into table objects
 	modWP_Events.EventFileData = modWP_Events.modcommon.Process.FileToLines( modWP_Events.files["events"] )

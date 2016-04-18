@@ -109,7 +109,7 @@ end
 function modWP_ROTD.ProcessData()
 	modWP_ROTD.modcommon = require("modWPCommon")
 	-- test for presence of source data files
-	modWP_ROTD.files.rotd = tostring(modWP_ROTD.modcommon.paths.srcMap .. modWP_ROTD.modcommon.datafiles["rotd"])
+	modWP_ROTD.files.rotd = tostring(modWP_ROTD.modcommon.paths.srcData .. modWP_ROTD.modcommon.datafiles["rotd"])
 	modWP_ROTD.modcommon.Test.Files(modWP_ROTD.files)
 	-- read ROTD and process into table objects
 	modWP_ROTD.ROTDFileData = modWP_ROTD.modcommon.Process.FileToLines(modWP_ROTD.files["rotd"])

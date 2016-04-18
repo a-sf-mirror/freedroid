@@ -223,7 +223,7 @@ function modWP_Quests.ProcessData()
 	modWP_Quests.modcommon = require("modWPCommon")
 	local modWIKI = modWP_Quests.modcommon.Wiki
 	--	test for presence of source data files
-	modWP_Quests.files.quests = tostring(modWP_Quests.modcommon.paths.srcMap .. modWP_Quests.modcommon.datafiles["quests"])
+	modWP_Quests.files.quests = tostring(modWP_Quests.modcommon.paths.srcData .. modWP_Quests.modcommon.datafiles["quests"])
 	modWP_Quests.modcommon.Test.Files(modWP_Quests.files)
 	-- read file and process into table objects
 	modWP_Quests.QuestsFileData = modWP_Quests.modcommon.Process.FileToLines(modWP_Quests.files["quests"])
