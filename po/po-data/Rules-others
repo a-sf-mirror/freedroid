@@ -19,7 +19,7 @@ l10n-stats:
 update-po: update-pot
 update-pot:
 	@if [ -x $(top_srcdir)/po/update-potfiles ] ; then \
-	   $(top_srcdir)/po/update-potfiles -i data/storyline/act1 -i data/base > POTFILES.inT ; \
+	   $(top_srcdir)/po/update-potfiles -i data/storyline/act1 -x data/storyline/act1/dialogs -x data/storyline/act1/titles -i data/base -x data/base/titles > POTFILES.inT ; \
 	   if ! cmp -s POTFILES.inT POTFILES.in ; then \
 	     rm POTFILES.in && mv POTFILES.inT POTFILES.in; \
 	     echo "POTFILES.in updated"; \

@@ -84,8 +84,8 @@ modcommon.paths.scriptpath = destRoot .. "scripts/"
 modcommon.paths.destRootFile = destRoot .. "wiki.d/"
 modcommon.paths.destRootImg = destRoot .. "uploads/"
 modcommon.paths.srcroot = srcRoot
-modcommon.paths.srcMap = srcRoot .. "data/map/"
-modcommon.paths.srcDialog = srcRoot .. "data/dialogs/"
+modcommon.paths.srcData = srcRoot .. "data/"
+modcommon.paths.srcDialog = srcRoot .. "data/storyline/act1/dialogs/"
 modcommon.paths.srcGraphics = srcRoot .. "data/graphics/"
 --	test existence of directories
 if ( ( not modcommon.Test.DirExists(modcommon.paths.srcGraphics))

@@ -2028,7 +2028,7 @@ void reset_lua_state(void)
 	// Load and initialize some Lua modules
 	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDutils");
 	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDdialog");
-	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "d", NULL, DIALOG_DIR);
+	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "d", NULL, MAP_DIALOG_DIR);
 
 	// Finally load the script helpers Lua functions
 	find_file("script_helpers.lua", LUA_MOD_DIR, fpath, PLEASE_INFORM | IS_FATAL);
