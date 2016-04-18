@@ -61,20 +61,20 @@ char *our_homedir = NULL;
 char *our_config_dir = NULL;
 
 struct data_dir data_dirs[] = {
-	[GUI_DIR]=         { "data/gui",         "" },
-	[GRAPHICS_DIR]=    { "data/graphics",    "" },
-	[FONT_DIR]=        { "data/fonts",       "" },
-	[SOUND_DIR]=       { "data/sound",       "" },
-	[MUSIC_DIR]=       { "data/sound/music", "" },
-	[MAP_DIR]=         { "data/map",         "" },
-	[MAP_TITLES_DIR]=  { "data/map/titles", "" },
-	[BASE_DIR]=        { "data/base",        "" },
-	[BASE_TITLES_DIR]= { "data/base/titles", "" },
-	[DIALOG_DIR]=      { "data/dialogs",     "" },
+	[GUI_DIR]=         { "data/gui",                   "" },
+	[GRAPHICS_DIR]=    { "data/graphics",              "" },
+	[FONT_DIR]=        { "data/fonts",                 "" },
+	[SOUND_DIR]=       { "data/sound",                 "" },
+	[MUSIC_DIR]=       { "data/sound/music",           "" },
+	[MAP_DIR]=         { "data/storyline/act1",        "" },
+	[MAP_TITLES_DIR]=  { "data/storyline/act1/titles", "" },
+	[BASE_DIR]=        { "data/base",                  "" },
+	[BASE_TITLES_DIR]= { "data/base/titles",           "" },
+	[DIALOG_DIR]=      { "data/dialogs",               "" },
 #ifdef ENABLE_NLS
-	[LOCALE_DIR]=      { "locale",           "" },
+	[LOCALE_DIR]=      { "locale",                     "" },
 #endif
-	[LUA_MOD_DIR]=     { "lua_modules",      "" }
+	[LUA_MOD_DIR]=     { "lua_modules",                "" }
 };
 #define WELL_KNOWN_DATA_FILE "lua_modules/FDdialog.lua"
 

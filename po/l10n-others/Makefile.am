@@ -98,7 +98,7 @@ endef
 $(foreach rsrc,$(BASE_TITLES_RSRC),$(eval $(call update-po-base-title,$(rsrc))))
 
 #-- Merge a l10n version of a title's text with the title's header,
-#-- and copy the result to map/titles
+#-- and copy the result to data/base/titles
 #-- Note: $(wilcard) if used so that an empty prerequisite list is generated if
 #-- the translation file does not exist
 # $(1) = base name
@@ -152,7 +152,7 @@ update-gmo:: $(BASE_TITLES_L10N)
 
 #== l10n of fdrpg 'story' title files
 
-STORY_TITLES_DIR  = $(top_srcdir)/data/map/titles
+STORY_TITLES_DIR  = $(top_srcdir)/data/storyline/act1/titles
 STORY_TITLES_RSRC = $(basename $(notdir $(wildcard $(STORY_TITLES_DIR)/*.lua)))
 STORY_TITLES_TX   = $(STORY_TITLES_RSRC:%=tx/title-%.txt)
 STORY_TITLES_L10N = $(foreach lang,$(LANGS),$(STORY_TITLES_RSRC:%=$(STORY_TITLES_DIR)/$(lang)/%.lua))
@@ -169,7 +169,7 @@ endef
 $(foreach rsrc,$(STORY_TITLES_RSRC),$(eval $(call update-po-story-title,$(rsrc))))
 
 #-- Merge a l10n version of a title's text with the title's header,
-#-- and copy the result to map/titles
+#-- and copy the result to data/storyline/act1/titles
 #-- Note: $(wilcard) if used so that an empty prerequisite list is generated if
 #-- the translation file does not exist
 # $(1) = base name
