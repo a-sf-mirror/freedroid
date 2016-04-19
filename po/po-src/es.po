@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-04-02 16:36+0200\n"
+"POT-Creation-Date: 2016-04-19 18:46+0200\n"
 "PO-Revision-Date: 2016-03-06 15:01+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/arctic-games/freedroid-rpg/language/es/)\n"
@@ -19,18 +19,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lua_modules/FDtux_lfuns.lua:239 map/script_helpers.lua:268
-#: map/script_helpers.lua:271
+#: lua_modules/FDtux_lfuns.lua:239 lua_modules/script_helpers.lua:268
+#: lua_modules/script_helpers.lua:271
 msgid "New Quest assigned: "
 msgstr "Nueva Misión asignada:"
 
-#: lua_modules/FDtux_lfuns.lua:259 map/script_helpers.lua:280
-#: map/script_helpers.lua:283
+#: lua_modules/FDtux_lfuns.lua:259 lua_modules/script_helpers.lua:280
+#: lua_modules/script_helpers.lua:283
 msgid "Quest log updated: "
 msgstr "Registro de misiones actualizado:"
 
-#: lua_modules/FDtux_lfuns.lua:301 map/script_helpers.lua:313
-#: map/script_helpers.lua:316
+#: lua_modules/FDtux_lfuns.lua:301 lua_modules/script_helpers.lua:313
+#: lua_modules/script_helpers.lua:316
 msgid "Quest completed: "
 msgstr "Misión completa:"
 
@@ -146,7 +146,7 @@ msgstr "Armadura"
 msgid "Click anywhere to continue..."
 msgstr "Haga click en cualquier lugar para continuar..."
 
-#: src/chat.c:693 src/chat.c:703
+#: src/chat.c:694 src/chat.c:704
 msgid "[n]--- Start of Dialog ---\n"
 msgstr "[n]--- Inicio de Diálogo ---\n"
 
@@ -338,19 +338,19 @@ msgstr "Salir de FreedroidRPG"
 msgid "Out of [s]%s[v]!"
 msgstr "¡No quedan [s]%s[v]!"
 
-#: src/init.c:785 src/saveloadgame.c:452
+#: src/init.c:786 src/saveloadgame.c:452
 msgid "--- Message Log ---"
 msgstr "--- Registro de Mensajes ---"
 
-#: src/init.c:787
+#: src/init.c:788
 msgid "Starting tutorial."
 msgstr "Iniciando tutorial."
 
-#: src/init.c:789
+#: src/init.c:790
 msgid "Starting new game."
 msgstr "Iniciando nuevo juego."
 
-#: src/init.c:1109
+#: src/init.c:1126
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -366,11 +366,11 @@ msgstr ""
 "\n"
 "¡Buena suerte!\n"
 
-#: src/init.c:1128 src/init.c:1129
+#: src/init.c:1145 src/init.c:1146
 msgid "Game over.\n"
 msgstr "Fin del juego.\n"
 
-#: src/init.c:1195 src/init.c:1196
+#: src/init.c:1212 src/init.c:1213
 msgid "Game won.\n"
 msgstr "Juego ganado.\n"
 
@@ -1123,7 +1123,7 @@ msgstr "Apagando automáticamente"
 msgid "Weapon reloaded"
 msgstr "Arma recargada"
 
-#: src/map.c:1147
+#: src/map.c:1151
 msgid ""
 "-- WARNING --\n"
 "An obstacle with invalid coords was loaded onto a map.\n"
@@ -1135,7 +1135,7 @@ msgstr ""
 "Lo mantenemos para ayudar a hallar el fallo.\n"
 "Mira el reporte en tu consola terminal."
 
-#: src/map.c:1370
+#: src/map.c:1374
 msgid ""
 "-- WARNING --\n"
 "An obstacle with invalid coords is saved to a map.\n"
@@ -1241,7 +1241,7 @@ msgstr "Dificultad: %s"
 
 #: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144 src/menu.c:1229
 #: src/menu.c:1340 src/menu.c:1405 src/menu.c:1478 src/menu.c:1629
-#: src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
+#: src/menu.c:1660 src/menu.c:1684 src/menu.c:1741
 #: src/lvledit/lvledit_menu.c:126 src/lvledit/lvledit_menu.c:241
 #: src/lvledit/lvledit_menu.c:415 src/lvledit/lvledit_menu.c:642
 msgid "Back"
@@ -1478,27 +1478,27 @@ msgstr "¡Afirmativo!"
 msgid "Really delete hero '%s'?"
 msgstr "¿Realmente borrar héroe %s\"?"
 
-#: src/menu.c:1739
+#: src/menu.c:1738
 msgid "New Hero"
 msgstr "Nuevo Héroe"
 
-#: src/menu.c:1740
+#: src/menu.c:1739
 msgid "Load existing Hero"
 msgstr "Cargar Héroe existente"
 
-#: src/menu.c:1741
+#: src/menu.c:1740
 msgid "Delete existing Hero"
 msgstr "Suprimir Héroe existente"
 
-#: src/misc.c:891
+#: src/misc.c:894
 msgid "GAME PAUSED"
 msgstr "JUEGO PAUSADO"
 
-#: src/misc.c:892
+#: src/misc.c:895
 msgid "press p to resume"
 msgstr "pulsa p para proseguir"
 
-#: src/misc.c:1185
+#: src/misc.c:1188
 #, c-format
 msgid "Arrived at %s."
 msgstr "Llegado a %s."
@@ -2042,7 +2042,7 @@ msgstr "Objeto recibido: %s"
 msgid "Cancel item drop"
 msgstr "Cancelar colocado de objeto"
 
-#: src/lvledit/lvledit_actions.c:276
+#: src/lvledit/lvledit_actions.c:281
 msgid ""
 "\n"
 "Please enter obstacle label: \n"
@@ -2052,7 +2052,7 @@ msgstr ""
 "Por favor introduzca etiqueta de obstáculo: \n"
 "\n"
 
-#: src/lvledit/lvledit_actions.c:628
+#: src/lvledit/lvledit_actions.c:633
 msgid ""
 "\n"
 "Please enter map label: \n"
@@ -2062,7 +2062,7 @@ msgstr ""
 "Por favor introduzca etiqueta de mapa:\n"
 "\n"
 
-#: src/lvledit/lvledit_actions.c:644
+#: src/lvledit/lvledit_actions.c:649
 msgid "The new name of the map label already exists, please choose an other name."
 msgstr "El nuevo nombre para la etiqueta del mapa ya existe, por favor elija otro."
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedroidRPG\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-04-02 16:36+0200\n"
+"POT-Creation-Date: 2016-04-19 18:46+0200\n"
 "PO-Revision-Date: 2016-03-06 15:01+0000\n"
 "Last-Translator: fluzz <fluzz@gmx.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/arctic-games/freedroid-rpg/language/sv/)\n"
@@ -18,18 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lua_modules/FDtux_lfuns.lua:239 map/script_helpers.lua:268
-#: map/script_helpers.lua:271
+#: lua_modules/FDtux_lfuns.lua:239 lua_modules/script_helpers.lua:268
+#: lua_modules/script_helpers.lua:271
 msgid "New Quest assigned: "
 msgstr "Nytt uppdrag:"
 
-#: lua_modules/FDtux_lfuns.lua:259 map/script_helpers.lua:280
-#: map/script_helpers.lua:283
+#: lua_modules/FDtux_lfuns.lua:259 lua_modules/script_helpers.lua:280
+#: lua_modules/script_helpers.lua:283
 msgid "Quest log updated: "
 msgstr "Uppdragslistan ändrad:"
 
-#: lua_modules/FDtux_lfuns.lua:301 map/script_helpers.lua:313
-#: map/script_helpers.lua:316
+#: lua_modules/FDtux_lfuns.lua:301 lua_modules/script_helpers.lua:313
+#: lua_modules/script_helpers.lua:316
 msgid "Quest completed: "
 msgstr "Uppdrag avklarat:"
 
@@ -145,7 +145,7 @@ msgstr "Sköld"
 msgid "Click anywhere to continue..."
 msgstr "Klicka någonstans för att fortsätta..."
 
-#: src/chat.c:693 src/chat.c:703
+#: src/chat.c:694 src/chat.c:704
 msgid "[n]--- Start of Dialog ---\n"
 msgstr "[n]--- Samtalets början ---\n"
 
@@ -339,19 +339,19 @@ msgstr "Avsluta FreedroidRPG"
 msgid "Out of [s]%s[v]!"
 msgstr "Slut på [s]%s[v]!"
 
-#: src/init.c:785 src/saveloadgame.c:452
+#: src/init.c:786 src/saveloadgame.c:452
 msgid "--- Message Log ---"
 msgstr "--- Meddelandelogg ---"
 
-#: src/init.c:787
+#: src/init.c:788
 msgid "Starting tutorial."
 msgstr "Handledning inleds."
 
-#: src/init.c:789
+#: src/init.c:790
 msgid "Starting new game."
 msgstr "Nytt spel."
 
-#: src/init.c:1109
+#: src/init.c:1126
 msgid ""
 "You are playing a Release Candidate.\n"
 "Strange bugs may still be present in the game.\n"
@@ -367,11 +367,11 @@ msgstr ""
 "\n"
 "Lycka till!\n"
 
-#: src/init.c:1128 src/init.c:1129
+#: src/init.c:1145 src/init.c:1146
 msgid "Game over.\n"
 msgstr "Game over.\n"
 
-#: src/init.c:1195 src/init.c:1196
+#: src/init.c:1212 src/init.c:1213
 msgid "Game won.\n"
 msgstr "Du har vunnit spelet.\n"
 
@@ -1126,7 +1126,7 @@ msgstr "Stänger av automatiskt"
 msgid "Weapon reloaded"
 msgstr "Vapnet omladdat"
 
-#: src/map.c:1147
+#: src/map.c:1151
 msgid ""
 "-- WARNING --\n"
 "An obstacle with invalid coords was loaded onto a map.\n"
@@ -1138,7 +1138,7 @@ msgstr ""
 "Vi behåller det för att underlätta felsökning.\n"
 "Se rapporten i din terminal."
 
-#: src/map.c:1370
+#: src/map.c:1374
 msgid ""
 "-- WARNING --\n"
 "An obstacle with invalid coords is saved to a map.\n"
@@ -1244,7 +1244,7 @@ msgstr "Svårighetsgrad: %s"
 
 #: src/menu.c:887 src/menu.c:946 src/menu.c:1060 src/menu.c:1144 src/menu.c:1229
 #: src/menu.c:1340 src/menu.c:1405 src/menu.c:1478 src/menu.c:1629
-#: src/menu.c:1660 src/menu.c:1684 src/menu.c:1742
+#: src/menu.c:1660 src/menu.c:1684 src/menu.c:1741
 #: src/lvledit/lvledit_menu.c:126 src/lvledit/lvledit_menu.c:241
 #: src/lvledit/lvledit_menu.c:415 src/lvledit/lvledit_menu.c:642
 msgid "Back"
@@ -1481,27 +1481,27 @@ msgstr "Säkert!"
 msgid "Really delete hero '%s'?"
 msgstr "Vill du verkligen ta bort hjälten \"%s\"?"
 
-#: src/menu.c:1739
+#: src/menu.c:1738
 msgid "New Hero"
 msgstr "Ny Hjälte"
 
-#: src/menu.c:1740
+#: src/menu.c:1739
 msgid "Load existing Hero"
 msgstr "Ladda befintlig Hjälte"
 
-#: src/menu.c:1741
+#: src/menu.c:1740
 msgid "Delete existing Hero"
 msgstr "Ta bort Hjälte"
 
-#: src/misc.c:891
+#: src/misc.c:894
 msgid "GAME PAUSED"
 msgstr "SPELET PAUSAT"
 
-#: src/misc.c:892
+#: src/misc.c:895
 msgid "press p to resume"
 msgstr "tryck p för att återuppta"
 
-#: src/misc.c:1185
+#: src/misc.c:1188
 #, c-format
 msgid "Arrived at %s."
 msgstr "Kom till %s."
@@ -2049,7 +2049,7 @@ msgstr "Tog emot föremål: %s"
 msgid "Cancel item drop"
 msgstr "Släpp inget föremål"
 
-#: src/lvledit/lvledit_actions.c:276
+#: src/lvledit/lvledit_actions.c:281
 msgid ""
 "\n"
 "Please enter obstacle label: \n"
@@ -2058,7 +2058,7 @@ msgstr ""
 "\n"
 "Ange etikett till hinder:\n"
 
-#: src/lvledit/lvledit_actions.c:628
+#: src/lvledit/lvledit_actions.c:633
 msgid ""
 "\n"
 "Please enter map label: \n"
@@ -2068,7 +2068,7 @@ msgstr ""
 "Ange etikett till karta:\n"
 "\n"
 
-#: src/lvledit/lvledit_actions.c:644
+#: src/lvledit/lvledit_actions.c:649
 msgid "The new name of the map label already exists, please choose an other name."
 msgstr "Det nya namnet på etiketten finns redan, var vänlig ange ett annat."
 
