@@ -28,7 +28,7 @@ Definitions:
 ------------
 dialog file - FDRPG source file written in lua that is used to guide
 			player conversations and interactions in game. These files are
-			usually located within [FDRPG root]/dialogs folder.
+			usually located within [FDRPG root]/data/storyline/act1/dialogs folder.
 
 return block - a section of the dialog file delimited by "return {...}"
 
@@ -127,7 +127,7 @@ Usage:
 	Any references to \"include\" another dialog file will not be processed. (e.g. 614-cryo.lua)
 
 	[-s | \-\-dirsearch=] *arg*
-	Directory *arg* will be searched for dialog files (DEFAULT: [FDRPG root]/dialogs)
+	Directory *arg* will be searched for dialog files (DEFAULT: [FDRPG root]/data/storyline/act1/dialogs)
 
 	[-o | \-\-diroutput=] *arg*
 	Directory *arg* will be used to store program output (graphic or text) (DEFAULT: current directory)

@@ -58,7 +58,7 @@ const std::string DESC_DETAILED
 const std::string DESC_INDIVIDUAL
 	("program is to parse and process all dialog files individually\n");
 const std::string DESC_DIR_SEARCH
-	("search directory for dialog files\nDEFAULT: [FDRPG root]/dialogs\n");
+	("search directory for dialog files\nDEFAULT: [FDRPG root]/data/storyline/act1/dialogs\n");
 const std::string DESC_DIR_OUTPUT
 	("output directory for resulting graphic files\nDEFAULT: current directory\n");
 const std::string DESC_DRAW_DIR
@@ -89,7 +89,7 @@ verbose_dot(false),
 detailed(false),
 grouping(false),
 individual_files(false),
-dirSearch("../../dialogs"),
+dirSearch("../../data/storyline/act1/dialogs"),
 dirDisplaySearch(),
 dirOutput(),
 drawLayout(LAYOUTS[ID_TB]),
@@ -300,7 +300,7 @@ void fddnm::setProgramOptions(int argc, char** argv)
 			throw std::runtime_error(drawFormatOrig + " is not a recognized output format");
 
 		// check dirSearch and change to absolute path
-		if(dirSearch.empty()) dirSearch = "../../dialogs";
+		if(dirSearch.empty()) dirSearch = "../../data/storyline/act1/dialogs";
 		bfs::path localpath(dirSearch);
 		if(localpath.is_relative())		localpath = bfs::canonical(localpath);
 		dirSearch = localpath.string();
