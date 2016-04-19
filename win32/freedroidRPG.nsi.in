@@ -90,10 +90,7 @@ fresh_install:
 
 	%INSTALL_FILE_LIST
 
-	File /r "${SRC_DIR}\sound"
-	File /r "${SRC_DIR}\map"
-	File /r "${SRC_DIR}\graphics"
-	File /r "${SRC_DIR}\dialogs"
+	File /r "${SRC_DIR}\data"
 	File /r "${SRC_DIR}\lua_modules"
 	File /r "${SRC_DIR}\locale"
 
@@ -159,10 +156,7 @@ Section Uninstall
 	Delete "$INSTDIR\stderr.txt"
 	Delete "$INSTDIR\stdout.txt"
 
-	RMDir /r "$INSTDIR\sound\"
-	RMDir /r "$INSTDIR\map\"
-	RMDir /r "$INSTDIR\graphics\"
-	RMDir /r "$INSTDIR\dialogs\"
+	RMDir /r "$INSTDIR\data\"
 	RMDir /r "$INSTDIR\lua_modules\"
 	RMDir /r "$INSTDIR\locale\"
 	

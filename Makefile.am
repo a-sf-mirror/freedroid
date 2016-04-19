@@ -85,7 +85,7 @@ dist-win32: src/freedroidRPG.exe
 	 fi
 	rm -rf $(win_dir)
 	mkdir -p $(win_dir)
-	rsync -ar --exclude='.git' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound lua_modules locale $(win_dir)
+	rsync -ar --exclude='.git' --exclude='Makefile*' --exclude='*~' --exclude='.#*' data lua_modules locale $(win_dir)
 	cp src/freedroidRPG.exe $(win_dir)
 	for i in $(win_txts); do \
 	   sed 's/$$/\r/' $$i > $(win_dir)/$$i.txt; \
@@ -111,7 +111,7 @@ dist-macosx: src/freedroidRPG
 	cp src/freedroidRPG $(macosx_dir)/Contents/MacOS
 	sed -e "s/__#PROGNAME#__/$(PACKAGE_NAME)/" -e "s/__#VERSION#__/$(PACKAGE_VERSION)/" macosx/Info.plist.in > $(macosx_dir)/Contents/Info.plist
 	echo "APPL????" > $(macosx_dir)/Contents/PkgInfo
-	rsync -ar --exclude='.git' --exclude='Makefile*' --exclude='*~' --exclude='.#*' dialogs graphics map sound lua_modules $(macosx_dir)/Contents
+	rsync -ar --exclude='.git' --exclude='Makefile*' --exclude='*~' --exclude='.#*' data lua_modules locale $(macosx_dir)/Contents
 	perl macosx/pkgApp.pl $(macosx_dir)/Contents MacOS/freedroidRPG Frameworks
 
 doc:

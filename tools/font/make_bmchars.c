@@ -245,7 +245,7 @@ int main(int argc, char **argv)
 		                "Example, to create the small_blue glyph bitmaps:\n"
 		                "     %s /usr/share/fonts/DejaVuSans.ttf small_blue ISO-8859-15 11 187:187:245 0 small_blue_chars\n"
 		                "To then create the small_blue.png:\n"
-		                "     gluefont graphics/font/ISO-8859-15/small_blue.png ISO-8859-15 small_blue_chars\n"
+		                "     gluefont data/fonts/ISO-8859-15/small_blue.png ISO-8859-15 small_blue_chars\n"
 		                "\n"
 		                "Available codesets: %s\n", argv[0], argv[0], cs_available_codesets());
 		exit(1);
