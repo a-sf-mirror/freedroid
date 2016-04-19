@@ -33,7 +33,7 @@ while getopts ":i:x:" opt ; do
 		"i")
 			include[${#include[@]}]=$OPTARG;;
 		"x")
-			exclude[${#exclude}]=$OPTARG;;
+			exclude[${#exclude[@]}]=$OPTARG;;
 		":")
 			echo "arg needed for \"$OPTARG\" option" >&2
 			exit 1;;
@@ -81,7 +81,7 @@ for f in $allfiles ; do
 	# Remove exclude files
 	excluded=0
 	for exc in ${exclude[@]} ; do
-		if [ " $f" == " ${exc}" ] ; then
+		if [[ " $f" == " ${exc}" || " $f" =~ " ${exc}/" ]] ; then
 			excluded=1
 			break
 		fi
