@@ -262,199 +262,6 @@ void play_title_file(int subdir_handle, char *Filename)
 }
 
 /**
- * This function loads all the constant concerning robot archetypes
- * from a section in memory to the actual archetype structures.
- */
-static void Get_Robot_Data(void *DataPointer)
-{
-	int RobotIndex = 0;
-	char *RobotPointer;
-	char *EndOfDataPointer;
-	int i;
-
-#define ROBOT_SECTION_BEGIN_STRING "*** Start of Robot Data Section: ***"
-#define ROBOT_SECTION_END_STRING "*** End of Robot Data Section: ***"
-#define NEW_ROBOT_BEGIN_STRING "** Start of new Robot: **"
-#define DROIDNAME_BEGIN_STRING "Droidname: "
-#define PORTRAIT_FILENAME_WITHOUT_EXT "Droid portrait file name (without extension) to use=\""
-
-#define DROID_PORTRAIT_ROTATION_SERIES_NAME_PREFIX "Droid uses portrait rotation series with prefix=\""
-
-#define MAXSPEED_BEGIN_STRING "Maximum speed of this droid: "
-#define CLASS_BEGIN_STRING "Class of this droid: "
-#define MAXENERGY_BEGIN_STRING "Maximum energy of this droid: "
-#define BASE_HEALING_BEGIN_STRING "Rate of healing: "
-#define SENSOR_ID_BEGIN_STRING "Sensor ID=\""
-#define EXPERIENCE_REWARD_BEGIN_STRING "Experience_Reward gained for destroying one of this type: "
-#define WEAPON_ITEM_BEGIN_STRING "Weapon item=\""
-#define GREETING_SOUND_STRING "Greeting Sound number="
-#define DROID_DEATH_SOUND_FILE_NAME "Death sound file name=\""
-#define DROID_ATTACK_ANIMATION_SOUND_FILE_NAME "Attack animation sound file name=\""
-#define TO_HIT_STRING "Chance of this robot scoring a hit="
-#define GETTING_HIT_MODIFIER_STRING "Chance modifier, that this robot gets hit="
-#define IS_HUMAN_SPECIFICATION_STRING "Is this 'droid' a human : "
-#define INDIVIDUAL_SHAPE_SPECIFICATION_STRING "Individual shape of this droid or just -1 for classic ball shaped : "
-#define NOTES_BEGIN_STRING "Notes concerning this droid=_\""
-
-	RobotPointer = LocateStringInData(DataPointer, ROBOT_SECTION_BEGIN_STRING);
-	EndOfDataPointer = LocateStringInData(DataPointer, ROBOT_SECTION_END_STRING);
-
-	DebugPrintf(1, "\n\nStarting to read Robot data...\n\n");
-	// At first, we must allocate memory for the droid specifications.
-	// How much?  That depends on the number of droids defined in freedroid.ruleset.
-	// So we have to count those first.  ok.  lets do it.
-
-	Number_Of_Droid_Types = CountStringOccurences(DataPointer, NEW_ROBOT_BEGIN_STRING);
-	if (NB_DROID_TYPES < Number_Of_Droid_Types + 2) {
-		error_message(__FUNCTION__, "\
-The value of %d for \"NB_DROID_TYPES\" defined in struct.h is less than %d\n\
-which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_TYPES\"!",
-			PLEASE_INFORM | IS_FATAL, NB_DROID_TYPES, Number_Of_Droid_Types + 2);
-	}
-
-	// Not that we know how many robots are defined in freedroid.ruleset, we can allocate
-	// a fitting amount of memory.
-	i = sizeof(droidspec);
-	Droidmap = MyMalloc(i * (Number_Of_Droid_Types + 1) + 1);
-	DebugPrintf(1, "\nWe have counted %d different droid types in the game data file.", Number_Of_Droid_Types);
-	DebugPrintf(2, "\nMEMORY HAS BEEN ALLOCATED.\nTHE READING CAN BEGIN.\n");
-
-	//Now we start to read the values for each robot:
-	//Of which parts is it composed, which stats does it have?
-	while ((RobotPointer = strstr(RobotPointer, NEW_ROBOT_BEGIN_STRING)) != NULL) {
-		DebugPrintf(2, "\n\nFound another Robot specification entry!  Lets add that to the others!");
-		RobotPointer++;	// to avoid doubly taking this entry
-		char *EndOfThisRobot = strstr(RobotPointer, NEW_ROBOT_BEGIN_STRING);
-		if (EndOfThisRobot)
-			EndOfThisRobot[0] = 0;
-
-		// Now we read in the Name of this droid.  We consider as a name the rest of the
-		// line with the DROIDNAME_BEGIN_STRING until the "\n" is found.
-		Droidmap[RobotIndex].droidname = ReadAndMallocStringFromData(RobotPointer, DROIDNAME_BEGIN_STRING, "\n");
-
-		// Now we read in the default short_description_text for this droid.
-		Droidmap[RobotIndex].default_short_description = ReadAndMallocStringFromDataOptional(RobotPointer, "Default description:_\"", "\"");
-		if (!Droidmap[RobotIndex].default_short_description)
-			Droidmap[RobotIndex].default_short_description = strdup("");
-
-		// Now we read in the prefix of the file names in the rotation series
-		// to use for the console droid rotation
-		Droidmap[RobotIndex].droid_portrait_rotation_series_prefix =
-		    ReadAndMallocStringFromData(RobotPointer, DROID_PORTRAIT_ROTATION_SERIES_NAME_PREFIX, "\"");
-
-		// Now we read in the file name of the death sound for this droid.  
-		// Is should be enclosed in double-quotes.
-		//
-		Droidmap[RobotIndex].droid_death_sound_file_name =
-		    ReadAndMallocStringFromData(RobotPointer, DROID_DEATH_SOUND_FILE_NAME, "\"");
-
-		// Now we read in the file name of the attack animation sound for this droid.  
-		// Is should be enclosed in double-quotes.
-		//
-		Droidmap[RobotIndex].droid_attack_animation_sound_file_name =
-		    ReadAndMallocStringFromData(RobotPointer, DROID_ATTACK_ANIMATION_SOUND_FILE_NAME, "\"");
-
-		// Now we read in the maximal speed this droid can go. 
-		ReadValueFromString(RobotPointer, MAXSPEED_BEGIN_STRING, "%f", &Droidmap[RobotIndex].maxspeed, EndOfDataPointer);
-
-		// Now we read in the class of this droid.
-		ReadValueFromString(RobotPointer, CLASS_BEGIN_STRING, "%d", &Droidmap[RobotIndex].class, EndOfDataPointer);
-
-		// Now we read in the maximal energy this droid can store. 
-		ReadValueFromString(RobotPointer, MAXENERGY_BEGIN_STRING, "%f", &Droidmap[RobotIndex].maxenergy, EndOfDataPointer);
-
-		// Now we read in the lose_health rate.
-		ReadValueFromString(RobotPointer, BASE_HEALING_BEGIN_STRING, "%f", &Droidmap[RobotIndex].healing_friendly, EndOfDataPointer);
-		Droidmap[RobotIndex].healing_hostile = Droidmap[RobotIndex].healing_friendly;
-
-		// Now we read what sensor this robot use.
-		char *tmp_sensor_ID = ReadAndMallocStringFromDataOptional(RobotPointer, SENSOR_ID_BEGIN_STRING, "\"");
-		if (!tmp_sensor_ID)
-			tmp_sensor_ID = strdup("spectral"); // Default value if no sensor defined.
-		Droidmap[RobotIndex].sensor_id = get_sensor_id_by_name(tmp_sensor_ID);
-		free(tmp_sensor_ID);
-
-		// Now we read in range of vision of this droid
-		ReadValueFromString(RobotPointer, "Aggression distance of this droid=", "%f",
-				    &Droidmap[RobotIndex].aggression_distance, EndOfDataPointer);
-
-		// Now we read in range of vision of this droid
-		ReadValueFromString(RobotPointer, "Time spent eyeing Tux=", "%f",
-				    &Droidmap[RobotIndex].time_spent_eyeing_tux, EndOfDataPointer);
-
-		// Now we experience_reward to be had for destroying one droid of this type
-		ReadValueFromString(RobotPointer, EXPERIENCE_REWARD_BEGIN_STRING, "%hd",
-				    &Droidmap[RobotIndex].experience_reward, EndOfDataPointer);
-
-		// Now we read in the monster level = maximum treasure chest to pick from
-		ReadValueFromStringWithDefault(RobotPointer, "Drops item class=", "%hd", "-1", 
-					       &Droidmap[RobotIndex].drop_class, EndOfDataPointer);
-
-		char *tmp_item_id = ReadAndMallocStringFromData(RobotPointer, WEAPON_ITEM_BEGIN_STRING, "\"");
-		Droidmap[RobotIndex].weapon_item.type = get_item_type_by_id(tmp_item_id);
-		free(tmp_item_id);
-		ReadValueFromStringWithDefault(RobotPointer, "Gun muzzle height=", "%d", "30", &Droidmap[RobotIndex].gun_muzzle_height, EndOfDataPointer);
-
-		// Now we read in the % chance for droid to drop botpart
-		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Entropy Inverter=", "%hd", "0",
-					       &Droidmap[RobotIndex].amount_of_entropy_inverters, EndOfDataPointer);
-		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Plasma Transistor=", "%hd", "0",
-					       &Droidmap[RobotIndex].amount_of_plasma_transistors, EndOfDataPointer);
-		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Superconducting Relay Unit=", "%hd", "0",
-					       &Droidmap[RobotIndex].amount_of_superconductors, EndOfDataPointer);
-		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Antimatter-Matter Converter=", "%hd", "0",
-					       &Droidmap[RobotIndex].amount_of_antimatter_converters, EndOfDataPointer);
-		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Tachyon Condensator=", "%hd", "0",
-					       &Droidmap[RobotIndex].amount_of_tachyon_condensators, EndOfDataPointer);
-
-		// Now we read in the greeting sound type of this droid type
-		ReadValueFromString(RobotPointer, GREETING_SOUND_STRING, "%hd",
-				    &Droidmap[RobotIndex].greeting_sound_type, EndOfDataPointer);
-
-		// Now we read in the to-hit chance this robot has in combat against an unarmored target
-		ReadValueFromString(RobotPointer, TO_HIT_STRING, "%hd", &Droidmap[RobotIndex].to_hit, EndOfDataPointer);
-
-		// Now we read in the modifier, that increases/decreases the chance of this robot getting hit
-		ReadValueFromString(RobotPointer, "Time to recover after getting hit=", "%f",
-				    &Droidmap[RobotIndex].recover_time_after_getting_hit, EndOfDataPointer);
-
-		// Now we read in the is_human flag of this droid type
-		ReadValueFromString(RobotPointer, IS_HUMAN_SPECIFICATION_STRING, "%hd", &Droidmap[RobotIndex].is_human, EndOfDataPointer);
-
-		// Now we read in the Graphics to associate with this droid type
-		char *enemy_surface = ReadAndMallocStringFromData(RobotPointer, "Filename prefix for graphics=\"", "\"");
-		Droidmap[RobotIndex].individual_shape_nr = 0;
-		for (i=0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++) {
-			if (PrefixToFilename[i] && !strcmp(enemy_surface, PrefixToFilename[i])){
-				Droidmap[RobotIndex].individual_shape_nr = i;
-				break;
-			}
-		}
-		free(enemy_surface);
-
-		// Now we read in the notes about this droid type
-		Droidmap[RobotIndex].notes = ReadAndMallocStringFromData(RobotPointer, NOTES_BEGIN_STRING, "\"");
-
-		// Now we're potentially ready to process the next droid.  Therefore we proceed to
-		// the next number in the Droidmap array.
-		RobotIndex++;
-		if (EndOfThisRobot)
-			EndOfThisRobot[0] = '*';	// We put back the star at its place
-	}
-
-	struct difficulty *diff = dynarray_member(&difficulties, GameConfig.difficulty_level, sizeof(struct difficulty));
-
-	for (i = 0; i < Number_Of_Droid_Types; i++) {
-		Droidmap[i].maxspeed *= diff->droid_max_speed;
-		Droidmap[i].maxenergy *= diff->droid_hpmax;
-		Droidmap[i].experience_reward *= diff->droid_experience_reward;
-		Droidmap[i].aggression_distance *= diff->droid_aggression_distance;
-		Droidmap[i].healing_friendly *= diff->droid_friendly_healing;
-		Droidmap[i].healing_hostile *= diff->droid_hostile_healing;
-	}
-};				// int Get_Robot_Data ( void )
-
-/**
  * Load the configuration of the fdrpg "engine", that is the game independent data
  */
 static void load_fdrpg_config()
@@ -476,7 +283,6 @@ static void load_fdrpg_config()
 void Init_Game_Data()
 {
 	char fpath[PATH_MAX];
-	char *Data;
 
 	// Load difficulties.
 	find_file("difficulties.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
@@ -512,10 +318,8 @@ void Init_Game_Data()
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Time to eat some droid archetypes...
-	find_file("droid_archetypes.dat", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
-	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
-	Get_Robot_Data(Data);
-	free(Data);
+	find_file("droid_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load obstacle specifications.
 	dynarray_init(&obstacle_map, 512, sizeof(struct obstacle_spec));

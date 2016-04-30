@@ -1158,6 +1158,108 @@ static int lua_item_list_ctor(lua_State *L)
 	return 0;
 }
 
+static void get_one_droid(lua_State *L, void *data)
+{
+	struct droidspec *droid = (struct droidspec *)data;
+	char *weapon_name;
+	char *sensor_name;
+
+	struct data_spec data_specs[] = {
+		{"name",                             NULL,       STRING_TYPE, &droid->droidname                       },
+		{"desc",                             "",         STRING_TYPE, &droid->default_short_description       },
+		{"notes",                            NULL,       STRING_TYPE, &droid->notes                           },
+		{"is_human",                         "1",        SHORT_TYPE,  &droid->is_human                        },
+		{"class",                            "1",        INT_TYPE,    &droid->class                           },
+
+		{"abilities.speed_max",              "2",        FLOAT_TYPE,  &droid->maxspeed                        },
+		{"abilities.energy_max",             "10",       FLOAT_TYPE,  &droid->maxenergy                       },
+		{"abilities.healing_rate",           "2",        FLOAT_TYPE,  &droid->healing_friendly                },
+		{"abilities.hit_draw",               "50",       SHORT_TYPE,  &droid->to_hit                          },
+		{"abilities.aggression_distance",    "10",       FLOAT_TYPE,  &droid->aggression_distance             },
+		{"abilities.time_eyeing",            "1.0",      FLOAT_TYPE,  &droid->time_spent_eyeing_tux           },
+		{"abilities.recover_time",           "1.0",      FLOAT_TYPE,  &droid->recover_time_after_getting_hit  },
+		{"abilities.xp_reward",              "40",       SHORT_TYPE,  &droid->experience_reward               },
+
+		{"equip.weapon",      "NPC Hand to hand weapon", STRING_TYPE, &weapon_name                            },
+		{"equip.sensor",                     "spectral", STRING_TYPE, &sensor_name                            },
+
+		{"drop_draw.class",                  "-1",       SHORT_TYPE,  &droid->drop_class                      },
+		{"drop_draw.plasma_transistors",     "0",        SHORT_TYPE,  &droid->amount_of_plasma_transistors    },
+		{"drop_draw.superconductors",        "0",        SHORT_TYPE,  &droid->amount_of_superconductors       },
+		{"drop_draw.antimatter_converters",  "0",        SHORT_TYPE,  &droid->amount_of_antimatter_converters },
+		{"drop_draw.entropy_inverters",      "0",        SHORT_TYPE,  &droid->amount_of_entropy_inverters     },
+		{"drop_draw.tachyon_condensators",   "0",        SHORT_TYPE,  &droid->amount_of_tachyon_condensators  },
+
+		{"gfx.prefix",                       NULL,       STRING_TYPE, &droid->img_prefix                      },
+		{"gfx.gun_muzzle_height",            "30",       INT_TYPE,    &droid->gun_muzzle_height               },
+		{"gfx.animation.portrait_rotations", "0",        INT_TYPE,    &droid->portrait_rotations              },
+//		{"gfx.animation.stand",              "5",        INT_TYPE,    &droid_stand_animation_speed_factor     },
+//		{"gfx.animation.walk",               "5",        INT_TYPE,    &droid_walk_animation_speed_factor      },
+//		{"gfx.animation.attack",             "7",        INT_TYPE,    &droid_attack_animation_speed_factor    },
+//		{"gfx.animation.gethit",             "8",        INT_TYPE,    &droid_gethit_animation_speed_factor    },
+//		{"gfx.animation.death",              "10",       INT_TYPE,    &droid_death_animation_speed_factor     },
+
+		{"sound.greeting",                   "0",        SHORT_TYPE,  &droid->greeting_sound_type             },
+		{"sound.death",                      "none",     STRING_TYPE, &droid->droid_death_sound_file_name     },
+		{"sound.attack",                     "none",     STRING_TYPE, &droid->droid_attack_animation_sound_file_name },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	fill_structure_from_table(L, data_specs);
+
+	if (!droid->droidname) {
+		error_message(__FUNCTION__, "No name for droid. The name must be given.", PLEASE_INFORM);
+	}
+
+	droid->sensor_id = get_sensor_id_by_name(sensor_name);
+	free(sensor_name);
+
+	droid->healing_hostile = droid->healing_friendly;
+
+	// TODO. Init droid->weapon_item ? What if weapon_name == NULL ?
+	droid->weapon_item.type = get_item_type_by_id(weapon_name);
+	free(weapon_name);
+
+	// Now we read in the Graphics to associate with this droid type
+	// TODO. To adapt (PrefixToFilename should no more exist...)
+	droid->individual_shape_nr = 0;
+	int i;
+	for (i=0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++) {
+		if (PrefixToFilename[i] && !strcmp(droid->img_prefix, PrefixToFilename[i])){
+			droid->individual_shape_nr = i;
+			break;
+		}
+	}
+}
+
+static int lua_droid_list_ctor(lua_State *L)
+{
+	struct dynarray droid_specs = { 0 };
+
+	fill_dynarray_from_table(L, &droid_specs, sizeof(struct droidspec), get_one_droid);
+
+	// Copy the array of droid_specs
+	Number_Of_Droid_Types = droid_specs.size;
+	Droidmap = (droidspec *) MyMalloc(sizeof(droidspec) * Number_Of_Droid_Types + 1);
+	memcpy(Droidmap, droid_specs.arr, sizeof(droidspec) * Number_Of_Droid_Types);
+
+	dynarray_free(&droid_specs);
+
+	// Adapt the droids' specs to the difficulty level
+	struct difficulty *diff = dynarray_member(&difficulties, GameConfig.difficulty_level, sizeof(struct difficulty));
+	int i;
+	for (i = 0; i < Number_Of_Droid_Types; i++) {
+		Droidmap[i].maxspeed *= diff->droid_max_speed;
+		Droidmap[i].maxenergy *= diff->droid_hpmax;
+		Droidmap[i].experience_reward *= diff->droid_experience_reward;
+		Droidmap[i].aggression_distance *= diff->droid_aggression_distance;
+		Droidmap[i].healing_friendly *= diff->droid_friendly_healing;
+		Droidmap[i].healing_hostile *= diff->droid_hostile_healing;
+	}
+
+	return 0;
+}
+
 static void get_one_lang(lua_State *L, void *data)
 {
 	struct langspec *lang = (struct langspec *)data;
@@ -1313,8 +1415,9 @@ static int lua_skill_list_ctor(lua_State *L)
 	fill_dynarray_from_table(L, &skill_specs, sizeof(struct spell_skill_spec), get_one_skill);
 
 	if (number_of_skills >= MAX_NUMBER_OF_PROGRAMS) {
-		error_message(__FUNCTION__, "\
-There are more skills defined, than the maximum number specified in the code!", PLEASE_INFORM | IS_FATAL);
+		error_message(__FUNCTION__,
+		              "There are more skills defined, than the maximum number specified in the code!",
+		              PLEASE_INFORM | IS_FATAL);
 	}
 
 	// Copy the array of item_specs
@@ -1355,6 +1458,7 @@ void init_luaconfig()
 		{ "codesets",                      lua_codesets_ctor                      },
 		{ "difficulties",                  lua_difficulties_ctor                  },
 		{ "skill_list",                    lua_skill_list_ctor                    },
+		{ "droid_list",                    lua_droid_list_ctor                    },
 		{NULL, NULL}
 	};
 

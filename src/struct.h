@@ -365,40 +365,43 @@ typedef struct item {
 typedef struct droidspec {
 	char *droidname;
 	char *default_short_description;
-	char *droid_portrait_rotation_series_prefix;
-	char *droid_death_sound_file_name;
-	char *droid_attack_animation_sound_file_name;
+	char *notes;		// notes on the droid of this type
+	short int is_human;
 	int class;
-	float maxenergy;	// the maximum energy the batteries can carry
-	int sensor_id;		// What sensor is the most common to this droid?
 
+	// Droid's abilities
+	float maxspeed;
+	float maxenergy;	// the maximum energy the batteries can carry
 	float healing_friendly; // the energy/second the droid heals as a friendly towards Tux
 	float healing_hostile;  // the energy/second the droid heals as a hostile towards Tux
-
-	float maxspeed;
-
-	short experience_reward;	// experience_reward for the elimination of one droid of this type
-
+	short to_hit;		// chance that this droid hits an unarmoured target
 	float aggression_distance;
 	float time_spent_eyeing_tux;
+	float recover_time_after_getting_hit;
+	short experience_reward;	// experience_reward for the elimination of one droid of this type
 
-	short int drop_class;
-
+	// Equipment
 	item weapon_item;
-	int gun_muzzle_height;
+	int sensor_id;		// What sensor is the most common to this droid?
 
+	// Dropped items
+	short int drop_class;
 	short int amount_of_plasma_transistors;
 	short int amount_of_superconductors;
 	short int amount_of_antimatter_converters;
 	short int amount_of_entropy_inverters;
 	short int amount_of_tachyon_condensators;
 
-	short greeting_sound_type;	// which sample to play in order to 'greet' the influencer?
-	short to_hit;		// chance that this droid hits an unarmoured target
-	float recover_time_after_getting_hit;
-	char *notes;		// notes on the droid of this type
-	short int is_human;
+	// Rendering
+	char *img_prefix;
 	short individual_shape_nr;
+	int gun_muzzle_height;
+	int  portrait_rotations;
+
+	// Sounds
+	short greeting_sound_type;	// which sample to play in order to 'greet' the influencer?
+	char *droid_death_sound_file_name;
+	char *droid_attack_animation_sound_file_name;
 } droidspec;
 
 typedef char s_char; // Used for pointer to static string which are not to be saved

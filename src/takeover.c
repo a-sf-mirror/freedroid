@@ -139,7 +139,7 @@ static void display_takeover_help()
 }
 
 /** 
- * Display the picture of a droid
+ * Display the portrait of a droid
  */
 static void show_droid_picture(int PosX, int PosY, int type)
 {
@@ -149,22 +149,22 @@ static void show_droid_picture(int PosX, int PosY, int type)
 	static struct image droid_images[NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION];
 	int RotationIndex;
 
-	if (!strcmp(Droidmap[type].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET"))
+	if (Droidmap[type].portrait_rotations == 0)
 		return;
 
 	// Maybe we have to reload the whole image series
 	//
-	if (strcmp(LastImageSeriesPrefix, Droidmap[type].droid_portrait_rotation_series_prefix)) {
+	if (strcmp(LastImageSeriesPrefix, Droidmap[type].img_prefix)) {
 		int i;
 		for (i = 0; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION; i++) {
 			delete_image(&droid_images[i]);
 
-			sprintf(filename, "droids/%s/portrait_%04d.jpg", Droidmap[type].droid_portrait_rotation_series_prefix, i + 1);
+			sprintf(filename, "droids/%s/portrait_%04d.jpg", Droidmap[type].img_prefix, i + 1);
 
 			load_image(&droid_images[i], GRAPHICS_DIR, filename, NO_MOD);
 		}
 			
-		strcpy(LastImageSeriesPrefix, Droidmap[type].droid_portrait_rotation_series_prefix);
+		strcpy(LastImageSeriesPrefix, Droidmap[type].img_prefix);
 	}
 
 	RotationIndex = (SDL_GetTicks() / 50);
