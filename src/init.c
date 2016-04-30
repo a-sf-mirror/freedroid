@@ -1192,7 +1192,7 @@ void ThouArtDefeated(void)
 	}
 	input_handle();
 	if (!skip_initial_menus && (game_root_mode == ROOT_IS_GAME))
-		play_title_file(MAP_TITLES_DIR, "GameLost.lua");
+		play_title_file(BASE_TITLES_DIR, "GameLost.lua");
 
 	do_death_menu();
 
