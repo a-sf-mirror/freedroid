@@ -719,13 +719,13 @@ int find_file(const char *fname, int subdir_handle, char *file_path, int error_r
 {
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
 		error_message(__FUNCTION__, "Called with a wrong subdir handle (%d)",
-		             error_report | PLEASE_INFORM, subdir_handle);
+		              error_report | PLEASE_INFORM, subdir_handle);
 		return 0;
 	}
 
 	if (!_file_exists(fname, data_dirs[subdir_handle].path, file_path)) {
-		error_message(__FUNCTION__, "File %s not found in %s",
-		             error_report, fname, data_dirs[subdir_handle].name);
+		error_once_message(ONCE_PER_RUN, __FUNCTION__, "File %s not found in %s",
+		                   error_report, fname, data_dirs[subdir_handle].name);
 		return 0;
 	}
 
