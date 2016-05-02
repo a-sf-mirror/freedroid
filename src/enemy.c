@@ -287,7 +287,7 @@ void enemy_reset(enemy *this_enemy)
 	this_enemy->paralysation_duration_left = 0.0;
 	this_enemy->pure_wait = 0.0;
 	this_enemy->firewait = 0.0;
-	this_enemy->ammo_left = ItemMap[Droidmap[this_enemy->type].weapon_item.type].weapon_ammo_clip_size;
+	this_enemy->ammo_left = ItemMap[Droidmap[this_enemy->type].weapon_id].weapon_ammo_clip_size;
 	this_enemy->attack_target_type = ATTACK_TARGET_IS_NOTHING;
 	enemy_set_reference(&this_enemy->bot_target_n, &this_enemy->bot_target_addr, NULL);
 	this_enemy->previous_angle = 0.0;
@@ -1684,7 +1684,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	} move_type = NO_MOVE;
 
 	int shoot_target = FALSE;
-	int melee_weapon = ItemMap[Droidmap[ThisRobot->type].weapon_item.type].weapon_is_melee;
+	int melee_weapon = ItemMap[Droidmap[ThisRobot->type].weapon_id].weapon_is_melee;
 
 	if (melee_weapon) {
 		// The bot and its target are on different levels.
@@ -1754,7 +1754,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 			goto EXECUTE_ATTACK;
 		}
 		// Check if outside of bullet range
-		itemspec *bot_weapon = &ItemMap[Droidmap[ThisRobot->type].weapon_item.type];
+		itemspec *bot_weapon = &ItemMap[Droidmap[ThisRobot->type].weapon_id];
 		float shot_range = bot_weapon->weapon_bullet_lifetime * bot_weapon->weapon_bullet_speed;
 		float squared_shot_range = shot_range * shot_range;
 
@@ -2183,7 +2183,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		return;
 
 	/* First of all, check what kind of weapon the bot has : ranged or melee */
-	struct itemspec weapon_spec = ItemMap[Droidmap[ThisRobot->type].weapon_item.type];
+	struct itemspec weapon_spec = ItemMap[Droidmap[ThisRobot->type].weapon_id];
 
 	if (!weapon_spec.weapon_is_melee) {	/* ranged */
 
@@ -2199,7 +2199,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		bullet *new_bullet = &(AllBullets[bullet_index]);
 
 		bullet_init_for_enemy(new_bullet, weapon_spec.weapon_bullet_type,
-		                      Droidmap[ThisRobot->type].weapon_item.type, ThisRobot);
+		                      Droidmap[ThisRobot->type].weapon_id, ThisRobot);
 
 		// We send the bullet onto it's way towards the given target
 		float bullet_speed = (float)weapon_spec.weapon_bullet_speed;
@@ -2792,7 +2792,7 @@ static int is_potential_target(enemy * this_robot, gps * target_pos, float *squa
 		}
 	}
 	// For a range weapon, check if the target can be directly shot
-	int melee_weapon = ItemMap[Droidmap[this_robot->type].weapon_item.type].weapon_is_melee;
+	int melee_weapon = ItemMap[Droidmap[this_robot->type].weapon_id].weapon_is_melee;
 
 	if (!melee_weapon) {
 		if (DirectLineColldet(this_robot->pos.x, this_robot->pos.y,

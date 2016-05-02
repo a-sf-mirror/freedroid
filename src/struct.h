@@ -381,7 +381,7 @@ typedef struct droidspec {
 	short experience_reward;	// experience_reward for the elimination of one droid of this type
 
 	// Equipment
-	item weapon_item;
+	int weapon_id;
 	int sensor_id;		// What sensor is the most common to this droid?
 
 	// Dropped items

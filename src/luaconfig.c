@@ -1216,8 +1216,7 @@ static void get_one_droid(lua_State *L, void *data)
 
 	droid->healing_hostile = droid->healing_friendly;
 
-	// TODO. Init droid->weapon_item ? What if weapon_name == NULL ?
-	droid->weapon_item.type = get_item_type_by_id(weapon_name);
+	droid->weapon_id = get_item_type_by_id(weapon_name);
 	free(weapon_name);
 
 	// Now we read in the Graphics to associate with this droid type
