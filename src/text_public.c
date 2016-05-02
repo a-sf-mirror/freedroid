@@ -231,6 +231,7 @@ void error_message(const char *fn, const char *fmt, int error_type, ...)
 		fprintf(stderr, "\nFreedroidRPG will terminate now to draw attention to the problems it could\n"
 		                "not resolve. We are sorry if that interrupts a major game of yours.\n"
 		                "---------------------------------------------------------------------------------\n");
+		print_trace(0);
 	} else {
 		fprintf(stderr, "---------------------------------------------------------------------------------\n");
 	}
