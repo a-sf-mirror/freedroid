@@ -1199,9 +1199,9 @@ static void get_one_droid(lua_State *L, void *data)
 //		{"gfx.animation.gethit",             "8",        INT_TYPE,    &droid_gethit_animation_speed_factor    },
 //		{"gfx.animation.death",              "10",       INT_TYPE,    &droid_death_animation_speed_factor     },
 
-		{"sound.greeting",                   "0",        SHORT_TYPE,  &droid->greeting_sound_type             },
-		{"sound.death",                      "none",     STRING_TYPE, &droid->droid_death_sound_file_name     },
-		{"sound.attack",                     "none",     STRING_TYPE, &droid->droid_attack_animation_sound_file_name },
+		{"sound.greeting",                   NULL,       STRING_TYPE, &droid->greeting_sound                  },
+		{"sound.attack",                     NULL,       STRING_TYPE, &droid->attack_sound                    },
+		{"sound.death",                      NULL,       STRING_TYPE, &droid->death_sound                     },
 		{ NULL, NULL, 0, 0 }
 	};
 

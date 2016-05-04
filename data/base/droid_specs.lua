@@ -41,6 +41,50 @@
 -- Radar 16 (Ultrasonic + IR. Use only on the most advanced droids. Caution to don't affect the game balance.)-
 -- Subsonic 6 (soundwaves/vibrations, see through walls, invisible if not moving) // TODO: To be implemented.
 ---------
+
+sfx_sounds = {
+	g0  = "effects/bot_sounds/First_Contact_Sound_0.ogg",
+	g1  = "effects/bot_sounds/First_Contact_Sound_1.ogg",
+	g2  = "effects/bot_sounds/First_Contact_Sound_2.ogg",
+	g3  = "effects/bot_sounds/First_Contact_Sound_3.ogg",
+	g4  = "effects/bot_sounds/First_Contact_Sound_4.ogg",
+	g5  = "effects/bot_sounds/First_Contact_Sound_5.ogg",
+	g6  = "effects/bot_sounds/First_Contact_Sound_6.ogg",
+	g7  = "effects/bot_sounds/First_Contact_Sound_7.ogg",
+	g8  = "effects/bot_sounds/First_Contact_Sound_8.ogg",
+	g9  = "effects/bot_sounds/First_Contact_Sound_9.ogg",
+	g10 = "effects/bot_sounds/First_Contact_Sound_10.ogg",
+	g11 = "effects/bot_sounds/First_Contact_Sound_11.ogg",
+	g12 = "effects/bot_sounds/First_Contact_Sound_12.ogg",
+	g13 = "effects/bot_sounds/First_Contact_Sound_13.ogg",
+	g14 = "effects/bot_sounds/First_Contact_Sound_14.ogg",
+	g15 = "effects/bot_sounds/First_Contact_Sound_15.ogg",
+	g16 = "effects/bot_sounds/First_Contact_Sound_16.ogg",
+	g17 = "effects/bot_sounds/First_Contact_Sound_17.ogg",
+	g18 = "effects/bot_sounds/First_Contact_Sound_18.ogg",
+
+	a0  = "effects/bot_sounds/Start_Attack_Sound_0.ogg",
+	a1  = "effects/bot_sounds/Start_Attack_Sound_1.ogg",
+	a2  = "effects/bot_sounds/Start_Attack_Sound_2.ogg",
+	a6  = "effects/bot_sounds/Start_Attack_Sound_0.ogg",
+	a7  = "effects/bot_sounds/Start_Attack_Sound_1.ogg",
+	a8  = "effects/bot_sounds/Start_Attack_Sound_2.ogg",
+	a9  = "effects/bot_sounds/Start_Attack_Sound_9.ogg",
+	a10 = "effects/bot_sounds/Start_Attack_Sound_10.ogg",
+	a11 = "effects/bot_sounds/Start_Attack_Sound_11.ogg",
+	a12 = "effects/bot_sounds/Start_Attack_Sound_12.ogg",
+	a13 = "effects/bot_sounds/Start_Attack_Sound_13.ogg",
+	a14 = "effects/bot_sounds/Start_Attack_Sound_14.ogg",
+	a15 = "effects/bot_sounds/Start_Attack_Sound_15.ogg",
+	a16 = "effects/bot_sounds/Start_Attack_Sound_16.ogg",
+	a17 = "effects/bot_sounds/Start_Attack_Sound_17.ogg",
+	a18 = "effects/bot_sounds/Start_Attack_Sound_18.ogg",
+
+	d123 = "effects/bot_sounds/death_sound_123.ogg",
+	d247 = "effects/bot_sounds/death_sound_247.ogg",
+	d302 = "effects/bot_sounds/death_sound_302.ogg",
+}
+
 droid_list {
 {
 	name = "123",
@@ -68,8 +112,9 @@ droid_list {
 		},
 	},
 	sound = {
-		death = "death_sound_123.ogg",
-		attack = "death_sound_123.ogg",
+		greeting = sfx_sounds.g0,
+		attack = sfx_sounds.a0,
+		death = sfx_sounds.d123,
 	},
 },
 {
@@ -100,9 +145,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 1,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g1,
+		attack = sfx_sounds.a1,
 	},
 },
 {
@@ -136,9 +180,9 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 9,
-		death = "death_sound_247.ogg",
-		attack = "death_sound_247.ogg",
+		greeting = sfx_sounds.g9,
+		attack = sfx_sounds.a9,
+		death = sfx_sounds.d247,
 	},
 },
 {
@@ -172,9 +216,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 10,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g10,
+		attack = sfx_sounds.a10,
 	},
 },
 {
@@ -207,9 +250,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 11,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g11,
+		attack = sfx_sounds.a11,
 	},
 },
 {
@@ -244,9 +286,9 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 12,
-		death = "death_sound_302.ogg",
-		attack = "death_sound_302.ogg",
+		greeting = sfx_sounds.g12,
+		attack = sfx_sounds.a12,
+		death = sfx_sounds.d302,
 	},
 },
 {
@@ -281,9 +323,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 13,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g13,
+		attack = sfx_sounds.a13,
 	},
 },
 {
@@ -317,9 +358,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 14,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g14,
+		attack = sfx_sounds.a14,
 	},
 },
 {
@@ -354,9 +394,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 15,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g15,
+		attack = sfx_sounds.a15,
 	},
 },
 {
@@ -391,9 +430,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 16,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g16,
+		attack = sfx_sounds.a16,
 	},
 },
 {
@@ -428,9 +466,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 17,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g17,
+		attack = sfx_sounds.a17,
 	},
 },
 {
@@ -463,9 +500,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 11,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g11,
+		attack = sfx_sounds.a11,
 	},
 },
 {
@@ -501,9 +537,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 18,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g18,
+		attack = sfx_sounds.a18,
 	},
 },
 {
@@ -539,9 +574,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -578,9 +610,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 15,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g15,
+		attack = sfx_sounds.a15,
 	},
 },
 {
@@ -616,9 +647,7 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 5,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g5,
 	},
 },
 {
@@ -655,9 +684,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -691,9 +717,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -730,9 +753,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -770,9 +790,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -809,9 +826,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -849,9 +863,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -889,9 +900,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -928,9 +936,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 2,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g2,
+		attack = sfx_sounds.a2,
 	},
 },
 {
@@ -968,9 +975,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -1007,9 +1011,7 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 4,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g4,
 	},
 },
 {
@@ -1046,9 +1048,7 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 4,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g4,
 	},
 },
 {
@@ -1084,9 +1084,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 6,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g6,
+		attack = sfx_sounds.a6,
 	},
 },
 {
@@ -1122,9 +1121,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 6,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g6,
+		attack = sfx_sounds.a6,
 	},
 },
 {
@@ -1161,9 +1159,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -1200,9 +1195,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -1238,9 +1230,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 8,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g8,
+		attack = sfx_sounds.a8,
 	},
 },
 {
@@ -1276,9 +1267,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 7,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g7,
+		attack = sfx_sounds.a7,
 	},
 },
 {
@@ -1315,9 +1305,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 6,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g6,
+		attack = sfx_sounds.a6,
 	},
 },
 {
@@ -1354,9 +1343,7 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 4,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g4,
 	},
 },
 {
@@ -1394,9 +1381,7 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 4,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g4,
 	},
 },
 {
@@ -1433,9 +1418,7 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 4,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g4,
 	},
 },
 {
@@ -1470,9 +1453,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 6,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g6,
+		attack = sfx_sounds.a6,
 	},
 },
 {
@@ -1509,9 +1491,7 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 4,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g4,
 	},
 },
 {
@@ -1549,9 +1529,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 {
@@ -1589,9 +1566,8 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 1,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g1,
+		attack = sfx_sounds.a1,
 	},
 },
 {
@@ -1627,9 +1603,7 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = 4,
-		death = "none",
-		attack = "none",
+		greeting = sfx_sounds.g4,
 	},
 },
 {
@@ -1667,9 +1641,6 @@ droid_list {
 		},
 	},
 	sound = {
-		greeting = -1,
-		death = "none",
-		attack = "none",
 	},
 },
 }

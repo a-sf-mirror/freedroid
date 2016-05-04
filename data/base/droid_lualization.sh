@@ -31,9 +31,9 @@ BEGIN {
 	def_gfx_prefix = "";
 	def_gfx_muzzle = 30;
 	def_gfx_rotations = 0;
-	def_sound_greeting = 0;
+	def_sound_greeting = -1;
+	def_sound_attack = -1;
 	def_sound_death = "none";
-	def_sound_attack = "none";
 	print "droid_list {";
 }
 
@@ -67,8 +67,8 @@ END { print "}"; }
 		gfx_muzzle = def_gfx_muzzle;
 		gfx_rotations = def_gfx_rotations;
 		sound_greeting = def_sound_greeting;
-		sound_death = def_sound_death;
 		sound_attack = def_sound_attack;
+		sound_death = def_sound_death;
 		next;
 	}
 
@@ -110,9 +110,16 @@ END { print "}"; }
 				print "\t\t},";
 			print "\t},";
 			print "\tsound = {";
-				if (sound_greeting != def_sound_greeting) print "\t\tgreeting = "sound_greeting",";
-				if (sound_death != def_sound_death) print "\t\tdeath = "sound_death",";
-				if (sound_atttack != def_sound_attack) print "\t\tattack = "sound_attack",";
+				if (sound_greeting != def_sound_greeting) print "\t\tgreeting = sfx_sounds.g"sound_greeting",";
+				sound_attack = sound_greeting;
+				if (sound_attack != def_sound_attack) {
+				    if (sound_attack <= 2 || sound_attack >= 6) print "\t\tattack = sfx_sounds.a"sound_attack",";
+				}
+				if (sound_death != def_sound_death) {
+					if (sound_death == "\"death_sound_123.ogg\"") print "\t\tdeath = sfx_sounds.d123,";
+					if (sound_death == "\"death_sound_247.ogg\"") print "\t\tdeath = sfx_sounds.d247,";
+					if (sound_death == "\"death_sound_302.ogg\"") print "\t\tdeath = sfx_sounds.d302,";
+				}
 			print "\t},";
 		print "},";
 		next;
@@ -201,6 +208,50 @@ cat >droid_specs.lua <<EOT
 -- Radar 16 (Ultrasonic + IR. Use only on the most advanced droids. Caution to don't affect the game balance.)-
 -- Subsonic 6 (soundwaves/vibrations, see through walls, invisible if not moving) // TODO: To be implemented.
 ---------
+
+sfx_sounds = {
+	g0  = "effects/bot_sounds/First_Contact_Sound_0.ogg",
+	g1  = "effects/bot_sounds/First_Contact_Sound_1.ogg",
+	g2  = "effects/bot_sounds/First_Contact_Sound_2.ogg",
+	g3  = "effects/bot_sounds/First_Contact_Sound_3.ogg",
+	g4  = "effects/bot_sounds/First_Contact_Sound_4.ogg",
+	g5  = "effects/bot_sounds/First_Contact_Sound_5.ogg",
+	g6  = "effects/bot_sounds/First_Contact_Sound_6.ogg",
+	g7  = "effects/bot_sounds/First_Contact_Sound_7.ogg",
+	g8  = "effects/bot_sounds/First_Contact_Sound_8.ogg",
+	g9  = "effects/bot_sounds/First_Contact_Sound_9.ogg",
+	g10 = "effects/bot_sounds/First_Contact_Sound_10.ogg",
+	g11 = "effects/bot_sounds/First_Contact_Sound_11.ogg",
+	g12 = "effects/bot_sounds/First_Contact_Sound_12.ogg",
+	g13 = "effects/bot_sounds/First_Contact_Sound_13.ogg",
+	g14 = "effects/bot_sounds/First_Contact_Sound_14.ogg",
+	g15 = "effects/bot_sounds/First_Contact_Sound_15.ogg",
+	g16 = "effects/bot_sounds/First_Contact_Sound_16.ogg",
+	g17 = "effects/bot_sounds/First_Contact_Sound_17.ogg",
+	g18 = "effects/bot_sounds/First_Contact_Sound_18.ogg",
+
+	a0  = "effects/bot_sounds/Start_Attack_Sound_0.ogg",
+	a1  = "effects/bot_sounds/Start_Attack_Sound_1.ogg",
+	a2  = "effects/bot_sounds/Start_Attack_Sound_2.ogg",
+	a6  = "effects/bot_sounds/Start_Attack_Sound_0.ogg",
+	a7  = "effects/bot_sounds/Start_Attack_Sound_1.ogg",
+	a8  = "effects/bot_sounds/Start_Attack_Sound_2.ogg",
+	a9  = "effects/bot_sounds/Start_Attack_Sound_9.ogg",
+	a10 = "effects/bot_sounds/Start_Attack_Sound_10.ogg",
+	a11 = "effects/bot_sounds/Start_Attack_Sound_11.ogg",
+	a12 = "effects/bot_sounds/Start_Attack_Sound_12.ogg",
+	a13 = "effects/bot_sounds/Start_Attack_Sound_13.ogg",
+	a14 = "effects/bot_sounds/Start_Attack_Sound_14.ogg",
+	a15 = "effects/bot_sounds/Start_Attack_Sound_15.ogg",
+	a16 = "effects/bot_sounds/Start_Attack_Sound_16.ogg",
+	a17 = "effects/bot_sounds/Start_Attack_Sound_17.ogg",
+	a18 = "effects/bot_sounds/Start_Attack_Sound_18.ogg",
+
+	d123 = "effects/bot_sounds/death_sound_123.ogg",
+	d247 = "effects/bot_sounds/death_sound_247.ogg",
+	d302 = "effects/bot_sounds/death_sound_302.ogg",
+}
+
 EOT
 
 awk -f $AWKSCRIPT droid_archetypes.dat >> droid_specs.lua

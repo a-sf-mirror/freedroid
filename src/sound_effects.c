@@ -107,38 +107,11 @@ void Not_Enough_Dist_Sound(void)
  * to expect, by loading it freshly from disk and then forgetting about it
  * again.
  */
-void play_greeting_sound(enemy *ThisRobot)
+void play_droid_greeting_sound(enemy *ThisRobot)
 {
-	int SoundCode = Droidmap[ThisRobot->type].greeting_sound_type;
-	const char *sounds[] = {
-		"effects/bot_sounds/First_Contact_Sound_0.ogg",
-		"effects/bot_sounds/First_Contact_Sound_1.ogg",
-		"effects/bot_sounds/First_Contact_Sound_2.ogg",
-		"effects/bot_sounds/First_Contact_Sound_3.ogg",
-		"effects/bot_sounds/First_Contact_Sound_4.ogg",
-		"effects/bot_sounds/First_Contact_Sound_5.ogg",
-		"effects/bot_sounds/First_Contact_Sound_6.ogg",
-		"effects/bot_sounds/First_Contact_Sound_7.ogg",
-		"effects/bot_sounds/First_Contact_Sound_8.ogg",
-		"effects/bot_sounds/First_Contact_Sound_9.ogg",
-		"effects/bot_sounds/First_Contact_Sound_10.ogg",
-		"effects/bot_sounds/First_Contact_Sound_11.ogg",
-		"effects/bot_sounds/First_Contact_Sound_12.ogg",
-		"effects/bot_sounds/First_Contact_Sound_13.ogg",
-		"effects/bot_sounds/First_Contact_Sound_14.ogg",
-		"effects/bot_sounds/First_Contact_Sound_15.ogg",
-		"effects/bot_sounds/First_Contact_Sound_16.ogg",
-		"effects/bot_sounds/First_Contact_Sound_17.ogg",
-		"effects/bot_sounds/First_Contact_Sound_18.ogg",
-	};
-
-	// Ensure that SoundCode will index a sound in the sounds[] c string array.
-	if ((SoundCode < 0) || (SoundCode >= (sizeof(sounds) / sizeof(sounds[0])))) {
-		error_message(__FUNCTION__, "Unknown Greeting sound!!!", PLEASE_INFORM);
+	if (!Droidmap[ThisRobot->type].greeting_sound)
 		return;
-	}
-
-	play_sound_at_position(sounds[SoundCode], &Me.pos, &ThisRobot->pos);
+	play_sound_at_position(Droidmap[ThisRobot->type].greeting_sound /*sounds[SoundCode]*/, &Me.pos, &ThisRobot->pos);
 }
 
 /**
@@ -146,73 +119,33 @@ void play_greeting_sound(enemy *ThisRobot)
  * this will be done only for fully animated bots, since the other bots
  * just explode and that has a sound of it's own.
  */
-void play_death_sound_for_bot(enemy * ThisRobot)
+void play_droid_death_sound(enemy * ThisRobot)
 {
-	char filename[5000];
-
-	// If the keyword 'none' for the death sound file name is encountered,
-	// nothing will be done...
-	//.
-	if (!strcmp(Droidmap[ThisRobot->type].droid_death_sound_file_name, "none"))
+	if (!Droidmap[ThisRobot->type].death_sound)
 		return;
-
-	// Now we play the given death sound, looking for the file in the
-	// appropriate sound folder.
-	//
-	strcpy(filename, "effects/bot_sounds/");
-	strcat(filename, Droidmap[ThisRobot->type].droid_death_sound_file_name);
-	play_sound_at_position(filename, &Me.pos, &ThisRobot->pos);
+	play_sound_at_position(Droidmap[ThisRobot->type].death_sound, &Me.pos, &ThisRobot->pos);
 }
 
 /**
  * Whenever a bot starts to attack the Tux, he'll issue the attack cry.
  * This is done here, and no respect to loading time issues for now...
  */
-void play_enter_attack_run_state_sound(enemy *ThisRobot)
+void play_droid_attack_sound(enemy *ThisRobot)
 {
-	int SoundCode;
-	const char *sounds[] = {
-		"effects/bot_sounds/Start_Attack_Sound_0.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_1.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_2.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_9.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_10.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_11.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_12.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_13.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_14.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_15.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_16.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_17.ogg",
-		"effects/bot_sounds/Start_Attack_Sound_18.ogg",
-	};
+	// either we output a standard sound, either we output a special voice sample such as "drill eyes"
 
 	if (MyRandom(5)) {
-		// get sound code
-		SoundCode = Droidmap[ThisRobot->type].greeting_sound_type;
 
-		// sound codes are [0, 2]U[9, 18]
-		// this makes it so the index will be [0, number_of_sounds - 1]
-		if (SoundCode > 2)
-			SoundCode -= 6;
-
-		if (SoundCode < 0) {
+		if (!Droidmap[ThisRobot->type].attack_sound)
 			return;
-		}
+		play_sound_at_position(Droidmap[ThisRobot->type].attack_sound, &Me.pos, &ThisRobot->pos);
 
-		// if index is higher than sound count, display debug message then return
-		if (SoundCode > (sizeof(sounds) / sizeof(sounds[0]) - 1)) {
-			DebugPrintf(0, "\nUnknown Start Attack sound!!! NOT TERMINATING CAUSE OF THIS...");
-			return;
-		}
+	} else {
 
-		play_sound_at_position(sounds[SoundCode], &Me.pos, &ThisRobot->pos);
-
-	} else {		//either we output a standard sound, either we output a special voice sample such as "drill eyes"
-		char sample_path[1024] = "effects/bot_sounds/voice_samples/";
-		sprintf(sample_path + strlen(sample_path), "%d.ogg", MyRandom(46) + 1);
-		//printf("Playing %s\n", sample_path);
+		char sample_path[1024];
+		sprintf(sample_path, "effects/bot_sounds/voice_samples/%d.ogg", MyRandom(61) + 1);
 		play_sound_at_position(sample_path, &Me.pos, &ThisRobot->pos);
+
 	}
 }
 

@@ -1021,7 +1021,7 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 
 	target->animation_phase = ((float)first_death_animation_image[Droidmap[target->type].individual_shape_nr]) - 1 + 0.1;
 	target->animation_type = DEATH_ANIMATION;
-	play_death_sound_for_bot(target);
+	play_droid_death_sound(target);
 
 	enemy_drop_treasure(target);
 
@@ -1589,8 +1589,8 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 	/* Do greet sound if not already done */
 	if (!ThisRobot->has_greeted_influencer) {
 		ThisRobot->has_greeted_influencer = TRUE;
-		if (Droidmap[ThisRobot->type].greeting_sound_type != (-1)) {
-			play_greeting_sound(ThisRobot);
+		if (Droidmap[ThisRobot->type].greeting_sound) {
+			play_droid_greeting_sound(ThisRobot);
 		}
 	}
 
@@ -1609,8 +1609,8 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 		SetRestOfGroupToState(ThisRobot, ATTACK);
 		ThisRobot->combat_state = ATTACK;
 		ThisRobot->last_combat_step = ATTACK_MOVE_RATE + 1.0;	// So that attack will start immediately
-		if (Droidmap[ThisRobot->type].greeting_sound_type != (-1)) {
-			play_enter_attack_run_state_sound(ThisRobot);
+		if (Droidmap[ThisRobot->type].attack_sound) {
+			play_droid_attack_sound(ThisRobot);
 		}
 	}
 }

@@ -399,9 +399,9 @@ typedef struct droidspec {
 	int  portrait_rotations;
 
 	// Sounds
-	short greeting_sound_type;	// which sample to play in order to 'greet' the influencer?
-	char *droid_death_sound_file_name;
-	char *droid_attack_animation_sound_file_name;
+	char *greeting_sound;	// which sample to play in order to 'greet' the influencer?
+	char *attack_sound;
+	char *death_sound;
 } droidspec;
 
 typedef char s_char; // Used for pointer to static string which are not to be saved
