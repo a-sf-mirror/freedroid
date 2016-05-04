@@ -420,7 +420,7 @@ static void fill_structure_from_table(lua_State *L, struct data_spec *data_specs
  * \param datasize   Size (in bytes) of an element of the dynarray
  * \param extract_cb Callback function, called to extract an element from the Lua stack
  */
-void fill_dynarray_from_table(lua_State *L, struct dynarray *array, int datasize, void (*extract_cb)(lua_State *, void *))
+void fill_dynarray_from_table(lua_State *L, struct dynarray *array, int datasize, int (*extract_cb)(lua_State *, void *))
 {
 	if (lua_type(L, -1) != LUA_TTABLE) {
 		error_message(__FUNCTION__, "A Lua table is expected, but was not found", PLEASE_INFORM | IS_FATAL);
@@ -443,8 +443,8 @@ void fill_dynarray_from_table(lua_State *L, struct dynarray *array, int datasize
 	// add it to the dynarray.
 	lua_pushnil(L);
 	while (lua_next(L, -2) != 0) {
-		extract_cb(L, data);
-		dynarray_add(array, data, datasize);
+		if (extract_cb(L, data))
+			dynarray_add(array, data, datasize);
 		lua_pop(L, 1);
 	}
 	lua_pop(L, 1);
@@ -803,7 +803,7 @@ static int lua_leveleditor_obstacle_category_ctor(lua_State *L)
 /*
  * Get one bullet from the top of the Lua stack
  */
-static void get_one_bullet(lua_State *L, void *data)
+static int get_one_bullet(lua_State *L, void *data)
 {
 	struct bulletspec *bullet = (struct bulletspec *)data;
 	char *bullet_blast_type;
@@ -821,6 +821,8 @@ static void get_one_bullet(lua_State *L, void *data)
 
 	bullet->blast_type = get_blast_type_by_name(bullet_blast_type);
 	free(bullet_blast_type);
+
+	return TRUE;
 }
 
 static int lua_bullet_list_ctor(lua_State *L)
@@ -1020,7 +1022,7 @@ static int lua_npc_shop_ctor(lua_State *L)
  * \brief
  * \param L Lua state.
  */
-static void get_one_item(lua_State *L, void *data)
+static int get_one_item(lua_State *L, void *data)
 {
 	struct itemspec *item = (struct itemspec *)data;
 	char *item_slot;
@@ -1076,7 +1078,9 @@ static void get_one_item(lua_State *L, void *data)
 	fill_structure_from_table(L, data_specs);
 
 	if (!item->id) {
-		error_message(__FUNCTION__, "No id for item. The id must be given.", PLEASE_INFORM);
+		error_message(__FUNCTION__, "No id for item (name: %s). The id must be given. We ignore it.", PLEASE_INFORM,
+		              item->name ? item->name : "none given");
+		return FALSE;
 	}
 
 	// Set the item slot
@@ -1140,6 +1144,8 @@ static void get_one_item(lua_State *L, void *data)
 	}
 
 	free(item_bullet_type);
+
+	return TRUE;
 }
 
 static int lua_item_list_ctor(lua_State *L)
@@ -1158,7 +1164,7 @@ static int lua_item_list_ctor(lua_State *L)
 	return 0;
 }
 
-static void get_one_droid(lua_State *L, void *data)
+static int get_one_droid(lua_State *L, void *data)
 {
 	struct droidspec *droid = (struct droidspec *)data;
 	char *weapon_name;
@@ -1208,7 +1214,9 @@ static void get_one_droid(lua_State *L, void *data)
 	fill_structure_from_table(L, data_specs);
 
 	if (!droid->droidname) {
-		error_message(__FUNCTION__, "No name for droid. The name must be given.", PLEASE_INFORM);
+		error_message(__FUNCTION__, "No name for droid (desc: %s). The name must be given. We ignore it.", PLEASE_INFORM,
+		              (droid->default_short_description ? droid->default_short_description : "none given"));
+		return FALSE;
 	}
 
 	droid->sensor_id = get_sensor_id_by_name(sensor_name);
@@ -1229,6 +1237,8 @@ static void get_one_droid(lua_State *L, void *data)
 			break;
 		}
 	}
+
+	return TRUE;
 }
 
 static int lua_droid_list_ctor(lua_State *L)
@@ -1259,7 +1269,7 @@ static int lua_droid_list_ctor(lua_State *L)
 	return 0;
 }
 
-static void get_one_lang(lua_State *L, void *data)
+static int get_one_lang(lua_State *L, void *data)
 {
 	struct langspec *lang = (struct langspec *)data;
 
@@ -1270,6 +1280,8 @@ static void get_one_lang(lua_State *L, void *data)
 	};
 
 	fill_structure_from_table(L, data_specs);
+
+	return TRUE;
 }
 
 static int lua_languages_ctor(lua_State *L)
@@ -1279,7 +1291,7 @@ static int lua_languages_ctor(lua_State *L)
 	return 0;
 }
 
-static void get_one_codeset(lua_State *L, void *data)
+static int get_one_codeset(lua_State *L, void *data)
 {
 	struct codeset *cs = (struct codeset *)data;
 
@@ -1290,6 +1302,8 @@ static void get_one_codeset(lua_State *L, void *data)
 	};
 
 	fill_structure_from_table(L, data_specs);
+
+	return TRUE;
 }
 
 static int lua_codesets_ctor(lua_State *L)
@@ -1299,7 +1313,7 @@ static int lua_codesets_ctor(lua_State *L)
 	return 0;
 }
 
-static void get_one_difficulty(lua_State *L, void *data)
+static int get_one_difficulty(lua_State *L, void *data)
 {
 	struct difficulty *diff = (struct difficulty *)data;
 
@@ -1314,6 +1328,8 @@ static void get_one_difficulty(lua_State *L, void *data)
 	};
 
 	fill_structure_from_table(L, data_specs);
+
+	return TRUE;
 }
 
 static int lua_difficulties_ctor(lua_State *L)
@@ -1345,7 +1361,7 @@ static int lua_title_screen_ctor(lua_State *L)
  * \brief Skill constructor. Called when a 'skill' object is read in a Lua config file.
  * \param L Lua state.
  */
-static void get_one_skill(lua_State *L, void *data)
+static int get_one_skill(lua_State *L, void *data)
 {
 	struct spell_skill_spec *skill = (struct spell_skill_spec *)data;
 	char *skill_target;
@@ -1405,6 +1421,8 @@ static void get_one_skill(lua_State *L, void *data)
 	free(skill_damage);
 
 	skill->icon_surface = (struct image)EMPTY_IMAGE;
+
+	return TRUE;
 }
 
 static int lua_skill_list_ctor(lua_State *L)
