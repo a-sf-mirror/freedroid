@@ -1059,31 +1059,29 @@ void update_frames_displayed(void)
 
 /**
  * This function is used to generate an integer in range of all
- * numbers from 0 to UpperBound.
+ * numbers from 0 to upper_bound.
  */
-int MyRandom(int UpperBound)
+int MyRandom(int upper_bound)
 {
-
-	if (!UpperBound)
+	if (upper_bound == 0)
 		return 0;
 
 	float tmp;
-	int PureRandom;
+	int pure_random;
 	int dice_val;		/* the result in [0, UpperBound] */
 
-	PureRandom = rand();
-	tmp = 1.0 * PureRandom / RAND_MAX;	/* random number in [0;1] */
+	pure_random = rand();
+	tmp = 1.0 * pure_random / RAND_MAX;	/* random number in [0;1] */
 
 	/* 
 	 * we always round OFF for the resulting int, therefore
 	 * we first add 0.99999 to make sure that UpperBound has
 	 * roughly the same probablity as the other numbers 
 	 */
-	dice_val = (int)(tmp * (1.0 * UpperBound + 0.99999));
+	dice_val = (int)(tmp * (1.0 * upper_bound + 0.99999));
 
 	return (dice_val);
-
-};				// int MyRandom ( int UpperBound ) 
+}
 
 /**
  * This function teleports the influencer to a new position on the
