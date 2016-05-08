@@ -402,6 +402,10 @@ typedef struct droidspec {
 	char *greeting_sound;	// which sample to play in order to 'greet' the influencer?
 	char *attack_sound;
 	char *death_sound;
+	char *voice_samples_path;
+	int   voice_samples_first;
+	int   voice_samples_last;
+	int   voice_samples_probability;
 } droidspec;
 
 typedef char s_char; // Used for pointer to static string which are not to be saved

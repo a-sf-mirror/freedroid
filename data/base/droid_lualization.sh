@@ -120,6 +120,12 @@ END { print "}"; }
 					if (sound_death == "\"death_sound_247.ogg\"") print "\t\tdeath = sfx_sounds.d247,";
 					if (sound_death == "\"death_sound_302.ogg\"") print "\t\tdeath = sfx_sounds.d302,";
 				}
+				print "\t\tvoice_samples = {";
+					print "\t\t\tpath = sfx_sounds.voice_samples.path,";
+					print "\t\t\tfirst = sfx_sounds.voice_samples.first,";
+					print "\t\t\tlast = sfx_sounds.voice_samples.last,";
+					print "\t\t\tprobability = sfx_sounds.voice_samples.probability,";
+				print "\t\t},";
 			print "\t},";
 		print "},";
 		next;
@@ -250,6 +256,13 @@ sfx_sounds = {
 	d123 = "effects/bot_sounds/death_sound_123.ogg",
 	d247 = "effects/bot_sounds/death_sound_247.ogg",
 	d302 = "effects/bot_sounds/death_sound_302.ogg",
+
+	voice_samples = {
+		path = "effects/bot_sounds/voice_samples",
+		first = 1,
+		last = 62,
+		probability = 20,
+	},
 }
 
 EOT

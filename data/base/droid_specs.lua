@@ -83,6 +83,13 @@ sfx_sounds = {
 	d123 = "effects/bot_sounds/death_sound_123.ogg",
 	d247 = "effects/bot_sounds/death_sound_247.ogg",
 	d302 = "effects/bot_sounds/death_sound_302.ogg",
+
+	voice_samples = {
+		path = "effects/bot_sounds/voice_samples",
+		first = 1,
+		last = 62,
+		probability = 20,
+	},
 }
 
 droid_list {
@@ -115,6 +122,12 @@ droid_list {
 		greeting = sfx_sounds.g0,
 		attack = sfx_sounds.a0,
 		death = sfx_sounds.d123,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -147,6 +160,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g1,
 		attack = sfx_sounds.a1,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -183,6 +202,12 @@ droid_list {
 		greeting = sfx_sounds.g9,
 		attack = sfx_sounds.a9,
 		death = sfx_sounds.d247,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -218,6 +243,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g10,
 		attack = sfx_sounds.a10,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -252,6 +283,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g11,
 		attack = sfx_sounds.a11,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -289,6 +326,12 @@ droid_list {
 		greeting = sfx_sounds.g12,
 		attack = sfx_sounds.a12,
 		death = sfx_sounds.d302,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -325,6 +368,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g13,
 		attack = sfx_sounds.a13,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -360,6 +409,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g14,
 		attack = sfx_sounds.a14,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -396,6 +451,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g15,
 		attack = sfx_sounds.a15,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -432,6 +493,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g16,
 		attack = sfx_sounds.a16,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -468,6 +535,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g17,
 		attack = sfx_sounds.a17,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -502,6 +575,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g11,
 		attack = sfx_sounds.a11,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -539,6 +618,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g18,
 		attack = sfx_sounds.a18,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -574,6 +659,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -612,6 +703,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g15,
 		attack = sfx_sounds.a15,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -648,6 +745,12 @@ droid_list {
 	},
 	sound = {
 		greeting = sfx_sounds.g5,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -684,6 +787,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -717,6 +826,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -753,6 +868,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -790,6 +911,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -826,6 +953,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -863,6 +996,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -900,6 +1039,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -938,6 +1083,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g2,
 		attack = sfx_sounds.a2,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -975,6 +1126,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1012,6 +1169,12 @@ droid_list {
 	},
 	sound = {
 		greeting = sfx_sounds.g4,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1049,6 +1212,12 @@ droid_list {
 	},
 	sound = {
 		greeting = sfx_sounds.g4,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1086,6 +1255,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g6,
 		attack = sfx_sounds.a6,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1123,6 +1298,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g6,
 		attack = sfx_sounds.a6,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1159,6 +1340,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1195,6 +1382,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1232,6 +1425,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g8,
 		attack = sfx_sounds.a8,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1269,6 +1468,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g7,
 		attack = sfx_sounds.a7,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1307,6 +1512,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g6,
 		attack = sfx_sounds.a6,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1344,6 +1555,12 @@ droid_list {
 	},
 	sound = {
 		greeting = sfx_sounds.g4,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1382,6 +1599,12 @@ droid_list {
 	},
 	sound = {
 		greeting = sfx_sounds.g4,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1419,6 +1642,12 @@ droid_list {
 	},
 	sound = {
 		greeting = sfx_sounds.g4,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1455,6 +1684,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g6,
 		attack = sfx_sounds.a6,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1492,6 +1727,12 @@ droid_list {
 	},
 	sound = {
 		greeting = sfx_sounds.g4,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1529,6 +1770,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1568,6 +1815,12 @@ droid_list {
 	sound = {
 		greeting = sfx_sounds.g1,
 		attack = sfx_sounds.a1,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1604,6 +1857,12 @@ droid_list {
 	},
 	sound = {
 		greeting = sfx_sounds.g4,
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 {
@@ -1641,6 +1900,12 @@ droid_list {
 		},
 	},
 	sound = {
+		voice_samples = {
+			path = sfx_sounds.voice_samples.path,
+			first = sfx_sounds.voice_samples.first,
+			last = sfx_sounds.voice_samples.last,
+			probability = sfx_sounds.voice_samples.probability,
+		},
 	},
 },
 }

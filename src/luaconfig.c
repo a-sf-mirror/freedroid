@@ -1208,6 +1208,10 @@ static int get_one_droid(lua_State *L, void *data)
 		{"sound.greeting",                   NULL,       STRING_TYPE, &droid->greeting_sound                  },
 		{"sound.attack",                     NULL,       STRING_TYPE, &droid->attack_sound                    },
 		{"sound.death",                      NULL,       STRING_TYPE, &droid->death_sound                     },
+		{"sound.voice_samples.path",         NULL,       STRING_TYPE, &droid->voice_samples_path              },
+		{"sound.voice_samples.first",        "-1",       INT_TYPE,    &droid->voice_samples_first             },
+		{"sound.voice_samples.last",         "-1",       INT_TYPE,    &droid->voice_samples_last              },
+		{"sound.voice_samples.probability",  "20",       INT_TYPE,    &droid->voice_samples_probability       },
 		{ NULL, NULL, 0, 0 }
 	};
 
@@ -1236,6 +1240,22 @@ static int get_one_droid(lua_State *L, void *data)
 			droid->individual_shape_nr = i;
 			break;
 		}
+	}
+
+	if (droid->voice_samples_first == -1 || droid->voice_samples_last == -1) {
+		free(droid->voice_samples_path);
+		droid->voice_samples_path = NULL;
+	}
+
+	if (droid->voice_samples_first > droid->voice_samples_last) {
+		free(droid->voice_samples_path);
+		droid->voice_samples_path = NULL;
+	}
+
+	if (droid->voice_samples_probability < 0 || droid->voice_samples_probability > 100) {
+		error_message(__FUNCTION__, "Wrong voice samples probability: %d. It must be in [0, 100]. We set it to 20.", PLEASE_INFORM,
+		              droid->voice_samples_probability);
+		droid->voice_samples_probability = 20;
 	}
 
 	return TRUE;

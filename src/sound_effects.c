@@ -128,22 +128,24 @@ void play_droid_death_sound(enemy * ThisRobot)
 
 /**
  * Whenever a bot starts to attack the Tux, he'll issue the attack cry.
+ * Either we output a standard sound, either we output a special voice sample such as "drill eyes"
  * This is done here, and no respect to loading time issues for now...
  */
 void play_droid_attack_sound(enemy *ThisRobot)
 {
-	// either we output a standard sound, either we output a special voice sample such as "drill eyes"
+	char *path = Droidmap[ThisRobot->type].voice_samples_path;
+	int first = Droidmap[ThisRobot->type].voice_samples_first;
+	int last = Droidmap[ThisRobot->type].voice_samples_last;
+	int probability = Droidmap[ThisRobot->type].voice_samples_probability;
 
-	if (MyRandom(5)) {
-
-		if (!Droidmap[ThisRobot->type].attack_sound)
-			return;
+	if (!path || (probability == 0) || (MyRandom(100) > probability)) {
+		// Play the attack sound if the random draw is high enough, or if no voice samples are set
 		play_sound_at_position(Droidmap[ThisRobot->type].attack_sound, &Me.pos, &ThisRobot->pos);
 
 	} else {
 
 		char sample_path[1024];
-		sprintf(sample_path, "effects/bot_sounds/voice_samples/%d.ogg", MyRandom(61) + 1);
+		sprintf(sample_path, "%s/%d.ogg", path, MyRandom(last - first) + first);
 		play_sound_at_position(sample_path, &Me.pos, &ThisRobot->pos);
 
 	}
