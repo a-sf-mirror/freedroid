@@ -20,8 +20,8 @@ BEGIN {
 	def_ab_time_eyeing = 1.0;
 	def_ab_recover_time = 1.0;
 	def_ab_xp_reward = 40;
-	def_eq_weapon = "NPC Hand to hand weapon";
-	def_eq_sensor = "spectral";
+	def_eq_weapon = "\"NPC Hand to hand weapon\"";
+	def_eq_sensor = "\"spectral\"";
 	def_drop_class = -1;
 	def_drop_plasma = 0;
 	def_drop_superconductors = 0;
@@ -30,10 +30,10 @@ BEGIN {
 	def_drop_tachyon = 0;
 	def_gfx_prefix = "";
 	def_gfx_muzzle = 30;
-	def_gfx_rotations = 0;
+	def_gfx_rotations = "\"NONE_AVAILABLE_YET\"";
 	def_sound_greeting = -1;
 	def_sound_attack = -1;
-	def_sound_death = "none";
+	def_sound_death = "\"none\"";
 	print "droid_list {";
 }
 
@@ -103,10 +103,10 @@ END { print "}"; }
 				if (drop_tachyon != def_drop_tachyon) print "\t\ttachyon_condensators = "drop_tachyon",";
 			print "\t},";
 			print "\tgfx = {";
-				if (gfx_prefix != def_gfx_prefix) print "\t\tprefix = "gfx_prefix",";
+				if (gfx_prefix != def_gfx_prefix) print "\t\tprefix = \"droids/"gfx_prefix"\",";
 				if (gfx_muzzle != def_gfx_muzzle) print "\t\tgun_muzzle_height = "gfx_muzzle",";
 				print "\t\tanimation = {";
-					if (gfx_rotations != def_gfx_rotations) print "\t\t\tportrait_rotations = "gfx_rotations",";
+					if (gfx_rotations != def_gfx_rotations) print "\t\t\tportrait_rotations = 32,";
 				print "\t\t},";
 			print "\t},";
 			print "\tsound = {";
@@ -161,9 +161,9 @@ END { print "}"; }
 /^Percent to drop Antimatter-Matter Converter/ { drop_antimatter = \$2; next; }
 /^Percent to drop Entropy Inverter/ { drop_entropy = \$2; next; }
 /^Percent to drop Tachyon Condensator/ { drop_tachyon = \$2; next; }
-/^Filename prefix for graphics/ { gfx_prefix = \$2; next; }
+/^Filename prefix for graphics/ { gsub("\"", "", \$2); gfx_prefix = \$2; next; }
 /^Gun muzzle offset/ { gfx_muzzle = \$2; next; }
-/^Droid uses portrait rotation series with prefix/ { gfx_rotations = 1; next; }
+/^Droid uses portrait rotation series with prefix/ { gfx_rotations = \$2; next; }
 /^Greeting Sound number/ { sound_greeting = \$2; next; }
 /^Death sound file name/ { sound_death = \$2; next; }
 /^Attack animation sound file name/ { sound_attack = \$2; next; }

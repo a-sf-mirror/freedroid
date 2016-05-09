@@ -26,7 +26,7 @@
 *** Start of Enemy Surfaces Section: ***
 
 ** Start of new surface specification subsection **
-PrefixToFilename="123"
+PrefixToFilename="droids/123"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=7
 droid_gethit_animation_speed_factor=8
@@ -35,7 +35,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="139"
+PrefixToFilename="droids/139"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=8
 droid_gethit_animation_speed_factor=8
@@ -44,7 +44,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="247"
+PrefixToFilename="droids/247"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=14
 droid_gethit_animation_speed_factor=8
@@ -53,7 +53,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="249"
+PrefixToFilename="droids/249"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=8
 droid_gethit_animation_speed_factor=8
@@ -62,7 +62,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="296"
+PrefixToFilename="droids/296"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -71,7 +71,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="302"
+PrefixToFilename="droids/302"
 droid_walk_animation_speed_factor=15
 droid_attack_animation_speed_factor=15
 droid_gethit_animation_speed_factor=15
@@ -80,7 +80,7 @@ droid_stand_animation_speed_factor=15
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="329"
+PrefixToFilename="droids/329"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=8
 droid_gethit_animation_speed_factor=8
@@ -89,7 +89,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="420"
+PrefixToFilename="droids/420"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -98,7 +98,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="476"
+PrefixToFilename="droids/476"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -107,7 +107,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="493"
+PrefixToFilename="droids/493"
 droid_walk_animation_speed_factor=6
 droid_attack_animation_speed_factor=30
 droid_gethit_animation_speed_factor=8
@@ -116,7 +116,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="516"
+PrefixToFilename="droids/516"
 droid_walk_animation_speed_factor=10
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=7
@@ -125,7 +125,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="571"
+PrefixToFilename="droids/571"
 droid_walk_animation_speed_factor=10
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=7
@@ -134,7 +134,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="598"
+PrefixToFilename="droids/598"
 droid_walk_animation_speed_factor=10
 droid_attack_animation_speed_factor=8
 droid_gethit_animation_speed_factor=8
@@ -143,7 +143,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="614"
+PrefixToFilename="droids/614"
 droid_walk_animation_speed_factor=25
 droid_attack_animation_speed_factor=23
 droid_gethit_animation_speed_factor=18
@@ -152,7 +152,7 @@ droid_stand_animation_speed_factor=18
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="615"
+PrefixToFilename="droids/615"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -161,7 +161,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="629"
+PrefixToFilename="droids/629"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -170,7 +170,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="711"
+PrefixToFilename="droids/711"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -179,7 +179,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="742"
+PrefixToFilename="droids/742"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -188,7 +188,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="751"
+PrefixToFilename="droids/751"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -197,7 +197,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="821"
+PrefixToFilename="droids/821"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -206,7 +206,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="834"
+PrefixToFilename="droids/834"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -215,7 +215,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="883"
+PrefixToFilename="droids/883"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=5
@@ -224,7 +224,7 @@ droid_stand_animation_speed_factor=8
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="999"
+PrefixToFilename="droids/999"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=7
@@ -233,7 +233,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="professor"
+PrefixToFilename="droids/professor"
 droid_walk_animation_speed_factor=8
 droid_attack_animation_speed_factor=5
 droid_gethit_animation_speed_factor=5
@@ -242,7 +242,7 @@ droid_stand_animation_speed_factor=2
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="red_guard"
+PrefixToFilename="droids/red_guard"
 droid_walk_animation_speed_factor=8
 droid_attack_animation_speed_factor=8
 droid_gethit_animation_speed_factor=8
@@ -251,7 +251,7 @@ droid_stand_animation_speed_factor=2
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="hot_mama"
+PrefixToFilename="droids/hot_mama"
 droid_walk_animation_speed_factor=6
 droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=5
@@ -260,7 +260,7 @@ droid_stand_animation_speed_factor=1
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="female_scientist"
+PrefixToFilename="droids/female_scientist"
 droid_walk_animation_speed_factor=7
 droid_attack_animation_speed_factor=11
 droid_gethit_animation_speed_factor=9
@@ -269,7 +269,7 @@ droid_stand_animation_speed_factor=1
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="default_male"
+PrefixToFilename="droids/default_male"
 droid_walk_animation_speed_factor=14
 droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=8
@@ -278,7 +278,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="blue_guard"
+PrefixToFilename="droids/blue_guard"
 droid_walk_animation_speed_factor=14
 droid_attack_animation_speed_factor=8
 droid_gethit_animation_speed_factor=8
@@ -287,7 +287,7 @@ droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="cook"
+PrefixToFilename="droids/cook"
 droid_walk_animation_speed_factor=6
 droid_attack_animation_speed_factor=13
 droid_gethit_animation_speed_factor=8
@@ -296,7 +296,7 @@ droid_stand_animation_speed_factor=1
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="kevin"
+PrefixToFilename="droids/kevin"
 droid_walk_animation_speed_factor=8
 droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=10
@@ -305,7 +305,7 @@ droid_stand_animation_speed_factor=6
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="jasmine"
+PrefixToFilename="droids/jasmine"
 droid_walk_animation_speed_factor=8
 droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=10
@@ -314,7 +314,7 @@ droid_stand_animation_speed_factor=6
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="bartender"
+PrefixToFilename="droids/bartender"
 droid_walk_animation_speed_factor=4
 droid_attack_animation_speed_factor=7
 droid_gethit_animation_speed_factor=10
@@ -323,7 +323,7 @@ droid_stand_animation_speed_factor=6
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="harvester"
+PrefixToFilename="droids/harvester"
 droid_walk_animation_speed_factor=8
 droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=10
@@ -332,7 +332,7 @@ droid_stand_animation_speed_factor=6
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="female_hunter"
+PrefixToFilename="droids/female_hunter"
 droid_walk_animation_speed_factor=12
 droid_attack_animation_speed_factor=12
 droid_gethit_animation_speed_factor=8
@@ -341,7 +341,7 @@ droid_stand_animation_speed_factor=1
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="terminal"
+PrefixToFilename="droids/terminal"
 droid_walk_animation_speed_factor=10
 droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=10
@@ -350,7 +350,7 @@ droid_stand_animation_speed_factor=6
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="lawnmower"
+PrefixToFilename="droids/lawnmower"
 droid_walk_animation_speed_factor=14
 droid_attack_animation_speed_factor=14
 droid_gethit_animation_speed_factor=12
@@ -359,7 +359,7 @@ droid_stand_animation_speed_factor=9
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="autogun"
+PrefixToFilename="droids/autogun"
 droid_walk_animation_speed_factor=1
 droid_attack_animation_speed_factor=24
 droid_gethit_animation_speed_factor=23
@@ -368,7 +368,7 @@ droid_stand_animation_speed_factor=1
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="arthur"
+PrefixToFilename="droids/arthur"
 droid_walk_animation_speed_factor=17
 droid_attack_animation_speed_factor=15
 droid_gethit_animation_speed_factor=15
@@ -377,7 +377,7 @@ droid_stand_animation_speed_factor=15
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
-PrefixToFilename="terminal_secure"
+PrefixToFilename="droids/terminal_secure"
 droid_walk_animation_speed_factor=10
 droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=10

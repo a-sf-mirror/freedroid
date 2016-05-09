@@ -1196,7 +1196,7 @@ static int get_one_droid(lua_State *L, void *data)
 		{"drop_draw.entropy_inverters",      "0",        SHORT_TYPE,  &droid->amount_of_entropy_inverters     },
 		{"drop_draw.tachyon_condensators",   "0",        SHORT_TYPE,  &droid->amount_of_tachyon_condensators  },
 
-		{"gfx.prefix",                       NULL,       STRING_TYPE, &droid->img_prefix                      },
+		{"gfx.prefix",                       NULL,       STRING_TYPE, &droid->gfx_prefix                      },
 		{"gfx.gun_muzzle_height",            "30",       INT_TYPE,    &droid->gun_muzzle_height               },
 		{"gfx.animation.portrait_rotations", "0",        INT_TYPE,    &droid->portrait_rotations              },
 //		{"gfx.animation.stand",              "5",        INT_TYPE,    &droid_stand_animation_speed_factor     },
@@ -1236,7 +1236,7 @@ static int get_one_droid(lua_State *L, void *data)
 	droid->individual_shape_nr = 0;
 	int i;
 	for (i=0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++) {
-		if (PrefixToFilename[i] && !strcmp(droid->img_prefix, PrefixToFilename[i])){
+		if (PrefixToFilename[i] && !strcmp(droid->gfx_prefix, PrefixToFilename[i])){
 			droid->individual_shape_nr = i;
 			break;
 		}

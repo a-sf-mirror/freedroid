@@ -119,8 +119,8 @@ static void load_enemy_graphics(int enemy_model_nr)
 	char atlas_filename[4096];
 	char atlas_directory[4096];
 
-	sprintf(atlas_filename, "droids/%s/atlas.txt", PrefixToFilename[enemy_model_nr]);
-	sprintf(atlas_directory, "droids/%s/", PrefixToFilename[enemy_model_nr]);
+	sprintf(atlas_filename, "%s/atlas.txt", PrefixToFilename[enemy_model_nr]);
+	sprintf(atlas_directory, "%s/", PrefixToFilename[enemy_model_nr]);
 
 	// The information about cycle length needs to be entered into the
 	// corresponding arrays (usually initialized in blocks.c, for those
@@ -555,8 +555,7 @@ static void load_droid_portrait(int type)
 {
 	char fpath[1024];
 
-	strcpy(fpath, "droids/");
-	strcat(fpath, PrefixToFilename[Droidmap[type].individual_shape_nr]);
+	strcpy(fpath, PrefixToFilename[Droidmap[type].individual_shape_nr]);
 	strcat(fpath, "/portrait.png");
 
 	load_image(&chat_portrait_of_droid[type], GRAPHICS_DIR, fpath, NO_MOD);

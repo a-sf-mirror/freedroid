@@ -113,9 +113,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "123",
+		prefix = "droids/123",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -152,9 +152,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "139",
+		prefix = "droids/139",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -193,9 +193,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "247",
+		prefix = "droids/247",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -235,9 +235,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "249",
+		prefix = "droids/249",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -275,9 +275,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "296",
+		prefix = "droids/296",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -317,9 +317,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "302",
+		prefix = "droids/302",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -360,9 +360,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "329",
+		prefix = "droids/329",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -401,9 +401,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "420",
+		prefix = "droids/420",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -443,9 +443,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "476",
+		prefix = "droids/476",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -485,9 +485,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "493",
+		prefix = "droids/493",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -527,9 +527,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "516",
+		prefix = "droids/516",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -567,9 +567,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "harvester",
+		prefix = "droids/harvester",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -610,9 +610,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "571",
+		prefix = "droids/571",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -653,9 +653,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "598",
+		prefix = "droids/598",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -695,9 +695,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "lawnmower",
+		prefix = "droids/lawnmower",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -738,9 +738,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "614",
+		prefix = "droids/614",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -781,9 +781,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "615",
+		prefix = "droids/615",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -820,9 +820,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "629",
+		prefix = "droids/629",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -862,9 +862,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "711",
+		prefix = "droids/711",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -905,9 +905,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "742",
+		prefix = "droids/742",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -947,9 +947,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "751",
+		prefix = "droids/751",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -990,9 +990,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "821",
+		prefix = "droids/821",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -1033,9 +1033,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "834",
+		prefix = "droids/834",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -1075,9 +1075,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "883",
+		prefix = "droids/883",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -1120,9 +1120,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "999",
+		prefix = "droids/999",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -1150,7 +1150,6 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1162,9 +1161,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "professor",
+		prefix = "droids/professor",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1205,9 +1203,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "professor",
+		prefix = "droids/professor",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1247,9 +1244,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "red_guard",
+		prefix = "droids/red_guard",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1290,9 +1286,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "red_guard",
+		prefix = "droids/red_guard",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1322,7 +1317,6 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1334,9 +1328,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "hot_mama",
+		prefix = "droids/hot_mama",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1364,7 +1357,6 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1376,9 +1368,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "female_scientist",
+		prefix = "droids/female_scientist",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1405,7 +1396,6 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1417,9 +1407,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "default_male",
+		prefix = "droids/default_male",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1460,9 +1449,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "blue_guard",
+		prefix = "droids/blue_guard",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1492,7 +1480,6 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1504,9 +1491,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "cook",
+		prefix = "droids/cook",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1536,7 +1522,6 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1548,9 +1533,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "kevin",
+		prefix = "droids/kevin",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1580,7 +1564,6 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1592,9 +1575,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "jasmine",
+		prefix = "droids/jasmine",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1623,7 +1605,6 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1635,9 +1616,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "jasmine",
+		prefix = "droids/jasmine",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1664,7 +1644,6 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1676,9 +1655,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "bartender",
+		prefix = "droids/bartender",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1708,7 +1686,6 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1720,9 +1697,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "female_hunter",
+		prefix = "droids/female_hunter",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1752,7 +1728,6 @@ droid_list {
 		xp_reward = 0,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1764,9 +1739,8 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "terminal",
+		prefix = "droids/terminal",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1807,9 +1781,9 @@ droid_list {
 		tachyon_condensators = 10,
 	},
 	gfx = {
-		prefix = "autogun",
+		prefix = "droids/autogun",
 		animation = {
-			portrait_rotations = 1,
+			portrait_rotations = 32,
 		},
 	},
 	sound = {
@@ -1850,9 +1824,8 @@ droid_list {
 		tachyon_condensators = 100,
 	},
 	gfx = {
-		prefix = "arthur",
+		prefix = "droids/arthur",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {
@@ -1882,7 +1855,6 @@ droid_list {
 		xp_reward = 0,
 	},
 	equip = {
-		weapon = "NPC Hand to hand weapon",
 		sensor = "infrared",
 	},
 	drop_draw = {
@@ -1894,9 +1866,8 @@ droid_list {
 		tachyon_condensators = 100,
 	},
 	gfx = {
-		prefix = "terminal_secure",
+		prefix = "droids/terminal_secure",
 		animation = {
-			portrait_rotations = 1,
 		},
 	},
 	sound = {

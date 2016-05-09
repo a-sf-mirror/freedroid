@@ -143,8 +143,9 @@ static void display_takeover_help()
  */
 static void show_droid_picture(int PosX, int PosY, int type)
 {
-	char filename[5000];
-	static char LastImageSeriesPrefix[1000] = "NONE_AT_ALL";
+	static char *last_gfx_prefix = NULL;
+	static int rotation_nb = 0;
+
 #define NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION 32
 	static struct image droid_images[NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION];
 	int RotationIndex;
@@ -153,18 +154,23 @@ static void show_droid_picture(int PosX, int PosY, int type)
 		return;
 
 	// Maybe we have to reload the whole image series
-	//
-	if (strcmp(LastImageSeriesPrefix, Droidmap[type].img_prefix)) {
+
+	if (!last_gfx_prefix || (last_gfx_prefix != Droidmap[type].gfx_prefix)) {
 		int i;
-		for (i = 0; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION; i++) {
-			delete_image(&droid_images[i]);
+		char filename[5000];
 
-			sprintf(filename, "droids/%s/portrait_%04d.jpg", Droidmap[type].img_prefix, i + 1);
-
+		if (rotation_nb > 0) {
+			for (i = 0; i < rotation_nb; i++) {
+				delete_image(&droid_images[i]);
+			}
+		}
+		for (i = 0; i < Droidmap[type].portrait_rotations; i++) {
+			sprintf(filename, "%s/portrait_%04d.jpg", Droidmap[type].gfx_prefix, i + 1);
 			load_image(&droid_images[i], GRAPHICS_DIR, filename, NO_MOD);
 		}
 			
-		strcpy(LastImageSeriesPrefix, Droidmap[type].img_prefix);
+		last_gfx_prefix = Droidmap[type].gfx_prefix;
+		rotation_nb = Droidmap[type].portrait_rotations;
 	}
 
 	RotationIndex = (SDL_GetTicks() / 50);

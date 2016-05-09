@@ -393,7 +393,7 @@ typedef struct droidspec {
 	short int amount_of_tachyon_condensators;
 
 	// Rendering
-	char *img_prefix;
+	char *gfx_prefix;
 	short individual_shape_nr;
 	int gun_muzzle_height;
 	int  portrait_rotations;
