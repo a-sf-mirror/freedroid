@@ -129,7 +129,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "139",
 	desc = _"139 Templar",
@@ -167,7 +167,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "247",
 	desc = _"247 Banshee",
@@ -209,7 +209,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "249",
 	desc = _"249 Chicago",
@@ -250,7 +250,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "296",
 	desc = _"296 Sawmill",
@@ -290,7 +290,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "302",
 	desc = _"302 Nemesis",
@@ -333,7 +333,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "329",
 	desc = _"329 Sparkie",
@@ -375,7 +375,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "420",
 	desc = _"420 Surgeon",
@@ -416,7 +416,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "476",
 	desc = _"476 Coward",
@@ -458,7 +458,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "493",
 	desc = _"493 Spinster",
@@ -500,7 +500,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "516",
 	desc = _"516 Ghoul",
@@ -542,7 +542,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "543",
 	desc = _"543 Forest Harvester",
@@ -582,7 +582,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "571",
 	desc = _"571 Apollo",
@@ -625,7 +625,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "598",
 	desc = _"598 Minister",
@@ -666,7 +666,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "603",
 	desc = _"603 Lawnmower",
@@ -710,7 +710,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "614",
 	desc = _"614 Security Bot",
@@ -752,7 +752,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "615",
 	desc = _"615 Firedevil",
@@ -794,7 +794,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "629",
 	desc = _"629 Spitfire",
@@ -833,7 +833,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "711",
 	desc = _"711 Grillmeister",
@@ -875,7 +875,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "742",
 	desc = _"742 Zeus",
@@ -894,7 +894,6 @@ droid_list {
 	},
 	equip = {
 		weapon = "Droid 7xx Tux Seeking Missiles",
-		sensor = "xray",
 	},
 	drop_draw = {
 		class = 7,
@@ -918,7 +917,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "751",
 	desc = _"751 Soviet",
@@ -936,7 +935,6 @@ droid_list {
 	},
 	equip = {
 		weapon = "Droid 7xx Tux Seeking Missiles",
-		sensor = "xray",
 	},
 	drop_draw = {
 		class = 7,
@@ -960,7 +958,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "821",
 	desc = _"821 Ufo",
@@ -979,7 +977,6 @@ droid_list {
 	},
 	equip = {
 		weapon = "Droid Advanced Twin Laser",
-		sensor = "xray",
 	},
 	drop_draw = {
 		class = 8,
@@ -1003,7 +1000,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "834",
 	desc = _"834 Wisp",
@@ -1022,7 +1019,6 @@ droid_list {
 	},
 	equip = {
 		weapon = "Droid Advanced Twin Laser",
-		sensor = "xray",
 	},
 	drop_draw = {
 		class = 8,
@@ -1046,7 +1042,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "883",
 	desc = _"883 Dalex",
@@ -1064,7 +1060,6 @@ droid_list {
 	},
 	equip = {
 		weapon = "Droid 883 Exterminator",
-		sensor = "xray",
 	},
 	drop_draw = {
 		class = 8,
@@ -1090,7 +1085,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "999",
 	desc = _"999 Cerebrum",
@@ -1133,7 +1128,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "PRO",
 	desc = _"Older Man",
@@ -1150,15 +1145,9 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/professor",
@@ -1174,7 +1163,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "DOC",
 	desc = _"Older Man",
@@ -1192,15 +1181,9 @@ droid_list {
 	},
 	equip = {
 		weapon = "Laser Scalpel",
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/professor",
@@ -1216,7 +1199,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "GUA",
 	desc = _"Red Guard",
@@ -1233,15 +1216,9 @@ droid_list {
 	},
 	equip = {
 		weapon = "Exterminator",
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/red_guard",
@@ -1258,7 +1235,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "DIX",
 	desc = _"Red Guard",
@@ -1275,15 +1252,9 @@ droid_list {
 	},
 	equip = {
 		weapon = "Nobody's edge",
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/red_guard",
@@ -1300,7 +1271,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "MUM",
 	desc = _"Matron",
@@ -1317,15 +1288,9 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/hot_mama",
@@ -1340,7 +1305,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "FSC",
 	desc = _"Female Scientist",
@@ -1357,15 +1322,9 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/female_scientist",
@@ -1380,7 +1339,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "WOR",
 	desc = _"Mine Worker",
@@ -1396,15 +1355,9 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/default_male",
@@ -1421,7 +1374,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "GUB",
 	desc = _"Blue Brother",
@@ -1438,15 +1391,9 @@ droid_list {
 	},
 	equip = {
 		weapon = "Exterminator",
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/blue_guard",
@@ -1463,7 +1410,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "COO",
 	desc = _"Cook",
@@ -1480,15 +1427,9 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/cook",
@@ -1505,7 +1446,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "KEV",
 	desc = _"Balding Man",
@@ -1522,15 +1463,9 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/kevin",
@@ -1546,7 +1481,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "JAS",
 	desc = _"Pretty Woman",
@@ -1564,15 +1499,9 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/jasmine",
@@ -1588,7 +1517,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "TAN",
 	desc = _"Woman",
@@ -1605,15 +1534,9 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/jasmine",
@@ -1629,7 +1552,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "BAR",
 	desc = _"Bartender",
@@ -1644,15 +1567,9 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/bartender",
@@ -1669,7 +1586,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "FEM",
 	desc = _"Female Hunter",
@@ -1686,15 +1603,9 @@ droid_list {
 		xp_reward = 200,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/female_hunter",
@@ -1710,7 +1621,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "TRM",
 	desc = _"ERROR: THIS IS A TERMINAL",
@@ -1728,15 +1639,9 @@ droid_list {
 		xp_reward = 0,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 0,
-		plasma_transistors = 5,
-		superconductors = 5,
-		antimatter_converters = 2,
-		entropy_inverters = 10,
-		tachyon_condensators = 10,
 	},
 	gfx = {
 		prefix = "droids/terminal",
@@ -1751,7 +1656,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "GUN",
 	desc = _"Autogun",
@@ -1773,7 +1678,6 @@ droid_list {
 		sensor = "infrared",
 	},
 	drop_draw = {
-		class = 0,
 		plasma_transistors = 5,
 		superconductors = 5,
 		antimatter_converters = 2,
@@ -1796,7 +1700,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "ARH",
 	desc = _"Authority Figure",
@@ -1813,7 +1717,6 @@ droid_list {
 	},
 	equip = {
 		weapon = "Sledgehammer",
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 9,
@@ -1837,7 +1740,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 {
 	name = "STM",
 	desc = _"ERROR: THIS IS A TERMINAL",
@@ -1855,15 +1758,9 @@ droid_list {
 		xp_reward = 0,
 	},
 	equip = {
-		sensor = "infrared",
 	},
 	drop_draw = {
 		class = 0,
-		plasma_transistors = 100,
-		superconductors = 100,
-		antimatter_converters = 100,
-		entropy_inverters = 100,
-		tachyon_condensators = 100,
 	},
 	gfx = {
 		prefix = "droids/terminal_secure",
@@ -1878,5 +1775,5 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-},
+}
 }

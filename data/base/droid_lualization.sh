@@ -69,6 +69,7 @@ END { print "}"; }
 		sound_greeting = def_sound_greeting;
 		sound_attack = def_sound_attack;
 		sound_death = def_sound_death;
+
 		next;
 	}
 
@@ -127,7 +128,37 @@ END { print "}"; }
 					print "\t\t\tprobability = sfx_sounds.voice_samples.probability,";
 				print "\t\t},";
 			print "\t},";
-		print "},";
+		print "}";
+
+		# init data to default
+		name = def_name;
+		desc = def_desc;
+		notes = def_notes;
+		is_human = def_is_human;
+		class = def_class;
+		ab_speed_max = def_ab_speed_max;
+		ab_energy_max = def_ab_energy_max;
+		ab_healing_rate = def_ab_healing_rate;
+		ab_hit_draw = def_ab_hit_draw;
+		ab_aggression_distance = def_ab_aggression_distance;
+		ab_time_eyeing = def_ab_time_eyeing;
+		ab_recover_time = def_ab_recover_time;
+		ab_xp_reward = def_ab_xp_reward;
+		eq_weapon = def_eq_weapon;
+		eq_sensor = def_eq_sensor;
+		drop_class = def_drop_class;
+		drop_plasma = def_drop_plasma;
+		drop_superconductors = def_drop_superconductors;
+		drop_antimatter = def_drop_antimatter;
+		drop_entropy = def_drop_entropy;
+		drop_tachyon = def_drop_tachyon;
+		gfx_prefix = def_gfx_prefix;
+		gfx_muzzle = def_gfx_muzzle;
+		gfx_rotations = def_gfx_rotations;
+		sound_greeting = def_sound_greeting;
+		sound_attack = def_sound_attack;
+		sound_death = def_sound_death;
+
 		next;
 	}
 
