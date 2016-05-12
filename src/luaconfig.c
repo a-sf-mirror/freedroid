@@ -1199,11 +1199,11 @@ static int get_one_droid(lua_State *L, void *data)
 		{"gfx.prefix",                       NULL,       STRING_TYPE, &droid->gfx_prefix                      },
 		{"gfx.gun_muzzle_height",            "30",       INT_TYPE,    &droid->gun_muzzle_height               },
 		{"gfx.animation.portrait_rotations", "0",        INT_TYPE,    &droid->portrait_rotations              },
-//		{"gfx.animation.stand",              "5",        INT_TYPE,    &droid_stand_animation_speed_factor     },
-//		{"gfx.animation.walk",               "5",        INT_TYPE,    &droid_walk_animation_speed_factor      },
-//		{"gfx.animation.attack",             "7",        INT_TYPE,    &droid_attack_animation_speed_factor    },
-//		{"gfx.animation.gethit",             "8",        INT_TYPE,    &droid_gethit_animation_speed_factor    },
-//		{"gfx.animation.death",              "10",       INT_TYPE,    &droid_death_animation_speed_factor     },
+		{"gfx.animation.walk.speed_factor",  "5",        INT_TYPE,    &droid->walk_animation_speed_factor     },
+		{"gfx.animation.attack.speed_factor","8",        INT_TYPE,    &droid->attack_animation_speed_factor   },
+		{"gfx.animation.gethit.speed_factor","8",        INT_TYPE,    &droid->gethit_animation_speed_factor   },
+		{"gfx.animation.death.speed_factor", "8",        INT_TYPE,    &droid->death_animation_speed_factor   },
+		{"gfx.animation.stand.speed_factor", "5",        INT_TYPE,    &droid->stand_animation_speed_factor   },
 
 		{"sound.greeting",                   NULL,       STRING_TYPE, &droid->greeting_sound                  },
 		{"sound.attack",                     NULL,       STRING_TYPE, &droid->attack_sound                    },
@@ -1257,6 +1257,22 @@ static int get_one_droid(lua_State *L, void *data)
 		              droid->voice_samples_probability);
 		droid->voice_samples_probability = 20;
 	}
+
+	// The animation cycle lengths will be taken from the image collection file
+	// the first time the droid will be displayed.
+	// But it might happen that some phase computation is done before the first
+	// blit already. Therefore we initialize some sane default values.
+	droid->walk_animation_first_image = 1;
+	droid->walk_animation_last_image = 1;
+	droid->attack_animation_first_image = 1;
+	droid->attack_animation_last_image = 1;
+	droid->gethit_animation_first_image = 1;
+	droid->gethit_animation_last_image = 1;
+	droid->death_animation_first_image = 1;
+	droid->death_animation_last_image = 1;
+	droid->stand_animation_first_image = 1;
+	droid->stand_animation_last_image = 1;
+	droid->gfx_prepared = FALSE;
 
 	return TRUE;
 }

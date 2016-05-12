@@ -1019,7 +1019,7 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 	//        phase is reached and so serious bugs other than that, so I think it
 	//        will be tolerable this way.
 
-	target->animation_phase = ((float)first_death_animation_image[Droidmap[target->type].individual_shape_nr]) - 1 + 0.1;
+	target->animation_phase = ((float)Droidmap[target->type].death_animation_first_image) - 1 + 0.1;
 	target->animation_type = DEATH_ANIMATION;
 	play_droid_death_sound(target);
 
@@ -1045,11 +1045,11 @@ static void start_gethit_animation(enemy * ThisRobot)
 	// Maybe this robot is fully animated.  In this case, after getting
 	// hit, the gethit animation should be displayed, which we'll initiate here.
 	//
-	if ((last_gethit_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] - first_gethit_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] > 0)) {
+	if ((Droidmap[ThisRobot->type].gethit_animation_last_image - Droidmap[ThisRobot->type].gethit_animation_first_image > 0)) {
 		if (ThisRobot->animation_type == DEATH_ANIMATION) {
 			DebugPrintf(-4, "\n%s(): WARNING: animation phase reset for INFOUT bot... ", __FUNCTION__);
 		}
-		ThisRobot->animation_phase = ((float)first_gethit_animation_image[Droidmap[ThisRobot->type].individual_shape_nr]) + 0.1;
+		ThisRobot->animation_phase = ((float)Droidmap[ThisRobot->type].gethit_animation_first_image) + 0.1;
 		ThisRobot->animation_type = GETHIT_ANIMATION;
 	}
 
@@ -2254,8 +2254,8 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 	if (ThisRobot->firewait < weapon_spec.weapon_attack_time)
 		ThisRobot->firewait = weapon_spec.weapon_attack_time;
 
-	if (last_attack_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] - first_attack_animation_image[Droidmap[ThisRobot->type].individual_shape_nr] > 1) {
-		ThisRobot->animation_phase = ((float)first_attack_animation_image[Droidmap[ThisRobot->type].individual_shape_nr]) + 0.1;
+	if (Droidmap[ThisRobot->type].attack_animation_last_image - Droidmap[ThisRobot->type].attack_animation_first_image > 1) {
+		ThisRobot->animation_phase = ((float)Droidmap[ThisRobot->type].attack_animation_first_image) + 0.1;
 		ThisRobot->animation_type = ATTACK_ANIMATION;
 		ThisRobot->current_angle = -(-90 + 180 * atan2(ydist, xdist) / M_PI);
 	}
@@ -2597,15 +2597,17 @@ int CheckEnemyEnemyCollision(enemy * OurBot)
  */
 void animate_enemy(enemy *our_enemy)
 {
+	struct droidspec *droid_spec = &Droidmap[our_enemy->type];
+
 	switch (our_enemy->animation_type) {
 
 	case WALK_ANIMATION:
-		our_enemy->animation_phase += Frame_Time() * droid_walk_animation_speed_factor[Droidmap[our_enemy->type].individual_shape_nr];
+		our_enemy->animation_phase += Frame_Time() * droid_spec->walk_animation_speed_factor;
 
 		// While we're in the walk animation cycle, we have the walk animation
 		// images cycle.
 		//
-		if (our_enemy->animation_phase >= last_walk_animation_image[Droidmap[our_enemy->type].individual_shape_nr]) {
+		if (our_enemy->animation_phase >= droid_spec->walk_animation_last_image) {
 			our_enemy->animation_phase = 0;
 			our_enemy->animation_type = WALK_ANIMATION;
 		}
@@ -2613,42 +2615,42 @@ void animate_enemy(enemy *our_enemy)
 		// to the standing cycle...
 		//
 		if ((fabs(our_enemy->speed.x) < 0.1) && (fabs(our_enemy->speed.y) < 0.1)) {
-			our_enemy->animation_phase = first_stand_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1;
+			our_enemy->animation_phase = droid_spec->stand_animation_first_image - 1;
 			our_enemy->animation_type = STAND_ANIMATION;
 		}
 		break;
 	case ATTACK_ANIMATION:
-		our_enemy->animation_phase += Frame_Time() * droid_attack_animation_speed_factor[Droidmap[our_enemy->type].individual_shape_nr];
+		our_enemy->animation_phase += Frame_Time() * droid_spec->attack_animation_speed_factor;
 
-		if (our_enemy->animation_phase >= last_attack_animation_image[Droidmap[our_enemy->type].individual_shape_nr]) {
+		if (our_enemy->animation_phase >= droid_spec->attack_animation_last_image) {
 			our_enemy->animation_phase = 0;
 			our_enemy->animation_type = WALK_ANIMATION;
 		}
 		break;
 	case GETHIT_ANIMATION:
-		our_enemy->animation_phase += Frame_Time() * droid_gethit_animation_speed_factor[Droidmap[our_enemy->type].individual_shape_nr];
+		our_enemy->animation_phase += Frame_Time() * droid_spec->gethit_animation_speed_factor;
 
-		if (our_enemy->animation_phase >= last_gethit_animation_image[Droidmap[our_enemy->type].individual_shape_nr]) {
+		if (our_enemy->animation_phase >= droid_spec->gethit_animation_last_image) {
 			our_enemy->animation_phase = 0;
 			our_enemy->animation_type = WALK_ANIMATION;
 		}
 		break;
 	case DEATH_ANIMATION:
-		our_enemy->animation_phase += Frame_Time() * droid_death_animation_speed_factor[Droidmap[our_enemy->type].individual_shape_nr];
+		our_enemy->animation_phase += Frame_Time() * droid_spec->death_animation_speed_factor;
 
-		if (our_enemy->animation_phase >= last_death_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1) {
-			our_enemy->animation_phase = last_death_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1;
+		if (our_enemy->animation_phase >= droid_spec->death_animation_last_image - 1) {
+			our_enemy->animation_phase = droid_spec->death_animation_last_image - 1;
 			our_enemy->animation_type = DEAD_ANIMATION;
 		}
 		break;
 	case DEAD_ANIMATION:
-		our_enemy->animation_phase = last_death_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1;
+		our_enemy->animation_phase = droid_spec->death_animation_last_image - 1;
 		break;
 	case STAND_ANIMATION:
-		our_enemy->animation_phase += Frame_Time() * droid_stand_animation_speed_factor[Droidmap[our_enemy->type].individual_shape_nr];
+		our_enemy->animation_phase += Frame_Time() * droid_spec->stand_animation_speed_factor;
 
-		if (our_enemy->animation_phase >= last_stand_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1) {
-			our_enemy->animation_phase = first_stand_animation_image[Droidmap[our_enemy->type].individual_shape_nr] - 1;
+		if (our_enemy->animation_phase >= droid_spec->stand_animation_last_image - 1) {
+			our_enemy->animation_phase = droid_spec->stand_animation_first_image - 1;
 			our_enemy->animation_type = STAND_ANIMATION;
 		}
 		break;

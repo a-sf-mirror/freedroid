@@ -1083,7 +1083,7 @@ void check_tux_enemy_collision(void)
 enemy *GetLivingDroidBelowMouseCursor()
 {
 	gps mouse_vpos, mouse_pos;
-	int RotationModel, RotationIndex;
+	int RotationIndex;
 	struct image *our_image;
 	enemy *this_bot;
 
@@ -1113,9 +1113,9 @@ enemy *GetLivingDroidBelowMouseCursor()
 		// We properly set the rotation model number for this robot, i.e.
 		// which shape (like 302, 247 or proffa) to use for drawing this bot.
 		//
-		RotationModel = set_rotation_model_for_this_robot(this_bot);
+		struct droidspec *droid_spec = &Droidmap[this_bot->type];
 
-		our_image = &(enemy_images[RotationModel][RotationIndex][(int)this_bot->animation_phase]);
+		our_image = &(droid_spec->droid_images[RotationIndex][(int)this_bot->animation_phase]);
 
 		update_virtual_position(&this_bot->virt_pos, &this_bot->pos, Me.pos.z);
 		if (mouse_cursor_is_on_that_image(this_bot->virt_pos.x, this_bot->virt_pos.y, our_image)) {

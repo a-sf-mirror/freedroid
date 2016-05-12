@@ -237,10 +237,8 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 
 	// Position of the bar
 	bar_x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
-	bar_y =
-	    translate_map_point_to_screen_pixel_y(description_pos->x,
-	    		description_pos->y) + enemy_images[Droidmap[cur_enemy->type].individual_shape_nr][0][0].offset_y -
-	    2.5 * get_font_height(BFont_to_use);
+	bar_y = translate_map_point_to_screen_pixel_y(description_pos->x, description_pos->y) +
+	        Droidmap[cur_enemy->type].droid_images[0][0].offset_y - 2.5 * get_font_height(BFont_to_use);
 
 	// Calculates the width of the remaining health bar. Rounds the
 	// width up to the nearest integer to ensure that at least one

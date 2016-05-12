@@ -1385,6 +1385,7 @@ static void free_memory_before_exit(void)
 	clear_enemies();
 	clear_npcs();
 	free_tux();
+	reload_graphics();
 
 	// free the widgets
 	free_game_ui();

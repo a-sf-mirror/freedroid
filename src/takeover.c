@@ -944,9 +944,9 @@ static void ShowPlayground(enemy * target)
 	display_image_on_screen(&bg, GameConfig.screen_width / 2 - 340, GameConfig.screen_height / 2 - 294, IMAGE_NO_TRANSFO);
 
 	if (target) {
-		int rotation_model = set_rotation_model_for_this_robot(target);
-		int offsetx = -enemy_images[rotation_model][0][0].offset_x;
-		int offsety = -enemy_images[rotation_model][0][0].offset_y;
+		struct droidspec *droid_spec = &Droidmap[target->type];
+		int offsetx = -droid_spec->droid_images[0][0].offset_x;
+		int offsety = -droid_spec->droid_images[0][0].offset_y;
 		Set_Rect(Target_Rect, xoffs + DroidStart[!YourColor].x + 20 + offsetx, (yoffs - 80) + offsety, User_Rect.w, User_Rect.h);
 		PutIndividuallyShapedDroidBody(target, Target_Rect, FALSE, FALSE);
 	}

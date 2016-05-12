@@ -2518,7 +2518,6 @@ There was a rotation model type given, that exceeds the number of rotation model
  */
 void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle, int mask, int highlight)
 {
-	int RotationModel;
 	int RotationIndex;
 	moderately_finepoint bot_pos;
 	float zf = 1.0;
@@ -2535,13 +2534,13 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	// We properly set the rotation model number for this robot, i.e.
 	// which shape (like 302, 247 or proffa) to use for drawing this bot.
 	//
-	RotationModel = set_rotation_model_for_this_robot(ThisRobot);
+	struct droidspec *droid_spec = &Droidmap[ThisRobot->type];
 
 	// Maybe the rotation model we're going to use now isn't yet loaded. 
 	// Now in this case, we must load it immediately, or a segfault may
 	// result...
 	//
-	LoadAndPrepareEnemyRotationModelNr(RotationModel);
+	LoadAndPrepareEnemyRotationModelNr(ThisRobot);
 
 	// Maybe we don't have an enemy here that would really stick to the 
 	// exact size of a block but be somewhat bigger or smaller instead.
@@ -2551,15 +2550,15 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	//
 	if ((TargetRectangle.x != 0) && (TargetRectangle.y != 0)) {
 		if (use_open_gl) {
-			TargetRectangle.x -= (enemy_images[RotationModel][RotationIndex][0].w) / 2;
-			TargetRectangle.y -= (enemy_images[RotationModel][RotationIndex][0].h) / 2;
-			TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].w;
-			TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].h;
+			TargetRectangle.x -= (droid_spec->droid_images[RotationIndex][0].w) / 2;
+			TargetRectangle.y -= (droid_spec->droid_images[RotationIndex][0].h) / 2;
+			TargetRectangle.w = droid_spec->droid_images[RotationIndex][0].w;
+			TargetRectangle.h = droid_spec->droid_images[RotationIndex][0].h;
 		} else {
-			TargetRectangle.x -= (enemy_images[RotationModel][RotationIndex][0].surface->w) / 2;
-			TargetRectangle.y -= (enemy_images[RotationModel][RotationIndex][0].surface->h) / 2;
-			TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].surface->w;
-			TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].surface->h;
+			TargetRectangle.x -= (droid_spec->droid_images[RotationIndex][0].surface->w) / 2;
+			TargetRectangle.y -= (droid_spec->droid_images[RotationIndex][0].surface->h) / 2;
+			TargetRectangle.w = droid_spec->droid_images[RotationIndex][0].surface->w;
+			TargetRectangle.h = droid_spec->droid_images[RotationIndex][0].surface->h;
 		}
 	}
 	// Maybe the enemy is desired e.g. for the takeover game, so a pixel position on
@@ -2568,7 +2567,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	//
 	if ((TargetRectangle.x != 0) && (TargetRectangle.y != 0)) {
 		RotationIndex = 0;
-		display_image_on_screen(&enemy_images[RotationModel][RotationIndex][0],
+		display_image_on_screen(&droid_spec->droid_images[RotationIndex][0],
 										  TargetRectangle.x, TargetRectangle.y, IMAGE_NO_TRANSFO);
 		return;
 	}
@@ -2591,18 +2590,18 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	bot_pos.x = ThisRobot->virt_pos.x;
 	bot_pos.y = ThisRobot->virt_pos.y;
 
-	struct image *img = &enemy_images[RotationModel][RotationIndex][(int)ThisRobot->animation_phase];
+	struct image *img = &droid_spec->droid_images[RotationIndex][(int)ThisRobot->animation_phase];
 	display_image_on_map(img, bot_pos.x, bot_pos.y, set_image_transformation(zf, zf, r, g, b, 1.0, highlight));
 
 	if (GameConfig.enemy_energy_bars_visible) {
 		int screen_x, screen_y;
 		translate_map_point_to_screen_pixel(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, &screen_x, &screen_y);
 
-		int bar_width = min(enemy_images[RotationModel][RotationIndex][0].w, ENERGYBAR_MAXWIDTH);
+		int bar_width = min(droid_spec->droid_images[RotationIndex][0].w, ENERGYBAR_MAXWIDTH);
 		TargetRectangle.x = screen_x - (bar_width * zf) / 2;
-		TargetRectangle.y = screen_y - (enemy_images[RotationModel][RotationIndex][0].h * zf) / 1;
+		TargetRectangle.y = screen_y - (droid_spec->droid_images[RotationIndex][0].h * zf) / 1;
 		TargetRectangle.w = bar_width * zf;
-		TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].h * zf;
+		TargetRectangle.h = droid_spec->droid_images[RotationIndex][0].h * zf;
 		PutEnemyEnergyBar(ThisRobot, TargetRectangle);
 	}
 }

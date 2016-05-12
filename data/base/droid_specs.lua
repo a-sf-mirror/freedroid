@@ -116,6 +116,11 @@ droid_list {
 		prefix = "droids/123",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 7 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 10 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -129,7 +134,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "139",
 	desc = _"139 Templar",
@@ -155,6 +160,11 @@ droid_list {
 		prefix = "droids/139",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 8 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -167,7 +177,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "247",
 	desc = _"247 Banshee",
@@ -196,6 +206,11 @@ droid_list {
 		prefix = "droids/247",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 14 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -209,7 +224,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "249",
 	desc = _"249 Chicago",
@@ -238,6 +253,11 @@ droid_list {
 		prefix = "droids/249",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 8 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -250,7 +270,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "296",
 	desc = _"296 Sawmill",
@@ -278,6 +298,11 @@ droid_list {
 		prefix = "droids/296",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -290,7 +315,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "302",
 	desc = _"302 Nemesis",
@@ -320,6 +345,11 @@ droid_list {
 		prefix = "droids/302",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 15 },
+			attack = { speed_factor = 15 },
+			gethit = { speed_factor = 15 },
+			death  = { speed_factor = 15 },
+			stand  = { speed_factor = 15 },
 		},
 	},
 	sound = {
@@ -333,7 +363,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "329",
 	desc = _"329 Sparkie",
@@ -363,6 +393,11 @@ droid_list {
 		prefix = "droids/329",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 8 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -375,7 +410,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "420",
 	desc = _"420 Surgeon",
@@ -404,6 +439,11 @@ droid_list {
 		prefix = "droids/420",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 7 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -416,7 +456,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "476",
 	desc = _"476 Coward",
@@ -446,6 +486,11 @@ droid_list {
 		prefix = "droids/476",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -458,7 +503,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "493",
 	desc = _"493 Spinster",
@@ -488,6 +533,11 @@ droid_list {
 		prefix = "droids/493",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 6 },
+			attack = { speed_factor = 30 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 18 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -500,7 +550,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "516",
 	desc = _"516 Ghoul",
@@ -530,6 +580,11 @@ droid_list {
 		prefix = "droids/516",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 10 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 7 },
+			death  = { speed_factor = 10 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -542,7 +597,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "543",
 	desc = _"543 Forest Harvester",
@@ -570,6 +625,11 @@ droid_list {
 		prefix = "droids/harvester",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 8 },
+			attack = { speed_factor = 10 },
+			gethit = { speed_factor = 10 },
+			death  = { speed_factor = 10 },
+			stand  = { speed_factor = 6 },
 		},
 	},
 	sound = {
@@ -582,7 +642,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "571",
 	desc = _"571 Apollo",
@@ -613,6 +673,11 @@ droid_list {
 		prefix = "droids/571",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 10 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 7 },
+			death  = { speed_factor = 10 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -625,7 +690,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "598",
 	desc = _"598 Minister",
@@ -656,6 +721,11 @@ droid_list {
 		prefix = "droids/598",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 10 },
+			attack = { speed_factor = 8 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 10 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -666,7 +736,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "603",
 	desc = _"603 Lawnmower",
@@ -698,6 +768,11 @@ droid_list {
 		prefix = "droids/lawnmower",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 14 },
+			attack = { speed_factor = 14 },
+			gethit = { speed_factor = 12 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 9 },
 		},
 	},
 	sound = {
@@ -710,7 +785,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "614",
 	desc = _"614 Security Bot",
@@ -741,6 +816,11 @@ droid_list {
 		prefix = "droids/614",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 25 },
+			attack = { speed_factor = 23 },
+			gethit = { speed_factor = 18 },
+			death  = { speed_factor = 18 },
+			stand  = { speed_factor = 18 },
 		},
 	},
 	sound = {
@@ -752,7 +832,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "615",
 	desc = _"615 Firedevil",
@@ -784,6 +864,11 @@ droid_list {
 		prefix = "droids/615",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -794,7 +879,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "629",
 	desc = _"629 Spitfire",
@@ -823,6 +908,11 @@ droid_list {
 		prefix = "droids/629",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -833,7 +923,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "711",
 	desc = _"711 Grillmeister",
@@ -865,6 +955,11 @@ droid_list {
 		prefix = "droids/711",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -875,7 +970,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "742",
 	desc = _"742 Zeus",
@@ -907,6 +1002,11 @@ droid_list {
 		prefix = "droids/742",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -917,7 +1017,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "751",
 	desc = _"751 Soviet",
@@ -948,6 +1048,11 @@ droid_list {
 		prefix = "droids/751",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -958,7 +1063,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "821",
 	desc = _"821 Ufo",
@@ -990,6 +1095,11 @@ droid_list {
 		prefix = "droids/821",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -1000,7 +1110,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "834",
 	desc = _"834 Wisp",
@@ -1032,6 +1142,11 @@ droid_list {
 		prefix = "droids/834",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -1042,7 +1157,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "883",
 	desc = _"883 Dalex",
@@ -1073,6 +1188,11 @@ droid_list {
 		prefix = "droids/883",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 10 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 8 },
 		},
 	},
 	sound = {
@@ -1085,7 +1205,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "999",
 	desc = _"999 Cerebrum",
@@ -1118,6 +1238,11 @@ droid_list {
 		prefix = "droids/999",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 5 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 7 },
+			death  = { speed_factor = 9 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -1128,7 +1253,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "PRO",
 	desc = _"Older Man",
@@ -1152,6 +1277,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/professor",
 		animation = {
+			walk   = { speed_factor = 8 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 2 },
 		},
 	},
 	sound = {
@@ -1163,7 +1293,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "DOC",
 	desc = _"Older Man",
@@ -1188,6 +1318,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/professor",
 		animation = {
+			walk   = { speed_factor = 8 },
+			attack = { speed_factor = 5 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 5 },
+			stand  = { speed_factor = 2 },
 		},
 	},
 	sound = {
@@ -1199,7 +1334,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "GUA",
 	desc = _"Red Guard",
@@ -1223,6 +1358,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/red_guard",
 		animation = {
+			walk   = { speed_factor = 8 },
+			attack = { speed_factor = 8 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 2 },
 		},
 	},
 	sound = {
@@ -1235,7 +1375,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "DIX",
 	desc = _"Red Guard",
@@ -1259,6 +1399,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/red_guard",
 		animation = {
+			walk   = { speed_factor = 8 },
+			attack = { speed_factor = 8 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 2 },
 		},
 	},
 	sound = {
@@ -1271,7 +1416,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "MUM",
 	desc = _"Matron",
@@ -1295,6 +1440,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/hot_mama",
 		animation = {
+			walk   = { speed_factor = 6 },
+			attack = { speed_factor = 10 },
+			gethit = { speed_factor = 5 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 1 },
 		},
 	},
 	sound = {
@@ -1305,7 +1455,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "FSC",
 	desc = _"Female Scientist",
@@ -1329,6 +1479,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/female_scientist",
 		animation = {
+			walk   = { speed_factor = 7 },
+			attack = { speed_factor = 11 },
+			gethit = { speed_factor = 9 },
+			death  = { speed_factor = 10 },
+			stand  = { speed_factor = 1 },
 		},
 	},
 	sound = {
@@ -1339,7 +1494,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "WOR",
 	desc = _"Mine Worker",
@@ -1362,6 +1517,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/default_male",
 		animation = {
+			walk   = { speed_factor = 14 },
+			attack = { speed_factor = 10 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -1374,7 +1534,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "GUB",
 	desc = _"Blue Brother",
@@ -1398,6 +1558,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/blue_guard",
 		animation = {
+			walk   = { speed_factor = 14 },
+			attack = { speed_factor = 8 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 5 },
 		},
 	},
 	sound = {
@@ -1410,7 +1575,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "COO",
 	desc = _"Cook",
@@ -1434,6 +1599,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/cook",
 		animation = {
+			walk   = { speed_factor = 6 },
+			attack = { speed_factor = 13 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 1 },
 		},
 	},
 	sound = {
@@ -1446,7 +1616,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "KEV",
 	desc = _"Balding Man",
@@ -1470,6 +1640,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/kevin",
 		animation = {
+			walk   = { speed_factor = 8 },
+			attack = { speed_factor = 10 },
+			gethit = { speed_factor = 10 },
+			death  = { speed_factor = 9 },
+			stand  = { speed_factor = 6 },
 		},
 	},
 	sound = {
@@ -1481,7 +1656,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "JAS",
 	desc = _"Pretty Woman",
@@ -1506,6 +1681,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/jasmine",
 		animation = {
+			walk   = { speed_factor = 8 },
+			attack = { speed_factor = 10 },
+			gethit = { speed_factor = 10 },
+			death  = { speed_factor = 10 },
+			stand  = { speed_factor = 6 },
 		},
 	},
 	sound = {
@@ -1517,7 +1697,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "TAN",
 	desc = _"Woman",
@@ -1541,6 +1721,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/jasmine",
 		animation = {
+			walk   = { speed_factor = 8 },
+			attack = { speed_factor = 10 },
+			gethit = { speed_factor = 10 },
+			death  = { speed_factor = 10 },
+			stand  = { speed_factor = 6 },
 		},
 	},
 	sound = {
@@ -1552,7 +1737,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "BAR",
 	desc = _"Bartender",
@@ -1574,6 +1759,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/bartender",
 		animation = {
+			walk   = { speed_factor = 4 },
+			attack = { speed_factor = 7 },
+			gethit = { speed_factor = 10 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 6 },
 		},
 	},
 	sound = {
@@ -1586,7 +1776,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "FEM",
 	desc = _"Female Hunter",
@@ -1610,6 +1800,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/female_hunter",
 		animation = {
+			walk   = { speed_factor = 12 },
+			attack = { speed_factor = 12 },
+			gethit = { speed_factor = 8 },
+			death  = { speed_factor = 8 },
+			stand  = { speed_factor = 1 },
 		},
 	},
 	sound = {
@@ -1621,7 +1816,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "TRM",
 	desc = _"ERROR: THIS IS A TERMINAL",
@@ -1646,6 +1841,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/terminal",
 		animation = {
+			walk   = { speed_factor = 10 },
+			attack = { speed_factor = 10 },
+			gethit = { speed_factor = 10 },
+			death  = { speed_factor = 4 },
+			stand  = { speed_factor = 6 },
 		},
 	},
 	sound = {
@@ -1656,7 +1856,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "GUN",
 	desc = _"Autogun",
@@ -1688,6 +1888,11 @@ droid_list {
 		prefix = "droids/autogun",
 		animation = {
 			portrait_rotations = 32,
+			walk   = { speed_factor = 1 },
+			attack = { speed_factor = 24 },
+			gethit = { speed_factor = 23 },
+			death  = { speed_factor = 21 },
+			stand  = { speed_factor = 1 },
 		},
 	},
 	sound = {
@@ -1700,7 +1905,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "ARH",
 	desc = _"Authority Figure",
@@ -1729,6 +1934,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/arthur",
 		animation = {
+			walk   = { speed_factor = 17 },
+			attack = { speed_factor = 15 },
+			gethit = { speed_factor = 15 },
+			death  = { speed_factor = 17 },
+			stand  = { speed_factor = 15 },
 		},
 	},
 	sound = {
@@ -1740,7 +1950,7 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 {
 	name = "STM",
 	desc = _"ERROR: THIS IS A TERMINAL",
@@ -1765,6 +1975,11 @@ droid_list {
 	gfx = {
 		prefix = "droids/terminal_secure",
 		animation = {
+			walk   = { speed_factor = 10 },
+			attack = { speed_factor = 10 },
+			gethit = { speed_factor = 10 },
+			death  = { speed_factor = 4 },
+			stand  = { speed_factor = 6 },
 		},
 	},
 	sound = {
@@ -1775,5 +1990,5 @@ droid_list {
 			probability = sfx_sounds.voice_samples.probability,
 		},
 	},
-}
+},
 }

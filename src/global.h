@@ -203,25 +203,7 @@ EXTERN GLuint StoredMenuBackgroundTex[2];
 // Now the iso-image pointers for the new individually shaped
 // isometric enemy images
 //
-EXTERN struct image enemy_images[ENEMY_ROTATION_MODELS_AVAILABLE][ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
 EXTERN struct image chat_portrait_of_droid[ENEMY_ROTATION_MODELS_AVAILABLE];
-
-// EXTERN int phases_in_enemy_animation [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int first_walk_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int last_walk_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int first_attack_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int last_attack_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int first_gethit_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int last_gethit_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int first_death_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int last_death_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int first_stand_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int last_stand_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int droid_walk_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int droid_attack_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int droid_gethit_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int droid_death_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
-EXTERN int droid_stand_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 EXTERN struct tux_motion_class_images *tux_images;
 EXTERN struct dynarray obstacle_images;

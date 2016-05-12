@@ -5,7 +5,7 @@ AWKSCRIPT=$(mktemp --suffix=.awk)
 cat >$AWKSCRIPT <<EOT
 BEGIN { 
 	FS=": *|= *";
-	in_spec = 0;
+	has_spec = 0;
 	# Default values
 	def_name = "";
 	def_desc = "";
@@ -39,96 +39,89 @@ BEGIN {
 
 END { print "}"; }
 
-/^** Start of new Robot: **/ && in_spec == 0 {
-		in_spec = 1;
-		# init data to default
-		name = def_name;
-		desc = def_desc;
-		notes = def_notes;
-		is_human = def_is_human;
-		class = def_class;
-		ab_speed_max = def_ab_speed_max;
-		ab_energy_max = def_ab_energy_max;
-		ab_healing_rate = def_ab_healing_rate;
-		ab_hit_draw = def_ab_hit_draw;
-		ab_aggression_distance = def_ab_aggression_distance;
-		ab_time_eyeing = def_ab_time_eyeing;
-		ab_recover_time = def_ab_recover_time;
-		ab_xp_reward = def_ab_xp_reward;
-		eq_weapon = def_eq_weapon;
-		eq_sensor = def_eq_sensor;
-		drop_class = def_drop_class;
-		drop_plasma = def_drop_plasma;
-		drop_superconductors = def_drop_superconductors;
-		drop_antimatter = def_drop_antimatter;
-		drop_entropy = def_drop_entropy;
-		drop_tachyon = def_drop_tachyon;
-		gfx_prefix = def_gfx_prefix;
-		gfx_muzzle = def_gfx_muzzle;
-		gfx_rotations = def_gfx_rotations;
-		sound_greeting = def_sound_greeting;
-		sound_attack = def_sound_attack;
-		sound_death = def_sound_death;
+#
+# Parse enemy_surfaces.dat and store animation specification into anim[]
+#
 
-		next;
-	}
+/^PrefixToFilename/ { gsub("\"", "", \$2); anim_prefix = \$2; anim[anim_prefix] = 1; next; }
+/^droid_walk_animation_speed_factor/ { anim[anim_prefix, "walk"] = \$2; next; }
+/^droid_attack_animation_speed_factor/ { anim[anim_prefix, "attack"] = \$2; next; }
+/^droid_gethit_animation_speed_factor/ { anim[anim_prefix, "gethit"] = \$2; next; }
+/^droid_death_animation_speed_factor/ { anim[anim_prefix, "death"] = \$2; next; }
+/^droid_stand_animation_speed_factor/ { anim[anim_prefix, "stand"] = \$2; next; }
 
-(/^** Start of new Robot: **/ || /^*** End of Robot Data Section: ***/) && in_spec == 1 {
-		# print previous droid specs
-		print "{";
-			print "\tname = \""name"\",";
-			if (desc != def_desc) print "\tdesc = "desc",";
-			if (notes != def_notes) print "\tnotes = "notes",";
-			if (is_human != def_is_human) print "\tis_human = "is_human",";
-			if (class != def_class) print "\tclass = "class",";
-			print "\tabilities = {";
-				if (ab_speed_max != def_ab_speed_max) print "\t\tspeed_max = "ab_speed_max",";
-				if (ab_energy_max != def_ab_energy_max) print "\t\tenergy_max = "ab_energy_max",";
-				if (ab_healing_rate != def_ab_healing_rate) print "\t\thealing_rate = "ab_healing_rate",";
-				if (ab_hit_draw != def_ab_hit_draw) print "\t\thit_draw = "ab_hit_draw",";
-				if (ab_aggression_distance != def_ab_aggression_distance) print "\t\taggression_distance = "ab_aggression_distance",";
-				if (ab_time_eyeing != def_ab_time_eyeing) print "\t\ttime_eyeing = "ab_time_eyeing",";
-				if (ab_recover_time != def_ab_recover_time) print "\t\trecover_time = "ab_recover_time",";
-				if (ab_xp_reward != def_ab_xp_reward) print "\t\txp_reward = "ab_xp_reward",";
-			print "\t},";
-			print "\tequip = {";
-				if (eq_weapon != def_eq_weapon) print "\t\tweapon = "eq_weapon",";
-				if (eq_sensor != def_eq_sensor) print "\t\tsensor = "eq_sensor",";
-			print "\t},";
-			print "\tdrop_draw = {";
-				if (drop_class != def_drop_class) print "\t\tclass = "drop_class",";
-				if (drop_plasma != def_drop_plasma) print "\t\tplasma_transistors = "drop_plasma",";
-				if (drop_superconductors != def_drop_superconductors) print "\t\tsuperconductors = "drop_superconductors",";
-				if (drop_antimatter != def_drop_antimatter) print "\t\tantimatter_converters = "drop_antimatter",";
-				if (drop_entropy != def_drop_entropy) print "\t\tentropy_inverters = "drop_entropy",";
-				if (drop_tachyon != def_drop_tachyon) print "\t\ttachyon_condensators = "drop_tachyon",";
-			print "\t},";
-			print "\tgfx = {";
-				if (gfx_prefix != def_gfx_prefix) print "\t\tprefix = \"droids/"gfx_prefix"\",";
-				if (gfx_muzzle != def_gfx_muzzle) print "\t\tgun_muzzle_height = "gfx_muzzle",";
-				print "\t\tanimation = {";
-					if (gfx_rotations != def_gfx_rotations) print "\t\t\tportrait_rotations = 32,";
-				print "\t\t},";
-			print "\t},";
-			print "\tsound = {";
-				if (sound_greeting != def_sound_greeting) print "\t\tgreeting = sfx_sounds.g"sound_greeting",";
-				sound_attack = sound_greeting;
-				if (sound_attack != def_sound_attack) {
-				    if (sound_attack <= 2 || sound_attack >= 6) print "\t\tattack = sfx_sounds.a"sound_attack",";
-				}
-				if (sound_death != def_sound_death) {
-					if (sound_death == "\"death_sound_123.ogg\"") print "\t\tdeath = sfx_sounds.d123,";
-					if (sound_death == "\"death_sound_247.ogg\"") print "\t\tdeath = sfx_sounds.d247,";
-					if (sound_death == "\"death_sound_302.ogg\"") print "\t\tdeath = sfx_sounds.d302,";
-				}
-				print "\t\tvoice_samples = {";
-					print "\t\t\tpath = sfx_sounds.voice_samples.path,";
-					print "\t\t\tfirst = sfx_sounds.voice_samples.first,";
-					print "\t\t\tlast = sfx_sounds.voice_samples.last,";
-					print "\t\t\tprobability = sfx_sounds.voice_samples.probability,";
-				print "\t\t},";
-			print "\t},";
-		print "}";
+/^*** End of Enemy Surfaces Section: ***/ { nextfile; next; }
+
+#
+# Parse droid_archetypes.dat and output each droid's spec
+#
+
+/^** Start of new Robot: **/ || /^*** End of Robot Data Section: ***/ {
+		if (has_spec == 1) {
+			# print previous droid specs
+			print "{";
+				print "\tname = \""name"\",";
+				if (desc != def_desc) print "\tdesc = "desc",";
+				if (notes != def_notes) print "\tnotes = "notes",";
+				if (is_human != def_is_human) print "\tis_human = "is_human",";
+				if (class != def_class) print "\tclass = "class",";
+				print "\tabilities = {";
+					if (ab_speed_max != def_ab_speed_max) print "\t\tspeed_max = "ab_speed_max",";
+					if (ab_energy_max != def_ab_energy_max) print "\t\tenergy_max = "ab_energy_max",";
+					if (ab_healing_rate != def_ab_healing_rate) print "\t\thealing_rate = "ab_healing_rate",";
+					if (ab_hit_draw != def_ab_hit_draw) print "\t\thit_draw = "ab_hit_draw",";
+					if (ab_aggression_distance != def_ab_aggression_distance) print "\t\taggression_distance = "ab_aggression_distance",";
+					if (ab_time_eyeing != def_ab_time_eyeing) print "\t\ttime_eyeing = "ab_time_eyeing",";
+					if (ab_recover_time != def_ab_recover_time) print "\t\trecover_time = "ab_recover_time",";
+					if (ab_xp_reward != def_ab_xp_reward) print "\t\txp_reward = "ab_xp_reward",";
+				print "\t},";
+				print "\tequip = {";
+					if (eq_weapon != def_eq_weapon) print "\t\tweapon = "eq_weapon",";
+					if (eq_sensor != def_eq_sensor) print "\t\tsensor = "eq_sensor",";
+				print "\t},";
+				print "\tdrop_draw = {";
+					if (drop_class != def_drop_class) print "\t\tclass = "drop_class",";
+					if (drop_plasma != def_drop_plasma) print "\t\tplasma_transistors = "drop_plasma",";
+					if (drop_superconductors != def_drop_superconductors) print "\t\tsuperconductors = "drop_superconductors",";
+					if (drop_antimatter != def_drop_antimatter) print "\t\tantimatter_converters = "drop_antimatter",";
+					if (drop_entropy != def_drop_entropy) print "\t\tentropy_inverters = "drop_entropy",";
+					if (drop_tachyon != def_drop_tachyon) print "\t\ttachyon_condensators = "drop_tachyon",";
+				print "\t},";
+				print "\tgfx = {";
+					if (gfx_prefix != def_gfx_prefix) print "\t\tprefix = \"droids/"gfx_prefix"\",";
+					if (gfx_muzzle != def_gfx_muzzle) print "\t\tgun_muzzle_height = "gfx_muzzle",";
+					print "\t\tanimation = {";
+						if (gfx_rotations != def_gfx_rotations) print "\t\t\tportrait_rotations = 32,";
+						anim_prefix = "droids/"gfx_prefix;
+						if (anim_prefix in anim) {
+							print "\t\t\twalk   = { speed_factor = "anim[anim_prefix, "walk"]" },";
+							print "\t\t\tattack = { speed_factor = "anim[anim_prefix, "attack"]" },";
+							print "\t\t\tgethit = { speed_factor = "anim[anim_prefix, "gethit"]" },";
+							print "\t\t\tdeath  = { speed_factor = "anim[anim_prefix, "death"]" },";
+							print "\t\t\tstand  = { speed_factor = "anim[anim_prefix, "stand"]" },";
+						}
+					print "\t\t},";
+				print "\t},";
+				print "\tsound = {";
+					if (sound_greeting != def_sound_greeting) print "\t\tgreeting = sfx_sounds.g"sound_greeting",";
+					sound_attack = sound_greeting;
+					if (sound_attack != def_sound_attack) {
+					    if (sound_attack <= 2 || sound_attack >= 6) print "\t\tattack = sfx_sounds.a"sound_attack",";
+					}
+					if (sound_death != def_sound_death) {
+						if (sound_death == "\"death_sound_123.ogg\"") print "\t\tdeath = sfx_sounds.d123,";
+						if (sound_death == "\"death_sound_247.ogg\"") print "\t\tdeath = sfx_sounds.d247,";
+						if (sound_death == "\"death_sound_302.ogg\"") print "\t\tdeath = sfx_sounds.d302,";
+					}
+					print "\t\tvoice_samples = {";
+						print "\t\t\tpath = sfx_sounds.voice_samples.path,";
+						print "\t\t\tfirst = sfx_sounds.voice_samples.first,";
+						print "\t\t\tlast = sfx_sounds.voice_samples.last,";
+						print "\t\t\tprobability = sfx_sounds.voice_samples.probability,";
+					print "\t\t},";
+				print "\t},";
+			print "},";
+		}
 
 		# init data to default
 		name = def_name;
@@ -158,6 +151,8 @@ END { print "}"; }
 		sound_greeting = def_sound_greeting;
 		sound_attack = def_sound_attack;
 		sound_death = def_sound_death;
+
+		has_spec = 1;
 
 		next;
 	}
@@ -298,6 +293,6 @@ sfx_sounds = {
 
 EOT
 
-awk -f $AWKSCRIPT droid_archetypes.dat >> droid_specs.lua
+awk -f $AWKSCRIPT enemy_surfaces.dat droid_archetypes.dat >> droid_specs.lua
 
 rm -f $AWKSCRIPT
