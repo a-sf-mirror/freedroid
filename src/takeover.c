@@ -144,47 +144,48 @@ static void display_takeover_help()
 static void show_droid_picture(int PosX, int PosY, int type)
 {
 	static char *last_gfx_prefix = NULL;
-	static int rotation_nb = 0;
-
-#define NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION 32
-	static struct image droid_images[NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION];
-	int RotationIndex;
+	static int last_rotation_nb = 0;
+	static struct image *droid_images = NULL;
 
 	if (Droidmap[type].portrait_rotations == 0)
 		return;
 
 	// Maybe we have to reload the whole image series
 
-	if (!last_gfx_prefix || (last_gfx_prefix != Droidmap[type].gfx_prefix)) {
+	if (!droid_images || !last_gfx_prefix || (last_gfx_prefix != Droidmap[type].gfx_prefix)) {
 		int i;
-		char filename[5000];
 
-		if (rotation_nb > 0) {
-			for (i = 0; i < rotation_nb; i++) {
+		if (droid_images) {
+			for (i = 0; i < last_rotation_nb; i++) {
 				delete_image(&droid_images[i]);
 			}
+			free(droid_images);
+			droid_images = NULL;
 		}
+
+		droid_images = (struct image *)MyMalloc(sizeof(struct image) * Droidmap[type].portrait_rotations);
+
+		char filename[5000];
 		for (i = 0; i < Droidmap[type].portrait_rotations; i++) {
 			sprintf(filename, "%s/portrait_%04d.jpg", Droidmap[type].gfx_prefix, i + 1);
 			load_image(&droid_images[i], GRAPHICS_DIR, filename, NO_MOD);
 		}
 			
 		last_gfx_prefix = Droidmap[type].gfx_prefix;
-		rotation_nb = Droidmap[type].portrait_rotations;
+		last_rotation_nb = Droidmap[type].portrait_rotations;
 	}
 
-	RotationIndex = (SDL_GetTicks() / 50);
-
-	RotationIndex =
-	    RotationIndex - (RotationIndex / NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION) * NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION;
+	// Play the whole rotation in 1000 milliseconds.
+	int rotation_index = ((SDL_GetTicks() * last_rotation_nb) / 1000) % last_rotation_nb;
+	struct image *img = &droid_images[rotation_index];
 
 	// Compute the maximum uniform scale to apply to the bot image so that it fills
 	// the droid portrait image, and center the image.
-	struct image *img = &droid_images[RotationIndex];
 	float scale = min((float)Droid_Image_Window.w / (float)img->w, (float)Droid_Image_Window.h / (float)img->h);
 	moderately_finepoint pos;
 	pos.x = (float)PosX + ((float)Droid_Image_Window.w - (float)img->w * scale) / 2.0;
 	pos.y = (float)PosY + ((float)Droid_Image_Window.h - (float)img->h * scale) / 2.0;
+
 	display_image_on_screen(img, pos.x, pos.y, IMAGE_SCALE_TRANSFO(scale));
 }
 
