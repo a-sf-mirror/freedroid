@@ -2495,25 +2495,6 @@ int set_rotation_index_for_this_robot(enemy * ThisRobot)
 };				// int set_rotation_index_for_this_robot ( enemy* ThisRobot ) 
 
 /**
- *
- *
- */
-int set_rotation_model_for_this_robot(enemy * ThisRobot)
-{
-	int RotationModel = Droidmap[ThisRobot->type].individual_shape_nr;
-
-	// A sanity check for roation model to use can never hurt...
-	//
-	if ((RotationModel < 0) || (RotationModel >= ENEMY_ROTATION_MODELS_AVAILABLE)) {
-		error_message(__FUNCTION__, "\
-There was a rotation model type given, that exceeds the number of rotation models allowed and loaded in FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
-	}
-
-	return (RotationModel);
-
-};				// int set_rotation_model_for_this_robot ( enemy* ThisRobot ) 
-
-/**
  * This function is here to blit the 'body' of a droid to the screen.
  */
 void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle, int mask, int highlight)

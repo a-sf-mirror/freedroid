@@ -394,9 +394,7 @@ typedef struct droidspec {
 
 	// Rendering
 	char *gfx_prefix;
-	short individual_shape_nr;
 	int gun_muzzle_height;
-	int  portrait_rotations;
 	struct image droid_images[ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
 	int walk_animation_first_image;
 	int walk_animation_last_image;
@@ -413,6 +411,8 @@ typedef struct droidspec {
 	int stand_animation_first_image;
 	int stand_animation_last_image;
 	int stand_animation_speed_factor;
+	struct image portrait;
+	int portrait_rotations;
 	int gfx_prepared;
 
 	// Sounds

@@ -1231,17 +1231,6 @@ static int get_one_droid(lua_State *L, void *data)
 	droid->weapon_id = get_item_type_by_id(weapon_name);
 	free(weapon_name);
 
-	// Now we read in the Graphics to associate with this droid type
-	// TODO. To adapt (PrefixToFilename should no more exist...)
-	droid->individual_shape_nr = 0;
-	int i;
-	for (i=0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++) {
-		if (PrefixToFilename[i] && !strcmp(droid->gfx_prefix, PrefixToFilename[i])){
-			droid->individual_shape_nr = i;
-			break;
-		}
-	}
-
 	if (droid->voice_samples_first == -1 || droid->voice_samples_last == -1) {
 		free(droid->voice_samples_path);
 		droid->voice_samples_path = NULL;
@@ -1272,6 +1261,10 @@ static int get_one_droid(lua_State *L, void *data)
 	droid->death_animation_last_image = 1;
 	droid->stand_animation_first_image = 1;
 	droid->stand_animation_last_image = 1;
+
+	struct image empty = EMPTY_IMAGE;
+	droid->portrait = empty;
+
 	droid->gfx_prepared = FALSE;
 
 	return TRUE;

@@ -441,20 +441,9 @@ void free_enemy_graphics(void)
 				delete_image(&Droidmap[i].droid_images[rotation_index][phase_index]);
 		}
 		Droidmap[i].gfx_prepared = FALSE;
-	}
-}
 
-/**
- * This function creates all the surfaces, that are necessary to blit the
- * 'head' and 'shoes' of an enemy.  The numbers are not dealt with here.
- */
-void Load_Enemy_Surfaces(void)
-{
-	int i;
-
-	for (i = 0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++) {
-		struct image empty = EMPTY_IMAGE;
-		chat_portrait_of_droid[i] = empty;
+		if (image_loaded(&Droidmap[i].portrait))
+			delete_image(&Droidmap[i].portrait);
 	}
 }
 
@@ -465,24 +454,16 @@ static void load_droid_portrait(int type)
 	strcpy(fpath, Droidmap[type].gfx_prefix);
 	strcat(fpath, "/portrait.png");
 
-	load_image(&chat_portrait_of_droid[type], GRAPHICS_DIR, fpath, NO_MOD);
+	load_image(&Droidmap[type].portrait, GRAPHICS_DIR, fpath, NO_MOD);
 }
 
 struct image *get_droid_portrait_image(int type)
 {
-	if (type >= ENEMY_ROTATION_MODELS_AVAILABLE) {
-		error_message(__FUNCTION__, "Tried to load a portrait image of a bot those type is #%d, but the maximum configured value is %d."
-				                   "ENEMY_ROTATION_MODELS_AVAILABLE should be raised.", 
-				                   PLEASE_INFORM | IS_FATAL,
-				                   type, ENEMY_ROTATION_MODELS_AVAILABLE - 1);
-		return NULL;
-	}
-	
-	if (!image_loaded(&chat_portrait_of_droid[type])) {
+	if (!image_loaded(&Droidmap[type].portrait)) {
 		load_droid_portrait(type);
 	}
 
-	return &chat_portrait_of_droid[type];
+	return &Droidmap[type].portrait;
 }
 
 /**

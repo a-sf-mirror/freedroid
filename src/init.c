@@ -305,10 +305,6 @@ void Init_Game_Data()
 	// Load Tux animation and rendering specifications.
 	tux_rendering_load_specs("tuxrender_specs.lua");
 
-	// Load Bot animation definitions and animations
-	// must be before Get_Robot_Data()
-	Load_Enemy_Surfaces();
-
 	// Item archetypes must be loaded too
 	find_file("item_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);

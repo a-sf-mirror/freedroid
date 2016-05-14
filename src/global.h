@@ -199,12 +199,6 @@ EXTERN int mouse_cursor;
 EXTERN GLuint StoredMenuBackgroundTex[2];
 #endif
 
-//--------------------
-// Now the iso-image pointers for the new individually shaped
-// isometric enemy images
-//
-EXTERN struct image chat_portrait_of_droid[ENEMY_ROTATION_MODELS_AVAILABLE];
-
 EXTERN struct tux_motion_class_images *tux_images;
 EXTERN struct dynarray obstacle_images;
 
@@ -231,7 +225,6 @@ EXTERN struct widget_text *message_log;
 EXTERN struct dynarray obstacle_map;
 EXTERN struct dynarray underlay_floor_tiles;
 EXTERN struct dynarray overlay_floor_tiles;
-EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 #undef EXTERN
 #ifdef _text_c
