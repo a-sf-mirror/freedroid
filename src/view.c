@@ -2521,7 +2521,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	// Now in this case, we must load it immediately, or a segfault may
 	// result...
 	//
-	LoadAndPrepareEnemyRotationModelNr(ThisRobot);
+	load_droid_animation_images(droid_spec);
 
 	// Maybe we don't have an enemy here that would really stick to the 
 	// exact size of a block but be somewhat bigger or smaller instead.

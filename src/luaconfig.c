@@ -1176,6 +1176,7 @@ static int get_one_droid(lua_State *L, void *data)
 		{"notes",                            NULL,       STRING_TYPE, &droid->notes                           },
 		{"is_human",                         "1",        SHORT_TYPE,  &droid->is_human                        },
 		{"class",                            "1",        INT_TYPE,    &droid->class                           },
+		{"is_a_living",                      "1",        SHORT_TYPE,  &droid->is_a_living                     },
 
 		{"abilities.speed_max",              "2",        FLOAT_TYPE,  &droid->maxspeed                        },
 		{"abilities.energy_max",             "10",       FLOAT_TYPE,  &droid->maxenergy                       },

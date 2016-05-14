@@ -296,7 +296,7 @@ void open_gl_check_error_status(const char *name_of_calling_function);
 // blocks.c 
 void iso_load_bullet_surfaces(void);
 void Load_Mouse_Move_Cursor_Surfaces(void);
-void LoadAndPrepareEnemyRotationModelNr(struct enemy *);
+void load_droid_animation_images(struct droidspec *);
 void free_enemy_graphics(void);
 void Load_Blast_Surfaces(void);
 void load_floor_tiles(void);

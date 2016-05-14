@@ -368,6 +368,7 @@ typedef struct droidspec {
 	char *notes;		// notes on the droid of this type
 	short int is_human;
 	int class;
+	short int is_a_living;
 
 	// Droid's abilities
 	float maxspeed;

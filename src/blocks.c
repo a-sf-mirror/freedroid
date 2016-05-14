@@ -412,19 +412,19 @@ in graphics displayed, but FreedroidRPG will continue to work.", NO_REPORT, offs
  *
  *
  */
-void LoadAndPrepareEnemyRotationModelNr(struct enemy *ThisRobot)
+void load_droid_animation_images(struct droidspec *this_droid_spec)
 {
 	// Now we can check if the given rotation model type was perhaps already
 	// allocated and loaded and fully prepared.  Then of course we need not 
 	// do anything here...  Otherwise we can have trust and mark it as loaded
 	// already...
 	//
-	if (Droidmap[ThisRobot->type].gfx_prepared)
+	if (!this_droid_spec->is_a_living || this_droid_spec->gfx_prepared)
 		return;
-	Droidmap[ThisRobot->type].gfx_prepared = TRUE;
+	this_droid_spec->gfx_prepared = TRUE;
 	Activate_Conservative_Frame_Computation();
 
-	load_enemy_graphics(&Droidmap[ThisRobot->type]);
+	load_enemy_graphics(this_droid_spec);
 }
 
 void free_enemy_graphics(void)
@@ -433,15 +433,13 @@ void free_enemy_graphics(void)
 	int rotation_index, phase_index;
 
 	for (i = 0; i < Number_Of_Droid_Types; i++) {
-		if (!Droidmap[i].gfx_prepared)
-			continue;
-
-		for (rotation_index = 0; rotation_index < ROTATION_ANGLES_PER_ROTATION_MODEL; rotation_index++) {
-			for (phase_index = 0; phase_index < MAX_ENEMY_MOVEMENT_PHASES; phase_index++)
-				delete_image(&Droidmap[i].droid_images[rotation_index][phase_index]);
+		if (Droidmap[i].gfx_prepared) {
+			for (rotation_index = 0; rotation_index < ROTATION_ANGLES_PER_ROTATION_MODEL; rotation_index++) {
+				for (phase_index = 0; phase_index < MAX_ENEMY_MOVEMENT_PHASES; phase_index++)
+					delete_image(&Droidmap[i].droid_images[rotation_index][phase_index]);
+			}
+			Droidmap[i].gfx_prepared = FALSE;
 		}
-		Droidmap[i].gfx_prepared = FALSE;
-
 		if (image_loaded(&Droidmap[i].portrait))
 			delete_image(&Droidmap[i].portrait);
 	}

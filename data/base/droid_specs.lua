@@ -1823,38 +1823,9 @@ droid_list {
 	notes = _"This is a terminal.",
 	is_human = 0,
 	class = 100,
-	abilities = {
-		speed_max = 0,
-		energy_max = 1,
-		healing_rate = 1,
-		hit_draw = 0,
-		aggression_distance = 0,
-		time_eyeing = 0,
-		recover_time = 0,
-		xp_reward = 0,
-	},
-	equip = {
-	},
-	drop_draw = {
-		class = 0,
-	},
+	is_a_living = 0,
 	gfx = {
 		prefix = "droids/terminal",
-		animation = {
-			walk   = { speed_factor = 10 },
-			attack = { speed_factor = 10 },
-			gethit = { speed_factor = 10 },
-			death  = { speed_factor = 4 },
-			stand  = { speed_factor = 6 },
-		},
-	},
-	sound = {
-		voice_samples = {
-			path = sfx_sounds.voice_samples.path,
-			first = sfx_sounds.voice_samples.first,
-			last = sfx_sounds.voice_samples.last,
-			probability = sfx_sounds.voice_samples.probability,
-		},
 	},
 },
 {
@@ -1957,38 +1928,9 @@ droid_list {
 	notes = _"This is a secure terminal.",
 	is_human = 0,
 	class = 100,
-	abilities = {
-		speed_max = 0,
-		energy_max = 1,
-		healing_rate = 1,
-		hit_draw = 0,
-		aggression_distance = 0,
-		time_eyeing = 0,
-		recover_time = 0,
-		xp_reward = 0,
-	},
-	equip = {
-	},
-	drop_draw = {
-		class = 0,
-	},
+	is_a_living = 0,
 	gfx = {
 		prefix = "droids/terminal_secure",
-		animation = {
-			walk   = { speed_factor = 10 },
-			attack = { speed_factor = 10 },
-			gethit = { speed_factor = 10 },
-			death  = { speed_factor = 4 },
-			stand  = { speed_factor = 6 },
-		},
-	},
-	sound = {
-		voice_samples = {
-			path = sfx_sounds.voice_samples.path,
-			first = sfx_sounds.voice_samples.first,
-			last = sfx_sounds.voice_samples.last,
-			probability = sfx_sounds.voice_samples.probability,
-		},
 	},
 },
 }
