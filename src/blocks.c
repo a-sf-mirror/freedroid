@@ -134,7 +134,6 @@ static void load_enemy_graphics(struct droidspec *droid_spec)
 	droid_spec->death_animation_last_image = 0;
 	droid_spec->stand_animation_last_image = 0;
 
-
 	if (load_texture_atlas(atlas_filename, atlas_directory, compute_number_of_phases_for_enemy)) {
 		error_message(__FUNCTION__, "Unable to access the texture atlas for enemy '%s' at '%s'.",
 			PLEASE_INFORM | IS_FATAL, droid_spec->gfx_prefix, atlas_filename);
@@ -414,17 +413,13 @@ in graphics displayed, but FreedroidRPG will continue to work.", NO_REPORT, offs
  */
 void load_droid_animation_images(struct droidspec *this_droid_spec)
 {
-	// Now we can check if the given rotation model type was perhaps already
-	// allocated and loaded and fully prepared.  Then of course we need not 
-	// do anything here...  Otherwise we can have trust and mark it as loaded
-	// already...
-	//
 	if (!this_droid_spec->is_a_living || this_droid_spec->gfx_prepared)
 		return;
-	this_droid_spec->gfx_prepared = TRUE;
+
 	Activate_Conservative_Frame_Computation();
 
 	load_enemy_graphics(this_droid_spec);
+	this_droid_spec->gfx_prepared = TRUE;
 }
 
 void free_enemy_graphics(void)

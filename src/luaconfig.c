@@ -1248,25 +1248,28 @@ static int get_one_droid(lua_State *L, void *data)
 		droid->voice_samples_probability = 20;
 	}
 
-	// The animation cycle lengths will be taken from the image collection file
-	// the first time the droid will be displayed.
-	// But it might happen that some phase computation is done before the first
-	// blit already. Therefore we initialize some sane default values.
-	droid->walk_animation_first_image = 1;
-	droid->walk_animation_last_image = 1;
-	droid->attack_animation_first_image = 1;
-	droid->attack_animation_last_image = 1;
-	droid->gethit_animation_first_image = 1;
-	droid->gethit_animation_last_image = 1;
-	droid->death_animation_first_image = 1;
-	droid->death_animation_last_image = 1;
-	droid->stand_animation_first_image = 1;
-	droid->stand_animation_last_image = 1;
+	droid->gfx_prepared = FALSE;
+	if (!GameConfig.lazyload) {
+		load_droid_animation_images(droid);
+	} else {
+		// The animation cycle lengths will be taken from the image collection file
+		// the first time the droid will be displayed.
+		// But it might happen that some phase computation is done before the first
+		// blit already. Therefore we initialize some sane default values.
+		droid->walk_animation_first_image = 1;
+		droid->walk_animation_last_image = 1;
+		droid->attack_animation_first_image = 1;
+		droid->attack_animation_last_image = 1;
+		droid->gethit_animation_first_image = 1;
+		droid->gethit_animation_last_image = 1;
+		droid->death_animation_first_image = 1;
+		droid->death_animation_last_image = 1;
+		droid->stand_animation_first_image = 1;
+		droid->stand_animation_last_image = 1;
+	}
 
 	struct image empty = EMPTY_IMAGE;
 	droid->portrait = empty;
-
-	droid->gfx_prepared = FALSE;
 
 	return TRUE;
 }
