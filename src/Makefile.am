@@ -94,7 +94,7 @@ savestruct.h: struct.h savestruct_internal.h gen_savestruct.py
 
 version.c: dummy
 	@if $$(git status >&/dev/null) ; then \
-	 	version_string=`echo "char *freedroid_version = \"$$(git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@")$$(git diff --exit-code >& /dev/null || echo "_mod")\";"` ; \
+	 	version_string=`echo "char *freedroid_version = \"$$(git describe --tags 2>/dev/null || echo "@PACKAGE_VERSION@")$$(git diff --no-patch --exit-code >& /dev/null || echo "_mod")\";"` ; \
 	 else \
 	 	version_string=`echo "char *freedroid_version = \"@PACKAGE_VERSION@\";"` ; \
 	 fi ; \
