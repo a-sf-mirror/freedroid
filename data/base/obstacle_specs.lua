@@ -4012,6 +4012,50 @@ obstacle {
         animation_fps = 12
 }
 
+-- #496
+obstacle {
+	image_filenames = "iso_wall_cave_dark_we.png",
+	borders = borders(1.50, 1.00),
+	flags = { IS_HORIZONTAL, BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
+}
+
+-- #497
+obstacle {
+	image_filenames = "iso_wall_cave_dark_ns.png",
+	borders = borders(1.00, 1.50),
+	flags = { IS_VERTICAL, BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
+}
+
+-- #498
+obstacle {
+	image_filenames = "iso_wall_cave_curve_dark_nw.png",
+	borders = borders(1.00, 1.00),
+	flags = { BLOCKS_VISION, CORNER_SE },
+	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
+}
+
+-- #499
+obstacle {
+	image_filenames = "iso_wall_cave_curve_dark_es.png",
+	borders = borders(1.00, 1.00),
+	flags = { BLOCKS_VISION, CORNER_NW },
+	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
+}
+
+-- #500
+obstacle {
+	image_filenames = "iso_wall_cave_curve_dark_ne.png",
+	borders = borders(1.00, 1.00),
+	flags = { BLOCKS_VISION, CORNER_SW },
+	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
+}
 
 --[[ IMPORTANT NOTE:
 Before you add a new obstacle to the end of this list, please try to
