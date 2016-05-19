@@ -430,7 +430,19 @@ function FDdialog.Dialog.validate(self)
 
 		-- Get the script source code
 		local info = debug.getinfo(script,"S")
-		local script_file = io.open(info.short_src)
+		local script_filename = info.source
+		if (script_filename:sub(1,1) ~= "@") then
+			print("\n" .. FDutils.text.red("Dialog source is not a file: " .. script_filename))
+			valid = 0
+			return false
+		end
+		script_filename = script_filename:sub(2, -1)
+		local script_file = io.open(script_filename)
+		if (not script_file) then
+			print("\n" .. FDutils.text.red("Dialog source file not found: " .. script_filename))
+			valid = 0
+			return false
+		end
 		local buffer = ""
 		local line_number = 1
 		for line in script_file:lines() do
