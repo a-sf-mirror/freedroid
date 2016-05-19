@@ -41,7 +41,7 @@ codesets{
 	--           encoding for all the locales of that language group,
 	--           or can be 'language_territory' to define a specific encoding.
 	-- encoding: one of the font bitmap encoding provided by the game (see
-	--           graphics/font).
+	--           data/fonts).
 	-- Note: default encoding is ASCII
 	{ language = "cs", encoding = "ISO-8859-2"  },
 	{ language = "de", encoding = "ISO-8859-15" },
