@@ -112,7 +112,7 @@ function FDutils.dump.value(d, indent)
 	elseif (type(d) == "function") then
 		-- Get the src file, and dump the lines defining the function
 		local finfo = debug.getinfo(d)
-		local f = io.open(finfo["short_src"])
+		local f = io.open(finfo["source"]:sub(2, -1))
 		local ln = 0
 		local skip = 1
 		for l in f:lines("*l") do
