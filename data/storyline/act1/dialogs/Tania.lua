@@ -309,7 +309,7 @@ return {
 		id = "node19",
 		text = _"Carpets, sofa, bookshelves. Where did you get all this?",
 		code = function()
-			Npc:says(_"Peter did all he could to make this room comfortable. The sofa and armchair are from the commanders cabinet, the books are from the lounge...")
+			Npc:says(_"Peter did all he could to make this room comfortable. The sofa and armchair are from the commander's cabinet, the books are from the lounge...")
 			hide("node19")
 		end,
 	},
