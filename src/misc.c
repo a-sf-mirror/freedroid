@@ -47,6 +47,11 @@
 #  include <signal.h>
 #endif
 
+#ifdef __WIN32__
+// For _access()
+#include <io.h>
+#endif
+
 static int world_is_frozen = 0;
 long oneframedelay = 0;
 float FPSover1 = 10;
@@ -682,6 +687,65 @@ int init_data_dirs_path()
 	return 0;
 }
 
+/**
+ * Check if a directory exists
+ *
+ * @param dirname            Subdir to check, relatively to the directory specified by subdir_handle
+ * @param subdir_handle      Handle to one of the well known data subdirs
+ * @param check_if_writable  If TRUE, also check if the directory is writable
+ * @param error_report       If TRUE, report any error to the user, else be silent
+ *
+ * @return  0 is directory exists and is writable (if requested),
+ *          1 if directory exists but is not writable (if requested),
+ *          2 if directory does not exist,
+ *         -1 in case of errors.
+ */
+int check_directory(const char *dirname, int subdir_handle, int check_if_writable, int error_report)
+{
+	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
+		error_message(__FUNCTION__, "Called with a wrong subdir handle (%d)", PLEASE_INFORM, subdir_handle);
+		return -1;
+	}
+
+	char dir_path[PATH_MAX];
+	int nb = snprintf(dir_path, PATH_MAX, "%s/%s", data_dirs[subdir_handle].path, dirname);
+	if (nb >= PATH_MAX) {
+		*dir_path = 0;
+		error_message(__FUNCTION__, "Pathname too long (max is %d): %s/%s",
+		              PLEASE_INFORM, PATH_MAX, data_dirs[subdir_handle].path, dirname);
+		return -1;
+	}
+
+	// First check if directory exists
+#ifdef __WIN32__
+	int rtn = _access(dir_path, 0x0);
+#else
+	int rtn = access(dir_path, F_OK);
+#endif
+
+	if (rtn == -1) {
+		error_message(__FUNCTION__, "Directory not found: %s", error_report | PLEASE_INFORM, dir_path);
+		return 2;
+	}
+
+	// Then check if the directory is writable, if requested
+	if (!check_if_writable)
+		return TRUE;
+
+#ifdef __WIN32__
+	rtn = _access(dir_path, 0x06);
+#else
+	rtn = access(dir_path, W_OK);
+#endif
+
+	if (rtn == -1) {
+		error_message(__FUNCTION__, "Directory not writable: %s", error_report | PLEASE_INFORM, dir_path);
+		return 1;
+	}
+
+	return 0;
+}
+
 /* -----------------------------------------------------------------
  * check if a given filename exists in subdir.
  *
@@ -692,20 +756,22 @@ static int _file_exists(const char *fname, const char *subdir, char *file_path)
 {
 	int nb = snprintf(file_path, PATH_MAX, "%s/%s", subdir, fname);
 	if (nb >= PATH_MAX) {
-		*file_path = 0;
-		error_message(__FUNCTION__, "Pathname too long (max is %d): %s/%s",
-					 NO_REPORT, PATH_MAX, subdir, fname);
+		*file_path = '\0';
+		error_message(__FUNCTION__, "Pathname too long (max is %d): %s/%s", PLEASE_INFORM, PATH_MAX, subdir, fname);
 		return 0;
 	}
 
-	FILE *fp = fopen(file_path, "r");
-	if (!fp) {
+#ifdef __WIN32__
+	int rtn = _access(file_path, 0x04);
+#else
+	int rtn = access(file_path, R_OK);
+#endif
+
+	if (rtn == -1) {
 		/* not found */
-		*file_path = 0;
 		return 0;
 	}
 
-	fclose(fp);
 	return 1;
 }
 
