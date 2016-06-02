@@ -248,7 +248,7 @@ void TestMap(void)
 	if (game_root_mode == ROOT_IS_GAME)	/*don't allow map testing if root mode is GAME */
 		return;
 	game_status = INSIDE_GAME;
-	SaveGame();
+	save_game();
 	Game();
 	load_game();
 	leveleditor_init();

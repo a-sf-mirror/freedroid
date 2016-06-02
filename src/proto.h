@@ -335,17 +335,18 @@ void draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, in
 uint32_t sdl_get_pixel(SDL_Surface *surf, int x, int y);
 void sdl_put_pixel(SDL_Surface *surf, int x, int y, uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
 void save_screenshot(const char *filename, int width);
+void free_graphics(void);
 void reload_graphics(void);
 void clear_screen(void);
 
 // saveloadgame.c 
 int find_saved_games(struct dirent ***);
-void LoadAndShowThumbnail(char *CoreFilename);
-int SaveGame(void);
+void load_and_show_thumbnail(char *CoreFilename);
+int save_game(void);
 int load_backup_game(void);
 int load_game(void);
-int DeleteGame(void);
-void LoadAndShowStats(char *CoreFilename);
+int delete_game(void);
+void load_and_show_stats(char *CoreFilename);
 
 // mission.c 
 void CompleteMission(const char *);
@@ -591,6 +592,7 @@ int MouseCursorIsInRect(const SDL_Rect *, int, int);
 int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
 void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen);
 int init_data_dirs_path();
+int check_directory(const char *, int, int, int);
 int find_file(const char *, int, char *, int);
 int find_suffixed_file(const char *, const char *, int, char *, int);
 int find_localized_file(const char *, int, char *, int);
@@ -604,8 +606,8 @@ void update_frames_displayed(void);
 int MyRandom(int);
 void Teleport(int LNum, float X, float Y, int WithSound, int with_animation_reset);
 void teleport_to_level_center(int);
-int SaveGameConfig(void);
-int LoadGameConfig(void);
+int save_game_config(void);
+int load_game_config(void);
 void Terminate(int);
 uint32_t pot_gte(uint32_t v);
 obstacle *give_pointer_to_obstacle_with_label(const char *, int *);

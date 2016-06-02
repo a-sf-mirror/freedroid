@@ -374,28 +374,23 @@ void save_map(void)
 	char levels_fn[PATH_MAX];
 	char forces_fn[PATH_MAX];
 
-	if (find_file("levels.dat", MAP_DIR, levels_fn, PLEASE_INFORM) && find_file("ReturnOfTux.droids", MAP_DIR, forces_fn, PLEASE_INFORM)) {
-		if ((SaveShip(levels_fn, TRUE, 0) == OK) && (save_special_forces(forces_fn) == OK)) {
-			put_string_centered(FPS_Display_Font, 11 * get_font_height(Menu_Font), _("Your ship was saved..."));
-			our_SDL_flip_wrapper();
-			return;
-		}
+	if (!find_file("levels.dat", MAP_DIR, levels_fn, PLEASE_INFORM) || !find_file("ReturnOfTux.droids", MAP_DIR, forces_fn, PLEASE_INFORM)) {
+		error_message(__FUNCTION__,
+		              "Saving levels.dat and ReturnOfTux.droids to %s failed, possibly because of permission issues.\n"
+		              "Saving your files to %s instead.",
+		              NO_REPORT, data_dirs[MAP_DIR].path, data_dirs[CONFIG_DIR].path);
+		alert_window(_("Saving map files to %s/ instead of the default location %s/."), data_dirs[CONFIG_DIR].path, data_dirs[MAP_DIR].name);
+		find_file("levels.dat", CONFIG_DIR, levels_fn, NO_REPORT);
+		find_file("ReturnOfTux.droids", CONFIG_DIR, forces_fn, NO_REPORT);
 	}
 
-	error_message(__FUNCTION__, "Saving levels.dat and ReturnOfTux.droids to %s failed, possibly because of permission issues.\n"
-			                    "Saving your files to %s instead.",
-			NO_REPORT, data_dirs[MAP_DIR].path, our_config_dir);
-	alert_window(_("Saving map files to %s/ instead of the default location %s/."), our_config_dir, data_dirs[MAP_DIR].name);
-
-	sprintf(levels_fn, "%s/levels.dat", our_config_dir);
-	sprintf(forces_fn, "%s/ReturnOfTux.droids", our_config_dir);
 	if ((SaveShip(levels_fn, TRUE, 0) == OK) && (save_special_forces(forces_fn) == OK)) {
 		put_string_centered(FPS_Display_Font, 11 * get_font_height(Menu_Font), _("Your ship was saved..."));
 		our_SDL_flip_wrapper();
 		return;
 	}
 
-	error_message(__FUNCTION__, "Wasn't able to save even to %s.", PLEASE_INFORM, our_config_dir);
+	error_message(__FUNCTION__, "Wasn't able to save even to %s.", PLEASE_INFORM, data_dirs[CONFIG_DIR].path);
 	put_string_centered(FPS_Display_Font, 11 * get_font_height(Menu_Font), _("Your ship can not be saved !!! See the console output..."));
 	our_SDL_flip_wrapper();
 }

@@ -61,7 +61,6 @@
 // Here you can control the debug level for the various modules, or at least
 // that's the way it is planned to be.  Turn on and off debugging as you like.
 //
-#define SAVE_LOAD_GAME_DEBUG 1
 enum {
 	NO_REPORT     = 0,
 	PLEASE_INFORM = 1 << 1,   // Print a message inviting the user to inform us about the error
@@ -1589,7 +1588,8 @@ enum chat_context_state {
 
 // Indexes of known data dirs (used in conjunction with data_dirs[])
 enum data_dir_handle {
-	GUI_DIR = 0,
+	CONFIG_DIR = 0,
+	GUI_DIR,
 	GRAPHICS_DIR,
 	FONT_DIR,
 	SOUND_DIR,

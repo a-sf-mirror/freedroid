@@ -228,8 +228,8 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 		    strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], " ")) {
 			// We load the thumbnail, or at least we try to do it...
 			//
-			LoadAndShowThumbnail(MenuTexts[MenuPosition - 1 + VertScrollOffset]);
-			LoadAndShowStats(MenuTexts[MenuPosition - 1 + VertScrollOffset]);
+			load_and_show_thumbnail(MenuTexts[MenuPosition - 1 + VertScrollOffset]);
+			load_and_show_stats(MenuTexts[MenuPosition - 1 + VertScrollOffset]);
 		}
 		// Draw the menu's  background
 		//
@@ -974,7 +974,7 @@ static int Escape_handle(int n)
 		GameOver = TRUE;
 		return EXIT_MENU;
 	case SAVE_GAME_POSITION:
-		SaveGame();
+		save_game();
 		break;
 	case QUIT_POSITION:
 		DebugPrintf(2, "\nvoid EscapeMenu( void ): Quit requested by user.  Terminating...");
@@ -1687,7 +1687,7 @@ static int do_savegame_selection_and_act(int action)
 		int FinalDecision = DoMenuSelection(SafetyText, MenuTexts, 1, "title.jpg", NULL);
 
 		if (FinalDecision == 1)
-			DeleteGame();
+			delete_game();
 		rtn = TRUE;
 		break;
 	}

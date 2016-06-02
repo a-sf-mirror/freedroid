@@ -744,8 +744,16 @@ static void detect_available_resolutions(void)
 
 void prepare_execution(int argc, char *argv[])
 {
+	// Note: If not run from term, we have no way to inform the user
+	// at that point in case of error (the graphic subsystem is not
+	// yet initialized).
+	// So, the user will not catch the error output, and the game
+	// will apparently abort silently...
+	// TODO: Use SDL2 SDL_ShowSimpleMessageBox()
+
 #if defined HAVE_UNISTD_H && defined HAVE_DIRNAME
-	// change working directory to the executable's directory
+	// Change working directory to the executable's directory,
+	// all data dirs being searched relatively to that directory.
 	if (chdir(dirname(argv[0])))
 		fprintf(stderr, "Couldn't change working directory to %s.\n", dirname(argv[0]));
 #endif
@@ -754,6 +762,7 @@ void prepare_execution(int argc, char *argv[])
 	// Real code to get such a capability has to use setupterm() and
 	// tigetnum() from the ncurses lib.
 	// In order to avoid a dependency to ncurses, we use here a simple trick.
+
 	run_from_term = FALSE;
 	term_has_color_cap = FALSE;
 #ifndef __WIN32__
@@ -764,47 +773,51 @@ void prepare_execution(int argc, char *argv[])
 
 	// Get the homedir, and define the directory where the config file and
 	// the savegames will be stored
+
+	data_dirs[CONFIG_DIR].path[0] = '\0';
+
 #if __WIN32__
 
-	our_homedir = ".";
 	// There is no real homedir on Windows.
 	// So we use the user's "My Documents" as a home directory.
 	char mydocuments_path[MAX_PATH];
 	if (SHGetSpecialFolderPath(0, mydocuments_path, CSIDL_PERSONAL, FALSE)) {
-		our_homedir = strdup(mydocuments_path);
+		sprintf(data_dirs[CONFIG_DIR].path, "%s/FreedroidRPG", mydocuments_path);
+	} else {
+		sprintf(data_dirs[CONFIG_DIR].path, "./FreedroidRPG");
 	}
-	our_config_dir = MyMalloc(strlen(our_homedir) + 20);
-	sprintf(our_config_dir, "%s/FreedroidRPG", our_homedir);
 
 #else
 
-	// first we need the user's homedir for loading/saving stuff
+	char *our_homedir = NULL;
+
 	if ((our_homedir = getenv("HOME")) == NULL) {
 		our_homedir = ".";
 	}
-	our_config_dir = MyMalloc(strlen(our_homedir) + 20);
-	sprintf(our_config_dir, "%s/.freedroid_rpg", our_homedir);
+	sprintf(data_dirs[CONFIG_DIR].path, "%s/.freedroid_rpg", our_homedir);
 
 #endif
 
-	struct stat statbuf;
-	int rtn;
+	int check_dir = check_directory("", CONFIG_DIR, TRUE, SILENT);
 
-	if (stat(our_config_dir, &statbuf) == -1) {
+	// If config dir is not writable, we have a problem !
+
+	if (check_dir == 1) {
+		fprintf(stderr, "config subdir %s is not writable.\n", data_dirs[CONFIG_DIR].path);
+		exit(EXIT_FAILURE);
+	}
+
+	// If config dir does not exist, create it
+
+	if (check_dir == 2) {
 #		if __WIN32__
-		rtn = _mkdir(our_config_dir);
+		int mkdir_result = _mkdir(data_dirs[CONFIG_DIR].path);
 #		else
-		rtn = mkdir(our_config_dir, S_IREAD | S_IWRITE | S_IEXEC);
+		int mkdir_result = mkdir(data_dirs[CONFIG_DIR].path, S_IREAD | S_IWRITE | S_IEXEC);
 #		endif
-		if (rtn == -1) {
-			free(our_config_dir);
-			our_config_dir = NULL;
-			// If not run from term, we currently have no way to inform the
-			// user that we were not able to create the subdir.
-			// TODO: Use SDL2 SDL_ShowSimpleMessageBox()
-			// Until the SDL2 port is done, well, we just abort somehow silently...
-			DebugPrintf(-4, "Was not able to create a subdir to store the configuration and the savegames.\n");
-			Terminate(EXIT_FAILURE);
+		if (mkdir_result == -1) {
+			fprintf(stderr, "Was not able to create %s to store the configuration and the savegames.\n", data_dirs[CONFIG_DIR].path);
+			exit(EXIT_FAILURE);
 		}
 	}
 
@@ -815,29 +828,33 @@ void prepare_execution(int argc, char *argv[])
 	// in the directory of the current process. They will be removed when the process
 	// ends, because they are empty.
 	if (!run_from_term) {
-		char *filename = MyMalloc(strlen(our_config_dir) + 15);
-		sprintf(filename, "%s/fdrpg_out.txt", our_config_dir);
+		char filename[PATH_MAX];
+		find_file("fdrpg_out.txt", CONFIG_DIR, filename, NO_REPORT);
 		if (!freopen(filename, "w", stdout)) {
-			DebugPrintf(-4, "Was not able to redirect stdout to %s/fdrpg_out.txt", our_config_dir);
+			fprintf(stderr, "Was not able to redirect stdout to %s. Errno: %d", filename, errno);
+			run_from_term = TRUE; // Pretend it, to avoid Terminate() to try to open fdrpg_out.txt
+		} else {
+			if (dup2(fileno(stdout), fileno(stderr)) == -1) {
+				fprintf(stderr, "Was not able to redirect stderr to stdout. Errno: %d", errno);
+				run_from_term = TRUE; // Pretend it, to avoid Terminate() to try to open fdrpg_out.txt
+			} else {
+				// stdout and stderr are redirected, print an
+				// informative message
+				fprintf(stderr, "Hello!  This window contains the DEBUG OUTPUT of FreedroidRPG.\n"
+				                "\n"
+				                "Normally you would not see this message or this window, but apparently\n"
+				                "FreedroidRPG has terminated because of an error of some sort.\n"
+				                "\n"
+				                "You might wish to inspect the debug output below.  Maybe sending the\n"
+				                "debug output (or at least the lower end of the debug output) to the\n"
+				                "FreedroidRPG developers could help them to track down the problem.\n"
+				                "\n"
+				                "Well, it's no guarantee that we can solve any bug, but it's certainly\n"
+				                "better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n"
+				                "\n\n"
+				                "--start of real debug log--\n\n");
+			}
 		}
-		free(filename);
-		if (dup2(fileno(stdout), fileno(stderr)) == -1) {
-			DebugPrintf(-4, "Was not able to redirect stderr to stdout. Errno: %d", errno);
-		}
-
-		fprintf(stderr, "Hello!  This window contains the DEBUG OUTPUT of FreedroidRPG.\n"
-		                "\n"
-		                "Normally you would not see this message or this window, but apparently\n"
-		                "FreedroidRPG has terminated because of an error of some sort.\n"
-		                "\n"
-		                "You might wish to inspect the debug output below.  Maybe sending the\n"
-		                "debug output (or at least the lower end of the debug output) to the\n"
-		                "FreedroidRPG developers could help them to track down the problem.\n"
-		                "\n"
-		                "Well, it's no guarantee that we can solve any bug, but it's certainly\n"
-		                "better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n"
-		                "\n\n"
-		                "--start of real debug log--\n\n");
 	}
 
 	// We mention the version of FreedroidRPG, so that debug reports
@@ -872,7 +889,7 @@ void InitFreedroid(int argc, char **argv)
 
 	load_fdrpg_config();
 
-	LoadGameConfig();
+	load_game_config();
 
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		error_message(__FUNCTION__, "Couldn't initialize SDL: %s", PLEASE_INFORM | IS_FATAL, SDL_GetError());

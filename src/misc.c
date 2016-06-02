@@ -62,10 +62,8 @@ Uint32 Onehundred_Frame_SDL_Ticks;
 int framenr = 0;
 long Overall_Frames_Displayed = 0;
 
-char *our_homedir = NULL;
-char *our_config_dir = NULL;
-
 struct data_dir data_dirs[] = {
+	[CONFIG_DIR]=      { "configdir",                   "" },
 	[GUI_DIR]=         { "data/gui",                    "" },
 	[GRAPHICS_DIR]=    { "data/graphics",               "" },
 	[FONT_DIR]=        { "data/fonts",                  "" },
@@ -633,9 +631,10 @@ int init_data_dirs_path()
 	int i, j;
 	FILE *f;
 	char file_path[PATH_MAX];
+	const int FIRST_DATA_DIR = 1; // data_dirs[0] is CONFIG_DIR, set in prepare_execution()
 
 	// Reset the data dirs paths
-	for (i = 0; i < LAST_DATA_DIR; i++) {
+	for (i = FIRST_DATA_DIR; i < LAST_DATA_DIR; i++) {
 		data_dirs[i].path[0] = '\0';
 	}
 
@@ -653,7 +652,7 @@ int init_data_dirs_path()
 
 		if ((f = fopen(file_path, "r")) != NULL) {
 			// File found, so now fill the data dir paths
-			for (j = 0; j < LAST_DATA_DIR; j++) {
+			for (j = FIRST_DATA_DIR; j < LAST_DATA_DIR; j++) {
 				char *dir = top_data_dir[i];
 				const char *subdir = data_dirs[j].name;
 #ifdef ENABLE_NLS
@@ -1296,27 +1295,26 @@ int level_exists(int level_num)
 }
 
 /*----------------------------------------------------------------------
- * LoadGameConfig(): load saved options from config-file
+ * load_game_config: load saved options from config-file
  *
  * this should be the first of all load/save functions called
  * as here we read the $HOME-dir and create the config-subdir if necessary
  *
  *----------------------------------------------------------------------*/
-int LoadGameConfig(void)
+int load_game_config(void)
 {
-	char fname[5000];
+	char fname[PATH_MAX];
 	FILE *configfile;
 
-	if (!our_config_dir) {
-		DebugPrintf(1, "No useble config-dir. No config-loading possible\n");
-		return (OK);
+	if (!strlen(data_dirs[CONFIG_DIR].path)) {
+		return OK;
 	}
 
-	sprintf(fname, "%s/fdrpg.cfg", our_config_dir);
+	find_file("fdrpg.cfg", CONFIG_DIR, fname, SILENT);
 	if ((configfile = fopen(fname, "rb")) == NULL) {
 		fprintf(stderr, "\nUnable to open configuration file %s\n", fname);
 		lang_set(GameConfig.locale, NULL);
-		return (ERR);
+		return ERR;
 	}
 
 	char *stuff = (char *)malloc(FS_filelength(configfile) + 1);
@@ -1351,16 +1349,17 @@ int LoadGameConfig(void)
 	free(stuff);
 
 	if (!GameConfig.freedroid_version_string || strcmp(GameConfig.freedroid_version_string, VERSION)) {
-		error_message(__FUNCTION__, "\
-Settings file found in your ~/.freedroid_rpg dir does not\n\
-seem to be from the same version as this installation of FreedroidRPG.\n\
-This is perfectly normal if you have just upgraded your version of\n\
-FreedroidRPG.  However, the loading of your settings will be canceled now,\n\
-because the format of the settings file is no longer supported.\n\
-No need to panic.  The default settings will be used instead and a new\n\
-settings file will be generated.", NO_REPORT);
+		error_message(__FUNCTION__,
+		              "Settings file found in your ~/.freedroid_rpg dir does not\n"
+		              "seem to be from the same version as this installation of FreedroidRPG.\n"
+		              "This is perfectly normal if you have just upgraded your version of\n"
+		              "FreedroidRPG.  However, the loading of your settings will be canceled now,\n"
+		              "because the format of the settings file is no longer supported.\n"
+		              "No need to panic.  The default settings will be used instead and a new\n"
+		              "settings file will be generated.",
+		              NO_REPORT);
 		ResetGameConfigToDefaultValues();
-		return (ERR);
+		return ERR;
 	};
 
 	// Now we will turn off the skills and inventory screen and that, cause
@@ -1372,16 +1371,16 @@ settings file will be generated.", NO_REPORT);
 	GameConfig.skill_explanation_screen_visible = FALSE;
 	GameConfig.Automap_Visible = TRUE;
 
-	return (OK);
+	return OK;
 }
 
 /*----------------------------------------------------------------------
- * SaveGameConfig: do just that
+ * save_game_config: do just that
  * Return: -1 on error, -2 if immediate exit is needed, 0 otherwise
  *----------------------------------------------------------------------*/
-int SaveGameConfig(void)
+int save_game_config(void)
 {
-	char fname[5000];
+	char fname[PATH_MAX];
 	int current_width;
 	int current_height;
 	FILE *config_file;
@@ -1391,8 +1390,7 @@ int SaveGameConfig(void)
 	// Then the config dir is not initialized.  We catch this case and return
 	// control to the operating system immediately if that happens...
 
-	if (our_config_dir == NULL || our_config_dir[0] == '\0') {
-		DebugPrintf(-4, "It seems that the game couldn't start up at all... therefore we need not save any configuration information.\n");
+	if (!strlen(data_dirs[CONFIG_DIR].path)) {
 		return -2;
 	}
 
@@ -1400,7 +1398,7 @@ int SaveGameConfig(void)
 	// That indicates, that the game did start up already.
 	// Therefore we can do the normal save config stuff...
 
-	sprintf(fname, "%s/fdrpg.cfg", our_config_dir);
+	find_file("fdrpg.cfg", CONFIG_DIR, fname, SILENT);
 	if ((config_file = fopen(fname, "wb")) == NULL) {
 		DebugPrintf(-4, "Unable to open configuration file %s for writing\n", fname);
 		return -1;
@@ -1410,7 +1408,7 @@ int SaveGameConfig(void)
 	// version number string.  This will be useful so that later
 	// versions of FreedroidRPG can identify old config files and decide
 	// not to use them in some cases.
-	//
+
 	if (GameConfig.freedroid_version_string) {
 		free(GameConfig.freedroid_version_string);
 	}
@@ -1419,13 +1417,14 @@ int SaveGameConfig(void)
 	// We preserve the current resolution, modify it a bit, such that
 	// the preselected resolution will come to effect next time, save
 	// it and then we restore the current settings again.
-	//
+
 	current_width = GameConfig.screen_width;
 	current_height = GameConfig.screen_height;
 	GameConfig.screen_width = GameConfig.next_time_width_of_screen;
 	GameConfig.screen_height = GameConfig.next_time_height_of_screen;
 
 	// Now write the actual data
+
 	savestruct_autostr = alloc_autostr(4096);
 	save_freedroid_configuration(savestruct_autostr);
 	if (fwrite(savestruct_autostr->value, savestruct_autostr->length, 1, config_file) != 1) {
@@ -1451,7 +1450,7 @@ static void free_memory_before_exit(void)
 	clear_enemies();
 	clear_npcs();
 	free_tux();
-	reload_graphics();
+	free_graphics();
 
 	// free the widgets
 	free_game_ui();
@@ -1485,7 +1484,7 @@ void Terminate(int exit_code)
 	// Save the config file only in case of success.
 
 	if (exit_code == EXIT_SUCCESS) {
-		if (SaveGameConfig() == -2) {
+		if (save_game_config() == -2) {
 			exit_code = -1;
 			goto IMMEDIATE_EXIT;
 		}
@@ -1514,13 +1513,15 @@ IMMEDIATE_EXIT:
 	if (!run_from_term) {
 		if (exit_code == EXIT_FAILURE) {
 			int rtn;
+			char outfn[PATH_MAX];
 			fflush(stdout);
 			fflush(stderr);
-			char *cmd = MyMalloc(strlen(our_config_dir) + strlen(OPENTXT_CMD) + 20);
-			sprintf(cmd, "%s %s/fdrpg_out.txt", OPENTXT_CMD, our_config_dir);
+			find_file("fdrpg_out.txt", CONFIG_DIR, outfn, NO_REPORT);
+			char *cmd = MyMalloc(strlen(OPENTXT_CMD) + strlen(outfn) + 2); // +1 for the whitespace after the cmd name +1 for the terminating \0
+			sprintf(cmd, "%s %s", OPENTXT_CMD, outfn);
 			rtn = system(cmd);
 			if (rtn == -1) // We use the return value mainly to avoid a compilation warning
-				DebugPrintf(-1, "system call failed: \"%s\" returned %d", cmd, rtn);
+				fprintf(stderr, "system call failed: \"%s\" returned %d", cmd, rtn);
 			free(cmd);
 		}
 	}

@@ -588,7 +588,7 @@ static int input_key(int keynum, int value)
 			TuxReloadWeapon();
 			return 0;
 		} else if (KEYPRESS("quicksave")) {
-			SaveGame();
+			save_game();
 			return 0;
 		} else if (KEYPRESS("quickload")) {
 			load_game();
@@ -778,10 +778,10 @@ static int input_key(int keynum, int value)
 		SDL_WM_GrabInput(mode);
 	} else if (KEYPRESS("take_screenshot")) {
 		play_sound("effects/CameraTakesPicture.ogg");
-		char filename[1000];
-		char relative_filename[100];
+		char filename[PATH_MAX];
+		char relative_filename[PATH_MAX];
 		sprintf(relative_filename, "%s.screenshot-%d.png", Me.character_name, SDL_GetTicks()/1000);
-		sprintf(filename, "%s/%s", our_config_dir, relative_filename);
+		find_file(relative_filename, CONFIG_DIR, filename, SILENT);
 		save_screenshot(filename, FALSE);
 		alert_window(_("Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."), relative_filename);
 	} else if (KEYPRESS("wall_transparency")) {

@@ -153,7 +153,7 @@ static int savegame_bench()
 	// Write it many times.
 	timer_start();
 	while (loop--) {
-		SaveGame();
+		save_game();
 	}
 	timer_stop();
 

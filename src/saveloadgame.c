@@ -85,7 +85,7 @@ static int filename_filter_func(const struct dirent *file)
  */
 int find_saved_games(struct dirent ***namelist)
 {
-	int n = scandir(our_config_dir, namelist, filename_filter_func, alphasort);
+	int n = scandir(data_dirs[CONFIG_DIR].path, namelist, filename_filter_func, alphasort);
 
 	if (n == -1)
 	{
@@ -105,19 +105,22 @@ int find_saved_games(struct dirent ***namelist)
 	return n;
 }
 
-void LoadAndShowThumbnail(char *CoreFilename)
+void load_and_show_thumbnail(char *core_filename)
 {
-	char filename[1000];
+	char filename[PATH_MAX];
+	char filepath[PATH_MAX];
 	struct image thumbnail = EMPTY_IMAGE;
-	SDL_Rect TargetRectangle;
+	SDL_Rect target_rectangle;
 
-	if (!our_config_dir)
+	if (!strlen(data_dirs[CONFIG_DIR].path))
 		return;
 
-	sprintf(filename, "%s/%s%s", our_config_dir, CoreFilename, SAVE_GAME_THUMBNAIL_EXT);
+	sprintf(filename, "%s%s", core_filename, SAVE_GAME_THUMBNAIL_EXT);
+	if (!find_file(filename, CONFIG_DIR, filepath, NO_REPORT))
+		return;
 
 	/* Load the image */
-	thumbnail.surface = our_IMG_load_wrapper(filename);
+	thumbnail.surface = our_IMG_load_wrapper(filepath);
 	if (!thumbnail.surface)
 		return;
 
@@ -126,10 +129,10 @@ void LoadAndShowThumbnail(char *CoreFilename)
 	if (use_open_gl)
 		make_texture_out_of_surface(&thumbnail);
 
-	TargetRectangle.x = 10;
-	TargetRectangle.y = GameConfig.screen_height - thumbnail.h - 10;
+	target_rectangle.x = 10;
+	target_rectangle.y = GameConfig.screen_height - thumbnail.h - 10;
 
-	display_image_on_screen(&thumbnail, TargetRectangle.x, TargetRectangle.y, IMAGE_NO_TRANSFO);
+	display_image_on_screen(&thumbnail, target_rectangle.x, target_rectangle.y, IMAGE_NO_TRANSFO);
 
 	delete_image(&thumbnail);
 }
@@ -138,105 +141,111 @@ void LoadAndShowThumbnail(char *CoreFilename)
  * 
  *
  */
-void LoadAndShowStats(char *CoreFilename)
+void load_and_show_stats(char *core_filename)
 {
-	char filename[1000];
-	struct stat FileInfoBuffer;
-	char InfoString[5000];
-	struct tm *LocalTimeSplitup;
-	long int FileSize;
+	char filename[PATH_MAX];
+	char filepath[PATH_MAX];
+	struct stat file_info_buffer;
+	char info_string[5000];
+	long int file_size;
 
-	if (!our_config_dir)
+	if (!strlen(data_dirs[CONFIG_DIR].path))
 		return;
 
-	DebugPrintf(2, "\nTrying to get file stats for character '%s'. ", CoreFilename);
+	// First we get the information of the .sav file
 
-	// First we save the full ship information, same as with the level editor
-	//
+	sprintf(filename, "%s%s", core_filename, SAVEDGAME_EXT);
+	if (!find_file(filename, CONFIG_DIR, filepath, NO_REPORT)) {
+		error_once_message(ONCE_PER_RUN, __FUNCTION__,
+		                   "FreedroidRPG was unable to access your saved game file (%s).\n"
+		                   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
+		                   "or file permissions of ~/.freedroid_rpg are somehow not right.",
+		                   PLEASE_INFORM, filename);
+		return;
+	}
 
-	sprintf(filename, "%s/%s%s", our_config_dir, CoreFilename, SAVEDGAME_EXT);
-
-	if (stat(filename, &(FileInfoBuffer))) {
-		fprintf(stderr, "\n\nfilename: %s. \n", filename);
-		error_message(__FUNCTION__, "\
-FreedroidRPG was unable to determine the time of the last modification on\n\
-your saved game file.\n\
-This is either a bug in FreedroidRPG or an indication, that the directory\n\
-or file permissions of ~/.freedroid_rpg are somehow not right.", NO_REPORT);
+	if (stat(filepath, &file_info_buffer)) {
+		error_once_message(ONCE_PER_RUN, __FUNCTION__,
+		                   "FreedroidRPG was unable to get the stats of your saved game file (%s).\n"
+		                   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
+		                   "or file permissions of ~/.freedroid_rpg are somehow not right.",
+		                   PLEASE_INFORM, filename);
 		return;
 	};
-
-	LocalTimeSplitup = localtime(&(FileInfoBuffer.st_mtime));
-	strftime(InfoString, sizeof(InfoString), nl_langinfo(D_T_FMT), LocalTimeSplitup);
+	file_size = file_info_buffer.st_size;
+	strftime(info_string, sizeof(info_string), nl_langinfo(D_T_FMT), localtime(&(file_info_buffer.st_mtime)));
 
 	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 3 * get_font_height(get_current_font()), _("Last Modified:"));
-	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * get_font_height(get_current_font()), InfoString);
+	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * get_font_height(get_current_font()), info_string);
 
-	// Now that the modification time has been set up, we can start to compute
-	// the overall disk space of all files in question.
-	//
-	FileSize = FileInfoBuffer.st_size;
+	// Now we compute the overall disk space of all files in question.
+	// The saved .shp must exist.  On not, it's a sever error!
 
-	// The saved ship must exist.  On not, it's a sever error!
-	//    
-	sprintf(filename, "%s/%s%s", our_config_dir, CoreFilename, ".shp");
-	if (stat(filename, &(FileInfoBuffer))) {
-		fprintf(stderr, "\n\nfilename: %s. \n", filename);
-		error_message(__FUNCTION__, "\
-FreedroidRPG was unable to determine the time of the last modification on\n\
-your saved game file.\n\
-This is either a bug in FreedroidRPG or an indication, that the directory\n\
-or file permissions of ~/.freedroid_rpg are somehow not right.", IS_FATAL);
+	sprintf(filename, "%s%s", core_filename, ".shp");
+	if (!find_file(filename, CONFIG_DIR, filepath, NO_REPORT)) {
+		error_once_message(ONCE_PER_RUN, __FUNCTION__,
+		                   "FreedroidRPG was unable to access your saved game file (%s).\n"
+		                   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
+		                   "or file permissions of ~/.freedroid_rpg are somehow not right.",
+		                   PLEASE_INFORM, filename);
+		return;
 	}
-	FileSize += FileInfoBuffer.st_size;
+
+	if (!stat(filepath, &file_info_buffer)) {
+		file_size += file_info_buffer.st_size;
+	}
 
 	// A thumbnail may not yet exist.  We won't make much fuss if it doesn't.
-	//
-	sprintf(filename, "%s/%s%s", our_config_dir, CoreFilename, SAVE_GAME_THUMBNAIL_EXT);
-	if (!stat(filename, &(FileInfoBuffer))) {
-		FileSize += FileInfoBuffer.st_size;
+
+	sprintf(filename, "%s%s", core_filename, SAVE_GAME_THUMBNAIL_EXT);
+	if (find_file(filename, CONFIG_DIR, filepath, SILENT)) {
+		if (!stat(filename, &(file_info_buffer))) {
+			file_size += file_info_buffer.st_size;
+		}
 	}
 
-	sprintf(InfoString, _("File Size: %2.3f MB"), ((float)FileSize) / (1024.0 * 1024.0));
-
-	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 1 * get_font_height(get_current_font()), InfoString);
-
-};				// void LoadAndShowStats ( char* filename );
+	sprintf(info_string, _("File Size: %2.3f MB"), ((float)file_size) / (1024.0 * 1024.0));
+	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 1 * get_font_height(get_current_font()), info_string);
+}
 
 /**
  * This function stores a thumbnail of the currently running game, so that
  * these thumbnails can be browsed when choosing which game to load.
  */
-void SaveThumbnailOfGame(void)
+void save_thumbnail(void)
 {
-	char filename[1000];
-	if (!our_config_dir)
+	char filename[PATH_MAX];
+	char filepath[PATH_MAX];
+
+	if (!strlen(data_dirs[CONFIG_DIR].path))
 		return;
 
-	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
+	sprintf(filename, "%s%s", Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
+	find_file(filename, CONFIG_DIR, filepath, SILENT);
 
 	AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
 
-	save_screenshot(filename, 210);
-};				// void SaveThumbnailOfGame ( void )
+	save_screenshot(filepath, 210);
+}
 
 /**
  * This function saves the current game of FreedroidRPG to a file.
  */
 
-int SaveGame(void)
+int save_game(void)
 {
-	char filename[1000];
-	char filename2[1000];
+	char filename[PATH_MAX];
+	char filepath[PATH_MAX];
+	char backup_filepath[PATH_MAX];
 	int ret;
-	FILE *SaveGameFile;
+	FILE *savegame_file;
 
 	if (Me.energy <= 0) {
 		alert_window(_("You are dead. Savegame not modified."));
 		return (ERR);
 	}
 
-	if (!our_config_dir)
+	if (!strlen(data_dirs[CONFIG_DIR].path))
 		return (OK);
 
 	/* Start with a 1MB string */
@@ -244,95 +253,104 @@ int SaveGame(void)
 
 	Activate_Conservative_Frame_Computation();
 
-	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, ".shp");
-	sprintf(filename2, "%s/%s%s", our_config_dir, Me.character_name, ".bkp.shp");
-
-	unlink(filename2);
-	ret = rename(filename, filename2);
+	sprintf(filename, "%s%s", Me.character_name, ".shp");
+	find_file(filename, CONFIG_DIR, filepath, SILENT);
+	sprintf(filename, "%s%s", Me.character_name, ".bkp.shp");
+	if (find_file(filename, CONFIG_DIR, backup_filepath, SILENT))
+		unlink(backup_filepath);
+	ret = rename(filepath, backup_filepath);
 
 	if (ret && errno != ENOENT) {
-		error_message(__FUNCTION__, "Unable to create the shipfile backup", PLEASE_INFORM);
+		error_message(__FUNCTION__, "Unable to create the shipfile backup. Errno: %d", PLEASE_INFORM, errno);
 	}
 
 	put_string_centered(Menu_Font, 10, _("Saving"));
 	our_SDL_flip_wrapper();
 
-	if (SaveShip(filename, FALSE, 1) != OK) {
-		error_message(__FUNCTION__, "\
-The SAVING OF THE SHIP DATA FOR THE SAVED GAME FAILED!\n\
-This is either a bug in FreedroidRPG or an indication, that the directory\n\
-or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM | IS_FATAL);
-	} else {
-		DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\nShip data for saved game seems to have been saved correctly.\n");
+	if (SaveShip(filepath, FALSE, 1) != OK) {
+		error_message(__FUNCTION__,
+		              "The SAVING OF THE SHIP DATA FOR THE SAVED GAME FAILED!\n"
+		              "This is either a bug in FreedroidRPG or an indication, that the directory\n"
+		              "or file permissions of ~/.freedroid_rpg are somehow not right.",
+					  PLEASE_INFORM | IS_FATAL);
 	}
 
-	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
-	sprintf(filename2, "%s/%s%s", our_config_dir, Me.character_name, ".bkp"SAVEDGAME_EXT);
-
-	unlink(filename2);
-	ret = rename(filename, filename2);
+	sprintf(filename, "%s%s", Me.character_name, SAVEDGAME_EXT);
+	find_file(filename, CONFIG_DIR, filepath, SILENT);
+	sprintf(filename, "%s%s", Me.character_name, ".bkp"SAVEDGAME_EXT);
+	if (find_file(filename, CONFIG_DIR, backup_filepath, SILENT))
+		unlink(backup_filepath);
+	ret = rename(filepath, backup_filepath);
 
 	if (ret && errno != ENOENT) {
-		error_message(__FUNCTION__, "Unable to create the savegame backup", PLEASE_INFORM);
+		error_message(__FUNCTION__, "Unable to create the savegame backup. Errno: %d", PLEASE_INFORM, errno);
 	}
 
-	if ((SaveGameFile = fopen(filename, "wb")) == NULL) {
+	if ((savegame_file = fopen(filepath, "wb")) == NULL) {
 		error_message(__FUNCTION__, "Error opening save game file for writing...\n\nTerminating...", IS_FATAL);
 	}
 
 	save_game_data(savestruct_autostr);
 
-	deflate_to_stream((unsigned char *)savestruct_autostr->value, savestruct_autostr->length+1, SaveGameFile);
-	fclose(SaveGameFile);
+	deflate_to_stream((unsigned char *)savestruct_autostr->value, savestruct_autostr->length+1, savegame_file);
+	fclose(savegame_file);
 
-	SaveThumbnailOfGame();
+	save_thumbnail();
 
 	append_new_game_message(_("Game saved."));
 
-	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\nint SaveGame( void ): end of function reached.");
-
 	free_autostr(savestruct_autostr);
 	savestruct_autostr = NULL;
+
 	return OK;
-};				// int SaveGame( void )
+}
 
 /**
  * This function delete a saved game and its backup (if there's one)
  */
-int DeleteGame(void)
+int delete_game(void)
 {
-	char filename[FILENAME_MAX];
+	char filename[PATH_MAX];
+	char file_path[PATH_MAX];
 
-	if (!our_config_dir)
-		return (OK);
+	snprintf(filename, sizeof(filename), "%s%s", Me.character_name, ".shp");
+	if (find_file(filename, CONFIG_DIR, file_path, SILENT))
+		remove(file_path);
+	snprintf(filename, sizeof(filename), "%s%s", Me.character_name, SAVEDGAME_EXT);
+	if (find_file(filename, CONFIG_DIR, file_path, SILENT))
+		remove(file_path);
 
-	snprintf(filename, sizeof(filename), "%s/%s%s", our_config_dir, Me.character_name, ".shp");
-	remove(filename);
-	snprintf(filename, sizeof(filename), "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
-	remove(filename);
-
-	snprintf(filename, sizeof(filename), "%s/%s%s", our_config_dir, Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
-	remove(filename);
+	snprintf(filename, sizeof(filename), "%s%s", Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
+	if (find_file(filename, CONFIG_DIR, file_path, SILENT))
+		remove(file_path);
 
 	// We do not check if the backup files exists before to remove it, but since
 	// do not check the returned value of remove(), this is not an issue
-	snprintf(filename, sizeof(filename), "%s/%s%s", our_config_dir, Me.character_name, ".bkp.shp");
-	remove(filename);
-	snprintf(filename, sizeof(filename), "%s/%s%s", our_config_dir, Me.character_name, ".bkp"SAVEDGAME_EXT);
-	remove(filename);
+	snprintf(filename, sizeof(filename), "%s%s", Me.character_name, ".bkp.shp");
+	if (find_file(filename, CONFIG_DIR, file_path, SILENT))
+		remove(file_path);
+	snprintf(filename, sizeof(filename), "%s%s", Me.character_name, ".bkp"SAVEDGAME_EXT);
+	if (find_file(filename, CONFIG_DIR, file_path, SILENT))
+		remove(file_path);
 
 	return (OK);
 }
 
 static int load_saved_game(int use_backup)
 {
-	char filename[1000], prefix[1000];
+	char filename[PATH_MAX];
+	char filepath_prefix[PATH_MAX];
+	char filepath[PATH_MAX];
 
-	if (!our_config_dir) {
-		DebugPrintf(0, "No Configuration-directory, cannot load any games\n");
-		return (OK);
+	if (!strlen(data_dirs[CONFIG_DIR].path)) {
+		return OK;
 	}
-	sprintf(prefix, "%s/%s%s", our_config_dir, Me.character_name, (use_backup) ? ".bkp" : "");
+
+	sprintf(filename, "%s%s", Me.character_name, (use_backup) ? ".bkp" : "");
+	// This is not yet an actual filename, but only a prefix.
+	// We call find_file() to get a whole path.
+	// The suffix of the files to load is added later.
+	find_file(filename, CONFIG_DIR, filepath_prefix, SILENT);
 
 	put_string_centered(Menu_Font, 10, _("Loading"));
 	StoreMenuBackground(1);
@@ -346,8 +364,8 @@ static int load_saved_game(int use_backup)
 	 * Load maps (still using the legacy format)
 	**/
 
-	sprintf(filename, "%s%s", prefix, ".shp");
-	LoadShip(filename, 1);
+	sprintf(filepath, "%s%s", filepath_prefix, ".shp");
+	LoadShip(filepath, 1);
 
 	/*
 	 * Load data
@@ -358,8 +376,8 @@ static int load_saved_game(int use_backup)
 
 	// Read savegame into a buffer
 
-	sprintf(filename, "%s%s", prefix, SAVEDGAME_EXT);
-	FILE *data_file = fopen(filename, "rb");
+	sprintf(filepath, "%s%s", filepath_prefix, SAVEDGAME_EXT);
+	FILE *data_file = fopen(filepath, "rb");
 
 	if (inflate_stream(data_file, (unsigned char **)&game_data, &loaded_size)) {
 		fclose(data_file);
@@ -373,7 +391,7 @@ static int load_saved_game(int use_backup)
 	int rtc = convert_old_savegame(&game_data, &loaded_size);
 	if (rtc == FILTER_APPLIED) {
 		// A fix/conversion was needed. Save the new data.
-		data_file = fopen(filename, "wb");
+		data_file = fopen(filepath, "wb");
 		deflate_to_stream((unsigned char *)game_data, loaded_size, data_file);
 		fclose(data_file);
 	} else if (rtc == FILTER_ABORT) {
@@ -381,7 +399,7 @@ static int load_saved_game(int use_backup)
 		// However game_data was possibly changed by a filter function.
 		// We reload the savegame and use it as is.
 		free(game_data);
-		data_file = fopen(filename, "rb");
+		data_file = fopen(filepath, "rb");
 		int loaded_size = 0;
 		inflate_stream(data_file, (unsigned char **)&game_data, &loaded_size);
 		fclose(data_file);

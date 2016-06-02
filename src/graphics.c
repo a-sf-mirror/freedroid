@@ -1132,17 +1132,22 @@ void save_screenshot(const char *filename, int width)
 	SDL_FreeSurface(screenshot);
 }
 
-void reload_graphics(void)
+void free_graphics(void)
 {
 	free_floor_tiles();
-	load_floor_tiles();
 	free_obstacle_graphics();
-	load_all_obstacles(FALSE);
 	// Free all items graphics. Graphics will be loaded when needed.
 	free_item_graphics();
 	// Free all enemies graphics. Graphics for an enemy will be loaded
 	// when the enemy is encountered.
 	free_enemy_graphics();
+}
+
+void reload_graphics(void)
+{
+	free_graphics();
+	load_floor_tiles();
+	load_all_obstacles(FALSE);
 	reload_tux_graphics();
 }
 
