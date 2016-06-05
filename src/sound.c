@@ -310,7 +310,7 @@ static void _load_background_music(void)
 
 	// Load a new background music, if one is set to be played
 	if (music_filename) {
-		if (find_file(music_filename, MUSIC_DIR, fpath, PLEASE_INFORM)) {
+		if (find_file(fpath, MUSIC_DIR, music_filename, NULL, PLEASE_INFORM)) {
 			loaded_music = Mix_LoadMUS(fpath);
 			if (!loaded_music) {
 				error_message(__FUNCTION__, "The music file %s could not be loaded: %s", PLEASE_INFORM, music_filename, Mix_GetError());
@@ -536,7 +536,7 @@ int play_sound(const char *filename)
 		char fpath[PATH_MAX];
 
 		// Try to load the requested sound file into memory
-		if (!find_file(filename, SOUND_DIR, fpath, PLEASE_INFORM)) {
+		if (!find_file(fpath, SOUND_DIR, filename, NULL, PLEASE_INFORM)) {
 			return -1;
 		}
 		Mix_Chunk *wav_chunk = Mix_LoadWAV(fpath);

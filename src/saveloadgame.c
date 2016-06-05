@@ -116,7 +116,7 @@ void load_and_show_thumbnail(char *core_filename)
 		return;
 
 	sprintf(filename, "%s%s", core_filename, SAVE_GAME_THUMBNAIL_EXT);
-	if (!find_file(filename, CONFIG_DIR, filepath, NO_REPORT))
+	if (!find_file(filepath, CONFIG_DIR, filename, NULL, NO_REPORT))
 		return;
 
 	/* Load the image */
@@ -155,7 +155,7 @@ void load_and_show_stats(char *core_filename)
 	// First we get the information of the .sav file
 
 	sprintf(filename, "%s%s", core_filename, SAVEDGAME_EXT);
-	if (!find_file(filename, CONFIG_DIR, filepath, NO_REPORT)) {
+	if (!find_file(filepath, CONFIG_DIR, filename, NULL, NO_REPORT)) {
 		error_once_message(ONCE_PER_RUN, __FUNCTION__,
 		                   "FreedroidRPG was unable to access your saved game file (%s).\n"
 		                   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
@@ -182,7 +182,7 @@ void load_and_show_stats(char *core_filename)
 	// The saved .shp must exist.  On not, it's a sever error!
 
 	sprintf(filename, "%s%s", core_filename, ".shp");
-	if (!find_file(filename, CONFIG_DIR, filepath, NO_REPORT)) {
+	if (!find_file(filepath, CONFIG_DIR, filename, NULL, NO_REPORT)) {
 		error_once_message(ONCE_PER_RUN, __FUNCTION__,
 		                   "FreedroidRPG was unable to access your saved game file (%s).\n"
 		                   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
@@ -198,7 +198,7 @@ void load_and_show_stats(char *core_filename)
 	// A thumbnail may not yet exist.  We won't make much fuss if it doesn't.
 
 	sprintf(filename, "%s%s", core_filename, SAVE_GAME_THUMBNAIL_EXT);
-	if (find_file(filename, CONFIG_DIR, filepath, SILENT)) {
+	if (find_file(filepath, CONFIG_DIR, filename, NULL, SILENT)) {
 		if (!stat(filename, &(file_info_buffer))) {
 			file_size += file_info_buffer.st_size;
 		}
@@ -214,14 +214,12 @@ void load_and_show_stats(char *core_filename)
  */
 void save_thumbnail(void)
 {
-	char filename[PATH_MAX];
 	char filepath[PATH_MAX];
 
 	if (!strlen(data_dirs[CONFIG_DIR].path))
 		return;
 
-	sprintf(filename, "%s%s", Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
-	find_file(filename, CONFIG_DIR, filepath, SILENT);
+	find_file(filepath, CONFIG_DIR, Me.character_name, SAVE_GAME_THUMBNAIL_EXT, SILENT);
 
 	AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
 
@@ -234,7 +232,6 @@ void save_thumbnail(void)
 
 int save_game(void)
 {
-	char filename[PATH_MAX];
 	char filepath[PATH_MAX];
 	char backup_filepath[PATH_MAX];
 	int ret;
@@ -253,10 +250,8 @@ int save_game(void)
 
 	Activate_Conservative_Frame_Computation();
 
-	sprintf(filename, "%s%s", Me.character_name, ".shp");
-	find_file(filename, CONFIG_DIR, filepath, SILENT);
-	sprintf(filename, "%s%s", Me.character_name, ".bkp.shp");
-	if (find_file(filename, CONFIG_DIR, backup_filepath, SILENT))
+	find_file(filepath, CONFIG_DIR, Me.character_name, ".shp", SILENT);
+	if (find_file(backup_filepath, CONFIG_DIR, Me.character_name, ".bkp.shp", SILENT))
 		unlink(backup_filepath);
 	ret = rename(filepath, backup_filepath);
 
@@ -275,10 +270,8 @@ int save_game(void)
 					  PLEASE_INFORM | IS_FATAL);
 	}
 
-	sprintf(filename, "%s%s", Me.character_name, SAVEDGAME_EXT);
-	find_file(filename, CONFIG_DIR, filepath, SILENT);
-	sprintf(filename, "%s%s", Me.character_name, ".bkp"SAVEDGAME_EXT);
-	if (find_file(filename, CONFIG_DIR, backup_filepath, SILENT))
+	find_file(filepath, CONFIG_DIR, Me.character_name, SAVEDGAME_EXT, SILENT);
+	if (find_file(backup_filepath, CONFIG_DIR, Me.character_name, ".bkp"SAVEDGAME_EXT, SILENT))
 		unlink(backup_filepath);
 	ret = rename(filepath, backup_filepath);
 
@@ -310,27 +303,21 @@ int save_game(void)
  */
 int delete_game(void)
 {
-	char filename[PATH_MAX];
 	char file_path[PATH_MAX];
 
-	snprintf(filename, sizeof(filename), "%s%s", Me.character_name, ".shp");
-	if (find_file(filename, CONFIG_DIR, file_path, SILENT))
+	if (find_file(file_path, CONFIG_DIR, Me.character_name, ".shp", SILENT))
 		remove(file_path);
-	snprintf(filename, sizeof(filename), "%s%s", Me.character_name, SAVEDGAME_EXT);
-	if (find_file(filename, CONFIG_DIR, file_path, SILENT))
+	if (find_file(file_path, CONFIG_DIR, Me.character_name, SAVEDGAME_EXT, SILENT))
 		remove(file_path);
 
-	snprintf(filename, sizeof(filename), "%s%s", Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
-	if (find_file(filename, CONFIG_DIR, file_path, SILENT))
+	if (find_file(file_path, CONFIG_DIR, Me.character_name, SAVE_GAME_THUMBNAIL_EXT, SILENT))
 		remove(file_path);
 
 	// We do not check if the backup files exists before to remove it, but since
 	// do not check the returned value of remove(), this is not an issue
-	snprintf(filename, sizeof(filename), "%s%s", Me.character_name, ".bkp.shp");
-	if (find_file(filename, CONFIG_DIR, file_path, SILENT))
+	if (find_file(file_path, CONFIG_DIR, Me.character_name, ".bkp.shp", SILENT))
 		remove(file_path);
-	snprintf(filename, sizeof(filename), "%s%s", Me.character_name, ".bkp"SAVEDGAME_EXT);
-	if (find_file(filename, CONFIG_DIR, file_path, SILENT))
+	if (find_file(file_path, CONFIG_DIR, Me.character_name, ".bkp"SAVEDGAME_EXT, SILENT))
 		remove(file_path);
 
 	return (OK);
@@ -338,19 +325,11 @@ int delete_game(void)
 
 static int load_saved_game(int use_backup)
 {
-	char filename[PATH_MAX];
-	char filepath_prefix[PATH_MAX];
 	char filepath[PATH_MAX];
 
 	if (!strlen(data_dirs[CONFIG_DIR].path)) {
 		return OK;
 	}
-
-	sprintf(filename, "%s%s", Me.character_name, (use_backup) ? ".bkp" : "");
-	// This is not yet an actual filename, but only a prefix.
-	// We call find_file() to get a whole path.
-	// The suffix of the files to load is added later.
-	find_file(filename, CONFIG_DIR, filepath_prefix, SILENT);
 
 	put_string_centered(Menu_Font, 10, _("Loading"));
 	StoreMenuBackground(1);
@@ -362,21 +341,21 @@ static int load_saved_game(int use_backup)
 
 	/*
 	 * Load maps (still using the legacy format)
-	**/
+	 */
 
-	sprintf(filepath, "%s%s", filepath_prefix, ".shp");
+	find_file(filepath, CONFIG_DIR, Me.character_name, (use_backup) ? ".bkp.shp" : ".shp", SILENT);
 	LoadShip(filepath, 1);
 
 	/*
 	 * Load data
-	*/
+	 */
 
 	int loaded_size = 0;
 	char *game_data = NULL;
 
 	// Read savegame into a buffer
 
-	sprintf(filepath, "%s%s", filepath_prefix, SAVEDGAME_EXT);
+	find_file(filepath, CONFIG_DIR, Me.character_name, (use_backup) ? ".bkp"SAVEDGAME_EXT : SAVEDGAME_EXT, SILENT);
 	FILE *data_file = fopen(filepath, "rb");
 
 	if (inflate_stream(data_file, (unsigned char **)&game_data, &loaded_size)) {

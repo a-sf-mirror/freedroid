@@ -1832,7 +1832,7 @@ int GetCrew(char *filename)
 	//For that, we must get it into memory first.
 	//The procedure is the same as with LoadShip
 	//
-	find_file(filename, MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, MAP_DIR, filename, NULL, PLEASE_INFORM | IS_FATAL);
 
 	MainDroidsFilePointer = ReadAndMallocAndTerminateFile(fpath, END_OF_DROID_DATA_STRING);
 

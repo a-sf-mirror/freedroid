@@ -264,7 +264,7 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename)
 
 	clear_out_events();
 
-	find_file(EventsAndEventTriggersFilename, MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, MAP_DIR, EventsAndEventTriggersFilename, NULL, PLEASE_INFORM | IS_FATAL);
 	EventSectionPointer =
 		ReadAndMallocAndTerminateFile(fpath, "*** END OF EVENT ACTION AND EVENT TRIGGER FILE *** LEAVE THIS TERMINATOR IN HERE ***");
 
@@ -487,7 +487,7 @@ int validate_events()
 	sound_on = FALSE;
 
 	char fpath[PATH_MAX];
-	find_file("levels.dat", MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 	LoadShip(fpath, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 

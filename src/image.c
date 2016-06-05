@@ -550,13 +550,13 @@ void load_image(struct image *img, int subdir_handle, const char *filename, int 
 		int need_wide_version = (GameConfig.screen_width / (float)GameConfig.screen_height) >= ((16/9.0 + 4/3.0) / 2.0);
 		if (need_wide_version) {
 			// Try to load the wide version
-			if (find_suffixed_file(filename, "_wide", subdir_handle, fpath, SILENT))
+			if (find_suffixed_file(fpath, subdir_handle, filename, "_wide", SILENT))
 				goto IMAGE_FILE_FOUND;
 		}
 	}
 
 	// Try to load the narrow version
-	if (!find_file(filename, subdir_handle, fpath, PLEASE_INFORM)) {
+	if (!find_file(fpath, subdir_handle, filename, NULL, PLEASE_INFORM)) {
 		struct image empty = EMPTY_IMAGE;
 		*img = empty;
 		return;

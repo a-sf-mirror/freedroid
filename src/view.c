@@ -2134,7 +2134,7 @@ void tux_rendering_load_specs(const char *config_filename)
 
 	tux_rendering_init();
 
-	find_file(config_filename, BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, BASE_DIR, config_filename, NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 	tux_rendering_validate(); // check mandatory specifications/configurations
 
@@ -2806,7 +2806,7 @@ void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, ui
 						PLEASE_INFORM | IS_FATAL, SparkType);
 			}
 
-			find_file(ConstructedFilename, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+			find_file(fpath, GRAPHICS_DIR, ConstructedFilename, NULL, PLEASE_INFORM | IS_FATAL);
 
 			tmp_surf = our_IMG_load_wrapper(fpath);
 			if (tmp_surf == NULL) {

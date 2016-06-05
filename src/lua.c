@@ -1072,7 +1072,7 @@ static int lua_find_file(lua_State *L)
 	int subdir_handle    = lua_to_int(luaL_checkinteger(L, 2));
 
 	if (subdir_handle >= 0 && subdir_handle < LAST_DATA_DIR) {
-		if (find_file(filename, subdir_handle, fpath, PLEASE_INFORM)) {
+		if (find_file(fpath, subdir_handle, filename, NULL, PLEASE_INFORM)) {
 			lua_pushstring(L, fpath);
 			return 1;
 		}
@@ -1914,23 +1914,17 @@ void set_lua_ctor_upvalue(enum lua_target target, const char *fn, void *p)
  */
 static void load_lua_module(enum lua_target target, int subdir, const char *module)
 {
-	char *module_file;
 	char fpath[PATH_MAX];
 	lua_State *L = get_lua_state(target);
-
-	module_file = (char *)MyMalloc(strlen(module)+strlen(".lua")+1);
-	strcpy(module_file, module);
-	strcat(module_file, ".lua");
 
 	/*
 	 * Add the module's dir to the Lua package.path
 	 */
 
-	if (find_file(module_file, subdir, fpath, PLEASE_INFORM)) {
+	if (find_file(fpath, subdir, module, ".lua", PLEASE_INFORM)) {
 
-		// Keep the dirname of the file path and add the search pattern
-		char *ptr = strstr(fpath, module_file);
-		strcpy(ptr, "?.lua");
+		// Use the dirname of the module and add the search pattern
+		find_file(fpath, subdir, "?.lua", NULL, SILENT);
 
 		// Get current Lua package.path
 		lua_getglobal(L, "package");
@@ -1955,8 +1949,6 @@ static void load_lua_module(enum lua_target target, int subdir, const char *modu
 	 */
 
 	call_lua_func(target, NULL, "require", "s", NULL, module);
-
-	free(module_file);
 }
 
 /**
@@ -1976,7 +1968,7 @@ void init_lua()
 	lua_pushcfunction(config_lua_state, lua_gettexts.func);
 	lua_setglobal(config_lua_state, lua_gettexts.name);
 
-	find_file("script_helpers.lua", LUA_MOD_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, LUA_MOD_DIR, "script_helpers.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 }
 
@@ -2031,7 +2023,7 @@ void reset_lua_state(void)
 	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "d", NULL, MAP_DIALOG_DIR);
 
 	// Finally load the script helpers Lua functions
-	find_file("script_helpers.lua", LUA_MOD_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, LUA_MOD_DIR, "script_helpers.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_DIALOG, fpath);
 
 }

@@ -839,7 +839,7 @@ void InitVideo(void)
 		sprintf(window_title_string, "FreedroidRPG %s", VERSION);
 		SDL_WM_SetCaption(window_title_string, "");
 
-		if (find_file(ICON_FILE, GUI_DIR, fpath, PLEASE_INFORM)) {
+		if (find_file(fpath, GUI_DIR, ICON_FILE, NULL, PLEASE_INFORM)) {
 			SDL_Surface *icon = IMG_Load(fpath);
 			SDL_WM_SetIcon(icon, NULL);
 			SDL_FreeSurface(icon);

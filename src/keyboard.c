@@ -781,7 +781,7 @@ static int input_key(int keynum, int value)
 		char filename[PATH_MAX];
 		char relative_filename[PATH_MAX];
 		sprintf(relative_filename, "%s.screenshot-%d.png", Me.character_name, SDL_GetTicks()/1000);
-		find_file(relative_filename, CONFIG_DIR, filename, SILENT);
+		find_file(filename, CONFIG_DIR, relative_filename, NULL, SILENT);
 		save_screenshot(filename, FALSE);
 		alert_window(_("Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."), relative_filename);
 	} else if (KEYPRESS("wall_transparency")) {

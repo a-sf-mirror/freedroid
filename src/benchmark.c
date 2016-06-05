@@ -99,7 +99,7 @@ static int loadship_bench()
 
 	// Find a ship file to load
 	char fp[PATH_MAX];
-	if (find_file("levels.dat", MAP_DIR, fp, NO_REPORT)) {
+	if (find_file(fp, MAP_DIR, "levels.dat", NULL, NO_REPORT)) {
 		// Load it many times
 		timer_start();
 		while (loop--) {
@@ -222,7 +222,7 @@ static int level_test()
 
 	// Load default ship
 	char fp[PATH_MAX];
-	if (find_file("levels.dat", MAP_DIR, fp, NO_REPORT)) {
+	if (find_file(fp, MAP_DIR, "levels.dat", NULL, NO_REPORT)) {
 		LoadShip(fp, 0);
 		timer_start();
 		failed = level_validation_on_console_only();

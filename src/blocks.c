@@ -193,7 +193,7 @@ static void load_item_graphics(int item_type)
 	sprintf(our_filename, "items/%s", spec->item_inv_file_name);
 
 	// Load the inventory image	
-	find_file(our_filename, GRAPHICS_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, GRAPHICS_DIR, our_filename, NULL, PLEASE_INFORM | IS_FATAL);
 
 	original_img = IMG_Load(fpath);
 	if (original_img == NULL) {

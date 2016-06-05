@@ -41,10 +41,10 @@
  * @param path Path of the atlas (will be searched for in graphics dir)
  * @return Contents of the file in a freshly malloc'd string.
  */
-static char *get_texture_atlas(const char *path)
+static char *get_texture_atlas(const char *fname)
 {
 	char fpath[PATH_MAX];
-	if (find_file(path, GRAPHICS_DIR, fpath, PLEASE_INFORM)) {
+	if (find_file(fpath, GRAPHICS_DIR, fname, NULL, PLEASE_INFORM)) {
 		char *dataout = ReadAndMallocAndTerminateFile(fpath, NULL);
 		return dataout;
 	}

@@ -55,7 +55,7 @@
 #include <iconv.h>
 #endif
 
-void Init_Game_Data(void);
+void init_game_data(void);
 void UpdateCountersForThisFrame();
 void DoAllMovementAndAnimations(void);
 
@@ -181,14 +181,14 @@ void next_startup_percentage(int done)
  *  3. some text to display in a scrolling fashion
  *
  */
-void play_title_file(int subdir_handle, char *Filename)
+void play_title_file(int subdir_handle, char *filename)
 {
 	struct title_screen screen = { NULL, NULL, NULL };
 	char fpath[PATH_MAX];
 
 	while (SpacePressed() || MouseLeftPressed()) ;
 
-	if (find_localized_file(Filename, subdir_handle, fpath, PLEASE_INFORM)) {
+	if (find_localized_file(fpath, subdir_handle, filename, PLEASE_INFORM)) {
 		set_lua_ctor_upvalue(LUA_CONFIG, "title_screen", &screen);
 		run_lua_file(LUA_CONFIG, fpath);
 
@@ -225,11 +225,11 @@ void play_title_file(int subdir_handle, char *Filename)
 					error_once_message(ONCE_PER_GAME, __FUNCTION__,
 				                       "Error during Title text conversion (title: %s - encoding: %s): %s\n"
 					                   "Invalid sequence:\n--->%.20s...<---",
-									   PLEASE_INFORM, Filename, lang_get_encoding(), strerror(errno), in_ptr);
+									   PLEASE_INFORM, filename, lang_get_encoding(), strerror(errno), in_ptr);
 				} else {
 					error_once_message(ONCE_PER_GAME, __FUNCTION__,
 				                       "Error during Title text conversion (title: %s - encoding: %s): %s",
-									   NO_REPORT, Filename, lang_get_encoding(), strerror(errno));
+									   NO_REPORT, filename, lang_get_encoding(), strerror(errno));
 				}
 				free(converted_text);
 			} else {
@@ -271,7 +271,7 @@ static void load_fdrpg_config()
 	// Load the languages specs
 	dynarray_free(&lang_specs);
 	dynarray_free(&lang_codesets);
-	if (find_file("languages.lua", BASE_DIR, fpath, PLEASE_INFORM)) {
+	if (find_file(fpath, BASE_DIR, "languages.lua", NULL, PLEASE_INFORM)) {
 		run_lua_file(LUA_CONFIG, fpath);
 	}
 }
@@ -280,50 +280,50 @@ static void load_fdrpg_config()
  * This function loads all the constant variables of the game from
  * a data file, using mainly subroutines which do the main work.
  */
-void Init_Game_Data()
+void init_game_data()
 {
 	char fpath[PATH_MAX];
 
 	// Load difficulties.
-	find_file("difficulties.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, BASE_DIR, "difficulties.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load skills and programs (spells) information
-	find_file("skill_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, BASE_DIR, "skill_specs.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load the blast data (required for the bullets to load)
-	find_file("blast_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, BASE_DIR, "blast_specs.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load the bullet data (required for the item archetypes to load)
 	//
 	dynarray_free(&bullet_specs);
-	find_file("bullet_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, BASE_DIR, "bullet_specs.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load Tux animation and rendering specifications.
 	tux_rendering_load_specs("tuxrender_specs.lua");
 
 	// Item archetypes must be loaded too
-	find_file("item_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, BASE_DIR, "item_specs.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load add-on specifications.
-	find_file("addon_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, BASE_DIR, "addon_specs.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Time to eat some droid archetypes...
-	find_file("droid_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, BASE_DIR, "droid_specs.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load obstacle specifications.
 	dynarray_init(&obstacle_map, 512, sizeof(struct obstacle_spec));
-	find_file("obstacle_specs.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, BASE_DIR, "obstacle_specs.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load floor tile specifications.
-	find_file("floor_tiles.lua", BASE_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, BASE_DIR, "floor_tiles.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 	dirty_animated_floor_tile_list();
 
@@ -596,7 +596,7 @@ void prepare_level_editor()
 	game_status = INSIDE_LVLEDITOR;
 	skip_initial_menus = 1;
 	char fp[PATH_MAX];
-	find_file("levels.dat", MAP_DIR, fp, PLEASE_INFORM | IS_FATAL);
+	find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 	LoadShip(fp, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 	skip_initial_menus = 0;
@@ -829,7 +829,7 @@ void prepare_execution(int argc, char *argv[])
 	// ends, because they are empty.
 	if (!run_from_term) {
 		char filename[PATH_MAX];
-		find_file("fdrpg_out.txt", CONFIG_DIR, filename, NO_REPORT);
+		find_file(filename, CONFIG_DIR, "fdrpg_out.txt", NULL, NO_REPORT);
 		if (!freopen(filename, "w", stdout)) {
 			fprintf(stderr, "Was not able to redirect stdout to %s. Errno: %d", filename, errno);
 			run_from_term = TRUE; // Pretend it, to avoid Terminate() to try to open fdrpg_out.txt
@@ -927,7 +927,7 @@ void InitFreedroid(int argc, char **argv)
 
 	init_audio();
 
-	Init_Game_Data();
+	init_game_data();
 
 	/* 
 	 * Initialize random-number generator in order to make 

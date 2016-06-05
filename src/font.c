@@ -69,7 +69,7 @@ void init_fonts(void)
 	char fpath[PATH_MAX];
 
 	for (i = 0; i < sizeof(fonts_def)/sizeof(fonts_def[0]); i++) {
-		if (!find_encoded_file(fonts_def[i].filename, FONT_DIR, fpath, PLEASE_INFORM | IS_FATAL)) {
+		if (!find_encoded_file(fpath, FONT_DIR, fonts_def[i].filename, PLEASE_INFORM | IS_FATAL)) {
 			error_message(__FUNCTION__, "A Bfont file was not found (filename: %s - encoding: %s).",
 					PLEASE_INFORM, fonts_def[i].filename, lang_get_encoding());
 			continue;

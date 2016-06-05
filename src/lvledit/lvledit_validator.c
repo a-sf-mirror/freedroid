@@ -309,7 +309,7 @@ static void load_excpt_lists(char *filename)
 #	define END_OF_DATA_STRING     "*** End of LevelValidator Exceptions List ***"
 
 	// Read whole file in memory
-	if (find_file(filename, MAP_DIR, fpath, NO_REPORT)) {
+	if (find_file(fpath, MAP_DIR, filename, NULL, NO_REPORT)) {
 		main_file_pointer = ReadAndMallocAndTerminateFile(fpath, END_OF_DATA_STRING);
 
 		// Search beginning of list

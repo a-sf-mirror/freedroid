@@ -239,7 +239,7 @@ void ShowItemPicture(int PosX, int PosY, int Number)
 			sprintf(ConstructedFileName, "items/%s/portrait_%04d.jpg", ItemMap[Number].item_rotation_series_prefix, i + 1);
 
 			// Look for the next file
-			if (find_file(ConstructedFileName, GRAPHICS_DIR, fpath, SILENT)) {
+			if (find_file(fpath, GRAPHICS_DIR, ConstructedFileName, NULL, SILENT)) {
 				load_image(&item_rotation_img[i], GRAPHICS_DIR, ConstructedFileName, NO_MOD);
 			} else {
 				NumberOfImagesInThisRotation = i;

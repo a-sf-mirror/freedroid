@@ -972,7 +972,7 @@ int luaFD_tux_init(lua_State *L)
 	lua_setglobal(L, "FDtux");                                                  // empty stack
 
 	char fpath[PATH_MAX];
-	if (find_file("FDtux_lfuns.lua", LUA_MOD_DIR, fpath, PLEASE_INFORM | IS_FATAL)) {
+	if (find_file(fpath, LUA_MOD_DIR, "FDtux_lfuns.lua", NULL, PLEASE_INFORM | IS_FATAL)) {
 		if (luaL_loadfile(L, fpath)) {
 			error_message(__FUNCTION__, "Aborting loading FDtux lfuns.\nError while loading ’%s’: %s",
 					PLEASE_INFORM, "FDtux_lfuns.lua", lua_tostring(L, -1));

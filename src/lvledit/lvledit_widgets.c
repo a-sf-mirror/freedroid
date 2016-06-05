@@ -654,7 +654,7 @@ struct widget_group *get_lvledit_ui()
 
 	// Load categories for obstacles
 	char fpath[PATH_MAX];
-	find_file("level_editor/obstacle_categories.lua", GUI_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, GUI_DIR, "level_editor/obstacle_categories.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 
 	// Build list of all obstacles

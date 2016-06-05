@@ -240,7 +240,7 @@ void GetQuestList(char *QuestListFilename)
 
 	// At first we must load the quest list file given...
 	//
-	find_file(QuestListFilename, MAP_DIR, fpath, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, MAP_DIR, QuestListFilename, NULL, PLEASE_INFORM | IS_FATAL);
 	MissionFileContents = ReadAndMallocAndTerminateFile(fpath, "*** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***");
 	MissionTargetPointer = MissionFileContents;
 

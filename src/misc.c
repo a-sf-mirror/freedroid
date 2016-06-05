@@ -751,22 +751,30 @@ int check_directory(const char *dirname, int subdir_handle, int check_if_writabl
  * fills in the (ALLOC'd) string and returns 1 if okay, 0 on error.
  * file_path's length HAS to be PATH_MAX.
  * ----------------------------------------------------------------- */
-static int _file_exists(const char *fname, const char *subdir, char *file_path)
+static int _file_exists(char *fpath, const char *subdir, const char *fname, const char *fext)
 {
-	int nb = snprintf(file_path, PATH_MAX, "%s/%s", subdir, fname);
+	int nb;
+	if (fext)
+		nb = snprintf(fpath, PATH_MAX, "%s/%s%s", subdir, fname, fext);
+	else
+		nb = snprintf(fpath, PATH_MAX, "%s/%s", subdir, fname);
+
 	if (nb >= PATH_MAX) {
-		*file_path = '\0';
-		error_message(__FUNCTION__, "Pathname too long (max is %d): %s/%s", PLEASE_INFORM, PATH_MAX, subdir, fname);
+		*fpath = '\0';
+		if (fext)
+			error_message(__FUNCTION__, "Pathname too long (max is %d): %s/%s%s", PLEASE_INFORM, PATH_MAX, subdir, fname, fext);
+		else
+			error_message(__FUNCTION__, "Pathname too long (max is %d): %s/%s", PLEASE_INFORM, PATH_MAX, subdir, fname);
 		return 0;
 	}
 
 #ifdef __WIN32__
-	int rtn = _access(file_path, 0x04);
+	int access_rtn = _access(fpath, 0x04);
 #else
-	int rtn = access(file_path, R_OK);
+	int access_rtn = access(fpath, R_OK);
 #endif
 
-	if (rtn == -1) {
+	if (access_rtn == -1) {
 		/* not found */
 		return 0;
 	}
@@ -774,13 +782,21 @@ static int _file_exists(const char *fname, const char *subdir, char *file_path)
 	return 1;
 }
 
-/* -----------------------------------------------------------------
+/**
  * Find a filename in subdir (using a data_dir handle).
  *
- * fills in the (ALLOC'd) string and returns 1 if okay, 0 on error.
- * file_path's length HAS to be PATH_MAX.
- * ----------------------------------------------------------------- */
-int find_file(const char *fname, int subdir_handle, char *file_path, int error_report)
+ * Fills in the fpath with <subdir>/<fname><fext>, and check if that
+ * file exists.
+ *
+ * \param fpath           pre-alloc'd string, filled by the function. Its length HAS to be PATH_MAX
+ * \param subdir_handle   index to one of the known data dirs
+ * \param fname           file name
+ * \param fext            file extension (including the '.') (NULL if no file extension is to be added)
+ * \param error_report    error output flag
+ *
+ * \return 1 is the file exists, 0 otherwise
+**/
+int find_file(char *fpath, int subdir_handle, const char *fname, const char *fext, int error_report)
 {
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
 		error_message(__FUNCTION__, "Called with a wrong subdir handle (%d)",
@@ -788,9 +804,13 @@ int find_file(const char *fname, int subdir_handle, char *file_path, int error_r
 		return 0;
 	}
 
-	if (!_file_exists(fname, data_dirs[subdir_handle].path, file_path)) {
-		error_once_message(ONCE_PER_RUN, __FUNCTION__, "File %s not found in %s",
-		                   error_report, fname, data_dirs[subdir_handle].name);
+	if (!_file_exists(fpath, data_dirs[subdir_handle].path, fname, fext)) {
+		if (fext)
+			error_once_message(ONCE_PER_RUN, __FUNCTION__, "File %s.%s not found in %s",
+			                   error_report, fname, fext, data_dirs[subdir_handle].name);
+		else
+			error_once_message(ONCE_PER_RUN, __FUNCTION__, "File %s not found in %s",
+			                   error_report, fname, data_dirs[subdir_handle].name);
 		return 0;
 	}
 
@@ -805,7 +825,7 @@ int find_file(const char *fname, int subdir_handle, char *file_path, int error_r
  * fills in the (ALLOC'd) string and returns 1 if okay, 0 on error.
  * file_path's length HAS to be PATH_MAX.
  * ----------------------------------------------------------------- */
-int find_suffixed_file(const char *fname, const char *suffix, int subdir_handle, char *file_path, int error_report)
+int find_suffixed_file(char *fpath, int subdir_handle, const char *fname, const char *suffix, int error_report)
 {
 	char suffixed_fname[PATH_MAX];
 	char *actual_fname = (char *)fname;
@@ -814,7 +834,7 @@ int find_suffixed_file(const char *fname, const char *suffix, int subdir_handle,
 		int fname_length = strlen(fname);
 		int suffix_length = strlen(suffix);
 		if ((fname_length + suffix_length + 1) >= PATH_MAX) {
-			*file_path = 0;
+			*fpath = 0;
 			error_message(__FUNCTION__, "Filename + suffix too long (max is %d): %s, with suffix: %s",
 			              PLEASE_INFORM, PATH_MAX, fname, suffix);
 			return 0;
@@ -830,7 +850,7 @@ int find_suffixed_file(const char *fname, const char *suffix, int subdir_handle,
 		actual_fname = suffixed_fname;
 	}
 
-	return find_file(actual_fname, subdir_handle, file_path, error_report);
+	return find_file(fpath, subdir_handle, actual_fname, NULL, error_report);
 }
 
 /* -----------------------------------------------------------------
@@ -846,7 +866,7 @@ int find_suffixed_file(const char *fname, const char *suffix, int subdir_handle,
  * fills in the (ALLOC'd) string and returns 1 if okay, 0 on error.
  * file_path's length HAS to be PATH_MAX.
  * ----------------------------------------------------------------- */
-int find_localized_file(const char *fname, int subdir_handle, char *file_path, int error_report)
+int find_localized_file(char *fpath, int subdir_handle, const char *fname, int error_report)
 {
 #ifdef ENABLE_NLS
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
@@ -858,7 +878,7 @@ int find_localized_file(const char *fname, int subdir_handle, char *file_path, i
 	char *used_locale = lang_get();
 
 	if (!used_locale || strlen(used_locale) == 0) {
-		return find_file(fname, subdir_handle, file_path, error_report);
+		return find_file(fpath, subdir_handle, fname, NULL, error_report);
 	}
 
 	// A locale name is typically of the form language[_territory][.codeset][@modifier]
@@ -884,7 +904,7 @@ int find_localized_file(const char *fname, int subdir_handle, char *file_path, i
 			             error_report, PATH_MAX, data_dirs[subdir_handle].path, locale, fname);
 			break;
 		}
-		if (_file_exists(fname, l10ndir, file_path)) {
+		if (_file_exists(fpath, l10ndir, fname, NULL)) {
 			free(locale);
 			return 1;
 		}
@@ -894,10 +914,10 @@ int find_localized_file(const char *fname, int subdir_handle, char *file_path, i
 #endif
 
 	// Localized version not found. Use untranslated version.
-	return find_file(fname, subdir_handle, file_path, error_report);
+	return find_file(fpath, subdir_handle, fname, NULL, error_report);
 }
 
-int find_encoded_file(const char *fname, int subdir_handle, char *file_path, int error_report)
+int find_encoded_file(char *fpath, int subdir_handle, const char *fname, int error_report)
 {
 #ifdef ENABLE_NLS
 	if (subdir_handle < 0 || subdir_handle >= LAST_DATA_DIR) {
@@ -909,7 +929,7 @@ int find_encoded_file(const char *fname, int subdir_handle, char *file_path, int
 	char *used_encoding = lang_get_encoding();
 
 	if (!used_encoding || !strlen(used_encoding) || !strcmp(used_encoding, "ASCII")) {
-		return find_file(fname, subdir_handle, file_path, error_report);
+		return find_file(fpath, subdir_handle, fname, NULL, error_report);
 	}
 
 	char encoded_dir[PATH_MAX];
@@ -917,14 +937,14 @@ int find_encoded_file(const char *fname, int subdir_handle, char *file_path, int
 	if (nb >= PATH_MAX) {
 		error_message(__FUNCTION__, "Dirname too long (max is %d): %s/%s - Using default encoding version of %s",
 		             error_report, PATH_MAX, data_dirs[subdir_handle].path, used_encoding, fname);
-		return find_file(fname, subdir_handle, file_path, error_report);
+		return find_file(fpath, subdir_handle, fname, NULL, error_report);
 	}
-	if (_file_exists(fname, encoded_dir, file_path))
+	if (_file_exists(fpath, encoded_dir, fname, NULL))
 		return TRUE;
 #endif
 
 	// Encoded version not found. Use default encoding version.
-	return find_file(fname, subdir_handle, file_path, error_report);
+	return find_file(fpath, subdir_handle, fname, NULL, error_report);
 }
 
 /**
@@ -1310,7 +1330,7 @@ int load_game_config(void)
 		return OK;
 	}
 
-	find_file("fdrpg.cfg", CONFIG_DIR, fname, SILENT);
+	find_file(fname, CONFIG_DIR, "fdrpg.cfg", NULL, SILENT);
 	if ((configfile = fopen(fname, "rb")) == NULL) {
 		fprintf(stderr, "\nUnable to open configuration file %s\n", fname);
 		lang_set(GameConfig.locale, NULL);
@@ -1398,7 +1418,7 @@ int save_game_config(void)
 	// That indicates, that the game did start up already.
 	// Therefore we can do the normal save config stuff...
 
-	find_file("fdrpg.cfg", CONFIG_DIR, fname, SILENT);
+	find_file(fname, CONFIG_DIR, "fdrpg.cfg", NULL, SILENT);
 	if ((config_file = fopen(fname, "wb")) == NULL) {
 		DebugPrintf(-4, "Unable to open configuration file %s for writing\n", fname);
 		return -1;
@@ -1516,7 +1536,7 @@ IMMEDIATE_EXIT:
 			char outfn[PATH_MAX];
 			fflush(stdout);
 			fflush(stderr);
-			find_file("fdrpg_out.txt", CONFIG_DIR, outfn, NO_REPORT);
+			find_file(outfn, CONFIG_DIR, "fdrpg_out.txt", NULL, NO_REPORT);
 			char *cmd = MyMalloc(strlen(OPENTXT_CMD) + strlen(outfn) + 2); // +1 for the whitespace after the cmd name +1 for the terminating \0
 			sprintf(cmd, "%s %s", OPENTXT_CMD, outfn);
 			rtn = system(cmd);
