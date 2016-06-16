@@ -178,7 +178,7 @@ return {
 		id = "node4",
 		text = _"All I see through the window are ray emitters. And we are below ground level..",
 		code = function()
-			Npc:says(_"Yes, I know. But I so badly want to see sun, rivers, trees... there definitely is waterfall behind them!")
+			Npc:says(_"Yes, I know. But I so badly want to see the sun, the trees and the rivers... there definitely is a waterfall behind them!")
 			hide("node4")
 		end,
 	},
@@ -317,7 +317,7 @@ return {
 		id = "node27",
 		text = _"The sentry guns are off. You can go now!",
 		code = function()
-			Npc:says(_"Thanks, thanks a lot! Now I will be able to see the sun, trees, rivers... I missed those so much!")
+			Npc:says(_"Thanks, thanks a lot! Now I will be able to see the sun, the trees and the rivers... I missed them so much!")
 			Npc:says(_"I hope these books will help you.")
 			display_big_message(_"Tania is now free!")
 			Tux:add_xp(1500)
@@ -328,7 +328,7 @@ return {
 			end
 			Tux:add_item("Source Book of Check system integrity",1)
 			Tux:add_item("Source Book of Sanctuary",1)
-			Tux:update_quest("Tania's Escape", _"Tania is free now, I got some books as reward.")
+			Tux:update_quest("Tania's Escape", _"Tania is free now, I got some books as a reward.")
 			Tux:says(_"You could always come back with me to the town. There are people there.")
 			Npc:says(_"I'd love to, but you'll have to escort me.")
 			Tania_guns_off = true
@@ -434,7 +434,7 @@ return {
 				Tux:del_item_backpack("Industrial coolant")
 				Npc:heal()
 				Npc:says(_"I feel very cold, but better.") --TODO: freeze her here
-				Tux:update_quest("Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some Industrial coolant. At first she was hesitant, but she tried it.")
+				Tux:update_quest("Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some Industrial coolant. At first, she was hesitant, but she tried it.")
 				hide("node49", "node50", "node52", "node53")
 			else
 				next("node54")
@@ -617,7 +617,7 @@ return {
 		id = "end_town",
 		text = _"See you later.",
 		code = function()
-			Npc:says_random(_"Please be safe!",
+			Npc:says_random(_"Please stay safe!",
 							_"Thanks again.",
 							_"Please come back again, my little penguin.")
 			hide("end_town") end_dialog()
