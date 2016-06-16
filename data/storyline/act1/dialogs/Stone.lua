@@ -97,7 +97,7 @@ return {
 				Npc:says(_"Without them, everything would drown in chaos, but...")
 				show("node4")
 			elseif (tux_has_joined_guard) then -- tux joined guard/not followed by guard
-				Npc:says(_"Well, you ARE a red guard.")
+				Npc:says(_"Well, you ARE a Red Guard.")
 				Npc:says(_"What should I tell you about them that you don't know yet?")
 				Tux:says(_"Uhm, right.")
 			else
@@ -197,9 +197,9 @@ return {
 	},
 	{
 		id = "node23",
-		text = _"I have the money you need Ms. Stone. You can have it.",
+		text = _"I have the money you need, Ms. Stone. You can have it.",
 		code = function()
-			Npc:says(_"Is... Is this a joke? So much money? And you just give it to me?", "NO_WAIT")
+			Npc:says(_"Is... Is this a joke? So much money? And you're just giving it to me?", "NO_WAIT")
 			Npc:says(_"Thank you! Thank you! Thank you! Savior!")
 			if (tux_has_joined_guard) then -- joined guard
 				Npc:says(_"Are you sure you really have the sum of 2000 circuits?")

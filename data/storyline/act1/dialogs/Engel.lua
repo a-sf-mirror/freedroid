@@ -58,7 +58,7 @@ return {
 		code = function()
 			--; TRANSLATORS: Fleischer is a name, but also means "butcher"
 			Npc:says(_"Hello. We are the Fleischer brothers.")
-			--; TRANSLATORS: Engel = Angle, Geist = Ghost or Spirit
+			--; TRANSLATORS: Engel = Angel, Geist = Ghost or Spirit
 			Npc:says(_"I am Engel. He is Geist, and he does not know the language.")
 			Npc:set_name("Engel - Hunter")
 			Geist:set_name("Geist - Hunter")
@@ -101,7 +101,7 @@ return {
 		text = _"You are insane. Get out of here while you still can.",
 		code = function()
 			Npc:says(_"No.")
-			Npc:says(_"Every day since the mess started I come here to fight the bots.")
+			Npc:says(_"Every day since this mess started I come here to fight the bots.")
 			Npc:says(_"Today will be no different.")
 			Npc:says(_"Do not try to stop us. We have our rifles loaded.")
 			hide("node5") show("node7")

@@ -47,11 +47,11 @@ return {
 			Npc:says(_"Nicholson, Inc. produces security bots.")
 			Npc:says(_"It was founded by Karl Nicholson, a former Kernel hacker who was not satisfied with the development of the GPL license.")
 			Npc:says(_"Nicholson decided to stick to one GPL version because he saw things getting worse.")
-			Npc:says(_"Others were warned, but nobody listened to Nicholsons announcements.")
+			Npc:says(_"Others were warned, but nobody listened to Nicholson's announcements.")
 			Npc:says(_"He built up a team and developed his own Kernel called 'Nkernel'.")
 			Npc:says(_"The Nkernel development team grew fast and technicians started to produce their own droids optimized for the Nkernel.")
 			Npc:says(_"The team became a company which released their first security droid, called 610.")
-			Npc:says(_"I am the 5th generation version of their security droid line.")
+			Npc:says(_"I am the fifth generation version of their security droid line.")
 			hide("614_sub.node2")
 		end,
 	},
@@ -65,9 +65,9 @@ return {
 			Npc:says(_"So don't worry. I'm still in pretty good shape.")
 			Npc:says(_"The latest version of the security line is the 615.")
 			-- probably some when a cookie can check whether tux already saw such a droid and trigger/switch on the following dialog part
-			Npc:says(_"Unfortunately its development was not finished when the great assault started.")
+			Npc:says(_"Unfortunately its development was not finished when the Great Assault started.")
 			Npc:says(_"The lack of security options on the system of the 615 led to a malfunction.")
-			Npc:says(_"Circumstances that led to the great assault even made the 615 go crazy and attack people.")
+			Npc:says(_"Circumstances that led to the Great Assault even made the 615 go crazy and attack people.")
 			Npc:says(_"For the sake of your health, you should stay away from the 615 droids.")
 			Npc:says(_"You have been warned!")
 			hide("614_sub.node3")

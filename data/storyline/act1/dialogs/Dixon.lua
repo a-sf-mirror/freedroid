@@ -147,7 +147,7 @@ return {
 		text = _"You are very calm, talking about your leg and the bot attack.",
 		code = function()
 			Npc:says(_"Linarian, I cannot change the past, I can only change the future.", "NO_WAIT")
-			Npc:says(_"Crying, screaming or begging time to rewind itself and give me a second chance will not get me anywhere.")
+			Npc:says(_"Crying, screaming, or begging time to rewind itself and give me a second chance will not get me anywhere.")
 			Npc:says(_"What I can do is to try to have a good life despite the constant threat from the bots outside the town walls.")
 			Npc:says(_"And besides, life is not so bad with a robotic leg. The motors inside it can mimic a normal walk very well. Most people do not even notice something is different about me.")
 			hide("node2")
@@ -160,7 +160,7 @@ return {
 			Npc:says(_"Yes. We are the engineers, the workers and the repairmen of this little fortified town.", "NO_WAIT")
 			Npc:says(_"The military division hates us because we are made up of people who refuse to fight or are unable to do so for health reasons.")
 			Npc:says(_"But even they know that without us this town would have been destroyed months ago.")
-			Npc:says(_"We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone.")
+			Npc:says(_"We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work, and lots of other small things which keep the bots from killing everyone.")
 			hide("node4") show("node6", "node8")
 		end,
 	},
@@ -187,7 +187,7 @@ return {
 			Npc:says(_"Of course, if I had some time, I could transform your weapon into a deadly gun. Lately, I have built a vorpal nuclear disintegrator Mk 2000 with integrated lethal de-phasor. Nice weapon.")
 			Npc:says(_"Sadly, we lack a lot of materials, and those we have are needed for town upkeep. The mine doesn't produce a lot of raw materials, and I can't just give them to you - you'll have to provide your own.")
 			Npc:says(_"I can give you some advice, though. Recycling is key. You can extract special devices from the bots!")
-			Npc:says(_"Amazing, isn't it? Before the great assault, we threw droids out for minor defects. Now, any wreck is a treasure.")
+			Npc:says(_"Amazing, isn't it? Before the Great Assault, we threw droids out for minor defects. Now, any wreck is a treasure.")
 			if (not Engel_offered_extraction_skill) then
 				Npc:says(_"A scout troop recently spotted two guys in the north of town.")
 				Npc:says(_"I was told these guys shoot bots and disassemble them, extracting their parts.", "NO_WAIT")
@@ -253,7 +253,7 @@ return {
 				Npc:says(_"I tried to say something, but the bot did not listen. It just continued. 'As we speak the bots are turning against humanity. People are dying. The war has started.'")
 				Npc:says(_"'I need your toolkit, Dixon. I need it to survive,' it said. 'I need it to survive the time of the rule of metal.'")
 				Npc:says(_"As soon as I dropped my toolkit, I was able to teleport away. That bot freaked me out, so I locked the door tight behind me.")
-				Npc:says(_"Once I got out, I learned the bot was telling the truth. The Great Assault had started. The rest is history.")
+				Npc:says(_"Once I got out, I learned the bot was telling the truth. The Great Assault had started. The rest... Well, the rest is history.")
 				show("node14")
 			end
 			hide("node13")
@@ -293,7 +293,7 @@ return {
 		topic = "Toolkit peace mission Y/N",
 		code = function()
 			Npc:says(_"Excellent. The tunnels are open. Come in peace.")
-			Tux:update_quest("The yellow toolkit", _"I refused to seize the toolkit from the bots by force because I think they might be sentient. Life is precious and should be preserved. Thus, Dixon send me to talk to them and negotiate with them to get the toolkit.")
+			Tux:update_quest("The yellow toolkit", _"I refused to seize the toolkit from the bots by force because I think they might be sentient. Life is precious and should be preserved. Thus, Dixon sent me to talk to them and negotiate with them to get the toolkit.")
 			hide("node21", "node22")
 			pop_topic() -- "Toolkit peace mission Y/N"
 			pop_topic() -- "The yellow toolkit"
@@ -325,7 +325,7 @@ return {
 			Npc:says(_"Erm... And aren't you being too aggressive? Maybe they do not wish us harm...")
 			Tux:says(_"DIXON! Snap out of it! We need to take action NOW. There is no such thing as a friendly bot. They are probably planning to kill us all in our sleep!")
 			Npc:says(_"... *sigh*", "NO_WAIT")
-			Npc:says(_"With heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone.", "NO_WAIT")
+			Npc:says(_"With a heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone.", "NO_WAIT")
 			Npc:says(_"The tunnels are open. Good luck.")
 			Npc:says(_"Once you get inside, you'll need to use the terminal to unlock the door. I've written my password down for you.", "NO_WAIT")
 			Npc:says(_"I will talk to Spencer and ask him for a few attack teams. We will take care of the bots.")

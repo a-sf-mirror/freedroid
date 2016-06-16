@@ -139,7 +139,7 @@ return {
 		text = _"Hello.",
 		code = function()
 			Npc:says(_"Hello.")
-			Npc:says(_"Errr... How did you get in here?!")
+			Npc:says(_"Err... How did you get in here?!")
 			Tux:says(_"I just walked through the door.")
 			Npc:says(_"And your name?")
 			--; TRANSLATORS: %s = Tux:get_player_name()

@@ -153,10 +153,10 @@ return {
 		text = _"You can have it.",
 		code = function()
 			Npc:says(_"Oh great, thanks!")
-			Npc:says(_"Hmm, what can I give you as thank-you...?")
+			Npc:says(_"Hmm, what can I give you as a thank-you...?")
 			Npc:says(_"Oh, I have a nice book here.")
-			Npc:says(_"But it's not worth the old dusty lamp.")
-			Npc:says(_"I give it to you for the lamp and 100 circuits.")
+			Npc:says(_"But it's worth more than the old dusty lamp.")
+			Npc:says(_"I'll give it to you for the lamp and 100 circuits.")
 			if (Tux:get_gold() > 99) then
 				show("node7")
 			else

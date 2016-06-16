@@ -52,7 +52,7 @@ return {
 	},
 	{
 		id = "node1",
-		text = _"What are you doing here alone? ",
+		text = _"What are you doing here alone?",
 		code = function()
 			Npc:says(_"I'm experimenting with new designs. I want to redesign the laser pistol.")
 			Npc:says(_"A lot of energy is wasted somewhere during firing, and I have no idea where. If I could find the source of the problem, the gun would become much more powerful.")
@@ -173,7 +173,7 @@ return {
 				Npc:says(_"Next lesson: hitting a moving target.")
 				Npc:says(_"It's pretty simple really, just watch to see where it is going and then aim slightly ahead if you are using a non-laser gun.")
 				Npc:says(_"It's easy when you know how, especially with bots, because they tend to move in straight lines, not bob and weave like people.")
-				Npc:says(_"I think that is enough training for now. Next time, firing on the move!")
+				Npc:says(_"I think that it is enough training for now. Next time, firing on the move!")
 				hide("node23") show("node20")
 			else
 				if (Tux:get_gold() < cost ) then next("node27") else next("node28") end

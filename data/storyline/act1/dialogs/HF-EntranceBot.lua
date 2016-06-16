@@ -64,7 +64,7 @@ return {
 		code = function()
 			Npc:says(_"Me too.")
 			Npc:says(_"Please prove your statement.")
-			Tux:says(_"Do I look like a typical MegaSys slave, errr, worker to you, stupid bot?")
+			Tux:says(_"Do I look like a typical MegaSys slave, err, worker to you, stupid bot?")
 			Npc:says(_"No insults, please. But, no")
 			if (Tux:has_item("MS Stock Certificate")) then
 				Tux:says(_"But I have this certificate")

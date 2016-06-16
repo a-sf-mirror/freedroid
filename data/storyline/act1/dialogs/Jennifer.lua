@@ -63,7 +63,7 @@ return {
 			Npc:says(_"I'm especially searching for my toolbox.")
 			Tux:says(_"Okay, I will keep my eyes open if I see some toolbox.")
 			Npc:says(_"Thank you.")
-			Tux:add_quest("Jennifer's Toolbox", "Someone rearranged equipment at Jennifers workshop, she does not find her Toolbox anymore. I promised to keep my eyes open for it.")
+			Tux:add_quest("Jennifer's Toolbox", "Someone rearranged equipment at Jennifer's workshop, she cannot find her Toolbox anymore. I promised to keep my eyes open for it.")
 			hide("node2")
 		end,
 	},

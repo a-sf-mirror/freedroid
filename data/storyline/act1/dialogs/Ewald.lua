@@ -253,7 +253,7 @@ return {
 			Npc:says(_"It is simple. We both get three six sided dice.")
 			Npc:says(_"You bet. Then you throw one die.")
 			Npc:says(_"Then you decide on a betting multiplier, up to 3x.")
-			Npc:says(_"Then you throw two dice and I throw three dice. If sum of your three dice are better than my three dice, you win twice your bet, minus a tax for the Red Guard.")
+			Npc:says(_"Then you throw two dice and I throw three dice. If the sum of your three dice is better than my three dice, you win twice your bet, minus a tax for the Red Guard.")
 			Npc:says(_"Remember: the odds are slightly against you, so don't gamble anything you can't afford to lose.")
 			------------------------------------------------
 			-- Assuming optimal playing then
@@ -515,7 +515,7 @@ return {
 
 			local random_says = {_"Odd? Fits, since you're pretty odd yourself.",
 								 _"Odd? Well that is odd... I was thinking of odd.",
-								 _"Odd. When I don't pick even, I always pick odd too.",
+								 _"Odd. When I don't pick even, I always pick odd, too.",
 								 _"I think I would have picked even this time."}
 
 			if (ewd1 == tux1) then

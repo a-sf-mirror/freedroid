@@ -136,7 +136,7 @@ return {
 		text = _"You do not sound happy. What is wrong?",
 		code = function()
 			if (guard_follow_tux) then
-				Npc:says(_"I am very happy! The red guard are making us so secure, it is great to live here with them taking care of us!")
+				Npc:says(_"I am very happy! The Red Guard is making us so secure, it is great to live here with them taking care of us!")
 			else
 				Npc:says(_"EVERYTHING!")
 				Npc:says(_"Just look at this stupid town!")
@@ -361,7 +361,7 @@ return {
 		text = _"Tell the Red Guard that you need your battery back.",
 		code = function()
 			if (tux_has_joined_guard) then
-				Npc:says(_"Well, you ARE the red guard", "NO_WAIT")
+				Npc:says(_"Well, you ARE a Red Guard", "NO_WAIT")
 				Npc:says(_"Why can't you just talk to Spencer?")
 				Npc:says(_"I want my battery back!")
 				Tux:says(_"Umm... I guess you have a point there.")

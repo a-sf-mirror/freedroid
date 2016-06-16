@@ -253,7 +253,7 @@ return {
 					Tux:says(_"Uhmmm...")
 					Npc:says(_"You better go getting it!")
 				else -- we killed koan somehow but don't have the cube
-					Npc:says(_"You don't look too well, what did happen?")
+					Npc:says(_"You don't look too well, what happened?")
 					Tux:says(_"He ... he is dead...")
 					Npc:says(_"Koan?")
 					if (Koan_spared_via_dialog) then -- we told Koan we won't kill him, and lied to Duncan

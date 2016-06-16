@@ -99,7 +99,7 @@ return {
 				show("end_towngate")
 			elseif (Tania_position == "town_gate") then --Town Entrance then (if Doc is alive) send her DocMoore's office, else set free (send to Bar)
 				Npc:says(_"What is the news?")
-				Tux:says(_"I talked to Spencer, and he said you were welcome to enter the town.")
+				Tux:says(_"I talked to Spencer, and he said you are welcome to enter the town.")
 				Npc:says(_"That is great news!")
 				if (Spencer_Tania_decision == "doc_moore") then
 					Tux:says(_"He said you must first get checked out by Doc Moore though.")

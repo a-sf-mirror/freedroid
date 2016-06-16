@@ -72,7 +72,7 @@ return {
 		id = "node5",
 		text = _"What is the citadel?",
 		code = function()
-			Npc:says(_"Our headquarters, the strengthened building behind me. It's the area reserved to the red guard.")
+			Npc:says(_"Our headquarters, the strengthened building behind me. It's the area reserved to the Red Guard.")
 			Npc:says(_"We need to protect our equipment and documents: lives depend on it.")
 			Npc:says(_"Our firearms are enough to kick off any droid, and to blow everything up.")
 			Npc:says(_"Luckily, no overloading reactor is near it. Ha-ha.")

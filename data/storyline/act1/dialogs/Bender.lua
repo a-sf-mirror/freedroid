@@ -205,7 +205,7 @@ return {
 			Npc:says(_"You know man, I got those offers everybody gets.")
 			Npc:says(_"They offer some brain enlargement pills to enhance brain performance.")
 			Npc:says(_"'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'")
-			Npc:says(_"And everybody in the town said I was dumb, which by the way IS NOT TRUE.")
+			Npc:says(_"And everybody in the town said I was dumb, which, by the way, IS NOT TRUE.")
 			Npc:says(_"So I thought these pills might make them think differently about me.")
 			hide("node3") show("node4", "node5")
 		end,

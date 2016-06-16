@@ -46,7 +46,7 @@ return {
 		id = "node1",
 		text = _"Spencer said you'd be able to provide me with better armor and equipment.",
 		code = function()
-			Npc:says(_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor.")
+			Npc:says(_"Of course. As a member of the Guard, you're entitled to wear one of our suits of armor.")
 			Npc:says(_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing, though we also trade guns and some ammo.")
 			Npc:says_random(_"Now, what will it be?",
 							_"So, what do you want to buy?")

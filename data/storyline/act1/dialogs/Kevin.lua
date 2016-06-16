@@ -108,7 +108,7 @@ return {
 		id = "node0",
 		text = _"Oh dear... You look awful... Who did this to you? Did they torture you?",
 		code = function()
-			Npc:says(_"I haven't eaten and slept very much in the last time so I'm a little hungry and may appear a little tired.")
+			Npc:says(_"I haven't eaten and slept very much lately, so I'm a little hungry and may appear a little tired.")
 			Npc:says(_"One of the side effects of always deleting all cookies.")
 			Npc:says(_"Don't worry about me. I'll be fine.")
 			Npc:says(_"I'm Kevin, a computer security expert.")
@@ -125,14 +125,14 @@ return {
 			Npc:says(_"That's great. You can't miss it. It's not hard to find. Enter my garden and find the lower station entrance there.")
 			Npc:says(_"It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level.")
 			Npc:says(_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them.")
-			Npc:says(_"Best make it quick. I'm already sick of stabilizing the stupid power grid.")
+			Npc:says(_"Best make it quick. I'm already sick of stabilizing the stupid power grid!")
 			Tux:update_quest("And there was light...", _"The entrance is in Kevin's garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
 			hide("node6", "node7")
 		end,
 	},
 	{
 		id = "node7",
-		text = _"I'm sorry, but I don't think there's anything I could do about that energy supply.",
+		text = _"I'm sorry, but I don't think there's anything I could do about the energy supply.",
 		code = function()
 			Npc:says(_"Too bad. Now get out of my sight.")
 			hide("node7")
@@ -406,8 +406,8 @@ return {
 		text = _"I saw an opening in the wall and I decided to take a look inside.",
 		topic = "Backdoor",
 		code = function()
-			Npc:says(_"Oh, you have just entered by curiosity. I always fought for made it a exception to the rules.")
-			Npc:says(_"I like curiosity. I think it will has rocketed us on Mars. And beyond...")
+			Npc:says(_"Oh, you have just entered by curiosity. I always fought to make it an exception to the rules.")
+			Npc:says(_"I like curiosity. I think it's what rocketed us on Mars. And beyond...")
 			Npc:says(_"Thank you, I now know the issue, but I don't have time to fix it.")
 			next("node93")
 		end,

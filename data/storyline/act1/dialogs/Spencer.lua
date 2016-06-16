@@ -230,8 +230,8 @@ return {
 			else
 				Npc:says(_"Dixon has his toolkit back.", "NO_WAIT")
 				Npc:says(_"He did rail against you though. He said he had to give you 400 circuits to get his toolkit back, his own property.")
-				Npc:says(_"That was nearly all money he had. He said you were too greedy to become a good member and he doesn't want to see you anymore.")
-				Npc:says(_"I think everybody has to get a chance. But look ahead! When you are negatively conspicuous again, we will ban you from our town!")
+				Npc:says(_"That was nearly all the money he had. He said you were too greedy to become a good member and he doesn't want to see you anymore.")
+				Npc:says(_"I think everybody deserves to get a chance. Remember this: If you are negatively conspicuous again, we will ban you from our town!")
 				-- Tux needs to pay 800 circuits to join the guard.
 			end
 
@@ -276,9 +276,9 @@ return {
 				hide("node3", "node12")
 			else
 				if (get_town_score() > 29) then
-					Npc:says(_"All in all, not quite so bad. But you still need to do the one thing or the other. Then we can talk about it.")
+					Npc:says(_"All in all, not half bad. But there are still things you need to do. Once you finish, then we can talk about it.")
 				else
-					Npc:says(_"I can't accept you into the guard like this. Get going. There are still many things to do for you.")
+					Npc:says(_"I can't accept you into the Guard like this. Get going. There are still many things to do for you.")
 				end
 			end
 		end,
@@ -356,7 +356,7 @@ return {
 			Npc:says(_"Come on, you've got to be kidding! ...")
 			Npc:says(_"So I will call one minion for this job. You are very useless, unable to bring a small thing.")
 			Npc:says(_"Get out of my sight!")
-			Tux:end_quest("Deliverance", _"I lied about the data cube and Spencer thinks now I lost the cube. I won a little time for people in cryonic stasis. But, I couldn't stop Spencer's project.")
+			Tux:end_quest("Deliverance", _"I lied about the data cube and now Spencer thinks I lost it. I won a little time for people in cryonic stasis. But, I couldn't stop Spencer's project.")
 			Tux:add_xp(250)
 			hide("node21", "node22", "node23")
 			end_dialog()
@@ -383,7 +383,7 @@ return {
 			Tux:says(_"Disposable people? Unlikely to survive? Can't they just stay in cryonics indefinitely?")
 			Npc:says(_"No. They take up a lot of space, and keeping them alive takes a lot of power, which is running out. Most of the people there are sick or dying anyway, which is why they're frozen in the first place. We can't afford to waste any resources.")
 			Npc:says(_"We even had to confiscate the town cook's macrowave oven battery, which means we can't eat warm food anymore. We needed it to keep the town's defenses up.")
-			Tux:update_quest("Deliverance", _"I learn incredible information. Apparently the data cube stored a list of people in freezing in the cryonic facility. Spencer wants to dispose of some of them because keeping them alive uses up the town's power...")
+			Tux:update_quest("Deliverance", _"I learn incredible information. Apparently the data cube stored a list of people frozen in the cryonic facility. Spencer wants to dispose of some of them because keeping them alive uses up the town's power...")
 			hide("node26") show("node24")
 		end,
 	},
@@ -391,7 +391,7 @@ return {
 		id = "node29",
 		text = _"I would like to talk about the Francis' cube.",
 		code = function()
-			Npc:says(_"Well, I'm listening to you. But you must be quickly, I've no time to loose.")
+			Npc:says(_"Well, I'm listening to you. But you must be quick about it, I've no time to lose.")
 			Npc:says(_"If you found the data cube, just give it.")
 			if (Tux:has_item_backpack("Data cube")) then
 				show("node21", "node22")
@@ -406,7 +406,7 @@ return {
 		id = "node37",
 		text = _"I've heard Richard obtained new information on the town.",
 		code = function()
-			Npc:says(_"Yes, that's right, and in fact it might be crucial. As you may have heard, the MS office is defended by a disruptor shield. They open it only to let out new armies of bots.")
+			Npc:says(_"Yes, that's right, and in fact it might be crucial. As you may have heard, the MS Office is defended by a disruptor shield. They open it only to let out new armies of bots.")
 			Npc:says(_"The data on the cube he obtained indicates the existence of a secret experimental facility in this region. Our findings suggest that they were testing some new form of disruptor shield for MS, so the shield can be controlled from that facility.")
 			Npc:says(_"If the information is true, then you can defeat the control droid and disable the shield permanently via some console or terminal.")
 			Npc:says(_"Then we should be able to get in.")
@@ -451,14 +451,14 @@ return {
 		id = "node44",
 		text = _"It's done. Your soldiers were killed, but I managed to reach a computer terminal that controls the shield. Access to the bot factory is now open, after I changed the password on the terminal so as to prevent the bots from enabling the shield again.",
 		code = function()
-			Npc:says(_"Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS office.")
+			Npc:says(_"Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS Office.")
 			Npc:says(_"They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office.")
 			Npc:says(_"With a bit of luck, you might not need to access it. We know they have their update server in the office.")
 			Npc:says(_"If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks.")
 			Npc:says(_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own.", "NO_WAIT")
 			Npc:says(_"However I'll ask Richard to see if we can contact you as soon as you find the server so we know if you're alive and there is still hope, or if things are going to go back to the way they were before you were taken out of stasis sleep...")
 			Npc:says(_"Good luck.")
-			Tux:add_quest("Propagating a faulty firmware update", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
+			Tux:add_quest("Propagating a faulty firmware update", _"I can now enter Hell Fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
 			Npc:says(_"Wait. I have a weapon here. It is not an Exterminator, but should save your life in the Hell Fortress.")
 			Tux:add_item("Electro Laser Rifle", 1)
 

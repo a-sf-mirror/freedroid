@@ -159,7 +159,7 @@ return {
 		text = _"I'm having difficulty overcoming the bots. What can I do?",
 		code = function()
 			Npc:says(_"There are many things you can do. The first is to fight more bots.")
-			Tux:says(_"Er... Wouldn't that cause me to be beaten up more, and therefore be counter-productive?")
+			Tux:says(_"Erm... Wouldn't that cause me to be beaten up more, and therefore be counter-productive?")
 			Npc:says(_"Your logic is infallible, Linarian, but you are forgetting one thing: the more you fight, the more experienced you become, and the better you become at surviving.")
 			Npc:says(_"Also, if you have the money and can find a supplier, it is wise to invest in better equipment - more protective clothing and better weaponry.")
 			Npc:says(_"My advice is to invest in a ranged weapon. While it can create a huge hole in your wallet, it also creates several in the bots, and is better than a huge hole in you.")
@@ -191,11 +191,11 @@ return {
 		text = _"What bots are in the 100 class?",
 		topic = "Bot Information",
 		code = function()
-			Npc:says(_"I know of two types, the 123 and the 139. The former is a simple cleaning bot, and is fairly weak. The latter is a mobile trash compactor. Don't get your flippers get caught in one of those.")
+			Npc:says(_"I know of two types, the 123 and the 139. The former is a simple cleaning bot, and is fairly weak. The latter is a mobile trash compactor. Don't let your flippers get caught in one of those.")
 			Tux:says(_"I've seen some of those on my way here. They were... Shooting at me.")
 			Npc:says(_"Many strange things have happened since the Great Assault.")
 			Npc:says(_"Anyway, because the class 100 bots are neither fast nor dangerous, the Red Guard often uses them for target practice.")
-			Npc:says(_"If I were you, I would not overestimate them.")
+			Npc:says(_"If I were you, I would not underestimate them.")
 			Npc:says(_"Nec Hercules contra plures.")
 			Chandra_bot_information_nodes = Chandra_bot_information_nodes - 1
 			hide("node11")
@@ -209,7 +209,7 @@ return {
 			Npc:says(_"In fitting with the lazy nature of humans, there are several servant bots of the 200 class.")
 			Npc:says(_"The 247 is often called the 'Banshee'. Being a simple servant robot, it isn't very well equipped to kill, although its arms are quite strong.")
 			Npc:says(_"Also, as I said, the 200s were built to report quickly. The 247 is no exception, and moves faster than some of us can run. As a killer bot, it has a fast rate of attack. It is not something to be trifled with.")
-			Npc:says(_"The 249 is a cheaper version of the Banshee. It uses a tripedal drive instead of anti-gravity propulsion, and is therefore slower. However it is much more dangerous: its machine gun has a very high rate of fire.")
+			Npc:says(_"The 249 is a cheaper version of the Banshee. It uses a tripedal drive instead of anti-gravity propulsion, and is therefore slower. However, it is much more dangerous: its machine gun has a very high rate of fire.")
 			Tux:says(_"Machine gun?! But... But it's a servant bot!")
 			--; TRANSLATORS: %s =Tux:get_player_name()
 			Npc:says(_"I know, %s. I know.", Tux:get_player_name())
