@@ -26,7 +26,7 @@
  * It makes use of KHR_debug if available.
  */
 
-#define _open_gl_debug_c
+#define _open_gl_debug_c 1
 
 #include "system.h"
 #include "defs.h"

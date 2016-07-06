@@ -30,7 +30,8 @@
  * they are, they order the appropriate event to be executed.
  */
 
-#define _event_c
+#define _event_c 1
+
 #include "system.h"
 
 #include "defs.h"

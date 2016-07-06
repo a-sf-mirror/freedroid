@@ -22,7 +22,8 @@
  *
  */
 
-#define leveleditor_widget_map_c
+#define leveleditor_widget_map_c 1
+
 #include "system.h"
 
 #include "defs.h"

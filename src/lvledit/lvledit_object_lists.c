@@ -22,7 +22,7 @@
  *
  */
 
-#define _leveleditor_tile_lists_c
+#define _leveleditor_tile_lists_c 1
 
 #include "system.h"
 

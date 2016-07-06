@@ -22,7 +22,7 @@
  *
  */
 
-#define _lang_c
+#define _lang_c 1
 
 #include "system.h"
 

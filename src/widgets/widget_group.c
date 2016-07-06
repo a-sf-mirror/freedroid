@@ -28,7 +28,7 @@
  *
  */
 
-#define _widget_group_c
+#define _widget_group_c 1
 
 #include "system.h"
 #include "defs.h"

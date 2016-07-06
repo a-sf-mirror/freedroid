@@ -28,7 +28,7 @@
  * the original paradroid game.
  */
 
-#define _takeover_c
+#define _takeover_c 1
 
 #include "system.h"
 

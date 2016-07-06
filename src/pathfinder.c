@@ -24,7 +24,7 @@
  *
  */
 
-#define _pathfinder_c
+#define _pathfinder_c 1
 
 #include "system.h"
 

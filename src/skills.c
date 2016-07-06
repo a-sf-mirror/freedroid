@@ -28,7 +28,7 @@
  * players character.
  */
 
-#define _skills_c
+#define _skills_c 1
 
 #include "system.h"
 

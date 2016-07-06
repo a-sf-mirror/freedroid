@@ -27,7 +27,7 @@
  * change this parameter, etc.
  */
 
-#define _faction_c
+#define _faction_c 1
 
 #include "system.h"
 

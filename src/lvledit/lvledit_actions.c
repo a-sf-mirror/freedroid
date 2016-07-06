@@ -26,7 +26,7 @@
  * This file contains all the actions performed by the level editor, ie. the functions that act on the level.
  */
 
-#define _leveleditor_actions_c
+#define _leveleditor_actions_c 1
 
 #include "system.h"
 

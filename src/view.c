@@ -33,7 +33,7 @@
  * screen for the user.
  */
 
-#define _view_c
+#define _view_c 1
 
 #include "system.h"
 

@@ -30,7 +30,7 @@
  * themselves, their fireing, animation and such.
  */
 
-#define _enemy_c
+#define _enemy_c 1
 
 #include "system.h"
 

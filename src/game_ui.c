@@ -22,7 +22,7 @@
  *
  */
 
-#define _game_ui_c
+#define _game_ui_c 1
 
 #include "system.h"
 

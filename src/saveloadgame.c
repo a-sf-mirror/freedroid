@@ -26,7 +26,7 @@
  * All functions that have to do with loading and saving of games.
  */
 
-#define _saveloadgame_c
+#define _saveloadgame_c 1
 
 #include "system.h"
 

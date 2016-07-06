@@ -24,7 +24,7 @@
  *
  */
 
-#define _blocks_c
+#define _blocks_c 1
 
 #include "system.h"
 

@@ -27,7 +27,7 @@
  * This file contains all the functions managing the items in the game.
  */
 
-#define _items_c
+#define _items_c 1
 
 #include "system.h"
 

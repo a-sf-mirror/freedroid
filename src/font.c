@@ -31,7 +31,7 @@
  *        Currently we use bitmaps fonts (see BFont.c)
  */
 
-#define _font_c
+#define _font_c 1
 
 #include "system.h"
 

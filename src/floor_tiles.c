@@ -22,7 +22,7 @@
  *
  */
 
-#define _floor_tiles_c
+#define _floor_tiles_c 1
 
 #include "system.h"
 

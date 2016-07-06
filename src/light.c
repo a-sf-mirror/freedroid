@@ -30,7 +30,7 @@
  * of other light emanating objects.
  */
 
-#define _light_c
+#define _light_c 1
 
 #include "struct.h"
 #include "global.h"

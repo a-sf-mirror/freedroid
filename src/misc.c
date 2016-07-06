@@ -26,7 +26,7 @@
 /**
  * This file contains miscellaeous helpful functions for FreedroidRPG.
  */
-#define _misc_c
+#define _misc_c 1
 
 #include "system.h"
 

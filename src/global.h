@@ -32,12 +32,9 @@
 
 extern char *freedroid_version;
 
-#undef EXTERN
-#ifdef _main_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _main_c
+#include "extint_macros.h"
 
 EXTERN float FPSover1;
 EXTERN char *AllSkillTexts[];
@@ -94,12 +91,9 @@ EXTERN char *saved_game_name;
 
 EXTERN FPSmanager SDL_FPSmanager;
 
-#undef EXTERN
-#ifdef _misc_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _misc_c
+#include "extint_macros.h"
 
 EXTERN float timeout_from_item_drop;
 EXTERN int use_open_gl;
@@ -118,12 +112,10 @@ EXTERN float Overall_Average;
 EXTERN int SkipAFewFrames;
 EXTERN struct data_dir data_dirs[];
 
-#undef EXTERN
-#ifdef _view_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _view_c
+#include "extint_macros.h"
+
 EXTERN struct image light_radius_chunk[NUMBER_OF_SHADOW_IMAGES];
 EXTERN SDL_Rect InventoryRect;
 EXTERN SDL_Rect CharacterRect;
@@ -162,34 +154,16 @@ EXTERN int gps_transform_map_dirty_flag;
 EXTERN struct tux_rendering tux_rendering;
 EXTERN int clickable_obstacle_under_cursor;
 
-#undef EXTERN
-#ifdef _light_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _light_c
+#include "extint_macros.h"
+
 EXTERN light_radius_config LightRadiusConfig;
 
-#undef EXTERN
-#ifdef _sound_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _graphics_c
+#include "extint_macros.h"
 
-#undef EXTERN
-#ifdef _enemy_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
-
-#undef EXTERN
-#ifdef _graphics_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
 EXTERN SDL_Surface *Screen;
 EXTERN SDL_Surface *StoredMenuBackground[2];
 EXTERN int mouse_cursor;
@@ -206,76 +180,41 @@ EXTERN float iso_floor_tile_width_over_two;
 EXTERN float iso_floor_tile_height_over_two;
 EXTERN int vid_bpp;		// bits per pixel 
 
-#undef EXTERN
-#ifdef _hud_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _hud_c
+#include "extint_macros.h"
+
 EXTERN struct widget_text *message_log;
 
-#undef EXTERN
-#ifdef _blocks_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _blocks_c
+#include "extint_macros.h"
+
 EXTERN struct dynarray obstacle_map;
 EXTERN struct dynarray underlay_floor_tiles;
 EXTERN struct dynarray overlay_floor_tiles;
 
-#undef EXTERN
-#ifdef _text_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _text_c
+#include "extint_macros.h"
+
 EXTERN SDL_Rect Droid_Image_Window;
 
-#undef EXTERN
-#ifdef _text_public_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _input_c
+#include "extint_macros.h"
 
-#undef EXTERN
-#ifdef _leveleditor_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
-
-#undef EXTERN
-#ifdef _input_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
 EXTERN point input_axis;	/* joystick (and mouse) axis values */
 
-#undef EXTERN
-#ifdef _takeover_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
-
-#undef EXTERN
-#ifdef _skills_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _skills_c
+#include "extint_macros.h"
 
 EXTERN SDL_Rect SkillScreenRect;
 
-#undef EXTERN
-#ifdef _items_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _items_c
+#include "extint_macros.h"
 
 EXTERN int Number_Of_Item_Types;
 EXTERN itemspec *ItemMap;
@@ -288,55 +227,40 @@ enum {
 	ROOT_IS_LVLEDIT,
 };
 
-#undef EXTERN
-#ifdef _obstacle_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _obstacle_c
+#include "extint_macros.h"
 
 EXTERN struct dynarray obstacle_groups;
 
-#undef EXTERN
-#ifdef _saveloadgame_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _saveloadgame_c
+#include "extint_macros.h"
+
 EXTERN struct auto_string *savestruct_autostr;
 EXTERN jmp_buf saveload_jmpbuf;
 
-#undef EXTERN
-#ifdef _benchmark_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _benchmark_c
+#include "extint_macros.h"
+
 EXTERN char *do_benchmark;
 
-#undef EXTERN
-#ifdef _npc_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _npc_c
+#include "extint_macros.h"
 
 EXTERN list_head_t npc_head;
 
-#undef EXTERN
-#ifdef _game_ui_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _game_ui_c
+#include "extint_macros.h"
+
 EXTERN struct widget_button *game_map;
 
-#undef EXTERN
-#ifdef _influ_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _influ_c
+#include "extint_macros.h"
 
 EXTERN struct {
 	int standing_keyframe;
@@ -349,40 +273,29 @@ EXTERN struct {
 #define IMAGE_SCALE_TRANSFO(SCALE) IMAGE_SCALE_RGB_TRANSFO(SCALE, 1.0, 1.0, 1.0)
 #define IMAGE_NO_TRANSFO IMAGE_SCALE_TRANSFO(1.0)
 
-#undef EXTERN
-#ifdef _bullet_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _bullet_c
+#include "extint_macros.h"
 
 EXTERN struct dynarray bullet_specs;
 
-#undef EXTERN
-#ifdef _lang_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _lang_c
+#include "extint_macros.h"
 
 EXTERN struct dynarray lang_specs;
 EXTERN struct dynarray lang_codesets;
 
-#undef EXTERN
-#ifdef _init_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _init_c
+#include "extint_macros.h"
 
 EXTERN struct dynarray difficulties;
 
-#undef EXTERN
-#ifdef _font_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _font_c
+#include "extint_macros.h"
+
 EXTERN struct font *Menu_Font;
 EXTERN struct font *Messagevar_Font;
 EXTERN struct font *Messagestat_Font;
@@ -392,12 +305,10 @@ EXTERN struct font *Blue_Font;
 EXTERN struct font *Red_Font;
 EXTERN struct font *Messagered_Font;
 
-#undef EXTERN
-#ifdef _colldet_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
+//===================================================================
+#define INTERN_FOR _colldet_c
+#include "extint_macros.h"
+
 EXTERN colldet_filter WalkablePassFilter;
 EXTERN colldet_filter WalkableWithMarginPassFilter;
 EXTERN colldet_filter FlyablePassFilter;
@@ -406,5 +317,8 @@ EXTERN colldet_filter ObstacleByIdPassFilter;
 EXTERN colldet_filter WalkableExceptIdPassFilter;
 EXTERN colldet_filter FlyableExceptIdPassFilter;
 
-#undef EXTERN
+//===================================================================
+// Final include to undef all macros
+#include "extint_macros.h"
+
 #endif				// _global_h

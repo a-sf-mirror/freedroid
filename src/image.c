@@ -21,7 +21,7 @@
  *
  */
 
-#define _image_c
+#define _image_c 1
 
 #include "system.h"
 

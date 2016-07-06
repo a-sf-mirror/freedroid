@@ -27,7 +27,7 @@
  * This file contains all functions for the heart of the level editor.
  */
 
-#define _leveleditor_c
+#define _leveleditor_c 1
 
 #include "system.h"
 

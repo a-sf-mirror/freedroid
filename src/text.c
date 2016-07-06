@@ -31,7 +31,7 @@
  * text-processing.
  */
 
-#define _text_c
+#define _text_c 1
 
 #include "system.h"
 

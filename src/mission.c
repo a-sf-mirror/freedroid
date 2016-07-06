@@ -24,7 +24,7 @@
  *
  */
 
-#define _mission_c
+#define _mission_c 1
 
 #include "system.h"
 

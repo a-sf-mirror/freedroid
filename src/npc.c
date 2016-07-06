@@ -27,7 +27,7 @@
  * chat flags and shop lists.
  */
 
-#define _npc_c
+#define _npc_c 1
 
 #include "system.h"
 

@@ -22,7 +22,7 @@
  *
  */
 
-#define _benchmark_c
+#define _benchmark_c 1
 
 #include "system.h"
 

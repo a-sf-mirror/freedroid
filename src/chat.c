@@ -30,7 +30,7 @@
  * right portrait images to the screen.
  */
 
-#define _chat_c
+#define _chat_c 1
 
 #include "system.h"
 

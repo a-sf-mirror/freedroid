@@ -27,7 +27,7 @@
  * Desc: Scenery (obstacle, floor tile and all other non-actor objects) animation.
  */
 
-#define _animate_c
+#define _animate_c 1
 
 #include "defs.h"
 #include "struct.h"

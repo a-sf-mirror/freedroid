@@ -28,7 +28,7 @@
  * This file contains all menu functions and their subfunctions
  */
 
-#define _menu_c
+#define _menu_c 1
 
 #include "system.h"
 

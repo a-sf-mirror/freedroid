@@ -27,7 +27,7 @@
  * This file contains functions for keyboard and mouse events.
  */
 
-#define _input_c
+#define _input_c 1
 
 #include "struct.h"
 #include "global.h"

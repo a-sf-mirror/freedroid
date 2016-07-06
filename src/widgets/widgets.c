@@ -28,7 +28,7 @@
  *        + some misc functions.
  */
 
-#define _widgets_c
+#define _widgets_c 1
 
 #include "system.h"
 #include "defs.h"

@@ -27,7 +27,7 @@
  * This file contains all menu functions and their subfunctions
  */
 
-#define _shop_c
+#define _shop_c 1
 
 #include "system.h"
 

@@ -22,7 +22,7 @@
  *
  */
 
-#define _leveleditor_menu_c
+#define _leveleditor_menu_c 1
 
 #include "system.h"
 

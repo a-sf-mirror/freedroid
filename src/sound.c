@@ -29,9 +29,7 @@
  * This file contains sound related functions
  */
 
-#ifndef _sound_c
-#define _sound_c
-#endif
+#define _sound_c 1
 
 #include "defs.h"
 #include "struct.h"

@@ -23,7 +23,7 @@
  *
  */
 
-#define leveleditor_tool_move_c
+#define leveleditor_tool_move_c 1
 
 #include "system.h"
 

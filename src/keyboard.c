@@ -21,7 +21,7 @@
  * @brief Handles all the keybindings and input.
  */
 
-#define _keyboard_c
+#define _keyboard_c 1
 
 #include "defs.h"
 #include "struct.h"

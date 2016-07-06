@@ -26,7 +26,7 @@
  * Desc: all Bullet AND Blast - related functions.
  */
 
-#define _bullet_c
+#define _bullet_c 1
 
 #include "system.h"
 

@@ -28,7 +28,7 @@
  * (Not all of the) Initialization routines for FreedroidRPG.
  */
 
-#define _init_c
+#define _init_c 1
 
 #include "system.h"
 

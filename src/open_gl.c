@@ -27,7 +27,7 @@
  * This file contains function relevant for OpenGL based graphics output.
  */
 
-#define _open_gl_c
+#define _open_gl_c 1
 
 #include <math.h>
 #include "system.h"

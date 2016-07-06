@@ -27,7 +27,7 @@
  * Used by the level editor.
  */
 
-#define _leveleditor_validator_c
+#define _leveleditor_validator_c 1
 
 #include "proto.h"
 #include "lvledit/lvledit_validator.h"

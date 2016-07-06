@@ -27,7 +27,7 @@
  * This file contains most of the activable's object/user interaction framework.
  */
 
-#define _action_c
+#define _action_c 1
 
 #include "system.h"
 

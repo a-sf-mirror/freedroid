@@ -27,7 +27,7 @@
  * and the character stats.
  */
 
-#define _character_c
+#define _character_c 1
 
 #include "system.h"
 

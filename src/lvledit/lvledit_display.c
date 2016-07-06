@@ -23,7 +23,7 @@
  *
  */
 
-#define _leveleditor_display_c
+#define _leveleditor_display_c 1
 
 #include "system.h"
 

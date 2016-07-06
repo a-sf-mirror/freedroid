@@ -22,7 +22,7 @@
  *
  */
 
-#define _obstacle_c
+#define _obstacle_c 1
 
 #include "system.h"
 

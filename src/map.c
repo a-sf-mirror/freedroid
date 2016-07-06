@@ -31,7 +31,7 @@
  * that contains specified coordinates are done in this file.
  */
 
-#define _map_c
+#define _map_c 1
 
 #include "system.h"
 

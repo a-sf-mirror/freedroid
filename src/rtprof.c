@@ -26,7 +26,7 @@
  * \brief Real-time in-game profiler's implementations
  */
 
-#define _probe_c
+#define _probe_c 1
 
 #include "system.h"
 

@@ -20,7 +20,7 @@
  *  MA  02111-1307  USA
  *
  */
-#define _armor_c
+#define _armor_c 1
 
 #include "system.h"
 

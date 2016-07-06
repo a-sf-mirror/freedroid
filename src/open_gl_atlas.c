@@ -25,7 +25,7 @@
  * This file provides texture atlas manipulation facility. 
  */
 
-#define _open_gl_atlas_c
+#define _open_gl_atlas_c 1
 
 #include "system.h"
 

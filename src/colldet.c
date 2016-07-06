@@ -22,7 +22,7 @@
  *
  */
 
-#define _colldet_c
+#define _colldet_c 1
 
 #include "system.h"
 

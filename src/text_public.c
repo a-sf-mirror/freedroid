@@ -28,7 +28,7 @@
  * dialog editor.
  */
 
-#define _text_public_c
+#define _text_public_c 1
 
 #include "system.h"
 

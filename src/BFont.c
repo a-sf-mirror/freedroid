@@ -5,7 +5,7 @@
 /*                                                         */
 /***********************************************************/
 
-#define _bfont_c
+#define _bfont_c 1
 
 #include "system.h"
 #include "defs.h"

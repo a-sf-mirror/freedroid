@@ -28,7 +28,7 @@
  * displays with status etc...
  */
 
-#define _hud_c
+#define _hud_c 1
 
 #include "system.h"
 

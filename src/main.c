@@ -27,7 +27,7 @@
  * Desc: the main program
  */
 
-#define _main_c
+#define _main_c 1
 
 #include "system.h"
 

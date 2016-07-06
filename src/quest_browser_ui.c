@@ -25,7 +25,7 @@
  */
 
 /** This file implements the quest browser. */
-#define _quest_browser_c
+#define _quest_browser_c 1
 
 #include "system.h"
 

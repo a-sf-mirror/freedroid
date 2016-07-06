@@ -29,7 +29,7 @@
  * extras of the influencer.
  */
 
-#define _influ_c
+#define _influ_c 1
 
 #include "system.h"
 

@@ -22,7 +22,7 @@
  *
  */
 
-#define _lvledit_widgets_c
+#define _lvledit_widgets_c 1
 
 #include "system.h"
 

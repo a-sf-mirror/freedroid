@@ -26,7 +26,7 @@
  * This file contains graphics primitives, such as initialisation of SDL
  * and video modes.
  */
-#define _graphics_c
+#define _graphics_c 1
 
 #include "pngfuncs.h"
 
