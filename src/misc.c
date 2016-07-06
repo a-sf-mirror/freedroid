@@ -1548,7 +1548,8 @@ IMMEDIATE_EXIT:
 
 	// Now we drop control back to the operating system.  The FreedroidRPG
 	// program has finished.
-
+	if (exit_code == EXIT_FAILURE)
+		abort();
 	exit(exit_code);
 }
 
