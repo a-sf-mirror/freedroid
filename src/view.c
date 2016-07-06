@@ -3056,7 +3056,8 @@ void show_inventory_screen(void)
 					int socketnum;
 					int has_addons = FALSE;
 					for (socketnum = 0; socketnum < Me.Inventory[SlotNum].upgrade_sockets.size; socketnum++) {
-						if (Me.Inventory[SlotNum].upgrade_sockets.arr[socketnum].addon) {
+						struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&Me.Inventory[SlotNum].upgrade_sockets, socketnum, sizeof(struct upgrade_socket));
+						if (socket->addon) {
 							has_addons = TRUE;
 							break;
 						}

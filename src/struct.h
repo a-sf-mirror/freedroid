@@ -58,11 +58,7 @@ struct dynarray {
 typedef struct dynarray item_dynarray;
 typedef struct dynarray string_dynarray;
 
-typedef struct upgrade_socket_dynarray {
-	struct upgrade_socket *arr;
-	int size;
-	int capacity;
-} upgrade_socket_dynarray;
+typedef struct dynarray upgrade_socket_dynarray;
 
 struct font {
 	int height;
@@ -358,7 +354,7 @@ typedef struct item {
 	int ammo_clip;		// how much bullets in the clip, IN CASE OF WEAPON
 	point inventory_position;
 
-	struct upgrade_socket_dynarray upgrade_sockets;
+	upgrade_socket_dynarray upgrade_sockets;
 	int quality;
 } item;
 

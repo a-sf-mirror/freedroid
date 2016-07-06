@@ -231,7 +231,6 @@ void show_item_upgrade_ui()
 	char buffer[512];
 	struct image *image;
 	SDL_Rect rect;
-	struct upgrade_socket_dynarray *sockets = &ui.custom_item.upgrade_sockets;
 
 	// We're being called every time the UI of the game is drawn so we need to
 	// make sure the upgrade UI is actually active before proceeding.
@@ -291,8 +290,9 @@ void show_item_upgrade_ui()
 
 		// Draw the base socket images.
 		for (i = 0; i < ADDON_ITEMS_MAX; i++) {
-			if (i < sockets->size) {
-				switch (sockets->arr[i].type) {
+			if (i < ui.custom_item.upgrade_sockets.size) {
+				struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&ui.custom_item.upgrade_sockets, i, sizeof(struct upgrade_socket));
+				switch (socket->type) {
 				case UPGRADE_SOCKET_TYPE_MECHANICAL:
 					image = &images[IMAGE_SOCKET_MECHANICAL];
 					break;
@@ -306,7 +306,7 @@ void show_item_upgrade_ui()
 					image = NULL;
 					break;
 				}
-			} else if (ui.custom_item.type != -1 && i == sockets->size) {
+			} else if (ui.custom_item.type != -1 && i == ui.custom_item.upgrade_sockets.size) {
 				image = &images[IMAGE_SOCKET_ADD];
 			} else {
 				image = &images[IMAGE_SOCKET_NONE];
@@ -319,12 +319,15 @@ void show_item_upgrade_ui()
 			rect.x += (rect.w - image->w) / 2;
 			rect.y += (rect.h - image->h) / 2;
 			display_image_on_screen(image, rect.x, rect.y, IMAGE_NO_TRANSFO);
-			if (i < sockets->size && ui.custom_item.upgrade_sockets.arr[i].addon) {
-				image = &images[IMAGE_SOCKET_INSTALLED];
-				rect = rects.socket_slots[i];
-				rect.x += (rect.w - image->w) / 2;
-				rect.y += (rect.h - image->h) / 2;
-				display_image_on_screen(image, rect.x, rect.y, IMAGE_NO_TRANSFO);
+			if (i < ui.custom_item.upgrade_sockets.size) {
+				struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&ui.custom_item.upgrade_sockets, i, sizeof(struct upgrade_socket));
+				if (socket->addon) {
+					image = &images[IMAGE_SOCKET_INSTALLED];
+					rect = rects.socket_slots[i];
+					rect.x += (rect.w - image->w) / 2;
+					rect.y += (rect.h - image->h) / 2;
+					display_image_on_screen(image, rect.x, rect.y, IMAGE_NO_TRANSFO);
+				}
 			}
 		}
 
@@ -348,7 +351,6 @@ void show_item_upgrade_ui()
 static void clear_addon_items(void)
 {
 	int i;
-	struct upgrade_socket *socket;
 
 	// Remove items from the socket slots. Items that are not present in
 	// the upgrade socket array are considered not installed and will be
@@ -356,7 +358,7 @@ static void clear_addon_items(void)
 	// are deleted directly in order not to duplicate them.
 	for (i = 0; i < ADDON_ITEMS_MAX; i++) {
 		if (ui.addon_items[i].type != -1) {
-			socket = &ui.custom_item.upgrade_sockets.arr[i];
+			struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&ui.custom_item.upgrade_sockets, i, sizeof(struct upgrade_socket));
 			if (socket->addon) {
 				DeleteItem(&ui.addon_items[i]);
 			} else {
@@ -372,7 +374,6 @@ static void calculate_cost_and_bonuses(void)
 	int changed = FALSE;
 	item temp;
 	item *addon;
-	struct upgrade_socket *socket;
 	struct addon_spec *spec;
 
 	// Sum the upgrade costs of all add-ons that are present
@@ -381,7 +382,7 @@ static void calculate_cost_and_bonuses(void)
 	if (ui.custom_item.type != -1) {
 		for (i = 0; i < ADDON_ITEMS_MAX && i < ui.custom_item.upgrade_sockets.size; i++) {
 			addon = &ui.addon_items[i];
-			socket = &ui.custom_item.upgrade_sockets.arr[i];
+			struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&ui.custom_item.upgrade_sockets, i, sizeof(struct upgrade_socket));
 			if (!socket->addon && addon->type != -1) {
 				spec = get_addon_spec(addon->type);
 				ui.cost += spec->upgrade_cost;
@@ -405,7 +406,7 @@ static void calculate_cost_and_bonuses(void)
 		if (i < temp.upgrade_sockets.size) {
 			addon = &ui.addon_items[i];
 			if (addon->type != -1) {
-				socket = &temp.upgrade_sockets.arr[i];
+				struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&temp.upgrade_sockets, i, sizeof(struct upgrade_socket));
 				free(socket->addon);
 				socket->addon = strdup(ItemMap[addon->type].id);
 			}
@@ -449,8 +450,6 @@ static int grab_customized_item(void)
 
 static int grab_addon_item(int index)
 {
-	struct upgrade_socket *socket;
-
 	// If the socket is empty, do nothing and return FALSE to inform
 	// the caller that no drag could be initiated.
 	if (ui.addon_items[index].type == -1) {
@@ -466,7 +465,7 @@ static int grab_addon_item(int index)
 	// Remove the corresponding string from the upgrade socket array. We
 	// use the NULL pointer to identify sockets that have been modified
 	// and need to be updated when the player pressed the apply button.
-	socket = &ui.custom_item.upgrade_sockets.arr[index];
+	struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&ui.custom_item.upgrade_sockets, index, sizeof(struct upgrade_socket));
 	free (socket->addon);
 	socket->addon = NULL;
 
@@ -498,7 +497,6 @@ static void clear_customized_item(void)
 static int set_customized_item(item *it)
 {
 	int i;
-	struct upgrade_socket *socket;
 
 	// Make sure the item is of a customizable type.
 	if (!item_can_be_customized(it)) {
@@ -516,7 +514,7 @@ static int set_customized_item(item *it)
 	// Create add-on items from the strings in the upgrade socket array
 	// so that they player can drag the existing add-ons out of the sockets.
 	for (i = 0; i < ADDON_ITEMS_MAX && i < ui.custom_item.upgrade_sockets.size; i++) {
-		socket = &ui.custom_item.upgrade_sockets.arr[i];
+		struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&ui.custom_item.upgrade_sockets, i, sizeof(struct upgrade_socket));
 		if (socket->addon) {
 			ui.addon_items[i] = create_item_with_id(socket->addon, TRUE, 1);
 		}
@@ -561,7 +559,6 @@ static void apply_customization(void)
 {
 	int i;
 	item *addon;
-	struct upgrade_socket *socket;
 
 	// Subtract money from the player. The player is guaranteed to have enough
 	// if he gets here since the apply button would be disabled otherwise.
@@ -572,7 +569,7 @@ static void apply_customization(void)
 	// so that we don't need to store items recursively inside each other.
 	for (i = 0; i < ADDON_ITEMS_MAX && i < ui.custom_item.upgrade_sockets.size; i++) {
 		addon = &ui.addon_items[i];
-		socket = &ui.custom_item.upgrade_sockets.arr[i];
+		struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&ui.custom_item.upgrade_sockets, i, sizeof(struct upgrade_socket));
 		if (!socket->addon && addon->type != -1) {
 			free(socket->addon);
 			socket->addon = strdup(ItemMap[addon->type].id);
@@ -602,8 +599,6 @@ static void handle_buy_socket(point *cursor, int row, int type, int cost)
 
 static void handle_socket(int index)
 {
-	struct upgrade_socket_dynarray *sockets = &ui.custom_item.upgrade_sockets;
-
 	// Nothing to do if there's no customized item.
 	if (ui.custom_item.type == -1) {
 		return;
@@ -624,7 +619,7 @@ static void handle_socket(int index)
 
 	// Allow the user to create a new socket if this is the first socket not yet created.
 	// Opens the socket creation prompt.
-	} else if (index == sockets->size && index < ADDON_ITEMS_MAX) {
+	} else if (index == ui.custom_item.upgrade_sockets.size && index < ADDON_ITEMS_MAX) {
 		ui.create_socket_active = TRUE;
 	}
 }

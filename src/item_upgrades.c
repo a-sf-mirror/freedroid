@@ -56,7 +56,8 @@ void delete_upgrade_sockets(item *it)
 {
 	int i;
 	for (i = 0 ; i < it->upgrade_sockets.size ; i++) {
-		free(it->upgrade_sockets.arr[i].addon);
+		struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&it->upgrade_sockets, i, sizeof(struct upgrade_socket));
+		free(socket->addon);
 	}
 	dynarray_free((struct dynarray *) &it->upgrade_sockets);
 }
@@ -79,10 +80,13 @@ void copy_upgrade_sockets(item *srcitem, item *dstitem)
 
 	// Duplicate socket data.
 	for (i = 0 ; i < size ; i++) {
-		dynarray_add((struct dynarray *) &dstitem->upgrade_sockets, &srcitem->upgrade_sockets.arr[i],
+		struct upgrade_socket *src_socket = (struct upgrade_socket *)dynarray_member(&srcitem->upgrade_sockets, i, sizeof(struct upgrade_socket));
+		struct upgrade_socket *dst_socket = (struct upgrade_socket *)dynarray_member(&dstitem->upgrade_sockets, i, sizeof(struct upgrade_socket));
+
+		dynarray_add((struct dynarray *) &dstitem->upgrade_sockets, src_socket,
 		              sizeof(struct upgrade_socket));
-		if (srcitem->upgrade_sockets.arr[i].addon) {
-			dstitem->upgrade_sockets.arr[i].addon = strdup(srcitem->upgrade_sockets.arr[i].addon);
+		if (src_socket->addon) {
+			dst_socket->addon = strdup(src_socket->addon);
 		}
 	}
 }
@@ -178,7 +182,8 @@ int item_can_be_installed_to_socket(item *dstitem, item *addon, int socketid)
 
 	// Check if the socket type is correct. The socket must be either of the
 	// type specified in itemspec for the add-on or universal.
-	socket_type = dstitem->upgrade_sockets.arr[socketid].type;
+	struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&dstitem->upgrade_sockets, socketid, sizeof(struct upgrade_socket));
+	socket_type = socket->type;
 	if (socket_type != addon_type && socket_type != UPGRADE_SOCKET_TYPE_UNIVERSAL) {
 		return FALSE;
 	}
@@ -457,7 +462,8 @@ void calculate_item_bonuses(item *it)
 
 	// Apply bonuses from add-ons.
 	for (i = 0; i < it->upgrade_sockets.size; i++) {
-		addon = it->upgrade_sockets.arr[i].addon;
+		struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&it->upgrade_sockets, i, sizeof(struct upgrade_socket));
+		addon = socket->addon;
 		if (addon) {
 			spec = get_addon_spec(get_item_type_by_id(addon));
 			for (j = 0; j < spec->bonuses.size; j++) {
@@ -481,7 +487,8 @@ int count_used_sockets(item *it)
 	const char *addon;
 
 	for (i = 0; i < it->upgrade_sockets.size; i++) {
-		addon = it->upgrade_sockets.arr[i].addon;
+		struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&it->upgrade_sockets, i, sizeof(struct upgrade_socket));
+		addon = socket->addon;
 		if (addon)	
 			count++;
 	}

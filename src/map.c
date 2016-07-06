@@ -1437,7 +1437,8 @@ static void WriteOutOneItem(struct auto_string *shipstr, item *ItemToWriteOut)
 		int i;
 		autostr_append(shipstr, "%s%d ", ITEM_SOCKETS_SIZE_STRING, ItemToWriteOut->upgrade_sockets.size);
 		for (i = 0; i < ItemToWriteOut->upgrade_sockets.size; i++) {
-			struct upgrade_socket *socket = &ItemToWriteOut->upgrade_sockets.arr[i];
+			struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&ItemToWriteOut->upgrade_sockets, i, sizeof(struct upgrade_socket));
+
 			autostr_append(shipstr, "%s%d=%d ", ITEM_SOCKET_TYPE_STRING, i, socket->type);
 			if (socket->addon) {
 				autostr_append(shipstr, "%s%d=%s\" ", ITEM_SOCKET_ADDON_STRING, i, socket->addon);
