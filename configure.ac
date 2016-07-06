@@ -96,6 +96,7 @@ dnl Checks for programs.
 SILENT_BOX([Checking compulsory programs])
 
 AC_PROG_CC
+AC_PROG_CC_STDC
 XIPH_C_COMPILER_IS_CLANG
 AC_PROG_CC_C_O
 AC_PROG_INSTALL
