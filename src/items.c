@@ -459,6 +459,7 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 	int DropDecision;
 	int drop_item_type = 1;
 	int drop_item_multiplicity = 1;
+	int drop_item_chance = Me.skill_level[get_program_index_with_name("Treasure Hunting")] * 2 + ITEM_DROP_PERCENTAGE;
 
 	if (class == -1) 
 		return; // -1 is the value to not drop item.
@@ -471,13 +472,13 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 
 	// First we determine if there is something dropped at all or not,
 	// cause in the later case, we can return immediately.  If a drop is
-	// forced, we need not check for not do drop.
+	// forced, we don't need to check for drop.
 	//
 	DropDecision = MyRandom(100);
 
 	// We decide whether we drop something at all or not
 	//
-	if ((DropDecision < 100 - GOLD_DROP_PERCENTAGE) && (DropDecision > ITEM_DROP_PERCENTAGE))
+	if ((DropDecision < 100 - GOLD_DROP_PERCENTAGE) && (DropDecision > drop_item_chance))
 		return;
 
 	// Perhaps it's some gold that will be dropped.  That's rather
@@ -490,7 +491,7 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 		DropItemAt(get_item_type_by_id("Valuable Circuits"), level_num, x, y, how_many);
 	}
 
-	if ((DropDecision < ITEM_DROP_PERCENTAGE)) {
+	if ((DropDecision < drop_item_chance)) {
 		drop_item_type = get_random_item_type(class);
 
 		// Determine the multiplicity for the item

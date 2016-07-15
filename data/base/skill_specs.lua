@@ -197,6 +197,16 @@ The art of rapidly moving away from danger is very useful. Even when used in rev
 --------------------------------------------------------------------------------
 
 {
+	name =_"Treasure Hunting",
+	icon = "ChestAndDeadBodyLoot.png",
+	form = "self",
+	effect = {type = "passive"},
+	cost = {base = 0},
+	description=_[[Upgrading your search algorithms, you may find items more frequently when destroying bots. This skill is always active even when not selected.]],
+},
+--------------------------------------------------------------------------------
+
+{
 	name =_"Network Mapper",
 	icon = "NmapImage.png",
 	form = "self",

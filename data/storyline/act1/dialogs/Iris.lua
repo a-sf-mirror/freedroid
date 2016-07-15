@@ -19,7 +19,7 @@
 --[[WIKI
 PERSONALITY = { "Independent", "Free Spirit", "Reclusive" },
 MARKERS = { ITEMID1 = "Desk Lamp" },
-BACKSTORY = "$$NAME$$ is a bot hunter living in the town. $$NAME$$ complains about the amount of light in her quarters
+BACKSTORY = "$$NAME$$ is a treasure hunter living in the town. $$NAME$$ complains about the amount of light in her quarters
 	 and will trade with Tux for a $$ITEMID1$$."
 WIKI]]--
 
@@ -28,6 +28,9 @@ local Tux = FDrpg.get_tux()
 
 return {
 	FirstTime = function()
+		Iris_max_lessons = 5 -- the max number of lessons Iris is willing to teach
+		Iris_lessons_taught = 0 -- the number of lessons Iris has already taught, initialized with 0
+		Iris_next_lesson_cost = 0 -- the training point cost of the upcoming lesson
 		show("node0")
 	end,
 
@@ -96,9 +99,9 @@ return {
 		code = function()
 			Npc:says(_"I'm here just for vacations.")
 			Tux:says(_"And what do you usually do?")
-			Npc:says(_"Usually I hunt bots.") --she may be a spy of the rebel faction that is not yet implemented
-			Npc:set_name("Iris - bot hunter")
-			hide("node2") show("node3")
+			Npc:says(_"Usually I hunt bots and their 'treasures'.") --she may be a spy of the rebel faction that is not yet implemented
+			Npc:set_name("Iris - treasure hunter")
+			hide("node2") show("node3", "node30")
 		end,
 	},
 	{
@@ -106,7 +109,7 @@ return {
 		text = _"Where do you come from?",
 		code = function()
 			Npc:says(_"Nowhere and everywhere.")
-			Npc:says(_"As I already said, I walk around and kill bots.")
+			Npc:says(_"As I already said, I walk around, kill bots and loot their corpses.")
 			hide("node3") show("node4")
 		end,
 	},
@@ -189,6 +192,67 @@ return {
 			hide("node7")
 		end,
 	},
+	{
+		id = "node30",
+		text = _"Can you teach me anything about treasure-hunting?",
+		code = function()
+			if (Iris_lessons_taught == Iris_max_lessons) then
+				Npc:says(_"Teach you right now?", "NO_WAIT")
+				Npc:says(_"In your dreams, Penguin!")
+			else
+				Iris_next_lesson_cost = 200 * (Iris_lessons_taught + 1)
+				Npc:says(_"It requires a certain stylization of form and technique, so you have to be in the proper mindset.", "NO_WAIT")
+				Npc:says(_"Likewise I'll require a small gratuity for my time.", "NO_WAIT")
+				--; TRANSLATORS: %d = number of circuits needed
+				Npc:says(_"You will need 3 training points and %d circuits.", Iris_next_lesson_cost)
+				Npc:says(_"Any interest?")
+				show("node31")
+			end
+			hide("node30")
+			end,
+	},
+	{
+		id = "node31",
+		text = _"Yes, teach me how to find bots 'treasures' more often.",
+		code = function()
+			if (Tux:train_program(Iris_next_lesson_cost, 3, "Treasure Hunting")) then
+				Iris_lessons_taught = Iris_lessons_taught + 1
+				Npc:says(_"Good. I'll give you an algorithm better than the one you're using right now.")
+				Npc:says(_"Try using the 0x6974656D6D6F6E6579 algorithm.") -- ItemMoney (in hex and lowercase)
+				--; TRANSLATORS: %d = "random" one-digit number.
+				Npc:says(_"But this time, replaces every 6 with %d61.", Iris_lessons_taught)
+				Tux:says(_"Yes, I understand. It's so simple! How I never thought on this before.")
+			else
+				if (Tux:get_gold() < Iris_next_lesson_cost) then
+					next("node40")
+				else
+					next("node41")
+				end
+			end
+			hide("node31") show("node30")
+		end,
+	},
+	{
+		id = "node40",
+		code = function()
+			Tux:says_random(_"Hold on, I don't seem to have that much money right now.",
+				_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
+			Npc:says_random(_"I'm not going to teach you anything for free!",
+				_"Please don't bother me if you can't even pay me.",
+				_"Come back when you have enough circuits, penguin.")
+		end,
+	},
+	{
+		id = "node41",
+		code = function()
+			Tux:says(_"Sorry, I don't think I can process another algorithm right now.")
+			Npc:says_random(
+				_"Everyone has the right to be stupid, but sometimes you abuse the privilege.",
+				_"Come back when you are going to be serious.",
+				_"You can only learn to hunt after the hunt.")
+		end,
+	},
+
 	{
 		id = "Iris_post_firmware_upgrade",
 		text = _"Hello.",
