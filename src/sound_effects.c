@@ -278,6 +278,7 @@ void play_melee_weapon_hit_something_sound(void)
 		"effects/swing_then_hit_2.ogg",
 		"effects/swing_then_hit_3.ogg",
 		"effects/swing_then_hit_4.ogg",
+		"effects/swing_then_hit_5.ogg",
 	};
 	int sound_index = MyRandom(sizeof(sounds) / sizeof(sounds[0]) - 1);
 
