@@ -789,12 +789,15 @@ int autostr_append(struct auto_string *, const char *, ...) PRINTF_FMT_ATTRIBUTE
 
 // dynarray.c
 struct dynarray *dynarray_alloc(int, size_t);
+struct dynarray *sparse_dynarray_alloc(int, size_t);
 void dynarray_init(struct dynarray *, int, size_t);
+void sparse_dynarray_init(struct dynarray *, int, size_t);
 void dynarray_resize(struct dynarray *, int, size_t);
 void dynarray_free(struct dynarray *);
 void dynarray_add(struct dynarray *, void *, size_t);
 void dynarray_del(struct dynarray *, int, size_t);
 void *dynarray_member(struct dynarray *, int, size_t);
+int sparse_dynarray_member_used(struct dynarray *, int);
 
 // animate.c
 void dirty_animated_obstacle_list(int lvl_num);

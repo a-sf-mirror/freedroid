@@ -225,6 +225,29 @@ void write_##X##_dynarray(struct auto_string *strout, X##_dynarray *data)\
 }
 
 /**
+ * Define a function to write a sparse dynarray of type X.
+ * \ingroup arraymacros
+ *
+ * The generated function will write a Lua table containing all elements of
+ * a C dynarray. Only used slots are written.
+ * \param X Data type
+ */
+
+#define define_write_xxx_sparsedynarray(X)\
+void write_##X##_sparsedynarray(struct auto_string *strout, X##_sparsedynarray *data)\
+{\
+	autostr_append(strout, "{\n");\
+	int i;\
+	for (i = 0; i < data->size; i++) {\
+		if (data->used_members[i]) {\
+			write_##X(strout, &((X *)data->arr)[i]);\
+			autostr_append(strout, ",\n");\
+		}\
+	}\
+	autostr_append(strout, "}\n");\
+}
+
+/**
  * Define a function to read an array of type X.
  * \ingroup arraymacros
  *
@@ -271,6 +294,35 @@ void read_##X##_dynarray(lua_State *L, int index, X##_dynarray *result)\
 		}\
 	} else {\
 		dynarray_init((struct dynarray *)result, 0, sizeof(X));\
+	}\
+}
+
+/**
+ * Define a function to read a sparse dynarray of type X.
+ * \ingroup arraymacros
+ *
+ * The generated function will read a Lua table, and append each read element
+ * into a C dynarray. The array is initialized as being a sparse dynarray.
+ * \param X Data type
+ */
+
+#define define_read_xxx_sparsedynarray(X)\
+void read_##X##_sparsedynarray(lua_State *L, int index, X##_sparsedynarray *result)\
+{\
+	lua_is_of_type_or_abort(L, index, LUA_TTABLE);\
+	int array_size = lua_rawlen(L, index);\
+	if (array_size != 0) {\
+		sparse_dynarray_init((struct dynarray *)result, array_size, sizeof(X));\
+		int i;\
+		X data;\
+		for (i = 0; i < array_size; i++) {\
+			lua_rawgeti(L, index, i+1);\
+			read_##X(L, -1, &data);\
+			dynarray_add((struct dynarray *)result, &data, sizeof(X));\
+			lua_pop(L, 1);\
+		}\
+	} else {\
+		sparse_dynarray_init((struct dynarray *)result, 0, sizeof(X));\
 	}\
 }
 

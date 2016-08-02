@@ -53,7 +53,11 @@ struct dynarray {
 	void *arr;
 	int size;
 	int capacity;
+	int sparse;
+	int *used_members;
 };
+
+#define SPARSE_DYNARRAY (struct dynarray){ .sparse = 1 }
 
 typedef struct dynarray item_dynarray;
 typedef struct dynarray string_dynarray;
