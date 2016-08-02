@@ -484,8 +484,8 @@ void save_game_data(struct auto_string *strout)
 
 	autostr_append(strout, "--[[\n");
 	autostr_append(strout,
-		"SAVEGAME: %s %s %s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d\n",
-		SAVEGAME_VERSION, SAVEGAME_REVISION, VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
+		"SAVEGAME: %s %s %s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d\n",
+		SAVEGAME_VERSION, SAVEGAME_REVISION, VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet));
 	autostr_append(strout, "BUILD_CFLAGS: %s\n", BUILD_CFLAGS);
 	autostr_append(strout, "BUILD_LDFLAGS: %s\n", BUILD_LDFLAGS);
 	autostr_append(strout, "VERSION: %s\n", freedroid_version);
@@ -516,7 +516,7 @@ void save_game_data(struct auto_string *strout)
 	}
 
 	autostr_append(strout, "bullet_array");
-	write_bullet_array(strout, AllBullets, MAXBULLETS);
+	write_bullet_sparsedynarray(strout, &all_bullets);
 	autostr_append(strout, "\n");
 
 	autostr_append(strout, "blast_array");
@@ -595,13 +595,7 @@ static int npc_ctor(lua_State *L)
 
 static int bullet_array_ctor(lua_State *L)
 {
-	int i;
-	for (i = 0; i < lua_rawlen(L, 1) && i < MAXBULLETS; i++) {
-		lua_rawgeti(L, 1, i+1);
-		read_bullet(L, -1, &AllBullets[i]);
-		lua_pop(L, 1);
-	}
-
+	read_bullet_sparsedynarray(L, 1, &all_bullets);
 	return 0;
 }
 

@@ -491,9 +491,9 @@ static void insert_one_thrown_item_into_blitting_list(item *it, int item_num)
  *
  *
  */
-static void insert_one_bullet_into_blitting_list(float norm, int bullet_num)
+static void insert_one_bullet_into_blitting_list(float norm, struct bullet *one_bullet)
 {
-	insert_new_element_into_blitting_list(norm, BLITTING_TYPE_BULLET, &AllBullets[bullet_num], bullet_num);
+	insert_new_element_into_blitting_list(norm, BLITTING_TYPE_BULLET, (void *)one_bullet, -1);
 }
 
 /**
@@ -1105,14 +1105,14 @@ static void insert_enemies_into_blitting_list(int mask)
 static void insert_bullets_into_blitting_list(int mask)
 {
 	int i;
-	bullet *b;
 	int xmin, xmax, ymin, ymax;
 	get_floor_boundaries(mask, &ymin, &ymax, &xmin, &xmax);
 
-	for (i = 0; i < MAXBULLETS; i++) {
-		b = &AllBullets[i];
-		if (b->type == INFOUT)
+	for (i = 0; i < all_bullets.size; i++) {
+		if (!sparse_dynarray_member_used(&all_bullets, i))
 			continue;
+
+		struct bullet *b = (struct bullet *)dynarray_member(&all_bullets, i, sizeof(struct bullet));
 
 		gps vpos;
 		update_virtual_position(&vpos, &b->pos, Me.pos.z);
@@ -1123,7 +1123,7 @@ static void insert_bullets_into_blitting_list(int mask)
 		if (vpos.x < xmin || vpos.x > xmax || vpos.y < ymin || vpos.y > ymax)
 			continue;
 
-		insert_one_bullet_into_blitting_list(vpos.x + vpos.y, i);
+		insert_one_bullet_into_blitting_list(vpos.x + vpos.y, b);
 	}
 }
 
@@ -1431,8 +1431,7 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 			}
 			break;
 		case BLITTING_TYPE_BULLET:
-			// DebugPrintf ( -1000 , "Bullet code_number: %d. " , blitting_list [ i ] . code_number );
-			PutBullet(e->code_number, mask);
+			put_bullet((struct bullet *)e->element_pointer, mask);
 			break;
 		case BLITTING_TYPE_BLAST:
 			if (!(mask & OMIT_BLASTS))
@@ -2664,31 +2663,29 @@ There was a droid type on this level, that does not really exist.", PLEASE_INFOR
 
 /**
  * This function draws a Bullet into the combat window.  The only 
- * parameter given is the number of the bullet in the AllBullets 
- * array. Everything else is computed in here.
+ * parameter given is a pointer to the bulle's struct.
+ * Everything else is computed in here.
  */
-void PutBullet(int bullet_index, int mask)
+void put_bullet(struct bullet *current_bullet, int mask)
 {
-	bullet *CurBullet = &(AllBullets[bullet_index]);
-	int PhaseOfBullet;
+	int phase_of_bullet;
 	int direction_index;
 
-	// DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
-	if ((CurBullet->type >= bullet_specs.size) || (CurBullet->type < 0)) {
-		fprintf(stderr, "\nPutBullet:  bullet type received: %d.", CurBullet->type);
-		fflush(stderr);
-		error_message(__FUNCTION__, "\
-There was a bullet to be blitted of a type that does not really exist.", PLEASE_INFORM | IS_FATAL);
+	// DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , current_bullet->type );
+	if ((current_bullet->type >= bullet_specs.size) || (current_bullet->type < 0)) {
+		error_message(__FUNCTION__,
+		              "There was a bullet to be blitted of a type (%d) that does not really exist.",
+		              PLEASE_INFORM | IS_FATAL, current_bullet->type);
 	}
 
-	struct bulletspec *bullet_spec = dynarray_member(&bullet_specs, CurBullet->type, sizeof(struct bulletspec));
+	struct bulletspec *bullet_spec = dynarray_member(&bullet_specs, current_bullet->type, sizeof(struct bulletspec));
 
-	PhaseOfBullet = CurBullet->time_in_seconds * bullet_spec->phase_changes_per_second;
+	phase_of_bullet = current_bullet->time_in_seconds * bullet_spec->phase_changes_per_second;
 
-	PhaseOfBullet = PhaseOfBullet % bullet_spec->phases;
+	phase_of_bullet = phase_of_bullet % bullet_spec->phases;
 	// DebugPrintf( 0 , "\nPhaseOfBullet: %d.", PhaseOfBullet );
 
-	direction_index = ((CurBullet->angle + 360.0 + 360 / (2 * BULLET_DIRECTIONS)) * BULLET_DIRECTIONS / 360);
+	direction_index = ((current_bullet->angle + 360.0 + 360 / (2 * BULLET_DIRECTIONS)) * BULLET_DIRECTIONS / 360);
 	while (direction_index < 0)
 		direction_index += BULLET_DIRECTIONS;	// just to make sure... a modulo ROTATION_ANGLES_PER_ROTATION_MODEL operation can't hurt
 	while (direction_index >= BULLET_DIRECTIONS)
@@ -2696,7 +2693,7 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
 
 	// draw position is relative to current level, so compute the appropriate virtual position
 	gps vpos;
-	update_virtual_position(&vpos, &CurBullet->pos, Me.pos.z);
+	update_virtual_position(&vpos, &current_bullet->pos, Me.pos.z);
 	if (vpos.x == -1)
 		return;
 
@@ -2704,10 +2701,10 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
 	if (mask & ZOOM_OUT)
 		scale = lvledit_zoomfact_inv();
 	if (IsVisible(&vpos)) {
-		struct image *bullet_image = &bullet_spec->image[direction_index][PhaseOfBullet];
-		bullet_image->offset_y -= CurBullet->height;
+		struct image *bullet_image = &bullet_spec->image[direction_index][phase_of_bullet];
+		bullet_image->offset_y -= current_bullet->height;
 		display_image_on_map(bullet_image, vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(scale));
-		bullet_image->offset_y += CurBullet->height;
+		bullet_image->offset_y += current_bullet->height;
 	}
 }
 

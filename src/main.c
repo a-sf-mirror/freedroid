@@ -61,7 +61,7 @@ void DoAllMovementAndAnimations(void)
 
 	MoveActiveSpells();	// move moving spells currently active...
 
-	MoveBullets();
+	move_bullets();
 
 	DoMeleeDamage();
 

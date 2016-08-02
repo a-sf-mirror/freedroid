@@ -43,9 +43,8 @@
  *
  *
  */
-static void move_this_bullet_and_check_its_collisions(int num)
+static int move_this_bullet_and_check_its_collisions(struct bullet *current_bullet)
 {
-	Bullet CurBullet = &(AllBullets[num]);
 	moderately_finepoint bullet_step_vector;
 	float whole_step_size;
 	int i;
@@ -56,45 +55,45 @@ static void move_this_bullet_and_check_its_collisions(int num)
 	// must make several stops and check for collisions in case the 
 	// planned step would be too big to crash into walls...
 	//
-	whole_step_size = max(fabsf(CurBullet->speed.x * Frame_Time()), fabsf(CurBullet->speed.y * Frame_Time()));
+	whole_step_size = max(fabsf(current_bullet->speed.x * Frame_Time()), fabsf(current_bullet->speed.y * Frame_Time()));
 
 	// NOTE:  The number 0.25 here is the value of thickness of the collision
-	// rectangle of a standard wall.  Since we might not have loaded all wall tiles
-	// at every time of the game, also during game, guessing the minimum thickness
+	// rectangle of a standard wall.  Since we might not have yet loaded all
+	// the wall tiles (due to lazy loading), guessing the minimum thickness
 	// of walls at runtime is a bit hard and would be inconvenient and complicated,
-	// so I leave this with the hard-coded constant for now...
-	//
+	// so we leave this with the hard-coded constant for now...
+
 	number_of_steps = rintf(whole_step_size / 0.25) + 1;
 
-	bullet_step_vector.x = 0.5 * CurBullet->speed.x * Frame_Time() / number_of_steps;
-	bullet_step_vector.y = 0.5 * CurBullet->speed.y * Frame_Time() / number_of_steps;
+	bullet_step_vector.x = 0.5 * current_bullet->speed.x * Frame_Time() / number_of_steps;
+	bullet_step_vector.y = 0.5 * current_bullet->speed.y * Frame_Time() / number_of_steps;
 
 	for (i = 0; i < number_of_steps; i++) {
-		CurBullet->pos.x += bullet_step_vector.x;
-		CurBullet->pos.y += bullet_step_vector.y;
+		current_bullet->pos.x += bullet_step_vector.x;
+		current_bullet->pos.y += bullet_step_vector.y;
 
 		// The bullet could have traverse a level's boundaries, so
 		// retrieve its new level and position, if possible
-		int pos_valid = resolve_virtual_position(&CurBullet->pos, &CurBullet->pos);
+		int pos_valid = resolve_virtual_position(&current_bullet->pos, &current_bullet->pos);
 		if (!pos_valid) {
-			DebugPrintf(-1000, "\nBullet outside of map: pos.x=%f, pos.y=%f, pos.z=%d, type=%d\n",
-				    CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, CurBullet->type);
-			DeleteBullet(num, FALSE);
-			return;
+			DebugPrintf(1, "Bullet outside of map: pos.x=%f, pos.y=%f, pos.z=%d, type=%d\n",
+			            current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, current_bullet->type);
+			return TRUE;
 		}
-		// If the bullet has reached an invisible level, remove it silently
-		if (!level_is_visible(CurBullet->pos.z)) {
-			DeleteBullet(num, FALSE);
-			return;
-		}
-		// Check collision with the environment
 
-		CheckBulletCollisions(num);
-		if (CurBullet->type == INFOUT)
-			return;
+		// If the bullet has reached an invisible level, we will remove it
+		if (!level_is_visible(current_bullet->pos.z)) {
+			return TRUE;
+		}
+
+		// Check collision with the environment
+		if (check_bullet_collisions(current_bullet))
+			return TRUE;
 	}
 
-}				// void move_this_bullet_and_check_its_collisions ( CurBullet )
+	// No collision detected
+	return FALSE;
+}
 
 /**
  * Whenever a new bullet is generated, we need to find a free index in 
@@ -186,69 +185,41 @@ void DoMeleeDamage(void)
  * This function moves all the bullets according to their speeds and the
  * current frame rate of course.
  */
-void MoveBullets(void)
+void move_bullets(void)
 {
 	int i;
-	Bullet CurBullet;
 
-	// We move all the bullets
-	//
-	for (i = 0; i < MAXBULLETS; i++) {
-		CurBullet = &AllBullets[i];
-		// We need not move any bullets, that are INFOUT already...
-		//
-		if (CurBullet->type == INFOUT)
+	for (i = 0; i < all_bullets.size; i++) {
+		// Unused bullet slot
+		if (!sparse_dynarray_member_used(&all_bullets, i))
 			continue;
 
-		move_this_bullet_and_check_its_collisions(i);
+		struct bullet *current_bullet = (struct bullet *)dynarray_member(&all_bullets, i, sizeof(struct bullet));
 
-		// WARNING!  The bullet collision check might have deleted the bullet, so 
-		//           maybe there's nothing sensible at the end of that 'CurBullet'
-		//           pointer any more at this point.  So we check AGAIN for 'OUT'
-		//           bullets, before we proceed with the safety out-of-map checks...
-		//
-		if (CurBullet->type == INFOUT)
+		// if during its move, a bullet collides something, it has done its job !
+		if (move_this_bullet_and_check_its_collisions(current_bullet)) {
+			delete_bullet(i);
 			continue;
+		}
 
 		// Maybe the bullet has a limited lifetime.  In that case we check if the
 		// bullet has expired yet or not.
-		//
-		if ((CurBullet->bullet_lifetime != (-1)) && (CurBullet->time_in_seconds > CurBullet->bullet_lifetime)) {
-			DeleteBullet(i, FALSE);
+		if ((current_bullet->bullet_lifetime != (-1)) && (current_bullet->time_in_seconds > current_bullet->bullet_lifetime)) {
+			delete_bullet(i);
 			continue;
 		}
-		CurBullet->time_in_seconds += Frame_Time();
 
-	}			/* for */
-}				// void MoveBullets(void)
+		// Store new bullet's age, for next move round
+		current_bullet->time_in_seconds += Frame_Time();
+	}
+}
 
 /**
- * This function eliminates the bullet with the given number.  As an 
- * additional parameter you can specify if there should be a blast 
- * generated at the location where the bullet died (=TRUE) or not (=FALSE).
+ * This function eliminates the bullet with the given number.
  */
-void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
+void delete_bullet(int bullet_number)
 {
-	Bullet CurBullet = &(AllBullets[Bulletnumber]);
-
-	// At first we generate the blast at the collision spot of the bullet,
-	// cause later, after the bullet is deleted, it will be hard to know
-	// the correct location ;)
-	//
-	if (ShallWeStartABlast) {
-		struct bulletspec *bullet_spec = dynarray_member(&bullet_specs, CurBullet->type, sizeof(struct bulletspec));
-		StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, bullet_spec->blast_type, CurBullet->damage, CurBullet->faction, NULL);
-	}
-
-	CurBullet->type = INFOUT;
-	CurBullet->time_in_seconds = 0;
-	CurBullet->mine = FALSE;
-	CurBullet->owner = -100;
-	CurBullet->phase = 0;
-	CurBullet->pos.x = 0;
-	CurBullet->pos.y = 0;
-	CurBullet->pos.z = -1;
-	CurBullet->angle = 0;
+	dynarray_del(&all_bullets, bullet_number, sizeof(struct bullet));
 }
 
 /**
@@ -550,33 +521,12 @@ void clear_active_bullets()
 	for (i = 0; i < MAXBLASTS; i++) {
 		DeleteBlast(i);
 	}
-	for (i = 0; i < MAXBULLETS; i++) {
-		DeleteBullet(i, FALSE);
+
+	for (i = 0; i < all_bullets.size; i++) {
+		if (sparse_dynarray_member_used(&all_bullets, i))
+			delete_bullet(i);
 	}
 }				// void clear_active_bullets()
-
-/**
- * Whenever a new bullet is generated, we need to find a free index in 
- * the array of bullets.  This function automates the process.
- */
-int find_free_bullet_index(void)
-{
-	int j;
-
-	for (j = 0; j < MAXBULLETS; j++) {
-		if (AllBullets[j].type == INFOUT) {
-			return (j);
-		}
-	}
-
-	// TODO use a dynarray rather than a static array, to avoid amount limitation
-	error_once_message(ONCE_PER_GAME, __FUNCTION__,
-	                   "I seem to have run out of free bullet entries. "
-	                   "This can't normally happen.  --> some bug in here, oh no...",
-	                   PLEASE_INFORM);
-
-	return -1;
-}
 
 /**
  * \brief Initialize a bullet - Common part
@@ -655,13 +605,19 @@ void bullet_init_for_enemy(struct bullet *bullet, int bullet_type, short int wea
  *
  *
  */
-void check_bullet_background_collisions(bullet * CurBullet, int num)
+int check_bullet_background_collisions(struct bullet *current_bullet)
 {
 	// Check for collision with background
 	struct colldet_filter filter = { &FlyablePassFilterCallback, NULL, 0.05, NULL };
-	if (!SinglePointColldet(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, &filter)) {
-			DeleteBullet(num, TRUE);
+	if (!SinglePointColldet(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, &filter)) {
+		// We want a bullet-explosion, so we create a blast
+		struct bulletspec *bullet_spec = (struct bulletspec *)dynarray_member(&bullet_specs, current_bullet->type, sizeof(struct bulletspec));
+		StartBlast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, bullet_spec->blast_type, current_bullet->damage, current_bullet->faction, NULL);
+
+		return TRUE;
 	}
+
+	return FALSE;
 }
 
 /**
@@ -680,23 +636,23 @@ void apply_bullet_damage_to_player(int damage, int owner)
  *
  *
  */
-void check_bullet_player_collisions(bullet * CurBullet, int num)
+int check_bullet_player_collisions(struct bullet *current_bullet)
 {
 	double xdist, ydist;
 
 	// Of course only active player may be checked!
 	//
 	if (Me.energy <= 0)
-		return;
+		return FALSE;
 
 	// A player is supposed not to hit himself with his bullets, so we may
 	// check for that case as well....
 	//
-	if (CurBullet->mine)
-		return;
+	if (current_bullet->mine)
+		return FALSE;
 
-	if (is_friendly(CurBullet->faction, FACTION_SELF))
-		return;
+	if (is_friendly(current_bullet->faction, FACTION_SELF))
+		return FALSE;
 
 	// Now we see if the distance to the bullet is as low as hitting
 	// distance or not.
@@ -704,29 +660,33 @@ void check_bullet_player_collisions(bullet * CurBullet, int num)
 
 	// We need compatible gps positions to compute a distance
 	gps bullet_vpos;
-	update_virtual_position(&bullet_vpos, &CurBullet->pos, Me.pos.z);
+	update_virtual_position(&bullet_vpos, &current_bullet->pos, Me.pos.z);
 	if (bullet_vpos.x == -1)
-		return;
+		return FALSE;
 
 	xdist = Me.pos.x - bullet_vpos.x;
 	ydist = Me.pos.y - bullet_vpos.y;
 
 	if ((xdist * xdist + ydist * ydist) < DROIDHITDIST2) {
+		apply_bullet_damage_to_player(current_bullet->damage, current_bullet->owner);
+		// We want a bullet-explosion, so we create a blast
+		struct bulletspec *bullet_spec = (struct bulletspec *)dynarray_member(&bullet_specs, current_bullet->type, sizeof(struct bulletspec));
+		StartBlast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, bullet_spec->blast_type, current_bullet->damage, current_bullet->faction, NULL);
 
-		apply_bullet_damage_to_player(CurBullet->damage, CurBullet->owner);
-		DeleteBullet(num, TRUE);	// we want a bullet-explosion
-		return;		// This bullet was deleted and does not need to be processed any further...
+		return TRUE;
 	}
-};				// check_bullet_player_collisions ( CurBullet , num )
+
+	return FALSE;
+}
 
 /**
  *
  *
  */
-void check_bullet_enemy_collisions(bullet * CurBullet, int num)
+int check_bullet_enemy_collisions(struct bullet *current_bullet)
 {
 	double xdist, ydist;
-	int lvl = CurBullet->pos.z;
+	int lvl = current_bullet->pos.z;
 
 	// Check for collision with enemys
 	//
@@ -734,115 +694,110 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 	BROWSE_LEVEL_BOTS_SAFE(ThisRobot, nerot, lvl) {
 		// Check several hitting conditions
 		//
-		xdist = CurBullet->pos.x - ThisRobot->pos.x;
-		ydist = CurBullet->pos.y - ThisRobot->pos.y;
+		xdist = current_bullet->pos.x - ThisRobot->pos.x;
+		ydist = current_bullet->pos.y - ThisRobot->pos.y;
 
 		if ((xdist * xdist + ydist * ydist) >= DROIDHITDIST2)
 			continue;
 
-		if (CurBullet->hit_type == ATTACK_HIT_BOTS && Droidmap[ThisRobot->type].is_human)
+		if (current_bullet->hit_type == ATTACK_HIT_BOTS && Droidmap[ThisRobot->type].is_human)
 			continue;
-		if (CurBullet->hit_type == ATTACK_HIT_HUMANS && !Droidmap[ThisRobot->type].is_human)
+		if (current_bullet->hit_type == ATTACK_HIT_HUMANS && !Droidmap[ThisRobot->type].is_human)
 			continue;
-		if (is_friendly(ThisRobot->faction, CurBullet->faction))
+		if (is_friendly(ThisRobot->faction, current_bullet->faction))
 			continue;
 
 		// Hit the ennemy
 		//
-		hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp */ , CurBullet->owner,
-			  (CurBullet->mine ? 1 : 0));
+		hit_enemy(ThisRobot, current_bullet->damage, (current_bullet->mine ? 1 : 0) /*givexp */ , current_bullet->owner,
+			  (current_bullet->mine ? 1 : 0));
 
-		ThisRobot->frozen += CurBullet->freezing_level;
+		ThisRobot->frozen += current_bullet->freezing_level;
 
-		ThisRobot->poison_duration_left += CurBullet->poison_duration;
-		ThisRobot->poison_damage_per_sec += CurBullet->poison_damage_per_sec;
+		ThisRobot->poison_duration_left += current_bullet->poison_duration;
+		ThisRobot->poison_damage_per_sec += current_bullet->poison_damage_per_sec;
 
-		ThisRobot->paralysation_duration_left += CurBullet->paralysation_duration;
+		ThisRobot->paralysation_duration_left += current_bullet->paralysation_duration;
 
 		// If the blade can pass through dead and not dead bodies, it will so
 		// so and create a small explosion passing by.  But if it can't, it should
 		// be completely deleted of course, with the same small explosion as well
 		//
-		if (CurBullet->pass_through_hit_bodies)
-			StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, BULLETBLAST, 0, CurBullet->faction, NULL);
-		else
-			DeleteBullet(num, TRUE);	// we want a bullet-explosion
+		if (current_bullet->pass_through_hit_bodies) {
+			StartBlast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, BULLETBLAST, 0, current_bullet->faction, NULL);
+			return FALSE;
+		} else {
+			// We want a bullet-explosion
+			struct bulletspec *bullet_spec = (struct bulletspec *)dynarray_member(&bullet_specs, current_bullet->type, sizeof(struct bulletspec));
+			StartBlast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, bullet_spec->blast_type, current_bullet->damage, current_bullet->faction, NULL);
 
-		return;
+			return TRUE;
+		}
 	}
-};				// void check_bullet_enemy_collisions ( CurBullet , num )
+
+	return FALSE;
+}
 
 /**
  * This function checks if there are some collisions of the one bullet
  * with number num with anything else in the game, like blasts, walls,
  * droids, the tux and other bullets.
  */
-void CheckBulletCollisions(int num)
+int check_bullet_collisions(struct bullet *current_bullet)
 {
-	Bullet CurBullet = &AllBullets[num];
+	// If its a "normal" Bullet, several checks have to be
+	// done, one for collisions with background,
+	// one for collision with influencer
+	// some for collisions with enemies
+	// and some for collisions with other bullets
+	// and some for collisions with blast
+	//
+	// A bullet has a non null radius, so it can potentially hit
+	// an object (obstacle, enemy...) on a neighbor level.
+	// We however limit the collision detection to the visible levels
+	// in order to lower the CPU cost, mainly because we don't really
+	// care of what happens on invisible levels.
 
-	switch (CurBullet->type) {
-	case INFOUT:
-		// Never do any collision checking if the bullet is INFOUT already...
-		return;
-		break;
+	// Bullet/player collision code is level-independent
 
-	default:
-		// If its a "normal" Bullet, several checks have to be
-		// done, one for collisions with background, 
-		// one for collision with influencer
-		// some for collisions with enemies
-		// and some for collisions with other bullets
-		// and some for collisions with blast
-		//
-		// A bullet has a non null radius, so it can potentially hit 
-		// an object (obstacle, enemy...) on a neighbor level. 
-		// We however limit the collision detection to the visible levels
-		// in order to lower the CPU cost, mainly because we don't really
-		// care of what happens on invisible levels.
-		//
+	if (check_bullet_player_collisions(current_bullet))
+		return TRUE;
 
-		// Bullet/player collision code is level-independent
+	// Bullet/background and bullet/enemy collision code is level dependent.
+	// Store bullet's current position, in order to restore it after level dependent code
 
-		check_bullet_player_collisions(CurBullet, num);
-		if (CurBullet->type == INFOUT)
-			return;
+	gps bullet_actual_pos = current_bullet->pos;
+	struct visible_level *visible_lvl, *next_lvl;
 
-		// Bullet/background and bullet/enemy collision code is level dependent.
-		// Store bullet's current position, in order to restore it after level dependent code
-		gps bullet_actual_pos = CurBullet->pos;
-		struct visible_level *visible_lvl, *next_lvl;
+	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
+		level *lvl = visible_lvl->lvl_pointer;
 
-		BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
-			level *lvl = visible_lvl->lvl_pointer;
+		// Compute the bullet position according to current visible level, if possible
+		update_virtual_position(&current_bullet->pos, &bullet_actual_pos, lvl->levelnum);
+		if (current_bullet->pos.x == -1)
+			goto RESTORE;
 
-			// Compute the bullet position according to current visible level, if possible
-			update_virtual_position(&CurBullet->pos, &bullet_actual_pos, lvl->levelnum);
-			if (CurBullet->pos.x == -1)
-				continue;
+		// If the bullet is too far from the level's border, no need to check that level
+		if (!pos_near_level(current_bullet->pos.x, current_bullet->pos.y, lvl, DROIDHITDIST))
+			goto RESTORE;
 
-			// If the bullet is too far from the level's border, no need to check that level
-			if (!pos_near_level(CurBullet->pos.x, CurBullet->pos.y, lvl, DROIDHITDIST))
-				continue;
+		// Now, collision detection...
+		if (check_bullet_background_collisions(current_bullet))
+			return TRUE;
 
-			// Now, collision detection...
-			check_bullet_background_collisions(CurBullet, num);
-			if (CurBullet->type == INFOUT)
-				return;
+		if (check_bullet_enemy_collisions(current_bullet))
+			return TRUE;
 
-			check_bullet_enemy_collisions(CurBullet, num);
-			if (CurBullet->type == INFOUT)
-				return;
-		}
+		// restore bullet's position, before to check with the next level
+RESTORE:
+		current_bullet->pos.x = bullet_actual_pos.x;
+		current_bullet->pos.y = bullet_actual_pos.y;
+		current_bullet->pos.z = bullet_actual_pos.z;
+	}
 
-		// restore bullet's position, if the bullet is always active
-		CurBullet->pos.x = bullet_actual_pos.x;
-		CurBullet->pos.y = bullet_actual_pos.y;
-		CurBullet->pos.z = bullet_actual_pos.z;
-
-		break;
-	}			// switch ( Bullet-Type )
-};				// CheckBulletCollisions( ... )
+	// No collision detected
+	return FALSE;
+}
 
 /**
  * This function checks for collisions of blasts with bullets and droids

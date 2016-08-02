@@ -489,7 +489,6 @@ enum {
 #define ALLBLASTTYPES		3	/* number of different explosions */
 
 #define MAX_MELEE_SHOTS		100
-#define MAXBULLETS		100	/* maximum possible Bullets in the air */
 #define MAXBLASTS		100	/* max. possible Blasts visible */
 #define ATTACK_MOVE_RATE 0.2	// Minimum number of seconds between to displacement computation
 			     // during attack

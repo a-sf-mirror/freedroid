@@ -75,9 +75,8 @@ void clear_out_arrays_for_fresh_game(void)
 	for (i = 0; i < MAX_MELEE_SHOTS; i++)
 		delete_melee_shot(&AllMeleeShots[i]);
 
-	for (i = 0; i < MAXBULLETS; i++) {
-		DeleteBullet(i, FALSE);
-	}
+	dynarray_free(&all_bullets);
+
 	for (i = 0; i < MAXBLASTS; i++) {
 		DeleteBlast(i);
 	}

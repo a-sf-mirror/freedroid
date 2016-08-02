@@ -155,21 +155,19 @@ static int animate_autogun(level* autogun_lvl, void *scenery_piece)
 {
 	struct obstacle *obs = (struct obstacle *)scenery_piece;
 	float autogunx, autoguny;
-	int *AutogunType;
-	int j = 0;
-	bullet *CurBullet = NULL;
+	int *autogun_type;
 
 	// Initialization of the weapon item type associated to the autoguns
 	//
 	static int static_initialized = FALSE;
 	static int weapon_item_type = -1;
 	static int bullet_image_type = -1; 
-	static float BulletSpeed = 0.0;
+	static float bullet_speed = 0.0;
 	
 	if (!static_initialized) {
 		weapon_item_type = get_item_type_by_id("Laser pistol");
 		bullet_image_type = ItemMap[weapon_item_type].weapon_bullet_type;	// which gun do we have ?
-		BulletSpeed = ItemMap[weapon_item_type].weapon_bullet_speed;
+		bullet_speed = ItemMap[weapon_item_type].weapon_bullet_speed;
 		static_initialized = TRUE;
 	}
 	
@@ -182,72 +180,65 @@ static int animate_autogun(level* autogun_lvl, void *scenery_piece)
 	//
 	autogunx = obs->pos.x;
 	autoguny = obs->pos.y;
-	AutogunType = &obs->type;
-
-	/* search for the next free bullet list entry */
-	for (j = 0; j < (MAXBULLETS); j++) {
-		if (AllBullets[j].type == INFOUT) {
-			CurBullet = &AllBullets[j];
-			break;
-		}
-	}
-
-	/* didn't find any free bullet entry? --> take the first */
-	if (CurBullet == NULL)
-		CurBullet = &AllBullets[0];
+	autogun_type = &obs->type;
 
 	/* create a new bullet */
-	CurBullet->type = bullet_image_type;
-	CurBullet->damage = 5;
-	CurBullet->faction = FACTION_BOTS;
-	CurBullet->owner = -3;
-	CurBullet->bullet_lifetime = ItemMap[weapon_item_type].weapon_bullet_lifetime;
-	CurBullet->time_in_seconds = 0;
-	CurBullet->pass_through_hit_bodies = ItemMap[weapon_item_type].weapon_bullet_pass_through_hit_bodies;
-	CurBullet->freezing_level = 0;
-	CurBullet->poison_duration = 0;
-	CurBullet->poison_damage_per_sec = 0;
-	CurBullet->paralysation_duration = 0;
+	bullet new_bullet;
+
+	new_bullet.type = bullet_image_type;
+	new_bullet.damage = 5;
+	new_bullet.faction = FACTION_BOTS;
+	new_bullet.owner = -3;
+	new_bullet.bullet_lifetime = ItemMap[weapon_item_type].weapon_bullet_lifetime;
+	new_bullet.time_in_seconds = 0;
+	new_bullet.pass_through_hit_bodies = ItemMap[weapon_item_type].weapon_bullet_pass_through_hit_bodies;
+	new_bullet.freezing_level = 0;
+	new_bullet.poison_duration = 0;
+	new_bullet.poison_damage_per_sec = 0;
+	new_bullet.paralysation_duration = 0;
 
 	/* compute speed and initial position of the bullet */
-	CurBullet->speed.x = 0.0;
-	CurBullet->speed.y = 0.0;
-	CurBullet->pos.x = autogunx;
-	CurBullet->pos.y = autoguny;
-	CurBullet->pos.z = autogun_lvl->levelnum;
-	CurBullet->height = 20;
+	new_bullet.speed.x = 0.0;
+	new_bullet.speed.y = 0.0;
+	new_bullet.pos.x = autogunx;
+	new_bullet.pos.y = autoguny;
+	new_bullet.pos.z = autogun_lvl->levelnum;
+	new_bullet.height = 20;
 
-	switch (*AutogunType) {
+	switch (*autogun_type) {
 	case ISO_AUTOGUN_W:
-		CurBullet->speed.x = -BulletSpeed;
-		CurBullet->pos.x -= 0.5;
-		CurBullet->pos.y -= 0.25;
-		CurBullet->angle = 180 + 45;
+		new_bullet.speed.x = -bullet_speed;
+		new_bullet.pos.x -= 0.5;
+		new_bullet.pos.y -= 0.25;
+		new_bullet.angle = 180 + 45;
 		break;
 	case ISO_AUTOGUN_E:
-		CurBullet->speed.x = BulletSpeed;
-		CurBullet->pos.x += 0.4;
-		CurBullet->angle = 45;
+		new_bullet.speed.x = bullet_speed;
+		new_bullet.pos.x += 0.4;
+		new_bullet.angle = 45;
 		break;
 	case ISO_AUTOGUN_N:
-		CurBullet->speed.y = -BulletSpeed;
-		CurBullet->pos.x += -0.25;
-		CurBullet->pos.y += -0.5;
-		CurBullet->angle = -45;
+		new_bullet.speed.y = -bullet_speed;
+		new_bullet.pos.x += -0.25;
+		new_bullet.pos.y += -0.5;
+		new_bullet.angle = -45;
 		break;
 	case ISO_AUTOGUN_S:
-		CurBullet->speed.y = BulletSpeed;
-		CurBullet->pos.y += 0.4;
-		CurBullet->angle = 180 - 45;
+		new_bullet.speed.y = bullet_speed;
+		new_bullet.pos.y += 0.4;
+		new_bullet.angle = 180 - 45;
 		break;
 	default:
-		fprintf(stderr, "\n*AutogunType: '%d'.\n", *AutogunType);
-		error_message(__FUNCTION__, "\
-There seems to be an autogun in the autogun list of this level, but it\n\
-is not really an autogun.  Instead it's something else.", PLEASE_INFORM | IS_FATAL);
+		fprintf(stderr, "\n*AutogunType: '%d'.\n", *autogun_type);
+		error_message(__FUNCTION__,
+		              "There seems to be an autogun in the autogun list of this level, but it\n"
+		              "is not really an autogun.  Instead it's something else.",
+		              PLEASE_INFORM | IS_FATAL);
 		break;
 	}
 	
+	dynarray_add(&all_bullets, &new_bullet, sizeof(struct bullet));
+
 	return TRUE;
 }
 

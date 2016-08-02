@@ -76,7 +76,7 @@ extern list_head_t level_bots_head[MAX_LEVELS];
 EXTERN spell_active AllActiveSpells[MAX_ACTIVE_SPELLS];
 EXTERN ship curShip;		/* the current ship-data */
 
-EXTERN bullet AllBullets[MAXBULLETS + 10];
+EXTERN bullet_sparsedynarray all_bullets INITIALIZER(SPARSE_DYNARRAY);
 EXTERN melee_shot AllMeleeShots[MAX_MELEE_SHOTS];
 EXTERN blast AllBlasts[MAXBLASTS + 10];
 

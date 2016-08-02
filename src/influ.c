@@ -1150,21 +1150,13 @@ void perform_tux_ranged_attack(short int weapon_type, bullet *bullet_parameters,
 
 	float muzzle_offset_factor = 0.5;
 
-	// Search for the first free bullet entry in the bullet list and initialize
-	// with default values
+	// Create a new bullet with default values
 
-	int bullet_index = find_free_bullet_index();
-	if (bullet_index == -1) {
-		// We are out of free bullet slots.
-		// This should not happen, an error message was displayed,
-		return;
-	}
-
-	struct bullet *new_bullet = &(AllBullets[bullet_index]);
+	struct bullet new_bullet;
 	if (bullet_parameters)
-		memcpy(new_bullet, bullet_parameters, sizeof(struct bullet));
+		memcpy(&new_bullet, bullet_parameters, sizeof(struct bullet));
 	else
-		bullet_init_for_player(new_bullet, ItemMap[weapon_type].weapon_bullet_type, weapon_type);
+		bullet_init_for_player(&new_bullet, ItemMap[weapon_type].weapon_bullet_type, weapon_type);
 
 	// Set up recharging time for the Tux...
 	// The firewait time is modified by the ranged weapon skill
@@ -1183,13 +1175,12 @@ void perform_tux_ranged_attack(short int weapon_type, bullet *bullet_parameters,
 	if ( (fabs(target_location.x - Me.pos.x) <= muzzle_offset_factor + dist_epsilon) &&
 	     (fabs(target_location.y - Me.pos.y) <= muzzle_offset_factor + dist_epsilon) ) {
 
-		new_bullet->pos.x = target_location.x;
-		new_bullet->pos.y = target_location.y;
-		CheckBulletCollisions(bullet_index);
-
-		/* If the bullet exploded, we're done */
-		if (new_bullet->type == INFOUT)
+		new_bullet.pos.x = target_location.x;
+		new_bullet.pos.y = target_location.y;
+		if (check_bullet_collisions(&new_bullet)) {
+			/* If the bullet exploded, we're done */
 			return;
+		}
 	}
 
 	// Second case: The target is not near Tux (or a first-case bullet traversed
@@ -1214,11 +1205,13 @@ void perform_tux_ranged_attack(short int weapon_type, bullet *bullet_parameters,
 
 	// Set the bullet parameters
 
-	new_bullet->pos.x = muzzle_position.x;
-	new_bullet->pos.y = muzzle_position.y;
-	new_bullet->speed.x = attack_vector.x * ItemMap[weapon_type].weapon_bullet_speed;
-	new_bullet->speed.y = attack_vector.y * ItemMap[weapon_type].weapon_bullet_speed;
-	new_bullet->angle = -(atan2(attack_vector.y, attack_vector.x) * 180 / M_PI + 90 + 45);
+	new_bullet.pos.x = muzzle_position.x;
+	new_bullet.pos.y = muzzle_position.y;
+	new_bullet.speed.x = attack_vector.x * ItemMap[weapon_type].weapon_bullet_speed;
+	new_bullet.speed.y = attack_vector.y * ItemMap[weapon_type].weapon_bullet_speed;
+	new_bullet.angle = -(atan2(attack_vector.y, attack_vector.x) * 180 / M_PI + 90 + 45);
+
+	dynarray_add(&all_bullets, &new_bullet, sizeof(struct bullet));
 }
 
 /**
