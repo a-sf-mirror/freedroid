@@ -6,7 +6,7 @@ include include.mk
 
 # Initialize automake variables
 ACLOCAL_AMFLAGS = -I m4
-AM_MAKEFLAGS    = CC=$(CC) RANLIB=$(RANLIB) STRIP=$(STRIP)
+AM_MAKEFLAGS    = CC="$(CC)" RANLIB=$(RANLIB) STRIP=$(STRIP)
 AM_CFLAGS       = @FD_CFLAGS@
 AM_CPPFLAGS     = @FD_CPPFLAGS@
 AM_LDFLAGS      = @FD_LDFLAGS@
