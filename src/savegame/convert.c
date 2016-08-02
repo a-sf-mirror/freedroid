@@ -89,6 +89,7 @@
 
 extern int filter_0_16_fix_german(struct savegame_data *, struct auto_string *);
 extern int filter_0_16_add_savegame_version(struct savegame_data *, struct auto_string *);
+extern int filter_0_16_1_convert_bullets_array(struct savegame_data *, struct auto_string *);
 static int _change_savegame_version(struct savegame_data *, struct auto_string *);
 
 // List of available converters
@@ -97,6 +98,9 @@ static int _change_savegame_version(struct savegame_data *, struct auto_string *
 static struct converter converters[] = {
 		{ "fix0_16", 0000, 0, 1600, 1,
 		  { filter_0_16_fix_german, filter_0_16_add_savegame_version, _change_savegame_version, NULL }
+		},
+		{ "fix0_16_1", 1601, 0, 1601, 1,
+		  { filter_0_16_1_convert_bullets_array, _change_savegame_version, NULL }
 		}
 };
 
@@ -202,8 +206,8 @@ static int _code_version_mismatch(struct savegame_data *savegame, struct auto_st
 {
 	struct auto_string *version_string = alloc_autostr(256);
 	autostr_printf(version_string,
-		"%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d",
-		VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
+		"%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d",
+		VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet));
 
 	int cmp = strcmp(savegame->info.code_signature, version_string->value);
 	free_autostr(version_string);

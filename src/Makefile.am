@@ -70,6 +70,7 @@ freedroidRPG_SOURCES = \
 	\
 	savegame/convert.c savegame/savegame.h \
 	savegame/filters_0_16.c \
+	savegame/filters_0_16_1.c \
 	\
 	widgets/widgets.c widgets/widgets.h \
 	widgets/widget_background.c widgets/widget_background.h \
