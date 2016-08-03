@@ -975,7 +975,7 @@ static int lua_npc_list_ctor(lua_State *L)
  */
 static int lua_npc_shop_ctor(lua_State *L)
 {
-	char *name;
+	char *name = NULL;
 	const char *item_name;
 	int item_weight;
 
