@@ -973,19 +973,19 @@ void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area)
  * Draw an 'expanded' pixel.
  * Used to draw thick lines.
  */
-static void draw_expanded_pixel(SDL_Surface * Surface, int x, int y, int xincr, int yincr, int thickness, int r, int g, int b)
+static void draw_expanded_pixel(int x, int y, int xincr, int yincr, uint8_t r, uint8_t g, uint8_t b, int thickness)
 {
 	int i;
 
-	sdl_put_pixel(Surface, x, y, r, g, b, 255);
+	sdl_put_pixel(Screen, x, y, r, g, b, 255);
 
 	if (thickness <= 1)
 		return;
 	for (i = x + xincr; i != x + thickness * xincr; i += xincr) {
-		sdl_put_pixel(Surface, i, y, r, g, b, 255);
+		sdl_put_pixel(Screen, i, y, r, g, b, 255);
 	}
 	for (i = y + yincr; i != y + thickness * yincr; i += yincr) {
-		sdl_put_pixel(Surface, x, i, r, g, b, 255);
+		sdl_put_pixel(Screen, x, i, r, g, b, 255);
 	}
 }
 
@@ -993,7 +993,7 @@ static void draw_expanded_pixel(SDL_Surface * Surface, int x, int y, int xincr, 
  * This function draws a line in SDL mode.
  * Classical Bresenham algorithm 
  */
-static void draw_line_sdl(SDL_Surface *Surface, int x1, int y1, int x2, int y2, int r, int g, int b, int thickness)
+static void draw_line_sdl(int x1, int y1, int x2, int y2, uint8_t r, uint8_t g, uint8_t b, int thickness)
 {
 	if (use_open_gl)
 		return;
@@ -1022,7 +1022,7 @@ static void draw_line_sdl(SDL_Surface *Surface, int x1, int y1, int x2, int y2, 
 	if (delta_y < delta_x) {
 		error_accum = delta_x >> 1;
 		while (x1 != x2) {
-			draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, thickness, r, g, b);
+			draw_expanded_pixel(x1, y1, incr_x, incr_y, r, g, b, thickness);
 			error_accum += delta_y;
 			if (error_accum > delta_x) {
 				error_accum -= delta_x;
@@ -1030,11 +1030,11 @@ static void draw_line_sdl(SDL_Surface *Surface, int x1, int y1, int x2, int y2, 
 			}
 			x1 += incr_x;
 		}
-		draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, thickness, r, g, b);
+		draw_expanded_pixel(x1, y1, incr_x, incr_y, r, g, b, thickness);
 	} else {
 		error_accum = delta_y >> 1;
 		while (y1 != y2) {
-			draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, thickness, r, g, b);
+			draw_expanded_pixel(x1, y1, incr_x, incr_y, r, g, b, thickness);
 			error_accum += delta_x;
 			if (error_accum > delta_y) {
 				error_accum -= delta_y;
@@ -1042,14 +1042,14 @@ static void draw_line_sdl(SDL_Surface *Surface, int x1, int y1, int x2, int y2, 
 			}
 			y1 += incr_y;
 		}
-		draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, thickness, r, g, b);
+		draw_expanded_pixel(x1, y1, incr_x, incr_y, r, g, b, thickness);
 	}
 }
 
 /**
  * This function draws a line in OpenGL mode.
  */
-static void draw_line_opengl(int x1, int y1, int x2, int y2, int r, int g, int b, int width)
+static void draw_line_opengl(int x1, int y1, int x2, int y2, uint8_t r, uint8_t g, uint8_t b, int width)
 {
 #ifdef HAVE_LIBGL
 	glLineWidth(width);
@@ -1068,10 +1068,10 @@ static void draw_line_opengl(int x1, int y1, int x2, int y2, int r, int g, int b
 #endif
 }
 
-void draw_line(float x1, float y1, float x2, float y2, uint8_t r, uint8_t g, uint8_t b, int width)
+void draw_line(int x1, int y1, int x2, int y2, uint8_t r, uint8_t g, uint8_t b, int width)
 {
 	if (!use_open_gl) {
-		draw_line_sdl(Screen, x1, y1, x2, y2, r, g, b, width);
+		draw_line_sdl(x1, y1, x2, y2, r, g, b, width);
 	} else {
 		draw_line_opengl(x1, y1, x2, y2, r, g, b, width);
 	}
