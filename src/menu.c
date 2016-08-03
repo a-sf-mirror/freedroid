@@ -1344,7 +1344,7 @@ static void Sound_fill(char *MenuTexts[MAX_MENU_ITEMS])
 static int Performance_handle(int n)
 {
 	enum {
-		SET_LIMIT_FRAMERATE_FLAG = 1,
+		SET_FRAMERATE_LIMIT = 1,
 		SKIP_LIGHT_RADIUS_MODE,
 		SKIP_SHADOWS,
 		TOGGLE_LAZYLOAD,
@@ -1354,9 +1354,20 @@ static int Performance_handle(int n)
 	case (-1):
 		return EXIT_MENU;
 
-	case SET_LIMIT_FRAMERATE_FLAG:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) ;
-		GameConfig.limit_framerate = !GameConfig.limit_framerate;
+	case SET_FRAMERATE_LIMIT:
+		if (LeftPressed()) {
+			while (LeftPressed());
+			if (GameConfig.framerate_limit >= 10) {
+				GameConfig.framerate_limit -= 10;
+				SDL_setFramerate(&SDL_FPSmanager, GameConfig.framerate_limit);
+			}
+		} else if (RightPressed()) {
+			while (RightPressed());
+			if (GameConfig.framerate_limit <= (FPS_UPPER_LIMIT - 10)) {
+				GameConfig.framerate_limit += 10;
+				SDL_setFramerate(&SDL_FPSmanager, GameConfig.framerate_limit);
+			}
+		}
 		break;
 
 	case SKIP_LIGHT_RADIUS_MODE:
@@ -1382,6 +1393,7 @@ static int Performance_handle(int n)
 		break;
 
 	}
+
 	return CONTINUE_MENU;
 }
 
@@ -1389,7 +1401,10 @@ static void Performance_fill(char *MenuTexts[])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(Options[i], _("Limit framerate (powersaving): %s"), GameConfig.limit_framerate ? _("YES") : _("NO"));
+	if (GameConfig.framerate_limit == 0)
+		sprintf(Options[i], _("FPS limit: none"));
+	else
+		sprintf(Options[i], _("FPS limit: %d"), GameConfig.framerate_limit);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
 	sprintf(Options[i], _("Show light radius: %s"), GameConfig.skip_light_radius ? _("NO") : _("YES"));

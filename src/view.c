@@ -1919,7 +1919,7 @@ void AssembleCombatPicture(int mask)
 		our_SDL_update_rect_wrapper(Screen, 0, 0, Screen->w, Screen->h);
 	}
 
-	if (GameConfig.limit_framerate)
+	if (GameConfig.framerate_limit)
 		SDL_framerateDelay(&SDL_FPSmanager);
 }
 

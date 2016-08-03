@@ -723,6 +723,15 @@ static int configuration_ctor(lua_State *L)
 {
 	read_configuration_for_freedroid(L, 1, &GameConfig);
 
+	// Check some post-conditions
+	if (GameConfig.framerate_limit < 0) {
+		GameConfig.framerate_limit = 0;
+	} else if (GameConfig.framerate_limit > FPS_UPPER_LIMIT) {
+		GameConfig.framerate_limit = FPS_UPPER_LIMIT;
+	} else if (GameConfig.framerate_limit % 10 != 0) {
+		GameConfig.framerate_limit = (int)(GameConfig.framerate_limit / 10) * 10;
+	}
+
 	return 0;
 }
 

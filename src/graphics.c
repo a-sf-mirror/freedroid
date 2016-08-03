@@ -857,7 +857,7 @@ void InitVideo(void)
 	SDL_ShowCursor(SDL_DISABLE);
 
 	SDL_initFramerate(&SDL_FPSmanager);
-	SDL_setFramerate(&SDL_FPSmanager, 40);
+	SDL_setFramerate(&SDL_FPSmanager, GameConfig.framerate_limit);
 }
 
 /**

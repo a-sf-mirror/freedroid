@@ -626,7 +626,7 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.Draw_Position = TRUE;
 	GameConfig.All_Texts_Switch = FALSE;
 	GameConfig.enemy_energy_bars_visible = TRUE;
-	GameConfig.limit_framerate = TRUE;
+	GameConfig.framerate_limit = 40;
 	GameConfig.skip_light_radius = FALSE;
 	GameConfig.omit_obstacles_in_level_editor = FALSE;
 	GameConfig.omit_map_labels_in_level_editor = TRUE;

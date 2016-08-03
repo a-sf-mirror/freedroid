@@ -276,9 +276,6 @@ void LevelEditor()
 		StartTakingTimeForFPSCalculation();
 		update_frames_displayed();
 
-		if (GameConfig.limit_framerate)
-			SDL_Delay(10);
-
 		leveleditor_process_input();
 		update_widgets();
 
