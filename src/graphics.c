@@ -955,18 +955,18 @@ void draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, in
  * This function draws a transparent black rectangle over a specified
  * area on the screen.
  */
-void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area)
+void draw_shadowing_rectangle(SDL_Rect area)
 {
-	draw_rectangle(&Area, 0, 0, 0, 150);
+	draw_rectangle(&area, 0, 0, 0, 150);
 }
 
 /**
  * This function draws a transparent white rectangle over a specified
  * area on the screen.
  */
-void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area)
+void draw_highlight_rectangle(SDL_Rect area)
 {
-	draw_rectangle(&Area, 255, 255, 255, 100);
+	draw_rectangle(&area, 255, 255, 255, 100);
 }
 
 /*

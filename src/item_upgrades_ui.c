@@ -195,7 +195,7 @@ static void show_socket_creation_menu()
 	for (i = 0; i < 4; i++) {
 		// Highlight the row if the cursor is on it so that the user knows that this is a menu.
 		if (MouseCursorIsInRect(&rects.table[0][i + 1], cursor.x, cursor.y)) {
-			HighlightRectangle(Screen, rects.table[0][i + 1]);
+			draw_highlight_rectangle(rects.table[0][i + 1]);
 		}
 
 		// Draw the name column.

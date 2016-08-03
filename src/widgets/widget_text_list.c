@@ -159,7 +159,7 @@ static void text_list_display(struct widget *w)
 
 		// Highlight the current selected entry
 		if (wl->selected_entry == i)
-			HighlightRectangle(Screen, elt->rect);
+			draw_highlight_rectangle(elt->rect);
 
 		display_text(elt->text, elt->text_rect.x, elt->text_rect.y, &elt->text_rect, 1.0);
 	}

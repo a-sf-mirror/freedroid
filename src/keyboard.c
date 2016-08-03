@@ -298,7 +298,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 	blit_background("shoppe.jpg");
 
-	ShadowingRectangle(Screen, keychart_rect);
+	draw_shadowing_rectangle(keychart_rect);
 
 	put_string_centered(Para_Font, get_font_height(Para_Font), _("Key chart"));
 

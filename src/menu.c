@@ -233,7 +233,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 		}
 		// Draw the menu's  background
 		//
-		ShadowingRectangle(Screen, BackgroundRect);
+		draw_shadowing_rectangle(BackgroundRect);
 
 		// Display each option
 		//
@@ -274,7 +274,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 				HighlightRect.y = first_menu_item_pos_y + i * h;
 				HighlightRect.w = width + 2 * h;
 				HighlightRect.h = h;
-				HighlightRectangle(Screen, HighlightRect);
+				draw_highlight_rectangle(HighlightRect);
 
 				if (auto_scroll_run == TRUE) {
 					auto_scroll_start += AUTO_SCROLL_RATE;

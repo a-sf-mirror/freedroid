@@ -1537,7 +1537,7 @@ int level_validation()
 				NO_CURSOR | OMIT_ITEMS_LABEL);
 	set_current_font(current_font);	// Reset font, in case it was modified by AssembleCombatPicture()
 
-	ShadowingRectangle(Screen, background_rect);
+	draw_shadowing_rectangle(background_rect);
 
 	// Title
 

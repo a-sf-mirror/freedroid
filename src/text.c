@@ -505,7 +505,7 @@ static int display_text_with_cursor(const char *text, int startx, int starty, co
 		cursor_rect.y = cursor_y;
 		cursor_rect.h = get_font_height(get_current_font());
 		cursor_rect.w = 8;
-		HighlightRectangle(Screen, cursor_rect);
+		draw_highlight_rectangle(cursor_rect);
 	}
 	
 	if (use_open_gl)

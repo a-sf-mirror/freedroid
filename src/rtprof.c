@@ -285,7 +285,7 @@ static int probe_array_stats_add(struct probe_array_stats *stats, int val_x, int
 static void probe_display_container(int x, int y, int width, int height, char *title)
 {
 	SDL_Rect background_rect = { x, y, width, height };
-	ShadowingRectangle(Screen, background_rect);
+	ShadowingRectangle(background_rect);
 
 	char text[200];
 	sprintf(text, "%s%s", font_switchto_msgstat, title);

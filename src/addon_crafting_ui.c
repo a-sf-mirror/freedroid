@@ -282,7 +282,7 @@ void show_addon_crafting_ui()
 	int max_row = min(ui.recipes.size, ui.scroll_offset + RECIPE_LIST_ROWS);
 	for (i = ui.scroll_offset; i < max_row; i++) {
 		if (i == ui.selection) {
-			HighlightRectangle(Screen, rect);
+			draw_highlight_rectangle(rect);
 		}
 		if (arr[i].available) {
 			set_current_font(Blue_Font);

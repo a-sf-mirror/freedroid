@@ -290,7 +290,7 @@ static void toolbar_display(struct widget *vt)
 		display_image_on_screen(img, TargetRectangle.x - img->offset_x * zoom_factor, TargetRectangle.y - img->offset_y * zoom_factor, IMAGE_SCALE_TRANSFO(zoom_factor));
 
 		if (cindex == cs->selected_tile_nb) {
-			HighlightRectangle(Screen, TargetRectangle);
+			draw_highlight_rectangle(TargetRectangle);
 			if (display_info_idx != -1) {
 				// Display information about the currently selected object
 				leveleditor_print_object_info(cs->type, cs->indices, display_info_idx, VanishingMessage);

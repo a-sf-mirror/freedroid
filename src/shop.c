@@ -457,7 +457,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			HighlightRect.y = ShopItemRowRect.y;
 			HighlightRect.w = INITIAL_BLOCK_WIDTH * GameConfig.screen_width / 640;
 			HighlightRect.h = INITIAL_BLOCK_HEIGHT * GameConfig.screen_height / 480;
-			HighlightRectangle(Screen, HighlightRect);
+			draw_highlight_rectangle(HighlightRect);
 		}
 		if (TuxItemIndex >= 0) {
 			HighlightRect.x =
@@ -465,7 +465,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			HighlightRect.y = TuxItemRowRect.y;
 			HighlightRect.w = INITIAL_BLOCK_WIDTH * GameConfig.screen_width / 640;
 			HighlightRect.h = INITIAL_BLOCK_HEIGHT * GameConfig.screen_height / 480;
-			HighlightRectangle(Screen, HighlightRect);
+			draw_highlight_rectangle(HighlightRect);
 		}
 
 		if (ItemIndex >= 0) {
