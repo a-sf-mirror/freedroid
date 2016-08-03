@@ -256,7 +256,7 @@ static void zoom_in_button_right_click(struct widget_button *wb)
 	} else {
 		sprintf(VanishingMessage, _("Could not change zoom factor."));
 	}
-	VanishingMessageEndDate = SDL_GetTicks() + 1000;
+	VanishingMessageEndDate = SDL_GetTicks() + max(1000, 2*(int)(Frame_Time()*1000.0f));
 }
 
 //

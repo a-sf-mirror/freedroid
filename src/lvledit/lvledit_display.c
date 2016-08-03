@@ -329,17 +329,14 @@ void leveleditor_display()
 	//
 	if (VanishingMessageEndDate > SDL_GetTicks()) {
 		display_text(VanishingMessage, 1, GameConfig.screen_height - 8 * get_font_height(get_current_font()), NULL, 1.0);
+	} else if (EditLevel()->random_dungeon) {
+		display_text(_(" This level is automatically generated. \n Editing will have no effect."), 1, GameConfig.screen_height - 8 * get_font_height(get_current_font()), NULL, 1.0);
 	}
 
 	// Construct the linked list of visible levels.
 	get_visible_levels();
 
 	display_widgets();
-
-	if (EditLevel()->random_dungeon) {
-		sprintf(VanishingMessage, _(" This level is automatically generated. \n Editing will have no effect."));
-		VanishingMessageEndDate = SDL_GetTicks() + 100;
-	}
 
 	display_cursor();
 	// Now that everything is blitted and printed, we may update the screen again...

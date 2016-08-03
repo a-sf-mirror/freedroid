@@ -37,7 +37,7 @@
 static struct widget_lvledit_categoryselect *previous_category = NULL;
 static int num_blocks_per_line = 0;
 
-static int display_info_idx = 0;
+static int display_info_idx = -1;
 
 static int toolbar_mousepress(struct widget *vt, SDL_Event *event, int select)
 {
@@ -294,7 +294,7 @@ static void toolbar_display(struct widget *vt)
 			if (display_info_idx != -1) {
 				// Display information about the currently selected object
 				leveleditor_print_object_info(cs->type, cs->indices, display_info_idx, VanishingMessage);
-				VanishingMessageEndDate = SDL_GetTicks() + 100;
+				VanishingMessageEndDate = SDL_GetTicks() + 2*(int)(Frame_Time()*1000.0f);
 			}
 		}
 
