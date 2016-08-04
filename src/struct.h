@@ -697,7 +697,7 @@ typedef struct bullet {
 
 	int faction;
 	uint8_t hit_type;		//hit bots, humans, both?
-} bullet, *Bullet;
+} bullet;
 
 typedef struct melee_shot	// this is a melee shot
 {
