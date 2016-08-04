@@ -812,7 +812,7 @@ void apply_item(item * CurItem)
 
 	// Do the skill
 	if (ItemMap[CurItem->type].right_use.skill) {
-		failed_usage = !DoSkill(get_program_index_with_name(ItemMap[CurItem->type].right_use.skill), 0);
+		failed_usage = !do_skill(get_program_index_with_name(ItemMap[CurItem->type].right_use.skill), 0);
 	// Improve the skill
 	} else if (ItemMap[CurItem->type].right_use.add_skill) {
 		failed_usage = improve_program(get_program_index_with_name(ItemMap[CurItem->type].right_use.add_skill));

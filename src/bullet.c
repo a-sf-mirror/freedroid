@@ -127,57 +127,61 @@ void delete_melee_shot(melee_shot * t)
  * This function applies melee damage of all attacks that have taken
  * place in the previous cycle
  * ----------------------------------------------------------------- */
-void DoMeleeDamage(void)
+void do_melee_damage(void)
 {
 	int i;
 	float latest_frame_time = Frame_Time();
-	melee_shot *CurMelS;
+	struct melee_shot *current_melee_shot;
 
 	/* Browse all melee shots */
 	for (i = 0; i < MAX_MELEE_SHOTS; i++) {
-		CurMelS = &AllMeleeShots[i];
+		current_melee_shot = &AllMeleeShots[i];
 
-		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_NOTHING || CurMelS->time_to_hit > 0) {
-			CurMelS->time_to_hit -= latest_frame_time;
+		if (current_melee_shot->attack_target_type == ATTACK_TARGET_IS_NOTHING || current_melee_shot->time_to_hit > 0) {
+			current_melee_shot->time_to_hit -= latest_frame_time;
 			continue;
 		}
 
-		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_ENEMY) {
+		if (current_melee_shot->attack_target_type == ATTACK_TARGET_IS_ENEMY) {
 			/* Attack an enemy */
-			enemy *tg = enemy_resolve_address(CurMelS->bot_target_n, &CurMelS->bot_target_addr);
+			enemy *tg = enemy_resolve_address(current_melee_shot->bot_target_n, &current_melee_shot->bot_target_addr);
 			if (!tg) {
 				error_message(__FUNCTION__,
 					     "Melee shot was set to ATTACK_TARGET_IS_ENEMY but had no targeted enemy. Deleting.",
 					     NO_REPORT);
-				delete_melee_shot(CurMelS);
+				delete_melee_shot(current_melee_shot);
 				continue;
 			}
 
 			if (tg->energy <= 0) {
 				// our enemy is already dead ! 
-				delete_melee_shot(CurMelS);
+				delete_melee_shot(current_melee_shot);
 				continue;
 			}
 
-			if (MyRandom(100) < CurMelS->to_hit) {
-				hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
+			if (MyRandom(100) < current_melee_shot->to_hit) {
+				// Slow or paralyze enemies if the player has bonuses with those effects.
+				tg->frozen += Me.slowing_melee_targets;
+				tg->paralysation_duration_left += Me.paralyzing_melee_targets;
+
+				hit_enemy(tg, current_melee_shot->damage, current_melee_shot->mine ? 1 : 0, current_melee_shot->owner, current_melee_shot->mine ? 1 : 0);
 			}
 
-			delete_melee_shot(CurMelS);
+			delete_melee_shot(current_melee_shot);
 			continue;
 
 		}
 
-		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_PLAYER) {
+		if (current_melee_shot->attack_target_type == ATTACK_TARGET_IS_PLAYER) {
 			/* hit player */
-			if (MyRandom(100) < CurMelS->to_hit) {
-				float real_damage = CurMelS->damage * get_player_damage_factor();
+			if (MyRandom(100) < current_melee_shot->to_hit) {
+				float real_damage = current_melee_shot->damage * get_player_damage_factor();
 				hit_tux(real_damage);
 				DamageProtectiveEquipment();
 			}
 		}
 
-		delete_melee_shot(CurMelS);
+		delete_melee_shot(current_melee_shot);
 	}
 }
 
@@ -357,44 +361,44 @@ void DeleteBlast(int BlastNum)
 /**
  * This function advances the currently active spells.
  */
-void MoveActiveSpells(void)
+void move_active_spells(void)
 {
 	int i;
-	float PassedTime;
-	float DistanceFromCenter;
-	PassedTime = Frame_Time();
+	float passed_time = Frame_Time();
+	float distance_from_center;
 	int direction_index;
-	moderately_finepoint Displacement;
+	moderately_finepoint displacement;
 	gps final_point;
-	float Angle;
+	float angle;
 
 	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
 		// We can ignore all unused entries...
-		//
+
 		if (AllActiveSpells[i].img_type == (-1))
 			continue;
 
 		// All spells should count their lifetime...
-		//
-		AllActiveSpells[i].spell_age += PassedTime;
+
+		AllActiveSpells[i].spell_age += passed_time;
 
 		// We hardcode a speed here
-		AllActiveSpells[i].spell_radius += 5.0 * PassedTime;
+
+		AllActiveSpells[i].spell_radius += 5.0 * passed_time;
 
 		// We do some collision checking with the obstacles in each
 		// 'active_direction' of the spell and deactivate those directions,
 		// where some collision with solid material has happened.
-		//
+
 		for (direction_index = 0; direction_index < RADIAL_SPELL_DIRECTIONS; direction_index++) {
 			if (AllActiveSpells[i].active_directions[direction_index] == FALSE)
 				continue;
 
-			Angle = 360.0 * (float)direction_index / RADIAL_SPELL_DIRECTIONS;
-			Displacement.x = AllActiveSpells[i].spell_radius;
-			Displacement.y = 0;
-			RotateVectorByAngle(&Displacement, Angle);
-			final_point.x = AllActiveSpells[i].spell_center.x + Displacement.x;
-			final_point.y = AllActiveSpells[i].spell_center.y + Displacement.y;
+			angle = 360.0 * (float)direction_index / RADIAL_SPELL_DIRECTIONS;
+			displacement.x = AllActiveSpells[i].spell_radius;
+			displacement.y = 0;
+			RotateVectorByAngle(&displacement, angle);
+			final_point.x = AllActiveSpells[i].spell_center.x + displacement.x;
+			final_point.y = AllActiveSpells[i].spell_center.y + displacement.y;
 			final_point.z = Me.pos.z;
 
 			// This spell's fraction could have traverse a level's border, so we
@@ -415,7 +419,7 @@ void MoveActiveSpells(void)
 		}
 
 		// Here we also do the spell damage application here
-		//
+
 		float minDist = (0.2 + AllActiveSpells[i].spell_radius) * (0.2 + AllActiveSpells[i].spell_radius);
 
 		struct visible_level *visible_lvl, *n;
@@ -423,13 +427,13 @@ void MoveActiveSpells(void)
 		BROWSE_NEARBY_VISIBLE_LEVELS(visible_lvl, n, minDist) {
 			BROWSE_LEVEL_BOTS_SAFE(erot, nerot, visible_lvl->lvl_pointer->levelnum) {
 				update_virtual_position(&erot->virt_pos, &erot->pos, Me.pos.z);
-				DistanceFromCenter =
+				distance_from_center =
 				    (AllActiveSpells[i].spell_center.x - erot->virt_pos.x) * (AllActiveSpells[i].spell_center.x -
 											      erot->virt_pos.x) +
 				    (AllActiveSpells[i].spell_center.y - erot->virt_pos.y) * (AllActiveSpells[i].spell_center.y -
 											      erot->virt_pos.y);
 
-				if (DistanceFromCenter < minDist) {
+				if (distance_from_center < minDist) {
 					if ((AllActiveSpells[i].hit_type == ATTACK_HIT_BOTS && Droidmap[erot->type].is_human) ||
 					    (AllActiveSpells[i].hit_type == ATTACK_HIT_HUMANS && !Droidmap[erot->type].is_human))
 						continue;
@@ -438,19 +442,19 @@ void MoveActiveSpells(void)
 					// active for the spell. 
 					// We get the angle in radians but with zero at the 'north' direction.
 					// And we convert the angle to a normal direction index
-					//
-					Displacement.x = erot->virt_pos.x - AllActiveSpells[i].spell_center.x;
-					Displacement.y = erot->virt_pos.y - AllActiveSpells[i].spell_center.y;
-					if (Displacement.x <= 0.01 && Displacement.y <= 0.01) {
-						// if enemy is very close, the Angle computation could be inaccurate,
+
+					displacement.x = erot->virt_pos.x - AllActiveSpells[i].spell_center.x;
+					displacement.y = erot->virt_pos.y - AllActiveSpells[i].spell_center.y;
+					if (displacement.x <= 0.01 && displacement.y <= 0.01) {
+						// if enemy is very close, the angle computation could be inaccurate,
 						// so do not check if the spell is active or not
 						direction_index = -1;
 					} else {
 						// nota : Y axis is toward down in fdrpg 
-						Angle = atan2(-Displacement.y, Displacement.x);	// -M_PI <= Angle <= M_PI
-						if (Angle < 0)
-							Angle += 2 * M_PI;	// 0 <= Angle <= 2 * M_PI
-						direction_index = (int)((Angle * RADIAL_SPELL_DIRECTIONS) / (2 * M_PI));
+						angle = atan2(-displacement.y, displacement.x);	// -M_PI <= Angle <= M_PI
+						if (angle < 0)
+							angle += 2 * M_PI;	// 0 <= Angle <= 2 * M_PI
+						direction_index = (int)((angle * RADIAL_SPELL_DIRECTIONS) / (2 * M_PI));
 						// clamp direction_index to avoid any bug
 						if (direction_index < 0)
 							direction_index = 0;
@@ -459,11 +463,6 @@ void MoveActiveSpells(void)
 					}
 
 					if ((direction_index == -1) || AllActiveSpells[i].active_directions[direction_index]) {
-						/* we hit the enemy. the owner is set to NULL because for now we assume it can only be the player. */
-						hit_enemy(erot, AllActiveSpells[i].damage * Frame_Time(),
-							  AllActiveSpells[i].mine ? 1 : 0 /*givexp */ , -1,
-							  AllActiveSpells[i].mine ? 1 : 0);
-
 						if (erot->poison_duration_left < AllActiveSpells[i].poison_duration)
 							erot->poison_duration_left = AllActiveSpells[i].poison_duration;
 						erot->poison_damage_per_sec = AllActiveSpells[i].damage;
@@ -473,19 +472,22 @@ void MoveActiveSpells(void)
 
 						if (erot->paralysation_duration_left < AllActiveSpells[i].paralyze_duration)
 							erot->paralysation_duration_left = AllActiveSpells[i].paralyze_duration;
+
+						/* we hit the enemy. the owner is set to NULL because for now we assume it can only be the player. */
+						hit_enemy(erot, AllActiveSpells[i].damage * Frame_Time(),
+							  AllActiveSpells[i].mine ? 1 : 0 /*givexp */ , -1,
+							  AllActiveSpells[i].mine ? 1 : 0);
 					}
 				}
 			}
 		}
 
 		// Such a spell can not live for longer than 1.0 seconds, say
-		//
+
 		if (AllActiveSpells[i].spell_age >= 1.0)
 			DeleteSpell(i);
-
 	}
-
-};				// void MoveActiveSpells( ... )
+}
 
 /**
  * This function deletes a single blast entry from the list of all blasts
@@ -708,9 +710,6 @@ int check_bullet_enemy_collisions(struct bullet *current_bullet)
 			continue;
 
 		// Hit the ennemy
-		//
-		hit_enemy(ThisRobot, current_bullet->damage, (current_bullet->mine ? 1 : 0) /*givexp */ , current_bullet->owner,
-			  (current_bullet->mine ? 1 : 0));
 
 		ThisRobot->frozen += current_bullet->freezing_level;
 
@@ -719,10 +718,13 @@ int check_bullet_enemy_collisions(struct bullet *current_bullet)
 
 		ThisRobot->paralysation_duration_left += current_bullet->paralysation_duration;
 
+		hit_enemy(ThisRobot, current_bullet->damage, (current_bullet->mine ? 1 : 0) /*givexp */ , current_bullet->owner,
+			  (current_bullet->mine ? 1 : 0));
+
 		// If the blade can pass through dead and not dead bodies, it will so
 		// so and create a small explosion passing by.  But if it can't, it should
 		// be completely deleted of course, with the same small explosion as well
-		//
+
 		if (current_bullet->pass_through_hit_bodies) {
 			StartBlast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, BULLETBLAST, 0, current_bullet->faction, NULL);
 			return FALSE;

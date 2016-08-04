@@ -1403,10 +1403,6 @@ int perform_tux_attack(int use_mouse_cursor_for_targeting)
 			new_shot->owner = -1;	//no "bot class number" owner
 			new_shot->time_to_hit = tux_anim.attack.duration / 2;
 
-			// Slow or paralyze enemies if the player has bonuses with those effects.
-			erot->frozen += Me.slowing_melee_targets;
-			erot->paralysation_duration_left += Me.paralyzing_melee_targets;
-
 			hit_something = TRUE;
 		}
 

@@ -1010,6 +1010,13 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 		 */
 	}
 
+	// Clean the bot status, to avoid to color the bot corpse
+
+	target->frozen = 0;
+	target->poison_duration_left = 0;
+	target->poison_damage_per_sec = 0;
+	target->paralysation_duration_left = 0;
+
 	// NOTE:  We reset the animation phase to the first death animation image
 	//        here.  But this may be WRONG!  In the case that the enemy graphics
 	//        hasn't been loaded yet, this will result in '1' for the animation

@@ -295,7 +295,7 @@ void HandleCurrentlyActivatedSkill()
 		break;
 	}
 
-	DoSkill(Me.readied_skill, SpellCost);
+	do_skill(Me.readied_skill, SpellCost);
 
 	/* Certain special actions implemented through DoSkill may set their own
 	 * busy time, such as weapon reload. In that case, do not touch busy_time.
@@ -312,11 +312,13 @@ void HandleCurrentlyActivatedSkill()
 
 /**
  * \brief Perform a skill action.
- * \param skill_index The index of the skill.
- * \param SpellCost The cost of spell calculated before.
+ *
+ * \param skill_index  The index of the skill.
+ * \param spell_cost   The cost of spell calculated before.
+ *
  * \return FALSE if the skill has failed, TRUE otherwise.
  */
-int DoSkill(int skill_index, int SpellCost)
+int do_skill(int skill_index, int spell_cost)
 {
 	enemy *droid_below_mouse_cursor = NULL;
 
@@ -342,9 +344,6 @@ int DoSkill(int skill_index, int SpellCost)
 		    || (!Droidmap[droid_below_mouse_cursor->type].is_human && !SpellSkillMap[skill_index].hurt_bots))
 			return 0;
 
-		if (hitdmg > 0)
-			hit_enemy(droid_below_mouse_cursor, hitdmg, 1, -1, 1);
-
 		if (!strcmp(SpellSkillMap[skill_index].effect, "paralyze"))
 			droid_below_mouse_cursor->paralysation_duration_left += effdur;
 		if (!strcmp(SpellSkillMap[skill_index].effect, "slowdown"))
@@ -354,6 +353,9 @@ int DoSkill(int skill_index, int SpellCost)
 			droid_below_mouse_cursor->poison_damage_per_sec += hitdmg;
 		}
 
+		if (hitdmg > 0)
+			hit_enemy(droid_below_mouse_cursor, hitdmg, 1, -1, 1);
+
 		if (!strcmp(SpellSkillMap[skill_index].effect, "takeover")) {
 			if (!is_friendly(droid_below_mouse_cursor->faction, FACTION_SELF)) {
 				// Only hostile droids can be hacked.
@@ -361,7 +363,7 @@ int DoSkill(int skill_index, int SpellCost)
 				float used_capsules_ratio = 1;
 				if (droid_takeover(droid_below_mouse_cursor, &used_capsules_ratio)) {
 					// Only capsules that were used generate heat - hard fights are more exhausting that easy ones
-					Me.temperature += used_capsules_ratio * SpellCost;
+					Me.temperature += used_capsules_ratio * spell_cost;
 
 					// upon successful takeover
 					// go directly to chat to choose droid program
@@ -373,7 +375,7 @@ int DoSkill(int skill_index, int SpellCost)
 				return 0;
 			}
 		}
-		Me.temperature += SpellCost;
+		Me.temperature += spell_cost;
 		return 1;
 
 	case PROGRAM_FORM_SELF:
@@ -383,7 +385,7 @@ int DoSkill(int skill_index, int SpellCost)
 				return 0;
 		
 		Me.energy -= hitdmg;
-		Me.temperature += SpellCost;
+		Me.temperature += spell_cost;
 		Me.slowdown_duration += strcmp(SpellSkillMap[skill_index].effect, "slowdown") ? 0 : effdur;
 		Me.paralyze_duration += strcmp(SpellSkillMap[skill_index].effect, "paralyze") ? 0 : effdur;
 		Me.invisible_duration += strcmp(SpellSkillMap[skill_index].effect, "invisibility") ? 0 : effdur;
@@ -392,7 +394,7 @@ int DoSkill(int skill_index, int SpellCost)
 		return 1;
 
 	case PROGRAM_FORM_BULLET:
-		Me.temperature += SpellCost;
+		Me.temperature += spell_cost;
 
 		moderately_finepoint target_location;
 		target_location.x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
@@ -422,7 +424,7 @@ int DoSkill(int skill_index, int SpellCost)
 		return 1;	//no extra effects
 
 	case PROGRAM_FORM_RADIAL:
-		Me.temperature += SpellCost;
+		Me.temperature += spell_cost;
 		
 		do_radial_skill(skill_index, Me.pos.x, Me.pos.y, 1);
 

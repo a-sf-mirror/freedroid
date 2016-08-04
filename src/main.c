@@ -59,11 +59,11 @@ void DoAllMovementAndAnimations(void)
 
 	animate_blasts();	// move blasts to the right current "phase" of the blast
 
-	MoveActiveSpells();	// move moving spells currently active...
+	move_active_spells();	// move moving spells currently active...
 
 	move_bullets();
 
-	DoMeleeDamage();
+	do_melee_damage();
 
 };				// void DoAllMovementAndAnimations ( void )
 
@@ -355,7 +355,7 @@ void UpdateCountersForThisFrame()
 		if (Me.old_temperature < Me.max_temperature)
 			append_new_game_message(_("Overheating!"));
 		if (Me.energy - lose_life < 1 && Me.paralyze_duration == 0) {
-			DoSkill(get_program_index_with_name("Emergency shutdown"),
+			do_skill(get_program_index_with_name("Emergency shutdown"),
 				calculate_program_heat_cost(get_program_index_with_name("Emergency shutdown")));
 			// TRANSLATORS: Screen message, displayed below 'Automatically shutting down'
 			SetNewBigScreenMessage(_("due to near lethal overheating"));
