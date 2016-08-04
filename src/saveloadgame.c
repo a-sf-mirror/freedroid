@@ -325,7 +325,8 @@ int delete_game(void)
 
 static int load_saved_game(int use_backup)
 {
-	char filepath[PATH_MAX];
+	char ship_filepath[PATH_MAX];
+	char sav_filepath[PATH_MAX];
 
 	if (!strlen(data_dirs[CONFIG_DIR].path)) {
 		return OK;
@@ -339,12 +340,18 @@ static int load_saved_game(int use_backup)
 	Activate_Conservative_Frame_Computation();
 	clean_error_msg_store();
 
+	// Check the existence of the two files that we have to load
+	if (!find_file(ship_filepath, CONFIG_DIR, Me.character_name, (use_backup) ? ".bkp.shp" : ".shp", SILENT) ||
+		!find_file(sav_filepath, CONFIG_DIR, Me.character_name, (use_backup) ? ".bkp"SAVEDGAME_EXT : SAVEDGAME_EXT, SILENT)) {
+		alert_window(_("No saved game found."));
+		return ERR;
+	}
+
 	/*
 	 * Load maps (still using the legacy format)
 	 */
 
-	find_file(filepath, CONFIG_DIR, Me.character_name, (use_backup) ? ".bkp.shp" : ".shp", SILENT);
-	LoadShip(filepath, 1);
+	LoadShip(ship_filepath, 1);
 
 	/*
 	 * Load data
@@ -355,8 +362,7 @@ static int load_saved_game(int use_backup)
 
 	// Read savegame into a buffer
 
-	find_file(filepath, CONFIG_DIR, Me.character_name, (use_backup) ? ".bkp"SAVEDGAME_EXT : SAVEDGAME_EXT, SILENT);
-	FILE *data_file = fopen(filepath, "rb");
+	FILE *data_file = fopen(sav_filepath, "rb");
 
 	if (inflate_stream(data_file, (unsigned char **)&game_data, &loaded_size)) {
 		fclose(data_file);
@@ -370,7 +376,7 @@ static int load_saved_game(int use_backup)
 	int rtc = convert_old_savegame(&game_data, &loaded_size);
 	if (rtc == FILTER_APPLIED) {
 		// A fix/conversion was needed. Save the new data.
-		data_file = fopen(filepath, "wb");
+		data_file = fopen(sav_filepath, "wb");
 		deflate_to_stream((unsigned char *)game_data, loaded_size, data_file);
 		fclose(data_file);
 	} else if (rtc == FILTER_ABORT) {
@@ -378,7 +384,7 @@ static int load_saved_game(int use_backup)
 		// However game_data was possibly changed by a filter function.
 		// We reload the savegame and use it as is.
 		free(game_data);
-		data_file = fopen(filepath, "rb");
+		data_file = fopen(sav_filepath, "rb");
 		int loaded_size = 0;
 		inflate_stream(data_file, (unsigned char **)&game_data, &loaded_size);
 		fclose(data_file);
