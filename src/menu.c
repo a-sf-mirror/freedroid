@@ -51,6 +51,8 @@ int Single_Player_Menu(void);
 
 #define MAX_MENU_ITEMS 100
 
+static int game_needs_restart = FALSE;
+
 /**
  * This function tells over which menu item the mouse cursor would be,
  * if there were infinitely many menu items.
@@ -865,7 +867,7 @@ static int Game_handle(int n)
 	case DIFFICULTY:
 		GameConfig.difficulty_level++;
 		GameConfig.difficulty_level %= 3;
-		alert_window("%s", _("You need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience."));
+		game_needs_restart = TRUE;
 		return CONTINUE_MENU;
 	case LEAVE_MENU:
 		return EXIT_MENU;
@@ -904,6 +906,11 @@ static int Options_handle(int n)
 	};
 	switch (n) {
 	case (-1):
+	case LEAVE_OPTIONS_MENU:
+		if (game_needs_restart) {
+			alert_window(_("You need to restart FreedroidRPG for some changes to take effect.\n\nSorry for the inconvenience."));
+			game_needs_restart = 0;
+		}
 		return EXIT_MENU;
 		break;
 #ifdef ENABLE_NLS
@@ -923,8 +930,6 @@ static int Options_handle(int n)
 		return MENU_OSD;
 	case PERFORMANCE_TWEAKS_OPTIONS:
 		return MENU_PERFORMANCE;
-	case LEAVE_OPTIONS_MENU:
-		return EXIT_MENU;
 	default:
 		break;
 	}
@@ -1103,7 +1108,7 @@ static int Resolution_handle(int n)
 			while (EnterPressed() || SpacePressed()) ;
 			GameConfig.next_time_width_of_screen = screen_resolutions[i].xres;
 			GameConfig.next_time_height_of_screen = screen_resolutions[i].yres;
-			alert_window(_("You selected %d x %d pixels.\n\nYou need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience."),  screen_resolutions[i].xres, screen_resolutions[i].yres);
+			game_needs_restart = TRUE;
 			return CONTINUE_MENU;
 		}
 		++j;
@@ -1183,7 +1188,7 @@ static int Graphics_handle(int n)
 #ifndef __WIN32__
 		SDL_WM_ToggleFullScreen(Screen);
 #else
-		alert_window(_("You need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience."));
+		game_needs_restart = TRUE;
 #endif
 		break;
 
@@ -1283,14 +1288,14 @@ static int Sound_handle(int n)
 			while (RightPressed()) ;
 			GameConfig.Current_Sound_Output_Fmt =
 				(GameConfig.Current_Sound_Output_Fmt + 1) % ALL_SOUND_OUTPUTS;
-			alert_window(_("You need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience."));
+			game_needs_restart = TRUE;
 		}
 
 		if (LeftPressed()) {
 			while (LeftPressed()) ;
 			GameConfig.Current_Sound_Output_Fmt =
 				(GameConfig.Current_Sound_Output_Fmt - 1) == -1 ? ALL_SOUND_OUTPUTS-1 : (GameConfig.Current_Sound_Output_Fmt - 1);
-			alert_window(_("You need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience."));
+			game_needs_restart = TRUE;
 		}
 		break;
 
