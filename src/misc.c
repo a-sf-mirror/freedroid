@@ -629,7 +629,6 @@ void ShowGenericButtonFromList(int ButtonIndex)
 int init_data_dirs_path()
 {
 	int i, j;
-	FILE *f;
 	char file_path[PATH_MAX];
 	const int FIRST_DATA_DIR = 1; // data_dirs[0] is CONFIG_DIR, set in prepare_execution()
 
@@ -649,8 +648,8 @@ int init_data_dirs_path()
 	// always needed for the game to work.
 	for (i = 0; i < slen ; i++) {
 		sprintf(file_path, "%s/" WELL_KNOWN_DATA_FILE, top_data_dir[i]);
-
-		if ((f = fopen(file_path, "r")) != NULL) {
+		FILE *f = fopen(file_path, "r");
+		if (f != NULL) {
 			// File found, so now fill the data dir paths
 			for (j = FIRST_DATA_DIR; j < LAST_DATA_DIR; j++) {
 				char *dir = top_data_dir[i];

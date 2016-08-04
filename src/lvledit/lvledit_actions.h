@@ -60,7 +60,7 @@ void CreateNewMapLevel(int);
 void delete_map_level(int);
 
 /* Chest manipulation */
-void level_editor_edit_chest(obstacle *);
+void level_editor_edit_chest(struct obstacle *);
 
 // Item manipulation
 item *action_create_item(level *, float, float, int);

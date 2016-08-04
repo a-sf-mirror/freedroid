@@ -957,9 +957,8 @@ static int lua_npc_list_ctor(lua_State *L)
 		lua_pushnil(L);
 		// Process the lua table
 		while (lua_next(L, -2) != 0) {
-			const char *npc_name;
 			if (lua_type(L, -2) == LUA_TNUMBER && lua_type(L, -1) == LUA_TSTRING) {
-				npc_name = lua_tostring(L, -1);
+				const char *npc_name = lua_tostring(L, -1);
 				npc_add(npc_name);
 			}
 			lua_pop(L, 1);
@@ -976,8 +975,6 @@ static int lua_npc_list_ctor(lua_State *L)
 static int lua_npc_shop_ctor(lua_State *L)
 {
 	char *name = NULL;
-	const char *item_name;
-	int item_weight;
 
 	// Get the name of npc
 	get_value_from_table(L, "name", STRING_TYPE, &name);
@@ -992,18 +989,16 @@ static int lua_npc_shop_ctor(lua_State *L)
 			if (lua_type(L, -1) == LUA_TTABLE) {
 				// get the name of item
 				lua_rawgeti(L, -1, 1);
+				const char *item_name = NULL;
 				if (lua_type(L, -1) == LUA_TSTRING)
 					item_name = lua_tostring(L, -1);
-				else
-					item_name = NULL;
 				lua_pop(L, 1);
 
 				// get the weight of item
 				lua_rawgeti(L, -1, 2);
+				int item_weight = 1;
 				if (lua_type(L, -1) == LUA_TNUMBER)
 					item_weight = lua_to_int(lua_tointeger(L, -1));
-				else
-					item_weight = 1;
 				lua_pop(L, 1);
 
 				// add item to the shoplist of the npc

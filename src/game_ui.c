@@ -285,13 +285,11 @@ static void heat_bar_display(struct widget *w)
 	}
 
 	// Make the bar blink if Tux is overheating.
-	int add = 0;
 	if (Me.temperature > Me.max_temperature) {
 		// Use game date to modify the filling color.
+		int add = (Me.current_game_date - (int)(Me.current_game_date)) * 255;
 		if ((int)(Me.current_game_date) % 2)
-			add = 255 - (Me.current_game_date - (int)(Me.current_game_date)) * 255;
-		else
-			add = (Me.current_game_date - (int)(Me.current_game_date)) * 255;
+			add = 255 - add;
 
 		blue += add;
 		green += add;
@@ -327,7 +325,6 @@ static void quick_inventory_display(struct widget *w)
 {
 	int i;
 	SDL_Rect target_rect;
-	int index;
 	char text[5] = "";
 
 	int step = w->rect.w / 10;
@@ -335,7 +332,8 @@ static void quick_inventory_display(struct widget *w)
 	for (i = 0; i < 10; i++) {
 		sprintf(text, "%d", i < 9 ? i + 1: 0);
 		put_string(Messagestat_Font, w->rect.x + i * step, w->rect.y + 16, text);
-		if (((index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1)) != -1)
+		int index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1);
+		if ((index != -1)
 			&& (Me.Inventory[index].inventory_position.x == i)
 			&& (Me.Inventory[index].inventory_position.y == INVENTORY_GRID_HEIGHT - 1))
 		{
@@ -681,7 +679,7 @@ struct widget_group *get_game_ui()
 		},
 		{
 			{GameConfig.screen_width - 320, 0, 320, 480},
-			(void *)ShowSkillsScreen,
+			(void *)show_skills_screen,
 			_enable_if_skill_panel_open
 		},
 		// This widget, covering the whole screen, avoid mouse event propagation to the other widgets

@@ -45,7 +45,7 @@ static char *get_texture_atlas(const char *fname)
 {
 	char fpath[PATH_MAX];
 	if (find_file(fpath, GRAPHICS_DIR, fname, NULL, PLEASE_INFORM)) {
-		char *dataout = ReadAndMallocAndTerminateFile(fpath, NULL);
+		char *dataout = read_and_malloc_and_terminate_file(fpath, NULL);
 		return dataout;
 	}
 	return NULL;

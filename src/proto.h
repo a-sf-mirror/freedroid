@@ -60,7 +60,7 @@ void ResetGameConfigToDefaultValues(void);
 void gameconfig_clean(void);
 void clear_out_arrays_for_fresh_game(void);
 void next_startup_percentage(int Percentage);
-void ParseCommandLine(int argc, char *const argv[]);
+void parse_command_line(int argc, char *const argv[]);
 void ClearAutomapData(void);
 void InitFreedroid(int, char **);
 void PrepareStartOfNewCharacter(char *startpos);
@@ -321,7 +321,7 @@ void fade_out_screen(void);
 void fade_in_screen(void);
 void InitPictures(void);
 void init_timer(void);
-void InitVideo(void);
+void init_video(void);
 void draw_highlight_rectangle(SDL_Rect);
 void draw_shadowing_rectangle(SDL_Rect);
 int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value, int unit_price);
@@ -350,7 +350,7 @@ void load_and_show_stats(char *CoreFilename);
 // mission.c 
 void CompleteMission(const char *);
 void AssignMission(const char *);
-void GetQuestList(char *QuestListFilename);
+void get_quest_list(char *);
 void clear_tux_mission_info(void);
 void CheckIfMissionIsComplete(void);
 void mission_diary_add(const char *, const char *);
@@ -474,14 +474,14 @@ int MouseCursorIsInChaRect(int x, int y);
 int MouseCursorIsInSkiRect(int x, int y);
 int GetInventorySquare_x(int x);
 int GetInventorySquare_y(int x);
-void DropHeldItemToInventory(void);
+void drop_held_item_to_inventory(void);
 item *drop_item(item *, float, float, int);
 void HandleInventoryScreen(void);
-int try_give_item(item *it);
+int try_give_item(struct item *);
 int give_item(item *);
 void CopyItem(item * SourceItem, item * DestItem);
 void DeleteItem(item * Item);
-void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical);
+void drop_random_item(int, float, float, int, int);
 int get_floor_item_index_under_mouse_cursor(level **item_lvl);
 int item_is_currently_equipped(item * Item);
 enum slot_type get_slot_type_by_name(char *name);
@@ -493,7 +493,7 @@ void create_upgrade_socket(item *, int, const char *);
 void delete_upgrade_sockets(item *);
 void copy_upgrade_sockets(item *, item *);
 int item_can_be_customized(item *);
-int item_can_be_installed_to_socket(item *, item *, int);
+int item_can_be_installed_to_socket(struct item *, struct item *, int);
 struct addon_spec *get_addon_spec(int);
 struct dynarray *get_addon_specs(void);
 void add_addon_spec(struct addon_spec *);
@@ -518,7 +518,7 @@ float get_player_damage_factor(void);
 void LevelEditor(void);
 
 // skills.c
-void ShowSkillsScreen(void);
+void show_skills_screen(void);
 void HandleCurrentlyActivatedSkill(void);
 int do_skill(int skill_index, int SpellCost);
 void do_radial_skill(int skill_index, int pos_x, int pos_y, int from_tux);
@@ -589,7 +589,7 @@ void ShowGenericButtonFromList(int ButtonIndex);
 int mouse_cursor_is_on_that_image(float pos_x, float pos_y, struct image *our_iso_image);
 int MouseCursorIsInRect(const SDL_Rect *, int, int);
 int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
-void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen);
+void *my_memmem(char *, size_t, char *, size_t);
 int init_data_dirs_path();
 int check_directory(const char *, int, int, int);
 int find_file(char *, int, const char *, const char *, int);
@@ -652,7 +652,7 @@ const char *get_sensor_name_by_id(int);
 // text.c
 int get_lines_needed(const char *text, SDL_Rect t_rect, float line_height_factor);
 void show_backgrounded_label_at_map_position(char *LabelText, float fill_status, float pos_x, float pos_y, int zoom_is_on);
-char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, const char *DefaultString);
+char *get_editable_string_in_popup_window(int, const char *, const char *);
 int show_backgrounded_text_rectangle(const char *, struct font *, int, int, int, int);
 int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels);
 void SetNewBigScreenMessage(const char *ScreenMessageText);
@@ -662,10 +662,10 @@ int chat_with_droid(Enemy ChatDroid);
 
 int display_text(const char *, int, int, const SDL_Rect*, float);
 
-int ScrollText(char *text, const char *background_name);
+int scroll_text(char *, const char *);
 
 int ImprovedCheckLineBreak(char *, const SDL_Rect*, float);
-char *get_string(int max_len, const char *background_name, const char *text_for_overhead_promt);
+char *get_string(int, const char *, const char *);
 void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(4,5);
 int longest_line_width(char *text);
 
@@ -679,7 +679,7 @@ void ReadValueFromString(char *SearchBeginPointer, const char *ValuePreceedText,
 			 char *EndOfSearchSectionPointer);
 int ReadRangeFromString(char *SearchString, const char *StartIndicationString, const char *EndIndicationString, int *min, int *max, int default_val);
 int get_range_from_string(const char *str, int *min, int *max, int default_value);
-char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_String);
+char *read_and_malloc_and_terminate_file(const char *, const char *);
 char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer);
 void DebugPrintf(int db_level, const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(2,3);
 void clean_error_msg_store();
@@ -726,13 +726,13 @@ int addon_crafting_ui_visible(void);
 void ShowItemPicture(int, int, int);
 void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem);
 int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWornItems);
-void InitTradeWithCharacter(struct npc *);
+void init_trade_with_character(struct npc *);
 int GreatShopInterface(int, item * ShowPointerList[MAX_ITEMS_IN_INVENTORY], int, item * TuxItemsList[MAX_ITEMS_IN_INVENTORY],
-		       shop_decision *);
+		       struct shop_decision *);
 
 // takeover.c 
 
-int droid_takeover(enemy *, float *);
+int droid_takeover(struct enemy *, float *);
 int do_takeover(int, int, int, enemy *);
 
 void InventPlayground(void);
@@ -829,20 +829,20 @@ int is_friendly(enum faction_id, enum faction_id);
 void init_factions(void);
 
 // obstacle_extension.c
-void *get_obstacle_extension(level *, obstacle *, enum obstacle_extension_type);
+void *get_obstacle_extension(struct level *, struct obstacle *, enum obstacle_extension_type);
 int get_obstacle_index(level *, obstacle *);
 void add_obstacle_extension(level *, obstacle *, enum obstacle_extension_type, void *);
-void del_obstacle_extension(level *, obstacle *, enum obstacle_extension_type);
-void del_obstacle_extensions(level *, obstacle *);
+void del_obstacle_extension(struct level *, struct obstacle *, enum obstacle_extension_type);
+void del_obstacle_extensions(struct level *, struct obstacle *);
 void defrag_obstacle_array(level *);
-void free_obstacle_extensions(level *lvl);
+void free_obstacle_extensions(struct level *);
 
 // map_label.c
 void add_map_label(level *, int, int, char *);
-void del_map_label(level *, const char *);
-void free_map_labels(level *lvl);
-struct map_label *get_map_label(level *, const char *);
-struct map_label *get_map_label_from_coords(level *, float, float);
+void del_map_label(struct level *, const char *);
+void free_map_labels(struct level *);
+struct map_label *get_map_label(struct level *, const char *);
+struct map_label *get_map_label_from_coords(struct level *, float, float);
 struct map_label *map_label_exists(const char *);
 
 // lvledit_display.c
@@ -854,7 +854,7 @@ void free_lvledit_ui();
 
 // waypoint.c
 int add_waypoint(level *, int, int, int);
-void del_waypoint(level *, int, int);
+void del_waypoint(struct level *, int, int);
 int get_waypoint(level *, int, int);
 void move_waypoint(level *, waypoint *, int, int);
 

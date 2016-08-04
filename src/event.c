@@ -159,96 +159,91 @@ void delete_events(void)
  *
  *
  */
-static void load_events(char *EventSectionPointer)
+static void load_events(char *event_section_pointer)
 {
-	char *EventPointer;
-	char *EndOfEvent;
-	char *TempMapLabelName;
-	gps pos;
-	char *TempEnemyFaction;
-	char s;
+	struct gps pos;
 	struct event_trigger temp;
-	char *temp_str;
 
-	EventPointer = EventSectionPointer;
-	while ((EventPointer = strstr(EventPointer, EVENT_TRIGGER_BEGIN_STRING)) != NULL) {
+	char *event_pointer = event_section_pointer;
+	while ((event_pointer = strstr(event_pointer, EVENT_TRIGGER_BEGIN_STRING)) != NULL) {
 		memset(&temp, 0, sizeof(struct event_trigger));
 
-		EventPointer += strlen(EVENT_TRIGGER_BEGIN_STRING) + 1;
+		event_pointer += strlen(EVENT_TRIGGER_BEGIN_STRING) + 1;
 
-		EndOfEvent = LocateStringInData(EventPointer, EVENT_TRIGGER_END_STRING);
-		s = EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1];
-		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = 0;
+		char *end_of_event = LocateStringInData(event_pointer, EVENT_TRIGGER_END_STRING);
+		char s = end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1];
+		end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1] = 0;
 
 		// Determine type of event condition
-		if ((TempMapLabelName = strstr(EventPointer, EVENT_TRIGGER_LABEL_STRING))) {
+		char *temp_map_label_name = strstr(event_pointer, EVENT_TRIGGER_LABEL_STRING);
+		if (temp_map_label_name) {
 			temp.trigger_type = POSITION;
-			TempMapLabelName = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LABEL_STRING, "\"");
-			pos = get_map_label_center(TempMapLabelName);
+			temp_map_label_name = ReadAndMallocStringFromData(event_pointer, EVENT_TRIGGER_LABEL_STRING, "\"");
+			pos = get_map_label_center(temp_map_label_name);
 			temp.trigger.position.x = (int)pos.x;
 			temp.trigger.position.y = (int)pos.y;
 			temp.trigger.position.lvl = pos.z;
-			free(TempMapLabelName);
-			ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
-						&temp.silent, EndOfEvent);
-			ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_TELEPORTED, "%d", "-1",
-						&temp.trigger.position.teleported, EndOfEvent);
-		} else if (strstr(EventPointer, LEVEL_CHANGE_TRIGGER)) {
+			free(temp_map_label_name);
+			ReadValueFromStringWithDefault(event_pointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
+						&temp.silent, end_of_event);
+			ReadValueFromStringWithDefault(event_pointer, EVENT_TRIGGER_TELEPORTED, "%d", "-1",
+						&temp.trigger.position.teleported, end_of_event);
+		} else if (strstr(event_pointer, LEVEL_CHANGE_TRIGGER)) {
 			temp.trigger_type = CHANGE_LEVEL;
-			ReadValueFromStringWithDefault(EventPointer, LEVEL_CHANGE_ENTERING, "%d", "-1",
-						&temp.trigger.change_level.enter_level, EndOfEvent);
-			ReadValueFromStringWithDefault(EventPointer, LEVEL_CHANGE_EXITING, "%d", "-1",
-						&temp.trigger.change_level.exit_level, EndOfEvent);
-		} else if (strstr(EventPointer, ENEMY_TRIGGER)) {
-			if (strstr(EventPointer, ENEMY_DEATH_TRIGGER)) {
+			ReadValueFromStringWithDefault(event_pointer, LEVEL_CHANGE_ENTERING, "%d", "-1",
+						&temp.trigger.change_level.enter_level, end_of_event);
+			ReadValueFromStringWithDefault(event_pointer, LEVEL_CHANGE_EXITING, "%d", "-1",
+						&temp.trigger.change_level.exit_level, end_of_event);
+		} else if (strstr(event_pointer, ENEMY_TRIGGER)) {
+			if (strstr(event_pointer, ENEMY_DEATH_TRIGGER)) {
 				temp.trigger_type = ENEMY_DEATH;
 			} else  {
 				temp.trigger_type = ENEMY_HACK;
 			}
-			ReadValueFromStringWithDefault(EventPointer, ENEMY_LVLNUM, "%d", "-1",
-						&temp.trigger.enemy_event.lvl, EndOfEvent);
-			if (strstr(EventPointer, ENEMY_FACTION)) {
-				TempEnemyFaction = ReadAndMallocStringFromData(EventPointer, ENEMY_FACTION, "\"");
-				temp.trigger.enemy_event.faction = get_faction_id(TempEnemyFaction);
-				free(TempEnemyFaction);
+			ReadValueFromStringWithDefault(event_pointer, ENEMY_LVLNUM, "%d", "-1",
+						&temp.trigger.enemy_event.lvl, end_of_event);
+			if (strstr(event_pointer, ENEMY_FACTION)) {
+				char *temp_enemy_faction = ReadAndMallocStringFromData(event_pointer, ENEMY_FACTION, "\"");
+				temp.trigger.enemy_event.faction = get_faction_id(temp_enemy_faction);
+				free(temp_enemy_faction);
 			} else {
 				temp.trigger.enemy_event.faction = -1;
 			}
-			if (strstr(EventPointer, ENEMY_DIALOG_NAME)) {
-				temp.trigger.enemy_event.dialog_name = ReadAndMallocStringFromData(EventPointer, ENEMY_DIALOG_NAME, "\"");
+			if (strstr(event_pointer, ENEMY_DIALOG_NAME)) {
+				temp.trigger.enemy_event.dialog_name = ReadAndMallocStringFromData(event_pointer, ENEMY_DIALOG_NAME, "\"");
 			} else {
 				temp.trigger.enemy_event.dialog_name = NULL;
 			}
-			ReadValueFromStringWithDefault(EventPointer, ENEMY_MARKER, "%d", "-1",
-						&temp.trigger.enemy_event.marker, EndOfEvent);
-		} else if (strstr(EventPointer, OBSTACLE_ACTION_TRIGGER)) {
+			ReadValueFromStringWithDefault(event_pointer, ENEMY_MARKER, "%d", "-1",
+						&temp.trigger.enemy_event.marker, end_of_event);
+		} else if (strstr(event_pointer, OBSTACLE_ACTION_TRIGGER)) {
 			temp.trigger_type = OBSTACLE_ACTION;
-			ReadValueFromStringWithDefault(EventPointer, OBSTACLE_ACTION_LVLNUM, "%d", "-1",
-						&temp.trigger.obstacle_action.lvl, EndOfEvent);
-			temp_str = ReadAndMallocStringFromDataOptional(EventPointer, OBSTACLE_ACTION_TYPE, "\"");
+			ReadValueFromStringWithDefault(event_pointer, OBSTACLE_ACTION_LVLNUM, "%d", "-1",
+						&temp.trigger.obstacle_action.lvl, end_of_event);
+			char *temp_str = ReadAndMallocStringFromDataOptional(event_pointer, OBSTACLE_ACTION_TYPE, "\"");
 			if (temp_str) {
 				temp.trigger.obstacle_action.type = get_obstacle_type_by_name(temp_str);
 				free(temp_str);
 			} else {
 				temp.trigger.obstacle_action.type = -1;
 			}
-			temp.trigger.obstacle_action.label = ReadAndMallocStringFromDataOptional(EventPointer, OBSTACLE_ACTION_LABEL, "\"");
+			temp.trigger.obstacle_action.label = ReadAndMallocStringFromDataOptional(event_pointer, OBSTACLE_ACTION_LABEL, "\"");
 		}
 
-		temp.name = ReadAndMallocStringFromDataOptional(EventPointer, EVENT_TRIGGER_NAME_MARKED_STRING, "\"");
+		temp.name = ReadAndMallocStringFromDataOptional(event_pointer, EVENT_TRIGGER_NAME_MARKED_STRING, "\"");
 		if (!temp.name) {
-			temp.name = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_NAME_STRING, "\"");
+			temp.name = ReadAndMallocStringFromData(event_pointer, EVENT_TRIGGER_NAME_STRING, "\"");
 		}
 
 		temp.lua_code =
-			ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LUACODE_STRING, EVENT_TRIGGER_LUACODE_END_STRING);
+			ReadAndMallocStringFromData(event_pointer, EVENT_TRIGGER_LUACODE_STRING, EVENT_TRIGGER_LUACODE_END_STRING);
 
-		ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_ENABLED_STRING, "%d", "1",
-						&temp.enabled, EndOfEvent);
+		ReadValueFromStringWithDefault(event_pointer, EVENT_TRIGGER_ENABLED_STRING, "%d", "1",
+						&temp.enabled, end_of_event);
 
-		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = '\0';
+		end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1] = '\0';
 
-		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = s;
+		end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1] = s;
 
 		dynarray_add(&event_triggers, &temp, sizeof(struct event_trigger));
 	}			// While Event trigger begin string found...
@@ -267,7 +262,7 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename)
 
 	find_file(fpath, MAP_DIR, EventsAndEventTriggersFilename, NULL, PLEASE_INFORM | IS_FATAL);
 	EventSectionPointer =
-		ReadAndMallocAndTerminateFile(fpath, "*** END OF EVENT ACTION AND EVENT TRIGGER FILE *** LEAVE THIS TERMINATOR IN HERE ***");
+		read_and_malloc_and_terminate_file(fpath, "*** END OF EVENT ACTION AND EVENT TRIGGER FILE *** LEAVE THIS TERMINATOR IN HERE ***");
 
 	load_events(EventSectionPointer);
 
@@ -421,13 +416,12 @@ void event_obstacle_action(obstacle *o)
  */
 const char *teleporter_square_below_mouse_cursor(void)
 {
-	finepoint MapPositionOfMouse;
-	struct event_trigger *arr;
-
 	if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y())) {
-		MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
-		MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
- 		arr = visible_event_at_location((int)MapPositionOfMouse.x, (int)MapPositionOfMouse.y, Me.pos.z);
+		struct finepoint map_position_of_mouse;
+		map_position_of_mouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
+		map_position_of_mouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
+
+		struct event_trigger *arr = visible_event_at_location((int)map_position_of_mouse.x, (int)map_position_of_mouse.y, Me.pos.z);
 		if (arr)
 			return D_(arr->name);
 	}

@@ -244,10 +244,9 @@ void fusion(int id, int cible)
 		new_owner = id;
 	else
 		new_owner = cible;
-	int x, y;
 	for (k = 0; k < l; k++) {
-		x = cplist[correct_directory[k]].x;
-		y = cplist[correct_directory[k]].y;
+		int x = cplist[correct_directory[k]].x;
+		int y = cplist[correct_directory[k]].y;
 		mapgen_put_tile(x, y, TILE_PARTITION, new_owner);
 	}
 
@@ -295,12 +294,12 @@ static void bulldozer(unsigned char *seen, int r)
 
 static void launch_buldo()
 {
-	int r, i, recalculate_components;
 	unsigned char seen[total_rooms];
 	unsigned char connected_to_room_0[total_rooms];
 	memset(seen, 0, total_rooms);
 
 	// Start bulldozers so that every room has been seen
+	int r;
 	for (r = 0; r < total_rooms; r++) {
 		if (!(seen[r])) {
 			bulldozer(seen, r);
@@ -312,8 +311,9 @@ static void launch_buldo()
 	// a component that is not 0's to 0's whenever possible, until we have
 	// connectivity.
 	while (!mapgen_is_connected(connected_to_room_0)) {
-		recalculate_components = 0;
+		int recalculate_components = 0;
 		// Find the first room that is not connected to room 0
+		int i;
 		for (i = 1; i < total_rooms && !recalculate_components; i++) {
 			if (!connected_to_room_0[i]) {
 				// See if we can connect it to a room that belongs to 0's connected component

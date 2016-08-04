@@ -80,17 +80,16 @@ static int MouseCursorIsOverMenuItem(int first_menu_item_pos_y, int h)
  *
  *
  */
-static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu_item_pos_y, const char *background_name, void *MenuFont)
+static void print_menu_text(char *initial_text, char *menu_texts[], int first_menu_item_pos_y, const char *background_name, void *menu_font)
 {
-	char open_gl_string[2000];
-
 	InitiateMenu(background_name);
 
 	// Maybe if this is the very first startup menu, we should also print
 	// out some status variables like whether using OpenGL or not DIRECTLY
 	// ON THE MENU SCREEN...
 	//
-	if (!strcmp(MenuTexts[0], SINGLE_PLAYER_STRING)) {
+	if (!strcmp(menu_texts[0], SINGLE_PLAYER_STRING)) {
+		char open_gl_string[2000];
 		put_string_right(FPS_Display_Font, GameConfig.screen_height - 0.7 * get_font_height(get_current_font()), freedroid_version);
 		// printf ("\n%s %s  \n", PACKAGE, VERSION);
 #ifdef HAVE_LIBGL
@@ -109,10 +108,10 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 	// Now that the possible font-changing small info printing is
 	// done, we can finally set the right font for the menu itself.
 	//
-	if (MenuFont == NULL)
+	if (menu_font == NULL)
 		set_current_font(Menu_Font);
 	else
-		set_current_font((struct font *) MenuFont);
+		set_current_font((struct font *) menu_font);
 
 };				// void print_menu_text ( ... )
 

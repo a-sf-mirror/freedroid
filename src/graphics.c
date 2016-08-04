@@ -47,22 +47,23 @@ static const SDL_VideoInfo *vid_info;
 void blit_mouse_cursor(void)
 {
 	static int loaded = FALSE;
-	int i;
 	static struct image mouse_cursors[16];
-	char constructed_filename[2000];
-	int cursor_index = (-1);
-	point cursoff = { 0, 0 };
 
 	// On the first function call ever, we load the surfaces for the
 	// flags into memory.
 	//
 	if (!loaded) {
+		int i;
 		for (i = 0; i < 10; i++) {
+			char constructed_filename[2000];
 			sprintf(constructed_filename, "cursors/mouse_cursor_%04d.png", i);
 			load_image(&mouse_cursors[i], GUI_DIR, constructed_filename, NO_MOD);
 		}
 		loaded = TRUE;
 	}
+
+	int cursor_index = -1;
+	struct point cursoff = { 0, 0 };
 
 	switch (mouse_cursor) {
 	case MOUSE_CURSOR_SCROLL_UP:
@@ -764,12 +765,8 @@ static void set_video_mode_for_open_gl(void)
  * This function initialises the video display and opens up a 
  * window for graphics display.
  */
-void InitVideo(void)
+void init_video(void)
 {
-	char vid_driver[81];
-	Uint32 video_flags = 0;	// flags for SDL video mode 
-	char fpath[PATH_MAX];
-
 	// Tell SDL to center the window once we make it
 	putenv("SDL_VIDEO_CENTERED=1");
 
@@ -778,6 +775,7 @@ void InitVideo(void)
 	//
 	// NOTE:  This has got NOTHING to do with OpenGL and OpenGL venour or the like yet...
 	//
+	char vid_driver[81];
 	if (SDL_VideoDriverName(vid_driver, 80)) {
 		DebugPrintf(-4, "\nVideo system type: %s.", vid_driver);
 	} else {
@@ -806,6 +804,7 @@ void InitVideo(void)
 	if (use_open_gl) {
 		set_video_mode_for_open_gl();
 	} else {
+		Uint32 video_flags = 0;	// flags for SDL video mode
 		if (GameConfig.fullscreen_on)
 			video_flags |= SDL_FULLSCREEN;
 
@@ -839,6 +838,7 @@ void InitVideo(void)
 		sprintf(window_title_string, "FreedroidRPG %s", VERSION);
 		SDL_WM_SetCaption(window_title_string, "");
 
+		char fpath[PATH_MAX];
 		if (find_file(fpath, GUI_DIR, ICON_FILE, NULL, PLEASE_INFORM)) {
 			SDL_Surface *icon = IMG_Load(fpath);
 			SDL_WM_SetIcon(icon, NULL);

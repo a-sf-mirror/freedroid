@@ -302,18 +302,16 @@ static void get_excpt_list(char *section_pointer)
 static void load_excpt_lists(char *filename)
 {
 	char fpath[PATH_MAX];
-	char *main_file_pointer;
-	char *section_pointer;
 
 #	define START_OF_DATA_STRING   "*** Beginning of LevelValidator Exceptions List ***"
 #	define END_OF_DATA_STRING     "*** End of LevelValidator Exceptions List ***"
 
 	// Read whole file in memory
 	if (find_file(fpath, MAP_DIR, filename, NULL, NO_REPORT)) {
-		main_file_pointer = ReadAndMallocAndTerminateFile(fpath, END_OF_DATA_STRING);
+		char *main_file_pointer = read_and_malloc_and_terminate_file(fpath, END_OF_DATA_STRING);
 
 		// Search beginning of list
-		section_pointer = strstr(main_file_pointer, START_OF_DATA_STRING);
+		char *section_pointer = strstr(main_file_pointer, START_OF_DATA_STRING);
 		if (section_pointer == NULL) {
 			error_message(__FUNCTION__, "Start of exceptions list not found!", PLEASE_INFORM);
 			return;
@@ -339,12 +337,11 @@ static int lookup_exception(struct level_validator *this, void *opaque_data)
 		return FALSE;
 
 	struct lvlval_excpt_item *item;
-	int rtn;
 
 	// Loop on each item in the list, and call the validator's comparator
 
 	list_for_each_entry(item, &(this->excpt_list), node) {
-		rtn = this->cmp(item->opaque_data, opaque_data);
+		int rtn = this->cmp(item->opaque_data, opaque_data);
 		if (rtn) {
 			item->caught = TRUE;	// Mark the exception has caught
 			return TRUE;

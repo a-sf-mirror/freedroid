@@ -398,7 +398,7 @@ in graphics displayed, but FreedroidRPG will continue to work.", NO_REPORT, offs
 	// That means, that we can now use the (otherwise terminating) read-and-malloc-...
 	// functions.
 	//
-	offset_data = ReadAndMallocAndTerminateFile(offset_file_name, END_OF_OFFSET_FILE_STRING);
+	offset_data = read_and_malloc_and_terminate_file(offset_file_name, END_OF_OFFSET_FILE_STRING);
 
 	ReadValueFromString(offset_data, OFFSET_FILE_OFFSETX_STRING, "%hd", &(our_iso_image->offset_x), offset_data + strlen(offset_data));
 

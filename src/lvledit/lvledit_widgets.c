@@ -616,9 +616,8 @@ struct widget_group *get_lvledit_ui()
 	int i, j;
 
 	// Build buttons using the array above.
-	struct widget_button *button;
 	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
-		button = widget_button_create();
+		struct widget_button *button = widget_button_create();
 
 		// Set text and tooltip.
 		button->text = b[i].text; 

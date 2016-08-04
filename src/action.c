@@ -126,7 +126,6 @@ static void find_dropable_position_near_chest(float *item_x, float *item_y, int 
  */
 static void throw_out_all_chest_content(int obst_index)
 {
-	int i = 0;
 	float item_x, item_y;
 	int drop_count = 0;
 	level *lvl = CURLEVEL();
@@ -137,6 +136,7 @@ static void throw_out_all_chest_content(int obst_index)
 
 	if (item_list) {
 		drop_count = item_list->size;
+		int i;
 		for (i = 0; i < drop_count; i++) {
 
 			item *it = &((item *)item_list->arr)[i];
@@ -158,7 +158,7 @@ static void throw_out_all_chest_content(int obst_index)
 	// If the chest was empty, maybe generate a random item to be dropped
 	if (!drop_count) {
 		find_dropable_position_near_chest(&item_x, &item_y, obst_index, lvl);
-		DropRandomItem(Me.pos.z, item_x, item_y, lvl->drop_class, FALSE);
+		drop_random_item(Me.pos.z, item_x, item_y, lvl->drop_class, FALSE);
 	}
 }
 
@@ -200,8 +200,6 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl, int clickable_only)
 {
 #define HOVER_CHECK_DIST 2
 #define SIDE_LENGTH (HOVER_CHECK_DIST * 2 + 1)
-	finepoint MapPositionOfMouse;
-	int i, j, x, y;
 	int return_index = -1, obst_index = 0;
 	float obst_normal = 0, max_normal = 0;
 
@@ -214,10 +212,11 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl, int clickable_only)
 		return -1;
 
 	// We find the position of the mouse cursor on the floor.
-	MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
-	MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
+	struct finepoint map_position_of_mouse;
+	map_position_of_mouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
+	map_position_of_mouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 
-	gps mouse_target_vpos = { MapPositionOfMouse.x, MapPositionOfMouse.y, Me.pos.z };
+	gps mouse_target_vpos = { map_position_of_mouse.x, map_position_of_mouse.y, Me.pos.z };
 	gps mouse_target_pos;
 	if (!resolve_virtual_position(&mouse_target_pos, &mouse_target_vpos))
 		return -1;
@@ -228,14 +227,16 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl, int clickable_only)
 
 	// Iterate through a square area of tiles with sides HOVER_CHECK_DIST * 2 + 1
 	// centered on the tile under the mouse
+	int i;
 	for (i = 0; i < pow(SIDE_LENGTH, 2); i++) {
-		y = i / SIDE_LENGTH - HOVER_CHECK_DIST - 1  + mouse_target_pos.y;
-		x = i % SIDE_LENGTH - HOVER_CHECK_DIST - 1  + mouse_target_pos.x;
+		int y = i / SIDE_LENGTH - HOVER_CHECK_DIST - 1  + mouse_target_pos.y;
+		int x = i % SIDE_LENGTH - HOVER_CHECK_DIST - 1  + mouse_target_pos.x;
 
 		if (!pos_inside_level(x, y, lvl))
 			continue;
 
 		// Iterate through all candidate obstacles on this tile
+		int j;
 		for (j = 0; j < lvl->map[y][x].glued_obstacles.size; j++) {
 			obst_index = ((int *)(lvl->map[y][x].glued_obstacles.arr))[j];
 			obst_normal = lvl->obstacle_list[obst_index].pos.x + lvl->obstacle_list[obst_index].pos.y;

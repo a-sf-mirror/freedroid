@@ -33,6 +33,7 @@
 //#include "struct.h"
 //#include "lists.h"
 #include <time.h>
+#include "config.h"
 
 #ifdef WITH_RTPROF
 

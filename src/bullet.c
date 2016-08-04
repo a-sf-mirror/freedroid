@@ -687,7 +687,6 @@ int check_bullet_player_collisions(struct bullet *current_bullet)
  */
 int check_bullet_enemy_collisions(struct bullet *current_bullet)
 {
-	double xdist, ydist;
 	int lvl = current_bullet->pos.z;
 
 	// Check for collision with enemys
@@ -696,8 +695,8 @@ int check_bullet_enemy_collisions(struct bullet *current_bullet)
 	BROWSE_LEVEL_BOTS_SAFE(ThisRobot, nerot, lvl) {
 		// Check several hitting conditions
 		//
-		xdist = current_bullet->pos.x - ThisRobot->pos.x;
-		ydist = current_bullet->pos.y - ThisRobot->pos.y;
+		double xdist = current_bullet->pos.x - ThisRobot->pos.x;
+		double ydist = current_bullet->pos.y - ThisRobot->pos.y;
 
 		if ((xdist * xdist + ydist * ydist) >= DROIDHITDIST2)
 			continue;

@@ -190,7 +190,7 @@ void leveleditor_process_input()
 	level_editor_auto_scroll();
 
 	if (EscapePressed()) {
-		level_editor_done = DoLevelEditorMainMenu();
+		level_editor_done = do_level_editor_main_menu();
 	}
 	while (EscapePressed())
 		SDL_Delay(1);

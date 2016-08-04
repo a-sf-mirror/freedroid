@@ -43,11 +43,10 @@ static int toolbar_mousepress(struct widget *vt, SDL_Event *event, int select)
 {
 	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 	int i;
-	int x;
 	int idx = -1;
 
 	for (i = 0; i < num_blocks_per_line; i++) {
-		x = INITIAL_BLOCK_WIDTH / 2 + INITIAL_BLOCK_WIDTH * i;
+		int x = INITIAL_BLOCK_WIDTH / 2 + INITIAL_BLOCK_WIDTH * i;
 
 		if (event->button.x > x && event->button.x < x + INITIAL_BLOCK_WIDTH)
 			idx = cs->toolbar_first_block + i;

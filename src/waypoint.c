@@ -67,7 +67,7 @@ int add_waypoint(level *lvl, int x, int y, int suppress_random_spawn)
  * \param x The x position of the waypoint
  * \param y The y position of the waypoint
  */
-void del_waypoint(level *lvl, int x, int y)
+void del_waypoint(struct level *lvl, int x, int y)
 {
 	// Delete the waypoint on the map
 	int wpnum = get_waypoint(lvl, x, y);
@@ -78,7 +78,7 @@ void del_waypoint(level *lvl, int x, int y)
 	dynarray_del(&lvl->waypoints, wpnum, sizeof(struct waypoint));
 
 	// Delete the connections of the waypoint
-	waypoint *wpts = lvl->waypoints.arr;
+	struct waypoint *wpts = lvl->waypoints.arr;
 	int i, j;
 
 	for (i = 0; i < lvl->waypoints.size; i++) {

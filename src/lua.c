@@ -575,7 +575,7 @@ static int lua_event_trade_with(lua_State * L)
 	const char *cname = luaL_checkstring(L, 1);
 
 	struct npc *n = npc_get(cname);
-	InitTradeWithCharacter(n);
+	init_trade_with_character(n);
 
 	return 0;
 }
@@ -883,7 +883,7 @@ static int lua_user_input_string(lua_State *L)
 	const char *title = luaL_checkstring(L, 1);
 	const char *default_str = luaL_optstring(L, 2, "");
 
-	const char *str = GetEditableStringInPopupWindow(100, title, default_str);
+	const char *str = get_editable_string_in_popup_window(100, title, default_str);
 
 	if (!str)
 		str = strdup("");
@@ -1067,11 +1067,11 @@ static int lua_exit_game(lua_State *L)
 
 static int lua_find_file(lua_State *L)
 {
-	char fpath[PATH_MAX];
 	const char *filename = (char *)luaL_checkstring(L, 1);
 	int subdir_handle    = lua_to_int(luaL_checkinteger(L, 2));
 
 	if (subdir_handle >= 0 && subdir_handle < LAST_DATA_DIR) {
+		char fpath[PATH_MAX];
 		if (find_file(fpath, subdir_handle, filename, NULL, PLEASE_INFORM)) {
 			lua_pushstring(L, fpath);
 			return 1;

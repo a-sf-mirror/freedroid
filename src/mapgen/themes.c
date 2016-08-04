@@ -85,27 +85,26 @@ static int set_generic_wall(int x, int y, int wall, int theme)
 	// A value '1' of 'processed' means that data was processed, otherwise
 	// the caller should process them itself.
 	int processed = 1;
-	int obs_type;
 	int room = mapgen_get_room(x, y);
 	int period = room != -1 ? rooms[room].period : 0;
 	if (wall & WALL_PART) {
 		if (wall & WALL_N) {
-			obs_type = theme_data[theme].wall_n;
+			int obs_type = theme_data[theme].wall_n;
 			if (period && !(x % period))
 				obs_type = theme_data[theme].window_wall_h;
 			mapgen_add_obstacle(x + 0.5, y, obs_type);
 		} else if (wall & WALL_S) {
-			obs_type = theme_data[theme].wall_n;
+			int obs_type = theme_data[theme].wall_n;
 			if (period && !(x % period))
 				obs_type = theme_data[theme].window_wall_h;
 			mapgen_add_obstacle(x + 0.5, y + 1, obs_type);
 		} else if (wall & WALL_W) {
-			obs_type = theme_data[theme].wall_w;
+			int obs_type = theme_data[theme].wall_w;
 			if (period && !(y % period))
 				obs_type = theme_data[theme].window_wall_v;
 			mapgen_add_obstacle(x, y + 0.5, obs_type);
 		} else if (wall & WALL_E) {
-			obs_type = theme_data[theme].wall_w;
+			int obs_type = theme_data[theme].wall_w;
 			if (period && !(y % period))
 				obs_type = theme_data[theme].window_wall_v;
 			mapgen_add_obstacle(x + 1, y + 0.5, obs_type);
@@ -450,7 +449,6 @@ static int place_main_room(int room)
 	int y = rooms[room].y + rooms[room].h / 2;
 	int i = MyRandom(3);
 	int obj;
-	int w, h;
 
 	if (rooms[room].w < 8 || rooms[room].h < 8)
 		return 0;
@@ -477,8 +475,8 @@ static int place_main_room(int room)
 	while (n--) {
 		i = (i + 1) % 4;
 		obj = ISO_CONFERENCE_TABLE_N + i;
-		w = OBSTACLE_DIM_X(obj) / 2;
-		h = OBSTACLE_DIM_Y(obj) / 2;
+		int w = OBSTACLE_DIM_X(obj) / 2;
+		int h = OBSTACLE_DIM_Y(obj) / 2;
 		mapgen_add_obstacle(x + w * dx[i], y + h * dy[i], obj);
 	}
 

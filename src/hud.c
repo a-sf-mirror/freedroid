@@ -276,17 +276,10 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
  */
 static void prepare_text_window_content(struct auto_string *str, SDL_Rect *rect)
 {
-	point CurPos;
-	point inv_square;
-	int InvIndex;
-	int index_of_obst_below_mouse_cursor = (-1);
-	int index_of_floor_item_below_mouse_cursor = (-1);
+	struct point current_pos = { GetMousePos_x(), GetMousePos_y() };
 
-	CurPos.x = GetMousePos_x();
-	CurPos.y = GetMousePos_y();
-
-	rect->x = CurPos.x + 20;
-	rect->y = CurPos.y;
+	rect->x = current_pos.x + 20;
+	rect->y = current_pos.y;
 
 	autostr_printf(str, "");
 
@@ -309,30 +302,31 @@ static void prepare_text_window_content(struct auto_string *str, SDL_Rect *rect)
 	else if (GameConfig.Inventory_Visible) {
 		// Perhaps the cursor is over some item of the inventory?
 		// let's check this case first.
-		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
-			inv_square.x = GetInventorySquare_x(CurPos.x);
-			inv_square.y = GetInventorySquare_y(CurPos.y);
-			InvIndex = GetInventoryItemAt(inv_square.x, inv_square.y);
-			if (InvIndex != (-1)) {
-				append_item_description(str, &(Me.Inventory[InvIndex]));
+		if (MouseCursorIsInInventoryGrid(current_pos.x, current_pos.y)) {
+			struct point inv_square;
+			inv_square.x = GetInventorySquare_x(current_pos.x);
+			inv_square.y = GetInventorySquare_y(current_pos.y);
+			int inv_index = GetInventoryItemAt(inv_square.x, inv_square.y);
+			if (inv_index != (-1)) {
+				append_item_description(str, &(Me.Inventory[inv_index]));
 				rect->x =
-				    (Me.Inventory[InvIndex].inventory_position.x +
-				     ItemMap[Me.Inventory[InvIndex].type].inv_size.x) * 30 + 16;
+				    (Me.Inventory[inv_index].inventory_position.x +
+				     ItemMap[Me.Inventory[inv_index].type].inv_size.x) * 30 + 16;
 				rect->y = 300;
 			}
-		} else if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y)) {
+		} else if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, current_pos.x, current_pos.y)) {
 			if (Me.weapon_item.type > 0) {
 				append_item_description(str, &(Me.weapon_item));
 				rect->x = WEAPON_RECT_X + 30 + WEAPON_RECT_WIDTH;
 				rect->y = WEAPON_RECT_Y - 30;
 			}
-		} else if (MouseCursorIsOnButton(DRIVE_RECT_BUTTON, CurPos.x, CurPos.y)) {
+		} else if (MouseCursorIsOnButton(DRIVE_RECT_BUTTON, current_pos.x, current_pos.y)) {
 			if (Me.drive_item.type > 0) {
 				append_item_description(str, &(Me.drive_item));
 				rect->x = DRIVE_RECT_X + 30 + DRIVE_RECT_WIDTH;
 				rect->y = DRIVE_RECT_Y - 30;
 			}
-		} else if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y)) {
+		} else if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, current_pos.x, current_pos.y)) {
 			if (Me.shield_item.type > 0) {
 				append_item_description(str, &(Me.shield_item));
 				rect->x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
@@ -344,13 +338,13 @@ static void prepare_text_window_content(struct auto_string *str, SDL_Rect *rect)
 					rect->y = SHIELD_RECT_Y - 30;
 				}
 			}
-		} else if (MouseCursorIsOnButton(ARMOUR_RECT_BUTTON, CurPos.x, CurPos.y)) {
+		} else if (MouseCursorIsOnButton(ARMOUR_RECT_BUTTON, current_pos.x, current_pos.y)) {
 			if (Me.armour_item.type > 0) {
 				append_item_description(str, &(Me.armour_item));
 				rect->x = ARMOUR_RECT_X + 30 + ARMOUR_RECT_WIDTH;
 				rect->y = ARMOUR_RECT_Y - 30;
 			}
-		} else if (MouseCursorIsOnButton(HELMET_RECT_BUTTON, CurPos.x, CurPos.y)) {
+		} else if (MouseCursorIsOnButton(HELMET_RECT_BUTTON, current_pos.x, current_pos.y)) {
 			if (Me.special_item.type > 0) {
 				append_item_description(str, &(Me.special_item));
 				rect->x = HELMET_RECT_X + 30 + HELMET_RECT_WIDTH;
@@ -361,13 +355,13 @@ static void prepare_text_window_content(struct auto_string *str, SDL_Rect *rect)
 
 	// Check if the crafting UI is open and the cursor is inside it.
 	// No banner should be shown if that's the case.
-	if (cursor_is_on_addon_crafting_ui(&CurPos)) {
+	if (cursor_is_on_addon_crafting_ui(&current_pos)) {
 		return;
 	}
 
 	// Check if the item upgrade UI is open and the cursor is inside it.
 	// We show a tooltip for the item upgrade UI if that's the case.
-	if (append_item_upgrade_ui_tooltip(&CurPos, str)) {
+	if (append_item_upgrade_ui_tooltip(&current_pos, str)) {
 		return;
 	}
 
@@ -377,10 +371,10 @@ static void prepare_text_window_content(struct auto_string *str, SDL_Rect *rect)
 	// black rectangle in the top status banner.
 	//
 
-	if (MouseCursorIsInUserRect(CurPos.x, CurPos.y)) {
+	if (MouseCursorIsInUserRect(current_pos.x, current_pos.y)) {
 		level *obj_lvl = NULL;
 		
-		index_of_floor_item_below_mouse_cursor = get_floor_item_index_under_mouse_cursor(&obj_lvl);
+		int index_of_floor_item_below_mouse_cursor = get_floor_item_index_under_mouse_cursor(&obj_lvl);
 		
 		if (index_of_floor_item_below_mouse_cursor != (-1) && obj_lvl != NULL) {
 			gps item_vpos;
@@ -395,7 +389,7 @@ static void prepare_text_window_content(struct auto_string *str, SDL_Rect *rect)
 		// Display Clickable Obstacle label  in the top status banner.
 		//
 		obj_lvl = NULL;
-		index_of_obst_below_mouse_cursor = clickable_obstacle_below_mouse_cursor(&obj_lvl, TRUE);
+		int index_of_obst_below_mouse_cursor = clickable_obstacle_below_mouse_cursor(&obj_lvl, TRUE);
 		if (index_of_obst_below_mouse_cursor != (-1)) {
 			gps obst_vpos;
 			update_virtual_position(&obst_vpos, &(obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].pos), Me.pos.z);
@@ -603,7 +597,7 @@ static void show_top_left_text(void)
 	SDL_Rect clip;
 	int i;
 	int remaining_bots;
-	static struct auto_string *txt;
+	static struct auto_string *txt = NULL;
 	if (txt == NULL)
 		txt = alloc_autostr(200);
 	autostr_printf(txt, "");
@@ -645,12 +639,11 @@ static void show_top_left_text(void)
  */
 static void show_top_right_text(void)
 {
-	char level_name_and_time[1000];
-	char temp_text[1000];
-
 	// We display the name of the current level and the current time inside
 	// the game.
 	if (!(GameConfig.CharacterScreen_Visible || GameConfig.SkillScreen_Visible)) {
+		char level_name_and_time[1000];
+		char temp_text[1000];
 		if (GameConfig.Draw_Position) {
 			sprintf(level_name_and_time, "%s (%03.1f:%03.1f:%d)  ",
 				D_(curShip.AllLevels[Me.pos.z]->Levelname), Me.pos.x, Me.pos.y, Me.pos.z);

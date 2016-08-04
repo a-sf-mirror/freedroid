@@ -66,7 +66,7 @@ int amask = 0x000000FF;
 
 static int old_current_level = -1;
 
-void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, uint8_t active_directions[RADIAL_SPELL_DIRECTIONS], float age);
+void put_radial_blue_sparks(float, float, float, int, uint8_t[], float);
 
 struct blitting_list_element {
 	int element_type;
@@ -138,7 +138,7 @@ void PutMiscellaneousSpellEffects(void)
 	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
 		if (AllActiveSpells[i].img_type == (-1))
 			continue;
-		PutRadialBlueSparks(AllActiveSpells[i].spell_center.x,
+		put_radial_blue_sparks(AllActiveSpells[i].spell_center.x,
 				    AllActiveSpells[i].spell_center.y,
 				    AllActiveSpells[i].spell_radius, AllActiveSpells[i].img_type,
 				    AllActiveSpells[i].active_directions, AllActiveSpells[i].spell_age);
@@ -606,10 +606,11 @@ void get_visible_levels()
 	// Add or re-validate entries in the visible_level list
 
 	int i, j;
-	float latitude;		// distance, along Y axis, between Tux and the current neighbor
-	float longitude;	// distance, along X axis, between Tux and the current neighbor
 
 	for (j = top_idx; j <= bottom_idx; j++) {
+		float latitude;		// distance, along Y axis, between Tux and the current neighbor
+		float longitude;	// distance, along X axis, between Tux and the current neighbor
+
 		// if j==1, then current neighbor is at the same 'latitude' than Tux's level,
 		// so latitude = 0.0
 		latitude = (j == 1) ? 0.0 : top_or_bottom_distance;
@@ -651,15 +652,13 @@ void get_visible_levels()
 	// of 'gps_transform_matrix' (there is no gps transformation between two
 	// unconnected levels).
 	
-	struct neighbor_data_cell *transform_data;
-	
 	if (old_current_level != Me.pos.z) {
 		old_current_level = Me.pos.z;
 		
 		list_for_each_entry_safe(e, n, &visible_level_list, node) {
 			if (e->valid)
 				continue;
-			transform_data = &gps_transform_matrix[Me.pos.z][e->lvl_pointer->levelnum];
+			struct neighbor_data_cell *transform_data = &gps_transform_matrix[Me.pos.z][e->lvl_pointer->levelnum];
 			if (!transform_data->valid) {
 				// useless entry: removing it from the linked list
 				clear_animated_obstacle_list(e);
@@ -2298,10 +2297,8 @@ void blit_tux(int x, int y)
  * something else more sensible.  This function is here to blit these
  * comments, that must have been set before, to the screen.
  */
-void PrintCommentOfThisEnemy(enemy * e)
+void print_comment_of_this_enemy(struct enemy * e)
 {
-	int x_pos, y_pos;
-
 	if (game_status != INSIDE_GAME) {
 		// Do not print bot states when we are not inside the game.
 		return;
@@ -2316,8 +2313,8 @@ void PrintCommentOfThisEnemy(enemy * e)
 		return;
 	if ((e->TextVisibleTime < GameConfig.WantedTextVisibleTime)
 	    && GameConfig.All_Texts_Switch) {
-		x_pos = translate_map_point_to_screen_pixel_x(e->virt_pos.x, e->virt_pos.y);
-		y_pos = translate_map_point_to_screen_pixel_y(e->virt_pos.x, e->virt_pos.y)
+		int x_pos = translate_map_point_to_screen_pixel_x(e->virt_pos.x, e->virt_pos.y);
+		int y_pos = translate_map_point_to_screen_pixel_y(e->virt_pos.x, e->virt_pos.y)
 		    - 100;
 
 		// First we display the normal text to be displayed...
@@ -2363,39 +2360,35 @@ static int must_blit_enemy(enemy *e)
  *
  *
  */
-void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
+void put_enemy_energy_bar(struct enemy *e, SDL_Rect target_rect)
 {
-	float Percentage;
-	SDL_Rect FillRect;
-
 #define ENEMY_ENERGY_BAR_WIDTH 7
 
 	// If the enemy is dead already, there's nothing to do here...
-	//
+
 	if (e->energy <= 0)
 		return;
 
 	// work out the percentage health
-	//
-	Percentage = (e->energy) / Droidmap[e->type].maxenergy;
+
+	float percentage = (e->energy) / Droidmap[e->type].maxenergy;
 	if (use_open_gl) {
 
 #ifdef HAVE_LIBGL
-		int x, y, w;
 		myColor c1 = { 0, 0, 0, 255 };
 		myColor c2 = { 0, 0, 0, 255 };
 		float PercentageDone = 0;
 		int barnum = 0;
 		// If Percentage > 100%, several bars are drawn (one bar == 100% of maxenergy)
-		while (Percentage > 0) {
-			if (Percentage >= 1)
+		while (percentage > 0) {
+			if (percentage >= 1)
 				PercentageDone = 1;
 			else
-				PercentageDone = Percentage;
+				PercentageDone = percentage;
 			// draw cool bars here
-			x = TargetRectangle.x;
-			y = TargetRectangle.y - 10 * barnum;
-			w = TargetRectangle.w;
+			int x = target_rect.x;
+			int y = target_rect.y - 10 * barnum;
+			int w = target_rect.w;
 
 			if (is_friendly(e->faction, FACTION_SELF))
 				c1.g = 255;
@@ -2406,7 +2399,7 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 			c1.a = 140;
 			drawIsoEnergyBar(x, y, 1, 5, 5, w, PercentageDone, &c1, &c2);
 
-			Percentage -= PercentageDone;
+			percentage -= PercentageDone;
 			barnum++;
 		}
 
@@ -2418,28 +2411,29 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 		// Calculates the width of the remaining health bar. Rounds the
 		// width up to the nearest integer to ensure that at least one
 		// pixel of health is always shown.
-		//
-		int health_pixels = (int) ceil(Percentage * TargetRectangle.w);
 
-		FillRect.x = TargetRectangle.x;
-		FillRect.y = TargetRectangle.y - ENEMY_ENERGY_BAR_WIDTH;
-		FillRect.h = ENEMY_ENERGY_BAR_WIDTH;
-		FillRect.w = health_pixels;
+		int health_pixels = (int) ceil(percentage * target_rect.w);
+
+		SDL_Rect fill_rect;
+		fill_rect.x = target_rect.x;
+		fill_rect.y = target_rect.y - ENEMY_ENERGY_BAR_WIDTH;
+		fill_rect.h = ENEMY_ENERGY_BAR_WIDTH;
+		fill_rect.w = health_pixels;
 
 		// The color of the bar depends on the friendly/hostile status
 		if (is_friendly(e->faction, FACTION_SELF))
-			sdl_draw_rectangle(&FillRect, 0, 255, 0, 140);
+			sdl_draw_rectangle(&fill_rect, 0, 255, 0, 140);
 		else
-			sdl_draw_rectangle(&FillRect, 255, 0, 0, 140);
+			sdl_draw_rectangle(&fill_rect, 255, 0, 0, 140);
 
 		// Now after the energy bar has been drawn, we can start to draw the
 		// empty part of the energy bar (but only of course, if there is some
 		// empty part at all! 
-		FillRect.x = TargetRectangle.x + health_pixels;
-		FillRect.w = TargetRectangle.w - health_pixels;
+		fill_rect.x = target_rect.x + health_pixels;
+		fill_rect.w = target_rect.w - health_pixels;
 
-		if (Percentage < 1.0)
-			sdl_draw_rectangle(&FillRect, 0, 0, 0, 255);
+		if (percentage < 1.0)
+			sdl_draw_rectangle(&fill_rect, 0, 0, 0, 255);
 	}
 }
 
@@ -2582,7 +2576,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 		TargetRectangle.y = screen_y - (droid_spec->droid_images[RotationIndex][0].h * zf) / 1;
 		TargetRectangle.w = bar_width * zf;
 		TargetRectangle.h = droid_spec->droid_images[RotationIndex][0].h * zf;
-		PutEnemyEnergyBar(ThisRobot, TargetRectangle);
+		put_enemy_energy_bar(ThisRobot, TargetRectangle);
 	}
 }
 
@@ -2657,7 +2651,7 @@ There was a droid type on this level, that does not really exist.", PLEASE_INFOR
 	// this robot might have to make on the current situation.
 	//
 	if (e->energy > 0)
-		PrintCommentOfThisEnemy(e);
+		print_comment_of_this_enemy(e);
 
 };				// void PutEnemy(int Enum , int x , int y) 
 
@@ -2749,86 +2743,84 @@ void PutItem(item *CurItem, int mask, int put_thrown_items_flag, int highlight_i
 	display_image_on_map(img, CurItem->virt_pos.x - anim_throw, CurItem->virt_pos.y - anim_throw, set_image_transformation(zf, zf, r, g, b, 1.0, highlight_item));
 }
 
-void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, uint8_t active_direction[RADIAL_SPELL_DIRECTIONS], float age)
+void put_radial_blue_sparks(float posX, float posY, float radius, int spark_type, uint8_t active_direction[RADIAL_SPELL_DIRECTIONS], float age)
 {
 #define FIXED_NUMBER_OF_SPARK_ANGLES 12
 #define FIXED_NUMBER_OF_PROTOTYPES 4
 #define NUMBER_OF_SPARK_TYPES 3
 
-	SDL_Rect TargetRectangle;
-	static SDL_Surface *SparkPrototypeSurface[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES] =
+	SDL_Rect target_rect;
+	static SDL_Surface *spark_prototype_surface[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES] =
 	    { {NULL, NULL, NULL, NULL}, {NULL, NULL, NULL, NULL} };
-	static struct image PrerotatedSparkSurfaces[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES][FIXED_NUMBER_OF_SPARK_ANGLES];
-	SDL_Surface *tmp_surf;
-	char fpath[PATH_MAX];
-	int NumberOfPicturesToUse;
-	int i, k;
-	float Angle;
-	int PrerotationIndex;
-	moderately_finepoint Displacement;
-	int PictureType;
-	char ConstructedFilename[5000];
+	static struct image prerotated_spark_surfaces[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES][FIXED_NUMBER_OF_SPARK_ANGLES];
+	int number_of_pictures_to_use;
+	float angle;
+	struct moderately_finepoint displacement;
+	char constructed_filename[5000];
 	int current_active_direction;
 
 	// We do some sanity check against too small a radius
 	// given as parameter.  This can be loosened later.
 	//
-	if (Radius <= 1.0)
+	if (radius <= 1.0)
 		return;
 
-	PictureType = (int)(4 * age) % 4;
+	int picture_type = (int)(4 * age) % 4;
 
 	// Now if we do not yet have all the prototype images in memory,
 	// we need to load them now and for once...
 	//
-	if (SparkPrototypeSurface[SparkType][0] == NULL) {
+	if (spark_prototype_surface[spark_type][0] == NULL) {
+		int k;
 		for (k = 0; k < FIXED_NUMBER_OF_PROTOTYPES; k++) {
-			if (SparkType >= NUMBER_OF_SPARK_TYPES) {
+			if (spark_type >= NUMBER_OF_SPARK_TYPES) {
 				error_message(__FUNCTION__, "FreedroidRPG encountered a radial wave type that exceeds the CONSTANT for wave types (%d).",
-						PLEASE_INFORM | IS_FATAL, SparkType);
+						PLEASE_INFORM | IS_FATAL, spark_type);
 			}
 
-			switch (SparkType) {
+			switch (spark_type) {
 			case 0:
-				sprintf(ConstructedFilename, "radial_spells/blue_sparks_%d.png", k);
+				sprintf(constructed_filename, "radial_spells/blue_sparks_%d.png", k);
 				break;
 			case 1:
-				sprintf(ConstructedFilename, "radial_spells/green_mist_%d.png", k);
+				sprintf(constructed_filename, "radial_spells/green_mist_%d.png", k);
 				break;
 			case 2:
-				sprintf(ConstructedFilename, "radial_spells/red_fire_%d.png", k);
+				sprintf(constructed_filename, "radial_spells/red_fire_%d.png", k);
 				break;
 			default:
 				error_message(__FUNCTION__, "FreedroidRPG encountered a radial wave type that does not exist in FreedroidRPG (%d).",
-						PLEASE_INFORM | IS_FATAL, SparkType);
+						PLEASE_INFORM | IS_FATAL, spark_type);
 			}
 
-			find_file(fpath, GRAPHICS_DIR, ConstructedFilename, NULL, PLEASE_INFORM | IS_FATAL);
+			char fpath[PATH_MAX];
+			find_file(fpath, GRAPHICS_DIR, constructed_filename, NULL, PLEASE_INFORM | IS_FATAL);
 
-			tmp_surf = our_IMG_load_wrapper(fpath);
+			SDL_Surface *tmp_surf = our_IMG_load_wrapper(fpath);
 			if (tmp_surf == NULL) {
 				error_message(__FUNCTION__, "FreedroidRPG wanted to load a certain image file into memory, but the SDL\n"
 				                            "function used for this did not succeed (%s).",
 				              PLEASE_INFORM | IS_FATAL, fpath);
 			}
 			// SDL_SetColorKey( tmp_surf , 0 , 0 ); 
-			SparkPrototypeSurface[SparkType][k] = SDL_DisplayFormatAlpha(tmp_surf);
+			spark_prototype_surface[spark_type][k] = SDL_DisplayFormatAlpha(tmp_surf);
 			SDL_FreeSurface(tmp_surf);
 
 			// Now that the loading is successfully done, we can do the
 			// prerotation of the images...using a constant for simplicity...
-			//
+
+			int i;
 			for (i = 0; i < FIXED_NUMBER_OF_SPARK_ANGLES; i++) {
-				Angle = +45 - 360.0 * (float)i / (float)FIXED_NUMBER_OF_SPARK_ANGLES;
+				angle = +45 - 360.0 * (float)i / (float)FIXED_NUMBER_OF_SPARK_ANGLES;
 
-				tmp_surf = rotozoomSurface(SparkPrototypeSurface[SparkType][k], Angle, 1.0, FALSE);
+				tmp_surf = rotozoomSurface(spark_prototype_surface[spark_type][k], angle, 1.0, FALSE);
 
-				PrerotatedSparkSurfaces[SparkType][k][i].surface = SDL_DisplayFormatAlpha(tmp_surf);
+				prerotated_spark_surfaces[spark_type][k][i].surface = SDL_DisplayFormatAlpha(tmp_surf);
 
 				// Maybe opengl is in use.  Then we need to prepare some textures too...
-				//
+
 				if (use_open_gl) {
-					make_texture_out_of_surface(&(PrerotatedSparkSurfaces[SparkType][k][i]));
+					make_texture_out_of_surface(&(prerotated_spark_surfaces[spark_type][k][i]));
 				}
 
 				SDL_FreeSurface(tmp_surf);
@@ -2837,48 +2829,49 @@ void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, ui
 
 	}
 
-	NumberOfPicturesToUse = 2 * (2 * Radius * 64 * 3.14) / (float)SparkPrototypeSurface[SparkType][PictureType]->w;
-	NumberOfPicturesToUse += 3;	// we want some overlap
+	number_of_pictures_to_use = 2 * (2 * radius * 64 * 3.14) / (float)spark_prototype_surface[spark_type][picture_type]->w;
+	number_of_pictures_to_use += 3;	// we want some overlap
 
 	// Now we blit all the pictures we like to use...in this case using
 	// multiple dynamic rotations (oh god!)...
 	//
-	for (i = 0; i < NumberOfPicturesToUse; i++) {
-		Angle = 360.0 * (float)i / (float)NumberOfPicturesToUse;
-		Displacement.x = Radius;
-		Displacement.y = 0;
-		RotateVectorByAngle(&Displacement, Angle);
+	int i;
+	for (i = 0; i < number_of_pictures_to_use; i++) {
+		angle = 360.0 * (float)i / (float)number_of_pictures_to_use;
+		displacement.x = radius;
+		displacement.y = 0;
+		RotateVectorByAngle(&displacement, angle);
 
-		PrerotationIndex = rintf((Angle) * (float)FIXED_NUMBER_OF_SPARK_ANGLES / 360.0);
-		if (PrerotationIndex >= FIXED_NUMBER_OF_SPARK_ANGLES)
-			PrerotationIndex = 0;
+		int prerotation_index = rintf((angle) * (float)FIXED_NUMBER_OF_SPARK_ANGLES / 360.0);
+		if (prerotation_index >= FIXED_NUMBER_OF_SPARK_ANGLES)
+			prerotation_index = 0;
 
-		current_active_direction = rintf((Angle) * (float)RADIAL_SPELL_DIRECTIONS / 360.0);
+		current_active_direction = rintf((angle) * (float)RADIAL_SPELL_DIRECTIONS / 360.0);
 		if (!active_direction[current_active_direction])
 			continue;
 
 		if (use_open_gl) {
-			TargetRectangle.x =
-			    translate_map_point_to_screen_pixel_x(PosX + Displacement.x,
-								  PosY + Displacement.y) -
-			    ((PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].w) / 2);
-			TargetRectangle.y =
-			    translate_map_point_to_screen_pixel_y(PosX + Displacement.x,
-								  PosY + Displacement.y) -
-			    ((PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].h) / 2);
+			target_rect.x =
+			    translate_map_point_to_screen_pixel_x(posX + displacement.x,
+								  posY + displacement.y) -
+			    ((prerotated_spark_surfaces[spark_type][picture_type][prerotation_index].w) / 2);
+			target_rect.y =
+			    translate_map_point_to_screen_pixel_y(posX + displacement.x,
+								  posY + displacement.y) -
+			    ((prerotated_spark_surfaces[spark_type][picture_type][prerotation_index].h) / 2);
 		} else {
-			TargetRectangle.x =
-			    translate_map_point_to_screen_pixel_x(PosX + Displacement.x,
-								  PosY + Displacement.y) -
-			    ((PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].surface->w) / 2);
-			TargetRectangle.y =
-			    translate_map_point_to_screen_pixel_y(PosX + Displacement.x,
-								  PosY + Displacement.y) -
-			    ((PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].surface->h) / 2);
+			target_rect.x =
+			    translate_map_point_to_screen_pixel_x(posX + displacement.x,
+								  posY + displacement.y) -
+			    ((prerotated_spark_surfaces[spark_type][picture_type][prerotation_index].surface->w) / 2);
+			target_rect.y =
+			    translate_map_point_to_screen_pixel_y(posX + displacement.x,
+								  posY + displacement.y) -
+			    ((prerotated_spark_surfaces[spark_type][picture_type][prerotation_index].surface->h) / 2);
 		}
 
-		display_image_on_screen(&PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex],
-								 TargetRectangle.x, TargetRectangle.y, IMAGE_NO_TRANSFO);
+		display_image_on_screen(&prerotated_spark_surfaces[spark_type][picture_type][prerotation_index],
+								 target_rect.x, target_rect.y, IMAGE_NO_TRANSFO);
 	}
 }
 

@@ -417,45 +417,39 @@ static int decode_header(level *loadlevel, char *data)
  * WITHOUT destroying or damaging the human-readable data in the process!
  * This is an improved parser that is not quite readable but very performant.
  */
-static char *decode_obstacles(level *loadlevel, char *DataPointer)
+static char *decode_obstacles(level *load_level, char *data_pointer)
 {
-	int i;
-	char *curfield = NULL;
-	char *curfieldend = NULL;
-	char *obstacle_SectionBegin;
-	float x, y;
-	int type;
-
 	// First we initialize the obstacles with 'empty' information
-	//
+
+	int i;
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		loadlevel->obstacle_list[i].type = -1;
-		loadlevel->obstacle_list[i].pos.x = -1;
-		loadlevel->obstacle_list[i].pos.y = -1;
-		loadlevel->obstacle_list[i].pos.z = loadlevel->levelnum;
-		loadlevel->obstacle_list[i].timestamp = 0;
-		loadlevel->obstacle_list[i].frame_index = 0;
+		load_level->obstacle_list[i].type = -1;
+		load_level->obstacle_list[i].pos.x = -1;
+		load_level->obstacle_list[i].pos.y = -1;
+		load_level->obstacle_list[i].pos.z = load_level->levelnum;
+		load_level->obstacle_list[i].timestamp = 0;
+		load_level->obstacle_list[i].frame_index = 0;
 	}
 
-	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return DataPointer;
+	if (load_level->random_dungeon && !load_level->dungeon_generated)
+		return data_pointer;
 
 	// Now we look for the beginning and end of the obstacle section
-	//
-	obstacle_SectionBegin = LocateStringInData(DataPointer, OBSTACLE_DATA_BEGIN_STRING) + strlen(OBSTACLE_DATA_BEGIN_STRING) + 1;
+
+	char *obstacle_SectionBegin = LocateStringInData(data_pointer, OBSTACLE_DATA_BEGIN_STRING) + strlen(OBSTACLE_DATA_BEGIN_STRING) + 1;
 
 	// Now we decode all the obstacle information
-	//
-	curfield = obstacle_SectionBegin;
+
+	char *curfield = obstacle_SectionBegin;
 	while (*curfield != '/') {
 		//structure of obstacle entry is :      // t59 x2.50 y63.50 l-1 d-1 
 		//we read the type
 		curfield++;
-		curfieldend = curfield;
+		char *curfieldend = curfield;
 		while ((*curfieldend) != ' ')
 			curfieldend++;
 		(*curfieldend) = 0;
-		type = atoi(curfield);
+		int type = atoi(curfield);
 		(*curfieldend) = ' ';
 
 		//we read the X position
@@ -464,7 +458,7 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 		while ((*curfieldend) != ' ')
 			curfieldend++;
 		(*curfieldend) = 0;
-		x = atof(curfield);
+		float x = atof(curfield);
 		(*curfieldend) = ' ';
 
 		//Y position
@@ -473,7 +467,7 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 		while ((*curfieldend) != ' ')
 			curfieldend++;
 		(*curfieldend) = 0;
-		y = atof(curfield);
+		float y = atof(curfield);
 		(*curfieldend) = ' ';
 
 		while ((*curfield) != '\n')
@@ -483,7 +477,7 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 		// Even invalid obstacles are loaded. They can not be removed at this
 		// point, or else obstacle extensions will point to the wrong obstacles.
 		// decode_level(), our callee, will take care of them.
-		add_obstacle_nocheck(loadlevel, x, y, type);
+		add_obstacle_nocheck(load_level, x, y, type);
 	}
 
 	return curfield;
@@ -493,15 +487,12 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
  * Next we extract the map labels of this level WITHOUT destroying
  * or damaging the data in the process!
  */
-static char *decode_map_labels(level *loadlevel, char *data)
+static char *decode_map_labels(level *load_level, char *data)
 {
-	char *label_name;
-	int i, x, y;
-
 	// Initialize map labels
-	dynarray_init(&loadlevel->map_labels, 10, sizeof(struct map_label));
+	dynarray_init(&load_level->map_labels, 10, sizeof(struct map_label));
 
-	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
+	if (load_level->random_dungeon && !load_level->dungeon_generated)
 		return data;
 
 	// Now we look for the beginning and end of the map labels section
@@ -514,19 +505,21 @@ static char *decode_map_labels(level *loadlevel, char *data)
 	DebugPrintf(1, "\nNumber of map labels found in this level : %d.", nb_map_labels_in_level);
 
 	// Now we decode all the map label information
+	int i;
 	for (i = 0; i < nb_map_labels_in_level ; i++) {
 		if (i)
 			map_label_begin = strstr(map_label_begin + 1, X_POSITION_OF_LABEL_STRING);
 
 		// Get the position of the map label
+		int x, y;
 		ReadValueFromString(map_label_begin, X_POSITION_OF_LABEL_STRING, "%d", &x, map_label_end);
 		ReadValueFromString(map_label_begin, Y_POSITION_OF_LABEL_STRING, "%d", &y, map_label_end);
 
 		// Get the name of the map label
-		label_name = ReadAndMallocStringFromData(map_label_begin, LABEL_ITSELF_ANNOUNCE_STRING, "\"");
+		char *label_name = ReadAndMallocStringFromData(map_label_begin, LABEL_ITSELF_ANNOUNCE_STRING, "\"");
 
 		// Add the map label on the level
-		add_map_label(loadlevel, x, y, label_name);
+		add_map_label(load_level, x, y, label_name);
 
 		DebugPrintf(1, "\npos.x=%d pos.y=%d label_name=\"%s\"", x, y, label_name);
 	}
@@ -1030,7 +1023,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int lvl, int map_x, in
 
 		// Drop items after destroying the obstacle, in order to avoid collisions
 		if (obstacle_drops_treasure)
-			DropRandomItem(lvl, target_obstacle->pos.x, target_obstacle->pos.y, BoxLevel->drop_class, FALSE);
+			drop_random_item(lvl, target_obstacle->pos.x, target_obstacle->pos.y, BoxLevel->drop_class, FALSE);
 
 		// Now that the obstacle is removed AND ONLY NOW that the obstacle is
 		// removed, we may start a blast at this position.  Otherwise we would
@@ -1392,16 +1385,14 @@ static void encode_obstacles_of_this_level(struct auto_string *shipstr, struct l
 	free_autostr(error_msg);
 }
 
-static void encode_map_labels(struct auto_string *shipstr, level *lvl)
+static void encode_map_labels(struct auto_string *shipstr, struct level *lvl)
 {
-	int i;
-	struct map_label *map_label;
-
 	autostr_append(shipstr, "%s\n", MAP_LABEL_BEGIN_STRING);
 
+	int i;
 	for (i = 0; i < lvl->map_labels.size; i++) {
 		// Get the map label
-		map_label = &ACCESS_MAP_LABEL(lvl->map_labels, i);
+		struct map_label *map_label = &ACCESS_MAP_LABEL(lvl->map_labels, i);
 
 		// Encode map label
 		autostr_append(shipstr, "%s%d %s%d %s%s\"\n", X_POSITION_OF_LABEL_STRING, map_label->pos.x, Y_POSITION_OF_LABEL_STRING,
@@ -1537,21 +1528,21 @@ static void encode_obstacle_extensions(struct auto_string *shipstr, level *l)
 	autostr_append(shipstr, "%s\n", OBSTACLE_EXTENSIONS_END_STRING);
 }
 
-static void encode_waypoints(struct auto_string *shipstr, level *lvl)
+static void encode_waypoints(struct auto_string *shipstr, struct level *lvl)
 {
 	waypoint *wpts = lvl->waypoints.arr;
-	int *connections;
-	int i, j;
 
 	autostr_append(shipstr, "%s\n", WP_BEGIN_STRING);
 
+	int i;
 	for (i = 0; i < lvl->waypoints.size; i++) {
 		// Encode the waypoint
 		autostr_append(shipstr, "Nr.=%3d x=%4d y=%4d rnd=%1d\t %s", i, wpts[i].x, wpts[i].y, wpts[i].suppress_random_spawn, CONNECTION_STRING);
 
 		// Get the connections of the waypoint
-		connections = wpts[i].connections.arr;
+		int *connections = wpts[i].connections.arr;
 
+		int j;
 		for (j = 0; j < wpts[i].connections.size; j++) {
 			// Check connected waypoint validity
 			int connected_waypoint = connections[j];
@@ -1835,7 +1826,7 @@ int GetCrew(char *filename)
 	//
 	find_file(fpath, MAP_DIR, filename, NULL, PLEASE_INFORM | IS_FATAL);
 
-	MainDroidsFilePointer = ReadAndMallocAndTerminateFile(fpath, END_OF_DROID_DATA_STRING);
+	MainDroidsFilePointer = read_and_malloc_and_terminate_file(fpath, END_OF_DROID_DATA_STRING);
 
 	// The Droid crew file for this map is now completely read into memory
 	// It's now time to decode the file and to fill the array of enemys with
@@ -1865,9 +1856,8 @@ int GetCrew(char *filename)
  *
  *
  */
-static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_number, char *lvl_end_location)
+static void get_this_levels_special_forces(char *search_pointer, int our_level_number, char *lvl_end_location)
 {
-	int droid_type;
 #define SPECIAL_FORCE_INDICATION_STRING "T="
 
 	while ((search_pointer = strstr(search_pointer, SPECIAL_FORCE_INDICATION_STRING)) != NULL) {
@@ -1885,7 +1875,7 @@ static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_numbe
 		strncpy(type_indication_string, special_droid, droid_type_length);
 		type_indication_string[droid_type_length] = 0;
 
-		droid_type = get_droid_type(type_indication_string);
+		int droid_type = get_droid_type(type_indication_string);
 
 		// Create a new enemy, and initialize its 'identity' and 'global state'
 		// (the enemy will be fully initialized by respawn_level())
@@ -1998,7 +1988,7 @@ void GetThisLevelsDroids(char *section_pointer)
 	}			// while (enemy-limit of this level not reached) 
 
 	search_ptr = section_pointer;
-	GetThisLevelsSpecialForces(search_ptr, our_level_number, lvl_end_location);
+	get_this_levels_special_forces(search_ptr, our_level_number, lvl_end_location);
 
 	// End bot's initialization, and put them onto a waypoint.
 	respawn_level(our_level_number);

@@ -45,7 +45,7 @@
 static int next_bot_id = 1; // defines the id of the next created enemy.
 
 static int TurnABitTowardsPosition(Enemy, float, float, float);
-static void MoveToMeleeCombat(Enemy, gps *, moderately_finepoint *);
+static void move_to_melee_combat(struct enemy *, struct gps *, struct moderately_finepoint *);
 static void MoveAwayFromMeleeCombat(Enemy, moderately_finepoint *);
 static void ReachMeleeCombat(Enemy, gps *, moderately_finepoint *, pathfinder_context *);
 static void raw_start_enemys_shot(enemy *, float, float);
@@ -885,7 +885,7 @@ static void enemy_drop_treasure(struct enemy *this_droid)
 	// there is still some chance, that the enemy will have (and drop) some other
 	// valuables, that the Tux can then collect afterwards.
 	//
-	DropRandomItem(this_droid->pos.z, this_droid->pos.x, this_droid->pos.y, Droidmap[this_droid->type].drop_class, FALSE);
+	drop_random_item(this_droid->pos.z, this_droid->pos.x, this_droid->pos.y, Droidmap[this_droid->type].drop_class, FALSE);
 }
 
 /**
@@ -1794,7 +1794,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 			ReachMeleeCombat(ThisRobot, &move_pos, new_move_target, pf_ctx);
 			break;
 		case MOVE_MELEE:
-			MoveToMeleeCombat(ThisRobot, &move_pos, new_move_target);
+			move_to_melee_combat(ThisRobot, &move_pos, new_move_target);
 			break;
 		case MOVE_AWAY:
 			MoveAwayFromMeleeCombat(ThisRobot, new_move_target);
@@ -2301,15 +2301,15 @@ static int ConsideredMoveIsFeasible(Enemy ThisRobot, moderately_finepoint StepVe
  * - halt as soon as one of those positions is free
  */
 
-static void MoveToMeleeCombat(enemy *ThisRobot, gps *target_pos, moderately_finepoint *set_move_tgt)
+static void move_to_melee_combat(struct enemy *this_robot, struct gps *target_pos, struct moderately_finepoint *set_move_tgt)
 {
-	freeway_context frw_ctx = { is_friendly(ThisRobot->faction, FACTION_SELF), {ThisRobot->bot_target_addr, NULL} };
+	freeway_context frw_ctx = { is_friendly(this_robot->faction, FACTION_SELF), {this_robot->bot_target_addr, NULL} };
 
 	// All computations are done in the target's level
 	gps bot_vpos;
-	update_virtual_position(&bot_vpos, &ThisRobot->pos, target_pos->z);
+	update_virtual_position(&bot_vpos, &this_robot->pos, target_pos->z);
 
-	// Compute a unit vector from target to ThisRobot
+	// Compute a unit vector from target to this_robot
 	moderately_finepoint vector_from_target = { bot_vpos.x, bot_vpos.y };	//
 	normalize_vect(target_pos->x, target_pos->y, &(vector_from_target.x), &(vector_from_target.y));
 	vector_from_target.x -= target_pos->x;
@@ -2323,7 +2323,6 @@ static void MoveToMeleeCombat(enemy *ThisRobot, gps *target_pos, moderately_fine
 	float angles_to_try[8] = { 0, 45, -45, 90, -90, 135, -135, 180 };
 	int a;
 	for (a = 0; a < 8; ++a) {
-		int target_reachable = FALSE;
 		moderately_finepoint checked_vector = { vector_from_target.x, vector_from_target.y };
 		RotateVectorByAngle(&checked_vector, angles_to_try[a]);
 		moderately_finepoint checked_pos =
@@ -2335,7 +2334,7 @@ static void MoveToMeleeCombat(enemy *ThisRobot, gps *target_pos, moderately_fine
 
 		if (way_free_of_droids(target_pos->x, target_pos->y, checked_pos.x, checked_pos.y, target_pos->z, &frw_ctx)) {
 			// If the checked_pos is free, also check that the target is reachable
-			target_reachable =
+			int target_reachable =
 			    DirectLineColldet(checked_pos.x, checked_pos.y, target_pos->x, target_pos->y, target_pos->z,
 					      &WalkablePassFilter);
 			if (target_reachable) {	// The position has been found
@@ -2347,7 +2346,7 @@ static void MoveToMeleeCombat(enemy *ThisRobot, gps *target_pos, moderately_fine
 	}
 
 	// Transform back into ThisRobot's reference level
-	update_virtual_position(&bot_vpos, &final_pos, ThisRobot->pos.z);
+	update_virtual_position(&bot_vpos, &final_pos, this_robot->pos.z);
 	set_move_tgt->x = bot_vpos.x;
 	set_move_tgt->y = bot_vpos.y;
 }

@@ -36,13 +36,12 @@ int get_obstacle_index(level *lvl, obstacle *o)
 	return obstacle_index;
 }
 
-static void change_extensions(level *lvl, obstacle *from, obstacle *to)
+static void change_extensions(struct level *lvl, struct obstacle *from, struct obstacle *to)
 {
 	int i;
-	struct obstacle_extension *ext;
 
 	for (i = 0; i < lvl->obstacle_extensions.size; i++) {
-		ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
+		struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
 		if (ext->obs == from) {
 			ext->obs = to;
 		}
@@ -98,13 +97,12 @@ void defrag_obstacle_array(level *lvl)
 /**
  * Retrieve the obstacle extension of a given type associated to an obstacle.
  */
-void *get_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_type type)
+void *get_obstacle_extension(struct level *lvl, struct obstacle *obs, enum obstacle_extension_type type)
 {
 	int i;
-	struct obstacle_extension *ext;
 
 	for (i = 0; i < lvl->obstacle_extensions.size; i++) {
-		ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
+		struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
 		if (ext->obs == obs) 
 			if (ext->type == type)
 				return ext->data;
@@ -120,13 +118,12 @@ void *get_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_
  * \param lvl Pointer towards the level where the obstacle lies
  * \param type Type of the extension to be removed
  */
-void del_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_type type)
+void del_obstacle_extension(struct level *lvl, struct obstacle *obs, enum obstacle_extension_type type)
 {
 	int i;
-	struct obstacle_extension *ext;
 
 	for (i = 0; i < lvl->obstacle_extensions.size; i++) {
-		ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
+		struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
 
 		if (ext->obs != obs)
 			continue;
@@ -141,13 +138,12 @@ void del_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_t
 	}
 }
 
-void del_obstacle_extensions(level *lvl, obstacle *obs)
+void del_obstacle_extensions(struct level *lvl, struct obstacle *obs)
 {
 	int i;
-	struct obstacle_extension *ext;
 
 	for (i = 0; i < lvl->obstacle_extensions.size; i++) {
-		ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
+		struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
 
 		if (ext->obs != obs)
 			continue;
@@ -175,13 +171,12 @@ void add_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_t
 	dynarray_add(&lvl->obstacle_extensions, &ext, sizeof(struct obstacle_extension));
 }
 
-void free_obstacle_extensions(level *lvl)
+void free_obstacle_extensions(struct level *lvl)
 {
-	struct obstacle_extension *ext;
 	int i;
 
 	for (i = 0; i < lvl->obstacle_extensions.size; i++) {
-		ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
+		struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
 
 		switch (ext->type) {
 			case OBSTACLE_EXTENSION_CHEST_ITEMS:

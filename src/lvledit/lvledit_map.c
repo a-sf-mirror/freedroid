@@ -104,21 +104,20 @@ static void move_items(level *EditLevel, int x, int y)
  * \param x The displacement on horizontal axis
  * \param y The displacement on vertical axis
  */
-static void move_obstacles(level *EditLevel, int x, int y)
+static void move_obstacles(struct level *edit_level, int x, int y)
 {
-	obstacle *o;
 	int i;
 
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
 		// Get the obstacle
-		o = &EditLevel->obstacle_list[i];
+		struct obstacle *o = &edit_level->obstacle_list[i];
 
 		// Maybe the obstacle entry isn't used at all. That's the simplest
 		// case...: do nothing
 		if (o->type <= (-1))
 			continue;
 
-		if (!pos_inside_level(o->pos.x + x, o->pos.y + y, EditLevel)) {
+		if (!pos_inside_level(o->pos.x + x, o->pos.y + y, edit_level)) {
 			// When the obstacle is outside of the map, we must remove it
 			del_obstacle(o);
 		} else {

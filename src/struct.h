@@ -971,11 +971,11 @@ typedef struct pathfinder_context {
 	int timestamp;
 } pathfinder_context;
 
-typedef struct {
+struct shop_decision {
 	int shop_command;
 	int item_selected;
 	int number_selected;
-} shop_decision;
+};
 
 struct auto_string {
 	char *value;

@@ -95,13 +95,13 @@ static int event_test()
 static int loadship_bench()
 {
 	int failed = TRUE;
-	int loop = 10;
 
 	// Find a ship file to load
 	char fp[PATH_MAX];
 	if (find_file(fp, MAP_DIR, "levels.dat", NULL, NO_REPORT)) {
 		// Load it many times
 		timer_start();
+		int loop = 10;
 		while (loop--) {
 			LoadShip(fp, 0);
 		}

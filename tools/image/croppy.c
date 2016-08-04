@@ -189,7 +189,7 @@ void Terminate(int exit_code, int save_config)
  *  parse command line arguments and set global switches 
  *  exit on error, so we don't need to return success status
  * -----------------------------------------------------------------*/
-void ParseCommandLine(int argc, char *const argv[])
+void parse_command_line(int argc, char *const argv[])
 {
 	static struct option long_options[] = 
 	{
@@ -300,7 +300,7 @@ void ParseCommandLine(int argc, char *const argv[])
  * This funciton initialises the video display and opens up a 
  * window for graphics display.
  * -----------------------------------------------------------------*/
-void InitVideo (void)
+void init_video (void)
 {
 	/* Initialize the SDL library */
 	if (SDL_Init ( SDL_INIT_VIDEO ) == -1) {
@@ -710,12 +710,12 @@ int main(int argc, char *argv[])
 
 	DebugPrintf(MAIN_DEBUG, "\nFreedroidRPG 'Croppy' Tool, starting to read command line....\n");
 
-	ParseCommandLine(argc, argv); 
+	parse_command_line(argc, argv);
 
 	DebugPrintf(MAIN_DEBUG, "\nFreedroidRPG 'Croppy' Tool, initializing video....\n");
 
 	if (!no_graphics_output)
-		InitVideo();
+		init_video();
 
 	DebugPrintf(MAIN_DEBUG, "\nFreedroidRPG 'Croppy' Tool, now loading input file...\n");
 

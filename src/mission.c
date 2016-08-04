@@ -217,16 +217,8 @@ void clear_tux_mission_info()
  * This function reads the mission specifications from the mission file
  * which is assumed to be loaded into memory already.
  */
-void GetQuestList(char *QuestListFilename)
+void get_quest_list(char *quest_list_filename)
 {
-	char *EndOfMissionTargetPointer;
-	int MissionTargetIndex = 0;
-	char *MissionTargetPointer;
-	char fpath[PATH_MAX];
-	char *MissionFileContents;
-	char InnerPreservedLetter = 0;
-	int diary_entry_nr;
-
 #define MISSION_TARGET_SUBSECTION_START_STRING "** Start of this mission target subsection **"
 #define MISSION_TARGET_SUBSECTION_END_STRING "** End of this mission target subsection **"
 
@@ -239,61 +231,63 @@ void GetQuestList(char *QuestListFilename)
 #define MISSION_COMPLETION_LUACODE_STRING "Completion LuaCode={"
 
 	// At first we must load the quest list file given...
-	//
-	find_file(fpath, MAP_DIR, QuestListFilename, NULL, PLEASE_INFORM | IS_FATAL);
-	MissionFileContents = ReadAndMallocAndTerminateFile(fpath, "*** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***");
-	MissionTargetPointer = MissionFileContents;
 
-	for (MissionTargetIndex = 0; MissionTargetIndex < MAX_MISSIONS_IN_GAME; MissionTargetIndex++) {
-		Me.AllMissions[MissionTargetIndex].MissionExistsAtAll = FALSE;
+	char fpath[PATH_MAX];
+	find_file(fpath, MAP_DIR, quest_list_filename, NULL, PLEASE_INFORM | IS_FATAL);
+	char *mission_file_contents = read_and_malloc_and_terminate_file(fpath, "*** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***");
+	char *mission_target_pointer = mission_file_contents;
+
+	int mission_target_index = 0;
+	for (mission_target_index = 0; mission_target_index < MAX_MISSIONS_IN_GAME; mission_target_index++) {
+		Me.AllMissions[mission_target_index].MissionExistsAtAll = FALSE;
 	}
 
-	MissionTargetIndex = 0;
-	while ((MissionTargetPointer = strstr(MissionTargetPointer, MISSION_TARGET_SUBSECTION_START_STRING)) != NULL) {
-		EndOfMissionTargetPointer = LocateStringInData(MissionTargetPointer, MISSION_TARGET_SUBSECTION_END_STRING);
+	mission_target_index = 0;
+	while ((mission_target_pointer = strstr(mission_target_pointer, MISSION_TARGET_SUBSECTION_START_STRING)) != NULL) {
+		char *end_of_mission_target_pointer = LocateStringInData(mission_target_pointer, MISSION_TARGET_SUBSECTION_END_STRING);
 
-		if (MissionTargetIndex >= MAX_MISSIONS_IN_GAME)
+		if (mission_target_index >= MAX_MISSIONS_IN_GAME)
 			error_message(__FUNCTION__, "The number of quests specified in %s exceeds MAX_MISSIONS_IN_GAME (%d).",
-				     PLEASE_INFORM | IS_FATAL, QuestListFilename, MAX_MISSIONS_IN_GAME);
+				     PLEASE_INFORM | IS_FATAL, quest_list_filename, MAX_MISSIONS_IN_GAME);
 
 		// We need to add an inner terminator here, so that the strstr operation
 		// below will know where to stop within this subsection.
 		//
-		InnerPreservedLetter = *EndOfMissionTargetPointer;
-		*EndOfMissionTargetPointer = 0;
+		char inner_preserved_letter = *end_of_mission_target_pointer;
+		*end_of_mission_target_pointer = 0;
 
-		Me.AllMissions[MissionTargetIndex].MissionExistsAtAll = TRUE;
+		Me.AllMissions[mission_target_index].MissionExistsAtAll = TRUE;
 
-		Me.AllMissions[MissionTargetIndex].mission_name = ReadAndMallocStringFromData(MissionTargetPointer, MISSION_TARGET_NAME_INITIALIZER, "\"");
+		Me.AllMissions[mission_target_index].mission_name = ReadAndMallocStringFromData(mission_target_pointer, MISSION_TARGET_NAME_INITIALIZER, "\"");
 
 		// From here on we read the details of the mission target, i.e. what the
 		// influencer has to do, so that the mission can be thought of as completed
-		//
 
-		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_KILL_MARKER, "%d", "-1",
-				    &Me.AllMissions[MissionTargetIndex].KillMarker, EndOfMissionTargetPointer);
+		ReadValueFromStringWithDefault(mission_target_pointer, MISSION_TARGET_KILL_MARKER, "%d", "-1",
+				    &Me.AllMissions[mission_target_index].KillMarker, end_of_mission_target_pointer);
 
-		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_CLEAR_LEVEL, "%d", "-1", 
-				    &Me.AllMissions[MissionTargetIndex].must_clear_level, EndOfMissionTargetPointer);
+		ReadValueFromStringWithDefault(mission_target_pointer, MISSION_TARGET_MUST_CLEAR_LEVEL, "%d", "-1",
+				    &Me.AllMissions[mission_target_index].must_clear_level, end_of_mission_target_pointer);
 
-		if (strstr(MissionTargetPointer, MISSION_COMPLETION_LUACODE_STRING)) {
-			Me.AllMissions[MissionTargetIndex].completion_lua_code =
-			    ReadAndMallocStringFromData(MissionTargetPointer, MISSION_COMPLETION_LUACODE_STRING, "}");
+		if (strstr(mission_target_pointer, MISSION_COMPLETION_LUACODE_STRING)) {
+			Me.AllMissions[mission_target_index].completion_lua_code =
+			    ReadAndMallocStringFromData(mission_target_pointer, MISSION_COMPLETION_LUACODE_STRING, "}");
 		} else {
-			Me.AllMissions[MissionTargetIndex].completion_lua_code = NULL;
+			Me.AllMissions[mission_target_index].completion_lua_code = NULL;
 		}
 
-		if (strstr(MissionTargetPointer, MISSION_ASSIGNMENT_LUACODE_STRING)) {
-			Me.AllMissions[MissionTargetIndex].assignment_lua_code =
-			    ReadAndMallocStringFromData(MissionTargetPointer, MISSION_ASSIGNMENT_LUACODE_STRING, "}");
+		if (strstr(mission_target_pointer, MISSION_ASSIGNMENT_LUACODE_STRING)) {
+			Me.AllMissions[mission_target_index].assignment_lua_code =
+			    ReadAndMallocStringFromData(mission_target_pointer, MISSION_ASSIGNMENT_LUACODE_STRING, "}");
 		} else {
-			Me.AllMissions[MissionTargetIndex].assignment_lua_code = NULL;
+			Me.AllMissions[mission_target_index].assignment_lua_code = NULL;
 		}
 		// Now it is time to read in the mission diary entries, that might
 		// be displayed in the quest browser later.
-		//
+
+		int diary_entry_nr;
 		for (diary_entry_nr = 0; diary_entry_nr < MAX_MISSION_DESCRIPTION_TEXTS; diary_entry_nr++) {
-			Me.AllMissions[MissionTargetIndex].mission_diary_texts[diary_entry_nr] = NULL;
+			Me.AllMissions[mission_target_index].mission_diary_texts[diary_entry_nr] = NULL;
 		}
 
 		// Now we are done with reading in THIS one mission target
@@ -301,22 +295,22 @@ void GetQuestList(char *QuestListFilename)
 		// reading in this mission OR ONE OF THIS MISSIONS VALUES!!!!
 		// 
 		// And we need of course to advance the array index for mission targets too...
-		//
-		MissionTargetPointer = EndOfMissionTargetPointer;	// to avoid double entering the same target
-		MissionTargetIndex++;	// to avoid overwriting the same entry again
+
+		mission_target_pointer = end_of_mission_target_pointer;	// to avoid double entering the same target
+		mission_target_index++;	// to avoid overwriting the same entry again
 
 		// We restore the termination character we added before, even if that
 		// is maybe not really necessary...
-		//
-		*EndOfMissionTargetPointer = InnerPreservedLetter;
 
-	}			// while mission target found...
+		*end_of_mission_target_pointer = inner_preserved_letter;
+
+	}
 
 	// Finally we record the number of mission targets scanned and are done with this function
-	DebugPrintf(1, "\nNUMBER OF MISSION TARGETS FOUND: %d.\n", MissionTargetIndex);
+	DebugPrintf(1, "\nNUMBER OF MISSION TARGETS FOUND: %d.\n", mission_target_index);
 	fflush(stdout);
-	free(MissionFileContents);
-};				// void Get_Mission_Targets( ... )
+	free(mission_file_contents);
+}
 
 /**
  * This function returns the mission that has the specified name.

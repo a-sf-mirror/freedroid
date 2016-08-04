@@ -46,7 +46,7 @@
 #define LEVEL_JUMP_DEBUG 1
 
 static void CheckForTuxOutOfMap();
-static void AnalyzePlayersMouseClick();
+static void analyze_players_mouse_click();
 
 static int no_left_button_press_in_previous_analyze_mouse_click = FALSE;
 
@@ -93,8 +93,8 @@ static void limit_tux_speed()
 	 * jerking motion towards the enemy.  To stop this from happening, we force
 	 * Tux NOT to stand still when he is first charging a new target.  He stands
 	 * still ONLY when he changes target during a swing. */
-	static enemy *previous_target;
-	enemy *current_target = enemy_resolve_address(Me.current_enemy_target_n,
+	static enemy *previous_target = NULL;
+	struct enemy *current_target = enemy_resolve_address(Me.current_enemy_target_n,
 												  &Me.current_enemy_target_addr);
 
 	if (Me.weapon_item.type >= 0) {
@@ -753,7 +753,7 @@ void move_tux()
 	// is over the game_map widget (the widget is not in its DEFAULT state), no further event handling
 	// is done by the widget system and AnalyzePlayersMouseClick is called.
 	if (game_map->state != DEFAULT)
-		AnalyzePlayersMouseClick();
+		analyze_players_mouse_click();
 
 	if (MouseLeftPressed())
 		no_left_button_press_in_previous_analyze_mouse_click = FALSE;
@@ -1002,10 +1002,7 @@ void start_tux_death_explosions(void)
  */
 void do_death_menu()
 {
-	char *MenuTexts[100];
-	int done = FALSE;
-	int MenuPosition = 1;
-	int i;
+	char *menu_texts[100];
 
 	game_status = INSIDE_MENU;
 
@@ -1017,21 +1014,23 @@ void do_death_menu()
 		QUIT_TO_MAIN_POSITION,
 		QUIT_POSITION
 	};
+
+	int done = FALSE;
 	while (!done) {
-		i = 0;
-		MenuTexts[i++] = _("Load Latest");
-		MenuTexts[i++] = _("Load Backup");
+		int i = 0;
+		menu_texts[i++] = _("Load Latest");
+		menu_texts[i++] = _("Load Backup");
 		if (game_root_mode == ROOT_IS_GAME) {
-			MenuTexts[i++] = _("Quit to Main Menu");
+			menu_texts[i++] = _("Quit to Main Menu");
 		} else { // if (game_root_mode == ROOT_IS_LVLEDIT) {
-			MenuTexts[i++] = _("Return to Editor");
+			menu_texts[i++] = _("Return to Editor");
 		}
-		MenuTexts[i++] = _("Exit FreedroidRPG");
-		MenuTexts[i++] = "";
+		menu_texts[i++] = _("Exit FreedroidRPG");
+		menu_texts[i++] = "";
 
-		MenuPosition = DoMenuSelection("", MenuTexts, 1, "--GAME_BACKGROUND--", Menu_Font);
+		int menu_position = DoMenuSelection("", menu_texts, 1, "--GAME_BACKGROUND--", Menu_Font);
 
-		switch (MenuPosition) {
+		switch (menu_position) {
 		case LOAD_LATEST_POSITION:
 			load_game();
 			done = !done;
@@ -1573,16 +1572,13 @@ void check_for_droids_to_attack_or_talk_with()
  * click and so this function analyzes the situation and decides what to
  * do.
  */
-static void AnalyzePlayersMouseClick()
+static void analyze_players_mouse_click()
 {
-	int tmp;
-
 	// This flag avoids the mouse_move_target to change while the user presses
 	// LMB to start a combo action.
 	static int wait_mouseleft_release = FALSE;
 
 	// No action is associated to MouseLeftRelease event or state.
-	//
 
 	if (!MouseLeftPressed()) {
 		wait_mouseleft_release = FALSE;
@@ -1596,7 +1592,8 @@ static void AnalyzePlayersMouseClick()
 
 		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 
-		if ((tmp = clickable_obstacle_below_mouse_cursor(&obj_lvl, TRUE)) != -1) {
+		int tmp = clickable_obstacle_below_mouse_cursor(&obj_lvl, TRUE);
+		if (tmp != -1) {
 			get_obstacle_spec(obj_lvl->obstacle_list[tmp].type)->action_fn(obj_lvl, tmp);
 			if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
 				wait_mouseleft_release = TRUE;

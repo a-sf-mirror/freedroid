@@ -492,7 +492,6 @@ static void add_teleport(int telnum, int x, int y, int tpair)
 
 	char *warp, *fromwarp;
 	char tmp[500];
-	int obs_type, helper;
 
 	sprintf(tmp, "%dtoX%d", target_level->levelnum, telnum);
 	warp = strdup(tmp);
@@ -507,12 +506,12 @@ static void add_teleport(int telnum, int x, int y, int tpair)
 	// That 0.5 translation is added to the other obstacles around the labels
 	// to have a coherent position.
 
-	obs_type = telnum ? teleport_pairs[tpair].exit : teleport_pairs[tpair].enter;
+	int obs_type = telnum ? teleport_pairs[tpair].exit : teleport_pairs[tpair].enter;
 	mapgen_add_obstacle(x + 0.5, y + 0.5, obs_type);
 
 	// Decorate room with teleport if the obstacle is the cloud
 	if (obs_type == ISO_TELEPORTER_1) {
-		helper = MyRandom(1);
+		int helper = MyRandom(1);
 		mapgen_add_obstacle(x + 1 + 0.5, y - 1 + 0.5, helpers[helper][0]);
 		mapgen_add_obstacle(x - 1 + 0.5, y - 1 + 0.5, helpers[helper][1]);
 		mapgen_add_obstacle(x + 1 + 0.5, y + 1 + 0.5, helpers[helper][2]);
@@ -901,12 +900,11 @@ static void connect_waypoints()
 static void place_waypoints()
 {
 	int rn;
-	int nb;
 
 	for (rn = 0; rn < total_rooms; rn++) {
 		int func = sqrt(rooms[rn].w * rooms[rn].h);
 
-		nb = -1 + func / 3;
+		int nb = -1 + func / 3;
 
 		int retries = 15;
 
@@ -983,7 +981,6 @@ static int get_middle_room(int entrance, int *distance)
 int generate_dungeon(int w, int h, int nbconnec, int tpair)
 {
 	int i, j;
-	int max, max_idx = 0;
 	struct dungeon_info di;
 
 	new_level(w, h);
@@ -1000,8 +997,9 @@ int generate_dungeon(int w, int h, int nbconnec, int tpair)
 
 	memset(vis, 0, sizeof(int) * total_rooms);
 	// Choose N farthest rooms and place exits there
+	int max_idx = 0;
 	for (i = 0; i < nbconnec - 1; i++) {
-		max = dist[0];
+		int max = dist[0];
 		max_idx = 0;
 		for (j = 1; j < total_rooms; j++) {
 			if (dist[j] > max && !vis[j]) {

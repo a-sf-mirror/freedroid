@@ -129,7 +129,7 @@ playground_t CapsuleCountdown;
 void EvaluatePlayground(void);
 float EvaluatePosition(const int color, const int row, const int layer, const int endgame);
 float EvaluateCenterPosition(const int color, const int row, const int layer, const int endgame);
-void AdvancedEnemyTakeoverMovements(const int countdown);
+void advanced_enemy_takeover_movements(const int countdown);
 
 static void ShowPlayground(enemy *target);
 
@@ -415,7 +415,7 @@ static void PlayGame(int countdown, enemy *target)
 		/* time for movement */
 		if (cur_time > prev_move_tick + move_tick_len) {
 			prev_move_tick += move_tick_len;	/* set for next motion tick */
-			AdvancedEnemyTakeoverMovements(countdown);
+			advanced_enemy_takeover_movements(countdown);
 
 			if (up) {
 				if (!up_counter || (up_counter > wait_move_ticks)) {
@@ -526,11 +526,8 @@ static void show_info_down_button() {
  * - Every capsule that has not been used within the game (numCapsules) is considered as not needed
  * - For every conquered row that exceeds 7 (the minimal number of rows to win) one capsule is considered as not needed
  */
-int droid_takeover(enemy *target, float *needed_capsules_ratio)
+int droid_takeover(struct enemy *target, float *needed_capsules_ratio)
 {
-	int menu_finished = FALSE;
-	int reward = 0;
-	SDL_Event event;
 	static struct widget_text droid_info;
 
 	// Set up the droid description widget
@@ -556,6 +553,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 
 	switch_background_music("Bleostrada.ogg");
 
+	int menu_finished = FALSE;
 	while (!menu_finished) {
 		show_droid_info(target->type);
 		widget_text_display(WIDGET(&droid_info));
@@ -565,6 +563,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
+		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
@@ -598,7 +597,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
 		/* Won takeover */
 		Me.marker = target->marker;
 
-		reward = Droidmap[target->type].experience_reward * Me.experience_factor;
+		int reward = Droidmap[target->type].experience_reward * Me.experience_factor;
 		Me.Experience += reward;
 		append_new_game_message(_("For taking control of your enemy, [s]%s[v], you receive %d experience."), D_(target->short_description_text), reward);
 
@@ -657,7 +656,7 @@ int droid_takeover(enemy *target, float *needed_capsules_ratio)
  * but it does this in an advanced way, that has not been there in
  * the classic freedroid game.
  *-----------------------------------------------------------------*/
-void AdvancedEnemyTakeoverMovements(const int countdown)
+void advanced_enemy_takeover_movements(const int countdown)
 {
 	// static int Actions = 3;
 	static int MoveProbability = 100;
@@ -668,7 +667,6 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 	static int direction = 1;	/* start with this direction */
 	int row = CapsuleCurRow[OpponentColor] - 1;
 	int test_row;
-	int test_value;
 
 	int BestTarget = -1;
 	float BestValue = (-10000);	// less than any capsule can have
@@ -691,18 +689,18 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
         
 	// First we're going to find out which target place is
 	// best choice for the next capsule setting.
-	//
+
 	for (test_row = 0; test_row < NUM_LINES; test_row++) {
-                test_value = EvaluatePosition(OpponentColor, test_row, 1, endgame) + 0.01*test_row;
-                if (test_value > BestValue) {
-                        BestTarget = test_row;
-                        BestValue = test_value;
-                }
+		int test_value = EvaluatePosition(OpponentColor, test_row, 1, endgame) + 0.01*test_row;
+		if (test_value > BestValue) {
+			BestTarget = test_row;
+			BestValue = test_value;
+		}
 	}
 	DebugPrintf(TAKEOVER_MOVEMENT_DEBUG, "\nBest target row found : %d.", BestTarget);
 
-        if ((BestValue < 0.5) && (!endgame) && (LeaderColor==OpponentColor)) //it isn't worth it
-                return;
+	if ((BestValue < 0.5) && (!endgame) && (LeaderColor==OpponentColor)) //it isn't worth it
+		return;
         
 	// Now we can start to move into the right direction.
 	// Previously this was a pure random choice like
@@ -710,7 +708,7 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 	// action = MyRandom (Actions);
 	//
 	// but now we do it differently :)
-	//
+
 	if (row < BestTarget) {
 		direction = 1;
 		action = 0;
@@ -738,7 +736,7 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 		}
 		break;
 	case 2:		/* Try to set  capsule */
-                if (MyRandom(100) <= SetProbability) {
+		if (MyRandom(100) <= SetProbability) {
 			if ((row >= 0) && 
 			    (ToPlayground[OpponentColor][0][row] != CABLE_END) && (ActivationMap[OpponentColor][0][row] == INACTIVE)) {
 				NumCapsules[ENEMY]--;
@@ -747,11 +745,9 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 				ActivationMap[OpponentColor][0][row] = ACTIVE1;
 				CapsuleCountdown[OpponentColor][0][row] = CAPSULE_COUNTDOWN;
 				row = -1;	/* For the next capsule: startpos */
-			}
-			else
-			{
+			} else {
 				row += direction;
-                                return;
+				return;
 			}
 		}
 		/* if MyRandom */
@@ -765,7 +761,7 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 	CapsuleCurRow[OpponentColor] = row + 1;
 
 	return;
-};				// AdvancedEnemyTakeoverMovements 
+}
 
 static void GetTakeoverGraphics(void)
 {

@@ -169,27 +169,25 @@ int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels)
  * defined by the global SDL_Rect User_Rect
  *
  * ----------------------------------------------------------------- */
-int ScrollText(char *Text, const char *background_name)
+int scroll_text(char *text, const char *background_name)
 {
-	int Number_Of_Line_Feeds = 0;	// number of lines used for the text
-	int StartInsertLine, InsertLine;
 	int speed = +1;
 	int maxspeed = 8;
-	int done = 0;
 	SDL_Event event;
 
 	Activate_Conservative_Frame_Computation();
 
 	SDL_Rect ScrollRect = { User_Rect.x + 10, User_Rect.y, User_Rect.w - 20, User_Rect.h };
 	set_current_font(Para_Font);
-	StartInsertLine = ScrollRect.y + ScrollRect.h;
-	InsertLine = StartInsertLine;
+	int start_insert_line = ScrollRect.y + ScrollRect.h;
+	int insert_line = start_insert_line;
 
+	int done = 0;
 	while (!done) {
 		
 		if (background_name)
 			blit_background(background_name);
-		Number_Of_Line_Feeds = display_text(Text, ScrollRect.x, InsertLine, &ScrollRect, 1.0);
+		int number_of_line_feeds = display_text(text, ScrollRect.x, insert_line, &ScrollRect, 1.0);
 		// We might add some buttons to be displayed here, so that, if you don't have
 		// a mouse wheel and don't know about cursor keys, you can still click on these
 		// buttons to control the scrolling speed of the text.
@@ -246,17 +244,17 @@ int ScrollText(char *Text, const char *background_name)
 
 		}
 
-		InsertLine -= speed;
+		insert_line -= speed;
 
 		// impose some limit on the amount to scroll away downwards and upwards
 		//
-		if (InsertLine > StartInsertLine && (speed < 0)) {
-			InsertLine = StartInsertLine;
+		if (insert_line > start_insert_line && (speed < 0)) {
+			insert_line = start_insert_line;
 			speed = 0;
 		}
-		if (InsertLine + (Number_Of_Line_Feeds + 1) * get_font_height(get_current_font()) < ScrollRect.y
+		if (insert_line + (number_of_line_feeds + 1) * get_font_height(get_current_font()) < ScrollRect.y
 		    && (speed > 0)) {
-			InsertLine = ScrollRect.y - (Number_Of_Line_Feeds + 1) * get_font_height(get_current_font());
+			insert_line = ScrollRect.y - (number_of_line_feeds + 1) * get_font_height(get_current_font());
 			speed = 0;
 		}
 
@@ -566,36 +564,30 @@ int ImprovedCheckLineBreak(char *Resttext, const SDL_Rect * clip, float line_hei
 /**
  * Prompt the user for a string no longer than MaxLen (excluding terminating \0).
  */
-char *get_string(int MaxLen, const char *background_name, const char *text_for_overhead_promt)
+char *get_string(int max_len, const char *background_name, const char *text_for_overhead_promt)
 {
-	char *input;		// pointer to the string entered by the user
-	int key;		// last 'character' entered 
-	int curpos;		// counts the characters entered so far
-	int finished;
-	int x0, y0;
-
 	display_text(text_for_overhead_promt, 50, 50, NULL, 1.0);
 
 	// allocate memory for the users input
-	input = MyMalloc(MaxLen + 5);
+	char *input = MyMalloc(max_len + 5); // pointer to the string entered by the user
 
-	memset(input, '.', MaxLen);
-	input[MaxLen] = 0;
+	memset(input, '.', max_len);
+	input[max_len] = 0;
 
-	finished = FALSE;
-	curpos = 0;
+	int finished = FALSE;
+	int curpos = 0; // counts the characters entered so far
 
 	while (!finished) {
 		blit_background(background_name);
 		display_text(text_for_overhead_promt, 50, 50, NULL, 1.0);
 
-		x0 = MyCursorX;
-		y0 = MyCursorY;
+		int x0 = MyCursorX;
+		int y0 = MyCursorY;
 
 		put_string(get_current_font(), x0, y0, input);
 		our_SDL_flip_wrapper();
 
-		key = getchar_raw(NULL);
+		int key = getchar_raw(NULL); // last 'character' entered
 
 		if (key == SDLK_RETURN) {
 			// Display the image again so both buffers are in sync
@@ -610,11 +602,11 @@ char *get_string(int MaxLen, const char *background_name, const char *text_for_o
 			}
 			input[curpos] = 0;
 			finished = TRUE;
-		} else if ((key < SDLK_DELETE) && isprint(key) && (curpos < MaxLen)) {
+		} else if ((key < SDLK_DELETE) && isprint(key) && (curpos < max_len)) {
 			/* printable characters are entered in string */
 			input[curpos] = (char)key;
 			curpos++;
-		} else if ((key <= SDLK_KP9) && (key >= SDLK_KP0) && (curpos < MaxLen)) {
+		} else if ((key <= SDLK_KP9) && (key >= SDLK_KP0) && (curpos < max_len)) {
 			key -= SDLK_KP0;
 			key += '0';
 
@@ -640,72 +632,65 @@ char *get_string(int MaxLen, const char *background_name, const char *text_for_o
  * NOTE: MaxLen is the maximal _strlen_ of the string (excl. \0 !)
  * 
  * ----------------------------------------------------------------- */
-char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, const char *DefaultString)
+char *get_editable_string_in_popup_window(int max_len, const char *popup_window_title, const char *default_string)
 {
-	char *input;		// pointer to the string entered by the user
-	int key;		// last 'character' entered 
-	int curpos;		// counts the characters entered so far
-	int finished;
-	int x0, y0;
-	SDL_Rect TargetRect;
-	int i;
-
 #define EDIT_WINDOW_TEXT_OFFSET 15
 
-	input = MyMalloc(MaxLen + 5);
-	strncpy(input, DefaultString, MaxLen - 1);
-	input[MaxLen] = 0;
-	curpos = strlen(input);
+	char *input = MyMalloc(max_len + 5); // pointer to the string entered by the user
+	strncpy(input, default_string, max_len - 1);
+	input[max_len] = 0;
+	int curpos = strlen(input); // counts the characters entered so far
 
 	// Now we prepare a rectangle for our popup window...
 	//
-	TargetRect.w = 440;
-	TargetRect.h = 340;
-	TargetRect.x = (640 - TargetRect.w) / 2;
-	TargetRect.y = (480 - TargetRect.h) / 2;
-	TargetRect.w -= EDIT_WINDOW_TEXT_OFFSET;
-	TargetRect.h -= EDIT_WINDOW_TEXT_OFFSET;
-	TargetRect.x += EDIT_WINDOW_TEXT_OFFSET;
-	TargetRect.y += EDIT_WINDOW_TEXT_OFFSET;
+	SDL_Rect target_rect;
+	target_rect.w = 440;
+	target_rect.h = 340;
+	target_rect.x = (640 - target_rect.w) / 2;
+	target_rect.y = (480 - target_rect.h) / 2;
+	target_rect.w -= EDIT_WINDOW_TEXT_OFFSET;
+	target_rect.h -= EDIT_WINDOW_TEXT_OFFSET;
+	target_rect.x += EDIT_WINDOW_TEXT_OFFSET;
+	target_rect.y += EDIT_WINDOW_TEXT_OFFSET;
 
 	// Now we find the right position for the new string to start by writing
 	// out the title text once, just to get the cursor positioned right...
 	//
-	display_text(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect, 1.0);
-	x0 = MyCursorX;
-	y0 = MyCursorY;
+	display_text(popup_window_title, target_rect.x, target_rect.y, &target_rect, 1.0);
+	int x0 = MyCursorX;
+	int y0 = MyCursorY;
 
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 	// Now we can start the enter-string cycle...
 	//
-	finished = FALSE;
+	int finished = FALSE;
 	while (!finished) {
 
-		TargetRect.w = 440;
-		TargetRect.h = 340;
-		TargetRect.x = (640 - TargetRect.w) / 2;
-		TargetRect.y = (480 - TargetRect.h) / 2;
-		draw_rectangle(&TargetRect, 0, 0, 0, 255);
+		target_rect.w = 440;
+		target_rect.h = 340;
+		target_rect.x = (640 - target_rect.w) / 2;
+		target_rect.y = (480 - target_rect.h) / 2;
+		draw_rectangle(&target_rect, 0, 0, 0, 255);
 
-		TargetRect.w -= EDIT_WINDOW_TEXT_OFFSET;
-		TargetRect.h -= EDIT_WINDOW_TEXT_OFFSET;
-		TargetRect.x += EDIT_WINDOW_TEXT_OFFSET;
-		TargetRect.y += EDIT_WINDOW_TEXT_OFFSET;
+		target_rect.w -= EDIT_WINDOW_TEXT_OFFSET;
+		target_rect.h -= EDIT_WINDOW_TEXT_OFFSET;
+		target_rect.x += EDIT_WINDOW_TEXT_OFFSET;
+		target_rect.y += EDIT_WINDOW_TEXT_OFFSET;
 
 		set_current_font(FPS_Display_Font);
 
-		display_text(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect, 1.0);
+		display_text(popup_window_title, target_rect.x, target_rect.y, &target_rect, 1.0);
 
-		if (PopupWindowTitle[strlen(PopupWindowTitle) - 1] != '\n')
-			display_text("\n\n", x0, y0, &TargetRect, 1.0);
+		if (popup_window_title[strlen(popup_window_title) - 1] != '\n')
+			display_text("\n\n", x0, y0, &target_rect, 1.0);
 
-		TargetRect.x = MyCursorX;
-		TargetRect.y = MyCursorY;
-		display_text_with_cursor(input, TargetRect.x, TargetRect.y, &TargetRect, 1.0, curpos);
+		target_rect.x = MyCursorX;
+		target_rect.y = MyCursorY;
+		display_text_with_cursor(input, target_rect.x, target_rect.y, &target_rect, 1.0, curpos);
 
 		our_SDL_flip_wrapper();
 
-		key = getchar_raw(NULL);
+		int key = getchar_raw(NULL); // last 'character' entered
 
 		if (key == SDLK_RETURN || key == SDLK_KP_ENTER) {
 			// input[curpos] = 0;
@@ -715,7 +700,7 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 				SDL_Delay(1);
 			free(input);
 			return NULL;
-		} else if (isprint(key) && (curpos < MaxLen)) {
+		} else if (isprint(key) && (curpos < max_len)) {
 			// If a printable character has been entered, it is either appended to
 			// the end of the current input string or the rest of the string is being
 			// moved and the new character inserted at the end.
@@ -725,8 +710,9 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 				curpos++;
 				input[curpos] = 0;
 			} else {
-				if (((int)strlen(input)) == MaxLen - 1)
-					input[MaxLen - 2] = 0;
+				if (((int)strlen(input)) == max_len - 1)
+					input[max_len - 2] = 0;
+				int i;
 				for (i = strlen(input); i >= curpos; i--) {
 					input[i + 1] = input[i];
 				}
@@ -743,7 +729,7 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 			// input[curpos] = '.';
 		} else if (key == SDLK_BACKSPACE) {
 			if (curpos > 0) {
-				i = curpos;
+				int i = curpos;
 				while (input[i - 1] != 0) {
 					input[i - 1] = input[i];
 					i++;
@@ -752,14 +738,14 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 			}
 		} else if (key == SDLK_DELETE) {
 			if (curpos > 0) {
-				i = curpos;
+				int i = curpos;
 				while (input[i] != 0) {
 					input[i] = input[i + 1];
 					i++;
 				}
 			}
 
-		} else if ((key <= SDLK_KP9) && (key >= SDLK_KP0) && (curpos < MaxLen)) {
+		} else if ((key <= SDLK_KP9) && (key >= SDLK_KP0) && (curpos < max_len)) {
 			key -= SDLK_KP0;
 			key += '0';
 
@@ -790,9 +776,6 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...)
 {
 	va_list args;
-	int i;
-
-	char *tmp;
 	va_start(args, fmt);
 
 	if (x == -1)
@@ -805,7 +788,7 @@ void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...)
 	else
 		MyCursorY = y;
 
-	tmp = (char *)MyMalloc(10000 + 1);
+	char *tmp = (char *)MyMalloc(10000 + 1);
 	vsprintf(tmp, fmt, args);
 	put_string(get_current_font(), x, y, tmp);
 
@@ -815,6 +798,7 @@ void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...)
 		MyCursorX = x;
 		MyCursorY = y + 1.1 * (get_font_height(get_current_font()));
 	} else {
+		int i;
 		for (i = 0; i < ((int)strlen(tmp)); i++)
 			MyCursorX += font_char_width(get_current_font(), tmp[i]);
 		MyCursorY = y;

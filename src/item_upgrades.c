@@ -147,10 +147,9 @@ static int addon_is_compatible_with_item(struct addon_spec *addonspec, item *it)
  * \param socketid Socket index.
  * \return TRUE if compatible, FALSE otherwise.
  */
-int item_can_be_installed_to_socket(item *dstitem, item *addon, int socketid)
+int item_can_be_installed_to_socket(struct item *dstitem, struct item *addon, int socketid)
 {
 	const char *str;
-	struct addon_spec *spec;
 	enum upgrade_socket_types addon_type;
 	enum upgrade_socket_types socket_type;
 
@@ -165,7 +164,7 @@ int item_can_be_installed_to_socket(item *dstitem, item *addon, int socketid)
 	}
 
 	// Make sure the item is an add-on.
-	spec = get_addon_spec(addon->type);
+	struct addon_spec *spec = get_addon_spec(addon->type);
 	if (spec == NULL) {
 		return FALSE;
 	}
@@ -200,10 +199,9 @@ int item_can_be_installed_to_socket(item *dstitem, item *addon, int socketid)
 struct addon_spec *get_addon_spec(int item_type)
 {
 	int i;
-	struct addon_spec *spec;
 
 	for (i = 0; i < addon_specs->size; i++) {
-		spec = &((struct addon_spec *) addon_specs->arr)[i];
+		struct addon_spec *spec = &((struct addon_spec *) addon_specs->arr)[i];
 		if (spec->type == item_type) {
 			return spec;
 		}
@@ -430,11 +428,6 @@ static void apply_addon_bonus(item *it, struct addon_bonus *bonus)
  */
 void calculate_item_bonuses(item *it)
 {
-	int i;
-	int j;
-	const char *addon;
-	struct addon_spec *spec;
-
 	// Reset all the bonuses to defaults.
 	it->bonus_to_dex = 0;
 	it->bonus_to_str = 0;
@@ -461,11 +454,13 @@ void calculate_item_bonuses(item *it)
 	}
 
 	// Apply bonuses from add-ons.
+	int i;
 	for (i = 0; i < it->upgrade_sockets.size; i++) {
 		struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&it->upgrade_sockets, i, sizeof(struct upgrade_socket));
-		addon = socket->addon;
+		const char *addon = socket->addon;
 		if (addon) {
-			spec = get_addon_spec(get_item_type_by_id(addon));
+			struct addon_spec *spec = get_addon_spec(get_item_type_by_id(addon));
+			int j;
 			for (j = 0; j < spec->bonuses.size; j++) {
 				apply_addon_bonus(it, &((struct addon_bonus*) spec->bonuses.arr)[j]);
 			}
@@ -484,11 +479,10 @@ int count_used_sockets(item *it)
 {
 	int i;
 	int count = 0;
-	const char *addon;
 
 	for (i = 0; i < it->upgrade_sockets.size; i++) {
 		struct upgrade_socket *socket = (struct upgrade_socket *)dynarray_member(&it->upgrade_sockets, i, sizeof(struct upgrade_socket));
-		addon = socket->addon;
+		const char *addon = socket->addon;
 		if (addon)	
 			count++;
 	}

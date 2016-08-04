@@ -267,10 +267,10 @@ static void calc_min_max_selection(struct list_head *list, moderately_finepoint 
 
 static int set_floor_layers(level *lvl, struct lvledit_map_tile *tile)
 {
-	int i;
 	struct map_tile *t = tile->tile;
 
 	if (tile->layer == ALL_FLOOR_LAYERS) {
+		int i;
 		for (i = 0; i < lvl->floor_layers; i++)
 			action_set_floor_layer(EditLevel(), tile->coord.x, tile->coord.y, i, t->floor_values[i]);
 		return i;
@@ -346,9 +346,9 @@ static void select_floor_on_tile(int x, int y)
 
 static void select_obstacles_on_tile(int x, int y)
 {
-	int idx, a;
+	int a;
 	for (a = 0; a < EditLevel()->map[y][x].glued_obstacles.size; a++) {
-		idx = ((int *)(EditLevel()->map[y][x].glued_obstacles.arr))[a];
+		int idx = ((int *)(EditLevel()->map[y][x].glued_obstacles.arr))[a];
 		if (!element_in_selection(&EditLevel()->obstacle_list[idx])) {
 		add_object_to_list(&selected_elements, &EditLevel()->obstacle_list[idx], OBJECT_OBSTACLE);
 			state.rect_nbelem_selected++;
@@ -376,12 +376,11 @@ static void select_waypoint_on_tile(int x, int y)
 
 static void select_item_on_tile(int x, int y)
 {
-	item *it;
 	int i;
 
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
 		// Get the item
-		it = &EditLevel()->ItemList[i];
+		struct item *it = &EditLevel()->ItemList[i];
 
 		if (it->type == -1)
 			continue;
@@ -501,8 +500,6 @@ static void start_rect_select()
 
 static void do_rect_select()
 {
-	int i, j;
-
 	// If there is something to change
 	if (((int)mouse_mapcoord.x != state.cur_drag_pos.x) || ((int)mouse_mapcoord.y != state.cur_drag_pos.y)) {
 
@@ -534,7 +531,8 @@ static void do_rect_select()
 		clear_selection(state.rect_nbelem_selected);
 		state.rect_nbelem_selected = 0;
 
-		// Then redo a correct one      
+		// Then redo a correct one
+		int i, j;
 		for (j = state.rect_start.y; j < state.rect_start.y + state.rect_len.y; ++j) {
 			if (j < 0 || j >= EditLevel()->ylen)
 				continue;
@@ -598,10 +596,6 @@ static void do_drag_drop_obstacle(moderately_finepoint diff)
 
 static void do_drag_drop_floor(moderately_finepoint diff)
 {
-	struct selected_element *e;
-	struct lvledit_map_tile *t;
-	int changed_tiles = 0;
-
 	// Move the selection if the displacement exceeds half a tile
 	if (fabsf(diff.x) >= 0.5 || fabsf(diff.y) >= 0.5 ) {
 
@@ -625,11 +619,14 @@ static void do_drag_drop_floor(moderately_finepoint diff)
 		clear_selection(-1);
 		
 		// Browse the original selection in order to set the floor of the new selection
+		int changed_tiles = 0;
+		struct selected_element *e = NULL;
+
 		list_for_each_entry(e, &clipboard_elements, node) {
 			if (e->type != OBJECT_FLOOR)
 				return;
 
-			t = e->data;
+			struct lvledit_map_tile *t = e->data;
 
 			// Calculate the new coordinates of the tile
 			t->coord.x += (int)rintf(diff.x);
@@ -664,11 +661,9 @@ static void do_drag_drop_item(moderately_finepoint diff)
 	state.cur_drag_pos.y = mouse_mapcoord.y;
 }
 
-static void do_drag_drop_waypoint(moderately_finepoint diff)
+static void do_drag_drop_waypoint(struct moderately_finepoint diff)
 {
 	struct selected_element *e;
-	waypoint *w, *w2;
-	int wp_pos;
 
 	// Move the selection if the displacement exceeds half a tile
 	if (fabsf(diff.x) >= 0.5 || fabsf(diff.y) >= 0.5 ) {
@@ -676,17 +671,17 @@ static void do_drag_drop_waypoint(moderately_finepoint diff)
 			if (e->type != OBJECT_WAYPOINT)
 				return;
 
-			w = e->data;
+			struct waypoint *w = e->data;
 
 			// In order to retrieve the actual waypoint we must obtain its index in the level's waypoint array
-			wp_pos = get_waypoint(EditLevel(), w->x, w->y);
+			int wp_pos = get_waypoint(EditLevel(), w->x, w->y);
 
 			// Modify the selection coordinates
 			w->x += (int)rintf(diff.x);
 			w->y += (int)rintf(diff.y);
 
 			// Retrieve the original waypoint
-			w2 = &(((waypoint *)(EditLevel()->waypoints.arr))[wp_pos]);
+			struct waypoint *w2 = &(((waypoint *)(EditLevel()->waypoints.arr))[wp_pos]);
 
 			// Modify the actual waypoint
 			move_waypoint(EditLevel(), w2, w->x, w->y);
@@ -791,11 +786,10 @@ static void end_drag_drop()
 
 static int level_editor_number_of_marked_items()
 {
-	item *it;
 	int i, num = 0;
 
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		it = &EditLevel()->ItemList[i];
+		struct item *it = &EditLevel()->ItemList[i];
 
 		if (it->type == -1)
 			continue;
@@ -905,9 +899,8 @@ void level_editor_cycle_marked_object()
 
 static int clear_current_floor_layers(level *lvl, int coord_x, int coord_y)
 {
-	int i;
-
 	if (GameConfig.show_all_floor_layers) {
+		int i;
 		for (i = 0; i < lvl->floor_layers; i++)
 			action_set_floor_layer(lvl, coord_x, coord_y, i, ISO_FLOOR_EMPTY);
 		return i;

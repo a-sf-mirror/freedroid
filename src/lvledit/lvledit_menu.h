@@ -22,6 +22,6 @@
  *
  */
 
-void EditLevelDimensions(void);
-int DoLevelEditorMainMenu(void);
+void edit_level_dimensions(void);
+int do_level_editor_main_menu(void);
 int get_number_popup(const char *, const char *);

@@ -53,14 +53,13 @@ void add_map_label(level *lvl, int x, int y, char *label_name)
  * \param lvl Pointer towards the level where the map label lies
  * \param label_name Name of the map label
  */
-void del_map_label(level *lvl, const char *label_name)
+void del_map_label(struct level *lvl, const char *label_name)
 {
-	struct map_label *map_label;
 	int i;
 
 	for (i = 0; i < lvl->map_labels.size; i++) {
 		// Get the map label on this level
-		map_label = &ACCESS_MAP_LABEL(lvl->map_labels, i);
+		struct map_label *map_label = &ACCESS_MAP_LABEL(lvl->map_labels, i);
 
 		if (!strcmp(map_label->label_name, label_name)) {
 			// Delete the map label
@@ -72,14 +71,13 @@ void del_map_label(level *lvl, const char *label_name)
 	}
 }
 
-void free_map_labels(level *lvl)
+void free_map_labels(struct level *lvl)
 {
-	struct map_label *map_label;
 	int i;
 
 	for (i = 0; i < lvl->map_labels.size; i++) {
 		// Get the map label on this level
-		map_label = &ACCESS_MAP_LABEL(lvl->map_labels, i);
+		struct map_label *map_label = &ACCESS_MAP_LABEL(lvl->map_labels, i);
 		
 		free(map_label->label_name);
 	}
@@ -92,14 +90,13 @@ void free_map_labels(level *lvl)
  * \param lvl Pointer towards the level where the map label lies
  * \param label_name Name of the map label
  */
-struct map_label *get_map_label(level *lvl, const char *label_name)
+struct map_label *get_map_label(struct level *lvl, const char *label_name)
 {
-	struct map_label *map_label;
 	int i;
 
 	for (i = 0; i < lvl->map_labels.size; i++) {
 		// Get the map label on this level
-		map_label = &ACCESS_MAP_LABEL(lvl->map_labels, i);
+		struct map_label *map_label = &ACCESS_MAP_LABEL(lvl->map_labels, i);
 
 		if (!strcmp(map_label->label_name, label_name))
 			return map_label;
@@ -108,13 +105,12 @@ struct map_label *get_map_label(level *lvl, const char *label_name)
 	return NULL;
 }
 
-struct map_label *get_map_label_from_coords(level *lvl, float x, float y)
+struct map_label *get_map_label_from_coords(struct level *lvl, float x, float y)
 {
-	map_label *m;
 	int i;
 
 	for (i = 0; i < lvl->map_labels.size; i++) {
-		m = &ACCESS_MAP_LABEL(lvl->map_labels, i);
+		struct map_label *m = &ACCESS_MAP_LABEL(lvl->map_labels, i);
 
 		if (m->pos.x == floor(x) && m->pos.y == floor(y))
 			return m;

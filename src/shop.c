@@ -267,9 +267,8 @@ void ShowItemPicture(int PosX, int PosY, int Number)
 /**
  * Assemble item description.
  */
-static void fill_item_description(struct widget_text *desc, item *show_item, int buy)
+static void fill_item_description(struct widget_text *desc, struct item *show_item, int buy)
 {
-	long int repair_price = 0;
 	itemspec *info;
 	int price = calculate_item_buy_price(show_item);
 	const char *action = _("Buy");
@@ -307,9 +306,8 @@ static void fill_item_description(struct widget_text *desc, item *show_item, int
 		}
 
 
-		if (show_item->current_durability == show_item->max_durability || show_item->max_durability == (-1))
-			repair_price = 0;
-		else
+		long int repair_price = 0;
+		if ((show_item->current_durability != show_item->max_durability) && (show_item->max_durability != -1))
 			repair_price = calculate_item_repair_price(show_item);
 
 		if (ItemMap[show_item->type].base_item_durability != (-1)) {
@@ -344,7 +342,7 @@ static void fill_item_description(struct widget_text *desc, item *show_item, int
  * show from the console menu.
  */
 int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_INVENTORY],
-		       int NumberOfItemsInTuxRow, item * TuxItemsList[MAX_ITEMS_IN_INVENTORY], shop_decision * ShopOrder)
+		       int NumberOfItemsInTuxRow, item * TuxItemsList[MAX_ITEMS_IN_INVENTORY], struct shop_decision * ShopOrder)
 {
 	int i;
 	int ClickTarget;
@@ -757,52 +755,50 @@ static int buy_item(item *BuyItem, int amount)
  *
  *
  */
-void InitTradeWithCharacter(struct npc *npc)
+void init_trade_with_character(struct npc *npc)
 {
 #define NUMBER_OF_ITEMS_IN_SHOP 17
 
-	item *BuyPointerList[MAX_ITEMS_IN_INVENTORY];
-	item *TuxItemsList[MAX_ITEMS_IN_INVENTORY];
+	struct item *buy_pointer_list[MAX_ITEMS_IN_INVENTORY];
+	struct item *tux_items_list[MAX_ITEMS_IN_INVENTORY];
+
+	struct dynarray *sold_items = npc_get_inventory(npc);
+
 	int i;
-	int ItemSelected = 0;
-	shop_decision ShopOrder;
-	int NumberOfItemsInTuxRow = 0;
-	struct dynarray *sold_items;
-
-	sold_items = npc_get_inventory(npc);
-
-	for (i = 0; i < sold_items->size && i < sizeof(BuyPointerList)/sizeof(BuyPointerList[0]); i++) {
-			BuyPointerList[i] = &((item *)(sold_items->arr))[i];
+	for (i = 0; i < sold_items->size && i < sizeof(buy_pointer_list)/sizeof(buy_pointer_list[0]); i++) {
+		buy_pointer_list[i] = &((item *)(sold_items->arr))[i];
 	}
 
 	// Now here comes the new thing:  This will be a loop from now
 	// on.  The buy and buy and buy until at one point we say 'BACK'
 	//
-	while (ItemSelected != (-1)) {
+	int item_selected = 0;
+	while (item_selected != (-1)) {
+		struct shop_decision shop_order;
 
-		NumberOfItemsInTuxRow = AssemblePointerListForItemShow(&(TuxItemsList[0]), TRUE);
+		int number_of_items_in_tux_row = AssemblePointerListForItemShow(&(tux_items_list[0]), TRUE);
+		item_selected = GreatShopInterface(sold_items->size, buy_pointer_list, number_of_items_in_tux_row, tux_items_list, &(shop_order));
 
-		ItemSelected = GreatShopInterface(sold_items->size, BuyPointerList, NumberOfItemsInTuxRow, TuxItemsList, &(ShopOrder));
-		switch (ShopOrder.shop_command) {
+		switch (shop_order.shop_command) {
 		case BUY_1_ITEM:
-			if (buy_item(BuyPointerList[ShopOrder.item_selected], ShopOrder.number_selected) == 1) {
+			if (buy_item(buy_pointer_list[shop_order.item_selected], shop_order.number_selected) == 1) {
 				// destroy our copy of the item
-				npc_inventory_delete_item(npc, ShopOrder.item_selected);
+				npc_inventory_delete_item(npc, shop_order.item_selected);
 			}
 			break;
 		case SELL_1_ITEM:
-			TryToSellItem(TuxItemsList[ShopOrder.item_selected], ShopOrder.number_selected);
+			TryToSellItem(tux_items_list[shop_order.item_selected], shop_order.number_selected);
 			break;
 		case REPAIR_ITEM:
-			repair_item(TuxItemsList[ShopOrder.item_selected]);
+			repair_item(tux_items_list[shop_order.item_selected]);
 			break;
 		default:
 
 			break;
 		};
 
-		for (i = 0; i < sold_items->size && i < sizeof(BuyPointerList)/sizeof(BuyPointerList[0]); i++) {
-			BuyPointerList[i] = &((item *)(sold_items->arr))[i];
+		for (i = 0; i < sold_items->size && i < sizeof(buy_pointer_list)/sizeof(buy_pointer_list[0]); i++) {
+			buy_pointer_list[i] = &((item *)(sold_items->arr))[i];
 		}
 	}
 }

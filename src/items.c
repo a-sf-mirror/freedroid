@@ -455,11 +455,9 @@ static int get_random_item_type(int class)
  * modify the table of items to be dropped.
  *
  */
-void DropRandomItem(int level_num, float x, float y, int class, int force_magical)
+void drop_random_item(int level_num, float x, float y, int class, int force_magical)
 {
-	int DropDecision;
-	int drop_item_type = 1;
-	int drop_item_multiplicity = 1;
+	int drop_decision;
 	int drop_item_chance = Me.skill_level[get_program_index_with_name("Treasure Hunting")] * 2 + ITEM_DROP_PERCENTAGE;
 
 	if (class == -1) 
@@ -475,28 +473,28 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 	// cause in the later case, we can return immediately.  If a drop is
 	// forced, we don't need to check for drop.
 	//
-	DropDecision = MyRandom(100);
+	drop_decision = MyRandom(100);
 
 	// We decide whether we drop something at all or not
 	//
-	if ((DropDecision < 100 - GOLD_DROP_PERCENTAGE) && (DropDecision > drop_item_chance))
+	if ((drop_decision < 100 - GOLD_DROP_PERCENTAGE) && (drop_decision > drop_item_chance))
 		return;
 
 	// Perhaps it's some gold that will be dropped.  That's rather
 	// simple, so we do this first.
 	//
-	if ((DropDecision > 100 - GOLD_DROP_PERCENTAGE)) {
+	if ((drop_decision > 100 - GOLD_DROP_PERCENTAGE)) {
 		// If class == 0, we want to avoid to drop 0-1 valuable circuits
 		int how_many = (class == 0) ? 2 : 0;
 		how_many += MONEY_PER_BOT_CLASS * class + MyRandom(MONEY_PER_BOT_CLASS - 1);
 		DropItemAt(get_item_type_by_id("Valuable Circuits"), level_num, x, y, how_many);
 	}
 
-	if ((DropDecision < drop_item_chance)) {
-		drop_item_type = get_random_item_type(class);
+	if ((drop_decision < drop_item_chance)) {
+		int drop_item_type = get_random_item_type(class);
 
 		// Determine the multiplicity for the item
-		drop_item_multiplicity = ItemMap[drop_item_type].drop_amount + MyRandom(ItemMap[drop_item_type].drop_amount_max - ItemMap[drop_item_type].drop_amount);
+		int drop_item_multiplicity = ItemMap[drop_item_type].drop_amount + MyRandom(ItemMap[drop_item_type].drop_amount_max - ItemMap[drop_item_type].drop_amount);
 
 		// Create the item and place it to the map. This can fail under certain
 		// conditions so we need to check for errors and give up if one occurred.
@@ -1387,15 +1385,13 @@ severe bugs in the inventory system.", PLEASE_INFORM | IS_FATAL);
  * enough in it at that location.  If that is the case, then the item is
  * dropped onto this inventory location, else nothing is done.
  */
-void DropHeldItemToInventory(void)
+void drop_held_item_to_inventory(void)
 {
-	point CurPos;
-	int FreeInvIndex;
-	int i;
-	FreeInvIndex = GetFreeInventoryIndex();
+	struct point current_pos;
+	int free_inv_index = GetFreeInventoryIndex();
 
 	// First we check validity of held item
-	//
+
 	if (item_held_in_hand == NULL) {
 		DebugPrintf(0, "\nvoid DropHeldItemToInventory ( void ) : No item in inventory seems to be currently held in hand...");
 		return;
@@ -1405,20 +1401,20 @@ void DropHeldItemToInventory(void)
 	// Therefore we need to find out the right position, which of course
 	// depends as well on current mouse cursor location as well as the
 	// size of the dropped item.
-	//
-	CurPos.x = GetMousePos_x() - (16 * (ItemMap[item_held_in_hand->type].inv_size.x - 1));
-	CurPos.y = GetMousePos_y() - (16 * (ItemMap[item_held_in_hand->type].inv_size.y - 1));
 
-	if (ItemCanBeDroppedInInv(item_held_in_hand->type, GetInventorySquare_x(CurPos.x), GetInventorySquare_y(CurPos.y))) {
-		CopyItem(item_held_in_hand, &(Me.Inventory[FreeInvIndex]));
+	current_pos.x = GetMousePos_x() - (16 * (ItemMap[item_held_in_hand->type].inv_size.x - 1));
+	current_pos.y = GetMousePos_y() - (16 * (ItemMap[item_held_in_hand->type].inv_size.y - 1));
+
+	if (ItemCanBeDroppedInInv(item_held_in_hand->type, GetInventorySquare_x(current_pos.x), GetInventorySquare_y(current_pos.y))) {
+		CopyItem(item_held_in_hand, &(Me.Inventory[free_inv_index]));
 		play_item_sound(item_held_in_hand->type, &Me.pos);
-		Me.Inventory[FreeInvIndex].inventory_position.x = GetInventorySquare_x(CurPos.x);
-		Me.Inventory[FreeInvIndex].inventory_position.y = GetInventorySquare_y(CurPos.y);
+		Me.Inventory[free_inv_index].inventory_position.x = GetInventorySquare_x(current_pos.x);
+		Me.Inventory[free_inv_index].inventory_position.y = GetInventorySquare_y(current_pos.y);
 
 		// Now that we know that the item could be dropped directly to inventory 
 		// without swapping any spaces, we can as well make the item
 		// 'not held in hand' immediately and return
-		//
+
 		DeleteItem(item_held_in_hand);
 		item_held_in_hand = NULL;
 		return;
@@ -1426,30 +1422,31 @@ void DropHeldItemToInventory(void)
 		// So the item could not be placed into inventory directly, but maybe
 		// it can be placed there if we swap our dropitem with some other item.
 		// Let's test this opportunity here.
-		//
+
+		int i;
 		for (i = 0; i < MAX_ITEMS_IN_INVENTORY - 1; i++) {
 			// FIRST: Security check against segfaults:  It might happen that we 
 			// delete the Dropitem itself while trying several items as candidates
 			// for removal.  This would cause testing dropability with a -1 item
 			// type and a SEGFAULT would result...
-			//
+
 			if (&(Me.Inventory[i]) == item_held_in_hand)
 				continue;
 
 			// So we make a copy of each of the items we remove in order to 
 			// try to create new space for the drop item.  After that, we can
 			// remove it.
-			//
+
 			CopyItem(&(Me.Inventory[i]), &(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]));
 			Me.Inventory[i].type = (-1);
 
-			if (ItemCanBeDroppedInInv(item_held_in_hand->type, GetInventorySquare_x(CurPos.x), GetInventorySquare_y(CurPos.y))) {
+			if (ItemCanBeDroppedInInv(item_held_in_hand->type, GetInventorySquare_x(current_pos.x), GetInventorySquare_y(current_pos.y))) {
 				
 				// Copy the HelItem to the now free position
-				CopyItem(item_held_in_hand, &(Me.Inventory[FreeInvIndex]));
+				CopyItem(item_held_in_hand, &(Me.Inventory[free_inv_index]));
 				play_item_sound(item_held_in_hand->type, &Me.pos);
-				Me.Inventory[FreeInvIndex].inventory_position.x = GetInventorySquare_x(CurPos.x);
-				Me.Inventory[FreeInvIndex].inventory_position.y = GetInventorySquare_y(CurPos.y);
+				Me.Inventory[free_inv_index].inventory_position.x = GetInventorySquare_x(current_pos.x);
+				Me.Inventory[free_inv_index].inventory_position.y = GetInventorySquare_y(current_pos.y);
 				DeleteItem(item_held_in_hand);
 
 				// The removed item Nr. i is put in hand in replacement of the
@@ -1462,12 +1459,12 @@ void DropHeldItemToInventory(void)
 			// But if even the removal of one item was not enough, so that the new
 			// item would fit into the inventory, then of course we should re-add the
 			// removed item to the inventory, so that no other items get lost.
-			//
+
 			CopyItem(&(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]), &(Me.Inventory[i]));
 
-		}		// for: try all items if removal is the solution
-	}			// if not immediately place findable
-};				// void DropHeldItemToInventory( void )
+		}
+	}
+}
 
 /**
  *
@@ -1643,7 +1640,7 @@ void HandleInventoryScreen(void)
 		// should from then on not only no longer be in the players
 		// hand but also remain at the newly assigned position.
 		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
-			DropHeldItemToInventory();
+			drop_held_item_to_inventory();
 			return;
 		}
 
@@ -1910,22 +1907,21 @@ static int place_item_on_this_position_if_you_can(item * ItemPointer, point Inv_
  * \return -1 on error, 1 if the item was placed somewhere, 0 if there is no room
  *         for the item in the inventory.
  */
-int try_give_item(item *ItemPointer)
+int try_give_item(struct item *it)
 {
-	int InvPos;
-	point Inv_Loc = { -1, -1 };
-	int TargetItemIndex;
+	int inv_pos;
+	struct point inv_loc = { -1, -1 };
 
-	if (ItemPointer == NULL)
+	if (it == NULL)
 		return -1;
 
 	// In the special case of money, we add the amount of money to our
 	// money counter and eliminate the item on the floor.
 
-	if (item_spec_eq_id(ItemPointer->type, "Valuable Circuits")) {
-		play_item_sound(ItemPointer->type, &Me.pos);
-		Me.Gold += ItemPointer->multiplicity;
-		DeleteItem(ItemPointer);
+	if (item_spec_eq_id(it->type, "Valuable Circuits")) {
+		play_item_sound(it->type, &Me.pos);
+		Me.Gold += it->multiplicity;
+		DeleteItem(it);
 		return 1;
 	}
 
@@ -1933,12 +1929,12 @@ int try_give_item(item *ItemPointer)
 	// of the same type AND we also have as item of this type already in inventory,
 	// then we just need to manipulate multiplicity a bit and we're done.  Very easy.
 
-	if (ItemMap[ItemPointer->type].item_group_together_in_inventory) {
-		if (CountItemtypeInInventory(ItemPointer->type)) {
-			TargetItemIndex = FindFirstInventoryIndexWithItemType(ItemPointer->type);
-			Me.Inventory[TargetItemIndex].multiplicity += ItemPointer->multiplicity;
-			play_item_sound(ItemPointer->type, &Me.pos);
-			DeleteItem(ItemPointer);
+	if (ItemMap[it->type].item_group_together_in_inventory) {
+		if (CountItemtypeInInventory(it->type)) {
+			int target_item_index = FindFirstInventoryIndexWithItemType(it->type);
+			Me.Inventory[target_item_index].multiplicity += it->multiplicity;
+			play_item_sound(it->type, &Me.pos);
+			DeleteItem(it);
 			return 1;
 		}
 	}
@@ -1946,70 +1942,70 @@ int try_give_item(item *ItemPointer)
 	// Maybe the item is of a kind that can be equipped right now.  Then
 	// we decide to directly drop it to the corresponding slot.
 
-	if ((Me.weapon_item.type == (-1)) && (ItemMap[ItemPointer->type].slot == WEAPON_SLOT)) {
-		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
+	if ((Me.weapon_item.type == (-1)) && (ItemMap[it->type].slot == WEAPON_SLOT)) {
+		if (ItemUsageRequirementsMet(it, TRUE)) {
 			// Now we're picking up a weapon while no weapon is equipped.  But still
 			// it might be a 2-handed weapon while there is some shield equipped.  Well,
 			// when that is the case, we refuse to put it directly to the proper slot, 
 			// otherwise we do it.
-			//
+
 			if (Me.shield_item.type == (-1)) {
-				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.weapon_item), Inv_Loc);
+				raw_move_picked_up_item_to_entry(it, &(Me.weapon_item), inv_loc);
 				return 1;
 			}
 			// So now we know that some shield item is equipped.  Let's be careful:  2-handed
 			// weapons will be rejected from direct addition to the slot.
-			//
-			if (!ItemMap[ItemPointer->type].weapon_needs_two_hands) {
-				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.weapon_item), Inv_Loc);
+
+			if (!ItemMap[it->type].weapon_needs_two_hands) {
+				raw_move_picked_up_item_to_entry(it, &(Me.weapon_item), inv_loc);
 				return 1;
 			}
 		}
 	}
 
-	if ((Me.shield_item.type == (-1)) && (ItemMap[ItemPointer->type].slot == SHIELD_SLOT)) {
-		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
+	if ((Me.shield_item.type == (-1)) && (ItemMap[it->type].slot == SHIELD_SLOT)) {
+		if (ItemUsageRequirementsMet(it, TRUE)) {
 			// Auto-equipping shields can be done.  But only if there isn't a 2-handed
 			// weapon equipped already.  Well, in case of no weapon present it's easy:
-			//
+
 			if (Me.weapon_item.type == (-1)) {
-				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.shield_item), Inv_Loc);
+				raw_move_picked_up_item_to_entry(it, &(Me.shield_item), inv_loc);
 				return 1;
 			}
 			// But now we know, that there is some weapon present.  We need to be careful:
 			// it might be a 2-handed weapon.
-			// 
+
 			if (!ItemMap[Me.weapon_item.type].weapon_needs_two_hands) {
-				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.shield_item), Inv_Loc);
+				raw_move_picked_up_item_to_entry(it, &(Me.shield_item), inv_loc);
 				return 1;
 			}
 		}
 	}
 
-	if ((Me.armour_item.type == (-1)) && (ItemMap[ItemPointer->type].slot == ARMOR_SLOT)) {
-		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
-			raw_move_picked_up_item_to_entry(ItemPointer, &(Me.armour_item), Inv_Loc);
+	if ((Me.armour_item.type == (-1)) && (ItemMap[it->type].slot == ARMOR_SLOT)) {
+		if (ItemUsageRequirementsMet(it, TRUE)) {
+			raw_move_picked_up_item_to_entry(it, &(Me.armour_item), inv_loc);
 			return 1;
 		}
 	}
 
-	if ((Me.drive_item.type == (-1)) && (ItemMap[ItemPointer->type].slot == BOOT_SLOT)) {
-		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
-			raw_move_picked_up_item_to_entry(ItemPointer, &(Me.drive_item), Inv_Loc);
+	if ((Me.drive_item.type == (-1)) && (ItemMap[it->type].slot == BOOT_SLOT)) {
+		if (ItemUsageRequirementsMet(it, TRUE)) {
+			raw_move_picked_up_item_to_entry(it, &(Me.drive_item), inv_loc);
 			return 1;
 		}
 	}
 
-	if ((Me.special_item.type == (-1)) && (ItemMap[ItemPointer->type].slot == HELM_SLOT)) {
-		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
-			raw_move_picked_up_item_to_entry(ItemPointer, &(Me.special_item), Inv_Loc);
+	if ((Me.special_item.type == (-1)) && (ItemMap[it->type].slot == HELM_SLOT)) {
+		if (ItemUsageRequirementsMet(it, TRUE)) {
+			raw_move_picked_up_item_to_entry(it, &(Me.special_item), inv_loc);
 			return 1;
 		}
 	}
 
 	// find a free position in the inventory list
-	for (InvPos = 0; InvPos < MAX_ITEMS_IN_INVENTORY - 1; InvPos++) {
-		if (Me.Inventory[InvPos].type == (-1))
+	for (inv_pos = 0; inv_pos < MAX_ITEMS_IN_INVENTORY - 1; inv_pos++) {
+		if (Me.Inventory[inv_pos].type == (-1))
 			break;
 	}
 
@@ -2018,31 +2014,31 @@ int try_give_item(item *ItemPointer)
 	// isn't possible, it can still be placed somewhere outside of the quick 
 	// inventory later.
 
-	if ((ItemMap[ItemPointer->type].inv_size.x == 1) &&
-	    (ItemMap[ItemPointer->type].inv_size.y == 1) && (ItemMap[ItemPointer->type].right_use.tooltip)) {
+	if ((ItemMap[it->type].inv_size.x == 1) &&
+	    (ItemMap[it->type].inv_size.y == 1) && (ItemMap[it->type].right_use.tooltip)) {
 		DebugPrintf(2, "\n\nTrying to place this item inside of the quick inventory first...");
-		Inv_Loc.y = INVENTORY_GRID_HEIGHT - 1;
-		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_WIDTH - ItemMap[ItemPointer->type].inv_size.x + 1; Inv_Loc.x++) {
-			if (place_item_on_this_position_if_you_can(ItemPointer, Inv_Loc, InvPos))
+		inv_loc.y = INVENTORY_GRID_HEIGHT - 1;
+		for (inv_loc.x = 0; inv_loc.x < INVENTORY_GRID_WIDTH - ItemMap[it->type].inv_size.x + 1; inv_loc.x++) {
+			if (place_item_on_this_position_if_you_can(it, inv_loc, inv_pos))
 				return 1;
 		}
 	}
 
 	// Find enough free squares in the inventory to fit
-	for (Inv_Loc.y = 0; Inv_Loc.y < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_size.y + 1; Inv_Loc.y++) {
-		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_WIDTH - ItemMap[ItemPointer->type].inv_size.x + 1; Inv_Loc.x++) {
-			if (place_item_on_this_position_if_you_can(ItemPointer, Inv_Loc, InvPos))
+	for (inv_loc.y = 0; inv_loc.y < INVENTORY_GRID_HEIGHT - ItemMap[it->type].inv_size.y + 1; inv_loc.y++) {
+		for (inv_loc.x = 0; inv_loc.x < INVENTORY_GRID_WIDTH - ItemMap[it->type].inv_size.x + 1; inv_loc.x++) {
+			if (place_item_on_this_position_if_you_can(it, inv_loc, inv_pos))
 				return 1;
 		}
 	}
 
 	// No enough free place in the inventory
-	if (Me.Inventory[InvPos].inventory_position.x == (-1)) {
+	if (Me.Inventory[inv_pos].inventory_position.x == (-1)) {
 		return 0;
 	}
 
 	// Place the item in the inventory
-	raw_move_picked_up_item_to_entry(ItemPointer, &(Me.Inventory[InvPos]), Inv_Loc);
+	raw_move_picked_up_item_to_entry(it, &(Me.Inventory[inv_pos]), inv_loc);
 
 	return 1;
 }

@@ -746,61 +746,54 @@ static void load_skill_level_images_if_needed(void)
  * you currenlty have available and you can select a new readied skill by
  * clicking on it with the mouse.
  */
-void ShowSkillsScreen(void)
+void show_skills_screen(void)
 {
 #define INTER_SKILLRECT_DIST 17
 #define FIRST_SKILLRECT_Y 16
 
-	static SDL_Rect ButtonRect;
-	char CharText[1000];
-	point CurPos;
-	int i;
-	SDL_Rect SpellLevelRect;
-	int SkillSubsetMap[number_of_skills];
-	int SkillOfThisSlot;
-	point SkillRectLocations[NUMBER_OF_SKILLS_PER_SKILL_PAGE];
-
-	DebugPrintf(2, "\n%s(): Function call confirmed.", __FUNCTION__);
+	static SDL_Rect button_rect;
+	int skill_subset_map[number_of_skills];
+	struct point skill_rect_locations[NUMBER_OF_SKILLS_PER_SKILL_PAGE];
 
 	SkillScreenRect.x = CHARACTERRECT_X;
 	SkillScreenRect.y = 0;
 	SkillScreenRect.w = CHARACTERRECT_W;
 	SkillScreenRect.h = CHARACTERRECT_H;
 
+	int i;
 	for (i = 0; i < NUMBER_OF_SKILLS_PER_SKILL_PAGE; i++) {
-		SkillRectLocations[i].x = SkillScreenRect.x + 20;
-		SkillRectLocations[i].y = SkillScreenRect.y + FIRST_SKILLRECT_Y + i * (64 + INTER_SKILLRECT_DIST) + 3;
+		skill_rect_locations[i].x = SkillScreenRect.x + 20;
+		skill_rect_locations[i].y = SkillScreenRect.y + FIRST_SKILLRECT_Y + i * (64 + INTER_SKILLRECT_DIST) + 3;
 	}
 
 	// If the log is not set to visible right now, we do not need to 
 	// do anything more, but to restore the usual user rectangle size
 	// back to normal and to return...
-	//
+
 	if (GameConfig.SkillScreen_Visible == FALSE)
 		return;
 
 	// We will use the FPS display font, cause the small one isn't 
 	// very well readable on the silver background
-	//
+
 	set_current_font(FPS_Display_Font);
 
 	load_skill_level_images_if_needed();
 
 	// We will need the current mouse position on several spots...
-	//
-	CurPos.x = GetMousePos_x();
-	CurPos.y = GetMousePos_y();
+
+	struct point current_pos = { GetMousePos_x(), GetMousePos_y() };
 
 	// We will draw only those skills to the skills inventory, that are
 	// already present in the Tux.  That way the game remains open for new
 	// skills to the player and he doesn't now in advance which skills there
 	// are, which is more interesting than complete control and overview.
 	//
-	establish_skill_subset_map(SkillSubsetMap);
+	establish_skill_subset_map(skill_subset_map);
 
 	// At this point we know, that the skill screen is desired and must be
 	// displayed in-game:
-	//
+
 	blit_background("SkillScreen.png");
 
 	if (GameConfig.skill_explanation_screen_visible)
@@ -808,37 +801,38 @@ void ShowSkillsScreen(void)
 
 	// According to the page in the spell book currently opened,
 	// we draw a 'button' or activation mark over the appropriate spot
-	//
-	SpellLevelRect.x = SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X + SPELL_LEVEL_BUTTON_WIDTH * GameConfig.spell_level_visible;
-	SpellLevelRect.y = SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y;
-	display_image_on_screen(&skill_level_images[GameConfig.spell_level_visible], SpellLevelRect.x, SpellLevelRect.y, IMAGE_NO_TRANSFO);
+
+	SDL_Rect spell_level_rect;
+	spell_level_rect.x = SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X + SPELL_LEVEL_BUTTON_WIDTH * GameConfig.spell_level_visible;
+	spell_level_rect.y = SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y;
+	display_image_on_screen(&skill_level_images[GameConfig.spell_level_visible], spell_level_rect.x, spell_level_rect.y, IMAGE_NO_TRANSFO);
 
 	// Now we fill in the skills available to this bot.  ( For now, these skills 
 	// are not class-specific, like in diablo or something, but this is our first
 	// approach to the topic after all.... :)
-	//
+
 	for (i = 0; i < NUMBER_OF_SKILLS_PER_SKILL_PAGE; i++) {
-		ButtonRect.x = SkillRectLocations[i].x;
-		ButtonRect.y = SkillRectLocations[i].y;
-		ButtonRect.w = 64;
-		ButtonRect.h = 64;
+		button_rect.x = skill_rect_locations[i].x;
+		button_rect.y = skill_rect_locations[i].y;
+		button_rect.w = 64;
+		button_rect.h = 64;
 
 		if (i + NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible >= number_of_skills)
 			break;
-		SkillOfThisSlot = SkillSubsetMap[i + NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible];
-		if (SkillOfThisSlot < 0)
+		int skill_of_this_slot = skill_subset_map[i + NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible];
+		if (skill_of_this_slot < 0)
 			continue;
 
-		load_skill_icon_if_needed(&SpellSkillMap[SkillOfThisSlot]);
+		load_skill_icon_if_needed(&SpellSkillMap[skill_of_this_slot]);
 
-		display_image_on_screen(&SpellSkillMap[SkillOfThisSlot].icon_surface, ButtonRect.x, ButtonRect.y, IMAGE_NO_TRANSFO);
+		display_image_on_screen(&SpellSkillMap[skill_of_this_slot].icon_surface, button_rect.x, button_rect.y, IMAGE_NO_TRANSFO);
 
 		set_current_font(FPS_Display_Font);
 
 		// Program shortcut
 		int sci;
 		for (sci = 0; sci < 10; sci++) {
-			if (Me.program_shortcuts[sci] == SkillOfThisSlot)
+			if (Me.program_shortcuts[sci] == skill_of_this_slot)
 				break;
 		}
 
@@ -846,11 +840,11 @@ void ShowSkillsScreen(void)
 			// print the quick key number
 			char str[10];
 			sprintf(str, "F%d\n", 5 + sci);
-			display_text(str, ButtonRect.x + ButtonRect.w - 2 - text_width(get_current_font(), str), ButtonRect.y, &SkillScreenRect, 1.0);
+			display_text(str, button_rect.x + button_rect.w - 2 - text_width(get_current_font(), str), button_rect.y, &SkillScreenRect, 1.0);
 		}
 		// Name of the skill
 
-		display_text(D_(SpellSkillMap[SkillOfThisSlot].name),
+		display_text(D_(SpellSkillMap[skill_of_this_slot].name),
 			    16 + 64 + 16 + SkillScreenRect.x,
 			    FIRST_SKILLRECT_Y - 6 + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y, &SkillScreenRect, 1.0);
 
@@ -858,79 +852,80 @@ void ShowSkillsScreen(void)
 		int tmp, tmp2;
 		int nextypos =
 		    FIRST_SKILLRECT_Y - 8 + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y + 2 * get_font_height(get_current_font());
+		char char_text[1000];
 
 		// Program revision
-		sprintf(CharText, _("Program revision: %c%d%c "), font_switchto_msgvar[0], Me.skill_level[SkillOfThisSlot],
+		sprintf(char_text, _("Program revision: %c%d%c "), font_switchto_msgvar[0], Me.skill_level[skill_of_this_slot],
 			font_switchto_msgstat[0]);
-		display_text(CharText, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, 1.0);
+		display_text(char_text, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, 1.0);
 		nextypos += get_font_height(get_current_font());
 
 		// Heat cost/cooling
-		tmp = calculate_program_heat_cost(SkillOfThisSlot);
+		tmp = calculate_program_heat_cost(skill_of_this_slot);
 		if (tmp != 0) {
 			if (tmp > 0)
-				sprintf(CharText, _("Heat produced: %c%d%c "), font_switchto_msgvar[0], tmp, font_switchto_msgstat[0]);
+				sprintf(char_text, _("Heat produced: %c%d%c "), font_switchto_msgvar[0], tmp, font_switchto_msgstat[0]);
 			else
-				sprintf(CharText, _("Cooling: %c%d%c "), font_switchto_msgvar[0], -tmp, font_switchto_msgstat[0]);
-			display_text(CharText, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, 1.0);
+				sprintf(char_text, _("Cooling: %c%d%c "), font_switchto_msgvar[0], -tmp, font_switchto_msgstat[0]);
+			display_text(char_text, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, 1.0);
 			nextypos += get_font_height(get_current_font());
 		}
 		// Damage/healing
-		tmp = calculate_program_hit_damage_low(SkillOfThisSlot);
-		tmp2 = calculate_program_hit_damage_high(SkillOfThisSlot);
+		tmp = calculate_program_hit_damage_low(skill_of_this_slot);
+		tmp2 = calculate_program_hit_damage_high(skill_of_this_slot);
 		if (tmp != 0) {
 			if (tmp > 0) {
 				if (tmp == tmp2)
-					sprintf(CharText, _("Damage: %c%d%c "), font_switchto_msgvar[0], tmp, font_switchto_msgstat[0]);
+					sprintf(char_text, _("Damage: %c%d%c "), font_switchto_msgvar[0], tmp, font_switchto_msgstat[0]);
 				else
-					sprintf(CharText, _("Damage: %c%d-%d%c "), font_switchto_msgvar[0], tmp, tmp2,
+					sprintf(char_text, _("Damage: %c%d-%d%c "), font_switchto_msgvar[0], tmp, tmp2,
 						font_switchto_msgstat[0]);
 			} else {
 				if (tmp == tmp2)
-					sprintf(CharText, _("Healing: %c%d%c "), font_switchto_msgvar[0], -tmp, font_switchto_msgstat[0]);
+					sprintf(char_text, _("Healing: %c%d%c "), font_switchto_msgvar[0], -tmp, font_switchto_msgstat[0]);
 				else
-					sprintf(CharText, _("Healing: %c%d-%d%c "), font_switchto_msgvar[0], -tmp, -tmp2,
+					sprintf(char_text, _("Healing: %c%d-%d%c "), font_switchto_msgvar[0], -tmp, -tmp2,
 						font_switchto_msgstat[0]);
 			}
-			display_text(CharText, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, 1.0);
+			display_text(char_text, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, 1.0);
 			nextypos += get_font_height(get_current_font());
 		}
 		// Special effect and duration
-		if (strcmp(SpellSkillMap[SkillOfThisSlot].effect, "none")) {
-			if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "paralyze"))
-				sprintf(CharText, _("Paralyze"));
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "slowdown"))
-				sprintf(CharText, _("Slow down"));
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "invisibility"))
-				sprintf(CharText, _("Invisible"));
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "poison"))
-				sprintf(CharText, _("Poison"));
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "takeover")) {
-				tmp = Me.skill_level[SkillOfThisSlot] + 2;
-				sprintf(CharText, _("Takeover charges: %c%d%c "), font_switchto_msgvar[0], tmp, font_switchto_msgstat[0]);
-			} else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "teleport_home"))
-				sprintf(CharText, _("Escape"));
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "passive"))
-				sprintf(CharText, _("Passive"));
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "identify"))
-				sprintf(CharText, " ");
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "weapon"))
-				sprintf(CharText, " ");
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "repair"))
-				sprintf(CharText, _("Repair items, degrading them a bit"));
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "nmap"))
-				sprintf(CharText, _("Detect enemies"));
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "light"))
-				sprintf(CharText, _("Lighten area"));
-			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "burnup"))
-				sprintf(CharText, " ");
+		if (strcmp(SpellSkillMap[skill_of_this_slot].effect, "none")) {
+			if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "paralyze"))
+				sprintf(char_text, _("Paralyze"));
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "slowdown"))
+				sprintf(char_text, _("Slow down"));
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "invisibility"))
+				sprintf(char_text, _("Invisible"));
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "poison"))
+				sprintf(char_text, _("Poison"));
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "takeover")) {
+				tmp = Me.skill_level[skill_of_this_slot] + 2;
+				sprintf(char_text, _("Takeover charges: %c%d%c "), font_switchto_msgvar[0], tmp, font_switchto_msgstat[0]);
+			} else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "teleport_home"))
+				sprintf(char_text, _("Escape"));
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "passive"))
+				sprintf(char_text, _("Passive"));
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "identify"))
+				sprintf(char_text, " ");
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "weapon"))
+				sprintf(char_text, " ");
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "repair"))
+				sprintf(char_text, _("Repair items, degrading them a bit"));
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "nmap"))
+				sprintf(char_text, _("Detect enemies"));
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "light"))
+				sprintf(char_text, _("Lighten area"));
+			else if (!strcmp(SpellSkillMap[skill_of_this_slot].effect, "burnup"))
+				sprintf(char_text, " ");
 
-			float dur = calculate_program_effect_duration(SkillOfThisSlot);
+			float dur = calculate_program_effect_duration(skill_of_this_slot);
 			if (dur > 0)
-				sprintf(CharText + strlen(CharText), _(" for %c%.1f%c seconds"), font_switchto_msgvar[0], dur,
+				sprintf(char_text + strlen(char_text), _(" for %c%.1f%c seconds"), font_switchto_msgvar[0], dur,
 					font_switchto_msgstat[0]);
 
-			display_text(CharText, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, 1.0);
+			display_text(char_text, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, 1.0);
 			nextypos += get_font_height(get_current_font());
 		}
 	}
@@ -940,24 +935,24 @@ void ShowSkillsScreen(void)
 		// available to this class.  In this case of course we must set a different
 		// skill/spell as the currently activated skill/spell.
 		//
-		if ((CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) != (-1)) && MouseLeftClicked()) {
-			if (CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) +
+		if ((CursorIsOnWhichSkillButton(current_pos.x, current_pos.y) != (-1)) && MouseLeftClicked()) {
+			if (CursorIsOnWhichSkillButton(current_pos.x, current_pos.y) +
 				NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible < number_of_skills)
-				if (SkillSubsetMap[CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) +
+				if (skill_subset_map[CursorIsOnWhichSkillButton(current_pos.x, current_pos.y) +
 						   NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible] >= 0)
-					Me.readied_skill = SkillSubsetMap[CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) +
+					Me.readied_skill = skill_subset_map[CursorIsOnWhichSkillButton(current_pos.x, current_pos.y) +
 									  NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible];
 		}
 
-		if (MouseCursorIsOnButton(OPEN_CLOSE_SKILL_EXPLANATION_BUTTON, CurPos.x, CurPos.y) && MouseLeftClicked()) {
+		if (MouseCursorIsOnButton(OPEN_CLOSE_SKILL_EXPLANATION_BUTTON, current_pos.x, current_pos.y) && MouseLeftClicked()) {
 			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_SKILL_EXPLANATION);
 			while (MouseLeftPressed())
 				SDL_Delay(1);
 		}
 
 		// Handle clicks on page numbers
-		if ((CursorIsOnWhichSpellPageButton(CurPos.x, CurPos.y) != (-1)) && MouseLeftClicked()) {
-			GameConfig.spell_level_visible = CursorIsOnWhichSpellPageButton(CurPos.x, CurPos.y);
+		if ((CursorIsOnWhichSpellPageButton(current_pos.x, current_pos.y) != (-1)) && MouseLeftClicked()) {
+			GameConfig.spell_level_visible = CursorIsOnWhichSpellPageButton(current_pos.x, current_pos.y);
 		}
 	}
 }

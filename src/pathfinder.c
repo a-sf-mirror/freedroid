@@ -36,7 +36,7 @@
 static moderately_finepoint last_sight_contact;
 
 static int recursive_find_walkable_point(int, float, float, float, float, int, moderately_finepoint *, int *, int, pathfinder_context *);
-static void streamline_intermediate_course(gps *, moderately_finepoint *, int, pathfinder_context *);
+static void streamline_intermediate_course(struct gps *, struct moderately_finepoint *, int, struct pathfinder_context *);
 
 #define TILE_IS_UNPROCESSED 3
 #define TILE_IS_PROCESSED 4
@@ -285,12 +285,10 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
  * motion.
  *
  */
-static void streamline_intermediate_course(gps * curpos, moderately_finepoint * waypoints, int maxwp, pathfinder_context * ctx)
+static void streamline_intermediate_course(struct gps * curpos, struct moderately_finepoint * waypoints, int maxwp, struct pathfinder_context * ctx)
 {
 	int start_index;
-	int last_index = -10;
 	int scan_index;
-	int cut_away;
 
 	DebugPrintf(DEBUG_TUX_PATHFINDING, "\nOPTIMIZATION --> streamline_tux_intermediate_course: starting...");
 
@@ -308,7 +306,7 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 		// We eliminate every point from here on up to the last point in the
 		// course, that can still be reached from here.
 		//
-		last_index = (-1);
+		int last_index = -1;
 		for (scan_index = start_index + 1; scan_index < maxwp; scan_index++) {
 			// If we've reached the end of the course this way, then we know how much
 			// we can cut away and can quit the inner loop here.
@@ -332,11 +330,12 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 		// Maybe the result of the scan indicated, that there is nothing to cut away at this
 		// point.  Then we must continue right after this point.
 		//
-		if (last_index == (-1))
+		if (last_index == -1)
 			continue;
 
 		// Now we know how much to cut away.  So we'll do it.
 		//
+		int cut_away;
 		for (cut_away = 0; (start_index + 1 + cut_away) < maxwp; cut_away++) {
 			if (last_index + cut_away < maxwp) {
 				waypoints[start_index + 1 + cut_away].x = waypoints[last_index + 0 + cut_away].x;
@@ -364,6 +363,7 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 		|| way_free_of_droids(curpos->x, curpos->y, waypoints[1].x, waypoints[1].y, curpos->z, ctx->frw_ctx))
 	    ) {
 		DebugPrintf(DEBUG_TUX_PATHFINDING, "\nVERY FIRST INTERMEDIATE POINT CUT MANUALLY!!!!");
+		int cut_away;
 		for (cut_away = 1; cut_away < maxwp; cut_away++) {
 			waypoints[cut_away - 1].x = waypoints[cut_away].x;
 			waypoints[cut_away - 1].y = waypoints[cut_away].y;
@@ -372,6 +372,6 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 		DebugPrintf(DEBUG_TUX_PATHFINDING, "\nOPTIMIZATION --> streamline_tux_intermediate_course: no final shortcut.");
 	}
 
-}				// void streamline_tux_intermediate_course ( )
+}
 
 #undef _pathfinder_c

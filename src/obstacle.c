@@ -294,12 +294,12 @@ int change_obstacle_type(const char *obslabel, int type)
  * \param The name of the obstacle spec to get.
  * \return The obstacle type or -1 if the obstacle spec don't exist.
  */
-int get_obstacle_type_by_name(char *name) {
-	char *obstacle_spec_name;
+int get_obstacle_type_by_name(char *name)
+{
 	int id = 0;
 
 	for (id = 0; id < obstacle_map.size; id++) {
-		obstacle_spec_name = get_obstacle_spec(id)->name;
+		char *obstacle_spec_name = get_obstacle_spec(id)->name;
 		
 		if (obstacle_spec_name == NULL)
 			continue;

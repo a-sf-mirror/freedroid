@@ -82,19 +82,17 @@ void lvledit_display_fps(void) {
 /**
  * Now we print out the map label information about this map location.
  */
-static void print_label_information(level *EditLevel)
+static void print_label_information(struct level *edit_level)
 {
-	char PanelText[5000] = "";
-	map_label *m;
-
-	m = get_map_label_from_coords(EditLevel, Me.pos.x, Me.pos.y);
+	struct map_label *m = get_map_label_from_coords(edit_level, Me.pos.x, Me.pos.y);
 
 	if (m) {
+		char panel_text[5000] = "";
 		// Create the map label information
-		sprintf(PanelText, _("\n Map label information: \n label_name=\"%s\"."), m->label_name);
+		sprintf(panel_text, _("\n Map label information: \n label_name=\"%s\"."), m->label_name);
 
 		// Display the map label information on the screen
-		display_text(PanelText, User_Rect.x, GameConfig.screen_height - 5 * get_font_height(get_current_font()), NULL, 1.0);
+		display_text(panel_text, User_Rect.x, GameConfig.screen_height - 5 * get_font_height(get_current_font()), NULL, 1.0);
 
 		return;
 	}
@@ -246,8 +244,7 @@ static void show_waypoints(int mask)
  */
 static void show_map_labels(int must_zoom)
 {
-	level *EditLevel = curShip.AllLevels[Me.pos.z];
-	struct map_label *map_label;
+	struct level *edit_level = curShip.AllLevels[Me.pos.z];
 	int i;
 	float r, g, b;
 	float scale = must_zoom ? lvledit_zoomfact_inv() : 1.0;
@@ -256,9 +253,9 @@ static void show_map_labels(int must_zoom)
 	get_floor_boundaries(must_zoom, &y_min, &y_max, &x_min, &x_max);
 
 	// Now we can draw a fine indicator at all the necessary positions ...
-	for (i = 0; i < EditLevel->map_labels.size; i++) {	
+	for (i = 0; i < edit_level->map_labels.size; i++) {
 		// Get the map label
-		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
+		struct map_label *map_label = &ACCESS_MAP_LABEL(edit_level->map_labels, i);
 
 		// Apply disco mode when the current map label is selected
 		object_vtx_color(map_label, &r, &g, &b);
@@ -299,8 +296,6 @@ static void display_cursor()
 
 void leveleditor_display()
 {
-	char linebuf[1000];
-
 	AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor *
 			      OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | ZOOM_OUT *
 			      GameConfig.zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR | OMIT_ITEMS_LABEL);
@@ -321,7 +316,7 @@ void leveleditor_display()
 	//
 	if (OriginWaypoint != -1) {
 		waypoint *wpts = EditLevel()->waypoints.arr;
-
+		char linebuf[1000];
 		sprintf(linebuf, _(" Source waypoint selected : X=%d Y=%d. "), wpts[OriginWaypoint].x, wpts[OriginWaypoint].y);
 		put_string_left(FPS_Display_Font, GameConfig.screen_height - 2 * get_font_height(get_current_font()), linebuf);
 	}

@@ -48,11 +48,10 @@
  */
 int get_number_popup(const char *displayed_text, const char *suggested_val)
 {
-	char *str, *cstr;
 	int tgt = 0;
-	str = GetEditableStringInPopupWindow(10, displayed_text, suggested_val);
+	char *str = get_editable_string_in_popup_window(10, displayed_text, suggested_val);
 	if (str) {
-		cstr = str;
+		char *cstr = str;
 		while (*cstr) {
 			if (!isdigit(*cstr))
 				tgt = -1;
@@ -75,16 +74,11 @@ int get_number_popup(const char *displayed_text, const char *suggested_val)
  * convenient way, i.e. so that little stupid copying work or things like
  * that have to be done and more time can be spent creating game material.
  */
-void EditLevelDimensions(void)
+void edit_level_dimensions(void)
 {
-	char *MenuTexts[20];
-	char Options[20][1000];
-	int MenuPosition = 1;
-	int proceed_now = FALSE;
-	int i;
-	Level EditLevel;
-
-	EditLevel = curShip.AllLevels[Me.pos.z];
+	char *menu_texts[20];
+	char options[20][1000];
+	struct level *edit_level = curShip.AllLevels[Me.pos.z];
 
 	enum {
 		INSERTREMOVE_LINE_VERY_NORTH = 1,
@@ -96,49 +90,50 @@ void EditLevelDimensions(void)
 		BACK_TO_LE_MAIN_MENU
 	};
 
+	int proceed_now = FALSE;
 	while (!proceed_now) {
 
 		InitiateMenu("--EDITOR_BACKGROUND--");
 
-		i = 0;
-		sprintf(Options[i], _("North Edge: -/+  (<-/->)"));
-		MenuTexts[i] = Options[i];
+		int i = 0;
+		sprintf(options[i], _("North Edge: -/+  (<-/->)"));
+		menu_texts[i] = options[i];
 		i++;
 
-		sprintf(Options[i], _("East Edge: -/+  (<-/->)"));
-		MenuTexts[i] = Options[i];
+		sprintf(options[i], _("East Edge: -/+  (<-/->)"));
+		menu_texts[i] = options[i];
 		i++;
 
-		sprintf(Options[i], _("South Edge: -/+  (<-/->)"));
-		MenuTexts[i] = Options[i];
+		sprintf(options[i], _("South Edge: -/+  (<-/->)"));
+		menu_texts[i] = options[i];
 		i++;
 
-		sprintf(Options[i], _("West Edge: -/+  (<-/->)"));
-		MenuTexts[i] = Options[i];
+		sprintf(options[i], _("West Edge: -/+  (<-/->)"));
+		menu_texts[i] = options[i];
 		i++;
 
-		sprintf(Options[i], _("Current level size in X: %d."), EditLevel->xlen);
-		MenuTexts[i] = Options[i];
+		sprintf(options[i], _("Current level size in X: %d."), edit_level->xlen);
+		menu_texts[i] = options[i];
 		i++;
-		sprintf(Options[i], _("Current level size in Y: %d."), EditLevel->ylen);
-		MenuTexts[i] = Options[i];
+		sprintf(options[i], _("Current level size in Y: %d."), edit_level->ylen);
+		menu_texts[i] = options[i];
 		i++;
-		MenuTexts[i++] = _("Back");
-		MenuTexts[i++] = "";
+		menu_texts[i++] = _("Back");
+		menu_texts[i++] = "";
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
+		int menu_position = DoMenuSelection("", menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
 
-		switch (MenuPosition) {
+		switch (menu_position) {
 		case INSERTREMOVE_COLUMN_VERY_EAST:
 			if (RightPressed()) {
-				insert_column_east(EditLevel);
+				insert_column_east(edit_level);
 				while (RightPressed()) ;
 			}
 			if (LeftPressed()) {
-				remove_column_east(EditLevel);
+				remove_column_east(edit_level);
 				while (LeftPressed()) ;
 			}
 			gps_transform_map_dirty_flag = TRUE;
@@ -146,11 +141,11 @@ void EditLevelDimensions(void)
 
 		case INSERTREMOVE_COLUMN_VERY_WEST:
 			if (RightPressed()) {
-				insert_column_west(EditLevel);
+				insert_column_west(edit_level);
 				while (RightPressed()) ;
 			}
 			if (LeftPressed()) {
-				remove_column_west(EditLevel);
+				remove_column_west(edit_level);
 				while (LeftPressed()) ;
 			}
 			gps_transform_map_dirty_flag = TRUE;
@@ -158,11 +153,11 @@ void EditLevelDimensions(void)
 
 		case INSERTREMOVE_LINE_VERY_SOUTH:
 			if (RightPressed()) {
-				insert_line_south(EditLevel);
+				insert_line_south(edit_level);
 				while (RightPressed()) ;
 			}
 			if (LeftPressed()) {
-				remove_line_south(EditLevel);
+				remove_line_south(edit_level);
 				while (LeftPressed()) ;
 			}
 			gps_transform_map_dirty_flag = TRUE;
@@ -170,11 +165,11 @@ void EditLevelDimensions(void)
 
 		case INSERTREMOVE_LINE_VERY_NORTH:
 			if (RightPressed()) {
-				insert_line_north(EditLevel);
+				insert_line_north(edit_level);
 				while (RightPressed()) ;
 			}
 			if (LeftPressed()) {
-				remove_line_north(EditLevel);
+				remove_line_north(edit_level);
 				while (LeftPressed()) ;
 			}
 			gps_transform_map_dirty_flag = TRUE;
@@ -202,15 +197,10 @@ void EditLevelDimensions(void)
  *
  *
  */
-static void SetLevelInterfaces(void)
+static void set_level_interfaces(void)
 {
-	char *MenuTexts[100];
-	int proceed_now = FALSE;
-	int MenuPosition = 1;
-	int tgt = -1;
-	char Options[20][500];
-	int i;
-	Level EditLevel;
+	char *menu_texts[100];
+	char options[20][500];
 
 	enum {
 		JUMP_TARGET_NORTH = 1,
@@ -220,33 +210,33 @@ static void SetLevelInterfaces(void)
 		QUIT_THRESHOLD_EDITOR_POSITION
 	};
 
+	int proceed_now = FALSE;
 	while (!proceed_now) {
-		EditLevel = curShip.AllLevels[Me.pos.z];
+		struct level *edit_level = curShip.AllLevels[Me.pos.z];
 		InitiateMenu("--EDITOR_BACKGROUND--");
 
-		i = 0;
+		int i = 0;
+		sprintf(options[i], _("Neighbor level North: %d.  (<-/->)"), edit_level->jump_target_north);
+		menu_texts[i] = options[i];
+		i++;
+		sprintf(options[i], _("Neighbor level East: %d.  (<-/->)"), edit_level->jump_target_east);
+		menu_texts[i] = options[i];
+		i++;
+		sprintf(options[i], _("Neighbor level South: %d.  (<-/->)"), edit_level->jump_target_south);
+		menu_texts[i] = options[i];
+		i++;
+		sprintf(options[i], _("Neighbor level West: %d.  (<-/->)"), edit_level->jump_target_west);
+		menu_texts[i] = options[i];
+		i++;
+		menu_texts[i++] = _("Back");
+		menu_texts[i++] = "";
 
-		sprintf(Options[i], _("Neighbor level North: %d.  (<-/->)"), EditLevel->jump_target_north);
-		MenuTexts[i] = Options[i];
-		i++;
-		sprintf(Options[i], _("Neighbor level East: %d.  (<-/->)"), EditLevel->jump_target_east);
-		MenuTexts[i] = Options[i];
-		i++;
-		sprintf(Options[i], _("Neighbor level South: %d.  (<-/->)"), EditLevel->jump_target_south);
-		MenuTexts[i] = Options[i];
-		i++;
-		sprintf(Options[i], _("Neighbor level West: %d.  (<-/->)"), EditLevel->jump_target_west);
-		MenuTexts[i] = Options[i];
-		i++;
-		MenuTexts[i++] = _("Back");
-		MenuTexts[i++] = "";
-
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
+		int menu_position = DoMenuSelection("", menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || MouseLeftPressed())
 			SDL_Delay(1);
 
-		switch (MenuPosition) {
+		switch (menu_position) {
 		case (-1):
 			while (EscapePressed())
 				SDL_Delay(1);
@@ -268,10 +258,10 @@ static void SetLevelInterfaces(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
+			int tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
-				EditLevel->jump_target_north = (tgt);
+				edit_level->jump_target_north = (tgt);
 			}
 			gps_transform_map_dirty_flag = TRUE;
 			break;
@@ -286,7 +276,7 @@ static void SetLevelInterfaces(void)
 			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
-				EditLevel->jump_target_east = (tgt);
+				edit_level->jump_target_east = (tgt);
 			}
 			gps_transform_map_dirty_flag = TRUE;
 			break;
@@ -301,7 +291,7 @@ static void SetLevelInterfaces(void)
 			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
-				EditLevel->jump_target_south = (tgt);
+				edit_level->jump_target_south = (tgt);
 			}
 			gps_transform_map_dirty_flag = TRUE;
 			break;
@@ -316,7 +306,7 @@ static void SetLevelInterfaces(void)
 			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
-				EditLevel->jump_target_west = (tgt);
+				edit_level->jump_target_west = (tgt);
 			}
 			gps_transform_map_dirty_flag = TRUE;
 			break;
@@ -327,16 +317,16 @@ static void SetLevelInterfaces(void)
 		// an effect IF he/she is a the change level menu point
 
 		if (LeftPressed() || RightPressed()) {
-			switch (MenuPosition) {
+			switch (menu_position) {
 			case JUMP_TARGET_NORTH:
 				if (LeftPressed()) {
-					if (EditLevel->jump_target_north >= 0)
-						EditLevel->jump_target_north--;
+					if (edit_level->jump_target_north >= 0)
+						edit_level->jump_target_north--;
 					while (LeftPressed()) ;
 				}
 				if (RightPressed()) {
-					if ((EditLevel->jump_target_north + 1) < curShip.num_levels)
-						EditLevel->jump_target_north++;
+					if ((edit_level->jump_target_north + 1) < curShip.num_levels)
+						edit_level->jump_target_north++;
 					while (RightPressed()) ;
 				}
 				gps_transform_map_dirty_flag = TRUE;
@@ -344,13 +334,13 @@ static void SetLevelInterfaces(void)
 
 			case JUMP_TARGET_SOUTH:
 				if (LeftPressed()) {
-					if (EditLevel->jump_target_south >= 0)
-						EditLevel->jump_target_south--;
+					if (edit_level->jump_target_south >= 0)
+						edit_level->jump_target_south--;
 					while (LeftPressed()) ;
 				}
 				if (RightPressed()) {
-					if ((EditLevel->jump_target_south + 1) < curShip.num_levels)
-						EditLevel->jump_target_south++;
+					if ((edit_level->jump_target_south + 1) < curShip.num_levels)
+						edit_level->jump_target_south++;
 					while (RightPressed()) ;
 				}
 				gps_transform_map_dirty_flag = TRUE;
@@ -358,13 +348,13 @@ static void SetLevelInterfaces(void)
 
 			case JUMP_TARGET_EAST:
 				if (LeftPressed()) {
-					if (EditLevel->jump_target_east >= 0)
-						EditLevel->jump_target_east--;
+					if (edit_level->jump_target_east >= 0)
+						edit_level->jump_target_east--;
 					while (LeftPressed()) ;
 				}
 				if (RightPressed()) {
-					if ((EditLevel->jump_target_east + 1) < curShip.num_levels)
-						EditLevel->jump_target_east++;
+					if ((edit_level->jump_target_east + 1) < curShip.num_levels)
+						edit_level->jump_target_east++;
 					while (RightPressed()) ;
 				}
 				gps_transform_map_dirty_flag = TRUE;
@@ -372,13 +362,13 @@ static void SetLevelInterfaces(void)
 
 			case JUMP_TARGET_WEST:
 				if (LeftPressed()) {
-					if (EditLevel->jump_target_west >= 0)
-						EditLevel->jump_target_west--;
+					if (edit_level->jump_target_west >= 0)
+						edit_level->jump_target_west--;
 					while (LeftPressed()) ;
 				}
 				if (RightPressed()) {
-					if ((EditLevel->jump_target_west + 1) < curShip.num_levels)
-						EditLevel->jump_target_west++;
+					if ((edit_level->jump_target_west + 1) < curShip.num_levels)
+						edit_level->jump_target_west++;
 					while (RightPressed()) ;
 				}
 				gps_transform_map_dirty_flag = TRUE;
@@ -392,12 +382,9 @@ static void SetLevelInterfaces(void)
 
 };				// void SetLevelInterfaces ( void )
 
-static void AddRemLevel(void)
+static void add_rem_level(void)
 {
-	char *MenuTexts[100];
-	int proceed_now = FALSE;
-	int MenuPosition = 1;
-	int i;
+	char *menu_texts[100];
 
 	enum {
 		ADD_NEW_LEVEL = 1,
@@ -407,23 +394,26 @@ static void AddRemLevel(void)
 
 	game_status = INSIDE_MENU;
 
+	int proceed_now = FALSE;
 	while (!proceed_now) {
+
 		InitiateMenu("--EDITOR_BACKGROUND--");
-		i = 0;
-		MenuTexts[i++] = _("Add New Level");
-		MenuTexts[i++] = _("Remove Current Level");
-		MenuTexts[i++] = _("Back");
-		MenuTexts[i++] = "";
+
+		int i = 0;
+		menu_texts[i++] = _("Add New Level");
+		menu_texts[i++] = _("Remove Current Level");
+		menu_texts[i++] = _("Back");
+		menu_texts[i++] = "";
 
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
+		int menu_position = DoMenuSelection("", menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
 
-		switch (MenuPosition) {
+		switch (menu_position) {
 		case (-1):
 			while (EscapePressed()) ;
 			proceed_now = !proceed_now;
@@ -497,17 +487,12 @@ static void AddRemLevel(void)
 	return;
 };				// void AddRemLevel ( void );
 
-static void LevelOptions(void)
+static void level_options(void)
 {
-	char *MenuTexts[100];
-	char Options[20][1000];
+	char *menu_texts[100];
+	char options[20][1000];
 	char class[16];
-	int proceed_now = FALSE;
-	int MenuPosition = 1;
-	int tgt = -1;
-	int i, j;
 	int l = 0;
-	int *droid_types;
 
 	class[15] = 0; // null-character to null terminated strncpy
 
@@ -530,64 +515,66 @@ static void LevelOptions(void)
 		LEAVE_OPTIONS_MENU,
 	};
 
+	int proceed_now = FALSE;
 	while (!proceed_now) {
 
 		InitiateMenu("--EDITOR_BACKGROUND--");
 
-		i = 0;
-		sprintf(Options[i], _("Level: %d.  (<-/->)"), EditLevel()->levelnum);
-		MenuTexts[i] = Options[i];
+		int i = 0;
+		sprintf(options[i], _("Level: %d.  (<-/->)"), EditLevel()->levelnum);
+		menu_texts[i] = options[i];
 		i++;
-		sprintf(Options[i], _("Level name (untranslated): %s"), EditLevel()->Levelname);
-		MenuTexts[i] = Options[i];
+		sprintf(options[i], _("Level name (untranslated): %s"), EditLevel()->Levelname);
+		menu_texts[i] = options[i];
 		i++;
-		sprintf(Options[i], _("Size:  X %d  Y %d"), EditLevel()->xlen, EditLevel()->ylen);
-		MenuTexts[i] = Options[i];
+		sprintf(options[i], _("Size:  X %d  Y %d"), EditLevel()->xlen, EditLevel()->ylen);
+		menu_texts[i] = options[i];
 		i++;
-		sprintf(Options[i], _("Floor layers:  %d"), EditLevel()->floor_layers);
-		MenuTexts[i] = Options[i];
+		sprintf(options[i], _("Floor layers:  %d"), EditLevel()->floor_layers);
+		menu_texts[i] = options[i];
 		i++;
-		sprintf(Options[i], _("Edge Interface: "));
+		sprintf(options[i], _("Edge Interface: "));
 		if (EditLevel()->jump_target_north == -1 && EditLevel()->jump_target_east == -1
 		    && EditLevel()->jump_target_south == -1 && EditLevel()->jump_target_west == -1) {
-			strcat(Options[i], _("none"));
+			strcat(options[i], _("none"));
 		} else {
 			if (EditLevel()->jump_target_north != -1)
-				sprintf(Options[i] + strlen(Options[i]), _(" N: %d"), EditLevel()->jump_target_north);
+				sprintf(options[i] + strlen(options[i]), _(" N: %d"), EditLevel()->jump_target_north);
 			if (EditLevel()->jump_target_east != -1)
-				sprintf(Options[i] + strlen(Options[i]), _(" E: %d"), EditLevel()->jump_target_east);
+				sprintf(options[i] + strlen(options[i]), _(" E: %d"), EditLevel()->jump_target_east);
 			if (EditLevel()->jump_target_south != -1)
-				sprintf(Options[i] + strlen(Options[i]), _(" S: %d"), EditLevel()->jump_target_south);
+				sprintf(options[i] + strlen(options[i]), _(" S: %d"), EditLevel()->jump_target_south);
 			if (EditLevel()->jump_target_west != -1)
-				sprintf(Options[i] + strlen(Options[i]), _(" W: %d"), EditLevel()->jump_target_west);
+				sprintf(options[i] + strlen(options[i]), _(" W: %d"), EditLevel()->jump_target_west);
 
 		}
-		MenuTexts[i] = Options[i];
+		menu_texts[i] = options[i];
 		i++;
 
 		if (EditLevel()->random_dungeon == 2) {
-			sprintf(Options[i], _("Random dungeon: 2 connections"));
+			sprintf(options[i], _("Random dungeon: 2 connections"));
 		} else if (EditLevel()->random_dungeon == 1) {
-			sprintf(Options[i], _("Random dungeon: 1 connection"));
+			sprintf(options[i], _("Random dungeon: 1 connection"));
 		} else {
-			sprintf(Options[i], _("Random dungeon: no"));
+			sprintf(options[i], _("Random dungeon: no"));
 		}
-		MenuTexts[i] = Options[i];
+		menu_texts[i] = options[i];
 		i++;
 
-		droid_types = EditLevel()->random_droids.types;
-		sprintf(Options[i], _("Random droids: %d Types: "), EditLevel()->random_droids.nr);
+		int *droid_types = EditLevel()->random_droids.types;
+		sprintf(options[i], _("Random droids: %d Types: "), EditLevel()->random_droids.nr);
+		int j;
 		for (j = 0; j < EditLevel()->random_droids.types_size; j++) {
-				if (j)
-					strcat(Options[i], ", ");
-				strcat(Options[i], Droidmap[droid_types[j]].droidname);
+			if (j)
+				strcat(options[i], ", ");
+			strcat(options[i], Droidmap[droid_types[j]].droidname);
 		}
-		MenuTexts[i] = Options[i];
+		menu_texts[i] = options[i];
 		i++;
 
-		sprintf(Options[i], "%s: %s", _("Respawn"),
+		sprintf(options[i], "%s: %s", _("Respawn"),
 			(EditLevel()->flags & NO_RESPAWN) ? _("no") : _("yes"));
-		MenuTexts[i] = Options[i];
+		menu_texts[i] = options[i];
 		i++;
 
 		if (EditLevel()->drop_class >= 0 && EditLevel()->drop_class <= MAX_DROP_CLASS)
@@ -595,62 +582,62 @@ static void LevelOptions(void)
 		else
 			strncpy(class, _("None"), 15);
 
-		sprintf(Options[i], _("Item drop class for obstacles: %s.  (<-/->)"), class);
-		MenuTexts[i] = Options[i];
+		sprintf(options[i], _("Item drop class for obstacles: %s.  (<-/->)"), class);
+		menu_texts[i] = options[i];
 		i++;
 
-		sprintf(Options[i], "%s: %s", _("Teleport blockade"),
+		sprintf(options[i], "%s: %s", _("Teleport blockade"),
 			(EditLevel()->flags & TELEPORT_BLOCKED) ? _("yes") : _("no"));
-		MenuTexts[i] = Options[i];
+		menu_texts[i] = options[i];
 		i++;
 
-		sprintf(Options[i], "%s: %s", _("Teleport pair"),
+		sprintf(options[i], "%s: %s", _("Teleport pair"),
 				mapgen_teleport_pair_str(EditLevel()->teleport_pair));
-		MenuTexts[i] = Options[i];
+		menu_texts[i] = options[i];
 		i++;
 
-		sprintf(Options[i], _("Light:  Ambient"));
+		sprintf(options[i], _("Light:  Ambient"));
 		if (l == 0) {
-			sprintf(Options[i + 1], " [%d]  ", EditLevel()->minimum_light_value);
-			strcat(Options[i], Options[i + 1]);
-			strcat(Options[i], _("Bonus"));
-			sprintf(Options[i + 1], "  %d   (<-/->)", EditLevel()->light_bonus);
+			sprintf(options[i + 1], " [%d]  ", EditLevel()->minimum_light_value);
+			strcat(options[i], options[i + 1]);
+			strcat(options[i], _("Bonus"));
+			sprintf(options[i + 1], "  %d   (<-/->)", EditLevel()->light_bonus);
 		} else if (l == 1) {
-			sprintf(Options[i + 1], "  %d   ", EditLevel()->minimum_light_value);
-			strcat(Options[i], Options[i + 1]);
-			strcat(Options[i], _("Bonus"));
-			sprintf(Options[i + 1], " [%d]  (<-/->)", EditLevel()->light_bonus);
+			sprintf(options[i + 1], "  %d   ", EditLevel()->minimum_light_value);
+			strcat(options[i], options[i + 1]);
+			strcat(options[i], _("Bonus"));
+			sprintf(options[i + 1], " [%d]  (<-/->)", EditLevel()->light_bonus);
 		} else
-			sprintf(Options[i + 1], "I'm a bug");
-		strcat(Options[i], Options[i + 1]);
-		MenuTexts[i] = Options[i];
+			sprintf(options[i + 1], "I'm a bug");
+		strcat(options[i], options[i + 1]);
+		menu_texts[i] = options[i];
 		i++;
 
-		sprintf(Options[i], _("Background Music"));
-		sprintf(Options[i + 1], ": %s", EditLevel()->Background_Song_Name);
-		strcat(Options[i], Options[i + 1]);
-		MenuTexts[i] = Options[i];
+		sprintf(options[i], _("Background Music"));
+		sprintf(options[i + 1], ": %s", EditLevel()->Background_Song_Name);
+		strcat(options[i], options[i + 1]);
+		menu_texts[i] = options[i];
 		i++;
-		sprintf(Options[i], _("Infinite Running Stamina: "));
+		sprintf(options[i], _("Infinite Running Stamina: "));
 		if (EditLevel()->infinite_running_on_this_level)
-			strcat(Options[i], _("yes"));
+			strcat(options[i], _("yes"));
 		else
-			(strcat(Options[i], _("no")));
-		MenuTexts[i] = Options[i];
+			(strcat(options[i], _("no")));
+		menu_texts[i] = options[i];
 		i++;
-		MenuTexts[i++] = _("Add/Rem Level");
-		MenuTexts[i++] = _("Back");
-		MenuTexts[i++] = "";
+		menu_texts[i++] = _("Add/Rem Level");
+		menu_texts[i++] = _("Back");
+		menu_texts[i++] = "";
 
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
+		int menu_position = DoMenuSelection("", menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
 
-		switch (MenuPosition) {
+		switch (menu_position) {
 		case (-1):
 			while (EscapePressed()) ;
 			proceed_now = !proceed_now;
@@ -662,7 +649,7 @@ static void LevelOptions(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
+			int tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= 0 && tgt < curShip.num_levels) {
 				if (level_exists(tgt)) {
@@ -733,7 +720,7 @@ static void LevelOptions(void)
 		case SET_LEVEL_NAME:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			char *newLevelname = GetEditableStringInPopupWindow(1000, _("\n Please enter new level name (in English): \n\n"), EditLevel()->Levelname);
+			char *newLevelname = get_editable_string_in_popup_window(1000, _("\n Please enter new level name (in English): \n\n"), EditLevel()->Levelname);
 			if (newLevelname)
 				EditLevel()->Levelname = newLevelname;
 			break;
@@ -741,7 +728,7 @@ static void LevelOptions(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 			char* newBackgroundSongName =
-				GetEditableStringInPopupWindow(1000, _("\n Please enter new music file name: \n\n"),
+				get_editable_string_in_popup_window(1000, _("\n Please enter new music file name: \n\n"),
 							   EditLevel()->Background_Song_Name);
 			if (newBackgroundSongName)
 				EditLevel()->Background_Song_Name = newBackgroundSongName;
@@ -749,12 +736,12 @@ static void LevelOptions(void)
 		case SET_LEVEL_INTERFACE_POSITION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			SetLevelInterfaces();
+			set_level_interfaces();
 			break;
 		case EDIT_LEVEL_DIMENSIONS:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			EditLevelDimensions();
+			edit_level_dimensions();
 			break;
 		case EDIT_LEVEL_FLOOR_LAYERS:
 			if (LeftPressed() || RightPressed())
@@ -763,7 +750,7 @@ static void LevelOptions(void)
 				SDL_Delay(1);
 			char popup_message[1000];
 			sprintf(popup_message, _("\n Please enter new number of floor layers (valid values are between 1 and %d): \n\n"), MAX_FLOOR_LAYERS);
-			char *new_floor_layers = GetEditableStringInPopupWindow(1000, popup_message, "");
+			char *new_floor_layers = get_editable_string_in_popup_window(1000, popup_message, "");
 			if (new_floor_layers) {
 				char *endptr;
 				long layers = strtol(new_floor_layers, &endptr, 10);
@@ -782,7 +769,7 @@ static void LevelOptions(void)
 		case ADD_REM_LEVEL:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			AddRemLevel();
+			add_rem_level();
 			break;
 		case LEAVE_OPTIONS_MENU:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
@@ -798,7 +785,7 @@ static void LevelOptions(void)
 		// an effect IF he/she is a the change level menu point
 
 		if (LeftPressed() || RightPressed()) {
-			switch (MenuPosition) {
+			switch (menu_position) {
 
 			case CHANGE_LEVEL_POSITION:
 				if (LeftPressed()) {
@@ -910,15 +897,11 @@ static void LevelOptions(void)
  *
  *
  */
-int DoLevelEditorMainMenu()
+int do_level_editor_main_menu()
 {
-	char *MenuTexts[100];
-	char Options[20][1000];
-	int proceed_now = FALSE;
-	int MenuPosition = 1;
-	int tgt = -1;
-	int Done = FALSE;
-	int i;
+	char *menu_texts[100];
+	char options[20][1000];
+	int done = FALSE;
 
 	game_status = INSIDE_MENU;
 
@@ -940,40 +923,41 @@ int DoLevelEditorMainMenu()
 
 	MenuItemSelectedSound();
 
+	int proceed_now = FALSE;
 	while (!proceed_now) {
 
 		InitiateMenu("--EDITOR_BACKGROUND--");
 
-		i = 0;
-		sprintf(Options[i], _("Level name (untranslated): %d - %s"), EditLevel()->levelnum, EditLevel()->Levelname);
-		MenuTexts[i] = Options[i];
+		int i = 0;
+		sprintf(options[i], _("Level name (untranslated): %d - %s"), EditLevel()->levelnum, EditLevel()->Levelname);
+		menu_texts[i] = options[i];
 		i++;
-		MenuTexts[i++] = _("Level Options");
-		MenuTexts[i++] = _("Run Map Level Validator");
+		menu_texts[i++] = _("Level Options");
+		menu_texts[i++] = _("Run Map Level Validator");
 		if (game_root_mode == ROOT_IS_LVLEDIT) {
-			MenuTexts[i++] = _("Playtest Mapfile");
-			MenuTexts[i++] = _("Save Mapfile");
+			menu_texts[i++] = _("Playtest Mapfile");
+			menu_texts[i++] = _("Save Mapfile");
 			//              MenuTexts[i++] = _("Manage Mapfiles");
 		} else {
-			MenuTexts[i++] = _("Return to Game");
-			MenuTexts[i++] = _("Saving disabled");
+			menu_texts[i++] = _("Return to Game");
+			menu_texts[i++] = _("Saving disabled");
 			//              MenuTexts[i++] = " ";
 		}
-		MenuTexts[i++] = _("Continue Editing");
-		MenuTexts[i++] = _("Show Help");
-		MenuTexts[i++] = _("Quit to Main Menu");
-		MenuTexts[i++] = _("Exit FreedroidRPG");
-		MenuTexts[i++] = "";
+		menu_texts[i++] = _("Continue Editing");
+		menu_texts[i++] = _("Show Help");
+		menu_texts[i++] = _("Quit to Main Menu");
+		menu_texts[i++] = _("Exit FreedroidRPG");
+		menu_texts[i++] = "";
 
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
+		int menu_position = DoMenuSelection("", menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
 
-		switch (MenuPosition) {
+		switch (menu_position) {
 
 		case (-1):
 			while (EscapePressed()) ;
@@ -989,7 +973,7 @@ int DoLevelEditorMainMenu()
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
+			int tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
 			if (tgt >= 0 && tgt < curShip.num_levels) {
 				if (level_exists(tgt)) {
@@ -1002,7 +986,7 @@ int DoLevelEditorMainMenu()
 		case LEVEL_OPTIONS_POSITION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			LevelOptions();
+			level_options();
 			break;
 		case RUN_MAP_VALIDATION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
@@ -1013,7 +997,7 @@ int DoLevelEditorMainMenu()
 			TestMap();
 			proceed_now = !proceed_now;
 			if (game_root_mode == ROOT_IS_GAME)
-				Done = TRUE;
+				done = TRUE;
 			break;
 		case SAVE_LEVEL_POSITION:
 			if (game_root_mode == ROOT_IS_GAME)	/*don't allow saving if root mode is GAME */
@@ -1035,11 +1019,11 @@ int DoLevelEditorMainMenu()
 			if (game_root_mode == ROOT_IS_GAME) {
 				proceed_now = !proceed_now;
 				GameOver = TRUE;
-				Done = TRUE;
+				done = TRUE;
 			}
 			if (game_root_mode == ROOT_IS_LVLEDIT) {
 				proceed_now = !proceed_now;
-				Done = TRUE;
+				done = TRUE;
 			}
 			break;
 		case QUIT_POSITION:
@@ -1052,7 +1036,7 @@ int DoLevelEditorMainMenu()
 		}		// switch
 
 		if (LeftPressed() || RightPressed()) {
-			switch (MenuPosition) {
+			switch (menu_position) {
 			
 			case ENTER_LEVEL_POSITION:
 				if (LeftPressed()) {
@@ -1086,5 +1070,5 @@ int DoLevelEditorMainMenu()
 
 	}
 	game_status = INSIDE_LVLEDITOR;
-	return (Done);
+	return (done);
 };

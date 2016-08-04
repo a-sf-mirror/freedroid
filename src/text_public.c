@@ -376,36 +376,34 @@ void alert_once_window(int when, const char *text, ...)
  * Haystack can of course have ANY form!!!
  *
  */
-void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen)
+void *my_memmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen)
 {
-	char *NextFoundPointer;
-	void *MatchPointer;
-	size_t SearchPos = 0;
+	size_t search_pos = 0;
 
-	while (haystacklen - SearchPos > 0) {
+	while (haystacklen - search_pos > 0) {
 		// We search for the first match OF THE FIRST CHARACTER of needle
-		//
-		NextFoundPointer = memchr(haystack + SearchPos, needle[0], haystacklen - SearchPos);
+
+		char *next_found_pointer = memchr(haystack + search_pos, needle[0], haystacklen - search_pos);
 
 		// if not even that was found, we can immediately return and report our failure to find it
-		//
-		if (NextFoundPointer == NULL)
+
+		if (next_found_pointer == NULL)
 			return (NULL);
 
 		// Otherwise we see, if also the rest of the strings match this time ASSUMING THEY ARE STRINGS!
 		// In case of a match, we can return immediately
-		//
-		MatchPointer = strstr(NextFoundPointer, needle);
-		if (MatchPointer != NULL)
-			return (MatchPointer);
+
+		char *match_pointer = strstr(next_found_pointer, needle);
+		if (match_pointer != NULL)
+			return (void *)match_pointer;
 
 		// At this point, we know that we had no luck with this one occasion of a first-character-match
 		// and must continue after this one occasion with our search
-		SearchPos = NextFoundPointer - haystack + 1;
+		search_pos = next_found_pointer - haystack + 1;
 	}
 
-	return (NULL);
-};				// void *MyMemmem ( ... );
+	return NULL;
+}
 
 /**
  * This function looks for a string begin indicator and takes the string
@@ -491,69 +489,63 @@ int CountStringOccurences(char *SearchString, const char *TargetString)
  * terminates the whole read in file with a 0 character, so that it
  * can easily be treated like a common string.
  */
-char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_String)
+char *read_and_malloc_and_terminate_file(const char *filename, const char *file_end_string)
 {
-	FILE *DataFile;
-	char *Data;
-	char *ReadPointer;
-	long MemoryAmount;
-
 	// Read the whole theme data to memory.  We use binary mode, as we
 	// don't want to have to deal with any carriage return/line feed 
 	// convention mess on win32 or something...
-	// 
-	if ((DataFile = fopen(filename, "rb")) == NULL) {
+
+	FILE *data_file = fopen(filename, "rb");
+	if (!data_file) {
 		fprintf(stderr, "\n\nfilename: '%s'\n", filename);
 
-		error_message(__FUNCTION__, "\
-FreedroidRPG was unable to open a given text file,\n\
-that should be there and should be accessible.\n\
-This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
-	} else {
-		DebugPrintf(1, "\nchar* ReadAndMallocAndTerminateFile ( char* filename ) : Opening file succeeded...");
+		error_message(__FUNCTION__,
+		              "FreedroidRPG was unable to open a given text file,\n"
+		              "that should be there and should be accessible.\n"
+		              "This indicates a serious bug in this installation of FreedroidRPG.",
+		              PLEASE_INFORM | IS_FATAL);
 	}
 
-	int filelen = FS_filelength(DataFile);
-	MemoryAmount = filelen + 100;
-	Data = (char *)MyMalloc(MemoryAmount);
+	int filelen = FS_filelength(data_file);
+	long memory_amount = filelen + 100;
+	char *data = (char *)MyMalloc(memory_amount);
 
-	if (fread(Data, 1, MemoryAmount, DataFile) < filelen && ferror(DataFile)) {
-		error_message(__FUNCTION__, "\
-		FreedroidRPG was unable to read a given text file, that should be there and\n\
-		should be accessible.\n\
-		Filename: %s", PLEASE_INFORM | IS_FATAL, filename);
-	} else {
-		DebugPrintf(1, "\n%s(): Reading file succeeded...", __FUNCTION__);
+	if (fread(data, 1, memory_amount, data_file) < filelen && ferror(data_file)) {
+		error_message(__FUNCTION__,
+		              "FreedroidRPG was unable to read a given text file, that should be there and\n"
+		              "should be accessible.\n"
+		              "Filename: %s",
+		              PLEASE_INFORM | IS_FATAL, filename);
 	}
 
-	if (fclose(DataFile) == EOF) {
+	if (fclose(data_file) == EOF) {
 		fprintf(stderr, "\n\nfilename: '%s'\n", filename);
-		error_message(__FUNCTION__, "\
-		FreedroidRPG was unable to close a given text file, that should be there and\n\
-		should be accessible.\n\
-		This indicates a strange bug in this installation of Freedroid, that is\n\
-		very likely a problem with the file/directory permissions of the files\n\
-		belonging to FreedroidRPG.", PLEASE_INFORM | IS_FATAL);
-	} else {
-		DebugPrintf(1, "\n%s(): file closed successfully...\n", __FUNCTION__);
+		error_message(__FUNCTION__,
+		              "FreedroidRPG was unable to close a given text file, that should be there and\n"
+		              "should be accessible.\n"
+		              "This indicates a strange bug in this installation of Freedroid, that is\n"
+		              "very likely a problem with the file/directory permissions of the files\n"
+		              "belonging to FreedroidRPG.",
+		              PLEASE_INFORM | IS_FATAL);
 	}
 
 	// NOTE: Since we do not assume to always have pure text files here, we switched to
 	// MyMemmem, so that we can handle 0 entries in the middle of the file content as well
-	if (File_End_String) {
-		if ((ReadPointer = MyMemmem(Data, (size_t) MemoryAmount, (char *)File_End_String, (size_t) strlen(File_End_String))) == NULL) {
+	if (file_end_string) {
+		char *read_pointer = my_memmem(data, (size_t) memory_amount, (char *)file_end_string, (size_t) strlen(file_end_string));
+		if (!read_pointer) {
 			error_message(__FUNCTION__, "FreedroidRPG was unable to find the string, that should indicate the end of\n"
 			                            "the given text file within this file.\n"
 			                            "This indicates a corrupt or outdated data or saved game file."
 			                            "  filename: '%s' - File_End_String: '%s'",
-			              PLEASE_INFORM | IS_FATAL, filename, File_End_String);
+			              PLEASE_INFORM | IS_FATAL, filename, file_end_string);
 		} else {
-			ReadPointer[0] = 0;
+			read_pointer[0] = 0;
 		}
 	} else
-		Data[MemoryAmount - 100] = 0;
+		data[memory_amount - 100] = 0;
 
-	return (Data);
+	return (data);
 }
 
 /**
@@ -888,20 +880,18 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 
 int deflate_to_stream(unsigned char *source_buffer, int size, FILE *dest)
 {
-    int ret;
-    unsigned have;
-    z_stream strm;
 #define CHUNK 16384
     unsigned char out[CHUNK];
 
     /* allocate deflate state */
+    z_stream strm;
     strm.zalloc = Z_NULL;
     strm.zfree = Z_NULL;
     strm.opaque = Z_NULL;
 	strm.avail_in = size;
 	strm.next_in = source_buffer;
 
-    ret = deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY);
+    int ret = deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY);
 	if (ret != Z_OK) {
 		error_message(__FUNCTION__, "\
 		zlib was unable to start compressing a string.", PLEASE_INFORM);
@@ -917,7 +907,7 @@ int deflate_to_stream(unsigned char *source_buffer, int size, FILE *dest)
 		if (ret == Z_STREAM_ERROR) {
 			error_message(__FUNCTION__, "Stream error while deflating a buffer", IS_FATAL | PLEASE_INFORM);
 		}
-		have = CHUNK - strm.avail_out;
+		unsigned int have = CHUNK - strm.avail_out;
 		if (fwrite(out, 1, have, dest) != have || ferror(dest)) {
 			(void)deflateEnd(&strm);
 			return -1;

@@ -414,7 +414,6 @@ static void fix_isolated_grass_tile(level * EditLevel, int x, int y)
 	int south_grass = 0;
 	int east_grass = 0;
 	int west_grass = 0;
-	int our_rand;
 
 	if (is_some_grass_tile(get_top_map_brick(EditLevel, x, y + NORTH_T)))
 		north_grass = TRUE;
@@ -426,7 +425,7 @@ static void fix_isolated_grass_tile(level * EditLevel, int x, int y)
 		west_grass = TRUE;
 
 	if (!north_grass && !south_grass && !east_grass && !west_grass) {
-		our_rand = MyRandom(100);
+		int our_rand = MyRandom(100);
 		if (our_rand < 33)
 			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_17, ISO_FLOOR_SAND);
 		else if (our_rand < 66)

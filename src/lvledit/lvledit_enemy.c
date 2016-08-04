@@ -114,7 +114,7 @@ void get_random_droids_from_user()
 
 	// Get the droid types
 	while (1) {
-		user_input = GetEditableStringInPopupWindow(suggested_val->capacity, displayed_text->value, suggested_val->value);
+		user_input = get_editable_string_in_popup_window(suggested_val->capacity, displayed_text->value, suggested_val->value);
 		if (!user_input)
 			goto out;
 
@@ -171,7 +171,7 @@ static void edit_special_force_info(enemy *en)
 	sprintf(suggested_val, "%s", get_faction_from_id(en->faction));
 
 	// Edit the faction
-	user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
+	user_input = get_editable_string_in_popup_window(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
 	if (!user_input)
 		goto out;
 
@@ -184,7 +184,7 @@ static void edit_special_force_info(enemy *en)
 	// Change the dialog
 	user_input = NULL;
 	while (1) {
-		user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
+		user_input = get_editable_string_in_popup_window(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
 		if (!user_input)
 			goto out;
 
@@ -205,7 +205,7 @@ static void edit_special_force_info(enemy *en)
 	free(user_input);
 
 	// Edit the Short description
-	user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
+	user_input = get_editable_string_in_popup_window(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
 	if (!user_input)
 		goto out;
 
@@ -218,7 +218,7 @@ static void edit_special_force_info(enemy *en)
 
 	// Completely fixed
 	while (1) {
-		user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
+		user_input = get_editable_string_in_popup_window(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
 		if (!user_input)
 			goto out;
 
@@ -261,7 +261,7 @@ static void edit_special_force_info(enemy *en)
 
 	// Change the item dropped on death
 	while (1) {
-		user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
+		user_input = get_editable_string_in_popup_window(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
 		if (!user_input)
 			goto out;
 
@@ -288,7 +288,7 @@ static void edit_special_force_info(enemy *en)
 
 	// Rush Tux
 	while (1) {
-		user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
+		user_input = get_editable_string_in_popup_window(sizeof(suggested_val) - 1, displayed_text->value, suggested_val);
 		if (!user_input)
 			goto out;
 

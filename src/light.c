@@ -220,11 +220,9 @@ static struct interpolation_data_cell interpolation_data[MAX_LEVELS][3][3];
 static void add_interpolation_values(int curr_id, int ngb_id, 
 		int starty, int endy, int startx, int endx, enum interpolation_methods method)
 {
-	level *ngb_lvl;
-	int x, y;
-	
 	if (ngb_id != -1) {
-		ngb_lvl = curShip.AllLevels[ngb_id];
+		struct level *ngb_lvl = curShip.AllLevels[ngb_id];
+		int x, y;
 		for (y=starty; y<=endy; y++) {
 			for (x=startx; x<=endx; x++) {
 				interpolation_data[curr_id][y][x].light_bonus += ngb_lvl->light_bonus;
@@ -243,22 +241,19 @@ static void add_interpolation_values(int curr_id, int ngb_id,
  */
 static void prepare_light_interpolation()
 {
-	int x, y;
-	level *curr_lvl;
-	int curr_id;
-	
 	struct visible_level *visible_lvl, *next_lvl;
 	
 	// We only care of the visible levels 
 
 	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
 		
-		curr_lvl = visible_lvl->lvl_pointer;
-		curr_id  = curr_lvl->levelnum;
+		struct level *curr_lvl = visible_lvl->lvl_pointer;
+		int curr_id  = curr_lvl->levelnum;
 		
 		// Step 1
 		//   Initialize all interpolation areas with the 'c_val'
-		//
+
+		int x, y;
 		for (y = 0; y < 3; y++) {
 			for (x = 0; x < 3; x++) {
 				interpolation_data[curr_id][y][x].light_bonus = curr_lvl->light_bonus; 
@@ -270,7 +265,7 @@ static void prepare_light_interpolation()
 		
 		// Step 2
 		//   For each existing neighbor, add its data to the related areas
-		//
+
 		add_interpolation_values(curr_id, NEIGHBOR_ID_N(curr_id), 0, 0, 0, 2, ALONG_Y);
 		add_interpolation_values(curr_id, NEIGHBOR_ID_S(curr_id), 2, 2, 0, 2, ALONG_Y);
 		add_interpolation_values(curr_id, NEIGHBOR_ID_W(curr_id), 0, 2, 0, 0, ALONG_X);
@@ -282,7 +277,7 @@ static void prepare_light_interpolation()
 		
 		// Step 3
 		//   Compute the mean of each value
-		//
+
 		for (y = 0; y < 3; y++) {
 			for (x = 0; x < 3; x++) {
 				interpolation_data[curr_id][y][x].light_bonus /= interpolation_data[curr_id][y][x].sum; 
@@ -291,7 +286,7 @@ static void prepare_light_interpolation()
 			}
 		}
 	}
-} // void prepare_light_interpolation()
+}
 
 /*
  * This functions compute the interpolation of the level dependent light values,
@@ -980,18 +975,18 @@ void blit_classic_SDL_light_radius(int decay_x, int decay_y)
 	//
 
 	int l, c;
-	int center_x, center_y;	// Position of the center of the tile
 	SDL_Rect target_rectangle;	// Used to store the position of the blitted tile, centered on (center_x,center_y)
+
 	// Note : target_rectangle is modified by the SDL_BlitSurface call, 
 	// so it has to be reinitialized after each call
 
 	// First line
-	center_y = 0;
+	int center_y = 0;
 	target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2 + decay_y;
 
 	for (l = 0; l < lrc_nb_lines; ++l) {
 		// First column of the first half-line
-		center_x = 0;
+		int center_x = 0;
 		target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X) / 2 + decay_x;
 
 		for (c = 0; c <= lrc_nb_columns; ++c) {
