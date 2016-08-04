@@ -124,7 +124,7 @@ static void InitFont(BFont_Info *font)
 				rect->y = y;
 
 				// Compute character width
-				int x2 = x;
+				unsigned int x2 = x;
 				while (x2 < font_surf->w) {
 					if (FdGetPixel(font_surf, x2, y) == sentry_horiz)
 						break;
@@ -132,7 +132,7 @@ static void InitFont(BFont_Info *font)
 				}
 				rect->w = x2 - x;
 
-				printf("\twidth %2d ", x2-x);
+				printf("\twidth %2u ", x2-x);
 				if (x2 == font_surf->w)
 					break;
 

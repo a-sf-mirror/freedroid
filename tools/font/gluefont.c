@@ -201,7 +201,7 @@ void create_font()
 		for (a = 0; a < font->w; a++) {
 			PutPixel(font, a, next_y + max_h, sentry_vert);
 		}
-		printf("Glued %d characters\n", i - '!' - 1);
+		printf("Glued %u characters\n", i - '!' - 1);
 		// Hack - change the SDL_Surface's height attribute to save only
 		// the useful part of the image
 		font->h = pot(next_y + max_h + 1);
