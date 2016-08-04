@@ -951,23 +951,30 @@ void start_tux_death_explosions(void)
 			error_message(__FUNCTION__, "Ran out of blasts!!!", PLEASE_INFORM);
 		}
 
-		// create a blast at a random position, around Tux
+		// create a blast at a random position, at a 0.5 radius around Tux (but not "on" Tux)
 		struct blast *new_blast = &AllBlasts[counter];
 		float rand_x, rand_y;
-		int loop_protect = 0; // protect against an infinite loop, in case MyRandom() always draws 0
-		do {
-			rand_x = -0.5f + MyRandom(10) * 0.1;
-			loop_protect++;
-		} while(rand_x == 0.0 && loop_protect < 10);
-		if (loop_protect == 10)
-			rand_x = 0.1;
+		int loop_protect; // protect against an infinite loop, in case MyRandom() always draws 0
+
 		loop_protect = 0;
 		do {
-			rand_y = -0.5f + MyRandom(10) * 0.1;
+			rand_x = -0.5f + MyRandom(10) * 0.1f;
 			loop_protect++;
-		} while(rand_y == 0.0 && loop_protect < 10);
-		if (loop_protect == 10)
-			rand_y = -0.1;
+		} while(rand_x == 0.0f && loop_protect < 10);
+		if (loop_protect == 10) {
+			// fallback to a default value
+			rand_x = 0.1f;
+		}
+
+		loop_protect = 0;
+		do {
+			rand_y = -0.5f + MyRandom(10) * 0.1f;
+			loop_protect++;
+		} while(rand_y == 0.0f && loop_protect < 10);
+		if (loop_protect == 10) {
+			// fallback to a default value
+			rand_y = -0.1f;
+		}
 
 		new_blast->type = DROIDBLAST;
 		new_blast->pos.x = Me.pos.x + rand_x;
