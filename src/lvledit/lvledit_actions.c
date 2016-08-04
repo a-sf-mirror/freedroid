@@ -241,18 +241,18 @@ obstacle *action_create_obstacle_user(Level EditLevel, double x, double y, int n
  * Change an obstacle label, possibly removing it.
  * @return the number of actions that were pushed on the stack.
  */
-static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, char *name, int undoable)
+static int action_change_obstacle_label(struct level *edit_level, struct obstacle *our_obstacle, char *name, int undoable)
 {
 	// If the obstacle already has a label, remove it
-	char *old_label = get_obstacle_extension(EditLevel, obstacle, OBSTACLE_EXTENSION_LABEL);
+	char *old_label = get_obstacle_extension(edit_level, our_obstacle, OBSTACLE_EXTENSION_LABEL);
 	if (old_label) {
 		old_label = strdup(old_label);
-		del_obstacle_extension(EditLevel, obstacle, OBSTACLE_EXTENSION_LABEL);
+		del_obstacle_extension(edit_level, our_obstacle, OBSTACLE_EXTENSION_LABEL);
 	}
 
 	// Create the undo action if appropriate
 	if (undoable) {
-		action_push(ACT_SET_OBSTACLE_LABEL, obstacle, old_label);
+		action_push(ACT_SET_OBSTACLE_LABEL, our_obstacle, old_label);
 	} else {
 		if (old_label) {
 			free(old_label);
@@ -265,7 +265,7 @@ static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, ch
 		return 0;
 
 	// Assign the new label
-	add_obstacle_extension(EditLevel, obstacle, OBSTACLE_EXTENSION_LABEL, strdup(name));
+	add_obstacle_extension(edit_level, our_obstacle, OBSTACLE_EXTENSION_LABEL, strdup(name));
 
 	return undoable;
 }
