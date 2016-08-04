@@ -701,11 +701,10 @@ void action_remove_map_label(level *lvl, int x, int y)
 	}
 }
 
-enemy *action_create_enemy(level *lvl, enemy *en)
+void action_create_enemy(level *lvl, enemy *en)
 {
 	enemy_insert_into_lists(en, TRUE);
 	action_push(ACT_REMOVE_ENEMY, en);
-	return en;
 }
 
 void action_remove_enemy(level *lvl, enemy *en)

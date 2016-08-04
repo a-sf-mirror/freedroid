@@ -196,7 +196,7 @@ static int mapgen_bench()
 {
 	int loop = 100;
 	extern void CreateNewMapLevel(int);
-	extern int delete_map_level(int);
+	extern void delete_map_level(int);
 	timer_start();
 	while (loop--) {
 		CreateNewMapLevel(0);
