@@ -854,7 +854,6 @@ static char *decode_waypoints(level *loadlevel, char *data)
 	char *wp_begin, *wp_end;
 	char *this_line;
 	int nr, x, y, wp_rnd;
-	char *pos;
 
 	// Initialize waypoints
 	dynarray_init(&loadlevel->waypoints, 2, sizeof(struct waypoint));
@@ -900,7 +899,7 @@ static char *decode_waypoints(level *loadlevel, char *data)
 		// Initalize the connections of the new waypoint
 		dynarray_init(&new_wp.connections, 2, sizeof(int));
 
-		pos = strstr(this_line, CONNECTION_STRING);
+		char *pos = strstr(this_line, CONNECTION_STRING);
 		if (pos == NULL) {
 			error_message(__FUNCTION__,
 			              "Unable to find connection string, on line %s, level %i.\n"

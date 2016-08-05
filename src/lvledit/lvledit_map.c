@@ -44,12 +44,11 @@
  */
 static void move_map_labels(level *EditLevel, int x, int y)
 {
-	map_label *m;
 	int i;
 
 	for (i = 0; i < EditLevel->map_labels.size; i++) {
 		// Get the map label
-		m = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
+		map_label *m = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
 		// Move the map label
 		m->pos.x += x;
@@ -75,12 +74,12 @@ static void move_map_labels(level *EditLevel, int x, int y)
  */
 static void move_items(level *EditLevel, int x, int y)
 {
-	item *item;
+
 	int i;
 
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
 		// Get the item
-		item = &EditLevel->ItemList[i];
+		item *item = &EditLevel->ItemList[i];
 
 		// Maybe the item entry isn't used at all. That's the simplest
 		// case...: do nothing

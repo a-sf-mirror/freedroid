@@ -609,7 +609,6 @@ void get_visible_levels()
 
 	for (j = top_idx; j <= bottom_idx; j++) {
 		float latitude;		// distance, along Y axis, between Tux and the current neighbor
-		float longitude;	// distance, along X axis, between Tux and the current neighbor
 
 		// if j==1, then current neighbor is at the same 'latitude' than Tux's level,
 		// so latitude = 0.0
@@ -618,8 +617,8 @@ void get_visible_levels()
 		for (i = left_idx; i <= right_idx; i++) {
 			// if i==1, then current neighbor is at the same 'longitude' than Tux's level,
 			// so longitude = 0.0
-			longitude = (i == 1) ? 0.0 : left_or_right_distance;
-
+			float longitude = (i == 1) ? 0.0 : left_or_right_distance; // distance, along X axis, between Tux and the current neighbor
+ 
 			if (level_neighbors_map[Me.pos.z][j][i]) {
 				// if there is already an entry in the visible_level list for 
 				// this level, update the entry and re-validate it
@@ -2756,8 +2755,6 @@ void put_radial_blue_sparks(float posX, float posY, float radius, int spark_type
 	int number_of_pictures_to_use;
 	float angle;
 	struct moderately_finepoint displacement;
-	char constructed_filename[5000];
-	int current_active_direction;
 
 	// We do some sanity check against too small a radius
 	// given as parameter.  This can be loosened later.
@@ -2771,6 +2768,7 @@ void put_radial_blue_sparks(float posX, float posY, float radius, int spark_type
 	// we need to load them now and for once...
 	//
 	if (spark_prototype_surface[spark_type][0] == NULL) {
+		char constructed_filename[5000];
 		int k;
 		for (k = 0; k < FIXED_NUMBER_OF_PROTOTYPES; k++) {
 			if (spark_type >= NUMBER_OF_SPARK_TYPES) {
@@ -2837,6 +2835,7 @@ void put_radial_blue_sparks(float posX, float posY, float radius, int spark_type
 	//
 	int i;
 	for (i = 0; i < number_of_pictures_to_use; i++) {
+		int current_active_direction;
 		angle = 360.0 * (float)i / (float)number_of_pictures_to_use;
 		displacement.x = radius;
 		displacement.y = 0;

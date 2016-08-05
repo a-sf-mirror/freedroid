@@ -576,13 +576,13 @@ void action_change_floor_layer(level *lvl, int layer)
 
 static void action_change_map_label(level *EditLevel, int i, char *name, int x, int y)
 {
-	struct map_label *map_label;
+
 	char *old_label = NULL;
 
 	// If the map label exist, remove it
 	if (i < EditLevel->map_labels.size) {
 		// Get the map label
-		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
+		struct map_label *map_label =  &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
 		// Get the old label for undoable actions
 		old_label = strdup(map_label->label_name);

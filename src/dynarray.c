@@ -121,7 +121,6 @@ void dynarray_resize(struct dynarray *array, int membernum, size_t membersize)
 		array->used_members = buffer;
 		// set new slots as unused (not really needed since they are after the
 		// last used slot, but it can prevent a potential bug)
-		// cppcheck-suppress arithOperationsOnVoidPointer
 		memset(&array->used_members[array->size], 0, (membernum - array->size) * sizeof(array->used_members[0]));
 	}
 

@@ -134,12 +134,11 @@ static int map_handle_event(struct widget *w, SDL_Event *event)
 
 void widget_lvledit_map_display_cursor()
 {
-	static int dragging = FALSE;
-
 	if (active_tool)
 		active_tool->display();
 
 	if (selected_tool == &tool_select) {
+		static int dragging = FALSE;
 		if ((ShiftPressed() || dragging == TRUE) && MouseLeftPressed()
 		    && !selection_empty()) {
 			//dragdrop
