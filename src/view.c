@@ -608,7 +608,8 @@ void get_visible_levels()
 	int i, j;
 
 	for (j = top_idx; j <= bottom_idx; j++) {
-		float latitude;		// distance, along Y axis, between Tux and the current neighbor
+		// cppcheck-suppress variableScope
+		float latitude, longitude;		// distance, along X and Y axis, between Tux and the current neighbor
 
 		// if j==1, then current neighbor is at the same 'latitude' than Tux's level,
 		// so latitude = 0.0
@@ -617,7 +618,7 @@ void get_visible_levels()
 		for (i = left_idx; i <= right_idx; i++) {
 			// if i==1, then current neighbor is at the same 'longitude' than Tux's level,
 			// so longitude = 0.0
-			float longitude = (i == 1) ? 0.0 : left_or_right_distance; // distance, along X axis, between Tux and the current neighbor
+			longitude = (i == 1) ? 0.0 : left_or_right_distance;
  
 			if (level_neighbors_map[Me.pos.z][j][i]) {
 				// if there is already an entry in the visible_level list for 

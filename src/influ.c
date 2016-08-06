@@ -93,11 +93,12 @@ static void limit_tux_speed()
 	 * jerking motion towards the enemy.  To stop this from happening, we force
 	 * Tux NOT to stand still when he is first charging a new target.  He stands
 	 * still ONLY when he changes target during a swing. */
+	// cppcheck-suppress variableScope
+	static enemy *previous_target = NULL;
 	struct enemy *current_target = enemy_resolve_address(Me.current_enemy_target_n,
 												  &Me.current_enemy_target_addr);
 
 	if (Me.weapon_item.type >= 0) {
-		static enemy *previous_target = NULL;
 		int has_melee = ItemMap[Me.weapon_item.type].weapon_is_melee;
 		if (Me.weapon_swing_time != -1 && (!has_melee
 		   || (has_melee && (previous_target != current_target || current_target == NULL))))
@@ -819,6 +820,8 @@ void hit_tux(float damage)
  */
 void animate_tux()
 {
+	// cppcheck-suppress variableScope
+	static int play_step_sound = 0;
 	int tux_is_running = FALSE;
 
 	// If Tux is paralyzed, show him as standing still.
@@ -901,7 +904,6 @@ void animate_tux()
 	}
 
 	if (anim_spec->nb_keyframes != 0) {
-		static int play_step_sound = 0;
 		/* Set the progress cursor */
 		Me.walk_cycle_phase += (Frame_Time() * my_speed) / anim_spec->distance;
 
