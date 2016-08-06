@@ -112,7 +112,7 @@ void dynarray_resize(struct dynarray *array, int membernum, size_t membersize)
 	array->arr = buffer;
 
 	if (array->sparse) {
-		void *buffer = realloc(array->used_members, membernum * sizeof(array->used_members[0]));
+		buffer = realloc(array->used_members, membernum * sizeof(array->used_members[0]));
 		if (!buffer) {
 			error_message(__FUNCTION__,
 			              "Not enough memory to realloc the used_members of a dynarray (requested size: " SIZE_T_F ")",
@@ -205,6 +205,18 @@ void dynarray_add(struct dynarray *array, void *data, size_t membersize)
  */
 void dynarray_del(struct dynarray *array, int index, size_t membersize)
 {
+	// Check some pre-conditions
+	if (array->size == 0) {
+		error_message(__FUNCTION__,
+		              "Trying to delete a member of an empty dynarray.",
+		              IS_FATAL);
+	}
+	if (index < 0 || index >= array->size) {
+		error_message(__FUNCTION__,
+		              "Out of scope member's index. Index: %d - Array size: %d",
+		              IS_FATAL, index, array->size);
+	}
+
 	int remove_last = (index == array->size - 1);
 
 	if (array->sparse) {
@@ -212,10 +224,11 @@ void dynarray_del(struct dynarray *array, int index, size_t membersize)
 
 		// Check if we are removing the last element of the array
 		// If so, we decrement the size of the array up to the last used slot.
-		if (remove_last)
-			while (array->size > 0 && array->used_members[array->size - 1] == 0)
+		if (remove_last) {
+			do {
 				array->size--;
-
+			} while (array->size > 0 && array->used_members[array->size - 1] == 0);
+		}
 	} else {
 
 		// If we are removing the last element, decrementing the array size is
