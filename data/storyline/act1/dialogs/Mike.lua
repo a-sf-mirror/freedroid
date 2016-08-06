@@ -39,6 +39,10 @@ local function start_arena(level)
 end
 
 return {
+	FirstTime = function()
+        show("botnode1")
+	end,
+
 	EveryTime = function()
 		if (not has_met("Mike")) then
 			Tux:says(_"Euh...hello?")
@@ -232,6 +236,43 @@ return {
 		code = function()
 			Npc:says(_"Annoyance: The droid is not a terminal.")
 			hide("sandwich_sudo")
+		end,
+	},
+	{
+		id = "botnode1",
+		text = _"You're not like the droids above.",
+		code = function()
+			-- Ever wondered why Ewald's 296 haven't gone mad? But this one was reprogrammed.
+			Npc:says(_"I am a 571 model droid programmed by Ewald.") 
+			Npc:says(_"Do you wish any information about the 500s class?")
+			hide("botnode1") show("botnode2", "botnode3")
+		end,
+	},
+	{
+		id = "botnode2",
+		text = _"Which bots are on 500s class?",
+		code = function()
+			Npc:says(_"The 500s class is mostly composed by melee ranged, crew drones.", "NO_WAIT")
+			Npc:says(_"They were designed to do all sort of tasks on a ship, except for the Harvester.")
+			Npc:says(_"The [b]516[/b] was there for simple flight checks only. It's no longer supplied.")
+			Npc:says(_"The [b]571[/b] is the replacement of the 516, and can be defined as a simple, jack-of-all-trades standard drone. According to data logs, they were in nearly every ship built before the Great Assault.")
+			Npc:says(_"There is also the [b]598[/b], a highly sophisticated droid able to control the Robo-Freighter by itself.")
+			Npc:says(_"The [b]543 Harvester[/b] is the exception. It was designed for logging, but right now, instead of harvesting trees, it may be harvesting people. If this is the case, it's advised to run away as fast as you can.")
+			--hide("botnode2")
+		end,
+	},
+	{
+		id = "botnode3",
+		text = _"Ewald programmed you???",
+		code = function()
+			Npc:says(_"According to my memory databanks, Ewald bought me a few years ago to manage arenas fights for his enjoyment.", "NO_WAIT")
+			Npc:says(_"However the Red Guard confiscated from him and made Richard reprogram me right after the Great Assault happened.")
+			if Tux:has_met("Richard") then
+				Tux:says(_"It makes sense. An arena robot sure would be handy for the Red Guard.")
+			else
+				Tux:says(_"Richard? Can't wait to know him. But surely an arena robot would be handy for the Red Guard.")
+			end
+			hide("botnode3")
 		end,
 	},
 	{

@@ -47,7 +47,7 @@ return {
 			Npc:says(_"Welcome, welcome! I'm Richard. I'm the computer guy around here.")
 			Npc:says(_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time.")
 			Npc:set_name("Richard - Programmer")
-			hide("node0") show("node1")
+			hide("node0") show("node1", "node60")
 		end,
 	},
 	{
@@ -154,6 +154,29 @@ return {
 							_"You don't have enough money! I cannot afford to just give away training for free.",
 							_"Come back when you have enough circuits.",
 							_"So come back when you have some valuables.")
+		end,
+	},
+	{
+		id = "node60",
+		text = _"What bot types do you know?",
+		code = function()
+			Npc:says(_"Well, I program the 614, so I know quite some things about the droids on this class.")
+			Npc:says(_"Interested?")
+			hide("node60") show("node61")
+		end,
+	},
+	{
+		id = "node61",
+		text = _"Which bots are on 600s class?",
+		code = function()
+			Npc:says(_"The 600s class keeps the sentinel droids.", "NO_WAIT")
+			Npc:says(_"They were projected mainly to protect a certain area from intruders, killing trespassers.")
+			Npc:says(_"There is the [b]614[/b], made by Nicholson Company. They have some sort of [b]Exterminator[/b] inside. It's slow but a reliable droid.")
+			Npc:says(_"There is also the [b]615[/b] droid. Nicholson Company didn't finish the project, which made they get affected by the Great Assault as well. They are much more dangerous than the 614, and much faster.")
+			Npc:says(_"There is also the [b]629[/b] droid. It's slow, but its guns are powerful enough to such trivia doesn't matter.")
+			Npc:says(_"There is also the [b]603[/b]. A lawnmower. It doesn't cause much damage, but his attack rate is incredibly fast and doesn't need recharging. Thankfully, it's a melee droid.")
+			Npc:says(_"I only program the 614 droids, so my information about the others may be wrong.")
+			hide("node61") show("node60")
 		end,
 	},
 	{

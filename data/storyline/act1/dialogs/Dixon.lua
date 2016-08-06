@@ -125,7 +125,7 @@ return {
 			show("node80")
 		end
 
-		show("node99")
+		show("node72", "node99")
 	end,
 
 	{
@@ -643,6 +643,30 @@ return {
 			Tux:update_quest("An Explosive Situation", _"I spoke to Dixon, who didn't have a copy of the book. He did give me an idea, though - I'll head for the library in town.")
 			Dixon_296_book_examine_library = true
 			hide("node70")
+		end,
+	},
+	{
+		id = "node72",
+		text = _"What bot types do you know?",
+		code = function()
+			Npc:says(_"Bots?", "NO_WAIT")
+			Npc:says(_"I know the droids on the 400s class, that are for maintenance. Oddly, we do not have any on our tunnels.")
+			Npc:says(_"Interested?")
+			hide("node72") show("node73")
+		end,
+	},
+	{
+		id = "node73",
+		text = _"Which bots are on 400s class?",
+		code = function()
+			Npc:says(_"Well, the 400s bots were used for maintenance.", "NO_WAIT")
+			Npc:says(_"Hmm... Now, if I recall correctly...")
+			Npc:says(_"There is the [b]420[/b], a simple maintenance droid. It's a slow droid, but its laser scalpel can deal some damage.")
+			Npc:says(_"There is also the [b]476[/b] droid. Since the Jupiter-incident they became standard on ships. They have many arms to carry out maintenance efficiently, but beware with its small laser gun, it can kill you easily if you don't watch out.")
+			Tux:says(_"Laser gun? Why does a maintenance droid have a gun??")
+			Npc:says(_"I don't know. I didn't design these droids.")
+			Npc:says(_"There is also the [b]493[/b], a slave droid. But beware because the arms can do a lot of damage.")
+			hide("node73") --show("node72") -- Don't show node 72 again, wait the user restart the dialog.
 		end,
 	},
 	{
