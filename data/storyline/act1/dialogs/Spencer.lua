@@ -273,6 +273,8 @@ return {
 				change_obstacle_state("Main Gate Guardhouse", "opened")
 				sell_item("Shotgun shells", 1, "Stone")
 				sell_item(".22 LR Ammunition", 1, "Stone")
+				sell_item("EMP Shockwave Generator", 2, "Duncan") -- RG members can buy bigger bombs, as Duncan said.
+				sell_item("Plasma Shockwave Emitter", 1, "Duncan")
 				hide("node3", "node12")
 			else
 				if (get_town_score() > 29) then
