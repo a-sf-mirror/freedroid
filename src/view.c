@@ -2657,7 +2657,7 @@ There was a droid type on this level, that does not really exist.", PLEASE_INFOR
 
 /**
  * This function draws a Bullet into the combat window.  The only 
- * parameter given is a pointer to the bulle's struct.
+ * parameter given is a pointer to the bullet's struct.
  * Everything else is computed in here.
  */
 void put_bullet(struct bullet *current_bullet, int mask)
