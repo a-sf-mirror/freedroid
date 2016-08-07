@@ -763,7 +763,8 @@ void prepare_execution(int argc, char *argv[])
 	term_has_color_cap = FALSE;
 #ifndef __WIN32__
 	run_from_term = isatty(STDOUT_FILENO);
-	if (run_from_term && !strncmp(getenv("TERM"), "xterm", 5))
+	char *term = getenv("TERM");
+	if (run_from_term && term && !strncmp(term, "xterm", 5))
 		term_has_color_cap = TRUE;
 #endif
 
