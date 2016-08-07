@@ -99,6 +99,9 @@ static struct converter converters[] = {
 		{ "fix0_16", 0000, 0, 1600, 1,
 		  { filter_0_16_fix_german, filter_0_16_add_savegame_version, _change_savegame_version, NULL }
 		},
+		{ "update_to_0_16_1", 1600, 1, 1601, 0,
+		  { _change_savegame_version, NULL }
+		},
 		{ "fix0_16_1", 1601, 0, 1601, 1,
 		  { filter_0_16_1_convert_bullets_array, _change_savegame_version, NULL }
 		}
