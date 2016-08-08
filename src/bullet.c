@@ -95,32 +95,9 @@ static int move_this_bullet_and_check_its_collisions(struct bullet *current_bull
 	return FALSE;
 }
 
-/**
- * Whenever a new bullet is generated, we need to find a free index in 
- * the array of bullets.  This function automates the process.
- */
-int find_free_melee_shot_index(void)
+void delete_melee_shot(int melee_shot_number)
 {
-	int j;
-
-	for (j = 0; j < MAX_MELEE_SHOTS; j++) {
-		if (AllMeleeShots[j].attack_target_type == ATTACK_TARGET_IS_NOTHING) {
-			return (j);
-		}
-	}
-
-	// TODO use a dynarray rather than a static array, to avoid amount limitation
-	error_once_message(ONCE_PER_GAME, __FUNCTION__,
-	                   "I seem to have run out of free melee shot entries.",
-	                   PLEASE_INFORM);
-
-	return -1;
-}
-
-void delete_melee_shot(melee_shot * t)
-{
-	memset(t, 0, sizeof(melee_shot));
-	t->attack_target_type = ATTACK_TARGET_IS_NOTHING;
+	dynarray_del(&all_melee_shots, melee_shot_number, sizeof(struct melee_shot));
 }
 
 /* ------------------------------------------------------------------
@@ -131,13 +108,17 @@ void do_melee_damage(void)
 {
 	int i;
 	float latest_frame_time = Frame_Time();
-	struct melee_shot *current_melee_shot;
 
 	/* Browse all melee shots */
-	for (i = 0; i < MAX_MELEE_SHOTS; i++) {
-		current_melee_shot = &AllMeleeShots[i];
+	for (i = 0; i < all_melee_shots.size; i++) {
+		// Unused melee shot slot
+		if (!sparse_dynarray_member_used(&all_melee_shots, i))
+			continue;
 
-		if (current_melee_shot->attack_target_type == ATTACK_TARGET_IS_NOTHING || current_melee_shot->time_to_hit > 0) {
+		struct melee_shot *current_melee_shot = (struct melee_shot *)dynarray_member(&all_melee_shots, i, sizeof(struct melee_shot));
+
+		// Wait the hit of the melee shot
+		if (current_melee_shot->time_to_hit > 0) {
 			current_melee_shot->time_to_hit -= latest_frame_time;
 			continue;
 		}
@@ -147,15 +128,15 @@ void do_melee_damage(void)
 			enemy *tg = enemy_resolve_address(current_melee_shot->bot_target_n, &current_melee_shot->bot_target_addr);
 			if (!tg) {
 				error_message(__FUNCTION__,
-					     "Melee shot was set to ATTACK_TARGET_IS_ENEMY but had no targeted enemy. Deleting.",
-					     NO_REPORT);
-				delete_melee_shot(current_melee_shot);
+				              "Melee shot was set to ATTACK_TARGET_IS_ENEMY but had no targeted enemy. Deleting.",
+				              NO_REPORT);
+				delete_melee_shot(i);
 				continue;
 			}
 
 			if (tg->energy <= 0) {
 				// our enemy is already dead ! 
-				delete_melee_shot(current_melee_shot);
+				delete_melee_shot(i);
 				continue;
 			}
 
@@ -167,7 +148,7 @@ void do_melee_damage(void)
 				hit_enemy(tg, current_melee_shot->damage, current_melee_shot->mine ? 1 : 0, current_melee_shot->owner, current_melee_shot->mine ? 1 : 0);
 			}
 
-			delete_melee_shot(current_melee_shot);
+			delete_melee_shot(i);
 			continue;
 
 		}
@@ -181,7 +162,7 @@ void do_melee_damage(void)
 			}
 		}
 
-		delete_melee_shot(current_melee_shot);
+		delete_melee_shot(i);
 	}
 }
 

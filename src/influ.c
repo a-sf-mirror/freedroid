@@ -1386,23 +1386,17 @@ int perform_tux_attack(int use_mouse_cursor_for_targeting)
 				continue;
 
 			// Set up a melee attack
-			int shot_index = find_free_melee_shot_index();
-			if (shot_index == -1) {
-				// We are out of free melee shot slots.
-				// This should not happen, an error message was displayed,
-				return 0;
-			}
+			struct melee_shot new_melee_shot;
+			new_melee_shot.attack_target_type = ATTACK_TARGET_IS_ENEMY;
+			new_melee_shot.mine = TRUE;
+			new_melee_shot.bot_target_n = erot->id;
+			new_melee_shot.bot_target_addr = erot;
+			new_melee_shot.to_hit = Me.to_hit;
+			new_melee_shot.damage = Me.base_damage + MyRandom(Me.damage_modifier);
+			new_melee_shot.owner = -1;	//no "bot class number" owner
+			new_melee_shot.time_to_hit = tux_anim.attack.duration / 2;
 
-			melee_shot *new_shot = &(AllMeleeShots[shot_index]);
-
-			new_shot->attack_target_type = ATTACK_TARGET_IS_ENEMY;
-			new_shot->mine = TRUE;
-			new_shot->bot_target_n = erot->id;
-			new_shot->bot_target_addr = erot;
-			new_shot->to_hit = Me.to_hit;
-			new_shot->damage = Me.base_damage + MyRandom(Me.damage_modifier);
-			new_shot->owner = -1;	//no "bot class number" owner
-			new_shot->time_to_hit = tux_anim.attack.duration / 2;
+			dynarray_add(&all_melee_shots, &new_melee_shot, sizeof(struct melee_shot));
 
 			hit_something = TRUE;
 		}

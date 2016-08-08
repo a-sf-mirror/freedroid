@@ -48,7 +48,7 @@ static int TurnABitTowardsPosition(Enemy, float, float, float);
 static void move_to_melee_combat(struct enemy *, struct gps *, struct moderately_finepoint *);
 static void MoveAwayFromMeleeCombat(Enemy, moderately_finepoint *);
 static void ReachMeleeCombat(Enemy, gps *, moderately_finepoint *, pathfinder_context *);
-static void raw_start_enemys_shot(enemy *, float, float);
+static void raw_start_enemys_shot(struct enemy *, float, float);
 static int is_potential_target(enemy * this_robot, gps * target_pos, float *squared_best_dist);
 static int can_see_tux(enemy *);
 
@@ -2180,7 +2180,7 @@ void set_bullet_speed_to_target_direction(bullet * NewBullet, float bullet_speed
  * through the pointer ThisRobot at the target VECTOR xdist ydist, which
  * is a DISTANCE VECTOR, NOT ABSOLUTE COORDINATES OF THE TARGET!!!
  */
-static void raw_start_enemys_shot(enemy * this_robot, float xdist, float ydist)
+static void raw_start_enemys_shot(struct enemy *this_robot, float xdist, float ydist)
 {
 	// If the robot is not in walk or stand animation, i.e. if it's in
 	// gethit, death or attack animation, then we can't start another
@@ -2218,28 +2218,23 @@ static void raw_start_enemys_shot(enemy * this_robot, float xdist, float ydist)
 
 	} else {		/* melee weapon */
 
-		int shot_index = find_free_melee_shot_index();
-		if (shot_index == -1) {
-			// We are out of free melee shot slots.
-			// This should not happen, an error message was displayed,
-			return;
-		}
+		struct melee_shot new_melee_shot;
 
-		melee_shot *NewShot = &(AllMeleeShots[shot_index]);
-
-		NewShot->attack_target_type = this_robot->attack_target_type;
-		NewShot->mine = FALSE;	/* shot comes from a bot not tux */
+		new_melee_shot.attack_target_type = this_robot->attack_target_type;
+		new_melee_shot.mine = FALSE;	/* shot comes from a bot not tux */
 
 		if (this_robot->attack_target_type == ATTACK_TARGET_IS_ENEMY) {
-			NewShot->bot_target_n = this_robot->bot_target_n;
-			NewShot->bot_target_addr = this_robot->bot_target_addr;
+			new_melee_shot.bot_target_n = this_robot->bot_target_n;
+			new_melee_shot.bot_target_addr = this_robot->bot_target_addr;
 		} else {	/* enemy bot attacking tux */
-			enemy_set_reference(&NewShot->bot_target_n, &NewShot->bot_target_addr, NULL);
+			enemy_set_reference(&new_melee_shot.bot_target_n, &new_melee_shot.bot_target_addr, NULL);
 		}
 
-		NewShot->to_hit = Droidmap[this_robot->type].to_hit;
-		NewShot->damage = weapon_spec.weapon_base_damage + MyRandom(weapon_spec.weapon_damage_modifier);
-		NewShot->owner = this_robot->id;
+		new_melee_shot.to_hit = Droidmap[this_robot->type].to_hit;
+		new_melee_shot.damage = weapon_spec.weapon_base_damage + MyRandom(weapon_spec.weapon_damage_modifier);
+		new_melee_shot.owner = this_robot->id;
+
+		dynarray_add(&all_melee_shots, &new_melee_shot, sizeof(struct melee_shot));
 	}
 
 	this_robot->ammo_left--;
@@ -2264,7 +2259,7 @@ static void raw_start_enemys_shot(enemy * this_robot, float xdist, float ydist)
 		fire_bullet_sound(weapon_spec.weapon_bullet_type, &this_robot->pos);
 	else
 		play_melee_weapon_missed_sound(&this_robot->pos);
-};				// void RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
+}
 
 /**
  * In some of the movement functions for enemy droids, we consider making

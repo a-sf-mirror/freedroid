@@ -106,7 +106,7 @@ float calc_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y);
 float vect_len(moderately_finepoint our_vector);
 enemy *GetLivingDroidBelowMouseCursor(void);
 void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting);
-int perform_tux_attack(int use_mouse_cursor_for_targeting);
+int perform_tux_attack(int);
 void TuxReloadWeapon(void);
 void correct_tux_position_according_to_jump(void);
 void InitInfluPositionHistory(void);
@@ -156,8 +156,7 @@ int check_bullet_collisions(struct bullet *);
 void CheckBlastCollisions(int num);
 void bullet_init_for_player(struct bullet *, int, short int);
 void bullet_init_for_enemy(struct bullet *, int, short int, struct enemy*);
-int find_free_melee_shot_index(void);
-void delete_melee_shot(melee_shot *);
+void delete_melee_shot(int);
 int GetBulletByName(const char *bullet_name);
 
 // view.c 

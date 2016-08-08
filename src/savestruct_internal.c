@@ -528,7 +528,7 @@ void save_game_data(struct auto_string *strout)
 	autostr_append(strout, "\n");
 
 	autostr_append(strout, "melee_shot_array");
-	write_melee_shot_array(strout, AllMeleeShots, MAX_MELEE_SHOTS);
+	write_melee_shot_sparsedynarray(strout, &all_melee_shots);
 	autostr_append(strout, "\n");
 
 	autostr_append(strout, "factions{\n");
@@ -626,13 +626,7 @@ static int spell_active_array_ctor(lua_State *L)
 
 static int melee_shot_array_ctor(lua_State *L)
 {
-	int i;
-	for (i = 0; i < lua_rawlen(L, 1) && i < MAX_MELEE_SHOTS; i++) {
-		lua_rawgeti(L, 1, i+1);
-		read_melee_shot(L, -1, &AllMeleeShots[i]);
-		lua_pop(L, 1);
-	}
-
+	read_melee_shot_sparsedynarray(L, 1, &all_melee_shots);
 	return 0;
 }
 

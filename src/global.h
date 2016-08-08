@@ -77,7 +77,7 @@ EXTERN spell_active AllActiveSpells[MAX_ACTIVE_SPELLS];
 EXTERN ship curShip;		/* the current ship-data */
 
 EXTERN bullet_sparsedynarray all_bullets INITIALIZER(SPARSE_DYNARRAY);
-EXTERN melee_shot AllMeleeShots[MAX_MELEE_SHOTS];
+EXTERN melee_shot_sparsedynarray all_melee_shots INITIALIZER(SPARSE_DYNARRAY);
 EXTERN blast AllBlasts[MAXBLASTS + 10];
 
 EXTERN int sound_on;		// Toggle TRUE/FALSE for turning sounds on/off 

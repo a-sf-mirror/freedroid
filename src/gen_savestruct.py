@@ -53,7 +53,7 @@ hardcoded_types = [ "list_head_t", "keybind_t_array" ]
 # This list contains types for which read/write functions will be added to the
 # generated files.
 
-additional_types = [ "bullet_sparsedynarray", "blast_array", "spell_active_array", "melee_shot_array" ]
+additional_types = [ "bullet_sparsedynarray", "blast_array", "spell_active_array", "melee_shot_sparsedynarray" ]
 
 #=====
 # End of user modifiable part
