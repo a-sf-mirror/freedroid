@@ -943,53 +943,50 @@ static char *decode_waypoints(level *loadlevel, char *data)
  */
 static int smash_obstacles_only_on_tile(float x, float y, int lvl, int map_x, int map_y)
 {
-	Level BoxLevel = curShip.AllLevels[lvl];
+	struct level *box_level = curShip.AllLevels[lvl];
 	int i;
 	int target_idx;
-	obstacle *target_obstacle;
+	struct obstacle *target_obstacle;
 	int smashed_something = FALSE;
-	moderately_finepoint blast_start_pos;
+	struct moderately_finepoint blast_start_pos;
 
 	// First some security checks against touching the outsides of the map...
-	//
-	if (!pos_inside_level(map_x, map_y, BoxLevel))
+
+	if (!pos_inside_level(map_x, map_y, box_level))
 		return (FALSE);
 
 	// We check all the obstacles on this square if they are maybe destructible
 	// and if they are, we destruct them, haha
-	//
-	for (i = 0; i < BoxLevel->map[map_y][map_x].glued_obstacles.size; i++) {
+
+	for (i = 0; i < box_level->map[map_y][map_x].glued_obstacles.size; i++) {
 		// First we see if there is something glued to this map tile at all.
-		//
-		target_idx = ((int *)(BoxLevel->map[map_y][map_x].glued_obstacles.arr))[i];
 
-		target_obstacle = &(BoxLevel->obstacle_list[target_idx]);
+		target_idx = ((int *)(box_level->map[map_y][map_x].glued_obstacles.arr))[i];
 
-		obstacle_spec *obstacle_spec = get_obstacle_spec(target_obstacle->type);
+		target_obstacle = &(box_level->obstacle_list[target_idx]);
+
+		struct obstacle_spec *obstacle_spec = get_obstacle_spec(target_obstacle->type);
 		if (!(obstacle_spec->flags & IS_SMASHABLE))
 			continue;
 
 		// Now we check if the item really was close enough to the strike target.
 		// A range of 0.5 should do.
-		//
+
 		if (fabsf(x - target_obstacle->pos.x) > 0.4)
 			continue;
 		if (fabsf(y - target_obstacle->pos.y) > 0.4)
 			continue;
 
-		colldet_filter filter = FlyableExceptIdPassFilter;
+		struct colldet_filter filter = FlyableExceptIdPassFilter;
 		filter.data = &target_idx;
-		gps smash_pos = { x, y, lvl };
-		gps vsmash_pos;
+		struct gps smash_pos = { x, y, lvl };
+		struct gps vsmash_pos;
 		update_virtual_position(&vsmash_pos, &smash_pos, Me.pos.z);
 		if (vsmash_pos.x == -1)
 			continue;
 		if (!DirectLineColldet(vsmash_pos.x, vsmash_pos.y, Me.pos.x, Me.pos.y, Me.pos.z, &filter)) {
 			continue;
 		}
-
-		DebugPrintf(1, "\nObject smashed at: (%f/%f) by hit/explosion at (%f/%f).",
-			    target_obstacle->pos.x, target_obstacle->pos.y, x, y);
 
 		smashed_something = TRUE;
 
@@ -999,12 +996,11 @@ static int smash_obstacles_only_on_tile(float x, float y, int lvl, int map_x, in
 		// cause this very obstacle removal function, so we need to be careful
 		// so as not to incite endless recursion.  We memorize the position for
 		// later, then delete the obstacle, then we start the blast.
-		//
+
 		blast_start_pos.x = target_obstacle->pos.x;
 		blast_start_pos.y = target_obstacle->pos.y;
 
-		int obstacle_drops_treasure
-			= obstacle_spec->flags & DROPS_RANDOM_TREASURE;
+		int obstacle_drops_treasure = obstacle_spec->flags & DROPS_RANDOM_TREASURE;
 
 		// Let the automap know that we've updated things
 		update_obstacle_automap(lvl, target_obstacle);
@@ -1013,7 +1009,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int lvl, int map_x, in
 		// been configured for this obstacle type.  In if there is nothing configured (i.e. -1 set)
 		// then we'll just delete the obstacle in question entirely.  For this we got a standard function to
 		// safely do it and not make some errors into the glue structure or obstacles lists...
-		//
+
 		if (obstacle_spec->result_type_after_smashing_once == (-1)) {
 			del_obstacle(target_obstacle);
 		} else {
@@ -1022,12 +1018,12 @@ static int smash_obstacles_only_on_tile(float x, float y, int lvl, int map_x, in
 
 		// Drop items after destroying the obstacle, in order to avoid collisions
 		if (obstacle_drops_treasure)
-			drop_random_item(lvl, target_obstacle->pos.x, target_obstacle->pos.y, BoxLevel->drop_class, FALSE);
+			drop_random_item(lvl, target_obstacle->pos.x, target_obstacle->pos.y, box_level->drop_class, FALSE);
 
 		// Now that the obstacle is removed AND ONLY NOW that the obstacle is
 		// removed, we may start a blast at this position.  Otherwise we would
 		// run into trouble, see the warning further above.
-		StartBlast(blast_start_pos.x, blast_start_pos.y, 
+		start_blast(blast_start_pos.x, blast_start_pos.y,
 				lvl, obstacle_spec->blast_type, 0.0, FACTION_SELF, obstacle_spec->smashed_sound);
 	}
 

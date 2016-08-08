@@ -70,15 +70,12 @@ int run_from_term = FALSE;
  */
 void clear_out_arrays_for_fresh_game(void)
 {
-	int i;
-
 	dynarray_free(&all_melee_shots);
 
 	dynarray_free(&all_bullets);
 
-	for (i = 0; i < MAXBLASTS; i++) {
-		DeleteBlast(i);
-	}
+	dynarray_free(&all_blasts);
+
 	clear_active_spells();
 
 	clear_enemies();

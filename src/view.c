@@ -500,21 +500,21 @@ static void insert_one_bullet_into_blitting_list(float norm, struct bullet *one_
  *
  *
  */
-void insert_one_blast_into_blitting_list(int blast_num)
+void insert_one_blast_into_blitting_list(struct blast *current_blast)
 {
-	gps virtpos;
+	struct gps virtpos;
 
 	// Due to the use of a painter algorithm, we need to sort the objects depending of their 
 	// isometric distance on the current level.
 	// We thus have to get the blast's position on the current level. 
-	update_virtual_position(&virtpos, &AllBlasts[blast_num].pos, Me.pos.z);
+	update_virtual_position(&virtpos, &current_blast->pos, Me.pos.z);
 
 	// Could not find virtual position? Give up drawing.
 	if (virtpos.z == -1)
 		return;
 
-	insert_new_element_into_blitting_list(virtpos.x + virtpos.y, BLITTING_TYPE_BLAST, &(AllBlasts[blast_num]), blast_num);
-}				// void insert_one_blast_into_blitting_list ( int enemy_num )
+	insert_new_element_into_blitting_list(virtpos.x + virtpos.y, BLITTING_TYPE_BLAST, (void *)current_blast, -1);
+}
 
 /**
  * 
@@ -1133,17 +1133,18 @@ static void insert_bullets_into_blitting_list(int mask)
 static void insert_blasts_into_blitting_list(int mask)
 {
 	int i;
-	blast *b;
 	int xmin, xmax, ymin, ymax;
 	get_floor_boundaries(mask, &ymin, &ymax, &xmin, &xmax);
 
-	for (i = 0; i < MAXBLASTS; i++) {
-		b = &AllBlasts[i];
-		if (b->type == INFOUT)
+	for (i = 0; i < all_blasts.size; i++) {
+		// Unused blast slot
+		if (!sparse_dynarray_member_used(&all_blasts, i))
 			continue;
+
+		struct blast *current_blast = (struct blast *)dynarray_member(&all_blasts, i, sizeof(struct blast));
 		
 		gps vpos;
-		update_virtual_position(&vpos, &b->pos, Me.pos.z);
+		update_virtual_position(&vpos, &current_blast->pos, Me.pos.z);
 
 		if (vpos.z == -1)
 			continue;
@@ -1151,9 +1152,8 @@ static void insert_blasts_into_blitting_list(int mask)
 		if (vpos.x < xmin || vpos.x > xmax || vpos.y < ymin || vpos.y > ymax)
 			continue;
 
-		insert_one_blast_into_blitting_list(i);
+		insert_one_blast_into_blitting_list(current_blast);
 	}
-
 }
 
 /**
@@ -1434,7 +1434,7 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 			break;
 		case BLITTING_TYPE_BLAST:
 			if (!(mask & OMIT_BLASTS))
-				PutBlast(e->code_number);
+				put_blast((struct blast *)e->element_pointer);
 			break;
 		case BLITTING_TYPE_THROWN_ITEM:
 			{
@@ -2877,35 +2877,25 @@ void put_radial_blue_sparks(float posX, float posY, float radius, int spark_type
 
 /**
  * This function draws a blast into the combat window.
- * The only given parameter is the number of the blast within
- * the AllBlasts array.
+ * The only given parameter is a pointer to the blast's struct.
  */
-void PutBlast(int Blast_number)
+void put_blast(struct blast *current_blast)
 {
-	blast *CurBlast = &AllBlasts[Blast_number];
+	int phase = (int)floorf(current_blast->phase);
 
-	// If the blast is already long dead, we need not do anything else here
-	if (CurBlast->type == INFOUT)
-		return;
-
-	int phase = (int)floorf(CurBlast->phase);
-	if (phase >= 20) {
-		DeleteBlast(Blast_number);
-		return;
-	}
-	// DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
-	if (CurBlast->type >= ALLBLASTTYPES) {
-		error_message(__FUNCTION__, "\
-The PutBlast function should blit a blast of a type that does not\n\
-exist at all.", PLEASE_INFORM | IS_FATAL);
+	if (current_blast->type >= ALLBLASTTYPES) {
+		error_message(__FUNCTION__,
+		              "The put_blast function should blit a blast of a type that does not\n"
+		              "exist at all.",
+		              PLEASE_INFORM | IS_FATAL);
 	}
 	// draw position is relative to current level, so compute the appropriate virtual position
 	gps vpos;
-	update_virtual_position(&vpos, &CurBlast->pos, Me.pos.z);
+	update_virtual_position(&vpos, &current_blast->pos, Me.pos.z);
 	if (vpos.x == -1)
 		return;
 	if (IsVisible(&vpos))
-		display_image_on_map(&Blastmap[CurBlast->type].images[phase], vpos.x, vpos.y, IMAGE_NO_TRANSFO);
+		display_image_on_map(&Blastmap[current_blast->type].images[phase], vpos.x, vpos.y, IMAGE_NO_TRANSFO);
 }
 
 /**

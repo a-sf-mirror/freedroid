@@ -520,7 +520,7 @@ void save_game_data(struct auto_string *strout)
 	autostr_append(strout, "\n");
 
 	autostr_append(strout, "blast_array");
-	write_blast_array(strout, AllBlasts, MAXBLASTS);
+	write_blast_sparsedynarray(strout, &all_blasts);
 	autostr_append(strout, "\n");
 
 	autostr_append(strout, "spell_active_array");
@@ -601,13 +601,7 @@ static int bullet_array_ctor(lua_State *L)
 
 static int blast_array_ctor(lua_State *L)
 {
-	int i;
-	for (i = 0; i < lua_rawlen(L, 1) && i < MAXBLASTS; i++) {
-		lua_rawgeti(L, 1, i+1);
-		read_blast(L, -1, &AllBlasts[i]);
-		lua_pop(L, 1);
-	}
-
+	read_blast_sparsedynarray(L, 1, &all_blasts);
 	return 0;
 }
 

@@ -511,23 +511,23 @@ static void add_light_source(gps pos, gps vpos, int strength)
  */
 void update_light_list()
 {
-	Level light_level = curShip.AllLevels[Me.pos.z];
+	struct level *light_level = curShip.AllLevels[Me.pos.z];
 	struct visible_level *visible_lvl, *next_lvl;
-	level *curr_lvl;
+	struct level *curr_lvl;
 	int curr_id;
 	int glue_index;
 	int light_strength;
 	int obs_index;
 	int map_x, map_y;	
-	obstacle *emitter;
+	struct obstacle *emitter;
 	int blast_idx;
-	gps me_vpos;
+	struct gps me_vpos;
 
 	dynarray_init(&light_sources, 10, sizeof(struct light_source));
 
 	// Now we fill in the Tux position as the very first light source, that will
 	// always be present.
-	//
+
 	light_strength = light_level->light_bonus + Me.light_bonus_from_tux;
 
 	// We must not in any case tear a hole into the beginning of the list though...
@@ -538,38 +538,43 @@ void update_light_list()
 
 	// Now we can fill in any explosions, that are currently going on.
 	// These will typically emanate a lot of light.
-	//
-	for (blast_idx = 0; blast_idx < MAXBLASTS; blast_idx++) {
-		if (!(AllBlasts[blast_idx].type == DROIDBLAST))
+
+	for (blast_idx = 0; blast_idx < all_blasts.size; blast_idx++) {
+		// Unused blast slot
+		if (!sparse_dynarray_member_used(&all_blasts, blast_idx))
+			continue;
+
+		struct blast *current_blast = (struct blast *)dynarray_member(&all_blasts, blast_idx, sizeof(struct blast));
+
+		if (current_blast->type != DROIDBLAST)
 			continue;
 
 		// We add some light strength according to the phase of the blast
-		//
-		int light_strength = 10 + AllBlasts[blast_idx].phase / 2;
+
+		int light_strength = 10 + current_blast->phase / 2;
 		if (light_strength < 0) continue;
 
-		gps vpos;
-		update_virtual_position(&vpos, &AllBlasts[blast_idx].pos, Me.pos.z);
+		struct gps vpos;
+		update_virtual_position(&vpos, &current_blast->pos, Me.pos.z);
 		if (vpos.x == -1)
 			continue;
 
-		add_light_source(AllBlasts[blast_idx].pos, vpos, light_strength);
+		add_light_source(current_blast->pos, vpos, light_strength);
 	}
 
 	// Now we can fill in the remaining light sources of this level.
 	// First we scan all the obstacles around Tux
-	//
-	
+
 	// Scanned area
-	gps area_start = { Me.pos.x - 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
-		Me.pos.y - 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
-		Me.pos.z
+	struct gps area_start = { Me.pos.x - 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
+	                          Me.pos.y - 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
+	                          Me.pos.z
 	};
-	gps area_end = { Me.pos.x + 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
-		Me.pos.y + 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
-		Me.pos.z
+	struct gps area_end = { Me.pos.x + 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
+	                        Me.pos.y + 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
+	                        Me.pos.z
 	};
-	gps intersection_start, intersection_end;
+	struct gps intersection_start, intersection_end;
 
 	// For each visible level, compute the intersection between the scanned area
 	// and the level's limits, and search light emitting obstacles inside this
@@ -607,7 +612,7 @@ void update_light_list()
 					if (!emitted_light_strength)
 						continue;
 
-					gps vpos;
+					struct gps vpos;
 					update_virtual_position(&vpos, &emitter->pos, Me.pos.z);
 					if (vpos.x == -1)
 						continue;
@@ -619,8 +624,8 @@ void update_light_list()
 	}
 
 	// Second, we add the potentially visible bots
-	//
-	enemy *erot;
+
+	struct enemy *erot;
 	
 	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {	
 		curr_lvl = visible_lvl->lvl_pointer;
@@ -634,7 +639,7 @@ void update_light_list()
 			if (fabsf(me_vpos.y - erot->pos.y) >= FLOOR_TILES_VISIBLE_AROUND_TUX)
 				continue;
 
-			gps vpos;
+			struct gps vpos;
 			update_virtual_position(&vpos, &erot->pos, Me.pos.z);
 			if (vpos.x == -1)
 				continue;
@@ -642,7 +647,7 @@ void update_light_list()
 			add_light_source(erot->pos, vpos, 5);
 		}
 	}
-}				// void update_light_list ( )
+}
 
 /**
  * This function is used to find the light intensity at any given point

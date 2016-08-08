@@ -214,16 +214,13 @@ void delete_bullet(int bullet_number)
  *
  * BULLETBLAST = 0 , (explosion of a small bullet hitting the wall)
  * DROIDBLAST,       (explosion of a dying droid)
- * OWNBLAST          (not implemented)
+ * EXTERMINATORBLAST (explosion of an exterminator)
  *
- * StartBlast will either use sound_name if passed, or if NULL will use
+ * start_blast will either use sound_name if passed, or if NULL will use
  * the default sound for the blast. 
  */
-void StartBlast(float x, float y, int lvl, int type, int dmg, int faction, char *sound_name)
+void start_blast(float x, float y, int lvl, int type, int dmg, int faction, char *sound_name)
 {
-	int i;
-	blast *NewBlast;
-
 	// Resolve blast real position, if possible
 	//
 	gps blast_vpos = { x, y, lvl };
@@ -231,13 +228,14 @@ void StartBlast(float x, float y, int lvl, int type, int dmg, int faction, char 
 
 	if (!resolve_virtual_position(&blast_pos, &blast_vpos)) {
 		// The blast position is nowhere....
-		error_message(__FUNCTION__, "\
-A BLAST VIRTUAL POSITION WAS FOUND TO BE INCONSISTENT.\n\
-\n\
-However, the error is not fatal and will be silently compensated for now.\n\
-When reporting a problem to the FreedroidRPG developers, please note if this\n\
-warning message was created prior to the error in your report.\n\
-However, it should NOT cause any serious trouble for FreedroidRPG.", NO_REPORT);
+		error_message(__FUNCTION__,
+		              "A BLAST VIRTUAL POSITION WAS FOUND TO BE INCONSISTENT.\n"
+		              "\n"
+		              "However, the error is not fatal and will be silently compensated for now.\n"
+		              "When reporting a problem to the FreedroidRPG developers, please note if this\n"
+		              "warning message was created prior to the error in your report.\n"
+		              "However, it should NOT cause any serious trouble for FreedroidRPG.",
+		              NO_REPORT);
 		return;
 	}
 	// If the blast is not on a visible level, we do not take care of it
@@ -246,37 +244,27 @@ However, it should NOT cause any serious trouble for FreedroidRPG.", NO_REPORT);
 
 	// Maybe there is a box under the blast.  In this case, the box will
 	// get smashed and perhaps an item will drop.
-	// 
+
 	smash_obstacle(blast_pos.x, blast_pos.y, blast_pos.z);
 
-	// find out the position of the next free blast
-	for (i = 0; i < MAXBLASTS; i++)
-		if (AllBlasts[i].type == INFOUT)
-			break;
+	// create a new blast at the specified x/y coordinates
+	struct blast new_blast;
+	new_blast.pos.x = blast_pos.x;
+	new_blast.pos.y = blast_pos.y;
+	new_blast.pos.z = blast_pos.z;
+	new_blast.type = type;
+	new_blast.phase = 0;
+	new_blast.damage_per_second = dmg;
+	new_blast.faction = faction;
 
-	// didn't find any --> then take the first one
-	if (i >= MAXBLASTS)
-		i = 0;
+	// add the blast to the game
+	dynarray_add(&all_blasts, &new_blast, sizeof(struct blast));
 
-	// get pointer to it: more comfortable 
-	NewBlast = &(AllBlasts[i]);
-
-	// create a blast at the specified x/y coordinates
-	NewBlast->pos.x = blast_pos.x;
-	NewBlast->pos.y = blast_pos.y;
-	NewBlast->pos.z = blast_pos.z;
-
-	NewBlast->type = type;
-	NewBlast->phase = 0;
-
-	NewBlast->damage_per_second = dmg;
-
-	NewBlast->faction = faction;
-
-	if(sound_name) {
-		play_blast_sound(sound_name, &NewBlast->pos);
+	// play the blast sound effect
+	if (sound_name) {
+		play_blast_sound(sound_name, &new_blast.pos);
 	} else {
-		play_blast_sound(Blastmap[type].sound_file, &NewBlast->pos);
+		play_blast_sound(Blastmap[type].sound_file, &new_blast.pos);
 	}
 }
 
@@ -287,57 +275,55 @@ However, it should NOT cause any serious trouble for FreedroidRPG.", NO_REPORT);
 void animate_blasts(void)
 {
 	int i;
-	blast *CurBlast = AllBlasts;
 
-	for (i = 0; i < MAXBLASTS; i++, CurBlast++) {
-		if (CurBlast->type != INFOUT) {
+	for (i = 0; i < all_blasts.size; i++) {
+		if (sparse_dynarray_member_used(&all_blasts, i)) {
+
+			struct blast *current_blast = (struct blast *)dynarray_member(&all_blasts, i, sizeof(struct blast));
 
 			// But maybe the blast is also outside the map already, which would
 			// cause a SEGFAULT directly afterwards, when the map is queried.
 			// Therefore we introduce some extra security here...
-			//
-			if (!pos_inside_level(CurBlast->pos.x, CurBlast->pos.y, curShip.AllLevels[CurBlast->pos.z])) {
-				error_message(__FUNCTION__, "\
-A BLAST WAS FOUND TO EXIST OUTSIDE THE BOUNDS OF THE MAP.\n\
-This is an indication of an inconsistency in FreedroidRPG.\n\
-\n\
-However, the error is not fatal and will be silently compensated for now.\n\
-When reporting a problem to the FreedroidRPG developers, please note if this\n\
-warning message was created prior to the error in your report.\n\
-However, it should NOT cause any serious trouble for FreedroidRPG.", NO_REPORT);
-				CurBlast->pos.x = 0;
-				CurBlast->pos.y = 0;
-				CurBlast->pos.z = 0;
-				DeleteBlast(i);
+
+			if (!pos_inside_level(current_blast->pos.x, current_blast->pos.y, curShip.AllLevels[current_blast->pos.z])) {
+				error_message(__FUNCTION__,
+				              "A BLAST WAS FOUND TO EXIST OUTSIDE THE BOUNDS OF THE MAP.\n"
+				              "This is an indication of an inconsistency in FreedroidRPG.\n"
+				              "\n"
+				              "However, the error is not fatal and will be silently compensated for now.\n"
+				              "When reporting a problem to the FreedroidRPG developers, please note if this\n"
+				              "warning message was created prior to the error in your report.\n"
+				              "However, it should NOT cause any serious trouble for FreedroidRPG.",
+				              NO_REPORT);
+				delete_blast(i);
 				continue;
 			}
 			
-			if (Blastmap[CurBlast->type].do_damage)
-				CheckBlastCollisions(i);
+			if (Blastmap[current_blast->type].do_damage)
+				check_blast_collisions(current_blast);
 
 			// And now we advance the phase of the blast according to the
 			// time that has passed since the last frame (approximately)
-			//
-			CurBlast->phase += Frame_Time() * Blastmap[CurBlast->type].phases / Blastmap[CurBlast->type].total_animation_time;
+
+			current_blast->phase += Frame_Time() * Blastmap[current_blast->type].phases / Blastmap[current_blast->type].total_animation_time;
 
 			// Maybe the blast has lived over his normal lifetime already.
 			// Then of course it's time to delete the blast, which is done
 			// here.
-			//
-			if ((int)floorf(CurBlast->phase) >= Blastmap[CurBlast->type].phases)
-				DeleteBlast(i);
-		}		/* if */
+
+			if ((int)floorf(current_blast->phase) >= Blastmap[current_blast->type].phases)
+				delete_blast(i);
+		}
 	}
-};				// void animate_blasts( ... )
+}
 
 /**
  * This function deletes a single blast entry from the list of all blasts
  */
-void DeleteBlast(int BlastNum)
+void delete_blast(int blast_number)
 {
-	AllBlasts[BlastNum].phase = INFOUT;
-	AllBlasts[BlastNum].type = INFOUT;
-};				// void DeleteBlast( int BlastNum )
+	dynarray_del(&all_blasts, blast_number, sizeof(struct blast));
+}
 
 /**
  * This function advances the currently active spells.
@@ -490,26 +476,26 @@ void clear_active_spells(void)
 	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
 		DeleteSpell(i);
 	}
-
-};				// void clear_active_spells ( void )
+}
 
 /**
  *
  *
  */
-void clear_active_bullets()
+void clear_active_bullets(void)
 {
 	int i;
 
-	for (i = 0; i < MAXBLASTS; i++) {
-		DeleteBlast(i);
+	for (i = 0; i < all_blasts.size; i++) {
+		if (sparse_dynarray_member_used(&all_blasts, i))
+			delete_blast(i);
 	}
 
 	for (i = 0; i < all_bullets.size; i++) {
 		if (sparse_dynarray_member_used(&all_bullets, i))
 			delete_bullet(i);
 	}
-}				// void clear_active_bullets()
+}
 
 /**
  * \brief Initialize a bullet - Common part
@@ -595,7 +581,7 @@ int check_bullet_background_collisions(struct bullet *current_bullet)
 	if (!SinglePointColldet(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, &filter)) {
 		// We want a bullet-explosion, so we create a blast
 		struct bulletspec *bullet_spec = (struct bulletspec *)dynarray_member(&bullet_specs, current_bullet->type, sizeof(struct bulletspec));
-		StartBlast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, bullet_spec->blast_type, current_bullet->damage, current_bullet->faction, NULL);
+		start_blast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, bullet_spec->blast_type, current_bullet->damage, current_bullet->faction, NULL);
 
 		return TRUE;
 	}
@@ -624,13 +610,13 @@ int check_bullet_player_collisions(struct bullet *current_bullet)
 	double xdist, ydist;
 
 	// Of course only active player may be checked!
-	//
+
 	if (Me.energy <= 0)
 		return FALSE;
 
 	// A player is supposed not to hit himself with his bullets, so we may
 	// check for that case as well....
-	//
+
 	if (current_bullet->mine)
 		return FALSE;
 
@@ -639,7 +625,6 @@ int check_bullet_player_collisions(struct bullet *current_bullet)
 
 	// Now we see if the distance to the bullet is as low as hitting
 	// distance or not.
-	//
 
 	// We need compatible gps positions to compute a distance
 	gps bullet_vpos;
@@ -654,7 +639,7 @@ int check_bullet_player_collisions(struct bullet *current_bullet)
 		apply_bullet_damage_to_player(current_bullet->damage, current_bullet->owner);
 		// We want a bullet-explosion, so we create a blast
 		struct bulletspec *bullet_spec = (struct bulletspec *)dynarray_member(&bullet_specs, current_bullet->type, sizeof(struct bulletspec));
-		StartBlast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, bullet_spec->blast_type, current_bullet->damage, current_bullet->faction, NULL);
+		start_blast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, bullet_spec->blast_type, current_bullet->damage, current_bullet->faction, NULL);
 
 		return TRUE;
 	}
@@ -706,12 +691,12 @@ int check_bullet_enemy_collisions(struct bullet *current_bullet)
 		// be completely deleted of course, with the same small explosion as well
 
 		if (current_bullet->pass_through_hit_bodies) {
-			StartBlast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, BULLETBLAST, 0, current_bullet->faction, NULL);
+			start_blast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, BULLETBLAST, 0, current_bullet->faction, NULL);
 			return FALSE;
 		} else {
 			// We want a bullet-explosion
 			struct bulletspec *bullet_spec = (struct bulletspec *)dynarray_member(&bullet_specs, current_bullet->type, sizeof(struct bulletspec));
-			StartBlast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, bullet_spec->blast_type, current_bullet->damage, current_bullet->faction, NULL);
+			start_blast(current_bullet->pos.x, current_bullet->pos.y, current_bullet->pos.z, bullet_spec->blast_type, current_bullet->damage, current_bullet->faction, NULL);
 
 			return TRUE;
 		}
@@ -787,19 +772,17 @@ RESTORE:
  * been in the blast.
  * 
  * Maybe even some text like 'Ouch, this was hot' might be generated.
- *
  */
-void CheckBlastCollisions(int num)
+void check_blast_collisions(struct blast *current_blast)
 {
-	blast *CurBlast = &(AllBlasts[num]);
-	static const float Blast_Radius = 1.5;
+	static const float blast_radius = 1.5;
 
 	// Now we check for enemys, that might have stepped into this
 	// one blasts area of effect...
 	//
 	// The blast is on a visible level, and we are only concerned with the effect
 	// of the blast on any potentially visible enemy.
-	//
+
 	struct visible_level *visible_lvl, *n;
 	enemy *erot, *nerot;
 	gps blast_vpos;
@@ -808,35 +791,35 @@ void CheckBlastCollisions(int num)
 		level *lvl = visible_lvl->lvl_pointer;
 
 		// Compute the blast position according to current visible level, if possible
-		update_virtual_position(&blast_vpos, &CurBlast->pos, lvl->levelnum);
+		update_virtual_position(&blast_vpos, &current_blast->pos, lvl->levelnum);
 		if (blast_vpos.x == -1)
 			continue;
 
 		// If the blast is too far from the level's border, no need to check that level
-		if (!pos_near_level(blast_vpos.x, blast_vpos.y, lvl, Blast_Radius))
+		if (!pos_near_level(blast_vpos.x, blast_vpos.y, lvl, blast_radius))
 			continue;
 
 		BROWSE_LEVEL_BOTS_SAFE(erot, nerot, lvl->levelnum) {
-			if (fabsf(erot->pos.x - blast_vpos.x) >= Blast_Radius)
+			if (fabsf(erot->pos.x - blast_vpos.x) >= blast_radius)
 				continue;
-			if (fabsf(erot->pos.y - blast_vpos.y) >= Blast_Radius)
-				continue;
-
-			if (is_friendly(CurBlast->faction, erot->faction))
+			if (fabsf(erot->pos.y - blast_vpos.y) >= blast_radius)
 				continue;
 
-			hit_enemy(erot, CurBlast->damage_per_second * Frame_Time(), 0, -1, CurBlast->faction == FACTION_SELF ? 1 : 0);
+			if (is_friendly(current_blast->faction, erot->faction))
+				continue;
+
+			hit_enemy(erot, current_blast->damage_per_second * Frame_Time(), 0, -1, current_blast->faction == FACTION_SELF ? 1 : 0);
 		}
 	}
 
 	// Now we check, if perhaps the influencer has stepped into the area
 	// of effect of this one blast.  Then he'll get burnt ;)
-	//
-	if (!is_friendly(CurBlast->faction, FACTION_SELF)) {	
-		update_virtual_position(&blast_vpos, &CurBlast->pos, Me.pos.z);
+
+	if (!is_friendly(current_blast->faction, FACTION_SELF)) {
+		update_virtual_position(&blast_vpos, &current_blast->pos, Me.pos.z);
 		if (blast_vpos.z != -1) {
-			if ((fabsf(Me.pos.x - blast_vpos.x) < Blast_Radius) && (fabsf(Me.pos.y - blast_vpos.y) < Blast_Radius)) {
-				float real_damage = CurBlast->damage_per_second * Frame_Time() * get_player_damage_factor();
+			if ((fabsf(Me.pos.x - blast_vpos.x) < blast_radius) && (fabsf(Me.pos.y - blast_vpos.y) < blast_radius)) {
+				float real_damage = current_blast->damage_per_second * Frame_Time() * get_player_damage_factor();
 				hit_tux(real_damage);
 			}
 		}

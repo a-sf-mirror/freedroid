@@ -945,16 +945,8 @@ void start_tux_death_explosions(void)
 	// create a few shifted explosions...
 	for (i = 0; i < 10; i++) {
 
-		// find a free blast
-		int counter = 0;
-		while (AllBlasts[counter++].type != INFOUT) ;
-		counter -= 1;
-		if (counter >= MAXBLASTS) {
-			error_message(__FUNCTION__, "Ran out of blasts!!!", PLEASE_INFORM);
-		}
-
 		// create a blast at a random position, at a 0.5 radius around Tux (but not "on" Tux)
-		struct blast *new_blast = &AllBlasts[counter];
+		struct blast new_blast;
 		float rand_x, rand_y;
 		int loop_protect; // protect against an infinite loop, in case MyRandom() always draws 0
 
@@ -978,21 +970,17 @@ void start_tux_death_explosions(void)
 			rand_y = -0.1f;
 		}
 
-		new_blast->type = DROIDBLAST;
-		new_blast->pos.x = Me.pos.x + rand_x;
-		new_blast->pos.y = Me.pos.y + rand_y;
-		new_blast->pos.z = Me.pos.z;
-		new_blast->phase = i;
-		new_blast->faction = FACTION_SELF;
-		new_blast->damage_per_second = 0;
+		new_blast.type = DROIDBLAST;
+		new_blast.pos.x = Me.pos.x + rand_x;
+		new_blast.pos.y = Me.pos.y + rand_y;
+		new_blast.pos.z = Me.pos.z;
+		new_blast.phase = i;
+		new_blast.faction = FACTION_SELF;
+		new_blast.damage_per_second = 0;
 
 		// check that the blast is not on an invalid position
-		if (!resolve_virtual_position(&new_blast->pos, &new_blast->pos)) {
-			// just ignore that blast...
-			new_blast->pos.x = 0;
-			new_blast->pos.y = 0;
-			new_blast->pos.z = 0;
-			DeleteBlast(counter);
+		if (resolve_virtual_position(&new_blast.pos, &new_blast.pos)) {
+			dynarray_add(&all_blasts, &new_blast, sizeof(struct blast));
 		}
 	}
 }

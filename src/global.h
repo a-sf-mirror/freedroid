@@ -78,7 +78,7 @@ EXTERN ship curShip;		/* the current ship-data */
 
 EXTERN bullet_sparsedynarray all_bullets INITIALIZER(SPARSE_DYNARRAY);
 EXTERN melee_shot_sparsedynarray all_melee_shots INITIALIZER(SPARSE_DYNARRAY);
-EXTERN blast AllBlasts[MAXBLASTS + 10];
+EXTERN blast_sparsedynarray all_blasts INITIALIZER(SPARSE_DYNARRAY);
 
 EXTERN int sound_on;		// Toggle TRUE/FALSE for turning sounds on/off 
 EXTERN int debug_level;		// 0=no debug 1=some debug messages 2=...etc 
