@@ -23,71 +23,90 @@
 
 #include "savegame.h"
 
-// In 0.16.1, bullets were stored in a statically allocated array,
-// and a specific bullet's type (INFOUT) was used to define empty
+// In 0.16.1, bullets, melee shots were stored in statically allocated arrays,
+// and a specific object's type (INFOUT) was used to define empty
 // slots in that array.
-// Now bullets are stored in a sparse dynarray, and the INFOUT
-// bullet's type is no more used.
-// This filter removes 'INFOUT bullets' from the savegame.
-int filter_0_16_1_convert_bullets_array(struct savegame_data *savegame, struct auto_string *report)
+// Now objects are stored in a sparse dynarray, and the INFOUT
+// object's type is no more used.
+// This filter removes 'INFOUT objects' from the savegame.
+static int convert_to_sparse_array(struct savegame_data *savegame, struct auto_string *report, const char* section, const char* type, const char* infout, int nb_lines)
 {
-	char *array_start = strstr(savegame->sav_buffer, "bullet_array{");
+	char *array_start = strstr(savegame->sav_buffer, section);
 	if (!array_start) {
-		// No bullets stored in that savegame ? Strange, but let's be silent
+		// An empty list in that savegame ? Strange, but let's be silent
 		// about that...
 		return FILTER_NOT_APPLIED;
 	}
 
-	// Loop over the MAXBULLETS (=100) bullet definitions to find INFOUT's ones
+	// Loop over the MAXOBJECTS (=100) object definitions to find INFOUT's ones
 
-	char *bullet_start = array_start + strlen("bullet_array{\n");
+	char *object_start = array_start + strlen(section) + 1;
 
-	int bullet_index;
-	for (bullet_index = 0; bullet_index < 100; bullet_index++) {
+	int object_index;
+	for (object_index = 0; object_index < 100; object_index++) {
 
-		// Find the end of the bullet's definition by passing over
-		// 26 lines in the savegame stream
+		// Find the end of the object's definition by passing over
+		// nb_lines lines in the savegame stream
 
-		char *bullet_end = bullet_start;
+		char *object_end = object_start;
 
 		int i;
-		for (i = 0; i < 26; i++) {
-			while (*bullet_end != '\n' && *bullet_end != '\0') bullet_end++;
-			if (*bullet_end == '\0') {
-				// Reach the end of savegame before to find the end of the bullet
-				// definition ?
+		for (i = 0; i < nb_lines; i++) {
+			while (*object_end != '\n' && *object_end != '\0') object_end++;
+			if (*object_end == '\0') {
+				// Reach the end of savegame before to find the end of the object
+				// shot definition ?
 				autostr_append(report,
 				               _("Error during savegame filtering (%s:%s): End of savegame reached while "
-				                 "reading a bullet's definition..\n"
+				                 "reading a object's definition..\n"
 				                 "The savegame seems to be corrupted."),
 				               savegame->running_converter->id, __FUNCTION__);
 				return FILTER_ABORT;
 			}
-			bullet_end++;
+			object_end++;
 		}
 
-		// "},\n" expected on the 26th line
+		// "},\n" expected on the nth line
 
-		if (strncmp(bullet_end, "},\n", 3)) {
+		if (strncmp(object_end, "},\n", 3)) {
 			autostr_append(report,
-			               _("Error during savegame filtering (%s:%s): End marker of a bullet's definition "
+			               _("Error during savegame filtering (%s:%s): End marker of a object's definition "
 			                 "not found where it was expected..\n"
 			                 "The savegame seems to be corrupted."),
 			               savegame->running_converter->id, __FUNCTION__);
 			return FILTER_ABORT;
 		}
 
-		// Now check the bullet's type
+		// Now check the object's type
 
-		if (!strncmp(bullet_start + 2, "type = -30,", 11)) {
-			// INFOUT bullet - Remove it by replacing its definition by a series of spaces
-			memset(bullet_start, ' ', (bullet_end + 2)- bullet_start + 1);
+		char *type_start = strstr(array_start, type);
+		if (type_start) {
+			type_start += strlen(type);
+			if (!strncmp(type_start, infout, strlen(infout))) {
+				// INFOUT object - Remove it by replacing its definition by a series of spaces
+				memset(object_start, ' ', (object_end + 2) - object_start + 1);
+			}
 		}
 
-		// Points to the beginning of the next bullet
+		// Points to the beginning of the next object
 
-		bullet_start = bullet_end + 3;
+		object_start = object_end + 3;
 	}
 
 	return FILTER_APPLIED;
+}
+
+int filter_0_16_1_convert_bullets_array(struct savegame_data *savegame, struct auto_string *report)
+{
+	return convert_to_sparse_array(savegame, report, "bullet_array{", "type = ", "-30,", 26);
+}
+
+int filter_0_16_1_convert_melee_shots_array(struct savegame_data *savegame, struct auto_string *report)
+{
+	return convert_to_sparse_array(savegame, report, "melee_shot_array{", "attack_target_type = ", "103,", 8);
+}
+
+int filter_0_16_1_convert_blasts_array(struct savegame_data *savegame, struct auto_string *report)
+{
+	return convert_to_sparse_array(savegame, report, "blast_array{", "type = ", "-30,", 10);
 }

@@ -90,6 +90,8 @@
 extern int filter_0_16_fix_german(struct savegame_data *, struct auto_string *);
 extern int filter_0_16_add_savegame_version(struct savegame_data *, struct auto_string *);
 extern int filter_0_16_1_convert_bullets_array(struct savegame_data *, struct auto_string *);
+extern int filter_0_16_1_convert_melee_shots_array(struct savegame_data *, struct auto_string *);
+extern int filter_0_16_1_convert_blasts_array(struct savegame_data *, struct auto_string *);
 static int _change_savegame_version(struct savegame_data *, struct auto_string *);
 
 // List of available converters
@@ -102,8 +104,11 @@ static struct converter converters[] = {
 		{ "update_to_0_16_1", 1600, 1, 1601, 0,
 		  { _change_savegame_version, NULL }
 		},
-		{ "fix0_16_1", 1601, 0, 1601, 1,
-		  { filter_0_16_1_convert_bullets_array, _change_savegame_version, NULL }
+		{ "adapt0_16_1_bullets_sparse_array", 1601, 0, 1601, 1,
+		  {	filter_0_16_1_convert_bullets_array, _change_savegame_version, NULL }
+		},
+		{ "adapt0_16_1_meleeshots_and_blasts_sparse_array", 1601, 1, 1601, 2,
+		  { filter_0_16_1_convert_melee_shots_array, filter_0_16_1_convert_blasts_array, _change_savegame_version, NULL }
 		}
 };
 
