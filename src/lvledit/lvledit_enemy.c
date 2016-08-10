@@ -82,6 +82,8 @@ void get_random_droids_from_user()
 	int numb;
 	char *droid_type = NULL;
 
+	game_status = INSIDE_MENU;
+
 	InitiateMenu("--EDITOR_BACKGROUND--");
 
 	autostr_printf(displayed_text, _("Number of random droids:"));
@@ -135,6 +137,7 @@ void get_random_droids_from_user()
 out:
 	free_autostr(displayed_text);
 	free_autostr(suggested_val);
+	game_status = INSIDE_LVLEDITOR;
 }
 
 /**
