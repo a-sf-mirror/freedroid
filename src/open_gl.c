@@ -639,13 +639,7 @@ void gl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 #endif
 }
 
-static struct background {
-	const char *filename;
-	struct image img;
-	int x;
-	int y;
-	int must_scale;
-} backgrounds[] = {
+static struct background backgrounds[] = {
 		{"inventory.png", EMPTY_IMAGE, 0, 0, FALSE },
 		{"character.png", EMPTY_IMAGE, -320, 0, FALSE },
 		{"SkillScreen.png", EMPTY_IMAGE, -320, 0, FALSE },
@@ -664,27 +658,21 @@ static struct background {
         {"console_bg1.jpg", EMPTY_IMAGE, 0, 0, TRUE },
 };
 
-/**
- * This function displays a background (or UI element) at a given position in the game.
- */
-void blit_background(const char *background)
+struct background *get_background(const char *name)
 {
-	int i;
-
-	// Search the specified background in the list
 	struct background *bg = NULL;
 
+	// Search the specified background in the list
+	int i;
 	for (i = 0; i < sizeof(backgrounds)/sizeof(backgrounds[0]); i++) {
-		if (!strcmp(backgrounds[i].filename, background)) {
+		if (!strcmp(backgrounds[i].filename, name)) {
 			bg = &backgrounds[i];
 			break;
 		}
 	}
 
-	if (!bg) {
-		error_message(__FUNCTION__, "Received a request to display background %s which is unknown. Doing nothing.", PLEASE_INFORM, background);
-		return;
-	}
+	if (!bg)
+		return NULL;
 
 	// Load the background
 	if (!image_loaded(&bg->img)) {
@@ -693,6 +681,19 @@ void blit_background(const char *background)
 		load_image(&bg->img, GRAPHICS_DIR, path, USE_WIDE);
 	}
 
+	return bg;
+}
+
+/**
+ * This function displays a background (or UI element) at a given position in the game.
+ */
+void blit_background(const char *background)
+{
+	struct background *bg = get_background(background);
+	if (!bg) {
+		error_message(__FUNCTION__, "Received a request to display background %s which is unknown. Doing nothing.", PLEASE_INFORM, background);
+		return;
+	}
 
 	// Compute coordinates and display
 	int x = bg->x;

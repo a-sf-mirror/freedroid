@@ -302,13 +302,6 @@
 #ifndef _widgets_h_
 #define _widgets_h_
 
-#undef EXTERN
-#ifndef _widgets_c
-#define EXTERN extern
-#else
-#define EXTERN
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 /// \defgroup gui2d_widget Base widget type
 /// \ingroup gui2d
@@ -529,11 +522,11 @@ void display_widgets(void);
 ///@}
 ///////////////////////////////////////////////////////////////////////////////
 
-#undef EXTERN
 
 #include "widgets/widget_group.h"
 #include "widgets/widget_button.h"
 #include "widgets/widget_text.h"
+#include "widgets/widget_autoscroll_text.h"
 #include "widgets/widget_background.h"
 #include "widgets/widget_text_list.h"
 

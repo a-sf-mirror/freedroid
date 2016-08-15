@@ -327,14 +327,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[MORE_VIT_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 53, VIT_Y - 5, 38, 22}, FALSE},
 
-	// These two buttons are for the scrolling text during the
-	// title display, the credits menu and the level editor 
-	// keyboard explanation...
-	//
-	[SCROLL_TEXT_UP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/arrow_up_for_scroll_text.png", {-65, 10, 73, 98}, FALSE},
-	[SCROLL_TEXT_DOWN_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/arrow_down_for_scroll_text.png", {-65, -10 - 98, 73, 98}, FALSE},
-
 	[DESCRIPTION_WINDOW_UP_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {607, 99, 26, 26}, TRUE},
 	[DESCRIPTION_WINDOW_DOWN_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {607, 347, 26, 26}, TRUE},
 

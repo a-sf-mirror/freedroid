@@ -284,6 +284,7 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y);
 void gl_draw_rectangle(SDL_Rect *, int, int, int, int);
 int safely_initialize_our_default_open_gl_parameters(void);
 void blit_background(const char *background);
+struct background *get_background(const char *);
 void set_gl_clip_rect(const SDL_Rect *clip);
 void unset_gl_clip_rect(void);
 
@@ -661,8 +662,6 @@ int chat_with_droid(Enemy ChatDroid);
 
 int display_text(const char *, int, int, const SDL_Rect*, float);
 
-int scroll_text(char *, const char *);
-
 int ImprovedCheckLineBreak(char *, const SDL_Rect*, float);
 char *get_string(int, const char *, const char *);
 void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(4,5);
@@ -768,6 +767,13 @@ int validate_dialogs(void);
 struct chat_context *chat_get_current_context();
 void chat_run();
 void free_chat_widgets();
+
+// title.c
+struct widget_group *title_screen_create(void);
+void title_screen_free(void);
+void title_screen_set_background(const char *);
+void title_screen_set_text(const char *, struct font*);
+void title_screen_run();
 
 // leveleditor_input.c
 void leveleditor_process_input(void);

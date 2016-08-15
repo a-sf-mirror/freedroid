@@ -34,7 +34,7 @@ freedroidRPG_SOURCES = \
 	quest_browser_ui.c \
 	rtprof.c \
 	saveloadgame.c savestruct_internal.c scandir.c shop.c skills.c sound.c sound_effects.c string.c \
-	takeover.c text.c text_public.c \
+	takeover.c text.c text_public.c title.c \
 	view.c \
 	waypoint.c \
 	\
@@ -73,6 +73,7 @@ freedroidRPG_SOURCES = \
 	savegame/filters_0_16_1.c \
 	\
 	widgets/widgets.c widgets/widgets.h \
+	widgets/widget_autoscroll_text.c widgets/widget_autoscroll_text.h \
 	widgets/widget_background.c widgets/widget_background.h \
 	widgets/widget_button.c widgets/widget_button.h \
 	widgets/widget_group.c widgets/widget_group.h \

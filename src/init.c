@@ -243,12 +243,13 @@ void play_title_file(int subdir_handle, char *filename)
 		switch_background_music(screen.song);
 
 		SDL_SetClipRect(Screen, NULL);
-		set_current_font(Para_Font);
 
-		scroll_text(screen.text,screen.background);
-
-		clear_screen();
-		our_SDL_flip_wrapper();
+		// Create title_screen widget, set its content and display it
+		title_screen_create();
+		title_screen_set_background(screen.background);
+		title_screen_set_text(screen.text, Para_Font);
+		title_screen_run();
+		title_screen_free();
 
 		free(screen.background);
 		free(screen.song);

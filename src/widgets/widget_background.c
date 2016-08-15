@@ -137,6 +137,11 @@ void widget_background_add(struct widget_background *wb, struct image *img, int 
 	dynarray_add(&wb->tiles, &tile, sizeof(struct tile));		
 }
 
+void widget_background_clear(struct widget_background *wb)
+{
+	dynarray_free(&wb->tiles);
+}
+
 /**
  * \brief Add a 3x3 set of tiles to a background widget.
  * \ingroup gui2d_background

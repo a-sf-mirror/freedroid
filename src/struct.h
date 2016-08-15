@@ -1091,6 +1091,14 @@ struct codeset {
 	char *encoding;
 };
 
+struct background {
+	const char *filename;
+	struct image img;
+	int x;
+	int y;
+	int must_scale;
+};
+
 struct title_screen {
 	char *background;
 	char *song;
