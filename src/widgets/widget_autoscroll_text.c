@@ -95,8 +95,8 @@ static void autoscroll_text_update(struct widget *w)
 		// Scroll ends when the last line of the text is displayed 'over' the widget's_rect
 		int lines_needed = get_lines_needed(wat->text, w->rect, 1.0);
 		wat->offset_stop = -lines_needed * get_font_height(get_current_font());
-		// Scrolling speed: 1 line per 2 seconds
-		wat->scrolling_speed = (float)get_font_height(get_current_font()) / 2.0f;
+		// Scrolling speed: 1 line per second
+		wat->scrolling_speed = (float)get_font_height(get_current_font()) / 1.0f;
 		wat->scrolling_speed_mult = 1;
 
 		wat->new_content = FALSE;
