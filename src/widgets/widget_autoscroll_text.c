@@ -304,7 +304,7 @@ int widget_autoscroll_text_can_scroll_up(struct widget_autoscroll_text *w)
 	if (w->scroll_interaction_disabled)
 		return FALSE;
 
-	return (w->offset_current > w->offset_stop);
+	return (w->offset_current < w->offset_start);
 }
 
 /**
@@ -326,14 +326,14 @@ int widget_autoscroll_text_can_scroll_down(struct widget_autoscroll_text *w)
 	if (w->scroll_interaction_disabled)
 		return FALSE;
 
-	return (w->offset_current < w->offset_start);
+	return (w->offset_current > w->offset_stop);
 }
 
 /**
  * \brief Change scrolling speed in the 'up' direction.
  * \ingroup gui2d_autoscroll_text
  *
- * \details This function increments the scrolling speed multiplier (max value = 5)
+ * \details This function decrements the scrolling speed multiplier (min value = -5)
  *
  * \param w         Pointer to the widget_text
  */
@@ -345,15 +345,15 @@ void widget_autoscroll_text_scroll_up(struct widget_autoscroll_text *w)
 	if (w->scroll_interaction_disabled)
 		return;
 
-	if (w->scrolling_speed_mult < 5)
-		w->scrolling_speed_mult++;
+	if (w->scrolling_speed_mult > -5)
+		w->scrolling_speed_mult--;
 }
 
 /**
  * \brief Change scrolling speed in the 'down' direction.
  * \ingroup gui2d_autoscroll_text
  *
- * \details This function decrements the scrolling speed multiplier (min value = -5)
+ * \details This function increments the scrolling speed multiplier (max value = 5)
  *
  * \param w         Pointer to the widget_text
  */
@@ -365,6 +365,6 @@ void widget_autoscroll_text_scroll_down(struct widget_autoscroll_text *w)
 	if (w->scroll_interaction_disabled)
 		return;
 
-	if (w->scrolling_speed_mult > -5)
-		w->scrolling_speed_mult--;
+	if (w->scrolling_speed_mult < 5)
+		w->scrolling_speed_mult++;
 }
