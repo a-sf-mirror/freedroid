@@ -239,7 +239,8 @@ void title_screen_run()
 		update_frames_displayed();
 
 		// Title screen rendering
-		clear_screen();
+		// Note: the title screen GUI fills the whole screen, so there is no
+		// need to call clear_screen()
 		title_screen_ui->update_tree(title_screen_ui);
 		title_screen_ui->display(title_screen_ui);
 		blit_mouse_cursor();

@@ -37,6 +37,12 @@
 
 static void autoscroll_text_free(struct widget *w);
 
+struct line_reached_callback {
+	int at_line;
+	void (*cb)(struct widget_autoscroll_text *, int);
+	int done;
+};
+
 //////////////////////////////////////////////////////////////////////
 // Overloads of Base widget functions
 //////////////////////////////////////////////////////////////////////
@@ -110,6 +116,23 @@ static void autoscroll_text_update(struct widget *w)
 		wat->offset_current = wat->offset_stop;
 		wat->scrolling_speed_mult = 0;
 	}
+
+	int i;
+	for (i = 0; i < wat->line_reached_callbacks.size; i++) {
+		struct line_reached_callback *line_reached = (struct line_reached_callback *)dynarray_member(&wat->line_reached_callbacks, i, sizeof(struct line_reached_callback));
+		if (!line_reached->done ) {
+			int at_offset;
+			if (line_reached->at_line >= 0)
+				at_offset = wat->offset_start - line_reached->at_line * get_font_height(wat->font);
+			else
+				at_offset = wat->offset_stop + (-line_reached->at_line) * get_font_height(wat->font);
+
+			if ((wat->offset_current <= (float)at_offset)) {
+				line_reached->cb(wat, line_reached->at_line);
+				line_reached->done = TRUE;;
+			}
+		}
+	}
 }
 
 /**
@@ -156,6 +179,20 @@ static int autoscroll_text_handle_event(struct widget *w, SDL_Event *event)
 	return 0;
 }
 
+static void autoscroll_text_free(struct widget *w)
+{
+	struct widget_autoscroll_text *wat = WIDGET_AUTOSCROLL_TEXT(w);
+
+	if (wat->text) {
+		free(wat->text);
+		wat->text = NULL;
+	}
+
+	dynarray_free(&wat->line_reached_callbacks);
+
+	widget_free(w);
+}
+
 //////////////////////////////////////////////////////////////////////
 // Autoscroll Text Widget
 //////////////////////////////////////////////////////////////////////
@@ -171,11 +208,14 @@ struct widget_autoscroll_text *widget_autoscroll_text_create()
 	struct widget_autoscroll_text *wat = MyMalloc(sizeof(struct widget_autoscroll_text));
 	widget_init(WIDGET(wat));
 	WIDGET(wat)->display = autoscroll_text_display;
-	WIDGET(wat)->handle_event = autoscroll_text_handle_event;
 	WIDGET(wat)->update = autoscroll_text_update;
+	WIDGET(wat)->handle_event = autoscroll_text_handle_event;
 	WIDGET(wat)->free = autoscroll_text_free;
 
 	wat->text = NULL; // No text currently submitted
+	wat->font = Para_Font;
+	wat->scroll_interaction_disabled = FALSE;
+	dynarray_init(&wat->line_reached_callbacks, 2, sizeof(struct line_reached_callback));
 
 	return wat;
 }
@@ -200,19 +240,49 @@ void widget_autoscroll_set_text(struct widget_autoscroll_text *w, const char *te
 	w->offset_current = 0.0f;
 	w->offset_start = 0;
 	w->offset_stop = 1;
+	w->scroll_interaction_disabled = FALSE;
 	w->new_content = TRUE;
 }
 
-static void autoscroll_text_free(struct widget *w)
+/**
+ * \brief Disable/enable the modification of the scrolling speed and direction
+ * \ingroup gui2d_autoscroll_text
+ *
+ * \details This function can be used to disable the user's capability to modify
+ * the scrolling speed and direction, by disabling the scrolling interaction,
+ * for instance to force the text to be scrolled at a fixed speed.
+ * By default, user's interactions on scrolling is enabled.
+ *
+ * \param w    Pointer to the widget_autoscroll_text object
+ * \param flag TRUE to disable scrolling buttons, FALSE to re-enable them
+ */
+void widget_autoscroll_disable_scroll_interaction(struct widget_autoscroll_text *w, int flag)
 {
-	struct widget_autoscroll_text *wat = WIDGET_AUTOSCROLL_TEXT(w);
+	w->scroll_interaction_disabled = flag;
+}
 
-	if (wat->text) {
-		free(wat->text);
-		wat->text = NULL;
-	}
+/**
+ * \brief Register a function to be called when a given line is scrolled in or out
+ * \ingroup gui2d_autoscroll_text
+ *
+ * \details This function registers a callback to be called when the 'at_line'
+ * line of the text appears out from the bottom of the widget (if at_line is
+ * positive) or when the 'at_line' line before the end of the text disappears
+ * on the top of the widget (if at_line is negative).\n
+ * Note: The callback is called only the first time the 'at_line' is reached,
+ * after which it is disabled.
+ *
+ * @param wat      Pointer to the widget_autoscroll_text object
+ * @param at_line  Line number triggering the callback
+ * @param cb       Function to call
+ */
+void widget_autoscroll_call_at_line(struct widget_autoscroll_text * wat, int at_line, void (*cb)(struct widget_autoscroll_text *, int))
+{
+	if (cb == NULL)
+		return;
 
-	widget_free(w);
+	struct line_reached_callback kl_cb = { .at_line = at_line, .cb = cb, .done = FALSE };
+	dynarray_add(&wat->line_reached_callbacks, &kl_cb, sizeof(struct line_reached_callback));
 }
 
 /**
@@ -229,6 +299,9 @@ static void autoscroll_text_free(struct widget *w)
 int widget_autoscroll_text_can_scroll_up(struct widget_autoscroll_text *w)
 {
 	if (w->new_content)
+		return FALSE;
+
+	if (w->scroll_interaction_disabled)
 		return FALSE;
 
 	return (w->offset_current > w->offset_stop);
@@ -250,6 +323,9 @@ int widget_autoscroll_text_can_scroll_down(struct widget_autoscroll_text *w)
 	if (w->new_content)
 		return FALSE;
 
+	if (w->scroll_interaction_disabled)
+		return FALSE;
+
 	return (w->offset_current < w->offset_start);
 }
 
@@ -264,6 +340,9 @@ int widget_autoscroll_text_can_scroll_down(struct widget_autoscroll_text *w)
 void widget_autoscroll_text_scroll_up(struct widget_autoscroll_text *w)
 {
 	if (w->new_content)
+		return;
+
+	if (w->scroll_interaction_disabled)
 		return;
 
 	if (w->scrolling_speed_mult < 5)
@@ -281,6 +360,9 @@ void widget_autoscroll_text_scroll_up(struct widget_autoscroll_text *w)
 void widget_autoscroll_text_scroll_down(struct widget_autoscroll_text *w)
 {
 	if (w->new_content)
+		return;
+
+	if (w->scroll_interaction_disabled)
 		return;
 
 	if (w->scrolling_speed_mult > -5)
