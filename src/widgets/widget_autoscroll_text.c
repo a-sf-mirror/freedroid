@@ -125,7 +125,7 @@ static void autoscroll_text_update(struct widget *w)
 			if (line_reached->at_line >= 0)
 				at_offset = wat->offset_start - line_reached->at_line * get_font_height(wat->font);
 			else
-				at_offset = wat->offset_stop + (-line_reached->at_line) * get_font_height(wat->font);
+				at_offset = wat->offset_stop + (-line_reached->at_line - 1) * get_font_height(wat->font);
 
 			if ((wat->offset_current <= (float)at_offset)) {
 				line_reached->cb(wat, line_reached->at_line);
@@ -265,10 +265,13 @@ void widget_autoscroll_disable_scroll_interaction(struct widget_autoscroll_text 
  * \brief Register a function to be called when a given line is scrolled in or out
  * \ingroup gui2d_autoscroll_text
  *
- * \details This function registers a callback to be called when the 'at_line'
- * line of the text appears out from the bottom of the widget (if at_line is
- * positive) or when the 'at_line' line before the end of the text disappears
- * on the top of the widget (if at_line is negative).\n
+ * \details This function registers a callback to be called when a given line
+ * of text appears out from the bottom of the widget (if at_line is positive),
+ * or when a given line of text disappears on the top of the widget (if at_line
+ * is negative).\n
+ * The line number triggering the callback is defined by 'at_line'. If positive,
+ * that's the nth line of the text. If negative, it defines a line before the
+ * end of the text (-1 is the last line, -2 is the line before the last line, ...).
  * Note: The callback is called only the first time the 'at_line' is reached,
  * after which it is disabled.
  *

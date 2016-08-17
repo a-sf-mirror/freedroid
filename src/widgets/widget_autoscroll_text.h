@@ -73,8 +73,8 @@
 ///   \e widget_autoscroll_text_call_at_line(my_textw, line_number, pointer_to_function).
 ///   \n
 ///   If \e line_number is a negative value, the callback is called when
-///   \e abs(line_number) lines are still visible before the text scrolls out
-///   at the top of the widget.
+///   a given number of lines are still visible before the text scrolls out
+///   at the top of the widget (-1 = no more visible lines, -2 = one visible line, ...).
 ///   \n
 ///   \note The callback is called only once, when the given line is first triggered.
 ///   This feature should then only be used when the user's capability to change the
