@@ -58,14 +58,25 @@ void close_audio(void) {}
 void set_music_volume(float volume) {}
 void set_SFX_volume(float volume) {}
 void switch_background_music(char *filename) {}
+int play_voice(const char *fpath, int pause, float *voice_length) { return 0; }
+void resume_sound(int channel) {})
+void stop_sound(int channel) {}
 int play_sound(const char *filename) { return 0; }
 void play_sound_v(const char *filename, float volume) {}
 void play_sound_at_position(const char *filename, struct gps *listener, struct gps *emitter) {}
 
 #else
 
+// Default audio configuration
+static int audio_rate = 44100;
+static Uint16 audio_format = AUDIO_S16;
+static int audio_format_bytes = 2;
+static int audio_channels = 2;
+
 static char *music_filename = NULL;      // The background music to play (once the current one is stopped)
 static Mix_Music *loaded_music = NULL;   // Keep reference to previously loaded background music
+
+static int voice_channel[] = { -1, -1 }; // [0] is currently playing voice, [1] is a possible fading out voice
 
 ////////////////////////////////////////////////////////////////////
 // SFX cache
@@ -272,6 +283,18 @@ static void _channel_done(int channel)
 		return;
 	}
 
+	// If the channel was playing a voice sound, just free the SDL chunk
+	int which_voice;
+	for (which_voice = 0; which_voice < sizeof(voice_channel)/sizeof(voice_channel[0]); which_voice++) {
+		if (channel == voice_channel[which_voice]) {
+			Mix_FreeChunk(chunk);
+			voice_channel[which_voice] = -1;
+			return;
+		}
+	}
+
+	// Check if the channel was playing an SFX.
+	// If so, mark the SFX cache entry as no more being played.
 	int cache_index = _SFX_cache_find_chunk(chunk);
 	if (cache_index == -1) {
 		error_once_message(ONCE_PER_GAME, __FUNCTION__,
@@ -339,10 +362,7 @@ static void _load_background_music(void)
  */
 void init_audio(void)
 {
-	const int audio_rate = 44100;
-	const Uint16 audio_format = AUDIO_S16;
 	const int audio_buffers = 4096;
-	int audio_channels;
 
 	if (!sound_on)
 		return;
@@ -391,6 +411,30 @@ void init_audio(void)
 			sound_on = FALSE;
 			return;
 		}
+	}
+
+	// Get the actual audio configuration
+	Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
+	switch(audio_format)
+	{
+		case AUDIO_U8:
+		case AUDIO_S8:
+			audio_format_bytes = 1;
+			break;
+		case AUDIO_U16LSB:
+		case AUDIO_S16LSB:
+		case AUDIO_U16MSB:
+		case AUDIO_S16MSB:
+			audio_format_bytes = 2;
+			break;
+		default:
+			error_message(__FUNCTION__,
+			              "Audio device configured with an unknown format (%d).\n"
+			              "We suppose that it uses 2 bytes per sample.\n"
+			              "This could wrongly impact the display rate of the title screens.\n",
+			              PLEASE_INFORM, audio_format);
+			audio_format_bytes = 2;
+			break;
 	}
 
 	// Allocate a bunch of mixing channels.
@@ -503,6 +547,74 @@ void switch_background_music(char *filename)
 		Mix_FadeOutMusic(2000);
 		Mix_HookMusicFinished(_load_background_music);
 	}
+}
+
+/**
+ * \brief Play a voice sound (used with title screens)
+ *
+ * \details A sound cannot be played (and the funtion returns -1) when
+ * no audio channel is available.
+ *
+ * \param fpath         Filename of the voice sound (full path)
+ * \param pause         Immediately pause the voice sound (call resume_voice() to resume it)
+ * \param voice_length  Return the duration, in milliseconds, of the playing voice
+ *
+ * \return Either the audio channel used to play the sound or -1 if error or the sound can not be played.
+ */
+int play_voice(const char *fpath, int pause, float *voice_length)
+{
+	// In case sound has been disabled, or not sound file name is given,
+	// do nothing
+
+	if (!sound_on || fpath == NULL || fpath[0] == '\0')
+		return -1;
+
+	// First stop currently played voice, if any
+
+	if (voice_channel[0] != -1) {
+		Mix_FadeOutChannel(voice_channel[0], 1000);
+		voice_channel[1] = voice_channel[0];
+	}
+	voice_channel[0] = -1;
+
+	// Try to load the voice file
+
+	Mix_Chunk *wav_chunk = Mix_LoadWAV(fpath);
+	if (!wav_chunk) {
+		error_message(__FUNCTION__, "Could not load sound file \"%s\": %s", PLEASE_INFORM, fpath, Mix_GetError());
+		return -1;
+	}
+	*voice_length = 1000.0 * ((float)wav_chunk->alen / (float)(audio_rate * audio_format_bytes * audio_channels));
+
+	// Try to play the sound file
+
+	int mix_channel = Mix_PlayChannel(-1, wav_chunk, 0);
+	if (mix_channel <= -1) {
+		error_once_message(ONCE_PER_GAME, __FUNCTION__,
+		                   "The SDL mixer was unable to play a certain sound sample file,"
+		                   "probably due to no audio channel being available.\n"
+		                   "Mix_GetError(): %s",
+						   NO_REPORT, Mix_GetError());
+		return -1;
+	}
+
+	if (pause)
+		Mix_Pause(mix_channel);
+
+	Mix_Volume(mix_channel, GameConfig.Current_Sound_FX_Volume * MIX_MAX_VOLUME);
+	voice_channel[0] = mix_channel;
+
+	return mix_channel;
+}
+
+void resume_voice(int channel)
+{
+	Mix_Resume(channel);
+}
+
+void stop_voice(int channel)
+{
+	Mix_FadeOutChannel(channel, 1000);
 }
 
 /**
