@@ -773,7 +773,7 @@ struct widget_group *title_screen_create(void);
 void title_screen_free(void);
 void title_screen_set_background(const char *);
 void title_screen_set_text(const char *, struct font*);
-void title_screen_run();
+void title_screen_run(struct title_screen *);
 
 // leveleditor_input.c
 void leveleditor_process_input(void);

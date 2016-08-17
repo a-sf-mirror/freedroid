@@ -217,9 +217,14 @@ void title_screen_set_text(const char *text, struct font *font)
 /**
  * Display the title_screen and handle the user's interaction.
  */
-void title_screen_run()
+void title_screen_run(struct title_screen *screen_data)
 {
 	struct widget *title_screen_ui = WIDGET(title_screen);
+
+	// Set the content of the title screen
+	title_screen_set_background(screen_data->background);
+	title_screen_set_text(screen_data->text, Para_Font);
+	switch_background_music(screen_data->song);
 
 	// Pump all remaining SDL events
 	SDL_Event event;

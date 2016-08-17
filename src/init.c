@@ -240,15 +240,10 @@ void play_title_file(int subdir_handle, char *filename)
 		char *ptr = screen.text + strlen(screen.text) - 1;
 		while (*ptr != '\0' && (*ptr == ' ' || *ptr == '\t' || *ptr == '\n')) *(ptr--) = '\0';
 
-		switch_background_music(screen.song);
-
-		SDL_SetClipRect(Screen, NULL);
-
 		// Create title_screen widget, set its content and display it
+		SDL_SetClipRect(Screen, NULL);
 		title_screen_create();
-		title_screen_set_background(screen.background);
-		title_screen_set_text(screen.text, Para_Font);
-		title_screen_run();
+		title_screen_run(&screen);
 		title_screen_free();
 
 		free(screen.background);
