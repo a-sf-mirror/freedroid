@@ -115,14 +115,13 @@ struct widget_autoscroll_text {
 	/// @{
 	char *text;                              /**< Text to be displayed. */
 	struct font *font;                       /**< Font to be used when displaying text. */
-	int new_content;                         /**< New text stored, internal state must be recomputed **/
-	float scrolling_speed;                   /**< 'base' scrolling speed **/
-	int scrolling_speed_mult;                /**< Multiplier applied to the 'base' scrolling speed. Can be negative, for a scrolling in the 'down' direction **/
-	float offset_current;                    /**< Current offset applied to display the text **/
-	int offset_start;                        /**< Start offset: text is 'under' the bottom of the widget **/
-	int offset_stop;                         /**< Stop offset: text is 'over' the top of the widget **/
-	int scroll_interaction_disabled;         /**< Boolean flag to enable/disable the modification of the scrolling speed **/
-	struct dynarray line_reached_callbacks;  /**< Functions called when a given line is reached during the scrolling **/
+	float scrolling_speed;                   /**< 'base' scrolling speed. Default: 1 line/sec */
+	int scrolling_speed_mult;                /**< Multiplier applied to the 'base' scrolling speed. Can be negative, for a scrolling in the 'down' direction */
+	float offset_current;                    /**< Current offset applied to display the text */
+	int offset_start;                        /**< Start offset: text is 'under' the bottom of the widget */
+	int offset_stop;                         /**< Stop offset: text is 'over' the top of the widget */
+	int scroll_interaction_disabled;         /**< Boolean flag to enable/disable the modification of the scrolling speed */
+	struct dynarray line_reached_callbacks;  /**< Functions called when a given line is reached during the scrolling */
 	/// @}
 };
 
@@ -136,6 +135,8 @@ struct widget_autoscroll_text {
 
 struct widget_autoscroll_text *widget_autoscroll_text_create(void);
 void widget_autoscroll_set_text(struct widget_autoscroll_text *, const char *, struct font *font);
+void widget_autoscroll_set_scrolling_speed(struct widget_autoscroll_text *, float);
+void widget_autoscroll_set_scrolling_duration(struct widget_autoscroll_text *, float, int);
 void widget_autoscroll_disable_scroll_interaction(struct widget_autoscroll_text *, int);
 void widget_autoscroll_call_at_line(struct widget_autoscroll_text *, int, void (*)(struct widget_autoscroll_text *, int));
 int widget_autoscroll_text_can_scroll_up(struct widget_autoscroll_text *);
