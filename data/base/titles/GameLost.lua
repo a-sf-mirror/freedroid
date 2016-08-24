@@ -19,6 +19,9 @@
 
 title_screen{
 song = "HellFortressTwo.ogg",
+voice_acting = "GameLost.ogg",
+preroll_text = 3,
+postroll_text = 3,
 text = [[
             Game Lost
 
