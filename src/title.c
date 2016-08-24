@@ -41,6 +41,7 @@
 static struct widget_group *title_screen = NULL;
 static struct widget_background *title_screen_bkg = NULL;
 static struct widget_autoscroll_text *title_screen_text = NULL;
+static struct title_screen *screen_data = NULL;
 
 //////////////////////////////////////////////////////////////////////
 // Widgets' callbacks
@@ -215,16 +216,59 @@ void title_screen_set_text(const char *text, struct font *font)
 }
 
 /**
+ * Scroll callback, called after preroll, to start voice acting
+ * @param w        Pointer to the autoscroll widget
+ * @param at_line  Index of the reached text line
+ */
+static void _resume_voice_acting(struct widget_autoscroll_text *w, int at_line)
+{
+	resume_voice(screen_data->voice_channel);
+}
+
+/**
+ * Scroll callback, called on postroll, to re-enable user's interaction and reset
+ * scroll speed
+ * @param w        Pointer to the autoscroll widget
+ * @param at_line  Index of the reached text line
+ */
+static void _enable_user_interaction(struct widget_autoscroll_text *w, int at_line)
+{
+	widget_autoscroll_set_scrolling_speed(w, 0.0f);
+	widget_autoscroll_disable_scroll_interaction(w, FALSE);
+}
+
+/**
  * Display the title_screen and handle the user's interaction.
  */
-void title_screen_run(struct title_screen *screen_data)
+void title_screen_run(struct title_screen *data)
 {
 	struct widget *title_screen_ui = WIDGET(title_screen);
+
+	screen_data = data;
+	screen_data->voice_channel = -1;
+	float voice_duration = 0.0f;
 
 	// Set the content of the title screen
 	title_screen_set_background(screen_data->background);
 	title_screen_set_text(screen_data->text, Para_Font);
+
 	switch_background_music(screen_data->song);
+	if (screen_data->voice_acting) {
+		if (screen_data->preroll_text > 0) {
+			// Do not immediately start playing the voice acting, and register
+			// a callback to resume the audio channel once preroll is done.
+			screen_data->voice_channel = play_voice(screen_data->voice_acting, TRUE, &voice_duration);
+			widget_autoscroll_call_at_line(title_screen_text, screen_data->preroll_text, _resume_voice_acting);
+		} else {
+			screen_data->voice_channel = play_voice(screen_data->voice_acting, FALSE, &voice_duration);
+		}
+		widget_autoscroll_set_scrolling_duration(title_screen_text, voice_duration, screen_data->preroll_text + screen_data->postroll_text);
+
+		// Disable user's interaction, and register a callback to reactivate it
+		// and reset the scrolling speed once the postroll line is reached.
+		widget_autoscroll_disable_scroll_interaction(title_screen_text, TRUE);
+		widget_autoscroll_call_at_line(title_screen_text, -1, _enable_user_interaction);
+	}
 
 	// Pump all remaining SDL events
 	SDL_Event event;
@@ -269,4 +313,7 @@ void title_screen_run(struct title_screen *screen_data)
 
 	// Pump all remaining SDL events
 	WaitNoEvent();
+
+	if (screen_data->voice_channel != -1)
+		stop_voice(screen_data->voice_channel);
 }

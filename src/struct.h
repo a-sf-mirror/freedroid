@@ -1100,9 +1100,13 @@ struct background {
 };
 
 struct title_screen {
-	char *background;
-	char *song;
-	char *text;
+	char *background;      // Screen background file name, relative to data/graphics/backgrounds (default: title.jpg)
+	char *song;            // Background song file name, relative to data/sound/music
+	char *voice_acting;    // Voice acting file name, relative to the titles dir
+	char *text;            // Text to be displayed
+	int voice_channel;     // SDL mix channel used to play the voice acting
+	int preroll_text;      // Number of text lines to be visible before to start playing the voice acting
+	int postroll_text;     // Number of text lines to still be visible when voice acting ends
 };
 
 struct data_dir {

@@ -1371,12 +1371,14 @@ static int lua_title_screen_ctor(lua_State *L)
 {
 	struct title_screen *title = (struct title_screen *)lua_touserdata(L, lua_upvalueindex(1));
 
-
 	// Specification of the data structure to retrieve from the lua table
 	struct data_spec data_specs[] = {
-		{ "background", "title.jpg", STRING_TYPE, &title->background },
-		{ "song",       NULL,        STRING_TYPE, &title->song       },
-		{ "text",       NULL,        STRING_TYPE, &title->text       },
+		{ "background",    "title.jpg", STRING_TYPE, &title->background    },
+		{ "song",          NULL,        STRING_TYPE, &title->song          },
+		{ "voice_acting",  NULL,        STRING_TYPE, &title->voice_acting  },
+		{ "text",          NULL,        STRING_TYPE, &title->text          },
+		{ "preroll_text",  "0",         INT_TYPE,    &title->preroll_text  },
+		{ "postroll_text", "0",         INT_TYPE,    &title->postroll_text },
 		{ NULL, NULL, 0, 0 }
 	};
 

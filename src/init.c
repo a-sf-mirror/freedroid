@@ -174,21 +174,24 @@ void next_startup_percentage(int done)
  *  1. a background picture name
  *  2. a background music to play
  *  3. some text to display in a scrolling fashion
- *
+ *  4. a voice reading the text (scrolling is then synchronized to the duration of the voice sound)
  */
 void play_title_file(int subdir_handle, char *filename)
 {
-	struct title_screen screen = { NULL, NULL, NULL };
+	struct title_screen screen = { NULL };
 	char fpath[PATH_MAX];
 
 	while (SpacePressed() || MouseLeftPressed()) ;
+
+	// Load the translated version of the text of the title's screen
 
 	if (find_localized_file(fpath, subdir_handle, filename, PLEASE_INFORM)) {
 		set_lua_ctor_upvalue(LUA_CONFIG, "title_screen", &screen);
 		run_lua_file(LUA_CONFIG, fpath);
 
 #ifdef ENABLE_NLS
-		// Convert the title_screen(s text to selected charset encoding
+		// The title_screen's text in the Lua file is UTF-8 encoded.
+		// We need to convert it to the currently selected charset encoding.
 		struct auto_string *tocode = alloc_autostr(64);
 		autostr_printf(tocode, "%s//TRANSLIT", lang_get_encoding());
 		iconv_t converter = iconv_open(tocode->value, "UTF-8");
@@ -236,9 +239,21 @@ void play_title_file(int subdir_handle, char *filename)
 		iconv_close(converter);
 #endif
 
-		// Remove trailing whitespaces and carriage returns.
+		// Remove trailing whitespaces and carriage returns from the text
 		char *ptr = screen.text + strlen(screen.text) - 1;
 		while (*ptr != '\0' && (*ptr == ' ' || *ptr == '\t' || *ptr == '\n')) *(ptr--) = '\0';
+
+		// Get the full path of the voice file (possibly localized), if one is
+		// defined
+		if (screen.voice_acting) {
+			if (find_localized_file(fpath, subdir_handle, screen.voice_acting, NO_REPORT)) {
+				free(screen.voice_acting);
+				screen.voice_acting = my_strdup(fpath);
+			} else {
+				free(screen.voice_acting);
+				screen.voice_acting = NULL;
+			}
+		}
 
 		// Create title_screen widget, set its content and display it
 		SDL_SetClipRect(Screen, NULL);
