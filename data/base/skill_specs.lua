@@ -181,7 +181,7 @@ The art of rapidly moving away from danger is very useful. Even when used in rev
 	form = "radial",
 	damage = {base = "80:160", per_level = 20},
 	cost = {base = 150, per_level = 15},
-	description =_[[Messing around with the bot's memory can cause it to severely damage itself, but the damage is greatly variable.]],
+	description =_[[Overheating your own circuits, you can liberate plasma! But beware: Everything is equal to it, even Tux.]],
 	artwork = 2,
 },
 --------------------------------------------------------------------------------
