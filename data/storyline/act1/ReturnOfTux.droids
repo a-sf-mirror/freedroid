@@ -23,7 +23,7 @@ T=614: PosX=80 PosY=37 Faction="redguard" UseDialog="Town-614" ShortLabel=_"614 
 T=614: PosX=22 PosY=79 Faction="redguard" UseDialog="Town-614" ShortLabel=_"614 - South Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=614: PosX=18 PosY=79 Faction="redguard" UseDialog="Town-614" ShortLabel=_"614 - South Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=614: PosX=22 PosY=9 Faction="redguard" UseDialog="Town-614" ShortLabel=_"614 - North Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=FSC: PosX=8 PosY=7 Faction="civilian" UseDialog="Sorenson" ShortLabel=_"COBAL Programmer" Marker=9998 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=FSC: PosX=8 PosY=7 Faction="civilian" UseDialog="Sorenson" ShortLabel=_"COBOL Programmer" Marker=9998 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=MUM: PosX=35 PosY=7 Faction="civilian" UseDialog="Stone" ShortLabel=_"Shopowner" Marker=9999 RushTux=0 Fixed=0 DropItemId="Two Barrel shotgun" MaxDistanceToHome=0
 T=DOC: PosX=18 PosY=27 Faction="civilian" UseDialog="DocMoore" ShortLabel=_"Medic" Marker=9999 RushTux=0 Fixed=0 DropItemId="Laser Scalpel" MaxDistanceToHome=0
 T=PRO: PosX=49 PosY=17 Faction="civilian" UseDialog="Chandra" ShortLabel=_"Chandra - Town Sage" Marker=9999 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
