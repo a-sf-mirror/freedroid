@@ -33,7 +33,12 @@ return {
 		Npc:says(_"Hello, Dave.")
 		Npc:says(_"Last login from /dev/ttyS0 on Sun, 3 dec 2056.", "NO_WAIT")
 		cli_says(terminal, "NO_WAIT")
-		show("node0", "node99")
+		if (seen_autofactory_sudo_joke) then
+			show("node1")
+		else
+			show("node0")
+		end
+		show("node99")
 	end,
 
 	{
@@ -43,6 +48,7 @@ return {
 			Npc:says(_"I'm sorry. I'm afraid I can't let you do that.")
 			cli_says(terminal, "NO_WAIT")
 			hide("node0") show("node1")
+			seen_autofactory_sudo_joke = true
 		end,
 	},
 	{
@@ -73,7 +79,7 @@ return {
 				Npc:says(_"Final Initialization Instructions...")
 				Npc:says(_"The Automated Factory is booted up and ready to work.", "NO_WAIT")
 				if (Maintenace_Terminal_want_sandwich) then
-					cli_says(_"WARNING:", "NO_WAIT")
+					cli_says(_"WARNING: ", "NO_WAIT")
 					Npc:says(_"The Automated Factory is unable to make a sandwich.")
 				end
 				Minifactory_online = true
