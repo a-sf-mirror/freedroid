@@ -12,7 +12,7 @@ skill_list {
 	form = "instant",
 	effect = {type = "takeover"},
 	cost = {base = 30, per_level = 10},
-	description =_[[Tux is gifted with the ability to hack any hostile bot in no time. With this program selected, initiate the takeover process by right clicking a hostile machine of your choice.]],
+	description =_[[Linarians are gifted with the ability to hack any hostile bot in no time. With this program selected, initiate the takeover process by right clicking a hostile machine of your choice.]],
 	startup = true,
 },
 --------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ skill_list {
 	icon = "RepairSkill.png",
 	form = "special",
 	effect = {type = "repair"},
-	description =_[[Fully repair any item of your choice. To use this skill, select it, open the inventory screen and then right click on the item you wish to repair. While Tux can repair items without incurring any cost, the item will get reduced maximum durability.]],
+	description =_[[Fully repair any item of your choice. To use this skill, select it, open the inventory screen and then right click on the item you wish to repair. While you can repair items without incurring any cost, the item will get reduced maximum durability.]],
 	startup = true,
 },
 --------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ skill_list {
 	form = "special",
 	effect = {type = "weapon"},
 	cost = {base = 0},
-	description =_[[This skill allows you to force an attack on something not normally a target or firing single shots with automatic weapons.]],
+	description =_[[This skill allows you to force an attack on something not normally a target or to fire single shots with automatic weapons.]],
 	startup = true,
 },
 --------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ skill_list {
 	form = "self",
 	effect = {type = "paralyze", duration = {base = 14, per_level = -1}},
 	cost = {base = -100, per_level = -10},
-	description =_[[Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in...]],
+	description =_[[Everyone needs to turn off and cool down a bit now and then. Just be careful that you are not still offline when enemy bots close in...]],
 	startup = true,
 },
 --------------------------------------------------------------------------------
