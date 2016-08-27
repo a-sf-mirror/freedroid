@@ -38,6 +38,7 @@ return {
 		id = "node0",
 		text = _"Hello there.",
 		code = function()
+			predilect='amicable'
 			next("node99")
 		end,
 	},
@@ -45,6 +46,7 @@ return {
 		id = "node1",
 		text = _"What's up?",
 		code = function()
+			predilect='interrogative'
 			next("node99")
 		end,
 	},
@@ -52,6 +54,7 @@ return {
 		id = "node2",
 		text = _"Die!",
 		code = function()
+			predilect='aggressive'
 			next("node99")
 		end,
 	},
@@ -61,6 +64,13 @@ return {
 			play_sound("effects/bot_sounds/First_Contact_Sound_3.ogg")
 			Npc:says(_"Uploading Status...")
 			Npc:set_faction("ms")
+			if (predilect == 'amicable') then
+				Npc:says(_"Target attempts to engage discourse. Unacceptable outcomes predicted. Threat identified.")
+			elseif (predilect == 'interrogative') then
+				Npc:says(_"Target is inquisitive. Threat identified.")
+			elseif (predilect == 'aggressive') then
+				Npc:says(_"Target issues verbal threat.","NO_WAIT")
+			end
 			Npc:says(_"Linarian is hostile. Destroy!")
 			end_dialog()
 		end,
