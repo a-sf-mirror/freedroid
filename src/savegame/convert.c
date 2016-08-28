@@ -92,6 +92,7 @@ extern int filter_0_16_add_savegame_version(struct savegame_data *, struct auto_
 extern int filter_0_16_1_convert_bullets_array(struct savegame_data *, struct auto_string *);
 extern int filter_0_16_1_convert_melee_shots_array(struct savegame_data *, struct auto_string *);
 extern int filter_0_16_1_convert_blasts_array(struct savegame_data *, struct auto_string *);
+extern int filter_0_16_1_convert_spellactives_array(struct savegame_data *, struct auto_string *);
 static int _change_savegame_version(struct savegame_data *, struct auto_string *);
 
 // List of available converters
@@ -109,6 +110,9 @@ static struct converter converters[] = {
 		},
 		{ "adapt0_16_1_meleeshots_and_blasts_sparse_array", 1601, 1, 1601, 2,
 		  { filter_0_16_1_convert_melee_shots_array, filter_0_16_1_convert_blasts_array, _change_savegame_version, NULL }
+		},
+		{ "adapt0_16_1_spellactives_sparse_array", 1601, 2, 1601, 3,
+		  { filter_0_16_1_convert_spellactives_array, _change_savegame_version, NULL }
 		}
 };
 

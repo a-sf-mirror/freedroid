@@ -338,56 +338,57 @@ void move_active_spells(void)
 	gps final_point;
 	float angle;
 
-	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
-		// We can ignore all unused entries...
-
-		if (AllActiveSpells[i].img_type == (-1))
+	for (i = 0; i < all_spells.size; ++i) {
+		// skip unused spell slot
+		if (!sparse_dynarray_member_used(&all_spells, i))
 			continue;
+
+		struct spell_active *current_spell = (struct spell_active *)dynarray_member(&all_spells, i, sizeof(struct spell_active));
 
 		// All spells should count their lifetime...
 
-		AllActiveSpells[i].spell_age += passed_time;
+		current_spell->spell_age += passed_time;
 
 		// We hardcode a speed here
 
-		AllActiveSpells[i].spell_radius += 5.0 * passed_time;
+		current_spell->spell_radius += 5.0 * passed_time;
 
 		// We do some collision checking with the obstacles in each
 		// 'active_direction' of the spell and deactivate those directions,
 		// where some collision with solid material has happened.
 
 		for (direction_index = 0; direction_index < RADIAL_SPELL_DIRECTIONS; direction_index++) {
-			if (AllActiveSpells[i].active_directions[direction_index] == FALSE)
+			if (current_spell->active_directions[direction_index] == FALSE)
 				continue;
 
 			angle = 360.0 * (float)direction_index / RADIAL_SPELL_DIRECTIONS;
-			displacement.x = AllActiveSpells[i].spell_radius;
+			displacement.x = current_spell->spell_radius;
 			displacement.y = 0;
 			RotateVectorByAngle(&displacement, angle);
-			final_point.x = AllActiveSpells[i].spell_center.x + displacement.x;
-			final_point.y = AllActiveSpells[i].spell_center.y + displacement.y;
+			final_point.x = current_spell->spell_center.x + displacement.x;
+			final_point.y = current_spell->spell_center.y + displacement.y;
 			final_point.z = Me.pos.z;
 
 			// This spell's fraction could have traverse a level's border, so we
 			// need to retrieve its actual level, if possible
 			gps final_vpoint;
 			if (!resolve_virtual_position(&final_vpoint, &final_point)) {
-				AllActiveSpells[i].active_directions[direction_index] = FALSE;
+				current_spell->active_directions[direction_index] = FALSE;
 				continue;
 			}
 			// Just discard the spell's fraction if it is on an invisible level
 			if (!level_is_visible(final_vpoint.z)) {
-				AllActiveSpells[i].active_directions[direction_index] = FALSE;
+				current_spell->active_directions[direction_index] = FALSE;
 				continue;
 			}
 			// if this spell's fraction collides an obstacle, discard it
 			if (!SinglePointColldet(final_vpoint.x, final_vpoint.y, final_vpoint.z, &FlyablePassFilter))
-				AllActiveSpells[i].active_directions[direction_index] = FALSE;
+				current_spell->active_directions[direction_index] = FALSE;
 		}
 
 		// Here we also do the spell damage application here
 
-		float minDist = (0.2 + AllActiveSpells[i].spell_radius) * (0.2 + AllActiveSpells[i].spell_radius);
+		float minDist = (0.2 + current_spell->spell_radius) * (0.2 + current_spell->spell_radius);
 
 		struct visible_level *visible_lvl, *n;
 		enemy *erot, *nerot;
@@ -395,14 +396,14 @@ void move_active_spells(void)
 			BROWSE_LEVEL_BOTS_SAFE(erot, nerot, visible_lvl->lvl_pointer->levelnum) {
 				update_virtual_position(&erot->virt_pos, &erot->pos, Me.pos.z);
 				distance_from_center =
-				    (AllActiveSpells[i].spell_center.x - erot->virt_pos.x) * (AllActiveSpells[i].spell_center.x -
+				    (current_spell->spell_center.x - erot->virt_pos.x) * (current_spell->spell_center.x -
 											      erot->virt_pos.x) +
-				    (AllActiveSpells[i].spell_center.y - erot->virt_pos.y) * (AllActiveSpells[i].spell_center.y -
+				    (current_spell->spell_center.y - erot->virt_pos.y) * (current_spell->spell_center.y -
 											      erot->virt_pos.y);
 
 				if (distance_from_center < minDist) {
-					if ((AllActiveSpells[i].hit_type == ATTACK_HIT_BOTS && Droidmap[erot->type].is_human) ||
-					    (AllActiveSpells[i].hit_type == ATTACK_HIT_HUMANS && !Droidmap[erot->type].is_human))
+					if ((current_spell->hit_type == ATTACK_HIT_BOTS && Droidmap[erot->type].is_human) ||
+					    (current_spell->hit_type == ATTACK_HIT_HUMANS && !Droidmap[erot->type].is_human))
 						continue;
 
 					// Let's see if that enemy has a direction, that is still
@@ -410,8 +411,8 @@ void move_active_spells(void)
 					// We get the angle in radians but with zero at the 'north' direction.
 					// And we convert the angle to a normal direction index
 
-					displacement.x = erot->virt_pos.x - AllActiveSpells[i].spell_center.x;
-					displacement.y = erot->virt_pos.y - AllActiveSpells[i].spell_center.y;
+					displacement.x = erot->virt_pos.x - current_spell->spell_center.x;
+					displacement.y = erot->virt_pos.y - current_spell->spell_center.y;
 					if (displacement.x <= 0.01 && displacement.y <= 0.01) {
 						// if enemy is very close, the angle computation could be inaccurate,
 						// so do not check if the spell is active or not
@@ -429,21 +430,21 @@ void move_active_spells(void)
 							direction_index = RADIAL_SPELL_DIRECTIONS - 1;
 					}
 
-					if ((direction_index == -1) || AllActiveSpells[i].active_directions[direction_index]) {
-						if (erot->poison_duration_left < AllActiveSpells[i].poison_duration)
-							erot->poison_duration_left = AllActiveSpells[i].poison_duration;
-						erot->poison_damage_per_sec = AllActiveSpells[i].damage;
+					if ((direction_index == -1) || current_spell->active_directions[direction_index]) {
+						if (erot->poison_duration_left < current_spell->poison_duration)
+							erot->poison_duration_left = current_spell->poison_duration;
+						erot->poison_damage_per_sec = current_spell->damage;
 
-						if (erot->frozen < AllActiveSpells[i].freeze_duration)
-							erot->frozen = AllActiveSpells[i].freeze_duration;
+						if (erot->frozen < current_spell->freeze_duration)
+							erot->frozen = current_spell->freeze_duration;
 
-						if (erot->paralysation_duration_left < AllActiveSpells[i].paralyze_duration)
-							erot->paralysation_duration_left = AllActiveSpells[i].paralyze_duration;
+						if (erot->paralysation_duration_left < current_spell->paralyze_duration)
+							erot->paralysation_duration_left = current_spell->paralyze_duration;
 
 						/* we hit the enemy. the owner is set to NULL because for now we assume it can only be the player. */
-						hit_enemy(erot, AllActiveSpells[i].damage * Frame_Time(),
-							  AllActiveSpells[i].mine ? 1 : 0 /*givexp */ , -1,
-							  AllActiveSpells[i].mine ? 1 : 0);
+						hit_enemy(erot, current_spell->damage * Frame_Time(),
+							  current_spell->mine ? 1 : 0 /*givexp */ , -1,
+							  current_spell->mine ? 1 : 0);
 					}
 				}
 			}
@@ -451,36 +452,21 @@ void move_active_spells(void)
 
 		// Such a spell can not live for longer than 1.0 seconds, say
 
-		if (AllActiveSpells[i].spell_age >= 1.0)
-			DeleteSpell(i);
+		if (current_spell->spell_age >= 1.0)
+			delete_spell(i);
 	}
 }
 
 /**
- * This function deletes a single blast entry from the list of all blasts
+ * This function deletes a single spell entry from the list of all spells
  */
-void DeleteSpell(int SpellNum)
+void delete_spell(int spell_number)
 {
-	AllActiveSpells[SpellNum].img_type = (-1);
-	AllActiveSpells[SpellNum].spell_age = 0;
-};				// void DeleteSpell( int SpellNum )
-
-/**
- *
- *
- */
-void clear_active_spells(void)
-{
-	int i;
-
-	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
-		DeleteSpell(i);
-	}
+	dynarray_del(&all_spells, spell_number, sizeof(struct spell_active));
 }
 
 /**
- *
- *
+ * Delete all blasts and all bullets.
  */
 void clear_active_bullets(void)
 {

@@ -149,8 +149,7 @@ void animate_blasts(void);
 void delete_blast(int);
 int get_blast_type_by_name(const char *name);
 void move_active_spells(void);
-void DeleteSpell(int num);
-void clear_active_spells(void);
+void delete_spell(int);
 void clear_active_bullets(void);
 int check_bullet_collisions(struct bullet *);
 void check_blast_collisions(struct blast *);
@@ -522,8 +521,8 @@ void LevelEditor(void);
 
 // skills.c
 void show_skills_screen(void);
-void HandleCurrentlyActivatedSkill(void);
-int do_skill(int skill_index, int SpellCost);
+void handle_currently_activated_skill(void);
+int do_skill(int skill_index, int spell_cost);
 void do_radial_skill(int skill_index, int pos_x, int pos_y, int from_tux);
 void activate_nth_skill(int skill_num);
 void set_nth_quick_skill(int quick_skill);

@@ -23,11 +23,11 @@
 
 #include "savegame.h"
 
-// In 0.16.1, bullets, melee shots were stored in statically allocated arrays,
-// and a specific object's type (INFOUT) was used to define empty
-// slots in that array.
-// Now objects are stored in a sparse dynarray, and the INFOUT
-// object's type is no more used.
+// In 0.16.1, melee shots, bullets, blasts and spells were stored in statically
+// allocated arrays, and a specific object's type (INFOUT) was used to define
+// empty slots in that array.
+// Now objects are stored in a sparse dynarray, and the INFOUT object's type
+// is no more used.
 // This filter removes 'INFOUT objects' from the savegame.
 static int convert_to_sparse_array(struct savegame_data *savegame, struct auto_string *report, const char* section, const char* type, const char* infout, int nb_lines)
 {
@@ -54,8 +54,8 @@ static int convert_to_sparse_array(struct savegame_data *savegame, struct auto_s
 		for (i = 0; i < nb_lines; i++) {
 			while (*object_end != '\n' && *object_end != '\0') object_end++;
 			if (*object_end == '\0') {
-				// Reach the end of savegame before to find the end of the object
-				// shot definition ?
+				// Reach the end of savegame before to find the end of the
+				// object definition ?
 				autostr_append(report,
 				               _("Error during savegame filtering (%s:%s): End of savegame reached while "
 				                 "reading a object's definition..\n"
@@ -109,4 +109,9 @@ int filter_0_16_1_convert_melee_shots_array(struct savegame_data *savegame, stru
 int filter_0_16_1_convert_blasts_array(struct savegame_data *savegame, struct auto_string *report)
 {
 	return convert_to_sparse_array(savegame, report, "blast_array{", "type = ", "-30,", 10);
+}
+
+int filter_0_16_1_convert_spellactives_array(struct savegame_data *savegame, struct auto_string *report)
+{
+	return convert_to_sparse_array(savegame, report, "spell_active_array{", "img_type = ", "-1,", 34);
 }

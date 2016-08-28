@@ -73,12 +73,12 @@ extern list_head_t alive_bots_head;
 extern list_head_t dead_bots_head;
 extern list_head_t level_bots_head[MAX_LEVELS];
 
-EXTERN spell_active AllActiveSpells[MAX_ACTIVE_SPELLS];
 EXTERN ship curShip;		/* the current ship-data */
 
 EXTERN bullet_sparsedynarray all_bullets INITIALIZER(SPARSE_DYNARRAY);
 EXTERN melee_shot_sparsedynarray all_melee_shots INITIALIZER(SPARSE_DYNARRAY);
 EXTERN blast_sparsedynarray all_blasts INITIALIZER(SPARSE_DYNARRAY);
+EXTERN spell_active_sparsedynarray all_spells INITIALIZER(SPARSE_DYNARRAY);
 
 EXTERN int sound_on;		// Toggle TRUE/FALSE for turning sounds on/off 
 EXTERN int debug_level;		// 0=no debug 1=some debug messages 2=...etc 

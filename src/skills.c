@@ -136,11 +136,11 @@ int calculate_program_heat_cost(int program_id)
 	float cost_ratio[NUMBER_OF_SKILL_LEVELS] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 };
 
 	if (program_id == get_program_index_with_name("Emergency shutdown") ) { //then use cost_ratio^-1
-		return (1/cost_ratio[Me.spellcasting_skill]) * (SpellSkillMap[program_id].heat_cost +
-							    	SpellSkillMap[program_id].heat_cost_per_level * (Me.skill_level[program_id] - 1));
+		return (1 / cost_ratio[Me.spellcasting_skill]) * (SpellSkillMap[program_id].heat_cost +
+				SpellSkillMap[program_id].heat_cost_per_level * (Me.skill_level[program_id] - 1));
 	} else {
 		return cost_ratio[Me.spellcasting_skill] * (SpellSkillMap[program_id].heat_cost +
-							    SpellSkillMap[program_id].heat_cost_per_level * (Me.skill_level[program_id] - 1));
+				SpellSkillMap[program_id].heat_cost_per_level * (Me.skill_level[program_id] - 1));
 	}
 };
 
@@ -265,7 +265,7 @@ int TeleportHome(void)
  * It checks temperature (does not increase it), and makes sure a 
  * busy_time is set.
  */
-void HandleCurrentlyActivatedSkill()
+void handle_currently_activated_skill()
 {
 	if (!MouseRightClicked() || Me.busy_time > 0)
 		return;
@@ -276,11 +276,12 @@ void HandleCurrentlyActivatedSkill()
 	if (Me.skill_level[Me.readied_skill] <= 0)
 		return;
 
-	/* We calculate the spellcost and check the power limit override - the temperature is raised further down, when the actual effect
-	   gets triggered */
-	int SpellCost = calculate_program_heat_cost(Me.readied_skill);
+	/* We calculate the spell cost and check the power limit override - the
+	   temperature is raised further down, when the actual effect gets
+	   triggered */
+	int spell_cost = calculate_program_heat_cost(Me.readied_skill);
 
-	if (Me.temperature > Me.max_temperature - SpellCost && !Override_Power_Limit) {
+	if (Me.temperature > Me.max_temperature - spell_cost && !Override_Power_Limit) {
 		Override_Power_Limit = 1;
 		return;
 	}
@@ -295,7 +296,7 @@ void HandleCurrentlyActivatedSkill()
 		break;
 	}
 
-	do_skill(Me.readied_skill, SpellCost);
+	do_skill(Me.readied_skill, spell_cost);
 
 	/* Certain special actions implemented through DoSkill may set their own
 	 * busy time, such as weapon reload. In that case, do not touch busy_time.
@@ -308,7 +309,7 @@ void HandleCurrentlyActivatedSkill()
 	}
 
 	return;
-};				// void HandleCurrentlyActivatedSkill( void )
+}
 
 /**
  * \brief Perform a skill action.
@@ -331,13 +332,10 @@ int do_skill(int skill_index, int spell_cost)
 		droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor();
 		if (droid_below_mouse_cursor == NULL)
 			return 0;
-		if (!DirectLineColldet(Me.pos.x,
-				       Me.pos.y,
-				       translate_pixel_to_map_location((float)input_axis.x,
-								       (float)input_axis.y,
-								       TRUE),
-				       translate_pixel_to_map_location((float)input_axis.x,
-								       (float)input_axis.y, FALSE), Me.pos.z, &FlyablePassFilter))
+		if (!DirectLineColldet(Me.pos.x, Me.pos.y,
+				translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE),
+				translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE),
+				Me.pos.z, &FlyablePassFilter))
 			return 0;
 
 		if ((Droidmap[droid_below_mouse_cursor->type].is_human && !SpellSkillMap[skill_index].hurt_humans)
@@ -458,8 +456,7 @@ int do_skill(int skill_index, int spell_cost)
 	}
 
 	return 0;
-};				// void HandleCurrentlyActivatedSkill( void )
-
+}
 
 /**
  * This function starts a new radial skill (grenade blast, etc) from 
@@ -469,42 +466,43 @@ void do_radial_skill(int skill_index, int pos_x, int pos_y, int from_tux)
 {
 	float hitdmg = calculate_program_hit_damage(skill_index);
 	float effdur = calculate_program_effect_duration(skill_index);
+	int j;
 
-	int i, j;
-	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
-		if (AllActiveSpells[i].img_type == (-1))
-			break;
+	struct spell_active new_spell;
+
+	if (SpellSkillMap[skill_index].graphics_code == -1) {
+		new_spell.img_type = 2;
+	} else {
+		new_spell.img_type = SpellSkillMap[skill_index].graphics_code;
 	}
-	if (i >= MAX_ACTIVE_SPELLS)
-		i = 0;
 
-	AllActiveSpells[i].img_type =
-	    (SpellSkillMap[skill_index].graphics_code == -1 ? 2 : SpellSkillMap[skill_index].graphics_code);
-	AllActiveSpells[i].spell_center.x = pos_x;
-	AllActiveSpells[i].spell_center.y = pos_y;
-	AllActiveSpells[i].spell_radius = 0.3;
+	new_spell.spell_center.x = pos_x;
+	new_spell.spell_center.y = pos_y;
+	new_spell.spell_radius = 0.3;
 	if (!strcmp(SpellSkillMap[skill_index].effect, "short"))
-		AllActiveSpells[i].spell_age = 0.5;
+		new_spell.spell_age = 0.5;
 	else
-		AllActiveSpells[i].spell_age = 0;
+		new_spell.spell_age = 0;
 
-	AllActiveSpells[i].mine = from_tux;
+	new_spell.mine = from_tux;
 	if (SpellSkillMap[skill_index].hurt_humans && SpellSkillMap[skill_index].hurt_bots)
-		AllActiveSpells[i].hit_type = ATTACK_HIT_ALL;
+		new_spell.hit_type = ATTACK_HIT_ALL;
 	else if (SpellSkillMap[skill_index].hurt_humans)
-		AllActiveSpells[i].hit_type = ATTACK_HIT_HUMANS;
+		new_spell.hit_type = ATTACK_HIT_HUMANS;
 	else
-		AllActiveSpells[i].hit_type = ATTACK_HIT_BOTS;
+		new_spell.hit_type = ATTACK_HIT_BOTS;
 
 	for (j = 0; j < RADIAL_SPELL_DIRECTIONS; j++) {
-		AllActiveSpells[i].active_directions[j] = TRUE;
+		new_spell.active_directions[j] = TRUE;
 	}
 
-	AllActiveSpells[i].freeze_duration = strcmp(SpellSkillMap[skill_index].effect, "slowdown") ? 0 : effdur;
-	AllActiveSpells[i].poison_duration = strcmp(SpellSkillMap[skill_index].effect, "poison") ? 0 : effdur;
-	AllActiveSpells[i].poison_dmg = strcmp(SpellSkillMap[skill_index].effect, "poison") ? 0 : hitdmg;
-	AllActiveSpells[i].paralyze_duration = strcmp(SpellSkillMap[skill_index].effect, "paralyze") ? 0 : effdur;
-	AllActiveSpells[i].damage = hitdmg;
+	new_spell.freeze_duration = strcmp(SpellSkillMap[skill_index].effect, "slowdown") ? 0 : effdur;
+	new_spell.poison_duration = strcmp(SpellSkillMap[skill_index].effect, "poison") ? 0 : effdur;
+	new_spell.poison_dmg = strcmp(SpellSkillMap[skill_index].effect, "poison") ? 0 : hitdmg;
+	new_spell.paralyze_duration = strcmp(SpellSkillMap[skill_index].effect, "paralyze") ? 0 : effdur;
+	new_spell.damage = hitdmg;
+
+	dynarray_add(&all_spells, &new_spell, sizeof(struct spell_active));
 }
 
 /**

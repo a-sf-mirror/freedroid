@@ -65,6 +65,7 @@ typedef struct dynarray upgrade_socket_dynarray;
 typedef struct dynarray bullet_sparsedynarray;
 typedef struct dynarray melee_shot_sparsedynarray;
 typedef struct dynarray blast_sparsedynarray;
+typedef struct dynarray spell_active_sparsedynarray;
 
 struct font {
 	int height;

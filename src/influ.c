@@ -744,7 +744,7 @@ void move_tux()
 	// Perhaps the player has pressed the right mouse button, indicating the use
 	// of the currently selected special function or spell.
 	//
-	HandleCurrentlyActivatedSkill();
+	handle_currently_activated_skill();
 
 	// Maybe we need to fire a bullet or set a new mouse move target
 	// for the new move-to location

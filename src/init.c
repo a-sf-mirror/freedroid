@@ -71,12 +71,9 @@ int run_from_term = FALSE;
 void clear_out_arrays_for_fresh_game(void)
 {
 	dynarray_free(&all_melee_shots);
-
 	dynarray_free(&all_bullets);
-
 	dynarray_free(&all_blasts);
-
-	clear_active_spells();
+	dynarray_free(&all_spells);
 
 	clear_enemies();
 	clear_volatile_obstacles();

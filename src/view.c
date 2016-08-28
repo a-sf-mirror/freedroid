@@ -129,22 +129,24 @@ static void DisplayItemImageAtMouseCursor(int ItemImageCode)
 /**
  * Now it's time to blit all the spell effects.
  */
-void PutMiscellaneousSpellEffects(void)
+void put_miscellaneous_spell_effects(void)
 {
 	int i;
 
 	// Now we put all the spells in the list of active spells
 	//
-	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
-		if (AllActiveSpells[i].img_type == (-1))
+	for (i = 0; i < all_spells.size; ++i) {
+		// skip unused spell slot
+		if (!sparse_dynarray_member_used(&all_spells, i))
 			continue;
-		put_radial_blue_sparks(AllActiveSpells[i].spell_center.x,
-				    AllActiveSpells[i].spell_center.y,
-				    AllActiveSpells[i].spell_radius, AllActiveSpells[i].img_type,
-				    AllActiveSpells[i].active_directions, AllActiveSpells[i].spell_age);
-	}
 
-};				// void PutMiscellaneousSpellEffects ( void )
+		struct spell_active *current_spell = (struct spell_active *)dynarray_member(&all_spells, i, sizeof(struct spell_active));
+
+		put_radial_blue_sparks(current_spell->spell_center.x, current_spell->spell_center.y,
+							current_spell->spell_radius, current_spell->img_type,
+							current_spell->active_directions, current_spell->spell_age);
+	}
+}
 
 void get_floor_boundaries(int mask, int *LineStart, int *LineEnd, int *ColStart, int *ColEnd)
 {
@@ -1827,7 +1829,7 @@ void AssembleCombatPicture(int mask)
 	if ((!GameConfig.skip_light_radius) && (!(mask & SKIP_LIGHT_RADIUS)))
 		blit_light_radius();
 
-	PutMiscellaneousSpellEffects();
+	put_miscellaneous_spell_effects();
 
 	if (mask & ONLY_SHOW_MAP) {
 		// in case we only draw the map, we are done here.  But
