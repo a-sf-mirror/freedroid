@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg 0.16+git\n"
 "Report-Msgid-Bugs-To: http://www.freedroid.org\n"
-"POT-Creation-Date: 2016-04-19 18:46+0200\n"
+"POT-Creation-Date: 2016-08-28 14:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/storyline/act1/dialogs/614_cryo.lua:45
-#: data/storyline/act1/dialogs/Iris.lua:85
+#: data/storyline/act1/dialogs/Iris.lua:88
 #: data/storyline/act1/dialogs/Jasmine.lua:53
 #: data/storyline/act1/dialogs/Koan.lua:128
 #: data/storyline/act1/dialogs/Sorenson.lua:57
@@ -89,7 +89,7 @@ msgstr ""
 #: data/storyline/act1/dialogs/Duncan.lua:398
 #: data/storyline/act1/dialogs/Duncan.lua:404
 #: data/storyline/act1/dialogs/Ewald.lua:682
-#: data/storyline/act1/dialogs/Iris.lua:292
+#: data/storyline/act1/dialogs/Iris.lua:356
 #: data/storyline/act1/dialogs/Jasmine.lua:121
 #: data/storyline/act1/dialogs/Jennifer.lua:133
 #: data/storyline/act1/dialogs/Jennifer.lua:135
@@ -97,10 +97,10 @@ msgstr ""
 #: data/storyline/act1/dialogs/Karol.lua:59
 #: data/storyline/act1/dialogs/Michelangelo.lua:455
 #: data/storyline/act1/dialogs/Pendragon.lua:352
-#: data/storyline/act1/dialogs/Richard.lua:161
+#: data/storyline/act1/dialogs/Richard.lua:184
 #: data/storyline/act1/dialogs/Skippy.lua:42
 #: data/storyline/act1/dialogs/Skippy.lua:179
-#: data/storyline/act1/dialogs/Spencer.lua:675
+#: data/storyline/act1/dialogs/Spencer.lua:677
 #: data/storyline/act1/dialogs/Stone.lua:285
 #: data/storyline/act1/dialogs/Tania.lua:618
 #: data/storyline/act1/dialogs/Town-614.lua:78
@@ -157,7 +157,7 @@ msgid "Nicholson decided to stick to one GPL version because he saw things getti
 msgstr ""
 
 #: data/storyline/act1/dialogs/614_sub.lua:50
-msgid "Others were warned, but nobody listened to Nicholsons announcements."
+msgid "Others were warned, but nobody listened to Nicholson's announcements."
 msgstr ""
 
 #: data/storyline/act1/dialogs/614_sub.lua:51
@@ -173,7 +173,7 @@ msgid "The team became a company which released their first security droid, call
 msgstr ""
 
 #: data/storyline/act1/dialogs/614_sub.lua:54
-msgid "I am the 5th generation version of their security droid line."
+msgid "I am the fifth generation version of their security droid line."
 msgstr ""
 
 #: data/storyline/act1/dialogs/614_sub.lua:60
@@ -201,7 +201,7 @@ msgid "The latest version of the security line is the 615."
 msgstr ""
 
 #: data/storyline/act1/dialogs/614_sub.lua:68
-msgid "Unfortunately its development was not finished when the great assault started."
+msgid "Unfortunately its development was not finished when the Great Assault started."
 msgstr ""
 
 #: data/storyline/act1/dialogs/614_sub.lua:69
@@ -209,7 +209,7 @@ msgid "The lack of security options on the system of the 615 led to a malfunctio
 msgstr ""
 
 #: data/storyline/act1/dialogs/614_sub.lua:70
-msgid "Circumstances that led to the great assault even made the 615 go crazy and attack people."
+msgid "Circumstances that led to the Great Assault even made the 615 go crazy and attack people."
 msgstr ""
 
 #: data/storyline/act1/dialogs/614_sub.lua:71
@@ -922,7 +922,7 @@ msgstr ""
 #: data/storyline/act1/dialogs/DSB-PowerControl.lua:44
 #: data/storyline/act1/dialogs/DSB-PowerControlGate1.lua:88
 #: data/storyline/act1/dialogs/Maintenance-Terminal.lua:228
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:105
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:111
 #: data/storyline/act1/dialogs/MO-HFGateAccessServer.lua:228
 #: data/storyline/act1/dialogs/MO-HFGateAccessServer.lua:231
 #: data/storyline/act1/dialogs/MS-Factory-Addon-Terminal.lua:71
@@ -964,7 +964,7 @@ msgstr ""
 #: data/storyline/act1/dialogs/Arthur.lua:50
 #: data/storyline/act1/dialogs/Cult-Member.lua:47
 #: data/storyline/act1/dialogs/Engel.lua:70
-#: data/storyline/act1/dialogs/Iris.lua:95
+#: data/storyline/act1/dialogs/Iris.lua:98
 #: data/storyline/act1/dialogs/Jennifer.lua:51
 #: data/storyline/act1/dialogs/Town-GuardhouseGuard.lua:52
 msgid "What are you doing here?"
@@ -1257,7 +1257,7 @@ msgid "'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Bender.lua:208
-msgid "And everybody in the town said I was dumb, which by the way IS NOT TRUE."
+msgid "And everybody in the town said I was dumb, which, by the way, IS NOT TRUE."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Bender.lua:209
@@ -1684,14 +1684,14 @@ msgstr ""
 
 #: data/storyline/act1/dialogs/Benjamin.lua:35
 #: data/storyline/act1/dialogs/Cult-Member.lua:34
-#: data/storyline/act1/dialogs/Iris.lua:67
-#: data/storyline/act1/dialogs/Iris.lua:69
-#: data/storyline/act1/dialogs/Iris.lua:194
+#: data/storyline/act1/dialogs/Iris.lua:70
+#: data/storyline/act1/dialogs/Iris.lua:72
+#: data/storyline/act1/dialogs/Iris.lua:258
 #: data/storyline/act1/dialogs/John.lua:139
 #: data/storyline/act1/dialogs/John.lua:141
 #: data/storyline/act1/dialogs/Kevin.lua:60
 #: data/storyline/act1/dialogs/Kevin.lua:66
-#: data/storyline/act1/dialogs/Mike.lua:75
+#: data/storyline/act1/dialogs/Mike.lua:79
 #: data/storyline/act1/dialogs/Peter.lua:34
 #: data/storyline/act1/dialogs/Scavenger.lua:34
 #: data/storyline/act1/dialogs/Terminal.lua:31
@@ -1730,7 +1730,7 @@ msgid "Ah, so you are the new member. Welcome. My name is Benjamin, and I take c
 msgstr ""
 
 #: data/storyline/act1/dialogs/Benjamin.lua:55
-msgid "What are you doing here alone? "
+msgid "What are you doing here alone?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Benjamin.lua:57
@@ -1790,9 +1790,11 @@ msgstr ""
 #: data/storyline/act1/dialogs/Benjamin.lua:106
 #: data/storyline/act1/dialogs/Benjamin.lua:111
 #: data/storyline/act1/dialogs/Benjamin.lua:116
+#: data/storyline/act1/dialogs/Dixon.lua:654
 #: data/storyline/act1/dialogs/Duncan.lua:161
 #: data/storyline/act1/dialogs/Engel.lua:164
 #: data/storyline/act1/dialogs/John.lua:199
+#: data/storyline/act1/dialogs/Richard.lua:164
 msgid "Interested?"
 msgstr ""
 
@@ -1927,7 +1929,7 @@ msgid "It's easy when you know how, especially with bots, because they tend to m
 msgstr ""
 
 #: data/storyline/act1/dialogs/Benjamin.lua:176
-msgid "I think that is enough training for now. Next time, firing on the move!"
+msgid "I think that it is enough training for now. Next time, firing on the move!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Benjamin.lua:185
@@ -2470,7 +2472,7 @@ msgid "What do you have there?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Bruce.lua:180
-#: data/storyline/act1/dialogs/Iris.lua:238
+#: data/storyline/act1/dialogs/Iris.lua:302
 msgid "What do you mean?"
 msgstr ""
 
@@ -2597,7 +2599,7 @@ msgstr ""
 
 #: data/storyline/act1/dialogs/Bruce.lua:238
 #: data/storyline/act1/dialogs/Pendragon.lua:267
-#: data/storyline/act1/dialogs/Spencer.lua:311
+#: data/storyline/act1/dialogs/Spencer.lua:313
 #: data/storyline/act1/dialogs/WillGapes.lua:184
 msgid "Here, take it."
 msgstr ""
@@ -2615,13 +2617,13 @@ msgid "Come back to me when you have it."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Bruce.lua:257
-#: data/storyline/act1/dialogs/Iris.lua:119
+#: data/storyline/act1/dialogs/Iris.lua:122
 msgid "Yes, sure."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Bruce.lua:260
 #: data/storyline/act1/dialogs/Pendragon.lua:266
-#: data/storyline/act1/dialogs/Spencer.lua:521
+#: data/storyline/act1/dialogs/Spencer.lua:523
 msgid "Good."
 msgstr ""
 
@@ -2751,7 +2753,7 @@ msgstr ""
 #: data/storyline/act1/dialogs/Engel.lua:398
 #: data/storyline/act1/dialogs/Michelangelo.lua:453
 #: data/storyline/act1/dialogs/MO-RGGateGuard.lua:75
-#: data/storyline/act1/dialogs/Spencer.lua:672
+#: data/storyline/act1/dialogs/Spencer.lua:674
 #: data/storyline/act1/dialogs/Town-NorthGateGuard.lua:333
 #: data/storyline/act1/dialogs/Town-TuxGuard.lua:175
 #: data/storyline/act1/dialogs/WillGapes.lua:192
@@ -4937,7 +4939,7 @@ msgid "There are many things you can do. The first is to fight more bots."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Chandra.lua:162
-msgid "Er... Wouldn't that cause me to be beaten up more, and therefore be counter-productive?"
+msgid "Erm... Wouldn't that cause me to be beaten up more, and therefore be counter-productive?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Chandra.lua:163
@@ -4997,7 +4999,7 @@ msgid "What bots are in the 100 class?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Chandra.lua:194
-msgid "I know of two types, the 123 and the 139. The former is a simple cleaning bot, and is fairly weak. The latter is a mobile trash compactor. Don't get your flippers get caught in one of those."
+msgid "I know of two types, the 123 and the 139. The former is a simple cleaning bot, and is fairly weak. The latter is a mobile trash compactor. Don't let your flippers get caught in one of those."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Chandra.lua:195
@@ -5013,7 +5015,7 @@ msgid "Anyway, because the class 100 bots are neither fast nor dangerous, the Re
 msgstr ""
 
 #: data/storyline/act1/dialogs/Chandra.lua:198
-msgid "If I were you, I would not overestimate them."
+msgid "If I were you, I would not underestimate them."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Chandra.lua:199
@@ -5037,7 +5039,7 @@ msgid "Also, as I said, the 200s were built to report quickly. The 247 is no exc
 msgstr ""
 
 #: data/storyline/act1/dialogs/Chandra.lua:212
-msgid "The 249 is a cheaper version of the Banshee. It uses a tripedal drive instead of anti-gravity propulsion, and is therefore slower. However it is much more dangerous: its machine gun has a very high rate of fire."
+msgid "The 249 is a cheaper version of the Banshee. It uses a tripedal drive instead of anti-gravity propulsion, and is therefore slower. However, it is much more dangerous: its machine gun has a very high rate of fire."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Chandra.lua:213
@@ -5580,7 +5582,7 @@ msgstr ""
 #: data/storyline/act1/dialogs/Kevin.lua:443
 #: data/storyline/act1/dialogs/Maintenance-Terminal.lua:58
 #: data/storyline/act1/dialogs/Michelangelo.lua:156
-#: data/storyline/act1/dialogs/Mike.lua:239
+#: data/storyline/act1/dialogs/Mike.lua:280
 #: data/storyline/act1/dialogs/Singularity-Drone.lua:34
 #: data/storyline/act1/dialogs/Singularity.lua:156
 #: data/storyline/act1/dialogs/Town-TuxGuard.lua:121
@@ -5680,7 +5682,7 @@ msgid "Linarian, I cannot change the past, I can only change the future."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:150
-msgid "Crying, screaming or begging time to rewind itself and give me a second chance will not get me anywhere."
+msgid "Crying, screaming, or begging time to rewind itself and give me a second chance will not get me anywhere."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:151
@@ -5708,7 +5710,7 @@ msgid "But even they know that without us this town would have been destroyed mo
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:163
-msgid "We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone."
+msgid "We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work, and lots of other small things which keep the bots from killing everyone."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:169
@@ -5756,7 +5758,7 @@ msgid "I can give you some advice, though. Recycling is key. You can extract spe
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:190
-msgid "Amazing, isn't it? Before the great assault, we threw droids out for minor defects. Now, any wreck is a treasure."
+msgid "Amazing, isn't it? Before the Great Assault, we threw droids out for minor defects. Now, any wreck is a treasure."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:192
@@ -5909,7 +5911,7 @@ msgid "As soon as I dropped my toolkit, I was able to teleport away. That bot fr
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:256
-msgid "Once I got out, I learned the bot was telling the truth. The Great Assault had started. The rest is history."
+msgid "Once I got out, I learned the bot was telling the truth. The Great Assault had started. The rest... Well, the rest is history."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:264
@@ -5961,7 +5963,7 @@ msgid "Excellent. The tunnels are open. Come in peace."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:296
-msgid "I refused to seize the toolkit from the bots by force because I think they might be sentient. Life is precious and should be preserved. Thus, Dixon send me to talk to them and negotiate with them to get the toolkit."
+msgid "I refused to seize the toolkit from the bots by force because I think they might be sentient. Life is precious and should be preserved. Thus, Dixon sent me to talk to them and negotiate with them to get the toolkit."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:304
@@ -6013,7 +6015,7 @@ msgid "... *sigh*"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:328
-msgid "With heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone."
+msgid "With a heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:329
@@ -6482,22 +6484,67 @@ msgid "I spoke to Dixon, who didn't have a copy of the book. He did give me an i
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:650
-msgid "How can I open the gate in the Maintenance Tunnel?"
+#: data/storyline/act1/dialogs/Richard.lua:161
+msgid "What bot types do you know?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:652
-msgid "You cannot."
+msgid "Bots?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Dixon.lua:653
+msgid "I know the droids on the 400s class, that are for maintenance. Oddly, we do not have any on our tunnels."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:660
+msgid "Which bots are on 400s class?"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:662
+msgid "Well, the 400s bots were used for maintenance."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:663
+msgid "Hmm... Now, if I recall correctly..."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:664
+msgid "There is the [b]420[/b], a simple maintenance droid. It's a slow droid, but its laser scalpel can deal some damage."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:665
+msgid "There is also the [b]476[/b] droid. Since the Jupiter-incident they became standard on ships. They have many arms to carry out maintenance efficiently, but beware with its small laser gun, it can kill you easily if you don't watch out."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:666
+msgid "Laser gun? Why does a maintenance droid have a gun??"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:667
+msgid "I don't know. I didn't design these droids."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:668
+msgid "There is also the [b]493[/b], a slave droid. But beware because the arms can do a lot of damage."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:674
+msgid "How can I open the gate in the Maintenance Tunnel?"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:676
+msgid "You cannot."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Dixon.lua:677
 msgid "I locked it in order to keep us save from these bots down there."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Dixon.lua:654
+#: data/storyline/act1/dialogs/Dixon.lua:678
 msgid "You never know what they're up to..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Dixon.lua:661
+#: data/storyline/act1/dialogs/Dixon.lua:685
 msgid "I must go now."
 msgstr ""
 
@@ -7271,7 +7318,7 @@ msgstr ""
 
 #: data/storyline/act1/dialogs/DSB-PowerControlGate1.lua:90
 #: data/storyline/act1/dialogs/Maintenance-Terminal.lua:230
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:107
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:113
 #: data/storyline/act1/dialogs/MS-Factory-Addon-Terminal.lua:73
 msgid "Exiting"
 msgstr ""
@@ -7510,7 +7557,7 @@ msgid "Oh, great!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Duncan.lua:233
-#: data/storyline/act1/dialogs/Spencer.lua:589
+#: data/storyline/act1/dialogs/Spencer.lua:591
 msgid "Hey!"
 msgstr ""
 
@@ -7547,7 +7594,7 @@ msgid "You better go getting it!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Duncan.lua:256
-msgid "You don't look too well, what did happen?"
+msgid "You don't look too well, what happened?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Duncan.lua:257
@@ -7759,7 +7806,7 @@ msgstr ""
 msgid "Hello. We are the Fleischer brothers."
 msgstr ""
 
-#. TRANSLATORS: Engel = Angle, Geist = Ghost or Spirit
+#. TRANSLATORS: Engel = Angel, Geist = Ghost or Spirit
 #: data/storyline/act1/dialogs/Engel.lua:62
 msgid "I am Engel. He is Geist, and he does not know the language."
 msgstr ""
@@ -7809,7 +7856,7 @@ msgid "No."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Engel.lua:104
-msgid "Every day since the mess started I come here to fight the bots."
+msgid "Every day since this mess started I come here to fight the bots."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Engel.lua:105
@@ -8462,7 +8509,7 @@ msgid "Then you decide on a betting multiplier, up to 3x."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Ewald.lua:256
-msgid "Then you throw two dice and I throw three dice. If sum of your three dice are better than my three dice, you win twice your bet, minus a tax for the Red Guard."
+msgid "Then you throw two dice and I throw three dice. If the sum of your three dice is better than my three dice, you win twice your bet, minus a tax for the Red Guard."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Ewald.lua:257
@@ -8743,7 +8790,7 @@ msgid "Odd? Well that is odd... I was thinking of odd."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Ewald.lua:518
-msgid "Odd. When I don't pick even, I always pick odd too."
+msgid "Odd. When I don't pick even, I always pick odd, too."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Ewald.lua:522
@@ -9318,7 +9365,7 @@ msgid "There is no other way, sir and or madam."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Ewalds_296.lua:265
-#: data/storyline/act1/dialogs/Iris.lua:271
+#: data/storyline/act1/dialogs/Iris.lua:335
 msgid "I understand."
 msgstr ""
 
@@ -9963,7 +10010,7 @@ msgid "Please prove your statement."
 msgstr ""
 
 #: data/storyline/act1/dialogs/HF-EntranceBot.lua:67
-msgid "Do I look like a typical MegaSys slave, errr, worker to you, stupid bot?"
+msgid "Do I look like a typical MegaSys slave, err, worker to you, stupid bot?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/HF-EntranceBot.lua:68
@@ -10176,389 +10223,489 @@ msgstr ""
 msgid "Hello there."
 msgstr ""
 
-#: data/storyline/act1/dialogs/InvaderBot.lua:46
+#: data/storyline/act1/dialogs/InvaderBot.lua:47
 msgid "What's up?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/InvaderBot.lua:53
+#: data/storyline/act1/dialogs/InvaderBot.lua:55
 msgid "Die!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/InvaderBot.lua:62
+#: data/storyline/act1/dialogs/InvaderBot.lua:65
 msgid "Uploading Status..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/InvaderBot.lua:64
+#: data/storyline/act1/dialogs/InvaderBot.lua:68
+msgid "Target attempts to engage discourse. Unacceptable outcomes predicted. Threat identified."
+msgstr ""
+
+#: data/storyline/act1/dialogs/InvaderBot.lua:70
+msgid "Target is inquisitive. Threat identified."
+msgstr ""
+
+#: data/storyline/act1/dialogs/InvaderBot.lua:72
+msgid "Target issues verbal threat."
+msgstr ""
+
+#: data/storyline/act1/dialogs/InvaderBot.lua:74
 msgid "Linarian is hostile. Destroy!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:38
+#: data/storyline/act1/dialogs/Iris.lua:41
 msgid "Hey, remember our deal?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:39
+#: data/storyline/act1/dialogs/Iris.lua:42
 msgid "I'll trade you a book, for that lamp and 100 credits."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:45
+#: data/storyline/act1/dialogs/Iris.lua:48
 msgid "Sure is dark around here."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:46
+#: data/storyline/act1/dialogs/Iris.lua:49
 msgid "I wish there was some decent lighting."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:70
+#: data/storyline/act1/dialogs/Iris.lua:73
 msgid "Hi there!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:72
+#: data/storyline/act1/dialogs/Iris.lua:75
 msgid "I've heard about you."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:73
+#: data/storyline/act1/dialogs/Iris.lua:76
 msgid "A lot."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:74
+#: data/storyline/act1/dialogs/Iris.lua:77
 msgid "You're the talk of the town, actually."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:87
+#: data/storyline/act1/dialogs/Iris.lua:90
 msgid "I'm Iris."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:89
+#: data/storyline/act1/dialogs/Iris.lua:92
 msgid "Hello, Iris."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:97
+#: data/storyline/act1/dialogs/Iris.lua:100
 msgid "I'm here just for vacations."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:98
+#: data/storyline/act1/dialogs/Iris.lua:101
 msgid "And what do you usually do?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:99
-msgid "Usually I hunt bots."
-msgstr ""
-
-#: data/storyline/act1/dialogs/Iris.lua:106
-msgid "Where do you come from?"
-msgstr ""
-
-#: data/storyline/act1/dialogs/Iris.lua:108
-msgid "Nowhere and everywhere."
+#: data/storyline/act1/dialogs/Iris.lua:102
+msgid "Usually I hunt bots and their 'treasures'."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Iris.lua:109
-msgid "As I already said, I walk around and kill bots."
+msgid "Where do you come from?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:115
+#: data/storyline/act1/dialogs/Iris.lua:111
+msgid "Nowhere and everywhere."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:112
+msgid "As I already said, I walk around, kill bots and loot their corpses."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:118
 msgid "Do you like it here?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:120
+#: data/storyline/act1/dialogs/Iris.lua:123
 msgid "The Red Guard is very polite and keeps us safe from bots."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:121
+#: data/storyline/act1/dialogs/Iris.lua:124
 msgid "And the overall design of the town is quite clever."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:122
+#: data/storyline/act1/dialogs/Iris.lua:125
 msgid "Nevertheless, this room is quite dark."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:123
+#: data/storyline/act1/dialogs/Iris.lua:126
 msgid "It could use some light."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:125
+#: data/storyline/act1/dialogs/Iris.lua:128
 msgid "Not really."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:126
+#: data/storyline/act1/dialogs/Iris.lua:129
 msgid "The town is quite ugly and dark."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:127
+#: data/storyline/act1/dialogs/Iris.lua:130
 msgid "And there are very strange people here."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:128
+#: data/storyline/act1/dialogs/Iris.lua:131
 msgid "I know exactly what you are talking about..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:129
+#: data/storyline/act1/dialogs/Iris.lua:132
 msgid "I think this room could use some decoration."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:130
+#: data/storyline/act1/dialogs/Iris.lua:133
 msgid "It looks so cold and dark..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:137
+#: data/storyline/act1/dialogs/Iris.lua:140
 msgid "Perhaps what I need is a lamp."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:145
+#: data/storyline/act1/dialogs/Iris.lua:148
 msgid "Look, I have this Lamp."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:147
+#: data/storyline/act1/dialogs/Iris.lua:150
 msgid "Wow, nice."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:153
+#: data/storyline/act1/dialogs/Iris.lua:156
 msgid "You can have it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:155
+#: data/storyline/act1/dialogs/Iris.lua:158
 msgid "Oh great, thanks!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:156
-msgid "Hmm, what can I give you as thank-you...?"
+#: data/storyline/act1/dialogs/Iris.lua:159
+msgid "Hmm, what can I give you as a thank-you...?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:157
+#: data/storyline/act1/dialogs/Iris.lua:160
 msgid "Oh, I have a nice book here."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:158
-msgid "But it's not worth the old dusty lamp."
+#: data/storyline/act1/dialogs/Iris.lua:161
+msgid "But it's worth more than the old dusty lamp."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:159
-msgid "I give it to you for the lamp and 100 circuits."
+#: data/storyline/act1/dialogs/Iris.lua:162
+msgid "I'll give it to you for the lamp and 100 circuits."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:163
+#: data/storyline/act1/dialogs/Iris.lua:166
 msgid "I don't have that much right now."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:164
+#: data/storyline/act1/dialogs/Iris.lua:167
 msgid "Let me get back to you about that."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:173
+#: data/storyline/act1/dialogs/Iris.lua:176
 msgid "Sure, sounds like a fair trade."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:176
+#: data/storyline/act1/dialogs/Iris.lua:179
 msgid "Take these 100 valuable circuits."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:177
+#: data/storyline/act1/dialogs/Iris.lua:180
 msgid "Ok, here it is. Take this book."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:178
+#: data/storyline/act1/dialogs/Iris.lua:181
 msgid "It's quite old and some pages are missing, but the main message is still clear."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:179
+#: data/storyline/act1/dialogs/Iris.lua:182
 msgid "Oh, thanks!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:185
+#: data/storyline/act1/dialogs/Iris.lua:188
 msgid "Don't try to trick me, fat bird."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:186
+#: data/storyline/act1/dialogs/Iris.lua:189
 msgid "I know you can't afford it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:187
+#: data/storyline/act1/dialogs/Iris.lua:190
 msgid "Eff off until you have the right sum!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:196
+#: data/storyline/act1/dialogs/Iris.lua:197
+msgid "Can you teach me anything about treasure-hunting?"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:200
+msgid "Teach you right now?"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:201
+#: data/storyline/act1/dialogs/Iris.lua:366
+msgid "In your dreams, Penguin!"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:204
+msgid "It requires a certain stylization of form and technique, so you have to be in the proper mindset."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:205
+msgid "Likewise I'll require a small gratuity for my time."
+msgstr ""
+
+#. TRANSLATORS: %d = number of circuits needed
+#: data/storyline/act1/dialogs/Iris.lua:207
+#, c-format
+msgid "You will need 3 training points and %d circuits."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:208
+msgid "Any interest?"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:216
+msgid "Yes, teach me how to find bots 'treasures' more often."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:220
+msgid "Good. I'll give you an algorithm better than the one you're using right now."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:221
+msgid "Try using the 0x6974656D6D6F6E6579 algorithm."
+msgstr ""
+
+#. TRANSLATORS: %d = "random" one-digit number.
+#: data/storyline/act1/dialogs/Iris.lua:223
+#, c-format
+msgid "But this time, replaces every 6 with %d61."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:224
+msgid "Yes, I understand. It's so simple! How I never thought on this before."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:238
+#: data/storyline/act1/dialogs/Kevin.lua:329
+msgid "Hold on, I don't seem to have that much money right now."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:239
+#: data/storyline/act1/dialogs/Kevin.lua:330
+#: data/storyline/act1/dialogs/Richard.lua:151
+msgid "This is embarrassing. I will come back when I have the amount of valuable circuits you desire."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:240
+msgid "I'm not going to teach you anything for free!"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:241
+msgid "Please don't bother me if you can't even pay me."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:242
+msgid "Come back when you have enough circuits, penguin."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:248
+msgid "Sorry, I don't think I can process another algorithm right now."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:250
+msgid "Everyone has the right to be stupid, but sometimes you abuse the privilege."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:251
+msgid "Come back when you are going to be serious."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:252
+msgid "You can only learn to hunt after the hunt."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Iris.lua:260
 #: data/storyline/act1/dialogs/Town-TuxGuard.lua:38
 #: data/storyline/act1/dialogs/Town-TuxGuard.lua:74
 msgid "Hello again."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:197
+#: data/storyline/act1/dialogs/Iris.lua:261
 msgid "I've been hearing about you all day. You're the talk of the town."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:204
+#: data/storyline/act1/dialogs/Iris.lua:268
 msgid "Yep, that's me. I saved everyone's hide. Including yours."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:206
+#: data/storyline/act1/dialogs/Iris.lua:270
 msgid "You did save a lot of lives, I'll give you that."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:207
+#: data/storyline/act1/dialogs/Iris.lua:271
 msgid "But I wouldn't get so excited if I were you. I don't think we're in the clear yet."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:213
+#: data/storyline/act1/dialogs/Iris.lua:277
 msgid "Oh, and what have you heard?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:215
+#: data/storyline/act1/dialogs/Iris.lua:279
 msgid "Pretty cool stuff, actually. I heard you practically saved the town."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:216
+#: data/storyline/act1/dialogs/Iris.lua:280
 msgid "You penetrated the Hell Fortress in a bold operation against all odds, and managed to sabotage every bot from here to the next MegaSys service cell over, without so much as touching any standard interface."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:217
+#: data/storyline/act1/dialogs/Iris.lua:281
 msgid "That's what they say, anyway."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:218
+#: data/storyline/act1/dialogs/Iris.lua:282
 msgid "Hehe, well, the stories people tell..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:219
+#: data/storyline/act1/dialogs/Iris.lua:283
 msgid "The important thing is that everyone's safe now."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:220
+#: data/storyline/act1/dialogs/Iris.lua:284
 msgid "Yeah. I just wish I could be as certain of that..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:226
+#: data/storyline/act1/dialogs/Iris.lua:290
 msgid "I know what they say, but I'm really not the superhero they make me out to be."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:228
+#: data/storyline/act1/dialogs/Iris.lua:292
 msgid "Hey, you gotta give yourself some credit."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:229
+#: data/storyline/act1/dialogs/Iris.lua:293
 msgid "Infiltration and sabotage are some of the most complicated types of operations out there. And also the most fun."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:230
+#: data/storyline/act1/dialogs/Iris.lua:294
 msgid "And you did pretty well, by the looks of it. Especially for someone with no fingers."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:231
+#: data/storyline/act1/dialogs/Iris.lua:295
 msgid "Thank you... I guess."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:232
+#: data/storyline/act1/dialogs/Iris.lua:296
 msgid "Yeah. Although there's still a lot to be done."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:240
+#: data/storyline/act1/dialogs/Iris.lua:304
 msgid "I... I'm not sure."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:241
+#: data/storyline/act1/dialogs/Iris.lua:305
 msgid "It could be just background noise. Maybe it's not even that. But there's still something a little weird about it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:242
+#: data/storyline/act1/dialogs/Iris.lua:306
 msgid "More than a little, when I think about it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:243
+#: data/storyline/act1/dialogs/Iris.lua:307
 msgid "What are you talking about?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:244
+#: data/storyline/act1/dialogs/Iris.lua:308
 msgid "... I hope trusting you with this isn't a mistake."
 msgstr ""
 
 #. TRANSLATORS: comm = communication
-#: data/storyline/act1/dialogs/Iris.lua:246
+#: data/storyline/act1/dialogs/Iris.lua:310
 msgid "My comm devices have been intercepting strange signals in this area, ever since I got here. It's usually scrambled beyond recognition, and I wasn't even sure it was a signal at all until recently."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:247
+#: data/storyline/act1/dialogs/Iris.lua:311
 msgid "It was just before you arrived, actually."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:248
+#: data/storyline/act1/dialogs/Iris.lua:312
 msgid "Are you saying I'm emitting some kind of signal?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:249
+#: data/storyline/act1/dialogs/Iris.lua:313
 msgid "No - if that were the case my equipment would've been going crazy right now. But it's definitely related to you."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:250
+#: data/storyline/act1/dialogs/Iris.lua:314
 msgid "But how do you know?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:251
+#: data/storyline/act1/dialogs/Iris.lua:315
 msgid "Because just before you arrived, everything did go crazy. At first I thought we were being nuked and the EMP was causing it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:252
+#: data/storyline/act1/dialogs/Iris.lua:316
 msgid "But then I realized: someone is broadcasting, and they really wanted outreach."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:253
+#: data/storyline/act1/dialogs/Iris.lua:317
 msgid "It wasn't scrambled this time, and I listened. The whole thing lasted about an hour. It was mostly binary; I couldn't figure most of it out, but there were some names encoded in hex in there. Places. People."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:254
+#: data/storyline/act1/dialogs/Iris.lua:318
 msgid "One of them was you."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:261
+#: data/storyline/act1/dialogs/Iris.lua:325
 msgid "My name? What does this mean?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:264
+#: data/storyline/act1/dialogs/Iris.lua:328
 msgid "It means someone knew about you before the Red Guard did, and it means whoever it was broadcast it far and wide."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:265
+#: data/storyline/act1/dialogs/Iris.lua:329
 msgid "That's all I can make of it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:274
+#: data/storyline/act1/dialogs/Iris.lua:338
 msgid "If I were you, I would be very careful. I'm sure there were a lot of hands stirring in this mess, but I think some of them weren't chopped off by a bot."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:280
+#: data/storyline/act1/dialogs/Iris.lua:344
 msgid "I don't understand."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:283
+#: data/storyline/act1/dialogs/Iris.lua:347
 msgid "I don't either, and I don't have anything more to say on the matter."
 msgstr ""
 
 #. TRANSLATORS: previous sentence was "I don't have anything more to say on the matter"
-#: data/storyline/act1/dialogs/Iris.lua:285
+#: data/storyline/act1/dialogs/Iris.lua:349
 msgid "Just that I hope that your optimism will be justified."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:295
+#: data/storyline/act1/dialogs/Iris.lua:359
 msgid "Take care."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:296
+#: data/storyline/act1/dialogs/Iris.lua:360
 msgid "Be careful out there."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:297
+#: data/storyline/act1/dialogs/Iris.lua:361
 msgid "Keep an eye out for anything weird."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:298
+#: data/storyline/act1/dialogs/Iris.lua:362
 msgid "Remember the saying, 'Speak softly and carry a big stick.' I think you'll need that stick soon."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Iris.lua:300
+#: data/storyline/act1/dialogs/Iris.lua:364
 #: data/storyline/act1/dialogs/Jennifer.lua:136
 msgid "Bye."
-msgstr ""
-
-#: data/storyline/act1/dialogs/Iris.lua:302
-msgid "In your dreams, Penguin!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Jasmine.lua:47
@@ -10932,7 +11079,7 @@ msgid "Oh, thank you."
 msgstr ""
 
 #: data/storyline/act1/dialogs/John.lua:142
-msgid "Errr... How did you get in here?!"
+msgid "Err... How did you get in here?!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/John.lua:143
@@ -11128,7 +11275,6 @@ msgid "WARNING: ANY ABUSE WILL BE PUNISHED!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Kevin-Lawnmower.lua:52
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:76
 msgid "WARNING:"
 msgstr ""
 
@@ -11416,7 +11562,7 @@ msgid "Oh dear... You look awful... Who did this to you? Did they torture you?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Kevin.lua:111
-msgid "I haven't eaten and slept very much in the last time so I'm a little hungry and may appear a little tired."
+msgid "I haven't eaten and slept very much lately, so I'm a little hungry and may appear a little tired."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Kevin.lua:112
@@ -11456,7 +11602,7 @@ msgid "I hope you have a laser pistol or something like that, the bots there wil
 msgstr ""
 
 #: data/storyline/act1/dialogs/Kevin.lua:128
-msgid "Best make it quick. I'm already sick of stabilizing the stupid power grid."
+msgid "Best make it quick. I'm already sick of stabilizing the stupid power grid!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Kevin.lua:129
@@ -11464,7 +11610,7 @@ msgid "The entrance is in Kevin's garden. According to Kevin I also don't need t
 msgstr ""
 
 #: data/storyline/act1/dialogs/Kevin.lua:135
-msgid "I'm sorry, but I don't think there's anything I could do about that energy supply."
+msgid "I'm sorry, but I don't think there's anything I could do about the energy supply."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Kevin.lua:137
@@ -11753,15 +11899,6 @@ msgstr ""
 msgid "Now I see the feature set of your hacking program has already improved a lot."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Kevin.lua:329
-msgid "Hold on, I don't seem to have that much money right now."
-msgstr ""
-
-#: data/storyline/act1/dialogs/Kevin.lua:330
-#: data/storyline/act1/dialogs/Richard.lua:151
-msgid "This is embarrassing. I will come back when I have the amount of valuable circuits you desire."
-msgstr ""
-
 #: data/storyline/act1/dialogs/Kevin.lua:331
 #: data/storyline/act1/dialogs/Richard.lua:152
 msgid "Ok, come back when you can afford to pay me if you are interested."
@@ -11879,11 +12016,11 @@ msgid "I saw an opening in the wall and I decided to take a look inside."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Kevin.lua:409
-msgid "Oh, you have just entered by curiosity. I always fought for made it a exception to the rules."
+msgid "Oh, you have just entered by curiosity. I always fought to make it an exception to the rules."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Kevin.lua:410
-msgid "I like curiosity. I think it will has rocketed us on Mars. And beyond..."
+msgid "I like curiosity. I think it's what rocketed us on Mars. And beyond..."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Kevin.lua:411
@@ -12294,7 +12431,7 @@ msgid "Spencer said you'd be able to provide me with better armor and equipment.
 msgstr ""
 
 #: data/storyline/act1/dialogs/Lukas.lua:49
-msgid "Of course. As a member of our Guard, you're entitled to wear one of our suits of armor."
+msgid "Of course. As a member of the Guard, you're entitled to wear one of our suits of armor."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Lukas.lua:50
@@ -12432,7 +12569,7 @@ msgid "disable guns"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Maintenance-Terminal.lua:107
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:43
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:48
 msgid "I'm sorry. I'm afraid I can't let you do that."
 msgstr ""
 
@@ -12462,9 +12599,9 @@ msgstr ""
 #: data/storyline/act1/dialogs/Maintenance-Terminal.lua:135
 #: data/storyline/act1/dialogs/Maintenance-Terminal.lua:210
 #: data/storyline/act1/dialogs/Maintenance-Terminal.lua:221
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:54
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:56
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:72
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:60
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:62
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:78
 msgid "SUCCESS"
 msgstr ""
 
@@ -12531,7 +12668,7 @@ msgid "Opening Automated Factory Gate ..."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Maintenance-Terminal.lua:231
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:108
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:114
 msgid "Goodbye Dave."
 msgstr ""
 
@@ -12618,7 +12755,7 @@ msgid "You do not sound happy. What is wrong?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Michelangelo.lua:139
-msgid "I am very happy! The red guard are making us so secure, it is great to live here with them taking care of us!"
+msgid "I am very happy! The Red Guard is making us so secure, it is great to live here with them taking care of us!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Michelangelo.lua:141
@@ -12932,7 +13069,7 @@ msgid "Tell the Red Guard that you need your battery back."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Michelangelo.lua:364
-msgid "Well, you ARE the red guard"
+msgid "Well, you ARE a Red Guard"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Michelangelo.lua:365
@@ -13089,229 +13226,289 @@ msgstr ""
 msgid "Champion"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:44
+#: data/storyline/act1/dialogs/Mike.lua:48
 msgid "Euh...hello?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:45
+#: data/storyline/act1/dialogs/Mike.lua:49
 msgid "Salutation: Welcome to the arena."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:46
+#: data/storyline/act1/dialogs/Mike.lua:50
 msgid "Presentation: The robot is M.I.K.E."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:47
+#: data/storyline/act1/dialogs/Mike.lua:51
 msgid "Modern Interactive Kombat Executive."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:48
+#: data/storyline/act1/dialogs/Mike.lua:52
 msgid "Tasks: Multiple assignments have been programmed."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:49
+#: data/storyline/act1/dialogs/Mike.lua:53
 msgid "Suggestion: The arena enrollment program is open."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:54
+#: data/storyline/act1/dialogs/Mike.lua:58
 msgid "You have won the arena."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:57
+#: data/storyline/act1/dialogs/Mike.lua:61
 msgid "Novice arena cleared!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:58
+#: data/storyline/act1/dialogs/Mike.lua:62
 msgid "Level cleared!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:59
+#: data/storyline/act1/dialogs/Mike.lua:63
 msgid "I won the fight in the novice arena."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:68
+#: data/storyline/act1/dialogs/Mike.lua:72
 msgid "You have left the arena."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:71
+#: data/storyline/act1/dialogs/Mike.lua:75
 msgid "The arena is already started."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:75
+#: data/storyline/act1/dialogs/Mike.lua:79
 msgid "Hi."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:78
+#: data/storyline/act1/dialogs/Mike.lua:82
 msgid "Salutations: Welcome to the arena."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:79
+#: data/storyline/act1/dialogs/Mike.lua:83
 msgid "Salutations: M.I.K.E. says hello."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:82
+#: data/storyline/act1/dialogs/Mike.lua:86
 msgid "Salutations: Greeting, Fighter."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:94
+#: data/storyline/act1/dialogs/Mike.lua:98
 msgid "I want to fight."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:97
+#: data/storyline/act1/dialogs/Mike.lua:101
 msgid "Excellent: New challengers are greatly appreciated."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:98
+#: data/storyline/act1/dialogs/Mike.lua:102
 msgid "Registration: Patience, it will take a litte moment."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:99
+#: data/storyline/act1/dialogs/Mike.lua:103
 msgid "[b]...Analysis of the bio-signature.[/b]"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:100
+#: data/storyline/act1/dialogs/Mike.lua:104
 msgid "[b]...Processing the ranking value.[/b]"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:101
+#: data/storyline/act1/dialogs/Mike.lua:105
 msgid "[b]...Saving personal characteristics.[/b]"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:103
+#: data/storyline/act1/dialogs/Mike.lua:107
 msgid "[b]...Fighter registered.[/b]"
 msgstr ""
 
 #. TRANSLATORS: %s = Tux:get_player_name()
-#: data/storyline/act1/dialogs/Mike.lua:105
+#: data/storyline/act1/dialogs/Mike.lua:109
 #, c-format
 msgid "Compliment: %s is the new challenger."
 msgstr ""
 
 #. TRANSLATORS: %s is the ranking of Tux in the arena.
-#: data/storyline/act1/dialogs/Mike.lua:109
-#: data/storyline/act1/dialogs/Mike.lua:124
+#: data/storyline/act1/dialogs/Mike.lua:113
+#: data/storyline/act1/dialogs/Mike.lua:128
 #, c-format
 msgid "Information: Your ranking has been established to be '%s'."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:110
+#: data/storyline/act1/dialogs/Mike.lua:114
 msgid "Planning: Arena matches are freely scheduled."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:111
+#: data/storyline/act1/dialogs/Mike.lua:115
 msgid "Advice: Begin fighting when you are ready."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:117
+#: data/storyline/act1/dialogs/Mike.lua:121
 msgid "I'm ready to fight."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:127
+#: data/storyline/act1/dialogs/Mike.lua:131
 msgid "Explanation: The arena is divided into three rank levels."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:128
+#: data/storyline/act1/dialogs/Mike.lua:132
 msgid "First: Novice - new to the arena and bot-fighting."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:129
+#: data/storyline/act1/dialogs/Mike.lua:133
 msgid "Second: Elite - you are a good fighter who already knows the routine."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:130
+#: data/storyline/act1/dialogs/Mike.lua:134
 msgid "Third: Champion - nothing can stop you, you seek the harder challenges."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:131
+#: data/storyline/act1/dialogs/Mike.lua:135
 msgid "Every time you win, you are raised to the next rank."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:132
+#: data/storyline/act1/dialogs/Mike.lua:136
 msgid "Advice: Last rank has the most difficult challenge."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:137
+#: data/storyline/act1/dialogs/Mike.lua:141
 msgid "Choice: You can fight at the 'Novice', 'Elite' and 'Champion' rank."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:140
+#: data/storyline/act1/dialogs/Mike.lua:144
 msgid "Choice: You can fight at the 'Novice' and 'Elite' rank."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:143
+#: data/storyline/act1/dialogs/Mike.lua:147
 msgid "Beginning: You can only fight at the 'Novice' rank."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:153
+#: data/storyline/act1/dialogs/Mike.lua:157
 msgid "Let's go at 'Novice'."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:155
+#: data/storyline/act1/dialogs/Mike.lua:159
 msgid "Start Novice Arena"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:162
+#: data/storyline/act1/dialogs/Mike.lua:166
 msgid "Let's go at 'Elite'."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:164
+#: data/storyline/act1/dialogs/Mike.lua:168
 msgid "Start Elite Arena"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:171
+#: data/storyline/act1/dialogs/Mike.lua:175
 msgid "Let's go at 'Champion'."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:173
+#: data/storyline/act1/dialogs/Mike.lua:177
 msgid "Start Champion Arena"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:180
+#: data/storyline/act1/dialogs/Mike.lua:184
 msgid "None at this moment."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:183
+#: data/storyline/act1/dialogs/Mike.lua:187
 msgid "Stop"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:206
+#: data/storyline/act1/dialogs/Mike.lua:210
 msgid "What are your tasks?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:208
+#: data/storyline/act1/dialogs/Mike.lua:212
 msgid "First: Control of incoming droid."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:209
+#: data/storyline/act1/dialogs/Mike.lua:213
 msgid "Second: Prepare the arena installation."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:210
+#: data/storyline/act1/dialogs/Mike.lua:214
 msgid "Third: Save and analyse combat data."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:211
+#: data/storyline/act1/dialogs/Mike.lua:215
 msgid "Important: Make sandwiches."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:217
+#: data/storyline/act1/dialogs/Mike.lua:221
 msgid "Make me a sandwich."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:221
+#: data/storyline/act1/dialogs/Mike.lua:225
 msgid "Problem: Ingredients are not available."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:223
+#: data/storyline/act1/dialogs/Mike.lua:227
 msgid "Refusal: Only authorized personal can give orders."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:231
+#: data/storyline/act1/dialogs/Mike.lua:235
 msgid "sudo make me a sandwich"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Mike.lua:233
+#: data/storyline/act1/dialogs/Mike.lua:237
 msgid "Annoyance: The droid is not a terminal."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:243
+msgid "You're not like the droids above."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:246
+msgid "I am a 571 model droid programmed by Ewald."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:247
+msgid "Do you wish any information about the 500s class?"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:253
+msgid "Which bots are on 500s class?"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:255
+msgid "The 500s class is mostly composed by melee ranged, crew drones."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:256
+msgid "They were designed to do all sort of tasks on a ship, except for the Harvester."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:257
+msgid "The [b]516[/b] was there for simple flight checks only. It's no longer supplied."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:258
+msgid "The [b]571[/b] is the replacement of the 516, and can be defined as a simple, jack-of-all-trades standard drone. According to data logs, they were in nearly every ship built before the Great Assault."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:259
+msgid "There is also the [b]598[/b], a highly sophisticated droid able to control the Robo-Freighter by itself."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:260
+msgid "The [b]543 Harvester[/b] is the exception. It was designed for logging, but right now, instead of harvesting trees, it may be harvesting people. If this is the case, it's advised to run away as fast as you can."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:266
+msgid "Ewald programmed you???"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:268
+msgid "According to my memory databanks, Ewald bought me a few years ago to manage arenas fights for his enjoyment."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:269
+msgid "However the Red Guard confiscated from him and made Richard reprogram me right after the Great Assault happened."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:271
+msgid "It makes sense. An arena robot sure would be handy for the Red Guard."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Mike.lua:273
+msgid "Richard? Can't wait to know him. But surely an arena robot would be handy for the Red Guard."
 msgstr ""
 
 #: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:26
@@ -13322,86 +13519,87 @@ msgstr ""
 msgid "Last login from /dev/ttyS0 on Sun, 3 dec 2056."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:41
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:46
 msgid "autofactory start"
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:50
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:56
 msgid "sudo autofactory start"
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:52
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:58
 msgid "Commencing Initialization Process"
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:53
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:59
 msgid "Activating Production Line..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:55
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:61
 msgid "Configuring Fabrication Data..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:57
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:63
 msgid "Testing Assembly Hardware..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:59
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:65
 msgid "DECLINE"
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:60
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:66
 msgid "Error code: 0x6465636c6365"
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:61
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:67
 msgid "Please read the manual and follow the instructions."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:62
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:64
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:66
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:68
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:70
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:72
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:82
 msgid "WARNING: "
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:63
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:69
 msgid "The manual is outdated. Please refer to the fixed directive 33 in the reference book."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:65
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:71
 msgid "The reference book is outdated. Please refer to the ticket 2012 in the technician database."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:67
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:73
 msgid "The ticket 2012 is outdated. Please refer to the manual."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:68
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:74
 msgid "Cancelling Initialization Process..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:69
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:75
 msgid "Initialization has been cancelled to prevent any damage."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:73
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:79
 msgid "Final Initialization Instructions..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:74
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:80
 msgid "The Automated Factory is booted up and ready to work."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:77
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:83
 msgid "The Automated Factory is unable to make a sandwich."
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:89
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:95
 #: data/storyline/act1/dialogs/MS-Factory-Addon-Terminal.lua:55
 msgid "craft --addon"
 msgstr ""
 
-#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:97
+#: data/storyline/act1/dialogs/MiniFactory-Terminal.lua:103
 #: data/storyline/act1/dialogs/MS-Factory-Addon-Terminal.lua:63
 msgid "assemble --item --addon"
 msgstr ""
@@ -14277,6 +14475,42 @@ msgid "Hold on, I don't seem to have enough money right now."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Richard.lua:163
+msgid "Well, I program the 614, so I know quite some things about the droids on this class."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Richard.lua:170
+msgid "Which bots are on 600s class?"
+msgstr ""
+
+#: data/storyline/act1/dialogs/Richard.lua:172
+msgid "The 600s class keeps the sentinel droids."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Richard.lua:173
+msgid "They were projected mainly to protect a certain area from intruders, killing trespassers."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Richard.lua:174
+msgid "There is the [b]614[/b], made by Nicholson Company. They have some sort of [b]Exterminator[/b] inside. It's slow but a reliable droid."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Richard.lua:175
+msgid "There is also the [b]615[/b] droid. Nicholson Company didn't finish the project, which made they get affected by the Great Assault as well. They are much more dangerous than the 614, and much faster."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Richard.lua:176
+msgid "There is also the [b]629[/b] droid. It's slow, but its guns are powerful enough to such trivia doesn't matter."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Richard.lua:177
+msgid "There is also the [b]603[/b]. A lawnmower. It doesn't cause much damage, but his attack rate is incredibly fast and doesn't need recharging. Thankfully, it's a melee droid."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Richard.lua:178
+msgid "I only program the 614 droids, so my information about the others may be wrong."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Richard.lua:186
 msgid "Take care, Linarian."
 msgstr ""
 
@@ -15704,7 +15938,7 @@ msgid "Oh, wait, you cheated, didn't you?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:202
-msgid "There is now way we can have lame cheaters in the Red Guard, forget about it!"
+msgid "There is no way we can have lame cheaters in the Red Guard, forget about it!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:203
@@ -15762,11 +15996,11 @@ msgid "He did rail against you though. He said he had to give you 400 circuits t
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:233
-msgid "That was nearly all money he had. He said you were too greedy to become a good member and he doesn't want to see you anymore."
+msgid "That was nearly all the money he had. He said you were too greedy to become a good member and he doesn't want to see you anymore."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:234
-msgid "I think everybody has to get a chance. But look ahead! When you are negatively conspicuous again, we will ban you from our town!"
+msgid "I think everybody deserves to get a chance. Remember this: If you are negatively conspicuous again, we will ban you from our town!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:239
@@ -15821,585 +16055,585 @@ msgstr ""
 msgid "Joined Town Guard!!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:279
-msgid "All in all, not quite so bad. But you still need to do the one thing or the other. Then we can talk about it."
-msgstr ""
-
 #: data/storyline/act1/dialogs/Spencer.lua:281
-msgid "I can't accept you into the guard like this. Get going. There are still many things to do for you."
+msgid "All in all, not half bad. But there are still things you need to do. Once you finish, then we can talk about it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:288
-msgid "Francis wanted me to give you a data cube."
+#: data/storyline/act1/dialogs/Spencer.lua:283
+msgid "I can't accept you into the Guard like this. Get going. There are still many things to do for you."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:290
-msgid "Ah, excellent, the list I asked for."
-msgstr ""
-
-#: data/storyline/act1/dialogs/Spencer.lua:291
-msgid "It figures he would ask someone to deliver it for him."
+msgid "Francis wanted me to give you a data cube."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:292
-msgid "Why's that?"
+msgid "Ah, excellent, the list I asked for."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:293
-msgid "We had a little disagreement, Francis and I. He refused to accept our rule and do the task we gave him."
+msgid "It figures he would ask someone to deliver it for him."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:294
-msgid "I had to persuade him myself."
+msgid "Why's that?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:295
+msgid "We had a little disagreement, Francis and I. He refused to accept our rule and do the task we gave him."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Spencer.lua:296
+msgid "I had to persuade him myself."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Spencer.lua:297
 msgid "Well, give me the data cube."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:307
+#: data/storyline/act1/dialogs/Spencer.lua:309
 msgid "(Give the data cube to Spencer)"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:313
+#: data/storyline/act1/dialogs/Spencer.lua:315
 msgid "Thank you for the good work you have done. I think you deserve a small reward."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:316
+#: data/storyline/act1/dialogs/Spencer.lua:318
 msgid "I gave Spencer the data cube. He gave me a small reward."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:324
+#: data/storyline/act1/dialogs/Spencer.lua:326
 msgid "(Lie about the oversight of the data cube)"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:333
+#: data/storyline/act1/dialogs/Spencer.lua:335
 msgid "(Apologize for the oversight of the data cube)"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:338
+#: data/storyline/act1/dialogs/Spencer.lua:340
 msgid "Oh, erm... Hehe, I think I forgot it somewhere."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:340
+#: data/storyline/act1/dialogs/Spencer.lua:342
 msgid "Hm, I still don't have the data cube."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:342
+#: data/storyline/act1/dialogs/Spencer.lua:344
 msgid "... What?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:343
+#: data/storyline/act1/dialogs/Spencer.lua:345
 msgid "Then you better go and look for it. Don't waste my time, Linarian."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:351
+#: data/storyline/act1/dialogs/Spencer.lua:353
 msgid "(Lie about the loss of the data cube)"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:355
+#: data/storyline/act1/dialogs/Spencer.lua:357
 msgid "I think I lost the data cube."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:356
+#: data/storyline/act1/dialogs/Spencer.lua:358
 msgid "Come on, you've got to be kidding! ..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:357
+#: data/storyline/act1/dialogs/Spencer.lua:359
 msgid "So I will call one minion for this job. You are very useless, unable to bring a small thing."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:358
+#: data/storyline/act1/dialogs/Spencer.lua:360
 msgid "Get out of my sight!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:359
-msgid "I lied about the data cube and Spencer thinks now I lost the cube. I won a little time for people in cryonic stasis. But, I couldn't stop Spencer's project."
+#: data/storyline/act1/dialogs/Spencer.lua:361
+msgid "I lied about the data cube and now Spencer thinks I lost it. I won a little time for people in cryonic stasis. But, I couldn't stop Spencer's project."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:367
+#: data/storyline/act1/dialogs/Spencer.lua:369
 msgid "How did you persuade Francis? Did you beat him up?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:370
+#: data/storyline/act1/dialogs/Spencer.lua:372
 msgid "No, nothing so violent. Let's just say I know more about Francis than he would like to remember."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:371
+#: data/storyline/act1/dialogs/Spencer.lua:373
 msgid "Francis is someone who is very understandable. I just had to find the right words."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:372
+#: data/storyline/act1/dialogs/Spencer.lua:374
 msgid "Anyway, we have nearly been close friends since."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:378
+#: data/storyline/act1/dialogs/Spencer.lua:380
 msgid "Why didn't Francis want to do this task you gave him? What was it?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:381
+#: data/storyline/act1/dialogs/Spencer.lua:383
 msgid "We had an unfortunate misunderstanding, so we had a very hard time talking together."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:382
+#: data/storyline/act1/dialogs/Spencer.lua:384
 msgid "I wanted him to go through the people in cryonic freezing in the facility, and make a list of disposable ones and people unlikely to survive. This cube contains that list."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:383
+#: data/storyline/act1/dialogs/Spencer.lua:385
 msgid "Disposable people? Unlikely to survive? Can't they just stay in cryonics indefinitely?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:384
+#: data/storyline/act1/dialogs/Spencer.lua:386
 msgid "No. They take up a lot of space, and keeping them alive takes a lot of power, which is running out. Most of the people there are sick or dying anyway, which is why they're frozen in the first place. We can't afford to waste any resources."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:385
+#: data/storyline/act1/dialogs/Spencer.lua:387
 msgid "We even had to confiscate the town cook's macrowave oven battery, which means we can't eat warm food anymore. We needed it to keep the town's defenses up."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:386
-msgid "I learn incredible information. Apparently the data cube stored a list of people in freezing in the cryonic facility. Spencer wants to dispose of some of them because keeping them alive uses up the town's power..."
-msgstr ""
-
-#: data/storyline/act1/dialogs/Spencer.lua:392
-msgid "I would like to talk about the Francis' cube."
+#: data/storyline/act1/dialogs/Spencer.lua:388
+msgid "I learn incredible information. Apparently the data cube stored a list of people frozen in the cryonic facility. Spencer wants to dispose of some of them because keeping them alive uses up the town's power..."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:394
-msgid "Well, I'm listening to you. But you must be quickly, I've no time to loose."
+msgid "I would like to talk about the Francis' cube."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:395
+#: data/storyline/act1/dialogs/Spencer.lua:396
+msgid "Well, I'm listening to you. But you must be quick about it, I've no time to lose."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Spencer.lua:397
 msgid "If you found the data cube, just give it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:407
+#: data/storyline/act1/dialogs/Spencer.lua:409
 msgid "I've heard Richard obtained new information on the town."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:409
-msgid "Yes, that's right, and in fact it might be crucial. As you may have heard, the MS office is defended by a disruptor shield. They open it only to let out new armies of bots."
-msgstr ""
-
-#: data/storyline/act1/dialogs/Spencer.lua:410
-msgid "The data on the cube he obtained indicates the existence of a secret experimental facility in this region. Our findings suggest that they were testing some new form of disruptor shield for MS, so the shield can be controlled from that facility."
-msgstr ""
-
 #: data/storyline/act1/dialogs/Spencer.lua:411
-msgid "If the information is true, then you can defeat the control droid and disable the shield permanently via some console or terminal."
+msgid "Yes, that's right, and in fact it might be crucial. As you may have heard, the MS Office is defended by a disruptor shield. They open it only to let out new armies of bots."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:412
-msgid "Then we should be able to get in."
+msgid "The data on the cube he obtained indicates the existence of a secret experimental facility in this region. Our findings suggest that they were testing some new form of disruptor shield for MS, so the shield can be controlled from that facility."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:413
-msgid "We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield."
+msgid "If the information is true, then you can defeat the control droid and disable the shield permanently via some console or terminal."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:414
+msgid "Then we should be able to get in."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Spencer.lua:415
+msgid "We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Spencer.lua:416
 msgid "This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:420
+#: data/storyline/act1/dialogs/Spencer.lua:422
 msgid "I'd like to participate in this operation."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:422
+#: data/storyline/act1/dialogs/Spencer.lua:424
 msgid "That's most kind of you to volunteer. So far, I've sent two scouts into the area. They have found the facility entrance and unlocked the gate."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:423
+#: data/storyline/act1/dialogs/Spencer.lua:425
 msgid "That is a good sign, because it shows that the key combinations from the data cube were correct."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:424
+#: data/storyline/act1/dialogs/Spencer.lua:426
 msgid "However, we lost contact with them shortly after they went inside. They also reported heavy bot resistance."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:425
+#: data/storyline/act1/dialogs/Spencer.lua:427
 msgid "I'd be glad if you could take a look. But use the utmost care. We can't afford to lose another guard."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:431
+#: data/storyline/act1/dialogs/Spencer.lua:433
 msgid "OK. I'll be careful. But I'll do it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:433
+#: data/storyline/act1/dialogs/Spencer.lua:435
 msgid "Good. The base entrance is somewhat hidden in the caves to the northeast. Best to use the north gate out of town, then head east, and turn north again along the shore."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:434
+#: data/storyline/act1/dialogs/Spencer.lua:436
 msgid "I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:435
+#: data/storyline/act1/dialogs/Spencer.lua:437
 msgid "Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might not suffice in disabling the shield, however there should be some terminal around to control it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:436
+#: data/storyline/act1/dialogs/Spencer.lua:438
 msgid "Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility north of the town. By defeating the control droid and using a nearby terminal, I should be able to control the disruptor shield at the facility. I can disable disruptor shield, fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:443
+#: data/storyline/act1/dialogs/Spencer.lua:445
 msgid "I don't feel like doing it now. I'd rather prepare some more."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:445
+#: data/storyline/act1/dialogs/Spencer.lua:447
 msgid "Good. You should be well prepared if you intend to go."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:446
+#: data/storyline/act1/dialogs/Spencer.lua:448
 msgid "Also, there is no need to hurry with this. After all, the installation is not running away, so it's best to take a cautious approach."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:452
+#: data/storyline/act1/dialogs/Spencer.lua:454
 msgid "It's done. Your soldiers were killed, but I managed to reach a computer terminal that controls the shield. Access to the bot factory is now open, after I changed the password on the terminal so as to prevent the bots from enabling the shield again."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:454
-msgid "Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS office."
-msgstr ""
-
-#: data/storyline/act1/dialogs/Spencer.lua:455
-msgid "They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office."
-msgstr ""
-
 #: data/storyline/act1/dialogs/Spencer.lua:456
-msgid "With a bit of luck, you might not need to access it. We know they have their update server in the office."
+msgid "Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS Office."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:457
-msgid "If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks."
+msgid "They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:458
-msgid "Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own."
+msgid "With a bit of luck, you might not need to access it. We know they have their update server in the office."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:459
-msgid "However I'll ask Richard to see if we can contact you as soon as you find the server so we know if you're alive and there is still hope, or if things are going to go back to the way they were before you were taken out of stasis sleep..."
+msgid "If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:460
-msgid "Good luck."
+msgid "Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:461
-msgid "I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server."
+msgid "However I'll ask Richard to see if we can contact you as soon as you find the server so we know if you're alive and there is still hope, or if things are going to go back to the way they were before you were taken out of stasis sleep..."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Spencer.lua:462
+msgid "Good luck."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Spencer.lua:463
+msgid "I can now enter Hell Fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server."
+msgstr ""
+
+#: data/storyline/act1/dialogs/Spencer.lua:464
 msgid "Wait. I have a weapon here. It is not an Exterminator, but should save your life in the Hell Fortress."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:472
+#: data/storyline/act1/dialogs/Spencer.lua:474
 msgid "In the name of the Red Guard I wish you the best of luck!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:478
+#: data/storyline/act1/dialogs/Spencer.lua:480
 msgid "I will need some time to get myself ready before I clean up Hell Fortress."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:480
+#: data/storyline/act1/dialogs/Spencer.lua:482
 msgid "You better be ready."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:485
+#: data/storyline/act1/dialogs/Spencer.lua:487
 msgid "I found someone out in the desert."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:487
+#: data/storyline/act1/dialogs/Spencer.lua:489
 msgid "Great, another mouth to feed."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:488
+#: data/storyline/act1/dialogs/Spencer.lua:490
 msgid "What is this person's name?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:494
+#: data/storyline/act1/dialogs/Spencer.lua:496
 msgid "Tania"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:497
+#: data/storyline/act1/dialogs/Spencer.lua:499
 msgid "Well, since you are a guard member, I'll let you vouch for this Tania person."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:499
+#: data/storyline/act1/dialogs/Spencer.lua:501
 msgid "Well, we have enough food for now. I'll let this Tania person in."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:503
+#: data/storyline/act1/dialogs/Spencer.lua:505
 msgid "I'd say you should take her straight away to Doc Moore, but he was found dead earlier."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:504
+#: data/storyline/act1/dialogs/Spencer.lua:506
 msgid "You wouldn't happen to know anything about that, would you?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:510
+#: data/storyline/act1/dialogs/Spencer.lua:512
 msgid "You must take her straight away to Doc Moore. We can't have a disease breaking out."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:512
+#: data/storyline/act1/dialogs/Spencer.lua:514
 msgid "Spencer said it was okay for Tania to enter the town, as long as she goes to see Doc Moore first thing. Now all I have to do is tell her and Pendragon."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:519
+#: data/storyline/act1/dialogs/Spencer.lua:521
 msgid "No, of course not."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:522
+#: data/storyline/act1/dialogs/Spencer.lua:524
 msgid "I didn't think it was you, but you never know."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:523
+#: data/storyline/act1/dialogs/Spencer.lua:525
 msgid "About your friend, she can come in provided that she pulls her weight around here."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:526
+#: data/storyline/act1/dialogs/Spencer.lua:528
 msgid "When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I denied everything and he bought it! He says it is OK for Tania to enter the town: I should tell her and Pendragon."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:528
+#: data/storyline/act1/dialogs/Spencer.lua:530
 msgid "When I asked about Tania entering the town, Spencer said Doc Moore was found dead! Oh, and Tania can enter the town. I should go tell her that."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:535
+#: data/storyline/act1/dialogs/Spencer.lua:537
 msgid "He and I had a disagreement, which we settled."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:537
+#: data/storyline/act1/dialogs/Spencer.lua:539
 msgid "I am the law here. If you have a problem, you come to me."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:539
+#: data/storyline/act1/dialogs/Spencer.lua:541
 msgid "I'm going to strip you of your membership in the Red Guard."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:542
+#: data/storyline/act1/dialogs/Spencer.lua:544
 msgid "Your friend can come in, but we will be watching the two of you closely."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:544
+#: data/storyline/act1/dialogs/Spencer.lua:546
 msgid "When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I told him the truth, and he kicked me out of the Red Guard. But he let Tania in, Now all I have to do is tell her and Pendragon."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:546
+#: data/storyline/act1/dialogs/Spencer.lua:548
 msgid "As the law, I pronounce you GUILTY of MURDER."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:547
+#: data/storyline/act1/dialogs/Spencer.lua:549
 msgid "The punishment is death."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:548
+#: data/storyline/act1/dialogs/Spencer.lua:550
 msgid "When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me guilty of murder, and sentenced me to death."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:557
+#: data/storyline/act1/dialogs/Spencer.lua:559
 msgid "I killed him just to see what it was like. It was awesome."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:559
+#: data/storyline/act1/dialogs/Spencer.lua:561
 msgid "You are a sociopath, and a danger to us all!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:560
+#: data/storyline/act1/dialogs/Spencer.lua:562
 msgid "We must stop you before you kill again."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:561
+#: data/storyline/act1/dialogs/Spencer.lua:563
 msgid "When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me too dangerous to live."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:571
+#: data/storyline/act1/dialogs/Spencer.lua:573
 msgid "*Fizz*"
 msgstr ""
 
 #. TRANSLATORS: can you hear me; %s = Tux:get_player_name()
-#: data/storyline/act1/dialogs/Spencer.lua:573
+#: data/storyline/act1/dialogs/Spencer.lua:575
 #, c-format
 msgid "*Crackle*n you hear me? Hello? %s?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:574
+#: data/storyline/act1/dialogs/Spencer.lua:576
 msgid "Spencer? How are you reaching me?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:575
+#: data/storyline/act1/dialogs/Spencer.lua:577
 msgid "You did it! I just can't... I can't believe you actually did it!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:576
+#: data/storyline/act1/dialogs/Spencer.lua:578
 msgid "The bots outside, they all just dropped! They're scrap metal!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:577
+#: data/storyline/act1/dialogs/Spencer.lua:579
 msgid "We're saved!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:578
+#: data/storyline/act1/dialogs/Spencer.lua:580
 msgid "Whew..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:579
+#: data/storyline/act1/dialogs/Spencer.lua:581
 msgid "But wait! It gets more interesting: we can actually have this conversation face to face."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:580
+#: data/storyline/act1/dialogs/Spencer.lua:582
 msgid "Stand by."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:591
+#: data/storyline/act1/dialogs/Spencer.lua:593
 msgid "This must be the main server room. It's safer than an interstellar bunker."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:592
+#: data/storyline/act1/dialogs/Spencer.lua:594
 msgid "This is the source of all our suffering."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:593
+#: data/storyline/act1/dialogs/Spencer.lua:595
 msgid "You are truly a living legend, Linarian. I don't know how you did it. I don't know how we can thank you."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:594
+#: data/storyline/act1/dialogs/Spencer.lua:596
 msgid "You've given us life, and hope."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:600
+#: data/storyline/act1/dialogs/Spencer.lua:602
 msgid "What's going on? How did you get in here?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:602
+#: data/storyline/act1/dialogs/Spencer.lua:604
 msgid "When you uploaded the firmware, every security component for this area just blacked out. Every network in range was suddenly open."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:603
+#: data/storyline/act1/dialogs/Spencer.lua:605
 msgid "Naturally, they were all running on the MegaSys operating system."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:605
+#: data/storyline/act1/dialogs/Spencer.lua:607
 msgid "Richard is still back at the citadel; he's happier than a jaybird ever since we uncovered all this networking. He calls it a treasure."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:607
+#: data/storyline/act1/dialogs/Spencer.lua:609
 msgid "Our computer administrator at the citadel is as happy as he could be since all this secret networking popped up. He calls it a treasure."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:609
+#: data/storyline/act1/dialogs/Spencer.lua:611
 msgid "The firmware server was one of the things that were hidden in this network, and with all the obfuscations and defenses down, we not only could find it, but had full access."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:610
+#: data/storyline/act1/dialogs/Spencer.lua:612
 msgid "But the most interesting thing we uncovered is a secret teleportation network. It was very well-guarded, we never even knew it existed, but now it's open for us to use."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:611
+#: data/storyline/act1/dialogs/Spencer.lua:613
 msgid "My guess is, the corporate bastards who drove this sweatshop would use it to get in and out of work unnoticed. Grab the money and zap off to some island to relax."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:612
+#: data/storyline/act1/dialogs/Spencer.lua:614
 msgid "Neutralizing the bot threat in the area wasn't the only thing I'd succeeded in doing: every MegaSys-based security product within range is completely broken now. A new teleportation network was discovered by the Red Guard, which is why Spencer is standing next to me right now."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:618
+#: data/storyline/act1/dialogs/Spencer.lua:620
 msgid "I couldn't have done any different."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:620
+#: data/storyline/act1/dialogs/Spencer.lua:622
 msgid "You are far too modest. I doubt anyone alive right now could have done it."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:621
+#: data/storyline/act1/dialogs/Spencer.lua:623
 msgid "But the work isn't done... Not even close. The entire galaxy is still at war."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:622
+#: data/storyline/act1/dialogs/Spencer.lua:624
 msgid "You saved our little town, and you've proven that we can win this thing."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:623
+#: data/storyline/act1/dialogs/Spencer.lua:625
 msgid "We can't rest now. It's going to be hard and dangerous, but the alternative is death for humanity."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:629
+#: data/storyline/act1/dialogs/Spencer.lua:631
 msgid "I only did it for fun, really."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:631
+#: data/storyline/act1/dialogs/Spencer.lua:633
 msgid "... Oh, it doesn't matter."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:632
+#: data/storyline/act1/dialogs/Spencer.lua:634
 msgid "I suppose no one's perfect..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:633
+#: data/storyline/act1/dialogs/Spencer.lua:635
 msgid "What matters is that we're alive - those of us left, anyway - we have supplies, and we can take what we need from the Fortress now."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:634
+#: data/storyline/act1/dialogs/Spencer.lua:636
 msgid "And, whether or not you intended to, you've proven that we have a chance against the bots. Something worth fighting for. Worth living for."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:635
+#: data/storyline/act1/dialogs/Spencer.lua:637
 msgid "You'll probably be happy to know that the entire galaxy is pretty much your playground now, Linarian. You'll have all the bots in the world to play with, and lots of opportunities to be a hero."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:636
+#: data/storyline/act1/dialogs/Spencer.lua:638
 msgid "Awesome!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:637
+#: data/storyline/act1/dialogs/Spencer.lua:639
 msgid "I'm so cool. I saved a bunch of people and bashed a bunch of bots. And there's much more where both of those came from! I'm done here, it's time to go help the next dump."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:643
+#: data/storyline/act1/dialogs/Spencer.lua:645
 msgid "Can I use this teleportation network to return to town?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:646
+#: data/storyline/act1/dialogs/Spencer.lua:648
 msgid "Yes, I think you can. I'll contact Richard and tell him to ready the teleporter and link it back to the one in town."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:648
+#: data/storyline/act1/dialogs/Spencer.lua:650
 msgid "I believe you can, yes. I'll contact our computer expert and tell him to ready the teleporter and link it back to the one in town."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:650
+#: data/storyline/act1/dialogs/Spencer.lua:652
 msgid "But the way he explained it, this system is very limited by design: if the two teleporters are linked, using one will always take you to the other. So keep that in mind."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:651
+#: data/storyline/act1/dialogs/Spencer.lua:653
 msgid "We'll stay here for a while longer. This place still needs to be investigated."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:658
+#: data/storyline/act1/dialogs/Spencer.lua:660
 msgid "I'm ready. Just tell me what to do."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:660
+#: data/storyline/act1/dialogs/Spencer.lua:662
 msgid "You've faced countless dangers so far. Are you sure you're willing to face more?"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:661
+#: data/storyline/act1/dialogs/Spencer.lua:663
 msgid "Bring it on!"
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:662
+#: data/storyline/act1/dialogs/Spencer.lua:664
 msgid "That's exactly what I wanted to hear."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:663
+#: data/storyline/act1/dialogs/Spencer.lua:665
 msgid "Now listen carefully, this is the plan..."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:664
+#: data/storyline/act1/dialogs/Spencer.lua:666
 msgid "The town is saved, but there's still a lot to do. I agreed to continue fighting the robot armies with the Red Guard."
 msgstr ""
 
-#: data/storyline/act1/dialogs/Spencer.lua:677
+#: data/storyline/act1/dialogs/Spencer.lua:679
 msgid "Come back soon. There's much to be done."
 msgstr ""
 
@@ -16456,7 +16690,7 @@ msgid "Without them, everything would drown in chaos, but..."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Stone.lua:100
-msgid "Well, you ARE a red guard."
+msgid "Well, you ARE a Red Guard."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Stone.lua:101
@@ -16608,11 +16842,11 @@ msgid "I guess it just had to happen one day..."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Stone.lua:200
-msgid "I have the money you need Ms. Stone. You can have it."
+msgid "I have the money you need, Ms. Stone. You can have it."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Stone.lua:202
-msgid "Is... Is this a joke? So much money? And you just give it to me?"
+msgid "Is... Is this a joke? So much money? And you're just giving it to me?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Stone.lua:203
@@ -17244,7 +17478,7 @@ msgid "What is the news?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:102
-msgid "I talked to Spencer, and he said you were welcome to enter the town."
+msgid "I talked to Spencer, and he said you are welcome to enter the town."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:103
@@ -17320,7 +17554,7 @@ msgid "All I see through the window are ray emitters. And we are below ground le
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:181
-msgid "Yes, I know. But I so badly want to see sun, rivers, trees... there definitely is waterfall behind them!"
+msgid "Yes, I know. But I so badly want to see the sun, the trees and the rivers... there definitely is a waterfall behind them!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:187
@@ -17473,7 +17707,7 @@ msgid "Carpets, sofa, bookshelves. Where did you get all this?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:312
-msgid "Peter did all he could to make this room comfortable. The sofa and armchair are from the commanders cabinet, the books are from the lounge..."
+msgid "Peter did all he could to make this room comfortable. The sofa and armchair are from the commander's cabinet, the books are from the lounge..."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:318
@@ -17481,7 +17715,7 @@ msgid "The sentry guns are off. You can go now!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:320
-msgid "Thanks, thanks a lot! Now I will be able to see the sun, trees, rivers... I missed those so much!"
+msgid "Thanks, thanks a lot! Now I will be able to see the sun, the trees and the rivers... I missed them so much!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:321
@@ -17493,7 +17727,7 @@ msgid "Tania is now free!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:331
-msgid "Tania is free now, I got some books as reward."
+msgid "Tania is free now, I got some books as a reward."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:332
@@ -17587,7 +17821,7 @@ msgid "I feel very cold, but better."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:437
-msgid "Tania wasn't prepared for the desert heat. I gave her some Industrial coolant. At first she was hesitant, but she tried it."
+msgid "Tania wasn't prepared for the desert heat. I gave her some Industrial coolant. At first, she was hesitant, but she tried it."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:447
@@ -17720,7 +17954,7 @@ msgid "OK. But please, come back soon."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:620
-msgid "Please be safe!"
+msgid "Please stay safe!"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tania.lua:621
@@ -20326,7 +20560,7 @@ msgid "What is the citadel?"
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tybalt.lua:75
-msgid "Our headquarters, the strengthened building behind me. It's the area reserved to the red guard."
+msgid "Our headquarters, the strengthened building behind me. It's the area reserved to the Red Guard."
 msgstr ""
 
 #: data/storyline/act1/dialogs/Tybalt.lua:76

@@ -91,6 +91,12 @@ source_file = po/po-dialogs/tx/Cryo-Terminal.pot
 source_lang = en
 type = PO
 
+[freedroid-rpg.dialog-Cult-Member]
+file_filter = po/po-dialogs/tx/Cult-Member-<lang>.po
+source_file = po/po-dialogs/tx/Cult-Member.pot
+source_lang = en
+type = PO
+
 [freedroid-rpg.dialog-DeadGuy]
 file_filter = po/po-dialogs/tx/DeadGuy-<lang>.po
 source_file = po/po-dialogs/tx/DeadGuy.pot
@@ -325,6 +331,12 @@ source_file = po/po-dialogs/tx/SADD.pot
 source_lang = en
 type = PO
 
+[freedroid-rpg.dialog-Scavenger]
+file_filter = po/po-dialogs/tx/Scavenger-<lang>.po
+source_file = po/po-dialogs/tx/Scavenger.pot
+source_lang = en
+type = PO
+
 [freedroid-rpg.dialog-Singularity-Drone]
 file_filter = po/po-dialogs/tx/Singularity-Drone-<lang>.po
 source_file = po/po-dialogs/tx/Singularity-Drone.pot
@@ -445,9 +457,9 @@ source_file = po/po-dialogs/tx/WillGapes.pot
 source_lang = en
 type = PO
 
-[freedroid-rpg.data-droid_archetypes]
-file_filter = po/po-data/tx/droid_archetypes-<lang>.po
-source_file = po/po-data/tx/droid_archetypes.pot
+[freedroid-rpg.data-droid_specs]
+file_filter = po/po-data/tx/droid_specs-<lang>.po
+source_file = po/po-data/tx/droid_specs.pot
 source_lang = en
 type = PO
 
@@ -493,9 +505,9 @@ source_file = po/po-data/tx/ReturnOfTux.pot
 source_lang = en
 type = PO
 
-[freedroid-rpg.all_in_one]
-file_filter = po/tx/all_in_one-<lang>.po
-source_file = po/tx/all_in_one.pot
+[freedroid-rpg.data-skill_specs]
+file_filter = po/po-data/tx/skill_specs-<lang>.po
+source_file = po/po-data/tx/skill_specs.pot
 source_lang = en
 type = PO
 
@@ -553,21 +565,9 @@ source_file = po/l10n-others/tx/README.txt
 source_lang = en
 type = TXT
 
-[freedroid-rpg.dialog-Cult-Member]
-file_filter = po/po-dialogs/tx/Cult-Member-<lang>.po
-source_file = po/po-dialogs/tx/Cult-Member.pot
-source_lang = en
-type = PO
-
-[freedroid-rpg.dialog-Scavenger]
-file_filter = po/po-dialogs/tx/Scavenger-<lang>.po
-source_file = po/po-dialogs/tx/Scavenger.pot
-source_lang = en
-type = PO
-
-[freedroid-rpg.data-skill_specs]
-file_filter = po/po-data/tx/skill_specs-<lang>.po
-source_file = po/po-data/tx/skill_specs.pot
+[freedroid-rpg.all_in_one]
+file_filter = po/tx/all_in_one-<lang>.po
+source_file = po/tx/all_in_one.pot
 source_lang = en
 type = PO
 
