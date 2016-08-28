@@ -29,6 +29,7 @@
 // Now objects are stored in a sparse dynarray, and the INFOUT object's type
 // is no more used.
 // This filter removes 'INFOUT objects' from the savegame.
+
 static int convert_to_sparse_array(struct savegame_data *savegame, struct auto_string *report, const char* section, const char* type, const char* infout, int nb_lines)
 {
 	char *array_start = strstr(savegame->sav_buffer, section);
@@ -96,6 +97,45 @@ static int convert_to_sparse_array(struct savegame_data *savegame, struct auto_s
 	return FILTER_APPLIED;
 }
 
+static int rename_array(struct savegame_data *savegame, struct auto_string *report, const char* old, const char* new)
+{
+	char *array_start = strstr(savegame->sav_buffer, old);
+	if (!array_start) {
+		// the array wasn't found
+		return FILTER_ABORT;
+	}
+
+	int length_old = strlen(old);
+	int length_new = strlen(new);
+
+	if (length_new <= length_old) {
+		// Avoid a huge mem copy, by filling with blanks
+		int i;
+		strncpy(array_start, new, length_new);
+		for (i = length_new; i < length_old; ++i) {
+			array_start[i] = ' ';
+		}
+	} else {
+		// Some chars have to be inserted, so we need to create a new buffer
+		char *new_savegame = (char*)MyMalloc(sizeof(char)*(savegame->sav_buffer_size + (length_new - length_old) + 1));
+
+		// Copy the beginning of the savegame buffer, add the new name, and add the rest of the savegame
+		ptrdiff_t offset = array_start - savegame->sav_buffer;
+
+		memcpy(new_savegame, savegame->sav_buffer, offset);
+		memcpy(&new_savegame[offset], new, strlen(new));
+		memcpy(&new_savegame[offset+strlen(new)], &savegame->sav_buffer[offset+strlen(old)], savegame->sav_buffer_size - (offset+strlen(old)));
+		new_savegame[savegame->sav_buffer_size + (length_new - length_old)] = '\0';
+
+		// Replace the old buffer by the new one
+		free(savegame->sav_buffer);
+		savegame->sav_buffer = new_savegame;
+		savegame->sav_buffer_size = savegame->sav_buffer_size + (length_new - length_old);
+	}
+
+	return FILTER_APPLIED;
+}
+
 int filter_0_16_1_convert_bullets_array(struct savegame_data *savegame, struct auto_string *report)
 {
 	return convert_to_sparse_array(savegame, report, "bullet_array{", "type = ", "-30,", 26);
@@ -114,4 +154,9 @@ int filter_0_16_1_convert_blasts_array(struct savegame_data *savegame, struct au
 int filter_0_16_1_convert_spellactives_array(struct savegame_data *savegame, struct auto_string *report)
 {
 	return convert_to_sparse_array(savegame, report, "spell_active_array{", "img_type = ", "-1,", 34);
+}
+
+int filter_0_16_1_rename_spellactives_array(struct savegame_data *savegame, struct auto_string *report)
+{
+	return rename_array(savegame, report, "spell_active_array{", "spell_array{");
 }

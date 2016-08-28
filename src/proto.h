@@ -148,7 +148,7 @@ void start_blast(float, float, int, int, int, int, char *);
 void animate_blasts(void);
 void delete_blast(int);
 int get_blast_type_by_name(const char *name);
-void move_active_spells(void);
+void move_spells(void);
 void delete_spell(int);
 void clear_active_bullets(void);
 int check_bullet_collisions(struct bullet *);

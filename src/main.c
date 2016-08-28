@@ -59,7 +59,7 @@ void DoAllMovementAndAnimations(void)
 
 	animate_blasts();	// move blasts to the right current "phase" of the blast
 
-	move_active_spells();	// move moving spells currently active...
+	move_spells();	// move moving spells currently active...
 
 	move_bullets();
 

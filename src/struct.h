@@ -65,7 +65,7 @@ typedef struct dynarray upgrade_socket_dynarray;
 typedef struct dynarray bullet_sparsedynarray;
 typedef struct dynarray melee_shot_sparsedynarray;
 typedef struct dynarray blast_sparsedynarray;
-typedef struct dynarray spell_active_sparsedynarray;
+typedef struct dynarray spell_sparsedynarray;
 
 struct font {
 	int height;
@@ -731,7 +731,7 @@ typedef struct blast {
 	int faction;
 } blast;
 
-typedef struct spell_active {
+typedef struct spell {
 	int img_type;		// what type of spell is active?
 	int damage;
 	int poison_duration;
@@ -744,7 +744,7 @@ typedef struct spell_active {
 	uint8_t active_directions[RADIAL_SPELL_DIRECTIONS];
 	int mine;
 	uint8_t hit_type;
-} spell_active;
+} spell;
 
 typedef struct spell_skill_spec {
 	char *name;

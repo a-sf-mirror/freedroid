@@ -328,7 +328,7 @@ void delete_blast(int blast_number)
 /**
  * This function advances the currently active spells.
  */
-void move_active_spells(void)
+void move_spells(void)
 {
 	int i;
 	float passed_time = Frame_Time();
@@ -343,7 +343,7 @@ void move_active_spells(void)
 		if (!sparse_dynarray_member_used(&all_spells, i))
 			continue;
 
-		struct spell_active *current_spell = (struct spell_active *)dynarray_member(&all_spells, i, sizeof(struct spell_active));
+		struct spell *current_spell = (struct spell *)dynarray_member(&all_spells, i, sizeof(struct spell));
 
 		// All spells should count their lifetime...
 
@@ -462,7 +462,7 @@ void move_active_spells(void)
  */
 void delete_spell(int spell_number)
 {
-	dynarray_del(&all_spells, spell_number, sizeof(struct spell_active));
+	dynarray_del(&all_spells, spell_number, sizeof(struct spell));
 }
 
 /**

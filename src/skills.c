@@ -468,7 +468,7 @@ void do_radial_skill(int skill_index, int pos_x, int pos_y, int from_tux)
 	float effdur = calculate_program_effect_duration(skill_index);
 	int j;
 
-	struct spell_active new_spell;
+	struct spell new_spell;
 
 	if (SpellSkillMap[skill_index].graphics_code == -1) {
 		new_spell.img_type = 2;
@@ -502,7 +502,7 @@ void do_radial_skill(int skill_index, int pos_x, int pos_y, int from_tux)
 	new_spell.paralyze_duration = strcmp(SpellSkillMap[skill_index].effect, "paralyze") ? 0 : effdur;
 	new_spell.damage = hitdmg;
 
-	dynarray_add(&all_spells, &new_spell, sizeof(struct spell_active));
+	dynarray_add(&all_spells, &new_spell, sizeof(struct spell));
 }
 
 /**

@@ -523,8 +523,8 @@ void save_game_data(struct auto_string *strout)
 	write_blast_sparsedynarray(strout, &all_blasts);
 	autostr_append(strout, "\n");
 
-	autostr_append(strout, "spell_active_array");
-	write_spell_active_sparsedynarray(strout, &all_spells);
+	autostr_append(strout, "spell_array");
+	write_spell_sparsedynarray(strout, &all_spells);
 	autostr_append(strout, "\n");
 
 	autostr_append(strout, "melee_shot_array");
@@ -605,9 +605,9 @@ static int blast_array_ctor(lua_State *L)
 	return 0;
 }
 
-static int spell_active_array_ctor(lua_State *L)
+static int spell_array_ctor(lua_State *L)
 {
-	read_spell_active_sparsedynarray(L, 1, &all_spells);
+	read_spell_sparsedynarray(L, 1, &all_spells);
 	return 0;
 }
 
@@ -662,7 +662,7 @@ void load_game_data(char *strin)
 		{"npc", npc_ctor},
 		{"bullet_array", bullet_array_ctor},
 		{"blast_array", blast_array_ctor},
-		{"spell_active_array", spell_active_array_ctor},
+		{"spell_array", spell_array_ctor},
 		{"melee_shot_array", melee_shot_array_ctor},
 		{"factions", factions_ctor},
 		{"volatile_obstacle", volatile_obstacle_ctor},

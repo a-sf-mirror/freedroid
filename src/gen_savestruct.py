@@ -33,7 +33,7 @@ dump_structs = [
                  "gps", "point", "moderately_finepoint", "finepoint",
                  "tux_t", "item", "enemy", "bullet", "blast",
                  "obstacle", "volatile_obstacle",
-                 "spell_active", "melee_shot", "mission", "npc",
+                 "spell", "melee_shot", "mission", "npc",
                  "upgrade_socket", "keybind_t", "configuration_for_freedroid"
                ]
 
@@ -53,7 +53,7 @@ hardcoded_types = [ "list_head_t", "keybind_t_array" ]
 # This list contains types for which read/write functions will be added to the
 # generated files.
 
-additional_types = [ "bullet_sparsedynarray", "blast_sparsedynarray", "spell_active_sparsedynarray", "melee_shot_sparsedynarray" ]
+additional_types = [ "bullet_sparsedynarray", "blast_sparsedynarray", "spell_sparsedynarray", "melee_shot_sparsedynarray" ]
 
 #=====
 # End of user modifiable part
