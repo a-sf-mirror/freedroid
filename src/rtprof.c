@@ -322,9 +322,9 @@ static void probe_display_bargraph(int x, int y, int width, int height, int val,
 
 	SDL_Rect fill_rect = { x, y, bar_width, height };
 	if (!overflow)
-		gl_draw_rectangle(&fill_rect, 0x00, 0xff, 0x00, 0x88); // green bar
+		draw_rectangle(&fill_rect, 0x00, 0xff, 0x00, 0x88); // green bar
 	else
-		gl_draw_rectangle(&fill_rect, 0xff, 0xff, 0x00, 0x88); // yellow bar on overflow
+		draw_rectangle(&fill_rect, 0xff, 0xff, 0x00, 0x88); // yellow bar on overflow
 
 	// Textual representation at the right of the bar
 	char text[16];
@@ -374,18 +374,18 @@ static void probe_display_htribargraph(int x, int y, int width, int height, int 
 	}
 
 	SDL_Rect fill_rect = { x, y, bar_min, height };
-	gl_draw_rectangle(&fill_rect, 0x88, 0x88, 0x88, 0x88); // grey part
+	draw_rectangle(&fill_rect, 0x88, 0x88, 0x88, 0x88); // grey part
 
 	fill_rect.x += fill_rect.w;
 	fill_rect.w = bar_mean - bar_min;
-	gl_draw_rectangle(&fill_rect, 0x00, 0x00, 0xff, 0x88); // blue part
+	draw_rectangle(&fill_rect, 0x00, 0x00, 0xff, 0x88); // blue part
 
 	fill_rect.x += fill_rect.w;
 	fill_rect.w = bar_max - bar_mean;
 	if (!overflow)
-		gl_draw_rectangle(&fill_rect, 0xff, 0x00, 0x00, 0x88); // red part
+		draw_rectangle(&fill_rect, 0xff, 0x00, 0x00, 0x88); // red part
 	else
-		gl_draw_rectangle(&fill_rect, 0xff, 0xff, 0x00, 0x88); // yellow part if overflow
+		draw_rectangle(&fill_rect, 0xff, 0xff, 0x00, 0x88); // yellow part if overflow
 
 	// Textual representations
 	char text[16];
@@ -441,18 +441,18 @@ static void probe_display_vtribargraph(int x, int y, int width, int height, int 
 	}
 
 	SDL_Rect fill_rect = { x, y + height - bar_min, width, bar_min };
-	gl_draw_rectangle(&fill_rect, 0x88, 0x88, 0x88, 0x88); // grey part
+	draw_rectangle(&fill_rect, 0x88, 0x88, 0x88, 0x88); // grey part
 
 	fill_rect.y = y + height - bar_mean;
 	fill_rect.h = bar_mean - bar_min;
-	gl_draw_rectangle(&fill_rect, 0x00, 0x00, 0xff, 0x88); // blue part
+	draw_rectangle(&fill_rect, 0x00, 0x00, 0xff, 0x88); // blue part
 
 	fill_rect.y = y + height - bar_max;
 	fill_rect.h = bar_max - bar_mean;
 	if (!overflow)
-		gl_draw_rectangle(&fill_rect, 0xff, 0x00, 0x00, 0x88); // red part
+		draw_rectangle(&fill_rect, 0xff, 0x00, 0x00, 0x88); // red part
 	else
-		gl_draw_rectangle(&fill_rect, 0xff, 0xff, 0x00, 0x88); // yellow part if overflow
+		draw_rectangle(&fill_rect, 0xff, 0xff, 0x00, 0x88); // yellow part if overflow
 
 	// Textual representations
 	char text[16];
@@ -526,10 +526,10 @@ void probe_display_stats(int x, int y, int width, int height, struct probe_stats
 			if (aggregated_bars[i].val == 0)
 				continue;
 			SDL_Rect fill_rect = { x + i*bar_width, y + height - (int)(aggregated_bars[i].val*scale), bar_width, (int)(aggregated_bars[i].val*scale) };
-			gl_draw_rectangle(&fill_rect, 0xff, 0x00, 0x00, 0x88);
+			draw_rectangle(&fill_rect, 0xff, 0x00, 0x00, 0x88);
 		}
 		SDL_Rect fill_rect = { x + nb_bars*bar_width, y + height - (int)(stats->overflow_cntr*scale), bar_width, (int)(stats->overflow_cntr*scale) };
-		gl_draw_rectangle(&fill_rect, 0xff, 0xff, 0x00, 0x88);
+		draw_rectangle(&fill_rect, 0xff, 0xff, 0x00, 0x88);
 	}
 
 	free(aggregated_bars);
@@ -625,7 +625,7 @@ void probe_display_array_stats(int x, int y, int width, int height, struct probe
 					continue;
 				SDL_Rect fill_rect = { x + i*cell_size_x, y + height - j*cell_size_y, cell_size_x, cell_size_y };
 				int color_idx = min(color_scale_max - 1, floor(aggregated_cells[j*nb_cell_x + i].val * scale));
-				gl_draw_rectangle(&fill_rect, color_scale[color_idx][0], color_scale[color_idx][1], color_scale[color_idx][2], 0x88);
+				draw_rectangle(&fill_rect, color_scale[color_idx][0], color_scale[color_idx][1], color_scale[color_idx][2], 0x88);
 			}
 		}
 	}

@@ -614,15 +614,9 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 };				// void blit_open_gl_stretched_texture_light_radius ( void )
 
 /**
- * Draw a colored rectangle on screen in OpenGL.
- *
- * @param rect The rectangular area.
- * @param r The red color value.
- * @param g The green color value.
- * @param b The blue color value.
- * @param a The alpha color value.
+ * Draw a colored rectangle on screen, given its 4 points.
  */
-void gl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
+void gl_draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a)
 {
 #ifdef HAVE_LIBGL
 	glDisable(GL_TEXTURE_2D);
@@ -630,10 +624,10 @@ void gl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 	glColor4ub(r, g, b, a);
 
 	glBegin(GL_QUADS);
-	glVertex2i(rect->x, rect->y);
-	glVertex2i(rect->x, rect->y + rect->h);
-	glVertex2i(rect->x + rect->w, rect->y + rect->h);
-	glVertex2i(rect->x + rect->w, rect->y);
+	glVertex2i(vx[0], vy[0]);
+	glVertex2i(vx[1], vy[1]);
+	glVertex2i(vx[2], vy[2]);
+	glVertex2i(vx[3], vy[3]);
 	glEnd();
 
 	glColor4ub(255, 255, 255, 255);

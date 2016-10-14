@@ -871,6 +871,8 @@ void init_video(void)
  */
 void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 {
+	// boxRGBA from SDL_gfx will do the same in a single call, alas, it's slower due to
+	// being more generic.
 	SDL_PixelFormat *fmt = Screen->format;
 	SDL_Surface *surface;
 
@@ -905,10 +907,16 @@ void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 	(*rect) = old_rect;
 }
 
+/**
+ * Draw a rectangle on screen, axes aligned to the screen (unlike draw_quad).
+ */
 void draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 {
 	if (use_open_gl) {
-		gl_draw_rectangle(rect, r, g, b, a);
+		int16_t vx[4] = { rect->x, rect->x, rect->x + rect->w, rect->x + rect->w };
+		int16_t vy[4] = { rect->y, rect->y + rect->h, rect->y + rect->h, rect-> y};
+
+		gl_draw_quad(vx, vy, r, g, b, a);
 	} else {
 		sdl_draw_rectangle(rect, r, g, b, a);
 	}
@@ -924,23 +932,6 @@ static void sdl_draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g
  * are inside a start_image_batch()/end_image_batch() operation but at the moment,
  * we do not have the choice.
  */
-static void gl_draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a)
-{
-#ifdef HAVE_LIBGL
-	glDisable(GL_TEXTURE_2D);
-	glColor4ub(r, g, b, a);
-
-	glBegin(GL_QUADS);
-	glVertex2i(vx[0], vy[0]);
-	glVertex2i(vx[1], vy[1]);
-	glVertex2i(vx[2], vy[2]);
-	glVertex2i(vx[3], vy[3]);
-	glEnd();
-
-	glColor4ub(255, 255, 255, 255);
-	glEnable(GL_TEXTURE_2D);
-#endif
-}
 
 void draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a)
 {

@@ -275,12 +275,12 @@ void blit_light_radius(void);
 int our_SDL_flip_wrapper(void);
 void our_SDL_update_rect_wrapper(SDL_Surface * screen, Sint32 x, Sint32 y, Sint32 w, Sint32 h);
 void drawIsoEnergyBar(int x, int y, int z, int w, int d, int length, float fill, myColor * c1, myColor * c2);
+void gl_draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a);
 
 SDL_Surface *our_IMG_load_wrapper(const char *file);
 void flip_image_vertically(SDL_Surface * tmp1);
 void make_texture_out_of_surface(struct image *our_image);
 void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y);
-void gl_draw_rectangle(SDL_Rect *, int, int, int, int);
 int safely_initialize_our_default_open_gl_parameters(void);
 void blit_background(const char *background);
 struct background *get_background(const char *);
