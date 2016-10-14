@@ -99,6 +99,8 @@ typedef void (APIENTRYP PFNGLGETOBJECTPTRLABELPROC) (const void *ptr, GLsizei bu
 PFNGLDEBUGMESSAGECONTROLPROC glDebugMessageControl;
 PFNGLDEBUGMESSAGECALLBACKPROC glDebugMessageCallback;
 
+PFNGLSTRINGMARKERGREMEDYPROC my_glStringMarkerGREMEDY;
+
 #define DBG_FLAG(f) { f, #f }
 struct debug_flag {
 	GLenum flag_value;
@@ -232,7 +234,19 @@ int init_opengl_debug(void)
 	glDebugMessageCallback(&gl_debug_callback, NULL);
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
 
+	/* Check if GREMEDY_string_marker is available */
+	if (strstr(extensions, "GL_GREMEDY_string_marker")) {
+		my_glStringMarkerGREMEDY = SDL_GL_GetProcAddress("glStringMarkerGREMEDY");
+	}
+
 	return 0;
+}
+
+void gl_debug_marker(const char *str)
+{
+	if (my_glStringMarkerGREMEDY) {
+		my_glStringMarkerGREMEDY(strlen(str), str);
+	}
 }
 
 #else // defined(HAVE_LIBGL) && (!defined __WIN32__)
@@ -240,6 +254,10 @@ int init_opengl_debug(void)
 int init_opengl_debug(void)
 {
 	return 1;
+}
+
+void gl_debug_marker(const char *str)
+{
 }
 
 #endif // defined(HAVE_LIBGL) && (!defined __WIN32__)

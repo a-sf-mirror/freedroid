@@ -290,6 +290,7 @@ void unset_gl_clip_rect(void);
 // open_gl_debug.c
 int init_opengl_debug();
 void open_gl_check_error_status(const char *name_of_calling_function);
+void gl_debug_marker(const char *str);
 
 // blocks.c 
 void iso_load_bullet_surfaces(void);
