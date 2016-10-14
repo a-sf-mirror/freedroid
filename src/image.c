@@ -66,13 +66,17 @@ static void gl_emit_quads(void);
 
 /**
  * End the image batch.
+ * @reason is a free form string used for debugging performance issues.
  */
-void end_image_batch()
+void end_image_batch(const char *reason)
 {
 	batch_draw = FALSE;
 	active_tex = -1;
 
+	char str[1024];
+	snprintf(str, 1023, "Flushing batch: %s", reason);
 #ifdef HAVE_LIBGL
+	gl_debug_marker(str);
 	gl_emit_quads();
 #endif
 
@@ -147,6 +151,7 @@ static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, floa
 	   */
 #define MAX_QUADS 16383
 	if (vtx->size >= MAX_QUADS) {
+		gl_debug_marker("Flushing batch because MAX_QUADS reached");
 		gl_emit_quads();
 	}
 }
@@ -246,6 +251,7 @@ static void gl_display_image(struct image *img, int x0, int y0, struct image_tra
 
 	// Bind the texture if required
 	if (img->texture != active_tex) {
+		gl_debug_marker("Flushing batch because changing active texture");
 		gl_emit_quads();
 		glBindTexture(GL_TEXTURE_2D, img->texture);
 		active_tex = img->texture;
@@ -253,6 +259,7 @@ static void gl_display_image(struct image *img, int x0, int y0, struct image_tra
 
 	// Change the active color if required
 	if (memcmp(&requested_color[0], &t->c[0], sizeof(requested_color))) {
+		gl_debug_marker("Flushing batch because changing active color");
 		gl_emit_quads();
 		memcpy(&requested_color[0], &t->c[0], sizeof(requested_color));
 	}
@@ -267,6 +274,7 @@ static void gl_display_image(struct image *img, int x0, int y0, struct image_tra
 	}
 
 	if (!batch_draw) {
+		gl_debug_marker("Batch drawing not requested");
 		gl_emit_quads();
 		active_tex = -1;
 		requested_color[0] = -1;
@@ -275,6 +283,7 @@ static void gl_display_image(struct image *img, int x0, int y0, struct image_tra
 	if (t->mode & HIGHLIGHTED) {
 		// Highlight? Draw the texture again with additive blending factors
 		// This increases the lightness too much, but is a quick and easy solution
+		gl_debug_marker("Flushing batch to change prepare highlight");
 		gl_emit_quads();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		if (t->mode & REPEATED) {
@@ -282,6 +291,7 @@ static void gl_display_image(struct image *img, int x0, int y0, struct image_tra
 		} else {
 			gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
 		}
+		gl_debug_marker("Flushing batch to do highlight");
 		gl_emit_quads();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}

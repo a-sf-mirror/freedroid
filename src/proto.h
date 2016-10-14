@@ -868,7 +868,7 @@ void move_waypoint(level *, waypoint *, int, int);
 
 // image.c
 void start_image_batch(void);
-void end_image_batch(void);
+void end_image_batch(const char *reason);
 void display_image_on_screen(struct image *img, int x, int y, struct image_transformation t);
 void display_image_on_map(struct image *img, float X, float Y, struct image_transformation t);
 void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect);

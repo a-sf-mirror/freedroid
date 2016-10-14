@@ -124,7 +124,7 @@ void drawIsoEnergyBar(int x, int y, int z, int h, int d, int length, float fill,
 	int l2 = (int)length * (1.0 - fill);
 	int lcos, lsin, l2cos, l2sin;
 
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 
 	glColor4ub(c1->r, c1->g, c1->b, c1->a);
 	glDisable(GL_TEXTURE_2D);
@@ -247,7 +247,7 @@ static SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
 static void do_make_texture_out_of_surface(struct image * our_image, int txw, int txh, void *data)
 {
 	// Stop any image batch being constructed, if relevant
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -388,7 +388,7 @@ void RestoreMenuBackground(int backup_slot)
 
 		// Stop any image batch being constructed, 
 		// so that struct image does not get confused.
-		end_image_batch();
+		end_image_batch(__FUNCTION__);
 
 		glDisable(GL_TEXTURE_2D);
 		glEnable(GL_TEXTURE_RECTANGLE_ARB);
@@ -433,7 +433,7 @@ void StoreMenuBackground(int backup_slot)
 #ifdef HAVE_LIBGL
 		// Stop any image batch being constructed, 
 		// so that struct image does not get confused.
-		end_image_batch();
+		end_image_batch(__FUNCTION__);
 
 		glFlush();
 
@@ -489,7 +489,7 @@ void set_up_stretched_texture_for_light_radius(void)
 
 	// Stop any image batch being constructed, 
 	// so that struct image does not get confused.
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 
 	// Some protection against creating this texture twice...
 	//
@@ -554,7 +554,7 @@ void light_radius_update_stretched_texture(void)
 
 	// Stop any image batch being constructed, 
 	// so that struct image does not get confused.
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 
 	glBindTexture(GL_TEXTURE_2D, light_radius_stretch_texture);
 	glTexSubImage2D(GL_TEXTURE_2D, 0,
@@ -719,7 +719,7 @@ void set_gl_clip_rect(const SDL_Rect *clip)
 {
 #ifdef HAVE_LIBGL
 	// Flush image batch. Scissor test shouldn't affect it.
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 
 	if (use_open_gl) {
 		glScissor(clip->x, GameConfig.screen_height - (clip->y + clip->h), clip->w, clip->h);

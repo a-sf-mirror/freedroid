@@ -303,7 +303,7 @@ void leveleditor_display()
 	start_image_batch();
 	show_waypoints(ZOOM_OUT * GameConfig.zoom_is_on);
 	show_map_labels(ZOOM_OUT * GameConfig.zoom_is_on);
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 	show_cursor(ZOOM_OUT * GameConfig.zoom_is_on);
 	gps_show();
 

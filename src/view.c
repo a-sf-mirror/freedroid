@@ -227,7 +227,7 @@ static void show_floor(int mask)
 		}
 	}
 
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 }
 
 void blit_leveleditor_point(int x, int y)
@@ -1367,7 +1367,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 		}
 	}
 
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 
 }				// void blit_preput_objects_according_to_blitting_list ( ... )
 
@@ -1458,7 +1458,7 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 			break;
 		}
 	}
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 }
 
 static void show_obstacle_labels(int mask)

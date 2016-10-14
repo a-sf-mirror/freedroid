@@ -248,7 +248,7 @@ void put_string(struct font *font, int x, int y, const char *text)
 		ptr++;
 	}
 
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 
 #ifdef HAVE_LIBGL
 	if (use_open_gl) {

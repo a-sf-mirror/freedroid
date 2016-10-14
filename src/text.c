@@ -385,7 +385,7 @@ static int display_text_with_cursor(const char *text, int startx, int starty, co
 		current_curpos++;
 	}
 
-	end_image_batch();
+	end_image_batch(__FUNCTION__);
 
 	SDL_SetClipRect(Screen, &store_clip);	// restore previous clip-rect 
 
