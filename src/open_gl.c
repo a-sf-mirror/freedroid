@@ -616,7 +616,7 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 /**
  * Draw a colored rectangle on screen, given its 4 points.
  */
-void gl_draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a)
+void gl_draw_quad(const struct point vertices[4], int r, int g, int b, int a)
 {
 #ifdef HAVE_LIBGL
 	glDisable(GL_TEXTURE_2D);
@@ -624,10 +624,10 @@ void gl_draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b,
 	glColor4ub(r, g, b, a);
 
 	glBegin(GL_QUADS);
-	glVertex2i(vx[0], vy[0]);
-	glVertex2i(vx[1], vy[1]);
-	glVertex2i(vx[2], vy[2]);
-	glVertex2i(vx[3], vy[3]);
+	glVertex2i(vertices[0].x, vertices[0].y);
+	glVertex2i(vertices[1].x, vertices[1].y);
+	glVertex2i(vertices[2].x, vertices[2].y);
+	glVertex2i(vertices[3].x, vertices[3].y);
 	glEnd();
 
 	glColor4ub(255, 255, 255, 255);

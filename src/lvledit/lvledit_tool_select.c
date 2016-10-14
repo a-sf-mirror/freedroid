@@ -1244,10 +1244,9 @@ int leveleditor_select_display()
 		translate_map_point_to_screen_pixel(state.rect_start.x + state.rect_len.x, state.rect_start.y + state.rect_len.y, &r3, &c3);
 		translate_map_point_to_screen_pixel(state.rect_start.x + state.rect_len.x, state.rect_start.y, &r4, &c4);
 
-		short x[4] = { r1, r2, r3, r4 };
-		short y[4] = { c1, c2, c3, c4 };
+		struct point vertices[] = { {r1, c1}, {r2, c2}, {r3, c3}, {r4, c4} };
 
-		draw_quad(x, y, 31, 127, 143, 143);
+		draw_quad(vertices, 31, 127, 143, 143);
 		break;
 	default:
 		break;

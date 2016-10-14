@@ -283,12 +283,11 @@ void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 	translate_map_point_to_screen_pixel(x2, y2, &r3, &c3);
 	translate_map_point_to_screen_pixel(x2, y1, &r4, &c4);
 
-	short x[4] = { r1, r2, r3, r4 };
-	short y[4] = { c1, c2, c3, c4 };
+	struct point vertices[] = { {r1, c1}, {r2, c2}, {r3, c3}, {r4, c4} };
 
 	// Now we draw the collision rectangle.  We use the same parameters
 	// of the obstacle spec, that are also used for the collision checks.
-	draw_quad(x, y, 15, 238, 170, 255);
+	draw_quad(vertices, 15, 238, 170, 255);
 }
 
 void blit_one_obstacle(obstacle *o, int highlight, int zoom, int opacity)

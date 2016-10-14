@@ -275,7 +275,7 @@ void blit_light_radius(void);
 int our_SDL_flip_wrapper(void);
 void our_SDL_update_rect_wrapper(SDL_Surface * screen, Sint32 x, Sint32 y, Sint32 w, Sint32 h);
 void drawIsoEnergyBar(int x, int y, int z, int w, int d, int length, float fill, myColor * c1, myColor * c2);
-void gl_draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a);
+void gl_draw_quad(const struct point[4], int, int, int, int);
 
 SDL_Surface *our_IMG_load_wrapper(const char *file);
 void flip_image_vertically(SDL_Surface * tmp1);
@@ -329,7 +329,7 @@ void draw_line_on_map(float x1, float y1, float x2, float y2, uint8_t r, uint8_t
 void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
 SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, float b, float a, int highlight);
 void draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
-void draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a);
+void draw_quad(const struct point[4], int, int, int, int);
 uint32_t sdl_get_pixel(SDL_Surface *surf, int x, int y);
 void sdl_put_pixel(SDL_Surface *surf, int x, int y, uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
 void save_screenshot(const char *filename, int width);

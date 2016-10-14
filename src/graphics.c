@@ -913,17 +913,22 @@ void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 void draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 {
 	if (use_open_gl) {
-		int16_t vx[4] = { rect->x, rect->x, rect->x + rect->w, rect->x + rect->w };
-		int16_t vy[4] = { rect->y, rect->y + rect->h, rect->y + rect->h, rect-> y};
-
-		gl_draw_quad(vx, vy, r, g, b, a);
+		struct point vertices[] = {
+				{ rect->x,           rect->y           },
+				{ rect->x,           rect->y + rect->h },
+				{ rect->x + rect->w, rect->y + rect->h },
+				{ rect->x + rect->w, rect->y           }
+		};
+		gl_draw_quad(vertices, r, g, b, a);
 	} else {
 		sdl_draw_rectangle(rect, r, g, b, a);
 	}
 }
 
-static void sdl_draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a)
+static void sdl_draw_quad(const struct point vertices[4], int r, int g, int b, int a)
 {
+	Sint16 vx[] = { vertices[0].x, vertices[1].x, vertices[2].x, vertices[3].x };
+	Sint16 vy[] = { vertices[0].y, vertices[1].y, vertices[2].y, vertices[3].y };
 	filledPolygonRGBA(Screen, vx, vy, 4, r, g, b, a);
 }
 
@@ -933,12 +938,12 @@ static void sdl_draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g
  * we do not have the choice.
  */
 
-void draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a)
+void draw_quad(const struct point vertices[4], int r, int g, int b, int a)
 {
 	if (use_open_gl) {
-		gl_draw_quad(vx, vy, r, g, b, a);
+		gl_draw_quad(vertices, r, g, b, a);
 	} else {
-		sdl_draw_quad(vx, vy, r, g, b, a);
+		sdl_draw_quad(vertices, r, g, b, a);
 	}
 }
 
