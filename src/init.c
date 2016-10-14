@@ -795,7 +795,7 @@ void prepare_execution(int argc, char *argv[])
 	if ((our_homedir = getenv("HOME")) == NULL) {
 		our_homedir = ".";
 	}
-	sprintf(data_dirs[CONFIG_DIR].path, "%s/.freedroid_rpg", our_homedir);
+	snprintf(data_dirs[CONFIG_DIR].path, sizeof(data_dirs[CONFIG_DIR].path), "%s/.freedroid_rpg", our_homedir);
 
 #endif
 
