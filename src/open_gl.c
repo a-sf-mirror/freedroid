@@ -123,6 +123,9 @@ void drawIsoEnergyBar(int x, int y, int z, int h, int d, int length, float fill,
 	int l = (int)(fill * length);
 	int l2 = (int)length * (1.0 - fill);
 	int lcos, lsin, l2cos, l2sin;
+
+	end_image_batch();
+
 	glColor4ub(c1->r, c1->g, c1->b, c1->a);
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
