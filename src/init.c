@@ -507,6 +507,9 @@ void parse_command_line(int argc, char *const argv[])
 				exit(1);
 			}
 
+			if (do_benchmark) {
+				free(do_benchmark);
+			}
 			do_benchmark = strdup(optarg);
 			break;
 		case 'f':
