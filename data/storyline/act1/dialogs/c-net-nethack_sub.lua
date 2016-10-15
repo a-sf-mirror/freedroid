@@ -463,7 +463,7 @@ return {
 								--; TRANSLATORS: %s = enemy name
 								string.format(_"A [b]%s[/b] jumps out in front of you!", n_emname),
 								--; TRANSLATORS: %s = enemy name
-								string.format(_"You sneek up upon a [b]%s[/b].", n_emname), "NO_WAIT")
+								string.format(_"You sneak up upon a [b]%s[/b].", n_emname), "NO_WAIT")
 				Npc:says(_"Your stats are: [b]%s[/b] attack/armor, [b]%s[/b] tricks, and [b]%s[/b] health.", n_ac, n_tricks, n_hp, "NO_WAIT")
 				show("c-net-nethack_sub.node50", "c-net-nethack_sub.node51", "c-net-nethack_sub.node53", "c-net-nethack_sub.node54")
 				if ( (n_tricks>0) or (n_sex == _"female") ) then show("c-net-nethack_sub.node52") end
@@ -774,7 +774,7 @@ return {
 											string.format(_"%s is unhappy about this.", n_god), "NO_WAIT")
 							n_alignment=_"an evil"
 						elseif (random_var == 3) then --become neutral
-							Npc:says(_"You decide good and evil are too two sides of the same coin, so you take the coin.", "NO_WAIT")
+							Npc:says(_"You decide that good and evil are two sides of the same coin, so you take the coin.", "NO_WAIT")
 							n_alignment = _"a neutral"
 							--; TRANSLATORS: %s 1 = god name  %s 2 = enemy god name
 							Npc:says(_"Both %s and %s don't know how to feel about this.", n_god, n_emgod, "NO_WAIT")
