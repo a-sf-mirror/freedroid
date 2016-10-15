@@ -138,10 +138,10 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM | IS_FATAL);
 			autostr_append(str, _("Damage: %d\n"), item->damage);
 		}
 	}
-	// Multiplicity
+	// Amount
 	if (ItemMap[item->type].item_group_together_in_inventory) {
 		// TRANSLATORS: On item description
-		autostr_append(str, _("Multiplicity: %d\n"), item->multiplicity);
+		autostr_append(str, _("Amount: %d\n"), item->multiplicity);
 	}
 	// Armor bonus
 	if (item->armor_class) {
