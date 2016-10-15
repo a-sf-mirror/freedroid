@@ -208,7 +208,7 @@ return {
 		topic = "About bots",
 		code = function()
 			Npc:says(_"It is a shortening of the word 'robot', derived from the Czech word for forced labor.")
-			Npc:says(_"R.U.R. (Rossum's Universal Robots), a play, introduced \'robots\' as artificial people.")
+			Npc:says(_"R.U.R. (Rossum's Universal Robots), a theatrical play, introduced 'robots' as artificial people.")
 			Npc:says(_"In the play the robots revolted, took over the world, and killed all the humans.")
 			Tux:says(_"Ironic.")
 			hide_node_about_bots(32)
@@ -221,7 +221,7 @@ return {
 		code = function()
 			Npc:says(_"During the Holy Roman Empire, the Jewish people of the Prague ghetto needed protection.")
 			Npc:says(_"So a holy rabbi shaped a Golem out of clay, and brought it to life through rituals and writing 'emet' (truth) on its head.")
-			Npc:says(_"The Golem initially protected the Jews, but was brainless and stupid, and so soon became dangerously violent to even the Jews.")
+			Npc:says(_"The Golem initially protected the Jews, but was brainless and stupid, and thus soon became dangerously violent to the Jews also.")
 			Npc:says(_"It was only by trickery that the rabbi was able to even get close to the Golem.")
 			Npc:says(_"But as the rabbi changed 'emet' to 'met' (death), the Golem fell on him, and both the creator and creation became lifeless.")
 			hide_node_about_bots(33)
