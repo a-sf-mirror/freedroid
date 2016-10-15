@@ -1,3 +1,4 @@
 REVIEWBOARD_URL = "http://rb.freedroid.org"
-REPOSITORY = "freedroid-git"
+REPOSITORY = "1- freedroid-git"
 BRANCH = "master"
+LAND_DEST_BRANCH = "master"
