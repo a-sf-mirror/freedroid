@@ -186,6 +186,14 @@ void play_title_file(int subdir_handle, char *filename)
 		set_lua_ctor_upvalue(LUA_CONFIG, "title_screen", &screen);
 		run_lua_file(LUA_CONFIG, fpath);
 
+		// Remove voice acting if sound is disabled
+#ifndef WITH_SOUND
+		screen.voice_acting = FALSE;
+#endif
+		if (!sound_on) {
+			screen.voice_acting = FALSE;
+		}
+
 #ifdef ENABLE_NLS
 		// The title_screen's text in the Lua file is UTF-8 encoded.
 		// We need to convert it to the currently selected charset encoding.
