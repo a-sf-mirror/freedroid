@@ -671,21 +671,21 @@ void advanced_enemy_takeover_movements(const int countdown)
 	int BestTarget = -1;
 	float BestValue = (-10000);	// less than any capsule can have
 
-        int endgame = 0;
-        if (countdown < NumCapsules[ENEMY]*7)
-                endgame = 1;
+	int endgame = 0;
+	if (countdown < NumCapsules[ENEMY]*7)
+		endgame = 1;
         
 #define TAKEOVER_MOVEMENT_DEBUG 1
 
 	if (NumCapsules[ENEMY] == 0)
 		return;
 
-
-        if (GameConfig.difficulty_level!= DIFFICULTY_EASY){  //disable AI waiting on easy
-                // Wait for the player to move
-          if ((LeaderColor!=YourColor) && ((NumCapsules[YOU]-NumCapsules[ENEMY])>=0) && (!endgame) && (NumCapsules[ENEMY]<max_opponent_capsules))
-                        return;
-        }
+	// Disable AI waiting on easy
+	if (GameConfig.difficulty_level !=  DIFFICULTY_EASY) {
+		// Wait for the player to move
+		if ((LeaderColor != YourColor) && ((NumCapsules[YOU]-NumCapsules[ENEMY]) >= 0) && (!endgame) && (NumCapsules[ENEMY] < max_opponent_capsules))
+			return;
+	}
         
 	// First we're going to find out which target place is
 	// best choice for the next capsule setting.
@@ -699,15 +699,10 @@ void advanced_enemy_takeover_movements(const int countdown)
 	}
 	DebugPrintf(TAKEOVER_MOVEMENT_DEBUG, "\nBest target row found : %d.", BestTarget);
 
-	if ((BestValue < 0.5) && (!endgame) && (LeaderColor==OpponentColor)) //it isn't worth it
+	if ((BestValue < 0.5) && (!endgame) && (LeaderColor == OpponentColor)) //it isn't worth it
 		return;
         
 	// Now we can start to move into the right direction.
-	// Previously this was a pure random choice like
-	//
-	// action = MyRandom (Actions);
-	//
-	// but now we do it differently :)
 
 	if (row < BestTarget) {
 		direction = 1;
@@ -735,7 +730,8 @@ void advanced_enemy_takeover_movements(const int countdown)
 			direction *= -1;
 		}
 		break;
-	case 2:		/* Try to set  capsule */
+
+	case 2:		/* Try to set capsule */
 		if (MyRandom(100) <= SetProbability) {
 			if ((row >= 0) && 
 			    (ToPlayground[OpponentColor][0][row] != CABLE_END) && (ActivationMap[OpponentColor][0][row] == INACTIVE)) {
@@ -747,16 +743,13 @@ void advanced_enemy_takeover_movements(const int countdown)
 				row = -1;	/* For the next capsule: startpos */
 			} else {
 				row += direction;
-				return;
 			}
 		}
-		/* if MyRandom */
 		break;
 
 	default:
 		break;
-
-	}			/* switch action */
+	}
 
 	CapsuleCurRow[OpponentColor] = row + 1;
 
