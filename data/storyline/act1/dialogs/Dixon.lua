@@ -650,14 +650,14 @@ return {
 		text = _"What bot types do you know?",
 		code = function()
 			Npc:says(_"Bots?", "NO_WAIT")
-			Npc:says(_"I know the droids on the 400s class, that are for maintenance. Oddly, we do not have any on our tunnels.")
+			Npc:says(_"I know the droids of the 400s class. Those are for maintenance. Oddly, we do not have any in our tunnels.")
 			Npc:says(_"Interested?")
 			hide("node72") show("node73")
 		end,
 	},
 	{
 		id = "node73",
-		text = _"Which bots are on 400s class?",
+		text = _"Which bots are of the 400s class?",
 		code = function()
 			Npc:says(_"Well, the 400s bots were used for maintenance.", "NO_WAIT")
 			Npc:says(_"Hmm... Now, if I recall correctly...")
