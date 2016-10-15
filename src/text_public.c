@@ -668,8 +668,9 @@ int ReadRangeFromString(char *SearchString, const char *StartIndicationString, c
 	char *search_ptr = ReadAndMallocStringFromDataOptional(SearchString, StartIndicationString, EndIndicationString);
 
 	result = get_range_from_string(search_ptr, min, max, default_val);
+	free(search_ptr);
 
-	//Handle corrupted values.
+	// Handle corrupted values.
 	if (*min < 0) {
 		error_message(__FUNCTION__, "\
 The value read in as a minimum (%d) is a negative number.\n\
@@ -678,8 +679,6 @@ Setting both the maximum and minimum to the default value (%d).", NO_REPORT, *mi
 		*min = *max = default_val;
 		return FALSE;
 	}
-
-	free(search_ptr);
 
 	return result;
 }
@@ -881,17 +880,17 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 int deflate_to_stream(unsigned char *source_buffer, int size, FILE *dest)
 {
 #define CHUNK 16384
-    unsigned char out[CHUNK];
+	unsigned char out[CHUNK];
 
-    /* allocate deflate state */
-    z_stream strm;
-    strm.zalloc = Z_NULL;
-    strm.zfree = Z_NULL;
-    strm.opaque = Z_NULL;
+	/* allocate deflate state */
+	z_stream strm;
+	strm.zalloc = Z_NULL;
+	strm.zfree = Z_NULL;
+	strm.opaque = Z_NULL;
 	strm.avail_in = size;
 	strm.next_in = source_buffer;
 
-    int ret = deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY);
+	int ret = deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY);
 	if (ret != Z_OK) {
 		error_message(__FUNCTION__, "\
 		zlib was unable to start compressing a string.", PLEASE_INFORM);
@@ -914,8 +913,8 @@ int deflate_to_stream(unsigned char *source_buffer, int size, FILE *dest)
 		}
 	} while (strm.avail_out == 0);
 
-    /* clean up and return */
-    (void)deflateEnd(&strm);
+	/* clean up and return */
+	(void)deflateEnd(&strm);
 
 	return 0;
 }
