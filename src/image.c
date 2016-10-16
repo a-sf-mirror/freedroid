@@ -144,8 +144,6 @@ static void gl_emit_quads(void)
 		for (i = 0; i < sizeof(active_tex)/sizeof(active_tex[0]); i++) {
 			active_tex[i] = -1;
 		}
-
-		glActiveTexture(GL_TEXTURE0);
 	}
 }
 #endif
