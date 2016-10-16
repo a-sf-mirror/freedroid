@@ -341,18 +341,30 @@ struct volatile_obstacle *add_volatile_obstacle(struct level *lvl, float x, floa
 	int cell_x = (int)floorf(x);
 	int cell_y = (int)floorf(y);
 
-	list_add(&(volatile_obs->volatile_list), &(lvl->map[cell_y][cell_x].volatile_obstacles));
+	list_add(&(volatile_obs->volatile_list), lvl->map[cell_y][cell_x].volatile_obstacles);
 
 	return volatile_obs;
 }
 
 /**
- * This function removes all volatile obstacles from a given level.
+ * This function removes all the volatile obstacles laid on a given map's tile.
  * An example of a volatile obstacle is the blood.
  * If the blood doesn't vanish, then there will be more and more blood,
  * especially after the bots on the level have respawned a few times.
  * Therefore we need this function, which will remove all traces of blood
- * from a given level.
+ * from a given tile.
+ */
+void remove_volatile_obstacles_from_tile(struct map_tile *tile)
+{
+	struct volatile_obstacle *volatile_obs, *next;
+	list_for_each_entry_safe(volatile_obs, next, tile->volatile_obstacles, volatile_list) {
+		free(volatile_obs);
+	}
+	INIT_LIST_HEAD(tile->volatile_obstacles);
+}
+
+/**
+ * This function removes all volatile obstacles from a given level.
  */
 void remove_volatile_obstacles(int lvl_num)
 {
@@ -360,11 +372,7 @@ void remove_volatile_obstacles(int lvl_num)
 	int x, y;
 	for (y = 0; y < lvl->ylen; y++) {
 		for (x = 0; x < lvl->xlen; x++) {
-			struct volatile_obstacle *volatile_obs, *next;
-			list_for_each_entry_safe(volatile_obs, next, &lvl->map[y][x].volatile_obstacles, volatile_list) {
-				free(volatile_obs);
-			}
-			INIT_LIST_HEAD(&lvl->map[y][x].volatile_obstacles);
+			remove_volatile_obstacles_from_tile(&lvl->map[y][x]);
 		}
 	}
 }

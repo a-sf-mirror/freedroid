@@ -58,7 +58,8 @@ void init_map_tile(struct map_tile* tile)
 	for (i = 1; i < MAX_FLOOR_LAYERS; i++)
 		tile->floor_values[i] = ISO_FLOOR_EMPTY;
 	dynarray_init(&tile->glued_obstacles, 0, sizeof(int));
-	INIT_LIST_HEAD(&tile->volatile_obstacles);
+	tile->volatile_obstacles = (list_head_t*)MyMalloc(sizeof(list_head_t));
+	INIT_LIST_HEAD(tile->volatile_obstacles);
 	tile->timestamp = 0;
 }
 
@@ -1187,10 +1188,12 @@ void free_ship_level(level *lvl)
 	int col = 0;
 
 	// Map tiles
+	remove_volatile_obstacles(lvl->levelnum);
 	for (row = 0; row < lvl->ylen; row++) {
 		if (lvl->map[row]) {
 			for (col = 0; col < lvl->xlen; col++) {
 				dynarray_free(&lvl->map[row][col].glued_obstacles);
+				free(lvl->map[row][col].volatile_obstacles);
 			}
 
 			free(lvl->map[row]);

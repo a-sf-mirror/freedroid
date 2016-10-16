@@ -789,7 +789,7 @@ typedef struct volatile_obstacle {
 typedef struct map_tile {
 	Uint16 floor_values[MAX_FLOOR_LAYERS];
 	struct dynarray glued_obstacles;
-	list_head_t volatile_obstacles;
+	list_head_t *volatile_obstacles;
 	int timestamp;
 } map_tile;
 

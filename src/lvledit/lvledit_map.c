@@ -273,6 +273,13 @@ void remove_column_east(level *EditLevel)
 
 	free_glued_obstacles(EditLevel);
 
+	// Remove and free the volatile obstacles list of the removed column
+	int i;
+	for (i = 0; i < EditLevel->ylen; i++) {
+		remove_volatile_obstacles_from_tile(&EditLevel->map[i][EditLevel->xlen-1]);
+		free(EditLevel->map[i][EditLevel->xlen-1].volatile_obstacles);
+	}
+
 	// Remove a column at the east is always easy, we must just modify the
 	// value of size on the horizontal axis, allocation of new memory or other
 	// things are not necessary
@@ -298,6 +305,12 @@ void remove_column_west(level *EditLevel)
 		return;
 
 	free_glued_obstacles(EditLevel);
+
+	// Remove and free the volatile obstacles list of the removed column
+	for (i = 0; i < EditLevel->ylen; i++) {
+		remove_volatile_obstacles_from_tile(&EditLevel->map[i][0]);
+		free(EditLevel->map[i][0].volatile_obstacles);
+	}
 
 	// Now the new memory and everything is done.  All we
 	// need to do is move the information to the east
@@ -326,6 +339,12 @@ void remove_line_north(level *EditLevel)
 
 	free_glued_obstacles(EditLevel);
 
+	// Remove and free the volatile obstacles list of the removed row
+	for (i = 0; i < EditLevel->xlen; i++) {
+		remove_volatile_obstacles_from_tile(&EditLevel->map[0][i]);
+		free(EditLevel->map[0][i].volatile_obstacles);
+	}
+
 	// Now we do some shifting of lines
 	free(EditLevel->map[0]);
 	for (i = 0; i < EditLevel->ylen - 1; i++) {
@@ -345,15 +364,26 @@ void remove_line_north(level *EditLevel)
  */
 void remove_line_south(level *EditLevel)
 {
+	int i;
+
 	if (EditLevel->ylen - 1 < MIN_MAP_LINES)
 		return;
 
 	free_glued_obstacles(EditLevel);
 
+	// Remove and free the volatile obstacles list of the removed row
+	for (i = 0; i < EditLevel->xlen; i++) {
+		remove_volatile_obstacles_from_tile(&EditLevel->map[EditLevel->ylen-1][i]);
+		free(EditLevel->map[EditLevel->ylen-1][i].volatile_obstacles);
+	}
+
 	// Remove a line at the very south is always easy, we must just modify the
 	// value of size on the vertical axis, allocation of new memory or other
 	// things are not necessary
 	EditLevel->ylen--;
+
+	// Free the know unused allocated row of map tiles
+	free(EditLevel->map[EditLevel->ylen]);
 
 	// When we remove a line at the very south, we must not move the elements
 	// (ie. obstacles, map labels, items, waypoints) but remove those which are

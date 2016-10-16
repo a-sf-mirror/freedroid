@@ -543,7 +543,7 @@ void save_game_data(struct auto_string *strout)
 			for (y = 0; y < lvl->ylen; y++) {
 				for (x = 0; x < lvl->xlen; x++) {
 					struct volatile_obstacle *volatile_obs;
-					list_for_each_entry(volatile_obs, &lvl->map[y][x].volatile_obstacles, volatile_list) {
+					list_for_each_entry(volatile_obs, lvl->map[y][x].volatile_obstacles, volatile_list) {
 						autostr_append(strout, "volatile_obstacle");
 						write_volatile_obstacle(strout, volatile_obs);
 						autostr_append(strout, "\n");
