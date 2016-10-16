@@ -1623,4 +1623,9 @@ enum load_image_mod_flags {
 // Draw quads borders (OpenGL only)
 #define DEBUG_QUAD_BORDER 0
 
+enum shader {
+	NO_SHADER = 0,
+	BLITTER_SHADER = 1,
+};
+
 #endif

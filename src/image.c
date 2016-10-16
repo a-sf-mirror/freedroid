@@ -29,6 +29,7 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+#include "rtprof.h"
 
 /**
  * This file contains image related functions.
@@ -40,8 +41,14 @@
 
 extern int gl_max_texture_size;	//defined in open_gl.c 
 
-// Currently active OpenGL texture
-static int active_tex = -1;
+/* Currently active OpenGL textures array.
+   Testing in zoomed out level editor in town showed:
+   1 texture  - 3872 flushes per frame - 71 FPS (Quadro M4000) - 58 FPS (i965) 
+   2 textures - 973 flushes per frame - 85 FPS (Quadro M4000)
+   4 textures - 171 flushes per frame - 100 FPS (Quadro M4000) - 75 FPS (i965)
+*/
+static int active_tex[] = { -1, -1, -1, -1 };
+
 // Requested OpenGL color
 static float requested_color[4];
 
@@ -71,7 +78,6 @@ static void gl_emit_quads(void);
 void end_image_batch(const char *reason)
 {
 	batch_draw = FALSE;
-	active_tex = -1;
 
 	char str[1024];
 	snprintf(str, 1023, "Flushing batch: %s", reason);
@@ -87,10 +93,16 @@ void end_image_batch(const char *reason)
 static void gl_emit_quads(void)
 {
 	if (vtx && vtx->size) {
+		use_shader(BLITTER_SHADER);
+#ifdef WITH_RTPROF
+		//probe_counter_set(my_probe, "Batch flushes/frame", 15000, 1);
+#endif
+
 		glColor4fv(requested_color);
 
 		glVertexPointer(2, GL_FLOAT, 4*sizeof(float), vtx->arr);
 		glTexCoordPointer(2, GL_FLOAT, 4*sizeof(float), (void*)((float*)(vtx->arr)+2));
+
 		glDrawArrays(GL_QUADS, 0, vtx->size * 4);
 
 #if DEBUG_QUAD_BORDER
@@ -117,27 +129,36 @@ static void gl_emit_quads(void)
 		old_b = b;
 		glColor4f(r, g, b, 1.0);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		glDisable(GL_TEXTURE_2D);
 		glVertexPointer(2, GL_FLOAT, 4*sizeof(float), vtx->arr);
 		glDrawArrays(GL_QUADS, 0, vtx->size * 4);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		glColor4fv(requested_color);
-		glEnable(GL_TEXTURE_2D);
 #endif
 
 		vtx->size = 0;
+
+		// Clear the array of bound textures
+		// XXX as a future optimization, no need to clear them, just mark them unused
+		int i;
+		for (i = 0; i < sizeof(active_tex)/sizeof(active_tex[0]); i++) {
+			active_tex[i] = -1;
+		}
+
+		glActiveTexture(GL_TEXTURE0);
 	}
 }
 #endif
 
 #ifdef HAVE_LIBGL
-static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, float ty0, float tx1, float ty1)
+static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, float ty0, float tx1, float ty1, int8_t texunit)
 {
-	if (!vtx)
+	if (!vtx) {
 		vtx = dynarray_alloc(16, 16 * sizeof(float));
+	}
 	
-	float v[16] ={ x1, y1, tx0, ty0, x1, y2, tx0, ty1, x2, y2, tx1, ty1, x2, y1, tx1, ty0 }; 
+    // Create the vertex attributes: position and texture coordinates. Mangle "tx0" and "tx1" to use them to encode the texture unit to be used. See open_gl_shaders.c for details
+	float v[16] ={ x1, y1, tx0 + 10*texunit, ty0, x1, y2, tx0 + 10*texunit, ty1, x2, y2, tx1 + 10*texunit, ty1, x2, y1, tx1 + 10*texunit, ty0 };
 
 	dynarray_add(vtx, v, 16 * sizeof(float));
 
@@ -158,7 +179,7 @@ static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, floa
 #endif
 
 #ifdef HAVE_LIBGL
-static inline void gl_repeat_quad(int x0, int y0, int w, int h, float tx0, float ty0, float tx1, float ty1, float rx, float ry)
+static inline void gl_repeat_quad(int x0, int y0, int w, int h, float tx0, float ty0, float tx1, float ty1, float rx, float ry, int8_t texunit)
 {
 	int i, j;
 
@@ -213,7 +234,8 @@ static inline void gl_repeat_quad(int x0, int y0, int w, int h, float tx0, float
 				}
 
 				gl_queue_quad(current_x0, current_y0, current_x1, current_y1,
-				              current_tx0, current_ty0, current_tx1, current_ty1);
+				              current_tx0, current_ty0, current_tx1, current_ty1,
+				              texunit);
 
 				// Prepare for the next column
 				current_x0 += w;
@@ -226,6 +248,40 @@ static inline void gl_repeat_quad(int x0, int y0, int w, int h, float tx0, float
 		}
 }
 #endif
+
+/**
+ * Get a texture unit number for the given texture name.
+ * Returns the texture unit, or -1 if no texture unit is
+ * free (in which case the batch must be flushed so other
+ * textures can be bound).
+ */
+static int get_texture_unit_for_tex(int tex)
+{
+	int i;
+
+	static int max_texture_units = 0;
+
+	if (!max_texture_units) {
+		glGetIntegerv(GL_MAX_TEXTURE_UNITS, &max_texture_units);
+	}
+
+	for (i = 0; i < sizeof(active_tex)/sizeof(active_tex[0]) && i < max_texture_units; i++) {
+		if (active_tex[i] == tex) {
+			// This texture is already bound, return the texture unit
+			return i;
+		} else if (active_tex[i] == -1) {
+			// There is a free texture unit: bind the texture to it
+			glActiveTexture(GL_TEXTURE0 + i);
+			glBindTexture(GL_TEXTURE_2D, tex);
+			active_tex[i] = tex;
+			return i;
+		}
+	}
+
+	// The texture isn't currently bound, and there is no free slot
+	// to bind it.
+	return -1;
+}
 
 #ifdef HAVE_LIBGL
 /**
@@ -249,14 +305,6 @@ static void gl_display_image(struct image *img, int x0, int y0, struct image_tra
 	int xmax = x + img->w * t->scale_x;
 	int ymax = y + img->h * t->scale_y;
 
-	// Bind the texture if required
-	if (img->texture != active_tex) {
-		gl_debug_marker("Flushing batch because changing active texture");
-		gl_emit_quads();
-		glBindTexture(GL_TEXTURE_2D, img->texture);
-		active_tex = img->texture;
-	}
-
 	// Change the active color if required
 	if (memcmp(&requested_color[0], &t->c[0], sizeof(requested_color))) {
 		gl_debug_marker("Flushing batch because changing active color");
@@ -264,20 +312,27 @@ static void gl_display_image(struct image *img, int x0, int y0, struct image_tra
 		memcpy(&requested_color[0], &t->c[0], sizeof(requested_color));
 	}
 
+	// Bind the texture to a free unit if required
+	int texunit = get_texture_unit_for_tex(img->texture);
+	if (texunit == -1) {
+		gl_debug_marker("Flushing batch because no free texture unit slot");
+		gl_emit_quads();
+		texunit = get_texture_unit_for_tex(img->texture);
+	}
+
 	// Queue the image, once or several times depending on the transformation
 	// mode to apply
 
 	if (t->mode & REPEATED) {
-		gl_repeat_quad(x, y, img->w, img->h, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1, t->scale_x, t->scale_y);
+		gl_repeat_quad(x, y, img->w, img->h, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1, t->scale_x, t->scale_y, texunit);
 	} else {
-		gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
+		gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1, texunit);
 	}
 
 	if (!batch_draw) {
 		gl_debug_marker("Batch drawing not requested");
 		gl_emit_quads();
-		active_tex = -1;
-		requested_color[0] = -1;
+		requested_color[0] = -1; //XXX remove that to avoid redundant flushes
 	}
 
 	if (t->mode & HIGHLIGHTED) {
@@ -287,9 +342,9 @@ static void gl_display_image(struct image *img, int x0, int y0, struct image_tra
 		gl_emit_quads();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		if (t->mode & REPEATED) {
-			gl_repeat_quad(x, y, img->w, img->h, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1, t->scale_x, t->scale_y);
+			gl_repeat_quad(x, y, img->w, img->h, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1, t->scale_x, t->scale_y, texunit);
 		} else {
-			gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
+			gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1, texunit);
 		}
 		gl_debug_marker("Flushing batch to do highlight");
 		gl_emit_quads();

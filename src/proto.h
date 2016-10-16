@@ -281,7 +281,7 @@ SDL_Surface *our_IMG_load_wrapper(const char *file);
 void flip_image_vertically(SDL_Surface * tmp1);
 void make_texture_out_of_surface(struct image *our_image);
 void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y);
-int safely_initialize_our_default_open_gl_parameters(void);
+int init_open_gl(void);
 void blit_background(const char *background);
 struct background *get_background(const char *);
 void set_gl_clip_rect(const SDL_Rect *clip);
@@ -291,6 +291,10 @@ void unset_gl_clip_rect(void);
 int init_opengl_debug();
 void open_gl_check_error_status(const char *name_of_calling_function);
 void gl_debug_marker(const char *str);
+
+// open_gl_shaders.c
+void use_shader(enum shader shader);
+void init_shaders(void);
 
 // blocks.c 
 void iso_load_bullet_surfaces(void);
@@ -878,6 +882,7 @@ void free_image_surface(struct image *img);
 void delete_image(struct image *img);
 int image_loaded(struct image *);
 struct image_transformation set_image_transformation(float scale_x, float scale_y, float r, float g, float b, float a, int highlight);
+void init_image_shaders(void);
 
 // obstacle.c
 struct obstacle *add_obstacle(struct level *, float , float, int);

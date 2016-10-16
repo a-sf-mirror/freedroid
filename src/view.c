@@ -234,7 +234,7 @@ void blit_leveleditor_point(int x, int y)
 {
 	if (use_open_gl) {
 #ifdef HAVE_LIBGL
-		glDisable(GL_TEXTURE_2D);
+		use_shader(NO_SHADER);
 		glEnable(GL_POINT_SMOOTH);
 		glPointSize(5.0);
 		glBegin(GL_POINTS);
@@ -243,7 +243,6 @@ void blit_leveleditor_point(int x, int y)
 		glColor3f(1.0, 1.0, 1.0);
 		glEnd();
 		glDisable(GL_POINT_SMOOTH);
-		glEnable(GL_TEXTURE_2D);
 		glPointSize(1.0);
 #endif
 	} else {
@@ -1880,7 +1879,7 @@ void AssembleCombatPicture(int mask)
 
 #if 0
 	/* This code displays the player tracks with red dots. */
-	glDisable(GL_TEXTURE_2D);
+	use_shader(NO_SHADER);
 	glPointSize(2.0);
 	glBegin(GL_POINTS);
 	int i = 0;
@@ -1892,12 +1891,11 @@ void AssembleCombatPicture(int mask)
 	}
 
 	glEnd();
-	glEnable(GL_TEXTURE_2D);
 #endif
 
 #if 0
 	/* This code displays tux "waypoints" */
-	glDisable(GL_TEXTURE_2D);
+	use_shader(NO_SHADER);
 	glLineWidth(2.0);
 	glBegin(GL_LINE_STRIP);
 	i = 0;
@@ -1913,7 +1911,6 @@ void AssembleCombatPicture(int mask)
 	}
 
 	glEnd();
-	glEnable(GL_TEXTURE_2D);
 #endif
 
 	// At this point we are done with the drawing procedure
@@ -2627,7 +2624,7 @@ There was a droid type on this level, that does not really exist.", PLEASE_INFOR
 #if 0
 	/* This code displays the pathway of the bots as well as their next waypoint */
 	if (e->energy > 0) {
-		glDisable(GL_TEXTURE_2D);
+		use_shader(NO_SHADER);
 		glLineWidth(2.0);
 		int a, b;
 		glBegin(GL_LINE_STRIP);
@@ -2648,7 +2645,6 @@ There was a droid type on this level, that does not really exist.", PLEASE_INFOR
 			glVertex2i(a, b);
 		}
 		glEnd();
-		glEnable(GL_TEXTURE_2D);
 	}
 #endif
 

@@ -29,7 +29,7 @@ freedroidRPG_SOURCES = \
 	lang.c light.c lists.c lua.c luaconfig.c \
 	main.c map.c map_label.c menu.c misc.c mission.c \
 	npc.c \
-	obstacle.c obstacle_extension.c open_gl.c open_gl_atlas.c open_gl_debug.c \
+	obstacle.c obstacle_extension.c open_gl.c open_gl_atlas.c open_gl_debug.c open_gl_shaders.c \
 	pathfinder.c pngfuncs.c \
 	quest_browser_ui.c \
 	rtprof.c \

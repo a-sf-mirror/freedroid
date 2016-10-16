@@ -362,7 +362,7 @@ void display_automap(void)
 
 #ifdef HAVE_LIBGL
 	if (use_open_gl) {
-		glDisable(GL_TEXTURE_2D);
+		use_shader(NO_SHADER);
 		glBegin(GL_POINTS);
 	}
 #endif
@@ -439,7 +439,6 @@ void display_automap(void)
 #ifdef HAVE_LIBGL
 	if (use_open_gl) {
 		glEnd();
-		glEnable(GL_TEXTURE_2D);
 	}
 #endif
 

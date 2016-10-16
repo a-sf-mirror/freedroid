@@ -741,7 +741,7 @@ static void set_video_mode_for_open_gl(void)
 
 	show_open_gl_driver_info();
 
-	safely_initialize_our_default_open_gl_parameters();
+	init_open_gl();
 
 	// Maybe resize the window to standard size?
 	//
@@ -1048,17 +1048,15 @@ static void draw_line_sdl(int x1, int y1, int x2, int y2, uint8_t r, uint8_t g, 
 static void draw_line_opengl(int x1, int y1, int x2, int y2, uint8_t r, uint8_t g, uint8_t b, int width)
 {
 #ifdef HAVE_LIBGL
+	use_shader(NO_SHADER);
+
 	glLineWidth(width);
 	glColor3ub(r, g, b);
-
-	glDisable(GL_TEXTURE_2D);
 
 	glBegin(GL_LINES);
 	glVertex2i(x1, y1);
 	glVertex2i(x2, y2);
 	glEnd();
-
-	glEnable(GL_TEXTURE_2D);
 
 	glColor3ub(255, 255, 255);
 #endif
