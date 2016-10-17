@@ -197,6 +197,42 @@ void edit_level_dimensions(void)
  *
  *
  */
+static void input_target_value(int *jump_target)
+{
+	while (EnterPressed() || SpacePressed() || MouseLeftPressed())
+		SDL_Delay(1);
+
+	int tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
+
+	if (tgt >= -1 && tgt < curShip.num_levels && curShip.AllLevels[tgt]) {
+		*jump_target = tgt;
+	}
+	gps_transform_map_dirty_flag = TRUE;
+}
+
+static void change_target_value(int *jump_target)
+{
+	if (LeftPressed()) {
+		int target = *jump_target;
+		do {
+			target--;
+		} while((target > 0) && !curShip.AllLevels[target]);
+		if (target >= 0)
+			*jump_target = target;
+		while (LeftPressed()) ;
+	}
+	if (RightPressed()) {
+		int target = *jump_target;
+		do {
+			target++;
+		} while((target < curShip.num_levels) && !curShip.AllLevels[target]);
+		if (target < curShip.num_levels)
+			*jump_target = target;
+		while (RightPressed()) ;
+	}
+	gps_transform_map_dirty_flag = TRUE;
+}
+
 static void set_level_interfaces(void)
 {
 	char *menu_texts[100];
@@ -255,60 +291,28 @@ static void set_level_interfaces(void)
 			if (LeftPressed() || RightPressed()) {	//left or right arrow ? handled below 
 				break;
 			}
-			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
-				SDL_Delay(1);
-
-			int tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
-
-			if (tgt >= -1 && tgt < curShip.num_levels) {
-				edit_level->jump_target_north = (tgt);
-			}
-			gps_transform_map_dirty_flag = TRUE;
+			input_target_value(&edit_level->jump_target_north);
 			break;
 
 		case JUMP_TARGET_EAST:
 			if (LeftPressed() || RightPressed()) {	//left or right arrow ? handled below 
 				break;
 			}
-			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
-				SDL_Delay(1);
-
-			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
-
-			if (tgt >= -1 && tgt < curShip.num_levels) {
-				edit_level->jump_target_east = (tgt);
-			}
-			gps_transform_map_dirty_flag = TRUE;
+			input_target_value(&edit_level->jump_target_east);
 			break;
 
 		case JUMP_TARGET_SOUTH:
 			if (LeftPressed() || RightPressed()) {	//left or right arrow ? handled below 
 				break;
 			}
-			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
-				SDL_Delay(1);
-
-			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
-
-			if (tgt >= -1 && tgt < curShip.num_levels) {
-				edit_level->jump_target_south = (tgt);
-			}
-			gps_transform_map_dirty_flag = TRUE;
+			input_target_value(&edit_level->jump_target_south);
 			break;
 
 		case JUMP_TARGET_WEST:
 			if (LeftPressed() || RightPressed()) {	//left or right arrow ? handled below 
 				break;
 			}
-			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
-				SDL_Delay(1);
-
-			tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
-
-			if (tgt >= -1 && tgt < curShip.num_levels) {
-				edit_level->jump_target_west = (tgt);
-			}
-			gps_transform_map_dirty_flag = TRUE;
+			input_target_value(&edit_level->jump_target_west);
 			break;
 
 		}		// switch
@@ -319,59 +323,19 @@ static void set_level_interfaces(void)
 		if (LeftPressed() || RightPressed()) {
 			switch (menu_position) {
 			case JUMP_TARGET_NORTH:
-				if (LeftPressed()) {
-					if (edit_level->jump_target_north >= 0)
-						edit_level->jump_target_north--;
-					while (LeftPressed()) ;
-				}
-				if (RightPressed()) {
-					if ((edit_level->jump_target_north + 1) < curShip.num_levels)
-						edit_level->jump_target_north++;
-					while (RightPressed()) ;
-				}
-				gps_transform_map_dirty_flag = TRUE;
+				change_target_value(&edit_level->jump_target_north);
 				break;
 
 			case JUMP_TARGET_SOUTH:
-				if (LeftPressed()) {
-					if (edit_level->jump_target_south >= 0)
-						edit_level->jump_target_south--;
-					while (LeftPressed()) ;
-				}
-				if (RightPressed()) {
-					if ((edit_level->jump_target_south + 1) < curShip.num_levels)
-						edit_level->jump_target_south++;
-					while (RightPressed()) ;
-				}
-				gps_transform_map_dirty_flag = TRUE;
+				change_target_value(&edit_level->jump_target_south);
 				break;
 
 			case JUMP_TARGET_EAST:
-				if (LeftPressed()) {
-					if (edit_level->jump_target_east >= 0)
-						edit_level->jump_target_east--;
-					while (LeftPressed()) ;
-				}
-				if (RightPressed()) {
-					if ((edit_level->jump_target_east + 1) < curShip.num_levels)
-						edit_level->jump_target_east++;
-					while (RightPressed()) ;
-				}
-				gps_transform_map_dirty_flag = TRUE;
+				change_target_value(&edit_level->jump_target_east);
 				break;
 
 			case JUMP_TARGET_WEST:
-				if (LeftPressed()) {
-					if (edit_level->jump_target_west >= 0)
-						edit_level->jump_target_west--;
-					while (LeftPressed()) ;
-				}
-				if (RightPressed()) {
-					if ((edit_level->jump_target_west + 1) < curShip.num_levels)
-						edit_level->jump_target_west++;
-					while (RightPressed()) ;
-				}
-				gps_transform_map_dirty_flag = TRUE;
+				change_target_value(&edit_level->jump_target_west);
 				break;
 
 			}
