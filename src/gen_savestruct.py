@@ -48,12 +48,12 @@ forbidden_types = [ "char" ]
 
 hardcoded_types = [ "list_head_t", "keybind_t_array" ]
 
-# Some types are not found inside the struct.h file, but need however read/write
+# Some types are not found inside the dump_structs, but need however read/write
 # functions (main use-case: arrays of structures)
 # This list contains types for which read/write functions will be added to the
 # generated files.
 
-additional_types = [ "bullet_sparsedynarray", "blast_sparsedynarray", "spell_sparsedynarray", "melee_shot_sparsedynarray" ]
+additional_types = [ "bullet_sparse_dynarray", "blast_sparse_dynarray", "spell_sparse_dynarray", "melee_shot_sparse_dynarray" ]
 
 #=====
 # End of user modifiable part
@@ -281,6 +281,19 @@ def main():
             impl_str += 'define_write_xxx_array(%s);\n' % func_name
             impl_str += 'define_read_xxx_array(%s);\n' % func_name
 
+        elif '_sparse_dynarray' in s_name:
+
+            s_name = s_name.replace('_sparse_dynarray', '')
+            func_name = s_name.replace('struct ', '')
+
+            header_str += '/*! \ingroup genrw */\n'
+            header_str += 'void write_%s_sparse_dynarray(struct auto_string *, %s_sparse_dynarray *);\n' % (func_name, s_name)
+            header_str += '/*! \ingroup genrw */\n'
+            header_str += 'void read_%s_sparse_dynarray(lua_State *, int, %s_sparse_dynarray *);\n' % (func_name, s_name)
+
+            impl_str += 'define_write_xxx_sparse_dynarray(%s);\n' % s_name
+            impl_str += 'define_read_xxx_sparse_dynarray(%s);\n' % s_name
+
         elif '_dynarray' in s_name:
 
             s_name = s_name.replace('_dynarray', '')
@@ -293,19 +306,6 @@ def main():
 
             impl_str += 'define_write_xxx_dynarray(%s);\n' % s_name
             impl_str += 'define_read_xxx_dynarray(%s);\n' % s_name
-
-        elif '_sparsedynarray' in s_name:
-
-            s_name = s_name.replace('_sparsedynarray', '')
-            func_name = s_name.replace('struct ', '')
-
-            header_str += '/*! \ingroup genrw */\n'
-            header_str += 'void write_%s_sparsedynarray(struct auto_string *, %s_sparsedynarray *);\n' % (func_name, s_name)
-            header_str += '/*! \ingroup genrw */\n'
-            header_str += 'void read_%s_sparsedynarray(lua_State *, int, %s_sparsedynarray *);\n' % (func_name, s_name)
-
-            impl_str += 'define_write_xxx_sparsedynarray(%s);\n' % s_name
-            impl_str += 'define_read_xxx_sparsedynarray(%s);\n' % s_name
 
     output_h.write(header_str)
     output_c.write(impl_str) 

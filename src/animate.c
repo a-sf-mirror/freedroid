@@ -237,7 +237,7 @@ static int animate_autogun(level* autogun_lvl, void *scenery_piece)
 		break;
 	}
 	
-	dynarray_add(&all_bullets, &new_bullet, sizeof(struct bullet));
+	sparse_dynarray_add(&all_bullets, &new_bullet, sizeof(struct bullet));
 
 	return TRUE;
 }

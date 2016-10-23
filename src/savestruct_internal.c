@@ -516,19 +516,19 @@ void save_game_data(struct auto_string *strout)
 	}
 
 	autostr_append(strout, "bullet_array");
-	write_bullet_sparsedynarray(strout, &all_bullets);
+	write_bullet_sparse_dynarray(strout, &all_bullets);
 	autostr_append(strout, "\n");
 
 	autostr_append(strout, "blast_array");
-	write_blast_sparsedynarray(strout, &all_blasts);
+	write_blast_sparse_dynarray(strout, &all_blasts);
 	autostr_append(strout, "\n");
 
 	autostr_append(strout, "spell_array");
-	write_spell_sparsedynarray(strout, &all_spells);
+	write_spell_sparse_dynarray(strout, &all_spells);
 	autostr_append(strout, "\n");
 
 	autostr_append(strout, "melee_shot_array");
-	write_melee_shot_sparsedynarray(strout, &all_melee_shots);
+	write_melee_shot_sparse_dynarray(strout, &all_melee_shots);
 	autostr_append(strout, "\n");
 
 	autostr_append(strout, "factions{\n");
@@ -595,26 +595,26 @@ static int npc_ctor(lua_State *L)
 
 static int bullet_array_ctor(lua_State *L)
 {
-	read_bullet_sparsedynarray(L, 1, &all_bullets);
+	read_bullet_sparse_dynarray(L, 1, &all_bullets);
 	return 0;
 }
 
 static int blast_array_ctor(lua_State *L)
 {
-	read_blast_sparsedynarray(L, 1, &all_blasts);
+	read_blast_sparse_dynarray(L, 1, &all_blasts);
 	return 0;
 }
 
 static int spell_array_ctor(lua_State *L)
 {
-	read_spell_sparsedynarray(L, 1, &all_spells);
+	read_spell_sparse_dynarray(L, 1, &all_spells);
 	return 0;
 }
 
 
 static int melee_shot_array_ctor(lua_State *L)
 {
-	read_melee_shot_sparsedynarray(L, 1, &all_melee_shots);
+	read_melee_shot_sparse_dynarray(L, 1, &all_melee_shots);
 	return 0;
 }
 

@@ -233,8 +233,8 @@ void write_##X##_dynarray(struct auto_string *strout, X##_dynarray *data)\
  * \param X Data type
  */
 
-#define define_write_xxx_sparsedynarray(X)\
-void write_##X##_sparsedynarray(struct auto_string *strout, X##_sparsedynarray *data)\
+#define define_write_xxx_sparse_dynarray(X)\
+void write_##X##_sparse_dynarray(struct auto_string *strout, X##_sparse_dynarray *data)\
 {\
 	autostr_append(strout, "{\n");\
 	int i;\
@@ -306,23 +306,23 @@ void read_##X##_dynarray(lua_State *L, int index, X##_dynarray *result)\
  * \param X Data type
  */
 
-#define define_read_xxx_sparsedynarray(X)\
-void read_##X##_sparsedynarray(lua_State *L, int index, X##_sparsedynarray *result)\
+#define define_read_xxx_sparse_dynarray(X)\
+void read_##X##_sparse_dynarray(lua_State *L, int index, X##_sparse_dynarray *result)\
 {\
 	lua_is_of_type_or_abort(L, index, LUA_TTABLE);\
 	int array_size = lua_rawlen(L, index);\
 	if (array_size != 0) {\
-		sparse_dynarray_init((struct dynarray *)result, array_size, sizeof(X));\
+		sparse_dynarray_init((struct sparse_dynarray *)result, array_size, sizeof(X));\
 		int i;\
 		X data;\
 		for (i = 0; i < array_size; i++) {\
 			lua_rawgeti(L, index, i+1);\
 			read_##X(L, -1, &data);\
-			dynarray_add((struct dynarray *)result, &data, sizeof(X));\
+			sparse_dynarray_add((struct sparse_dynarray *)result, &data, sizeof(X));\
 			lua_pop(L, 1);\
 		}\
 	} else {\
-		sparse_dynarray_init((struct dynarray *)result, 0, sizeof(X));\
+		sparse_dynarray_init((struct sparse_dynarray *)result, 0, sizeof(X));\
 	}\
 }
 

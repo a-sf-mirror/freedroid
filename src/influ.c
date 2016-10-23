@@ -980,7 +980,7 @@ void start_tux_death_explosions(void)
 
 		// check that the blast is not on an invalid position
 		if (resolve_virtual_position(&new_blast.pos, &new_blast.pos)) {
-			dynarray_add(&all_blasts, &new_blast, sizeof(struct blast));
+			sparse_dynarray_add(&all_blasts, &new_blast, sizeof(struct blast));
 		}
 	}
 }
@@ -1232,7 +1232,7 @@ void perform_tux_ranged_attack(short int weapon_type, bullet *bullet_parameters,
 	new_bullet.speed.y = attack_vector.y * ItemMap[weapon_type].weapon_bullet_speed;
 	new_bullet.angle = -(atan2(attack_vector.y, attack_vector.x) * 180 / M_PI + 90 + 45);
 
-	dynarray_add(&all_bullets, &new_bullet, sizeof(struct bullet));
+	sparse_dynarray_add(&all_bullets, &new_bullet, sizeof(struct bullet));
 }
 
 /**
@@ -1384,7 +1384,7 @@ int perform_tux_attack(int use_mouse_cursor_for_targeting)
 			new_melee_shot.owner = -1;	//no "bot class number" owner
 			new_melee_shot.time_to_hit = tux_anim.attack.duration / 2;
 
-			dynarray_add(&all_melee_shots, &new_melee_shot, sizeof(struct melee_shot));
+			sparse_dynarray_add(&all_melee_shots, &new_melee_shot, sizeof(struct melee_shot));
 
 			hit_something = TRUE;
 		}

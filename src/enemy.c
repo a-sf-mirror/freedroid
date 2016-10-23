@@ -2214,7 +2214,7 @@ static void raw_start_enemys_shot(struct enemy *this_robot, float xdist, float y
 		new_bullet.pos.x += (new_bullet.speed.x) / (bullet_speed) * 0.5;
 		new_bullet.pos.y += (new_bullet.speed.y) / (bullet_speed) * 0.5;
 
-		dynarray_add(&all_bullets, &new_bullet, sizeof(struct bullet));
+		sparse_dynarray_add(&all_bullets, &new_bullet, sizeof(struct bullet));
 
 	} else {		/* melee weapon */
 
@@ -2234,7 +2234,7 @@ static void raw_start_enemys_shot(struct enemy *this_robot, float xdist, float y
 		new_melee_shot.damage = weapon_spec.weapon_base_damage + MyRandom(weapon_spec.weapon_damage_modifier);
 		new_melee_shot.owner = this_robot->id;
 
-		dynarray_add(&all_melee_shots, &new_melee_shot, sizeof(struct melee_shot));
+		sparse_dynarray_add(&all_melee_shots, &new_melee_shot, sizeof(struct melee_shot));
 	}
 
 	this_robot->ammo_left--;

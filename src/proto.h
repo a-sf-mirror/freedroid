@@ -799,16 +799,19 @@ int autostr_vappend(struct auto_string *str, const char *fmt, va_list args);
 int autostr_append(struct auto_string *, const char *, ...) PRINTF_FMT_ATTRIBUTE(2,3);
 
 // dynarray.c
-struct dynarray *dynarray_alloc(int, size_t);
-struct dynarray *sparse_dynarray_alloc(int, size_t);
 void dynarray_init(struct dynarray *, int, size_t);
-void sparse_dynarray_init(struct dynarray *, int, size_t);
-void dynarray_resize(struct dynarray *, int, size_t);
+struct dynarray *dynarray_alloc(int, size_t);
 void dynarray_free(struct dynarray *);
 void dynarray_add(struct dynarray *, void *, size_t);
 void dynarray_del(struct dynarray *, int, size_t);
 void *dynarray_member(struct dynarray *, int, size_t);
-int sparse_dynarray_member_used(struct dynarray *, int);
+void sparse_dynarray_init(struct sparse_dynarray *, int, size_t);
+struct sparse_dynarray *sparse_dynarray_alloc(int, size_t);
+void sparse_dynarray_free(struct sparse_dynarray *);
+void sparse_dynarray_add(struct sparse_dynarray *, void *, size_t);
+void sparse_dynarray_del(struct sparse_dynarray *, int, size_t);
+void *sparse_dynarray_member(struct sparse_dynarray *, int, size_t);
+int sparse_dynarray_member_used(struct sparse_dynarray *, int);
 
 // animate.c
 void dirty_animated_obstacle_list(int lvl_num);

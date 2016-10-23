@@ -53,19 +53,26 @@ struct dynarray {
 	void *arr;
 	int size;
 	int capacity;
-	int sparse;
-	int *used_members;
 };
 
-#define SPARSE_DYNARRAY { .sparse = 1 }
+struct sparse_dynarray {
+	// The first attributes *have* to be the attributes of struct dynarray
+	// to be able to use some dynarray functions by casting a sparse_dynarray
+	// to a dynarray. This avoid to duplicate the code of those functions.
+	void *arr;
+	int size;
+	int capacity;
+	// sparse_dynarray specific attributes
+	int *used_members;
+};
 
 typedef struct dynarray item_dynarray;
 typedef struct dynarray string_dynarray;
 typedef struct dynarray upgrade_socket_dynarray;
-typedef struct dynarray bullet_sparsedynarray;
-typedef struct dynarray melee_shot_sparsedynarray;
-typedef struct dynarray blast_sparsedynarray;
-typedef struct dynarray spell_sparsedynarray;
+typedef struct sparse_dynarray bullet_sparse_dynarray;
+typedef struct sparse_dynarray melee_shot_sparse_dynarray;
+typedef struct sparse_dynarray blast_sparse_dynarray;
+typedef struct sparse_dynarray spell_sparse_dynarray;
 
 struct font {
 	int height;

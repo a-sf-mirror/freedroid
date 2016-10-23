@@ -97,7 +97,7 @@ static int move_this_bullet_and_check_its_collisions(struct bullet *current_bull
 
 void delete_melee_shot(int melee_shot_number)
 {
-	dynarray_del(&all_melee_shots, melee_shot_number, sizeof(struct melee_shot));
+	sparse_dynarray_del(&all_melee_shots, melee_shot_number, sizeof(struct melee_shot));
 }
 
 /* ------------------------------------------------------------------
@@ -115,7 +115,7 @@ void do_melee_damage(void)
 		if (!sparse_dynarray_member_used(&all_melee_shots, i))
 			continue;
 
-		struct melee_shot *current_melee_shot = (struct melee_shot *)dynarray_member(&all_melee_shots, i, sizeof(struct melee_shot));
+		struct melee_shot *current_melee_shot = (struct melee_shot *)sparse_dynarray_member(&all_melee_shots, i, sizeof(struct melee_shot));
 
 		// Wait the hit of the melee shot
 		if (current_melee_shot->time_to_hit > 0) {
@@ -179,7 +179,7 @@ void move_bullets(void)
 		if (!sparse_dynarray_member_used(&all_bullets, i))
 			continue;
 
-		struct bullet *current_bullet = (struct bullet *)dynarray_member(&all_bullets, i, sizeof(struct bullet));
+		struct bullet *current_bullet = (struct bullet *)sparse_dynarray_member(&all_bullets, i, sizeof(struct bullet));
 
 		// if during its move, a bullet collides something, it has done its job !
 		if (move_this_bullet_and_check_its_collisions(current_bullet)) {
@@ -204,7 +204,7 @@ void move_bullets(void)
  */
 void delete_bullet(int bullet_number)
 {
-	dynarray_del(&all_bullets, bullet_number, sizeof(struct bullet));
+	sparse_dynarray_del(&all_bullets, bullet_number, sizeof(struct bullet));
 }
 
 /**
@@ -258,7 +258,7 @@ void start_blast(float x, float y, int lvl, int type, int dmg, int faction, char
 	new_blast.faction = faction;
 
 	// add the blast to the game
-	dynarray_add(&all_blasts, &new_blast, sizeof(struct blast));
+	sparse_dynarray_add(&all_blasts, &new_blast, sizeof(struct blast));
 
 	// play the blast sound effect
 	if (sound_name) {
@@ -279,7 +279,7 @@ void animate_blasts(void)
 	for (i = 0; i < all_blasts.size; i++) {
 		if (sparse_dynarray_member_used(&all_blasts, i)) {
 
-			struct blast *current_blast = (struct blast *)dynarray_member(&all_blasts, i, sizeof(struct blast));
+			struct blast *current_blast = (struct blast *)sparse_dynarray_member(&all_blasts, i, sizeof(struct blast));
 
 			// But maybe the blast is also outside the map already, which would
 			// cause a SEGFAULT directly afterwards, when the map is queried.
@@ -322,7 +322,7 @@ void animate_blasts(void)
  */
 void delete_blast(int blast_number)
 {
-	dynarray_del(&all_blasts, blast_number, sizeof(struct blast));
+	sparse_dynarray_del(&all_blasts, blast_number, sizeof(struct blast));
 }
 
 /**
@@ -343,7 +343,7 @@ void move_spells(void)
 		if (!sparse_dynarray_member_used(&all_spells, i))
 			continue;
 
-		struct spell *current_spell = (struct spell *)dynarray_member(&all_spells, i, sizeof(struct spell));
+		struct spell *current_spell = (struct spell *)sparse_dynarray_member(&all_spells, i, sizeof(struct spell));
 
 		// All spells should count their lifetime...
 
@@ -462,7 +462,7 @@ void move_spells(void)
  */
 void delete_spell(int spell_number)
 {
-	dynarray_del(&all_spells, spell_number, sizeof(struct spell));
+	sparse_dynarray_del(&all_spells, spell_number, sizeof(struct spell));
 }
 
 /**

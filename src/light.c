@@ -544,7 +544,7 @@ void update_light_list()
 		if (!sparse_dynarray_member_used(&all_blasts, blast_idx))
 			continue;
 
-		struct blast *current_blast = (struct blast *)dynarray_member(&all_blasts, blast_idx, sizeof(struct blast));
+		struct blast *current_blast = (struct blast *)sparse_dynarray_member(&all_blasts, blast_idx, sizeof(struct blast));
 
 		if (current_blast->type != DROIDBLAST)
 			continue;

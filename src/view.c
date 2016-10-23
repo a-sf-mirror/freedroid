@@ -140,7 +140,7 @@ void put_miscellaneous_spell_effects(void)
 		if (!sparse_dynarray_member_used(&all_spells, i))
 			continue;
 
-		struct spell *current_spell = (struct spell *)dynarray_member(&all_spells, i, sizeof(struct spell));
+		struct spell *current_spell = (struct spell *)sparse_dynarray_member(&all_spells, i, sizeof(struct spell));
 
 		put_radial_blue_sparks(current_spell->spell_center.x, current_spell->spell_center.y,
 							current_spell->spell_radius, current_spell->img_type,
@@ -1111,7 +1111,7 @@ static void insert_bullets_into_blitting_list(int mask)
 		if (!sparse_dynarray_member_used(&all_bullets, i))
 			continue;
 
-		struct bullet *b = (struct bullet *)dynarray_member(&all_bullets, i, sizeof(struct bullet));
+		struct bullet *b = (struct bullet *)sparse_dynarray_member(&all_bullets, i, sizeof(struct bullet));
 
 		gps vpos;
 		update_virtual_position(&vpos, &b->pos, Me.pos.z);
@@ -1141,7 +1141,7 @@ static void insert_blasts_into_blitting_list(int mask)
 		if (!sparse_dynarray_member_used(&all_blasts, i))
 			continue;
 
-		struct blast *current_blast = (struct blast *)dynarray_member(&all_blasts, i, sizeof(struct blast));
+		struct blast *current_blast = (struct blast *)sparse_dynarray_member(&all_blasts, i, sizeof(struct blast));
 		
 		gps vpos;
 		update_virtual_position(&vpos, &current_blast->pos, Me.pos.z);
