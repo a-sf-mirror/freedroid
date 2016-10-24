@@ -427,10 +427,6 @@ void insert_obstacles_into_blitting_list(int mask)
 					insert_one_obstacle_into_blitting_list(col, line, tile_rpos.z, OurObstacle, BLITTING_TYPE_OBSTACLE, idx, tstamp);
 			}
 
-			if (tile_rpos.z == 24 && obstacle_level->xlen == 98) {
-				int i = 0;
-				i++;
-			}
 			struct volatile_obstacle *volatile_obs, *next;
 			list_for_each_entry_safe(volatile_obs, next, obstacle_level->map[py][px].volatile_obstacles, volatile_list) {
 				if (volatile_obs->obstacle.timestamp == tstamp)
