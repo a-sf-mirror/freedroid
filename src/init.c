@@ -921,7 +921,7 @@ void InitFreedroid(int argc, char **argv)
 	LightRadiusInit();
 
 	// SDL video subsystem and OpenGL have to be initialized
-	// before any other SDL subsystem.
+	// before any other SDL subsystem (see description of commit be022c5f29)
 	init_video();
 	init_timer();
 
