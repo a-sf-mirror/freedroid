@@ -493,9 +493,6 @@ static void get_standard_iso_floor_tile_size(void)
 		iso_floor_tile_height = TILE_HEIGHT	- 3;
 	else
 		iso_floor_tile_height = TILE_HEIGHT - 2;
-
-	iso_floor_tile_width_over_two = iso_floor_tile_width / 2;
-	iso_floor_tile_height_over_two = iso_floor_tile_height / 2;
 }
 
 /* -----------------------------------------------------------------
