@@ -2077,6 +2077,12 @@ pointf translate_point_to_map_location(float axis_x, float axis_y, int zoom_is_o
 	return position;
 }
 
+int map_is_zoomed_out(void)
+{
+	/* XXX should not check for leveleditor here! */
+	return game_status == INSIDE_LVLEDITOR && GameConfig.zoom_is_on;
+}
+
 /**
  * This function translates a given map point to screen coordinates.
  *
@@ -2087,27 +2093,35 @@ pointf translate_point_to_map_location(float axis_x, float axis_y, int zoom_is_o
  * @param zoom_factor zoom factor in use
  * 
  */
-void translate_map_point_to_screen_pixel_func(float x_map_pos, float y_map_pos, int *x_res, int *y_res)
+void translate_map_point_to_screen_pixel_func(float X, float Y, int *x_res, int *y_res)
 {
 	float zoom_factor = 1.0;
 
-	/* XXX should not check for leveleditor here! */
-	if (game_status == INSIDE_LVLEDITOR && GameConfig.zoom_is_on) {
-		zoom_factor = lvledit_zoomfact_inv();
-	}
-#define R ceilf
+#define R (int)
 #define factX FLOOR_TILE_WIDTH*0.5*zoom_factor
 #define factY FLOOR_TILE_HEIGHT*0.5*zoom_factor
-	//obstacles oscillent *x_res = UserCenter_x + R( (x_map_pos - Me.pos.x) * factX) + R((Me . pos . y - y_map_pos) * factX);
-	//murs tilent pas -- en fait si
-	*x_res = UserCenter_x + R(x_map_pos * factX) - R(y_map_pos * factX) + R(Me.pos.y * factX) - R(factX * Me.pos.x);
-	//murs tilent pas ET tux oscille *x_res = UserCenter_x + R( x_map_pos * factX) - R(y_map_pos * factX) + R((Me.pos.y - Me.pos.x) * factX);
-	//original "devtrack" - murs tilent pas *x_res = ( UserCenter_x + R ( ( x_map_pos - y_map_pos )  * factX  ) + R ( ( Me . pos . y - Me . pos . x ) * factX ) );
+	if (map_is_zoomed_out()) {
+		zoom_factor = lvledit_zoomfact_inv();
+	}
 
-	//*y_res = UserCenter_y + R( (x_map_pos - Me.pos.x)* factY ) + R((y_map_pos - Me . pos . y)* factY);
-	*y_res = UserCenter_y + R(x_map_pos * factY) + R(y_map_pos * factY) - R(Me.pos.x * factY) - R(factY * Me.pos.y);
-	//*y_res = UserCenter_y + R( x_map_pos * factY ) + R(y_map_pos * factY) - R((Me.pos.x + Me.pos.y) * factY);
-	//*y_res=( UserCenter_y + R ( ( x_map_pos + y_map_pos )  * factY ) - R( (  Me . pos . x + Me . pos . y ) * factY ));
+	/* Translating from the map coordinate system into the screen coordinate
+	   system is not easy to do correctly, because the screen coordinate system
+	   is discrete (integer coordinates).  The result is that careless
+	   translation can lead to elements that are fixed on the map (such as
+	   obstacles) to "jitter" when the player is moving, especially when movement
+	   happens along the screen axes.  This is why "rounding" is needed at an
+	   intermediary step.
+
+	   Translating a vector on the map to a vector on screen is as follows: x =
+	   (X - Y) * FLOOR_TILE_WIDTH y = (X + Y) * FLOOR_TILE_HEIGHT
+
+	   To translate a point, one has to take into account the "base"
+	   coordinate: the screen's origin is centered on the player (Me.pos) and depends
+	   on the interface screens currently opened (UserCenter).  The player coordinate
+	   is rounded at an intermediary step to avoid jitter when the player moves.
+	  */
+	*x_res = UserCenter_x + factX * (X - Y) - R(factX * (Me.pos.x - Me.pos.y));
+	*y_res = UserCenter_y + factY * (X + Y) - R(factY * (Me.pos.x + Me.pos.y));
 #undef R
 #undef factX
 #undef factY
