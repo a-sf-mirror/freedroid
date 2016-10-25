@@ -160,11 +160,11 @@ void get_floor_boundaries(int mask, int *LineStart, int *LineEnd, int *ColStart,
 		*LineStart = floor(translate_pixel_to_map_location(UserCenter_x, -UserCenter_y, FALSE));
 		*LineEnd =
 		    floor(translate_pixel_to_map_location
-			  (-UserCenter_x - iso_floor_tile_width + 1, UserCenter_y + iso_floor_tile_height - 1, FALSE));
+			  (-UserCenter_x - FLOOR_TILE_WIDTH + 1, UserCenter_y + FLOOR_TILE_HEIGHT - 1, FALSE));
 		*ColStart = floor(translate_pixel_to_map_location(-UserCenter_x, -UserCenter_y, TRUE));
 		*ColEnd =
 		    floor(translate_pixel_to_map_location
-			  (UserCenter_x + iso_floor_tile_width - 1, UserCenter_y + iso_floor_tile_height - 1, TRUE));
+			  (UserCenter_x + FLOOR_TILE_WIDTH - 1, UserCenter_y + FLOOR_TILE_HEIGHT - 1, TRUE));
 	}
 }
 

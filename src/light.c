@@ -849,11 +849,11 @@ void set_up_light_strength_buffer(int *decay_x, int *decay_y)
 	// (note: the bottom-right corner is also always outside of the screen, due
 	// to the large enough value of scale_factor (see: LightRadiusInit())
 	//
-	*decay_x = - (ceilf(Me.pos.x * iso_floor_tile_width*0.5) - ceilf(Me.pos.y * iso_floor_tile_width*0.5));
+	*decay_x = - (ceilf(Me.pos.x * FLOOR_TILE_WIDTH*0.5) - ceilf(Me.pos.y * FLOOR_TILE_WIDTH*0.5));
 	*decay_x = *decay_x % (int)LightRadiusConfig.scale_factor;
 	if (*decay_x > 0) *decay_x -= (int)LightRadiusConfig.scale_factor;
 
-	*decay_y = - (ceilf(Me.pos.x * iso_floor_tile_height*0.5) + ceilf(Me.pos.y * iso_floor_tile_height*0.5));
+	*decay_y = - (ceilf(Me.pos.x * FLOOR_TILE_HEIGHT*0.5) + ceilf(Me.pos.y * FLOOR_TILE_HEIGHT*0.5));
 	*decay_y = *decay_y % (int)LightRadiusConfig.scale_factor;
 	if (*decay_y > 0) *decay_y -= (int)LightRadiusConfig.scale_factor;
 

@@ -474,27 +474,6 @@ SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, flo
 	return colored_surf;
 }
 
-/**
- *
- *
- */
-static void get_standard_iso_floor_tile_size(void)
-{
-	// iso_miscellaneous_floor_0000 dimensions
-#define TILE_WIDTH 136
-#define TILE_HEIGHT 69
-
-	if (TILE_WIDTH % 2)
-		iso_floor_tile_width = TILE_WIDTH - 3;
-	else
-		iso_floor_tile_width = TILE_WIDTH - 2;
-
-	if (TILE_HEIGHT % 2)
-		iso_floor_tile_height = TILE_HEIGHT	- 3;
-	else
-		iso_floor_tile_height = TILE_HEIGHT - 2;
-}
-
 /* -----------------------------------------------------------------
  * This function does all the bitmap initialisation, so that you
  * later have the bitmaps in perfect form in memory, ready for blitting
@@ -502,11 +481,6 @@ static void get_standard_iso_floor_tile_size(void)
  * ----------------------------------------------------------------- */
 void InitPictures(void)
 {
-	// First thing to do is get the size of a typical isometric
-	// floor tile, i.e. height and width of the corresponding graphics
-	// bitmap
-	//
-	get_standard_iso_floor_tile_size();
 
 	// Loading all these pictures might take a while...
 	// and we do not want do deal with huge frametimes, which

@@ -174,8 +174,6 @@ EXTERN GLuint StoredMenuBackgroundTex[2];
 EXTERN struct tux_motion_class_images *tux_images;
 EXTERN struct dynarray obstacle_images;
 
-EXTERN float iso_floor_tile_width;
-EXTERN float iso_floor_tile_height;
 EXTERN int vid_bpp;		// bits per pixel 
 
 //===================================================================

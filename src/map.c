@@ -2036,9 +2036,9 @@ inline float translate_pixel_to_map_location(float axis_x, float axis_y, int giv
 	//
 
 	if (give_x) {
-		return (Me.pos.x + (axis_x / ((float)iso_floor_tile_width)) + (axis_y / ((float)iso_floor_tile_height)));
+		return (Me.pos.x + (axis_x / ((float)FLOOR_TILE_WIDTH)) + (axis_y / ((float)FLOOR_TILE_HEIGHT)));
 	} else {
-		return (Me.pos.y - (axis_x / ((float)iso_floor_tile_width)) + (axis_y / ((float)iso_floor_tile_height)));
+		return (Me.pos.y - (axis_x / ((float)FLOOR_TILE_WIDTH)) + (axis_y / ((float)FLOOR_TILE_HEIGHT)));
 	}
 
 };				// int translate_pixel_to_map_location ( int axis_x , int axis_y , int give_x ) 
@@ -2051,10 +2051,10 @@ float translate_pixel_to_zoomed_map_location(float axis_x, float axis_y, int giv
 {
 	float zf = lvledit_zoomfact();
 	if (give_x) {
-		return (Me.pos.x + (zf * axis_x / ((float)iso_floor_tile_width)) + (zf * axis_y / ((float)iso_floor_tile_height)));
+		return (Me.pos.x + (zf * axis_x / ((float)FLOOR_TILE_WIDTH)) + (zf * axis_y / ((float)FLOOR_TILE_HEIGHT)));
 		// return ( ( axis_x / ISO_WIDTH ) + ( axis_y / ISO_HEIGHT ) ) ;
 	} else {
-		return (Me.pos.y - (zf * axis_x / ((float)iso_floor_tile_width)) + (zf * axis_y / ((float)iso_floor_tile_height)));
+		return (Me.pos.y - (zf * axis_x / ((float)FLOOR_TILE_WIDTH)) + (zf * axis_y / ((float)FLOOR_TILE_HEIGHT)));
 		// return ( - ( axis_x / ISO_WIDTH ) + ( axis_y / ISO_HEIGHT ) ) ;
 	}
 
@@ -2096,8 +2096,8 @@ void translate_map_point_to_screen_pixel_func(float x_map_pos, float y_map_pos, 
 		zoom_factor = lvledit_zoomfact_inv();
 	}
 #define R ceilf
-#define factX iso_floor_tile_width*0.5*zoom_factor
-#define factY iso_floor_tile_height*0.5*zoom_factor
+#define factX FLOOR_TILE_WIDTH*0.5*zoom_factor
+#define factY FLOOR_TILE_HEIGHT*0.5*zoom_factor
 	//obstacles oscillent *x_res = UserCenter_x + R( (x_map_pos - Me.pos.x) * factX) + R((Me . pos . y - y_map_pos) * factX);
 	//murs tilent pas -- en fait si
 	*x_res = UserCenter_x + R(x_map_pos * factX) - R(y_map_pos * factX) + R(Me.pos.y * factX) - R(factX * Me.pos.x);

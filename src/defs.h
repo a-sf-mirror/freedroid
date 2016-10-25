@@ -1628,4 +1628,6 @@ enum shader {
 	BLITTER_SHADER = 1,
 };
 
+#define FLOOR_TILE_WIDTH 134
+#define FLOOR_TILE_HEIGHT 66
 #endif
