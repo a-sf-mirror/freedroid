@@ -209,11 +209,6 @@ typedef struct moderately_finepoint {
 	float y;
 } moderately_finepoint;
 
-typedef struct finepoint {
-	double x;
-	double y;
-} finepoint;
-
 typedef struct gps {
 	float x;
 	float y;
@@ -478,7 +473,7 @@ typedef struct enemy {
 	// 2nd set ('global state')
 	//
 	int faction;
-	uint8_t will_respawn;		// will this robot be revived by respawn_level()?
+	uint8_t will_respawn;           // will this robot be revived by respawn_level()?
 	uint8_t will_rush_tux;          // will this robot approach the Tux on sight and open communication?
 	int combat_state;               // current state of the bot
 	float state_timeout;            // time spent in this state (used by "timeout" states such as STOP_AND_EYE_TARGET only)
@@ -494,7 +489,7 @@ typedef struct enemy {
 	//--------------------
 	// 3rd set ('transient state')
 	//
-	finepoint speed;                   // current speed
+	moderately_finepoint speed;        // current speed
 	float energy;                      // current energy of this droid
 	float animation_phase;             // the current animation frame for this enemy (starting at 0 of course...)
 	short int animation_type;          // walk-animation, attack-animation, gethit animation, death animation
@@ -552,10 +547,10 @@ typedef struct tux {
 	float dexterity_bonus_end_date;
 	float light_bonus_end_date;
 
-	finepoint speed;	// the current speed of the droid
-	gps pos;		// current position in the whole ship
-	gps teleport_anchor;	// where from have you last teleported home
-	gps mouse_move_target;	// where the tux is going automatically by virtue of mouse move
+	moderately_finepoint speed; // the current speed of the droid
+	gps pos;                    // current position in the whole ship
+	gps teleport_anchor;        // where from have you last teleported home
+	gps mouse_move_target;      // where the tux is going automatically by virtue of mouse move
 
 	short int current_enemy_target_n;	//which enemy has been targeted
 	uint8_t god_mode;

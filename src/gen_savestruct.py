@@ -30,7 +30,7 @@ import sys, re
 # List of the 'root' structures for which a read/write function is to be created
 
 dump_structs = [
-                 "gps", "point", "moderately_finepoint", "finepoint",
+                 "gps", "point", "moderately_finepoint",
                  "tux_t", "item", "enemy", "bullet", "blast",
                  "obstacle", "volatile_obstacle",
                  "spell", "melee_shot", "mission", "npc",

@@ -417,7 +417,7 @@ void event_obstacle_action(obstacle *o)
 const char *teleporter_square_below_mouse_cursor(void)
 {
 	if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y())) {
-		struct finepoint map_position_of_mouse;
+		struct moderately_finepoint map_position_of_mouse;
 		map_position_of_mouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
 		map_position_of_mouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 

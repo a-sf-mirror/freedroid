@@ -2351,8 +2351,8 @@ static void move_to_melee_combat(struct enemy *this_robot, struct gps *target_po
  */
 static void MoveAwayFromMeleeCombat(Enemy ThisRobot, moderately_finepoint * set_move_tgt)
 {
-	finepoint VictimPosition = { 0.0, 0.0 };
-	finepoint CurrentPosition = { 0.0, 0.0 };
+	moderately_finepoint VictimPosition = { 0.0, 0.0 };
+	moderately_finepoint CurrentPosition = { 0.0, 0.0 };
 	moderately_finepoint StepVector;
 	moderately_finepoint RotatedStepVector;
 	float StepVectorLen;

@@ -212,7 +212,7 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl, int clickable_only)
 		return -1;
 
 	// We find the position of the mouse cursor on the floor.
-	struct finepoint map_position_of_mouse;
+	struct moderately_finepoint map_position_of_mouse;
 	map_position_of_mouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
 	map_position_of_mouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 
