@@ -46,8 +46,8 @@ static struct leveleditor_select {
 	int single_tile_mark_index;
 	int drag_drop_floor_undoable;
 
-	moderately_finepoint drag_start;
-	moderately_finepoint cur_drag_pos;
+	pointf drag_start;
+	pointf cur_drag_pos;
 } state;
 
 enum { DISABLED, FD_RECT, FD_RECTDONE, DRAGDROP } mode;
@@ -200,7 +200,7 @@ int remove_element_from_selection(void *data)
 	return 0;
 }
 
-static void __calc_min_max(float x, float y, moderately_finepoint *cmin, moderately_finepoint *cmax)
+static void __calc_min_max(float x, float y, pointf *cmin, pointf *cmax)
 {
 	if (x < cmin->x)
 		cmin->x = x;
@@ -212,7 +212,7 @@ static void __calc_min_max(float x, float y, moderately_finepoint *cmin, moderat
 		cmax->y = y;
 }
 
-static void calc_min_max_selection(struct list_head *list, moderately_finepoint *cmin, moderately_finepoint *cmax)
+static void calc_min_max_selection(struct list_head *list, pointf *cmin, pointf *cmax)
 {
 	struct selected_element *e;
 	struct lvledit_map_tile *t;
@@ -578,7 +578,7 @@ static void start_drag_drop()
 	state.cur_drag_pos.y = mouse_mapcoord.y;
 }
 
-static void do_drag_drop_obstacle(moderately_finepoint diff)
+static void do_drag_drop_obstacle(pointf diff)
 {
 	struct selected_element *e;
 
@@ -594,7 +594,7 @@ static void do_drag_drop_obstacle(moderately_finepoint diff)
 	state.cur_drag_pos.y = mouse_mapcoord.y;
 }
 
-static void do_drag_drop_floor(moderately_finepoint diff)
+static void do_drag_drop_floor(pointf diff)
 {
 	// Move the selection if the displacement exceeds half a tile
 	if (fabsf(diff.x) >= 0.5 || fabsf(diff.y) >= 0.5 ) {
@@ -645,7 +645,7 @@ static void do_drag_drop_floor(moderately_finepoint diff)
 	}
 }
 
-static void do_drag_drop_item(moderately_finepoint diff)
+static void do_drag_drop_item(pointf diff)
 {
 	struct selected_element *e;
 
@@ -661,7 +661,7 @@ static void do_drag_drop_item(moderately_finepoint diff)
 	state.cur_drag_pos.y = mouse_mapcoord.y;
 }
 
-static void do_drag_drop_waypoint(struct moderately_finepoint diff)
+static void do_drag_drop_waypoint(struct pointf diff)
 {
 	struct selected_element *e;
 
@@ -694,7 +694,7 @@ static void do_drag_drop_waypoint(struct moderately_finepoint diff)
 
 static void do_drag_drop()
 {
-	moderately_finepoint cmin, cmax, diff;
+	pointf cmin, cmax, diff;
 
 	// Calculate the coordinates min/max of the selection.
 	calc_min_max_selection(&selected_elements, &cmin, &cmax);
@@ -1031,7 +1031,7 @@ void level_editor_paste_selection()
 	obstacle *o;
 	item *it;
 	int counter, nbact = 0;
-	moderately_finepoint cmin, cmax, center;
+	pointf cmin, cmax, center;
 
 	if (mode == FD_RECT || mode == DRAGDROP) {
 		// We get called from the outside so check mode coherency first

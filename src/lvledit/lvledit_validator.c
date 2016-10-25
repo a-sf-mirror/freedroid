@@ -204,8 +204,8 @@ static enum connect_validity waypoints_connection_valid(gps * from_pos, gps * to
 	if (DirectLineColldet(from_pos->x, from_pos->y, to_pos->x, to_pos->y, from_pos->z, &WalkablePassFilter))
 		return DIRECT_CONN;
 
-	moderately_finepoint mfp_to_pos = { to_pos->x, to_pos->y };
-	moderately_finepoint mid_pos[40];
+	pointf mfp_to_pos = { to_pos->x, to_pos->y };
+	pointf mid_pos[40];
 
 	pathfinder_context pf_ctx = { &WalkablePassFilter, NULL };
 
@@ -827,7 +827,7 @@ static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_
 			gps to_pos = { to_wp->x + 0.5, to_wp->y + 0.5, validator_ctx->this_level->levelnum };
 
 			// Translation vector
-			moderately_finepoint line_vector;
+			pointf line_vector;
 			line_vector.x = to_pos.x - from_pos.x;
 			line_vector.y = to_pos.y - from_pos.y;
 
@@ -839,7 +839,7 @@ static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_
 			line_vector.y = (line_vector.y * COLLDET_WALKABLE_MARGIN) / length;
 
 			// Translation normal
-			moderately_finepoint line_normal = { -line_vector.y, line_vector.x };
+			pointf line_normal = { -line_vector.y, line_vector.x };
 
 			// 1- Augment the length
 			gps trsl_from_pos = { from_pos.x - line_vector.x, from_pos.y - line_vector.y, from_pos.z };

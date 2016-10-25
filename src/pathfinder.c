@@ -33,10 +33,10 @@
 #include "global.h"
 #include "proto.h"
 
-static moderately_finepoint last_sight_contact;
+static pointf last_sight_contact;
 
-static int recursive_find_walkable_point(int, float, float, float, float, int, moderately_finepoint *, int *, int, pathfinder_context *);
-static void streamline_intermediate_course(struct gps *, struct moderately_finepoint *, int, struct pathfinder_context *);
+static int recursive_find_walkable_point(int, float, float, float, float, int, pointf *, int *, int, pathfinder_context *);
+static void streamline_intermediate_course(struct gps *, struct pointf *, int, struct pathfinder_context *);
 
 #define TILE_IS_UNPROCESSED 3
 #define TILE_IS_PROCESSED 4
@@ -51,11 +51,11 @@ static void streamline_intermediate_course(struct gps *, struct moderately_finep
  * curpos and move_target are 'virtual positions' defined relatively to Tux's or bot's
  * current level.
  */
-int set_up_intermediate_course_between_positions(gps *curpos, moderately_finepoint *move_target, moderately_finepoint *waypoints,
+int set_up_intermediate_course_between_positions(gps *curpos, pointf *move_target, pointf *waypoints,
 						 int maxwp, pathfinder_context *ctx)
 {
 	int i;
-	moderately_finepoint tmp;
+	pointf tmp;
 
 	// If the target position cannot be reached at all, because of being inside an obstacle
 	// or blocked by a bot for example, then no path can be computed.
@@ -102,7 +102,7 @@ int set_up_intermediate_course_between_positions(gps *curpos, moderately_finepoi
  *
  *
  */
-void clear_out_intermediate_points(gps * curpos, moderately_finepoint * intermediate_points, int size)
+void clear_out_intermediate_points(gps * curpos, pointf * intermediate_points, int size)
 {
 	int i;
 
@@ -123,9 +123,9 @@ void clear_out_intermediate_points(gps * curpos, moderately_finepoint * intermed
  * current level
  */
 static int recursive_find_walkable_point(int levelnum, float x1, float y1, float x2, float y2, int recursion_depth,
-					 moderately_finepoint * waypoints, int *next_index_to_set_up, int maxwp, pathfinder_context * ctx)
+					 pointf * waypoints, int *next_index_to_set_up, int maxwp, pathfinder_context * ctx)
 {
-	moderately_finepoint ordered_moves[4];
+	pointf ordered_moves[4];
 	int i;
 
 #define MAX_RECUSION_DEPTH 50
@@ -285,7 +285,7 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
  * motion.
  *
  */
-static void streamline_intermediate_course(struct gps * curpos, struct moderately_finepoint * waypoints, int maxwp, struct pathfinder_context * ctx)
+static void streamline_intermediate_course(struct gps * curpos, struct pointf * waypoints, int maxwp, struct pathfinder_context * ctx)
 {
 	int start_index;
 	int scan_index;

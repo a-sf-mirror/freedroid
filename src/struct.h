@@ -204,10 +204,10 @@ typedef struct point {
 	int y;
 } point;
 
-typedef struct moderately_finepoint {
+typedef struct pointf {
 	float x;
 	float y;
-} moderately_finepoint;
+} pointf;
 
 typedef struct gps {
 	float x;
@@ -489,7 +489,7 @@ typedef struct enemy {
 	//--------------------
 	// 3rd set ('transient state')
 	//
-	moderately_finepoint speed;        // current speed
+	pointf speed;                      // current speed
 	float energy;                      // current energy of this droid
 	float animation_phase;             // the current animation frame for this enemy (starting at 0 of course...)
 	short int animation_type;          // walk-animation, attack-animation, gethit animation, death animation
@@ -510,7 +510,7 @@ typedef struct enemy {
 	float last_combat_step;            // when did this robot last make a step to move in closer or farther away from Tux in combat?
 	float TextVisibleTime;
 	s_char *TextToBeDisplayed;         // WARNING!!! Only use static texts
-	moderately_finepoint PrivatePathway[5];
+	pointf PrivatePathway[5];
 	uint8_t bot_stuck_in_wall_at_previous_check;
 	float time_since_previous_stuck_in_wall_check;
 
@@ -547,7 +547,7 @@ typedef struct tux {
 	float dexterity_bonus_end_date;
 	float light_bonus_end_date;
 
-	moderately_finepoint speed; // the current speed of the droid
+	pointf speed;               // the current speed of the droid
 	gps pos;                    // current position in the whole ship
 	gps teleport_anchor;        // where from have you last teleported home
 	gps mouse_move_target;      // where the tux is going automatically by virtue of mouse move
@@ -644,7 +644,7 @@ typedef struct tux {
 	// THE FOLLOWING ARE INFORMATION, THAT ARE HUGE AND THAT ALSO DO NOT NEED
 	// TO BE COMMUNICATED FROM THE CLIENT TO THE SERVER OR VICE VERSA
 	//
-	moderately_finepoint next_intermediate_point[MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX];	// waypoints for the tux, when target not directly reachable
+	pointf next_intermediate_point[MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX];	// waypoints for the tux, when target not directly reachable
 	automap_data_t Automap[MAX_LEVELS];
 	int current_zero_ring_index;
 	gps Position_History_Ring_Buffer[MAX_INFLU_POSITION_HISTORY];
@@ -687,7 +687,7 @@ typedef struct bullet {
 	uint8_t mine;
 	gps pos;
 	int height;
-	moderately_finepoint speed;
+	pointf speed;
 	short int damage;	// damage done by this particular bullet
 	float time_in_seconds;	// how long does the bullet exist in seconds
 	float bullet_lifetime;	// how long can this bullet exist at most
@@ -740,7 +740,7 @@ typedef struct spell {
 	int poison_dmg;
 	int freeze_duration;
 	int paralyze_duration;
-	moderately_finepoint spell_center;
+	pointf spell_center;
 	float spell_radius;
 	float spell_age;
 	uint8_t active_directions[RADIAL_SPELL_DIRECTIONS];

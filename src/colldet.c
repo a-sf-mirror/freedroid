@@ -331,10 +331,10 @@ static int dlc_on_one_level(int x_tile_start, int x_tile_end, int y_tile_start, 
 				// So we have our obstacle 
 
 				// Check the flags of both points against the rectangle of the object
-				moderately_finepoint rect1 = { our_obs->pos.x + obstacle_spec->left_border,
+				pointf rect1 = { our_obs->pos.x + obstacle_spec->left_border,
 					our_obs->pos.y + obstacle_spec->upper_border
 				};
-				moderately_finepoint rect2 = { our_obs->pos.x + obstacle_spec->right_border,
+				pointf rect2 = { our_obs->pos.x + obstacle_spec->right_border,
 					our_obs->pos.y + obstacle_spec->lower_border
 				};
 
@@ -563,15 +563,15 @@ int MoveOutOfObstacle(float *posX, float *posY, int posZ, obstacle * ThisObstacl
 {
 	enum { RIGHT, DOWN, LEFT, TOP };
 	unsigned int i;
-	moderately_finepoint new_pos = { 0.5, 0.5 };
+	pointf new_pos = { 0.5, 0.5 };
 	obstacle_spec *obstacle_spec = get_obstacle_spec(ThisObstacle->type);
 
 	// Construct a sorted list of distance between character's position and the rectangle's edges
 	//
-	moderately_finepoint rect1 = { ThisObstacle->pos.x + obstacle_spec->left_border,
+	pointf rect1 = { ThisObstacle->pos.x + obstacle_spec->left_border,
 		ThisObstacle->pos.y + obstacle_spec->upper_border
 	};
-	moderately_finepoint rect2 = { ThisObstacle->pos.x + obstacle_spec->right_border,
+	pointf rect2 = { ThisObstacle->pos.x + obstacle_spec->right_border,
 		ThisObstacle->pos.y + obstacle_spec->lower_border
 	};
 

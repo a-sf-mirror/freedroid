@@ -39,7 +39,7 @@
 static struct leveleditor_tool *selected_tool = NULL;
 static struct leveleditor_tool *active_tool = NULL;
 
-moderately_finepoint mouse_mapcoord;
+pointf mouse_mapcoord;
 int mouse_in_level; // is the mouse cursor at an existing position on the level?
 
 void widget_lvledit_map_init()

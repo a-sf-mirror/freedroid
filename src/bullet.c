@@ -45,7 +45,7 @@
  */
 static int move_this_bullet_and_check_its_collisions(struct bullet *current_bullet)
 {
-	moderately_finepoint bullet_step_vector;
+	pointf bullet_step_vector;
 	float whole_step_size;
 	int i;
 	float number_of_steps;
@@ -334,7 +334,7 @@ void move_spells(void)
 	float passed_time = Frame_Time();
 	float distance_from_center;
 	int direction_index;
-	moderately_finepoint displacement;
+	pointf displacement;
 	gps final_point;
 	float angle;
 

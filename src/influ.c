@@ -63,10 +63,10 @@ float calc_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y)
  *
  *
  */
-float vect_len(moderately_finepoint our_vector)
+float vect_len(pointf our_vector)
 {
 	return (sqrt(powf(our_vector.x, 2) + powf(our_vector.y, 2)));
-};				// float vect_len ( moderately_finepoint our_vector )
+};				// float vect_len ( pointf our_vector )
 
 static float get_tux_running_speed(void)
 {
@@ -372,7 +372,7 @@ a bug in the currently used map system of FreedroidRPG.", PLEASE_INFORM | IS_FAT
  */
 void tux_get_move_target_and_attack(gps * movetgt)
 {
-	moderately_finepoint RemainingWay;
+	pointf RemainingWay;
 	float RemainingWayLength;
 
 	// if there is a mouse move target, we are not going to move towards the enemy
@@ -519,8 +519,8 @@ static void move_tux_according_to_his_speed()
  */
 static int move_tux_towards_raw_position(float x, float y)
 {
-	moderately_finepoint RemainingWay;
-	moderately_finepoint planned_step;
+	pointf RemainingWay;
+	pointf planned_step;
 	float squared_length, length;
 
 	if (Me.energy <= 0)
@@ -719,7 +719,7 @@ void move_tux()
 		      (fabsf(move_target.y - last_given_course_target.y) < 0.3))) {
 			freeway_context frw_ctx = { FALSE, {NULL, NULL} };
 			pathfinder_context pf_ctx = { &WalkableWithMarginPassFilter, &frw_ctx };
-			moderately_finepoint target_point = { move_target.x, move_target.y };
+			pointf target_point = { move_target.x, move_target.y };
 			if (!set_up_intermediate_course_between_positions
 			    (&Me.pos, &target_point, &Me.next_intermediate_point[0], MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX, &pf_ctx)) {
 				// A path was not found.
@@ -1154,7 +1154,7 @@ enemy *GetLivingDroidBelowMouseCursor()
  * and SILENTLY TRUSTING THAT THIS TUX HAS A RANGED WEAPON EQUIPPED.
  */
 void perform_tux_ranged_attack(short int weapon_type, bullet *bullet_parameters,
-		                       moderately_finepoint target_location)
+		                       pointf target_location)
 {
 	// Standard ranged attack process is to fire a bullet in the direction
 	// of the target, and have it advance step by step until it reaches 'something'.
@@ -1211,7 +1211,7 @@ void perform_tux_ranged_attack(short int weapon_type, bullet *bullet_parameters,
 	// Compute bullet's attack vector.
 	// This is a vector from Tux's position to the target's position.
 
-	moderately_finepoint attack_vector = { target_location.x - Me.pos.x,
+	pointf attack_vector = { target_location.x - Me.pos.x,
 	                                       target_location.y - Me.pos.y };
 	double attack_norm = sqrt(attack_vector.x * attack_vector.x + attack_vector.y *attack_vector.y);
 	attack_vector.x /= attack_norm;
@@ -1221,7 +1221,7 @@ void perform_tux_ranged_attack(short int weapon_type, bullet *bullet_parameters,
 	// As said in the heading comment, we do not have enough informations to
 	// compute it, so we just use a small offset in the attack direction.
 
-	moderately_finepoint muzzle_position = { Me.pos.x + muzzle_offset_factor * attack_vector.x,
+	pointf muzzle_position = { Me.pos.x + muzzle_offset_factor * attack_vector.x,
 	                                         Me.pos.y + muzzle_offset_factor * attack_vector.y };
 
 	// Set the bullet parameters
@@ -1278,7 +1278,7 @@ int ButtonPressWasNotMeantAsFire()
  */
 int perform_tux_attack(int use_mouse_cursor_for_targeting)
 {
-	moderately_finepoint target_location = { -1, -1 };
+	pointf target_location = { -1, -1 };
 	float target_angle;
 
 	// The attack target location can be the targeted enemy (if one was set), or an
@@ -1354,7 +1354,7 @@ int perform_tux_attack(int use_mouse_cursor_for_targeting)
 
 		const float impact_offset_y = 0.8;
 
-		moderately_finepoint impact_point = { 0, -impact_offset_y };
+		pointf impact_point = { 0, -impact_offset_y };
 		RotateVectorByAngle(&impact_point, Me.angle);
 		impact_point.x += Me.pos.x;
 		impact_point.y += Me.pos.y;

@@ -2491,7 +2491,7 @@ int set_rotation_index_for_this_robot(enemy * ThisRobot)
 void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle, int mask, int highlight)
 {
 	int RotationIndex;
-	moderately_finepoint bot_pos;
+	pointf bot_pos;
 	float zf = 1.0;
 	if (mask & ZOOM_OUT)
 		zf = lvledit_zoomfact_inv();
@@ -2752,7 +2752,7 @@ void put_radial_blue_sparks(float posX, float posY, float radius, int spark_type
 	static struct image prerotated_spark_surfaces[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES][FIXED_NUMBER_OF_SPARK_ANGLES];
 	int number_of_pictures_to_use;
 	float angle;
-	struct moderately_finepoint displacement;
+	struct pointf displacement;
 
 	// We do some sanity check against too small a radius
 	// given as parameter.  This can be loosened later.

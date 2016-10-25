@@ -40,5 +40,5 @@ void widget_lvledit_map_init(void);
 void leveleditor_update_tool(void);
 void lvledit_reset_tools(void);
 
-EXTERN moderately_finepoint mouse_mapcoord;
+EXTERN pointf mouse_mapcoord;
 EXTERN int mouse_in_level;

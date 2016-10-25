@@ -38,7 +38,7 @@
 #endif
 
 typedef struct line_element {
-	moderately_finepoint position;
+	pointf position;
 	obstacle *address;
 
 	list_head_t list;

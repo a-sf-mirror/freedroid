@@ -390,8 +390,8 @@ static void line_moving_backwards(void)
 {
 	line_element *last_wall;			// The last wall of the line
 	int last_type;							// The type of the last wall
-	moderately_finepoint last_pos;	// The position of the last wall
-	moderately_finepoint offset;		// Difference of position
+	pointf last_pos;	// The position of the last wall
+	pointf offset;		// Difference of position
 
 	// Get the last wall in the line
 	last_wall = list_entry(state.l_elements_head.prev, line_element, list);
@@ -446,7 +446,7 @@ static void line_moving_backwards(void)
  * The user is moving forwards (ie. create a new wall in the line)
  * \param offset The difference of position since last time
  */
-static void line_moving_forwards(moderately_finepoint offset)
+static void line_moving_forwards(pointf offset)
 {
 	line_element *last_wall;	// The last wall of the line
 	int new_direction;			// New direction of the wall line
@@ -565,7 +565,7 @@ static void line_moving_forwards(moderately_finepoint offset)
 static void handle_wall_line()
 {
 	line_element *last_wall;			// The last wall of the line
-	moderately_finepoint offset;		// Difference of position since last time
+	pointf offset;		// Difference of position since last time
 	int moving_backwards = FALSE;
 
 	// Get the last wall in the line of walls

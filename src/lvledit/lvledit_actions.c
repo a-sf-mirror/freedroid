@@ -882,7 +882,7 @@ void level_editor_place_aligned_object(int positionid)
 	float position_offset_y[9] = { 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0, 0, 0 };
 	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 	int type = cs->indices[cs->selected_tile_nb];
-	moderately_finepoint pos;
+	pointf pos;
 
 	positionid--;
 

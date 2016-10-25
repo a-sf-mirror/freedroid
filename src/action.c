@@ -56,7 +56,7 @@ static void find_dropable_position_near_chest(float *item_x, float *item_y, int 
 {
 	float obst_x = obst_level->obstacle_list[obst_index].pos.x;
 	float obst_y = obst_level->obstacle_list[obst_index].pos.y;
-	moderately_finepoint offset_vector;
+	pointf offset_vector;
 	int tries;
 
 	// Initialize the item position with the fallback position
@@ -212,7 +212,7 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl, int clickable_only)
 		return -1;
 
 	// We find the position of the mouse cursor on the floor.
-	struct moderately_finepoint map_position_of_mouse;
+	struct pointf map_position_of_mouse;
 	map_position_of_mouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
 	map_position_of_mouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 
@@ -289,7 +289,7 @@ static int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index) {
 	// the 'distance-met' query.
 	//
 
-	moderately_finepoint step_vector;
+	pointf step_vector;
 	float vec_len;
 	int i;
 	step_vector.x = Me.pos.x - obst_vpos.x;
@@ -338,10 +338,10 @@ static int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index) {
 
 	// point_near_barrel is a point very near the barrel in the step_vector's direction,
 	// point_away_from_barrel is a point in the same direction but a bit farther
-	moderately_finepoint point_near_obst, point_away_from_obst;
+	pointf point_near_obst, point_away_from_obst;
 
 	// half-size of the barrel
-	moderately_finepoint half_size = { (obstacle_spec->block_area_parm_1 * sqrt(2)) / 2.0,
+	pointf half_size = { (obstacle_spec->block_area_parm_1 * sqrt(2)) / 2.0,
 		(obstacle_spec->block_area_parm_2 * sqrt(2)) / 2.0
 	};
 
@@ -597,7 +597,7 @@ static void __obstacle_action(level *lvl, int index, enum interactive_obstacle_t
 		
 		// We set a direction of facing the obstacle
 		// so that the further actions look authentic
-		moderately_finepoint step_vector;
+		pointf step_vector;
 		step_vector.x = -Me.pos.x + vpos.x;
 		step_vector.y = -Me.pos.y + vpos.y;
 		Me.angle = -(atan2(step_vector.y, step_vector.x) * 180 / M_PI - 180 - 45);

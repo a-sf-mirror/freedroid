@@ -182,7 +182,7 @@ static void show_droid_picture(int PosX, int PosY, int type)
 	// Compute the maximum uniform scale to apply to the bot image so that it fills
 	// the droid portrait image, and center the image.
 	float scale = min((float)Droid_Image_Window.w / (float)img->w, (float)Droid_Image_Window.h / (float)img->h);
-	moderately_finepoint pos;
+	pointf pos;
 	pos.x = (float)PosX + ((float)Droid_Image_Window.w - (float)img->w * scale) / 2.0;
 	pos.y = (float)PosY + ((float)Droid_Image_Window.h - (float)img->h * scale) / 2.0;
 

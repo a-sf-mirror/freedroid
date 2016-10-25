@@ -949,7 +949,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int lvl, int map_x, in
 	int target_idx;
 	struct obstacle *target_obstacle;
 	int smashed_something = FALSE;
-	struct moderately_finepoint blast_start_pos;
+	struct pointf blast_start_pos;
 
 	// First some security checks against touching the outsides of the map...
 
@@ -2064,9 +2064,9 @@ float translate_pixel_to_zoomed_map_location(float axis_x, float axis_y, int giv
  *
  *
  */
-moderately_finepoint translate_point_to_map_location(float axis_x, float axis_y, int zoom_is_on)
+pointf translate_point_to_map_location(float axis_x, float axis_y, int zoom_is_on)
 {
-	moderately_finepoint position;
+	pointf position;
 	if (zoom_is_on) {
 		position.x = translate_pixel_to_zoomed_map_location(axis_x, axis_y, TRUE);
 		position.y = translate_pixel_to_zoomed_map_location(axis_x, axis_y, FALSE);

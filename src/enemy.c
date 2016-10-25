@@ -45,9 +45,9 @@
 static int next_bot_id = 1; // defines the id of the next created enemy.
 
 static int TurnABitTowardsPosition(Enemy, float, float, float);
-static void move_to_melee_combat(struct enemy *, struct gps *, struct moderately_finepoint *);
-static void MoveAwayFromMeleeCombat(Enemy, moderately_finepoint *);
-static void ReachMeleeCombat(Enemy, gps *, moderately_finepoint *, pathfinder_context *);
+static void move_to_melee_combat(struct enemy *, struct gps *, struct pointf *);
+static void MoveAwayFromMeleeCombat(Enemy, pointf *);
+static void ReachMeleeCombat(Enemy, gps *, pointf *, pathfinder_context *);
 static void raw_start_enemys_shot(struct enemy *, float, float);
 static int is_potential_target(enemy * this_robot, gps * target_pos, float *squared_best_dist);
 static int can_see_tux(enemy *);
@@ -468,7 +468,7 @@ int enemy_set_destination(enemy *en, const char *label)
 	return 0;
 }
 
-static void enemy_get_current_walk_target(enemy *ThisRobot, moderately_finepoint *a)
+static void enemy_get_current_walk_target(enemy *ThisRobot, pointf *a)
 {
 	int count;
 
@@ -495,7 +495,7 @@ static void enemy_get_current_walk_target(enemy *ThisRobot, moderately_finepoint
  */
 static float remaining_distance_to_current_walk_target(Enemy ThisRobot)
 {
-	moderately_finepoint remaining_way;
+	pointf remaining_way;
 
 	enemy_get_current_walk_target(ThisRobot, &remaining_way);
 
@@ -531,9 +531,9 @@ static void DetermineAngleOfFacing(enemy * e)
  * selected, this generic low_level movement function can be called to
  * actually move the robot towards this spot.
  */
-static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target_spot)
+static void move_enemy_to_spot(Enemy ThisRobot, pointf next_target_spot)
 {
-	moderately_finepoint remaining_way;
+	pointf remaining_way;
 	float maxspeed;
 	int old_map_level;
 
@@ -790,10 +790,10 @@ static int set_new_random_waypoint(enemy *this_robot)
  * but rather moving around on it's own and without any real destination,
  * this function sets up randomly chosen targets for the droid.
  */
-static void set_new_waypointless_walk_target(enemy * ThisRobot, moderately_finepoint * mt)
+static void set_new_waypointless_walk_target(enemy * ThisRobot, pointf * mt)
 {
 	int i;
-	moderately_finepoint target_candidate;
+	pointf target_candidate;
 	int success = FALSE;
 
 #define MAX_RANDOM_WALK_ATTEMPTS_BEFORE_GIVING_UP 4
@@ -916,7 +916,7 @@ static void enemy_spray_blood(struct enemy *droid)
 	const int tries = 4;
 	int i;
 	for (i = 0; i < tries; i++) {
-		moderately_finepoint tried_pos = { 0.5, 0 };
+		pointf tried_pos = { 0.5, 0 };
 		RotateVectorByAngle(&tried_pos, MyRandom(360));
 		tried_pos.x += droid_pos.x;
 		tried_pos.y += droid_pos.y;
@@ -1573,7 +1573,7 @@ static void state_machine_situational_transitions(enemy * ThisRobot)
 /* ----------------------------------------------------------
  * "stop and eye tux" state handling 
  * ---------------------------------------------------------- */
-static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_stop_and_eye_target(enemy * ThisRobot, pointf * new_move_target)
 {
 	gps *tpos = enemy_get_target_position(ThisRobot);
 
@@ -1658,7 +1658,7 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
  * To implement this behavior, we have to tell the pathfinder not to check
  * collisions with bots. This is implemented in ReachMeleeCombat(). 
  */
-static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_move_target, pathfinder_context * pf_ctx)
+static void state_machine_attack(enemy * ThisRobot, pointf * new_move_target, pathfinder_context * pf_ctx)
 {
 	// Not yet time to computer a new bot's move, or to start a new shoot
 	if (ThisRobot->firewait > 0.0 && ThisRobot->last_combat_step < ATTACK_MOVE_RATE)
@@ -1814,7 +1814,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 
 }
 
-static void state_machine_paralyzed(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_paralyzed(enemy * ThisRobot, pointf * new_move_target)
 {
 	/* Move target - none */
 	new_move_target->x = ThisRobot->pos.x;
@@ -1824,7 +1824,7 @@ static void state_machine_paralyzed(enemy * ThisRobot, moderately_finepoint * ne
 		ThisRobot->combat_state = SELECT_NEW_WAYPOINT;
 }
 
-static void state_machine_returning_home(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_returning_home(enemy * ThisRobot, pointf * new_move_target)
 {
 	/* Bot too far away from home must go back to home waypoint */
 
@@ -1843,7 +1843,7 @@ static void state_machine_returning_home(enemy * ThisRobot, moderately_finepoint
 	ThisRobot->combat_state = RETURNING_HOME;
 }
 
-static void state_machine_select_new_waypoint(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_select_new_waypoint(enemy * ThisRobot, pointf * new_move_target)
 {
 	/* Move target - none */
 	new_move_target->x = ThisRobot->pos.x;
@@ -1857,7 +1857,7 @@ static void state_machine_select_new_waypoint(enemy * ThisRobot, moderately_fine
 	}
 }
 
-static void state_machine_turn_towards_next_waypoint(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_turn_towards_next_waypoint(enemy * ThisRobot, pointf * new_move_target)
 {
 	waypoint *wpts = curShip.AllLevels[ThisRobot->pos.z]->waypoints.arr;
 
@@ -1874,7 +1874,7 @@ static void state_machine_turn_towards_next_waypoint(enemy * ThisRobot, moderate
 	}
 }
 
-static void state_machine_move_along_random_waypoints(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_move_along_random_waypoints(enemy * ThisRobot, pointf * new_move_target)
 {
 	/* The bot moves towards its next waypoint */
 
@@ -1894,7 +1894,7 @@ static void state_machine_move_along_random_waypoints(enemy * ThisRobot, moderat
 	ThisRobot->combat_state = MOVE_ALONG_RANDOM_WAYPOINTS;
 }
 
-static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, pointf * new_move_target)
 {
 	/* Move target */
 	if (ThisRobot->pos.z == Me.pos.z) {
@@ -1914,7 +1914,7 @@ static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_f
 	}
 }
 
-static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_follow_tux(enemy * ThisRobot, pointf * new_move_target)
 {
 	if (!ThisRobot->follow_tux || (!can_see_tux(ThisRobot)) ) {
 		ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
@@ -1933,7 +1933,7 @@ static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * n
 		new_move_target->x = GetInfluPositionHistoryX(delay);
 		new_move_target->y = GetInfluPositionHistoryY(delay);
 
-		moderately_finepoint ab = { ThisRobot->pos.x - new_move_target->x, ThisRobot->pos.y - new_move_target->y };
+		pointf ab = { ThisRobot->pos.x - new_move_target->x, ThisRobot->pos.y - new_move_target->y };
 		if (fabsf(ab.x) < 1 && fabsf(ab.y) < 1) {
 			new_move_target->x = ThisRobot->pos.x;
 			new_move_target->y = ThisRobot->pos.y;
@@ -1951,7 +1951,7 @@ static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * n
 	}
 }
 
-static void state_machine_completely_fixed(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_completely_fixed(enemy * ThisRobot, pointf * new_move_target)
 {
 	/* Move target */
 	new_move_target->x = ThisRobot->pos.x;
@@ -1961,7 +1961,7 @@ static void state_machine_completely_fixed(enemy * ThisRobot, moderately_finepoi
 		ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
 }
 
-static void state_machine_waypointless_wandering(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_waypointless_wandering(enemy * ThisRobot, pointf * new_move_target)
 {
 	if (remaining_distance_to_current_walk_target(ThisRobot) < 0.1) {
 		set_new_waypointless_walk_target(ThisRobot, new_move_target);
@@ -2009,7 +2009,7 @@ void update_enemy(enemy * ThisRobot)
 	/* Situational state changes */
 	state_machine_situational_transitions(ThisRobot);
 
-	moderately_finepoint new_move_target;
+	pointf new_move_target;
 	enemy_get_current_walk_target(ThisRobot, &new_move_target);
 
 	/* Handle per-state switches and actions.
@@ -2081,8 +2081,8 @@ void update_enemy(enemy * ThisRobot)
 	 * special case: 
 	 *                if first waypoint is -1 -1 we have a bug and do nothing (hack around)
 	 */
-	moderately_finepoint wps[40];
-	moderately_finepoint old_move_target;
+	pointf wps[40];
+	pointf old_move_target;
 	enemy_get_current_walk_target(ThisRobot, &old_move_target);
 
 	if ((new_move_target.x == ThisRobot->pos.x) && (new_move_target.y == ThisRobot->pos.y)) {	// If the bot stopped moving, create a void path
@@ -2094,7 +2094,7 @@ void update_enemy(enemy * ThisRobot)
 		// This implies we do not re-pathfind every frame, which means we may bump into colleagues. 
 		// This is handled in MoveThisEnemy()
 		if (set_up_intermediate_course_between_positions(&ThisRobot->pos, &new_move_target, &wps[0], 40, &pf_ctx) && wps[5].x == -1) {	/* If position was passable *and* streamline course uses max 4 waypoints */
-			memcpy(&ThisRobot->PrivatePathway[0], &wps[0], 5 * sizeof(moderately_finepoint));
+			memcpy(&ThisRobot->PrivatePathway[0], &wps[0], 5 * sizeof(pointf));
 		} else {
 			ThisRobot->PrivatePathway[0].x = ThisRobot->pos.x;
 			ThisRobot->PrivatePathway[0].y = ThisRobot->pos.y;
@@ -2269,7 +2269,7 @@ static void raw_start_enemys_shot(struct enemy *this_robot, float xdist, float y
  * this function is supposed to do.
  *
  */
-static int ConsideredMoveIsFeasible(Enemy ThisRobot, moderately_finepoint StepVector)
+static int ConsideredMoveIsFeasible(Enemy ThisRobot, pointf StepVector)
 {
 	freeway_context frw_ctx = { TRUE, {ThisRobot, NULL} };
 
@@ -2283,7 +2283,7 @@ static int ConsideredMoveIsFeasible(Enemy ThisRobot, moderately_finepoint StepVe
 
 	return FALSE;
 
-};				// int ConsideredMoveIsFeasible ( Enemy ThisRobot , finepoint StepVector )
+};				// int ConsideredMoveIsFeasible ( Enemy ThisRobot , pointf StepVector )
 
 /*
  * This function will find a place near target_pos that is free of any bots.
@@ -2296,7 +2296,7 @@ static int ConsideredMoveIsFeasible(Enemy ThisRobot, moderately_finepoint StepVe
  * - halt as soon as one of those positions is free
  */
 
-static void move_to_melee_combat(struct enemy *this_robot, struct gps *target_pos, struct moderately_finepoint *set_move_tgt)
+static void move_to_melee_combat(struct enemy *this_robot, struct gps *target_pos, struct pointf *set_move_tgt)
 {
 	freeway_context frw_ctx = { is_friendly(this_robot->faction, FACTION_SELF), {this_robot->bot_target_addr, NULL} };
 
@@ -2305,7 +2305,7 @@ static void move_to_melee_combat(struct enemy *this_robot, struct gps *target_po
 	update_virtual_position(&bot_vpos, &this_robot->pos, target_pos->z);
 
 	// Compute a unit vector from target to this_robot
-	moderately_finepoint vector_from_target = { bot_vpos.x, bot_vpos.y };	//
+	pointf vector_from_target = { bot_vpos.x, bot_vpos.y };	//
 	normalize_vect(target_pos->x, target_pos->y, &(vector_from_target.x), &(vector_from_target.y));
 	vector_from_target.x -= target_pos->x;
 	vector_from_target.y -= target_pos->y;	// vector_from_target holds the coordinates of normalized target -> bot vector
@@ -2318,9 +2318,9 @@ static void move_to_melee_combat(struct enemy *this_robot, struct gps *target_po
 	float angles_to_try[8] = { 0, 45, -45, 90, -90, 135, -135, 180 };
 	int a;
 	for (a = 0; a < 8; ++a) {
-		moderately_finepoint checked_vector = { vector_from_target.x, vector_from_target.y };
+		pointf checked_vector = { vector_from_target.x, vector_from_target.y };
 		RotateVectorByAngle(&checked_vector, angles_to_try[a]);
-		moderately_finepoint checked_pos =
+		pointf checked_pos =
 		    { target_pos->x + checked_vector.x * MELEE_MIN_DIST, target_pos->y + checked_vector.y * MELEE_MIN_DIST };
 
 		// Lower quantization of checked_pos, to limit bot jittering around the target
@@ -2349,12 +2349,12 @@ static void move_to_melee_combat(struct enemy *this_robot, struct gps *target_po
 /**
  *
  */
-static void MoveAwayFromMeleeCombat(Enemy ThisRobot, moderately_finepoint * set_move_tgt)
+static void MoveAwayFromMeleeCombat(Enemy ThisRobot, pointf * set_move_tgt)
 {
-	moderately_finepoint VictimPosition = { 0.0, 0.0 };
-	moderately_finepoint CurrentPosition = { 0.0, 0.0 };
-	moderately_finepoint StepVector;
-	moderately_finepoint RotatedStepVector;
+	pointf VictimPosition = { 0.0, 0.0 };
+	pointf CurrentPosition = { 0.0, 0.0 };
+	pointf StepVector;
+	pointf RotatedStepVector;
 	float StepVectorLen;
 	int i;
 
@@ -2410,12 +2410,12 @@ static void MoveAwayFromMeleeCombat(Enemy ThisRobot, moderately_finepoint * set_
 		set_move_tgt->y = ThisRobot->pos.y;
 
 	}
-};				// void MoveAwayFromMeleeCombat( Enemy ThisRobot , moderately_finepoint * set_move_tgt )
+};				// void MoveAwayFromMeleeCombat( Enemy ThisRobot , pointf * set_move_tgt )
 
 /**
  * 
  */
-static void ReachMeleeCombat(enemy *ThisRobot, gps *tpos, moderately_finepoint *new_move_target, pathfinder_context *pf_ctx)
+static void ReachMeleeCombat(enemy *ThisRobot, gps *tpos, pointf *new_move_target, pathfinder_context *pf_ctx)
 {
 	// Target not reachable -> roughly reach the target.
 	// The exact destination will be computed later.
@@ -2798,8 +2798,8 @@ static int is_potential_target(enemy * this_robot, gps * target_pos, float *squa
 		}
 	}
 	// Else (if melee_weapon or not shootable for a range_weapon), checks if a path exists to reach the target
-	moderately_finepoint mid_pos[40];
-	moderately_finepoint to_pos = { target_vpos.x, target_vpos.y };
+	pointf mid_pos[40];
+	pointf to_pos = { target_vpos.x, target_vpos.y };
 	pathfinder_context pf_ctx = { &WalkableWithMarginPassFilter, NULL };
 	int path_found = set_up_intermediate_course_between_positions(&(this_robot->pos), &to_pos, mid_pos, 40, &pf_ctx)
 	    && (mid_pos[5].x == -1);

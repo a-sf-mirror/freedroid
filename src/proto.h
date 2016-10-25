@@ -103,7 +103,7 @@ void lua_end_skill_init(void);
 
 // influ.c 
 float calc_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y);
-float vect_len(moderately_finepoint our_vector);
+float vect_len(pointf our_vector);
 enemy *GetLivingDroidBelowMouseCursor(void);
 void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting);
 int perform_tux_attack(int);
@@ -114,7 +114,7 @@ float GetInfluPositionHistoryX(int Index);
 float GetInfluPositionHistoryY(int Index);
 float GetInfluPositionHistoryZ(int Index);
 void bullet_init(bullet *, int, short int);
-void perform_tux_ranged_attack(short int, bullet *, moderately_finepoint);
+void perform_tux_ranged_attack(short int, bullet *, pointf);
 void move_tux(void);
 void hit_tux(float);
 void animate_tux(void);
@@ -135,12 +135,12 @@ int check_for_items_to_pickup(level *item_lvl, int item_index);
 action_fptr get_action_by_name(const char *action_name);
 
 // pathfinder.c
-int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints,
+int set_up_intermediate_course_between_positions(gps * curpos, pointf * move_target, pointf * waypoints,
 						 int maxwp, pathfinder_context * ctx);
-void clear_out_intermediate_points(gps *, moderately_finepoint *, int);
+void clear_out_intermediate_points(gps *, pointf *, int);
 
 // bullet.c 
-void RotateVectorByAngle(moderately_finepoint * vector, float rot_angle);
+void RotateVectorByAngle(pointf * vector, float rot_angle);
 void move_bullets(void);
 void do_melee_damage(void);
 void delete_bullet(int);
@@ -377,7 +377,7 @@ int LoadShip(char *filename, int);
 int SaveShip(const char *filename, int reset_random_levels, int);
 int save_special_forces(const char *filename);
 int GetCrew(char *shipname);
-moderately_finepoint translate_point_to_map_location(float axis_x, float axis_y, int zoom_is_on);
+pointf translate_point_to_map_location(float axis_x, float axis_y, int zoom_is_on);
 
 int IsVisible(gps *objpos);
 #define translate_map_point_to_screen_pixel translate_map_point_to_screen_pixel_func

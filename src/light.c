@@ -920,7 +920,7 @@ int get_light_strength_screen(int x, int y)
 		return (NUMBER_OF_SHADOW_IMAGES - 1);
 	}
 
-}				// int get_light_screen_strength ( moderately_finepoint target_pos )
+}				// int get_light_screen_strength ( pointf target_pos )
 
 /**
  * This function should blit the shadows on the floor, that are used to

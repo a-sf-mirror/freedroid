@@ -752,9 +752,9 @@ read_error:
  * The angle given is in DEGREE MEASURE, i.e. 0-360 or so, maybe more or
  * less than that, but you get what I mean...
  */
-void RotateVectorByAngle(moderately_finepoint * vector, float rot_angle)
+void RotateVectorByAngle(pointf * vector, float rot_angle)
 {
-	moderately_finepoint new_vect;
+	pointf new_vect;
 	float rad_angle;
 
 	if (rot_angle == 0)

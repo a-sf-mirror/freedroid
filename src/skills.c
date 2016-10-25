@@ -394,7 +394,7 @@ int do_skill(int skill_index, int spell_cost)
 	case PROGRAM_FORM_BULLET:
 		Me.temperature += spell_cost;
 
-		moderately_finepoint target_location;
+		pointf target_location;
 		target_location.x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
 		target_location.y = translate_pixel_to_map_location(input_axis.x, input_axis.y, FALSE);
 

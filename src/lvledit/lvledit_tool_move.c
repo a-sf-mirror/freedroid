@@ -42,7 +42,7 @@
 static struct leveleditor_move {
 	/* click&drag */
 	point origin;
-	moderately_finepoint c_corresponding_position;
+	pointf c_corresponding_position;
 } state;
 
 /**
@@ -53,7 +53,7 @@ static struct leveleditor_move {
  */
 int leveleditor_move_input(SDL_Event * event)
 {
-	moderately_finepoint a, b;
+	pointf a, b;
 
 	if (EVENT_RIGHT_PRESS(event) || EVENT_LEFT_PRESS(event)) {
 		// Start a movement
