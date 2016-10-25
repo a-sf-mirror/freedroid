@@ -920,9 +920,10 @@ void InitFreedroid(int argc, char **argv)
 
 	LightRadiusInit();
 
-	init_timer();
-
+	// SDL video subsystem and OpenGL have to be initialized
+	// before any other SDL subsystem.
 	init_video();
+	init_timer();
 
 	// Adapt button positions for the current screen resolution. Note: At this
 	// point the video mode was already initialized, therefore we know if OpenGL
