@@ -87,34 +87,4 @@
 #define OBSTACLE_X_POSITION_STRING "x"
 #define OBSTACLE_Y_POSITION_STRING "y"
 
-//--------------------
-// How big is the margin the walls have as far as collisions are concerned.
-//
-#define WALLPASS (4.0/64.0)
-
-//--------------------
-// How big is the margin in console tiles
-//
-#define CONSOLEPASS_X 	((INITIAL_BLOCK_WIDTH/2 + 4)/64.0)
-#define CONSOLEPASS_Y 	((INITIAL_BLOCK_HEIGHT/2 + 4)/64.0)
-
-//--------------------
-// How big is the margin of doors and the passable area in front of doors
-//
-#define TUERBREITE	(6/64.0)
-#define V_RANDSPACE		WALLPASS
-#define V_RANDBREITE		(5/64.0)
-#define H_RANDSPACE		WALLPASS
-#define H_RANDBREITE		(5/64.0)
-
-enum _colornames {
-	PD_RED,
-	PD_YELLOW,
-	PD_GREEN,
-	PD_GRAY,
-	PD_BLUE,
-	PD_GREENBLUE,
-	PD_DARK
-};
-
 #endif
