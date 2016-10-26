@@ -138,7 +138,7 @@ static struct debug_flag *find_debug_flag(GLenum value)
 	return NULL;
 }
 
-static void gl_debug_callback(GLenum source, GLenum type, GLuint id,
+static void APIENTRY gl_debug_callback(GLenum source, GLenum type, GLuint id,
 							GLenum severity, GLsizei length, const GLchar* message,
 							GLvoid* userParam)
 {
