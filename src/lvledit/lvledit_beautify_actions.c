@@ -52,29 +52,24 @@ enum _horizontal_neighbors {
 static int tile_change_count = 0;
 
 /**
- * Find the first layer that is occupied by a different
- * floor tile than the default one.
- */
-static int get_top_map_layer(level *l, int x, int y)
-{
-	int i = l->floor_layers - 1;
-
-	while (i && get_map_brick(l, x, y, i) == ISO_FLOOR_EMPTY)
-		i--;
-
-	return i;
-}
-
-/**
  * This function returns the map brick code of the tile that occupies
  * the given position in the top layer.
  * It searches floor layers at the given position to find the first
  * floor tile other than the default floor tile.
  */
-static Uint16 get_top_map_brick(level *l, int x, int y)
+static uint16_t get_top_map_brick(level *l, int x, int y)
 {
-	int top_layer = get_top_map_layer(l, x, y);
-	return get_map_brick(l, x, y, top_layer);
+	uint16_t *tiles = get_map_brick(l, x, y);
+	int i = l->floor_layers - 1;
+
+	if (!tiles) {
+		return ISO_FLOOR_EMPTY;
+	}
+
+	while (i && tiles[i] == ISO_FLOOR_EMPTY)
+		i--;
+
+	return tiles[i];
 }
 
 static void change_transparent_floor(level *l, int x, int y, int transparent_type, int opaque_type)

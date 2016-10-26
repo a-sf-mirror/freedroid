@@ -369,7 +369,7 @@ void init_map_tile(struct map_tile*);
 void respawn_level(int level_num);
 gps get_map_label_center(const char *);
 int smash_obstacle(float, float, int);
-Uint16 get_map_brick(level *, float, float, int);
+uint16_t *get_map_brick(level *, float, float);
 void CountNumberOfDroidsOnShip(void);
 void free_current_ship();
 void free_ship_level(level*);

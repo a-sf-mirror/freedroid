@@ -186,7 +186,8 @@ void object_vtx_color(void *data, float *r, float *g, float *b)
  */
 static void show_floor(int mask)
 {
-	int LineStart, LineEnd, ColStart, ColEnd, line, col, MapBrick;
+       int LineStart, LineEnd, ColStart, ColEnd, line, col;
+       uint16_t *map_brick;
 	int layer_start, layer_end, layer;
 	float r, g, b;
 	float zf = ((mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0);
@@ -208,10 +209,14 @@ static void show_floor(int mask)
 
 	for (line = LineStart; line < LineEnd; line++) {
 		for (col = ColStart; col < ColEnd; col++) {
+			// Retrieve floor tiles
+			map_brick = get_map_brick(lvl, col, line);
+			if (!map_brick) {
+				continue;
+			}
+
 			for (layer = layer_start; layer < layer_end; layer++) {
-				// Retrieve floor tile
-				MapBrick = get_map_brick(lvl, col, line, layer);
-				if (MapBrick == ISO_FLOOR_EMPTY)
+				if (map_brick[layer] == ISO_FLOOR_EMPTY)
 					continue;
 
 				// Compute colorization (in case the floor tile is currently selected in the leveleditor)
@@ -221,7 +226,7 @@ static void show_floor(int mask)
 					r = g = b = 1.0;
 				}
 
-				struct image *img = get_floor_tile_image(MapBrick);
+				struct image *img = get_floor_tile_image(map_brick[layer]);
 				display_image_on_map(img, (float)col + 0.5, (float)line + 0.5, IMAGE_SCALE_RGB_TRANSFO(zf, r, g, b));
 			}
 		}

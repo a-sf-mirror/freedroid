@@ -834,6 +834,14 @@ static char *decode_map(level *loadlevel, char *data)
 
 			for (layer = 0; layer < loadlevel->floor_layers; layer++) {
 				tmp = strtol(this_line + 4 * (loadlevel->floor_layers * col + layer), NULL, 10);
+				if (tmp >= underlay_floor_tiles.size) {
+					if (tmp < MAX_UNDERLAY_FLOOR_TILES || (tmp - MAX_UNDERLAY_FLOOR_TILES) >= overlay_floor_tiles.size) {
+						error_message(__FUNCTION__, "Level %d at (%d, %d) in layer #%d uses an unknown floor tile: %d.", PLEASE_INFORM,
+								loadlevel->levelnum, col, i, layer, tmp);
+						tmp = ISO_FLOOR_EMPTY;
+					}
+				}
+
 				Buffer[col].floor_values[layer] = (Uint16) tmp;
 			}
 		}
@@ -1059,35 +1067,24 @@ int smash_obstacle(float x, float y, int lvl)
 }				// int smash_obstacle ( float x , float y );
 
 /**
- * This function returns the map brick code of the tile that occupies the
- * given position in the given layer.
+ * This function returns the map brick code of the tiles that occupies the
+ * given position. The return value is an array for all floor layers.
  * Floor layers are indexed from 0 to lvl->floor_layers - 1. The lowest
  * floor layer is #0. Every map has at least one layer.
+ * If there are no floor tiles, the function may return NULL, which is
+ * equivalent to an array full of ISO_FLOOR_EMPTY.
  */
-Uint16 get_map_brick(level *lvl, float x, float y, int layer)
+uint16_t *get_map_brick(level *lvl, float x, float y)
 {
-	Uint16 BrickWanted;
-	int RoundX, RoundY;
-
 	gps vpos = { x, y, lvl->levelnum };
 	gps rpos;
 	if (!resolve_virtual_position(&rpos, &vpos)) {
-		return ISO_FLOOR_EMPTY;
-	}
-	RoundX = (int)rintf(rpos.x);
-	RoundY = (int)rintf(rpos.y);
-
-	BrickWanted = curShip.AllLevels[rpos.z]->map[RoundY][RoundX].floor_values[layer];
-
-	if (BrickWanted >= underlay_floor_tiles.size) {
-		if (BrickWanted < MAX_UNDERLAY_FLOOR_TILES || (BrickWanted - MAX_UNDERLAY_FLOOR_TILES) >= overlay_floor_tiles.size) {
-			error_message(__FUNCTION__, "Level %d at %d %d in %d layer uses an unknown floor tile: %d.", PLEASE_INFORM,
-				lvl->levelnum, RoundX, RoundY, layer, BrickWanted);
-			return ISO_FLOOR_EMPTY;
-		}
+		return NULL;
 	}
 
-	return BrickWanted;
+	int roundX = (int)rintf(rpos.x);
+	int roundY = (int)rintf(rpos.y);
+	return curShip.AllLevels[rpos.z]->map[roundY][roundX].floor_values;
 }
 
 /**
