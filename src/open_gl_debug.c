@@ -210,7 +210,10 @@ int init_opengl_debug(void)
 	}
 
 	glEnable(GL_DEBUG_OUTPUT);
-	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+	/* Note: uncomment the following line if you want to use gdb with a
+	   breakpoint in gl_debug_callback() and want to have the OpenGL call
+	   leading to the debug report be in the current execution calling stack */
+	//glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 	glDebugMessageCallback(&gl_debug_callback, NULL);
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
 
