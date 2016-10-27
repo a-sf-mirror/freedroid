@@ -275,6 +275,14 @@ return {
 				sell_item(".22 LR Ammunition", 1, "Stone")
 				sell_item("EMP Shockwave Generator", 2, "Duncan") -- RG members can buy bigger bombs, as Duncan said.
 				sell_item("Plasma Shockwave Emitter", 1, "Duncan")
+
+				-- Allows Tux to buy Tier 2 skills
+				Tamara_restock=true
+				sell_item("Source Book of Sanctuary", 1, "Tamara")
+				sell_item("Source Book of Virus", 1, "Tamara")
+				sell_item("Source Book of Dispel smoke", 1, "Tamara")
+				sell_item("Source Book of Invisibility", 1, "Tamara")
+
 				hide("node3", "node12")
 			else
 				if (get_town_score() > 29) then
@@ -437,6 +445,14 @@ return {
 			Npc:says(_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might not suffice in disabling the shield, however there should be some terminal around to control it.")
 			Tux:add_quest("Opening access to MS Office", _"Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility north of the town. By defeating the control droid and using a nearby terminal, I should be able to control the disruptor shield at the facility. I can disable disruptor shield, fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop.")
 			change_obstacle_state("DisruptorShieldBaseGate", "opened")
+
+			-- Allows Tux to buy Tier 3 skills
+			Tamara_restock=true
+			sell_item("Source Book of Broadcast Blue Screen", 1, "Tamara")
+			sell_item("Source Book of Broadcast virus", 1, "Tamara")
+			sell_item("Source Book of Killer poke", 1, "Tamara")
+			sell_item("Source Book of Plasma discharge", 1, "Tamara")
+
 			hide("node39", "node40")
 		end,
 	},

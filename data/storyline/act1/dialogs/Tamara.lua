@@ -48,6 +48,11 @@ return {
 	end,
 
 	EveryTime = function()
+		if (Tamara_restock) then
+			Npc:says(_"I was looking at the depot and found some interesting books. You might want to take a look at them later.")
+			Tamara_restock=false
+		end
+
 		if (tamara_shelf_count == 1) and
 		   (not tamara_shelf_count_1_done) then
 			Npc:says(_"Hey, please don't make such a mess here.")
