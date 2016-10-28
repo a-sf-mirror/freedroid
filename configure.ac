@@ -235,6 +235,9 @@ AS_VAR_IF([no_gl], [yes],
 				AC_DEFINE([HAVE_LIBGL], [1], [Define to 1 if openGL libs were found])
 				AS_VAR_APPEND([FD_CFLAGS], [" $GL_FLAGS"])
 				AS_VAR_APPEND([FD_LIBS], [" $GL_LIBS"])
+				PKG_CHECK_MODULES([GLEW], [glew >= 1.10])
+				AS_VAR_APPEND([FD_CFLAGS], [" $GLEW_CFLAGS"])
+				AS_VAR_APPEND([FD_LIBS], [" $GLEW_LIBS"])
 			],
 			[
 				summary_have_gl="disabled"

@@ -357,6 +357,10 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 int init_open_gl(void)
 {
 #ifdef HAVE_LIBGL
+	GLenum err = glewInit();
+	if (err	!= GLEW_OK) {
+		error_message(__FUNCTION__, "glewInit failed: %s\n", IS_FATAL, glewGetErrorString(err));
+	}
 	init_opengl_debug();
 	safely_set_open_gl_viewport_and_matrix_mode();
 	safely_set_some_open_gl_flags_and_shade_model();

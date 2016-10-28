@@ -17,27 +17,28 @@ SDL_mixer (optional)
 libogg (optional)
 libvorbis (optional)
 OpenGL (optional)
+GLEW (required for OpenGL, if OpenGL is used)
 lua (optional, packaged in the source tree if not available system-wide)
 
 The packages to install are listed below, depending on your distribution.
 
 1) Debian/Ubuntu
 
-sudo apt-get install libsdl1.2-dev libsdl-mixer1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-ttf2.0-dev libogg-dev liblua5.2-dev libjpeg-dev gettext autopoint
+sudo apt-get pkg-config install libsdl1.2-dev libsdl-mixer1.2-dev libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-ttf2.0-dev libogg-dev liblua5.2-dev libjpeg-dev gettext autopoint libglew-dev
 
 2) Fedora
 
-yum install SDL_image-devel SDL_net-devel SDL_mixer-devel SDL_gfx-devel SDL_ttf-devel libjpeg-devel libpng-devel libvorbis-devel libGLU-devel lua-devel gettext gettext-devel
+yum install pkgconfig SDL_image-devel SDL_net-devel SDL_mixer-devel SDL_gfx-devel SDL_ttf-devel libjpeg-devel libpng-devel libvorbis-devel libGLU-devel lua-devel gettext gettext-devel libglew-devel
 
 3) Archlinux
 
-pacman -S libgl libvorbis lua sdl sdl_gfx sdl_image sdl_mixer gettext
+pacman -S base-devel libgl libvorbis lua sdl sdl_gfx sdl_image sdl_mixer gettext glew
 
 There is also a freedroidrpg-git pkgbuild at the arch user repository: https://aur.archlinux.org/packages.php?ID=57483
 
 4) Gentoo
 
-emerge -av libsdl sdl-image sdl-gfx sdl-mixer libogg libvorbis eselect-opengl lua virtual/jpeg media-libs/libpng
+emerge -av libsdl sdl-image sdl-gfx sdl-mixer libogg libvorbis eselect-opengl lua virtual/jpeg media-libs/libpng media-libs/glew
 
 5) Please contribute lists for your distribution!
 
@@ -116,7 +117,7 @@ rather launch "MinGW-w64 Win64 Shell"
      pacman -S mingw-w64-i686-gcc mingw-w64-i686-pkg-config
 
 4) Install FDRPG dependencies (replace 'i686' by 'x86_64' for 64b version):
-     pacman -S mingw-w64-i686-SDL mingw-w64-i686-SDL_gfx mingw-w64-i686-SDL_image mingw-w64-i686-SDL_ttf mingw-w64-i686-lua
+     pacman -S mingw-w64-i686-SDL mingw-w64-i686-SDL_gfx mingw-w64-i686-SDL_image mingw-w64-i686-SDL_ttf mingw-w64-i686-lua mingw-w64-i686-glew
 
 5) On Mar,19 2016, SDL_image (1.2.12-4) uses an old version of libwebp.
    Until it is rebuilt, just do:

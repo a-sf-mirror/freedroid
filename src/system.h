@@ -134,7 +134,8 @@
 #endif
 
 #ifdef HAVE_LIBGL
-#define GL_GLEXT_PROTOTYPES
+#include <GL/glew.h>
+#define NO_SDL_GLEXT
 #include <SDL_opengl.h>
 #endif
 
