@@ -38,7 +38,7 @@
 // computers (observed on 64b systems with NVidia GPU).
 // Further test is needed to solve that issue.
 
-#if defined(HAVE_LIBGL)
+#if defined(HAVE_LIBGL) && defined(GL_KHR_debug)
 
 #define DBG_FLAG(f) { f, #f }
 struct debug_flag {
@@ -157,7 +157,7 @@ void gl_debug_marker(const char *str)
 	}
 }
 
-#else // defined(HAVE_LIBGL)
+#else // defined(HAVE_LIBGL) && defined(GL_KHR_debug)
 
 int init_opengl_debug(void)
 {
@@ -168,7 +168,7 @@ void gl_debug_marker(const char *str)
 {
 }
 
-#endif // defined(HAVE_LIBGL)
+#endif // defined(HAVE_LIBGL) && defined(GL_KHR_debug)
 
 /**
  * This function checks the error status of the OpenGL driver.  An error
