@@ -111,6 +111,13 @@ AM_GNU_GETTEXT_VERSION([0.18])
 AM_GNU_GETTEXT([external])
 AM_ICONV
 
+PKG_PROG_PKG_CONFIG([])
+if test -z "$PKG_CONFIG"; then
+    AC_MSG_WARN([pkg-config not found])
+    AC_MSG_WARN([required libraries cannot be detected])
+    AC_MSG_WARN([please install pkg-config])
+fi
+
 dnl Not sure if the following tests are really needed
 dnl AC_PATH_X
 dnl AC_PATH_XTRA
