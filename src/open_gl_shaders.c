@@ -54,30 +54,34 @@
  The fragment shader part is kind of ugly but I am aware of no other way to
  achieve this result, without using texture arrays or bindless texture
  extensions.
+
+ Note: 0.5 is added to textcoord.z in the vertex shader, making sure that the
+ value passed to the fragment shader is always slightly greater than the
+ expected value, such that truncating yields that expected value exactly.
 */
 
 static const char *blitter_shader_vs_source = "#version 120\n"
 	"void main() {"
 	"	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;"
-	"	float realx = mod(gl_MultiTexCoord0.s, 10); "
-	"	gl_TexCoord[0].t = gl_MultiTexCoord0.t; "
-	"	gl_TexCoord[0].s = realx; "
-	"	gl_TexCoord[0].z = (gl_MultiTexCoord0.s - realx); "
-	"	gl_FrontColor = gl_Color; "
+	"	float realx = mod(gl_MultiTexCoord0.s, 10);"
+	"	gl_TexCoord[0].t = gl_MultiTexCoord0.t;"
+	"	gl_TexCoord[0].s = realx;"
+	"	gl_TexCoord[0].z = (gl_MultiTexCoord0.s - realx + 0.5);"
+	"	gl_FrontColor = gl_Color;"
 	"}";
 
 static const char *blitter_shader_fs_source = "#version 120\n"
 	"uniform sampler2D tex[4];"
 	"void main() {"
 	"	vec4 t;"
-	"	int unit = int(gl_TexCoord[0].z); "
-	"	if (unit == 0)		 { t = texture2D(tex[0], gl_TexCoord[0].st); } \n"
-	"	else if (unit == 10) { t = texture2D(tex[1], gl_TexCoord[0].st); } \n"
-	"	else if (unit == 20) { t = texture2D(tex[2], gl_TexCoord[0].st); } \n"
-	"	else if (unit == 30) { t = texture2D(tex[3], gl_TexCoord[0].st); } \n"
-	"	else { t = vec4(1.0, 0.0, 0.0, 1.0); } "
-	"	if (t.a <= 0.01) discard; "
-	"	gl_FragColor = t * gl_Color; "
+	"	int unit = int(gl_TexCoord[0].z);"
+	"	if (unit == 0)       { t = texture2D(tex[0], gl_TexCoord[0].st); }"
+	"	else if (unit == 10) { t = texture2D(tex[1], gl_TexCoord[0].st); }"
+	"	else if (unit == 20) { t = texture2D(tex[2], gl_TexCoord[0].st); }"
+	"	else if (unit == 30) { t = texture2D(tex[3], gl_TexCoord[0].st); }"
+	"	else { t = vec4(1.0, 0.0, 0.0, 1.0); }"
+	"	if (t.a <= 0.01) discard;"
+	"	gl_FragColor = t * gl_Color;"
 	"}";
 
 static unsigned int blitter_shader_vs;
