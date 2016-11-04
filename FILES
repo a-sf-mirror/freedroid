@@ -1,17 +1,22 @@
 Directory structure:
 --------------------
-./                  : The root directory
-./src/              : The game source code
-./src/lvledit	    : The leveleditor source code
-./src/mapgen	    : The random dungeon validator
-./src/widgets	    : User interface related files
-./map/              : The map and characteristics of items, bots, programs, ...
-./map/titles/       : Slow scrolling text files, such as the credits, level editor help, etc.
-./dialogs/          : The in-game dialogs
-./sound/            : The in-game sound files
-./graphics/         : The in-game graphics files
-./win32/            : Windows .exe icons
-./tools             : Set of tools used by devs (used to manipulate images, fonts, atlases...)
+./                    : The root directory
+./data/base           : The class characteristics of items, bots, programs, ...
+./data/fonts          : The bitmap fonts used by the game
+./data/graphics       : The in-game graphics files
+./data/gui            : The graphics used to compose the game GUI
+./data/sound          : The in-game sound files
+./data/storyline/actX : The content data (map, quests, dialogs, bots...) related to actX
+./lua_modules         : Lua functions and modules used by dialogs, quests, events...
+./macosx              : MacosX dmg packager data
+./po                  : Localization files
+./src/                : The game source code
+./src/lua             : The lua bindings to some of the in-game data
+./src/lvledit         : The leveleditor source code
+./src/mapgen          : The random dungeon validator
+./src/widgets         : User interface related files
+./tools               : Set of tools used by devs (used to manipulate images, fonts, atlases...)
+./win32               : Windows .exe packager data
 
 
 Text files containing descriptions:
@@ -20,7 +25,7 @@ README                : Read it!
 FILES                 : This file.
 NEWS                  : An empty file that the autotools force upon us.
 ChangeLog             : What has changed recently, targetting developers.
-INSTALL               : Instructions for building and installing from source.
+INSTALL.freedroidRPG  : Instructions for building and installing from source.
 freedroidRPG.6        : Description of the game in man page style.
 
 
