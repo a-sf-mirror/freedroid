@@ -33,22 +33,22 @@ EXTRA_DIST = m4 lua $(man_MANS) $(freedroid_data) ChangeLog INSTALL.freedroidRPG
 CHECKFLAGS=env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
 
 check:
-	$(CHECKFLAGS) ./src/freedroidRPG -nb text			|| exit 1
-	$(CHECKFLAGS) ./src/freedroidRPG -nb dialog			|| exit 2
-	$(CHECKFLAGS) ./src/freedroidRPG -nb loadship		|| exit 3
-	$(CHECKFLAGS) ./src/freedroidRPG -nb dynarray		|| exit 4
-	$(CHECKFLAGS) ./src/freedroidRPG -nb mapgen			|| exit 5
-	$(CHECKFLAGS) ./src/freedroidRPG -nb leveltest		|| exit 6
-	$(CHECKFLAGS) ./src/freedroidRPG -nb event			|| exit 7
+	$(CHECKFLAGS) ./src/freedroidRPG -nb text      || exit 1
+	$(CHECKFLAGS) ./src/freedroidRPG -nb dialog    || exit 2
+	$(CHECKFLAGS) ./src/freedroidRPG -nb loadship  || exit 3
+	$(CHECKFLAGS) ./src/freedroidRPG -nb dynarray  || exit 4
+	$(CHECKFLAGS) ./src/freedroidRPG -nb mapgen    || exit 5
+	$(CHECKFLAGS) ./src/freedroidRPG -nb leveltest || exit 6
+	$(CHECKFLAGS) ./src/freedroidRPG -nb event     || exit 7
 
 
 dist-hook:
-	find $(distdir) -name ".git"              | xargs rm -rf
-	find $(distdir) -name "*~"                | xargs rm -f
-	find $(distdir) -name ".#*"               | xargs rm -f
-	find $(distdir)/lua -name "*.o"           | xargs rm -f
-	find $(distdir)/lua -name "*.a"           | xargs rm -f
-	find $(distdir)/lua -name "Makefile"      | xargs rm -f
+	find $(distdir) -name ".git"         | xargs rm -rf
+	find $(distdir) -name "*~"           | xargs rm -f
+	find $(distdir) -name ".#*"          | xargs rm -f
+	find $(distdir)/lua -name "*.o"      | xargs rm -f
+	find $(distdir)/lua -name "*.a"      | xargs rm -f
+	find $(distdir)/lua -name "Makefile" | xargs rm -f
 
 install-data-local:
 	@echo "Installing the data-files ..."
