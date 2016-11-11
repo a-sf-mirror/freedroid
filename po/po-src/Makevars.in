@@ -1,19 +1,19 @@
 # Makefile variables for PO directory in any package using GNU gettext.
 
 # Usually the message domain is the same as the package name.
-DOMAIN = freedroidrpg-data
+DOMAIN = freedroidrpg
 
 # These two variables depend on the location of this directory.
-subdir = po/po-data
+subdir = po/po-src
 top_builddir = ../..
 
 # Some scripts need to know gawk's path
-export AWK=${shell which gawk}
+export AWK=@AWK@
 
 # These options get passed to xgettext.
 SYS_XGETTEXT:=${XGETTEXT}
 XGETTEXT=${top_srcdir}/po/xgettext-wrapper ${SYS_XGETTEXT}
-XGETTEXT_OPTIONS = --width=80 --no-wrap --keyword=_ --from-code=UTF-8
+XGETTEXT_OPTIONS = --width=80 --no-wrap --keyword=_ --keyword=N_ --keyword=L_ --keyword=D_ --keyword=S_ --from-code=UTF-8
 
 # These options get passed to msgmerge.
 MSGMERGE_OPTIONS = --width=80 --no-wrap --verbose --quiet

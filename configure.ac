@@ -103,7 +103,7 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_RANLIB
 AC_PROG_MAKE_SET
-AC_PATH_PROG([AWK], [gawk], [])   	dnl GNU version of awk awk is needed in some po/ scripts
+AC_PATH_PROG([AWK], [gawk], [])    dnl GNU version of awk awk is needed in some po/ scripts
 AC_PATH_PROG([LUADOX], [lua2dox], [])
 AM_PATH_PYTHON([2.6])
 AC_PATH_TARGET_TOOL([WINDRES], [windres], [windres])
@@ -473,9 +473,9 @@ AC_CONFIG_FILES([
 		doc/manual/Doxyfile doc/manual/Makefile
 		doc/tools/Doxyfile doc/tools/Makefile
 	po/Makefile
-		po/po-src/Makefile.in
-		po/po-dialogs/Makefile.in
-		po/po-data/Makefile.in
+		po/po-src/Makevars po/po-src/Makefile.in
+		po/po-dialogs/Makevars po/po-dialogs/Makefile.in
+		po/po-data/Makevars po/po-data/Makefile.in
 		po/l10n-others/Makefile
 	pkgs/Makefile
 		pkgs/freedesktop/Makefile

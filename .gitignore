@@ -88,6 +88,7 @@ m4/xsize.m4
 # Files added by autopoint into po dirs
 po/*/Makefile.in.in
 po/*/Makevars.template
+po/*/Makevars
 po/*/Rules-quot
 po/*/boldquot.sed
 po/*/en@boldquot.header
