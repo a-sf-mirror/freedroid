@@ -1340,7 +1340,7 @@ void update_vector_to_shot_target_for_friend(enemy * ThisRobot)
 	/*
 	   if ( ThisRobot->pure_wait > 0 )
 	   {    // Target was not reachable
-	   // We could, for example, try to find an other target
+	   // We could, for example, try to find another target
 	   // But we should not do that as soon as the bot is pure_waiting,
 	   // because it could be a very temporary state.
 	   // So, a "pure_waiting" counter would be needed...
@@ -1405,7 +1405,7 @@ void update_vector_to_shot_target_for_enemy(enemy * this_robot)
 	/*
 	   else if ( this_robot->pure_wait > 0 )
 	   {    // Target was not reachable
-	   // We could, for example, try to find an other target
+	   // We could, for example, try to find another target
 	   // But we should not do that as soon as the bot is pure_waiting,
 	   // because it could be a very temporary state.
 	   // So, a "pure_waiting" counter would be needed...

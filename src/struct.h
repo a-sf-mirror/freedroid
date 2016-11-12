@@ -960,7 +960,7 @@ typedef struct screen_resolution {
  * [way|location]_free_of_droids's execution context
  *
  * Note : '2' excepted bots are needed when the pathfinder is called
- *         to let a bot reach an other one (used during attack, for example).
+ *         to let a bot reach another one (used during attack, for example).
  */
 typedef struct freeway_context {
 	int check_tux;		// Check if Tux is along the way

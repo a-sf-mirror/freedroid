@@ -51,7 +51,7 @@
 /// \n
 /// An entry of the list is composed of two data: the text to be displayed,
 /// and a user data. This user data can be used to store any integer value,
-/// such as an index to an other array.\n
+/// such as an index to another array.\n
 /// \n
 /// Currently, there are no specific functions to handle the text list, apart
 /// from widget_text_list_init(), which replaces all the current content with a

@@ -235,7 +235,7 @@ void show_inventory_screen(void);
 		next_valid_nearby_visible_level(pos, n, d), n = list_entry(pos->node.next, typeof(*pos), node))
 
 // The BROWSE_LEVELS loops on all levels, skipping missing one.
-// Same trick than the two macros just above, plus an other one:
+// Same trick than the two macros just above, plus another one:
 // An index is needed to loop on the curShip.ALLLevels array.
 // That index (an integer) has to be declared by the macro, but has to be
 // unique for each use of the macro.

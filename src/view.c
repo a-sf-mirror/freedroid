@@ -697,7 +697,7 @@ void reset_visible_levels()
  * 
  * gps_transform_matrix[lvl1][lvl2] is a matrix used in update_virtual_position().
  * It contains the data needed to transform a gps position defined relatively to one level
- * into a gps position defined relatively to an other level.
+ * into a gps position defined relatively to another level.
  * gps_transform_matrix[lvl1][lvl2] is used for a transformation from 'lvl1' to 'lvl2'.
  * 
  * level_neighbors_map[lvl][idY][idX] is used to retrieve all the neighbors (and the corresponding 

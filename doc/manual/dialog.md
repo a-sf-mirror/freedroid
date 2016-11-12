@@ -265,7 +265,7 @@ code = function(this_node, this_dialog)
        end,
 ~~~~~~~~~~~
 
-To change an other node's content, for instance, the dialog's interface can be used
+To change another node's content, for instance, the dialog's interface can be used
 to get a reference to that other node:
 
 ~~~~~~~~~~~{.lua}

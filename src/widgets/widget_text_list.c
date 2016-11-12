@@ -42,7 +42,7 @@
  */
 struct text_list_entry {
 	char *text;          /**< Pointer to the text. Must be already allocated. No ownership is transferred. */
-	int data;            /**< An integer user data (example: Index of this text entry in an other list). */
+	int data;            /**< An integer user data (example: Index of this text entry in another list). */
 	int is_allocated;    /**< If true, the memory holding the text is allocated by the widget. */
 	SDL_Rect rect;       /**< Outer rectangle used by the text entry. */
 	SDL_Rect text_rect;  /**< Inner rectangle used by the text entry. */

@@ -57,7 +57,7 @@
 ///
 /// However, if a new 'terminal' type is used in a structure to be saved, the
 /// functions to write/read that type have to be added in savestruct_internal.[c,h].
-/// If those functions have to be defined in an other file (due to access to
+/// If those functions have to be defined in another file (due to access to
 /// 'private' data), then they have to be declared in savestruct_internal.h
 ///
 /// \note

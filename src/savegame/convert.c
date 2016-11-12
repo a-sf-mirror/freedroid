@@ -307,7 +307,7 @@ CONVERT_END:
 			// Final check: game code version mismatch
 			if (_code_version_mismatch(&savegame, report)) {
 				alert_window(_("-=* Savegame loading *=-\n\n"
-				               "Your savegame is from an other game version.\n"
+				               "Your savegame is from a different game version.\n"
 				               "If you are using a dev version of the game, this is expected.\n"
 				               "We load it as is, but expect some errors or even a crash of the game."));
 			}

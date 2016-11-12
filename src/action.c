@@ -374,7 +374,7 @@ static int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index) {
 
 			return 0;
 		}
-		// rotate the step_vector to check an other point
+		// rotate the step_vector to check another point
 		RotateVectorByAngle(&step_vector, 45.0);
 	}
 

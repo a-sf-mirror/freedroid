@@ -327,14 +327,14 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 		fp[off] = 0;
 		loadlevel->drop_class = atoi(fp);
 		fp[off] = '\n';
-		// Note: to be commented out if an other decoding part is added after this one
+		// Note: to be commented out if another decoding part is added after this one
 		// fp += off + 1;
 		// off = 0;
 	} else {
 		loadlevel->drop_class = -1;
 	}
 
-	// Note: if an other decoding part is added, do not forget to comment out the 2 lines
+	// Note: if another decoding part is added, do not forget to comment out the 2 lines
 	// above...
 
 	if (loadlevel->ylen >= MAX_MAP_LINES) {

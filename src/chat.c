@@ -714,7 +714,7 @@ void chat_run()
 					// a lua coroutine.
 					// Also, reset chat control variables, so the user will have to
 					// select a new option, unless the lua code ends the dialog
-					// or auto-activates an other option.
+					// or auto-activates another option.
 					current_chat_context->script_coroutine = prepare_lua_coroutine(LUA_DIALOG, "FDdialog", "run_node", "d", current_chat_context->current_option);
 					current_chat_context->end_dialog = 0;
 					current_chat_context->current_option = -1;

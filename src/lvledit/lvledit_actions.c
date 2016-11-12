@@ -643,10 +643,10 @@ void level_editor_action_change_map_label_user(level *EditLevel, float x, float 
 			break;
 		}
 
-		// When the new name already exists, we must not create an other map
+		// When the new name already exists, we must not create another map
 		// label with the same name, but we want to display an alert window,
 		// and then go back to input box with the name still present
-		alert_window("%s", _("The new name of the map label already exists, please choose an other name."));
+		alert_window("%s", _("The new name of the map label already exists, please choose another name."));
 
 		// Copy the name in order to have it in the input box
 		strncpy(suggested_label, name, sizeof(suggested_label) - 1);
