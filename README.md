@@ -22,11 +22,26 @@
  Not meant to be in the tar.gz distribution.
 -->
 
-<img alt="In Town's bar" src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/town_bar_s.png" width=256 />
-<img alt="In the wild" src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/in_the_wild_s.png" width=256 />
-<img alt="Fighting" src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/fighting_s.png" width=256 />
-<img alt="Dialog screen" src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/dialog_s.png" width=256 />
-<img alt="Inventory screen" src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/inventory_screen_s.png" width=256 />
+<div>
+  <a class="no-attachment-icon" href="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/fighting_s.png" target="_blank">
+    <img alt="Fighting" src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/fighting_s.png" width="16%">
+  </a>
+  <a class="no-attachment-icon" href="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/town_bar_s.png" target="_blank">
+    <img src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/town_bar_s.png" width="16%" />
+  </a>
+  <a class="no-attachment-icon" href="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/in_the_wild_s.png" target="_blank">
+    <img alt="In the wild" src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/in_the_wild_s.png" width="16%" />
+  </a>
+  <a class="no-attachment-icon" href="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/fighting_s.png" target="_blank">
+    <img alt="Fighting" src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/fighting_s.png" width="16%" />
+  </a>
+  <a class="no-attachment-icon" href="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/dialog_s.png" target="_blank">
+    <img alt="Dialog screen" src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/dialog_s.png" width="16%" />
+  </a>
+  <a class="no-attachment-icon" href="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/inventory_screen_s.png" target="_blank">
+    <img alt="Inventory screen" src="https://gitlab.com/freedroid/freedroid-graphics/raw/master/website/assets/screenshots/inventory_screen_s.png" width="16%" />
+  </a>
+</div>
 
 Description
 -----------
