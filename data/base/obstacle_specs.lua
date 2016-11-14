@@ -4057,6 +4057,15 @@ obstacle {
 	groups = "cave wall"
 }
 
+-- #501
+obstacle {
+	image_filenames = { "iso_stratopod_landed_s_0001.png", "iso_stratopod_landed_s_0002.png" },
+	borders = borders(2.50, 2.00),
+	flags = { BLOCKS_VISION },
+	transparency = NO_TRANSPARENCY,
+        animation_fps = 0.5
+}
+
 --[[ IMPORTANT NOTE:
 Before you add a new obstacle to the end of this list, please try to
 replace one of these DUMMY OBSTACLEs.
