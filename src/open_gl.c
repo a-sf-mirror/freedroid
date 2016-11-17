@@ -731,5 +731,47 @@ void unset_gl_clip_rect(void)
 #endif
 }
 
+/**
+ * Retrieve a bit mask of the OpenGL "quirks" that FreedroidRPG will apply. These are driver- and hardware-dependent workarounds we apply in the driver.
+ */
+int get_opengl_quirks(void)
+{
+	static int quirks = 0;
+	static int done = 0;
+
+	if (!done) {
+		// GLSL-related quirks
+		const char *str = (const char *)glGetString(GL_SHADING_LANGUAGE_VERSION);
+		if (!str || strlen(str) < 3) {
+			error_message(__FUNCTION__, "Could not retrieve GL_SHADING_LANGUAGE_VERSION\n", PLEASE_INFORM);
+			str = "1.0";
+		}
+
+
+		/* GPUs that are limited to GLSL 1.2 (an arbitrary value chosen to
+		   match i915 as present in eeePC 701) are going to have limited
+		   abilities in their shaders, such as inability to do conditional
+		   branching, and drastic limitations on instruction counts and so
+		   on.  One such example is the i915, with a Linux driver that
+		   falls back to the CPU if the shader has more than 4 indirect
+		   texture lookups - but due to a driver bug, any texture lookup
+		   written in GLSL is turned into an indirect lookup. The effective
+		   result is that i915 will fall back to CPU when running our
+		   standard blitter shader. To avoid this, use a quirk to reduce
+		   the number of textures used for the blitter shader to 2.  This
+		   problem was observed on i915, but similar problems are expected
+		   to appear on any GPU sufficiently old to be limited to GLSL 1.2,
+		   so apply this quirk to all such GPUs.
+		 */
+		if (!strncmp(str, "1.0", 3) || !strncmp(str, "1.1", 3) || !strncmp(str, "1.2", 3)) {
+			quirks |= MULTITEX_MAX_2TEX;
+		}
+
+		done = 1;
+	}
+
+	return quirks;
+}
+
 
 #undef _open_gl_c

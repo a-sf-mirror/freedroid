@@ -84,6 +84,19 @@ static const char *blitter_shader_fs_source = "#version 120\n"
 	"	gl_FragColor = t * gl_Color;"
 	"}";
 
+/* Same shader, but with 2 textures only */
+static const char *blitter_shader_fs_source_2tex = "#version 120\n"
+	"uniform sampler2D tex[4];"
+	"void main() {"
+	"	vec4 t;"
+	"	int unit = int(gl_TexCoord[0].z);"
+	"	if (unit == 0)       { t = texture2D(tex[0], gl_TexCoord[0].st); }"
+	"	else if (unit == 10) { t = texture2D(tex[1], gl_TexCoord[0].st); }"
+	"	else { t = vec4(1.0, 0.0, 0.0, 1.0); }"
+	"	if (t.a <= 0.01) discard;"
+	"	gl_FragColor = t * gl_Color;"
+	"}";
+
 static unsigned int blitter_shader_vs;
 static unsigned int blitter_shader_fs;
 static unsigned int blitter_shader_prog;
@@ -126,7 +139,7 @@ void init_shaders(void)
 		const char *src;
 	} shaders[] = {
 		{ blitter_shader_vs, blitter_shader_vs_source },
-		{ blitter_shader_fs, blitter_shader_fs_source },
+		{ blitter_shader_fs, (get_opengl_quirks() & MULTITEX_MAX_2TEX) ? blitter_shader_fs_source_2tex : blitter_shader_fs_source },
 	};
 
 	int i;

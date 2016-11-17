@@ -286,6 +286,7 @@ void blit_background(const char *background);
 struct background *get_background(const char *);
 void set_gl_clip_rect(const SDL_Rect *clip);
 void unset_gl_clip_rect(void);
+int get_opengl_quirks(void);
 
 // open_gl_debug.c
 int init_opengl_debug();

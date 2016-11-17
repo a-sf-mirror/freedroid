@@ -1630,4 +1630,8 @@ enum shader {
 
 #define FLOOR_TILE_WIDTH 134
 #define FLOOR_TILE_HEIGHT 66
+
+enum gl_quirks {
+	MULTITEX_MAX_2TEX = 1,
+};
 #endif
