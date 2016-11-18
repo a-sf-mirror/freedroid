@@ -925,7 +925,8 @@ static void ShowPlayground(enemy * target)
 	int yoffs = User_Rect.y + (User_Rect.h - 2 * 140) / 2 + 40;
 
 	blit_background("console_bg1.jpg");
-    
+
+	start_image_batch();
 	static struct image bg;
 	if (!image_loaded(&bg)) {
 		load_image(&bg, GRAPHICS_DIR, "backgrounds/takeover_console.png", NO_MOD);
@@ -1038,6 +1039,7 @@ static void ShowPlayground(enemy * target)
 		}		// for capsules 
 	}			// for player 
 
+	end_image_batch(__FUNCTION__);
 	return;
 
 };				// ShowPlayground 
