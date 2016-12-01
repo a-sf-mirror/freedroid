@@ -1470,8 +1470,8 @@ static void show_obstacle_labels(int mask)
 	int i;
 	level *l = CURLEVEL();
 
-	if (game_status != INSIDE_LVLEDITOR) {
-		// Don't show obstacles labels when we are not in the editor
+	if (!(mask & SHOW_OBSTACLE_LABELS)) {
+		// Don't show obstacles labels if not asked to
 		return;
 	}
 

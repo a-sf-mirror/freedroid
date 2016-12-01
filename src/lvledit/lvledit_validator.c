@@ -1531,7 +1531,7 @@ int level_validation()
 	int column_width = text_width(get_current_font(), "000: empty");
 	AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor *
 				OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | OMIT_BLASTS | SKIP_LIGHT_RADIUS |
-				NO_CURSOR | OMIT_ITEMS_LABEL);
+				NO_CURSOR | OMIT_ITEMS_LABEL | SHOW_OBSTACLE_LABELS);
 	set_current_font(current_font);	// Reset font, in case it was modified by AssembleCombatPicture()
 
 	draw_shadowing_rectangle(background_rect);
