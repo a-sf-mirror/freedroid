@@ -106,6 +106,14 @@ return {
 			show("node34")
 		end
 
+		if (tux_has_joined_guard) and
+		   (not tamara_robot_class_node) then
+			Tamara_about_bots_nodes = Tamara_about_bots_nodes + 1
+			tamara_robot_class_node = true;
+			Npc:says(_"By the way, someone just returned a book about 'Advanced Robot Classes', tell me if you're interested.")
+			show("node35")
+		end
+
 		show_if(Tamara_talked_about_bots and
 		            (Tamara_about_bots_nodes > 0), "node31")
 
@@ -243,6 +251,20 @@ return {
 			Npc:says(_"The woman, Galatea, likewise fell in love and married her creator Pygmalion.")
 			Npc:says(_"So you could say that this is one of the few stories that end well.")
 			hide_node_about_bots(34)
+		end,
+	},
+	{
+		id = "node35",
+		text = _"Earlier you've said that there was a book about Advanced Robot Classes.",
+		topic = "About bots",
+		code = function()
+			Npc:says(_"Yes. Here, I'll show it to you.")
+			Npc:says(_"[b]Advanced Robot Classes - A quick guide introducing the most dangerous robots on our world.[/b]")
+			Npc:says(_"[b]Battle Droids - Droids from the class 700s are Battle Droids. They are designed for war, so they're pretty much killing machines. If you find a droid of the 700s class, it's advised to run.[/b]")
+			Npc:says(_"[b]Security Droids - Droids from the class 800s are meant to seek intruders and exterminate them. Most are fast and very dangerous, with the notable exception of the 883 model, which is designed to hold position and is even more dangerous. If you find a droid of the 800s class, it's advised to run.[/b]")
+			Npc:says(_"[b]Command Droids - Droids from the class 900s were designed to control droids, ships, stations, and a lot more. Being experimental, they usually are heavily armored, fast, and powerful. Most are equipped with top-notch sensors to see even invisible things. If you find a droid of the 900s class, it's advised to survive. Which is unlikely.[/b]")
+			Tux:says(_"Great. Why I have the feeling that I'll be meeting these droids soon enough?")
+			hide_node_about_bots(35)
 		end,
 	},
 	{
