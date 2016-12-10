@@ -135,7 +135,7 @@ return {
 		code = function()
 			hide("c-net-nethack_sub.node3", "c-net-nethack_sub.node4", "c-net-nethack_sub.node5", "c-net-nethack_sub.node6", "c-net-nethack_sub.node7")
 			if (selection == 0) then
-				selection = math.random(5)
+				selection = math.random(6)
 			end
 			--actual assignment --
 			if (selection == 1) then
@@ -158,6 +158,10 @@ return {
 				n_role = _"Wizard"
 				n_hp = -20
 				n_tricks = 5
+			elseif (selection == 6) then -- Secret random-only job
+				n_role = _"Geologist"
+				n_hp = 15
+				n_tricks = 1
 			end
 
 			selection = 0
@@ -209,7 +213,7 @@ return {
 		code = function()
 			hide("c-net-nethack_sub.node9", "c-net-nethack_sub.node10", "c-net-nethack_sub.node11", "c-net-nethack_sub.node12")
 			if (selection == 0) then
-				selection = math.random(4)
+				selection = math.random(5)
 			end
 
 			--actual assingment --
@@ -233,6 +237,10 @@ return {
 				n_hp = n_hp + 120
 				n_ac = 4
 				n_tricks = n_tricks - 1
+			elseif (selection == 5) then -- Secret random-only race
+				n_race = _"troglodyte"
+				n_hp = n_hp + 100
+				n_ac = 6
 			end
 
 			selection = 0
