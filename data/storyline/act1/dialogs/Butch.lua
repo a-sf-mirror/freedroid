@@ -99,7 +99,7 @@ return {
 		code = function()
 			Npc:says(_"Butch... The arena master.")
 			Npc:set_name("Butch - Arena Master")
-			hide("node1", "node4") show("node5")
+			hide("node1", "node2", "node3", "node4") show("node5")
 		end,
 	},
 	{
