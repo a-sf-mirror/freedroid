@@ -184,70 +184,88 @@ void Load_Blast_Surfaces(void)
 
 static void load_item_graphics(int item_type)
 {
-	SDL_Surface *original_img;
-	SDL_Surface *tmp_surf2 = NULL;
-	char fpath[PATH_MAX];
-	char our_filename[PATH_MAX];
-	itemspec *spec = &ItemMap[item_type];
+    char our_filename[PATH_MAX];
+    itemspec *spec = &ItemMap[item_type];
+    int target_x = spec->inv_size.x * 32;
+    int target_y = spec->inv_size.y * 32;
+    float factor_x, factor_y;
 
-	sprintf(our_filename, "items/%s", spec->item_inv_file_name);
+    sprintf(our_filename, "items/%s", spec->item_inv_file_name);
 
-	// Load the inventory image	
-	find_file(fpath, GRAPHICS_DIR, our_filename, NULL, PLEASE_INFORM | IS_FATAL);
+    if (use_open_gl) {
+        load_image(&spec->inventory_image, GRAPHICS_DIR, our_filename, 0);
+        spec->shop_image = spec->inventory_image;
 
-	original_img = IMG_Load(fpath);
-	if (original_img == NULL) {
-		error_message(__FUNCTION__, "Inventory image for item type %d, at path %s was not found",
-				PLEASE_INFORM | IS_FATAL, item_type, fpath);
-	}
+        // Scale inventory image
+        spec->inventory_image.w = target_x;
+        spec->inventory_image.h = target_y;
+        
+        // Scale shop image to keep aspect ratio and fill 64 pixels (at -r0)
+        float shop_square_size = 64.0 * GameConfig.screen_width / 640.0;
+        short int *small = &(spec->shop_image.w);
+        short int *big = &(spec->shop_image.h);
 
-	int target_x = spec->inv_size.x * 32;
-	int target_y = spec->inv_size.y * 32;
-	float factor_x, factor_y;
-	if ((target_x != original_img->w) || (target_y != original_img->h)) {
-		factor_x = (float)target_x / (float)original_img->w;
-		factor_y = (float)target_y / (float)original_img->h;
-		tmp_surf2 = zoomSurface(original_img, factor_x, factor_y, FALSE);
-		spec->inventory_image.surface = SDL_DisplayFormatAlpha(tmp_surf2);
-		SDL_FreeSurface(tmp_surf2);
-	} else
-		spec->inventory_image.surface = SDL_DisplayFormatAlpha(original_img);
+        if (*small > *big) {
+            big = &(spec->shop_image.w);
+            small = &(spec->shop_image.h);
+        }
 
-	if (use_open_gl) {
-		make_texture_out_of_surface(&spec->inventory_image);
-	} else {
-		spec->inventory_image.w = spec->inventory_image.surface->w;
-		spec->inventory_image.h = spec->inventory_image.surface->h;
-	}
+        float ratio = (float)*small/(float)*big;
+        *big = shop_square_size;
+        *small = shop_square_size * ratio;
 
-	// For the shop, we need versions of each image, where the image is scaled so
-	// that it takes up a whole 64x64 shop display square.  So we prepare scaled
-	// versions here and now...
-	
-	// Scale shop image
-	if (original_img->w >= original_img->h) {
-		target_x = 64;
-		target_y = original_img->h * 64.0 / (float)original_img->w;	//keep the scaling ratio !
-	}
+    } else {
+        SDL_Surface *original_img;
+        SDL_Surface *tmp_surf2 = NULL;
+        char fpath[PATH_MAX];
 
-	if (original_img->h > original_img->w) {
-		target_y = 64;
-		target_x = original_img->w * 64.0 / (float)original_img->h;
-	}
+        // Load the inventory image	
+        find_file(fpath, GRAPHICS_DIR, our_filename, NULL, PLEASE_INFORM | IS_FATAL);
 
-	factor_x = ((float)GameConfig.screen_width / 640.0) * ((float)target_x / (float)original_img->w);
-	factor_y = ((float)GameConfig.screen_height / 480.0) * ((float)target_y / (float)original_img->h);
-	tmp_surf2 = zoomSurface(original_img, factor_x, factor_y, FALSE);
-	spec->shop_image.surface = SDL_DisplayFormatAlpha(tmp_surf2);
-	SDL_FreeSurface(original_img);
-	SDL_FreeSurface(tmp_surf2);
+        original_img = IMG_Load(fpath);
+        if (original_img == NULL) {
+            error_message(__FUNCTION__, "Inventory image for item type %d, at path %s was not found",
+                    PLEASE_INFORM | IS_FATAL, item_type, fpath);
+        }
 
-	if (use_open_gl) {
-		make_texture_out_of_surface(&spec->shop_image);
-	} else {
-		spec->shop_image.w = spec->shop_image.surface->w;
-		spec->shop_image.h = spec->shop_image.surface->h;
-	}
+        if ((target_x != original_img->w) || (target_y != original_img->h)) {
+            factor_x = (float)target_x / (float)original_img->w;
+            factor_y = (float)target_y / (float)original_img->h;
+            tmp_surf2 = zoomSurface(original_img, factor_x, factor_y, FALSE);
+            spec->inventory_image.surface = SDL_DisplayFormatAlpha(tmp_surf2);
+            SDL_FreeSurface(tmp_surf2);
+        } else {
+            spec->inventory_image.surface = SDL_DisplayFormatAlpha(original_img);
+        }
+
+        spec->inventory_image.w = spec->inventory_image.surface->w;
+        spec->inventory_image.h = spec->inventory_image.surface->h;
+
+        // For the shop, we need versions of each image, where the image is scaled so
+        // that it takes up a whole 64x64 shop display square.  So we prepare scaled
+        // versions here and now...
+
+        // Scale shop image
+        if (original_img->w >= original_img->h) {
+            target_x = 64;
+            target_y = original_img->h * 64.0 / (float)original_img->w;	//keep the scaling ratio !
+        }
+
+        if (original_img->h > original_img->w) {
+            target_y = 64;
+            target_x = original_img->w * 64.0 / (float)original_img->h;
+        }
+
+        factor_x = ((float)GameConfig.screen_width / 640.0) * ((float)target_x / (float)original_img->w);
+        factor_y = ((float)GameConfig.screen_height / 480.0) * ((float)target_y / (float)original_img->h);
+        tmp_surf2 = zoomSurface(original_img, factor_x, factor_y, FALSE);
+        spec->shop_image.surface = SDL_DisplayFormatAlpha(tmp_surf2);
+        SDL_FreeSurface(original_img);
+        SDL_FreeSurface(tmp_surf2);
+
+        spec->shop_image.w = spec->shop_image.surface->w;
+        spec->shop_image.h = spec->shop_image.surface->h;
+    }
 
 	// Load ingame image
 	if (strcmp(spec->item_rotation_series_prefix, "NONE_AVAILABLE_YET")) {
