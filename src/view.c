@@ -2813,15 +2813,18 @@ void put_radial_blue_sparks(float posX, float posY, float radius, int spark_type
 			int i;
 			for (i = 0; i < FIXED_NUMBER_OF_SPARK_ANGLES; i++) {
 				angle = +45 - 360.0 * (float)i / (float)FIXED_NUMBER_OF_SPARK_ANGLES;
+				struct image *img = &prerotated_spark_surfaces[spark_type][k][i];
 
 				tmp_surf = rotozoomSurface(spark_prototype_surface[spark_type][k], angle, 1.0, FALSE);
 
-				prerotated_spark_surfaces[spark_type][k][i].surface = SDL_DisplayFormatAlpha(tmp_surf);
+				img->surface = SDL_DisplayFormatAlpha(tmp_surf);
+				img->w = img->surface->w;
+				img->h = img->surface->h;
 
 				// Maybe opengl is in use.  Then we need to prepare some textures too...
 
 				if (use_open_gl) {
-					make_texture_out_of_surface(&(prerotated_spark_surfaces[spark_type][k][i]));
+					make_texture_out_of_surface(img);
 				}
 
 				SDL_FreeSurface(tmp_surf);
