@@ -43,6 +43,8 @@
 
 int gl_max_texture_size;
 
+static unsigned int pbo = 0;
+
 /**
  * This is a wrapper for the SDL_Flip function, that will use either the
  * OpenGL buffer-swapping or the classic SDL flipper, depending on the
@@ -257,6 +259,10 @@ static void do_make_texture_out_of_surface(struct image * our_image, int txw, in
 	our_image->texture_type = TEXTURE_CREATED;
 	DebugPrintf(1, "Using texture %d\n", our_image->texture);
 
+	if (pbo) {
+		glBufferData(GL_PIXEL_UNPACK_BUFFER, txw*txh*4, data, GL_STREAM_DRAW);
+	}
+
 	glBindTexture(GL_TEXTURE_2D, (our_image->texture));
 
 	// We tend to scale those textures a lot, so we use linear filtering otherwise
@@ -265,7 +271,7 @@ static void do_make_texture_out_of_surface(struct image * our_image, int txw, in
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
 	// Generate The Texture 
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, txw, txh, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_2D, 0, 4, txw, txh, 0, GL_BGRA, GL_UNSIGNED_BYTE, pbo ? NULL : data);
 
 	our_image->tex_x0 = 0;
 	our_image->tex_y0 = 1.0 - (float)our_image->h / (float)our_image->tex_h;
@@ -345,6 +351,15 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	glDisable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+
+	// Create a pixel buffer object if supported
+	if (GLEW_VERSION_2_1 || GLEW_ARB_pixel_buffer_object || GLEW_EXT_pixel_buffer_object) {
+		glGenBuffers(1, &pbo);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, pbo);
+	}
 
 	open_gl_check_error_status(__FUNCTION__);
 
@@ -513,8 +528,14 @@ void set_up_stretched_texture_for_light_radius(void)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	// Generate The Texture 
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, light_radius_stretch_surface->w,
-		     light_radius_stretch_surface->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, light_radius_stretch_surface->pixels);
+	if (pbo) {
+		glBufferData(GL_PIXEL_UNPACK_BUFFER,
+				light_radius_stretch_surface->w * light_radius_stretch_surface->h * 4,
+				light_radius_stretch_surface->pixels, GL_STREAM_DRAW);
+	}
+	glTexImage2D(GL_TEXTURE_2D, 0, 4,
+			light_radius_stretch_surface->w, light_radius_stretch_surface->h, 0, GL_BGRA, GL_UNSIGNED_BYTE,
+			(pbo) ? NULL : light_radius_stretch_surface->pixels);
 
 #endif
 
@@ -552,10 +573,13 @@ void light_radius_update_stretched_texture(void)
 	end_image_batch(__FUNCTION__);
 
 	glBindTexture(GL_TEXTURE_2D, light_radius_stretch_texture);
-	glTexSubImage2D(GL_TEXTURE_2D, 0,
-			0, 0,
-			LightRadiusConfig.texture_w,
-			LightRadiusConfig.texture_h, GL_RGBA, GL_UNSIGNED_BYTE, light_radius_stretch_surface->pixels);
+	if (pbo) {
+		glBufferData(GL_PIXEL_UNPACK_BUFFER, LightRadiusConfig.texture_w * LightRadiusConfig.texture_h * 4,
+				light_radius_stretch_surface->pixels, GL_STREAM_DRAW);
+	}
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0,
+			LightRadiusConfig.texture_w, LightRadiusConfig.texture_h, GL_RGBA, GL_UNSIGNED_BYTE,
+			(pbo) ? NULL : light_radius_stretch_surface->pixels);
 
 	open_gl_check_error_status(__FUNCTION__);
 
