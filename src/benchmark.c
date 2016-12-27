@@ -258,22 +258,38 @@ static int graphics_bench()
 	return 0;
 }
 
+static int graphicsloading_bench()
+{
+	int iter = 5;
+
+	timer_start();
+	while (iter--) {
+		reload_graphics();
+	}
+
+	our_SDL_flip_wrapper();
+	timer_stop();
+
+	return 0;
+}
+
 int benchmark()
 {
 	struct {
 		char *name;
 		int (*func)();
 	} benchs[] = {
-			{ "text", text_bench },
-			{ "dialog", dialog_test },
-			{ "event", event_test },
-			{ "loadship", loadship_bench },
-			{ "loadgame", loadgame_bench },
-			{ "savegame", savegame_bench },
-			{ "dynarray", dynarray_test },
-			{ "mapgen", mapgen_bench },
-			{ "leveltest", level_test },
-			{ "graphics", graphics_bench },
+			{ "text",            text_bench },
+			{ "dialog",          dialog_test },
+			{ "event",           event_test },
+			{ "loadship",        loadship_bench },
+			{ "loadgame",        loadgame_bench },
+			{ "savegame",        savegame_bench },
+			{ "dynarray",        dynarray_test },
+			{ "mapgen",          mapgen_bench },
+			{ "leveltest",       level_test },
+			{ "graphics",        graphics_bench },
+			{ "graphicsloading", graphicsloading_bench },
 	};
 
 	int i;
