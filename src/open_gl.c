@@ -747,7 +747,6 @@ int get_opengl_quirks(void)
 			str = "1.0";
 		}
 
-
 		/* GPUs that are limited to GLSL 1.2 (an arbitrary value chosen to
 		   match i915 as present in eeePC 701) are going to have limited
 		   abilities in their shaders, such as inability to do conditional
@@ -764,7 +763,7 @@ int get_opengl_quirks(void)
 		   so apply this quirk to all such GPUs.
 		 */
 		if (!strncmp(str, "1.0", 3) || !strncmp(str, "1.1", 3) || !strncmp(str, "1.2", 3)) {
-			quirks |= MULTITEX_MAX_2TEX;
+			quirks |= DISABLE_SHADERS;
 		}
 
 		done = 1;

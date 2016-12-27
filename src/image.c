@@ -262,9 +262,9 @@ static int get_texture_unit_for_tex(int tex)
 	if (!max_texture_units) {
 		glGetIntegerv(GL_MAX_TEXTURE_UNITS, &max_texture_units);
 
-		if (get_opengl_quirks() & MULTITEX_MAX_2TEX) {
-			// Use a max of 2 textures at once for image drawing
-			max_texture_units = 2;
+		if (get_opengl_quirks() & DISABLE_SHADERS) {
+			// Use a max of 1 texture at once for image drawing if shaders aren't supported
+			max_texture_units = 1;
 		}
 	}
 

@@ -84,25 +84,36 @@ static const char *blitter_shader_fs_source = "#version 120\n"
 	"	gl_FragColor = t * gl_Color;"
 	"}";
 
-/* Same shader, but with 2 textures only */
-static const char *blitter_shader_fs_source_2tex = "#version 120\n"
-	"uniform sampler2D tex[4];"
-	"void main() {"
-	"	vec4 t;"
-	"	int unit = int(gl_TexCoord[0].z);"
-	"	if (unit == 0)       { t = texture2D(tex[0], gl_TexCoord[0].st); }"
-	"	else if (unit == 10) { t = texture2D(tex[1], gl_TexCoord[0].st); }"
-	"	else { t = vec4(1.0, 0.0, 0.0, 1.0); }"
-	"	if (t.a <= 0.01) discard;"
-	"	gl_FragColor = t * gl_Color;"
-	"}";
-
 static unsigned int blitter_shader_vs;
 static unsigned int blitter_shader_fs;
 static unsigned int blitter_shader_prog;
 static unsigned int blitter_shader_texID_uniform;
 
 static enum shader current_shader = NO_SHADER;
+
+static void noshaders_use_shader(enum shader shader)
+{
+	switch (current_shader) {
+	case BLITTER_SHADER:
+		// exit from blitter shader: set "normal" GL state
+		glDisable(GL_TEXTURE_2D);
+		glDisable(GL_ALPHA_TEST);
+		break;
+	default:
+		break;
+	}
+
+	switch (shader) {
+	case BLITTER_SHADER:
+		// enter blitter shader: set "blitter" GL state
+		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_ALPHA_TEST);
+		break;
+	default:
+		break;
+	}
+	current_shader = shader;
+}
 
 /**
  * Change the shader currently in use. This function
@@ -111,6 +122,12 @@ static enum shader current_shader = NO_SHADER;
 void use_shader(enum shader shader)
 {
 	if (current_shader == shader) {
+		return;
+	}
+
+	if (get_opengl_quirks() & DISABLE_SHADERS) {
+		// If shaders aren't supported, try to emulate them
+		noshaders_use_shader(shader);
 		return;
 	}
 
@@ -139,11 +156,14 @@ void init_shaders(void)
 		const char *src;
 	} shaders[] = {
 		{ blitter_shader_vs, blitter_shader_vs_source },
-		{ blitter_shader_fs, (get_opengl_quirks() & MULTITEX_MAX_2TEX) ? blitter_shader_fs_source_2tex : blitter_shader_fs_source },
+		{ blitter_shader_fs, blitter_shader_fs_source },
 	};
 
-	int i;
-	for (i = 0; i < sizeof(shaders) / sizeof(shaders[0]); i++) {
+	if (get_opengl_quirks() & DISABLE_SHADERS) {
+		return;
+	}
+
+	for (int i = 0; i < sizeof(shaders) / sizeof(shaders[0]); i++) {
 		glShaderSource(shaders[i].id, 1, &shaders[i].src, NULL);
 		glCompileShader(shaders[i].id);
 		int ret;

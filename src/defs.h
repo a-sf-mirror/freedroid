@@ -1632,6 +1632,6 @@ enum shader {
 #define FLOOR_TILE_HEIGHT 66
 
 enum gl_quirks {
-	MULTITEX_MAX_2TEX = 1,
+	DISABLE_SHADERS = 1,
 };
 #endif
