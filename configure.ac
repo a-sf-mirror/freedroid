@@ -13,8 +13,8 @@ dnl
 dnl In order to avoid any issue with configure, we use FD_ prefixed vars to
 dnl store our own flags. Those are added to AM_ vars in the Makefile.am
 
-AC_PREREQ([2.68])
-AC_INIT([freedroidRPG], [0.16+git], [http://bugs.freedroid.org], [freedroidrpg], [http://www.freedroid.org])
+AC_PREREQ([2.69])
+AC_INIT([freedroidRPG],[0.16+git],[http://bugs.freedroid.org],[freedroidrpg],[http://www.freedroid.org])
 AC_CONFIG_SRCDIR([INSTALL.freedroidRPG])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
@@ -55,40 +55,40 @@ AM_INIT_AUTOMAKE([tar-ustar -Wno-portability])
 dnl Commandline options
 
 AC_ARG_ENABLE([opengl],
-				[AC_HELP_STRING([--disable-opengl], [do not build the OpenGL support (not recommended!) [default=auto]])],
+				[AS_HELP_STRING([--disable-opengl],[do not build the OpenGL support (not recommended!) [default=auto]])],
 				[want_gl="$enableval"], [want_gl=yes])
 AC_ARG_ENABLE([sound],
-				[AC_HELP_STRING([--disable-sound], [do not include support for audio playback (no music, no SFX) [default=auto]])],
+				[AS_HELP_STRING([--disable-sound],[do not include support for audio playback (no music, no SFX) [default=auto]])],
 				[want_sound="$enableval"], [want_sound=yes])
 AC_ARG_ENABLE([fastmath],
-				[AC_HELP_STRING([--enable-fastmath], [compile with -ffast-math (this can produce strange results due to 'imprecise' math computations) [default=no]])],
+				[AS_HELP_STRING([--enable-fastmath],[compile with -ffast-math (this can produce strange results due to 'imprecise' math computations) [default=no]])],
 				[fast_math="$enableval"], [fast_math=no])
 AC_ARG_ENABLE([debug],
-				[AC_HELP_STRING([--enable-debug], [compile with debugging support [default=no]])],
+				[AS_HELP_STRING([--enable-debug],[compile with debugging support [default=no]])],
 				[use_debug="$enableval"], [use_debug=no])
 AC_ARG_ENABLE([native-arch],
-				[AC_HELP_STRING([--enable-native-arch], [compile with -march=native and -mtune=native [default=no]])],
+				[AS_HELP_STRING([--enable-native-arch],[compile with -march=native and -mtune=native [default=no]])],
 				[arch_native="$enableval"], [arch_native=no])
 AC_ARG_ENABLE([sanitize-address],
-				[AC_HELP_STRING([--enable-sanitize-address], [compile with -fsanitize=address [default=no]])],
+				[AS_HELP_STRING([--enable-sanitize-address],[compile with -fsanitize=address [default=no]])],
 				[sanitize_address="$enableval"], [sanitize_address=no])
 AC_ARG_WITH(  [extra-warnings],
-				[AC_HELP_STRING([--with-extra-warnings], [generate more warning messages when compiling [default=no]])],
+				[AS_HELP_STRING([--with-extra-warnings],[generate more warning messages when compiling [default=no]])],
 				[more_warn="$withval"], [more_warn=no])
 AC_ARG_ENABLE([backtrace],
-				[AC_HELP_STRING([--disable-backtrace], [disable the use of backtrace() to generate nice bug reports [default=enabled]])],
+				[AS_HELP_STRING([--disable-backtrace],[disable the use of backtrace() to generate nice bug reports [default=enabled]])],
 				[want_backtrace="$enableval"], [want_backtrace=yes])
 AC_ARG_WITH(  [embedded-lua],
-				[AC_HELP_STRING([--with-embedded-lua], [uses the Lua libraries bundled with FreedroidRPG instead of system libraries [default=system lua]])],
+				[AS_HELP_STRING([--with-embedded-lua],[uses the Lua libraries bundled with FreedroidRPG instead of system libraries [default=system lua]])],
 				[embedded_lua="$withval"], [embedded_lua=no])
 AC_ARG_ENABLE([rtprof],
-				[AC_HELP_STRING([--enable-rtprof], [enable the integration of the ingame real-time profiler [default=no]])],
+				[AS_HELP_STRING([--enable-rtprof],[enable the integration of the ingame real-time profiler [default=no]])],
 				[want_rtprof="$enableval"], [want_rtprof=no])
 AC_ARG_ENABLE([dev-tools],
-				[AC_HELP_STRING([--enable-dev-tools], [compile the additional dev tools [default=no]])],
+				[AS_HELP_STRING([--enable-dev-tools],[compile the additional dev tools [default=no]])],
 				[dev_tools="$enableval"], [dev_tools=no])
 AC_ARG_WITH(  [open-cmd],
-				[AC_HELP_STRING([--with-open-cmd=CMD], [command used to open and display a text file on screen [default='notepad' on Windows, 'open' on MacOSX, 'xdg-open' otherwise]])],
+				[AS_HELP_STRING([--with-open-cmd=CMD],[command used to open and display a text file on screen [default='notepad' on Windows, 'open' on MacOSX, 'xdg-open' otherwise]])],
 				[open_cmd="$withval"], [open_cmd=""])
 
 dnl Checks for programs.
