@@ -31,6 +31,7 @@
 #include "global.h"
 #include "proto.h"
 #include "lvledit/lvledit_validator.h"
+#include "lvledit/lvledit_display.h"
 
 static int start_stamp;
 static int stop_stamp;
@@ -232,6 +233,31 @@ static int level_test()
 	return failed;
 }
 
+static int graphics_bench()
+{
+	// Load ship
+	char fp[2048];
+	find_file(fp, MAP_DIR, "levels.dat", NULL, NO_REPORT);
+	LoadShip(fp, 0);
+
+	// Prepare leveleditor zoomed-out benchmark
+	teleport_to_level_center(0);
+	lvledit_set_zoomfact(9.0);
+	GameConfig.zoom_is_on = TRUE;
+	game_status = INSIDE_LVLEDITOR;
+
+	AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_ITEMS | OMIT_TUX | OMIT_ENEMIES | ZOOM_OUT | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR | OMIT_ITEMS_LABEL);
+	our_SDL_flip_wrapper();
+	timer_start();
+	for (int i = 0; i < 1000; i++) {
+		AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_ITEMS | OMIT_TUX | OMIT_ENEMIES | ZOOM_OUT | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR | OMIT_ITEMS_LABEL);
+		our_SDL_flip_wrapper();
+	}
+	timer_stop();
+
+	return 0;
+}
+
 int benchmark()
 {
 	struct {
@@ -247,6 +273,7 @@ int benchmark()
 			{ "dynarray", dynarray_test },
 			{ "mapgen", mapgen_bench },
 			{ "leveltest", level_test },
+			{ "graphics", graphics_bench },
 	};
 
 	int i;
@@ -261,7 +288,12 @@ int benchmark()
 	for (i = 0; i < sizeof(benchs)/sizeof(benchs[0]); i++) {
 		if (!strcmp(do_benchmark, benchs[i].name)) {
 			if (benchs[i].func() == 0) {
-				printf("Running test %s took %d milliseconds.\n", do_benchmark, stop_stamp - start_stamp);
+				if (benchs[i].func == graphics_bench) {
+					printf("Running test %s took %d milliseconds, that is, %f FPS on average.\n", do_benchmark, stop_stamp - start_stamp, 1000 * 1000.0 / (stop_stamp - start_stamp));
+					printf("Make sure that vsync was disabled, to get meaningful results\n(vblank_mode=0 on Mesa, \_\_GL_SYNC_TO_VBLANK=0 on NVIDIA, for instance).\n");
+				} else {
+					printf("Running test %s took %d milliseconds.\n", do_benchmark, stop_stamp - start_stamp);
+				}
 				return OK;
 			} else {
 				if (term_has_color_cap)
