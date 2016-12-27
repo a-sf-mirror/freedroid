@@ -206,112 +206,90 @@ SDL_Surface *our_IMG_load_wrapper(const char *file)
 }
 
 /**
- * There is need to do some padding, cause OpenGL textures need to have
- * a format: width and length both each a power of two.  Therefore some
- * extra alpha to the sides must be inserted.  This is what this function
- * is supposed to do:  manually adding the proper amount of padding to
- * the surface, so that the dimensions will reach the next biggest power
- * of two in both directions, width and length.
+ * Compute the dimensions of the smaller power-of-two-sized texture
+ * that will contain the given image. Used on older GPUs that do not
+ * support non-power-of-two-textures with the regular GL_TEXTURE_2D target.
+ * (ARB_texture_non_power_of_two).
  */
-#ifdef HAVE_LIBGL
-static SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
+static void compute_POT_texture_dimensions(struct image *img)
 {
-	int x = 1;
-	int y = 1;
-	SDL_Surface *padded_surf;
-	SDL_Rect dest;
+	int txw = 1;
+	int txh = 1;
 
-	while (x < our_surface->w)
-		x <<= 1;
-	while (y < our_surface->h)
-		y <<= 1;
+	while (txw < img->w)
+		txw <<= 1;
+	while (txh < img->h)
+		txh <<= 1;
 
-	padded_surf = SDL_CreateRGBSurface(0, x, y, 32, rmask, gmask, bmask, amask);
-
-	SDL_SetAlpha(our_surface, SDL_RLEACCEL, 0);
-	dest.x = 0;
-	dest.y = y - our_surface->h;
-	dest.w = our_surface->w;
-	dest.h = our_surface->h;
-
-	SDL_BlitSurface(our_surface, NULL, padded_surf, &dest);
-
-	return padded_surf;
+	img->tex_w = txw;
+	img->tex_h = txh;
 }
-#endif
+
 
 /**
  * If OpenGL is in use, we need to make textured quads out of our normal
  * SDL surfaces.
  */
 #ifdef HAVE_LIBGL
-static void do_make_texture_out_of_surface(struct image * our_image, int txw, int txh, void *data)
+void make_texture_out_of_surface(struct image *img)
 {
+	void *data_ptr = img->surface->pixels;
+	void *data_ptr_pbo = (pbo) ? NULL : data_ptr;
+
 	// Stop any image batch being constructed, if relevant
 	end_image_batch(__FUNCTION__);
 
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
-	if (!our_image->texture) {
-		glGenTextures(1, &our_image->texture);
+	if (!img->texture) {
+		glGenTextures(1, &img->texture);
 	}
 
-	our_image->texture_type = TEXTURE_CREATED;
-	DebugPrintf(1, "Using texture %d\n", our_image->texture);
+	img->texture_type = TEXTURE_CREATED;
+	DebugPrintf(1, "Using texture %d\n", img->texture);
 
-	if (pbo) {
-		glBufferData(GL_PIXEL_UNPACK_BUFFER, txw*txh*4, data, GL_STREAM_DRAW);
-	}
+	glBindTexture(GL_TEXTURE_2D, img->texture);
 
-	glBindTexture(GL_TEXTURE_2D, (our_image->texture));
-
-	// We tend to scale those textures a lot, so we use linear filtering otherwise
-	// the result is not so good.
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-	// Generate The Texture 
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, txw, txh, 0, GL_BGRA, GL_UNSIGNED_BYTE, pbo ? NULL : data);
+	if (pbo) {
+		glBufferData(GL_PIXEL_UNPACK_BUFFER, img->w*img->h*4, data_ptr, GL_STREAM_DRAW);
+	}
 
-	our_image->tex_x0 = 0;
-	our_image->tex_y0 = 1.0 - (float)our_image->h / (float)our_image->tex_h;
-	our_image->tex_x1 = (float)our_image->w / (float)our_image->tex_w;
-	our_image->tex_y1 = 1.0;
+	if (!GLEW_ARB_texture_non_power_of_two) {
+		// If the GPU does not support NPOT textures, create a larger texture
+		compute_POT_texture_dimensions(img);
 
+		if (pbo) {
+			// Unbind the PBO to create the texture with undefined storage, this way the NULL
+			// argument means "create undefined storage", not "read data from PBO"
+			glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
+		}
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img->tex_w, img->tex_h, 0, GL_BGRA, GL_UNSIGNED_BYTE, NULL);
+
+		if (pbo) {
+			// Re-bind PBO for actual data transfer
+			glBindBuffer(GL_PIXEL_UNPACK_BUFFER, pbo);
+		}
+
+		// Transfer the data to the texture, leaving the padding undefined
+		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, img->tex_h - img->h, img->w, img->h, GL_BGRA, GL_UNSIGNED_BYTE, data_ptr_pbo);
+	} else {
+		// Generate the texture - XXX could use TexStorage but assess performance&availability
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img->w, img->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, data_ptr_pbo);
+		img->tex_w = img->w;
+		img->tex_h = img->h;
+	}
+
+	img->tex_x0 = 0.0;
+	img->tex_y0 = 1.0 - (float)img->h / (float)img->tex_h;
+	img->tex_x1 = (float)img->w / (float)img->tex_w;
+	img->tex_y1 = 1.0;
+
+	SDL_FreeSurface(img->surface);
+	img->surface = NULL;
 	open_gl_check_error_status(__FUNCTION__);
 }
 #endif
-
-
-void make_texture_out_of_surface(struct image * our_image)
-{
-#ifdef HAVE_LIBGL
-
-	SDL_Surface *right_sized_image;
-
-	// This fills up the image with transparent material, and makes
-	// it have powers of 2 as the dimensions, which is a requirement
-	// for textures on most OpenGL capable cards.
-	//
-	right_sized_image = pad_image_for_texture(our_image->surface);
-	our_image->tex_w = right_sized_image->w;
-	our_image->tex_h = right_sized_image->h;
-	our_image->w = our_image->surface->w;
-	our_image->h = our_image->surface->h;
-
-	// Having prepared the raw image it's now time to create the real
-	// textures.
-	//
-	do_make_texture_out_of_surface(our_image, right_sized_image->w, right_sized_image->h, right_sized_image->pixels);
-	SDL_FreeSurface(right_sized_image);
-
-	// Now that the texture has been created, we assume that the image is
-	// not needed any more and can be freed now!  
-	SDL_FreeSurface(our_image->surface);
-	our_image->surface = NULL;
-
-#endif
-}
 
 static void safely_set_open_gl_viewport_and_matrix_mode(void)
 {
@@ -360,6 +338,8 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 		glGenBuffers(1, &pbo);
 		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, pbo);
 	}
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	open_gl_check_error_status(__FUNCTION__);
 
