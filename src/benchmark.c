@@ -290,7 +290,7 @@ int benchmark()
 			if (benchs[i].func() == 0) {
 				if (benchs[i].func == graphics_bench) {
 					printf("Running test %s took %d milliseconds, that is, %f FPS on average.\n", do_benchmark, stop_stamp - start_stamp, 1000 * 1000.0 / (stop_stamp - start_stamp));
-					printf("Make sure that vsync was disabled, to get meaningful results\n(vblank_mode=0 on Mesa, \_\_GL_SYNC_TO_VBLANK=0 on NVIDIA, for instance).\n");
+					printf("Make sure that vsync was disabled, to get meaningful results\n(vblank_mode=0 on Mesa, __GL_SYNC_TO_VBLANK=0 on NVIDIA, for instance).\n");
 				} else {
 					printf("Running test %s took %d milliseconds.\n", do_benchmark, stop_stamp - start_stamp);
 				}
