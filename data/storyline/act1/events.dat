@@ -665,6 +665,33 @@ Entering level=0
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name="Spencer Dies"
+Trigger on enemy death
+Enemy level=0
+Enemy dialog name="Spencer"
+<LuaCode>
+	if (not Spencer_can_die) then
+		display_big_message(_"Better reload your last save and try again.") -- reverse order
+		display_big_message(_"Spencer still needed alive to win game.")
+	else
+		display_big_message(_"You should still be able to finish the game but some storylines might be broken.") -- reverse order because the new message is put on top of the prev message
+		display_big_message(_"Ooops, you killed Spencer.")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name="Pendragon Dies"
+Trigger on enemy death
+Enemy level=0
+Enemy dialog name="Pendragon"
+<LuaCode>
+	display_big_message(_"You should still be able to finish the game but some storylines might be broken.")-- reverse order because the new message is put on top of the prev message
+	display_big_message(_"Ooops, you killed Pendragon.")
+</LuaCode>
+* End of trigger *
+
 ##############
 ## Level  1 ##
 ##############
@@ -1001,6 +1028,24 @@ Exiting level=17
 		set_rush_tux(0, "Kevin")
 	end
 	Kevin_entering_from_back = false
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name="Kevin Murder"
+Trigger on enemy death
+Enemy level=17
+Enemy dialog name="Kevin"
+<LuaCode>
+	change_obstacle_state("KevinsDoor", "closed")
+	change_obstacle_state("KevinPrisoner-Gate1", "opened")
+	change_obstacle_state("KevinPrisoner-Gate2", "opened")
+	change_obstacle_state("KevinPrisoner-Gate3", "opened")
+	change_obstacle_state("KevinPrisoner-Gate4", "opened")
+	set_npc_faction("ms", "KevinGuard")
+	set_npc_faction("ms", "Jasmine")
+	set_npc_faction("ms", "Kevin-Lawnmower")
+	KevinMurder = true
 </LuaCode>
 * End of trigger *
 
@@ -1655,6 +1700,17 @@ Exiting level=70
 	end
 </LuaCode>
 * End of trigger *
+
+* New event trigger *
+Name="DeadGuy dead"
+Trigger on enemy death
+Enemy level=24
+Enemy dialog name="DeadGuy"
+<LuaCode>
+	DeadGuy_death_trigger = "works"
+</LuaCode>
+* End of trigger *
+
 ##############
 ## Level 25 ##
 ##############
@@ -2419,6 +2475,18 @@ Silent=0
 ##############
 ## Level 50 ##
 ##############
+* New event trigger *
+Name="HF-EntranceBot Dies"
+Trigger on enemy death
+Enemy level=50
+Enemy dialog name="HF-EntranceBot"
+<LuaCode>
+	if (not cmp_obstacle_state("HF-Gate-inner", "opened")) then
+		display_big_message(_"Security failure at Hell's Fortress reception desk.")
+		change_obstacle_state("HF-EntranceInnerGate", "opened")
+	end
+</LuaCode>
+* End of trigger *
 
 ##############
 ## Level 51 ##
@@ -6614,6 +6682,10 @@ Exiting level=24
 * End of trigger *
 
 ##############
+## Level 71 ##
+##############
+
+##############
 ## Level 72 ##
 ##############
 * New event trigger *
@@ -6621,77 +6693,6 @@ Name=_"Back to mainland"
 Trigger at label="72to16"
 Silent=0
 <LuaCode> teleport("16from72") </LuaCode>
-* End of trigger *
-
-################
-## NPC Deaths ##
-################
-* New event trigger *
-Name="HF-EntranceBot Dies"
-Trigger on enemy death
-Enemy level=50
-Enemy dialog name="HF-EntranceBot"
-<LuaCode>
-	if (not cmp_obstacle_state("HF-Gate-inner", "opened")) then
-		display_big_message(_"Security failure at Hell's Fortress reception desk.")
-		change_obstacle_state("HF-EntranceInnerGate", "opened")
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name="Spencer Dies"
-Trigger on enemy death
-Enemy level=0
-Enemy dialog name="Spencer"
-<LuaCode>
-	if (not Spencer_can_die) then
-		display_big_message(_"Better reload your last save and try again.") -- reverse order
-		display_big_message(_"Spencer still needed alive to win game.")
-	else
-		display_big_message(_"You should still be able to finish the game but some storylines might be broken.") -- reverse order because the new message is put on top of the prev message
-		display_big_message(_"Ooops, you killed Spencer.")
-	end
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name="Pendragon Dies"
-Trigger on enemy death
-Enemy level=0
-Enemy dialog name="Pendragon"
-<LuaCode>
-	display_big_message(_"You should still be able to finish the game but some storylines might be broken.")-- reverse order because the new message is put on top of the prev message
-	display_big_message(_"Ooops, you killed Pendragon.")
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name="Kevin Murder"
-Trigger on enemy death
-Enemy level=17
-Enemy dialog name="Kevin"
-<LuaCode>
-	change_obstacle_state("KevinsDoor", "closed")
-	change_obstacle_state("KevinPrisoner-Gate1", "opened")
-	change_obstacle_state("KevinPrisoner-Gate2", "opened")
-	change_obstacle_state("KevinPrisoner-Gate3", "opened")
-	change_obstacle_state("KevinPrisoner-Gate4", "opened")
-	set_npc_faction("ms", "KevinGuard")
-	set_npc_faction("ms", "Jasmine")
-	set_npc_faction("ms", "Kevin-Lawnmower")
-	KevinMurder = true
-</LuaCode>
-* End of trigger *
-
-* New event trigger *
-Name="DeadGuy dead"
-Trigger on enemy death
-Enemy level=24
-Enemy dialog name="DeadGuy"
-<LuaCode>
-	DeadGuy_death_trigger = "works"
-</LuaCode>
 * End of trigger *
 
 ** End of Mission Event Section **
