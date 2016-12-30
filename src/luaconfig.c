@@ -1367,6 +1367,51 @@ static int lua_difficulties_ctor(lua_State *L)
 	return 0;
 }
 
+static int get_one_game_act(lua_State *L, void *data)
+{
+	struct game_act *act = (struct game_act *)data;
+
+	struct data_spec data_specs[] = {
+		{ "name",            "",      STRING_TYPE, &act->name   },
+		{ "subdir",          "",      STRING_TYPE, &act->subdir },
+		{ "is_starting_act", "false", BOOL_TYPE, &act->starting_act },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	fill_structure_from_table(L, data_specs);
+
+	// Post-condition: check if the act subdir actually exist
+	int exists = act_validate(act);
+	if (!exists) {
+		error_message(__FUNCTION__,
+		              "Can not find the directory defined for \"%s\": %s. Remove it from the list of the available acts.",
+		              PLEASE_INFORM, act->name, act->subdir);
+		free(act->name);
+		free(act->subdir);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static int lua_game_acts_ctor(lua_State *L)
+{
+	fill_dynarray_from_table(L, &game_acts, sizeof(struct game_act), get_one_game_act);
+
+	// Post-condition : check that some acts are available, and that a starting act is defined
+	if (game_acts.size == 0) {
+		error_message(__FUNCTION__,
+		              "No acts were found as available. We can not proceed...",
+		              PLEASE_INFORM | IS_FATAL);
+	}
+	if (!act_get_starting()) {
+		error_message(__FUNCTION__,
+		              "No available starting act is defined. We can not proceed...",
+		              PLEASE_INFORM | IS_FATAL);
+	}
+	return 0;
+}
+
 static int lua_title_screen_ctor(lua_State *L)
 {
 	struct title_screen *title = (struct title_screen *)lua_touserdata(L, lua_upvalueindex(1));
@@ -1504,6 +1549,7 @@ void init_luaconfig()
 		{ "languages",                     lua_languages_ctor                     },
 		{ "codesets",                      lua_codesets_ctor                      },
 		{ "difficulties",                  lua_difficulties_ctor                  },
+		{ "game_acts",                     lua_game_acts_ctor                     },
 		{ "skill_list",                    lua_skill_list_ctor                    },
 		{ "droid_list",                    lua_droid_list_ctor                    },
 		{NULL, NULL}

@@ -64,6 +64,8 @@ long Overall_Frames_Displayed = 0;
 
 struct data_dir data_dirs[] = {
 	[CONFIG_DIR]=      { "configdir",                   "" },
+	[DATA_ROOT]=       { "dataroot",                    "" },
+	[LOCALE_ROOT]=     { "localeroot",                  "" },
 	[GUI_DIR]=         { "data/gui",                    "" },
 	[GRAPHICS_DIR]=    { "data/graphics",               "" },
 	[FONT_DIR]=        { "data/fonts",                  "" },
@@ -72,15 +74,17 @@ struct data_dir data_dirs[] = {
 	[BASE_DIR]=        { "data/base",                   "" },
 	[BASE_DIALOG_DIR]= { "data/base/dialogs",           "" },
 	[BASE_TITLES_DIR]= { "data/base/titles",            "" },
-	[MAP_DIR]=         { "data/storyline/act1",         "" },
-	[MAP_TITLES_DIR]=  { "data/storyline/act1/titles",  "" },
-	[MAP_DIALOG_DIR]=  { "data/storyline/act1/dialogs", "" },
+	[MAP_DIR]=         { "data/storyline/$ACT",         "" },
+	[MAP_TITLES_DIR]=  { "data/storyline/$ACT/titles",  "" },
+	[MAP_DIALOG_DIR]=  { "data/storyline/$ACT/dialogs", "" },
 #ifdef ENABLE_NLS
 	[LOCALE_DIR]=      { "locale",                      "" },
 #endif
 	[LUA_MOD_DIR]=     { "lua_modules",                 "" }
 };
 #define WELL_KNOWN_DATA_FILE "lua_modules/FDdialog.lua"
+
+const int FIRST_DATA_DIR = GUI_DIR; // First 3 dir paths are special ones
 
 mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[UP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/UpButton.png", {600, 94, 40, 40}, TRUE},
@@ -619,16 +623,9 @@ void ShowGenericButtonFromList(int ButtonIndex)
 	display_image_on_screen(img, AllMousePressButtons[ButtonIndex].button_rect.x * scale_x, AllMousePressButtons[ButtonIndex].button_rect.y * scale_y, set_image_transformation(scale_x, scale_y, 1.0, 1.0, 1.0, 1.0, 0));
 }
 
-int init_data_dirs_path()
+void init_data_dirs_path()
 {
-	int i, j;
 	char file_path[PATH_MAX];
-	const int FIRST_DATA_DIR = 1; // data_dirs[0] is CONFIG_DIR, set in prepare_execution()
-
-	// Reset the data dirs paths
-	for (i = FIRST_DATA_DIR; i < LAST_DATA_DIR; i++) {
-		data_dirs[i].path[0] = '\0';
-	}
 
 	// Directories to look for the data dirs
 	char *top_data_dir[]   = { ".", "..", "../..", FD_DATADIR };
@@ -639,30 +636,15 @@ int init_data_dirs_path()
 
 	// To find the root of the data dirs, we search a well known file that is
 	// always needed for the game to work.
-	for (i = 0; i < slen ; i++) {
+	for (int i = 0; i < slen ; i++) {
 		sprintf(file_path, "%s/" WELL_KNOWN_DATA_FILE, top_data_dir[i]);
 		FILE *f = fopen(file_path, "r");
 		if (f != NULL) {
 			// File found, so now fill the data dir paths
-			for (j = FIRST_DATA_DIR; j < LAST_DATA_DIR; j++) {
-				char *dir = top_data_dir[i];
-				const char *subdir = data_dirs[j].name;
-#ifdef ENABLE_NLS
-				if (j == LOCALE_DIR) {
-					dir = top_locale_dir[i];
-					// LOCALEDIR envvar already points to the locale subdir
-					if (!strcmp(dir, LOCALEDIR))
-						subdir = "";
-				}
-#endif
-				int nb = snprintf(data_dirs[j].path, PATH_MAX, "%s/%s", dir, subdir);
-				if (nb >= PATH_MAX) {
-					error_message(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s/%s",
-					             PLEASE_INFORM | IS_FATAL, dir, data_dirs[j].name);
-				}
-			}
+			strncpy(data_dirs[DATA_ROOT].path, top_data_dir[i], PATH_MAX);
+			strncpy(data_dirs[LOCALE_ROOT].path, top_locale_dir[i], PATH_MAX);
 			fclose(f);
-			return 1;
+			goto TOP_DIR_FOUND;
 		}
 	}
 
@@ -674,8 +656,95 @@ int init_data_dirs_path()
 		error_message(__FUNCTION__, "Data dirs not found ! (and cannot find the current working directory)",
 	                 PLEASE_INFORM | IS_FATAL);
 	}
+	return;
 
-	return 0;
+TOP_DIR_FOUND:
+	// Set the path of all subdirs ($ACT keyword is kept, until act_set_data_dirs_path() is called)
+	for (int i = FIRST_DATA_DIR; i < LAST_DATA_DIR; i++) {
+		// Reset the path, as a precaution
+		data_dirs[i].path[0] = '\0';
+
+		char *dir = data_dirs[DATA_ROOT].path;
+		const char *subdir = data_dirs[i].name;
+#ifdef ENABLE_NLS
+		if (i == LOCALE_DIR) {
+			dir = data_dirs[LOCALE_ROOT].path;
+			// LOCALEDIR envvar already points to the locale subdir
+			if (!strcmp(dir, LOCALEDIR))
+				subdir = "";
+		}
+#endif
+		int nb = snprintf(data_dirs[i].path, PATH_MAX, "%s/%s", dir, subdir);
+		if (nb >= PATH_MAX) {
+			error_message(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s/%s",
+			             PLEASE_INFORM | IS_FATAL, dir, data_dirs[i].name);
+		}
+	}
+
+	return;
+}
+
+/*
+ * Replace the keyword "$ACT", if found, in 'unresolved_path' by the content of 'act'
+ * Return TRUE if "$ACT" was found and replaced
+ */
+static void act_resolve_path(char* unresolved_path, struct game_act *act)
+{
+	const char *key = "$ACT";
+	char *tmp = strdup(unresolved_path);
+	char *start = strstr(tmp, key);
+	if (start) {
+		*start = '\0';
+		int nb = snprintf(unresolved_path, PATH_MAX, "%s%s%s", tmp, act->subdir, start+strlen(key));
+		if (nb >= PATH_MAX) {
+			error_message(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s%s%s",
+			             PLEASE_INFORM | IS_FATAL, tmp, act->subdir, start+strlen(key));
+		}
+	}
+	free(tmp);
+}
+
+void act_set_data_dirs_path(struct game_act *act)
+{
+	// Resolve the $ACT key in the data dir paths
+	int path_indices[] = { MAP_DIR, MAP_TITLES_DIR, MAP_DIALOG_DIR };
+	for (int i = 0; i < sizeof(path_indices)/sizeof(path_indices[0]); i++) {
+		// Restore default path (including the $ACT keyword)
+		int nb = snprintf(data_dirs[path_indices[i]].path, PATH_MAX, "%s/%s", data_dirs[DATA_ROOT].path, data_dirs[path_indices[i]].name);
+		if (nb >= PATH_MAX) {
+			error_message(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s/%s",
+			             PLEASE_INFORM | IS_FATAL, data_dirs[DATA_ROOT].path, data_dirs[path_indices[i]].name);
+		}
+		// Resolve the $ACT keyword
+		act_resolve_path(data_dirs[path_indices[i]].path, act);
+	}
+}
+
+/**
+ * Check if an act subdir actually exists
+ */
+int act_validate(struct game_act *act)
+{
+	char *act_dir = strdup(data_dirs[MAP_DIR].name);
+	act_resolve_path(act_dir, act);
+	int exists = check_directory(act_dir, DATA_ROOT, FALSE, SILENT);
+	free(act_dir);
+	if (exists == 0)
+		return TRUE;
+	return FALSE;
+}
+
+/**
+ * Return the starting act
+ */
+struct game_act *act_get_starting()
+{
+	for (int i = 0; i < game_acts.size; i++) {
+		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
+		if (act->starting_act)
+			return act;
+	}
+	return NULL;
 }
 
 /**

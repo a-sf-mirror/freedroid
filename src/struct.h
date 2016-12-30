@@ -1126,4 +1126,10 @@ struct difficulty {
 	float droid_aggression_distance;
 };
 
+struct game_act {
+	char *name;
+	char *subdir;
+	int starting_act;
+};
+
 #endif

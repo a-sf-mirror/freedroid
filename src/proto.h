@@ -598,7 +598,10 @@ int mouse_cursor_is_on_that_image(float pos_x, float pos_y, struct image *our_is
 int MouseCursorIsInRect(const SDL_Rect *, int, int);
 int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
 void *my_memmem(char *, size_t, char *, size_t);
-int init_data_dirs_path();
+void init_data_dirs_path();
+int act_validate(struct game_act *);
+void act_set_data_dirs_path(struct game_act *);
+struct game_act *act_get_starting(void);
 int check_directory(const char *, int, int, int);
 int find_file(char *, int, const char *, const char *, int);
 int find_suffixed_file(char *, int, const char *, const char *, int);

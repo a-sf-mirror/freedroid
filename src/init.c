@@ -295,6 +295,11 @@ void init_game_data()
 {
 	char fpath[PATH_MAX];
 
+	// Load game global configuration (available acts, ...)
+	if (find_file(fpath, BASE_DIR, "game_config.lua", NULL, PLEASE_INFORM)) {
+		run_lua_file(LUA_CONFIG, fpath);
+	}
+
 	// Load difficulties.
 	find_file(fpath, BASE_DIR, "difficulties.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
@@ -943,6 +948,9 @@ void InitFreedroid(int argc, char **argv)
 	init_audio();
 
 	init_game_data();
+	// Pre-set the act related dir paths, to avoid any breakage
+	// Will be redone when a game is loaded
+	act_set_data_dirs_path(act_get_starting());
 
 	/* 
 	 * Initialize random-number generator in order to make 

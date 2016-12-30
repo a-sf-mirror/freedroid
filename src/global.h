@@ -287,6 +287,7 @@ EXTERN struct dynarray lang_codesets;
 #include "extint_macros.h"
 
 EXTERN struct dynarray difficulties;
+EXTERN struct dynarray game_acts;
 
 //===================================================================
 #define INTERN_FOR _font_c
