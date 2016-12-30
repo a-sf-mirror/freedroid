@@ -1068,14 +1068,27 @@ static int lua_exit_game(lua_State *L)
 static int lua_find_file(lua_State *L)
 {
 	const char *filename = (char *)luaL_checkstring(L, 1);
-	int subdir_handle    = lua_to_int(luaL_checkinteger(L, 2));
+	if (lua_type(L, 2) != LUA_TTABLE) {
+		error_message(__FUNCTION__,
+		              "Unexpected data type for the second parameter. A table is expected.",
+		              PLEASE_INFORM);
+	} else {
+		// Loop on each subdir, stopping as soon as the requested file is found
+		int subdir_handle = -1;
+		for (int i = 0; i < lua_rawlen(L, -1); i++) {
+			lua_rawgeti(L, 2, i+1);
+			subdir_handle = lua_to_int(luaL_checkinteger(L, -1));
+			lua_pop(L, 1);
 
-	if (subdir_handle >= 0 && subdir_handle < LAST_DATA_DIR) {
-		char fpath[PATH_MAX];
-		if (find_file(fpath, subdir_handle, filename, NULL, PLEASE_INFORM)) {
-			lua_pushstring(L, fpath);
-			return 1;
+			if (subdir_handle >= 0 && subdir_handle < LAST_DATA_DIR) {
+				char fpath[PATH_MAX];
+				if (find_file(fpath, subdir_handle, filename, NULL, SILENT)) {
+					lua_pushstring(L, fpath);
+					return 1;
+				}
+			}
 		}
+		error_message(__FUNCTION__, "Dialog file %s was not found.", PLEASE_INFORM, filename);
 	}
 
 	lua_pushnil(L); /* return nil on error */
@@ -2020,7 +2033,7 @@ void reset_lua_state(void)
 	// Load and initialize some Lua modules
 	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDutils");
 	load_lua_module(LUA_DIALOG, LUA_MOD_DIR, "FDdialog");
-	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dir", "d", NULL, MAP_DIALOG_DIR);
+	call_lua_func(LUA_DIALOG, "FDdialog", "set_dialog_dirs", "dd", NULL, MAP_DIALOG_DIR, BASE_DIALOG_DIR);
 
 	// Finally load the script helpers Lua functions
 	find_file(fpath, LUA_MOD_DIR, "script_helpers.lua", NULL, PLEASE_INFORM | IS_FATAL);

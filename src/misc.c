@@ -70,6 +70,7 @@ struct data_dir data_dirs[] = {
 	[SOUND_DIR]=       { "data/sound",                  "" },
 	[MUSIC_DIR]=       { "data/sound/music",            "" },
 	[BASE_DIR]=        { "data/base",                   "" },
+	[BASE_DIALOG_DIR]= { "data/base/dialogs",           "" },
 	[BASE_TITLES_DIR]= { "data/base/titles",            "" },
 	[MAP_DIR]=         { "data/storyline/act1",         "" },
 	[MAP_TITLES_DIR]=  { "data/storyline/act1/titles",  "" },

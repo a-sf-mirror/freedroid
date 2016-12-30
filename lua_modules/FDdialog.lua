@@ -501,20 +501,20 @@ end
 ------------
 
 --! \privatesection
-FDdialog.dialogs_dir = -1               --!< \brief Opaque handle to the directory containing the dialogs     \memberof Lua::FDdialog
-FDdialog.stack = FDdialog.Stack.new()   --!< \brief Dialogs stack                                             \memberof Lua::FDdialog
+FDdialog.dialogs_dirs = {}              --!< \brief Array of opaque handles to the directory containing the dialogs     \memberof Lua::FDdialog
+FDdialog.stack = FDdialog.Stack.new()   --!< \brief Dialogs stack                                                       \memberof Lua::FDdialog
 --! \publicsection
 
---! \fn void set_dialog_dir(string dir)
+--! \fn void set_dialog_dirs(...)
 --!
---! \brief Set dialogs' directory handle
+--! \brief Set dialogs' directories handles
 --!
---! \param dir_handle Opaque handle to the directory containing the dialogs
+--! \param ... List of opaque handles to the directory containing the dialogs
 --!
 --! \memberof Lua::FDdialog
 
-function FDdialog.set_dialog_dir(dir)
-	FDdialog.dialogs_dir = dir
+function FDdialog.set_dialog_dirs(...)
+	FDdialog.dialogs_dirs = {...}
 end
 
 --! \fn string{} get_options()
@@ -674,7 +674,7 @@ end
 
 function FDdialog.push_dialog(dialog_name, enabled_nodes)
 	local new_dialog = {}
-	local dialog_file = find_file(dialog_name..".lua", FDdialog.dialogs_dir)
+	local dialog_file = find_file(dialog_name..".lua", FDdialog.dialogs_dirs)
 	if (not dialog_file) then
 		error("Dialog file not found: " .. dialog_name .. ".lua\n", 0)
 	end
@@ -741,7 +741,7 @@ end
 --! \memberof Lua::FDdialog
 
 function FDdialog.include(subdialog_name)
-	return dofile(find_file(subdialog_name..".lua", FDdialog.dialogs_dir))
+	return dofile(find_file(subdialog_name..".lua", FDdialog.dialogs_dirs))
 end
 
 --! \fn void next_node(string nodename)
