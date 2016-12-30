@@ -46,7 +46,7 @@ FDutils.system = {}
 --!
 --! \brief Return a list of files contained in a directory
 --!
---! \param  subdir  Path of the directory to scan
+--! \param  subdir  Path of the directory to scan, or array of path of directories
 --! \param  filter  Regexp used to filter the content of the directory (a file name has to match the filter)
 --! \param  exclude A list of filename to exclude from the returned list
 --! \return         An alphabetically sorted list of filenames
@@ -56,7 +56,14 @@ FDutils.system = {}
 function FDutils.system.scandir(subdir, filter, exclude)
 	local filtered = {}
 	local exclude_dict = {}
-	local files = dir(subdir)
+	local files = {}
+	local subdirs = (type(subdir) == "table") and subdir or { subdir } -- Enfore subdirs to be a table
+	for i,onedir in ipairs(subdirs) do
+		local files_found = dir(onedir)
+		for j,file in ipairs(files_found) do
+			table.insert(files, file)
+		end
+	end
 	filter = filter or ".*"
 	exclude = exclude or {}
 

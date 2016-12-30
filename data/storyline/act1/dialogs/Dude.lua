@@ -165,7 +165,7 @@ return {
 				"Terminal.lua", "TutorialTerminal.lua", "Vending-Machine.lua",
 				"DSB-PowerControl.lua" }
 
-			local dircontent = FDutils.system.scandir(FDdialog.dialogs_dir, ".*%.lua", exclude)
+			local dircontent = FDutils.system.scandir(FDdialog.dialogs_dirs, ".*%.lua", exclude)
 			if (dircontent) then
 				for none,filename in ipairs(dircontent) do
 					nodes[#nodes + 1] = dude_create_node(dude_dialog_name(filename))
