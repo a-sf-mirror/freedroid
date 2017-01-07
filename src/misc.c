@@ -1524,14 +1524,29 @@ int save_game_config(void)
 	return 0;
 }
 
-static void free_memory_before_exit(void)
+// Free the memory used by the game data (except Tux)
+void free_game_data(void)
 {
 	// free the entities
 	clear_volatile_obstacles();
 	clear_enemies();
 	clear_npcs();
-	free_tux();
 	free_graphics();
+
+	// free animations lists and visible levels
+	reset_visible_levels();
+	clear_animated_floor_tile_list();
+
+	// other game data
+	delete_events();
+	free_current_ship();
+	leveleditor_cleanup();
+}
+
+static void free_memory_before_exit(void)
+{
+	free_game_data();
+	free_tux();
 
 	// free the widgets
 	free_game_ui();
@@ -1539,14 +1554,7 @@ static void free_memory_before_exit(void)
 	free_chat_widgets();
 	widget_free_image_resources();
 
-	// free animations lists and visible levels
-	reset_visible_levels();
-	clear_animated_floor_tile_list();
-
 	// other stuff
-	delete_events();
-	free_current_ship();
-	leveleditor_cleanup();
 	free_error_msg_store();
 	gameconfig_clean();
 }

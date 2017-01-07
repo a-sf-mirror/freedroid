@@ -618,6 +618,7 @@ void Teleport(int LNum, float X, float Y, int WithSound, int with_animation_rese
 void teleport_to_level_center(int);
 int save_game_config(void);
 int load_game_config(void);
+void free_game_data(void);
 void Terminate(int);
 uint32_t pot_gte(uint32_t v);
 obstacle *give_pointer_to_obstacle_with_label(const char *, int *);
