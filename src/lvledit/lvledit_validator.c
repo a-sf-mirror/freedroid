@@ -126,7 +126,7 @@ static void validator_print_header(struct lvlval_ctx *val_ctx, char *title, char
 
 	putchar('\n');
 	puts(bigline);
-	printf("| %s - Level %d\n", title, val_ctx->this_level->levelnum);
+	printf("| %s - Level %d on act '%s'\n", title, val_ctx->this_level->levelnum, val_ctx->act);
 	puts(sepline);
 
 	printf("| ");
@@ -356,7 +356,7 @@ static int lookup_exception(struct level_validator *this, void *opaque_data)
  * Output : TRUE if there were uncaught exceptions
  */
 
-static int print_uncaught_exceptions()
+static int print_uncaught_exceptions(char *act_name)
 {
 	int v = 0;
 	struct level_validator *one_validator;
@@ -374,7 +374,7 @@ static int print_uncaught_exceptions()
 				if (first) {
 					putchar('\n');
 					puts(bigline);
-					printf("During execution of the validator, the following exception rules were not caught:\n");
+					printf("During execution of the validator, the following exception rules were not caught on act '%s':\n", act_name);
 					first = FALSE;
 				}
 				printf(" %d", item->rule_id);
@@ -1554,7 +1554,7 @@ int level_validation()
 	int row_pos = 0;
 
 	for (l = 0; l < curShip.num_levels; ++l) {
-		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], FALSE, VALIDATION_PASS };
+		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], "TBD", FALSE, VALIDATION_PASS };
 
 		// Compute row and column position, when a new column of text starts
 		if ((l % max_rows) == 0) {
@@ -1602,7 +1602,7 @@ int level_validation()
 
 	// Outputs uncaught exception rules
 
-	uncaught_excpt = print_uncaught_exceptions();
+	uncaught_excpt = print_uncaught_exceptions("TBD");
 	
 	free_exception_lists();
 
@@ -1639,7 +1639,7 @@ int level_validation()
 
 // Without on screen report
 
-int level_validation_on_console_only()
+int level_validation_on_console_only(char *act_name)
 {
 	enum validator_return_code final_rc = VALIDATION_PASS;
 	int uncaught_excpt = FALSE;
@@ -1657,7 +1657,7 @@ int level_validation_on_console_only()
 	int l;
 
 	for (l = 0; l < curShip.num_levels; ++l) {
-		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], FALSE, VALIDATION_PASS };
+		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], act_name, FALSE, VALIDATION_PASS };
 
 		// Nota: we do not currently validate random dungeons, due to a known
 		// invalid waypoint generation.
@@ -1677,7 +1677,7 @@ int level_validation_on_console_only()
 
 	// Outputs uncaught exception rules
 
-	uncaught_excpt = print_uncaught_exceptions();
+	uncaught_excpt = print_uncaught_exceptions(act_name);
 	
 	free_exception_lists();
 

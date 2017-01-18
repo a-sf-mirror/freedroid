@@ -52,6 +52,7 @@ enum validator_return_code {
 struct lvlval_ctx {
 	SDL_Rect *report_rect;
 	Level this_level;
+	char *act;
 	int in_report_section;
 	enum validator_return_code return_code;
 };
@@ -80,6 +81,6 @@ struct level_validator {
 };
 
 EXTERN int level_validation(void);
-EXTERN int level_validation_on_console_only(void);
+EXTERN int level_validation_on_console_only(char *);
 
 #endif				// _leveleditor_validator_h_

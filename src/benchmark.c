@@ -219,17 +219,27 @@ static int mapgen_bench()
 /* Levels validator (not an actual benchmark) */
 static int level_test()
 {
-	int failed = TRUE;
+	int failed = FALSE;
+	timer_start();
 
-	// Load default ship
-	char fp[PATH_MAX];
-	if (find_file(fp, MAP_DIR, "levels.dat", NULL, NO_REPORT)) {
-		LoadShip(fp, 0);
-		timer_start();
-		failed = level_validation_on_console_only();
-		timer_stop();
+	for (int i = 0; i < game_acts.size; i++) {
+		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
+		act_set_data_dirs_path(act);
+
+		// Load default ship
+		char fp[PATH_MAX];
+		if (find_file(fp, MAP_DIR, "levels.dat", NULL, NO_REPORT)) {
+			LoadShip(fp, 0);
+			failed |= level_validation_on_console_only(act->name);
+		} else {
+			failed = TRUE;
+		}
+
+		// Prepare the next round
+		free_game_data();
 	}
 
+	timer_stop();
 	return failed;
 }
 
@@ -299,7 +309,6 @@ int benchmark()
 	sprintf(str, "Testing \"%s\"...", do_benchmark);
 	put_string(get_current_font(), 10, 100, str);
 	our_SDL_flip_wrapper();
-
 
 	for (i = 0; i < sizeof(benchs)/sizeof(benchs[0]); i++) {
 		if (!strcmp(do_benchmark, benchs[i].name)) {
