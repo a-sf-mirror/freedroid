@@ -78,7 +78,7 @@ void init_npcs()
 {
 	char fpath[PATH_MAX];
 
-	find_file(fpath, BASE_DIR, "npc_specs.lua", NULL, PLEASE_INFORM | IS_FATAL);
+	find_file(fpath, MAP_DIR, "npc_specs.lua", NULL, PLEASE_INFORM | IS_FATAL);
 	run_lua_file(LUA_CONFIG, fpath);
 }
 
