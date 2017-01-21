@@ -224,7 +224,7 @@ static int level_test()
 
 	for (int i = 0; i < game_acts.size; i++) {
 		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
-		act_set_data_dirs_path(act);
+		act_set_current(act);
 
 		// Load default ship
 		char fp[PATH_MAX];

@@ -62,6 +62,8 @@ Uint32 Onehundred_Frame_SDL_Ticks;
 int framenr = 0;
 long Overall_Frames_Displayed = 0;
 
+static struct game_act *current_act = NULL;
+
 struct data_dir data_dirs[] = {
 	[CONFIG_DIR]=      { "configdir",                   "" },
 	[DATA_ROOT]=       { "dataroot",                    "" },
@@ -704,7 +706,7 @@ static void act_resolve_path(char* unresolved_path, struct game_act *act)
 	free(tmp);
 }
 
-void act_set_data_dirs_path(struct game_act *act)
+static void act_set_data_dirs_path(struct game_act *act)
 {
 	// Resolve the $ACT key in the data dir paths
 	int path_indices[] = { MAP_DIR, MAP_TITLES_DIR, MAP_DIALOG_DIR };
@@ -745,6 +747,30 @@ struct game_act *act_get_starting()
 			return act;
 	}
 	return NULL;
+}
+
+/**
+ * Set the current game act.
+ *
+ * Store 'act' into 'curent_act', and set the data dirs accordingly to that game act
+ */
+void act_set_current(struct game_act *act)
+{
+	current_act = act;
+	act_set_data_dirs_path(act);
+}
+
+/**
+ * Return the current game act
+ */
+struct game_act *act_get_current()
+{
+	if (!current_act) {
+		error_message(__FUNCTION__, "Current game act is not yet set. act_set_current() must be called before. We can not continue...",
+		              PLEASE_INFORM | IS_FATAL);
+
+	}
+	return current_act;
 }
 
 /**

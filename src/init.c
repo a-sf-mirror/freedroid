@@ -948,9 +948,9 @@ void InitFreedroid(int argc, char **argv)
 	init_audio();
 
 	init_game_data();
-	// Pre-set the act related dir paths, to avoid any breakage
+	// Pre-set the current game act, to avoid any breakage
 	// Will be redone when a game is loaded
-	act_set_data_dirs_path(act_get_starting());
+	act_set_current(act_get_starting());
 
 	/* 
 	 * Initialize random-number generator in order to make 
