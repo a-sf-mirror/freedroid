@@ -790,7 +790,7 @@ int check_directory(const char *dirname, int subdir_handle, int check_if_writabl
 
 	// Then check if the directory is writable, if requested
 	if (!check_if_writable)
-		return TRUE;
+		return 0;
 
 #ifdef __WIN32__
 	rtn = _access(dir_path, 0x06);
