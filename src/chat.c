@@ -850,73 +850,81 @@ int validate_dialogs()
 	int old_sound_on = sound_on;
 	sound_on = FALSE;
 
-	find_file(fpath, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
-	LoadShip(fpath, 0);
-	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
-
 	/* Temporarily disable screen fadings to speed up validation. */
 	GameConfig.do_fadings = FALSE;
 
-	/* _says functions are not run by the validator, as they display
-	   text on screen and wait for clicks */
-	run_lua(LUA_DIALOG, "function chat_says(a)\nend\n");
-	run_lua(LUA_DIALOG, "function cli_says(a)\nend\n");
+	for (int i = 0; i < game_acts.size; i++) {
+		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
+		act_set_data_dirs_path(act);
 
-	/* Subdialogs currently call run_chat and we cannot do that when validating dialogs */
-	run_lua(LUA_DIALOG, "function start_chat(a)\nend\n");
+		find_file(fpath, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
+		LoadShip(fpath, 0);
+		PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 
-	/* Shops must not be run (display + wait for clicks) */
-	run_lua(LUA_DIALOG, "function trade_with(a)\nend\n");
+		/* _says functions are not run by the validator, as they display
+		   text on screen and wait for clicks */
+		run_lua(LUA_DIALOG, "function chat_says(a)\nend\n");
+		run_lua(LUA_DIALOG, "function cli_says(a)\nend\n");
 
-	run_lua(LUA_DIALOG, "function user_input_string(a)\nreturn \"dummy\";\nend\n");
+		/* Subdialogs currently call run_chat and we cannot do that when validating dialogs */
+		run_lua(LUA_DIALOG, "function start_chat(a)\nend\n");
 
-	run_lua(LUA_DIALOG, "function upgrade_items(a)\nend\n");
-	run_lua(LUA_DIALOG, "function craft_addons(a)\nend\n");
+		/* Shops must not be run (display + wait for clicks) */
+		run_lua(LUA_DIALOG, "function trade_with(a)\nend\n");
 
-	/* takeover requires user input - hardcode it to win */
-	run_lua(LUA_DIALOG, "function takeover(a)\nreturn true\nend\n");
+		run_lua(LUA_DIALOG, "function user_input_string(a)\nreturn \"dummy\";\nend\n");
 
-	/* set_mouse_move_target() breaks validator */
-	run_lua(LUA_DIALOG, "function set_mouse_move_target(a)\nend\n");
+		run_lua(LUA_DIALOG, "function upgrade_items(a)\nend\n");
+		run_lua(LUA_DIALOG, "function craft_addons(a)\nend\n");
 
-	/* win_game() causes silly animations and delays the process. */
-	run_lua(LUA_DIALOG, "function win_game(a)\nend\n");
+		/* takeover requires user input - hardcode it to win */
+		run_lua(LUA_DIALOG, "function takeover(a)\nreturn true\nend\n");
 
-	/* This dummy is needed for the Lua functions that communicates with a npc */
-	BROWSE_ALIVE_BOTS(dummy_partner) {
-		break;
-	}
+		/* set_mouse_move_target() breaks validator */
+		run_lua(LUA_DIALOG, "function set_mouse_move_target(a)\nend\n");
 
-	list_for_each_entry(n, &npc_head, node) {
-		printf("Testing dialog \"%s\"...\n", n->dialog_basename);
+		/* win_game() causes silly animations and delays the process. */
+		run_lua(LUA_DIALOG, "function win_game(a)\nend\n");
 
-		struct chat_context *dummy_context = chat_create_context(dummy_partner, n, n->dialog_basename);
-
-		// We want the dialog validator to catch all errors. It thus has to call
-		// push_dialog() itself. As a consequence, so we can not use chat_push_context().
-		check_chat_context_stack_size();
-		list_add(&dummy_context->stack_node, &chat_context_stack);
-		chat_context_stack_size++;
-
-		int rtn;
-		if (call_lua_func(LUA_DIALOG, "FDdialog", "validate_dialog", "s", "d", n->dialog_basename, &rtn)) {
-			if (!rtn) {
-				error_caught = TRUE;
-			}
-			if (term_has_color_cap)
-				printf("Result: %s\n", rtn ? "\033[32msuccess\033[0m" : "\033[31mfailed\033[0m");
-			else
-				printf("Result: %s\n", rtn ? "success" : "failed");
-		} else {
-			error_caught = TRUE;
+		/* This dummy is needed for the Lua functions that communicates with a npc */
+		BROWSE_ALIVE_BOTS(dummy_partner) {
+			break;
 		}
 
-		// Remove the dialog from the chat context stack
-		list_del(chat_context_stack.next);
-		chat_delete_context(dummy_context);
-		chat_context_stack_size--;
+		list_for_each_entry(n, &npc_head, node) {
+			printf("Testing dialog \"%s\" from \"%s\"...\n", n->dialog_basename, act->name);
 
-		printf("\n");
+			struct chat_context *dummy_context = chat_create_context(dummy_partner, n, n->dialog_basename);
+
+			// We want the dialog validator to catch all errors. It thus has to call
+			// push_dialog() itself. As a consequence, so we can not use chat_push_context().
+			check_chat_context_stack_size();
+			list_add(&dummy_context->stack_node, &chat_context_stack);
+			chat_context_stack_size++;
+
+			int rtn;
+			if (call_lua_func(LUA_DIALOG, "FDdialog", "validate_dialog", "s", "d", n->dialog_basename, &rtn)) {
+				if (!rtn) {
+					error_caught = TRUE;
+				}
+				if (term_has_color_cap)
+					printf("Result: %s\n", rtn ? "\033[32msuccess\033[0m" : "\033[31mfailed\033[0m");
+				else
+					printf("Result: %s\n", rtn ? "success" : "failed");
+			} else {
+				error_caught = TRUE;
+			}
+
+			// Remove the dialog from the chat context stack
+			list_del(chat_context_stack.next);
+			chat_delete_context(dummy_context);
+			chat_context_stack_size--;
+
+			printf("\n");
+		}
+
+		// Prepare the next round
+		free_game_data();
 	}
 
 	/* Re-enable sound as needed. */
