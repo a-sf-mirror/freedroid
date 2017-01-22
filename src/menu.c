@@ -50,6 +50,7 @@ int Single_Player_Menu(void);
 #define AUTO_SCROLL_RATE (0.02f)
 
 #define MAX_MENU_ITEMS 100
+#define MAX_SAVEGAMES_PER_PAGE 5
 
 static int game_needs_restart = FALSE;
 
@@ -1595,16 +1596,7 @@ enum {
 
 static int do_savegame_selection_and_act(int action)
 {
-	char *MenuTexts[MAX_MENU_ITEMS];
-	struct dirent **eps;
-	int n;
-	int cnt;
-	int MenuPosition;
-	int saveoffset = 0;
-	char SafetyText[500];
 	char *menu_title = NULL;
-	int rtn;
-
 	switch (action) {
 	case SAVEGAME_LOAD:
 		menu_title = LOAD_EXISTING_HERO_STRING;
@@ -1619,61 +1611,76 @@ static int do_savegame_selection_and_act(int action)
 	// We use empty strings to denote the end of any menu selection, 
 	// therefore also for the end of the list of saved characters.
 	//
-	for (n = 0; n < MAX_SAVED_CHARACTERS_ON_DISK + 1; n++) {
+	char *MenuTexts[MAX_MENU_ITEMS];
+	for (int n = 0; n < MAX_SAVEGAMES_PER_PAGE + 1; n++) {
 		MenuTexts[n] = "";
 	}
 
-	n = find_saved_games(&eps);
+	struct dirent **eps;
+	int savegames_count = find_saved_games(&eps);
 
-	if (n > 0) {
-		while (1) {
+	if (savegames_count > 0) {
+		int list_offset = 0;
 
-			if (saveoffset != 0) {
+		for(;;) {
+			int up_position = -1;
+			int down_position = -1;
+			int back_position = -1;
+			int menu_cpt = 0;
+
+			if (list_offset != 0) {
 				/* Display "up" */
-				MenuTexts[0] = _("[up]");
+				up_position = menu_cpt;
+				MenuTexts[menu_cpt++] = _("[up]");
 			} else {
-				MenuTexts[0] = " ";
+				up_position = -1;
+				MenuTexts[menu_cpt++] = " ";
 			}
 
-			for (cnt = 1; cnt + saveoffset - 1 < n && cnt < MAX_SAVED_CHARACTERS_ON_DISK; cnt++) {
-				MenuTexts[cnt] = eps[cnt + saveoffset - 1]->d_name;
+			for (int i = 0, savegame_idx = list_offset; (i < MAX_SAVEGAMES_PER_PAGE) && (savegame_idx < savegames_count); i++, savegame_idx++) {
+				MenuTexts[menu_cpt++] = eps[savegame_idx]->d_name;
 			}
 
-			if (cnt >= 7) {
+			if (list_offset + MAX_SAVEGAMES_PER_PAGE < savegames_count) {
 				/* Display "down" */
-				MenuTexts[cnt++] = _("[down]");
-			} else
-				MenuTexts[cnt++] = " ";
+				down_position = menu_cpt;
+				MenuTexts[menu_cpt++] = _("[down]");
+			} else {
+				down_position = -1;
+				MenuTexts[menu_cpt++] = " ";
+			}
 
-			MenuTexts[cnt] = _("Back");
-			MenuTexts[cnt + 1] = "";
+			back_position = menu_cpt;
+			MenuTexts[menu_cpt++] = _("Back");
+			MenuTexts[menu_cpt] = "";
 
-			MenuPosition = DoMenuSelection(menu_title, MenuTexts, 1, "title.jpg", NULL);
-
-			if (MenuPosition == (-1) || MenuPosition == cnt + 1) {
-				for (cnt = 0; cnt < n; cnt++)
-					free(eps[cnt]);
+			// Note: DoMenuSelection() returned value is the menu index + 1,
+			// or -1 if the menu was escaped
+			int MenuPosition = DoMenuSelection(menu_title, MenuTexts, 1, "title.jpg", NULL) - 1;
+			if (MenuPosition == -2 || MenuPosition == back_position) {
+				for (int i = 0; i < savegames_count; i++)
+					free(eps[i]);
 				free(eps);
 				return FALSE;
 			}
-			if (MenuPosition == cnt) {
-				if (cnt + saveoffset - 1 < n)
-					saveoffset++;
-			} else if (MenuPosition == 1) {
-				if (saveoffset > 0)
-					saveoffset--;
-			} else
+
+			if (MenuPosition == down_position) {
+				list_offset++;
+			} else if (MenuPosition == up_position) {
+				list_offset--;
+			} else {
+				free(Me.character_name);
+				Me.character_name = strdup(MenuTexts[MenuPosition]);
 				break;
+			}
 		}
 
-		free(Me.character_name);
-		Me.character_name = strdup(MenuTexts[MenuPosition - 1]);
-
-		for (cnt = 0; cnt < n; cnt++)
-			free(eps[cnt]);
+		for (int i = 0; i < savegames_count; i++)
+			free(eps[i]);
 		free(eps);
 
 		goto do_action;
+
 	} else {
 
 		MenuTexts[0] = _("Back");
@@ -1686,8 +1693,9 @@ static int do_savegame_selection_and_act(int action)
 
 	return FALSE;
 
- do_action:
-	rtn = FALSE;
+do_action:
+	;
+	int rtn = FALSE;
 	switch (action) {
 	case SAVEGAME_LOAD:
 		if (load_named_game(Me.character_name) == OK) {
@@ -1702,6 +1710,7 @@ static int do_savegame_selection_and_act(int action)
 		MenuTexts[0] = _("Sure!");
 		MenuTexts[1] = _("Back");
 		MenuTexts[2] = "";
+		char SafetyText[500];
 		sprintf(SafetyText, _("Really delete hero '%s'?"), Me.character_name);
 		int FinalDecision = DoMenuSelection(SafetyText, MenuTexts, 1, "title.jpg", NULL);
 

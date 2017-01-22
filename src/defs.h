@@ -504,8 +504,6 @@ enum {
 #define SQUARE_SEEN_AT_ALL_BIT 8
 #define UPDATE_SQUARE_BIT 16
 
-#define MAX_SAVED_CHARACTERS_ON_DISK 7	// Not actually amount of chars, but amount "per page"
-
 #define MAX_INFLU_POSITION_HISTORY 500
 #define MAX_MISSIONS_IN_GAME 50	// how many missions can there be at most in FreedroidRPG
 #define MAX_MISSION_DESCRIPTION_TEXTS 25
