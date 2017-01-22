@@ -363,6 +363,8 @@ void read_automap_data_t(lua_State *L, int index, automap_data_t *data);
 void write_automap_data_t(struct auto_string *strout, automap_data_t *data);
 void read_list_head_t(lua_State *L, int index, list_head_t *data);
 void write_list_head_t(struct auto_string *strout, list_head_t *data);
+void read_game_config(lua_State *L, int index);
+void write_game_config(struct auto_string *strout);
 
 /// \defgroup overloadrw Overloaded read/write functions
 /// \ingroup luasaveload

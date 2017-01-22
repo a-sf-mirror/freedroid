@@ -160,3 +160,39 @@ int filter_0_16_1_rename_spellactives_array(struct savegame_data *savegame, stru
 {
 	return rename_array(savegame, report, "spell_active_array{", "spell_array{");
 }
+
+// Since 1601:5, a 'game_config' Lua table is stored at the beginning of the savegame.
+// It contains the currently played game act (game acts were not available before).
+// This filter adds the missing table, using the starting game act.
+
+int filter_0_16_1_add_game_config(struct savegame_data *savegame, struct auto_string *report)
+{
+	char *ptr = strstr(savegame->sav_buffer, "--]]\n\n"); // skip the header
+	ptr += strlen("--]]\n\n");
+
+	if (!strncmp(ptr, "game_config{", 12)) {
+		// The table is already there. Nothing to do.
+		return FILTER_NOT_NEEDED;
+	}
+
+	// Prepare the text to be added
+	struct auto_string *game_config_string = alloc_autostr(256);
+	autostr_printf(game_config_string, "game_config{\nplayed_game_act = [=[%s]=],\n}\n", act_get_starting()->name);
+
+	// Allocate a new savegame buffer
+	char *new_savegame = (char*)MyMalloc(sizeof(char)*(savegame->sav_buffer_size + game_config_string->length + 1));
+
+	// Copy the header + the new data + the rest of the savegame
+	size_t header_len = ptr - savegame->sav_buffer;
+	memcpy(new_savegame, savegame->sav_buffer, header_len);
+	memcpy(new_savegame+header_len, game_config_string->value, game_config_string->length);
+	memcpy(new_savegame+header_len+game_config_string->length, savegame->sav_buffer+header_len, savegame->sav_buffer_size-header_len);
+
+	// Replace the old buffer by the new one
+	free(savegame->sav_buffer);
+	savegame->sav_buffer = new_savegame;
+	savegame->sav_buffer_size = savegame->sav_buffer_size + game_config_string->length;
+	free_autostr(game_config_string);
+
+	return FILTER_APPLIED;
+}

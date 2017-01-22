@@ -469,6 +469,55 @@ void write_keybind_t_array(struct auto_string *strout, keybind_t *data, int size
 }
 
 /**
+ * Write the game config.
+ * \ingroup userrw
+ *
+ * \param strout The auto_string to be filled
+ */
+
+void write_game_config(struct auto_string *strout)
+{
+	autostr_append(strout, "{\n");
+	struct game_act *current_act = act_get_current();
+	if (current_act) {
+		autostr_append(strout, "played_game_act = ");
+		write_string(strout, &current_act->name);
+		autostr_append(strout, ",\n");
+	}
+	autostr_append(strout, "}");
+}
+
+/**
+ * Read the game config.
+ * \ingroup userrw
+ *
+ * \param L     Current Lua State
+ * \param index Lua stack index of the data
+ */
+void read_game_config(lua_State *L, int index)
+{
+	struct game_act *act = NULL;
+
+	if (lua_getfield_or_warn(L, index, "played_game_act")) {
+		char *act_name = NULL;
+		read_string(L, -1, &act_name);
+		lua_pop(L, 1);
+		act = act_get_by_name(act_name);
+		free(act_name);
+	}
+
+	if (!act) {
+		error_message(__FUNCTION__,
+		              "No game act, or invalid game act found in the savegame. Defaulting to starting game act.\n"
+		              "Expect some bugs.",
+		              PLEASE_INFORM);
+		act = act_get_starting();
+	}
+
+	act_set_current(act);
+}
+
+/**
  * Save game data.
  * \ingroup toprw
  *
@@ -492,6 +541,10 @@ void save_game_data(struct auto_string *strout)
 	autostr_append(strout, "--]]\n");
 
 	write_lua_variables(strout);
+
+	autostr_append(strout, "game_config");
+	write_game_config(strout);
+	autostr_append(strout, "\n");
 
 	autostr_append(strout, "tux_t");
 	write_tux_t(strout, &Me);
@@ -557,6 +610,12 @@ void save_game_data(struct auto_string *strout)
 /*
  * Private table constructors, used when loading a savegame.
  */
+
+static int game_config_ctor(lua_State *L)
+{
+	read_game_config(L, 1);
+	return 0;
+}
 
 static int tux_ctor(lua_State *L)
 {
@@ -656,6 +715,7 @@ void load_game_data(char *strin)
 	// Add the table constructors called by Lua when parsing a savegame
 
 	luaL_Reg lfuncs[] = {
+		{"game_config", game_config_ctor},
 		{"tux_t", tux_ctor},
 		{"dead_enemy", dead_enemy_ctor},
 		{"alive_enemy", alive_enemy_ctor},
