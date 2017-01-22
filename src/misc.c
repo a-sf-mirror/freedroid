@@ -750,6 +750,22 @@ struct game_act *act_get_starting()
 }
 
 /**
+ * Return a game act given its name
+ */
+struct game_act *act_get_by_name(char *act_name)
+{
+	if (!act_name || !strlen(act_name))
+		return NULL;
+
+	for (int i = 0; i < game_acts.size; i++) {
+		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
+		if (!strcmp(act->name, act_name))
+			return act;
+	}
+	return NULL;
+}
+
+/**
  * Set the current game act.
  *
  * Store 'act' into 'curent_act', and set the data dirs accordingly to that game act

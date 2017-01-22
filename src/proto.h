@@ -601,6 +601,7 @@ void *my_memmem(char *, size_t, char *, size_t);
 void init_data_dirs_path();
 int act_validate(struct game_act *);
 struct game_act *act_get_starting(void);
+struct game_act *act_get_by_name(char *act_name);
 void act_set_current(struct game_act *);
 struct game_act *act_get_current(void);
 int check_directory(const char *, int, int, int);
