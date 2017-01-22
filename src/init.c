@@ -266,6 +266,7 @@ void play_title_file(int subdir_handle, char *filename)
 		title_screen_run(&screen);
 		title_screen_free();
 
+		free(screen.voice_acting);
 		free(screen.background);
 		free(screen.song);
 		free(screen.text);
