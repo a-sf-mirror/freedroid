@@ -481,57 +481,65 @@ int validate_events()
 	int old_sound_on = sound_on;
 	sound_on = FALSE;
 
-	char fpath[PATH_MAX];
-	find_file(fpath, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
-	LoadShip(fpath, 0);
-	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
+	for (int i = 0; i < game_acts.size; i++) {
+		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
+		act_set_current(act);
 
-	/* Temporarily disable screen fadings to speed up validation. */
-	GameConfig.do_fadings = FALSE;
+		char fpath[PATH_MAX];
+		find_file(fpath, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
+		LoadShip(fpath, 0);
+		PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 
-	/* _says functions are not run by the validator, as they display
-	   text on screen and wait for clicks */
-	run_lua(LUA_DIALOG, "function chat_says(a)\nend\n");
-	run_lua(LUA_DIALOG, "function cli_says(a)\nend\n");
+		/* Temporarily disable screen fadings to speed up validation. */
+		GameConfig.do_fadings = FALSE;
 
-	/* Subdialogs currently call run_chat and we cannot do that when validating dialogs */
-	run_lua(LUA_DIALOG, "function start_chat(a)\nend\n");
+		/* _says functions are not run by the validator, as they display
+		   text on screen and wait for clicks */
+		run_lua(LUA_DIALOG, "function chat_says(a)\nend\n");
+		run_lua(LUA_DIALOG, "function cli_says(a)\nend\n");
 
-	/* Shops must not be run (display + wait for clicks) */
-	run_lua(LUA_DIALOG, "function trade_with(a)\nend\n");
+		/* Subdialogs currently call run_chat and we cannot do that when validating dialogs */
+		run_lua(LUA_DIALOG, "function start_chat(a)\nend\n");
 
-	run_lua(LUA_DIALOG, "function user_input_string(a)\nreturn \"dummy\";\nend\n");
+		/* Shops must not be run (display + wait for clicks) */
+		run_lua(LUA_DIALOG, "function trade_with(a)\nend\n");
 
-	run_lua(LUA_DIALOG, "function upgrade_items(a)\nend\n");
-	run_lua(LUA_DIALOG, "function craft_addons(a)\nend\n");
+		run_lua(LUA_DIALOG, "function user_input_string(a)\nreturn \"dummy\";\nend\n");
 
-	/* takeover requires user input - hardcode it to win */
-	run_lua(LUA_DIALOG, "function takeover(a)\nreturn true\nend\n");
+		run_lua(LUA_DIALOG, "function upgrade_items(a)\nend\n");
+		run_lua(LUA_DIALOG, "function craft_addons(a)\nend\n");
 
-	/* set_mouse_move_target() breaks validator */
-	run_lua(LUA_DIALOG, "function set_mouse_move_target(a)\nend\n");
+		/* takeover requires user input - hardcode it to win */
+		run_lua(LUA_DIALOG, "function takeover(a)\nreturn true\nend\n");
 
-	/* win_game() causes silly animations and delays the process. */
-	run_lua(LUA_DIALOG, "function win_game(a)\nend\n");
+		/* set_mouse_move_target() breaks validator */
+		run_lua(LUA_DIALOG, "function set_mouse_move_target(a)\nend\n");
 
-	/* We do not want to actually exit the game. */
-	run_lua(LUA_DIALOG, "function exit_game(a)\nend\n");
+		/* win_game() causes silly animations and delays the process. */
+		run_lua(LUA_DIALOG, "function win_game(a)\nend\n");
 
-	// Loop on all events
-	int i;
+		/* We do not want to actually exit the game. */
+		run_lua(LUA_DIALOG, "function exit_game(a)\nend\n");
 
-	GetEventTriggers("events.dat");
-	struct event_trigger *arr = event_triggers.arr;
+		// Loop on all events
+		int i;
 
-	for (i = 0; i < event_triggers.size; i++) {
-		printf("Testing event \"%s\"...\n", arr[i].name);
-		int rtn = run_lua(LUA_DIALOG, arr[i].lua_code);
-		if (rtn)
-			error_caught = TRUE;
-		if (term_has_color_cap)
-			printf("Result: %s\n", !rtn ? "\033[32msuccess\033[0m" : "\033[31mfailed\033[0m");
-		else
-			printf("Result: %s\n", !rtn ? "success" : "failed");
+		GetEventTriggers("events.dat");
+		struct event_trigger *arr = event_triggers.arr;
+
+		for (i = 0; i < event_triggers.size; i++) {
+			printf("Testing event \"%s\" from  \"%s\"...\n", arr[i].name, act->name);
+			int rtn = run_lua(LUA_DIALOG, arr[i].lua_code);
+			if (rtn)
+				error_caught = TRUE;
+			if (term_has_color_cap)
+				printf("Result: %s\n", !rtn ? "\033[32msuccess\033[0m" : "\033[31mfailed\033[0m");
+			else
+				printf("Result: %s\n", !rtn ? "success" : "failed");
+		}
+
+		// Prepare the next round
+		free_game_data();
 	}
 
 	/* Re-enable sound as needed. */
