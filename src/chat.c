@@ -661,8 +661,17 @@ void chat_run()
 				Terminate(EXIT_SUCCESS);
 			}
 			if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE) {
-				if (GameConfig.enable_cheatkeys)
+				if (GameConfig.enable_cheatkeys) {
+					// Simulate a script-end:
+					// - the lua script reached its end, remove its reference
+					// - deallocate memory
+					lua_State *L = get_lua_state(LUA_DIALOG);
+					lua_pop(L, 1);
+					if (current_chat_context->script_coroutine)
+						free(current_chat_context->script_coroutine);
+					current_chat_context->script_coroutine = NULL;
 					goto end_current_dialog;
+				}
 			}
 			if (current_chat_context->wait_user_click && event.type == SDL_KEYDOWN) {
 				switch (event.key.keysym.sym) {
