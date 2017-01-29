@@ -864,7 +864,7 @@ int validate_dialogs()
 
 	for (int i = 0; i < game_acts.size; i++) {
 		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
-		act_set_current(act);
+		game_act_set_current(act);
 
 		find_file(fpath, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 		LoadShip(fpath, 0);

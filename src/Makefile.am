@@ -22,7 +22,7 @@ freedroidRPG_SOURCES = \
 	dynarray.c \
 	enemy.c event.c extint_macros.h \
 	faction.c floor_tiles.c font.c \
-	game_ui.c getopt.c getopt1.c graphics.c \
+	game_act.c game_ui.c getopt.c getopt1.c graphics.c \
 	hud.c \
 	image.c influ.c init.c input.c items.c item_upgrades.c item_upgrades_ui.c \
 	keyboard.c \

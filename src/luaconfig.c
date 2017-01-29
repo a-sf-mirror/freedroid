@@ -1381,7 +1381,7 @@ static int get_one_game_act(lua_State *L, void *data)
 	fill_structure_from_table(L, data_specs);
 
 	// Post-condition: check if the act subdir actually exist
-	int exists = act_validate(act);
+	int exists = game_act_validate(act);
 	if (!exists) {
 		error_message(__FUNCTION__,
 		              "Can not find the directory defined for \"%s\": %s. Remove it from the list of the available acts.",
@@ -1404,7 +1404,7 @@ static int lua_game_acts_ctor(lua_State *L)
 		              "No acts were found as available. We can not proceed...",
 		              PLEASE_INFORM | IS_FATAL);
 	}
-	if (!act_get_starting()) {
+	if (!game_act_get_starting()) {
 		error_message(__FUNCTION__,
 		              "No available starting act is defined. We can not proceed...",
 		              PLEASE_INFORM | IS_FATAL);

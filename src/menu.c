@@ -814,7 +814,7 @@ static int Startup_handle(int n)
 	case TUTORIAL_POSITION:	//Similar hack to start Tutorial.
 		game_root_mode = ROOT_IS_GAME;
 		skip_initial_menus = 1;
-		act_set_current(act_get_starting());
+		game_act_set_current(game_act_get_starting());
 		char fpp[PATH_MAX];
 		find_file(fpp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 		LoadShip(fpp, 0);
@@ -1782,7 +1782,7 @@ int Single_Player_Menu(void)
 			while (EnterPressed() || SpacePressed()) ;
 			char *char_name = get_new_character_name();
 			if (char_name && strlen(char_name)) {
-				act_set_current(act_get_starting());
+				game_act_set_current(game_act_get_starting());
 				char fp[PATH_MAX];
 				find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 				LoadShip(fp, 0);

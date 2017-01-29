@@ -478,7 +478,7 @@ void write_keybind_t_array(struct auto_string *strout, keybind_t *data, int size
 void write_game_config(struct auto_string *strout)
 {
 	autostr_append(strout, "{\n");
-	struct game_act *current_act = act_get_current();
+	struct game_act *current_act = game_act_get_current();
 	if (current_act) {
 		autostr_append(strout, "played_game_act = ");
 		write_string(strout, &current_act->name);
@@ -502,7 +502,7 @@ void read_game_config(lua_State *L, int index)
 		char *act_name = NULL;
 		read_string(L, -1, &act_name);
 		lua_pop(L, 1);
-		act = act_get_by_name(act_name);
+		act = game_act_get_by_name(act_name);
 		free(act_name);
 	}
 
@@ -511,10 +511,10 @@ void read_game_config(lua_State *L, int index)
 		              "No game act, or invalid game act found in the savegame. Defaulting to starting game act.\n"
 		              "Expect some bugs.",
 		              PLEASE_INFORM);
-		act = act_get_starting();
+		act = game_act_get_starting();
 	}
 
-	act_set_current(act);
+	game_act_set_current(act);
 }
 
 /**

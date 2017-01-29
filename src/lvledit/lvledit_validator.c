@@ -1554,7 +1554,7 @@ int level_validation()
 	int row_pos = 0;
 
 	for (l = 0; l < curShip.num_levels; ++l) {
-		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], act_get_current()->name, FALSE, VALIDATION_PASS };
+		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], game_act_get_current()->name, FALSE, VALIDATION_PASS };
 
 		// Compute row and column position, when a new column of text starts
 		if ((l % max_rows) == 0) {
@@ -1602,7 +1602,7 @@ int level_validation()
 
 	// Outputs uncaught exception rules
 
-	uncaught_excpt = print_uncaught_exceptions(act_get_current()->name);
+	uncaught_excpt = print_uncaught_exceptions(game_act_get_current()->name);
 	
 	free_exception_lists();
 

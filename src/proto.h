@@ -599,11 +599,6 @@ int MouseCursorIsInRect(const SDL_Rect *, int, int);
 int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
 void *my_memmem(char *, size_t, char *, size_t);
 void init_data_dirs_path();
-int act_validate(struct game_act *);
-struct game_act *act_get_starting(void);
-struct game_act *act_get_by_name(char *act_name);
-void act_set_current(struct game_act *);
-struct game_act *act_get_current(void);
 int check_directory(const char *, int, int, int);
 int find_file(char *, int, const char *, const char *, int);
 int find_suffixed_file(char *, int, const char *, const char *, int);
@@ -938,5 +933,12 @@ int handle_switch_font_char(char **);
 void put_string_left(struct font *, int, const char *);
 void put_string_centered(struct font *, int, const char *);
 void put_string_right(struct font *, int, const char *);
+
+// game_act.c
+int game_act_validate(struct game_act *);
+struct game_act *game_act_get_starting(void);
+struct game_act *game_act_get_by_name(char *act_name);
+void game_act_set_current(struct game_act *);
+struct game_act *game_act_get_current(void);
 
 #endif

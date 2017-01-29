@@ -177,7 +177,7 @@ int filter_0_16_1_add_game_config(struct savegame_data *savegame, struct auto_st
 
 	// Prepare the text to be added
 	struct auto_string *game_config_string = alloc_autostr(256);
-	autostr_printf(game_config_string, "game_config{\nplayed_game_act = [=[%s]=],\n}\n", act_get_starting()->name);
+	autostr_printf(game_config_string, "game_config{\nplayed_game_act = [=[%s]=],\n}\n", game_act_get_starting()->name);
 
 	// Allocate a new savegame buffer
 	char *new_savegame = (char*)MyMalloc(sizeof(char)*(savegame->sav_buffer_size + game_config_string->length + 1));

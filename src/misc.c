@@ -62,8 +62,6 @@ Uint32 Onehundred_Frame_SDL_Ticks;
 int framenr = 0;
 long Overall_Frames_Displayed = 0;
 
-static struct game_act *current_act = NULL;
-
 struct data_dir data_dirs[] = {
 	[CONFIG_DIR]=      { "configdir",                   "" },
 	[DATA_ROOT]=       { "dataroot",                    "" },
@@ -684,109 +682,6 @@ TOP_DIR_FOUND:
 	}
 
 	return;
-}
-
-/*
- * Replace the keyword "$ACT", if found, in 'unresolved_path' by the content of 'act'
- * Return TRUE if "$ACT" was found and replaced
- */
-static void act_resolve_path(char* unresolved_path, struct game_act *act)
-{
-	const char *key = "$ACT";
-	char *tmp = strdup(unresolved_path);
-	char *start = strstr(tmp, key);
-	if (start) {
-		*start = '\0';
-		int nb = snprintf(unresolved_path, PATH_MAX, "%s%s%s", tmp, act->subdir, start+strlen(key));
-		if (nb >= PATH_MAX) {
-			error_message(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s%s%s",
-			             PLEASE_INFORM | IS_FATAL, tmp, act->subdir, start+strlen(key));
-		}
-	}
-	free(tmp);
-}
-
-static void act_set_data_dirs_path(struct game_act *act)
-{
-	// Resolve the $ACT key in the data dir paths
-	int path_indices[] = { MAP_DIR, MAP_TITLES_DIR, MAP_DIALOG_DIR };
-	for (int i = 0; i < sizeof(path_indices)/sizeof(path_indices[0]); i++) {
-		// Restore default path (including the $ACT keyword)
-		int nb = snprintf(data_dirs[path_indices[i]].path, PATH_MAX, "%s/%s", data_dirs[DATA_ROOT].path, data_dirs[path_indices[i]].name);
-		if (nb >= PATH_MAX) {
-			error_message(__FUNCTION__, "data_dirs[].path is not big enough to store the following path: %s/%s",
-			             PLEASE_INFORM | IS_FATAL, data_dirs[DATA_ROOT].path, data_dirs[path_indices[i]].name);
-		}
-		// Resolve the $ACT keyword
-		act_resolve_path(data_dirs[path_indices[i]].path, act);
-	}
-}
-
-/**
- * Check if an act subdir actually exists
- */
-int act_validate(struct game_act *act)
-{
-	char *act_dir = strdup(data_dirs[MAP_DIR].name);
-	act_resolve_path(act_dir, act);
-	int exists = check_directory(act_dir, DATA_ROOT, FALSE, SILENT);
-	free(act_dir);
-	if (exists == 0)
-		return TRUE;
-	return FALSE;
-}
-
-/**
- * Return the starting act
- */
-struct game_act *act_get_starting()
-{
-	for (int i = 0; i < game_acts.size; i++) {
-		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
-		if (act->starting_act)
-			return act;
-	}
-	return NULL;
-}
-
-/**
- * Return a game act given its name
- */
-struct game_act *act_get_by_name(char *act_name)
-{
-	if (!act_name || !strlen(act_name))
-		return NULL;
-
-	for (int i = 0; i < game_acts.size; i++) {
-		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
-		if (!strcmp(act->name, act_name))
-			return act;
-	}
-	return NULL;
-}
-
-/**
- * Set the current game act.
- *
- * Store 'act' into 'curent_act', and set the data dirs accordingly to that game act
- */
-void act_set_current(struct game_act *act)
-{
-	current_act = act;
-	act_set_data_dirs_path(act);
-}
-
-/**
- * Return the current game act
- */
-struct game_act *act_get_current()
-{
-	if (!current_act) {
-		error_message(__FUNCTION__, "Current game act is not yet set. act_set_current() must be called before. We can not continue...",
-		              PLEASE_INFORM | IS_FATAL);
-
-	}
-	return current_act;
 }
 
 /**

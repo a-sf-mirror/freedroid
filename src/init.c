@@ -614,7 +614,7 @@ void prepare_level_editor()
 	game_root_mode = ROOT_IS_LVLEDIT;
 	game_status = INSIDE_LVLEDITOR;
 	skip_initial_menus = 1;
-	act_set_current(act_get_starting());
+	game_act_set_current(game_act_get_starting());
 	char fp[PATH_MAX];
 	find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 	LoadShip(fp, 0);
@@ -952,7 +952,7 @@ void InitFreedroid(int argc, char **argv)
 	init_game_data();
 	// Pre-set the current game act, to avoid any breakage (especially in the benchmark)
 	// Will be redone when a game is loaded
-	act_set_current(act_get_starting());
+	game_act_set_current(game_act_get_starting());
 
 	/* 
 	 * Initialize random-number generator in order to make 
