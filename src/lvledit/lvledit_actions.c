@@ -438,6 +438,7 @@ void action_remove_waypoint(level *EditLevel, int x, int y)
 
 	// If a route was being traced from this waypoint, remove it
 	leveleditor_place_reset_waypoint_route(wpnum);
+	dynarray_free(&wpts[wpnum].connections);
 
 	// Make an undoable action
 	action_push(ACT_CREATE_WAYPOINT, x, y, old_random_spawn);
