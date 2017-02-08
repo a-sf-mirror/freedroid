@@ -808,7 +808,7 @@ static int Startup_handle(int n)
 		}
 		break;
 	case LVLEDIT_POSITION:	//allow starting directly in leveleditor - the hack is a little dirty but it does its work.
-		prepare_level_editor();
+		prepare_level_editor(game_act_get_starting());
 		return EXIT_MENU;
 		break;
 	case TUTORIAL_POSITION:	//Similar hack to start Tutorial.

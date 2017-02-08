@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
 		// When the user wants to start editor from the command line, skip the
 		// startup menu and load the level editor directly
 		skip_menu = TRUE;
-		prepare_level_editor();
+		prepare_level_editor(game_act_get_starting());
 		start_editor = FALSE;
 	} else if (load_saved && saved_game_name != NULL) {
 		// Skip the startup menu and load saved game directly

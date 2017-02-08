@@ -64,7 +64,7 @@ void parse_command_line(int argc, char *const argv[]);
 void ClearAutomapData(void);
 void InitFreedroid(int, char **);
 void PrepareStartOfNewCharacter(char *startpos);
-void prepare_level_editor(void);
+void prepare_level_editor(struct game_act *on_act);
 void ThouArtDefeated(void);
 void ThouHastWon(void);
 void play_title_file(int, char *);

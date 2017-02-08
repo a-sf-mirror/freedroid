@@ -609,19 +609,27 @@ void PrepareStartOfNewCharacter(char *start_label)
 		append_new_game_message(_("Starting new game."));
 }
 
-void prepare_level_editor()
+void prepare_level_editor(struct game_act *on_act)
 {
 	game_root_mode = ROOT_IS_LVLEDIT;
 	game_status = INSIDE_LVLEDITOR;
-	skip_initial_menus = 1;
-	game_act_set_current(game_act_get_starting());
+
+	game_act_set_current(on_act);
+
 	char fp[PATH_MAX];
 	find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 	LoadShip(fp, 0);
+
+	skip_initial_menus = 1;
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 	skip_initial_menus = 0;
+
 	free(Me.character_name);
 	Me.character_name = strdup("MapEd");
+
+	reset_visible_levels();
+	get_visible_levels();
+	animation_timeline_reset();
 }
 
 /**

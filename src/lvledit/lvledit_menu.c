@@ -856,6 +856,52 @@ static void level_options(void)
 	return;
 };				// void LevelOptions ( void );
 
+void choose_game_act()
+{
+	char **menu_texts = NULL;
+
+	game_status = INSIDE_MENU;
+
+	char *menu_title = _("Choose a game act\nWarning: All changes will be lost if they were not saved");
+	struct game_act *new_act = NULL;
+
+	for (;;) {
+
+		InitiateMenu("--EDITOR_BACKGROUND--");
+
+		// Fill the menu entries text with the name of the game acts
+		// + a 'back' entry + the empty guard
+		menu_texts = (char **)MyMalloc(sizeof(char *)*(game_acts.size + 2));
+		int cpt;
+		for (cpt = 0; cpt < game_acts.size; cpt++) {
+			struct game_act *act = (struct game_act *)dynarray_member(&game_acts, cpt, sizeof(struct game_act));
+			menu_texts[cpt] = act->name;
+		}
+		int back_position = cpt;
+		menu_texts[cpt++] = _("Back");
+		menu_texts[cpt] = "";
+
+		// Note: DoMenuSelection() returned value is the menu index + 1,
+		// or -1 if the menu was escaped
+		// We default to the 'Back' entry
+		int selected_position = DoMenuSelection(menu_title, menu_texts, back_position, "--EDITOR_BACKGROUND--", FPS_Display_Font) - 1;
+		if (selected_position == -2 || selected_position == back_position) {
+			break;
+		}
+
+		new_act = game_act_get_by_name(menu_texts[selected_position]);
+		break;
+	}
+
+	if (menu_texts)
+		free(menu_texts);
+
+	game_status = INSIDE_LVLEDITOR;
+	if (new_act) {
+		leveleditor_cleanup();
+		prepare_level_editor(new_act);
+	}
+}
 
 /**
  *
@@ -873,7 +919,8 @@ int do_level_editor_main_menu()
 	input_handle();
 
 	enum {
-		ENTER_LEVEL_POSITION = 1,
+		ENTER_GAME_ACT_POSITION = 1,
+		ENTER_LEVEL_POSITION,
 		LEVEL_OPTIONS_POSITION,
 		RUN_MAP_VALIDATION,
 		TEST_MAP_POSITION,
@@ -893,6 +940,9 @@ int do_level_editor_main_menu()
 		InitiateMenu("--EDITOR_BACKGROUND--");
 
 		int i = 0;
+		sprintf(options[i], _("Game act (untranslated): %s"), game_act_get_current()->name);
+		menu_texts[i] = options[i];
+		i++;
 		sprintf(options[i], _("Level name (untranslated): %d - %s"), EditLevel()->levelnum, EditLevel()->Levelname);
 		menu_texts[i] = options[i];
 		i++;
@@ -929,6 +979,9 @@ int do_level_editor_main_menu()
 			break;
 		case ESCAPE_FROM_MENU_POSITION:
 			proceed_now = !proceed_now;
+			break;
+		case ENTER_GAME_ACT_POSITION:
+			choose_game_act();
 			break;
 		case ENTER_LEVEL_POSITION:
 			if (LeftPressed() || RightPressed()) {	//left or right arrow ? handled below 
