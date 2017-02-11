@@ -111,12 +111,23 @@ return {
 		end,
 	},
 	{
+		id = "node4",
+		text = _"Could you explain me about bot respawn?",
+		code = function()
+			Npc:says(_"Respawn? Interesting choice of words. Bots doesn't actually \"respawn\", not literally, but the ships in orbit periodically checks some areas at random and makes a special request so the factory can replace the dead bots.")
+			Npc:says(_"I believe that during the check, they also reboot the droids. Therefore I guess that even if you hack a bot, it'll be only a temporary companion.")
+			Npc:says(_"There might be areas where their signals doesn't reach, but it's just too rare to even consider it.")
+			Npc:says(_"I am not a hacker. A real hacker should understand this better than I.")
+			hide("node4")
+		end,
+	},
+	{
 		id = "node5",
 		text = _"What do you know about the hostile bots?",
 		code = function()
 			Npc:says(_"The phenomenon of hostile bots has occupied my mind for quite some time. There are some strange irrationalities in this behavior, that I cannot explain.")
 			Npc:says(_"This encompasses not only the suddenness of the attack, but also the methods and the scale of it all.")
-			hide("node5") show("node3", "node6", "node7")
+			hide("node5") show("node3", "node4", "node6", "node7")
 		end,
 	},
 	{
