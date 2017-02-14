@@ -499,8 +499,8 @@ static void move_tux_according_to_his_speed()
 					DebugPrintf(-3, "\nNo luck with position_history, last fallback...");
 					// Get a random direction, and move by random length from 0.5 to 1.5.
 					// With some luck, Tux will escape now, or in the future tries
-					Me.pos.x += ((0.5 + (float)MyRandom(10) / 10.0) && (MyRandom(10) < 5)) ? 1 : -1;
-					Me.pos.y += ((0.5 + (float)MyRandom(10) / 10.0) && (MyRandom(10) < 5)) ? 1 : -1;
+					Me.pos.x += (0.5 + (float)MyRandom(10) / 10.0) * ((MyRandom(10) < 5) ? 1 : -1);
+					Me.pos.x += (0.5 + (float)MyRandom(10) / 10.0) * ((MyRandom(10) < 5) ? 1 : -1);
 				}
 			} else {
 				Me.pos.x = new_x;
