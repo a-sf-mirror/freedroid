@@ -121,7 +121,7 @@ void edit_level_dimensions(void)
 		menu_texts[i++] = _("Back");
 		menu_texts[i++] = "";
 
-		int menu_position = DoMenuSelection("", menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
+		int menu_position = do_menu_selection("", (char **)menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -267,7 +267,7 @@ static void set_level_interfaces(void)
 		menu_texts[i++] = _("Back");
 		menu_texts[i++] = "";
 
-		int menu_position = DoMenuSelection("", menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
+		int menu_position = do_menu_selection("", (char **)menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -372,7 +372,7 @@ static void add_rem_level(void)
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		int menu_position = DoMenuSelection("", menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
+		int menu_position = do_menu_selection("", (char **)menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -596,7 +596,7 @@ static void level_options(void)
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		int menu_position = DoMenuSelection("", menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
+		int menu_position = do_menu_selection("", (char **)menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -884,7 +884,7 @@ void choose_game_act()
 		// Note: DoMenuSelection() returned value is the menu index + 1,
 		// or -1 if the menu was escaped
 		// We default to the 'Back' entry
-		int selected_position = DoMenuSelection(menu_title, menu_texts, back_position, "--EDITOR_BACKGROUND--", FPS_Display_Font) - 1;
+		int selected_position = do_menu_selection(menu_title, menu_texts, back_position, "--EDITOR_BACKGROUND--", FPS_Display_Font) - 1;
 		if (selected_position == -2 || selected_position == back_position) {
 			break;
 		}
@@ -966,7 +966,7 @@ int do_level_editor_main_menu()
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		int menu_position = DoMenuSelection("", menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
+		int menu_position = do_menu_selection("", (char **)menu_texts, -1, "--EDITOR_BACKGROUND--", FPS_Display_Font);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);

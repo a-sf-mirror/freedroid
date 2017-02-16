@@ -125,183 +125,270 @@ static void print_menu_text(char *initial_text, char *menu_texts[], int first_me
  * this is not respected, segfault errors are likely.
  * 
  */
-int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const char *background_name, void *MenuFont)
+int do_menu_selection(char *header_text, char **items_texts, int first_item_idx, const char *background_name, struct font *menu_font)
 {
-	int h;
-	int i;
-	static int MenuPosition = 1;
-	int VertScrollOffset = 0;
-	int NumberOfOptionsGiven;
-	int LongestOption;
-	SDL_Rect HighlightRect;
-	SDL_Rect BackgroundRect;
-	int first_menu_item_pos_y;
-	int *MenuTextWidths;
-	float auto_scroll_start = 0.0f;
-	int auto_scroll_run = TRUE;
-	int ret = -1;
 	int old_game_status = game_status;
-	SDL_Event event;
-
 	game_status = INSIDE_MENU;
 
-	// We set the given font, if appropriate, and set the font height variable...
+	// A menu contains 2 parts:
+	// - if a header is set, a header text and a background rect around it
+	// - the menu's items and a background rect around it
+	// A small gap separates those two parts.
 	//
-	if (MenuFont != NULL)
-		set_current_font(MenuFont);
-	h = get_font_height(get_current_font());
+	// If there are too many items to fit inside the screen's height, a part of
+	// the list is displayed, which can be scrolled up or down using the arrow
+	// keys or the mouse wheel.
+	//
+	// If an item is too large to fit inside the screen's width, it is auto-scrolled
+	// when highlighted.
+
+	// Menu drawing style:
+	// - a minimum of 50 pixels between the screen and the menu
+	// - one 'line-height' padding between the menu's background and its content
+	// - one 'half-line' gap between the header's rect and the items' rect
+	static const int screen_gap = 50;
+	static const int rect_padding = 1;
+	static const int header_items_gap = 1;
+
+	// We set the given font, if appropriate, and get the font height...
+
+	if (menu_font != NULL)
+		set_current_font(menu_font);
+	int font_height = get_font_height(get_current_font());
+
+	// Find out how may items we have been given for the menu.
+
+	int nb_items = 0;
+	for (nb_items = 0; nb_items < 1000; ++nb_items) {
+		if (items_texts[nb_items][0] == '\0') {
+			break;
+		}
+	}
+
+	//----------
+	// 1- Compute the background rect and the content rect of the header and the items
+	//----------
+
+	int max_menu_width = GameConfig.screen_width - 2 * screen_gap;
+	int max_menu_height = GameConfig.screen_height - 2 * screen_gap;
+	int max_content_width = max_menu_width - 2 * rect_padding * font_height;
+
+	// Compute the width needed to render the items and the header.
+	// A minimum width is set to be a quarter of the screen's width.
+	// This minimum ensures that the header's text will not be split
+	// into too much small parts.
+	// For each item, compute its pixel-width, and keep the largest width.
+	// (the loop's end value is to avoid an 'infinite loop' - we will never have
+	// a menu with 1.000 items, will we ?)
+	// Finally, clamp to the available max width of the menu's content.
+	// (items content are auto-scrolled if they are larger)
+
+	int content_width = min(GameConfig.screen_width / 4, max_content_width);
+	int *items_texts_widths = (int *)malloc(sizeof(int) * (nb_items + 1));
+
+	for (int i = 0; i < nb_items; ++i) {
+		items_texts_widths[i] = text_width(get_current_font(), items_texts[i]);
+		content_width = max(content_width, items_texts_widths[i]);
+	}
+	items_texts_widths[nb_items] = 0;
+
+	content_width = min(content_width, max_content_width);
+
+	// Find a satisfying width for the header:
+	// If it is not larger than the width of the items, all is good.
+	// Else, we accept to extend the width to a third of the screen.
+	// If it's still not enough, we keep the items' width, and the header
+	// will be split.
+
+	if (strlen(header_text) != 0) {
+		char *tmp = strdup(header_text); // longest_line_width() needs to be able to modify the text
+		int actual_width = longest_line_width(tmp);
+		free(tmp);
+		if (actual_width > content_width) {
+			if (actual_width < (GameConfig.screen_width / 3)) {
+				content_width = actual_width;
+			}
+		}
+	}
+
+	// Compute the height needed to render the header.
+	// The header text will be split into several lines (if needed) to fit
+	// the menu width
+
+	int header_content_height = 0;
+	int offset_to_items_rect = 0;
+
+	if (strlen(header_text) != 0) {
+		SDL_Rect clipping_rect = { .x = 0, .y = 0, .w = content_width, .h = 0 };
+		int header_nb_lines = get_lines_needed(header_text, clipping_rect, 1.0);
+		header_content_height = header_nb_lines * font_height;
+		offset_to_items_rect = header_content_height + (2 * rect_padding + header_items_gap) * font_height;
+	}
+
+	// Find how many items you can fit in the menu, given the room left by the header
+
+	int available_height = max_menu_height - offset_to_items_rect;
+	int max_fitting_items = min((available_height / font_height - 2 * rect_padding), nb_items);
+	int items_background_height = (max_fitting_items + 2 * rect_padding) * font_height;
+
+	// We can now set the 4 rects used to render the menu
+
+	int menu_width   = content_width + 2 * rect_padding * font_height;
+	int menu_left    = (GameConfig.screen_width - menu_width) / 2;
+
+	int whole_height = offset_to_items_rect + items_background_height;
+
+	SDL_Rect header_background_rect = {
+		.x = menu_left,
+		.y = (GameConfig.screen_height - 2 * screen_gap - whole_height) / 2,
+		.w = menu_width,
+		.h = header_content_height + 2 * rect_padding * font_height
+	};
+	SDL_Rect header_content_rect    = {
+		.x = menu_left + rect_padding * font_height,
+		.y = header_background_rect.y + rect_padding * font_height,
+		.w = content_width,
+		.h = header_content_height
+	};
+	SDL_Rect items_background_rect  = {
+		.x = menu_left,
+		.y = header_background_rect.y + offset_to_items_rect,
+		.w = menu_width,
+		.h = items_background_height
+	};
+	SDL_Rect items_content_rect     = {
+		.x = menu_left + rect_padding * font_height,
+		.y = items_background_rect.y + rect_padding * font_height,
+		.w = content_width,
+		.h = items_background_height - 2 * rect_padding * font_height
+	};
+
+	//----------
+	// 2- Prepare some additional data
+	//----------
+
+	print_menu_text(header_text, items_texts, items_content_rect.y, background_name, menu_font);
+	StoreMenuBackground(0);
 
 	// Some menus are intended to start with the default setting of the
-	// first menu option selected.  However this is not always desired.
+	// first menu item selected. However this is not always desired.
 	// It might happen, that a submenu returns to the upper menu and then
 	// the upper menu should not be reset to the first position selected.
 	// For this case we have some special '-1' entry reserved as the marked
-	// menu entry.  This means, that the menu position from last time will
+	// menu entry. This means, that the menu position from last time will
 	// simply be re-used.
-	//
-	if (FirstItem != (-1))
-		MenuPosition = FirstItem;
-
-	// First thing we do is find out how may options we have
-	// been given for the menu
-	// For each option, we compute and store its pixel-width
-	// Then the longest one is found
-	for (i = 0; TRUE; ++i) {
-		if (MenuTexts[i][0] == '\0')
-			break;
-	}
-	NumberOfOptionsGiven = i;
-	MenuTextWidths = (int *)malloc(sizeof(int) * (NumberOfOptionsGiven + 1));
-
-	LongestOption = 0;
-	for (i = 0; i < NumberOfOptionsGiven; ++i) {
-		MenuTextWidths[i] = text_width(get_current_font(), MenuTexts[i]);
-		if (MenuTextWidths[i] > LongestOption)
-			LongestOption = MenuTextWidths[i];
-	}
-	MenuTextWidths[NumberOfOptionsGiven] = 0;
-
-	// Clamp the longest option to the available width on the screen
-	// (50 pixels around the menu's background, and 1.5 fontheigth around the text)
-	LongestOption = min(GameConfig.screen_width - 100 - 3 * h, LongestOption);
-
-	// Find how many options you can fit in the menu
-	int max_options = (GameConfig.screen_height - 100)/h;
-
-	// In those cases where we don't reset the menu position upon 
-	// initalization of the menu, we must check for menu positions
+	// In those cases where we don't reset the menu position upon
+	// initialization of the menu, we must check for menu positions
 	// outside the bounds of the current menu.
-	//
-	if (MenuPosition > NumberOfOptionsGiven) {
-		MenuPosition = 1;
-	} else if (MenuPosition > max_options) {
-		VertScrollOffset = (MenuPosition - 1)/max_options;
-		MenuPosition = MenuPosition % max_options;
+
+	static int selected_item_idx = 1;
+	int vert_scroll_offset = 0;
+
+	if (first_item_idx != -1)
+		selected_item_idx = first_item_idx;
+
+	if (selected_item_idx > nb_items) {
+		selected_item_idx = 1;
+	} else if (selected_item_idx > max_fitting_items) {
+		vert_scroll_offset = (selected_item_idx - 1)/max_fitting_items;
+		selected_item_idx = selected_item_idx % max_fitting_items;
 	}
 
-	first_menu_item_pos_y = (GameConfig.screen_height - min(max_options, NumberOfOptionsGiven) * h) / 2;
+	// Interaction's loop - wait for the user to select an option or quit
+	// the menu
 
-	print_menu_text(InitialText, MenuTexts, first_menu_item_pos_y, background_name, MenuFont);
+	float auto_scroll_start = 0.0f;
+	int auto_scroll_run = TRUE;
+	int ret = -1;
 
-	StoreMenuBackground(0);
-
-	BackgroundRect.x = (GameConfig.screen_width - LongestOption - 3 * h) / 2;
-	BackgroundRect.y = first_menu_item_pos_y - 50;
-	BackgroundRect.w = LongestOption + 3 * h;
-	BackgroundRect.h = (h * min(max_options, NumberOfOptionsGiven)) + 100;
-
-	while (1) {
+	for (;;) {
 		save_mouse_state();
 
-		// We write out the normal text of the menu, either by doing it once more
+		// Display the background of the menu, either by doing it once more
 		// in the open_gl case or by restoring what we have saved earlier, in the 
 		// SDL output case.
-		//
+
 		RestoreMenuBackground(0);
 
 		// Maybe we should display some thumbnails with the saved games entries?
-		// But this will only apply for the load_hero and the delete_hero menus...
-		//
-		if (((!strcmp(InitialText, LOAD_EXISTING_HERO_STRING)) ||
-		     (!strcmp(InitialText, DELETE_EXISTING_HERO_STRING))) &&
-		    (MenuPosition + VertScrollOffset < NumberOfOptionsGiven) &&
-		    strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], _("[down]")) &&
-		    strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], _("[up]")) &&
-		    strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], " ")) {
-			// We load the thumbnail, or at least we try to do it...
-			//
-			load_and_show_thumbnail(MenuTexts[MenuPosition - 1 + VertScrollOffset]);
-			load_and_show_stats(MenuTexts[MenuPosition - 1 + VertScrollOffset]);
+		// But this will only apply for the load_hero and the delete_hero menus,
+		// and only if a saved game option is currently highlighted
+
+		if (((!strcmp(header_text, LOAD_EXISTING_HERO_STRING)) ||
+		     (!strcmp(header_text, DELETE_EXISTING_HERO_STRING))) &&
+		    (selected_item_idx + vert_scroll_offset < nb_items) &&
+		    strcmp(items_texts[selected_item_idx - 1 + vert_scroll_offset], _("[down]")) &&
+		    strcmp(items_texts[selected_item_idx - 1 + vert_scroll_offset], _("[up]")) &&
+		    strcmp(items_texts[selected_item_idx - 1 + vert_scroll_offset], " ")) {
+			load_and_show_thumbnail(items_texts[selected_item_idx - 1 + vert_scroll_offset]);
+			load_and_show_stats(items_texts[selected_item_idx - 1 + vert_scroll_offset]);
 		}
-		// Draw the menu's  background
-		//
-		draw_shadowing_rectangle(BackgroundRect);
 
-		// Display each option
-		//
-		for (i = 0; TRUE; i++) {
-			if (i >= min(max_options, NumberOfOptionsGiven))
-				break;
-			int i_abs = i + VertScrollOffset;
-			char *str = NULL;
-			int width = 0;
+		// Display the header text and the menu items
 
-			if (MenuTextWidths[i_abs] == 0)
+		if (strlen(header_text) > 0) {
+			draw_shadowing_rectangle(header_background_rect);
+			display_text(header_text, header_content_rect.x, header_content_rect.y, &header_content_rect, 1.0);
+		}
+
+		draw_shadowing_rectangle(items_background_rect);
+
+		for (int i = 0; i < max_fitting_items; i++) {
+			int item_idx = i + vert_scroll_offset;
+
+			if (items_texts_widths[item_idx] == 0)
 				break;
 
 			// Don't select empty menu entries
-			if (strcmp(MenuTexts[i_abs], " ") == 0)
+			if (strcmp(items_texts[item_idx], " ") == 0)
 				continue;
 
 			// Define the actual text to display
 			// If the text is too long, handle autoscroll and clip it
+			char *str = strdup(items_texts[item_idx] + (i == selected_item_idx - 1 ? (int)auto_scroll_start : 0));
 
-			str = strdup(MenuTexts[i_abs] + (i == MenuPosition - 1 ? (int)auto_scroll_start : 0));
-			width = min(MenuTextWidths[i_abs], LongestOption);
-
-			if (CutDownStringToMaximalSize(str, LongestOption) == FALSE) {
+			if (!CutDownStringToMaximalSize(str, items_content_rect.w)) {
 				// if cutting was not needed, we are at the end of the text,
 				// so stop autoscroll
-				if (i == MenuPosition - 1) {
+				if (i == selected_item_idx - 1) {
 					auto_scroll_run = FALSE;
 					auto_scroll_start = 0.0f;
 				}
 			}
 
-			// Depending on what highlight method has been used, we so some highlighting
-			// of the currently selected menu options location on the screen...
-			//
-			if (i == MenuPosition - 1) {
-				HighlightRect.x = (GameConfig.screen_width - width) / 2 - h;
-				HighlightRect.y = first_menu_item_pos_y + i * h;
-				HighlightRect.w = width + 2 * h;
-				HighlightRect.h = h;
-				draw_highlight_rectangle(HighlightRect);
+			// Highlighting of the currently selected menu item
+			if (i == selected_item_idx - 1) {
+				SDL_Rect highlight_rect = { .x = items_background_rect.x + (rect_padding * font_height) / 2,
+				                            .y = items_content_rect.y + (i * font_height),
+				                            .w = items_background_rect.w - rect_padding * font_height,
+				                            .h = font_height };
+				draw_highlight_rectangle(highlight_rect);
 
 				if (auto_scroll_run == TRUE) {
 					auto_scroll_start += AUTO_SCROLL_RATE;
 				}
 			}
+
 			// Draw the option's text
-			put_string_centered(get_current_font(), first_menu_item_pos_y + i * h, str);
+			put_string_centered(get_current_font(), items_content_rect.y + (i * font_height), str);
 
 			free(str);
 		}
-		if (strlen(InitialText) > 0)
-			display_text(InitialText, 50, 50, NULL, 1.0);
 
 		// Now the mouse cursor must be brought to the screen
+
 		blit_mouse_cursor();
 
 		// Image should be ready now, so we can show it...
-		//
+
 		our_SDL_flip_wrapper();
 
-		// Now it's time to handle the possible keyboard and mouse 
-		// input from the user...
-		//
-		int old_menu_position = MenuPosition;
-		int old_scroll_offset = VertScrollOffset;
+		// Now it's time to handle the possible keyboard and mouse input from
+		// the user...
+
+		int old_menu_position = selected_item_idx;
+		int old_scroll_offset = vert_scroll_offset;
+		SDL_Event event;
 
 		if (SDL_PollEvent(&event)) {
 
@@ -339,54 +426,52 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 				case SDLK_RIGHT:
 					// The space key or enter key or arrow keys all indicate, that
 					// the user has made a selection.
-					//
-					//
 					MenuItemSelectedSound();
-					ret = MenuPosition + VertScrollOffset;
+					ret = selected_item_idx + vert_scroll_offset;
 					goto out;
 					break;
 
 				case SDLK_UP:
-					if ((MenuPosition == 1)
-						&& (VertScrollOffset > 0)
-						&& (NumberOfOptionsGiven > max_options)) {
-
-						--VertScrollOffset;
+				{
+					if ((selected_item_idx == 1)
+						&& (vert_scroll_offset > 0)
+						&& (nb_items > max_fitting_items)) {
+						--vert_scroll_offset;
 						continue;
 					}
-					if (MenuPosition > 1)
-						MenuPosition--;
+					if (selected_item_idx > 1)
+						selected_item_idx--;
 
 					// Skip any blank positions when moving with the keyboard
-					if (strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], " ") == 0)
-						MenuPosition = (MenuPosition == 1) ? MenuPosition + 1 : MenuPosition - 1;
+					if (strcmp(items_texts[selected_item_idx - 1 + vert_scroll_offset], " ") == 0)
+						selected_item_idx = (selected_item_idx == 1) ? selected_item_idx + 1 : selected_item_idx - 1;
 
-					HighlightRect.x = UNIVERSAL_COORD_W(320);	// ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
-					HighlightRect.y = first_menu_item_pos_y
-						+ (MenuPosition - 1) * h;
-					SDL_WarpMouse(HighlightRect.x, HighlightRect.y + h/2);
+					Uint16 warp_x = GameConfig.screen_width / 2;
+					Uint16 warp_y = items_content_rect.y + (selected_item_idx - 1) * font_height;
+					SDL_WarpMouse(warp_x, warp_y + font_height/2);
 					break;
+				}
 
 				case SDLK_DOWN:
-					if ((MenuPosition == max_options)
-						&& (VertScrollOffset + max_options < NumberOfOptionsGiven)
-						&& (NumberOfOptionsGiven > max_options)) {
-
-						++VertScrollOffset;
+				{
+					if ((selected_item_idx == max_fitting_items)
+						&& (vert_scroll_offset + max_fitting_items < nb_items)
+						&& (nb_items > max_fitting_items)) {
+						++vert_scroll_offset;
 						continue;
 					}
-					if (MenuPosition < min(max_options, NumberOfOptionsGiven))
-						MenuPosition++;
+					if (selected_item_idx < max_fitting_items)
+						selected_item_idx++;
 
 					// Skip any blank positions when moving with the keyboard
-					if (strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], " ") == 0)
-						MenuPosition = (MenuPosition == min(max_options, NumberOfOptionsGiven)) ? MenuPosition - 1 : MenuPosition + 1;
+					if (strcmp(items_texts[selected_item_idx - 1 + vert_scroll_offset], " ") == 0)
+						selected_item_idx = (selected_item_idx == max_fitting_items) ? selected_item_idx - 1 : selected_item_idx + 1;
 
-					HighlightRect.x = UNIVERSAL_COORD_W(320);	// ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
-					HighlightRect.y = first_menu_item_pos_y
-						+ (MenuPosition - 1) * h;
-					SDL_WarpMouse(HighlightRect.x, HighlightRect.y + h/2);
+					Uint16 warp_x = GameConfig.screen_width / 2;
+					Uint16 warp_y = items_content_rect.y + (selected_item_idx - 1) * font_height;
+					SDL_WarpMouse(warp_x, warp_y + font_height/2);
 					break;
+				}
 
 				default:
 					break;
@@ -400,23 +485,23 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 			// interpret it as a menu choice.  Otherwise we'll just ignore
 			// it. Also, we completely ignore any clicks if the clicked
 			// position is blank.
-			if (MouseCursorIsOverMenuItem(first_menu_item_pos_y, h) == MenuPosition &&
-				strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], " ") != 0) {
+			if (MouseCursorIsOverMenuItem(items_content_rect.y, font_height) == selected_item_idx &&
+				strcmp(items_texts[selected_item_idx - 1 + vert_scroll_offset], " ") != 0) {
 
 				MenuItemSelectedSound();
-				ret = MenuPosition + VertScrollOffset;
+				ret = selected_item_idx + vert_scroll_offset;
 				goto out;
 			}
 		}
 
-		MenuPosition = MouseCursorIsOverMenuItem(first_menu_item_pos_y, h);
-		if (MenuPosition < 1)
-			MenuPosition = 1;
-		if (MenuPosition > min(max_options, NumberOfOptionsGiven))
-			MenuPosition = min(max_options, NumberOfOptionsGiven);
+		selected_item_idx = MouseCursorIsOverMenuItem(items_content_rect.y, font_height);
+		if (selected_item_idx < 1)
+			selected_item_idx = 1;
+		if (selected_item_idx > min(max_fitting_items, nb_items))
+			selected_item_idx = min(max_fitting_items, nb_items);
 
 		// If the selected option has changed, halt eventual current autoscrolling
-		if (MenuPosition != old_menu_position || VertScrollOffset != old_scroll_offset) {
+		if (selected_item_idx != old_menu_position || vert_scroll_offset != old_scroll_offset) {
 			MoveMenuPositionSound();
 			auto_scroll_run = TRUE;
 			auto_scroll_start = 0.0f;
@@ -428,7 +513,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 	}
 
  out:
-	free(MenuTextWidths);
+	free(items_texts_widths);
 	while (MouseLeftPressed())	//eat the click that may have happened
 		SDL_Delay(1);
 	input_handle();
@@ -741,9 +826,9 @@ static void RunSubMenu(int startup, int menu_id)
 		menus[menu_id].FillText(texts);
 
 		if (startup)
-			pos = DoMenuSelection("", texts, -1, "title.jpg", Menu_Font);
+			pos = do_menu_selection("", (char**)texts, -1, "title.jpg", Menu_Font);
 		else
-			pos = DoMenuSelection("", texts, pos, "--GAME_BACKGROUND--", Menu_Font);
+			pos = do_menu_selection("", (char**)texts, pos, "--GAME_BACKGROUND--", Menu_Font);
 
 		int ret = menus[menu_id].HandleSelection(pos);
 
@@ -1657,7 +1742,7 @@ static int do_savegame_selection_and_act(int action)
 
 			// Note: DoMenuSelection() returned value is the menu index + 1,
 			// or -1 if the menu was escaped
-			int MenuPosition = DoMenuSelection(menu_title, MenuTexts, 1, "title.jpg", NULL) - 1;
+			int MenuPosition = do_menu_selection(menu_title, (char **)MenuTexts, 1, "title.jpg", NULL) - 1;
 			if (MenuPosition == -2 || MenuPosition == back_position) {
 				for (int i = 0; i < savegames_count; i++)
 					free(eps[i]);
@@ -1687,7 +1772,7 @@ static int do_savegame_selection_and_act(int action)
 		MenuTexts[0] = _("Back");
 		MenuTexts[1] = "";
 
-		DoMenuSelection(_("\n\nNo saved games found!"), MenuTexts, 1, "title.jpg", NULL);
+		do_menu_selection(_("No saved games found!"), (char **)MenuTexts, 1, "title.jpg", NULL);
 
 		return FALSE;
 	}
@@ -1713,7 +1798,7 @@ do_action:
 		MenuTexts[2] = "";
 		char SafetyText[500];
 		sprintf(SafetyText, _("Really delete hero '%s'?"), Me.character_name);
-		int FinalDecision = DoMenuSelection(SafetyText, MenuTexts, 1, "title.jpg", NULL);
+		int FinalDecision = do_menu_selection(SafetyText, (char **)MenuTexts, 1, "title.jpg", NULL);
 
 		if (FinalDecision == 1)
 			delete_game();
@@ -1773,7 +1858,7 @@ int Single_Player_Menu(void)
 	while (!can_continue) {
 
 		if (!skip_initial_menus)
-			MenuPosition = DoMenuSelection("", MenuTexts, 1, "title.jpg", Menu_Font);
+			MenuPosition = do_menu_selection("", (char **)MenuTexts, 1, "title.jpg", Menu_Font);
 		else
 			MenuPosition = NEW_HERO_POSITION;
 

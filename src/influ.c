@@ -1018,7 +1018,7 @@ void do_death_menu()
 		menu_texts[i++] = _("Exit FreedroidRPG");
 		menu_texts[i++] = "";
 
-		int menu_position = DoMenuSelection("", menu_texts, 1, "--GAME_BACKGROUND--", Menu_Font);
+		int menu_position = do_menu_selection("", (char**)menu_texts, 1, "--GAME_BACKGROUND--", Menu_Font);
 
 		switch (menu_position) {
 		case LOAD_LATEST_POSITION:

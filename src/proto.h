@@ -582,7 +582,7 @@ void input_set_keybind(char *keybind, SDLKey key, SDLMod mod);
 // menu.c 
 void StoreMenuBackground(int backup_slot);
 void RestoreMenuBackground(int backup_slot);
-int DoMenuSelection(char *InitialText, char *MenuTexts[], int FirstItem, const char *background_name, void *MenuFont);
+int do_menu_selection(char *, char **, int, const char *, struct font *);
 void StartupMenu(void);
 void InitiateMenu(const char *background_name);
 void Cheatmenu(void);
