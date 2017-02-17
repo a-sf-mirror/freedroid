@@ -78,45 +78,6 @@ static int MouseCursorIsOverMenuItem(int first_menu_item_pos_y, int h)
 };				// void MouseCursorIsOverMenuItem( first_menu_item_pos_y )
 
 /**
- *
- *
- */
-static void print_menu_text(char *initial_text, char *menu_texts[], int first_menu_item_pos_y, const char *background_name, void *menu_font)
-{
-	InitiateMenu(background_name);
-
-	// Maybe if this is the very first startup menu, we should also print
-	// out some status variables like whether using OpenGL or not DIRECTLY
-	// ON THE MENU SCREEN...
-	//
-	if (!strcmp(menu_texts[0], SINGLE_PLAYER_STRING)) {
-		char open_gl_string[2000];
-		put_string_right(FPS_Display_Font, GameConfig.screen_height - 0.7 * get_font_height(get_current_font()), freedroid_version);
-		// printf ("\n%s %s  \n", PACKAGE, VERSION);
-#ifdef HAVE_LIBGL
-		sprintf(open_gl_string, _("OpenGL support compiled: YES"));
-#else
-		sprintf(open_gl_string, _("OpenGL support compiled: NO"));
-#endif
-		put_string_left(FPS_Display_Font, GameConfig.screen_height - 2.4 * get_font_height(get_current_font()), open_gl_string);
-		sprintf(open_gl_string, _("OpenGL output active: "));
-		if (use_open_gl)
-			sprintf(open_gl_string, _("OpenGL output active: YES"));
-		else
-			sprintf(open_gl_string, _("OpenGL output active: NO"));
-		put_string_left(FPS_Display_Font, GameConfig.screen_height - 1.4 * get_font_height(get_current_font()), open_gl_string);
-	}
-	// Now that the possible font-changing small info printing is
-	// done, we can finally set the right font for the menu itself.
-	//
-	if (menu_font == NULL)
-		set_current_font(Menu_Font);
-	else
-		set_current_font((struct font *) menu_font);
-
-};				// void print_menu_text ( ... )
-
-/**
  * This function performs a menu for the player to select from, using the
  * keyboard only, currently, sorry.
  *
@@ -152,7 +113,9 @@ int do_menu_selection(char *header_text, char **items_texts, int first_item_idx,
 
 	// We set the given font, if appropriate, and get the font height...
 
-	if (menu_font != NULL)
+	if (menu_font == NULL)
+		set_current_font(Menu_Font);
+	else
 		set_current_font(menu_font);
 	int font_height = get_font_height(get_current_font());
 
@@ -264,10 +227,37 @@ int do_menu_selection(char *header_text, char **items_texts, int first_item_idx,
 	};
 
 	//----------
-	// 2- Prepare some additional data
+	// 2- Prepare a screen background, which will be reused during the
+	//    interaction loop
 	//----------
 
-	print_menu_text(header_text, items_texts, items_content_rect.y, background_name, menu_font);
+	struct font* store_font = get_current_font();
+	InitiateMenu(background_name);
+
+	if (!strcmp(items_texts[0], SINGLE_PLAYER_STRING)) {
+		// If this is the very first startup menu, we should also print out some
+		// status variables like whether using OpenGL or not...
+
+		set_current_font(FPS_Display_Font);
+		int line_height = get_font_height(get_current_font());
+
+		put_string_right(FPS_Display_Font, GameConfig.screen_height - 0.7 * line_height, freedroid_version);
+
+#ifdef HAVE_LIBGL
+		char *open_gl_string = _("OpenGL support compiled: YES");
+#else
+		char *open_gl_string = _("OpenGL support compiled: NO");
+#endif
+		put_string_left(FPS_Display_Font, GameConfig.screen_height - 2.4 * line_height, open_gl_string);
+
+		if (use_open_gl)
+			open_gl_string = _("OpenGL output active: YES");
+		else
+			open_gl_string = _("OpenGL output active: NO");
+		put_string_left(FPS_Display_Font, GameConfig.screen_height - 1.4 * line_height, open_gl_string);
+	}
+
+	set_current_font(store_font);
 	StoreMenuBackground(0);
 
 	// Some menus are intended to start with the default setting of the
