@@ -942,5 +942,6 @@ struct game_act *game_act_get_by_name(char *);
 struct game_act *game_act_get_by_id(char *);
 void game_act_set_current(struct game_act *);
 struct game_act *game_act_get_current(void);
+void game_act_free();
 
 #endif

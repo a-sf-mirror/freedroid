@@ -1492,6 +1492,7 @@ static void free_memory_before_exit(void)
 	widget_free_image_resources();
 
 	// other stuff
+	game_act_free();
 	free_error_msg_store();
 	gameconfig_clean();
 }
