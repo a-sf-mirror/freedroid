@@ -862,7 +862,7 @@ void choose_game_act()
 
 	game_status = INSIDE_MENU;
 
-	char *menu_title = _("Choose a game act\nWarning: All changes will be lost if they were not saved");
+	char *menu_title = _("Choose a game act\n[r]Warning: Unsaved changes will be lost[n]");
 	struct game_act *new_act = NULL;
 
 	for (;;) {
