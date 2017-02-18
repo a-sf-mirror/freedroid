@@ -196,3 +196,34 @@ int filter_0_16_1_add_game_config(struct savegame_data *savegame, struct auto_st
 
 	return FILTER_APPLIED;
 }
+
+// In 1601:5, the name of the played game act is stored in the savegame.
+// But a name can possibly be changed. So an identifier was introduced, for
+// future proofing.
+// This filter replaces the game act's name by its identifier.
+
+int filter_0_16_1_use_game_act_id(struct savegame_data *savegame, struct auto_string *report)
+{
+	char *ptr = strstr(savegame->sav_buffer, "--]]\n\n"); // skip the header
+	ptr += strlen("--]]\n\n");
+
+	// Only 'Act 1' is known for 1601:5 savegames
+
+	const char *searched_config = "game_config{\nplayed_game_act = [=[Act 1]=],";
+	const char *new_config      = "game_config{\nplayed_game_act = [=[act1]=], ";
+
+	if (strncmp(ptr, searched_config, strlen(searched_config))) {
+		autostr_append(report,
+		               _("Error during savegame filtering (%s:%s): game_config "
+		                 "table was not found where or as it was expected.\n"
+		                 "The savegame seems to be corrupted."),
+		               savegame->running_converter->id, __FUNCTION__);
+		return FILTER_ABORT;
+	}
+
+	// Replace the old config by the new one
+
+	memcpy(ptr, new_config, strlen(new_config));
+
+	return FILTER_APPLIED;
+}

@@ -938,7 +938,8 @@ void put_string_right(struct font *, int, const char *);
 // game_act.c
 int game_act_validate(struct game_act *);
 struct game_act *game_act_get_starting(void);
-struct game_act *game_act_get_by_name(char *act_name);
+struct game_act *game_act_get_by_name(char *);
+struct game_act *game_act_get_by_id(char *);
 void game_act_set_current(struct game_act *);
 struct game_act *game_act_get_current(void);
 

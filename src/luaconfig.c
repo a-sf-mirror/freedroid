@@ -1372,6 +1372,7 @@ static int get_one_game_act(lua_State *L, void *data)
 	struct game_act *act = (struct game_act *)data;
 
 	struct data_spec data_specs[] = {
+		{ "id",              "",      STRING_TYPE, &act->id     },
 		{ "name",            "",      STRING_TYPE, &act->name   },
 		{ "subdir",          "",      STRING_TYPE, &act->subdir },
 		{ "is_starting_act", "false", BOOL_TYPE, &act->starting_act },
@@ -1385,7 +1386,8 @@ static int get_one_game_act(lua_State *L, void *data)
 	if (!exists) {
 		error_message(__FUNCTION__,
 		              "Can not find the directory defined for \"%s\": %s. Remove it from the list of the available acts.",
-		              PLEASE_INFORM, act->name, act->subdir);
+		              PLEASE_INFORM, act->id, act->subdir);
+		free(act->id);
 		free(act->name);
 		free(act->subdir);
 		return FALSE;

@@ -111,7 +111,7 @@ struct game_act *game_act_get_starting()
 /**
  * Return a game act given its name
  *
- * @param The name of the requested game act
+ * @param name The name of the requested game act
  *
  * @return Pointer to a game_act struct, or NULL if not found
  */
@@ -123,6 +123,26 @@ struct game_act *game_act_get_by_name(char *act_name)
 	for (int i = 0; i < game_acts.size; i++) {
 		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
 		if (!strcmp(act->name, act_name))
+			return act;
+	}
+	return NULL;
+}
+
+/**
+ * Return a game act given its identifier
+ *
+ * @param id The idientifer of the requested game act
+ *
+ * @return Pointer to a game_act struct, or NULL if not found
+ */
+struct game_act *game_act_get_by_id(char *act_id)
+{
+	if (!act_id || !strlen(act_id))
+		return NULL;
+
+	for (int i = 0; i < game_acts.size; i++) {
+		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
+		if (!strcmp(act->id, act_id))
 			return act;
 	}
 	return NULL;

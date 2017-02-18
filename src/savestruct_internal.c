@@ -481,7 +481,7 @@ void write_game_config(struct auto_string *strout)
 	struct game_act *current_act = game_act_get_current();
 	if (current_act) {
 		autostr_append(strout, "played_game_act = ");
-		write_string(strout, &current_act->name);
+		write_string(strout, &current_act->id);
 		autostr_append(strout, ",\n");
 	}
 	autostr_append(strout, "}");
@@ -499,11 +499,11 @@ void read_game_config(lua_State *L, int index)
 	struct game_act *act = NULL;
 
 	if (lua_getfield_or_warn(L, index, "played_game_act")) {
-		char *act_name = NULL;
-		read_string(L, -1, &act_name);
+		char *act_id = NULL;
+		read_string(L, -1, &act_id);
 		lua_pop(L, 1);
-		act = game_act_get_by_name(act_name);
-		free(act_name);
+		act = game_act_get_by_id(act_id);
+		free(act_id);
 	}
 
 	if (!act) {

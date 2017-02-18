@@ -21,7 +21,7 @@ AC_CONFIG_MACRO_DIR([m4])
 
 dnl See src/savegame/convert.c to know how to define those values
 AC_DEFINE([SAVEGAME_VERSION], ["001601"], [Savegame version])
-AC_DEFINE([SAVEGAME_REVISION], ["05"], [Savegame revision])
+AC_DEFINE([SAVEGAME_REVISION], ["06"], [Savegame revision])
 
 dnl Redefine some macros, to follow silent mode
 
