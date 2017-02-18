@@ -62,6 +62,14 @@ struct dynarray *dynarray_alloc(int membernum, size_t membersize)
 	return d;
 }
 
+void dynarray_cpy(struct dynarray *to, struct dynarray *from, size_t membersize)
+{
+	to->arr = MyMalloc(from->capacity * membersize);
+	memcpy(to->arr, from->arr, from->capacity * membersize);
+	to->capacity = from->capacity;
+	to->size = from->size;
+}
+
 /**
  * \brief Frees the contents of the dynamic array and sets the size to zero.
  *
