@@ -166,6 +166,7 @@ int remove_element_from_selection(void *data)
 			// We must compare the coordinates of the two waypoints
 			if (((waypoint *)e->data)->x == ((waypoint *)data)->x &&
 				((waypoint *)e->data)->y == ((waypoint *)data)->y) {
+				dynarray_free(&((struct waypoint *)(e->data))->connections);
 				free(e->data);
 				e->data = NULL;
 				list_del(&e->node);
@@ -314,18 +315,44 @@ static void __clear_selected_list(struct list_head *lst, int nbelem, int is_clip
 	list_for_each_entry_safe(e, ne, lst, node) {
 		if (nbelem-- == 0)
 			return;
-		if (e->type == OBJECT_FLOOR || e->type == OBJECT_WAYPOINT || e->type == OBJECT_MAP_LABEL) {
-			/* Unselecting floor tiles, waypoints or map labels requires freeing the duplicated data */
-			if (e->type == OBJECT_FLOOR && is_clipboard) {
-				/* Clearing the clipboard requires freeing the wrapped floor tiles */
-				struct lvledit_map_tile *t = e->data;
+
+		switch (e->type) {
+		case OBJECT_WAYPOINT:
+		{
+			struct waypoint *w = (struct waypoint *)(e->data);
+			dynarray_free(&w->connections);
+			free(e->data);
+			break;
+		}
+		case OBJECT_OBSTACLE:
+		{
+			if (is_clipboard) {
+				free(e->data);
+			}
+			break;
+		}
+		case OBJECT_FLOOR:
+		{
+			if (is_clipboard) {
+				struct lvledit_map_tile *t = (struct lvledit_map_tile *)(e->data);
 				free(t->tile);
-			} else if (e->type == OBJECT_MAP_LABEL && is_clipboard) {
-				struct map_label *m = e->data;
+			}
+			free(e->data);
+			break;
+		}
+		case OBJECT_MAP_LABEL:
+		{
+			if (is_clipboard) {
+				struct map_label *m = (struct map_label *)(e->data);
 				free(m->label_name);
 			}
 			free(e->data);
+			break;
 		}
+		default:
+			break;
+		}
+
 		list_del(&e->node);
 		free(e);
 	}
@@ -366,6 +393,7 @@ static void select_waypoint_on_tile(int x, int y)
 			if (!element_in_selection(&wpts[i])) {
 				waypoint *w = MyMalloc(sizeof(waypoint));
 				memcpy(w, &wpts[i], sizeof(waypoint));
+				dynarray_cpy(&w->connections, &wpts[i].connections, sizeof(int));
 
 				add_object_to_list(&selected_elements, w, OBJECT_WAYPOINT);
 				state.rect_nbelem_selected++;
@@ -1007,7 +1035,7 @@ void level_editor_copy_selection()
 		case OBJECT_WAYPOINT:
 			w = MyMalloc(sizeof(waypoint));
 			memcpy(w, e->data, sizeof(waypoint));
-
+			dynarray_cpy(&w->connections, &((struct waypoint *)(e->data))->connections, sizeof(int));
 			add_object_to_list(&clipboard_elements, w, OBJECT_WAYPOINT);
 			break;
 		case OBJECT_MAP_LABEL:
