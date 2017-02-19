@@ -1,6 +1,5 @@
 --[[
-
-  Copyright (c) 2017 Samuel Degrande
+  Copyright (c) 2003 Johannes Prix
 
   This file is part of Freedroid
 
@@ -15,17 +14,13 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with Freedroid; see the file COPYING. If not, write to the
-  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+  along with Freedroid; see the file COPYING. If not, write to the 
+  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
   MA  02111-1307  USA
-
 ]]--
 
-game_acts{
-	-- id: Unique identifier
-	-- name: Act name
-	-- sudbir: Subdir name in MAP_DIR (data/storyline)
-	-- is_starting_act: True if this act is the starting one
-	{ id = "act1", name = "Act 1", subdir = "act1", is_starting_act = true  },
-	{ id = "act2", name = "Act 2", subdir = "act2", is_starting_act = false },
+-- Feel free to make any modifications you like.  If you set up 
+-- something cool, please send your file in to the Freedroid project.
+
+mission_list {
 }
