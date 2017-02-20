@@ -241,7 +241,8 @@ int do_menu_selection(char *header_text, char **items_texts, int first_item_idx,
 		set_current_font(FPS_Display_Font);
 		int line_height = get_font_height(get_current_font());
 
-		put_string_right(FPS_Display_Font, GameConfig.screen_height - 0.7 * line_height, freedroid_version);
+		// display version string
+		put_string_right(FPS_Display_Font, GameConfig.screen_height - 1.4 * line_height, freedroid_version);
 
 #ifdef HAVE_LIBGL
 		char *open_gl_string = _("OpenGL support compiled: YES");
