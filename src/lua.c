@@ -971,6 +971,13 @@ static int lua_win_game(lua_State *L)
 	return 0;
 }
 
+static int lua_jump_to_game_act(lua_State *L)
+{
+	const char *act_id = luaL_checkstring(L, 1);
+	game_act_set_next(act_id);
+	return 0;
+}
+
 static int lua_play_sound(lua_State *L)
 {
 	const char *filename = luaL_checkstring(L, 1);
@@ -1409,6 +1416,10 @@ luaL_Reg lfuncs[] = {
 
 	{"win_game", lua_win_game},
 	// Finish the game.
+
+	// Record that the current game act is finished and that a new game act
+	// is to be started (will be executed once returned in the main loop)
+	{"jump_to_game_act", lua_jump_to_game_act},
 
 	{"game_time", lua_get_game_time},
 	{"game_date", lua_get_game_date},
