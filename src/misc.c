@@ -1461,14 +1461,13 @@ int save_game_config(void)
 	return 0;
 }
 
-// Free the memory used by the game data (except Tux)
+// Free the memory used by the game data (except Tux and the graphics)
 void free_game_data(void)
 {
 	// free the entities
 	clear_volatile_obstacles();
 	clear_enemies();
 	clear_npcs();
-	free_graphics();
 
 	// free animations lists and visible levels
 	reset_visible_levels();
@@ -1484,6 +1483,7 @@ static void free_memory_before_exit(void)
 {
 	free_game_data();
 	free_tux();
+	free_graphics();
 
 	// free the widgets
 	free_game_ui();
