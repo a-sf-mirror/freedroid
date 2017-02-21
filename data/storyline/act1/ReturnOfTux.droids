@@ -302,10 +302,10 @@ T=571: PosX=36 PosY=24 Faction="redguard" UseDialog="Mike" ShortLabel=_"571 - Ar
 ** Beginning of new Level **
 Level=30
 
-T=598: PosX=5 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Melissa.I" Marker=1030 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=615: PosX=10 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"ILOVEYOU" Marker=1030 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=629: PosX=18 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Fail-safe" Marker=1030 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=999: PosX=10 PosY=2 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"CIH.1103" Marker=1030 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=598: PosX=5 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Melissa.I" Marker=1030 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0 UseSensor="infrared"
+T=615: PosX=10 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"ILOVEYOU" Marker=1030 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0 UseSensor="radar"
+T=629: PosX=18 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Fail-safe" Marker=1030 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0 UseSensor="infrared"
+T=999: PosX=10 PosY=2 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"CIH.1103" Marker=1030 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0 UseSensor="radar"
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
