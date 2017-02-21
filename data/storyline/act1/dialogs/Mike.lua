@@ -258,7 +258,7 @@ return {
 			Npc:says(_"The [b]571[/b] is the replacement of the 516, and can be defined as a simple, jack-of-all-trades standard drone. According to data logs, they were in nearly every ship built before the Great Assault.")
 			Npc:says(_"There is also the [b]598[/b], a highly sophisticated droid able to control the Robo-Freighter by itself.")
 			Npc:says(_"The [b]543 Harvester[/b] is the exception. It was designed for logging, but right now, instead of harvesting trees, it may be harvesting people. If this is the case, it's advised to run away as fast as you can.")
-			--hide("botnode2")
+			hide("botnode2")
 		end,
 	},
 	{

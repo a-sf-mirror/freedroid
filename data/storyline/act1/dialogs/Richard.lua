@@ -176,7 +176,7 @@ return {
 			Npc:says(_"There is also the [b]629[/b] droid. It's slow, but its guns are powerful enough to such trivia doesn't matter.")
 			Npc:says(_"There is also the [b]603[/b]. A lawnmower. It doesn't cause much damage, but his attack rate is incredibly fast and doesn't need recharging. Thankfully, it's a melee droid.")
 			Npc:says(_"I only program the 614 droids, so my information about the others may be wrong.")
-			hide("node61") show("node60")
+			hide("node61")
 		end,
 	},
 	{

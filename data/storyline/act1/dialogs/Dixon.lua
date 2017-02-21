@@ -67,7 +67,7 @@ return {
 		Npc:says(_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division.")
 		--; TRANSLATORS: %s = Tux:get_player_name()
 		Tux:says(_"I'm %s, a Linarian.", Tux:get_player_name())
-		show("node1", "node4")
+		show("node1", "node4", "node72")
 	end,
 
 	EveryTime = function()
@@ -125,7 +125,7 @@ return {
 			show("node80")
 		end
 
-		show("node72", "node99")
+		show("node99")
 	end,
 
 	{
@@ -647,7 +647,7 @@ return {
 	},
 	{
 		id = "node72",
-		text = _"What bot types do you know?",
+		text = _"What bot types do you know? I mean, you surely know some!",
 		code = function()
 			Npc:says(_"Bots?", "NO_WAIT")
 			Npc:says(_"I know the droids of the 400s class. Those are for maintenance. Oddly, we do not have any in our tunnels.")
@@ -666,7 +666,7 @@ return {
 			Tux:says(_"Laser gun? Why does a maintenance droid have a gun??")
 			Npc:says(_"I don't know. I didn't design these droids.")
 			Npc:says(_"There is also the [b]493[/b], a slave droid. But beware because the arms can do a lot of damage.")
-			hide("node73") --show("node72") -- Don't show node 72 again, wait the user restart the dialog.
+			hide("node73")
 		end,
 	},
 	{
