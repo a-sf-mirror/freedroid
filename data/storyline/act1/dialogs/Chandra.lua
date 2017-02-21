@@ -139,9 +139,9 @@ return {
 			Npc:says(_"The 100s are cleaning bots of old. Therefore, they are quite common. Fortunately for us they aren't as good at killing things as they are at cleaning up the mess afterwards.")
 			Npc:says(_"The 200s are servant bots, designed to come quickly when summoned and be able to lift heavy weights. That makes them more dangerous under most circumstances, so beware of being attacked by more than one at the same time.")
 			Npc:says(_"Right now, an encounter with a 300 type bot equals death, so try to avoid it. They were messenger bots before the Great Assault, which means they have superb visual sensors, and some are very fast.")
-			Npc:says(_"There are many more classes out there. The military used bots, of course, and they were used on ships, but I know nothing about those types.")
-			Chandra_bot_information_nodes = 4
-			hide("node6") show("node11", "node12", "node13", "node18")
+			Npc:says(_"There are many more classes out there. The military used bots, of course, and they were used on ships, but I know almost nothing about those types.")
+			Chandra_bot_information_nodes = 5
+			hide("node6") show("node11", "node12", "node13", "node18", "node19")
 			push_topic("Bot Information")
 		end,
 	},
@@ -296,6 +296,21 @@ return {
 	},
 	{
 		id = "node18",
+		text = _"You mentioned droids from the 300s class had superb visual sensors...",
+		topic = "Bot Information",
+		code = function()
+			Tux:says(_"What exactly are those sensors?")
+			Npc:says(_"A sensor is how a bot perceives the world. It would be wrong to assume that all bots sees the world in exactly the same way.", "NO_WAIT")
+			Npc:says(_"While almost all bots have visual sensors, and some better than others, some more advanced droids have different sensors to avoid being tricked by the enemy.")
+			Npc:says(_"For example, some battle droid might have an [b]X-Ray[/b] sensor to see though the walls, and a command droid might even have an [b]Infrared[/b] sensor to see heatwaves and detect a living being pretending to be dead or invisible.")
+			Npc:says(_"Thankfully only very dangerous bots uses different sensors, so you don't need to worry with them right now. Although I also overheard something interesting once. I'll share this little secret with you...")
+			Npc:says(_"They say that the Red Guard changed some droids sensors in one of the arenas. They can't even go down there right now, is what is said. But you can't trust in all rumors you hear, am I not right?")
+			Chandra_bot_information_nodes = Chandra_bot_information_nodes - 1
+			hide("node18")
+		end,
+	},
+	{
+		id = "node19",
 		text = _"That's all I wanted to know about droids.",
 		topic = "Bot Information",
 		code = function()
