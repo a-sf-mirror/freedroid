@@ -80,8 +80,6 @@ void clear_out_arrays_for_fresh_game(void)
 	ClearAutomapData();
 
 	clear_npcs();
-
-	init_tux();
 }
 
 /** 
@@ -552,7 +550,7 @@ void parse_command_line(int argc, char *const argv[])
  * In contrast to InitFreedroid, this function should be called 
  * whenever or better before any new game is started.
  * -----------------------------------------------------------------*/
-void PrepareStartOfNewCharacter(char *start_label)
+void prepare_start_of_new_game(char *start_label, int new_tux)
 {
 	gps start_pos;
 
@@ -560,8 +558,10 @@ void PrepareStartOfNewCharacter(char *start_label)
 
 	// We make sure we don't have garbage in our arrays from a 
 	// previous game or failed load-game attempt...
-	//
 	clear_out_arrays_for_fresh_game();
+	if (new_tux)
+		init_tux();
+
 	// We do the same as above for lua state
 	reset_lua_state();
 
@@ -621,7 +621,7 @@ void prepare_level_editor(struct game_act *on_act)
 	LoadShip(fp, 0);
 
 	skip_initial_menus = 1;
-	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
+	prepare_start_of_new_game("NewTuxStartGameSquare", TRUE);
 	skip_initial_menus = 0;
 
 	free(Me.character_name);

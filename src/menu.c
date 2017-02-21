@@ -894,7 +894,7 @@ static int Startup_handle(int n)
 		char fpp[PATH_MAX];
 		find_file(fpp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 		LoadShip(fpp, 0);
-		PrepareStartOfNewCharacter("TutorialTuxStart");
+		prepare_start_of_new_game("TutorialTuxStart", TRUE);
 		skip_initial_menus = 0;
 		free(Me.character_name);
 		Me.character_name = strdup("TutorialTux");
@@ -1862,7 +1862,7 @@ int Single_Player_Menu(void)
 				char fp[PATH_MAX];
 				find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 				LoadShip(fp, 0);
-				PrepareStartOfNewCharacter("NewTuxStartGameSquare");
+				prepare_start_of_new_game("NewTuxStartGameSquare", TRUE);
 				free(Me.character_name);
 				Me.character_name = strdup(char_name);
 				can_continue = TRUE;

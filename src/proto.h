@@ -63,7 +63,7 @@ void next_startup_percentage(int Percentage);
 void parse_command_line(int argc, char *const argv[]);
 void ClearAutomapData(void);
 void InitFreedroid(int, char **);
-void PrepareStartOfNewCharacter(char *startpos);
+void prepare_start_of_new_game(char *, int);
 void prepare_level_editor(struct game_act *on_act);
 void ThouArtDefeated(void);
 void ThouHastWon(void);

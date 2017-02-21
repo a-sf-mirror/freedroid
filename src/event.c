@@ -488,7 +488,7 @@ int validate_events()
 		char fpath[PATH_MAX];
 		find_file(fpath, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 		LoadShip(fpath, 0);
-		PrepareStartOfNewCharacter("NewTuxStartGameSquare");
+		prepare_start_of_new_game("NewTuxStartGameSquare", TRUE);
 
 		/* Temporarily disable screen fadings to speed up validation. */
 		GameConfig.do_fadings = FALSE;
