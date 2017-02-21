@@ -114,6 +114,10 @@ void Game()
 
 		check_if_mission_is_complete();
 
+		if (!world_frozen() && game_act_finished()) {
+			game_act_switch_to_next();
+		}
+
 		ComputeFPSForThisFrame();
 	}			// while !GameOver 
 }

@@ -34,6 +34,7 @@
 #include "proto.h"
 
 static struct game_act *current_game_act = NULL;
+static struct game_act *next_game_act = NULL;
 
 /*
  * Replace the keyword "$ACT", if found, in 'unresolved_path' by the content of 'act'
@@ -171,7 +172,6 @@ struct game_act *game_act_get_current()
 	if (!current_game_act) {
 		error_message(__FUNCTION__, "Current game act is not yet set. act_set_current() must be called before. We can not continue...",
 		              PLEASE_INFORM | IS_FATAL);
-
 	}
 	return current_game_act;
 }
@@ -188,4 +188,54 @@ void game_act_free()
 		free(act->subdir);
 	}
 	dynarray_free(&game_acts);
+}
+
+/**
+ * Set the next game act to jump to
+ *
+ * Called by an event or a dialog to store the next game act to run
+ * once the event or the dialog is closed.
+ *
+ * @param act_id The identifier of the next game act
+ */
+void game_act_set_next(const char *act_id)
+{
+	struct game_act *next_act = game_act_get_by_id((char *)act_id);
+	if (!next_act) {
+		error_message(__FUNCTION__, "The requested game act (%s) is unknown. We can not proceed.",
+		              PLEASE_INFORM, (strlen(act_id) != 0) ? act_id : "NULL");
+		return;
+	}
+	next_game_act = next_act;
+}
+
+int game_act_finished()
+{
+	return (next_game_act != NULL);
+}
+
+void game_act_switch_to_next()
+{
+	if (!next_game_act) {
+		error_message(__FUNCTION__, "The next game act to jump to is not defined. We can not proceed.",
+		              PLEASE_INFORM);
+		return;
+	}
+
+	play_title_file(MAP_TITLES_DIR, "EndOfAct.lua");
+
+	game_act_set_current(next_game_act);
+	next_game_act = NULL;
+
+	free_game_data();
+
+	char fp[PATH_MAX];
+	find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
+	LoadShip(fp, 0);
+
+	skip_initial_menus = 1;
+	prepare_start_of_new_game("NewTuxStartGameSquare", FALSE);
+	skip_initial_menus = 0;
+
+	play_title_file(MAP_TITLES_DIR, "StartOfAct.lua");
 }
