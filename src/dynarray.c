@@ -139,6 +139,23 @@ void dynarray_add(struct dynarray *array, void *data, size_t membersize)
 }
 
 /**
+ * \brief Append a dynarray to an other one (using memcpy).
+ *
+ * \param to         Pointer to the dynarray to which to append.
+ * \param from       Pointer to the dynarray to append.
+ * \param membersize Size of the data to copy into the array.
+ */
+void dynarray_append(struct dynarray *to, struct dynarray *from, size_t membersize)
+{
+	int needed_size = to->size + from->size;
+	if (needed_size > to->capacity)
+		dynarray_resize(to, needed_size, membersize);
+
+	memcpy(to->arr + to->size * membersize, from->arr, from->size * membersize);
+	to->size = needed_size;
+}
+
+/**
  * \brief Remove an element from a dynamic array.
  *
  * \details The array is 'compressed' to fill the hole.

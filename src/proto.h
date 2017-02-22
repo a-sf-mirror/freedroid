@@ -807,6 +807,7 @@ void dynarray_cpy(struct dynarray *, struct dynarray *, size_t);
 void dynarray_free(struct dynarray *);
 void dynarray_add(struct dynarray *, void *, size_t);
 void dynarray_del(struct dynarray *, int, size_t);
+void dynarray_append(struct dynarray *, struct dynarray *, size_t);
 void *dynarray_member(struct dynarray *, int, size_t);
 void sparse_dynarray_init(struct sparse_dynarray *, int, size_t);
 struct sparse_dynarray *sparse_dynarray_alloc(int, size_t);
