@@ -296,6 +296,27 @@ Completion LuaCode={
 }
 ** End of this mission target subsection **
 
+** Start of this mission target subsection **
++++
++++ Bring one dilithium crystal to Bob for his 614.
++++
+Mission Name=_"Ticket's price - crystal"
+Completion LuaCode={ 
+	change_obstacle_state("ToTheWorld2PortalGate", "opened")
+	add_xp(1000)
+}
+** End of this mission target subsection **
+
+** Start of this mission target subsection **
++++
++++ Bring 999 Cerebrum some add-ons for his needs.
++++
+Mission Name=_"Bot in need"
+Completion LuaCode={
+	add_xp(500)
+}
+** End of this mission target subsection **
+
 
 *** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***
 

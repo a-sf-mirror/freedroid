@@ -2437,6 +2437,12 @@ Silent=0
 ##############
 ## Level 42 ##
 ##############
+* New event trigger *
+Name=_"To the other continent..."
+Trigger at label="42to74"
+Silent=0
+<LuaCode> teleport("74from42") </LuaCode>
+* End of trigger *
 
 ##############
 ## Level 43 ##
@@ -6693,6 +6699,20 @@ Name=_"Back to mainland"
 Trigger at label="72to16"
 Silent=0
 <LuaCode> teleport("16from72") </LuaCode>
+* End of trigger *
+
+##############
+## Level 73 ##
+##############
+
+##############
+## Level 74 ##
+##############
+* New event trigger *
+Name=_"Let us return!"
+Trigger at label="74to42"
+Silent=0
+<LuaCode> teleport("42from74") </LuaCode>
 * End of trigger *
 
 ** End of Mission Event Section **

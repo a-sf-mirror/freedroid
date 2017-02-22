@@ -94,6 +94,10 @@ return {
 			show("node29")
 		end
 
+		if ((not (Tux_told_Spencer_about_Bob_and_Jim)) and ((Tux:has_met("Bob")) and (knows_spencer_office))) then
+			show("node70")
+		end
+
 		show("node99")
 	end,
 
@@ -683,6 +687,30 @@ return {
 			hide("node65")
 			win_game()
 			end_dialog()
+		end,
+	},
+	{
+		id = "node70",
+		text = _"Are there members of the Red Guard called Bob and Jim?",
+		code = function()
+			Npc:says(_"They are still alive?! They probably need help!")
+			Tux:says(_"Actually it seems that they are in pretty good shape.")
+			Npc:says(_"Hm... I sent them to find a portal. Did they find it?")
+			if (Tux_heard_Bob_and_Jim_story) then
+				Tux:says(_"Yeah!")
+				Npc:says(_"Excellent!")
+			else
+				Tux:says(_"Em... I'm not sure, but inside the room they were guarding I saw something like it.")
+				Npc:says(_"So they found the portal.")
+			end
+			Npc:says(_"How did they survive?")
+			Tux:says(_"Fortunately, the portal was inside a little fortress and they hid there.")
+			Npc:says(_"Good to hear that. Their mission was not only to find the portal, but to stay there and keep guarding it. So they both survived and keep helping us.")
+			Tux:says(_"Helping? What do you mean?")
+			Npc:says(_"They prevent more bots from teleporting to our continent.")
+			-- TODO:	Spencer will later give Tux a quest for bringing them supplies and a radio-device for establishing connection; also he will tell Tux prehistory of portal.
+			Tux_told_Spencer_about_Bob_and_Jim = true
+			hide("node70")
 		end,
 	},
 	{
