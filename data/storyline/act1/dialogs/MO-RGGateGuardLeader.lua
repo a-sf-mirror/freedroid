@@ -31,7 +31,14 @@ return {
 	end,
 
 	EveryTime = function()
-		if (Tux:has_met("MO-RGGateGuardLeader")) then
+		if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			Npc:says_random(_"Congratulations on getting the job done.",
+				_"We should rename this place. You did a fine job.",
+				_"A bot?! Ah, no, it's just you. I will stay here in case something goes wrong.",
+				_"Peace, finally. The perfect time to prepare for the next strike! The world is far from safe!",
+                _"I always carry a gun with me. Who knows, bots may come back!")
+			end_dialog()
+		elseif (Tux:has_met("MO-RGGateGuardLeader")) then
 			if (Tux:done_quest("Opening access to MS Office")) then
 				if (MO_RGGateGuardLeader_informed) then
 					next("node20")

@@ -89,15 +89,26 @@ return {
 			show_if((not Kevin_sigtalk), "node20")
 		end
 
-		if (not Kevins_Lawnmower_tux_login_granted) then
-			if (Kevins_Lawnmower_tux_login) then
-				Npc:says(_"Oh, and did you play around with my lawnmower?")
-				show("node60", "node61")
+		if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			Npc:says(_"Dang, my test subjects just died and I just can't find other droids to replace them...")
+			Npc:says(_"Where did all droids go, after all?!")
+			Npc:says(_"I have no time to talk, I have to find new test subjects.")
+			if (not Kevins_Lawnmower_tux_login_granted) and
+				(Kevins_Lawnmower_tux_login) then
+					next("node61")
 			end
+			end_dialog()
+		end
 
+		if (not Kevins_Lawnmower_tux_login_granted) then
 			if (Kevins_Lawnmower_tux_login_kevin_attempt) then
 				Npc:says(_"Hmm, strange things are happening to my lawnmower.")
 				Npc:says(_"But I don't have the time right now to take a look at it.")
+			end
+
+			if (Kevins_Lawnmower_tux_login) then
+				Npc:says(_"Oh, and did you play around with my lawnmower?")
+				show("node60", "node61")
 			end
 		end
 

@@ -97,7 +97,21 @@ return {
 				Npc:says(_"Well. Congratulations are in order, I suppose.")
 				Tux:says(_"...")
 			end
+
+			if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) and
+			   (not Francis_hf_response) then
+					Francis_hf_response = true
+					Tux:says(_"All droids are dead. Mission complete!")
+					Npc:says(_"Now, that's quite a deed. Congratulations.")
+					Npc:says(_"I can finally sleep with one worry less, I suppose.")
+					Tux:says(_"...")
+					if (Tux:has_quest("Deliverance")) then
+						Tux:says(_"The data cube still worries you, am I right?")
+						Npc:says(_"...Yes.")
+					end
+			end
 		end
+
 		-- in case Francis gets stuck at FrancisSafe:
 		if (InvaderBot_hacked or InvaderBot:is_dead()) and
 		   (Francis_invaderbot_neutralized) and
@@ -366,8 +380,12 @@ return {
 		id = "node99",
 		text = _"Thanks for the help. I'll be going now.",
 		code = function()
+		if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
 			Npc:says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
 			Npc:says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")
+		else
+			Npc:says(_"Safe travels, linarian.")
+		end
 			end_dialog()
 		end,
 	},

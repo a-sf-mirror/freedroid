@@ -30,6 +30,13 @@ return {
 	end,
 
 	EveryTime = function()
+		if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			Npc:says_random(_"Welcome back. Things have been calm since you've uploaded the faulty firmware.",
+				_"And I thought you were going to commit suicide. Hah! Good job. I'll keep guard duty here, in case something happen.",
+				_"Nothing to worry here. All is well when it ends well.",
+				_"Even without the threat of the factory, I was told by Spencer to keep position here. Safety is never enough!")
+			end_dialog()
+		end
 		show("node99")
 	end,
 
