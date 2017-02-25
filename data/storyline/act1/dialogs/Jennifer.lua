@@ -123,7 +123,9 @@ return {
 		code = function()
 			Npc:says(_"Oh yes, it is!", "NO_WAIT")
 			Npc:says(_"Thank you very much!")
-			Tux:end_quest("Jennifer's Toolbox", _"I found the Toolbox and returned it to her") -- we may want to have her repair all of tux' items at some point
+			Tux:end_quest("Jennifer's Toolbox", _"I found the Toolbox and returned it to her") -- we may want to have her repair all of tux' items at some point, but that is nyi, so...
+			Npc:says(_"Please accept this spare part as a token of my appreciation.")
+			Tux:add_item("Anti-grav Pod for Droids") -- this shall do, for now.
 			Tux:del_item("Toolbox", 1)
 			hide("node10")
 		end,
