@@ -94,7 +94,9 @@ return {
 	{
 		id = "node10",
 		text = _"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all the bots around! Didn't Spencer inform you?",
+		echo_text = false,
 		code = function()
+			Tux:says(_"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all the bots around! Didn't Spencer inform you?") -- necessary due usage of next()
 			Npc:says(_"WHAT?! Not an attack?!")
 			Npc:says(_"I hope you are telling the truth. One second...")
 			if (Tux:has_quest("Propagating a faulty firmware update")) then
@@ -119,7 +121,9 @@ return {
 	{
 		id = "node99",
 		text = _"Relax, I'm leaving.",
+		echo_text = false,
 		code = function()
+			Tux:says(_"Relax, I'm leaving.") -- necessary due usage of next()
 			Npc:says(_"You better be. AND DON'T COME BACK!")
 			end_dialog()
 		end,
