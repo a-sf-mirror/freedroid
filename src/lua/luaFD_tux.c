@@ -591,7 +591,7 @@ static int _assign_quest(lua_State * L)
 	const char *quest = luaL_checkstring(L, 2);
 	const char *text = luaL_optstring(L, 3, NULL);
 
-	AssignMission(quest);
+	assign_mission(quest);
 	if (text != NULL)
 		mission_diary_add(quest, text);
 
@@ -614,9 +614,12 @@ static int _has_quest(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	const char *quest = luaL_checkstring(L, 2);
+	const char *quest_name = luaL_checkstring(L, 2);
 
-	lua_pushboolean(L, self->me->AllMissions[GetMissionIndexByName(quest)].MissionWasAssigned);
+	struct mission *quest = (struct mission *)dynarray_member(&(self->me->missions),
+			get_mission_index_by_name(quest_name), sizeof(struct mission));
+
+	lua_pushboolean(L, quest->MissionWasAssigned);
 
 	return 1;
 }
@@ -639,7 +642,7 @@ static int _complete_quest(lua_State * L)
 	const char *quest = luaL_checkstring(L, 2);
 	const char *text = luaL_optstring(L, 3, NULL);
 
-	CompleteMission(quest);
+	complete_mission(quest);
 	if (text != NULL)
 		mission_diary_add(quest, text);
 
@@ -662,9 +665,12 @@ static int _done_quest(lua_State * L)
 {
 	GET_SELF_INSTANCE_OF(struct luaFD_tux, L, "FDtux");
 
-	const char *quest = luaL_checkstring(L, 2);
+	const char *quest_name = luaL_checkstring(L, 2);
 
-	lua_pushboolean(L, self->me->AllMissions[GetMissionIndexByName(quest)].MissionIsComplete);
+	struct mission *quest = (struct mission *)dynarray_member(&(self->me->missions),
+			get_mission_index_by_name(quest_name), sizeof(struct mission));
+
+	lua_pushboolean(L, quest->MissionIsComplete);
 
 	return 1;
 }

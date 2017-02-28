@@ -69,6 +69,7 @@ struct sparse_dynarray {
 typedef struct dynarray item_dynarray;
 typedef struct dynarray string_dynarray;
 typedef struct dynarray upgrade_socket_dynarray;
+typedef struct dynarray mission_dynarray;
 typedef struct sparse_dynarray bullet_sparse_dynarray;
 typedef struct sparse_dynarray melee_shot_sparse_dynarray;
 typedef struct sparse_dynarray blast_sparse_dynarray;
@@ -607,7 +608,7 @@ typedef struct tux {
 
 	unsigned int Gold;
 	string character_name;
-	mission AllMissions[MAX_MISSIONS_IN_GAME];	// What must be done to fulfill this mission?
+	mission_dynarray missions;	// What must be done to fulfill this mission?
 	int marker;		// In case you've taken over a marked droid, this will contain the marker
 	float LastCrysoundTime;
 	float TextVisibleTime;

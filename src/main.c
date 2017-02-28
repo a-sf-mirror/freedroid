@@ -112,7 +112,8 @@ void Game()
 
 		}
 
-		CheckIfMissionIsComplete();
+		check_if_mission_is_complete();
+
 		ComputeFPSForThisFrame();
 	}			// while !GameOver 
 }

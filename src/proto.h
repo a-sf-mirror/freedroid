@@ -353,13 +353,13 @@ int delete_game(void);
 void load_and_show_stats(char *CoreFilename);
 
 // mission.c 
-void CompleteMission(const char *);
-void AssignMission(const char *);
+void complete_mission(const char *);
+void assign_mission(const char *);
 void get_quest_list(char *);
 void clear_tux_mission_info(void);
-void CheckIfMissionIsComplete(void);
+void check_if_mission_is_complete(void);
 void mission_diary_add(const char *, const char *);
-int GetMissionIndexByName(const char *);
+int get_mission_index_by_name(const char *);
 
 // quest_browser_ui.c
 void toggle_quest_browser(void);

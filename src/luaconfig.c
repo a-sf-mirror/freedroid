@@ -1524,6 +1524,45 @@ static int lua_skill_list_ctor(lua_State *L)
 	return 0;
 }
 
+static int get_one_quest(lua_State *L, void *data)
+{
+	struct mission *quest = (struct mission *)data;
+
+	struct data_spec data_specs[] = {
+		{"mission_name",       NULL, STRING_TYPE,  &quest->mission_name        },
+		{"kill_droids_marked", "-1", INT_TYPE,     &quest->KillMarker          },
+		{"must_clear_level",   "-1", INT_TYPE,     &quest->must_clear_level    },
+		{"completion_code",    NULL, STRING_TYPE,  &quest->completion_lua_code },
+		{"assignment_code",    NULL, STRING_TYPE,  &quest->assignment_lua_code },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	fill_structure_from_table(L, data_specs);
+
+	quest->MissionExistsAtAll = TRUE;
+	for (int i = 0; i < MAX_MISSION_DESCRIPTION_TEXTS; i++) {
+		quest->mission_diary_texts[i] = NULL;
+	}
+
+	return TRUE;
+}
+
+static int lua_quest_list_ctor(lua_State *L)
+{
+	struct dynarray quest_specs = { 0 };
+
+	fill_dynarray_from_table(L, &quest_specs, sizeof(struct mission), get_one_quest);
+
+	// When switching to a new game act, the current list of quests, stored in struct tux,
+	// must be kept: the new quest list is append to the current one.
+	if (quest_specs.size != 0)
+		dynarray_append(&Me.missions, &quest_specs, sizeof(struct mission));
+
+	dynarray_free(&quest_specs);
+
+	return 0;
+}
+
 /**
  * Add lua constructors of new data types
  */
@@ -1554,6 +1593,7 @@ void init_luaconfig()
 		{ "game_acts",                     lua_game_acts_ctor                     },
 		{ "skill_list",                    lua_skill_list_ctor                    },
 		{ "droid_list",                    lua_droid_list_ctor                    },
+		{ "mission_list",                  lua_quest_list_ctor                    },
 		{NULL, NULL}
 	};
 

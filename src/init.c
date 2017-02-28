@@ -591,7 +591,7 @@ void PrepareStartOfNewCharacter(char *start_label)
 	// Now we read in the mission targets for this mission
 	// Several different targets may be specified simultaneously
 	//
-	get_quest_list("quests.dat");
+	get_quest_list("quests.lua");
 
 	switch_background_music(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
 

@@ -607,11 +607,12 @@ static void show_top_left_text(void)
 		autostr_append(txt, _("FPS: %d\n"), get_current_fps());
 
 	// Show quest information for current level
-	for (i = 0; i < MAX_MISSIONS_IN_GAME; i++) {
-		if (!Me.AllMissions[i].MissionWasAssigned)
+	for (i = 0; i < Me.missions.size; i++) {
+		struct mission *quest = (struct mission *)dynarray_member(&Me.missions, i, sizeof(struct mission));
+		if (!quest->MissionWasAssigned)
 			continue;
 
-		if (Me.AllMissions[i].must_clear_level == Me.pos.z) {
+		if (quest->must_clear_level == Me.pos.z) {
 			remaining_bots = 0;
 
 			enemy *erot, *nerot;

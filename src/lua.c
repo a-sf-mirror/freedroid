@@ -448,7 +448,7 @@ static int lua_event_assign_mission(lua_State * L)
 	const char *misname = luaL_checkstring(L, 1);
 	const char *diarytext = luaL_optstring(L, 2, NULL);
 
-	AssignMission(misname);
+	assign_mission(misname);
 	if (diarytext != NULL)
 		mission_diary_add(misname, diarytext);
 
@@ -460,7 +460,7 @@ static int lua_event_complete_mission(lua_State * L)
 	const char *misname = luaL_checkstring(L, 1);
 	const char *diarytext = luaL_optstring(L, 2, NULL);
 
-	CompleteMission(misname);
+	complete_mission(misname);
 	if (diarytext != NULL)
 		mission_diary_add(misname, diarytext);
 
@@ -470,8 +470,9 @@ static int lua_event_complete_mission(lua_State * L)
 static int lua_event_is_mission_assigned(lua_State * L)
 {
 	const char *misname = luaL_checkstring(L, 1);
+	struct mission *quest = (struct mission *)dynarray_member(&Me.missions, get_mission_index_by_name(misname), sizeof(struct mission));
 
-	lua_pushboolean(L, Me.AllMissions[GetMissionIndexByName(misname)].MissionWasAssigned);
+	lua_pushboolean(L, quest->MissionWasAssigned);
 
 	return 1;
 }
@@ -479,8 +480,9 @@ static int lua_event_is_mission_assigned(lua_State * L)
 static int lua_event_is_mission_complete(lua_State * L)
 {
 	const char *misname = luaL_checkstring(L, 1);
+	struct mission *quest = (struct mission *)dynarray_member(&Me.missions, get_mission_index_by_name(misname), sizeof(struct mission));
 
-	lua_pushboolean(L, Me.AllMissions[GetMissionIndexByName(misname)].MissionIsComplete);
+	lua_pushboolean(L, quest->MissionIsComplete);
 
 	return 1;
 }

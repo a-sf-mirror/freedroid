@@ -59,8 +59,8 @@ static int current_quest_browser_mode = QUEST_BROWSER_SHOW_OPEN_MISSIONS;
 static void quest_browser_append_mission_info(const char *mis_name, int full_description)
 {
 	int i;
-	int mis_num = GetMissionIndexByName(mis_name);
-	struct mission *mis = &Me.AllMissions[mis_num];
+	int mis_num = get_mission_index_by_name(mis_name);
+	struct mission *mis = (struct mission *)dynarray_member(&Me.missions, mis_num, sizeof(struct mission));
 
 	autostr_append(quest_browser_text, _("[n]Quest [r]%s\n[n]"), D_(mis->mission_name));
 	
@@ -329,19 +329,20 @@ static void print_statistics(void)
  */
 static void quest_browser_display_mission_list(int list_type)
 {
-	int mis_num;
 	int something_was_displayed = FALSE;
-	int quest_browser_mission_lines_needed[MAX_MISSIONS_IN_GAME];
+	int *quest_browser_mission_lines_needed = (int *)MyMalloc(Me.missions.size * sizeof(int));
 
 	autostr_printf(quest_browser_text, "");
 
-	for (mis_num = 0; mis_num < MAX_MISSIONS_IN_GAME; mis_num++) {
+	for (int mis_num = 0; mis_num < Me.missions.size; mis_num++) {
+		struct mission *quest = (struct mission *)dynarray_member(&Me.missions, mis_num, sizeof(struct mission));
+
 		quest_browser_mission_lines_needed[mis_num] = -1;
 
-		if (Me.AllMissions[mis_num].MissionExistsAtAll != TRUE)
+		if (quest->MissionExistsAtAll != TRUE)
 			continue;
 
-		if (Me.AllMissions[mis_num].MissionWasAssigned != TRUE)
+		if (quest->MissionWasAssigned != TRUE)
 			continue;
 
 		// We record the number of lines needed so far, so that we may later
@@ -351,13 +352,11 @@ static void quest_browser_display_mission_list(int list_type)
 		quest_browser_mission_lines_needed[mis_num] =
 			get_lines_needed(quest_browser_text->value, mission_description_rect, 1.0);
 
-		if ((list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete == FALSE)) {
-			quest_browser_append_mission_info(Me.AllMissions[mis_num].mission_name,
-							  Me.AllMissions[mis_num].expanded_display_for_this_mission);
+		if ((list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS) && (quest->MissionIsComplete == FALSE)) {
+			quest_browser_append_mission_info(quest->mission_name, quest->expanded_display_for_this_mission);
 			something_was_displayed = TRUE;
-		} else if ((list_type == QUEST_BROWSER_SHOW_DONE_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete != FALSE)) {
-			quest_browser_append_mission_info(Me.AllMissions[mis_num].mission_name,
-							  Me.AllMissions[mis_num].expanded_display_for_this_mission);
+		} else if ((list_type == QUEST_BROWSER_SHOW_DONE_MISSIONS) && (quest->MissionIsComplete != FALSE)) {
+			quest_browser_append_mission_info(quest->mission_name, quest->expanded_display_for_this_mission);
 			something_was_displayed = TRUE;
 		} else {
 			quest_browser_mission_lines_needed[mis_num] = -1;
@@ -373,14 +372,17 @@ static void quest_browser_display_mission_list(int list_type)
 		// Now it's time to display some short/long symbols in front
 		// of each of the missions.
 		//
-		for (mis_num = 0; mis_num < MAX_MISSIONS_IN_GAME; mis_num++) {
+		for (int mis_num = 0; mis_num < Me.missions.size; mis_num++) {
+			struct mission *quest = (struct mission *)dynarray_member(&Me.missions, mis_num, sizeof(struct mission));
+
 			SDL_Rect *rect_short = &(AllMousePressButtons[QUEST_BROWSER_ITEM_SHORT_BUTTON].button_rect);
 			SDL_Rect *rect_long = &(AllMousePressButtons[QUEST_BROWSER_ITEM_LONG_BUTTON].button_rect);
-			if (!Me.AllMissions[mis_num].MissionWasAssigned)
+
+			if (!quest->MissionWasAssigned)
 				continue;
-			if ((list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete == TRUE))
+			if ((list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS) && (quest->MissionIsComplete == TRUE))
 				continue;
-			if ((list_type == QUEST_BROWSER_SHOW_DONE_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete == FALSE))
+			if ((list_type == QUEST_BROWSER_SHOW_DONE_MISSIONS) && (quest->MissionIsComplete == FALSE))
 				continue;
 			// At first we bring the short/long buttons into position.
 			// This position might be well off the screen.  That's no
@@ -405,15 +407,14 @@ static void quest_browser_display_mission_list(int list_type)
 			if (rect_short->y >= mission_description_rect.y + mission_description_rect.h - get_font_height(get_current_font()) / 2)
 				continue;
 
-			if (Me.AllMissions[mis_num].expanded_display_for_this_mission)
+			if (quest->expanded_display_for_this_mission)
 				ShowGenericButtonFromList(QUEST_BROWSER_ITEM_LONG_BUTTON);
 			else
 				ShowGenericButtonFromList(QUEST_BROWSER_ITEM_SHORT_BUTTON);
 
 			if (MouseLeftPressed()) {
 				if (MouseCursorIsOnButton(QUEST_BROWSER_ITEM_SHORT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-					Me.AllMissions[mis_num].expanded_display_for_this_mission =
-					    !Me.AllMissions[mis_num].expanded_display_for_this_mission;
+					quest->expanded_display_for_this_mission = !quest->expanded_display_for_this_mission;
 					while (MouseLeftPressed()) ;
 				}
 			}
@@ -432,6 +433,8 @@ static void quest_browser_display_mission_list(int list_type)
 
 		display_text(txt, mission_description_rect.x, mission_description_rect.y, &mission_description_rect, 1.0);
 	}
+
+	free(quest_browser_mission_lines_needed);
 }
 
 /**

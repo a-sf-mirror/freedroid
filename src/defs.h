@@ -505,7 +505,6 @@ enum {
 #define UPDATE_SQUARE_BIT 16
 
 #define MAX_INFLU_POSITION_HISTORY 500
-#define MAX_MISSIONS_IN_GAME 50	// how many missions can there be at most in FreedroidRPG
 #define MAX_MISSION_DESCRIPTION_TEXTS 25
 
 #define MAX_LEVELS		100	// how many map levels are allowed in one ship
