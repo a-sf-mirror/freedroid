@@ -124,6 +124,7 @@ void init_tux(void);
 void set_movement_with_keys(int move_x, int move_y);
 void do_death_menu(void);
 void free_tux();
+void lightly_free_tux();
 
 // action.c
 void chest_open_action(level *chest_lvl, int chest_index);

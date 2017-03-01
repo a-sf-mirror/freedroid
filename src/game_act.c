@@ -228,6 +228,7 @@ void game_act_switch_to_next()
 	next_game_act = NULL;
 
 	free_game_data();
+	lightly_free_tux();
 
 	char fp[PATH_MAX];
 	find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);

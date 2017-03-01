@@ -1636,28 +1636,34 @@ void set_movement_with_keys(int move_x, int move_y)
 	}
 }
 
+/**
+ * Clean the Tux's datum that are to be cleaned when starting a game act
+ */
+void lightly_free_tux()
+{
+	// We mark all the big screen messages for this character
+	// as out of date, so they can be overwritten with new
+	// messages...
+
+	Me.BigScreenMessageIndex = 0;
+	for (int i = 0; i < MAX_BIG_SCREEN_MESSAGES; i++) {
+		if (Me.BigScreenMessage[i]) {
+			free(Me.BigScreenMessage[i]);
+			Me.BigScreenMessage[i] = NULL;
+		}
+	}
+}
+
 void free_tux()
 {
-	int i;
+	lightly_free_tux();
 
 	free(Me.character_name);
 	Me.character_name = NULL;
 
 	clear_tux_mission_info();
 
-	// We mark all the big screen messages for this character
-	// as out of date, so they can be overwritten with new
-	// messages...
-	//
-	Me.BigScreenMessageIndex = 0;
-	for (i = 0; i < MAX_BIG_SCREEN_MESSAGES; i++) {
-		if (Me.BigScreenMessage[i]) {
-			free(Me.BigScreenMessage[i]);
-			Me.BigScreenMessage[i] = NULL;
-		}
-	}
-
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+	for (int i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
 		if (Me.Inventory[i].type != -1) {
 			delete_upgrade_sockets(&Me.Inventory[i]);
 		}
