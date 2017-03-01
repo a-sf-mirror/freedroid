@@ -227,3 +227,23 @@ int filter_0_16_1_use_game_act_id(struct savegame_data *savegame, struct auto_st
 
 	return FILTER_APPLIED;
 }
+
+// The 'AllMissions' attribute of Tux as been changed to 'missions'
+
+int filter_0_16_1_change_allmissions(struct savegame_data *savegame, struct auto_string *report)
+{
+	char *ptr = strstr(savegame->sav_buffer, "AllMissions = {");
+	if (!ptr) {
+		// the attribute wasn't found
+		autostr_append(report,
+		               _("Error during savegame filtering (%s:%s): Tux "
+		                 "'AllMissions' attribute was not found.\n"
+		                 "The savegame seems to be corrupted."),
+		               savegame->running_converter->id, __FUNCTION__);
+		return FILTER_ABORT;
+	}
+
+	memcpy(ptr, "missions    = {", strlen("AllMissions"));
+
+	return FILTER_APPLIED;
+}
