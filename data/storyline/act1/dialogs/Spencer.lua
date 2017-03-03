@@ -500,6 +500,7 @@ return {
 		text = _"I will need some time to get myself ready before I clean up Hell Fortress.",
 		code = function()
 			Npc:says(_"You better be ready.")
+			hide("node45")
 		end,
 	},
 	{
