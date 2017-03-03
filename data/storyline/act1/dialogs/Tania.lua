@@ -130,6 +130,7 @@ return {
 						show("node71")
 					end
 				end
+				hide("end_towngate") -- It's possible that this node is still visible, so be sure it's hidden
 				show("end_town")
 			end
 		end
