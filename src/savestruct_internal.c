@@ -619,6 +619,10 @@ static int game_config_ctor(lua_State *L)
 
 static int tux_ctor(lua_State *L)
 {
+	// Player's character_name is possibly already set, so
+	// free it before to call read_tux(), and avoid a memory leak.
+	free(Me.character_name);
+
 	read_tux_t(L, 1, &Me);
 	return 0;
 }
