@@ -113,7 +113,11 @@ static int loadship_bench()
 	return failed;
 }
 
-/* LoadGame (savegame loading) performance test */
+/* LoadGame (savegame loading) performance test
+ *
+ * To measure game loading only, loaded data are not cleared between
+ * 2 calls. So expect some memory leaks !
+ */
 static int loadgame_bench()
 {
 	int loop = 3;
