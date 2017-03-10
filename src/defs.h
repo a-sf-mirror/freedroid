@@ -48,6 +48,9 @@
 #ifndef min
 #define min(x,y) ((x) > (y) ? (y) : (x) )
 #endif
+#ifndef clamp
+#define clamp(x,m,M) ((x) < (m) ? (m) : ((x) > (M) ? (M) : (x)))
+#endif
 
 // On Linux and MacOS, 'z' is the length modifier to be used in printf() for
 // a size_t data. On Windows, 'I' is to be used.
