@@ -679,6 +679,7 @@ void show_texts_and_banner(void) {
 		display_effect_countdowns();
 	}
 	DisplayBigScreenMessage();
+	transient_text_show();
 }
 
 /**

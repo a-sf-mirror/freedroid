@@ -48,6 +48,15 @@ static int MyCursorY;
 
 static int display_char_disabled;
 
+static struct {
+	struct auto_string *text;
+	struct font *font;
+	float duration;
+	float countdown_time;
+	SDL_Rect text_rect;
+	SDL_Rect back_rect;
+} transient_text = { NULL, NULL, 0, 0, { 0 }, { 0 } };
+
 /**
  * This function determines how many lines of text it takes to write a string
  * with the current font into the given rectangle, provided one would start at
@@ -135,6 +144,105 @@ int show_backgrounded_text_rectangle(const char *text, struct font *font, int x,
 
 	set_current_font(old_font);
 	return r_height;
+}
+
+void transient_text_set_centered_text(float duration, struct font *font, const char *fmt, ...)
+{
+	static const int screen_gap = 50;
+	static const int rect_padding = 1;
+
+	va_list args;
+
+	// Clean previously used data and prepare it for a new use
+
+	if (transient_text.text) {
+		free_autostr(transient_text.text);
+		transient_text.text = NULL;
+	}
+
+	transient_text.text = alloc_autostr(16);
+	if (!transient_text.text)
+		return;
+
+	// Store the text to display and its config
+
+	va_start(args, fmt);
+
+	autostr_vappend(transient_text.text, fmt, args);
+	transient_text.font = font;
+	transient_text.duration = duration;
+	transient_text.countdown_time = duration;
+
+	//==========
+	// Compute the dimension of the text rect and of the background rect
+	//==========
+
+	struct font *current_font = get_current_font();
+	set_current_font(font);
+	int font_height = get_font_height(get_current_font());
+
+	int max_width = GameConfig.screen_width - 2 * screen_gap;
+	int max_text_width = max_width - 2 *rect_padding * font_height;
+
+	// The actual text width is defined by the width of the longuest line
+	// clamped between a quarter of the screen's width and the max screen's
+	// width minus a gap
+
+	char *tmp = strdup(transient_text.text->value); // longest_line_width() needs to modify the text
+	int actual_text_width = longest_line_width(tmp);
+	free(tmp);
+	int used_text_width = clamp(actual_text_width, GameConfig.screen_width / 4, max_text_width);
+	if (actual_text_width > used_text_width)
+		actual_text_width = used_text_width;
+
+	SDL_Rect clipping_rect = { .x = 0, .y = 0, .w = actual_text_width, .h = 0 };
+	int nb_lines = get_lines_needed(transient_text.text->value, clipping_rect, 1.0);
+
+	int text_left = (GameConfig.screen_width - actual_text_width) / 2;
+	int text_top = (GameConfig.screen_height - nb_lines * font_height) / 2;
+	int back_left = (GameConfig.screen_width - used_text_width) / 2;
+
+	transient_text.text_rect.x = text_left;
+	transient_text.text_rect.y = text_top;
+	transient_text.text_rect.w = actual_text_width;
+	transient_text.text_rect.h = nb_lines * font_height;
+	transient_text.back_rect.x = back_left - rect_padding * font_height;
+	transient_text.back_rect.y = text_top - rect_padding * font_height;
+	transient_text.back_rect.w = used_text_width + 2 * rect_padding * font_height;
+	transient_text.back_rect.h = (nb_lines + 2 * rect_padding) * font_height;
+
+	set_current_font(current_font);
+
+	va_end(args);
+}
+
+void transient_text_free(void)
+{
+	if (transient_text.text)
+		free_autostr(transient_text.text);
+	transient_text.text = NULL;
+	transient_text.countdown_time = 0.0;
+}
+
+void transient_text_show(void)
+{
+	if (!transient_text.text)
+		return;
+
+	struct font *current_font = get_current_font();
+	set_current_font(transient_text.font);
+
+	float opacity = 255.0 * transient_text.countdown_time / transient_text.duration;
+	draw_rectangle(&transient_text.back_rect, 0, 0, 0, (int)opacity);
+	display_text(transient_text.text->value, transient_text.text_rect.x, transient_text.text_rect.y,
+	             &transient_text.text_rect, 1.0);
+
+	set_current_font(current_font);
+
+	transient_text.countdown_time -= Frame_Time();
+	if (transient_text.countdown_time <= 0) {
+		transient_text_free();
+	}
 }
 
 /**

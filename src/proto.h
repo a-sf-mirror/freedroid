@@ -664,6 +664,9 @@ int get_lines_needed(const char *text, SDL_Rect t_rect, float line_height_factor
 void show_backgrounded_label_at_map_position(char *LabelText, float fill_status, float pos_x, float pos_y, int zoom_is_on);
 char *get_editable_string_in_popup_window(int, const char *, const char *);
 int show_backgrounded_text_rectangle(const char *, struct font *, int, int, int, int);
+void transient_text_set_centered_text(float, struct font *, const char *, ...);
+void transient_text_free(void);
+void transient_text_show(void);
 int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels);
 void SetNewBigScreenMessage(const char *ScreenMessageText);
 void DisplayBigScreenMessage(void);
