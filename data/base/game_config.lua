@@ -27,10 +27,10 @@ game_acts{
 	-- intro: text displayed when the game act is started (use \n for multilines text)
 	-- sudbir: Subdir name in MAP_DIR (data/storyline)
 	-- is_starting_act: True if this act is the starting one
-	{ id = "act1", name = "Act 1",
+	{ id = "act1", name = "Return Of Tux",
 	  intro = "-= Start of Act 1 =-",
 	  subdir = "act1", is_starting_act = true  },
-	{ id = "act2", name = "Act 2",
+	{ id = "act2", name = "Dvorak Begins",
 	  intro = "-= Start of Act 2 =-",
 	  subdir = "act2", is_starting_act = false },
 }
