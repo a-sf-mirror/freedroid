@@ -9,10 +9,10 @@
 -- the translation domains of dialog and config files.
 npc_list{
 	"Terminal",              --[[TRM]]--
-	"AfterTakeover",
-	"Dummy"}
+	"AfterTakeover"
+	}
 
-
+--[[
 npc_shop{
 name = "Dummy",
 items = {
@@ -20,4 +20,4 @@ items = {
 	 {"Normal Jacket", 2}
 	}
 }
-
+]]--
