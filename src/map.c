@@ -72,8 +72,12 @@ void respawn_level(int level_num)
 	enemy *erot, *nerot;
 
 	int wp_num = curShip.AllLevels[level_num]->waypoints.size;
-	char wp_used[wp_num]; // is a waypoint already used ?
-	memset(wp_used, 0, wp_num);
+	// wp_num can be zero, so we can not use a static array
+	char *wp_used = NULL; // is a waypoint already used ?
+	if (wp_num > 0) {
+		wp_used = (char *)MyMalloc(wp_num * sizeof(char));
+		memset(wp_used, 0, wp_num * sizeof(char));
+	}
 
 	// First we remove all the volatile obstacles...
 	//
@@ -108,7 +112,7 @@ void respawn_level(int level_num)
 		
 		erot->has_greeted_influencer = FALSE;
 
-		if (wp_num) {
+		if (wp_num > 0) {
 			// Re-place the bots onto the waypoint system
 			if (!erot->SpecialForce) {
 				// Standard bots are randomly placed on one waypoint
@@ -138,6 +142,8 @@ void respawn_level(int level_num)
 					PLEASE_INFORM, level_num);
 		}
 	}
+
+	free(wp_used);
 }
 
 /**
