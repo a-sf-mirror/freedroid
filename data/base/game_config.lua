@@ -24,8 +24,13 @@
 game_acts{
 	-- id: Unique identifier
 	-- name: Act name
+	-- intro: text displayed when the game act is started (use \n for multilines text)
 	-- sudbir: Subdir name in MAP_DIR (data/storyline)
 	-- is_starting_act: True if this act is the starting one
-	{ id = "act1", name = "Act 1", subdir = "act1", is_starting_act = true  },
-	{ id = "act2", name = "Act 2", subdir = "act2", is_starting_act = false },
+	{ id = "act1", name = "Act 1",
+	  intro = "-= Start of Act 1 =-",
+	  subdir = "act1", is_starting_act = true  },
+	{ id = "act2", name = "Act 2",
+	  intro = "-= Start of Act 2 =-",
+	  subdir = "act2", is_starting_act = false },
 }

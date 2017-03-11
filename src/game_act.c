@@ -185,6 +185,7 @@ void game_act_free()
 		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
 		free(act->id);
 		free(act->name);
+		free(act->intro);
 		free(act->subdir);
 	}
 	dynarray_free(&game_acts);

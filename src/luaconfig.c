@@ -1372,9 +1372,10 @@ static int get_one_game_act(lua_State *L, void *data)
 	struct game_act *act = (struct game_act *)data;
 
 	struct data_spec data_specs[] = {
-		{ "id",              "",      STRING_TYPE, &act->id     },
-		{ "name",            "",      STRING_TYPE, &act->name   },
-		{ "subdir",          "",      STRING_TYPE, &act->subdir },
+		{ "id",              "",      STRING_TYPE, &act->id         },
+		{ "name",            "",      STRING_TYPE, &act->name       },
+		{ "intro",           NULL,    STRING_TYPE, &act->intro      },
+		{ "subdir",          "",      STRING_TYPE, &act->subdir     },
 		{ "is_starting_act", "false", BOOL_TYPE, &act->starting_act },
 		{ NULL, NULL, 0, 0 }
 	};
@@ -1389,6 +1390,7 @@ static int get_one_game_act(lua_State *L, void *data)
 		              PLEASE_INFORM, act->id, act->subdir);
 		free(act->id);
 		free(act->name);
+		free(act->intro);
 		free(act->subdir);
 		return FALSE;
 	}

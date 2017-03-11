@@ -1130,6 +1130,7 @@ struct difficulty {
 struct game_act {
 	char *id;
 	char *name;
+	char *intro;
 	char *subdir;
 	int starting_act;
 };
