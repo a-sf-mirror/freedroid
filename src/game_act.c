@@ -226,6 +226,7 @@ void game_act_switch_to_next()
 	play_title_file(MAP_TITLES_DIR, "EndOfAct.lua");
 
 	game_act_set_current(next_game_act);
+	char *game_act_intro = next_game_act->intro;
 	next_game_act = NULL;
 
 	free_game_data();
@@ -239,5 +240,7 @@ void game_act_switch_to_next()
 	prepare_start_of_new_game("NewTuxStartGameSquare", FALSE);
 	skip_initial_menus = 0;
 
-	play_title_file(MAP_TITLES_DIR, "StartOfAct.lua");
+	if (game_act_intro) {
+		transient_text_set_centered_text(3.0, Menu_Font, game_act_intro);
+	}
 }
