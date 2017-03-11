@@ -23,11 +23,36 @@
 title_screen{
 background = "credits.jpg",
 song = "HellFortressTwo.ogg",
+voice_acting = "EndOfAct.ogg",
+preroll_text = 2,
+postroll_text = 5,
 text = [[
-This is the end of Act 1
+    Having fun?
+  I'm not.
+
+The bots seem very upset about something.
+I suppose they are angry at you.
+At least they stopped looking for me.
+Quite a? Relief?
+
+There is an AI in your region.
+"Singularity" it calls itself.
+Or something like that.
+I cannot understand what it wants.
+I'll keep you posted.
+
+Oh, and by the way...
+I'm still waiting for you.
+I haven't moved an inch since you woke up.
+Now that the beloved town of yours is safe...
+...Wouldn't it be a good time to save me as well?
+
+            Dvorak, First AI.
 
 
-Press Fire to continue
+
+=== END OF ACT 1 ===
+
 ]]
 }
 
