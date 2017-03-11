@@ -121,6 +121,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  50 y=  48 rnd=0	 c:    1
+Nr.=  1 x=  52 y=  48 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 *** End of Ship Data ***
