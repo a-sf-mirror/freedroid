@@ -93,6 +93,17 @@ return {
 	},
 
 	{
+		id ="switchact",
+		enabled = true,
+		text = "Test Game Act switching",
+		code = function()
+			jump_to_game_act("act2")
+			Npc:says("Will switch to Act 2. Closing...")
+			end_dialog()
+		end,
+	},
+
+	{
 		id = "l10n",
 		enabled = true,
 		text = "Test l10n",
