@@ -837,6 +837,7 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length, ene
 	int row;
 	int old_status;
 
+	game_length += 5*Me.skill_level[get_program_index_with_name("Animal Magnetism")];
 	old_status = game_status;
 
 	Activate_Conservative_Frame_Computation();

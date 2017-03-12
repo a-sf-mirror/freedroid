@@ -187,6 +187,26 @@ The art of rapidly moving away from danger is very useful. Even when used in rev
 --------------------------------------------------------------------------------
 
 {
+	name =_"Network Mapper",
+	icon = "NmapImage.png",
+	form = "self",
+	effect = {type = "nmap", duration = {base = 3, per_level = 1}},
+	cost = {base = 40, per_level = -2},
+	description =_[[Knowing what your enemies are up to is easy with a little signal intelligence. Displays enemy locations on your automap.]]
+},
+--------------------------------------------------------------------------------
+
+{
+	name =_"Light",
+	icon = "Light.png",
+	form = "self",
+	effect = {type = "light", duration = {base = 5, per_level = 5}},
+	cost = {base = 10, per_level = 1},
+	description =_[[Let there be light...]],
+},
+--------------------------------------------------------------------------------
+
+{
 	name =_"Extract bot parts",
 	icon = "ExtractBotParts.png",
 	form = "self",
@@ -207,22 +227,12 @@ The art of rapidly moving away from danger is very useful. Even when used in rev
 --------------------------------------------------------------------------------
 
 {
-	name =_"Network Mapper",
-	icon = "NmapImage.png",
+	name =_"Animal Magnetism",
+	icon = "Poke.png",
 	form = "self",
-	effect = {type = "nmap", duration = {base = 3, per_level = 1}},
-	cost = {base = 40, per_level = -2},
-	description =_[[Knowing what your enemies are up to is easy with a little signal intelligence. Displays enemy locations on your automap.]]
-},
---------------------------------------------------------------------------------
-
-{
-	name =_"Light",
-	icon = "Light.png",
-	form = "self",
-	effect = {type = "light", duration = {base = 5, per_level = 5}},
-	cost = {base = 10, per_level = 1},
-	description =_[[Let there be light...]],
+	effect = {type = "passive"},
+	cost = {base = 0},
+	description =_[[Get in tune with the magnetic fields around you! Grants you half-second extra time per skill level when hacking bots. This skill is always active even when not selected.]],
 },
 --------------------------------------------------------------------------------
 
