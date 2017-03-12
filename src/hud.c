@@ -699,7 +699,7 @@ void toggle_game_config_screen_visibility(int screen_visible)
 	case GAME_CONFIG_SCREEN_VISIBLE_SKILLS:
 		GameConfig.SkillScreen_Visible = !GameConfig.SkillScreen_Visible;
 		if (!GameConfig.SkillScreen_Visible)
-			GameConfig.skill_explanation_screen_visible = 0;
+			GameConfig.skill_explanation_screen_visible = FALSE;
 		GameConfig.CharacterScreen_Visible = FALSE;
 		break;
 	case GAME_CONFIG_SCREEN_VISIBLE_CHARACTER:
@@ -717,5 +717,13 @@ unhandled skill screen code received.  something is going VERY wrong!", PLEASE_I
 	}
 
 };				// void toggle_game_config_screen_visibility ( int screen_visible )
+
+void close_game_config_screens()
+{
+	GameConfig.skill_explanation_screen_visible = FALSE;
+	GameConfig.CharacterScreen_Visible = FALSE;
+	GameConfig.SkillScreen_Visible = FALSE;
+	GameConfig.Inventory_Visible = FALSE;
+}
 
 #undef _hud_c

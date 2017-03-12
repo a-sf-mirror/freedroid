@@ -473,10 +473,7 @@ void addon_crafting_ui()
 	select_recipe(0);
 
 	// Setup the correct screen state.
-	GameConfig.Inventory_Visible = FALSE;
-	GameConfig.CharacterScreen_Visible = FALSE;
-	GameConfig.SkillScreen_Visible = FALSE;
-	GameConfig.skill_explanation_screen_visible = FALSE;
+	close_game_config_screens();
 	ui.visible = TRUE;
 
 	// Prevent keyboard input.
@@ -507,4 +504,9 @@ void addon_crafting_ui()
 
 	ui.visible = FALSE;
 	game_status = old_game_status;
+}
+
+void addon_crafting_ui_close()
+{
+	ui.visible = FALSE;
 }

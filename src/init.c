@@ -258,6 +258,13 @@ void play_title_file(int subdir_handle, char *filename)
 			}
 		}
 
+		// Close open panels
+
+		close_game_config_screens();
+		addon_crafting_ui_close();
+		User_Rect.x = 0;
+		User_Rect.w = GameConfig.screen_width - User_Rect.x;
+
 		// Create title_screen widget, set its content and display it
 		SDL_SetClipRect(Screen, NULL);
 		title_screen_create();

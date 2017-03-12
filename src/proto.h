@@ -714,6 +714,7 @@ int get_minutes_of_game_duration(float current_game_date);
 void append_new_game_message(const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(1,2);
 void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
+void close_game_config_screens();
 int get_current_fps(void);
 void display_tooltip(const char *, int, SDL_Rect);
 void blit_vertical_status_bar(float, float, Uint32, Uint32, int, int, int, int);
@@ -732,6 +733,7 @@ int cursor_is_on_addon_crafting_ui(const point *);
 void show_addon_crafting_ui(void);
 void addon_crafting_ui(void);
 int addon_crafting_ui_visible(void);
+void addon_crafting_ui_close();
 
 // shop.c 
 void ShowItemPicture(int, int, int);
