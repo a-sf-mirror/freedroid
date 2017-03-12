@@ -250,7 +250,7 @@ static int level_test()
 static int graphics_bench()
 {
 	// Load ship
-	char fp[2048];
+	char fp[PATH_MAX];
 	find_file(fp, MAP_DIR, "levels.dat", NULL, NO_REPORT);
 	LoadShip(fp, 0);
 

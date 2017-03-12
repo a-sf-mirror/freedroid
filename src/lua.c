@@ -2016,7 +2016,7 @@ void close_lua()
 void reset_lua_state(void)
 {
 	int i;
-	char fpath[2048];
+	char fpath[PATH_MAX];
 
 	if (dialog_lua_state)
 		lua_close(dialog_lua_state);

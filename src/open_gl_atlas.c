@@ -57,7 +57,7 @@ int load_texture_atlas(const char *atlas_name, const char *directory, struct ima
 
 	// Ensure that 'directory' length is not too large, to have enough room to
 	// read the image names
-	char atlas_path[2048];
+	char atlas_path[PATH_MAX];
 	int directory_len = strlen(directory);
 	if (directory_len > 1023) {
 		error_message(__FUNCTION__, "The path of atlas files is too large (>1023): %s", NO_REPORT, directory);

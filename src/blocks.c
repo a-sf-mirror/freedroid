@@ -172,7 +172,7 @@ static void load_enemy_graphics(struct droidspec *droid_spec)
 void Load_Blast_Surfaces(void)
 {
 	int i, j;
-	char fpath[2048];
+	char fpath[PATH_MAX];
 
 	for (i = 0; i < sizeof(Blastmap) / sizeof(Blastmap[0]); i++) {
 		for (j = 0; j < Blastmap[i].phases; j++) {

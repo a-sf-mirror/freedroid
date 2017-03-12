@@ -670,7 +670,7 @@ struct background *get_background(const char *name)
 
 	// Load the background
 	if (!image_loaded(&bg->img)) {
-		char path[2048];
+		char path[PATH_MAX];
 		sprintf(path, "backgrounds/%s", bg->filename);
 		load_image(&bg->img, GRAPHICS_DIR, path, USE_WIDE);
 	}

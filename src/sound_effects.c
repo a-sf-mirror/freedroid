@@ -353,7 +353,7 @@ void Takeover_Game_Lost_Sound(void)
 
 void play_blast_sound(char *blast_sound, struct gps *blast_pos)
 {
-	char fpath[2048];
+	char fpath[PATH_MAX];
 
 	if (!blast_sound)
 		return;
