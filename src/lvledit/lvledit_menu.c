@@ -204,7 +204,8 @@ static void input_target_value(int *jump_target)
 
 	int tgt = get_number_popup(_("\n Please enter new level number: \n\n"), "");
 
-	if (tgt >= -1 && tgt < curShip.num_levels && curShip.AllLevels[tgt]) {
+	if ((tgt == -1) ||
+		(tgt >= 0 && tgt < curShip.num_levels && curShip.AllLevels[tgt])) {
 		*jump_target = tgt;
 	}
 	gps_transform_map_dirty_flag = TRUE;
