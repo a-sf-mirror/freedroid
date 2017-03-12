@@ -1823,7 +1823,7 @@ droid_list {
 	notes = _"This is a terminal.",
 	is_human = 0,
 	class = 100,
-	is_a_living = 0,
+	can_move = 0,
 	gfx = {
 		prefix = "droids/terminal",
 	},
@@ -1928,7 +1928,7 @@ droid_list {
 	notes = _"This is a secure terminal.",
 	is_human = 0,
 	class = 100,
-	is_a_living = 0,
+	can_move = 0,
 	gfx = {
 		prefix = "droids/terminal_secure",
 	},

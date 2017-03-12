@@ -431,7 +431,7 @@ in graphics displayed, but FreedroidRPG will continue to work.", NO_REPORT, offs
  */
 void load_droid_animation_images(struct droidspec *this_droid_spec)
 {
-	if (!this_droid_spec->is_a_living || this_droid_spec->gfx_prepared)
+	if (!this_droid_spec->can_move || this_droid_spec->gfx_prepared)
 		return;
 
 	Activate_Conservative_Frame_Computation();
