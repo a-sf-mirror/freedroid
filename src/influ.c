@@ -1701,10 +1701,6 @@ void init_tux()
 	Me.mouse_move_target.y = -1;
 	Me.mouse_move_target.z = -1;
 
-	Me.teleport_anchor.x = 0;
-	Me.teleport_anchor.y = 0;
-	Me.teleport_anchor.z = -1;
-
 	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
 
 	Me.god_mode = FALSE;

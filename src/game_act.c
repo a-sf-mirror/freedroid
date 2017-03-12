@@ -229,13 +229,19 @@ void game_act_switch_to_next()
 	char *game_act_intro = next_game_act->intro;
 	next_game_act = NULL;
 
+	// Free and reset some data
 	free_game_data();
 	lightly_free_tux();
+	Me.teleport_anchor.x = 0; /* The place to where to teleport to no more exists... */
+	Me.teleport_anchor.y = 0;
+	Me.teleport_anchor.z = -1;
 
+	// Load the maps
 	char fp[PATH_MAX];
 	find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
 	LoadShip(fp, 0);
 
+	// Load the configuration (events, npcs, quests...)
 	skip_initial_menus = 1;
 	prepare_start_of_new_game("NewTuxStartGameSquare", FALSE);
 	skip_initial_menus = 0;
