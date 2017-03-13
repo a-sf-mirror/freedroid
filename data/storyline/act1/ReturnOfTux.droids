@@ -599,4 +599,9 @@ T=476: PosX=83 PosY=74 Faction="civilian" UseDialog="Singularity-Drone" ShortLab
 T=629: PosX=76 PosY=65 Faction="civilian" UseDialog="Singularity-Drone" ShortLabel=_"629 Spitfire" Marker=9999 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
+** Beginning of new Level **
+Level=75
+
+** End of this levels Special Forces data **
+---------------------------------------------------------
 *** End of Droid Data ***
