@@ -236,12 +236,7 @@ void game_act_switch_to_next()
 	Me.teleport_anchor.y = 0;
 	Me.teleport_anchor.z = -1;
 
-	// Load the maps
-	char fp[PATH_MAX];
-	find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
-	LoadShip(fp, 0);
-
-	// Load the configuration (events, npcs, quests...)
+	// Load all the data of the game act (maps, events, quests...)
 	skip_initial_menus = 1;
 	prepare_start_of_new_game("NewTuxStartGameSquare", FALSE);
 	skip_initial_menus = 0;

@@ -563,6 +563,12 @@ void prepare_start_of_new_game(char *start_label, int new_tux)
 
 	Activate_Conservative_Frame_Computation();
 
+	// Load the maps
+
+	char fp[PATH_MAX];
+	find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
+	LoadShip(fp, 0);
+
 	// We make sure we don't have garbage in our arrays from a 
 	// previous game or failed load-game attempt...
 	clear_out_arrays_for_fresh_game();
@@ -622,10 +628,6 @@ void prepare_level_editor(struct game_act *on_act)
 	game_status = INSIDE_LVLEDITOR;
 
 	game_act_set_current(on_act);
-
-	char fp[PATH_MAX];
-	find_file(fp, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
-	LoadShip(fp, 0);
 
 	skip_initial_menus = 1;
 	prepare_start_of_new_game("NewTuxStartGameSquare", TRUE);

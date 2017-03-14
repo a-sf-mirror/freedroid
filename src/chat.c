@@ -848,7 +848,6 @@ int chat_with_droid(struct enemy *partner)
  */
 int validate_dialogs()
 {
-	char fpath[PATH_MAX];
 	enemy *dummy_partner;
 	struct npc *n;
 	int error_caught = FALSE;
@@ -865,9 +864,6 @@ int validate_dialogs()
 	for (int i = 0; i < game_acts.size; i++) {
 		struct game_act *act = (struct game_act *)dynarray_member(&game_acts, i, sizeof(struct game_act));
 		game_act_set_current(act);
-
-		find_file(fpath, MAP_DIR, "levels.dat", NULL, PLEASE_INFORM | IS_FATAL);
-		LoadShip(fpath, 0);
 		prepare_start_of_new_game("NewTuxStartGameSquare", TRUE);
 
 		/* _says functions are not run by the validator, as they display
