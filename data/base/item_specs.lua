@@ -1731,7 +1731,7 @@ item_list{
 	id = "Source Book of Plasma discharge",
 	name =_"Source Book of Plasma Discharge",
 	right_use = {tooltip = _"Permanently acquire/enhance this program", add_skill = "Plasma discharge"},
-	base_price = 600,
+	base_price = 1800,
 	inventory = {x = 2, y = 2, image = "spellbook/inv_image.png" },
 	drop = {sound = "drop_book_sound.ogg"},
 	description =_[[The overload setting exists for emergencies. Plasma does not discriminate between bots and humans. Everything is the same to it.]],
