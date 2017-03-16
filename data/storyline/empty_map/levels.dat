@@ -112,15 +112,19 @@ beginning_of_map
   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 
 /pmapinfolvl
 obsdata
+t17 x48.45 y54.48
 /obsdata
 plabelinfolvl
 x=50 y=50 name="NewTuxStartGameSquare"
+x=48 y=54 name="TeleportHomeTarget"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  50 y=  48 rnd=0	 c:    1
+Nr.=  1 x=  52 y=  48 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 *** End of Ship Data ***
