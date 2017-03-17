@@ -126,8 +126,15 @@ return {
 		text = _"(Try hacking the server)",
 		code = function()
 			if (takeover(get_program("Hacking")+3)) then
-				Tux:says("sudo !!")
-				Npc:says("sudo open gates", "NO_WAIT")
+				Tux:says("sudo open_gates")
+				--; TRANSLATORS: this is parody of Microsoft Windows' error message;
+				--; 	"sudo" verbatim
+				Npc:says(_"'sudo' is not recognized as an internal or external command, operable program or batch file.")
+				Tux:says(_"Oh, of course.", "NO_WAIT")
+				Tux:says(_"Now, let me see if I can remember this correctly ...")
+				--; TRANSLATORS: parody of Microsoft Windows' runas command;
+				--; 	"RUNAS" and "OPENGATE.EXE" verbatim
+				Tux:says(_"RUNAS /user:Administrator OPENGATE.EXE", "NO_WAIT")
 				Npc:says(_"Which gates do you want to open?")
 				Tux:update_quest("Open Sesame", "Whew, I finally managed to hack the gate access server. I can open the gates now.")
 				MO_HFGateAccessServer_hacked = true
@@ -143,42 +150,37 @@ return {
 	},
 	{
 		id = "node4",
-		text = _"man open gates",
+		text = "OPENGATE.EXE /?",
 		echo_text = false,
 		code = function()
-			Tux:says(_"man open gates", "NO_WAIT")
-			Npc:says(_"NAME", "NO_WAIT")
-			Npc:says(_" open gates -- opens gates via console", "NO_WAIT")
+			--; TRANSLATORS: this block is parody of Microsoft Windows' format for documentation internal to a command
+			Tux:says("OPENGATE.EXE /?", "NO_WAIT")
+			Npc:says(_"Opens gates via command prompt on a console.", "NO_WAIT")
 			Npc:says(" ")
-			Npc:says(_"SYNOPSIS", "NO_WAIT")
-			Npc:says(_" open gates --inner --outer", "NO_WAIT")
-			Npc:says(_" ")
-			Npc:says(_"DESCRIPTION", "NO_WAIT")
-			Npc:says(_" Opens gates via console. Awesome, isn't it?", "NO_WAIT")
+			--; TRANSLATORS: "OPENGATE" verbatim
+			Npc:says(_"OPENGATE [inner] [outer]", "NO_WAIT")
 			Npc:says(" ")
-			Npc:says(_"OPTIONS", "NO_WAIT")
-			Npc:says(_" --inner", "NO_WAIT")
-			Npc:says(_" Opens the inner gate.", "NO_WAIT")
-			Npc:says(" ", "NO_WAIT")
-			Npc:says(_" --outer", "NO_WAIT")
-			Npc:says(_" Opens the outer gate.", "NO_WAIT")
+			Npc:says(_"  inner   Opens the inner gate.", "NO_WAIT")
+			Npc:says(_"  outer   Opens the outer gate.", "NO_WAIT")
 			Npc:says(" ")
-			Npc:says(_"SEE ALSO", "NO_WAIT")
-			Npc:says(_" These are not the gates you are looking for.", "NO_WAIT")
+			Npc:says(_"Without parameters, OPENGATE will prompt you with a helpful query.", "NO_WAIT")
+			Npc:says(_"To secure the gates, use SHUTGATE.", "NO_WAIT")
+			Npc:says(_"Press any key to continue . . .")
 			Npc:says(" ")
-			Npc:says(_"AUTHOR", "NO_WAIT")
-			Npc:says(_" The Hell Fortress GateAccessServer Manual Writer", "NO_WAIT")
-			Npc:says(" ")
-			Npc:says(_" February 22, 1992")
+			Npc:says(_"Take note: These are not the gates you are looking for.", "NO_WAIT")
+			Npc:says(_"Version: 9.13.1665.0 Aug 11, 1998")
+			-- NOTE	the text "FreedroidRPG" encoded in US-ASCII and then those decimal values summed is equal to 1665
 			hide("node4") show("node5", "node6", "node7")
 		end,
 	},
 	{
 		id = "node5",
-		text = _"open gates --inner",
+		--; TRANSLATORS: "OPENGATE" verbatim
+		text = _"OPENGATE inner",
 		echo_text = false,
 		code = function()
-			Tux:says(_"open gates --inner", "NO_WAIT")
+			--; TRANSLATORS: "OPENGATE" verbatim
+			Tux:says(_"OPENGATE inner", "NO_WAIT")
 			Npc:says(_"inner gate opened", "NO_WAIT")
 			Npc:says(_"[b]WARNING[/b]:", "NO_WAIT")
 			Npc:says(_"Anomalies detected!")
@@ -192,10 +194,12 @@ return {
 	},
 	{
 		id = "node6",
-		text = _"open gates --outer",
+		--; TRANSLATORS: "OPENGATE" verbatim
+		text = _"OPENGATE outer",
 		echo_text = false,
 		code = function()
-			Tux:says(_"open gates --outer", "NO_WAIT")
+			--; TRANSLATORS: "OPENGATE" verbatim
+			Tux:says(_"OPENGATE outer", "NO_WAIT")
 			Npc:says(_"outer gate opened", "NO_WAIT")
 			Npc:says(_"[b]WARNING[/b]:", "NO_WAIT")
 			Npc:says(_"Anomalies detected!")
@@ -209,10 +213,12 @@ return {
 	},
 	{
 		id = "node7",
-		text = _"open gates --inner --outer",
+		--; TRANSLATORS: "OPENGATE" verbatim
+		text = _"OPENGATE inner outer",
 		echo_text = false,
 		code = function()
-			Tux:says(_"open gates --inner --outer", "NO_WAIT")
+			--; TRANSLATORS: "OPENGATE" verbatim
+			Tux:says(_"OPENGATE inner outer", "NO_WAIT")
 			Npc:says(_"inner gate opened", "NO_WAIT")
 			Npc:says(_"outer gate opened", "NO_WAIT")
 			Npc:says(_"[b]WARNING[/b]:", "NO_WAIT")
