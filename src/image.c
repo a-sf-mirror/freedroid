@@ -587,12 +587,13 @@ void load_image_surface(struct image *img, const char *filepath, int mod_flags)
 		return;
 	}
 	
+	// Add an alpha channel if none already exists, and possibly swap the
+	// channels to suit the configuration of the framebuffer
 	SDL_SetAlpha(surface, 0, SDL_ALPHA_OPAQUE);
-
 	img->surface = SDL_DisplayFormatAlpha(surface);
-	img->texture_type = NO_TEXTURE;
-
 	SDL_FreeSurface(surface);
+
+	img->texture_type = NO_TEXTURE;
 
 	if (mod_flags & USE_OFFSET)
 		get_offset_for_iso_image_from_file_and_path(filepath, img);
