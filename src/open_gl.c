@@ -184,29 +184,6 @@ void flip_image_vertically(SDL_Surface * tmp1)
 };				// void flip_image_vertically ( SDL_Surface* tmp1 ) 
 
 /**
- *
- *
- */
-SDL_Surface *our_IMG_load_wrapper(const char *file)
-{
-	SDL_Surface *surf, *prepared_surf;
-
-	surf = IMG_Load(file);
-	if (surf == NULL) {
-		error_message(__FUNCTION__, "IMG_Load returned NULL. IMG_GetError() : %s.", PLEASE_INFORM, IMG_GetError());
-		return (NULL);
-	}
-
-	// Add an alpha channel if none already exists, and possibly swap the
-	// channels to suit the configuration of the framebuffer
-	SDL_SetAlpha(surf, 0, SDL_ALPHA_OPAQUE);
-	prepared_surf = SDL_DisplayFormatAlpha(surf);
-	SDL_FreeSurface(surf);
-
-	return prepared_surf;
-}
-
-/**
  * Compute the dimensions of the smaller power-of-two-sized texture
  * that will contain the given image. Used on older GPUs that do not
  * support non-power-of-two-textures with the regular GL_TEXTURE_2D target.

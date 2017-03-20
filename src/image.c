@@ -566,6 +566,33 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 }
 
 /**
+ * Load an image from the disk into an SDL_Surface. Also, if needed, add a
+ * transparency channel and swap color channels to suit the framebuffer
+ *
+ * \param filepath Path the image
+ *
+ * \return A pointer to the created SDL_Surface, or NULL on error
+ */
+SDL_Surface *load_surface_bitmap(const char *filepath)
+{
+	SDL_Surface *surf, *prepared_surf;
+
+	surf = IMG_Load(filepath);
+	if (surf == NULL) {
+		error_message(__FUNCTION__, "Could not load image.\n File name: %s. IMG_GetError(): %s.", PLEASE_INFORM, filepath, IMG_GetError());
+		return (NULL);
+	}
+
+	// Add an alpha channel if none already exists, and possibly swap the
+	// channels to suit the configuration of the framebuffer
+	SDL_SetAlpha(surf, 0, SDL_ALPHA_OPAQUE);
+	prepared_surf = SDL_DisplayFormatAlpha(surf);
+	SDL_FreeSurface(surf);
+
+	return prepared_surf;
+}
+
+/**
  * The concept of an image involves an SDL_Surface or an OpenGL
  * texture and also suitable offset values, such that the image can be
  * correctly placed in an isometric image.
@@ -579,20 +606,13 @@ void load_image_surface(struct image *img, const char *filepath, int mod_flags)
 		return;
 	}
 
-	SDL_Surface *surface = IMG_Load(filepath);
-	if (surface == NULL) {
-		error_message(__FUNCTION__, "Could not load image.\n File name: %s. IMG_GetError(): %s.", PLEASE_INFORM, filepath, IMG_GetError());
+	img->surface = load_surface_bitmap(filepath);
+	if (!img->surface) {
 		struct image empty = EMPTY_IMAGE;
 		*img = empty;
 		return;
 	}
 	
-	// Add an alpha channel if none already exists, and possibly swap the
-	// channels to suit the configuration of the framebuffer
-	SDL_SetAlpha(surface, 0, SDL_ALPHA_OPAQUE);
-	img->surface = SDL_DisplayFormatAlpha(surface);
-	SDL_FreeSurface(surface);
-
 	img->texture_type = NO_TEXTURE;
 
 	if (mod_flags & USE_OFFSET)

@@ -2797,7 +2797,7 @@ void put_radial_blue_sparks(float posX, float posY, float radius, int spark_type
 			char fpath[PATH_MAX];
 			find_file(fpath, GRAPHICS_DIR, constructed_filename, NULL, PLEASE_INFORM | IS_FATAL);
 
-			SDL_Surface *tmp_surf = our_IMG_load_wrapper(fpath);
+			SDL_Surface *tmp_surf = load_surface_bitmap(fpath);
 			if (tmp_surf == NULL) {
 				error_message(__FUNCTION__, "FreedroidRPG wanted to load a certain image file into memory, but the SDL\n"
 				                            "function used for this did not succeed (%s).",

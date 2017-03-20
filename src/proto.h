@@ -891,6 +891,7 @@ void display_image_on_map(struct image *img, float X, float Y, struct image_tran
 void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect);
 void load_image(struct image *, int, const char *, int);
 void load_image_surface(struct image *img, const char *filepath, int use_offset_file);
+SDL_Surface *load_surface_bitmap(const char *);
 void free_image_surface(struct image *img);
 void delete_image(struct image *img);
 int image_loaded(struct image *);

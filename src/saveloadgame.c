@@ -120,7 +120,7 @@ void load_and_show_thumbnail(char *core_filename)
 		return;
 
 	/* Load the image */
-	thumbnail.surface = our_IMG_load_wrapper(filepath);
+	thumbnail.surface = load_surface_bitmap(filepath);
 	if (!thumbnail.surface)
 		return;
 
