@@ -107,34 +107,37 @@ int find_saved_games(struct dirent ***namelist)
 
 void load_and_show_thumbnail(char *core_filename)
 {
-	char filename[PATH_MAX];
-	char filepath[PATH_MAX];
-	struct image thumbnail = EMPTY_IMAGE;
-	SDL_Rect target_rectangle;
+	static char last_filename[PATH_MAX] = "";
+	static struct image thumbnail = EMPTY_IMAGE;
 
-	if (!strlen(data_dirs[CONFIG_DIR].path))
-		return;
+	if (strcmp(last_filename, core_filename)) {
+		struct image empty_thumbnail = EMPTY_IMAGE;
+		thumbnail = empty_thumbnail;
 
-	sprintf(filename, "%s%s", core_filename, SAVE_GAME_THUMBNAIL_EXT);
-	if (!find_file(filepath, CONFIG_DIR, filename, NULL, NO_REPORT))
-		return;
+		if (!strlen(data_dirs[CONFIG_DIR].path))
+			return;
 
-	/* Load the image */
-	thumbnail.surface = load_surface_bitmap(filepath);
-	if (!thumbnail.surface)
-		return;
+		char filename[PATH_MAX];
+		char filepath[PATH_MAX];
+		sprintf(filename, "%s%s", core_filename, SAVE_GAME_THUMBNAIL_EXT);
+		if (!find_file(filepath, CONFIG_DIR, filename, NULL, NO_REPORT))
+			return;
 
-	thumbnail.w = thumbnail.surface->w;
-	thumbnail.h = thumbnail.surface->h;
-	if (use_open_gl)
-		make_texture_out_of_surface(&thumbnail);
+		/* Load the image */
+		thumbnail.surface = load_surface_bitmap(filepath);
+		if (!thumbnail.surface)
+			return;
 
-	target_rectangle.x = 10;
-	target_rectangle.y = GameConfig.screen_height - thumbnail.h - 10;
+		thumbnail.w = thumbnail.surface->w;
+		thumbnail.h = thumbnail.surface->h;
+		if (use_open_gl)
+			make_texture_out_of_surface(&thumbnail);
 
+		strcpy(last_filename, core_filename);
+	}
+
+	SDL_Rect target_rectangle = { .x = 10, .y = (GameConfig.screen_height - thumbnail.h - 10) };
 	display_image_on_screen(&thumbnail, target_rectangle.x, target_rectangle.y, IMAGE_NO_TRANSFO);
-
-	delete_image(&thumbnail);
 }
 
 /**
@@ -143,69 +146,78 @@ void load_and_show_thumbnail(char *core_filename)
  */
 void load_and_show_stats(char *core_filename)
 {
-	char filename[PATH_MAX];
-	char filepath[PATH_MAX];
-	struct stat file_info_buffer;
-	char info_string[5000];
-	long int file_size;
+	static char last_filename[PATH_MAX] = "";
+	static char info_string_date[5000] = "";
+	static char info_string_size[5000] = "";
 
-	if (!strlen(data_dirs[CONFIG_DIR].path))
-		return;
+	if (strcmp(last_filename, core_filename)) {
 
-	// First we get the information of the .sav file
+		if (!strlen(data_dirs[CONFIG_DIR].path))
+			return;
 
-	sprintf(filename, "%s%s", core_filename, SAVEDGAME_EXT);
-	if (!find_file(filepath, CONFIG_DIR, filename, NULL, NO_REPORT)) {
-		error_once_message(ONCE_PER_RUN, __FUNCTION__,
-		                   "FreedroidRPG was unable to access your saved game file (%s).\n"
-		                   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
-		                   "or file permissions of ~/.freedroid_rpg are somehow not right.",
-		                   PLEASE_INFORM, filename);
-		return;
-	}
+		char filename[PATH_MAX];
+		char filepath[PATH_MAX];
+		struct stat file_info_buffer;
+		long int file_size;
 
-	if (stat(filepath, &file_info_buffer)) {
-		error_once_message(ONCE_PER_RUN, __FUNCTION__,
-		                   "FreedroidRPG was unable to get the stats of your saved game file (%s).\n"
-		                   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
-		                   "or file permissions of ~/.freedroid_rpg are somehow not right.",
-		                   PLEASE_INFORM, filename);
-		return;
-	};
-	file_size = file_info_buffer.st_size;
-	strftime(info_string, sizeof(info_string), nl_langinfo(D_T_FMT), localtime(&(file_info_buffer.st_mtime)));
+		// First we get the information of the .sav file
 
-	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 3 * get_font_height(get_current_font()), _("Last Modified:"));
-	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * get_font_height(get_current_font()), info_string);
+		sprintf(filename, "%s%s", core_filename, SAVEDGAME_EXT);
+		if (!find_file(filepath, CONFIG_DIR, filename, NULL, NO_REPORT)) {
+			error_once_message(ONCE_PER_RUN, __FUNCTION__,
+							   "FreedroidRPG was unable to access your saved game file (%s).\n"
+							   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
+							   "or file permissions of ~/.freedroid_rpg are somehow not right.",
+							   PLEASE_INFORM, filename);
+			return;
+		}
 
-	// Now we compute the overall disk space of all files in question.
-	// The saved .shp must exist.  On not, it's a sever error!
+		if (stat(filepath, &file_info_buffer)) {
+			error_once_message(ONCE_PER_RUN, __FUNCTION__,
+							   "FreedroidRPG was unable to get the stats of your saved game file (%s).\n"
+							   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
+							   "or file permissions of ~/.freedroid_rpg are somehow not right.",
+							   PLEASE_INFORM, filename);
+			return;
+		};
 
-	sprintf(filename, "%s%s", core_filename, ".shp");
-	if (!find_file(filepath, CONFIG_DIR, filename, NULL, NO_REPORT)) {
-		error_once_message(ONCE_PER_RUN, __FUNCTION__,
-		                   "FreedroidRPG was unable to access your saved game file (%s).\n"
-		                   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
-		                   "or file permissions of ~/.freedroid_rpg are somehow not right.",
-		                   PLEASE_INFORM, filename);
-		return;
-	}
+		file_size = file_info_buffer.st_size;
+		strftime(info_string_date, sizeof(info_string_date), nl_langinfo(D_T_FMT), localtime(&(file_info_buffer.st_mtime)));
 
-	if (!stat(filepath, &file_info_buffer)) {
-		file_size += file_info_buffer.st_size;
-	}
+		// Now we compute the overall disk space of all files in question.
+		// The saved .shp must exist.  On not, it's a sever error!
 
-	// A thumbnail may not yet exist.  We won't make much fuss if it doesn't.
+		sprintf(filename, "%s%s", core_filename, ".shp");
+		if (!find_file(filepath, CONFIG_DIR, filename, NULL, NO_REPORT)) {
+			error_once_message(ONCE_PER_RUN, __FUNCTION__,
+			                   "FreedroidRPG was unable to access your saved game file (%s).\n"
+			                   "This is either a bug in FreedroidRPG or an indication, that the directory\n"
+			                   "or file permissions of ~/.freedroid_rpg are somehow not right.",
+			                   PLEASE_INFORM, filename);
+			return;
+		}
 
-	sprintf(filename, "%s%s", core_filename, SAVE_GAME_THUMBNAIL_EXT);
-	if (find_file(filepath, CONFIG_DIR, filename, NULL, SILENT)) {
-		if (!stat(filename, &(file_info_buffer))) {
+		if (!stat(filepath, &file_info_buffer)) {
 			file_size += file_info_buffer.st_size;
 		}
+
+		// A thumbnail may not yet exist.  We won't make much fuss if it doesn't.
+
+		sprintf(filename, "%s%s", core_filename, SAVE_GAME_THUMBNAIL_EXT);
+		if (find_file(filepath, CONFIG_DIR, filename, NULL, SILENT)) {
+			if (!stat(filename, &(file_info_buffer))) {
+				file_size += file_info_buffer.st_size;
+			}
+		}
+
+		sprintf(info_string_size, _("File Size: %2.3f MB"), ((float)file_size) / (1024.0 * 1024.0));
+
+		strcpy(last_filename, core_filename);
 	}
 
-	sprintf(info_string, _("File Size: %2.3f MB"), ((float)file_size) / (1024.0 * 1024.0));
-	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 1 * get_font_height(get_current_font()), info_string);
+	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 3 * get_font_height(get_current_font()), _("Last Modified:"));
+	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * get_font_height(get_current_font()), info_string_date);
+	put_string(get_current_font(), UNIVERSAL_COORD_W(240), GameConfig.screen_height - 1 * get_font_height(get_current_font()), info_string_size);
 }
 
 /**
