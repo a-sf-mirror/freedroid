@@ -183,6 +183,11 @@ void clear_tux_mission_info()
 		if (quest->assignment_lua_code) {
 			free(quest->assignment_lua_code);
 		}
+		for (int j = 0; j < MAX_MISSION_DESCRIPTION_TEXTS; j++) {
+			if (!quest->mission_diary_texts[j])
+				break;
+			free(quest->mission_diary_texts[j]);
+		}
 	}
 
 	dynarray_free(&Me.missions);
