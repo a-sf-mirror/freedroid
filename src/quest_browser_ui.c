@@ -339,9 +339,6 @@ static void quest_browser_display_mission_list(int list_type)
 
 		quest_browser_mission_lines_needed[mis_num] = -1;
 
-		if (quest->MissionExistsAtAll != TRUE)
-			continue;
-
 		if (quest->MissionWasAssigned != TRUE)
 			continue;
 

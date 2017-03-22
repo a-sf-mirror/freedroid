@@ -88,8 +88,6 @@ void check_if_mission_is_complete(void)
 			continue;
 		if (quest->MissionWasFailed == TRUE)
 			continue;
-		if (quest->MissionExistsAtAll != TRUE)
-			continue;
 		if (quest->MissionWasAssigned != TRUE)
 			continue;
 

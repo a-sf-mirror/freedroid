@@ -1541,7 +1541,6 @@ static int get_one_quest(lua_State *L, void *data)
 
 	fill_structure_from_table(L, data_specs);
 
-	quest->MissionExistsAtAll = TRUE;
 	for (int i = 0; i < MAX_MISSION_DESCRIPTION_TEXTS; i++) {
 		quest->mission_diary_texts[i] = NULL;
 	}

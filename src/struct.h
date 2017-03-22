@@ -227,7 +227,6 @@ typedef struct mission {
 	int MissionWasAssigned;	// has be influencer been assigned to this mission? , currently uninitialized
 	int MissionIsComplete;	// has the mission been completed?
 	int MissionWasFailed;	// has the mission been failed?
-	int MissionExistsAtAll;	// is this mission entry used at all, or is it just unused memory?
 
 	int KillMarker;
 	int must_clear_level;
