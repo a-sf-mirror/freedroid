@@ -580,9 +580,6 @@ void prepare_start_of_new_game(char *start_label, int new_tux)
 
 	GetEventTriggers("events.dat");
 
-	if (!skip_initial_menus)
-		play_title_file(BASE_TITLES_DIR, "StartOfGame.lua");
-
 	init_npcs();
 	init_factions();
 
@@ -629,9 +626,7 @@ void prepare_level_editor(struct game_act *on_act)
 
 	game_act_set_current(on_act);
 
-	skip_initial_menus = 1;
 	prepare_start_of_new_game("NewTuxStartGameSquare", TRUE);
-	skip_initial_menus = 0;
 
 	free(Me.character_name);
 	Me.character_name = strdup("MapEd");

@@ -889,10 +889,8 @@ static int Startup_handle(int n)
 		break;
 	case TUTORIAL_POSITION:	//Similar hack to start Tutorial.
 		game_root_mode = ROOT_IS_GAME;
-		skip_initial_menus = 1;
 		game_act_set_current(game_act_get_starting());
 		prepare_start_of_new_game("TutorialTuxStart", TRUE);
-		skip_initial_menus = 0;
 		free(Me.character_name);
 		Me.character_name = strdup("TutorialTux");
 		return EXIT_MENU;
@@ -1856,9 +1854,13 @@ int Single_Player_Menu(void)
 			char *char_name = get_new_character_name();
 			if (char_name && strlen(char_name)) {
 				game_act_set_current(game_act_get_starting());
+				play_title_file(BASE_TITLES_DIR, "StartOfGame.lua");
 				prepare_start_of_new_game("NewTuxStartGameSquare", TRUE);
 				free(Me.character_name);
 				Me.character_name = strdup(char_name);
+				if (game_act_get_starting()->intro) {
+					transient_text_set_centered_text(3.0, Menu_Font, game_act_get_starting()->intro);
+				}
 				can_continue = TRUE;
 			}
 			if (char_name)

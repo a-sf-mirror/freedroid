@@ -237,9 +237,7 @@ void game_act_switch_to_next()
 	Me.teleport_anchor.z = -1;
 
 	// Load all the data of the game act (maps, events, quests...)
-	skip_initial_menus = 1;
 	prepare_start_of_new_game("NewTuxStartGameSquare", FALSE);
-	skip_initial_menus = 0;
 
 	if (game_act_intro) {
 		transient_text_set_centered_text(3.0, Menu_Font, game_act_intro);
