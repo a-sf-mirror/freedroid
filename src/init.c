@@ -581,7 +581,7 @@ void prepare_start_of_new_game(char *start_label, int new_tux)
 	GetEventTriggers("events.dat");
 
 	if (!skip_initial_menus)
-		play_title_file(MAP_TITLES_DIR, "StartOfGame.lua");
+		play_title_file(BASE_TITLES_DIR, "StartOfGame.lua");
 
 	init_npcs();
 	init_factions();
