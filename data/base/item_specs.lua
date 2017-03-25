@@ -500,7 +500,6 @@ item_list{
 		reloading_sound = "effects/item_sounds/Item_Range_Weapon_Put_Sound_0.ogg",
 		melee = true,
 		ammunition = {id = "Laser power pack", clip = 20},
-		two_hand = true,
 		motion_class = "1hmelee",
 	},
 	requirements = {dexterity = 30},
