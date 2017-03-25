@@ -773,7 +773,7 @@ item_list{
 	base_price = 18,
 	inventory = {x = 2, y = 1,stackable = true, image = "weapons/9mm_ammo/inv_image.png" },
 	drop = {class = "5:8", number = "10:20", sound = "Item_Range_Weapon_Put_Sound_0.ogg"},
-	description =_[[Plasma crystal load. This is the most common way of loading a plasma weapon.]],
+	description =_[[You know a little about these. A metal jacket holds a bullet tightly at one end and is filled with an explosive chemical which acts as a propellant. At the other end is a primer cap filled with another explosive, which when struck will ignite the propellant. The bullet then becomes a projectile and is usually launched out through the barrel of a gun or similar device. Or, something like that.]],
 	rotation_series = "weapons/9mm_ammo",
 },
 ----------------------------------------------------------------------
