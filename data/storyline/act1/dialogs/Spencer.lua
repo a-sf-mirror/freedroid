@@ -482,7 +482,7 @@ return {
 			Npc:says(_"Good luck.")
 			Tux:add_quest("Propagating a faulty firmware update", _"I can now enter Hell Fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
 			Npc:says(_"Wait. I have a weapon here. It is not an Exterminator, but should save your life in the Hell Fortress.")
-			Tux:add_item("Electro Laser Rifle", 1)
+			Tux:add_item("Laser Pulse Cannon", 1)
 
 			if (difficulty_level() > 2) then -- difficulty neither easy, nor normal, nor hard
 				Npc:says("ERROR, Spencer NODE 44, game difficulty not handled")
