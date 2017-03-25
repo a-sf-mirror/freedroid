@@ -833,7 +833,7 @@ item_list{
 	base_price = 24,
 	inventory = {x = 2, y = 1,stackable = true, image = "weapons/7_62mm_ammo/inv_image.png" },
 	drop = {sound = "Item_Range_Weapon_Put_Sound_0.ogg"},
-	description =_[[7.62mm ammo.]],
+	description =_[[7.62mm ammo. Commonly used in assault rifles from old.]],
 	rotation_series = "weapons/7_62mm_ammo",
 },
 ----------------------------------------------------------------------
@@ -894,7 +894,7 @@ item_list{
 	base_price = 200,
 	inventory = {x = 1, y = 1, image = "weapons/50_bmg_ammo/inv_image.png" },
 	drop = {sound = "Item_Range_Weapon_Put_Sound_0.ogg"},
-	description =_[[Browning Machine Gun ammo.]],
+	description =_[[Browning Machine Gun ammo. Commonly used against small fortress and also to stop vehicles. You probably won't find a weapon to use this ammo, though.]],
 	rotation_series = "weapons/50_bmg_ammo",
 },
 ----------------------------------------------------------------------
