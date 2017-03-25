@@ -64,7 +64,6 @@ return {
 			Npc:says(_"O*crack*r")
 			Tux:update_quest("Propagating a faulty firmware update", _"Spencer contacted me and said I was supposed to find the real firmware update server. I hope I survive this...")
 			Tux:add_quest("Open Sesame", "It turns out what we thought was the firmware update server was just a gate access server. Spencer speculates the real firmware server is behind this gate. There should be something on the ground I am supposed to follow.")
-			Spencer_can_die = true
 			end_dialog()
 		elseif (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) and (not HF_FirmwareUpdateServer_Spencer) then
 			next("node60")
@@ -686,6 +685,7 @@ return {
 			Npc:says(_"Now listen carefully, this is the plan...")
 			Tux:end_quest("Propagating a faulty firmware update", _"The town is saved, but there's still a lot to do. I agreed to continue fighting the robot armies with the Red Guard.")
 			hide("node65")
+			Spencer_can_die = true -- Not very useful because win_game is still here
 			win_game()
 			end_dialog()
 		end,
