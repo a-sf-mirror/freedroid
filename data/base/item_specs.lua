@@ -63,7 +63,7 @@
 
 	base_price (integer) default = 0
 	--  The basic shop price that item is sold.
-	--  Unsoldable (and buyable) with the value 0.
+	--  Unsaleable (and buyable) with the value 0.
 
 	description (string)
 	--  Text to describe the item.
@@ -80,7 +80,7 @@
 	--  The time one attack is performed.
 
 	weapon.reloading_time (float) default = 0
-	--  The time to reload ammmunition.
+	--  The time to reload ammunition.
 
 	weapon.reloading_sound (string)
 	--  Name of sound file to play when reloading weapon 
@@ -1175,7 +1175,7 @@ item_list{
 	base_price = 4500,
 	inventory = {x = 2, y = 5, image = "weapons/electro_laser_rifle/inv_image.png" },
 	drop = {class = "9", sound = "Item_Range_Weapon_Put_Sound_0.ogg"},
-	description =_[[A specialized beam of laser momentarily ionizes the air between the target and the gun, turning it into highly conductive plasma. Milliseconds later, a powerful electric shock is delivered through the air and hits the target. This weapon is effective against people as it is against bots, and indeed few are the droid classes that can withstand more than a few hits from it before going down. The one downside is the high cost involved in crafting this weapon, which makes it very rare. Other than that, even the Exterminators have difficulty matching this weapon, the proudness of human race.]],
+	description =_[[A specialized beam of laser momentarily ionizes the air between the target and the gun, turning it into highly conductive plasma. Milliseconds later, a powerful electric shock is delivered through the air and hits the target. This weapon is effective against people as it is against bots, and indeed few are the droid classes that can withstand more than a few hits from it before going down. The one downside is the high cost involved in crafting this weapon, which makes it very rare. Other than that, even the Exterminators have difficulty matching this weapon, the pride of human race.]],
 	rotation_series = "weapons/electro_laser_rifle",
 	tux_part = "iso_electro_laser_rifle",
 },
