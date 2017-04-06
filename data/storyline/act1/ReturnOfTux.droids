@@ -54,7 +54,7 @@ Level=3
 ** Beginning of new Level **
 Level=4
 
-T=598: PosX=4 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"DSB Control Terminal Guard" Marker=1004 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0 UseSensor="infrared"
+T=DSB: PosX=4 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"DSB Control Terminal Guard" Marker=1004 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
@@ -317,7 +317,7 @@ T=420: PosX=18 PosY=28 Faction="civilian" UseDialog="TestDroid" ShortLabel=_"TD"
 T=420: PosX=18 PosY=26 Faction="civilian" UseDialog="TestDroid" ShortLabel=_"TD" Marker=2031 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=420: PosX=18 PosY=22 Faction="civilian" UseDialog="TestDroid" ShortLabel=_"TD" Marker=2031 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=420: PosX=26 PosY=11 Faction="civilian" UseDialog="TestDroid" ShortLabel=_"TD" Marker=2031 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
-T=883: PosX=27 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard" Marker=3031 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0 UseSensor="radar"
+T=MSO: PosX=27 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard" Marker=3031 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=GUN: PosX=49 PosY=88 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Autogun" Marker=3031 RushTux=0 Fixed=1 DropItemId="none" MaxDistanceToHome=0
 T=GUN: PosX=52 PosY=88 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Autogun" Marker=3031 RushTux=0 Fixed=1 DropItemId="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
@@ -507,7 +507,7 @@ Level=58
 ** Beginning of new Level **
 Level=59
 
-T=999: PosX=54 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard" Marker=1059 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=HFF: PosX=54 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard" Marker=1059 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
