@@ -25,6 +25,7 @@ npc_list{
 	"Singularity",
 	--	"Serge",
 	"Scavenger",             --[[ _"Scavenger Bot" ]]--
+	"Samson",                --[[ _"Coder", _"Samson, the Coder" ]]--
 	"SADD",                  --[[ _"SADD - Exterminate Mode", _"SADD - Secret Area Defense Droid" ]]--
 	"SACD",                  --[[TRM]]--
 	"Richard",               --[[ _"Richard - Programmer" ]]--
@@ -49,7 +50,7 @@ npc_list{
 	"Jim",                   --[[ _"Jim", _"Jim - Portal Guardian" ]]--
 	"Jennifer",
 	"Jasmine",               --[[ _"Jasmine", _"Jasmine - Girlfriend of a true Hacker" ]]--
-	"Iris",                  --[[ _"Iris", _"Iris - bot hunter" ]]--
+	"Iris",                  --[[ _"Iris", _"Iris - treasure hunter" ]]--
 	"InvaderBot",
 	"HF-FirmwareUpdateServer",--[[TRM]]--
 	"HF-EntranceBot",
@@ -180,6 +181,17 @@ items = {
 	 {"Industrial coolant"},
 	 {"Barf's Energy Drink"},
 	 {"Diet supplement"},
+	}
+}
+
+npc_shop{
+name = "Samson",
+items = {
+	 {"Industrial coolant"},
+	 {"Liquid nitrogen"},
+	 {"Running Power Capsule"},
+	 {"Strength Capsule"},
+	 {"Dexterity Capsule"}
 	}
 }
 

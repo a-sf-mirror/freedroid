@@ -33,6 +33,7 @@ T=GUA: PosX=22 PosY=13 Faction="redguard" UseDialog="Town-TuxGuard" ShortLabel=_
 T=GUA: PosX=18 PosY=6 Faction="redguard" UseDialog="Town-GuardhouseGuard" ShortLabel=_"Gate Guardhouse Guard" Marker=9999 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 T=GUA: PosX=28 PosY=9 Faction="redguard" UseDialog="Town-NorthGateGuard" ShortLabel=_"North Gate Guard" Marker=9999 RushTux=1 Fixed=0 DropItemId="none" MaxDistanceToHome=7
 T=ARH: PosX=6 PosY=60 Faction="civilian" UseDialog="Arthur" ShortLabel=_"???" Marker=0 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
+T=PRO: PosX=61 PosY=5 Faction="civilian" UseDialog="Samson" ShortLabel=_"Coder" Marker=0 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
