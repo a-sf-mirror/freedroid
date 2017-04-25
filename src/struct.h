@@ -221,6 +221,13 @@ typedef struct map_label {
 	point pos;		// how many blocks does this big map insert cover?
 } map_label;
 
+// This is a helper struct, used to load/save the variable part of
+// event triggers (i.e. their states)
+typedef struct event_trigger_state {
+	string name;
+	uint32_t state; // ORed values from enum trigger_state
+} event_trigger_state;
+
 typedef char *luacode;
 typedef struct mission {
 	string mission_name;
@@ -538,6 +545,7 @@ typedef struct npc {
 } npc;
 
 typedef char automap_data_t[100][100];
+
 typedef struct tux {
 	float current_game_date;	// seconds since game start, will be printed as a different 'date'
 	// inside the game, like 14:23 is afternoon
@@ -608,6 +616,7 @@ typedef struct tux {
 	unsigned int Gold;
 	string character_name;
 	mission_dynarray missions;	// What must be done to fulfill this mission?
+
 	int marker;		// In case you've taken over a marked droid, this will contain the marker
 	float LastCrysoundTime;
 	float TextVisibleTime;

@@ -1656,7 +1656,6 @@ int load_named_game(const char *name)
 	if (load_game() != OK)
 		return ERR;
 
-	GetEventTriggers("events.dat");
 	item_held_in_hand = NULL;
 	return OK;
 }

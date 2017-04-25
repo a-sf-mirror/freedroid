@@ -374,6 +374,8 @@ void write_game_config(struct auto_string *strout);
 
 void read_keybind_t_array(lua_State *L, int index, keybind_t *result, int size);
 void write_keybind_t_array(struct auto_string *strout, keybind_t *data, int size);
+void write_event_triggers_dynarray(struct auto_string *);
+void read_event_triggers_dynarray(lua_State *, int);
 
 /// \defgroup externalrw Declaration of external read/write functions
 /// \ingroup luasaveload

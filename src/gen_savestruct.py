@@ -6,7 +6,7 @@
 #
 # Copyright (c) 2008 Pierre "delroth" Bourdon <root@delroth.is-a-geek.org>
 # Copyright (c) 2009 Arthur Huillet
-# Copyright (c) 2011 Samuel Degrande
+# Copyright (c) 2011,2017 Samuel Degrande
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ import sys, re
 dump_structs = [
                  "gps", "point", "pointf",
                  "tux_t", "item", "enemy", "bullet", "blast",
-                 "obstacle", "volatile_obstacle",
+                 "obstacle", "volatile_obstacle", "event_trigger_state",
                  "spell", "melee_shot", "mission", "npc",
                  "upgrade_socket", "keybind_t", "configuration_for_freedroid"
                ]

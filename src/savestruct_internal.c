@@ -605,6 +605,12 @@ void save_game_data(struct auto_string *strout)
 			}
 		}
 	}
+
+	// Event triggers - Special write function:
+	// We save only the non-default attributes, i.e. the event trigger states.
+	autostr_append(strout, "event_triggers_array{\n");
+	write_event_triggers_dynarray(strout);
+	autostr_append(strout, "}\n");
 }
 
 /*
@@ -614,6 +620,12 @@ void save_game_data(struct auto_string *strout)
 static int game_config_ctor(lua_State *L)
 {
 	read_game_config(L, 1);
+
+	// Now that the currently played game act is known, we can load
+	// the game act related specifications.
+	// (only the event triggers are actually not stored in savegames...)
+	GetEventTriggers("events.dat");
+
 	return 0;
 }
 
@@ -706,6 +718,12 @@ static int volatile_obstacle_ctor(lua_State *L)
 	return 0;
 }
 
+static int event_triggers_array_ctor(lua_State *L)
+{
+	read_event_triggers_dynarray(L, 1);
+	return 0;
+}
+
 /**
  * Load game data.
  * \ingroup toprw
@@ -730,6 +748,7 @@ void load_game_data(char *strin)
 		{"melee_shot_array", melee_shot_array_ctor},
 		{"factions", factions_ctor},
 		{"volatile_obstacle", volatile_obstacle_ctor},
+		{"event_triggers_array", event_triggers_array_ctor},
 		{NULL, NULL}
 	};
 

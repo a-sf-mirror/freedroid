@@ -71,6 +71,8 @@ void play_title_file(int, char *);
 
 // event.c
 void GetEventTriggers(const char *EventsAndEventTriggersFilename);
+int event_trigger_set_enable(const char *, int);
+int event_trigger_get_state(const char *, uint32_t *);
 void event_position_changed(gps pos, int teleport);
 void event_level_changed(int past_lvl, int cur_lvl);
 void event_enemy_died(enemy *dead);

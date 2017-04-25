@@ -1634,6 +1634,12 @@ enum shader {
 #define FLOOR_TILE_WIDTH 134
 #define FLOOR_TILE_HEIGHT 66
 
+// ORed flags defining an event trigger's state
+enum trigger_state {
+	TRIGGER_DEFAULT  = 0,
+	TRIGGER_DISABLED = 1 << 0
+};
+
 enum gl_quirks {
 	DISABLE_SHADERS = 1,
 };
