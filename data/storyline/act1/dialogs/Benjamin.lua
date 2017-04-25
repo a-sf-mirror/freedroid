@@ -106,12 +106,12 @@ return {
 				Npc:says(_"Interested?")
 				show("node23")
 			elseif (Tux:get_skill("ranged") == 3) then
-				Npc:says(_"Oh, you want to become a real master with shooters?", "NO_WAIT")
+				Npc:says(_"To become an expert with firearms, you need ridiculous amounts of training.", "NO_WAIT")
 				Npc:says(_"It will cost you 400 valuable circuits and an awful lot of mental focusing on the task.")
 				Npc:says(_"Interested?")
 				show("node24")
 			elseif (Tux:get_skill("ranged") == 4) then
-				Npc:says(_"To become a true god of firearms, just like me, you need ridiculous amounts of training.", "NO_WAIT")
+				Npc:says(_"Oh, you want to become a real master with shooters, just like me?", "NO_WAIT")
 				Npc:says(_"It will of course cost a fair bit of cold, hard circuits as well. 500, to be precise.")
 				Npc:says(_"Interested?")
 				show("node25")
@@ -200,15 +200,15 @@ return {
 	},
 	{
 		id = "node25",
-		text = _"I want to become a god in ranged combat. (costs 500 circuits, 15 training points)",
+		text = _"I want to become a master in ranged combat. (costs 500 circuits, 15 training points)",
 		echo_text = false,
 		code = function()
 			Tux:says(_"Teach me how to be at one with my weapon.")
 			cost = 500
 			if Tux:train_skill(cost, 15, "ranged") then
-				Npc:says(_"The ultimate secret to becoming a god in ranged combat is something you should value.")
+				Npc:says(_"The ultimate secret to becoming a master in ranged combat is something you should value.")
 				Npc:says(_"I don't tell everyone this, so keep it to yourself, all right?")
-				Npc:says(_"To become a god in ranged combat you need to...")
+				Npc:says(_"To become a master in ranged combat you need to...")
 				Npc:says(_"...practise. A lot.")
 				Npc:says(_"Go ahead and use my firing range as much as you need.")
 				hide("node25") show("node20")
