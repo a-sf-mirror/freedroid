@@ -1182,6 +1182,37 @@ static int lua_get_game_version(lua_State *L)
 	return 1;
 }
 
+static int lua_event_trigger_disable(lua_State *L)
+{
+	char *name = (char *)luaL_checkstring(L, 1);
+	if (!event_trigger_set_enable(name, FALSE)) {
+		error_message(__FUNCTION__, "Event trigger %s was not found.", PLEASE_INFORM, name);
+	}
+	return 0;
+}
+
+static int lua_event_trigger_enable(lua_State *L)
+{
+	char *name = (char *)luaL_checkstring(L, 1);
+	if (!event_trigger_set_enable(name, TRUE)) {
+		error_message(__FUNCTION__, "Event trigger %s was not found.", PLEASE_INFORM, name);
+	}
+	return 0;
+}
+
+static int lua_event_trigger_enabled(lua_State *L)
+{
+	char *name = (char *)luaL_checkstring(L, 1);
+	uint32_t state;
+	if (!event_trigger_get_state(name, &state)) {
+		error_message(__FUNCTION__, "Event trigger %s was not found.", PLEASE_INFORM, name);
+		lua_pushnil(L); /* return nil on error */
+		return 1;
+	}
+	lua_pushboolean(L, !(state & TRIGGER_DISABLED));
+	return 1;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label)
 	 * Teleports the player to the given map label.
@@ -1469,6 +1500,11 @@ luaL_Reg lfuncs[] = {
 	{"set_mouse_move_target", lua_set_mouse_move_target},
 
 	{"get_game_version", lua_get_game_version},
+
+	{"disable_event_trigger", lua_event_trigger_disable},
+	{"enable_event_trigger", lua_event_trigger_enable},
+	{"event_trigger_enabled", lua_event_trigger_enabled},
+
 	{NULL, NULL}
 };
 
