@@ -52,6 +52,7 @@ struct event_trigger {
 
 	luacode lua_code;
 	int silent; // do we have to advertise this trigger to the user? (teleporters..)
+	int single_activation; // disable the trigger after first activation
 
 	enum {
 		POSITION,
@@ -131,6 +132,7 @@ void delete_events(void)
 #define EVENT_TRIGGER_LUACODE_STRING "<LuaCode>"
 #define EVENT_TRIGGER_LUACODE_END_STRING "</LuaCode>"
 #define EVENT_TRIGGER_ENABLED_STRING "Enable this trigger by default="
+#define EVENT_TRIGGER_SINGLE_ACTIVATION_STRING "Single activation="
 
 // For position-based events
 #define EVENT_TRIGGER_LABEL_STRING "Trigger at label=\""
@@ -250,6 +252,9 @@ static void load_events(char *event_section_pointer)
 						&enabled_flag, end_of_event);
 		if (!enabled_flag)
 			temp.state = TRIGGER_DISABLED;
+
+		ReadValueFromStringWithDefault(event_pointer, EVENT_TRIGGER_SINGLE_ACTIVATION_STRING, "%d", "0",
+						&temp.single_activation, end_of_event);
 
 		end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1] = '\0';
 
@@ -397,11 +402,13 @@ void event_position_changed(gps pos, int teleported)
 			if (arr[i].trigger.position.teleported != teleported)
 				continue;
 
-		if (((int)pos.x == arr[i].trigger.position.x) 
-				&& ((int)pos.y == arr[i].trigger.position.y)) {
+		if (((int)pos.x != arr[i].trigger.position.x)
+				|| ((int)pos.y != arr[i].trigger.position.y))
+			continue;
 
-			run_lua(LUA_DIALOG, arr[i].lua_code);
-		}
+		run_lua(LUA_DIALOG, arr[i].lua_code);
+		if (arr[i].single_activation)
+			arr[i].state |= TRIGGER_DISABLED;
 	}
 }
 
@@ -429,6 +436,8 @@ void event_level_changed(int past_lvl, int cur_lvl)
 				continue;
 
 		run_lua(LUA_DIALOG, arr[i].lua_code);
+		if (arr[i].single_activation)
+			arr[i].state |= TRIGGER_DISABLED;
 	}
 }
 
@@ -464,6 +473,8 @@ static void event_enemy(enemy *target, int event)
 				continue;
 
 		run_lua(LUA_DIALOG, arr[i].lua_code);
+		if (arr[i].single_activation)
+			arr[i].state |= TRIGGER_DISABLED;
 	}
 }
 
@@ -510,6 +521,8 @@ void event_obstacle_action(obstacle *o)
 		}
 
 		run_lua(LUA_DIALOG, arr[i].lua_code);
+		if (arr[i].single_activation)
+			arr[i].state |= TRIGGER_DISABLED;
 	}
 }
 

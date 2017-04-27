@@ -5,6 +5,8 @@ Each trigger has the following field:
 	as teleporters, this is this name that will be displayed on screen.
 	- Silent : (1 by default) is a flag that tells the game not to display the
 	trigger on screen when the player puts the mouse cursor over it
+	- Single activation : (0 by default) is a flag that disables the trigger
+	after its first activation
 	- Trigger at label : indicates what map label the event trigger is located at
 	- <Luacode> : contains the lua code to execute
 
