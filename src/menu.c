@@ -102,14 +102,46 @@ int do_menu_selection(char *header_text, char **items_texts, int first_item_idx,
 	//
 	// If an item is too large to fit inside the screen's width, it is auto-scrolled
 	// when highlighted.
+	//
+	// A minimum width is set on the header, to ensure that the header's text
+	// is not be split into too much small lines.
 
-	// Menu drawing style:
-	// - a minimum of 50 pixels between the screen and the menu
-	// - one 'line-height' padding between the menu's background and its content
-	// - one 'half-line' gap between the header's rect and the items' rect
-	static const int screen_gap = 50;
-	static const int rect_padding = 1;
-	static const int header_items_gap = 1;
+	// Menu layout:
+	//
+	// - on 'tall' screen (i.e. height >= 640):
+	//   - a minimum of 50 pixels between the screen and the menu
+	//   - one 'half-line-height' padding between the menu's background and its content
+	//   - one 'half-line-height' gap between the header's rect and the items' rect
+	// - on 'small' screen:
+	//   - a minimum of 50 pixels between the screen and the menu
+	//   - 1/5 of a 'line-height' padding between the menu's background and its content
+	//   - 1/5 of a 'line-height' gap between the header's rect and the items' rect
+	//   - minimum header width is one half of the screen
+	//
+	// - on 'wide' screen (i.e. width > 1024):
+	//   - minimum header width is one third of the screen
+	// - on 'narrow' screen:
+	//   - minimum header width is one half of the screen
+
+	int screen_gap;
+	float rect_padding;
+	float header_items_gap;
+	int min_header_width;
+
+	if (GameConfig.screen_height >= 640) {
+		screen_gap = 50;
+		rect_padding = 0.5;
+		header_items_gap = 0.5;
+	} else {
+		screen_gap = 10;
+		rect_padding = 0.2;
+		header_items_gap = 0.2;
+	}
+	if (GameConfig.screen_width > 1024) {
+		min_header_width = GameConfig.screen_width / 3;
+	} else {
+		min_header_width = GameConfig.screen_width / 2;
+	}
 
 	// We set the given font, if appropriate, and get the font height...
 
@@ -134,19 +166,16 @@ int do_menu_selection(char *header_text, char **items_texts, int first_item_idx,
 
 	int max_menu_width = GameConfig.screen_width - 2 * screen_gap;
 	int max_menu_height = GameConfig.screen_height - 2 * screen_gap;
-	int max_content_width = max_menu_width - 2 * rect_padding * font_height;
+	int max_content_width = max_menu_width - (int)(2.0 * rect_padding * font_height);
 
 	// Compute the width needed to render the items and the header.
-	// A minimum width is set to be a quarter of the screen's width.
-	// This minimum ensures that the header's text will not be split
-	// into too much small parts.
 	// For each item, compute its pixel-width, and keep the largest width.
 	// (the loop's end value is to avoid an 'infinite loop' - we will never have
 	// a menu with 1.000 items, will we ?)
 	// Finally, clamp to the available max width of the menu's content.
 	// (items content are auto-scrolled if they are larger)
 
-	int content_width = min(GameConfig.screen_width / 4, max_content_width);
+	int content_width = min(min_header_width, max_content_width);
 	int *items_texts_widths = (int *)malloc(sizeof(int) * (nb_items + 1));
 
 	for (int i = 0; i < nb_items; ++i) {
@@ -185,18 +214,18 @@ int do_menu_selection(char *header_text, char **items_texts, int first_item_idx,
 		SDL_Rect clipping_rect = { .x = 0, .y = 0, .w = content_width, .h = 0 };
 		int header_nb_lines = get_lines_needed(header_text, clipping_rect, 1.0);
 		header_content_height = header_nb_lines * font_height;
-		offset_to_items_rect = header_content_height + (2 * rect_padding + header_items_gap) * font_height;
+		offset_to_items_rect = header_content_height + (int)((2.0 * rect_padding + header_items_gap) * font_height);
 	}
 
 	// Find how many items you can fit in the menu, given the room left by the header
 
 	int available_height = max_menu_height - offset_to_items_rect;
-	int max_fitting_items = min((available_height / font_height - 2 * rect_padding), nb_items);
-	int items_background_height = (max_fitting_items + 2 * rect_padding) * font_height;
+	int max_fitting_items = min((int)((available_height - 2.0 * rect_padding * font_height) / font_height), nb_items);
+	int items_background_height = (int)((max_fitting_items + 2.0 * rect_padding) * font_height);
 
 	// We can now set the 4 rects used to render the menu
 
-	int menu_width   = content_width + 2 * rect_padding * font_height;
+	int menu_width   = content_width + (int)(2.0 * rect_padding * font_height);
 	int menu_left    = (GameConfig.screen_width - menu_width) / 2;
 
 	int whole_height = offset_to_items_rect + items_background_height;
@@ -205,11 +234,11 @@ int do_menu_selection(char *header_text, char **items_texts, int first_item_idx,
 		.x = menu_left,
 		.y = (GameConfig.screen_height - 2 * screen_gap - whole_height) / 2,
 		.w = menu_width,
-		.h = header_content_height + 2 * rect_padding * font_height
+		.h = header_content_height + (int)(2.0 * rect_padding * font_height)
 	};
 	SDL_Rect header_content_rect    = {
-		.x = menu_left + rect_padding * font_height,
-		.y = header_background_rect.y + rect_padding * font_height,
+		.x = menu_left + (int)(rect_padding * font_height),
+		.y = header_background_rect.y + (int)(rect_padding * font_height),
 		.w = content_width,
 		.h = header_content_height
 	};
@@ -220,10 +249,10 @@ int do_menu_selection(char *header_text, char **items_texts, int first_item_idx,
 		.h = items_background_height
 	};
 	SDL_Rect items_content_rect     = {
-		.x = menu_left + rect_padding * font_height,
-		.y = items_background_rect.y + rect_padding * font_height,
+		.x = menu_left + (int)(rect_padding * font_height),
+		.y = items_background_rect.y + (int)(rect_padding * font_height),
 		.w = content_width,
-		.h = items_background_height - 2 * rect_padding * font_height
+		.h = items_background_height - (int)(2.0 * rect_padding * font_height)
 	};
 
 	//----------
@@ -349,9 +378,9 @@ int do_menu_selection(char *header_text, char **items_texts, int first_item_idx,
 
 			// Highlighting of the currently selected menu item
 			if (i == selected_item_idx - 1) {
-				SDL_Rect highlight_rect = { .x = items_background_rect.x + (rect_padding * font_height) / 2,
+				SDL_Rect highlight_rect = { .x = items_background_rect.x + (int)((rect_padding * font_height) / 2.0),
 				                            .y = items_content_rect.y + (i * font_height),
-				                            .w = items_background_rect.w - rect_padding * font_height,
+				                            .w = items_background_rect.w - (int)(rect_padding * font_height),
 				                            .h = font_height };
 				draw_highlight_rectangle(highlight_rect);
 
