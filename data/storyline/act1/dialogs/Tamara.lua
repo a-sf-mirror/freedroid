@@ -19,7 +19,7 @@
 --[[WIKI
 PERSONALITY = { "Intelligent", "Timid" },
 MARKERS = { NPCID1 = "Sorenson", QUESTID1 = "An Explosive Situation" },
-PURPOSE = "$$NAME$$ can sell Tux skills books. Her skills are needed to aid Tux in resolving the $$QUESTID1$$ quest.",
+PURPOSE = "$$NAME$$ can sell Tux programs books. Her skills are needed to aid Tux in resolving the $$QUESTID1$$ quest.",
 BACKSTORY = "$$NAME$$ is the town\'s librarian, which she use to run with $$NPCID1$$ until their falling out. $$NAME$$ also documents bot history in her spare time.",
 RELATIONSHIP = {
 	{

@@ -28,6 +28,7 @@ local Tux = FDrpg.get_tux()
 
 local function tutorial_chests_and_armor_and_shops()
 	tut_tux_items_entered = true
+	TutorialTom_Tux_found_all_items = true -- we could open all doors too...
 	tut_tux_chest_entered = true
 end
 
@@ -804,6 +805,7 @@ return {
 			Npc:says(_"You also have the [b]Programming[/b] skill, which essentially is about programming in an energy-efficient manner so programs cause less heat.")
 			Npc:says(_"Apart from this, a few programs require a teacher and training points to improve.")
 			Npc:says(_"[b]Extract Bot Parts[/b] is a special passive skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town.")
+			Npc:says(_"There may be other passive skills, but I know nothing about those.")
 			Npc:says(_"A good technician is able to make use of those parts.")
 			Npc:says(_"He can create, let's say, an add-on and, after doing some modifications to the item, attach this add-on.")
 			Npc:says(_"This way an upgraded item is created.")
