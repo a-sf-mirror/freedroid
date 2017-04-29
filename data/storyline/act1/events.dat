@@ -1942,21 +1942,6 @@ Enemy faction="ms"
 </LuaCode>
 * End of trigger *
 
-* New event trigger *
-Name="Stop Arena"
-Trigger at label="StopArenaSquare"
-Silent=1
-<LuaCode>
-	if (not arena_won and arena_left == false and not arena_remaining_bots) then
-		arena_left = true
-		arena_next_wave = nil
-
-		change_obstacle_state("Arena-AccessTrapdoor", "opened")
-		change_obstacle_state("Arena-RingEntrance", "opened")
-	end
-</LuaCode>
-* End of trigger *
-
 ##############
 ## Level 30 ##
 ##############

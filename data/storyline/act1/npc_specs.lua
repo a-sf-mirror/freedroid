@@ -81,6 +81,7 @@ npc_list{
 	"Benjamin",              --[[ _"Benjamin - Gunsmith" ]]--
 	"Bender",                --[[ _"Bender", _"Bender - The strongest one" ]]--
 	"Arthur",                --[[ _"Arthur", _"Arthur - Game developer" ]]--
+	"ArenaTerminal",         --[[TRM]]--
 	"AfterTakeover",
 	"614_portal",            --[[ _"614 - Gate Guard Bot ]]--
 	"614_cryo",              --[[ _"614 - Cryo Lab Guard Bot" ]]--

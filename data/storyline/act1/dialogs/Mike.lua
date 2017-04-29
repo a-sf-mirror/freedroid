@@ -68,8 +68,8 @@ return {
 						arena_ranking = "champion"
 					end
 					show("arena_ready")
-				elseif (arena_left) then
-					Npc:says(_"You have left the arena.")
+				elseif (arena_withdraw) then
+					Npc:says(_"You have withdrawn the arena.")
 					show("arena_ready")
 				else
 					Npc:says(_"The arena is already started.")
@@ -122,7 +122,7 @@ return {
 		code = function()
 			arena_current_level = nil
 			arena_won = false
-			arena_left = nil
+			arena_withdraw = false
 
 			--; TRANSLATORS: %s is the ranking of Tux in the arena.
 			Npc:says(_"Information: Your ranking has been established to be '%s'.", tr_rankings[arena_ranking])
