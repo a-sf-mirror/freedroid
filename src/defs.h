@@ -453,6 +453,8 @@ enum {
 
 #define DEFAULT_SCREEN_WIDTH  (800)
 #define DEFAULT_SCREEN_HEIGHT (600)
+#define MIN_SCREEN_WIDTH 640
+#define MIN_SCREEN_HEIGHT 480
 #define CHARACTERRECT_X (GameConfig.screen_width - 320)
 #define CHARACTERRECT_W (320)
 #define CHARACTERRECT_H (480)

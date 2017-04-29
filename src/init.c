@@ -483,8 +483,27 @@ void parse_command_line(int argc, char *const argv[])
 				char *x = strtok(optarg, "x");
 				char *y = strtok(NULL, "x");
 
+				// Set an help message about available resolutions.
+				struct auto_string *help_text = alloc_autostr(64);
+				autostr_append(help_text, "\nResolution identifiers of available hardcoded resolutions:\n");
+				for (int i = 0; i < nb_res; i++) {
+					autostr_append(help_text, "\t%d = %s\n", i, hard_resolutions[i].comment);
+				}
+				autostr_append(help_text, "\nAdditional resolutions may be specified by the form 'WxH' e.g. '800x600'\n"
+				                          "The in-game menu automatically detects fullscreen modes supported by your hardware.");
+
 				// User input a resolution
 				if (y != NULL) {
+					int width = atoi(x);
+					int height = atoi(y);
+					if (width < MIN_SCREEN_WIDTH || height < MIN_SCREEN_HEIGHT) {
+						error_message(__FUNCTION__,
+						              "The requested resolution (%dx%d) is not compatible with the game.\n"
+						              "A minimal size of %dx%d is needed.\n"
+						              "%s",
+						              IS_FATAL,
+									  width, height, MIN_SCREEN_WIDTH, MIN_SCREEN_HEIGHT, help_text->value);
+					}
 					GameConfig.screen_width = atoi(x);
 					GameConfig.screen_height = atoi(y);
 				} else {
@@ -495,24 +514,20 @@ void parse_command_line(int argc, char *const argv[])
 						GameConfig.screen_width = hard_resolutions[resolution_code].xres;
 						GameConfig.screen_height = hard_resolutions[resolution_code].yres;
 					} else {
-						fprintf(stderr, "\nresolution code received: %d\n", resolution_code);
-						char *txt = (char *)malloc(nb_res * 128 + 1);
-						txt[0] = '\0';
-						int i;
-						for (i = 0; i < nb_res; i++) {
-							char tmp[129];
-							snprintf(tmp, 129, "\t\t%d = %s\n", i, hard_resolutions[i].comment);
-							strncat(txt, tmp, 128);
+						if (resolution_code == 99) {
+							printf("%s\n", help_text->value);
+							exit(0);
+						} else {
+							error_message(__FUNCTION__,
+							              "The resolution identifier given (%d) is not a valid resolution code.\n"
+							              "%s",
+										  IS_FATAL,
+										  resolution_code, help_text->value);
 						}
-						error_message(__FUNCTION__, "  %s%s  %s", IS_FATAL,
-								 "\tThe resolution identifier given is not a valid resolution code.\n"
-								 "\tThese codes correspond to the following hardcoded resolutions available:\n",
-								 txt,
-								 "\tAdditional resolutions may be specified by the form 'WxH' e.g. '800x600'\n"
-								 "\tThe in-game menu automatically detects fullscreen modes supported by your hardware.");
-						free(txt);
 					}
 				}
+
+				free_autostr(help_text);
 			}
 			// By default, after starting up, the current resolution should be
 			// the resolution used at the next game startup too, so we preselect
@@ -743,34 +758,20 @@ static void detect_available_resolutions(void)
 			"Defaulting to a sane one for now", NO_REPORT);
 	} else {
 		// Add resolutions to the screen_resolutions array
-		for (size = 0; size < MAX_RESOLUTIONS && modes[size]; ++size)
-			screen_resolutions[size] = (screen_resolution) {modes[size]->w, modes[size]->h, "", TRUE};
-	}
-
-	if (size == 0) {
-		screen_resolutions[0] =	(screen_resolution) {DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, "", TRUE};
-		screen_resolutions[1] = (screen_resolution) {-1, -1, "", FALSE};
-		return;
-	}
-
-	// Sort
-	int i, j;
-	screen_resolution resolution_holder;
-
-	for (i = 0; i < size; i++) {
-		for (j = 0; j < size - 1; j++) {
-			// Sort in descending order of xres, then yres
-			if (screen_resolutions[j].xres < screen_resolutions[j + 1].xres ||
-					(screen_resolutions[j].xres == screen_resolutions[j + 1].xres &&
-					screen_resolutions[j].yres < screen_resolutions[j +1].yres)) {
-				resolution_holder = screen_resolutions[j + 1];
-				screen_resolutions[j + 1] = screen_resolutions[j];
-				screen_resolutions[j] = resolution_holder;
+		for (int i = 0; i < MAX_RESOLUTIONS && modes[i]; i++) {
+			if ((modes[i]->w >= MIN_SCREEN_WIDTH) && (modes[i]->h >= MIN_SCREEN_HEIGHT)) {
+				screen_resolutions[size] = (screen_resolution){modes[i]->w, modes[i]->h, "", TRUE};
+				size++;
 			}
 		}
 	}
 
-	// Add our terminator on the end, just in case
+	if (size == 0) {
+		screen_resolutions[0] =	(screen_resolution) {DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, "", TRUE};
+		size++;
+	}
+
+	// Add our terminator on the end
 	screen_resolutions[size] = (screen_resolution) {-1, -1, "", FALSE};
 }
 
