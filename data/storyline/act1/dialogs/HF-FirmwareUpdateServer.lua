@@ -97,6 +97,13 @@ return {
 				change_obstacle_state("ServerRoomDoor", "closed")
 				Tux:update_quest("Propagating a faulty firmware update", _"I managed to upload the faulty firmware update to all bots within transmission range. Either the siege on the town ends now... Or everything else does.")
 				kill_faction("ms", "no_respawn")
+				-- Disable HF Office traps
+				local i=0
+				while (i <= 363) do -- This is a little hardcoded/hack-ish but will do
+					disable_event_trigger("59_trap_" .. i)
+					i=i+1
+				end
+
 				hide("node3")
 			else
 				Npc:says(_"Merge failed.")
