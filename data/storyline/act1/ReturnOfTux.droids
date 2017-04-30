@@ -446,6 +446,7 @@ Level=47
 ** Beginning of new Level **
 Level=48
 
+T=FEM: PosX=2 PosY=11 Faction="resistance" UseDialog="Erin" ShortLabel=_"Bot Hunter" Marker=1058 RushTux=0 Fixed=0 DropItemId="none" MaxDistanceToHome=0 UseSensor="xray"
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **

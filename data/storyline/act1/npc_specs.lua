@@ -59,6 +59,7 @@ npc_list{
 	"FactionDeadBot",
 	"Ewalds_296",
 	"Ewald",                 --[[ _"Ewald - Barkeeper" ]]--
+	"Erin",                  --[[ _"Erin - bot hunter", _"Bot hunter" ]]--
 	"Engel",                 --[[ _"Engel - Hunter" ]]--
 	"Duncan",                --[[ _"Duncan - Bombmaker" ]]--
 	"Dude",
