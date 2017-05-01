@@ -39,6 +39,11 @@ return {
 	end,
 
 	EveryTime = function()
+		if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			--; TRANSLATORS: %s = Tux:get_player_name()
+			Npc:says(_"Congratulations on saving us, %s! I knew you could do it!", Tux:get_player_name(), "NO_WAIT")
+		end
+
 		if (Tux:has_quest("Saving the shop")) then
 			show_if((Tux:get_gold() > 1400), "node23")
 			if (Tux:done_quest("Saving the shop")) then

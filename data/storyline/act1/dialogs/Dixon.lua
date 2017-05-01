@@ -71,6 +71,11 @@ return {
 	end,
 
 	EveryTime = function()
+		if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			Npc:says(_"Please don't bother me now. I am trying to account all damage this town suffered so I can finally go on vacations.")
+			Npc:says(_"I want to see Temple Wood again so much! Ah, and the shoreline. Omega island! Please, unless you're going to help me with paperwork, leave.")
+			end_dialog()
+		end
 		if (Dixon_mood < 50) then
 			Npc:says(_"Please take care not to disturb my work, I'm very busy keeping things running.")
 		elseif (Dixon_mood < 180) then -- Dixon is angry

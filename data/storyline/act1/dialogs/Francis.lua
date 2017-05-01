@@ -380,12 +380,12 @@ return {
 		id = "node99",
 		text = _"Thanks for the help. I'll be going now.",
 		code = function()
-		if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
-			Npc:says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
-			Npc:says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")
-		else
-			Npc:says(_"Safe travels, linarian.")
-		end
+			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
+				Npc:says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")
+			else
+				Npc:says(_"Safe travels, linarian.")
+			end
 			end_dialog()
 		end,
 	},

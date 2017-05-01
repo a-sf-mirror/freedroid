@@ -31,6 +31,9 @@ return {
 	EveryTime = function()
 		if (Tux:has_met("Karol")) then
 			show("node1")
+			if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says(_"Commerce today is slower than usual. I wonder if something happened.")
+			end
 		end
 
 		show("node99")

@@ -52,6 +52,19 @@ return {
 			WillGapes_generous = false
 		else
 			Npc:says(_"I see you're still alive. Maybe the robots won't win after all.")
+			if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				if (not Gapes_Uploaded_firmware) then
+					Tux:says(_"I killed all bots, you can go outside now.")
+					Npc:says(_"It's impossible. The bots are after me! I must stay here!")
+					Tux:says(_"...Okay, but when you fell hungry, do leave and visit the town. You can find food there.")
+					Npc:says(_"*stomach growls*")
+					Npc:says(_"I'm not hungry! I swear!")
+					Gapes_Uploaded_firmware=true
+				else
+					Npc:says(_"*stomach growls*")
+					Npc:says(_"I'm not hungry yet! Nothing will make me leave this little fortress!", "NO_WAIT")
+				end
+			end
 		end
 		show("node99")
 	end,

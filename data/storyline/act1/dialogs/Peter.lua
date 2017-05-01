@@ -38,6 +38,11 @@ return {
 							_"Welcome back.")
 		end
 		show("node99")
+
+		if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			Npc:says(_"HAHAHA! I heard the bots are dead! You fascists will now all die in hands of a civilian revolution, resistance will prevail, just wait! HAHAHA!")
+		end
+
 	end,
 
 	{

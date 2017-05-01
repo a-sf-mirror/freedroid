@@ -34,6 +34,10 @@ return {
 	end,
 
 	EveryTime = function()
+		if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			Npc:says(_"I was finally allowed to rest. Please don't bother me.")
+			end_dialog()
+		end
 		if (tux_has_joined_guard) then
 			Npc:says(_"I am tired.")
 			Npc:says(_"Go away.")

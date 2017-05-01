@@ -111,7 +111,14 @@ return {
 			Npc:says(_"I am not inciting anything. I am just stating what I see as inevitable in the future.")
 			Npc:says(_"I have taken part in many conflicts and I have seen how governments collapse.")
 			Npc:says(_"As soon as the war is over, the Red Guard will disband.")
-			Npc:says(_"Of course, I am making the assumption of victory, which is highly unlikely with the current state of affairs.")
+			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says(_"Of course, I am making the assumption of victory, which is highly unlikely with the current state of affairs.")
+			else
+				Tux:says(_"The war is already over. The bots are all dead.")
+				Npc:says(_"It's still too early to sing victory. You need some time to realize if you truly won or if you're just playing along someone's else plan.")
+				Tux:says(_"Someone else? Like whom?")
+				Npc:says(_"How can you be sure everyone behind the Great Assault is dead, Linarian? Or that it wasn't done on purpose? Only time will tell.")
+			end
 			hide("node3", "node4")
 		end,
 	},

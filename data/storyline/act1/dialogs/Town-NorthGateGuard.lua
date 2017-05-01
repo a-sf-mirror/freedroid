@@ -54,12 +54,19 @@ return {
 			end
 			end_dialog()
 		else
-			Tux:says(_"Can I ask you something?")
-			if (Town_NorthGateGuard_tux_nickname_loon) then
-				Npc:says(_"Yes, Loon.", "NO_WAIT")
+			if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says(_"I'm ever vigilant! Bots are all dead? And what? I have a gate to guard! It's my duty, and I won't fail!")
+				Npc:says(_"[b]*in whisper* ... Not like I did with you, dear...[/b]")
+				Npc:says(_"Pretend you've heard nothing and mind your own business, Linarian.")
+				end_dialog()
+			else
+				Tux:says(_"Can I ask you something?")
+				if (Town_NorthGateGuard_tux_nickname_loon) then
+					Npc:says(_"Yes, Loon.", "NO_WAIT")
+				end
+				Npc:says(_"You can ask, but don't expect a reply.", "NO_WAIT")
+				Npc:says(_"I'm guarding this gate, and if I get distracted the bots might overrun this town and kill everybody in it.")
 			end
-			Npc:says(_"You can ask, but don't expect a reply.", "NO_WAIT")
-			Npc:says(_"I'm guarding this gate, and if I get distracted the bots might overrun this town and kill everybody in it.")
 		end
 		show_if(knows_spencer_office, "node41")
 		if (KevinMurder) and

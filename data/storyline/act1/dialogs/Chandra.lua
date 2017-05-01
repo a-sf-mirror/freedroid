@@ -97,10 +97,17 @@ return {
 		id = "node3",
 		text = _"So what's so strange about the attack?",
 		code = function()
-			Npc:says(_"According to my calculations based on the Fermi estimate, there are about seven million bots active in the region, everything from cleaner bots and servant droids to much more dangerous ones.")
+			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says(_"According to my calculations based on the Fermi estimate, there are about seven million bots active in the region, everything from cleaner bots and servant droids to much more dangerous ones.")
 			Npc:says(_"I think you will agree with me that the following statement is true: If bots, then death to everything alive.")
 			Npc:says(_"Now, I make the assumption that you and I are alive.")
 			Npc:says(_"But, if we are not dead, and if bots are killing everything alive...")
+			else
+				Npc:says(_"According to my calculations based on the Fermi estimate, there used to be about seven million bots active in the region, everything from cleaner bots and servant droids to much more dangerous ones.")
+			Npc:says(_"I think you will agree with me that the following statement is true: If bots, then death to everything alive.")
+			Npc:says(_"Now, I make the assumption that you and I are alive.")
+			Npc:says(_"But, if we are not dead, and if bots were killing everything alive even before you were awaken...")
+			end
 			Npc:says(_"... THEN WE HAVE A CONTRADICTION!")
 			Tux:says(_"Calm down. There must be some logic behind this.")
 			Npc:says(_"There can be none!")

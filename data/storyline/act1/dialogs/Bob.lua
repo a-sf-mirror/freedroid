@@ -137,7 +137,11 @@ return {
 			Tux:says(_"Here you go.")
 			Tux:del_item("Red Dilithium Crystal", 1)
 			Npc:says(_"Oh dude, you can't even imagine how thankful I am!")
-			Npc:says(_"My bot is now fine: the power level is holding steady at 9001 megawatts. I won't need to worry that bots will kill me while I am sleeping! Thank you so much!")
+			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says(_"My bot is now fine: the power level is holding steady at 9001 megawatts. I won't need to worry that bots will kill me while I am sleeping! Thank you so much!")
+			else
+				Npc:says(_"My bot is now fine: the power level is holding steady at 9001 megawatts. Now I have a robot and my brother to talk to, even knowing none of them will reply my questions! Thank you so much!")
+			end
 			Npc:says(_"Here is my award for you. When we saw this place at the first time, we found some bot inside. I destroyed it and this mace dropped out of it. I'm not sure how did it appear inside, but now it's yours.")
 			Tux:add_item("Mace")
 			Tux:says(_"Thank you, Bob.")

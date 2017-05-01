@@ -305,7 +305,7 @@ return {
 			Npc:says(_"Giving up was, well, shameful, but you should remember that retreating is no reason of shame. When you retreat, you gain time.")
 			Npc:says(_"You can do a lot of things with extra time. You can change your weapon, train some more, study your opponent, plan a strategy and even hack an army of robots to help you.")
 			Npc:says(_"So, remember this! Retreating is an option! Dying is not!")
-			Npc:says(_"...And take care. I've seen some 123 bots nearby, and I think they're still too strong for you, so...")
+			Npc:says(_"...And take care. I might have seen some 123 bots nearby, and I think they're still too strong for you, so...")
 			Tux:improve_skill("melee")
 			show("training_main")
 			end_dialog()
@@ -505,10 +505,16 @@ return {
 		enabled = true,
 		text = _"See you later.",
 		code = function()
-			Npc:says_random(_"Try to don't die until then.",
-							_"Don't let the bots get you. If they do, you're dead.",
-							_"Yeah yeah. Leave me alone.",
-							_"...Finally...")
+			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says_random(_"Try to don't die until then.",
+								_"Don't let the bots get you. If they do, you're dead.",
+								_"Yeah yeah. Leave me alone.",
+								_"...Finally...")
+			else
+				Npc:says_random(_"Watch where you step. There may be traps.",
+								_"Yeah yeah. Leave me alone.",
+								_"...Finally...")
+			end
 			end_dialog()
 		end,
 	},

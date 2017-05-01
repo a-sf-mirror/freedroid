@@ -31,6 +31,9 @@ return {
 	end,
 
 	EveryTime = function()
+		if (HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+			Npc:says(_"Hey, if it isn't our hero! Do you need ammo? A new gun, maybe? Or armor, yes, you definitely should get a new one!", "NO_WAIT")
+		end
 		show("node99")
 	end,
 
@@ -69,9 +72,14 @@ return {
 			Npc:says(_"Haha, good one.")
 			Npc:says(_"Sorry, they are not for sale.")
 			Tux:says(_"I'll get one for free?")
-			Npc:says(_"You are the funniest Linarian I've ever seen.")
-			Npc:says(_"If the only one.")
-			Npc:says(_"Now go, kill some bots.")
+			if (not HF_FirmwareUpdateServer_uploaded_faulty_firmware_update) then
+				Npc:says(_"You are the funniest Linarian I've ever seen.")
+				Npc:says(_"If the only one.")
+				Npc:says(_"Now go, kill some bots.")
+			else
+				Npc:says(_"Why would you need one, anyway? The bots are all dead.")
+				Npc:says(_"While I agree you deserve one, only Spencer can authorize that. Sorry.")
+			end
 			hide("node3")
 		end,
 	},
