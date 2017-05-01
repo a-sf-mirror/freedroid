@@ -42,7 +42,7 @@ return {
 		text = _"Hi! I'm new here.",
 		code = function()
 			Npc:says(_"A newcomer! Great! We can always use more people. Welcome to the Red Guard! I'm Lukas. I'm in charge of our little armory here.")
-			hide("node0") show("node1", "node2")
+			hide("node0") show("node1", "node2", "node3")
 		end,
 	},
 	{
@@ -50,23 +50,34 @@ return {
 		text = _"Spencer said you'd be able to provide me with better armor and equipment.",
 		code = function()
 			Npc:says(_"Of course. As a member of the Guard, you're entitled to wear one of our suits of armor.")
-			Npc:says(_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing, though we also trade guns and some ammo.")
+			Npc:says(_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing, though we also trade guns.")
 			Npc:says_random(_"Now, what will it be?",
 							_"So, what do you want to buy?")
 			trade_with("Lukas")
-			show("node3")
+			show("node4")
 		end,
 	},
 	{
 		id = "node2",
-		text = _"What do you do all day here at the armory?",
+		text = _"I am interesting in buying ammo.",
 		code = function()
-			Npc:says(_"Oh, there's always something to do. Don't worry. I'm pretty occupied keeping the place in order.")
-			hide("node2")
+			Npc:says(_"Of course. Because ammo is always at high demand, we sell them separately.")
+			Npc:says_random(_"Now, what will it be?",
+							_"So, what do you want to buy?")
+			trade_with("Benjamin") -- Not sure if this usage was intended when trade_with() was implemented
+			show("node4")
 		end,
 	},
 	{
 		id = "node3",
+		text = _"What do you do all day here at the armory?",
+		code = function()
+			Npc:says(_"Oh, there's always something to do. Don't worry. I'm pretty occupied keeping the place in order.")
+			hide("node3")
+		end,
+	},
+	{
+		id = "node4",
 		text = _"I'd like to buy an exterminator.",
 		code = function()
 			Npc:says(_"Haha, good one.")
@@ -80,7 +91,7 @@ return {
 				Npc:says(_"Why would you need one, anyway? The bots are all dead.")
 				Npc:says(_"While I agree you deserve one, only Spencer can authorize that. Sorry.")
 			end
-			hide("node3")
+			hide("node4")
 		end,
 	},
 	{

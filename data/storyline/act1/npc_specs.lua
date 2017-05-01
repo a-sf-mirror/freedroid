@@ -123,15 +123,9 @@ items = {
 npc_shop{
 name = "Lukas",
 items = {
-	 {"9x19mm Ammunition"},
-	 {"7.62x39mm Ammunition"},
-	 {".50 BMG (12.7x99mm) Ammunition"},
-	 {"2 mm Exterminator Ammunition"},
-	 {"Laser power pack", 3},
-	 {"Laser pistol", 2},
+	 {"Laser pistol"},
 	 {"Laser Rifle"},
-	 {"Plasma energy container", 3},
-	 {"Plasma pistol", 2},
+	 {"Plasma pistol"},
 	 {"Plasma gun"},
 	 {"Riot Shield"},
 	 {"Light Battle Helmet"},
@@ -182,6 +176,20 @@ items = {
 	 {"Industrial coolant"},
 	 {"Barf's Energy Drink"},
 	 {"Diet supplement"},
+	}
+}
+
+npc_shop{
+name = "Benjamin",
+items = {
+	 {".22 LR Ammunition"},
+	 {"Shotgun shells"},
+	 {"2 mm Exterminator Ammunition", 2},
+	 {"Laser power pack", 3},
+	 {"Plasma energy container", 3}
+	 --"9x19mm Ammunition",
+	 --"7.62x39mm Ammunition",
+	 --".50 BMG (12.7x99mm) Ammunition",
 	}
 }
 
