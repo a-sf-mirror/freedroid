@@ -20,7 +20,7 @@
 PERSONALITY = { "Militaristic","Consiliatory" },
 MARKERS = { NPCID1 = "Town-NorthGateGuard" },
 PURPOSE = "$$NAME$$ is another guard at the main entrance to town.",
-BAKCSTORY = "$$NAME$$ explains to Tux $$NPCID1$$\'s abrasiveness."
+BACKSTORY = "$$NAME$$ explains to Tux $$NPCID1$$\'s abrasiveness."
 WIKI]]--
 
 local Npc = FDrpg.get_npc()
