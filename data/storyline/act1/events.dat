@@ -1713,6 +1713,35 @@ Enemy dialog name="DeadGuy"
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name="24 Enable Black Grating"
+Trigger at label="24-TriggerSwitch01"
+Silent=0
+<LuaCode>
+	enable_event_trigger("24 Enable Red Dot")
+	disable_event_trigger("24 Enable Black Grating")
+
+	if (event_trigger_enabled("24 Enable Red Dot")) then
+		print("Enable Red Dot trigger is enabled!")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name="24 Enable Red Dot"
+Trigger at label="24-TriggerSwitch02"
+Enable this trigger by default=0
+Silent=0
+<LuaCode>
+	enable_event_trigger("24 Enable Black Grating")
+	disable_event_trigger("24 Enable Red Dot")
+
+	if (not event_trigger_enabled("24 Enable Red Dot")) then
+		print("Enable Red Dot trigger is disabled!")
+	end
+</LuaCode>
+* End of trigger *
+
 ##############
 ## Level 25 ##
 ##############
