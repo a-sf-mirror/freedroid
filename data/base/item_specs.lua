@@ -119,6 +119,7 @@ item_list{
 {
 	id = "The first item is VERY buggy ingame, so don't use it.",
 	name =_"The first item is VERY buggy ingame, so don't use it.",
+	-- NOTE can't be dropped, can't be equipped, et kin
 	slot = "none",
 	armor_class = "0:0",
 	right_use = {tooltip = _"Dummy item. If you see this, please report it as bug."},
@@ -347,7 +348,7 @@ item_list{
 	base_price = 60,
 	inventory = {x = 1, y = 3, image = "weapons/big_wrench/inv_image.png" },
 	drop = {class = "0", sound = "drop_sword_sound.ogg"},
-	description =_[[A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands-on, brutal way if needed.]],
+	description =_[[A big heavy wrench can be surprisingly efficient at turning a bot into second hand parts, in a hands-on and brutal way, if needed.]],
 	rotation_series = "weapons/big_wrench",
 	tux_part = "iso_big_wrench",
 },
@@ -687,7 +688,8 @@ item_list{
 	base_price = 12,
 	inventory = {x = 2, y = 1,stackable = true, image = "weapons/shotgun_ammo/inv_image.png" },
 	drop = {sound = "Item_Range_Weapon_Put_Sound_0.ogg"},
-	description =_[[Shotgun shells come in a range of gauges but mixing and matching shotgun ammo sizes can cause your gun to explode, taking your hand along with it. Lucky for you, all of your ammo is the same size, and fits your shotgun(s) perfectly. An additional bonus is that it all seems to be buckshot.]],
+	description =_[[Shotgun shells come in a range of gauges, but mixing and matching shotgun ammo sizes can cause your gun to explode and take your hand along with it. Luckily for you, all of your ammo is the same size and fits your shotgun(s) perfectly. An additional bonus is that it all seems to be buckshot.
+	Undoubtedly these were the most popular type of shotgun ammunition when hunting for food became unfeasible due to the extinction of most wildlife.]],
 	rotation_series = "weapons/shotgun_ammo",
 },
 ----------------------------------------------------------------------
@@ -1878,7 +1880,7 @@ item_list{
 	base_price = 0,
 	inventory = {x = 1, y = 1,stackable = true, image = "pills_potions/brain_enlargement_antidode/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
-	description =_[[These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the Internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful.]],
+	description =_[[These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the Internet. The planet-wide guild of medics has recommended not to respond to these adverts at all, while attempts to entirely ban the distribution of those pills were never completely successful.]],
 	rotation_series = "pills_potions/brain_enlargement_antidode",
 },
 ----------------------------------------------------------------------
@@ -2025,7 +2027,7 @@ item_list{
 	base_price = 1,
 	inventory = {x = 1, y = 1,stackable = true, image = "cyberbucks/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_2.ogg"},
-	description =_[[The new monetary standard of the world. With the collapse of the banking system, the precious metals in bot circuitry has literally become hard cash. A bit hard to come by though, as the bots are not likely to just hand it over...]],
+	description =_[[The new monetary standard of the world. With the collapse of the banking system, the precious metals in bot circuitry are now de facto hard cash. A bit difficult to get, though, as the bots are not likely to just hand it over...]],
 	rotation_series = "cyberbucks",
 },
 ----------------------------------------------------------------------
@@ -2427,7 +2429,8 @@ item_list{
 	base_price = 100,
 	inventory = {x = 1, y = 1, image = "addons/silencer/inv_image.png" },
 	drop = {sound = "Item_Drop_Sound_4.ogg"},
-	description =_[[Allowing you to catch yours enemies by surprise, this silencer helps you to do more damage in ranged combat.]],
+	description =_[[Allowing you to catch your enemies by surprise, this silencer helps you to do more damage in ranged combat.]],
+	-- NOTE silencers slow bullets to subsonic to make them quieter when they emerge from the barrel.
 	rotation_series = "addons/silencer",
 },
 ----------------------------------------------------------------------
