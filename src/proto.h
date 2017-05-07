@@ -417,6 +417,7 @@ void close_audio(void);
 void set_music_volume(float);
 void set_SFX_volume(float);
 void switch_background_music(char *);
+char *get_background_music();
 int play_voice(const char *, int, float *);
 void resume_voice(int);
 void stop_voice(int);

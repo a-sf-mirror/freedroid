@@ -549,6 +549,11 @@ void switch_background_music(char *filename)
 	}
 }
 
+char *get_background_music()
+{
+	return music_filename;
+}
+
 /**
  * \brief Play a voice sound (used with title screens)
  *

@@ -252,6 +252,7 @@ void title_screen_run(struct title_screen *data)
 	title_screen_set_background(screen_data->background);
 	title_screen_set_text(screen_data->text, Para_Font);
 
+	char *current_background_music = my_strdup(get_background_music());
 	switch_background_music(screen_data->song);
 	if (screen_data->voice_acting) {
 		if (screen_data->preroll_text > 0) {
@@ -316,4 +317,9 @@ void title_screen_run(struct title_screen *data)
 
 	if (screen_data->voice_channel != -1)
 		stop_voice(screen_data->voice_channel);
+
+	if (current_background_music) {
+		switch_background_music(current_background_music);
+		free(current_background_music);
+	}
 }
