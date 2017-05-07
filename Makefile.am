@@ -21,7 +21,11 @@ if BUILD_LUA
 MAYBE_EMBEDDED_LUA = lua
 endif
 
-SUBDIRS = $(MAYBE_EMBEDDED_LUA) $(WIN32_PREBUILD) src tools doc po pkgs
+if BUILD_PO
+MAYBE_BUILD_PO = po
+endif
+
+SUBDIRS = $(MAYBE_EMBEDDED_LUA) $(WIN32_PREBUILD) src tools doc $(MAYBE_BUILD_PO) pkgs
 
 man_MANS = freedroidRPG.6
 README_l10n = $(basename $(notdir $(wildcard $(top_srcdir)/README-*)))

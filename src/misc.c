@@ -65,7 +65,9 @@ long Overall_Frames_Displayed = 0;
 struct data_dir data_dirs[] = {
 	[CONFIG_DIR]=      { "configdir",                   "" },
 	[DATA_ROOT]=       { "dataroot",                    "" },
+#ifdef ENABLE_NLS
 	[LOCALE_ROOT]=     { "localeroot",                  "" },
+#endif
 	[GUI_DIR]=         { "data/gui",                    "" },
 	[GRAPHICS_DIR]=    { "data/graphics",               "" },
 	[FONT_DIR]=        { "data/fonts",                  "" },
@@ -642,7 +644,9 @@ void init_data_dirs_path()
 		if (f != NULL) {
 			// File found, so now fill the data dir paths
 			strncpy(data_dirs[DATA_ROOT].path, top_data_dir[i], PATH_MAX);
+#ifdef ENABLE_NLS
 			strncpy(data_dirs[LOCALE_ROOT].path, top_locale_dir[i], PATH_MAX);
+#endif
 			fclose(f);
 			goto TOP_DIR_FOUND;
 		}

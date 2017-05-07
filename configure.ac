@@ -111,6 +111,25 @@ AM_GNU_GETTEXT_VERSION([0.18.2])
 AM_GNU_GETTEXT([external])
 AM_ICONV
 
+dnl AM_GNU_GETTEXT (through po.m4) does not provide a simple way to check
+dnl is the gettext tools were found. So we have to check them individually.
+build_locales="no"
+AS_VAR_IF([USE_NLS], [yes],
+	[
+		build_locales="yes"
+		AS_VAR_IF([MSGFMT],   [:], [ build_locales="no" ])
+		AS_VAR_IF([XGETTEXT], [:], [ build_locales="no" ])
+		AS_VAR_IF([MSGMERGE], [:], [ build_locales="no" ])
+		AS_VAR_IF([build_locales], [no],
+			[
+				AC_MSG_WARN([one of the gettext tools (xgettext, msgfmt, msgmerge) was not found])
+				AC_MSG_WARN([we can not create the localization files])
+				AC_MSG_WARN([install the gettext package in order to enable localization])
+			]
+		)
+	]
+)
+
 PKG_PROG_PKG_CONFIG([])
 if test -z "$PKG_CONFIG"; then
     AC_MSG_WARN([pkg-config not found])
@@ -457,6 +476,7 @@ dnl Define check conditions, to be used in Makefile.am
 
 AM_CONDITIONAL([BUILD_LUA],       [test "x$embedded_lua" = "xyes"])
 AM_CONDITIONAL([BUILD_DEV_TOOLS], [test "x$dev_tools" = "xyes"])
+AM_CONDITIONAL([BUILD_PO],        [test "x$build_locales" = "xyes"])
 
 dnl Files to generate
 
@@ -472,14 +492,19 @@ AC_CONFIG_FILES([
 	doc/Doxyfile doc/Makefile
 		doc/manual/Doxyfile doc/manual/Makefile
 		doc/tools/Doxyfile doc/tools/Makefile
-	po/Makefile
-		po/po-src/Makevars po/po-src/Makefile.in
-		po/po-dialogs/Makevars po/po-dialogs/Makefile.in
-		po/po-data/Makevars po/po-data/Makefile.in
-		po/l10n-others/Makefile
 	pkgs/Makefile
 		pkgs/freedesktop/Makefile
 ])
+
+if test "$USE_NLS" = "yes"; then
+	AC_CONFIG_FILES([
+		po/Makefile
+			po/po-src/Makevars po/po-src/Makefile.in
+			po/po-dialogs/Makevars po/po-dialogs/Makefile.in
+			po/po-data/Makevars po/po-data/Makefile.in
+			po/l10n-others/Makefile
+	])
+fi
 
 AS_VAR_IF([dev_tools], [yes],
 	[
@@ -516,7 +541,8 @@ SILENT_ECHO(["
 	compile with sound support:      $summary_sound
 	compile dev tools:               $summary_dev_tools
 	embed the real-time profiler:    $summary_rtprof
-	localization enabled:            $USE_NLS"
+	localization enabled:            $USE_NLS
+	create locales:                  $build_locales"
 ])
 
 AS_VAR_IF([cross_compiling], [yes],
