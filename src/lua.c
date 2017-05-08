@@ -1083,10 +1083,9 @@ static int lua_find_file(lua_State *L)
 		              PLEASE_INFORM);
 	} else {
 		// Loop on each subdir, stopping as soon as the requested file is found
-		int subdir_handle = -1;
 		for (int i = 0; i < lua_rawlen(L, -1); i++) {
 			lua_rawgeti(L, 2, i+1);
-			subdir_handle = lua_to_int(luaL_checkinteger(L, -1));
+			int subdir_handle = lua_to_int(luaL_checkinteger(L, -1));
 			lua_pop(L, 1);
 
 			if (subdir_handle >= 0 && subdir_handle < LAST_DATA_DIR) {

@@ -151,6 +151,7 @@ void dynarray_append(struct dynarray *to, struct dynarray *from, size_t membersi
 	if (needed_size > to->capacity)
 		dynarray_resize(to, needed_size, membersize);
 
+	// cppcheck-suppress arithOperationsOnVoidPointer
 	memcpy(to->arr + to->size * membersize, from->arr, from->size * membersize);
 	to->size = needed_size;
 }

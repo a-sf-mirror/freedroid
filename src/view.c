@@ -1258,17 +1258,17 @@ static void show_obstacle(int mask, obstacle * o, int code_number, int opacity)
 
 	if (!(mask & OMIT_OBSTACLES)) {
 		if (mask & ZOOM_OUT) {
-			blit_one_obstacle(o, NOHIGHLIGHT, ZOOM_OUT, opacity);
+			blit_one_obstacle(o, NOHIGHLIGHT, TRUE, opacity);
 		} else {
 			if (code_number == clickable_obstacle_under_cursor) {
-				blit_one_obstacle(o, HIGHLIGHT, !ZOOM_OUT, opacity);
+				blit_one_obstacle(o, HIGHLIGHT, FALSE, opacity);
 			} else {
 				// Do not blit "transp for water" obstacle when not in leveleditor mode
 				if (game_status != INSIDE_LVLEDITOR && o->type == ISO_TRANSP_FOR_WATER)
 					return;
 
 				// Normal display
-				blit_one_obstacle(o, NOHIGHLIGHT, !ZOOM_OUT, opacity);
+				blit_one_obstacle(o, NOHIGHLIGHT, FALSE, opacity);
 			}
 		}
 	}
@@ -1381,13 +1381,12 @@ void blit_preput_objects_according_to_blitting_list(int mask)
  */
 void blit_nonpreput_objects_according_to_blitting_list(int mask)
 {
-	enemy *enemy_under_cursor = NULL;
 	level *item_under_cursor_lvl = NULL;
 
 	// We memorize which 'enemy' is currently under the mouse target, so that we
 	// can properly highlight this enemy...
 	//
-	enemy_under_cursor = GetLivingDroidBelowMouseCursor();
+	enemy *enemy_under_cursor = GetLivingDroidBelowMouseCursor();
 	int item_under_cursor = get_floor_item_index_under_mouse_cursor(&item_under_cursor_lvl);
 
 	// Now it's time to blit all the elements from the list...

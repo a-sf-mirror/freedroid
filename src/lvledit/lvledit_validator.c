@@ -279,7 +279,7 @@ static void get_excpt_list(char *section_pointer)
 
 		free(validator_type);
 
-		if (one_validator->initial == '\0') {	// Sub-validator was not found
+		if (!one_validator || one_validator->initial == '\0') {	// Sub-validator was not found
 			error_message(__FUNCTION__, "The Validator's Type specified in an exception does not exist!",
 					PLEASE_INFORM | IS_FATAL);
 			return;

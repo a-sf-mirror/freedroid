@@ -200,11 +200,8 @@ DONE:
  */
 static void explode_font()
 {
-	BFont_Info *Font = NULL;
-	SDL_Surface *tmp = NULL;
-
-	Font = (BFont_Info *) calloc(1, sizeof(BFont_Info));
-	tmp = (SDL_Surface *) IMG_Load(font_name);
+	BFont_Info *Font = (BFont_Info *) calloc(1, sizeof(BFont_Info));
+	SDL_Surface *tmp = (SDL_Surface *) IMG_Load(font_name);
 
 	if (tmp != NULL) {
 		Font->font_image.surface = tmp;
