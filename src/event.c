@@ -46,7 +46,8 @@ struct event_trigger {
 	/* struct event_trigger_state has to contain the same attributes */
 
 	char *name;
-	uint32_t state; // is the event trigger enabled ?
+	uint32_t init_state; // initialization state (defined by events.dat)
+	uint32_t state;      // current state of the event trigger
 
 	/* Set 2 - attributes not written into savegames */
 
@@ -176,6 +177,9 @@ static void load_events(char *event_section_pointer)
 	while ((event_pointer = strstr(event_pointer, EVENT_TRIGGER_BEGIN_STRING)) != NULL) {
 		memset(&temp, 0, sizeof(struct event_trigger));
 
+		temp.init_state = 0;
+		temp.state = 0;
+
 		event_pointer += strlen(EVENT_TRIGGER_BEGIN_STRING) + 1;
 
 		char *end_of_event = LocateStringInData(event_pointer, EVENT_TRIGGER_END_STRING);
@@ -246,22 +250,28 @@ static void load_events(char *event_section_pointer)
 		temp.lua_code =
 			ReadAndMallocStringFromData(event_pointer, EVENT_TRIGGER_LUACODE_STRING, EVENT_TRIGGER_LUACODE_END_STRING);
 
-		temp.state = TRIGGER_DEFAULT;
+		// See the comment about TRIGGER_DEFAULT in defs.h, to get some
+		// information on the reason to use (TRIGGER_DEFAULT & TRIGGER_ENABLED)
 		int enabled_flag;
-		ReadValueFromStringWithDefault(event_pointer, EVENT_TRIGGER_ENABLED_STRING, "%d", "1",
-						&enabled_flag, end_of_event);
-		if (!enabled_flag)
-			temp.state = TRIGGER_DISABLED;
+		ReadValueFromStringWithDefault(event_pointer, EVENT_TRIGGER_ENABLED_STRING, "%d",
+				(TRIGGER_DEFAULT & TRIGGER_ENABLED) ? "1" : "0", &enabled_flag, end_of_event);
+		if (enabled_flag) {
+			temp.init_state |= TRIGGER_ENABLED;
+		} else {
+			temp.init_state &= ~TRIGGER_ENABLED;
+		}
 
 		ReadValueFromStringWithDefault(event_pointer, EVENT_TRIGGER_SINGLE_ACTIVATION_STRING, "%d", "0",
 						&temp.single_activation, end_of_event);
+
+		temp.state = temp.init_state;
 
 		end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1] = '\0';
 
 		end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1] = s;
 
 		dynarray_add(&event_triggers, &temp, sizeof(struct event_trigger));
-	}			// While Event trigger begin string found...
+	}
 }
 
 /**
@@ -298,9 +308,9 @@ int event_trigger_set_enable(const char *name, int flag)
 		struct event_trigger *evt = (struct event_trigger *)dynarray_member(&event_triggers, i, sizeof(struct event_trigger));
 		if (!strcmp(name, evt->name)) {
 			if (flag)
-				evt->state &= ~TRIGGER_DISABLED;
+				evt->state |= TRIGGER_ENABLED;
 			else
-				evt->state |= TRIGGER_DISABLED;
+				evt->state &= ~TRIGGER_ENABLED;
 			return TRUE;
 		}
 	}
@@ -331,18 +341,24 @@ int event_trigger_get_state(const char *name, uint32_t *state)
  * Write the sate of event triggers (called when saving a savegame).
  * \ingroup overloadrw
  *
- * Only the variable part of the event triggers are written in a savegame.
- * The static part (events.dat) is first loaded when
+ * Only the triggers with a 'non default' state are written in the
+ * savegame, to minimize the savegame's size.
  *
  * \param strout The auto_string to be filled
 */
 void write_event_triggers_dynarray(struct auto_string *strout)
 {
-	// Only the triggers with a 'non default' state will be written in the
-	// savegame, to minimize the savegame's size.
+	// We HAVE to save if the event trigger is not in its initialization
+	// state, that is if state != init_state
+	// But the init_state (defined in events.dat) may be changed by a level
+	// designer. To ensure that a savegame can survive such a change, we
+	// also save if init_state != default state.
+	// The default state is hardcoded and is not expected to be changed.
+	// If, however, a dev was to change the default state, a savegame
+	// converter will have to be written.
 	for (int i = 0; i < event_triggers.size; i++) {
 		struct event_trigger *evt = (struct event_trigger *)dynarray_member(&event_triggers, i, sizeof(struct event_trigger));
-		if (evt->state == TRIGGER_DEFAULT)
+		if ((evt->state == evt->init_state) && (evt->init_state == TRIGGER_DEFAULT))
 			continue;
 		struct event_trigger_state state = { .name = evt->name, .state = evt->state };
 		write_event_trigger_state(strout, &state);
@@ -353,9 +369,6 @@ void write_event_triggers_dynarray(struct auto_string *strout)
 /**
  * Read the state of event triggers (called when loading a savegame)
  * \ingroup overloadrw
- *
- * Only the variable part of the event triggers are written in a savegame.
- * The static part (events.dat) is first loaded when
  *
  * \param L     Current Lua State
  * \param index Lua stack index of the data
@@ -369,8 +382,7 @@ void read_event_triggers_dynarray(lua_State *L, int index)
 		for (int i = 0; i < array_size; i++) {
 			lua_rawgeti(L, index, i+1);
 			read_event_trigger_state(L, -1, &data);
-			if (data.state & TRIGGER_DISABLED)
-				event_trigger_set_enable(data.name, FALSE);
+			event_trigger_set_enable(data.name, (data.state & TRIGGER_ENABLED));
 			free(data.name);
 			lua_pop(L, 1);
 		}
@@ -389,7 +401,7 @@ void event_position_changed(gps pos, int teleported)
 
 	for (i = 0; i < event_triggers.size; i++) {
 
-		if (arr[i].state & TRIGGER_DISABLED)
+		if (!(arr[i].state & TRIGGER_ENABLED))
 			continue;
 
 		if (arr[i].trigger_type != POSITION)
@@ -408,7 +420,7 @@ void event_position_changed(gps pos, int teleported)
 
 		run_lua(LUA_DIALOG, arr[i].lua_code);
 		if (arr[i].single_activation)
-			arr[i].state |= TRIGGER_DISABLED;
+			arr[i].state &= ~TRIGGER_ENABLED;
 	}
 }
 
@@ -421,7 +433,7 @@ void event_level_changed(int past_lvl, int cur_lvl)
 	struct event_trigger *arr = event_triggers.arr;
 
 	for (i = 0; i < event_triggers.size; i++) {
-		if (arr[i].state & TRIGGER_DISABLED)
+		if (!(arr[i].state & TRIGGER_ENABLED))
 			continue;
 
 		if (arr[i].trigger_type != CHANGE_LEVEL)
@@ -437,7 +449,7 @@ void event_level_changed(int past_lvl, int cur_lvl)
 
 		run_lua(LUA_DIALOG, arr[i].lua_code);
 		if (arr[i].single_activation)
-			arr[i].state |= TRIGGER_DISABLED;
+			arr[i].state &= ~TRIGGER_ENABLED;
 	}
 }
 
@@ -450,7 +462,7 @@ static void event_enemy(enemy *target, int event)
 	struct event_trigger *arr = event_triggers.arr;
 
 	for (i = 0; i < event_triggers.size; i++) {
-		if (arr[i].state & TRIGGER_DISABLED)
+		if (!(arr[i].state & TRIGGER_ENABLED))
 			continue;
 
 		if (arr[i].trigger_type != event)
@@ -474,7 +486,7 @@ static void event_enemy(enemy *target, int event)
 
 		run_lua(LUA_DIALOG, arr[i].lua_code);
 		if (arr[i].single_activation)
-			arr[i].state |= TRIGGER_DISABLED;
+			arr[i].state &= ~TRIGGER_ENABLED;
 	}
 }
 
@@ -497,7 +509,7 @@ void event_obstacle_action(obstacle *o)
 	struct event_trigger *arr = event_triggers.arr;
 
 	for (i = 0; i < event_triggers.size; i++) {
-		if (arr[i].state & TRIGGER_DISABLED)
+		if (!(arr[i].state & TRIGGER_ENABLED))
 			continue;
 
 		if (arr[i].trigger_type != OBSTACLE_ACTION)
@@ -522,7 +534,7 @@ void event_obstacle_action(obstacle *o)
 
 		run_lua(LUA_DIALOG, arr[i].lua_code);
 		if (arr[i].single_activation)
-			arr[i].state |= TRIGGER_DISABLED;
+			arr[i].state &= ~TRIGGER_ENABLED;
 	}
 }
 
@@ -553,7 +565,7 @@ struct event_trigger * visible_event_at_location(int x, int y, int z)
 	int i;
 	struct event_trigger *arr = event_triggers.arr;
 	for (i = 0; i < event_triggers.size; i++) {
-		if (arr[i].state & TRIGGER_DISABLED)
+		if (!(arr[i].state & TRIGGER_ENABLED))
 			continue;
 
 		if (arr[i].trigger_type != POSITION)

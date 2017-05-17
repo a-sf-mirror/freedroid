@@ -1208,7 +1208,7 @@ static int lua_event_trigger_enabled(lua_State *L)
 		lua_pushnil(L); /* return nil on error */
 		return 1;
 	}
-	lua_pushboolean(L, !(state & TRIGGER_DISABLED));
+	lua_pushboolean(L, state & TRIGGER_ENABLED);
 	return 1;
 }
 

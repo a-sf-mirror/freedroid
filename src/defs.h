@@ -1638,9 +1638,20 @@ enum shader {
 
 // ORed flags defining an event trigger's state
 enum trigger_state {
-	TRIGGER_DEFAULT  = 0,
-	TRIGGER_DISABLED = 1 << 0
+	TRIGGER_ENABLED = 1 << 0
 };
+// Defaul trigger state (OR-ed flags from enum trigger_state).
+// This default value has to be kept coherent with the defaults used
+// when loading events.dat in load_events().
+// To ensure that needed coherency, there must not be any hardcoded
+// value in load_events(). The defaults have to be extracted from
+// TRIGGER_DEFAULT.
+// For instance, one can use:
+// if (TRIGGER_DEFAULT & TRIGGER_ENABLED)
+//   ...enabled_by_default
+// else
+//   ...disabled_by_default
+#define TRIGGER_DEFAULT TRIGGER_ENABLED
 
 enum gl_quirks {
 	DISABLE_SHADERS = 1,
