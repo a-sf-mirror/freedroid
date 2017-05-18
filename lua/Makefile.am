@@ -9,7 +9,7 @@ EXTRA_DIST = $(dist_sources) lua.mk COPYRIGHT
 export VPATH
 
 all-local:
-	$(MAKE) -f $(LUA_MAKEFILE) $(AM_MAKEFLAGS) liblua.a
+	$(MAKE) -f $(LUA_MAKEFILE) $(AM_MAKEFLAGS) MYCFLAGS="$(FD_CFLAGS)" liblua.a
 
 clean-local:
 	$(MAKE) -f $(LUA_MAKEFILE) $(AM_MAKEFLAGS) clean
