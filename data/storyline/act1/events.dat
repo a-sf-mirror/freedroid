@@ -7016,6 +7016,16 @@ Silent=1
 ##############
 ## Level 62 ##
 ##############
+* New event trigger *
+Name=_"All aboard!"
+Trigger at label="TuxEndAct1"
+Enable this trigger by default=0
+Silent=0
+<LuaCode>
+	end_quest("A New Mission From Spencer", "All aboard, we're leaving now!")
+	win_game()
+</LuaCode>
+* End of trigger *
 
 ##############
 ## Level 63 ##

@@ -91,6 +91,10 @@ mission_list {
 	mission_description = "Upload faulty firmware to the firmware update server.",
 },
 {
+	mission_name = _"A New Mission From Spencer",
+	mission_description = "Board Spencer's stratopod and finish Act 1, for once and for all.",
+},
+{
 	mission_name = _"SADD's power supply",
 	mission_description = "Bring energy crystals to SADD",
 },

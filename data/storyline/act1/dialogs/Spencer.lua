@@ -683,10 +683,27 @@ return {
 			Tux:says(_"Bring it on!")
 			Npc:says(_"That's exactly what I wanted to hear.")
 			Npc:says(_"Now listen carefully, this is the plan...")
+			Npc:says(_"We did some research and found out the MegaSys former president is still alive. And the personel at our citadel was able to track him down! The only problem is the distance. It's not possible to teleport, but do not worry, we already thought on a solution!")
+			Npc:says(_"We found a stratopod, it's supposed to travel short - intra-planetary - distances. Probably someone came here on business and I guess that things didn't turn out so well for them.")
+			Tux:says(_"So I should take this \"stratopod\" and travel there to kick him for all the evil he brought us?")
+			Npc:says(_"Hm. I was thinking on asking questions, but that will work, too! However, do you know how to pilot?")
+			Tux:says(_"Erm...")
+	        Npc:says(_"Thought so. A colleague from us will pilot, so you don't need to worry, he told me he is an ace at flying. He should already be on the craft, inclusive. Just walk on the stairs and it should be OK.")
+			Npc:says(_"He didn't have any certificate but maybe I should just limit my worrying. I'm pretty sure with him piloting it'll be a successful flight.")
 			Tux:end_quest("Propagating a faulty firmware update", _"The town is saved, but there's still a lot to do. I agreed to continue fighting the robot armies with the Red Guard.")
-			hide("node65")
-			Spencer_can_die = true -- Not very useful because win_game is still here
-			win_game()
+	        Npc:says(_"I'll drop you on the Landing Zone. Just move close to the ship, on the stairs, to board. It'll depart immediately.")
+			Tux:add_quest("A New Mission From Spencer", _"In order to interrogate the former MegaSys president, I need to go to the HF Landing Zone and climb the stairs from the Stratopod there. The pilot is already inside, and he'll bring me to next area which needs me.")
+
+			-- Let's create the ship and open the gates - in case player want to explore further
+			add_obstacle(62, 64.0, 37.0, 501)
+			enable_event_trigger("All aboard!")
+			change_obstacle_state("HF-RoboFreighter-Gate01", "opened")
+			change_obstacle_state("HF-RoboFreighter-Gate02", "opened")
+			change_obstacle_state("ServerRoomDoor", "opened")
+			Tux:teleport("HF-LandingZone")
+
+			hide("node65", "node66")
+			Spencer_can_die = true
 			end_dialog()
 		end,
 	},
