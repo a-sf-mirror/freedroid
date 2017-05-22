@@ -666,10 +666,11 @@ void chat_run()
 					// - the lua script reached its end, remove its reference
 					// - deallocate memory
 					lua_State *L = get_lua_state(LUA_DIALOG);
-					lua_pop(L, 1);
-					if (current_chat_context->script_coroutine)
+					if (current_chat_context->script_coroutine) {
+						lua_pop(L, 1);
 						free(current_chat_context->script_coroutine);
-					current_chat_context->script_coroutine = NULL;
+						current_chat_context->script_coroutine = NULL;
+					}
 					goto end_current_dialog;
 				}
 			}
