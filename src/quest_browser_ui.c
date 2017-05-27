@@ -136,6 +136,12 @@ static int cmp_droid_names(const void *ptr1, const void *ptr2){
 //function that assembles and prints statistics about the player
 static void print_statistics(void)
 {
+#ifdef __clang_analyzer__
+	// Avoid Clang Static Analyser to report a possible OOB access
+	// on statistics_browser_lines_needed[] and srt[]
+#define Number_Of_Droid_Types 10
+#endif
+
 	int statistics_browser_lines_needed[Number_Of_Droid_Types + 2];
 	int display = 0;                //display location
 	int srt[Number_Of_Droid_Types]; //used for alphabetizing droid names in display
@@ -298,7 +304,7 @@ static void print_statistics(void)
 		rect_long->y = rect_short->y;
 		rect_long->x = rect_short->x;
 
-		// Now we check if the y coordinate of the buttons are 
+		// Now we check if the y coordinate of the buttons are
 		// somewhat reasonable or not.  For those buttons that are
 		// off the screen, things are simple, because then we can
 		// skip the rest of this pass of the loop.

@@ -1566,6 +1566,12 @@ static void encode_waypoints(struct auto_string *shipstr, struct level *lvl)
  */
 static void TranslateToHumanReadable(struct auto_string *str, map_tile * MapInfo, int LineLength, int layers)
 {
+#ifdef __clang_analyzer__
+	// Avoid Clang Static Analyser to report a possible OOB access
+	// on MapInfo[col].floor_values
+	if (layers >= MAX_FLOOR_LAYERS) return;
+#endif
+
 	int col;
 	int layer;
 

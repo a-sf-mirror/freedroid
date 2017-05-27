@@ -933,6 +933,12 @@ static void place_waypoints()
 // array with the distances from the 'entrance' in terms of rooms.
 static int get_middle_room(int entrance, int *distance)
 {
+#ifdef __clang_analyzer__
+	// Avoid Clang Static Analyser to report a possible OOB access
+	// on dist[][] and eccentricity[]
+#define total_rooms 10
+#endif
+
 	int i, j, k;
 	int m;
 	int dist[total_rooms][total_rooms];

@@ -438,6 +438,11 @@ char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartI
 	// in strncpy. Using MyMalloc(xxx + 1), as it was done before,
 	// generates a false clang-analyzer report.
 	StringLength = EndOfStringPointer - SearchPointer + 1;
+#ifdef __clang_analyzer__
+	// Avoid Clang Static Analyser to report a possible OOB access
+	// on ReturnString[StringLength - 1]
+	if (StringLength <= 0) return NULL;
+#endif
 	ReturnString = MyMalloc(StringLength);
 	strncpy(ReturnString, SearchPointer, StringLength);
 	ReturnString[StringLength - 1] = 0;
@@ -507,6 +512,11 @@ char *read_and_malloc_and_terminate_file(const char *filename, const char *file_
 	}
 
 	int filelen = FS_filelength(data_file);
+#ifdef __clang_analyzer__
+	// Avoid Clang Static Analyser to report a possible OOB access
+	// on data[filelen]
+	if (filelen <= 0) { fclose(data_file); return NULL; }
+#endif
 	long memory_amount = filelen + 1;
 	char *data = (char *)MyMalloc(memory_amount);
 

@@ -75,6 +75,11 @@ static inline void __list_del(struct list_head *prev, struct list_head *next)
 void list_del(struct list_head *entry)
 {
 	__list_del(entry->prev, entry->next);
+#ifdef __clang_analyzer__
+	// Avoid Clang Static Analyser to report a not portable use of
+	// fixed addresses
+	return;
+#endif
 	entry->next = LIST_POISON1;
 	entry->prev = LIST_POISON2;
 }

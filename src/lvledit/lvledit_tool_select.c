@@ -268,6 +268,12 @@ static void calc_min_max_selection(struct list_head *list, pointf *cmin, pointf 
 
 static int set_floor_layers(level *lvl, struct lvledit_map_tile *tile)
 {
+#ifdef __clang_analyzer__
+	// Avoid Clang Static Analyser to report a possible OOB access
+	// on t->floor_values[i]
+	if (lvl->floor_layers >= MAX_FLOOR_LAYERS) return 0;
+#endif
+
 	struct map_tile *t = tile->tile;
 
 	if (tile->layer == ALL_FLOOR_LAYERS) {

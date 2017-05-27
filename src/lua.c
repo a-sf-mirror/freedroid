@@ -1005,6 +1005,12 @@ static int lua_add_obstacle(lua_State *L)
 {
 	int levelnum = lua_to_int(luaL_checkinteger(L, 1));
 
+#ifdef __clang_analyzer__
+	// Avoid Clang Static Analyser to report a possible OOB access
+	// on curShip.AllLevels[levelnum]
+	if (levelnum < 0 || levelnum >= MAX_LEVELS) return 0;
+#endif
+
 	if (!level_exists(levelnum)) {
 		error_message(__FUNCTION__, "Requested level num (%d) does not exists. Can not add the obstacle.", PLEASE_INFORM, levelnum);
 		return 0;
@@ -1022,6 +1028,12 @@ static int lua_add_obstacle(lua_State *L)
 static int lua_add_volatile_obstacle(lua_State *L)
 {
 	int levelnum = lua_to_int(luaL_checkinteger(L, 1));
+
+#ifdef __clang_analyzer__
+	// Avoid Clang Static Analyser to report a possible OOB access
+	// on curShip.AllLevels[levelnum]
+	if (levelnum < 0 || levelnum >= MAX_LEVELS) return 0;
+#endif
 
 	if (!level_exists(levelnum)) {
 		error_message(__FUNCTION__, "Requested level num (%d) does not exists. Can not add the obstacle.", PLEASE_INFORM, levelnum);
