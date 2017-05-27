@@ -132,7 +132,7 @@ int png_save_surface(const char *filename, SDL_Surface *surf)
 	if (surf->format->BytesPerPixel == 4 && !surf->format->Amask)
 		png_set_filler(png_ptr, 0, PNG_FILLER_AFTER);
 
-	row_pointers = (png_bytep*) malloc(sizeof(png_bytep)*surf->h);
+	row_pointers = (png_bytep*) malloc(sizeof(png_bytep)*(size_t)(surf->h));
 	for (i = 0; i < surf->h; i++)
 		row_pointers[i] = (png_bytep)(Uint8 *)surf->pixels + i*surf->pitch;
 	png_write_image(png_ptr, row_pointers);
