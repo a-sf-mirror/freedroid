@@ -1004,6 +1004,11 @@ static int lua_event_freeze_npc(lua_State * L)
 static int lua_add_obstacle(lua_State *L)
 {
 	int levelnum = lua_to_int(luaL_checkinteger(L, 1));
+
+	if (!level_exists(levelnum)) {
+		error_message(__FUNCTION__, "Requested level num (%d) does not exists. Can not add the obstacle.", PLEASE_INFORM, levelnum);
+		return 0;
+	}
 	struct level *level = curShip.AllLevels[levelnum];
 	float x = luaL_checknumber(L, 2);
 	float y = luaL_checknumber(L, 3);
@@ -1017,6 +1022,11 @@ static int lua_add_obstacle(lua_State *L)
 static int lua_add_volatile_obstacle(lua_State *L)
 {
 	int levelnum = lua_to_int(luaL_checkinteger(L, 1));
+
+	if (!level_exists(levelnum)) {
+		error_message(__FUNCTION__, "Requested level num (%d) does not exists. Can not add the obstacle.", PLEASE_INFORM, levelnum);
+		return 0;
+	}
 	struct level *level = curShip.AllLevels[levelnum];
 	float x = luaL_checknumber(L, 2);
 	float y = luaL_checknumber(L, 3);
