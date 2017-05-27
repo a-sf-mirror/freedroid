@@ -924,7 +924,6 @@ void show_skills_screen(void)
 					font_switchto_msgstat[0]);
 
 			display_text(char_text, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, 1.0);
-			nextypos += get_font_height(get_current_font());
 		}
 	}
 
