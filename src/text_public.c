@@ -507,7 +507,7 @@ char *read_and_malloc_and_terminate_file(const char *filename, const char *file_
 	}
 
 	int filelen = FS_filelength(data_file);
-	long memory_amount = filelen + 100;
+	long memory_amount = filelen + 1;
 	char *data = (char *)MyMalloc(memory_amount);
 
 	if (fread(data, 1, memory_amount, data_file) < filelen && ferror(data_file)) {
@@ -543,7 +543,7 @@ char *read_and_malloc_and_terminate_file(const char *filename, const char *file_
 			read_pointer[0] = 0;
 		}
 	} else
-		data[memory_amount - 100] = 0;
+		data[filelen] = 0;
 
 	return (data);
 }
