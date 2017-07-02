@@ -55,6 +55,23 @@ hardcoded_types = [ "list_head_t", "keybind_t_array" ]
 
 additional_types = [ "bullet_sparse_dynarray", "blast_sparse_dynarray", "spell_sparse_dynarray", "melee_shot_sparse_dynarray" ]
 
+# Special types replacements
+
+special_types = {
+    #32 bit integers
+    'unsigned_int': 'uint32_t',
+    'unsigned_long' : 'uint32_t',
+    'long' : 'int32_t',
+    'int' : 'int32_t',
+    #16 bit
+    'short_int': 'int16_t',
+    'unsigned_short_int' : 'uint16_t',
+    'short': 'int16_t',
+    #8 bit
+    'signed_char' : 'char',
+    'unsigned_char' : 'uint8_t'
+}
+
 #=====
 # End of user modifiable part
 #==============================================================================
@@ -93,22 +110,6 @@ find_structure_notypedef_rxp = re.compile(
 
 # Regexp which search for a field
 find_members_rxp = re.compile(r'\s*' + c_type + r'\s*(' + c_id + r')(?:\s*\[(.+)\])?\s*?;.*')
-
-# Special types replacements
-special_types = {
-    #32 bit integers
-    'unsigned_int': 'uint32_t',
-    'unsigned_long' : 'uint32_t',
-    'long' : 'int32_t',
-    'int' : 'int32_t',
-    #16 bit
-    'short_int': 'int16_t',
-    'unsigned_short_int' : 'uint16_t',
-    'short': 'int16_t',
-    #8 bit
-    'signed_char' : 'char',
-    'unsigned_char' : 'uint8_t'
-}
 
 def write_files_header(output_c, output_h, output_fn):
 
@@ -306,6 +307,19 @@ def main():
 
             impl_str += 'define_write_xxx_dynarray(%s);\n' % s_name
             impl_str += 'define_read_xxx_dynarray(%s);\n' % s_name
+
+        elif '_list' in s_name:
+
+            s_name = s_name.replace('_list', '')
+            func_name = s_name.replace('struct ', '')
+
+            header_str += '/*! \ingroup genrw */\n'
+            header_str += 'void write_%s_list(struct auto_string *, %s_list *);\n' % (func_name, s_name)
+            header_str += '/*! \ingroup genrw */\n'
+            header_str += 'void read_%s_list(lua_State *, int, %s_list *);\n' % (func_name, s_name)
+
+            impl_str += 'define_write_xxx_list(%s);\n' % s_name
+            impl_str += 'define_read_xxx_list(%s);\n' % s_name
 
     output_h.write(header_str)
     output_c.write(impl_str) 

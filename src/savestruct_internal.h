@@ -248,6 +248,27 @@ void write_##X##_sparse_dynarray(struct auto_string *strout, X##_sparse_dynarray
 }
 
 /**
+ * Define a function to write a list of type X.
+ * \ingroup arraymacros
+ *
+ * The generated function will write a Lua table containing all elements of
+ * a C list.
+ * \param X Data type
+ */
+
+#define define_write_xxx_list(X)\
+void write_##X##_list(struct auto_string *strout, X##_list *data)\
+{\
+	autostr_append(strout, "{\n");\
+	X *elt;\
+	list_for_each_entry(elt, data, node) {\
+		write_##X(strout, elt);\
+		autostr_append(strout, ",\n");\
+	}\
+	autostr_append(strout, "}\n");\
+}
+
+/**
  * Define a function to read an array of type X.
  * \ingroup arraymacros
  *
@@ -323,6 +344,32 @@ void read_##X##_sparse_dynarray(lua_State *L, int index, X##_sparse_dynarray *re
 		}\
 	} else {\
 		sparse_dynarray_init((struct sparse_dynarray *)result, 0, sizeof(X));\
+	}\
+}
+
+/**
+ * Define a function to read a list of type X.
+ * \ingroup arraymacros
+ *
+ * The generated function will read a Lua table, and add each read element
+ * on the tail of a C list.
+ * \param X Data type
+ */
+
+#define define_read_xxx_list(X)\
+void read_##X##_list(lua_State *L, int index, X##_list *result)\
+{\
+	lua_is_of_type_or_abort(L, index, LUA_TTABLE);\
+	int array_size = lua_rawlen(L, index);\
+	INIT_LIST_HEAD(result);\
+	if (array_size != 0) {\
+		for (int i = 0; i < array_size; i++) {\
+			lua_rawgeti(L, index, i+1);\
+			X *data = MyMalloc(sizeof(X));\
+			read_##X(L, -1, data);\
+			list_add_tail(&data->node, result);\
+			lua_pop(L, 1);\
+		}\
 	}\
 }
 
