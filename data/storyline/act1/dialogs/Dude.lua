@@ -104,6 +104,16 @@ return {
 	},
 
 	{
+		id = "delayedevent1",
+		enabled = true,
+		text = "Test Delayed Events",
+		code = function()
+			dispatch_event("24 Test Delayed Event 2", 7)
+			dispatch_event("24 Test Delayed Event 1", 3)
+		end,
+	},
+
+	{
 		id = "l10n",
 		enabled = true,
 		text = "Test l10n",
