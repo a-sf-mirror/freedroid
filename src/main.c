@@ -110,6 +110,7 @@ void Game()
 			check_tux_enemy_collision();
 			correct_tux_position_according_to_jump();
 
+			execute_event_timers();
 		}
 
 		check_if_mission_is_complete();

@@ -611,6 +611,10 @@ void save_game_data(struct auto_string *strout)
 	autostr_append(strout, "event_triggers_array{\n");
 	write_event_triggers_dynarray(strout);
 	autostr_append(strout, "}\n");
+
+	autostr_append(strout, "event_timers_list");
+	write_event_timer_list(strout, &event_timer_head);
+	autostr_append(strout, "\n");
 }
 
 /*
@@ -721,6 +725,14 @@ static int volatile_obstacle_ctor(lua_State *L)
 static int event_triggers_array_ctor(lua_State *L)
 {
 	read_event_triggers_dynarray(L, 1);
+
+	return 0;
+}
+
+static int event_timers_list_ctor(lua_State *L)
+{
+	read_event_timer_list(L, 1, &event_timer_head);
+
 	return 0;
 }
 
@@ -749,6 +761,7 @@ void load_game_data(char *strin)
 		{"factions", factions_ctor},
 		{"volatile_obstacle", volatile_obstacle_ctor},
 		{"event_triggers_array", event_triggers_array_ctor},
+		{"event_timers_list", event_timers_list_ctor},
 		{NULL, NULL}
 	};
 

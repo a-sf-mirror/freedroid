@@ -80,6 +80,8 @@ void event_enemy_hacked(enemy *hacked);
 void event_obstacle_action(obstacle *o);
 const char *teleporter_square_below_mouse_cursor(void);
 struct event_trigger * visible_event_at_location(int x, int y, int z);
+void dispatch_event_timer(const char *trigger_id, float dispatch_time);
+void execute_event_timers();
 void delete_events(void);
 int validate_events(void);
 

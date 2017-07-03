@@ -56,6 +56,7 @@ struct event_trigger {
 	int single_activation; // disable the trigger after first activation
 
 	enum {
+		CODE_ONLY,
 		POSITION,
 		CHANGE_LEVEL,
 		ENEMY_DEATH,
@@ -90,8 +91,11 @@ struct event_trigger {
 
 static struct dynarray event_triggers;
 
+// List of event_timer in the game
+LIST_HEAD(event_timer_head);
+
 /**
- * Delete all events and event triggers
+ * Delete all events and initialize
  */
 static void clear_out_events(void)
 {
@@ -102,10 +106,19 @@ static void clear_out_events(void)
 }
 
 /**
- * Delete all events and event triggers
+ * Delete all kind of events
  */
 void delete_events(void)
 {
+	// Remove existing event timers
+	struct event_timer *n, *next;
+	list_for_each_entry_safe(n, next, &event_timer_head, node) {
+		list_del(&n->node);
+		free(n->trigger_name);
+		free(n);
+	}
+	INIT_LIST_HEAD(&event_timer_head);
+
 	// Remove existing triggers
 	int i;
 	struct event_trigger *arr = event_triggers.arr;
@@ -177,6 +190,7 @@ static void load_events(char *event_section_pointer)
 	while ((event_pointer = strstr(event_pointer, EVENT_TRIGGER_BEGIN_STRING)) != NULL) {
 		memset(&temp, 0, sizeof(struct event_trigger));
 
+		temp.trigger_type = CODE_ONLY;
 		temp.init_state = 0;
 		temp.state = 0;
 
@@ -184,7 +198,7 @@ static void load_events(char *event_section_pointer)
 
 		char *end_of_event = LocateStringInData(event_pointer, EVENT_TRIGGER_END_STRING);
 		char s = end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1];
-		end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1] = 0;
+		end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1] = '\0';
 
 		// Determine type of event condition
 		char *temp_map_label_name = strstr(event_pointer, EVENT_TRIGGER_LABEL_STRING);
@@ -266,11 +280,9 @@ static void load_events(char *event_section_pointer)
 
 		temp.state = temp.init_state;
 
-		end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1] = '\0';
+		dynarray_add(&event_triggers, &temp, sizeof(struct event_trigger));
 
 		end_of_event[strlen(EVENT_TRIGGER_END_STRING) - 1] = s;
-
-		dynarray_add(&event_triggers, &temp, sizeof(struct event_trigger));
 	}
 }
 
@@ -586,6 +598,52 @@ struct event_trigger * visible_event_at_location(int x, int y, int z)
 		return &arr[i];
 	}
 	return NULL;
+}
+
+void dispatch_event_timer(const char *trigger_name, float dispatch_time)
+{
+	struct event_timer *evt = MyMalloc(sizeof(struct event_timer));
+	evt->trigger_name = strdup(trigger_name);
+	evt->dispatch_time = dispatch_time;
+
+	int added = FALSE;
+
+	// Try to add the timer before a timer that schedules later
+	struct event_timer *n, *next;
+	list_for_each_entry_safe(n, next, &event_timer_head, node) {
+		if (evt->dispatch_time <= n->dispatch_time) {
+			list_add_tail(&evt->node, &n->node);
+			added = TRUE;
+			break;
+		}
+	}
+
+	// Otherwise, add it at the end of the list.
+	if (!added) {
+		list_add_tail(&evt->node, &event_timer_head);
+	}
+}
+
+void execute_event_timers()
+{
+	struct event_timer *n, *next;
+
+	list_for_each_entry_safe(n, next, &event_timer_head, node) {
+		if (n->dispatch_time < Me.current_game_date) {
+			for (int i = 0; i < event_triggers.size; i++) {
+				struct event_trigger *evt_trigger = (struct event_trigger *)dynarray_member(&event_triggers, i, sizeof(struct event_trigger));
+				if (strcmp(evt_trigger->name, n->trigger_name))
+					continue;
+				if ((evt_trigger->state & TRIGGER_ENABLED) && evt_trigger->lua_code)
+					run_lua(LUA_DIALOG, evt_trigger->lua_code);
+			}
+			list_del(&n->node);
+			free(n->trigger_name);
+			free(n);
+		} else {
+			break; // Timer are sorted, so we can stop now.
+		}
+	}
 }
 
 /**

@@ -34,7 +34,8 @@ dump_structs = [
                  "tux_t", "item", "enemy", "bullet", "blast",
                  "obstacle", "volatile_obstacle", "event_trigger_state",
                  "spell", "melee_shot", "mission", "npc",
-                 "upgrade_socket", "keybind_t", "configuration_for_freedroid"
+                 "upgrade_socket", "keybind_t", "configuration_for_freedroid",
+                 "event_timer"
                ]
 
 # A list of forbidden types in the structures.
@@ -53,7 +54,8 @@ hardcoded_types = [ "list_head_t", "keybind_t_array" ]
 # This list contains types for which read/write functions will be added to the
 # generated files.
 
-additional_types = [ "bullet_sparse_dynarray", "blast_sparse_dynarray", "spell_sparse_dynarray", "melee_shot_sparse_dynarray" ]
+additional_types = [ "bullet_sparse_dynarray", "blast_sparse_dynarray", "spell_sparse_dynarray",
+                     "melee_shot_sparse_dynarray", "event_timer_list" ]
 
 # Special types replacements
 

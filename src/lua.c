@@ -1234,6 +1234,14 @@ static int lua_event_trigger_enabled(lua_State *L)
 	return 1;
 }
 
+static int lua_dispatch_event(lua_State *L)
+{
+	const char *trigger_name = luaL_checkstring(L, 1);
+	float time = luaL_checknumber(L, 2);
+	dispatch_event_timer(trigger_name, Me.current_game_date + time);
+	return 0;
+}
+
 luaL_Reg lfuncs[] = {
 	/* teleport(string map_label)
 	 * Teleports the player to the given map label.
@@ -1525,6 +1533,8 @@ luaL_Reg lfuncs[] = {
 	{"disable_event_trigger", lua_event_trigger_disable},
 	{"enable_event_trigger", lua_event_trigger_enable},
 	{"event_trigger_enabled", lua_event_trigger_enabled},
+
+	{"dispatch_event", lua_dispatch_event},
 
 	{NULL, NULL}
 };

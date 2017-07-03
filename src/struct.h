@@ -74,6 +74,7 @@ typedef struct sparse_dynarray bullet_sparse_dynarray;
 typedef struct sparse_dynarray melee_shot_sparse_dynarray;
 typedef struct sparse_dynarray blast_sparse_dynarray;
 typedef struct sparse_dynarray spell_sparse_dynarray;
+typedef struct list_head event_timer_list;
 
 struct font {
 	int height;
@@ -1142,5 +1143,11 @@ struct game_act {
 	char *subdir;
 	int starting_act;
 };
+
+typedef struct event_timer {
+	string trigger_name;
+	float dispatch_time;
+	list_head_t node;
+} event_timer;
 
 #endif

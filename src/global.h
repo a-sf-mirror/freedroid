@@ -315,6 +315,12 @@ EXTERN colldet_filter WalkableExceptIdPassFilter;
 EXTERN colldet_filter FlyableExceptIdPassFilter;
 
 //===================================================================
+#define INTERN_FOR _event_c
+#include "extint_macros.h"
+
+EXTERN struct list_head event_timer_head;
+
+//===================================================================
 // Final include to undef all macros
 #include "extint_macros.h"
 
